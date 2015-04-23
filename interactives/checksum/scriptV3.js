@@ -5,11 +5,8 @@
  */
 
 
-<<<<<<< Updated upstream
-=======
 //TODO: force incorrect check digits (10% chance of being correct))
 
->>>>>>> Stashed changes
 
 //default type
 var code_type = "ISBN-10";
@@ -18,11 +15,8 @@ var valid_code_count = 0;
 var check_digit_type = 0;
 var number = "";
 var sum = 0;
-<<<<<<< Updated upstream
-=======
 var primary_weights = [3, 2, 7, 6, 5, 4, 3, 2];
 var secondary_weights = [7, 4, 3, 2, 5, 2, 7, 6];
->>>>>>> Stashed changes
 
 
 //get the code_type whenever selected changes
@@ -154,36 +148,6 @@ function ISBN13Generator(count) {
 }
 
 
-<<<<<<< Updated upstream
-function IRDGenerator(count) {
-
-	generateRandomDigits(8);
-
-	var primary_weights = [3, 2, 7, 6, 5, 4, 3, 2];
-	var secondary_weights = [7, 4, 3, 2, 5, 2, 7, 6];
-
-	sum = calculateIRDSum(primary_weights);
-
-	check_digit = determineCheckDigitType(count, sum, 11);
-	console.log(check_digit);
-	IRDCheckDigit(check_digit, primary_weights);
-
-	
-	
-}
-
-function IRDCheckDigit(check_digit, weights) {
-	if (check_digit == 0) {
-		number += check_digit;	
-	} else if (check_digit == 1) {
-		check_digit = calculateIRDSum(weights); //recursive problem here
-	} else {
-		number += (11 - parseInt(check_digit)).toString();
-	}
-}
-
-
-=======
 //generate the first 8 numbers
 function IRDGenerator(count) {
 
@@ -216,7 +180,6 @@ function IRDCheckDigit(weights, count, repeat_count) {
 
 
 //caclulates sum based on weights
->>>>>>> Stashed changes
 function calculateIRDSum(weights) {
 
 	for (var i in number) {
@@ -235,10 +198,6 @@ function generateRandomDigits(count) {
 }
 
 
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 //display generated codes on page
 function displayGeneratedExampleCodes() {
 	
