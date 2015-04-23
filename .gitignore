@@ -1,0 +1,3 @@
+# Ignore everything within output folder except README.md
+!output/README.md
+output/*
