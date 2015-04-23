@@ -24,7 +24,13 @@ Complete documentation for this project will be stored in the [repository wiki](
 ## Contributing
 
 We are currently still constructing this repository to produce a complete guide so will not be accepting any pull requests until v1.0 is released. After this point we would love the community to get involved into making this guide as great as possible!
-A guide on how to contribute to the project (from correcting a spelling mistake to adding a translation) will be written as part of the documentation for the v1.0 release.
+A guide on how to contribute to the project (from correcting a spelling mistake to adding a translation) will be written as part of the documentation for the v1.0 release. Possible areas users will be able to contribute include:
+
+- Suggesting a text edit for a typo, grammar correction, or just clearing up a point.
+- Add a translation for a chapter or interactive.
+- Add a new or replacement image for a chapter.
+- Modify text and create their own version of the CSFG.
+- Add or modify an interactive for the guide.
 
 ## Admin contact
 
