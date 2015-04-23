@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<title>Check Digit Calculator</title>
+		<script type="text/javascript" src="jquery-2.1.3.min.js"></script>
+		<script src="jquery-ui-1.11.4/jquery-ui.js"></script>
+		<link rel="stylesheet" type=text/css href="style.css">
+	</head>
+	
+
+	<body>
+		<script src="scriptV3.js"></script>
+		
+		<div id="menu">
+
+			<select name="type" id="type">
+				<option selected="selected" value="ISBN-10">ISBN-10</option>
+				<option value="ISBN-13">ISBN-13</option>
+				<option value="EAN-13">EAN-13</option>
+				<option value="credit-card">Credit Card</option>
+				<option value="trains">Trains</option>
+				<option value="IRD-number">IRD Number</option>
+			</select>
+
+		</div>
+		
+		<input type="submit" value="Generate">
+
+		<div id="generated_codes">
+			<ul id="list">
+			</ul>
+		</div>
+	
+
+	</body>
+
+	
+</html>
+
