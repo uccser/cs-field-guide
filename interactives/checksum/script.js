@@ -144,6 +144,23 @@ function ISBN10CheckDigit(check_digit) {
 }
 
 
+//function to handle simple multiplier algorithms - credit card and ISBN13/EAN13
+function simpleMultiplier(multiplier) {
+	for (var i in number) {
+		if (number[i]%2 == 1) {
+			sum += parseInt(number[i]);
+		} else {
+			num = parseInt(number[i]) * multiplier;
+			if (num > 9) {
+				num -= 9;
+			}
+			sum += num;
+		}
+	}
+	return sum
+}
+
+
 //generates random ISBN-13 numbers
 function ISBN13Generator(count) {
 
@@ -158,23 +175,6 @@ function ISBN13Generator(count) {
 }
 
 
-function simpleMultiplier(multiplier) {
-	for (var i in number) {
-		if (number[i]%2 == 1) {
-			sum += parseInt(number[i]);
-		} else {
-			num = parseInt(number[i]) * multiplier;
-			if (num > 9) {
-				num -= 9;
-			}
-			sum += num;
-		}
-	}
-
-	return sum
-}
-
-
 //generates random credit card numbers
 function creditCardGenerator(count) {
 	//generate random 15 digits
@@ -183,7 +183,7 @@ function creditCardGenerator(count) {
 	//calculates the sum of the 12 digits - according to the Luhn algorithm
 	//odd indexed digits  = *2, even indexed digits = *1
 	sum = simpleMultiplier(2);
-	
+
 	number += determineCheckDigitType(count, sum, 10);
 }
 
@@ -215,7 +215,6 @@ function IRDCheckDigit(weights, count, repeat_count) {
 	} else {
 		number += (11 - parseInt(check_digit)).toString();
 	}
-	
 
 }
 
