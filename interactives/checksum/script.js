@@ -41,7 +41,7 @@ $(function() {
         	chooseAlgorithm(code_type, a);
        		number = "";
         }
-        console.log("new");
+
         displayGeneratedExampleCodes();
     
     });
@@ -91,7 +91,6 @@ function determineCheckDigitType(count, sum, modulus){
 //calculates valid checkdigit
 function modulusCalculator(sum, modulus) {
 	var value = (sum%modulus).toString();
-	console.log("modulus", value);
 	return value;
 }
 
@@ -99,12 +98,10 @@ function modulusCalculator(sum, modulus) {
 //generates random check digit
 function randomCheckDigit(ignore){
 	check_digit = (Math.floor(Math.random()*10)).toString();
-	console.log(ignore, "random", check_digit);
-	if (check_digit == ignore){
+	if (check_digit == ignore) {
 		randomCheckDigit(ignore);
-	} else {
-		return check_digit;
 	}
+	return check_digit;
 }
 
 
