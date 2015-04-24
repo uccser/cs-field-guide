@@ -41,7 +41,7 @@ $(function() {
         	chooseAlgorithm(code_type, a);
        		number = "";
         }
-
+        console.log("new");
         displayGeneratedExampleCodes();
     
     });
@@ -50,18 +50,69 @@ $(function() {
 
 //decide which algorithm to use
 function chooseAlgorithm(code_type, count){
-    
+
     if (code_type == "ISBN-10") {
     	ISBN10Generator(count);
     } else if (code_type == "ISBN-13" || code_type == "EAN-13") {
     	ISBN13Generator(count);
     } else if (code_type == "IRD-number") {
     	IRDGenerator(count);
+    } else if (code_type == "credit-card") {
+    	creditCardGenerator(count);
     } else {
     	console.log("something else...");
     }
     example_codes.push(number);
 
+}
+
+
+//decides if check digit should be calculated randomly or correctly
+function determineCheckDigitType(count, sum, modulus){
+
+	if (count < 2) {
+		check_digit_type = 0;
+	} else if (count < 4) {
+		check_digit_type = 1;
+	} else {
+		check_digit_type = Math.round(Math.random());
+	}
+
+	if (check_digit_type == 0) {
+		return modulusCalculator(sum, modulus);
+	} else {
+		var ignore = modulusCalculator(sum, modulus);
+		return randomCheckDigit(ignore);
+	}
+
+}
+
+
+//calculates valid checkdigit
+function modulusCalculator(sum, modulus) {
+	var value = (sum%modulus).toString();
+	console.log("modulus", value);
+	return value;
+}
+
+
+//generates random check digit
+function randomCheckDigit(ignore){
+	check_digit = (Math.floor(Math.random()*10)).toString();
+	console.log(ignore, "random", check_digit);
+	if (check_digit == ignore){
+		randomCheckDigit(ignore);
+	} else {
+		return check_digit;
+	}
+}
+
+
+//generate random numbers for start of code
+function generateRandomDigits(count) {
+	for (var i = 0; i < count; i++){
+		number += (Math.floor(Math.random()*10)).toString();
+	}
 }
 
 
@@ -87,50 +138,12 @@ function ISBN10Generator(count) {
 }
 
 
-//decides if check digit should be calculated randomly or correctly
-function determineCheckDigitType(count, sum, modulus){
-
-	if (count < 2) {
-		check_digit_type = 0;
-	} else if (count < 4) {
-		check_digit_type = 1;
-	} else {
-		check_digit_type = Math.round(Math.random());
-	}
-
-	if (check_digit_type == 0) {
-		return modulusCalculator(sum, modulus);
-	} else {
-		var ignore = modulusCalculator(sum, modulus);
-		return randomCheckDigit(ignore);
-	}
-
-}
-
-
 //checks if checkdigit is integer or "X" for ISBN10
 function ISBN10CheckDigit(check_digit) {
 	if (check_digit == "10") {
 		number += "X";
 	} else {
 		number += check_digit;
-	}
-}
-
-
-//calculates valid checkdigit
-function modulusCalculator(sum, modulus) {
-	return (sum%modulus).toString();
-}
-
-
-//generates random check digit
-function randomCheckDigit(ignore){
-	check_digit = (Math.floor(Math.random()*10)).toString();
-	if (check_digit == ignore){
-		randomCheckDigit(ignore);
-	} else {
-		return check_digit;
 	}
 }
 
@@ -152,6 +165,29 @@ function ISBN13Generator(count) {
 		}
 
 		number += determineCheckDigitType(count, sum, 10);
+}
+
+
+//generates random credit card numbers
+function creditCardGenerator(count) {
+
+	//generate random 15 digits
+	generateRandomDigits(15);
+
+	for (var i in number) {
+		if (number[i]%2 == 1) {
+			sum += parseInt(number[i]);
+		} else {
+			num = parseInt(number[i]) * 2;
+			if (num > 9) {
+				num -= 9;
+			}
+			sum += num;
+		}
+	}
+
+	number += determineCheckDigitType(count, sum, 10);
+
 }
 
 
@@ -182,6 +218,7 @@ function IRDCheckDigit(weights, count, repeat_count) {
 	} else {
 		number += (11 - parseInt(check_digit)).toString();
 	}
+	
 
 }
 
@@ -194,14 +231,6 @@ function calculateIRDSum(weights) {
 	}
 
 	return sum;
-}
-
-
-//generate random numbers for start of code
-function generateRandomDigits(count) {
-	for (var i = 0; i < count; i++){
-		number += (Math.floor(Math.random()*10)).toString();
-	}
 }
 
 
