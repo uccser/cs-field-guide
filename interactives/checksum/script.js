@@ -129,7 +129,6 @@ function ISBN10Generator(count) {
 	}
 
 	check_digit = determineCheckDigitType(count, sum, 11);
-
 	ISBN10CheckDigit(check_digit);
 		
 }
@@ -153,29 +152,18 @@ function ISBN13Generator(count) {
 
 		//calculates the sum of the 12 digits - according to the ISBN13 algorithm
 		//odd indexed digits  = *1, even indexed digits = *3
-		for (var i in number) {
-			if (number[i]%2 == 1) {
-				sum += parseInt(number[i]);
-			} else {
-				sum += parseInt(number[i]) * 3;
-			}
-		}
+		sum = simpleMultiplier(3);
 
 		number += determineCheckDigitType(count, sum, 10);
 }
 
 
-//generates random credit card numbers
-function creditCardGenerator(count) {
-
-	//generate random 15 digits
-	generateRandomDigits(15);
-
+function simpleMultiplier(multiplier) {
 	for (var i in number) {
 		if (number[i]%2 == 1) {
 			sum += parseInt(number[i]);
 		} else {
-			num = parseInt(number[i]) * 2;
+			num = parseInt(number[i]) * multiplier;
 			if (num > 9) {
 				num -= 9;
 			}
@@ -183,8 +171,20 @@ function creditCardGenerator(count) {
 		}
 	}
 
-	number += determineCheckDigitType(count, sum, 10);
+	return sum
+}
 
+
+//generates random credit card numbers
+function creditCardGenerator(count) {
+	//generate random 15 digits
+	generateRandomDigits(15);
+
+	//calculates the sum of the 12 digits - according to the Luhn algorithm
+	//odd indexed digits  = *2, even indexed digits = *1
+	sum = simpleMultiplier(2);
+	
+	number += determineCheckDigitType(count, sum, 10);
 }
 
 
@@ -222,11 +222,9 @@ function IRDCheckDigit(weights, count, repeat_count) {
 
 //caclulates sum based on weights
 function calculateIRDSum(weights) {
-
 	for (var i in number) {
 		sum += parseInt(number[i] * weights[i]);
 	}
-
 	return sum;
 }
 
