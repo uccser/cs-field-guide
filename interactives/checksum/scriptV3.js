@@ -5,11 +5,12 @@
  */
 
 
-//TODO: force incorrect check digits (10% chance of being correct))
-
+//TODO: force incorrect check digits (10% chance of being correct)
+//TODO: invalid numbers produced after generate clicked multiple times
 
 //default type
 var code_type = "ISBN-10";
+
 var example_codes = [];
 var valid_code_count = 0;
 var check_digit_type = 0;
@@ -100,7 +101,8 @@ function determineCheckDigitType(count, sum, modulus){
 	if (check_digit_type == 0) {
 		return modulusCalculator(sum, modulus);
 	} else {
-		return randomCheckDigit();
+		var ignore = modulusCalculator(sum, modulus);
+		return randomCheckDigit(ignore);
 	}
 
 }
@@ -123,8 +125,13 @@ function modulusCalculator(sum, modulus) {
 
 
 //generates random check digit
-function randomCheckDigit(){
-	return (Math.floor(Math.random()*10)).toString();
+function randomCheckDigit(ignore){
+	check_digit = (Math.floor(Math.random()*10)).toString();
+	if (check_digit == ignore){
+		randomCheckDigit(ignore);
+	} else {
+		return check_digit;
+	}
 }
 
 
