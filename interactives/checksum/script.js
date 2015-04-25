@@ -13,7 +13,6 @@ var code_type = "ISBN-10";
 
 var example_codes = [];
 var valid_code_count = 0;
-var check_digit_type = 0;
 var number = "";
 var sum = 0;
 var primary_weights = [3, 2, 7, 6, 5, 4, 3, 2];
@@ -70,6 +69,8 @@ function chooseAlgorithm(code_type, count){
 //decides if check digit should be calculated randomly or correctly
 function determineCheckDigitType(count, sum, modulus){
 
+	var check_digit_type = 0;
+
 	if (count < 2) {
 		check_digit_type = 0;
 	} else if (count < 4) {
@@ -78,6 +79,17 @@ function determineCheckDigitType(count, sum, modulus){
 		check_digit_type = Math.round(Math.random());
 	}
 
+	if (modulus == 0) {
+		return check_digit_type;
+	} else {
+		return checkDigitCalculator(sum, modulus, check_digit_type);
+	}
+
+}
+
+
+//calculates check digit
+function checkDigitCalculator(sum, modulus, check_digit_type) {
 	if (check_digit_type == 0) {
 		return modulusCalculator(sum, modulus);
 	} else {
@@ -188,6 +200,7 @@ function creditCardGenerator(count) {
 	number += determineCheckDigitType(count, sum, 10);
 }
 
+
 //generates random train code
 function trainNumberGenerator(count) {
 	generateRandomDigits(11);
@@ -195,13 +208,33 @@ function trainNumberGenerator(count) {
 	//calculates the sum of the 12 digits
 	//odd indexed digits  = *2, even indexed digits = *1
 	sum = simpleMultiplier(2);
+
+	check_digit_type = determineCheckDigitType(count, sum, 0);
+
+	if (check_digit_type == 0) {
+		trainCheckDigit(sum);
+	} else {
+		var ignore = trainCheckDigit(sum);
+		randomCheckDigit(ignore);
+	}
+
+}
+
+
+//calculate check digit for train code
+function trainCheckDigit(sum) {
+
 	sum = sum.toString();
-	temp = 10 - parseInt(sum.slice(-1));
-	temp = temp.toString();
-	check_digit = temp.slice(-1);
+
+	//difference = 10 - last digit of sum
+	var difference = 10 - parseInt(sum.slice(-1));
+	difference = difference.toString();
+
+	//check digit = last digit of the difference (e.g. 10 -> 0)
+	check_digit = difference.slice(-1);
+
 	number += check_digit;
 
-	//check_digit = determineCheckDigitType(count, sum, 10);
 }
 
 
