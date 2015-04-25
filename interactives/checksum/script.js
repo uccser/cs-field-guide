@@ -59,8 +59,8 @@ function chooseAlgorithm(code_type, count){
     	IRDGenerator(count);
     } else if (code_type == "credit-card") {
     	creditCardGenerator(count);
-    } else {
-    	console.log("something else...");
+    } else if (code_type == "trains") {
+    	trainNumberGenerator(count);
     }
     example_codes.push(number);
 
@@ -146,18 +146,19 @@ function ISBN10CheckDigit(check_digit) {
 
 //function to handle simple multiplier algorithms - credit card and ISBN13/EAN13
 function simpleMultiplier(multiplier) {
+	var total = 0;
 	for (var i in number) {
-		if (number[i]%2 == 1) {
-			sum += parseInt(number[i]);
+		if (i%2 == 1) {
+			total += parseInt(number[i]);
 		} else {
 			num = parseInt(number[i]) * multiplier;
 			if (num > 9) {
 				num -= 9;
 			}
-			sum += num;
+			total += num;
 		}
 	}
-	return sum
+	return total;
 }
 
 
@@ -167,7 +168,7 @@ function ISBN13Generator(count) {
 		//generates 12 random numbers
 		generateRandomDigits(12);
 
-		//calculates the sum of the 12 digits - according to the ISBN13 algorithm
+		//calculates the sum of the 12 digits
 		//odd indexed digits  = *1, even indexed digits = *3
 		sum = simpleMultiplier(3);
 
@@ -180,11 +181,27 @@ function creditCardGenerator(count) {
 	//generate random 15 digits
 	generateRandomDigits(15);
 
-	//calculates the sum of the 12 digits - according to the Luhn algorithm
+	//calculates the sum of the 15 digits
 	//odd indexed digits  = *2, even indexed digits = *1
 	sum = simpleMultiplier(2);
 
 	number += determineCheckDigitType(count, sum, 10);
+}
+
+//generates random train code
+function trainNumberGenerator(count) {
+	generateRandomDigits(11);
+
+	//calculates the sum of the 12 digits
+	//odd indexed digits  = *2, even indexed digits = *1
+	sum = simpleMultiplier(2);
+	sum = sum.toString();
+	temp = 10 - parseInt(sum.slice(-1));
+	temp = temp.toString();
+	check_digit = temp.slice(-1);
+	number += check_digit;
+
+	//check_digit = determineCheckDigitType(count, sum, 10);
 }
 
 
