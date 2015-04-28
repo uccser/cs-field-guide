@@ -309,7 +309,9 @@ function displayGeneratedExampleCodes() {
 
 
 
-
+function this_is_a_test(name) {
+	return "hello", name;
+}
 
 
 
