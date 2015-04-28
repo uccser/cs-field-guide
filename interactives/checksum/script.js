@@ -5,8 +5,9 @@
  */
 
 
-//TODO: force incorrect check digits (10% chance of being correct)
-//TODO: invalid numbers produced after generate clicked multiple times
+//TODO: shuffle list
+//TODO: isbn-10 sum could use list of weights
+
 
 //default type
 var code_type = "ISBN-10";
@@ -79,7 +80,7 @@ function determineCheckDigitType(count, sum, modulus){
 		check_digit_type = Math.round(Math.random());
 	}
 
-	if (modulus == 0) {
+	if (modulus == 0) { //this is a check for if train check digits are being calculated
 		return check_digit_type;
 	} else {
 		return checkDigitCalculator(sum, modulus, check_digit_type);
@@ -91,7 +92,9 @@ function determineCheckDigitType(count, sum, modulus){
 //calculates check digit
 function checkDigitCalculator(sum, modulus, check_digit_type) {
 	if (check_digit_type == 0) {
-		return modulusCalculator(sum, modulus);
+		var test = modulusCalculator(sum, modulus);
+		console.log("valid", test);
+		return test;
 	} else {
 		var ignore = modulusCalculator(sum, modulus);
 		return randomCheckDigit(ignore);
@@ -102,6 +105,7 @@ function checkDigitCalculator(sum, modulus, check_digit_type) {
 
 //calculates valid checkdigit
 function modulusCalculator(sum, modulus) {
+	console.log(sum);
 	var value = (sum%modulus).toString();
 	return value;
 }
@@ -133,6 +137,7 @@ function ISBN10Generator(count) {
 
 	var multiplier = 10;
 
+	sum = 0;
 	//calculates the sum of the 12 digits - according to the ISBN13 algorithm
 	//odd indexed digits  = *1, even indexed digits = *3
 	for (var i in number) {
@@ -159,15 +164,16 @@ function ISBN10CheckDigit(check_digit) {
 //function to handle simple multiplier algorithms - credit card and ISBN13/EAN13
 function simpleMultiplier(multiplier) {
 	var total = 0;
+	var temp = 0;
 	for (var i in number) {
 		if (i%2 == 1) {
 			total += parseInt(number[i]);
 		} else {
-			num = parseInt(number[i]) * multiplier;
-			if (num > 9) {
-				num -= 9;
+			temp = parseInt(number[i]) * multiplier;
+			if (temp > 9) {
+				temp -= 9;
 			}
-			total += num;
+			total += temp;
 		}
 	}
 	return total;
@@ -271,6 +277,7 @@ function IRDCheckDigit(weights, count, repeat_count) {
 
 //caclulates sum based on weights
 function calculateIRDSum(weights) {
+	sum = 0;
 	for (var i in number) {
 		sum += parseInt(number[i] * weights[i]);
 	}
