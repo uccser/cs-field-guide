@@ -65,6 +65,8 @@ For students reports:
 More information on this can be found at the end of the chapter.
 {teacher end}
 
+{page break}
+
 ## Searching
 
 {teacher}
@@ -142,6 +144,184 @@ The output from these programs can be used in students reports for reporting the
 {teacher end}
 
 The following files will run linear and binary search in various languages:
-- [Scratch]{include file linear-binary-search-scratch.zip}
-- [Python (Version 2)]{include file linear-binary-search-python2.py}
-- [Python (Version 3)]{include file linear-binary-search-python3.py}
+- [Scratch](file linear-binary-search-scratch.zip)
+- [Python (Version 2)](file linear-binary-search-python2.py)
+- [Python (Version 3)](file linear-binary-search-python3.py)
+
+{page break}
+
+## Sorting algorithms
+
+{teacher}
+Sorting algorithms are useful to study because they illustrate many of the key issues that come up in algorithms, and there are some good contrasts, particularly between quicksort (which is fast and is widely used) and selection or insertion sort (which become very slow as the number of items sorted increases).
+{teacher end}
+
+Sorting is another very important area of algorithms. Computers often have to sort large amounts of data into order based on some attribute of that data, such as sorting a list of files by their name or size, or emails by the date they were received, or a customer list according to people's names. Most of the time this is done to make searching easier. For example you might have a large amount of data and each piece of data could be someone's name and their phone number. If you want to search for someone by name it would help to first have the data sorted alphabetically according to everyones names, but if you then wanted to search for a phone number it would be more useful to have the data sorted according to people's phone numbers.
+
+Like searching there are many different sorting algorithms, but some take much longer than others. In this section you will be introduced to two slower algorithms and one much better one.
+
+### Scales Interactive
+
+Throughout this section you can use the sorting interactive to test out the algorithms we talk about. When you're using it make sure you take note of the comparisons at the bottom of the screen, each time you compare two boxes the algorithm is making 'one comparison' so the total number of comparisons you have to make with each algorithm is the cost of that algorithm for the 8 boxes.
+
+Use the scales to compare the boxes (you can only compare two boxes at a time) and then arrange them along the bottom of the screen. Arrange them so that the lightest box is on the far left and the heaviest is on the far right. Once you think they are in order click 'Test order'.
+
+If the interactive does not run properly on your computer you can use a set of physical balance scales instead; just make sure you can only tell if one box is heavier than the other, not their exact weight (so not digital scales that show the exact weight).
+
+{include interactive_external sorting_boxes title="Algorithm Sorting interactive"}
+
+### Selection Sort
+
+One of the most intuitive ways to sort a group of boxes into order, from lightest to heaviest, is to start by first finding the lightest (or the heaviest) box and placing that to the side. Try this with the scales interactive. 
+
+After finding the lightest box simply repeat the process again with the remaining boxes until you find the second lightest, now place that to the side alongside the lightest box. If you keep repeating this process you will eventually find you have placed each box into order. Try sorting the whole group of boxes in the scales interactive into order using this method and count how many comparisons you have to make. 
+
+Tip: Start by moving all the boxes to the right of the screen and then once you have found the lightest box place it to the far right (if you want to find the heaviest first instead then move them all to the left).
+
+If you record how many comparisons you had to make each time to find the next lightest box you might notice a pattern (hint: finding the lightest  should take 7 comparisons, and then finding the second lightest should take 6 comparisons…). If you can see the pattern then how many comparisons do you think it would take to then sort 9 boxes into order? What about 20? If you knew how many comparisons it would take to sort 1000 boxes, then how many more comparisons would it take to sort 1001 instead?
+
+{teacher}
+For a list of 8 objects (like in the interactive) it should take 7 comparisons to find the lightest, 6 to find the next lightest, 5 to find the next, then 4, then 3, then 2, and then 1 to sort the final two boxes. In total this is 7+6+5+4+3+2+1 = 28 comparisons. If there had been 9 boxes it would have taken 8+7+6+5+4+3+2+1 = 36 comparisons. 20 boxes will take 190. Going from 1000 boxes up to 1001 will require 1000 extra comparisons, even though only 1 box has been added. Selection sort will always take (n*(n-1))/2 comparisons to sort *n* items into order.
+
+For example: To calculate the number of comparisons required for 20 boxes, using (n*(n-1))/2 where n = 20:
+  
+(20*(20-1))/2
+
+= (20*19)/2
+
+= 380/2
+
+= 190 comparisons
+
+Some students may recognise this formula as Gauss' trick (see [the anecdotes about Gauss on Wikipedia](http://en.wikipedia.org/wiki/Carl_Friedrich_Gauss#Anecdotes). One way of expressing this trick for the above example is that 20 boxes would require summing the numbers 1+2+3+...+17+18+19. If we write the numbers backwards (19+18+17+...3+2+1) then it would be the same sum. Now if we add these two lists together, pairing up the corresponding numbers, we get (1+19)+(2+18)+(3+17)+...+(17+3)+(18+2)+(19+1). Each pair in this sum adds up to 20, and there are 19 pairs, so adding the two lists together is just 20x19. Since both lists add up to the same amount, the original sum is a half of that, or 20x19/2, which is 190 comparisons, which is what we got from the formula above. If students can follow this reasoning then they can easily work out the comparisons needed for a large number of boxes, and the don't have to use the "magic" formula given above. There's a visual explanation in [this video](http://www.numberphile.com/videos/one_to_million.html) and more examples on [this page](http://nzmaths.co.nz/gauss-trick-staff-seminar).
+{teacher end}
+
+This algorithm is called Selection sort, because each time you look through the list you are 'selecting' the next lightest box and putting it into the correct position. If you go back to the algorithms racing interactive at the top of the page you might now be able to watch the selection sort list and understand what it is doing at each step.
+
+The selection sort algorithm can be described as follows:
+- Find the smallest item in the list and place it to one side. This will be your sorted list.
+- Next find the smallest item in the remaining list, remove it and place it into your sorted list beside the item you previously put to the side.
+- Repeat this process until all items have been selected and moved into their correct position in the sorted list.
+
+You can swap the word 'smallest' for 'largest' and the algorithm will still work, as long as you are consistent it doesn't matter if you are looking for the smallest or the largest item each time.
+
+### Insertion Sort
+
+This algorithm works by removing each box from the original group of boxes and inserting it into its correct position in a new sorted list. Like Selection Sort, it is very intuitive and people often perform it when they are sorting objects themselves, like cards in their hands. 
+
+Try this with the scales interactive. Start by moving all the boxes to one side of the screen, this is your original, and unsorted, group. Now choose a box at random and place that on the other side of the screen, this is the start of your sorted group. 
+
+To insert another box into the sorted group, compare it to the box that is already in the sorted group and then arrange these two boxes in the correct order. Then to add the next box compare it to these boxes (depending on the weight of the box you might only have to compare it to one!) and then arrange these three boxes in the correct order. Continue inserting boxes until the sorted list is complete. Don't forget to count how many comparisons you had to make!
+
+This algorithm is called Insertion Sort. If you're not quite sure if you've got the idea of the algorithm yet then have a look at [this animation](http://upload.wikimedia.org/wikipedia/commons/0/0f/Insertion-sort-example-300px.gif) from [Wikipedia](http://en.wikipedia.org/wiki/Insertion_sort). 
+
+Insertion sort can be described with informal instructions as follows:
+- Take an item from your unsorted list and place it to the side, this will be your sorted list.
+- One by one, take each item from the unsorted list and insert it into the correct position in the sorted list.
+- Do this until all items have been sorted.
+
+{teacher}
+The above informal instructions for insertion sort are fairly detailed and are getting close to pseudocode. An even more informal description might be "Insert items one at a time at the correct point into the sorted list". It can be recognised as insertion sort, but doesn't give much detail on how it works.
+{teacher end}
+
+People often perform this when they physically sort items. It can also be a very useful algorithm to use if you already have a sorted set of data and want to add a new piece of data into the set. For example if you owned a library and purchased a new book you wouldn't do a Selection Sort on the entire library just to place this new book, you would simply insert the new book in its correct place.
+
+### Quicksort
+
+Insertion and Selection Sort may seem like logical ways to sort things into order, but they both take far too many comparisons when they are used for large amounts of data. Remember computers often have to search through HUGE amounts of data, so even if they use a good searching algorithm like Binary Search to look through their data, if they use a bad sorting algorithm to first sort that data into order then finding anything will take far too long!
+
+A much better sorting algorithm is Quicksort! (the name is a bit of a giveaway) 
+
+{include interactive_external sorting_boxes title="Quicksort interactive"  parameters="method=quick"}
+
+{comment The initial description here enables students to work out the algorithm for themselves, but some may need the more complete description below to understand it.}
+
+This algorithm is a little more complicated, but is very powerful. To do this algorithm with the sorting interactive, start by randomly choosing a box and placing it on the scales. Now compare every other box to the one you selected; heavier boxes should be put on the right of the second row and lighter boxes are put on the left. When you are done, place the box you were comparing everything else to between these two groups, but to help you keep track of things, put it in the row below. The following example shows how it might look after this step. Note that the selected block is in the right place for the final sorted order, and everything on either side will remain on the side that it is on.
+
+{include image alg-quicksort-interactive-step-1.png alt="Quicksort interactive in progress"}
+
+Now apply this process to each of the two groups of boxes (the lighter ones, then the heavier ones). Keep on doing this until they are all sorted. The boxes should then be in sorted order! 
+
+It might be worth trying this algorithm out a few times and counting the number of comparisons you perform each time. This is because sometimes you might be unlucky and happen to pick the heaviest, or the lightest box first. On the other hand you might be very lucky and choose the middle box to compare everything to first. Depending on this the number of comparisons you perform will change.
+
+Quicksort can be described in the following way:
+- Choose an item from the list and compare every other item in the list to this (this item is often called the pivot).
+- Place all the items that are greater than it into one subgroup and all the items that are smaller into another subgroup. Place the pivot item in between these two subgroups.
+- Choose a subgroup and repeat this process. Eventually each subgroup will contain only one item and at this stage the items will be in sorted order.
+
+The following files will run quicksort in various languages:
+- [Scratch](file selection-quicksort-scratch.zip)
+- [Python (Version 2)](file selection-quicksort-python2.py)
+- [Python (Version 3)](file selection-quicksort-python3.py)
+
+{teacher}
+There are dozens of sorting algorithms that have been invented; most of the ones that are used in practice are based on quicksort and/or mergesort. For the purposes of the 1.44 standard, students need only compare two algorithms, and selection sort and quicksort provide the kind of contrast that make a project straightforward to do. If students want to investigate other sorting algorithms, the more common ones that would be useful here are insertion sort and mergesort. These, and many others, can be seen in an intriguing animated form on this video that represents the [algorithms using images and sound](http://www.youtube.com/watch?v=kPRA0W1kECg).
+
+{page break}
+
+## The whole story!
+
+We've only really scraped the surface of algorithms in this chapter, as there are millions of different algorithms for millions of different problems! Algorithms are used in maths, route planning, network planning and operation, problem solving, artificial intelligence, genetic programming, computer vision, the list goes on and on! But by going through this chapter you should have gained an understanding of the key concepts of algorithms and will be well prepared to tackle more complicated ones in the future.
+
+In this chapter we have only talked about the number of comparisons an algorithm makes, and the amount of time a program takes to complete as 'costs' of algorithms. There are actually many other ways of measuring the cost of an algorithm. These include the amount of memory the algorithm uses and its computational complexity. Computer Scientists use 'Big O notation' to more accurately describe the performance or complexity of an algorithm, and you are likely to come across this notation very quickly when investigating the performance of algorithms. It characterises the resources needed by an algorithm and is usually applied to the execution time required, or sometimes the space used by the algorithm. 
+
+Here are some Big O examples:
+- {math}O(1){math end} - An algorithm with O(1) complexity will always execute in the same amount of time regardless of how much data you give it to process
+- {math}O(n){math end} - The amount of time an algorithm with O(n) complexity will take to execute will increase  linearly and in direct proportion to the amount of data you give it to process. Remember that Big O describes the worst case scenario so the algorithm might sometimes take less time, but the greatest amount of time it can take will increase in direct proportion to the amount of data it is given.
+- {math}O(n^{2}){math end} - The performance of an algorithm with this complexity is directly proportional to the square of the size of the input data set.
+- {math}O(2^{n}){math end} - The amount of time an algorithm with this complexity will take to complete will double with each additional element added to the data set! Does this remind you of any of the algorithms you have looked at in this chapter?
+
+Big O Notation however requires some advanced mathematics to explore thoroughly so has been intentionally left out of this main chapter, but if you want to learn more check out the Useful Links section. These topics are looked at in more depth in the Complexity and Tractability chapter.
+
+To make things even more complicated, in practice algorithms are running on computers that have cached memory and virtual memory, where the time to access a particular value can be particularly short, or particularly long. There is a whole range of algorithms that are used for this situation to make sure that the algorithm still runs efficiently in such environments. Such algorithms are still based on the ideas we've looked at in this chapter, but require some clever adjustments to ensure that they work well.
+
+{teacher}
+Information for NZ teachers on students 1.44 reports (incomplete)
+
+It is *strongly discouraged* that students use algorithms they have created themselves for standard 1.44. Implementing the algorithms described in this chapter could be a good exercise for students (depending on their interest and ability in programming), however students should not use their own programs for testing algorithms and reporting their results in the standard. This is because a mistake in their program could lead them to obtain incorrect results and draw incorrect conclusions about the algorithms performance. 
+
+All the algorithms described in this chapter are suitable for students to use in their reports. If students are aiming for excellence the ideal algorithm comparisons are Linear vs Binary Search, Selection sort vs Quicksort, and Insertion sort vs Quicksort. Insertion and Selection sort are not suitable algorithms to compare.
+
+**Achieved**
+
+- A1 - “describing the key characteristics and roles of algorithms, programs, and informal instructions”
+  - This can be done by showing that they have performed an algorithm or applied it to a situation, giving the informal instructions for an algorithm and showing or describing a program for that algorithm. The program does not need to be written by the student, they can be provided with one (this also applies to M1 and E1).
+  - For example to show that they have applied an algorithm a student could do any of the CS unplugged algorithms activities, take photos of this and describe it in their report (can also be done as a class activity). They could also use the interactives in this chapter, take screenshots and then describe what they did in their report.
+- A2 - “describing an algorithm for a task, showing understanding of the kinds of steps that can be in an algorithm, and determining the cost of an algorithm for a problem of a particular size”
+  - This can be shown by describing an algorithm and identifying what specific steps a person or a program would need to be able to perform to complete the algorithm. The student also needs to state how many comparisons the algorithm made, or how long a program implementing that algorithm took to complete, for one data set.
+  - For example: they could describe Selection sort, identify that to perform it a person would need to be able to compare two items and identify the larger and also be able to put items in specific places, and state that the algorithm performed 45 comparisons to sort 10 items.
+
+**Merit** 
+
+- M1 - “explaining how algorithms are distinct from related concepts such as programs and informal instructions”
+  - This can be done by showing that they have performed an algorithm or applied it to a situation, giving the informal instructions and a program for an algorithm and explaining the differences between each of these.
+- M2 - “showing understanding of the way steps in an algorithm for a task can be combined in sequential, conditional, and iterative structures and determining the cost of an iterative algorithm for a problem of size n”
+  - This can be shown by describing an algorithm and identifying what specific steps a person or a program would need to be able to perform to complete the algorithm. The description should use sequential, conditional and iterative structures and the student needs to illustrate that they understand what these structures are/do
+  - The student also needs to state how many comparisons the algorithm made, or how long a program implementing that algorithm took to complete, for a range of data sets of different sizes. The best way to display these results is with a table or a graph with clear axis labels and a title (enough so that it is clear to the marker what the graph shows).
+  - It is important to encourage students to to test a large range of different inputs, e.g. 10, 50, 100, 500, 1000, 5000, 10000..., rather than small ranges e.g. 10, 12, 14, 16...
+
+**Excellence**
+
+- E1 - comparing and contrasting the concepts of algorithms, programs, and informal instructions
+  - This can be done by showing that they have performed an algorithm or applied it to a situation, giving the informal instructions and a program for the algorithm and discussing the differences between each of these and comparing their different uses.
+- E2 - determining and comparing the costs of two different iterative algorithms for the same problem of size n
+  - In addition to M2  the student needs to report the cost of a second algorithm, which performs the same task, for the same range of data set sizes used for the first algorithm. The best way to display these is with a table or a graph (again it is very important to make sure the graph makes it clear to the marker exactly what is being shown) or both.
+  - The student needs to compare the costs of these two algorithms and discuss what happens as the data sets the algorithms take in increases. The key concept students should realise is that the difference between the two algorithms (if appropriate algorithms have been chosen) is non-linear. In other words one algorithm isn't twice as good as another, or 10 times as good, one algorithm can be exponentially better than another.
+{teacher end}
+
+## Further reading
+
+### Other topics in algorithms
+
+- There is another searching algorithm which performs even better than Binary Search. It is called Hashing and can be investigated with the CS Unplugged [Battleships Game](http://csunplugged.org/searching-algorithms).
+- There are some problems for which no good algorithms have been found (and many people believe they will never be found). For more on these kinds of algorithms see the Complexity and Tractability chapter in the Field Guide.
+
+### Useful Links
+
+- [CS Unplugged Searching algorithms](http://csunplugged.org/searching-algorithms)
+- CS Unplugged [Sorting algorithms](http://csunplugged.org/sorting-algorithms)
+- [Searching algorithm game, may not be suitable](http://csunplugged.org/divideAndConquer)
+- Wikipedia has more details on [Linear Search](http://en.wikipedia.org/wiki/Linear_search), [Binary Search](http://en.wikipedia.org/wiki/Binary_search), [Selection sort](http://en.wikipedia.org/wiki/Selection_sort), [Insertion sort](http://en.wikipedia.org/wiki/Insertion_sort) and  [Quicksort](http://en.wikipedia.org/wiki/Quicksort). 
+- The [Sorting Bricks game](http://mathsite.math.berkeley.edu/sorting/brick.html) is a great way to learn about several sorting algorithms (requires Java).
+- [Sorting Algorithms Visualisations](http://www.sorting-algorithms.com/) shows several different sorting algorithms racing and contains information and pseudocode for each.
+- [Beginners Guide to Big O Notation](http://rob-bell.net/2009/06/a-beginners-guide-to-big-o-notation/)
