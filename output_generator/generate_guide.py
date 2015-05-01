@@ -5,7 +5,7 @@ import os.path
 
 SETTINGS_FILE = 'settings.ini'
 LOGFILE_NAME = 'log.txt'
-
+LOGFILE_FOLDER = '../output/'
 # TODO: Determine which variables should be in settings file
 
 FILE_NAME_TEMPLATE = '{0}_{1}.md'
@@ -59,7 +59,7 @@ class Guide:
                 print(file_path)
                 if file_exists(file_path):
                     with open(file_path, "r", encoding='utf8') as source_file:
-                        data = source_file.readlines()
+                        data = source_file.read()
                     source_file.close()               
                     print(data)
                     
@@ -67,9 +67,9 @@ class Guide:
         file_name = FILE_NAME_TEMPLATE.format(title.replace(' ', '_').lower(), language)
         if group == 'Chapters':
             folder_name = title.replace(' ', '_').lower()
-            path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', PATH_CHAPTERS.format(folder_name), file_name))
+            path = os.path.join('..', PATH_CHAPTERS.format(folder_name), file_name)
         elif group == 'Appendices':
-            path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', PATH_APPENDICES, file_name))
+            path = os.path.join('..', PATH_APPENDICES, file_name)
         return path
 
     
@@ -92,7 +92,7 @@ def file_exists(file_path):
 def setup_logging():
     """Sets up the logger to write to a file"""
     logging.basicConfig(level=logging.DEBUG,
-                        filename=LOGFILE_NAME, 
+                        filename=os.path.join(LOGFILE_FOLDER, LOGFILE_NAME),
                         filemode="w",
                         format="%(asctime)-15s %(levelname)-8s %(message)s")  
 
