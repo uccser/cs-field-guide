@@ -217,7 +217,7 @@ function creditCardGenerator(count) {
     //odd indexed digits  = *2, even indexed digits = *1
     sum = simpleMultiplier(2);
 
-    number += determineCheckDigitType(count, sum, 10);
+    number += 10 - determineCheckDigitType(count, sum, 10);
 }
 
 
