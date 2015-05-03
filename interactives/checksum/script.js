@@ -274,7 +274,7 @@ function IRDCheckDigit(weights, count, repeat_count) {
     sum = calculateIRDSum(weights);
     check_digit = determineCheckDigitType(count, sum, 11);
 
-    if (check_digit == 1) {
+    if (check_digit == 10) {
         if (repeat_count == 0) {
             check_digit = IRDCheckDigit(secondary_weights, count, repeat_count+1);
         } else {
