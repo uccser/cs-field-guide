@@ -227,17 +227,30 @@ function trainNumberGenerator(count) {
 
     //calculates the sum of the 12 digits
     //odd indexed digits  = *2, even indexed digits = *1
-    sum = simpleMultiplier(2);
 
-    check_digit_type = determineCheckDigitType(count, sum, 0);
-
-    if (check_digit_type == 0) {
-        trainCheckDigit(sum);
-    } else {
-        var ignore = trainCheckDigit(sum);
-        randomCheckDigit(ignore);
+    for (var i in number) {
+        if (i%2 == 0) {
+            sum += parseInt(number[i]);
+        } else {
+            sum += parseInt(number[i]) * 2;
+        }
     }
-
+    check_digit = 10 - determineCheckDigitType(count, sum, 10);
+    if (check_digit == 10) {
+        number += "0";
+    } else {
+        number += check_digit;
+    }
+    /*
+    * check_digit_type = determineCheckDigitType(count, sum, 0);
+    *
+    * if (check_digit_type == 0) {
+    *     trainCheckDigit(sum);
+    * } else {
+    *     var ignore = trainCheckDigit(sum);
+    *     randomCheckDigit(ignore);
+    * }
+    */
 }
 
 
