@@ -6,7 +6,6 @@
 
 
 //TODO: shuffle list
-//TODO: isbn-10 sum could use list of weights
 
 
 //default type
@@ -43,6 +42,7 @@ $(function() {
             number = "";
         }
 
+        shuffleList();
         displayGeneratedExampleCodes();
 
     });
@@ -63,7 +63,9 @@ function chooseAlgorithm(code_type, count){
     } else if (code_type == "trains") {
         trainNumberGenerator(count);
     }
+
     example_codes.push(number);
+
 
 }
 
@@ -93,9 +95,7 @@ function determineCheckDigitType(count, sum, modulus){
 //calculates check digit
 function checkDigitCalculator(sum, modulus, check_digit_type) {
     if (check_digit_type == 0) {
-        var test = modulusCalculator(sum, modulus);
-        console.log("valid", test);
-        return test;
+        return modulusCalculator(sum, modulus);
     } else {
         var ignore = modulusCalculator(sum, modulus);
         return randomCheckDigit(ignore);
@@ -106,9 +106,7 @@ function checkDigitCalculator(sum, modulus, check_digit_type) {
 
 //calculates valid checkdigit
 function modulusCalculator(sum, modulus) {
-    console.log(sum);
-    var value = (sum%modulus).toString();
-    return value;
+    return (sum%modulus).toString();
 }
 
 
@@ -140,9 +138,7 @@ function ISBN10Generator(count) {
     //calculates the sum of the 12 digits - according to the ISBN13 algorithm
     //odd indexed digits  = *1, even indexed digits = *3
     calculateSumWithWeights(isbn10_weights);
-    console.log("here", sum);
     check_digit = 11 - determineCheckDigitType(count, sum, 11);
-    console.log("check digit", check_digit);
     ISBN10CheckDigit(check_digit);
 
 }
@@ -232,7 +228,6 @@ function trainNumberGenerator(count) {
         }
     }
     check_digit = 10 - determineCheckDigitType(count, sum, 10);
-    console.log(check_digit);
     if (check_digit == 10) {
         number += "0";
     } else {
@@ -256,13 +251,11 @@ function IRDCheckDigit(weights, count, repeat_count) {
     sum = 0;
     sum = calculateSumWithWeights(weights);
     check_digit = determineCheckDigitType(count, sum, 11); //returns a string
-    console.log(sum, check_digit);
     if (check_digit == "0") {
         number += check_digit;
     } else {
         check_digit = 11 - parseInt(check_digit);
         if (check_digit != "10") {
-            console.log("check_digit =", check_digit);
             number += check_digit.toString();
         } else {
             if (repeat_count == 0) {
@@ -284,6 +277,24 @@ function calculateSumWithWeights(weights) {
         sum += parseInt(number[i] * weights[i], 10);
     }
     return sum;
+}
+
+
+//shuffle the list
+function shuffleList() {
+
+    var m = example_codes.length, t, i;
+
+    //while there are still elements to shuffle
+    while (m) {
+        //pick a remaining element
+        i = Math.floor(Math.random() * m--);
+
+        //and swap it with the current element
+        t = example_codes[m];
+        example_codes[m] = example_codes[i];
+        example_codes[i] = t;
+    }
 }
 
 
