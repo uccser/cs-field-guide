@@ -260,7 +260,6 @@ function trainCheckDigit(sum) {
 
 //generate the first 8 numbers
 function IRDGenerator(count) {
-
     generateRandomDigits(8);
     IRDCheckDigit(primary_weights, count, 0);
 
@@ -268,24 +267,50 @@ function IRDGenerator(count) {
 
 
 //calculates the check digit for an IRD number
-//NOTE: there is a small probability that this function is repeated infinitely
+//NOTE: there is a (very) small probability that this function is repeated infinitely
 function IRDCheckDigit(weights, count, repeat_count) {
 
+    sum = 0;
     sum = calculateIRDSum(weights);
-    check_digit = determineCheckDigitType(count, sum, 11);
-
-    if (check_digit == 10) {
-        if (repeat_count == 0) {
-            check_digit = IRDCheckDigit(secondary_weights, count, repeat_count+1);
-        } else {
-            IRDGenerator(count, primary_weights);
-        }
-    } else if (check_digit == 0) {
+    check_digit = determineCheckDigitType(count, sum, 11); //returns a string
+    console.log(sum, check_digit);
+    if (check_digit == "0") {
         number += check_digit;
     } else {
-        number += (11 - parseInt(check_digit)).toString();
+        check_digit = 11 - parseInt(check_digit);
+        if (check_digit != "10") {
+            console.log("check_digit =", check_digit);
+            number += check_digit.toString();
+        } else {
+            if (repeat_count == 0) {
+                IRDCheckDigit(secondary_weights, count, repeat_count+1);
+            } else {
+                number = "";
+                IRDGenerator(count);
+            }
+        }
     }
-
+   /*
+    * sum = 0;
+    * sum = calculateIRDSum(weights);
+    * check_digit = determineCheckDigitType(count, sum, 11);
+    * console.log(typeof(check_digit));
+    * if (11 - check_digit == 10) {
+    *     if (repeat_count == 0) {
+    *         console.log("here I am :)");
+    *         check_digit = IRDCheckDigit(secondary_weights, count, repeat_count+1);
+    *     } else {
+    *         IRDGenerator(count, primary_weights);
+    *     }
+    * } else if (check_digit === 0) {
+    *     number += check_digit;
+    *     console.log("here I am 2");
+    * } else {
+    *     debugger;
+    *     number += (11 - parseInt(check_digit, 10)).toString();
+    *     console.log(weights, count, repeat_count);
+    * }
+    */
 }
 
 
@@ -293,7 +318,7 @@ function IRDCheckDigit(weights, count, repeat_count) {
 function calculateIRDSum(weights) {
     sum = 0;
     for (var i in number) {
-        sum += parseInt(number[i] * weights[i]);
+        sum += parseInt(number[i] * weights[i], 10);
     }
     return sum;
 }
