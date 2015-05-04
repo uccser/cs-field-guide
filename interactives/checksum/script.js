@@ -5,9 +5,6 @@
  */
 
 
-//TODO: shuffle list
-
-
 //default type
 var code_type = "ISBN-10";
 
@@ -65,7 +62,6 @@ function chooseAlgorithm(code_type, count){
     }
 
     example_codes.push(number);
-
 
 }
 
