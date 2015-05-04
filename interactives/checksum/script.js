@@ -18,6 +18,7 @@ var number = "";
 var sum = 0;
 var primary_weights = [3, 2, 7, 6, 5, 4, 3, 2];
 var secondary_weights = [7, 4, 3, 2, 5, 2, 7, 6];
+var isbn10_weights = [10, 9, 8, 7, 6, 5, 4, 3, 2];
 
 
 //get the code_type whenever selected changes
@@ -129,42 +130,19 @@ function generateRandomDigits(count) {
 }
 
 
-//function to handle simple multiplier algorithms - credit card and ISBN13/EAN13
-function simpleMultiplier(multiplier) {
-    var total = 0;
-    var temp = 0;
-    for (var i in number) {
-        if (i%2 == 1) {
-            total += parseInt(number[i]);
-        } else {
-            temp = parseInt(number[i]) * multiplier;
-            if (temp > 9) {
-                temp -= 9;
-            }
-            total += temp;
-        }
-    }
-    return total;
-}
-
-
 //generates random ISBN-10 numbers
 function ISBN10Generator(count) {
 
     //generates 9 random numbers
     generateRandomDigits(9);
 
-    var multiplier = 10;
-
     sum = 0;
     //calculates the sum of the 12 digits - according to the ISBN13 algorithm
     //odd indexed digits  = *1, even indexed digits = *3
-    for (var i in number) {
-        sum += parseInt(number[i])*multiplier;
-        multiplier -= 1;
-    }
-
+    calculateSumWithWeights(isbn10_weights);
+    console.log("here", sum);
     check_digit = 11 - determineCheckDigitType(count, sum, 11);
+    console.log("check digit", check_digit);
     ISBN10CheckDigit(check_digit);
 
 }
@@ -172,7 +150,9 @@ function ISBN10Generator(count) {
 
 //checks if checkdigit is integer or "X" for ISBN10
 function ISBN10CheckDigit(check_digit) {
-    if (check_digit == "10") {
+    if (check_digit == "11") {
+        number += "0";
+    } else if (check_digit == "10") {
         number += "X";
     } else {
         number += check_digit;
@@ -215,9 +195,24 @@ function creditCardGenerator(count) {
 
     //calculates the sum of the 15 digits
     //odd indexed digits  = *2, even indexed digits = *1
-    sum = simpleMultiplier(2);
+
+    sum = 0;
+    var temp = 0;
+
+    for (var i in number) {
+        if (i%2 == 1) {
+            sum += parseInt(number[i]);
+        } else {
+            temp = parseInt(number[i]) * 2;
+            if (temp > 9) {
+                temp -= 9;
+            }
+            sum += temp;
+        }
+    }
 
     number += 10 - determineCheckDigitType(count, sum, 10);
+
 }
 
 
@@ -259,7 +254,7 @@ function IRDGenerator(count) {
 function IRDCheckDigit(weights, count, repeat_count) {
 
     sum = 0;
-    sum = calculateIRDSum(weights);
+    sum = calculateSumWithWeights(weights);
     check_digit = determineCheckDigitType(count, sum, 11); //returns a string
     console.log(sum, check_digit);
     if (check_digit == "0") {
@@ -278,32 +273,12 @@ function IRDCheckDigit(weights, count, repeat_count) {
             }
         }
     }
-   /*
-    * sum = 0;
-    * sum = calculateIRDSum(weights);
-    * check_digit = determineCheckDigitType(count, sum, 11);
-    * console.log(typeof(check_digit));
-    * if (11 - check_digit == 10) {
-    *     if (repeat_count == 0) {
-    *         console.log("here I am :)");
-    *         check_digit = IRDCheckDigit(secondary_weights, count, repeat_count+1);
-    *     } else {
-    *         IRDGenerator(count, primary_weights);
-    *     }
-    * } else if (check_digit === 0) {
-    *     number += check_digit;
-    *     console.log("here I am 2");
-    * } else {
-    *     debugger;
-    *     number += (11 - parseInt(check_digit, 10)).toString();
-    *     console.log(weights, count, repeat_count);
-    * }
-    */
+
 }
 
 
 //caclulates sum based on weights
-function calculateIRDSum(weights) {
+function calculateSumWithWeights(weights) {
     sum = 0;
     for (var i in number) {
         sum += parseInt(number[i] * weights[i], 10);
