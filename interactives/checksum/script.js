@@ -223,50 +223,26 @@ function creditCardGenerator(count) {
 
 //generates random train code
 function trainNumberGenerator(count) {
+
     generateRandomDigits(11);
 
     //calculates the sum of the 12 digits
     //odd indexed digits  = *2, even indexed digits = *1
-
+    sum = 0;
     for (var i in number) {
-        if (i%2 == 0) {
+        if (i%2 == 1) {
             sum += parseInt(number[i]);
         } else {
             sum += parseInt(number[i]) * 2;
         }
     }
     check_digit = 10 - determineCheckDigitType(count, sum, 10);
+    console.log(check_digit);
     if (check_digit == 10) {
         number += "0";
     } else {
         number += check_digit;
     }
-    /*
-    * check_digit_type = determineCheckDigitType(count, sum, 0);
-    *
-    * if (check_digit_type == 0) {
-    *     trainCheckDigit(sum);
-    * } else {
-    *     var ignore = trainCheckDigit(sum);
-    *     randomCheckDigit(ignore);
-    * }
-    */
-}
-
-
-//calculate check digit for train code
-function trainCheckDigit(sum) {
-
-    sum = sum.toString();
-
-    //difference = 10 - last digit of sum
-    var difference = 10 - parseInt(sum.slice(-1));
-    difference = difference.toString();
-
-    //check digit = last digit of the difference (e.g. 10 -> 0)
-    check_digit = difference.slice(-1);
-
-    number += check_digit;
 
 }
 
@@ -275,7 +251,6 @@ function trainCheckDigit(sum) {
 function IRDGenerator(count) {
     generateRandomDigits(8);
     IRDCheckDigit(primary_weights, count, 0);
-
 }
 
 
