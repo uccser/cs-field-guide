@@ -203,7 +203,7 @@ function creditCardGenerator(count) {
         }
     }
 
-    number += 10 - determineCheckDigitType(count, sum, 10);
+    number +=  determineCheckDigitType(count, sum, 10);
 
 }
 
