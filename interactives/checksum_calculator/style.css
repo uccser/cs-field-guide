@@ -1,3 +1,15 @@
 html {
     font: normal 16px 'Tahoma', sans-serif;
 }
+
+#digit-boxes input {
+    display: inline;
+    width: 10px;
+}
+
+input {
+    display: block;
+    margin-top: 10px;
+}
+
+
