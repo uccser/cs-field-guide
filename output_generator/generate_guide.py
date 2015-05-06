@@ -14,6 +14,7 @@ PATH_APPENDICES = 'text/appendices/'
 PATH_STATIC_PAGES = 'text/static_pages/'
 PATH_INTERACTIVES = 'interactives/'
 PATH_FILES = 'files/'
+TEXT_GROUPS = ['Chapters', 'Appendices'] # Order of sections
 
 OUTPUT_FOLDER = 'output/'
 
@@ -28,7 +29,16 @@ class Guide:
         self.language = self.parse_language()
         self.content = self.read_content(self.structure)
         
-        set_section_numbers()
+        self.set_section_numbers()
+    
+    
+    def set_section_numbers(self):
+        section_number = 1
+        for group in TEXT_GROUPS:
+            if self.settings[group].getboolean('Numbered'):
+                for title in self.structure[group]:
+                    self.content[title].set_section_number(section_number)
+                    section_number += 1
         
         
     def parse_language(self):
@@ -55,7 +65,7 @@ class Guide:
     def parse_structure(self):
         """Create dictionary of guide structure"""
         structure = collections.defaultdict(list)
-        for group in ['Chapters', 'Appendices']:
+        for group in TEXT_GROUPS:
             order = self.settings[group]['Order']
             titles = order.split('\n')
             structure[group] = []
@@ -73,20 +83,20 @@ class Guide:
         for group, titles in structure.items():
             for title in titles:
                 file_path = self.create_file_path(title, group, self.language)
-                print(file_path)
                 if file_exists(file_path):
                     with open(file_path, "r", encoding='utf8') as source_file:
                         data = source_file.read()
                     source_file.close()               
                     content[title] = Section(title, data, file_path)
+        return content
                 
                     
     def create_file_path(self, title, group, language):
         file_name = FILE_NAME_TEMPLATE.format(title.replace(' ', '_').lower(), language)
-        if group == 'Chapters':
+        if group == TEXT_GROUPS[0]:
             folder_name = title.replace(' ', '_').lower()
             path = os.path.join('..', PATH_CHAPTERS.format(folder_name), file_name)
-        elif group == 'Appendices':
+        elif group == TEXT_GROUPS[1]:
             path = os.path.join('..', PATH_APPENDICES, file_name)
         return path
     
@@ -97,6 +107,10 @@ class Section:
         self.raw_content = data
         self.file_path = file_path
         self.html_content = [] # List of lines of lines
+       
+        
+    def set_section_number(self, number):
+        self.number = number
 
 
 def file_exists(file_path):
@@ -120,7 +134,6 @@ def main():
     setup_logging()
     guide = Guide()
     logging.shutdown()
-    input()
  
  
 if __name__ == "__main__":  
