@@ -1,7 +1,12 @@
+""" CSFG Guide Generator
+AUTHOR: Jack Morgan
+"""
+
 import configparser
 import collections
 import logging
 import os.path
+from markdown_parser import parse 
 
 SETTINGS_FILE = 'settings.ini'
 LOGFILE_NAME = 'log.txt'
@@ -18,9 +23,6 @@ TEXT_GROUPS = ['Chapters', 'Appendices'] # Order of sections
 
 OUTPUT_FOLDER = 'output/'
 
-SETTINGS_TRUE = ['yes', 'y', 'true']
-SETTINGS_FALSE = ['no', 'n', 'false']
-
 
 class Guide:
     def __init__(self):
@@ -28,17 +30,27 @@ class Guide:
         self.structure = self.parse_structure()
         self.language = self.parse_language()
         self.content = self.read_content(self.structure)
+        self.required_files = {} # Dictionary of tuples (type, name)
         
-        self.set_section_numbers()
-        
+        self.process_sections()
     
-    def set_section_numbers(self):
+    
+    def process_sections(self):
+        """Process the Section files
+        Sets: - Section numbers
+              - Converts raw into HTML
+              - Adds required files to Guide's list
+        """
         section_number = 1
         for group in TEXT_GROUPS:
             if self.settings[group].getboolean('Numbered'):
                 for title in self.structure[group]:
-                    self.content[title].set_section_number(section_number)
+                    section = self.content[title]
+                    section.number = section_number
+                    section.parse_raw_data(section.raw_content)
+                    self.required_files.update(section.required_files)
                     section_number += 1
+                    
         
         
     def parse_language(self):
@@ -109,10 +121,19 @@ class Section:
         self.raw_content = data
         self.file_path = file_path
         self.html_content = [] # List of lines of lines
-       
-        
-    def set_section_number(self, number):
+        self.required_files = {}
+
+
+    def number(self, number):
         self.number = number
+       
+    
+    def parse_raw_data(self, raw):
+        """Converts the raw data into HTML using the parser
+        TODO: Handle if data doesn't exist
+        """
+        if raw != None:
+            self.html_content = parse(raw)
 
 
 def file_exists(file_path):
