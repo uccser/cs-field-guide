@@ -30,7 +30,7 @@ class Guide:
         self.content = self.read_content(self.structure)
         
         self.set_section_numbers()
-    
+        
     
     def set_section_numbers(self):
         section_number = 1
@@ -87,7 +87,9 @@ class Guide:
                     with open(file_path, "r", encoding='utf8') as source_file:
                         data = source_file.read()
                     source_file.close()               
-                    content[title] = Section(title, data, file_path)
+                else:
+                    data = None
+                content[title] = Section(title, data, file_path)
         return content
                 
                     
