@@ -1,5 +1,6 @@
 """ CSFG Guide Generator
 AUTHOR: Jack Morgan
+REQUIRES: Python >= 3.4.1
 """
 
 import configparser
@@ -21,7 +22,8 @@ PATH_INTERACTIVES = 'interactives/'
 PATH_FILES = 'files/'
 TEXT_GROUPS = ['Chapters', 'Appendices'] # Order of sections
 
-OUTPUT_FOLDER = 'output/'
+OUTPUT_FOLDER = '../output/{0}/' # {0 = language}
+OUTPUT_FILE = '{0}.html' # {0 = file}
 
 
 class Guide:
@@ -33,6 +35,7 @@ class Guide:
         self.required_files = {} # Dictionary of tuples (type, name)
         
         self.process_sections()
+        self.write_html_files()
     
     
     def process_sections(self):
@@ -86,8 +89,8 @@ class Guide:
                 if stripped_title != '':
                     structure[group].append(stripped_title)
         return structure
-          
-            
+
+
     def read_content(self, structure):
         """Returns a dictionary with titles as keys and section objects as
         values"""
@@ -96,9 +99,8 @@ class Guide:
             for title in titles:
                 file_path = self.create_file_path(title, group, self.language)
                 if file_exists(file_path):
-                    with open(file_path, "r", encoding='utf8') as source_file:
-                        data = source_file.read()
-                    source_file.close()               
+                    with open(file_path, 'r', encoding='utf8') as source_file:
+                        data = source_file.read()              
                 else:
                     data = None
                 content[title] = Section(title, data, file_path)
@@ -115,6 +117,27 @@ class Guide:
         return path
     
     
+    def write_html_files(self):
+        """Writes the necessary HTML files
+        Writes: - Chapter files
+        """
+        for group in TEXT_GROUPS[:1]:
+            for title in self.structure[group]:
+                section = self.content[title]
+                file_name = OUTPUT_FILE.format(section.title.replace(' ', '_').lower())
+                folder = OUTPUT_FOLDER.format(self.language)
+                path = os.path.join(folder, file_name)
+                
+                os.makedirs(folder, exist_ok=True)
+                
+                try:
+                    with open(path, 'w', encoding='utf8') as output_file:
+                        for line in section.html_content:
+                            output_file.write("{}\n".format(line))
+                except:
+                    logging.critical("Cannot write file {0}".format(file_name))
+
+
 class Section:
     def __init__(self, title, data, file_path):
         self.title = title
