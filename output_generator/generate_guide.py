@@ -132,8 +132,8 @@ class Guide:
                 
                 try:
                     with open(path, 'w', encoding='utf8') as output_file:
-                        for line in section.html_content:
-                            output_file.write("{}\n".format(line))
+                        for section_content in section.html_content:
+                            output_file.write(section_content)
                 except:
                     logging.critical("Cannot write file {0}".format(file_name))
 
@@ -143,7 +143,7 @@ class Section:
         self.title = title
         self.raw_content = data
         self.file_path = file_path
-        self.html_content = [] # List of lines of lines
+        self.html_content = []
         self.required_files = {}
 
 
@@ -156,7 +156,7 @@ class Section:
         TODO: Handle if data doesn't exist
         """
         if raw != None:
-            self.html_content = parse(raw)
+            self.html_content = parse(raw, self.number)
 
 
 def file_exists(file_path):
