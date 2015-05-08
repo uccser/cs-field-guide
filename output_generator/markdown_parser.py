@@ -10,49 +10,66 @@ MARKDOWN2_EXTRAS = ["code-friendly",
                     "wiki-tables"]
 
 
-def parse(raw, starting_number):
-    """Converts raw Markdown into HTML.
+class Parser:
+    def __init__(self, text, number):
+        self.raw_text = text
+        self.number = [number - 1, 0, 0, 0, 0, 0]
+        self.html_text = []
+        self.create_regex_list()    
+        
+        
+    def increment_number(self, level):
+        """Takes a string and returns the number incremented to the given level
+        For example:
+          1 at level 1 goes to 2
+          1.1 at level 3 goes to 1.1.1
+          1.1.1 at level 2 goes to 1.2
+          
+        """
+        starting_numbers = self.number[:level - 1]
+        new_number = [self.number[level - 1] + 1]
+        ending_numbers = (len(self.number) - level) * [0]
+        self.number = starting_numbers + new_number + ending_numbers
     
-    Args:
-      raw: String of Markdown text.
     
-    Returns:
-      List of strings of HTML. 
-      Each string is the content for one section (page breaks).
+    def format_section_number(self):
+        string = ('.'.join(str(num) for num in self.number))
+        return string[:string.find('0')]
     
-    """
-    sections_text = []
-    number = [starting_number-1, 0, 0, 0, 0, 0]
     
-    for text in raw.split('{page break}'):
-        parsed_html = ""
-        # Parse with our parser
-        for line in text.split('\n'):
-            # Matches heading
-            if re.match("#{1,6} ?([\w ]+)!?", line):
-                data = re.match("(?P<heading_level>#{1,6}) ?(?P<heading>[\w ]+)!?", line)
-                heading_text = data.group('heading')
-                heading_level = len(data.group('heading_level'))
-                number = increment_number(number, heading_level)
-                line = '<div class="section_heading"><span="section_number">{2}</span><h{1}>{0}</h{1}></div>'.format(heading_text, heading_level, format_section_number(number))
-            parsed_html += line + '\n'
-        parsed_html = markdown(parsed_html, extras=MARKDOWN2_EXTRAS)
-        sections_text.append(parsed_html)
-    return sections_text
+    def create_heading(self, match):
+        heading_text = match.group('heading')
+        heading_level = len(match.group('heading_level'))
+        div_start = '<div class="section_heading">'
+        number = '<span="section_number">{0}</span>'.format(self.format_section_number())
+        heading = '<h{1}>{0}</h{1}>'.format(heading_text, heading_level)
+        div_end = '</div>'
+        self.increment_number(heading_level)    
+        return div_start + number + heading + div_end
 
-def increment_number(numbers, level):
-    """Takes a string and returns the number incremented to the given level
-    For example:
-      1 at level 1 goes to 2
-      1.1 at level 3 goes to 1.1.1
-      1.1.1 at level 2 goes to 1.2
-      
-    """
-    starting_numbers = numbers[:level - 1]
-    new_number = [numbers[level - 1] + 1]
-    ending_numbers = (len(numbers) - level) * [0]
-    return starting_numbers + new_number + ending_numbers
 
-def format_section_number(number):
-    string = ('.'.join(str(num) for num in number))
-    return string[:string.find('0')]
+    def parse_raw_content(self):
+        """Converts raw Markdown into HTML.
+        
+        Sets:
+          List of strings of HTML. 
+          Each string is the content for one section (page breaks).
+        
+        """
+        for section_text in self.raw_text.split('{page break}'):
+            for (regex, function) in self.REGEX_MATCHES:
+                parsed_html = re.sub(regex, function, section_text)
+                #parsed_html = re.sub(regex, lambda x: eval("self." + function + "('" + x.group() + "')"), section_text)
+            # Parse with markdown2
+            parsed_html = markdown(parsed_html, extras=MARKDOWN2_EXTRAS)
+            self.html_text.append(parsed_html)
+            
+            
+    def create_regex_list(self):
+        self.REGEX_MATCHES = [("(?P<heading_level>#{1,6}) ?(?P<heading>[\w ]+)!?", self.create_heading)]
+            
+            
+def parse(text, number):
+    parser = Parser(text, number)
+    parser.parse_raw_content()
+    return parser.html_text
