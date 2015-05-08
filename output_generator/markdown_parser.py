@@ -37,16 +37,33 @@ class Parser:
         return string[:string.find('0')]
     
     
+    def create_div(self, css_class):
+        return '<div class="{0}" markdown="1">'.format(css_class)
+    
+
     def create_heading(self, match):
         heading_text = match.group('heading')
         heading_level = len(match.group('heading_level'))
-        div_start = '<div class="section_heading">'
+        div_start = self.create_div("section_heading")
         number = '<span="section_number">{0}</span>'.format(self.format_section_number())
         heading = '<h{1}>{0}</h{1}>'.format(heading_text, heading_level)
         div_end = '</div>'
         self.increment_number(heading_level)    
         return div_start + number + heading + div_end
+        
+        
+    def create_div_start(self, match):
+        """Create start of div block
+        Likely to be replaced with a collapsible panel system
+        http://getbootstrap.com/javascript/#collapse-example-accordion
+        
+        """
+        return self.create_div('block block-{0}'.format(match.group('type')))
 
+    
+    def end_div(self, match):
+        return '</div>'
+        
 
     def parse_raw_content(self):
         """Converts raw Markdown into HTML.
@@ -57,16 +74,20 @@ class Parser:
         
         """
         for section_text in self.raw_text.split('{page break}'):
-            for (regex, function) in self.REGEX_MATCHES:
-                parsed_html = re.sub(regex, function, section_text)
-                #parsed_html = re.sub(regex, lambda x: eval("self." + function + "('" + x.group() + "')"), section_text)
+            # Parse with our parser
+            text = section_text
+            for regex, function in self.REGEX_MATCHES:
+                text = re.sub(regex, function, text)                
             # Parse with markdown2
-            parsed_html = markdown(parsed_html, extras=MARKDOWN2_EXTRAS)
+            parsed_html = markdown(text, extras=MARKDOWN2_EXTRAS)
             self.html_text.append(parsed_html)
             
             
     def create_regex_list(self):
-        self.REGEX_MATCHES = [("(?P<heading_level>#{1,6}) ?(?P<heading>[\w ]+)!?", self.create_heading)]
+        self.REGEX_MATCHES = [("(?P<heading_level>#{1,6}) ?(?P<heading>[\w!?' ]+)!?", self.create_heading),
+                              ("{(?P<type>teacher)}", self.create_div_start),
+                              ("{(?P<type>curiosity)}", self.create_div_start),
+                              ("{\w+ end}", self.end_div)]
             
             
 def parse(text, number):
