@@ -47,7 +47,7 @@ class Parser:
         heading_text = match.group('heading')
         heading_level = len(match.group('heading_level'))
         self.increment_number(heading_level)    
-        div_start = self.create_div("section_heading")
+        div_start = '<div class="{0}">'.format("section_heading")
         number_html = '<span class="section_number">{0}</span>'.format(self.format_section_number())
         heading = '<h{0} id="{1}">{2} {3}</h{0}>'.format(heading_level,
                                                          self.to_snake_case(heading_text),
