@@ -101,14 +101,14 @@ class Parser:
             # Parse with our parser
             text = section_text
             for regex, function in self.REGEX_MATCHES:
-                text = re.sub(regex, function, text)                
+                text = re.sub(regex, function, text, flags=re.M)                
             # Parse with markdown2
             parsed_html = markdown(text, extras=MARKDOWN2_EXTRAS)
             self.html_text.append(parsed_html)
             
             
     def create_regex_list(self):
-        self.REGEX_MATCHES = [("(?P<heading_level>#{1,6}) ?(?P<heading>[\w!?,' ]+)!?", self.create_heading),
+        self.REGEX_MATCHES = [("^(?P<heading_level>#{1,6}) ?(?P<heading>[\w!?,' ]+)!?\n", self.create_heading),
                               ("{(?P<type>teacher)}", self.create_div_start),
                               ("{(?P<type>curiosity)}", self.create_div_start),
                               ("{\w+ end}", self.end_div)]
