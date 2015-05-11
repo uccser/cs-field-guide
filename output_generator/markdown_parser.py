@@ -14,7 +14,8 @@ MARKDOWN2_EXTRAS = ["code-friendly",
 class Parser:
     def __init__(self, text, number):
         self.raw_text = text
-        self.number = [number - 1, 0, 0, 0, 0, 0]
+        self.number = [number, 0, 0, 0, 0, 0]
+        self.page_header_numbered = False
         self.html_text = []
         self.create_regex_list()    
         
@@ -28,12 +29,15 @@ class Parser:
           1.1.1 at level 2 goes to 1.2
           
         """
-        starting_numbers = self.number[:level - 1]
-        new_number = [self.number[level - 1] + 1]
-        ending_numbers = (len(self.number) - level) * [0]
-        self.number = starting_numbers + new_number + ending_numbers
-    
-    
+        if self.page_header_numbered:
+            start_numbers = self.number[:level - 1]
+            new_number = [self.number[level - 1] + 1]
+            end_numbers = (len(self.number) - level) * [0]
+            self.number = start_numbers + new_number + end_numbers
+        else:
+            self.page_header_numbered = True
+
+
     def format_section_number(self):
         formatted_number = ('.'.join(str(num) for num in self.number))
         return formatted_number[:formatted_number.find('0')]
@@ -42,6 +46,7 @@ class Parser:
     def create_heading(self, match):
         heading_text = match.group('heading')
         heading_level = len(match.group('heading_level'))
+        self.increment_number(heading_level)    
         div_start = self.create_div("section_heading")
         number_html = '<span class="section_number">{0}</span>'.format(self.format_section_number())
         heading = '<h{0} id="{1}">{2} {3}</h{0}>'.format(heading_level,
@@ -49,7 +54,6 @@ class Parser:
                                                          number_html,
                                                          heading_text)
         div_end = '</div>'
-        self.increment_number(heading_level)    
         return div_start + heading + div_end
     
     
