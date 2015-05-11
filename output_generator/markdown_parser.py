@@ -35,16 +35,19 @@ class Parser:
     
     
     def format_section_number(self):
-        string = ('.'.join(str(num) for num in self.number))
-        return string[:string.find('0')]
+        formatted_number = ('.'.join(str(num) for num in self.number))
+        return formatted_number[:formatted_number.find('0')]
 
 
     def create_heading(self, match):
         heading_text = match.group('heading')
         heading_level = len(match.group('heading_level'))
         div_start = self.create_div("section_heading")
-        number = '<span="section_number">{0}</span>'.format(self.format_section_number())
-        heading = '<h{1} id="{2}">{3} {0}</h{1}>'.format(heading_text, heading_level, self.to_snake_case(heading_text), number)
+        number_html = '<span class="section_number">{0}</span>'.format(self.format_section_number())
+        heading = '<h{0} id="{1}">{2} {3}</h{0}>'.format(heading_level,
+                                                         self.to_snake_case(heading_text),
+                                                         number_html,
+                                                         heading_text)
         div_end = '</div>'
         self.increment_number(heading_level)    
         return div_start + heading + div_end
