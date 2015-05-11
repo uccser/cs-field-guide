@@ -1,5 +1,6 @@
 from markdown2 import markdown
 import re
+import string
 
 MARKDOWN2_EXTRAS = ["code-friendly",
                     "cuddled-lists",
@@ -17,6 +18,7 @@ class Parser:
         self.html_text = []
         self.create_regex_list()    
         
+    # ----- Helper Functions -----
         
     def increment_number(self, level):
         """Takes a string and returns the number incremented to the given level
@@ -35,23 +37,37 @@ class Parser:
     def format_section_number(self):
         string = ('.'.join(str(num) for num in self.number))
         return string[:string.find('0')]
-    
-    
-    def create_div(self, css_class):
-        return '<div class="{0}" markdown="1">'.format(css_class)
-    
+
 
     def create_heading(self, match):
         heading_text = match.group('heading')
         heading_level = len(match.group('heading_level'))
         div_start = self.create_div("section_heading")
         number = '<span="section_number">{0}</span>'.format(self.format_section_number())
-        heading = '<h{1}>{0}</h{1}>'.format(heading_text, heading_level)
+        heading = '<h{1} id="{2}">{3} {0}</h{1}>'.format(heading_text, heading_level, self.to_snake_case(heading_text), number)
         div_end = '</div>'
         self.increment_number(heading_level)    
-        return div_start + number + heading + div_end
+        return div_start + heading + div_end
+    
+    
+    def to_snake_case(self, text):
+        """Returns the given text as snake case.
+        The text is lower case, has spaces replaced as underscores.
+        All punctuation is also removed.
+        
+        """
+        text = ''.join(letter for letter in text if letter not in set(string.punctuation))
+        return text.replace(' ', '_').lower()
         
         
+    def from_snake_case(self, text):
+        return text.replace('_', ' ').title()
+        
+
+    def create_div(self, css_class):
+        return '<div class="{0}" markdown="1">'.format(css_class)
+    
+
     def create_div_start(self, match):
         """Create start of div block
         Likely to be replaced with a collapsible panel system
@@ -64,7 +80,8 @@ class Parser:
     def end_div(self, match):
         return '</div>'
         
-
+    # ----- Parsing Functions -----
+    
     def parse_raw_content(self):
         """Converts raw Markdown into HTML.
         
@@ -84,7 +101,7 @@ class Parser:
             
             
     def create_regex_list(self):
-        self.REGEX_MATCHES = [("(?P<heading_level>#{1,6}) ?(?P<heading>[\w!?' ]+)!?", self.create_heading),
+        self.REGEX_MATCHES = [("(?P<heading_level>#{1,6}) ?(?P<heading>[\w!?,' ]+)!?", self.create_heading),
                               ("{(?P<type>teacher)}", self.create_div_start),
                               ("{(?P<type>curiosity)}", self.create_div_start),
                               ("{\w+ end}", self.end_div)]
