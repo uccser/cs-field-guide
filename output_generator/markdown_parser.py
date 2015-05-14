@@ -17,7 +17,8 @@ class Parser:
         self.number = [number, 0, 0, 0, 0, 0]
         self.page_header_numbered = False
         self.html_text = []
-        self.create_regex_list()    
+        self.create_regex_list()
+        self.header_permalinks = set()
         
     # ----- Helper Functions -----
         
@@ -47,14 +48,25 @@ class Parser:
         heading_text = match.group('heading')
         heading_level = len(match.group('heading_level'))
         self.increment_number(heading_level)    
-        div_start = '<div class="{0}">'.format("section_heading")
         number_html = '<span class="section_number">{0}</span>'.format(self.format_section_number())
-        heading = '<h{0} id="{1}">{2} {3}</h{0}>'.format(heading_level,
-                                                         self.to_snake_case(heading_text),
+        heading = '<h{0} class="section_heading" id="{1}">{2} {3}</h{0}>'.format(heading_level,
+                                                         self.create_header_permalink(heading_text),
                                                          number_html,
                                                          heading_text)
-        div_end = '</div>'
-        return div_start + heading + div_end
+        return heading
+    
+
+    def create_header_permalink(self, text):
+        link = self.to_snake_case(text)
+        count = 2
+        while link in self.header_permalinks:
+            if link[-1].isdigit():
+                link = link[:-1] + str(count)
+            else:
+                link = link + str(count)
+            count += 1
+        self.header_permalinks.add(link)
+        return link
     
     
     def to_snake_case(self, text):
@@ -85,7 +97,7 @@ class Parser:
 
     
     def end_div(self, match):
-        return '</div>'
+        return '\n</div>'
         
     # ----- Parsing Functions -----
     
@@ -101,7 +113,7 @@ class Parser:
             # Parse with our parser
             text = section_text
             for regex, function in self.REGEX_MATCHES:
-                text = re.sub(regex, function, text, flags=re.M)                
+                text = re.sub(regex, function, text, flags=re.MULTILINE)
             # Parse with markdown2
             parsed_html = markdown(text, extras=MARKDOWN2_EXTRAS)
             self.html_text.append(parsed_html)
@@ -109,9 +121,9 @@ class Parser:
             
     def create_regex_list(self):
         self.REGEX_MATCHES = [("^(?P<heading_level>#{1,6}) ?(?P<heading>[\w!?,' ]+)!?\n", self.create_heading),
-                              ("{(?P<type>teacher)}", self.create_div_start),
-                              ("{(?P<type>curiosity)}", self.create_div_start),
-                              ("{\w+ end}", self.end_div)]
+                              ("^{(?P<type>teacher)}", self.create_div_start),
+                              ("^{(?P<type>curiosity)}", self.create_div_start),
+                              ("^{\w+ end}", self.end_div)]
             
             
 def parse(text, number):
