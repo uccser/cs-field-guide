@@ -7,7 +7,7 @@
 
 //responds to button click
 $(function() {
-    $( "input[type=submit], a, button" )
+    $("input#create-boxes, a, button")
       .button()
       .click(function( event ) {
         event.preventDefault();
@@ -17,31 +17,47 @@ $(function() {
         for (var i = 0; i < number_of_digits; i++) {
             target_div.append($("<input />"));
         }
+        var target_div = $("#multipliers");
+        target_div.html("");
+        for (var i = 0; i < number_of_digits; i++) {
+            target_div.append($("<input />"))
+        }
         //displayGeneratedExampleCodes(number_of_digits);
     });
 });
 
 
+$(function() {
+    $("input#sum-digits, a, button")
+      .button()
+      .click(function(event) {
+          event.preventDefault();
+          console.log("here");
+          sumDigits();
+      });
+});
 
-//display generated codes on page
-function displayGeneratedExampleCodes(number_of_digits) {
 
-    //remove previous values
-    var elem = document.getElementById("list");
-    elem.parentNode.removeChild(elem);
-
-    //create new elements for new list
-    list_containter = document.getElementById("digit-boxes");
-    list_element = document.createElement("ul");
-    list_element.id = "list"
-    list_containter.appendChild(list_element);
-
-    //each code displayed as a new list item
-    for(var i = 0; i < number_of_digits; i++) {
-        var list_item = document.createElement("li");
-        list_item.innerHTML = i;
-        list_element.appendChild(list_item);
+function sumDigits() {
+    var digits = [];
+    var multipliers = [];
+    var digit_inputs = document.getElementById('digit-boxes').getElementsByTagName('input');
+    for (var i = 0; i < digit_inputs.length; i++) {
+        digits.push(digit_inputs[i].value);
     }
-
+    var multiplier_inputs = document.getElementById('multipliers').getElementsByTagName('input');
+    for (var i = 0; i < multiplier_inputs.length; i++) {
+        multipliers.push(multiplier_inputs[i].value);
+    }
+    var sums = [];
+    for (var i = 0; i < digits.length; i++){
+        sums.push(digits[i] * multipliers[i]);
+    }
+    console.log(sums);
+    var target_div = $("#sums");
+    target_div.html = "";
+    for (var i = 0; i < sums.length; i++){
+        target_div.append($("<input value=" + sums[i] + ">"));
+    }
 }
 

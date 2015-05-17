@@ -2,7 +2,7 @@ html {
     font: normal 16px 'Tahoma', sans-serif;
 }
 
-#digit-boxes input {
+#digit-boxes input, #multipliers input, #sums input {
     display: inline;
     width: 10px;
 }
