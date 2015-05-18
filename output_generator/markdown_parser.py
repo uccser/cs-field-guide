@@ -124,7 +124,7 @@ class Parser:
             
             
     def create_regex_list(self):
-        self.REGEX_MATCHES = [("^\n*\{comment\}[^{]*\{comment end\}\n*", self.delete_comment),
+        self.REGEX_MATCHES = [("^\n*\{comment([^{]+\}|\}[^{]*\{comment end\})\n*", self.delete_comment),
                               ("^(?P<heading_level>#{1,6}) ?(?P<heading>[\w!?,' ]+)!?\n", self.create_heading),
                               ("^{(?P<type>teacher)}", self.create_div_start),
                               ("^{(?P<type>curiosity)}", self.create_div_start),
