@@ -4,9 +4,9 @@
 The following assessment plans also cover this material:
 
 **New Zealand - AS91074 (1.44)**
-- [Assessment Overview](/appendices/assessment_guides/new_zealand/assessment-guide-level-1-introduction.html)
-- [Searching Algorithms Assessment Guide](/appendices/assessment_guides/new_zealand/assessment-guide-level-1-searching-algorithms.html)
-- [Sorting Algorithms Assessment Guide](/appendices/assessment_guides/new_zealand/assessment-guide-level-1-sorting-algorithms.html)
+- [Assessment Overview](/appendices/assessment_guides/new_zealand/assessment_guide_level_1_introduction.html)
+- [Searching Algorithms Assessment Guide](/appendices/assessment_guides/new_zealand/assessment_guide_level_1_searching_algorithms.html)
+- [Sorting Algorithms Assessment Guide](/appendices/assessment_guides/new_zealand/assessment_guide_level_1_sorting_algorithms.html)
 {teacher end}
 
 {comment explain different views of algorithm (programming context) and Algorithm (that have interesting complexity); use https://www.youtube.com/watch?v=6hfOvs8pY1k for the former?}
