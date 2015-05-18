@@ -98,6 +98,10 @@ class Parser:
     
     def end_div(self, match):
         return '\n</div>'
+    
+    
+    def delete_comment(self, match):
+        return '\n\n'
         
     # ----- Parsing Functions -----
     
@@ -120,7 +124,8 @@ class Parser:
             
             
     def create_regex_list(self):
-        self.REGEX_MATCHES = [("^(?P<heading_level>#{1,6}) ?(?P<heading>[\w!?,' ]+)!?\n", self.create_heading),
+        self.REGEX_MATCHES = [("^\n*\{comment\}[^{]*\{comment end\}\n*", self.delete_comment),
+                              ("^(?P<heading_level>#{1,6}) ?(?P<heading>[\w!?,' ]+)!?\n", self.create_heading),
                               ("^{(?P<type>teacher)}", self.create_div_start),
                               ("^{(?P<type>curiosity)}", self.create_div_start),
                               ("^{\w+ end}", self.end_div)]
