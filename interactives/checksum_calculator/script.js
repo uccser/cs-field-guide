@@ -32,7 +32,6 @@ $(function() {
       .button()
       .click(function(event) {
           event.preventDefault();
-          console.log("here");
           sumDigits();
       });
 });
@@ -53,11 +52,30 @@ function sumDigits() {
     for (var i = 0; i < digits.length; i++){
         sums.push(digits[i] * multipliers[i]);
     }
-    console.log(sums);
     var target_div = $("#sums");
     target_div.html = "";
     for (var i = 0; i < sums.length; i++){
         target_div.append($("<input value=" + sums[i] + ">"));
     }
 }
+
+
+$(function() {
+    $("input#calculate, a, button")
+        .button()
+        .click(function(event) {
+            event.preventDefault();
+            getRemainder();
+        });
+});
+
+
+function getRemainder() {
+    var total = $("#total").val();
+    var mod = $("#mod").val();
+    var remainder = total%mod;
+    console.log(remainder);
+    $("#remainder").val(remainder);
+}
+
 

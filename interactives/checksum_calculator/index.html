@@ -15,31 +15,36 @@
 
          <h1>Check Digit Calculator</h1>
 
-         <label for="number-of-digits">Number of digits:</label>
-         <input type="text" id="number-of-digits"/>
+         <form id="entry_widgets" action="#">
 
-         <input type="submit" id="create-boxes" value="Create digit boxes">
+             <p>Number of digits:</p>
+             <input type="text" id="number-of-digits"/>
 
-         <div id="digit-boxes">
-         </div>
+             <input type="submit" id="create-boxes" value="Create digit boxes">
 
-         <div id="multipliers">
-         </div>
+             <div id="digit-boxes">
+             </div>
 
-         <input type="submit" id="sum-digits" value="Multiply">
-         <div id="sums">
-         </div>
+             <div id="multipliers">
+             </div>
 
-         <label for="total">Total:</label>
-         <input type="text" id="total"/>
+             <input type="submit" id="sum-digits" value="Multiply">
+             <div id="sums">
+             </div>
 
-         <label for="mod">Remainder when divided by:</label>
-         <input type="text" id="mod"/>
+             <p>Total</p>
 
-         <label for="check-digit">Check Digit:</label>
-         <input type="type" id="check-digit"/>
+             <input type="text" id="total"/>
 
-         <input type="submit" id="calculate" value="calculate">
+             <p>Remainder when divided by:</p>
+             <input type="text" id="mod"/>
+
+             <input type="submit" id="calculate" value="Calculate">
+
+             <p>Remainder:</p>
+             <input type="text" id="remainder"/>
+
+         </form>
 
     </body>
 
