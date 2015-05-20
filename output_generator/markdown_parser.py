@@ -19,6 +19,7 @@ class Parser:
         self.html_text = []
         self.create_regex_list()
         self.header_permalinks = set()
+        self.mathjax_required = False
         
     # ----- Helper Functions -----
         
@@ -102,7 +103,27 @@ class Parser:
     
     def delete_comment(self, match):
         return '\n\n'
+    
+    def process_math_text(self, match):
+        self.mathjax_required = True
         
+        equation = match.group('equation')
+        
+        if match.group('type') == 'math':
+            #Inline math
+            start_delimiter = '<span class="math">\\\\('
+            end_delimiter = '\\\\)</span>'
+            equation = re.sub("\\\\{1,}", self.double_backslashes, equation)
+        else:
+            #Block math
+            start_delimiter = '<div class="math math_block">\n\\['
+            end_delimiter = '\\]\n</div>'
+        return start_delimiter + equation + end_delimiter
+                        
+    def double_backslashes(self, match):
+        return match.group(0) * 2                        
+                        
+                        
     # ----- Parsing Functions -----
     
     def parse_raw_content(self):
@@ -125,6 +146,7 @@ class Parser:
             
     def create_regex_list(self):
         self.REGEX_MATCHES = [("^\n*\{comment([^{]+\}|\}[^{]*\{comment end\})\n*", self.delete_comment),
+                              ("\{(?P<type>math|math_block)\}(?P<equation>[\s\S]+?)\{(math|math_block) end\}", self.process_math_text),
                               ("^(?P<heading_level>#{1,6}) ?(?P<heading>[\w!?,' ]+)!?\n", self.create_heading),
                               ("^{(?P<type>teacher)}", self.create_div_start),
                               ("^{(?P<type>curiosity)}", self.create_div_start),
@@ -134,4 +156,4 @@ class Parser:
 def parse(text, number):
     parser = Parser(text, number)
     parser.parse_raw_content()
-    return parser.html_text
+    return parser

@@ -131,7 +131,14 @@ class Guide:
                 os.makedirs(folder, exist_ok=True)
                 
                 try:
-                    with open(path, 'w', encoding='utf8') as output_file:
+                    # Clear file
+                    open(path, 'w').close()
+                    
+                    # Write HTML
+                    with open(path, 'a', encoding='utf8') as output_file:
+                        if section.mathjax_required:
+                            output_file.write('<script type="text/javascript"  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>\n\n')
+                            
                         for section_content in section.html_content:
                             output_file.write(section_content)
                 except:
@@ -145,6 +152,7 @@ class Section:
         self.file_path = file_path
         self.html_content = []
         self.required_files = {}
+        self.mathjax_required = False
 
 
     def number(self, number):
@@ -156,7 +164,9 @@ class Section:
         TODO: Handle if data doesn't exist
         """
         if raw != None:
-            self.html_content = parse(raw, self.number)
+            parse_result = parse(raw, self.number)
+            self.html_content = parse_result.html_text
+            self.mathjax_required = parse_result.mathjax_required
 
 
 def file_exists(file_path):
