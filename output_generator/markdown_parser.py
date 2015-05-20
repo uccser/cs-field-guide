@@ -102,7 +102,7 @@ class Parser:
     
     
     def delete_comment(self, match):
-        return '\n\n'
+        return '\n'
     
     def process_math_text(self, match):
         self.mathjax_required = True
@@ -145,7 +145,7 @@ class Parser:
             
             
     def create_regex_list(self):
-        self.REGEX_MATCHES = [("^\n*\{comment([^{]+\}|\}[^{]*\{comment end\})\n*", self.delete_comment),
+        self.REGEX_MATCHES = [("^(\n*\{comment([^{]+\}|\}[^{]*\{comment end\})\n*)+", self.delete_comment),
                               ("\{(?P<type>math|math_block)\}(?P<equation>[\s\S]+?)\{(math|math_block) end\}", self.process_math_text),
                               ("^(?P<heading_level>#{1,6}) ?(?P<heading>[\w!?,' ]+)!?\n", self.create_heading),
                               ("^{(?P<type>teacher)}", self.create_div_start),
