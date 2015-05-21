@@ -85,12 +85,15 @@ class Parser:
         return text.replace('_', ' ').title()
         
 
-    def create_div(self, css_class):
-        return '<div class="{0}" markdown="1">'.format(css_class)
+    def create_panel(self, panel_type):
+        html = '<div class="panel panel_{0}" markdown="1">'.format(panel_type)
+        if panel_type == 'teacher':
+            html += '\n<h5>Teacher Note:</h5>'
+        return html
     
 
-    def create_div_start(self, match):
-        return self.create_div('panel panel_{0}'.format(match.group('type')))
+    def create_panel_start(self, match):
+        return self.create_panel(match.group('type'))
 
     
     def end_div(self, match):
@@ -178,7 +181,7 @@ class Parser:
                               ("\{(?P<type>math|math_block)\}(?P<equation>[\s\S]+?)\{(math|math_block) end\}", self.process_math_text),
                               ("^(?P<heading_level>#{1,6}) ?(?P<heading>[\w!?,' ]+)!?\n", self.create_heading),
                               ("^\{video (?P<url>[^\}]*)\}", self.embed_video),
-                              ("^\{(?P<type>teacher|curiosity|jargon_buster|warning)\}", self.create_div_start),
+                              ("^\{(?P<type>teacher|curiosity|jargon_buster|warning)\}", self.create_panel_start),
                               ("^\{(?P<type>teacher|curiosity|jargon_buster|warning) end\}", self.end_div)]
             
             
