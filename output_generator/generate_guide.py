@@ -139,6 +139,8 @@ class Guide:
                         if section.mathjax_required:
                             output_file.write('<script type="text/javascript"  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>\n\n')
                             
+                        output_file.write('<link rel="stylesheet" href="http://cdn.foundation5.zurb.com/foundation.css" />')
+                            
                         for section_content in section.html_content:
                             output_file.write(section_content)
                 except:
