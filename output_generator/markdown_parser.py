@@ -89,12 +89,7 @@ class Parser:
     
 
     def create_div_start(self, match):
-        """Create start of div block
-        Likely to be replaced with a collapsible panel system
-        http://getbootstrap.com/javascript/#collapse-example-accordion
-        
-        """
-        return self.create_div('block block-{0}'.format(match.group('type')))
+        return self.create_div('panel panel_{0}'.format(match.group('type')))
 
     
     def end_div(self, match):
@@ -103,6 +98,7 @@ class Parser:
     
     def delete_comment(self, match):
         return '\n'
+    
     
     def process_math_text(self, match):
         self.mathjax_required = True
@@ -148,9 +144,8 @@ class Parser:
         self.REGEX_MATCHES = [("^(\n*\{comment([^{]+\}|\}[^{]*\{comment end\})\n*)+", self.delete_comment),
                               ("\{(?P<type>math|math_block)\}(?P<equation>[\s\S]+?)\{(math|math_block) end\}", self.process_math_text),
                               ("^(?P<heading_level>#{1,6}) ?(?P<heading>[\w!?,' ]+)!?\n", self.create_heading),
-                              ("^{(?P<type>teacher)}", self.create_div_start),
-                              ("^{(?P<type>curiosity)}", self.create_div_start),
-                              ("^{\w+ end}", self.end_div)]
+                              ("^\{(?P<type>teacher|curiosity|jargon_buster|warning)\}", self.create_div_start),
+                              ("^\{(?P<type>teacher|curiosity|jargon_buster|warning) end\}", self.end_div)]
             
             
 def parse(text, number):
