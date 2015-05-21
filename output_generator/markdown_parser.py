@@ -1,6 +1,7 @@
 from markdown2 import markdown
 import re
 import string
+import logging
 
 MARKDOWN2_EXTRAS = ["code-friendly",
                     "cuddled-lists",
@@ -118,6 +119,38 @@ class Parser:
                         
     def double_backslashes(self, match):
         return match.group(0) * 2                        
+    
+    def embed_video(self, match):
+        youtube_src = "http://www.youtube.com/embed/{0}?rel=0"
+        html_template = '<div class="flex-video widescreen">\n<iframe src="{0}" frameborder="0" allowfullscreen></iframe>\n</div>'
+        vimeo_src = "http://player.vimeo.com/video/{0}"
+        html = ''
+        (video_type, video_identifier) = self.extract_video_identifier(match.group('url'))
+        if video_type == 'youtube':
+            source_link = youtube_src.format(video_identifier)
+            html = html_template.format(source_link)
+        elif video_type == 'vimeo':
+            source_link = vimeo_src.format(video_identifier)
+            html = html_template.format(source_link)
+        return html        
+
+    def extract_video_identifier(self, video_link):
+        """Returns the indentifier from a given URL."""
+        if "youtu.be" in video_link or "youtube.com/embed" in video_link:
+            identifier = ('youtube', video_link.split('/')[-1])
+        elif "youtube.com" in video_link:
+            start_pos = video_link.find("v=") + 2
+            end_pos = video_link.find("&");
+            if end_pos == -1:
+                identifier = ('youtube', video_link[start_pos:])
+            else:
+                identifier = ('youtube', video_link[start_pos:end_pos])
+        elif "vimeo" in video_link:
+            identifier = ('vimeo', video_link.split('/')[-1])
+        else:
+            logging.error("Included video link '{0}' not supported.".format(video_link))
+            identifier = ('error','')
+        return identifier
                         
                         
     # ----- Parsing Functions -----
@@ -144,6 +177,7 @@ class Parser:
         self.REGEX_MATCHES = [("^(\n*\{comment([^{]+\}|\}[^{]*\{comment end\})\n*)+", self.delete_comment),
                               ("\{(?P<type>math|math_block)\}(?P<equation>[\s\S]+?)\{(math|math_block) end\}", self.process_math_text),
                               ("^(?P<heading_level>#{1,6}) ?(?P<heading>[\w!?,' ]+)!?\n", self.create_heading),
+                              ("^\{video (?P<url>[^\}]*)\}", self.embed_video),
                               ("^\{(?P<type>teacher|curiosity|jargon_buster|warning)\}", self.create_div_start),
                               ("^\{(?P<type>teacher|curiosity|jargon_buster|warning) end\}", self.end_div)]
             
