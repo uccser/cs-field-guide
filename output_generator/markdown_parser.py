@@ -119,9 +119,11 @@ class Parser:
             start_delimiter = '<div class="math math_block">\n\\['
             end_delimiter = '\\]\n</div>'
         return start_delimiter + equation + end_delimiter
+          
                         
     def double_backslashes(self, match):
         return match.group(0) * 2                        
+    
     
     def embed_video(self, match):
         youtube_src = "http://www.youtube.com/embed/{0}?rel=0"
@@ -136,6 +138,7 @@ class Parser:
             source_link = vimeo_src.format(video_identifier)
             html = html_template.format(source_link)
         return html        
+
 
     def extract_video_identifier(self, video_link):
         """Returns the indentifier from a given URL."""
@@ -154,7 +157,16 @@ class Parser:
             logging.error("Included video link '{0}' not supported.".format(video_link))
             identifier = ('error','')
         return identifier
-                        
+    
+    
+    def escape_backslash(self, match):
+        """Replaces escaped backslash '\{' with the equivalent HTML character"""
+        if match.group(0) == '\{':
+            html = '&#123;'
+        else:
+            html = '&#125;'
+        return html
+        
                         
     # ----- Parsing Functions -----
     
@@ -177,7 +189,8 @@ class Parser:
             
             
     def create_regex_list(self):
-        self.REGEX_MATCHES = [("^(\n*\{comment([^{]+\}|\}[^{]*\{comment end\})\n*)+", self.delete_comment),
+        self.REGEX_MATCHES = [("(\\\{|\\\})", self.escape_backslash),
+                              ("^(\n*\{comment([^{]+\}|\}[^{]*\{comment end\})\n*)+", self.delete_comment),
                               ("\{(?P<type>math|math_block)\}(?P<equation>[\s\S]+?)\{(math|math_block) end\}", self.process_math_text),
                               ("^(?P<heading_level>#{1,6}) ?(?P<heading>[\w!?,' ]+)!?\n", self.create_heading),
                               ("^\{video (?P<url>[^\}]*)\}", self.embed_video),
