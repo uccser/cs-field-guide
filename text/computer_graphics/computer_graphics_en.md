@@ -1,9 +1,5 @@
 # Computer Graphics
 
-*******************************************************
-Computer graphics
-*******************************************************
-
 {teacher}
 The following assessment plans also cover this material:
 
@@ -220,7 +216,7 @@ If your students aren't familiar with sin and cos, it may be worth going over th
 
 What is the matrix for rotation by 360 degrees?
 
-{teacher{
+{teacher}
 If you put in 360 for {math}\Theta{math end} in the rotation formula, you get the matrix {math_block}\begin{bmatrix}  0 & 1 \\   1 & 0 \\   \end{bmatrix}{math_block end}. This is also known as the 'identity' matrix because it makes no change to the original image. You get this matrix if you rotate by a multiple of 360 (including 0 degrees of course).
 {teacher end}
 
