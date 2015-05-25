@@ -5,13 +5,15 @@
  */
 
 
-//responds to button click
+//generates boxes for user to enter digits and multipliers
 $(function() {
     $("input#create-boxes, a, button")
       .button()
-      .click(function( event ) {
+      .click(function(event) {
         event.preventDefault();
+
         var number_of_digits = $("input").val();
+
         var target_div = $("#digit-boxes");
         target_div.html("");
         for (var i = 0; i < number_of_digits; i++) {
@@ -22,11 +24,11 @@ $(function() {
         for (var i = 0; i < number_of_digits; i++) {
             target_div.append($("<input />"))
         }
-        //displayGeneratedExampleCodes(number_of_digits);
     });
 });
 
 
+//responds to "Mulitply" button click
 $(function() {
     $("input#sum-digits, a, button")
       .button()
@@ -37,6 +39,7 @@ $(function() {
 });
 
 
+//sums digits with multipliers
 function sumDigits() {
     var digits = [];
     var multipliers = [];
@@ -53,13 +56,14 @@ function sumDigits() {
         sums.push(digits[i] * multipliers[i]);
     }
     var target_div = $("#sums");
-    target_div.html = "";
+    target_div.html("");
     for (var i = 0; i < sums.length; i++){
-        target_div.append($("<input value=" + sums[i] + ">"));
+        console.log(i);
+        target_div.append($("<input value=" + sums[i] + " />"));
     }
 }
 
-
+//responds to "Calculate" button click
 $(function() {
     $("input#calculate, a, button")
         .button()
@@ -70,6 +74,7 @@ $(function() {
 });
 
 
+//calculates the remainder given the total and divisor
 function getRemainder() {
     var total = $("#total").val();
     var mod = $("#mod").val();
