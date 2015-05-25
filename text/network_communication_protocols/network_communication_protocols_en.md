@@ -571,11 +571,7 @@ At each layer, data is made up of the previous layers’ whole unit of data, and
 
  Footers and Headers are basically packet *meta-data*. Information about the information. Like a letterhead or a footnote, they’re not part of the content, but they are on the page. Headers and Footers exist on packets to store data. Headers come before the data and footers afterwards.
 
-
-
-.. figure:: http://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/UDP_encapsulation.svg/800px-UDP_encapsulation.svg.png
- :alt: UDP Encapsulation
- :align: center
+{image http://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/UDP_encapsulation.svg/800px-UDP_encapsulation.svg.png alt="UDP Encapsulation" align="center"}
 
 You can think of these protocols as a game of pass the parcel. When a message is sent in HTTP, it is wrapped in a TCP header, which is then wrapped in an IPv6 header, which is then wrapped in a Ethernet header and footer and sent over ethernet. At the other end, it’s unwrapped again from an ethernet *frame*, back to a IP *packet*, a TCP *datagram*, to a HTTP *request*. 
 
@@ -590,73 +586,61 @@ This system is neat because each layer can assume that the layer above and below
 
 So what does a TCP segment look like? 
 
-.. figure:: _static/images/net-packet-structure.png
- :alt: Showing the structure of a TCP packet
- :align: center
+{image _static/images/net-packet-structure.png alt="Showing the structure of a TCP packet" align="center"}
 
 As you can see, a packet is divided into four main parts, addresses (source, destination), numbers (sequence number, ANCK number if it’s an acknowledgement), flags (urgent, checksum) in the header, then the actual data. At each level, a segment becomes the data for the next data unit, and that again gets its own header. 
 
-
 TCP and UDP packets have a number with how big they are. This number means that the packet can actually be as big as you like. Can you think of any advantages of having small packets? How about big ones? Think about the ratio of data to information (such as those in the header and footer). 
 
+{curiosity}
+
+Here’s an example of a packet trace on our network…(using [tcpdump on the mac)](http://support.apple.com/kb/HT3994)
+
+```
+
+00:55:18.540237 b8:e8:56:02:f8:3e > c4:a8:1d:17:a0:d3, ethertype IPv4 (0x0800), length 100: (tos 0x0, ttl 64, id 41564, offset 0, flags [none], proto UDP (17), length 86)
+  192.168.1.7.51413 > 37.48.71.67.63412: [udp sum ok] UDP, length 58
+0x0000:  4500 0056 a25c 0000 4011 aa18 c0a8 0107
+0x0010:  2530 4743 c8d5 f7b4 0042 1c72 6431 3a61
+0x0020:  6432 3a69 6432 303a b785 2dc9 2e78 e7fb
+0x0030:  68c3 81ab e28b fde3 cfef ae47 6531 3a71
+0x0040:  343a 7069 6e67 313a 7434 3a70 6e00 0031
+0x0050:  3a79 313a 7165
+
+```
+
+{curiosity end}
 
 
-.. container:: curiosity
+## Further reading
+- The [two generals problem](http://en.wikipedia.org/wiki/Two_Generals%27_Problem) is a famous problem in protocols to talk about what happens when you can’t be sure about communication success 
+- What happens if you were to send packets tied to birds? [IP over Avian Cariers](http://en.wikipedia.org/wiki/IP_over_Avian_Carriers)
+- Protocols are found in the strangest of places…. [Engine Order Telegraph](http://en.wikipedia.org/wiki/Engine_order_telegraph)
+- Coursera course on [Internet History, Technology, and Security](https://www.coursera.org/learn/insidetheinternet)
 
- **Curiosity**
+<div class="row"><span class="col-xs-12 col-md-4"><div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/WwyJGzZmBe8" frameborder="0" allowfullscreen></iframe></iframe></div></span>
 
- Here’s an example of a packet trace on our network…(using `tcpdump on the mac) <http://support.apple.com/kb/HT3994>`_
+<span class="col-xs-12 col-md-4"><div class="video-container"><iframe width="560" height="315" src="http://www.youtube.com/embed/i5oe63pOhLI" frameborder="0" allowfullscreen></iframe></iframe></div></span>
 
- .. code-block:: none
-
-  00:55:18.540237 b8:e8:56:02:f8:3e > c4:a8:1d:17:a0:d3, ethertype IPv4 (0x0800), length 100: (tos 0x0, ttl 64, id 41564, offset 0, flags [none], proto UDP (17), length 86)
-    192.168.1.7.51413 > 37.48.71.67.63412: [udp sum ok] UDP, length 58
-  0x0000:  4500 0056 a25c 0000 4011 aa18 c0a8 0107
-  0x0010:  2530 4743 c8d5 f7b4 0042 1c72 6431 3a61
-  0x0020:  6432 3a69 6432 303a b785 2dc9 2e78 e7fb
-  0x0030:  68c3 81ab e28b fde3 cfef ae47 6531 3a71
-  0x0040:  343a 7069 6e67 313a 7434 3a70 6e00 0031
-  0x0050:  3a79 313a 7165
-
-
-Further reading
-=====================================================
-
-- The `two generals problem<http://en.wikipedia.org/wiki/Two_Generals%27_Problem>`__ is a famous problem in protocols to talk about what happens when you can’t be sure about communication success 
-- What happens if you were to send packets tied to birds? `IP over Avian Cariers <http://en.wikipedia.org/wiki/IP_over_Avian_Carriers>`__
-- Protocols are found in the strangest of places…. `Engine Order Telegraph <http://en.wikipedia.org/wiki/Engine_order_telegraph>`__
-- Coursera course on `Internet History, Technology, and Security <https://www.coursera.org/learn/insidetheinternet>`__
-
-.. only:: html or epub
-
- .. raw:: html
-
-  <div class="row"><span class="col-xs-12 col-md-4"><div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/WwyJGzZmBe8" frameborder="0" allowfullscreen></iframe></iframe></div></span>
-
-  <span class="col-xs-12 col-md-4"><div class="video-container"><iframe width="560" height="315" src="http://www.youtube.com/embed/i5oe63pOhLI" frameborder="0" allowfullscreen></iframe></iframe></div></span>
-
-  <span class="col-xs-12 col-md-4"><div class="video-container"><iframe width="560" height="315" src="http://www.youtube.com/embed/7_LPdttKXPc" frameborder="0" allowfullscreen></iframe></iframe></div></span></div>
+<span class="col-xs-12 col-md-4"><div class="video-container"><iframe width="560" height="315" src="http://www.youtube.com/embed/7_LPdttKXPc" frameborder="0" allowfullscreen></iframe></iframe></div></span></div>
 
 
 
-Extra Activities
-------------------------------------------------------------------------------------------------------------------
+### Extra Activities
 
-- CS Unplugged Routing - Why do packets get delayed? http://csunplugged.org/routing-and-deadlock
-- Snail Mail - http://www.cs4fn.org/internet/realsnailmail.php
-- Code.org  - The Internet https://learn.code.org/s/1/level/102
+- CS Unplugged Routing - Why do packets get delayed? [http://csunplugged.org/routing-and-deadlock](http://csunplugged.org/routing-and-deadlock)
+- Snail Mail - [http://www.cs4fn.org/internet/realsnailmail.php](http://www.cs4fn.org/internet/realsnailmail.php)
+- Code.org  - The Internet [https://learn.code.org/s/1/level/102](https://learn.code.org/s/1/level/102)
 
+### Useful Links
 
-
-Useful Links
-------------------------------------------------------------------------------------------------------------------
-- http://simple.wikipedia.org/wiki/TCP/IP
-- http://en.wikipedia.org/wiki/Internet_protocol_suite
-- http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol
-- http://en.wikipedia.org/wiki/Internet_Relay_Chat
-- http://en.wikipedia.org/wiki/Transmission_Control_Protocol
-- http://en.wikipedia.org/wiki/User_Datagram_Protocol
-- http://csunplugged.org/routing-and-deadlock
+- [http://simple.wikipedia.org/wiki/TCP/IP](http://simple.wikipedia.org/wiki/TCP/IP)
+- [http://en.wikipedia.org/wiki/Internet_protocol_suite](http://en.wikipedia.org/wiki/Internet_protocol_suite)
+- [http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol](http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol)
+- [http://en.wikipedia.org/wiki/Internet_Relay_Chat](http://en.wikipedia.org/wiki/Internet_Relay_Chat)
+- [http://en.wikipedia.org/wiki/Transmission_Control_Protocol](http://en.wikipedia.org/wiki/Transmission_Control_Protocol)
+- [http://en.wikipedia.org/wiki/User_Datagram_Protocol](http://en.wikipedia.org/wiki/User_Datagram_Protocol)
+- [http://csunplugged.org/routing-and-deadlock](http://csunplugged.org/routing-and-deadlock)
 
 
 
