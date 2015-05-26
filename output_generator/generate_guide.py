@@ -10,8 +10,7 @@ import os.path
 from markdown_parser import parse 
 
 SETTINGS_FILE = 'settings.ini'
-LOGFILE_NAME = 'log.txt'
-LOGFILE_FOLDER = '../output/'
+LOGFILE = '../output/log.txt'
 # TODO: Determine which variables should be in settings file
 
 FILE_NAME_TEMPLATE = '{0}_{1}.md'
@@ -139,7 +138,7 @@ class Guide:
                         if section.mathjax_required:
                             output_file.write('<script type="text/javascript"  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>\n\n')
                             
-                        output_file.write('<link rel="stylesheet" href="http://cdn.foundation5.zurb.com/foundation.css" />\n<div class="row">')
+                        output_file.write('<link rel="stylesheet" href="http://cdn.foundation5.zurb.com/foundation.css" />\n<div class="row">\n')
                             
                         for section_content in section.html_content:
                             output_file.write(section_content)
@@ -184,15 +183,28 @@ def file_exists(file_path):
 def setup_logging():
     """Sets up the logger to write to a file"""
     logging.basicConfig(level=logging.DEBUG,
-                        filename=os.path.join(LOGFILE_FOLDER, LOGFILE_NAME),
+                        filename=LOGFILE,
                         filemode="w",
                         format="%(asctime)-15s %(levelname)-8s %(message)s")  
 
 
+def check_dependencies():
+    """Check and install dependencies if needed"""
+    import pip
+    # Update pip if needed
+    pip.main(['install', '--upgrade', 'pip'])
+    # Check dependencies
+    pip.main(['install', '-r', 'dependencies.txt'])
+    
+
 def main():
     """Creates a Guide object"""
+    check_dependencies()
+    # Shutdown pip logging
+    logging.shutdown()
     setup_logging()
     guide = Guide()
+    logging.info("SHUTTING DOWN")
     logging.shutdown()
  
  
