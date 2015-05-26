@@ -3,11 +3,12 @@ AUTHOR: Jack Morgan
 REQUIRES: Python >= 3.4.1
 """
 
+import pip
 import configparser
 import collections
 import logging
 import os.path
-from markdown_parser import parse 
+from markdown_parser import parse
 
 SETTINGS_FILE = 'settings.ini'
 LOGFILE = '../output/log.txt'
@@ -32,11 +33,11 @@ class Guide:
         self.language = self.parse_language()
         self.content = self.read_content(self.structure)
         self.required_files = {} # Dictionary of tuples (type, name)
-        
+
         self.process_sections()
         self.write_html_files()
-    
-    
+
+
     def process_sections(self):
         """Process the Section files
         Sets: - Section numbers
@@ -52,9 +53,9 @@ class Guide:
                     section.parse_raw_data(section.raw_content)
                     self.required_files.update(section.required_files)
                     section_number += 1
-                    
-        
-        
+
+
+
     def parse_language(self):
         """Returns language code for given setting"""
         # TODO: Handle all language names/codes
@@ -72,10 +73,9 @@ class Guide:
         """
         settings = configparser.ConfigParser()
         settings.read(SETTINGS_FILE)
-        
         return settings
-        
-        
+
+
     def parse_structure(self):
         """Create dictionary of guide structure"""
         structure = collections.defaultdict(list)
@@ -99,13 +99,13 @@ class Guide:
                 file_path = self.create_file_path(title, group, self.language)
                 if file_exists(file_path):
                     with open(file_path, 'r', encoding='utf8') as source_file:
-                        data = source_file.read()              
+                        data = source_file.read()
                 else:
                     data = None
                 content[title] = Section(title, data, file_path)
         return content
-                
-                    
+
+
     def create_file_path(self, title, group, language):
         file_name = FILE_NAME_TEMPLATE.format(title.replace(' ', '_').lower(), language)
         if group == TEXT_GROUPS[0]:
@@ -114,8 +114,8 @@ class Guide:
         elif group == TEXT_GROUPS[1]:
             path = os.path.join('..', PATH_APPENDICES, file_name)
         return path
-    
-    
+
+
     def write_html_files(self):
         """Writes the necessary HTML files
         Writes: - Chapter files
@@ -126,23 +126,23 @@ class Guide:
                 file_name = OUTPUT_FILE.format(section.title.replace(' ', '_').lower())
                 folder = OUTPUT_FOLDER.format(self.language)
                 path = os.path.join(folder, file_name)
-                
+
                 os.makedirs(folder, exist_ok=True)
-                
+
                 try:
                     # Clear file
                     open(path, 'w').close()
-                    
+
                     # Write HTML
                     with open(path, 'a', encoding='utf8') as output_file:
                         if section.mathjax_required:
                             output_file.write('<script type="text/javascript"  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>\n\n')
-                            
+
                         output_file.write('<link rel="stylesheet" href="http://cdn.foundation5.zurb.com/foundation.css" />\n<div class="row">\n')
-                            
+
                         for section_content in section.html_content:
                             output_file.write(section_content)
-                            
+
                         output_file.write('</div>')
                 except:
                     logging.critical("Cannot write file {0}".format(file_name))
@@ -160,8 +160,8 @@ class Section:
 
     def number(self, number):
         self.number = number
-       
-    
+
+
     def parse_raw_data(self, raw):
         """Converts the raw data into HTML using the parser
         TODO: Handle if data doesn't exist
@@ -185,28 +185,25 @@ def setup_logging():
     logging.basicConfig(level=logging.DEBUG,
                         filename=LOGFILE,
                         filemode="w",
-                        format="%(asctime)-15s %(levelname)-8s %(message)s")  
+                        format="%(asctime)-15s %(levelname)-8s %(message)s")
 
 
 def check_dependencies():
     """Check and install dependencies if needed"""
-    import pip
     # Update pip if needed
     pip.main(['install', '--upgrade', 'pip'])
     # Check dependencies
     pip.main(['install', '-r', 'dependencies.txt'])
-    
+
 
 def main():
     """Creates a Guide object"""
     check_dependencies()
-    # Shutdown pip logging
     logging.shutdown()
     setup_logging()
     guide = Guide()
-    logging.info("SHUTTING DOWN")
     logging.shutdown()
- 
- 
-if __name__ == "__main__":  
+
+
+if __name__ == "__main__":
     main()
