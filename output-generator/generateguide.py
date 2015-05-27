@@ -9,7 +9,7 @@ import collections
 import logging
 import os.path
 import os
-from markdown_parser import parse
+from markdownparser import parse
 
 SETTINGS_FILE = 'settings.conf'
 LOGFILE_CONF = 'logging.conf'
