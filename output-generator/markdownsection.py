@@ -2,6 +2,7 @@ from markdown2 import markdown
 import re
 import string
 import logging
+import os.path
 
 MARKDOWN2_EXTRAS = ["code-friendly",
                     "cuddled-lists",
@@ -12,17 +13,25 @@ MARKDOWN2_EXTRAS = ["code-friendly",
                     "wiki-tables"]
 
 
-class Parser:
-    def __init__(self, text, number):
-        self.raw_text = text
-        self.number = [number, 0, 0, 0, 0, 0]
+class Section:
+    def __init__(self, title, markdown_text, file_path):
+        self.title = title
+        self.markdown_text = markdown_text
+        self.file_path = file_path
+        self.number = [0, 0, 0, 0, 0, 0]
         self.page_header_numbered = False
-        self.html_text = []
+        self.html_content = []
         self.create_regex_list()
         self.header_permalinks = set()
+        # Dictionary of sets for images, interactives, and other_files
+        self.required_files = {}
         self.mathjax_required = False
 
     # ----- Helper Functions -----
+
+    def set_number(self, number):
+        """Sets the number for the section"""
+        self.number = [number, 0, 0, 0, 0, 0]
 
     def increment_number(self, level):
         """Takes a string and returns the number incremented to the given level
@@ -42,6 +51,7 @@ class Parser:
 
 
     def format_section_number(self):
+        """Return a nicely formatted version of the section number"""
         formatted_number = ('.'.join(str(num) for num in self.number))
         return formatted_number[:formatted_number.find('0')]
 
@@ -125,6 +135,33 @@ class Parser:
         return match.group(0) * 2
 
 
+    def add_image(self, match):
+        # TODO: Check image exists
+        # TODO: Combine check function with generateguide.py
+
+        # Add to required files
+        filename = match.group('filename')
+        if 'images' in self.required_files:
+            self.required_files['images'].add(filename)
+        else:
+            self.required_files['images'] = {filename}
+        # TODO: Process arguments
+
+        # Return HTML
+        image_source = './images/' + filename
+        html = self.html_templates['image_centered'].format(image_source)
+        return html
+
+
+    def file_exists(file_path):
+        """Check if file exists"""
+        if os.path.exists(file_path):
+            return True
+        else:
+            logging.error("File {0} does not exist".format(file_path))
+            return False
+
+
     def embed_video(self, match):
         youtube_src = "http://www.youtube.com/embed/{0}?rel=0"
         html_template = '<div class="flex-video widescreen">\n<iframe src="{0}" frameborder="0" allowfullscreen></iframe>\n</div>'
@@ -170,7 +207,7 @@ class Parser:
 
     # ----- Parsing Functions -----
 
-    def parse_raw_content(self):
+    def parse_markdown_content(self, html_templates):
         """Converts raw Markdown into HTML.
 
         Sets:
@@ -178,14 +215,15 @@ class Parser:
           Each string is the content for one section (page breaks).
 
         """
-        for section_text in self.raw_text.split('{page break}'):
+        self.html_templates = html_templates
+        for section_text in self.markdown_text.split('{page break}'):
             # Parse with our parser
             text = section_text
             for regex, function in self.REGEX_MATCHES:
                 text = re.sub(regex, function, text, flags=re.MULTILINE)
             # Parse with markdown2
             parsed_html = markdown(text, extras=MARKDOWN2_EXTRAS)
-            self.html_text.append(parsed_html)
+            self.html_content.append(parsed_html)
 
 
     def create_regex_list(self):
@@ -193,12 +231,7 @@ class Parser:
                               ("^(\n*\{comment([^{]+\}|\}[^{]*\{comment end\})\n*)+", self.delete_comment),
                               ("\{(?P<type>math|math_block)\}(?P<equation>[\s\S]+?)\{(math|math_block) end\}", self.process_math_text),
                               ("^(?P<heading_level>#{1,6}) ?(?P<heading>[\w!?,' ]+)!?\n", self.create_heading),
+                              ("^\{image (?P<filename>[^ \}]+) ?(?P<args>[^\}]*)\}", self.add_image),
                               ("^\{video (?P<url>[^\}]*)\}", self.embed_video),
                               ("^\{(?P<type>teacher|curiosity|jargon_buster|warning)\}", self.create_panel_start),
                               ("^\{(?P<type>teacher|curiosity|jargon_buster|warning) end\}", self.end_div)]
-
-
-def parse(text, number):
-    parser = Parser(text, number)
-    parser.parse_raw_content()
-    return parser

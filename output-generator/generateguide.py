@@ -10,7 +10,8 @@ import logging
 import os.path
 import os
 import re
-from markdownparser import parse
+from shutil import copy2
+from markdownsection import Section
 
 SETTINGS_CONF = 'settings.conf'
 LOGFILE_CONF = 'logging.conf'
@@ -26,7 +27,7 @@ PATH_INTERACTIVES = 'interactives/'
 PATH_FILES = 'files/'
 TEXT_GROUPS = ['Chapters', 'Appendices'] # Order of sections
 
-OUTPUT_FOLDER = '../output/{0}/' # {0 = language}
+OUTPUT_FOLDER = '..\output\{0}\\' # {0 = language}
 OUTPUT_FILE = '{0}.html' # {0 = file}
 
 
@@ -36,7 +37,8 @@ class Guide:
         self.structure = self.parse_structure()
         self.language = self.parse_language()
         self.content = self.read_content(self.structure)
-        self.required_files = {} # Dictionary of tuples (type, name)
+        # Dictionary of sets for images, interactives, and other_files
+        self.required_files = {}
         self.html_templates = self.read_html_templates()
 
         if self.html_templates:
@@ -55,9 +57,11 @@ class Guide:
             if self.settings[group].getboolean('Numbered'):
                 for title in self.structure[group]:
                     section = self.content[title]
-                    section.number = section_number
-                    section.parse_raw_data(section.raw_content)
-                    self.required_files.update(section.required_files)
+                    section.set_number(section_number)
+                    if section.markdown_text != None:
+                        section.parse_markdown_content(self.html_templates)
+                    for file_type,file_names in section.required_files.items():
+                        self.required_files[file_type] = self.required_files.get(file_type, set()).union(file_names)
                     section_number += 1
 
 
@@ -179,29 +183,20 @@ class Guide:
                 except:
                     logging.critical("Cannot write file {0}".format(file_name))
 
-
-class Section:
-    def __init__(self, title, data, file_path):
-        self.title = title
-        self.raw_content = data
-        self.file_path = file_path
-        self.html_content = []
-        self.required_files = {}
-        self.mathjax_required = False
-
-
-    def number(self, number):
-        self.number = number
-
-
-    def parse_raw_data(self, raw):
-        """Converts the raw data into HTML using the parser
-        TODO: Handle if data doesn't exist
-        """
-        if raw != None:
-            parse_result = parse(raw, self.number)
-            self.html_content = parse_result.html_text
-            self.mathjax_required = parse_result.mathjax_required
+        # TODO: Copy required files
+        for file_type,file_names in self.required_files.items():
+            if file_type == 'images':
+                for file_name in file_names:
+                    # TODO: Replace file copy procedure, currently proof of concept
+                    folder = OUTPUT_FOLDER.format(self.language)
+                    source = os.path.join('..', 'images', file_name)
+                    destination = os.path.join(folder, 'images')
+                    if not os.path.exists(destination):
+                        os.makedirs(destination, exist_ok=True)
+                    try:
+                        copy2(source, destination)
+                    except:
+                        logging.exception("Image {0} could not be copied".format(file_name))
 
 
 def file_exists(file_path):
