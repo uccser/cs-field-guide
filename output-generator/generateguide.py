@@ -9,10 +9,13 @@ import collections
 import logging
 import os.path
 import os
+import re
 from markdownparser import parse
 
-SETTINGS_FILE = 'settings.conf'
+SETTINGS_CONF = 'settings.conf'
 LOGFILE_CONF = 'logging.conf'
+HTML_TEMPLATE_CONF = 'html-templates.conf'
+
 # TODO: Determine which variables should be in settings file
 
 FILE_NAME_TEMPLATE = '{0}_{1}.md'
@@ -34,9 +37,11 @@ class Guide:
         self.language = self.parse_language()
         self.content = self.read_content(self.structure)
         self.required_files = {} # Dictionary of tuples (type, name)
+        self.html_templates = self.read_html_templates()
 
-        self.process_sections()
-        self.write_html_files()
+        if self.html_templates:
+            self.process_sections()
+            self.write_html_files()
 
 
     def process_sections(self):
@@ -56,6 +61,32 @@ class Guide:
                     section_number += 1
 
 
+    def read_html_templates(self):
+        """Read html templates from html-templates.conf into dictionary"""
+        html_templates = {}
+        try:
+            with open(HTML_TEMPLATE_CONF, 'r', encoding='utf8') as source_file:
+                data = source_file.readlines()
+        except:
+            logging.critical('Cannot find file {0}. Generation aborted.'.format(HTML_TEMPLATE_CONF))
+        else:
+            template_name = ''
+            template_text = ''
+            reading_template = False
+            for line in data:
+                search = re.search('^\{(?P<template_name>[^ }]+(?P<end> end)?)', line, re.MULTILINE)
+                if search:
+                    if search.group('end'):
+                        reading_template = False
+                        html_templates[template_name] = template_text
+                        template_text = ''
+                    elif search.group('template_name'):
+                        reading_template = True
+                        template_name = search.group('template_name')
+                elif reading_template:
+                    template_text += line
+        return html_templates
+
 
     def parse_language(self):
         """Returns language code for given setting"""
@@ -73,7 +104,7 @@ class Guide:
         TODO: and handle errors
         """
         settings = configparser.ConfigParser()
-        settings.read(SETTINGS_FILE)
+        settings.read(SETTINGS_CONF)
         return settings
 
 
