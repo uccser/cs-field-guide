@@ -2,7 +2,7 @@
 
 {teacher}
 
-This chapter is under evaluation. It covers one of six topics that students must select two from for the 3.44 Achievement Standard; the other 5 topics have chapters available, so there is still a wide range of choice available. Any feedback would be greatly appreciated. If you also teach your class, please [complete the teacher survey here](http://bit.ly/NCPSurveyTeachers)__ and and your students can do this one http://bit.ly/NCPSurveyStudents
+This chapter is under evaluation. It covers one of six topics that students must select two from for the 3.44 Achievement Standard; the other 5 topics have chapters available, so there is still a wide range of choice available. Any feedback would be greatly appreciated. If you also teach your class, please [complete the teacher survey here](http://bit.ly/NCPSurveyTeachers) and and your students can do this one http://bit.ly/NCPSurveyStudents
 
 {teacher end}
 
@@ -46,7 +46,7 @@ Below we introduce some concepts, algorithms, techniques, applications and probl
 
 {teacher}
 
-Running the Tablets of Stone game (below) can take some time and coordination to do properly. The game is meant to cause frustration, and is usually not finished in an a typical hour long class. The game is best when played for a short period (5 minutes or so) and then stopped and discussed. Discuss the issues the students are facing, packet loss, packet delay, etc. Then begin to discuss possible solutions. These could be packet numbering, positive or negative acknowledgments, timeouts etc. However, this may take more time, and also lets you fit less information on each tablet. Students should realise this tradeoff and understand the key problems of network communication protocols as efficiency and reliability when communicating. Tablets of Stone can be found at [University of Glasgow Computer Science Department website](http://csi.dcs.gla.ac.uk/workshop-view.php?workshopID=4). We’ve made a guide too, which you can [download freely here](other_files/uc_tablet_sof_stone.pdf). Other activities you should consider are “Locked-In Syndrome, described [here](http://dl.acm.org/citation.cfm?doid=2532748.2611263) or Code.Org’s *The Internet* activity, described [here](https://learn.code.org/s/1/level/102).
+Running the Tablets of Stone game (below) can take some time and coordination to do properly. The game is meant to cause frustration, and is usually not finished in an a typical hour long class. The game is best when played for a short period (5 minutes or so) and then stopped and discussed. Discuss the issues the students are facing, packet loss, packet delay, etc. Then begin to discuss possible solutions. These could be packet numbering, positive or negative acknowledgments, timeouts etc. However, this may take more time, and also lets you fit less information on each tablet. Students should realise this tradeoff and understand the key problems of network communication protocols as efficiency and reliability when communicating. Tablets of Stone can be found at [University of Glasgow Computer Science Department website](http://csi.dcs.gla.ac.uk/workshop-view.php?workshopID=4). We’ve made a guide too, which you can [download freely here](other-files/uc-tablets-of-stone.pdf). Other activities you should consider are “Locked-In Syndrome, described [here](http://dl.acm.org/citation.cfm?doid=2532748.2611263) or Code.Org’s *The Internet* activity, described [here](https://learn.code.org/s/1/level/102).
 
 {teacher end}
 
@@ -585,31 +585,31 @@ Internet protocols exist in layers. We have four such layers in the computer sci
 
 At each layer, data is made up of the previous layers’ whole unit of data, and then *headers* are added and passed down. At the bottom layer, the Link layer, a *footer* is added also. Below is an example of what a UDP packet looks like when it’s packaged up for transport. 
 
-{jargon_buster}
+{jargon-buster}
 
 **Jargon Buster**
 
 Footers and Headers are basically packet *meta-data*. Information about the information. Like a letterhead or a footnote, they’re not part of the content, but they are on the page. Headers and Footers exist on packets to store data. Headers come before the data and footers afterwards.
 
-{jargon_buster end}
+{jargon-buster end}
 
 {image http://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/UDP_encapsulation.svg/800px-UDP_encapsulation.svg.png alt="UDP Encapsulation"}
 
 You can think of these protocols as a game of pass the parcel. When a message is sent in HTTP, it is wrapped in a TCP header, which is then wrapped in an IPv6 header, which is then wrapped in a Ethernet header and footer and sent over ethernet. At the other end, it’s unwrapped again from an ethernet *frame*, back to a IP *packet*, a TCP *datagram*, to a HTTP *request*. 
 
-{jargon_buster}
+{jargon-buster}
 
 **Jargon Buster**
 
 The name packet is a generic term for a unit of data. In the application layer units of data are called *data* or *requests*, in the transport layer, *datagram* or *segments*, in the Network/IP layer, *packet* and in the physical layer, a *frame*. Each level has its own name for a unit of data (segment, packet, frame, request etc), however the more generic “packet” is often used instead, regardless of layer. 
 
-{jargon_buster end}
+{jargon-buster end}
 
 This system is neat because each layer can assume that the layer above and below have guaranteed something about the information, and each layer (and protocol in use at that layer) has a stand-alone role. So if you’re making a website you just have to program website code, and not worry about code to make the site work over wifi as well as ethernet. A similar system is in the postal system… You don’t put the courier’s truck number on the front of the envelope! That’s take care of by the post company, which then uses a system to sort the mail and assign it to drivers, and then drivers to trucks, and then drivers to routes… none of which you need to worry about when you send or receive a letter or use a courier. 
 
 So what does a TCP segment look like? 
 
-{image net_packet_structure.png alt="Showing the structure of a TCP packet"}
+{image net-packet-structure.png alt="Showing the structure of a TCP packet"}
 
 As you can see, a packet is divided into four main parts, addresses (source, destination), numbers (sequence number, ANCK number if it’s an acknowledgement), flags (urgent, checksum) in the header, then the actual data. At each level, a segment becomes the data for the next data unit, and that again gets its own header. 
 
