@@ -67,113 +67,109 @@ The fictitious name for the eavesdropper is usually Eve.
 
 {jargon_buster end}
 
-.. container:: curiosity
+{curiosity}
 
- **Curiosity**
+**Curiosity**
 
- There are several other characters used to describe activities around encryption protocols: for example Mallory (a malicious attacker) and Trudy (an intruder). Wikipedia has a `list of Alice and Bob's friends <http://en.wikipedia.org/wiki/Alice_and_Bob>`_.
+There are several other characters used to describe activities around encryption protocols: for example Mallory (a malicious attacker) and Trudy (an intruder). Wikipedia has a [list of Alice and Bob's friends](http://en.wikipedia.org/wiki/Alice_and_Bob)
 
-.. only:: teachers or dev
+{curiosity end}
 
- .. note:: **For teachers**
+{teacher}
 
-  There's a `song about Alice and Bob <http://www.catonmat.net/blog/musical-geek-friday-alice-and-bob/>`_ performed by rapper MC++ (yes, he specialises in computer science). Some of the language may not be suitable for use in class, so discretion is needed for how you might use it. 
+**For teachers**
 
-  .. figure:: _static/images/ec-xkcd-alice-and-bob.png
-   :align: center
-   :target: http://xkcd.com/177/
+There's a [song about Alice and Bob](http://www.catonmat.net/blog/musical-geek-friday-alice-and-bob/) performed by rapper MC++ (yes, he specialises in computer science). Some of the language may not be suitable for use in class, so discretion is needed for how you might use it. 
 
-Substitution ciphers
-=====================================================
+[{image ec-xkcd-alice-and-bob.png}](http://xkcd.com/177/)
 
-.. only:: teachers or dev
+{teacher end}
 
- .. note:: **For teachers**
+## Substitution ciphers
 
-  This section provides an introduction to the idea of encryption, using a very simple algorithm called the Caesar Cipher. While the Caesar Cipher is no longer used in practice, it is still very useful as a teaching tool for illustrating the basic ideas and terminology in encryption. The Caesar Cipher is very easily broken, even without the help of a computer, but it is for this reason that it is a good introduction to the processes around ciphers. The only reason it worked in the time of Julius Caesar was that it relied on a low level of literacy amongst those you might expect to come across it, and they would assume it was a foreign language rather than try to attack it; however, a 21st century high school student should have all the literacy and mathematical tools needed to break this code.
+{teacher}
 
-  Teachers notes assume an understanding of the jargon used in encryption. Jargon buster boxes are used throughout this section for both teachers and students, as encryption is a topic that seems to have attracted a lot of jargon!!!
+**For teachers**
+
+This section provides an introduction to the idea of encryption, using a very simple algorithm called the Caesar Cipher. While the Caesar Cipher is no longer used in practice, it is still very useful as a teaching tool for illustrating the basic ideas and terminology in encryption. The Caesar Cipher is very easily broken, even without the help of a computer, but it is for this reason that it is a good introduction to the processes around ciphers. The only reason it worked in the time of Julius Caesar was that it relied on a low level of literacy amongst those you might expect to come across it, and they would assume it was a foreign language rather than try to attack it; however, a 21st century high school student should have all the literacy and mathematical tools needed to break this code.
+
+Teachers notes assume an understanding of the jargon used in encryption. Jargon buster boxes are used throughout this section for both teachers and students, as encryption is a topic that seems to have attracted a lot of jargon!!!
+
+{teacher end}
 
 For these activities, you will need to have pen and paper in front of you to figure out the answers in this section. 
 
 Working in a group with 1 or 2 of your classmates (or by yourself if nobody else is around), can you figure out what the following message, encrypted with a simple cipher, says?
 
-.. code-block:: none
-
- DRO BOCMEO WSCCSYX GSVV ECO K ROVSMYZDOB,
- KBBSFSXQ KD XYYX DYWYBBYG.
- LO BOKNI DY LBOKU YED KC CYYX
- KC IYE ROKB DRBOO
- LVKCDC YX K GRSCDVO.
- S'VV LO GOKBSXQ K BON KBWLKXN.
+```
+DRO BOCMEO WSCCSYX GSVV ECO K ROVSMYZDOB,
+KBBSFSXQ KD XYYX DYWYBBYG.
+LO BOKNI DY LBOKU YED KC CYYX
+KC IYE ROKB DRBOO
+LVKCDC YX K GRSCDVO.
+S'VV LO GOKBSXQ K BON KBWLKXN.
+```
 
 - What techniques did your group use to decrypt the message?  
 - If you haven’t already, write out each letter in the alphabet, and then the letter that it corresponds to in the cipher (for the ones that are known, i.e. actually were in the cipher). Can you see a pattern? 
 - If you were going to make a secret message of your own using this same cipher, how would you go about it?
 - What would be wrong with using this cipher method for a secret you’d never want anybody else finding out? 
 
-.. only:: teachers or dev
+{teacher}
 
- .. note:: **For teachers**
+**For teachers**
 
-  The code deciphered is: THE RESCUE MISSION WILL USE A HELICOPTER, ARRIVING AT NOON TOMORROW. BE READY TO BREAK OUT AS SOON AS YOU HEAR THREE  BLASTS ON A WHISTLE. I'LL BE WEARING A RED ARMBAND.
+The code deciphered is: THE RESCUE MISSION WILL USE A HELICOPTER, ARRIVING AT NOON TOMORROW. BE READY TO BREAK OUT AS SOON AS YOU HEAR THREE  BLASTS ON A WHISTLE. I'LL BE WEARING A RED ARMBAND.
 
-  Some of the techniques that students might have used include:
+Some of the techniques that students might have used include:
 
-  - Looking for interesting letter patterns. For example, the word “S’VV” in the ciphertext. There aren’t that many contractions (words shortened with an apostrophe) in the english language, much less ones that have the last 2 letters the same.
-  - Looking at one letter words. Generally they’ll be “A” or “I”. 
-  - As they figure out which letters in the ciphertext correspond to which letters in the plaintext, they should have been making a list of what they’d figured out, and looking at other words in the ciphertext using those same letters.
-  - Looking for letters in the ciphertext that seem to appear a lot; these are likely to correspond to common letters in the english alphabet.
-  - Looking at letters that DIDN’T appear (perhaps they correspond to letters like Q and Z),
- 
-  This list is incomplete, and was just intended to give an idea of the kind of things students should be thinking about. Essentially, it is a problem solving task that requires a bit of thinking on their part.
+- Looking for interesting letter patterns. For example, the word “S’VV” in the ciphertext. There aren’t that many contractions (words shortened with an apostrophe) in the english language, much less ones that have the last 2 letters the same.
+- Looking at one letter words. Generally they’ll be “A” or “I”. 
+- As they figure out which letters in the ciphertext correspond to which letters in the plaintext, they should have been making a list of what they’d figured out, and looking at other words in the ciphertext using those same letters.
+- Looking for letters in the ciphertext that seem to appear a lot; these are likely to correspond to common letters in the english alphabet.
+- Looking at letters that DIDN’T appear (perhaps they correspond to letters like Q and Z),
 
-  Because this message should have (hopefully!) only taken them a few minutes to decode, they should recognise that it is not a very good way of encrypting a message, meaning that they probably wouldn’t want to use it themselves for messages that they really don’t want other people reading! By identifying the techniques they used to break the cipher just before, they should have some understanding of why this cipher is not a good one to use in practice!!!
+This list is incomplete, and was just intended to give an idea of the kind of things students should be thinking about. Essentially, it is a problem solving task that requires a bit of thinking on their part.
 
-  When they wrote out the alphabet, they should have gotten the following (Note that some letters aren’t filled in, as they never appeared in the ciphertext or plaintext)
+Because this message should have (hopefully!) only taken them a few minutes to decode, they should recognise that it is not a very good way of encrypting a message, meaning that they probably wouldn’t want to use it themselves for messages that they really don’t want other people reading! By identifying the techniques they used to break the cipher just before, they should have some understanding of why this cipher is not a good one to use in practice!!!
 
-  .. figure:: _static/images/ec-caesar-table-1.png
-   :align: center
+When they wrote out the alphabet, they should have gotten the following (Note that some letters aren’t filled in, as they never appeared in the ciphertext or plaintext)
 
-  After writing out this list, students may realise that there is a pattern in how letters in the ciphertext correspond to letters in the plaintext, when they wrote out the alphabet with the plaintext versions alongside it. Specifically, each letter in the ciphertext corresponds to the letter 10 places earlier in the alphabet than the one in the plaintext.
+{image ec-caesar-table-1.png}
 
+After writing out this list, students may realise that there is a pattern in how letters in the ciphertext correspond to letters in the plaintext, when they wrote out the alphabet with the plaintext versions alongside it. Specifically, each letter in the ciphertext corresponds to the letter 10 places earlier in the alphabet than the one in the plaintext.
+
+{teacher end}
 
 You may have realised that there was a pattern in how letters from the original message corresponded to letters in the decoded one: a letter in the original message is decoded to the letter that is 10 places before it in the alphabet. The conversion table you drew should have highlighted this. Here's the table for the letter correspondences, where the letter "K" translates to an "A"
 
-.. figure:: _static/images/ec-caesar-table-2.png
- :align: center
+{image ec-caesar-table-2.png}
 
 The same idea can generate other codes, such as the following one where each letter is replaced with the one that is 8 places earlier. 
 
-.. figure:: _static/images/ec-caesar-table-3.png
- :align: center
+{image ec-caesar-table-3.png}
 
 We sometimes say that the alphabet has been *rotated* by 8.
 This system of rotating each letter in a piece of text by a certain amount in order to encrypt it is called Caesar Cipher, named after Julius Caesar, who used it with a rotation of 3 to disguise messages. 
 
 You can experiment with this cipher using this interactive.
 
-.. only:: html or epub
-
- .. raw:: html
-
-  <div class="interactive row">
-  <div class="col-xs-12 col-sm-4">  
-  <h4>Plaintext</h4>
-  <textarea id="caesar-plaintext" class="form-control" rows="5"></textarea>
-  <button id="caesar-encrypt" type="button" class="btn btn-primary btn-block" style="margin-top:10px;">Encrypt</button>
-  </div>
-  <div class="col-xs-12 col-sm-4">
-  <h4>Rotation Amount</h4>
-  <input id="rotation-input" type="number" min="1" max="26" value="1" onkeydown="return isNumber(event,this);" class="interactive-input">
-  </div>
-  <div class="col-xs-12 col-sm-4">
-  <h4>Ciphertext</h4>
-  <textarea id="caesar-ciphertext" class="form-control" rows="5"></textarea>
-  <button id="caesar-decrypt" type="button" class="btn btn-primary btn-block" style="margin-top:10px;">Decrypt</button>
-  </div>
-  </div>
-
+<div class="interactive row">
+<div class="col-xs-12 col-sm-4">  
+<h4>Plaintext</h4>
+<textarea id="caesar-plaintext" class="form-control" rows="5"></textarea>
+<button id="caesar-encrypt" type="button" class="btn btn-primary btn-block" style="margin-top:10px;">Encrypt</button>
+</div>
+<div class="col-xs-12 col-sm-4">
+<h4>Rotation Amount</h4>
+<input id="rotation-input" type="number" min="1" max="26" value="1" onkeydown="return isNumber(event,this);" class="interactive-input">
+</div>
+<div class="col-xs-12 col-sm-4">
+<h4>Ciphertext</h4>
+<textarea id="caesar-ciphertext" class="form-control" rows="5"></textarea>
+<button id="caesar-decrypt" type="button" class="btn btn-primary btn-block" style="margin-top:10px;">Decrypt</button>
+</div>
+</div>
 
 In this system, the amount of rotation is referred to as a *key*, since you can unlock the message if you know the key. 
 Normally the sender and receiver would agree on a key in advance (and in person), so that the receiver can easily unlock the message.
@@ -183,128 +179,146 @@ You actually only need to work out what one of the corresponding letters is, and
 
 If for example you identify that the letter “Y” in the encrypted message is in place of the letter “R”, you can calculate the rotation by working out how many places R is before Y in the alphabet (it might help to write the alphabet out on a piece of paper so that you can count the places, as saying the alphabet backwards is quite challenging for most people!) As R is 7 places before Y, this means that the rotation for this cipher must be 7, and you should be able to convert all letters in the encrypted message to an understandable message by subtracting 7 from them. The quickest way of going about this though would be to write out a conversion table like the ones above.
 
-.. container:: curiosity
+{curiosity}
 
- **Curiosity**
+**Curiosity**
 
- The Caesar cipher with a key of 13 is the same as an approach called `ROT13 (rotate 13 characters) <http://en.wikipedia.org/wiki/Rot_13>`_, which is sometimes used to obscure things like the punchline of a joke, a spoiler for a story, the answer to a question, or text that might be offensive. It is easy to decode (and there are plenty of automatic systems for doing so), but the user has to deliberately ask to see the deciphered version. A key of 13 for a Caesar cipher has the interesting property that the encryption method is identical to the decryption method i.e. the same program can be used for both. Actually, many strong encryption methods try to make the encryption and decryption processes as similar as possible so that the same software and/or hardware can be used for both parts of the task, perhaps with only minor adaptions.
+The Caesar cipher with a key of 13 is the same as an approach called [ROT13 (rotate 13 characters)](http://en.wikipedia.org/wiki/Rot_13), which is sometimes used to obscure things like the punchline of a joke, a spoiler for a story, the answer to a question, or text that might be offensive. It is easy to decode (and there are plenty of automatic systems for doing so), but the user has to deliberately ask to see the deciphered version. A key of 13 for a Caesar cipher has the interesting property that the encryption method is identical to the decryption method i.e. the same program can be used for both. Actually, many strong encryption methods try to make the encryption and decryption processes as similar as possible so that the same software and/or hardware can be used for both parts of the task, perhaps with only minor adaptions.
+
+{curiosity end}
 
 
 Taking advantage of the idea that you only need to figure out 1 letter to decide, can you figure out what the following message says? Which letter is the best one to try and guess? Why? What was the rotation? You may make a few incorrect guesses before figuring it out, so be prepared for that! Once you think you know what one of the letters in the ciphertext might correspond to in the plaintext, work out what the rotation is, and then write out the conversions for that rotation and decode the start of the message using that conversion table to see whether or not it makes sense. If the first few words seem to be meaningless, then that rotation is probably not the correct one.
 
-.. code-block:: none
+```
+P  OVWL  AOPZ  TLZZHNL  DHZ  UVA  AVV  KPMMPJBSA  MVY  FVB!
+```
 
- P  OVWL  AOPZ  TLZZHNL  DHZ  UVA  AVV  KPMMPJBSA  MVY  FVB!
+{teacher}
 
-.. only:: teachers or dev
+**For teachers**
 
- .. note:: **For teachers**
+The message is “I HOPE THIS MESSAGE WAS NOT TOO DIFFICULT FOR YOU!”
+The sensible way for students to approach it would have been to look at the first word as it only contains one letter, so is very likely to be either “I” or “A”. They should have written out the corresponding letters for each of these possibilities, and checked which lead to a meaningful message.
+The rotation being used is 7.
 
-  The message is “I HOPE THIS MESSAGE WAS NOT TOO DIFFICULT FOR YOU!”
-  The sensible way for students to approach it would have been to look at the first word as it only contains one letter, so is very likely to be either “I” or “A”. They should have written out the corresponding letters for each of these possibilities, and checked which lead to a meaningful message.
-  The rotation being used is 7.
+{teacher end}
 
 Now that you know how to decipher a message that is using Caesar Cipher without actually knowing the key, you should be able to see that it would be very easy to decipher a message if you know the key. The following message was encrypted using a rotation of 6. Generate the conversion table for a rotation of 6. This should allow you to easily decipher the following message. What does the message say? (Use only the conversion table to figure it out!)
 
-.. code-block:: none
+```
+ZNK WAOIQ HXUCT LUD PASVY UBKX ZNK RGFE JUM.
+```
 
- ZNK WAOIQ HXUCT LUD PASVY UBKX ZNK RGFE JUM.
+{teacher}
 
-.. only:: teachers or dev
+**For teachers**
 
- .. note:: **For teachers**
+The message is “THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG”
 
-  The message is “THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG”
+{teacher end}
 
 It shouldn’t be too difficult to see how a message can be *encrypted* using Caesar Cipher. Previously, you were generating conversion tables that converted from the ciphertext to the plaintext. In a very similar way, you can generate conversion tables that convert from the plaintext to the ciphertext. The only difference is that instead of subtracting the rotation, you are adding it. i.e. if the rotation was 5, then the letter “H” in the plaintext would go to the letter that is 5 places forward in the alphabet, which is “M”.
 
 Using a rotation of 3, generate a conversion table, and then the ciphertext, for the following message.
 
-.. code-block:: none
+```
+HOW ARE YOU
+```
 
- HOW ARE YOU
+{teacher}
 
-.. only:: teachers or dev
+**For teachers**
 
- .. note:: **For teachers**
+The correct answer is “KRZ DUH BRX”. If students subtracted instead of adding in their conversion table they will end up with “ELT XOB VLR”, which is incorrect.
 
-  The correct answer is “KRZ DUH BRX”. If students subtracted instead of adding in their conversion table they will end up with “ELT XOB VLR”, which is incorrect.
+{teacher end}
 
 Now that all that is out of the way, you can encrypt your own messages (assuming it doesn’t matter too much if somebody deciphers them --- as you saw above, this is not a very secure cipher!). Decide on a message to encrypt, and a rotation key. Generate a conversion table, and then encrypt your message.
 
 If a friend is also doing this activity, once you have your encrypted message you could give them the ciphertext and the rotation key (and get them to give you theirs), and see if you can decrypt one another's messages (remember to generate a conversion table).
 
-.. container:: jargon-buster
+{jargon-buster}
 
- **Jargon Buster**
+**Jargon Buster**
 
- The Caesar is an example of a *substitution cipher*, where each letter is substituted for another one. Other substitution ciphers improve on the Caesar cipher by not having all the letters in order, and some older written ciphers use different symbols for each symbol. However, substitution ciphers are easy to attack because a statistical attack is so easy: you just look for a few common letters and sequences of letters, and match that to common patterns in the language.
+The Caesar is an example of a *substitution cipher*, where each letter is substituted for another one. Other substitution ciphers improve on the Caesar cipher by not having all the letters in order, and some older written ciphers use different symbols for each symbol. However, substitution ciphers are easy to attack because a statistical attack is so easy: you just look for a few common letters and sequences of letters, and match that to common patterns in the language.
 
+{jargon-buster end}
 
-Problems with Substitution Ciphers
-================================================================
+## Problems with Substitution Ciphers
+
 We have looked at one way of cracking Caesar cipher: using patterns in the text. By looking for patterns such as one letter words, other short words, double letter patterns, apostrophe positions, and knowing rules such as all words (excluding some acronyms and words written in txt language of course) must contain at least one of a, e, i, o, u, or y, you were probably able to decipher the messages in the book with little difficulty.
 
 There are many other ways of cracking Caeser cipher which we will look at in this section. Understanding various common attacks on ciphers is important when looking at the security of more sophisticated ciphers.
 
-Frequency Analysis Attacks
-----------------------------------------------------------------
+### Frequency Analysis Attacks
+
 Frequency analysis means looking at how many times each letter appears in the encrypted message, and using this information to crack the message. A letter that appears many times in  a message is far more likely to be “T” than “Z”!
 
 For example, try copying and pasting the following text into the statistical analyser at http://www.richkni.co.uk/php/crypta/freq.php. What is the most common letter in the code? Which English letter is that likely to be?
 
+{comment}
+
 .. xhtml5 write a statistical analyser to have inline
 
-.. code-block:: none
+{comment end}
 
- F QTSL RJXXFLJ HTSYFNSX QTYX TK XYFYNXYNHFQ HQZJX YMFY HFS GJ ZXJI YT FSFQDXJ BMFY YMJ RTXY KWJVZJSY QJYYJWX FWJ, FSI JAJS YMJ RTXY HTRRTS UFNWX TW YWNUQJX TK QJYYJWX HFS MJQU YT GWJFP YMJ HTIJ
+```
+F QTSL RJXXFLJ HTSYFNSX QTYX TK XYFYNXYNHFQ HQZJX YMFY HFS GJ ZXJI YT FSFQDXJ BMFY YMJ RTXY KWJVZJSY QJYYJWX FWJ, FSI JAJS YMJ RTXY HTRRTS UFNWX TW YWNUQJX TK QJYYJWX HFS MJQU YT GWJFP YMJ HTIJ
+```
 
-.. only:: teachers or dev
+{teacher}
 
- .. note:: **For teachers**
+**For teachers**
 
-  This message decodes to: A LONG MESSAGE CONTAINS LOTS OF STATISTICAL CLUES THAT CAN BE USED TO ANALYSE WHAT THE MOST FREQUENT LETTERS ARE, AND EVEN THE MOST COMMON PAIRS OR TRIPLES OF LETTERS CAN HELP TO BREAK THE CODE
+This message decodes to: A LONG MESSAGE CONTAINS LOTS OF STATISTICAL CLUES THAT CAN BE USED TO ANALYSE WHAT THE MOST FREQUENT LETTERS ARE, AND EVEN THE MOST COMMON PAIRS OR TRIPLES OF LETTERS CAN HELP TO BREAK THE CODE
+
+{teacher end}
 
 The most common letter in most English text is the letter E, so it makes sense to try to decrypt the message guessing that the most common letter in the ciphertext corresponds to E. 
 
 If that doesn't work, you could see if the second most common letter in the ciphertext is E, and so on.
 
-.. container:: curiosity
+{curiosity}
 
- **Curiosity**
+**Curiosity**
 
- Although in almost all English texts the letter E is the most common letter, it isn't always. For example, the `1939 novel *Gadsby* by Ernest Vincent Wright <http://en.wikipedia.org/wiki/Gadsby_(novel)>`_ doesn't contain a single letter E (this is called a lipogram). Furthermore, the text you're attacking may not be English. During World War 1 and 2, the US military had many Native American `Code talkers <http://en.wikipedia.org/wiki/Code_talker>`_ translate messages into their own language, which provided a strong layer of security at the time.
+Although in almost all English texts the letter E is the most common letter, it isn't always. For example, the [1939 novel *Gadsby* by Ernest Vincent Wright](http://en.wikipedia.org/wiki/Gadsby_(novel)) doesn't contain a single letter E (this is called a lipogram). Furthermore, the text you're attacking may not be English. During World War 1 and 2, the US military had many Native American [Code talkers](http://en.wikipedia.org/wiki/Code_talker) translate messages into their own language, which provided a strong layer of security at the time.
 
-.. container:: curiosity
+{curiosity end}
 
- **Curiosity**
+{curiosity}
 
- A slightly stronger cipher than the Caesar cipher is the `Vigenere cipher <http://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher>`_, which is created by using multiple Caesar ciphers, where there is a key phrase (e.g. "acb"), and each letter in the key gives the offset (in the example this would be 1, 3, 2). These offsets are repeated to give the offset for encoding each character in the plaintext.
+**Curiosity**
 
- By having multiple caesar ciphers, common letters such as E will no longer stand out as much, making frequency analysis a lot more challenging. The following website shows the effect on the distribution.
- http://www.simonsingh.net/The_Black_Chamber/vigenere_strength.html
+A slightly stronger cipher than the Caesar cipher is the [Vigenere cipher](http://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher), which is created by using multiple Caesar ciphers, where there is a key phrase (e.g. "acb"), and each letter in the key gives the offset (in the example this would be 1, 3, 2). These offsets are repeated to give the offset for encoding each character in the plaintext.
 
- However, while this makes the Vigenere cipher more challenging to crack than the Caeser cipher, ways have been found to crack it. In fact, once you know the key length, it just breaks down to cracking several Caesar ciphers (which you have seen is straightforward!). Several statistical methods have been devised for working out the key length.
+By having multiple caesar ciphers, common letters such as E will no longer stand out as much, making frequency analysis a lot more challenging. The following website shows the effect on the distribution.
+http://www.simonsingh.net/The_Black_Chamber/vigenere_strength.html
 
- A brute force attack is harder for the Vigenere cipher because there are a lot more possible keys. In principle there isn't a limit to the number of key phrases possible, although if the phrase is too long then keeping track of the key would be difficult. 
+However, while this makes the Vigenere cipher more challenging to crack than the Caeser cipher, ways have been found to crack it. In fact, once you know the key length, it just breaks down to cracking several Caesar ciphers (which you have seen is straightforward!). Several statistical methods have been devised for working out the key length.
 
- The Vigenere cipher is known as a *polyalphabetic substitution cipher*, since it is uses multiple substitution rules.
+A brute force attack is harder for the Vigenere cipher because there are a lot more possible keys. In principle there isn't a limit to the number of key phrases possible, although if the phrase is too long then keeping track of the key would be difficult. 
 
+The Vigenere cipher is known as a *polyalphabetic substitution cipher*, since it is uses multiple substitution rules.
 
-Plain Text Attacks
----------------------------------------------------------------
+{curiosity end}
+
+### Plain Text Attacks
 
 Another kind of attack is the *known plaintext* attack, where you know part or all of the solution. For example, if you know that I start all my messages with "HI THERE", what is the key for the following message?
 
-.. code-block:: none
+```
+AB MAXKX LXVKXM FXXMBGZ TM MPH TF MANKLWTR
+```
+{teacher}
 
- AB MAXKX LXVKXM FXXMBGZ TM MPH TF MANKLWTR
+**For teachers**
 
-.. only:: teachers or dev
+The message is "HI THERE SECRET MEETING AT TWO AM THURSDAY". Only one character is needed to crack it - the H corresponds to an A, and that gives the key.
 
- .. note:: **For teachers**
-
-  The message is "HI THERE SECRET MEETING AT TWO AM THURSDAY". Only one character is needed to crack it - the H corresponds to an A, and that gives the key.
+{teacher end}
 
 Even if you did not know the key was a rotation, you have learnt that A->H, B->I, M->T, X->E, and K->R. This goes a long way towards deciphering the message!
 
@@ -316,78 +330,92 @@ For this reason, it is essential for any good cryptosystem to not be breakable, 
 
 Also, the cryptosystem should not give different ciphertext each time the same plaintext message is encrypted. It may initially sound impossible to achieve this, although there are several clever techniques used by real cryptosystems.
 
-Brute force Attacks to Guess the Key
-----------------------------------------------------------------
+### Brute force Attacks to Guess the Key
 
-.. only:: teachers or dev
+{teacher}
+**For teachers**
 
- .. note:: **For teachers**
+A good question to ask students to ensure they are understanding is “Why are there 25 possible keys, rather than 26?”
 
-  A good question to ask students to ensure they are understanding is “Why are there 25 possible keys, rather than 26?”
+{teacher end}
 
 Another approach to cracking a ciphertext is a *brute force attack*, which involves trying out all possible keys, and seeing if any of them produce intelligible text. This is easy for a Caesar cipher because there are only 25 possible keys. For example, the following ciphertext is a single word, but is too short for a statistical attack. Try putting it into the decoder above, and trying keys until you decipher it.
 
-.. code-block:: none
+```
+EIJUDJQJYEKI
+```
 
- EIJUDJQJYEKI
+{comment}
 
 .. tcb xjrm This interactive doesn’t work. Could be because all the elements have the same ids as the above interactive?
 .. I've deleted the interactive for the moment, will replace it after CS4HS
 
+{comment end}
+
 These days encryption keys are normally numbers that are 128 bits or longer. You could calculate how long it would take to try out every possible 128 bit number if a computer could test a million every second (including testing if each decoded text contains English words). It will eventually crack the message, but would it be any use after that amount of time?
 
-.. only:: teachers or dev
+{teacher}
 
- .. note:: **For teachers**
+**For teachers**
 
-  The word is "ostentatious", and has been coded by shifting 16 letters to the right (or 10 to the left).
+The word is "ostentatious", and has been coded by shifting 16 letters to the right (or 10 to the left).
 
-.. container:: curiosity
+{teacher end}
 
- **Key size in general substition ciphers**
- 
- While Caesar cipher has a key specifying a rotation, a more general substitution cipher could randomly scramble the entire alphabet. This requires a key consisting of a sequence of 26 letters or numbers, specifying which letter maps onto each other one. For example, the first part of the key could be “D, Z, E”, which would mean D -> A, Z -> B, E ->C. The key would have to have another 23 letters in order to specify the rest of the mapping.
- 
- This increases the number of possible keys, and thus reduces the risk of a brute force attack. A can be substituted for any of the 26 letters in the alphabet, B can then be substituted for any of the 25 remaining letters (26 minus the letter already substituted for A), C can then be substituted for any of the 24 remaining letters…
+{curiosity}
 
- This gives us 26 possibilities for A times 25 possibilities for B times 24 possibilities for C.. all the way down to 2 possibilities for Y and 1 possibility for Z.
- 26*25*24*23*22*21*20*19*18*17*16*15*14*13*12*11*10*9*8*7*6*5*4*3*2*1 = 26!
- Representing each of these possibilites requires around 88 bits, making the cipher’s key size around 88 bits!
+**Key size in general substition ciphers**
 
- However, this only solves one of the problems. The other techniques for breaking caeser cipher we have looked at are still highly effective on all substitution ciphers. For this reason, we need better ciphers in practice, which we will look at shortly!
+While Caesar cipher has a key specifying a rotation, a more general substitution cipher could randomly scramble the entire alphabet. This requires a key consisting of a sequence of 26 letters or numbers, specifying which letter maps onto each other one. For example, the first part of the key could be “D, Z, E”, which would mean D -> A, Z -> B, E ->C. The key would have to have another 23 letters in order to specify the rest of the mapping.
 
-.. only:: teachers or dev
+This increases the number of possible keys, and thus reduces the risk of a brute force attack. A can be substituted for any of the 26 letters in the alphabet, B can then be substituted for any of the 25 remaining letters (26 minus the letter already substituted for A), C can then be substituted for any of the 24 remaining letters…
 
- .. note:: **For teachers**
+This gives us 26 possibilities for A times 25 possibilities for B times 24 possibilities for C.. all the way down to 2 possibilities for Y and 1 possibility for Z.
+26*25*24*23*22*21*20*19*18*17*16*15*14*13*12*11*10*9*8*7*6*5*4*3*2*1 = 26!
+Representing each of these possibilites requires around 88 bits, making the cipher’s key size around 88 bits!
 
-  A 128 bit key at 1,000,000 per second would take 10,790,283,070,000,000,000,000,000 years to test. Of course, it might find something in the first year, but the chances of that are ridiculously low, and it would be more realistic to hope to win the top prize in Lotto three times consecutively (and you'd get more money). Cryptography relies a lot on low probabilities of success!
+However, this only solves one of the problems. The other techniques for breaking caeser cipher we have looked at are still highly effective on all substitution ciphers. For this reason, we need better ciphers in practice, which we will look at shortly!
 
-.. container:: jargon-buster
+{curiosity end}
+
+{teacher}
+
+**For teachers**
+
+A 128 bit key at 1,000,000 per second would take 10,790,283,070,000,000,000,000,000 years to test. Of course, it might find something in the first year, but the chances of that are ridiculously low, and it would be more realistic to hope to win the top prize in Lotto three times consecutively (and you'd get more money). Cryptography relies a lot on low probabilities of success!
+
+{teacher end}
+
+{jargon-buster}
 
  **Jargon Buster**
 
- The main terminology you should be familiar with now is that a *plaintext* is *encrypted* by to create a *ciphertext* using an *encryption key*. Someone without the encryption key who wants to *attack* the cipher could try various approaches, including a *brute force attack* (trying out all possible keys), a *frequency analysis attack* (looking for statistical patterns), and a *known plaintext attack* (matching some known text with the cipher to work out the key).
+The main terminology you should be familiar with now is that a *plaintext* is *encrypted* by to create a *ciphertext* using an *encryption key*. Someone without the encryption key who wants to *attack* the cipher could try various approaches, including a *brute force attack* (trying out all possible keys), a *frequency analysis attack* (looking for statistical patterns), and a *known plaintext attack* (matching some known text with the cipher to work out the key).
 
-.. container:: curiosity
+{jargon-buster end}
+
+{curiosity}
 
  **Steganography**
 
- Cryptography is about hiding the content of a message, but sometimes it's important to hide the *existence* of the message. Otherwise an enemy might figure out that something is being planned just because a lot more messages are being sent, even though they can't read them. 
- One way to achieve this is via *steganography*, where a secret message is hidden inside another message that seems innocuous. A classic scenario would be to publish a message in the public notices of a newspaper or send a letter from prison where the number of letters in each word represent a code. To a casual reader, the message might seem unimportant (and even say the opposite of the hidden one), but someone who knows the code could work it out. Messages can be hidden in digital images by making unnoticable changes to pixels so that they store some information. You can find out `more about steganography on Wikipedia <http://en.wikipedia.org/wiki/Steganography>`_ or in this `lecture on steganography <http://www.youtube.com/watch?v=Py-qu9KWXhk#t=29>`_.
+Cryptography is about hiding the content of a message, but sometimes it's important to hide the *existence* of the message. Otherwise an enemy might figure out that something is being planned just because a lot more messages are being sent, even though they can't read them. 
+One way to achieve this is via *steganography*, where a secret message is hidden inside another message that seems innocuous. A classic scenario would be to publish a message in the public notices of a newspaper or send a letter from prison where the number of letters in each word represent a code. To a casual reader, the message might seem unimportant (and even say the opposite of the hidden one), but someone who knows the code could work it out. Messages can be hidden in digital images by making unnoticable changes to pixels so that they store some information. You can find out [more about steganography on Wikipedia](http://en.wikipedia.org/wiki/Steganography) or in this [lecture on steganography](http://www.youtube.com/watch?v=Py-qu9KWXhk#t=29).
 
- Two fun uses of steganography that you can try to decode yourself are a `film about ciphers that contains hidden ciphers (called "The Thomas Beale Cipher") <http://www.thomasbealecipher.com/>`_, and an activity that has `five-bit text codes hidden in music <http://csunplugged.org/modem>`_.
+Two fun uses of steganography that you can try to decode yourself are a [film about ciphers that contains hidden ciphers (called "The Thomas Beale Cipher")](http://www.thomasbealecipher.com/), and an activity that has [five-bit text codes hidden in music](http://csunplugged.org/modem).
 
-Public Key Systems
-=====================================================
+{curiosity}
 
-.. only:: teachers or dev
+## Public Key Systems
 
- .. note:: **For teachers**
+{teacher}
 
-  It would be a good idea to show `Simon Singh's video <http://simonsingh.net/media/online-videos/cryptography/the-science-of-secrecy-going-public/>`_, which gives a good explanation of key distribution.
+**For teachers**
 
-The Key Distribution Problem
------------------------------------------------------------------
+It would be a good idea to show [Simon Singh's video](http://simonsingh.net/media/online-videos/cryptography/the-science-of-secrecy-going-public/), which gives a good explanation of key distribution.
+
+{teacher end}
+
+### The Key Distribution Problem
 
 Alice sending an encrypted message to Bob raises an interesting problem in encryption. The ciphertext itself can safely be sent across an “unsafe” network (one that Eve is listening on), but the key cannot. How can Alice get the key to Bob? Remember the key is the thing that tells Bob how to convert the ciphertext back to plaintext. So Alice can’t include it in the encrypted message, because then Bob would be unable to access it! Alice can’t just include it as plaintext either, because then Eve will be able to get ahold of it and use it to decrypt any messages that come through using it! You might ask why Alice doesn’t just encrypt the key using a different encryption scheme, but then how will Bob know the new key? Alice would need to tell Bob the key that was used to encrypt it... and so on... this idea is definitely out! 
 
@@ -395,8 +423,7 @@ Remember that Alice and Bob might be in different countries, and can only commun
 
 Distributing keys physically is very expensive, and up to the 1970s large sums of money were spent physically sending keys internationally. Systems like this are call *symmetric* encryption, because Alice and Bob both need an identical copy of the key. The breakthrough was the realisation that you could make a system that used different keys for encoding and decoding!
 
-Solving the problem with Public Key Systems
------------------------------------------------------------------
+### Solving the problem with Public Key Systems
 
 One of the remarkable discoveries in computer science in the 1970s was a method called *public key encryption*, where it's fine to tell everyone what the key is to encrypt any messages, but you need a special private key to decrypt it.
 Because Alice and Bob use different keys, this is called an *asymmetric* encryption system.
@@ -409,147 +436,159 @@ A very popular public key system is RSA.  The following interactives use RSA so 
 
 Firstly, you will need to generate a pair of keys using the key generator interactive. Note that each key consists of two numbers and the interactive separates them with a “+” (this does not mean addition). You should keep the private key secret, and publicly announce the public key so that your friends can send you messages (e.g. put it on the whiteboard, or email it to some friends). Make sure you save your keys somewhere so you don’t forget them --- a text file would be best.
 
-.. only:: html or epub
-
- .. raw:: html
-
-    <div class="col-xs-12 col-md-6 col-md-offset-3">
-    <div class="panel panel-default">
-    <div class="panel-heading">RSA Key Generator</div>
-    <div class="panel-body">
-        <div class="row">
-            <form id="modeSelect" class="form-horizontal" role="form">
-                <div class="form-group">
-                    <div class="col-xs-12 text-center">
-                    <input type="button" id="generate" onclick="generate_new_keys()" value="Generate New Keys" class="btn btn-primary">
-                    </div>
+<div class="col-xs-12 col-md-6 col-md-offset-3">
+<div class="panel panel-default">
+<div class="panel-heading">RSA Key Generator</div>
+<div class="panel-body">
+    <div class="row">
+        <form id="modeSelect" class="form-horizontal" role="form">
+            <div class="form-group">
+                <div class="col-xs-12 text-center">
+                <input type="button" id="generate" onclick="generate_new_keys()" value="Generate New Keys" class="btn btn-primary">
                 </div>
-                <div class="form-group">
-                    <label for="pub_key" class="col-xs-3 control-label text-right">Public Key</label>
-                    <div class="col-xs-8">
-                        <textarea id="pub_key" class="form-control" rows="1" readonly="true"></textarea>
-                    </div>
+            </div>
+            <div class="form-group">
+                <label for="pub_key" class="col-xs-3 control-label text-right">Public Key</label>
+                <div class="col-xs-8">
+                    <textarea id="pub_key" class="form-control" rows="1" readonly="true"></textarea>
                 </div>
-                <div class="form-group">
-                    <label for="priv_key" class="col-xs-3 control-label text-right">Private Key</label>
-                    <div class="col-xs-8">
-                        <textarea id="priv_key" class="form-control" rows="1" readonly="true"></textarea>
-                    </div>
+            </div>
+            <div class="form-group">
+                <label for="priv_key" class="col-xs-3 control-label text-right">Private Key</label>
+                <div class="col-xs-8">
+                    <textarea id="priv_key" class="form-control" rows="1" readonly="true"></textarea>
                 </div>
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
-    </div>
-    </div>
-    <div class="clearfix visible-xs-block"></div>
+</div>
+</div>
+</div>
+<div class="clearfix visible-xs-block"></div>
 
 
 The second interactive is the encrypter, and it is used to encrypt or decrypt messages with the keys. In order to encrypt messages for you, your friends should use your public key (and select the “encrypt” button on the interactive). In order to decrypt the messages your friends have sent you, you should use your private key (and select the “decrypt” button on the interactive).
 
 
-.. only:: html or epub
+<div class="col-xs-12 col-md-6 col-md-offset-3">
+<div class="row panel panel-default">
+<div class="panel-heading">RSA Encrypter &amp; Decrypter</div>
+<div class="panel-body">
+    <div class="row">
+        <form id="modeSelect" class="form-horizontal" role="form">
+            <div class="form-group">
+                <label class="col-xs-2 control-label text-right">Mode</label>
+                <div class="col-xs-9">
+                    <label class="radio-inline">
+                        <input type="radio" name="modeSelect" id="encrypt" onchange="modeChanged('Encrypt')" checked="true"> Encrypt </input>
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="modeSelect" id="decrypt" onchange="modeChanged('Decrypt')"> Decrypt </input>
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="key" class="col-xs-2 control-label text-right">Key</label>
+                <div class="col-xs-9">
+                    <textarea id="key" class="form-control" rows="2" placeholder="Put an RSA key here"></textarea>
+                </div>
 
- .. raw:: html
+            </div>
+            <div class="form-group">
+                <label for="text_to_encrypt" class="col-xs-2 control-label text-right">Text</label>
+                <div class="col-xs-9">
+                    <textarea id="text_to_encrypt" class="form-control" rows="3" placeholder="Put the text to encrypt or decrypt here"></textarea>
+                </div>
 
-    <div class="col-xs-12 col-md-6 col-md-offset-3">
-    <div class="row panel panel-default">
-    <div class="panel-heading";">RSA Encrypter &amp; Decrypter</div>
-    <div class="panel-body">
-        <div class="row">
-            <form id="modeSelect" class="form-horizontal" role="form">
-                <div class="form-group">
-                    <label class="col-xs-2 control-label text-right">Mode</label>
-                    <div class="col-xs-9">
-                        <label class="radio-inline">
-                            <input type="radio" name="modeSelect" id="encrypt" onchange="modeChanged('Encrypt')" checked="true"> Encrypt </input>
-                        </label>
-                        <label class="radio-inline">
-                            <input type="radio" name="modeSelect" id="decrypt" onchange="modeChanged('Decrypt')"> Decrypt </input>
-                        </label>
-                    </div>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-5 col-xs-offset-4">
+                    <input type="button" id="generate" onclick="encodeText()" value="Encrypt with Key" class="btn btn-primary btn-block">
                 </div>
-                <div class="form-group">
-                    <label for="key" class="col-xs-2 control-label text-right">Key</label>
-                    <div class="col-xs-9">
-                        <textarea id="key" class="form-control" rows="2" placeholder="Put an RSA key here"></textarea>
-                    </div>
+            </div>
+            <div class="form-group" id="output-group">
+                <label for="output" class="col-xs-2 control-label text-right">Output</label>
+                <div class="col-xs-9">
+                    <textarea id="output" class="form-control" rows="3" readonly="" placeholder="Output will appear here"></textarea>
+                </div>
+            </div>
+    </form>
+</div>
+</div>
+</div>
+</div>
+<div class="clearfix visible-xs-block"></div>
 
-                </div>
-                <div class="form-group">
-                    <label for="text_to_encrypt" class="col-xs-2 control-label text-right">Text</label>
-                    <div class="col-xs-9">
-                        <textarea id="text_to_encrypt" class="form-control" rows="3" placeholder="Put the text to encrypt or decrypt here"></textarea>
-                    </div>
-
-                </div>
-                <div class="form-group">
-                    <div class="col-xs-5 col-xs-offset-4">
-                        <input type="button" id="generate" onclick="encodeText()" value="Encrypt with Key" class="btn btn-primary btn-block">
-                    </div>
-                </div>
-                <div class="form-group" id="output-group">
-                    <label for="output" class="col-xs-2 control-label text-right">Output</label>
-                    <div class="col-xs-9">
-                        <textarea id="output" class="form-control" rows="3" readonly="" placeholder="Output will appear here"></textarea>
-                    </div>
-                </div>
-        </form>
-    </div>
-    </div>
-    </div>
-    </div>
-    <div class="clearfix visible-xs-block"></div>
+{comment}
 
 .. xtcb xjrm The description doesn’t quite match the interactive. It says “select the “decrypt” button”. I mean it’s obvious how it works, but if you want it to be consistent you could edit the interactive or the description? Also perhaps button value should be “Encrypt/Decrypt with key”?
 
+{comment end}
+
 Despite even your enemies knowing your public key (as you publically announced it), they cannot use it to decrypt your messages which were encrypted using the public key.
 
-.. container:: curiosity
+{curiosity}
 
- **Digital Signatures**
- In order to encrypt a message, the public key is used. In order to decrypt it, the corresponding private key must be used. But what would happen if the message was encrypted using the *private* key? Could you then decrypt it with the public key?
- Initially this might sound like a silly thing to do, as why would you encrypt a message which can be decrypted using a key that everybody in the world can access!?!  It turns out that indeed, encrypting a message with the private key and then decrypting it with the public key works, and it has a very useful application!
- The only person who is able to *encrypt* the message using the *private* key is the person who owns the private key. The public key will only decrypt the message if the private key that was used to encrypt it actually is the public key’s corresponding private key! If the message can’t be decrypted, then it could not have been encrypted with that private key.
- This allows the sender to prove that the message actually is from them, and is known as a digital signature. 
+**Digital Signatures**
+In order to encrypt a message, the public key is used. In order to decrypt it, the corresponding private key must be used. But what would happen if the message was encrypted using the *private* key? Could you then decrypt it with the public key?
+Initially this might sound like a silly thing to do, as why would you encrypt a message which can be decrypted using a key that everybody in the world can access!?!  It turns out that indeed, encrypting a message with the private key and then decrypting it with the public key works, and it has a very useful application!
+The only person who is able to *encrypt* the message using the *private* key is the person who owns the private key. The public key will only decrypt the message if the private key that was used to encrypt it actually is the public key’s corresponding private key! If the message can’t be decrypted, then it could not have been encrypted with that private key.
+This allows the sender to prove that the message actually is from them, and is known as a digital signature. 
 
- You could check that someone is the authentic private key holder by giving them a phrase to encrypt with their private key. You then decrypt it with the public key to check that they encrypted the phrase you gave them.
+You could check that someone is the authentic private key holder by giving them a phrase to encrypt with their private key. You then decrypt it with the public key to check that they encrypted the phrase you gave them.
+
+{curiosity end}
 
 Note that this interactive’s implementation of RSA only uses around 50 bits of encryption and has other weaknesses. It is just for demonstrating the concepts here and is not quite the same as the implementations used in live encryption systems. In the RSA chapter, we will look at a more realistic implementation.
 
-There's a `video illustrating how public key systems work using a padlock analogy which might help to understand how asymmetric keys could work. <http://www.youtube.com/watch?v=a72fHRr6MRU>`_
+There's a [video illustrating how public key systems work using a padlock analogy which might help to understand how asymmetric keys could work](http://www.youtube.com/watch?v=a72fHRr6MRU)
 
-.. container:: jargon-buster
+{jargon-buster}
 
- **Jargon Buster**
+**Jargon Buster**
 
- Public key systems rely on *one way functions*, which are mathematical functions where it's easy to calculate the output for a particular input, but very hard to work out the input given the output. In the physical world a telephone book is a one-way function: if you're given a name, it's easy to work out the number, but given someone's phone number, it's difficult to work out their name from the phone book. In cryptography a widely used one-way function is multiplying numbers. Given two large numbers, you can multiply them very quickly, but given the result of the multiplication, it is very difficult to find out what its factors are. 
- For example, see if you can work out which numbers multiply to give 806,849,546,124,373,268,247,678,601. You could try writing a program to try every combination of factors, but you'll probably find it takes too long. Although this particular number can be factorised by modern software, larger numbers can't be, and this is a problem that mathematicians and computer scientists can't find an efficient solution to. 
+Public key systems rely on *one way functions*, which are mathematical functions where it's easy to calculate the output for a particular input, but very hard to work out the input given the output. In the physical world a telephone book is a one-way function: if you're given a name, it's easy to work out the number, but given someone's phone number, it's difficult to work out their name from the phone book. In cryptography a widely used one-way function is multiplying numbers. Given two large numbers, you can multiply them very quickly, but given the result of the multiplication, it is very difficult to find out what its factors are. 
+For example, see if you can work out which numbers multiply to give 806,849,546,124,373,268,247,678,601. You could try writing a program to try every combination of factors, but you'll probably find it takes too long. Although this particular number can be factorised by modern software, larger numbers can't be, and this is a problem that mathematicians and computer scientists can't find an efficient solution to. 
+
+{jargon-buster end}
+
+{comment}
 
 .. xjrm put more direct link to calculator in the following
 
-.. only:: teachers or dev
+{comment end}
 
- .. note:: **For teachers**
+{teacher}
 
-  The factors of the above number (806,849,546,124,373,268,247,678,601) are the following two prime numbers: 29,996,224,275,833 and 26,898,370,231,697. Students can easily check this using the `calculator we provide <http://www.cosc.canterbury.ac.nz/csfieldguide/dev/dev/_static/widgets/big-calculator.html?plain=true%20frameborder=>`_.
+**For teachers**
 
+The factors of the above number (806,849,546,124,373,268,247,678,601) are the following two prime numbers: 29,996,224,275,833 and 26,898,370,231,697. Students can easily check this using the [calculator we provide](http://www.cosc.canterbury.ac.nz/csfieldguide/dev/dev/_static/widgets/big-calculator.html?plain=true%20frameborder=).
 
-.. container:: jargon-buster
+{teacher end}
 
- **Jargon Buster**
+{jargon-buster}
 
- The methods that we considered at the start of this chapter are *symmetric key* systems, which just means that you use the same key to encode and decode the text. Public key systems are often called *asymmetric key* systems, where the sender and receiver have different keys. An asymmetric system can make it a lot easier to distribute the encryption key, because if the eavesdropper gets hold of it, all they can do is encrypt messages, not decrypt them, so they are no use for attacking messages.
+**Jargon Buster**
+
+The methods that we considered at the start of this chapter are *symmetric key* systems, which just means that you use the same key to encode and decode the text. Public key systems are often called *asymmetric key* systems, where the sender and receiver have different keys. An asymmetric system can make it a lot easier to distribute the encryption key, because if the eavesdropper gets hold of it, all they can do is encrypt messages, not decrypt them, so they are no use for attacking messages.
+
+{jargon-buster}
+
+{comment}
 
 .. hrn xtcb Need to also add a sub section in the problem of authenticating public keys.
 
+{comment end}
 
-The RSA Cryptosystem
-=====================================================
+## The RSA Cryptosystem
 
 The RSA cryptosystem is a widely used algorithm for public key systems. Many real world cryptosystems are based on RSA. Because it is a public key system, this means that keys are in pairs; a private key and a public key. A message that was encrypted using the public key can only be decrypted using the private key. This means that the key owner is able to keep their private key secret, and distribute their public key to the world.
 
+{comment}
+
 .. curiosity explaining that RSA is the names of 3 people?
 
+{comment end}
 In a nutshell, the RSA cryptosystem uses some clever math based on the unsolved mathematical problem of efficiently *factoring* a number which is the product of two prime numbers. If you need a reminder of what prime numbers and factoring a number are, read the Jargon Buster just below. 
 
 .. container:: jargon-buster
