@@ -8,10 +8,11 @@ import configparser
 import collections
 import logging
 import os.path
+import os
 from markdown_parser import parse
 
 SETTINGS_FILE = 'settings.ini'
-LOGFILE = '../output/log.txt'
+LOGFILE_CONF = 'logging.ini'
 # TODO: Determine which variables should be in settings file
 
 FILE_NAME_TEMPLATE = '{0}_{1}.md'
@@ -182,10 +183,7 @@ def file_exists(file_path):
 
 def setup_logging():
     """Sets up the logger to write to a file"""
-    logging.basicConfig(level=logging.DEBUG,
-                        filename=LOGFILE,
-                        filemode="w",
-                        format="%(asctime)-15s %(levelname)-8s %(message)s")
+    logging.config.fileConfig(LOGFILE_CONF)
 
 
 def check_dependencies():
@@ -198,8 +196,9 @@ def check_dependencies():
 
 def main():
     """Creates a Guide object"""
+    # Switch to current directory
+    os.chdir(os.path.dirname(os.path.realpath(__file__)))
     check_dependencies()
-    logging.shutdown()
     setup_logging()
     guide = Guide()
     logging.shutdown()
