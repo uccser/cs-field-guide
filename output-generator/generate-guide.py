@@ -11,8 +11,8 @@ import os.path
 import os
 from markdown_parser import parse
 
-SETTINGS_FILE = 'settings.ini'
-LOGFILE_CONF = 'logging.ini'
+SETTINGS_FILE = 'settings.conf'
+LOGFILE_CONF = 'logging.conf'
 # TODO: Determine which variables should be in settings file
 
 FILE_NAME_TEMPLATE = '{0}_{1}.md'
