@@ -4,9 +4,9 @@
 The following assessment plans also cover this material:
 
 **New Zealand - AS91074 (1.44)**
-- [Assessment Overview](/appendices/assessment_guides/new_zealand/assessment_guide_level_1_introduction.html)
-- [Searching Algorithms Assessment Guide](/appendices/assessment_guides/new_zealand/assessment_guide_level_1_searching_algorithms.html)
-- [Sorting Algorithms Assessment Guide](/appendices/assessment_guides/new_zealand/assessment_guide_level_1_sorting_algorithms.html)
+- [Assessment Overview](/appendices/assessment-guides/new-zealand/assessment-guide-level-1-introduction.html)
+- [Searching Algorithms Assessment Guide](/appendices/assessment-guides/new-zealand/assessment-guide-level-1-searching-algorithms.html)
+- [Sorting Algorithms Assessment Guide](/appendices/assessment-guides/new-zealand/assessment-guide-level-1-sorting-algorithms.html)
 {teacher end}
 
 {comment explain different views of algorithm (programming context) and Algorithm (that have interesting complexity); use https://www.youtube.com/watch?v=6hfOvs8pY1k for the former?}
@@ -17,7 +17,7 @@ The following assessment plans also cover this material:
 
 Every computer device you have ever used, from your school computers to your calculator, has been using algorithms to tell it how to do whatever it was doing. Algorithms are a very important topic in Computer Science because they help software developers create efficient and error free programs. The most important thing to remember about algorithms is that there can be many different algorithms for the same problem, but some are much better than others!
 
-{include interactive sorting_animation}
+{include interactive sorting-animation}
 
 Computers are incredibly fast at manipulating, moving and looking through data. However the amount of data computers use is often so large that it doesn't matter how fast the computer is, it will take it far too long to examine every single piece of data (companies like Google, Facebook and Twitter process about 1 billion things per day). This is where algorithms come in. If a   computer is given a better algorithm to process the data then it doesn't matter how much information it has to look through, it will still be able to do it in a reasonable amount of time.
 
@@ -85,13 +85,13 @@ Searching through collections of data is something computers have to do all the 
 Screenshots and an accompanying explanation of what a student has done (step by step would be best) would be sufficient evidence for 'demonstrating understanding of the key characteristics and role of an algorithm' for their 1.44 reports.
 {teacher end}
 
-{include interactive_external searching_boxes title="Searching Boxes - Part 1" parameters="max=2"}
+{include interactive-external searching-boxes title="Searching Boxes - Part 1" parameters="max=2"}
 
 You may have noticed that the numbers on the monsters and pets in the game were in a random order, which meant that finding the pet was basically luck! You might have found it on your first try, or if you were less lucky you might have had to look inside almost all the presents before you found it. This might not seem like such a bad thing since you had enough lives to look under all the boxes, but imagine if there had been 1,000 boxes, or worse 1,000,000! It would have taken far too long to look through all the boxes and the pet might have never been found.
 
 Now this next game is slightly different. You have less lives, which makes things a bit more challenging, but this time the numbers inside the boxes will be in order. The monsters, or maybe the pet, with the smallest number is in the present on the far left, and the one with the largest number is in the present on the far right. Let's see if you can collect all the pets without running out of lives...
 
-{include interactive_external searching_boxes title="Searching Boxes - Part 2" parameters="level=3"}
+{include interactive-external searching-boxes title="Searching Boxes - Part 2" parameters="level=3"}
 
 Now that you have played through the whole game (and hopefully found all of the lost pets!) you may have noticed that even though you had less lives in the second part of the game, and lots of presents to search through, you were still able to find the pet. Why was this possible?
 
@@ -168,7 +168,7 @@ Use the scales to compare the boxes (you can only compare two boxes at a time) a
 
 If the interactive does not run properly on your computer you can use a set of physical balance scales instead; just make sure you can only tell if one box is heavier than the other, not their exact weight (so not digital scales that show the exact weight).
 
-{include interactive_external sorting_boxes title="Algorithm Sorting interactive"}
+{include interactive-external sorting-boxes title="Algorithm Sorting interactive"}
 
 ### Selection Sort
 
@@ -232,7 +232,7 @@ Insertion and Selection Sort may seem like logical ways to sort things into orde
 
 A much better sorting algorithm is Quicksort! (the name is a bit of a giveaway) 
 
-{include interactive_external sorting_boxes title="Quicksort interactive"  parameters="method=quick"}
+{include interactive-external sorting-boxes title="Quicksort interactive"  parameters="method=quick"}
 
 {comment The initial description here enables students to work out the algorithm for themselves, but some may need the more complete description below to understand it.}
 
