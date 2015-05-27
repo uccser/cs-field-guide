@@ -6,8 +6,8 @@ The following assessment plans also cover this material:
 
 **New Zealand - AS91371 (2.44)**
 
-- [Assessment Overview](/appendices/assessment_guides/new_zealand/assessment_guide_level_2_introduction)
-- [Encryption (RSA Cryptosystem)](appendices/assessment_guides/new_zealand/assessment_guide_level_2_encryption_rsa)
+- [Assessment Overview](/appendices/assessment-guides/new-zealand/assessment-guide-level-2-introduction)
+- [Encryption (RSA Cryptosystem)](appendices/assessment-guides/new-zealand/assessment-guide-level-2-encryption-rsa)
 
 {teacher}
 
@@ -29,7 +29,7 @@ Of course, we wouldn't need encryption if we lived in a world where everyone was
 
 **Curiosity**
 
-An interesting example of the value of using encryption outside of secret messages is the two engineers who were convicted of changing traffic light patterns to cause chaos during a strike http://latimesblogs.latimes.com/lanow/2009/12/engineers-who-hacked-in-la-traffic-signal-computers-jamming-traffic-sentenced.html. A related problem in the US was traffic signals that could respond to codes from emergency vehicles to change to green; originally these didn't use encryption, and people could figure out how to trigger them to their own advantage.
+An interesting example of the value of using encryption outside of secret messages is the two engineers who were convicted of changing traffic light patterns to cause chaos during a strike [http://latimesblogs.latimes.com/lanow/2009/12/engineers-who-hacked-in-la-traffic-signal-computers-jamming-traffic-sentenced.html](http://latimesblogs.latimes.com/lanow/2009/12/engineers-who-hacked-in-la-traffic-signal-computers-jamming-traffic-sentenced.html). A related problem in the US was traffic signals that could respond to codes from emergency vehicles to change to green; originally these didn't use encryption, and people could figure out how to trigger them to their own advantage.
 
 {curiosity end}
 
@@ -39,19 +39,19 @@ An encryption system is really two programs: one to *encrypt* some data (referre
 
 A big issue with encryption systems is people who want to break into them and decrypt messages without the key. Some systems that were used many years ago were discovered to be insecure because of attacks, so could no longer be used. It is possible that somebody will find an effective way of breaking into the widespread systems we use these days, which would result in a lot of chaos!
 
-{jargon_buster}
+{jargon-buster}
 
 **Jargon Buster**
 
 There are various words that can be used to refer to trying to get the plaintext from a ciphertext, including decipher, decrypt, crack, and cryptanalysis. Often the process of trying to break cryptography is referred to as an "attack". The term "hack" is also sometimes used, but it has other connotations, and is only used informally.
 
-{jargon_buster end}
+{jargon-buster end}
 
 Of course, encryption doesn't fix all our security problems, and because we have such good encryption systems available, information thieves must turn to other approaches, especially social engineering. The easiest way to get a user's password is to ask them! A [phishing attack](http://en.wikipedia.org/wiki/Phishing) does just that, and there are estimates that as many as 1 in 20 computer users have given out secret information this way at some stage.
 
 Other social engineering approaches that can be used include bribing or blackmailing people who have access to a system, or simply looking for a password written on a sticky note on someone's monitor! Gaining access to someone's email account is a particularly easy way to get lots of passwords, because many "lost password" systems will send a new password to their email account.
 
-{jargon_buster}
+{jargon-buster}
 
 **Jargon Buster**
 
@@ -59,13 +59,13 @@ When describing an encryption scenario, cryptographers often use the fictitious 
 We always assume that someone is eavesdropping on the conversation (in fact, if you're using a wireless connection, it's trivial to pick up the transmissions between Alice and Bob as long as you're in reach of the wireless network that one of them is using). 
 The fictitious name for the eavesdropper is usually Eve.
 
-[{image ec_xkcd_protocol.png}]( http://xkcd.com/1323/)
+[{image ec-xkcd-protocol.png}]( http://xkcd.com/1323/)
 
- People who try to decrypt messages are called cryptanalysts; more informal terms like hackers and crackers are sometimes used, generally with the implication that they have bad intentions.
- Being a cryptanalyst is generally a good thing to do though: people who use encryption systems actually want to know if they have weaknesses, and don't want to wait until the bad guys find out for them. 
- It's like a security guard checking doors on a building; the guard hopes that they can't get in, but if a door is found unlocked, they can do something about it to make sure the bad guys can't get in. Of course, if a security guard finds an open door, and takes advantage of that to steal something for themselves, they're no longer doing their job properly!
+People who try to decrypt messages are called cryptanalysts; more informal terms like hackers and crackers are sometimes used, generally with the implication that they have bad intentions.
+Being a cryptanalyst is generally a good thing to do though: people who use encryption systems actually want to know if they have weaknesses, and don't want to wait until the bad guys find out for them. 
+It's like a security guard checking doors on a building; the guard hopes that they can't get in, but if a door is found unlocked, they can do something about it to make sure the bad guys can't get in. Of course, if a security guard finds an open door, and takes advantage of that to steal something for themselves, they're no longer doing their job properly!
 
-{jargon_buster end}
+{jargon-buster end}
 
 {curiosity}
 
@@ -256,7 +256,7 @@ There are many other ways of cracking Caeser cipher which we will look at in thi
 
 Frequency analysis means looking at how many times each letter appears in the encrypted message, and using this information to crack the message. A letter that appears many times in  a message is far more likely to be “T” than “Z”!
 
-For example, try copying and pasting the following text into the statistical analyser at http://www.richkni.co.uk/php/crypta/freq.php. What is the most common letter in the code? Which English letter is that likely to be?
+For example, try copying and pasting the following text into the statistical analyser at [http://www.richkni.co.uk/php/crypta/freq.php](http://www.richkni.co.uk/php/crypta/freq.php). What is the most common letter in the code? Which English letter is that likely to be?
 
 {comment}
 
@@ -295,7 +295,7 @@ Although in almost all English texts the letter E is the most common letter, it 
 A slightly stronger cipher than the Caesar cipher is the [Vigenere cipher](http://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher), which is created by using multiple Caesar ciphers, where there is a key phrase (e.g. "acb"), and each letter in the key gives the offset (in the example this would be 1, 3, 2). These offsets are repeated to give the offset for encoding each character in the plaintext.
 
 By having multiple caesar ciphers, common letters such as E will no longer stand out as much, making frequency analysis a lot more challenging. The following website shows the effect on the distribution.
-http://www.simonsingh.net/The_Black_Chamber/vigenere_strength.html
+[http://www.simonsingh.net/The_Black_Chamber/vigenere_strength.html](http://www.simonsingh.net/The_Black_Chamber/vigenere_strength.html)
 
 However, while this makes the Vigenere cipher more challenging to crack than the Caeser cipher, ways have been found to crack it. In fact, once you know the key length, it just breaks down to cracking several Caesar ciphers (which you have seen is straightforward!). Several statistical methods have been devised for working out the key length.
 
@@ -589,84 +589,87 @@ The RSA cryptosystem is a widely used algorithm for public key systems. Many rea
 .. curiosity explaining that RSA is the names of 3 people?
 
 {comment end}
+
 In a nutshell, the RSA cryptosystem uses some clever math based on the unsolved mathematical problem of efficiently *factoring* a number which is the product of two prime numbers. If you need a reminder of what prime numbers and factoring a number are, read the Jargon Buster just below. 
 
-.. container:: jargon-buster
+{jargon-buster}
 
- **Jargon Buster**
+**Jargon Buster**
 
- Remember that the factors of a number are all the numbers which divide into it without giving a remainder.
- For example: The factors of 12 are 1, 2, 3, 4, 6, and 12.
- Numbers such as 5 and 7 are NOT factors of 12, because 12 divided by 7 gives 1 remainder 5.
+Remember that the factors of a number are all the numbers which divide into it without giving a remainder.
+For example: The factors of 12 are 1, 2, 3, 4, 6, and 12.
+Numbers such as 5 and 7 are NOT factors of 12, because 12 divided by 7 gives 1 remainder 5.
 
- If a number only has 1 and itself as factors (i.e. all other numbers would give a remainder if divided into it), it is a prime number (For example, the factors of 37 are only 1 and 37, making it a prime number).
+If a number only has 1 and itself as factors (i.e. all other numbers would give a remainder if divided into it), it is a prime number (For example, the factors of 37 are only 1 and 37, making it a prime number).
 
- Factoring means to find all the factors of a number.
+Factoring means to find all the factors of a number.
+
+{jargon-buster end}
 
 Currently the only known algorithm to find what the two primes that were multiplied are is a brute force one that has to try most of the possibilities that are less the the number itself. If the number is massive, then that is a huge number of possibilities that need to be checked, and it cannot be done before the sun is expected to burn out, even with huge amounts of computing power! This problem is known as the *factoring problem*. A public and private key pair has a mathematical relationship to the primes that were used.
 
 If somebody was to find a good solution to this problem that could work on massive numbers, then RSA would no longer be secure, unlocking many important computer systems around the world including banks! Mathematicians are quite confident no such solution exists though. We aren’t going to go any further into the mathematical details here.
 
 The following interactive provides a key generator and encrypter/decrypter for RSA.
-http://travistidwell.com/jsencrypt/demo/
+[http://travistidwell.com/jsencrypt/demo/](http://travistidwell.com/jsencrypt/demo/)
 
 Keys of various sizes can be generated, and then used to encrypt a message. Encryption is carried out using the *public key*. Decryption is carried out using the *private key*
 
-.. container:: curiosity
+{curiosity}
 
- **Easy vs Difficult problems in Computer Science**
+**Easy vs Difficult problems in Computer Science**
 
- If you were asked to multiply the following two big prime numbers, you might find it a bit tiring to do by hand (although it is definitely doable!), but could get an answer in milliseconds by putting it in the big numbers calculator! (included just below this box).
+If you were asked to multiply the following two big prime numbers, you might find it a bit tiring to do by hand (although it is definitely doable!), but could get an answer in milliseconds by putting it in the big numbers calculator! (included just below this box).
 
- .. code-block:: none
 
-  97394932817749829874327374574392098938789384897239489848732984239898983986969870902045828438234520989483483889389687489677903899
+```
+97394932817749829874327374574392098938789384897239489848732984239898983986969870902045828438234520989483483889389687489677903899
+```
 
- .. code-block:: none
-  
-  34983724732345498523673948934032028984850938689489896586772739002430884920489508348988329829389860884285043580020020020348508591
+```  
+34983724732345498523673948934032028984850938689489896586772739002430884920489508348988329829389860884285043580020020020348508591
+```
 
- If on the other hand you were asked what two prime numbers were multiplied to get the following big number, you’d have a lot more trouble!  (If you do find the answer, let us know! We’d be very interested to hear about it!)
- 
- .. code-block:: none
+If on the other hand you were asked what two prime numbers were multiplied to get the following big number, you’d have a lot more trouble!  (If you do find the answer, let us know! We’d be very interested to hear about it!)
 
-  3944604857329435839271430640488525351249090163937027434471421629606310815805347209533599007494460218504338388671352356418243687636083829002413783556850951365164889819793107893590524915235738706932817035504589460835204107542076784924507795112716034134062407
+```
+3944604857329435839271430640488525351249090163937027434471421629606310815805347209533599007494460218504338388671352356418243687636083829002413783556850951365164889819793107893590524915235738706932817035504589460835204107542076784924507795112716034134062407
+```
 
- So why is it that despite these two problems being similar, one of them is “easy” and the other one is “hard”? Well, it comes down to the algorithms we have to solve each of the problems.
- You have probably done long multiplication in school by making one line for each digit in the second number and then adding all the rows together. We can analyse the speed of this algorithm, much like we did in the algorithms chapter for sorting and searching.
- Assuming that each number has the same number of digits, which we will call n (“Number of digits”), we need to write n rows. For each of those n rows, we will need to do around n multiplications. That gives us n*n little multiplications. We need to add the n rows together at the end as well, but that doesn’t take long so lets ignore that part. We have determined that the number of small multiplications needed to multiply two big numbers is approximately the square of the number of digits. So for two numbers with 1000 digits, that’s 1,000,000 little multiplication operations. A computer can do that in less than a second! If you know about Big-O notation, this is a O(n^2) algorithm, where n is the number of digits! Note that some slightly better algorithms have been designed, but this estimate is good enough for our purposes.
+So why is it that despite these two problems being similar, one of them is “easy” and the other one is “hard”? Well, it comes down to the algorithms we have to solve each of the problems.
+You have probably done long multiplication in school by making one line for each digit in the second number and then adding all the rows together. We can analyse the speed of this algorithm, much like we did in the algorithms chapter for sorting and searching.
+Assuming that each number has the same number of digits, which we will call n (“Number of digits”), we need to write n rows. For each of those n rows, we will need to do around n multiplications. That gives us n*n little multiplications. We need to add the n rows together at the end as well, but that doesn’t take long so lets ignore that part. We have determined that the number of small multiplications needed to multiply two big numbers is approximately the square of the number of digits. So for two numbers with 1000 digits, that’s 1,000,000 little multiplication operations. A computer can do that in less than a second! If you know about Big-O notation, this is a O(n^2) algorithm, where n is the number of digits! Note that some slightly better algorithms have been designed, but this estimate is good enough for our purposes.
 
- For the second problem, we’d need an algorithm that could find the two numbers that were multiplied together. You might initially say, why can’t we just reverse the multiplication? The reverse of multiplication is division, so can’t we just divide to get the two numbers? 
- It’s a good idea, but it won’t work. For division we need to know the big number, and one of the small numbers we want to divide into it, and that will give us the other small number. But in this case, we *only* know the big number. So it isn’t a straightforward long division problem at all!
- It turns out that there is no known good algorithm to solve the problem. One way is to just try every number that is less than the number (well, we only need to go up to the square root, but that doesn’t help much!) There is still billions of billions of billions of numbers we need to check. Even a computer that could check 1 billion possibilities a second isn’t going to help us much with this! If you know about Big-O notation, this is an O(10^n) algorithm, where n is the number of digits -- even small numbers of digits are just too much to deal with!
- There are slightly better solutions, but none of them shave off enough time to actually be useful for problems of the size of the one above!
+For the second problem, we’d need an algorithm that could find the two numbers that were multiplied together. You might initially say, why can’t we just reverse the multiplication? The reverse of multiplication is division, so can’t we just divide to get the two numbers? 
+It’s a good idea, but it won’t work. For division we need to know the big number, and one of the small numbers we want to divide into it, and that will give us the other small number. But in this case, we *only* know the big number. So it isn’t a straightforward long division problem at all!
+It turns out that there is no known good algorithm to solve the problem. One way is to just try every number that is less than the number (well, we only need to go up to the square root, but that doesn’t help much!) There is still billions of billions of billions of numbers we need to check. Even a computer that could check 1 billion possibilities a second isn’t going to help us much with this! If you know about Big-O notation, this is an O(10^n) algorithm, where n is the number of digits -- even small numbers of digits are just too much to deal with!
+There are slightly better solutions, but none of them shave off enough time to actually be useful for problems of the size of the one above!
 
- The chapter on Complexity and Tractability looks at more computer science problems which are surprisingly challenging to solve. If you found this stuff interesting, do read about Complexity and Tractability when you are finished here!
+The chapter on Complexity and Tractability looks at more computer science problems which are surprisingly challenging to solve. If you found this stuff interesting, do read about Complexity and Tractability when you are finished here!
 
-.. only:: html or epub
-.. raw:: html
+{curiosity end}
 
- <div class="widget-holder"><a href="_static/widgets/big-calculator.html?plain=true frameborder="0"" target="_blank"><img class="widget-image" src="_static/complexity_and_tractability/images/CT-BigCalculatorThumbnail.png" alt=""><span class="widget-subtitle">Click to load<br>big number calculator</span></a></div>
+<div class="widget-holder"><a href="_static/widgets/big-calculator.html?plain=true frameborder="0"" target="_blank"><img class="widget-image" src="_static/complexity_and_tractability/images/CT-BigCalculatorThumbnail.png" alt=""><span class="widget-subtitle">Click to load<br>big number calculator</span></a></div>
 
 What isn’t known though, is whether or not the general problem of breaking RSA is actually as difficult as the factoring problem. In other words, is there a completely different way of breaking it that does not involve factoring numbers?
 
 What happens when we try the tricks that we could use to break Caesar cipher?
 
-Does RSA reveal any patterns in the ciphertext?
---------------------------------------------------------------------------------------------
+### Does RSA reveal any patterns in the ciphertext?
+
 You will need to scroll up to the Caesar cipher interactive for this exercise.
 
 Using a Caesar cipher key of your choice, encrypt a short sentence, for example:
 
-.. code-block:: none
-
- “I HAVE A PET CAT”
+```
+“I HAVE A PET CAT”
+```
 
 Now, encrypt a very similar sentence using the same key, for example:
 
-.. code-block:: none
-
- “I HAVE A PET BAT”
+```
+“I HAVE A PET BAT”
+```
 
 Put the ciphertext for each side by side. As you might expect, they look very similar. This is problematic given that if Eve has the first message, she could probably use it to guess the second one! This means Caesar cipher is not *semantically secure*. It is essential that ciphers used in practice are!
 
@@ -676,16 +679,16 @@ In order to find out, generate an RSA key and use it to encrypt each of the two 
 
 Because of how RSA encrypts messages, the way each character is jumbled is dependent on all the other characters in the message. This makes many of the analysis techniques we used to break Caeser cipher useless for breaking RSA! Well, nearly...
 
+{jargon-buster}
 
-.. container:: jargon-buster
+**Jargon Buster: Semantically Secure**
 
- **Jargon Buster: Semantically Secure**
+Semantically secure means that there is no known efficient algorithm that can use the ciphertext to get any information about the plaintext, other than the length of the message. It is very important that cryptosystems used in practice are semantically secure.
 
- Semantically secure means that there is no known efficient algorithm that can use the ciphertext to get any information about the plaintext, other than the length of the message. It is very important that cryptosystems used in practice are semantically secure.
+{jargon-buster end}
 
  
-Adding padding to the plaintext
---------------------------------------------------------------------------------------------
+### Adding padding to the plaintext
 
 The plain RSA algorithm actually fails one important requirement of a good cryptosystem though! If Eve thinks she knows what message Alice is sending to Bob using public key encryption, she can attempt to encrypt that message using the public key and then see if the ciphertext she gets is the same as what Alice sent. If it is, she now knows what Alice sent Bob!
 
@@ -701,8 +704,7 @@ Try encrypting both of these messages using the same public key. Is there any wa
 Cryptosystems which implement RSA use padding in order to counteract this weakness of RSA in practice. This makes them *semantically secure*
 
 
-Can we just guess the RSA key?
----------------------------------------------------------------------------------------------
+### Can we just guess the RSA key?
 
 You might remember from the Algorithms chapter that problems can have good and bad algorithms to solve them, and that a good algorithm is fast even when the size of the problem is massive. While we have no good algorithms for breaking a message that is encrypted with RSA without the key, we have good algorithms for encrypting or decrypting the message, given the appropriate key. This means that large keys can be used, that will take a long time to guess with brute force.
 
@@ -712,46 +714,51 @@ You might like to calculate how long it would take for various levels of encrypt
 
 RSA normally uses keys in the size range of 1024 bits to 4096 bits. This makes it incredibly unlikely for somebody to guess the key!
 
-A pitfall of RSA
---------------------------------------------------------
+## A pitfall of RSA
 
 So far RSA has held up really well against the potential attacks we have looked at. However, one big problem exists. How can Alice be certain that the public key she is about to use actually is Bob’s? This problem isn’t trivial, as Eve could easily publish that a public key belongs to Bob, when infact it is Eve that has the private key for it! All she has to do is get Alice to encrypt a message with that public key, mistakenly believing it is Bob’s, and she can now intercept and read the message with the private key she holds!
 
-No mathematical solution exists, although there is a practical solution. Public Key Certificates are distributed by Public Key Certificate Authorities (CA’s) in order to prove the ownership of a public key. This now assumes that the CA’s are trustworthy and that they won’t be fooled or compromised. For the most part it works, although there have been some `worrying exceptions… <http://en.wikipedia.org/wiki/Certificate_authority#CA_compromise>`_
+No mathematical solution exists, although there is a practical solution. Public Key Certificates are distributed by Public Key Certificate Authorities (CA’s) in order to prove the ownership of a public key. This now assumes that the CA’s are trustworthy and that they won’t be fooled or compromised. For the most part it works, although there have been some [worrying exceptions…](http://en.wikipedia.org/wiki/Certificate_authority#CA_compromise)
 
-.. only:: teachers or dev
+{teacher}
 
- .. note:: **For teachers**
+**For teachers**
  
-  A useful class activity to help students to understand public key systems is to simulate the process in the classroom. 
+A useful class activity to help students to understand public key systems is to simulate the process in the classroom. 
 
-  Each student in the class should generate a pair of keys (we recommend using the simplified interactive in the book as it has shorter keys and a simpler interface so less chance of errors). The student should save the keys into a text file so that they do not lose them. The private key should not be shown to anybody else.
+Each student in the class should generate a pair of keys (we recommend using the simplified interactive in the book as it has shorter keys and a simpler interface so less chance of errors). The student should save the keys into a text file so that they do not lose them. The private key should not be shown to anybody else.
 
-  The teacher should take the role of the Public Key Certificate Authority. The teacher’s job is to maintain a list of the students in the class, and each student’s *public key*. All students in the class should be able to access this list (but not modify it). A google doc spreadsheet would be a useful way of distributing the public keys. Only the teacher should be able to edit it (students should email their public key to the teacher rather than reading it out in order to prevent errors).
+The teacher should take the role of the Public Key Certificate Authority. The teacher’s job is to maintain a list of the students in the class, and each student’s *public key*. All students in the class should be able to access this list (but not modify it). A google doc spreadsheet would be a useful way of distributing the public keys. Only the teacher should be able to edit it (students should email their public key to the teacher rather than reading it out in order to prevent errors).
 
-  Now, each student should write short messages to at least two or three classmates (it is okay to give each student a list of classmates they are to write messages for rather than making it a free for all, in order to ensure that no students are left out). It may be a good idea to use a theme, such as “what did you do in the weekend?” or “what class is your favourite and why?” in order to reduce the chance of inappropriate messages.
+Now, each student should write short messages to at least two or three classmates (it is okay to give each student a list of classmates they are to write messages for rather than making it a free for all, in order to ensure that no students are left out). It may be a good idea to use a theme, such as “what did you do in the weekend?” or “what class is your favourite and why?” in order to reduce the chance of inappropriate messages.
 
-  Each student then needs to get the public keys from the list for each student they are sending a message to. Using the encrypter interactive, they should encrypt each message.
+Each student then needs to get the public keys from the list for each student they are sending a message to. Using the encrypter interactive, they should encrypt each message.
 
-  Now, they need to send each of the encrypted messages. It would be ideal to do this over a “public” channel which everybody in the class can easily see (as it is assumed in encryption that the ciphertext can easily be obtained!).  If the students have twitter accounts for school, twitter would be the ideal way of carrying this out (as long as the messages are really short!), as the students can tag those they are sending the message to so that they see it among the other messages, but other classmates can easily view it. Another way would be to use a google word doc for students to put all messages into (or that they email their messages to the teacher who puts them in the google doc if the students start changing what they are not supposed to change). 
+Now, they need to send each of the encrypted messages. It would be ideal to do this over a “public” channel which everybody in the class can easily see (as it is assumed in encryption that the ciphertext can easily be obtained!).  If the students have twitter accounts for school, twitter would be the ideal way of carrying this out (as long as the messages are really short!), as the students can tag those they are sending the message to so that they see it among the other messages, but other classmates can easily view it. Another way would be to use a google word doc for students to put all messages into (or that they email their messages to the teacher who puts them in the google doc if the students start changing what they are not supposed to change). 
 
-  Students should get all the encrypted messages that were sent to them and then decipher them using their private key.
+Students should get all the encrypted messages that were sent to them and then decipher them using their private key.
 
-  After students have had time to decrypt the messages sent to them, give them time to try and decrypt other peoples messages.
+After students have had time to decrypt the messages sent to them, give them time to try and decrypt other peoples messages.
 
-  Because the encryption on the interactive is weak (50 bits, and doesn’t use padding so is vulnerable to some kinds of plaintext attacks), some of the best students might succeed! It is more likely though that they will be unable to.
- 
-  A useful question to ask students about is what would happen if everybody had edit rights on the spreadsheet. A few possible answers are:
-   - It would no longer be an effective CA, as students could change each others public keys.
-   - A clever “attack” for a student to carry out would be to generate a new set of keys, and replace the public key for one of their classmates in the spreadsheet with the public key they just generated. Because that student has the private key, they’d be able to decrypt any messages using that public key, and their classmates might not realise!)
-   - Even just changing keys randomly could cause a lot of chaos, as then people can no longer use the public key to send messages!
+Because the encryption on the interactive is weak (50 bits, and doesn’t use padding so is vulnerable to some kinds of plaintext attacks), some of the best students might succeed! It is more likely though that they will be unable to.
 
-  For a really good class, you might like to also add digital signatures into the activity. This would modify the process as follows.
-   - Sender encrypts message with own private key
-   - Sender encrypts the encrypted message again with receiver’s public key
-   - Sender sends encrypted message to other person
-   - Receiver has to decrypt message with their own private key
-   - Receiver has to again decrypt message with the sender’s public key
+A useful question to ask students about is what would happen if everybody had edit rights on the spreadsheet. A few possible answers are:
+
+- It would no longer be an effective CA, as students could change each others public keys.
+- A clever “attack” for a student to carry out would be to generate a new set of keys, and replace the public key for one of their classmates in the spreadsheet with the public key they just generated. Because that student has the private key, they’d be able to decrypt any messages using that public key, and their classmates might not realise!)
+- Even just changing keys randomly could cause a lot of chaos, as then people can no longer use the public key to send messages!
+
+For a really good class, you might like to also add digital signatures into the activity. This would modify the process as follows.
+
+- Sender encrypts message with own private key
+- Sender encrypts the encrypted message again with receiver’s public key
+- Sender sends encrypted message to other person
+- Receiver has to decrypt message with their own private key
+- Receiver has to again decrypt message with the sender’s public key
+
+{teacher end}
+
+{comment}
 
 .. tcb xjrm The two lines before the bullet points above are in bold in the output; can we avoid that?
 
@@ -785,11 +792,10 @@ No mathematical solution exists, although there is a practical solution. Public 
 .. checksums (also for error!)
 .. digital signatures (or could be own section on authorisation)
 
+{comment end}
 
 
-
-The whole story!
-=====================================================
+### The whole story!
 
 Many of the examples in this chapter use very weak encryption methods that were chosen to illustrate concepts, but would never be used for commercial or military systems.
 
@@ -797,34 +803,47 @@ There are many aspects to computer security beyond encryption. For example, acce
 Another major problem is writing secure software which doesn't leave ways for a user to get access to information that they shouldn't (such as typing a database command into a website query and have the system accidentally run it, or overflowing the buffer with a long input, which could accidentally replace parts of the program).
 Also, systems need to be protected from "denial of service" (DOS) attacks, where they get so overloaded with requests (e.g. to view a web site) that the server can't cope, and legitimate users get very slow response from the system, or it might even fail completely.
 
-For other kinds of attacks relating to computer security, see the `Wikipedia entry on Hackers <http://en.wikipedia.org/wiki/Hacker_(computer_security)>`_.
+For other kinds of attacks relating to computer security, see the [Wikipedia entry on Hackers](http://en.wikipedia.org/wiki/Hacker_(computer_security)).
+
+{comment}
 
 .. xjrm I've just fixed the above link to http://en.wikipedia.org/wiki/Hacker_(computer_security); need to check it works in the next build
 
-There's a dark cloud hanging over the security of all current encryption methods: `Quantum computing <http://en.wikipedia.org/wiki/Quantum_computer>`_.
+{comment end}
+
+There's a dark cloud hanging over the security of all current encryption methods: [Quantum computing](http://en.wikipedia.org/wiki/Quantum_computer).
 Quantum computing is in its infancy, but if this approach to computing is successful, it has the potential to run very fast algorithms for attacking our most secure encryption systems (for example, it could be used to factorise numbers very quickly). In fact, the quantum algorithms have already been invented, but we don't know if quantum computers can be built to run them.
 Such computers aren't likely to appear overnight, and if they do become possible, they will also open the possibility for new encryption algorithms. This is yet another mystery in computer science where we don't know what the future holds, and where there could be major changes in the future. But we'll need very capable computer scientists around at the time to deal with these sorts of changes!
 
+{comment}
+
 .. xtcb possibly link to http://nsf.gov/cise/csbytes/newsletter/vol3/pdf/csbb-vol3-i2.pdf and https://www.youtube.com/watch?v=T2DXrs0OpHU
 
-On the positive side, `quantum information transfer protocols <http://en.wikipedia.org/wiki/Quantum_cryptography_protocol>`_ exist and are used in practice (using specialised equipment to generate quantum bits); these provide what is in theory a perfect encryption system, and don't depend on an attacker being unable to solve a particular computational problem. Because of the need for specialised equipment, they are only used in high security environments such as banking.
+{comment end}
+
+On the positive side, [quantum information transfer protocols](http://en.wikipedia.org/wiki/Quantum_cryptography_protocol) exist and are used in practice (using specialised equipment to generate quantum bits); these provide what is in theory a perfect encryption system, and don't depend on an attacker being unable to solve a particular computational problem. Because of the need for specialised equipment, they are only used in high security environments such as banking.
+
+{comment}
 
 .. e.g. (bb84)
 
 .. enigma story http://www.mtholyoke.edu/~adurfee/cryptology/enigma_j.html
 
+{comment end}
 
-Further reading
-=====================================================
+## Further reading
 
-The `Wikipedia entry on cryptography <http://en.wikipedia.org/wiki/Cryptography>`_ has a fairly approachable entry going over the main terminology used in this chapter (and a lot more) 
+The [Wikipedia entry on cryptography](http://en.wikipedia.org/wiki/Cryptography) has a fairly approachable entry going over the main terminology used in this chapter (and a lot more) 
 
 The encryption methods used these days rely on fairly advanced maths; for this reason books about encryption tend to either be beyond high school level, or else are about codes that aren't actually used in practice. 
 
+{comment}
+
 .. example of good book of each type?
 
-There are lots of intriguing stories around encryption, including its use in wartime and for spying e.g. 
+{comment end}
 
+There are lots of intriguing stories around encryption, including its use in wartime and for spying e.g. 
 
 - How I Discovered World War II's Greatest Spy and Other Stories of Intelligence and Code (David Kahn)
 
@@ -842,92 +861,22 @@ The following activities explore cryptographic protocols using an Unplugged appr
 
 - http://csunplugged.org/public-key-encryption
 
-`War in the fifth domain <http://www.economist.com/node/16478792>`_ looks at how encryption and security are key to our defence against a new kind of war.
+[War in the fifth domain](http://www.economist.com/node/16478792) looks at how encryption and security are key to our defence against a new kind of war.
 
-There are lots of `articles in cs4fn on cryptography <http://www.cs4fn.org/security/crypto/>`_, including `a statistical attack that lead to a beheading <http://www.cs4fn.org/security/beheading/secrets1.html>`_.
+There are lots of [articles in cs4fn on cryptography](http://www.cs4fn.org/security/crypto/), including [a statistical attack that lead to a beheading](http://www.cs4fn.org/security/beheading/secrets1.html).
 
 The book "Hacking Secret Ciphers with Python: A beginner's guide to cryptography and computer programming with Python" (by Al Sweigart) goes over some simple ciphers including ones mentioned in this chapter, and how they can be programmed (and attacked) using Python programs.
 
 
-Useful Links
-------------------------------------------------------------------------------------------------------------------
+### Useful Links
 
-- `How Stuff Works entry on Encryption <http://www.howstuffworks.com/encryption.htm>`_
-- `Cryptool <http://www.cryptool.org/>`_ is a free system for trying out classical and modern encryption methods. Some are beyond the scope of this chapter, but many will be useful for running demonstrations and experiments in cryptography.
-- `Wikipedia entry on Cryptographic keys <http://en.wikipedia.org/wiki/Key_%28cryptography%29>`_
-- `Wikipedia entry on the Caesar cipher <http://en.wikipedia.org/wiki/Caesar_cypher>`_
-- `Videos about modern encryption methods <http://simonsingh.net/media/online-videos/cryptography/the-science-of-secrecy-going-public/>`_
-- `Online interactives for simple ciphers <http://www.braingle.com/brainteasers/codes/index.php>`_
+- [How Stuff Works entry on Encryption](http://www.howstuffworks.com/encryption.htm)
+- [Cryptool](http://www.cryptool.org/) is a free system for trying out classical and modern encryption methods. Some are beyond the scope of this chapter, but many will be useful for running demonstrations and experiments in cryptography.
+- [Wikipedia entry on Cryptographic keys](http://en.wikipedia.org/wiki/Key_%28cryptography%29)
+- [Wikipedia entry on the Caesar cipher](http://en.wikipedia.org/wiki/Caesar_cypher)
+- [Videos about modern encryption methods](http://simonsingh.net/media/online-videos/cryptography/the-science-of-secrecy-going-public/)
+- [Online interactives for simple ciphers](http://www.braingle.com/brainteasers/codes/index.php)
 
+<script language="JavaScript" type="text/javascript" src="_static/interactives/third-party/big.js"></script>
+<script language="JavaScript" type="text/javascript" src="_static/interactives/en/en-interactives.js"></script>
 
-.. only:: html or epub
-
- .. raw:: html
-
-  <script language="JavaScript" type="text/javascript" src="_static/interactives/third-party/big.js"></script>
-  <script language="JavaScript" type="text/javascript" src="_static/interactives/en/en-interactives.js"></script>
-
-
-
-.. only:: dev
-
- Brainstorming
- =====================
-
- - xhtml5 the following page could be the basis of demonstrations of real systems: http://bitwiseshiftleft.github.io/sjcl/demo/
- - Some protocols, ideas in 1) Ross Anderson, Security Engineering, 2nd Eds, Wiley. 2) William Stallings and Lawrie Brown, Computer Security: Principles and Practice, 2nd Eds.
- - man in the middle attack (apocryphal, but realistic mig in the middle, middle person, playing chess)
- - Hromkovic Algorithmic adventures chapter 7
- - part V of the Unplugged book introduces cryptography
- - http://www.i-programmer.info/babbages-bag/271-public-key-encryption.html
- - illustrate PKS with combination lock being distributed
- - http://en.wikipedia.org/wiki/Public_key_cryptosystem#A_postal_analogy illustration
- - some good sections in chapter 14-20 of Algorithms Unplugged (Vocking et al) - further reading 
- - showing a worked version of the unplugged kid crypto exercise woud be a solid project
- - http://nrich.maths.org/7081 code breaking challenges	
- - Caesar  http://translate.googleusercontent.com/translate_c?depth=1&hl=en&rurl=translate.google.com.hk&sl=de&tl=en&u=http://www.matheprisma.uni-wuppertal.de/Module/Caesar/index.htm&usg=ALkJrhj5PoZFbj5SwKZ9t2l1oms0WXO5ig 
- - DES http://translate.googleusercontent.com/translate_c?depth=1&hl=en&rurl=translate.google.com.hk&sl=de&tl=en&u=http://www.matheprisma.uni-wuppertal.de/Module/DES/index.htm&usg=ALkJrhiWFCVb6kVo9Cei3ILi_T1MGBgXAw
- - http://en.wikipedia.org/wiki/Key_size
- - video showing key exchange problem  done well http://securitycertificate.net/2010/10/ssl-explained/
- - sal127 lesson plan for encryption
- - http://dinoonline.net/SecurityTools/SecurityTools.html
- - http://www.nsf.gov/cise/csbytes/newsletter/vol2/vol2i7.html
- - http://inventwithpython.com/hacking/ (some discussion, and Python code for simple and complex ciphers)
- - http://xkcd.com/221/ random number
- - http://community.computingatschool.org.uk/resources/2230
-
- 
-
-.. xtcb e.g. military send a plan in plaintext deliberately, enemy will hear it and send it encrypted to headquarters
-
-.. xtcb curiosity The Enigma famously helped by the Germans encrypting predictable phrases like the weather report [or Heil Hitler] - referred to as a crib that might be somewhere in the message.
-
-.. xtcb curiosity variation of Caesar used (unwisely) by a terrorist http://www.theregister.co.uk/2011/03/22/ba_jihadist_trial_sentencing/
-
-
-.. xtcb any other terminology defined above?
-
- - http://www.simonsingh.net/The_Black_Chamber/vigenere_strength.html
- - http://www.cryptoclub.org/tools/ciphers.php
-
-.. xtcb consider matrix based system e.g. http://www.freepatentsonline.com/article/Australian-Mathematics-Teacher/164525429.html http://search.informit.com.au/documentSummary;dn=152616388598947;res=IELHSS
-
-
-
-.. xtcb get ideas from p86-zielinska.pdf e.g. use for DRM
-
-.. xtcb Or, for example, even knowing the profile of communications might give information; (e.g. example of woman emailing doctor, then boyfriend; change to appropriate story; or invite friends to a party without uninvited guests knowing invitations are going out). Can be a problem with cc of email (discloses other recipients).
-
-
-
-
-.. xtcb maybe add more examples/detail sometime:
-.. public/private key - some good diagrams on web e.g. http://www.astro.princeton.edu/wiki/images/thumb/f/f9/Public_key_encryption.svg/250px-Public_key_encryption.svg.png
-.. PKS explained: http://www.cimt.plymouth.ac.uk/resources/codes/codes_u10_text.pdf
-.. consider https://www.youtube.com/watch?feature=player_embedded&v=3QnD2c4Xovk crypto video with mixing paint etc.
-.. unplugged PK system
-.. PGP uses pks - do an experiment with this?
-.. consider http://computer.howstuffworks.com/encryption3.htm
-.. consider http://xkcd.com/1181/ PGP in email
-.. consider http://computer.howstuffworks.com/encryption4.htm
-.. xtcb project: public key evaluation??
