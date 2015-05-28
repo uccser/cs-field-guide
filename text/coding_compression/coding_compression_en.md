@@ -6,8 +6,8 @@ The following assessment plans also cover this material:
 
 **New Zealand - AS91371 (2.44)**
 
-- [Assessment Overview](/appendices/assessment_guides/new_zealand/assessment_guide_level_2_introduction.html)
-- [Compression (Run Length Encoding)](/appendices/assessment_guides/new_zealand/assessment_guide_level_2_compression_run_length_encoding)
+- [Assessment Overview](/appendices/assessment-guides/new-zealand/assessment-guide-level-2-introduction.html)
+- [Compression (Run Length Encoding)](/appendices/assessment-guides/new-zealand/assessment-guide-level-2-compression-run-length-encoding)
  
 {teacher end}
   
@@ -57,7 +57,7 @@ low priority could re-edit the above video to fit into context a little better
 
 Imagine we have the following simple black and white image.
 
-{image cc_diamond.png alt="A diamond shape made out of pixels"}
+{image cc-diamond.png alt="A diamond shape made out of pixels"}
 
 One very simple way a computer can store this image is by using a format where 0 means white and 1 means black. The above image would be represented in the following way
 
@@ -199,15 +199,15 @@ You should each uncompress the other person’s image, to get back to the origin
 
 Imagining that you and your friend are both computers, by doing this you have shown that images using these systems of representations can be compressed on one computer, and decompressed on another. It is very important for compression algorithms to have this property in order to be useful. It wouldn’t be very good if a friend gave you a song they’d compressed on their computer, but then your computer was unable to make sense of the representation the compressed song was using!
 
+{extra-for-experts}
 
+**Extra for Experts**
 
-.. container:: extra-for-experts
+What is the image with the best compression (i.e. an image that has a size that is a very small percentage of the original) that you can come up with? This is the best case performance for this compression algorithm.
 
- **Extra for Experts**
+What about the worst compression? Can you find an image that actually has a *larger* compressed representation? (Don’t forget the commas in the version we used!) This is the worst case performance for this compression algorithm.
 
- What is the image with the best compression (i.e. an image that has a size that is a very small percentage of the original) that you can come up with? This is the best case performance for this compression algorithm.
-
- What about the worst compression? Can you find an image that actually has a *larger* compressed representation? (Don’t forget the commas in the version we used!) This is the worst case performance for this compression algorithm.
+{extra-for-experts end}
 
 In fact, any *lossless* compression algorithm will have cases where the compressed version of the file is larger than the uncompressed version! Computer scientists have even proven this to be the case, meaning it is impossible for anybody to ever come up with a lossless compression algorithm that makes *all* possible files smaller. 
 In most cases this isn’t an issue though, as a good lossless compression algorithm will tend to give the best compression on common patterns of data, and the worst compression on ones that are highly unlikley to occur.
@@ -224,7 +224,7 @@ The best case above is when the image is entirely white (only one number is used
 
 {teacher end}
 
-{extra_for_experts}
+{extra-for-experts}
 
 **Extra for Experts**
 
@@ -254,7 +254,7 @@ The first 2 lines are the header.  The first line specifies the format of the fi
 
 There are variations of this format that pack the pixels into bits instead of characters, and variations that can be used for grey scale and colour images. More [information about this format is available on Wikipedia](http://en.wikipedia.org/wiki/Netpbm_format).
 
-{extra_for_experts end}
+{extra-for-experts end}
 
 {comment}
 
@@ -269,6 +269,7 @@ E: evaluating a widely used system for compression coding, error control coding,
 {teachers}
 
 This section provides enough information for students to work up the the excellence level for coding. The requirements are:
+
 - Merit: discussing how a widely used technology is enabled by one or more of compression coding, error control coding, and encryption
 - Excellence: evaluating a widely used system for compression coding, error control coding, or encryption
 
@@ -305,7 +306,7 @@ Images from https://dl.dropboxusercontent.com/u/7227226/Compression%20images.zip
 
 {comment end}
 
-{image cc_compression_comparison.png}
+{image cc-compression-comparison.png}
 
 {comment}
 
@@ -323,11 +324,11 @@ this image no longer needed, as it is available just above _static/images/CC-Pho
 
 {comment end}
 
-{image cc_zoomed2.png}
+{image cc-zoomed2.png}
 
 Notice that the colours in adjacent pixels are often very similar, even in this part of the picture that has a lot of detail. For example, the pixels shown in the red box below just change gradually from very dark to very light. 
 
-{image cc_zoomed2box.png}
+{image cc-zoomed2box.png}
 
 Run-length encoding wouldn't work in this situation. You could use a variation that specifies a pixel's colour, and then says how many of the following pixels are the same colour, but although most adjacent pixels are nearly the same, the chances of them being identical are very low, and there would be almost no runs of identical colours.
 
@@ -337,15 +338,15 @@ The JPEG system, which is widely used for photos, uses a more sophisticated vers
 Instead of taking a 5 by 1 run of pixels as we did above, it works with 8 by 8 blocks of pixels.
 And instead of estimating the values with a linear function, it uses combinations of cosine waves.
 
-{jargon_buster}
+{jargon-buster}
 
 **Jargon Buster**
 
 A cosine wave form is from the trig function that is often used for calculating the sides of a triangle. If you plot the cosine value from 0 to 180 degrees, you get a smooth curve going from 1 to -1. Variations of this plot can be used to approximate the value of pixels, going from one colour to another. If you add in a higher frequency cosine wave, you can produce interesting shapes. In theory, any pattern of pixels can be created by adding together different cosine waves!
 
-{image cc_cosine_graph.png}
+{image cc-cosine-graph.png}
 
-{jargon_buster end}
+{jargon-buster end}
 
 {comment}
 
@@ -356,15 +357,15 @@ A cosine wave form is from the trig function that is often used for calculating 
 
 You can see the 8 by 8 blocks of pixels if you zoom in on a heavily compressed JPEG image. For example, the following image has been very heavily compressed using JPEG (it is just 1.5% of its original size).
 
-{image cc_low_quality_jpeg.png}
+{image cc-low-quality-jpeg.png}
 
 If we zoom in on the eye area, you can see the 8 x 8 blocks of pixels:
 
-{image cc_zoomed_jpeg.png}
+{image cc-zoomed-jpeg.png}
 
 Notice that there is very little variation across each block. In the following image the block in the red box only changes from top to bottom, and could probably be specified by giving just two values, and having the ones in between calculated by the decoder as for the line example before. The green square only varies from left to right, and again might only need 2 values stored instead of 64. The blue block has only one colour in it! The yellow block is more complicated because there is more activity in that part of the image, which is where the cosine waves come in. A "wave" value varies up and down, so this one can be represented by a left-to-right variation from dark to light to dark, and a top-to-bottom variation mainly from dark to light. Thus still only a few values need to be stored instead of the full 64.
 
-{image cc_zoomed_jpeg_highlighted.png}
+{image cc-zoomed-jpeg-highlighted.png}
 
 The quality is quite low, but the saving in space is huge --- it's more than 60 times smaller (for example, it would download 60 times faster). Higher quality JPEG images store more detail for each 8 by 8 block, which makes it closer to the original image, but makes bigger files because more details are being stored. You can experiment with these tradeoffs by saving JPEGs with differing choices of the quality, and see how the file size changes. Most image processing software offers this option when you save an image as a JPEG.
 
@@ -380,31 +381,31 @@ Another example of low quality JPEG images can be found on the [Wikipedia page a
 
 {teacher end}
 
-{jargon_buster}
+{jargon-buster}
 
 **Jargon Buster**
 
 The name "JPEG" is short for "Joint Photographic Experts Group", a committee that was formed in the 1980s to create standards so that digital photographs could be captured and displayed on different brands of devices. Because some file extensions are limited to three characters, it is often seen as the ".jpg" extension.
 
-{jargon_buster end}
+{jargon-buster end}
 
-{extra_for_experts}
+{extra-for-experts}
 
 **Extra for Experts**
 
 The cosine waves used for JPEG images are based on a "Discrete Cosine Transform". The "Discrete" means that the waveform is digital --- it is the opposite of continuous, where any value can occur. In a JPEG wave, there are only 8 x 8 values (for the block being coded), and each of those values can have a limited range of numbers (binary integers), rather than any value at all.
 
-{extra_for_experts end}
+{extra-for-experts end}
 
 An important issue arises because JPEG represents images as smoothly varying colours: what happens if the colours change suddenly?
 In that case, lots of values need to be stored so that lots of cosine waves can be added together to make the sudden change in colour, or else the edge of the image become fuzzy. 
 You can think of it as the cosine waves overshooting on the sudden changes, producing artifacts like the ones in the following image where the edges are messy.
 
-{image cc_clean_jpeg_low_q.jpg}
+{image cc-clean-jpeg-low-q.jpg}
 
 The original had sharp edges, but this zoomed in view of the JPEG version of it show that not only are the edges gradual, but some darker pixels occur further into the white space, looking a bit like shadows or echoes.
 
-{image cc_clean_jpeg_low_q_zoom.jpg}
+{image cc-clean-jpeg-low-q-zoom.jpg}
 
 For this reason, JPEG is used for photos and natural images, but other techniques (such as GIF and PNG, which we will look at in another section) work better for artificial images like this one.
 
