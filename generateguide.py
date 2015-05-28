@@ -11,32 +11,23 @@ import os.path
 import os
 import re
 from shutil import copy2
-from markdownsection import Section
+from generator.markdownsection import Section
 
-SETTINGS_CONF = 'settings.conf'
-LOGFILE_CONF = 'logging.conf'
-HTML_TEMPLATE_CONF = 'html-templates.conf'
-
-# TODO: Determine which variables should be in settings file
-
-FILE_NAME_TEMPLATE = '{0}_{1}.md'
-PATH_CHAPTERS = 'text/{0}'
-PATH_APPENDICES = 'text/appendices/'
-PATH_STATIC_PAGES = 'text/static_pages/'
-PATH_INTERACTIVES = 'interactives/'
-PATH_FILES = 'files/'
-TEXT_GROUPS = ['Chapters', 'Appendices'] # Order of sections
-
-OUTPUT_FOLDER = '..\output\{0}\\' # {0 = language}
-OUTPUT_FILE = '{0}.html' # {0 = file}
-
+GUIDE_SETTINGS = 'guide-settings.conf'
+GENERATOR_SETTINGS = 'generator/generator-settings.conf'
+LOGFILE_SETTINGS = 'generator/logging.conf'
 
 class Guide:
     def __init__(self):
-        self.settings = self.read_settings()
-        self.structure = self.parse_structure()
+        # Read settings
+        self.guide_settings = self.read_settings(GUIDE_SETTINGS)
+        self.generator_settings = self.read_settings(GENERATOR_SETTINGS)
+
         self.language = self.parse_language()
-        self.content = self.read_content(self.structure)
+        self.version = self.parse_version()
+
+        self.structure = self.parse_structure()
+        self.content = self.read_content()
         # Dictionary of sets for images, interactives, and other_files
         self.required_files = {}
         self.html_templates = self.read_html_templates()
@@ -50,29 +41,32 @@ class Guide:
         """Process the Section files
         Sets: - Section numbers
               - Converts raw into HTML
-              - Adds required files to Guide's list
+              - Adds Section's required files to Guide's required files
         """
         section_number = 1
-        for group in TEXT_GROUPS:
-            if self.settings[group].getboolean('Numbered'):
-                for title in self.structure[group]:
-                    section = self.content[title]
+        group_order = self.generator_settings['Source']['Text Order'].split()
+        for group in group_order:
+            for title in self.structure[group]:
+                section = self.content[title]
+                if self.guide_settings[group].getboolean('Numbered'):
                     section.set_number(section_number)
-                    if section.markdown_text != None:
-                        section.parse_markdown_content(self.html_templates)
-                    for file_type,file_names in section.required_files.items():
-                        self.required_files[file_type] = self.required_files.get(file_type, set()).union(file_names)
+                if section.markdown_text:
+                    section.parse_markdown_content(self.html_templates)
+                for file_type,file_names in section.required_files.items():
+                    self.required_files[file_type] = self.required_files.get(file_type, set()).union(file_names)
+                if self.guide_settings[group].getboolean('Numbered'):
                     section_number += 1
 
 
     def read_html_templates(self):
         """Read html templates from html-templates.conf into dictionary"""
         html_templates = {}
+        html_template_file = self.generator_settings['Source']['HTML Templates']
         try:
-            with open(HTML_TEMPLATE_CONF, 'r', encoding='utf8') as source_file:
+            with open(html_template_file, 'r', encoding='utf8') as source_file:
                 data = source_file.readlines()
         except:
-            logging.critical('Cannot find file {0}. Generation aborted.'.format(HTML_TEMPLATE_CONF))
+            logging.critical('Cannot find file {0}. Generation aborted.'.format(html_template_file))
         else:
             template_name = ''
             template_text = ''
@@ -95,28 +89,35 @@ class Guide:
     def parse_language(self):
         """Returns language code for given setting"""
         # TODO: Handle all language names/codes
-        language = self.settings['Main']['Language']
+        language = self.guide_settings['Main']['Language']
         if language.lower() in ['english', 'en']:
             return 'en'
         else:
             return 'en'
 
 
-    def read_settings(self):
-        """Read the setting file
-        Converts yes/no settings to True/False
-        TODO: and handle errors
+    def parse_version(self):
+        version = self.guide_settings['Main']['Version'].lower()
+        if not version == 'teacher':
+            version = 'student'
+        return version
+
+
+    def read_settings(self, settings_location):
+        """Read the given setting file
+        and return the configparser
         """
         settings = configparser.ConfigParser()
-        settings.read(SETTINGS_CONF)
+        settings.read(settings_location)
         return settings
 
 
     def parse_structure(self):
         """Create dictionary of guide structure"""
         structure = collections.defaultdict(list)
-        for group in TEXT_GROUPS:
-            order = self.settings[group]['Order']
+        group_order = self.generator_settings['Source']['Text Order'].split()
+        for group in group_order:
+            order = self.guide_settings[group]['Order']
             titles = order.split('\n')
             structure[group] = []
             for title in titles:
@@ -126,11 +127,11 @@ class Guide:
         return structure
 
 
-    def read_content(self, structure):
+    def read_content(self):
         """Returns a dictionary with titles as keys and section objects as
         values"""
         content = {}
-        for group, titles in structure.items():
+        for group, titles in self.structure.items():
             for title in titles:
                 file_path = self.create_file_path(title, group, self.language)
                 if file_exists(file_path):
@@ -143,12 +144,16 @@ class Guide:
 
 
     def create_file_path(self, title, group, language):
-        file_name = FILE_NAME_TEMPLATE.format(title.replace(' ', '_').lower(), language)
-        if group == TEXT_GROUPS[0]:
-            folder_name = title.replace(' ', '_').lower()
-            path = os.path.join('..', PATH_CHAPTERS.format(folder_name), file_name)
-        elif group == TEXT_GROUPS[1]:
-            path = os.path.join('..', PATH_APPENDICES, file_name)
+        template = self.generator_settings['Source']['Text Filename Template']
+        file_name = template.format(title=title.replace(' ', '-').lower(), language=language)
+        if group == 'Chapters':
+            folder_name = title.replace(' ', '-').lower()
+            path = os.path.join(self.generator_settings['Source']['Chapters'],
+                                folder_name,
+                                file_name)
+        elif group == 'Appendices':
+            path = os.path.join(self.generator_settings['Source']['Appendices'],
+                                file_name)
         return path
 
 
@@ -156,11 +161,12 @@ class Guide:
         """Writes the necessary HTML files
         Writes: - Chapter files
         """
-        for group in TEXT_GROUPS[:1]:
+        # TODO: Add writing of Appendices
+        for group in 'Chapters':
             for title in self.structure[group]:
                 section = self.content[title]
-                file_name = OUTPUT_FILE.format(section.title.replace(' ', '_').lower())
-                folder = OUTPUT_FOLDER.format(self.language)
+                file_name = self.generator_settings['Output']['File'].format(file_name=section.title.replace(' ', '-').lower())
+                folder = self.generator_settings['Output']['Folder'].format(language=self.language, type=self.version)
                 path = os.path.join(folder, file_name)
 
                 os.makedirs(folder, exist_ok=True)
@@ -188,7 +194,7 @@ class Guide:
             if file_type == 'images':
                 for file_name in file_names:
                     # TODO: Replace file copy procedure, currently proof of concept
-                    folder = OUTPUT_FOLDER.format(self.language)
+                    folder = self.generater_settings['Output']['Folder'].format(language=self.language, version=self.version)
                     source = os.path.join('..', 'images', file_name)
                     destination = os.path.join(folder, 'images')
                     if not os.path.exists(destination):
@@ -199,6 +205,11 @@ class Guide:
                         logging.exception("Image {0} could not be copied".format(file_name))
 
 
+def setup_logging():
+    """Sets up the logger to write to a file"""
+    logging.config.fileConfig(LOGFILE_SETTINGS)
+
+
 def file_exists(file_path):
     if os.path.exists(file_path):
         return True
@@ -206,18 +217,12 @@ def file_exists(file_path):
         logging.error("File {0} does not exist".format(file_path))
         return False
 
-
-def setup_logging():
-    """Sets up the logger to write to a file"""
-    logging.config.fileConfig(LOGFILE_CONF)
-
-
 def check_dependencies():
     """Check and install dependencies if needed"""
     # Update pip if needed
     pip.main(['install', '--upgrade', 'pip'])
     # Check dependencies
-    pip.main(['install', '-r', 'dependencies.txt'])
+    pip.main(['install', '-r', 'generator/dependencies.conf'])
 
 
 def main():

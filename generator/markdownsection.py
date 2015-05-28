@@ -1,4 +1,4 @@
-from markdown2 import markdown
+from generator.markdown2 import markdown
 import re
 import string
 import logging
@@ -149,7 +149,7 @@ class Section:
 
         # Return HTML
         image_source = './images/' + filename
-        html = self.html_templates['image_centered'].format(image_source)
+        html = self.html_templates['image_centered'].format(image_source=image_source)
         return html
 
 
@@ -164,8 +164,8 @@ class Section:
 
     def embed_video(self, match):
         youtube_src = "http://www.youtube.com/embed/{0}?rel=0"
-        html_template = '<div class="flex-video widescreen">\n<iframe src="{0}" frameborder="0" allowfullscreen></iframe>\n</div>'
         vimeo_src = "http://player.vimeo.com/video/{0}"
+        html_template = '<div class="flex-video widescreen">\n<iframe src="{0}" frameborder="0" allowfullscreen></iframe>\n</div>'
         html = ''
         (video_type, video_identifier) = self.extract_video_identifier(match.group('url'))
         if video_type == 'youtube':
@@ -178,7 +178,7 @@ class Section:
 
 
     def extract_video_identifier(self, video_link):
-        """Returns the indentifier from a given URL."""
+        """Returns the indentifier from a given URL"""
         if "youtu.be" in video_link or "youtube.com/embed" in video_link:
             identifier = ('youtube', video_link.split('/')[-1])
         elif "youtube.com" in video_link:
