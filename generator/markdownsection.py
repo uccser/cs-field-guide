@@ -76,7 +76,7 @@ class Section:
             else:
                 link = link + str(count)
             count += 1
-        self.header_permalinks.add(link)
+        self.permalinks.add(link)
         return link
 
 
@@ -94,7 +94,8 @@ class Section:
 
 
     def create_panel_start(self, match):
-        html = self.html_templates['panel'].format(type=match.group('type'))
+        panel_type = match.group('type')
+        html = self.html_templates['panel'].format(type=panel_type)
         if panel_type == 'teacher':
             html += self.html_templates['panel-teacher-heading']
         return html
@@ -114,10 +115,10 @@ class Section:
         if match.group('type') == 'math':
             #Inline math
             equation = re.sub("\\\\{1,}", self.double_backslashes, equation)
-            html = self.html-templates['math'].format(equation=equation)
+            html = self.html_templates['math'].format(equation=equation)
         else:
             #Block math
-            html = self.html-templates['math-block'].format(equation=equation)
+            html = self.html_templates['math-block'].format(equation=equation)
         return html
 
 
@@ -218,9 +219,9 @@ class Section:
     def create_regex_list(self):
         self.REGEX_MATCHES = [("(\\\{|\\\})", self.escape_backslash),
                               ("^(\n*\{comment([^{]+\}|\}[^{]*\{comment end\})\n*)+", self.delete_comment),
-                              ("\{(?P<type>math|math_block)\}(?P<equation>[\s\S]+?)\{(math|math_block) end\}", self.process_math_text),
+                              ("\{(?P<type>math|math-block)\}(?P<equation>[\s\S]+?)\{(math|math-block) end\}", self.process_math_text),
                               ("^(?P<heading_level>#{1,6}) ?(?P<heading>[\w!?,' ]+)!?\n", self.create_heading),
                               ("^\{image (?P<filename>[^ \}]+) ?(?P<args>[^\}]*)\}", self.add_image),
                               ("^\{video (?P<url>[^\}]*)\}", self.embed_video),
-                              ("^\{(?P<type>teacher|curiosity|jargon_buster|warning)\}", self.create_panel_start),
-                              ("^\{(?P<type>teacher|curiosity|jargon_buster|warning) end\}", self.end_div)]
+                              ("^\{(?P<type>teacher|curiosity|jargon-buster|warning)\}", self.create_panel_start),
+                              ("^\{(?P<type>teacher|curiosity|jargon-buster|warning) end\}", self.end_div)]

@@ -161,18 +161,23 @@ class Guide:
         """Writes the necessary HTML files
         Writes: - Chapter files
         """
+        base_folder = self.generator_settings['Output']['Folder'].format(language=self.language,
+                                                                         version=self.version)
+        image_source_folder = self.generator_settings['Source']['Images']
+        image_output_folder = os.path.join(base_folder, self.generator_settings['Output']['Images'])
+        # Create necessary folders
+        os.makedirs(base_folder, exist_ok=True)
+        os.makedirs(image_output_folder, exist_ok=True)
+
         # TODO: Add writing of Appendices
         for group in ['Chapters']:
             for title in self.structure[group]:
                 section = self.content[title]
                 file_name = self.generator_settings['Output']['File'].format(file_name=section.title.replace(' ', '-').lower())
-                folder = self.generator_settings['Output']['Folder'].format(language=self.language, version=self.version)
-                path = os.path.join(folder, file_name)
-
-                os.makedirs(folder, exist_ok=True)
+                path = os.path.join(base_folder, file_name)
 
                 try:
-                    # Clear file
+                    # Clear existing file
                     open(path, 'w').close()
 
                     # Write HTML
@@ -194,15 +199,15 @@ class Guide:
             if file_type == 'images':
                 for file_name in file_names:
                     # TODO: Replace file copy procedure, currently proof of concept
-                    folder = self.generater_settings['Output']['Folder'].format(language=self.language, version=self.version)
-                    source = os.path.join('..', 'images', file_name)
-                    destination = os.path.join(folder, 'images')
-                    if not os.path.exists(destination):
-                        os.makedirs(destination, exist_ok=True)
-                    try:
-                        copy2(source, destination)
-                    except:
-                        logging.exception("Image {0} could not be copied".format(file_name))
+                    source_image = os.path.join(image_source_folder, file_name)
+                    output_image = os.path.join(image_output_folder, file_name)
+                    if os.path.exists(source_image):
+                        try:
+                            copy2(source_image, output_image)
+                        except:
+                            logging.exception("Image {0} could not be copied".format(file_name))
+                    else:
+                        logging.error("Image {0} could not be found".format(file_name))
 
 
 def setup_logging():
