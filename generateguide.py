@@ -232,7 +232,6 @@ def file_exists(file_path):
 def main():
     """Creates a Guide object"""
     # Switch to current directory
-    os.chdir(os.path.dirname(os.path.realpath(__file__)))
     setup_logging()
     guide = Guide()
     logging.shutdown()
