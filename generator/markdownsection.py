@@ -1,4 +1,4 @@
-from generator.markdown2 import markdown
+from markdown2 import markdown
 import re
 import string
 import logging
