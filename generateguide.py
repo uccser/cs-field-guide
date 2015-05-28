@@ -87,7 +87,7 @@ class Guide:
 
 
     def parse_language(self):
-        """Returns language code for given setting"""
+        """Returns ISO 639-1 language code for given setting"""
         # TODO: Handle all language names/codes
         language = self.guide_settings['Main']['Language']
         if language.lower() in ['english', 'en']:
@@ -162,11 +162,11 @@ class Guide:
         Writes: - Chapter files
         """
         # TODO: Add writing of Appendices
-        for group in 'Chapters':
+        for group in ['Chapters']:
             for title in self.structure[group]:
                 section = self.content[title]
                 file_name = self.generator_settings['Output']['File'].format(file_name=section.title.replace(' ', '-').lower())
-                folder = self.generator_settings['Output']['Folder'].format(language=self.language, type=self.version)
+                folder = self.generator_settings['Output']['Folder'].format(language=self.language, version=self.version)
                 path = os.path.join(folder, file_name)
 
                 os.makedirs(folder, exist_ok=True)
