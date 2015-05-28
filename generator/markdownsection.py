@@ -22,7 +22,7 @@ class Section:
         self.page_header_numbered = False
         self.html_content = []
         self.create_regex_list()
-        self.header_permalinks = set()
+        self.permalinks = set()
         # Dictionary of sets for images, interactives, and other_files
         self.required_files = {}
         self.mathjax_required = False
@@ -60,18 +60,17 @@ class Section:
         heading_text = match.group('heading')
         heading_level = len(match.group('heading_level'))
         self.increment_number(heading_level)
-        number_html = '<span class="section_number">{0}</span>'.format(self.format_section_number())
-        heading = '<h{0} class="section_heading" id="{1}">{2} {3}</h{0}>'.format(heading_level,
-                                                         self.create_header_permalink(heading_text),
-                                                         number_html,
-                                                         heading_text)
-        return heading
+        html = self.html_templates['heading'].format(heading_level=heading_level,
+                                                     permalink=self.create_permalink(heading_text),
+                                                     section_number=self.format_section_number(),
+                                                     heading_text=heading_text)
+        return html
 
 
-    def create_header_permalink(self, text):
+    def create_permalink(self, text):
         link = self.to_snake_case(text)
         count = 2
-        while link in self.header_permalinks:
+        while link in self.permalinks:
             if link[-1].isdigit():
                 link = link[:-1] + str(count)
             else:
@@ -83,31 +82,25 @@ class Section:
 
     def to_snake_case(self, text):
         """Returns the given text as snake case.
-        The text is lower case, has spaces replaced as underscores.
+        The text is lower case, has spaces replaced as dashes.
         All punctuation is also removed.
-
         """
         text = ''.join(letter for letter in text if letter not in set(string.punctuation))
-        return text.replace(' ', '_').lower()
+        return text.replace(' ', '-').lower()
 
 
     def from_snake_case(self, text):
-        return text.replace('_', ' ').title()
-
-
-    def create_panel(self, panel_type):
-        html = '<div class="panel panel_{0}" markdown="1">'.format(panel_type)
-        if panel_type == 'teacher':
-            html += '\n<h5>Teacher Note:</h5>'
-        return html
+        return text.replace('-', ' ').title()
 
 
     def create_panel_start(self, match):
-        return self.create_panel(match.group('type'))
-
+        html = self.html_templates['panel'].format(type=match.group('type'))
+        if panel_type == 'teacher':
+            html += self.html_templates['panel-teacher-heading']
+        return html
 
     def end_div(self, match):
-        return '\n</div>'
+        return self.html_templates['div']
 
 
     def delete_comment(self, match):
@@ -117,19 +110,15 @@ class Section:
 
     def process_math_text(self, match):
         self.mathjax_required = True
-
         equation = match.group('equation')
-
         if match.group('type') == 'math':
             #Inline math
-            start_delimiter = '<span class="math">\\\\('
-            end_delimiter = '\\\\)</span>'
             equation = re.sub("\\\\{1,}", self.double_backslashes, equation)
+            html = self.html-templates['math'].format(equation=equation)
         else:
             #Block math
-            start_delimiter = '<div class="math math_block">\n\\['
-            end_delimiter = '\\]\n</div>'
-        return start_delimiter + equation + end_delimiter
+            html = self.html-templates['math-block'].format(equation=equation)
+        return html
 
 
     def double_backslashes(self, match):
@@ -150,7 +139,7 @@ class Section:
 
         # Return HTML
         image_source = './images/' + filename
-        html = self.html_templates['image_centered'].format(image_source=image_source)
+        html = self.html_templates['image-centered'].format(image_source=image_source)
         return html
 
 
@@ -166,15 +155,14 @@ class Section:
     def embed_video(self, match):
         youtube_src = "http://www.youtube.com/embed/{0}?rel=0"
         vimeo_src = "http://player.vimeo.com/video/{0}"
-        html_template = '<div class="flex-video widescreen">\n<iframe src="{0}" frameborder="0" allowfullscreen></iframe>\n</div>'
         html = ''
         (video_type, video_identifier) = self.extract_video_identifier(match.group('url'))
-        if video_type == 'youtube':
-            source_link = youtube_src.format(video_identifier)
-            html = html_template.format(source_link)
-        elif video_type == 'vimeo':
-            source_link = vimeo_src.format(video_identifier)
-            html = html_template.format(source_link)
+        if video_type:
+            if video_type == 'youtube':
+                source_link = youtube_src.format(video_identifier)
+            elif video_type == 'vimeo':
+                source_link = vimeo_src.format(video_identifier)
+            html = self.html_templates['video'].format(source=source_link)
         return html
 
 
@@ -193,7 +181,7 @@ class Section:
             identifier = ('vimeo', video_link.split('/')[-1])
         else:
             logging.error("Included video link '{0}' not supported.".format(video_link))
-            identifier = ('error','')
+            identifier = (None,'')
         return identifier
 
 
