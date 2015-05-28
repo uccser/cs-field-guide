@@ -1,14 +1,10 @@
 # Computer Graphics
 
-*******************************************************
-Computer graphics
-*******************************************************
-
 {teacher}
 The following assessment plans also cover this material:
 
 **New Zealand - AS91636 (3.44)**
-- [Assessment Overview](/appendices/assessment_guides/new_zealand/computer_graphics.html)
+- [Assessment Overview](/appendices/assessment-guides/new-zealand/computer-graphics.html)
 {teacher end}
 
 {comment}
@@ -57,11 +53,11 @@ Let's start with some simple but common calculations that are needed for in grap
 The following image shows a cube with writing on each face.
 You can move it around using what's called a *transform*, which simply adjusts where it is placed in space.
 
-{include interactive computer_graphics_box_translation}
+{include interactive computer-graphics-box-translation}
 
 You've just applied 3D *translation transforms* to the cube. Translation just means moving it in the three dimensions up and down, forward and back, and sideways. 
 
-{include interactive computer_graphics_box_rotation}
+{include interactive computer-graphics-box-rotation}
 
 There are several transformations that are used in computer graphics, but the most common ones are translation (moving the object), rotation (spinning it) and scaling (changing its size). 
 They come up often in graphics because they are applied not only to objects, but to things like the positions of the camera and lighting sources.
@@ -80,7 +76,7 @@ The first list of coordinates is for the original arrow position, and in the sec
 This transform translates the arrow 2 units to the right and 3 units up. Subtracting three translates the arrow down and to the left.
 {teacher end}
 
-{include interactive computer_graphics_arrow parameters="&quiz=2 0 0 5 0 2 0 4 0 0 2 0 0 0 0 1 &hidetarget=true"}
+{include interactive computer-graphics-arrow parameters="&quiz=2 0 0 5 0 2 0 4 0 0 2 0 0 0 0 1 &hidetarget=true"}
 
 The above transform is called a *translation* --- it translates the arrow around the grid. This kind of transform is used in graphics to specify where an object should be placed in a scene, but it has many other uses, such as making an animated object move along a path, or specifying the position of the imaginary camera (viewpoint).
 
@@ -88,13 +84,13 @@ The above transform is called a *translation* --- it translates the arrow around
 Multiplying by 2 makes the arrow twice as large in each dimension. Multiplying by 10 makes it 10 times as large, which won't fit in the view. Multiplying by 0.5 makes the arrow half the size. Multiplying only the x values makes the arrow wider horizontally only.
 {teacher end}
   
-{include interactive computer_graphics_arrow parameters="&quiz=0.5 0 0 0 0 0.5 0 0 0 0 1 0 0 0 0 1 &hidetarget=true"}
+{include interactive computer-graphics-arrow parameters="&quiz=0.5 0 0 0 0 0.5 0 0 0 0 1 0 0 0 0 1 &hidetarget=true"}
   
 This transformation is called *scaling*, and although it can obviously be used to control the size of an object, this can in turn be used to create a visual effect such as making the object appear closer or further away.
 
-{include interactive computer_graphics_arrow parameters="&quiz=2 0 0 5 0 2 0 4 0 0 2 0 0 0 0 1"}
+{include interactive computer-graphics-arrow parameters="&quiz=2 0 0 5 0 2 0 4 0 0 2 0 0 0 0 1"}
 
-{include interactive computer_graphics_arrow parameters="&quiz=0 1 0 0 1 0 0 0 0 0 1 0 0 0 0 1 &hidetarget=true &zoom=-5.0"}
+{include interactive computer-graphics-arrow parameters="&quiz=0 1 0 0 1 0 0 0 0 0 1 0 0 0 0 1 &hidetarget=true &zoom=-5.0"}
 
 This is a simple *rotation* transformation, also useful for positioning objects in a scene, 
 but also for specifying things like camera angles.
@@ -116,34 +112,34 @@ Other explanations aimed at school students include:
 There's a much easier way to specify transformations than having to change each coordinate separately. 
 Transformations are usually done in graphics using *matrix* arithmetic, which is a shorthand notation for doing lots of simple arithmetic operations in one go. The matrix for the two-dimensional transformations we've been doing above has four values in it. For the 2 dimensional scaling transform where we made each *x* and *y* value twice as large, the matrix is written as:
 
-{math_block}
+{math-block}
 \begin{bmatrix} 
 2 & 0 \\  
 0 & 2 \\  
 \end{bmatrix}
-{math_block end}
+{math-block end}
 
-{include interactive computer_graphics_arrow parameters="&quiz=2 0 0 0 0 2 0 0 0 0 2 0 0 0 0 1"}
+{include interactive computer-graphics-arrow parameters="&quiz=2 0 0 0 0 2 0 0 0 0 2 0 0 0 0 1"}
 
 At this stage you may want to have the widget open in a separate window so that you can read the text below and interact with the widget at the same time.
 
 Now try changing the matrix to 
 
-{math_block}
+{math-block}
 \begin{bmatrix} 
 3 & 0 \\  
 0 & 3 \\  
 \end{bmatrix}
-{math_block end}
+{math-block end}
 
 or
 
-{math_block}
+{math-block}
 \begin{bmatrix} 
 0.2 & 0 \\  
 0 & 0.2 \\  
 \end{bmatrix}
-{math_block end}
+{math-block end}
 
 {teacher}
 This should create an arrow 3 times as big and 0.2 times as big.
@@ -157,12 +153,12 @@ This needs the matrix {math}\begin{bmatrix}  2 & 0 \\   0 & 2 \\   \end{bmatrix}
 
 What happens if you use the following matrix?
 
-{math_block}
+{math-block}
 \begin{bmatrix} 
 2 & 0 \\  
 0 & 4 \\  
 \end{bmatrix}
-{math_block end}
+{math-block end}
 
 {teacher}
 The x values are doubled but the y values are multiplied by 4, so it is stretched twice as much vertically as horizontally.
@@ -170,23 +166,23 @@ The x values are doubled but the y values are multiplied by 4, so it is stretche
 
 Now try the following matrix:
 
-{math_block}
+{math-block}
 \begin{bmatrix} 
 0 & 1 \\  
 1 & 0 \\  
 \end{bmatrix}
-{math_block end}
+{math-block end}
 
 This matrix should have rotated the arrow to the right.
 
 A simple way of looking at the matrix is that the top row determines the transformed *x* value, simply by saying how much of the original *x* value and *y* value contribute to the new *x* value. So in the matrix:
 
-{math_block}
+{math-block}
 \begin{bmatrix} 
 2 & 0 \\  
 0 & 4 \\  
 \end{bmatrix}
-{math_block end}
+{math-block end}
 
 The top row just means that the new *x* value is 2 lots of the original *x*, and none of the original y, which is why all the *x* values double. The second row determines the *y* value: in the above example, it means that the new *y* value uses none of the original x, but 4 times the original *y* value. If you try this matrix, you should find that the location of all the *x* points is doubled, and the location of all the y points is multiplied by 4.
 
@@ -205,52 +201,52 @@ Now the *x* value of each coordinate is a mixture of 0.7 of the original *x*, an
 
 In general, to rotate an image by a given angle you need to use the sine (abbreviated sin) and cosine (abbreviated cos) functions from trigonometry. To rotate the image by {math}\theta{math end} degrees, you'll need the following values in the matrix, which rely on trig functions:
 
-{math_block}
+{math-block}
 \begin{bmatrix} 
 \cos(\theta) & -\sin(\theta) \\  
 \sin(\theta) & \cos(\theta) \\  
 \end{bmatrix}
-{math_block end}
+{math-block end}
 
 {teacher}
 If your students aren't familiar with sin and cos, it may be worth going over them separately, including the idea that the angle is usually measured in degrees, and the functions will produce a number between 0  and 1.
 {teacher end}
 
-{include interactive computer_graphics_arrow parameters="&quiz=0.7 0.7 0 5 -0.7 0.7 0 4 0 0 1 0 0 0 0 1"}
+{include interactive computer-graphics-arrow parameters="&quiz=0.7 0.7 0 5 -0.7 0.7 0 4 0 0 1 0 0 0 0 1"}
 
 What is the matrix for rotation by 360 degrees?
 
-{teacher{
-If you put in 360 for {math}\Theta{math end} in the rotation formula, you get the matrix {math_block}\begin{bmatrix}  0 & 1 \\   1 & 0 \\   \end{bmatrix}{math_block end}. This is also known as the 'identity' matrix because it makes no change to the original image. You get this matrix if you rotate by a multiple of 360 (including 0 degrees of course).
+{teacher}
+If you put in 360 for {math}\Theta{math end} in the rotation formula, you get the matrix {math-block}\begin{bmatrix}  0 & 1 \\   1 & 0 \\   \end{bmatrix}{math-block end}. This is also known as the 'identity' matrix because it makes no change to the original image. You get this matrix if you rotate by a multiple of 360 (including 0 degrees of course).
 {teacher end}
 
 The general matrix for *scaling* is a bit simpler; if you want to scale by a factor of *s*, then you just use the matrix:
 
-{math_block}
+{math-block}
 \begin{bmatrix} 
 s & 0 \\  
 0 & s \\  
 \end{bmatrix}
-{math_block end}
+{math-block end}
 
 A translation can't be specified by this kind of matrix, but in the interactives we've provided an extra place to specify an *x* and *y* value to translate the input.
 
-{include interactive computer_graphics_arrow parameters="&quiz=1 0 0 5 0 1 0 4 0 0 1 0 0 0 0 1"}
+{include interactive computer-graphics-arrow parameters="&quiz=1 0 0 5 0 1 0 4 0 0 1 0 0 0 0 1"}
 
 {teacher}
-Solution: Translate x is 5 and y is 4 (5 to the right and 4 up). The matrix should be {math_block}\begin{bmatrix}  1 & 0 \\   0 & 1 \\   \end{bmatrix}{math_block end}
+Solution: Translate x is 5 and y is 4 (5 to the right and 4 up). The matrix should be {math-block}\begin{bmatrix}  1 & 0 \\   0 & 1 \\   \end{bmatrix}{math-block end}
 {teacher end}
 
-{include interactive computer_graphics_arrow parameters="&quiz=2 0 0 4 0 2 0 3 0 0 2 0 0 0 0 1"}
+{include interactive computer-graphics-arrow parameters="&quiz=2 0 0 4 0 2 0 3 0 0 2 0 0 0 0 1"}
 
 {teacher}
-Solution: The matrix should be {math_block}\begin{bmatrix}  2 & 0 \\   0 & 2 \\   \end{bmatrix}{math_block} (doubles the size). Translate x is 4 and y is 3.
+Solution: The matrix should be {math-block}\begin{bmatrix}  2 & 0 \\   0 & 2 \\   \end{bmatrix}{math-block} (doubles the size). Translate x is 4 and y is 3.
 {teacher end}
 
-{include interactive computer_graphics_arrow parameters="&quiz=2 0 0 5 0 2 0 4 0 0 2 0 0 0 0 1"}
+{include interactive computer-graphics-arrow parameters="&quiz=2 0 0 5 0 2 0 4 0 0 2 0 0 0 0 1"}
 
 {teacher}
-Solution: The matrix should be {math_block}\begin{bmatrix}  2 & 0 \\   0 & 2 \\   \end{bmatrix}{math_block end} (still needed to double the size). However, the translation will be doubled as well since it comes before the matrix, therefore translate x is 2.5 and y is 2 (half of the distance needed). 
+Solution: The matrix should be {math-block}\begin{bmatrix}  2 & 0 \\   0 & 2 \\   \end{bmatrix}{math-block end} (still needed to double the size). However, the translation will be doubled as well since it comes before the matrix, therefore translate x is 2.5 and y is 2 (half of the distance needed). 
 {teacher end}
 
 In the above, you'll have noticed that scaling is affected by how far the object is from the centre.
@@ -259,7 +255,7 @@ If you want to scale around a fixed point in the object (so it expands where it 
 {include interactive computer_graphics_arrow_transform parameters="&zoom=-15.0 &quiz=2 0 0 -8 0 2 0 3 0 0 2 0 0 0 0 1 &start=1 0 0 -8 0 1 0 5 0 0 1 0 0 0 0 1 &allPrize=5"}
 
 {teacher}
-Solution: The first translation is x=8 and y=-7. Now the arrow tip is at the origin, and the doubling will keep the tip where it is. The matrix should be {math_block}\begin{bmatrix}  2 & 0 \\   0 & 2 \\   \end{bmatrix}{math_block end} as usual for doubling. The second translation needs to be -8,7 to get the arrow back to the starting point. 
+Solution: The first translation is x=8 and y=-7. Now the arrow tip is at the origin, and the doubling will keep the tip where it is. The matrix should be {math-block}\begin{bmatrix}  2 & 0 \\   0 & 2 \\   \end{bmatrix}{math-block end} as usual for doubling. The second translation needs to be -8,7 to get the arrow back to the starting point. 
 {teacher end}
 
 The same problem comes up with rotation. 
@@ -267,25 +263,25 @@ The same problem comes up with rotation.
 {include interactive computer_graphics_arrow_transform parameters="&zoom=-10.0 &quiz=0.699999988079071 0.699999988079071 0 -4.400000095367432 -0.699999988079071 0.699999988079071 0 4.599999904632568 0 0 1 0 0 0 0 1 &start=1 0 0 -3 0 1 0 4 0 0 1 0 0 0 0 1 &allPrize=5"}
 
 {teacher}
-Solution: The first translation is x=8 and y=-7. Now the arrow tip is at the origin, and the doubling will keep the tip where it is. The matrix should be {math_block}\begin{bmatrix}  2 & 0 \\   0 & 2 \\   \end{bmatrix}{math_block end} as usual for doubling. The second translation needs to be -8,7 to get the arrow back to the starting point. 
+Solution: The first translation is x=8 and y=-7. Now the arrow tip is at the origin, and the doubling will keep the tip where it is. The matrix should be {math-block}\begin{bmatrix}  2 & 0 \\   0 & 2 \\   \end{bmatrix}{math-block end} as usual for doubling. The second translation needs to be -8,7 to get the arrow back to the starting point. 
 {teacher end}
 
 The following two examples combine rotation, scaling and translation. You can use multiple matrices (that's the plural of matrix) to match up the target object --- the product of each matrix becomes the input to the next one. Oh, and the arrow is twice as fat, but still the same hight (from base to tip).
 
-{include interactive computer_graphics_arrow_double parameters="&zoom=-10.0 &quiz=0 1 0 4 2 0 0 -2 0 0 1 0 0 0 0 1 &allPrize=5"}
+{include interactive computer-graphics-arrow-double parameters="&zoom=-10.0 &quiz=0 1 0 4 2 0 0 -2 0 0 1 0 0 0 0 1 &allPrize=5"}
 
 {teacher}
-Solution: There are two solutions depending on whether you scale or rotate first. If scaling first, the scaling matrix is {math_block}\begin{bmatrix}  2 & 0 \\   0 & 1 \\   \end{bmatrix}{math_block end}. That makes the arrow twice as fat, but still the same height. The rotation matrix is {math_block}\begin{bmatrix}  0 & 1 \\   1 & 0 \\   \end{bmatrix}{math_block end} -- that's a 90 degree clockwise rotation. The translation vector is 4, -2.
+Solution: There are two solutions depending on whether you scale or rotate first. If scaling first, the scaling matrix is {math-block}\begin{bmatrix}  2 & 0 \\   0 & 1 \\   \end{bmatrix}{math-block end}. That makes the arrow twice as fat, but still the same height. The rotation matrix is {math-block}\begin{bmatrix}  0 & 1 \\   1 & 0 \\   \end{bmatrix}{math-block end} -- that's a 90 degree clockwise rotation. The translation vector is 4, -2.
 
-If you rotate first, the rotation is still {math_block}\begin{bmatrix}  0 & 1 \\   1 & 0 \\   \end{bmatrix}{math_block end} (90 degrees clockwise) but the scaling is {math_block}\begin{bmatrix}  1 & 0 \\   0 & 2 \\   \end{bmatrix}{math_block end}, since it now needs to be scaled in the y direction. The translation vector is still 4, -2.
+If you rotate first, the rotation is still {math-block}\begin{bmatrix}  0 & 1 \\   1 & 0 \\   \end{bmatrix}{math-block end} (90 degrees clockwise) but the scaling is {math_block}\begin{bmatrix}  1 & 0 \\   0 & 2 \\   \end{bmatrix}{math-block end}, since it now needs to be scaled in the y direction. The translation vector is still 4, -2.
 
-This can also be done by using only one matrix (if you combine the rotation and scaling); this could be a challenge to give the faster students. In that case the matrix is {math_block}\begin{bmatrix}  0 & 1 \\   2 & 0 \\   \end{bmatrix}{math_block end}. The translation is still 4,-2.
+This can also be done by using only one matrix (if you combine the rotation and scaling); this could be a challenge to give the faster students. In that case the matrix is {math-block}\begin{bmatrix}  0 & 1 \\   2 & 0 \\   \end{bmatrix}{math-block end}. The translation is still 4,-2.
 {teacher end}
 
 {include interactive computer_graphics_arrow_double parameters="&zoom=-6.0 &quiz=0.3499999940395355 -0.3499999940395355 0 -1 0.3499999940395355 0.3499999940395355 0 -2 0 0 1 0 0 0 0 1 &allPrize=5"}
 
 {teacher}
-Solution: The solution will depend on the order of scaling and rotating, but a simple solution is {math_block}\begin{bmatrix}  0.7 & -0.7 \\   0.7 & 0.7 \\   \end{bmatrix}{math_block end}  for the first matrix, {math_block}\begin{bmatrix}  0.5 & 0 \\   0 & 0.5 \\   \end{bmatrix}{math_block end} for the second matrix, and -1,-2 for the translation.
+Solution: The solution will depend on the order of scaling and rotating, but a simple solution is {math-block}\begin{bmatrix}  0.7 & -0.7 \\   0.7 & 0.7 \\   \end{bmatrix}{math-block end}  for the first matrix, {math-block}\begin{bmatrix}  0.5 & 0 \\   0 & 0.5 \\   \end{bmatrix}{math-block end} for the second matrix, and -1,-2 for the translation.
 {teacher end}
 
 These combined transformations are common, and they might seem like a lot of work because each matrix has to be applied to every point in an object. Our arrows only had 7 points, but complex images can have thousands or even millions of points in them. Fortunately we can combine all the matrix operations in advance to give just one operation to apply to each point.
