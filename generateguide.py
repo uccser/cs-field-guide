@@ -201,7 +201,7 @@ class Guide:
                 except:
                     logging.critical("Cannot write file {0}".format(file_name))
 
-        # TODO: Copy required files
+        # TODO: Copy all required files, store source/output info in new class
         for file_type,file_names in self.required_files.items():
             if file_type == 'images':
                 for file_name in file_names:
@@ -228,7 +228,6 @@ def file_exists(file_path):
     else:
         logging.error("File {0} does not exist".format(file_path))
         return False
-
 
 
 def main():

@@ -196,6 +196,22 @@ class Section:
         return html
 
 
+    def create_file_button(self, match):
+        """Create a button for downloading a file"""
+        filename = match.group('filename')
+
+        if 'files' in self.required_files:
+            self.required_files['files'].add(filename)
+        else:
+            self.required_files['files'] = {filename}
+
+        output_path = os.path.join(self.guide.generator_settings['Output']['Files'], filename)
+        text = self.html_templates['button-download-text'].format(filename=filename)
+        html = self.html_templates['button'].format(button_link=output_path, button_text=text)
+        return html
+
+
+
     # ----- Parsing Functions -----
 
     def parse_markdown_content(self, html_templates):
