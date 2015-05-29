@@ -3,7 +3,13 @@ AUTHOR: Jack Morgan
 REQUIRES: Python >= 3.4.1
 """
 
+"""Check and install dependencies if needed"""
 import pip
+# Update pip if needed
+pip.main(['install', '--upgrade', 'pip'])
+# Check dependencies
+pip.main(['install', '-r', 'generator/dependencies.conf'])
+
 import configparser
 import collections
 import logging
@@ -223,18 +229,11 @@ def file_exists(file_path):
         logging.error("File {0} does not exist".format(file_path))
         return False
 
-def check_dependencies():
-    """Check and install dependencies if needed"""
-    # Update pip if needed
-    pip.main(['install', '--upgrade', 'pip'])
-    # Check dependencies
-    pip.main(['install', '-r', './generator/dependencies.conf'])
 
 
 def main():
     """Creates a Guide object"""
     # Switch to current directory
-    check_dependencies()
     setup_logging()
     guide = Guide()
     logging.shutdown()
