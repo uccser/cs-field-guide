@@ -126,19 +126,22 @@ In this chapter we'll be using similar crude characterisations because they are 
 
 {jargon-buster end}
 
-If you've studied algorithms, you will have learnt that some sorting algorithms, such as mergesort and quicksort, are inherently faster than other algorithms, such as insertion sort, selection sort, or bubble sort. It’s obviously better to use the faster ones. The first two have a complexity of n log(n) time (that is, the number of steps that they take is roughly proportional to n log(n)), whereas the last three have complexity of n\ :sup:`2`. Generally the consequence of using the wrong sorting algorithm will be that a user has to wait many minutes (or perhaps hours) rather than a few seconds or minutes. 
+If you've studied algorithms, you will have learnt that some sorting algorithms, such as mergesort and quicksort, are inherently faster than other algorithms, such as insertion sort, selection sort, or bubble sort. It’s obviously better to use the faster ones. The first two have a complexity of n log(n) time (that is, the number of steps that they take is roughly proportional to n log(n)), whereas the last three have complexity of {math}n^2{math end}. Generally the consequence of using the wrong sorting algorithm will be that a user has to wait many minutes (or perhaps hours) rather than a few seconds or minutes. 
 
 Here we're going to consider another possible sorting algorithm, called *permutation sort*. Permutation sort says “Let’s list all the possible orderings (“permutations”) of the values to be sorted, and check each one to see if it is sorted, until the sorted order is found”.  This algorithm is straightforward to describe, but is it any good?
 
+{teacher}
 
-.. only:: teachers or dev
+Note that permutation sort is *not* a reasonable way to sort at all; it's just an idea to help us think about tractability. It should be obvious to students fairly quickly that it's grossly inefficient. The main thing is that is does produce the correct result, so it's an extreme example of an algorithm that works correctly, yet is way too inefficient (intractable) to be useful.
 
- .. admonition:: For teachers
+{teacher}
 
-  Note that permutation sort is *not* a reasonable way to sort at all; it's just an idea to help us think about tractability. It should be obvious to students fairly quickly that it's grossly inefficient. The main thing is that is does produce the correct result, so it's an extreme example of an algorithm that works correctly, yet is way too inefficient (intractable) to be useful.
+{comment}
 
 .. xHRN You've used orderings most of the time below, but why not use permutations as long as it's defined, which i've sort of done in the next sentence? Or we can use both... i'm not sure which is the most common term!
 .. We discussed that and came to the conclusion that “orderings” was better.
+
+{comment end}
 
 For example, if you are sorting the numbers 45, 21 and 84, then every possible order they can be put in (that is, all permutations) would be listed as:
 
@@ -157,68 +160,69 @@ For example, if you are sorting the numbers 45, 21 and 84, then every possible o
 Going through the above list, the only line that is in order is 21, 45, 84, so that's the solution.
 It's a very inefficient approach, but it will help to illustrate what we mean by tractability.
 
-In order to understand how this works, and the implications, choose four different words (in the example below we have used colours) and list all the possible orderings of the four words. Each word should appear exactly once in each ordering. You can either do this yourself, or use an online permutation generator such as `JavaScriptPermutations <http://users.telenet.be/vdmoortel/dirk/Maths/permutations.html>`__ or `Text Mechanic <http://textmechanic.com/Permutation-Generator.html>`__.
+In order to understand how this works, and the implications, choose four different words (in the example below we have used colours) and list all the possible orderings of the four words. Each word should appear exactly once in each ordering. You can either do this yourself, or use an online permutation generator such as [JavaScriptPermutations](http://users.telenet.be/vdmoortel/dirk/Maths/permutations.html) or [Text Mechanic](http://textmechanic.com/Permutation-Generator.html).
+
+{comment}
 
 .. xHTML5 build the permutation generator into the page
 
+{comment end}
+
 For example if you’d picked red, blue, green, and yellow, the first few orderings could be:
 
-| red, blue, green, yellow
-| red, blue, yellow, green
-| red, yellow, blue, green
-| red, yellow, green, blue
+red, blue, green, yellow  
+red, blue, yellow, green  
+red, yellow, blue, green  
+red, yellow, green, blue  
 
 They do not need to be in any particular order, although a systematic approach is recommended to ensure you don’t forget any!
 
-.. only:: teachers or dev
+{teacher}
 
- .. admonition:: For teachers
+For four different words, there will be 4x3x2x1 = 24 different orders for them. For example, there are 6 starting with "red", 6 starting with "blue", and so on.
 
-  For four different words, there will be 4x3x2x1 = 24 different orders for them. For example, there are 6 starting with "red", 6 starting with "blue", and so on.
-
+{teacher end}
 
 Once your list of permutations is complete, search down the list for the one that has the words sorted in alphabetical order. The process you have just completed is using permutation sort to sort the words.
 
 Now add another word. How many possible orderings will there be with 5 words? What about with only 2 and 3 words --- how many orderings are there for those? If you gave up on writing out all the orderings with 5 words, can you now figure out how many there might be? Can you find a pattern? How many do you think there might be for 10 words? (You don’t have to write them all out!).
 
-.. only:: teachers or dev
+{teacher}
 
- .. admonition:: For teachers
+The number of orderings (permutations) for n words is the factorial of n; this is explained below, but basically there are n choices for the first word, n-1 for the next, and so on. For example, for 15 words, there are 15 x 14 x 13 x 12 x ... x 1 permutations, which is 1,307,674,368,000. It's a big number!
 
-  The number of orderings (permutations) for n words is the factorial of n; this is explained below, but basically there are n choices for the first word, n-1 for the next, and so on. For example, for 15 words, there are 15 x 14 x 13 x 12 x ... x 1 permutations, which is 1,307,674,368,000. It's a big number!
+The factorial of a number can be calculated using a spreadsheet (in Excel the formula for 15! is =FACT(15). A lot of calculators have a factorial button ("!").  You can even type 15! into a Google search and get the answer. However, for dealing with very large numbers, the field guide has a simple calculator that can work with huge numbers; it is in the text below, or you can open it [here](_static/widgets/big-calculator.html?plain=true frameborder="0").  
 
-  The factorial of a number can be calculated using a spreadsheet (in Excel the formula for 15! is =FACT(15). A lot of calculators have a factorial button ("!").  You can even type 15! into a Google search and get the answer. However, for dealing with very large numbers, the field guide has a simple calculator that can work with huge numbers; it is in the text below, or you can open it `here <_static/widgets/big-calculator.html?plain=true frameborder="0">`_.  
+For the above questions, the number of permutations are:
 
-  For the above questions, the number of permutations are:
-   - 5 words: 120 permutations
-   - 2 words: 2 permutations (just the original two values and the reverse)
-   - 3 words: 6 permutations
-   - 10 words: 3,628,800 permutations
+- 5 words: 120 permutations
+- 2 words: 2 permutations (just the original two values and the reverse)
+- 3 words: 6 permutations
+- 10 words: 3,628,800 permutations
+
+{teacher end}
 
 If you didn’t find the pattern for the number of orderings, think about using factorials. For 3 words, there are 3!  (“3 factorial”) orderings. For 5 words, there are 5! orderings. Check the jargon buster below if you don’t know what a “factorial” is, or if you have forgotten!
 
+{jargon-buster}
 
-.. container:: jargon-buster
+**Jargon Buster**
 
- **Jargon Buster**
+Factorials are very easy to calculate; just multiply together all the integers from the number down to 1. For example, to calculate 5! you would simply multiply: 5 x 4 x 3 x 2 x 1 = 120. For 8! you would simply multiply 8 x 7 x 6 x 5 x 4 x 3 x 2 x 1 = 40,320.
 
- Factorials are very easy to calculate; just multiply together all the integers from the number down to 1. For example, to calculate 5! you would simply multiply: 5 x 4 x 3 x 2 x 1 = 120. For 8! you would simply multiply 8 x 7 x 6 x 5 x 4 x 3 x 2 x 1 = 40,320.
+As stated above, the factorial of a number tells you how many permutations (orderings) there would be for that number of words (assuming they are all different). This means that if you are arranging 8 words, there will be 40,320 ways of arranging them (which is why you weren’t asked to try this in the first exercise!!)
 
- As stated above, the factorial of a number tells you how many permutations (orderings) there would be for that number of words (assuming they are all different). This means that if you are arranging 8 words, there will be 40,320 ways of arranging them (which is why you weren’t asked to try this in the first exercise!!)
+Your calculator may have a "!" button for calculating factorials and spreadsheets usually have a "FACT" function, although for the factorials under 10 in this section, we recommend that you calculate them the long way, and then use the calculator as a double check. Ensuring you understand how a factorial is calculated is essential for understanding the rest of this section!
 
- Your calculator may have a "!" button for calculating factorials and spreadsheets usually have a "FACT" function, although for the factorials under 10 in this section, we recommend that you calculate them the long way, and then use the calculator as a double check. Ensuring you understand how a factorial is calculated is essential for understanding the rest of this section!
+{jargon-buster end}
 
 For factorials of larger numbers, most desktop calculators won't work so well; for example, 100! has 158 digits. You can use the calculator below to work with huge numbers (especially when using factorials and exponents).  
 
-.. only:: html or epub
- 
- .. raw:: html
-
-  <div class="widget-holder"><a href="_static/widgets/big-calculator.html?plain=true frameborder="0"" target="_blank"><img class="widget-image" src="_static/complexity_and_tractability/images/CT-BigCalculatorThumbnail.png" alt=""><span class="widget-subtitle">Click to load<br>big number calculator</span></a></div>
+<div class="widget-holder"><a href="_static/widgets/big-calculator.html?plain=true frameborder="0"" target="_blank"><img class="widget-image" src="_static/complexity_and_tractability/images/CT-BigCalculatorThumbnail.png" alt=""><span class="widget-subtitle">Click to load<br>big number calculator</span></a></div>
 
 Try calculating 100! using this calculator --- that's the number of different routes that a travelling salesman might take to visit 100 places (not counting the starting place). With this calculator you can copy and paste the result back into the input if you want to do further calculations on the number. If you are doing these calculations for a report, you should also copy each step of the calculation into your report to show how you got the result.
 
-There are other big number calculators available online; for example, the `Big Integer Calculator <http://www.javascripter.net/math/calculators/100digitbigintcalculator.htm>`_. Other big calculators are available online, or you could look for one to download for a desktop machine or smartphone. 
+There are other big number calculators available online; for example, the [Big Integer Calculator](http://www.javascripter.net/math/calculators/100digitbigintcalculator.htm). Other big calculators are available online, or you could look for one to download for a desktop machine or smartphone. 
 
 As a final exercise on permutation sort, calculate how long a computer would take to use permutation sort to sort 100 numbers. Remember that you can use the calculator that was linked to above. Assume that you don’t have to worry about how long it will take to generate the permutations, only how long it will take to check them. Assume that you have a computer that creates and checks an ordering every nanosecond.
 
@@ -227,30 +231,33 @@ As a final exercise on permutation sort, calculate how long a computer would tak
 - How many orderings can be checked in a year?
 - How many years will checking all the orderings take?
 
-.. only:: teachers or dev
+{teacher}
 
- .. admonition:: For teachers
+The number of orderings for 100 numbers is 100!, which is 93, 326, 215, 443, 944, 152, 681, 699, 238, 856, 266, 700, 490, 715, 968, 264, 381, 621, 468, 592, 963, 895, 217, 599, 993, 229, 915, 608, 941, 463, 976, 156, 518, 286, 253, 697, 920, 827, 223, 758, 251, 185, 210, 916, 864, 000, 000, 000, 000, 000, 000, 000, 000.
 
-  The number of orderings for 100 numbers is 100!, which is 93, 326, 215, 443, 944, 152, 681, 699, 238, 856, 266, 700, 490, 715, 968, 264, 381, 621, 468, 592, 963, 895, 217, 599, 993, 229, 915, 608, 941, 463, 976, 156, 518, 286, 253, 697, 920, 827, 223, 758, 251, 185, 210, 916, 864, 000, 000, 000, 000, 000, 000, 000, 000.
+A nanosecond is 1/1,000,000,000 of a second, so the suggested system can check a billion orderings per second.
 
-  A nanosecond is 1/1,000,000,000 of a second, so the suggested system can check a billion orderings per second.
+There are 60x60x24x365 seconds in a non-leap year, which is 31,536,000, so the proposed system could check 31,536,000 *billion* orderings in a year, so dividing 100! by this number, we get 2, 959, 354, 878, 359, 467, 043, 432, 877, 944, 452, 901, 461, 527, 015, 736, 440, 310, 168, 334, 378, 611, 593, 658, 041, 388, 569, 114, 946, 139, 776, 006, 992, 588, 985, 721, 014, 739, 574, 573, 764, 941, 185, 024, 000, 000, 000, 000 years. That's an inconceivable amount of time, just to sort 100 values. This algorithm really is intractable!
 
-  There are 60x60x24x365 seconds in a non-leap year, which is 31,536,000, so the proposed system could check 31,536,000 *billion* orderings in a year, so dividing 100! by this number, we get 2, 959, 354, 878, 359, 467, 043, 432, 877, 944, 452, 901, 461, 527, 015, 736, 440, 310, 168, 334, 378, 611, 593, 658, 041, 388, 569, 114, 946, 139, 776, 006, 992, 588, 985, 721, 014, 739, 574, 573, 764, 941, 185, 024, 000, 000, 000, 000 years. That's an inconceivable amount of time, just to sort 100 values. This algorithm really is intractable!
-
+{teacher end}
 
 And as an interesting thing to think about, do some calculations based on the assumptions listed below. How long would it take to use permutation sort on 100 numbers? What would happen first: the algorithm would finish, or the universe would end?
 
-- There are 10\ :sup:`82` atoms in the universe
+- There are {math}10^82{math end} atoms in the universe
 - The universe has another 14 billion years before it ends
 - Suppose every atom in the universe is a computer that can check an ordering every nanosecond
 
-.. only:: teachers or dev
+{teacher}
 
- .. admonition:: For teachers
+In the above example, the universe would end before the 100 numbers have been sorted!
 
-  In the above example, the universe would end before the 100 numbers have been sorted!
+{teacher end}
+
+{comment}
 
 .. xtcb put in the calcuations for teachers (and check my ones in the previous teacher note!) I had to use two calculators, one for !, and this one because it can have values pasted in: https://defuse.ca/big-number-calculator.htm
+
+{comment}
 
 By now, you should be very aware of the point that is being made. Permutation sort is so inefficient that sorting 100 numbers with it takes so long that it is essentially impossible. Trying to use permutation sort with a non trivial number of values simply won’t work. While selection sort is a lot slower than quick sort or merge sort, it wouldn’t be impossible for Facebook to use selection sort to sort their list of 1 billion users. It would take a lot longer than quick sort would, but it would be doable. Permutation sort on the other hand would be impossible to use!
 
@@ -261,31 +268,35 @@ The term "intractable" is used a bit more formally in computer science; it's exp
 
 But the *problem* of sorting items into order is not intractable - even though the Permutation sort algorithm is intractable,  there are lots of other efficient and not-so-efficient algorithms that you could use to solve a sorting problem in a reasonable amount of time:  quick sort, merge sort, selection sort, even bubble sort!  However, there are some problems in which the ONLY known algorithm is one of these intractable ones. Problems in this category are known as *intractable problems*. 
 
-.. container:: curiosity
+{curiosity}
 
- **Curiosity : Towers of Hanoi**
+**Curiosity : Towers of Hanoi**
 
- The Towers of Hanoi problem is a challenge where you have a stack of disks of increasing size on one peg, and two empty pegs. The challenge is to move all the disks from one peg to another, but you may not put a larger disk on top of a smaller one. There's a description of it at `Wikipedia <http://en.wikipedia.org/wiki/Tower_of_Hanoi>`__.
+The Towers of Hanoi problem is a challenge where you have a stack of disks of increasing size on one peg, and two empty pegs. The challenge is to move all the disks from one peg to another, but you may not put a larger disk on top of a smaller one. There's a description of it at [Wikipedia](http://en.wikipedia.org/wiki/Tower_of_Hanoi).
 
- This problem cannot be solved in fewer than 2\ :sup:`n-1` moves, so it's an intractable problem (a computer program that lists all the moves to make would use at least 2\ :sup:`n - 1` steps). For 6 disks it only needs 63 moves, but for 50 disks this would be 1,125,899,906,842,623 moves.
+This problem cannot be solved in fewer than {math}2^(n-1){math end} moves, so it's an intractable problem (a computer program that lists all the moves to make would use at least {math}2^(n-1){math end} steps). For 6 disks it only needs 63 moves, but for 50 disks this would be 1,125,899,906,842,623 moves.
 
- We usually characterise a problem like this as having a complexity of 2\ :sup:`n`, as subtracting one to get a precise value makes almost no difference, and the shorter expression is simpler to communicate to others. 
+We usually characterise a problem like this as having a complexity of {math}2^n{math end}, as subtracting one to get a precise value makes almost no difference, and the shorter expression is simpler to communicate to others. 
 
- The Towers of Hanoi is one problem where we know for sure that it will take exponential time. There are many intractable problems where this isn't the case --- we don't have tractable solutions for them, but we don't know for sure if they don't exist. Plus this isn't a real problem --- it's just a game (although there is a backup system based on it). But it is a nice example of an exponential time algorithm, where adding one disk will double the number of steps required to produce a solution.
+The Towers of Hanoi is one problem where we know for sure that it will take exponential time. There are many intractable problems where this isn't the case --- we don't have tractable solutions for them, but we don't know for sure if they don't exist. Plus this isn't a real problem --- it's just a game (although there is a backup system based on it). But it is a nice example of an exponential time algorithm, where adding one disk will double the number of steps required to produce a solution.
+
+{curiosity end}
+
+{comment}
 
 .. xtcb mention the myth(s) of Hanoi (for fun, in a later version of the guide :-)
 
+{comment end}
 
-Tractability
-=====================================================
+## Tractability
 
-.. only:: teachers or dev
+{teacher}
 
- .. admonition:: For teachers
+The following section relies on students using the built-in interactive to experiment with the calculations on the huge numbers that come up with the intractable problems. This may be best run as a class activity where students are guided through calculating the stupendously big numbers that come up, and they should be encouraged to appreciate how impractical the amount of time taken by a program would be --- for example, a program that takes a million years to find a solution won't be of any interest to the person who started it running, and even if a computer turned up that is 1000 times as fast, it would still take 1000 years to complete. Some of the times that turn up below are so long that they are beyond our ability to imagine, and are best illustrated by seeing how futile the times are even with 1000, a million or even a billion times the computing power.
 
-  The following section relies on students using the built-in interactive to experiment with the calculations on the huge numbers that come up with the intractable problems. This may be best run as a class activity where students are guided through calculating the stupendously big numbers that come up, and they should be encouraged to appreciate how impractical the amount of time taken by a program would be --- for example, a program that takes a million years to find a solution won't be of any interest to the person who started it running, and even if a computer turned up that is 1000 times as fast, it would still take 1000 years to complete. Some of the times that turn up below are so long that they are beyond our ability to imagine, and are best illustrated by seeing how futile the times are even with 1000, a million or even a billion times the computing power.
+An earlier version of this chapter provided the following spreadsheet for doing these calculations; we've retained the link here for the meantime, but the new online interactive can cope a lot better with the large numbers in the calculations. If you are interested, you can [download the spreadsheet here](_static/complexity_and_tractability/CT-tractable.xlsx) to do the calculations.
 
-  An earlier version of this chapter provided the following spreadsheet for doing these calculations; we've retained the link here for the meantime, but the new online interactive can cope a lot better with the large numbers in the calculations. If you are interested, you can `download the spreadsheet here <_static/complexity_and_tractability/CT-tractable.xlsx>`_ to do the calculations.
+{teacher end}
 
 There's a very simple rule that computer scientists use to decide if an algorithm is tractable or not, based on the complexity (estimated number of steps) of the algorithm.
 Essentially, if the algorithm takes an exponential amount of time or worse for an input of size *n*, it is labelled as intractable.
@@ -293,93 +304,87 @@ This simple rule is a bit crude, but it's widely used and provides useful guidan
 (Note that a factorial amount of time, *n!*, is intractable because it's bigger than an exponential function.)
 
 To see what this means, let's consider how long various algorithms might take to run.
-The following interactive will do the calculations for you to estimate how long an algorithm might take to run. You can choose if the running time is exponential (that is, 2\ :sup:`n`, which is the time required for the Towers of Hanoi problem with *n* disks), or factorial (that is, :math:`n!`, which is the time required for checking all possible routes a travelling salesman would make to visit *n* places other than the starting point). You can use the interactive below to calculate the time.
+The following interactive will do the calculations for you to estimate how long an algorithm might take to run. You can choose if the running time is exponential (that is, {math}2^n{math end}, which is the time required for the Towers of Hanoi problem with *n* disks), or factorial (that is, {math}n!{math end}, which is the time required for checking all possible routes a travelling salesman would make to visit *n* places other than the starting point). You can use the interactive below to calculate the time.
 
 For example, try choosing the factorial time for the TSP, and put in 20 for the value of *n* (i.e. this is to check all possible travelling salesman visits to 20 places).
 Press the return or tab key to update the calculation.
 The calculator will show a large number of seconds that the program will take to run; you can change the units to years to see how long this would be.
 
-.. only:: teachers or dev
+{teacher}
 
- .. admonition:: For teachers
+With the initial settings in the interactive, the TSP for 20 places will take 2,432,902,008,176,640,000.00 seconds, which is 773,056,638.51 centuries (note that the calculator needs to be set to n! to apply to the TSP). By the way, we're giving very precise numbers here just so that you know you have the right calculations in place; in practice the estimate is very crude, and rather than 773,056,638.51 centuries, it's just as accurate to say "about 770 million centuries", or even just "hundreds of millions of centuries". It may be more meaningful to students it this is converted to some geological time frame.
 
-  With the initial settings in the interactive, the TSP for 20 places will take 2,432,902,008,176,640,000.00 seconds, which is 773,056,638.51 centuries (note that the calculator needs to be set to n! to apply to the TSP). By the way, we're giving very precise numbers here just so that you know you have the right calculations in place; in practice the estimate is very crude, and rather than 773,056,638.51 centuries, it's just as accurate to say "about 770 million centuries", or even just "hundreds of millions of centuries". It may be more meaningful to students it this is converted to some geological time frame.
+{teacher end}
 
-.. only:: html or epub
- 
- .. raw:: html
-
-  <div class="widget-holder"><a href="_static/widgets/tract-scaling-v2.html" target="_blank"><img class="widget-image" src="_static/images/CT-TimeCalculatorThumbnail.png" alt=""><span class="widget-subtitle">Click to load<br>big number calculator</span></a></div>
+<div class="widget-holder"><a href="_static/widgets/tract-scaling-v2.html" target="_blank"><img class="widget-image" src="_static/images/CT-TimeCalculatorThumbnail.png" alt=""><span class="widget-subtitle">Click to load<br>big number calculator</span></a></div>
 
 So far the calculation assumes that the computer would only do 1 operation per second; try changing to a million (1,000,000) operations per second, which is more realistic, and see how long that would take.
 
-.. only:: teachers or dev
+{teacher}
 
- .. admonition:: For teachers
+When the computer is a million times faster, the time for TSP on 20 places reduces from 773,056,638.51 centuries to 773.06 centuries. It's still completely impractical!
 
-  When the computer is a million times faster, the time for TSP on 20 places reduces from 773,056,638.51 centuries to 773.06 centuries. It's still completely impractical!
+{teacher end}
 
 Another way to solve problems faster is to have multiple processors work on different solutions at the same time. 
 If you were to buy 1,000 processors (e.g. 1,000 computers, or 250 4-core computers) and have each one test out different routes, then the solution could be found 1,000 times faster. Try changing the number of processors to 1,000, and see how long that would take (you may need to change the units back --- is it seconds? hours? days?)
 
-.. only:: teachers or dev
+{teacher}
 
- .. admonition:: For teachers
+1,000 processors reduces the running time to 77.31 years. That's still too much computing power to be practical, but it's starting to get into the region where it's not completely impossible.
 
-  1,000 processors reduces the running time to 77.31 years. That's still too much computing power to be practical, but it's starting to get into the region where it's not completely impossible.
+{teacher}
 
 The interactive above estimates the amount of time taken for various algorithms to run given *n* values to be processed.
 Let's assume that we have a *very* fast computer, faster than any that exist.
 Try putting in the assumption that the computer can do a million million (1,000,000,000,000) steps per second.
 Is that achievable? But what if you add just two more locations to the problem (i.e. n=22 instead of n=20)?
 
-.. only:: teachers or dev
+{teacher}
 
- .. admonition:: For teachers
+This incredibly high speed would reduce the time to 40.55 seconds. However, increasing the problem to just 22 cities blows it out again to 13.01 days. The main point is that even if you get a massively fast bank of computers that can solve a particular problem, just adding a few items to the problem will put it out of reach again.
 
-  This incredibly high speed would reduce the time to 40.55 seconds. However, increasing the problem to just 22 cities blows it out again to 13.01 days. The main point is that even if you get a massively fast bank of computers that can solve a particular problem, just adding a few items to the problem will put it out of reach again.
+{teacher end}
 
-
-Now, consider an algorithm that has a complexity of n\ :sup:`2` (there are lots that take roughly this number of steps, including selection sort which was mentioned earlier).
+Now, consider an algorithm that has a complexity of {math}n^2{math end} (there are lots that take roughly this number of steps, including selection sort which was mentioned earlier).
 Type in a value of 1,000,000 for *n*  to see how long it might take to sort a million items on a single processor (keep the number of steps per second at 1,000,000,000,000, but set the number of processors to just 1) --- it should show that it will only take about 1 second on our hypothetical very fast machine.
 Now put in 10 million for *n* --- although it's sorting a list 10 times as big, it takes more than 10 times as long, and will now take a matter of minutes rather than seconds.
 At what value of *n* does the amount of time become out of the question --- that is, how large would the problem need to be for it to take years to finish?
 Is anyone ever likely to be sorting this many values --- for example, what if for some reason you were sorting the name of every person in the world, or every base in the human genome?
 
-.. only:: teachers or dev
+{teacher}
 
- .. admonition:: For teachers
+The {math}n^2{math end} algorithm with 10 million items takes 100 seconds above (each time n is multiplied by 10, it will take 100 times as long). 
 
-  The n\ :sup:`2` algorithm with 10 million items takes 100 seconds above (each time n is multiplied by 10, it will take 100 times as long). 
+When n is a thousand million, it takes nearly 12 days, at which point you might consider it to be out of the question. At n=10,000,000,000 it takes about 3.18 years, which is likely to be longer than a computer could run for continuously. But that's a pretty big number of items to process --- for example, it's big enough to cope with the population of the whole world. And there's room for improvement by using a reasonable number of multiple processors.
 
-  When n is a thousand million, it takes nearly 12 days, at which point you might consider it to be out of the question. At n=10,000,000,000 it takes about 3.18 years, which is likely to be longer than a computer could run for continuously. But that's a pretty big number of items to process --- for example, it's big enough to cope with the population of the whole world. And there's room for improvement by using a reasonable number of multiple processors.
+{teacher end}
 
-What about an algorithm with complexity of n\ :sup:`3`? What's the largest size input that it can process in a reasonable amount of time?
+What about an algorithm with complexity of {math}n^3{math end}? What's the largest size input that it can process in a reasonable amount of time?
 
-.. only:: teachers or dev
+{teacher}
 
- .. admonition:: For teachers
+The {math}n^3{math end} algorithm can process 1,000,000 items in 11.57 days. A million is nothing near the population of the world, or even a lot of countries, but a lot of real life problems are smaller than that.
 
-  The n\ :sup:`3` algorithm can process 1,000,000 items in 11.57 days. A million is nothing near the population of the world, or even a lot of countries, but a lot of real life problems are smaller than that.
+{teacher end}
 
-Now try the same when the number of steps is 2\ :sup:`n`, but start with a value of 10 for *n* , then try 30, 40 , 50 and so on.
+Now try the same when the number of steps is {math}2^n{math end}, but start with a value of 10 for *n* , then try 30, 40 , 50 and so on.
 You'll probably find that for an input of about 70 items it will take an unreasonable amount of time.
 Is it much worse for 80 items?
 
-.. only:: teachers or dev
+{teacher}
 
- .. admonition:: For teachers
+The {math}2^n{math end} algorithm is in a completely different league to the previous ones. 10 items take a fraction of a second (1.02 nanoseconds to be precise), and 60 items take 13.34 days, but just 70 items blows out to 37.51 years, and 80 items takes 384 centuries. Small increases in the number of items (eg. cities for the TSP to visit) result in HUGE increases in the time taken to evaluate them all.
 
-  The 2\ :sup:`n`  algorithm is in a completely different league to the previous ones. 10 items take a fraction of a second (1.02 nanoseconds to be precise), and 60 items take 13.34 days, but just 70 items blows out to 37.51 years, and 80 items takes 384 centuries. Small increases in the number of items (eg. cities for the TSP to visit) result in HUGE increases in the time taken to evaluate them all.
-
+{teacher end}
 
 Now try increasing the number of operations per second to 10 times as many. Does this help to solve bigger problems?
 
-.. only:: teachers or dev
+{teacher}
 
- .. admonition:: For teachers
+10 times faster reduces 384 centuries to 38.4 centuries - much faster, but it is still an impossibly large amount of time. The lesson is that the algorithm will be so slow that even massive improvements in hardware won't have a useful impact.
 
-  10 times faster reduces 384 centuries to 38.4 centuries - much faster, but it is still an impossibly large amount of time. The lesson is that the algorithm will be so slow that even massive improvements in hardware won't have a useful impact.
+{teacher end}
 
 Trying out these figures you will likely have encountered the barrier between "tractable" and "intractable" problems.
 Algorithms that take n\ :sup:`2`, n\ :sup:`3` or even n\ :sup:`4` time to solve a problem (such as sorting a list) aren't amazing, but at least with a fast enough computer and for the size of inputs we might reasonably encounter, we have a chance of running them within a human lifetime, and these are regarded as *tractable* .
