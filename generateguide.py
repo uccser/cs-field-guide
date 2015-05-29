@@ -15,6 +15,7 @@ from generator.markdownsection import Section
 
 GUIDE_SETTINGS = 'guide-settings.conf'
 GENERATOR_SETTINGS = 'generator/generator-settings.conf'
+REGEX_LIST = 'generator/regex-list.conf'
 LOGFILE_SETTINGS = 'generator/logging.conf'
 
 class Guide:
@@ -22,6 +23,7 @@ class Guide:
         # Read settings
         self.guide_settings = self.read_settings(GUIDE_SETTINGS)
         self.generator_settings = self.read_settings(GENERATOR_SETTINGS)
+        self.regex_list = self.read_settings(REGEX_LIST)
 
         self.language = self.parse_language()
         self.version = self.parse_version()
@@ -111,7 +113,6 @@ class Guide:
         settings.read(settings_location)
         return settings
 
-
     def parse_structure(self):
         """Create dictionary of guide structure"""
         structure = collections.defaultdict(list)
@@ -139,7 +140,7 @@ class Guide:
                         data = source_file.read()
                 else:
                     data = None
-                content[title] = Section(title, data, file_path)
+                content[title] = Section(title, data, file_path, self)
         return content
 
 
@@ -227,13 +228,12 @@ def check_dependencies():
     # Update pip if needed
     pip.main(['install', '--upgrade', 'pip'])
     # Check dependencies
-    pip.main(['install', '-r', 'generator/dependencies.conf'])
+    pip.main(['install', '-r', './generator/dependencies.conf'])
 
 
 def main():
     """Creates a Guide object"""
     # Switch to current directory
-    os.chdir(os.path.dirname(os.path.realpath(__file__)))
     check_dependencies()
     setup_logging()
     guide = Guide()

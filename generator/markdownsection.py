@@ -14,14 +14,15 @@ MARKDOWN2_EXTRAS = ["code-friendly",
 
 
 class Section:
-    def __init__(self, title, markdown_text, file_path):
+    def __init__(self, title, markdown_text, file_path, guide):
+        self.guide = guide
         self.title = title
         self.markdown_text = markdown_text
         self.file_path = file_path
         self.number = [0, 0, 0, 0, 0, 0]
         self.page_header_numbered = False
         self.html_content = []
-        self.create_regex_list()
+        self.regex_functions = self.create_regex_functions()
         self.permalinks = set()
         # Dictionary of sets for images, interactives, and other_files
         self.required_files = {}
@@ -209,19 +210,18 @@ class Section:
         for section_text in self.markdown_text.split('{page break}'):
             # Parse with our parser
             text = section_text
-            for regex, function in self.REGEX_MATCHES:
+            for regex, function in self.regex_functions:#REGEX_MATCHES:
                 text = re.sub(regex, function, text, flags=re.MULTILINE)
             # Parse with markdown2
             parsed_html = markdown(text, extras=MARKDOWN2_EXTRAS)
             self.html_content.append(parsed_html)
 
 
-    def create_regex_list(self):
-        self.REGEX_MATCHES = [("(\\\{|\\\})", self.escape_backslash),
-                              ("^(\n*\{comment([^{]+\}|\}[^{]*\{comment end\})\n*)+", self.delete_comment),
-                              ("\{(?P<type>math|math-block)\}(?P<equation>[\s\S]+?)\{(math|math-block) end\}", self.process_math_text),
-                              ("^(?P<heading_level>#{1,6}) ?(?P<heading>[\w!?,' ]+)!?\n", self.create_heading),
-                              ("^\{image (?P<filename>[^ \}]+) ?(?P<args>[^\}]*)\}", self.add_image),
-                              ("^\{video (?P<url>[^\}]*)\}", self.embed_video),
-                              ("^\{(?P<type>teacher|curiosity|jargon-buster|warning)\}", self.create_panel_start),
-                              ("^\{(?P<type>teacher|curiosity|jargon-buster|warning) end\}", self.end_div)]
+    def create_regex_functions(self):
+        regex_list = self.guide.regex_list
+        regex_functions = []
+        for regex_name in regex_list.sections():
+            regex = regex_list[regex_name]['regex']
+            function = getattr(self, regex_list[regex_name]['function'])
+            regex_functions.append((regex, function))
+        return regex_functions
