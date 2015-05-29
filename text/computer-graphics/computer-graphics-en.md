@@ -774,176 +774,157 @@ Once you have completed the line, check it with a ruler. How does it compare to 
 Now  consider the number of calculations that are needed to work out each point.
 It won't seem like many, but remember that a computer might be calculating hundreds of points on thousands of lines in a complicated image. In the next section we will explore a method that greatly speeds this up.
 
-.. only:: teachers or dev
+{teacher}
 
- .. admonition:: For teachers
+Each point requires a multiplication and an addition, and also needs to round the numbers. Multiplications are relatively slow, and one is required for every pixel in the output (there could be thousands or even millions of pixels to calculate, so can be very significant!) Even worse, the numbers are floating point, which usually have slower arithmetic than integers.
 
-   Each point requires a multiplication and an addition, and also needs to round the numbers. Multiplications are relatively slow, and one is required for every pixel in the output (there could be thousands or even millions of pixels to calculate, so can be very significant!) Even worse, the numbers are floating point, which usually have slower arithmetic than integers.
+{teacher end}
 
-Bresenham's Line Algorithm
-------------------------------------------------------
+### Bresenham's Line Algorithm
 
 A faster way for a computer to calculate which pixels to colour in is to use Brensenham's Line Algorithm. It follows these simple rules. First, calculate these three values:
 
-.. math::
+{math-block}
 
+\[A = 2 \times (y_2 - y_1)\]
 
- \[A = 2 \times (y_2 - y_1)\]
+\[B = A - 2 \times (x_2 - x_1)\]
 
- \[B = A - 2 \times (x_2 - x_1)\]
- 
- \[P = A - (x_2 - x_1)\]
+\[P = A - (x_2 - x_1)\]
+
+{math-block end}
 
 To draw the line, fill the starting pixel, and then for every position along the *x* axis:
 
-- if :math:`\(P\)` is less than 0, draw the new pixel on the same line as the last pixel, and add :math:`\(A\)` to :math:`\(P\)`.
-- if :math:`\(P\)` was 0 or greater, draw the new pixel one line higher than the last pixel, and add :math:`\(B\)` to :math:`\(P\)`.
+- if {math}(P){math end} is less than 0, draw the new pixel on the same line as the last pixel, and add {math}(A){math end} to {math}(P){math end}.
+- if {math}(P){math end} was 0 or greater, draw the new pixel one line higher than the last pixel, and add {math}(B){math end} to {math}(P){math end}.
 - repeat this decision until we reach the end of the line.
 
 Without using a ruler, use Bresenham's Line Algorithm to draw a straight line from A to B:
 
-.. figure:: _static/computer_graphics/20grid_ab.png
- :alt: Grid for drawing line from A to B
- :align: center
- :width: 30%
+{image computer-graphics/20grid-ab.png alt="Grid for drawing line from A to B"}
 
 Once you have completed the line, check it with a ruler. How does it compare to the previous attempts?
 
-.. only:: teachers or dev
+{teacher}
 
- .. admonition:: For teachers
+This table shows the values that would be calculated using Bresenham's method for the above example:
 
-   This table shows the values that would be calculated using Bresenham's method for the above example:
+============================ ===================================================================
+Calculation                  Pixel to colour in
+============================ ===================================================================
+{math}(A = 10,  B = -16){math end} Draw the starting pixel
+{math}(P_0 = -3){math end}         Next pixel (to the right) is on the same row as the starting pixel.
+{math}(P_1 = 7){math end}          Next pixel is on the row above the previous pixel.
+{math}(P_1 = -9){math end}         Next pixel is on the same row as the previous pixel.
+{math}(P_3 = 1){math end}          Next pixel is on the row above the previous pixel.
+{math}(P_4 = -15){math end}        Next pixel is on the same row as the previous pixel.
+{math}(P_5 = -5){math end}         Next pixel is on the same row as the previous pixel.
+{math}(P_6 = 5){math end}          Next pixel is on the row above the previous pixel.
+{math}(P_7 = -11){math end}        Next pixel is on the same row as the previous pixel.
+{math}(P_8 = -1){math end}         Next pixel is on the same row as the previous pixel.
+{math}(P_9 = 9){math end}          Next pixel is on the row above the previous pixel.
+{math}(P_{10} = -7){math end}      Next pixel is on the same row as the previous pixel.
+{math}(P_{11} = 3){math end}       Next pixel is on the row above the previous pixel.
+{math}(P_{12} = -13){math end}     Next pixel is on the row above the previous pixel.
+============================ ===================================================================
 
-   ============================ ===================================================================
-   Calculation                  Pixel to colour in
-   ============================ ===================================================================
-   :math:`\(A = 10,  B = -16\)` Draw the starting pixel
-   :math:`\(P_0 = -3\)`         Next pixel (to the right) is on the same row as the starting pixel.
-   :math:`\(P_1 = 7\)`          Next pixel is on the row above the previous pixel.
-   :math:`\(P_1 = -9\)`         Next pixel is on the same row as the previous pixel.
-   :math:`\(P_3 = 1\)`          Next pixel is on the row above the previous pixel.
-   :math:`\(P_4 = -15\)`        Next pixel is on the same row as the previous pixel.
-   :math:`\(P_5 = -5\)`         Next pixel is on the same row as the previous pixel.
-   :math:`\(P_6 = 5\)`          Next pixel is on the row above the previous pixel.
-   :math:`\(P_7 = -11\)`        Next pixel is on the same row as the previous pixel.
-   :math:`\(P_8 = -1\)`         Next pixel is on the same row as the previous pixel.
-   :math:`\(P_9 = 9\)`          Next pixel is on the row above the previous pixel.
-   :math:`\(P_{10} = -7\)`      Next pixel is on the same row as the previous pixel.
-   :math:`\(P_{11} = 3\)`       Next pixel is on the row above the previous pixel.
-   :math:`\(P_{12} = -13\)`     Next pixel is on the row above the previous pixel.
-   ============================ ===================================================================
+{teacher end}
 
-
-
-
-Lines at other angles
-------------------------------------------------
+### Lines at other angles
 
 So far the version of Bresenham's line drawing algorithm that you have used only works for lines that have a gradient (slope) between 0 and 1 (that is, from horizontal to 45 degrees). To make this algorithm more general, so that it can be used to draw any line, some additional rules are needed:
 
 - If a line is sloping downward instead of sloping upward, then when P is 0 or greater, draw the next column's pixel one row *below* the previous pixel, instead of above it.
 - If the change in Y value is greater than the change in X value, then the calculations for A, B, and the initial value for P will need to be changed. When calculating A, B, and the initial P, use X where you previously would have used Y, and vice versa. When drawing pixels, instead of going across every column in the X axis, go through every row in the Y axis, drawing one pixel per row. 
 
-.. figure:: _static/computer_graphics/20grid.png
- :alt: Grid for drawing line
- :align: center
- :width: 30%
+{image computer-graphics/20grid.png alt="Grid for drawing line"}
 
 In the grid above, choose two points of your own that are unique to you. 
 Don't choose points that will give horizontal, vertical or diagonal lines!
 
 Now use Bresenham's algorithm to draw the line.
-Check that it gives the same points as you would have chosen using a ruler, or using the formula :math:`\(y = mx+b\)`.
+Check that it gives the same points as you would have chosen using a ruler, or using the formula {math}(y = mx+b){math end}.
 How many arithmetic calculations (multiplications and additions) were needed for Bresenhams algorithm?
-How many would have been needed if you used the :math:`\(y = mx+b\)` formula? 
+How many would have been needed if you used the {math}(y = mx+b){math end} formula? 
 Which is faster (bear in mind that adding is a lot faster than multiplying for most computers).
 
-.. only:: teachers or dev
+{teacher}
 
- .. admonition:: For teachers
+This method only has to compare an integer with 0 and do one addition for each pixel, which is a lot faster than the calculations in the previous version.
 
-   This method only has to compare an integer with 0 and do one addition for each pixel, which is a lot faster than the calculations in the previous version.
-
+{teacher end}
 
 You could write a program or design a spreadsheet to do these calculations for you --- that's what graphics programmers have to do.
 
 
-Circles
-------------
+### Circles
 
 As well as straight lines, another common shape that computers often need to draw are circles.
 An algorithm similar to Bresenham's line drawing algorithm, called the Midpoint Circle Algorithm, has been developed for drawing a circle efficiently.
 
 A circle is defined by a centre point, and a radius. Points on a circle are all the radius distance from the centre of the circle.
 
-.. figure:: _static/computer_graphics/20grid_cr.png
- :alt: Grid for drawing a circle
- :align: center
- :width: 30%
+{image computer-graphics/20grid-cr.png alt="Grid for drawing a circle"}
 
 Try to draw a circle by hand by filling in pixels (without using a ruler or compass). Note how difficult it is to make the circle look round.
 
 It is possible to draw the circle using a formula based on Pythagoras' theorem, but it requires calculating a square root for each pixel, which is very slow. 
 The following algorithm is much faster, and only involves simple arithmetic so it runs quickly on a computer.
 
+### Bresenham's Midpoint Circle Algorithm
 
-Bresenham's Midpoint Circle Algorithm
-------------------------------------------------------------------------------------------------
+{comment}
 
 .. xTCB could mention later that Bresenham didn't invent it, but idea comes from his line algorithm and is often named after him
 
-Here are the rules for the Midpoint Circle Algorithm for a circle around (:math:`\(c_{x}\)`, :math:`\(c_{y}\)`) with a radius of :math:`\(R\)`:
+{comment end}
 
-.. math::
- \[E = -R\]
- \[X = R\]
- \[Y = 0\]
+Here are the rules for the Midpoint Circle Algorithm for a circle around ({math}(c_{x}){math end}, {math}(c_{y}){math end}) with a radius of {math}(R){math end}:
+
+{math-block}
+
+\[E = -R\]
+\[X = R\]
+\[Y = 0\]
+
+{math-block end}
 
 Repeat the following rules in order until *Y* becomes greater than *X*\ :
 
-- Fill the pixel at coordinate (:math:`\(c_{x} + X\)`, :math:`\(c_{y} + Y\)`)
-- Increase *E* by :math:`\(2 \times Y + 1\)`
+- Fill the pixel at coordinate ({math}(c_{x} + X){math end}, {math}(c_{y} + Y){math end})
+- Increase *E* by {math}(2 \times Y + 1){math end}
 - Increase *Y* by 1
-- If *E* is greater than or equal to 0,  subtract :math:`\((2X - 1)\)` from *E*, and then subtract 1 from *X*.
+- If *E* is greater than or equal to 0,  subtract {math}((2X - 1)){math end} from *E*, and then subtract 1 from *X*.
 
-Follow the rules to draw a circle on the grid, using (:math:`\(c_{x}\)`, :math:`\(c_{y}\)`)  as the centre of the circle, and :math:`\(R\)` the radius.
+Follow the rules to draw a circle on the grid, using ({math}(c_{x}){math end}, {math}(c_{y}){math end})  as the centre of the circle, and {math}(R){math end} the radius.
 Notice that it will only draw the start of the circle and then it stops because *Y* is greater than *X*\ !
 
-.. figure:: _static/computer_graphics/20grid_cr.png
- :alt: Grid for drawing a circle
- :align: center
- :width: 30%
+{image computer-graphics/20grid-cr.png alt="Grid for drawing a circle"}
 
-.. only:: teachers or dev
+{teacher}
 
- .. admonition:: For teachers
+In the following diagram, the black pixels below represent the initial octant of the circle drawn by the algorithm above, the darker gray pixels represent reflection along the X and Y axis (details are given below), and the lighter gray pixels represent the reflection along a diagonal (see also below).
 
-  In the following diagram, the black pixels below represent the initial octant of the circle drawn by the algorithm above, the darker gray pixels represent reflection along the X and Y axis (details are given below), and the lighter gray pixels represent the reflection along a diagonal (see also below).
+{image computer-graphics/20grid-cr-answer.png alt="Solution for drawing a circle"}
 
-  .. figure:: _static/computer_graphics/20grid_cr_answer.png
-   :alt: Solution for drawing a circle
-   :align: center
-   :width: 30%
+The values in the calculation for the above example are:
 
+====================================== =============================================================
+Calculation                            Pixel to colour in
+====================================== =============================================================
+{math}(E_0 = -7, X_0 = 7, Y_0 = 0){math end} Plot pixel (16, 9)
+{math}(E_1 = -6, Y_1 = 1){math end}          Plot pixel (16, 10)
+{math}(E_2 = -3, Y_2 = 2){math end}          Plot pixel (16, 11)
+{math}(E_3 = 2, Y_3 = 3){math end}           -
+{math}(E_4 = -11, X_4 = 6){math end}         Plot pixel (15, 12)
+{math}(E_5 = -4, Y_5 = 4){math end}          Plot pixel (15, 13)
+{math}(E_6 = 5, Y_6 = 5){math end}           -
+{math}(E_7 = -6, X_7 = 5){math end}          Plot pixel (14, 14)
+{math}(E_8 = 5, Y_8 = 6){math end}           *y* is greater than *x*, so we can now reflect our octant
+====================================== =============================================================
 
-  The values in the calculation for the above example are:
-
-  ====================================== =============================================================
-  Calculation                            Pixel to colour in
-  ====================================== =============================================================
-  :math:`\(E_0 = -7, X_0 = 7, Y_0 = 0\)` Plot pixel (16, 9)
-  :math:`\(E_1 = -6, Y_1 = 1\)`          Plot pixel (16, 10)
-  :math:`\(E_2 = -3, Y_2 = 2\)`          Plot pixel (16, 11)
-  :math:`\(E_3 = 2, Y_3 = 3\)`           -
-  :math:`\(E_4 = -11, X_4 = 6\)`         Plot pixel (15, 12)
-  :math:`\(E_5 = -4, Y_5 = 4\)`          Plot pixel (15, 13)
-  :math:`\(E_6 = 5, Y_6 = 5\)`           -
-  :math:`\(E_7 = -6, X_7 = 5\)`          Plot pixel (14, 14)
-  :math:`\(E_8 = 5, Y_8 = 6\)`           *y* is greater than *x*, so we can now reflect our octant
-  ====================================== =============================================================
-
-
+{teacher end}
 
 When *y* becomes greater than *x*, one eighth (an octant) of the circle is drawn. 
 The remainder of the circle can be drawn by reflecting the octant that you already have (you can think of this as repeating the pattern of steps you just did in reverse). 
@@ -952,12 +933,14 @@ Half of the circle is now drawn, the left and the right half.
 To add the remainder of the circle, another line of reflection must be used. 
 Can you work out which line of reflection is needed to complete the circle?
 
-.. container:: jargon-buster
+{jargon-buster}
 
- **Jargon Buster** : Octant
+**Jargon Buster** : Octant
 
- A quadrant is a quarter of an area; the four quadrants that cover the whole area are marked off by a vertical and horizontal line that cross. An *octant* is one eighth of an area, and the 8 octants are marked off by 4 lines that intersect at one point (vertical, horizontal, and two diagonal lines).
- 
+A quadrant is a quarter of an area; the four quadrants that cover the whole area are marked off by a vertical and horizontal line that cross. An *octant* is one eighth of an area, and the 8 octants are marked off by 4 lines that intersect at one point (vertical, horizontal, and two diagonal lines).
+
+{jargon-buster end}
+
 To complete the circle, you need to reflect along the diagonal. 
 The line of reflection should have a gradient of 1 or -1, and should cross through the middle of the centre pixel of the circle.
 
@@ -965,8 +948,7 @@ While using a line of reflection on the octant is easier for a human to understa
 
 By the way, this kind of algorithm can be adapted to draw ellipses, but it has to draw a whole quadrant because you don't have octant symmetry in an ellipse.
 
-Practical applications
-------------------------------------
+### Practical applications
 
 Computers need to draw lines, circles and ellipses for a wide variety of tasks, from game graphics to lines in an architect's drawing, and even a tiny circle for the dot on the top of the letter 'i' in a word processor.  By combining line and circle drawing with techniques like 'filling' and 'antialiasing', computers can draw smooth, clear images that are resolution independent. 
 When an image on a computer is described as an outline with fill colours it is called vector graphics --- these can be re-drawn at any resolution. This means that with a vector image, zooming in to the image will not cause the pixelation seen when zooming in to bitmap graphics, which only store the pixels and therefore make the pixels larger when you zoom in. 
@@ -980,32 +962,30 @@ As usual, things aren't quite as simple as shown here. For example, consider a h
 Now compare it with a 45 degree line that goes from (0,0) to (10,10). It still has 11 pixels, but the line is longer (about 41\% longer to be precise).
 This means that the line would appear thinner or fainter on a screen, and extra work needs to be done (mainly anti-aliasing) to make the line look ok. We've only just begun to explore how techniques in graphics are needed to quickly render high quality images.
 
+### Project: Line and circle drawing
 
-
-Project: Line and circle drawing
---------------------------------------------
-
-To compare Bresenham's method with using the equation of a line (:math:`\(y = mx+b\)`), choose your own start and end point of a line (of course, make sure it's at an interesting angle), and show the calculations that would be made by each method. Count up the number of additions, subtractions, multiplications and divisions that are made in each case to make the comparison. Note that addition and subtraction is usually a lot faster than multiplication and division. 
+To compare Bresenham's method with using the equation of a line ({math}(y = mx+b){math end}), choose your own start and end point of a line (of course, make sure it's at an interesting angle), and show the calculations that would be made by each method. Count up the number of additions, subtractions, multiplications and divisions that are made in each case to make the comparison. Note that addition and subtraction is usually a lot faster than multiplication and division. 
 
 You can estimate how long each operation takes on your computer by running a program that does thousands of each operation, and timing how long it takes for each. From this you can estimate the total time taken by each of the two methods. A good measurement for these is how many lines (of your chosen length) your computer could calculate per second.
 
 
-.. only:: teachers or dev
+{teacher}
 
- .. admonition:: For teachers
+This project is suitable for the 3.44 (AS91636) NZ standard. The "key problem" is drawing lines and circles in 2D graphics, "practical applications" would be for drawing programs and rendering images based on lines and curves (including scalable fonts), the "key algorithm/technique" is Bresenham's line and circle drawing algorithm. The effectiveness could be evaluated by the number of arithmetic calculations needed to draw a sample line, and students can compare the :math:`\(mx+b\)` method with Bresenham's (the latter will require a lot fewer calculations; these can be counted accurately for a given line, so as long as students choose their own starting and ending points, their calculations are going to be slightly different to others' which gives good authenticity for the project). 
 
-  This project is suitable for the 3.44 (AS91636) NZ standard. The "key problem" is drawing lines and circles in 2D graphics, "practical applications" would be for drawing programs and rendering images based on lines and curves (including scalable fonts), the "key algorithm/technique" is Bresenham's line and circle drawing algorithm. The effectiveness could be evaluated by the number of arithmetic calculations needed to draw a sample line, and students can compare the :math:`\(mx+b\)` method with Bresenham's (the latter will require a lot fewer calculations; these can be counted accurately for a given line, so as long as students choose their own starting and ending points, their calculations are going to be slightly different to others' which gives good authenticity for the project). 
+For the standard it isn't strictly necessary to measure the actual time of each operation, but this will help to make the experience more authentic since the speed will be for the computer the student is using, and also can lead to very practical estimates, such as how many lines the computer could drawn in a second using each method.
 
-  For the standard it isn't strictly necessary to measure the actual time of each operation, but this will help to make the experience more authentic since the speed will be for the computer the student is using, and also can lead to very practical estimates, such as how many lines the computer could drawn in a second using each method.
+A strong student could also look into the total number of arithmetic operations performed to calculate a circle using Bresenham's method compared with using the equations of a circle (which is based on {math}x^2{math end} + {math}y^2{math end} = {math}r^2{math end}). The project can give visual examples of objects that are specified as lines and circles, such as a scalable font.
 
-  A strong student could also look into the total number of arithmetic operations performed to calculate a circle using Bresenham's method compared with using the equations of a circle (which is based on x\ :sup:`2` + y\ :sup:`2` = r\ :sup:`2`). The project can give visual examples of objects that are specified as lines and circles, such as a scalable font.
+These algorithms could be used as a simple programming assignment where the calculations are implemented and the program outputs the coordinates of the line (or draws the pixels if that is easy).
 
-  These algorithms could be used as a simple programming assignment where the calculations are implemented and the program outputs the coordinates of the line (or draws the pixels if that is easy).
+Each student should choose random starting and ending points so each draws a different line. Make sure that they don't choose horizontal, vertical or diagonal lines, as these are trivial (although it would be a good exercise to do these *as well* as one at a more difficult angle to help understand how the algorithm works).
 
-  Each student should choose random starting and ending points so each draws a different line. Make sure that they don't choose horizontal, vertical or diagonal lines, as these are trivial (although it would be a good exercise to do these *as well* as one at a more difficult angle to help understand how the algorithm works).
+If a class need to choose some points, one way would be to base them on students' names as follows. For the start point of the line, choose the X value as the first letter in the student's given name converted to a number (e.g. Caren would be 3, because C is the third letter in the alphabet). If the number is greater than 19, subtract 20 from it. For the Y value of the start point, choose the number made with the second letter of their first name.  For the end point of the line, use the first two letters of their family name. For example: If the name was John Smith, you would use the 'Jo' in John to choose the starting point (10, 15). You would then use the 'Sm' in Smith to choose the ending point (19, 13). If this produces a trivial line, add one to one of the points.
 
-  If a class need to choose some points, one way would be to base them on students' names as follows. For the start point of the line, choose the X value as the first letter in the student's given name converted to a number (e.g. Caren would be 3, because C is the third letter in the alphabet). If the number is greater than 19, subtract 20 from it. For the Y value of the start point, choose the number made with the second letter of their first name.  For the end point of the line, use the first two letters of their family name. For example: If the name was John Smith, you would use the 'Jo' in John to choose the starting point (10, 15). You would then use the 'Sm' in Smith to choose the ending point (19, 13). If this produces a trivial line, add one to one of the points.
+{teacher end}
 
+{comment}
 
 .. Hidden surface removal
 .. =====================================================
@@ -1031,97 +1011,47 @@ You can estimate how long each operation takes on your computer by running a pro
 .. - Explore modelling surfaces using splines, surfaces of revolution, and simple methods to generate terrain models
 .. - Explore computational geometry methods (such as convex hulls and closest pair of points)
 
+{comment end}
 
-The whole story!
-=====================================================
+## The whole story!
+
+{comment}
 
 .. homogeneous matrices allow combining the multiplication and addition needed in matrix transformations in section xxx
 
+{comment end}
 
-Further reading
-=====================================================
+## Further reading
+
+{comment}
 
 .. todo:: this section is yet to be written
 
-Useful Links
--------------------------------------------------------------------------------------------------------------
+{comment end}
 
-- http://en.wikipedia.org/wiki/Computer_graphics
-- http://en.wikipedia.org/wiki/Transformation_matrix
-- http://en.wikipedia.org/wiki/Bresenham’s_line_algorithm
-- http://en.wikipedia.org/wiki/Ray_trace
-- http://www.cosc.canterbury.ac.nz/mukundan/cogr/applcogr.html
-- http://www.cosc.canterbury.ac.nz/mukundan/covn/applcovn.html
-- http://www.povray.org/resources/links/3D_Tutorials/POV-Ray_Tutorials/
+### Useful Links
+
+- [http://en.wikipedia.org/wiki/Computer_graphics](http://en.wikipedia.org/wiki/Computer_graphics)
+- [http://en.wikipedia.org/wiki/Transformation_matrix](http://en.wikipedia.org/wiki/Transformation_matrix)
+- [http://en.wikipedia.org/wiki/Bresenham’s_line_algorithm](http://en.wikipedia.org/wiki/Bresenham’s_line_algorithm)
+- [http://en.wikipedia.org/wiki/Ray_trace](http://en.wikipedia.org/wiki/Ray_trace)
+- [http://www.cosc.canterbury.ac.nz/mukundan/cogr/applcogr.html](http://www.cosc.canterbury.ac.nz/mukundan/cogr/applcogr.html)
+- [http://www.cosc.canterbury.ac.nz/mukundan/covn/applcovn.html](http://www.cosc.canterbury.ac.nz/mukundan/covn/applcovn.html)
+- [http://www.povray.org/resources/links/3D_Tutorials/POV-Ray_Tutorials/](http://www.povray.org/resources/links/3D_Tutorials/POV-Ray_Tutorials/)
 
 Computer Graphics, Computer Vision, Bresenham’s Line Algorithm, Ray Tracing, Magnetic Resonance Imaging (MRI), Rendering, 3D Modeling, Animation, WebGL (Web Graphics Library), OpenGL (Open Graphics Library)
 
-.. only:: dev
- 
- Brainstorming
- =====================
 
- - Insert ideas for brainstorm here, using the same syntax (space, dash, space, idea)
- - http://schuelerlabor.informatik.rwth-aachen.de/modul/wie-kommt-das-bild-auf-den-bildschirm-einstieg-die-computergrafik has a module of 3d graphics
- - povray explanation: http://www.cs.unc.edu/~rademach/xroads-RT/RTarticle.html
- - draw on the screen and it makes it pseudo-3D from the camera distances. And showed how those where heights where made.
- - http://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Simple_raycasting_with_fisheye_correction.gif/400px-Simple_raycasting_with_fisheye_correction.gif
- - show same scene rendered  wire frame, with /without lighting etc.  - system students can use?
- - in some ways graphics software is just taking keyboard strokes, mouse clicks turning them into pixels on a 2d screen, but data is also collected externally eg. mocap, mri scans. But really about creativity and perception.
- - richard's dancing orc?
- - colour models - show same image with components
- - chapter 29 of Algorithms Unplugged (Vocking et al) - further reading - bresenhams algorithm for circles
- - bead game, painter's algorithm http://www.game2learn.com/?page_id=92
- - html5 interaction for Bresenham: try to draw lines (45 degrees, then more complex, reward for getting accurate; then circles) Then give bresenham rule for specific case and reward for drawing it (perhaps buzz if wrong pixel each time?)
- - a project on povray seems to exercise main ideas e.g. : http://theringlord.org/derakoninstructions/povray.html
- - Unplugged line and circle drawing activity
- - David McCandless: The beauty of data visualization ed.ted.com
- - Joshua Scott - python OpenGL system to experiment with
- - ray tracing demo/activities? is there an activity based on a physical model with a grid and string to objects?  Would raise ideas like occlusion, reflection Define and render a scene using provided ray-tracing software e.g. ThinkQuest's The Online POV-Ray Tutorial. See Wikipedia: Ray Tracing and POV-Ray
- - csunplugged walk the line activity http://csunplugged.org/line-drawing
- - anti aliasing
- - show video of 3D to give idea of why transforms are needed e.g. show transforms changing/camera movement/object movement/replication/scaling, then do interactive in 2D, then activity/project with webGL 3D with lighting etc.? Have a test near start to say if webGL installed, and how to configure browser
- - a video interview with someone from weta would be great e.g. Marcus Schoo?
- - http://www.game2learn.com/?page_id=92 painters alg?
- - read "Flatland"
- - http://www.expandknowledge.net/ekp/bookstore.php?bpage=bookpage&bid=b01 seems like its pitched at just the right level, but need to by a physical copy for US$82? Uses python?
- - curiosity: look at number of credits for lighting and related things in Schrek, Avatar. and number of programmers etc.
- - http://en.wikipedia.org/wiki/WebGL might allow rendering in web from commands? Official site: http://www.khronos.org/webgl/ tutorial: http://learningwebgl.com/ http://learningwebgl.com/blog/?page_id=1217 
- - cube: http://www.ibiblio.org/e-notes/webgl/polyhedra/cube.html 
- - Browser setup: http://learningwebgl.com/blog/?p=11 - could write an html5 interface to webgl - just put in matrices, main objects, camera angle etc. and watch it rendered? Does this already exist somewhere? maybe this sort of thing: http://learningwebgl.com/lessons/lesson11/index.html
- - or http://www.webgl.com/2012/04/webgl-demo-shader-toy/ (lots of demos here -can we build a simple one with sliders for position, colour, camera etc?)
- - povray tutorial starting example http://library.thinkquest.org/3285/tutorial/simple.html
- - Tim Lambert has a nice applet for trying out Bresenham's algorithm which is a more efficient way of drawing lines. Please see also the The DDA (Digital Differential Analyzer) algorithm, which uses the equation of the line. (shows calculations and steps through - good exercise- try more than 45 degrees)
- - ains Ray Tracing using strings and duct tape! See also Raytracing video by
- - as Computer Science 10 - Lecture 2: 3D Graphics vide
-
- I think for this topic, it could be important to mention the links into math, and also provide links to more advanced stuff, as there will be some high school students who are very confident with math, and could investigate this topic quite possibly to the level that more advanced university students would (and there are probably some that already have!). Graphics seems to be popular with the “geekiest” and “smartest” students.
- Of course students who aren’t so confident in math should still be given stuff they can understand as well.
-
- Lower level details of graphics
- http://csunplugged.org/line-drawing
-
- Notes from Mukund:
-  The term "Visual Computing" generally encompasses both computer graphics and computer vision algorithms. The EPS library has an excellent book (for undergrad students) by Frank Nielsen:  "Visual Computing: Geometry, Graphics and Vision".
-
-   Possible activities/projects for Yr 13 students could also include scene modelling using images (image-based rendering, used in arcade games), animations using sprites, modelling surfaces using splines (without going into the mathematical aspects of splines), surfaces of revolution (for creating models such as a wine glass), and simple methods to generate terrain models, computational geometry methods (such as convex hulls, closest pair of points).
-
-  Ray tracing is an advanced topic that requires the understanding of concepts such as illumination models, ray object intersection methods, and object oriented programming. If a ray tracing software is used, then students need not worry about these concepts, and could still gain a general appreciation of the visual effects a ray tracer can produce.
-
-  The description of the topic area looks good and includes an outline of important methods and application areas which Yr 13 students could explore and analyse with the help of software. 
-
- Extra ideas from Richard G:
- ALGORITHMS:
- converting RGB to HSI, camera calibration to remove radial distortion, Gaussian filter, median filter, sharpening filter, canny edge detector, Hough transform (to find lines and circles), Lucas-Kanade optical flow, morphological functions (erode, dilate, open, close). 
-
-Key concepts
--------------------------------------------------------------------------------------------------------------
+### Key concepts
 
 - Algorithms: Bresenham’s algorithm (line and circle drawing), colour space conversion, line anti-aliasing, Bézier and B-spline curves, painter’s algorithm, Z-buffer
 - Techniques: Techniques: ray tracing, texture mapping, shading, anti-aliasing, volume rendering, polygonisation, constructive solid geometry, 3D modeling, hidden object removal
 - Applications: drawing software, animation
 
+{comment}
+
 .. grand theft auto: "Jacked" book (R warning)
 
+{comment end}
 
 
