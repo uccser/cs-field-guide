@@ -287,3 +287,841 @@ Solution: The solution will depend on the order of scaling and rotating, but a s
 These combined transformations are common, and they might seem like a lot of work because each matrix has to be applied to every point in an object. Our arrows only had 7 points, but complex images can have thousands or even millions of points in them. Fortunately we can combine all the matrix operations in advance to give just one operation to apply to each point.
 
 ### Combining transformations
+
+Several transforms being applied to the same image can be made more efficient by creating one matrix that has the effect of all the transforms combined.The combination is done by "multiplying" all the matrices. 
+
+Multiplying two matrices can't be done by just multiplying the corresponding elements; if you are multiplying two matrices with the *a* and *b* values shown below, the resulting values from the multiplication are calculated as follows:
+
+{math-block}
+
+\begin{bmatrix} 
+a_{11} & a_{21} \\  
+a_{12} & a_{22} \\  
+\end{bmatrix}
+\times
+\begin{bmatrix} 
+b_{11} & b_{21} \\  
+b_{12} & b_{22} \\  
+\end{bmatrix}
+=
+\begin{bmatrix} 
+a_{11}b_{11}+a_{21}b_{12} &  a_{11}b_{21}+a_{21}b_{22} \\  
+a_{12}b_{11}+a_{22}b_{12} &  a_{12}b_{21}+a_{22}b_{22} \\  
+\end{bmatrix}
+
+{math-block end}
+
+It's a bit complicated, but this calculation is only done once to work out the combined transformation, and it gives you a single matrix that will provide to transforms in one operations.
+
+As a simple example, consider what happens when you scale by 2 and then rotate by 45 degrees. The two matrices to multiply work out like this:
+
+{math-block}
+
+\begin{bmatrix} 
+2 & 0 \\  
+0 & 2 \\  
+\end{bmatrix}
+\times
+\begin{bmatrix} 
+0.7 & 0.7 \\  
+-0.7 & 0.7 \\  
+\end{bmatrix}
+=
+\begin{bmatrix} 
+2 \times 0.7+ 0 \times -0.7 &  2 \times 0.7+ 0 \times 0.7 \\  
+0 \times 0.7+ 2 \times -0.7 &  0 \times 0.7+ 2 \times 0.7 \\  
+\end{bmatrix}
+=
+\begin{bmatrix} 
+1.4 &  1.4  \\  
+-1.4 &  1.4  \\  
+\end{bmatrix} 
+
+{math-block end}
+
+<p id="arrowEx13Text">Try putting in the final matrix here and see if it does scale by 2 and rotate by 45 degrees.</p><div align="center"><a href="" onclick= "linkSend(this, 'arrowEx13Text', '_static/widgets/CG/CG-arrow/CG-arrow-singlematrix.html','&zoom=-10.0 &quiz=1.4 1.4 0 0 -1.4 1.4 0 0 0 0 1 0 0 0 0 1 &allPrize=5'); return true" target="_blank"><img class="widgetimage" src="_static/widgets/CG/CG-arrow/CG-arrow-example1.png" alt=""><br />Click to load the widget.</a></div><br />
+
+<p id="arrowEx14Text">Now try multiplying two other transform matrices that you make up yourself, and see if they produce the expected result.</p><div align="center"><a href="" onclick= "linkSend(this, 'arrowEx14Text', '_static/widgets/CG/CG-arrow/CG-arrow-multiply2matrix.html','&zoom=-10.0 &quiz=1.4 1.4 0 0 -1.4 1.4 0 0 0 0 1 0 0 0 0 1 &allPrize=5'); return true" target="_blank"><img class="widgetimage" src="_static/widgets/CG/CG-arrow/CG-arrow-example1.png" alt=""><br />Click to load the widget.</a></div><br />
+
+In computer graphics systems there can be many transformations combined, and this is done by multiplying them all together (two at a time) to produce one matrix that does all the transforms in one go. 
+That transform might then be applied to millions of points, so the time taken to do the matrix multiplication at the start will pay off well.
+
+The project below gives the chance to explore combining matrices, and has an interactive that will calculate the multiplied matrices for you.
+
+### 3D transforms
+
+{comment}
+
+.. xJRM Check that the main text and headings on the interactives make sense, and that the images match (they don't quite currently)
+
+{comment end}
+
+So far we've just done the transforms in two dimensions. 
+To do this in 3D, we need a *z* coordinate as well, which is the depth of the object into the screen.
+A matrix for operating on 3D points is 3 by 3. For example, the 3D matrix for doubling the size of an object is as follows; it multiplies each of the *x*, *y* and *z* values of a point by 2.
+
+
+{math-block}
+
+\begin{bmatrix} 
+2 & 0 & 0 \\  
+0 & 2 & 0 \\  
+0 & 0 & 2 \\  
+\end{bmatrix}
+
+{math-blcok end}
+
+<section id="teapot1Text">
+ In this interactive, try changing the scaling on the image (it starts with a scaling factor of 10 in all three dimensions).
+
+</section><div align="center"><a href="" onclick="linkSend(this,'teapot1Text','_static/widgets/CG/CG-mini-editor/main (cutdown).html',null); return true" target="_blank"><img class="widgetimage" src="_static/widgets/CG/CG-mini-editor/CG-mini-editor.png" alt=""><br />Click to load the widget.</a></div><br />
+
+The above image mesh has 3644 points in it, and your matrix was applied to each one of them to work out the new image.
+
+<section id="teapot2Text">
+Translation requires 3 values, which are added to the *x*, *y* and *z* coordinates of each point in an object.
+
+In the following interactive, try moving the teapot left and right ( *x* ), up and down ( *y* ), and in and out of the screen ( *z* ) by adding a "vector" to the operations. Then try combining all three.
+
+</section><div align="center"><a href="" onclick="linkSend(this,'teapot2Text','_static/widgets/CG/CG-mini-editor/main (cutdown).html',null); return true" target="_blank"><img class="widgetimage" src="_static/widgets/CG/CG-mini-editor/CG-mini-editor.png" alt=""><br />Click to load the widget.</a></div><br />
+
+Rotation is trickier because you can now rotate in different directions.
+In 2D rotations were around the centre (origin) of the grid, but in 3D rotations are around a line (either the horizontal x-axis, the vertical y-axis, or the z-axis, which goes into the screen!)
+
+The rotation we used earlier can be applied to 3 dimensions using this matrix:
+
+{math-block}
+
+\begin{bmatrix} 
+\cos(\theta) & -\sin(\theta) & 0 \\  
+\sin(\theta) & \cos(\theta)  & 0 \\  
+0   &  0  &  1\\
+\end{bmatrix}
+
+{math-block end}
+
+Try applying that to the image above.
+This is rotating around the z-axis (a line going into the screen); that is, it's just moving the image around in the 2D plane.
+It's really the same as the rotation we used previously, as the last line (0, 0, 1) just keeps the z point the same.
+
+Try the following matrix, which rotates around the x-axis (notice that the x value always stays the same because of the 1,0,0 in the first line):
+
+{math-block}
+
+\begin{bmatrix} 
+1   &  0  &  0 \\
+0 &  \cos(\theta) & -\sin(\theta)  \\  
+0 & \sin(\theta) & \cos(\theta)   \\  
+\end{bmatrix}
+
+{math-block end}
+
+And this one for the y-axis:
+
+{math-block}
+
+ \begin{bmatrix} 
+ \cos(\theta) & 0 &\sin(\theta)  \\  
+ 0   &  1  &  0\\
+ -\sin(\theta) & 0 & \cos(\theta)   \\  
+ \end{bmatrix}
+
+{math-block end}
+
+The following interactive allows you to combine 3D matrices.
+
+<section id="teapot3Text">
+You can experiment with moving the teapot around in space, changing its size, and angle. 
+Think about the order in which you need to combine the transforms to get a particular image that you want.
+For example, if you translate an image and then scale it, you'll get a different effect to scaling it then translating it.
+If you want to rotate or scale around a particular point, you can do this in three steps (as with the 2D case above): (1) translate the object so that the point you want to scale or rotate around is the origin (where the x, y and z axes meet), (2) do the scaling/rotation, (3) translate the object back to where it was. If you just scale an object where it is, its distance from the origin will also be scaled up.
+
+{comment}
+
+.. xTCB put in a sidebox on deriving the rotation matrices (one day) (maybe in the 2d part)
+
+{comment end}
+ 
+</section><div align="center"><a href="" onclick="linkSend(this,'teapot3Text','_static/widgets/CG/CG-mini-editor/main (cutdown).html',null); return true" target="_blank"><img class="widgetimage" src="_static/widgets/CG/CG-mini-editor/CG-mini-editor.png" alt=""><br />Click here for the interactive to combine multiple transforms into one</a></div><br />
+
+In the above examples, when you have several matrices being applied to every point in the image, a lot of time can be saved by converting the series of matrices and transforms to just one formula that does all of the transforms in one go. The following interactive can do those calculations for you.
+
+For example, in the following interactive, type in the matrix for doubling the size of an object (put the number 2 instead of 1 on the main diagonal values), then add another matrix that triples the size of the image (3 on the main diagonal).
+The interactive shows a matrix on the right that combines the two --- does it look right?
+
+{teacher}
+
+The combined result of scaling by 2 and then 3 should have 6 down the main diagonal (i.e. 6 times larger). The interactive gives a full derivation of the calculations being done on each x,y,z coordinate of each point in an image, but it really just has three inputs (x,y,z), which give the original position of a point, and three outputs (x',y',z') which give the transformed position of the point.
+
+{teacher end}
+
+<section id="test_text">Multiple transforms</section><div align="center"><a href="" onclick="linkSend(this,'test_text','_static/widgets/CG/CG-matrix-simplifier/CG-matrix-simplifier.html',null); return true" target="_blank"><img class="widgetimage" src="_static/widgets/CG/CG-matrix-simplifier/CG-image.png" alt=""><br />Click to load the widget.</a></div><br />
+
+{comment}
+
+.. xTCB One teacher noted that students where need to know that the it requires transform matrix and one translation
+
+{comment end}
+
+The interactive also allows you to combine in translations (just three numbers, for x, y and z).
+Try combining a scaling followed by a translation. What if you add a rotation --- does the order matter?
+
+{curiosity}
+
+In case you're wondering, the interactive is using the following formula to combine two matrices (you don't have to understand this to use it). 
+It is called matrix multiplication, and while it might be a bit tricky, it's very useful in computer graphics because it reduces all the transformations you need to just one matrix, which is then applied to every point being transformed.
+This is way better than having to run all the matrices of every point.
+
+{curiosity end}
+
+{comment}
+
+.. xTCBgive an example for the following one day?
+
+{comment end}
+
+{math-block}
+
+\begin{bmatrix} 
+a_{11} & a_{21} & a_{31}\\  
+a_{12} & a_{22} & a_{32}\\  
+a_{13} & a_{23} & a_{33}\\  
+\end{bmatrix}
+\times
+\begin{bmatrix} 
+b_{11} & b_{21} & b_{31}\\  
+b_{12} & b_{22} & b_{32}\\  
+b_{13} & b_{23} & b_{33}\\  
+\end{bmatrix}
+=
+\begin{bmatrix} 
+a_{11}b_{11}+a_{21}b_{12}+a_{31}b_{13} & 
+a_{11}b_{21}+a_{21}b_{22}+a_{31}b_{23} &  
+a_{11}b_{31}+a_{21}b_{32}+a_{31}b_{33}\\  
+a_{12}b_{11}+a_{22}b_{12}+a_{32}b_{13} &
+a_{12}b_{21}+a_{22}b_{22}+a_{32}b_{23} &
+a_{12}b_{31}+a_{22}b_{32}+a_{32}b_{33} \\  
+a_{13}b_{11}+a_{23}b_{12}+a_{33}b_{13} &
+a_{13}b_{21}+a_{23}b_{22}+a_{33}b_{23}&
+a_{13}b_{31}+a_{23}b_{32}+a_{33}b_{33} \\  
+\end{bmatrix}
+
+{math-end block}
+
+### Project: 3D transforms
+
+{teacher}
+
+This project involves combining transforms, and discussing the matrices needed, and how they can be combined to just one operation.
+
+This project is suitable for the 3.44 (AS91636) NZ standard. The "key problem" is positioning graphics in 3D space, "practical applications" would be for creating images and animations, the "key algorithm/technique" is matrix algebra. The effectiveness could be evaluated by the number of values needed to specify the transformations (a strong student could also look into the total number of multiplications and additions performed to calculate the positions by the matrix operations). The project should explain the purpose of example values, including translation, scaling and rotation.
+
+{teacher end}
+
+For this project, you will demonstrate what you've learned in the section above by explaining a 3D transformation of a few objects. You should take screenshots of each step to illustrate the process for your report.
+
+The following scene-creation interactive allows you to choose objects (and their colours etc.), and apply one transformation to them. To position them more interestingly, you will need to come up with multiple transformations (e.g. scale, then rotate, then translate), and use the "simplifier" interactive to combine all the matrices into one operation.
+
+The scene-creation interactive can be run from here:
+
+{comment}
+
+.. xjm add links in place of green bits here:
+
+{comment end}
+
+<section id="test_text"></section><div align="center"><a href="" onclick="linkSend(this,'test_text','_static/widgets/CG/CG-mini-editor/main.html',null); return true" target="_blank"><img class="widgetimage" src="_static/widgets/CG/CG-mini-editor/CG-mini-editor.png" alt=""><br />Click to load the widget.</a></div><br />
+
+To generate combined transformations, you can use the following transform simplifier interactive:
+
+<section id="test_text"></section><div align="center"><a href="" onclick="linkSend(this,'test_text','_static/widgets/CG/CG-matrix-simplifier/CG-matrix-simplifier.html',null); return true" target="_blank"><img class="widgetimage" src="_static/widgets/CG/CG-matrix-simplifier/CG-image.png" alt=""><br />Click to load the widget.</a></div><br />
+
+Because you can't save your work in the interactives, keep notes and screen shots as you go along. These will be useful for your report, and also can be used if you need to start over again.
+
+Introduce your project with a examples of 3D images, and how they are used (perhaps from movies or scenes that other people have created). Describe any innovations in the particular image (e.g. computer generated movies usually push the boundaries of what was previously possible, so discuss what boundaries were moved by a particular movie, and who wrote the programs to achieve the new effects).
+
+{teacher}
+
+This matches A1 in the 3.44 standard :"describing key problems that are addressed in selected areas of computer science". 
+
+{teacher end}
+
+For your project, try putting a few objects in a particular arrangement (e.g. with the teapot sitting beside some cups), and explain the transforms needed to achieve this, showing the matrices needed. 
+
+{teacher}
+
+An initial description of a scene matches A2 "describing examples of practical applications of selected areas to demonstrate the use of key algorithms and/or techniques from these areas" i.e. placing objects in a scene. This should refer to the transforms (e.g. rotation by 90 degrees, scaling by a factor of 2) rather than the actual matrices that do these transforms).
+
+{teacher end}
+
+Give simple examples of translation, scaling *and* rotation using your scene.
+
+{teacher}
+
+This is M1: "explaining how key algorithms or techniques are applied in selected areas"
+
+{teacher end}
+
+You should include multiple transforms applied to one object, and show how they can be used to position an object.
+
+{teacher}
+
+This is M2: "explaining examples of practical applications of selected areas to demonstrate the use of key algorithms and/or techniques from these areas."
+
+{teacher end}
+
+Show how the matrices for a series of transforms can be multiplied together to get one matrix that applies all the transforms at once.
+
+{teacher}
+
+This is E1: "discussing examples of practical applications of selected areas to demonstrate the use of key algorithms and/or techniques from these areas"
+
+{teacher end}
+
+Discuss how the single matrix derived from all the others is more efficient, using your scene as an example to explain this.
+
+{teacher}
+
+This is E2: "evaluating the effectiveness of algorithms, techniques, or applications from selected areas". Ideally students should discuss how many individual multiplications and additions are required if the matrices are applied to each point separately, and compare that with the number of operations required if the matrices being combined into one operation (they key here is that the transform is being done to every point in the obect being transformed, so it may be repeated hundreds or even thousands of times.)
+
+{teacher end}
+
+{comment}
+
+.. xTCB add the following later, will need more links and information
+.. If you're confident with programming and want more flexibility, you could do a similar project using a graphics programming system such as WebGL <link> (which is the system used in the demonstrations above), or an interactive tutorial called `JPOT <http://www.cs.uwm.edu/%7Egrafix2/>`_  which explores a popular graphics system called OpenGL.
+
+.. Colour models 
+.. =====================================================
+
+.. this section is yet to be written
+
+.. RGB, CMY, HSV, ... tricolour stimulus
+
+.. For example, see:
+.. http://www.cosc.canterbury.ac.nz/mukundan/cogr/applcogr.html colours RGB, HSV
+
+{comment end}
+
+## Drawing lines and circles
+
+{teacher}
+
+This section on transforms covers material for an example for the 3.44 standard through the following components:
+
+- Key problem: rendering lines and circles on a 2D image of pixels
+- Practical application: Paint programs, rendering 2D and 3D images, drawing charts and graphs, rendering scalable vector graphics, displaying fonts etc.
+- Algorithm/technique: Equation of a line and Bresenham's line-drawing algorithm
+- Evaluation: number of calculations required by each approach
+- Personalised student examples: a student's randomly chosen start and endpoint for a line drawing example
+
+There are some very good illustrations of approaches to this problem [on this site](http://www.redblobgames.com/grids/line-drawing.html), which could be used as the basis of a project.
+
+{teacher end}
+
+A fundamental operation is computer graphics is to draw lines and circles.
+For example, these are used as the components of scalable fonts and vector graphics; the letter "i" is specified as a series of lines and curves, so that when you zoom in on it the computer can redraw it at whatever resolution is needed.
+
+{comment}
+
+ .. xTCB to add sometime, Jargonbuster: pixel (somewhere in the chapter) - also mention pel and bitmap, and origins of the terms. see www.foveon.com/files/ABriefHistoryofPixel2.pdf
+
+{comment end}
+
+{image computer-graphics/CG-i.png alt="The letter i enlarged to show the pixels used to create the word"}
+
+In 3D graphics shapes are often stored using lines and curves that mark out the edges of flat surfaces, each of which is so small that you can't see them unless you zoom right in.
+
+{image computer-graphics/CG-e.gif alt="Comparison between a letter created using pixels to curves"}
+
+The lines and circles that specify an object are usually given using numbers (for example, a line between a given starting and finishing position or a circle with a given centre and radius).
+From this a graphics program must calculate which pixels on the screen should be coloured in to represent the line or circle.
+
+For example, here's a grid of pixels with 5 lines shown magnified. 
+The vertical line would have been specified as going from pixel (2,9) to (2,16) --- that is, starting 2 across and 9 up, and finishing 2 across and 16 up. 
+Of course, this is only a small part of a screen, as normally they are more like 1000 by 1000 pixels or more; even a smartphone can be hundreds of pixels high and wide.
+
+{image computer-graphics/20grid-example.png alt="Drawing lines with pixels"}
+
+These are things that are easy to do with pencil and paper using a ruler and compass, but on a computer the calculations need to be done for every pixel, and if you use the wrong method then it will take too long and the image will be displayed slowly or a live animation will appear jerky. 
+In this section we will look into some very simple but clever algorithms that enable a computer to do these calculations very quickly.
+
+### Line drawing
+
+{teacher}
+
+The students are asked to draw several lines in this section on grids; you could print a supply of these for them, or use graph paper. (We have plans to make an interactive grid that they can  use on the web page, but this won't be available in the near future.)
+
+{teacher end}
+
+To draw a line, a computer must work out which pixels need to be filled so that the line looks straight.
+You can try this by colouring in squares on a grid, such as the one below (they are many times bigger than the pixels on a normal printer or screen).
+We'll identify the pixels on the grid using two values, (*x*,\ *y*), where *x* is the distance across from the left, and *y* is the distance up from the bottom.
+The bottom left pixel below is (0,0), and the top right one is (19,19).
+
+
+On the following grid, try to draw these straight lines by filling in pixels in the grid:
+
+- from  (2, 17) to (10, 17)
+- from  (18, 2) to (18, 14)
+- from  (1, 5)  to (8, 12)
+
+{image computer-graphics/20grid.png alt="Grid for drawing line from A to B"}
+
+{comment}
+
+.. xHTML5 long term the grids in this section could be interactive, click on each pixel, and get it to check if the line is correct
+
+{comment end}
+
+{teacher}
+
+The above three lines are easy to draw as they are horizontal, vertical and diagonal.
+
+{image computer-graphics/20grid-answer.png alt="Answer for previous question on grid"}
+
+{teacher end}
+
+Drawing a horizontal, vertical or diagonal line like the ones above is easy; it's the ones at different angles that require some calculation.
+
+Without using a ruler, can you draw a straight line from A to B on the following grid by colouring in pixels?
+
+
+{image computer-graphics/20grid-ab.png alt="Grid for drawing line from A to B"}
+
+Once you have finished drawing your line, try checking it with a ruler. Place the ruler so that it goes from the centre of A to the centre of B. Does it cross all of the pixels that you have coloured? 
+
+### Using a formula to draw a line
+
+The mathematical formula for a line is  {math}(y = mx + c){math end}. This gives you the *y* value for each *x* value across the screen, where {math}(m){math end} is the slope of the line and {math}(c){math end} is where it crosses the y axis. In other words, for *x* pixels across, the pixel to colour in would be (*x*,\ {math}(mx + c){math end}).
+
+For example, choosing {math}(m=2){math end} and {math}(c=3){math end} means that the line would go through the points (0,3), (1,5), (2,7), (3,9) and so on.
+This line goes up 2 pixels for every one across ({math}(m=2){math end}), and crosses the y axis 3 pixels up ({math}(c=3){math end}). 
+
+You should experiment with drawing graphs for various values of {math}(m){math end} and {math}(c){math end} (for example, start with {math}(c=0){math end}, and try these three lines: {math}(m=1){math end}, {math}(m=0.5){math end} and{math}(m=0){math end}) by putting in the values.
+What angle are these lines at?
+
+The {math}(mx + c){math end} formula can be used to work out which pixels should be coloured in for a line that goes between {math}((x_1, y_1)){math end} and {math}((x_2, y_2)){math end}. What are {math}((x_1, y_1)){math end} and {math}((x_2, y_2)){math end} for the points A and B on the grid below?
+
+{teacher}
+
+The calculations for a line from A to B above are as follows.
+
+The two points are A = (3,4) and B = (16,9). This gives :math:`\(x_1 = 3, y_1 = 4, x_2=16\)` and :math:`\(y_2 = 9\)`.
+
+{teacher end}
+
+See if you can work out the {math}(m){math end} and {math}(b){math end} values for a line from A to B, or you can calculate them using the following formulas:
+
+{math-block}
+ 
+ \[m = \frac{(y_2 - y_1)}{(x_2 - x_1)}\]
+ \[ b = \frac{(y_1x_2 - y_2x_1)}{(x_2-x_1)}\]
+
+{math-block end}
+
+{teacher}
+
+For the formula for a line this results in:
+
+{math-block}
+
+\[m = \frac{(9 - 4)}{(16 - 3)}  = 5/13 = 0.384615\]
+\[b = \frac{(4\times 16 - 9\times3)}{(16-3)} = 37/13 = 2.846154\]
+
+{math-block end}
+
+So we can use the formula {math}(y = 0.384615x + 2.846154){math-block end}.
+
+This can be put into a spreadsheet to give the values as follows:
+
+=== ======
+*x* *y*
+=== ======
+3   4.000
+4   4.385
+5   4.769
+6   5.154
+7   5.538
+8   5.923
+9   6.308
+10  6.692
+11  7.077
+12  7.462
+13  7.846
+14  8.231
+15  8.615
+16  9.000
+=== ======
+
+{teacher end}   
+
+Now draw the same line as in the previous section (between A and B) using the formula {math}(y = mx + c){math end} to calculate *y* for each value of *x* from {math}(x_1){math end} to {math}(x_2){math end} (you will need to round *y* to the nearest integer to work out which pixel to colour in). 
+If the formulas have been applied correctly, the *y* value should range from  {math}(y_1){math end} to {math}(y_2){math end}. 
+
+{image computer-graphics/20grid_ab.png alt="Grid for drawing line from A to B"}
+
+{teacher}
+
+The following image shows which pixels would be coloured in (rounding the coordinates above to the nearest integer).
+
+{image computer-graphics/20grid-ab-answer.png alt="Grid for drawing line from A to B"}
+
+{teacher end}
+
+Once you have completed the line, check it with a ruler. How does it compare to your first attempt?
+
+Now  consider the number of calculations that are needed to work out each point.
+It won't seem like many, but remember that a computer might be calculating hundreds of points on thousands of lines in a complicated image. In the next section we will explore a method that greatly speeds this up.
+
+.. only:: teachers or dev
+
+ .. admonition:: For teachers
+
+   Each point requires a multiplication and an addition, and also needs to round the numbers. Multiplications are relatively slow, and one is required for every pixel in the output (there could be thousands or even millions of pixels to calculate, so can be very significant!) Even worse, the numbers are floating point, which usually have slower arithmetic than integers.
+
+Bresenham's Line Algorithm
+------------------------------------------------------
+
+A faster way for a computer to calculate which pixels to colour in is to use Brensenham's Line Algorithm. It follows these simple rules. First, calculate these three values:
+
+.. math::
+
+
+ \[A = 2 \times (y_2 - y_1)\]
+
+ \[B = A - 2 \times (x_2 - x_1)\]
+ 
+ \[P = A - (x_2 - x_1)\]
+
+To draw the line, fill the starting pixel, and then for every position along the *x* axis:
+
+- if :math:`\(P\)` is less than 0, draw the new pixel on the same line as the last pixel, and add :math:`\(A\)` to :math:`\(P\)`.
+- if :math:`\(P\)` was 0 or greater, draw the new pixel one line higher than the last pixel, and add :math:`\(B\)` to :math:`\(P\)`.
+- repeat this decision until we reach the end of the line.
+
+Without using a ruler, use Bresenham's Line Algorithm to draw a straight line from A to B:
+
+.. figure:: _static/computer_graphics/20grid_ab.png
+ :alt: Grid for drawing line from A to B
+ :align: center
+ :width: 30%
+
+Once you have completed the line, check it with a ruler. How does it compare to the previous attempts?
+
+.. only:: teachers or dev
+
+ .. admonition:: For teachers
+
+   This table shows the values that would be calculated using Bresenham's method for the above example:
+
+   ============================ ===================================================================
+   Calculation                  Pixel to colour in
+   ============================ ===================================================================
+   :math:`\(A = 10,  B = -16\)` Draw the starting pixel
+   :math:`\(P_0 = -3\)`         Next pixel (to the right) is on the same row as the starting pixel.
+   :math:`\(P_1 = 7\)`          Next pixel is on the row above the previous pixel.
+   :math:`\(P_1 = -9\)`         Next pixel is on the same row as the previous pixel.
+   :math:`\(P_3 = 1\)`          Next pixel is on the row above the previous pixel.
+   :math:`\(P_4 = -15\)`        Next pixel is on the same row as the previous pixel.
+   :math:`\(P_5 = -5\)`         Next pixel is on the same row as the previous pixel.
+   :math:`\(P_6 = 5\)`          Next pixel is on the row above the previous pixel.
+   :math:`\(P_7 = -11\)`        Next pixel is on the same row as the previous pixel.
+   :math:`\(P_8 = -1\)`         Next pixel is on the same row as the previous pixel.
+   :math:`\(P_9 = 9\)`          Next pixel is on the row above the previous pixel.
+   :math:`\(P_{10} = -7\)`      Next pixel is on the same row as the previous pixel.
+   :math:`\(P_{11} = 3\)`       Next pixel is on the row above the previous pixel.
+   :math:`\(P_{12} = -13\)`     Next pixel is on the row above the previous pixel.
+   ============================ ===================================================================
+
+
+
+
+Lines at other angles
+------------------------------------------------
+
+So far the version of Bresenham's line drawing algorithm that you have used only works for lines that have a gradient (slope) between 0 and 1 (that is, from horizontal to 45 degrees). To make this algorithm more general, so that it can be used to draw any line, some additional rules are needed:
+
+- If a line is sloping downward instead of sloping upward, then when P is 0 or greater, draw the next column's pixel one row *below* the previous pixel, instead of above it.
+- If the change in Y value is greater than the change in X value, then the calculations for A, B, and the initial value for P will need to be changed. When calculating A, B, and the initial P, use X where you previously would have used Y, and vice versa. When drawing pixels, instead of going across every column in the X axis, go through every row in the Y axis, drawing one pixel per row. 
+
+.. figure:: _static/computer_graphics/20grid.png
+ :alt: Grid for drawing line
+ :align: center
+ :width: 30%
+
+In the grid above, choose two points of your own that are unique to you. 
+Don't choose points that will give horizontal, vertical or diagonal lines!
+
+Now use Bresenham's algorithm to draw the line.
+Check that it gives the same points as you would have chosen using a ruler, or using the formula :math:`\(y = mx+b\)`.
+How many arithmetic calculations (multiplications and additions) were needed for Bresenhams algorithm?
+How many would have been needed if you used the :math:`\(y = mx+b\)` formula? 
+Which is faster (bear in mind that adding is a lot faster than multiplying for most computers).
+
+.. only:: teachers or dev
+
+ .. admonition:: For teachers
+
+   This method only has to compare an integer with 0 and do one addition for each pixel, which is a lot faster than the calculations in the previous version.
+
+
+You could write a program or design a spreadsheet to do these calculations for you --- that's what graphics programmers have to do.
+
+
+Circles
+------------
+
+As well as straight lines, another common shape that computers often need to draw are circles.
+An algorithm similar to Bresenham's line drawing algorithm, called the Midpoint Circle Algorithm, has been developed for drawing a circle efficiently.
+
+A circle is defined by a centre point, and a radius. Points on a circle are all the radius distance from the centre of the circle.
+
+.. figure:: _static/computer_graphics/20grid_cr.png
+ :alt: Grid for drawing a circle
+ :align: center
+ :width: 30%
+
+Try to draw a circle by hand by filling in pixels (without using a ruler or compass). Note how difficult it is to make the circle look round.
+
+It is possible to draw the circle using a formula based on Pythagoras' theorem, but it requires calculating a square root for each pixel, which is very slow. 
+The following algorithm is much faster, and only involves simple arithmetic so it runs quickly on a computer.
+
+
+Bresenham's Midpoint Circle Algorithm
+------------------------------------------------------------------------------------------------
+
+.. xTCB could mention later that Bresenham didn't invent it, but idea comes from his line algorithm and is often named after him
+
+Here are the rules for the Midpoint Circle Algorithm for a circle around (:math:`\(c_{x}\)`, :math:`\(c_{y}\)`) with a radius of :math:`\(R\)`:
+
+.. math::
+ \[E = -R\]
+ \[X = R\]
+ \[Y = 0\]
+
+Repeat the following rules in order until *Y* becomes greater than *X*\ :
+
+- Fill the pixel at coordinate (:math:`\(c_{x} + X\)`, :math:`\(c_{y} + Y\)`)
+- Increase *E* by :math:`\(2 \times Y + 1\)`
+- Increase *Y* by 1
+- If *E* is greater than or equal to 0,  subtract :math:`\((2X - 1)\)` from *E*, and then subtract 1 from *X*.
+
+Follow the rules to draw a circle on the grid, using (:math:`\(c_{x}\)`, :math:`\(c_{y}\)`)  as the centre of the circle, and :math:`\(R\)` the radius.
+Notice that it will only draw the start of the circle and then it stops because *Y* is greater than *X*\ !
+
+.. figure:: _static/computer_graphics/20grid_cr.png
+ :alt: Grid for drawing a circle
+ :align: center
+ :width: 30%
+
+.. only:: teachers or dev
+
+ .. admonition:: For teachers
+
+  In the following diagram, the black pixels below represent the initial octant of the circle drawn by the algorithm above, the darker gray pixels represent reflection along the X and Y axis (details are given below), and the lighter gray pixels represent the reflection along a diagonal (see also below).
+
+  .. figure:: _static/computer_graphics/20grid_cr_answer.png
+   :alt: Solution for drawing a circle
+   :align: center
+   :width: 30%
+
+
+  The values in the calculation for the above example are:
+
+  ====================================== =============================================================
+  Calculation                            Pixel to colour in
+  ====================================== =============================================================
+  :math:`\(E_0 = -7, X_0 = 7, Y_0 = 0\)` Plot pixel (16, 9)
+  :math:`\(E_1 = -6, Y_1 = 1\)`          Plot pixel (16, 10)
+  :math:`\(E_2 = -3, Y_2 = 2\)`          Plot pixel (16, 11)
+  :math:`\(E_3 = 2, Y_3 = 3\)`           -
+  :math:`\(E_4 = -11, X_4 = 6\)`         Plot pixel (15, 12)
+  :math:`\(E_5 = -4, Y_5 = 4\)`          Plot pixel (15, 13)
+  :math:`\(E_6 = 5, Y_6 = 5\)`           -
+  :math:`\(E_7 = -6, X_7 = 5\)`          Plot pixel (14, 14)
+  :math:`\(E_8 = 5, Y_8 = 6\)`           *y* is greater than *x*, so we can now reflect our octant
+  ====================================== =============================================================
+
+
+
+When *y* becomes greater than *x*, one eighth (an octant) of the circle is drawn. 
+The remainder of the circle can be drawn by reflecting the octant that you already have (you can think of this as repeating the pattern of steps you just did in reverse). 
+Reflect pixels along the X and Y axis, such that the line of reflection crosses the middle of the centre pixel of the circle.
+Half of the circle is now drawn, the left and the right half. 
+To add the remainder of the circle, another line of reflection must be used. 
+Can you work out which line of reflection is needed to complete the circle?
+
+.. container:: jargon-buster
+
+ **Jargon Buster** : Octant
+
+ A quadrant is a quarter of an area; the four quadrants that cover the whole area are marked off by a vertical and horizontal line that cross. An *octant* is one eighth of an area, and the 8 octants are marked off by 4 lines that intersect at one point (vertical, horizontal, and two diagonal lines).
+ 
+To complete the circle, you need to reflect along the diagonal. 
+The line of reflection should have a gradient of 1 or -1, and should cross through the middle of the centre pixel of the circle.
+
+While using a line of reflection on the octant is easier for a human to understand, a computer can draw all of the reflected points at the same time it draws a point in the first octant because when it is drawing pixel with an offset of (x,y) from the centre of the circle, it can also draw the pixels with offsets (x,-y), (-x,y), (-x,-y), (y,x), (y,-x), (-y,x) and (-y,-x), which give all eight reflections of the original point!
+
+By the way, this kind of algorithm can be adapted to draw ellipses, but it has to draw a whole quadrant because you don't have octant symmetry in an ellipse.
+
+Practical applications
+------------------------------------
+
+Computers need to draw lines, circles and ellipses for a wide variety of tasks, from game graphics to lines in an architect's drawing, and even a tiny circle for the dot on the top of the letter 'i' in a word processor.  By combining line and circle drawing with techniques like 'filling' and 'antialiasing', computers can draw smooth, clear images that are resolution independent. 
+When an image on a computer is described as an outline with fill colours it is called vector graphics --- these can be re-drawn at any resolution. This means that with a vector image, zooming in to the image will not cause the pixelation seen when zooming in to bitmap graphics, which only store the pixels and therefore make the pixels larger when you zoom in. 
+However, with vector graphics the pixels are recalculated every time the image is redrawn, and that's why it's important to use a fast algorithm like the one above to draw the images.
+
+Outline fonts are one of the most common uses for vector graphics as they allow the text size to be increased to very large sizes, with no loss of quality to the letter shapes.
+
+Computer scientists have found fast algorithms for drawing other shapes too, which means that the image appears quickly and it can be done on relatively slow hardware - for example, a smartphone needs to do these calculations all the time to display images, and reducing the amount of calculations can extend its battery life, as well as make it appear faster.
+
+As usual, things aren't quite as simple as shown here. For example, consider a horizontal line that goes from (0,0) to (10,0), which has 11 pixels. 
+Now compare it with a 45 degree line that goes from (0,0) to (10,10). It still has 11 pixels, but the line is longer (about 41\% longer to be precise).
+This means that the line would appear thinner or fainter on a screen, and extra work needs to be done (mainly anti-aliasing) to make the line look ok. We've only just begun to explore how techniques in graphics are needed to quickly render high quality images.
+
+
+
+Project: Line and circle drawing
+--------------------------------------------
+
+To compare Bresenham's method with using the equation of a line (:math:`\(y = mx+b\)`), choose your own start and end point of a line (of course, make sure it's at an interesting angle), and show the calculations that would be made by each method. Count up the number of additions, subtractions, multiplications and divisions that are made in each case to make the comparison. Note that addition and subtraction is usually a lot faster than multiplication and division. 
+
+You can estimate how long each operation takes on your computer by running a program that does thousands of each operation, and timing how long it takes for each. From this you can estimate the total time taken by each of the two methods. A good measurement for these is how many lines (of your chosen length) your computer could calculate per second.
+
+
+.. only:: teachers or dev
+
+ .. admonition:: For teachers
+
+  This project is suitable for the 3.44 (AS91636) NZ standard. The "key problem" is drawing lines and circles in 2D graphics, "practical applications" would be for drawing programs and rendering images based on lines and curves (including scalable fonts), the "key algorithm/technique" is Bresenham's line and circle drawing algorithm. The effectiveness could be evaluated by the number of arithmetic calculations needed to draw a sample line, and students can compare the :math:`\(mx+b\)` method with Bresenham's (the latter will require a lot fewer calculations; these can be counted accurately for a given line, so as long as students choose their own starting and ending points, their calculations are going to be slightly different to others' which gives good authenticity for the project). 
+
+  For the standard it isn't strictly necessary to measure the actual time of each operation, but this will help to make the experience more authentic since the speed will be for the computer the student is using, and also can lead to very practical estimates, such as how many lines the computer could drawn in a second using each method.
+
+  A strong student could also look into the total number of arithmetic operations performed to calculate a circle using Bresenham's method compared with using the equations of a circle (which is based on x\ :sup:`2` + y\ :sup:`2` = r\ :sup:`2`). The project can give visual examples of objects that are specified as lines and circles, such as a scalable font.
+
+  These algorithms could be used as a simple programming assignment where the calculations are implemented and the program outputs the coordinates of the line (or draws the pixels if that is easy).
+
+  Each student should choose random starting and ending points so each draws a different line. Make sure that they don't choose horizontal, vertical or diagonal lines, as these are trivial (although it would be a good exercise to do these *as well* as one at a more difficult angle to help understand how the algorithm works).
+
+  If a class need to choose some points, one way would be to base them on students' names as follows. For the start point of the line, choose the X value as the first letter in the student's given name converted to a number (e.g. Caren would be 3, because C is the third letter in the alphabet). If the number is greater than 19, subtract 20 from it. For the Y value of the start point, choose the number made with the second letter of their first name.  For the end point of the line, use the first two letters of their family name. For example: If the name was John Smith, you would use the 'Jo' in John to choose the starting point (10, 15). You would then use the 'Sm' in Smith to choose the ending point (19, 13). If this produces a trivial line, add one to one of the points.
+
+
+.. Hidden surface removal
+.. =====================================================
+
+.. Occlusion: Painters algorithm, z-buffer, ray tracing
+
+.. Ray tracing
+.. =====================================================
+
+.. Define and render a scene using provided ray-tracing software e.g. POV-Ray 
+.. (http://library.thinkquest.org/3285/)
+.. Javascript Ray Tracer
+.. (http://blog.vjeux.com/2012/javascript/javascript-ray-tracer.html)
+.. Here you can even setup your own scene and render it to an image.
+.. (http://fooo.fr/~vjeux/epita/raytracer/raytracer.html#pokeball)
+.. Javascript Real-time Raytracer
+.. (http://jsray.user2dev.com/l)
+
+.. Projections
+.. =====================================================
+
+.. Other possible projects:
+.. - Explore modelling surfaces using splines, surfaces of revolution, and simple methods to generate terrain models
+.. - Explore computational geometry methods (such as convex hulls and closest pair of points)
+
+
+The whole story!
+=====================================================
+
+.. homogeneous matrices allow combining the multiplication and addition needed in matrix transformations in section xxx
+
+
+Further reading
+=====================================================
+
+.. todo:: this section is yet to be written
+
+Useful Links
+-------------------------------------------------------------------------------------------------------------
+
+- http://en.wikipedia.org/wiki/Computer_graphics
+- http://en.wikipedia.org/wiki/Transformation_matrix
+- http://en.wikipedia.org/wiki/Bresenham’s_line_algorithm
+- http://en.wikipedia.org/wiki/Ray_trace
+- http://www.cosc.canterbury.ac.nz/mukundan/cogr/applcogr.html
+- http://www.cosc.canterbury.ac.nz/mukundan/covn/applcovn.html
+- http://www.povray.org/resources/links/3D_Tutorials/POV-Ray_Tutorials/
+
+Computer Graphics, Computer Vision, Bresenham’s Line Algorithm, Ray Tracing, Magnetic Resonance Imaging (MRI), Rendering, 3D Modeling, Animation, WebGL (Web Graphics Library), OpenGL (Open Graphics Library)
+
+.. only:: dev
+ 
+ Brainstorming
+ =====================
+
+ - Insert ideas for brainstorm here, using the same syntax (space, dash, space, idea)
+ - http://schuelerlabor.informatik.rwth-aachen.de/modul/wie-kommt-das-bild-auf-den-bildschirm-einstieg-die-computergrafik has a module of 3d graphics
+ - povray explanation: http://www.cs.unc.edu/~rademach/xroads-RT/RTarticle.html
+ - draw on the screen and it makes it pseudo-3D from the camera distances. And showed how those where heights where made.
+ - http://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Simple_raycasting_with_fisheye_correction.gif/400px-Simple_raycasting_with_fisheye_correction.gif
+ - show same scene rendered  wire frame, with /without lighting etc.  - system students can use?
+ - in some ways graphics software is just taking keyboard strokes, mouse clicks turning them into pixels on a 2d screen, but data is also collected externally eg. mocap, mri scans. But really about creativity and perception.
+ - richard's dancing orc?
+ - colour models - show same image with components
+ - chapter 29 of Algorithms Unplugged (Vocking et al) - further reading - bresenhams algorithm for circles
+ - bead game, painter's algorithm http://www.game2learn.com/?page_id=92
+ - html5 interaction for Bresenham: try to draw lines (45 degrees, then more complex, reward for getting accurate; then circles) Then give bresenham rule for specific case and reward for drawing it (perhaps buzz if wrong pixel each time?)
+ - a project on povray seems to exercise main ideas e.g. : http://theringlord.org/derakoninstructions/povray.html
+ - Unplugged line and circle drawing activity
+ - David McCandless: The beauty of data visualization ed.ted.com
+ - Joshua Scott - python OpenGL system to experiment with
+ - ray tracing demo/activities? is there an activity based on a physical model with a grid and string to objects?  Would raise ideas like occlusion, reflection Define and render a scene using provided ray-tracing software e.g. ThinkQuest's The Online POV-Ray Tutorial. See Wikipedia: Ray Tracing and POV-Ray
+ - csunplugged walk the line activity http://csunplugged.org/line-drawing
+ - anti aliasing
+ - show video of 3D to give idea of why transforms are needed e.g. show transforms changing/camera movement/object movement/replication/scaling, then do interactive in 2D, then activity/project with webGL 3D with lighting etc.? Have a test near start to say if webGL installed, and how to configure browser
+ - a video interview with someone from weta would be great e.g. Marcus Schoo?
+ - http://www.game2learn.com/?page_id=92 painters alg?
+ - read "Flatland"
+ - http://www.expandknowledge.net/ekp/bookstore.php?bpage=bookpage&bid=b01 seems like its pitched at just the right level, but need to by a physical copy for US$82? Uses python?
+ - curiosity: look at number of credits for lighting and related things in Schrek, Avatar. and number of programmers etc.
+ - http://en.wikipedia.org/wiki/WebGL might allow rendering in web from commands? Official site: http://www.khronos.org/webgl/ tutorial: http://learningwebgl.com/ http://learningwebgl.com/blog/?page_id=1217 
+ - cube: http://www.ibiblio.org/e-notes/webgl/polyhedra/cube.html 
+ - Browser setup: http://learningwebgl.com/blog/?p=11 - could write an html5 interface to webgl - just put in matrices, main objects, camera angle etc. and watch it rendered? Does this already exist somewhere? maybe this sort of thing: http://learningwebgl.com/lessons/lesson11/index.html
+ - or http://www.webgl.com/2012/04/webgl-demo-shader-toy/ (lots of demos here -can we build a simple one with sliders for position, colour, camera etc?)
+ - povray tutorial starting example http://library.thinkquest.org/3285/tutorial/simple.html
+ - Tim Lambert has a nice applet for trying out Bresenham's algorithm which is a more efficient way of drawing lines. Please see also the The DDA (Digital Differential Analyzer) algorithm, which uses the equation of the line. (shows calculations and steps through - good exercise- try more than 45 degrees)
+ - ains Ray Tracing using strings and duct tape! See also Raytracing video by
+ - as Computer Science 10 - Lecture 2: 3D Graphics vide
+
+ I think for this topic, it could be important to mention the links into math, and also provide links to more advanced stuff, as there will be some high school students who are very confident with math, and could investigate this topic quite possibly to the level that more advanced university students would (and there are probably some that already have!). Graphics seems to be popular with the “geekiest” and “smartest” students.
+ Of course students who aren’t so confident in math should still be given stuff they can understand as well.
+
+ Lower level details of graphics
+ http://csunplugged.org/line-drawing
+
+ Notes from Mukund:
+  The term "Visual Computing" generally encompasses both computer graphics and computer vision algorithms. The EPS library has an excellent book (for undergrad students) by Frank Nielsen:  "Visual Computing: Geometry, Graphics and Vision".
+
+   Possible activities/projects for Yr 13 students could also include scene modelling using images (image-based rendering, used in arcade games), animations using sprites, modelling surfaces using splines (without going into the mathematical aspects of splines), surfaces of revolution (for creating models such as a wine glass), and simple methods to generate terrain models, computational geometry methods (such as convex hulls, closest pair of points).
+
+  Ray tracing is an advanced topic that requires the understanding of concepts such as illumination models, ray object intersection methods, and object oriented programming. If a ray tracing software is used, then students need not worry about these concepts, and could still gain a general appreciation of the visual effects a ray tracer can produce.
+
+  The description of the topic area looks good and includes an outline of important methods and application areas which Yr 13 students could explore and analyse with the help of software. 
+
+ Extra ideas from Richard G:
+ ALGORITHMS:
+ converting RGB to HSI, camera calibration to remove radial distortion, Gaussian filter, median filter, sharpening filter, canny edge detector, Hough transform (to find lines and circles), Lucas-Kanade optical flow, morphological functions (erode, dilate, open, close). 
+
+Key concepts
+-------------------------------------------------------------------------------------------------------------
+
+- Algorithms: Bresenham’s algorithm (line and circle drawing), colour space conversion, line anti-aliasing, Bézier and B-spline curves, painter’s algorithm, Z-buffer
+- Techniques: Techniques: ray tracing, texture mapping, shading, anti-aliasing, volume rendering, polygonisation, constructive solid geometry, 3D modeling, hidden object removal
+- Applications: drawing software, animation
+
+.. grand theft auto: "Jacked" book (R warning)
+
+
+
