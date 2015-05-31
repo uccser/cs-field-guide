@@ -756,37 +756,40 @@ The following interactive can be used to upload your own image, and experiment w
 In the introduction we looked at 8-bit ASCII representations of text (which really use 7 bits, allowing for 128 different symbols).
 As with any other kind of data represented in binary, we can get improvements by considering larger (or smaller) representations.
 
-In the :ref:`curiosity section <curiosity-music>` earlier we observed that 5 bits are sufficient for simple coding of the English alphabet, and for very slow coding systems (like the `video that contains hidden text using musical notes <http://www.youtube.com/watch?v=L-v4Awj_p7g>`_) using 5 bits instead of 8 can save some time. 
+In the :ref:`curiosity section <curiosity-music>` earlier we observed that 5 bits are sufficient for simple coding of the English alphabet, and for very slow coding systems (like the [video that contains hidden text using musical notes](http://www.youtube.com/watch?v=L-v4Awj_p7g>) using 5 bits instead of 8 can save some time. 
 The braille system uses only 6 bits for each character, which allows for 64 different characters, and it is also better than using 8 bits since it would take more paper and more time to read if the longer code was used.
 
 But some languages have way more than 32, or 64, or even 128 characters in their alphabet.
 In fact, the majority of the world's population use such languages!
 In this case, longer codes are needed, and the most widely used approach is a system called *Unicode*.
-A commonly used version of Unicode allows 16 bits per character. Because every extra bit that is added doubles the number of patterns possible, 16-bit codes have many more representations than 8 bit codes. In fact, with 16 bits there are 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 = 2\ :sup:`16` = 65,536 patterns that can be represented. This is enough to assign a unique pattern of bits to the main characters in the most common languages, although there are also standards that allow 32 bits (4 bytes) for each character.
+A commonly used version of Unicode allows 16 bits per character. Because every extra bit that is added doubles the number of patterns possible, 16-bit codes have many more representations than 8 bit codes. In fact, with 16 bits there are 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 = {math}2^16{math end} = 65,536 patterns that can be represented. This is enough to assign a unique pattern of bits to the main characters in the most common languages, although there are also standards that allow 32 bits (4 bytes) for each character.
 
-The Unicode table is far too big to display in this book, but you can find a variety of tables on the internet, and use them to look up codes. `This website displays all unicode characters <http://unicode-table.com/en/>`_ with geographical data for appropriate characters.
+The Unicode table is far too big to display in this book, but you can find a variety of tables on the internet, and use them to look up codes. [This website displays all unicode characters](http://unicode-table.com/en/) with geographical data for appropriate characters.
 The 16- and 32-bit codes are usually written using hexadecimal since this is an easy abbreviation for the long binary codes, and sections of the Unicode alphabet (different languages) tend to be in multiples of 16.
 
 The modern codes associated with Unicode are usually flexible in the size of the representation, so 8-bit characters can be used if that is sufficient, but 16- or 32- bit characters can be invoked for larger alphabets.
 If you are investigating these codes, you will come across standards such as the Universal Character Set (UCS), the Unicode/UCS Transformation Format (UTF-8 UTF-16, etc.), and the GB 18030 standard (which was mandated in the People's Republic of China from the year 2000).
 
+{comment}
+
 .. xtcb curiosity [to be fleshed out later]
 .. Braille is available as unicode http://www.unicode.org/charts/PDF/U2800.pdf; also, higher grades of braille use compression! Quite a confusing mixture of representations there!!
  .. Link to available braille patterns http://unicode-table.com/en/#braille-patterns
 
-Computers representing numbers in practice
-=====================================================
+{comment end}
+
+## Computers representing numbers in practice
 
 A common place that numbers are stored on computers is in spreadsheets or databases.
 Some of the things that we might think of as numbers, such as the telephone number (03) 555-1234, aren't actually stored as numbers, as they contain important characters (like dashes and spaces) as well as the leading 0 which would be lost if it was stored as a number (the above number would come out as 35551234, which isn't quite right).
 On the other hand, things that don't look like a number (such as "30 January 2014") are often stored using a value that is converted to a format that is meaningful to the reader (try typing two dates into Excel, and then subtract one from the other --- the result is a useful number).
 Numbers are commonly used to store things as diverse as student marks, prices, statistics, and scientific readings.
 
-.. only:: teachers or dev
+{teacher}
 
- .. admonition:: For teachers
+The difference between two dates in Excel is the number of days between them; the date itself (as in many systems) is stored as the amount of time elapsed since a fixed date (such as 1 January 1900). You can test this by typing a date like "1 January 1850" --- chances are that it won't be formatted as a normal date. Likewise, a date sufficiently in the future may behave strangely due to the limited number of bits available to store the date.
 
-  The difference between two dates in Excel is the number of days between them; the date itself (as in many systems) is stored as the amount of time elapsed since a fixed date (such as 1 January 1900). You can test this by typing a date like "1 January 1850" --- chances are that it won't be formatted as a normal date. Likewise, a date sufficiently in the future may behave strangely due to the limited number of bits available to store the date.
+{teacher end}
 
 Any system that stores numbers needs to make a compromise between the number of bits allocated to store the number, and the range of values that can be stored. 
 For example, Excel spreadsheets have a maximum value that can be stored --- try calculating 1/3, and display it to as many places of accuracy as possible.
@@ -801,61 +804,66 @@ On a computer we don’t have minus signs, but we can do it by allocating one ex
 We can choose the leftmost bit as the sign bit --- when the sign bit is set to “0”, that means the number is positive and when the sign bit is set to “1”, the number is negative (just as if there were a minus sign in front of it).
 For example, if we wanted to represent the number 41 using 6 bits (like above) along with an additional 7th bit that is the sign bit, assuming the sign bit is first, we would represent it by 0101001. The first bit is a 0, meaning the number is positive, then the remaining 6 bits give 41, meaning the number is +41. If we wanted to make -59, this would be 1111011. The first bit is a 1, meaning the number is negative, and then the remaining 6 bits give 59, meaning the number is -59. 
 
+{comment}
+
 .. 1 is for negative sign, 0 for positive: http://en.wikipedia.org/wiki/Sign_bit
  
 .. Might put the answers for these in, as there isn’t a certain way for students to check their answers like there was for the above ones.
 
+{comment end}
+
 Using 7 bits as described above (one for the sign, and 6 for the actual number), what would be the binary representations for 1, -1, -8, 34, -37, -88, and 102?
 
-.. only:: teachers or dev
+{teacher}
 
- .. admonition:: For teachers
+Students should have been able to do most of this by converting the rightmost 6 bits as for numbers earlier, and then putting in the correct sign bit. The answers are:
 
-  Students should have been able to do most of this by converting the rightmost 6 bits as for numbers earlier, and then putting in the correct sign bit. The answers are:
+- 1 is 00000001
+-  -1 is 10000001
+-  -8 is 10001000
+-  34 is 00100010
+-  -37 is 10100101
+-  -88 is 11011000
+-  102 is 01100110
 
-  - 1 is 00000001
-  -  -1 is 10000001
-  -  -8 is 10001000
-  -  34 is 00100010
-  -  -37 is 10100101
-  -  -88 is 11011000
-  -  102 is 01100110
+{teacher end}
 
 Suppose we have 8-bit numbers, with the left-most bit as a sign bit. What would the decimal values be for the following 10000110? 01111111? How about 10000000?
 
-.. only:: teachers or dev
+{teacher}
 
- .. admonition:: For teachers
+10000110 is -6, and 01111111 is 127 (the maximum value with 8-bit signed numbers). 10000000 means -0, which is the same as 0, and is discussed below. 
 
-  10000110 is -6, and 01111111 is 127 (the maximum value with 8-bit signed numbers). 10000000 means -0, which is the same as 0, and is discussed below. 
+{teacher}
 
 The representation 10000000 highlights a problem with this notation, as it represents the number -0, which is the same as 0. That is, there are two ways to represent the number 0, which is wasteful, and potentially confusing.
 
 It turns out that there's a notation called "two's complement" for negative numbers, which avoids this wastage, and more importantly, makes it easier to do arithmetic with negative numbers. It's beyond what is needed for this topic, but the following box gives some more information if you'd like to look into it.
 
-.. container:: extra-for-experts
+{extra-for-experts}
 
- **Extra for Experts**
+**Extra for Experts**
 
- .. only:: teachers or dev
+{teacher}
 
-  .. admonition:: For teachers
+Note for teachers: While we aren’t providing support for using two’s complement, if you are confident at teaching it, or you have a capable student who can teach it to themselves and can understand it, then representing binary numbers in the way this section explains versus representing them using two’s complement would be 2 different representations of numbers that students can compare. This would be a really good approach if you have a student who is so far ahead that they need an extra challenge!
 
-   Note for teachers: While we aren’t providing support for using two’s complement, if you are confident at teaching it, or you have a capable student who can teach it to themselves and can understand it, then representing binary numbers in the way this section explains versus representing them using two’s complement would be 2 different representations of numbers that students can compare. This would be a really good approach if you have a student who is so far ahead that they need an extra challenge!
+{teacher end}
 
- Negative numbers are more often stored on computers using a system called "two's complement". This system makes it very easy to do arithmetic without having to treat negative numbers as a special case, so it's faster and uses less circuitry. The principle is based on a fairly simple idea: for example, in decimal, if you had to subtract the number 4 from a value, it's the same if you add 6 and subtract 10. Using the complement of the number -4 (i.e. 6) plus an indicator that it's negative can make calculations quicker and simpler.   A similar approach applies in binary, and it's even easier because there are only two digits.    More `information is available here on how negative numbers work <http://www.i-programmer.info/babbages-bag/200-binary-negative-numbers.html?start=1>`_, and also on the `Wikipedia page about two's complement <http://en.wikipedia.org/wiki/Two%27s_complement>`_, although it's quite technical.
+Negative numbers are more often stored on computers using a system called "two's complement". This system makes it very easy to do arithmetic without having to treat negative numbers as a special case, so it's faster and uses less circuitry. The principle is based on a fairly simple idea: for example, in decimal, if you had to subtract the number 4 from a value, it's the same if you add 6 and subtract 10. Using the complement of the number -4 (i.e. 6) plus an indicator that it's negative can make calculations quicker and simpler. A similar approach applies in binary, and it's even easier because there are only two digits. More [information is available here on how negative numbers work](http://www.i-programmer.info/babbages-bag/200-binary-negative-numbers.html?start=1), and also on the [Wikipedia page about two's complement](http://en.wikipedia.org/wiki/Two%27s_complement), although it's quite technical.
+
+{extra-for-experts end}
 
 
-.. container:: curiosity
+{curiosity}
 
- **Curiosity**
+**Curiosity**
 
- In some programming languages there isn't a check for when a number gets too big (overflows). For example, if you have an 8-bit number using two's complement, then 01111111 is the largest number (127), and if you add one without checking, it will change to 10000000, which happens to be the number -128. This can cause serious problems if not checked for, and is behind a variant of the Y2K problem, called the `Year 2038 problem <http://en.wikipedia.org/wiki/Year_2038_problem>`__, involving a 32-bit number overflowing for dates on Tuesday, 19 January 2038.
+In some programming languages there isn't a check for when a number gets too big (overflows). For example, if you have an 8-bit number using two's complement, then 01111111 is the largest number (127), and if you add one without checking, it will change to 10000000, which happens to be the number -128. This can cause serious problems if not checked for, and is behind a variant of the Y2K problem, called the `Year 2038 problem <http://en.wikipedia.org/wiki/Year_2038_problem>`__, involving a 32-bit number overflowing for dates on Tuesday, 19 January 2038.
 
- .. figure:: _static/images/dr-cant-sleep.png
-  :alt: xkcd comment on NP complete
-  :align: center
-  :target: http://xkcd.com/571/
+{image dr-cant-sleep.png alt="xkcd comment on NP complete"}
+
+{curiosity end}
 
 Because of the way computer memory is constructed, memory is most commonly used in chunks of  8 bits or 32 bits (or even 64 bits) at a time.  
 That means that if the computer is representing an integer as a binary number with a sign bit, it will commonly use 32 bits, where the first bit is the sign bit, and the other 31 bits represent the value of the number.
@@ -868,11 +876,11 @@ How many people are in the world?
 Would a 32 bit integer like described above be large enough to store a different identifier number for each person in the world?
 How many bits of accuracy would you want to allow for possible population growth?
 
-.. only:: teachers or dev
+{teacher}
 
- .. admonition:: For teachers
+The world population is approximately 7 billion, so 32 bits isn't quite enough to have an identifier for each person in the world. 64 bits can store up to 18,446,744,073,709,600,000, so that is way more than enough. Since each extra bit doubles the range that can be stored, even 33 bits would be enough for the world population, and 34 bits would be enough even if the population doubles. The idea that one extra bit increases the range so much is an important concept in data representation. 
 
-  The world population is approximately 7 billion, so 32 bits isn't quite enough to have an identifier for each person in the world. 64 bits can store up to 18,446,744,073,709,600,000, so that is way more than enough. Since each extra bit doubles the range that can be stored, even 33 bits would be enough for the world population, and 34 bits would be enough even if the population doubles. The idea that one extra bit increases the range so much is an important concept in data representation. 
+{teacher end}
 
 =============== =============================== ======================================================= 
 Type of Number  Unsigned Range                  Signed Range    
@@ -885,48 +893,43 @@ Type of Number  Unsigned Range                  Signed Range
 
 So when you are storing values on a computer with very limited space, you need to be careful to pick a suitable kind of integer that has enough space, but isn’t wasting space. You also need to think about whether or not a number could potentially be negative.
 
-.. only:: teachers or dev
+{teacher}
 
- .. admonition:: For teachers
+Students can do this for merit, and they should also discuss why they choose the integer types they did.
 
-  Students can do this for merit, and they should also discuss why they choose the integer types they did.
+{teacher end}
 
 Think of a few different examples for different sized integers (both signed and unsigned ones) of a piece of data that you could store in that sized integer. For example, the age of a person could be stored in an 8 bit unsigned integer (people can’t be a negative age!), and the number of students in your school could be stored in an 8 bit or 16 bit integer, depending on how big your school is! What other examples can you think of?
 
 What are some examples of numbers you could not represent using any of these integers?
 
-.. container:: extra-for-experts
+{extra-for-experts}
 
- **Extra for Experts**
+**Extra for Experts**
 
- Another type of number used in computer systems is the "floating point" value. While we won't look at it in detail, to get a taste of what's involved, consider the bit values in a 4-bit number, which are 8, 4, 2 and 1. What would the value of a bit *to the right* of the one bit be? And to the right of that one?
+Another type of number used in computer systems is the "floating point" value. While we won't look at it in detail, to get a taste of what's involved, consider the bit values in a 4-bit number, which are 8, 4, 2 and 1. What would the value of a bit *to the right* of the one bit be? And to the right of that one?
 
- The following version of the base conversion interactive has bits that are smaller than the 1-bit. Try representing the decimal number 3.5 using this system. How about 2.8125? What about 2.8? 
+The following version of the base conversion interactive has bits that are smaller than the 1-bit. Try representing the decimal number 3.5 using this system. How about 2.8125? What about 2.8? 
 
- This system is a fixed-point number system; floating point numbers are based on this idea, but allow for the number of digits to be fixed, but the position of the point to change (by giving an exponent value).
+This system is a fixed-point number system; floating point numbers are based on this idea, but allow for the number of digits to be fixed, but the position of the point to change (by giving an exponent value).
 
- .. only:: teachers or dev
+{teacher}
 
-  .. admonition:: For teachers
+The values to the right of the 1-bit continue to be a half of the value to their left, so they are 0.5, 0.25, 0.125 and so on. The decimal number 3.5 can be represented as 11.1, and 2.8125 is 10.1101. The number 2.8 can't be represented accurately in binary! The closest value with the 10 bits in the interactive is 10.11001100. In fact, the number never finishes in binary; it contains "1100" repeating forever! This rounding error can be seen in some spreadsheets: try adding 110 + 2.8 - 2.8 - 100. With enough places of accuracy, you can see that the sum doesn't (quite) come to zero.
 
-   The values to the right of the 1-bit continue to be a half of the value to their left, so they are 0.5, 0.25, 0.125 and so on. The decimal number 3.5 can be represented as 11.1, and 2.8125 is 10.1101. The number 2.8 can't be represented accurately in binary! The closest value with the 10 bits in the interactive is 10.11001100. In fact, the number never finishes in binary; it contains "1100" repeating forever! This rounding error can be seen in some spreadsheets: try adding 110 + 2.8 - 2.8 - 100. With enough places of accuracy, you can see that the sum doesn't (quite) come to zero.
+{teacher end}
 
+<div class="widget-holder"><a href="_static/widgets/DR/DR-base-conversion/public_html/index.html?base=2&columns=14&lines=A,B,C&offset=-8" target="_blank"><img class="widget-image" src="_static/images/DR-BaseConversionBinaryDecimals.png" alt=""><span class="widget-subtitle">Click to load the widget</span></a></div>
 
- .. only:: html or epub
- 
-  .. raw:: html
+{extra-for-experts end}
 
-   <div class="widget-holder"><a href="_static/widgets/DR/DR-base-conversion/public_html/index.html?base=2&columns=14&lines=A,B,C&offset=-8" target="_blank"><img class="widget-image" src="_static/images/DR-BaseConversionBinaryDecimals.png" alt=""><span class="widget-subtitle">Click to load the widget</span></a></div>
+### Numbers in programming languages
 
+{teacher}
 
-Numbers in programming languages
-------------------------------------------------------
+This section is an alternative approach to doing a project with number representation which is appropriate if the students are using a text-based programming language that supports different types of integers. It involves writing programs that cause errors by overflowing the numbers, which can force them to work with quite large values!
 
-.. only:: teachers or dev
-
- .. admonition:: For teachers
-
-  This section is an alternative approach to doing a project with number representation which is appropriate if the students are using a text-based programming language that supports different types of integers. It involves writing programs that cause errors by overflowing the numbers, which can force them to work with quite large values!
+{teacher end}
 
 If you are programming in a language (e.g. Python, Java, C, C++, C#) then the limitations of data representations become important very quickly, as you will have to choose what kind of data representation you want to use, and if it is too small then it can "overflow". 
 For example, if you allocate a variable to be stored as a 16 bit unsigned integer, and you are counting how many characters there are in a file, then it will fail after 65,535 characters --- that's just a 65 kilobyte file.
@@ -935,8 +938,7 @@ If the amount of memory your computer has to store its data in is very limited (
 
 Working out the size of an integer used in a particular programming language may take some investigation, as they are usually declared with names like "int" and "long", which don't say explicitly how many bits they use. For example, in the Java programming language, there is a data type called the "byte", which is an 8-bit integer that includes negative numbers (it goes from -128 to 127), whereas a "short" integer is 16 bits, an "int" is 32 bits, and a "long" is 64 bits. In some cases (such as the "int" type in C) the length of an integer depends on the version of the language of the type of computer it is running on, and in other cases (such as integers in Python) the representation is automatically changed for you if the number gets too big!
 
-The whole story!
-=====================================================
+## The whole story!
 
 The kind of image representations covered here are the basic ones used in most digital systems, and the main point of this chapter is to understand how digital representations work, and the compromises needed between the number of bits, storage used, and quality.
 
@@ -956,25 +958,27 @@ The chapter does not (yet) cover other forms of data representation, and you may
 - sound (wave files and related storage; for example, 16-bit samples are used for "CD quality", but professional systems use 24-bit or even higher) --- for some information, see the `Teach with ICT page on sound representation <http://teachwithict.weebly.com/6/post/2014/01/teaching-computer-science-day-15-everything-is-sound.html#sthash.8LIc3W01.dpbs>`_.
 - video (which are based on multiple images being played one after the other; however, these files are so large that they are almost never stored as a "raw" representation)
 
+{comment}
+
 .. http://community.computingatschool.org.uk/resources/1035 has a plan for image/sound?
 .. http://teachwithict.weebly.com/6/post/2014/01/teaching-computer-science-day-15-everything-is-sound.html#sthash.8LIc3W01.dpbs explains sound nicely
 .. https://www.youtube.com/watch?v=W2-FP7twy8s explains sampling
 
 .. sound: http://code.org/files/CSEDbinary.pdf
 
-Further reading
-=====================================================
+{comment end}
 
-This puzzle can be solved using the pattern in binary numbers: http://www.cs4fn.org/binary/lock/
+## Further reading
 
-`This site <http://courses.cs.vt.edu/~csonline/NumberSystems/Lessons/index.html>`_ has more complex activities with binary numbers, including fractions, multiplication and division. 
+This puzzle can be solved using the pattern in binary numbers: [http://www.cs4fn.org/binary/lock/](http://www.cs4fn.org/binary/lock/)
+
+[This site](http://courses.cs.vt.edu/~csonline/NumberSystems/Lessons/index.html) has more complex activities with binary numbers, including fractions, multiplication and division. 
 
 
-Useful Links
-------------------------------------------------------------------------------------------------------------------
+### Useful Links
 
-- `Basics of binary numbers <http://csunplugged.org/binary-numbers>`_
-- `Representing bits using sound <http://csunplugged.org/modem>`_
-- `Hex game <http://www.purposegames.com/game/049fc90a>`_
-- `Thriving in our digital world <https://onramps.instructure.com/courses/723227>`_ has good illustrations of data representation
+- [Basics of binary numbers](http://csunplugged.org/binary-numbers)
+- [Representing bits using sound <http://csunplugged.org/modem)
+- [Hex game <http://www.purposegames.com/game/049fc90a)
+- [Thriving in our digital world](https://onramps.instructure.com/courses/723227) has good illustrations of data representation
 
