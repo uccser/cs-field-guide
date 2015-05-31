@@ -1,8 +1,10 @@
-from markdown2 import markdown
 import re
 import string
 import logging
 import os.path
+from markdown2 import markdown
+from generator.files import setup_required_files
+
 
 MARKDOWN2_EXTRAS = ["code-friendly",
                     "cuddled-lists",
@@ -25,7 +27,7 @@ class Section:
         self.regex_functions = self.create_regex_functions()
         self.permalinks = set()
         # Dictionary of sets for images, interactives, and other_files
-        self.required_files = {}
+        self.required_files = setup_required_files(self.guide.generator_settings)
         self.mathjax_required = False
 
     # ----- Helper Functions -----
@@ -133,10 +135,7 @@ class Section:
 
         # Add to required files
         filename = match.group('filename')
-        if 'images' in self.required_files:
-            self.required_files['images'].add(filename)
-        else:
-            self.required_files['images'] = {filename}
+        self.required_files['Images'].add(filename)
         # TODO: Process arguments
 
         # Return HTML
@@ -200,10 +199,7 @@ class Section:
         """Create a button for downloading a file"""
         filename = match.group('filename')
 
-        if 'files' in self.required_files:
-            self.required_files['files'].add(filename)
-        else:
-            self.required_files['files'] = {filename}
+        self.required_files['Files'].add(filename)
 
         output_path = os.path.join(self.guide.generator_settings['Output']['Files'], filename)
         text = self.html_templates['button-download-text'].format(filename=filename)

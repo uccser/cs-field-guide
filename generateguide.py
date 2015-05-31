@@ -18,6 +18,7 @@ import os
 import re
 from shutil import copy2
 from generator.markdownsection import Section
+from generator.files import setup_required_files
 
 GUIDE_SETTINGS = 'guide-settings.conf'
 GENERATOR_SETTINGS = 'generator/generator-settings.conf'
@@ -37,7 +38,7 @@ class Guide:
         self.structure = self.parse_structure()
         self.content = self.read_content()
         # Dictionary of sets for images, interactives, and other_files
-        self.required_files = {}
+        self.required_files = setup_required_files(self.generator_settings)
         self.html_templates = self.read_html_templates()
 
         if self.html_templates:
@@ -60,8 +61,8 @@ class Guide:
                     section.set_number(section_number)
                 if section.markdown_text:
                     section.parse_markdown_content(self.html_templates)
-                for file_type,file_names in section.required_files.items():
-                    self.required_files[file_type] = self.required_files.get(file_type, set()).union(file_names)
+                for file_type,file_data in section.required_files.items():
+                    self.required_files[file_type] += file_data
                 if self.guide_settings[group].getboolean('Numbered'):
                     section_number += 1
 
@@ -201,20 +202,20 @@ class Guide:
                 except:
                     logging.critical("Cannot write file {0}".format(file_name))
 
-        # TODO: Copy all required files, store source/output info in new class
-        for file_type,file_names in self.required_files.items():
-            if file_type == 'images':
-                for file_name in file_names:
-                    # TODO: Replace file copy procedure, currently proof of concept
-                    source_image = os.path.join(image_source_folder, file_name)
-                    output_image = os.path.join(image_output_folder, file_name)
-                    if os.path.exists(source_image):
-                        try:
-                            copy2(source_image, output_image)
-                        except:
-                            logging.exception("Image {0} could not be copied".format(file_name))
-                    else:
-                        logging.error("Image {0} could not be found".format(file_name))
+        # Copy all required files
+        for file_type,file_data in self.required_files.items():
+            for filename in file_data.filenames:
+                source_location = os.path.join(file_data.source_location, filename)
+                output_location = os.path.join(file_data.output_location, filename)
+                if os.path.exists(source_location):
+                    try:
+                        copy2(source_location, output_location)
+                    except:
+                        logging.exception("{file_type} {filename} could not be copied".format(file_type=file_type[:-1],
+                                                                                              filename=filename))
+                else:
+                    logging.error("{file_type} {filename} could not be found".format(file_type=file_type[:-1],
+                                                                                     filename=filename))
 
 
 def setup_logging():
