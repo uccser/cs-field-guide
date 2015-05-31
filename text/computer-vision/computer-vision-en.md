@@ -314,7 +314,7 @@ Despite these recent changes, many of the fundamental ideas in computer vision h
 .. Useful Links
 .. --------------------------------------------------------------------------------------------------------------
 
-{comment}
+{comment end}
 
 - [http://en.wikipedia.org/wiki/Computer_vision](http://en.wikipedia.org/wiki/Computer_vision)
 - [http://en.wikipedia.org/wiki/Mri](http://en.wikipedia.org/wiki/Mri)

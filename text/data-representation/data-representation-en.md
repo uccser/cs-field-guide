@@ -390,7 +390,7 @@ Groups of 8 bits are so useful that they have their own name: a **byte**. Comput
 
 Candles on birthday cakes use the base 1 numbering system, where each place is worth 1 times the one to its right(!) For example, the number 3 is 111, and 10 is 1111111111. This can cause problems as you get older --- if you've ever seen a cake with 100 candles on it, you'll be aware that it's a serious fire hazard.
 
-{image dr-binary-cakes.png alt="the image shows two people with birthday cakes, however a cake with 100 candles on it turns into a big fireball!\""}
+{image dr-binary-cakes.png alt="the image shows two people with birthday cakes, however a cake with 100 candles on it turns into a big fireball!"}
 
 Luckily it's possible to use binary notation for birthday candles --- each candle is either lit or not lit. For example, if you are 18, the binary notation is 10010, and you need 5 candles (with only two of them lit).
 
@@ -400,9 +400,7 @@ There's a [video on using binary notation for counting up to 1023 on your hands,
 
 {curiosity end}
 
-Shorthand for binary numbers
------------------------------------------------------------------------------------------------------------
-
+### Shorthand for binary numbers
 
 Most of the time binary numbers are stored electronically, and we don't need to worry about making sense of them. But sometimes it's useful to be able to write down and share numbers, such as the unique identifier assigned to each digital device (MAC address), or the colours specified in an HTML page.
 
@@ -414,52 +412,48 @@ Because we now have 16 digits, this representation is called hexadecimal (or hex
 
 Here's a full table of all the 4-bit numbers and their hexadecimal digit equivalent:
 
-.. only:: html or epub
- 
- .. raw:: html
-
-  <div class="table-responsive">
-  <table class="table table-bordered table-condensed">
-   <tr>
-      <td>Binary</td>
-      <td>0000</td>
-      <td>0001</td>
-      <td>0010</td>
-      <td>0011</td>
-      <td>0100</td>
-      <td>0101</td>
-      <td>0110</td>
-      <td>0111</td>
-      <td>1000</td>
-      <td>1001</td>
-      <td>1010</td>
-      <td>1011</td>
-      <td>1100</td>
-      <td>1101</td>
-      <td>1110</td>
-      <td>1111</td>
-   </tr>
-   <tr>
-      <td>Hex</td>
-      <td>0</td>
-      <td>1</td>
-      <td>2</td>
-      <td>3</td>
-      <td>4</td>
-      <td>5</td>
-      <td>6</td>
-      <td>7</td>
-      <td>8</td>
-      <td>9</td>
-      <td>A</td>
-      <td>B</td>
-      <td>C</td>
-      <td>D</td>
-      <td>E</td>
-      <td>F</td>
-   </tr>
-  </table>
-  </div>
+<div class="table-responsive">
+<table class="table table-bordered table-condensed">
+<tr>
+  <td>Binary</td>
+  <td>0000</td>
+  <td>0001</td>
+  <td>0010</td>
+  <td>0011</td>
+  <td>0100</td>
+  <td>0101</td>
+  <td>0110</td>
+  <td>0111</td>
+  <td>1000</td>
+  <td>1001</td>
+  <td>1010</td>
+  <td>1011</td>
+  <td>1100</td>
+  <td>1101</td>
+  <td>1110</td>
+  <td>1111</td>
+</tr>
+<tr>
+  <td>Hex</td>
+  <td>0</td>
+  <td>1</td>
+  <td>2</td>
+  <td>3</td>
+  <td>4</td>
+  <td>5</td>
+  <td>6</td>
+  <td>7</td>
+  <td>8</td>
+  <td>9</td>
+  <td>A</td>
+  <td>B</td>
+  <td>C</td>
+  <td>D</td>
+  <td>E</td>
+  <td>F</td>
+</tr>
+</table>
+</div>
 
 
 For example, the largest 8-bit binary number is 11111111. This can be written as FF in hexadecimal. Both of those representations mean 255 in our conventional decimal system (you can check that by converting the binary number to decimal).
@@ -468,18 +462,17 @@ The largest 16 bit binary number is 1111111111111111, or FFFF in hexadecimal. Bo
 
 The hexadecimal system is also known as base 16. The following interactive converts hexadecimal numbers to decimal (base 10), which provides another way of thinking about them. But don't forget that the main point is that hexadecimal is an easy shorthand for binary representation.
 
+{comment}
+
 .. xtcb check number of digits and use of ABC lines in following
 
-.. only:: html or epub
- 
- .. raw:: html
+{comment end}
 
-  <div class="widget-holder"><a href="_static/widgets/DR/DR-base-conversion/public_html/index.html?base=16&columns=7&lines=A,B,C&offset=0"  target="_blank"><img class="widget-image" src="_static/images/DR-BaseConversionHexidecimal.png" alt=""><span class="widget-subtitle">Click to load the widget</span></a></div>
+<div class="widget-holder"><a href="_static/widgets/DR/DR-base-conversion/public_html/index.html?base=16&columns=7&lines=A,B,C&offset=0"  target="_blank"><img class="widget-image" src="_static/images/DR-BaseConversionHexidecimal.png" alt=""><span class="widget-subtitle">Click to load the widget</span></a></div>
 
 Which notation you use will depend on the situation; binary numbers represent what is actually stored, but can be confusing to read and write; hexadecimal numbers are a good shorthand; and decimal numbers are used if you're trying to understand the meaning of the number. All three get used in computer science.
 
-How do binary numbers affect us?
------------------------------------------------------------------------------------------------------------
+### How do binary numbers affect us?
 
 The length of a binary number determines the range of values it can represent. Often on computers we are dealing with text, images and sound rather than numbers, but they do appear in quite a few places, and the accuracy with which they are represented can affect what we can do on a computer.
 
@@ -490,20 +483,22 @@ Many programming languages allow the programmer to specify the number of bits us
 Another situation where different numbers of bits in a representation is important is IP (Internet Protocol) and MAC (media access control) addresses for devices; the recent change from IPv4 to IPv6 was driven by the number of devices you could represent, and if you are interested in networks could explore the number of bits used for an address, and how many possible devices could exist before we run out of numbers.
 
 
-
-Representing images with bits
-=====================================================
+## Representing images with bits
 
 .. warning:: This section assumes that you understand binary numbers. If you are confused by binary numbers still, you should go back to the binary numbers section and work through the material there again until you understand it. The first part of this section is possible to understand without understanding binary numbers, although in order to actually use the material for assessment purposes, you will need to understand binary numbers, as the key idea is representing colours using *bits*, and the bits in colours are decided based on numbers.
 
-.. only:: teachers or dev
+{teacher}
 
- .. admonition:: For teachers
+This first subsection is not actually computers representing data using bits (as it is actually about computer screens physically displaying colour), but it is a necessary background section before students learn about how the colours are then stored in computer memory. Students may have covered this material under other topics (e.g. image editing). It’s purpose here is to link this topic back to what students are familiar with.
 
-  This first subsection is not actually computers representing data using bits (as it is actually about computer screens physically displaying colour), but it is a necessary background section before students learn about how the colours are then stored in computer memory. Students may have covered this material under other topics (e.g. image editing). It’s purpose here is to link this topic back to what students are familiar with.
+{teacher end}
+
+{comment}
 
 .. xtcb add text to introduce interactive, that 1) image has pixels 2) pixel's have values
 .. jrm will add interactive back here once text has been added
+
+{comment end}
 
 In school or art class you may have mixed different colours of paint or dye together in order to make new colours. This was probably very helpful if the exact colour you wanted was not present in your palette, in addition to just being fun to experiment with!
 When mixing paints, red and blue would give purple. If you mixed yellow and blue, you would get green. If you mixed red and yellow, you would get orange. If you mixed an even amount of the 3 primary colours; blue, red, and yellow together, you should get black, although often it would be a murky brown. By mixing together various amounts of the three primary colours, along with white and black, you can make many different colours.
@@ -511,43 +506,42 @@ When mixing paints, red and blue would give purple. If you mixed yellow and blue
 Actually, while the colours blue, red and yellow are commonly used in art classes, the very similar primary colours that work better for printing are cyan, magenta and yellow (CMY), which are commonly found in computer printers as well as printing presses. This kind of mixing is called "subtractive mixing", because it starts with a white canvas or paper, and subtracts colour from it. The below interactive allows you to experiment with these in case you're not familiar with them, or in case you just like mixing colours.
 We've also added a "black" mix; it's not strictly necessary (you can get black by putting all the other colours on full), but it's useful for printers because it's such a common colour.
 
-.. only:: html or epub
- 
- .. raw:: html
+<link rel="stylesheet" href="_static/interactives/dr/dr_inline_interactives.css" type="text/css" />
+<script type="text/javascript" src="_static/interactives/dr/dr_inline_interactives.js"></script>
+<script type="text/javascript" src="_static/interactives/dr/jquery-ui.min.js"></script>
+<div class="interactive row text-center">
+<h4>CMY Colour Mixer</h4>
+	<div class="col-xs-12 col-sm-4">
+		<label for="cyan-colour">Cyan</label>
+		<div id="cyan-colour" class="slider"></div>
+        <label class="pull-left">0</label>
+        <label id="cyan-value"></label>
+        <label class="pull-right">255</label>
+	</div>
+	<div class="col-xs-12 col-sm-4">
+		<label for="magenta-colour">Magenta</label>
+		<div id="magenta-colour" class="slider"></div>
+        <label class="pull-left">0</label>
+        <label id="magenta-value"></label>
+        <label class="pull-right">255</label>
+	</div>
+	<div class="col-xs-12 col-sm-4">
+		<label for="yellow-colour">Yellow</label>
+		<div id="yellow-colour" class="slider"></div>
+        <label class="pull-left">0</label>
+        <label id="yellow-value"></label>
+        <label class="pull-right">255</label>
+	</div>
+	<div class="clearfix"></div>
+	<div class="col-xs-12" id="cmyk-colour-output">
+	</div>
+</div>
 
-  <link rel="stylesheet" href="_static/interactives/dr/dr_inline_interactives.css" type="text/css" />
-  <script type="text/javascript" src="_static/interactives/dr/dr_inline_interactives.js"></script>
-  <script type="text/javascript" src="_static/interactives/dr/jquery-ui.min.js"></script>
-	<div class="interactive row text-center">
-	<h4>CMY Colour Mixer</h4>
-		<div class="col-xs-12 col-sm-4">
-			<label for="cyan-colour">Cyan</label>
-			<div id="cyan-colour" class="slider"></div>
-            <label class="pull-left">0</label>
-            <label id="cyan-value"></label>
-            <label class="pull-right">255</label>
-		</div>
-		<div class="col-xs-12 col-sm-4">
-			<label for="magenta-colour">Magenta</label>
-			<div id="magenta-colour" class="slider"></div>
-            <label class="pull-left">0</label>
-            <label id="magenta-value"></label>
-            <label class="pull-right">255</label>
-		</div>
-		<div class="col-xs-12 col-sm-4">
-			<label for="yellow-colour">Yellow</label>
-			<div id="yellow-colour" class="slider"></div>
-            <label class="pull-left">0</label>
-            <label id="yellow-value"></label>
-            <label class="pull-right">255</label>
-		</div>
-		<div class="clearfix"></div>
-		<div class="col-xs-12" id="cmyk-colour-output">
-		</div>
-    </div>
-
+{comment}
 
 .. xtcb insert Mona Lisa image from Chinese book end of topic 4
+
+{comment end}
 
 Computer screens and related devices also rely on mixing colours, except they go about it in quite a different way --- they use a different set of primary colours, because they are *additive*, starting with a black screen and adding colour to it.
 For additive colour on computers, the colours red, green and blue (RGB) are used.
@@ -555,13 +549,7 @@ Each pixel on a screen has 3 tiny lights; one red, one green, and one blue. By i
 
 You can try additive colours in the following interactive; try different combinations of each slider. How do you generate yellow? What happens if they are all at zero? All at full value (255)? Halfway? What happens if one colour is at full, and the other two are at halfway? How do you get shades of purple, yellow, orange, and pink? What happens when you have the same amount of each colour? How do you get black? How do you get white?
 
-
-.. only:: html or epub
- 
- .. raw:: html
-
-  <div><iframe width="100%" height="270" src="_static/widgets/DR/DR-color/CG-ColorBits_1.html" frameborder="0"></iframe></div>
-
+<div><iframe width="100%" height="270" src="_static/widgets/DR/DR-color/CG-ColorBits_1.html" frameborder="0"></iframe></div>
 
 The key idea is that you can specify the colour of a pixel using three numbers. 
 In the above example, each number is from 0 to 255.
@@ -573,77 +561,74 @@ Of course, a computer screen or printout doesn't have just one colour on it --- 
 The following interactive allows you to zoom in on an image to see the pixels that are used to represent it. Each pixel is a solid colour square, and the computer needs to store the colour for each pixel. 
 If you zoom in far enough, the interactive will show you the red-green-blue values for each pixel. You can pick a pixel and put the values on the slider above - it should come out as the same colour as the pixel.
 
+<div class="widget-holder"><a href="_static/interactives/dr/pixel-values/index.html"  target="_blank"><img class="widget-image" src="_static/interactives/dr/pixel-values/thumbnail.png" alt=""><span class="widget-subtitle">Click to load<br>Pixel Interactive</span></a></div>
 
-.. only:: html or epub
- 
- .. raw:: html
+{jargon-buster}
 
-  <div class="widget-holder"><a href="_static/interactives/dr/pixel-values/index.html"  target="_blank"><img class="widget-image" src="_static/interactives/dr/pixel-values/thumbnail.png" alt=""><span class="widget-subtitle">Click to load<br>Pixel Interactive</span></a></div>
+**Jargon Buster**
 
+The word **pixel** is short for "picture element". On computer screens and printers an image is created by a grid of pixels, each one set to the required colour. A pixel is typically a fraction of a millimeter across, and images can be made up of millions of pixels (one megapixel is a million pixels).
 
+{jargon-buster end}
 
-.. container:: jargon-buster
+{images dr-screen-pixels.jpg alt="This image shows the small red, green, and blue pixels that are used on screens to display colour."}
 
- **Jargon Buster**
+{curiosity}
 
- The word **pixel** is short for "picture element". On computer screens and printers an image is created by a grid of pixels, each one set to the required colour. A pixel is typically a fraction of a millimeter across, and images can be made up of millions of pixels (one megapixel is a million pixels).
+**Curiosity**
 
+The human eye has millions of light sensors in it, and the ones that detect colour are called "cones". There are three different kinds of cones, which detect red, blue, and green light respectively. Colours are perceived by the amount of red, blue, and green light in them. Computer screen pixels take advantage of this by releasing the amounts of red, blue, and green light that will be perceived as the desired colour by your eyes. So when you see "purple", it's really the red and blue cones in your eyes being stimulated, and your brain converts that to a perceived colour.
 
-.. figure:: _static/images/DR-ScreenPixels.jpg
- :alt: This image shows the small red, green, and blue pixels that are used on screens to display colour.
- :align: center
- :target: http://commons.wikimedia.org/wiki/File:Pixel_geometry_01_Pengo.jpg#file
+{curiosity end}
 
+For more information about RGB displays, see [RGB on Wikipedia](http://en.wikipedia.org/wiki/Rgb); for more information about the eye sensing the three colours, see [Cone cell](http://en.wikipedia.org/wiki/Cone_cell) and [trichromacy ](http://en.wikipedia.org/wiki/Trichromacy) on Wikipedia.
 
-.. container:: curiosity
+{teacher}
 
- **Curiosity**
+Another exercise to see the relationship between bit patterns and colour images is [provided here](https://sites.google.com/a/bxs.org.uk/mrkershaw/ict/bitmapgraphics).
 
- The human eye has millions of light sensors in it, and the ones that detect colour are called "cones". There are three different kinds of cones, which detect red, blue, and green light respectively. Colours are perceived by the amount of red, blue, and green light in them. Computer screen pixels take advantage of this by releasing the amounts of red, blue, and green light that will be perceived as the desired colour by your eyes. So when you see "purple", it's really the red and blue cones in your eyes being stimulated, and your brain converts that to a perceived colour.
-For more information about RGB displays, see `RGB on Wikipedia <http://en.wikipedia.org/wiki/Rgb>`_; for more information about the eye sensing the three colours, see `Cone cell <http://en.wikipedia.org/wiki/Cone_cell>`_ and `trichromacy  <http://en.wikipedia.org/wiki/Trichromacy>`_ on Wikipedia.
+{teacher}
 
-
-.. only:: teachers or dev
-
- .. admonition:: For teachers
-
-  Another exercise to see the relationship between bit patterns and colour images is `provided here <https://sites.google.com/a/bxs.org.uk/mrkershaw/ict/bitmapgraphics>`_.
+{comment}
 
 .. xhtml5 An interactive on the above exercise would be great, and could provide a good learning experience.
+
+{comment end}
 
 Even the smallest computer screens have millions of *pixels* on them, and the computer needs to represent a colour for each one of those pixels. 
 These days photographs are measured in *megapixels* (millions of pixels).
 To store the image, your computer is storing a colour for every one of those pixels, and each of those could be using the three numbers above.
 So a 2 megapixel photo, in its simplest form, needs 6 million numbers to be recorded to represent it accurately.
 
-Representing high quality images using bits
---------------------------------------------------------------------------------------------------------------
+### Representing high quality images using bits
 
-So now, how can computers represent each possible colour using bits? You may have noticed in the above interactive that for each of red, green, and blue, there are 256 different positions the slider can be in (don’t forget to include setting the slider to 0). From the numbers section, you may remember that to get 256 different possibilities, you need 8 bits. So for example, to represent the current value of the red slider, you would need 8 bits (2\ :sup:`8` = 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 = 256).
+So now, how can computers represent each possible colour using bits? You may have noticed in the above interactive that for each of red, green, and blue, there are 256 different positions the slider can be in (don’t forget to include setting the slider to 0). From the numbers section, you may remember that to get 256 different possibilities, you need 8 bits. So for example, to represent the current value of the red slider, you would need 8 bits ({math}2^8{math end} = 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 = 256).
 
 Because there are three primary colours,  each of which has 256 different possible values, we need 24 bits in order to have enough possible bit patterns to represent all the possible colours that this scheme can represent (3 x 8 = 24).
 
 If you calculate 2\ :sup:`24` (i.e. the number of bit patterns you can get with 24 bits), and 256 x 256 x 256 (i.e. the number of possible colours that can be represented using the above interactive), you will find that the result of these two calculations are the same; 16,777,216. This means that there are 16,777,216 different possible colours that can be represented using this scheme, and that's more colours than most people can distinguish, which is why 24-bit colour is regarded as high quality.
 
-.. Might put a box just showing the math, i.e. that 2\ :sup:`24` = 256\ :sup:`3`. Won’t take too long to do, and I suspect it may be helpful to some people to see that. Trying to cater for as many different learning styles as possible...
+{comment}
+
+.. Might put a box just showing the math, i.e. that {math}2^24{math end} = {math}256^3{math end}. Won’t take too long to do, and I suspect it may be helpful to some people to see that. Trying to cater for as many different learning styles as possible...
 .. I presume you mean something along the lines of 
-   2\ :sup:`24` = 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2
+   {math}2^24{math end} = 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2
             =  (2 x 2 x 2 x 2 x 2 x 2 x 2 x 2) x (2 x 2 x 2 x 2 x 2 x 2 x 2 x 2) x (2 x 2 x 2 x 2 x 2 x 2 x 2 x 2)
-            = (2\ :sup:`8`) x (2\ :sup:`8`) x (2\ :sup:`8`)
+            = ({math}2^8{math end}) x ({math}2^8{math end}) x ({math}2^8{math end})
             = 256 x 256 x 256
-            = 256\ :sup:`3`
+            = {math}256^3{math end}
 .. I like the idea of boxes and different explanations for different learning styles -tim. 
+
+{comment end}
 
 So now that we know we’ll need 24 bits to represent all the possible colours that can be made from the scheme in the interactive, how can we assign colours to bit patterns?
 
 A sensible way is to use 3 binary numbers that represent the amount of each of red, green, and blue in the pixel. In order to do this, you can simply convert the decimal values on the interactive that specify how much of each of the primary colours is making up the resulting colour into binary, and put them side by side to make a full pattern of 24 bits. Because consistency is important in order for a computer to make sense of the bit pattern, the binary number for red should be put first, followed by green, and then finally blue.
 
-.. figure:: _static/images/DR-Purple.png
- :alt: The colour purple.
- :align: center
+{image dr-purple.png alt="The colour purple."}
 
 As an example, suppose you have the colour that has red = 145, green = 50, and blue = 123 (it is a shade of purple shown in the square above; you can see it if you set the sliders to those values in the interactive above).
-You need to convert each of the 3 numbers into binary, using 8 bits for each. You can either do this by hand if you are confident with binary numbers, use `this binary number interactive with 8 columns <_static/widgets/DR/DR-base-conversion/public_html/index.html?base=16&columns=7&lines=A,B,C&offset=0>`_, or use a `binary piano <_static/files/DR-BinaryPianoUC.pdf>`_.
+You need to convert each of the 3 numbers into binary, using 8 bits for each. You can either do this by hand if you are confident with binary numbers, use [this binary number interactive with 8 columns](DR-base-conversion/public_html/index.html?base=16&columns=7&lines=A,B,C&offset=0), or use a [binary piano](dr-binary-piano-uc.pdf).
 You should get red = 10010001, 
 green = 00110010,
 and blue = 01111011.
@@ -654,9 +639,7 @@ As long as the computer knows this is a colour (typically because it has been ta
 
 24 bit colour is sometimes referred to in settings as "True Color" (because it is more accurate than the human eye can see). On Apple systems, it is called "Millions of colours". 
 
-
-Hexadecimal colour codes
--------------------------------------------
+### Hexadecimal colour codes
 
 When writing HTML code, you often need to specify colours for text, backgrounds, etc. One way of doing this is to specify the colour name, for example “red”, “blue”, “purple”, or “gold”. The use of names limits the number of colours you can represent and the shade might not be exactly the one you wanted. A better way is to specify the 24 bit colour directly. The problem is that strings of 24 binary digits are hard to read, and so colours in HTML use  hexadecimal codes as a quick way to write the 24 bits, for example #00FF9E. The hash sign just means that it should be interpreted as a hexadecimal representation, and since each hexadecimal digit corresponds to 4 bits, the 6 digits represent 24 bits of colour information.
 This "hex triplet" format is used in HTML pages to specify colours for things like the background of the page, the text, and the colour of links. 
@@ -670,75 +653,72 @@ The hexadecimal notation is extremely useful for people to read or write, as it 
 
 For example, to specify the background colour of a page in HTML,  the body tag can have a hexadecimal colour added to it like this: 
 
-.. code-block:: none
- 
- <body bgcolor="#00FF9E">
+{code}
+
+<body bgcolor="#00FF9E">
+
+{code end}
 
 You can use an HTML page to experiment with hexadecimal colours.
 
-.. only:: teachers or dev
+{teacher}
 
- .. admonition:: For teachers
+More information about this kind of representation of colour can be found [here](http://en.wikipedia.org/wiki/Hexadecimal_colour). A colour picker using hex codes can be found [here](http://www.w3schools.com/tags/ref_colorpicker.asp).
 
-  More information about this kind of representation of colour can be found `here <http://en.wikipedia.org/wiki/Hexadecimal_colour>`_. A colour picker using hex codes can be found `here <http://www.w3schools.com/tags/ref_colorpicker.asp>`_.
+{teacher end}
 
- 
 Understanding how these hexadecimal colour codes are derived also allows you to change them slightly without having to refer back the colour table, when the colour isn’t exactly the one you want. Remember that in the 24 bit color code, the first 8 bits specify the amount of red (so this is the first 2 digits of the hexadecimal code), the next 8 bits specify the amount of green (the next 2 digits of the hexadecimal code), and the last 8 bits specify the amount of blue (the last 2 digits of the hexadecimal code). To increase the amount of any one of these colours, you can change the appropriate hexadecimal letters.
 
 For example, #000000 has zero for red, green and blue, so setting a higher value to the middle two digits (such as  #002300) will add some green to the colour.
 What colours will the following codes give? #FF0000, #FF00FF, #FFFFFF ? (You can try them out using an HTML file).
 
+{comment}
+
 .. tcb xjrm at some stage, repeat the image earlier with zoomed pixels, but show the values in Hex.
 
-Representing colours using fewer bits
---------------------------------------------------------------------------------------------------------------
+{comment end}
+
+### Representing colours using fewer bits
 
 What if we were to use fewer than 24 bits to represent each colour, i.e. each slider didn’t have as many possible positions it could be in? The following interactive shows what would happen with this limitation. You can select a colour by clicking on the image on the left, and then try to match it with the 24-bit colour sliders (if it's too difficult, the system will offer to help you; to move the sliders by small amounts, you can use the arrow keys).
 
 It should be possible to get a perfect match using 24 bit colour. Now try the 8-bit sliders. These ones have only 8 values for red and green, and just 4 values for blue!
 
-.. only:: html or epub
- 
- .. raw:: html
-
-  <div><iframe width="100%" height="500" src="_static/widgets/DR/DR-color/CG-ColorBits_2.html" frameborder="0"></iframe></div>
-
+<div><iframe width="100%" height="500" src="_static/widgets/DR/DR-color/CG-ColorBits_2.html" frameborder="0"></iframe></div>
 
 The above system used 3 bits to specify the amount of red (8 possible values), 3 bits to specify the amount of green (again 8 possible values), and 2 bits to specify the amount of blue (4 possible values). This gives a total of 8 bits (hence the name), which can be used to make 256 different bit patterns, and thus can represent 256 different colours. 
 
 Using this scheme to represent all the pixels of an image takes one third of the number of bits required for 24-bit colour, but it is not as good at showing smooth changes of colours or subtle shades, because there are only 256 possible colors for each pixel. This is one of the big tradeoffs in data representation: do you allocate less space (fewer bits), or do you want higher quality?
 
-.. container:: jargon-buster
+{jargon-buster}
 
- **Jargon Buster**
+**Jargon Buster**
 
- The number of bits used to represent the colours of pixels in a particular image is sometimes referred to as its "colour depth" or "bit depth". For example, an image or display with a colour depth of 8-bits has a choice of 256 colours for each pixel. There is `more information about this in Wikipedia <http://en.wikipedia.org/wiki/Color_depth>`_. Drastically reducing the bit depth of an image can make it look very strange; sometimes this is used as a special effect called "posterisation" (ie. making it look like a poster that has been printed with just a few colours).
+The number of bits used to represent the colours of pixels in a particular image is sometimes referred to as its "colour depth" or "bit depth". For example, an image or display with a colour depth of 8-bits has a choice of 256 colours for each pixel. There is [more information about this in Wikipedia](http://en.wikipedia.org/wiki/Color_depth). Drastically reducing the bit depth of an image can make it look very strange; sometimes this is used as a special effect called "posterisation" (ie. making it look like a poster that has been printed with just a few colours).
+
+{jargon-buster end}
 
 The following interactive shows what happens to images when you use a smaller range of colours (including right down to zero bits!) You can choose an image using the menu. In which cases is the change in quality most noticeable? In which is it not? In which would you actually care about the colours in the image? In which situations is colour actually not necessary (i.e. we are fine with two colours)?
 
-.. only:: teachers or dev
+{teacher}
 
- .. admonition:: For teachers
+Although we provide the simple interactive for reducing the number of bits in an image, students could also use software like Gimp or Photoshop to save files with different colour depths.
 
-  Although we provide the simple interactive for reducing the number of bits in an image, students could also use software like Gimp or Photoshop to save files with different colour depths.
+{teacher end}
 
 One other interesting thing to think about is whether or not we’d want more than 24 bit colour. It turns out that the human eye can only differentiate around 10 million colours, so the 16 million provided by 24 bit colour is already beyond what our eyes can distinguish.
 However, if the image were to be processed by some software that enhances the contrast, it may turn out that 24-bit colour isn't sufficient.
 Choosing the representation isn't simple!
 
-.. only:: teachers or dev
+{teacher}
 
- .. admonition:: For teachers
+8-bit colour looks particularly bad for faces, where we are used to seeing subtle skin tones. Students may perceive that the 16-bit images are as good as 24-bit images. They do indeed have a rich palette ({math}2^16{math end}, or 65,536 different colours), but they aren't true to the high quality image. The benefit is that they use two-thirds (16/24) of the space.
 
-  8-bit colour looks particularly bad for faces, where we are used to seeing subtle skin tones. Students may perceive that the 16-bit images are as good as 24-bit images. They do indeed have a rich palette (2\ :sup:`16`, or 65,536 different colours), but they aren't true to the high quality image. The benefit is that they use two-thirds (16/24) of the space.
+The extreme values are very limited; two-bit colour can have only 4 different colours (the two-bit patterns are 00, 01, 10, and 11). One-bit colour has only two colours (0 and 1). Zero-bit colour is the ultimate space saver - the file doesn't use any space, but the image isn't any use either. Note that so-called "black and white" images usually have more than two colours in them; typically 256 shades of grey (8 bits) works satisfactorilly for monochrome images.
 
-  The extreme values are very limited; two-bit colour can have only 4 different colours (the two-bit patterns are 00, 01, 10, and 11). One-bit colour has only two colours (0 and 1). Zero-bit colour is the ultimate space saver - the file doesn't use any space, but the image isn't any use either. Note that so-called "black and white" images usually have more than two colours in them; typically 256 shades of grey (8 bits) works satisfactorilly for monochrome images.
+{teacher end}
 
-.. only:: html or epub
- 
- .. raw:: html
-
-  <div><iframe width="100%" height="650" src="_static/widgets/DR/DR-color/CG-ColorBits_3.html" frameborder="0"></iframe></div>
+<div><iframe width="100%" height="650" src="_static/widgets/DR/DR-color/CG-ColorBits_3.html" frameborder="0"></iframe></div>
 
 So is it worth the space saving to put up with a lower quality image?
 An image represented using 24 bit colour would have 24 bits per pixel. In 600 x 800 pixel image (which is a reasonable size for a photo), this would contain 600 x 800 = 480,000 pixels, and thus would use 480,000 x 24 bits = 11,520,000 bits. This works out to around 1.44 megabytes.
@@ -752,26 +732,26 @@ However, compression methods require a lot more processing, and images need to b
 We will look at compression methods in a later chapter.
 The ideas in this present chapter more commonly come up when designing systems (such as graphics interfaces) and working with high-quality images (such as RAW photographs), and typically the goal is to choose the best representation possible without wasting too much space.
 
-.. only:: teachers or dev
+{teacher}
 
- .. admonition:: For teachers
+There's a subtle boundary between low quality data representations (such as 8-bit colour) and compression methods. In principle, reducing an image to 8-bit colour is a way to compress it, but it's a very poor approach, and a proper compression method like JPEG will do a much better job. 
 
-  There's a subtle boundary between low quality data representations (such as 8-bit colour) and compression methods. In principle, reducing an image to 8-bit colour is a way to compress it, but it's a very poor approach, and a proper compression method like JPEG will do a much better job. 
+{teacher end}
+
 For the purposes of the New Zealand NCEA standards, reducing the bit depth of an image is ok as a second compression method to compare to specialised compression methods (JPEG, PNG, GIF etc.), but isn't very suitable for explaining how compression works (in the Achieved level requirements).
 
 Now that you know how the 24 bit and 8 bit colour schemes work and how to represent them using bits, what are the implications of this in practice?
 The following interactive can be used to upload your own image, and experiment with allocating different numbers of bits to each colour. You can use it to demonstrate the effect of the different numbers of bits for this data representation.
 
-.. only:: html or epub
- 
- .. raw:: html
+<div><iframe width="100%" height="520" src="_static/widgets/DR/DR-color/CG-ColorBits_4.html" frameborder="0"></iframe></div>
 
-  <div><iframe width="100%" height="520" src="_static/widgets/DR/DR-color/CG-ColorBits_4.html" frameborder="0"></iframe></div>
+{comment}
 
 .. decided to not mention GIF here; have pointed out above that it's compression, not representation, because of being clever about the palette. It can be discussed in the compression chapter (one day)
 
-General representations of text
-=====================================================
+{comment end}
+
+## General representations of text
 
 In the introduction we looked at 8-bit ASCII representations of text (which really use 7 bits, allowing for 128 different symbols).
 As with any other kind of data represented in binary, we can get improvements by considering larger (or smaller) representations.
