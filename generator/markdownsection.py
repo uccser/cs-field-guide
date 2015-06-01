@@ -136,11 +136,32 @@ class Section:
         # Add to required files
         filename = match.group('filename')
         self.required_files['Images'].add(filename)
-        # TODO: Process arguments
+        # TODO: Process image arguments
 
         # Return HTML
         image_source = './images/' + filename
-        html = self.html_templates['image-centered'].format(image_source=image_source)
+        image_html = self.html_templates['image'].format(image_source=image_source)
+        html = self.html_templates['image-centered'].format(image_html=image_html)
+        return html
+
+
+    def add_image_set(self, match):
+        """Creates an image block grid for viewing a large number of images"""
+        images = re.findall(self.guide.regex_list['image']['regex'], match.group('images'), flags=re.MULTILINE)
+        num_images = len(images)
+        small_count = min(num_images, 2)
+        medium_count = min(num_images, 3)
+        large_count = min(num_images, 4)
+        images_html = ''
+        for (image_filename,image_args) in images:
+            # TODO: Process image arguments
+            image_source = './images/' + image_filename
+            image_html = self.html_templates['image'].format(image_source=image_source).strip()
+            images_html += self.html_templates['image-set-item'].format(image_html=image_html)
+        html = self.html_templates['image-set'].format(image_set_items_html=images_html.strip(),
+                                                small_count=small_count,
+                                                medium_count=medium_count,
+                                                large_count=large_count)
         return html
 
 
