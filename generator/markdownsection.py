@@ -141,7 +141,7 @@ class Section:
         # Return HTML
         image_source = './images/' + filename
         image_html = self.html_templates['image'].format(image_source=image_source)
-        html = self.html_templates['image-centered'].format(image_html=image_html)
+        html = self.html_templates['centered'].format(html=image_html)
         return html
 
 
@@ -251,7 +251,8 @@ class Section:
             interactive_link_text = 'Click to load {title}'.format(title=interactive_title)
             if interactive_parameters:
                 interactive_source = "{source}?{parameters}".format(source=interactive_source, parameters=interactive_parameters)
-            html = self.html_templates['interactive-external'].format(interactive_thumbnail=interactive_thumbnail_source, interactive_link_text=interactive_link_text, interactive_source=interactive_source)
+            link_html = self.html_templates['interactive-external'].format(interactive_thumbnail=interactive_thumbnail_source, interactive_link_text=interactive_link_text, interactive_source=interactive_source)
+            html = self.html_templates['centered'].format(html=link_html)
         else:
             html = ''
         return html
