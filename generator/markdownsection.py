@@ -228,6 +228,36 @@ class Section:
         return html
 
 
+    def add_interactive(self, match):
+        interactive_type = match.group('type')
+        interactive_name = match.group('interactive_name')
+
+        interactive_arguments = re.search('(title="(?P<title>[^"]*)")?(parameters="(?P<parameters>[^"]*)")?', match.group('args'))
+        if interactive_arguments.group('title'):
+            interactive_title = interactive_arguments.group('title')
+        else:
+            interactive_title = 'interactive'
+        if interactive_arguments.group('parameters'):
+            interactive_parameters = interactive_arguments.group('parameters')
+        else:
+            interactive_parameters = None
+
+        # Add interactive to required files
+        self.required_files['Interactives'].add(interactive_name)
+
+        if interactive_type == 'interactive-external':
+            interactive_source = self.guide.generator_settings['Output']['Interactives'].format(interactive=interactive_name)
+            interactive_thumbnail_source = os.path.join(interactive_source, self.guide.generator_settings['Source']['Interactive Thumbnail'])
+            interactive_link_text = 'Click to load {title}'.format(title=interactive_title)
+            if interactive_parameters:
+                interactive_source = "{source}?{parameters}".format(source=interactive_source, parameters=interactive_parameters)
+            html = self.html_templates['interactive-external'].format(interactive_thumbnail=interactive_thumbnail_source, interactive_link_text=interactive_link_text, interactive_source=interactive_source)
+        else:
+            html = ''
+        return html
+
+
+
 
     # ----- Parsing Functions -----
 
