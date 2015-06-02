@@ -38,7 +38,7 @@ class Guide:
         self.structure = self.parse_structure()
         self.content = self.read_content()
         # Dictionary of sets for images, interactives, and other_files
-        self.required_files = setup_required_files(self.generator_settings)
+        self.required_files = setup_required_files(self)
         self.html_templates = self.read_html_templates()
 
         if self.html_templates:

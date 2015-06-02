@@ -27,7 +27,7 @@ class Section:
         self.regex_functions = self.create_regex_functions()
         self.permalinks = set()
         # Dictionary of sets for images, interactives, and other_files
-        self.required_files = setup_required_files(self.guide.generator_settings)
+        self.required_files = setup_required_files(guide)
         self.mathjax_required = False
 
     # ----- Helper Functions -----
