@@ -11,7 +11,6 @@ pip.main(['install', '--upgrade', 'pip'])
 pip.main(['install', '-r', 'generator/dependencies.conf'])
 
 import configparser
-import collections
 import logging
 import os.path
 import os
@@ -36,8 +35,11 @@ class Guide:
         self.language = self.parse_language()
         self.version = self.parse_version()
 
+        # Structure tree of guide
         self.structure = self.parse_structure()
-        self.content = self.read_content()
+        # Populates structure tree
+        self.read_content()
+
         # Dictionary of sets for images, interactives, and other_files
         self.required_files = setup_required_files(self)
         self.html_templates = self.read_html_templates()
@@ -54,17 +56,15 @@ class Guide:
               - Adds Section's required files to Guide's required files
         """
         section_number = 1
-        group_order = self.generator_settings['Source']['Text Order'].split()
-        for group in group_order:
-            for title in self.structure[group]:
-                section = self.content[title]
-                if self.guide_settings[group].getboolean('Numbered'):
-                    section.set_number(section_number)
-                if section.markdown_text:
-                    section.parse_markdown_content(self.html_templates)
-                for file_type,file_data in section.required_files.items():
+        for group in self.structure.children:
+            for section in group.children:
+                if self.guide_settings[group.title].getboolean('Numbered'):
+                    section.data.set_number(section_number)
+                if section.data.markdown_text:
+                    section.data.parse_markdown_content(self.html_templates)
+                for file_type,file_data in section.data.required_files.items():
                     self.required_files[file_type] += file_data
-                if self.guide_settings[group].getboolean('Numbered'):
+                if self.guide_settings[group.title].getboolean('Numbered'):
                     section_number += 1
 
 
@@ -123,33 +123,31 @@ class Guide:
 
     def parse_structure(self):
         """Create dictionary of guide structure"""
-        structure = collections.defaultdict(list)
+        structure = Structure('CSFG')
         group_order = self.generator_settings['Source']['Text Order'].split()
         for group in group_order:
             order = self.guide_settings[group]['Order']
             titles = order.split('\n')
-            structure[group] = []
+            group_structure = Structure(group)
             for title in titles:
                 stripped_title = title.strip()
                 if stripped_title != '':
-                    structure[group].append(stripped_title)
+                    group_structure.children.append(Structure(stripped_title))
+            structure.children.append(group_structure)
         return structure
 
 
     def read_content(self):
-        """Returns a dictionary with titles as keys and section objects as
-        values"""
-        content = {}
-        for group, titles in self.structure.items():
-            for title in titles:
-                file_path = self.create_file_path(title, group, self.language)
+        """Sets structure node's data attribute to Section objects"""
+        for group in self.structure.children:
+            for section in group.children:
+                file_path = self.create_file_path(section.title, group.title, self.language)
                 if file_exists(file_path):
                     with open(file_path, 'r', encoding='utf8') as source_file:
                         data = source_file.read()
                 else:
                     data = None
-                content[title] = Section(title, data, file_path, self)
-        return content
+                section.data = Section(section.title, data, file_path, self)
 
 
     def create_file_path(self, title, group, language):
@@ -179,19 +177,18 @@ class Guide:
         os.makedirs(image_output_folder, exist_ok=True)
 
         # TODO: Add writing of Appendices
-        for group in ['Chapters']:
-            for title in self.structure[group]:
-                section = self.content[title]
+        for group in self.structure.children:
+            for section in group.children:
                 base_template = Template(self.html_templates['layout'])
                 body_html= ''
                 file_name = self.generator_settings['Output']['File'].format(file_name=section.title.replace(' ', '-').lower())
                 path = os.path.join(base_folder, file_name)
 
                 try:
-                    if section.mathjax_required:
+                    if section.data.mathjax_required:
                         body_html += '<script type="text/javascript"  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>'
 
-                    for section_content in section.html_content:
+                    for section_content in section.data.html_content:
                         body_html += section_content
 
                     html = base_template.render(page_title=section.title, body_html=body_html)
@@ -215,6 +212,32 @@ class Guide:
                     logging.error("{file_type} {filename} could not be found".format(file_type=file_type[:-1],
                                                                                      filename=filename))
 
+class Structure:
+    """Node object for storing guide structure data"""
+    def __init__(self, title, number=None, link=None, paginated_link=None, data=None):
+        self.title = title
+        self.number = number
+        self.link = link
+        self.paginated_link = paginated_link
+        self.data = data
+        self.children = []
+
+    def return_children(self, depth):
+        children_list = []
+        for child in children:
+            children_list.append(child)
+            if depth > 1:
+                children_list.append(child.return_children(depth - 1))
+        return children_list
+
+    def __str__(self, depth=1):
+        """Function used for debugging to visualise structure tree"""
+        string_template = "{} (Number: {}, Link: {}, Paginated Link: {} Data: {}, Num Children: {})\n"
+        string = string_template.format(self.title, self.number, self.link, self.paginated_link, self.data, len(self.children))
+        if len(self.children) > 0:
+            for child in self.children:
+                string += "  " * depth + child.__str__(depth+1)
+        return string
 
 def setup_logging():
     """Sets up the logger to write to a file"""
