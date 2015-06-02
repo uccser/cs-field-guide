@@ -6,7 +6,7 @@ REQUIRES: Python >= 3.4.1
 """Check and install dependencies if needed"""
 import pip
 # Update pip if needed
-pip.main(['install', '--upgrade', 'pip'])
+pip.main(['install', '--upgrade', 'pip>=7.0.3'])
 # Check dependencies
 pip.main(['install', '-r', 'generator/dependencies.conf'])
 
