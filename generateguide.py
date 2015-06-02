@@ -19,6 +19,7 @@ import re
 from shutil import copy2
 from generator.markdownsection import Section
 from generator.files import setup_required_files
+from jinja2 import Template
 
 GUIDE_SETTINGS = 'guide-settings.conf'
 GENERATOR_SETTINGS = 'generator/generator-settings.conf'
@@ -181,24 +182,21 @@ class Guide:
         for group in ['Chapters']:
             for title in self.structure[group]:
                 section = self.content[title]
+                base_template = Template(self.html_templates['layout'])
+                body_html= ''
                 file_name = self.generator_settings['Output']['File'].format(file_name=section.title.replace(' ', '-').lower())
                 path = os.path.join(base_folder, file_name)
 
                 try:
-                    # Clear existing file
-                    open(path, 'w').close()
+                    if section.mathjax_required:
+                        body_html += '<script type="text/javascript"  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>'
 
-                    # Write HTML
-                    with open(path, 'a', encoding='utf8') as output_file:
-                        if section.mathjax_required:
-                            output_file.write('<script type="text/javascript"  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>\n\n')
+                    for section_content in section.html_content:
+                        body_html += section_content
 
-                        output_file.write('<link rel="stylesheet" href="http://cdn.foundation5.zurb.com/foundation.css" />\n<div class="row">\n')
-
-                        for section_content in section.html_content:
-                            output_file.write(section_content)
-
-                        output_file.write('</div>')
+                    html = base_template.render(page_title=section.title, body_html=body_html)
+                    with open(path, 'w', encoding='utf8') as output_file:
+                        output_file.write(html)
                 except:
                     logging.critical("Cannot write file {0}".format(file_name))
 
