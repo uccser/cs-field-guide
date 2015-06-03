@@ -17,8 +17,8 @@ import os
 import re
 from shutil import copy2
 from generator.markdownsection import Section
+from generator.websitegenerator import WebsiteGenerator
 from generator.files import setup_required_files
-from jinja2 import Template
 
 GUIDE_SETTINGS = 'guide-settings.conf'
 GENERATOR_SETTINGS = 'generator/generator-settings.conf'
@@ -175,23 +175,34 @@ class Guide:
         os.makedirs(base_folder, exist_ok=True)
         os.makedirs(image_output_folder, exist_ok=True)
 
+        website_generator = WebsiteGenerator(self.html_templates)
+
+        # TODO: Find best place for this type of function
+
+        for group in self.structure.children:
+            for section in group.children:
+                section_template = self.generator_settings['HTML'][group.title]
+                file_name = self.generator_settings['Output']['File'].format(file_name=section.title.replace(' ', '-').lower())
+                section.link = os.path.join(base_folder, file_name)
+
+        top_menu_bar = []
+        for child in self.structure.children[0].return_children(1):
+            top_menu_bar.append((child.title, child.link))
+
         # TODO: Add writing of Appendices
         for group in self.structure.children:
             for section in group.children:
-                base_template = Template(self.html_templates['layout'])
                 body_html= ''
-                file_name = self.generator_settings['Output']['File'].format(file_name=section.title.replace(' ', '-').lower())
-                path = os.path.join(base_folder, file_name)
 
+                if section.data.mathjax_required:
+                    body_html += '<script type="text/javascript"  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>'
+
+                for section_content in section.data.html_content:
+                    body_html += section_content
+                context = {'page_title':section.title, 'body_html':body_html, 'top_menu_bar':top_menu_bar}
+                html = website_generator.render_template(section_template, context)
                 try:
-                    if section.data.mathjax_required:
-                        body_html += '<script type="text/javascript"  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>'
-
-                    for section_content in section.data.html_content:
-                        body_html += section_content
-
-                    html = base_template.render(page_title=section.title, body_html=body_html)
-                    with open(path, 'w', encoding='utf8') as output_file:
+                    with open(section.link, 'w', encoding='utf8') as output_file:
                         output_file.write(html)
                 except:
                     logging.critical("Cannot write file {0}".format(file_name))
@@ -224,7 +235,7 @@ class Structure:
 
     def return_children(self, depth):
         children_list = []
-        for child in children:
+        for child in self.children:
             children_list.append(child)
             if depth > 1:
                 children_list.append(child.return_children(depth - 1))
