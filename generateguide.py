@@ -39,7 +39,6 @@ class Guide:
         self.structure = self.parse_structure()
         # Populates structure tree
         self.read_content()
-
         # Dictionary of sets for images, interactives, and other_files
         self.required_files = setup_required_files(self)
         self.html_templates = self.read_html_templates()
@@ -59,7 +58,7 @@ class Guide:
         for group in self.structure.children:
             for section in group.children:
                 if self.guide_settings[group.title].getboolean('Numbered'):
-                    section.data.set_number(section_number)
+                    section.set_number(section_number)
                 if section.data.markdown_text:
                     section.data.parse_markdown_content(self.html_templates)
                 for file_type,file_data in section.data.required_files.items():
@@ -147,7 +146,7 @@ class Guide:
                         data = source_file.read()
                 else:
                     data = None
-                section.data = Section(section.title, data, file_path, self)
+                section.data = Section(section.title, data, file_path, self, section)
 
 
     def create_file_path(self, title, group, language):
@@ -214,11 +213,12 @@ class Guide:
 
 class Structure:
     """Node object for storing guide structure data"""
-    def __init__(self, title, number=None, link=None, paginated_link=None, data=None):
+    def __init__(self, title, number=None, link=None, paginated_link=None, heading_level=None, data=None):
         self.title = title
         self.number = number
         self.link = link
         self.paginated_link = paginated_link
+        self.heading_level = heading_level
         self.data = data
         self.children = []
 
@@ -230,14 +230,51 @@ class Structure:
                 children_list.append(child.return_children(depth - 1))
         return children_list
 
+    def add_child(self, title, link=None, paginated_link=None, heading_level=None):
+        if self.number:
+            parent = self.find_parent_for_child(heading_level - 1)
+            child_number = parent.next_child_number()
+            child = Structure(title, link=link, paginated_link=paginated_link, number=child_number, heading_level=heading_level)
+            parent.children.append(child)
+        else:
+            child = Structure(title, link=link, paginated_link=paginated_link, heading_level=heading_level)
+            self.children.append(child)
+        return child
+
+    def set_number(self, number):
+        """Sets the number for the section"""
+        self.number = [number, 0, 0, 0, 0, 0]
+
+    def find_parent_for_child(self, depth):
+        """Returns the parent for a new child node"""
+        if depth > 1 and len(self.children) > 0:
+            return self.children[-1].find_parent_for_child(depth - 1)
+        else:
+            return self
+
+    def next_child_number(self):
+        number = list(self.number)
+        number[number.index(0)] = len(self.children) + 1
+        return number
+
+    def format_section_number(self):
+        """Return a nicely formatted version of the section number"""
+        if self.number:
+            formatted_number = ('.'.join(str(num) for num in self.number))
+            formatted_number = formatted_number[:formatted_number.find('0')]
+        else:
+            formatted_number = "No number assigned"
+        return formatted_number
+
     def __str__(self, depth=1):
         """Function used for debugging to visualise structure tree"""
         string_template = "{} (Number: {}, Link: {}, Paginated Link: {} Data: {}, Num Children: {})\n"
-        string = string_template.format(self.title, self.number, self.link, self.paginated_link, self.data, len(self.children))
+        string = string_template.format(self.title, self.format_section_number(), self.link, self.paginated_link, self.data, len(self.children))
         if len(self.children) > 0:
             for child in self.children:
-                string += "  " * depth + child.__str__(depth+1)
+                string += "--" * depth + child.__str__(depth+1)
         return string
+
 
 def setup_logging():
     """Sets up the logger to write to a file"""

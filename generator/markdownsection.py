@@ -16,12 +16,12 @@ MARKDOWN2_EXTRAS = ["code-friendly",
 
 
 class Section:
-    def __init__(self, title, markdown_text, file_path, guide):
+    def __init__(self, title, markdown_text, file_path, guide, structure_node):
         self.guide = guide
+        self.structure_node = structure_node
         self.title = title
         self.markdown_text = markdown_text
         self.file_path = file_path
-        self.number = [0, 0, 0, 0, 0, 0]
         self.page_header_numbered = False
         self.html_content = []
         self.regex_functions = self.create_regex_functions()
@@ -29,43 +29,23 @@ class Section:
         # Dictionary of sets for images, interactives, and other_files
         self.required_files = setup_required_files(guide)
         self.mathjax_required = False
+        self.section_header_created = False
 
     # ----- Helper Functions -----
-
-    def set_number(self, number):
-        """Sets the number for the section"""
-        self.number = [number, 0, 0, 0, 0, 0]
-
-    def increment_number(self, level):
-        """Takes a string and returns the number incremented to the given level
-        For example:
-          1 at level 1 goes to 2
-          1.1 at level 3 goes to 1.1.1
-          1.1.1 at level 2 goes to 1.2
-
-        """
-        if self.page_header_numbered:
-            start_numbers = self.number[:level - 1]
-            new_number = [self.number[level - 1] + 1]
-            end_numbers = (len(self.number) - level) * [0]
-            self.number = start_numbers + new_number + end_numbers
-        else:
-            self.page_header_numbered = True
-
-
-    def format_section_number(self):
-        """Return a nicely formatted version of the section number"""
-        formatted_number = ('.'.join(str(num) for num in self.number))
-        return formatted_number[:formatted_number.find('0')]
-
 
     def create_heading(self, match):
         heading_text = match.group('heading')
         heading_level = len(match.group('heading_level'))
-        self.increment_number(heading_level)
+        permalink = self.create_permalink(heading_text)
+        if self.section_header_created:
+            heading_node = self.structure_node.add_child(heading_text, link=permalink, heading_level=heading_level)
+            section_number = heading_node.format_section_number()
+        else:
+            section_number = self.structure_node.format_section_number()
+            self.section_header_created = True
         html = self.html_templates['heading'].format(heading_level=heading_level,
-                                                     permalink=self.create_permalink(heading_text),
-                                                     section_number=self.format_section_number(),
+                                                     permalink=permalink,
+                                                     section_number=section_number,
                                                      heading_text=heading_text)
         return html
 
