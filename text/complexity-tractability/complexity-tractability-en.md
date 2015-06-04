@@ -134,7 +134,7 @@ Here we're going to consider another possible sorting algorithm, called *permuta
 
 Note that permutation sort is *not* a reasonable way to sort at all; it's just an idea to help us think about tractability. It should be obvious to students fairly quickly that it's grossly inefficient. The main thing is that is does produce the correct result, so it's an extreme example of an algorithm that works correctly, yet is way too inefficient (intractable) to be useful.
 
-{teacher}
+{teacher end}
 
 {comment}
 
@@ -257,7 +257,7 @@ In the above example, the universe would end before the 100 numbers have been so
 
 .. xtcb put in the calcuations for teachers (and check my ones in the previous teacher note!) I had to use two calculators, one for !, and this one because it can have values pasted in: https://defuse.ca/big-number-calculator.htm
 
-{comment}
+{comment end}
 
 By now, you should be very aware of the point that is being made. Permutation sort is so inefficient that sorting 100 numbers with it takes so long that it is essentially impossible. Trying to use permutation sort with a non trivial number of values simply won’t work. While selection sort is a lot slower than quick sort or merge sort, it wouldn’t be impossible for Facebook to use selection sort to sort their list of 1 billion users. It would take a lot longer than quick sort would, but it would be doable. Permutation sort on the other hand would be impossible to use!
 
@@ -294,7 +294,7 @@ The Towers of Hanoi is one problem where we know for sure that it will take expo
 
 The following section relies on students using the built-in interactive to experiment with the calculations on the huge numbers that come up with the intractable problems. This may be best run as a class activity where students are guided through calculating the stupendously big numbers that come up, and they should be encouraged to appreciate how impractical the amount of time taken by a program would be --- for example, a program that takes a million years to find a solution won't be of any interest to the person who started it running, and even if a computer turned up that is 1000 times as fast, it would still take 1000 years to complete. Some of the times that turn up below are so long that they are beyond our ability to imagine, and are best illustrated by seeing how futile the times are even with 1000, a million or even a billion times the computing power.
 
-An earlier version of this chapter provided the following spreadsheet for doing these calculations; we've retained the link here for the meantime, but the new online interactive can cope a lot better with the large numbers in the calculations. If you are interested, you can [download the spreadsheet here](_static/complexity_and_tractability/CT-tractable.xlsx) to do the calculations.
+An earlier version of this chapter provided the following spreadsheet for doing these calculations; we've retained the link here for the meantime, but the new online interactive can cope a lot better with the large numbers in the calculations. If you are interested, you can [download the spreadsheet here](files/complexity-and-tractability/ct-tractable.xlsx) to do the calculations.
 
 {teacher end}
 
@@ -333,7 +333,7 @@ If you were to buy 1,000 processors (e.g. 1,000 computers, or 250 4-core compute
 
 1,000 processors reduces the running time to 77.31 years. That's still too much computing power to be practical, but it's starting to get into the region where it's not completely impossible.
 
-{teacher}
+{teacher end}
 
 The interactive above estimates the amount of time taken for various algorithms to run given *n* values to be processed.
 Let's assume that we have a *very* fast computer, faster than any that exist.
@@ -447,7 +447,7 @@ Courier and delivery companies have variants of this problem --- often with extr
 
 {teacher}
 
-There is an extensive website about the state of the art for the TSP at http://www.tsp.gatech.edu/ . This includes games and information about the current largest solved problem (which typically take months or years to run on very powerful computers).
+There is an extensive website about the state of the art for the TSP at [http://www.tsp.gatech.edu/](http://www.tsp.gatech.edu/) . This includes games and information about the current largest solved problem (which typically take months or years to run on very powerful computers).
 
 {teacher end}
 
@@ -608,7 +608,7 @@ For your larger map, show why you don’t have an optimal solution. The best way
 
 .. Here's another way to do the project that we should mention to teachers: https://www.youtube.com/watch?v=t1cTi5T-kxY
 
-{comment}
+{comment end}
 
 {teacher}
 

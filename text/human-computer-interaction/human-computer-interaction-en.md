@@ -10,8 +10,8 @@ The following assessment plans also cover this material:
 
 **New Zealand - AS91074 (1.44)**
 
-- :ref:`Assessment Overview <assessment-guide-level-1-introduction>`
-- :ref:`Human Computer Interaction Assessment Guide <assessment-guide-level-1-human-computer-interaction>`
+- [Assessment Overview](/appendices/assessment-guides/new-zealand/assessment-guide-level-1-introduction)
+- [Human Computer Interaction Assessment Guide](/appendices/assessment-guides/new-zealand/assessment-guide-level-1-human-computer-interaction)
 
 
 There is a guide for teachers on this material that complements the Field Guide [available here as a PDF file](files/AS91371-lesson-plan-field-guide.pdf) and [here as a DOC file](files/AS91371-lesson-plan-field-guide.docx). The material in the guide is gradually being transferred into the teacher notes for this chapter, but in the meantime we recommend using the guide for teaching, and the online chapter for students to learn from.

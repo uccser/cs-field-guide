@@ -217,7 +217,7 @@ What if the error is in the checksum itself but not in the other digits - will t
 
 Some students might worry that there will be a problem if the checksum changes, but of course if it is typed in incorrectly, it won't match the sum for the other digits, and the error will be detected.
 
-{teacher}
+{teacher end}
 
 ### How do check digits protect against common human errors?
 

@@ -9,7 +9,7 @@ The following assessment plans also cover this material:
 - [Assessment Overview](/appendices/assessment-guides/new-zealand/assessment-guide-level-2-introduction)
 - [Encryption (RSA Cryptosystem)](appendices/assessment-guides/new-zealand/assessment-guide-level-2-encryption-rsa)
 
-{teacher}
+{teacher end}
 
 {comment}
 
@@ -403,7 +403,7 @@ One way to achieve this is via *steganography*, where a secret message is hidden
 
 Two fun uses of steganography that you can try to decode yourself are a [film about ciphers that contains hidden ciphers (called "The Thomas Beale Cipher")](http://www.thomasbealecipher.com/), and an activity that has [five-bit text codes hidden in music](http://csunplugged.org/modem).
 
-{curiosity}
+{curiosity end}
 
 ## Public Key Systems
 
@@ -529,7 +529,7 @@ Despite even your enemies knowing your public key (as you publically announced i
 
 {curiosity}
 
-**Digital Signatures**
+**Digital Signatures**  
 In order to encrypt a message, the public key is used. In order to decrypt it, the corresponding private key must be used. But what would happen if the message was encrypted using the *private* key? Could you then decrypt it with the public key?
 Initially this might sound like a silly thing to do, as why would you encrypt a message which can be decrypted using a key that everybody in the world can access!?!  It turns out that indeed, encrypting a message with the private key and then decrypting it with the public key works, and it has a very useful application!
 The only person who is able to *encrypt* the message using the *private* key is the person who owns the private key. The public key will only decrypt the message if the private key that was used to encrypt it actually is the public key’s corresponding private key! If the message can’t be decrypted, then it could not have been encrypted with that private key.
@@ -572,7 +572,7 @@ The factors of the above number (806,849,546,124,373,268,247,678,601) are the fo
 
 The methods that we considered at the start of this chapter are *symmetric key* systems, which just means that you use the same key to encode and decode the text. Public key systems are often called *asymmetric key* systems, where the sender and receiver have different keys. An asymmetric system can make it a lot easier to distribute the encryption key, because if the eavesdropper gets hold of it, all they can do is encrypt messages, not decrypt them, so they are no use for attacking messages.
 
-{jargon-buster}
+{jargon-buster end}
 
 {comment}
 

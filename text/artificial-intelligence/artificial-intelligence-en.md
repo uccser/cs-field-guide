@@ -19,7 +19,7 @@ In this chapter we'll explore a range of these intelligent systems. Inevitably t
 
 ## Chatterbots and The Turing Test
 
-{image ai_turing_test_comic.jpg alt="The computer is reading a book titled 'Talk like a human'"}
+{image ai-turing-test-comic.jpg alt="The computer is reading a book titled 'Talk like a human'"}
 
 Many humans take for granted the fact that they can easily have a conversation with another person, and choose appropriate things to say based on the conversation. The ability to do this is a form of intelligence, and for computers it isn’t so easy! Many attempts have been made to design computer programs that can have a conversation with a human and sound intelligent. These computer programs are called *chatterbots*, or just *chatbots*. This book uses the former term, although you may see both being used in other books or websites.
 
@@ -39,7 +39,7 @@ Go to the link just below and have a conversation with Eliza (keeping in mind th
 
 [Click here for the Eliza chatterbot at nlp-addiction.com](http://nlp-addiction.com/eliza/)
 
-{image ai_eliza_nlp_addiction.png alt="The Eliza chatbot at nlp-addiction.com"}
+{image ai-eliza-nlp-addiction.png alt="The Eliza chatbot at nlp-addiction.com"}
 
 Do you think Eliza is as smart as a human? Would you believe she was a human if somebody told you she was?
 
@@ -74,7 +74,7 @@ Try having a conversation with another chatterbot --- Alice. Note that she knows
 
 [Click here for the Alice chatterbot at pandorabots.com](http://www.pandorabots.com/pandora/talk?botid=f5d922d97e345aa1)
 
-{image ai_alice_pandorabots.png alt="The Alice chatbot at pandorabots.com"}
+{image ai-alice-pandorabots.png alt="The Alice chatbot at pandorabots.com"}
 
 Does Alice sound more intelligent than Eliza? Does she sound as intelligent as a human, or can you trick her into saying things that make no sense? Try using the same tricks you used to fool Eliza and see if they fool Alice as well (look back at the list of bullet points in the Eliza section just above).
 
@@ -90,11 +90,11 @@ The quality of these rules determines how intelligent the chatterbot will sound.
 
 While Alice is undoubtedly more intelligent than Eliza, Alice still has her limitations. Sometimes she even admits to those limitations!
 
-**Judge**: What will happen in the year 2000
-**Alice**: I cannot predict the future.
-**Judge**: That is the past
-**Alice**: Yes it is one of the past.
-**Judge**: Then why did you say you can't predict the future?
+**Judge**: What will happen in the year 2000  
+**Alice**: I cannot predict the future.  
+**Judge**: That is the past  
+**Alice**: Yes it is one of the past.  
+**Judge**: Then why did you say you can't predict the future?  
 **Alice**: It was a preprogrammed response completely determined by your statements.
 
 I suppose I was a bit mean for tricking her and saying "what will". Her rules assume a human wouldn’t mislead her like that. 
@@ -119,7 +119,7 @@ An example of a chatterbot that learns from humans is Cleverbot.
 
 [Click on this link to have a conversation with Cleverbot](http://www.cleverbot.com/)
 
-{image ai_cleverbot.png alt="The Cleverbot chatbot"}
+{image ai-cleverbot.png alt="The Cleverbot chatbot"}
 
 Unlike Eliza and Alice, whose rules of what to say were determined by programmers, Cleverbot learns rules based on what people say. For example, when Cleverbot says "hi" to a person, it keeps track of all the different responses that people make to that, such as "hi", "hello!", "hey ya", "sup!". A rule is made that says that if somebody says hi to you, then the things that people have commonly said in response to Cleverbot saying hi are appropriate things to say in response to "hi". In turn, when Cleverbot says something like "sup!" or "hello!", it will look at how humans respond to that in order to learn appropriate response for those. And then it will learn responses for those responses. This allows Cleverbot to built up an increasingly large database.
 
@@ -206,7 +206,7 @@ These are some questions you can consider after you have finished carrying out t
 - Were there any questions you asked that were "unfair" --- that depended on knowledge your classmate might have but no-one (computer or person) from another place could possibly have?
 - Which gave it away more: the content of the answers, or the way in which the content was expressed? 
 
-{image ai_turing_dating.png alt="The Turing dating test"}
+{image ai-turing-dating.png alt="The Turing dating test"}
 
 ### Project: Investigating chatterbots and the Turing test
 

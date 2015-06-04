@@ -1,6 +1,5 @@
 # Programming Languages
 
-<!--
 <script src="_static/interactives/pl/python-editor/skulpt.min.js" type="text/javascript"></script>
 <script type="text/javascript">
   function outf(text)
@@ -23,7 +22,6 @@
       }
   }
 </script>
--->
 
 {teacher}
 
@@ -31,8 +29,8 @@ The following assessment plans also cover this material:
 
 **New Zealand - AS91074 (1.44)**
 
-* :ref:`1.44 Assessment Overview <assessment-guide-level-1-introduction>`
-* :ref:`1.44 Programming Languages Assessment Guide <assessment-guide-level-1-programming-languages>`
+- [1.44 Assessment Overview](/appendices/assessment-guides/new-zealand/assessment-guide-level-1-introduction)
+- [1.44 Programming Languages Assessment Guide](/appendices/assessment-guides/new-zealand/assessment-guide-level-1-programming-languages)
 
 {teacher end}
   
