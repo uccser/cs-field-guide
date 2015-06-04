@@ -81,7 +81,7 @@ class Guide:
             template_text = ''
             reading_template = False
             for line in data:
-                search = re.search('^\{(?P<template_name>[^ }]+(?P<end> end)?)', line, re.MULTILINE)
+                search = re.search('^\{(?P<template_name>[^%{# }]+(?P<end> end)?)\}', line, re.MULTILINE)
                 if search:
                     if search.group('end'):
                         reading_template = False
