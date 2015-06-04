@@ -13,7 +13,7 @@ Visual computing is usually graphics (output) and vision (input)
 Often the term “visual computing” encompasses computer graphics, so the term “graphics” isn’t strictly required in the name of this area; also note that in this context is does not refer to the use of “visual programming languages” or “visual programming environments” e.g. Visual Studio. The creation of images could be as simple as a 2D drawing program, or as advanced as 3D systems for entertainment or to help visualise a data set. 
 {comment end}
 
-{include video http://www.youtube.com/embed/5kuoRjgfCls}
+{video http://www.youtube.com/embed/5kuoRjgfCls}
 
 ## What's the big picture?
 
@@ -149,7 +149,7 @@ The "add translate" values in the interactive are added to each *x* and *y* coor
 
 {teacher}
 This needs the matrix {math}\begin{bmatrix}  2 & 0 \\   0 & 2 \\   \end{bmatrix}{math end} and the x,y values 5 and 4 (this doubles the size of the arrow and moves it 5 across and 4 up).
-{teacher end{
+{teacher end}
 
 What happens if you use the following matrix?
 
@@ -212,7 +212,7 @@ In general, to rotate an image by a given angle you need to use the sine (abbrev
 If your students aren't familiar with sin and cos, it may be worth going over them separately, including the idea that the angle is usually measured in degrees, and the functions will produce a number between 0  and 1.
 {teacher end}
 
-{include interactive computer-graphics-arrow parameters="&quiz=0.7 0.7 0 5 -0.7 0.7 0 4 0 0 1 0 0 0 0 1"}
+{interactive computer-graphics-arrow parameters="&quiz=0.7 0.7 0 5 -0.7 0.7 0 4 0 0 1 0 0 0 0 1"}
 
 What is the matrix for rotation by 360 degrees?
 
@@ -231,19 +231,19 @@ s & 0 \\
 
 A translation can't be specified by this kind of matrix, but in the interactives we've provided an extra place to specify an *x* and *y* value to translate the input.
 
-{include interactive computer-graphics-arrow parameters="&quiz=1 0 0 5 0 1 0 4 0 0 1 0 0 0 0 1"}
+{interactive computer-graphics-arrow parameters="&quiz=1 0 0 5 0 1 0 4 0 0 1 0 0 0 0 1"}
 
 {teacher}
 Solution: Translate x is 5 and y is 4 (5 to the right and 4 up). The matrix should be {math-block}\begin{bmatrix}  1 & 0 \\   0 & 1 \\   \end{bmatrix}{math-block end}
 {teacher end}
 
-{include interactive computer-graphics-arrow parameters="&quiz=2 0 0 4 0 2 0 3 0 0 2 0 0 0 0 1"}
+{interactive computer-graphics-arrow parameters="&quiz=2 0 0 4 0 2 0 3 0 0 2 0 0 0 0 1"}
 
 {teacher}
-Solution: The matrix should be {math-block}\begin{bmatrix}  2 & 0 \\   0 & 2 \\   \end{bmatrix}{math-block} (doubles the size). Translate x is 4 and y is 3.
+Solution: The matrix should be {math-block}\begin{bmatrix}  2 & 0 \\   0 & 2 \\   \end{bmatrix}{math-block end} (doubles the size). Translate x is 4 and y is 3.
 {teacher end}
 
-{include interactive computer-graphics-arrow parameters="&quiz=2 0 0 5 0 2 0 4 0 0 2 0 0 0 0 1"}
+{interactive computer-graphics-arrow parameters="&quiz=2 0 0 5 0 2 0 4 0 0 2 0 0 0 0 1"}
 
 {teacher}
 Solution: The matrix should be {math-block}\begin{bmatrix}  2 & 0 \\   0 & 2 \\   \end{bmatrix}{math-block end} (still needed to double the size). However, the translation will be doubled as well since it comes before the matrix, therefore translate x is 2.5 and y is 2 (half of the distance needed). 
@@ -252,7 +252,7 @@ Solution: The matrix should be {math-block}\begin{bmatrix}  2 & 0 \\   0 & 2 \\ 
 In the above, you'll have noticed that scaling is affected by how far the object is from the centre.
 If you want to scale around a fixed point in the object (so it expands where it is), then an easy way is to translate it back to the centre (also called the *origin*), scale it, and then translate it back to where it was.  The following interactive allows you to move the arrow, then scale it, and move it back.
 
-{include interactive computer_graphics_arrow_transform parameters="&zoom=-15.0 &quiz=2 0 0 -8 0 2 0 3 0 0 2 0 0 0 0 1 &start=1 0 0 -8 0 1 0 5 0 0 1 0 0 0 0 1 &allPrize=5"}
+{interactive computer_graphics_arrow_transform parameters="&zoom=-15.0 &quiz=2 0 0 -8 0 2 0 3 0 0 2 0 0 0 0 1 &start=1 0 0 -8 0 1 0 5 0 0 1 0 0 0 0 1 &allPrize=5"}
 
 {teacher}
 Solution: The first translation is x=8 and y=-7. Now the arrow tip is at the origin, and the doubling will keep the tip where it is. The matrix should be {math-block}\begin{bmatrix}  2 & 0 \\   0 & 2 \\   \end{bmatrix}{math-block end} as usual for doubling. The second translation needs to be -8,7 to get the arrow back to the starting point. 
@@ -260,7 +260,7 @@ Solution: The first translation is x=8 and y=-7. Now the arrow tip is at the ori
 
 The same problem comes up with rotation. 
 
-{include interactive computer_graphics_arrow_transform parameters="&zoom=-10.0 &quiz=0.699999988079071 0.699999988079071 0 -4.400000095367432 -0.699999988079071 0.699999988079071 0 4.599999904632568 0 0 1 0 0 0 0 1 &start=1 0 0 -3 0 1 0 4 0 0 1 0 0 0 0 1 &allPrize=5"}
+{interactive computer_graphics_arrow_transform parameters="&zoom=-10.0 &quiz=0.699999988079071 0.699999988079071 0 -4.400000095367432 -0.699999988079071 0.699999988079071 0 4.599999904632568 0 0 1 0 0 0 0 1 &start=1 0 0 -3 0 1 0 4 0 0 1 0 0 0 0 1 &allPrize=5"}
 
 {teacher}
 Solution: The first translation is x=8 and y=-7. Now the arrow tip is at the origin, and the doubling will keep the tip where it is. The matrix should be {math-block}\begin{bmatrix}  2 & 0 \\   0 & 2 \\   \end{bmatrix}{math-block end} as usual for doubling. The second translation needs to be -8,7 to get the arrow back to the starting point. 
@@ -268,7 +268,7 @@ Solution: The first translation is x=8 and y=-7. Now the arrow tip is at the ori
 
 The following two examples combine rotation, scaling and translation. You can use multiple matrices (that's the plural of matrix) to match up the target object --- the product of each matrix becomes the input to the next one. Oh, and the arrow is twice as fat, but still the same hight (from base to tip).
 
-{include interactive computer-graphics-arrow-double parameters="&zoom=-10.0 &quiz=0 1 0 4 2 0 0 -2 0 0 1 0 0 0 0 1 &allPrize=5"}
+{interactive computer-graphics-arrow-double parameters="&zoom=-10.0 &quiz=0 1 0 4 2 0 0 -2 0 0 1 0 0 0 0 1 &allPrize=5"}
 
 {teacher}
 Solution: There are two solutions depending on whether you scale or rotate first. If scaling first, the scaling matrix is {math-block}\begin{bmatrix}  2 & 0 \\   0 & 1 \\   \end{bmatrix}{math-block end}. That makes the arrow twice as fat, but still the same height. The rotation matrix is {math-block}\begin{bmatrix}  0 & 1 \\   1 & 0 \\   \end{bmatrix}{math-block end} -- that's a 90 degree clockwise rotation. The translation vector is 4, -2.
@@ -278,7 +278,7 @@ If you rotate first, the rotation is still {math-block}\begin{bmatrix}  0 & 1 \\
 This can also be done by using only one matrix (if you combine the rotation and scaling); this could be a challenge to give the faster students. In that case the matrix is {math-block}\begin{bmatrix}  0 & 1 \\   2 & 0 \\   \end{bmatrix}{math-block end}. The translation is still 4,-2.
 {teacher end}
 
-{include interactive computer_graphics_arrow_double parameters="&zoom=-6.0 &quiz=0.3499999940395355 -0.3499999940395355 0 -1 0.3499999940395355 0.3499999940395355 0 -2 0 0 1 0 0 0 0 1 &allPrize=5"}
+{interactive computer_graphics_arrow_double parameters="&zoom=-6.0 &quiz=0.3499999940395355 -0.3499999940395355 0 -1 0.3499999940395355 0.3499999940395355 0 -2 0 0 1 0 0 0 0 1 &allPrize=5"}
 
 {teacher}
 Solution: The solution will depend on the order of scaling and rotating, but a simple solution is {math-block}\begin{bmatrix}  0.7 & -0.7 \\   0.7 & 0.7 \\   \end{bmatrix}{math-block end}  for the first matrix, {math-block}\begin{bmatrix}  0.5 & 0 \\   0 & 0.5 \\   \end{bmatrix}{math-block end} for the second matrix, and -1,-2 for the translation.
@@ -369,7 +369,7 @@ A matrix for operating on 3D points is 3 by 3. For example, the 3D matrix for do
 0 & 0 & 2 \\  
 \end{bmatrix}
 
-{math-blcok end}
+{math-block end}
 
 <section id="teapot1Text">
  In this interactive, try changing the scaling on the image (it starts with a scaling factor of 10 in all three dimensions).
@@ -693,7 +693,7 @@ Once you have finished drawing your line, try checking it with a ruler. Place th
 
 ### Using a formula to draw a line
 
-The mathematical formula for a line is  {math}(y = mx + c){math end}. This gives you the *y* value for each *x* value across the screen, where {math}(m){math end} is the slope of the line and {math}(c){math end} is where it crosses the y axis. In other words, for *x* pixels across, the pixel to colour in would be (*x*,\ {math}(mx + c){math end}).
+The mathematical formula for a line is {math}(y = mx + c){math end}. This gives you the *y* value for each *x* value across the screen, where {math}(m){math end} is the slope of the line and {math}(c){math end} is where it crosses the y axis. In other words, for *x* pixels across, the pixel to colour in would be (*x*,\ {math}(mx + c){math end}).
 
 For example, choosing {math}(m=2){math end} and {math}(c=3){math end} means that the line would go through the points (0,3), (1,5), (2,7), (3,9) and so on.
 This line goes up 2 pixels for every one across ({math}(m=2){math end}), and crosses the y axis 3 pixels up ({math}(c=3){math end}). 
@@ -707,7 +707,7 @@ The {math}(mx + c){math end} formula can be used to work out which pixels should
 
 The calculations for a line from A to B above are as follows.
 
-The two points are A = (3,4) and B = (16,9). This gives :math:`\(x_1 = 3, y_1 = 4, x_2=16\)` and :math:`\(y_2 = 9\)`.
+The two points are A = (3,4) and B = (16,9). This gives {math}\(x_1 = 3, y_1 = 4, x_2=16\){math end} and {math}\(y_2 = 9\){math end}.
 
 {teacher end}
 
@@ -715,8 +715,8 @@ See if you can work out the {math}(m){math end} and {math}(b){math end} values f
 
 {math-block}
  
- \[m = \frac{(y_2 - y_1)}{(x_2 - x_1)}\]
- \[ b = \frac{(y_1x_2 - y_2x_1)}{(x_2-x_1)}\]
+[m = \frac{(y_2 - y_1)}{(x_2 - x_1)}]
+[b = \frac{(y_1x_2 - y_2x_1)}{(x_2-x_1)}]
 
 {math-block end}
 
@@ -731,7 +731,7 @@ For the formula for a line this results in:
 
 {math-block end}
 
-So we can use the formula {math}(y = 0.384615x + 2.846154){math-block end}.
+So we can use the formula {math}(y = 0.384615x + 2.846154){math end}.
 
 This can be put into a spreadsheet to give the values as follows:
 
@@ -759,13 +759,13 @@ This can be put into a spreadsheet to give the values as follows:
 Now draw the same line as in the previous section (between A and B) using the formula {math}(y = mx + c){math end} to calculate *y* for each value of *x* from {math}(x_1){math end} to {math}(x_2){math end} (you will need to round *y* to the nearest integer to work out which pixel to colour in). 
 If the formulas have been applied correctly, the *y* value should range from  {math}(y_1){math end} to {math}(y_2){math end}. 
 
-{image computer-graphics/20grid_ab.png alt="Grid for drawing line from A to B"}
+{image computer-graphics/20-grid-ab.png alt="Grid for drawing line from A to B"}
 
 {teacher}
 
 The following image shows which pixels would be coloured in (rounding the coordinates above to the nearest integer).
 
-{image computer-graphics/20grid-ab-answer.png alt="Grid for drawing line from A to B"}
+{image computer-graphics/20-grid-ab-answer.png alt="Grid for drawing line from A to B"}
 
 {teacher end}
 
