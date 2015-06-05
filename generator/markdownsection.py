@@ -89,7 +89,7 @@ class Section:
 
     def delete_comment(self, match):
         """Replaces the comment with an empty string"""
-        return ''
+        return '\n'
 
 
     def process_math_text(self, match):
