@@ -521,7 +521,7 @@ While the code is longer, it ensures that the program doesn’t crash if somethi
 
 .. ajb Probably known but formatting needs to be fixed here
 
-{comment}
+{comment end}
 
 There are many other general software engineering languages, such as C# and C++. Python is sometimes used for making large software systems, although is generally not considered an ideal language for this role.
 
@@ -583,7 +583,7 @@ The diagram below shows the difference between what happens in an interpreter an
 
 .. xtcb mention cross compilers, especially for mobile apps
 
-{comment}
+{comment end}
 
 ## The whole story!
 
@@ -615,7 +615,9 @@ The languages we have discussed in this chapter are ones that you are likely to 
 
 {teacher}
 
-  The following links will be of more interest to teachers
+The following links will be of more interest to teachers
 
-  - [a brief overview of many of the key concepts in this chapter](http://userpages.wittenberg.edu/bshelburne/Comp150/ProgrammingLanguages.html)
-  - [a humorous but not directly relevant history of programming language](http://james-iry.blogspot.co.nz/2009/05/brief-incomplete-and-mostly-wrong.html)
+- [a brief overview of many of the key concepts in this chapter](http://userpages.wittenberg.edu/bshelburne/Comp150/ProgrammingLanguages.html)
+- [a humorous but not directly relevant history of programming language](http://james-iry.blogspot.co.nz/2009/05/brief-incomplete-and-mostly-wrong.html)
+
+{teacher end}

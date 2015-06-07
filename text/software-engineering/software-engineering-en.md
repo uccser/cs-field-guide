@@ -405,7 +405,7 @@ Imagine that your project is running late and your customer is getting impatient
 
 Brooks’s law states that “adding manpower to a late software project makes it later.” This might seem counterintuitive at first because you would assume that more people would get more work done. However, the overhead of getting new people started on the project (getting them to understand what you are trying to build, your design, the existing code, and so on) and of managing and coordinating the larger development team actually makes things slower rather than faster in the short term. 
 
-{curiosity}
+{curiosity end}
 
 ### Activity: Fun with the Waterfall Process
 

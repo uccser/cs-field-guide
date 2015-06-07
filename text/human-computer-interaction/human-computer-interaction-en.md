@@ -617,7 +617,7 @@ Software can contain many features, and if they are all visible at the same time
 
 {teacher}
 
-  The following site identified some of the "scariest" interfaces around, some of which are great examples of *not* having minimalist design:  `OK/Cancel scariest interface <http://okcancel.com/archives/article/2005/11/the-scariest-interface-part-ii.html>`_.
+The following site identified some of the "scariest" interfaces around, some of which are great examples of *not* having minimalist design:  [OK/Cancel scariest interface](http://okcancel.com/archives/article/2005/11/the-scariest-interface-part-ii.html).
 
 {teacher end}
 

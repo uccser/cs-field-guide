@@ -62,7 +62,7 @@ And with 3 dots there would be 8 patterns
 
 .. xHTML5 there's room for some interactives with the braille, something like getting students to try to find all the patterns for 3, 4, 5, 6 dots (as a bit of a game) [low priority]
 
-{comment}
+{comment end}
 
 You may have noticed that there are twice as many patterns with 3 dots as there are with 2 dots. It turns out that every time you add an extra dot, that gives twice as many patterns (why?), so with 4 dots there are 16 patterns, 5 dots has 32 patterns, and 6 dots has 64 patterns.
 
@@ -70,7 +70,7 @@ You may have noticed that there are twice as many patterns with 3 dots as there 
 
 The reason that the number of patterns doubles with each extra dot is that with, say, 3 dots you have 8 patterns, so with 4 dots you can use all the 3-dot patterns with the 4th dot flat, and all of them with it raised. This concept is a fundamental one for students to grasp with binary representation: each extra bit doubles the number of values that can be stored. This becomes very important in choosing the right number of bits for a value. For example, a 101-bit encryption key is *twice* as hard to crack as a 100-bit key, even though it's only 1% larger!
 
-{teacher}
+{teacher end}
 
 So, Braille can make 64 patterns.
 That's enough for all the letters of the alphabet, and other symbols too, such as digits and punctuation. 
@@ -587,7 +587,7 @@ For more information about RGB displays, see [RGB on Wikipedia](http://en.wikipe
 
 Another exercise to see the relationship between bit patterns and colour images is [provided here](https://sites.google.com/a/bxs.org.uk/mrkershaw/ict/bitmapgraphics).
 
-{teacher}
+{teacher end}
 
 {comment}
 
@@ -834,7 +834,7 @@ Suppose we have 8-bit numbers, with the left-most bit as a sign bit. What would 
 
 10000110 is -6, and 01111111 is 127 (the maximum value with 8-bit signed numbers). 10000000 means -0, which is the same as 0, and is discussed below. 
 
-{teacher}
+{teacher end}
 
 The representation 10000000 highlights a problem with this notation, as it represents the number -0, which is the same as 0. That is, there are two ways to represent the number 0, which is wasteful, and potentially confusing.
 
@@ -955,7 +955,7 @@ There are many experiments that can be done (such as calculating 1/3, or adding 
 
 The chapter does not (yet) cover other forms of data representation, and you may wish to explore these as alternatives. The common ones are:
 
-- sound (wave files and related storage; for example, 16-bit samples are used for "CD quality", but professional systems use 24-bit or even higher) --- for some information, see the `Teach with ICT page on sound representation <http://teachwithict.weebly.com/6/post/2014/01/teaching-computer-science-day-15-everything-is-sound.html#sthash.8LIc3W01.dpbs>`_.
+- sound (wave files and related storage; for example, 16-bit samples are used for "CD quality", but professional systems use 24-bit or even higher) --- for some information, see the [Teach with ICT page on sound representation](http://teachwithict.weebly.com/6/post/2014/01/teaching-computer-science-day-15-everything-is-sound.html#sthash.8LIc3W01.dpbs).
 - video (which are based on multiple images being played one after the other; however, these files are so large that they are almost never stored as a "raw" representation)
 
 {comment}

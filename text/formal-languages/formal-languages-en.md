@@ -146,7 +146,7 @@ Next we examine a simple system for reading input called a [finite state automat
 
 {teacher}
 
-For a fun discussion, you could have the students look at the `Klingon Linguistics activity at CS4FN <http://www.cs4fn.org/linguistics/klingon.html>`_. This page introduces the fundamentals of languages — words (the [alphabet](glossary.html#alphabet)) and [grammar](glossary.html#grammar) (the rules of syntax). It discusses why languages are translated and how meaning can be changed by translation. It also explains why computer languages need to be translated. 
+For a fun discussion, you could have the students look at the [Klingon Linguistics activity at CS4FN](http://www.cs4fn.org/linguistics/klingon.html). This page introduces the fundamentals of languages — words (the [alphabet](glossary.html#alphabet)) and [grammar](glossary.html#grammar) (the rules of syntax). It discusses why languages are translated and how meaning can be changed by translation. It also explains why computer languages need to be translated. 
 
 {teacher end}
 
@@ -160,7 +160,7 @@ For a fun discussion, you could have the students look at the `Klingon Linguisti
 
 {teacher}
 
-There's a fun variant of the challenge at the start of this section that involves running around the playground. It's described as the `Treasure Hunt <http://csunplugged.org/finite-state-automata/http://csunplugged.org/information-theory>`_ activity on the CS unplugged site.
+There's a fun variant of the challenge at the start of this section that involves running around the playground. It's described as the [Treasure Hunt](http://csunplugged.org/finite-state-automata/http://csunplugged.org/information-theory) activity on the CS unplugged site.
 It may be a bit young for some students, but if you can sell it to them, it's a great way to get some physical exercise away from the computers and to see most of the concepts in this section in a kinesthetic activity. Many variants are possible; for example, it can be run as a card game where the A/B card for each station is turned over on request. See the Unplugged site for other ideas.
 
 {teacher end}
@@ -485,7 +485,7 @@ We recommend starting students with Exorciser, and those who intend to do the mo
 
 One quick tip: to avoid confusion, in Exorciser deselect the option of having an empty-string transition by right-clicking in the background, choosing "A = {a,b}", and unchecking {math}\epsilon{math end}. Students can add other characters to the [alphabet](glossary.html#alphabet) from this menu, although just "a" and "b" are enough to play with for a start.
 
-{comment end}
+{teacher end}
 
 This activity involves constructing and testing your own FSA, using free software that you can download yourself. Before doing that, we'll look at some general ways to create an FSA from a description. If you want to try out the examples here on a live FSA, read the next two sections about using Exorciser and JFLAP respectively, which allow you to enter FSAs and test them.
 
@@ -563,6 +563,8 @@ If you're doing this for a report, keep copies of the automata and tests that yo
 {comment}
 
 .. _fl-jflap:
+
+{comment end}
 
 A program called JFLAP is an alternative to Exorciser for students to design and test their own FSA. It can be downloaded for free, and is widely used for teaching formal languages. It’s a powerful piece of software that can be used for most of the concepts in this chapter, which makes it worth learning how to use it. Unfortunately JFLAP has many more features than we need in this chapter, so we recommend using Exorciser if it's available. If you use JFLAP we recommend that you become familiar with it first so that you can guide students through it: the interface has many distracting features and can be a little quirky, and fiddling around without taking time to learn how to use it will be a frustrating experience. Fortunately there's a good tutorial about using JFLAP [here](http://www.jflap.org/tutorial/), and some material from Duke University about FSAs based around JFLAP [here](http://www.cs.duke.edu/csed/pltl/exercises/lessons/29/finiteautomata.zip) (ZIP file).
 
@@ -790,7 +792,7 @@ It may be that students have used regular expressions already, because they are 
 
 If you have time, the following activity ("Reverse Pictionary") could be done either before or after teaching regular expressions. We recommend using it before, as it becomes a constructivist approach which encourages students to design their own notations for regular languages, and is a motivator for learning a precise notation.
 
-A useful activity to develop students' familiarity with FSAs and Regular expressions is a "Reverse Pictionary" game for finite state automata, developed by Linda Pettigrew. It uses the handout :download:`found here <_static/formal_languages/FL-reverse-pictionary-worksheet.pdf>` (or you can make up your own simple FSAs).
+A useful activity to develop students' familiarity with FSAs and Regular expressions is a "Reverse Pictionary" game for finite state automata, developed by Linda Pettigrew. It uses the handout [found here](files/fl-reverse-pictionary-worksheet.pdf) (or you can make up your own simple FSAs).
 
 Split the class into two groups, A and B. Hand out one copy of FSM-A to each pair of students in group A and FSM-B to pairs in group B. Each pair also requires a language sheet. They will only be writing in the top half of the sheet. Students now need to describe all the acceptable inputs for the given FSA (using whatever notation they can come up with, or regular expressions if they have already encountered them). When they are happy with their description (or five minutes is up) they write it out on the language sheet. Some suitable descriptions are as follows. We've used standard regex notation, but students might make up something different.
 
@@ -815,7 +817,7 @@ Followup discussion can review whether some descriptions were longer than they n
 
 .. xtcb consider using http://www.debuggex.com/?re=(foo|bar)baz*&str=
 
-{comment}
+{comment end}
 
 We've already had a taste of regular expressions in the :ref:`fl-gettingstarted` section. They are just a simple way to search for things in the input, or to specify what kind of input will be accepted as legitimate. 
 For example, many web scripting programs use them to check input for patterns like dates, email addresses and URLs. They've become so popular that they're now built into most programming languages.
@@ -994,7 +996,7 @@ Can you improve on it?
 
 The expression "\\d\\d? (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \\d\\d\\d\\d" is more accurate, but a more sophisticated version would be used in practice to take account of various formats.
 
-{teacher}
+{teacher end}
 
 What about phone numbers? You'll need to think about what variations of phone numbers are common!
 How about finding email addresses?
@@ -1354,15 +1356,17 @@ Other sites for experimenting with regular expressions include:
 
 .. warning:: this section hasn't been written yet; the material below is just an introduction
 
+{comment end}
+
 {teacher}
 
-  The material prior to this section is sufficient for what is required for the NZ 3.44 standard, but for interested students this section provides something different that is accessible at high school level.
+The material prior to this section is sufficient for what is required for the NZ 3.44 standard, but for interested students this section provides something different that is accessible at high school level.
 
-  Currently the section is only introductory, and we've left it here in case you have keen students who might want some extra material to investigate.
+Currently the section is only introductory, and we've left it here in case you have keen students who might want some extra material to investigate.
 
-  There's an introduction to this topic (which dwells more on English grammar) at: http://ozark.hendrix.edu/~burch/cs/150/reading/grammar/index.html. This could be used for class discussion.
+There's an introduction to this topic (which dwells more on English grammar) at: http://ozark.hendrix.edu/~burch/cs/150/reading/grammar/index.html. This could be used for class discussion.
 
-  As preparation for reading this chapter, you could do the "planet ABBA" activity with the students as a class, as it will get them familiar with the notation.
+As preparation for reading this chapter, you could do the "planet ABBA" activity with the students as a class, as it will get them familiar with the notation.
 
 {teacher end}
 
