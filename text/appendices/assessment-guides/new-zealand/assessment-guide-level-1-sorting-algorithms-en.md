@@ -42,9 +42,9 @@ As with all externally assessed Digital Technology reports, you should base your
 
 You should read and work through the interactives in the following sections of the CS Field Guide in order to prepare yourself for the assessed project.
 
-2.1 - What’s the bigger picture?
+[2.1 - What’s the bigger picture?](algorithms.html#whats-the-big-picture)
 
-2.3 - Sorting Algorithms
+[2.3 - Sorting Algorithms](algorithms.html#sorting-algorithms)
 
 Note that 2.2 is not necessary for this project, as 2.2 focuses on *searching* algorithms, whereas this project focuses on *sorting* algorithms.
 
