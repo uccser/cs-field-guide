@@ -126,12 +126,12 @@ This code finds words that contain x, y and z in that order, but separated by 0 
 
 To find words with all the vowels in order, the code is simply "a.*e.*i.*o.*u". 
 
-Students may ask how to do more complex searches, like letters in any order. If they are interested they can explore this on their own, but this is just a warmup exercise. We'll be covering this more carefully in the section on :ref:`fl-regex`.
+Students may ask how to do more complex searches, like letters in any order. If they are interested they can explore this on their own, but this is just a warmup exercise. We'll be covering this more carefully in the section on [regular expressions](formal-languages.html#regular-expressions).
 
 {teacher end}
 
 The code you've used above is a part of a formal language called a "regular expression". Computer programs that accept typed input use regular expressions for checking items like dates, credit card numbers and product codes. They’re used extensively by programming language compilers and interpreters to make sense of the text that a programmer types in. 
-We'll look at them in more detail in the section on :ref:`fl-regex`.
+We'll look at them in more detail in the section on [regular expressions](formal-languages.html#regular-expressions).
 
 Next we examine a simple system for reading input called a [finite state automaton][glossary.htm#finate state automaton], which --- as we'll find out later --- is closely related to regular expressions. Later we'll explore the idea of *grammars*, another kind of formal language that can deal with more complicated forms of input.
 
@@ -808,7 +808,7 @@ Followup discussion can review whether some descriptions were longer than they n
 
 {comment end}
 
-We've already had a taste of regular expressions in the :ref:`fl-gettingstarted` section. They are just a simple way to search for things in the input, or to specify what kind of input will be accepted as legitimate. 
+We've already had a taste of regular expressions in the [getting started](formal-languages.html#getting-started) section. They are just a simple way to search for things in the input, or to specify what kind of input will be accepted as legitimate. 
 For example, many web scripting programs use them to check input for patterns like dates, email addresses and URLs. They've become so popular that they're now built into most programming languages.
 
 {teacher}
@@ -1104,7 +1104,7 @@ Information about both the Exorciser and JFLAP software is given in teacher note
 
 For Exorciser, the conversion is intended as an exercise for the student, but that's way beyond the scope of this chapter. However, if you just ask for the solution, it will do the conversion for you, which is what we need.
 
-For JFLAP, there is a tutorial on the [program's website](http://www.jflap.org/tutorial/) and more information in the :ref:`fl-regex` section.
+For JFLAP, there is a tutorial on the [program's website](http://www.jflap.org/tutorial/) and more information in the [regular expressions](formal-languages.html#regular-expressions) section.
 
 If students stick to the instructions given they will be able to use it to create their own FSA from a regular expression. 
 

@@ -754,7 +754,7 @@ The following interactive can be used to upload your own image, and experiment w
 In the introduction we looked at 8-bit ASCII representations of text (which really use 7 bits, allowing for 128 different symbols).
 As with any other kind of data represented in binary, we can get improvements by considering larger (or smaller) representations.
 
-In the :ref:`curiosity section <curiosity-music>` earlier we observed that 5 bits are sufficient for simple coding of the English alphabet, and for very slow coding systems (like the [video that contains hidden text using musical notes](http://www.youtube.com/watch?v=L-v4Awj_p7g>) using 5 bits instead of 8 can save some time. 
+In the curiosity earlier we observed that 5 bits are sufficient for simple coding of the English alphabet, and for very slow coding systems (like the [video that contains hidden text using musical notes](http://www.youtube.com/watch?v=L-v4Awj_p7g>) using 5 bits instead of 8 can save some time. 
 The braille system uses only 6 bits for each character, which allows for 64 different characters, and it is also better than using 8 bits since it would take more paper and more time to read if the longer code was used.
 
 But some languages have way more than 32, or 64, or even 128 characters in their alphabet.
