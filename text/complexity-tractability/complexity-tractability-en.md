@@ -126,19 +126,22 @@ In this chapter we'll be using similar crude characterisations because they are 
 
 {jargon-buster end}
 
-If you've studied algorithms, you will have learnt that some sorting algorithms, such as mergesort and quicksort, are inherently faster than other algorithms, such as insertion sort, selection sort, or bubble sort. It’s obviously better to use the faster ones. The first two have a complexity of n log(n) time (that is, the number of steps that they take is roughly proportional to n log(n)), whereas the last three have complexity of n\ :sup:`2`. Generally the consequence of using the wrong sorting algorithm will be that a user has to wait many minutes (or perhaps hours) rather than a few seconds or minutes. 
+If you've studied algorithms, you will have learnt that some sorting algorithms, such as mergesort and quicksort, are inherently faster than other algorithms, such as insertion sort, selection sort, or bubble sort. It’s obviously better to use the faster ones. The first two have a complexity of n log(n) time (that is, the number of steps that they take is roughly proportional to n log(n)), whereas the last three have complexity of {math}n^2{math end}. Generally the consequence of using the wrong sorting algorithm will be that a user has to wait many minutes (or perhaps hours) rather than a few seconds or minutes. 
 
 Here we're going to consider another possible sorting algorithm, called *permutation sort*. Permutation sort says “Let’s list all the possible orderings (“permutations”) of the values to be sorted, and check each one to see if it is sorted, until the sorted order is found”.  This algorithm is straightforward to describe, but is it any good?
 
+{teacher}
 
-.. only:: teachers or dev
+Note that permutation sort is *not* a reasonable way to sort at all; it's just an idea to help us think about tractability. It should be obvious to students fairly quickly that it's grossly inefficient. The main thing is that is does produce the correct result, so it's an extreme example of an algorithm that works correctly, yet is way too inefficient (intractable) to be useful.
 
- .. admonition:: For teachers
+{teacher end}
 
-  Note that permutation sort is *not* a reasonable way to sort at all; it's just an idea to help us think about tractability. It should be obvious to students fairly quickly that it's grossly inefficient. The main thing is that is does produce the correct result, so it's an extreme example of an algorithm that works correctly, yet is way too inefficient (intractable) to be useful.
+{comment}
 
 .. xHRN You've used orderings most of the time below, but why not use permutations as long as it's defined, which i've sort of done in the next sentence? Or we can use both... i'm not sure which is the most common term!
 .. We discussed that and came to the conclusion that “orderings” was better.
+
+{comment end}
 
 For example, if you are sorting the numbers 45, 21 and 84, then every possible order they can be put in (that is, all permutations) would be listed as:
 
@@ -157,68 +160,69 @@ For example, if you are sorting the numbers 45, 21 and 84, then every possible o
 Going through the above list, the only line that is in order is 21, 45, 84, so that's the solution.
 It's a very inefficient approach, but it will help to illustrate what we mean by tractability.
 
-In order to understand how this works, and the implications, choose four different words (in the example below we have used colours) and list all the possible orderings of the four words. Each word should appear exactly once in each ordering. You can either do this yourself, or use an online permutation generator such as `JavaScriptPermutations <http://users.telenet.be/vdmoortel/dirk/Maths/permutations.html>`__ or `Text Mechanic <http://textmechanic.com/Permutation-Generator.html>`__.
+In order to understand how this works, and the implications, choose four different words (in the example below we have used colours) and list all the possible orderings of the four words. Each word should appear exactly once in each ordering. You can either do this yourself, or use an online permutation generator such as [JavaScriptPermutations](http://users.telenet.be/vdmoortel/dirk/Maths/permutations.html) or [Text Mechanic](http://textmechanic.com/Permutation-Generator.html).
+
+{comment}
 
 .. xHTML5 build the permutation generator into the page
 
+{comment end}
+
 For example if you’d picked red, blue, green, and yellow, the first few orderings could be:
 
-| red, blue, green, yellow
-| red, blue, yellow, green
-| red, yellow, blue, green
-| red, yellow, green, blue
+red, blue, green, yellow  
+red, blue, yellow, green  
+red, yellow, blue, green  
+red, yellow, green, blue  
 
 They do not need to be in any particular order, although a systematic approach is recommended to ensure you don’t forget any!
 
-.. only:: teachers or dev
+{teacher}
 
- .. admonition:: For teachers
+For four different words, there will be 4x3x2x1 = 24 different orders for them. For example, there are 6 starting with "red", 6 starting with "blue", and so on.
 
-  For four different words, there will be 4x3x2x1 = 24 different orders for them. For example, there are 6 starting with "red", 6 starting with "blue", and so on.
-
+{teacher end}
 
 Once your list of permutations is complete, search down the list for the one that has the words sorted in alphabetical order. The process you have just completed is using permutation sort to sort the words.
 
 Now add another word. How many possible orderings will there be with 5 words? What about with only 2 and 3 words --- how many orderings are there for those? If you gave up on writing out all the orderings with 5 words, can you now figure out how many there might be? Can you find a pattern? How many do you think there might be for 10 words? (You don’t have to write them all out!).
 
-.. only:: teachers or dev
+{teacher}
 
- .. admonition:: For teachers
+The number of orderings (permutations) for n words is the factorial of n; this is explained below, but basically there are n choices for the first word, n-1 for the next, and so on. For example, for 15 words, there are 15 x 14 x 13 x 12 x ... x 1 permutations, which is 1,307,674,368,000. It's a big number!
 
-  The number of orderings (permutations) for n words is the factorial of n; this is explained below, but basically there are n choices for the first word, n-1 for the next, and so on. For example, for 15 words, there are 15 x 14 x 13 x 12 x ... x 1 permutations, which is 1,307,674,368,000. It's a big number!
+The factorial of a number can be calculated using a spreadsheet (in Excel the formula for 15! is =FACT(15). A lot of calculators have a factorial button ("!").  You can even type 15! into a Google search and get the answer. However, for dealing with very large numbers, the field guide has a simple calculator that can work with huge numbers; it is in the text below, or you can open it [here](_static/widgets/big-calculator.html?plain=true frameborder="0").  
 
-  The factorial of a number can be calculated using a spreadsheet (in Excel the formula for 15! is =FACT(15). A lot of calculators have a factorial button ("!").  You can even type 15! into a Google search and get the answer. However, for dealing with very large numbers, the field guide has a simple calculator that can work with huge numbers; it is in the text below, or you can open it `here <_static/widgets/big-calculator.html?plain=true frameborder="0">`_.  
+For the above questions, the number of permutations are:
 
-  For the above questions, the number of permutations are:
-   - 5 words: 120 permutations
-   - 2 words: 2 permutations (just the original two values and the reverse)
-   - 3 words: 6 permutations
-   - 10 words: 3,628,800 permutations
+- 5 words: 120 permutations
+- 2 words: 2 permutations (just the original two values and the reverse)
+- 3 words: 6 permutations
+- 10 words: 3,628,800 permutations
+
+{teacher end}
 
 If you didn’t find the pattern for the number of orderings, think about using factorials. For 3 words, there are 3!  (“3 factorial”) orderings. For 5 words, there are 5! orderings. Check the jargon buster below if you don’t know what a “factorial” is, or if you have forgotten!
 
+{jargon-buster}
 
-.. container:: jargon-buster
+**Jargon Buster**
 
- **Jargon Buster**
+Factorials are very easy to calculate; just multiply together all the integers from the number down to 1. For example, to calculate 5! you would simply multiply: 5 x 4 x 3 x 2 x 1 = 120. For 8! you would simply multiply 8 x 7 x 6 x 5 x 4 x 3 x 2 x 1 = 40,320.
 
- Factorials are very easy to calculate; just multiply together all the integers from the number down to 1. For example, to calculate 5! you would simply multiply: 5 x 4 x 3 x 2 x 1 = 120. For 8! you would simply multiply 8 x 7 x 6 x 5 x 4 x 3 x 2 x 1 = 40,320.
+As stated above, the factorial of a number tells you how many permutations (orderings) there would be for that number of words (assuming they are all different). This means that if you are arranging 8 words, there will be 40,320 ways of arranging them (which is why you weren’t asked to try this in the first exercise!!)
 
- As stated above, the factorial of a number tells you how many permutations (orderings) there would be for that number of words (assuming they are all different). This means that if you are arranging 8 words, there will be 40,320 ways of arranging them (which is why you weren’t asked to try this in the first exercise!!)
+Your calculator may have a "!" button for calculating factorials and spreadsheets usually have a "FACT" function, although for the factorials under 10 in this section, we recommend that you calculate them the long way, and then use the calculator as a double check. Ensuring you understand how a factorial is calculated is essential for understanding the rest of this section!
 
- Your calculator may have a "!" button for calculating factorials and spreadsheets usually have a "FACT" function, although for the factorials under 10 in this section, we recommend that you calculate them the long way, and then use the calculator as a double check. Ensuring you understand how a factorial is calculated is essential for understanding the rest of this section!
+{jargon-buster end}
 
 For factorials of larger numbers, most desktop calculators won't work so well; for example, 100! has 158 digits. You can use the calculator below to work with huge numbers (especially when using factorials and exponents).  
 
-.. only:: html or epub
- 
- .. raw:: html
-
-  <div class="widget-holder"><a href="_static/widgets/big-calculator.html?plain=true frameborder="0"" target="_blank"><img class="widget-image" src="_static/complexity_and_tractability/images/CT-BigCalculatorThumbnail.png" alt=""><span class="widget-subtitle">Click to load<br>big number calculator</span></a></div>
+<div class="widget-holder"><a href="_static/widgets/big-calculator.html?plain=true frameborder="0"" target="_blank"><img class="widget-image" src="_static/complexity_and_tractability/images/CT-BigCalculatorThumbnail.png" alt=""><span class="widget-subtitle">Click to load<br>big number calculator</span></a></div>
 
 Try calculating 100! using this calculator --- that's the number of different routes that a travelling salesman might take to visit 100 places (not counting the starting place). With this calculator you can copy and paste the result back into the input if you want to do further calculations on the number. If you are doing these calculations for a report, you should also copy each step of the calculation into your report to show how you got the result.
 
-There are other big number calculators available online; for example, the `Big Integer Calculator <http://www.javascripter.net/math/calculators/100digitbigintcalculator.htm>`_. Other big calculators are available online, or you could look for one to download for a desktop machine or smartphone. 
+There are other big number calculators available online; for example, the [Big Integer Calculator](http://www.javascripter.net/math/calculators/100digitbigintcalculator.htm). Other big calculators are available online, or you could look for one to download for a desktop machine or smartphone. 
 
 As a final exercise on permutation sort, calculate how long a computer would take to use permutation sort to sort 100 numbers. Remember that you can use the calculator that was linked to above. Assume that you don’t have to worry about how long it will take to generate the permutations, only how long it will take to check them. Assume that you have a computer that creates and checks an ordering every nanosecond.
 
@@ -227,30 +231,33 @@ As a final exercise on permutation sort, calculate how long a computer would tak
 - How many orderings can be checked in a year?
 - How many years will checking all the orderings take?
 
-.. only:: teachers or dev
+{teacher}
 
- .. admonition:: For teachers
+The number of orderings for 100 numbers is 100!, which is 93, 326, 215, 443, 944, 152, 681, 699, 238, 856, 266, 700, 490, 715, 968, 264, 381, 621, 468, 592, 963, 895, 217, 599, 993, 229, 915, 608, 941, 463, 976, 156, 518, 286, 253, 697, 920, 827, 223, 758, 251, 185, 210, 916, 864, 000, 000, 000, 000, 000, 000, 000, 000.
 
-  The number of orderings for 100 numbers is 100!, which is 93, 326, 215, 443, 944, 152, 681, 699, 238, 856, 266, 700, 490, 715, 968, 264, 381, 621, 468, 592, 963, 895, 217, 599, 993, 229, 915, 608, 941, 463, 976, 156, 518, 286, 253, 697, 920, 827, 223, 758, 251, 185, 210, 916, 864, 000, 000, 000, 000, 000, 000, 000, 000.
+A nanosecond is 1/1,000,000,000 of a second, so the suggested system can check a billion orderings per second.
 
-  A nanosecond is 1/1,000,000,000 of a second, so the suggested system can check a billion orderings per second.
+There are 60x60x24x365 seconds in a non-leap year, which is 31,536,000, so the proposed system could check 31,536,000 *billion* orderings in a year, so dividing 100! by this number, we get 2, 959, 354, 878, 359, 467, 043, 432, 877, 944, 452, 901, 461, 527, 015, 736, 440, 310, 168, 334, 378, 611, 593, 658, 041, 388, 569, 114, 946, 139, 776, 006, 992, 588, 985, 721, 014, 739, 574, 573, 764, 941, 185, 024, 000, 000, 000, 000 years. That's an inconceivable amount of time, just to sort 100 values. This algorithm really is intractable!
 
-  There are 60x60x24x365 seconds in a non-leap year, which is 31,536,000, so the proposed system could check 31,536,000 *billion* orderings in a year, so dividing 100! by this number, we get 2, 959, 354, 878, 359, 467, 043, 432, 877, 944, 452, 901, 461, 527, 015, 736, 440, 310, 168, 334, 378, 611, 593, 658, 041, 388, 569, 114, 946, 139, 776, 006, 992, 588, 985, 721, 014, 739, 574, 573, 764, 941, 185, 024, 000, 000, 000, 000 years. That's an inconceivable amount of time, just to sort 100 values. This algorithm really is intractable!
-
+{teacher end}
 
 And as an interesting thing to think about, do some calculations based on the assumptions listed below. How long would it take to use permutation sort on 100 numbers? What would happen first: the algorithm would finish, or the universe would end?
 
-- There are 10\ :sup:`82` atoms in the universe
+- There are {math}10^82{math end} atoms in the universe
 - The universe has another 14 billion years before it ends
 - Suppose every atom in the universe is a computer that can check an ordering every nanosecond
 
-.. only:: teachers or dev
+{teacher}
 
- .. admonition:: For teachers
+In the above example, the universe would end before the 100 numbers have been sorted!
 
-  In the above example, the universe would end before the 100 numbers have been sorted!
+{teacher end}
+
+{comment}
 
 .. xtcb put in the calcuations for teachers (and check my ones in the previous teacher note!) I had to use two calculators, one for !, and this one because it can have values pasted in: https://defuse.ca/big-number-calculator.htm
+
+{comment end}
 
 By now, you should be very aware of the point that is being made. Permutation sort is so inefficient that sorting 100 numbers with it takes so long that it is essentially impossible. Trying to use permutation sort with a non trivial number of values simply won’t work. While selection sort is a lot slower than quick sort or merge sort, it wouldn’t be impossible for Facebook to use selection sort to sort their list of 1 billion users. It would take a lot longer than quick sort would, but it would be doable. Permutation sort on the other hand would be impossible to use!
 
@@ -261,31 +268,35 @@ The term "intractable" is used a bit more formally in computer science; it's exp
 
 But the *problem* of sorting items into order is not intractable - even though the Permutation sort algorithm is intractable,  there are lots of other efficient and not-so-efficient algorithms that you could use to solve a sorting problem in a reasonable amount of time:  quick sort, merge sort, selection sort, even bubble sort!  However, there are some problems in which the ONLY known algorithm is one of these intractable ones. Problems in this category are known as *intractable problems*. 
 
-.. container:: curiosity
+{curiosity}
 
- **Curiosity : Towers of Hanoi**
+**Curiosity : Towers of Hanoi**
 
- The Towers of Hanoi problem is a challenge where you have a stack of disks of increasing size on one peg, and two empty pegs. The challenge is to move all the disks from one peg to another, but you may not put a larger disk on top of a smaller one. There's a description of it at `Wikipedia <http://en.wikipedia.org/wiki/Tower_of_Hanoi>`__.
+The Towers of Hanoi problem is a challenge where you have a stack of disks of increasing size on one peg, and two empty pegs. The challenge is to move all the disks from one peg to another, but you may not put a larger disk on top of a smaller one. There's a description of it at [Wikipedia](http://en.wikipedia.org/wiki/Tower_of_Hanoi).
 
- This problem cannot be solved in fewer than 2\ :sup:`n-1` moves, so it's an intractable problem (a computer program that lists all the moves to make would use at least 2\ :sup:`n - 1` steps). For 6 disks it only needs 63 moves, but for 50 disks this would be 1,125,899,906,842,623 moves.
+This problem cannot be solved in fewer than {math}2^(n-1){math end} moves, so it's an intractable problem (a computer program that lists all the moves to make would use at least {math}2^(n-1){math end} steps). For 6 disks it only needs 63 moves, but for 50 disks this would be 1,125,899,906,842,623 moves.
 
- We usually characterise a problem like this as having a complexity of 2\ :sup:`n`, as subtracting one to get a precise value makes almost no difference, and the shorter expression is simpler to communicate to others. 
+We usually characterise a problem like this as having a complexity of {math}2^n{math end}, as subtracting one to get a precise value makes almost no difference, and the shorter expression is simpler to communicate to others. 
 
- The Towers of Hanoi is one problem where we know for sure that it will take exponential time. There are many intractable problems where this isn't the case --- we don't have tractable solutions for them, but we don't know for sure if they don't exist. Plus this isn't a real problem --- it's just a game (although there is a backup system based on it). But it is a nice example of an exponential time algorithm, where adding one disk will double the number of steps required to produce a solution.
+The Towers of Hanoi is one problem where we know for sure that it will take exponential time. There are many intractable problems where this isn't the case --- we don't have tractable solutions for them, but we don't know for sure if they don't exist. Plus this isn't a real problem --- it's just a game (although there is a backup system based on it). But it is a nice example of an exponential time algorithm, where adding one disk will double the number of steps required to produce a solution.
+
+{curiosity end}
+
+{comment}
 
 .. xtcb mention the myth(s) of Hanoi (for fun, in a later version of the guide :-)
 
+{comment end}
 
-Tractability
-=====================================================
+## Tractability
 
-.. only:: teachers or dev
+{teacher}
 
- .. admonition:: For teachers
+The following section relies on students using the built-in interactive to experiment with the calculations on the huge numbers that come up with the intractable problems. This may be best run as a class activity where students are guided through calculating the stupendously big numbers that come up, and they should be encouraged to appreciate how impractical the amount of time taken by a program would be --- for example, a program that takes a million years to find a solution won't be of any interest to the person who started it running, and even if a computer turned up that is 1000 times as fast, it would still take 1000 years to complete. Some of the times that turn up below are so long that they are beyond our ability to imagine, and are best illustrated by seeing how futile the times are even with 1000, a million or even a billion times the computing power.
 
-  The following section relies on students using the built-in interactive to experiment with the calculations on the huge numbers that come up with the intractable problems. This may be best run as a class activity where students are guided through calculating the stupendously big numbers that come up, and they should be encouraged to appreciate how impractical the amount of time taken by a program would be --- for example, a program that takes a million years to find a solution won't be of any interest to the person who started it running, and even if a computer turned up that is 1000 times as fast, it would still take 1000 years to complete. Some of the times that turn up below are so long that they are beyond our ability to imagine, and are best illustrated by seeing how futile the times are even with 1000, a million or even a billion times the computing power.
+An earlier version of this chapter provided the following spreadsheet for doing these calculations; we've retained the link here for the meantime, but the new online interactive can cope a lot better with the large numbers in the calculations. If you are interested, you can [download the spreadsheet here](files/complexity-and-tractability/ct-tractable.xlsx) to do the calculations.
 
-  An earlier version of this chapter provided the following spreadsheet for doing these calculations; we've retained the link here for the meantime, but the new online interactive can cope a lot better with the large numbers in the calculations. If you are interested, you can `download the spreadsheet here <_static/complexity_and_tractability/CT-tractable.xlsx>`_ to do the calculations.
+{teacher end}
 
 There's a very simple rule that computer scientists use to decide if an algorithm is tractable or not, based on the complexity (estimated number of steps) of the algorithm.
 Essentially, if the algorithm takes an exponential amount of time or worse for an input of size *n*, it is labelled as intractable.
@@ -293,130 +304,119 @@ This simple rule is a bit crude, but it's widely used and provides useful guidan
 (Note that a factorial amount of time, *n!*, is intractable because it's bigger than an exponential function.)
 
 To see what this means, let's consider how long various algorithms might take to run.
-The following interactive will do the calculations for you to estimate how long an algorithm might take to run. You can choose if the running time is exponential (that is, 2\ :sup:`n`, which is the time required for the Towers of Hanoi problem with *n* disks), or factorial (that is, :math:`n!`, which is the time required for checking all possible routes a travelling salesman would make to visit *n* places other than the starting point). You can use the interactive below to calculate the time.
+The following interactive will do the calculations for you to estimate how long an algorithm might take to run. You can choose if the running time is exponential (that is, {math}2^n{math end}, which is the time required for the Towers of Hanoi problem with *n* disks), or factorial (that is, {math}n!{math end}, which is the time required for checking all possible routes a travelling salesman would make to visit *n* places other than the starting point). You can use the interactive below to calculate the time.
 
 For example, try choosing the factorial time for the TSP, and put in 20 for the value of *n* (i.e. this is to check all possible travelling salesman visits to 20 places).
 Press the return or tab key to update the calculation.
 The calculator will show a large number of seconds that the program will take to run; you can change the units to years to see how long this would be.
 
-.. only:: teachers or dev
+{teacher}
 
- .. admonition:: For teachers
+With the initial settings in the interactive, the TSP for 20 places will take 2,432,902,008,176,640,000.00 seconds, which is 773,056,638.51 centuries (note that the calculator needs to be set to n! to apply to the TSP). By the way, we're giving very precise numbers here just so that you know you have the right calculations in place; in practice the estimate is very crude, and rather than 773,056,638.51 centuries, it's just as accurate to say "about 770 million centuries", or even just "hundreds of millions of centuries". It may be more meaningful to students it this is converted to some geological time frame.
 
-  With the initial settings in the interactive, the TSP for 20 places will take 2,432,902,008,176,640,000.00 seconds, which is 773,056,638.51 centuries (note that the calculator needs to be set to n! to apply to the TSP). By the way, we're giving very precise numbers here just so that you know you have the right calculations in place; in practice the estimate is very crude, and rather than 773,056,638.51 centuries, it's just as accurate to say "about 770 million centuries", or even just "hundreds of millions of centuries". It may be more meaningful to students it this is converted to some geological time frame.
+{teacher end}
 
-.. only:: html or epub
- 
- .. raw:: html
-
-  <div class="widget-holder"><a href="_static/widgets/tract-scaling-v2.html" target="_blank"><img class="widget-image" src="_static/images/CT-TimeCalculatorThumbnail.png" alt=""><span class="widget-subtitle">Click to load<br>big number calculator</span></a></div>
+<div class="widget-holder"><a href="_static/widgets/tract-scaling-v2.html" target="_blank"><img class="widget-image" src="_static/images/CT-TimeCalculatorThumbnail.png" alt=""><span class="widget-subtitle">Click to load<br>big number calculator</span></a></div>
 
 So far the calculation assumes that the computer would only do 1 operation per second; try changing to a million (1,000,000) operations per second, which is more realistic, and see how long that would take.
 
-.. only:: teachers or dev
+{teacher}
 
- .. admonition:: For teachers
+When the computer is a million times faster, the time for TSP on 20 places reduces from 773,056,638.51 centuries to 773.06 centuries. It's still completely impractical!
 
-  When the computer is a million times faster, the time for TSP on 20 places reduces from 773,056,638.51 centuries to 773.06 centuries. It's still completely impractical!
+{teacher end}
 
 Another way to solve problems faster is to have multiple processors work on different solutions at the same time. 
 If you were to buy 1,000 processors (e.g. 1,000 computers, or 250 4-core computers) and have each one test out different routes, then the solution could be found 1,000 times faster. Try changing the number of processors to 1,000, and see how long that would take (you may need to change the units back --- is it seconds? hours? days?)
 
-.. only:: teachers or dev
+{teacher}
 
- .. admonition:: For teachers
+1,000 processors reduces the running time to 77.31 years. That's still too much computing power to be practical, but it's starting to get into the region where it's not completely impossible.
 
-  1,000 processors reduces the running time to 77.31 years. That's still too much computing power to be practical, but it's starting to get into the region where it's not completely impossible.
+{teacher end}
 
 The interactive above estimates the amount of time taken for various algorithms to run given *n* values to be processed.
 Let's assume that we have a *very* fast computer, faster than any that exist.
 Try putting in the assumption that the computer can do a million million (1,000,000,000,000) steps per second.
 Is that achievable? But what if you add just two more locations to the problem (i.e. n=22 instead of n=20)?
 
-.. only:: teachers or dev
+{teacher}
 
- .. admonition:: For teachers
+This incredibly high speed would reduce the time to 40.55 seconds. However, increasing the problem to just 22 cities blows it out again to 13.01 days. The main point is that even if you get a massively fast bank of computers that can solve a particular problem, just adding a few items to the problem will put it out of reach again.
 
-  This incredibly high speed would reduce the time to 40.55 seconds. However, increasing the problem to just 22 cities blows it out again to 13.01 days. The main point is that even if you get a massively fast bank of computers that can solve a particular problem, just adding a few items to the problem will put it out of reach again.
+{teacher end}
 
-
-Now, consider an algorithm that has a complexity of n\ :sup:`2` (there are lots that take roughly this number of steps, including selection sort which was mentioned earlier).
+Now, consider an algorithm that has a complexity of {math}n^2{math end} (there are lots that take roughly this number of steps, including selection sort which was mentioned earlier).
 Type in a value of 1,000,000 for *n*  to see how long it might take to sort a million items on a single processor (keep the number of steps per second at 1,000,000,000,000, but set the number of processors to just 1) --- it should show that it will only take about 1 second on our hypothetical very fast machine.
 Now put in 10 million for *n* --- although it's sorting a list 10 times as big, it takes more than 10 times as long, and will now take a matter of minutes rather than seconds.
 At what value of *n* does the amount of time become out of the question --- that is, how large would the problem need to be for it to take years to finish?
 Is anyone ever likely to be sorting this many values --- for example, what if for some reason you were sorting the name of every person in the world, or every base in the human genome?
 
-.. only:: teachers or dev
+{teacher}
 
- .. admonition:: For teachers
+The {math}n^2{math end} algorithm with 10 million items takes 100 seconds above (each time n is multiplied by 10, it will take 100 times as long). 
 
-  The n\ :sup:`2` algorithm with 10 million items takes 100 seconds above (each time n is multiplied by 10, it will take 100 times as long). 
+When n is a thousand million, it takes nearly 12 days, at which point you might consider it to be out of the question. At n=10,000,000,000 it takes about 3.18 years, which is likely to be longer than a computer could run for continuously. But that's a pretty big number of items to process --- for example, it's big enough to cope with the population of the whole world. And there's room for improvement by using a reasonable number of multiple processors.
 
-  When n is a thousand million, it takes nearly 12 days, at which point you might consider it to be out of the question. At n=10,000,000,000 it takes about 3.18 years, which is likely to be longer than a computer could run for continuously. But that's a pretty big number of items to process --- for example, it's big enough to cope with the population of the whole world. And there's room for improvement by using a reasonable number of multiple processors.
+{teacher end}
 
-What about an algorithm with complexity of n\ :sup:`3`? What's the largest size input that it can process in a reasonable amount of time?
+What about an algorithm with complexity of {math}n^3{math end}? What's the largest size input that it can process in a reasonable amount of time?
 
-.. only:: teachers or dev
+{teacher}
 
- .. admonition:: For teachers
+The {math}n^3{math end} algorithm can process 1,000,000 items in 11.57 days. A million is nothing near the population of the world, or even a lot of countries, but a lot of real life problems are smaller than that.
 
-  The n\ :sup:`3` algorithm can process 1,000,000 items in 11.57 days. A million is nothing near the population of the world, or even a lot of countries, but a lot of real life problems are smaller than that.
+{teacher end}
 
-Now try the same when the number of steps is 2\ :sup:`n`, but start with a value of 10 for *n* , then try 30, 40 , 50 and so on.
+Now try the same when the number of steps is {math}2^n{math end}, but start with a value of 10 for *n* , then try 30, 40 , 50 and so on.
 You'll probably find that for an input of about 70 items it will take an unreasonable amount of time.
 Is it much worse for 80 items?
 
-.. only:: teachers or dev
+{teacher}
 
- .. admonition:: For teachers
+The {math}2^n{math end} algorithm is in a completely different league to the previous ones. 10 items take a fraction of a second (1.02 nanoseconds to be precise), and 60 items take 13.34 days, but just 70 items blows out to 37.51 years, and 80 items takes 384 centuries. Small increases in the number of items (eg. cities for the TSP to visit) result in HUGE increases in the time taken to evaluate them all.
 
-  The 2\ :sup:`n`  algorithm is in a completely different league to the previous ones. 10 items take a fraction of a second (1.02 nanoseconds to be precise), and 60 items take 13.34 days, but just 70 items blows out to 37.51 years, and 80 items takes 384 centuries. Small increases in the number of items (eg. cities for the TSP to visit) result in HUGE increases in the time taken to evaluate them all.
-
+{teacher end}
 
 Now try increasing the number of operations per second to 10 times as many. Does this help to solve bigger problems?
 
-.. only:: teachers or dev
+{teacher}
 
- .. admonition:: For teachers
+10 times faster reduces 384 centuries to 38.4 centuries - much faster, but it is still an impossibly large amount of time. The lesson is that the algorithm will be so slow that even massive improvements in hardware won't have a useful impact.
 
-  10 times faster reduces 384 centuries to 38.4 centuries - much faster, but it is still an impossibly large amount of time. The lesson is that the algorithm will be so slow that even massive improvements in hardware won't have a useful impact.
+{teacher end}
 
 Trying out these figures you will likely have encountered the barrier between "tractable" and "intractable" problems.
-Algorithms that take n\ :sup:`2`, n\ :sup:`3` or even n\ :sup:`4` time to solve a problem (such as sorting a list) aren't amazing, but at least with a fast enough computer and for the size of inputs we might reasonably encounter, we have a chance of running them within a human lifetime, and these are regarded as *tractable* .
-However, for algorithms that take 2\ :sup:`n`, 3\ :sup:`n` or more steps, the amount of time taken can end up as billions of years even for fairly small problems, and using computers that are thousand times faster still doesn't help to solve much bigger problems. Such problems are regarded as *intractable* .
-Mathematically, the boundary between tractable and intractable is between a polynomial number of steps (polynomials are formulas made up of n\ :sup:`2`, n\ :sup:`3`, n\ :sup:`4` and so on), and an exponential number of steps (2\ :sup:`n`, 3\ :sup:`n`, 4\ :sup:`n`, and so on). 
+Algorithms that take {math}n^2{math end}, {math}n^3{math end} or even {math}n^4{math end} time to solve a problem (such as sorting a list) aren't amazing, but at least with a fast enough computer and for the size of inputs we might reasonably encounter, we have a chance of running them within a human lifetime, and these are regarded as *tractable* .
+However, for algorithms that take {math}2^n{math end}, {math}3^n{math end} or more steps, the amount of time taken can end up as billions of years even for fairly small problems, and using computers that are thousand times faster still doesn't help to solve much bigger problems. Such problems are regarded as *intractable* .
+Mathematically, the boundary between tractable and intractable is between a polynomial number of steps (polynomials are formulas made up of {math}n^2{math end}, {math}n^3{math end}, {math}n^4{math end} and so on), and an exponential number of steps ({math}2^n{math end}, {math}3^n{math end}, {math}4^n{math end}, and so on). 
 
-The two formulas n\ :sup:`2` and 2\ :sup:`n` look very similar, but they are really massively different, and can mean a difference between a few seconds and many millennia for the program to finish.
+The two formulas {math}n^2{math end} and {math}2^n{math end} look very similar, but they are really massively different, and can mean a difference between a few seconds and many millennia for the program to finish.
 The whole point of this chapter is to develop an awareness that there are many problems that we have tractable algorithms for, but there are also many that we haven't found any tractable algorithms for.
 It's very important to know about these, since it will be futile to try to write programs that are intractable, unless you are only going to be processing very small problems.
 
-Note that algorithms that take a factorial amount of time (:math:`n!`, or :math:`1 \times 2 \times 3 \times \ldots n`) are in the intractable category (in fact, they take times that are a lot worse than 2\ :sup:`n`).
-
-.. xjrm the above math section “1 \times…” is sent as is to my browser
+Note that algorithms that take a factorial amount of time ({math}n!{math end}, or {math}1 \times 2 \times 3 \times \ldots n{math end}) are in the intractable category (in fact, they take times that are a lot worse than {math}2^n{math end}).
 
 Essentially any algorithm that tries out all combinations of the input will inevitably be intractable because the number of combinations is likely to be exponential or factorial.
 Thus an important point is that it's usually not going to work to design a system that just tries out all possible solutions to see which is the best.
 
-Although we've provided n\ :sup:`6` as an example of a tractable time, nearly all algorithms you're likely to encounter will be  n\ :sup:`3` and better, or  2\ :sup:`n` and worse --- only very specialised ones fall in the gap between those. So there's a big gulf between tractable and intractable problems, and trying to grapple with it is one of the biggest problems in computer science!
+Although we've provided {math}n^6{math end} as an example of a tractable time, nearly all algorithms you're likely to encounter will be {math}n^3{math end} and better, or  {math}2^n{math end} and worse --- only very specialised ones fall in the gap between those. So there's a big gulf between tractable and intractable problems, and trying to grapple with it is one of the biggest problems in computer science!
 
 What about Moore's law, which says that computing power is increasing exponentially? 
 Perhaps that means that if we wait a while, computers will be able to solve problems that are currently intractable?
 Unfortunately this argument is wrong; intractable problems are also exponential, and so the rate of improvement due to Moore's law means that it will only allow for slightly larger intractable problems to be solved. 
-For example, if computing speed is doubling every 18 months (an optimistic view of Moore's law), and we have an intractable problem that takes 2\ :sup:`n` operations to solve (many take longer than this), then in 18 months we will be able to solve a problem that's just one item bigger.
+For example, if computing speed is doubling every 18 months (an optimistic view of Moore's law), and we have an intractable problem that takes {math}2^n{math end} operations to solve (many take longer than this), then in 18 months we will be able to solve a problem that's just one item bigger.
 For example, if you can solve an exponential time problem for 50 items (50 countries on a map to colour, 50 cities for a salesman to tour, or 50 rings on a Towers of Hanoi problem) in 24 hours, then in 18 months you can expect to buy a computer that could solve it for 51 items at best!
 And in 20 years you're likely to be able to get a computer that could solve for 55 items in one day.
 You're going to have to be more than patient if you want Moore's law to help out here --- you have to be prepared to wait for decades for a small improvement!
 
 Remember that if you need to do calculations of huge numbers, there's a calculator here that you can use:
 
-.. only:: html or epub
- 
- .. raw:: html
+<div class="widget-holder"><a href="_static/widgets/big-calculator.html?plain=true frameborder="0"" target="_blank"><img class="widget-image" src="_static/complexity_and_tractability/images/CT-BigCalculatorThumbnail.png" alt=""><span class="widget-subtitle">Click to load<br>big number calculator</span></a></div>
 
-  <div class="widget-holder"><a href="_static/widgets/big-calculator.html?plain=true frameborder="0"" target="_blank"><img class="widget-image" src="_static/complexity_and_tractability/images/CT-BigCalculatorThumbnail.png" alt=""><span class="widget-subtitle">Click to load<br>big number calculator</span></a></div>
+{comment}
 
 .. xJRM force above link to open in new window; also, nice if there's an icon/screenshot/image in the link
-
 
 .. Exercise: password cracking
 .. ------------------------------------------------------------
@@ -426,11 +426,9 @@ Remember that if you need to do calculations of huge numbers, there's a calculat
 
 .. xHTML5 interactive that attempts all 2\ :sup:`n` values to find a random one
 
+{comment end}
 
-
-The Travelling Salesman Problem 
-=====================================================
-
+## The Travelling Salesman Problem 
 
 An example of an intractable problem is the Travelling Salesman Problem (TSP). The TSP involves a bunch of locations (cities, houses, airports,....) where you can travel between any possible pair of locations. The goal is to find the shortest route that will go through all the locations once --- this is what the interactive at the start of this chapter does. 
 
@@ -447,13 +445,17 @@ Current algorithms for finding the optimal TSP solution aren't a lot better than
 While TSP was originally identified as being the problem that sales people face when driving to several different locations and wanting to visit them in the order that leads to the shortest route (less petrol usage), the same problem applies to many other situations as well.
 Courier and delivery companies have variants of this problem --- often with extra constraints such as limits on how long a driver can work for, or allowing for left hand turns being faster than right-hand ones (in NZ at least!)
 
-.. only:: teachers or dev
+{teacher}
 
- .. admonition:: For teachers
+There is an extensive website about the state of the art for the TSP at [http://www.tsp.gatech.edu/](http://www.tsp.gatech.edu/) . This includes games and information about the current largest solved problem (which typically take months or years to run on very powerful computers).
 
-  There is an extensive website about the state of the art for the TSP at http://www.tsp.gatech.edu/ . This includes games and information about the current largest solved problem (which typically take months or years to run on very powerful computers).
+{teacher end}
+
+{comment}
 
 .. xHRN Put in a paragraph or two about the greedy heuristic as a practical way to solve the problem (but point out that it's not the best heuristic, give some % bounds to give an idea of the accuracy --- according to http://en.wikipedia.org/wiki/Travelling_salesman_problem#Heuristic_and_approximation_algorithms the greedy algorithm averages 25% worse than optimal; there are more complex algorithms that typically come within about 3% of optimal.)
+
+{comment end}
 
 Since these problems are important for real companies, it is not reasonable to simply give up and say there is no solution.  Instead, when confronted with an intractable problem, computer scientists look for algorithms that produce approximate solutions --- solutions that are not perfectly correct or optimal, but are hopefully close enough to be useful.  By relaxing the requirement that the solution has to be perfectly correct, it is often possible to come up with tractable algorithms that will find good enough solutions in a reasonable time. This kind of algorithm is called a *heuristic* - it uses rules of thumb to suggest good choices and build up a solution made of pretty good choices.   
 
@@ -465,52 +467,59 @@ An interesting thing with intractability is that you can have two very similar p
 By the way, finding the *longest* path between two points (without going along any route twice) is also intractable, even though finding the *shortest* path is tractable!
  
 
-Project: The craypots problem
----------------------------------------------------------------------------------------------------------------
+### Project: The craypots problem
 
-.. only:: teachers or dev
+{teacher}
 
- .. admonition:: For teachers
+The questions and exercises in this section are suitable for a project to be submitted for assessment. Students should include all their answers, findings, and investigations in a writtten report. They should also make the assumption when writing their report that the readers of it (i.e. the person assigning a grade to it) have never seen this book before! For example, when they come to the part about making craypot maps, they should not just put a map in with no explanation. They should briefly explain the task they were given so that the marker understands.
 
-  The questions and exercises in this section are suitable for a project to be submitted for assessment. Students should include all their answers, findings, and investigations in a writtten report. They should also make the assumption when writing their report that the readers of it (i.e. the person assigning a grade to it) have never seen this book before! For example, when they come to the part about making craypot maps, they should not just put a map in with no explanation. They should briefly explain the task they were given so that the marker understands.
+This project covers material for an example for the 3.44 standard through the following components:
 
-  This project covers material for an example for the 3.44 standard through the following components:
+- Key problem: intractability of the TSP
+- Practical application: Checking craypots (could be applied to other delivery/pickup route applications).
+- Algorithm/technique: Estimating the complexity (time needed) to solve the problem
+- Evaluation: feasibility of an optimal (exhaustive search) approach and a greedy (nearest neighbour) approach
+- Personalised student examples: a student's randomly chosen layout of craypots
 
-  - Key problem: intractability of the TSP
-  - Practical application: Checking craypots (could be applied to other delivery/pickup route applications).
-  - Algorithm/technique: Estimating the complexity (time needed) to solve the problem
-  - Evaluation: feasibility of an optimal (exhaustive search) approach and a greedy (nearest neighbour) approach
-  - Personalised student examples: a student's randomly chosen layout of craypots
+The scenario below is around collecting craypots, but the project would work in any situation where there is a direct path between every pair of points. For example, [delivering pizzas by helicopter may appeal to some students](http://www.nbcnews.com/technology/dominos-domicopter-drone-can-deliver-two-large-pepperonis-6C10182466). The CS4FN website has a similar scenario around [whale watching and visiting volcanic islands](http://www.cs4fn.org/optimization/watchingwhaleswell.php).
 
-  The scenario below is around collecting craypots, but the project would work in any situation where there is a direct path between every pair of points. For example, `delivering pizzas by helicopter may appeal to some students <http://www.nbcnews.com/technology/dominos-domicopter-drone-can-deliver-two-large-pepperonis-6C10182466>`__). The CS4FN website has a similar scenario around `whale watching and visiting volcanic islands <http://www.cs4fn.org/optimization/watchingwhaleswell.php>`__ .
+At the time of writing there is an alternative context that makes a good illustration of the problem of tractability: there is an app for iPhone called "Ecomaps" which solves the TSP for you (it was drawn to our attention by a music teacher who had to drop off CDs urgently to about 30 students, so they bought the app to work out the best route). Currently the system seems to use an intractable algorithm; it works fine for a few addresses, but when you get up to a couple of dozen it never finishes the calculation. The requirements of the standard would be met nicely by evaluating this app, including how fast it runs for various numbers of addresses, working out at which point it becomes useless, and estimating how many more addresses it could work with on a phone twice as fast. The app nicely illustrates the problem of not knowing about tractability --- the programmers for the app either didn't know this is an issue, or couldn't program heuristic approaches to make it usable.
 
-  At the time of writing there is an alternative context that makes a good illustration of the problem of tractability: there is an app for iPhone called "Ecomaps" which solves the TSP for you (it was drawn to our attention by a music teacher who had to drop off CDs urgently to about 30 students, so they bought the app to work out the best route). Currently the system seems to use an intractable algorithm; it works fine for a few addresses, but when you get up to a couple of dozen it never finishes the calculation. The requirements of the standard would be met nicely by evaluating this app, including how fast it runs for various numbers of addresses, working out at which point it becomes useless, and estimating how many more addresses it could work with on a phone twice as fast. The app nicely illustrates the problem of not knowing about tractability --- the programmers for the app either didn't know this is an issue, or couldn't program heuristic approaches to make it usable.
+{teacher end}
 
 You should present your findings for this project in a written report where you include your answers to the exercises, the maps you make, and written explanations to explain what you have found out and learnt.
 
+{comment}
+
 .. comment: Cray fisher seems to be the inclusive term for crayfisherman e.g. http://www.stuff.co.nz/dominion-post/news/8172811/Missing-cray-fisher-search-called-off
+
+{comment end}
 
 This project is based around a scenario where there is a cray fisher who has around 18 craypots that have been laid out in open water. Each day the fisher uses a boat to go between the craypots and check each one for crayfish.
 
+{comment}
+
 .. Trying to get away from listing a range of numbers, as that may make it seem the problem is dynamic
+
+{comment end}
 
 The cray fisher has started wondering what the shortest route to take to check all the craypots would be, and has asked you for your help. Because every few weeks the craypots need to be moved around, the fisher would prefer a general way of solving the problem, rather than a solution to a single layout of craypots. Therefore, your investigations must consider more than one possible layout of craypots, and the layouts investigated should have the craypots placed *randomly* i.e. not in lines, patterns, or geometric shapes.
 
 When asked to generate a random map of craypots, get a pile of coins (or counters) with however many craypots you need, and scatter them onto an A4 piece of paper. If any land on top of each other, place them beside one another so that they are touching but not overlapping. One by one, remove the coins, making a dot on the paper in the centre of where each coin was. Number each of the dots. Each dot represents one craypot that the cray fisher has to check. You should label the top left corner or the paper as being the boat dock, where the cray fisher stores the boat.
 
-.. only:: teachers or dev
+{teacher}
 
- .. admonition:: For teachers
+A2/M2 -  students should be able to identify intractable problems by relating them to known intractable problems. [these notes to teachers refer to bullet points in the 3.44 achievement standard. A2 is the second bullet point in the achieved criteria]
 
-  A2/M2 -  students should be able to identify intractable problems by relating them to known intractable problems. [these notes to teachers refer to bullet points in the 3.44 achievement standard. A2 is the second bullet point in the achieved criteria]
+{teacher end}
 
 Generate a map with 7 or 8 craypots using the random map generation method described above. *Make an extra copy of this map, as you will need it again later.*
 
-.. only:: teachers or dev
+{teacher}
 
- .. admonition:: For teachers
+A2 - students should show an example of an optimal TSP solution
 
-  A2 - students should show an example of an optimal TSP solution
+{teacher end}
 
 Using your intuition, find the shortest path between the craypots. 
 
@@ -518,32 +527,39 @@ Now generate a map (same method as above) with somewhere between 15 and 25 crayp
 
 Now on this new map,  try to use your intuition to find the shortest path between the craypots. Don’t spend more than 5 minutes on this task; you don’t need to include the solution in your report. Why was this task very challenging? Can you be sure you have an optimal solution?
 
+{comment}
+
 .. How relevant is this to the standard? Need to check.
 
-.. only:: teachers or dev
+{comment end}
 
- .. admonition:: For teachers
+{teacher}
 
-  This reveals one of the issues with tractability - you can't even tell if you've got a good solution or not!
+This reveals one of the issues with tractability - you can't even tell if you've got a good solution or not!
+
+{teacher end}
 
 Unless your locations were laid out in a circle or oval, you probably found it very challenging to find the shortest route. A computer would find it even harder, as you could at least take advantage of your visual search and intuition to make the task easier. A computer could only consider two locations at a time, whereas you can look at more than two. But even for you, the problem would have been challenging! Even if you measured the distance between each location and put lines between them and drew it on the map so that you didn’t have to judge distances between locations in your head, it’d still be very challenging for you to figure out!
 
 A straightforward algorithm to guarantee that you find the shortest route is to check *all* possible routes. This involves working out what all the possible routes are, and then checking each one. A possible route can be written as a list of the locations (i.e. the numbers on the craypots), in the order to go between them. This should be starting to sound familiar to you assuming you did the permutation sort discussed above. Just like in that activity you listed all the possible ordering for the values in the list to be sorted, this algorithm would require listing all the possible orderings of the craypots, which is equivalent (although you don’t need to list all the orderings for this project!).
 
-.. only:: teachers or dev
+{teacher}
 
- .. admonition:: For teachers
+M2 - students should show they understand the craypot problem is hard by doing some calculations that show how long it would take to find an optimal solution using the algorithm outlined above.
 
-  M2 - students should show they understand the craypot problem is hard by doing some calculations that show how long it would take to find an optimal solution using the algorithm outlined above.
+The number of possible routes for *n* places to visit will be (n-1)!. This is because the starting point is fixed, then there are n-1 choices for the next point, then n-2 and so on. It is essentially the same as permutation sorting, except that the first value doesn't change.
 
-  The number of possible routes for *n* places to visit will be (n-1)!. This is because the starting point is fixed, then there are n-1 choices for the next point, then n-2 and so on. It is essentially the same as permutation sorting, except that the first value doesn't change.
+Note that students shouldn't use the interactive at the start of this chapter to estimate speeds, as it runs at a fixed speed for a particular computer, and the project below will assume we have a very fast computer. And of course, pedagogically it's better for them to do the calculations themselves.
 
-  Note that students shouldn't use the interactive at the start of this chapter to estimate speeds, as it runs at a fixed speed for a particular computer, and the project below will assume we have a very fast computer. And of course, pedagogically it's better for them to do the calculations themselves.
+{teacher end}
 
 How many possible routes are there for the larger example you have generated? How is this related to permutation sort, and factorials? How long would it take to calculate the shortest route in your map, assuming the computer can check 1 billion (1,000,000,000) possible routes per second? (i.e. it can check one route per nanosecond) What can you conclude about the cost of this algorithm? Would this be a good way for the cray fisher to decide which path to take? 
 
+{comment}
 
 .. I have considered getting them to pick a random number between 50 - 100, and to do the calculation for that as well, to increase personalisation. Although would this be too much work to expect of them to have to do this calculation twice? I really think it’d be best to do this though.
+
+{comment end}
 
 Make sure you show *all* your mathematical working in your answers to the above questions!
 
@@ -554,9 +570,13 @@ You should be able to tell that this problem is equivalent to the TSP, and there
 
 Since we know that this craypot problem is an example of the TSP, and that there is no known tractable algorithm for the TSP,  we know there is no tractable algorithm for the craypot problem either.  Although there are slightly better algorithms than the one we used above, they are still intractable and with enough craypots, it would be impossible to work out a new route before the cray fisher has to move the pots again!
 
+{comment}
+
 .. xHRN xTCB the following introduces the idea of a heuristic/approximate solution; should it be in a main section rather than buried in the project? Either mention it earlier, or split the project in two parts, with a section on heuristics between them.  
 .. This project is weird in that it kinda contains content and project mixed into together. I might briefly mention the idea of using approximate solutions/ heuristics in the general TSP section (which is just above this)?   
 .. xHRN Yup, please introduce the greedy algorithm in the main text before the project. The next couple of paragraphs have a lot of the material. (Let me know if you'd rather that i move it around).  I think I have done this now. 
+
+{comment end}
 
 Instead of wasting time on trying to invent a clever algorithm that no-one has been able to find, we need to rely on a algorithm that will generate an approximate solution. The cray fisher would be happy with an approximate solution that is say, 10% longer more than the best possible route, but which the computer can find quickly.
 
@@ -564,103 +584,115 @@ There are several ways of approaching this. Some are better than others in gener
 
 On a copy of each of your 2 maps you generated, draw lines between the craypots to show the route you would find following the greedy algorithm (you should have made more than one copy of each of the maps!)
 
-.. only:: teachers or dev
+{teacher}
 
- .. admonition:: For teachers
+A2 - Students should show an example of the greedy algorithm being used to solve TSP
 
-  A2 - Students should show an example of the greedy algorithm being used to solve TSP
-  
-  M2 - Students should show understanding that the approximate solution is not necessarily the optimal one
+M2 - Students should show understanding that the approximate solution is not necessarily the optimal one
+
+{teacher end}
 
 For your map with the smaller number of craypots (7 or 8), compare your optimal solution and your approximate solution. Are they the same? Or different? If they are the same, would they be the same in all cases? Show a map where they would be different (you can choose where to place the craypots yourself, just use as many craypots as you need to illustrate the point).
 
-.. only:: teachers or dev
+{teacher}
 
- .. admonition:: For teachers
+E2 - Students should evaluate the greedy algorithm by showing why a given approximate solution isn’t an optimal one, using a simple technique such as identifying a few of the craypots that would have been better visited in a different order.  A simple way to "fool" the greedy algorithm is to have the pots in a circle with one pot well outside the circle on the opposite side of the starting point. The pot that is outside the circle won't be visited until after going right around the circle! Students should be able to come up with their own ideas for a unique layout that has a similar problem.
 
-  E2 - Students should evaluate the greedy algorithm by showing why a given approximate solution isn’t an optimal one, using a simple technique such as identifying a few of the craypots that would have been better visited in a different order.  A simple way to "fool" the greedy algorithm is to have the pots in a circle with one pot well outside the circle on the opposite side of the starting point. The pot that is outside the circle won't be visited until after going right around the circle! Students should be able to come up with their own ideas for a unique layout that has a similar problem.
+{teacher end}
 
 For your larger map, show why you don’t have an optimal solution. The best way of doing this is to show a route that is similar to, but shorter than the approximate solution. The shorter solution you find doesn’t have to be the optimal solution, it just has to be shorter than the one identified by the approximate algorithm (Talk to your teacher if you can’t find a shorter route and they will advise on whether or not you should generate a new map). You will need to show a map that has a greedy route and a shorter route marked on it. Explain the technique you used to show there was a shorter solution. Remember that it doesn’t matter how much shorter the new solution you identify is, just as long as it is at least slightly shorter than the approximate solution --- you are just showing that the approximate solution couldn’t possibly be the optimal solution by showing that there is a shorter solution than the approximate solution.
+
+{comment}
 
 .. Do we need to give any further guidance?
 
 .. Here's another way to do the project that we should mention to teachers: https://www.youtube.com/watch?v=t1cTi5T-kxY
 
-.. only:: teachers or dev
+{comment end}
 
- .. admonition:: For teachers
+{teacher}
 
-  M2 - Students should be able to link the theory to the fact that we are dealing with practical problems.
+M2 - Students should be able to link the theory to the fact that we are dealing with practical problems.
+
+{teacher end}
 
 Even though the greedy algorithm only generates an approximate solution, as opposed to the optimal solution, explain why is it more suitable for the cray fisher than generating an optimal solution would be?
 
-.. only:: teachers or dev
+{teacher}
 
- .. admonition:: For teachers
+E1 - students should now look beyond just the craypot problem and consider other problems that would be encountered in the real world, and discuss why it is important for companies to be able to solve TSP, i.e., why do we care so much about this problem?
 
-  E1 - students should now look beyond just the craypot problem and consider other problems that would be encountered in the real world, and discuss why it is important for companies to be able to solve TSP, i.e., why do we care so much about this problem?
+{teacher end}
 
 Why would it be important to the cray fisher to find a short route between the craypots, as opposed to just visiting them in a random order?  Discuss other problems that are equivalent to TSP that real world companies encounter every day. Why is it important to these companies to find good solutions to TSP? Estimate how much money might a courier company be wasting over a year if their delivery routes were 10% worse than the optimal.  How many different locations/towns/etc might their TSP solutions have to be able to handle?
 
-.. only:: teachers or dev
+{teacher}
 
- .. admonition:: For teachers
-
-  E2 - Students should evaluate the greedy algorithm by showing its best case (i.e. it generates a solution that is optimal, or close to optimal).
+E2 - Students should evaluate the greedy algorithm by showing its best case (i.e. it generates a solution that is optimal, or close to optimal).
 Find a craypot layout that will result in the greedy algorithm finding the shortest route. How do you know it is the shortest route? What is a general pattern that seem to work well for this greedy algorithm?
 
-.. only:: teachers or dev
+{teacher end}
 
- .. admonition:: For teachers
+{teacher}
 
-  E2 - Students should evaluate the greedy algorithm by showing cases where it isn’t so good (i.e. it generates a solution that is quite long and inefficient). Students do not need to worry about identifying “the very worst case”; a bad case and being able to explain what seems to kill this algorithm is sufficient.
+E2 - Students should evaluate the greedy algorithm by showing cases where it isn’t so good (i.e. it generates a solution that is quite long and inefficient). Students do not need to worry about identifying “the very worst case”; a bad case and being able to explain what seems to kill this algorithm is sufficient.
+
+{teacher end}
 
 Find a craypot layout that results in the greedy algorithm finding what seem to be a really inefficient route. Why is it inefficient? Don’t worry about trying to find an actual worst case, just find a case that seems to be quite bad. What is a general pattern that seems to make this greedy algorithm inefficient?
 
-.. only:: teachers or dev
+{teacher}
 
- .. admonition:: For teachers
+Make sure that students explain the craypot problem and the story, explained how the greedy algorithm works, and have in general provided sufficient background information about the project so that a marker who has not seen this book is able to make sense of it!
 
-  Make sure that students explain the craypot problem and the story, explained how the greedy algorithm works, and have in general provided sufficient background information about the project so that a marker who has not seen this book is able to make sense of it!
+{teacher end}
 
 Don't forget to include an introductory paragraph in your report that outlines the key ideas. It should include a brief description of what an intractable problem is, and how a computer scientist goes about dealing with such a problem. The report should also describe the Travelling Salesman Problem and the craypot problem in your own words. Explain why the craypot problem is a realistic problem that might matter to someone.
 
+{comment}
 
 .. possible material on NP completeness: And that's not all.  There are thousands of problems that, although they look completely different, are equivalent in the sense that if an efficient method is found to solve one, it can be converted into an efficient method to solve them all.  In this chapter you will learn about these problems. Song: https://www.youtube.com/watch?feature=player_embedded&v=a3ww0gwEszo http://www.jakubw.pl/inne/longest.html
 
-Other intractable problems
-=====================================================
+{comment end}
 
-.. only:: teachers or dev
+## Other intractable problems
 
- .. admonition:: For teachers
+{teacher}
 
-  This section is yet to be written, but in the meantime, here are some alternatives to the TSP problem that can be used to explore intractability if you have students who can work on this independently.
+This section is yet to be written, but in the meantime, here are some alternatives to the TSP problem that can be used to explore intractability if you have students who can work on this independently.
+
+{teacher end}
 
 There are thousands of problems like the TSP for which no tractable solution is known. Extra sections will eventually be added here to introduce some of them, but in the meantime, if you are keen you might like to explore some of these problems:
 
+{comment}
+
 .. Sumant to look at drafting a section on graph colouring
 
-- `map and graph colouring <http://csunplugged.org/graph-colouring>`_ (these can be reduced to a timetabling problem and vice versa, showing how NP-complete problems can relate to each other)
-- `the knapsack problem <http://en.wikipedia.org/wiki/Knapsack_problem>`_
-- `the bin packing problem <http://en.wikipedia.org/wiki/Bin_packing_problem>`_
-- `Hamiltonian paths <http://en.wikipedia.org/wiki/Hamiltonian_path>`_ (no tractable solution for this is known, yet the very similar Eulerian path, which is often presented as the seven bridges problem, has an easy tractable solution)
-- `Steiner trees <http://www.csunplugged.org/steiner-trees>`_
-- `Dominating sets <http://www.csunplugged.org/dominating-sets>`_
-- `Longest path <http://en.wikipedia.org/wiki/Longest_path>`_ (this is interesting because finding the longest path is intractable, yet finding the shortest path is tractable - the shortest path is calculated when a GPS device works out the shortest route to a destination. Also, a Hamiltonian problem can be reduced easily to longest path, showing the concept of reduction when one NP-complete problem is used to solve another). And here's a song about it! https://www.youtube.com/watch?feature=player_embedded&v=a3ww0gwEszo
-- `the Battleship problem <http://en.wikipedia.org/wiki/Battleship_(puzzle)>`_
+{comment end}
+
+- [map and graph colouring](http://csunplugged.org/graph-colouring) (these can be reduced to a timetabling problem and vice versa, showing how NP-complete problems can relate to each other)
+- [the knapsack problem](http://en.wikipedia.org/wiki/Knapsack_problem)
+- [the bin packing problem](http://en.wikipedia.org/wiki/Bin_packing_problem)
+- [Hamiltonian paths](http://en.wikipedia.org/wiki/Hamiltonian_path>) (no tractable solution for this is known, yet the very similar Eulerian path, which is often presented as the seven bridges problem, has an easy tractable solution)
+- [Steiner trees](http://www.csunplugged.org/steiner-trees)
+- [Dominating sets](http://www.csunplugged.org/dominating-sets)
+- [Longest path](http://en.wikipedia.org/wiki/Longest_path) (this is interesting because finding the longest path is intractable, yet finding the shortest path is tractable - the shortest path is calculated when a GPS device works out the shortest route to a destination. Also, a Hamiltonian problem can be reduced easily to longest path, showing the concept of reduction when one NP-complete problem is used to solve another). And here's a song about it! {video https://www.youtube.com/watch?feature=player_embedded&v=a3ww0gwEszo}
+- [the Battleship problem](http://en.wikipedia.org/wiki/Battleship_(puzzle))
+
+{comment}
 
 .. TCB bin packing could make a good interactive, and students can try heuristics:  first-fit, best-fit and next-fit algorithms and offline (all items known in advance) first-fit and best-fit algorithms. [from paper at sigcse 2013]
 
-The whole story!
-=====================================================
+{comment end}
 
+## The whole story!
 
-.. only:: teachers or dev
+{teacher}
 
- .. admonition:: For teachers
+The material here is beyond what is required for the standard, but may be of interest to some students, as it introduces what is widely regarded as one of the biggest open questions in computer science.
 
-  The material here is beyond what is required for the standard, but may be of interest to some students, as it introduces what is widely regarded as one of the biggest open questions in computer science.
+{teacher end}
 
 The question of tractability is a big one in computer science --- in fact, what is widely regarded as the biggest unsolved problem in computer science revolves around it.
 You may recall that we mentioned that there are thousands of problems that are we don't have a tractable solution for, yet a tractable solution to one can be adapted to all the others. 
@@ -674,14 +706,21 @@ If you think it's bad that some problems take that long to solve, that's nothing
 There are some well known problems that we know can *never* be solved on a computer.
 For example, writing a program that reliably tells you if another program will finish or not is impossible!
 There are other examples of such problems here:
-- http://www.cs4fn.org/algorithms/tiles.php
-- http://www.cs4fn.org/algorithms/uncomputable.php
-- http://www.cs4fn.org/algorithms/haltingproblem.php
+
+- [http://www.cs4fn.org/algorithms/tiles.php](http://www.cs4fn.org/algorithms/tiles.php)
+- [http://www.cs4fn.org/algorithms/uncomputable.php](http://www.cs4fn.org/algorithms/uncomputable.php)
+- [http://www.cs4fn.org/algorithms/haltingproblem.php](http://www.cs4fn.org/algorithms/haltingproblem.php)
+
+{comment}
 
 .. eventually mention: halting problem (Turing), malware detection (tell whether program has malware embedded in it)
 
+{comment end}
+
 It's good to know about these issues, to avoid getting stuck writing impossible programs.
 It's also a fascinating area of research with opportunities to make a discovery that could change the world of computing, as well as contribute to our understanding on what can and can't be computed.
+
+{comment}
 
 .. mention quantum computing - might help, but no known NP problems solved yet - see Harel's book, http://nsf.gov/cise/csbytes/newsletter/vol3/pdf/csbb-vol3-i2.pdf
 
@@ -689,22 +728,21 @@ It's also a fascinating area of research with opportunities to make a discovery 
 
 .. another NP-complete problem: http://en.wikipedia.org/wiki/Instant_Insanity
 
+{comment end}
 
-Further reading
-=====================================================
+## Further reading
 
 This topic is covered very thoroughly in a way that is accessible to non-specialists in a popular book by David Harel called "Computers Ltd.: What They Really Can't Do". 
 
-Useful Links
------------------------------------------------------------------------------------------------------------
+### Useful Links
 
-- http://en.wikipedia.org/wiki/Computational_complexity_theory
-- http://www.tsp.gatech.edu/games/index.html
-- http://csunplugged.org/graph-colouring
-- http://en.wikipedia.org/wiki/Travelling_salesman_problem
-- http://en.wikipedia.org/wiki/Knapsack_problem
-- http://en.wikipedia.org/wiki/Bin_packing_problem
-- http://en.wikipedia.org/wiki/Hamiltonian_path
-- http://en.wikipedia.org/wiki/Brute-force_search
+- [http://en.wikipedia.org/wiki/Computational_complexity_theory](http://en.wikipedia.org/wiki/Computational_complexity_theory)
+- [http://www.tsp.gatech.edu/games/index.html](http://www.tsp.gatech.edu/games/index.html)
+- [http://csunplugged.org/graph-colouring](http://csunplugged.org/graph-colouring)
+- [http://en.wikipedia.org/wiki/Travelling_salesman_problem](http://en.wikipedia.org/wiki/Travelling_salesman_problem)
+- [http://en.wikipedia.org/wiki/Knapsack_problem](http://en.wikipedia.org/wiki/Knapsack_problem)
+- [http://en.wikipedia.org/wiki/Bin_packing_problem](http://en.wikipedia.org/wiki/Bin_packing_problem)
+- [http://en.wikipedia.org/wiki/Hamiltonian_path](http://en.wikipedia.org/wiki/Hamiltonian_path)
+- [http://en.wikipedia.org/wiki/Brute-force_search](http://en.wikipedia.org/wiki/Brute-force_search)
 
 

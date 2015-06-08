@@ -2,7 +2,7 @@
 
 {teacher}
 
-This chapter is under evaluation. It covers one of six topics that students must select two from for the 3.44 Achievement Standard; the other 5 topics have chapters available, so there is still a wide range of choice available. Any feedback would be greatly appreciated. If you also teach your class, please [complete the teacher survey here](http://bit.ly/NCPSurveyTeachers) and and your students can do this one http://bit.ly/NCPSurveyStudents
+This chapter is under evaluation. It covers one of six topics that students must select two from for the 3.44 Achievement Standard; the other 5 topics have chapters available, so there is still a wide range of choice available. Any feedback would be greatly appreciated. If you also teach your class, please [complete the teacher survey here](http://bit.ly/NCPSurveyTeachers) and and your students can do this one [http://bit.ly/NCPSurveyStudents](http://bit.ly/NCPSurveyStudents).
 
 {teacher end}
 
@@ -195,7 +195,7 @@ Go ahead and try this same process on a few other pages too. For example, try th
 
 Tim Berners-Lee was credited for creating HTTP in 1989. You can read more about him [here](http://en.wikipedia.org/wiki/Tim_Berners-Lee>).
 
-{curiosty}
+{curiosity end}
 
 ### Internet Relay Chat (IRC)
 
@@ -298,6 +298,8 @@ Bring up the Developer Tools. Find the *Network* tab. Reload the page. You shoul
 {teacher}
 
 Here’s a quick video from Numb3rs -["how hackers talk when they don’t want to be overheard"](https://www.youtube.com/watch?v=O2rGTXHvPCQ)
+
+{teacher end}
 
 **IRC** is a very primitive chat program which is fun to use with your friends. 
 
