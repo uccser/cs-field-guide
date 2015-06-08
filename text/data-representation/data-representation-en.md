@@ -107,42 +107,41 @@ ASCII assigned a different pattern of bits to each of the characters, along with
 
 Below is a table that shows the patterns of bits that ASCII uses for each of the characters.
 
-======= ===== ======= ===== ======= ===== 
-Binary  Char  Binary  Char  Binary  Char  
-======= ===== ======= ===== ======= ===== 
-0100000 Space 1000000 @     1100000 `    
-0100001 !     1000001 A     1100001 a
-0100010 "     1000010 B     1100010 b
-0100011 #     1000011 C     1100011 c
-0100100 $     1000100 D     1100100 d
-0100101 %     1000101 E     1100101 e
-0100110 &     1000110 F     1100110 f
-0100111 '     1000111 G     1100111 g
-0101000 (     1001000 H     1101000 h
-0101001 )     1001001 I     1101001 i
-0101010 \*    1001010 J     1101010 j
-0101011 \+    1001011 K     1101011 k
-0101100 ,     1001100 L     1101100 l
-0101101 \-    1001101 M     1101101 m
-0101110 .     1001110 N     1101110 n
-0101111 /     1001111 O     1101111 o
-0110000 0     1010000 P     1110000 p
-0110001 1     1010001 Q     1110001 q
-0110010 2     1010010 R     1110010 r
-0110011 3     1010011 S     1110011 s
-0110100 4     1010100 T     1110100 t
-0110101 5     1010101 U     1110101 u
-0110110 6     1010110 V     1110110 v
-0110111 7     1010111 W     1110111 w
-0111000 8     1011000 X     1111000 x
-0111001 9     1011001 Y     1111001 y
-0111010 :     1011010 Z     1111010 z
-0111011 ;     1011011 [     1111011 {
-0111100 <     1011100 \\    1111100 \|
-0111101 =     1011101 ]     1111101 }
-0111110 >     1011110 ^     1111110 ~
-0111111 ?     1011111 _     1111111 <DEL>
-======= ===== ======= ===== ======= ===== 
+| Binary  | Char  | Binary  | Char | Binary  | Char  |
+|---------|-------|---------|------|---------|-------|
+| 0100000 | Space | 1000000 | @    | 1100000 | `     |
+| 0100001 | !     | 1000001 | A    | 1100001 | a     |
+| 0100010 | "     | 1000010 | B    | 1100010 | b     |
+| 0100011 | #     | 1000011 | C    | 1100011 | c     |
+| 0100100 | $     | 1000100 | D    | 1100100 | d     |
+| 0100101 | %     | 1000101 | E    | 1100101 | e     |
+| 0100110 | &     | 1000110 | F    | 1100110 | f     |
+| 0100111 | '     | 1000111 | G    | 1100111 | g     |
+| 0101000 | (     | 1001000 | H    | 1101000 | h     |
+| 0101001 | )     | 1001001 | I    | 1101001 | i     |
+| 0101010 | \*    | 1001010 | J    | 1101010 | j     |
+| 0101011 | \+    | 1001011 | K    | 1101011 | k     |
+| 0101100 | ,     | 1001100 | L    | 1101100 | l     |
+| 0101101 | \-    | 1001101 | M    | 1101101 | m     |
+| 0101110 | .     | 1001110 | N    | 1101110 | n     |
+| 0101111 | /     | 1001111 | O    | 1101111 | o     |
+| 0110000 | 0     | 1010000 | P    | 1110000 | p     |
+| 0110001 | 1     | 1010001 | Q    | 1110001 | q     |
+| 0110010 | 2     | 1010010 | R    | 1110010 | r     |
+| 0110011 | 3     | 1010011 | S    | 1110011 | s     |
+| 0110100 | 4     | 1010100 | T    | 1110100 | t     |
+| 0110101 | 5     | 1010101 | U    | 1110101 | u     |
+| 0110110 | 6     | 1010110 | V    | 1110110 | v     |
+| 0110111 | 7     | 1010111 | W    | 1110111 | w     |
+| 0111000 | 8     | 1011000 | X    | 1111000 | x     |
+| 0111001 | 9     | 1011001 | Y    | 1111001 | y     |
+| 0111010 | :     | 1011010 | Z    | 1111010 | z     |
+| 0111011 | ;     | 1011011 | [    | 1111011 | {     |
+| 0111100 | <     | 1011100 | \\   | 1111100 | \|    |
+| 0111101 | =     | 1011101 | ]    | 1111101 | }     |
+| 0111110 | >     | 1011110 | ^    | 1111110 | ~     |
+| 0111111 | ?     | 1011111 | _    | 1111111 | Delete   |
+
 
 For example, the letter c (lower-case) in the table has the pattern “01100011” (the 0 at the front is just extra padding to make it up to 8 bits). The letter o has the pattern “01101111”. You could write a word out using this code, and if you give it to someone else, they should be able to decode it exactly.
 
@@ -515,23 +514,23 @@ We've also added a "black" mix; it's not strictly necessary (you can get black b
 	<div class="col-xs-12 col-sm-4">
 		<label for="cyan-colour">Cyan</label>
 		<div id="cyan-colour" class="slider"></div>
-        <label class="pull-left">0</label>
-        <label id="cyan-value"></label>
-        <label class="pull-right">255</label>
+		<label class="pull-left">0</label>
+		<label id="cyan-value"></label>
+		<label class="pull-right">255</label>
 	</div>
 	<div class="col-xs-12 col-sm-4">
 		<label for="magenta-colour">Magenta</label>
 		<div id="magenta-colour" class="slider"></div>
-        <label class="pull-left">0</label>
-        <label id="magenta-value"></label>
-        <label class="pull-right">255</label>
+		<label class="pull-left">0</label>
+		<label id="magenta-value"></label>
+		<label class="pull-right">255</label>
 	</div>
 	<div class="col-xs-12 col-sm-4">
 		<label for="yellow-colour">Yellow</label>
 		<div id="yellow-colour" class="slider"></div>
-        <label class="pull-left">0</label>
-        <label id="yellow-value"></label>
-        <label class="pull-right">255</label>
+		<label class="pull-left">0</label>
+		<label id="yellow-value"></label>
+		<label class="pull-right">255</label>
 	</div>
 	<div class="clearfix"></div>
 	<div class="col-xs-12" id="cmyk-colour-output">
@@ -614,10 +613,10 @@ If you calculate {math}2^24{math end} (i.e. the number of bit patterns you can g
 .. Might put a box just showing the math, i.e. that {math}2^24{math end} = {math}256^3{math end}. Won’t take too long to do, and I suspect it may be helpful to some people to see that. Trying to cater for as many different learning styles as possible...
 .. I presume you mean something along the lines of 
    {math}2^24{math end} = 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2
-            =  (2 x 2 x 2 x 2 x 2 x 2 x 2 x 2) x (2 x 2 x 2 x 2 x 2 x 2 x 2 x 2) x (2 x 2 x 2 x 2 x 2 x 2 x 2 x 2)
-            = ({math}2^8{math end}) x ({math}2^8{math end}) x ({math}2^8{math end})
-            = 256 x 256 x 256
-            = {math}256^3{math end}
+			=  (2 x 2 x 2 x 2 x 2 x 2 x 2 x 2) x (2 x 2 x 2 x 2 x 2 x 2 x 2 x 2) x (2 x 2 x 2 x 2 x 2 x 2 x 2 x 2)
+			= ({math}2^8{math end}) x ({math}2^8{math end}) x ({math}2^8{math end})
+			= 256 x 256 x 256
+			= {math}256^3{math end}
 .. I like the idea of boxes and different explanations for different learning styles -tim. 
 
 {comment end}
@@ -881,14 +880,12 @@ The world population is approximately 7 billion, so 32 bits isn't quite enough t
 
 {teacher end}
 
-=============== =============================== ======================================================= 
-Type of Number  Unsigned Range                  Signed Range    
-=============== =============================== ======================================================= 
-8 bit signed    0 to 255                        -128 to 127  
-16 bit signed   0 to 65,535                     -32,768 to 32,767
-32 bit signed   0 to 4,294,967,295              −2,147,483,648 to 2,147,483,647
-64 bit signed   0 to 18,446,744,073,709,551,615 −9,223,372,036,854,775,808 to 9,223,372,036,854,775,807 
-=============== =============================== ======================================================= 
+| Type of Number  | Unsigned Range                  |                     Signed Range                         |
+|-----------------|---------------------------------|----------------------------------------------------------|
+| 8 bit signed    | 0 to 255                        | -128 to 127                                              |
+| 16 bit signed   | 0 to 65,535                     | -32,768 to 32,767                                        |
+| 32 bit signed   | 0 to 4,294,967,295              | −2,147,483,648 to 2,147,483,647                          |
+| 64 bit signed   | 0 to 18,446,744,073,709,551,615 | −9,223,372,036,854,775,808 to 9,223,372,036,854,775,807  |
 
 So when you are storing values on a computer with very limited space, you need to be careful to pick a suitable kind of integer that has enough space, but isn’t wasting space. You also need to think about whether or not a number could potentially be negative.
 
