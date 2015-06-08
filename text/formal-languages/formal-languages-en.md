@@ -773,7 +773,7 @@ If you need to make diagrams of FSAs, the JFLAP program can be used, or there's 
 
 {teacher}
 
-Regular expressions (regex for short) are closely related to FSAs, as we shall see. Much of the terminology that is needed was already covered in the previous section: we'll be using languages, [alphabets](glossary.htm#alphabets), strings, {math}\epsilon{math end} / {math}\lambda{math end}, and eventually finite state automata. So the previous section on FSAs needs to be covered before embarking on regular expressions.
+Regular expressions (regex for short) are closely related to FSAs, as we shall see. Much of the terminology that is needed was already covered in the previous section: we'll be using languages, [alphabets](glossary.htm#alphabets), strings, {math}\frac{\epsilon}{\lambda}{math end}, and eventually finite state automata. So the previous section on FSAs needs to be covered before embarking on regular expressions.
 
 It may be that students have used regular expressions already, because they are built into many programming languages and are often used when writing script programs. We'll be looking briefly at such applications --- and they’re very relevant --- but in formal languages we're also interested in the limits of what can be represented, and how to convert a regex to an FSA. So there should be something here to get students thinking, even if they’re expert at programming with regexes.
 

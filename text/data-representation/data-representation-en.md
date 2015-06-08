@@ -221,7 +221,7 @@ There are several other codes that were popular before ASCII, including the [Bau
 
 {teacher}
 
-If you are doing a warm up exercise with the class, the CS Unplugged binary activity [http://csunplugged.org/binary-numbers](http://csunplugged.org/binary-numbers) provides scaffolding and can be used to teach concepts around binary numbers using only counting or simple addition.  In the chapter we have decided to approach this section by starting with number systems. While this may appear “scary” because of the math, most students should be quite familiar with it as it is first introduced very early in primary school in the form of recognising that numbers are made up of the “ones”, “tens”, “hundreds”, etc, and is further built on until eventually in high school they learn about the exponent notation, i.e. 541 = 5x{math}10^2{math end} + 4x{math}10^1{math end} + 1x{math}10^0{math end}. As explained in this section, binary numbers are a base 2 number system, rather than the base 10 number system we are all familiar with. The idea of number systems provides a good stepping stone into binary numbers
+If you are doing a warm up exercise with the class, the CS Unplugged binary activity [http://csunplugged.org/binary-numbers](http://csunplugged.org/binary-numbers) provides scaffolding and can be used to teach concepts around binary numbers using only counting or simple addition.  In the chapter we have decided to approach this section by starting with number systems. While this may appear “scary” because of the math, most students should be quite familiar with it as it is first introduced very early in primary school in the form of recognising that numbers are made up of the “ones”, “tens”, “hundreds”, etc, and is further built on until eventually in high school they learn about the exponent notation, i.e. {math}541 = 5 \times 10^2 + 4 \times 10^1 + 1 \times 10^0{math end}. As explained in this section, binary numbers are a base 2 number system, rather than the base 10 number system we are all familiar with. The idea of number systems provides a good stepping stone into binary numbers
 
 We are assuming that students already know about base 10 number systems, including the exponent notation. The initial information in this section on them is only intended to trigger recall, rather than actually teaching them the concept. 
 
@@ -240,13 +240,14 @@ If you were only able to use one digit to represent a number, then the largest n
 
 You may have encountered different ways of expressing numbers using “expanded form”. For example, if you want to write the number 90328 in expanded form you might have written it as:
 
-90328 = 90000 + 300 + 20 + 8
+{math}90328 = 90000 + 300 + 20 + 8{math end}
 
 A more sophisticated way of writing it is:
 
-90328 = (9 x 10000) + (0 x 1000) + (3 x 100) + (2 x 10) + (8 x 1)
+{math}90328 = (9 \times 10000) + (0 \times 1000) + (3 \times 100) + (2 \times 10) + (8 \times 1){math end}
 
 If you've learnt about exponents, you could write it as
+{math}90328 = (9 \times 10^4) + (0 \times 10^3) + (3 \times 10^2) + (2 \times 10^1) + (8 \times 10^0){math end}
 90328 = (9 x {math}10^4{math end}) + (0 x {math}10^3{math end}) + (3 x {math}10^2{math end}) + (2 x {math}10^1{math end}) + (8 x {math}10^0{math end})
 
 Remember that any number to the power of 0 is 1. i.e. the 8 x {math}10^0{math end} is 8, because the {math}10^0{math end} is 1.
@@ -602,11 +603,11 @@ So a 2 megapixel photo, in its simplest form, needs 6 million numbers to be reco
 
 ### Representing high quality images using bits
 
-So now, how can computers represent each possible colour using bits? You may have noticed in the above interactive that for each of red, green, and blue, there are 256 different positions the slider can be in (don’t forget to include setting the slider to 0). From the numbers section, you may remember that to get 256 different possibilities, you need 8 bits. So for example, to represent the current value of the red slider, you would need 8 bits ({math}2^8{math end} = 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 = 256).
+So now, how can computers represent each possible colour using bits? You may have noticed in the above interactive that for each of red, green, and blue, there are 256 different positions the slider can be in (don’t forget to include setting the slider to 0). From the numbers section, you may remember that to get 256 different possibilities, you need 8 bits. So for example, to represent the current value of the red slider, you would need 8 bits ({math}2^8 = 2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2 = 256{math end}).
 
-Because there are three primary colours,  each of which has 256 different possible values, we need 24 bits in order to have enough possible bit patterns to represent all the possible colours that this scheme can represent (3 x 8 = 24).
+Because there are three primary colours,  each of which has 256 different possible values, we need 24 bits in order to have enough possible bit patterns to represent all the possible colours that this scheme can represent ({math}3 x 8 = 24{math end}).
 
-If you calculate {math}2^24{math end} (i.e. the number of bit patterns you can get with 24 bits), and 256 x 256 x 256 (i.e. the number of possible colours that can be represented using the above interactive), you will find that the result of these two calculations are the same; 16,777,216. This means that there are 16,777,216 different possible colours that can be represented using this scheme, and that's more colours than most people can distinguish, which is why 24-bit colour is regarded as high quality.
+If you calculate {math}2^24{math end} (i.e. the number of bit patterns you can get with 24 bits), and {math}256 \times 256 \times 256{math end} (i.e. the number of possible colours that can be represented using the above interactive), you will find that the result of these two calculations are the same; 16,777,216. This means that there are 16,777,216 different possible colours that can be represented using this scheme, and that's more colours than most people can distinguish, which is why 24-bit colour is regarded as high quality.
 
 {comment}
 
@@ -760,7 +761,7 @@ The braille system uses only 6 bits for each character, which allows for 64 diff
 But some languages have way more than 32, or 64, or even 128 characters in their alphabet.
 In fact, the majority of the world's population use such languages!
 In this case, longer codes are needed, and the most widely used approach is a system called *Unicode*.
-A commonly used version of Unicode allows 16 bits per character. Because every extra bit that is added doubles the number of patterns possible, 16-bit codes have many more representations than 8 bit codes. In fact, with 16 bits there are 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 = {math}2^16{math end} = 65,536 patterns that can be represented. This is enough to assign a unique pattern of bits to the main characters in the most common languages, although there are also standards that allow 32 bits (4 bytes) for each character.
+A commonly used version of Unicode allows 16 bits per character. Because every extra bit that is added doubles the number of patterns possible, 16-bit codes have many more representations than 8 bit codes. In fact, with 16 bits there are {math}2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2 = 2^16 = 65,536{math end} patterns that can be represented. This is enough to assign a unique pattern of bits to the main characters in the most common languages, although there are also standards that allow 32 bits (4 bytes) for each character.
 
 The Unicode table is far too big to display in this book, but you can find a variety of tables on the internet, and use them to look up codes. [This website displays all unicode characters](http://unicode-table.com/en/) with geographical data for appropriate characters.
 The 16- and 32-bit codes are usually written using hexadecimal since this is an easy abbreviation for the long binary codes, and sections of the Unicode alphabet (different languages) tend to be in multiples of 16.
