@@ -278,11 +278,11 @@ Multiply every second digit (starting with the second digit) by 3, and every oth
 Add up all the multiplied numbers to obtain the *sum*
 If the last digit of the sum is a 0, the number was entered correctly.
 
-.. container:: hint
+{panel hint}
 
- **Hint**
+A quick way to add up a checksum that can be done in your head with some practice is to separate the numbers to be multiplied by 3, add them up, and then multiply by 3. For the example above (9300675032247) the two groups are 9+0+6+5+3+2+7 = 32 and 3+0+7+0+2+4= 16. So we add 32 + 16x3, which gives the total of 80 including the check digit.
 
- A quick way to add up a checksum that can be done in your head with some practice is to separate the numbers to be multiplied by 3, add them up, and then multiply by 3. For the example above (9300675032247) the two groups are 9+0+6+5+3+2+7 = 32 and 3+0+7+0+2+4= 16. So we add 32 + 16x3, which gives the total of 80 including the check digit.
+{panel hint end}
 
 {teacher}
 
@@ -304,7 +304,7 @@ Good students should be able to recognise the relationship between the two algor
 
 In order to be effective, the algorithm needs to ensure the multiplied digits will not add up to a multiple of 10 any more if the digits are changed slightly. The choice of multipliers affects how likely it is to detect small changes in the input. It's possible to analyse these mathematically to work out what sorts of errors can be detected.
 
-The check digit on barcodes is described in the <<chapter on error control coding>>. Basically every second digit is multiplied by 3, and the sum of these multiples are added to the remaining digits.
+The check digit on barcodes is described in the chapter on [error control coding](coding-error-control.html). Basically every second digit is multiplied by 3, and the sum of these multiples are added to the remaining digits.
 
 Lets look at some smaller examples with 5 digits (4 normal digits and a check digit), as the same ideas will apply to the 13 digit numbers.
 

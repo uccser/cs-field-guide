@@ -64,27 +64,23 @@ Note: This section is intended for those who are unfamiliar with programming. If
 
 An example of the simplest kind of program is as follows --- it has five instructions (one on each line) that are followed one after the other.
 
-{code}
-
+```
 print("************************************************")
 print("************************************************")
 print("*** Welcome to computer programming, Student ***")
 print("************************************************")
 print("************************************************")
-
-{code end}
+```
 
 This program is written in a language called Python, and when the program runs, it will print the following text to the screen
 
-{code}
-
+```
 ************************************************
 ************************************************
 *** Welcome to computer programming, Student ***
 ************************************************
 ************************************************
-
-{code end}
+```
 
 In order to run a Python program, we need something called a Python interpreter. A Python interpreter is able to read your program, and process it. Below is a Python interpreter that you can use to run your own programs. If you have a Python interpreter installed on your computer (ask your teacher if you are following this book for a class and are confused) and know how to start it and run programs in it, you can use that. 
 
@@ -125,13 +121,11 @@ The following Python code is written for version 3 Python, but will also work wi
 
 {teacher end}
 
-{code}
-
+```
 print("I am going to print the first 5 multiples of 3")
 for i in range(5):
 	print(i*3)
-
-{code end}
+```
 
 The first line is a print statement, like those you saw earlier, which just tells the system to put the message on the screen. The second line is a *loop*, which says to repeat the lines after it 5 times. Each time it loops, the value of i changes. i.e. the first time i is 0, then 1, then 2, then 3, and finally 4. It may seem weird that it goes from 0 to 4 rather than 1 to 5, but programmers tend to like counting from 0 as it makes some things work out a bit simpler. The third line says to print the current value of i multiplied by 3 (because we want multiples of 3). Note that there is *not* double quotes around the last print statement, as they are only used when we want to print out a something literally as text. If we did put them in, this program would print the text "i*3" out 5 times instead of the value we want!
 
@@ -144,8 +138,7 @@ You can also loop over a list of data. Try running the program below. It will ge
 
 Note that the # symbol tells the computer that it should ignore the line, as it is a comment for the programmer.
 
-{code}
-
+```
 #List of recipients to generate messages for
 spam_recipients = ["Heidi", "Tim", "Pondy", "Jack", "Caitlin", "Sam", "David"]  
 #Go through each recipient
@@ -160,8 +153,7 @@ for recipient in spam_recipients:
 	print("And " + recipient + " if you phone us within the next 10 minutes ")
 	print("you will get a bonus 5 million kilograms of chocolate!!! \n")
 	print("\n\n\n") #Put some new lines between the messages
-
-{code end}
+```
 
 Try changing the recipients or the letter. Look carefully at all the symbols that were used to include the recipient's name in the letter.
 
@@ -175,8 +167,7 @@ The detailed requirements of a programming language about exactly which characte
 
 Programs can also use *variables* to store the results of calculations in, receive user input, and make decisions (called *conditionals*, such as *if* statements). Try running this program. Enter a number of miles to convert when asked. Don’t put units on the number you enter; for example just put “12”.
 
-{code}
-
+```
 print("This program will convert miles to kilometers")
 number_of_miles = int(input("Number of miles: "))
 if number_of_miles < 0:
@@ -185,8 +176,7 @@ else:
 	number_of_kilometers = number_of_miles / 0.6214
 	print("Calculated number of kilometers...")
 	print(number_of_kilometers)
-
-{code end}
+```
 
 The first line is a *print* statement (which you should be very familiar with by now!) The second line asks the user for a number of miles which is converted from input text (called a string) to an integer, the third line uses an *if* statement to check if the number entered was less than 0, so that it can print an error if it is. Otherwise if the number was ok, the program jumps into the *else* section (the error is not printed because the *if* was not true), calculates the number of kilometers (there are 0.6214 kilometers in a mile), stores it into a *variable* called number_of_kilometers for later reference, and then the last line prints it out. Again, we don’t have quotes around number_of_kilometers in the last line as we want to print the value out that is stored in the number_of_kilometers variable. If this doesn’t make sense, don’t worry. You aren’t expected to know how to program for this chapter, this introduction is only intended for you to have some idea of what a program is and the things it can do.
 
@@ -203,7 +193,7 @@ Firstly, you might be wondering why we need languages such as Python, and why we
 
 It isn’t this simple though, a computer cannot run instructions given directly in these languages. At the lowest level, a computer has to use physical hardware to run the instructions. Arithmetic such as addition, subtraction, multiplication, and division, or simple comparisons such as less than, greater than, or equal to are done on numbers represented in binary by putting electricity through physical computer chips containing transistors. The output is also a number represented in binary. Building a fast and cheap circuit to do simple arithmetic such as this isn't that hard, but the kind of instructions that people want to give computers (like "print the following sentence", or "repeat the following 100 times") are much harder to build circuitry for. 
 
-{jargon-buster end}
+{jargon-buster}
 
 **Jargon Buster**
 
@@ -259,8 +249,7 @@ The instructions are quite different to the ones you will have seen before in hi
 
 It starts by adding 2 numbers (that have been put in registers $t0 and $t1) and printing out the result. It then prints “Hello World!” Don’t worry, we aren’t about to make you learn how to actually program in this language! And if you don’t really understand the program, that’s also fine because many software engineers wouldn’t either! (We are showing it to you to help you to appreciate high level languages!)
 
-{code}
-
+```
 .data          	 
 str:  .asciiz "\nHello World!\n" 
 #You can change what is between the  quotes if you like
@@ -291,8 +280,7 @@ syscall
 #Nicely end the program
 li $v0, 0
 jr $ra
-
-{code end}
+```
 
 You can run this program using an online MIPS emulator. This needs to be done in 2 steps:
 
@@ -317,13 +305,11 @@ One thing you might have noticed while reading over the possible instructions is
 
 The jumping to a line, and jumping to a line if a condition is met can be used to make loops! A very simple program we could write that requires a loop is one that counts down from five and then says “Go!!!!” once it gets down to one. In Python we can easily write this program in three lines.
 
-{code}
-
+```
 for i in range(5,0,-1): #Start at 5, count down by 1 each time, when we get to 0 stop
    print(i)
 print("GO!!!!!")
-
-{code end}
+```
 
 But in MIPS, it isn’t that straight forward. We need to put values into registers, and we need to build the loop out of jump statements. Firstly, how can we design the loop?
 
@@ -335,8 +321,7 @@ But in MIPS, it isn’t that straight forward. We need to put values into regist
 
 And the full MIPS program for this is as follows. You can go away and change it.
 
-{code}
-
+```
 #Define the data strings
 .data
 go_str:   .asciiz "GO!!!!!\n"	
@@ -371,8 +356,7 @@ end_loop: #This is the end loop label that we jumped to when the loop is false
 	#And these 2 lines make the program exit nicely
 	li $v0, 0
 	jr $ra
-
-{code end}
+```
 
 Can you change the Python program so that it counts down from 10? What about so it stops at 5? (You might have to try a couple of times, as it is somewhat counter intuitive. Remember that when i is the stopping number, it stops there and does not run the loop for that value!). And what about decrementing by 2 instead of 1? And changing the string (text) that is printed at the end?
 
@@ -423,23 +407,20 @@ Originally though, Python was intended to be a scripting language. Scripting lan
 
 As an example of a situation where Python is very useful, imagine your teacher has given 5 quizzes throughout the year, and recorded the results for each student in a file such as this (It could include more than 6 students), where each student’s name is followed by their scores. Some students didn’t bother going to class for all the quizzes, so have less than 5 results recorded.
 
-{code}
-
+```
 Karen 12 12 14 18 17
 James 9 7 1
 Ben 19 17 19 13
 Lisa 9 1 3 0
 Amalia 20 20 19 15 18
 Cameron 19 15 12 9 3
-
-{code end}
+```
 
 She realises she needs to know the average (assuming 5 quizzes) that each student scored, and with many other things to do does not want to spend much time on this task. Using python, she can very quickly generate the data she needs in less than 10 lines of code.
 
 Note that understanding the details of this code is irrelevant to this chapter, particularly if you aren’t yet a programmer. Just read the comments (the things that start with a “#”) if you don’t understand, so that you can get a vague idea of how the problem was approached.
 
-{code}
-
+```
 raw_scores_file = open("scores.txt", "r") #Open the raw score file for reading
 processed_scores_file = open("processed_scores.txt", "w") #Create and open a file for writing the processed scores into
 for line in raw_scores_file.readlines(): #For each line in the file
@@ -449,8 +430,7 @@ for line in raw_scores_file.readlines(): #For each line in the file
     processed_scores_file.write(name + " " + str(average) + "\n") #Write the average to the processed scores output file
 raw_scores_file.close() #Close the raw scores file
 processed_scores_file.close() #Close the processed scores file
-
-{code}
+```
 
 This will generate a file that contains each student’s name followed by the result of adding their scores and dividing the sum by 5. You can try the code if you have python installed on your computer (it won’t work on the online interpreter, because it needs access to a file system). Just put the raw data into a file called “scores.txt” in the same format it was displayed above. As long as it is in the same directory as the source code file you make for the code, it will work.
 
@@ -489,8 +469,7 @@ Java is a popular general purpose software engineering language. It is used to b
 
 This is the Java code for solving the same problem that we looked at in Python; generating a file of averages.
 
-{code}
-
+```
 import java.io.*;
 import java.util.*;
 public class Averager
@@ -514,6 +493,7 @@ public class Averager
    	 }
      print("I am finished!");	 }
 }
+```
 
 While the code is longer, it ensures that the program doesn’t crash if something goes wrong. It says to *try* opening and reading the file, and if an error occurs, then it should *catch* that error and print out an error message to tell the user. The alternative (such as in Python) would be to just crash the program, preventing anything else from being able to run it. Regardless of whether or not an error occurs, the "I am finished!" line will be printed, because the error was safely “caught”. Python is able to do error handling like this, but it is up to the programmer to do it. Java will not even compile the code if this wasn’t done! This prevents programmers from forgetting or just being lazy.
 

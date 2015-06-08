@@ -77,8 +77,6 @@ There are several other characters used to describe activities around encryption
 
 {teacher}
 
-**For teachers**
-
 There's a [song about Alice and Bob](http://www.catonmat.net/blog/musical-geek-friday-alice-and-bob/) performed by rapper MC++ (yes, he specialises in computer science). Some of the language may not be suitable for use in class, so discretion is needed for how you might use it. 
 
 [{image ec-xkcd-alice-and-bob.png}](http://xkcd.com/177/)
@@ -88,8 +86,6 @@ There's a [song about Alice and Bob](http://www.catonmat.net/blog/musical-geek-f
 ## Substitution ciphers
 
 {teacher}
-
-**For teachers**
 
 This section provides an introduction to the idea of encryption, using a very simple algorithm called the Caesar Cipher. While the Caesar Cipher is no longer used in practice, it is still very useful as a teaching tool for illustrating the basic ideas and terminology in encryption. The Caesar Cipher is very easily broken, even without the help of a computer, but it is for this reason that it is a good introduction to the processes around ciphers. The only reason it worked in the time of Julius Caesar was that it relied on a low level of literacy amongst those you might expect to come across it, and they would assume it was a foreign language rather than try to attack it; however, a 21st century high school student should have all the literacy and mathematical tools needed to break this code.
 
@@ -116,8 +112,6 @@ S'VV LO GOKBSXQ K BON KBWLKXN.
 - What would be wrong with using this cipher method for a secret you’d never want anybody else finding out? 
 
 {teacher}
-
-**For teachers**
 
 The code deciphered is: THE RESCUE MISSION WILL USE A HELICOPTER, ARRIVING AT NOON TOMORROW. BE READY TO BREAK OUT AS SOON AS YOU HEAR THREE  BLASTS ON A WHISTLE. I'LL BE WEARING A RED ARMBAND.
 
@@ -196,8 +190,6 @@ P  OVWL  AOPZ  TLZZHNL  DHZ  UVA  AVV  KPMMPJBSA  MVY  FVB!
 
 {teacher}
 
-**For teachers**
-
 The message is “I HOPE THIS MESSAGE WAS NOT TOO DIFFICULT FOR YOU!”
 The sensible way for students to approach it would have been to look at the first word as it only contains one letter, so is very likely to be either “I” or “A”. They should have written out the corresponding letters for each of these possibilities, and checked which lead to a meaningful message.
 The rotation being used is 7.
@@ -212,8 +204,6 @@ ZNK WAOIQ HXUCT LUD PASVY UBKX ZNK RGFE JUM.
 
 {teacher}
 
-**For teachers**
-
 The message is “THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG”
 
 {teacher end}
@@ -227,8 +217,6 @@ HOW ARE YOU
 ```
 
 {teacher}
-
-**For teachers**
 
 The correct answer is “KRZ DUH BRX”. If students subtracted instead of adding in their conversion table they will end up with “ELT XOB VLR”, which is incorrect.
 
@@ -270,8 +258,6 @@ F QTSL RJXXFLJ HTSYFNSX QTYX TK XYFYNXYNHFQ HQZJX YMFY HFS GJ ZXJI YT FSFQDXJ BM
 
 {teacher}
 
-**For teachers**
-
 This message decodes to: A LONG MESSAGE CONTAINS LOTS OF STATISTICAL CLUES THAT CAN BE USED TO ANALYSE WHAT THE MOST FREQUENT LETTERS ARE, AND EVEN THE MOST COMMON PAIRS OR TRIPLES OF LETTERS CAN HELP TO BREAK THE CODE
 
 {teacher end}
@@ -312,9 +298,8 @@ Another kind of attack is the *known plaintext* attack, where you know part or a
 ```
 AB MAXKX LXVKXM FXXMBGZ TM MPH TF MANKLWTR
 ```
-{teacher}
 
-**For teachers**
+{teacher}
 
 The message is "HI THERE SECRET MEETING AT TWO AM THURSDAY". Only one character is needed to crack it - the H corresponds to an A, and that gives the key.
 
@@ -333,7 +318,6 @@ Also, the cryptosystem should not give different ciphertext each time the same p
 ### Brute force Attacks to Guess the Key
 
 {teacher}
-**For teachers**
 
 A good question to ask students to ensure they are understanding is “Why are there 25 possible keys, rather than 26?”
 
@@ -356,8 +340,6 @@ These days encryption keys are normally numbers that are 128 bits or longer. You
 
 {teacher}
 
-**For teachers**
-
 The word is "ostentatious", and has been coded by shifting 16 letters to the right (or 10 to the left).
 
 {teacher end}
@@ -379,8 +361,6 @@ However, this only solves one of the problems. The other techniques for breaking
 {curiosity end}
 
 {teacher}
-
-**For teachers**
 
 A 128 bit key at 1,000,000 per second would take 10,790,283,070,000,000,000,000,000 years to test. Of course, it might find something in the first year, but the chances of that are ridiculously low, and it would be more realistic to hope to win the top prize in Lotto three times consecutively (and you'd get more money). Cryptography relies a lot on low probabilities of success!
 
@@ -408,8 +388,6 @@ Two fun uses of steganography that you can try to decode yourself are a [film ab
 ## Public Key Systems
 
 {teacher}
-
-**For teachers**
 
 It would be a good idea to show [Simon Singh's video](http://simonsingh.net/media/online-videos/cryptography/the-science-of-secrecy-going-public/), which gives a good explanation of key distribution.
 
@@ -559,8 +537,6 @@ For example, see if you can work out which numbers multiply to give 806,849,546,
 {comment end}
 
 {teacher}
-
-**For teachers**
 
 The factors of the above number (806,849,546,124,373,268,247,678,601) are the following two prime numbers: 29,996,224,275,833 and 26,898,370,231,697. Students can easily check this using the [calculator we provide](http://www.cosc.canterbury.ac.nz/csfieldguide/dev/dev/_static/widgets/big-calculator.html?plain=true%20frameborder=).
 
@@ -721,8 +697,6 @@ So far RSA has held up really well against the potential attacks we have looked 
 No mathematical solution exists, although there is a practical solution. Public Key Certificates are distributed by Public Key Certificate Authorities (CA’s) in order to prove the ownership of a public key. This now assumes that the CA’s are trustworthy and that they won’t be fooled or compromised. For the most part it works, although there have been some [worrying exceptions…](http://en.wikipedia.org/wiki/Certificate_authority#CA_compromise)
 
 {teacher}
-
-**For teachers**
  
 A useful class activity to help students to understand public key systems is to simulate the process in the classroom. 
 

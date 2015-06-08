@@ -56,7 +56,7 @@ If braille used only 2 dots, there would be 4 patterns.
 
 And with 3 dots there would be 8 patterns
 
-{image dr-three-dot-combinations.png alt="Combinations of three dots"
+{image dr-three-dot-combinations.png alt="Combinations of three dots"}
 
 {comment}
 
@@ -606,7 +606,7 @@ So now, how can computers represent each possible colour using bits? You may hav
 
 Because there are three primary colours,  each of which has 256 different possible values, we need 24 bits in order to have enough possible bit patterns to represent all the possible colours that this scheme can represent (3 x 8 = 24).
 
-If you calculate 2\ :sup:`24` (i.e. the number of bit patterns you can get with 24 bits), and 256 x 256 x 256 (i.e. the number of possible colours that can be represented using the above interactive), you will find that the result of these two calculations are the same; 16,777,216. This means that there are 16,777,216 different possible colours that can be represented using this scheme, and that's more colours than most people can distinguish, which is why 24-bit colour is regarded as high quality.
+If you calculate {math}2^24{math end} (i.e. the number of bit patterns you can get with 24 bits), and 256 x 256 x 256 (i.e. the number of possible colours that can be represented using the above interactive), you will find that the result of these two calculations are the same; 16,777,216. This means that there are 16,777,216 different possible colours that can be represented using this scheme, and that's more colours than most people can distinguish, which is why 24-bit colour is regarded as high quality.
 
 {comment}
 
@@ -653,11 +653,9 @@ The hexadecimal notation is extremely useful for people to read or write, as it 
 
 For example, to specify the background colour of a page in HTML,  the body tag can have a hexadecimal colour added to it like this: 
 
-{code}
-
+```
 <body bgcolor="#00FF9E">
-
-{code end}
+```
 
 You can use an HTML page to experiment with hexadecimal colours.
 
