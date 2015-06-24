@@ -56,7 +56,7 @@ If braille used only 2 dots, there would be 4 patterns.
 
 And with 3 dots there would be 8 patterns
 
-{image dr-three-dot-combinations.png alt="Combinations of three dots"
+{image dr-three-dot-combinations.png alt="Combinations of three dots"}
 
 {comment}
 
@@ -107,42 +107,41 @@ ASCII assigned a different pattern of bits to each of the characters, along with
 
 Below is a table that shows the patterns of bits that ASCII uses for each of the characters.
 
-======= ===== ======= ===== ======= ===== 
-Binary  Char  Binary  Char  Binary  Char  
-======= ===== ======= ===== ======= ===== 
-0100000 Space 1000000 @     1100000 `    
-0100001 !     1000001 A     1100001 a
-0100010 "     1000010 B     1100010 b
-0100011 #     1000011 C     1100011 c
-0100100 $     1000100 D     1100100 d
-0100101 %     1000101 E     1100101 e
-0100110 &     1000110 F     1100110 f
-0100111 '     1000111 G     1100111 g
-0101000 (     1001000 H     1101000 h
-0101001 )     1001001 I     1101001 i
-0101010 \*    1001010 J     1101010 j
-0101011 \+    1001011 K     1101011 k
-0101100 ,     1001100 L     1101100 l
-0101101 \-    1001101 M     1101101 m
-0101110 .     1001110 N     1101110 n
-0101111 /     1001111 O     1101111 o
-0110000 0     1010000 P     1110000 p
-0110001 1     1010001 Q     1110001 q
-0110010 2     1010010 R     1110010 r
-0110011 3     1010011 S     1110011 s
-0110100 4     1010100 T     1110100 t
-0110101 5     1010101 U     1110101 u
-0110110 6     1010110 V     1110110 v
-0110111 7     1010111 W     1110111 w
-0111000 8     1011000 X     1111000 x
-0111001 9     1011001 Y     1111001 y
-0111010 :     1011010 Z     1111010 z
-0111011 ;     1011011 [     1111011 {
-0111100 <     1011100 \\    1111100 \|
-0111101 =     1011101 ]     1111101 }
-0111110 >     1011110 ^     1111110 ~
-0111111 ?     1011111 _     1111111 <DEL>
-======= ===== ======= ===== ======= ===== 
+| Binary  | Char  | Binary  | Char | Binary  | Char  |
+|---------|-------|---------|------|---------|-------|
+| 0100000 | Space | 1000000 | @    | 1100000 | `     |
+| 0100001 | !     | 1000001 | A    | 1100001 | a     |
+| 0100010 | "     | 1000010 | B    | 1100010 | b     |
+| 0100011 | #     | 1000011 | C    | 1100011 | c     |
+| 0100100 | $     | 1000100 | D    | 1100100 | d     |
+| 0100101 | %     | 1000101 | E    | 1100101 | e     |
+| 0100110 | &     | 1000110 | F    | 1100110 | f     |
+| 0100111 | '     | 1000111 | G    | 1100111 | g     |
+| 0101000 | (     | 1001000 | H    | 1101000 | h     |
+| 0101001 | )     | 1001001 | I    | 1101001 | i     |
+| 0101010 | \*    | 1001010 | J    | 1101010 | j     |
+| 0101011 | \+    | 1001011 | K    | 1101011 | k     |
+| 0101100 | ,     | 1001100 | L    | 1101100 | l     |
+| 0101101 | \-    | 1001101 | M    | 1101101 | m     |
+| 0101110 | .     | 1001110 | N    | 1101110 | n     |
+| 0101111 | /     | 1001111 | O    | 1101111 | o     |
+| 0110000 | 0     | 1010000 | P    | 1110000 | p     |
+| 0110001 | 1     | 1010001 | Q    | 1110001 | q     |
+| 0110010 | 2     | 1010010 | R    | 1110010 | r     |
+| 0110011 | 3     | 1010011 | S    | 1110011 | s     |
+| 0110100 | 4     | 1010100 | T    | 1110100 | t     |
+| 0110101 | 5     | 1010101 | U    | 1110101 | u     |
+| 0110110 | 6     | 1010110 | V    | 1110110 | v     |
+| 0110111 | 7     | 1010111 | W    | 1110111 | w     |
+| 0111000 | 8     | 1011000 | X    | 1111000 | x     |
+| 0111001 | 9     | 1011001 | Y    | 1111001 | y     |
+| 0111010 | :     | 1011010 | Z    | 1111010 | z     |
+| 0111011 | ;     | 1011011 | [    | 1111011 | {     |
+| 0111100 | <     | 1011100 | \\   | 1111100 | \|    |
+| 0111101 | =     | 1011101 | ]    | 1111101 | }     |
+| 0111110 | >     | 1011110 | ^    | 1111110 | ~     |
+| 0111111 | ?     | 1011111 | _    | 1111111 | Delete   |
+
 
 For example, the letter c (lower-case) in the table has the pattern “01100011” (the 0 at the front is just extra padding to make it up to 8 bits). The letter o has the pattern “01101111”. You could write a word out using this code, and if you give it to someone else, they should be able to decode it exactly.
 
@@ -221,7 +220,7 @@ There are several other codes that were popular before ASCII, including the [Bau
 
 {teacher}
 
-If you are doing a warm up exercise with the class, the CS Unplugged binary activity [http://csunplugged.org/binary-numbers](http://csunplugged.org/binary-numbers) provides scaffolding and can be used to teach concepts around binary numbers using only counting or simple addition.  In the chapter we have decided to approach this section by starting with number systems. While this may appear “scary” because of the math, most students should be quite familiar with it as it is first introduced very early in primary school in the form of recognising that numbers are made up of the “ones”, “tens”, “hundreds”, etc, and is further built on until eventually in high school they learn about the exponent notation, i.e. 541 = 5x{math}10^2{math end} + 4x{math}10^1{math end} + 1x{math}10^0{math end}. As explained in this section, binary numbers are a base 2 number system, rather than the base 10 number system we are all familiar with. The idea of number systems provides a good stepping stone into binary numbers
+If you are doing a warm up exercise with the class, the CS Unplugged binary activity [http://csunplugged.org/binary-numbers](http://csunplugged.org/binary-numbers) provides scaffolding and can be used to teach concepts around binary numbers using only counting or simple addition.  In the chapter we have decided to approach this section by starting with number systems. While this may appear “scary” because of the math, most students should be quite familiar with it as it is first introduced very early in primary school in the form of recognising that numbers are made up of the “ones”, “tens”, “hundreds”, etc, and is further built on until eventually in high school they learn about the exponent notation, i.e. {math}541 = 5 \times 10^2 + 4 \times 10^1 + 1 \times 10^0{math end}. As explained in this section, binary numbers are a base 2 number system, rather than the base 10 number system we are all familiar with. The idea of number systems provides a good stepping stone into binary numbers
 
 We are assuming that students already know about base 10 number systems, including the exponent notation. The initial information in this section on them is only intended to trigger recall, rather than actually teaching them the concept. 
 
@@ -240,13 +239,14 @@ If you were only able to use one digit to represent a number, then the largest n
 
 You may have encountered different ways of expressing numbers using “expanded form”. For example, if you want to write the number 90328 in expanded form you might have written it as:
 
-90328 = 90000 + 300 + 20 + 8
+{math}90328 = 90000 + 300 + 20 + 8{math end}
 
 A more sophisticated way of writing it is:
 
-90328 = (9 x 10000) + (0 x 1000) + (3 x 100) + (2 x 10) + (8 x 1)
+{math}90328 = (9 \times 10000) + (0 \times 1000) + (3 \times 100) + (2 \times 10) + (8 \times 1){math end}
 
 If you've learnt about exponents, you could write it as
+{math}90328 = (9 \times 10^4) + (0 \times 10^3) + (3 \times 10^2) + (2 \times 10^1) + (8 \times 10^0){math end}
 90328 = (9 x {math}10^4{math end}) + (0 x {math}10^3{math end}) + (3 x {math}10^2{math end}) + (2 x {math}10^1{math end}) + (8 x {math}10^0{math end})
 
 Remember that any number to the power of 0 is 1. i.e. the 8 x {math}10^0{math end} is 8, because the {math}10^0{math end} is 1.
@@ -514,23 +514,23 @@ We've also added a "black" mix; it's not strictly necessary (you can get black b
 	<div class="col-xs-12 col-sm-4">
 		<label for="cyan-colour">Cyan</label>
 		<div id="cyan-colour" class="slider"></div>
-        <label class="pull-left">0</label>
-        <label id="cyan-value"></label>
-        <label class="pull-right">255</label>
+		<label class="pull-left">0</label>
+		<label id="cyan-value"></label>
+		<label class="pull-right">255</label>
 	</div>
 	<div class="col-xs-12 col-sm-4">
 		<label for="magenta-colour">Magenta</label>
 		<div id="magenta-colour" class="slider"></div>
-        <label class="pull-left">0</label>
-        <label id="magenta-value"></label>
-        <label class="pull-right">255</label>
+		<label class="pull-left">0</label>
+		<label id="magenta-value"></label>
+		<label class="pull-right">255</label>
 	</div>
 	<div class="col-xs-12 col-sm-4">
 		<label for="yellow-colour">Yellow</label>
 		<div id="yellow-colour" class="slider"></div>
-        <label class="pull-left">0</label>
-        <label id="yellow-value"></label>
-        <label class="pull-right">255</label>
+		<label class="pull-left">0</label>
+		<label id="yellow-value"></label>
+		<label class="pull-right">255</label>
 	</div>
 	<div class="clearfix"></div>
 	<div class="col-xs-12" id="cmyk-colour-output">
@@ -602,21 +602,21 @@ So a 2 megapixel photo, in its simplest form, needs 6 million numbers to be reco
 
 ### Representing high quality images using bits
 
-So now, how can computers represent each possible colour using bits? You may have noticed in the above interactive that for each of red, green, and blue, there are 256 different positions the slider can be in (don’t forget to include setting the slider to 0). From the numbers section, you may remember that to get 256 different possibilities, you need 8 bits. So for example, to represent the current value of the red slider, you would need 8 bits ({math}2^8{math end} = 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 = 256).
+So now, how can computers represent each possible colour using bits? You may have noticed in the above interactive that for each of red, green, and blue, there are 256 different positions the slider can be in (don’t forget to include setting the slider to 0). From the numbers section, you may remember that to get 256 different possibilities, you need 8 bits. So for example, to represent the current value of the red slider, you would need 8 bits ({math}2^8 = 2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2 = 256{math end}).
 
-Because there are three primary colours,  each of which has 256 different possible values, we need 24 bits in order to have enough possible bit patterns to represent all the possible colours that this scheme can represent (3 x 8 = 24).
+Because there are three primary colours,  each of which has 256 different possible values, we need 24 bits in order to have enough possible bit patterns to represent all the possible colours that this scheme can represent ({math}3 x 8 = 24{math end}).
 
-If you calculate 2\ :sup:`24` (i.e. the number of bit patterns you can get with 24 bits), and 256 x 256 x 256 (i.e. the number of possible colours that can be represented using the above interactive), you will find that the result of these two calculations are the same; 16,777,216. This means that there are 16,777,216 different possible colours that can be represented using this scheme, and that's more colours than most people can distinguish, which is why 24-bit colour is regarded as high quality.
+If you calculate {math}2^24{math end} (i.e. the number of bit patterns you can get with 24 bits), and {math}256 \times 256 \times 256{math end} (i.e. the number of possible colours that can be represented using the above interactive), you will find that the result of these two calculations are the same; 16,777,216. This means that there are 16,777,216 different possible colours that can be represented using this scheme, and that's more colours than most people can distinguish, which is why 24-bit colour is regarded as high quality.
 
 {comment}
 
 .. Might put a box just showing the math, i.e. that {math}2^24{math end} = {math}256^3{math end}. Won’t take too long to do, and I suspect it may be helpful to some people to see that. Trying to cater for as many different learning styles as possible...
 .. I presume you mean something along the lines of 
    {math}2^24{math end} = 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2
-            =  (2 x 2 x 2 x 2 x 2 x 2 x 2 x 2) x (2 x 2 x 2 x 2 x 2 x 2 x 2 x 2) x (2 x 2 x 2 x 2 x 2 x 2 x 2 x 2)
-            = ({math}2^8{math end}) x ({math}2^8{math end}) x ({math}2^8{math end})
-            = 256 x 256 x 256
-            = {math}256^3{math end}
+			=  (2 x 2 x 2 x 2 x 2 x 2 x 2 x 2) x (2 x 2 x 2 x 2 x 2 x 2 x 2 x 2) x (2 x 2 x 2 x 2 x 2 x 2 x 2 x 2)
+			= ({math}2^8{math end}) x ({math}2^8{math end}) x ({math}2^8{math end})
+			= 256 x 256 x 256
+			= {math}256^3{math end}
 .. I like the idea of boxes and different explanations for different learning styles -tim. 
 
 {comment end}
@@ -653,11 +653,9 @@ The hexadecimal notation is extremely useful for people to read or write, as it 
 
 For example, to specify the background colour of a page in HTML,  the body tag can have a hexadecimal colour added to it like this: 
 
-{code}
-
+```
 <body bgcolor="#00FF9E">
-
-{code end}
+```
 
 You can use an HTML page to experiment with hexadecimal colours.
 
@@ -756,13 +754,13 @@ The following interactive can be used to upload your own image, and experiment w
 In the introduction we looked at 8-bit ASCII representations of text (which really use 7 bits, allowing for 128 different symbols).
 As with any other kind of data represented in binary, we can get improvements by considering larger (or smaller) representations.
 
-In the :ref:`curiosity section <curiosity-music>` earlier we observed that 5 bits are sufficient for simple coding of the English alphabet, and for very slow coding systems (like the [video that contains hidden text using musical notes](http://www.youtube.com/watch?v=L-v4Awj_p7g>) using 5 bits instead of 8 can save some time. 
+In the curiosity earlier we observed that 5 bits are sufficient for simple coding of the English alphabet, and for very slow coding systems (like the [video that contains hidden text using musical notes](http://www.youtube.com/watch?v=L-v4Awj_p7g>) using 5 bits instead of 8 can save some time. 
 The braille system uses only 6 bits for each character, which allows for 64 different characters, and it is also better than using 8 bits since it would take more paper and more time to read if the longer code was used.
 
 But some languages have way more than 32, or 64, or even 128 characters in their alphabet.
 In fact, the majority of the world's population use such languages!
 In this case, longer codes are needed, and the most widely used approach is a system called *Unicode*.
-A commonly used version of Unicode allows 16 bits per character. Because every extra bit that is added doubles the number of patterns possible, 16-bit codes have many more representations than 8 bit codes. In fact, with 16 bits there are 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 = {math}2^16{math end} = 65,536 patterns that can be represented. This is enough to assign a unique pattern of bits to the main characters in the most common languages, although there are also standards that allow 32 bits (4 bytes) for each character.
+A commonly used version of Unicode allows 16 bits per character. Because every extra bit that is added doubles the number of patterns possible, 16-bit codes have many more representations than 8 bit codes. In fact, with 16 bits there are {math}2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2 = 2^16 = 65,536{math end} patterns that can be represented. This is enough to assign a unique pattern of bits to the main characters in the most common languages, although there are also standards that allow 32 bits (4 bytes) for each character.
 
 The Unicode table is far too big to display in this book, but you can find a variety of tables on the internet, and use them to look up codes. [This website displays all unicode characters](http://unicode-table.com/en/) with geographical data for appropriate characters.
 The 16- and 32-bit codes are usually written using hexadecimal since this is an easy abbreviation for the long binary codes, and sections of the Unicode alphabet (different languages) tend to be in multiples of 16.
@@ -882,14 +880,12 @@ The world population is approximately 7 billion, so 32 bits isn't quite enough t
 
 {teacher end}
 
-=============== =============================== ======================================================= 
-Type of Number  Unsigned Range                  Signed Range    
-=============== =============================== ======================================================= 
-8 bit signed    0 to 255                        -128 to 127  
-16 bit signed   0 to 65,535                     -32,768 to 32,767
-32 bit signed   0 to 4,294,967,295              −2,147,483,648 to 2,147,483,647
-64 bit signed   0 to 18,446,744,073,709,551,615 −9,223,372,036,854,775,808 to 9,223,372,036,854,775,807 
-=============== =============================== ======================================================= 
+| Type of Number  | Unsigned Range                  |                     Signed Range                         |
+|-----------------|---------------------------------|----------------------------------------------------------|
+| 8 bit signed    | 0 to 255                        | -128 to 127                                              |
+| 16 bit signed   | 0 to 65,535                     | -32,768 to 32,767                                        |
+| 32 bit signed   | 0 to 4,294,967,295              | −2,147,483,648 to 2,147,483,647                          |
+| 64 bit signed   | 0 to 18,446,744,073,709,551,615 | −9,223,372,036,854,775,808 to 9,223,372,036,854,775,807  |
 
 So when you are storing values on a computer with very limited space, you need to be careful to pick a suitable kind of integer that has enough space, but isn’t wasting space. You also need to think about whether or not a number could potentially be negative.
 

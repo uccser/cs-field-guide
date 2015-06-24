@@ -65,7 +65,7 @@ For students reports:
 More information on this can be found at the end of the chapter.
 {teacher end}
 
-{page break}
+{page-break}
 
 ## Searching
 
@@ -148,7 +148,7 @@ The following files will run linear and binary search in various languages:
 - [Python (Version 2)](file linear-binary-search-python2.py)
 - [Python (Version 3)](file linear-binary-search-python3.py)
 
-{page break}
+{page-break}
 
 ## Sorting algorithms
 
@@ -258,7 +258,7 @@ The following files will run quicksort in various languages:
 There are dozens of sorting algorithms that have been invented; most of the ones that are used in practice are based on quicksort and/or mergesort. For the purposes of the 1.44 standard, students need only compare two algorithms, and selection sort and quicksort provide the kind of contrast that make a project straightforward to do. If students want to investigate other sorting algorithms, the more common ones that would be useful here are insertion sort and mergesort. These, and many others, can be seen in an intriguing animated form on this video that represents the [algorithms using images and sound](http://www.youtube.com/watch?v=kPRA0W1kECg).
 {teacher end}
 
-{page break}
+{page-break}
 
 ## The whole story!
 

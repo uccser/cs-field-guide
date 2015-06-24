@@ -297,7 +297,7 @@ Extra bits that are not part of the actual data but instead have been added for 
 
 ## Regular expression
 
-A simple expression used for pattern matching, typically using characters combined with “*” (repetition), “|” (selecting one or the other) and parenthesis (to group operations). Some systems allow more complex patterns such as ”.” (matches any character), “{n}” (repeated n times), and “\d” (digit).
+A simple expression used for pattern matching, typically using characters combined with “\*” (repetition), “|” (selecting one or the other) and parenthesis (to group operations). Some systems allow more complex patterns such as ”.” (matches any character), “{n}” (repeated n times), and “\d” (digit).
 
 ## Search
 

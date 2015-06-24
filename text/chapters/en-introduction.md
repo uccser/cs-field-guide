@@ -37,7 +37,9 @@ They both have the same functionality (they can do the same calculations), but w
 
 (This book has many interactives like this. If the first calculator doesn't work properly, you may need to use a more recent  browser. The interactive material in this book works in most recent browsers; Google Chrome is a particularly safe bet.)
 
-<div align="center"><iframe width="450" height="350" src="_static/widgets/ui-calculator-v2.html?plain=true" frameborder="0">Your browser does not support iframes. Please contact the computer's administrator and upgrade <a href="http://browsehappy.com/"> to a modern browser</a> (like Google Chrome) to enable all functionality of this online guide.</iframe><iframe width="450" height="350" src="_static/widgets/ui-calculator-v2.html" frameborder="0">Your browser does not support iframes. Please contact the computer's administrator and upgrade <a href="http://browsehappy.com/"> to a modern browser</a> (like Google Chrome) to enable all functionality of this online guide.</iframe></div>
+{comment}
+Insert calculator interactive here
+{comment end}
 
 The second calculator above is slower, and that can be frustrating.
 But it has a fancier interface --- buttons expand when you point to them to highlight what you're doing.

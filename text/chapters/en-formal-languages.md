@@ -28,19 +28,15 @@ If you've ever written a text-based program, chances are that at some stage the 
 
 These "syntax errors" are annoying messages that programmers become excruciatingly familiar with ... it means that they didn't follow the rules somehow, even if it's just a tiny mistake. For example, suppose you intended to write: 
 
-{code}
-
+```
 x = (a+b)*(c+d)
-
-{code end}
+```
 
 but you accidentally left out one of the brackets:
 
-{code}
-
+```
 x = (a+b)*c+d)
-
-{code end}
+```
 
 When you try to compile or run the program, the computer will tell you that there's an error. If it's really helpful, it might even suggest where the error is, but it won't run the program until you fix it.
 
@@ -49,8 +45,6 @@ This might seem annoying, but in fact by enforcing precision and attention to de
 Whenever you get errors like this, you're dealing with a *formal language*. Formal languages specify strict rules such as "all parentheses must be balanced", "all commands in the program must be keywords selected from a small set", or "the date must contain three numbers separated by dashes".
 
 Formal languages aren't just used for programming languages --- they're used anywhere the format of some input is tightly specified, such as typing an email address into a web form.
-
-.. index:: compiler
 
 In all these cases, the commands that you have typed (whether in Python, Scratch, Snap!, C, Pascal, Basic, C#, HTML, or XML) are being read by a computer program. (That's right... Python is a program that reads in Python programs.) In fact, the compiler for a programming language is often written in its own language. Most C compilers are written in C --- which begs the question, who wrote the first C compiler (and what if it had bugs)?! Computer Scientists have discovered good ways to write programs that process other programs, and a key ingredient is that you have to specify what is allowed in a program very precisely. That's where formal languages come in. 
 
@@ -79,7 +73,11 @@ The following web site probably won't handle an entire class using it at the sam
 
 Go to the [Regex Dictionary](http://www.visca.com/regexdict/) and type into the "String:" box:
 
-<div align="center"><iframe width="830" height="620" src="_static/widgets/FL/FL-Regex/RegexDic.html" frameborder="0">Your browser does not support iframes. Please contact the computer's administrator and upgrade <a href="http://browsehappy.com/"> to a modern browser</a> (like Google Chrome) to enable all functionality of this online textbook.</iframe></div>
+{comment}
+
+Regex Dictionary interactive goes here
+
+{comment end}
 
 {comment}
 
@@ -87,39 +85,32 @@ Go to the [Regex Dictionary](http://www.visca.com/regexdict/) and type into the 
 
 {comment end}
 
-{code}
 
+```
 tim
-
-{code end}
+```
 
 then press the "Search" button to find all words containing "tim".
 
 That's a pretty simple search (though the results may have surprised you!). But now we introduce the *wildcard* code, which in this case is "." ---  a widely used convention. This matches any character at all. So now you can do a search like
 
-{code}
-
+```
 tim.b
-
-{code end}
+```
 
 and you will get any words that have both "tim" and "b" with a single character --- any character --- in between. Are there any words that match "tim..b"? "tim...b"? You can specify any number of occurrences of a symbol by putting a "*" after it (again a widely used convention), so:
 
-{code}
-
+```
 tim.*b
-
-{code end}
+```
 
 will match any words where "tim" is followed by "b", separated by any number of characters --- including zero.
 
 Try the following search. What kind of words does it find?
 
-{code}
-
+```
 x.*y.*z
-
-{code end}
+```
 
 {teacher}
 
@@ -135,12 +126,12 @@ This code finds words that contain x, y and z in that order, but separated by 0 
 
 To find words with all the vowels in order, the code is simply "a.*e.*i.*o.*u". 
 
-Students may ask how to do more complex searches, like letters in any order. If they are interested they can explore this on their own, but this is just a warmup exercise. We'll be covering this more carefully in the section on :ref:`fl-regex`.
+Students may ask how to do more complex searches, like letters in any order. If they are interested they can explore this on their own, but this is just a warmup exercise. We'll be covering this more carefully in the section on [regular expressions](formal-languages.html#regular-expressions).
 
 {teacher end}
 
 The code you've used above is a part of a formal language called a "regular expression". Computer programs that accept typed input use regular expressions for checking items like dates, credit card numbers and product codes. They’re used extensively by programming language compilers and interpreters to make sense of the text that a programmer types in. 
-We'll look at them in more detail in the section on :ref:`fl-regex`.
+We'll look at them in more detail in the section on [regular expressions](formal-languages.html#regular-expressions).
 
 Next we examine a simple system for reading input called a [finite state automaton][glossary.htm#finate state automaton], which --- as we'll find out later --- is closely related to regular expressions. Later we'll explore the idea of *grammars*, another kind of formal language that can deal with more complicated forms of input.
 
@@ -782,7 +773,7 @@ If you need to make diagrams of FSAs, the JFLAP program can be used, or there's 
 
 {teacher}
 
-Regular expressions (regex for short) are closely related to FSAs, as we shall see. Much of the terminology that is needed was already covered in the previous section: we'll be using languages, [alphabets](glossary.htm#alphabets), strings, {math}\epsilon{math end} / {math}\lambda{math end}, and eventually finite state automata. So the previous section on FSAs needs to be covered before embarking on regular expressions.
+Regular expressions (regex for short) are closely related to FSAs, as we shall see. Much of the terminology that is needed was already covered in the previous section: we'll be using languages, [alphabets](glossary.htm#alphabets), strings, {math}\frac{\epsilon}{\lambda}{math end}, and eventually finite state automata. So the previous section on FSAs needs to be covered before embarking on regular expressions.
 
 It may be that students have used regular expressions already, because they are built into many programming languages and are often used when writing script programs. We'll be looking briefly at such applications --- and they’re very relevant --- but in formal languages we're also interested in the limits of what can be represented, and how to convert a regex to an FSA. So there should be something here to get students thinking, even if they’re expert at programming with regexes.
 
@@ -796,14 +787,12 @@ A useful activity to develop students' familiarity with FSAs and Regular express
 
 Split the class into two groups, A and B. Hand out one copy of FSM-A to each pair of students in group A and FSM-B to pairs in group B. Each pair also requires a language sheet. They will only be writing in the top half of the sheet. Students now need to describe all the acceptable inputs for the given FSA (using whatever notation they can come up with, or regular expressions if they have already encountered them). When they are happy with their description (or five minutes is up) they write it out on the language sheet. Some suitable descriptions are as follows. We've used standard regex notation, but students might make up something different.
 
-{code}
-
+```
 FSM-A: bee*p(-bee*p)*  or  be*ep(-be*ep)*  or  be+p(-be+p)*
 FSM-B: cl(i|a)ck(-cl(i|a)ck)* 
 FSM-A: mee*o*w  or  me*eo*w  or  me+ow 
 FSM-B: squ((el)|(ir))ch(-squ((el)|(ir))ch)*
-
-{code end}
+```
 
 The language sheets from both groups are then collected in. Sheets from group A are distributed to group B, and vice versa. The pairs now read the “language” description and fill in the bottom half of the language sheet with four [strings](glossary.html#strings) that the FSM will accept and four that it will not accept. Here the students are acting as “programmers”, trying to get the computer on the other side to perform a certain task.
 
@@ -819,7 +808,7 @@ Followup discussion can review whether some descriptions were longer than they n
 
 {comment end}
 
-We've already had a taste of regular expressions in the :ref:`fl-gettingstarted` section. They are just a simple way to search for things in the input, or to specify what kind of input will be accepted as legitimate. 
+We've already had a taste of regular expressions in the [getting started](formal-languages.html#getting-started) section. They are just a simple way to search for things in the input, or to specify what kind of input will be accepted as legitimate. 
 For example, many web scripting programs use them to check input for patterns like dates, email addresses and URLs. They've become so popular that they're now built into most programming languages.
 
 {teacher}
@@ -922,29 +911,25 @@ Another useful shortcut is being able to match repeated letters. There are four 
 
 Try experimenting with these. Here are some examples to try:
 
-{code}
-
+```
 f+
 pf*t
 af*
 f*t
 f{5}
 .{5}n
-
-{code end}
+```
 
 If you want to choose between options, the vertical bar is useful. Try the following, and work out what they match. You can type extra text into the test [string](glossary.html#string) area if you want to experiment:
 
-{code}
-
+```
 was|that|hat
 was|t?hat
 th(at|e) cat
 [Tt]h(at|e) [fc]at
 (ff)+
 f(ff)+
-
-{code end}
+```
 
 Notice the use of brackets to group parts of the regular expression. It's useful if you want the "+" or "*" to apply to more than one character.
 
@@ -970,11 +955,9 @@ Of course, regular expressions are mainly used for more serious purposes. Click 
 
 The following [regular expression](glossary.htm#regular expression) will find comon NZ number plates in the sample text, but can you find a shorter version using the {n} notation?
 
-{code}
-
+```
 [A-Z][A-Z][A-Z]\d\d\d
-
-{code end}
+```
 
 {teacher}
 
@@ -984,11 +967,9 @@ The following [regular expression](glossary.htm#regular expression) will find co
 
 How about an expression to find the dates in the text? Here's one option, but it's not perfect:
 
-{code}
-
+```
 \d [A-Z][a-z][a-z] \d\d\d\d
-
-{code end}
+```
 
 Can you improve on it? 
 
@@ -1034,11 +1015,9 @@ But regular expressions have their limits --- for example, you won't be able to 
 
 There's a direct relationship between regular expressions and FSAs. For example, consider the following regex, which matches [strings](glossary.html#strings) that begin with an even number of the letter "a" and end with an even number of the letter "b":
 
-{code}
-
+```
 (aa)+(bb)+
-
-{code end}
+```
 
 Now look at how the following FSA works on these [strings](glossary.html#strings) --- you could try "aabb", "aaaabb", "aaaaaabbbb", and also see what happens for [strings](glossary.html#strings) like "aaabb", "aa", "aabbb", and so on.
 
@@ -1125,7 +1104,7 @@ Information about both the Exorciser and JFLAP software is given in teacher note
 
 For Exorciser, the conversion is intended as an exercise for the student, but that's way beyond the scope of this chapter. However, if you just ask for the solution, it will do the conversion for you, which is what we need.
 
-For JFLAP, there is a tutorial on the [program's website](http://www.jflap.org/tutorial/) and more information in the :ref:`fl-regex` section.
+For JFLAP, there is a tutorial on the [program's website](http://www.jflap.org/tutorial/) and more information in the [regular expressions](formal-languages.html#regular-expressions) section.
 
 If students stick to the instructions given they will be able to use it to create their own FSA from a regular expression. 
 
@@ -1160,7 +1139,7 @@ For example, "a+" is the same as "aa*", and "\\d" is "0|1|2|3|4|5|67|8|9". It's 
 
 #### Converting with Exorciser
 
-Use this section if you're using Exorciser; if you're using JFLAP then skip to `Converting with JFLAP`~.
+Use this section if you're using Exorciser; if you're using JFLAP then skip to [Converting with JFLAP](formal-languages.html#converting-with-jflap).
 
 Exorciser is very simple. In fact, unless you change the default settings, it can only convert regular expressions using two characters: "a" and "b". But even that's enough (in fact, in theory any input can be represented with two characters --- that's what binary numbers are about!)
 
@@ -1172,11 +1151,9 @@ Now type your [regular expression](glossary.htm#regular expression) into the tex
 
 As a warmup, try:
 
-{code}
-
+```
 aabb
-
-{code end}
+```
 
 then click on "solve exercise" (this is a shortcut --- the software is intended for students to create their own FSA, but that's beyond what we're doing in this chapter).
 
@@ -1186,14 +1163,12 @@ To test your FSA, right-click on the background and choose "Track input".
 
 Now try some more complex regular expressions, such as the following. For each one, type it in, click on "solve exercise", and then track some sample inputs to see how it accepts and rejects different strings.
 
-{code}
-
+```
 aa*b
 a(bb)*
 (bba*)*
 (b*a)*a
-
-{code end}
+```
 
 Your project report should show the regular expressions, explain what kind of [strings](glossary.html#strings) they match, show the corresponding FSAs, show the sequence of states that some sample test [strings](glossary.html#strings) would go through, and you should explain how the components of the FSA correspond the parts of the [regular expression](glossary.htm#regular expression) using examples.
 
@@ -1217,11 +1192,9 @@ There are some details about the format that JFLAP uses for regular expressions 
 
 As a warmup, we'll convert this regex to an FSA:
 
-{code}
-
+```
 ab*b
-
-{code end}
+```
 
 On the main control window of JFLAP click on "Regular Expression", and type your [regular expression](glossary.htm#regular expression) into JFLAP: 
 

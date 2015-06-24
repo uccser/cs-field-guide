@@ -97,7 +97,7 @@ Having a rough idea of the complexity of a problem helps you to estimate how lon
 
 **Jargon Buster: Asymptotic complexity**
 
-If you're reading about complexity, you may come across some terminology like "Big Oh" notation and "asymptotic complexity", where an algorithm that takes about {math}n^2{math end} steps is referred to as O({math}n^2{math end}). We won't get into these in this chapter, but here's a little information in case you come across the terms in other reading.
+If you're reading about complexity, you may come across some terminology like "Big Oh" notation and "asymptotic complexity", where an algorithm that takes about {math}n^2{math end} steps is referred to as {math}O(n^2){math end}. We won't get into these in this chapter, but here's a little information in case you come across the terms in other reading.
 "Big Oh" notation is a precise way to talk about complexity, and is used with "asymptotic complexity", which simply means how an algorithm performs for large values of *n*. The "asymptotic" part means as *n* gets really large --- when this happens, you are less worried about small details of the running time. If an algorithm is going to take seven days to complete, it's not that interesting to find out that it's actually 7 days, 1 hour, 3 minutes and 4.33 seconds, and it's not worth wasting time to work it out precisely.
 
 We won't use precise notation for asymptotic complexity (which says which parts of speed calculations you can safely ignore), but we will make rough estimates of the number of operations that an algorithm will go through. There's no need to get too hung up on precision since computer scientists are comfortable with a simple characterisation that gives a ballpark indication of speed.
@@ -110,23 +110,23 @@ For a start, you'd probably want to know what sort of computer it was running on
 Also, a single data point doesn't tell you how well the system will work with larger problems.
 If the selection sort algorithm above was given 10 thousand items to sort, it would probably take about 50 minutes (3000 seconds) --- that's 100 times as long to process 10 times as much input.
 
-These data points for a particular computer are useful for getting an idea of the performance (that is, complexity) of the algorithm, but they don't give a clear picture. It turns out that we can work out exactly how many steps the selection sort algorithm will take for *n* items: it will require about n(n-1)/2 operations, or in expanded form,{math}n^2{math end}/2 - n/2 operations.
+These data points for a particular computer are useful for getting an idea of the performance (that is, complexity) of the algorithm, but they don't give a clear picture. It turns out that we can work out exactly how many steps the selection sort algorithm will take for *n* items: it will require about {math}\frac{n(n-1)}{2}{math end} operations, or in expanded form,{math}\frac{n^2}{2} - \frac{n}{2}{math end} operations.
 This formula applies regardless of the kind of computer its running on, and while it doesn't tell us the time that will be taken, it can help us to work out if it's going to be reasonable.
 
 From the above formula we can see why it gets bad for large values of *n* : the number of steps taken increases with the square of the size of the input.
 Putting in a value of 1 thousand for *n* tells us that it will use 1,000,000/2 - 1,000/2 steps, which is 499,500 steps. 
 
 Notice that the second part (1000/2) makes little difference to the calculation.
-If we just use the {math}n^2{math end}/2 part of the formula, the estimate will be out by 0.1%, and quite frankly, the user won't notice if it takes 20 seconds or 19.98 seconds. That's the point of asymptotic complexity --- we only need to focus on the most significant part of the formula, which contains {math}n^2{math end}.
+If we just use the {math}\frac{n^2}{2}{math end} part of the formula, the estimate will be out by 0.1%, and quite frankly, the user won't notice if it takes 20 seconds or 19.98 seconds. That's the point of asymptotic complexity --- we only need to focus on the most significant part of the formula, which contains {math}n^2{math end}.
 
-Also, since measuring the number of steps is independent of the computer it will run on, it doesn't really matter if it's described as {math}n^2{math end}/2 or {math}n^2{math end}.
+Also, since measuring the number of steps is independent of the computer it will run on, it doesn't really matter if it's described as {math}\frac{n^2}{2}{math end} or {math}n^2{math end}.
 The amount of time it takes will be proportional to both of these formulas, so we might as well simplify it to {math}n^2{math end}. 
 This is only a rough characterisation of the selection sort algorithm, but it tells us a lot about it, and this level of accuracy is widely used to quickly but fairly accurately characterise the complexity of an algorithm.
 In this chapter we'll be using similar crude characterisations because they are usually enough to know if an algorithm is likely to finish in a reasonable time or not.
 
 {jargon-buster end}
 
-If you've studied algorithms, you will have learnt that some sorting algorithms, such as mergesort and quicksort, are inherently faster than other algorithms, such as insertion sort, selection sort, or bubble sort. It’s obviously better to use the faster ones. The first two have a complexity of n log(n) time (that is, the number of steps that they take is roughly proportional to n log(n)), whereas the last three have complexity of {math}n^2{math end}. Generally the consequence of using the wrong sorting algorithm will be that a user has to wait many minutes (or perhaps hours) rather than a few seconds or minutes. 
+If you've studied algorithms, you will have learnt that some sorting algorithms, such as mergesort and quicksort, are inherently faster than other algorithms, such as insertion sort, selection sort, or bubble sort. It’s obviously better to use the faster ones. The first two have a complexity of {math}nlog(n){math end} time (that is, the number of steps that they take is roughly proportional to {math}nlog(n){math end}), whereas the last three have complexity of {math}n^2{math end}. Generally the consequence of using the wrong sorting algorithm will be that a user has to wait many minutes (or perhaps hours) rather than a few seconds or minutes. 
 
 Here we're going to consider another possible sorting algorithm, called *permutation sort*. Permutation sort says “Let’s list all the possible orderings (“permutations”) of the values to be sorted, and check each one to see if it is sorted, until the sorted order is found”.  This algorithm is straightforward to describe, but is it any good?
 
@@ -191,7 +191,7 @@ Now add another word. How many possible orderings will there be with 5 words? Wh
 
 The number of orderings (permutations) for n words is the factorial of n; this is explained below, but basically there are n choices for the first word, n-1 for the next, and so on. For example, for 15 words, there are 15 x 14 x 13 x 12 x ... x 1 permutations, which is 1,307,674,368,000. It's a big number!
 
-The factorial of a number can be calculated using a spreadsheet (in Excel the formula for 15! is =FACT(15). A lot of calculators have a factorial button ("!").  You can even type 15! into a Google search and get the answer. However, for dealing with very large numbers, the field guide has a simple calculator that can work with huge numbers; it is in the text below, or you can open it [here](_static/widgets/big-calculator.html?plain=true frameborder="0").  
+The factorial of a number can be calculated using a spreadsheet (in Excel the formula for {math}15!{math end} is =FACT(15). A lot of calculators have a factorial button ("!").  You can even type {math}15!{math end} into a Google search and get the answer. However, for dealing with very large numbers, the field guide has a simple calculator that can work with huge numbers; it is in the text below, or you can open it [here](_static/widgets/big-calculator.html?plain=true frameborder="0").  
 
 For the above questions, the number of permutations are:
 
@@ -202,13 +202,13 @@ For the above questions, the number of permutations are:
 
 {teacher end}
 
-If you didn’t find the pattern for the number of orderings, think about using factorials. For 3 words, there are 3!  (“3 factorial”) orderings. For 5 words, there are 5! orderings. Check the jargon buster below if you don’t know what a “factorial” is, or if you have forgotten!
+If you didn’t find the pattern for the number of orderings, think about using factorials. For 3 words, there are {math}3!{math end} (“3 factorial”) orderings. For 5 words, there are {math}5!{math end} orderings. Check the jargon buster below if you don’t know what a “factorial” is, or if you have forgotten!
 
 {jargon-buster}
 
 **Jargon Buster**
 
-Factorials are very easy to calculate; just multiply together all the integers from the number down to 1. For example, to calculate 5! you would simply multiply: 5 x 4 x 3 x 2 x 1 = 120. For 8! you would simply multiply 8 x 7 x 6 x 5 x 4 x 3 x 2 x 1 = 40,320.
+Factorials are very easy to calculate; just multiply together all the integers from the number down to 1. For example, to calculate {math}5!{math end} you would simply multiply: 5 x 4 x 3 x 2 x 1 = 120. For {math}8!{math end} you would simply multiply 8 x 7 x 6 x 5 x 4 x 3 x 2 x 1 = 40,320.
 
 As stated above, the factorial of a number tells you how many permutations (orderings) there would be for that number of words (assuming they are all different). This means that if you are arranging 8 words, there will be 40,320 ways of arranging them (which is why you weren’t asked to try this in the first exercise!!)
 
@@ -243,7 +243,7 @@ There are 60x60x24x365 seconds in a non-leap year, which is 31,536,000, so the p
 
 And as an interesting thing to think about, do some calculations based on the assumptions listed below. How long would it take to use permutation sort on 100 numbers? What would happen first: the algorithm would finish, or the universe would end?
 
-- There are {math}10^82{math end} atoms in the universe
+- There are {math}10^{82}{math end} atoms in the universe
 - The universe has another 14 billion years before it ends
 - Suppose every atom in the universe is a computer that can check an ordering every nanosecond
 
@@ -274,7 +274,7 @@ But the *problem* of sorting items into order is not intractable - even though t
 
 The Towers of Hanoi problem is a challenge where you have a stack of disks of increasing size on one peg, and two empty pegs. The challenge is to move all the disks from one peg to another, but you may not put a larger disk on top of a smaller one. There's a description of it at [Wikipedia](http://en.wikipedia.org/wiki/Tower_of_Hanoi).
 
-This problem cannot be solved in fewer than {math}2^(n-1){math end} moves, so it's an intractable problem (a computer program that lists all the moves to make would use at least {math}2^(n-1){math end} steps). For 6 disks it only needs 63 moves, but for 50 disks this would be 1,125,899,906,842,623 moves.
+This problem cannot be solved in fewer than {math}2^{n-1}{math end} moves, so it's an intractable problem (a computer program that lists all the moves to make would use at least {math}2^{n-1}{math end} steps). For 6 disks it only needs 63 moves, but for 50 disks this would be 1,125,899,906,842,623 moves.
 
 We usually characterise a problem like this as having a complexity of {math}2^n{math end}, as subtracting one to get a precise value makes almost no difference, and the shorter expression is simpler to communicate to others. 
 
@@ -547,7 +547,7 @@ A straightforward algorithm to guarantee that you find the shortest route is to 
 
 M2 - students should show they understand the craypot problem is hard by doing some calculations that show how long it would take to find an optimal solution using the algorithm outlined above.
 
-The number of possible routes for *n* places to visit will be (n-1)!. This is because the starting point is fixed, then there are n-1 choices for the next point, then n-2 and so on. It is essentially the same as permutation sorting, except that the first value doesn't change.
+The number of possible routes for *n* places to visit will be {math}(n-1)!{math end}. This is because the starting point is fixed, then there are {math}n-1{math end} choices for the next point, then {math}n-2{math end} and so on. It is essentially the same as permutation sorting, except that the first value doesn't change.
 
 Note that students shouldn't use the interactive at the start of this chapter to estimate speeds, as it runs at a fixed speed for a particular computer, and the project below will assume we have a very fast computer. And of course, pedagogically it's better for them to do the calculations themselves.
 
@@ -677,7 +677,7 @@ There are thousands of problems like the TSP for which no tractable solution is 
 - [Hamiltonian paths](http://en.wikipedia.org/wiki/Hamiltonian_path>) (no tractable solution for this is known, yet the very similar Eulerian path, which is often presented as the seven bridges problem, has an easy tractable solution)
 - [Steiner trees](http://www.csunplugged.org/steiner-trees)
 - [Dominating sets](http://www.csunplugged.org/dominating-sets)
-- [Longest path](http://en.wikipedia.org/wiki/Longest_path) (this is interesting because finding the longest path is intractable, yet finding the shortest path is tractable - the shortest path is calculated when a GPS device works out the shortest route to a destination. Also, a Hamiltonian problem can be reduced easily to longest path, showing the concept of reduction when one NP-complete problem is used to solve another). And here's a song about it! {video https://www.youtube.com/watch?feature=player_embedded&v=a3ww0gwEszo}
+- [Longest path](http://en.wikipedia.org/wiki/Longest_path) (this is interesting because finding the longest path is intractable, yet finding the shortest path is tractable - the shortest path is calculated when a GPS device works out the shortest route to a destination. Also, a Hamiltonian problem can be reduced easily to longest path, showing the concept of reduction when one NP-complete problem is used to solve another). [And here's a song about it!](https://www.youtube.com/watch?feature=player_embedded&v=a3ww0gwEszo)
 - [the Battleship problem](http://en.wikipedia.org/wiki/Battleship_(puzzle))
 
 {comment}
