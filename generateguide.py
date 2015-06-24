@@ -81,7 +81,7 @@ class Guide:
             template_text = ''
             reading_template = False
             for line in data:
-                search = re.search('^\{(?P<template_name>[^%{# }]+(?P<end> end)?)\}', line, re.MULTILINE)
+                search = re.search('^\{(?P<template_name>[^\W }]+(?P<end> end)?)\}', line, re.MULTILINE)
                 if search:
                     if search.group('end'):
                         reading_template = False
@@ -120,48 +120,58 @@ class Guide:
         settings.read(settings_location)
         return settings
 
+
     def parse_structure(self):
-        """Create dictionary of guide structure"""
-        structure = Structure('CSFG')
+        """Create tree of guide structure using folder and file nodes"""
+        #TODO: Needs to be extended to include assesment guides/different levels,temporary solution atm
+
+        text_root = './text'
+        root_folder = FolderNode('root')
         group_order = self.generator_settings['Source']['Text Order'].split()
         for group in group_order:
-            order = self.guide_settings[group]['Order']
-            titles = order.split('\n')
-            group_structure = Structure(group)
+            root_folder.add_folder(group)
+            cur_folder = root_folder.get_folder(group)
+            titles = self.guide_settings[group]['Order'].strip().split('\n)
             for title in titles:
-                stripped_title = title.strip()
-                if stripped_title != '':
-                    group_structure.children.append(Structure(stripped_title))
-            structure.children.append(group_structure)
-        return structure
+                cur_folder.add_file(title)
+
+        for page in self.guide_settings['static-pages']['Order']:
+            path_list = page.split('/')
+            cur_folder = root_folder
+            while len(path_list) > 1:
+                cur_folder = cur_folder.get_folder(path_list.pop(0))
+            cur_folder.add_file(path_list[0]) #TODO: need to decide whether to include .md
+
+        return root_folder
 
 
     def read_content(self):
-        """Sets structure node's data attribute to Section objects"""
-        for group in self.structure.children:
-            for section in group.children:
-                file_path = self.create_file_path(section.title, group.title, self.language)
-                if file_exists(file_path):
-                    with open(file_path, 'r', encoding='utf8') as source_file:
+        """BFS of structure tree, visits file nodes, reads markdown from file
+        and adds this to file node"""
+        folder_queue = [self.structure]
+        while len(folder_queue) > 0:
+            cur_folder = folder_queue.pop(0)
+            folder_queue += cur_folder.folders
+            for file in cur_folder.files:
+                if file_exists(file.path):
+                    with open(file.path, 'r', encoding='utf8') as source_file:
                         data = source_file.read()
-                else:
-                    data = None
-                section.data = Section(section.title, data, file_path, self, section)
+                file.generate_section(data)
 
 
-    def create_file_path(self, title, group, language):
-        template = self.generator_settings['Source']['Text Filename Template']
-        file_name = template.format(title=title.replace(' ', '-').lower(), language=language)
-        if group == 'Chapters':
-            folder_name = title.replace(' ', '-').lower()
-            path = os.path.join(self.generator_settings['Source']['Chapters'],
-                                folder_name,
-                                file_name)
-        elif group == 'Appendices':
-            path = os.path.join(self.generator_settings['Source']['Appendices'],
-                                file_name)
-        return path
-
+    # def create_file_path(self, title, group, language):
+    #     template = self.generator_settings['Source']['Text Filename Template']
+    #     file_name = template.format(title=title.replace(' ', '-').lower(), language=language)
+    #     if group == 'Chapters':
+    #         folder_name = title.replace(' ', '-').lower()
+    #         path = os.path.join(self.generator_settings['Source']['Chapters'],
+    #                             folder_name,
+    #                             file_name)
+    #     elif group == 'Appendices':
+    #         path = os.path.join(self.generator_settings['Source']['Appendices'],
+    #                             file_name)
+    #     return path
+    #
 
     def write_html_files(self):
         """Writes the necessary HTML files
@@ -181,7 +191,6 @@ class Guide:
 
         for group in self.structure.children:
             for section in group.children:
-                section_template = self.generator_settings['HTML'][group.title]
                 file_name = self.generator_settings['Output']['File'].format(file_name=section.title.replace(' ', '-').lower())
                 section.link = os.path.join(base_folder, file_name)
 
@@ -193,6 +202,7 @@ class Guide:
         for group in self.structure.children:
             for section in group.children:
                 body_html= ''
+                section_template = self.generator_settings['HTML'][group.title]
 
                 if section.data.mathjax_required:
                     body_html += '<script type="text/javascript"  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>'
@@ -222,69 +232,115 @@ class Guide:
                     logging.error("{file_type} {filename} could not be found".format(file_type=file_type[:-1],
                                                                                      filename=filename))
 
-class Structure:
-    """Node object for storing guide structure data"""
-    def __init__(self, title, number=None, link=None, paginated_link=None, heading_level=None, data=None):
-        self.title = title
-        self.number = number
-        self.link = link
-        self.paginated_link = paginated_link
-        self.heading_level = heading_level
-        self.data = data
-        self.children = []
 
-    def return_children(self, depth):
-        children_list = []
-        for child in self.children:
-            children_list.append(child)
-            if depth > 1:
-                children_list.append(child.return_children(depth - 1))
-        return children_list
+class FolderNode:
+    """Node object for storing folder details in structure tree"""
+    def __init__(self, name, parent=None):
+        self.name = name
+        self.parent = parent
+        self.folders = []
+        self.files = []
+        self.folders_dict = {}
+        self.files_dict = {}
+        self.depth = (parent.depth + 1) if parent else -1
+        self.path = '{}/{}'.format(self.parent.path, name) if parent else ''
 
-    def add_child(self, title, link=None, paginated_link=None, heading_level=None):
-        if self.number:
-            parent = self.find_parent_for_child(heading_level - 1)
-            child_number = parent.next_child_number()
-            child = Structure(title, link=link, paginated_link=paginated_link, number=child_number, heading_level=heading_level)
-            parent.children.append(child)
-        else:
-            child = Structure(title, link=link, paginated_link=paginated_link, heading_level=heading_level)
-            self.children.append(child)
-        return child
+    def add_folder(self, folder_name):
+        folder_node = FolderNode(folder_name, parent=self)
+        self.folders.append(folder_node)
+        self.folders_dict[folder_name] = len(self.folders) - 1
 
-    def set_number(self, number):
-        """Sets the number for the section"""
-        self.number = [number, 0, 0, 0, 0, 0]
+    def add_file(self, file_name):
+        file_node = FileNode(file_name, parent=self)
+        self.files.append(file_node)
+        self.files_dict[file_name] = len(self.files) - 1
 
-    def find_parent_for_child(self, depth):
-        """Returns the parent for a new child node"""
-        if depth > 1 and len(self.children) > 0:
-            return self.children[-1].find_parent_for_child(depth - 1)
-        else:
-            return self
+    def get_folder(name):
+        return self.folders[self.folders_dict[name]]
 
-    def next_child_number(self):
-        number = list(self.number)
-        number[number.index(0)] = len(self.children) + 1
-        return number
+    def get_file(name):
+        return self.files[self.files_dict[name]]
 
-    def format_section_number(self):
-        """Return a nicely formatted version of the section number"""
-        if self.number:
-            formatted_number = ('.'.join(str(num) for num in self.number))
-            formatted_number = formatted_number[:formatted_number.find('0')]
-        else:
-            formatted_number = "No number assigned"
-        return formatted_number
 
-    def __str__(self, depth=1):
-        """Function used for debugging to visualise structure tree"""
-        string_template = "{} (Number: {}, Link: {}, Paginated Link: {} Data: {}, Num Children: {})\n"
-        string = string_template.format(self.title, self.format_section_number(), self.link, self.paginated_link, self.data, len(self.children))
-        if len(self.children) > 0:
-            for child in self.children:
-                string += "--" * depth + child.__str__(depth+1)
-        return string
+class FileNode:
+    """Node object for storing file details in structure tree"""
+    def __init__(self, name, parent):
+        self.filename = name
+        self.section = None
+        self.title = self.get_title()
+        self.depth = (parent.depth + 1)
+        self.path = '{}/{}'.format(self.parent.path, name)
+
+    def generate_section(self, markdown_data):
+        section = Section(markdown_data) #TODO: needs rest of arguments
+
+    def get_title(self):
+        """placeholder"""
+        pass
+
+# class Structure:
+#     """Node object for storing guide structure data"""
+#     def __init__(self, title, number=None, link=None, paginated_link=None, heading_level=None, data=None):
+#         self.title = title
+#         self.number = number
+#         self.link = link
+#         self.paginated_link = paginated_link
+#         self.heading_level = heading_level
+#         self.data = data
+#         self.children = []
+#
+#     def return_children(self, depth):
+#         children_list = []
+#         for child in self.children:
+#             children_list.append(child)
+#             if depth > 1:
+#                 children_list.append(child.return_children(depth - 1))
+#         return children_list
+#
+#     def add_child(self, title, link=None, paginated_link=None, heading_level=None):
+#         if self.number:
+#             parent = self.find_parent_for_child(heading_level - 1)
+#             child_number = parent.next_child_number()
+#             child = Structure(title, link=link, paginated_link=paginated_link, number=child_number, heading_level=heading_level)
+#             parent.children.append(child)
+#         else:
+#             child = Structure(title, link=link, paginated_link=paginated_link, heading_level=heading_level)
+#             self.children.append(child)
+#         return child
+#
+#     def set_number(self, number):
+#         """Sets the number for the section"""
+#         self.number = [number, 0, 0, 0, 0, 0]
+#
+#     def find_parent_for_child(self, depth):
+#         """Returns the parent for a new child node"""
+#         if depth > 1 and len(self.children) > 0:
+#             return self.children[-1].find_parent_for_child(depth - 1)
+#         else:
+#             return self
+#
+#     def next_child_number(self):
+#         number = list(self.number)
+#         number[number.index(0)] = len(self.children) + 1
+#         return number
+#
+#     def format_section_number(self):
+#         """Return a nicely formatted version of the section number"""
+#         if self.number:
+#             formatted_number = ('.'.join(str(num) for num in self.number))
+#             formatted_number = formatted_number[:formatted_number.find('0')]
+#         else:
+#             formatted_number = "No number assigned"
+#         return formatted_number
+#
+#     def __str__(self, depth=1):
+#         """Function used for debugging to visualise structure tree"""
+#         string_template = "{} (Number: {}, Link: {}, Paginated Link: {} Data: {}, Num Children: {})\n"
+#         string = string_template.format(self.title, self.format_section_number(), self.link, self.paginated_link, self.data, len(self.children))
+#         if len(self.children) > 0:
+#             for child in self.children:
+#                 string += "--" * depth + child.__str__(depth+1)
+#         return string
 
 
 def setup_logging():
