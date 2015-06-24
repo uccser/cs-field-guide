@@ -35,36 +35,41 @@ class Guide:
         self.language = self.parse_language()
         self.version = self.parse_version()
 
+        self.number_generator = NumberGenerator()
+
         # Structure tree of guide
         self.structure = self.parse_structure()
-        # Populates structure tree
-        self.read_content()
+        # Populates structure tree with markdown content
+        self.traverse_files(getattr(self, "read_content"))
         # Dictionary of sets for images, interactives, and other_files
         self.required_files = setup_required_files(self)
         self.html_templates = self.read_html_templates()
 
         if self.html_templates:
-            self.process_sections()
-            self.write_html_files()
+            #self.process_sections()
+            #self.write_html_files()
+            self.traverse_files(getattr(self, "process_section"))
+            self.traverse_files(getattr(self, "generate_html"))
 
 
-    def process_sections(self):
+    def process_section(self, file_node):
         """Process the Section files
         Sets: - Section numbers
               - Converts raw into HTML
               - Adds Section's required files to Guide's required files
         """
-        section_number = 1
-        for group in self.structure.children:
-            for section in group.children:
-                if self.guide_settings[group.title].getboolean('Numbered'):
-                    section.set_number(section_number)
-                if section.data.markdown_text:
-                    section.data.parse_markdown_content(self.html_templates)
-                for file_type,file_data in section.data.required_files.items():
-                    self.required_files[file_type] += file_data
-                if self.guide_settings[group.title].getboolean('Numbered'):
-                    section_number += 1
+        file_node.section.parse_markdown_content()
+        # section_number = 1
+        # for group in self.structure.children:
+        #     for section in group.children:
+        #         if self.guide_settings[group.title].getboolean('Numbered'):
+        #             section.set_number(section_number)
+        #         if section.data.markdown_text:
+        #             section.data.parse_markdown_content(self.html_templates)
+        #         for file_type,file_data in section.data.required_files.items():
+        #             self.required_files[file_type] += file_data
+        #         if self.guide_settings[group.title].getboolean('Numbered'):
+        #             section_number += 1
 
 
     def read_html_templates(self):
@@ -145,18 +150,22 @@ class Guide:
         return root_folder
 
 
-    def read_content(self):
-        """BFS of structure tree, visits file nodes, reads markdown from file
-        and adds this to file node"""
+    def traverse_files(self, process_file_function):
+        """BFS of structure tree, visits file nodes, and calls given function """
         folder_queue = [self.structure]
         while len(folder_queue) > 0:
             cur_folder = folder_queue.pop(0)
             folder_queue += cur_folder.folders
             for file in cur_folder.files:
-                if file_exists(file.path):
-                    with open(file.path, 'r', encoding='utf8') as source_file:
-                        data = source_file.read()
-                file.generate_section(data)
+                process_file_function(file)
+
+
+    def read_content(self, file_node):
+        """reads markdown from file and adds this to file node"""
+        if file_exists(file_node.path):
+            with open(file_node.path, 'r', encoding='utf8') as source_file:
+                data = source_file.read()
+        file_node.generate_section(data)
 
 
     # def create_file_path(self, title, group, language):
@@ -189,14 +198,14 @@ class Guide:
 
         # TODO: Find best place for this type of function
 
-        for group in self.structure.children:
-            for section in group.children:
-                file_name = self.generator_settings['Output']['File'].format(file_name=section.title.replace(' ', '-').lower())
-                section.link = os.path.join(base_folder, file_name)
+        # for group in self.structure.children:
+        #     for section in group.children:
+        #         file_name = self.generator_settings['Output']['File'].format(file_name=section.title.replace(' ', '-').lower())
+        #         section.link = os.path.join(base_folder, file_name)
 
-        top_menu_bar = []
-        for child in self.structure.children[0].return_children(1):
-            top_menu_bar.append((child.title, child.link))
+        # top_menu_bar = []
+        # for child in self.structure.children[0].return_children(1):
+        #     top_menu_bar.append((child.title, child.link))
 
         # TODO: Add writing of Appendices
         for group in self.structure.children:
@@ -235,7 +244,7 @@ class Guide:
 
 class FolderNode:
     """Node object for storing folder details in structure tree"""
-    def __init__(self, name, parent=None):
+    def __init__(self, name, parent=None, guide=None):
         self.name = name
         self.parent = parent
         self.folders = []
@@ -244,6 +253,7 @@ class FolderNode:
         self.files_dict = {}
         self.depth = (parent.depth + 1) if parent else -1
         self.path = '{}/{}'.format(self.parent.path, name) if parent else ''
+        self.guide = self.parent.guide if parent else guide
 
     def add_folder(self, folder_name):
         folder_node = FolderNode(folder_name, parent=self)
@@ -270,6 +280,7 @@ class FileNode:
         self.title = self.get_title()
         self.depth = (parent.depth + 1)
         self.path = '{}/{}'.format(self.parent.path, name)
+        self.guide = self.parent.guide
 
     def generate_section(self, markdown_data):
         section = Section(markdown_data) #TODO: needs rest of arguments
@@ -277,6 +288,22 @@ class FileNode:
     def get_title(self):
         """placeholder"""
         pass
+
+class NumberGenerator:
+    """Used to allocate numbers throughout guide"""
+    def __init__(self):
+        self.number_list = [1]
+        self.cur_level = 0
+
+    def __str__(self):
+        return '.'.join(self.number_list)
+
+    def next(self, level)
+        while len(self.number_list) > level + 1:
+            self.number_list.pop()
+        self.number_list[-1] += 1
+        return str(self)
+
 
 # class Structure:
 #     """Node object for storing guide structure data"""

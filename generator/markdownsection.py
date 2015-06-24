@@ -16,12 +16,16 @@ MARKDOWN2_EXTRAS = ["code-friendly",
 
 
 class Section:
-    def __init__(self, title, markdown_text, file_path, guide, structure_node):
-        self.guide = guide
-        self.structure_node = structure_node
-        self.title = title
+    def __init__(self, file_node, markdown_text):
+        self.file_node = file_node
         self.markdown_text = markdown_text
-        self.file_path = file_path
+        self.guide = self.file_node.guide
+        self.heading = None
+        self.cur_heading = None # pointer to current heading node
+        # self.guide = guide
+        # self.title = title
+        # self.file_path = file_path
+
         self.page_header_numbered = False
         self.html_content = []
         self.regex_functions = self.create_regex_functions()
@@ -36,6 +40,7 @@ class Section:
     def create_heading(self, match):
         heading_text = match.group('heading')
         heading_level = len(match.group('heading_level'))
+        heading_node = HeadingNode()
         permalink = self.create_permalink(heading_text)
         if self.section_header_created:
             heading_node = self.structure_node.add_child(heading_text, link=permalink, heading_level=heading_level)
@@ -250,6 +255,8 @@ class Section:
           Each string is the content for one section (page breaks).
 
         """
+        self.heading = HeadingNode(self.title, self.link_id, parent=None, guide=self.guide)
+        self.cur_heading = self.heading
         self.html_templates = html_templates
         for section_text in self.markdown_text.split('{page break}'):
             # Parse with our parser
@@ -269,3 +276,14 @@ class Section:
             function = getattr(self, regex_list[regex_name]['function'])
             regex_functions.append((regex, function))
         return regex_functions
+
+
+class HeadingNode:
+    def __init__(self, heading, link_id, parent=None, guide=None):
+        self.heading = heading
+        self.link_id = link_id
+        self.parent = parent
+        self.level = parent.level + 1 if parent else 0
+        self.guide = self.parent.guide if parent else guide
+        self.number = guide.number_generator.next(self.level)
+        self.children = []
