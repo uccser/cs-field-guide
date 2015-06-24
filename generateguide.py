@@ -1,14 +1,16 @@
 """ CSFG Guide Generator
-AUTHOR: Jack Morgan
+AUTHORS: Jack Morgan, Jordan Griffiths
 REQUIRES: Python >= 3.4.1
 """
 
 """Check and install dependencies if needed"""
 import pip
+# Pip commands currently disabled due to workstation issues
+# Will test installing to user directory
 # Update pip if needed
-#pip.main(['install', '--upgrade', 'pip>=7.0.3'])
+#pip.main(['install', '--upgrade', '--user', 'pip>=7.0.3'])
 # Check dependencies
-#pip.main(['install', '-r', 'generator/dependencies.conf'])
+#pip.main(['install',  '--user', '-r', 'generator/dependencies.conf'])
 
 import configparser
 import logging
@@ -111,7 +113,6 @@ class Guide:
         #-  Needs to be extended to include assesment guides/different
         #   levels,temporary solution
         #-  Traverse directories perhaps?
-
 
         root_folder = FolderNode('root', guide=self)
         group_order = self.generator_settings['Source']['Text Order'].split()
@@ -304,7 +305,7 @@ class NumberGenerator:
     def __str__(self):
         """Return formatted number eg. "1.5.6.2"
         """
-        return '.'.join(str(num) for num in self.number_list[1:])
+        return '.'.join(str(num) for num in self.number_list[1:]) + '.'
 
     def next(self, level):
         """Returns next number for a given level.
