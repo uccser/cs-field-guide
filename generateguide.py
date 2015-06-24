@@ -6,9 +6,9 @@ REQUIRES: Python >= 3.4.1
 """Check and install dependencies if needed"""
 import pip
 # Update pip if needed
-pip.main(['install', '--upgrade', 'pip>=7.0.3'])
+#pip.main(['install', '--upgrade', 'pip>=7.0.3'])
 # Check dependencies
-pip.main(['install', '-r', 'generator/dependencies.conf'])
+#pip.main(['install', '-r', 'generator/dependencies.conf'])
 
 import configparser
 import logging
@@ -49,7 +49,8 @@ class Guide:
             #self.process_sections()
             #self.write_html_files()
             self.traverse_files(getattr(self, "process_section"))
-            self.traverse_files(getattr(self, "generate_html"))
+            self.setup_html_output()
+            self.traverse_files(getattr(self, "write_html_file"))
 
 
     def process_section(self, file_node):
@@ -58,7 +59,10 @@ class Guide:
               - Converts raw into HTML
               - Adds Section's required files to Guide's required files
         """
-        file_node.section.parse_markdown_content()
+        print(file_node.filename)
+        file_node.section.parse_markdown_content(self.html_templates)
+        for file_type,file_data in file_node.section.required_files.items():
+            self.required_files[file_type] += file_data
         # section_number = 1
         # for group in self.structure.children:
         #     for section in group.children:
@@ -86,7 +90,7 @@ class Guide:
             template_text = ''
             reading_template = False
             for line in data:
-                search = re.search('^\{(?P<template_name>[^\W }]+(?P<end> end)?)\}', line, re.MULTILINE)
+                search = re.search('^\{(?P<template_name>[^%{# }]+(?P<end> end)?)\}', line, re.MULTILINE)
                 if search:
                     if search.group('end'):
                         reading_template = False
@@ -130,17 +134,17 @@ class Guide:
         """Create tree of guide structure using folder and file nodes"""
         #TODO: Needs to be extended to include assesment guides/different levels,temporary solution atm
 
-        text_root = './text'
-        root_folder = FolderNode('root')
+
+        root_folder = FolderNode('root', guide=self)
         group_order = self.generator_settings['Source']['Text Order'].split()
         for group in group_order:
             root_folder.add_folder(group)
             cur_folder = root_folder.get_folder(group)
-            titles = self.guide_settings[group]['Order'].strip().split('\n)
+            titles = self.guide_settings[group]['Order'].strip().split('\n')
             for title in titles:
                 cur_folder.add_file(title)
 
-        for page in self.guide_settings['static-pages']['Order']:
+        for page in self.guide_settings['static-pages']['Order'].split():
             path_list = page.split('/')
             cur_folder = root_folder
             while len(path_list) > 1:
@@ -161,11 +165,18 @@ class Guide:
 
 
     def read_content(self, file_node):
+        text_root = 'text'
+        template = self.generator_settings['Source']['Text Filename Template']
+        file_path = template.format(folder_path=file_node.parent.path,
+                                    title=file_node.filename,
+                                    language=self.language)
+        file_path = os.path.join(text_root, file_path)
+        print('READING CONTENT FROM: ', file_path)
         """reads markdown from file and adds this to file node"""
-        if file_exists(file_node.path):
-            with open(file_node.path, 'r', encoding='utf8') as source_file:
+        if file_exists(file_path):
+            with open(file_path, 'r', encoding='utf8') as source_file:
                 data = source_file.read()
-        file_node.generate_section(data)
+                file_node.generate_section(data)
 
 
     # def create_file_path(self, title, group, language):
@@ -182,10 +193,7 @@ class Guide:
     #     return path
     #
 
-    def write_html_files(self):
-        """Writes the necessary HTML files
-        Writes: - Chapter files
-        """
+    def setup_html_output(self):
         base_folder = self.generator_settings['Output']['Folder'].format(language=self.language,
                                                                          version=self.version)
         image_source_folder = self.generator_settings['Source']['Images']
@@ -194,37 +202,7 @@ class Guide:
         os.makedirs(base_folder, exist_ok=True)
         os.makedirs(image_output_folder, exist_ok=True)
 
-        website_generator = WebsiteGenerator(self.html_templates)
-
-        # TODO: Find best place for this type of function
-
-        # for group in self.structure.children:
-        #     for section in group.children:
-        #         file_name = self.generator_settings['Output']['File'].format(file_name=section.title.replace(' ', '-').lower())
-        #         section.link = os.path.join(base_folder, file_name)
-
-        # top_menu_bar = []
-        # for child in self.structure.children[0].return_children(1):
-        #     top_menu_bar.append((child.title, child.link))
-
-        # TODO: Add writing of Appendices
-        for group in self.structure.children:
-            for section in group.children:
-                body_html= ''
-                section_template = self.generator_settings['HTML'][group.title]
-
-                if section.data.mathjax_required:
-                    body_html += '<script type="text/javascript"  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>'
-
-                for section_content in section.data.html_content:
-                    body_html += section_content
-                context = {'page_title':section.title, 'body_html':body_html, 'top_menu_bar':top_menu_bar}
-                html = website_generator.render_template(section_template, context)
-                try:
-                    with open(section.link, 'w', encoding='utf8') as output_file:
-                        output_file.write(html)
-                except:
-                    logging.critical("Cannot write file {0}".format(file_name))
+        self.website_generator = WebsiteGenerator(self.html_templates)
 
         # Copy all required files
         for file_type,file_data in self.required_files.items():
@@ -240,6 +218,41 @@ class Guide:
                 else:
                     logging.error("{file_type} {filename} could not be found".format(file_type=file_type[:-1],
                                                                                      filename=filename))
+    def write_html_file(self, file):
+        """Writes the necessary HTML files
+        Writes: - Chapter files
+        """
+
+
+        # TODO: Find best place for this type of function
+
+        # for group in self.structure.children:
+        #     for section in group.children:
+        #         file_name = self.generator_settings['Output']['File'].format(file_name=section.title.replace(' ', '-').lower())
+        #         section.link = os.path.join(base_folder, file_name)
+
+        # top_menu_bar = []
+        # for child in self.structure.children[0].return_children(1):
+        #     top_menu_bar.append((child.title, child.link))
+
+        # TODO: Add writing of Appendices
+        body_html= ''
+        section_template = 'website_chapter' #TODO: placeholder FIX THIS - > self.generator_settings['HTML'][group.title]
+
+        if file.section.mathjax_required:
+            body_html += '<script type="text/javascript"  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>'
+
+        for section_content in file.section.html_content:
+            body_html += section_content
+        context = {'page_title':file.title, 'body_html':body_html)#, 'top_menu_bar':top_menu_bar}
+        html = self.website_generator.render_template(section_template, context)
+        try:
+            with open(file.link, 'w', encoding='utf8') as output_file:
+                output_file.write(html)
+        except:
+            logging.critical("Cannot write file {0}".format(file_name))
+
+
 
 
 class FolderNode:
@@ -252,7 +265,7 @@ class FolderNode:
         self.folders_dict = {}
         self.files_dict = {}
         self.depth = (parent.depth + 1) if parent else -1
-        self.path = '{}/{}'.format(self.parent.path, name) if parent else ''
+        self.path = '{}{}/'.format(self.parent.path, self.name) if self.parent else ''
         self.guide = self.parent.guide if parent else guide
 
     def add_folder(self, folder_name):
@@ -265,10 +278,10 @@ class FolderNode:
         self.files.append(file_node)
         self.files_dict[file_name] = len(self.files) - 1
 
-    def get_folder(name):
+    def get_folder(self, name):
         return self.folders[self.folders_dict[name]]
 
-    def get_file(name):
+    def get_file(self, name):
         return self.files[self.files_dict[name]]
 
 
@@ -276,32 +289,35 @@ class FileNode:
     """Node object for storing file details in structure tree"""
     def __init__(self, name, parent):
         self.filename = name
+        self.parent = parent
         self.section = None
-        self.title = self.get_title()
         self.depth = (parent.depth + 1)
-        self.path = '{}/{}'.format(self.parent.path, name)
+        self.path = '{}{}'.format(self.parent.path, self.filename)
         self.guide = self.parent.guide
 
     def generate_section(self, markdown_data):
-        section = Section(markdown_data) #TODO: needs rest of arguments
+        self.section = Section(self, markdown_data) #TODO: needs rest of arguments
 
-    def get_title(self):
-        """placeholder"""
-        pass
 
 class NumberGenerator:
     """Used to allocate numbers throughout guide"""
     def __init__(self):
-        self.number_list = [1]
-        self.cur_level = 0
+        self.number_list = [None, 0]
+        self.cur_level = 1
 
     def __str__(self):
-        return '.'.join(self.number_list)
+        return '.'.join(str(num) for num in self.number_list[1:])
 
-    def next(self, level)
-        while len(self.number_list) > level + 1:
-            self.number_list.pop()
-        self.number_list[-1] += 1
+    def next(self, level):
+        if level > self.cur_level:
+            while level > self.cur_level:
+                self.number_list.append(1)
+                self.cur_level += 1
+        else:
+            while self.cur_level > level:
+                self.number_list.pop()
+                self.cur_level -= 1
+            self.number_list[-1] += 1
         return str(self)
 
 

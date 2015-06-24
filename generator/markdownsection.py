@@ -22,35 +22,36 @@ class Section:
         self.guide = self.file_node.guide
         self.heading = None
         self.cur_heading = None # pointer to current heading node
-        # self.guide = guide
-        # self.title = title
-        # self.file_path = file_path
-
-        self.page_header_numbered = False
+        self.title = None
         self.html_content = []
         self.regex_functions = self.create_regex_functions()
         self.permalinks = set()
         # Dictionary of sets for images, interactives, and other_files
-        self.required_files = setup_required_files(guide)
+        self.required_files = setup_required_files(file_node.guide)
         self.mathjax_required = False
-        self.section_header_created = False
+
 
     # ----- Helper Functions -----
 
     def create_heading(self, match):
         heading_text = match.group('heading')
         heading_level = len(match.group('heading_level'))
-        heading_node = HeadingNode()
         permalink = self.create_permalink(heading_text)
-        if self.section_header_created:
-            heading_node = self.structure_node.add_child(heading_text, link=permalink, heading_level=heading_level)
-            section_number = heading_node.format_section_number()
+        if heading_level == 1:
+            self.cur_heading = HeadingNode(heading_text, permalink, guide=self.guide)
+            self.title = heading_text
+        elif heading_level <= self.cur_heading.level:
+            for level in range(self.cur_heading.level - heading_level + 1):
+                self.cur_heading = self.cur_heading.parent
+            self.cur_heading = HeadingNode(heading_text, permalink, parent=self.cur_heading)
         else:
-            section_number = self.structure_node.format_section_number()
-            self.section_header_created = True
+            for level in range(heading_level - self.cur_heading.level - 1):
+                self.cur_heading = HeadingNode(heading_text, '', parent = self.cur_heading) #TODO: Exception? A heading level has been missed
+            self.cur_heading = HeadingNode(heading_text, permalink, parent=self.cur_heading)
+
         html = self.html_templates['heading'].format(heading_level=heading_level,
                                                      permalink=permalink,
-                                                     section_number=section_number,
+                                                     section_number=self.cur_heading.number,
                                                      heading_text=heading_text)
         return html
 
@@ -255,8 +256,6 @@ class Section:
           Each string is the content for one section (page breaks).
 
         """
-        self.heading = HeadingNode(self.title, self.link_id, parent=None, guide=self.guide)
-        self.cur_heading = self.heading
         self.html_templates = html_templates
         for section_text in self.markdown_text.split('{page break}'):
             # Parse with our parser
@@ -279,11 +278,15 @@ class Section:
 
 
 class HeadingNode:
-    def __init__(self, heading, link_id, parent=None, guide=None):
+    def __init__(self, heading, permalink, parent=None, guide=None):
         self.heading = heading
-        self.link_id = link_id
+        self.permalink = permalink
         self.parent = parent
-        self.level = parent.level + 1 if parent else 0
+        self.level = parent.level + 1 if parent else 1
         self.guide = self.parent.guide if parent else guide
-        self.number = guide.number_generator.next(self.level)
+        self.number = self.guide.number_generator.next(self.level)
         self.children = []
+        print(self)
+
+    def __str__(self):
+        return '{}{}{}'.format(self.number, '-' * len(self.number), self.heading)
