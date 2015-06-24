@@ -16,11 +16,15 @@ MARKDOWN2_EXTRAS = ["code-friendly",
 
 
 class Section:
+    """Contains data and functions relating to a specific section of the
+    guide, e.g. a chapter. For HTML output, every section object yields
+    a seperate HTML file. Associated with a file node.
+    """
     def __init__(self, file_node, markdown_text):
         self.file_node = file_node
         self.markdown_text = markdown_text
         self.guide = self.file_node.guide
-        self.heading = None
+        self.heading = None #set to first heading during markdown parsing
         self.cur_heading = None # pointer to current heading node
         self.title = None
         self.html_content = []
@@ -34,6 +38,12 @@ class Section:
     # ----- Helper Functions -----
 
     def create_heading(self, match):
+        """Parsing function for heading regex
+        -   Creates heading node and adds it to structure tree
+        -   If top level heading, section.title is set
+        -   HTML component returned
+        """
+
         heading_text = match.group('heading')
         heading_level = len(match.group('heading_level'))
         permalink = self.create_permalink(heading_text)
@@ -57,6 +67,9 @@ class Section:
 
 
     def create_permalink(self, text):
+        """Helper function for create_heading
+        -   returns a unique permalink for each heading
+        """
         link = self.to_snake_case(text)
         count = 2
         while link in self.permalinks:
@@ -278,6 +291,9 @@ class Section:
 
 
 class HeadingNode:
+    """Nodes of the structure tree of a section. A call is made to the guide
+    number generator upon creation
+    """
     def __init__(self, heading, permalink, parent=None, guide=None):
         self.heading = heading
         self.permalink = permalink
