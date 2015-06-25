@@ -42,15 +42,15 @@ class Guide:
         # Structure tree of guide
         self.structure = self.parse_structure()
         # Populates structure tree with markdown content
-        self.traverse_files(getattr(self, "read_content"))
+        self.traverse_files(self.structure, getattr(self, "read_content"))
         # Dictionary of sets for images, interactives, and other_files
         self.required_files = setup_required_files(self)
         self.html_templates = self.read_html_templates()
 
         if self.html_templates:
-            self.traverse_files(getattr(self, "process_section"))
+            self.traverse_files(self.structure, getattr(self, "process_section"))
             self.setup_html_output()
-            self.traverse_files(getattr(self, "write_html_file"))
+            self.traverse_files(self.structure, getattr(self, "write_html_file"))
 
 
     def read_html_templates(self):
@@ -109,39 +109,39 @@ class Guide:
 
     def parse_structure(self):
         """Create tree of guide structure using folder and file nodes"""
-        #TODO:
-        #-  Needs to be extended to include assesment guides/different
-        #   levels,temporary solution
-        #-  Traverse directories perhaps?
-
         root_folder = FolderNode('root', guide=self)
-        group_order = self.generator_settings['Source']['Text Order'].split()
-        for group in group_order:
-            root_folder.add_folder(group)
-            cur_folder = root_folder.get_folder(group)
-            titles = self.guide_settings[group]['Order'].strip().split('\n')
-            for title in titles:
-                cur_folder.add_file(title)
-
-        for page in self.guide_settings['static-pages']['Order'].split():
-            path_list = page.split('/')
-            cur_folder = root_folder
-            while len(path_list) > 1:
-                cur_folder = cur_folder.get_folder(path_list.pop(0))
-            cur_folder.add_file(path_list[0]) #TODO: need to decide whether to include .md
-
+        content_types = [('tracked', True), ('untracked', False)] #TODO: Find better location for this data
+        for content_name,is_tracked in content_types:
+            group_order = self.generator_settings['Source'][content_name].split()
+            # For each group in order, create folder nodes and file nodes
+            for group in group_order:
+                group_root_folder = self.generator_settings['Source'][group]
+                title_paths = self.guide_settings['Guide Structure'][group].strip().split('\n')
+                for title_path in title_paths:
+                    current_folder = root_folder # Reset current folder to root
+                    full_title_path = os.path.join(group_root_folder, title_path)
+                    folder_path,title  = os.path.split(full_title_path)
+                    folder_path = folder_path.split('/')
+                    # Navigate to correct folder
+                    while folder_path:
+                        sub_folder_name = folder_path.pop(0)
+                        if sub_folder_name:
+                            # add_folder ignores creation if folder exists
+                            current_folder.add_folder(sub_folder_name)
+                            current_folder = current_folder.get_folder(sub_folder_name)
+                    current_folder.add_file(title, group, tracked=is_tracked)
+        # Visualise folder structure for restructuring
+        print(root_folder)
         return root_folder
 
 
-    def traverse_files(self, process_file_function):
+    def traverse_files(self, start_node, process_file_function):
         """BFS of structure tree, visits file nodes, and calls given function
         on each file node found"""
-        folder_queue = [self.structure]
-        while len(folder_queue) > 0:
-            cur_folder = folder_queue.pop(0)
-            folder_queue += cur_folder.folders
-            for file in cur_folder.files:
-                process_file_function(file)
+        for folder in start_node.folders:
+            self.traverse_files(folder, process_file_function)
+        for file in start_node.files:
+            process_file_function(file)
 
 
     def read_content(self, file_node):
@@ -152,18 +152,16 @@ class Guide:
         -   Calls generate_section function of section object,
             passing through markdown contents
         """
-        text_root = 'text'
-        template = self.generator_settings['Source']['Text Filename Template']
-        file_path = template.format(folder_path=file_node.parent.path,
-                                    title=file_node.filename,
-                                    language=self.language)
-        file_path = os.path.join(text_root, file_path)
+        text_root = self.generator_settings['Source']['text']
+        file_template = self.generator_settings['Source']['Text Filename Template']
+        file_name = file_template.format(title=file_node.filename, language=self.language)
+        file_path = os.path.join(text_root, file_node.parent.path, file_name)
 
-        """reads markdown from file and adds this to file node"""
+        # Reads markdown from file and adds this to file node
         if file_exists(file_path):
             with open(file_path, 'r', encoding='utf8') as source_file:
-                data = source_file.read()
-                file_node.generate_section(data)
+                raw_data = source_file.read()
+                file_node.generate_section(raw_data)
 
 
     def process_section(self, file_node):
@@ -172,7 +170,6 @@ class Guide:
               - Converts raw into HTML
               - Adds Section's required files to Guide's required files
         """
-        print(file_node.filename)
         file_node.section.parse_markdown_content(self.html_templates)
         for file_type,file_data in file_node.section.required_files.items():
             self.required_files[file_type] += file_data
@@ -185,8 +182,7 @@ class Guide:
         -   Set up WebsiteGenerator
         -   Copy required files
         """
-        self.output_folder = self.generator_settings['Output']['Folder'].format(language=self.language,
-                                                                         version=self.version)
+        self.output_folder = self.generator_settings['Output']['Folder'].format(language=self.language, version=self.version)
         image_source_folder = self.generator_settings['Source']['Images']
         image_output_folder = os.path.join(self.output_folder, self.generator_settings['Output']['Images'])
         # Create necessary folders
@@ -204,11 +200,11 @@ class Guide:
                     try:
                         copy2(source_location, output_location)
                     except:
-                        logging.exception("{file_type} {filename} could not be copied".format(file_type=file_type[:-1],
-                                                                                              filename=filename))
+                        logging.exception("{file_type} {filename} could not be copied".format(file_type=file_type[:-1], filename=filename))
                 else:
-                    logging.error("{file_type} {filename} could not be found".format(file_type=file_type[:-1],
-                                                                                     filename=filename))
+                    logging.error("{file_type} {filename} could not be found".format(file_type=file_type[:-1],filename=filename))
+
+
     def write_html_file(self, file):
         """Writes the HTML file for a given file node
         (Temporary Solution)
@@ -218,29 +214,28 @@ class Guide:
         # -   Restructure with helper functions to allow for various
         #     components to be created in jinja2
 
-
         file_name = self.generator_settings['Output']['File'].format(file_name=file.filename)
         directory = os.path.join(self.output_folder, file.parent.path)
         os.makedirs(directory, exist_ok=True)
         path = os.path.join(directory, file_name)
 
         body_html= ''
-        section_template = 'website_chapter' #TODO: placeholder FIX THIS - > self.generator_settings['HTML'][group.title]
+        section_template = self.generator_settings['HTML'][file.group_type]
 
         if file.section.mathjax_required:
             body_html += '<script type="text/javascript"  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>'
 
         for section_content in file.section.html_content:
             body_html += section_content
-        context = {'page_title':file.section.title, 'body_html':body_html}#, 'top_menu_bar':top_menu_bar}
+        context = {'page_title':file.section.title,
+                   'body_html':body_html,
+                   'path_to_root': file.section.html_path_to_root}
         html = self.website_generator.render_template(section_template, context)
         try:
             with open(path, 'w', encoding='utf8') as output_file:
                 output_file.write(html)
         except:
             logging.critical("Cannot write file {0}".format(path))
-
-
 
 
 class FolderNode:
@@ -253,47 +248,71 @@ class FolderNode:
         self.folders_dict = {}
         self.files_dict = {}
         self.depth = (parent.depth + 1) if parent else -1
-        self.path = '{}{}/'.format(self.parent.path, self.name) if self.parent else ''
+        self.path = os.path.join(self.parent.path, self.name) if self.parent else ''
         self.guide = self.parent.guide if parent else guide
 
     def add_folder(self, folder_name):
         """Add sub-folder to folders list. Updates dictionary
         of index references
         """
-        folder_node = FolderNode(folder_name, parent=self)
-        self.folders.append(folder_node)
-        self.folders_dict[folder_name] = len(self.folders) - 1
+        if not folder_name in self.folders_dict:
+            folder_node = FolderNode(folder_name, parent=self)
+            self.folders.append(folder_node)
+            self.folders_dict[folder_name] = len(self.folders) - 1
 
-    def add_file(self, file_name):
+    def add_file(self, file_name, group_type, tracked=True):
         """Add file to files list. Updates dictionary
         of index references
         """
-        file_node = FileNode(file_name, parent=self)
+        file_node = FileNode(file_name, group_type, parent=self, tracked=tracked)
         self.files.append(file_node)
         self.files_dict[file_name] = len(self.files) - 1
 
     def get_folder(self, name):
         """return reference to sub-folder with given name"""
-        return self.folders[self.folders_dict[name]]
+        if name:
+            return self.folders[self.folders_dict[name]]
+        else:
+            return self
 
     def get_file(self, name):
         """return reference to contained file with given name"""
         return self.files[self.files_dict[name]]
 
+    def __str__(self):
+        """Function used for debugging to visualise structure tree"""
+        string_template = "{indent}FOLDER: {} (Depth: {}, Path: {})\n"
+        indent = (self.depth + 1) * '--'
+        string = string_template.format(self.name, self.depth, self.path, indent=indent)
+        for file in self.files:
+            string += file.__str__()
+        for folder in self.folders:
+            string += folder.__str__()
+        return string
+
 
 class FileNode:
     """Node object for storing file details in structure tree"""
-    def __init__(self, name, parent):
+    def __init__(self, name, group_type, parent, tracked):
         self.filename = name
+        self.group_type = group_type
         self.parent = parent
         self.section = None
+        self.tracked = tracked
         self.depth = (parent.depth + 1)
-        self.path = '{}{}'.format(self.parent.path, self.filename)
+        self.path = os.path.join(self.parent.path, self.filename)
         self.guide = self.parent.guide
 
     def generate_section(self, markdown_data):
         """Creates section object with given markdown data"""
         self.section = Section(self, markdown_data)
+
+    def __str__(self):
+        """Function used for debugging to visualise structure tree"""
+        string_template = "{indent}FILE: {} (Depth: {}, Path: {}, Tracked: {})\n"
+        indent = (self.depth + 1) * '--'
+        string = string_template.format(self.filename, self.depth, self.path, self.tracked, indent=indent)
+        return string
 
 
 class NumberGenerator:

@@ -4,9 +4,10 @@
 The following assessment plans also cover this material:
 
 **New Zealand - AS91074 (1.44)**
-- [Assessment Overview](/appendices/assessment-guides/new-zealand/assessment-guide-level-1-introduction.html)
-- [Searching Algorithms Assessment Guide](/appendices/assessment-guides/new-zealand/assessment-guide-level-1-searching-algorithms.html)
-- [Sorting Algorithms Assessment Guide](/appendices/assessment-guides/new-zealand/assessment-guide-level-1-sorting-algorithms.html)
+
+- [Assessment Overview](assessment-guides/new-zealand/assessment-guide-level-1-introduction.html)
+- [Searching Algorithms Assessment Guide](assessment-guides/new-zealand/assessment-guide-level-1-searching-algorithms.html)
+- [Sorting Algorithms Assessment Guide](assessment-guides/new-zealand/assessment-guide-level-1-sorting-algorithms.html)
 {teacher end}
 
 {comment explain different views of algorithm (programming context) and Algorithm (that have interesting complexity); use https://www.youtube.com/watch?v=6hfOvs8pY1k for the former?}
@@ -26,9 +27,9 @@ If you have read through the Introduction chapter you may remember that the spee
 ### Algorithms, Programs and Informal Instructions
 
 At this stage you might be thinking that algorithms and computer programs kind of sound like the same thing, but they are actually two very distinct concepts. Descriptions of these and another important concept, Informal Instructions, are below. They are each different ways of describing how to do something:
-- **Informal Instruction:** An instruction using natural language. They are un-precise so computers cannot understand them, but humans are able to use their own intelligence to interpret them. This is the least precise of our three descriptions for doing things, and is typically used to give a very simple description of the general idea of an algorithm. 
+- **Informal Instruction:** An instruction using natural language. They are un-precise so computers cannot understand them, but humans are able to use their own intelligence to interpret them. This is the least precise of our three descriptions for doing things, and is typically used to give a very simple description of the general idea of an algorithm.
 - **Algorithm:** step by step process that describes how to solve a problem and/or complete a task, which will always give a result. They are more precise than Informal Instructions and do not require any knowledge or intelligence to follow, however they are still not precise enough for a computer to follow. These are often expressed using [pseudo-code](http://en.wikipedia.org/wiki/Pseudocode), which matches a programming language fairly closely, but leaves out details that could easily be added later by a programmer, and doesn't specify the kinds of commands that can be used.
-- **Program:** a specific implementation of an algorithm, which is written in a specific programming language and will give a certain result. This is the most precise of these three descriptions and computers are able to follow and understand these. 
+- **Program:** a specific implementation of an algorithm, which is written in a specific programming language and will give a certain result. This is the most precise of these three descriptions and computers are able to follow and understand these.
 
 For example...
 - **Informal Instruction:** "Get me a glass of water". A human can understand what this means and can figure out how to accomplish this task by thinking, but a computer would have no idea how to do this!
@@ -39,7 +40,7 @@ For example...
 
 When Computer Scientists are comparing algorithms they often talk about the 'cost' of an algorithm. The cost of an algorithm can be interpreted in several different ways, but it is always related to how well an algorithm performs based on the size of its input, *n*. In this chapter we will talk about the cost of an algorithm as either the time it takes a program (which performs the algorithm) to complete, and the number of comparisons the algorithm makes before it finishes.
 
-The amount of time a program which performs the algorithm takes to complete may seem like the simplest cost we could look at, but this can actually be affected by a lot of different things, like the speed of the computer being used, or the programming language the program has been written in. This means that if the time the program takes to complete is used to measure the cost of an algorithm it is important to use the same program and the same computer (or another computer with the same speed) for testing the algorithm with different numbers of inputs. 
+The amount of time a program which performs the algorithm takes to complete may seem like the simplest cost we could look at, but this can actually be affected by a lot of different things, like the speed of the computer being used, or the programming language the program has been written in. This means that if the time the program takes to complete is used to measure the cost of an algorithm it is important to use the same program and the same computer (or another computer with the same speed) for testing the algorithm with different numbers of inputs.
 
 The number of comparisons an algorithm makes however will not change depending on the speed of a computer, or the programming language the program using the algorithm is written in. Some algorithms will always make the same number of comparisons for a certain input size, while others might vary.
 
@@ -47,7 +48,7 @@ If you want to find out more about how the cost of an algorithm is described in 
 
 ### Searching and Sorting
 
-In this chapter we will look at two of the most common and important types of algorithms, Searching and Sorting. You probably come across these kinds of algorithms every time you use a computer without even realising! 
+In this chapter we will look at two of the most common and important types of algorithms, Searching and Sorting. You probably come across these kinds of algorithms every time you use a computer without even realising!
 
 {teacher}
 **Key Concepts**
@@ -72,9 +73,9 @@ More information on this can be found at the end of the chapter.
 {teacher}
 The present searching game in this section is split into two parts, the first corresponds to the Linear Search algorithm (also known as Sequential Search) and the second corresponds to Binary Search. We recommend you play through the levels yourself for a while, or after reading this description. It is based on the [CS Unplugged Battleships game](http://csunplugged.com/searching-algorithms) which can be used as a classroom activity to enforce the lessons in this chapter (the hashing activity is not used for the present searching game). The present searching game can be done individually by students as they read through the chapter, in groups or as a class activity.
 
-To run this as a classroom activity get all the students to play each section of the game at the same time and then when they have all finished have a discussion about the results. After students have finished the first part ask them questions like "Did anyone find the pet on the first go?", "Did anyone only find it after checking every other present?", or find the average number of presents students had to open to find the pet (this should be around 5 for the first level and around 10 for the second). 
+To run this as a classroom activity get all the students to play each section of the game at the same time and then when they have all finished have a discussion about the results. After students have finished the first part ask them questions like "Did anyone find the pet on the first go?", "Did anyone only find it after checking every other present?", or find the average number of presents students had to open to find the pet (this should be around 5 for the first level and around 10 for the second).
 
-While they are playing the second part some may have trouble finding the correct algorithm to find the pet. If they are finding these levels confusing you can give them a hint like "Why don't you start by opening the present in the centre" and when they do ask them "What does the number you found tell you about all the numbers before it?" if the number is smaller than the one they are looking for, or "all the numbers after it?" if the number is bigger than the one they are looking for. 
+While they are playing the second part some may have trouble finding the correct algorithm to find the pet. If they are finding these levels confusing you can give them a hint like "Why don't you start by opening the present in the centre" and when they do ask them "What does the number you found tell you about all the numbers before it?" if the number is smaller than the one they are looking for, or "all the numbers after it?" if the number is bigger than the one they are looking for.
 
 When students have finished ask them questions like "Where you able to find the pet even though you had less lives? What strategy did you use to find the pet?", we have found that many students will have ended up doing a binary search (or similar) without even knowing what a binary search is! Explaining these algorithms to students is likely to be easier now that they have seen them in action.
 {teacher end}
@@ -114,7 +115,7 @@ If you used this algorithm you might get lucky and find what you are looking for
 If you watched the video at the beginning of the chapter you might be thinking that what you did in the present searching game sounds more like Bozo Search than Linear Search, but actually Bozo Search is even sillier than this! If you were doing a Bozo Search then after unwrapping a present and finding a monster inside, you would wrap the present back up before you moved on to the next one! This means you might end up checking the same present again and again and again and you might never find the pet, even with a small number of presents!
 {curiosity end}
 
-A much better algorithm to use is called Binary Search. In the second part of the present searching game the boxes were in order, which meant you were able to be more clever when you were searching for the pet, and you might have been using a Binary Search without realising... 
+A much better algorithm to use is called Binary Search. In the second part of the present searching game the boxes were in order, which meant you were able to be more clever when you were searching for the pet, and you might have been using a Binary Search without realising...
 
 {teacher}
 The binary search algorithm can be demonstrated with a phone book: choose a name, then open at the*middle* page of the book (students might point out that you could guess how far through to open it, but insist on starting in the middle). Rip the book in half at the chosen page, and ask the class which of the two halves contains the name (the ones before the middle, or the ones after). Throw away the half that can't contain the name, pointing out that hundreds of pages have been eliminated by one decision. Repeat this on the remaining half, ripping that in half, then half again, and so on. On the board you can work out the number of pages left; for example, if there were 512 pages in the phone book, after the first rip there are 256, then 128, then 64, 32, 16, 89, 4, 2 and finally just one page. That's  9 pages that were examined to get down to the desired page. (Note that it's easiest to pick numbers that are powers of 2 i.e. 512, 1024, 2048, otherwise you have to deal with halving odd numbers, which works fine, but is a bit distracting). The power of binary search becomes obvious when you ask how long it would take to search a book twice as large. The first rip on the larger book will reduce it to the original problem, so, for example, a book of 1024 pages requires 10 rips instead of the 9 used for 512 pages. A million page phone book (1,048,576 pages to be precise) is reduced to 1 page by only 20 rips (students will probably think that it will be a lot more, but they can work it out by halving 1,048,576 20 times). A billion pages requires only 30 rips - again, have students work this out for themselves, as it is surprising. You could point out that a billion-page phone book could hold every name in the world, and in fact a social network site could have a billion users on it, so searching for someone on a billion-user system could be done *by hand* looking at just 30 names. The catch? They need to be in sorted order, but sorting things into order is easy too if you use the right algorithm. (In practice large systems use a variation of this kind of sorting, but this demonstrates how a very fast algorithm is possible).
@@ -127,7 +128,7 @@ If you used a Binary Search on each of the levels then you would have always had
 - If it is smaller then you can ignore all the items in the list which are smaller than that centre item.
 - Now repeat the algorithm on the remaining half of the list, checking the middle of the list and choosing one of the halves, until you find the item you are searching for.
 
-Binary Search is a very powerful algorithm. If you had 1000 presents to Search through it would take you at most 10 checks for Binary search to find something and Linear search would take at most 1000 checks, but if you doubled the number of presents to search through how would this change the number of checks made by Binary Search and Linear search? 
+Binary Search is a very powerful algorithm. If you had 1000 presents to Search through it would take you at most 10 checks for Binary search to find something and Linear search would take at most 1000 checks, but if you doubled the number of presents to search through how would this change the number of checks made by Binary Search and Linear search?
 
 Hopefully you've noticed that the answer for each of these algorithms would be different.
 
@@ -172,9 +173,9 @@ If the interactive does not run properly on your computer you can use a set of p
 
 ### Selection Sort
 
-One of the most intuitive ways to sort a group of boxes into order, from lightest to heaviest, is to start by first finding the lightest (or the heaviest) box and placing that to the side. Try this with the scales interactive. 
+One of the most intuitive ways to sort a group of boxes into order, from lightest to heaviest, is to start by first finding the lightest (or the heaviest) box and placing that to the side. Try this with the scales interactive.
 
-After finding the lightest box simply repeat the process again with the remaining boxes until you find the second lightest, now place that to the side alongside the lightest box. If you keep repeating this process you will eventually find you have placed each box into order. Try sorting the whole group of boxes in the scales interactive into order using this method and count how many comparisons you have to make. 
+After finding the lightest box simply repeat the process again with the remaining boxes until you find the second lightest, now place that to the side alongside the lightest box. If you keep repeating this process you will eventually find you have placed each box into order. Try sorting the whole group of boxes in the scales interactive into order using this method and count how many comparisons you have to make.
 
 Tip: Start by moving all the boxes to the right of the screen and then once you have found the lightest box place it to the far right (if you want to find the heaviest first instead then move them all to the left).
 
@@ -184,7 +185,7 @@ If you record how many comparisons you had to make each time to find the next li
 For a list of 8 objects (like in the interactive) it should take 7 comparisons to find the lightest, 6 to find the next lightest, 5 to find the next, then 4, then 3, then 2, and then 1 to sort the final two boxes. In total this is 7+6+5+4+3+2+1 = 28 comparisons. If there had been 9 boxes it would have taken 8+7+6+5+4+3+2+1 = 36 comparisons. 20 boxes will take 190. Going from 1000 boxes up to 1001 will require 1000 extra comparisons, even though only 1 box has been added. Selection sort will always take (n*(n-1))/2 comparisons to sort *n* items into order.
 
 For example: To calculate the number of comparisons required for 20 boxes, using (n*(n-1))/2 where n = 20:
-  
+
 (20*(20-1))/2
 
 = (20*19)/2
@@ -207,13 +208,13 @@ You can swap the word 'smallest' for 'largest' and the algorithm will still work
 
 ### Insertion Sort
 
-This algorithm works by removing each box from the original group of boxes and inserting it into its correct position in a new sorted list. Like Selection Sort, it is very intuitive and people often perform it when they are sorting objects themselves, like cards in their hands. 
+This algorithm works by removing each box from the original group of boxes and inserting it into its correct position in a new sorted list. Like Selection Sort, it is very intuitive and people often perform it when they are sorting objects themselves, like cards in their hands.
 
-Try this with the scales interactive. Start by moving all the boxes to one side of the screen, this is your original, and unsorted, group. Now choose a box at random and place that on the other side of the screen, this is the start of your sorted group. 
+Try this with the scales interactive. Start by moving all the boxes to one side of the screen, this is your original, and unsorted, group. Now choose a box at random and place that on the other side of the screen, this is the start of your sorted group.
 
 To insert another box into the sorted group, compare it to the box that is already in the sorted group and then arrange these two boxes in the correct order. Then to add the next box compare it to these boxes (depending on the weight of the box you might only have to compare it to one!) and then arrange these three boxes in the correct order. Continue inserting boxes until the sorted list is complete. Don't forget to count how many comparisons you had to make!
 
-This algorithm is called Insertion Sort. If you're not quite sure if you've got the idea of the algorithm yet then have a look at [this animation](http://upload.wikimedia.org/wikipedia/commons/0/0f/Insertion-sort-example-300px.gif) from [Wikipedia](http://en.wikipedia.org/wiki/Insertion_sort). 
+This algorithm is called Insertion Sort. If you're not quite sure if you've got the idea of the algorithm yet then have a look at [this animation](http://upload.wikimedia.org/wikipedia/commons/0/0f/Insertion-sort-example-300px.gif) from [Wikipedia](http://en.wikipedia.org/wiki/Insertion_sort).
 
 Insertion sort can be described with informal instructions as follows:
 - Take an item from your unsorted list and place it to the side, this will be your sorted list.
@@ -230,7 +231,7 @@ People often perform this when they physically sort items. It can also be a very
 
 Insertion and Selection Sort may seem like logical ways to sort things into order, but they both take far too many comparisons when they are used for large amounts of data. Remember computers often have to search through HUGE amounts of data, so even if they use a good searching algorithm like Binary Search to look through their data, if they use a bad sorting algorithm to first sort that data into order then finding anything will take far too long!
 
-A much better sorting algorithm is Quicksort! (the name is a bit of a giveaway) 
+A much better sorting algorithm is Quicksort! (the name is a bit of a giveaway)
 
 {interactive-external sorting-boxes title="Quicksort interactive"  parameters="method=quick"}
 
@@ -240,7 +241,7 @@ This algorithm is a little more complicated, but is very powerful. To do this al
 
 {image alg-quicksort-interactive-step-1.png alt="Quicksort interactive in progress"}
 
-Now apply this process to each of the two groups of boxes (the lighter ones, then the heavier ones). Keep on doing this until they are all sorted. The boxes should then be in sorted order! 
+Now apply this process to each of the two groups of boxes (the lighter ones, then the heavier ones). Keep on doing this until they are all sorted. The boxes should then be in sorted order!
 
 It might be worth trying this algorithm out a few times and counting the number of comparisons you perform each time. This is because sometimes you might be unlucky and happen to pick the heaviest, or the lightest box first. On the other hand you might be very lucky and choose the middle box to compare everything to first. Depending on this the number of comparisons you perform will change.
 
@@ -264,7 +265,7 @@ There are dozens of sorting algorithms that have been invented; most of the ones
 
 We've only really scraped the surface of algorithms in this chapter, as there are millions of different algorithms for millions of different problems! Algorithms are used in maths, route planning, network planning and operation, problem solving, artificial intelligence, genetic programming, computer vision, the list goes on and on! But by going through this chapter you should have gained an understanding of the key concepts of algorithms and will be well prepared to tackle more complicated ones in the future.
 
-In this chapter we have only talked about the number of comparisons an algorithm makes, and the amount of time a program takes to complete as 'costs' of algorithms. There are actually many other ways of measuring the cost of an algorithm. These include the amount of memory the algorithm uses and its computational complexity. Computer Scientists use 'Big O notation' to more accurately describe the performance or complexity of an algorithm, and you are likely to come across this notation very quickly when investigating the performance of algorithms. It characterises the resources needed by an algorithm and is usually applied to the execution time required, or sometimes the space used by the algorithm. 
+In this chapter we have only talked about the number of comparisons an algorithm makes, and the amount of time a program takes to complete as 'costs' of algorithms. There are actually many other ways of measuring the cost of an algorithm. These include the amount of memory the algorithm uses and its computational complexity. Computer Scientists use 'Big O notation' to more accurately describe the performance or complexity of an algorithm, and you are likely to come across this notation very quickly when investigating the performance of algorithms. It characterises the resources needed by an algorithm and is usually applied to the execution time required, or sometimes the space used by the algorithm.
 
 Here are some Big O examples:
 - {math}O(1){math end} - An algorithm with O(1) complexity will always execute in the same amount of time regardless of how much data you give it to process
@@ -279,7 +280,7 @@ To make things even more complicated, in practice algorithms are running on comp
 {teacher}
 Information for NZ teachers on students 1.44 reports (incomplete)
 
-It is *strongly discouraged* that students use algorithms they have created themselves for standard 1.44. Implementing the algorithms described in this chapter could be a good exercise for students (depending on their interest and ability in programming), however students should not use their own programs for testing algorithms and reporting their results in the standard. This is because a mistake in their program could lead them to obtain incorrect results and draw incorrect conclusions about the algorithms performance. 
+It is *strongly discouraged* that students use algorithms they have created themselves for standard 1.44. Implementing the algorithms described in this chapter could be a good exercise for students (depending on their interest and ability in programming), however students should not use their own programs for testing algorithms and reporting their results in the standard. This is because a mistake in their program could lead them to obtain incorrect results and draw incorrect conclusions about the algorithms performance.
 
 All the algorithms described in this chapter are suitable for students to use in their reports. If students are aiming for excellence the ideal algorithm comparisons are Linear vs Binary Search, Selection sort vs Quicksort, and Insertion sort vs Quicksort. Insertion and Selection sort are not suitable algorithms to compare.
 
@@ -292,7 +293,7 @@ All the algorithms described in this chapter are suitable for students to use in
   - This can be shown by describing an algorithm and identifying what specific steps a person or a program would need to be able to perform to complete the algorithm. The student also needs to state how many comparisons the algorithm made, or how long a program implementing that algorithm took to complete, for one data set.
   - For example: they could describe Selection sort, identify that to perform it a person would need to be able to compare two items and identify the larger and also be able to put items in specific places, and state that the algorithm performed 45 comparisons to sort 10 items.
 
-**Merit** 
+**Merit**
 
 - M1 - “explaining how algorithms are distinct from related concepts such as programs and informal instructions”
   - This can be done by showing that they have performed an algorithm or applied it to a situation, giving the informal instructions and a program for an algorithm and explaining the differences between each of these.
@@ -323,7 +324,7 @@ All the algorithms described in this chapter are suitable for students to use in
 - [CS Unplugged Searching algorithms](http://csunplugged.org/searching-algorithms)
 - CS Unplugged [Sorting algorithms](http://csunplugged.org/sorting-algorithms)
 - [Searching algorithm game, may not be suitable](http://csunplugged.org/divideAndConquer)
-- Wikipedia has more details on [Linear Search](http://en.wikipedia.org/wiki/Linear_search), [Binary Search](http://en.wikipedia.org/wiki/Binary_search), [Selection sort](http://en.wikipedia.org/wiki/Selection_sort), [Insertion sort](http://en.wikipedia.org/wiki/Insertion_sort) and  [Quicksort](http://en.wikipedia.org/wiki/Quicksort). 
+- Wikipedia has more details on [Linear Search](http://en.wikipedia.org/wiki/Linear_search), [Binary Search](http://en.wikipedia.org/wiki/Binary_search), [Selection sort](http://en.wikipedia.org/wiki/Selection_sort), [Insertion sort](http://en.wikipedia.org/wiki/Insertion_sort) and  [Quicksort](http://en.wikipedia.org/wiki/Quicksort).
 - The [Sorting Bricks game](http://mathsite.math.berkeley.edu/sorting/brick.html) is a great way to learn about several sorting algorithms (requires Java).
 - [Sorting Algorithms Visualisations](http://www.sorting-algorithms.com/) shows several different sorting algorithms racing and contains information and pseudocode for each.
 - [Beginners Guide to Big O Notation](http://rob-bell.net/2009/06/a-beginners-guide-to-big-o-notation/)

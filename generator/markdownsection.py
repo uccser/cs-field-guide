@@ -5,15 +5,12 @@ import os.path
 from markdown2 import markdown
 from generator.files import setup_required_files
 
-
 MARKDOWN2_EXTRAS = ["code-friendly",
                     "cuddled-lists",
                     "fenced-code-blocks",
                     "markdown-in-html",
-                    "smarty-pants",
                     "tables",
                     "wiki-tables"]
-
 
 class Section:
     """Contains data and functions relating to a specific section of the
@@ -24,8 +21,8 @@ class Section:
         self.file_node = file_node
         self.markdown_text = markdown_text
         self.guide = self.file_node.guide
-        self.heading = None #set to first heading during markdown parsing
-        self.cur_heading = None # pointer to current heading node
+        self.heading = None # set to first heading during markdown parsing
+        self.current_heading = None # pointer to current heading node
         self.title = None
         self.html_content = []
         self.regex_functions = self.create_regex_functions()
@@ -33,6 +30,7 @@ class Section:
         # Dictionary of sets for images, interactives, and other_files
         self.required_files = setup_required_files(file_node.guide)
         self.mathjax_required = False
+        self.html_path_to_root = self.file_node.depth * '../'
 
 
     # ----- Helper Functions -----
@@ -47,21 +45,23 @@ class Section:
         heading_text = match.group('heading')
         heading_level = len(match.group('heading_level'))
         permalink = self.create_permalink(heading_text)
-        if heading_level == 1:
-            self.cur_heading = HeadingNode(heading_text, permalink, guide=self.guide)
+        if not self.title:
+            # If title not set from heading
+            self.current_heading = HeadingNode(heading_text, permalink, guide=self.guide)
             self.title = heading_text
-        elif heading_level <= self.cur_heading.level:
-            for level in range(self.cur_heading.level - heading_level + 1):
-                self.cur_heading = self.cur_heading.parent
-            self.cur_heading = HeadingNode(heading_text, permalink, parent=self.cur_heading)
+        elif heading_level <= self.current_heading.level:
+            for level in range(self.current_heading.level - heading_level + 1):
+                self.current_heading = self.current_heading.parent
+            self.current_heading = HeadingNode(heading_text, permalink, parent=self.current_heading)
         else:
-            for level in range(heading_level - self.cur_heading.level - 1):
-                self.cur_heading = HeadingNode(heading_text, '', parent = self.cur_heading) #TODO: Exception? A heading level has been missed
-            self.cur_heading = HeadingNode(heading_text, permalink, parent=self.cur_heading)
+            for level in range(heading_level - self.current_heading.level - 1):
+                #TODO: Exception? A heading level has been missed
+                self.current_heading = HeadingNode(heading_text, '', parent = self.current_heading)
+            self.current_heading = HeadingNode(heading_text, permalink, parent=self.current_heading)
 
         html = self.html_templates['heading'].format(heading_level=heading_level,
                                                      permalink=permalink,
-                                                     section_number=self.cur_heading.number,
+                                                     section_number=self.current_heading.number,
                                                      heading_text=heading_text)
         return html
 
@@ -80,6 +80,16 @@ class Section:
             count += 1
         self.permalinks.add(link)
         return link
+
+
+    def create_link(self, match):
+        """Create a HTML link, if local link then add path back to root"""
+        link_text = match.group('link_text')
+        link_url = match.group('link_url')
+        if not link_url.startswith(('http://','https://','mailto:')):
+            link_url = self.html_path_to_root + link_url
+        html = self.html_templates['link'].format(link_text=link_text,link_url=link_url)
+        return html
 
 
     def to_snake_case(self, text):
@@ -101,6 +111,7 @@ class Section:
         if panel_type == 'teacher':
             html += self.html_templates['panel-teacher-heading']
         return html
+
 
     def end_div(self, match):
         return self.html_templates['div']
@@ -302,7 +313,7 @@ class HeadingNode:
         self.guide = self.parent.guide if parent else guide
         self.number = self.guide.number_generator.next(self.level)
         self.children = []
-        print(self)
+        #print(self)
 
     def __str__(self):
-        return '{}{}{}'.format(self.number, '-' * len(self.number), self.heading)
+        return '{}{} {}'.format('--' * (self.level - 1), self.number, self.heading)
