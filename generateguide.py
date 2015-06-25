@@ -239,7 +239,9 @@ class Guide:
             body_html += section_content
         context = {'page_title':file.section.title,
                    'body_html':body_html,
-                   'path_to_root': file.section.html_path_to_root}
+                   'path_to_root': file.section.html_path_to_root,
+                   'project_title': self.guide_settings['Main']['Title']
+                  }
         html = self.website_generator.render_template(section_template, context)
         try:
             with open(path, 'w', encoding='utf8') as output_file:
