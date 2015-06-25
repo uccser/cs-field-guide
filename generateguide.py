@@ -103,6 +103,7 @@ class Guide:
         and return the configparser
         """
         settings = configparser.ConfigParser()
+        settings.optionxform = str
         settings.read(settings_location)
         return settings
 
@@ -177,32 +178,41 @@ class Guide:
 
     def setup_html_output(self):
         """Preliminary setup, called before html files are written.
-
         -   Create output folder
         -   Set up WebsiteGenerator
+        -   Load website required files
         -   Copy required files
         """
+        # Create output folder
         self.output_folder = self.generator_settings['Output']['Folder'].format(language=self.language, version=self.version)
-        image_source_folder = self.generator_settings['Source']['Images']
-        image_output_folder = os.path.join(self.output_folder, self.generator_settings['Output']['Images'])
-        # Create necessary folders
         os.makedirs(self.output_folder, exist_ok=True)
-        os.makedirs(image_output_folder, exist_ok=True)
 
+        # Create website generator
         self.website_generator = WebsiteGenerator(self.html_templates)
 
+        # Load website requried files
+        for file_type,all_file_names in self.generator_settings['Website Required Files'].items():
+            file_names = all_file_names.strip().split('\n')
+            for file_name in file_names:
+                self.required_files[file_type].add(file_name)
+
         # Copy all required files
+        # TODO: Handle copying interactive file type (whole folder)
         for file_type,file_data in self.required_files.items():
-            for filename in file_data.filenames:
-                source_location = os.path.join(file_data.source_location, filename)
-                output_location = os.path.join(file_data.output_location, filename)
+            # Create folder for files
+            file_output_folder = os.path.join(self.output_folder, self.generator_settings['Output'][file_type])
+            os.makedirs(file_output_folder, exist_ok=True)
+            # Copy files
+            for file_name in file_data.filenames:
+                source_location = os.path.join(file_data.source_location, file_name)
+                output_location = os.path.join(file_data.output_location, file_name)
                 if os.path.exists(source_location):
                     try:
                         copy2(source_location, output_location)
                     except:
-                        logging.exception("{file_type} {filename} could not be copied".format(file_type=file_type[:-1], filename=filename))
+                        logging.error("{file_type} {file_name} could not be copied".format(file_type=file_type, file_name=file_name))
                 else:
-                    logging.error("{file_type} {filename} could not be found".format(file_type=file_type[:-1],filename=filename))
+                    logging.error("{file_type} {file_name} could not be found".format(file_type=file_type,file_name=file_name))
 
 
     def write_html_file(self, file):
@@ -214,7 +224,7 @@ class Guide:
         # -   Restructure with helper functions to allow for various
         #     components to be created in jinja2
 
-        file_name = self.generator_settings['Output']['File'].format(file_name=file.filename)
+        file_name = self.generator_settings['Output']['HTML File'].format(file_name=file.filename)
         directory = os.path.join(self.output_folder, file.parent.path)
         os.makedirs(directory, exist_ok=True)
         path = os.path.join(directory, file_name)

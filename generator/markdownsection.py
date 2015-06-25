@@ -145,7 +145,7 @@ class Section:
 
         # Add to required files
         filename = match.group('filename')
-        self.required_files['Images'].add(filename)
+        self.required_files['Image'].add(filename)
         # TODO: Process image arguments
 
         # Return HTML
@@ -230,7 +230,7 @@ class Section:
         """Create a button for downloading a file"""
         filename = match.group('filename')
 
-        self.required_files['Files'].add(filename)
+        self.required_files['File'].add(filename)
 
         output_path = os.path.join(self.guide.generator_settings['Output']['Files'], filename)
         text = self.html_templates['button-download-text'].format(filename=filename)
@@ -253,10 +253,10 @@ class Section:
             interactive_parameters = None
 
         # Add interactive to required files
-        self.required_files['Interactives'].add(interactive_name)
+        self.required_files['Interactive'].add(interactive_name)
 
         if interactive_type == 'interactive-external':
-            interactive_source = self.guide.generator_settings['Output']['Interactives'].format(interactive=interactive_name)
+            interactive_source = self.guide.generator_settings['Output']['Interactive'].format(interactive=interactive_name)
             interactive_thumbnail_source = os.path.join(interactive_source, self.guide.generator_settings['Source']['Interactive Thumbnail'])
             interactive_link_text = 'Click to load {title}'.format(title=interactive_title)
             if interactive_parameters:
