@@ -299,27 +299,29 @@ class Section:
 
     def _create_table_of_contents(self, root_folder, depth=None, top_level=False):
         """Recursively called from create_table_of_contents"""
-        items = []
-        for file in root_folder.files:
-            if file.tracked:
-                link_url = self.html_path_to_root + self.guide.generator_settings['Output']['HTML File'].format(file_name=file.path)
-                link_html = self.html_templates['link'].format(link_text=file.section.title, link_url=link_url)
-                items.append(link_html)
+        folder_path = os.path.join(self.html_path_to_root, root_folder.path, 'index.html')
+        folder_link_html = self.html_templates['link'].format(link_text=root_folder.title, link_url=folder_path)
 
-        if (not depth) or depth > 0:
+        if depth is None or depth > 0:
+            items = []
+            for file in root_folder.files:
+                if file.tracked:
+                    link_url = self.html_path_to_root + self.guide.generator_settings['Output']['HTML File'].format(file_name=file.path)
+                    link_html = self.html_templates['link'].format(link_text=file.section.title, link_url=link_url)
+                    items.append(link_html)
+
             for folder in root_folder.folders:
                 items.append(self._create_table_of_contents(folder, depth=depth-1))
 
-        html = ''
-        for item in items:
-            html += '<li>{}</li>\n'.format(item.strip())
-        if top_level:
-        #root_name = root_folder.title if not top_level else ''
-            return self.html_templates['table-of-contents'].replace('{folder_link}\n', '').format(contents=html)
+            html = ''
+            for item in items:
+                html += '<li>{}</li>\n'.format(item.strip())
+            if top_level:
+                return self.html_templates['table-of-contents'].replace('{folder_link}\n', '').format(contents=html)
+            else:
+                return self.html_templates['table-of-contents'].format(contents=html, folder_link=folder_link_html)
         else:
-            folder_path = os.path.join(self.html_path_to_root, root_folder.path, 'index.html')
-            link_html = self.html_templates['link'].format(link_text=root_folder.title, link_url=folder_path)
-            return self.html_templates['table-of-contents'].format(contents=html, folder_link=link_html)
+            return folder_link_html
 
 
 
