@@ -71,7 +71,10 @@ class Section:
             elif heading_level > self.current_heading.level + 1:
                 #Error in markdown - a heading level has been missed.
                 #Generate blank intermediate headings and log error
-                logging.error("Heading missed between {0} and {1} in {2}".format(self.current_heading, heading_text, self.file_node.filename))
+
+                logging.error("Heading missed between --{} {}-- and --{}-- in section {}".format(self.current_heading.number,
+                                                                                        self.current_heading.heading,
+                                                                                        heading_text, self.file_node.filename))
                 for level in range(heading_level - self.current_heading.level - 1):
                     intermediate_heading = HeadingNode(heading_text, '', parent = self.current_heading)
                     self.current_heading.children.append(intermediate_heading)
@@ -281,6 +284,42 @@ class Section:
             html = ''
         return html
 
+    def create_table_of_contents(self, match):
+        """Parsing function for table-of-contents regex.
+        Recursively calls _create_table_of_contents to build table
+        of contents HTML from template
+        """
+        if match.group('depth'):
+            depth = int(match.group('depth'))
+            html = self._create_table_of_contents(self.file_node.parent, depth, top_level=True)
+        else:
+            html = self._create_table_of_contents(self.file_node.parent)
+        return html
+
+
+    def _create_table_of_contents(self, root_folder, depth=None, top_level=False):
+        """Recursively called from create_table_of_contents"""
+        items = []
+        for file in root_folder.files:
+            if file.tracked:
+                link_url = self.html_path_to_root + self.guide.generator_settings['Output']['HTML File'].format(file_name=file.path)
+                link_html = self.html_templates['link'].format(link_text=file.section.title, link_url=link_url)
+                items.append(link_html)
+
+        if (not depth) or depth > 0:
+            for folder in root_folder.folders:
+                items.append(self._create_table_of_contents(folder, depth=depth-1))
+
+        html = ''
+        for item in items:
+            html += '<li>{}</li>\n'.format(item.strip())
+        if top_level:
+        #root_name = root_folder.title if not top_level else ''
+            return self.html_templates['table-of-contents'].replace('{folder_link}\n', '').format(contents=html)
+        else:
+            folder_path = os.path.join(self.html_path_to_root, root_folder.path, 'index.html')
+            link_html = self.html_templates['link'].format(link_text=root_folder.title, link_url=folder_path)
+            return self.html_templates['table-of-contents'].format(contents=html, folder_link=link_html)
 
 
 
@@ -332,4 +371,7 @@ class HeadingNode:
         #print(self)
 
     def __str__(self):
-        return '{}{} {}'.format('--' * (self.level - 1), self.number, self.heading)
+        if self.number:
+            return '{}{} {}'.format('--' * (self.level - 1), self.number, self.heading)
+        else:
+            return '{}{}'.format('--' * (self.level - 1), self.heading)
