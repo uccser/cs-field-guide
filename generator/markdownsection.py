@@ -47,7 +47,9 @@ class Section:
         permalink = self.create_permalink(heading_text)
         if not self.title:
             # If title not set from heading
-            self.current_heading = HeadingNode(heading_text, permalink, guide=self.guide)
+
+            self.heading = HeadingNode(heading_text, permalink, guide=self.guide)
+            self.current_heading = self.heading
             self.title = heading_text
         elif heading_level <= self.current_heading.level:
             for level in range(self.current_heading.level - heading_level + 1):
