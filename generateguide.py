@@ -69,12 +69,12 @@ class Guide:
             reading_template = False
             for line in data:
                 search = re.search('^\{(?P<template_name>[^%{# }]+(?P<end> end)?)\}', line, re.MULTILINE)
-                if search:
+                if search and ((reading_template and search.group('end')) or not reading_template):
                     if search.group('end'):
                         reading_template = False
                         html_templates[template_name] = template_text
                         template_text = ''
-                    elif search.group('template_name'):
+                    elif not reading_template and search.group('template_name'):
                         reading_template = True
                         template_name = search.group('template_name')
                 elif reading_template:
