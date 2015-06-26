@@ -83,13 +83,14 @@ class Section:
             self.current_heading.children.append(new_heading)
             self.current_heading = new_heading
 
-        if self.current_heading.number:
-            html = self.html_templates['heading-numbered'].format(heading_level=heading_level,
-                                                     permalink=permalink,
-                                                     section_number=self.current_heading.number,
-                                                     heading_text=heading_text)
+        if self.title == 'Glossary' and heading_level > 1:
+            html_type = 'heading-glossary'
+        elif self.current_heading.number:
+            html_type = 'heading-numbered'
         else:
-            html = self.html_templates['heading-unnumbered'].format(heading_level=heading_level,
+            html_type = 'heading-unnumbered'
+
+        html = self.html_templates[html_type].format(heading_level=heading_level,
                                                      permalink=permalink,
                                                      section_number=self.current_heading.number,
                                                      heading_text=heading_text)
