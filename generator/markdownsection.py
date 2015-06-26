@@ -60,7 +60,7 @@ class Section:
         permalink = self.create_permalink(heading_text)
         if not self.title:
             # If title not set from heading
-            self.heading = HeadingNode(heading_text, permalink, guide=self.guide)
+            self.heading = HeadingNode(heading_text, permalink, section=self)
             self.current_heading = self.heading
             self.title = heading_text
         else:
@@ -80,7 +80,13 @@ class Section:
             self.current_heading.children.append(new_heading)
             self.current_heading = new_heading
 
-        html = self.html_templates['heading'].format(heading_level=heading_level,
+        if self.current_heading.number:
+            html = self.html_templates['heading-numbered'].format(heading_level=heading_level,
+                                                     permalink=permalink,
+                                                     section_number=self.current_heading.number,
+                                                     heading_text=heading_text)
+        else:
+            html = self.html_templates['heading-unnumbered'].format(heading_level=heading_level,
                                                      permalink=permalink,
                                                      section_number=self.current_heading.number,
                                                      heading_text=heading_text)
@@ -314,13 +320,14 @@ class HeadingNode:
     """Nodes of the structure tree of a section. A call is made to the guide
     number generator upon creation
     """
-    def __init__(self, heading, permalink, parent=None, guide=None):
+    def __init__(self, heading, permalink, parent=None, section=None):
         self.heading = heading
         self.permalink = permalink
         self.parent = parent
         self.level = parent.level + 1 if parent else 1
-        self.guide = self.parent.guide if parent else guide
-        self.number = self.guide.number_generator.next(self.level)
+        self.section = self.parent.section if parent else section
+        self.guide = self.section.guide
+        self.number = self.guide.number_generator.next(self.level) if self.section.file_node.tracked else None
         self.children = []
         #print(self)
 
