@@ -1,7 +1,7 @@
 import re
-import string
 import logging
 import os.path
+import generator.systemfunctions as systemfunctions
 from markdown2 import markdown
 from generator.files import setup_required_files
 
@@ -70,7 +70,7 @@ class Section:
         """Helper function for create_heading
         -   returns a unique permalink for each heading
         """
-        link = self.to_snake_case(text)
+        link = systemfunctions.to_kebab_case(text)
         count = 2
         while link in self.permalinks:
             if link[-1].isdigit():
@@ -90,19 +90,6 @@ class Section:
             link_url = self.html_path_to_root + link_url
         html = self.html_templates['link'].format(link_text=link_text,link_url=link_url)
         return html
-
-
-    def to_snake_case(self, text):
-        """Returns the given text as snake case.
-        The text is lower case, has spaces replaced as dashes.
-        All punctuation is also removed.
-        """
-        text = ''.join(letter for letter in text if letter not in set(string.punctuation))
-        return text.replace(' ', '-').lower()
-
-
-    def from_snake_case(self, text):
-        return text.replace('-', ' ').title()
 
 
     def create_panel_start(self, match):

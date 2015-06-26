@@ -17,6 +17,7 @@ import logging
 import os.path
 import os
 import re
+import generator.systemfunctions as systemfunctions
 from shutil import copy2
 from generator.markdownsection import Section
 from generator.websitegenerator import WebsiteGenerator
@@ -255,6 +256,7 @@ class FolderNode:
     """Node object for storing folder details in structure tree"""
     def __init__(self, name, parent=None, guide=None):
         self.name = name
+        self.title = systemfunctions.from_kebab_case(self.name)
         self.parent = parent
         self.folders = []
         self.files = []
