@@ -32,6 +32,19 @@ class Section:
         self.mathjax_required = False
         self.html_path_to_root = self.file_node.depth * '../'
 
+    def __repr__(self):
+        """Return representation of structure of section"""
+        output = ''
+        stack = [self.heading]
+        while len(stack) > 0:
+            heading = stack.pop()
+            output += str(heading) + '\n'
+            sub_headings = []
+            for sub_heading in heading.children:
+                sub_headings.insert(0, sub_heading)
+            stack += sub_headings
+        return(output)
+
 
     # ----- Helper Functions -----
 
@@ -47,19 +60,25 @@ class Section:
         permalink = self.create_permalink(heading_text)
         if not self.title:
             # If title not set from heading
-
             self.heading = HeadingNode(heading_text, permalink, guide=self.guide)
             self.current_heading = self.heading
             self.title = heading_text
-        elif heading_level <= self.current_heading.level:
-            for level in range(self.current_heading.level - heading_level + 1):
-                self.current_heading = self.current_heading.parent
-            self.current_heading = HeadingNode(heading_text, permalink, parent=self.current_heading)
         else:
-            for level in range(heading_level - self.current_heading.level - 1):
-                #TODO: Exception? A heading level has been missed
-                self.current_heading = HeadingNode(heading_text, '', parent = self.current_heading)
-            self.current_heading = HeadingNode(heading_text, permalink, parent=self.current_heading)
+            if heading_level <= self.current_heading.level:
+                #Ascend to correct parent node
+                for level in range(self.current_heading.level - heading_level + 1):
+                    self.current_heading = self.current_heading.parent
+            elif heading_level > self.current_heading.level + 1:
+                #Error in markdown - a heading level has been missed.
+                #Generate blank intermediate headings and log error
+                logging.error("Heading missed between {0} and {1} in {2}".format(self.current_heading, heading_text, self.file_node.filename))
+                for level in range(heading_level - self.current_heading.level - 1):
+                    intermediate_heading = HeadingNode(heading_text, '', parent = self.current_heading)
+                    self.current_heading.children.append(intermediate_heading)
+                    self.current_heading = intermediate_heading
+            new_heading = HeadingNode(heading_text, permalink, parent=self.current_heading)
+            self.current_heading.children.append(new_heading)
+            self.current_heading = new_heading
 
         html = self.html_templates['heading'].format(heading_level=heading_level,
                                                      permalink=permalink,
@@ -278,6 +297,7 @@ class Section:
             # Parse with markdown2
             parsed_html = markdown(text, extras=MARKDOWN2_EXTRAS)
             self.html_content.append(parsed_html)
+        print(self)
 
 
     def create_regex_functions(self):
