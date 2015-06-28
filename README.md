@@ -9,8 +9,8 @@ Within this repository, you will find six folders containing different areas of 
 - **text:** All text files for chapters and appendices, in English and other languages.
 - **images:** All images used within the guide except interactives.
 - **interactives:** All data associated with interactives.
-- **other_files:** Files that are linked in the text (for example: PDFs, spreadsheets, code examples).
-- **output_generator:** Data used to create the output of the guide.
+- **files:** Files that are linked in the text (for example: PDFs, spreadsheets, code examples).
+- **generator:** Data used to create the output of the guide.
 - **output:** Output of the generator, when run by the user.
 
 ## Bugs and feature requests
@@ -23,14 +23,16 @@ Complete documentation for this project will be stored in the [repository wiki](
 
 ## Contributing
 
-We are currently still constructing this repository to produce a complete guide so will not be accepting any pull requests until v1.0 is released. After this point we would love the community to get involved into making this guide as great as possible!
-A guide on how to contribute to the project (from correcting a spelling mistake to adding a translation) will be written as part of the documentation for the v1.0 release. Possible areas users will be able to contribute include:
+We are currently still constructing this repository to produce a complete guide so will not be accepting any pull requests until v2.0 is released (v1.0 is a closed source system, the first major release on GitHub will be v2.0). After this point we would love the community to get involved into making this guide as great as possible!
+A guide on how to contribute to the project (from correcting a spelling mistake to adding a translation) will be written as part of the documentation for the v2.0 release. Possible areas users will be able to contribute include:
 
 - Suggesting a text edit for a typo, grammar correction, or just clearing up a point.
 - Add a translation for a chapter or interactive.
 - Add a new or replacement image for a chapter.
 - Modify text and create their own version of the CSFG.
 - Add or modify an interactive for the guide.
+
+We use [Vincent Driessen's Git Branching Model](http://nvie.com/posts/a-successful-git-branching-model/) for managing development.
 
 ## Admin contact
 

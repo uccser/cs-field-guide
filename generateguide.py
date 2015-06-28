@@ -138,7 +138,7 @@ class Guide:
 
 
     def traverse_files(self, start_node, process_file_function):
-        """BFS of structure tree, visits file nodes, and calls given function
+        """DFS of structure tree, visits file nodes, and calls given function
         on each file node found"""
         for folder in start_node.folders:
             self.traverse_files(folder, process_file_function)
