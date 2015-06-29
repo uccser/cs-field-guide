@@ -5,18 +5,17 @@ REQUIRES: Python >= 3.4.1
 
 """Check and install dependencies if needed"""
 import pip
-# Pip commands currently disabled due to workstation issues
-# Will test installing to user directory
 # Update pip if needed
-#pip.main(['install', '--upgrade', '--user', 'pip>=7.0.3'])
+pip.main(['install', '--upgrade', '--user', 'pip>=7.0.3'])
 # Check dependencies
-#pip.main(['install',  '--user', '-r', 'generator/dependencies.conf'])
+pip.main(['install',  '--user', '-r', 'generator/dependencies.conf'])
 
 import configparser
 import logging
 import os.path
 import os
 import re
+import generator.languages
 import generator.systemfunctions as systemfunctions
 from shutil import copy2
 from generator.markdownsection import Section
@@ -35,6 +34,7 @@ class Guide:
         self.generator_settings = self.read_settings(GENERATOR_SETTINGS)
         self.regex_list = self.read_settings(REGEX_LIST)
 
+        self.language_code = self.guide_settings['Main']['Language']
         self.language = self.parse_language()
         self.version = self.parse_version()
 
@@ -83,13 +83,15 @@ class Guide:
 
 
     def parse_language(self):
-        """Returns ISO 639-1 language code for given setting"""
-        # TODO: Handle all language names/codes
-        language = self.guide_settings['Main']['Language']
-        if language.lower() in ['english', 'en']:
+        """Returns language name from ISO 639-1 language code"""
+        try:
+            language_name = generator.languages.language_names[self.language_code]
+        except KeyError:
+            logging.error('Language code {} not found, please check list at https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes'.format(self.language_code))
+            # Default to English
             return 'en'
         else:
-            return 'en'
+            return language_name
 
 
     def parse_version(self):
@@ -156,7 +158,7 @@ class Guide:
         """
         text_root = self.generator_settings['Source']['text']
         file_template = self.generator_settings['Source']['Text Filename Template']
-        file_name = file_template.format(title=file_node.filename, language=self.language)
+        file_name = file_template.format(title=file_node.filename, language=self.language_code)
         file_path = os.path.join(text_root, file_node.parent.path, file_name)
 
         # Reads markdown from file and adds this to file node
@@ -172,9 +174,10 @@ class Guide:
               - Converts raw into HTML
               - Adds Section's required files to Guide's required files
         """
-        file_node.section.parse_markdown_content(self.html_templates)
-        for file_type,file_data in file_node.section.required_files.items():
-            self.required_files[file_type] += file_data
+        if file_node.section:
+            file_node.section.parse_markdown_content(self.html_templates)
+            for file_type,file_data in file_node.section.required_files.items():
+                self.required_files[file_type] += file_data
 
 
     def setup_html_output(self):
@@ -185,7 +188,7 @@ class Guide:
         -   Copy required files
         """
         # Create output folder
-        self.output_folder = self.generator_settings['Output']['Folder'].format(language=self.language, version=self.version)
+        self.output_folder = self.generator_settings['Output']['Folder'].format(language=self.language_code, version=self.version)
         os.makedirs(self.output_folder, exist_ok=True)
 
         # Create website generator
@@ -233,24 +236,26 @@ class Guide:
         body_html= ''
         section_template = self.generator_settings['HTML'][file.group_type]
 
-        if file.section.mathjax_required:
-            body_html += '<script type="text/javascript"  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>'
+        if file.section:
+            if file.section.mathjax_required:
+                body_html += '<script type="text/javascript"  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>'
 
-        for section_content in file.section.html_content:
-            body_html += section_content
-        context = {'page_title':file.section.title,
-                   'body_html':body_html,
-                   'path_to_root': file.section.html_path_to_root,
-                   'project_title': self.guide_settings['Main']['Title'],
-                   'root_folder': self.structure,
-                   'heading_root': file.section.heading
-                  }
-        html = self.website_generator.render_template(section_template, context)
-        try:
-            with open(path, 'w', encoding='utf8') as output_file:
-                output_file.write(html)
-        except:
-            logging.critical("Cannot write file {0}".format(path))
+            for section_content in file.section.html_content:
+                body_html += section_content
+            context = {'page_title':file.section.title,
+                       'body_html':body_html,
+                       'path_to_root': file.section.html_path_to_root,
+                       'project_title': self.guide_settings['Main']['Title'],
+                       'root_folder': self.structure,
+                       'heading_root': file.section.heading,
+                       'language_code': self.language_code
+                      }
+            html = self.website_generator.render_template(section_template, context)
+            try:
+                with open(path, 'w', encoding='utf8') as output_file:
+                    output_file.write(html)
+            except:
+                logging.critical("Cannot write file {0}".format(path))
 
 
 class FolderNode:
