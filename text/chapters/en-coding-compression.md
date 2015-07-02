@@ -1,4 +1,4 @@
-# Coding Compression
+# Coding - Compression
 
 {teacher}
 
@@ -8,9 +8,9 @@ The following assessment plans also cover this material:
 
 - [Assessment Overview](/appendices/assessment-guides/new-zealand/assessment-guide-level-2-introduction.html)
 - [Compression (Run Length Encoding)](/appendices/assessment-guides/new-zealand/assessment-guide-level-2-compression-run-length-encoding)
- 
+
 {teacher end}
-  
+
 ## What's the big picture?
 
 Data compression reduces the amount of space needed to store files. If you can halve the size of a file, you can store twice as many files for the same cost, or you can download the files twice as fast (and at half the cost if you're paying for the download).
@@ -39,7 +39,7 @@ We'll start with a simple example --- Run Length Encoding --- which gives some i
 
 {teacher}
 
-An intriguing activity that relates to compression is the ["locked-in" activity](http://www.cs4fn.org/lockedin.html) from CS4FN. 
+An intriguing activity that relates to compression is the ["locked-in" activity](http://www.cs4fn.org/lockedin.html) from CS4FN.
 In this activity, students simulate writing some text using a method used by Jean-Dominique Bauby, who was completely unable to move except for blinking one eye. With a simple binary interface (blinking or not blinking) he was able to author an entire book. It is well worth getting students to work in pairs, and have one try to communicate a word or short phrase strictly by blinking only. It raises many questions, including how it could be done in the shortest time and with the minimum effort. Of course, the first step is to work out how to convey any text at all!
 
 {teacher end}
@@ -104,7 +104,7 @@ For the second row, because we need to say what the number of white pixels is be
 And the third row contains 5 whites, 5 blacks, 5 whites. This would give
 
 ```
-5, 5, 5 
+5, 5, 5
 ````
 
 So, we have determined that the first 3 rows of the file can be represented using RLE as:
@@ -148,13 +148,13 @@ Assuming you got the new image representation correct, and counted correctly, yo
 This means that the new representation only requires around 53% as many characters to represent (calculated using 119/225)! This is a significant reduction in the amount of space required to store the image. The new representation is a *compressed* form of the old one.
 
 In practice this method (with some extra tricks) can be used to compress images to about 15% of their original size.
-In real systems, the image only uses one bit for every pixel to store the black and white values (not one character, which we used for our calculations). 
+In real systems, the image only uses one bit for every pixel to store the black and white values (not one character, which we used for our calculations).
 The run length numbers are also stored much more efficiently, again using bit patterns that take very little space to represent the numbers.
 The bit patterns used are usually based on a technique called Huffman coding, but that is beyond what we want to get into here.
 
 The main place that black and white scanned images are used now is on fax machines, which used this approach to compression.
-One reason that it works so well with scanned pages the number of consecutive white pixels is huge. 
-In fact, there will be entire scanned lines that are nothing but white pixels. 
+One reason that it works so well with scanned pages the number of consecutive white pixels is huge.
+In fact, there will be entire scanned lines that are nothing but white pixels.
 A typical fax page is 200 pixels across or more, so replacing 200 bits with one number is a big saving.
 The number itself can take a few bits to represent, and in some places on the scanned page only a few consecutive pixels are replaced with a number, but overall the saving is significant.
 In fact, fax machines would take 7 times longer to send pages if they didn't use compression.
@@ -189,12 +189,12 @@ These compression methods are called *lossy*. If some of the data is lost, it is
 
 Now that you know how run length encoding works, you can come up with and compress your own black and white image, as well as uncompress an image that somebody else has given you.
 
-Start by making your own picture with ones and zeroes. (Make sure it is rectangular --- all the rows should have the same length.)  You can either draw this on paper or prepare it on a computer (using a fixed width font, otherwise it can become really frustrating and confusing!) 
+Start by making your own picture with ones and zeroes. (Make sure it is rectangular --- all the rows should have the same length.)  You can either draw this on paper or prepare it on a computer (using a fixed width font, otherwise it can become really frustrating and confusing!)
 In order to make it easier, you could start by working out what you want your image to be on grid paper (such as that from a math exercise book) by shading in squares to represent the black ones, and leaving them blank to represent the white ones. Once you have done that, you could then write out the zeroes and ones for the image.
 
 Work out the compressed representation of your image using run length coding, i.e. the run lengths separated by commas form that was explained above.
 
-Now, swap a copy of the *compressed representation* (the run length codes, not the original uncompressed representation) with a classmate. 
+Now, swap a copy of the *compressed representation* (the run length codes, not the original uncompressed representation) with a classmate.
 You should each uncompress the other person’s image, to get back to the original uncompressed representations. Check to make sure the conversions back to the uncompressed representations was done correctly by making sure the images are the same.
 
 Imagining that you and your friend are both computers, by doing this you have shown that images using these systems of representations can be compressed on one computer, and decompressed on another. It is very important for compression algorithms to have this property in order to be useful. It wouldn’t be very good if a friend gave you a song they’d compressed on their computer, but then your computer was unable to make sense of the representation the compressed song was using!
@@ -209,7 +209,7 @@ What about the worst compression? Can you find an image that actually has a *lar
 
 {extra-for-experts end}
 
-In fact, any *lossless* compression algorithm will have cases where the compressed version of the file is larger than the uncompressed version! Computer scientists have even proven this to be the case, meaning it is impossible for anybody to ever come up with a lossless compression algorithm that makes *all* possible files smaller. 
+In fact, any *lossless* compression algorithm will have cases where the compressed version of the file is larger than the uncompressed version! Computer scientists have even proven this to be the case, meaning it is impossible for anybody to ever come up with a lossless compression algorithm that makes *all* possible files smaller.
 In most cases this isn’t an issue though, as a good lossless compression algorithm will tend to give the best compression on common patterns of data, and the worst compression on ones that are highly unlikley to occur.
 
 {comment}
@@ -316,7 +316,7 @@ Images from https://dl.dropboxusercontent.com/u/7227226/Compression%20images.zip
 
 {comment end}
 
-For example, the following image shows a zoomed in view of the pixels that are part of the detail around an eye from the above (high quality) image. 
+For example, the following image shows a zoomed in view of the pixels that are part of the detail around an eye from the above (high quality) image.
 
 {comment}
 
@@ -326,7 +326,7 @@ this image no longer needed, as it is available just above _static/images/CC-Pho
 
 {image cc-zoomed2.png}
 
-Notice that the colours in adjacent pixels are often very similar, even in this part of the picture that has a lot of detail. For example, the pixels shown in the red box below just change gradually from very dark to very light. 
+Notice that the colours in adjacent pixels are often very similar, even in this part of the picture that has a lot of detail. For example, the pixels shown in the red box below just change gradually from very dark to very light.
 
 {image cc-zoomed2box.png}
 
@@ -350,7 +350,7 @@ A cosine wave form is from the trig function that is often used for calculating 
 
 {comment}
 
-.. xtcb adapt fourier spreadsheet and make available here (see also http://demonstrations.wolfram.com/JPEGCompressionAlgorithm/, http://demonstrations.wolfram.com/SumsOfSineWavesWithSeveralStepSizesSawtoothOrSquareApproxima/ http://demonstrations.wolfram.com/RecoveringTheFourierCoefficients/ 
+.. xtcb adapt fourier spreadsheet and make available here (see also http://demonstrations.wolfram.com/JPEGCompressionAlgorithm/, http://demonstrations.wolfram.com/SumsOfSineWavesWithSeveralStepSizesSawtoothOrSquareApproxima/ http://demonstrations.wolfram.com/RecoveringTheFourierCoefficients/
 .. html5 low priority interactive to add cosine waves to try to match a given waveform e.g. square wave, triangle, random. Select amplitude for various frequencies. I have a spreadsheet that basically does this, could put it in for the meantime - tim
 
 {comment end}
@@ -398,7 +398,7 @@ The cosine waves used for JPEG images are based on a "Discrete Cosine Transform"
 {extra-for-experts end}
 
 An important issue arises because JPEG represents images as smoothly varying colours: what happens if the colours change suddenly?
-In that case, lots of values need to be stored so that lots of cosine waves can be added together to make the sudden change in colour, or else the edge of the image become fuzzy. 
+In that case, lots of values need to be stored so that lots of cosine waves can be added together to make the sudden change in colour, or else the edge of the image become fuzzy.
 You can think of it as the cosine waves overshooting on the sudden changes, producing artifacts like the ones in the following image where the edges are messy.
 
 {image cc-clean-jpeg-low-q.jpg}
@@ -433,7 +433,7 @@ appearing soon!
 
 {comment}
 
-.. http://www.cs4fn.org/films/jpegit.php CS4FN on Jpeg and 
+.. http://www.cs4fn.org/films/jpegit.php CS4FN on Jpeg and
 
 .. Students should discuss the basics of how one of them works (Not entirely sure how to approach this without it becoming a paraphrase, need to think about it). I’m thinking that an explanation of what it means for a compression algorithm to be lossy is important here.
 
@@ -452,13 +452,13 @@ appearing soon!
 
 General purpose compression methods need to be lossless because you can't assume that the user won't mind if the data is changed. The most widely used general purpose compression algorithms (such as ZIP, gzip, and rar) are based on a method called "Ziv-Lempel coding", invented by Jacob Ziv and Abraham Lempel in the 1970s.
 
-We'll look at this with a text file as an example. 
+We'll look at this with a text file as an example.
 The main idea of Ziv-Lempel coding is that sequences of characters are often repeated in files (for example, the sequence of characters "image " appears often in this chapter), and so instead of storing the repeated occurrence, you just replace it with a reference to where it last occurred. As long as the reference is smaller than the phrase being replaced, you'll save space. Typically this systems based on this approach can be used to reduce text files to as little as a quarter of their original size, which is almost as good as any method known for compressing text.
 
 The following interactive allows you to explore this idea.
 The empty boxes have been replaced with a reference to the text occurring earlier.
 You can click on a box to see where the reference is, and you can type the referenced characters in to decode the text.
-What happens if a reference is pointing to another reference? 
+What happens if a reference is pointing to another reference?
 As long as you decode them from first to last, the information will be available before you need it.
 
 {comment}
@@ -475,16 +475,16 @@ As long as you decode them from first to last, the information will be available
 
 {comment end}
 
-You can also enter your own text by clicking on the "Text" tab. 
+You can also enter your own text by clicking on the "Text" tab.
 You could paste in some text of your own to see how many characters can be replaced with references.
 
 The references are actually two numbers: the first says how many characters to count back to where the previous phrase starts, and the second says how long the referenced phrase is.
 Each reference typically takes about the space of one or two characters, so the system makes a saving as long as two characters are replaced.
 The options in the interactive above allow you to require the replaced length to be at least two, to avoid replacing a single character with a reference.
-Of course, all characters count, not just letters of the alphabet, so the system can also refer back to the white spaces between words. 
+Of course, all characters count, not just letters of the alphabet, so the system can also refer back to the white spaces between words.
 In fact, some of the most common sequences are things like a full stop followed by a space.
 
-This approach also works very well for black and white images, since sequences like "10 white pixels" are likely to have occurred before. 
+This approach also works very well for black and white images, since sequences like "10 white pixels" are likely to have occurred before.
 Here are some of the bits from the example earlier in this chapter; you can paste them into the interactive above to see how many pointers are needed to represent it.
 
 ```
@@ -519,13 +519,13 @@ The [CS Unplugged site has activities and information about the Ziv-Lempel appro
 
 **Curiosity**
 
-The method we have described here is named “Ziv-Lempel” compression after Jacob Ziv and Abraham Lempel, the two computer scientists who invented it in the 1970s. Unfortunately someone mixed up the order of their names when they wrote an article about it, and called it “LZ” compression instead of “ZL” compression. So many people copied the mistake that Ziv and Lempel’s method is now usually called “LZ compression”! 
+The method we have described here is named “Ziv-Lempel” compression after Jacob Ziv and Abraham Lempel, the two computer scientists who invented it in the 1970s. Unfortunately someone mixed up the order of their names when they wrote an article about it, and called it “LZ” compression instead of “ZL” compression. So many people copied the mistake that Ziv and Lempel’s method is now usually called “LZ compression”!
 
 {curiosity end}
 
 ## Audio compression
 
-One of the  most widely used methods for compressing music is MP3, which is actually from a video compression standard. 
+One of the  most widely used methods for compressing music is MP3, which is actually from a video compression standard.
 The Motion Picture Expert Group (MPEG) was a consortium of companies and researchers that got together to agree on a standard so that people could easily play the same videos on different brands of equipment (especially from DVD). The very first version of their standard (called MPEG 1) had three methods of storing the sound track (layer 1, 2 and 3).
 One of those methods (MPEG 1 layer 3) became very popular for compressing music, and was abbreviated to MP3.
 
@@ -552,7 +552,7 @@ On the other hand, someone listening to a recording at home on a good sound syst
 
 {teacher}
 
-The following experiments provide the basis for a merit/excellence report as they guide the students on what the benefits are that enable digital audio systems to be useful, and on evaluating the performance of compression systems. 
+The following experiments provide the basis for a merit/excellence report as they guide the students on what the benefits are that enable digital audio systems to be useful, and on evaluating the performance of compression systems.
 
 {teacher end}
 
@@ -572,7 +572,7 @@ Compress each of your recordings using a variety of methods, making sure that ea
 The details of how compression systems work have been glossed over in this chapter, as we have been more concerned about the file sizes and speed of the methods than how they work.
 Most compression systems are variations of the ideas that have been covered here, although one fundamental method that we haven't mentioned is Huffman coding, which turns out to be useful as the final stage of all of the above methods, and is often one of the first topics mentioned in textbooks discussing compression (there's a brief [explanation of it here](http://www.cimt.plymouth.ac.uk/resources/codes/codes_u17_text.pdf).
 A closely related system is Arithmetic coding (there's an [explanation of it here](http://www.cimt.plymouth.ac.uk/resources/codes/codes_u18_text.pdf).
-Also, motion picture compression has been omitted, even though compressing videos saves more space than most kinds of compression. 
+Also, motion picture compression has been omitted, even though compressing videos saves more space than most kinds of compression.
 Most video compression is based on the "MPEG" standard (Motion Picture Experts Group). There is some information about how this works in the [CS4FN article on "Movie Magic"](http://www.cs4fn.org/films/mpegit.php).
 
 {teacher}
@@ -621,5 +621,3 @@ if (position <= 100) { colorbox.style.width = position+"%"; }
 }
 });
 </script>
-
-

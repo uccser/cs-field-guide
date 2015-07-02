@@ -1,4 +1,4 @@
-# Encryption coding
+# Coding - Encryption
 
 {teacher}
 
@@ -21,7 +21,7 @@ The following assessment plans also cover this material:
 
 Encryption is used to keep data secret. In its simplest form, a file or data transmission is garbled so that only authorised people with a secret key can unlock the original text.
 If you're using digital devices then you'll be using systems based on encryption all the time: when you use online banking, when you access data through through wifi, when your web browser remembers your password, when you pay for something with a credit card (either by swiping, inserting or tapping), in fact, nearly every activity will involve layers of encryption.
-Without encryption, your information would be wide open to the world --- anyone could pull up outside a house and read all the data going over your wifi, and stolen laptops, hard disks and SIM cards would yield all sorts of information about you --- so encryption is critical to having computer systems work at all. 
+Without encryption, your information would be wide open to the world --- anyone could pull up outside a house and read all the data going over your wifi, and stolen laptops, hard disks and SIM cards would yield all sorts of information about you --- so encryption is critical to having computer systems work at all.
 
 Of course, we wouldn't need encryption if we lived in a world where everyone was honest and could be trusted, and it was ok for anyone to have access to all your personal information such as health records, online discussions, bank accounts and so on, and if you knew that no-one would interfere with things like aircraft control systems and computer controlled weapons. However, information is worth money, people value their privacy, and safety is important, so encryption has become fundamental to the design of computer systems. Even breaking the security on a traffic light system could be used to personal advantage!
 
@@ -55,14 +55,14 @@ Other social engineering approaches that can be used include bribing or blackmai
 
 **Jargon Buster**
 
-When describing an encryption scenario, cryptographers often use the fictitious characters "Alice" and "Bob", with a message being sent from Alice to Bob (A to B). 
-We always assume that someone is eavesdropping on the conversation (in fact, if you're using a wireless connection, it's trivial to pick up the transmissions between Alice and Bob as long as you're in reach of the wireless network that one of them is using). 
+When describing an encryption scenario, cryptographers often use the fictitious characters "Alice" and "Bob", with a message being sent from Alice to Bob (A to B).
+We always assume that someone is eavesdropping on the conversation (in fact, if you're using a wireless connection, it's trivial to pick up the transmissions between Alice and Bob as long as you're in reach of the wireless network that one of them is using).
 The fictitious name for the eavesdropper is usually Eve.
 
 [{image ec-xkcd-protocol.png}]( http://xkcd.com/1323/)
 
 People who try to decrypt messages are called cryptanalysts; more informal terms like hackers and crackers are sometimes used, generally with the implication that they have bad intentions.
-Being a cryptanalyst is generally a good thing to do though: people who use encryption systems actually want to know if they have weaknesses, and don't want to wait until the bad guys find out for them. 
+Being a cryptanalyst is generally a good thing to do though: people who use encryption systems actually want to know if they have weaknesses, and don't want to wait until the bad guys find out for them.
 It's like a security guard checking doors on a building; the guard hopes that they can't get in, but if a door is found unlocked, they can do something about it to make sure the bad guys can't get in. Of course, if a security guard finds an open door, and takes advantage of that to steal something for themselves, they're no longer doing their job properly!
 
 {jargon-buster end}
@@ -77,7 +77,7 @@ There are several other characters used to describe activities around encryption
 
 {teacher}
 
-There's a [song about Alice and Bob](http://www.catonmat.net/blog/musical-geek-friday-alice-and-bob/) performed by rapper MC++ (yes, he specialises in computer science). Some of the language may not be suitable for use in class, so discretion is needed for how you might use it. 
+There's a [song about Alice and Bob](http://www.catonmat.net/blog/musical-geek-friday-alice-and-bob/) performed by rapper MC++ (yes, he specialises in computer science). Some of the language may not be suitable for use in class, so discretion is needed for how you might use it.
 
 [{image ec-xkcd-alice-and-bob.png}](http://xkcd.com/177/)
 
@@ -93,7 +93,7 @@ Teachers notes assume an understanding of the jargon used in encryption. Jargon 
 
 {teacher end}
 
-For these activities, you will need to have pen and paper in front of you to figure out the answers in this section. 
+For these activities, you will need to have pen and paper in front of you to figure out the answers in this section.
 
 Working in a group with 1 or 2 of your classmates (or by yourself if nobody else is around), can you figure out what the following message, encrypted with a simple cipher, says?
 
@@ -107,9 +107,9 @@ S'VV LO GOKBSXQ K BON KBWLKXN.
 ```
 
 - What techniques did your group use to decrypt the message?  
-- If you haven’t already, write out each letter in the alphabet, and then the letter that it corresponds to in the cipher (for the ones that are known, i.e. actually were in the cipher). Can you see a pattern? 
+- If you haven’t already, write out each letter in the alphabet, and then the letter that it corresponds to in the cipher (for the ones that are known, i.e. actually were in the cipher). Can you see a pattern?
 - If you were going to make a secret message of your own using this same cipher, how would you go about it?
-- What would be wrong with using this cipher method for a secret you’d never want anybody else finding out? 
+- What would be wrong with using this cipher method for a secret you’d never want anybody else finding out?
 
 {teacher}
 
@@ -118,7 +118,7 @@ The code deciphered is: THE RESCUE MISSION WILL USE A HELICOPTER, ARRIVING AT NO
 Some of the techniques that students might have used include:
 
 - Looking for interesting letter patterns. For example, the word “S’VV” in the ciphertext. There aren’t that many contractions (words shortened with an apostrophe) in the english language, much less ones that have the last 2 letters the same.
-- Looking at one letter words. Generally they’ll be “A” or “I”. 
+- Looking at one letter words. Generally they’ll be “A” or “I”.
 - As they figure out which letters in the ciphertext correspond to which letters in the plaintext, they should have been making a list of what they’d figured out, and looking at other words in the ciphertext using those same letters.
 - Looking for letters in the ciphertext that seem to appear a lot; these are likely to correspond to common letters in the english alphabet.
 - Looking at letters that DIDN’T appear (perhaps they correspond to letters like Q and Z),
@@ -139,12 +139,12 @@ You may have realised that there was a pattern in how letters from the original 
 
 {image ec-caesar-table-2.png}
 
-The same idea can generate other codes, such as the following one where each letter is replaced with the one that is 8 places earlier. 
+The same idea can generate other codes, such as the following one where each letter is replaced with the one that is 8 places earlier.
 
 {image ec-caesar-table-3.png}
 
 We sometimes say that the alphabet has been *rotated* by 8.
-This system of rotating each letter in a piece of text by a certain amount in order to encrypt it is called Caesar Cipher, named after Julius Caesar, who used it with a rotation of 3 to disguise messages. 
+This system of rotating each letter in a piece of text by a certain amount in order to encrypt it is called Caesar Cipher, named after Julius Caesar, who used it with a rotation of 3 to disguise messages.
 
 You can experiment with this cipher using this interactive.
 
@@ -165,7 +165,7 @@ You can experiment with this cipher using this interactive.
 </div>
 </div>
 
-In this system, the amount of rotation is referred to as a *key*, since you can unlock the message if you know the key. 
+In this system, the amount of rotation is referred to as a *key*, since you can unlock the message if you know the key.
 Normally the sender and receiver would agree on a key in advance (and in person), so that the receiver can easily unlock the message.
 
 However, this encryption method isn't very secure, and you've probably already figured out how to crack a coded message.
@@ -262,7 +262,7 @@ This message decodes to: A LONG MESSAGE CONTAINS LOTS OF STATISTICAL CLUES THAT 
 
 {teacher end}
 
-The most common letter in most English text is the letter E, so it makes sense to try to decrypt the message guessing that the most common letter in the ciphertext corresponds to E. 
+The most common letter in most English text is the letter E, so it makes sense to try to decrypt the message guessing that the most common letter in the ciphertext corresponds to E.
 
 If that doesn't work, you could see if the second most common letter in the ciphertext is E, and so on.
 
@@ -285,7 +285,7 @@ By having multiple caesar ciphers, common letters such as E will no longer stand
 
 However, while this makes the Vigenere cipher more challenging to crack than the Caeser cipher, ways have been found to crack it. In fact, once you know the key length, it just breaks down to cracking several Caesar ciphers (which you have seen is straightforward!). Several statistical methods have been devised for working out the key length.
 
-A brute force attack is harder for the Vigenere cipher because there are a lot more possible keys. In principle there isn't a limit to the number of key phrases possible, although if the phrase is too long then keeping track of the key would be difficult. 
+A brute force attack is harder for the Vigenere cipher because there are a lot more possible keys. In principle there isn't a limit to the number of key phrases possible, although if the phrase is too long then keeping track of the key would be difficult.
 
 The Vigenere cipher is known as a *polyalphabetic substitution cipher*, since it is uses multiple substitution rules.
 
@@ -307,7 +307,7 @@ The message is "HI THERE SECRET MEETING AT TWO AM THURSDAY". Only one character 
 
 Even if you did not know the key was a rotation, you have learnt that A->H, B->I, M->T, X->E, and K->R. This goes a long way towards deciphering the message!
 
-A known plaintext attack is trivial for a Caesar cipher, but a good code shouldn't have this vulnerability because there it can be surprisingly easy for someone to know that a particular message is being sent. For example, a common message might be "Nothing to report", or in online banking there are likely to be common messages like headings in a bank account or parts of the web page that always appear. 
+A known plaintext attack is trivial for a Caesar cipher, but a good code shouldn't have this vulnerability because there it can be surprisingly easy for someone to know that a particular message is being sent. For example, a common message might be "Nothing to report", or in online banking there are likely to be common messages like headings in a bank account or parts of the web page that always appear.
 
 Even worse is a *chosen plaintext attack*, where you trick someone into sending your chosen message through their system.
 
@@ -378,7 +378,7 @@ The main terminology you should be familiar with now is that a *plaintext* is *e
 
  **Steganography**
 
-Cryptography is about hiding the content of a message, but sometimes it's important to hide the *existence* of the message. Otherwise an enemy might figure out that something is being planned just because a lot more messages are being sent, even though they can't read them. 
+Cryptography is about hiding the content of a message, but sometimes it's important to hide the *existence* of the message. Otherwise an enemy might figure out that something is being planned just because a lot more messages are being sent, even though they can't read them.
 One way to achieve this is via *steganography*, where a secret message is hidden inside another message that seems innocuous. A classic scenario would be to publish a message in the public notices of a newspaper or send a letter from prison where the number of letters in each word represent a code. To a casual reader, the message might seem unimportant (and even say the opposite of the hidden one), but someone who knows the code could work it out. Messages can be hidden in digital images by making unnoticable changes to pixels so that they store some information. You can find out [more about steganography on Wikipedia](http://en.wikipedia.org/wiki/Steganography) or in this [lecture on steganography](http://www.youtube.com/watch?v=Py-qu9KWXhk#t=29).
 
 Two fun uses of steganography that you can try to decode yourself are a [film about ciphers that contains hidden ciphers (called "The Thomas Beale Cipher")](http://www.thomasbealecipher.com/), and an activity that has [five-bit text codes hidden in music](http://csunplugged.org/modem).
@@ -395,7 +395,7 @@ It would be a good idea to show [Simon Singh's video](http://simonsingh.net/medi
 
 ### The Key Distribution Problem
 
-Alice sending an encrypted message to Bob raises an interesting problem in encryption. The ciphertext itself can safely be sent across an “unsafe” network (one that Eve is listening on), but the key cannot. How can Alice get the key to Bob? Remember the key is the thing that tells Bob how to convert the ciphertext back to plaintext. So Alice can’t include it in the encrypted message, because then Bob would be unable to access it! Alice can’t just include it as plaintext either, because then Eve will be able to get ahold of it and use it to decrypt any messages that come through using it! You might ask why Alice doesn’t just encrypt the key using a different encryption scheme, but then how will Bob know the new key? Alice would need to tell Bob the key that was used to encrypt it... and so on... this idea is definitely out! 
+Alice sending an encrypted message to Bob raises an interesting problem in encryption. The ciphertext itself can safely be sent across an “unsafe” network (one that Eve is listening on), but the key cannot. How can Alice get the key to Bob? Remember the key is the thing that tells Bob how to convert the ciphertext back to plaintext. So Alice can’t include it in the encrypted message, because then Bob would be unable to access it! Alice can’t just include it as plaintext either, because then Eve will be able to get ahold of it and use it to decrypt any messages that come through using it! You might ask why Alice doesn’t just encrypt the key using a different encryption scheme, but then how will Bob know the new key? Alice would need to tell Bob the key that was used to encrypt it... and so on... this idea is definitely out!
 
 Remember that Alice and Bob might be in different countries, and can only communicate through the internet. This also rules out Alice simply passing Bob the key in person.
 
@@ -511,7 +511,7 @@ Despite even your enemies knowing your public key (as you publically announced i
 In order to encrypt a message, the public key is used. In order to decrypt it, the corresponding private key must be used. But what would happen if the message was encrypted using the *private* key? Could you then decrypt it with the public key?
 Initially this might sound like a silly thing to do, as why would you encrypt a message which can be decrypted using a key that everybody in the world can access!?!  It turns out that indeed, encrypting a message with the private key and then decrypting it with the public key works, and it has a very useful application!
 The only person who is able to *encrypt* the message using the *private* key is the person who owns the private key. The public key will only decrypt the message if the private key that was used to encrypt it actually is the public key’s corresponding private key! If the message can’t be decrypted, then it could not have been encrypted with that private key.
-This allows the sender to prove that the message actually is from them, and is known as a digital signature. 
+This allows the sender to prove that the message actually is from them, and is known as a digital signature.
 
 You could check that someone is the authentic private key holder by giving them a phrase to encrypt with their private key. You then decrypt it with the public key to check that they encrypted the phrase you gave them.
 
@@ -525,8 +525,8 @@ There's a [video illustrating how public key systems work using a padlock analog
 
 **Jargon Buster**
 
-Public key systems rely on *one way functions*, which are mathematical functions where it's easy to calculate the output for a particular input, but very hard to work out the input given the output. In the physical world a telephone book is a one-way function: if you're given a name, it's easy to work out the number, but given someone's phone number, it's difficult to work out their name from the phone book. In cryptography a widely used one-way function is multiplying numbers. Given two large numbers, you can multiply them very quickly, but given the result of the multiplication, it is very difficult to find out what its factors are. 
-For example, see if you can work out which numbers multiply to give 806,849,546,124,373,268,247,678,601. You could try writing a program to try every combination of factors, but you'll probably find it takes too long. Although this particular number can be factorised by modern software, larger numbers can't be, and this is a problem that mathematicians and computer scientists can't find an efficient solution to. 
+Public key systems rely on *one way functions*, which are mathematical functions where it's easy to calculate the output for a particular input, but very hard to work out the input given the output. In the physical world a telephone book is a one-way function: if you're given a name, it's easy to work out the number, but given someone's phone number, it's difficult to work out their name from the phone book. In cryptography a widely used one-way function is multiplying numbers. Given two large numbers, you can multiply them very quickly, but given the result of the multiplication, it is very difficult to find out what its factors are.
+For example, see if you can work out which numbers multiply to give 806,849,546,124,373,268,247,678,601. You could try writing a program to try every combination of factors, but you'll probably find it takes too long. Although this particular number can be factorised by modern software, larger numbers can't be, and this is a problem that mathematicians and computer scientists can't find an efficient solution to.
 
 {jargon-buster end}
 
@@ -566,7 +566,7 @@ The RSA cryptosystem is a widely used algorithm for public key systems. Many rea
 
 {comment end}
 
-In a nutshell, the RSA cryptosystem uses some clever math based on the unsolved mathematical problem of efficiently *factoring* a number which is the product of two prime numbers. If you need a reminder of what prime numbers and factoring a number are, read the Jargon Buster just below. 
+In a nutshell, the RSA cryptosystem uses some clever math based on the unsolved mathematical problem of efficiently *factoring* a number which is the product of two prime numbers. If you need a reminder of what prime numbers and factoring a number are, read the Jargon Buster just below.
 
 {jargon-buster}
 
@@ -616,7 +616,7 @@ So why is it that despite these two problems being similar, one of them is “ea
 You have probably done long multiplication in school by making one line for each digit in the second number and then adding all the rows together. We can analyse the speed of this algorithm, much like we did in the algorithms chapter for sorting and searching.
 Assuming that each number has the same number of digits, which we will call n (“Number of digits”), we need to write n rows. For each of those n rows, we will need to do around n multiplications. That gives us n*n little multiplications. We need to add the n rows together at the end as well, but that doesn’t take long so lets ignore that part. We have determined that the number of small multiplications needed to multiply two big numbers is approximately the square of the number of digits. So for two numbers with 1000 digits, that’s 1,000,000 little multiplication operations. A computer can do that in less than a second! If you know about Big-O notation, this is a O(n^2) algorithm, where n is the number of digits! Note that some slightly better algorithms have been designed, but this estimate is good enough for our purposes.
 
-For the second problem, we’d need an algorithm that could find the two numbers that were multiplied together. You might initially say, why can’t we just reverse the multiplication? The reverse of multiplication is division, so can’t we just divide to get the two numbers? 
+For the second problem, we’d need an algorithm that could find the two numbers that were multiplied together. You might initially say, why can’t we just reverse the multiplication? The reverse of multiplication is division, so can’t we just divide to get the two numbers?
 It’s a good idea, but it won’t work. For division we need to know the big number, and one of the small numbers we want to divide into it, and that will give us the other small number. But in this case, we *only* know the big number. So it isn’t a straightforward long division problem at all!
 It turns out that there is no known good algorithm to solve the problem. One way is to just try every number that is less than the number (well, we only need to go up to the square root, but that doesn’t help much!) There is still billions of billions of billions of numbers we need to check. Even a computer that could check 1 billion possibilities a second isn’t going to help us much with this! If you know about Big-O notation, this is an O(10^n) algorithm, where n is the number of digits -- even small numbers of digits are just too much to deal with!
 There are slightly better solutions, but none of them shave off enough time to actually be useful for problems of the size of the one above!
@@ -649,7 +649,7 @@ Now, encrypt a very similar sentence using the same key, for example:
 
 Put the ciphertext for each side by side. As you might expect, they look very similar. This is problematic given that if Eve has the first message, she could probably use it to guess the second one! This means Caesar cipher is not *semantically secure*. It is essential that ciphers used in practice are!
 
-But what about RSA? Do similar plaintext messages lead to similar ciphertext messages when RSA is used? 
+But what about RSA? Do similar plaintext messages lead to similar ciphertext messages when RSA is used?
 
 In order to find out, generate an RSA key and use it to encrypt each of the two above messages. What do you observe?
 
@@ -663,7 +663,7 @@ Semantically secure means that there is no known efficient algorithm that can us
 
 {jargon-buster end}
 
- 
+
 ### Adding padding to the plaintext
 
 The plain RSA algorithm actually fails one important requirement of a good cryptosystem though! If Eve thinks she knows what message Alice is sending to Bob using public key encryption, she can attempt to encrypt that message using the public key and then see if the ciphertext she gets is the same as what Alice sent. If it is, she now knows what Alice sent Bob!
@@ -697,8 +697,8 @@ So far RSA has held up really well against the potential attacks we have looked 
 No mathematical solution exists, although there is a practical solution. Public Key Certificates are distributed by Public Key Certificate Authorities (CA’s) in order to prove the ownership of a public key. This now assumes that the CA’s are trustworthy and that they won’t be fooled or compromised. For the most part it works, although there have been some [worrying exceptions…](http://en.wikipedia.org/wiki/Certificate_authority#CA_compromise)
 
 {teacher}
- 
-A useful class activity to help students to understand public key systems is to simulate the process in the classroom. 
+
+A useful class activity to help students to understand public key systems is to simulate the process in the classroom.
 
 Each student in the class should generate a pair of keys (we recommend using the simplified interactive in the book as it has shorter keys and a simpler interface so less chance of errors). The student should save the keys into a text file so that they do not lose them. The private key should not be shown to anybody else.
 
@@ -708,7 +708,7 @@ Now, each student should write short messages to at least two or three classmate
 
 Each student then needs to get the public keys from the list for each student they are sending a message to. Using the encrypter interactive, they should encrypt each message.
 
-Now, they need to send each of the encrypted messages. It would be ideal to do this over a “public” channel which everybody in the class can easily see (as it is assumed in encryption that the ciphertext can easily be obtained!).  If the students have twitter accounts for school, twitter would be the ideal way of carrying this out (as long as the messages are really short!), as the students can tag those they are sending the message to so that they see it among the other messages, but other classmates can easily view it. Another way would be to use a google word doc for students to put all messages into (or that they email their messages to the teacher who puts them in the google doc if the students start changing what they are not supposed to change). 
+Now, they need to send each of the encrypted messages. It would be ideal to do this over a “public” channel which everybody in the class can easily see (as it is assumed in encryption that the ciphertext can easily be obtained!).  If the students have twitter accounts for school, twitter would be the ideal way of carrying this out (as long as the messages are really short!), as the students can tag those they are sending the message to so that they see it among the other messages, but other classmates can easily view it. Another way would be to use a google word doc for students to put all messages into (or that they email their messages to the teacher who puts them in the google doc if the students start changing what they are not supposed to change).
 
 Students should get all the encrypted messages that were sent to them and then decipher them using their private key.
 
@@ -743,14 +743,14 @@ For a really good class, you might like to also add digital signatures into the 
 .. give prize for cracking my actual password (give hash)
 .. http://computer.howstuffworks.com/encryption5.htm, hashing
 .. xhtml5 an md5/sha hash would be good, then we give some checksums and they can try to match them, and find another password that gives the same checksum. This library/system seems to make it easy to do in JS: http://bitwiseshiftleft.github.io/sjcl/demo/
-.. - store passwords using hash (e.g. MD5 in Python or available online, or JS applet?) Try to crack passwords from a set of MD5 keys (use common password names). 
+.. - store passwords using hash (e.g. MD5 in Python or available online, or JS applet?) Try to crack passwords from a set of MD5 keys (use common password names).
 
 .. xtcb project evaluate chances of stumbling on a key, dictionary attack etc.
 
 .. xtcb: write authentication soon
 
 
-.. Authentication and authorisation 
+.. Authentication and authorisation
 .. =====================================================
 
 .. authentication and authorisation (e.g. plane ticket proves authorised to use seat; also needs to authenticate using id card for different purposes)
@@ -773,7 +773,7 @@ For a really good class, you might like to also add digital signatures into the 
 
 Many of the examples in this chapter use very weak encryption methods that were chosen to illustrate concepts, but would never be used for commercial or military systems.
 
-There are many aspects to computer security beyond encryption. For example, access control (such as password systems and security on smart cards) is crucial to keeping a system secure. 
+There are many aspects to computer security beyond encryption. For example, access control (such as password systems and security on smart cards) is crucial to keeping a system secure.
 Another major problem is writing secure software which doesn't leave ways for a user to get access to information that they shouldn't (such as typing a database command into a website query and have the system accidentally run it, or overflowing the buffer with a long input, which could accidentally replace parts of the program).
 Also, systems need to be protected from "denial of service" (DOS) attacks, where they get so overloaded with requests (e.g. to view a web site) that the server can't cope, and legitimate users get very slow response from the system, or it might even fail completely.
 
@@ -807,9 +807,9 @@ On the positive side, [quantum information transfer protocols](http://en.wikiped
 
 ## Further reading
 
-The [Wikipedia entry on cryptography](http://en.wikipedia.org/wiki/Cryptography) has a fairly approachable entry going over the main terminology used in this chapter (and a lot more) 
+The [Wikipedia entry on cryptography](http://en.wikipedia.org/wiki/Cryptography) has a fairly approachable entry going over the main terminology used in this chapter (and a lot more)
 
-The encryption methods used these days rely on fairly advanced maths; for this reason books about encryption tend to either be beyond high school level, or else are about codes that aren't actually used in practice. 
+The encryption methods used these days rely on fairly advanced maths; for this reason books about encryption tend to either be beyond high school level, or else are about codes that aren't actually used in practice.
 
 {comment}
 
@@ -817,7 +817,7 @@ The encryption methods used these days rely on fairly advanced maths; for this r
 
 {comment end}
 
-There are lots of intriguing stories around encryption, including its use in wartime and for spying e.g. 
+There are lots of intriguing stories around encryption, including its use in wartime and for spying e.g.
 
 - How I Discovered World War II's Greatest Spy and Other Stories of Intelligence and Code (David Kahn)
 
@@ -853,4 +853,3 @@ The book "Hacking Secret Ciphers with Python: A beginner's guide to cryptography
 
 <script language="JavaScript" type="text/javascript" src="_static/interactives/third-party/big.js"></script>
 <script language="JavaScript" type="text/javascript" src="_static/interactives/en/en-interactives.js"></script>
-

@@ -1,4 +1,4 @@
-# Error Control Coding
+# Coding - Error Control
 
 {teacher}
 
@@ -10,7 +10,7 @@ The following assessment plans also cover this material:
 - [Error Control Coding (Check Sums)](/appendices/assessment-guides/new-zealand/assessment-guide-level-2-error-control-checksums)
 
 {teacher end}  
-  
+
 ## What's the big picture?
 {teacher}
 
@@ -76,16 +76,16 @@ Once you think you have this correct, you should tell the computer to flip a car
 
 Remember how you made it so that each column had an even number of black cards? When a card is flipped, this results in the row and column that the card was in having an odd number of black cards. So all you need to do is to identify the row and column that have an odd number of black and white cards, and the card that is at the intersection of them must be the one that was flipped!
 
-What we saw above is a simple error control coding algorithm, known as *2-dimensional parity*. 
+What we saw above is a simple error control coding algorithm, known as *2-dimensional parity*.
 
-The cards represent bits, with their two states being black and white (in the "data representation" chapter we looked at how a bit can be stored by anything that can be in one of two states: shiny/not shiny, magnetised/not magnetised, high voltage/low voltage, black/white, etc). The original 7x7 cards that the computer laid out for you could be some kind of data, for example some text represented using bits, or an image, or some numbers. 
+The cards represent bits, with their two states being black and white (in the "data representation" chapter we looked at how a bit can be stored by anything that can be in one of two states: shiny/not shiny, magnetised/not magnetised, high voltage/low voltage, black/white, etc). The original 7x7 cards that the computer laid out for you could be some kind of data, for example some text represented using bits, or an image, or some numbers.
 Although they are laid out in a grid, on a computer the rows of bits would be stored or transmitted one after the other (as 8 lots of 8 bits).
 
 The extra cards you added are called *parity bits*. Parity simply means whether a number is even or odd (the word comes from the same root as "pair"). By adding the extra cards in a way that ensured an even number of black cards in each row and column, you made it so that the rows and columns had what is called *even parity*.
 
 When a card was flipped, this simulated an error being made in your data (such as a piece of dust landing on a bit stored on a CD, or a cosmic ray changing a bit stored on a hard disk, or electrical interference changing a bit being sent over a network cable). Because you knew that each row and column was supposed to have an even number of black and white cards in it, you could tell that there was an error from the fact that there was a column and row that had an odd number of black cards in it. This means that the algorithm is able to detect errors, i.e. it has **error detection**. The specific card that had been flipped was at the intersection of the row and column that had an odd number of black cards and white cards in them, and because you were able to identify exactly which card was flipped, you were able to correct the error, i.e the algorithm has **error correction**.
 
-If you had not added the parity bits, you would have had no way of even knowing an error had occurred, unless you had memorised the entire layout of cards! 
+If you had not added the parity bits, you would have had no way of even knowing an error had occurred, unless you had memorised the entire layout of cards!
 And what if more than one bit had been flipped? We'll consider this later.
 
 {curiosity}
@@ -103,7 +103,7 @@ You can find details and lots of ideas relating to the trick [here](http://csunp
 
 It would take some practice to be able to add the extra cards, and identify the flipped card without the observer noticing that you are thinking hard about it. With practice you should be able to do it while having a casual conversation. Once you master it, you've got a great trick for parties, or even for busking.
 
-To make it more showy, you can pretend that you are mind reading the person, waving your hands over the cards. A particular impressive variation is to have an assistant come in to the room after the card has been flipped; even though they haven't seen any of the setup, they will still be able to detect the error. 
+To make it more showy, you can pretend that you are mind reading the person, waving your hands over the cards. A particular impressive variation is to have an assistant come in to the room after the card has been flipped; even though they haven't seen any of the setup, they will still be able to detect the error.
 
 {curiosity end}
 
@@ -200,7 +200,7 @@ The last code has a typo in it; it should have been 9 300617 003199. Students sh
 
 If you were scanning the above barcodes in a supermarket, the incorrect one will need to be rescanned, and the system can tell that it's a wrong number without even having to look it up.
 
-You could try swapping barcode numbers with a classmate, but before giving them the number toss a coin, and if it's heads, change one digit of the barcode before you give it to them. 
+You could try swapping barcode numbers with a classmate, but before giving them the number toss a coin, and if it's heads, change one digit of the barcode before you give it to them.
 Can they determine that they've been given an erroneous barcode?
 
 If one of the digits is incorrect, this calculation will produce a different value to the checksum, and signals an error. So single digit errors will always be detected, but what if two digits change --- will that always detect the error?
@@ -250,7 +250,7 @@ Students may be tempted to do things like reverse all the digits, or completely 
 
 {teacher}
 
-Writing a program to calculate checksums is a good programming exercise. It can be made simple by having each digit entered separately, or part of the exercise could be to separate the digits. It's also not hard to create a spreadsheet to do these calculations. 
+Writing a program to calculate checksums is a good programming exercise. It can be made simple by having each digit entered separately, or part of the exercise could be to separate the digits. It's also not hard to create a spreadsheet to do these calculations.
 
 {teacher end}
 
@@ -316,13 +316,13 @@ The first thing we should observe is that only the ones column (last digit) of e
 
 Next, lets look at why changing *one* digit in the number to another digit will *always* be detected with this algorithm. Each digit will contribute a number between 0 and 9 to the sum (remember we only care about the ones column now). As long as changing the digit will result in it contributing a different amount to the sum, it becomes impossible for it to still sum to a multiple of 10. Remember that each digit is either multiplied by 1 or 3 before its ones column is added to the sum.
 
-A number being multiplied by 1 will always contribute itself to the sum. If for example the digit was supposed to be 9, no other single digit can contribute 9 to the sum. So those multiplied by 1 are fine. 
+A number being multiplied by 1 will always contribute itself to the sum. If for example the digit was supposed to be 9, no other single digit can contribute 9 to the sum. So those multiplied by 1 are fine.
 
 But what about those multiplied by 3? To answer that, we need to look at what each different digit contributes to the sum when multiplied by 3.
 
 - 1 -> 3
 - 2 -> 6
-- 3 -> 9 
+- 3 -> 9
 - 4 -> 2 (from 1*2*)
 - 5 -> 5 (from 1*5*)
 - 6 -> 8 (from 1*8*)
@@ -343,17 +343,17 @@ If two digits are next to one another, one of them must be multiplied by 1, and 
 
 But are there any cases where the totals will have the same values in their ones columns? Another way of looking at the problem is to take a pair of rows from the table above, for example:
 
-- 8 -> 4 
-- 2 -> 6 
+- 8 -> 4
+- 2 -> 6
 
-Remember that the first column is how much will be contributed to the total for digits being multiplied by 1, and the second column is for those being multiplied by 3. Because adjacent digits are each multiplied by a different amount (one by 3 and the other by 1), the numbers diagonal to each other in the chosen pair will be added. 
+Remember that the first column is how much will be contributed to the total for digits being multiplied by 1, and the second column is for those being multiplied by 3. Because adjacent digits are each multiplied by a different amount (one by 3 and the other by 1), the numbers diagonal to each other in the chosen pair will be added.
 
 If for example the first 2 digits in a number are “28”, then we will add 2+4=6 to the sum. If they are then reversed, we will add 8+6=14, which is equivalent to 4 as again, the “10” part does not affect the sum. 8+6 and 2+4 are the diagonals of the pair!
 
-- *8* -> **4** 
-- **2** -> *6* 
+- *8* -> **4**
+- **2** -> *6*
 
-So the question now is, can you see any pairs where the diagonals would add up to the same value? There is one! 
+So the question now is, can you see any pairs where the diagonals would add up to the same value? There is one!
 
 *Protection against twin errors*
 
@@ -410,9 +410,9 @@ A pair of numbers that are two apart like this will always be multiplied by the 
 
 ### The whole story!
 
-The codes discussed in this chapter are all widely used, but the most widely used codes for data storage are more sophisticated because they need to deal with more complex errors than a single bit changing. 
+The codes discussed in this chapter are all widely used, but the most widely used codes for data storage are more sophisticated because they need to deal with more complex errors than a single bit changing.
 For example, if a CD is scratched of a hard disk has a small fault, it's likely to affect many adjacent bits.
-These systems use codes based on more advanced mathematical concepts. 
+These systems use codes based on more advanced mathematical concepts.
 The most widely used codes for storage and data transfer are [the Reed-Solomon codes](http://en.wikipedia.org/wiki/Reed_Solomon) and [Cyclic Redundancy Check (CRC)](http://en.wikipedia.org/wiki/CRC32).
 For human readable numbers such as bar codes, bank numbers, tax numbers, social security numbers and so on, [checksums](http://en.wikipedia.org/wiki/Checksum) are very common, and the [Luhn algorithm](http://en.wikipedia.org/wiki/Luhn_algorithm) is one of the more widely used.
 Larger checksums are also used to check that downloaded files are correct.
@@ -427,4 +427,3 @@ The parity method is a form of [Hamming code](http://en.wikipedia.org/wiki/Hammi
 - Techradar has more [information about error detection and correction](http://www.techradar.com/news/computing/how-error-detection-and-correction-works-1080736)
 - [An explanation of error correcting codes](http://www.multiwingspan.co.uk/as1.php?page=error)
 - [A check digit calculator for common bar codes](http://www.gs1.org/barcodes/support/check_digit_calculator)
-
