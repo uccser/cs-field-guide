@@ -6,8 +6,8 @@ The following assessment plans also cover this material:
 
 **New Zealand - AS91371 (2.44)**
 
-- [Assessment Overview](/appendices/assessment-guides/new-zealand/assessment-guide-level-2-introduction)
-- [Encryption (RSA Cryptosystem)](appendices/assessment-guides/new-zealand/assessment-guide-level-2-encryption-rsa)
+- [Assessment Overview](assessment-guides/new-zealand/assessment-guide-level-2-introduction.html)
+- [Encryption (RSA Cryptosystem)](assessment-guides/new-zealand/assessment-guide-level-2-encryption-rsa.html)
 
 {teacher end}
 
@@ -17,7 +17,7 @@ The following assessment plans also cover this material:
 
 {comment end}
 
-##What's the big picture?
+## What's the big picture?
 
 Encryption is used to keep data secret. In its simplest form, a file or data transmission is garbled so that only authorised people with a secret key can unlock the original text.
 If you're using digital devices then you'll be using systems based on encryption all the time: when you use online banking, when you access data through through wifi, when your web browser remembers your password, when you pay for something with a credit card (either by swiping, inserting or tapping), in fact, nearly every activity will involve layers of encryption.
@@ -83,7 +83,7 @@ There's a [song about Alice and Bob](http://www.catonmat.net/blog/musical-geek-f
 
 {teacher end}
 
-## Substitution ciphers
+## Substitution Ciphers
 
 {teacher}
 

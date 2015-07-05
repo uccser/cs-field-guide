@@ -371,7 +371,6 @@ class HeadingNode:
         self.guide = self.section.guide
         self.number = self.guide.number_generator.next(self.level) if self.section.file_node.tracked else None
         self.children = []
-        #print(self)
 
     def __str__(self):
         if self.number:
