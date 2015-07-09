@@ -26,17 +26,19 @@ GUIDE_SETTINGS = 'guide-settings.conf'
 GENERATOR_SETTINGS = 'generator/generator-settings.conf'
 REGEX_LIST = 'generator/regex-list.conf'
 LOGFILE_SETTINGS = 'generator/logging.conf'
+TRANSLATIONS = 'generator/static-translations.conf'
 
 class Guide:
-    def __init__(self):
+    def __init__(self, guide_settings, language_code, version):
         # Read settings
-        self.guide_settings = self.read_settings(GUIDE_SETTINGS)
-        self.generator_settings = self.read_settings(GENERATOR_SETTINGS)
-        self.regex_list = self.read_settings(REGEX_LIST)
+        self.guide_settings = guide_settings
+        self.generator_settings = systemfunctions.read_settings(GENERATOR_SETTINGS)
+        self.regex_list = systemfunctions.read_settings(REGEX_LIST)
+        self.translations = systemfunctions.read_settings(TRANSLATIONS)
 
-        self.language_code = self.guide_settings['Main']['Language']
+        self.language_code = language_code
         self.language = self.parse_language()
-        self.version = self.parse_version()
+        self.version = version
 
         self.number_generator = NumberGenerator()
 
@@ -94,21 +96,11 @@ class Guide:
             return language_name
 
 
-    def parse_version(self):
-        version = self.guide_settings['Main']['Version'].lower()
-        if not version == 'teacher':
-            version = 'student'
-        return version
-
-
-    def read_settings(self, settings_location):
-        """Read the given setting file
-        and return the configparser
-        """
-        settings = configparser.ConfigParser()
-        settings.optionxform = str
-        settings.read(settings_location)
-        return settings
+    # def parse_version(self):
+    #     version = self.guide_settings['Main']['Version'].lower()
+    #     if not version == 'teacher':
+    #         version = 'student'
+    #     return version
 
 
     def parse_structure(self):
@@ -124,7 +116,7 @@ class Guide:
                 for title_path in title_paths:
                     current_folder = root_folder # Reset current folder to root
                     full_title_path = os.path.join(group_root_folder, title_path)
-                    folder_path,title  = os.path.split(full_title_path)
+                    folder_path, title = os.path.split(full_title_path)
                     folder_path = folder_path.split('/')
                     # Navigate to correct folder
                     while folder_path:
@@ -133,7 +125,13 @@ class Guide:
                             # add_folder ignores creation if folder exists
                             current_folder.add_folder(sub_folder_name)
                             current_folder = current_folder.get_folder(sub_folder_name)
-                    current_folder.add_file(title, group, tracked=is_tracked)
+                    #Add file node if correct markdown file exists
+                    text_root = self.generator_settings['Source']['text']
+                    file_template = self.generator_settings['Source']['Text Filename Template']
+                    file_name = file_template.format(title=title, language=self.language_code)
+                    file_path = os.path.join(text_root, current_folder.path, file_name)
+                    if file_exists(file_path):
+                        current_folder.add_file(title, group, tracked=is_tracked)
         # Visualise folder structure for restructuring
         print(root_folder)
         return root_folder
@@ -245,7 +243,7 @@ class Guide:
             context = {'page_title':file.section.title,
                        'body_html':body_html,
                        'path_to_root': file.section.html_path_to_root,
-                       'project_title': self.guide_settings['Main']['Title'],
+                       'project_title': self.translations['Title'][self.language_code],
                        'root_folder': self.structure,
                        'heading_root': file.section.heading,
                        'language_code': self.language_code
@@ -262,7 +260,6 @@ class FolderNode:
     """Node object for storing folder details in structure tree"""
     def __init__(self, name, parent=None, guide=None):
         self.name = name
-        self.title = systemfunctions.from_kebab_case(self.name)
         self.parent = parent
         self.folders = []
         self.files = []
@@ -271,6 +268,13 @@ class FolderNode:
         self.depth = (parent.depth + 1) if parent else -1
         self.path = os.path.join(self.parent.path, self.name) if self.parent else ''
         self.guide = self.parent.guide if parent else guide
+        self.english_title = systemfunctions.from_kebab_case(self.name)
+        if self.parent:
+            self.title = self.guide.translations[self.english_title][self.guide.language_code]
+        else:
+            #Folder is root folder, name is not important
+            self.title = self.english_title
+
 
     def add_folder(self, folder_name):
         """Add sub-folder to folders list. Updates dictionary
@@ -384,7 +388,12 @@ def main():
     """Creates a Guide object"""
     # Switch to current directory
     setup_logging()
-    guide = Guide()
+    guide_settings = systemfunctions.read_settings(GUIDE_SETTINGS)
+    languages = guide_settings['Main']['Languages'].split()
+    versions = guide_settings['Main']['Versions'].split()
+    for language in languages:
+        for version in versions:
+            guide = Guide(guide_settings=guide_settings, language_code=language, version=version)
     logging.shutdown()
 
 

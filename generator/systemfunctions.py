@@ -4,6 +4,7 @@
 """
 
 import string
+import configparser
 
 def to_kebab_case(text):
     """Returns the given text as kebab case.
@@ -19,3 +20,14 @@ def from_kebab_case(text):
     Text is camel case, with dashs replaced with spaces
     """
     return text.replace('-', ' ').title()
+
+
+def read_settings(settings_location):
+    """Read the given setting file
+    and return the configparser
+    """
+    settings = configparser.ConfigParser()
+    settings.optionxform = str
+    #settings.default_section = 'Main'
+    settings.read(settings_location)
+    return settings
