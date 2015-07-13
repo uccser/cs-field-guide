@@ -28,7 +28,8 @@ class Guide:
         self.guide_settings = guide_settings
         self.generator_settings = systemfunctions.read_settings(GENERATOR_SETTINGS)
         self.regex_list = systemfunctions.read_settings(REGEX_LIST)
-        self.translations = systemfunctions.read_settings(TRANSLATIONS)
+        self.translations = systemfunctions.read_settings(TRANSLATIONS_LOCATION)
+        self.permissions = systemfunctions.read_settings(PERMISSIONS_LOCATION)
 
         self.language_code = language_code
         self.language = self.parse_language()
@@ -94,12 +95,6 @@ class Guide:
         else:
             return language_name
 
-
-    # def parse_version(self):
-    #     version = self.guide_settings['Main']['Version'].lower()
-    #     if not version == 'teacher':
-    #         version = 'student'
-    #     return version
 
 
     def parse_structure(self):
@@ -207,6 +202,8 @@ class Guide:
             # Copy files
             for file_name in file_data.filenames:
                 source_location = os.path.join(file_data.source_location, file_name)
+                if file_type in self.permissions.sections() and not (file_name in self.permissions[file_type]):
+                    logging.warning("No permissions information exists for {} {}!".format(file_type, file_name))
                 output_location = os.path.join(file_data.output_location, file_name)
                 if os.path.exists(source_location):
                     try:
