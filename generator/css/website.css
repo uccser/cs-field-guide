@@ -1,0 +1,209 @@
+@import url(http://fonts.googleapis.com/css?family=Lato|Montserrat:700);
+.title {
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+    /*font-size: 3.6em;*/
+    line-height: 100%;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif
+}
+body {
+    font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background: #fff;
+    overflow-x: hidden;
+}
+.tab-bar {
+    background: #0a83bb;
+    color: #fff;
+    font-size: 2.5rem;
+    width: 100%;
+    border-bottom: #4C9BD1 4px solid;
+}
+#sidebar-overlay{
+}
+#sidebar-overlay.toggled {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    z-index: 997;
+    opacity: 1;
+}
+.icon-menu,
+.icon-menu:hover {
+  color: #fff;
+}
+.tab-bar h1,
+.tab-bar h2,
+.tab-bar h3,
+.tab-bar h4,
+.tab-bar h5,
+.tab-bar h6 {
+    color: #fff;
+    /*font-size: 2rem;*/
+}
+#wrapper {
+    padding-left: 0px;
+}
+#sidebar-wrapper {
+    z-index: 998;
+    position: fixed;
+    top: 2.8125rem;
+    bottom: 0;
+    left: 0;
+    width: 350px;
+    margin-left: -350px;
+    background: #0A83BB;
+    overflow-x: hidden;
+    /*The lines below hide scroll bar unless
+    hovering on desktop, but you cannot
+    scroll on touch devices.
+    JavaScript solution required.*/
+    /*overflow-y: hidden;
+}
+#sidebar-wrapper:hover {*/
+    overflow-y: auto;
+}
+#wrapper,
+#sidebar-overlay,
+#sidebar-wrapper {
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+#sidebar-wrapper.toggled {
+    z-index: 998;
+}
+#wrapper.toggled #sidebar-wrapper {
+    margin-left: 0px;
+}
+#page-content-wrapper {
+    width: auto;
+    z-index: 2;
+    background: #fff;
+}
+#page-content-wrapper.toggled {
+    width: 100%;
+    margin-left: 0px;
+    z-index: 2;
+}
+#wrapper.toggled #page-content-wrapper {
+    position: absolute;
+    margin-right: -200px;
+}
+.sidebar-nav {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.sidebar-nav li {
+    display: block;
+    font-size: 1rem;
+    padding: 1px 10px;
+    white-space: normal;
+}
+.sidebar-nav li.sidebar-brand {
+    font-size: 1.5rem;
+}
+.sidebar-nav .header {
+  font-weight: bold;
+}
+.sidebar-nav a {
+    display: block;
+    text-decoration: none;
+    color: #fff;
+}
+.sidebar-nav li:hover {
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.2);
+}
+.sidebar-nav a:active,
+.sidebar-nav a:focus {
+    text-decoration: none;
+}
+#sidebar-wrapper.toggled .sidebar-nav a:hover span {
+    text-decoration: none;
+    color: #fff;
+    background: transparent;
+}
+.sidebar-nav a:active span,
+.sidebar-nav a:focus span {
+    text-decoration: none;
+}
+.sidebar-nav > .sidebar-brand {
+    display: none;
+}
+.sidebar-nav > .sidebar-brand a {
+    color: #fff;
+}
+.sidebar-nav > .sidebar-brand a:hover {
+    color: #fff;
+    background: none;
+}
+.left-small {
+    border: 0;
+    width: 60px;
+    text-align: center;
+    background: #4C9BD1;
+    font-size: 2.7rem;
+    z-index: 100;
+    cursor: pointer;
+}
+.left-small:hover * {
+    color: #e88f0c;
+}
+@media(min-width:768px) {
+    #wrapper {
+        padding-left: 350px;
+        margin-top: -2.8125rem;
+    }
+    #wrapper.toggled #page-content-wrapper {
+        margin-left: 350px;
+    }
+    .sidebar-nav > .sidebar-brand {
+        display: block;
+    }
+    .tab-bar {
+        visibility: hidden;
+    }
+    #sidebar-wrapper {
+        width: 350px;
+        top: 0;
+        margin-left: 0;
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.3), 0 2px 10px 0 rgba(0, 0, 0, 0.25);
+    }
+    #wrapper.toggled #sidebar-wrapper {
+        width: 350px;
+    }
+    .sidebar-nav {
+        width: 350px;
+    }
+    #page-content-wrapper {
+        padding: 0px;
+        margin-left: 0px !important;
+    }
+    #wrapper.toggled #page-content-wrapper {
+        position: relative;
+        margin-right: 0;
+    }
+    #page-content-wrapper .container-fluid {
+        margin-top: 20px;
+    }
+}
+.row {
+    /*max-width: 75em;*/
+}
