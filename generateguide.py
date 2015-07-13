@@ -3,22 +3,11 @@ AUTHORS: Jack Morgan, Jordan Griffiths
 REQUIRES: Python >= 3.4.1
 """
 
-import pip
-import argparse
-import sys
+import generator.systemfunctions as systemfunctions
 
-#Check for command line options/arguments
-argsparser = argparse.ArgumentParser(description='guide generator args')
-argsparser.add_argument('--ignore-pip', dest='ignore_dependencies', action='store_true')
-argsparser.add_argument('--pdf', dest='include_pdf', action='store_true')
-cmd_args = argsparser.parse_args()
-
-#Check and install dependencies if needed
-if not cmd_args.ignore_dependencies:
-    # Update pip if needed
-    pip.main(['install', '--upgrade', '--user', 'pip>=7.0.3'])
-    # Check dependencies
-    pip.main(['install',  '--user', '-r', 'generator/dependencies.conf'])
+cmd_args = systemfunctions.command_line_args()
+if cmd_args.install_dependencies:
+    systemfunctions.install_dependencies()
 
 import configparser
 import logging
@@ -26,7 +15,6 @@ import os.path
 import os
 import re
 import generator.languages
-import generator.systemfunctions as systemfunctions
 from shutil import copy2
 from generator.markdownsection import Section
 from generator.websitegenerator import WebsiteGenerator
