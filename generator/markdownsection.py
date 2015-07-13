@@ -2,6 +2,7 @@ import re
 import logging
 import os.path
 import generator.systemfunctions as systemfunctions
+from generator.systemconstants import *
 from markdown2 import markdown
 from generator.files import setup_required_files
 
@@ -12,8 +13,6 @@ MARKDOWN2_EXTRAS = ["code-friendly",
                     "tables",
                     "wiki-tables"]
 
-WEB = 'web'
-PDF = 'pdf'
 
 class Section:
     """Contains data and functions relating to a specific section of the

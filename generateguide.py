@@ -4,6 +4,8 @@ REQUIRES: Python >= 3.4.1
 """
 
 import generator.systemfunctions as systemfunctions
+from generator.systemconstants import *
+
 
 cmd_args = systemfunctions.command_line_args()
 if cmd_args.install_dependencies:
@@ -19,15 +21,6 @@ from shutil import copy2
 from generator.markdownsection import Section
 from generator.websitegenerator import WebsiteGenerator
 from generator.files import setup_required_files
-
-GUIDE_SETTINGS = 'guide-settings.conf'
-GENERATOR_SETTINGS = 'generator/generator-settings.conf'
-REGEX_LIST = 'generator/regex-list.conf'
-LOGFILE_SETTINGS = 'generator/logging.conf'
-TRANSLATIONS = 'generator/static-translations.conf'
-
-WEB = 'web'
-PDF = 'pdf'
 
 class Guide:
     def __init__(self, guide_settings, language_code, version, output_type=WEB):
