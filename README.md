@@ -13,6 +13,16 @@ Within this repository, you will find six folders containing different areas of 
 - **generator:** Data used to create the output of the guide.
 - **output:** Output of the generator, when run by the user.
 
+## Usage
+
+Run `generateguide.py` with Python 3
+
+### Optional Parameters
+
+The following parameters may be used to alter the generation process:
+- `--ignore-pip`: Bypasses the installation of dependencies using pip.
+- `--pdf`: Include generation of pdf version of the field guide.
+
 ## Bugs and feature requests
 
 Have a bug or a feature request? Please first search for [existing and closed issues](https://github.com/uccser/cs-field-guide/issues) in our issue tracker. If your problem or idea is not addressed yet, please [open a new issue](https://github.com/uccser/cs-field-guide/issues/new).

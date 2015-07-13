@@ -12,6 +12,9 @@ MARKDOWN2_EXTRAS = ["code-friendly",
                     "tables",
                     "wiki-tables"]
 
+WEB = 'web'
+PDF = 'pdf'
+
 class Section:
     """Contains data and functions relating to a specific section of the
     guide, e.g. a chapter. For HTML output, every section object yields
@@ -54,7 +57,6 @@ class Section:
         -   If top level heading, section.title is set
         -   HTML component returned
         """
-
         heading_text = match.group('heading')
         heading_level = len(match.group('heading_level'))
         permalink = self.create_permalink(heading_text)
@@ -95,6 +97,7 @@ class Section:
                                                      section_number=self.current_heading.number,
                                                      heading_text=heading_text)
         return html
+
 
 
     def create_permalink(self, text):

@@ -3,12 +3,22 @@ AUTHORS: Jack Morgan, Jordan Griffiths
 REQUIRES: Python >= 3.4.1
 """
 
-"""Check and install dependencies if needed"""
 import pip
-# Update pip if needed
-pip.main(['install', '--upgrade', '--user', 'pip>=7.0.3'])
-# Check dependencies
-pip.main(['install',  '--user', '-r', 'generator/dependencies.conf'])
+import argparse
+import sys
+
+#Check for command line options/arguments
+argsparser = argparse.ArgumentParser(description='guide generator args')
+argsparser.add_argument('--ignore-pip', dest='ignore_dependencies', action='store_true')
+argsparser.add_argument('--pdf', dest='include_pdf', action='store_true')
+cmd_args = argsparser.parse_args()
+
+#Check and install dependencies if needed
+if not cmd_args.ignore_dependencies:
+    # Update pip if needed
+    pip.main(['install', '--upgrade', '--user', 'pip>=7.0.3'])
+    # Check dependencies
+    pip.main(['install',  '--user', '-r', 'generator/dependencies.conf'])
 
 import configparser
 import logging
@@ -28,8 +38,11 @@ REGEX_LIST = 'generator/regex-list.conf'
 LOGFILE_SETTINGS = 'generator/logging.conf'
 TRANSLATIONS = 'generator/static-translations.conf'
 
+WEB = 'web'
+PDF = 'pdf'
+
 class Guide:
-    def __init__(self, guide_settings, language_code, version):
+    def __init__(self, guide_settings, language_code, version, output_type=WEB):
         # Read settings
         self.guide_settings = guide_settings
         self.generator_settings = systemfunctions.read_settings(GENERATOR_SETTINGS)
@@ -39,6 +52,7 @@ class Guide:
         self.language_code = language_code
         self.language = self.parse_language()
         self.version = version
+        self.output_type = output_type
 
         self.number_generator = NumberGenerator()
 
@@ -50,10 +64,14 @@ class Guide:
         self.required_files = setup_required_files(self)
         self.html_templates = self.read_html_templates()
 
-        if self.html_templates:
-            self.traverse_files(self.structure, getattr(self, "process_section"))
+        self.traverse_files(self.structure, getattr(self, "process_section"))
+        if self.output_type == WEB:
             self.setup_html_output()
             self.traverse_files(self.structure, getattr(self, "write_html_file"))
+        elif self.output_type == PDF:
+            self.pdf_html = ''
+            self.traverse_files(self.structure, getattr(self, "add_to_pdf_html"))
+            self.generate_pdf() #TODO: implement generate_pdf()
 
 
     def read_html_templates(self):
@@ -178,6 +196,7 @@ class Guide:
                 self.required_files[file_type] += file_data
 
 
+
     def setup_html_output(self):
         """Preliminary setup, called before html files are written.
         -   Create output folder
@@ -255,6 +274,16 @@ class Guide:
             except:
                 logging.critical("Cannot write file {0}".format(path))
 
+    def add_to_pdf_html(self, file):
+        '''Adds HTML contents of a give file node to guide's
+        PDF html string'''
+        if file.tracked:
+            for section_content in file.section.html_content:
+                self.pdf_html += section_content
+
+    def generate_pdf(self):
+        '''Placeholder - pdf generation function'''
+        pass
 
 class FolderNode:
     """Node object for storing folder details in structure tree"""
@@ -394,6 +423,8 @@ def main():
     for language in languages:
         for version in versions:
             guide = Guide(guide_settings=guide_settings, language_code=language, version=version)
+            if cmd_args.include_pdf:
+                    pdf_guide = Guide(guide_settings=guide_settings, language_code=language, version=version, output_type=PDF)
     logging.shutdown()
 
 
