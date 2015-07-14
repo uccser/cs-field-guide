@@ -339,7 +339,7 @@ class Section:
 
         """
         self.html_templates = html_templates
-        for section_text in self.markdown_text.split('{page break}'):
+        for section_text in self.markdown_text.split('{page-break}'):
             # Parse with our parser
             text = section_text
             for regex, function in self.regex_functions:#REGEX_MATCHES:
