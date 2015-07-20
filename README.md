@@ -21,7 +21,8 @@ Run `generateguide.py` with Python 3
 
 The following parameters may be used to alter the generation process:
 - `--ignore-pip`: Bypasses the installation of dependencies using pip.
-- `--pdf`: Include generation of pdf version of the field guide.
+- `--pdf`: Include generation of PDF version of the field guide.
+- `--pdf-only`: Only generate PDF version of the field guide.
 
 ## Bugs and feature requests
 

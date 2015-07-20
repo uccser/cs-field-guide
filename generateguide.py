@@ -35,7 +35,6 @@ class Guide:
         self.language = self.parse_language()
         self.version = version
         self.output_type = output_type
-
         self.number_generator = NumberGenerator()
 
         # Structure tree of guide
@@ -45,8 +44,9 @@ class Guide:
         # Dictionary of sets for images, interactives, and other_files
         self.required_files = setup_required_files(self)
         self.html_templates = self.read_html_templates()
-
         self.traverse_files(self.structure, getattr(self, "process_section"))
+        self.setup_output_folder()
+
         if self.output_type == WEB:
             self.setup_html_output()
             self.traverse_files(self.structure, getattr(self, "write_html_file"))
@@ -94,7 +94,6 @@ class Guide:
             return 'en'
         else:
             return language_name
-
 
 
     def parse_structure(self):
@@ -172,18 +171,18 @@ class Guide:
                 self.required_files[file_type] += file_data
 
 
+    def setup_output_folder(self):
+        """Creates output folder and saves location"""
+        self.output_folder = self.generator_settings['Output']['Folder'].format(language=self.language_code, version=self.version)
+        os.makedirs(self.output_folder, exist_ok=True)
+
 
     def setup_html_output(self):
         """Preliminary setup, called before html files are written.
-        -   Create output folder
         -   Set up WebsiteGenerator
         -   Load website required files
         -   Copy required files
         """
-        # Create output folder
-        self.output_folder = self.generator_settings['Output']['Folder'].format(language=self.language_code, version=self.version)
-        os.makedirs(self.output_folder, exist_ok=True)
-
         # Create website generator
         self.website_generator = WebsiteGenerator(self.html_templates)
 
@@ -260,8 +259,36 @@ class Guide:
                 self.pdf_html += section_content
 
     def generate_pdf(self):
-        '''Placeholder - pdf generation function'''
-        pass
+        '''Creates a PDF in the output folder'''
+        import pdfkit
+        pdf_title = self.translations['Title'][self.language_code]
+        pdf_file_name = self.generator_settings['Output']['PDF File'].format(file_name=pdf_title)
+        html = self.pdf_html
+
+        # The processing of CSS and JS files required should be restructured
+        css_files = []
+        for file_type,all_file_names in self.generator_settings['PDF Required Files'].items():
+            file_names = all_file_names.strip().split('\n')
+            for file_name in file_names:
+                if file_type == 'CSS':
+                    css_file = os.path.join(self.generator_settings['Source']['CSS'], file_name)
+                    css_files.append(css_file)
+                elif file_type == 'JS':
+                    html = self.html_templates['javascript'].format(file_name=file_name) + html
+
+        pdf_file = os.path.join(self.output_folder, pdf_file_name)
+        options = {
+            'page-size': 'A4',
+            'zoom': 2.0,
+            'javascript-delay': 1000,
+            'print-media-type': '',
+            'load-error-handling': 'ignore',
+            'load-media-error-handling': 'ignore',
+            'no-images':'',
+            'quiet': ''
+        }
+        pdfkit.from_string(html, pdf_file, options=options)
+
 
 class FolderNode:
     """Node object for storing folder details in structure tree"""
@@ -400,9 +427,15 @@ def main():
     versions = guide_settings['Main']['Versions'].split()
     for language in languages:
         for version in versions:
-            guide = Guide(guide_settings=guide_settings, language_code=language, version=version)
-            if cmd_args.include_pdf:
-                    pdf_guide = Guide(guide_settings=guide_settings, language_code=language, version=version, output_type=PDF)
+            if cmd_args.pdf_only:
+                pdf_guide = Guide(guide_settings=guide_settings, language_code=language, version=version, output_type=PDF)
+            else:
+                guide = Guide(guide_settings=guide_settings, language_code=language, version=version)
+                if cmd_args.include_pdf:
+                    try:
+                        pdf_guide = Guide(guide_settings=guide_settings, language_code=language, version=version, output_type=PDF)
+                    except:
+                        logging.critical("PDF generation failed. Check output folder.")
     logging.shutdown()
 
 

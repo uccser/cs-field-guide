@@ -43,6 +43,7 @@ def command_line_args():
     argsparser = argparse.ArgumentParser(description='guide generator args')
     argsparser.add_argument('--ignore-pip', dest='install_dependencies', action='store_false', default='store_true')
     argsparser.add_argument('--pdf', dest='include_pdf', action='store_true')
+    argsparser.add_argument('--pdf-only', dest='pdf_only', action='store_true')
     return argsparser.parse_args()
 
 
