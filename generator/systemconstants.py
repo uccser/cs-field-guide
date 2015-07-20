@@ -7,3 +7,6 @@ REGEX_LIST = 'generator/regex-list.conf'
 LOGFILE_SETTINGS = 'generator/logging.conf'
 TRANSLATIONS_LOCATION = 'generator/static-translations.conf'
 PERMISSIONS_LOCATION = 'permissions.conf'
+
+INLINE_START_FLAG = '<!-- ### Start of required HTML for inline interactives ### -->'
+INLINE_END_FLAG = '<!-- ### End of required HTML for inline interactives ### -->'

@@ -1,4 +1,5 @@
 import re
+import lxml.html as htmltree
 import logging
 import os.path
 import generator.systemfunctions as systemfunctions
@@ -259,57 +260,78 @@ class Section:
 
 
     def add_interactive(self, match):
+        """Regex match function for interactive blocks.
+            - Adds interactive folder to set of required files
+            - Generates appropriate html content from source file
+            - Returns empty string if source file does not exist
+        """
+
         html = ''
         interactive_type = match.group('type')
-        interactive_name = match.group('interactive_name')
+        name = match.group('interactive_name')
+        arguments = re.search('(title="(?P<title>[^"]*)")?(parameters="(?P<parameters>[^"]*)")?', match.group('args'))
+        arg_title = arguments.group('title')
+        title = arg_title if arg_title else name
+        params = arguments.group('parameters')
+        source_folder = os.path.join(self.guide.generator_settings['Source']['Interactive'], name)
+        interactive_exists = self.check_interactive(source_folder, name)
 
-        interactive_arguments = re.search('(title="(?P<title>[^"]*)")?(parameters="(?P<parameters>[^"]*)")?', match.group('args'))
-
-        if interactive_arguments.group('title'):
-            interactive_title = interactive_arguments.group('title')
-        else:
-            interactive_title = interactive_name
-
-        interactive_source = os.path.join(self.guide.generator_settings['Source']['Interactive'], interactive_name)
-
-        # Check interactive exists
-        if self.check_interactive(interactive_source, interactive_name):
-            # Add interactive to required files for copying
-            self.required_files['Interactive'].add(interactive_name)
-
+        if interactive_exists:
+            self.required_files['Interactive'].add(name)
             if interactive_type == 'interactive-external':
-                # Process interactive parameters
-                if interactive_arguments.group('parameters'):
-                    interactive_parameters = interactive_arguments.group('parameters')
-                else:
-                    interactive_parameters = None
+                html = self.external_interactive_html(source_folder, title, name, params)
+            elif interactive_type == 'interactive-inpage':
+                html = self.inpage_interactive_html(source_folder)
 
-                interactive_thumbnail_source = os.path.join(interactive_source, self.guide.generator_settings['Source']['Interactive Thumbnail'])
-                interactive_link_text = 'Click to load {title}'.format(title=interactive_title)
-                if interactive_parameters:
-                    interactive_source = "{source}?{parameters}".format(source=interactive_source, parameters=interactive_parameters)
-                link_html = self.html_templates['interactive-external'].format(interactive_thumbnail=interactive_thumbnail_source, interactive_link_text=interactive_link_text, interactive_source=interactive_source)
-                html = self.html_templates['centered'].format(html=link_html)
-            else: # Inpage interactive
-                interactive_source_file = self.guide.generator_settings['Source']['Interactive File']
-                interactive_source_file_location = os.path.join(interactive_source, interactive_source_file)
-                # Read interactive lines
-                with open(interactive_source_file_location, 'r', encoding='utf8') as source_file:
-                    raw_data = source_file.readlines()
-                raw_data = [line.strip() for line in raw_data]
-                start_position = raw_data.index('<!-- ### Start of required HTML for inline interactives ### -->')
-                end_position = raw_data.index('<!-- ### End of required HTML for inline interactives ### -->')
-                interactive_lines = raw_data[start_position:end_position]
-                for line in interactive_lines:
-                    # Ignore comments
-                    if not line.startswith('<!--'):
-                        # Correct any src/href links
-                        # search_result = re.findall('(href|src)=("|\')(?P<source_link>[^\'"]*)', line, flags=re.MULTILINE)
-                        # if search_result:
-                        #     relative_link_prefix = os.path.join('../' * depth, 'interactives', interactive_name)
-                        #     line = line[:search_result] + relative_link_prefix + line[search_result:]
-                        html += line
+        return html if html else ''
+
+
+    def external_interactive_html(self, source_folder, title, name, params):
+        """Return the html block for a link to an external interactive"""
+
+        thumbnail_location = os.path.join(self.html_path_to_root, source_folder, self.guide.generator_settings['Source']['Interactive Thumbnail'])
+        link_text = 'Click to load {title}'.format(title=title)
+        folder_location = os.path.join(self.html_path_to_root, source_folder)
+        file_link = "{location}?{parameters}".format(location=folder_location, params=params) if params else folder_location
+        link_template = self.html_templates['interactive-external']
+        link_html = link_template.format(interactive_thumbnail=thumbnail_location,
+                                    interactive_link_text=link_text,
+                                    interactive_source=file_link)
+
+        return self.html_templates['centered'].format(html=link_html)
+
+
+    def inpage_interactive_html(self, source_folder):
+        """Return the html for inpage interactives, with links adjusted
+        to correct relative links"""
+
+        filename = self.guide.generator_settings['Source']['Interactive File']
+        file_location = os.path.join(source_folder, filename)
+        with open(file_location, 'r', encoding='utf8') as source_file:
+            raw_html = source_file.read()
+        start = raw_html.index(INLINE_START_FLAG)
+        end = raw_html.index(INLINE_END_FLAG)
+        html = raw_html[start:end]
+        html = self.edit_interactive_links(html, source_folder)
         return html
+
+
+    def edit_interactive_links(self, html, source_folder):
+        """Create element tree from html string, and use it to replace
+        all links as required
+
+            -TODO: Ignore external links
+        """
+
+        root = htmltree.fromstring(html)
+        attributes = ['href', 'src']
+        for element in root.iter():
+            for attr in attributes:
+                raw_value = element.get(attr, None)
+                if raw_value:
+                    value = os.path.join(self.html_path_to_root, source_folder, raw_value)
+                    element.set(attr, value)
+        return htmltree.tostring(root).decode("utf-8")
 
 
     def check_interactive(self, interactive_source, interactive_name):
