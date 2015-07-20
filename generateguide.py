@@ -17,7 +17,8 @@ import os.path
 import os
 import re
 import generator.languages
-from shutil import copy2, copytree
+from shutil import copy2
+from distutils.dir_util import copy_tree
 from generator.markdownsection import Section
 from generator.websitegenerator import WebsiteGenerator
 from generator.files import setup_required_files
@@ -208,7 +209,7 @@ class Guide:
                 if os.path.exists(source_location):
                     try:
                         if os.path.isdir(source_location):
-                            copytree(source_location, output_location, ignore)
+                            copy_tree(source_location, output_location)
                         else:
                             copy2(source_location, output_location)
 
