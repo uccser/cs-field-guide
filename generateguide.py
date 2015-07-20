@@ -17,7 +17,7 @@ import os.path
 import os
 import re
 import generator.languages
-from shutil import copy2
+from shutil import copy2, copytree
 from generator.markdownsection import Section
 from generator.websitegenerator import WebsiteGenerator
 from generator.files import setup_required_files
@@ -127,7 +127,7 @@ class Guide:
                     if file_exists(file_path):
                         current_folder.add_file(title, group, tracked=is_tracked)
         # Visualise folder structure for restructuring
-        print(root_folder)
+        #print(root_folder)
         return root_folder
 
 
@@ -207,7 +207,11 @@ class Guide:
                 output_location = os.path.join(file_data.output_location, file_name)
                 if os.path.exists(source_location):
                     try:
-                        copy2(source_location, output_location)
+                        if os.path.isdir(source_location):
+                            copytree(source_location, output_location, ignore)
+                        else:
+                            copy2(source_location, output_location)
+
                     except:
                         logging.error("{file_type} {file_name} could not be copied".format(file_type=file_type, file_name=file_name))
                 else:

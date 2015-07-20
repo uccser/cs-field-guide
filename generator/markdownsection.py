@@ -259,33 +259,73 @@ class Section:
 
 
     def add_interactive(self, match):
+        html = ''
         interactive_type = match.group('type')
         interactive_name = match.group('interactive_name')
 
         interactive_arguments = re.search('(title="(?P<title>[^"]*)")?(parameters="(?P<parameters>[^"]*)")?', match.group('args'))
+
         if interactive_arguments.group('title'):
             interactive_title = interactive_arguments.group('title')
         else:
-            interactive_title = 'interactive'
-        if interactive_arguments.group('parameters'):
-            interactive_parameters = interactive_arguments.group('parameters')
-        else:
-            interactive_parameters = None
+            interactive_title = interactive_name
 
-        # Add interactive to required files
-        self.required_files['Interactive'].add(interactive_name)
+        interactive_source = os.path.join(self.guide.generator_settings['Source']['Interactive'], interactive_name)
 
-        if interactive_type == 'interactive-external':
-            interactive_source = self.guide.generator_settings['Output']['Interactive'].format(interactive=interactive_name)
-            interactive_thumbnail_source = os.path.join(interactive_source, self.guide.generator_settings['Source']['Interactive Thumbnail'])
-            interactive_link_text = 'Click to load {title}'.format(title=interactive_title)
-            if interactive_parameters:
-                interactive_source = "{source}?{parameters}".format(source=interactive_source, parameters=interactive_parameters)
-            link_html = self.html_templates['interactive-external'].format(interactive_thumbnail=interactive_thumbnail_source, interactive_link_text=interactive_link_text, interactive_source=interactive_source)
-            html = self.html_templates['centered'].format(html=link_html)
-        else:
-            html = ''
+        # Check interactive exists
+        if self.check_interactive(interactive_source, interactive_name):
+            # Add interactive to required files for copying
+            self.required_files['Interactive'].add(interactive_name)
+
+            if interactive_type == 'interactive-external':
+                # Process interactive parameters
+                if interactive_arguments.group('parameters'):
+                    interactive_parameters = interactive_arguments.group('parameters')
+                else:
+                    interactive_parameters = None
+
+                interactive_thumbnail_source = os.path.join(interactive_source, self.guide.generator_settings['Source']['Interactive Thumbnail'])
+                interactive_link_text = 'Click to load {title}'.format(title=interactive_title)
+                if interactive_parameters:
+                    interactive_source = "{source}?{parameters}".format(source=interactive_source, parameters=interactive_parameters)
+                link_html = self.html_templates['interactive-external'].format(interactive_thumbnail=interactive_thumbnail_source, interactive_link_text=interactive_link_text, interactive_source=interactive_source)
+                html = self.html_templates['centered'].format(html=link_html)
+            else: # Inpage interactive
+                interactive_source_file = self.guide.generator_settings['Source']['Interactive File']
+                interactive_source_file_location = os.path.join(interactive_source, interactive_source_file)
+                # Read interactive lines
+                with open(interactive_source_file_location, 'r', encoding='utf8') as source_file:
+                    raw_data = source_file.readlines()
+                raw_data = [line.strip() for line in raw_data]
+                start_position = raw_data.index('<!-- ### Start of required HTML for inline interactives ### -->')
+                end_position = raw_data.index('<!-- ### End of required HTML for inline interactives ### -->')
+                interactive_lines = raw_data[start_position:end_position]
+                for line in interactive_lines:
+                    # Ignore comments
+                    if not line.startswith('<!--'):
+                        # Correct any src/href links
+                        # search_result = re.findall('(href|src)=("|\')(?P<source_link>[^\'"]*)', line, flags=re.MULTILINE)
+                        # if search_result:
+                        #     relative_link_prefix = os.path.join('../' * depth, 'interactives', interactive_name)
+                        #     line = line[:search_result] + relative_link_prefix + line[search_result:]
+                        html += line
         return html
+
+
+    def check_interactive(self, interactive_source, interactive_name):
+        """Checks if an interactive exists and has an index.html file"""
+        exists = False
+        if os.path.exists(interactive_source):
+            interactive_source_file = self.guide.generator_settings['Source']['Interactive File']
+            interactive_source_file_location = os.path.join(interactive_source, interactive_source_file)
+            if os.path.exists(interactive_source_file_location):
+                exists = True
+            else:
+                logging.error("Interactive {0} {1} file could not be found".format(interactive_name, interactive_source_file))
+        else:
+            logging.error("Interactive {0} folder could not be found".format(interactive_name))
+        return exists
+
 
     def create_table_of_contents(self, match):
         """Parsing function for table-of-contents regex.
@@ -347,7 +387,7 @@ class Section:
             # Parse with markdown2
             parsed_html = markdown(text, extras=MARKDOWN2_EXTRAS)
             self.html_content.append(parsed_html)
-        print(self)
+        #print(self)
 
 
     def create_regex_functions(self):
