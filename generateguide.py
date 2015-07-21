@@ -18,6 +18,7 @@ import os
 import re
 import generator.languages
 from shutil import copy2
+from distutils.dir_util import copy_tree
 from generator.markdownsection import Section
 from generator.websitegenerator import WebsiteGenerator
 from generator.files import setup_required_files
@@ -127,7 +128,7 @@ class Guide:
                     if file_exists(file_path):
                         current_folder.add_file(title, group, tracked=is_tracked)
         # Visualise folder structure for restructuring
-        print(root_folder)
+        #print(root_folder)
         return root_folder
 
 
@@ -207,7 +208,11 @@ class Guide:
                 output_location = os.path.join(file_data.output_location, file_name)
                 if os.path.exists(source_location):
                     try:
-                        copy2(source_location, output_location)
+                        if os.path.isdir(source_location):
+                            copy_tree(source_location, output_location)
+                        else:
+                            copy2(source_location, output_location)
+
                     except:
                         logging.error("{file_type} {file_name} could not be copied".format(file_type=file_type, file_name=file_name))
                 else:
@@ -233,7 +238,7 @@ class Guide:
 
         if file.section:
             if file.section.mathjax_required:
-                body_html += '<script type="text/javascript"  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>'
+                file.section.page_scripts.append(self.html_templates['mathjax'])
 
             for section_content in file.section.html_content:
                 body_html += section_content
@@ -243,7 +248,8 @@ class Guide:
                        'project_title': self.translations['Title'][self.language_code],
                        'root_folder': self.structure,
                        'heading_root': file.section.heading,
-                       'language_code': self.language_code
+                       'language_code': self.language_code,
+                       'page_scripts': file.section.page_scripts
                       }
             html = self.website_generator.render_template(section_template, context)
             try:
