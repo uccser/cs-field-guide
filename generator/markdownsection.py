@@ -282,7 +282,7 @@ class Section:
             if interactive_type == 'interactive-external':
                 html = self.external_interactive_html(source_folder, title, name, params)
             elif interactive_type == 'interactive-inpage':
-                html = self.inpage_interactive_html(source_folder)
+                html = self.inpage_interactive_html(source_folder, name)
 
         return html if html else ''
 
@@ -302,51 +302,61 @@ class Section:
         return self.html_templates['centered'].format(html=link_html)
 
 
-    def inpage_interactive_html(self, source_folder):
+    def inpage_interactive_html(self, source_folder, name):
         """Return the html for inpage interactives, with links adjusted
         to correct relative links
 
-            -TODO: Catch error if flags not found
-            -TODO: Ignore comments
+        If start or end flags are missing, logs error and returns None
         """
 
         filename = self.guide.generator_settings['Source']['Interactive File']
         file_location = os.path.join(source_folder, filename)
         with open(file_location, 'r', encoding='utf8') as source_file:
             raw_html = source_file.read()
-        raw_html = self.edit_interactive_links(raw_html, source_folder)
 
         # Find HTML
-        start = raw_html.index(INLINE_HTML_START_FLAG)
-        end = raw_html.index(INLINE_HTML_END_FLAG)
-        html = raw_html[start:end]
-
-        # Find files to load at end of section
-        start = raw_html.index(INLINE_FILES_START_FLAG)
-        end = raw_html.index(INLINE_FILES_END_FLAG)
-        files = raw_html[start:end].split('\n')
-        for file in files:
-            # TODO: Ignore comments
-            self.page_scripts.append(file.strip())
-
-        return html
+        try:
+            start = raw_html.index(INLINE_HTML_START_FLAG) + len(INLINE_HTML_START_FLAG)
+            end = raw_html.index(INLINE_HTML_END_FLAG)
+        except:
+            logging.error('Missing start or end inline flag in interactive {}'.format(name))
+            return None
+        else:
+            html = raw_html[start:end]
+            html = self.edit_interactive_html(html, source_folder)
+            return html
 
 
-    def edit_interactive_links(self, html, source_folder):
+    def edit_interactive_html(self, html, source_folder):
         """Create element tree from html string, and use it to replace
-        all links as required
+        all links as required, and remove comments.
 
-            -TODO: Ignore external links
+        html pertaining to specific files that should be loaded at the end
+        of the page are removed and added to self.page_scripts
         """
 
         root = htmltree.fromstring(html)
-        attributes = ['href', 'src']
+        link_attributes = ['href', 'src']
+        page_elements = []
         for element in root.iter():
-            for attr in attributes:
-                raw_value = element.get(attr, None)
-                if raw_value:
-                    value = os.path.join(self.html_path_to_root, source_folder, raw_value)
-                    element.set(attr, value)
+            to_be_deleted = isinstance(element, htmltree.HtmlComment)
+            for attr in link_attributes:
+                raw_link = element.get(attr, None)
+                if raw_link and not raw_link.startswith('http://'): #this check needs to be better
+                    link = os.path.join(self.html_path_to_root, source_folder, raw_link)
+                    element.set(attr, link)
+
+            if element.tag == 'script' or (element.tag == 'link' and element.get('rel', None) == 'stylesheet'):
+                page_elements.append(element)
+                to_be_deleted = True
+
+            if to_be_deleted and element.getparent() is not None:
+                    element.getparent().remove(element)
+
+        for element in page_elements:
+            html_lines = htmltree.tostring(element).decode("utf-8").split('\n')
+            self.page_scripts += html_lines
+
         return htmltree.tostring(root).decode("utf-8")
 
 
