@@ -32,6 +32,7 @@ class Section:
         self.permalinks = set()
         # Dictionary of sets for images, interactives, and other_files
         self.required_files = setup_required_files(file_node.guide)
+        self.page_scripts = []
         self.mathjax_required = False
         self.html_path_to_root = self.file_node.depth * '../'
 
@@ -303,16 +304,31 @@ class Section:
 
     def inpage_interactive_html(self, source_folder):
         """Return the html for inpage interactives, with links adjusted
-        to correct relative links"""
+        to correct relative links
+
+            -TODO: Catch error if flags not found
+            -TODO: Ignore comments
+        """
 
         filename = self.guide.generator_settings['Source']['Interactive File']
         file_location = os.path.join(source_folder, filename)
         with open(file_location, 'r', encoding='utf8') as source_file:
             raw_html = source_file.read()
-        start = raw_html.index(INLINE_START_FLAG)
-        end = raw_html.index(INLINE_END_FLAG)
+        raw_html = self.edit_interactive_links(raw_html, source_folder)
+
+        # Find HTML
+        start = raw_html.index(INLINE_HTML_START_FLAG)
+        end = raw_html.index(INLINE_HTML_END_FLAG)
         html = raw_html[start:end]
-        html = self.edit_interactive_links(html, source_folder)
+
+        # Find files to load at end of section
+        start = raw_html.index(INLINE_FILES_START_FLAG)
+        end = raw_html.index(INLINE_FILES_END_FLAG)
+        files = raw_html[start:end].split('\n')
+        for file in files:
+            # TODO: Ignore comments
+            self.page_scripts.append(file.strip())
+
         return html
 
 

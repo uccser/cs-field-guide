@@ -238,7 +238,7 @@ class Guide:
 
         if file.section:
             if file.section.mathjax_required:
-                body_html += '<script type="text/javascript"  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>'
+                file.section.page_scripts.append(self.html_templates['mathjax'])
 
             for section_content in file.section.html_content:
                 body_html += section_content
@@ -248,7 +248,8 @@ class Guide:
                        'project_title': self.translations['Title'][self.language_code],
                        'root_folder': self.structure,
                        'heading_root': file.section.heading,
-                       'language_code': self.language_code
+                       'language_code': self.language_code,
+                       'page_scripts': file.section.page_scripts
                       }
             html = self.website_generator.render_template(section_template, context)
             try:
