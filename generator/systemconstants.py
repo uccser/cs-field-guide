@@ -10,5 +10,3 @@ PERMISSIONS_LOCATION = 'permissions.conf'
 
 INLINE_HTML_START_FLAG = '<!-- ### Start of required HTML for inline interactives ### -->'
 INLINE_HTML_END_FLAG = '<!-- ### End of required HTML for inline interactives ### -->'
-INLINE_FILES_START_FLAG =  '<!-- ### Start of required files for inline interactives ### -->'
-INLINE_FILES_END_FLAG = '<!-- ### End of required files for inline interactives ### -->'
