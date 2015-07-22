@@ -124,7 +124,7 @@ Here are some more ideas for comparing compilers and interpreters: One way to co
 
 ## Hints for Success
 
-{teacher end}
+{teacher}
 
 In the past, many students have tried to satisfy this part of the standard by paraphrasing wikipedia definitions. We discourage this, and recommend that students generate personalised examples (the projects explain how this could be done), and then base their explanations and discussions of the concepts around their own examples. This makes it clear to the markers that what the student has presented is their own work.
 

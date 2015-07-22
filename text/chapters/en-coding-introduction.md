@@ -1,4 +1,4 @@
-# Coding Introduction
+# Coding - Introduction
 
 {teacher}
 This chapter supports the "coding" part of the NZ achievement standard AS91371 (2.44). The topic of "coding" is broken into three subtopics, and these are covered in one chapter each, so this chapter is just in introduction and overview. For the standard, students need to describe *each of the three encoding topics* in order to get achieved, and do a more in-depth project on just one in order to get merit or excellence.

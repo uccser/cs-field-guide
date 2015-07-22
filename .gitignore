@@ -4,3 +4,4 @@ output/*
 
 # Ignore Python module cache files
 *.pyc
+Thumbs.db

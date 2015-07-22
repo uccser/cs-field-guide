@@ -1,8 +1,8 @@
 import os.path
 
-class File:
+class FileType:
     """Object for containing information about a required file for output
-    Current types include images, downloadable files, and interactives"""
+    Current types include images, files, CSS, JS and interactives"""
     def __init__(self, file_type, source_location, output_location):
         self.file_type = file_type
         self.source_location = source_location
@@ -23,10 +23,10 @@ class File:
 def setup_required_files(guide):
     """Sets up list of required file objects (class File)"""
     required_files = dict()
-    file_types = guide.generator_settings['Source']['Required Files'].split()
-    base_output_folder = guide.generator_settings['Output']['Folder'].format(language=guide.language, version=guide.version)
+    file_types = guide.generator_settings['Source']['Required File Types'].strip().split('\n')
+    base_output_folder = guide.generator_settings['Output']['Folder'].format(language=guide.language_code, version=guide.version)
     for file_type in file_types:
         source_location = guide.generator_settings['Source'][file_type]
         output_location = os.path.join(base_output_folder, guide.generator_settings['Output'][file_type])
-        required_files[file_type] = File(file_type, source_location, output_location)
+        required_files[file_type] = FileType(file_type, source_location, output_location)
     return required_files
