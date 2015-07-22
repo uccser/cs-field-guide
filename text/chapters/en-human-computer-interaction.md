@@ -385,7 +385,7 @@ It's not too hard to find these sorts of delays in systems when you're evaluatin
 
 The language, colours and notation in an interface should match the user's world, and while this seems obvious and sensible, it's often something that is overlooked. Take for example the following two buttons --- can you see what is confusing about them?
 
-<div class="row button-interactive"><div class="col-xs-6"><button type="button" class="btn btn-danger btn-block">Confirm</button></div><div class="col-xs-6"><button type="button" class="btn btn-success btn-block">Cancel</button></div></div>
+{interactive-inpage confused-buttons}
 
 {teacher}
 
