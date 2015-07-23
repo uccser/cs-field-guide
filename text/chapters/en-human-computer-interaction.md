@@ -47,26 +47,7 @@ Human-computer interaction (HCI) is about trying to make programs useful, usable
 
 Try out the following interactive task, and get some friends to try it:
 
-<div class="interactive">
-<div id="interactive-deceiver-question" class="interactive-text"><br></div>
-<div id="startButton" class="row">
-<div class="col-xs-8 col-xs-offset-1 col-sm-4 col-sm-offset-4">
-<button type="button" id="buttonStart" class="btn btn-success btn-block">Start</button>
-</div>
-</div>
-<div id="gameButtons" class="row" style="display:none;" >
-<div class="col-xs-4 col-xs-offset-2 col-sm-2 col-sm-offset-4">
-<button type="button" id="buttonLeft" class="btn btn-default btn-block interactive-deceiver-button">No</button>
-</div>
-<div class="col-xs-4 col-sm-2">
-<button type="button" id="buttonRight" class="btn btn-default btn-block interactive-deceiver-button">Yes</button>
-</div>
-</div>
-<div id="interactive-deceiver-feedback-container">
-<div id="interactive-deceiver-feedback" class="interactive-text"><br></div>
-</div>
-<div id="interactive-deceiver-timer" class="interactive-text"><span id="interactive-deceiver-seconds">15</span> seconds left</div>
-</div>
+{interactive-inpage deceiver}
 
 Did anyone get a wrong answer to the question even though you thought you got it right? You may have noticed that the "Yes" and "No" button sometimes swap.
 Inconsistency is normally a really bad thing in an interface, as it can easily fool the user into making an error.
@@ -404,7 +385,7 @@ It's not too hard to find these sorts of delays in systems when you're evaluatin
 
 The language, colours and notation in an interface should match the user's world, and while this seems obvious and sensible, it's often something that is overlooked. Take for example the following two buttons --- can you see what is confusing about them?
 
-<div class="row button-interactive"><div class="col-xs-6"><button type="button" class="btn btn-danger btn-block">Confirm</button></div><div class="col-xs-6"><button type="button" class="btn btn-success btn-block">Cancel</button></div></div>
+{interactive-inpage confused-buttons}
 
 {teacher}
 
