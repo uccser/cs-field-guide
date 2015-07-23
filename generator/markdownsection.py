@@ -305,37 +305,48 @@ class Section:
     def inpage_interactive_html(self, source_folder, name):
         """Return the html for inpage interactives, with links adjusted
         to correct relative links
-
-        If start or end flags are missing, logs error and returns None
         """
+        interactive_tree = self.get_interactive_tree(source_folder, name)
+        if interactive_tree is not None:
+            self.edit_interactive_tree(interactive_tree, source_folder)
+            return htmltree.tostring(interactive_tree).decode('utf-8')
+        else:
+            return None
 
+
+    def get_interactive_tree(self, source_folder, name):
+        """Return element tree for the 'class=interactive div'
+        of the interactive html file. If more than one div is found,
+        return None and log error
+        """
         filename = self.guide.generator_settings['Source']['Interactive File']
         file_location = os.path.join(source_folder, filename)
         with open(file_location, 'r', encoding='utf8') as source_file:
             raw_html = source_file.read()
 
-        # Find HTML
-        try:
-            start = raw_html.index(INLINE_HTML_START_FLAG) + len(INLINE_HTML_START_FLAG)
-            end = raw_html.index(INLINE_HTML_END_FLAG)
-        except:
-            logging.error('Missing start or end inline flag in interactive {}'.format(name))
+        file_tree = htmltree.fromstring(raw_html)
+        interactive_trees = file_tree.find_class(INTERACTIVE_CLASS)
+        if  len(interactive_trees) != 1:
+            logging.error('''Error creating interactive {}: expected 1
+                            div with class 'interactive' but {} found
+                            '''.format(name, len(interactive_trees)))
             return None
         else:
-            html = raw_html[start:end]
-            html = self.edit_interactive_html(html, source_folder)
-            return html
+            return interactive_trees[0]
 
 
-    def edit_interactive_html(self, html, source_folder):
-        """Create element tree from html string, and use it to replace
-        all links as required, and remove comments.
+    def edit_interactive_tree(self, root, source_folder):
+        """Edits element tree in the following ways:
 
-        html pertaining to specific files that should be loaded at the end
-        of the page are removed and added to self.page_scripts
+            - Comments are removed
+            - Scripts and stylesheets are added to page_scripts,
+            and removed from tree
+            - Relative links are modified as required (ignoring external)
+
+            TODO:
+            - Implemet better system for checking whether link is relative
+            and needs to be adjusted
         """
-
-        root = htmltree.fromstring(html)
         link_attributes = ['href', 'src']
         page_elements = []
         for element in root.iter():
@@ -356,8 +367,6 @@ class Section:
         for element in page_elements:
             html_lines = htmltree.tostring(element).decode("utf-8").split('\n')
             self.page_scripts += html_lines
-
-        return htmltree.tostring(root).decode("utf-8")
 
 
     def check_interactive(self, interactive_source, interactive_name):

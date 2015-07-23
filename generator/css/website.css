@@ -207,3 +207,6 @@ body {
 .row {
     /*max-width: 75em;*/
 }
+.interactive {
+  padding: 25px 0px;
+}
