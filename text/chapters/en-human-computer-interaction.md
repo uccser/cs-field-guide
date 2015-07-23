@@ -423,17 +423,7 @@ Pressing the yes button below can be very frustrating! Most modern web browsers 
 
 {teacher end}
 
-<div id="close-interactive" class="row interactive">
-<div class="interactive-wrong">
-<p class="interactive-text">Do you wish to close this window?</p>
-</div>
-<div class="col-xs-4 col-xs-offset-2">
-<button type="button" class="btn btn-primary btn-lg btn-block" onclick="closeButton()">Yes</button>
-</div>
-<div class="col-xs-4">
-<button type="button" class="btn btn-primary btn-lg btn-block" disabled="disabled" style="opacity:0.3;">No</button>
-</div>
-</div>
+{interactive-inpage close-window}
 
 {comment}
 
