@@ -395,7 +395,7 @@ The buttons have the colours switched, the colour for cancel is green (commonly 
 
 The following interface is from a bank system for paying another person. Suppose you get an email asking someone to pay you $1699.50 dollars for a used car; try entering "$1699.50" into the box.
 
-<div id="payment-interactive" class="form-group interactive"><label class="control-label interactive-text" for="money-input">Payment Amount: </label><div class="row"><div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4"><input type="text" id="money-input" class="form-control" placeholder="How much do you want to pay?"></div></div><span id="payment-interactive-message" class="help-block"><br></span></div>
+{interactive-inpage payment-interface}
 
 The notation "$1699.50" is a common way to express a dollar amount, but this system forces you to follow its own conventions (probably to make things easier for the programmer who wrote the system).
 
@@ -423,17 +423,7 @@ Pressing the yes button below can be very frustrating! Most modern web browsers 
 
 {teacher end}
 
-<div id="close-interactive" class="row interactive">
-<div class="interactive-wrong">
-<p class="interactive-text">Do you wish to close this window?</p>
-</div>
-<div class="col-xs-4 col-xs-offset-2">
-<button type="button" class="btn btn-primary btn-lg btn-block" onclick="closeButton()">Yes</button>
-</div>
-<div class="col-xs-4">
-<button type="button" class="btn btn-primary btn-lg btn-block" disabled="disabled" style="opacity:0.3;">No</button>
-</div>
-</div>
+{interactive-inpage close-window}
 
 {comment}
 
