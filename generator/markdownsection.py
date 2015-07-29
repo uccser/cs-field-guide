@@ -171,7 +171,7 @@ class Section:
         # TODO: Process image arguments
 
         # Return HTML
-        image_source = './images/' + filename
+        image_source =  os.path.join(self.html_path_to_root, self.guide.generator_settings['Source']['Image'], filename)
         image_html = self.html_templates['image'].format(image_source=image_source)
         html = self.html_templates['centered'].format(html=image_html)
         return html
@@ -187,7 +187,7 @@ class Section:
         images_html = ''
         for (image_filename,image_args) in images:
             # TODO: Process image arguments
-            image_source = './images/' + image_filename
+            image_source = os.path.join(self.html_path_to_root, self.guide.generator_settings['Source']['Image'], image_filename)
             image_html = self.html_templates['image'].format(image_source=image_source).strip()
             images_html += self.html_templates['image-set-item'].format(image_html=image_html)
         html = self.html_templates['image-set'].format(image_set_items_html=images_html.strip(),
