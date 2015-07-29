@@ -210,3 +210,18 @@ body {
 .interactive {
   padding: 25px 0px;
 }
+pre {
+  margin: 0 0 1.25rem;
+  padding: 0.125rem 0.25rem;
+  display: inline-block;
+  background-color: #EDEDED;
+  border-color: #DDD;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 3px;
+}
+code {
+  padding: 0;
+  background-color: rgba(0, 0, 0, 0);
+  border: 0;
+}
