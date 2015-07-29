@@ -27,7 +27,7 @@ So what's the catch? Well, there can be an issue with the quality of the data --
 <!-- Photo from http://www.publicdomainpictures.net/view-image.php?image=101219&picture=fisherman-bait-casting -->
 <div style="width: 90%; margin: 0 auto; padding-bottom: 20px;">
 <div id="inked-painted">
-<img src="_static/images/cc-introduction-high.jpg" id="inked" alt>
+<img src="static/images/cc-introduction-high.jpg" id="inked" alt>
 <div id="colored"></div>
 </div>
 </div>
@@ -57,7 +57,7 @@ low priority could re-edit the above video to fit into context a little better
 
 Imagine we have the following simple black and white image.
 
-{image cc-diamond.png alt="A diamond shape made out of pixels"}
+{image pixel-diamond.png alt="A diamond shape made out of pixels"}
 
 One very simple way a computer can store this image is by using a format where 0 means white and 1 means black. The above image would be represented in the following way
 
@@ -300,13 +300,7 @@ The following three images show the difference between reducing bit depth and us
 
 Reducing the number of bits (the colour depth) is sufficiently crude that we don't really regard it as a compression method, but just a low quality representation. Image compression methods like JPEG, GIF and PNG are designed to take advantage of the patterns in an image to get a good reduction in file size without losing more quality than necessary.
 
-{comment}
-
-Images from https://dl.dropboxusercontent.com/u/7227226/Compression%20images.zip)
-
-{comment end}
-
-{image cc-compression-comparison.png}
+{image compression-comparison.png}
 
 {comment}
 
@@ -324,11 +318,11 @@ this image no longer needed, as it is available just above _static/images/CC-Pho
 
 {comment end}
 
-{image cc-zoomed2.png}
+{image zoomed-eye.png}
 
 Notice that the colours in adjacent pixels are often very similar, even in this part of the picture that has a lot of detail. For example, the pixels shown in the red box below just change gradually from very dark to very light.
 
-{image cc-zoomed2box.png}
+{image zoomed-eye-highlighted.png}
 
 Run-length encoding wouldn't work in this situation. You could use a variation that specifies a pixel's colour, and then says how many of the following pixels are the same colour, but although most adjacent pixels are nearly the same, the chances of them being identical are very low, and there would be almost no runs of identical colours.
 
@@ -344,7 +338,7 @@ And instead of estimating the values with a linear function, it uses combination
 
 A cosine wave form is from the trig function that is often used for calculating the sides of a triangle. If you plot the cosine value from 0 to 180 degrees, you get a smooth curve going from 1 to -1. Variations of this plot can be used to approximate the value of pixels, going from one colour to another. If you add in a higher frequency cosine wave, you can produce interesting shapes. In theory, any pattern of pixels can be created by adding together different cosine waves!
 
-{image cc-cosine-graph.png}
+{image cosine-graph.png alt="A graph showing cos(x) and sin(x) curves"}
 
 {jargon-buster end}
 
@@ -357,15 +351,15 @@ A cosine wave form is from the trig function that is often used for calculating 
 
 You can see the 8 by 8 blocks of pixels if you zoom in on a heavily compressed JPEG image. For example, the following image has been very heavily compressed using JPEG (it is just 1.5% of its original size).
 
-{image cc-low-quality-jpeg.png}
+{image compressed-jpeg.png}
 
 If we zoom in on the eye area, you can see the 8 x 8 blocks of pixels:
 
-{image cc-zoomed-jpeg.png}
+{image compressed-jpeg-zoomed.png}
 
 Notice that there is very little variation across each block. In the following image the block in the red box only changes from top to bottom, and could probably be specified by giving just two values, and having the ones in between calculated by the decoder as for the line example before. The green square only varies from left to right, and again might only need 2 values stored instead of 64. The blue block has only one colour in it! The yellow block is more complicated because there is more activity in that part of the image, which is where the cosine waves come in. A "wave" value varies up and down, so this one can be represented by a left-to-right variation from dark to light to dark, and a top-to-bottom variation mainly from dark to light. Thus still only a few values need to be stored instead of the full 64.
 
-{image cc-zoomed-jpeg-highlighted.png}
+{image compressed-jpeg-zoomed-highlighted.png}
 
 The quality is quite low, but the saving in space is huge --- it's more than 60 times smaller (for example, it would download 60 times faster). Higher quality JPEG images store more detail for each 8 by 8 block, which makes it closer to the original image, but makes bigger files because more details are being stored. You can experiment with these tradeoffs by saving JPEGs with differing choices of the quality, and see how the file size changes. Most image processing software offers this option when you save an image as a JPEG.
 
@@ -401,11 +395,11 @@ An important issue arises because JPEG represents images as smoothly varying col
 In that case, lots of values need to be stored so that lots of cosine waves can be added together to make the sudden change in colour, or else the edge of the image become fuzzy.
 You can think of it as the cosine waves overshooting on the sudden changes, producing artifacts like the ones in the following image where the edges are messy.
 
-{image cc-clean-jpeg-low-q.jpg}
+{image jpeg-word.jpg}
 
 The original had sharp edges, but this zoomed in view of the JPEG version of it show that not only are the edges gradual, but some darker pixels occur further into the white space, looking a bit like shadows or echoes.
 
-{image cc-clean-jpeg-low-q-zoom.jpg}
+{image jpeg-word-zoomed.jpg}
 
 For this reason, JPEG is used for photos and natural images, but other techniques (such as GIF and PNG, which we will look at in another section) work better for artificial images like this one.
 
