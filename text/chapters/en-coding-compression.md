@@ -105,7 +105,7 @@ And the third row contains 5 whites, 5 blacks, 5 whites. This would give
 
 ```
 5, 5, 5
-````
+```
 
 So, we have determined that the first 3 rows of the file can be represented using RLE as:
 
@@ -179,7 +179,7 @@ What is the image of? How good was the compression on this image? (Look back at 
 
 This image is from the [CS Unplugged image representation activity](http://csunplugged.org/image-representation), and the solution is available in the activity (it is a cup and saucer). The same image is decoded using very large pixels (the printer is a spray can!) in this [video from a computer science show](http://www.youtube.com/watch?v=VsjpPs146d8). You could show the video to students, but it's even better to use the teaching ideas in the video yourself.
 
-<div class="widget-holder"><a href="_static/interactives/cc/run-length-encoding/index.html"  target="_blank"><img class="widget-image" src="_static/interactives/cc/run-length-encoding/thumbnail-full.png" alt=""><span class="widget-subtitle">Click to load<br>Run Length Encoding</span></a></div>
+<div class="widget-holder"><a href="static/interactives/cc/run-length-encoding/index.html"  target="blank"><img class="widget-image" src="static/interactives/cc/run-length-encoding/thumbnail-full.png" alt=""><span class="widget-subtitle">Click to load<br>Run Length Encoding</span></a></div>
 <p class="text-center">Created by Hannah Taylor</p>
 
 As the compressed representation of the image can be converted back to the original representation, and both the original representation and the compressed representation would give the same image when read by a computer, this compression algorithm is called *lossless*, i.e. none of the data was lost from compressing the image, and as a result the compression could be undone exactly.
@@ -266,7 +266,7 @@ E: evaluating a widely used system for compression coding, error control coding,
 
 ## Image compression: JPEG
 
-{teachers}
+{teacher}
 
 This section provides enough information for students to work up the the excellence level for coding. The requirements are:
 
@@ -314,7 +314,7 @@ For example, the following image shows a zoomed in view of the pixels that are p
 
 {comment}
 
-this image no longer needed, as it is available just above _static/images/CC-PhotoOriginal.jpg
+this image no longer needed, as it is available just above static/images/CC-PhotoOriginal.jpg
 
 {comment end}
 
@@ -461,7 +461,7 @@ As long as you decode them from first to last, the information will be available
 
 {comment end}
 
-<div align="center"><iframe width="900" height="460" src="_static/widgets/COMPRESSION/LWZ/public_html/index.html" frameborder="0">Your browser does not support iframes. Please contact the computer's administrator and upgrade <a href="http://browsehappy.com/"> to a modern browser</a> (like Google Chrome) to enable all functionality of this online textbook.</iframe></div>
+<div align="center"><iframe width="900" height="460" src="static/widgets/COMPRESSION/LWZ/public_html/index.html" frameborder="0">Your browser does not support iframes. Please contact the computer's administrator and upgrade <a href="http://browsehappy.com/"> to a modern browser</a> (like Google Chrome) to enable all functionality of this online textbook.</iframe></div>
 
 {comment}
 
