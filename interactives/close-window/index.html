@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <!-- If you delete this meta tag World War Z will become a reality -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Enter your interactive title in the title block -->
-    <title>Delayed Checkbox</title>
+    <!-- ### Enter your interactive title in the title block ### -->
+    <title>Interactive Template</title>
     <link rel="stylesheet" href="../base-files/css/normalize.css">
     <link rel="stylesheet" href="../base-files/css/foundation.min.css">
     <script src="../base-files/js/modernizr.js"></script>
@@ -17,13 +17,21 @@
       <div class="row">
       <div class="small-12 columns">
       <div class="interactive">
-      <!-- ### Start of required HTML for inline interactives ### -->
-      <div id="interactive-delayed-checkbox">
-        <div class="interactive-delayed-checkbox-header">Tick the checkbox</div>
-        <input id="interactive-delayed-checkbox-box" type="checkbox" value="">
-        <div id="interactive-delayed-checkbox-feedback">Clicked <span id="interactive-delayed-checkbox-counter">0</span> times</div>
-      <link rel="stylesheet" href="css/delayed-checkbox.css">
-      <script src="js/delayed-checkbox.js"></script>
+	    <!-- ### Start of required HTML for inline interactives ### -->
+      <div class="row text-center">
+        <h3>Do you wish to close this window?</h3>
+        <div class="small-6 columns">
+          <button type="button" id="close-window-no-button" class="button expand large radius alert disabled">
+            No
+          </button>
+        </div>
+        <div class="small-6 columns">
+          <button type="button" id="close-window-yes-button" class="button expand large radius success">
+            Yes
+          </button>
+        </div>
+        <link rel="stylesheet" href="css/close-window.css">
+        <script src="./js/close-window.js"></script>
       </div>
       <!-- ### End of required HTML for inline interactives ### -->
       </div>

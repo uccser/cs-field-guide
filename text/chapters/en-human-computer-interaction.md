@@ -47,26 +47,7 @@ Human-computer interaction (HCI) is about trying to make programs useful, usable
 
 Try out the following interactive task, and get some friends to try it:
 
-<div class="interactive">
-<div id="interactive-deceiver-question" class="interactive-text"><br></div>
-<div id="startButton" class="row">
-<div class="col-xs-8 col-xs-offset-1 col-sm-4 col-sm-offset-4">
-<button type="button" id="buttonStart" class="btn btn-success btn-block">Start</button>
-</div>
-</div>
-<div id="gameButtons" class="row" style="display:none;" >
-<div class="col-xs-4 col-xs-offset-2 col-sm-2 col-sm-offset-4">
-<button type="button" id="buttonLeft" class="btn btn-default btn-block interactive-deceiver-button">No</button>
-</div>
-<div class="col-xs-4 col-sm-2">
-<button type="button" id="buttonRight" class="btn btn-default btn-block interactive-deceiver-button">Yes</button>
-</div>
-</div>
-<div id="interactive-deceiver-feedback-container">
-<div id="interactive-deceiver-feedback" class="interactive-text"><br></div>
-</div>
-<div id="interactive-deceiver-timer" class="interactive-text"><span id="interactive-deceiver-seconds">15</span> seconds left</div>
-</div>
+{interactive-inpage deceiver}
 
 Did anyone get a wrong answer to the question even though you thought you got it right? You may have noticed that the "Yes" and "No" button sometimes swap.
 Inconsistency is normally a really bad thing in an interface, as it can easily fool the user into making an error.
@@ -404,7 +385,7 @@ It's not too hard to find these sorts of delays in systems when you're evaluatin
 
 The language, colours and notation in an interface should match the user's world, and while this seems obvious and sensible, it's often something that is overlooked. Take for example the following two buttons --- can you see what is confusing about them?
 
-<div class="row button-interactive"><div class="col-xs-6"><button type="button" class="btn btn-danger btn-block">Confirm</button></div><div class="col-xs-6"><button type="button" class="btn btn-success btn-block">Cancel</button></div></div>
+{interactive-inpage confused-buttons}
 
 {teacher}
 
@@ -414,7 +395,7 @@ The buttons have the colours switched, the colour for cancel is green (commonly 
 
 The following interface is from a bank system for paying another person. Suppose you get an email asking someone to pay you $1699.50 dollars for a used car; try entering "$1699.50" into the box.
 
-<div id="payment-interactive" class="form-group interactive"><label class="control-label interactive-text" for="money-input">Payment Amount: </label><div class="row"><div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4"><input type="text" id="money-input" class="form-control" placeholder="How much do you want to pay?"></div></div><span id="payment-interactive-message" class="help-block"><br></span></div>
+{interactive-inpage payment-interface}
 
 The notation "$1699.50" is a common way to express a dollar amount, but this system forces you to follow its own conventions (probably to make things easier for the programmer who wrote the system).
 
@@ -442,17 +423,7 @@ Pressing the yes button below can be very frustrating! Most modern web browsers 
 
 {teacher end}
 
-<div id="close-interactive" class="row interactive">
-<div class="interactive-wrong">
-<p class="interactive-text">Do you wish to close this window?</p>
-</div>
-<div class="col-xs-4 col-xs-offset-2">
-<button type="button" class="btn btn-primary btn-lg btn-block" onclick="closeButton()">Yes</button>
-</div>
-<div class="col-xs-4">
-<button type="button" class="btn btn-primary btn-lg btn-block" disabled="disabled" style="opacity:0.3;">No</button>
-</div>
-</div>
+{interactive-inpage close-window}
 
 {comment}
 

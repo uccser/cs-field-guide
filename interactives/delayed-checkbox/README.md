@@ -1,5 +1,7 @@
 # Delayed Checksum Interactive
 
+**Author:** Jack Morgan
+
 This interactive is created for the HCI chapter in testing user delays. The user must tick the checkbox, but the checkbox has a 1.5 second delay so often the user selects multiple times.
 
 ## Required Files
