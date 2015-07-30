@@ -22,16 +22,7 @@ For example, the JPEG method reduces photos to a tenth or smaller of their origi
 
 So what's the catch? Well, there can be an issue with the quality of the data --- for example, a highly compressed JPEG image doesn't look as sharp as an image that hasn't been compressed. Also, it takes processing time to compress and decompress the data. In most cases, the tradeoff is worth it, but not always.
 
-<p class="text-center">Move your cursor or tap the image to compare the two images</p>
-<!-- Code provided by http://codepen.io/dudleystorey/pen/JDphy -->
-<!-- Photo from http://www.publicdomainpictures.net/view-image.php?image=101219&picture=fisherman-bait-casting -->
-<div style="width: 90%; margin: 0 auto; padding-bottom: 20px;">
-<div id="inked-painted">
-<img src="static/images/cc-introduction-high.jpg" id="inked" alt>
-<div id="colored"></div>
-</div>
-</div>
-<p class="text-center"><b>Left is low quality JPEG (20Kb) - Right is high quality JPEG (88Kb)</b></p>
+{interactive-inpage compression-comparer}
 
 In this chapter we'll look at how compression might be done, what the benefits are, and the costs associated with using compressed data that need to be considered when deciding whether or not to compress data.
 We'll start with a simple example --- Run Length Encoding --- which gives some insight into the benefits and the issues around compression.
@@ -598,20 +589,3 @@ Questions like "what is the most compression that can be achieved" are addressed
 - Images, run-length-coding [http://csunplugged.org/image-representation](http://csunplugged.org/image-representation) This is also relevant to binary representations in general, although is probably best used in the compression section.
 - There is a detailed section on [JPEG encoding on Wikipedia](http://en.wikipedia.org/wiki/Jpeg).
 - Text compression [http://csunplugged.org/text-compression](http://csunplugged.org/text-compression)
-
-<script type="text/javascript">
-$(document).ready(function(){  
-var inkbox = document.getElementById("inked-painted");
-var colorbox = document.getElementById("colored");
-var fillerImage = document.getElementById("inked");
-inkbox.addEventListener("mousemove",trackLocation,false);
-inkbox.addEventListener("touchstart",trackLocation,false);
-inkbox.addEventListener("touchmove",trackLocation,false);
-function trackLocation(e)
-{
-var rect = inked.getBoundingClientRect();
-var position = ((e.pageX - rect.left) / inked.offsetWidth)*100;
-if (position <= 100) { colorbox.style.width = position+"%"; }
-}
-});
-</script>
