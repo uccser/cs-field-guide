@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <!-- If you delete this meta tag World War Z will become a reality -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- ### Enter your interactive title in the title block ### -->
+    <title>Run Length Encoding</title>
+    <link rel="stylesheet" href="../base-files/css/normalize.css">
+    <!-- <link rel="stylesheet" href="../base-files/css/foundation.min.css"> -->
+    <script src="../base-files/js/modernizr.js"></script>
+    <!-- jQuery (necessary for Foundation) -->
+    <script src="../base-files/js/jquery.js"></script>
+  </head>
+  <body>
+      <div class="row">
+      <div class="small-12 columns">
+      <div class="interactive">
+
+        <div id="wrapper">
+            <div id="header">
+                <h1 id="heading">Run Length Encoding</h1>
+                <input type="numeric" id="grid-size" name="grid" placeholder="Choose Grid Size" value="">
+                <button id="grid-size-btn">Create</button>
+                <button id="invert">Invert</button>
+                <button id="clear-all">Clear all black pixels</button>
+            </div>
+            <div id="count">
+                <span id="bit-count"></span><span id="char-count"></span>
+            </div>
+            <div id="container">
+
+            </div>
+            <div id="run-length">
+
+            </div>
+        </div>
+        <link rel="stylesheet" href="./css/run-length-encoding.css">
+        <script src="./js/run-length-encoding.js"></script>
+
+      </div>
+      </div>
+      </div>
+    <!-- Foundation responsive CSS
+    <script src="../base-files/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+    </script>-->
+  </body>
+</html>

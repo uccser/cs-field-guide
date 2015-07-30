@@ -1,0 +1,98 @@
+@import url(http://fonts.googleapis.com/css?family=Neucha);
+body {
+    font-family: 'Neucha', cursive;
+}
+#wrapper {
+    width: 960px;
+    margin:auto;
+}
+#header {
+    width: 960px;
+    height: 180px;
+    float: left;
+    text-align: center;
+}
+#count {
+    width: 960px;
+    height: 50px;
+    float: left;
+    font-size: 14pt;
+    text-align: center;
+}
+#bit-count {
+    width:600px;
+    float: left;
+}
+#char-count {
+    width:318px;
+    float:left;
+    margin-left: 10px;
+}
+#container {
+    width: 600px;
+    height:600px;
+    float: left;
+}
+#run-length {
+    width: 318px;
+    height: 568px;
+    float: left;
+    border: 1px solid #dddddd;
+    border-radius: 10px;
+    background: #eeeeee;
+    margin-left: 10px;
+    padding: 15px;
+    display: none;
+    color: #222222;
+    overflow: auto;
+}
+#run-length-text {
+    height: 520px;
+    width: 283px;
+    font: bold 16pt Neucha, cursive;
+    border-radius: 10px;
+    border: 1px solid #dddddd;
+    padding: 15px;
+}
+#run-length-text:focus {
+    outline: none;
+    border: 1px solid cornFlowerBlue;
+    border-radius: 10px;
+}
+.pixel {
+    width: 50px;
+    height: 50px;
+    float: left;
+    border: 1px solid #dddddd;
+    background: white;
+}
+.black {
+    background: black;
+}
+input {
+    height: 50px;
+    font: bold 16pt Neucha, cursive;
+    border-radius: 10px;
+    border: 1px solid #dddddd;
+    padding-left: 5px;
+}
+input:focus {
+    outline: none;
+    border: 1px solid cornFlowerBlue;
+    border-radius: 10px;
+}
+button {
+    height: 50px;
+    font: bold 16pt Neucha, cursive;
+    border-radius: 10px;
+    border: 1px solid #dddddd;
+    cursor: pointer;
+    outline: none;
+}
+#grid-size-btn {
+    background: springGreen;
+}
+#invert {
+    background: #222222;
+    color: #dddddd;
+}
