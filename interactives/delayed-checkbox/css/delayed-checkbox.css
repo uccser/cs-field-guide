@@ -1,0 +1,11 @@
+#interactive-delayed-checkbox {
+	text-align: center;
+}
+#interactive-delayed-checkbox-box {
+	height: 3rem;
+	width: 3rem;
+	margin: 0px;
+}
+.interactive-delayed-checkbox-header {
+  font-size: 2em;
+}
