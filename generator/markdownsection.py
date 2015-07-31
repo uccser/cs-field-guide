@@ -1,4 +1,5 @@
 import re
+import lxml.html as htmltree
 import logging
 import os.path
 import generator.systemfunctions as systemfunctions
@@ -31,6 +32,7 @@ class Section:
         self.permalinks = set()
         # Dictionary of sets for images, interactives, and other_files
         self.required_files = setup_required_files(file_node.guide)
+        self.page_scripts = []
         self.mathjax_required = False
         self.html_path_to_root = self.file_node.depth * '../'
 
@@ -169,7 +171,7 @@ class Section:
         # TODO: Process image arguments
 
         # Return HTML
-        image_source = './images/' + filename
+        image_source =  os.path.join(self.html_path_to_root, self.guide.generator_settings['Source']['Image'], filename)
         image_html = self.html_templates['image'].format(image_source=image_source)
         html = self.html_templates['centered'].format(html=image_html)
         return html
@@ -185,7 +187,7 @@ class Section:
         images_html = ''
         for (image_filename,image_args) in images:
             # TODO: Process image arguments
-            image_source = './images/' + image_filename
+            image_source = os.path.join(self.html_path_to_root, self.guide.generator_settings['Source']['Image'], image_filename)
             image_html = self.html_templates['image'].format(image_source=image_source).strip()
             images_html += self.html_templates['image-set-item'].format(image_html=image_html)
         html = self.html_templates['image-set'].format(image_set_items_html=images_html.strip(),
@@ -259,33 +261,128 @@ class Section:
 
 
     def add_interactive(self, match):
+        """Regex match function for interactive blocks.
+            - Adds interactive folder to set of required files
+            - Generates appropriate html content from source file
+            - Returns empty string if source file does not exist
+        """
+
+        html = ''
         interactive_type = match.group('type')
-        interactive_name = match.group('interactive_name')
+        name = match.group('interactive_name')
+        arguments = re.search('(title="(?P<title>[^"]*)")?(parameters="(?P<parameters>[^"]*)")?', match.group('args'))
+        arg_title = arguments.group('title')
+        title = arg_title if arg_title else name
+        params = arguments.group('parameters')
+        source_folder = os.path.join(self.guide.generator_settings['Source']['Interactive'], name)
+        interactive_exists = self.check_interactive(source_folder, name)
 
-        interactive_arguments = re.search('(title="(?P<title>[^"]*)")?(parameters="(?P<parameters>[^"]*)")?', match.group('args'))
-        if interactive_arguments.group('title'):
-            interactive_title = interactive_arguments.group('title')
-        else:
-            interactive_title = 'interactive'
-        if interactive_arguments.group('parameters'):
-            interactive_parameters = interactive_arguments.group('parameters')
-        else:
-            interactive_parameters = None
+        if interactive_exists:
+            self.required_files['Interactive'].add(name)
+            if interactive_type == 'interactive-external':
+                html = self.external_interactive_html(source_folder, title, name, params)
+            elif interactive_type == 'interactive-inpage':
+                html = self.inpage_interactive_html(source_folder, name)
 
-        # Add interactive to required files
-        self.required_files['Interactive'].add(interactive_name)
+        return html if html else ''
 
-        if interactive_type == 'interactive-external':
-            interactive_source = self.guide.generator_settings['Output']['Interactive'].format(interactive=interactive_name)
-            interactive_thumbnail_source = os.path.join(interactive_source, self.guide.generator_settings['Source']['Interactive Thumbnail'])
-            interactive_link_text = 'Click to load {title}'.format(title=interactive_title)
-            if interactive_parameters:
-                interactive_source = "{source}?{parameters}".format(source=interactive_source, parameters=interactive_parameters)
-            link_html = self.html_templates['interactive-external'].format(interactive_thumbnail=interactive_thumbnail_source, interactive_link_text=interactive_link_text, interactive_source=interactive_source)
-            html = self.html_templates['centered'].format(html=link_html)
+
+    def external_interactive_html(self, source_folder, title, name, params):
+        """Return the html block for a link to an external interactive"""
+
+        thumbnail_location = os.path.join(self.html_path_to_root, source_folder, self.guide.generator_settings['Source']['Interactive Thumbnail'])
+        link_text = 'Click to load {title}'.format(title=title)
+        folder_location = os.path.join(self.html_path_to_root, source_folder)
+        file_link = "{location}?{parameters}".format(location=folder_location, params=params) if params else folder_location
+        link_template = self.html_templates['interactive-external']
+        link_html = link_template.format(interactive_thumbnail=thumbnail_location,
+                                    interactive_link_text=link_text,
+                                    interactive_source=file_link)
+
+        return self.html_templates['centered'].format(html=link_html)
+
+
+    def inpage_interactive_html(self, source_folder, name):
+        """Return the html for inpage interactives, with links adjusted
+        to correct relative links
+        """
+        interactive_tree = self.get_interactive_tree(source_folder, name)
+        if interactive_tree is not None:
+            self.edit_interactive_tree(interactive_tree, source_folder)
+            return htmltree.tostring(interactive_tree).decode('utf-8')
         else:
-            html = ''
-        return html
+            return None
+
+
+    def get_interactive_tree(self, source_folder, name):
+        """Return element tree for the 'class=interactive div'
+        of the interactive html file. If more than one div is found,
+        return None and log error
+        """
+        filename = self.guide.generator_settings['Source']['Interactive File']
+        file_location = os.path.join(source_folder, filename)
+        with open(file_location, 'r', encoding='utf8') as source_file:
+            raw_html = source_file.read()
+
+        file_tree = htmltree.fromstring(raw_html)
+        interactive_trees = file_tree.find_class(INTERACTIVE_CLASS)
+        if  len(interactive_trees) != 1:
+            logging.error('''Error creating interactive {}: expected 1
+                            div with class 'interactive' but {} found
+                            '''.format(name, len(interactive_trees)))
+            return None
+        else:
+            return interactive_trees[0]
+
+
+    def edit_interactive_tree(self, root, source_folder):
+        """Edits element tree in the following ways:
+
+            - Comments are removed
+            - Scripts and stylesheets are added to page_scripts,
+            and removed from tree
+            - Relative links are modified as required (ignoring external)
+
+            TODO:
+            - Implemet better system for checking whether link is relative
+            and needs to be adjusted
+        """
+        link_attributes = ['href', 'src']
+        page_elements = []
+        for element in root.iter():
+            to_be_deleted = isinstance(element, htmltree.HtmlComment)
+            for attr in link_attributes:
+                raw_link = element.get(attr, None)
+                if raw_link and not raw_link.startswith('http://'): #this check needs to be better
+                    link = os.path.join(self.html_path_to_root, source_folder, raw_link)
+                    element.set(attr, link)
+
+            if element.tag == 'script' or (element.tag == 'link' and element.get('rel', None) == 'stylesheet'):
+                page_elements.append(element)
+                to_be_deleted = True
+
+            if to_be_deleted and element.getparent() is not None:
+                    element.getparent().remove(element)
+
+        for element in page_elements:
+            html_lines = htmltree.tostring(element).decode("utf-8").split('\n')
+            self.page_scripts += html_lines
+
+
+    def check_interactive(self, interactive_source, interactive_name):
+        """Checks if an interactive exists and has an index.html file"""
+        exists = False
+        if os.path.exists(interactive_source):
+            interactive_source_file = self.guide.generator_settings['Source']['Interactive File']
+            interactive_source_file_location = os.path.join(interactive_source, interactive_source_file)
+            if os.path.exists(interactive_source_file_location):
+                exists = True
+            else:
+                logging.error("Interactive {0} {1} file could not be found".format(interactive_name, interactive_source_file))
+        else:
+            logging.error("Interactive {0} folder could not be found".format(interactive_name))
+        return exists
+
 
     def create_table_of_contents(self, match):
         """Parsing function for table-of-contents regex.
@@ -339,7 +436,7 @@ class Section:
 
         """
         self.html_templates = html_templates
-        for section_text in self.markdown_text.split('{page break}'):
+        for section_text in self.markdown_text.split('{page-break}'):
             # Parse with our parser
             text = section_text
             for regex, function in self.regex_functions:#REGEX_MATCHES:
@@ -347,7 +444,7 @@ class Section:
             # Parse with markdown2
             parsed_html = markdown(text, extras=MARKDOWN2_EXTRAS)
             self.html_content.append(parsed_html)
-        print(self)
+        #print(self)
 
 
     def create_regex_functions(self):
