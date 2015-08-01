@@ -1,98 +1,69 @@
-@import url(http://fonts.googleapis.com/css?family=Neucha);
-body {
+/*@import url(http://fonts.googleapis.com/css?family=Neucha);*/
+/*body {
     font-family: 'Neucha', cursive;
-}
-#wrapper {
-    width: 960px;
-    margin:auto;
-}
-#header {
-    width: 960px;
-    height: 180px;
-    float: left;
-    text-align: center;
-}
-#count {
-    width: 960px;
-    height: 50px;
-    float: left;
-    font-size: 14pt;
-    text-align: center;
-}
-#bit-count {
-    width:600px;
-    float: left;
-}
-#char-count {
-    width:318px;
-    float:left;
-    margin-left: 10px;
-}
+}*/
 #container {
-    width: 600px;
+    /*width: 600px;
     height:600px;
-    float: left;
+    float: left;*/
 }
 #run-length {
-    width: 318px;
-    height: 568px;
-    float: left;
+    /*width: 318px;*
+    height: 568px;*/
+    /*float: left;*//
     border: 1px solid #dddddd;
-    border-radius: 10px;
+    border-radius: 10px;*
     background: #eeeeee;
-    margin-left: 10px;
+    /*margin-left: 10px;*/
     padding: 15px;
-    display: none;
+    /*display: none;*/
     color: #222222;
     overflow: auto;
 }
 #run-length-text {
-    height: 520px;
-    width: 283px;
+    height: 100%;
+    /*width: 283px;*/
     font: bold 16pt Neucha, cursive;
     border-radius: 10px;
     border: 1px solid #dddddd;
     padding: 15px;
 }
 #run-length-text:focus {
-    outline: none;
+    /*outline: none;
     border: 1px solid cornFlowerBlue;
-    border-radius: 10px;
+    border-radius: 10px;*/
 }
 .pixel {
-    width: 50px;
+    /*width: 50px;
     height: 50px;
-    float: left;
+    float: left;*/
     border: 1px solid #dddddd;
     background: white;
 }
 .black {
     background: black;
 }
-input {
+/*input {
     height: 50px;
     font: bold 16pt Neucha, cursive;
     border-radius: 10px;
     border: 1px solid #dddddd;
     padding-left: 5px;
-}
-input:focus {
+}*/
+/*input:focus {
     outline: none;
     border: 1px solid cornFlowerBlue;
     border-radius: 10px;
-}
-button {
+}*/
+/*button {
     height: 50px;
     font: bold 16pt Neucha, cursive;
     border-radius: 10px;
     border: 1px solid #dddddd;
     cursor: pointer;
     outline: none;
-}
-#grid-size-btn {
-    background: springGreen;
-}
+}*/
 #invert {
     background: #222222;
     color: #dddddd;
-}
+}#container{  border: 1px solid #DDD;}.flex-container {    padding: 0;    margin: 0;    list-style: none;    display: -webkit-box;    display: -moz-box;    display: -ms-flexbox;    display: -webkit-flex;    display: flex;    -webkit-flex-flow: row;    justify-content: space-around;    line-height:30px;}.flex-item {    /*margin: 5px;*/    color: white;    font-weight: bold;    font-size: 1.5em;    text-align: center;    flex: 1 0 auto;    height:auto;}.flex-item:before {    content:'';    float:left;    padding-top:100%;}

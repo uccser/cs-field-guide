@@ -8,44 +8,49 @@
     <!-- ### Enter your interactive title in the title block ### -->
     <title>Run Length Encoding</title>
     <link rel="stylesheet" href="../base-files/css/normalize.css">
-    <!-- <link rel="stylesheet" href="../base-files/css/foundation.min.css"> -->
+    <link rel="stylesheet" href="../base-files/css/foundation.min.css">
     <script src="../base-files/js/modernizr.js"></script>
-    <!-- jQuery (necessary for Foundation) -->
     <script src="../base-files/js/jquery.js"></script>
   </head>
   <body>
-      <div class="row">
-      <div class="small-12 columns">
-      <div class="interactive">
-
-        <div id="wrapper">
-            <div id="header">
-                <h1 id="heading">Run Length Encoding</h1>
-                <input type="numeric" id="grid-size" name="grid" placeholder="Choose Grid Size" value="">
-                <button id="grid-size-btn">Create</button>
-                <button id="invert">Invert</button>
-                <button id="clear-all">Clear all black pixels</button>
-            </div>
-            <div id="count">
-                <span id="bit-count"></span><span id="char-count"></span>
-            </div>
-            <div id="container">
-
-            </div>
-            <div id="run-length">
-
-            </div>
+    <div class="row">
+    <div class="small-12 columns">
+    <div class="interactive row">
+      <div class="small-12 columns text-center">
+        <h1>Run Length Encoding</h1>
+        <div class="row">
+          <div class="small-3 medium-2 medium-offset-2 large-2 large-offset-3 columns">
+                <label for="grid-size" class="right inline">Grid Size:</label>
+          </div>
+          <div class="small-9 medium-4 large-2 end columns">
+                <input type="number" id="grid-size" min="2" max="20" value="5">
+          </div>
         </div>
-        <link rel="stylesheet" href="./css/run-length-encoding.css">
-        <script src="./js/run-length-encoding.js"></script>
-
       </div>
+      <div class="small-12 medium-8 columns">
+        <p class="text-center">
+          <span id="bit-count"></span>
+        </p>
+        <div id="container"></div>
       </div>
+      <div class="small-12 medium-4 columns">
+        <p class="text-center">
+          <span id="char-count"></span>
+        </p>
+        <div id="run-length"></div>
+        <a id="invert" class="button radius expand">Invert</a>
+        <a id="clear-all" class="button radius expand">Clear all black pixels</a>
       </div>
-    <!-- Foundation responsive CSS
-    <script src="../base-files/js/foundation.min.js"></script>
+      <link rel="stylesheet" href="./css/run-length-encoding.css">
+      <!-- jQuery (necessary for Foundation) -->
+      <script src="./js/run-length-encoding.js"></script>
+    </div>
+      <!-- Foundation responsive CSS -->
+      <script src="../base-files/js/foundation.min.js"></script>
+    </div>
+    </div>
     <script>
       $(document).foundation();
-    </script>-->
+    </script>
   </body>
 </html>
