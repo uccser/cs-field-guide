@@ -12,25 +12,25 @@ $(document).ready(function(){
     });
 
     //On "toggle" provide a text box and on keyup update grid (delegated)
-    $('#run-length').on('click', '#edit', function(event){
-        //alert('clicked');
-        var runText = $('#run-length').html();
-        runText = runText.replace('<button id="edit">Edit</button>', '');
-        runText = runText.replace(/<br>/g, "\n");
-        runText = runText.replace(/<hr>/g, "\n");
-
-        var newText = '<textarea id="run-length-text">' + runText + '</textarea>';
-        $('#run-length').html(newText);
-    });
+    // $('#run-length').on('click', '#edit', function(event){
+    //     //alert('clicked');
+    //     var runText = $('#run-length').html();
+    //     runText = runText.replace('<button id="edit">Edit</button>', '');
+    //     runText = runText.replace(/<br>/g, "\n");
+    //     runText = runText.replace(/<hr>/g, "\n");
+    //
+    //     var newText = '<textarea id="run-length-text">' + runText + '</textarea>';
+    //     $('#run-length').html(newText);
+    // });
 
     //On key up, update squares (delegated)
-    $('#run-length').keyup('#run-length-text', function(event){
+    $('#run-length').bind('input propertychange', function(){
        //alert('keyed!');
        updateGrid();
     });
 
     // Bind toggle events to pixel divs
-    $('#container').on('click', '.pixel', function (event) {
+    $('#container').on('click', '.pixel', function(event) {
         $(this).toggleClass('black');
         updateRunLengthValues();
     })
@@ -82,22 +82,22 @@ function setup_grid(){
 
         //Set initial run length text
         runText = "";
-        var i = 0;
-        for (i==0; i<gridSize; i++) {
-            //code
+        for (i=0; i<gridSize; i++) {
             runText += gridSize;
-            runText += gridSize > 26?"<hr>":"<br>";
+            if (i < gridSize - 1) {
+              runText += '\n';
+            }
         }
 
         //Insert into div
-        $('#run-length').html('<button id="edit">Edit</button><br>' + runText);
+        $('#run-length').html(runText);
 
         if (gridSize <= 8) {
-            fontSize = 35;
-        } else if (gridSize <= 12) {
             fontSize = 25;
-        } else {
+        } else if (gridSize <= 12) {
             fontSize = 19;
+        } else {
+            fontSize = 14;
         }
         $('#run-length').css('font-size',fontSize);
 
@@ -159,8 +159,8 @@ function updateGrid() {
     //var charCount = 0;
 
     //Get the values from keyup
-    var runText = $('#run-length-text').val();
-    //console.log(runText);
+    var runText = $('#run-length').val();
+    console.log(runText);
 
     //Split into array based on new lines, remove blank entries
     lines = runText.split('\n')
@@ -202,7 +202,7 @@ function updateGrid() {
             } else {
                 //Add to full run array
                 fullRun[i] = runNums;
-                console.log(fullRun);
+                //console.log(fullRun);
 
             }
         }
@@ -416,7 +416,7 @@ function updateRunLengthValues() {
                 //code
             //console.log('C1 runcount: '+runCount+' charcount: '+charCount);
                 runText += debug?mode + ":"+ runCount + "\n":runCount;
-                runText += gridSize > 26?"<hr>":"<br>";
+                runText += gridSize > 26?"<hr>":"\n";
                 charCount += 1;
                 charCount += runCount>=10?1:0;
                 charCount += runCount>=100?1:0;
@@ -429,6 +429,11 @@ function updateRunLengthValues() {
         //console.log('runcount:'+runCount+' cellcount'+cellCount+' mode'+mode+' rowcount: '+rowCount);
     });
     //console.log(runText);
-    $('#run-length').html('<button id="edit">Edit</button><br>' + runText);
+    $('#run-length').val(runText);
     $('#char-count').html('Number of characters for run length encoding: ' + charCount);
+}
+
+String.prototype.repeat = function( num )
+{
+    return new Array( num + 1 ).join( this );
 }
