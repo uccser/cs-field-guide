@@ -1,5 +1,5 @@
 import re
-import lxml.html as htmltree
+import bs4
 import logging
 import os.path
 import generator.systemfunctions as systemfunctions
@@ -266,13 +266,13 @@ class Section:
             - Generates appropriate html content from source file
             - Returns empty string if source file does not exist
         """
-
         html = ''
         interactive_type = match.group('type')
         name = match.group('interactive_name')
         arguments = re.search('(title="(?P<title>[^"]*)")?(parameters="(?P<parameters>[^"]*)")?', match.group('args'))
         arg_title = arguments.group('title')
         title = arg_title if arg_title else name
+        print(title)
         params = arguments.group('parameters')
         source_folder = os.path.join(self.guide.generator_settings['Source']['Interactive'], name)
         interactive_exists = self.check_interactive(source_folder, name)
@@ -283,7 +283,7 @@ class Section:
                 html = self.external_interactive_html(source_folder, title, name, params)
             elif interactive_type == 'interactive-inpage':
                 html = self.inpage_interactive_html(source_folder, name)
-
+        print(html)
         return html if html else ''
 
 
@@ -309,7 +309,7 @@ class Section:
         interactive_tree = self.get_interactive_tree(source_folder, name)
         if interactive_tree is not None:
             self.edit_interactive_tree(interactive_tree, source_folder)
-            return htmltree.tostring(interactive_tree).decode('utf-8')
+            return interactive_tree.prettify()#htmltree.tostring(interactive_tree).decode('utf-8')
         else:
             return None
 
@@ -324,8 +324,8 @@ class Section:
         with open(file_location, 'r', encoding='utf8') as source_file:
             raw_html = source_file.read()
 
-        file_tree = htmltree.fromstring(raw_html)
-        interactive_trees = file_tree.find_class(INTERACTIVE_CLASS)
+        file_tree = bs4.BeautifulSoup(raw_html, 'html.parser')
+        interactive_trees = file_tree.find_all('div', class_=INTERACTIVE_CLASS)
         if  len(interactive_trees) != 1:
             logging.error('''Error creating interactive {}: expected 1
                             div with class 'interactive' but {} found
@@ -338,7 +338,6 @@ class Section:
     def edit_interactive_tree(self, root, source_folder):
         """Edits element tree in the following ways:
 
-            - Comments are removed
             - Scripts and stylesheets are added to page_scripts,
             and removed from tree
             - Relative links are modified as required (ignoring external)
@@ -349,25 +348,18 @@ class Section:
         """
         link_attributes = ['href', 'src']
         page_elements = []
-        for element in root.iter():
-            to_be_deleted = isinstance(element, htmltree.HtmlComment)
+        redundant = []
+        for element in root.find_all():
             for attr in link_attributes:
                 raw_link = element.get(attr, None)
                 if raw_link and not raw_link.startswith('http://'): #this check needs to be better
                     link = os.path.join(self.html_path_to_root, source_folder, raw_link)
-                    element.set(attr, link)
-
-            if element.tag == 'script' or (element.tag == 'link' and element.get('rel', None) == 'stylesheet'):
+                    element[attr] = link
+            if element.name == 'script' or (element.name == 'link' and element.get('rel', None) == ['stylesheet']):
+                html_lines = element.prettify().split('\n')
+                self.page_scripts += html_lines
                 page_elements.append(element)
-                to_be_deleted = True
-
-            if to_be_deleted and element.getparent() is not None:
-                    element.getparent().remove(element)
-
-        for element in page_elements:
-            html_lines = htmltree.tostring(element).decode("utf-8").split('\n')
-            self.page_scripts += html_lines
-
+                
 
     def check_interactive(self, interactive_source, interactive_name):
         """Checks if an interactive exists and has an index.html file"""
