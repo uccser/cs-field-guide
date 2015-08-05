@@ -208,7 +208,7 @@ body {
     /*max-width: 75em;*/
 }
 .interactive {
-  padding: 25px 0px;
+  padding: 0 0 1rem;
 }
 pre {
   margin: 0 0 1.25rem;
