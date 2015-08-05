@@ -170,8 +170,7 @@ What is the image of? How good was the compression on this image? (Look back at 
 
 This image is from the [CS Unplugged image representation activity](http://csunplugged.org/image-representation), and the solution is available in the activity (it is a cup and saucer). The same image is decoded using very large pixels (the printer is a spray can!) in this [video from a computer science show](http://www.youtube.com/watch?v=VsjpPs146d8). You could show the video to students, but it's even better to use the teaching ideas in the video yourself.
 
-<div class="widget-holder"><a href="_static/interactives/cc/run-length-encoding/index.html"  target="_blank"><img class="widget-image" src="_static/interactives/cc/run-length-encoding/thumbnail-full.png" alt=""><span class="widget-subtitle">Click to load<br>Run Length Encoding</span></a></div>
-<p class="text-center">Created by Hannah Taylor</p>
+{interactive-external run-length-encoding title="Run Length Encoding"}
 
 As the compressed representation of the image can be converted back to the original representation, and both the original representation and the compressed representation would give the same image when read by a computer, this compression algorithm is called *lossless*, i.e. none of the data was lost from compressing the image, and as a result the compression could be undone exactly.
 
