@@ -5,7 +5,6 @@
     <meta charset="utf-8">
     <!-- If you delete this meta tag World War Z will become a reality -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- ### Enter your interactive title in the title block ### -->
     <title>Run Length Encoding</title>
     <link rel="stylesheet" href="../base-files/css/normalize.css">
     <link rel="stylesheet" href="../base-files/css/foundation.min.css">
@@ -17,33 +16,32 @@
     <div class="small-12 columns">
     <div class="interactive row">
       <div class="small-12 columns text-center">
-        <h1>Run Length Encoding</h1>
+        <h1 id="heading">Run Length Encoding</h1>
         <div class="row">
-          <div class="small-3 medium-2 medium-offset-2 large-2 large-offset-3 columns">
-            <label for="grid-size" class="right inline">Grid Size:</label>
-          </div>
-          <div class="small-9 medium-4 large-2 end columns">
-            <select id="grid-size">
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5" selected>5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-              <option value="11">11</option>
-              <option value="12">12</option>
-              <option value="13">13</option>
-              <option value="14">14</option>
-              <option value="15">15</option>
-              <option value="16">16</option>
-              <option value="17">17</option>
-              <option value="18">18</option>
-              <option value="19">19</option>
-              <option value="20">20</option>
-            </select>
+          <div class="small-4 small-offset-4 medium-2 medium-offset-5 end columns text-center">
+            <label for="grid-size" id="grid-size-label">Grid Size:
+              <select id="grid-size">
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5" selected>5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+              </select>
+            </label>
           </div>
         </div>
       </div>
@@ -51,20 +49,20 @@
         <p class="text-center">
           Number of bits for grid: <span id="bit-count"></span>
         </p>
-        <div id="container"></div>
+        <div id="encoding-grid"></div>
       </div>
       <div class="small-12 medium-4 columns">
         <p class="text-center">
-          Number of characters for run length encoding: <span id="char-count"></span>
+          Number of characters for encoding: <span id="char-count"></span>
         </p>
-        <!-- <div id="run-length"></div> -->
-        <textarea id="run-length">
+        <textarea id="encoding-text">
         </textarea>
+        <div id="encoding-text-feedback" class="text-center error"></div>
         <a id="invert" class="button radius expand">Invert</a>
         <a id="clear-all" class="button radius expand">Clear all black pixels</a>
       </div>
       <div id="footer" class="small-12 columns text-center">
-        <p>Created by Hannah Taylor</p>
+        <p>Created by Hannah Taylor - Adapted by Jack Morgan</p>
       </div>
       <link rel="stylesheet" href="./css/run-length-encoding.css">
       <!-- jQuery (necessary for Foundation) -->
