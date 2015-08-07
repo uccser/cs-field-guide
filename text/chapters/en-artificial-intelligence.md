@@ -19,7 +19,7 @@ In this chapter we'll explore a range of these intelligent systems. Inevitably t
 
 ## Chatterbots and The Turing Test
 
-{image ai-turing-test-comic.jpg alt="The computer is reading a book titled 'Talk like a human'"}
+{image computer-studying-turing-test.png alt="The computer is reading a book titled 'Talk like a human'"}
 
 Many humans take for granted the fact that they can easily have a conversation with another person, and choose appropriate things to say based on the conversation. The ability to do this is a form of intelligence, and for computers it isn’t so easy! Many attempts have been made to design computer programs that can have a conversation with a human and sound intelligent. These computer programs are called *chatterbots*, or just *chatbots*. This book uses the former term, although you may see both being used in other books or websites.
 
@@ -53,7 +53,7 @@ You will probably agree that while Eliza sounds somewhat intelligent at times, s
 **Human**: Yes  
 **Eliza**: Why did you repeat yourself?
 
-Eliza often gives very general replies by looking for suitable rules based only on the line you've just typed, and that often leads to some very weird conversations, such as the one above! In this case Eliza used pattern matching to determine that it might be appropriate to ask me "Do you believe it is normal to be a human?", as I had said I was a human; if I had said "I am a banana" then the same rule would have responded with "Do you believe it is normal to be a banana?". When I answered "Yes", Eliza didn't actually understand the *meaning* of me saying "Yes", so simply asked me if I was sure, as it has a general response that says a good way of responding to somebody saying "Yes" is to ask them if they were sure. Eliza also has rules that are triggered if somebody repeats themselves that say she should ask them why. Because Eliza doesn’t actually understand meanings but instead just follows rules that say what might be appropriate responses, she had no way of knowing that it actually *was* meaningful for me to respond with "Yes" twice! This is a big giveaway that Eliza really isn’t that intelligent, and doesn’t actually understand meanings in conversation, or even whether or not a response to her own question is actually reasonable. 
+Eliza often gives very general replies by looking for suitable rules based only on the line you've just typed, and that often leads to some very weird conversations, such as the one above! In this case Eliza used pattern matching to determine that it might be appropriate to ask me "Do you believe it is normal to be a human?", as I had said I was a human; if I had said "I am a banana" then the same rule would have responded with "Do you believe it is normal to be a banana?". When I answered "Yes", Eliza didn't actually understand the *meaning* of me saying "Yes", so simply asked me if I was sure, as it has a general response that says a good way of responding to somebody saying "Yes" is to ask them if they were sure. Eliza also has rules that are triggered if somebody repeats themselves that say she should ask them why. Because Eliza doesn’t actually understand meanings but instead just follows rules that say what might be appropriate responses, she had no way of knowing that it actually *was* meaningful for me to respond with "Yes" twice! This is a big giveaway that Eliza really isn’t that intelligent, and doesn’t actually understand meanings in conversation, or even whether or not a response to her own question is actually reasonable.
 
 {teacher}
 These responses that Eliza is giving are called *canned responses*.
@@ -82,7 +82,7 @@ Like Eliza, Alice also uses hard coded rules to know what to say, although she h
 
 Some possible rules that Alice might have are:
 - If "favourite colours" are mentioned,  say your favourite colour is "green".
-- If family members are mentioned (e.g. "mum", "dad", or "brother") say something that is about family. 
+- If family members are mentioned (e.g. "mum", "dad", or "brother") say something that is about family.
 
 To use the rules, the chatterbot analyses your last sentence (and possibly earlier sentences also) by matching the sentence against the patterns in its rules.  If the sentence matches the rule pattern, it "activates" the rule. The rule will specify a reply. Sometimes the reply is just a template for a sentence, and the chatterbot analyses the text you typed to extract words that can be inserted into the template. That’s why the replies sometimes use part of what you typed.
 
@@ -97,13 +97,13 @@ While Alice is undoubtedly more intelligent than Eliza, Alice still has her limi
 **Judge**: Then why did you say you can't predict the future?  
 **Alice**: It was a preprogrammed response completely determined by your statements.
 
-I suppose I was a bit mean for tricking her and saying "what will". Her rules assume a human wouldn’t mislead her like that. 
+I suppose I was a bit mean for tricking her and saying "what will". Her rules assume a human wouldn’t mislead her like that.
 
 ### Chatterbots that learn from humans
 
 We saw in the previous sections examples of two chatterbots that have rules that help them determine suitable things to say. One of those chatterbots only works in a restricted domain, taking the role of a therapist, and is unable to have very general conversations, and the other is able to have more general conversations. Both these chatterbots had their *rules* of what to say determined by programmers *at the time of programming*, and these rules will never be changed unless a programmer decides to change them.
 
-There are other chatterbots that are able to *learn* their rules from the humans they have conversations with. By looking at how a human responds to various dialogues, the chatterbot attempts to learn how it should respond in various situations. The idea is that if it responds in similar ways to what a human does, then perhaps it will sound like a human. Most of these chatterbots aim to have very general conversations, i.e. they aren’t restrained to one domain such as Eliza the therapist is. 
+There are other chatterbots that are able to *learn* their rules from the humans they have conversations with. By looking at how a human responds to various dialogues, the chatterbot attempts to learn how it should respond in various situations. The idea is that if it responds in similar ways to what a human does, then perhaps it will sound like a human. Most of these chatterbots aim to have very general conversations, i.e. they aren’t restrained to one domain such as Eliza the therapist is.
 
 If it is human intelligence you are trying to simulate, then perhaps learning from humans is the way to go?
 
@@ -115,7 +115,7 @@ And again, don’t tell the chatterbots your personal details (such as your full
 These warnings will make more sense once you’ve learnt how these chatterbots work.
 {warning end}
 
-An example of a chatterbot that learns from humans is Cleverbot. 
+An example of a chatterbot that learns from humans is Cleverbot.
 
 [Click on this link to have a conversation with Cleverbot](http://www.cleverbot.com/)
 
@@ -145,7 +145,7 @@ If you have a device that runs Apple iOS (for example an iPhone), have a look at
 
 In the above sections you met some chatterbots, and (hopefully!) have drawn the conclusion that they aren’t entirely convincing in terms of sounding like a human (although some are better than others!). But maybe soon, there will be new chatterbots that don’t have the same limitations. Should we consider them to be intelligent?  How could we tell?  Is there a formal way we can determine whether or not a chatterbot is of the level of human intelligence?
 
-A very famous computer scientist, Alan Turing, answered this question back in 1950, before the first chatterbots even existed! Alan Turing had an extraordinary vision of the future, and knew that coming up with computers that were intelligent would become a big thing, and that we would need a way to know when we have succeeded in creating a truly intelligent computer. 
+A very famous computer scientist, Alan Turing, answered this question back in 1950, before the first chatterbots even existed! Alan Turing had an extraordinary vision of the future, and knew that coming up with computers that were intelligent would become a big thing, and that we would need a way to know when we have succeeded in creating a truly intelligent computer.
 
 He thought about how intelligence could be defined (defining intelligence is surprisingly difficult!), and decided that one way would be to say that a human was intelligent, and that if a computer was able to communicate convincingly like a human, then it must be intelligent also. This definition doesn’t cover all of intelligence, as it only considers what a person or a computer says and ignores other components of intelligence such as determining the best way to walk through a building (or maze) or deciding how to act in a specific situation (such as at a social event, when deciding what to do next at work, or when lost). However, communication is still a very significant component of human intelligence.
 
@@ -171,13 +171,13 @@ Alan Turing actually started by suggesting a simple party game requiring three p
 **New Zealand teachers:** This activity on its own is NOT suitable for 3.44. The next section contains a project that is designed for 3.44, and involves doing this activity and doing further work that satisfies the requirements of 3.44.
 {teacher end}
 
-This section will involve you actually carrying out the Turing Test. Read this entire section carefully (and the previous section if you haven’t done so already) before you start, and make sure you understand it all before starting. 
+This section will involve you actually carrying out the Turing Test. Read this entire section carefully (and the previous section if you haven’t done so already) before you start, and make sure you understand it all before starting.
 
 In science classes, such as biology, physics, and chemistry, carrying out experiments is commonly done. If you have taken classes like these, you will probably know that if an experiment isn’t carried out properly (e.g. in chemistry some students are tempted to put in more of a chemical than the instructions say to, or when timing is important this is easy to get wrong), then the results will not necessarily be the ones you are after and your experiment is essentially meaningless and pointless. You also have to be careful that other factors don’t affect the results. e.g. controlling temperature and moisture in biology experiments that involve growing micro-organisms.
 
 Carrying out the Turing Test is carrying out an experiment, just like carrying out experiments in chemistry classes. And just like the chemistry experiments, carrying out the Turing Test requires being careful to follow instructions correctly, and controlling factors that could potentially affect the results but aren’t part of what is being tested. You should keep this in mind while you are carrying out this project.
 
-For example, most chatterbots communicate in a text form rather than verbal. Communicating in a verbal form involves not only choosing intelligent sounding things to say, but also involves having a convincing voice and pronouncing words correctly.  Tone of voice or accent could potentially make it very obvious to the interrogator which conversation was with the human and which was the computer, without them even having to consider what was actually said in the conversation. This is not what the Turing Test is supposed to be testing! Therefore, the Turing Test will have both the computer and the human communicating in a written form. 
+For example, most chatterbots communicate in a text form rather than verbal. Communicating in a verbal form involves not only choosing intelligent sounding things to say, but also involves having a convincing voice and pronouncing words correctly.  Tone of voice or accent could potentially make it very obvious to the interrogator which conversation was with the human and which was the computer, without them even having to consider what was actually said in the conversation. This is not what the Turing Test is supposed to be testing! Therefore, the Turing Test will have both the computer and the human communicating in a written form.
 
 As another example, speed of response could have an impact. The computer is likely to be able to reply instantly, whereas the human will need time to think and then write their reply. To prevent the interrogator from making their decision based on the speed instead of the content,  the speed of response needs to be controlled as well. The way of carrying out the Turing Test described below tries to control these additional factors.
 
@@ -204,7 +204,7 @@ Once both conversations are complete, you as the interrogator has to say which w
 These are some questions you can consider after you have finished carrying out the Turing Test:
 - How were you able to tell which was the chatterbot and which was your classmate?
 - Were there any questions you asked that were "unfair" --- that depended on knowledge your classmate might have but no-one (computer or person) from another place could possibly have?
-- Which gave it away more: the content of the answers, or the way in which the content was expressed? 
+- Which gave it away more: the content of the answers, or the way in which the content was expressed?
 
 {image ai-turing-dating.png alt="The Turing dating test"}
 
@@ -216,7 +216,7 @@ This project is primarily intended to be presented as a written report for schoo
 There are 2 main components to this project: demonstrating understanding of chatterbots, and demonstrating understanding of turing test. In order to completely satisfy the standard, students should attempt both these components. Weaker students should focus on doing all the achieved parts rather than attempting some of achieved and some of merit. This is one of the two projects that students will need to do to satisfy the requirements of 3.44 (they will have to pick a project from one of the other five areas of computer science as well).
 
 Students will demonstrate understanding of the current limitations of chatterbots, the techniques used by chatterbots, carrying out the Turing test on a chatterbot, and the idea that the Turing Test is a *formal* experiment used to determine whether or not a computer program is "intelligent"
-  
+
 Students should start this project by carrying out the Turing Test on a chatterbot they have chosen. They should ensure they keep a copy of each of the conversations. All students will need to take a turn as the interrogator, and the conversations they include in their report should be the ones obtained when they were the interrogator.
 {teacher end}
 
@@ -245,7 +245,7 @@ M1 - Students should describe the factors to be careful of when carrying out the
 When you were carrying out the Turing Test, you had to be careful to avoid external factors that gave away which was the computer and which was the human.  Explain some of these factors and why it is important to avoid them. (Some of them were mentioned in the text above!)
 
 {teacher}
-M2 E1- Students should discuss applications of the Turing test. 
+M2 E1- Students should discuss applications of the Turing test.
 {teacher end}
 
 Explain how the Turing Test could be used to evaluate a new chatbot. Discuss other possible applications of the Turing Test or similar tests for other programs that are supposed to be intelligent.  
@@ -265,7 +265,7 @@ A1 - Students should describe the key problem(s) that chatterbots are addressing
 What is it that chatterbots are trying to accomplish?
 
 {teacher}
-A2 - Students should describe various chatterbots, and show examples of conversations with the chatterbots. 
+A2 - Students should describe various chatterbots, and show examples of conversations with the chatterbots.
 {teacher end}
 
 Describe the chatterbots that you have investigated. Show a brief conversation with each of them to illustrate what they do (no more than 10 lines for each conversation).
@@ -277,7 +277,7 @@ A2, M1, M2, E1, E2 - This exercise combines several of the requirements. Student
 Choose at least two techniques used by chatterbots in an attempt to sound like they have human intelligence. The techniques you choose could be the identification of key words, canned responses, learning from humans, giving very general replies, or anything else you notice about how a chatterbot tends to speak or react that is an attempt to make it sound human (including techniques that make sense in some cases that the chatterbot uses them, but not in others!)
 
 For each of the techniques you choose, do the following:
-- Explain how the technique works, using specific examples. 
+- Explain how the technique works, using specific examples.
 - Give examples of specific chatterbots that use this technique, and examples of conversations with these chatterbots where it is obvious that they are using these techniques.
 - Explain your examples in terms of the technique(s) they are illustrating.
 - Discuss how well the techniques work and when they break.
@@ -286,7 +286,7 @@ For each of the techniques you choose, do the following:
 E2 Students need to evaluate the chatterbots and the techniques they use.
 {teacher end}
 
-Which techniques seemed to be the most effective, if any? How could you tell that these chatterbots weren’t actually human? What were the main limitations of the chatterbots? Which chatterbot out of the ones you talked to do you think was the most intelligent? Which was the least intelligent? Why? 
+Which techniques seemed to be the most effective, if any? How could you tell that these chatterbots weren’t actually human? What were the main limitations of the chatterbots? Which chatterbot out of the ones you talked to do you think was the most intelligent? Which was the least intelligent? Why?
 
 {teacher}
 E1 This further builds on E1, getting students to discuss further practical applications on chatterbots, beyond the web entertainment ones they have looked at.
@@ -297,9 +297,9 @@ Most of the chatterbots you have looked at here exist solely for the purpose of 
 {teacher}
 As further guidance as to what students should do, we have made this overall outline of how the project fits the standard. Note that this covers one of the two areas of computer science students have to cover in their report. They must pick one other area of computer science to do a project on as well.
 
-- **Selected Area**: Artificial Intelligence 
+- **Selected Area**: Artificial Intelligence
 - **Key Problems**: Determining whether or not a computer program is intelligent, designing computer programs that have human intelligence
-- **Key algorithm/Techniques**: The Turing Test, various chatterbot design techniques 
+- **Key algorithm/Techniques**: The Turing Test, various chatterbot design techniques
 - **Examples of practical applications**: various Chatterbots, carrying out the Turing Test.
 - **Personalised student examples**: each student conversation should be unique
 
@@ -324,7 +324,7 @@ As further guidance as to what students should do, we have made this overall out
 *"explaining how key algorithms or techniques are applied in selected areas"*
 
 - Explaining what factors have to be considered when carrying out the Turing Test, to ensure a valid result.
-- Explaining the details of at least two techniques chatterbots use to attempt to sound human 
+- Explaining the details of at least two techniques chatterbots use to attempt to sound human
 
 *"explaining examples of practical applications of selected areas to demonstrate the use of key algorithms and/or techniques from these areas."*
 
@@ -340,7 +340,7 @@ As further guidance as to what students should do, we have made this overall out
 
 *"evaluating the effectiveness of algorithms, techniques, or applications from selected areas."*
 
-- Discussing the various chatterbots, and the techniques they use 
+- Discussing the various chatterbots, and the techniques they use
 - Discussing the effectiveness of the Turing Test
 {teacher end}
 
@@ -368,4 +368,3 @@ Eventually further sections on other topics in AI will be added to this chapter.
 - [Alice Bot](http://www.alicebot.org/)
 - [IEEE Spectrum](http://spectrum.ieee.org/robotics/artificial-intelligence)
 - [TED Conversations matching Artificial Intelligence](http://www.ted.com/conversations/topics/artificial+intelligence)
-
