@@ -521,17 +521,7 @@ A related problem with dates is when a user needs to pick a start and end date (
 
 Any time a dialogue box comes up that says you weren't allowed to do a certain action, the system has failed to prevent an error. Of course, it may be difficult to do that because the error can depend on so many user choices, but it is ideal that the system doesn't offer something that it can't do.
 
-<div class="dropdown">
-<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-Menu
-<span class="caret"></span>
-</button>
-<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-<li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick='window.alert("Not currently available");'>Play Minecraft</a></li>
-<li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick='window.alert("Not currently available");'>Open Youtube</a></li>
-<li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick='window.alert("Not currently available");'>Print answers</a></li>
-</ul>
-</div>
+{interactive-inpage dropdown-buttons}
 
 ### Recognition rather than recall
 
