@@ -225,7 +225,7 @@ As you click on each cell, there will sometimes be a random delay before it come
 other cells won't have a delay.
 Click on each cell, and if it seems to respond instantly, leave it as it is. However, if you perceive that there is a small delay before the image comes up, click it again (which makes the cell a little lighter). You can't go back and change a cell, so just make a quick, gut-level decision the first time you click each one. The delay may be very short, but only make the cell gray if you are fairly sure you noticed a delay.
 
-<div class="widget-holder"><a href="_static/widgets/HCI/HCI-Delay/index.html"  target="_blank"><img class="widget-image" src="_static/images/hci-delay-thumbnail.png" alt=""><span class="widget-subtitle">Click to load the<br>delay interactive</span></a></div>
+<div class="widget-holder"><a href="static/widgets/HCI/HCI-Delay/index.html"  target="blank"><img class="widget-image" src="static/images/hci-delay-thumbnail.png" alt=""><span class="widget-subtitle">Click to load the<br>delay interactive</span></a></div>
 
 Once you have clicked on all the cells, click on the "Probability of perceiving delays" bar to see a graph of how often you thought there was a delay compared with how long the delay actually was. 100 ms is one tenth of a second; for most people this is where they are likely to start perceiving a delay; anything short (particularly around 50 ms) is very hard to notice. Longer delays (for example, 350 ms, which is over a third of a second) are very easy to notice.
 
@@ -425,12 +425,6 @@ Pressing the yes button below can be very frustrating! Most modern web browsers 
 
 {interactive-inpage close-window}
 
-{comment}
-
-.. xjrm this button doesn’t work in Chrome now, potential workaround here http://stackoverflow.com/a/24855795 (or change js for closeButton to open(location,'_self').close();?)
-
-{comment end}
-
 Sometimes the interface can force the user into doing something the user does not want to do. For example, it is quite common for operating systems or programs to perform updates automatically that require a restart. Sometimes the interface may not give them the opportunity to cancel or delay this, and restart nevertheless. This is bad if it happens when the user is just about to give a presentation.
 
 Another common form of this problem is not being able to quit a system.
@@ -608,7 +602,7 @@ A variant of this is a message that gives two alternatives, such as "File may no
 
 *Even though it is better if the system can be used without documentation, it may be necessary to provide help and documentation. Any such information should be easy to search, focused on the user's task, list concrete steps to be carried out, and not be too large.*
 
-<div class="interactive"><button type="button" class="btn btn-primary btn-lg" onclick="helpButton()">Click me for help</button></div>
+{interactive-inpage no-help}
 
 Often help is an afterthought, and tends to be feature-centred (e.g. a catalogue of menu items), rather than task-centred (the series of actions needed to complete typical tasks, which is more useful for the user).
 When a user needs help, they typically have a task to complete (such as upload photos from a camera), and good documentation should explain how to do common tasks, rather than explain each feature (such as "Setting the camera to USB mode").
@@ -633,7 +627,7 @@ and many more laws, observations and guidelines about designing interfaces that 
 
 {comment}
 
-.. xtcb check with HCI group; could add above: the `Sapir-Whorf hypothesis <http://en.wikipedia.org/wiki/Linguistic_relativity>`_, about how the structure of language affects one's view of the world,
+.. xtcb check with HCI group; could add above: the `Sapir-Whorf hypothesis <http://en.wikipedia.org/wiki/Linguistic_relativity>`, about how the structure of language affects one's view of the world,
 
 {comment end}
 
