@@ -225,3 +225,6 @@ code {
   background-color: rgba(0, 0, 0, 0);
   border: 0;
 }
+.interactive-external {
+  border: 2px solid #C3C3C3;
+}

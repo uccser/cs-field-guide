@@ -1,5 +1,5 @@
 import re
-import bs4
+from bs4 import BeautifulSoup, Comment
 import logging
 import os.path
 import generator.systemfunctions as systemfunctions
@@ -272,7 +272,6 @@ class Section:
         arguments = re.search('(title="(?P<title>[^"]*)")?(parameters="(?P<parameters>[^"]*)")?', match.group('args'))
         arg_title = arguments.group('title')
         title = arg_title if arg_title else name
-        print(title)
         params = arguments.group('parameters')
         source_folder = os.path.join(self.guide.generator_settings['Source']['Interactive'], name)
         interactive_exists = self.check_interactive(source_folder, name)
@@ -283,7 +282,6 @@ class Section:
                 html = self.external_interactive_html(source_folder, title, name, params)
             elif interactive_type == 'interactive-inpage':
                 html = self.inpage_interactive_html(source_folder, name)
-        print(html)
         return html if html else ''
 
 
@@ -292,7 +290,7 @@ class Section:
 
         thumbnail_location = os.path.join(self.html_path_to_root, source_folder, self.guide.generator_settings['Source']['Interactive Thumbnail'])
         link_text = 'Click to load {title}'.format(title=title)
-        folder_location = os.path.join(self.html_path_to_root, source_folder)
+        folder_location = os.path.join(self.html_path_to_root, source_folder, self.guide.generator_settings['Source']['Interactive File'])
         file_link = "{location}?{parameters}".format(location=folder_location, params=params) if params else folder_location
         link_template = self.html_templates['interactive-external']
         link_html = link_template.format(interactive_thumbnail=thumbnail_location,
@@ -304,12 +302,13 @@ class Section:
 
     def inpage_interactive_html(self, source_folder, name):
         """Return the html for inpage interactives, with links adjusted
-        to correct relative links
+        to correct relative links, and comments removed.
         """
         interactive_tree = self.get_interactive_tree(source_folder, name)
         if interactive_tree is not None:
             self.edit_interactive_tree(interactive_tree, source_folder)
-            return interactive_tree.prettify()#htmltree.tostring(interactive_tree).decode('utf-8')
+            html = re.sub('(\n)*<!--(.|\s)*?-->(\n)*', '', interactive_tree.prettify(), flags=re.MULTILINE)
+            return html
         else:
             return None
 
@@ -324,9 +323,9 @@ class Section:
         with open(file_location, 'r', encoding='utf8') as source_file:
             raw_html = source_file.read()
 
-        file_tree = bs4.BeautifulSoup(raw_html, 'html.parser')
+        file_tree = BeautifulSoup(raw_html, 'html5lib')
         interactive_trees = file_tree.find_all('div', class_=INTERACTIVE_CLASS)
-        if  len(interactive_trees) != 1:
+        if len(interactive_trees) != 1:
             logging.error('''Error creating interactive {}: expected 1
                             div with class 'interactive' but {} found
                             '''.format(name, len(interactive_trees)))
@@ -343,23 +342,20 @@ class Section:
             - Relative links are modified as required (ignoring external)
 
             TODO:
-            - Implemet better system for checking whether link is relative
+            - Implement better system for checking whether link is relative
             and needs to be adjusted
         """
         link_attributes = ['href', 'src']
-        page_elements = []
-        redundant = []
         for element in root.find_all():
             for attr in link_attributes:
                 raw_link = element.get(attr, None)
-                if raw_link and not raw_link.startswith('http://'): #this check needs to be better
+                if raw_link and not raw_link.startswith('http://'):
                     link = os.path.join(self.html_path_to_root, source_folder, raw_link)
                     element[attr] = link
             if element.name == 'script' or (element.name == 'link' and element.get('rel', None) == ['stylesheet']):
-                html_lines = element.prettify().split('\n')
-                self.page_scripts += html_lines
-                page_elements.append(element)
-                
+                self.page_scripts.append(element.extract())
+        #print(root)
+
 
     def check_interactive(self, interactive_source, interactive_name):
         """Checks if an interactive exists and has an index.html file"""
