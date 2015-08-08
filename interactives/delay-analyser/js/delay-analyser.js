@@ -10,23 +10,52 @@ $(document).ready(function() {
     }
   })
 
+  // Toggle all pixels to black on toggle click
+  $('#view-statistics').on('click', function(){
+     displayStatistics();
+  });
+
   // Create the grid on load
   setup_delay_grid();
 });
 
 function reveal_tile(element) {
   element.removeClass('black');
+  // Check if all tiles have black removed and display stats button
+}
+
+function displayStatistics() {
+  var total_delays_for_each = 4;
+  var delays_percieved = {};
+  for (i = 0; i < delay_types.length; i++) {
+    delays_percieved[delay_types[i]] = 0;
+  }
+
+  var $grid = $('#delay-grid');
+  // For each row
+  $grid.children().each(function( row_index, row ) {
+    $row = $(row);
+    // For each tile
+    $row.children().each(function( tile_index, tile ) {
+      $tile = $(tile);
+      if ($tile.hasClass('delayed')) {
+        delays_percieved[$tile.data('delay')] += 1;
+      }
+    });
+  });
+  
 }
 
 function setup_delay_grid() {
   // Create variables
   var gridSize = 6;
   // Delays stored in milliseconds
-  var delays = [0, 25, 50, 75, 100, 150, 200, 350, 600];
-  for (repeat = 0; repeat < (gridSize * gridSize) / delays.length; repeat++) {
-    delays = delays.concat(delays);
+  this.delay_types = [0, 25, 50, 75, 100, 150, 200, 350, 600];
+  var delay_values = delay_types;
+  for (repeat = 0; repeat < (gridSize * gridSize) / delay_types.length; repeat++) {
+    delay_values = delay_values.concat(this.delay_types);
   }
-  delays = shuffle(delays);
+  delay_values = shuffle(delay_values);
 
   // Create tile divs
   var grid = $('#delay-grid');
@@ -36,7 +65,7 @@ function setup_delay_grid() {
       grid.append(gridRow);
       for(col = 0; col < gridSize; col++) {
           var $element = $('<div class="flex-item tile black"></div>');
-          $element.data('delay', delays.pop());
+          $element.data('delay', delay_values.pop());
           gridRow.append($element);
       }
       grid.append('</div>');

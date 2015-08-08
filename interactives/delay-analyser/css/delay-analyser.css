@@ -12,6 +12,10 @@
   background-image: url('../img/background-image.png');
   background-size: cover;
 }
+#view-statistics {
+  /*Uncomment when check to display is implemented*/
+  /*display: none;*/
+}
 .flex-container {
   padding: 0;
   margin: 0;
