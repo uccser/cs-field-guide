@@ -60,8 +60,9 @@ function setup_grid(){
         grid.append(gridRow);
         runText += $gridSize;
         for(col = 0; col < $gridSize; col++) {
-            gridRow.append($('<div class="flex-item pixel">'));
+            gridRow.append($('<div class="flex-item pixel"></div>'));
         }
+        grid.append('</div>');
         if (row < $gridSize - 1) {
           runText += '\n';
         }
