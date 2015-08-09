@@ -1,3 +1,8 @@
+// Delays stored in milliseconds
+this.delay_types = [0, 25, 50, 75, 100, 150, 200, 350, 600];
+this.gridSize = 6; // Multiples of three required
+this.total_delays_for_each = (gridSize * gridSize) / delay_types.length;
+
 $(document).ready(function() {
   // Toggle pixel on pixel click
   $('#delay-grid').on('click', '.tile', function() {
@@ -25,10 +30,9 @@ function reveal_tile(element) {
 }
 
 function displayStatistics() {
-  var total_delays_for_each = 4;
-  var delays_percieved = {};
+  var delays_perceived = {};
   for (i = 0; i < delay_types.length; i++) {
-    delays_percieved[delay_types[i]] = 0;
+    delays_perceived[delay_types[i]] = 0;
   }
 
   var $grid = $('#delay-grid');
@@ -39,21 +43,25 @@ function displayStatistics() {
     $row.children().each(function( tile_index, tile ) {
       $tile = $(tile);
       if ($tile.hasClass('delayed')) {
-        delays_percieved[$tile.data('delay')] += 1;
+        delays_perceived[$tile.data('delay')] += 1;
       }
     });
   });
-  
+
+  var statisticsText = "";
+  for (i = 0; i < delay_types.length; i++) {
+    var delay_amount = delay_types[i];
+    number_perceived = delays_perceived[delay_amount];
+    // TODO: Set new lines properly
+    statisticsText += delay_amount + 'ms - ' + number_perceived + '/' + total_delays_for_each + ' perceived\n';
+  }
+  $('#statistics').text(statisticsText);
 }
 
 function setup_delay_grid() {
-  // Create variables
-  var gridSize = 6;
-  // Delays stored in milliseconds
-  this.delay_types = [0, 25, 50, 75, 100, 150, 200, 350, 600];
-  var delay_values = delay_types;
-  for (repeat = 0; repeat < (gridSize * gridSize) / delay_types.length; repeat++) {
-    delay_values = delay_values.concat(this.delay_types);
+  var delay_values = [];
+  for (repeat = 0; repeat < total_delays_for_each; repeat++) {
+    delay_values = delay_values.concat(delay_types);
   }
   delay_values = shuffle(delay_values);
 
@@ -87,4 +95,20 @@ function shuffle(array) {
         array[index] = temp;
     }
     return array;
+}
+
+// Testing class
+function perceiveAll() {
+  var $grid = $('#delay-grid');
+  // For each row
+  $grid.children().each(function( row_index, row ) {
+    $row = $(row);
+    // For each tile
+    $row.children().each(function( tile_index, tile ) {
+      $tile = $(tile);
+      $tile.removeClass('black');
+      $tile.addClass('delayed');
+    });
+  });
+  return 'All tiles selected!'
 }
