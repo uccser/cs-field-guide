@@ -26,10 +26,14 @@ $(document).ready(function() {
 
 function reveal_tile(element) {
   element.removeClass('black');
-  // Check if all tiles have black removed and display stats button
+  if ($('div.black').length == 0) {
+    $('#view-statistics').css('visibility', 'visible');
+  }
 }
 
 function displayStatistics() {
+  $('#delay-grid-div').hide();
+  $('#instructions').hide();
   var delays_perceived = {};
   for (i = 0; i < delay_types.length; i++) {
     delays_perceived[delay_types[i]] = 0;
@@ -53,9 +57,9 @@ function displayStatistics() {
     var delay_amount = delay_types[i];
     number_perceived = delays_perceived[delay_amount];
     // TODO: Set new lines properly
-    statisticsText += delay_amount + 'ms - ' + number_perceived + '/' + total_delays_for_each + ' perceived\n';
+    statisticsText += delay_amount + 'ms - ' + number_perceived + '/' + total_delays_for_each + ' perceived<br/>';
   }
-  $('#statistics').text(statisticsText);
+  $('#statistics').html(statisticsText);
 }
 
 function setup_delay_grid() {
@@ -106,7 +110,7 @@ function perceiveAll() {
     // For each tile
     $row.children().each(function( tile_index, tile ) {
       $tile = $(tile);
-      $tile.removeClass('black');
+      reveal_tile($tile);
       $tile.addClass('delayed');
     });
   });

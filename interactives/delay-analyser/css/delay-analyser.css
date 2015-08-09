@@ -11,10 +11,10 @@
   border: 1px solid black;
   background-image: url('../img/background-image.png');
   background-size: cover;
+  margin-bottom: 1rem;
 }
 #view-statistics {
-  /*Uncomment when check to display is implemented*/
-  /*display: none;*/
+  visibility: hidden;
 }
 .flex-container {
   padding: 0;
