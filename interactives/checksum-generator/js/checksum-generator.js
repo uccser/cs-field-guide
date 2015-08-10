@@ -315,4 +315,3 @@ function displayGeneratedExampleCodes() {
     }
 
 }
-
