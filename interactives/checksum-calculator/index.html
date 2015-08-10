@@ -1,53 +1,66 @@
-<!doctype html>
+<!DOCTYPE html>
+<!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]-->
 <html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <!-- If you delete this meta tag World War Z will become a reality -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkum Calculator</title>
+    <link rel="stylesheet" href="../base-files/css/normalize.css">
+    <link rel="stylesheet" href="../base-files/css/foundation.min.css">
+    <script src="../base-files/js/modernizr.js"></script>
+    <!-- jQuery (necessary for Foundation) -->
+    <script src="../base-files/js/jquery.js"></script>
+  </head>
+  <body>
+      <div class="row">
+      <div class="small-12 columns">
+      <div class="interactive">
+	    <!-- ### Start of required HTML for inline interactives ### -->
+        <div id="interactive-checksum-generator">
+          <h1>Check Digit Calculator</h1>
 
-    <head>
-        <meta charset="utf-8">
-        <title>Check Digit Calculator</title>
-        <script type="text/javascript" src="../base_files/js/jquery-2.1.3.min.js"></script>
-        <script src="../base-files/js/jquery-ui.js"></script>
-        <link rel="stylesheet" type=text/css href="style.css">
-    </head>
+          <form id="entry_widgets" action="#">
+            <p>Number of digits:</p>
+            <input type="text" id="number-of-digits"/>
 
-    <body>
+            <input type="submit" id="create-boxes" value="Create digit boxes">
 
-         <script src="script.js"></script>
+            <div id="digit-boxes">
+            </div>
 
-         <h1>Check Digit Calculator</h1>
+            <div id="multipliers">
+            </div>
 
-         <form id="entry_widgets" action="#">
+            <input type="submit" id="sum-digits" value="Multiply">
+            <div id="sums">
+            </div>
 
-             <p>Number of digits:</p>
-             <input type="text" id="number-of-digits"/>
+            <p>Total</p>
 
-             <input type="submit" id="create-boxes" value="Create digit boxes">
+            <input type="text" id="total"/>
 
-             <div id="digit-boxes">
-             </div>
+            <p>Remainder when divided by:</p>
+            <input type="text" id="mod"/>
 
-             <div id="multipliers">
-             </div>
+            <input type="submit" id="calculate" value="Calculate">
 
-             <input type="submit" id="sum-digits" value="Multiply">
-             <div id="sums">
-             </div>
+            <p>Remainder:</p>
+            <input type="text" id="remainder"/>
+          </form>
 
-             <p>Total</p>
-
-             <input type="text" id="total"/>
-
-             <p>Remainder when divided by:</p>
-             <input type="text" id="mod"/>
-
-             <input type="submit" id="calculate" value="Calculate">
-
-             <p>Remainder:</p>
-             <input type="text" id="remainder"/>
-
-         </form>
-
-    </body>
-
-
+        <link rel="stylesheet" href="./css/checksum-calculator.css">
+        <script src="./js/checksum-calculator.js"></script>
+        <script src="../base-files/js/jquery-ui.min.js"></script>
+      </div>
+    <!-- ### End of required HTML for inline interactives ### -->
+      </div>
+      </div>
+      </div>
+    <!-- Foundation responsive CSS -->
+    <script src="../base-files/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+    </script>
+  </body>
 </html>
-

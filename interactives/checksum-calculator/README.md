@@ -1,1 +1,1 @@
-#Checksum Calculator
+# Checksum Calculator Interactive
