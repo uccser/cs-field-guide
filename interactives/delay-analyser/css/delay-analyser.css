@@ -13,9 +13,6 @@
   background-size: cover;
   margin-bottom: 1rem;
 }
-#view-statistics {
-  visibility: hidden;
-}
 .flex-container {
   padding: 0;
   margin: 0;

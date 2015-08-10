@@ -15,7 +15,6 @@ Tiles are revealed at a set delay however computers do take time to process the 
 
 - Should 0 delay be removed since all clicks have a small delay (or possibly switched to 10-15), and a 1000 delay added.
 - Should the user be able to change previous tiles (old version you were unable to but this fixes misclicks).
-- Should grid be visible after statistics are shown.
 
 ## Required Files
 

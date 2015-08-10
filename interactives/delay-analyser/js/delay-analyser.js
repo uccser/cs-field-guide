@@ -15,9 +15,12 @@ $(document).ready(function() {
     }
   })
 
-  // Toggle all pixels to black on toggle click
-  $('#view-statistics').on('click', function(){
-     displayStatistics();
+  $('#toggle-view').on('click', function(){
+    $('#statistics-div').toggle();
+    $('#delay-grid-div').toggle();
+    if ($('#statistics-div').is(":visible")) {
+      calculateStatistics();
+    }
   });
 
   // Create the grid on load
@@ -26,19 +29,10 @@ $(document).ready(function() {
 
 function reveal_tile(element) {
   element.removeClass('black');
-  if ($('div.black').length == 0) {
-    $('#view-statistics').css('visibility', 'visible');
-  }
 }
 
-function displayStatistics() {
-  $('#delay-grid-div').hide();
-  $('#instructions').hide();
-  var delays_perceived = {};
-  for (i = 0; i < delay_types.length; i++) {
-    delays_perceived[delay_types[i]] = 0;
-  }
-
+function calculateStatistics() {
+  var delays_perceived = [];
   var $grid = $('#delay-grid');
   // For each row
   $grid.children().each(function( row_index, row ) {
@@ -46,23 +40,31 @@ function displayStatistics() {
     // For each tile
     $row.children().each(function( tile_index, tile ) {
       $tile = $(tile);
-      if ($tile.hasClass('delayed')) {
-        delays_perceived[$tile.data('delay')] += 1;
+      if (!$tile.hasClass('black')) {
+        var delay = $tile.data('delay');
+        if ($tile.hasClass('delayed')) {
+          delays_perceived.push([delay, 'perceived']);
+        } else {
+          delays_perceived.push([delay, 'not perceived']);
+        }
       }
     });
   });
+  delays_perceived.sort(function(a,b){return a[0] > b[0] ? 1 : (a[0] < b[0] ? -1 : 0);})
 
-  var statisticsText = "";
-  for (i = 0; i < delay_types.length; i++) {
-    var delay_amount = delay_types[i];
-    number_perceived = delays_perceived[delay_amount];
-    // TODO: Set new lines properly
-    statisticsText += delay_amount + 'ms - ' + number_perceived + '/' + total_delays_for_each + ' perceived<br/>';
+  var $table = $('#statistics-table-values');
+  $table.empty();
+  for (i = 0; i < delays_perceived.length; i++) {
+    if (delays_perceived[i][1] == 'not perceived') {
+      $table.append('<tr><td>' + delays_perceived[i][0] + ' ms</td><td><br /></td></tr>');
+    } else {
+      $table.append('<tr><td><br /></td><td>' + delays_perceived[i][0] + ' ms</td></tr>');
+    }
   }
-  $('#statistics').html(statisticsText);
 }
 
 function setup_delay_grid() {
+  $('#statistics-div').hide();
   var delay_values = [];
   for (repeat = 0; repeat < total_delays_for_each; repeat++) {
     delay_values = delay_values.concat(delay_types);
