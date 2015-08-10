@@ -8,9 +8,9 @@ We expect that the “big picture” and the “algorithms, problems, and speed 
 
 The later sections have ideas for personalised projects that students can submit for the 3.44 achievement standard. Currently the only such project is for TSP, although more will be added eventually.
 
-This chapter deals a lot with very large numbers and especially the problem of exponential explosion of time taken. There are a number of resources around that illustrate these concepts. The video [The Power of Exponentials, Big and Small](http://blossoms.mit.edu/videos/lessons/power_exponentials_big_and_small) from MIT is downloadable, and illustrates exponential growth with some humorous examples. 
+This chapter deals a lot with very large numbers and especially the problem of exponential explosion of time taken. There are a number of resources around that illustrate these concepts. The video [The Power of Exponentials, Big and Small](http://blossoms.mit.edu/videos/lessons/power_exponentials_big_and_small) from MIT is downloadable, and illustrates exponential growth with some humorous examples.
 
-Notes for teachers are provided within the project text, explaining which parts of the standard are being satisfied with different parts of the projects. It is recommended that students aiming for excellence try do all of the exercises, whereas achieved and merit students may skip over the more difficult ones. 
+Notes for teachers are provided within the project text, explaining which parts of the standard are being satisfied with different parts of the projects. It is recommended that students aiming for excellence try do all of the exercises, whereas achieved and merit students may skip over the more difficult ones.
 
 {teacher end}
 
@@ -29,9 +29,9 @@ The area of *tractability* explores problems and algorithms that can take an imp
 We'll define what we mean by *tractable* later on, but put very crudely, a tractable problem is one which we can write programs for that finish in a reasonable amount of time, and an intractable problem is one that will generally end up taking way too long.
 
 Knowing when a problem you are trying to solve is one of these hard problems is very important.
-Otherwise it is easy to waste huge amounts of time trying to invent a clever program to solve it, and never getting anywhere.  A computer scientist needs to be able to recognise a problem as an intractable problem, so that they can use other approaches.  A very common approach is to give up on getting a perfect answer, and instead just aim for an approximately correct answer.  There are a variety of techniques for getting good approximate answers to hard problems; a way of getting an answer that isn't guaranteed to give the exact correct answer is sometimes referred to as a *heuristic*. 
+Otherwise it is easy to waste huge amounts of time trying to invent a clever program to solve it, and never getting anywhere.  A computer scientist needs to be able to recognise a problem as an intractable problem, so that they can use other approaches.  A very common approach is to give up on getting a perfect answer, and instead just aim for an approximately correct answer.  There are a variety of techniques for getting good approximate answers to hard problems; a way of getting an answer that isn't guaranteed to give the exact correct answer is sometimes referred to as a *heuristic*.
 
-One important example of an intractable problem that this chapter looks at is the travelling salesman problem (TSP for short). 
+One important example of an intractable problem that this chapter looks at is the travelling salesman problem (TSP for short).
 It's a simple problem; if you've got a collection of places that you need to visit, and you know the distance to travel between each pair of places, what's the shortest route that visits all of the places exactly once?
 This is a very practical problem that comes up with courier vehicles choosing routes to deliver parcels, rock bands planning tours, and even a designated driver dropping friends off after an event.
 In fact, the measurement between cities doesn’t have to be distance. It could actually be the dollar cost to travel between each pair of cities. For example, if you needed to visit Queenstown, Christchurch, Auckland, and Wellington one after the other while minimising airfares and you knew the cost of an airfare between each pair of those 4 cities, you could work out what the cheapest way of flying to each of them is. This is still an example of TSP.
@@ -39,7 +39,7 @@ In fact, the measurement between cities doesn’t have to be distance. It could 
 The following interactive has a program that solves the problem for however many cities you want to select by trying out all possible routes, and recording the best so far.  You can get a feel for what an intractable problem looks like by seeing how long the interactive takes to solve the problem for different size maps.
 Try generating a map with about 5 cities, and press "Start" to solve the problem.
 
-<div align="center"><iframe width="700" height="500" src="_static/widgets/tract-tsp-basic-v2.html" frameborder="0"></iframe></div>
+<div align="center"><iframe width="700" height="500" src="static/widgets/tract-tsp-basic-v2.html" frameborder="0"></iframe></div>
 
 Now try it for 10 cities (twice as many). Does it take twice as long? How about twice as many again (20 cities)? What about 50 cities? Can you guess how long it would take?
 You're starting to get a feel for what it means for a problem to be *intractable*.
@@ -51,7 +51,7 @@ So one of the jobs of computer scientists is to be confident that such solutions
 
 In this chapter we will look at the TSP and other problems for which *no* tractable solutions are known, problems that would take computers millions of centuries to solve.  And we will encounter what is surely the greatest mystery in computer science today: that *no-one knows* whether there's a more efficient way of solving these problems!  It may be just that no-one has come up with a good way yet, or it may be that there is no good way.  We don't know which.  
 
-[{image ct-np-complete.png}](http://xkcd.com/287/)
+{image xkcd-np-complete-comic.png link="http://xkcd.com/287/"}
 
 But let's start with a familiar problem that we can actually solve.
 
@@ -80,7 +80,7 @@ Please note that the work in this section is *NOT* sufficient for fulfilling req
 [Complexity](glossary.html#complexity) is an important concept with problems and algorithms that solve them.
 Usually complexity is just the amount of time it takes to solve a problem, but there are several ways that we can measure the "time".
 Using the actual time on a particular computer can be useful, but to get a rough idea of the inherent behaviour of an algorithm, computer scientists often start by estimating the number of steps the algorithm will take for *n* items.
-For example, a linear search can end up checking each of *n* items being searched, so the algorithm will take *n* steps. 
+For example, a linear search can end up checking each of *n* items being searched, so the algorithm will take *n* steps.
 An algorithm that compares every pair of values in a list of *n* items will have to make {math}n^2{math end} comparisons, so we can characterise it as taking about {math}n^2{math end} steps.
 This gives us a lot of information about how good an algorithm is without going into details of which computer it was running on, which language, and how well written the program was.
 The term *complexity* is generally used to refer to these rough measures.
@@ -103,7 +103,7 @@ If you're reading about complexity, you may come across some terminology like "B
 We won't use precise notation for asymptotic complexity (which says which parts of speed calculations you can safely ignore), but we will make rough estimates of the number of operations that an algorithm will go through. There's no need to get too hung up on precision since computer scientists are comfortable with a simple characterisation that gives a ballpark indication of speed.
 
 For example, consider using selection sort to put a list of *n* values into increasing order.
-(This is explained in the chapter on algorithms). 
+(This is explained in the chapter on algorithms).
 Suppose someone tells you that it takes 30 seconds to sort a thousand items. Does that sounds like a good algorithm?
 For a start, you'd probably want to know what sort of computer it was running on - if it's a supercomputer then  that's not so good; if it's a tiny low-power device like a smartphone then maybe it's ok.
 
@@ -114,19 +114,19 @@ These data points for a particular computer are useful for getting an idea of th
 This formula applies regardless of the kind of computer its running on, and while it doesn't tell us the time that will be taken, it can help us to work out if it's going to be reasonable.
 
 From the above formula we can see why it gets bad for large values of *n* : the number of steps taken increases with the square of the size of the input.
-Putting in a value of 1 thousand for *n* tells us that it will use 1,000,000/2 - 1,000/2 steps, which is 499,500 steps. 
+Putting in a value of 1 thousand for *n* tells us that it will use 1,000,000/2 - 1,000/2 steps, which is 499,500 steps.
 
 Notice that the second part (1000/2) makes little difference to the calculation.
 If we just use the {math}\frac{n^2}{2}{math end} part of the formula, the estimate will be out by 0.1%, and quite frankly, the user won't notice if it takes 20 seconds or 19.98 seconds. That's the point of asymptotic complexity --- we only need to focus on the most significant part of the formula, which contains {math}n^2{math end}.
 
 Also, since measuring the number of steps is independent of the computer it will run on, it doesn't really matter if it's described as {math}\frac{n^2}{2}{math end} or {math}n^2{math end}.
-The amount of time it takes will be proportional to both of these formulas, so we might as well simplify it to {math}n^2{math end}. 
+The amount of time it takes will be proportional to both of these formulas, so we might as well simplify it to {math}n^2{math end}.
 This is only a rough characterisation of the selection sort algorithm, but it tells us a lot about it, and this level of accuracy is widely used to quickly but fairly accurately characterise the complexity of an algorithm.
 In this chapter we'll be using similar crude characterisations because they are usually enough to know if an algorithm is likely to finish in a reasonable time or not.
 
 {jargon-buster end}
 
-If you've studied algorithms, you will have learnt that some sorting algorithms, such as mergesort and quicksort, are inherently faster than other algorithms, such as insertion sort, selection sort, or bubble sort. It’s obviously better to use the faster ones. The first two have a complexity of {math}nlog(n){math end} time (that is, the number of steps that they take is roughly proportional to {math}nlog(n){math end}), whereas the last three have complexity of {math}n^2{math end}. Generally the consequence of using the wrong sorting algorithm will be that a user has to wait many minutes (or perhaps hours) rather than a few seconds or minutes. 
+If you've studied algorithms, you will have learnt that some sorting algorithms, such as mergesort and quicksort, are inherently faster than other algorithms, such as insertion sort, selection sort, or bubble sort. It’s obviously better to use the faster ones. The first two have a complexity of {math}nlog(n){math end} time (that is, the number of steps that they take is roughly proportional to {math}nlog(n){math end}), whereas the last three have complexity of {math}n^2{math end}. Generally the consequence of using the wrong sorting algorithm will be that a user has to wait many minutes (or perhaps hours) rather than a few seconds or minutes.
 
 Here we're going to consider another possible sorting algorithm, called *permutation sort*. Permutation sort says “Let’s list all the possible orderings (“permutations”) of the values to be sorted, and check each one to see if it is sorted, until the sorted order is found”.  This algorithm is straightforward to describe, but is it any good?
 
@@ -218,11 +218,11 @@ Your calculator may have a "!" button for calculating factorials and spreadsheet
 
 For factorials of larger numbers, most desktop calculators won't work so well; for example, 100! has 158 digits. You can use the calculator below to work with huge numbers (especially when using factorials and exponents).  
 
-<div class="widget-holder"><a href="_static/widgets/big-calculator.html?plain=true frameborder="0"" target="_blank"><img class="widget-image" src="_static/complexity_and_tractability/images/CT-BigCalculatorThumbnail.png" alt=""><span class="widget-subtitle">Click to load<br>big number calculator</span></a></div>
+<div class="widget-holder"><a href="static/widgets/big-calculator.html?plain=true frameborder="0"" target="blank"><img class="widget-image" src="static/complexity_and_tractability/images/CT-BigCalculatorThumbnail.png" alt=""><span class="widget-subtitle">Click to load<br>big number calculator</span></a></div>
 
 Try calculating 100! using this calculator --- that's the number of different routes that a travelling salesman might take to visit 100 places (not counting the starting place). With this calculator you can copy and paste the result back into the input if you want to do further calculations on the number. If you are doing these calculations for a report, you should also copy each step of the calculation into your report to show how you got the result.
 
-There are other big number calculators available online; for example, the [Big Integer Calculator](http://www.javascripter.net/math/calculators/100digitbigintcalculator.htm). Other big calculators are available online, or you could look for one to download for a desktop machine or smartphone. 
+There are other big number calculators available online; for example, the [Big Integer Calculator](http://www.javascripter.net/math/calculators/100digitbigintcalculator.htm). Other big calculators are available online, or you could look for one to download for a desktop machine or smartphone.
 
 As a final exercise on permutation sort, calculate how long a computer would take to use permutation sort to sort 100 numbers. Remember that you can use the calculator that was linked to above. Assume that you don’t have to worry about how long it will take to generate the permutations, only how long it will take to check them. Assume that you have a computer that creates and checks an ordering every nanosecond.
 
@@ -263,10 +263,10 @@ By now, you should be very aware of the point that is being made. Permutation so
 
 At this point, we need to now distinguish between algorithms that are essentially usable, and algorithms that will take billions of year to finish running, even with a small input such as 100 values.
 
-Computer Scientists call an algorithm “intractable” if it would take a completely unreasonable amount of time to run on reasonably sized inputs.  Permutation sort is a good example of an intractable algorithm. 
+Computer Scientists call an algorithm “intractable” if it would take a completely unreasonable amount of time to run on reasonably sized inputs.  Permutation sort is a good example of an intractable algorithm.
 The term "intractable" is used a bit more formally in computer science; it's explained in the next section.
 
-But the *problem* of sorting items into order is not intractable - even though the Permutation sort algorithm is intractable,  there are lots of other efficient and not-so-efficient algorithms that you could use to solve a sorting problem in a reasonable amount of time:  quick sort, merge sort, selection sort, even bubble sort!  However, there are some problems in which the ONLY known algorithm is one of these intractable ones. Problems in this category are known as *intractable problems*. 
+But the *problem* of sorting items into order is not intractable - even though the Permutation sort algorithm is intractable,  there are lots of other efficient and not-so-efficient algorithms that you could use to solve a sorting problem in a reasonable amount of time:  quick sort, merge sort, selection sort, even bubble sort!  However, there are some problems in which the ONLY known algorithm is one of these intractable ones. Problems in this category are known as *intractable problems*.
 
 {curiosity}
 
@@ -276,7 +276,7 @@ The Towers of Hanoi problem is a challenge where you have a stack of disks of in
 
 This problem cannot be solved in fewer than {math}2^{n-1}{math end} moves, so it's an intractable problem (a computer program that lists all the moves to make would use at least {math}2^{n-1}{math end} steps). For 6 disks it only needs 63 moves, but for 50 disks this would be 1,125,899,906,842,623 moves.
 
-We usually characterise a problem like this as having a complexity of {math}2^n{math end}, as subtracting one to get a precise value makes almost no difference, and the shorter expression is simpler to communicate to others. 
+We usually characterise a problem like this as having a complexity of {math}2^n{math end}, as subtracting one to get a precise value makes almost no difference, and the shorter expression is simpler to communicate to others.
 
 The Towers of Hanoi is one problem where we know for sure that it will take exponential time. There are many intractable problems where this isn't the case --- we don't have tractable solutions for them, but we don't know for sure if they don't exist. Plus this isn't a real problem --- it's just a game (although there is a backup system based on it). But it is a nice example of an exponential time algorithm, where adding one disk will double the number of steps required to produce a solution.
 
@@ -300,7 +300,7 @@ An earlier version of this chapter provided the following spreadsheet for doing 
 
 There's a very simple rule that computer scientists use to decide if an algorithm is tractable or not, based on the complexity (estimated number of steps) of the algorithm.
 Essentially, if the algorithm takes an exponential amount of time or worse for an input of size *n*, it is labelled as intractable.
-This simple rule is a bit crude, but it's widely used and provides useful guidance. 
+This simple rule is a bit crude, but it's widely used and provides useful guidance.
 (Note that a factorial amount of time, *n!*, is intractable because it's bigger than an exponential function.)
 
 To see what this means, let's consider how long various algorithms might take to run.
@@ -316,7 +316,7 @@ With the initial settings in the interactive, the TSP for 20 places will take 2,
 
 {teacher end}
 
-<div class="widget-holder"><a href="_static/widgets/tract-scaling-v2.html" target="_blank"><img class="widget-image" src="_static/images/CT-TimeCalculatorThumbnail.png" alt=""><span class="widget-subtitle">Click to load<br>big number calculator</span></a></div>
+<div class="widget-holder"><a href="static/widgets/tract-scaling-v2.html" target="blank"><img class="widget-image" src="static/images/CT-TimeCalculatorThumbnail.png" alt=""><span class="widget-subtitle">Click to load<br>big number calculator</span></a></div>
 
 So far the calculation assumes that the computer would only do 1 operation per second; try changing to a million (1,000,000) operations per second, which is more realistic, and see how long that would take.
 
@@ -326,7 +326,7 @@ When the computer is a million times faster, the time for TSP on 20 places reduc
 
 {teacher end}
 
-Another way to solve problems faster is to have multiple processors work on different solutions at the same time. 
+Another way to solve problems faster is to have multiple processors work on different solutions at the same time.
 If you were to buy 1,000 processors (e.g. 1,000 computers, or 250 4-core computers) and have each one test out different routes, then the solution could be found 1,000 times faster. Try changing the number of processors to 1,000, and see how long that would take (you may need to change the units back --- is it seconds? hours? days?)
 
 {teacher}
@@ -354,7 +354,7 @@ Is anyone ever likely to be sorting this many values --- for example, what if fo
 
 {teacher}
 
-The {math}n^2{math end} algorithm with 10 million items takes 100 seconds above (each time n is multiplied by 10, it will take 100 times as long). 
+The {math}n^2{math end} algorithm with 10 million items takes 100 seconds above (each time n is multiplied by 10, it will take 100 times as long).
 
 When n is a thousand million, it takes nearly 12 days, at which point you might consider it to be out of the question. At n=10,000,000,000 it takes about 3.18 years, which is likely to be longer than a computer could run for continuously. But that's a pretty big number of items to process --- for example, it's big enough to cope with the population of the whole world. And there's room for improvement by using a reasonable number of multiple processors.
 
@@ -389,7 +389,7 @@ Now try increasing the number of operations per second to 10 times as many. Does
 Trying out these figures you will likely have encountered the barrier between "tractable" and "intractable" problems.
 Algorithms that take {math}n^2{math end}, {math}n^3{math end} or even {math}n^4{math end} time to solve a problem (such as sorting a list) aren't amazing, but at least with a fast enough computer and for the size of inputs we might reasonably encounter, we have a chance of running them within a human lifetime, and these are regarded as *tractable* .
 However, for algorithms that take {math}2^n{math end}, {math}3^n{math end} or more steps, the amount of time taken can end up as billions of years even for fairly small problems, and using computers that are thousand times faster still doesn't help to solve much bigger problems. Such problems are regarded as *intractable* .
-Mathematically, the boundary between tractable and intractable is between a polynomial number of steps (polynomials are formulas made up of {math}n^2{math end}, {math}n^3{math end}, {math}n^4{math end} and so on), and an exponential number of steps ({math}2^n{math end}, {math}3^n{math end}, {math}4^n{math end}, and so on). 
+Mathematically, the boundary between tractable and intractable is between a polynomial number of steps (polynomials are formulas made up of {math}n^2{math end}, {math}n^3{math end}, {math}n^4{math end} and so on), and an exponential number of steps ({math}2^n{math end}, {math}3^n{math end}, {math}4^n{math end}, and so on).
 
 The two formulas {math}n^2{math end} and {math}2^n{math end} look very similar, but they are really massively different, and can mean a difference between a few seconds and many millennia for the program to finish.
 The whole point of this chapter is to develop an awareness that there are many problems that we have tractable algorithms for, but there are also many that we haven't found any tractable algorithms for.
@@ -402,9 +402,9 @@ Thus an important point is that it's usually not going to work to design a syste
 
 Although we've provided {math}n^6{math end} as an example of a tractable time, nearly all algorithms you're likely to encounter will be {math}n^3{math end} and better, or  {math}2^n{math end} and worse --- only very specialised ones fall in the gap between those. So there's a big gulf between tractable and intractable problems, and trying to grapple with it is one of the biggest problems in computer science!
 
-What about Moore's law, which says that computing power is increasing exponentially? 
+What about Moore's law, which says that computing power is increasing exponentially?
 Perhaps that means that if we wait a while, computers will be able to solve problems that are currently intractable?
-Unfortunately this argument is wrong; intractable problems are also exponential, and so the rate of improvement due to Moore's law means that it will only allow for slightly larger intractable problems to be solved. 
+Unfortunately this argument is wrong; intractable problems are also exponential, and so the rate of improvement due to Moore's law means that it will only allow for slightly larger intractable problems to be solved.
 For example, if computing speed is doubling every 18 months (an optimistic view of Moore's law), and we have an intractable problem that takes {math}2^n{math end} operations to solve (many take longer than this), then in 18 months we will be able to solve a problem that's just one item bigger.
 For example, if you can solve an exponential time problem for 50 items (50 countries on a map to colour, 50 cities for a salesman to tour, or 50 rings on a Towers of Hanoi problem) in 24 hours, then in 18 months you can expect to buy a computer that could solve it for 51 items at best!
 And in 20 years you're likely to be able to get a computer that could solve for 55 items in one day.
@@ -412,7 +412,7 @@ You're going to have to be more than patient if you want Moore's law to help out
 
 Remember that if you need to do calculations of huge numbers, there's a calculator here that you can use:
 
-<div class="widget-holder"><a href="_static/widgets/big-calculator.html?plain=true frameborder="0"" target="_blank"><img class="widget-image" src="_static/complexity_and_tractability/images/CT-BigCalculatorThumbnail.png" alt=""><span class="widget-subtitle">Click to load<br>big number calculator</span></a></div>
+<div class="widget-holder"><a href="static/widgets/big-calculator.html?plain=true frameborder="0"" target="blank"><img class="widget-image" src="static/complexity_and_tractability/images/CT-BigCalculatorThumbnail.png" alt=""><span class="widget-subtitle">Click to load<br>big number calculator</span></a></div>
 
 {comment}
 
@@ -428,15 +428,15 @@ Remember that if you need to do calculations of huge numbers, there's a calculat
 
 {comment end}
 
-## The Travelling Salesman Problem 
+## The Travelling Salesman Problem
 
-An example of an intractable problem is the Travelling Salesman Problem (TSP). The TSP involves a bunch of locations (cities, houses, airports,....) where you can travel between any possible pair of locations. The goal is to find the shortest route that will go through all the locations once --- this is what the interactive at the start of this chapter does. 
+An example of an intractable problem is the Travelling Salesman Problem (TSP). The TSP involves a bunch of locations (cities, houses, airports,....) where you can travel between any possible pair of locations. The goal is to find the shortest route that will go through all the locations once --- this is what the interactive at the start of this chapter does.
 
 Researchers have spent a lot of time trying to find efficient solutions to the Travelling Salesman Problem, yet have been unable to find a *tractable* algorithm for solving it. As you learnt in the previous section, *intractable* algorithms are very slow, to the point of being impossible to use. As the only solutions to TSP are intractable, TSP is known as an *intractable problem*.
 
 It hasn’t actually been *proven* that there is no tractable solution to TSP, although many of the world’s top computer scientists have worked on this problem for the last 40 years, trying to find a solution but without success.
 What they have managed to do is find thousands of other problems that are also intractable, and more importantly, if a solution is found for any one of these problems, we know how to convert it to a solution for any of the others (these are called NP-complete problems). They all stand and fall together, including the TSP problem.
-So it's not just being lazy if you give up on finding an optimal TSP algorithm --- people have tried for decades and not found a tractable algorithm. 
+So it's not just being lazy if you give up on finding an optimal TSP algorithm --- people have tried for decades and not found a tractable algorithm.
 Of course, this is also a strong motivator to try to find one --- if you do, you will have solved thousands of other problems at the same time!
 This is a great thing for a researcher to do, but if you have a program to get finished by the end of the month, it's not a good bet to work on it.
 
@@ -457,15 +457,15 @@ There is an extensive website about the state of the art for the TSP at [http://
 
 {comment end}
 
-Since these problems are important for real companies, it is not reasonable to simply give up and say there is no solution.  Instead, when confronted with an intractable problem, computer scientists look for algorithms that produce approximate solutions --- solutions that are not perfectly correct or optimal, but are hopefully close enough to be useful.  By relaxing the requirement that the solution has to be perfectly correct, it is often possible to come up with tractable algorithms that will find good enough solutions in a reasonable time. This kind of algorithm is called a *heuristic* - it uses rules of thumb to suggest good choices and build up a solution made of pretty good choices.   
+Since these problems are important for real companies, it is not reasonable to simply give up and say there is no solution.  Instead, when confronted with an intractable problem, computer scientists look for algorithms that produce approximate solutions --- solutions that are not perfectly correct or optimal, but are hopefully close enough to be useful.  By relaxing the requirement that the solution has to be perfectly correct, it is often possible to come up with tractable algorithms that will find good enough solutions in a reasonable time. This kind of algorithm is called a *heuristic* - it uses rules of thumb to suggest good choices and build up a solution made of pretty good choices.
 
-A simple heuristic that often works OK is a *greedy* heuristic algorithm --- an algorithm that just takes what looks like the best choice at each step.  For example, for the TSP, a greedy heuristic algorithm might repeatedly take the route to the next closest city.  This won’t always be the best choice, but it is very fast, and experience shows that it is typically no more than 25% worse than the optimal.  There are more sophisticated ways of designing approximate algorithms that can do better than this (some can get within 3% of optimal for the TSP), but they take longer to run.   
+A simple heuristic that often works OK is a *greedy* heuristic algorithm --- an algorithm that just takes what looks like the best choice at each step.  For example, for the TSP, a greedy heuristic algorithm might repeatedly take the route to the next closest city.  This won’t always be the best choice, but it is very fast, and experience shows that it is typically no more than 25% worse than the optimal.  There are more sophisticated ways of designing approximate algorithms that can do better than this (some can get within 3% of optimal for the TSP), but they take longer to run.
 
-There are software companies that work on trying to make better and better approximate algorithms for guiding vehicles by GPS for delivery routes. Companies that write better algorithms can charge a lot of money if their routes are faster, because of all the fuel and time savings that can be made. 
+There are software companies that work on trying to make better and better approximate algorithms for guiding vehicles by GPS for delivery routes. Companies that write better algorithms can charge a lot of money if their routes are faster, because of all the fuel and time savings that can be made.
 
 An interesting thing with intractability is that you can have two very similar problems, with one being intractable and the other being tractable. For example, finding the shortest route between two points (like a GPS device usually does) is a tractable problem, yet finding the shortest route around multiple points (the TSP) isn't.
 By the way, finding the *longest* path between two points (without going along any route twice) is also intractable, even though finding the *shortest* path is tractable!
- 
+
 
 ### Project: The craypots problem
 
@@ -521,7 +521,7 @@ A2 - students should show an example of an optimal TSP solution
 
 {teacher end}
 
-Using your intuition, find the shortest path between the craypots. 
+Using your intuition, find the shortest path between the craypots.
 
 Now generate a map (same method as above) with somewhere between 15 and 25 craypots. *Make more than one copy of this map, as you will need it again later*
 
@@ -553,7 +553,7 @@ Note that students shouldn't use the interactive at the start of this chapter to
 
 {teacher end}
 
-How many possible routes are there for the larger example you have generated? How is this related to permutation sort, and factorials? How long would it take to calculate the shortest route in your map, assuming the computer can check 1 billion (1,000,000,000) possible routes per second? (i.e. it can check one route per nanosecond) What can you conclude about the cost of this algorithm? Would this be a good way for the cray fisher to decide which path to take? 
+How many possible routes are there for the larger example you have generated? How is this related to permutation sort, and factorials? How long would it take to calculate the shortest route in your map, assuming the computer can check 1 billion (1,000,000,000) possible routes per second? (i.e. it can check one route per nanosecond) What can you conclude about the cost of this algorithm? Would this be a good way for the cray fisher to decide which path to take?
 
 {comment}
 
@@ -564,7 +564,7 @@ How many possible routes are there for the larger example you have generated? Ho
 Make sure you show *all* your mathematical working in your answers to the above questions!
 
 So this algorithm is intractable,  but maybe there is a more clever algorithm that is tractable?  
-The answer is No. 
+The answer is No.
 
 You should be able to tell that this problem is equivalent to the TSP, and therefore it is intractable.  How can you tell? What is the equivalent to a town in this scenario? What is the equivalent to a road?
 
@@ -573,8 +573,8 @@ Since we know that this craypot problem is an example of the TSP, and that there
 {comment}
 
 .. xHRN xTCB the following introduces the idea of a heuristic/approximate solution; should it be in a main section rather than buried in the project? Either mention it earlier, or split the project in two parts, with a section on heuristics between them.  
-.. This project is weird in that it kinda contains content and project mixed into together. I might briefly mention the idea of using approximate solutions/ heuristics in the general TSP section (which is just above this)?   
-.. xHRN Yup, please introduce the greedy algorithm in the main text before the project. The next couple of paragraphs have a lot of the material. (Let me know if you'd rather that i move it around).  I think I have done this now. 
+.. This project is weird in that it kinda contains content and project mixed into together. I might briefly mention the idea of using approximate solutions/ heuristics in the general TSP section (which is just above this)?
+.. xHRN Yup, please introduce the greedy algorithm in the main text before the project. The next couple of paragraphs have a lot of the material. (Let me know if you'd rather that i move it around).  I think I have done this now.
 
 {comment end}
 
@@ -695,12 +695,12 @@ The material here is beyond what is required for the standard, but may be of int
 {teacher end}
 
 The question of tractability is a big one in computer science --- in fact, what is widely regarded as the biggest unsolved problem in computer science revolves around it.
-You may recall that we mentioned that there are thousands of problems that are we don't have a tractable solution for, yet a tractable solution to one can be adapted to all the others. 
+You may recall that we mentioned that there are thousands of problems that are we don't have a tractable solution for, yet a tractable solution to one can be adapted to all the others.
 This groups of problems is called "NP-complete" (NP stands for non-deterministic polynomial if you really want to know; complete just means that they can all be converted to each other!)
 The big question is whether or not there is a polynomial time algorithm for any one of them, in which case all NP problems will have a P (polynomial time) solution.
 The question is often referred to as whether or not P equals NP.
 
-Actually, things get worse. 
+Actually, things get worse.
 So far we've talked about intractable problems --- ones that can be solved, but might need billions of years on a computer.
 If you think it's bad that some problems take that long to solve, that's nothing!
 There are some well known problems that we know can *never* be solved on a computer.
@@ -732,7 +732,7 @@ It's also a fascinating area of research with opportunities to make a discovery 
 
 ## Further reading
 
-This topic is covered very thoroughly in a way that is accessible to non-specialists in a popular book by David Harel called "Computers Ltd.: What They Really Can't Do". 
+This topic is covered very thoroughly in a way that is accessible to non-specialists in a popular book by David Harel called "Computers Ltd.: What They Really Can't Do".
 
 ### Useful Links
 
@@ -744,5 +744,3 @@ This topic is covered very thoroughly in a way that is accessible to non-special
 - [http://en.wikipedia.org/wiki/Bin_packing_problem](http://en.wikipedia.org/wiki/Bin_packing_problem)
 - [http://en.wikipedia.org/wiki/Hamiltonian_path](http://en.wikipedia.org/wiki/Hamiltonian_path)
 - [http://en.wikipedia.org/wiki/Brute-force_search](http://en.wikipedia.org/wiki/Brute-force_search)
-
-

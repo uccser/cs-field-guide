@@ -8,12 +8,6 @@ Currently all material in this chapter is relevant to the standard, although stu
 
 {teacher end}
 
-{comment}
-
-.. _fl-bigpic:
-
-{comment end}
-
 ## What's the big picture?
 
 {comment}
@@ -24,9 +18,9 @@ Currently all material in this chapter is relevant to the standard, although stu
 
 If you've ever written a text-based program, chances are that at some stage the system has told you there's an error in your program even before it runs.
 
-{image fl-syntax-error.png alt="A syntax error in the code x = (a+b) *c+d) as the code is missing an open bracket"}
+{image python-syntax-error.png alt="A syntax error in the code x = (a+b) \*c+d) as the code is missing an open bracket"}
 
-These "syntax errors" are annoying messages that programmers become excruciatingly familiar with ... it means that they didn't follow the rules somehow, even if it's just a tiny mistake. For example, suppose you intended to write: 
+These "syntax errors" are annoying messages that programmers become excruciatingly familiar with ... it means that they didn't follow the rules somehow, even if it's just a tiny mistake. For example, suppose you intended to write:
 
 ```
 x = (a+b)*(c+d)
@@ -40,13 +34,13 @@ x = (a+b)*c+d)
 
 When you try to compile or run the program, the computer will tell you that there's an error. If it's really helpful, it might even suggest where the error is, but it won't run the program until you fix it.
 
-This might seem annoying, but in fact by enforcing precision and attention to detail it helps pinpoint mistakes before they become bugs in the program that go undetected until someone using it complains that it's not working correctly. 
+This might seem annoying, but in fact by enforcing precision and attention to detail it helps pinpoint mistakes before they become bugs in the program that go undetected until someone using it complains that it's not working correctly.
 
 Whenever you get errors like this, you're dealing with a *formal language*. Formal languages specify strict rules such as "all parentheses must be balanced", "all commands in the program must be keywords selected from a small set", or "the date must contain three numbers separated by dashes".
 
 Formal languages aren't just used for programming languages --- they're used anywhere the format of some input is tightly specified, such as typing an email address into a web form.
 
-In all these cases, the commands that you have typed (whether in Python, Scratch, Snap!, C, Pascal, Basic, C#, HTML, or XML) are being read by a computer program. (That's right... Python is a program that reads in Python programs.) In fact, the compiler for a programming language is often written in its own language. Most C compilers are written in C --- which begs the question, who wrote the first C compiler (and what if it had bugs)?! Computer Scientists have discovered good ways to write programs that process other programs, and a key ingredient is that you have to specify what is allowed in a program very precisely. That's where formal languages come in. 
+In all these cases, the commands that you have typed (whether in Python, Scratch, Snap!, C, Pascal, Basic, C#, HTML, or XML) are being read by a computer program. (That's right... Python is a program that reads in Python programs.) In fact, the compiler for a programming language is often written in its own language. Most C compilers are written in C --- which begs the question, who wrote the first C compiler (and what if it had bugs)?! Computer Scientists have discovered good ways to write programs that process other programs, and a key ingredient is that you have to specify what is allowed in a program very precisely. That's where formal languages come in.
 
 Many of the concepts we'll look at in this chapter are used in a variety of other situations: checking input to a web page; analysing user interfaces; searching text, particularly with “wild cards” strings that can match any sequence of characters; creating logic circuits; specifying communication protocols; and designing embedded systems.
 
@@ -56,13 +50,13 @@ Once you're familiar with the idea of formal languages, you'll possess a powerfu
 
 {comment}
 
-.. _fl-gettingstarted:
+.. fl-gettingstarted:
 
 {comment end}
 
 ## Getting started
 
-To give you a taste of what can be done, let's try searching for words that fit particular patterns. 
+To give you a taste of what can be done, let's try searching for words that fit particular patterns.
 Suppose you're looking for words that contain the name "tim".
 
 {teacher}
@@ -98,7 +92,7 @@ That's a pretty simple search (though the results may have surprised you!). But 
 tim.b
 ```
 
-and you will get any words that have both "tim" and "b" with a single character --- any character --- in between. Are there any words that match "tim..b"? "tim...b"? You can specify any number of occurrences of a symbol by putting a "*" after it (again a widely used convention), so:
+and you will get any words that have both "tim" and "b" with a single character --- any character --- in between. Are there any words that match "tim..b"? "tim...b"? You can specify any number of occurrences of a symbol by putting a '\*' after it (again a widely used convention), so:
 
 ```
 tim.*b
@@ -124,26 +118,26 @@ This code finds words that contain x, y and z in that order, but separated by 0 
 
 {teacher}
 
-To find words with all the vowels in order, the code is simply "a.*e.*i.*o.*u". 
+To find words with all the vowels in order, the code is simply "a.\*e.\*i.\*o.\*u".
 
 Students may ask how to do more complex searches, like letters in any order. If they are interested they can explore this on their own, but this is just a warmup exercise. We'll be covering this more carefully in the section on [regular expressions](formal-languages.html#regular-expressions).
 
 {teacher end}
 
-The code you've used above is a part of a formal language called a "regular expression". Computer programs that accept typed input use regular expressions for checking items like dates, credit card numbers and product codes. They’re used extensively by programming language compilers and interpreters to make sense of the text that a programmer types in. 
+The code you've used above is a part of a formal language called a "regular expression". Computer programs that accept typed input use regular expressions for checking items like dates, credit card numbers and product codes. They’re used extensively by programming language compilers and interpreters to make sense of the text that a programmer types in.
 We'll look at them in more detail in the section on [regular expressions](formal-languages.html#regular-expressions).
 
 Next we examine a simple system for reading input called a [finite state automaton][glossary.htm#finate state automaton], which --- as we'll find out later --- is closely related to regular expressions. Later we'll explore the idea of *grammars*, another kind of formal language that can deal with more complicated forms of input.
 
 {teacher}
 
-For a fun discussion, you could have the students look at the [Klingon Linguistics activity at CS4FN](http://www.cs4fn.org/linguistics/klingon.html). This page introduces the fundamentals of languages — words (the [alphabet](glossary.html#alphabet)) and [grammar](glossary.html#grammar) (the rules of syntax). It discusses why languages are translated and how meaning can be changed by translation. It also explains why computer languages need to be translated. 
+For a fun discussion, you could have the students look at the [Klingon Linguistics activity at CS4FN](http://www.cs4fn.org/linguistics/klingon.html). This page introduces the fundamentals of languages — words (the [alphabet](glossary.html#alphabet)) and [grammar](glossary.html#grammar) (the rules of syntax). It discusses why languages are translated and how meaning can be changed by translation. It also explains why computer languages need to be translated.
 
 {teacher end}
 
 {comment}
 
-.. _fl-fsa:
+.. fl-fsa:
 
 {comment end}
 
@@ -166,8 +160,8 @@ Here's a map of a commuter train system for the town of Trainsylvania. The troub
 
 {comment end}
 
-You can travel around Trainsylvania yourself using the following interactive. You're starting at the City Mall station, and you need to find your way to Suburbopolis. 
-At each station you can choose either the A-train or the B-train --- press the button to find out where it will take you. 
+You can travel around Trainsylvania yourself using the following interactive. You're starting at the City Mall station, and you need to find your way to Suburbopolis.
+At each station you can choose either the A-train or the B-train --- press the button to find out where it will take you.
 But, like the residents of Trainsylvania, you'll probably want to start drawing a map of the railway, because later you might be asked to find your way somewhere else.
 If you want a template to draw on, you can [print one out from here](files/formal-languages/fl-trainsylvania-blank.pdf).
 
@@ -177,7 +171,7 @@ If you want a template to draw on, you can [print one out from here](files/forma
 
 {comment end}
 
-<div align="center"><iframe width="450" height="515" src="_static/widgets/fsa-trainsylvania-v4.html?map=puzzle1" frameborder="0">Your browser does not support iframes. Please contact the computer's administrator and upgrade <a href="http://browsehappy.com/"> to a modern browser</a> (like Google Chrome) to enable all functionality of this online textbook.</iframe></div>
+<div align="center"><iframe width="450" height="515" src="static/widgets/fsa-trainsylvania-v4.html?map=puzzle1" frameborder="0">Your browser does not support iframes. Please contact the computer's administrator and upgrade <a href="http://browsehappy.com/"> to a modern browser</a> (like Google Chrome) to enable all functionality of this online textbook.</iframe></div>
 
 {teacher}
 
@@ -188,8 +182,8 @@ You should let students devise their own notation for this. They will soon learn
 {image fl-train-map-complete.png alt="Solution to the train map"}
 
 Did you find a sequence of trains to get from City Mall to Suburbopolis? You can test it by typing the sequence of trains in the following interactive. For example, if you took the A-train, then the B-train, then an A-train, type in ABA.
- 
-<div align="center"><iframe width="450" height="350" src="_static/widgets/fsa-trip-planner-v4.html" frameborder="0" allowfullscreen>Your browser does not support iframes. Please contact the computer's administrator and upgrade to a modern browser (like Google Chrome) to enable all functionality of this online textbook.</iframe></div>
+
+<div align="center"><iframe width="450" height="350" src="static/widgets/fsa-trip-planner-v4.html" frameborder="0" allowfullscreen>Your browser does not support iframes. Please contact the computer's administrator and upgrade to a modern browser (like Google Chrome) to enable all functionality of this online textbook.</iframe></div>
 
 Can you find a sequence that takes you from City Mall to Suburbopolis? Can you find another sequence, perhaps a longer one? Suppose you wanted to take a really long route ... can you find a sequence of 12 hops that would get you there? 20 hops?
 
@@ -206,7 +200,7 @@ Suppose you're starting at station 1, and need to get to station 3 (it has a dou
 
 {teacher}
 
-Solutions: 
+Solutions:
 
 - AA
 - station 3
@@ -215,7 +209,7 @@ Solutions:
 
 {teacher end}
 
-The map that we use here, with circles and arrows, is actually a powerful idea from computer science called a [Finite State Automaton](glossary.html#Finite State Automaton), or FSA for short. 
+The map that we use here, with circles and arrows, is actually a powerful idea from computer science called a [Finite State Automaton](glossary.html#Finite State Automaton), or FSA for short.
 Being comfortable with such structures is a useful skill for computer scientists.
 
 {jargon-buster}
@@ -229,7 +223,7 @@ The name [Finite State Automaton](glossary.htm#Finite State Automation) (FSA) mi
 An FSA isn't all that useful for train maps, but the notation is used for many other purposes, from checking input to computer programs to controlling the behaviour of an interface.
 You may have come across it when you dial a telephone number and get a message saying "Press 1 for this … Press 2 for that … Press 3 to talk to a human operator." Your key presses are inputs to a [finite state automaton](glossary.htm#finite state automation) at the other end of the phone line. The dialogue can be quite simple, or very complex. Sometimes you are taken round in circles because there is a peculiar loop in the finite-state automaton. If this occurs, it is an error in the design of the system — and it can be extremely frustrating for the caller!
 
-Another example is the remote control for an air conditioning unit. It might have half a dozen main buttons, and pressing them changes the mode of operation (e.g. heating, cooling, automatic). 
+Another example is the remote control for an air conditioning unit. It might have half a dozen main buttons, and pressing them changes the mode of operation (e.g. heating, cooling, automatic).
 To get to the mode you want you have to press just the right sequence, and if you press one too many buttons, it's like getting to the train station you wanted but accidentally hopping on one more train. It might be a long journey back, and you may end up exploring all sorts of modes to get there!
 If there's a manual for the controller, it may well contain a diagram that looks like a [Finite State Automaton](glossary.htm#Finite State Automation).
 If there isn't a manual, you may find yourself wanting to draw a map, just as for the trains above, so that you can understand it better.
@@ -248,10 +242,10 @@ The map that we used above uses a standard notation. Here's a smaller one:
 Notice that this map has routes that go straight back to where they started!
 For example, if you start at 1 and take route "b", you immediately end up back at 1.
 This might seem pointless, but it can be quite useful.
-Each of the "train stations" is called a state, which is a general term that just represents where you are after some sequence of inputs or decisions. 
+Each of the "train stations" is called a state, which is a general term that just represents where you are after some sequence of inputs or decisions.
 What it actually means depends on what the FSA is being used for. States could represent a mode of operation (like fast, medium, or slow when selecting a washing machine spin cycle), or the state of a lock or alarm (on, off, exit mode), or many other things. We’ll see more examples soon.
- 
-One of the states has a double circle. 
+
+One of the states has a double circle.
 By convention, this marks a "final” or "accepting” state, and if we end up there we've achieved some goal.
 There's also a "start” state --- that's the one with an arrow coming from nowhere.
 Usually the idea is to find a sequence of inputs that gets you from the start state to a final state.
@@ -263,15 +257,15 @@ Of course, not all inputs get you to state 2. For example, "aab" or even just "b
 
 {teacher}
 
-The FSA above accepts any string of inputs that end with an "a", so the interactive below behaves pretty trivially: press "a" for it to be accepted, and "b" for not accepted. It happens to behave like a two-button power switch, with an on and off button. Although these kind of FSAs seem very trivial, it's important for students to become confident with them. Some of the FSAs used in practice have just a few states like these, but even small systems can perform quite complex tasks. 
+The FSA above accepts any string of inputs that end with an "a", so the interactive below behaves pretty trivially: press "a" for it to be accepted, and "b" for not accepted. It happens to behave like a two-button power switch, with an on and off button. Although these kind of FSAs seem very trivial, it's important for students to become confident with them. Some of the FSAs used in practice have just a few states like these, but even small systems can perform quite complex tasks.
 
 {teacher end}
 
 Here's an interactive which follows the rules of the FSA above. You can use it to test different inputs.
 
-<div align="center"><iframe width="450" height="350" src="_static/widgets/fsa-2state-v3.html?map=one" frameborder="0" allowfullscreen>Your browser does not support iframes. Please contact the computer's administrator and upgrade to a modern browser (like Google Chrome) to enable all functionality of this online textbook.</iframe></div>
+<div align="center"><iframe width="450" height="350" src="static/widgets/fsa-2state-v3.html?map=one" frameborder="0" allowfullscreen>Your browser does not support iframes. Please contact the computer's administrator and upgrade to a modern browser (like Google Chrome) to enable all functionality of this online textbook.</iframe></div>
 
-Here's another [FSA](glossary.html#FSA), which looks similar to the last one but behaves quite differently. You can test it in the interactive below. 
+Here's another [FSA](glossary.html#FSA), which looks similar to the last one but behaves quite differently. You can test it in the interactive below.
 
 {image fl-fsa-example-2.png alt="A simple [Finite State Automaton](glossary.htm#Finite State Automation)"}
 
@@ -294,7 +288,7 @@ The general rule is that the input must have an odd number of "a"s in it; the nu
 
 {teacher end}
 
-<div align="center"><iframe width="450" height="350" src="_static/widgets/fsa-2state-v3.html?map=two" frameborder="0" allowfullscreen>Your browser does not support iframes. Please contact the computer's administrator and upgrade to a modern browser (like Google Chrome) to enable all functionality of this online textbook.</iframe></div>
+<div align="center"><iframe width="450" height="350" src="static/widgets/fsa-2state-v3.html?map=two" frameborder="0" allowfullscreen>Your browser does not support iframes. Please contact the computer's administrator and upgrade to a modern browser (like Google Chrome) to enable all functionality of this online textbook.</iframe></div>
 
 To keep things precise, we'll define two further technical terms.
 One is the [alphabet](glossary.html#alphabet), which is just a list of all possible inputs that might happen.
@@ -315,13 +309,13 @@ It would be frustrating if you could only change the spin setting 50 times, and 
 If you want, you could switch from fast to slow spin by pressing the spin button 3002 times.
 Or 2 times would do. Or 2 million times (try it if you don't believe me).
 
-<div align="center"><iframe width="450" height="450" src="_static/widgets/fsa-spin-graphic.html" frameborder="0" allowfullscreen>Your browser does not support iframes. Please contact the computer's administrator and upgrade to a modern browser (like Google Chrome) to enable all functionality of this online textbook.</iframe></div>
+<div align="center"><iframe width="450" height="450" src="static/widgets/fsa-spin-graphic.html" frameborder="0" allowfullscreen>Your browser does not support iframes. Please contact the computer's administrator and upgrade to a modern browser (like Google Chrome) to enable all functionality of this online textbook.</iframe></div>
 
 The following diagram summarizes the terminology we have introduced. Notice that this FSA has two accepting states. You can have as many as you want, but only one start state.
 
 {image fl-fsa-terminology-example.png alt="FSA terminology"}
 
-For this FSA, the [strings](glossary.html#strings) "aa" and "aabba" would be accepted, and "aaa" and "ar" wouldn't. 
+For this FSA, the [strings](glossary.html#strings) "aa" and "aabba" would be accepted, and "aaa" and "ar" wouldn't.
 By the way, notice that we often put inverted commas around [strings](glossary.html#strings) to make it clear where they start and stop. Of course, the inverted commas aren't part of the strings.
 
 {comment}
@@ -347,7 +341,7 @@ The following website contains a comprehensive list of terminology relating to f
 Now there's something we have to get out of the way before going further. If we're talking about which [strings](glossary.html#strings) of inputs will get you into a particular state, and the system starts in that state, then the *empty string* --- that is, a string without any letters at all --- is one of the solutions!
 For example, here's a simple [finite state automaton](glossary.htm#finite state automation) with just one input (button a) that represents a strange kind of light switch. The reset button isn't part of the FSA; it’s just a way of letting you return to the starting state. See if you can figure out which patterns of input will turn the light on:
 
-<div align="center"><iframe width="450" height="450" src="_static/widgets/fsa-strangelight-v3.html" frameborder="0" allowfullscreen>Your browser does not support iframes. Please contact the computer's administrator and upgrade to a modern browser (like Google Chrome) to enable all functionality of this online textbook.</iframe></div>
+<div align="center"><iframe width="450" height="450" src="static/widgets/fsa-strangelight-v3.html" frameborder="0" allowfullscreen>Your browser does not support iframes. Please contact the computer's administrator and upgrade to a modern browser (like Google Chrome) to enable all functionality of this online textbook.</iframe></div>
 
 {teacher}
 
@@ -355,7 +349,7 @@ The light comes on with every third button press (which is intentionally confusi
 
 {teacher end}
 
-Have you worked out which sequences of button presses turn on the light? Now think about the *shortest* sequence from a reset that can turn it on. 
+Have you worked out which sequences of button presses turn on the light? Now think about the *shortest* sequence from a reset that can turn it on.
 
 Since it's already on when it has been reset, the shortest sequence is *zero* button presses. It's hard to write that down (although you could use “”), so we have a symbol especially for it, which is the Greek letter epsilon: {math}\epsilon{math end}.
 You'll come across {math}\epsilon{math end} quite often with formal languages.
@@ -368,7 +362,7 @@ Here’s the FSA for the strange light switch. You can tell that {math}\epsilon{
 
 {image fl-fsa-light-switch-example-3.png alt="The finite state machine for a strange light switch"}
 
-An important part of the culture of computer science is always to consider extreme cases. One kind of extreme case is where there is no input at all: what if a program is given an empty file, or your database has zero entries in it? It's always important to make sure that these situations have been thought through. 
+An important part of the culture of computer science is always to consider extreme cases. One kind of extreme case is where there is no input at all: what if a program is given an empty file, or your database has zero entries in it? It's always important to make sure that these situations have been thought through.
 So it's not surprising that we have a symbol for the empty string.
 Just for variety, you'll occasionally find some people using the Greek letter lambda ({math}\lambda{math end}) instead of {math}\epsilon{math end} to represent the empty string.
 
@@ -386,11 +380,11 @@ While we're looking at extremes, here's another FSA to consider.  It uses "a" an
 
 Will it accept the [string](glossary.html#string) "aaa"? Or "aba"? Or anything of 3 characters or more?
 
-As soon as you get the third character you end up in state 4, which is called a *trap state* because you can't get out. 
+As soon as you get the third character you end up in state 4, which is called a *trap state* because you can't get out.
 If this was the map for the commuter train system we had at the start of this section it would cause problems, because eventually everyone would end up in the trap state, and you'd have serious overcrowding.
 But it can be useful in other situations --- especially if there's an error in the input, so no matter what else comes up, you don't want to go ahead.
 
-For the example above, the language of the FSA is any mixture of "a"s and "b"s, but only two characters at most. 
+For the example above, the language of the FSA is any mixture of "a"s and "b"s, but only two characters at most.
 Don't forget that the empty [string](glossary.html#string) is also accepted. It's a very small language; the only [strings](glossary.html#strings) in it are:
 {{math}\epsilon{math end}, a, b, aa, ab, ba, bb}.
 
@@ -424,8 +418,8 @@ Finite state automata are used a lot in the design of digital circuits (like the
 Anything that has a few buttons on it and gets into different states when you press those buttons (such as alarm on/off, high/med/low power) is effectively a kind of FSA.
 
 With such gadgets, FSAs can be used by designers to plan what will happen for every input in every situation, but they can also be used to analyse the interface of a device.
-If the FSA that describes a device is really complicated, it's a warning that the interface is likely to be hard to understand. 
-For example, here's an FSA for a microwave oven. It reveals that, for example, you can't get from power2 to power1 without going through timer1. Restrictions like this will be very frustrating for a user. 
+If the FSA that describes a device is really complicated, it's a warning that the interface is likely to be hard to understand.
+For example, here's an FSA for a microwave oven. It reveals that, for example, you can't get from power2 to power1 without going through timer1. Restrictions like this will be very frustrating for a user.
 For example, if they try to set power1 it won't work until they've set timer1 first.
 Once you know this sequence it's easy, but the designer should think about whether it's necessary to force the user into that sort of sequence.
 These sorts of issues become clear when you look at the FSA.
@@ -454,7 +448,7 @@ There are also data compression methods that use FSAs to capture patterns in the
 
 What's the biggest FSA in the world, one that lots of people use every day? It's the World-Wide Web. Each web page is like a state, and the links on that page are the transitions between them. Back in the year 2000 the web had a billion pages. In 2008 Google Inc. declared they had found a trillion different web page addresses. That’s a lot. A book with a billion pages would be 50 km thick. With a trillion pages, its thickness would exceed the circumference of the earth.
 
-But the web is just a finite-state automaton. And in order to produce an index for you to use, search engine companies like Google have to examine all the pages to see what words they contain. They explore the web by following all the links, just as you did in the train travelling exercise. Only, because it's called the "web," exploring is called "crawling" — like spiders do. 
+But the web is just a finite-state automaton. And in order to produce an index for you to use, search engine companies like Google have to examine all the pages to see what words they contain. They explore the web by following all the links, just as you did in the train travelling exercise. Only, because it's called the "web," exploring is called "crawling" — like spiders do.
 
 {curiosity end}
 
@@ -470,9 +464,9 @@ But the web is just a finite-state automaton. And in order to produce an index f
 
 {teacher}
 
-This section uses free teaching software that makes it easy for students to create and experiment with FSAs. This software will also be useful for the next section on regular expressions, so it’s worth becoming familiar with. You can choose between using "Exorciser" or "JFLAP" (see later). The Exorciser system from [SwissEduc](http://www.swisseduc.ch/compscience/)  is cleaner and simpler, but JFLAP includes some features that are useful for the sections on regular expressions and grammars. (The Exorciser material on grammars is too advanced, and its features with regular expressions are a little more tedious to use for our purposes). Both of the systems have extensive features that aren't relevant to this chapter, so students will need to ignore much of what they see! 
+This section uses free teaching software that makes it easy for students to create and experiment with FSAs. This software will also be useful for the next section on regular expressions, so it’s worth becoming familiar with. You can choose between using "Exorciser" or "JFLAP" (see later). The Exorciser system from [SwissEduc](http://www.swisseduc.ch/compscience/)  is cleaner and simpler, but JFLAP includes some features that are useful for the sections on regular expressions and grammars. (The Exorciser material on grammars is too advanced, and its features with regular expressions are a little more tedious to use for our purposes). Both of the systems have extensive features that aren't relevant to this chapter, so students will need to ignore much of what they see!
 
-We recommend starting students with Exorciser, and those who intend to do the more advanced parts of the topic could then get familiar with JFLAP. 
+We recommend starting students with Exorciser, and those who intend to do the more advanced parts of the topic could then get familiar with JFLAP.
 
 One quick tip: to avoid confusion, in Exorciser deselect the option of having an empty-string transition by right-clicking in the background, choosing "A = {a,b}", and unchecking {math}\epsilon{math end}. Students can add other characters to the [alphabet](glossary.html#alphabet) from this menu, although just "a" and "b" are enough to play with for a start.
 
@@ -507,7 +501,7 @@ Usually you can find a "meaning" for a state. In this example, being in state 1 
 
 {comment end}
 
-Now we need to think about missing transitions from each state. 
+Now we need to think about missing transitions from each state.
 So far there's nothing for an "a" out of state 1. Thinking about state 1, an "a" doesn't affect the number of "b"s seen, and so we should remain in state 1:
 
 {image fl-fsa-create-example-5.png alt="creating an FSA"}
@@ -532,9 +526,9 @@ The challenge in each FSA exercise is the part after the | in the braces (i.e., 
 
 {image fl-fsa-exorciser.png alt="The exorciser software from SwissEduc"}
 
-To draw an FSA in the Exorciser system, right-click anywhere on the empty space and you'll get a menu of options for adding and deleting states, choosing the [alphabet](glossary.html#alphabet), and so on. 
+To draw an FSA in the Exorciser system, right-click anywhere on the empty space and you'll get a menu of options for adding and deleting states, choosing the [alphabet](glossary.html#alphabet), and so on.
 To make a transition, drag from the outside circle of one state to another (or out and back to the state for a loop).
-You can right-click on states and transitions to change them. 
+You can right-click on states and transitions to change them.
 The notation "a|b" means that a transition will be taken on "a" or "b" (it's equivalent to two parallel transitions).
 
 If your FSA doesn't solve their challenge, you'll get a hint in the form of a [string](glossary.html#string) that your FSA deals with incorrectly, so you can gradually fix it until it works. If you're stuck, click “Solve exercise”.
@@ -543,7 +537,7 @@ See the [SwissEduc website](http://www.swisseduc.ch/compscience/) for more instr
 
 {image fl-fsa-exorciser-error.png alt="The exorciser software from SwissEduc"}
 
-The section after next gives some examples to try. 
+The section after next gives some examples to try.
 If you're doing this for a report, keep copies of the automata and tests that you do. Right-click on the image for a "Save As" option, or else take screenshots of the images.
 
 
@@ -579,7 +573,7 @@ Here's how to build an FSA using JFLAP. As an example, we'll use the following F
 To build this, run JFLAP and:
 
 - click on the "Finite Automaton" button in the control panel.
-- In the Editor window, click on the picture of a state (with a little q in it), and then click in the window to create states. 
+- In the Editor window, click on the picture of a state (with a little q in it), and then click in the window to create states.
 - To move the states around, click on the arrow tool in the toolbar (leftmost icon). It doesn't matter where the states are, but you want them to be easy to view.
 - To put a transition between two states, click on the transition tool (third icon), drag a line between two states, type the label for the transition ("a" or "b" for this exercise), and press return. (The system will offer the empty string ({math}\lambda{math end}) as a label, but please don't go there!)
 - To make a transition loop back to a state, just click on the state with the transition tool.
@@ -599,7 +593,7 @@ You can run multiple tests in one go. From the "Input" menu choose "Multiple Run
 
 You can even do tests with the empty [string](glossary.html#string) by leaving a blank line in the table, which you can do by pressing the "Enter Lambda" button.
 
-There are some FSA examples in the next section. 
+There are some FSA examples in the next section.
 If you're doing this for a report, keep copies of the automata and tests that you do (JFLAP's "File" menu has a "Save Image As..." option for taking snapshots of your work; alternatively you can save an FSA that you've created in a file to open later).
 
 
@@ -634,7 +628,7 @@ The following solutions are for the smallest/simplest way to represent the above
 
 {comment end}
 
-For the FSA(s) that you construct, check that they accept valid input, but also make sure they reject invalid input. 
+For the FSA(s) that you construct, check that they accept valid input, but also make sure they reject invalid input.
 
 {teacher}
 
@@ -651,7 +645,7 @@ Here are some more sequences of characters that you can construct FSAs to detect
 
 {teacher}
 
-Solutions for these will be provided in a later version of this guide. 
+Solutions for these will be provided in a later version of this guide.
 
 {teacher end}
 
@@ -670,7 +664,7 @@ You can make up your own version for different denominations of coins and requir
 
 {teacher}
 
-Solutions for these will be provided in a later version of this guide. 
+Solutions for these will be provided in a later version of this guide.
 
 {teacher end}
 
@@ -733,9 +727,9 @@ If you need to make diagrams of FSAs, the JFLAP program can be used, or there's 
 
 .. TCB here's another online FSA simulator (by Mukund), which could be used as a model if we decide to do one in hmtl5
 .. TCB can specify and run fsa at: http://www.cosc.canterbury.ac.nz/mukundan/thco/DFA.html
-.. TCB this runs ok on Windows apparently, but is cutoff and doesn't quite work on Mac. 
+.. TCB this runs ok on Windows apparently, but is cutoff and doesn't quite work on Mac.
 
-.. an interesting presentation, but doesn't give much detail: http://mtifall09.wordpress.com/category/8-finite-state-machines/ 
+.. an interesting presentation, but doesn't give much detail: http://mtifall09.wordpress.com/category/8-finite-state-machines/
 .. has machines built by students as project e.g. trick or treat. Mainly just 3 simple states, most of work is in hardware.
 
 .. TCB The following was useful, but it seems to be restricted access now: Merchant Taylors' School UK in its free course on Moodle aimed at AS Computing has an activity in Finite State Machines based on Kara. Their "Getting started with Kara" guide is useful, as the Kara manual is fairly brief. Seems to be gone now
@@ -744,8 +738,8 @@ If you need to make diagrams of FSAs, the JFLAP program can be used, or there's 
 
 .. JRM  fsm intro video: http://www.youtube.com/watch?v=Obt3L1YBwlM It's quite clear in it's explanation, but don't know how well it will be received by younger audiences. It's quite long (15 minutes) but pretty standard presentation (powerpoint with hand drawing over top with narration). It was good for me, but don't know how good it is for children. If you watch the first two minutes, you get a good idea of the style. He starts from the basics and builds up at a nice steady pace, he uses 'bits' a lot which is good, but at the start he mentions 'clock pulse' and it took me a while to get it. There is a smaller error in the video, he has an annotation explaining it though. It's a pretty good video overall.
 
-.. For the record, an early and still very readable, article about FSAs appears at the following 
-.. site, but it would be distracting to link to it here: 
+.. For the record, an early and still very readable, article about FSAs appears at the following
+.. site, but it would be distracting to link to it here:
 .. http://www.ccs3.lanl.gov/mega-math/workbk/machine/mabkgd.html
 
 .. Mealy/Moore machines --- beyond scope?
@@ -765,7 +759,7 @@ If you need to make diagrams of FSAs, the JFLAP program can be used, or there's 
 
 {comment}
 
-.. _fl-regex:
+.. fl-regex:
 
 {comment end}
 
@@ -789,8 +783,8 @@ Split the class into two groups, A and B. Hand out one copy of FSM-A to each pai
 
 ```
 FSM-A: bee*p(-bee*p)*  or  be*ep(-be*ep)*  or  be+p(-be+p)*
-FSM-B: cl(i|a)ck(-cl(i|a)ck)* 
-FSM-A: mee*o*w  or  me*eo*w  or  me+ow 
+FSM-B: cl(i|a)ck(-cl(i|a)ck)*
+FSM-A: mee*o*w  or  me*eo*w  or  me+ow
 FSM-B: squ((el)|(ir))ch(-squ((el)|(ir))ch)*
 ```
 
@@ -808,7 +802,7 @@ Followup discussion can review whether some descriptions were longer than they n
 
 {comment end}
 
-We've already had a taste of regular expressions in the [getting started](formal-languages.html#getting-started) section. They are just a simple way to search for things in the input, or to specify what kind of input will be accepted as legitimate. 
+We've already had a taste of regular expressions in the [getting started](formal-languages.html#getting-started) section. They are just a simple way to search for things in the input, or to specify what kind of input will be accepted as legitimate.
 For example, many web scripting programs use them to check input for patterns like dates, email addresses and URLs. They've become so popular that they're now built into most programming languages.
 
 {teacher}
@@ -823,7 +817,7 @@ Students can work through the following brief examples using Rubular, described 
 
 .. tcb if above image is too big, there's a smaller part of the image at FL-regex-regexone-example.png
 
-.. TCB RegexOne was made by http://stackoverflow.com/users/77340/wchung, see his blog at 
+.. TCB RegexOne was made by http://stackoverflow.com/users/77340/wchung, see his blog at
 .. http://mesopixel.com/article/learning-regular-expressions-from-experimentation
 .. Rubular is by Michael Lovitt (http://lovitt.net), and has a Google group: http://groups.google.com/group/rubular , plus accepts donations
 
@@ -833,22 +827,22 @@ Students can work through the following brief examples using Rubular, described 
 
 {comment end}
 
-You might already have a suspicion that regular expressions are related to finite state automata. And you'd be right, because it turns out that every [regular expression](glossary.htm#regular expression) has a [Finite State Automaton](glossary.html#Finite State Automaton) that can check for matches, and every [Finite State Automaton](glossary.html#Finite State Automaton) can be converted to a [regular expression](glossary.htm#regular expression) that shows exactly what it does (and doesn’t) match. 
+You might already have a suspicion that regular expressions are related to finite state automata. And you'd be right, because it turns out that every [regular expression](glossary.htm#regular expression) has a [Finite State Automaton](glossary.html#Finite State Automaton) that can check for matches, and every [Finite State Automaton](glossary.html#Finite State Automaton) can be converted to a [regular expression](glossary.htm#regular expression) that shows exactly what it does (and doesn’t) match.
 Regular expressions are usually easier for humans to read. For machines, a computer program can convert any regular expression to an FSA, and then the computer can follow very simple rules to check the input.
 
 {comment}
 
-.. TCB Rubular also had a feature where you can pass the data in the URL (http://rubular.com/?regex=ham&test=hamsandwich), but it's currently broken (3 Nov 2012) 
+.. TCB Rubular also had a feature where you can pass the data in the URL (http://rubular.com/?regex=ham&test=hamsandwich), but it's currently broken (3 Nov 2012)
 .. info at https://groups.google.com/forum/?fromgroups=#!topic/rubular/VnoDwLRFQB0
 .. The permalink is probably better, but this might become an option too
 
 {comment end}
 
 The simplest kind of matching is just entering some text to match. Open a new window to the "Rubular" system (a screenshot is shown below) by clicking on the following challenge:
- 
+
 [Open Rubular using this link and type the text "cat" into the box labeled "Your regular expression"](http://rubular.com/r/vCD1OSfjAc)
 
-<div align="center"><iframe width="810" height="630" src="_static/widgets/FL/FL-Regex/RegexTxt.html" frameborder="0">Your browser does not support iframes. Please contact the computer's administrator and upgrade <a href="http://browsehappy.com/"> to a modern browser</a> (like Google Chrome) to enable all functionality of this online textbook.</iframe></div>
+<div align="center"><iframe width="810" height="630" src="static/widgets/FL/FL-Regex/RegexTxt.html" frameborder="0">Your browser does not support iframes. Please contact the computer's administrator and upgrade <a href="http://browsehappy.com/"> to a modern browser</a> (like Google Chrome) to enable all functionality of this online textbook.</iframe></div>
 
 {image fl-regex-rubular-cat1.png alt="Entering ab\*a into JFLAP}
 
@@ -945,7 +939,7 @@ The name [regular expression](glossary.htm#regular expression) is sometimes abbr
 
 {teacher}
 
-"me+o+w" is a good solution. 
+"me+o+w" is a good solution.
 
 {teacher end}
 
@@ -971,7 +965,7 @@ How about an expression to find the dates in the text? Here's one option, but it
 \d [A-Z][a-z][a-z] \d\d\d\d
 ```
 
-Can you improve on it? 
+Can you improve on it?
 
 {teacher}
 
@@ -1027,8 +1021,8 @@ You may have noticed that q2 is a "trap state". We can achieve the same effect w
 
 {image fl-re-fsa-aabb.png alt="an FSA for (aa)+(bb)+"}
 
-Like an FSA, each [regular expression](glossary.htm#regular expression) represents a [language](glossary.html#language), which is just the set of all [strings](glossary.html#strings) that match the regular expression. 
-In the example above, the shortest [string](glossary.html#string) in the language is "aabb", then there's "aaaabb" and "aabbbb", and of course an infinite number more. 
+Like an FSA, each [regular expression](glossary.htm#regular expression) represents a [language](glossary.html#language), which is just the set of all [strings](glossary.html#strings) that match the regular expression.
+In the example above, the shortest [string](glossary.html#string) in the language is "aabb", then there's "aaaabb" and "aabbbb", and of course an infinite number more.
 There's also an infinite number of [strings](glossary.html#strings) that *aren't* in this language, like "a", "aaa", "aaaaaa" and so on.
 
 In the above example, the FSA is a really easy way to check for the [regular expression](glossary.htm#regular expression) --- you can write a very fast and small program to implement it (in fact, it's a good exercise: you typically have an array or list with an entry for each state, and each entry tells you which state to go to next on each character, plus whether or not it's a final state. At each step the program just looks up which state to go to next.)
@@ -1084,7 +1078,7 @@ Here are some challenges to try to create regular expressions for:
 
 {comment end}
 
-### Project: converting Regular Expressions to FSAs 
+### Project: converting Regular Expressions to FSAs
 
 {teacher}
 
@@ -1100,13 +1094,13 @@ This project, if done with enough reflection, has sufficient depth to meet the r
 Students can make up their own regular expressions, which will make each project unique.
 
 The conversion of a [regular expression](glossary.htm#regular expression) to an FSA can either be done by [Exorcise](http://www.swisseduc.ch/compscience/exorciser/index.html) or [JFLAP](http://jflap.org). Both are suitable; Exorciser is very simple to use, but is intended for throw-away exercises, so students can't save their work and would have to record their inputs and/or take screenshots, and start from scratch if they need to get back to it. JFLAP requires extra steps to do the conversion and can be a little quirky to use, but all work can be saved, and images can be saved without having to make a screenshot. Also, it can be used for the work in the section on grammars.
-Information about both the Exorciser and JFLAP software is given in teacher notes for the projects in the previous section. 
+Information about both the Exorciser and JFLAP software is given in teacher notes for the projects in the previous section.
 
 For Exorciser, the conversion is intended as an exercise for the student, but that's way beyond the scope of this chapter. However, if you just ask for the solution, it will do the conversion for you, which is what we need.
 
 For JFLAP, there is a tutorial on the [program's website](http://www.jflap.org/tutorial/) and more information in the [regular expressions](formal-languages.html#regular-expressions) section.
 
-If students stick to the instructions given they will be able to use it to create their own FSA from a regular expression. 
+If students stick to the instructions given they will be able to use it to create their own FSA from a regular expression.
 
 The important part of the project is for the student to come up with their own regular expressions, and to demonstrate and discuss how that expression is checked by the FSA. An evaluation of the FSA would involve describing the purpose of a variety of nodes and transitions (e.g. "the loop back to node q1 on a corresponds to a* in the regular expression, because no matter how many a's occur, you'll always stay at state q1.)
 
@@ -1126,7 +1120,7 @@ Here are some ideas for the types of [regular expression](glossary.htm#regular e
 
 {comment end}
 
-For this project you will make up a regular expression, convert it to an FSA, and demonstrate how some [strings](glossary.html#strings) are processed. 
+For this project you will make up a regular expression, convert it to an FSA, and demonstrate how some [strings](glossary.html#strings) are processed.
 
 There's one trick you'll need to know: the software we're using doesn't have all the notations we've been using above, which are common in programming languages, but not used so much in pure formal language theory. In fact, the only ones available are:
 
@@ -1175,7 +1169,7 @@ Your project report should show the regular expressions, explain what kind of [s
 
 #### Converting with JFLAP
 
-If you're using [JFLAP](http://www.jflap.org) for your project, you can have almost any character as input. 
+If you're using [JFLAP](http://www.jflap.org) for your project, you can have almost any character as input.
 The main exceptions are "*", "+" (confusingly, the "+" is used instead of "|" for alternatives), and "!" (which is the empty [string](glossary.html#string) --- in the preferences you can choose if it is shown as {math}\lambda{math end} or {math}\epsilon{math end}).
 
 So the main operators available in JFLAP are:
@@ -1196,7 +1190,7 @@ As a warmup, we'll convert this regex to an FSA:
 ab*b
 ```
 
-On the main control window of JFLAP click on "Regular Expression", and type your [regular expression](glossary.htm#regular expression) into JFLAP: 
+On the main control window of JFLAP click on "Regular Expression", and type your [regular expression](glossary.htm#regular expression) into JFLAP:
 
 {image fl-ab-star-a-regex.png alt="Entering ab\*a into JFLAP"}
 
@@ -1206,7 +1200,7 @@ On the main control window of JFLAP click on "Regular Expression", and type your
 
 {comment}
 
-From the "Convert" menu choose "Convert to NFA". 
+From the "Convert" menu choose "Convert to NFA".
 This will only start the conversion; press the "Do all" button to complete it (the system is designed to show all the steps of the conversion, but we just want the final result).
 For the example, we get the following non-deterministic finite automaton (NFA), which isn't quite what we want and probably looks rather messy:
 
@@ -1266,7 +1260,7 @@ Here are some more ideas that you could use to investigate regular expressions:
 
 {teacher}
 
-For the "i before e" problem, there are two kinds of exception to find, places where "c" is followed by "ie" (easy), and places where a character that isn't "c" is followed by ei.   
+For the "i before e" problem, there are two kinds of exception to find, places where "c" is followed by "ie" (easy), and places where a character that isn't "c" is followed by ei.
 
 More guidance for the above suggestions will be provided eventually.
 
@@ -1366,13 +1360,13 @@ But at least they're predictable.
 
 {comment}
 
-.. Starting example - only one or two [strings](glossary.html#strings) in language? Planet ABBA ? use simple english grammar? 
+.. Starting example - only one or two [strings](glossary.html#strings) in language? Planet ABBA ? use simple english grammar?
 
 {comment end}
 
 In this section we'll look at the kind of grammars that are widely used in computer science.
 They are very powerful because they allow a complicated system (like a compiler or a format like HTML) to be specified in a very concise way, and there are programs that will automatically take the [grammar](glossary.html#grammar) and build the system for you.
-The grammars for conventional programming languages are a bit too unwieldy to use as initial examples (they usually take a few pages to write out), so we're going to work with some small examples here, including parts of the grammars for programming languages. 
+The grammars for conventional programming languages are a bit too unwieldy to use as initial examples (they usually take a few pages to write out), so we're going to work with some small examples here, including parts of the grammars for programming languages.
 
 
 Note: the remainder of this section will be developed during 2013.
@@ -1436,7 +1430,7 @@ There's also an online system for generating images with L-systems: [http://www.
 .. These kinds of images are examples of fractals, which are structures where xxxx in nature: http://paulbourke.net/fractals/googleearth/
 
 ..  TCB give link to music [grammar](glossary.html#grammar) (info from David Bainbridge below)
-.. Grammars have been defined for *music notation* [give link]. 
+.. Grammars have been defined for *music notation* [give link].
 
 {comment end}
 
@@ -1488,7 +1482,7 @@ If you found the material in this chapter interesting, here are some topics that
 Formal languages come up in various areas of computer science, and provide invaluable tools for the computer scientist to reduce incredibly complex systems to a small description, and conversely to create very complex systems from a few simple rules.
 They are essential for writing compilers, and so are activated every time someone writes a program! They are also associated with automata theory and questions relating to computability, and are used to some extent in natural language processing, where computers try to make sense of human languages.
 
-Technically the kind of finite state automata (FSA) that we used in `Finite state automata`_ section is a kind known as a *Deterministic Finite Automata* (DFA), because the decision about which transition to take is unambiguous at each step. Sometimes it's referred to as a *Finite State Acceptor* because it accepts and rejects input depending on whether it gets to the final state. There are all sorts of variants that we didn't mention, including the Mealy and Moore machines (which produce an output for each each transition taken or state reached), the nested state machine (where each state can be an FSA itself), the non-deterministic finite automata (which can have the same label on more than one transition out of a state), and the lambda-NFA (which can include transitions on the empty string, {math}\lambda{math end}). Believe it or not, all these variations are essentially equivalent, and you can convert from one to the other. They are used in a wide range of practical situations to design systems for processing input. 
+Technically the kind of finite state automata (FSA) that we used in `Finite state automata`_ section is a kind known as a *Deterministic Finite Automata* (DFA), because the decision about which transition to take is unambiguous at each step. Sometimes it's referred to as a *Finite State Acceptor* because it accepts and rejects input depending on whether it gets to the final state. There are all sorts of variants that we didn't mention, including the Mealy and Moore machines (which produce an output for each each transition taken or state reached), the nested state machine (where each state can be an FSA itself), the non-deterministic finite automata (which can have the same label on more than one transition out of a state), and the lambda-NFA (which can include transitions on the empty string, {math}\lambda{math end}). Believe it or not, all these variations are essentially equivalent, and you can convert from one to the other. They are used in a wide range of practical situations to design systems for processing input.
 
 However, there are also more complex models of computation such as the push-down automaton (PDA) which is able to follow the rules of context-free grammars, and the most general model of computation which is called a Turing machine. These models are increasingly complicated and abstract, and structures like the Turing machine aren't used as physical devices (except for fun), but as a tool for reasoning about the limits on what can be computed.
 
@@ -1509,11 +1503,11 @@ The Kara programming environment also has a [demonstration of Turing machines](h
 
 {comment end}
 
-This chapter looked at two main kinds of formal language: the [regular expression](glossary.htm#regular expression) (RE) and the context-free [grammar](glossary.html#grammar) (CFG). These typify the kinds of languages that are widely used in compilers and file processing systems. Regular expressions are good for finding simple patterns in a file, like identifiers, keywords and numbers in a program, or tags in an HTML file, or dates and URLs in a web form. Context-free grammars are good when you have nested structures, for example, when an expression is made up of other expressions, or when an "if" statement includes a block of statements, which in turn could be "if" statements, ad infinitum. 
+This chapter looked at two main kinds of formal language: the [regular expression](glossary.htm#regular expression) (RE) and the context-free [grammar](glossary.html#grammar) (CFG). These typify the kinds of languages that are widely used in compilers and file processing systems. Regular expressions are good for finding simple patterns in a file, like identifiers, keywords and numbers in a program, or tags in an HTML file, or dates and URLs in a web form. Context-free grammars are good when you have nested structures, for example, when an expression is made up of other expressions, or when an "if" statement includes a block of statements, which in turn could be "if" statements, ad infinitum.
 There are more powerful forms of grammars that exist, the most common being context-sensitive grammars and unrestricted grammars, which allow you to have more than one non-terminal on the left hand side of a production; for example, you could have xAy {math}/to{math end} aBb, which is more flexible but a lot harder to work with.
 The relationships between the main kinds of grammars was described by the linguist Noam Chomsky, and is often called the :[Chomsky Hierarchy](glossary.htm#Chomsky Hierarchy) after him.
 
-There is a direct correspondence between the "machines" (such as the FSA) and languages (such as the Regular Expression), as each increasingly complex language needs the correspondingly complex machine to process it. 
+There is a direct correspondence between the "machines" (such as the FSA) and languages (such as the Regular Expression), as each increasingly complex language needs the correspondingly complex machine to process it.
 For example, an FSA can be used to determine if the input matches a given Regular Expression, but a PDA is needed to match a [string](glossary.html#string) to a CFG.
 The study of formal languages looks at these relationships, and comes up with ways to create the appropriate machines for a given language and vice versa.
 
@@ -1607,20 +1601,20 @@ Regular expressions and their relationship with FSAs is explained well in the bo
 
 
 .. xTCB add some of the following if/when used in the [grammar](glossary.html#grammar) section:
-.. Formal Language, 
-.. Syntax/Railroad Diagrams, 
-.. Context-Free Grammar, 
-.. Finite State Machines, 
-.. Backus Naur Form (BNF), 
-.. Regular Expression, 
-.. Reverse Polish Notation (RPN) or 
-.. Postfix Notation, Infix Notation, 
+.. Formal Language,
+.. Syntax/Railroad Diagrams,
+.. Context-Free Grammar,
+.. Finite State Machines,
+.. Backus Naur Form (BNF),
+.. Regular Expression,
+.. Reverse Polish Notation (RPN) or
+.. Postfix Notation, Infix Notation,
 .. Shunting Yard Algorithm
 .. State Diagram or State Transition Diagram (STD)
 .. Mealy Machine, Moore Machine
 
-.. See also: Parse Tree/Abstract Syntax Tree, 
-.. Well-Formed Formula (WFF), 
+.. See also: Parse Tree/Abstract Syntax Tree,
+.. Well-Formed Formula (WFF),
 .. Formal Semantics of Programming Languages
 
 {comment end}
