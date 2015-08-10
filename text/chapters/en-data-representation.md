@@ -27,7 +27,7 @@ When we write what is stored in a computer on paper, we normally use “0” for
 
 **Jargon Buster**
 
-The use of the two digits 0 and 1 is so common that some of the best known computer jargon is used for them. Since there are only two digits, the system is called binary. The short word for a "binary digit" is made by taking the first two letters and the last letter --- a *bit* is just a digit that can have two values. 
+The use of the two digits 0 and 1 is so common that some of the best known computer jargon is used for them. Since there are only two digits, the system is called binary. The short word for a "binary digit" is made by taking the first two letters and the last letter --- a *bit* is just a digit that can have two values.
 
 {jargon-buster end}
 
@@ -73,11 +73,11 @@ The reason that the number of patterns doubles with each extra dot is that with,
 {teacher end}
 
 So, Braille can make 64 patterns.
-That's enough for all the letters of the alphabet, and other symbols too, such as digits and punctuation. 
+That's enough for all the letters of the alphabet, and other symbols too, such as digits and punctuation.
 
-Braille also illustrates why binary representation is so popular. It would be possible to have three kinds of dot: flat, half raised, and raised. 
+Braille also illustrates why binary representation is so popular. It would be possible to have three kinds of dot: flat, half raised, and raised.
 A skilled braille reader could distinguish them, and with three values per dot, you would only need 4 dots to represent 64 patterns.
-The trouble is that you would need more accurate devices to create the dots, and people would need to be more accurate at sensing them. 
+The trouble is that you would need more accurate devices to create the dots, and people would need to be more accurate at sensing them.
 If a page was squashed, even very slightly, it could leave the information unreadable.
 
 Digital devices almost always use two values (binary) for similar reasons: computer disks and memory can be made cheaper and smaller if they only need to be able to distinguish between two extreme values (such as a high and low voltage), rather than fine-grained distinctions between very subtle differences in voltages.
@@ -153,7 +153,7 @@ Exchanging short messages in code will force students to use the table, and they
 
 Computers can represent pieces of text with sequences of these patterns, much like Braille does. For example, the word “computers” (all lower-case) would be 01100011 01101111 01101101 01110000 01110101 01110100 01100101 01110010 01110011.
 
-How would you represent the word “science” in ASCII? What about “Wellington” (note that it starts with an upper-case “W”)? How would you represent “358” in ASCII (it is three characters, even though it looks like a number)? What about the sentence “Hello, how are you?” (look for the comma, question mark, and space characters in the ASCII table). 
+How would you represent the word “science” in ASCII? What about “Wellington” (note that it starts with an upper-case “W”)? How would you represent “358” in ASCII (it is three characters, even though it looks like a number)? What about the sentence “Hello, how are you?” (look for the comma, question mark, and space characters in the ASCII table).
 
 {teacher}
 
@@ -171,7 +171,7 @@ Note that the text "358" is treated as 3 characters in ASCII, which may be confu
 
 .. xHTML we could make an interactive which challenges them to put in the above words. It's a nice sequence, and "358" should be particularly interesting!
 
-.. _curiosity-music:
+.. curiosity-music:
 
 {comment end}
 
@@ -187,11 +187,11 @@ For example, a = 1100001 and A = 1000001, they both have 00001 as their last 5 b
 
 An easy way to allocate patterns in this 5 bit system would be to just use the last 5 bits for each character in the ASCII table. Therefore A would be 00001, b would be 00010, c would be 00011, etc.
 
-The word “water” would be 
-10111 
-00001 
-10111 
-10100 
+The word “water” would be
+10111
+00001
+10111
+10100
 10010
 
 There's an activity that uses [five-bit text codes hidden in music here](http://csunplugged.org/modem).
@@ -222,7 +222,7 @@ There are several other codes that were popular before ASCII, including the [Bau
 
 If you are doing a warm up exercise with the class, the CS Unplugged binary activity [http://csunplugged.org/binary-numbers](http://csunplugged.org/binary-numbers) provides scaffolding and can be used to teach concepts around binary numbers using only counting or simple addition.  In the chapter we have decided to approach this section by starting with number systems. While this may appear “scary” because of the math, most students should be quite familiar with it as it is first introduced very early in primary school in the form of recognising that numbers are made up of the “ones”, “tens”, “hundreds”, etc, and is further built on until eventually in high school they learn about the exponent notation, i.e. {math}541 = 5 \times 10^2 + 4 \times 10^1 + 1 \times 10^0{math end}. As explained in this section, binary numbers are a base 2 number system, rather than the base 10 number system we are all familiar with. The idea of number systems provides a good stepping stone into binary numbers
 
-We are assuming that students already know about base 10 number systems, including the exponent notation. The initial information in this section on them is only intended to trigger recall, rather than actually teaching them the concept. 
+We are assuming that students already know about base 10 number systems, including the exponent notation. The initial information in this section on them is only intended to trigger recall, rather than actually teaching them the concept.
 
 Less mathematically able students who are really struggling with number systems should be able to skip over it, and instead go directly to making binary numbers in the interactive.
 
@@ -277,12 +277,12 @@ Because binary is base 2, there are only 2 possible digits (0 and 1), as opposed
 
 The interactive below illustrates how this binary number system represents decimal numbers. Have a play around with it to see what patterns you can see. The decimal (base 10) representation for the binary number currently shown is given by the interactive on the far right.
 
-<div class="widget-holder"><a href="_static/widgets/DR/DR-base-conversion/public_html/index.html?base=2&columns=7&lines=A,B,C&offset=0"  target="_blank"><img class="widget-image" src="_static/data_representation/images/DR-BaseConversionBinaryThumbnail.png" alt=""><span class="widget-subtitle">Click to load the<br>binary number interactive</span></a></div>
+<div class="widget-holder"><a href="static/widgets/DR/DR-base-conversion/public_html/index.html?base=2&columns=7&lines=A,B,C&offset=0"  target="blank"><img class="widget-image" src="static/data_representation/images/DR-BaseConversionBinaryThumbnail.png" alt=""><span class="widget-subtitle">Click to load the<br>binary number interactive</span></a></div>
 
 To ensure you are understanding correctly how to use the interactive, verify that when you enter the binary number 101101 it shows that the decimal representation is 45, that when you enter 100000 it shows that the decimal representation is 32, and when you enter 001010 it shows the decimal representation is 10.
 
 You should try using the interactive to convert a decimal number to binary.
-For example, choose a number less than 61 (perhaps your house number, a friend's age, or the day of the month you were born on), set all the binary digits to zero, and then start with the *left-most* digit (32), trying out if it should be zero or one. 
+For example, choose a number less than 61 (perhaps your house number, a friend's age, or the day of the month you were born on), set all the binary digits to zero, and then start with the *left-most* digit (32), trying out if it should be zero or one.
 See if you can find a method for converting the number without too much trial and error.
 
 {teacher}
@@ -299,7 +299,7 @@ Can you figure out the binary representation for 23 without using the interactiv
 
 {teacher}
 
-23 is 010111, 4 is 000100, 0 is 000000, and 32 is 100000. 
+23 is 010111, 4 is 000100, 0 is 000000, and 32 is 100000.
 
 {teacher end}
 
@@ -311,7 +311,7 @@ What is the largest number you can make with this binary interactive? What is th
 - 111111 in binary, 63 in decimal is the largest number
 - All the integer values (0, 1, 2... 63) in the range can be represented (and there is a unique representation for each one)
 
-The question of uniqueness will be challenging for some students. It addresses the idea that every number has a unique binary representation; students who struggle with the reasoning may be prepared to just accept that this is the case. However, the following reasoning introduces the idea: have a student work out a 5-bit binary representation for, say, 12 (which is 01100). The left-most 0 represents the 16; ask if it would be possible to represent 12 if that bit is a 1 (it's not possible because you'd already have 16, which is more than 12). Now consider the next bit (the 1 represents 8). Is it possible to represent 12 without the 8? (No, because the remaining bits only add up to 7). Following on with this reasoning, the student will establish that 12 *has to* be represented as 01100. 
+The question of uniqueness will be challenging for some students. It addresses the idea that every number has a unique binary representation; students who struggle with the reasoning may be prepared to just accept that this is the case. However, the following reasoning introduces the idea: have a student work out a 5-bit binary representation for, say, 12 (which is 01100). The left-most 0 represents the 16; ask if it would be possible to represent 12 if that bit is a 1 (it's not possible because you'd already have 16, which is more than 12). Now consider the next bit (the 1 represents 8). Is it possible to represent 12 without the 8? (No, because the remaining bits only add up to 7). Following on with this reasoning, the student will establish that 12 *has to* be represented as 01100.
 
 Another way of showing the uniqueness is to work out how many bit combinations there are. For 5 bits, there are two choices for each bit, so 2x2x2x2x2 (i.e. 32) distinct 5-bit binary numbers. Since the 5-bit binary numbers cover the range from 0 to 31, there are 32 numbers, so there's a one-to-one relationship between all possible bit patterns and all numbers they can represent i.e. each number has a unique representation.
 
@@ -390,13 +390,13 @@ Groups of 8 bits are so useful that they have their own name: a **byte**. Comput
 
 Candles on birthday cakes use the base 1 numbering system, where each place is worth 1 times the one to its right(!) For example, the number 3 is 111, and 10 is 1111111111. This can cause problems as you get older --- if you've ever seen a cake with 100 candles on it, you'll be aware that it's a serious fire hazard.
 
-{image dr-binary-cakes.png alt="the image shows two people with birthday cakes, however a cake with 100 candles on it turns into a big fireball!"}
+{image binary-cakes.png alt="The image shows two people with birthday cakes, however a cake with 100 candles on it turns into a big fireball!"}
 
 Luckily it's possible to use binary notation for birthday candles --- each candle is either lit or not lit. For example, if you are 18, the binary notation is 10010, and you need 5 candles (with only two of them lit).
 
 There's a [video on using binary notation for counting up to 1023 on your hands, as well as using it for birthday cakes](http://www.youtube.com/watch?v=GUqle9RE3Y8).
 
-{image dr-binary-cake.png alt="It's a lot smarter to use binary notation on candles for birthdays as you get older, as you don't need as many candles."}
+{image binary-cake.png alt="It's a lot smarter to use binary notation on candles for birthdays as you get older, as you don't need as many candles."}
 
 {curiosity end}
 
@@ -468,7 +468,7 @@ The hexadecimal system is also known as base 16. The following interactive conve
 
 {comment end}
 
-<div class="widget-holder"><a href="_static/widgets/DR/DR-base-conversion/public_html/index.html?base=16&columns=7&lines=A,B,C&offset=0"  target="_blank"><img class="widget-image" src="_static/images/DR-BaseConversionHexidecimal.png" alt=""><span class="widget-subtitle">Click to load the widget</span></a></div>
+<div class="widget-holder"><a href="static/widgets/DR/DR-base-conversion/public_html/index.html?base=16&columns=7&lines=A,B,C&offset=0"  target="blank"><img class="widget-image" src="static/images/DR-BaseConversionHexidecimal.png" alt=""><span class="widget-subtitle">Click to load the widget</span></a></div>
 
 Which notation you use will depend on the situation; binary numbers represent what is actually stored, but can be confusing to read and write; hexadecimal numbers are a good shorthand; and decimal numbers are used if you're trying to understand the meaning of the number. All three get used in computer science.
 
@@ -506,9 +506,9 @@ When mixing paints, red and blue would give purple. If you mixed yellow and blue
 Actually, while the colours blue, red and yellow are commonly used in art classes, the very similar primary colours that work better for printing are cyan, magenta and yellow (CMY), which are commonly found in computer printers as well as printing presses. This kind of mixing is called "subtractive mixing", because it starts with a white canvas or paper, and subtracts colour from it. The below interactive allows you to experiment with these in case you're not familiar with them, or in case you just like mixing colours.
 We've also added a "black" mix; it's not strictly necessary (you can get black by putting all the other colours on full), but it's useful for printers because it's such a common colour.
 
-<link rel="stylesheet" href="_static/interactives/dr/dr_inline_interactives.css" type="text/css" />
-<script type="text/javascript" src="_static/interactives/dr/dr_inline_interactives.js"></script>
-<script type="text/javascript" src="_static/interactives/dr/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="static/interactives/dr/dr_inline_interactives.css" type="text/css" />
+<script type="text/javascript" src="static/interactives/dr/dr_inline_interactives.js"></script>
+<script type="text/javascript" src="static/interactives/dr/jquery-ui.min.js"></script>
 <div class="interactive row text-center">
 <h4>CMY Colour Mixer</h4>
 	<div class="col-xs-12 col-sm-4">
@@ -549,19 +549,19 @@ Each pixel on a screen has 3 tiny lights; one red, one green, and one blue. By i
 
 You can try additive colours in the following interactive; try different combinations of each slider. How do you generate yellow? What happens if they are all at zero? All at full value (255)? Halfway? What happens if one colour is at full, and the other two are at halfway? How do you get shades of purple, yellow, orange, and pink? What happens when you have the same amount of each colour? How do you get black? How do you get white?
 
-<div><iframe width="100%" height="270" src="_static/widgets/DR/DR-color/CG-ColorBits_1.html" frameborder="0"></iframe></div>
+<div><iframe width="100%" height="270" src="static/widgets/DR/DR-color/CG-ColorBits_1.html" frameborder="0"></iframe></div>
 
-The key idea is that you can specify the colour of a pixel using three numbers. 
+The key idea is that you can specify the colour of a pixel using three numbers.
 In the above example, each number is from 0 to 255.
 With 256 possible values for each of the three components, that gives 256 x 256 x 256 = 16,777,216 possible colours, which is more than the human eye can detect.
 In other words, using just three numbers, you can specify pretty much any colour you want --- and probably a lot that you don't.
 
 Of course, a computer screen or printout doesn't have just one colour on it --- it has millions of small pixels, each of which has a particular colour.
 
-The following interactive allows you to zoom in on an image to see the pixels that are used to represent it. Each pixel is a solid colour square, and the computer needs to store the colour for each pixel. 
+The following interactive allows you to zoom in on an image to see the pixels that are used to represent it. Each pixel is a solid colour square, and the computer needs to store the colour for each pixel.
 If you zoom in far enough, the interactive will show you the red-green-blue values for each pixel. You can pick a pixel and put the values on the slider above - it should come out as the same colour as the pixel.
 
-<div class="widget-holder"><a href="_static/interactives/dr/pixel-values/index.html"  target="_blank"><img class="widget-image" src="_static/interactives/dr/pixel-values/thumbnail.png" alt=""><span class="widget-subtitle">Click to load<br>Pixel Interactive</span></a></div>
+<div class="widget-holder"><a href="static/interactives/dr/pixel-values/index.html"  target="blank"><img class="widget-image" src="static/interactives/dr/pixel-values/thumbnail.png" alt=""><span class="widget-subtitle">Click to load<br>Pixel Interactive</span></a></div>
 
 {jargon-buster}
 
@@ -571,7 +571,7 @@ The word **pixel** is short for "picture element". On computer screens and print
 
 {jargon-buster end}
 
-{images dr-screen-pixels.jpg alt="This image shows the small red, green, and blue pixels that are used on screens to display colour."}
+{images pixels-on-screens.jpg alt="This image shows the small red, green, and blue pixels that are used on screens to display colour."}
 
 {curiosity}
 
@@ -595,7 +595,7 @@ Another exercise to see the relationship between bit patterns and colour images 
 
 {comment end}
 
-Even the smallest computer screens have millions of *pixels* on them, and the computer needs to represent a colour for each one of those pixels. 
+Even the smallest computer screens have millions of *pixels* on them, and the computer needs to represent a colour for each one of those pixels.
 These days photographs are measured in *megapixels* (millions of pixels).
 To store the image, your computer is storing a colour for every one of those pixels, and each of those could be using the three numbers above.
 So a 2 megapixel photo, in its simplest form, needs 6 million numbers to be recorded to represent it accurately.
@@ -611,13 +611,13 @@ If you calculate {math}2^24{math end} (i.e. the number of bit patterns you can g
 {comment}
 
 .. Might put a box just showing the math, i.e. that {math}2^24{math end} = {math}256^3{math end}. Won’t take too long to do, and I suspect it may be helpful to some people to see that. Trying to cater for as many different learning styles as possible...
-.. I presume you mean something along the lines of 
+.. I presume you mean something along the lines of
    {math}2^24{math end} = 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2
 			=  (2 x 2 x 2 x 2 x 2 x 2 x 2 x 2) x (2 x 2 x 2 x 2 x 2 x 2 x 2 x 2) x (2 x 2 x 2 x 2 x 2 x 2 x 2 x 2)
 			= ({math}2^8{math end}) x ({math}2^8{math end}) x ({math}2^8{math end})
 			= 256 x 256 x 256
 			= {math}256^3{math end}
-.. I like the idea of boxes and different explanations for different learning styles -tim. 
+.. I like the idea of boxes and different explanations for different learning styles -tim.
 
 {comment end}
 
@@ -625,11 +625,11 @@ So now that we know we’ll need 24 bits to represent all the possible colours t
 
 A sensible way is to use 3 binary numbers that represent the amount of each of red, green, and blue in the pixel. In order to do this, you can simply convert the decimal values on the interactive that specify how much of each of the primary colours is making up the resulting colour into binary, and put them side by side to make a full pattern of 24 bits. Because consistency is important in order for a computer to make sense of the bit pattern, the binary number for red should be put first, followed by green, and then finally blue.
 
-{image dr-purple.png alt="The colour purple."}
+{image colour-purple.png alt="The colour purple."}
 
 As an example, suppose you have the colour that has red = 145, green = 50, and blue = 123 (it is a shade of purple shown in the square above; you can see it if you set the sliders to those values in the interactive above).
 You need to convert each of the 3 numbers into binary, using 8 bits for each. You can either do this by hand if you are confident with binary numbers, use [this binary number interactive with 8 columns](DR-base-conversion/public_html/index.html?base=16&columns=7&lines=A,B,C&offset=0), or use a [binary piano](dr-binary-piano-uc.pdf).
-You should get red = 10010001, 
+You should get red = 10010001,
 green = 00110010,
 and blue = 01111011.
 This can be written as 100100010011001001111011, which is the bit pattern for representing that shade of purple. Note that there are no spaces between the 3 numbers, as this is a pattern of bits rather than actually being 3 binary numbers, and computers don’t have any such concept of a space between bit patterns anyway --- everything must be a 0 or a 1. You could write it with spaces to make it easier to read, and to represent the idea that they are likely to be stored in 3 8-bit bytes, but inside the computer memory there is just a sequence of high and low voltages, so even writing 0 and 1 is an arbitrary notation. Note that all leading and trailing 0’s on each of the components are kept --- without them, it would be representing a shorter number.
@@ -637,12 +637,12 @@ Make sure you work through this example yourself, to understand how it works.
 
 As long as the computer knows this is a colour (typically because it has been taken from a file that is specifying colours, such as GIF or HTML), it will know that the first 8 bits specify the amount of red, the next 8 bits specify the amount of green, and the last 8 bits specify the amount of blue. The computer won’t actually convert the number into decimal, as it works with the binary directly --- most of the process that takes the bits and makes the right pixels appear is typically done by a graphics card or a printer.
 
-24 bit colour is sometimes referred to in settings as "True Color" (because it is more accurate than the human eye can see). On Apple systems, it is called "Millions of colours". 
+24 bit colour is sometimes referred to in settings as "True Color" (because it is more accurate than the human eye can see). On Apple systems, it is called "Millions of colours".
 
 ### Hexadecimal colour codes
 
 When writing HTML code, you often need to specify colours for text, backgrounds, etc. One way of doing this is to specify the colour name, for example “red”, “blue”, “purple”, or “gold”. The use of names limits the number of colours you can represent and the shade might not be exactly the one you wanted. A better way is to specify the 24 bit colour directly. The problem is that strings of 24 binary digits are hard to read, and so colours in HTML use  hexadecimal codes as a quick way to write the 24 bits, for example #00FF9E. The hash sign just means that it should be interpreted as a hexadecimal representation, and since each hexadecimal digit corresponds to 4 bits, the 6 digits represent 24 bits of colour information.
-This "hex triplet" format is used in HTML pages to specify colours for things like the background of the page, the text, and the colour of links. 
+This "hex triplet" format is used in HTML pages to specify colours for things like the background of the page, the text, and the colour of links.
 It is also used in CSS, SVG, and other applications.
 
 In the 24 bit colour example earlier, the 24 bit pattern was 100100010011001001111011.
@@ -651,7 +651,7 @@ Substituting a hexadecimal digit for each of the 4-bit groups (using the table a
 
 The hexadecimal notation is extremely useful for people to read or write, as it is much easier to type 6 characters rather than 24 1’s and 0’s when specifying a colour!
 
-For example, to specify the background colour of a page in HTML,  the body tag can have a hexadecimal colour added to it like this: 
+For example, to specify the background colour of a page in HTML,  the body tag can have a hexadecimal colour added to it like this:
 
 ```
 <body bgcolor="#00FF9E">
@@ -682,9 +682,9 @@ What if we were to use fewer than 24 bits to represent each colour, i.e. each sl
 
 It should be possible to get a perfect match using 24 bit colour. Now try the 8-bit sliders. These ones have only 8 values for red and green, and just 4 values for blue!
 
-<div><iframe width="100%" height="500" src="_static/widgets/DR/DR-color/CG-ColorBits_2.html" frameborder="0"></iframe></div>
+<div><iframe width="100%" height="500" src="static/widgets/DR/DR-color/CG-ColorBits_2.html" frameborder="0"></iframe></div>
 
-The above system used 3 bits to specify the amount of red (8 possible values), 3 bits to specify the amount of green (again 8 possible values), and 2 bits to specify the amount of blue (4 possible values). This gives a total of 8 bits (hence the name), which can be used to make 256 different bit patterns, and thus can represent 256 different colours. 
+The above system used 3 bits to specify the amount of red (8 possible values), 3 bits to specify the amount of green (again 8 possible values), and 2 bits to specify the amount of blue (4 possible values). This gives a total of 8 bits (hence the name), which can be used to make 256 different bit patterns, and thus can represent 256 different colours.
 
 Using this scheme to represent all the pixels of an image takes one third of the number of bits required for 24-bit colour, but it is not as good at showing smooth changes of colours or subtle shades, because there are only 256 possible colors for each pixel. This is one of the big tradeoffs in data representation: do you allocate less space (fewer bits), or do you want higher quality?
 
@@ -716,7 +716,7 @@ The extreme values are very limited; two-bit colour can have only 4 different co
 
 {teacher end}
 
-<div><iframe width="100%" height="650" src="_static/widgets/DR/DR-color/CG-ColorBits_3.html" frameborder="0"></iframe></div>
+<div><iframe width="100%" height="650" src="static/widgets/DR/DR-color/CG-ColorBits_3.html" frameborder="0"></iframe></div>
 
 So is it worth the space saving to put up with a lower quality image?
 An image represented using 24 bit colour would have 24 bits per pixel. In 600 x 800 pixel image (which is a reasonable size for a photo), this would contain 600 x 800 = 480,000 pixels, and thus would use 480,000 x 24 bits = 11,520,000 bits. This works out to around 1.44 megabytes.
@@ -724,7 +724,7 @@ If we use 8-bit colour instead, it will use a third of the memory, so it would s
 
 8 bit colour is not used much anymore, although it can still be helpful in situations such as  accessing a computer desktop remotely on a slow internet connection, as the image of the desktop can instead be sent using 8 bit colour instead of 24 bit colour. Even though this may cause the desktop to appear a bit strangely, it doesn’t stop you from getting whatever it was you needed to get done, done. There are also other situations where colour doesn’t matter at all, for example diagrams, and black and white printed images.
 
-If space really is an issue, then this crude method of reducing the range of colours isn't usually used; instead, compression methods such as JPEG, GIF and PNG are used. 
+If space really is an issue, then this crude method of reducing the range of colours isn't usually used; instead, compression methods such as JPEG, GIF and PNG are used.
 These make much more clever compromises to reduce the space that an image takes, without making it look so bad, including choosing a better palette of colours to use rather than just using the simple representation discussed above.
 However, compression methods require a lot more processing, and images need to be decoded to the representations discussed in this chapter before they can be displayed.
 We will look at compression methods in a later chapter.
@@ -732,7 +732,7 @@ The ideas in this present chapter more commonly come up when designing systems (
 
 {teacher}
 
-There's a subtle boundary between low quality data representations (such as 8-bit colour) and compression methods. In principle, reducing an image to 8-bit colour is a way to compress it, but it's a very poor approach, and a proper compression method like JPEG will do a much better job. 
+There's a subtle boundary between low quality data representations (such as 8-bit colour) and compression methods. In principle, reducing an image to 8-bit colour is a way to compress it, but it's a very poor approach, and a proper compression method like JPEG will do a much better job.
 
 {teacher end}
 
@@ -741,7 +741,7 @@ For the purposes of the New Zealand NCEA standards, reducing the bit depth of an
 Now that you know how the 24 bit and 8 bit colour schemes work and how to represent them using bits, what are the implications of this in practice?
 The following interactive can be used to upload your own image, and experiment with allocating different numbers of bits to each colour. You can use it to demonstrate the effect of the different numbers of bits for this data representation.
 
-<div><iframe width="100%" height="520" src="_static/widgets/DR/DR-color/CG-ColorBits_4.html" frameborder="0"></iframe></div>
+<div><iframe width="100%" height="520" src="static/widgets/DR/DR-color/CG-ColorBits_4.html" frameborder="0"></iframe></div>
 
 {comment}
 
@@ -754,7 +754,7 @@ The following interactive can be used to upload your own image, and experiment w
 In the introduction we looked at 8-bit ASCII representations of text (which really use 7 bits, allowing for 128 different symbols).
 As with any other kind of data represented in binary, we can get improvements by considering larger (or smaller) representations.
 
-In the curiosity earlier we observed that 5 bits are sufficient for simple coding of the English alphabet, and for very slow coding systems (like the [video that contains hidden text using musical notes](http://www.youtube.com/watch?v=L-v4Awj_p7g>) using 5 bits instead of 8 can save some time. 
+In the curiosity earlier we observed that 5 bits are sufficient for simple coding of the English alphabet, and for very slow coding systems (like the [video that contains hidden text using musical notes](http://www.youtube.com/watch?v=L-v4Awj_p7g>) using 5 bits instead of 8 can save some time.
 The braille system uses only 6 bits for each character, which allows for 64 different characters, and it is also better than using 8 bits since it would take more paper and more time to read if the longer code was used.
 
 But some languages have way more than 32, or 64, or even 128 characters in their alphabet.
@@ -789,23 +789,23 @@ The difference between two dates in Excel is the number of days between them; th
 
 {teacher end}
 
-Any system that stores numbers needs to make a compromise between the number of bits allocated to store the number, and the range of values that can be stored. 
+Any system that stores numbers needs to make a compromise between the number of bits allocated to store the number, and the range of values that can be stored.
 For example, Excel spreadsheets have a maximum value that can be stored --- try calculating 1/3, and display it to as many places of accuracy as possible.
 In some systems (like the Java and C programming languages and databases) it's possible to specify how accurately numbers should be stored; in others it is fixed in advance (such as in spreadsheets).
 Some are able to work with arbitrarily large numbers by increasing the space used to store them as necessary (e.g. integers in the Python programming language).
 
 There are two commonly used kinds of numbers: integers and floating point numbers. Integers are what you might know as whole numbers, and can be positive or negative, whereas floating point numbers can have a decimal point in them, and can also be positive or negative. In this section we are just going to focus on integers, as representing floating point numbers is a bit more difficult to understand (but well worth understanding if you use them a lot)!
 
-The binary number representation in the previous section only allowed us to represent positive numbers. In practice, we will want to be able to represent negative numbers as well (such as when the amount of money earned goes to a negative amount, or the temperature falls below zero!) 
+The binary number representation in the previous section only allowed us to represent positive numbers. In practice, we will want to be able to represent negative numbers as well (such as when the amount of money earned goes to a negative amount, or the temperature falls below zero!)
 In our normal representation of base 10 numbers, we represent negative numbers by putting a minus sign in front of the number.  
-On a computer we don’t have minus signs, but we can do it by allocating one extra bit, called a *sign* bit, to represent the minus sign. 
+On a computer we don’t have minus signs, but we can do it by allocating one extra bit, called a *sign* bit, to represent the minus sign.
 We can choose the leftmost bit as the sign bit --- when the sign bit is set to “0”, that means the number is positive and when the sign bit is set to “1”, the number is negative (just as if there were a minus sign in front of it).
-For example, if we wanted to represent the number 41 using 6 bits (like above) along with an additional 7th bit that is the sign bit, assuming the sign bit is first, we would represent it by 0101001. The first bit is a 0, meaning the number is positive, then the remaining 6 bits give 41, meaning the number is +41. If we wanted to make -59, this would be 1111011. The first bit is a 1, meaning the number is negative, and then the remaining 6 bits give 59, meaning the number is -59. 
+For example, if we wanted to represent the number 41 using 6 bits (like above) along with an additional 7th bit that is the sign bit, assuming the sign bit is first, we would represent it by 0101001. The first bit is a 0, meaning the number is positive, then the remaining 6 bits give 41, meaning the number is +41. If we wanted to make -59, this would be 1111011. The first bit is a 1, meaning the number is negative, and then the remaining 6 bits give 59, meaning the number is -59.
 
 {comment}
 
 .. 1 is for negative sign, 0 for positive: http://en.wikipedia.org/wiki/Sign_bit
- 
+
 .. Might put the answers for these in, as there isn’t a certain way for students to check their answers like there was for the above ones.
 
 {comment end}
@@ -830,7 +830,7 @@ Suppose we have 8-bit numbers, with the left-most bit as a sign bit. What would 
 
 {teacher}
 
-10000110 is -6, and 01111111 is 127 (the maximum value with 8-bit signed numbers). 10000000 means -0, which is the same as 0, and is discussed below. 
+10000110 is -6, and 01111111 is 127 (the maximum value with 8-bit signed numbers). 10000000 means -0, which is the same as 0, and is discussed below.
 
 {teacher end}
 
@@ -857,9 +857,9 @@ Negative numbers are more often stored on computers using a system called "two's
 
 **Curiosity**
 
-In some programming languages there isn't a check for when a number gets too big (overflows). For example, if you have an 8-bit number using two's complement, then 01111111 is the largest number (127), and if you add one without checking, it will change to 10000000, which happens to be the number -128. This can cause serious problems if not checked for, and is behind a variant of the Y2K problem, called the `Year 2038 problem <http://en.wikipedia.org/wiki/Year_2038_problem>`__, involving a 32-bit number overflowing for dates on Tuesday, 19 January 2038.
+In some programming languages there isn't a check for when a number gets too big (overflows). For example, if you have an 8-bit number using two's complement, then 01111111 is the largest number (127), and if you add one without checking, it will change to 10000000, which happens to be the number -128. This can cause serious problems if not checked for, and is behind a variant of the Y2K problem, called the `Year 2038 problem <http://en.wikipedia.org/wiki/Year_2038_problem>`, involving a 32-bit number overflowing for dates on Tuesday, 19 January 2038.
 
-{image dr-cant-sleep.png alt="xkcd comment on NP complete"}
+{image xkcd-cant-sleep-comic.png alt="XKCD comic on number overflow"}
 
 {curiosity end}
 
@@ -870,13 +870,13 @@ In a computer that uses 32 bits for a number, how many different numbers could i
 
 There is also such thing as a **32 bit *unsigned* integer**. This does not have a signed bit, and the 32nd bit is included as part of the value. As a result, it can represent twice as many positive numbers (but no negative numbers) as the 32 bit *signed* integer above. This would be 4,294,967,296 different numbers, with 4,294,967,295 being the highest.
 
-How many people are in the world? 
+How many people are in the world?
 Would a 32 bit integer like described above be large enough to store a different identifier number for each person in the world?
 How many bits of accuracy would you want to allow for possible population growth?
 
 {teacher}
 
-The world population is approximately 7 billion, so 32 bits isn't quite enough to have an identifier for each person in the world. 64 bits can store up to 18,446,744,073,709,600,000, so that is way more than enough. Since each extra bit doubles the range that can be stored, even 33 bits would be enough for the world population, and 34 bits would be enough even if the population doubles. The idea that one extra bit increases the range so much is an important concept in data representation. 
+The world population is approximately 7 billion, so 32 bits isn't quite enough to have an identifier for each person in the world. 64 bits can store up to 18,446,744,073,709,600,000, so that is way more than enough. Since each extra bit doubles the range that can be stored, even 33 bits would be enough for the world population, and 34 bits would be enough even if the population doubles. The idea that one extra bit increases the range so much is an important concept in data representation.
 
 {teacher end}
 
@@ -905,7 +905,7 @@ What are some examples of numbers you could not represent using any of these int
 
 Another type of number used in computer systems is the "floating point" value. While we won't look at it in detail, to get a taste of what's involved, consider the bit values in a 4-bit number, which are 8, 4, 2 and 1. What would the value of a bit *to the right* of the one bit be? And to the right of that one?
 
-The following version of the base conversion interactive has bits that are smaller than the 1-bit. Try representing the decimal number 3.5 using this system. How about 2.8125? What about 2.8? 
+The following version of the base conversion interactive has bits that are smaller than the 1-bit. Try representing the decimal number 3.5 using this system. How about 2.8125? What about 2.8?
 
 This system is a fixed-point number system; floating point numbers are based on this idea, but allow for the number of digits to be fixed, but the position of the point to change (by giving an exponent value).
 
@@ -927,7 +927,7 @@ This section is an alternative approach to doing a project with number represent
 
 {teacher end}
 
-If you are programming in a language (e.g. Python, Java, C, C++, C#) then the limitations of data representations become important very quickly, as you will have to choose what kind of data representation you want to use, and if it is too small then it can "overflow". 
+If you are programming in a language (e.g. Python, Java, C, C++, C#) then the limitations of data representations become important very quickly, as you will have to choose what kind of data representation you want to use, and if it is too small then it can "overflow".
 For example, if you allocate a variable to be stored as a 16 bit unsigned integer, and you are counting how many characters there are in a file, then it will fail after 65,535 characters --- that's just a 65 kilobyte file.
 
 If the amount of memory your computer has to store its data in is very limited (for example, on a small portable device), you might not want to reserve 32 bits for a number if it is never going to be over 100. Or even if there is plenty of memory, if you are storing millions of data values then using 16-bit integers instead of 8-bit integers will waste millions of bytes of memory.
@@ -938,11 +938,11 @@ Working out the size of an integer used in a particular programming language may
 
 The kind of image representations covered here are the basic ones used in most digital systems, and the main point of this chapter is to understand how digital representations work, and the compromises needed between the number of bits, storage used, and quality.
 
-The colour representation discussed is what is often referred to as "raw" or "bitmap" (bmp) representation. 
+The colour representation discussed is what is often referred to as "raw" or "bitmap" (bmp) representation.
 For large images, real systems use compression methods such as JPEG, GIF or PNG to reduce the space needed to store an image, but at the point where an image is being captured or displayed it is inevitably represented using the raw bits as described in this chapter, and the basic choices for capturing and displaying images will affect the quality and cost of a device.
 Compression is regarded as a form of encoding, and is covered in a later chapter.
 
-The representation of numbers is a whole area of study in itself. 
+The representation of numbers is a whole area of study in itself.
 The choice of representation affects how quickly arithmetic can be done on the numbers, how accurate the results are, and how much memory or disk space is used up storing the data.
 Even integers have issues like the order in which a large number is broken up across multiple bytes.
 Floating point numbers generally follow common standards (the IEEE 754 standard is the most common one) to make it easy to design compatible hardware to process them.
@@ -968,7 +968,7 @@ The chapter does not (yet) cover other forms of data representation, and you may
 
 This puzzle can be solved using the pattern in binary numbers: [http://www.cs4fn.org/binary/lock/](http://www.cs4fn.org/binary/lock/)
 
-[This site](http://courses.cs.vt.edu/~csonline/NumberSystems/Lessons/index.html) has more complex activities with binary numbers, including fractions, multiplication and division. 
+[This site](http://courses.cs.vt.edu/~csonline/NumberSystems/Lessons/index.html) has more complex activities with binary numbers, including fractions, multiplication and division.
 
 
 ### Useful Links
@@ -977,4 +977,3 @@ This puzzle can be solved using the pattern in binary numbers: [http://www.cs4fn
 - [Representing bits using sound <http://csunplugged.org/modem)
 - [Hex game <http://www.purposegames.com/game/049fc90a)
 - [Thriving in our digital world](https://onramps.instructure.com/courses/723227) has good illustrations of data representation
-

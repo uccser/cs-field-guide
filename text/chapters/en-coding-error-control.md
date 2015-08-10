@@ -14,7 +14,7 @@ The following assessment plans also cover this material:
 ## What's the big picture?
 {teacher}
 
-The parity magic trick can be an intriguing introduction to the idea of error correction, and we recommend using it at the start of teaching this topic. You need to practise it in advance, and for high school students we recommend a grid of about 7x7 or 8x8 cards to have a good impact. Details are in the [Card flip magic section](http://csunplugged.org/error-detection) of the [CS Unplugged site][http://csunplugged.org/).
+The parity magic trick can be an intriguing introduction to the idea of error correction, and we recommend using it at the start of teaching this topic. You need to practise it in advance, and for high school students we recommend a grid of about 7x7 or 8x8 cards to have a good impact. Details are in the [Card flip magic section](http://csunplugged.org/error-detection) of the [CS Unplugged site](http://csunplugged.org/).
 
 {teacher end}
 
@@ -168,6 +168,8 @@ In this section we will be initially looking at one of the most commonly used ba
 
 Most products you can buy at the shop have a barcode on them with a 13 digit global trade item number (referred to as GTIN-13). The first 12 digits are the actual identification number for the product, the 13th is the check digit calculated from the other 12. Not all barcodes are GTIN-13, there are several others around. If the barcode has 13 numbers in it, it is almost certainly GTIN-13.
 
+{image isbn-barcode.png alt="An image of a 13 digit barcode"}
+
 The following spreadsheet checks GTIN-13 barcodes. Enter a barcode number into the interactive, and it will tell you whether or not you typed it correctly! Start by using the barcode number of a box of 30 cans of coke; “9 300675 036009”. What happens if you then change one digit to something else?
 
 {comment}
@@ -176,7 +178,7 @@ The following spreadsheet checks GTIN-13 barcodes. Enter a barcode number into t
 
 {comment end}
 
-<p><a href="_static/interactives/ec/isbncreditcardcheckerv2.xlsx">Click here to download the spreadsheet.</a></p>
+<p><a href="static/interactives/ec/isbncreditcardcheckerv2.xlsx">Click here to download the spreadsheet.</a></p>
 
 {comment}
 
@@ -268,7 +270,7 @@ Lets look at an example to illustrate this algorithm. We want to confirm that th
 
 {comment}
 
-.. xjrm JACK PLEASE INSERT THE GTIN-13 DIAGRAM HERE
+.. xjrm PLEASE INSERT THE GTIN-13 DIAGRAM HERE
 
 {comment end}
 

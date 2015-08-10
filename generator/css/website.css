@@ -208,7 +208,7 @@ body {
     /*max-width: 75em;*/
 }
 .interactive {
-  padding: 25px 0px;
+  padding: 0 0 1rem;
 }
 pre {
   margin: 0 0 1.25rem;
@@ -224,4 +224,7 @@ code {
   padding: 0;
   background-color: rgba(0, 0, 0, 0);
   border: 0;
+}
+.interactive-external {
+  border: 2px solid #C3C3C3;
 }
