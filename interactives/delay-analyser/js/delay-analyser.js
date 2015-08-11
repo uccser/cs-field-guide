@@ -57,6 +57,14 @@ function calculateStatistics() {
   });
   delays_perceived.sort(function(a,b){return a[0] > b[0] ? 1 : (a[0] < b[0] ? -1 : 0);})
 
+  if (delays_perceived.length != gridSize * gridSize) {
+    $('#statistics-feedback').html("You still have tiles to reveal!");
+    $('#statistics-feedback').show();
+  } else {
+    $('#statistics-feedback').html("");
+    $('#statistics-feedback').hide();
+  }
+  
   var $table = $('#statistics-table-values');
   $table.empty();
   for (i = 0; i < delays_perceived.length; i++) {
