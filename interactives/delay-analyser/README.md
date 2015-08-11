@@ -7,14 +7,15 @@ This interactive is created for testing users reaction times and showing what th
 
 The original code was provided by Rhem Munro (around 2012/2013), and was modified to fit the new CSFG requirements (responsive design, etc) by Jack Morgan (in 2015).
 
-## Degree of accuracy in delays
+## Instructions
 
-Tiles are revealed at a set delay however computers do take time to process the instructions to perform the actions. On standard computer hardware with an updated browser, the delay may have up to an extra 25 milliseconds added. This seems to happen more for lower times like 0 delay, but for tiles with 600 the added delay is much smaller (around 1-2 milliseconds). To test the timings, we had to add extra processing times so real world performance should be slower as performance testing code is removed.
+- Click on any tile of the grid. This will reveal a small tile of a larger image.
+- If you perceived any delay in the tile being revealed, in other words 'it didn't feel like it appeared instantly' then click on this tile again. The tile will be coloured green, indicating that you have decided there was a perceivable delay.
+- If you made a mistake by clicking it, you can change your mind by clicking again.
+- Repeat this on all other cells to reveal the complete image.
+- View the statistics page to see experiment results.
 
-## Changes to consider
-
-- Should 0 delay be removed since all clicks have a small delay (or possibly switched to 10-15), and a 1000 delay added.
-- Should the user be able to change previous tiles (old version you were unable to but this fixes misclicks).
+You can reset the test anytime by refreshing the page.
 
 ## Required Files
 
