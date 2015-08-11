@@ -21,6 +21,9 @@ $(document).ready(function() {
     $('#delay-grid-div').toggle();
     if ($('#statistics-div').is(":visible")) {
       calculateStatistics();
+      $('#toggle-view').html('View grid');
+    } else {
+      $('#toggle-view').html('View statistics');
     }
   });
 
