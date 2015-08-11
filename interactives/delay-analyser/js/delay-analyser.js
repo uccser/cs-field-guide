@@ -9,6 +9,7 @@ $(document).ready(function() {
     var $tile = $(this);
     var delay = $tile.data('delay');
     if ($tile.hasClass('black')) {
+      $tile.data('delay-start', performance.now());
       setTimeout(function() {reveal_tile($tile)}, delay);
     } else {
       $tile.toggleClass('delayed');
@@ -29,6 +30,7 @@ $(document).ready(function() {
 
 function reveal_tile(element) {
   element.removeClass('black');
+  element.data('delay', Math.round(performance.now() - element.data('delay-start')));
 }
 
 function calculateStatistics() {
@@ -114,7 +116,7 @@ function perceiveAll() {
     // For each tile
     $row.children().each(function( tile_index, tile ) {
       $tile = $(tile);
-      reveal_tile($tile);
+      $tile.trigger('click');
       $tile.addClass('delayed');
     });
   });
