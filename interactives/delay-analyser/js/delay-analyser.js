@@ -79,7 +79,9 @@ function setup_delay_grid() {
       grid.append(gridRow);
       for(col = 0; col < gridSize; col++) {
           var $element = $('<div class="flex-item tile black"></div>');
-          $element.data('delay', delay_values.pop());
+          var delay = delay_values.pop();
+          delay += Math.floor((Math.random() * (delay * 0.5)));
+          $element.data('delay', delay);
           gridRow.append($element);
       }
       grid.append('</div>');
