@@ -17,6 +17,10 @@ The original code was provided by Rhem Munro (around 2012/2013), and was modifie
 
 You can reset the test anytime by refreshing the page.
 
+## Image
+
+The image used was taken by [Jack Morgan](https://github.com/JackMorganNZ) and used with permission, under the CSFG license. The original source image (a 20MB CR2 file) can be found within the [uccser-extras repo](https://github.com/uccser/uccser-extras). The photo was taken in Thailand on holiday in 2013.
+
 ## Required Files
 
 - This interactive uses jQuery (loaded from base-files folder).

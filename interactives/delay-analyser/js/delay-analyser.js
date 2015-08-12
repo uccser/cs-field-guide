@@ -27,6 +27,10 @@ $(document).ready(function() {
     }
   });
 
+  $('#reset').on('click', function(){
+    setup_delay_grid();
+  });
+
   // Create the grid on load
   setup_delay_grid();
 });
@@ -64,7 +68,7 @@ function calculateStatistics() {
     $('#statistics-feedback').html("");
     $('#statistics-feedback').hide();
   }
-  
+
   var $table = $('#statistics-table-values');
   $table.empty();
   for (i = 0; i < delays_perceived.length; i++) {
@@ -78,6 +82,7 @@ function calculateStatistics() {
 
 function setup_delay_grid() {
   $('#statistics-div').hide();
+  $('#delay-grid-div').show();
   var delay_values = [];
   for (repeat = 0; repeat < total_delays_for_each; repeat++) {
     delay_values = delay_values.concat(delay_types);
