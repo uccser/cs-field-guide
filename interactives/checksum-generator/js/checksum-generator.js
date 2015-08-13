@@ -19,29 +19,18 @@ var isbn10_weights = [10, 9, 8, 7, 6, 5, 4, 3, 2];
 
 //get the code_type whenever selected changes
 $(document).ready(function () {
-    $("select").change(function() {
+    $("#interactive-checksum-generator-type").change(function() {
         code_type = $(this).find(':selected').val();
     });
-});
 
-
-//responds to button click
-$(function() {
-    $( "input[type=submit], a, button" )
-      .button()
-      .click(function( event ) {
-        event.preventDefault();
-
-        example_codes = [];
-
-        for (var a = 0; a < 5; a++) {
-            chooseAlgorithm(code_type, a);
-            number = "";
-        }
-
-        shuffleList();
-        displayGeneratedExampleCodes();
-
+    $("#interactive-checksum-generator-generate").click(function(){
+      example_codes = [];
+      for (var a = 0; a < 5; a++) {
+          chooseAlgorithm(code_type, a);
+          number = "";
+      }
+      shuffleList();
+      displayGeneratedExampleCodes();
     });
 });
 
@@ -297,21 +286,16 @@ function shuffleList() {
 //display generated codes on page
 function displayGeneratedExampleCodes() {
 
-    //remove previous values
-    var elem = document.getElementById("list");
-    elem.parentNode.removeChild(elem);
+    var code_textbox = document.getElementById("interactive-checksum-generator-codes");
 
-    //create new elements for new list
-    list_containter = document.getElementById("generated_codes");
-    list_element = document.createElement("ul");
-    list_element.id = "list"
-    list_containter.appendChild(list_element);
-
-    //each code displayed as a new list item
-    for(var i in example_codes) {
-        var list_item = document.createElement("li");
-        list_item.innerHTML = example_codes[i];
-        list_element.appendChild(list_item);
+    var code_text = "";
+    for (index = 0; index < example_codes.length; ++index) {
+      code_text += example_codes[index];
+      if (index < example_codes.length - 1) {
+        code_text += '\n';
+      }
     }
+
+    code_textbox.value = code_text;
 
 }

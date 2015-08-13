@@ -166,6 +166,8 @@ In this section we will be initially looking at one of the most commonly used ba
 
 ### Check Digits On Product Barcodes
 
+{interactive-inpage checksum-generator}
+
 Most products you can buy at the shop have a barcode on them with a 13 digit global trade item number (referred to as GTIN-13). The first 12 digits are the actual identification number for the product, the 13th is the check digit calculated from the other 12. Not all barcodes are GTIN-13, there are several others around. If the barcode has 13 numbers in it, it is almost certainly GTIN-13.
 
 {image isbn-barcode.png alt="An image of a 13 digit barcode"}

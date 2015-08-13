@@ -13,13 +13,12 @@
     <script src="../base-files/js/jquery.js"></script>
   </head>
   <body>
-      <div class="row">
-      <div class="small-12 columns">
-      <div class="interactive">
-	    <!-- ### Start of required HTML for inline interactives ### -->
-        <div id="interactive-checksum-generator">
-          <div id="menu">
-            <select name="type" id="type">
+    <!-- ### Start of required HTML for inline interactives ### -->
+    <div class="interactive row">
+      <div id="interactive-checksum-generator" class="small-12 medium-7 large-5 columns small-centered">
+        <div class="row">
+          <div class="small-7 columns">
+            <select name="interactive-checksum-generator-type" id="interactive-checksum-generator-type">
               <option selected="selected" value="ISBN-10">ISBN-10</option>
               <option value="ISBN-13">ISBN-13</option>
               <option value="EAN-13">EAN-13</option>
@@ -28,21 +27,21 @@
               <option value="IRD-number">IRD Number</option>
             </select>
           </div>
-
-          <input type="submit" value="Generate">
-
-          <div id="generated_codes">
-            <ul id="list">
-            </ul>
+          <div class="small-5 columns">
+            <button type="button" id="interactive-checksum-generator-generate" class="button expand">
+              Generate
+            </button>
           </div>
-        <link rel="stylesheet" href="./css/checksum-generator.css">
-        <script src="./js/checksum-generator.js"></script>
-        <script src="../base-files/js/jquery-ui.min.js"></script>
+          <div class="small-12 columns">
+            <textarea id="interactive-checksum-generator-codes" rows="5" readonly>Codes will be displayed here</textarea>
+          </div>
+      <link rel="stylesheet" href="./css/checksum-generator.css">
+      <script src="./js/checksum-generator.js"></script>
+      <script src="../base-files/js/jquery-ui.min.js"></script>
       </div>
+      </div>
+    </div>
     <!-- ### End of required HTML for inline interactives ### -->
-      </div>
-      </div>
-      </div>
     <!-- Foundation responsive CSS -->
     <script src="../base-files/js/foundation.min.js"></script>
     <script>
