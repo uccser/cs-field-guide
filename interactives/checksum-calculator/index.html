@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <!-- If you delete this meta tag World War Z will become a reality -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkum Calculator</title>
+    <title>Check Digit Calculator</title>
     <link rel="stylesheet" href="../base-files/css/normalize.css">
     <link rel="stylesheet" href="../base-files/css/foundation.min.css">
     <script src="../base-files/js/modernizr.js"></script>
@@ -13,50 +13,75 @@
     <script src="../base-files/js/jquery.js"></script>
   </head>
   <body>
-      <div class="row">
-      <div class="small-12 columns">
-      <div class="interactive">
-	    <!-- ### Start of required HTML for inline interactives ### -->
-        <div id="interactive-checksum-generator">
-          <h1>Check Digit Calculator</h1>
-
-          <form id="entry_widgets" action="#">
-            <p>Number of digits:</p>
-            <input type="text" id="number-of-digits"/>
-
-            <input type="submit" id="create-boxes" value="Create digit boxes">
-
-            <div id="digit-boxes">
+    <!-- ### Start of required HTML for inline interactives ### -->
+    <div class="interactive row">
+      <div id="interactive-checksum-calculator" class="small-12 medium-8 large-6 columns small-centered">
+        <h4 class="text-center">Check Digit Calculator</h4>
+        <div class="row">
+          <div class="small-12 medium-3 columns">
+            <label for="interactive-checksum-calculator-number-input" class="inline interactive-checksum-calculator-label">Number:</label>
+          </div>
+          <div class="small-12 medium-9 columns">
+            <input type="text" id="interactive-checksum-calculator-number-input" class="interactive-checksum-calculator-number-type" placeholder="Enter number here" title="Numbers (without checksum) to be multiplied"></input>
+          </div>
+        </div>
+        <div class="row">
+          <div class="small-12 medium-3 columns">
+            <label for="interactive-checksum-calculator-multiplier-input" class="inline interactive-checksum-calculator-label">Multiplers:</label>
+          </div>
+          <div class="small-12 medium-9 columns">
+            <input type="text" id="interactive-checksum-calculator-multiplier-input" class="interactive-checksum-calculator-number-type" placeholder="Enter multiplers here" title="Multiplers for numbers above"></input>
+          </div>
+        </div>
+        <button type="button" id="interactive-checksum-calculator-multiply" class="button interactive-checksum-calculator-button expand">
+          Multiply
+        </button>
+        <p id="interactive-checksum-calculator-multiply-feedback" class="interactive-checksum-calculator-feedback text-center">
+        </p>
+        <div id="interactive-checksum-calculator-calculation-controls">
+          <div class="row">
+            <div class="small-12 medium-2 columns text-center">
+              <label class="interactive-checksum-calculator-label">Sums:</label>
             </div>
-
-            <div id="multipliers">
+            <div class="small-12 medium-10 columns">
+              <div id="interactive-checksum-calculator-sums"></div>
             </div>
-
-            <input type="submit" id="sum-digits" value="Multiply">
-            <div id="sums">
+          </div>
+          <div class="row">
+            <div class="small-12 medium-6 columns">
+              <label for="interactive-checksum-calculator-total-input" class="inline interactive-checksum-calculator-label">Total:</label>
             </div>
-
-            <p>Total</p>
-
-            <input type="text" id="total"/>
-
-            <p>Remainder when divided by:</p>
-            <input type="text" id="mod"/>
-
-            <input type="submit" id="calculate" value="Calculate">
-
-            <p>Remainder:</p>
-            <input type="text" id="remainder"/>
-          </form>
-
-        <link rel="stylesheet" href="./css/checksum-calculator.css">
-        <script src="./js/checksum-calculator.js"></script>
-        <script src="../base-files/js/jquery-ui.min.js"></script>
+            <div class="small-12 medium-6 columns">
+              <input type="text" id="interactive-checksum-calculator-total-input" class="interactive-checksum-calculator-number-type" title="Total for sums above"></input>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 medium-6 columns">
+              <label for="interactive-checksum-calculator-modulo-input" class="inline interactive-checksum-calculator-label">Remainder when divided by:</label>
+            </div>
+            <div class="small-12 medium-6 columns">
+              <input type="text" id="interactive-checksum-calculator-modulo-input" class="interactive-checksum-calculator-number-type" title="Modulo for total above"></input>
+            </div>
+          </div>
+          <button type="button" id="interactive-checksum-calculator-calculate" class="button interactive-checksum-calculator-button expand">
+            Calculate
+          </button>
+          <p id="interactive-checksum-calculator-sum-feedback" class="interactive-checksum-calculator-feedback text-center">
+          </p>
+          <div id="interactive-checksum-calculator-result" class="row">
+            <div class="small-6 columns">
+              <label for="interactive-checksum-calculator-remainder" class="inline interactive-checksum-calculator-label">Remainder:</label>
+            </div>
+            <div class="small-6 columns">
+              <input type="text" id="interactive-checksum-calculator-remainder" class="interactive-checksum-calculator-number-type" title="Remainder for calculation above"></input>
+            </div>
+          </div>
+        </div>
       </div>
+      <link rel="stylesheet" href="./css/checksum-calculator.css">
+      <script src="./js/checksum-calculator.js"></script>
+    </div>
     <!-- ### End of required HTML for inline interactives ### -->
-      </div>
-      </div>
-      </div>
     <!-- Foundation responsive CSS -->
     <script src="../base-files/js/foundation.min.js"></script>
     <script>
