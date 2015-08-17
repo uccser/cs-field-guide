@@ -307,7 +307,7 @@ class Section:
         interactive_tree = self.get_interactive_tree(source_folder, name)
         if interactive_tree is not None:
             self.edit_interactive_tree(interactive_tree, source_folder)
-            html = re.sub('(\n)*<!--(.|\s)*?-->(\n)*', '', interactive_tree.prettify(), flags=re.MULTILINE)
+            html = re.sub('(\n)*<!--(.|\s)*?-->(\n)*', '', str(interactive_tree), flags=re.MULTILINE)
             return html
         else:
             return None
