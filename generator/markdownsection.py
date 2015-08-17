@@ -403,7 +403,7 @@ class Section:
 
             html = ''
             for item in items:
-                html += '<li>{}</li>\n'.format(item.strip())
+                html += self.html_templates['table-of-contents-item'].format(item_html=item.strip())
             if top_level:
                 return self.html_templates['table-of-contents'].replace('{folder_link}\n', '').format(contents=html)
             else:
