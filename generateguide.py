@@ -245,7 +245,7 @@ class Guide:
             context = {'page_title':file.section.title,
                        'body_html':body_html,
                        'path_to_root': file.section.html_path_to_root,
-                       'project_title': self.translations['Title'][self.language_code],
+                       'project_title': self.translations['title'][self.language_code],
                        'root_folder': self.structure,
                        'heading_root': file.section.heading,
                        'language_code': self.language_code,
@@ -283,7 +283,7 @@ class FolderNode:
         self.guide = self.parent.guide if parent else guide
         self.english_title = systemfunctions.from_kebab_case(self.name)
         if self.parent:
-            self.title = self.guide.translations[self.english_title][self.guide.language_code]
+            self.title = self.guide.translations[self.english_title.lower()][self.guide.language_code]
         else:
             #Folder is root folder, name is not important
             self.title = self.english_title
