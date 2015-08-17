@@ -3,13 +3,13 @@
 PLACEHOLDER FOR USE DURING DEVELOPMENT
 
 {teacher}
-The following assessment plans also cover this material:
+The following curriculum plans also cover this material:
 
-**New Zealand - AS91074 (1.44)**
+**NCEA - New Zealand - AS91074 (1.44)**
 
-- [Assessment Overview](assessment-guides/new-zealand/assessment-guide-level-1-introduction.html)
-- [Searching Algorithms Assessment Guide](assessment-guides/new-zealand/assessment-guide-level-1-searching-algorithms.html)
-- [Sorting Algorithms Assessment Guide](assessment-guides/new-zealand/assessment-guide-level-1-sorting-algorithms.html)
+- [Assessment Overview](curriculum-guides/new-zealand/assessment-guide-level-1-introduction.html)
+- [Searching Algorithms Assessment Guide](curriculum-guides/new-zealand/assessment-guide-level-1-searching-algorithms.html)
+- [Sorting Algorithms Assessment Guide](curriculum-guides/new-zealand/assessment-guide-level-1-sorting-algorithms.html)
 {teacher end}
 
 {comment explain different views of algorithm (programming context) and Algorithm (that have interesting complexity); use https://www.youtube.com/watch?v=6hfOvs8pY1k for the former?}
