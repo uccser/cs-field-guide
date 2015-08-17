@@ -349,7 +349,7 @@ class Section:
         for element in root.find_all():
             for attr in link_attributes:
                 raw_link = element.get(attr, None)
-                if raw_link and not raw_link.startswith('http://'):
+                if raw_link and not raw_link.startswith('http://') and not raw_link == '#':
                     link = os.path.join(self.html_path_to_root, source_folder, raw_link)
                     element[attr] = link
             if element.name == 'script' or (element.name == 'link' and element.get('rel', None) == ['stylesheet']):
@@ -403,7 +403,7 @@ class Section:
 
             html = ''
             for item in items:
-                html += '<li>{}</li>\n'.format(item.strip())
+                html += self.html_templates['table-of-contents-item'].format(item_html=item.strip())
             if top_level:
                 return self.html_templates['table-of-contents'].replace('{folder_link}\n', '').format(contents=html)
             else:
