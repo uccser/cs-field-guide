@@ -186,7 +186,10 @@ class Guide:
         except:
             logging.critical('Cannot find SCSS file {0}.'.format(file_name))
         else:
-            compiled_css = compile_string(scss_data, search_path=[scss_source_folder])
+            # This lists all subfolders of SCSS source folder, this may cause issues
+            # later, but is an effective solution for the moment
+            scss_source_folders = [x[0] for x in os.walk(scss_source_folder)]
+            compiled_css = compile_string(scss_data, search_path=scss_source_folders, output_style='compressed')
             return compiled_css
 
 
