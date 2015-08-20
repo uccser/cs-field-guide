@@ -22,6 +22,7 @@ from distutils.dir_util import copy_tree
 from generator.markdownsection import Section
 from generator.websitegenerator import WebsiteGenerator
 from generator.files import setup_required_files
+from scss.compiler import compile_string
 
 class Guide:
     def __init__(self, guide_settings, language_code, version, output_type=WEB):
@@ -173,6 +174,24 @@ class Guide:
                 self.required_files[file_type] += file_data
 
 
+    def compile_scss_file(self, file_name):
+        """Read given SCSS file, and compile to CSS,
+        store in file object, and add to required CSS files
+        """
+        scss_source_folder = self.generator_settings['Source']['SCSS']
+        scss_source_file = os.path.join(scss_source_folder, file_name)
+        try:
+            with open(scss_source_file, 'r', encoding='utf8') as scss_file:
+                scss_data = scss_file.read()
+        except:
+            logging.critical('Cannot find SCSS file {0}.'.format(file_name))
+        else:
+            # This lists all subfolders of SCSS source folder, this may cause issues
+            # later, but is an effective solution for the moment
+            scss_source_folders = [x[0] for x in os.walk(scss_source_folder)]
+            compiled_css = compile_string(scss_data, search_path=scss_source_folders, output_style='compressed')
+            return compiled_css
+
 
     def setup_html_output(self):
         """Preliminary setup, called before html files are written.
@@ -192,31 +211,47 @@ class Guide:
         for file_type,all_file_names in self.generator_settings['Website Required Files'].items():
             file_names = all_file_names.strip().split('\n')
             for file_name in file_names:
-                self.required_files[file_type].add(file_name)
+                if file_type == "SCSS":
+                    css_string = self.compile_scss_file(file_name)
+                    file_name = file_name.replace(".scss", ".css")
+                    self.required_files["CSS"].add(file_name, css_string)
+                else:
+                    self.required_files[file_type].add(file_name)
 
         # Copy all required files
-        # TODO: Handle copying interactive file type (whole folder)
         for file_type,file_data in self.required_files.items():
             # Create folder for files
             file_output_folder = os.path.join(self.output_folder, self.generator_settings['Output'][file_type])
             os.makedirs(file_output_folder, exist_ok=True)
             # Copy files
-            for file_name in file_data.filenames:
-                source_location = os.path.join(file_data.source_location, file_name)
+            for file_object in file_data.filenames:
+                file_name = file_object.filename
                 if file_type in self.permissions.sections() and not (file_name in self.permissions[file_type]):
                     logging.warning("No permissions information exists for {} {}!".format(file_type, file_name))
-                output_location = os.path.join(file_data.output_location, file_name)
-                if os.path.exists(source_location):
-                    try:
-                        if os.path.isdir(source_location):
-                            copy_tree(source_location, output_location)
-                        else:
-                            copy2(source_location, output_location)
 
+                output_location = os.path.join(file_output_folder, file_name)
+                # If data exists in file object, write file
+                if file_object.file_data:
+                    try:
+                        with open(output_location, 'w', encoding='utf8') as output_file:
+                            output_file.write(file_object.file_data)
                     except:
-                        logging.error("{file_type} {file_name} could not be copied".format(file_type=file_type, file_name=file_name))
+                        logging.critical("Cannot write file {0}".format(file_name))
                 else:
-                    logging.error("{file_type} {file_name} could not be found".format(file_type=file_type,file_name=file_name))
+                    source_location = os.path.join(file_data.source_location, file_name)
+                    if os.path.exists(source_location):
+                        try:
+                            # If folder, copy folder
+                            if os.path.isdir(source_location):
+                                copy_tree(source_location, output_location)
+                            # If file, copy file
+                            else:
+                                copy2(source_location, output_location)
+
+                        except:
+                            logging.error("{file_type} {file_name} could not be copied".format(file_type=file_type, file_name=file_name))
+                    else:
+                        logging.error("{file_type} {file_name} could not be found".format(file_type=file_type,file_name=file_name))
 
 
     def write_html_file(self, file):
@@ -245,7 +280,7 @@ class Guide:
             context = {'page_title':file.section.title,
                        'body_html':body_html,
                        'path_to_root': file.section.html_path_to_root,
-                       'project_title': self.translations['Title'][self.language_code],
+                       'project_title': self.translations['title'][self.language_code],
                        'root_folder': self.structure,
                        'heading_root': file.section.heading,
                        'language_code': self.language_code,
@@ -283,7 +318,7 @@ class FolderNode:
         self.guide = self.parent.guide if parent else guide
         self.english_title = systemfunctions.from_kebab_case(self.name)
         if self.parent:
-            self.title = self.guide.translations[self.english_title][self.guide.language_code]
+            self.title = self.guide.translations[self.english_title.lower()][self.guide.language_code]
         else:
             #Folder is root folder, name is not important
             self.title = self.english_title

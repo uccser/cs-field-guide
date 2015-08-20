@@ -1,5 +1,5 @@
 import re
-import lxml.html as htmltree
+from bs4 import BeautifulSoup, Comment
 import logging
 import os.path
 import generator.systemfunctions as systemfunctions
@@ -266,7 +266,6 @@ class Section:
             - Generates appropriate html content from source file
             - Returns empty string if source file does not exist
         """
-
         html = ''
         interactive_type = match.group('type')
         name = match.group('interactive_name')
@@ -283,7 +282,6 @@ class Section:
                 html = self.external_interactive_html(source_folder, title, name, params)
             elif interactive_type == 'interactive-inpage':
                 html = self.inpage_interactive_html(source_folder, name)
-
         return html if html else ''
 
 
@@ -292,7 +290,7 @@ class Section:
 
         thumbnail_location = os.path.join(self.html_path_to_root, source_folder, self.guide.generator_settings['Source']['Interactive Thumbnail'])
         link_text = 'Click to load {title}'.format(title=title)
-        folder_location = os.path.join(self.html_path_to_root, source_folder)
+        folder_location = os.path.join(self.html_path_to_root, source_folder, self.guide.generator_settings['Source']['Interactive File'])
         file_link = "{location}?{parameters}".format(location=folder_location, params=params) if params else folder_location
         link_template = self.html_templates['interactive-external']
         link_html = link_template.format(interactive_thumbnail=thumbnail_location,
@@ -304,12 +302,13 @@ class Section:
 
     def inpage_interactive_html(self, source_folder, name):
         """Return the html for inpage interactives, with links adjusted
-        to correct relative links
+        to correct relative links, and comments removed.
         """
         interactive_tree = self.get_interactive_tree(source_folder, name)
         if interactive_tree is not None:
             self.edit_interactive_tree(interactive_tree, source_folder)
-            return htmltree.tostring(interactive_tree).decode('utf-8')
+            html = re.sub('(\n)*<!--(.|\s)*?-->(\n)*', '', str(interactive_tree), flags=re.MULTILINE)
+            return html
         else:
             return None
 
@@ -324,9 +323,9 @@ class Section:
         with open(file_location, 'r', encoding='utf8') as source_file:
             raw_html = source_file.read()
 
-        file_tree = htmltree.fromstring(raw_html)
-        interactive_trees = file_tree.find_class(INTERACTIVE_CLASS)
-        if  len(interactive_trees) != 1:
+        file_tree = BeautifulSoup(raw_html, 'html5lib')
+        interactive_trees = file_tree.find_all('div', class_=INTERACTIVE_CLASS)
+        if len(interactive_trees) != 1:
             logging.error('''Error creating interactive {}: expected 1
                             div with class 'interactive' but {} found
                             '''.format(name, len(interactive_trees)))
@@ -338,35 +337,24 @@ class Section:
     def edit_interactive_tree(self, root, source_folder):
         """Edits element tree in the following ways:
 
-            - Comments are removed
             - Scripts and stylesheets are added to page_scripts,
             and removed from tree
             - Relative links are modified as required (ignoring external)
 
             TODO:
-            - Implemet better system for checking whether link is relative
+            - Implement better system for checking whether link is relative
             and needs to be adjusted
         """
         link_attributes = ['href', 'src']
-        page_elements = []
-        for element in root.iter():
-            to_be_deleted = isinstance(element, htmltree.HtmlComment)
+        for element in root.find_all():
             for attr in link_attributes:
                 raw_link = element.get(attr, None)
-                if raw_link and not raw_link.startswith('http://'): #this check needs to be better
+                if raw_link and not raw_link.startswith('http://') and not raw_link == '#':
                     link = os.path.join(self.html_path_to_root, source_folder, raw_link)
-                    element.set(attr, link)
-
-            if element.tag == 'script' or (element.tag == 'link' and element.get('rel', None) == 'stylesheet'):
-                page_elements.append(element)
-                to_be_deleted = True
-
-            if to_be_deleted and element.getparent() is not None:
-                    element.getparent().remove(element)
-
-        for element in page_elements:
-            html_lines = htmltree.tostring(element).decode("utf-8").split('\n')
-            self.page_scripts += html_lines
+                    element[attr] = link
+            if element.name == 'script' or (element.name == 'link' and element.get('rel', None) == ['stylesheet']):
+                self.page_scripts.append(element.extract())
+        #print(root)
 
 
     def check_interactive(self, interactive_source, interactive_name):
@@ -415,7 +403,7 @@ class Section:
 
             html = ''
             for item in items:
-                html += '<li>{}</li>\n'.format(item.strip())
+                html += self.html_templates['table-of-contents-item'].format(item_html=item.strip())
             if top_level:
                 return self.html_templates['table-of-contents'].replace('{folder_link}\n', '').format(contents=html)
             else:

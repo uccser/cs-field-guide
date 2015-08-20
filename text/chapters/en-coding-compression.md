@@ -22,16 +22,7 @@ For example, the JPEG method reduces photos to a tenth or smaller of their origi
 
 So what's the catch? Well, there can be an issue with the quality of the data --- for example, a highly compressed JPEG image doesn't look as sharp as an image that hasn't been compressed. Also, it takes processing time to compress and decompress the data. In most cases, the tradeoff is worth it, but not always.
 
-<p class="text-center">Move your cursor or tap the image to compare the two images</p>
-<!-- Code provided by http://codepen.io/dudleystorey/pen/JDphy -->
-<!-- Photo from http://www.publicdomainpictures.net/view-image.php?image=101219&picture=fisherman-bait-casting -->
-<div style="width: 90%; margin: 0 auto; padding-bottom: 20px;">
-<div id="inked-painted">
-<img src="static/images/cc-introduction-high.jpg" id="inked" alt>
-<div id="colored"></div>
-</div>
-</div>
-<p class="text-center"><b>Left is low quality JPEG (20Kb) - Right is high quality JPEG (88Kb)</b></p>
+{interactive-inpage compression-comparer}
 
 In this chapter we'll look at how compression might be done, what the benefits are, and the costs associated with using compressed data that need to be considered when deciding whether or not to compress data.
 We'll start with a simple example --- Run Length Encoding --- which gives some insight into the benefits and the issues around compression.
@@ -179,8 +170,9 @@ What is the image of? How good was the compression on this image? (Look back at 
 
 This image is from the [CS Unplugged image representation activity](http://csunplugged.org/image-representation), and the solution is available in the activity (it is a cup and saucer). The same image is decoded using very large pixels (the printer is a spray can!) in this [video from a computer science show](http://www.youtube.com/watch?v=VsjpPs146d8). You could show the video to students, but it's even better to use the teaching ideas in the video yourself.
 
-<div class="widget-holder"><a href="static/interactives/cc/run-length-encoding/index.html"  target="blank"><img class="widget-image" src="static/interactives/cc/run-length-encoding/thumbnail-full.png" alt=""><span class="widget-subtitle">Click to load<br>Run Length Encoding</span></a></div>
-<p class="text-center">Created by Hannah Taylor</p>
+{teacher end}
+
+{interactive-external run-length-encoding title="Run Length Encoding"}
 
 As the compressed representation of the image can be converted back to the original representation, and both the original representation and the compressed representation would give the same image when read by a computer, this compression algorithm is called *lossless*, i.e. none of the data was lost from compressing the image, and as a result the compression could be undone exactly.
 
@@ -598,20 +590,3 @@ Questions like "what is the most compression that can be achieved" are addressed
 - Images, run-length-coding [http://csunplugged.org/image-representation](http://csunplugged.org/image-representation) This is also relevant to binary representations in general, although is probably best used in the compression section.
 - There is a detailed section on [JPEG encoding on Wikipedia](http://en.wikipedia.org/wiki/Jpeg).
 - Text compression [http://csunplugged.org/text-compression](http://csunplugged.org/text-compression)
-
-<script type="text/javascript">
-$(document).ready(function(){  
-var inkbox = document.getElementById("inked-painted");
-var colorbox = document.getElementById("colored");
-var fillerImage = document.getElementById("inked");
-inkbox.addEventListener("mousemove",trackLocation,false);
-inkbox.addEventListener("touchstart",trackLocation,false);
-inkbox.addEventListener("touchmove",trackLocation,false);
-function trackLocation(e)
-{
-var rect = inked.getBoundingClientRect();
-var position = ((e.pageX - rect.left) / inked.offsetWidth)*100;
-if (position <= 100) { colorbox.style.width = position+"%"; }
-}
-});
-</script>
