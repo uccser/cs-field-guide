@@ -281,9 +281,15 @@ class Section:
 
         self.required_files['File'].add(filename)
 
-        output_path = os.path.join(self.guide.generator_settings['Output']['Files'], filename)
-        text = self.html_templates['button-download-text'].format(filename=filename)
-        html = self.html_templates['button'].format(button_link=output_path, button_text=text)
+        output_path = os.path.join(self.html_path_to_root, self.guide.generator_settings['Output']['File'], filename)
+
+        if match.group('text'):
+            text = match.group('text')
+        else:
+            text = filename
+
+        button_text = self.html_templates['button-download-text'].format(text=text)
+        html = self.html_templates['button'].format(button_link=output_path, button_text=button_text)
         return html
 
 
