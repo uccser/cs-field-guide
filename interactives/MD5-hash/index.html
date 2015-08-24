@@ -12,16 +12,22 @@
     <script src="../base-files/js/modernizr.js"></script>
     <!-- jQuery (necessary for Foundation) -->
     <script src="../base-files/js/jquery.js"></script>
+
+    <!-- link to js code for md5-hash -->
+    <script src="md5-hash-script.js"></script>
+    <!-- link to md5 hash library -->
+    <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/md5.js"></script>
+
   </head>
   <body>
       <div class="row">
       <div class="small-12 columns">
       <div class="interactive">
-           <!-- ### Start of required HTML for inline interactives ### -->
+          <!-- ### Start of required HTML for inline interactives ### -->
 
-
-
-      <!-- ### End of required HTML for inline interactives ### -->
+          <input type="text" id="interactive-md5hash-text-input" class="interactive-md5hash-text-input" placeholder="Enter text here" title="Text to convert">
+          <button type="button" id="interactive-md5hash-hash" class="button interactive-md5hash-button expand">Hash</button>
+           <!-- ### End of required HTML for inline interactives ### -->
       </div>
       </div>
       </div>
