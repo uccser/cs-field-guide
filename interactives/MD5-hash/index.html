@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <!-- If you delete this meta tag World War Z will become a reality -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- ### Enter your interactive title in the title block ### -->
+    <title>Interactive Template</title>
+    <link rel="stylesheet" href="../base-files/css/normalize.css">
+    <link rel="stylesheet" href="../base-files/css/foundation.min.css">
+    <script src="../base-files/js/modernizr.js"></script>
+    <!-- jQuery (necessary for Foundation) -->
+    <script src="../base-files/js/jquery.js"></script>
+
+
+  </head>
+  <body>
+      <div class="row">
+      <div class="small-12 columns">
+      <div class="interactive">
+          <!-- ### Start of required HTML for inline interactives ### -->
+
+          <h4 class="text-center">MD5 Hash</h4>
+
+          <div class="large-4 small-12 columns">
+              <input type="text" id="interactive-md5hash-text-input" class="interactive-md5hash-text-input" placeholder="password" title="Text to convert">
+          </div>
+          <div class="large-4 small-12 columns">
+              <button type="button" id="interactive-md5hash-hash" class="button interactive-md5hash-button expand">Hash</button>
+          </div>
+          <div class="large-4 small-12 columns">
+              <textarea id="interactive-md5hash-hashed-message" readonly placeholder="Hashed message will be shown here"></textarea>
+           </div>
+
+           <!-- link to md5 hash library -->
+           <script src="./md5.js"></script>
+           <!-- link to js code for md5-hash -->
+           <script src="./md5-hash-script.js"></script>
+
+           <!-- ### End of required HTML for inline interactives ### -->
+      </div>
+      </div>
+      </div>
+    <!-- Foundation responsive CSS -->
+    <script src="../base-files/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+    </script>
+  </body>
+</html>
