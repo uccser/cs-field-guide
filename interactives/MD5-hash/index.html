@@ -13,10 +13,6 @@
     <!-- jQuery (necessary for Foundation) -->
     <script src="../base-files/js/jquery.js"></script>
 
-    <!-- link to js code for md5-hash -->
-    <script src="md5-hash-script.js"></script>
-    <!-- link to md5 hash library -->
-    <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/md5.js"></script>
 
   </head>
   <body>
@@ -25,9 +21,15 @@
       <div class="interactive">
           <!-- ### Start of required HTML for inline interactives ### -->
 
+          <h4 class="text-center">MD5 Hash</h4>
           <input type="text" id="interactive-md5hash-text-input" class="interactive-md5hash-text-input" placeholder="password" title="Text to convert">
           <button type="button" id="interactive-md5hash-hash" class="button interactive-md5hash-button expand">Hash</button>
             <textarea id="interactive-md5hash-hashed-message"></textarea>
+
+            <!-- link to md5 hash library -->
+            <script src="md5.js"></script>
+            <!-- link to js code for md5-hash -->
+            <script src="md5-hash-script.js"></script>
            <!-- ### End of required HTML for inline interactives ### -->
       </div>
       </div>
