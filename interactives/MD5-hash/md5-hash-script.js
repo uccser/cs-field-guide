@@ -8,8 +8,8 @@
 $(document).ready(function () {
     $("#interactive-md5hash-hash").click(function(){
         console.log("hi");
-        var hash = CryptoJS.MD5("Message").toString();
-        console.log(hash);
+        var hashed_message = CryptoJS.MD5("Message").toString();
+        document.getElementById('interactive-md5hash-hashed-message').innerHTML = hashed_message;
     });
 });
 
