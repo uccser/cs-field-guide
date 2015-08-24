@@ -225,7 +225,8 @@ As you click on each cell, there will sometimes be a random delay before it come
 other cells won't have a delay.
 Click on each cell, and if it seems to respond instantly, leave it as it is. However, if you perceive that there is a small delay before the image comes up, click it again (which makes the cell a little lighter). You can't go back and change a cell, so just make a quick, gut-level decision the first time you click each one. The delay may be very short, but only make the cell gray if you are fairly sure you noticed a delay.
 
-<div class="widget-holder"><a href="_static/widgets/HCI/HCI-Delay/index.html"  target="_blank"><img class="widget-image" src="_static/images/hci-delay-thumbnail.png" alt=""><span class="widget-subtitle">Click to load the<br>delay interactive</span></a></div>
+{interactive-external delay-analyser title="Delay Analyser"}
+
 
 Once you have clicked on all the cells, click on the "Probability of perceiving delays" bar to see a graph of how often you thought there was a delay compared with how long the delay actually was. 100 ms is one tenth of a second; for most people this is where they are likely to start perceiving a delay; anything short (particularly around 50 ms) is very hard to notice. Longer delays (for example, 350 ms, which is over a third of a second) are very easy to notice.
 
@@ -346,14 +347,17 @@ One of the simplest statuses for a device is on or off, which is usually a colou
 
 There are many tasks that users ask computers to do that require some time including copying documents, downloading files, and loading video games. In this situation, one of the most common ways to keep a user informed of the task is the progress bar.
 
-<div class="progress progress-striped active"><div class="progress-bar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 85%"><span class="sr-only">85% Complete</span></div></div>
+{comment}
 
+<div class="progress progress-striped active"><div class="progress-bar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 85%"><span class="sr-only">85% Complete</span></div></div>
 
 {image hci-windows-busy-cursor.gif alt="An Windows busy cursor"}
 
 {image hci-apple-busy-cursor.gif alt="An Apple busy cursor"}
 
 [{image hci-xkcd-estimation.png alt="The author of the Windows file copy dialog visits some friends, and struggles to decide what time he will arrive."}](http://xkcd.com/612/)
+
+{comment end}
 
 However, progress indicators aren't always helpful; the spinning wheels above don't indicate if you are going to have to wait a few seconds or a few minutes (or even hours) for the task to complete, which can be frustrating.
 
@@ -425,12 +429,6 @@ Pressing the yes button below can be very frustrating! Most modern web browsers 
 
 {interactive-inpage close-window}
 
-{comment}
-
-.. xjrm this button doesn’t work in Chrome now, potential workaround here http://stackoverflow.com/a/24855795 (or change js for closeButton to open(location,'_self').close();?)
-
-{comment end}
-
 Sometimes the interface can force the user into doing something the user does not want to do. For example, it is quite common for operating systems or programs to perform updates automatically that require a restart. Sometimes the interface may not give them the opportunity to cancel or delay this, and restart nevertheless. This is bad if it happens when the user is just about to give a presentation.
 
 Another common form of this problem is not being able to quit a system.
@@ -462,60 +460,7 @@ A computer program shouldn't make it easy for people to make serious errors. An 
 
 Below is a date picker; can you see what errors can be produced with it?
 
-<div class="interactive">
-<div class="form-group">
-<select name="dropdown" id="dropdown-day" size=1 class="interactive-date input-lg">
-<option value="1">1</option>
-<option value="2">2</option>
-<option value="3">3</option>
-<option value="4">4</option>
-<option value="5">5</option>
-<option value="6">6</option>
-<option value="7">7</option>
-<option value="8">8</option>
-<option value="9">9</option>
-<option value="10">10</option>
-<option value="11">11</option>
-<option value="12">12</option>
-<option value="13">13</option>
-<option value="14">14</option>
-<option value="15">15</option>
-<option value="16">16</option>
-<option value="17">17</option>
-<option value="18">18</option>
-<option value="19">19</option>
-<option value="20">20</option>
-<option value="21">21</option>
-<option value="22">22</option>
-<option value="23">23</option>
-<option value="24">24</option>
-<option value="25">25</option>
-<option value="26">26</option>
-<option value="27">27</option>
-<option value="28">28</option>
-<option value="29">29</option>
-<option value="30">30</option>
-<option value="31">31</option>
-</select>​
-<select name="dropdown" id="dropdown-month" size=1 class="interactive-date input-lg">
-<option value="1">January</option>
-<option value="2">February</option>
-<option value="3">March</option>
-<option value="4">April</option>
-<option value="5">May</option>
-<option value="6">June</option>
-<option value="7">July</option>
-<option value="8">August</option>
-<option value="9">September</option>
-<option value="10">October</option>
-<option value="11">November</option>
-<option value="12">December</option>
-</select>​
-<select id="dropdown-year" size=1 class="interactive-date input-lg">
-</select>
-</div>
-<div id="interactive-date-message" class="interactive-wrong"><br></div>
-</div>
+{interactive-inpage date-picker}
 
 {teacher}
 
@@ -527,17 +472,7 @@ A related problem with dates is when a user needs to pick a start and end date (
 
 Any time a dialogue box comes up that says you weren't allowed to do a certain action, the system has failed to prevent an error. Of course, it may be difficult to do that because the error can depend on so many user choices, but it is ideal that the system doesn't offer something that it can't do.
 
-<div class="dropdown">
-<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-Menu
-<span class="caret"></span>
-</button>
-<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-<li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick='window.alert("Not currently available");'>Play Minecraft</a></li>
-<li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick='window.alert("Not currently available");'>Open Youtube</a></li>
-<li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick='window.alert("Not currently available");'>Print answers</a></li>
-</ul>
-</div>
+{interactive-inpage dropdown-buttons}
 
 ### Recognition rather than recall
 
@@ -608,7 +543,7 @@ A variant of this is a message that gives two alternatives, such as "File may no
 
 *Even though it is better if the system can be used without documentation, it may be necessary to provide help and documentation. Any such information should be easy to search, focused on the user's task, list concrete steps to be carried out, and not be too large.*
 
-<div class="interactive"><button type="button" class="btn btn-primary btn-lg" onclick="helpButton()">Click me for help</button></div>
+{interactive-inpage no-help}
 
 Often help is an afterthought, and tends to be feature-centred (e.g. a catalogue of menu items), rather than task-centred (the series of actions needed to complete typical tasks, which is more useful for the user).
 When a user needs help, they typically have a task to complete (such as upload photos from a camera), and good documentation should explain how to do common tasks, rather than explain each feature (such as "Setting the camera to USB mode").
@@ -633,7 +568,7 @@ and many more laws, observations and guidelines about designing interfaces that 
 
 {comment}
 
-.. xtcb check with HCI group; could add above: the `Sapir-Whorf hypothesis <http://en.wikipedia.org/wiki/Linguistic_relativity>`_, about how the structure of language affects one's view of the world,
+.. xtcb check with HCI group; could add above: the `Sapir-Whorf hypothesis <http://en.wikipedia.org/wiki/Linguistic_relativity>`, about how the structure of language affects one's view of the world,
 
 {comment end}
 
@@ -663,5 +598,3 @@ and many more laws, observations and guidelines about designing interfaces that 
   Co-operative experiment: 2 people and the process turns to a dialogue and they become critical of the process.
 
 {comment end}
-
-<script language="JavaScript" type="text/javascript" src="_static/interactives/hci/hci-interactives.js"></script>

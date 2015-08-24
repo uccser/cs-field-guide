@@ -1,9 +1,9 @@
 # Artificial Intelligence
 
 {teacher}
-The following assessment plans also cover this material:
+The following curriculum plans also cover this material:
 
-**New Zealand - AS91636 (3.44)**
+**NCEA - New Zealand - AS91636 (3.44)**
 - [Artificial Intelligence (Turing Test)](/appendices/assessment_guides/new_zealand/assessment-guide-level-3-artificial-intelligence-turing-test.html)
 {teacher end}
 
