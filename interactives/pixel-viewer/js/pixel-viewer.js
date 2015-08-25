@@ -16,14 +16,20 @@ this.text_opacity = 0;
 
 this.tiling = new Tiling;
 
-$(document).ready(function() {
-  // $( "#original_image" ).load(function() {
-  //     $( this ).delay(1500).animate({width: contentWidth*0.8, height: contentHeight*0.8, top:"0px", left:"0px", margin: 0}, 4000, function() {
-  //         $( "#loader" ).hide();
-  //     });
-  //     $( this ).fadeOut( 2000 );
-  // });
-
+$( document ).ready(function() {
+  $( "#pixel-viewer-interactive-original-image" ).delay(1000).animate({width: contentWidth*0.8,
+     height: contentHeight*0.8,
+     overflow: "hidden",
+     top:"0",
+     left:"0",
+     margin: 0},
+     4000,
+     function() {
+      // Animation complete
+      $( "#pixel-viewer-interactive-loader" ).hide();
+      $( ".pixel-viewer-interactive-zoom-button" ).css({opacity: 0, visibility: "visible"}).animate({opacity: 1}, 'slow');
+  });
+  $( "#pixel-viewer-interactive-original-image" ).fadeOut( 2000 );
   reflow();
 });
 

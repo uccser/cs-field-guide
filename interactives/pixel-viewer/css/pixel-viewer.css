@@ -38,3 +38,29 @@
   height: 80%;
   overflow-y: auto;
 }
+#pixel-viewer-interactive-loader {
+  z-index: 1;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+}
+#pixel-viewer-interactive-original-image {
+  z-index: 2;
+  display: block;
+  overflow: hidden;
+  position: absolute;
+  user-drag: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  margin: 0;
+  top: 50%;
+  left: 50%;
+  max-width: none;
+  margin-top: -66px;
+  margin-left: -100px;
+}
+#pixel-viewer-interactive-zoom-in,
+#pixel-viewer-interactive-zoom-out {
+  visibility: hidden;
+}
