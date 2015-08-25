@@ -1,0 +1,8 @@
+.calculator-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.test {
+    border: 1px solid;
+}

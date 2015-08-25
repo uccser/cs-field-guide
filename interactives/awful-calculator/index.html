@@ -17,9 +17,190 @@
       <div class="row">
       <div class="small-12 columns">
       <div class="interactive">
-	    <!-- ### Start of required HTML for inline interactives ### -->
+      <!-- ### Start of required HTML for inline interactives ### -->
 
+          <!-- good calculator inferface -->
+          <div class="large-6 small-12 columns test">
 
+              <div class="row">
+                  <div class="large-9 columns">
+                      <textarea id="interactive-good-calculator-output" readonly></textarea>
+                  </div>
+                  <div class="large-3 columns">
+                      <button type="button" id="interactive-good-calculator-c" class="button interactive-good-calculator-c-button">C</button>
+                  </div>
+              </div>
+
+              <div class="row">
+                  <div class="large-9 columns calculator-buttons">
+                      <div class="large-3 columns">
+                          <button type="button" id="interactive-good-calculator-7" class="button interactive-good-calculator-7-button">7</button>
+                      </div>
+                      <div class="large-3 columns">
+                          <button type="button" id="interactive-good-calculator-8" class="button interactive-good-calculator-8-button">8</button>
+                      </div>
+                      <div class="large-3 columns">
+                          <button type="button" id="interactive-good-calculator-9" class="button interactive-good-calculator-9-button">9</button>
+                      </div>
+                  </div>
+                  <div class="large-3 columns calculator-buttons">
+                      <div class="large-3 columns">
+                          <button type="button" id="interactive-good-calculator-divide" class="button interactive-good-calculator-divide-button">/</button>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="row">
+                  <div class="large-9 columns calculator-buttons">
+                      <div class="large-3 columns">
+                          <button type="button" id="interactive-good-calculator-4" class="button interactive-good-calculator-4-button">4</button>
+                      </div>
+                      <div class="large-3 columns">
+                          <button type="button" id="interactive-good-calculator-5" class="button interactive-good-calculator-5-button">5</button>
+                      </div>
+                      <div class="large-3 columns">
+                          <button type="button" id="interactive-good-calculator-6" class="button interactive-good-calculator-6-button">6</button>
+                      </div>
+                  </div>
+                  <div class="large-3 columns calculator-buttons">
+                      <div class="large-3 columns">
+                          <button type="button" id="interactive-good-calculator-multiply" class="button interactive-good-calculator-multiply-button">*</button>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="row">
+                  <div class="large-9 columns calculator-buttons">
+                      <div class="large-3 columns">
+                          <button type="button" id="interactive-good-calculator-1" class="button interactive-good-calculator-1-button">1</button>
+                      </div>
+                      <div class="large-3 columns">
+                          <button type="button" id="interactive-good-calculator-2" class="button interactive-good-calculator-2-button">2</button>
+                      </div>
+                      <div class="large-3 columns">
+                          <button type="button" id="interactive-good-calculator-3" class="button interactive-good-calculator-3-button">3</button>
+                      </div>
+                  </div>
+                  <div class="large-3 columns calculator-buttons">
+                      <div class="large-3 columns">
+                          <button type="button" id="interactive-good-calculator-addition" class="button interactive-good-calculator-addition-button">+</button>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="row">
+                  <div class="large-9 columns calculator-buttons">
+                      <div class="large-3 columns">
+                          <button type="button" id="interactive-good-calculator-equals" class="button interactive-good-calculator-equals-button">=</button>
+                      </div>
+                      <div class="large-3 columns">
+                          <button type="button" id="interactive-good-calculator-zero" class="button interactive-good-calculator-zero-button">0</button>
+                      </div>
+                      <div class="large-3 columns">
+                          <button type="button" id="interactive-good-calculator-decimal" class="button interactive-good-calculator-decimal-button">.</button>
+                      </div>
+                  </div>
+                  <div class="large-3 columns calculator-buttons">
+                      <div class="large-3 columns">
+                          <button type="button" id="interactive-good-calculator-subtraction" class="button interactive-good-calculator-subtraction-button">-</button>
+                      </div>
+                  </div>
+              </div>
+
+          </div>
+
+          <!-- bad calculator interface -->
+          <div class="large-6 small-12 columns test">
+
+              <div class="row">
+                  <div class="large-8 columns">
+                      <textarea id="interactive-awful-calculator-output" readonly></textarea>
+                  </div>
+                  <div class="large-4 columns">
+                      <button type="button" id="interactive-awful-calculator-c" class="button interactive-awful-calculator-c-button">C</button>
+                  </div>
+              </div>
+
+              <div class="row">
+                  <div class="large-9 columns calculator-buttons">
+                      <div class="large-3 columns">
+                          <button type="button" id="interactive-awful-calculator-7" class="button interactive-awful-calculator-7-button">7</button>
+                      </div>
+                      <div class="large-3 columns">
+                          <button type="button" id="interactive-awful-calculator-8" class="button interactive-awful-calculator-8-button">8</button>
+                      </div>
+                      <div class="large-3 columns">
+                          <button type="button" id="interactive-awful-calculator-9" class="button interactive-awful-calculator-9-button">9</button>
+                      </div>
+                  </div>
+                  <div class="large-3 columns calculator-buttons">
+                      <div class="large-3 columns">
+                          <button type="button" id="interactive-awful-calculator-divide" class="button interactive-awful-calculator-divide-button">/</button>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="row">
+                  <div class="large-9 columns calculator-buttons">
+                      <div class="large-3 columns">
+                          <button type="button" id="interactive-awful-calculator-4" class="button interactive-awful-calculator-4-button">4</button>
+                      </div>
+                      <div class="large-3 columns">
+                          <button type="button" id="interactive-awful-calculator-5" class="button interactive-awful-calculator-5-button">5</button>
+                      </div>
+                      <div class="large-3 columns">
+                          <button type="button" id="interactive-awful-calculator-6" class="button interactive-awful-calculator-6-button">6</button>
+                      </div>
+                  </div>
+                  <div class="large-3 columns calculator-buttons">
+                      <div class="large-3 columns">
+                          <button type="button" id="interactive-awful-calculator-multiply" class="button interactive-awful-calculator-multiply-button">*</button>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="row">
+                  <div class="large-9 columns calculator-buttons">
+                      <div class="large-3 columns">
+                          <button type="button" id="interactive-awful-calculator-1" class="button interactive-awful-calculator-1-button">1</button>
+                      </div>
+                      <div class="large-3 columns">
+                          <button type="button" id="interactive-awful-calculator-2" class="button interactive-awful-calculator-2-button">2</button>
+                      </div>
+                      <div class="large-3 columns">
+                          <button type="button" id="interactive-awful-calculator-3" class="button interactive-awful-calculator-3-button">3</button>
+                      </div>
+                  </div>
+                  <div class="large-3 columns calculator-buttons">
+                      <div class="large-3 columns">
+                          <button type="button" id="interactive-awful-calculator-addition" class="button interactive-awful-calculator-addition-button">+</button>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="row">
+                  <div class="large-9 columns calculator-buttons">
+                      <div class="large-3 columns">
+                          <button type="button" id="interactive-awful-calculator-equals" class="button interactive-awful-calculator-equals-button">=</button>
+                      </div>
+                      <div class="large-3 columns">
+                          <button type="button" id="interactive-awful-calculator-zero" class="button interactive-awful-calculator-zero-button">0</button>
+                      </div>
+                      <div class="large-3 columns">
+                          <button type="button" id="interactive-awful-calculator-decimal" class="button interactive-awful-calculator-decimal-button">.</button>
+                      </div>
+                  </div>
+                  <div class="large-3 columns calculator-buttons">
+                      <div class="large-3 columns">
+                          <button type="button" id="interactive-awful-calculator-subtraction" class="button interactive-awful-calculator-subtraction-button">-</button>
+                      </div>
+                  </div>
+              </div>
+
+          </div>
+
+        <link rel="stylesheet" href="interactive-awful-calculator.css">
+        <script src="awful-calculator-script.js"></script>
 
       <!-- ### End of required HTML for inline interactives ### -->
       </div>
