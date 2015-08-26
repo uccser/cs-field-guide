@@ -9,7 +9,17 @@ $(document).ready(function () {
 
     $(".interactive-calculator-good button").click(function(){
         console.log($(this).val());
+        var operation = $(this).val();
+        if (operation == "=") {
+            // evaluate
+        } else if (operation == "C") {
+            // clear
+        } else {
+            display += operation
+        }
+        document.getElementById("interactive-good-calculator-output").innerHTML = display;
     });
+
 
     $(".interactive-calculator-awful button").click(function(){
         console.log($(this).val());
