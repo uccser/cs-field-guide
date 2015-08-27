@@ -148,6 +148,8 @@ This system of rotating each letter in a piece of text by a certain amount in or
 
 You can experiment with this cipher using this interactive.
 
+{comment}
+
 <div class="interactive row">
 <div class="col-xs-12 col-sm-4">  
 <h4>Plaintext</h4>
@@ -164,6 +166,8 @@ You can experiment with this cipher using this interactive.
 <button id="caesar-decrypt" type="button" class="btn btn-primary btn-block" style="margin-top:10px;">Decrypt</button>
 </div>
 </div>
+
+{comment end}
 
 In this system, the amount of rotation is referred to as a *key*, since you can unlock the message if you know the key.
 Normally the sender and receiver would agree on a key in advance (and in person), so that the receiver can easily unlock the message.
@@ -414,6 +418,8 @@ A very popular public key system is RSA.  The following interactives use RSA so 
 
 Firstly, you will need to generate a pair of keys using the key generator interactive. Note that each key consists of two numbers and the interactive separates them with a “+” (this does not mean addition). You should keep the private key secret, and publicly announce the public key so that your friends can send you messages (e.g. put it on the whiteboard, or email it to some friends). Make sure you save your keys somewhere so you don’t forget them --- a text file would be best.
 
+{comment}
+
 <div class="col-xs-12 col-md-6 col-md-offset-3">
 <div class="panel panel-default">
 <div class="panel-heading">RSA Key Generator</div>
@@ -444,9 +450,11 @@ Firstly, you will need to generate a pair of keys using the key generator intera
 </div>
 <div class="clearfix visible-xs-block"></div>
 
+{comment end}
 
 The second interactive is the encrypter, and it is used to encrypt or decrypt messages with the keys. In order to encrypt messages for you, your friends should use your public key (and select the “encrypt” button on the interactive). In order to decrypt the messages your friends have sent you, you should use your private key (and select the “decrypt” button on the interactive).
 
+{comment}
 
 <div class="col-xs-12 col-md-6 col-md-offset-3">
 <div class="row panel panel-default">
@@ -496,6 +504,8 @@ The second interactive is the encrypter, and it is used to encrypt or decrypt me
 </div>
 </div>
 <div class="clearfix visible-xs-block"></div>
+
+{comment end}
 
 {comment}
 
@@ -625,7 +635,16 @@ The chapter on Complexity and Tractability looks at more computer science proble
 
 {curiosity end}
 
-<div class="widget-holder"><a href="_static/widgets/big-calculator.html?plain=true frameborder="0"" target="_blank"><img class="widget-image" src="_static/complexity_and_tractability/images/CT-BigCalculatorThumbnail.png" alt=""><span class="widget-subtitle">Click to load<br>big number calculator</span></a></div>
+{comment}
+
+<div class="widget-holder">
+  <a href="static/widgets/big-calculator.html?plain=true frameborder="0"" target="blank">
+  <img class="widget-image" src="static/complexity_and_tractability/images/CT-BigCalculatorThumbnail.png" alt="">
+  <span class="widget-subtitle">Click to load<br>big number calculator</span>
+  </a>
+</div>
+
+{comment end}
 
 What isn’t known though, is whether or not the general problem of breaking RSA is actually as difficult as the factoring problem. In other words, is there a completely different way of breaking it that does not involve factoring numbers?
 
@@ -732,9 +751,9 @@ For a really good class, you might like to also add digital signatures into the 
 
 {teacher end}
 
-{comment}
+{interactive-inpage MD5-hash}
 
-.. tcb xjrm The two lines before the bullet points above are in bold in the output; can we avoid that?
+{comment}
 
 .. Password Storage
 .. =====================================================
@@ -851,5 +870,9 @@ The book "Hacking Secret Ciphers with Python: A beginner's guide to cryptography
 - [Videos about modern encryption methods](http://simonsingh.net/media/online-videos/cryptography/the-science-of-secrecy-going-public/)
 - [Online interactives for simple ciphers](http://www.braingle.com/brainteasers/codes/index.php)
 
-<script language="JavaScript" type="text/javascript" src="_static/interactives/third-party/big.js"></script>
-<script language="JavaScript" type="text/javascript" src="_static/interactives/en/en-interactives.js"></script>
+{comment}
+
+<script language="JavaScript" type="text/javascript" src="static/interactives/third-party/big.js"></script>
+<script language="JavaScript" type="text/javascript" src="static/interactives/en/en-interactives.js"></script>
+
+{comment end}

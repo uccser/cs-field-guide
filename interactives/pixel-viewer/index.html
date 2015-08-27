@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <!-- If you delete this meta tag World War Z will become a reality -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- ### Enter your interactive title in the title block ### -->
+    <title>Pixel Viewer</title>
+    <link rel="stylesheet" href="../base-files/css/normalize.css">
+    <link rel="stylesheet" href="../base-files/css/foundation.min.css">
+    <script src="../base-files/js/modernizr.js"></script>
+    <!-- jQuery (necessary for Foundation) -->
+    <script src="../base-files/js/jquery.js"></script>
+  </head>
+  <body>
+      <div id="pixel-viewer-interactive" class="interactive">
+	    <!-- ### Start of required HTML for inline interactives ### -->
+        <div id="pixel-viewer-interactive-container">
+          <img id="pixel-viewer-interactive-original-image" src="./img/coloured-roof-small.png" />
+          <div id="pixel-viewer-interactive-loader"></div>
+          <canvas id="pixel-viewer-interactive-content"></canvas>
+        </div>
+        <div class="row full-width" data-equalizer>
+          <button id="pixel-viewer-interactive-menu-toggle" class="small-6 large-4 columns button pixel-viewer-interactive-button" data-equalizer-watch>Toggle Menu</button>
+          <button id="pixel-viewer-interactive-zoom-in" class="small-3 large-4 columns button pixel-viewer-interactive-button pixel-viewer-interactive-zoom-button" data-equalizer-watch>Zoom In</button>
+          <button id="pixel-viewer-interactive-zoom-out" class="small-3 large-4 columns button pixel-viewer-interactive-button pixel-viewer-interactive-zoom-button" data-equalizer-watch>Zoom Out</button>
+        </div>
+        <div class="row full-width">
+          <div id="pixel-viewer-interactive-settings" class="small-6 large-4 columns end">
+            <h3>Pixel Value Interactive</h3>
+            <p>This interactive allows you to see the pixels of an image, and details about those pixels. <strong>Zoom in</strong> to see details about individual pixels.</p>
+
+            <p>This interactive works best on a desktop Chrome browser, due to the heavy performance load.</p>
+
+            <h5>Upload your own image</h5>
+            <p>Either drag and drop an image onto this page, or click the button below to load your own image into the interactive. The image will be resized for performance.</p>
+
+            <input type="file" class="form-control" name="image" onchange="loadImageDialog(this)" accept="image/*" />
+            <canvas id="pixel-viewer-interactive-source-canvas"></canvas>
+
+            <p>
+              <i><span id="pixel-viewer-interactive-resize-values"></span></i>
+            </p>
+
+            <p>You can save an image of this interactive by right clicking on the zoomed image and clicking "Save image as..." (Chrome/Firefox).</p>
+
+            <p class="pixel-viewer-interactive-footer">
+                <a href="https://docs.google.com/forms/d/1gCOwTMAd6idaeIRwvIELARfQsyL6lpI5P4EQa9bIW9w/viewform" target="_blank">Report a bug or suggestion</a><br>
+                <a href="./license.md" target="_blank">Copyright information</a>
+            </p>
+          </div>
+        </div>
+
+        <link rel="stylesheet" href="./css/pixel-viewer.css">
+        <script src="./js/Scroller.js"></script>
+        <script src="./js/Animate.js"></script>
+        <script src="./js/Tiling.js"></script>
+        <script src="./js/pixel-viewer.js"></script>
+      <!-- ### End of required HTML for inline interactives ### -->
+      </div>
+    <!-- Foundation responsive CSS -->
+    <script src="../base-files/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+    </script>
+  </body>
+</html>
