@@ -36,11 +36,15 @@ function evaluateExpression(expression, x, operator, y) {
         "/": function (x, y) { return x / y }
     };
     answer = evaluate[operator](parseFloat(x), parseFloat(y));
-    if (expression.length > 0) {
-        return evaluateExpression(expression, answer, expression.splice(0, 1), expression.splice(0, 1));
+    if (isNaN(answer)) {
+        return "error";
     } else {
-        expression[0] = answer;
-        return answer;
+        if (expression.length > 0) {
+            return evaluateExpression(expression, answer, expression.splice(0, 1), expression.splice(0, 1));
+        } else {
+            expression[0] = answer;
+            return answer;
+        }
     }
 }
 
