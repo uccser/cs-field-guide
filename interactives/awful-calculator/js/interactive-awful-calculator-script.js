@@ -8,16 +8,9 @@ $(document).ready(function () {
     var expression = [];
 
     $(".interactive-calculator-good button").click(function(){
+
         var input = $(this).val();
-        // TODO: should change order of these if statements
-        if (input == "=") {
-            // evaluate
-            document.getElementById("interactive-good-calculator-output").innerHTML = evaluateExpression(expression, expression.splice(0, 1), expression.splice(0, 1), expression.splice(0, 1));
-        } else if (input == "C") {
-            // clear
-            expression = []; // clear expression list
-            document.getElementById("interactive-good-calculator-output").innerHTML = ""; // clear display
-        } else {
+        if ("+-/*0123456789".indexOf(input) != -1) {
             if (input == parseInt(input)) {
                 // accounts for numbers greater than 1 digit long
                 if (expression.length >= 1){
@@ -27,10 +20,17 @@ $(document).ready(function () {
                     }
                 }
             }
-            // add input to expression
-            expression.push(input);
-            document.getElementById("interactive-good-calculator-output").innerHTML = expression.join(" ");
+            expression.push(input); // add input to expression
+            document.getElementById("interactive-good-calculator-output").innerHTML = expression.join(" "); // update display
+        } else if (input == "C") {
+            // clear
+            expression = []; // clear expression list
+            document.getElementById("interactive-good-calculator-output").innerHTML = ""; // clear display
+        } else if (input == "=") {
+            // evaluate
+            document.getElementById("interactive-good-calculator-output").innerHTML = evaluateExpression(expression, expression.splice(0, 1), expression.splice(0, 1), expression.splice(0, 1));
         }
+
     });
 
 
@@ -53,6 +53,7 @@ function evaluateExpression(expression, x, operator, y) {
     if (expression.length > 0) {
         return evaluateExpression(expression, answer, expression.splice(0, 1), expression.splice(0, 1));
     } else {
+        expression[0] = answer;
         return answer;
     }
 }
