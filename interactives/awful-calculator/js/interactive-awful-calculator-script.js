@@ -11,7 +11,7 @@ $(document).ready(function () {
     $(".interactive-calculator-good button").click(function(){
         var input = $(this).val();
         element = document.getElementById("interactive-good-calculator-output");
-        updateDisplay(input, expression, element);
+        processInput(input, expression, element);
     });
 
 
@@ -19,9 +19,8 @@ $(document).ready(function () {
         var input = $(this).val();
         element = document.getElementById("interactive-bad-calculator-output");
         var delayTime = (Math.random() * (2 - 0.1) + 0.1)*1000;
-        console.log(delayTime);
         setTimeout(function() {
-            setInterval(updateDisplay(input, expression, element), delayTime);
+            processInput(input, expression, element);
         }, delayTime);
     });
 
@@ -46,7 +45,7 @@ function evaluateExpression(expression, x, operator, y) {
 }
 
 
-function updateDisplay(input, expression, element) {
+function processInput(input, expression, element) {
     if (".+-/*0123456789".indexOf(input) != -1) {
         if (input == parseFloat(input) || input == ".") {
             // accounts for numbers greater than 1 digit long
@@ -61,12 +60,10 @@ function updateDisplay(input, expression, element) {
         element.innerHTML = expression.join(" "); // update display
     } else if (input == "C") {
         // clear
-        console.log("clearing list");
         expression.splice(0); // clear expression list
         element.innerHTML = ""; // clear display
     } else if (input == "=") {
         // evaluate
         element.innerHTML = evaluateExpression(expression, expression.splice(0, 1), expression.splice(0, 1), expression.splice(0, 1));
     }
-    console.log(expression);
 }

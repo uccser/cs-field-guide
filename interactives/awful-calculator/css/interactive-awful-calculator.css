@@ -1,8 +1,27 @@
-.calculator-buttons {
+.calculatorbutton {
     display: flex;
     justify-content: space-between;
 }
 
-.interactive-calculator {
-    border: 1px solid;
+
+.interactive-calculator-awful, .interactive-calculator-good {
+    border: 3px solid;
+    padding: 10px;
+}
+
+/* Grow */
+.interactive-calculator-awful button {
+    display: inline-block;
+    vertical-align: middle;
+    transform: scale(1);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    transition-duration: 0.1s;
+    transition-property: transform;
+}
+
+.interactive-calculator-awful button:hover
+{
+    transform: scale(3.1);
 }
