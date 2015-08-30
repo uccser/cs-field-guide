@@ -1,5 +1,5 @@
 /**
- * Awful Calculator Interactive
+ * Awful Calculator Floateractive
  * For use in the CS Field Guide
  * Created by Hayley van Waas, University of Canterbury
  */
@@ -10,11 +10,11 @@ $(document).ready(function () {
     $(".interactive-calculator-good button").click(function(){
 
         var input = $(this).val();
-        if ("+-/*0123456789".indexOf(input) != -1) {
-            if (input == parseInt(input)) {
+        if (".+-/*0123456789".indexOf(input) != -1) {
+            if (input == parseFloat(input) || input == ".") {
                 // accounts for numbers greater than 1 digit long
                 if (expression.length >= 1){
-                    if (expression[(expression.length)-1] == parseInt(expression[expression.length-1])) {
+                    if (expression[(expression.length)-1] == parseFloat(expression[expression.length-1])) {
                         input = expression[expression.length-1] + input; // change input to multi digit number
                         expression.splice(expression.length - 1); // remove last input from list
                     }
@@ -49,7 +49,7 @@ function evaluateExpression(expression, x, operator, y) {
         "*": function (x, y) { return x * y },
         "/": function (x, y) { return x / y }
     };
-    answer = evaluate[operator](parseInt(x), parseInt(y));
+    answer = evaluate[operator](parseFloat(x), parseFloat(y));
     if (expression.length > 0) {
         return evaluateExpression(expression, answer, expression.splice(0, 1), expression.splice(0, 1));
     } else {
