@@ -18,7 +18,11 @@ $(document).ready(function () {
     $(".interactive-calculator-awful button").click(function(){
         var input = $(this).val();
         element = document.getElementById("interactive-bad-calculator-output");
-        updateDisplay(input, expression, element);
+        var delayTime = (Math.random() * (2 - 0.1) + 0.1)*1000;
+        console.log(delayTime);
+        setTimeout(function() {
+            setInterval(updateDisplay(input, expression, element), delayTime);
+        }, delayTime);
     });
 
 });
