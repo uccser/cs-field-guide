@@ -5,37 +5,20 @@
  */
 
 $(document).ready(function () {
+
     var expression = [];
 
     $(".interactive-calculator-good button").click(function(){
-
         var input = $(this).val();
-        if (".+-/*0123456789".indexOf(input) != -1) {
-            if (input == parseFloat(input) || input == ".") {
-                // accounts for numbers greater than 1 digit long
-                if (expression.length >= 1){
-                    if (expression[(expression.length)-1] == parseFloat(expression[expression.length-1])) {
-                        input = expression[expression.length-1] + input; // change input to multi digit number
-                        expression.splice(expression.length - 1); // remove last input from list
-                    }
-                }
-            }
-            expression.push(input); // add input to expression
-            document.getElementById("interactive-good-calculator-output").innerHTML = expression.join(" "); // update display
-        } else if (input == "C") {
-            // clear
-            expression = []; // clear expression list
-            document.getElementById("interactive-good-calculator-output").innerHTML = ""; // clear display
-        } else if (input == "=") {
-            // evaluate
-            document.getElementById("interactive-good-calculator-output").innerHTML = evaluateExpression(expression, expression.splice(0, 1), expression.splice(0, 1), expression.splice(0, 1));
-        }
-
+        element = document.getElementById("interactive-good-calculator-output");
+        updateDisplay(input, expression, element);
     });
 
 
     $(".interactive-calculator-awful button").click(function(){
-        console.log($(this).val());
+        var input = $(this).val();
+        element = document.getElementById("interactive-bad-calculator-output");
+        updateDisplay(input, expression, element);
     });
 
 });
@@ -56,4 +39,30 @@ function evaluateExpression(expression, x, operator, y) {
         expression[0] = answer;
         return answer;
     }
+}
+
+
+function updateDisplay(input, expression, element) {
+    if (".+-/*0123456789".indexOf(input) != -1) {
+        if (input == parseFloat(input) || input == ".") {
+            // accounts for numbers greater than 1 digit long
+            if (expression.length >= 1){
+                if (expression[(expression.length)-1] == parseFloat(expression[expression.length-1])) {
+                    input = expression[expression.length-1] + input; // change input to multi digit number
+                    expression.splice(expression.length - 1); // remove last input from list
+                }
+            }
+        }
+        expression.push(input); // add input to expression
+        element.innerHTML = expression.join(" "); // update display
+    } else if (input == "C") {
+        // clear
+        console.log("clearing list");
+        expression.splice(0); // clear expression list
+        element.innerHTML = ""; // clear display
+    } else if (input == "=") {
+        // evaluate
+        element.innerHTML = evaluateExpression(expression, expression.splice(0, 1), expression.splice(0, 1), expression.splice(0, 1));
+    }
+    console.log(expression);
 }
