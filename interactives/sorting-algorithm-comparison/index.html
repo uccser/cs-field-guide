@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <!-- If you delete this meta tag World War Z will become a reality -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- ### Enter your interactive title in the title block ### -->
+    <title>Sorting Algorithm Comparison</title>
+    <link rel="stylesheet" href="../base-files/css/normalize.css">
+    <link rel="stylesheet" href="../base-files/css/foundation.min.css">
+    <script src="../base-files/js/modernizr.js"></script>
+    <!-- jQuery (necessary for Foundation) -->
+    <script src="../base-files/js/jquery.js"></script>
+  </head>
+  <body>
+	    <!-- ### Start of required HTML for inline interactives ### -->
+      <div class="row interactive text-center" id="interactive-sorting-algorithm-comparison">
+        <div class="small-12 columns">
+          <p>Click an image to play sorting animations</p>
+        </div>
+        <div class="small-6 columns">
+          <img id="sorting-algorithm-comparison-selection-sort" src="./img/initial-sort.gif">
+          <p class="sorting-algorithm-comparison-subtitle">Selection sort</p>
+        </div>
+        <div class="small-6 columns">
+          <img id="sorting-algorithm-comparison-quick-sort" src="./img/initial-sort.gif">
+          <p class="sorting-algorithm-comparison-subtitle">Quick sort</p>
+        </div>
+        <div class="small-12 columns">
+          <p id="sorting-algorithm-comparison-credit"><em>Animations provided by David Martin from <a href="http://www.sorting-algorithms.com/">www.sorting-algorithms.com</a></em></p>
+        </div>
+        <!-- Preload the images so they start at the same time -->
+        <img id="sorting-algorithm-comparison-selection-sort-animation" class="sorting-algorithm-comparison-preload" src="./img/selection-sort.gif">
+        <img id="sorting-algorithm-comparison-quick-sort-animation" class="sorting-algorithm-comparison-preload" src="./img/quick-sort.gif">
+        <link rel="stylesheet" href="css/sorting-algorithm-comparison.css">
+        <script src="./js/sorting-algorithm-comparison.js"></script>
+      </div>
+      <!-- ### End of required HTML for inline interactives ### -->
+    <!-- Foundation responsive CSS -->
+    <script src="../base-files/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+    </script>
+  </body>
+</html>
