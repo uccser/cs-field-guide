@@ -5,6 +5,8 @@
 
 This interactive is created for illustrating network issues to the user, but delaying/corrupting/killing packets of data.
 
+Currently this interactive can only be run in external mode (using `interactive-external`) as the links to assets are broken in `in-page` mode.
+
 ## Required Files
 
 - [jQuery](https://jquery.com/) (loaded from base-files folder)
@@ -12,7 +14,6 @@ This interactive is created for illustrating network issues to the user, but del
 - [Moment](http://momentjs.com/)
 - [Moment duration format](https://github.com/jsmreese/moment-duration-format)
 - [Lodash Compat](https://github.com/lodash/lodash-compat)
-
 
 ## Future plans
 
