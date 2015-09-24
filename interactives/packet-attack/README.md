@@ -5,7 +5,9 @@
 
 This interactive is created for illustrating network issues to the user, but delaying/corrupting/killing packets of data.
 
-Currently this interactive can only be run in external mode (using `interactive-external`) as the links to assets are broken in `in-page` mode.
+This interactive currently does not work in Google Chrome when viewed locally (by opening `index.html`). Either view this interactive in a different browser when viewing offline, or view it online in Google Chrome.
+
+Currently this interactive can only be added to a page in external mode (using `interactive-external`) as the links to assets are broken in `in-page` mode.
 
 ## Required Files
 
