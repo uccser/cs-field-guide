@@ -171,7 +171,7 @@ If you want a template to draw on, you can [print one out from here](files/forma
 
 {comment end}
 
-<div align="center"><iframe width="450" height="515" src="static/widgets/fsa-trainsylvania-v4.html?map=puzzle1" frameborder="0">Your browser does not support iframes. Please contact the computer's administrator and upgrade <a href="http://browsehappy.com/"> to a modern browser</a> (like Google Chrome) to enable all functionality of this online textbook.</iframe></div>
+{interactive-inpage trainsylvania}
 
 {teacher}
 
