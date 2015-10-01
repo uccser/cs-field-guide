@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <!-- If you delete this meta tag World War Z will become a reality -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- ### Enter your interactive title in the title block ### -->
+    <title>Interactive Template</title>
+    <link rel="stylesheet" href="../base-files/css/normalize.css">
+    <link rel="stylesheet" href="../base-files/css/foundation.min.css">
+    <script src="../base-files/js/modernizr.js"></script>
+    <!-- jQuery (necessary for Foundation) -->
+    <script src="../base-files/js/jquery.js"></script>
+  </head>
+  <body>
+	    <!-- ### Start of required HTML for inline interactives ### -->
+      <div id="interactive-trainsylvania" class="row interactive text-center">
+        <div class="small-12 medium-8 large-6 columns small-centered">
+          <p>Find your way to <strong>Suburbopolis Station!</strong></p>
+          <p>You are currently at:</p>
+          <div id="interactive-trainsylvania-image-div"></div>
+          <h3 id="interactive-trainsylvania-current-station"></h3>
+          <p id="interactive-trainsylvania-train-buttons">
+            Do you want to travel on:<br>
+            <button id="interactive-trainsylvania-train-a" class="button interactive-trainsylvania-train-button radius" disabled="true">Train A</button>
+            or
+            <button id="interactive-trainsylvania-train-b" class="button interactive-trainsylvania-train-button radius" disabled="true">Train B</button>
+          </p>
+          <p id="interactive-trainsylvania-train-success">
+            Congratulations! You made it!
+          </p>
+          <button id="interactive-trainsylvania-reset" class="button radius alert tiny interactive-trainsylvania-train-button" disabled="true">Start over</button>
+        </div>
+        <a id="interactive-trainsylvania-image-link" href="./img/"></a>
+        <link rel="stylesheet" href="./css/trainsylvania.css">
+        <script src="./js/trainsylvania.js"></script
+      </div>
+      <!-- ### End of required HTML for inline interactives ### -->
+    <!-- Foundation responsive CSS -->
+    <script src="../base-files/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+    </script>
+  </body>
+</html>

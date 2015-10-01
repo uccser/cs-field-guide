@@ -341,7 +341,7 @@ class Section:
         interactive_tree = self.get_interactive_tree(source_folder, name)
         if interactive_tree is not None:
             self.edit_interactive_tree(interactive_tree, source_folder)
-            html = re.sub('(\n)*<!--(.|\s)*?-->(\n)*', '', str(interactive_tree), flags=re.MULTILINE)
+            html = re.sub('(\n)*<!--(.|\s)*?-->(\n)*', '', interactive_tree.prettify(formatter=None).strip(), flags=re.MULTILINE)
             return html
         else:
             return None
@@ -354,7 +354,7 @@ class Section:
         """
         filename = self.guide.generator_settings['Source']['Interactive File']
         file_location = os.path.join(source_folder, filename)
-        with open(file_location, 'r', encoding='utf8') as source_file:
+        with open(file_location, 'r', encoding='utf-8') as source_file:
             raw_html = source_file.read()
 
         file_tree = BeautifulSoup(raw_html, 'html5lib')
