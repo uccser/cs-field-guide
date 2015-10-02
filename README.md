@@ -1,7 +1,5 @@
 # Computer Science Field Guide
 
-[![Join the chat at https://gitter.im/uccser/cs-field-guide](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/uccser/cs-field-guide?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
 The Computer Science Field Guide is an online interactive resource for high school students learning about computer science, developed at the University of Canterbury in New Zealand. The latest HTML release of the Computer Science Field Guide can be viewed at [www.csfieldguide.org.nz](http://www.csfieldguide.org.nz/). This repository aims to be the source for all data associated with the CSFG, and also allows users to suggest improvements or create their own version.
 
 ## What's included
