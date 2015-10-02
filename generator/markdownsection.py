@@ -302,29 +302,30 @@ class Section:
         html = ''
         interactive_type = match.group('type')
         name = match.group('interactive_name')
-        arguments = re.search('(title="(?P<title>[^"]*)")?(parameters="(?P<parameters>[^"]*)")?', match.group('args'))
-        arg_title = arguments.group('title')
-        title = arg_title if arg_title else name
-        params = arguments.group('parameters')
+        arg_title = re.search('title="(?P<title>[^"]*)"', match.group('args'))
+        title = arg_title.group('title') if arg_title else name
+        arg_thumbnail = re.search('thumbnail="(?P<thumbnail>[^"]*)"', match.group('args'))
+        thumbnail = arg_thumbnail.group('thumbnail') if arg_thumbnail else self.guide.generator_settings['Source']['Interactive Thumbnail']
+        arg_parameters = re.search('parameters="(?P<parameters>[^"]*)"', match.group('args'))
+        params = arg_parameters.group('parameters') if arg_parameters else None
         source_folder = os.path.join(self.guide.generator_settings['Source']['Interactive'], name)
         interactive_exists = self.check_interactive(source_folder, name)
 
         if interactive_exists:
             self.required_files['Interactive'].add(name)
             if interactive_type == 'interactive-external':
-                html = self.external_interactive_html(source_folder, title, name, params)
+                html = self.external_interactive_html(source_folder, title, name, params, thumbnail)
             elif interactive_type == 'interactive-inpage':
                 html = self.inpage_interactive_html(source_folder, name)
         return html if html else ''
 
 
-    def external_interactive_html(self, source_folder, title, name, params):
+    def external_interactive_html(self, source_folder, title, name, params, thumbnail):
         """Return the html block for a link to an external interactive"""
-
-        thumbnail_location = os.path.join(self.html_path_to_root, source_folder, self.guide.generator_settings['Source']['Interactive Thumbnail'])
+        thumbnail_location = os.path.join(self.html_path_to_root, source_folder, thumbnail)
         link_text = 'Click to load {title}'.format(title=title)
         folder_location = os.path.join(self.html_path_to_root, source_folder, self.guide.generator_settings['Source']['Interactive File'])
-        file_link = "{location}?{parameters}".format(location=folder_location, params=params) if params else folder_location
+        file_link = "{location}?{parameters}".format(location=folder_location, parameters=params) if params else folder_location
         link_template = self.html_templates['interactive-external']
         link_html = link_template.format(interactive_thumbnail=thumbnail_location,
                                     interactive_link_text=link_text,
