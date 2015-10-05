@@ -215,20 +215,38 @@ body {
   padding: 0 0 1rem;
 }
 pre {
-  margin: 0 0 1.25rem;
-  padding: 0.125rem 0.25rem;
-  display: inline-block;
-  background-color: #EDEDED;
-  border-color: #DDD;
-  border-style: solid;
+  color: $oil;
+  font-family: $font-family-monospace;
+  font-weight: $font-weight-normal;
+  background-color: scale-color($secondary-color, $lightness: 70%);
   border-width: 1px;
-  border-radius: 3px;
+  border-style: solid;
+  border-color: scale-color($code-background-color, $lightness: -10%);
+  padding: rem-calc(2) rem-calc(5) rem-calc(1) !important;
+  margin-bottom: rem-calc(20) !important;
+  white-space: pre-wrap;       /* CSS 3 */
+  white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+  white-space: -pre-wrap;      /* Opera 4-6 */
+  white-space: -o-pre-wrap;    /* Opera 7 */
+  word-wrap: break-word;       /* Internet Explorer 5.5+ */
 }
-code {
+pre > code {
   padding: 0;
-  background-color: rgba(0, 0, 0, 0);
-  border: 0;
+  background-color: transparent;
+  border-width: 0;
+  border-style: none;
 }
 .interactive-external {
   border: 2px solid #C3C3C3;
+}
+.image-wrap {
+
+}
+.image-wrap-left {
+  float: left;
+  margin-right: 1rem;
+}
+.image-wrap-right {
+  float: right;
+  margin-left: 1rem;
 }

@@ -161,19 +161,47 @@ class Section:
         return match.group(0) * 2
 
 
+    def create_image_html(self, filename, image_args, image_set=False):
+        """Create the HTML required for displaying an image.
+        This function is used by add_image and add_image_set"""
+        # Add to required files
+        self.required_files['Image'].add(filename)
+
+        valid_image_wrap_directions = ['left', 'right']
+
+        image_source =  os.path.join(self.html_path_to_root, self.guide.generator_settings['Source']['Image'], filename)
+
+        parameters = ''
+        wrap = False
+
+        if image_args:
+            wrap_parameter = re.findall('wrap="(?P<wrap>[^"]*)"', image_args)
+            if wrap_parameter and not image_set:
+                wrap_value = wrap_parameter[0].lower()
+                if wrap_value in valid_image_wrap_directions:
+                    wrap = wrap_value
+                else:
+                    logging.error('Image wrap value {direction} for image {filename} not recognised. Valid directions: {valid_directions}'.format(direction=wrap_value, filename=filename, valid_directions=valid_image_wrap_directions))
+            alt_parameter = re.findall('alt="(?P<alt>[^"]*)"', image_args)
+            if alt_parameter:
+                alt_value = alt_parameter[0]
+                parameters += ' '
+                parameters += self.html_templates['image-parameter-alt'].format(alt_text=alt_value)
+
+        image_html = self.html_templates['image'].format(image_source=image_source, image_parameters=parameters)
+        return image_html, wrap
+
+
     def add_image(self, match):
         # TODO: Check image exists
         # TODO: Combine check function with generateguide.py
-
-        # Add to required files
         filename = match.group('filename')
-        self.required_files['Image'].add(filename)
-        # TODO: Process image arguments
-
-        # Return HTML
-        image_source =  os.path.join(self.html_path_to_root, self.guide.generator_settings['Source']['Image'], filename)
-        image_html = self.html_templates['image'].format(image_source=image_source)
-        html = self.html_templates['centered'].format(html=image_html)
+        image_args = match.group('args')
+        image_html, wrap = self.create_image_html(filename, image_args)
+        if wrap:
+            html = self.html_templates['image-wrapped'].format(html=image_html, wrap_direction=wrap)
+        else:
+            html = self.html_templates['centered'].format(html=image_html)
         return html
 
 
@@ -187,8 +215,7 @@ class Section:
         images_html = ''
         for (image_filename,image_args) in images:
             # TODO: Process image arguments
-            image_source = os.path.join(self.html_path_to_root, self.guide.generator_settings['Source']['Image'], image_filename)
-            image_html = self.html_templates['image'].format(image_source=image_source).strip()
+            image_html, wrap = self.create_image_html(image_filename, image_args, True)
             images_html += self.html_templates['image-set-item'].format(image_html=image_html)
         html = self.html_templates['image-set'].format(image_set_items_html=images_html.strip(),
                                                 small_count=small_count,
@@ -254,9 +281,15 @@ class Section:
 
         self.required_files['File'].add(filename)
 
-        output_path = os.path.join(self.guide.generator_settings['Output']['Files'], filename)
-        text = self.html_templates['button-download-text'].format(filename=filename)
-        html = self.html_templates['button'].format(button_link=output_path, button_text=text)
+        output_path = os.path.join(self.html_path_to_root, self.guide.generator_settings['Output']['File'], filename)
+
+        if match.group('text'):
+            text = match.group('text')
+        else:
+            text = filename
+
+        button_text = self.html_templates['button-download-text'].format(text=text)
+        html = self.html_templates['button'].format(button_link=output_path, button_text=button_text)
         return html
 
 
@@ -269,29 +302,30 @@ class Section:
         html = ''
         interactive_type = match.group('type')
         name = match.group('interactive_name')
-        arguments = re.search('(title="(?P<title>[^"]*)")?(parameters="(?P<parameters>[^"]*)")?', match.group('args'))
-        arg_title = arguments.group('title')
-        title = arg_title if arg_title else name
-        params = arguments.group('parameters')
+        arg_title = re.search('title="(?P<title>[^"]*)"', match.group('args'))
+        title = arg_title.group('title') if arg_title else name
+        arg_thumbnail = re.search('thumbnail="(?P<thumbnail>[^"]*)"', match.group('args'))
+        thumbnail = arg_thumbnail.group('thumbnail') if arg_thumbnail else self.guide.generator_settings['Source']['Interactive Thumbnail']
+        arg_parameters = re.search('parameters="(?P<parameters>[^"]*)"', match.group('args'))
+        params = arg_parameters.group('parameters') if arg_parameters else None
         source_folder = os.path.join(self.guide.generator_settings['Source']['Interactive'], name)
         interactive_exists = self.check_interactive(source_folder, name)
 
         if interactive_exists:
             self.required_files['Interactive'].add(name)
             if interactive_type == 'interactive-external':
-                html = self.external_interactive_html(source_folder, title, name, params)
+                html = self.external_interactive_html(source_folder, title, name, params, thumbnail)
             elif interactive_type == 'interactive-inpage':
                 html = self.inpage_interactive_html(source_folder, name)
         return html if html else ''
 
 
-    def external_interactive_html(self, source_folder, title, name, params):
+    def external_interactive_html(self, source_folder, title, name, params, thumbnail):
         """Return the html block for a link to an external interactive"""
-
-        thumbnail_location = os.path.join(self.html_path_to_root, source_folder, self.guide.generator_settings['Source']['Interactive Thumbnail'])
+        thumbnail_location = os.path.join(self.html_path_to_root, source_folder, thumbnail)
         link_text = 'Click to load {title}'.format(title=title)
         folder_location = os.path.join(self.html_path_to_root, source_folder, self.guide.generator_settings['Source']['Interactive File'])
-        file_link = "{location}?{parameters}".format(location=folder_location, params=params) if params else folder_location
+        file_link = "{location}?{parameters}".format(location=folder_location, parameters=params) if params else folder_location
         link_template = self.html_templates['interactive-external']
         link_html = link_template.format(interactive_thumbnail=thumbnail_location,
                                     interactive_link_text=link_text,
@@ -307,7 +341,7 @@ class Section:
         interactive_tree = self.get_interactive_tree(source_folder, name)
         if interactive_tree is not None:
             self.edit_interactive_tree(interactive_tree, source_folder)
-            html = re.sub('(\n)*<!--(.|\s)*?-->(\n)*', '', str(interactive_tree), flags=re.MULTILINE)
+            html = re.sub('(\n)*<!--(.|\s)*?-->(\n)*', '', interactive_tree.prettify(formatter=None).strip(), flags=re.MULTILINE)
             return html
         else:
             return None
@@ -320,7 +354,7 @@ class Section:
         """
         filename = self.guide.generator_settings['Source']['Interactive File']
         file_location = os.path.join(source_folder, filename)
-        with open(file_location, 'r', encoding='utf8') as source_file:
+        with open(file_location, 'r', encoding='utf-8') as source_file:
             raw_html = source_file.read()
 
         file_tree = BeautifulSoup(raw_html, 'html5lib')

@@ -13,3 +13,7 @@ output/*
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# temp vim files
+*.swo
+*.swp
