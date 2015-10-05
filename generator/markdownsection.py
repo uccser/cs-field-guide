@@ -32,7 +32,7 @@ class Section:
         self.permalinks = set()
         # Dictionary of sets for images, interactives, and other_files
         self.required_files = setup_required_files(file_node.guide)
-        self.page_scripts = []
+        self.page_scripts = set()
         self.mathjax_required = False
         self.html_path_to_root = self.file_node.depth * '../'
 
@@ -304,20 +304,34 @@ class Section:
         name = match.group('interactive_name')
         arg_title = re.search('title="(?P<title>[^"]*)"', match.group('args'))
         title = arg_title.group('title') if arg_title else name
-        arg_thumbnail = re.search('thumbnail="(?P<thumbnail>[^"]*)"', match.group('args'))
-        thumbnail = arg_thumbnail.group('thumbnail') if arg_thumbnail else self.guide.generator_settings['Source']['Interactive Thumbnail']
         arg_parameters = re.search('parameters="(?P<parameters>[^"]*)"', match.group('args'))
         params = arg_parameters.group('parameters') if arg_parameters else None
         source_folder = os.path.join(self.guide.generator_settings['Source']['Interactive'], name)
-        interactive_exists = self.check_interactive(source_folder, name)
 
-        if interactive_exists:
+        if self.check_interactive_exists(source_folder, name):
             self.required_files['Interactive'].add(name)
             if interactive_type == 'interactive-external':
+                arg_thumbnail = re.search('thumbnail="(?P<thumbnail>[^"]*)"', match.group('args'))
+                thumbnail = arg_thumbnail.group('thumbnail') if arg_thumbnail else self.guide.generator_settings['Source']['Interactive Thumbnail']
                 html = self.external_interactive_html(source_folder, title, name, params, thumbnail)
             elif interactive_type == 'interactive-inpage':
                 html = self.inpage_interactive_html(source_folder, name)
+            elif interactive_type == 'interactive-iframe':
+                html = self.iframe_interactive_html(source_folder, name, params)
         return html if html else ''
+
+
+    def iframe_interactive_html(self, source_folder, name, params):
+        """Create an iframe for the interactive.
+            - A script is added to the page for a responsive iframe
+            - A script is added within the iframe for a responsive iframe
+        """
+        folder_location = os.path.join(self.html_path_to_root, source_folder, self.guide.generator_settings['Source']['Interactive File'])
+        file_link = "{location}?{parameters}".format(location=folder_location, parameters=params) if params else folder_location
+        link_template = self.html_templates['interactive-iframe']
+        html = link_template.format(interactive_source=file_link)
+        self.page_scripts.add(self.html_templates['interactive-iframe-script'].format(path_to_root=self.html_path_to_root))
+        return html
 
 
     def external_interactive_html(self, source_folder, title, name, params, thumbnail):
@@ -387,11 +401,11 @@ class Section:
                     link = os.path.join(self.html_path_to_root, source_folder, raw_link)
                     element[attr] = link
             if element.name == 'script' or (element.name == 'link' and element.get('rel', None) == ['stylesheet']):
-                self.page_scripts.append(element.extract())
+                self.page_scripts.add(element.extract())
         #print(root)
 
 
-    def check_interactive(self, interactive_source, interactive_name):
+    def check_interactive_exists(self, interactive_source, interactive_name):
         """Checks if an interactive exists and has an index.html file"""
         exists = False
         if os.path.exists(interactive_source):
