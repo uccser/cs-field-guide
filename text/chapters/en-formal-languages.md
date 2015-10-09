@@ -127,7 +127,7 @@ Students may ask how to do more complex searches, like letters in any order. If 
 The code you've used above is a part of a formal language called a "regular expression". Computer programs that accept typed input use regular expressions for checking items like dates, credit card numbers and product codes. They’re used extensively by programming language compilers and interpreters to make sense of the text that a programmer types in.
 We'll look at them in more detail in the section on [regular expressions](formal-languages.html#regular-expressions).
 
-Next we examine a simple system for reading input called a [finite state automaton][glossary.htm#finate state automaton], which --- as we'll find out later --- is closely related to regular expressions. Later we'll explore the idea of *grammars*, another kind of formal language that can deal with more complicated forms of input.
+Next we examine a simple system for reading input called a [finite state automaton](appendices/glossary.html#finite-state-automaton), which --- as we'll find out later --- is closely related to regular expressions. Later we'll explore the idea of *grammars*, another kind of formal language that can deal with more complicated forms of input.
 
 {teacher}
 
@@ -171,7 +171,7 @@ If you want a template to draw on, you can [print one out from here](files/forma
 
 {comment end}
 
-<div align="center"><iframe width="450" height="515" src="static/widgets/fsa-trainsylvania-v4.html?map=puzzle1" frameborder="0">Your browser does not support iframes. Please contact the computer's administrator and upgrade <a href="http://browsehappy.com/"> to a modern browser</a> (like Google Chrome) to enable all functionality of this online textbook.</iframe></div>
+{interactive-inpage trainsylvania}
 
 {teacher}
 

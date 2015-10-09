@@ -561,7 +561,7 @@ Of course, a computer screen or printout doesn't have just one colour on it --- 
 The following interactive allows you to zoom in on an image to see the pixels that are used to represent it. Each pixel is a solid colour square, and the computer needs to store the colour for each pixel.
 If you zoom in far enough, the interactive will show you the red-green-blue values for each pixel. You can pick a pixel and put the values on the slider above - it should come out as the same colour as the pixel.
 
-<div class="widget-holder"><a href="static/interactives/dr/pixel-values/index.html"  target="blank"><img class="widget-image" src="static/interactives/dr/pixel-values/thumbnail.png" alt=""><span class="widget-subtitle">Click to load<br>Pixel Interactive</span></a></div>
+{interactive-external pixel-viewer title="Pixel Viewer"}
 
 {jargon-buster}
 

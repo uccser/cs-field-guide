@@ -1,0 +1,14 @@
+language: python
+
+python:
+  - "3.4"
+  - "3.5"
+  - "3.5-dev" # 3.5 development branch
+
+# Tests to run (PDF generation to be added later)
+script:
+  - python generateguide.py
+
+# Stop email notifications (possibly add Slack later)
+notifications:
+  email: false
