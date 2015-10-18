@@ -246,6 +246,12 @@ class Guide:
                                 copy_tree(source_location, output_location)
                             # If file, copy file
                             else:
+                                # Check if subfolders need to be created, as file may be contained in subfolder
+                                # See 'Font' files as an example
+                                if '/' in output_location:
+                                    output_folder = os.path.split(output_location)[0]
+                                    if not os.path.exists(output_folder):
+                                        os.makedirs(output_folder, exist_ok=True)
                                 copy2(source_location, output_location)
 
                         except:

@@ -24,8 +24,8 @@ class Section:
         self.file_node = file_node
         self.markdown_text = markdown_text
         self.guide = self.file_node.guide
-        self.heading = None # set to first heading during markdown parsing
-        self.current_heading = None # pointer to current heading node
+        self.heading = None # Set to first heading during markdown parsing
+        self.current_heading = None # Pointer to current heading node
         self.title = None
         self.html_content = []
         self.regex_functions = self.create_regex_functions()
@@ -34,6 +34,7 @@ class Section:
         self.required_files = setup_required_files(file_node.guide)
         self.page_scripts = set()
         self.mathjax_required = False
+        self.sectioned = False
         self.html_path_to_root = self.file_node.depth * '../'
 
     def __repr__(self):
@@ -93,10 +94,18 @@ class Section:
         else:
             html_type = 'heading-unnumbered'
 
-        html = self.html_templates[html_type].format(heading_level=heading_level,
-                                                     permalink=permalink,
-                                                     section_number=self.current_heading.number,
-                                                     heading_text=heading_text)
+        html = ''
+        # Create section starts for Materialize ScrollSpy
+        if heading_level == 2 and html_type == 'heading-numbered':
+            # Close previous section if needed
+            if self.sectioned:
+                html = self.html_templates['section-end']
+            html += self.html_templates['section-start'].format(permalink=permalink)
+            self.sectioned = True
+
+        html += self.html_templates[html_type].format(heading_level=heading_level,
+                                                      section_number=self.current_heading.number,
+                                                      heading_text=heading_text)
         return html
 
 
@@ -123,20 +132,23 @@ class Section:
         link_url = match.group('link_url')
         if not link_url.startswith(('http://','https://','mailto:')):
             link_url = self.html_path_to_root + link_url
-        html = self.html_templates['link'].format(link_text=link_text,link_url=link_url)
+        html = self.html_templates['link'].format(link_text=link_text, link_url=link_url).strip()
         return html
 
 
-    def create_panel_start(self, match):
+    def create_panel(self, match):
         panel_type = match.group('type')
-        html = self.html_templates['panel'].format(type=panel_type)
+        panel_content = markdown(match.group('content'), extras=MARKDOWN2_EXTRAS)
         if panel_type == 'teacher':
-            html += self.html_templates['panel-teacher-heading']
+            panel_heading = 'Teacher Note'
+        else:
+            panel_heading = ''
+        html = self.html_templates['panel'].format(type=panel_type, content=panel_content, heading=panel_heading)
         return html
 
 
     def end_div(self, match):
-        return self.html_templates['div']
+        return self.html_templates['div-end']
 
 
     def delete_comment(self, match):
@@ -472,15 +484,20 @@ class Section:
 
         """
         self.html_templates = html_templates
-        for section_text in self.markdown_text.split('{page-break}'):
-            # Parse with our parser
-            text = section_text
-            for regex, function in self.regex_functions:#REGEX_MATCHES:
-                text = re.sub(regex, function, text, flags=re.MULTILINE)
-            # Parse with markdown2
-            parsed_html = markdown(text, extras=MARKDOWN2_EXTRAS)
-            self.html_content.append(parsed_html)
-        #print(self)
+
+        # Parse with our parser
+        text = self.markdown_text
+        for regex, function in self.regex_functions:
+            text = re.sub(regex, function, text, flags=re.MULTILINE)
+
+        # Close last section if needed
+        if self.sectioned:
+            text += self.html_templates['section-end']
+
+        # Parse with library parser
+        text = markdown(text, MARKDOWN2_EXTRAS)
+
+        self.html_content.append(text)
 
 
     def create_regex_functions(self):
