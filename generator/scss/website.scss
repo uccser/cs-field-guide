@@ -75,3 +75,12 @@ ul.side-nav.fixed li a {
 .navbar-fixed {
   z-index: 997 !important;
 }
+.side-nav li {
+    &:hover:not(.no-padding):not(.no-highlight),
+    &.active:not(.no-padding):not(.no-highlight) {
+      background-color: #ddd;
+    }
+}
+.nav-subtitle {
+  padding-top: 1rem !important;
+}

@@ -30,7 +30,6 @@
   li {
     float: none;
     padding: 0 $sidenav-padding-right;
-    &:hover:not(.no-padding), &.active:not(.no-padding) { background-color: #ddd; }
   }
   a {
     color: #444;
