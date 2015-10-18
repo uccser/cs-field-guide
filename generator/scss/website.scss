@@ -87,3 +87,16 @@ ul.side-nav.fixed li a {
 div#page-navigation {
   margin-top: 3rem;
 }
+#page-title-header {
+  background-color: $primary-color !important;
+  h1 {
+    line-height: 4rem !important;
+    font-size: 3rem !important;
+    padding: 3rem 0;
+    margin: 0;
+    color: #fff;
+  }
+  a.section_number {
+    color: #fff;
+  }
+}

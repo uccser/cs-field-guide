@@ -284,6 +284,7 @@ class Guide:
             for section_content in file.section.html_content:
                 body_html += section_content
             context = {'page_title':file.section.title,
+                       'page_heading':file.section.heading.to_html(),
                        'body_html':body_html,
                        'path_to_root': file.section.html_path_to_root,
                        'project_title': self.translations['title'][self.language_code],

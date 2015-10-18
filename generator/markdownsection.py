@@ -67,7 +67,9 @@ class Section:
             self.heading = HeadingNode(heading_text, permalink, section=self)
             self.current_heading = self.heading
             self.title = heading_text
+            page_heading = True
         else:
+            page_heading = False
             if heading_level <= self.current_heading.level:
                 #Ascend to correct parent node
                 for level in range(self.current_heading.level - heading_level + 1):
@@ -87,25 +89,11 @@ class Section:
             self.current_heading.children.append(new_heading)
             self.current_heading = new_heading
 
-        if self.title == 'Glossary' and heading_level > 1:
-            html_type = 'heading-glossary'
-        elif self.current_heading.number:
-            html_type = 'heading-numbered'
+        # Create page heading if first heading
+        if page_heading:
+            html = ''
         else:
-            html_type = 'heading-unnumbered'
-
-        html = ''
-        # Create section starts for Materialize ScrollSpy
-        if heading_level == 2 and html_type == 'heading-numbered':
-            # Close previous section if needed
-            if self.sectioned:
-                html = self.html_templates['section-end']
-            html += self.html_templates['section-start'].format(permalink=permalink)
-            self.sectioned = True
-
-        html += self.html_templates[html_type].format(heading_level=heading_level,
-                                                      section_number=self.current_heading.number,
-                                                      heading_text=heading_text)
+            html = self.current_heading.to_html()
         return html
 
 
@@ -529,3 +517,26 @@ class HeadingNode:
             return '{}{} {}'.format('--' * (self.level - 1), self.number, self.heading)
         else:
             return '{}{}'.format('--' * (self.level - 1), self.heading)
+
+    def to_html(self):
+        if self.section.title == 'Glossary' and self.level > 1:
+            html_type = 'heading-glossary'
+        elif self.number:
+            html_type = 'heading-numbered'
+        else:
+            html_type = 'heading-unnumbered'
+
+        html = ''
+
+        # Create section starts for Materialize ScrollSpy
+        if self.level == 2 and html_type == 'heading-numbered':
+            # Close previous section if needed
+            if self.section.sectioned:
+                html = self.section.html_templates['section-end']
+            html += self.section.html_templates['section-start'].format(permalink=self.permalink)
+            self.section.sectioned = True
+
+        html += self.section.html_templates[html_type].format(heading_level=self.level,
+                                                      section_number=self.number,
+                                                      heading_text=self.heading)
+        return html
