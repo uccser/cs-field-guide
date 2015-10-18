@@ -5,6 +5,6 @@ $(document).ready(function(){
       closeOnClick: false // Closes side-nav on <a> clicks, useful for Angular/Meteor
     }
   );
-  $('.table-of-contents').pushpin({ top: 0 });
+  $('#page-navigation').pushpin({ top: 0 });
   $('.scrollspy').scrollSpy();
 });
