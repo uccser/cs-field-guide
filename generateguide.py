@@ -291,8 +291,8 @@ class Guide:
             else:
                 page_heading = file.section.heading.to_html()
 
-            if '/' in file.path:
-                current_folder = file.path.split('/')[0]
+            if os.sep in file.path:
+                current_folder = file.path.split(os.sep)[0]
             else:
                 current_folder = None
 
