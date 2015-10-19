@@ -1,4 +1,5 @@
 import os.path
+import logging
 
 GLOSSARY_PATH_TO_ROOT = '..'
 
@@ -17,7 +18,11 @@ class Glossary:
             self.items[word.lower()] = glossary_item
 
     def add_reverse_link(self, word, permalink, text):
-        self.items[word.lower()].add_reverse_link(permalink, text)
+        if word.lower() in self.items.keys():
+            self.items[word.lower()].add_reverse_link(permalink, text)
+        else:
+            logging.error('{} not defined in glossary'.format(word))
+
 
 
 class GlossaryItem:
@@ -47,4 +52,4 @@ class GlossaryItem:
             backwards_links +=link_template.format(permalink=link, text=text)
             backwards_links = occurences_template.format(other_links=backwards_links)
 
-        return template.format(word=self.displayed_word, permalink=self.permalink, definition=self.definition, other_links=backwards_links)
+        return template.format(word=self.displayed_word, lower_word = self.word, permalink=self.permalink, definition=self.definition, other_links=backwards_links)

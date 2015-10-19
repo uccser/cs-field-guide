@@ -464,19 +464,22 @@ class Section:
         file_link = os.path.join(glossary.html_path_to_root, self.file_node.path)
         permalink = '{}.html#{}'.format(file_link, word.lower())
         self.guide.glossary.add_item(word, definition, permalink)
+        content = match.group('content') if match.group('content') else ''
         template = self.html_templates['glossary_permalink']
-        return template.format(permalink=word.lower())
+        return template.format(permalink=word.lower(), content=content, glossary_link='../appendices/glossary.html#'+word.lower())
 
     def add_glossary_link(self, match):
         glossary = self.guide.glossary
         word = match.group('word')
         text = match.group('text')
-        file_link = os.path.join(glossary.html_path_to_root, self.file_node.path)
         permalink_id = '{}-{}'.format(word.lower(), text)
-        permalink = '{}.html#{}'.format(file_link, permalink_id)
-        glossary.add_reverse_link(word, permalink, text)
+        if not(match.group('backref') and int(match.group('backref')) == 0):
+            file_link = os.path.join(glossary.html_path_to_root, self.file_node.path)
+            permalink = '{}.html#{}'.format(file_link, permalink_id)
+            glossary.add_reverse_link(word, permalink, text)
+        content = match.group('content') if match.group('content') else ''
         template = self.html_templates['glossary_permalink']
-        return template.format(permalink=permalink_id)
+        return template.format(permalink=permalink_id, content=content, glossary_link='../appendices/glossary.html#'+word.lower())
 
     def add_glossary(self, match):
         glossary = self.guide.glossary
