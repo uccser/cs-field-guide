@@ -402,7 +402,6 @@ class Section:
                     element[attr] = link
             if element.name == 'script' or (element.name == 'link' and element.get('rel', None) == ['stylesheet']):
                 self.page_scripts.add(element.extract())
-        #print(root)
 
 
     def check_interactive_exists(self, interactive_source, interactive_name):
@@ -539,4 +538,7 @@ class HeadingNode:
         html += self.section.html_templates[html_type].format(heading_level=self.level,
                                                       section_number=self.number,
                                                       heading_text=self.heading)
+        if self.section.heading == self:
+            html = self.section.html_templates['heading-page-title'].format(heading=html)
+
         return html

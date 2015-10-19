@@ -1,8 +1,8 @@
-# Welcome!
+{comment}
 
-The Computer Science Field Guide is an online interactive resource for high school students learning about computer science, developed at the University of Canterbury in New Zealand.
+The title for the homepage is ignored and substituted with a header (with subititle) from the HTML templates, and defaults to the 'Computer Science Field Guide' title.
 
-{table-of-contents depth="2"}
+{comment end}
 
 A teacher's guide is available (currently aimed primarily for New Zealand teachers teaching NCEA). Read the [About section](about.html) for more details to access this.
 

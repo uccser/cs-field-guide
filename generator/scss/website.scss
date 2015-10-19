@@ -83,6 +83,7 @@ ul.side-nav.fixed li a {
 }
 .nav-subtitle {
   padding-top: 1rem !important;
+  padding-left: 30px !important;
 }
 div#page-navigation {
   margin-top: 3rem;
@@ -92,10 +93,31 @@ div#page-navigation {
   h1 {
     line-height: 4rem !important;
     font-size: 3rem !important;
-    padding: 3rem 0;
+    padding: 2rem 0;
     margin: 0;
     color: #fff;
   }
+}
+#page-subtitle-header {
+  background-color: $primary-color-light !important;
+  h4 {
+    line-height: 2rem !important;
+    font-size: 1.5rem !important;
+    padding: 1rem 0;
+    margin: 0;
+    color: #fff;
+  }
+}
+#homepage-logo {
+  height: 10rem;
+}
+.brand-logo {
+  color: $primary-color-light !important;
+}
+#logo-container {
+  color: $primary-color;
+  font-size: 2rem;
+  font-weight: 500;
 }
 // Based off Materialize flow-text rules
 .main-content p {
@@ -112,4 +134,7 @@ div#page-navigation {
   @media only screen and (max-width: 360px) {
     font-size: 1.2rem;
   }
+}
+.button-collapse {
+  padding: 0 1rem;
 }
