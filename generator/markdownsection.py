@@ -485,8 +485,8 @@ class Section:
         glossary = self.guide.glossary
         glossary_temp = self.html_templates['glossary']
         items = ''
-        for item in glossary.items.values():
-            items += item.to_html()
+        for term in sorted(glossary.items.keys()):
+            items += glossary.items[term].to_html()
         return glossary_temp.format(items=items)
 
 
