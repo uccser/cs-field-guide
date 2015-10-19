@@ -288,7 +288,8 @@ class Section:
             text = filename
 
         button_text = self.html_templates['button-download-text'].format(text=text)
-        html = self.html_templates['button'].format(button_link=output_path, button_text=button_text)
+        html = self.html_templates['button'].format(link=output_path, text=button_text)
+        html = self.html_templates['centered'].format(html=html)
         return html
 
 
