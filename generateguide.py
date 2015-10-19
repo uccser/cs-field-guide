@@ -290,6 +290,11 @@ class Guide:
             else:
                 page_heading = file.section.heading.to_html()
 
+            if '/' in file.path:
+                current_folder = file.path.split('/')[0]
+            else:
+                current_folder = None
+
             context = {'page_title':file.section.title,
                        'page_heading':page_heading,
                        'body_html':body_html,
@@ -299,7 +304,9 @@ class Guide:
                        'root_folder': self.structure,
                        'heading_root': file.section.heading,
                        'language_code': self.language_code,
-                       'page_scripts': list(file.section.page_scripts)
+                       'page_scripts': list(file.section.page_scripts),
+                       'current_page': file.path,
+                       'current_folder': current_folder
                       }
             html = self.website_generator.render_template(section_template, context)
             try:

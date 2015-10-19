@@ -97,7 +97,6 @@ class Section:
         return html
 
 
-
     def create_permalink(self, text):
         """Helper function for create_heading
         -   returns a unique permalink for each heading
