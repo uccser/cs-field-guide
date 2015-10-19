@@ -5,9 +5,5 @@ $(document).ready(function(){
       closeOnClick: false // Closes side-nav on <a> clicks, useful for Angular/Meteor
     }
   );
-  $('#page-navigation').pushpin({
-    top: $('header').height(),
-    offset: 80
-  });
   $('.scrollspy').scrollSpy();
 });
