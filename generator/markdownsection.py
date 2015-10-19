@@ -457,6 +457,34 @@ class Section:
         else:
             return folder_link_html
 
+    def add_glossary_entry(self, match):
+        glossary = self.guide.glossary
+        word = match.group('word')
+        definition = match.group('def')
+        file_link = os.path.join(glossary.html_path_to_root, self.file_node.path)
+        permalink = '{}.html#{}'.format(file_link, word.lower())
+        self.guide.glossary.add_item(word, definition, permalink)
+        template = self.html_templates['glossary_permalink']
+        return template.format(permalink=word.lower())
+
+    def add_glossary_link(self, match):
+        glossary = self.guide.glossary
+        word = match.group('word')
+        text = match.group('text')
+        file_link = os.path.join(glossary.html_path_to_root, self.file_node.path)
+        permalink_id = '{}-{}'.format(word.lower(), text)
+        permalink = '{}.html#{}'.format(file_link, permalink_id)
+        glossary.add_reverse_link(word, permalink, text)
+        template = self.html_templates['glossary_permalink']
+        return template.format(permalink=permalink_id)
+
+    def add_glossary(self, match):
+        glossary = self.guide.glossary
+        glossary_temp = self.html_templates['glossary']
+        items = ''
+        for item in glossary.items.values():
+            items += item.to_html()
+        return glossary_temp.format(items=items)
 
 
     # ----- Parsing Functions -----

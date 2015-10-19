@@ -21,6 +21,7 @@ from shutil import copy2
 from distutils.dir_util import copy_tree
 from generator.markdownsection import Section
 from generator.websitegenerator import WebsiteGenerator
+from generator.glossary import Glossary
 from generator.files import setup_required_files
 from scss.compiler import compile_string
 
@@ -39,6 +40,7 @@ class Guide:
         self.output_type = output_type
 
         self.number_generator = NumberGenerator()
+        self.glossary = Glossary(self)
 
         # Structure tree of guide
         self.structure = self.parse_structure()

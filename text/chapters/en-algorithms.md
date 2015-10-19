@@ -1,4 +1,6 @@
 # Algorithms
+{glossary-def word="Algorithm" def="a process for achieving an outcome, normally for a general problem such as searching, sorting, finding an optimal path through a map and so on."}
+
 
 {teacher}
 The following assessment plans also cover this material:
@@ -38,6 +40,7 @@ For example...
 - **Algorithm:** 1) Go to the kitchen. 2) Pick up a glass. 3) Turn on the tap. 4) Put the glass under the running water and remove it once it is almost full. 5) Turn off the tap. 6) Take the glass back to the person who gave the instruction. A human could follow these instructions easily, but a computer could not figure out exactly what to do.
 - **Program:** A computer program, written in a programming language, which would tell a robot exactly how to retrieve a glass of water and bring it back to the person who asked for the water.
 
+{glossary-link word="algorithm" text="algorithm cost"}
 ### Algorithm cost
 
 When Computer Scientists are comparing algorithms they often talk about the 'cost' of an algorithm. The cost of an algorithm can be interpreted in several different ways, but it is always related to how well an algorithm performs based on the size of its input, *n*. In this chapter we will talk about the cost of an algorithm as either the time it takes a program (which performs the algorithm) to complete, and the number of comparisons the algorithm makes before it finishes.
@@ -68,6 +71,7 @@ For students reports:
 More information on this can be found at the end of the chapter.
 {teacher end}
 
+{glossary-link word="Algorithm" text="searching algorithms"}
 ## Searching
 
 {teacher}
@@ -151,6 +155,7 @@ The following files will run linear and binary search in various languages:
 - [Python (Version 2)](file linear-binary-search-python2.py)
 - [Python (Version 3)](file linear-binary-search-python3.py)
 
+{glossary-link word="algorithm" text="sorting algorithms"}
 ## Sorting algorithms
 
 {teacher}
