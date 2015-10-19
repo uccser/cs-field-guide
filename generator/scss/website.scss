@@ -118,7 +118,7 @@ ul.side-nav.fixed li a {
 }
 // Based off Materialize flow-text rules
 .main-content p {
-  font-weight: 300;
+  font-weight: normal;
   $i: 0;
   @while $i <= $intervals {
     @media only screen and (min-width : 360 + ($i * $interval-size)) {
