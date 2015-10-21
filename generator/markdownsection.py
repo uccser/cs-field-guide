@@ -518,7 +518,6 @@ class Section:
             content = ''
 
         template = self.html_templates['glossary_permalink']
-        print(template.format(id_tag=id_tag, href_tag=href_tag, content=content))
         return template.format(id_tag=id_tag, href_tag=href_tag, content=content)
 
 
