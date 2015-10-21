@@ -9,6 +9,9 @@ class Glossary:
         self.guide = guide
         self.html_path_to_root = GLOSSARY_PATH_TO_ROOT
 
+    def __contains__(self, word):
+        return word.lower() in self.items.keys()
+
     def add_item(self, word, definition, permalink):
         if word.lower() in self.items.keys():
             #already defined
@@ -17,9 +20,9 @@ class Glossary:
             glossary_item = GlossaryItem(self, word, definition, permalink)
             self.items[word.lower()] = glossary_item
 
-    def add_reverse_link(self, word, permalink, text):
+    def add_back_link(self, word, permalink, text):
         if word.lower() in self.items.keys():
-            self.items[word.lower()].add_reverse_link(permalink, text)
+            self.items[word.lower()].add_back_link(permalink, text)
         else:
             logging.error('{} not defined in glossary'.format(word))
 
@@ -35,7 +38,7 @@ class GlossaryItem:
         self.other_occurences = []
 
 
-    def add_reverse_link(self, permalink, text):
+    def add_back_link(self, permalink, text):
         self.other_occurences.append((permalink, text))
 
 
