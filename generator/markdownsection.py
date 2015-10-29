@@ -24,8 +24,8 @@ class Section:
         self.file_node = file_node
         self.markdown_text = markdown_text
         self.guide = self.file_node.guide
-        self.heading = None # set to first heading during markdown parsing
-        self.current_heading = None # pointer to current heading node
+        self.heading = None # Set to first heading during markdown parsing
+        self.current_heading = None # Pointer to current heading node
         self.title = None
         self.html_content = []
         self.regex_functions = self.create_regex_functions()
@@ -34,6 +34,7 @@ class Section:
         self.required_files = setup_required_files(file_node.guide)
         self.page_scripts = set()
         self.mathjax_required = False
+        self.sectioned = False
         self.html_path_to_root = self.file_node.depth * '../'
 
     def __repr__(self):
@@ -66,7 +67,9 @@ class Section:
             self.heading = HeadingNode(heading_text, permalink, section=self)
             self.current_heading = self.heading
             self.title = heading_text
+            page_heading = True
         else:
+            page_heading = False
             if heading_level <= self.current_heading.level:
                 #Ascend to correct parent node
                 for level in range(self.current_heading.level - heading_level + 1):
@@ -86,19 +89,12 @@ class Section:
             self.current_heading.children.append(new_heading)
             self.current_heading = new_heading
 
-        if self.title == 'Glossary' and heading_level > 1:
-            html_type = 'heading-glossary'
-        elif self.current_heading.number:
-            html_type = 'heading-numbered'
+        # Create page heading if first heading
+        if page_heading:
+            html = ''
         else:
-            html_type = 'heading-unnumbered'
-
-        html = self.html_templates[html_type].format(heading_level=heading_level,
-                                                     permalink=permalink,
-                                                     section_number=self.current_heading.number,
-                                                     heading_text=heading_text)
+            html = self.current_heading.to_html()
         return html
-
 
 
     def create_permalink(self, text):
@@ -123,20 +119,23 @@ class Section:
         link_url = match.group('link_url')
         if not link_url.startswith(('http://','https://','mailto:')):
             link_url = self.html_path_to_root + link_url
-        html = self.html_templates['link'].format(link_text=link_text,link_url=link_url)
+        html = self.html_templates['link'].format(link_text=link_text, link_url=link_url).strip()
         return html
 
 
-    def create_panel_start(self, match):
+    def create_panel(self, match):
         panel_type = match.group('type')
-        html = self.html_templates['panel'].format(type=panel_type)
+        panel_content = markdown(match.group('content'), extras=MARKDOWN2_EXTRAS)
         if panel_type == 'teacher':
-            html += self.html_templates['panel-teacher-heading']
+            panel_heading = 'Teacher Note'
+        else:
+            panel_heading = ''
+        html = self.html_templates['panel'].format(type=panel_type, content=panel_content, heading=panel_heading)
         return html
 
 
     def end_div(self, match):
-        return self.html_templates['div']
+        return self.html_templates['div-end']
 
 
     def delete_comment(self, match):
@@ -289,7 +288,8 @@ class Section:
             text = filename
 
         button_text = self.html_templates['button-download-text'].format(text=text)
-        html = self.html_templates['button'].format(button_link=output_path, button_text=button_text)
+        html = self.html_templates['button'].format(link=output_path, text=button_text)
+        html = self.html_templates['centered'].format(html=html)
         return html
 
 
@@ -402,7 +402,6 @@ class Section:
                     element[attr] = link
             if element.name == 'script' or (element.name == 'link' and element.get('rel', None) == ['stylesheet']):
                 self.page_scripts.add(element.extract())
-        #print(root)
 
 
     def check_interactive_exists(self, interactive_source, interactive_name):
@@ -472,15 +471,20 @@ class Section:
 
         """
         self.html_templates = html_templates
-        for section_text in self.markdown_text.split('{page-break}'):
-            # Parse with our parser
-            text = section_text
-            for regex, function in self.regex_functions:#REGEX_MATCHES:
-                text = re.sub(regex, function, text, flags=re.MULTILINE)
-            # Parse with markdown2
-            parsed_html = markdown(text, extras=MARKDOWN2_EXTRAS)
-            self.html_content.append(parsed_html)
-        #print(self)
+
+        # Parse with our parser
+        text = self.markdown_text
+        for regex, function in self.regex_functions:
+            text = re.sub(regex, function, text, flags=re.MULTILINE)
+
+        # Close last section if needed
+        if self.sectioned:
+            text += self.html_templates['section-end']
+
+        # Parse with library parser
+        text = markdown(text, MARKDOWN2_EXTRAS)
+
+        self.html_content.append(text)
 
 
     def create_regex_functions(self):
@@ -512,3 +516,30 @@ class HeadingNode:
             return '{}{} {}'.format('--' * (self.level - 1), self.number, self.heading)
         else:
             return '{}{}'.format('--' * (self.level - 1), self.heading)
+
+    def to_html(self):
+        if self.section.title == 'Glossary' and self.level > 1:
+            html_type = 'heading-glossary'
+        elif self.number:
+            html_type = 'heading-numbered'
+        else:
+            html_type = 'heading-unnumbered'
+
+        html = ''
+
+        # Create section starts for Materialize ScrollSpy
+        if self.level == 2 and html_type == 'heading-numbered':
+            # Close previous section if needed
+            if self.section.sectioned:
+                html = self.section.html_templates['section-end']
+            html += self.section.html_templates['section-start'].format(permalink=self.permalink)
+            self.section.sectioned = True
+
+        html += self.section.html_templates[html_type].format(heading_level=self.level,
+                                                      section_number=self.number,
+                                                      heading_text=self.heading,
+                                                      heading_permalink=self.permalink)
+        if self.section.heading == self:
+            html = self.section.html_templates['heading-page-title'].format(heading=html)
+
+        return html
