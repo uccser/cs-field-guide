@@ -64,10 +64,18 @@ ul.side-nav.fixed li a {
   height: 2rem !important;
 }
 .section_number {
-  color: $primary-color-light;
+  color: $primary-color-light !important;
 }
 .section_heading a {
   color: $off-black !important;
+
+  &:before {
+    display: block;
+    content: " ";
+    margin-top: -56px;
+    height: 56px;
+    visibility: hidden;
+  }
 
   #page-title-header & {
     color: white !important;
