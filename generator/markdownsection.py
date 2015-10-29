@@ -174,14 +174,14 @@ class Section:
         wrap = False
 
         if image_args:
-            wrap_parameter = re.findall('wrap="(?P<wrap>[^"]*)"', image_args)
+            wrap_parameter = parse_argument('wrap', image_args)
             if wrap_parameter and not image_set:
                 wrap_value = wrap_parameter[0].lower()
                 if wrap_value in valid_image_wrap_directions:
                     wrap = wrap_value
                 else:
                     logging.error('Image wrap value {direction} for image {filename} not recognised. Valid directions: {valid_directions}'.format(direction=wrap_value, filename=filename, valid_directions=valid_image_wrap_directions))
-            alt_parameter = re.findall('alt="(?P<alt>[^"]*)"', image_args)
+            alt_parameter = parse_argument('alt', image_args)
             if alt_parameter:
                 alt_value = alt_parameter[0]
                 parameters += ' '
@@ -302,17 +302,18 @@ class Section:
         html = ''
         interactive_type = match.group('type')
         name = match.group('interactive_name')
-        arg_title = re.search('title="(?P<title>[^"]*)"', match.group('args'))
-        title = arg_title.group('title') if arg_title else name
-        arg_parameters = re.search('parameters="(?P<parameters>[^"]*)"', match.group('args'))
-        params = arg_parameters.group('parameters') if arg_parameters else None
+        arguments = match.group('args')
+        arg_title = parse_argument('title', arguments)
+        title = arg_title if arg_title else name
+        arg_parameters = parse_argument('parameters', arguments)
+        params = arg_parameters if arg_parameters else None
         source_folder = os.path.join(self.guide.generator_settings['Source']['Interactive'], name)
 
         if self.check_interactive_exists(source_folder, name):
             self.required_files['Interactive'].add(name)
             if interactive_type == 'interactive-external':
-                arg_thumbnail = re.search('thumbnail="(?P<thumbnail>[^"]*)"', match.group('args'))
-                thumbnail = arg_thumbnail.group('thumbnail') if arg_thumbnail else self.guide.generator_settings['Source']['Interactive Thumbnail']
+                arg_thumbnail = parse_argument('thumbnail', arguments)
+                thumbnail = arg_thumbnail if arg_thumbnail else self.guide.generator_settings['Source']['Interactive Thumbnail']
                 html = self.external_interactive_html(source_folder, title, name, params, thumbnail)
             elif interactive_type == 'interactive-inpage':
                 html = self.inpage_interactive_html(source_folder, name)
@@ -495,6 +496,17 @@ class Section:
             function = getattr(self, regex_list[regex_name]['function'])
             regex_functions.append((regex, function))
         return regex_functions
+
+
+def parse_argument(argument_key, arguments):
+    """Search for the given argument in a string of all arguments
+    Returns: Value of an argument as a string if found, otherwise None"""
+    result = re.search('{}="([^"]*)"'.format(argument_key), arguments)
+    if result:
+        argument_value = result.group(1)
+    else:
+        argument_value = None
+    return argument_value
 
 
 class HeadingNode:
