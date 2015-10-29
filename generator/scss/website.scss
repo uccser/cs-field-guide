@@ -66,6 +66,13 @@ ul.side-nav.fixed li a {
 .section_number {
   color: $primary-color-light;
 }
+.section_heading a {
+  color: $off-black !important;
+
+  #page-title-header & {
+    color: white !important;
+  }
+}
 .main-content ul {
   padding-left: 40px;
   li {

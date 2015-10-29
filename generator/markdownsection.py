@@ -537,7 +537,8 @@ class HeadingNode:
 
         html += self.section.html_templates[html_type].format(heading_level=self.level,
                                                       section_number=self.number,
-                                                      heading_text=self.heading)
+                                                      heading_text=self.heading,
+                                                      heading_permalink=self.permalink)
         if self.section.heading == self:
             html = self.section.html_templates['heading-page-title'].format(heading=html)
 
