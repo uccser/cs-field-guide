@@ -142,3 +142,11 @@ ul.side-nav.fixed li a {
   padding: 1rem 1rem 0 0;
   position: fixed;
 }
+.dropdown-menu-arrow {
+  color: $primary-color-light;
+  @include transition(all 300ms ease);
+
+  a.active & {
+    @include rotate(180deg);
+  }
+}
