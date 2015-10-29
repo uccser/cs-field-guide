@@ -128,8 +128,6 @@ class Guide:
                     file_path = os.path.join(text_root, current_folder.path, file_name)
                     if file_exists(file_path):
                         current_folder.add_file(title, group, tracked=is_tracked)
-        # Visualise folder structure for restructuring
-        #print(root_folder)
         return root_folder
 
 
@@ -172,6 +170,8 @@ class Guide:
             file_node.section.parse_markdown_content(self.html_templates)
             for file_type,file_data in file_node.section.required_files.items():
                 self.required_files[file_type] += file_data
+            if not file_node.section.title:
+                file_node.section.title = self.translations['title'][self.language_code]
 
 
     def compile_scss_file(self, file_name):
@@ -246,6 +246,12 @@ class Guide:
                                 copy_tree(source_location, output_location)
                             # If file, copy file
                             else:
+                                # Check if subfolders need to be created, as file may be contained in subfolder
+                                # See 'Font' files as an example
+                                if '/' in output_location:
+                                    output_folder = os.path.split(output_location)[0]
+                                    if not os.path.exists(output_folder):
+                                        os.makedirs(output_folder, exist_ok=True)
                                 copy2(source_location, output_location)
 
                         except:
@@ -277,14 +283,31 @@ class Guide:
 
             for section_content in file.section.html_content:
                 body_html += section_content
+
+            ## If homepage
+            if file in self.structure.files and file.filename == 'index':
+                page_heading = self.html_templates['website_homepage_header']
+                body_html = self.html_templates['website_homepage_content'].format(path_to_root=file.section.html_path_to_root)
+            else:
+                page_heading = file.section.heading.to_html()
+
+            if os.sep in file.path:
+                current_folder = file.path.split(os.sep)[0]
+            else:
+                current_folder = None
+
             context = {'page_title':file.section.title,
+                       'page_heading':page_heading,
                        'body_html':body_html,
                        'path_to_root': file.section.html_path_to_root,
                        'project_title': self.translations['title'][self.language_code],
+                       'project_title_abbreviation': self.translations['abbreviation'][self.language_code],
                        'root_folder': self.structure,
                        'heading_root': file.section.heading,
                        'language_code': self.language_code,
-                       'page_scripts': list(file.section.page_scripts)
+                       'page_scripts': list(file.section.page_scripts),
+                       'current_page': file.path,
+                       'current_folder': current_folder
                       }
             html = self.website_generator.render_template(section_template, context)
             try:
