@@ -1,6 +1,6 @@
 # Algorithms
 
-{panel type="teacher-note" summary="Cirriculum guides for Algorithms"}
+{panel type="teacher-note" summary="Curriculum guides for Algorithms"}
 The following assessment plans also cover this material:
 
 **New Zealand - AS91074 (1.44)**

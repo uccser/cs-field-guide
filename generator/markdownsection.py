@@ -124,13 +124,26 @@ class Section:
 
 
     def create_panel(self, match):
-        panel_type = match.group('type')
-        panel_content = markdown(match.group('content'), extras=MARKDOWN2_EXTRAS)
-        if panel_type == 'teacher':
-            panel_heading = 'Teacher Note'
+        arguments = match.group('args')
+
+        panel_type = parse_argument('type', arguments)
+        if panel_type:
+            title = systemfunctions.from_kebab_case(panel_type)
+            summary_value = parse_argument('summary', arguments)
+            summary = ': ' + summary_value if summary_value else ''
+            expanded_value = parse_argument('expanded', arguments)
+            expanded = ' active' if expanded_value == 'True'  else ''
+            content = markdown(match.group('content'), extras=MARKDOWN2_EXTRAS)
+
+            heading = self.html_templates['panel_heading'].format(title=title,
+                                                                  summary=summary)
+            html = self.html_templates['panel'].format(panel_heading = heading,
+                                                       content = content,
+                                                       type_class = ' panel-' + panel_type,
+                                                       expanded = expanded)
         else:
-            panel_heading = ''
-        html = self.html_templates['panel'].format(type=panel_type, content=panel_content, heading=panel_heading)
+            logging.error('Panel type missing from {}'.format(match.group(0)))
+            html = ''
         return html
 
 
