@@ -81,7 +81,7 @@ ul.side-nav.fixed li a {
     color: white !important;
   }
 }
-.main-content ul {
+.main-content ul:not(.collapsible) {
   padding-left: 40px;
   li {
     list-style-type: initial;
@@ -124,7 +124,8 @@ ul.side-nav.fixed li a {
   padding-top: 0 !important;
 }
 #homepage-logo {
-  height: 10rem;
+  height: 12rem;
+  margin-top: 1rem;
 }
 .brand-logo {
   color: $primary-color-light !important;
@@ -161,7 +162,10 @@ ul.side-nav.fixed li a {
   color: $primary-color-light;
   @include transition(all 300ms ease);
 
-  a.active & {
+  .active & {
     @include rotate(180deg);
   }
+}
+.panel p {
+  padding: 1rem !important;
 }
