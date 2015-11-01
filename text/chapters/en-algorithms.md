@@ -1,6 +1,6 @@
 # Algorithms
 
-{teacher}
+{panel type="teacher-note" summary="Curriculum guides for Algorithms"}
 The following assessment plans also cover this material:
 
 **New Zealand - AS91074 (1.44)**
@@ -8,7 +8,7 @@ The following assessment plans also cover this material:
 - [Assessment Overview](assessment-guides/new-zealand/assessment-guide-level-1-introduction.html)
 - [Searching Algorithms Assessment Guide](assessment-guides/new-zealand/assessment-guide-level-1-searching-algorithms.html)
 - [Sorting Algorithms Assessment Guide](assessment-guides/new-zealand/assessment-guide-level-1-sorting-algorithms.html)
-{teacher end}
+{panel end}
 
 {comment explain different views of algorithm (programming context) and Algorithm (that have interesting complexity); use https://www.youtube.com/watch?v=6hfOvs8pY1k for the former?}
 
@@ -27,11 +27,13 @@ If you have read through the Introduction chapter you may remember that the spee
 ### Algorithms, Programs and Informal Instructions
 
 At this stage you might be thinking that algorithms and computer programs kind of sound like the same thing, but they are actually two very distinct concepts. Descriptions of these and another important concept, Informal Instructions, are below. They are each different ways of describing how to do something:
+
 - **Informal Instruction:** An instruction using natural language. They are un-precise so computers cannot understand them, but humans are able to use their own intelligence to interpret them. This is the least precise of our three descriptions for doing things, and is typically used to give a very simple description of the general idea of an algorithm.
 - **Algorithm:** step by step process that describes how to solve a problem and/or complete a task, which will always give a result. They are more precise than Informal Instructions and do not require any knowledge or intelligence to follow, however they are still not precise enough for a computer to follow. These are often expressed using [pseudo-code](http://en.wikipedia.org/wiki/Pseudocode), which matches a programming language fairly closely, but leaves out details that could easily be added later by a programmer, and doesn't specify the kinds of commands that can be used.
 - **Program:** a specific implementation of an algorithm, which is written in a specific programming language and will give a certain result. This is the most precise of these three descriptions and computers are able to follow and understand these.
 
 For example...
+
 - **Informal Instruction:** "Get me a glass of water". A human can understand what this means and can figure out how to accomplish this task by thinking, but a computer would have no idea how to do this!
 - **Algorithm:** 1) Go to the kitchen. 2) Pick up a glass. 3) Turn on the tap. 4) Put the glass under the running water and remove it once it is almost full. 5) Turn off the tap. 6) Take the glass back to the person who gave the instruction. A human could follow these instructions easily, but a computer could not figure out exactly what to do.
 - **Program:** A computer program, written in a programming language, which would tell a robot exactly how to retrieve a glass of water and bring it back to the person who asked for the water.
@@ -65,8 +67,6 @@ For students reports:
 
 More information on this can be found at the end of the chapter.
 {teacher end}
-
-{page-break}
 
 ## Searching
 
@@ -118,7 +118,9 @@ If you watched the video at the beginning of the chapter you might be thinking t
 A much better algorithm to use is called Binary Search. In the second part of the present searching game the boxes were in order, which meant you were able to be more clever when you were searching for the pet, and you might have been using a Binary Search without realising...
 
 {teacher}
-The binary search algorithm can be demonstrated with a phone book: choose a name, then open at the*middle* page of the book (students might point out that you could guess how far through to open it, but insist on starting in the middle). Rip the book in half at the chosen page, and ask the class which of the two halves contains the name (the ones before the middle, or the ones after). Throw away the half that can't contain the name, pointing out that hundreds of pages have been eliminated by one decision. Repeat this on the remaining half, ripping that in half, then half again, and so on. On the board you can work out the number of pages left; for example, if there were 512 pages in the phone book, after the first rip there are 256, then 128, then 64, 32, 16, 89, 4, 2 and finally just one page. That's  9 pages that were examined to get down to the desired page. (Note that it's easiest to pick numbers that are powers of 2 i.e. 512, 1024, 2048, otherwise you have to deal with halving odd numbers, which works fine, but is a bit distracting). The power of binary search becomes obvious when you ask how long it would take to search a book twice as large. The first rip on the larger book will reduce it to the original problem, so, for example, a book of 1024 pages requires 10 rips instead of the 9 used for 512 pages. A million page phone book (1,048,576 pages to be precise) is reduced to 1 page by only 20 rips (students will probably think that it will be a lot more, but they can work it out by halving 1,048,576 20 times). A billion pages requires only 30 rips - again, have students work this out for themselves, as it is surprising. You could point out that a billion-page phone book could hold every name in the world, and in fact a social network site could have a billion users on it, so searching for someone on a billion-user system could be done *by hand* looking at just 30 names. The catch? They need to be in sorted order, but sorting things into order is easy too if you use the right algorithm. (In practice large systems use a variation of this kind of sorting, but this demonstrates how a very fast algorithm is possible).
+The binary search algorithm can be demonstrated with a phone book: choose a name, then open at the*middle* page of the book (students might point out that you could guess how far through to open it, but insist on starting in the middle). Rip the book in half at the chosen page, and ask the class which of the two halves contains the name (the ones before the middle, or the ones after). Throw away the half that can't contain the name, pointing out that hundreds of pages have been eliminated by one decision. Repeat this on the remaining half, ripping that in half, then half again, and so on. On the board you can work out the number of pages left; for example, if there were 512 pages in the phone book, after the first rip there are 256, then 128, then 64, 32, 16, 89, 4, 2 and finally just one page. That's  9 pages that were examined to get down to the desired page. (Note that it's easiest to pick numbers that are powers of 2 i.e. 512, 1024, 2048, otherwise you have to deal with halving odd numbers, which works fine, but is a bit distracting).
+
+The power of binary search becomes obvious when you ask how long it would take to search a book twice as large. The first rip on the larger book will reduce it to the original problem, so, for example, a book of 1024 pages requires 10 rips instead of the 9 used for 512 pages. A million page phone book (1,048,576 pages to be precise) is reduced to 1 page by only 20 rips (students will probably think that it will be a lot more, but they can work it out by halving 1,048,576 20 times). A billion pages requires only 30 rips - again, have students work this out for themselves, as it is surprising. You could point out that a billion-page phone book could hold every name in the world, and in fact a social network site could have a billion users on it, so searching for someone on a billion-user system could be done *by hand* looking at just 30 names. The catch? They need to be in sorted order, but sorting things into order is easy too if you use the right algorithm. (In practice large systems use a variation of this kind of sorting, but this demonstrates how a very fast algorithm is possible).
 {teacher end}
 
 If you used a Binary Search on each of the levels then you would have always had enough lives to find the pet! Informally, the Binary Search algorithm is as follows:
@@ -148,8 +150,6 @@ The following files will run linear and binary search in various languages:
 - [Scratch](file linear-binary-search-scratch.zip)
 - [Python (Version 2)](file linear-binary-search-python2.py)
 - [Python (Version 3)](file linear-binary-search-python3.py)
-
-{page-break}
 
 ## Sorting algorithms
 
@@ -258,8 +258,6 @@ The following files will run quicksort in various languages:
 {teacher}
 There are dozens of sorting algorithms that have been invented; most of the ones that are used in practice are based on quicksort and/or mergesort. For the purposes of the 1.44 standard, students need only compare two algorithms, and selection sort and quicksort provide the kind of contrast that make a project straightforward to do. If students want to investigate other sorting algorithms, the more common ones that would be useful here are insertion sort and mergesort. These, and many others, can be seen in an intriguing animated form on this video that represents the [algorithms using images and sound](http://www.youtube.com/watch?v=kPRA0W1kECg).
 {teacher end}
-
-{page-break}
 
 ## The whole story!
 
