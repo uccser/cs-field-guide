@@ -28,6 +28,7 @@ This article describes the syntax required for writing Markdown files within the
     - [Defining a glossary term](#defining-a-glossary-term)
     - [Linking to a glossary term](#linking-to-a-glossary-term)
   - [Files](#files)
+  - [Comments](#comments)
   - [Syntax to avoid](#Syntax-to-avoid)
 - [Philosophy for syntax](#philosophy-for-syntax)
 
@@ -455,6 +456,7 @@ It's worth considering which {glossary term="algorithm" link-text="algorithms"} 
 - `reference-text` (optional) - If included, adds a back reference link using the given the text after the definition on the glossary page.
 
 Each link to a glossary term requires the `term` and should define the `link-text` or `reference-text` or both.
+
 ---
 
 ### Files
@@ -480,6 +482,20 @@ Use the following line to create a download button for the given file.
 **Parameters:**
 - `filename` - The file's name, which is within the files folder.
 - `text` (optional) - Text to display on the download button.
+
+---
+
+### Comments
+
+Comments are removed from the output, and can be used either as block or inline text.
+
+```
+{comment}
+This is a comment and is removed on output!
+{comment end}
+
+{comment This is an inline comment that doesn't require an end tag}
+```
 
 ---
 
