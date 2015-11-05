@@ -299,21 +299,25 @@ class Section:
 
     def create_file_button(self, match):
         """Create a button for downloading a file"""
-        filename = match.group('filename')
+        arguments = match.group('args')
+        filename = parse_argument('filename', arguments)
+        text = parse_argument('text', arguments)
 
-        self.required_files['File'].add(filename)
+        if filename:
+            self.required_files['File'].add(filename)
+            output_path = os.path.join(self.html_path_to_root, self.guide.generator_settings['Output']['File'], filename)
 
-        output_path = os.path.join(self.html_path_to_root, self.guide.generator_settings['Output']['File'], filename)
+            if match.group('text'):
+                text = match.group('text')
+            else:
+                text = filename
 
-        if match.group('text'):
-            text = match.group('text')
+            button_text = self.html_templates['button-download-text'].format(text=text)
+            html = self.html_templates['button'].format(link=output_path, text=button_text)
+            html = self.html_templates['centered'].format(html=html)
         else:
-            text = filename
-
-        button_text = self.html_templates['button-download-text'].format(text=text)
-        html = self.html_templates['button'].format(link=output_path, text=button_text)
-        html = self.html_templates['centered'].format(html=html)
-        return html
+            logging.error('File filename argument not provided.'.format(name))
+        return html if html else ''
 
 
     def add_interactive(self, match):
