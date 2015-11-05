@@ -461,8 +461,9 @@ class Section:
         Recursively calls _create_table_of_contents to build table
         of contents HTML from template
         """
-        if match.group('depth'):
-            depth = int(match.group('depth'))
+        arguments = match.group('args')
+        depth = int(parse_argument('depth', arguments))
+        if depth:
             html = self._create_table_of_contents(self.file_node.parent, depth, top_level=True)
         else:
             html = self._create_table_of_contents(self.file_node.parent)
