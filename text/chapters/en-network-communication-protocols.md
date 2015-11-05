@@ -1,4 +1,4 @@
-# Network communication protocols
+# Network Communication Protocols
 
 {teacher}
 

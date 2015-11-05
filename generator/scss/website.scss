@@ -64,7 +64,22 @@ ul.side-nav.fixed li a {
   height: 2rem !important;
 }
 .section_number {
-  color: $primary-color-light;
+  color: $primary-color-light !important;
+}
+.section_heading a {
+  color: $off-black !important;
+
+  &:before {
+    display: block;
+    content: " ";
+    margin-top: -56px;
+    height: 56px;
+    visibility: hidden;
+  }
+
+  #page-title-header & {
+    color: white !important;
+  }
 }
 .main-content ul {
   padding-left: 40px;
@@ -105,6 +120,9 @@ ul.side-nav.fixed li a {
     color: #fff;
   }
 }
+#homepage-title{
+  padding-top: 0 !important;
+}
 #homepage-logo {
   height: 10rem;
 }
@@ -112,13 +130,13 @@ ul.side-nav.fixed li a {
   color: $primary-color-light !important;
 }
 #logo-container {
-  color: $primary-color;
+  color: $primary-color !important;
   font-size: 2rem;
   font-weight: 500;
 }
 // Based off Materialize flow-text rules
 .main-content p {
-  font-weight: 300;
+  font-weight: normal;
   $i: 0;
   @while $i <= $intervals {
     @media only screen and (min-width : 360 + ($i * $interval-size)) {
@@ -134,4 +152,16 @@ ul.side-nav.fixed li a {
 }
 .button-collapse {
   padding: 0 1rem;
+}
+#page-navigation {
+  padding: 1rem 1rem 0 0;
+  position: fixed;
+}
+.dropdown-menu-arrow {
+  color: $primary-color-light;
+  @include transition(all 300ms ease);
+
+  a.active & {
+    @include rotate(180deg);
+  }
 }

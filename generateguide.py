@@ -288,12 +288,13 @@ class Guide:
 
             ## If homepage
             if file in self.structure.files and file.filename == 'index':
-                page_heading = self.html_templates['website_homepage']
+                page_heading = self.html_templates['website_homepage_header']
+                body_html = self.html_templates['website_homepage_content'].format(path_to_root=file.section.html_path_to_root)
             else:
                 page_heading = file.section.heading.to_html()
 
-            if '/' in file.path:
-                current_folder = file.path.split('/')[0]
+            if os.sep in file.path:
+                current_folder = file.path.split(os.sep)[0]
             else:
                 current_folder = None
 

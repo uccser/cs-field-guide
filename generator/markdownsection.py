@@ -288,7 +288,8 @@ class Section:
             text = filename
 
         button_text = self.html_templates['button-download-text'].format(text=text)
-        html = self.html_templates['button'].format(button_link=output_path, button_text=button_text)
+        html = self.html_templates['button'].format(link=output_path, text=button_text)
+        html = self.html_templates['centered'].format(html=html)
         return html
 
 
@@ -607,7 +608,8 @@ class HeadingNode:
 
         html += self.section.html_templates[html_type].format(heading_level=self.level,
                                                       section_number=self.number,
-                                                      heading_text=self.heading)
+                                                      heading_text=self.heading,
+                                                      heading_permalink=self.permalink)
         if self.section.heading == self:
             html = self.section.html_templates['heading-page-title'].format(heading=html)
 
