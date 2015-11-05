@@ -253,13 +253,19 @@ class Section:
         youtube_src = "http://www.youtube.com/embed/{0}?rel=0"
         vimeo_src = "http://player.vimeo.com/video/{0}"
         html = ''
-        (video_type, video_identifier) = self.extract_video_identifier(match.group('url'))
-        if video_type:
-            if video_type == 'youtube':
-                source_link = youtube_src.format(video_identifier)
-            elif video_type == 'vimeo':
-                source_link = vimeo_src.format(video_identifier)
-            html = self.html_templates['video'].format(source=source_link)
+        arguments = match.group('args')
+        url = parse_argument('url', arguments)
+        if url:
+            (video_type, video_identifier) = self.extract_video_identifier(url)
+            if video_type:
+                if video_type == 'youtube':
+                    source_link = youtube_src.format(video_identifier)
+                elif video_type == 'vimeo':
+                    source_link = vimeo_src.format(video_identifier)
+                html = self.html_templates['video'].format(source=source_link)
+        else:
+            logging.error("Video url not given.")
+            html = ''
         return html
 
 
@@ -277,7 +283,7 @@ class Section:
         elif "vimeo" in video_link:
             identifier = ('vimeo', video_link.split('/')[-1])
         else:
-            logging.error("Included video link '{0}' not supported.".format(video_link))
+            logging.error("Included video url '{0}' not supported.".format(video_link))
             identifier = (None,'')
         return identifier
 

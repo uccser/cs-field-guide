@@ -230,9 +230,9 @@ Blocks of code are fenced by lines with three back-ticks <code>```</code>.
 
 ---
 
-<pre lang="no-highlight"><code>```javascript
-var s = "JavaScript syntax highlighting";
-alert(s);
+<pre lang="no-highlight"><code>```
+text = "Hello world"
+print(s)
 ```
 </code></pre>
 
@@ -298,7 +298,7 @@ Quote break.
 
 ### Horizontal Rule
 
-Create a horizontal rule with three hyphens
+Create a horizontal rule with three hyphens, though this is hardly used in the CSFG.
 
 ```
 ---
@@ -355,14 +355,14 @@ s & 0 \\
 
 ### Videos
 
-The following text can be used to embed Youtube and Vimeo videos into the project:
+The following text can be used to embed YouTube and Vimeo videos into the project:
 
 ```
-{video link="http://www.youtube.com/embed/FOwCCvHEfY0"}
+{video url="http://www.youtube.com/embed/FOwCCvHEfY0"}
 ```
 
 **Parameters:**
-- `link` - The link to the video to embed. The parser automatically detects the source of the video and creates the required HTML for embedding.
+- `url` - The url to the video to embed. The parser automatically detects the source of the video and creates the required HTML for embedding. Must be a YouTube or Vimeo url.
 
 The video is embedded in a responsive iframe within the page.
 
