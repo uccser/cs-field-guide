@@ -181,7 +181,7 @@ class Section:
 
         valid_image_wrap_directions = ['left', 'right']
 
-        image_source =  os.path.join(self.html_path_to_root, self.guide.generator_settings['Source']['Image'], filename)
+        image_source = os.path.join(self.html_path_to_root, self.guide.generator_settings['Source']['Image'], filename)
 
         parameters = ''
         wrap = False
@@ -323,25 +323,34 @@ class Section:
             - Returns empty string if source file does not exist
         """
         html = ''
-        interactive_type = match.group('type')
-        name = match.group('interactive_name')
         arguments = match.group('args')
-        arg_title = parse_argument('title', arguments)
-        title = arg_title if arg_title else name
-        arg_parameters = parse_argument('parameters', arguments)
-        params = arg_parameters if arg_parameters else None
-        source_folder = os.path.join(self.guide.generator_settings['Source']['Interactive'], name)
+        name = parse_argument('name', arguments)
+        interactive_type = parse_argument('type', arguments)
+        if name and interactive_type:
+            arg_title = parse_argument('title', arguments)
+            title = arg_title if arg_title else name
+            arg_parameters = parse_argument('parameters', arguments)
+            params = arg_parameters if arg_parameters else None
+            source_folder = os.path.join(self.guide.generator_settings['Source']['Interactive'], name)
 
-        if self.check_interactive_exists(source_folder, name):
-            self.required_files['Interactive'].add(name)
-            if interactive_type == 'interactive-external':
-                arg_thumbnail = parse_argument('thumbnail', arguments)
-                thumbnail = arg_thumbnail if arg_thumbnail else self.guide.generator_settings['Source']['Interactive Thumbnail']
-                html = self.external_interactive_html(source_folder, title, name, params, thumbnail)
-            elif interactive_type == 'interactive-inpage':
-                html = self.inpage_interactive_html(source_folder, name)
-            elif interactive_type == 'interactive-iframe':
-                html = self.iframe_interactive_html(source_folder, name, params)
+            if self.check_interactive_exists(source_folder, name):
+                self.required_files['Interactive'].add(name)
+                if interactive_type == 'whole-page':
+                    arg_thumbnail = parse_argument('thumbnail', arguments)
+                    thumbnail = arg_thumbnail if arg_thumbnail else self.guide.generator_settings['Source']['Interactive Thumbnail']
+                    html = self.whole_page_interactive_html(source_folder, title, name, params, thumbnail)
+                elif interactive_type == 'inpage':
+                    html = self.inpage_interactive_html(source_folder, name)
+                elif interactive_type == 'iframe':
+                    html = self.iframe_interactive_html(source_folder, name, params)
+                else:
+                    logging.error('Interactive type not valid.')
+            else:
+                logging.error('Interactive {} does not exist.'.format(name))
+        elif not name:
+            logging.error('Interactive name argument not provided.'.format(name))
+        elif not interactive_type:
+            logging.error('Interactive type argument not provided.'.format(name))
         return html if html else ''
 
 
@@ -358,8 +367,8 @@ class Section:
         return html
 
 
-    def external_interactive_html(self, source_folder, title, name, params, thumbnail):
-        """Return the html block for a link to an external interactive"""
+    def whole_page_interactive_html(self, source_folder, title, name, params, thumbnail):
+        """Return the html block for a link to an whole page interactive"""
         thumbnail_location = os.path.join(self.html_path_to_root, source_folder, thumbnail)
         link_text = 'Click to load {title}'.format(title=title)
         folder_location = os.path.join(self.html_path_to_root, source_folder, self.guide.generator_settings['Source']['Interactive File'])
