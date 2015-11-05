@@ -124,13 +124,26 @@ class Section:
 
 
     def create_panel(self, match):
-        panel_type = match.group('type')
-        panel_content = markdown(match.group('content'), extras=MARKDOWN2_EXTRAS)
-        if panel_type == 'teacher':
-            panel_heading = 'Teacher Note'
+        arguments = match.group('args')
+
+        panel_type = parse_argument('type', arguments)
+        if panel_type:
+            title = systemfunctions.from_kebab_case(panel_type)
+            summary_value = parse_argument('summary', arguments)
+            summary = ': ' + summary_value if summary_value else ''
+            expanded_value = parse_argument('expanded', arguments)
+            expanded = ' active' if expanded_value == 'True'  else ''
+            content = markdown(match.group('content'), extras=MARKDOWN2_EXTRAS)
+
+            heading = self.html_templates['panel_heading'].format(title=title,
+                                                                  summary=summary)
+            html = self.html_templates['panel'].format(panel_heading = heading,
+                                                       content = content,
+                                                       type_class = ' panel-' + panel_type,
+                                                       expanded = expanded)
         else:
-            panel_heading = ''
-        html = self.html_templates['panel'].format(type=panel_type, content=panel_content, heading=panel_heading)
+            logging.error('Panel type missing from {}'.format(match.group(0)))
+            html = ''
         return html
 
 
@@ -160,7 +173,7 @@ class Section:
         return match.group(0) * 2
 
 
-    def create_image_html(self, filename, image_args, image_set=False):
+    def create_image_html(self, filename, arguments, image_set=False):
         """Create the HTML required for displaying an image.
         This function is used by add_image and add_image_set"""
         # Add to required files
@@ -173,34 +186,38 @@ class Section:
         parameters = ''
         wrap = False
 
-        if image_args:
-            wrap_parameter = re.findall('wrap="(?P<wrap>[^"]*)"', image_args)
-            if wrap_parameter and not image_set:
-                wrap_value = wrap_parameter[0].lower()
+        if arguments:
+            wrap_value = parse_argument('wrap', arguments)
+            if wrap_value and not image_set:
                 if wrap_value in valid_image_wrap_directions:
                     wrap = wrap_value
                 else:
                     logging.error('Image wrap value {direction} for image {filename} not recognised. Valid directions: {valid_directions}'.format(direction=wrap_value, filename=filename, valid_directions=valid_image_wrap_directions))
-            alt_parameter = re.findall('alt="(?P<alt>[^"]*)"', image_args)
-            if alt_parameter:
-                alt_value = alt_parameter[0]
+            alt_value = parse_argument('alt', arguments)
+            if alt_value:
                 parameters += ' '
                 parameters += self.html_templates['image-parameter-alt'].format(alt_text=alt_value)
 
         image_html = self.html_templates['image'].format(image_source=image_source, image_parameters=parameters)
-        return image_html, wrap
+
+        if wrap:
+            html = self.html_templates['image-wrapped'].format(html=image_html, wrap_direction=wrap)
+        else:
+            html = self.html_templates['centered'].format(html=image_html)
+
+        return html
 
 
     def add_image(self, match):
         # TODO: Check image exists
         # TODO: Combine check function with generateguide.py
-        filename = match.group('filename')
-        image_args = match.group('args')
-        image_html, wrap = self.create_image_html(filename, image_args)
-        if wrap:
-            html = self.html_templates['image-wrapped'].format(html=image_html, wrap_direction=wrap)
+        arguments = match.group('args')
+        filename = parse_argument('filename', arguments)
+        if filename:
+            html = self.create_image_html(filename, arguments)
         else:
-            html = self.html_templates['centered'].format(html=image_html)
+            logging.error('Filename parameter missing from image.')
+            html = ''
         return html
 
 
@@ -302,17 +319,18 @@ class Section:
         html = ''
         interactive_type = match.group('type')
         name = match.group('interactive_name')
-        arg_title = re.search('title="(?P<title>[^"]*)"', match.group('args'))
-        title = arg_title.group('title') if arg_title else name
-        arg_parameters = re.search('parameters="(?P<parameters>[^"]*)"', match.group('args'))
-        params = arg_parameters.group('parameters') if arg_parameters else None
+        arguments = match.group('args')
+        arg_title = parse_argument('title', arguments)
+        title = arg_title if arg_title else name
+        arg_parameters = parse_argument('parameters', arguments)
+        params = arg_parameters if arg_parameters else None
         source_folder = os.path.join(self.guide.generator_settings['Source']['Interactive'], name)
 
         if self.check_interactive_exists(source_folder, name):
             self.required_files['Interactive'].add(name)
             if interactive_type == 'interactive-external':
-                arg_thumbnail = re.search('thumbnail="(?P<thumbnail>[^"]*)"', match.group('args'))
-                thumbnail = arg_thumbnail.group('thumbnail') if arg_thumbnail else self.guide.generator_settings['Source']['Interactive Thumbnail']
+                arg_thumbnail = parse_argument('thumbnail', arguments)
+                thumbnail = arg_thumbnail if arg_thumbnail else self.guide.generator_settings['Source']['Interactive Thumbnail']
                 html = self.external_interactive_html(source_folder, title, name, params, thumbnail)
             elif interactive_type == 'interactive-inpage':
                 html = self.inpage_interactive_html(source_folder, name)
@@ -566,6 +584,17 @@ class Section:
             function = getattr(self, regex_list[regex_name]['function'])
             regex_functions.append((regex, function))
         return regex_functions
+
+
+def parse_argument(argument_key, arguments):
+    """Search for the given argument in a string of all arguments
+    Returns: Value of an argument as a string if found, otherwise None"""
+    result = re.search('{}="([^"]*)"'.format(argument_key), arguments)
+    if result:
+        argument_value = result.group(1)
+    else:
+        argument_value = None
+    return argument_value
 
 
 class HeadingNode:
