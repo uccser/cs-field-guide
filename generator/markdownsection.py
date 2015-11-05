@@ -477,6 +477,77 @@ class Section:
             return folder_link_html
 
 
+    def add_glossary_entry(self, match):
+        glossary = self.guide.glossary
+        word = match.group('word')
+        definition = match.group('def')
+        permalink_id = word.lower()
+
+        this_file_link = os.path.join(glossary.html_path_to_root, self.file_node.path)
+        back_link = '{}.html#{}'.format(this_file_link, permalink_id)
+        self.guide.glossary.add_item(word, definition, back_link)
+
+        id_tag = ' id="{}"'.format(permalink_id)
+
+        content = match.group('content') if match.group('content') else ''
+
+        if content:
+            glossary_file_path = os.path.join(self.html_path_to_root, GLOSSARY_LOCATION)
+            forward_link = '{}#{}'.format(glossary_file_path, permalink_id)
+            href_tag = ' href="{}"'.format(forward_link)
+        else:
+            href_tag = ''
+
+        permalink_template = self.html_templates['glossary_permalink']
+        return permalink_template.format(id_tag=id_tag, href_tag=href_tag, content=content)
+
+
+    def add_glossary_link(self, match):
+        glossary = self.guide.glossary
+        word = match.group('word')
+
+        if word not in glossary:
+            logging.error("No glossary definition of {} to link to".format(word))
+            return ''
+
+        if not (match.group('backref') or match.group('content')):
+            logging.error('glossary link to {} has no effect. Include either a forward or back link'.format(word))
+            return ''
+
+        file_link = os.path.join(glossary.html_path_to_root, self.file_node.path)
+
+        if match.group('backref'):
+            backref_text = match.group('backref')
+            back_link_id = '{}-{}'.format(word.lower(), backref_text)
+            this_file_link = os.path.join(glossary.html_path_to_root, self.file_node.path)
+            back_link = '{}.html#{}'.format(this_file_link, back_link_id)
+            glossary.add_back_link(word, back_link, backref_text)
+            id_tag = ' id="{}"'.format(back_link_id)
+        else:
+            id_tag = ''
+
+        if match.group('content'):
+            content = match.group('content')
+            glossary_file_path = os.path.join(self.html_path_to_root, GLOSSARY_LOCATION)
+            forward_link_id = word.lower()
+            forward_link = '{}#{}'.format(glossary_file_path, forward_link_id)
+            href_tag = ' href="{}"'.format(forward_link)
+        else:
+            href_tag = ''
+            content = ''
+
+        template = self.html_templates['glossary_permalink']
+        return template.format(id_tag=id_tag, href_tag=href_tag, content=content)
+
+
+    def add_glossary(self, match):
+        glossary = self.guide.glossary
+        glossary_temp = self.html_templates['glossary']
+        items = ''
+        for term in sorted(glossary.items.keys()):
+            items += glossary.items[term].to_html()
+        return glossary_temp.format(items=items)
+
 
     # ----- Parsing Functions -----
 
