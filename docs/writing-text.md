@@ -457,6 +457,14 @@ It's worth considering which {glossary term="algorithm" link-text="algorithms"} 
 
 Each link to a glossary term requires the `term` and should define the `link-text` or `reference-text` or both.
 
+#### Creating the glossary
+
+```
+{glossary}
+```
+
+This creates the glossary using all the terms defined.
+
 ---
 
 ### Files
