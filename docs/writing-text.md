@@ -29,6 +29,9 @@ This article describes the syntax required for writing Markdown files within the
     - [Linking to a glossary term](#linking-to-a-glossary-term)
   - [Files](#files)
   - [Comments](#comments)
+  - [Panels](#panels)
+  - [Table of contents](#table-of-contents)
+  - [Escape curly braces](#escape-curly-braces)
   - [Syntax to avoid](#Syntax-to-avoid)
 - [Philosophy for syntax](#philosophy-for-syntax)
 
@@ -505,6 +508,48 @@ This is a comment and is removed on output!
 {comment This is an inline comment that doesn't require an end tag}
 ```
 
+---
+
+### Panels
+
+Panels are used to separate optional/extra content like teacher information or interesting side notes.
+
+```
+{panel type="teacher-note" summary="Curriculum guides for Algorithms"}
+
+This text is usedthe panel contents.
+
+{panel end}
+```
+
+**Parameters:**
+- `type` - The type of panel to create. The type is used as the title of the panel, plus as the CSS class for panel (this allows colouring of all the same types of panels).
+- `summary` (optional) - Text to display after the title to summarise the panel's contents.
+- `expanded` (optional) - If set to False, the panel is expanded at load. When not given it defaults to True.
+
+---
+
+### Table of contents
+
+Creates an automatic table of contents. It will list files and subfolders from the current file.
+```
+{table-of-contents}
+
+{table-of-contents depth="1"}
+```
+**Parameters:**
+- `depth` (optional) - The number of levels to show.
+
+---
+
+### Escape curly braces
+
+To use curly braces in text, you escape text with backslashes.
+
+```
+This is a \{word with braces around it\}.
+```
+This is a {word with braces around it}.
 ---
 
 ## Markdown syntax to avoid
