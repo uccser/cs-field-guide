@@ -63,19 +63,18 @@ ul.side-nav.fixed li a {
 .section_number {
   color: $primary-color-light !important;
 }
-.section_heading a {
-  color: $off-black !important;
-
-  &:before {
-    display: block;
-    content: " ";
-    margin-top: -56px;
-    height: 56px;
-    visibility: hidden;
+.section_heading {
+  padding-top: 70px;
+  margin-top: -70px;
+  pointer-events: none;
+  & > a {
+    pointer-events: auto;
   }
-
-  #page-title-header & {
+  #page-title-header & > a {
     color: white !important;
+  }
+  & > a {
+    color: $off-black !important;
   }
 }
 .main-content ul:not(.collapsible) {
