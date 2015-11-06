@@ -4,6 +4,7 @@ import logging
 import os.path
 import generator.systemfunctions as systemfunctions
 from generator.systemconstants import *
+from collections import OrderedDict
 from markdown2 import markdown
 from generator.files import setup_required_files
 
@@ -23,6 +24,7 @@ class Section:
     def __init__(self, file_node, markdown_text):
         self.file_node = file_node
         self.markdown_text = markdown_text
+        self.original_text = markdown_text.split('\n')
         self.guide = self.file_node.guide
         self.heading = None # Set to first heading during markdown parsing
         self.current_heading = None # Pointer to current heading node
@@ -77,10 +79,7 @@ class Section:
             elif heading_level > self.current_heading.level + 1:
                 #Error in markdown - a heading level has been missed.
                 #Generate blank intermediate headings and log error
-
-                logging.error("Heading missed between --{} {}-- and --{}-- in section {}".format(self.current_heading.number,
-                                                                                        self.current_heading.heading,
-                                                                                        heading_text, self.file_node.filename))
+                self.regex_functions['heading'].log("Heading level missed between {} {} and {}".format(self.current_heading.number, self.current_heading.heading, heading_text), self, match.group(0))
                 for level in range(heading_level - self.current_heading.level - 1):
                     intermediate_heading = HeadingNode(heading_text, '', parent = self.current_heading)
                     self.current_heading.children.append(intermediate_heading)
@@ -142,7 +141,7 @@ class Section:
                                                        type_class = ' panel-' + panel_type,
                                                        expanded = expanded)
         else:
-            logging.error('Panel type missing from {}'.format(match.group(0)))
+            self.regex_functions['panel'].log("Panel type argument missing", self, match.group(0))
             html = ''
         return html
 
@@ -192,7 +191,7 @@ class Section:
                 if wrap_value in valid_image_wrap_directions:
                     wrap = wrap_value
                 else:
-                    logging.error('Image wrap value {direction} for image {filename} not recognised. Valid directions: {valid_directions}'.format(direction=wrap_value, filename=filename, valid_directions=valid_image_wrap_directions))
+                    self.regex_functions['image'].log('Image wrap value {direction} for image {filename} not recognised. Valid directions: {valid_directions}'.format(direction=wrap_value, filename=filename, valid_directions=valid_image_wrap_directions), self, match.group(0))
             alt_value = parse_argument('alt', arguments)
             if alt_value:
                 parameters += ' '
@@ -216,7 +215,7 @@ class Section:
         if filename:
             html = self.create_image_html(filename, arguments)
         else:
-            logging.error('Filename parameter missing from image.')
+            self.regex_functions['image'].log("Filename parameter missing from image", self, match.group(0))
             html = ''
         return html
 
@@ -240,12 +239,12 @@ class Section:
         return html
 
 
-    def file_exists(file_path):
+    def file_exists(file_path, match):
         """Check if file exists"""
         if os.path.exists(file_path):
             return True
         else:
-            logging.error("File {0} does not exist".format(file_path))
+            self.regex_functions['file'].log("File {0} does not exist".format(file_path), self, match.group(0))
             return False
 
 
@@ -256,7 +255,7 @@ class Section:
         arguments = match.group('args')
         url = parse_argument('url', arguments)
         if url:
-            (video_type, video_identifier) = self.extract_video_identifier(url)
+            (video_type, video_identifier) = self.extract_video_identifier(url, match)
             if video_type:
                 if video_type == 'youtube':
                     source_link = youtube_src.format(video_identifier)
@@ -264,12 +263,12 @@ class Section:
                     source_link = vimeo_src.format(video_identifier)
                 html = self.html_templates['video'].format(source=source_link)
         else:
-            logging.error("Video url not given.")
+            self.regex_functions['video'].log("Video url not given", self, match.group(0))
             html = ''
         return html
 
 
-    def extract_video_identifier(self, video_link):
+    def extract_video_identifier(self, video_link, match):
         """Returns the indentifier from a given URL"""
         if "youtu.be" in video_link or "youtube.com/embed" in video_link:
             identifier = ('youtube', video_link.split('/')[-1])
@@ -283,7 +282,7 @@ class Section:
         elif "vimeo" in video_link:
             identifier = ('vimeo', video_link.split('/')[-1])
         else:
-            logging.error("Included video url '{0}' not supported.".format(video_link))
+            self.regex_functions['video'].log("Included video url '{0}' not supported".format(video_link), self, match.group(0))
             identifier = (None,'')
         return identifier
 
@@ -316,7 +315,7 @@ class Section:
             html = self.html_templates['button'].format(link=output_path, text=button_text)
             html = self.html_templates['centered'].format(html=html)
         else:
-            logging.error('File filename argument not provided.'.format(name))
+            self.regex_functions['file download button'].log("File filename argument not provided", self, match.group(0))
         return html if html else ''
 
 
@@ -337,28 +336,28 @@ class Section:
             params = arg_parameters if arg_parameters else None
             source_folder = os.path.join(self.guide.generator_settings['Source']['Interactive'], name)
 
-            if self.check_interactive_exists(source_folder, name):
+            if self.check_interactive_exists(source_folder, name, match):
                 self.required_files['Interactive'].add(name)
                 if interactive_type == 'whole-page':
                     arg_thumbnail = parse_argument('thumbnail', arguments)
                     thumbnail = arg_thumbnail if arg_thumbnail else self.guide.generator_settings['Source']['Interactive Thumbnail']
-                    html = self.whole_page_interactive_html(source_folder, title, name, params, thumbnail)
+                    html = self.whole_page_interactive_html(source_folder, title, name, params, thumbnail, match)
                 elif interactive_type == 'inpage':
-                    html = self.inpage_interactive_html(source_folder, name)
+                    html = self.inpage_interactive_html(source_folder, name, match)
                 elif interactive_type == 'iframe':
-                    html = self.iframe_interactive_html(source_folder, name, params)
+                    html = self.iframe_interactive_html(source_folder, name, params, match)
                 else:
-                    logging.error('Interactive type not valid.')
+                    self.regex_functions['file download button'].log('Interactive type not valid', self, match.group(0))
             else:
-                logging.error('Interactive {} does not exist.'.format(name))
+                self.regex_functions['file download button'].log('Interactive {} does not exist'.format(name), self, match.group(0))
         elif not name:
-            logging.error('Interactive name argument not provided.'.format(name))
+            self.regex_functions['file download button'].log('Interactive name argument not provided'.format(name), self, match.group(0))
         elif not interactive_type:
-            logging.error('Interactive type argument not provided.'.format(name))
+            self.regex_functions['file download button'].log('Interactive type argument not provided'.format(name), self, match.group(0))
         return html if html else ''
 
 
-    def iframe_interactive_html(self, source_folder, name, params):
+    def iframe_interactive_html(self, source_folder, name, params, match):
         """Create an iframe for the interactive.
             - A script is added to the page for a responsive iframe
             - A script is added within the iframe for a responsive iframe
@@ -371,7 +370,7 @@ class Section:
         return html
 
 
-    def whole_page_interactive_html(self, source_folder, title, name, params, thumbnail):
+    def whole_page_interactive_html(self, source_folder, title, name, params, thumbnail, match):
         """Return the html block for a link to an whole page interactive"""
         thumbnail_location = os.path.join(self.html_path_to_root, source_folder, thumbnail)
         link_text = 'Click to load {title}'.format(title=title)
@@ -385,11 +384,11 @@ class Section:
         return self.html_templates['centered'].format(html=link_html)
 
 
-    def inpage_interactive_html(self, source_folder, name):
+    def inpage_interactive_html(self, source_folder, name, match):
         """Return the html for inpage interactives, with links adjusted
         to correct relative links, and comments removed.
         """
-        interactive_tree = self.get_interactive_tree(source_folder, name)
+        interactive_tree = self.get_interactive_tree(source_folder, name, match)
         if interactive_tree is not None:
             self.edit_interactive_tree(interactive_tree, source_folder)
             html = re.sub('(\n)*<!--(.|\s)*?-->(\n)*', '', interactive_tree.prettify(formatter=None).strip(), flags=re.MULTILINE)
@@ -398,7 +397,7 @@ class Section:
             return None
 
 
-    def get_interactive_tree(self, source_folder, name):
+    def get_interactive_tree(self, source_folder, name, match):
         """Return element tree for the 'class=interactive div'
         of the interactive html file. If more than one div is found,
         return None and log error
@@ -411,9 +410,7 @@ class Section:
         file_tree = BeautifulSoup(raw_html, 'html5lib')
         interactive_trees = file_tree.find_all('div', class_=INTERACTIVE_CLASS)
         if len(interactive_trees) != 1:
-            logging.error('''Error creating interactive {}: expected 1
-                            div with class 'interactive' but {} found
-                            '''.format(name, len(interactive_trees)))
+            self.regex_functions['interactive'].log("Error creating interactive {}: expected 1 div with class 'interactive' but {} found".format(name, len(interactive_trees)), self, match.group(0))
             return None
         else:
             return interactive_trees[0]
@@ -441,7 +438,7 @@ class Section:
                 self.page_scripts.add(element.extract())
 
 
-    def check_interactive_exists(self, interactive_source, interactive_name):
+    def check_interactive_exists(self, interactive_source, interactive_name, match):
         """Checks if an interactive exists and has an index.html file"""
         exists = False
         if os.path.exists(interactive_source):
@@ -450,9 +447,9 @@ class Section:
             if os.path.exists(interactive_source_file_location):
                 exists = True
             else:
-                logging.error("Interactive {0} {1} file could not be found".format(interactive_name, interactive_source_file))
+                self.regex_functions['interactive'].log("Interactive {0} {1} file could not be found".format(interactive_name, interactive_source_file), self, match.group(0))
         else:
-            logging.error("Interactive {0} folder could not be found".format(interactive_name))
+            self.regex_functions['interactive'].log("Interactive {0} folder could not be found".format(interactive_name), self, match.group(0))
         return exists
 
 
@@ -527,11 +524,11 @@ class Section:
         word = match.group('word')
 
         if word not in glossary:
-            logging.error("No glossary definition of {} to link to".format(word))
+            self.regex_functions['glossary link'].log("No glossary definition of {} to link to".format(word), self, match.group(0))
             return ''
 
         if not (match.group('backref') or match.group('content')):
-            logging.error('glossary link to {} has no effect. Include either a forward or back link'.format(word))
+            self.regex_functions['glossary link'].log('Glossary link to {} has no effect. Include either a forward or back link'.format(word), self, match.group(0))
             return ''
 
         file_link = os.path.join(glossary.html_path_to_root, self.file_node.path)
@@ -583,8 +580,8 @@ class Section:
 
         # Parse with our parser
         text = self.markdown_text
-        for regex, function in self.regex_functions:
-            text = re.sub(regex, function, text, flags=re.MULTILINE)
+        for regex in self.regex_functions.values():
+            text = re.sub(regex.expression, regex.function, text, flags=re.MULTILINE)
 
         # Close last section if needed
         if self.sectioned:
@@ -595,14 +592,23 @@ class Section:
 
         self.html_content.append(text)
 
+        # Log error messages
+        for regex in self.regex_functions.values():
+            i = 0
+            while regex.errors and i < len(self.original_text):
+                if regex.errors[0].text_to_search in self.original_text[i]:
+                    regex.errors[0].log_message(i + 1)
+                    regex.errors.pop(0)
+                i += 1
+
 
     def create_regex_functions(self):
         regex_list = self.guide.regex_list
-        regex_functions = []
+        regex_functions = OrderedDict()
         for regex_name in regex_list.sections():
-            regex = regex_list[regex_name]['regex']
+            expression = regex_list[regex_name]['regex']
             function = getattr(self, regex_list[regex_name]['function'])
-            regex_functions.append((regex, function))
+            regex_functions[regex_name] = Regex(expression, function)
         return regex_functions
 
 
@@ -663,3 +669,30 @@ class HeadingNode:
             html = self.section.html_templates['heading-page-title'].format(heading=html)
 
         return html
+
+
+class Regex:
+    """Class for containing information regarding regex"""
+
+    def __init__(self, expression, function):
+        self.expression = expression
+        self.function = function
+        self.errors = []
+
+    def log(self, message_text, section, text_to_search=None):
+        """Adds the log message to the list of errors for this regex"""
+        self.errors.append(LogMessage(message_text, section, text_to_search))
+
+
+class LogMessage:
+    """Class for containing information regarding logging messages"""
+
+    def __init__(self, message_text, section, text_to_search):
+        self.message_text = message_text
+        self.section = section
+        self.text_to_search = text_to_search
+
+    def log_message(self, line_number):
+        """Logs the message using the logger module"""
+        section_title = self.section.title
+        logging.error('{title} - line {line_number}: {message}'.format(message=self.message_text, line_number=line_number, title=section_title))
