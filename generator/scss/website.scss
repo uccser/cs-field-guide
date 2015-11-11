@@ -25,9 +25,6 @@ pre > code {
 .interactive-external {
   border: 2px solid #C3C3C3;
 }
-.image-wrap {
-
-}
 .image-wrap-left {
   float: left;
   margin-right: 1rem;
@@ -66,22 +63,21 @@ ul.side-nav.fixed li a {
 .section_number {
   color: $primary-color-light !important;
 }
-.section_heading a {
-  color: $off-black !important;
-
-  &:before {
-    display: block;
-    content: " ";
-    margin-top: -56px;
-    height: 56px;
-    visibility: hidden;
+.section_heading {
+  padding-top: 70px;
+  margin-top: -70px;
+  pointer-events: none;
+  & > a {
+    pointer-events: auto;
   }
-
-  #page-title-header & {
+  #page-title-header & > a {
     color: white !important;
   }
+  & > a {
+    color: $off-black !important;
+  }
 }
-.main-content ul {
+.main-content ul:not(.collapsible) {
   padding-left: 40px;
   li {
     list-style-type: initial;
@@ -124,7 +120,8 @@ ul.side-nav.fixed li a {
   padding-top: 0 !important;
 }
 #homepage-logo {
-  height: 10rem;
+  height: 12rem;
+  margin-top: 1rem;
 }
 .brand-logo {
   color: $primary-color-light !important;
@@ -161,7 +158,10 @@ ul.side-nav.fixed li a {
   color: $primary-color-light;
   @include transition(all 300ms ease);
 
-  a.active & {
+  .active & {
     @include rotate(180deg);
   }
+}
+.panel p {
+  padding: 1rem !important;
 }

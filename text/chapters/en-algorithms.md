@@ -1,6 +1,6 @@
 # Algorithms
 
-{teacher}
+{panel type="teacher-note" summary="Curriculum guides for Algorithms"}
 The following assessment plans also cover this material:
 
 **New Zealand - AS91074 (1.44)**
@@ -8,19 +8,19 @@ The following assessment plans also cover this material:
 - [Assessment Overview](assessment-guides/new-zealand/assessment-guide-level-1-introduction.html)
 - [Searching Algorithms Assessment Guide](assessment-guides/new-zealand/assessment-guide-level-1-searching-algorithms.html)
 - [Sorting Algorithms Assessment Guide](assessment-guides/new-zealand/assessment-guide-level-1-sorting-algorithms.html)
-{teacher end}
+{panel end}
 
 {comment explain different views of algorithm (programming context) and Algorithm (that have interesting complexity); use https://www.youtube.com/watch?v=6hfOvs8pY1k for the former?}
 
-{video http://www.youtube.com/embed/FOwCCvHEfY0}
+{video url="http://www.youtube.com/embed/FOwCCvHEfY0"}
 
 ## What's the big picture?
 
 Every computer device you have ever used, from your school computers to your calculator, has been using algorithms to tell it how to do whatever it was doing. Algorithms are a very important topic in Computer Science because they help software developers create efficient and error free programs. The most important thing to remember about algorithms is that there can be many different algorithms for the same problem, but some are much better than others!
 
-{include interactive sorting-animation}
+{interactive name="sorting-animation" type="whole-page"}
 
-Computers are incredibly fast at manipulating, moving and looking through data. However the amount of data computers use is often so large that it doesn't matter how fast the computer is, it will take it far too long to examine every single piece of data (companies like Google, Facebook and Twitter process about 1 billion things per day). This is where algorithms come in. If a   computer is given a better algorithm to process the data then it doesn't matter how much information it has to look through, it will still be able to do it in a reasonable amount of time.
+Computers are incredibly fast at manipulating, moving and looking through data. However the amount of data computers use is often so large that it doesn't matter how fast the computer is, it will take it far too long to examine every single piece of data (companies like Google, Facebook and Twitter process about 1 billion things per day). This is where algorithms come in. If a computer is given a better algorithm to process the data then it doesn't matter how much information it has to look through, it will still be able to do it in a reasonable amount of time.
 
 If you have read through the Introduction chapter you may remember that the speed of an application on a computer makes a big difference to a human using it. If an application you create is too slow, people will get frustrated with it and won't use it. It doesn't matter if your program can solve all their life problems, if it takes too long they will simply get bored and close it!
 
@@ -30,7 +30,7 @@ At this stage you might be thinking that algorithms and computer programs kind o
 
 - **Informal Instruction:** An instruction using natural language. They are un-precise so computers cannot understand them, but humans are able to use their own intelligence to interpret them. This is the least precise of our three descriptions for doing things, and is typically used to give a very simple description of the general idea of an algorithm.
 - **Algorithm:** step by step process that describes how to solve a problem and/or complete a task, which will always give a result. They are more precise than Informal Instructions and do not require any knowledge or intelligence to follow, however they are still not precise enough for a computer to follow. These are often expressed using [pseudo-code](http://en.wikipedia.org/wiki/Pseudocode), which matches a programming language fairly closely, but leaves out details that could easily be added later by a programmer, and doesn't specify the kinds of commands that can be used.
-- **Program:** a specific implementation of an algorithm, which is written in a specific programming language and will give a certain result. This is the most precise of these three descriptions and computers are able to follow and understand these.
+- {glossary "algorithm" backref="computer program"}**Program:**{glossary end} a specific implementation of an algorithm, which is written in a specific programming language and will give a certain result. This is the most precise of these three descriptions and computers are able to follow and understand these.
 
 For example...
 
@@ -38,6 +38,7 @@ For example...
 - **Algorithm:** 1) Go to the kitchen. 2) Pick up a glass. 3) Turn on the tap. 4) Put the glass under the running water and remove it once it is almost full. 5) Turn off the tap. 6) Take the glass back to the person who gave the instruction. A human could follow these instructions easily, but a computer could not figure out exactly what to do.
 - **Program:** A computer program, written in a programming language, which would tell a robot exactly how to retrieve a glass of water and bring it back to the person who asked for the water.
 
+{glossary "algorithm" backref="algorithm cost"}{glossary end}
 ### Algorithm cost
 
 When Computer Scientists are comparing algorithms they often talk about the 'cost' of an algorithm. The cost of an algorithm can be interpreted in several different ways, but it is always related to how well an algorithm performs based on the size of its input, *n*. In this chapter we will talk about the cost of an algorithm as either the time it takes a program (which performs the algorithm) to complete, and the number of comparisons the algorithm makes before it finishes.
@@ -68,10 +69,11 @@ For students reports:
 More information on this can be found at the end of the chapter.
 {teacher end}
 
+{glossary "Algorithm" backref="searching algorithms"}{glossary end}
 ## Searching
 
 {teacher}
-The present searching game in this section is split into two parts, the first corresponds to the Linear Search algorithm (also known as Sequential Search) and the second corresponds to Binary Search. We recommend you play through the levels yourself for a while, or after reading this description. It is based on the [CS Unplugged Battleships game](http://csunplugged.com/searching-algorithms) which can be used as a classroom activity to enforce the lessons in this chapter (the hashing activity is not used for the present searching game). The present searching game can be done individually by students as they read through the chapter, in groups or as a class activity.
+The present searching game in this section is split into two parts, the first corresponds to the Linear Search algorithm (also known as Sequential Search) and the second corresponds to {glossary-def "Binary Search" "searching a sorted list by looking at the middle item, and then searching the appropriate half recursively (used for phone books, dictionaries and computer algorithms)."}Binary Search{glossary-def end}. We recommend you play through the levels yourself for a while, or after reading this description. It is based on the [CS Unplugged Battleships game](http://csunplugged.com/searching-algorithms) which can be used as a classroom activity to enforce the lessons in this chapter (the hashing activity is not used for the present searching game). The present searching game can be done individually by students as they read through the chapter, in groups or as a class activity.
 
 To run this as a classroom activity get all the students to play each section of the game at the same time and then when they have all finished have a discussion about the results. After students have finished the first part ask them questions like "Did anyone find the pet on the first go?", "Did anyone only find it after checking every other present?", or find the average number of presents students had to open to find the pet (this should be around 5 for the first level and around 10 for the second).
 
@@ -86,7 +88,7 @@ Searching through collections of data is something computers have to do all the 
 Screenshots and an accompanying explanation of what a student has done (step by step would be best) would be sufficient evidence for 'demonstrating understanding of the key characteristics and role of an algorithm' for their 1.44 reports.
 {teacher end}
 
-{interactive-external searching-boxes title="Searching Boxes - Part 1" parameters="max=2"}
+{interactive name="searching-boxes" type="whole-page" title="Searching Boxes - Part 1" parameters="max=2"}
 
 You may have noticed that the numbers on the monsters and pets in the game were in a random order, which meant that finding the pet was basically luck! You might have found it on your first try, or if you were less lucky you might have had to look inside almost all the presents before you found it. This might not seem like such a bad thing since you had enough lives to look under all the boxes, but imagine if there had been 1,000 boxes, or worse 1,000,000! It would have taken far too long to look through all the boxes and the pet might have never been found.
 
@@ -115,6 +117,7 @@ If you used this algorithm you might get lucky and find what you are looking for
 If you watched the video at the beginning of the chapter you might be thinking that what you did in the present searching game sounds more like Bozo Search than Linear Search, but actually Bozo Search is even sillier than this! If you were doing a Bozo Search then after unwrapping a present and finding a monster inside, you would wrap the present back up before you moved on to the next one! This means you might end up checking the same present again and again and again and you might never find the pet, even with a small number of presents!
 {curiosity end}
 
+Binary search
 A much better algorithm to use is called Binary Search. In the second part of the present searching game the boxes were in order, which meant you were able to be more clever when you were searching for the pet, and you might have been using a Binary Search without realising...
 
 {teacher}
@@ -151,6 +154,7 @@ The following files will run linear and binary search in various languages:
 - [Python (Version 2)](file linear-binary-search-python2.py)
 - [Python (Version 3)](file linear-binary-search-python3.py)
 
+{glossary "algorithm" backref="sorting algorithms"}{glossary end}
 ## Sorting algorithms
 
 {teacher}
@@ -227,11 +231,12 @@ The above informal instructions for insertion sort are fairly detailed and are g
 
 People often perform this when they physically sort items. It can also be a very useful algorithm to use if you already have a sorted set of data and want to add a new piece of data into the set. For example if you owned a library and purchased a new book you wouldn't do a Selection Sort on the entire library just to place this new book, you would simply insert the new book in its correct place.
 
+{glossary-def "Quicksort" "a process for achieving an outcome, normally for a general problem such as searching, sorting, finding an optimal path through a map and so on."}{glossary-def end}
 ### Quicksort
 
 Insertion and Selection Sort may seem like logical ways to sort things into order, but they both take far too many comparisons when they are used for large amounts of data. Remember computers often have to search through HUGE amounts of data, so even if they use a good searching algorithm like Binary Search to look through their data, if they use a bad sorting algorithm to first sort that data into order then finding anything will take far too long!
 
-A much better sorting algorithm is Quicksort! (the name is a bit of a giveaway)
+A much better sorting algorithm is {glossary "Quicksort"}Quicksort!{glossary end} (the name is a bit of a giveaway)
 
 {interactive-external sorting-boxes title="Quicksort interactive"  parameters="method=quick"}
 
