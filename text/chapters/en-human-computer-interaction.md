@@ -472,7 +472,7 @@ A related problem with dates is when a user needs to pick a start and end date (
 
 Any time a dialogue box comes up that says you weren't allowed to do a certain action, the system has failed to prevent an error. Of course, it may be difficult to do that because the error can depend on so many user choices, but it is ideal that the system doesn't offer something that it can't do.
 
-{interactive-inpage dropdown-buttons}
+{interactive name="available-menu-items" type="in-page"}
 
 ### Recognition rather than recall
 
