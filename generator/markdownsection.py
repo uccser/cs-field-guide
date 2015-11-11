@@ -342,7 +342,7 @@ class Section:
                     arg_thumbnail = parse_argument('thumbnail', arguments)
                     thumbnail = arg_thumbnail if arg_thumbnail else self.guide.generator_settings['Source']['Interactive Thumbnail']
                     html = self.whole_page_interactive_html(source_folder, title, name, params, thumbnail, match)
-                elif interactive_type == 'inpage':
+                elif interactive_type == 'in-page':
                     html = self.inpage_interactive_html(source_folder, name, match)
                 elif interactive_type == 'iframe':
                     html = self.iframe_interactive_html(source_folder, name, params, match)
