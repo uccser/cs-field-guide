@@ -427,7 +427,7 @@ Pressing the yes button below can be very frustrating! Most modern web browsers 
 
 {teacher end}
 
-{interactive-inpage close-window}
+{interactive name="close-window" type="in-page"}
 
 Sometimes the interface can force the user into doing something the user does not want to do. For example, it is quite common for operating systems or programs to perform updates automatically that require a restart. Sometimes the interface may not give them the opportunity to cancel or delay this, and restart nevertheless. This is bad if it happens when the user is just about to give a presentation.
 
