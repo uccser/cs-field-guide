@@ -460,7 +460,7 @@ A computer program shouldn't make it easy for people to make serious errors. An 
 
 Below is a date picker; can you see what errors can be produced with it?
 
-{interactive-inpage date-picker}
+{interactive name="date-picker" type="in-page"}
 
 {teacher}
 

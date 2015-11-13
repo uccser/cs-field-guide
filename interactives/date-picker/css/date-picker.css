@@ -2,3 +2,6 @@
   color: red;
   font-weight: bold;
 }
+#interactive-date-picker-items .col {
+  padding: 0 !important;
+}
