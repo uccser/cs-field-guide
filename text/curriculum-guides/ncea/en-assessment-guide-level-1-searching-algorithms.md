@@ -61,8 +61,6 @@ This covers:
 "describing an algorithm for a task"
 
 "determining the cost of an algorithm for a problem of a particular size"
-
-"showing understanding of the kinds of steps that can be in an algorithm"
 {panel end}
 
 Take a screenshot of a completed search using the *binary search* interactive (if you get lucky and find the target within 2 clicks, keep restarting until it takes at least 3, so that you something sufficient to show in your report). Show on your screenshot which boxes you opened, and put how many boxes you opened. The number of boxes you opened is the *cost* of the algorithm for this particular problem. Include your screenshot in your report.
@@ -77,7 +75,7 @@ Describe (in your own words with 1 - 3 sentences) the overall process you carrie
 Note that while only the first part is necessary for achieved, it is probably easier to cover the achieved by doing the merit. Teachers should supply a suitable program for the student's to annotate.
 {panel end}
 
-You also need to show the kinds of steps that can be an algorithm, such as iterative, conditional, and sequential. If you don’t know what these terms mean, go have another look at the field guide. Get a Scratch program (or another language if you are fairly confident with understanding the language) that implements your sorting algorithm. Take a screenshot of it, or a large part of it (you want to ensure that the screenshot takes up no more than half a page in the report, but is still readable) and open it in a drawing program such as paint. Add arrows and notes showing a part of the algorithm that is sequential, part that is conditional, and part that is iterative.
+You also need to show the kinds of steps that can be an algorithm, such as iterative, conditional, and sequential. If you don’t know what these terms mean, go have another look at the field guide. Get a Scratch program (or another language if you are fairly confident with understanding the language) that implements binary search. Take a screenshot of it, or a large part of it (you want to ensure that the screenshot takes up no more than half a page in the report, but is still readable) and open it in a drawing program such as paint. Add arrows and notes showing a part of the algorithm that is sequential, part that is conditional, and part that is iterative.
 
 **Merit/ Excellence**
 
@@ -134,7 +132,7 @@ Using your findings to guide you, discuss **one** of the following scenarios:
 - Imagine that you are a data analyst with the task of searching these boxes, and in order to do your work you need to search for many pieces of data each day. What would happen if you were trying to use linear search instead of binary search?
 - Imagine that you have a web server that has to search a large amount of data and then return a response to a user in a web browser (for example searching for a person on Facebook). A general rule of computer systems is that if they take longer than 1/10 of a second (100 milliseconds) to return an answer, the delay will be noticeable to a human. How do binary search and linear search compare when it comes to ensuring there is *not* a noticable delay?
 
-### Writing the part of your report that addresses "comparing Algorithms/ Programs/ Informal Instructions"
+### Writing the part of your report for the other algorithms bullet points
 
 **Achieved/ Merit/ Excellence**
 
