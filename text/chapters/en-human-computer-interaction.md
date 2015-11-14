@@ -47,7 +47,7 @@ Human-computer interaction (HCI) is about trying to make programs useful, usable
 
 Try out the following interactive task, and get some friends to try it:
 
-{interactive name="deceiver" type="whole-page"}
+{interactive name="deceiver" type="in-page"}
 
 Did anyone get a wrong answer to the question even though you thought you got it right? You may have noticed that the "Yes" and "No" button sometimes swap.
 Inconsistency is normally a really bad thing in an interface, as it can easily fool the user into making an error.

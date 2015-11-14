@@ -4,22 +4,26 @@ $(document).ready(function(){
 
     $(".interactive-deceiver-button").click(function() {
         var clickedButton = ($(this).html());
-        if (clickedButton == "Yes") {
+        console.log(clickedButton);
+        if (clickedButton == "Odd") {
             if (Deceiver.number % 2 == 1) {
+              console.log('A');
                 questionCorrect();
+                checkButtons();
             } else {
+              console.log('B');
                 questionIncorrect();
-                return false;
             }
         } else {
             if (Deceiver.number % 2 == 1) {
+              console.log('C');
                 questionIncorrect();
-                return false;
             } else {
+              console.log('D');
                 questionCorrect();
+                checkButtons();
             }
         }
-        checkButtons();
     });
 
     $("#interactive-deceiver-start-button").click(function(){
@@ -51,15 +55,14 @@ function setupQuestionGame() {
     Deceiver.secs = 15;
     Deceiver.score = 0;
     $("#interactive-deceiver-question").html("Answer as many questions as you can");
-    $("#interactive-deceiver-start-button").show();
+    $("#interactive-deceiver-start-panel").show();
     $("#interactive-deceiver-game-buttons").hide();
     resetButtonCounter();
 }
 
 function newQuestion() {
     Deceiver.number = Math.floor((Math.random()*100)+1);
-    $("#interactive-deceiver-question").html("Is " + Deceiver.number + " odd?");
-
+    $("#interactive-deceiver-question").html(Deceiver.number);
 }
 
 function checkButtons() {
@@ -97,12 +100,12 @@ function decrementTimer() {
 
 function endGame() {
     clearTimeout(Deceiver.timer);
-    $("#interactive-deceiver-timer").html("SCORE: " + Deceiver.score);
+    $("#interactive-deceiver-timer").html("Score: " + Deceiver.score);
     setupQuestionGame();
 }
 
 function startGame() {
-    $("#interactive-deceiver-start-button").hide();
+    $("#interactive-deceiver-start-panel").hide();
     $("#interactive-deceiver-game-buttons").show();
     newQuestion();
     $("#interactive-deceiver-timer").html('<span id="interactive-deceiver-seconds">15</span> seconds left');
