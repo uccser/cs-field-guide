@@ -238,7 +238,7 @@ The point of this is that any interface element (such as a button or checkbox) t
 
 {comment end}
 
-{interactive-inpage delayed-checkbox}
+{interactive name="delayed-checkbox" type="in-page"}
 
 So, as you evaluate interfaces, bear in mind that even very small delays can make a system hard to use.
 
