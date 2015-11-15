@@ -17,8 +17,6 @@ Each of these topics has a chapter in the Computer Science Field Guide, which th
 
 There are multiple assessment guides for representing data and the encoding topics, of which students need to do a subset. The following explanations outline what students should cover.
 
-Note that the topics can be covered independently, although using a common context for all or most of them (such as considering an mp3 player or photo display that represents data using bits, uses encoding and has an interface that can be evaluated) can make personalisation easier.
-
 ### Representing Data using Bits
 
 Students should choose at least **two** data types and cover the "ways in which different types of data can be represented using bits" in order to get achieved, and they should choose at least two different representations for **each** of their chosen data types for the merit level.
