@@ -30,7 +30,7 @@ Covering Human Computer Interaction first may make the Algorithms topic more rel
 
 ## Personalisation and Student Voice
 
-It is important that students use personalised examples to base their explanations around, and that the explanations are in their own words, and based on their example (rather than being a paraphrase from wikipedia, for example).
+It is important that students use personalised examples to base their explanations around, and that the explanations are in their own words, and based on their example (rather than being a paraphrase from Wikipedia, for example).
 
 Personalised means that the student’s example is different to their classmates. For example, they may have a program that prints their name or favourite saying, they may use a different number of items to sort or search through, their choice of the values being sorted or searched in examples is unique, and they may carry out their own usability exploration of a device they chose, and report on it in their own words.
 
@@ -48,17 +48,19 @@ The page limit for 1.44 is now 10 pages to cover the three topics. A possible br
 
 The assessment guides provide further guidance on how to stay within these limits. Students should be mindful of the recommended limits while they are working on their reports, in order to avoid having to delete work they put a lot of effort into.
 
-Some hints to reduce total length
+Some hints to reduce total length and maximise readability
 
 - Only include what is relevant to the standard. While covering additional material in class is valuable for learning, additional content that doesn't demonstrate understanding of the topics and bullet points in the standard is only a distraction in the report.
 - Resize screenshots and photos so that they are still readable, although don’t take up unnecessary space. Use cropping to show the relevant parts of the image.
 - Don’t leave unnecessary space in the report. It both looks untidy and makes it more difficult for the marker to find what they are looking for.
+- Use logical headings, and do not include a title page.
+- A table of contents page is not necessary - your report should be organised in a way that the marker can easily find what they are looking for. For example, keep the three main sections (Algorithms, Programming Languages, and Human Computer Interaction) one after the other, and do not jump between them.
 
 ## Presenting the report
 
-Always check your report trying to think of it from the marker's point of view. A common mistake is to put in graphs without labels on the axes, so the marker doesn't know what the graph is showing. Also make sure you give units for measurements (e.g. 5 seconds, 5 minutes?). If you refer to colour in an image don't print the report in black and white!
+Students should regularly check over their report by trying to think of it from the marker's point of view. A common mistake is to put in graphs without labels on the axes, which can make it difficult for the marker to know what is being shown. Additionally make sure units are given for measurements (e.g. 5 seconds, 5 minutes?). If referring to colour in an image don't print the report in black and white! Don't assume the marker will know anything about the instructions that were given in class. Good explanations of what was done and why are essential.
 
-If you are using examples, don't use ones taken from the Field Guide or other sources - make up your own. For sorting and searching, makes up a set of numbers or words (perhaps about 8, but not 2 or 3) to demonstrate the algorithms. For HCI, use your own device. For algorithms, don't use the "glass of water" example in the Field Guide - think of your own example to show that you've understood the point!
+If using examples, don't use ones taken from the Field Guide or other sources - students should make up their own. For sorting and searching, make up a set of numbers or words (perhaps about 8, but not 2 or 3) to demonstrate the algorithms. For HCI, students can choose an interface to evaluate themselves.
 
 ## General Advice
 

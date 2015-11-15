@@ -61,7 +61,7 @@ ul.side-nav.fixed li a {
   color: $primary-color-light !important;
 }
 .section_heading {
-  padding-top: 70px;
+  padding-top: 85px;
   margin-top: -70px;
   pointer-events: none;
   & > a {
@@ -160,7 +160,8 @@ ul.side-nav.fixed li a {
   }
 }
 .panel p {
-  padding: 1rem !important;
+  margin: 1rem !important;
+  padding: 0 !important;
 }
 .btn-expand {
   width: 100% !important;

@@ -588,7 +588,7 @@ class Section:
             text += self.html_templates['section-end']
 
         # Parse with library parser
-        text = markdown(text, MARKDOWN2_EXTRAS)
+        text = markdown(text, extras=MARKDOWN2_EXTRAS)
 
         self.html_content.append(text)
 
