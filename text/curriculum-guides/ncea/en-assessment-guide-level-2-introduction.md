@@ -20,7 +20,7 @@ There are multiple assessment guides for representing data and the encoding topi
 ### Representing Data using Bits
 
 Students should choose at least **two** data types and cover the "ways in which different types of data can be represented using bits" in order to get achieved, and they should choose at least two different representations for **each** of their chosen data types for the merit level.
-(While two representations of two types is sufficient to meet the exact requirements of the standard, it needn't take a lot of space to go a little beyond this, and this can be more convincing for showing student understanding compared with doing the bare minimum.)
+
 The following table shows common types of data that students could choose (they should choose two rows from the table to meet the achieved requirement). For merit they should should choose an alternative representation with a different number of bits; examples are shown in the "Merit" column.
 
 | Data Type | Achieved | Merit |
