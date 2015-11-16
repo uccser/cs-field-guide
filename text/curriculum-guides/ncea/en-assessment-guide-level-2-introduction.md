@@ -17,26 +17,31 @@ While there has previously been a recommendation that the same device be used fo
 
 Each of these topics has a chapter in the Computer Science Field Guide, which this assessment guide is based on.
 
-There are multiple assessment guides for representing data and the encoding topics, of which students need to do a subset. The following explanations outline what students should cover.
+There are multiple assessment guides for representing data and the encoding topics, of which students need to do a subset. The following explanations outlines what students should cover.
 
 ### Representing Data using Bits
 
-Students should choose at least **two** data types and cover the "ways in which different types of data can be represented using bits" in order to get achieved, and they should choose at least two different representations for **each** of their chosen data types for the merit level.
+Students should choose at least **two** data types and and show one way they can be represented using bits, in order to get achieved, and they should choose at least two different representations for **each** of their chosen data types for the merit level. This topic does not have excellence requirements.
 
-The following table shows common types of data that students could choose (they should choose two rows from the table to meet the achieved requirement). For merit they should should choose an alternative representation with a different number of bits; examples are shown in the "Merit" column.
+The following table shows common types of data that students could choose. For **achieved**, they should choose two rows in the table, and do what is in the achieved column for their chosen rows. For **merit** they should satisfy the achieved criteria, and additionally choose one data type in the merit column for each of their chosen rows, to compare with their ones from the achieved columns.
 
 | Data Type | Achieved | Merit |
 |-----------|-----------|-----------|
-| Binary Numbers (Whole numbers) | Positive numbers | Negative numbers (simple sign bit) or Floating point or Twos complement |
-| Characters/ Text | ASCII | Unicode |
-| Images/ Colours | 24 bit colour | Colour with fewer bits |
+| *Binary Numbers (Whole numbers)* | *Positive numbers* | *Negative numbers (simple sign bit)* or Floating point or Twos complement |
+| *Characters/ Text* | *ASCII* | *Unicode* |
+| *Images/ Colours* | *24 bit colour* | *Colour with fewer bits* |
 | Sound | WAV file representation (16 bit, 44KHz) | Higher or lower quality sound (24 bit, 8 bit) and/or different sample rates |
 
 Note that data types and representations currently covered in the field guide are in italics. Binary numbers is a prerequisite for colours, and are recommended for all students. Students who struggle with binary numbers should just aim to represent a few numbers in binary (e.g. their age, birthday, etc) and then move onto representing text.
 
-In general, we recommend choosing binary numbers for all projects.
+For example: for **achieved**, a student might choose the *Characters/ Text* and *Binary Numbers* rows, and therefore show examples of *ASCII* and *Positive Numbers* in their report. Another student who hopes to get at least **merit** in the standard might pick the same two rows, and therefore will cover *ASCII* and *Positive Numbers*, but they will also show examples of *Uncode* and *Floating Point Numbers* (they could have picked any of the many suggestions in that row). They will then compare *Unicode* and *ASCII*, and then *Floating Point Numbers* and *Positive Numbers*. They should **not** do comparisons across data types (e.g. they should not compare a text representation with a number representation, as that does not make sense to do).
 
-This topic does not have excellence requirements.
+Most of the data types are based on binary numbers. Therefore, all students will need to learn how to represent whole numbers in binary before attempting this part of the standard. However, they do not have to choose Binary Numbers as one of their two topics. They can just learn to represent whole numbers in binary, and then move on to using the numbers to representing Images/ Colours or Sound. Most students will find those topics much more interesting to evaluate, and easier to satisfy the merit criteria with - they can actually hear and see the varying Sound and Image qualities that using fewer or more bits leads to.
+
+Doing *Characters/Text* is strongly recommended, because it is the only representation that is not based on binary numbers, and therefore gives students a wider understanding of the topic of data representation. It is also one of the easier data types to understand the representations for.
+
+Generally, the students who are only aiming for achieved will be best picking binary numbers (Positive Numbers) and text (ASCII), as these are the most straightforward data representations.
+
 
 ### Encoding
 
