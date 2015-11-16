@@ -18,6 +18,15 @@ Encoding has the following bullet points in achievement standard 2.44 which this
 
 As with all externally assessed reports, you should base your explanations around personalised examples.
 
+### Clarification on terminology
+
+In this guide, the widely used technology and widely used system are:
+
+*Widely used Technology*: Fax machines
+
+*Widely used System*: Run Length Encoding
+
+
 ## Reading from the Computer Science Field Guide
 
 You should read and work through the interactives in the following sections of the CS Field Guide in order to prepare yourself for the assessed project.
@@ -30,81 +39,45 @@ Read all of these sections, as they give the necessary introduction of the topic
 
 ## Project
 
-For the achieved criteria you will show how run length encoding works to compress a simple image. For the merit and excellence criteria you will investigate how and why run length encoding is used by fax machines, and then evaluate how effective it is for this purpose. *If you have chosen to focus on error control coding or encryption for merit and excellence, then you only need to meet the achieved criteria for this project.*
+**Achieved/ Merit/ Excellence**
 
-{teacher}
+{panel type="teacher-note" summary="Relevance of fax machine inspired compression"}
+While fax machines are becoming less widespread due to newer technologies, the general ideas are still relevant. Run Length Encoding is very effective on black and white images, particularly those which contain text, diagrams, and other data which might be found in books and letters. Fax machines are still a useful application for students to consider.
 
-While fax machines are becoming less widespread due to newer technologies, the general ideas are still relevant. Run length encoding is very effective on black and white images, particularly those which contain text, diagrams, and other data which might be found in books and letters.
+Other applications such as databases of scanned books (e.g. Google books probably use Run Length Encoding to do at least some of their compression.)
+{panel end}
 
-Other applications such as databases of scanned books (e.g. Google books probably use run length encoding to do at least some of their compression.)
-
-{teacher end}
-
-### Writing your report
-
-**Achieved**
-
-Make a grid of squares (any size is fine, but it should be at least 6x6) and draw a picture by filling some of the squares with black and leave others white. Underneath (or alongside each row), show how a computer could represent your image using run length encoding. You should not worry about how it is represented at the bit level. It is fine to just use normal numbers which are comma separated
-
-{teacher}
-
+{panel type="teacher-note" summary="Do not overlook the commas in the Run Length Encoding representation"}
 Note that the commas are important; the representation needs to be able to define where each number stops and the next number starts! For example, without commas, we could have the number. 234772 There are many ways of interpreting it, e.g. 2 34 7 72 or maybe 23 477 2. Putting spaces would be okay too, although these would still have to be counted in the representation size (as the computer would need to store the spaces!). It makes it more obvious using commas that they have to be counted.
+{panel end}
+
+{panel type="teacher-note" summary="Parts of the standard covered"}
+The first part covers "describing the concept of encoding information using compression coding ~~, error control coding, and encryption;~~ and typical uses of encoded information"
 
 Counting the number of digits and commas is a crude estimate; it is sufficient for the purposes of this report, but some students may want to look into making a more accurate estimate.
+{panel end}
 
-{teacher end}
+Start this section by writing an introduction to the topic of compression. *Briefly* explain what compression is, what it is used for, and what kinds of problems would exist if there was no such thing as compression. This introduction only needs to be a few sentences - you are just showing the marker that you understand the bigger picture of what compression is, and some of the typical uses of it.
 
-Count how many characters are needed to represent your image in its original form (i.e. how many squares does it contain?). Count how many characters were used in your run length encoding representation. Don’t forget to include the commas! How well did run length encoding compress your image?
+Now you are going to make an example of compression in action to include in your report. Start by making a grid of squares (any size is fine, but it should be at least 6x6) and draw a picture by filling some of the squares with black and leave others white. Underneath (or alongside each row), show how a computer could represent your image using Run Length Encoding. You should not worry about how it is represented at the bit level. It is fine to just use normal numbers which are comma separated, like what was done in the field guide chapter on compression.
 
-Explain why you would want to use run length encoding on an image. Think about a more typical image, such as a scan of a page of writing - what sort of runs of black and white pixels will that have? What is the purpose of compression?
+Count how many characters are needed to represent your image in its original form (i.e. how many squares does it contain?). Count how many characters were used in your Run Length Encoding representation. Don’t forget to include the commas! (check the field guide or read the teacher note if you don't understand why we say you must count the commas). How well did Run Length Encoding compress your image? You might choose to use [Hannah Taylor's Run Length Encoding interactive](http://taylormade.io/run-length-encoding.html), although you will need to add an additional explanation about HOW the number of characters for Run Length Encoding was calculated, to convince the marker that you could have done it yourself.
 
-{teacher}
+{panel type="teacher-note" summary="Parts of the standard covered"}
+This next part partially covers "discussing how a widely used technology is enabled by one or more of compression coding, error control coding, and encryption". Note that the final part (the evaluation) also partially covers this, as students will probably gain some useful insights in their evaluation.
+{panel end}
 
-This covers “describing the concept of encoding information using compression coding, error control coding, and encryption; and typical uses of encoded information”.
+Next, you are going to focus on how fax machines (the "widely used technology") are enabled by the use of Run Length Encoding. The field guide discusses how fax machines use Run Length Encoding. What advantages does this provide to fax machines sending and receiving faxes? Think carefully about how fax machines are used, and what medium they are using to transfer data (it might help for you to ask your teacher what the early days of the Internet were like, back when we used "dial up" instead of broadband). Think about a more typical image that might be sent with a fax machine, such as a scan of a page of writing - what sort of runs of black and white pixels will that have? One well written paragraphs would be ideal here. Remember to ensure that your explanation stays on topic and satisfies its purpose - discussing how fax machines are enabled by Run Length Encoding.
 
-There are some examples of these kinds of images in the CS Unplugged [Image Representation](http://csunplugged.org/image-representation) activity.
+{panel type="teacher-note" summary="Parts of the standard covered"}
+The final part mostly covers "evaluating a widely used system for compression coding, error control coding, or encryption", although it will also provide useful evidence for the merit criteria, as at the end it asks students to think back on the practical use, i.e. the fax machines.
+{panel end}
 
-Note that this only covers the compression coding component, NOT error control coding or encryption (all three are needed for achieved).
+Finally, you need to evaluate Run Length Encoding. This will involve identifying the cases in which the "compressed" data is far smaller than the original, and those in which it is around the same size, or possibly even larger. The [Run Length Encoding interactive](http://taylormade.io/run-length-encoding.html) may come in handy for your experimentation.
 
-While this partially covers merit, we include it in achieved to help ensure the student has written at least something about the purpose of compression, as opposed to just focusing on RLE and ignoring the bigger picture.
+Is Run Length Encoding guaranteed to always make the amount of data needed to represent the image smaller? Try and come up with an example (to include in your report) where the amount of space required to store your image with Run Length Encoding is more than the original representation. Also, find an example where the image compresses really well.
 
-{teacher end}
-
-**Merit/ Excellence**
-
-As discussed in the field guide, fax machines use run length encoding. What advantages does this provide to fax machines sending and receiving faxes?
-
-{teacher}
-
-This covers "discussing how a widely used technology is enabled by one or more of compression coding, error control coding, and encryption".
-
-Note that the student's explanation should be strengthened by their excellence evaluation. By doing the evaluation part that follows, they will be clearly discussing the value of run length encoding in a fax machine.
-
-We don't think it would be safe to assume just answering this bit would cover merit.
-
-{teacher end}
-
-Is run length encoding guaranteed to always make the amount of data needed to represent the image smaller? Try and come up with an example (to include in your report) where the amount of space required to store your image with run length encoding is more than the original representation. What about an example where it is a very small amount of data? You can use this [Run Length Encoding interactive](http://taylormade.io/run-length-encoding.html) (written by Hannah Taylor, a digital technologies teacher) to help you experiment and to quickly generate examples.
-
-You should have found that in some cases the compression is really good, and in others it makes things worse! You might remember from the book that it is impossible to design a lossless text compression method that makes every possible input smaller. What matters though is how good the compression is for its intended application. What would you expect a typical fax message to look like? (You might like to include an example, although shrink the image down so that it is less than ¼ of the page tall.)
-
-{teacher}
-
-This covers "discussing how a widely used technology is enabled by one or more of compression coding, error control coding, and encryption”.
-
-And it indirectly covers "evaluating a widely used system for compression coding, error control coding, or encryption”.
-
-Good examples would include letters, reports (maybe a page from their 2.44 report converted to black and white if it isn't already!), text from a book, etc.
-
-Note that it does not matter if the text on their example is no longer readable from shrinking it down. The main idea they should see is that a lot of the page contains white, with some black., or zoom in and crop a small part of it). How well do you expect it to compress?
-
-Students should observe that there are, for example, many empty white spaces on the page. What would 100 white pixels in a row compress to? What conclusion can you draw about the effectiveness of run length encoding in fax machines?
-
-This covers "evaluating a widely used system for compression coding, error control coding, or encryption”
-
-And it indirectly covers "discussing how a widely used technology is enabled by one or more of compression coding, error control coding, and encryption”.
-
-{teacher end}
+You should have found that in some cases Run Length Encoding is a really good form of compression, and in others it makes things worse! You might remember from the book that it is impossible to design a lossless text compression method that makes every possible input smaller. What matters though is how good the compression is for its intended application. What would you expect a typical fax message to look like, and how will this impact Run Length Encoding being used on it? You might like to include a few examples of pages that might be sent through a fax machine to illustrate your answer, although shrink the images down so that each is less than ½ of the page tall, and alongside text or other similar images. Don't worry if the text on the example is no longer readable. As long as you can see the general patterns of which parts of white, and which parts of black, then it will be useful for you to discuss which parts will compress well (or won't).
 
 ## Hints for success
 
@@ -134,7 +107,7 @@ It is important that students have clearly demonstrated that they know what purp
 
 {teacher}
 
-Examples where the student had a grid that they showed the run length encoding representation for should be large enough that the individual squares are clearly visible. If the student has included examples of documents that could be faxed (e.g. a letter on an A4 piece of paper), it is fine to shrink the image down so that it is only 1/4 of the page long or less (if there is more than one such image, they should be put side by side). It does not matter if the words on them aren't really readable, the general idea that they are realistic fax documents is still clear.
+Examples where the student had a grid that they showed the Run Length Encoding representation for should be large enough that the individual squares are clearly visible. If the student has included examples of documents that could be faxed (e.g. a letter on an A4 piece of paper), it is fine to shrink the image down so that it is only 1/4 of the page long or less (if there is more than one such image, they should be put side by side). It does not matter if the words on them aren't really readable, the general idea that they are realistic fax documents is still clear.
 
 {teacher end}
 
