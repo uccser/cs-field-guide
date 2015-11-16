@@ -1,4 +1,4 @@
-# Compression (2.44) - Run Length Encoding
+# Excellence Guide for Compression (2.44) - Run Length Encoding
 
 This is a guide for students attempting compression (one of the three encoding subtopics) in digital technologies achievement standard 2.44 (AS91371).
 
