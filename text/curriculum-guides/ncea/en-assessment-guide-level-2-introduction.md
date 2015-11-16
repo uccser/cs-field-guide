@@ -66,11 +66,13 @@ One issue to be aware of is that the data representation section includes reduci
 
 Human Computer Interaction is straightforward, and we provide one 2.44 guide for it. Note that the requirements for 2.44 HCI are different to 1.44 HCI.
 
-## Order of Topics
+## Order of Topics and Presentation
 
 The three topics can be completed in any order, although encoding is best covered after representing data.
 
 It may be a good idea to cover Human Computer Interaction (HCI) first, as students should already have some familiarity with it if they did 1.44, and it can help if they are able to start work on it early, then work on the other topics, and come back to HCI once they’ve had a while to reflect on the issues.
+
+In their report, it is important that the material for each topic is kept together. It does not matter what order "Representing Data using Bits", "Encoding", and "Human Computer Interaction" are presented in the report, as long as there is one main heading for each, with all the relevant material below it. The three encoding topics should all be under "Encoding", and seperated into three subheadings of "Encryption", "Compression", and "Error Control Coding". It would also be best to have two subheadings under "Representing Data using Bits" - one for each of the two chosen data types. Following a logical structure such as this ensures the marker can easily find their way around the report, and will not overlook anything. This also helps to show that the student understands the similarities and differences between the various topics.
 
 ## Personalisation and Student Voice
 
