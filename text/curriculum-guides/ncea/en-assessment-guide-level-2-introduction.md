@@ -42,30 +42,25 @@ Doing *Characters/Text* is strongly recommended, because it is the only represen
 
 Generally, the students who are only aiming for achieved will be best picking binary numbers (Positive Numbers) and text (ASCII), as these are the most straightforward data representations.
 
-Note that hexadecimal is **not** counted as a data representation using bits (it is a human short-form of bits). It is okay to include it when determining the representation of a colour, although it does not count as one of the representations that are needed to meet the standard.
-
+Another issue is that hexadecimal is not a good example for students to use as a different representation of data, as it is simply a shorthand for binary. Writing a number as 01111010 (binary) or 7A (hexadecimal) represents exactly the same bits stored on a computer with exactly the same meaning; the latter is easier for humans to read and write, but both are 8-bit representations that have the same range of values. It is a useful shorthand, but shouldn't be used as a second representation for a type of data, or as a different type of data.
 
 ### Encoding
 
-For the standard, students need to describe each of the three encoding topics in order to get achieved, and do a more in-depth project on one in order to get merit or excellence.
+Students need to describe each of the three encoding topics in order to get achieved, and additionally they need to do a more in-depth project on one of the three topics in order to get merit or excellence.
 
-Students should choose do projects that cover **one** of the following options:
+Students should choose a subset of the provided projects that cover **one** of the following options. The first three options are for students aiming for merit/ excellence. The fourth option is for students just aiming to get achieved.
 
-| Topic                | Option 1         | Option 2         | Option 3         |
-|----------------------|------------------|------------------|------------------|
-| Compression          | Up to Excellence | Only Achieved    | Only Achieved    |
-| Encryption           | Only Achieved    | Up to Excellence | Only Achieved    |
-| Error Control Coding | Only Achieved    | Only Achieved    | Up to Excellence |
+| Topic                | Option 1         | Option 2         | Option 3         | Option 4          |
+|----------------------|------------------|------------------|------------------|-------------------|
+| Compression          | Up to Excellence | Only Achieved    | Only Achieved    | Only Achieved     |
+| Encryption           | Only Achieved    | Up to Excellence | Only Achieved    | Only Achieved     |
+| Error Control Coding | Only Achieved    | Only Achieved    | Up to Excellence | Only Achieved     |
 
-Note that some assessment guides provide projects that cover only achieved, and others go to excellence. For topics that students are only covering to achieved, they can either follow an achieved guide, or the achieved component of an excellence guide.
+Note that some assessment guides provide projects that cover only achieved, and others go to excellence. Students should choose appropriate assessment guides based on the option they have chosen. It is best to do **one** topic to the excellence level and to focus on doing a really good job, as opposed to doing a not so good job on two or three.
 
-At the excellence level students are required to evaluate "a widely used system for compression coding, error control coding, or encryption". The guides discuss some widely used systems, but the thing to note is that only *one* system need be considered (e.g. JPEG is a widely used compression system, so evaluating JPEG would be sufficient; an alternative would be checksums used in bar codes). The evaluation would need to involve a comparison with *not* using the system, so for JPEG it might be with a RAW or BMP file; for bar codes, it would be to consider what would be different if a check digit isn't used.
+At the excellence level students are required to evaluate "a widely used system for compression coding, error control coding, or encryption". The guides discuss some widely used systems, but it is worth noting that only one system *has* to be considered (e.g. JPEG is a widely used compression system, so evaluating JPEG would be sufficient; an alternative would be checksums used in bar codes). The evaluation would need to involve a comparison with *not* using the system, so for JPEG it might be with a RAW or BMP file; for bar codes, it would be to consider what would be different if a check digit isn't used. In some cases, it might make sense to compare the chosen widely used system with a mediocre alternative (that isn't widely used). One example where this would work is comparing the RSA crypto-system (widely used) with Caeser Cipher (no longer used in practice).
 
-One issue to be aware of is that the data representation section includes reducing the number of bits (the "bit depth") for images and sound to reduce the space that they take.
-This overlaps with the idea of compression, but is should *not* be used for the compression part of the standards, as it's a very crude way to reduce file size, but not generally regarded as a compression method that takes advantage of the content of a file to make it smaller.
-For example, students could use examples of images with 16-bit and 24 colour to illustrate two representations of a type of data for data representation, but they should use an image compression method like JPEG, GIF and PNG to illustrate compressing image files.
-
-Another issue is that hexadecimal is not a good example for students to use as a different representation of data, as it is simply a shorthand for binary. Writing a number as 01111010 (binary) or 7A (hexadecimal) represents exactly the same bits stored on a computer with exactly the same meaning; the latter is easier for humans to read and write, but both are 8-bit representations that have the same range of values. It is a useful shorthand, but shouldn't be used as a second representation for a type of data, or as a different type of data.
+One issue to be aware of is that the data representation section includes reducing the number of bits (the "bit depth") for images and sound to reduce the space that they take. This overlaps with the idea of compression, but is should *not* be used for the compression part of the standards, as it's a very crude way to reduce file size, but not generally regarded as a compression method that takes advantage of the content of a file to make it smaller. For example, students could use examples of images with 16-bit and 24 colour to illustrate two representations of a type of data for data representation, but they should use an image compression method like JPEG, GIF and PNG to illustrate compressing image files. However, findings from reducing bit depth may be very useful to consider when evaluating a real image compression method, as it will allow students to see the lower loss of quality when the bits are cut using a "smart" method rather than simply truncating them.
 
 ### Human Computer Interaction
 
