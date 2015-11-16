@@ -26,13 +26,12 @@ keyCodes =
 
 
 
-singleEvent = (selector="document", eventType="click") ->
+singleEvent = (selector="document", events...) ->
     ### Returns a promise for a single event on a single element
         with the event handler supplied by jQuery
     ###
     return new Promise (resolve) ->
-        $(selector).one (event) ->
-            resolve(event)
+        $(selector).one events.join(' '), resolve
 
 eventStream = (selectors="document", events...) ->
     ### Returns an Observable which can be subscribed to for the given events
@@ -55,25 +54,56 @@ eventStream = (selectors="document", events...) ->
         return ->
             subscribers.delete(subscriber)
 
-
+## ------ Caesar Cipher --------------
 
 shift = (character, rotation=3) ->
     ### This shifts a character by rotation characters using the standard
         caesar cipher
     ###
     index = ALPHABET.indexOf(character)
-    return ALPHABET[index + rotation %% ALPHABET.length]
+    new_index = (index + rotation) %% ALPHABET.length
+    return ALPHABET[(index + rotation) %% ALPHABET.length]
 
 encrypt = (text, rotation=3) ->
     ### Encrypts a piece of text using the Caesar Cipher ###
     result = ''
     for char in text
         if char in ALPHABET
-            result += shift(character, rotation)
+            result += shift(char, rotation)
+        else
+            result += char
     return result
 
 decrypt = (text, rotation=3) ->
     ### Decrypts a piece of text using the Caesar Cipher that was encrypted
         using a given rotation
     ###
-    return encrypt(test, -rotation)
+    return encrypt(text, -rotation)
+
+## --- Event Application ---------------
+
+#eventStream('#rotation-input', 'keypress').subscribe
+    ### Filter non-numeric characters from the rotation input ###
+#    next: (event) ->
+#        unless 48 <= event.keyCode < 58 or \
+#                event.keyCode in [keyCodes.BACKSPACE, keyCodes.DELETE]
+#            event.preventDefault()
+
+async.main ->
+    ### This endlessly gets button presses and either encrypts or decrypts
+        depending on which button was pressed
+    ###
+    while true
+        yield singleEvent(
+            '#interactive-caesar-encrypt, #interactive-caesar-decrypt',
+            'click'
+        )
+        key = Number($('#interactive-caesar-key-input').val())
+        if $(event.target).attr('id') is "interactive-caesar-encrypt"
+            original = $('#interactive-caesar-plaintext').val().toUpperCase()
+            $('#interactive-caesar-plaintext').val(original)
+            $('#interactive-caesar-ciphertext').val(encrypt(original, key))
+        else
+            original = $('#interactive-caesar-ciphertext').val().toUpperCase()
+            $('#interactive-caesar-ciphertext').val(original)
+            $('#interactive-caesar-plaintext').val(decrypt(original, key))

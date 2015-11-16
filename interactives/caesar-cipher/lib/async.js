@@ -9,7 +9,7 @@
   var async,
     slice = [].slice;
 
-  module.exports = async = function(gen_func) {
+  async = function(gen_func) {
     var wrapper;
     return wrapper = function() {
       var args;
@@ -18,13 +18,13 @@
         var gen, iter;
         gen = gen_func.apply(null, args);
         iter = (function*() {
-          var done, err, error, error1, error2, promise, ref, result, total_failure, value;
+          var done, err, error1, error2, error3, promise, ref, result, total_failure, value;
           result = void 0;
           while (true) {
             try {
               ref = gen.next(result), value = ref.value, done = ref.done;
-            } catch (error) {
-              err = error;
+            } catch (error1) {
+              err = error1;
               reject(err);
             }
             if (done) {
@@ -40,12 +40,12 @@
                   return iter["throw"](err);
                 }
               }));
-            } catch (error1) {
-              err = error1;
+            } catch (error2) {
+              err = error2;
               try {
                 gen["throw"](err);
-              } catch (error2) {
-                total_failure = error2;
+              } catch (error3) {
+                total_failure = error3;
                 reject(total_failure);
               }
             }
@@ -57,21 +57,23 @@
   };
 
   async.run = function(func, err_callback) {
-    if (err_callback == null) {
-      err_callback = console.log;
-    }
 
     /* This tries running the async function given and if it
         fails it calls the err_callback with the error given
         by the async function
      */
+    if (err_callback == null) {
+      err_callback = function(error) {
+        return console.log(error);
+      };
+    }
     return async(function*() {
-      var err, error;
+      var err, error1;
       try {
         return (yield async(func)());
-      } catch (error) {
-        err = error;
-        return err_callback(err);
+      } catch (error1) {
+        err = error1;
+        err_callback(err);
       }
     })();
   };
@@ -95,5 +97,11 @@
     };
     return async(gen_func);
   };
+
+  if (typeof module !== "undefined" && module !== null) {
+    module.exports = async;
+  } else {
+    this.async = async;
+  }
 
 }).call(this);

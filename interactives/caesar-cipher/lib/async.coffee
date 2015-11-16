@@ -2,7 +2,7 @@
     2015
 ###
 "use strict"
-module.exports = async = (gen_func) -> wrapper = (args...) ->
+async = (gen_func) -> wrapper = (args...) ->
     # This wrapper returns a promise for the async function
     return new Promise (resolve, reject) -> # Create a promise for this event
         gen = gen_func(args...)
@@ -50,16 +50,20 @@ module.exports = async = (gen_func) -> wrapper = (args...) ->
                         reject(total_failure)
         iter.next() # Start our iterator
 
-async.run = (func, err_callback=console.log) ->
+async.run = (func, err_callback) ->
     ### This tries running the async function given and if it
         fails it calls the err_callback with the error given
         by the async function
     ###
+    err_callback ?= (error) ->
+        console.log(error)
+
     do async ->
         try
             yield async(func)()
         catch err
             err_callback(err)
+            return
 
 async.main = (func) ->
     ### Although async.run has err_callback as console.log we'll just print
@@ -72,3 +76,8 @@ async.from = (iterable) ->
     ### Creates a async function from an existing iterable ###
     gen_func = -> yield from iterable
     return async(gen_func)
+
+if module?
+    module.exports = async
+else
+    @async = async

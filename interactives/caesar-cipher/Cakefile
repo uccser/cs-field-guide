@@ -2,4 +2,4 @@
 
 task 'build', 'Compiles caesar.coffee into js/', ->
     exec "coffee -o js/ -c coffee/caesar.coffee"
-
+    exec "coffee -c lib/async.coffee"
