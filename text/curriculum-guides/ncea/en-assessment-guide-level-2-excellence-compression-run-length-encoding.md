@@ -81,40 +81,16 @@ You should have found that in some cases Run Length Encoding is a really good fo
 
 ## Hints for success
 
+{panel type="teacher-note" summary="Headings and report organization are important"}
+In the past, we have observed that some students just put their 3 encoding examples in their report one after the other without any explanations or headings. It is important that students have clearly demonstrated that they know what purpose each of the three encoding types has, and that they have clearly distinguished between them. Part of this is using sensible headings and ensuring that all examples are clearly labeled with the type of encoding they are (and preferably in their own section)
+{panel end}
+
+{panel type="teacher-note" summary="Concepts are more important than precise representations"}
+While the less precise representations used in the book are of course not used in practice, they still clearly illustrate the same best and worst cases (examples of images which compress really well and examples of those which don't). It is the general ideas that students need to demonstrate their understanding of, as opposed to the precise representation details that they already covered in the Representing Data using Bits topic.
+{panel end}
+
+- Do a realistic image or pattern rather than randomly selecting squares for your initial example. You want to illustrate that the compression is useful rather than show an unrealistic case where it did more harm than good. Checkerboards or random layouts of black and white squares tend to not compress very well (which is fine, as normally we don't want to store them anyway!).
 - When you make your image for the achieved level, make it a real image rather than a grid containing random black and white squares.
-
-{teacher}
-
-It is best if the image's compressed representation is smaller than its original one, so that students are clearly demonstrating the purpose of compression (rather than suggesting it serves no purpose other than making images take more space!)
-
-Many realistic images will achieve this, as will some patterns.
-
-Checkerboards or random layouts of black and white squares tend to not compress very well (which is fine, as normally we don't want to store them anyway!)
-
-{teacher end}
-
 - Put compression in its own section (your report should have suitable headings and subheadings for each topic to make it clear for the marker) and ensure that you briefly introduce the topic. It is important that your report clearly demonstrates that you know the difference between encryption, error control coding, and compression, and what their different purposes are.
-
-{teacher}
-
-In the past, we have observed that some students just put their 3 encoding examples in their report one after the other without any explanations or headings.
-
-It is important that students have clearly demonstrated that they know what purpose each of the three encoding types has, and that they have clearly distinguished between them.
-
-{teacher end}
-
-- If you did compression only to the achieved level, half to one page should be enough. If you did merit and excellence, a couple of pages should be enough (shrink down the examples as much as is reasonable, particularly if you included a lot of them)
-
-{teacher}
-
-Examples where the student had a grid that they showed the Run Length Encoding representation for should be large enough that the individual squares are clearly visible. If the student has included examples of documents that could be faxed (e.g. a letter on an A4 piece of paper), it is fine to shrink the image down so that it is only 1/4 of the page long or less (if there is more than one such image, they should be put side by side). It does not matter if the words on them aren't really readable, the general idea that they are realistic fax documents is still clear.
-
-{teacher end}
-
+- Images of possible fax data can be shrunk down a lot (we recommend no taller than ½ a page, even if that makes the words on them illegible), although examples the student made need to be large enough that the individual black and white squares are visible.
 - While you could potentially go into the details of how the computer represents the compressed image at the bit level, this is not necessary. The purpose of the encoding topic in 2.44 is for you to investigate the general ideas of how encoding works rather than the precise details of the representation with bits (simpler representations with bits are already covered in the first bullet point of the standard).
-
-{teacher}
-
-While the less precise representations used in the book are of course not used in practice, they still clearly illustrate the same best and worst cases (examples of images which compress really well and examples of those which don't).
-
-{teacher end}
