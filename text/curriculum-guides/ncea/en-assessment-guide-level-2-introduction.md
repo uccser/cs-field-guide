@@ -82,24 +82,21 @@ Personalised means that the student’s example is different to their classmates
 
 ## Report Length
 
-It is important to note that the page limit given by NZQA is not a target. The markers prefer reports that are short and to the point.
+It is important to note that the page limit given by NZQA is not a target. The markers prefer reports that are short and to the point. Additionally, students and teachers have complained that there is too much work in computer science reports. In many cases, this seems to be students and teachers doing far more than what was needed for the standard.
 
 A possible breakdown is:
 
-- Representing Data using Bits: 2 pages (1 per data type)
-- Encoding: 5 pages (1 for each achieved project and 3 for the achieved/ merit/ excellence project)
-- Human Computer Interaction: 3 pages
+- Representing Data using Bits: 2 - 4 pages (varies depending on data types, colours might require 2 pages, whereas binary numbers or text might only require 1 page)
+- Encoding: 4 - 5 pages (1 for each achieved project and 2 - 3 for the achieved/ merit/ excellence project)
+- Human Computer Interaction: 1 - 4 pages (High achieving students can write very concisely)
 
-{teacher}
+Note that the breakdown assumes the student is aiming for excellence - those only going for achieved will need less. Also note the wide recommended range of 7 pages to 13 pages. It is the top excellence students who will be able to cover the standard in just 7 pages. There is no gain in trying to bulk the length of the report. A report that satisfies the requirements for achieved in 5 pages may be more likely to get an achieved than one that is 14 pages bulked out with irrelevant material and copypasta. Including unnecessary material implies a lack of understanding.
 
-This leaves 1 additional page to use where necessary (some of it may be needed for the bibliography).
-
-{teacher end}
-
-The assessment guides provide further guidance on how to stay within these limits. With 2.44, it is particularly important to try and keep each individual project in the report within the recommended limit, as space is tighter than for 1.44 and 3.44.
+It is also worth noting that some of the best examples we have seen of students doing the Human Computer Interaction were done in under 1 page. These high achieving students were able to concisely cover the requirements by writing 3 or 4 paragraphs following a pattern along the lines of: *A problem I/ my observer found with the device was <problem>. <explanation of problem>. I would fix this by <explanation of how it could be improved>.* Teachers should keep this in mind, as we've seen cases where the teacher thought the student had not written enough and therefore couldn't possibly be at the excellence level, when in fact it is beyond the minimum requirement for excellence!
 
 Some hints to reduce total length:
 
 - Only include what is relevant to the standard. While covering additional material in class is valuable for learning, additional content that doesn't demonstrate understanding of the topics in the standard is only a distraction in the report.
-- Resize screenshots and photos so that they are still readable, although don’t take up unnecessary space. Use cropping to show the relevant parts of the image.
+- Resize screenshots and photos so that they are still readable, although don’t take up unnecessary space. Use cropping to show the relevant parts of the image. Students should ask their teacher for advice if they are ensure about whether or not their screenshots and photos are well sized.
 - Don’t leave unnecessary spaces in the report. It both looks untidy and makes it more difficult for the marker to find what they are looking for.
+- Don't include a cover page or a table of contents page. A cover page is unnecessary (a heading at the top is fine), and the report should be laid out in a logical way that makes the table of contents unnecessary.
