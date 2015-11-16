@@ -2,6 +2,8 @@
 
 This document provides a brief introduction to teachers on the Computer Science Field Guide assessment guides for NCEA Achievement standard AS91371 (2.44).
 
+While there has previously been a recommendation that the same device be used for all aspects of this standard, this can limit the range of observations that students can make (for example, some interfaces that are good to evaluate don't make it easy to find out how they represent data or might not use an aspect of encoding). If a student chooses to use a common theme then that is fine, but if their choice of device or theme doesn't have the richness or transparency to see how all aspects work, it is better to use different devices or examples for different aspects of the standard. Also note that the examples do not have to be related to a "device", for example it is fine to evaluate the interface of an interactive website for Human Computer Interaction or look at check digits on credit cards for Error Control Coding.
+
 ## Topics
 
 2.44 has bullet points for the following topics in computer science.
@@ -33,8 +35,6 @@ The following table shows common types of data that students could choose (they 
 Note that data types and representations currently covered in the field guide are in italics. Binary numbers is a prerequisite for colours, and are recommended for all students. Students who struggle with binary numbers should just aim to represent a few numbers in binary (e.g. their age, birthday, etc) and then move onto representing text.
 
 In general, we recommend choosing binary numbers for all projects.
-
-If students are using a common device as an example, chances are they won't be able to find out how it represents data, but they could say how they would represent the data if they had to write the program that is running on the device e.g. how they might store the name of a song, a date, the length of a file, the number of tracks etc. These will typically have minimum and maximum values that will dictate the number of bits needed to store them.
 
 This topic does not have excellence requirements.
 
@@ -74,7 +74,7 @@ It may be a good idea to cover Human Computer Interaction (HCI) first, as studen
 
 It is important that students use personalised examples to base their explanations around, and that the explanations are in their own words, and based on their example (rather than being a paraphrase from wikipedia, for example).
 
-Personalised means that the student’s example is different to their classmates. For example, they may represent their age or name using bits, carry out the parity trick (error control coding) with a friend choosing random combinations and take photos, and they may carry out their own usability exploration of a device they chose, and report on it in their own words.
+Personalised means that the student’s example is different to their classmates. For example, they may represent their age or name using bits, carry out the parity trick (error control coding) with a friend choosing random combinations and take photos, and they may carry out their own usability exploration of a device or website they chose, and report on it in their own words.
 
 ## Report Length
 
