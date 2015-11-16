@@ -21,7 +21,7 @@ There are multiple assessment guides for representing data and the encoding topi
 
 ### Representing Data using Bits
 
-Students should choose at least **two** data types and and show one way they can be represented using bits, in order to get achieved, and they should choose at least two different representations for **each** of their chosen data types for the merit level. This topic does not have excellence requirements.
+Students should choose **two** data types. To get achieved, they should give examples for both their data types of the data type being represented using bits. To get merit, they should show two different representations using bits for each data type, and then compare and contrast them. This topic does not have excellence requirements. For this reason, students going for excellence should put more time into the discussions for encoding and human computer interaction than representing data using bits.
 
 The following table shows common types of data that students could choose. For **achieved**, they should choose two rows in the table, and do what is in the achieved column for their chosen rows. For **merit** they should satisfy the achieved criteria, and additionally choose one data type in the merit column for each of their chosen rows, to compare with their ones from the achieved columns.
 
@@ -36,11 +36,13 @@ Note that data types and representations currently covered in the field guide ar
 
 For example: for **achieved**, a student might choose the *Characters/ Text* and *Binary Numbers* rows, and therefore show examples of *ASCII* and *Positive Numbers* in their report. Another student who hopes to get at least **merit** in the standard might pick the same two rows, and therefore will cover *ASCII* and *Positive Numbers*, but they will also show examples of *Uncode* and *Floating Point Numbers* (they could have picked any of the many suggestions in that row). They will then compare *Unicode* and *ASCII*, and then *Floating Point Numbers* and *Positive Numbers*. They should **not** do comparisons across data types (e.g. they should not compare a text representation with a number representation, as that does not make sense to do).
 
-Most of the data types are based on binary numbers. Therefore, all students will need to learn how to represent whole numbers in binary before attempting this part of the standard. However, they do not have to choose Binary Numbers as one of their two topics. They can just learn to represent whole numbers in binary, and then move on to using the numbers to representing Images/ Colours or Sound. Most students will find those topics much more interesting to evaluate, and easier to satisfy the merit criteria with - they can actually hear and see the varying Sound and Image qualities that using fewer or more bits leads to.
+Most of the data types are based on binary numbers. Therefore, all students will need to learn how to represent whole numbers in binary before writing their report. However, they do not have to choose Binary Numbers as one of their two topics. They can just learn to represent whole numbers in binary, and then move on to using the numbers to representing Images/ Colours or Sound. Most students will find those topics much more interesting to evaluate, and easier to satisfy the merit criteria with - they can actually hear and see the varying Sound and Image qualities that using fewer or more bits leads to, and therefore include this in their discussions.
 
 Doing *Characters/Text* is strongly recommended, because it is the only representation that is not based on binary numbers, and therefore gives students a wider understanding of the topic of data representation. It is also one of the easier data types to understand the representations for.
 
 Generally, the students who are only aiming for achieved will be best picking binary numbers (Positive Numbers) and text (ASCII), as these are the most straightforward data representations.
+
+Note that hexadecimal is **not** counted as a data representation using bits (it is a human short-form of bits). It is okay to include it when determining the representation of a colour, although it does not count as one of the representations that are needed to meet the standard.
 
 
 ### Encoding
