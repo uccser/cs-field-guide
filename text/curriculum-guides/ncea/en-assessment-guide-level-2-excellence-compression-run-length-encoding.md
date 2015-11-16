@@ -1,10 +1,10 @@
 # Excellence Guide for Compression (2.44) - Run Length Encoding
 
-This is a guide for students attempting compression (one of the three encoding subtopics) in digital technologies achievement standard 2.44 (AS91371).
+This is a guide for students attempting compression (one of the three encoding subtopics) in digital technologies achievement standard 2.44 (AS91371)
 
-Remember that you only need to do one of the three encoding topics (Compression, Encryption, and Error Control Coding)  to the excellence level. The other two only need to be done to the achieved level. This guide is suitable for both doing compression to the excellence level, but can also be used for the achieved level for compression.
+Remember that you only need to do one of the three encoding topics (compression, encryption, and error control coding)  to the excellence level. The other two only need to be done to the achieved level. Because this guide is an excellence guide, you should only be looking at it if you have chosen compression as your encoding topic to take to the excellence level.
 
-In order to fully cover the standard, you will also need to have done projects covering the topics of encryption and error control coding to at least the achieved level, and projects covering the topics of representing data using bits and human computer interaction, and include these in your report.
+In order to fully cover the standard, you will also need to have done projects covering the topics of encryption and error control coding to the achieved level, and projects covering the topics of representing data using bits and human computer interaction, and include these in your report.
 
 ## Overview
 
