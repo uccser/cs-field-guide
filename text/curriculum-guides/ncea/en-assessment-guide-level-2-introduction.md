@@ -66,6 +66,10 @@ One issue to be aware of is that the data representation section includes reduci
 
 Human Computer Interaction is straightforward, and we provide one 2.44 guide for it. Note that the requirements for 2.44 HCI are different to 1.44 HCI.
 
+In particular, students only need to discuss **one** interface. They should not discuss a second one or attempt to do comparisons, as this implies they did not read the requirements of the standard.
+
+Reciting well known examples of heuristics (e.g. you turn off the Windows computer by clicking the "Start" button) is not a good idea, because it is poorly personalised.
+
 ## Order of Topics and Presentation
 
 The three topics can be completed in any order, although encoding is best covered after representing data.
