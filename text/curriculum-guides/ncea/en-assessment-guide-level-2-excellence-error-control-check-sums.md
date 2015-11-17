@@ -18,6 +18,14 @@ Encoding has the following bullet points in achievement standard 2.44 which this
 
 As with all externally assessed reports, you should base your explanations around personalised examples.
 
+### Clarification on terminology
+
+In this guide, the widely used technology and widely used system are:
+
+*Widely used Technology*: Product barcode numbers
+
+*Widely used System*: Check digits
+
 ## Reading from the Computer Science Field Guide
 
 You should read and work through the interactives in the following sections of the CS Field Guide in order to prepare yourself for the assessed project.
