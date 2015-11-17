@@ -10,7 +10,7 @@ In order to fully cover the standard, you will also need to have done projects c
 
 Encoding has the following bullet points in achievement standard 2.44 which this guide covers.
 
-**Achieved**: “describing the concept of encoding information using ~~compression coding,~~ error control coding ~~, and encryption;~~ and typical uses of encoded information”
+**Achieved**: “describing the concept of encoding information using compression coding, error control coding, and encryption; and typical uses of encoded information”
 
 **Merit**: “discussing how a widely used technology is enabled by one or more of compression coding, error control coding, and encryption”
 
@@ -30,66 +30,53 @@ Read all of these sections, as they give the necessary introduction of the topic
 
 ## Project
 
-For the achieved criteria you will show how the barcode on a product you chose has a check digit which helps to ensure that when a shop assistant scans or enters the number into a computer, that the computer is able to notify them if it was entered incorrectly. For the merit and excellence criteria, you will explain why this is so important, and evaluate how effective it is.
-
-{teacher}
-
+{panel type="teacher-note" summary="Alternatives to product barcode numbers"}
 This activity could also be carried out using ISBN numbers on library books or credit card numbers.
 
 Credit card numbers may be problematic for privacy and security reasons.
+{panel end}
 
-{teacher end}
-
-### Writing your report
-
-**Achieved**
-
-Find some products with barcodes on them, and the checker will tell you whether or not it is a correct barcode. Try a few others. Does it ever seem to say a number was wrong? Now try change one digit in a barcode. Does it ever still say the barcode is correct? Choose one product to take a photo of the barcode, and describe how the last digit is a check digit that ensures the number was entered correctly (it's a good idea to include the calculation that was used to calculate the check digit’s value). Show that when you enter the number into the barcode and change one of the digits, the last digit is no longer correct.
-
-{teacher}
-
+{panel type="teacher-note" summary="Getting the barcode numbers needed"}
 Students could either bring some (clean!) food packaging from home, or you could build up a large collection of food packaging that they can use (making sure to have enough so that each student can use on a different one in their example.
+{panel end}
 
-{teacher end}
+{panel type="teacher-note" summary="Parts of the standard covered"}
+The first part covers “describing the concept of encoding information using ~~compression coding,~~ error control coding ~~, and encryption;~~ and typical uses of encoded information”
+{panel end}
 
-{comment}
+Start this section by writing an introduction to the topic of error control coding. *Briefly* explain what error control coding is, what it is used for, and what kinds of problems would exist if there was no such thing as error control coding. Briefly describe what a check digit is, and how it fits into the larger topic of error control coding. This introduction only needs to be a few sentences - you are just showing the marker that you understand the bigger picture of what error control coding is, and some of the typical uses of it.
 
-.. close paren needed at end (most food packaging will contain a barcode). Enter one of the barcode numbers into the barcode checker in the field guide
+Now you are going to show an example of error control coding in action to include in your report. Get the packaging for a food you like, ensuring it has a barcode on it. Take a photo of the barcode and include it in your report, with a small caption saying what the product is and that you are going to use it to investigate check digits.
 
-.. Tim: IMPORTANT, this interactive needs to be redone asap!!!
+Enter the barcode number into the interactive in the field guide, and take a screenshot of the interactive showing that the barcode number is valid. Change *one* digit of the barcode number in the interactive and show that the interactive now says it is invalid.
 
-.. For CS4HS we could use the spreadsheet, then work on the interactive over summer.
-Explain why you would want to use a check digit on a barcode. What is the purpose of error control coding?
+Describe how the barcode number checker interactive was able to determine whether or not the barcode number was valid. You might choose to do this by showing and describing the calculation that was used in both cases.
 
-{comment end}
+{panel type="teacher-note" summary="Parts of the standard covered"}
+This next part covers "discussing how a widely used technology is enabled by one or more of compression coding, error control coding, and encryption".
 
-{teacher}
+Students should write their explanation in their own words, and link it back to their example.
+{panel end}
 
-This covers “describing the concept of encoding information using compression coding, error control coding, and encryption; and typical uses of encoded information”
+Next, you are going to discuss the importance of check digits in ensuring barcode numbers are entered correctly. What could be some of the implications of not having check digits, a number being entered incorrectly, and then not being detected? What kinds of things could happen to the shop? One or maybe two well written paragraph(s) would be ideal here. Remember to ensure that your explanation stays on topic and satisfies its purpose - discussing how reliable barcode number entry is enabled by check digits.
 
-While this partially covers merit, we include it in achieved to help ensure the student has written at least something about the purpose of error control coding, as opposed to just focussing on check digits and ignoring the bigger picture.
+{panel type="teacher-note" summary="Parts of the standard covered"}
+The final part mostly covers "evaluating a widely used system for compression coding, error control coding, or encryption", although it will also provide useful evidence for the merit criteria.
+{panel end}
 
-{teacher end}
+{panel type="teacher-note" summary="Keeping the evaluation realistic"}
+A student might say that when they push random numbers on the keyboard, they sometimes get a "valid" barcode number. This however is irrelevant - there is a 1 in 10 chance of a randomly entered number being valid, and what shop person is going to do this and then actually believe they have entered a valid number, when they weren't even trying to?
 
-**Merit/ Excellence**
+As a less extreme case, it is also important to consider which errors are really common, and which are really rare. For example, getting one digit wrong or swapping two adjacent digits are probably the most common errors. These are the most important for the check digit to pick up. Other errors, such as getting three digits in a row wrong are far less likely, and it is a bonus if the check digit does pick it up, but it is not as important as the more common errors.
+{panel end}
 
-What could be some of the implications of a number being entered incorrectly, and this not being detected? What kinds of things could happen to the shop?
+Finally, you are going to evaluate the effectiveness of check digits. A good evaluation involves identifying realistic cases, and giving more weight to the common cases than the really rare ones.
 
-Think of what some of the common errors could be if somebody was manually entering the number into a computer. What mistakes are easy to make? (clue: missing a digit or swapping 2 adjacent digits are common mistakes, however there are others as well). Also think about what could cause errors if a scanner was being used to read the barcode.
+Start by making a list of common errors that a human might make if manually entering the number into a computer. What mistakes are easy to make? (clue: missing a digit or swapping 2 adjacent digits are common mistakes, however there are others as well). Optionally think about what could cause errors if a scanner was being used to read the barcode.
 
-Using the barcodes you found earlier, replicate some of the common errors that would occur when a person manually enters the number into the computer by entering the mistakes into the checker. Try lots of variations of the errors, and see if the errors are always detected. Which errors always seem to be detected? Which do not? Discuss whether or not the check digits decrease the chances of errors, particularly common ones. Do you think that sometimes mistakes do go undetected? Remember that really obscure errors (such as getting 3 digits in a row incorrect) will probably never occur in practice, and the intention of the check digit is to pick up small mistakes.
+Using the barcode you were using earlier, replicate some of the common errors that would occur when a person manually enters the number into the computer by entering the mistakes into the checker. Try lots of variations of the errors, and see if the errors are always detected. Which errors always seem to be detected? Which do not? Show and *briefly* explain two examples of common errors being detected. Try to find an example of a (somewhat) common error *not* being detected. Again, show and *briefly* explain your example.
 
-{teacher}
-
-This covers “discussing how a widely used technology is enabled by one or more of compression coding, error control coding, and encryption”
-
-and “evaluating a widely used system for compression coding, error control coding, or encryption”.
-
-While students might be able to satisfy the merit criteria with just the first part, this is probably risky. Students are best covering the merit criteria by doing the excellence evaluation well, as this will show why the check digits are so important.
-
-{teacher end}
-
-Your discussion should include a few examples of common errors you tried replicating (use screenshots), and whether or not the check digit was able to detect them.
+Discuss whether or not the check digits decrease the chances of errors, particularly common ones. Think carefully about how commonly undetected errors you identified are likely to occur in practice. Do you think that sometimes mistakes do go undetected? Remember that really obscure errors (such as getting 3 digits in a row incorrect) will probably never occur in practice, and the intention of the check digit is to pick up *common* mistakes.
 
 ## Hints for success
 
