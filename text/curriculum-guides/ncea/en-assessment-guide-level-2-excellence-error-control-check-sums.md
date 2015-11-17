@@ -2,15 +2,15 @@
 
 This is a guide for students attempting error control coding (one of the three encoding subtopics) in digital technologies achievement standard 2.44 (AS91371).
 
-Remember that you only need to do one of the three encoding topics (Compression, Encryption, or Error Control Coding)  to the excellence level. The other two only need to be done to the achieved level. This guide is suitable for both doing error control coding to the excellence level, but can also be used for the achieved level for error control coding.
+Remember that you only need to do one of the three encoding topics (compression, encryption, and error control coding)  to the excellence level. The other two only need to be done to the achieved level. Because this guide is an excellence guide, you should only be looking at it if you have chosen error control coding as your encoding topic to take to the excellence level.
 
-In order to fully cover the standard, you will also need to have done projects covering the topics of *encryption* and *compression* to at least the achieved level, and projects covering the topics of *representing data using bits* and *human computer interaction*, and included these in your report.
+In order to fully cover the standard, you will also need to have done projects covering the topics of encryption and compression to the achieved level, and projects covering the topics of representing data using bits and human computer interaction, and include these in your report.
 
 ## Overview
 
 Encoding has the following bullet points in achievement standard 2.44 which this guide covers.
 
-**Achieved**: “describing the concept of encoding information using compression coding, error control coding, and encryption; and typical uses of encoded information”
+**Achieved**: “describing the concept of encoding information using ~~compression coding,~~ error control coding ~~, and encryption;~~ and typical uses of encoded information”
 
 **Merit**: “discussing how a widely used technology is enabled by one or more of compression coding, error control coding, and encryption”
 
