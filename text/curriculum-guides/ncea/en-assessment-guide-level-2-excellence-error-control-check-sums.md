@@ -1,4 +1,4 @@
-# Error Control Coding (2.44) - Check Sums
+# Excellence Guide for Error Control Coding (2.44) - Check Sums
 
 This is a guide for students attempting error control coding (one of the three encoding subtopics) in digital technologies achievement standard 2.44 (AS91371).
 
