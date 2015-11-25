@@ -33,14 +33,18 @@ pre > code {
 .interactive-iframe-resize {
   width: 100%;
 }
-
 header, main, footer {
   padding-left: 300px;
 }
-
-@media only screen and (max-width : 992px) {
+#website_header {
+  display: none;
+}
+@media only screen and (max-width : $medium-screen) {
   header, main, footer {
     padding-left: 0;
+  }
+  #website_header {
+    display: block;
   }
 }
 .bold > a {
