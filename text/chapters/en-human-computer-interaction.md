@@ -399,7 +399,7 @@ The buttons have the colours switched, the colour for cancel is green (commonly 
 
 The following interface is from a bank system for paying another person. Suppose you get an email asking someone to pay you $1699.50 dollars for a used car; try entering "$1699.50" into the box.
 
-{interactive-inpage payment-interface}
+{interactive name="payment-interface" type="in-page"}
 
 The notation "$1699.50" is a common way to express a dollar amount, but this system forces you to follow its own conventions (probably to make things easier for the programmer who wrote the system).
 
