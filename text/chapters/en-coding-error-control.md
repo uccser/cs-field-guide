@@ -172,7 +172,7 @@ The following interactives are to be used in this section once the text is re-wr
 
 {comment end}
 
-{interactive-inpage number-generator}
+{interactive name="number-generator" type="in-page"}
 
 {interactive name="checksum-calculator" type="in-page"}
 
