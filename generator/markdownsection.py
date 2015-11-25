@@ -498,7 +498,7 @@ class Section:
         glossary = self.guide.glossary
         word = match.group('word')
         definition = match.group('def')
-        permalink_id = word.lower()
+        permalink_id = systemfunctions.to_kebab_case(word)
 
         this_file_link = os.path.join(glossary.html_path_to_root, self.file_node.path)
         back_link = '{}.html#{}'.format(this_file_link, permalink_id)
@@ -535,7 +535,7 @@ class Section:
 
         if match.group('backref'):
             backref_text = match.group('backref')
-            back_link_id = '{}-{}'.format(word.lower(), backref_text)
+            back_link_id = '{}-{}'.format(systemfunctions.to_kebab_case(word), backref_text)
             this_file_link = os.path.join(glossary.html_path_to_root, self.file_node.path)
             back_link = '{}.html#{}'.format(this_file_link, back_link_id)
             glossary.add_back_link(word, back_link, backref_text)
