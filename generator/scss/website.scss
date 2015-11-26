@@ -170,3 +170,37 @@ ul.side-nav.fixed li a {
 .btn-expand {
   width: 100% !important;
 }
+.btn-menu {
+  background-color: $primary-color-light;
+  color: white !important;
+  padding: 1.5rem 0.3rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  .btn-menu-link-text {
+    font-size: 1.8rem;
+    line-height: 115%;
+  }
+}
+.flex-container {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: stretch;
+  @media #{$medium-and-down} {
+    flex-direction: column;
+  }
+  @media #{$large-and-up} {
+    flex-direction: row;
+  }
+}
+.flex-item {
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
+  @media #{$medium-and-down} {
+    width: 100%;
+  }
+  @media #{$large-and-up} {
+    width: 32%;
+  }
+}
