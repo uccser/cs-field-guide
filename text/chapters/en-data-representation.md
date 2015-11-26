@@ -489,22 +489,23 @@ Another situation where different numbers of bits in a representation is importa
 
 {teacher}
 
-This first subsection is not actually computers representing data using bits (as it is actually about computer screens physically displaying colour), but it is a necessary background section before students learn about how the colours are then stored in computer memory. Students may have covered this material under other topics (e.g. image editing). It’s purpose here is to link this topic back to what students are familiar with.
+This first subsection is not actually computers representing data using bits (as it is actually about computer screens physically displaying colour), but it provides the background before students learn about how the colours are then stored in computer memory. Students may have covered this material under other topics (e.g. image editing). Its purpose here is to link this topic back to what students are familiar with.
 
 {teacher end}
 
 {comment}
 
-.. xtcb add text to introduce interactive, that 1) image has pixels 2) pixel's have values
+.. xtcb add text to introduce interactive, that 1) image has pixels 2) pixels have values
 .. jrm will add interactive back here once text has been added
 
 {comment end}
 
-In school or art class you may have mixed different colours of paint or dye together in order to make new colours. This was probably very helpful if the exact colour you wanted was not present in your palette, in addition to just being fun to experiment with!
-When mixing paints, red and blue would give purple. If you mixed yellow and blue, you would get green. If you mixed red and yellow, you would get orange. If you mixed an even amount of the 3 primary colours; blue, red, and yellow together, you should get black, although often it would be a murky brown. By mixing together various amounts of the three primary colours, along with white and black, you can make many different colours.
+In school or art class you may have mixed different colours of paint or dye together in order to make new colours.
+In painting it's common to use red, yellow and blue as three "primary" colours that can be mixed to produce lots more colours.
+Mixing red and blue  give purple, red and yellow give orange, and so on.
 
-Actually, while the colours blue, red and yellow are commonly used in art classes, the very similar primary colours that work better for printing are cyan, magenta and yellow (CMY), which are commonly found in computer printers as well as printing presses. This kind of mixing is called "subtractive mixing", because it starts with a white canvas or paper, and subtracts colour from it. The below interactive allows you to experiment with these in case you're not familiar with them, or in case you just like mixing colours.
-We've also added a "black" mix; it's not strictly necessary (you can get black by putting all the other colours on full), but it's useful for printers because it's such a common colour.
+Actually, while the colours blue, red and yellow are commonly used in painting, the very similar primary colours that work better for printing are cyan, magenta and yellow (CMY), which are commonly found in computer printers as well as printing presses. This kind of mixing is called "subtractive mixing", because it starts with a white canvas or paper, and subtracts colour from it. The interactive below allows you to experiment with these in case you're not familiar with them, or if you just like mixing colours.
+We've also added a "black" colour; it's not strictly necessary (you can get black by putting all the other colours on full), but it's useful for printers because it's such a common colour.
 
 <link rel="stylesheet" href="static/interactives/dr/dr_inline_interactives.css" type="text/css" />
 <script type="text/javascript" src="static/interactives/dr/dr_inline_interactives.js"></script>
@@ -539,22 +540,31 @@ We've also added a "black" mix; it's not strictly necessary (you can get black b
 
 {comment}
 
-.. xtcb insert Mona Lisa image from Chinese book end of topic 4
+.. xjrm insert Mona Lisa image from Chinese book end of topic 4
 
 {comment end}
 
-Computer screens and related devices also rely on mixing colours, except they go about it in quite a different way --- they use a different set of primary colours, because they are *additive*, starting with a black screen and adding colour to it.
+Computer screens and related devices also rely on mixing three colours, except they need a different set of primary colours because they are *additive*, starting with a black screen and adding colour to it.
 For additive colour on computers, the colours red, green and blue (RGB) are used.
-Each pixel on a screen has 3 tiny lights; one red, one green, and one blue. By increasing and decreasing the amount of light coming out of each of these 3 lights, all the different colours can be made.
+Each pixel on a screen is typically made up of three tiny lights; one red, one green, and one blue. By increasing and decreasing the amount of light coming out of each of these three, all the different colours can be made.
 
-You can try additive colours in the following interactive; try different combinations of each slider. How do you generate yellow? What happens if they are all at zero? All at full value (255)? Halfway? What happens if one colour is at full, and the other two are at halfway? How do you get shades of purple, yellow, orange, and pink? What happens when you have the same amount of each colour? How do you get black? How do you get white?
+You can try additive colours in the following interactive; try different combinations of each slider. How do you generate yellow? What happens if they are all at zero? All at full value (255)? Halfway? What happens if one colour is at full, and the other two are at halfway? How do you get shades of purple, yellow, orange, and pink? What happens when you have the same amount of each colour?
+
+{teacher}
+
+Yellow is usually a surprise for students - it's made from red and green, with no blue.
+Having all the sliders at the extremes will produce black and white, and if they are all the same value but inbetween, it will be grey (i.e. between black and white).
+Pink is made by having red on full value, and green and blue on half; students can think of this as halfway between white (all on full) and red (only the red on full, with the other two off).
+
+{teacher end}
+
 
 <div><iframe width="100%" height="270" src="static/widgets/DR/DR-color/CG-ColorBits_1.html" frameborder="0"></iframe></div>
 
 The key idea is that you can specify the colour of a pixel using three numbers.
 In the above example, each number is from 0 to 255.
 With 256 possible values for each of the three components, that gives 256 x 256 x 256 = 16,777,216 possible colours, which is more than the human eye can detect.
-In other words, using just three numbers, you can specify pretty much any colour you want --- and probably a lot that you don't.
+In other words, using just three numbers, you can specify pretty much any colour you want --- and a lot that you can't tell apart.
 
 Of course, a computer screen or printout doesn't have just one colour on it --- it has millions of small pixels, each of which has a particular colour.
 
@@ -567,7 +577,7 @@ If you zoom in far enough, the interactive will show you the red-green-blue valu
 
 **Jargon Buster**
 
-The word **pixel** is short for "picture element". On computer screens and printers an image is created by a grid of pixels, each one set to the required colour. A pixel is typically a fraction of a millimeter across, and images can be made up of millions of pixels (one megapixel is a million pixels).
+The word **pixel** is short for "picture element". On computer screens and printers an image is almost always displayed using a grid of pixels, each one set to the required colour. A pixel is typically a fraction of a millimeter across, and images can be made up of millions of pixels (one megapixel is a million pixels), so you can't usually see the individual pixels.
 
 {jargon-buster end}
 
@@ -577,7 +587,9 @@ The word **pixel** is short for "picture element". On computer screens and print
 
 **Curiosity**
 
+There's a very good reason that we mix three primary colours to specify the colour of a pixel.
 The human eye has millions of light sensors in it, and the ones that detect colour are called "cones". There are three different kinds of cones, which detect red, blue, and green light respectively. Colours are perceived by the amount of red, blue, and green light in them. Computer screen pixels take advantage of this by releasing the amounts of red, blue, and green light that will be perceived as the desired colour by your eyes. So when you see "purple", it's really the red and blue cones in your eyes being stimulated, and your brain converts that to a perceived colour.
+Scientists are still working out exactly how we perceive colour, but the representations used on computers seem to be good enough give the impression of looking at real images.
 
 {curiosity end}
 
@@ -589,14 +601,8 @@ Another exercise to see the relationship between bit patterns and colour images 
 
 {teacher end}
 
-{comment}
-
-.. xhtml5 An interactive on the above exercise would be great, and could provide a good learning experience.
-
-{comment end}
-
-Even the smallest computer screens have millions of *pixels* on them, and the computer needs to represent a colour for each one of those pixels.
-These days photographs are measured in *megapixels* (millions of pixels).
+It's not unusual for computer screens to have millions of *pixels* on them, and the computer needs to represent a colour for each one of those pixels.
+A million pixels is one *megapixel*. Photographs commonly have several megapixels in them.
 To store the image, your computer is storing a colour for every one of those pixels, and each of those could be using the three numbers above.
 So a 2 megapixel photo, in its simplest form, needs 6 million numbers to be recorded to represent it accurately.
 
@@ -618,6 +624,8 @@ If you calculate {math}2^24{math end} (i.e. the number of bit patterns you can g
 			= 256 x 256 x 256
 			= {math}256^3{math end}
 .. I like the idea of boxes and different explanations for different learning styles -tim.
+
+.. also - emphasise that all this is based on humans and how we percieve colour: cs is about humans
 
 {comment end}
 
@@ -977,3 +985,4 @@ This puzzle can be solved using the pattern in binary numbers: [http://www.cs4fn
 - [Representing bits using sound <http://csunplugged.org/modem)
 - [Hex game <http://www.purposegames.com/game/049fc90a)
 - [Thriving in our digital world](https://onramps.instructure.com/courses/723227) has good illustrations of data representation
+- [How a hard disk works <http://ed.ted.com/lessons/how-do-hard-drives-work-kanawat-senanan>]
