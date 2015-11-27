@@ -84,7 +84,6 @@ function travel_on_train(train) {
 }
 
 function slide_in_station(destination) {
-  console.log("Running slide in");
   var $image_destination = $('#interactive-trainsylvania-image-' + destination);
   $image_destination.fadeIn({queue: false, duration: Trainsylvania.slide_time * 0.8});
   $image_destination.animate({left: 0}, Trainsylvania.slide_time, function() {
@@ -97,7 +96,6 @@ function slide_in_station(destination) {
 }
 
 function slide_out_station(current) {
-  console.log("Running slide out");
   var $image_current = $('#interactive-trainsylvania-image-' + Trainsylvania.station_current);
   $image_current.fadeOut({queue: false, duration: Trainsylvania.slide_time * 0.8});
   $image_current.animate({right: '100%'}, Trainsylvania.slide_time, function() {

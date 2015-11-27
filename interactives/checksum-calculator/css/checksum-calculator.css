@@ -3,17 +3,9 @@
   font-size: 1.5rem;
   margin: 0;
 }
-label.interactive-checksum-calculator-label {
-  margin: 0;
-}
-.interactive-checksum-calculator-button {
-  margin: 0.5rem 0;
-  padding: 0.5rem;
-}
 .interactive-checksum-calculator-feedback {
   color: red;
   font-weight: bold;
-  margin: 0;
 }
 #interactive-checksum-calculator-sums {
   display: -webkit-flex; /* Safari */

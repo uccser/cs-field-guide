@@ -343,7 +343,7 @@ class FolderNode:
         self.guide = self.parent.guide if parent else guide
         self.english_title = systemfunctions.from_kebab_case(self.name)
         if self.parent:
-            self.title = self.guide.translations[self.english_title.lower()][self.guide.language_code]
+            self.title = self.guide.translations[self.name][self.guide.language_code]
         else:
             #Folder is root folder, name is not important
             self.title = self.english_title

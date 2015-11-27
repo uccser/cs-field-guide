@@ -751,7 +751,7 @@ For a really good class, you might like to also add digital signatures into the 
 
 {teacher end}
 
-{interactive-inpage MD5-hash}
+{interactive name="md5-hash" type="in-page"}
 
 {comment}
 

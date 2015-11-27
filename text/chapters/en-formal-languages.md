@@ -171,7 +171,7 @@ If you want a template to draw on, you can [print one out from here](files/forma
 
 {comment end}
 
-{interactive-inpage trainsylvania}
+{interactive name="trainsylvania" type="in-page"}
 
 {teacher}
 
