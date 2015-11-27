@@ -47,7 +47,7 @@ Human-computer interaction (HCI) is about trying to make programs useful, usable
 
 Try out the following interactive task, and get some friends to try it:
 
-{interactive-inpage deceiver}
+{interactive name="deceiver" type="in-page"}
 
 Did anyone get a wrong answer to the question even though you thought you got it right? You may have noticed that the "Yes" and "No" button sometimes swap.
 Inconsistency is normally a really bad thing in an interface, as it can easily fool the user into making an error.
@@ -238,7 +238,7 @@ The point of this is that any interface element (such as a button or checkbox) t
 
 {comment end}
 
-{interactive-inpage delayed-checkbox}
+{interactive name="delayed-checkbox" type="in-page"}
 
 So, as you evaluate interfaces, bear in mind that even very small delays can make a system hard to use.
 
@@ -389,7 +389,7 @@ It's not too hard to find these sorts of delays in systems when you're evaluatin
 
 The language, colours and notation in an interface should match the user's world, and while this seems obvious and sensible, it's often something that is overlooked. Take for example the following two buttons --- can you see what is confusing about them?
 
-{interactive-inpage confused-buttons}
+{interactive name="confused-buttons" type="in-page"}
 
 {teacher}
 
@@ -399,7 +399,7 @@ The buttons have the colours switched, the colour for cancel is green (commonly 
 
 The following interface is from a bank system for paying another person. Suppose you get an email asking someone to pay you $1699.50 dollars for a used car; try entering "$1699.50" into the box.
 
-{interactive-inpage payment-interface}
+{interactive name="payment-interface" type="in-page"}
 
 The notation "$1699.50" is a common way to express a dollar amount, but this system forces you to follow its own conventions (probably to make things easier for the programmer who wrote the system).
 
@@ -427,7 +427,7 @@ Pressing the yes button below can be very frustrating! Most modern web browsers 
 
 {teacher end}
 
-{interactive-inpage close-window}
+{interactive name="close-window" type="in-page"}
 
 Sometimes the interface can force the user into doing something the user does not want to do. For example, it is quite common for operating systems or programs to perform updates automatically that require a restart. Sometimes the interface may not give them the opportunity to cancel or delay this, and restart nevertheless. This is bad if it happens when the user is just about to give a presentation.
 
@@ -460,7 +460,7 @@ A computer program shouldn't make it easy for people to make serious errors. An 
 
 Below is a date picker; can you see what errors can be produced with it?
 
-{interactive-inpage date-picker}
+{interactive name="date-picker" type="in-page"}
 
 {teacher}
 
@@ -472,7 +472,7 @@ A related problem with dates is when a user needs to pick a start and end date (
 
 Any time a dialogue box comes up that says you weren't allowed to do a certain action, the system has failed to prevent an error. Of course, it may be difficult to do that because the error can depend on so many user choices, but it is ideal that the system doesn't offer something that it can't do.
 
-{interactive-inpage dropdown-buttons}
+{interactive name="available-menu-items" type="in-page"}
 
 ### Recognition rather than recall
 
@@ -543,7 +543,7 @@ A variant of this is a message that gives two alternatives, such as "File may no
 
 *Even though it is better if the system can be used without documentation, it may be necessary to provide help and documentation. Any such information should be easy to search, focused on the user's task, list concrete steps to be carried out, and not be too large.*
 
-{interactive-inpage no-help}
+{interactive name="no-help" type="in-page"}
 
 Often help is an afterthought, and tends to be feature-centred (e.g. a catalogue of menu items), rather than task-centred (the series of actions needed to complete typical tasks, which is more useful for the user).
 When a user needs help, they typically have a task to complete (such as upload photos from a camera), and good documentation should explain how to do common tasks, rather than explain each feature (such as "Setting the camera to USB mode").

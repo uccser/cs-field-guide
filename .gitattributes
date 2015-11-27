@@ -9,3 +9,6 @@
 *.html text
 *.css text
 *.js text
+
+# Set vendor folders to be ignored in linguist statistics
+generator/scss/components/* linguist-vendored

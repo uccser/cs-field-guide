@@ -8,4 +8,6 @@ LOGFILE_SETTINGS = 'generator/logging.conf'
 TRANSLATIONS_LOCATION = 'generator/static-translations.conf'
 PERMISSIONS_LOCATION = 'permissions.conf'
 
+GLOSSARY_LOCATION = 'further-information/glossary.html'
+
 INTERACTIVE_CLASS = 'interactive'
