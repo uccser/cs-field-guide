@@ -1,19 +1,10 @@
 # Data Representation
 
-{teacher}
+{panel type="teacher-note" summary="Math in Data Representation"}
 
 A lot of the exercises in this chapter involve simple arithmetic. If students struggle to do this by hand, a lot can be done using spreadsheets.
 
-The following assessment plans also cover this material:
-
-**New Zealand - AS91371 (2.44)**
-
-- [Assessment Overview](/appendices/assessment-guides/new-zealand/assessment-guide-level-2-introduction)
-- [Representing Data using Bits (Binary Numbers)](/appendices/assessment-guides/new-zealand/assessment-guide-level-2-data-representation-binary-numbers)
-- [Representing Data using Bits (Characters/Text)](/appendices/assessment-guides/new-zealand/assessment-guide-level-2-data-representation-text)
-- [Representing Data using Bits (Images/Colour)](/appendices/assessment-guides/new-zealand/assessment-guide-level-2-data-representation-colour)
-
-{teacher end}  
+{panel end}  
 
 ## What's the big picture?
 
@@ -487,16 +478,16 @@ Another situation where different numbers of bits in a representation is importa
 
 .. warning:: This section assumes that you understand binary numbers. If you are confused by binary numbers still, you should go back to the binary numbers section and work through the material there again until you understand it. The first part of this section is possible to understand without understanding binary numbers, although in order to actually use the material for assessment purposes, you will need to understand binary numbers, as the key idea is representing colours using *bits*, and the bits in colours are decided based on numbers.
 
-{teacher}
+{panel type="teacher-note" summary="Background information"}
 
 This first subsection is not actually computers representing data using bits (as it is actually about computer screens physically displaying colour), but it provides the background before students learn about how the colours are then stored in computer memory. Students may have covered this material under other topics (e.g. image editing). Its purpose here is to link this topic back to what students are familiar with.
 
-{teacher end}
+{panel end}
 
 {comment}
 
-.. xtcb add text to introduce interactive, that 1) image has pixels 2) pixels have values
-.. jrm will add interactive back here once text has been added
+xTCB: add text to introduce interactive, that 1) image has pixels 2) pixels have values
+JRM: will add interactive back here once text has been added
 
 {comment end}
 
@@ -507,6 +498,7 @@ Mixing red and blue  give purple, red and yellow give orange, and so on.
 Actually, while the colours blue, red and yellow are commonly used in painting, the very similar primary colours that work better for printing are cyan, magenta and yellow (CMY), which are commonly found in computer printers as well as printing presses. This kind of mixing is called "subtractive mixing", because it starts with a white canvas or paper, and subtracts colour from it. The interactive below allows you to experiment with these in case you're not familiar with them, or if you just like mixing colours.
 We've also added a "black" colour; it's not strictly necessary (you can get black by putting all the other colours on full), but it's useful for printers because it's such a common colour.
 
+{commment}
 <link rel="stylesheet" href="static/interactives/dr/dr_inline_interactives.css" type="text/css" />
 <script type="text/javascript" src="static/interactives/dr/dr_inline_interactives.js"></script>
 <script type="text/javascript" src="static/interactives/dr/jquery-ui.min.js"></script>
@@ -537,10 +529,11 @@ We've also added a "black" colour; it's not strictly necessary (you can get blac
 	<div class="col-xs-12" id="cmyk-colour-output">
 	</div>
 </div>
+{comment end}
 
 {comment}
 
-.. xjrm insert Mona Lisa image from Chinese book end of topic 4
+xJRM insert Mona Lisa image from Chinese book end of topic 4
 
 {comment end}
 
@@ -550,14 +543,13 @@ Each pixel on a screen is typically made up of three tiny lights; one red, one g
 
 You can try additive colours in the following interactive; try different combinations of each slider. How do you generate yellow? What happens if they are all at zero? All at full value (255)? Halfway? What happens if one colour is at full, and the other two are at halfway? How do you get shades of purple, yellow, orange, and pink? What happens when you have the same amount of each colour?
 
-{teacher}
+{panel type="teacher-note" summary="Surprising colours"}
 
 Yellow is usually a surprise for students - it's made from red and green, with no blue.
 Having all the sliders at the extremes will produce black and white, and if they are all the same value but inbetween, it will be grey (i.e. between black and white).
 Pink is made by having red on full value, and green and blue on half; students can think of this as halfway between white (all on full) and red (only the red on full, with the other two off).
 
-{teacher end}
-
+{panel end}
 
 <div><iframe width="100%" height="270" src="static/widgets/DR/DR-color/CG-ColorBits_1.html" frameborder="0"></iframe></div>
 
@@ -571,7 +563,7 @@ Of course, a computer screen or printout doesn't have just one colour on it --- 
 The following interactive allows you to zoom in on an image to see the pixels that are used to represent it. Each pixel is a solid colour square, and the computer needs to store the colour for each pixel.
 If you zoom in far enough, the interactive will show you the red-green-blue values for each pixel. You can pick a pixel and put the values on the slider above - it should come out as the same colour as the pixel.
 
-{interactive-external pixel-viewer title="Pixel Viewer"}
+{interactive name="pixel-viewer" type="whole-page" text="Pixel Viewer"}
 
 {jargon-buster}
 
@@ -616,16 +608,16 @@ If you calculate {math}2^24{math end} (i.e. the number of bit patterns you can g
 
 {comment}
 
-.. Might put a box just showing the math, i.e. that {math}2^24{math end} = {math}256^3{math end}. Won’t take too long to do, and I suspect it may be helpful to some people to see that. Trying to cater for as many different learning styles as possible...
-.. I presume you mean something along the lines of
+Might put a box just showing the math, i.e. that {math}2^24{math end} = {math}256^3{math end}. Won’t take too long to do, and I suspect it may be helpful to some people to see that. Trying to cater for as many different learning styles as possible...
+I presume you mean something along the lines of
    {math}2^24{math end} = 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2 x 2
 			=  (2 x 2 x 2 x 2 x 2 x 2 x 2 x 2) x (2 x 2 x 2 x 2 x 2 x 2 x 2 x 2) x (2 x 2 x 2 x 2 x 2 x 2 x 2 x 2)
 			= ({math}2^8{math end}) x ({math}2^8{math end}) x ({math}2^8{math end})
 			= 256 x 256 x 256
 			= {math}256^3{math end}
-.. I like the idea of boxes and different explanations for different learning styles -tim.
+I like the idea of boxes and different explanations for different learning styles -tim.
 
-.. also - emphasise that all this is based on humans and how we percieve colour: cs is about humans
+also - emphasise that all this is based on humans and how we percieve colour: cs is about humans
 
 {comment end}
 
