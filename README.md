@@ -12,7 +12,7 @@ We want this project to be as accessible as possible to our many user groups, wh
 
 Within this repository, you will find the following folders:
 
-- **text:** All text files for chapters and appendices, in English and other languages.
+- **text:** All text files for chapters, curriculum guides, and extra pages, in English and other languages.
 - **images:** All images used within the guide, except those used in interactives.
 - **interactives:** All data associated with interactives.
 - **files:** Files that are downloaded from the text (for example: PDFs, spreadsheets, code examples).

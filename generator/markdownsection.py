@@ -342,7 +342,7 @@ class Section:
                     arg_thumbnail = parse_argument('thumbnail', arguments)
                     thumbnail = arg_thumbnail if arg_thumbnail else self.guide.generator_settings['Source']['Interactive Thumbnail']
                     html = self.whole_page_interactive_html(source_folder, title, name, params, thumbnail, match)
-                elif interactive_type == 'inpage':
+                elif interactive_type == 'in-page':
                     html = self.inpage_interactive_html(source_folder, name, match)
                 elif interactive_type == 'iframe':
                     html = self.iframe_interactive_html(source_folder, name, params, match)
@@ -498,7 +498,7 @@ class Section:
         glossary = self.guide.glossary
         word = match.group('word')
         definition = match.group('def')
-        permalink_id = word.lower()
+        permalink_id = systemfunctions.to_kebab_case(word)
 
         this_file_link = os.path.join(glossary.html_path_to_root, self.file_node.path)
         back_link = '{}.html#{}'.format(this_file_link, permalink_id)
@@ -535,7 +535,7 @@ class Section:
 
         if match.group('backref'):
             backref_text = match.group('backref')
-            back_link_id = '{}-{}'.format(word.lower(), backref_text)
+            back_link_id = '{}-{}'.format(systemfunctions.to_kebab_case(word), backref_text)
             this_file_link = os.path.join(glossary.html_path_to_root, self.file_node.path)
             back_link = '{}.html#{}'.format(this_file_link, back_link_id)
             glossary.add_back_link(word, back_link, backref_text)

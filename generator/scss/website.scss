@@ -1,8 +1,5 @@
 @import "materialize";
 
-.interactive {
-  margin: 3em 0rem;
-}
 pre {
   font-family: Consolas, "Liberation Mono", Courier, monospace;
   font-weight: normal;
@@ -36,14 +33,18 @@ pre > code {
 .interactive-iframe-resize {
   width: 100%;
 }
-
 header, main, footer {
   padding-left: 300px;
 }
-
-@media only screen and (max-width : 992px) {
+#website_header {
+  display: none;
+}
+@media only screen and (max-width : $medium-screen) {
   header, main, footer {
     padding-left: 0;
+  }
+  #website_header {
+    display: block;
   }
 }
 .bold > a {
@@ -77,7 +78,7 @@ ul.side-nav.fixed li a {
     color: $off-black !important;
   }
 }
-.main-content ul:not(.collapsible) {
+.main-content ul:not(.collapsible):not(.dropdown-content) {
   padding-left: 40px;
   li {
     list-style-type: initial;
@@ -165,4 +166,41 @@ ul.side-nav.fixed li a {
 .panel p {
   margin: 1rem !important;
   padding: 0 !important;
+}
+.btn-expand {
+  width: 100% !important;
+}
+.btn-menu {
+  background-color: $primary-color-light;
+  color: white !important;
+  padding: 1.5rem 0.3rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  .btn-menu-link-text {
+    font-size: 1.8rem;
+    line-height: 115%;
+  }
+}
+.flex-container {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: stretch;
+  @media #{$medium-and-down} {
+    flex-direction: column;
+  }
+  @media #{$large-and-up} {
+    flex-direction: row;
+  }
+}
+.flex-item {
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
+  @media #{$medium-and-down} {
+    width: 100%;
+  }
+  @media #{$large-and-up} {
+    width: 32%;
+  }
 }

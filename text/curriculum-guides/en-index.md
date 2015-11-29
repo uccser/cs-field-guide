@@ -1,3 +1,3 @@
 # Curriculum Guides
 
-{table-of-contents depth="2"}
+{table-of-contents depth="1"}
