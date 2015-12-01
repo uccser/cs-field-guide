@@ -17,11 +17,16 @@ The computer science externals can be particularly time consuming for Merit/ Exc
 
 - [Level 1 Introduction](curriculum-guides/ncea/assessment-guide-level-1-introduction.html)
 
-**Merit/ Excellence Guides**
+This guide will be added to the field guide at some point during December 2015 or January 2016.
 
-The following guides are for students who are aiming for Merit or Excellence.
+- [Guide for Achieved in 1.44](https://docs.google.com/document/d/1A5x-0sbcH-73orZCIlci0CqqxQzGKCbija3z0KsIDEE/)
+- [Writing Frame](https://docs.google.com/document/d/1e41Cb50tvnjBWWPwIy3bY5CrymUK3ZJ4nnFnyRQqC2U/edit#)
+
+The guide contains a check list at the end which students can use to check off things as they do them, and to ensure they do not miss anything.
 
 ### Algorithms
+
+The following guides are for students who are aiming for Merit or Excellence.
 
 - [Algorithms - Searching (Merit/ Excellence)](curriculum-guides/ncea/assessment-guide-level-1-searching-algorithms.html)
 - [Algorithms - Sorting (Merit/ Excellence)](curriculum-guides/ncea/assessment-guide-level-1-sorting-algorithms.html)
@@ -33,15 +38,6 @@ The following guides are for students who are aiming for Merit or Excellence.
 ### Human Computer Interaction
 
 - [Human Computer Interaction (Merit/ Excellence)](curriculum-guides/ncea/assessment-guide-level-1-human-computer-interaction.html)
-
-**Achieved Guides**
-
-This guide will be added to the field guide at some point during December 2015 or January 2016.
-
-- [Guide for Achieved in 1.44](https://docs.google.com/document/d/1A5x-0sbcH-73orZCIlci0CqqxQzGKCbija3z0KsIDEE/)
-- [Writing Frame](https://docs.google.com/document/d/1e41Cb50tvnjBWWPwIy3bY5CrymUK3ZJ4nnFnyRQqC2U/edit#)
-
-The guide contains a check list at the end which students can use to check off things as they do them, and to ensure they do not miss anything.
 
 ## AS91371 (2.44)
 
