@@ -57,7 +57,11 @@ Students will need to pick **one** project from here. Which they pick will depen
 
 **Merit/ Excellence Guides**
 
+Not yet released - check back December 2015 or January 2016
+
+{comment}
 - For Merit/ Excellence: [Representing Data - Exploring different representations for text and color using bits (Merit/ Excellence)](curriculum-guides/ncea/assessment-guide-level-2-full-representing-data.html)
+{comment end}
 
 ### Encoding
 
