@@ -1,21 +1,11 @@
 # Coding - Encryption
 
-{teacher}
+{panel type="teacher-note" summary="Curriculum Guides for Encryption"}
 
-The following assessment plans also cover this material:
+- **New Zealand**:
+ - [AS91371 (2.44)](assessment-guides/new-zealand/assessment-guide-level-2-introduction.html)
 
-**New Zealand - AS91371 (2.44)**
-
-- [Assessment Overview](assessment-guides/new-zealand/assessment-guide-level-2-introduction.html)
-- [Encryption (RSA Cryptosystem)](assessment-guides/new-zealand/assessment-guide-level-2-encryption-rsa.html)
-
-{teacher end}
-
-{comment}
-
-.. xtcb add links to relevant Khan videos at https://www.khanacademy.org/computing/computer-science
-
-{comment end}
+{panel end}
 
 ## What's the big picture?
 
