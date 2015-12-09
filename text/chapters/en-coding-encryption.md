@@ -38,7 +38,7 @@ When describing an encryption scenario, cryptographers often use the fictitious 
 We always assume that someone is eavesdropping on the conversation (in fact, if you're using a wireless connection, it's trivial to pick up the transmissions between Alice and Bob as long as you're in reach of the wireless network that one of them is using).
 The fictitious name for the eavesdropper is usually Eve.
 
-[{image ec-xkcd-protocol.png}]( http://xkcd.com/1323/)
+[{image filename="xkcd-protocol.png"}]( http://xkcd.com/1323/)
 
 There are several other characters used to describe activities around encryption protocols: for example Mallory (a malicious attacker) and Trudy (an intruder). Wikipedia has a [list of Alice and Bob's friends](http://en.wikipedia.org/wiki/Alice_and_Bob)
 {panel end}
@@ -46,23 +46,21 @@ There are several other characters used to describe activities around encryption
 {panel type="teacher-note" summary="Even more about Alice and Bob"}
 There's a [song about Alice and Bob](http://www.catonmat.net/blog/musical-geek-friday-alice-and-bob/) performed by rapper MC++ (yes, he specialises in computer science). Some of the language may not be suitable for use in class, so discretion is needed for how you might use it.
 
-[{image ec-xkcd-alice-and-bob.png}](http://xkcd.com/177/)
+[{image filename="xkcd-alice-and-bob.png"}](http://xkcd.com/177/)
 {panel end}
 
 
 ## Substitution Ciphers
 
-{teacher}
+{panel type="teacher-note" summary="Curriculum Guides for Encryption"}
+This section provides an introduction to the idea of encryption, using a very simple substitution cipher called the Caesar Cipher. While the Caesar Cipher is no longer used in practice, it is still very useful as a teaching tool for illustrating the basic ideas and terminology in encryption. The Caesar Cipher is very easily broken, even without the help of a computer, but it is for this reason that it is a good introduction to the processes around ciphers. The only reason it worked in the time of Julius Caesar was that it relied on a low level of literacy amongst those you might expect to come across it, and they would assume it was a foreign language rather than try to attack it. A 21st century high school student should have all the literacy and mathematical tools needed to break this code.
 
-This section provides an introduction to the idea of encryption, using a very simple algorithm called the Caesar Cipher. While the Caesar Cipher is no longer used in practice, it is still very useful as a teaching tool for illustrating the basic ideas and terminology in encryption. The Caesar Cipher is very easily broken, even without the help of a computer, but it is for this reason that it is a good introduction to the processes around ciphers. The only reason it worked in the time of Julius Caesar was that it relied on a low level of literacy amongst those you might expect to come across it, and they would assume it was a foreign language rather than try to attack it; however, a 21st century high school student should have all the literacy and mathematical tools needed to break this code.
+Once students understand the basic concepts in Caesar Cipher, they can move on to understanding the sophisticated ciphers used in practice.
+{panel end}
 
-Teachers notes assume an understanding of the jargon used in encryption. Jargon buster boxes are used throughout this section for both teachers and students, as encryption is a topic that seems to have attracted a lot of jargon!!!
+### Getting Started with Caesar Cipher
 
-{teacher end}
-
-For these activities, you will need to have pen and paper in front of you to figure out the answers in this section.
-
-Working in a group with 1 or 2 of your classmates (or by yourself if nobody else is around), can you figure out what the following message, encrypted with a simple cipher, says?
+In this section, we will be looking at a simple substitution cipher called Caesar Cipher. Caesar Cipher is over 2000 years old, invented by a guy called Julius Caesar. Before we go any further, have a go at cracking this simple code. If you're stuck, try working in a small group with friends and classmates so that you can discuss ideas. A whiteboard or pen and paper would be helpful for doing this exercise.
 
 ```
 DRO BOCMEO WSCCSYX GSVV ECO K ROVSMYZDOB,
@@ -72,227 +70,287 @@ KC IYE ROKB DRBOO
 LVKCDC YX K GRSCDVO.
 S'VV LO GOKBSXQ K BON KBWLKXN.
 ```
+Once you have figured out what the text says, make a table with the letters of the alphabet in order and then write the letter they are represented with in the cipher text. You should notice an interesting pattern.
 
-- What techniques did your group use to decrypt the message?  
-- If you haven’t already, write out each letter in the alphabet, and then the letter that it corresponds to in the cipher (for the ones that are known, i.e. actually were in the cipher). Can you see a pattern?
-- If you were going to make a secret message of your own using this same cipher, how would you go about it?
-- What would be wrong with using this cipher method for a secret you’d never want anybody else finding out?
+Given how easily broken this cipher is, you probably don't want your bank details encrypted with it. In practice, far stronger ciphers are used, although for now we are going to look a little bit further at Caesar Cipher, because it is a great introduction to the many ideas in encryption.
 
-{teacher}
+{panel type="teacher-note" summary="Answer for cipher"}
+The answer is:
 
-The code deciphered is: THE RESCUE MISSION WILL USE A HELICOPTER, ARRIVING AT NOON TOMORROW. BE READY TO BREAK OUT AS SOON AS YOU HEAR THREE  BLASTS ON A WHISTLE. I'LL BE WEARING A RED ARMBAND.
+```
+THE RESCUE MISSION WILL USE A HELICOPTER,
+ARRIVING AT NOON TOMORROW.
+BE READY TO BREAK OUT AS SOON
+AS YOU HEAR THREE  
+BLASTS ON A WHISTLE.
+I'LL BE WEARING A RED ARMBAND.
+```
 
-Some of the techniques that students might have used include:
+Some of the techniques that students might have used to decipher it include:
 
 - Looking for interesting letter patterns. For example, the word “S’VV” in the ciphertext. There aren’t that many contractions (words shortened with an apostrophe) in the english language, much less ones that have the last 2 letters the same.
 - Looking at one letter words. Generally they’ll be “A” or “I”.
 - As they figure out which letters in the ciphertext correspond to which letters in the plaintext, they should have been making a list of what they’d figured out, and looking at other words in the ciphertext using those same letters.
 - Looking for letters in the ciphertext that seem to appear a lot; these are likely to correspond to common letters in the english alphabet.
-- Looking at letters that DIDN’T appear (perhaps they correspond to letters like Q and Z),
+- Looking at letters that DIDN’T appear (perhaps they correspond to letters like Q and Z).
 
-This list is incomplete, and was just intended to give an idea of the kind of things students should be thinking about. Essentially, it is a problem solving task that requires a bit of thinking on their part.
+If students are stuck, you might need to give them a few hints.
 
-Because this message should have (hopefully!) only taken them a few minutes to decode, they should recognise that it is not a very good way of encrypting a message, meaning that they probably wouldn’t want to use it themselves for messages that they really don’t want other people reading! By identifying the techniques they used to break the cipher just before, they should have some understanding of why this cipher is not a good one to use in practice!!!
+The table they should have gotten should look like this.
 
-When they wrote out the alphabet, they should have gotten the following (Note that some letters aren’t filled in, as they never appeared in the ciphertext or plaintext)
+{image filename="caesar-table-2.png"}
 
-{image ec-caesar-table-1.png}
+The learning objective for this activity was for students to think like cryptanalysts and to see why Caesar Cipher is not useful in practice.
+{panel end}
 
-After writing out this list, students may realise that there is a pattern in how letters in the ciphertext correspond to letters in the plaintext, when they wrote out the alphabet with the plaintext versions alongside it. Specifically, each letter in the ciphertext corresponds to the letter 10 places earlier in the alphabet than the one in the plaintext.
+### How does Caesar Cipher work?
 
-{teacher end}
+When you looked at the Caesar Cipher in the previous section and (hopefully) broke it and figured out what it said, you probably noticed that there was a pattern in how letters from the original message corresponded to letters in the decoded one. Each letter in the original message decoded to the letter that was 10 places before it in the alphabet. The conversion table you drew should have highlighted this. Here's the table for the letter correspondences, where the letter "K" translates to an "A". It is okay if your conversion table mapped the opposite way, i.e. "A" to "K" rather than "K" to "A". If you were unable to break the Caesar Cipher in the previous section, go back to it now and decode it using the table.
 
-You may have realised that there was a pattern in how letters from the original message corresponded to letters in the decoded one: a letter in the original message is decoded to the letter that is 10 places before it in the alphabet. The conversion table you drew should have highlighted this. Here's the table for the letter correspondences, where the letter "K" translates to an "A"
+{image filename="caesar-table-2.png"}
 
-{image ec-caesar-table-2.png}
-
-The same idea can generate other codes, such as the following one where each letter is replaced with the one that is 8 places earlier.
+For this example, we say the key is *10* because keys in Caesar Cipher are a number between 1 and 25 (think carefully about why we wouldn't want a key of 26!), which specify how far the alphabet should be rotated. If instead we used a key of *8*, the conversion table would be as follows.
 
 {image ec-caesar-table-3.png}
 
-We sometimes say that the alphabet has been *rotated* by 8.
-This system of rotating each letter in a piece of text by a certain amount in order to encrypt it is called Caesar Cipher, named after Julius Caesar, who used it with a rotation of 3 to disguise messages.
+{panel type="jargon-buster" summary="What is a Key in computer science?"}
+In a Caesar Cipher, the key represents how many places the alphabet should be rotated. In the examples above, we used keys of "8" and "10". More generally though, a key is simply a value that is required to do the math for the encryption and decryption. While Caesar Cipher only has 25 possible keys, real encryption systems have an infinite number of possible keys, and preferably use keys which contains hundreds or even thousands of binary digits. Having a huge number of different possible keys is important, because it would take a computer less than a second to try all 25 Caesar Cipher keys.
+{panel end}
 
-You can experiment with this cipher using this interactive.
+Try experiementing with the following interactive for Caesar Cipher. You will probably want to refer back to it later while working through the remainder of the sections on Caesar Cipher.
 
-{comment}
+{interactive name="caesar-cipher" type="in-page"}
 
-<div class="interactive row">
-<div class="col-xs-12 col-sm-4">  
-<h4>Plaintext</h4>
-<textarea id="caesar-plaintext" class="form-control" rows="5"></textarea>
-<button id="caesar-encrypt" type="button" class="btn btn-primary btn-block" style="margin-top:10px;">Encrypt</button>
-</div>
-<div class="col-xs-12 col-sm-4">
-<h4>Rotation Amount</h4>
-<input id="rotation-input" type="number" min="1" max="26" value="1" onkeydown="return isNumber(event,this);" class="interactive-input">
-</div>
-<div class="col-xs-12 col-sm-4">
-<h4>Ciphertext</h4>
-<textarea id="caesar-ciphertext" class="form-control" rows="5"></textarea>
-<button id="caesar-decrypt" type="button" class="btn btn-primary btn-block" style="margin-top:10px;">Decrypt</button>
-</div>
-</div>
+#### Decryption with Caesar Cipher
 
-{comment end}
+Before we looked at how to *crack* Casear cipher --- getting the plaintext from the ciphertext without being told the key beforehand. It is even easier to *decrypt* Caesar Cipher when we **do** have the key. In practice, a good encryption system ensures that the plaintext cannot be obtained from the ciphertext without the key, i.e. it can be *decrypted* but not *cracked*.
 
-In this system, the amount of rotation is referred to as a *key*, since you can unlock the message if you know the key.
-Normally the sender and receiver would agree on a key in advance (and in person), so that the receiver can easily unlock the message.
-
-However, this encryption method isn't very secure, and you've probably already figured out how to crack a coded message.
-You actually only need to work out what one of the corresponding letters is, and then use that to calculate what the rotation is, which immediately gives you the key.
-
-If for example you identify that the letter “Y” in the encrypted message is in place of the letter “R”, you can calculate the rotation by working out how many places R is before Y in the alphabet (it might help to write the alphabet out on a piece of paper so that you can count the places, as saying the alphabet backwards is quite challenging for most people!) As R is 7 places before Y, this means that the rotation for this cipher must be 7, and you should be able to convert all letters in the encrypted message to an understandable message by subtracting 7 from them. The quickest way of going about this though would be to write out a conversion table like the ones above.
-
-{curiosity}
-
-**Curiosity**
-
-The Caesar cipher with a key of 13 is the same as an approach called [ROT13 (rotate 13 characters)](http://en.wikipedia.org/wiki/Rot_13), which is sometimes used to obscure things like the punchline of a joke, a spoiler for a story, the answer to a question, or text that might be offensive. It is easy to decode (and there are plenty of automatic systems for doing so), but the user has to deliberately ask to see the deciphered version. A key of 13 for a Caesar cipher has the interesting property that the encryption method is identical to the decryption method i.e. the same program can be used for both. Actually, many strong encryption methods try to make the encryption and decryption processes as similar as possible so that the same software and/or hardware can be used for both parts of the task, perhaps with only minor adaptions.
-
-{curiosity end}
-
-
-Taking advantage of the idea that you only need to figure out 1 letter to decide, can you figure out what the following message says? Which letter is the best one to try and guess? Why? What was the rotation? You may make a few incorrect guesses before figuring it out, so be prepared for that! Once you think you know what one of the letters in the ciphertext might correspond to in the plaintext, work out what the rotation is, and then write out the conversions for that rotation and decode the start of the message using that conversion table to see whether or not it makes sense. If the first few words seem to be meaningless, then that rotation is probably not the correct one.
-
-```
-P  OVWL  AOPZ  TLZZHNL  DHZ  UVA  AVV  KPMMPJBSA  MVY  FVB!
-```
-
-{teacher}
-
-The message is “I HOPE THIS MESSAGE WAS NOT TOO DIFFICULT FOR YOU!”
-The sensible way for students to approach it would have been to look at the first word as it only contains one letter, so is very likely to be either “I” or “A”. They should have written out the corresponding letters for each of these possibilities, and checked which lead to a meaningful message.
-The rotation being used is 7.
-
-{teacher end}
-
-Now that you know how to decipher a message that is using Caesar Cipher without actually knowing the key, you should be able to see that it would be very easy to decipher a message if you know the key. The following message was encrypted using a rotation of 6. Generate the conversion table for a rotation of 6. This should allow you to easily decipher the following message. What does the message say? (Use only the conversion table to figure it out!)
+As an example of *decrypting* with Caesar Cipher, assume that we have the following ciphertext, and that the key is 6.
 
 ```
 ZNK WAOIQ HXUCT LUD PASVY UBKX ZNK RGFE JUM.
 ```
 
-{teacher}
+Because we know that the key is 6, we can subtract 6 places off each character in the ciphertext. For example, the letter 6 places before "Z" is "T", 6 places before "N" is "H", and 6 places before "K" is "E". From this, we know that the first word must be "THE". Going through the entire ciphertext in this way, we can eventually get the plaintext of:
 
-The message is “THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG”
+```
+THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG
+```
 
-{teacher end}
+The interactive above can do this process for you. Just put the ciphertext into the box on the right, enter the key, and tell it to decrypt. You should ensure you understand how to encrypt messages yourself though!
 
-It shouldn’t be too difficult to see how a message can be *encrypted* using Caesar Cipher. Previously, you were generating conversion tables that converted from the ciphertext to the plaintext. In a very similar way, you can generate conversion tables that convert from the plaintext to the ciphertext. The only difference is that instead of subtracting the rotation, you are adding it. i.e. if the rotation was 5, then the letter “H” in the plaintext would go to the letter that is 5 places forward in the alphabet, which is “M”.
+##### Some challenges for you to try
 
-Using a rotation of 3, generate a conversion table, and then the ciphertext, for the following message.
+**Challenge 1**
+
+Decrypt the following message using Caesar Cipher. The key is 4.
+
+```
+HIGVCTXMRK GEIWEV GMTLIV MW IEWC
+```
+
+**Challenge 2**
+
+What is the key for the following *cipher text*
+
+```
+THIS IS A TRICK QUESTION
+```
+
+{panel type="teacher-note" summary="Answer for the challenges"}
+For the first challenge, the answer is:
+
+```
+DECRYPTING CAESAR CIPHER IS EASY
+```  
+
+
+For the second challenge, the answer is 26 (or 0). Because that is a full rotation, the ciphertext and plaintext are equivalent.
+{panel end}
+
+
+#### Encryption with Caesar Cipher
+
+Encryption is equally straightforward. Instead of rotating backwards (subtracting) like we did for decrypting, we rotate forwards (add) the key to each letter in the plaintext. For example, assume we wanted to encrypt the following text with a key of 7.
 
 ```
 HOW ARE YOU
 ```
 
-{teacher}
+We would start by working that the letter that is 7 places ahead of "H" is "O", 7 places ahead of "O" is "V", and 7 places ahead of "W" is "D". This means that the first word of the plaintext encrypts to "OVD" in the ciphertext. Going through the the entire plaintext in this way, we can eventually get the ciphertext of:
 
-The correct answer is “KRZ DUH BRX”. If students subtracted instead of adding in their conversion table they will end up with “ELT XOB VLR”, which is incorrect.
+```
+OVD HYL FVB
+```
 
-{teacher end}
+##### Some challenges for you to try
 
-Now that all that is out of the way, you can encrypt your own messages (assuming it doesn’t matter too much if somebody deciphers them --- as you saw above, this is not a very secure cipher!). Decide on a message to encrypt, and a rotation key. Generate a conversion table, and then encrypt your message.
+**Challenge 1**
 
-If a friend is also doing this activity, once you have your encrypted message you could give them the ciphertext and the rotation key (and get them to give you theirs), and see if you can decrypt one another's messages (remember to generate a conversion table).
+Encrypt the following message using Caesar Cipher and a key of 20
 
-{jargon-buster}
+```
+JUST ANOTHER RANDOM MESSAGE TO ENCRYPT
+```
 
-**Jargon Buster**
+**Challenge 2**
 
-The Caesar is an example of a *substitution cipher*, where each letter is substituted for another one. Other substitution ciphers improve on the Caesar cipher by not having all the letters in order, and some older written ciphers use different symbols for each symbol. However, substitution ciphers are easy to attack because a statistical attack is so easy: you just look for a few common letters and sequences of letters, and match that to common patterns in the language.
+Why is using a key of 26 on the following message not a good idea?
 
-{jargon-buster end}
+```
+USING A KEY OF TWENTY SIX IN CAESAR CIPHER IS NOT A GOOD IDEA
+```
 
-## Problems with Substitution Ciphers
+{panel type="teacher-note" summary="Answer for the challenges"}
+For the first challenge, the answer is:
 
-We have looked at one way of cracking Caesar cipher: using patterns in the text. By looking for patterns such as one letter words, other short words, double letter patterns, apostrophe positions, and knowing rules such as all words (excluding some acronyms and words written in txt language of course) must contain at least one of a, e, i, o, u, or y, you were probably able to decipher the messages in the book with little difficulty.
+```
+DOMN UHINBYL LUHXIG GYMMUAY NI YHWLSJN
+```
 
-There are many other ways of cracking Caeser cipher which we will look at in this section. Understanding various common attacks on ciphers is important when looking at the security of more sophisticated ciphers.
+Note that if students subtracted instead of added, or used the interactive incorrectly, then they will get the wrong answer.
 
-### Frequency Analysis Attacks
+For the second challenge, the answer is hopefully obvious to the students. Using a key of 26 makes the plaintext and the ciphertext the same --- the equivalent of not using encryption at all!
+{panel end}
 
-Frequency analysis means looking at how many times each letter appears in the encrypted message, and using this information to crack the message. A letter that appears many times in  a message is far more likely to be “T” than “Z”!
 
-For example, try copying and pasting the following text into the statistical analyser at [http://www.richkni.co.uk/php/crypta/freq.php](http://www.richkni.co.uk/php/crypta/freq.php). What is the most common letter in the code? Which English letter is that likely to be?
+{panel type="curiosity" summary="ROT13 Caesar Cipher"}
+The Caesar cipher with a key of 13 is the same as an approach called [ROT13 (rotate 13 characters)](http://en.wikipedia.org/wiki/Rot_13), which is sometimes used to obscure things like the punchline of a joke, a spoiler for a story, the answer to a question, or text that might be offensive. It is easy to decode (and there are plenty of automatic systems for doing so), but the user has to deliberately ask to see the deciphered version. A key of 13 for a Caesar cipher has the interesting property that the encryption method is identical to the decryption method i.e. the same program can be used for both. Many strong encryption methods try to make the encryption and decryption processes as similar as possible so that the same software and/or hardware can be used for both parts of the task, generally with only minor adaptions.
+{panel end}
+
+### Problems with Substitution Ciphers
+
+{panel type="jargon-buster" summary="What is a substitution cipher?"}
+A substitution cipher simply means that each letter in the plaintext is substituted with another letter to form the ciphertext. If the same letter occurs more than once in the plaintext then it appears the same at each occurrence in the ciphertext. For example the phrase "HELLO THERE" has multiple H's, E's, and L's. All the H's in the plaintext might change to "C" in the ciphertext for example. Casear Cipher is an example of a substitution cipher. Other substitution ciphers improve on the Caesar cipher by not having all the letters in order, and some older written ciphers use different symbols for each symbol. However, substitution ciphers are easy to attack because a statistical attack is so easy: you just look for a few common letters and sequences of letters, and match that to common patterns in the language.
+{panel end}
+
+So far, we have considered one way of cracking Caesar cipher: using patterns in the text. By looking for patterns such as one letter words, other short words, double letter patterns, apostrophe positions, and knowing rules such as all words must contain at least one of a, e, i, o, u, or y (excluding some acronyms and words written in txt language of course), cracking Caesar Cipher by looking for patterns is easy. There are many other ways of cracking Caeser cipher which we will look at in this section. Understanding various common attacks on ciphers is important when looking at sophisticated cryptosystems which are used in practice.
+
+#### Frequency Analysis Attacks
+
+Frequency analysis means looking at how many times each letter appears in the encrypted message, and using this information to crack the code. A letter that appears many times in a message is far more likely to be “T” than “Z”, for example. Putting the following text into a statistical analyser such as this one on [this website](http://www.richkni.co.uk/php/crypta/freq.php) will give the output in the table below.
+
+```
+F QTSL RJXXFLJ HTSYFNSX QTYX TK
+XYFYNXYNHFQ HQZJX YMFY HFS GJ
+ZXJI YT FSFQDXJ BMFY YMJ RTXY
+KWJVZJSY QJYYJWX FWJ, FSI JAJS
+YMJ RTXY HTRRTS UFNWX TW YWNUQJX
+TK QJYYJWX HFS MJQU YT GWJFP
+YMJ HTIJ
+```
 
 {comment}
-
-.. xhtml5 write a statistical analyser to have inline
-
+TODO: Reduce line spacing in this table or convert it to an image
 {comment end}
 
 ```
-F QTSL RJXXFLJ HTSYFNSX QTYX TK XYFYNXYNHFQ HQZJX YMFY HFS GJ ZXJI YT FSFQDXJ BMFY YMJ RTXY KWJVZJSY QJYYJWX FWJ, FSI JAJS YMJ RTXY HTRRTS UFNWX TW YWNUQJX TK QJYYJWX HFS MJQU YT GWJFP YMJ HTIJ
+Number of occurrences of each letter in the ciphertext
+
+J: 22          Q: 9          K: 3          D: 1
+Y: 21          W: 8          U: 3          B: 1
+F: 15          H: 7          Z: 3          P: 1
+X: 15          M: 6          I: 3          V: 1
+T: 13          N: 5          G: 2          A: 1
+S: 10          R: 5          L: 2
 ```
 
-{teacher}
+"E" is the most common letter in the English alphabet. It is therefore a reasonable guess that "J" in the ciphertext represents "E" in the plaintext. Because "J" is 5 letters ahead of "E" in the alphabet, we can guess that the key is 5. If you put the ciphertext into the above interactive and set a key of 5, you will find that this is indeed the correct key. If it hadn't been (i.e. the output was still garbled), we could have then tried assuming that "J" is "T". This would give a key of 16 (note that when counting, we needed to go back to "A" when we got to "Z").
 
-This message decodes to: A LONG MESSAGE CONTAINS LOTS OF STATISTICAL CLUES THAT CAN BE USED TO ANALYSE WHAT THE MOST FREQUENT LETTERS ARE, AND EVEN THE MOST COMMON PAIRS OR TRIPLES OF LETTERS CAN HELP TO BREAK THE CODE
+The message you should have gotten is:
 
-{teacher end}
+```
+A LONG MESSAGE CONTAINS LOTS OF
+STATISTICAL CLUES THAT CAN BE
+USED TO ANALYSE WHAT THE MOST
+FREQUENT LETTERS ARE, AND EVEN
+THE MOST COMMON PAIRS OR TRIPLES
+OF LETTERS CAN HELP TO BREAK
+THE CODE
+```
 
-The most common letter in most English text is the letter E, so it makes sense to try to decrypt the message guessing that the most common letter in the ciphertext corresponds to E.
+As the message says, long messages contain a lot of statistical clues. Very short messages (e.g. only a few words) are unlikely to have obvious statistical trends. Very long messages (e.g. entire books) will *almost* always have "E" as the most common letter. Wikipedia has a [list of letter frequencies](https://en.wikipedia.org/wiki/Letter_frequency#Relative_frequencies_of_letters_in_the_English_language), which you might find useful.
 
-If that doesn't work, you could see if the second most common letter in the ciphertext is E, and so on.
-
-{curiosity}
-
-**Curiosity**
-
+{panel type="curiosity" summary="The letter E isn't always the most common letter..."}
 Although in almost all English texts the letter E is the most common letter, it isn't always. For example, the [1939 novel *Gadsby* by Ernest Vincent Wright](http://en.wikipedia.org/wiki/Gadsby_(novel)) doesn't contain a single letter E (this is called a lipogram). Furthermore, the text you're attacking may not be English. During World War 1 and 2, the US military had many Native American [Code talkers](http://en.wikipedia.org/wiki/Code_talker) translate messages into their own language, which provided a strong layer of security at the time.
+{panel end}
 
-{curiosity end}
+##### Some challenges for you to try
 
-{curiosity}
+Put the ciphertext into the above frequency analyser, guess what the key is (using the method explained above), and then try using that key with the ciphertext in the interactive above. Try to guess the key with as few guesses as you can!
 
-**Curiosity**
+**Challenge 1**
 
+```
+WTGT XH PCDIWTG BTHHPVT IWPI NDJ HWDJAS WPKT CD IGDJQAT QGTPZXCV LXIW ATIITG UGTFJTCRN PCPANHXH
+```
+**Challenge 2**
+
+```
+OCDN ODHZ OCZ HZNNVBZ XJIOVDIN GJON JA OCZ GZOOZM O, RCDXC DN OCZ NZXJIY HJNO XJHHJI GZOOZM DI OCZ VGKCVWZO
+```
+
+**Challenge 3**
+
+```
+BGDTCU BCEJ, BCXKGT, CPF BCPG BQQOGF VJTQWIJ VJG BQQ
+```
+
+{panel type="teacher-note" summary="Answer for the challenges"}
+For the first challenge, the most common letter is "E", with a key of 15
+
+'''
+HERE IS ANOTHER MESSAGE THAT YOU SHOULD HAVE NO TROUBLE BREAKING WITH LETTER FREQUENCY ANALYSIS
+'''
+
+For the second challenge, the most common letter is "T", with a key of
+
+'''
+THIS TIME THE MESSAGE CONTAINS LOTS OF THE LETTER T, WHICH IS THE SECOND MOST COMMON LETTER IN THE ALPHABET
+'''
+
+For the third challenge, the most common letter is "Z", with a key of 2. Obviously this one was a lot more challenging than the other two!
+
+'''
+ZEBRAS ZACH, ZAVIER, AND ZANE ZOOMED THROUGH THE ZOO
+'''
+
+{panel end}
+
+
+{panel type="curiosity" summary="The Vigenere Cipher"}
 A slightly stronger cipher than the Caesar cipher is the [Vigenere cipher](http://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher), which is created by using multiple Caesar ciphers, where there is a key phrase (e.g. "acb"), and each letter in the key gives the offset (in the example this would be 1, 3, 2). These offsets are repeated to give the offset for encoding each character in the plaintext.
 
 By having multiple caesar ciphers, common letters such as E will no longer stand out as much, making frequency analysis a lot more challenging. The following website shows the effect on the distribution.
 [http://www.simonsingh.net/The_Black_Chamber/vigenere_strength.html](http://www.simonsingh.net/The_Black_Chamber/vigenere_strength.html)
 
-However, while this makes the Vigenere cipher more challenging to crack than the Caeser cipher, ways have been found to crack it. In fact, once you know the key length, it just breaks down to cracking several Caesar ciphers (which you have seen is straightforward!). Several statistical methods have been devised for working out the key length.
+However, while this makes the Vigenere cipher more challenging to crack than the Caeser cipher, ways have been found to crack it. In fact, once you know the key length, it just breaks down to cracking several Caesar ciphers (which as you have seen is straightforward, and you can even use frequency analysis on the individual Caesar Ciphers!). Several statistical methods have been devised for working out the key length.
 
-A brute force attack is harder for the Vigenere cipher because there are a lot more possible keys. In principle there isn't a limit to the number of key phrases possible, although if the phrase is too long then keeping track of the key would be difficult.
+A brute force attack is harder for the Vigenere cipher because there are a lot more possible keys. The Vigenere cipher is known as a *polyalphabetic substitution cipher*, since it is uses multiple substitution rules.
+{panel end}
 
-The Vigenere cipher is known as a *polyalphabetic substitution cipher*, since it is uses multiple substitution rules.
 
-{curiosity end}
+#### Plain Text Attacks
 
-### Plain Text Attacks
-
-Another kind of attack is the *known plaintext* attack, where you know part or all of the solution. For example, if you know that I start all my messages with "HI THERE", what is the key for the following message?
+Another kind of attack is the *known plaintext* attack, where you know part or all of the solution. For example, if you know that I start all my messages with "HI THERE", you can easily determine the key for the following message.
 
 ```
 AB MAXKX LXVKXM FXXMBGZ TM MPH TF MANKLWTR
 ```
 
-{teacher}
+Even if you did not know the key was a rotation (not all substitution ciphers are), you have learnt that A->H, B->I, M->T, X->E, and K->R. This goes a long way towards deciphering the message. The deciphered message is:
 
-The message is "HI THERE SECRET MEETING AT TWO AM THURSDAY". Only one character is needed to crack it - the H corresponds to an A, and that gives the key.
+```
+HI THERE SECRET MEETING AT TWO AM THURSDAY
+```
 
-{teacher end}
-
-Even if you did not know the key was a rotation, you have learnt that A->H, B->I, M->T, X->E, and K->R. This goes a long way towards deciphering the message!
-
-A known plaintext attack is trivial for a Caesar cipher, but a good code shouldn't have this vulnerability because there it can be surprisingly easy for someone to know that a particular message is being sent. For example, a common message might be "Nothing to report", or in online banking there are likely to be common messages like headings in a bank account or parts of the web page that always appear.
-
-Even worse is a *chosen plaintext attack*, where you trick someone into sending your chosen message through their system.
+A known plaintext attack destroys Caesar cipher, but a good cryptosystem shouldn't have this vulnerability because it can be surprisingly easy for someone to know that a particular message is being sent. For example, a common message might be "Nothing to report", or in online banking there are likely to be common messages like headings in a bank account or parts of the web page that always appear. Even worse is a *chosen plaintext attack*, where you trick someone into sending your chosen message through their system so that you can see what its ciphertext is.
 
 For this reason, it is essential for any good cryptosystem to not be breakable, even if the attacker has pieces of plaintext along with their corresponding ciphertext to work with.
 
-Also, the cryptosystem should not give different ciphertext each time the same plaintext message is encrypted. It may initially sound impossible to achieve this, although there are several clever techniques used by real cryptosystems.
+Also, the cryptosystem should give different ciphertext each time the same plaintext message is encrypted. It may initially sound impossible to achieve this, although there are several clever techniques used by real cryptosystems.
 
-### Brute force Attacks to Guess the Key
-
-{teacher}
-
-A good question to ask students to ensure they are understanding is “Why are there 25 possible keys, rather than 26?”
-
-{teacher end}
+#### Brute force Attacks
 
 Another approach to cracking a ciphertext is a *brute force attack*, which involves trying out all possible keys, and seeing if any of them produce intelligible text. This is easy for a Caesar cipher because there are only 25 possible keys. For example, the following ciphertext is a single word, but is too short for a statistical attack. Try putting it into the decoder above, and trying keys until you decipher it.
 
@@ -300,61 +358,44 @@ Another approach to cracking a ciphertext is a *brute force attack*, which invol
 EIJUDJQJYEKI
 ```
 
-{comment}
-
-.. tcb xjrm This interactive doesn’t work. Could be because all the elements have the same ids as the above interactive?
-.. I've deleted the interactive for the moment, will replace it after CS4HS
-
-{comment end}
-
-These days encryption keys are normally numbers that are 128 bits or longer. You could calculate how long it would take to try out every possible 128 bit number if a computer could test a million every second (including testing if each decoded text contains English words). It will eventually crack the message, but would it be any use after that amount of time?
-
-{teacher}
-
+{panel type="teacher-note" summary="Answer for the the above question"}
 The word is "ostentatious", and has been coded by shifting 16 letters to the right (or 10 to the left).
+{panel end}
 
-{teacher end}
+These days encryption keys are normally numbers that are 128 bits or longer. You could calculate how long it would take to try out every possible 128 bit number if a computer could test a million every second (including testing if each decoded text contains English words). It will eventually crack the message, but after the amount of time it would take, it's unlikely to be useful anymore --- and the user of the key has probably changed it!
 
-{curiosity}
+Infact, if we analyse it, a 128 bit key at 1,000,000 per second would take 10,790,283,070,000,000,000,000,000 years to test. Of course, it might find something in the first year, but the chances of that are ridiculously low, and it would be more realistic to hope to win the top prize in Lotto three times consecutively (and you'd probably get more money). On average, it will take around half that amount, i.e. a bit more than 5,000,000,000,000,000,000,000,000 years. Even if you get a really fast computer which can check one trillion keys a second (rather unrealistic in practice), it would still take around 5,000,000,000,000 years. Even if you could get one million of those computers (even more unrealistic in practice), it would still take 5,000,000 years.
 
-**Key size in general substition ciphers**
+And even if you did have that hardware, then people would start using bigger keys. Every bit added to the key will double the number of years required to brute force it. This is how real cryptosystems protect themselves from brute force attacks. Cryptography relies a lot on low probabilities of success.
 
-While Caesar cipher has a key specifying a rotation, a more general substitution cipher could randomly scramble the entire alphabet. This requires a key consisting of a sequence of 26 letters or numbers, specifying which letter maps onto each other one. For example, the first part of the key could be “D, Z, E”, which would mean D -> A, Z -> B, E ->C. The key would have to have another 23 letters in order to specify the rest of the mapping.
+{panel type="curiosity" summary="More general substitution ciphers"}
+While Caesar cipher has a key specifying a rotation, a more general substitution cipher could randomly scramble the entire alphabet. This requires a key consisting of a sequence of 26 letters or numbers, specifying which letter maps onto each other one. For example, the first part of the key could be “D, Z, E”, which would mean D: A, Z: B, E:C. The key would have to have another 23 letters in order to specify the rest of the mapping.
 
 This increases the number of possible keys, and thus reduces the risk of a brute force attack. A can be substituted for any of the 26 letters in the alphabet, B can then be substituted for any of the 25 remaining letters (26 minus the letter already substituted for A), C can then be substituted for any of the 24 remaining letters…
 
 This gives us 26 possibilities for A times 25 possibilities for B times 24 possibilities for C.. all the way down to 2 possibilities for Y and 1 possibility for Z.
 26*25*24*23*22*21*20*19*18*17*16*15*14*13*12*11*10*9*8*7*6*5*4*3*2*1 = 26!
-Representing each of these possibilites requires around 88 bits, making the cipher’s key size around 88 bits!
+Representing each of these possibilites requires around 88 bits, making the cipher’s key size around 88 bits, which is below modern standards, although still not too bad!
 
-However, this only solves one of the problems. The other techniques for breaking caeser cipher we have looked at are still highly effective on all substitution ciphers. For this reason, we need better ciphers in practice, which we will look at shortly!
+However, this only solves one of the problems. The other techniques for breaking caeser cipher we have looked at are still highly effective on all substitution ciphers, in particular the frequency analysis. For this reason, we need better ciphers in practice, which we will look at shortly.
+{panel end}
 
-{curiosity end}
+{panel type="curiosity" summary="The Vigenere Cipher - a slightly stronger substitution cipher"}
+A slightly stronger substitution cipher than the Caesar cipher is the [Vigenere cipher](http://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher), which is created by using multiple Caesar ciphers, where there is a key phrase (e.g. "acb"), and each letter in the key gives the offset (in the example this would be 1, 3, 2). These offsets are repeated to give the offset for encoding each character in the plaintext.
 
-{teacher}
+By having multiple caesar ciphers, common letters such as E will no longer stand out as much, making frequency analysis a lot more challenging. The following website shows the effect on the distribution.
+[http://www.simonsingh.net/The_Black_Chamber/vigenere_strength.html](http://www.simonsingh.net/The_Black_Chamber/vigenere_strength.html)
 
-A 128 bit key at 1,000,000 per second would take 10,790,283,070,000,000,000,000,000 years to test. Of course, it might find something in the first year, but the chances of that are ridiculously low, and it would be more realistic to hope to win the top prize in Lotto three times consecutively (and you'd get more money). Cryptography relies a lot on low probabilities of success!
+However, while this makes the Vigenere cipher more challenging to crack than the Caeser cipher, ways have been found to crack it. In fact, once you know the key length, it just breaks down to cracking several Caesar ciphers (which as you have seen is straightforward, and you can even use frequency analysis on the individual Caesar Ciphers!). Several statistical methods have been devised for working out the key length.
 
-{teacher end}
+A brute force attack is harder for the Vigenere cipher because there are a lot more possible keys. The Vigenere cipher is known as a *polyalphabetic substitution cipher*, since it is uses multiple substitution rules.
+{panel end}
 
-{jargon-buster}
-
- **Jargon Buster**
-
+{panel type="jargon-buster" summary="Terminology you should now be familiar with"}
 The main terminology you should be familiar with now is that a *plaintext* is *encrypted* by to create a *ciphertext* using an *encryption key*. Someone without the encryption key who wants to *attack* the cipher could try various approaches, including a *brute force attack* (trying out all possible keys), a *frequency analysis attack* (looking for statistical patterns), and a *known plaintext attack* (matching some known text with the cipher to work out the key).
 
-{jargon-buster end}
-
-{curiosity}
-
- **Steganography**
-
-Cryptography is about hiding the content of a message, but sometimes it's important to hide the *existence* of the message. Otherwise an enemy might figure out that something is being planned just because a lot more messages are being sent, even though they can't read them.
-One way to achieve this is via *steganography*, where a secret message is hidden inside another message that seems innocuous. A classic scenario would be to publish a message in the public notices of a newspaper or send a letter from prison where the number of letters in each word represent a code. To a casual reader, the message might seem unimportant (and even say the opposite of the hidden one), but someone who knows the code could work it out. Messages can be hidden in digital images by making unnoticable changes to pixels so that they store some information. You can find out [more about steganography on Wikipedia](http://en.wikipedia.org/wiki/Steganography) or in this [lecture on steganography](http://www.youtube.com/watch?v=Py-qu9KWXhk#t=29).
-
-Two fun uses of steganography that you can try to decode yourself are a [film about ciphers that contains hidden ciphers (called "The Thomas Beale Cipher")](http://www.thomasbealecipher.com/), and an activity that has [five-bit text codes hidden in music](http://csunplugged.org/modem).
-
-{curiosity end}
+If you were given an example of a simple cipher being used, you should be able to talk about it using the proper terminology.
+{panel end}
 
 ## Public Key Systems
 
@@ -796,6 +837,18 @@ On the positive side, [quantum information transfer protocols](http://en.wikiped
 .. enigma story http://www.mtholyoke.edu/~adurfee/cryptology/enigma_j.html
 
 {comment end}
+
+{curiosity}
+
+ **Steganography**
+
+Cryptography is about hiding the content of a message, but sometimes it's important to hide the *existence* of the message. Otherwise an enemy might figure out that something is being planned just because a lot more messages are being sent, even though they can't read them.
+One way to achieve this is via *steganography*, where a secret message is hidden inside another message that seems innocuous. A classic scenario would be to publish a message in the public notices of a newspaper or send a letter from prison where the number of letters in each word represent a code. To a casual reader, the message might seem unimportant (and even say the opposite of the hidden one), but someone who knows the code could work it out. Messages can be hidden in digital images by making unnoticable changes to pixels so that they store some information. You can find out [more about steganography on Wikipedia](http://en.wikipedia.org/wiki/Steganography) or in this [lecture on steganography](http://www.youtube.com/watch?v=Py-qu9KWXhk#t=29).
+
+Two fun uses of steganography that you can try to decode yourself are a [film about ciphers that contains hidden ciphers (called "The Thomas Beale Cipher")](http://www.thomasbealecipher.com/), and an activity that has [five-bit text codes hidden in music](http://csunplugged.org/modem).
+
+{curiosity end}
+
 
 ## Further reading
 
