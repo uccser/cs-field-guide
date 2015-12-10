@@ -52,6 +52,7 @@ shift = (character, rotation=3) ->
     ### This shifts a character by rotation characters using the standard
         caesar cipher
     ###
+
     index = ALPHABET.indexOf(character)
     new_index = (index + rotation) %% ALPHABET.length
     return ALPHABET[(index + rotation) %% ALPHABET.length]
@@ -75,12 +76,17 @@ decrypt = (text, rotation=3) ->
 
 eventStream("#interactive-caesar-encrypt").subscribe
     next: ->
-        key = Number $('#interactive-caesar-key-input')
-        original = $("#interactive-caesar-encrypt").val().toUpperCse()
+        key = Number $('#interactive-caesar-key-input').val()
+        original = $("#interactive-caesar-plaintext").val().toUpperCase()
         $('#interactive-caesar-plaintext').val(original)
         $('#interactive-caesar-ciphertext').val encrypt(original, key)
 
-
+eventStream("#interactive-caesar-decrypt").subscribe
+    next: ->
+        key = Number $("#interactive-caesar-key-input").val()
+        original = $("#interactive-caesar-ciphertext").val().toUpperCase()
+        $('#interactive-caesar-ciphertext').val(original)
+        $('#interactive-caesar-plaintext').val decrypt(original, key)
 
 ### This endlessly gets button presses and either encrypts or decrypts
         depending on which button was pressed

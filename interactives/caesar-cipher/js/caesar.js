@@ -214,10 +214,20 @@ decrypt = function(text, rotation) {
 eventStream("#interactive-caesar-encrypt").subscribe({
   next: function() {
     var key, original;
-    key = Number($('#interactive-caesar-key-input'));
-    original = $("#interactive-caesar-encrypt").val().toUpperCse();
+    key = Number($('#interactive-caesar-key-input').val());
+    original = $("#interactive-caesar-plaintext").val().toUpperCase();
     $('#interactive-caesar-plaintext').val(original);
     return $('#interactive-caesar-ciphertext').val(encrypt(original, key));
+  }
+});
+
+eventStream("#interactive-caesar-decrypt").subscribe({
+  next: function() {
+    var key, original;
+    key = Number($("#interactive-caesar-key-input").val());
+    original = $("#interactive-caesar-ciphertext").val().toUpperCase();
+    $('#interactive-caesar-ciphertext').val(original);
+    return $('#interactive-caesar-plaintext').val(decrypt(original, key));
   }
 });
 
