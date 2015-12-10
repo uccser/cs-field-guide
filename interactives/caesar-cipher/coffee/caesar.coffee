@@ -25,15 +25,7 @@ keyCodes =
     UP: 38
 
 
-
-singleEvent = (selector="document", events...) ->
-    ### Returns a promise for a single event on a single element
-        with the event handler supplied by jQuery
-    ###
-    return new Promise (resolve) ->
-        $(selector).one events.join(' '), resolve
-
-eventStream = (selectors="document", events...) ->
+eventStream = (selectors="document", events="click") ->
     ### Returns an Observable which can be subscribed to for the given events
         on a given element
     ###

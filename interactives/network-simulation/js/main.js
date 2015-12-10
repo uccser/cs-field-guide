@@ -1,99 +1,6 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-// shim for using process in browser
-
-var process = module.exports = {};
-var queue = [];
-var draining = false;
-var currentQueue;
-var queueIndex = -1;
-
-function cleanUpNextTick() {
-    draining = false;
-    if (currentQueue.length) {
-        queue = currentQueue.concat(queue);
-    } else {
-        queueIndex = -1;
-    }
-    if (queue.length) {
-        drainQueue();
-    }
-}
-
-function drainQueue() {
-    if (draining) {
-        return;
-    }
-    var timeout = setTimeout(cleanUpNextTick);
-    draining = true;
-
-    var len = queue.length;
-    while(len) {
-        currentQueue = queue;
-        queue = [];
-        while (++queueIndex < len) {
-            if (currentQueue) {
-                currentQueue[queueIndex].run();
-            }
-        }
-        queueIndex = -1;
-        len = queue.length;
-    }
-    currentQueue = null;
-    draining = false;
-    clearTimeout(timeout);
-}
-
-process.nextTick = function (fun) {
-    var args = new Array(arguments.length - 1);
-    if (arguments.length > 1) {
-        for (var i = 1; i < arguments.length; i++) {
-            args[i - 1] = arguments[i];
-        }
-    }
-    queue.push(new Item(fun, args));
-    if (queue.length === 1 && !draining) {
-        setTimeout(drainQueue, 0);
-    }
-};
-
-// v8 likes predictible objects
-function Item(fun, array) {
-    this.fun = fun;
-    this.array = array;
-}
-Item.prototype.run = function () {
-    this.fun.apply(null, this.array);
-};
-process.title = 'browser';
-process.browser = true;
-process.env = {};
-process.argv = [];
-process.version = ''; // empty string to avoid regexp issues
-process.versions = {};
-
-function noop() {}
-
-process.on = noop;
-process.addListener = noop;
-process.once = noop;
-process.off = noop;
-process.removeListener = noop;
-process.removeAllListeners = noop;
-process.emit = noop;
-
-process.binding = function (name) {
-    throw new Error('process.binding is not supported');
-};
-
-process.cwd = function () { return '/' };
-process.chdir = function (dir) {
-    throw new Error('process.chdir is not supported');
-};
-process.umask = function() { return 0; };
-
-},{}],2:[function(require,module,exports){
-var CharView, Observable, animationFrames, canvas, char, eventStream, positionX, positionY, start,
-  modulo = function(a, b) { return (+a % (b = +b) + b) % b; };
+"use strict";
+var Observable, SendMessage, animationFrames, eventStream;
 
 require("es5-shim");
 
@@ -146,82 +53,70 @@ animationFrames = function() {
 
   /* Creates an observable of animation frames */
   return new Observable(function(subscriber) {
-    var handler, requestID;
+    var begin, handler, requestID, start;
     if (typeof subscriber.start === "function") {
       subscriber.start();
     }
-    handler = function(time) {
+    start = null;
+    begin = function(time) {
       var requestID;
+      start = time;
       if (typeof subscriber.next === "function") {
-        subscriber.next(time);
+        subscriber.next(0);
       }
       return requestID = window.requestAnimationFrame(handler);
     };
-    requestID = window.requestAnimationFrame(handler);
+    handler = function(time) {
+      var requestID;
+      if (typeof subscriber.next === "function") {
+        subscriber.next(time - start);
+      }
+      return requestID = window.requestAnimationFrame(handler);
+    };
+    requestID = window.requestAnimationFrame(begin);
     return function() {
       return window.cancelAnimationFrame(requestID);
     };
   });
 };
 
-CharView = (function() {
-  function CharView(char1) {
-    this.char = char1;
+SendMessage = (function() {
+
+  /* A SendMessage is simply a host that sends a message
+   */
+  function SendMessage() {
+    this.time = 0;
   }
 
-  CharView.prototype.render = function(canvas, opts) {
-    var centerX, centerY, cornerX, cornerY, ctx, ref, ref1, ref2, size;
-    if (opts == null) {
-      opts = {};
-    }
-    centerX = (ref = opts.centerX) != null ? ref : 0;
-    centerY = (ref1 = opts.centerY) != null ? ref1 : 0;
-    size = (ref2 = opts.size) != null ? ref2 : 50;
-    ctx = canvas.getContext('2d');
-    cornerX = centerX - size / 2;
-    cornerY = centerY - size / 2;
-    ctx.fillStyle = 'green';
-    ctx.fillRect(cornerX, cornerY, size, size);
-    return ctx.textBaseline;
+  SendMessage.prototype.next = function(packet) {
+
+    /* On recieving a packet we'll assume its an ACK or a NACK so inspect
+        it and add it to the start of the message queue if its a NACK
+     */
   };
 
-  return CharView;
+  SendMessage.prototype.connect = function(network) {
+
+    /* Connects a network to the given host by subscribing the network
+        to the sender and vice versa via the observable interface
+     */
+  };
+
+  SendMessage.prototype.sendMessage = function(message) {
+
+    /* Loads a message reading for sending when a new timestamp comes in
+        since the last message was sended
+     */
+  };
+
+  return SendMessage;
 
 })();
 
-canvas = $("#app-thing")[0];
 
-start = performance.now();
-
-positionX = 0;
-
-positionY = canvas.height / 2;
-
-char = new CharView("X");
-
-animationFrames().subscribe({
-  next: function(time) {
-    var ctx;
-    ctx = canvas.getContext('2d');
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    positionX = (performance.now() - start) / 2;
-    if (positionX > canvas.width) {
-      positionX = modulo(positionX, canvas.width);
-      start = performance.now();
-    }
-    positionY = 20 * (Math.sin((performance.now() - start) / 40)) + canvas.height / 2;
-    return char.render(canvas, {
-      centerX: positionX,
-      centerY: positionY,
-      size: 50
-    });
-  }
-});
-
-
-},{"./observable.coffee":3,"es5-shim":4,"es6-shim":5}],3:[function(require,module,exports){
+},{"./observable.coffee":2,"es5-shim":3,"es6-shim":4}],2:[function(require,module,exports){
 "use strict";
-var Observable, identity;
+var Observable, beat, identity;
 
 Observable = require('zen-observable');
 
@@ -328,8 +223,6 @@ Observable.prototype.broadcast = function() {
   })(this));
 };
 
-Observable.active = Symbol();
-
 Observable.prototype.start = function() {
   var observable, subscriber, subscription;
   subscriber = null;
@@ -393,7 +286,7 @@ Observable.prototype.distinct = function(keySelector) {
     return function(subscriber) {
       var found, subscript;
       found = new Set();
-      return subscript = _this.subscribe({
+      subscript = _this.subscribe({
         start: function(value) {
           return typeof susbcriber.start === "function" ? susbcriber.start(value) : void 0;
         },
@@ -409,6 +302,9 @@ Observable.prototype.distinct = function(keySelector) {
           return typeof subscriber.complete === "function" ? subscriber.complete(value) : void 0;
         }
       });
+      return function() {
+        return subscription.unsubscribe();
+      };
     };
   })(this));
 };
@@ -424,7 +320,7 @@ Observable.prototype.debounce = function(time) {
     return function(subscriber) {
       var last, subscription;
       last = -Infinity;
-      return subscription = _this.subscribe({
+      subscription = _this.subscribe({
         start: function(value) {
           return typeof subscriber.start === "function" ? subscriber.start(value) : void 0;
         },
@@ -445,6 +341,9 @@ Observable.prototype.debounce = function(time) {
           return typeof subscriber.complete === "function" ? subscriber.complete(value) : void 0;
         }
       });
+      return function() {
+        return subscription.unsubscribe();
+      };
     };
   })(this));
 };
@@ -456,7 +355,7 @@ Observable.prototype.throttle = function(period) {
     return function(subscriber) {
       var last, subscription;
       last = -Infinity;
-      return subscription = _this.subscribe({
+      subscription = _this.subscribe({
         start: function(value) {
           return typeof subscriber.start === "function" ? subscriber.start(value) : void 0;
         },
@@ -475,12 +374,130 @@ Observable.prototype.throttle = function(period) {
           return typeof subscriber.complete === "function" ? subscriber.complete(value) : void 0;
         }
       });
+      return function() {
+        return subscription.unsubscribe();
+      };
     };
   })(this));
 };
 
+Observable.prototype.replay = function() {
 
-},{"zen-observable":6}],4:[function(require,module,exports){
+  /* Sends all values that were previously emitted to any new subscriber */
+  var values;
+  values = [];
+  return new Observable((function(_this) {
+    return function(subscriber) {
+      var subscription;
+      subscription = _this.subscribe({
+        start: function(value) {
+          if (typeof subscriber.start === "function") {
+            subscriber.start(value);
+          }
+          return values.forEach(function(pastValue) {
+            return typeof subscriber.next === "function" ? subscriber.next(pastValue) : void 0;
+          });
+        },
+        next: function(value) {
+          values.push(value);
+          return typeof subscriber.next === "function" ? subscriber.next(value) : void 0;
+        },
+        error: function(err) {
+          return typeof subscriber.error === "function" ? subscriber.error(err) : void 0;
+        },
+        complete: function(value) {
+          return typeof subscriber.complete === "function" ? subscriber.complete(value) : void 0;
+        }
+      });
+      return function() {
+        return subscription.unsubscribe();
+      };
+    };
+  })(this));
+};
+
+Observable.prototype.regular = function(period) {
+
+  /* Sends all values but if items come in rapid sequence it delays
+      them such that at most one is emitted each period (items may be deferred
+      later as its controlled by setTimeout)
+   */
+  return new Observable((function(_this) {
+    return function(subscriber) {
+      var last, queue, sendNext, subscription;
+      last = -Infinity;
+      queue = [];
+      sendNext = function(value) {
+        if (queue.length) {
+          queue.push(value);
+          return typeof subscriber.next === "function" ? subscriber.next(queue.shift(0)) : void 0;
+        } else {
+          return typeof subscriber.next === "function" ? subscriber.next(value) : void 0;
+        }
+      };
+      subscription = _this.subscribe({
+        start: function(value) {
+          return typeof subscriber.start === "function" ? subscriber.start(value) : void 0;
+        },
+        next: function(value) {
+          var current, delay;
+          current = Date.now();
+          if (current - last >= period) {
+            sendNext(value);
+          } else {
+            delay = period - (current - last);
+            setTimeout(function() {
+              return sendNext(value);
+            }, delay);
+          }
+          return last = current;
+        },
+        error: function(err) {
+          return typeof subscriber.error === "function" ? subscriber.error(err) : void 0;
+        },
+        complete: function(value) {
+          return typeof subscriber.value === "function" ? subscriber.value(err) : void 0;
+        }
+      });
+      return function() {
+        return subscription.unsubscribe();
+      };
+    };
+  })(this));
+};
+
+beat = function() {
+  return new Observable(function(subscriber) {
+    setTimeout(function() {
+      if (typeof subscriber.next === "function") {
+        subscriber.next(1);
+      }
+      return setTimeout(function() {
+        if (typeof subscriber.next === "function") {
+          subscriber.next(2);
+        }
+        return setTimeout(function() {
+          if (typeof subscriber.next === "function") {
+            subscriber.next(3);
+          }
+          return setTimeout(function() {
+            return typeof subscriber.next === "function" ? subscriber.next(4) : void 0;
+          }, 500);
+        }, 500);
+      }, 500);
+    }, 500);
+    return function() {};
+  });
+};
+
+beat().regular(1000).subscribe({
+  next: function(n) {
+    return console.log("Beat " + n);
+  }
+});
+
+
+},{"zen-observable":6}],3:[function(require,module,exports){
 /*!
  * https://github.com/es-shims/es5-shim
  * @license es5-shim Copyright 2009-2015 by contributors, MIT License
@@ -2215,7 +2232,7 @@ if (String(new RangeError('test')) !== 'RangeError: test') {
 
 }));
 
-},{}],5:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 (function (process,global){
  /*!
   * https://github.com/paulmillr/es6-shim
@@ -5579,7 +5596,100 @@ if (String(new RangeError('test')) !== 'RangeError: test') {
 }));
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"_process":1}],6:[function(require,module,exports){
+},{"_process":5}],5:[function(require,module,exports){
+// shim for using process in browser
+
+var process = module.exports = {};
+var queue = [];
+var draining = false;
+var currentQueue;
+var queueIndex = -1;
+
+function cleanUpNextTick() {
+    draining = false;
+    if (currentQueue.length) {
+        queue = currentQueue.concat(queue);
+    } else {
+        queueIndex = -1;
+    }
+    if (queue.length) {
+        drainQueue();
+    }
+}
+
+function drainQueue() {
+    if (draining) {
+        return;
+    }
+    var timeout = setTimeout(cleanUpNextTick);
+    draining = true;
+
+    var len = queue.length;
+    while(len) {
+        currentQueue = queue;
+        queue = [];
+        while (++queueIndex < len) {
+            if (currentQueue) {
+                currentQueue[queueIndex].run();
+            }
+        }
+        queueIndex = -1;
+        len = queue.length;
+    }
+    currentQueue = null;
+    draining = false;
+    clearTimeout(timeout);
+}
+
+process.nextTick = function (fun) {
+    var args = new Array(arguments.length - 1);
+    if (arguments.length > 1) {
+        for (var i = 1; i < arguments.length; i++) {
+            args[i - 1] = arguments[i];
+        }
+    }
+    queue.push(new Item(fun, args));
+    if (queue.length === 1 && !draining) {
+        setTimeout(drainQueue, 0);
+    }
+};
+
+// v8 likes predictible objects
+function Item(fun, array) {
+    this.fun = fun;
+    this.array = array;
+}
+Item.prototype.run = function () {
+    this.fun.apply(null, this.array);
+};
+process.title = 'browser';
+process.browser = true;
+process.env = {};
+process.argv = [];
+process.version = ''; // empty string to avoid regexp issues
+process.versions = {};
+
+function noop() {}
+
+process.on = noop;
+process.addListener = noop;
+process.once = noop;
+process.off = noop;
+process.removeListener = noop;
+process.removeAllListeners = noop;
+process.emit = noop;
+
+process.binding = function (name) {
+    throw new Error('process.binding is not supported');
+};
+
+process.cwd = function () { return '/' };
+process.chdir = function (dir) {
+    throw new Error('process.chdir is not supported');
+};
+process.umask = function() { return 0; };
+
+},{}],6:[function(require,module,exports){
 module.exports = require("./zen-observable.js").Observable;
 
 },{"./zen-observable.js":7}],7:[function(require,module,exports){
@@ -6072,4 +6182,4 @@ exports.Observable = Observable;
 
 }, "*");
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"_process":1}]},{},[2]);
+},{"_process":5}]},{},[1]);

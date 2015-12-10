@@ -188,53 +188,50 @@ Observable::regular = (period) ->
         later as its controlled by setTimeout)
     ###
     return new Observable (subscriber) =>
-        last = -Infinity # Allow first through immediately
         queue = []
-
-        sendNext = (value) ->
-            if queue.length
-                queue.push(value)
-                subscriber.next?(queue.shift(0))
-            else
-                subscriber.next?(value)
-
+        done = false
         subscription = @subscribe
             start: (value) ->
                 subscriber.start?(value)
             next: (value) ->
-                current = Date.now()
-                if current - last >= period
-                    sendNext(value)
-                else
-                    delay = period - (current - last)
-                    setTimeout ->
-                        sendNext(value)
-                    , delay
-                last = current
+                queue.push(value)
             error: (err) ->
                 subscriber.error?(err)
             complete: (value) ->
-                subscriber.value?(err)
+                done = true
+
+        handler = ->
+            if queue.length > 0
+                value = queue.shift(0)
+                subscriber.next?(value)
+                timeout = setTimeout handler, period
+            else if done
+                subscriber.complete?(value)
+            else
+                timeout = setTimeout handler, period
+
+        timeout = setTimeout handler, 0
 
         return ->
             subscription.unsubscribe()
+            clearTimeout(timeout)
 
-beat = ->
+heart = (period) ->
     return new Observable (subscriber) ->
-        setTimeout ->
-            subscriber.next?(1)
-            setTimeout ->
-                subscriber.next?(2)
-                setTimeout ->
-                    subscriber.next?(3)
-                    setTimeout ->
-                        subscriber.next?(4)
-                    , 500
-                , 500
-            , 500
-        , 500
-        return ->
+        i = 0
+        handler = ->
+            subscriber.next?(i)
+            i += 1
 
-beat().regular(1000).subscribe
+        interval = setInterval handler, period
+        return ->
+            clearInterval interval
+
+
+heart(50).take(4).regular(1000).subscribe
+    start: ->
+        console.log "Begun"
     next: (n) ->
         console.log "Beat #{n}"
+    complete: ->
+        console.log "Done and doner"
