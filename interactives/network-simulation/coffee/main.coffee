@@ -1,3 +1,4 @@
+"use strict"
 require("es5-shim")
 require("es6-shim")
 
@@ -46,19 +47,20 @@ animationFrames = ->
             subscriber.next?(time-start)
             requestID = window.requestAnimationFrame handler
 
-
         requestID = window.requestAnimationFrame begin
 
         return ->
             window.cancelAnimationFrame(requestID)
 
 
-class Sender
-    ### A sender is a host that can only send a packet and respond to
-        ACKS/NACKS
+class SendMessage
+    ### A SendMessage is simply a host that sends a message
     ###
     constructor: ->
         @time = 0
+    
+
+
 
 
     next: (packet) ->
