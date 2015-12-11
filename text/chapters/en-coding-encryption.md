@@ -802,25 +802,17 @@ For a really good class, you might like to also add digital signatures into the 
 
 ## Storing Passwords Securely
 
-A really interesting puzzle in encryption is storing passwords in a way that even if the database with the passwords gets leaked, the passwords are not in a usable form. Such a system has many seemingly conflicting requirements related to assumptions we must make.
+A really interesting puzzle in encryption is storing passwords in a way that even if the database with the passwords gets leaked, the passwords are not in a usable form. Such a system has many seemingly conflicting requirements.
 
 - When a user logs in, it must be possible to check that they have entered the correct password.
-- If the database is leaked, and an attacker has huge amounts of computing power, the following should still be ensured.
- - The database should not give away obvious information, such as password length, users who chose the same password, letter frequencies of the password, or patterns in the password.
- - Users should have several days/ weeks to be able to change their password before the attacker cracks it. Ideally, it should not be possible for them to ever recover the passwords.
-- There should be no way of recovering a forgotten password. If the user forgets their password, it must be reset.
+- Even if the database is leaked, and the attacker has huge amounts of computing power...
+ - The database should not give away obvious information, such as password lengths, users who chose the same passwords, letter frequencies of the passwords, or patterns in the passwords.
+ - At the very least, users should have several days/ weeks to be able to change their password before the attacker cracks it. Ideally, it should not be possible for them to ever recover the passwords.
+- There should be no way of recovering a forgotten password. If the user forgets their password, it must be reset. Even system administrators should not have access to a user's password.
 
-Most login systems have a limit to how many times you can guess a password. This protects all but the poorest passwords from being guessed through the standard interface. Suspicious login detection by checking IP address and country of origin is also becoming more common. However, none of these application enforced protections are of any use once the attacker has a copy of the database and can throw as much computational power at it as they want. This is often referred to "offline" attacking, because they can attack the database in their own time, without restrictions of the original application.
+Most login systems have a limit to how many times you can guess a password. This protects all but the poorest passwords from being guessed through a well designed login form. Suspicious login detection by checking IP address and country of origin is also becoming more common. However, none of these application enforced protections are of any use once the attacker has a copy of the database and can throw as much computational power at it as they want, without the restrictions the application enforces. This is often referred to "offline" attacking, because the attacker can attack the database in their own time.
 
-In this section, we will look at a few widely used systems for secure password storage. We will then look at a couple of case studies where large databases were leaked.
-
-
-
-
-In summary, we need to store passwords
-
-Secure password storage comes down to using clever encryption algorithms and techniques, and ensuring users choose effective passwords. Learning about password storage might also help you to understand the importance of choosing good passwords and not using the same password across multiple important sites.
-
+In this section, we will look at a few widely used algorithms for secure password storage. We will then look at a couple of case studies where large databases were leaked. Secure password storage comes down to using clever encryption algorithms and techniques, and ensuring users choose effective passwords. Learning about password storage might also help you to understand the importance of choosing good passwords and not using the same password across multiple important sites.
 
 ### Hashing passwords
 
