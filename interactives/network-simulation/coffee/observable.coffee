@@ -216,6 +216,13 @@ Observable::regular = (period) ->
             subscription.unsubscribe()
             clearTimeout(timeout)
 
+
+Observable::zip = (others...) ->
+    ### This combines multiple observables into one that emits lists of values
+        essentialy equivalent to underscore.zip but for observables
+    ###
+    
+
 heart = (period) ->
     return new Observable (subscriber) ->
         i = 0
