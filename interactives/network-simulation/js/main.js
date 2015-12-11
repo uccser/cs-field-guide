@@ -1,4 +1,97 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+// shim for using process in browser
+
+var process = module.exports = {};
+var queue = [];
+var draining = false;
+var currentQueue;
+var queueIndex = -1;
+
+function cleanUpNextTick() {
+    draining = false;
+    if (currentQueue.length) {
+        queue = currentQueue.concat(queue);
+    } else {
+        queueIndex = -1;
+    }
+    if (queue.length) {
+        drainQueue();
+    }
+}
+
+function drainQueue() {
+    if (draining) {
+        return;
+    }
+    var timeout = setTimeout(cleanUpNextTick);
+    draining = true;
+
+    var len = queue.length;
+    while(len) {
+        currentQueue = queue;
+        queue = [];
+        while (++queueIndex < len) {
+            if (currentQueue) {
+                currentQueue[queueIndex].run();
+            }
+        }
+        queueIndex = -1;
+        len = queue.length;
+    }
+    currentQueue = null;
+    draining = false;
+    clearTimeout(timeout);
+}
+
+process.nextTick = function (fun) {
+    var args = new Array(arguments.length - 1);
+    if (arguments.length > 1) {
+        for (var i = 1; i < arguments.length; i++) {
+            args[i - 1] = arguments[i];
+        }
+    }
+    queue.push(new Item(fun, args));
+    if (queue.length === 1 && !draining) {
+        setTimeout(drainQueue, 0);
+    }
+};
+
+// v8 likes predictible objects
+function Item(fun, array) {
+    this.fun = fun;
+    this.array = array;
+}
+Item.prototype.run = function () {
+    this.fun.apply(null, this.array);
+};
+process.title = 'browser';
+process.browser = true;
+process.env = {};
+process.argv = [];
+process.version = ''; // empty string to avoid regexp issues
+process.versions = {};
+
+function noop() {}
+
+process.on = noop;
+process.addListener = noop;
+process.once = noop;
+process.off = noop;
+process.removeListener = noop;
+process.removeAllListeners = noop;
+process.emit = noop;
+
+process.binding = function (name) {
+    throw new Error('process.binding is not supported');
+};
+
+process.cwd = function () { return '/' };
+process.chdir = function (dir) {
+    throw new Error('process.chdir is not supported');
+};
+process.umask = function() { return 0; };
+
+},{}],2:[function(require,module,exports){
 "use strict";
 var Observable, SendMessage, animationFrames, eventStream;
 
@@ -114,13 +207,22 @@ SendMessage = (function() {
 })();
 
 
-},{"./observable.coffee":2,"es5-shim":3,"es6-shim":4}],2:[function(require,module,exports){
+},{"./observable.coffee":3,"es5-shim":4,"es6-shim":5}],3:[function(require,module,exports){
+
+/* This is a library to extend zen-observables with some of reactiveX
+    extensions
+ */
 "use strict";
-var Observable, beat, identity;
+var Observable, identity,
+  slice = [].slice;
 
 Observable = require('zen-observable');
 
 module.exports = Observable;
+
+identity = function(value) {
+  return value;
+};
 
 Observable.prototype.take = function(n) {
   if (n == null) {
@@ -224,6 +326,10 @@ Observable.prototype.broadcast = function() {
 };
 
 Observable.prototype.start = function() {
+
+  /* This starts running an observable even if no one is subscribed
+      values are simply lost
+   */
   var observable, subscriber, subscription;
   subscriber = null;
   subscription = this.subscribe({
@@ -269,10 +375,6 @@ Observable.prototype.start = function() {
     return subscription.unsubscribe();
   };
   return observable;
-};
-
-identity = function(value) {
-  return value;
 };
 
 Observable.prototype.distinct = function(keySelector) {
@@ -381,41 +483,6 @@ Observable.prototype.throttle = function(period) {
   })(this));
 };
 
-Observable.prototype.replay = function() {
-
-  /* Sends all values that were previously emitted to any new subscriber */
-  var values;
-  values = [];
-  return new Observable((function(_this) {
-    return function(subscriber) {
-      var subscription;
-      subscription = _this.subscribe({
-        start: function(value) {
-          if (typeof subscriber.start === "function") {
-            subscriber.start(value);
-          }
-          return values.forEach(function(pastValue) {
-            return typeof subscriber.next === "function" ? subscriber.next(pastValue) : void 0;
-          });
-        },
-        next: function(value) {
-          values.push(value);
-          return typeof subscriber.next === "function" ? subscriber.next(value) : void 0;
-        },
-        error: function(err) {
-          return typeof subscriber.error === "function" ? subscriber.error(err) : void 0;
-        },
-        complete: function(value) {
-          return typeof subscriber.complete === "function" ? subscriber.complete(value) : void 0;
-        }
-      });
-      return function() {
-        return subscription.unsubscribe();
-      };
-    };
-  })(this));
-};
-
 Observable.prototype.regular = function(period) {
 
   /* Sends all values but if items come in rapid sequence it delays
@@ -424,80 +491,150 @@ Observable.prototype.regular = function(period) {
    */
   return new Observable((function(_this) {
     return function(subscriber) {
-      var last, queue, sendNext, subscription;
-      last = -Infinity;
+      var done, handler, queue, subscription, timeout;
       queue = [];
-      sendNext = function(value) {
-        if (queue.length) {
-          queue.push(value);
-          return typeof subscriber.next === "function" ? subscriber.next(queue.shift(0)) : void 0;
-        } else {
-          return typeof subscriber.next === "function" ? subscriber.next(value) : void 0;
-        }
-      };
+      done = false;
       subscription = _this.subscribe({
         start: function(value) {
           return typeof subscriber.start === "function" ? subscriber.start(value) : void 0;
         },
         next: function(value) {
-          var current, delay;
-          current = Date.now();
-          if (current - last >= period) {
-            sendNext(value);
-          } else {
-            delay = period - (current - last);
-            setTimeout(function() {
-              return sendNext(value);
-            }, delay);
-          }
-          return last = current;
+          return queue.push(value);
         },
         error: function(err) {
           return typeof subscriber.error === "function" ? subscriber.error(err) : void 0;
         },
         complete: function(value) {
-          return typeof subscriber.value === "function" ? subscriber.value(err) : void 0;
+          return done = true;
         }
       });
+      handler = function() {
+        var timeout, value;
+        if (queue.length > 0) {
+          value = queue.shift(0);
+          if (typeof subscriber.next === "function") {
+            subscriber.next(value);
+          }
+          return timeout = setTimeout(handler, period);
+        } else if (done) {
+          return typeof subscriber.complete === "function" ? subscriber.complete(value) : void 0;
+        } else {
+          return timeout = setTimeout(handler, period);
+        }
+      };
+      timeout = setTimeout(handler, 0);
       return function() {
-        return subscription.unsubscribe();
+        subscription.unsubscribe();
+        return clearTimeout(timeout);
       };
     };
   })(this));
 };
 
-beat = function() {
-  return new Observable(function(subscriber) {
-    setTimeout(function() {
-      if (typeof subscriber.next === "function") {
-        subscriber.next(1);
-      }
-      return setTimeout(function() {
-        if (typeof subscriber.next === "function") {
-          subscriber.next(2);
+Observable.prototype.zip = function() {
+  var others;
+  others = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+
+  /* This combines multiple observables into one that emits lists of values
+      essentialy equivalent to underscore.zip but for observables, if any
+      error occurs its immediately passed through, starts and completes are
+      passed as lists
+   */
+  return new Observable((function(_this) {
+    return function(subscriber) {
+      var _, completeValues, idx, num_complete, num_started, observable, observables, queues, startValues, subscriptions;
+      observables = [_this].concat(slice.call(others));
+      num_started = 0;
+      startValues = (function() {
+        var j, len, results;
+        results = [];
+        for (j = 0, len = observables.length; j < len; j++) {
+          _ = observables[j];
+          results.push(void 0);
         }
-        return setTimeout(function() {
-          if (typeof subscriber.next === "function") {
-            subscriber.next(3);
-          }
-          return setTimeout(function() {
-            return typeof subscriber.next === "function" ? subscriber.next(4) : void 0;
-          }, 500);
-        }, 500);
-      }, 500);
-    }, 500);
-    return function() {};
-  });
+        return results;
+      })();
+      num_complete = 0;
+      completeValues = (function() {
+        var j, len, results;
+        results = [];
+        for (j = 0, len = observables.length; j < len; j++) {
+          _ = observables[j];
+          results.push(void 0);
+        }
+        return results;
+      })();
+      queues = (function() {
+        var j, len, results;
+        results = [];
+        for (j = 0, len = observables.length; j < len; j++) {
+          _ = observables[j];
+          results.push([]);
+        }
+        return results;
+      })();
+      subscriptions = (function() {
+        var j, len, results;
+        results = [];
+        for (idx = j = 0, len = observables.length; j < len; idx = ++j) {
+          observable = observables[idx];
+          results.push((function(observable, idx) {
+            return observable.subscribe({
+              start: function(value) {
+                num_started += 1;
+                startValues[idx] = value;
+                if (num_started === observables.length) {
+                  return typeof subscriber.start === "function" ? subscriber.start(startValues) : void 0;
+                }
+              },
+              next: function(value) {
+                var nextValues, queue;
+                queues[idx].push(value);
+                if (queues.every(function(queue) {
+                  return queue.length > 0;
+                })) {
+                  nextValues = (function() {
+                    var k, len1, results1;
+                    results1 = [];
+                    for (k = 0, len1 = queues.length; k < len1; k++) {
+                      queue = queues[k];
+                      results1.push(queue.shift(0));
+                    }
+                    return results1;
+                  })();
+                  return typeof subscriber.next === "function" ? subscriber.next(nextValues) : void 0;
+                }
+              },
+              error: function(err) {
+                return typeof subscriber.error === "function" ? subscriber.error(err) : void 0;
+              },
+              complete: function(value) {
+                num_complete += 1;
+                completeValues[idx] = value;
+                if (num_complete === observables.length) {
+                  return typeof subscriber.complete === "function" ? subscriber.complete(completeValues) : void 0;
+                }
+              }
+            });
+          })(observable, idx));
+        }
+        return results;
+      })();
+      return function() {
+        var j, len, results, subscription;
+        results = [];
+        for (j = 0, len = subscriptions.length; j < len; j++) {
+          subscription = subscriptions[j];
+          results.push(subscription.unsubscribe());
+        }
+        return results;
+      };
+    };
+  })(this));
 };
 
-beat().regular(1000).subscribe({
-  next: function(n) {
-    return console.log("Beat " + n);
-  }
-});
 
-
-},{"zen-observable":6}],3:[function(require,module,exports){
+},{"zen-observable":6}],4:[function(require,module,exports){
 /*!
  * https://github.com/es-shims/es5-shim
  * @license es5-shim Copyright 2009-2015 by contributors, MIT License
@@ -2232,7 +2369,7 @@ if (String(new RangeError('test')) !== 'RangeError: test') {
 
 }));
 
-},{}],4:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 (function (process,global){
  /*!
   * https://github.com/paulmillr/es6-shim
@@ -5596,100 +5733,7 @@ if (String(new RangeError('test')) !== 'RangeError: test') {
 }));
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"_process":5}],5:[function(require,module,exports){
-// shim for using process in browser
-
-var process = module.exports = {};
-var queue = [];
-var draining = false;
-var currentQueue;
-var queueIndex = -1;
-
-function cleanUpNextTick() {
-    draining = false;
-    if (currentQueue.length) {
-        queue = currentQueue.concat(queue);
-    } else {
-        queueIndex = -1;
-    }
-    if (queue.length) {
-        drainQueue();
-    }
-}
-
-function drainQueue() {
-    if (draining) {
-        return;
-    }
-    var timeout = setTimeout(cleanUpNextTick);
-    draining = true;
-
-    var len = queue.length;
-    while(len) {
-        currentQueue = queue;
-        queue = [];
-        while (++queueIndex < len) {
-            if (currentQueue) {
-                currentQueue[queueIndex].run();
-            }
-        }
-        queueIndex = -1;
-        len = queue.length;
-    }
-    currentQueue = null;
-    draining = false;
-    clearTimeout(timeout);
-}
-
-process.nextTick = function (fun) {
-    var args = new Array(arguments.length - 1);
-    if (arguments.length > 1) {
-        for (var i = 1; i < arguments.length; i++) {
-            args[i - 1] = arguments[i];
-        }
-    }
-    queue.push(new Item(fun, args));
-    if (queue.length === 1 && !draining) {
-        setTimeout(drainQueue, 0);
-    }
-};
-
-// v8 likes predictible objects
-function Item(fun, array) {
-    this.fun = fun;
-    this.array = array;
-}
-Item.prototype.run = function () {
-    this.fun.apply(null, this.array);
-};
-process.title = 'browser';
-process.browser = true;
-process.env = {};
-process.argv = [];
-process.version = ''; // empty string to avoid regexp issues
-process.versions = {};
-
-function noop() {}
-
-process.on = noop;
-process.addListener = noop;
-process.once = noop;
-process.off = noop;
-process.removeListener = noop;
-process.removeAllListeners = noop;
-process.emit = noop;
-
-process.binding = function (name) {
-    throw new Error('process.binding is not supported');
-};
-
-process.cwd = function () { return '/' };
-process.chdir = function (dir) {
-    throw new Error('process.chdir is not supported');
-};
-process.umask = function() { return 0; };
-
-},{}],6:[function(require,module,exports){
+},{"_process":1}],6:[function(require,module,exports){
 module.exports = require("./zen-observable.js").Observable;
 
 },{"./zen-observable.js":7}],7:[function(require,module,exports){
@@ -6182,4 +6226,4 @@ exports.Observable = Observable;
 
 }, "*");
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"_process":5}]},{},[1]);
+},{"_process":1}]},{},[2]);
