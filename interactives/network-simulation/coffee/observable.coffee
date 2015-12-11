@@ -1,8 +1,16 @@
 #!/usr/bin/env coffee
+### This is a library to extend zen-observables with some of reactiveX
+    extensions
+###
 "use strict"
 Observable = require('zen-observable')
 
 module.exports = Observable
+
+## ----------- Tiny helpers
+identity = (value) -> value
+
+## ----------- Core observable methods
 
 Observable::take = (n=1) ->
     ### This takes the first n items from the observable then completes ###
@@ -64,6 +72,9 @@ Observable::broadcast = ->
                 subscription.unsubscribe()
 
 Observable::start = ->
+    ### This starts running an observable even if no one is subscribed
+        values are simply lost
+    ###
     subscriber = null
     subscription = @subscribe
         start: (value) ->
@@ -97,7 +108,6 @@ Observable::start = ->
     return observable
 
 
-identity = (value) -> value
 
 Observable::distinct = (keySelector=identity) ->
     ### Emits only distinct values, accepts a function for determining equality
@@ -163,24 +173,6 @@ Observable::throttle = (period) ->
         return ->
             subscription.unsubscribe()
 
-Observable::replay = ->
-    ### Sends all values that were previously emitted to any new subscriber ###
-    values = []
-    return new Observable (subscriber) =>
-        subscription = @subscribe
-            start: (value) ->
-                subscriber.start?(value)
-                values.forEach (pastValue) ->
-                    subscriber.next?(pastValue)
-            next: (value) ->
-                values.push(value)
-                subscriber.next?(value)
-            error: (err) ->
-                subscriber.error?(err)
-            complete: (value) ->
-                subscriber.complete?(value)
-        return ->
-            subscription.unsubscribe()
 
 Observable::regular = (period) ->
     ### Sends all values but if items come in rapid sequence it delays
@@ -219,26 +211,44 @@ Observable::regular = (period) ->
 
 Observable::zip = (others...) ->
     ### This combines multiple observables into one that emits lists of values
-        essentialy equivalent to underscore.zip but for observables
+        essentialy equivalent to underscore.zip but for observables, if any
+        error occurs its immediately passed through, starts and completes are
+        passed as lists
     ###
-    
+    return new Observable (subscriber) =>
+        observables = [this, others...]
 
-heart = (period) ->
-    return new Observable (subscriber) ->
-        i = 0
-        handler = ->
-            subscriber.next?(i)
-            i += 1
+        num_started = 0
+        startValues = (undefined for _ in observables)
+        num_complete = 0
+        completeValues = (undefined for _ in observables)
+        queues = ([] for _ in observables)
 
-        interval = setInterval handler, period
+        # Subscribe to every observable collecting values until we can
+        # send them off
+        subscriptions = for observable, idx in observables
+            # Do is used here to ensure a closure so callbacks set the right
+            # value of idx NOT the current value of idx
+            do (observable, idx) ->
+                observable.subscribe
+                    start: (value) ->
+                        num_started += 1
+                        startValues[idx] = value
+                        if num_started is observables.length
+                            subscriber.start?(startValues)
+                    next: (value) ->
+                        queues[idx].push(value)
+                        if queues.every((queue) -> queue.length > 0)
+                            nextValues = (queue.shift(0) for queue in queues)
+                            subscriber.next?(nextValues)
+                    error: (err) ->
+                        subscriber.error?(err)
+                    complete: (value) ->
+                        num_complete += 1
+                        completeValues[idx] = value
+                        if num_complete is observables.length
+                            subscriber.complete?(completeValues)
+
         return ->
-            clearInterval interval
-
-
-heart(50).take(4).regular(1000).subscribe
-    start: ->
-        console.log "Begun"
-    next: (n) ->
-        console.log "Beat #{n}"
-    complete: ->
-        console.log "Done and doner"
+            for subscription in subscriptions
+                subscription.unsubscribe()
