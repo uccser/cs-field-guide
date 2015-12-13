@@ -90,11 +90,11 @@ The learning objective for this activity was for students to think like cryptana
 
 When you looked at the Caesar Cipher in the previous section and (hopefully) broke it and figured out what it said, you probably noticed that there was a pattern in how letters from the original message corresponded to letters in the decoded one. Each letter in the original message decoded to the letter that was 10 places before it in the alphabet. The conversion table you drew should have highlighted this. Here's the table for the letter correspondences, where the letter "K" translates to an "A". It is okay if your conversion table mapped the opposite way, i.e. "A" to "K" rather than "K" to "A". If you were unable to break the Caesar Cipher in the previous section, go back to it now and decode it using the table.
 
-{image filename="caesar-table-2.png"}
+{image filename="ec-caesar-table-2.png"}
 
 For this example, we say the key is *10* because keys in Caesar Cipher are a number between 1 and 25 (think carefully about why we wouldn't want a key of 26!), which specify how far the alphabet should be rotated. If instead we used a key of *8*, the conversion table would be as follows.
 
-{image ec-caesar-table-3.png}
+{image filename="ec-caesar-table-3.png"}
 
 {panel type="jargon-buster" summary="What is a Key in computer science?"}
 In a Caesar Cipher, the key represents how many places the alphabet should be rotated. In the examples above, we used keys of "8" and "10". More generally though, a key is simply a value that is required to do the math for the encryption and decryption. While Caesar Cipher only has 25 possible keys, real encryption systems have an infinite number of possible keys, and preferably use keys which contains hundreds or even thousands of binary digits. Having a huge number of different possible keys is important, because it would take a computer less than a second to try all 25 Caesar Cipher keys.
@@ -392,7 +392,7 @@ When describing an encryption scenario, cryptographers often use the fictitious 
 We always assume that someone is eavesdropping on the conversation (in fact, if you're using a wireless connection, it's trivial to pick up the transmissions between Alice and Bob as long as you're in reach of the wireless network that one of them is using).
 The fictitious name for the eavesdropper is usually Eve.
 
-[{image filename="xkcd-protocol.png"}]( http://xkcd.com/1323/)
+{image filename="xkcd-protocol.png"}
 
 There are several other characters used to describe activities around encryption protocols: for example Mallory (a malicious attacker) and Trudy (an intruder). Wikipedia has a [list of Alice and Bob's friends](http://en.wikipedia.org/wiki/Alice_and_Bob)
 {panel end}
@@ -400,7 +400,7 @@ There are several other characters used to describe activities around encryption
 {panel type="teacher-note" summary="Even more about Alice and Bob"}
 There's a [song about Alice and Bob](http://www.catonmat.net/blog/musical-geek-friday-alice-and-bob/) performed by rapper MC++ (yes, he specialises in computer science). Some of the language may not be suitable for use in class, so discretion is needed for how you might use it.
 
-[{image filename="xkcd-alice-and-bob.png"}](http://xkcd.com/177/)
+{image filename="xkcd-alice-and-bob.png"}
 {panel end}
 
 
@@ -467,7 +467,7 @@ Firstly, you will need to generate a pair of keys using the key generator intera
 
 {comment end}
 
-The second interactive is the encrypter, and it is used to encrypt or decrypt messages with the keys. In order to encrypt messages for you, your friends should use your public key (and select the “encrypt” button on the interactive). In order to decrypt the messages your friends have sent you, you should use your private key (and select the “decrypt” button on the interactive).
+The second interactive is the encrypter, and it is used to encrypt or decrypt messages with the keys. In order to encrypt messages for you, your friends should use your public key (and select the “encrypt” button on the interactive). In order to decrypt the messages your friends have sent you, you should use your private key (and select the “decrypt” button on the interactive).What
 
 {comment}
 
