@@ -122,8 +122,7 @@ THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG
 
 The interactive above can do this process for you. Just put the ciphertext into the box on the right, enter the key, and tell it to decrypt. You should ensure you understand how to encrypt messages yourself though!
 
-##### Some challenges for you to try
-
+{panel type="challenges-for-you" summary="Decrypting Caesar Cipher"}
 **Challenge 1**
 
 Decrypt the following message using Caesar Cipher. The key is 4.
@@ -139,8 +138,10 @@ What is the key for the following *cipher text*
 ```
 THIS IS A TRICK QUESTION
 ```
+{panel end}
 
-{panel type="teacher-note" summary="Answer for the challenges"}
+
+{panel type="teacher-note" summary="Answers for Decrypting Caesar Cipher"}
 For the first challenge, the answer is:
 
 ```
@@ -166,8 +167,7 @@ We would start by working that the letter that is 7 places ahead of "H" is "O", 
 OVD HYL FVB
 ```
 
-##### Some challenges for you to try
-
+{panel type="challenges-for-you" summary="Encrypting with Caesar Cipher"}
 **Challenge 1**
 
 Encrypt the following message using Caesar Cipher and a key of 20
@@ -183,8 +183,10 @@ Why is using a key of 26 on the following message not a good idea?
 ```
 USING A KEY OF TWENTY SIX IN CAESAR CIPHER IS NOT A GOOD IDEA
 ```
+{panel end}
 
-{panel type="teacher-note" summary="Answer for the challenges"}
+
+{panel type="teacher-note" summary="Answers for Encrypting with Caesar Cipher"}
 For the first challenge, the answer is:
 
 ```
@@ -254,11 +256,7 @@ THE CODE
 
 As the message says, long messages contain a lot of statistical clues. Very short messages (e.g. only a few words) are unlikely to have obvious statistical trends. Very long messages (e.g. entire books) will *almost* always have "E" as the most common letter. Wikipedia has a [list of letter frequencies](https://en.wikipedia.org/wiki/Letter_frequency#Relative_frequencies_of_letters_in_the_English_language), which you might find useful.
 
-{panel type="curiosity" summary="The letter E isn't always the most common letter..."}
-Although in almost all English texts the letter E is the most common letter, it isn't always. For example, the [1939 novel *Gadsby* by Ernest Vincent Wright](http://en.wikipedia.org/wiki/Gadsby_(novel)) doesn't contain a single letter E (this is called a lipogram). Furthermore, the text you're attacking may not be English. During World War 1 and 2, the US military had many Native American [Code talkers](http://en.wikipedia.org/wiki/Code_talker) translate messages into their own language, which provided a strong layer of security at the time.
-{panel end}
-
-##### Some challenges for you to try
+{panel type="challenges-for-you" summary="Frequency Analysis"}
 
 Put the ciphertext into the above frequency analyser, guess what the key is (using the method explained above), and then try using that key with the ciphertext in the interactive above. Try to guess the key with as few guesses as you can!
 
@@ -278,8 +276,9 @@ OCDN ODHZ OCZ HZNNVBZ XJIOVDIN GJON JA OCZ GZOOZM O, RCDXC DN OCZ NZXJIY HJNO XJ
 ```
 BGDTCU BCEJ, BCXKGT, CPF BCPG BQQOGF VJTQWIJ VJG BQQ
 ```
+{panel end}
 
-{panel type="teacher-note" summary="Answer for the challenges"}
+{panel type="teacher-note" summary="Answers for Frequency Analysis"}
 For the first challenge, the most common letter is "E", with a key of 15
 
 '''
@@ -298,6 +297,10 @@ For the third challenge, the most common letter is "Z", with a key of 2. Obvious
 ZEBRAS ZACH, ZAVIER, AND ZANE ZOOMED THROUGH THE ZOO
 '''
 
+{panel end}
+
+{panel type="curiosity" summary="The letter E isn't always the most common letter..."}
+Although in almost all English texts the letter E is the most common letter, it isn't always. For example, the [1939 novel *Gadsby* by Ernest Vincent Wright](http://en.wikipedia.org/wiki/Gadsby_(novel)) doesn't contain a single letter E (this is called a lipogram). Furthermore, the text you're attacking may not be English. During World War 1 and 2, the US military had many Native American [Code talkers](http://en.wikipedia.org/wiki/Code_talker) translate messages into their own language, which provided a strong layer of security at the time.
 {panel end}
 
 
@@ -913,9 +916,7 @@ You might not know what some of the words mean. In easy terms, what it is saying
 
 ### Real world case studies
 
-#### Adobe
-
-#### Ashley Madison
+#### Adobethe challenges
 
 - Good storage techniques
 - Unfortunately the most sensitive data was the email addresses
