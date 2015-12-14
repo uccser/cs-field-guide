@@ -93,7 +93,8 @@ process.umask = function() { return 0; };
 
 },{}],2:[function(require,module,exports){
 "use strict";
-var Observable, SendMessage, animationFrames, eventStream;
+var Observable, SPEED, animationFrames, canvas, canvasID, choice, clockViewID, corruptString, ctx, drawCenteredText, drawPacket, eventStream, geometricRandomNumber, pState, packet, packetDefaults,
+  modulo = function(a, b) { return (+a % (b = +b) + b) % b; };
 
 require("es5-shim");
 
@@ -173,38 +174,205 @@ animationFrames = function() {
   });
 };
 
-SendMessage = (function() {
+geometricRandomNumber = function(bernoulliProb) {
 
-  /* A SendMessage is simply a host that sends a message
+  /* This picks a random number that is drawn from a geometric
+      distribution using the formula from
+      http://stackoverflow.com/questions/23517138/
+          random-number-generator-using-geometric-distribution
    */
-  function SendMessage() {
-    this.time = 0;
+  if (bernoulliProb === 1) {
+    return 1;
+  } else {
+    return Math.ceil(Math.log(1 - Math.random()) / Math.log(1 - bernoulliProb));
+  }
+};
+
+choice = function(indexable) {
+
+  /* Given an array-like object picks a random element */
+  return indexable[Math.floor(Math.random() * indexable.length)];
+};
+
+corruptString = function(str, errRate) {
+
+  /* Guarantees at least one corruption of a character and corrupts
+      others with probability errRate
+   */
+  var char, corruptIdx, i, idx, j, len, ref, result, results;
+  result = '';
+  corruptIdx = choice((function() {
+    results = [];
+    for (var i = 0, ref = str.length; 0 <= ref ? i < ref : i > ref; 0 <= ref ? i++ : i--){ results.push(i); }
+    return results;
+  }).apply(this));
+  for (idx = j = 0, len = str.length; j < len; idx = ++j) {
+    char = str[idx];
+    if (corruptIdx === idx) {
+      result += '?';
+    } else if (Math.random() > errRate) {
+      result += char;
+    } else {
+      result += '?';
+    }
+  }
+  return result;
+};
+
+packetDefaults = {
+  errRate: 0.5,
+  latency: 100,
+  start: 0
+};
+
+packet = function(opts) {
+  var latency, mostRecentRound, mostRecentValue, mostRecentValueCorrupted, ref, ref1, roundTrips, successChance;
+  if (opts == null) {
+    opts = {};
   }
 
-  SendMessage.prototype.next = function(packet) {
-
-    /* On recieving a packet we'll assume its an ACK or a NACK so inspect
-        it and add it to the start of the message queue if its a NACK
-     */
+  /* This generates a new packet which returns a function which gives
+      its state at some point in time
+      NOTE: All the 2s are simply because a single round is both
+            forward and back so don't moan about magic numbers
+   */
+  successChance = Math.pow(1 - ((ref = opts.errRate) != null ? ref : packetDefaults.errRate), opts.value.length);
+  roundTrips = geometricRandomNumber(successChance);
+  if (!Number.isSafeInteger(roundTrips)) {
+    return function() {
+      var result;
+      return result = {
+        type: 'recieved',
+        value: opts.value,
+        big: true
+      };
+    };
+  }
+  latency = (ref1 = opts.latency) != null ? ref1 : packetDefaults.latency;
+  mostRecentRound = 0;
+  mostRecentValue = opts.value;
+  mostRecentValueCorrupted = false;
+  return function(time) {
+    var mostRecentValueCorrupt, ref2, result, round, tripProportion;
+    time = time - ((ref2 = opts.start) != null ? ref2 : packetDefaults.start);
+    result = {};
+    result.completionTime = tripProportion = (modulo(time, 2 * latency)) / latency;
+    round = Math.floor(time / (2 * latency)) + 1;
+    if (round > roundTrips) {
+      result.type = 'recieved';
+    } else if (tripProportion < 1) {
+      result.type = 'packet';
+    } else if (round < roundTrips) {
+      result.type = 'nack';
+    } else {
+      result.type = 'ack';
+    }
+    if (round === mostRecentRound) {
+      result.value = mostRecentValue;
+    } else {
+      result.value = opts.value;
+    }
+    mostRecentValue = result.value;
+    if (tripProportion >= 0.5 && !mostRecentValueCorrupt && !(round === roundTrips)) {
+      result.value = corruptString(result.value, opts.errRate);
+      mostRecentValueCorrupt = true;
+    }
+    if (tripProportion >= 1) {
+      result.location = 1 - (modulo(tripProportion, 1));
+    } else {
+      result.location = tripProportion;
+    }
+    return result;
   };
+};
 
-  SendMessage.prototype.connect = function(network) {
+drawCenteredText = function(ctx, opts) {
+  var drawY, ref, ref1;
+  if (opts == null) {
+    opts = {};
+  }
 
-    /* Connects a network to the given host by subscribing the network
-        to the sender and vice versa via the observable interface
-     */
-  };
+  /* This draws opts.text using a given CanvasRenderingContext2D
+      at specified points opts.centerX and opts.centerY
+      (defaulting to 0 if not provided)
+      with opts.font being an object containing fields opts.font.size
+      opts.font.name, optionally also include opts.font.fillStyle
+   */
+  ctx.font = opts.font.size + "px " + ((ref = opts.font.name) != null ? ref : 'Arial');
+  ctx.textAlign = 'center';
+  ctx.fillStyle = (ref1 = opts.font.fillStyle) != null ? ref1 : 'black';
+  drawY = opts.centerY + opts.font.size / 2;
+  return ctx.fillText(opts.text, opts.centerX, drawY);
+};
 
-  SendMessage.prototype.sendMessage = function(message) {
+SPEED = 1 / 5;
 
-    /* Loads a message reading for sending when a new timestamp comes in
-        since the last message was sended
-     */
-  };
+pState = packet({
+  errRate: 0.2,
+  value: "CATS",
+  latency: 300
+});
 
-  return SendMessage;
+canvasID = '#interactive-network-simulation-canvas';
 
-})();
+clockViewID = '#interactive-network-simulation-clock-view';
+
+canvas = $(canvasID)[0];
+
+ctx = canvas.getContext('2d');
+
+drawPacket = function(ctx, packetState, renderOptions) {
+  var centerX, cornerX, cornerY, proportion, ref, textWidth, viewValue;
+  if (renderOptions == null) {
+    renderOptions = {};
+  }
+
+  /* Draws a given packet with the given renderOptions */
+  ctx.beginPath();
+  ctx.fillStyle = 'green';
+  proportion = packetState.location;
+  viewValue = (ref = packetState.type) === 'ack' || ref === 'nack' ? packetState.type : packetState.value;
+  textWidth = ctx.measureText(viewValue).width;
+  centerX = renderOptions.minX + proportion * (renderOptions.maxX - renderOptions.minX);
+  cornerX = centerX - textWidth / 2;
+  cornerY = renderOptions.centerY - renderOptions.size / 2;
+  if (packetState.type === 'ack') {
+    ctx.fillStyle = 'green';
+  } else if (packetState.type === 'nack') {
+    ctx.fillStyle = 'pink';
+  } else {
+    ctx.fillStyle = 'lightblue';
+  }
+  if (packetState.type !== 'recieved') {
+    ctx.fillRect(cornerX, cornerY, textWidth, renderOptions.size);
+    return drawCenteredText(ctx, {
+      font: {
+        name: 'monospace',
+        size: renderOptions.size
+      },
+      centerX: centerX,
+      centerY: renderOptions.centerY,
+      text: viewValue
+    });
+  }
+};
+
+animationFrames().map(function(time) {
+  return time * SPEED;
+}).subscribe({
+  next: function(time) {
+    ctx.clearRect(1, 1, canvas.width, canvas.height);
+    ctx.strokeStyle = 'black';
+    ctx.strokeRect(0, 0, canvas.width, canvas.height);
+    drawPacket(ctx, pState(time), {
+      size: 30,
+      minX: 40,
+      maxX: canvas.width - 40,
+      centerY: canvas.height / 2
+    });
+    return $(clockViewID).text("" + time);
+  }
+});
 
 
 },{"./observable.coffee":3,"es5-shim":4,"es6-shim":5}],3:[function(require,module,exports){
