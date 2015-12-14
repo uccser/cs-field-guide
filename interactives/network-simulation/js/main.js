@@ -361,7 +361,7 @@ animationFrames().map(function(time) {
   return time * SPEED;
 }).subscribe({
   next: function(time) {
-    ctx.clearRect(1, 1, canvas.width, canvas.height);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.strokeStyle = 'black';
     ctx.strokeRect(0, 0, canvas.width, canvas.height);
     drawPacket(ctx, pState(time), {
