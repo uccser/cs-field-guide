@@ -383,9 +383,7 @@ However, while this makes the Vigenere cipher more challenging to crack than the
 A brute force attack is harder for the Vigenere cipher because there are a lot more possible keys. The Vigenere cipher is known as a *polyalphabetic substitution cipher*, since it is uses multiple substitution rules.
 {panel end}
 
-## Symmetric vs Assymetric Ciphers
-
-## Public Key Systems
+## Cryptosystems used in practice
 
 {panel type="curiosity" summary="Who are Alice, Bob, and Eve?"}
 When describing an encryption scenario, cryptographers often use the fictitious characters "Alice" and "Bob", with a message being sent from Alice to Bob (A to B).
@@ -403,148 +401,79 @@ There's a [song about Alice and Bob](http://www.catonmat.net/blog/musical-geek-f
 {image filename="xkcd-alice-and-bob.png"}
 {panel end}
 
+## The Key Distribution Problem
 
-
-
-{teacher}
-
+{panel type="teacher-note" summary="A video about key distribution"}
 It would be a good idea to show [Simon Singh's video](http://simonsingh.net/media/online-videos/cryptography/the-science-of-secrecy-going-public/), which gives a good explanation of key distribution.
 
-{teacher end}
+Additionally, there is a There's a [video illustrating how public key systems work using a padlock analogy](http://www.youtube.com/watch?v=a72fHRr6MRU) which might help to understand how asymmetric keys could work
+{panel end}
 
-### The Key Distribution Problem
+{comment}
+TODO: Watch this video to determine whether it is best introduced in this section or the next one. perhaps put it at end of this section
+{comment end}
 
-Alice sending an encrypted message to Bob raises an interesting problem in encryption. The ciphertext itself can safely be sent across an “unsafe” network (one that Eve is listening on), but the key cannot. How can Alice get the key to Bob? Remember the key is the thing that tells Bob how to convert the ciphertext back to plaintext. So Alice can’t include it in the encrypted message, because then Bob would be unable to access it! Alice can’t just include it as plaintext either, because then Eve will be able to get ahold of it and use it to decrypt any messages that come through using it! You might ask why Alice doesn’t just encrypt the key using a different encryption scheme, but then how will Bob know the new key? Alice would need to tell Bob the key that was used to encrypt it... and so on... this idea is definitely out!
+Alice sending an encrypted message to Bob raises an interesting problem in encryption. The ciphertext itself can safely be sent across an “unsafe” network (one that Eve is listening on), but the key cannot. How can Alice get the key to Bob? Remember the key is the thing that tells Bob how to convert the ciphertext back to plaintext. So Alice can’t include it in the encrypted message, because then Bob would be unable to access it. Alice can’t just include it as plaintext either, because then Eve will be able to get ahold of it and use it to decrypt any messages that come through using it. You might ask why Alice doesn’t just encrypt the key using a different encryption scheme, but then how will Bob know the new key? Alice would need to tell Bob the key that was used to encrypt it... and so on... this idea is definitely out!
 
 Remember that Alice and Bob might be in different countries, and can only communicate through the internet. This also rules out Alice simply passing Bob the key in person.
 
-Distributing keys physically is very expensive, and up to the 1970s large sums of money were spent physically sending keys internationally. Systems like this are call *symmetric* encryption, because Alice and Bob both need an identical copy of the key. The breakthrough was the realisation that you could make a system that used different keys for encoding and decoding!
+Distributing keys physically is very expensive, and up to the 1970s large sums of money were spent physically sending keys internationally. Systems like this are call *symmetric* encryption, because Alice and Bob both need an identical copy of the key. The breakthrough was the realisation that you could make a system that used different keys for encoding and decoding. We will look further at this in the next section.
 
-### Solving the problem with Public Key Systems
+### Public Key Systems
 
-One of the remarkable discoveries in computer science in the 1970s was a method called *public key encryption*, where it's fine to tell everyone what the key is to encrypt any messages, but you need a special private key to decrypt it.
-Because Alice and Bob use different keys, this is called an *asymmetric* encryption system.
+One of the remarkable discoveries in computer science in the 1970s was a method called *public key encryption*, where it's fine to tell everyone what the key is to encrypt any messages, but you need a special private key to decrypt it. Because Alice and Bob use different keys, this is called an *asymmetric* encryption system.
 
-It's like giving out padlocks to all your friends, so anyone can lock a box and send it to you, but if you have the only (private) key, then you are the only person who can open the boxes. Once your friend locks a box, even they can't unlock it. It's really easy to distribute the padlocks. Public keys are the same --- you can make them completely public --- often people put them on their website or attach them to all emails they send. That's quite different to having to hire a security firm to deliver them to your colleague.
+It's like giving out padlocks to all your friends, so anyone can lock a box and send it to you, but if you have the only (private) key, then you are the only person who can open the boxes. Once your friend locks a box, even they can't unlock it. It's really easy to distribute the padlocks. Public keys are the same --- you can make them completely public --- often people put them on their website or attach them to all emails they send. That's quite different to having to hire a security firm to deliver them to your colleagues.
 
 Public key encryption is very heavily used for online commerce (such as internet banking and credit card payment) because your computer can set up a connection with the business or bank automatically using a public key system without you having to get together in advance to set up a key. Public key systems are generally slower than symmetric systems, so the public key system is often used to then send a new key for a symmetric system just once per session, and the symmetric key can be used from then on with a faster symmetric encryption system.
 
-A very popular public key system is RSA.  The following interactives use RSA so that you can try using a public key system for yourself.
+A very popular public key system is RSA. In this section, you will get to try out RSA yourself.
 
-Firstly, you will need to generate a pair of keys using the key generator interactive. Note that each key consists of two numbers and the interactive separates them with a “+” (this does not mean addition). You should keep the private key secret, and publicly announce the public key so that your friends can send you messages (e.g. put it on the whiteboard, or email it to some friends). Make sure you save your keys somewhere so you don’t forget them --- a text file would be best.
+#### Generating the encryption and decryption keys
 
-{comment}
+{panel type="teacher-note" summary="Ideas for RSA fun in the classroom"}
+One thing you might like to do is to ask each student to generate their key pair, and then put their public key alongside their name in a shared spreadsheet (for example, a google doc). Then when the students would like to send an encrypted message to one of their classmates, they can look up the person's public key in the spreadsheet.
+{panel end}
 
-<div class="col-xs-12 col-md-6 col-md-offset-3">
-<div class="panel panel-default">
-<div class="panel-heading">RSA Key Generator</div>
-<div class="panel-body">
-    <div class="row">
-        <form id="modeSelect" class="form-horizontal" role="form">
-            <div class="form-group">
-                <div class="col-xs-12 text-center">
-                <input type="button" id="generate" onclick="generate_new_keys()" value="Generate New Keys" class="btn btn-primary">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="pub_key" class="col-xs-3 control-label text-right">Public Key</label>
-                <div class="col-xs-8">
-                    <textarea id="pub_key" class="form-control" rows="1" readonly="true"></textarea>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="priv_key" class="col-xs-3 control-label text-right">Private Key</label>
-                <div class="col-xs-8">
-                    <textarea id="priv_key" class="form-control" rows="1" readonly="true"></textarea>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
-</div>
-</div>
-<div class="clearfix visible-xs-block"></div>
-
-{comment end}
-
-The second interactive is the encrypter, and it is used to encrypt or decrypt messages with the keys. In order to encrypt messages for you, your friends should use your public key (and select the “encrypt” button on the interactive). In order to decrypt the messages your friends have sent you, you should use your private key (and select the “decrypt” button on the interactive).What
+Firstly, you will need to generate a pair of keys using the key generator interactive. Note that each key consists of two numbers and the interactive separates them with a “+” (this does not mean addition). You should *keep the private key secret*, and *publicly announce the public key* so that your friends can send you messages (e.g. put it on the whiteboard, or email it to some friends). Make sure you save your keys somewhere so you don’t forget them --- a text file would be best.
 
 {comment}
-
-<div class="col-xs-12 col-md-6 col-md-offset-3">
-<div class="row panel panel-default">
-<div class="panel-heading">RSA Encrypter &amp; Decrypter</div>
-<div class="panel-body">
-    <div class="row">
-        <form id="modeSelect" class="form-horizontal" role="form">
-            <div class="form-group">
-                <label class="col-xs-2 control-label text-right">Mode</label>
-                <div class="col-xs-9">
-                    <label class="radio-inline">
-                        <input type="radio" name="modeSelect" id="encrypt" onchange="modeChanged('Encrypt')" checked="true"> Encrypt </input>
-                    </label>
-                    <label class="radio-inline">
-                        <input type="radio" name="modeSelect" id="decrypt" onchange="modeChanged('Decrypt')"> Decrypt </input>
-                    </label>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="key" class="col-xs-2 control-label text-right">Key</label>
-                <div class="col-xs-9">
-                    <textarea id="key" class="form-control" rows="2" placeholder="Put an RSA key here"></textarea>
-                </div>
-
-            </div>
-            <div class="form-group">
-                <label for="text_to_encrypt" class="col-xs-2 control-label text-right">Text</label>
-                <div class="col-xs-9">
-                    <textarea id="text_to_encrypt" class="form-control" rows="3" placeholder="Put the text to encrypt or decrypt here"></textarea>
-                </div>
-
-            </div>
-            <div class="form-group">
-                <div class="col-xs-5 col-xs-offset-4">
-                    <input type="button" id="generate" onclick="encodeText()" value="Encrypt with Key" class="btn btn-primary btn-block">
-                </div>
-            </div>
-            <div class="form-group" id="output-group">
-                <label for="output" class="col-xs-2 control-label text-right">Output</label>
-                <div class="col-xs-9">
-                    <textarea id="output" class="form-control" rows="3" readonly="" placeholder="Output will appear here"></textarea>
-                </div>
-            </div>
-    </form>
-</div>
-</div>
-</div>
-</div>
-<div class="clearfix visible-xs-block"></div>
-
+Put key generating interactive here
 {comment end}
+
+#### Encrypting messages with the public key
+
+This next interactive is the encrypter, and it is used to encrypt messages with your **public key**. Your friends should use this to encrypt messages for you.
 
 {comment}
-
-.. xtcb xjrm The description doesn’t quite match the interactive. It says “select the “decrypt” button”. I mean it’s obvious how it works, but if you want it to be consistent you could edit the interactive or the description? Also perhaps button value should be “Encrypt/Decrypt with key”?
-
+Need to put the encrypter here. Note that I have given up on trying to use the same interactive for both encrypting and decrypting.
 {comment end}
 
-Despite even your enemies knowing your public key (as you publically announced it), they cannot use it to decrypt your messages which were encrypted using the public key.
+To ensure you understand, try encrypting a short message with your **public key**. In the next section, there is an interactive that you can then use to decrypt the message with your private key.
 
-{curiosity}
+#### Decrypting messages with the private key
 
-**Digital Signatures**  
+Finally, this interactive is the decrypter. It is used to decrypt messages that were encrypted with your public key. In order to decrypt the messages, you will need your **private key**.
+
+{comment}
+Need to put decrypter here. Note that it might need to go in an iframe, as the code will be very similar to the encrypter and collisions are likely
+{comment end}
+
+Despite even your enemies knowing your public key (as you publically announced it), they cannot use it to decrypt your messages which were encrypted using the public key. You are the only one who can decrypt messages, as that requires the private key which hopefully you are the only one who access to.
+
+Note that this interactive’s implementation of RSA only uses around 50 bits of encryption and has other weaknesses. It is just for demonstrating the concepts here and is not quite the same as the implementations used in live encryption systems.
+
+{panel type="teacher-note" summary="Encrypting with the private key instead of the public key - Digital Signatures!"}
 In order to encrypt a message, the public key is used. In order to decrypt it, the corresponding private key must be used. But what would happen if the message was encrypted using the *private* key? Could you then decrypt it with the public key?
-Initially this might sound like a silly thing to do, as why would you encrypt a message which can be decrypted using a key that everybody in the world can access!?!  It turns out that indeed, encrypting a message with the private key and then decrypting it with the public key works, and it has a very useful application!
-The only person who is able to *encrypt* the message using the *private* key is the person who owns the private key. The public key will only decrypt the message if the private key that was used to encrypt it actually is the public key’s corresponding private key! If the message can’t be decrypted, then it could not have been encrypted with that private key.
+
+Initially this might sound like a silly thing to do, as why would you encrypt a message which can be decrypted using a key that everybody in the world can access!?!  It turns out that indeed, encrypting a message with the private key and then decrypting it with the public key works, and it has a very useful application.
+
+The only person who is able to *encrypt* the message using the *private* key is the person who owns the private key. The public key will only decrypt the message if the private key that was used to encrypt it actually is the public key’s corresponding private key. If the message can’t be decrypted, then it could not have been encrypted with that private key.
 This allows the sender to prove that the message actually is from them, and is known as a digital signature.
 
-You could check that someone is the authentic private key holder by giving them a phrase to encrypt with their private key. You then decrypt it with the public key to check that they encrypted the phrase you gave them.
-
+You could check that someone is the authentic private key holder by giving them a phrase to encrypt with their private key. You then decrypt it with the public key to check that they
+encrypted the phrase you gave them.
 {curiosity end}
-
-Note that this interactive’s implementation of RSA only uses around 50 bits of encryption and has other weaknesses. It is just for demonstrating the concepts here and is not quite the same as the implementations used in live encryption systems. In the RSA chapter, we will look at a more realistic implementation.
-
-There's a [video illustrating how public key systems work using a padlock analogy which might help to understand how asymmetric keys could work](http://www.youtube.com/watch?v=a72fHRr6MRU)
 
 {jargon-buster}
 
@@ -578,18 +507,12 @@ The methods that we considered at the start of this chapter are *symmetric key* 
 {comment}
 
 .. hrn xtcb Need to also add a sub section in the problem of authenticating public keys.
-
+d
 {comment end}
 
 ## The RSA Cryptosystem
 
 The RSA cryptosystem is a widely used algorithm for public key systems. Many real world cryptosystems are based on RSA. Because it is a public key system, this means that keys are in pairs; a private key and a public key. A message that was encrypted using the public key can only be decrypted using the private key. This means that the key owner is able to keep their private key secret, and distribute their public key to the world.
-
-{comment}
-
-.. curiosity explaining that RSA is the names of 3 people?
-
-{comment end}
 
 In a nutshell, the RSA cryptosystem uses some clever math based on the unsolved mathematical problem of efficiently *factoring* a number which is the product of two prime numbers. If you need a reminder of what prime numbers and factoring a number are, read the Jargon Buster just below.
 
