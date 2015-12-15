@@ -441,7 +441,9 @@ There's a [song about Alice and Bob](http://www.catonmat.net/blog/musical-geek-f
 {panel type="teacher-note" summary="A video about key distribution"}
 It would be a good idea to show [Simon Singh's video](http://simonsingh.net/media/online-videos/cryptography/the-science-of-secrecy-going-public/), which gives a good explanation of key distribution.
 
-Additionally, there is a There's a [video illustrating how public key systems work using a padlock analogy](http://www.youtube.com/watch?v=a72fHRr6MRU) which might help to understand how asymmetric keys could work
+Additionally, there's a video illustrating how public key systems work using a padlock analogy which might help to understand how asymmetric keys could work.
+
+{video url="http://www.youtube.com/watch?v=a72fHRr6MRU"}
 {panel end}
 
 {comment}
