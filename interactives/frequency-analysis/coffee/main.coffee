@@ -26,21 +26,24 @@ $("#interactive-frequency-analysis-button").click ->
         chart.destroy()
 
     text = $(TextID).val().toUpperCase()
-    console.log text
+
     frequencies = characterFrequencies(text)
-    frequencies = Array.from(frequencies).sort (one, two) ->
+    frequencies = Array.from(frequencies).sort (element1, element2) ->
         # Sort according to the max values
-        if one[1] > two[1]
+        if element1[1] > element2[1]
             return -1
-        else if one[1] is two[1]
-            return 0
+        else if element1[1] is element2[1]
+            if element1[0] > element2[0]
+                return 1
+            else
+                return -1
         else
             return 1
 
     # Just alphabetic characters for this interactive
-    console.log frequencies
     frequencies = frequencies.filter (pair) -> pair[0] in ALPHABET
 
+    $(ChartID)[0].width = frequencies.length*20 + 30
 
     labels = frequencies.map (pair) -> pair[0] # Keys
     freqData = frequencies.map (pair) -> pair[1] # Values
