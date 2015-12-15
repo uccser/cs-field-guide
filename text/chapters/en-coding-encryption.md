@@ -122,7 +122,7 @@ THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG
 
 The interactive above can do this process for you. Just put the ciphertext into the box on the right, enter the key, and tell it to decrypt. You should ensure you understand how to encrypt messages yourself though!
 
-{panel type="challenges-for-you" summary="Decrypting Caesar Cipher"}
+{panel type="challenge" summary="Decrypting Caesar Cipher"}
 **Challenge 1**
 
 Decrypt the following message using Caesar Cipher. The key is 4.
@@ -167,7 +167,7 @@ We would start by working that the letter that is 7 places ahead of "H" is "O", 
 OVD HYL FVB
 ```
 
-{panel type="challenges-for-you" summary="Encrypting with Caesar Cipher"}
+{panel type="challenge" summary="Encrypting with Caesar Cipher"}
 **Challenge 1**
 
 Encrypt the following message using Caesar Cipher and a key of 20
@@ -256,7 +256,7 @@ THE CODE
 
 As the message says, long messages contain a lot of statistical clues. Very short messages (e.g. only a few words) are unlikely to have obvious statistical trends. Very long messages (e.g. entire books) will *almost* always have "E" as the most common letter. Wikipedia has a [list of letter frequencies](https://en.wikipedia.org/wiki/Letter_frequency#Relative_frequencies_of_letters_in_the_English_language), which you might find useful.
 
-{panel type="challenges-for-you" summary="Frequency Analysis"}
+{panel type="challenge" summary="Frequency Analysis"}
 
 Put the ciphertext into the above frequency analyser, guess what the key is (using the method explained above), and then try using that key with the ciphertext in the interactive above. Try to guess the key with as few guesses as you can!
 
