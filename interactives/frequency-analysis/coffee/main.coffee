@@ -25,7 +25,7 @@ $("#interactive-frequency-analysis-button").click ->
     if chart?
         chart.destroy()
 
-    text = $(TextID).text().toUpperCase()
+    text = $(TextID).val().toUpperCase()
     console.log text
     frequencies = characterFrequencies(text)
     frequencies = Array.from(frequencies).sort (one, two) ->

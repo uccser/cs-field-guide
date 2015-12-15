@@ -129,7 +129,7 @@ $("#interactive-frequency-analysis-button").click(function() {
   if (chart != null) {
     chart.destroy();
   }
-  text = $(TextID).text().toUpperCase();
+  text = $(TextID).val().toUpperCase();
   console.log(text);
   frequencies = characterFrequencies(text);
   frequencies = Array.from(frequencies).sort(function(one, two) {
