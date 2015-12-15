@@ -7,7 +7,7 @@ CryptoJS = require('crypto-js');
 $("#interactive-sha2-button").click(function() {
   var hash, text;
   text = $("#interactive-sha2-plaintext").val();
-  hash = CryptoJS.SHA256(text).toString(CryptoJS.enc.Base64);
+  hash = CryptoJS.SHA256(text).toString(CryptoJS.enc.Hex);
   return $("#interactive-sha2-hash").html(hash);
 });
 
