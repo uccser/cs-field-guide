@@ -340,17 +340,25 @@ Another kind of attack is the *known plaintext* attack, where you know part or a
 AB MAXKX LXVKXM FXXMBGZ TM MPH TF MANKLWTR
 ```
 
-Even if you did not know the key was a rotation (not all substitution ciphers are), you have learnt that A->H, B->I, M->T, X->E, and K->R. This goes a long way towards deciphering the message. The deciphered message is:
+Even if you did not know the key was a rotation (not all substitution ciphers are), you have learnt that A->H, B->I, M->T, X->E, and K->R. This goes a long way towards deciphering the message. Filling in the letters you know, you would get:
+
+```
+AB MAXKX LXVKXM FXXMBGZ TM MPH TF MANKLWTR
+HI THERE _E__ET _EETI__ _T T__ __ TH______
+```
+By using the other tricks above, there are a very limited number of possibilities for the remaining letters. Have a go at figuring it out.
+
+{panel type="spoiler" summary="The above message is..."}
+The deciphered message is:
 
 ```
 HI THERE SECRET MEETING AT TWO AM THURSDAY
 ```
+{panel end}
 
 A known plaintext attack destroys Caesar cipher, but a good cryptosystem shouldn't have this vulnerability because it can be surprisingly easy for someone to know that a particular message is being sent. For example, a common message might be "Nothing to report", or in online banking there are likely to be common messages like headings in a bank account or parts of the web page that always appear. Even worse is a *chosen plaintext attack*, where you trick someone into sending your chosen message through their system so that you can see what its ciphertext is.
 
-For this reason, it is essential for any good cryptosystem to not be breakable, even if the attacker has pieces of plaintext along with their corresponding ciphertext to work with.
-
-Also, the cryptosystem should give different ciphertext each time the same plaintext message is encrypted. It may initially sound impossible to achieve this, although there are several clever techniques used by real cryptosystems.
+For this reason, it is essential for any good cryptosystem to not be breakable, even if the attacker has pieces of plaintext along with their corresponding ciphertext to work with. For this, the cryptosystem should give different ciphertext each time the same plaintext message is encrypted. It may initially sound impossible to achieve this, although there are several clever techniques used by real cryptosystems.
 
 #### Brute force Attacks
 
