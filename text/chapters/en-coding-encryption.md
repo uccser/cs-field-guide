@@ -492,19 +492,15 @@ In the Caesar Cipher section, we talked briefly about brute force attacks. Brute
 More generally, brute force is trying every possibility until a solution is found. For hashing, this means going through a long list of possible passwords, running each through the hashing algorithm, and then checking if the outputted hash is identical to the one that we are trying to reverse.
 {panel end}
 
-{comment}
-Need to put a hashing interactive here, which allows students to just try entering in words and seeing how they hash
-Note: put warnign to not put real passwords in
-{comment end}
-
 For passwords, this is great. Instead of storing passwords in our database, we can store hashes. When a user signs up or changes their password, we simply need to put the password through the SHA-256 algorithm and then store the output hash instead of the password. When the user wants to log in, we just have to put their password through the SHA-256 algorithm again. If the output hash matches the one in the database, then the user has to have entered the correct password. If an attacker manages to access the password database, they cannot determine what the actual passwords are. The hashes themselves are not useful to the attacker.
+
+The following interactive allows you to hash words, such as passwords (but please don't put your real password into it, as you should never enter your password on random sites). If you were to enter a well chosen password (e.g. a random string of numbers and letters), and it was of sufficient length, you could safely put the hash on a public website, and nobody would be able to determine what your actual password was.
+
+{interactive name="sha2" type="in-page"}
 
 For example, the following database table shows four users of a fictional system, and the hashes of their passwords. The only way you could determine their passwords is by putting various possibilities through SHA-256 and checking whether or not the output is equivalent to any of the passwords in the database.
 
 {image filename="hash-passwords-table.png"}
-
-
-
 
 It might initially sound like we have the perfect system. But unfortunately, there is still a big problem.
 
