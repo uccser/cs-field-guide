@@ -376,7 +376,18 @@ These days encryption keys are normally numbers that are 128 bits or longer. You
 
 Infact, if we analyse it, a 128 bit key at 1,000,000 per second would take 10,790,283,070,000,000,000,000,000 years to test. Of course, it might find something in the first year, but the chances of that are ridiculously low, and it would be more realistic to hope to win the top prize in Lotto three times consecutively (and you'd probably get more money). On average, it will take around half that amount, i.e. a bit more than 5,000,000,000,000,000,000,000,000 years. Even if you get a really fast computer which can check one trillion keys a second (rather unrealistic in practice), it would still take around 5,000,000,000,000 years. Even if you could get one million of those computers (even more unrealistic in practice), it would still take 5,000,000 years.
 
-And even if you did have that hardware, then people would start using bigger keys. Every bit added to the key will double the number of years required to brute force it. This is how real cryptosystems protect themselves from brute force attacks. Cryptography relies a lot on low probabilities of success.
+And even if you did have the hardware that was considered above, then people would start using bigger keys. Every bit added to the key will double the number of years required to guess it. Just adding an extra 15 or 20 bits to the key in the above example will safely push the time required back to well beyond the expected life span of the Earth and Sun! This is how real cryptosystems protect themselves from brute force attacks. Cryptography relies a lot on low probabilities of success.
+
+The calculator below can handle really big numbers. You can double check our math above if you want! Also, work out what would happen if the key size was double (i.e. 256 bits), or if a 1024 or 2048 bit key (common these days) was used.
+
+{comment}
+Need to put big numbers calculator here
+{comment end}
+
+{panel type="curiosity" summary="Tractability – problems that take too long to solve"}
+TODO
+[Link to tractability chapter](complexity-tractability.html)
+{panel end}
 
 {panel type="jargon-buster" summary="Terminology you should now be familiar with"}
 The main terminology you should be familiar with now is that a *plaintext* is *encrypted* by to create a *ciphertext* using an *encryption key*. Someone without the encryption key who wants to *attack* the cipher could try various approaches, including a *brute force attack* (trying out all possible keys), a *frequency analysis attack* (looking for statistical patterns), and a *known plaintext attack* (matching some known text with the cipher to work out the key).
