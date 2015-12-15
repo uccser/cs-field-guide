@@ -11,7 +11,7 @@
 
 Encryption is used to keep data secret. In its simplest form, a file or data transmission is garbled so that only authorised people with a secret "key" can unlock the original text.
 If you're using digital devices then you'll be using systems based on encryption all the time: when you use online banking, when you access data through wifi, when you pay for something with a credit card (either by swiping, inserting or tapping), in fact, nearly every activity will involve layers of encryption.
-Without encryption, your information would be wide open to the world --- anyone could pull up outside a house and read all the data going over your wifi, and stolen laptops, hard disks and SIM cards would yield all sorts of information about you --- so encryption is critical to make computer systems usable.
+Without encryption, your information would be wide open to the world – anyone could pull up outside a house and read all the data going over your wifi, and stolen laptops, hard disks and SIM cards would yield all sorts of information about you – so encryption is critical to make computer systems usable.
 
 An encryption system often consists of two computer programs: one to *encrypt* some data (referred to as *plaintext*) into a form that looks like nonsense (the *ciphertext*), and a second program that can *decrypt* the ciphertext back into the plaintext form. The encryption and decryption is carried out using some very clever math on the text with a chosen *key*. You will learn more about these concepts shortly.
 
@@ -106,7 +106,7 @@ Try experiementing with the following interactive for Caesar Cipher. You will pr
 
 #### Decryption with Caesar Cipher
 
-Before we looked at how to *crack* Casear cipher --- getting the plaintext from the ciphertext without being told the key beforehand. It is even easier to *decrypt* Caesar Cipher when we **do** have the key. In practice, a good encryption system ensures that the plaintext cannot be obtained from the ciphertext without the key, i.e. it can be *decrypted* but not *cracked*.
+Before we looked at how to *crack* Casear cipher – getting the plaintext from the ciphertext without being told the key beforehand. It is even easier to *decrypt* Caesar Cipher when we **do** have the key. In practice, a good encryption system ensures that the plaintext cannot be obtained from the ciphertext without the key, i.e. it can be *decrypted* but not *cracked*.
 
 As an example of *decrypting* with Caesar Cipher, assume that we have the following ciphertext, and that the key is 6.
 
@@ -195,7 +195,7 @@ DOMN UHINBYL LUHXIG GYMMUAY NI YHWLSJN
 
 Note that if students subtracted instead of added, or used the interactive incorrectly, then they will get the wrong answer.
 
-For the second challenge, the answer is hopefully obvious to the students. Using a key of 26 makes the plaintext and the ciphertext the same --- the equivalent of not using encryption at all!
+For the second challenge, the answer is hopefully obvious to the students. Using a key of 26 makes the plaintext and the ciphertext the same – the equivalent of not using encryption at all!
 {panel end}
 
 
@@ -372,7 +372,7 @@ EIJUDJQJYEKI
 The word is "ostentatious", and has been coded by shifting 16 letters to the right (or 10 to the left).
 {panel end}
 
-These days encryption keys are normally numbers that are 128 bits or longer. You could calculate how long it would take to try out every possible 128 bit number if a computer could test a million every second (including testing if each decoded text contains English words). It will eventually crack the message, but after the amount of time it would take, it's unlikely to be useful anymore --- and the user of the key has probably changed it!
+These days encryption keys are normally numbers that are 128 bits or longer. You could calculate how long it would take to try out every possible 128 bit number if a computer could test a million every second (including testing if each decoded text contains English words). It will eventually crack the message, but after the amount of time it would take, it's unlikely to be useful anymore – and the user of the key has probably changed it!
 
 Infact, if we analyse it, a 128 bit key at 1,000,000 per second would take 10,790,283,070,000,000,000,000,000 years to test. Of course, it might find something in the first year, but the chances of that are ridiculously low, and it would be more realistic to hope to win the top prize in Lotto three times consecutively (and you'd probably get more money). On average, it will take around half that amount, i.e. a bit more than 5,000,000,000,000,000,000,000,000 years. Even if you get a really fast computer which can check one trillion keys a second (rather unrealistic in practice), it would still take around 5,000,000,000,000 years. Even if you could get one million of those computers (even more unrealistic in practice), it would still take 5,000,000 years.
 
@@ -447,7 +447,7 @@ Distributing keys physically is very expensive, and up to the 1970s large sums o
 
 One of the remarkable discoveries in computer science in the 1970s was a method called *public key encryption*, where it's fine to tell everyone what the key is to encrypt any messages, but you need a special private key to decrypt it. Because Alice and Bob use different keys, this is called an *asymmetric* encryption system.
 
-It's like giving out padlocks to all your friends, so anyone can lock a box and send it to you, but if you have the only (private) key, then you are the only person who can open the boxes. Once your friend locks a box, even they can't unlock it. It's really easy to distribute the padlocks. Public keys are the same --- you can make them completely public --- often people put them on their website or attach them to all emails they send. That's quite different to having to hire a security firm to deliver them to your colleagues.
+It's like giving out padlocks to all your friends, so anyone can lock a box and send it to you, but if you have the only (private) key, then you are the only person who can open the boxes. Once your friend locks a box, even they can't unlock it. It's really easy to distribute the padlocks. Public keys are the same – you can make them completely public – often people put them on their website or attach them to all emails they send. That's quite different to having to hire a security firm to deliver them to your colleagues.
 
 Public key encryption is very heavily used for online commerce (such as internet banking and credit card payment) because your computer can set up a connection with the business or bank automatically using a public key system without you having to get together in advance to set up a key. Public key systems are generally slower than symmetric systems, so the public key system is often used to then send a new key for a symmetric system just once per session, and the symmetric key can be used from then on with a faster symmetric encryption system.
 
@@ -459,7 +459,7 @@ A very popular public key system is RSA. In this section, you will get to try ou
 One thing you might like to do is to ask each student to generate their key pair, and then put their public key alongside their name in a shared spreadsheet (for example, a google doc). Then when the students would like to send an encrypted message to one of their classmates, they can look up the person's public key in the spreadsheet.
 {panel end}
 
-Firstly, you will need to generate a pair of keys using the key generator interactive. Note that each key consists of two numbers and the interactive separates them with a “+” (this does not mean addition). You should *keep the private key secret*, and *publicly announce the public key* so that your friends can send you messages (e.g. put it on the whiteboard, or email it to some friends). Make sure you save your keys somewhere so you don’t forget them --- a text file would be best.
+Firstly, you will need to generate a pair of keys using the key generator interactive. Note that each key consists of two numbers and the interactive separates them with a “+” (this does not mean addition). You should *keep the private key secret*, and *publicly announce the public key* so that your friends can send you messages (e.g. put it on the whiteboard, or email it to some friends). Make sure you save your keys somewhere so you don’t forget them – a text file would be best.
 
 {comment}
 Put key generating interactive here
@@ -528,7 +528,7 @@ For example, the following database table shows four users of a fictional system
 
 It might initially sound like we have the perfect system. But unfortunately, there is still a big problem.
 
-- Even worse, there are *rainbow tables* online --- precomputated lists of common passwords with what value they hash to. It isn't too difficult to generate rainbow tables containing all passwords up to a certain size infact (this is one reason why using long passwords is strongly recommended!)
+- Even worse, there are *rainbow tables* online – precomputated lists of common passwords with what value they hash to. It isn't too difficult to generate rainbow tables containing all passwords up to a certain size infact (this is one reason why using long passwords is strongly recommended!)
 
 Hashing is a good start, but we need to further improve our system so that if two users choose the same password, their hash is not the same, while still ensuring that it is possible to check whether or not a user has entered the correct password. The next idea, salting, addresses this issue.
 
@@ -681,7 +681,7 @@ There are lots of intriguing stories around encryption, including its use in war
 
 - Secret History: The Story of Cryptology (Craig Bauer)
 
-- The Codebreakers: The Comprehensive History of Secret Communication from Ancient Times to the Internet (David Kahn) --- this book is an older version of his new book, and may be hard to get
+- The Codebreakers: The Comprehensive History of Secret Communication from Ancient Times to the Internet (David Kahn) – this book is an older version of his new book, and may be hard to get
 
 The following activities explore cryptographic protocols using an Unplugged approach; these methods aren't strong enough to use in practice, but provide some insight into what is possible:
 
