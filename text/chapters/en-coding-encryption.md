@@ -213,7 +213,23 @@ So far, we have considered one way of cracking Caesar cipher: using patterns in 
 
 #### Frequency Analysis Attacks
 
-Frequency analysis means looking at how many times each letter appears in the encrypted message, and using this information to crack the code. A letter that appears many times in a message is far more likely to be “T” than “Z”, for example. Putting the following text into a statistical analyser such as this one on [this website](http://www.richkni.co.uk/php/crypta/freq.php) will give the output in the table below.
+Frequency analysis means looking at how many times each letter appears in the encrypted message, and using this information to crack the code. A letter that appears many times in a message is far more likely to be “T” than “Z”, for example.
+
+The following interactive will helps you to analyze a piece of text by counting up the letter frequencies.
+
+{interactive name="frequency-analysis" type="in-page"}
+
+
+
+
+Putting the following text into a statistical analyser such as this one on [this website](http://www.richkni.co.uk/php/crypta/freq.php) will give the output in the table below.
+
+
+
+
+
+
+
 
 ```
 F QTSL RJXXFLJ HTSYFNSX QTYX TK
@@ -240,7 +256,7 @@ T: 13          N: 5          G: 2          A: 1
 S: 10          R: 5          L: 2
 ```
 
-"E" is the most common letter in the English alphabet. It is therefore a reasonable guess that "J" in the ciphertext represents "E" in the plaintext. Because "J" is 5 letters ahead of "E" in the alphabet, we can guess that the key is 5. If you put the ciphertext into the above interactive and set a key of 5, you will find that this is indeed the correct key. If it hadn't been (i.e. the output was still garbled), we could have then tried assuming that "J" is "T". This would give a key of 16 (note that when counting, we needed to go back to "A" when we got to "Z").
+"E" is the most common letter in the English alphabet. It is therefore a reasonable guess that "J" in the ciphertext represents "E" in the plaintext. Because "J" is 5 letters ahead of "E" in the alphabet, we can guess that the key is 5. If you put the ciphertext into the above interactive and set a key of 5, you will find that this is indeed the correct key. If it hadn't been (i.{interactive name="caesar-cipher" type="in-page"}
 
 The message you should have gotten is:
 
