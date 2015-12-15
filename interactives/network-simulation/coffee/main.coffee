@@ -82,6 +82,8 @@ corruptString = (str, errRate) ->
             result += '?'
     return result
 
+
+# Just some arbitrary default settings
 packetDefaults =
     errRate: 0.5
     latency: 100
@@ -178,7 +180,7 @@ SPEED = 1/5
 
 pState = packet
     errRate: 0.2
-    value: "CATS"
+    value: "Z"
     latency: 300
 
 canvasID = '#interactive-network-simulation-canvas'
@@ -231,6 +233,8 @@ drawPacket = (ctx, packetState, renderOptions={}) ->
             centerX: centerX
             centerY: renderOptions.centerY
             text: viewValue
+
+
 
 animationFrames().map((time) -> time*SPEED).subscribe
     next: (time) ->

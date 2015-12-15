@@ -309,7 +309,7 @@ SPEED = 1 / 5;
 
 pState = packet({
   errRate: 0.2,
-  value: "CATS",
+  value: "Z",
   latency: 300
 });
 
