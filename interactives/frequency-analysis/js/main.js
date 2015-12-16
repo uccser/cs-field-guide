@@ -93,14 +93,15 @@ process.umask = function() { return 0; };
 
 },{}],2:[function(require,module,exports){
 "use strict";
-var ALPHABET, Chart, ChartID, TextID, characterFrequencies, chart,
-  indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
+var ALPHABET, Chart, ChartID, TextID, characterFrequencies, chart;
 
 require('es5-shim');
 
 require('es6-shim');
 
 Chart = require('chart.js');
+
+Chart.defaults.global.responsive = true;
 
 TextID = "#interactive-frequency-analysis-input";
 
@@ -124,14 +125,24 @@ characterFrequencies = function(string) {
 chart = null;
 
 $("#interactive-frequency-analysis-button").click(function() {
-  var ctx, data, freqData, frequencies, labels, text;
+  var allCharFrequencies, alphabeticFrequencies, char, ctx, data, freq, freqData, labels, text;
   ctx = $(ChartID)[0].getContext('2d');
   if (chart != null) {
     chart.destroy();
   }
   text = $(TextID).val().toUpperCase();
-  frequencies = characterFrequencies(text);
-  frequencies = Array.from(frequencies).sort(function(element1, element2) {
+  allCharFrequencies = characterFrequencies(text);
+  alphabeticFrequencies = (function() {
+    var i, len, ref, results;
+    results = [];
+    for (i = 0, len = ALPHABET.length; i < len; i++) {
+      char = ALPHABET[i];
+      freq = (ref = allCharFrequencies.get(char)) != null ? ref : 0;
+      results.push([char, freq]);
+    }
+    return results;
+  })();
+  alphabeticFrequencies.sort(function(element1, element2) {
     if (element1[1] > element2[1]) {
       return -1;
     } else if (element1[1] === element2[1]) {
@@ -144,15 +155,10 @@ $("#interactive-frequency-analysis-button").click(function() {
       return 1;
     }
   });
-  frequencies = frequencies.filter(function(pair) {
-    var ref;
-    return ref = pair[0], indexOf.call(ALPHABET, ref) >= 0;
-  });
-  $(ChartID)[0].width = frequencies.length * 20 + 30;
-  labels = frequencies.map(function(pair) {
+  labels = alphabeticFrequencies.map(function(pair) {
     return pair[0];
   });
-  freqData = frequencies.map(function(pair) {
+  freqData = alphabeticFrequencies.map(function(pair) {
     return pair[1];
   });
   data = {
@@ -165,7 +171,10 @@ $("#interactive-frequency-analysis-button").click(function() {
       }
     ]
   };
-  return chart = new Chart(ctx).Bar(data);
+  console.log("llama");
+  return chart = new Chart(ctx).Bar(data, {
+    scaleFontSize: 16
+  });
 });
 
 

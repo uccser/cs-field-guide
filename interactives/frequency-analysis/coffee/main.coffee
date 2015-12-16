@@ -27,12 +27,18 @@ $("#interactive-frequency-analysis-button").click ->
 
     text = $(TextID).val().toUpperCase()
 
-    frequencies = characterFrequencies(text)
-    frequencies = Array.from(frequencies).sort (element1, element2) ->
+    allCharFrequencies = characterFrequencies(text)
+
+    alphabeticFrequencies = for char in ALPHABET
+        freq = allCharFrequencies.get(char) ? 0
+        [char, freq]
+
+    alphabeticFrequencies.sort (element1, element2) ->
         # Sort according to the max values
         if element1[1] > element2[1]
             return -1
         else if element1[1] is element2[1]
+            # If equal then sort alphabetically
             if element1[0] > element2[0]
                 return 1
             else
@@ -40,13 +46,9 @@ $("#interactive-frequency-analysis-button").click ->
         else
             return 1
 
-    # Just alphabetic characters for this interactive
-    frequencies = frequencies.filter (pair) -> pair[0] in ALPHABET
 
-    $(ChartID)[0].width = frequencies.length*20 + 30
-
-    labels = frequencies.map (pair) -> pair[0] # Keys
-    freqData = frequencies.map (pair) -> pair[1] # Values
+    labels = alphabeticFrequencies.map (pair) -> pair[0] # Keys
+    freqData = alphabeticFrequencies.map (pair) -> pair[1] # Values
     data =
         labels: labels
         datasets: [
@@ -57,4 +59,5 @@ $("#interactive-frequency-analysis-button").click ->
             }
         ]
 
-    chart = new Chart(ctx).Bar(data)
+    chart = new Chart(ctx).Bar data,
+        scaleFontSize: 16
