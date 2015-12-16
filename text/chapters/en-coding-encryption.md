@@ -438,23 +438,19 @@ There's a [song about Alice and Bob](http://www.catonmat.net/blog/musical-geek-f
 
 ## The Key Distribution Problem
 
-{panel type="teacher-note" summary="A video about key distribution"}
-It would be a good idea to show [Simon Singh's video](http://simonsingh.net/media/online-videos/cryptography/the-science-of-secrecy-going-public/), which gives a good explanation of key distribution.
-
-Additionally, there's a video illustrating how public key systems work using a padlock analogy which might help to understand how asymmetric keys could work.
-
-{video url="http://www.youtube.com/watch?v=a72fHRr6MRU"}
-{panel end}
-
-{comment}
-TODO: Watch this video to determine whether it is best introduced in this section or the next one. perhaps put it at end of this section
-{comment end}
-
 Alice sending an encrypted message to Bob raises an interesting problem in encryption. The ciphertext itself can safely be sent across an “unsafe” network (one that Eve is listening on), but the key cannot. How can Alice get the key to Bob? Remember the key is the thing that tells Bob how to convert the ciphertext back to plaintext. So Alice can’t include it in the encrypted message, because then Bob would be unable to access it. Alice can’t just include it as plaintext either, because then Eve will be able to get ahold of it and use it to decrypt any messages that come through using it. You might ask why Alice doesn’t just encrypt the key using a different encryption scheme, but then how will Bob know the new key? Alice would need to tell Bob the key that was used to encrypt it... and so on... this idea is definitely out!
 
 Remember that Alice and Bob might be in different countries, and can only communicate through the internet. This also rules out Alice simply passing Bob the key in person.
 
 Distributing keys physically is very expensive, and up to the 1970s large sums of money were spent physically sending keys internationally. Systems like this are call *symmetric* encryption, because Alice and Bob both need an identical copy of the key. The breakthrough was the realisation that you could make a system that used different keys for encoding and decoding. We will look further at this in the next section.
+
+{panel type="curiosity" summary="Some additional viewing"}
+[Simon Singh's video](http://simonsingh.net/media/online-videos/cryptography/the-science-of-secrecy-going-public/) gives a good explanation of key distribution.
+
+Additionally, there's a video illustrating how public key systems work using a padlock analogy.
+
+{video url="http://www.youtube.com/watch?v=a72fHRr6MRU"}
+{panel end}
 
 ### Public Key Systems
 
