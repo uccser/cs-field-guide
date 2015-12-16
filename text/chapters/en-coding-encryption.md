@@ -515,7 +515,13 @@ This allows the sender to prove that the message actually is from them, and is k
 You could check that someone is the authentic private key holder by giving them a phrase to encrypt with their private key. You then decrypt it with the public key to check that they encrypted the phrase you gave them.
 {panel end}
 
+### RSA in practice
 
+#### How does RSA Work?
+
+#### Preventing known plain text attacks
+
+#### Common usage
 
 ## Storing Passwords Securely
 
