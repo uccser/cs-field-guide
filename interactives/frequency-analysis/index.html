@@ -15,16 +15,22 @@
 
 <body>
     <h4 class="center-align">Frequency Analysis</h4>
-    <div class="interactive row center-align">
+    <div class="row interactive center-align">
         <link rel="stylesheet" href="./css/freq.css">
         <div class="row">
-            <textarea placeholder="Enter some text" class="interactive-frequency-analysis" id="interactive-frequency-analysis-input"></textarea>
+            <div class="col s12 m8 offset-m2 center-align">
+                <textarea placeholder="Enter some text" class="interactive-frequency-analysis" id="interactive-frequency-analysis-input"></textarea>
+            </div>
         </div>
-        <div class="row center-align">
-            <a id="interactive-frequency-analysis-button" class="interactive-frequency-analysis btn btn-large">Analyse!</a>
+        <div class="row">
+            <div class="col s12 m8 offset-m2 center-align">
+                <a id="interactive-frequency-analysis-button" class="interactive-frequency-analysis btn btn-large">Analyse!</a>
+            </div>
         </div>
-        <div class="row center-align">
-            <canvas id="interactive-frequency-analysis-chart-display"></canvas>
+        <div class="row">
+            <div class="col s12 m8 offset-m2 center-align">
+                <canvas id="interactive-frequency-analysis-chart-display"></canvas>
+            </div>
         </div>
         <script src="./js/main.js"></script>
     </div>
