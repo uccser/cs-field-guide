@@ -93,15 +93,13 @@ process.umask = function() { return 0; };
 
 },{}],2:[function(require,module,exports){
 "use strict";
-var ALPHABET, Chart, ChartID, TextID, characterFrequencies, chart;
+var ALPHABET, Chart, ChartID, TextID, characterFrequencies, chart, ctx, drawChart, getFrequencies;
 
 require('es5-shim');
 
 require('es6-shim');
 
 Chart = require('chart.js');
-
-Chart.defaults.global.responsive = true;
 
 TextID = "#interactive-frequency-analysis-input";
 
@@ -124,12 +122,12 @@ characterFrequencies = function(string) {
 
 chart = null;
 
-$("#interactive-frequency-analysis-button").click(function() {
-  var allCharFrequencies, alphabeticFrequencies, char, ctx, data, freq, freqData, labels, text;
-  ctx = $(ChartID)[0].getContext('2d');
-  if (chart != null) {
-    chart.destroy();
-  }
+getFrequencies = function() {
+
+  /* This gets the frequencies from the text entry and returns a map
+      of frequencies
+   */
+  var allCharFrequencies, alphabeticFrequencies, char, freq, text;
   text = $(TextID).val().toUpperCase();
   allCharFrequencies = characterFrequencies(text);
   alphabeticFrequencies = (function() {
@@ -155,10 +153,17 @@ $("#interactive-frequency-analysis-button").click(function() {
       return 1;
     }
   });
-  labels = alphabeticFrequencies.map(function(pair) {
+  return alphabeticFrequencies;
+};
+
+drawChart = function(ctx, frequencies) {
+
+  /* This draws a chart on just Alphabetic characters on the chart */
+  var data, freqData, labels;
+  labels = frequencies.map(function(pair) {
     return pair[0];
   });
-  freqData = alphabeticFrequencies.map(function(pair) {
+  freqData = frequencies.map(function(pair) {
     return pair[1];
   });
   data = {
@@ -171,10 +176,27 @@ $("#interactive-frequency-analysis-button").click(function() {
       }
     ]
   };
-  console.log("llama");
   return chart = new Chart(ctx).Bar(data, {
-    scaleFontSize: 16
+    scaleFontSize: 16,
+    responsive: true
   });
+};
+
+ctx = $(ChartID)[0].getContext('2d');
+
+$("#interactive-frequency-analysis-button").click(function() {
+  var alphabeticFrequencies;
+  if (chart != null) {
+    chart.destroy();
+  }
+  alphabeticFrequencies = getFrequencies();
+  return drawChart(ctx, alphabeticFrequencies);
+});
+
+$(document).ready(function() {
+  var frequencies;
+  frequencies = getFrequencies();
+  return drawChart(ctx, frequencies);
 });
 
 

@@ -19,12 +19,10 @@ characterFrequencies = (string) ->
 # Keep reference to a chart so we can destroy it when we replace it
 chart = null
 
-$("#interactive-frequency-analysis-button").click ->
-    # Render the chart when clicked, destroy old chart if it exists
-    ctx = $(ChartID)[0].getContext('2d')
-    if chart?
-        chart.destroy()
-
+getFrequencies = ->
+    ### This gets the frequencies from the text entry and returns a map
+        of frequencies
+    ###
     text = $(TextID).val().toUpperCase()
 
     allCharFrequencies = characterFrequencies(text)
@@ -46,9 +44,12 @@ $("#interactive-frequency-analysis-button").click ->
         else
             return 1
 
+    return alphabeticFrequencies
 
-    labels = alphabeticFrequencies.map (pair) -> pair[0] # Keys
-    freqData = alphabeticFrequencies.map (pair) -> pair[1] # Values
+drawChart = (ctx, frequencies) ->
+    ### This draws a chart on just Alphabetic characters on the chart ###
+    labels = frequencies.map (pair) -> pair[0] # Keys
+    freqData = frequencies.map (pair) -> pair[1] # Values
     data =
         labels: labels
         datasets: [
@@ -61,3 +62,19 @@ $("#interactive-frequency-analysis-button").click ->
 
     chart = new Chart(ctx).Bar data,
         scaleFontSize: 16
+        responsive: true
+
+ctx = $(ChartID)[0].getContext('2d')
+
+$("#interactive-frequency-analysis-button").click ->
+    # Render the chart when clicked, destroy old chart if it exists
+    if chart?
+        chart.destroy()
+
+    alphabeticFrequencies = getFrequencies()
+    drawChart(ctx, alphabeticFrequencies)
+
+
+$(document).ready ->
+    frequencies = getFrequencies()
+    drawChart(ctx, frequencies)
