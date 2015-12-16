@@ -26,10 +26,7 @@ In 1996, The ARIANE 5 rocket of the European Space Agency was launched for its f
 
 {video url="http://www.youtube.com/embed/gp_D8r-2hwk?rel=0"}
 
-{comment}
-TODO: Find out where Janina got this from, and ensure we can legally use it
-{image se-ariane-5-150.png alt="Ariane Cartoon"}
-{comment end}
+{image filename="software-engineering/se-ariane-5-150.png" alt="Ariane Cartoon"}
 
 In extreme cases, software bugs can endanger lives. This happened in the 1980s, for example, when a [radiation therapy machine](http://en.wikipedia.org/wiki/Therac) caused the deaths of 3 patients by giving 100 times the intended dose of radiation. And in 1979, a US army computer almost started a nuclear war, when it misinterpreted a simulation of the Soviet Union launching a missile as the real thing! (If you are interested in other software failures, [CS4FN](http://www.cs4fn.org/softwareengineering/backtodrawingboard.php) lists the most spectacular ones!)
 
@@ -37,10 +34,7 @@ Our society today is so reliant on software that we can’t even imagine life wi
 
 So why doesn’t it? Why do we get bugs in the first place? As it turns out, writing software is incredibly difficult. Software isn’t a physical product, so we can’t just look at it to see if it’s correct. On top of that, most of the software you use every day is huge and extremely complex. Windows Vista is rumoured to have around 50 million lines of code; MacOSX even has 86 million. If we printed Vista out on paper, we would get a 88m high stack! That’s as high as a 22 storey building or the Statue of Liberty in New York! If you wanted to read through Vista and try to understand how it works, you can expect to get through about 120 lines per hour, so it would take you 417,000 hours or 47 ½ years! (And that’s just to read through it, not write it.)
 
-{comment}
-TODO: Find out where Janina got this from, and ensure we can legally use it
-{image se-stacks-of-code-150.png alt="Stacks of Code Cartoon"}
-{comment end}
+{image filename="software-engineering/se-stacks-of-code-150.png" alt="Stacks of Code Cartoon"}
 
 Software engineering is all about how we can create software despite this enormous size and complexity and hopefully get a working product in the end. It was first introduced as a topic of computer science in the 1960s during the so-called “software crisis”, when people realised that the capability of hardware was increasing at incredible speeds while our ability to develop software is staying pretty much the same.
 
@@ -102,10 +96,7 @@ Imagine that a customer asks you to develop a scoring system for the (fictional)
 
 You should also never assume that a customer is familiar with technical terms that you might think everyone should know, such as JPEG, database or maybe even operating system. Something like “The metaclass subclass hierarchy was constrained to be parallel to the subclass hierarchy of the classes which are their instances” might make some sense to a software engineer but a customer will just look at you very confused! One of the authors once took part in a customer interview where the stakeholder was asked if they want to use the system through a browser. Unfortunately, the customer had no idea what a browser was. Sometimes, customers may not want to admit that they have no idea what you’re talking about and just say “Yes” to whatever you suggest. Remember, it’s up to you to make sure you and your customer understand each other and that you get useful responses from your customer during the interview!
 
-{comment}
-TODO: Find out where Janina got this from, and ensure we can legally use it
-{image se-design-150.png alt="Design Cartoon"}
-{comment end}
+{image filename="software-engineering/se-design-150.png" alt="Design Cartoon"}
 
 Even if you manage to communicate with a customer, you might find that they don’t really know what they want the software to do or can’t express it. They might say they want “software to improve their business” or to “make their work more efficient” but that’s not very specific. (There’s a great cartoon of [Dilbert](http://dilbert.com/strips/comic/2006-01-29/)  which illustrates this point!) When you show them the software you have built, they can usually tell you if that’s what they wanted or what they like and don’t like about it. For that reason, it’s a good idea to build little prototypes while you’re developing your system and keep showing them to customers to get feedback from them.
 
@@ -159,7 +150,7 @@ When you boot your computer, you start running the operating system. The operati
 
 Finally, you’re the top layer of the system. You use the program but you will (hopefully) never have to interact with the more complicated parts of the operating system such as driver software, let alone the hardware. In this way, you can use the computer without ever having to worry about these things.
 
-{image se-computer-layers.png alt="The computer can be broken down into multiple layers, starting with the user, then the programs, then the operating system, then finally the hardware."}
+{image filename="software-engineering/se-computer-layers.png" alt="The computer can be broken down into multiple layers, starting with the user, then the programs, then the operating system, then finally the hardware."}
 
 We call a system like this a *layered system*. You can have any number of layers you want but each layer can only communicate with the one directly below it. The operating system can directly access the hardware but a program running on the computer can't. You can use programs but hopefully will never have to access the hardware or the more complex parts of the operating system such as drivers. This again reduces the complexity of the system because each layer only needs to know about the layer directly below it, not any others.
 
@@ -171,7 +162,7 @@ So each layer hides some complexity, so that as we go up the layers things remai
 
 We can have the same “layered” approach inside a single program. For example, websites are often designed as so-called *three-tier* systems with three layers: a database layer, a logic layer and a presentation layer. The database layer usually consists of a database with the data that the website needs. For example, Facebook has a huge database where it keeps information about its users. For each user, it stores information about who their friends are, what they have posted on their wall, what photos they have added, and so on. The logic layer processes the data that it gets from the database. Facebook’s logic layer, for example, will decide which posts to show on your “Home” feed, which people to suggest as new friends, etc. Finally, the presentation layer gets information from the logic layer which it displays. Usually, the presentation layer doesn’t do much processing on the information it gets but simply creates the HTML pages that you see.
 
-{image se-facebook-system.png alt="Facebook can be broken down into a three tier system, comprising of the presentations layer, then the logic layer, then finally the data layer."}
+{image filename="software-engineering/se-facebook-system.png" alt="Facebook can be broken down into a three tier system, comprising of the presentations layer, then the logic layer, then finally the data layer."}
 
 {panel type="curiosity" summary="Reuse - Kangaroos and Helicopters"}
 Since building software is so difficult and time-consuming, a popular idea has been to reuse existing software. Not surprisingly, we call this *software reuse*. It’s a great idea in theory (why recreate something that already exists?) but turns out to be difficult to put into practice partly because existing software is also huge and complicated. Usually when you reuse software, you want only a small part of the existing software’s functionality, rather than everything.
@@ -211,7 +202,8 @@ Unfortunately, testing is again really difficult because of the size and complex
 When we test software, we try lots of different inputs and see what outputs or behaviour the software produces. If the output is incorrect, we have found a bug.
 
 {panel type="curiosity" summary="Bugs and Moths"}
-{image se-harvard-mark-II.jpg alt="The Mark II at Harvard"}
+
+{image "software-engineering/se-harvard-mark-II.jpg" alt="The Mark II at Harvard"}
 
 In 1947, engineers working on a computer called the *Mark II* were investigating a computer error and found that it was caused by a moth which had become trapped inside the computer! Since then, we use the word *bug* to refer to computer errors. Of course, today we use the word to refer to errors in programs, rather than actual insects trapped in the computer.
 {panel end}
@@ -295,13 +287,13 @@ So far in this chapter, you’ve learned about different phases of software deve
 
 The obvious answer would be to start with analysis to figure out what we want to build, then design the structure of the software, implement everything and finally test the software. This is the simplest software process called the *waterfall process*.
 
-{image se-waterfall-diagram.png alt="Waterfall Diagram"}
+{image filename="software-engineering/se-waterfall-diagram.png" alt="Waterfall Diagram"}
 
 The waterfall process is borrowed from other kinds of engineering. If we want to build a bridge, we go through the same phases of analysis, design, implementation and testing: we decide what sort of bridge we need (How long should it be? How wide? How much load should it be able to support?), design the bridge, build it and finally test it before we open it to the public. It’s been done that way for many decades and works very well, for bridges at least.
 
 We call this process the waterfall process because once you “jump” from one phase of the project to the next, you can’t go back up to the previous one. In reality, a little bit of backtracking is allowed to fix problems from previous project phases but such backtracking is usually the exception. If during the testing phase of the project you suddenly find a problem with the requirements you certainly won’t be allowed to go back and rewrite the requirements.
 
-{image se-waterfall-150.png alt="Waterfall Cartoon"}
+{image filename="software-engineering/se-waterfall-150.png" alt="Waterfall Cartoon"}
 
 An advantage of the waterfall process is that it’s very simple and easy to follow. At any point in the project, it’s very clear what stage of the project you are at. This also helps with planning: if you’re in the testing stage you know you’re quite far into the project and should finish soon. For these reasons, the waterfall process is very popular with managers who like to feel in control of where the project is and where it’s heading.
 
@@ -321,14 +313,14 @@ You end up having to tell the customer that they got what they asked for, not wh
 You can also get things wrong at other points in the project. For example, you might realise while you’re writing the code that the design you came up with doesn’t really work. But the waterfall process tells you that you have to stick with it anyway and make it work somehow.
 
 {comment}
-{image se-tree-swing-cartoon.png alt="Software Design of a Tree-Swing"}
+{image filename="software-engineering/se-tree-swing-cartoon.png" alt="Software Design of a Tree-Swing"}
 
 Design by [Paragon Innovations](http://www.paragoninnovations.com/guide.shtml) and drawn by [Project Cartoon](http://www.projectcartoon.com/about/)
 {comment end}
 
 So if the waterfall process doesn’t work, what can we do instead? Most modern software development processes are based on the concept of iteration. We do a bit of analysis, followed by some design, some programming and some testing. (We call this one iteration.) This gives us a rather rough prototype of what the system will look like. We can play around with the prototype, show it to customers and see what works and what doesn’t. Then, we do the whole thing again. We refine our requirements and do some more design, programming and testing to make our prototype better (another iteration). Over time, the prototype grows into the final system, getting closer and closer to what we want.
 
-{image se-iterative-development.png alt="The iterative software development cycle starts with feedback from showing the prototype to the customer with analysis, the back to design, implementation and testing, and then starting again with analysis."}
+{image filename="software-engineering/se-iterative-development.png" alt="The iterative software development cycle starts with feedback from showing the prototype to the customer with analysis, the back to design, implementation and testing, and then starting again with analysis."}
 
 The advantage with this approach is that if you make a mistake, you will find it soon (probably when you show the prototype to the customer the next time) and have the opportunity to fix it. The same is true if requirements change suddenly; you are flexible and can respond to changes quickly. You also get a lot of feedback from the customers as they slowly figures out what they need.
 
@@ -365,7 +357,7 @@ Which of these two approaches worked best --- designing everything first, or doi
 Usually the point about agile design comes across very strongly; it's rare for a designed bridge to work, but it can usually be done with the iterative agile approach. Students might point out that they aren't experts with cards, but a software engineer should be an expert with software. However, the real issue is that the software engineer probably isn't an expert at the kind of system they're implementing, since the system probably hasn't been built before.
 
 Another option is to get students to build card houses (the main point is that the students should be working in a domain they're not familiar with; if they've build card bridges before then the activity won't work!) This might be easier for younger students; the bridge is quite a challenge! You could challenge students to design and build a tower as high as possible out of cards. Alternatively, you could use lego but cards are definitely more challenging and harder to design with.
-{panel} end}
+{panel end}
 
 {panel type="project" summary="A Navigation Language"}
 In this activity, you will develop a language for navigating around your school. Imagine that you need to describe to your friend how to get to a particular classroom. This language will help you give a precise description that your friend can easily follow.
