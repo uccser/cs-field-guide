@@ -5,7 +5,9 @@
     "description": "This is a network simulation interactive for use in the Computer Science Field Guide",
     "dependencies": {
         "es5-shim": "latest",
-        "es6-shim": "latest"
+        "es6-shim": "latest",
+        "underscore": "latest",
+        "zen-observable": "latest"
     },
     "devDependencies": {
         "coffee-script": "latest",

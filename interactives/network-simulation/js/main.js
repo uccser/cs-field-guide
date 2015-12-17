@@ -93,7 +93,8 @@ process.umask = function() { return 0; };
 
 },{}],2:[function(require,module,exports){
 "use strict";
-var Observable, SPEED, animationFrames, canvas, canvasID, choice, clockViewID, corruptString, ctx, drawCenteredText, drawPacket, eventStream, geometricRandomNumber, pState, packet, packetDefaults,
+var Observable, animationFrames, choice, corruptString, drawCenteredText, drawPacket, eventStream, geometricRandomNumber, packetCreator, packetDefaults, randomIndices,
+  indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; },
   modulo = function(a, b) { return (+a % (b = +b) + b) % b; };
 
 require("es5-shim");
@@ -194,26 +195,43 @@ choice = function(indexable) {
   return indexable[Math.floor(Math.random() * indexable.length)];
 };
 
-corruptString = function(str, errRate) {
+corruptString = function(string, corruptIndices) {
 
   /* Guarantees at least one corruption of a character and corrupts
       others with probability errRate
    */
-  var char, corruptIdx, i, idx, j, len, ref, result, results;
+  var char, i, idx, len, result;
   result = '';
-  corruptIdx = choice((function() {
+  for (idx = i = 0, len = str.length; i < len; idx = ++i) {
+    char = str[idx];
+    if (indexOf.call(corruptIndices, idx) >= 0) {
+      result += '?';
+    } else {
+      result += char;
+    }
+  }
+  return result;
+};
+
+randomIndices = function(length, errRate) {
+
+  /* This functions gives a list of indices to corrupt given a length
+      and errRate e.g. it might give [0, 2, 7] for a length of 12 and
+      errRate of 0.25, at least one index is always chosen with others
+      corrupted as a errRate chance
+   */
+  var guaranteedIdx, i, idx, j, ref, result, results;
+  result = [];
+  guaranteedIdx = choice((function() {
     results = [];
-    for (var i = 0, ref = str.length; 0 <= ref ? i < ref : i > ref; 0 <= ref ? i++ : i--){ results.push(i); }
+    for (var i = 0; 0 <= length ? i < length : i > length; 0 <= length ? i++ : i--){ results.push(i); }
     return results;
   }).apply(this));
-  for (idx = j = 0, len = str.length; j < len; idx = ++j) {
-    char = str[idx];
-    if (corruptIdx === idx) {
-      result += '?';
-    } else if (Math.random() > errRate) {
-      result += char;
-    } else {
-      result += '?';
+  for (idx = j = 0, ref = length; 0 <= ref ? j < ref : j > ref; idx = 0 <= ref ? ++j : --j) {
+    if (idx === guaranteedIdx) {
+      result.push(idx);
+    } else if (Math.random() < errRate) {
+      result.push(idx);
     }
   }
   return result;
@@ -222,11 +240,14 @@ corruptString = function(str, errRate) {
 packetDefaults = {
   errRate: 0.5,
   latency: 100,
-  start: 0
+  start: 0,
+  bandwidth: 0.1,
+  contentType: 'string',
+  contentValue: 'Hello'
 };
 
-packet = function(opts) {
-  var latency, mostRecentRound, mostRecentValue, mostRecentValueCorrupted, ref, ref1, roundTrips, successChance;
+packetCreator = function(opts) {
+  var bandwidth, contentLength, contentType, contentValue, errRate, latency, mostRecentCorruption, mostRecentRound, ref, ref1, ref2, ref3, ref4, ref5, roundTripTime, roundTrips, start, successChance, x;
   if (opts == null) {
     opts = {};
   }
@@ -236,27 +257,58 @@ packet = function(opts) {
       NOTE: All the 2s are simply because a single round is both
             forward and back so don't moan about magic numbers
    */
-  successChance = Math.pow(1 - ((ref = opts.errRate) != null ? ref : packetDefaults.errRate), opts.value.length);
+  latency = (ref = opts.latency) != null ? ref : packetDefaults.latency;
+  errRate = (ref1 = opts.errRate) != null ? ref1 : packetDefaults.errRate;
+  start = (ref2 = opts.start) != null ? ref2 : packetDefaults.start;
+  bandwidth = (ref3 = opts.bandwidth) != null ? ref3 : packetDefaults.bandwidth;
+  contentType = (ref4 = opts.contentType) != null ? ref4 : packetDefaults.contentType;
+  contentValue = (ref5 = opts.contentType) != null ? ref5 : packetDefaults.contentValue;
+  contentLength = contentValue.length;
+  successChance = Math.pow(1 - errRate, contentLength);
   roundTrips = geometricRandomNumber(successChance);
   if (!Number.isSafeInteger(roundTrips)) {
-    return function() {
-      var result;
-      return result = {
-        type: 'recieved',
-        value: opts.value,
-        big: true
-      };
+    return {
+      latency: latency,
+      bandwidth: bandwidth,
+      recievedTime: Infinity,
+      contentType: contentType,
+      contentValue: contentValue,
+      contentLength: contentLength,
+      state: function(time) {
+        return {
+          recieved: false,
+          type: 'packet'
+        };
+      }
     };
   }
-  latency = (ref1 = opts.latency) != null ? ref1 : packetDefaults.latency;
+  roundTripTime = contentLength * latency * bandwidth + latency;
   mostRecentRound = 0;
-  mostRecentValue = opts.value;
-  mostRecentValueCorrupted = false;
-  return function(time) {
-    var mostRecentValueCorrupt, ref2, result, round, tripProportion;
-    time = time - ((ref2 = opts.start) != null ? ref2 : packetDefaults.start);
+  mostRecentCorruption = randomIndices(contentLength, errRate);
+  return {
+    latency: latency,
+    bandwidth: bandwidth,
+    contentType: contentType,
+    contentValue: contentValue,
+    contentLength: contentLength,
+    recievedTime: roundTripTime * roundTrips,
+    state: function(realTime) {
+
+      /* This returns the state of a packet at a given point in time,
+          giving back an object with information that may be useful for
+          rendering
+       */
+      var result, time;
+      time = time - start;
+      return result = {};
+    }
+  };
+  return x = function(time) {
+    var mostRecentValue, mostRecentValueCorrupt, ref6, result, round, tripProportion;
+    time = time - ((ref6 = opts.start) != null ? ref6 : packetDefaults.start);
     result = {};
-    result.completionTime = tripProportion = (modulo(time, 2 * latency)) / latency;
+    result.completionTime = 12;
+    tripProportion = (modulo(time, 2 * latency)) / latency;
     round = Math.floor(time / (2 * latency)) + 1;
     if (round > roundTrips) {
       result.type = 'recieved';
@@ -305,22 +357,6 @@ drawCenteredText = function(ctx, opts) {
   return ctx.fillText(opts.text, opts.centerX, drawY);
 };
 
-SPEED = 1 / 5;
-
-pState = packet({
-  errRate: 0.2,
-  value: "Z",
-  latency: 300
-});
-
-canvasID = '#interactive-network-simulation-canvas';
-
-clockViewID = '#interactive-network-simulation-clock-view';
-
-canvas = $(canvasID)[0];
-
-ctx = canvas.getContext('2d');
-
 drawPacket = function(ctx, packetState, renderOptions) {
   var centerX, cornerX, cornerY, proportion, ref, textWidth, viewValue;
   if (renderOptions == null) {
@@ -357,21 +393,34 @@ drawPacket = function(ctx, packetState, renderOptions) {
   }
 };
 
-animationFrames().map(function(time) {
-  return time * SPEED;
-}).subscribe({
-  next: function(time) {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.strokeStyle = 'black';
-    ctx.strokeRect(0, 0, canvas.width, canvas.height);
-    drawPacket(ctx, pState(time), {
-      size: 30,
-      minX: 40,
-      maxX: canvas.width - 40,
-      centerY: canvas.height / 2
-    });
-    return $(clockViewID).text("" + time);
-  }
+(function() {
+  var SPEED, canvas, canvasID, clockViewID, ctx, pState;
+  SPEED = 1 / 5;
+  pState = packet({
+    errRate: 0.2,
+    value: "Z",
+    latency: 300
+  });
+  canvasID = '#interactive-network-simulation-canvas';
+  clockViewID = '#interactive-network-simulation-clock-view';
+  canvas = $(canvasID)[0];
+  ctx = canvas.getContext('2d');
+  return animationFrames().map(function(time) {
+    return time * SPEED;
+  }).subscribe({
+    next: function(time) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.strokeStyle = 'black';
+      ctx.strokeRect(0, 0, canvas.width, canvas.height);
+      drawPacket(ctx, pState(time), {
+        size: 30,
+        minX: 40,
+        maxX: canvas.width - 40,
+        centerY: canvas.height / 2
+      });
+      return $(clockViewID).text("" + time);
+    }
+  });
 });
 
 
