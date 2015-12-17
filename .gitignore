@@ -17,3 +17,6 @@ Thumbs.db
 # temp vim files
 *.swo
 *.swp
+
+# PyCharm IDE files
+.idea
