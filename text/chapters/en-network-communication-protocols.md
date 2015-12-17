@@ -1,12 +1,12 @@
 # Network Communication Protocols
 
-{video https://www.youtube.com/embed/Hwqmu6pvr6g}
+{video url="https://www.youtube.com/embed/Hwqmu6pvr6g"}
 
-{teacher}
+{comment}
 
 An alternative video could be this one from Family Guy: [https://www.youtube.com/watch?v=KJCfUm21BsI](https://www.youtube.com/watch?v=KJCfUm21BsI). However, it might not be appropriate for your school, as it does contain some questionable language. A vimeo version is at [http://vimeo.com/106027170](http://vimeo.com/106027170). **Network communication protocols** focus on the techniques applied in computer networks to ensure reliable communication of data between two parts of a network in the face of different kinds of threats and failures. Reliable refers to messages being on time, in order and not damaged. The project in this chapter would typically be done by giving examples of the sequence of events that occur in these situations, discussing how the protocols and their coding schemes overcome the problems, and evaluating how successful they are at addressing them. This topic is distinct from the coverage of networking in the infrastructure standards because it focuses on the issues that the protocols address (i.e. the design of the protocol), rather than how to configure a system that uses a given protocol.
 
-{teacher end}
+{comment end}
 
 ## What's the big picture?
 
@@ -50,7 +50,7 @@ HTTP functions as a simple conversation between client and server. Think of when
 >   You: “Can I have a can of soda please?”
 >   Shop Keeper: “Sure, here’s a can of soda”
 
-{image net-soda.png alt="Asking for a soda"}
+{image filename="network-communication-protocols/net-soda.png" alt="Asking for a soda"}
 
 HTTP uses a request/response pattern for solving the problem of reliable communication between client and server. The “ask for” is known as a *request* and the reply is known as a *response*. Both requests and responses can also have other data or *resources* sent along with it.
 
@@ -65,7 +65,7 @@ This is happening all the time when you're browsing the web; every web page you 
 >   You: “Can I have a can of soda please?” \*You hand the shop keeper $2\*
 >   Shop Keeper: “Sure, here’s a can of soda” \*Also hands you a receipt and your change\*
 
-{image net-soda-with-cash.png alt="Paying for a soda with cash"}
+{image filename="network-communication-protocols/net-soda-with-cash.png" alt="Paying for a soda with cash"}
 
 There are nine *types* of requests that HTTP supports, and these are outlined below.
 
@@ -210,7 +210,7 @@ So why don’t the packets all just go from computer A to computer B just fine? 
 
 So, if we didn’t try fix these, the image wouldn’t load, bits would be missing, corrupted or computer B might not even recognise what it is!
 
-{image images/net-corrupt.jpg alt="Corrupted Image"}
+{image filename="network-communication-protocols/net-corrupt.jpg" alt="Corrupted Image"}
 
 So, TCP is a protocol that solves these issues. To introduce you to TCP, please play the game below. In the game, *you* are the problems (loss, delay, corruption) and as you move through the levels, pay attention to how the computer tries to combat them. Good luck trying to stop the messages getting through correctly!
 
@@ -290,7 +290,12 @@ Footers and Headers are basically packet *meta-data*. Information about the info
 
 {jargon-buster end}
 
-{image http://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/UDP_encapsulation.svg/800px-UDP_encapsulation.svg.png alt="UDP Encapsulation"}
+{comment}
+
+{image filename="http://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/UDP_encapsulation.svg/800px-UDP_encapsulation.svg.png" alt="UDP Encapsulation"}
+TODO: Upload this image to field guide, and link back to svg page.
+https://commons.wikimedia.org/wiki/File:UDP_encapsulation.svg
+{comment end}
 
 You can think of these protocols as a game of pass the parcel. When a message is sent in HTTP, it is wrapped in a TCP header, which is then wrapped in an IPv6 header, which is then wrapped in a Ethernet header and footer and sent over ethernet. At the other end, it’s unwrapped again from an ethernet *frame*, back to a IP *packet*, a TCP *datagram*, to a HTTP *request*.
 
@@ -306,7 +311,7 @@ This system is neat because each layer can assume that the layer above and below
 
 So what does a TCP segment look like?
 
-{image net-packet-structure.png alt="Showing the structure of a TCP packet"}
+{image filename="network-communication-protocols/net-packet-structure.png" alt="Showing the structure of a TCP packet"}
 
 As you can see, a packet is divided into four main parts, addresses (source, destination), numbers (sequence number, ANCK number if it’s an acknowledgement), flags (urgent, checksum) in the header, then the actual data. At each level, a segment becomes the data for the next data unit, and that again gets its own header.
 
