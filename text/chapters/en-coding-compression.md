@@ -31,11 +31,13 @@ In this activity, students simulate writing some text using a method used by Jea
 
 {video url="http://www.youtube.com/embed/uaV2RuAJTjQ?rel=0"}
 
+### How does Run Length Coding Encoding work?
+
 Imagine we have the following simple black and white image.
 
-{image filename="pixel-diamond.png" alt="A diamond shape made out of pixels" wrap="right"}
+{image filename="pixel-diamond.png" alt="A diamond shape made out of pixels"}
 
-One very simple way a computer can store this image is by using a format where 0 means white and 1 means black. The above image would be represented in the following way
+One very simple way a computer can store this image is by using a format where '0' means white and '1' means black. The above image would be represented in the following way
 
 ```
 011000010000110
@@ -60,132 +62,8 @@ Interactive to make
 low priority; interactive for images If we were going to put in the interactive that takes the 1’s and 0’s and converts it into an image for the students, I’d want to put that in here. This would mostly be a convenience thing that allows students to easily see what an image looks like. We would also provide an interactive that can take a number representation and show the image for that. We do NOT want to provide a tool that converts between the 2; we want students to do the converting by hand. The tool will allow them to see if the images they got are the same though.
 {comment end}
 
-There are 15 (rows) by 15 (columns) = 225 bits representing this image. Can we represent the same image using fewer bits, in a way that a computer would still be able to understand it?
-Imagine that you had to read it out to someone... after a while you might say things like "five zeroes" instead of "zero zero zero zero zero".
-This technique is used to save space for storing digital images, and is known as run length encoding (RLE). In run length encoding, we replace each row with numbers that say how many consecutive pixels are the same colour, *always starting with the number of white pixels*.
-For example, the first row in the image above contains 1 white, 2 black, 4 white, 1 black, 4 white, 2 black, and 1 white pixel. This could be represented as;
-
-```
-1, 2, 4, 1, 4, 2, 1
-```
-
-For the second row, because we need to say what the number of white pixels is before we say the number of black, we need to explicitly say there are 0 at the start of the row. This would give
-
-```
-0, 1, 5, 3, 5, 1
-```
-
-And the third row contains 5 whites, 5 blacks, 5 whites. This would give
-
-```
-5, 5, 5
-```
-
-So, we have determined that the first 3 rows of the file can be represented using RLE as:
-
-```
-1, 2, 4, 1, 4, 2, 1
-0, 1, 5, 3, 5, 1
-5, 5, 5
-```
-
-Work out what the other rows would be, and write them out as well.
-
-{panel type="spoiler" summary="Representation for the remaining rows"}
-The remaining rows are
-
-```
-4, 7, 4
-3, 9, 3
-2, 5, 1, 5, 2
-1, 5, 3, 5, 1
-0, 5, 5, 5
-1, 5, 3, 5, 1
-2, 5, 1, 5, 2
-3, 9, 3
-4, 7, 4
-5, 5, 5
-0, 1, 5, 3, 5, 1
-1, 2, 4, 1, 4, 2, 1
-```
-{panel end}
-
-Which representation takes less space to store?
-
-One simple way to consider this is to imagine you were typing these representations, so you could think of each of the original bits being stored as one character, and each of the RLE codes using a character for each digit and comma (this is a bit crude, but it's a starting point).
-
-In the original representation, 225 bits were required to represent the image. Count up the number of commas and digits (but not spaces or newlines, ignore those) in the new representation. This is the number of characters required to represent the image with the new representation (to ensure you are on the right track, the first 3 rows that were given to you contain 29 characters)
-
-Assuming you got the new image representation correct, and counted correctly, you should have found there are 119 characters in the new image (double check if your number differs!)
-This means that the new representation only requires around 53% as many characters to represent (calculated using 119/225)! This is a significant reduction in the amount of space required to store the image. The new representation is a *compressed* form of the old one.
-
-In practice this method (with some extra tricks) can be used to compress images to about 15% of their original size.
-In real systems, the image only uses one bit for every pixel to store the black and white values (not one character, which we used for our calculations).
-The run length numbers are also stored much more efficiently, again using bit patterns that take very little space to represent the numbers.
-The bit patterns used are usually based on a technique called Huffman coding, but that is beyond what we want to get into here.
-
-The main place that black and white scanned images are used now is on fax machines, which used this approach to compression.
-One reason that it works so well with scanned pages the number of consecutive white pixels is huge.
-In fact, there will be entire scanned lines that are nothing but white pixels.
-A typical fax page is 200 pixels across or more, so replacing 200 bits with one number is a big saving.
-The number itself can take a few bits to represent, and in some places on the scanned page only a few consecutive pixels are replaced with a number, but overall the saving is significant.
-In fact, fax machines would take 7 times longer to send pages if they didn't use compression.
-
-Just to ensure that we can reverse the compression process, what is the original representation (zeroes and ones) of this (compressed) image?
-
-```
-4, 11, 3
-4, 9, 2, 1, 2
-4, 9, 2, 1, 2
-4, 11, 3
-4, 9, 5
-4, 9, 5
-5, 7, 6
-0, 17, 1
-1, 15, 2
-```
-
-What is the image of? How good was the compression on this image? (Look back at the calculation above for the amount of compression).
-
-{panel type="spoiler" summary="answer"}
-This image is from the [CS Unplugged image representation activity](http://csunplugged.org/image-representation), and the solution is available in the activity (it is a cup and saucer). The same image is decoded using very large pixels (the printer is a spray can!) in this [video from a computer science show](http://www.youtube.com/watch?v=VsjpPs146d8). You could show the video to students, but it's even better to use the teaching ideas in the video yourself.
-{panel end}
-
-{interactive-external run-length-encoding title="Run Length Encoding"}
-
-As the compressed representation of the image can be converted back to the original representation, and both the original representation and the compressed representation would give the same image when read by a computer, this compression algorithm is called *lossless*, i.e. none of the data was lost from compressing the image, and as a result the compression could be undone exactly.
-
-Not all compression algorithms are lossless. In some types of files, in particular photos, sound, and videos, we are willing to sacrifice a little bit of the quality (i.e. lose a little of the data representing the image) if it allows us to make the file size a lot smaller. For downloading very large files such as movies, this can be essential to ensure the file size is not so big that it is infeasible to download!
-These compression methods are called *lossy*. If some of the data is lost, it is impossible to convert the file back to the exactly the original form when lossy compression was used, but the person viewing the movie or listening to the music may not mind the lower quality if the files are smaller. Later in this chapter, we will investigate the effects some lossy compression algorithms have on images and sound.
-
-Now that you know how run length encoding works, you can come up with and compress your own black and white image, as well as uncompress an image that somebody else has given you.
-
-Start by making your own picture with ones and zeroes. (Make sure it is rectangular – all the rows should have the same length.)  You can either draw this on paper or prepare it on a computer (using a fixed width font, otherwise it can become really frustrating and confusing!)
-In order to make it easier, you could start by working out what you want your image to be on grid paper (such as that from a math exercise book) by shading in squares to represent the black ones, and leaving them blank to represent the white ones. Once you have done that, you could then write out the zeroes and ones for the image.
-
-Work out the compressed representation of your image using run length coding, i.e. the run lengths separated by commas form that was explained above.
-
-Now, swap a copy of the *compressed representation* (the run length codes, not the original uncompressed representation) with a classmate.
-You should each uncompress the other person’s image, to get back to the original uncompressed representations. Check to make sure the conversions back to the uncompressed representations was done correctly by making sure the images are the same.
-
-Imagining that you and your friend are both computers, by doing this you have shown that images using these systems of representations can be compressed on one computer, and decompressed on another. It is very important for compression algorithms to have this property in order to be useful. It wouldn’t be very good if a friend gave you a song they’d compressed on their computer, but then your computer was unable to make sense of the representation the compressed song was using!
-
-{panel type="challenge" summary="Best and worse cases"}
-What is the image with the best compression (i.e. an image that has a size that is a very small percentage of the original) that you can come up with? This is the best case performance for this compression algorithm.
-
-What about the worst compression? Can you find an image that actually has a *larger* compressed representation? (Don’t forget the commas in the version we used!) This is the worst case performance for this compression algorithm.
-{panel end}
-
-{panel type="spoiler" summary="Answer for above challenge"}
-The best case above is when the image is entirely white (only one number is used per line). The worst case is when every pixel is alternating white and black, so there's one number for every pixel. Real systems don't represent the data exactly as we've discussed here, but the issues are the same.
-{panel end}
-
-In fact, any *lossless* compression algorithm will have cases where the compressed version of the file is larger than the uncompressed version! Computer scientists have even proven this to be the case, meaning it is impossible for anybody to ever come up with a lossless compression algorithm that makes *all* possible files smaller.
-In most cases this isn’t an issue though, as a good lossless compression algorithm will tend to give the best compression on common patterns of data, and the worst compression on ones that are highly unlikley to occur.
-
-
 {panel type="curiosity" summary="The PBM file format"}
-There is actually an image format that uses the simple one-character-per-pixel representation we used at the start of this section. The format is called portable bitmap format (PBM). PBM files are saved with the file extension “.pbm”, and contain a simple header, along with the the image data. The data in the file can be viewed by opening it in a text editor, much like opening a .txt file, and the image itself can be viewed by opening it in a drawing or image viewing program that supports PBM files (they aren’t very well supported, but a number of image viewing and editing programs can display them). A pbm file for the diamond image used earlier would be as follows:
+There actually is an image format that uses the simple one-character-per-pixel representation we used at the start of this section. The format is called portable bitmap format (PBM). PBM files are saved with the file extension “.pbm”, and contain a simple header, along with the the image data. The data in the file can be viewed by opening it in a text editor, much like opening a .txt file, and the image itself can be viewed by opening it in a drawing or image viewing program that supports PBM files (they aren’t very well supported, but a number of image viewing and editing programs can display them). A pbm file for the diamond image used earlier would be as follows:
 
 ```
 P1
@@ -212,6 +90,150 @@ The first 2 lines are the header.  The first line specifies the format of the fi
 There are variations of this format that pack the pixels into bits instead of characters, and variations that can be used for grey scale and colour images. More [information about this format is available on Wikipedia](http://en.wikipedia.org/wiki/Netpbm_format).
 {panel end}
 
+The key question in compression is... can we represent the same image using fewer bits, in a way that a computer would still be able to understand it?
+
+It turns out we can. There are many ways of going about it, but in this section we are focussing on a method called *run length encoding*.
+
+Imagine that you had to read it out to someone... after a while you might say things like "five zeroes" instead of "zero zero zero zero zero". This technique is used to save space for storing digital images, and is known as run length encoding (RLE). In run length encoding, we replace each row with numbers that say how many consecutive pixels are the same colour, *always starting with the number of white pixels*. For example, the first row in the image above contains one white, two black, four white, one black, four white, two black, and one white pixel.
+
+```
+011000010000110
+```
+
+This could be represented as follows.
+
+```
+1, 2, 4, 1, 4, 2, 1
+```
+
+For the second row, because we need to say what the number of white pixels is before we say the number of black, we need to explicitly say there are zero at the start of the row.
+
+```
+100000111000001
+```
+
+```
+0, 1, 5, 3, 5, 1
+```
+
+You might ask why we need to say the number of white pixels first, which in this case was zero. The reason is that if we didn't have a clear rule about which to start with, the computer would have no way of knowing which colour was which when it displays the image represented in this form!
+
+The third row contains five whites, five blacks, five whites.
+
+```
+000001111100000
+```
+
+```
+5, 5, 5
+```
+
+That means we get the following representation for the first three rows.
+
+```
+1, 2, 4, 1, 4, 2, 1
+0, 1, 5, 3, 5, 1
+5, 5, 5
+```
+
+You can work out what the other rows would be following this same system.
+
+{panel type="spoiler" summary="Representation for the remaining rows"}
+The remaining rows are
+
+```
+4, 7, 4
+3, 9, 3
+2, 5, 1, 5, 2
+1, 5, 3, 5, 1
+0, 5, 5, 5
+1, 5, 3, 5, 1
+2, 5, 1, 5, 2
+3, 9, 3
+4, 7, 4
+5, 5, 5
+0, 1, 5, 3, 5, 1
+1, 2, 4, 1, 4, 2, 1
+```
+{panel end}
+
+{panel type="curiosity" summary="Run Length Encoding in the CS Unplugged show"}
+The same image is decoded using very large pixels (the printer is a spray can!) in this video from a Computer Science Unplugged show.
+
+{video url="http://www.youtube.com/watch?v=VsjpPs146d8"}
+{panel end}
+
+### Converting Run Length Encoding back to the original representation
+
+Just to ensure that we can reverse the compression process, have a go at finding the original representation (zeroes and ones) of this (compressed) image.
+
+```
+4, 11, 3
+4, 9, 2, 1, 2
+4, 9, 2, 1, 2
+4, 11, 3
+4, 9, 5
+4, 9, 5
+5, 7, 6
+0, 17, 1
+1, 15, 2
+```
+
+What is the image of? How good was the compression on this image? Can you calculate how good the compression was in this case?
+
+{panel type="spoiler" summary="Answer for the above image"}
+This image is from the [CS Unplugged image representation activity](http://csunplugged.org/image-representation), and the solution is available in the activity (it is a cup and saucer).
+{panel end}
+
+The following interactive allows you to play around further with Run Length Encoding.
+
+{interactive name="run-length-encoding" type="whole-page"}
+
+### Analysing Run Length Encoding
+
+How much space have we saved using this alternate representation, and how can we measure it? One simple way to consider this is to imagine you were typing these representations, so you could think of each of the original bits being stored as one character, and each of the RLE codes using a character for each digit and comma (this is a bit crude, but it's a starting point).
+
+In the original representation, 225 digits (one's and zeroes) were required to represent the image. Count up the number of commas and digits (but not spaces or newlines, ignore those) in the new representation. This is the number of characters required to represent the image with the new representation (to ensure you are on the right track, the first 3 rows that were given to you contain 29 characters)
+
+Assuming you got the new image representation correct, and counted correctly, you should have found there are 119 characters in the new image (double check if your number differs). This means that the new representation only requires around 53% as many characters to represent (calculated using 119/225). This is a significant reduction in the amount of space required to store the image. The new representation is a *compressed* form of the old one.
+
+{panel type="curiosity" summary="Run length coding representation in practice"}
+In practice this method (with some extra tricks) can be used to compress images to about 15% of their original size. In real systems, the image only uses one bit for every pixel to store the black and white values (not one character, which we used for our calculations). The run length numbers are also stored much more efficiently, again using bit patterns that take very little space to represent the numbers. The bit patterns used are usually based on a technique called Huffman coding, but that is beyond what we want to get into here.
+{panel end}
+
+### Where is Run Length Encoding used in practice?
+
+The main place that black and white scanned images are used now is on fax machines, which use this approach to compression. One reason that it works so well with scanned pages the number of consecutive white pixels is huge. In fact, there will be entire scanned lines that are nothing but white pixels. A typical fax page is 200 pixels across or more, so replacing 200 bits with one number is a big saving. The number itself can take a few bits to represent, and in some places on the scanned page only a few consecutive pixels are replaced with a number, but overall the saving is significant. In fact, fax machines would take 7 times longer to send pages if they didn't use compression.
+
+{panel type="project" summary="Using Run Length Encoding for yourself"}
+Now that you know how run length encoding works, you can come up with and compress your own black and white image, as well as uncompress an image that somebody else has given you.
+
+Start by making your own picture with ones and zeroes. (Make sure it is rectangular – all the rows should have the same length.)  You can either draw this on paper or prepare it on a computer (using a fixed width font, otherwise it can become really frustrating and confusing!). In order to make it easier, you could start by working out what you want your image to be on grid paper (such as that from a math exercise book) by shading in squares to represent the black ones, and leaving them blank to represent the white ones. Once you have done that, you could then write out the zeroes and ones for the image.
+
+Work out the compressed representation of your image using run length coding, i.e. the run lengths separated by commas form that was explained above.
+
+Now give a copy of the *compressed representation* (the run length codes, not the original uncompressed representation) to a friend or classmate, along with an explanation of how it is compressed. Ask them to try and draw the image on some grid paper. Once they are done, check their conversion against your original.
+
+Imagining that you and your friend are both computers, by doing this you have shown that images using these systems of representations can be compressed on one computer, and decompressed on another. It is very important for compression algorithms to have this property in order to be useful. It wouldn’t be very good if a friend gave you a song they’d compressed on their computer, but then your computer was unable to make sense of the representation the compressed song was using!
+{panel end}
+
+### Lossy vs Lossless compression
+
+As the compressed representation of the image can be converted back to the original representation, and both the original representation and the compressed representation would give the same image when read by a computer, this compression algorithm is called *lossless*, i.e. none of the data was lost from compressing the image, and as a result the compression could be undone exactly.
+
+Not all compression algorithms are lossless though. In some types of files, in particular photos, sound, and videos, we are willing to sacrifice a little bit of the quality (i.e. lose a little of the data representing the image) if it allows us to make the file size a lot smaller. For downloading very large files such as movies, this can be essential to ensure the file size is not so big that it is infeasible to download! These compression methods are called *lossy*. If some of the data is lost, it is impossible to convert the file back to the exactly the original form when lossy compression was used, but the person viewing the movie or listening to the music may not mind the lower quality if the files are smaller. Later in this chapter, we will investigate the effects some lossy compression algorithms have on images and sound.
+
+Interestingly, it turns out that any *lossless* compression algorithm will have cases where the compressed version of the file is larger than the uncompressed version! Computer scientists have even proven this to be the case, meaning it is impossible for anybody to ever come up with a lossless compression algorithm that makes *all* possible files smaller. In most cases this isn’t an issue though, as a good lossless compression algorithm will tend to give the best compression on common patterns of data, and the worst compression on ones that are highly unlikley to occur.
+
+{panel type="challenge" summary="Best and worse cases of run length encoding"}
+What is the image with the best compression (i.e. an image that has a size that is a very small percentage of the original) that you can come up with? This is the best case performance for this compression algorithm.
+
+What about the worst compression? Can you find an image that actually has a *larger* compressed representation? (Don’t forget the commas in the version we used!) This is the worst case performance for this compression algorithm.
+{panel end}
+
+{panel type="spoiler" summary="Answer for above challenge"}
+The best case above is when the image is entirely white (only one number is used per line). The worst case is when every pixel is alternating white and black, so there's one number for every pixel. Real systems don't represent the data exactly as we've discussed here, but the issues are the same.
+{panel end}
 
 ## Image compression: JPEG
 
