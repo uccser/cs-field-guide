@@ -1,15 +1,8 @@
 # Coding - Compression
 
-{teacher}
-
-The following assessment plans also cover this material:
-
-**New Zealand - AS91371 (2.44)**
-
-- [Assessment Overview](/appendices/assessment-guides/new-zealand/assessment-guide-level-2-introduction.html)
-- [Compression (Run Length Encoding)](/appendices/assessment-guides/new-zealand/assessment-guide-level-2-compression-run-length-encoding)
-
-{teacher end}
+{panel type="teacher-note" summary="Curriculum Guides for Encryption"}
+TODO
+{panel end}
 
 ## What's the big picture?
 
@@ -20,31 +13,23 @@ For large data warehouses, like those kept by Google and Facebook, halving the a
 Common forms of compression that are currently in use include JPEG (used for photos), MP3 (used for audio), MPEG (used for videos including DVDs), and ZIP (for many kinds of data).
 For example, the JPEG method reduces photos to a tenth or smaller of their original size, which means that a camera can store 10 times as many photos, and images on the web can be downloaded 10 times faster.
 
-So what's the catch? Well, there can be an issue with the quality of the data --- for example, a highly compressed JPEG image doesn't look as sharp as an image that hasn't been compressed. Also, it takes processing time to compress and decompress the data. In most cases, the tradeoff is worth it, but not always.
+So what's the catch? Well, there can be an issue with the quality of the data – for example, a highly compressed JPEG image doesn't look as sharp as an image that hasn't been compressed. Also, it takes processing time to compress and decompress the data. In most cases, the tradeoff is worth it, but not always.
 
 {interactive name="compression-comparer" type="in-page"}
 
 In this chapter we'll look at how compression might be done, what the benefits are, and the costs associated with using compressed data that need to be considered when deciding whether or not to compress data.
-We'll start with a simple example --- Run Length Encoding --- which gives some insight into the benefits and the issues around compression.
 
+We'll start with a simple example – Run Length Encoding – which gives some insight into the benefits and the issues around compression.
 
-{teacher}
-
+{panel type="teacher-note" summary="Locked in activity"}
 An intriguing activity that relates to compression is the ["locked-in" activity](http://www.cs4fn.org/lockedin.html) from CS4FN.
 In this activity, students simulate writing some text using a method used by Jean-Dominique Bauby, who was completely unable to move except for blinking one eye. With a simple binary interface (blinking or not blinking) he was able to author an entire book. It is well worth getting students to work in pairs, and have one try to communicate a word or short phrase strictly by blinking only. It raises many questions, including how it could be done in the shortest time and with the minimum effort. Of course, the first step is to work out how to convey any text at all!
-
-{teacher end}
+{panel end}
 
 
 ## Run Length Encoding
 
-{video http://www.youtube.com/embed/uaV2RuAJTjQ?rel=0}
-
-{comment}
-
-low priority could re-edit the above video to fit into context a little better
-
-{comment end}
+{video url="http://www.youtube.com/embed/uaV2RuAJTjQ?rel=0"}
 
 Imagine we have the following simple black and white image.
 
@@ -71,10 +56,8 @@ One very simple way a computer can store this image is by using a format where 0
 ```
 
 {comment}
-
 Interactive to make
 low priority; interactive for images If we were going to put in the interactive that takes the 1’s and 0’s and converts it into an image for the students, I’d want to put that in here. This would mostly be a convenience thing that allows students to easily see what an image looks like. We would also provide an interactive that can take a number representation and show the image for that. We do NOT want to provide a tool that converts between the 2; we want students to do the converting by hand. The tool will allow them to see if the images they got are the same though.
-
 {comment end}
 
 There are 15 (rows) by 15 (columns) = 225 bits representing this image. Can we represent the same image using fewer bits, in a way that a computer would still be able to understand it?
@@ -108,8 +91,7 @@ So, we have determined that the first 3 rows of the file can be represented usin
 
 Work out what the other rows would be, and write them out as well.
 
-{teacher}
-
+{panel type="spoiler" summary="Representation for the remaining rows"}
 The remaining rows are
 
 ```
@@ -126,8 +108,7 @@ The remaining rows are
 0, 1, 5, 3, 5, 1
 1, 2, 4, 1, 4, 2, 1
 ```
-
-{teacher end}
+{panel end}
 
 Which representation takes less space to store?
 
@@ -166,11 +147,9 @@ Just to ensure that we can reverse the compression process, what is the original
 
 What is the image of? How good was the compression on this image? (Look back at the calculation above for the amount of compression).
 
-{teacher}
-
+{panel type="spoiler" summary="answer"}
 This image is from the [CS Unplugged image representation activity](http://csunplugged.org/image-representation), and the solution is available in the activity (it is a cup and saucer). The same image is decoded using very large pixels (the printer is a spray can!) in this [video from a computer science show](http://www.youtube.com/watch?v=VsjpPs146d8). You could show the video to students, but it's even better to use the teaching ideas in the video yourself.
-
-{teacher end}
+{panel end}
 
 {interactive-external run-length-encoding title="Run Length Encoding"}
 
@@ -181,7 +160,7 @@ These compression methods are called *lossy*. If some of the data is lost, it is
 
 Now that you know how run length encoding works, you can come up with and compress your own black and white image, as well as uncompress an image that somebody else has given you.
 
-Start by making your own picture with ones and zeroes. (Make sure it is rectangular --- all the rows should have the same length.)  You can either draw this on paper or prepare it on a computer (using a fixed width font, otherwise it can become really frustrating and confusing!)
+Start by making your own picture with ones and zeroes. (Make sure it is rectangular – all the rows should have the same length.)  You can either draw this on paper or prepare it on a computer (using a fixed width font, otherwise it can become really frustrating and confusing!)
 In order to make it easier, you could start by working out what you want your image to be on grid paper (such as that from a math exercise book) by shading in squares to represent the black ones, and leaving them blank to represent the white ones. Once you have done that, you could then write out the zeroes and ones for the image.
 
 Work out the compressed representation of your image using run length coding, i.e. the run lengths separated by commas form that was explained above.
@@ -191,35 +170,21 @@ You should each uncompress the other person’s image, to get back to the origin
 
 Imagining that you and your friend are both computers, by doing this you have shown that images using these systems of representations can be compressed on one computer, and decompressed on another. It is very important for compression algorithms to have this property in order to be useful. It wouldn’t be very good if a friend gave you a song they’d compressed on their computer, but then your computer was unable to make sense of the representation the compressed song was using!
 
-{extra-for-experts}
-
-**Extra for Experts**
-
+{panel type="challenge" summary="Best and worse cases"}
 What is the image with the best compression (i.e. an image that has a size that is a very small percentage of the original) that you can come up with? This is the best case performance for this compression algorithm.
 
 What about the worst compression? Can you find an image that actually has a *larger* compressed representation? (Don’t forget the commas in the version we used!) This is the worst case performance for this compression algorithm.
+{panel end}
 
-{extra-for-experts end}
+{panel type="spoiler" summary="Answer for above challenge"}
+The best case above is when the image is entirely white (only one number is used per line). The worst case is when every pixel is alternating white and black, so there's one number for every pixel. Real systems don't represent the data exactly as we've discussed here, but the issues are the same.
+{panel end}
 
 In fact, any *lossless* compression algorithm will have cases where the compressed version of the file is larger than the uncompressed version! Computer scientists have even proven this to be the case, meaning it is impossible for anybody to ever come up with a lossless compression algorithm that makes *all* possible files smaller.
 In most cases this isn’t an issue though, as a good lossless compression algorithm will tend to give the best compression on common patterns of data, and the worst compression on ones that are highly unlikley to occur.
 
-{comment}
 
-include http://xkcd.com/1381/ ?
-
-{comment end}
-
-{teacher}
-
-The best case above is when the image is entirely white (only one number is used per line). The worst case is when every pixel is alternating white and black, so there's one number for every pixel. Real systems don't represent the data exactly as we've discussed here, but the issues are the same.
-
-{teacher end}
-
-{extra-for-experts}
-
-**Extra for Experts**
-
+{panel type="curiosity" summary="The PBM file format"}
 There is actually an image format that uses the simple one-character-per-pixel representation we used at the start of this section. The format is called portable bitmap format (PBM). PBM files are saved with the file extension “.pbm”, and contain a simple header, along with the the image data. The data in the file can be viewed by opening it in a text editor, much like opening a .txt file, and the image itself can be viewed by opening it in a drawing or image viewing program that supports PBM files (they aren’t very well supported, but a number of image viewing and editing programs can display them). A pbm file for the diamond image used earlier would be as follows:
 
 ```
@@ -245,39 +210,10 @@ P1
 The first 2 lines are the header.  The first line specifies the format of the file (P1 means that the file contains ASCII zeroes and ones. The second line specifies the width and then the height of the image in pixels. This allows the computer to know the size and dimensions of the image, even if the newline characters separating the rows in the file were missing. The rest of the data is the image, just like above. If you wanted to, you could copy and paste this representation (including the header) into a text file, and save it with the file extension .pbm. If you have a program on your computer able to open PBM files, you could then view the image with it. You could even write a program to output these files, and then display them as images.
 
 There are variations of this format that pack the pixels into bits instead of characters, and variations that can be used for grey scale and colour images. More [information about this format is available on Wikipedia](http://en.wikipedia.org/wiki/Netpbm_format).
+{panel end}
 
-{extra-for-experts end}
-
-{comment}
-
-A: describing the concept of encoding information using compression coding, error control coding, and encryption; and typical uses of encoded information
-M: discussing how a widely used technology is enabled by one or more of compression coding, error control coding, and encryption
-E: evaluating a widely used system for compression coding, error control coding, or encryption
-
-{comment end}
 
 ## Image compression: JPEG
-
-{teacher}
-
-This section provides enough information for students to work up the the excellence level for coding. The requirements are:
-
-- Merit: discussing how a widely used technology is enabled by one or more of compression coding, error control coding, and encryption
-- Excellence: evaluating a widely used system for compression coding, error control coding, or encryption
-
-Student reports will revolve around the benefits that enable a widely used technology (such as compressed file sizes making it feasible to view photographs interactively online) for merit, and comparing (evaluating) the size and quality of images before and after they have been compressed.
-
-This section ties in well with AS91370 (2.43) work on web design. For the 2.43 standard the focus in compression is using a format that looks suitable and has a small file size for the particular images being used on a web site being designed. For the 2.44 standard (covered here) we look a little at *how* the compression works, and evaluate it on a variety of images including extreme cases, to draw general conclusions about the performance of various compression methods. Although the work is complementary, understanding one will obviously help students with the other.
-
-[An ebook to support AS91370 (2.43)](https://drive.google.com/folderview?id=0BxTv4DHp39Q-UEFoWDJiSWZEQ3c&usp=sharing) has been published by Jennifer Gottschalk.
-
-{teacher end}
-
-{comment}
-
-have checked with Jennifer that the above link is long-term; eventually it would be good if it was on NZACDITT or somewhere more permanent.
-
-{comment end}
 
 Images can take up a lot of space, and most of the time that pictures are stored on a computer they are compressed to avoid wasting too much space.
 With a lot of images (especially photographs), there's no need to store the image exactly as it was originally, because it contains way more detail than anyone can see.
@@ -295,20 +231,11 @@ Reducing the number of bits (the colour depth) is sufficiently crude that we don
 {image filename="compression-comparison.png"}
 
 {comment}
-
 .. xtcb low priority: these are all jpgs of the originals; consider replacing them with actual originals (as long as the browser can render them all).
-
 .. ajb these images seem to appear in the wrong order to what is described for me… The middle one and left one should be swapped around?
-
 {comment end}
 
 For example, the following image shows a zoomed in view of the pixels that are part of the detail around an eye from the above (high quality) image.
-
-{comment}
-
-this image no longer needed, as it is available just above static/images/CC-PhotoOriginal.jpg
-
-{comment end}
 
 {image filename="zoomed-eye.png"}
 
@@ -320,25 +247,19 @@ Run-length encoding wouldn't work in this situation. You could use a variation t
 
 But there is a way to take advantage of the gradually changing colours. For the pixels in the red box above, you could generate an approximate version of those colours by specifying just the first and last one, and getting the computer to interpolate the ones in between smoothly. Instead of storing 5 pixel values, only 2 are needed, yet someone viewing it probably wouldn't notice any difference. This would be *lossy* because you can't reproduce the original exactly, but it would be good enough for a lot of purposes, and save a lot of space.
 
-The JPEG system, which is widely used for photos, uses a more sophisticated version of this idea.
-Instead of taking a 5 by 1 run of pixels as we did above, it works with 8 by 8 blocks of pixels.
-And instead of estimating the values with a linear function, it uses combinations of cosine waves.
+The JPEG system, which is widely used for photos, uses a more sophisticated version of this idea. Instead of taking a 5 by 1 run of pixels as we did above, it works with 8 by 8 blocks of pixels. And instead of estimating the values with a linear function, it uses combinations of cosine waves.
 
-{jargon-buster}
-
-**Jargon Buster**
-
+{panel type="curiosity" summary="What are cosine waves"}
 A cosine wave form is from the trig function that is often used for calculating the sides of a triangle. If you plot the cosine value from 0 to 180 degrees, you get a smooth curve going from 1 to -1. Variations of this plot can be used to approximate the value of pixels, going from one colour to another. If you add in a higher frequency cosine wave, you can produce interesting shapes. In theory, any pattern of pixels can be created by adding together different cosine waves!
 
 {image filename="cosine-graph.png" alt="A graph showing cos(x) and sin(x) curves"}
-
-{jargon-buster end}
+{panel end}
 
 {comment}
-
 .. xtcb adapt fourier spreadsheet and make available here (see also http://demonstrations.wolfram.com/JPEGCompressionAlgorithm/, http://demonstrations.wolfram.com/SumsOfSineWavesWithSeveralStepSizesSawtoothOrSquareApproxima/ http://demonstrations.wolfram.com/RecoveringTheFourierCoefficients/
 .. html5 low priority interactive to add cosine waves to try to match a given waveform e.g. square wave, triangle, random. Select amplitude for various frequencies. I have a spreadsheet that basically does this, could put it in for the meantime - tim
 
+The trouble with those links is that they require downloading software. And I don't know anything about that site, but it appears a bit dodgy to me (i.e. will it download rubbish as well?)
 {comment end}
 
 You can see the 8 by 8 blocks of pixels if you zoom in on a heavily compressed JPEG image. For example, the following image has been very heavily compressed using JPEG (it is just 1.5% of its original size).
@@ -353,35 +274,19 @@ Notice that there is very little variation across each block. In the following i
 
 {image filename="compressed-jpeg-zoomed-highlighted.png"}
 
-The quality is quite low, but the saving in space is huge --- it's more than 60 times smaller (for example, it would download 60 times faster). Higher quality JPEG images store more detail for each 8 by 8 block, which makes it closer to the original image, but makes bigger files because more details are being stored. You can experiment with these tradeoffs by saving JPEGs with differing choices of the quality, and see how the file size changes. Most image processing software offers this option when you save an image as a JPEG.
+The quality is quite low, but the saving in space is huge – it's more than 60 times smaller (for example, it would download 60 times faster). Higher quality JPEG images store more detail for each 8 by 8 block, which makes it closer to the original image, but makes bigger files because more details are being stored. You can experiment with these tradeoffs by saving JPEGs with differing choices of the quality, and see how the file size changes. Most image processing software offers this option when you save an image as a JPEG.
 
 {comment}
-
-.. xhtml5 low priority : interactive that could load a photo, zoom in on pixels, and change it to different qualities of jpg coding
-
+low priority : interactive that could load a photo, zoom in on pixels, and change it to different qualities of jpg coding
 {comment end}
 
-{teacher}
-
-Another example of low quality JPEG images can be found on the [Wikipedia page about JPEG](http://en.wikipedia.org/wiki/Jpeg), but it's better if students can save their own low quality files and zoom in on them to see these effects.
-
-{teacher end}
-
-{jargon-buster}
-
-**Jargon Buster**
-
+{panel type="jargon-buster" summary="What exactly is JPEG?"}
 The name "JPEG" is short for "Joint Photographic Experts Group", a committee that was formed in the 1980s to create standards so that digital photographs could be captured and displayed on different brands of devices. Because some file extensions are limited to three characters, it is often seen as the ".jpg" extension.
+{panel end}
 
-{jargon-buster end}
-
-{extra-for-experts}
-
-**Extra for Experts**
-
-The cosine waves used for JPEG images are based on a "Discrete Cosine Transform". The "Discrete" means that the waveform is digital --- it is the opposite of continuous, where any value can occur. In a JPEG wave, there are only 8 x 8 values (for the block being coded), and each of those values can have a limited range of numbers (binary integers), rather than any value at all.
-
-{extra-for-experts end}
+{panel type="curiosity" summary="More about cosine waves"}
+The cosine waves used for JPEG images are based on a "Discrete Cosine Transform". The "Discrete" means that the waveform is digital – it is the opposite of continuous, where any value can occur. In a JPEG wave, there are only 8 x 8 values (for the block being coded), and each of those values can have a limited range of numbers (binary integers), rather than any value at all.
+{panel end}
 
 An important issue arises because JPEG represents images as smoothly varying colours: what happens if the colours change suddenly?
 In that case, lots of values need to be stored so that lots of cosine waves can be added together to make the sudden change in colour, or else the edge of the image become fuzzy.
@@ -396,28 +301,17 @@ The original had sharp edges, but this zoomed in view of the JPEG version of it 
 For this reason, JPEG is used for photos and natural images, but other techniques (such as GIF and PNG, which we will look at in another section) work better for artificial images like this one.
 
 {comment}
-
 .. xjrm low priority create an image like the one in this link, with one, two three waveforms added http://mathworld.wolfram.com/images/eps-gif/FourierSeriesSquareWave_800.gif (then Tim to add some text)
 
 .. xhtml5 interactive (medium priority): allow user to switch on and off the 64 basis vectors (http://en.wikipedia.org/wiki/File:Dctjpeg.png) and see the combined result
 
 .. http://www.cs4fn.org/films/jpegit.php
-
-.. Using the JPEG compression system for the achievement standard
-.. ------------------------------------------------------------------------------------------------------------------
-
-.. Will get students to actually compress some images using different formats
-
-.. For the students’ reports, again follow the above ideas, modifying them appropriately for JPEG. Do not worry about the second to last point, as it is irrelevant to JPEG (comparing to the activity in the bits and representations lesson). Students should use the same test cases as were recommended above. The reports should show clear comparisons of different types of compression. They can display the quality of the images (possibly zooming in to highlight low quality artifacts), the amount of compression (this might be a graph comparing original size with compressed size for various images and various qualities of compression), and the time taken for compression (although most systems may be too fast to notice any significant time taken).
-
 {comment end}
 
-
+{comment}
 ## Image compression: GIF and PNG
 
 appearing soon!
-
-{comment}
 
 .. http://www.cs4fn.org/films/jpegit.php CS4FN on Jpeg and
 
@@ -428,8 +322,6 @@ appearing soon!
 .. GIF and PNG use a palette; GIF strictly 256 bits - lossless, except GIF reduces colour depth; use LZ - see general purpose
 .. best for images that don't have a big variety of colour e.g. cartoons, icons . These sorts of images don't work so well with JPEG compression because it isn't so good at sharp edges.
 .. choosing right compression method is important
-
-.. project Do the same as what is described for the above compression system, except instead of using “24 bit colour”, “256 colours”, and “16 colours”, instead compare 4 or 5 different amounts of JPEG compression, with two being the extreme cases, and the other two or three being various cases in the middle.
 
 {comment end}
 
@@ -448,17 +340,15 @@ What happens if a reference is pointing to another reference?
 As long as you decode them from first to last, the information will be available before you need it.
 
 {comment}
-
 .. xhtml5 Eventually this could use a parameter so there's one version with no tabs, and a later one with them.
-
 {comment end}
 
+{comment}
 <div align="center"><iframe width="900" height="460" src="static/widgets/COMPRESSION/LWZ/public_html/index.html" frameborder="0">Your browser does not support iframes. Please contact the computer's administrator and upgrade <a href="http://browsehappy.com/"> to a modern browser</a> (like Google Chrome) to enable all functionality of this online textbook.</iframe></div>
+{comment end}
 
 {comment}
-
 .. xjrm (or Rhem): pasting text in that is too big causes it to be rejected. It would be nicer if the pasted text is truncated to the maximum length.
-
 {comment end}
 
 You can also enter your own text by clicking on the "Text" tab.
@@ -492,33 +382,22 @@ In fact, this is essentially what happens with GIF and PNG images; the pixel val
 .. xtcb  Project
 .. Students should try an algorithm [zip, gzip etc.] on several different text files, image files, sound files, and video files.
 .. What would happen if text compression was lossy? (I think this should be a part of their merit discussion)
-
 {comment end}
 
-{teacher}
-
+{panel type="teacher-note" summary="Unplugged activity on Ziv-Lempel approach"}
 The [CS Unplugged site has activities and information about the Ziv-Lempel approach](http://csunplugged.org/text-compression), and the ["Computing Science Inside" site also has an activity based on this method](http://csi.dcs.gla.ac.uk/workshop-view.php?workshopID=1) The CS4FN site discusses [a related approach which is a little simpler, but not so useful in practice](http://www.cs4fn.org/internet/crushed.php).
+{panel end}
 
-{teacher end}
-
-{curiosity}
-
-**Curiosity**
-
+{panel type="curiosity" summary="ZL or LZ compression?"}
 The method we have described here is named “Ziv-Lempel” compression after Jacob Ziv and Abraham Lempel, the two computer scientists who invented it in the 1970s. Unfortunately someone mixed up the order of their names when they wrote an article about it, and called it “LZ” compression instead of “ZL” compression. So many people copied the mistake that Ziv and Lempel’s method is now usually called “LZ compression”!
-
-{curiosity end}
+{panel end}
 
 ## Audio compression
 
-One of the  most widely used methods for compressing music is MP3, which is actually from a video compression standard.
-The Motion Picture Expert Group (MPEG) was a consortium of companies and researchers that got together to agree on a standard so that people could easily play the same videos on different brands of equipment (especially from DVD). The very first version of their standard (called MPEG 1) had three methods of storing the sound track (layer 1, 2 and 3).
-One of those methods (MPEG 1 layer 3) became very popular for compressing music, and was abbreviated to MP3.
+One of the most widely used methods for compressing music is MP3, which is actually from a video compression standard. The Motion Picture Expert Group (MPEG) was a consortium of companies and researchers that got together to agree on a standard so that people could easily play the same videos on different brands of equipment (especially from DVD). The very first version of their standard (called MPEG 1) had three methods of storing the sound track (layer 1, 2 and 3). One of those methods (MPEG 1 layer 3) became very popular for compressing music, and was abbreviated to MP3.
 
 {comment}
-
 .. curiosity xtcb (to write later) MP4 usually refers to the video compression system, MPEG-4 Part 14, although the Apple AAC compression method is based on the audio compression that is associated with MPEG-4.
-
 {comment end}
 
 Most other audio compression methods use a similar approach to the MP3 method, although some offer better quality for the same amount of storage (or less storage for the same quality).
@@ -536,21 +415,13 @@ The main questions with compressed audio are how small the file can be made, and
 The tradeoff between quality and size of audio files can depend on the situation you're in: if you are jogging and listening to music then the quality may not matter so much, but it's good to reduce the space available to store it.
 On the other hand, someone listening to a recording at home on a good sound system might not mind about having a large device to store the music, as long as the quality is high.
 
-{teacher}
-
-The following experiments provide the basis for a merit/excellence report as they guide the students on what the benefits are that enable digital audio systems to be useful, and on evaluating the performance of compression systems.
-
-{teacher end}
-
 To evaluate an audio compression you should choose a variety of recordings that you have high quality originals for, typically on CD (or using uncompressed WAV or AIFF files). Choose different styles of music, and other kinds of audio such as speech, and perhaps even create a recording that is totally silent. Now convert these recordings to different audio format. One system for doing this that is free to download is Apple's iTunes, which can be used to rip CDs to a variety of formats, and gives a choice of settings for the quality and size.
 A lot of other audio systems are able to convert files, or have plugins that can do the conversion.
 
-Compress each of your recordings using a variety of methods, making sure that each compressed file is created from a high quality original. Make a table showing how long it took to process each recording, the size of the compressed file, and some evaluation of the quality of the sound compared with the original. Discuss the tradeoffs involved --- do you need much bigger files to store good quality sound? Is there a limit to how small you can make a file and still have it sounding ok? Do some methods work better for speech than others? Does a 2 minute recording of silence take more space than a 1 minute recording of silence? Does a 1 minute recording of music use more space than a minute of silence?
+Compress each of your recordings using a variety of methods, making sure that each compressed file is created from a high quality original. Make a table showing how long it took to process each recording, the size of the compressed file, and some evaluation of the quality of the sound compared with the original. Discuss the tradeoffs involved – do you need much bigger files to store good quality sound? Is there a limit to how small you can make a file and still have it sounding ok? Do some methods work better for speech than others? Does a 2 minute recording of silence take more space than a 1 minute recording of silence? Does a 1 minute recording of music use more space than a minute of silence?
 
 {comment}
-
 .. xtcb could have a section on Huffman coding sometime (remove from "the whole story")
-
 {comment end}
 
 ## The whole story!
@@ -561,21 +432,16 @@ A closely related system is Arithmetic coding (there's an [explanation of it her
 Also, motion picture compression has been omitted, even though compressing videos saves more space than most kinds of compression.
 Most video compression is based on the "MPEG" standard (Motion Picture Experts Group). There is some information about how this works in the [CS4FN article on "Movie Magic"](http://www.cs4fn.org/films/mpegit.php).
 
-{teacher}
-
+{panel type="teacher-note" summary="Teacher guides for Plymouth resources"}
 Access to teacher guides for the Plymouth resources above are [available here](http://www.cimt.plymouth.ac.uk/resources/codes/>).
+{panel end}
 
-{teacher end}
-
-The Ziv-Lempel method shown is a variation of the so-called "LZ77" method. Many of the more popular compression methods are based on this, although there are many variations, and one called "LZW" has also been used a lot.
-Another high-compression general-purpose compression method is bzip, based on a very clever method called the Burrows-Wheeler Transform.
+The Ziv-Lempel method shown is a variation of the so-called "LZ77" method. Many of the more popular compression methods are based on this, although there are many variations, and one called "LZW" has also been used a lot. Another high-compression general-purpose compression method is bzip, based on a very clever method called the Burrows-Wheeler Transform.
 
 Questions like "what is the most compression that can be achieved" are addressed by the field of [information theory](http://en.wikipedia.org/wiki/Information_theory). There is an [activity on information theory on the CS Unplugged site](http://csunplugged.org/information-theory), and there is a [fun activity that illustrates information theory](http://www.math.ucsd.edu/~crypto/java/ENTROPY/). Based on this theory, it seems that English text can't be compressed to less than about 12% of its original size at the very best. Images, sound and video can get much better compression because they can use lossy compression, and don't have to reproduce the original data exactly.
 
 {comment}
-
 .. xtcb jargon uncompressed are typically BMP or RAW. TIFF files Tagged Image File Format can contain many formats, including uncompressed, runlength and JPEG.
-
 {comment end}
 
 ## Further reading
