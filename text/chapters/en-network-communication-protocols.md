@@ -22,13 +22,11 @@ Activities on the internet vary a lot too (email, skype, video streaming, music,
 
 The URL for the home site of this book is http://csfieldguide.org. Ask a few friends what the "http" stands for - they have probably seen it thousands of times...do they know what it is? This section covers high level protocols such as HTTP and IRC, what they can do and how you can use them (hint: you’re already using HTTP right now).
 
-{teacher}
-
-For the activity in this section it's ideal if your school computers have a modern browser with the developer extensions enabled. [Chrome](https://www.google.com/chrome/browser/) is free to download. Follow the instructions [here](http://debugbrowser.com/) for more information on how to do this. The developer browser can’t really do any harm, and you can encourage further tinkering. However, knowledge of HTML, JavaScript or any other web design won’t be helpful in a report on protocols. If your school’s IT department can't allow you access to these features, simply encourage the students to try this at home. It’s a perfectly safe activity. Note: Details of page loads only show up if the inspector is open, you may need to refresh the current page to see this.
-
-{teacher end}
-
 ### HyperText Transfer Protocol (HTTP)
+
+{panel type="teacher-note" summary="Looking at HTTP in the classroom"}
+For the activity in this section it's ideal if your school computers have a modern browser with the developer extensions enabled. [Chrome](https://www.google.com/chrome/browser/) is free to download, and is the browser we recommend. Follow the instructions [here](http://debugbrowser.com/) for more information on how to do this. The developer browser can’t really do any harm, and you can encourage further tinkering. However, knowledge of HTML, JavaScript or any other web design won’t be helpful in a report on protocols. If your school’s IT department can't allow you access to these features, simply encourage the students to try this at home. It’s a perfectly safe activity. Note: Details of page loads only show up if the inspector is open, you may need to refresh the current page to see this.
+{panel end}
 
 The HyperText Transfer Protocol (HTTP) is the most common protocol in use on the internet. The protocol’s job is to transfer [HyperText](glossary#hypertext) (such as HTML) from a server to your computer. It’s doing that right now. You just loaded the Field Guide from the servers where it is hosted. Hit refresh and you’ll see it in action.
 
@@ -41,11 +39,9 @@ HTTP functions as a simple conversation between client and server. Think of when
 
 HTTP uses a request/response pattern for solving the problem of reliable communication between client and server. The “ask for” is known as a *request* and the reply is known as a *response*. Both requests and responses can also have other data or *resources* sent along with it.
 
-{curiosity}
-
+{panel type="jargon-buster" summary="What is a resource?"}
 A *resource* is any item of data on a server. For example, a blog post, a customer, an item of stock or a news story. As a business or a website, you would create, read, update and delete these as part of your daily business. HTTP is well suited to that. For example, if you’re a news site, every day your authors would add stories, you could update them, delete them if they’re old or become out of date, all sorts. These sorts of methods are required to manage content on a server, and HTTP is the way to do this.
-
-{curiosity end}
+{panel end}
 
 This is happening all the time when you're browsing the web; every web page you look at is delivered using the HyperText Transfer Protocol. Going back to the shop analogy, consider the same example, this time with more resources shown in asterisk (*) characters.
 
@@ -83,12 +79,6 @@ A DELETE request does what you’d think, it deletes a resource.
 Some other request types (*HTTP methods*) exist too, but they are less used; these are TRACE, OPTIONS, CONNECT and PATCH. You can [find out more about these](http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol) on your own if you're interested.
 
 In HTTP, the first line of the response is called the *status* line and has a numeric status code such as **404** and a text-based *reason phrase* such as “Not Found”. The most common is 200 and this means successful or “OK”. HTTP status codes are primarily divided into five groups for better explanation of requests and responses between client and server and are named by purpose and a number: Informational 1XX, Successful 2XX, Redirection 3XX, Client Error 4XX and Server Error 5XX. There are many [status codes](http://en.wikipedia.org/wiki/List_of_HTTP_status_codes) for representing different cases for error or success. There’s even a nice 418: Teapot error on Google: [http://www.google.com/teapot](http://www.google.com/teapot)
-
-{teacher}
-
-[Chrome](https://www.google.com/chrome/browser/) is free to download. Follow the instructions [here](http://debugbrowser.com/) for the browser you have installed.
-
-{teacher end}
 
 So what’s actually happening? Well, let’s find out. If you’re in a Chrome or Safari browser, press Ctrl + Shift + I in windows or Command + Option + I on a mac to bring up the web inspector. Select the Network tab. Refresh the page. What you’re seeing now is a list of of HTTP requests your browser is making to the server to load the page you're currently viewing. Near the top you’ll see a request to NetworkCommunicationProtocols.html. Click that and you’ll see details of the Headers, Preview, Response, Cookies and Timing. Ignore those last two for now.
 
@@ -148,20 +138,16 @@ Go ahead and try this same process on a few other pages too. For example, try th
 - A chapter that [doesn’t exist in the Field Guide](http://csfieldguide.org.nz/Nope.html)
 - Your favourite website
 
-{curiosity}
-
+{panel type="curiosity"" summary="Who came up with HTTP?"}
 Tim Berners-Lee was credited for creating HTTP in 1989. You can read more about him [here](http://en.wikipedia.org/wiki/Tim_Berners-Lee>).
-
-{curiosity end}
+{panel end}
 
 ### Internet Relay Chat (IRC)
 
-{teacher}
-
+{panel type="teacher-note"" summary="Using IRC in the classroom"}
 For this section we suggest you use the [freenode web client](http://webchat.freenode.net/) This allows you to set up your own channel and then your students can join it too. Now, with channels on this service, anyone can join them, so if your channel name is too obvious, you might get members of the public joining. It's best to break convention with channel names and use ###irc-myschool-thedate or something similar.
 Students can also download and install IRC clients, but this is complicated to configure, so it’s best to use the web version for now. Just tell them what channel to join.
-
-{teacher end}
+{panel end}
 
 Internet Relay Chat (IRC) is a system that lets you transfer messages in the form of text. It’s essentially a chat protocol. The system uses a client-server model. Clients are chat programs installed on a user’s computer that connect to a central server. The clients communicate the message to the central server which in turn relays that to other clients. The protocol was originally designed for group communication in a discussion forum, called *channels*. IRC also supports one-to-one communication via *private messages*. It is also capable of file and data transfer too.
 
@@ -199,14 +185,11 @@ So, if we didn’t try fix these, the image wouldn’t load, bits would be missi
 
 {image filename="network-communication-protocols/net-corrupt.jpg" alt="Corrupted Image"}
 
-So, TCP is a protocol that solves these issues. To introduce you to TCP, please play the game below. In the game, *you* are the problems (loss, delay, corruption) and as you move through the levels, pay attention to how the computer tries to combat them. Good luck trying to stop the messages getting through correctly!
+So, TCP is a protocol that solves these issues. To introduce you to TCP, play the game below, called *Packet attack*. In the game, *you* are the problems (loss, delay, corruption) and as you move through the levels, pay attention to how the computer tries to combat them. Good luck trying to stop the messages getting through correctly!
 
-{teacher}
+*Packet Attack* is a direct analogy for TCP and it is intended to be an interactive simulation of it. The Packet Creatures are TCP segments, which move between two computers. The yellow/gray zone is the unreliable channel, susceptible to unreliability. That unreliability is the user playing the game. Remember from the key problems of this topic on the transport level, we have delays, corruption and lost packets, these are the attacks; *delay*, *corrupt*, *kill*. Solutions come in the form of TCP mechanisms, they are slowly added level by level. Like in TCP, the game supports packet ordering, checksums (shields), Acks and Nacks (return creatures) and timeouts .
 
-You can also create your own ‘levels’ for your students in Packet Attack. We’ve also put a level builder in the projects section below so that you can make levels for your students, experiment with different reliabilities or combination of defenses.
-
-Adjust the trues, falses and numbers to set different abilities. Raising the numbers will effectively equate to a less reliable communication channel. Adding in more abilities (by setting shields etc to true) will make for a harder to level to beat.
-
+{panel type="teacher-note" summary="Packet attack spoilers"}
 **Level Overview**
 
 - *Level 1*: No defences. One packet. Students can beat by using corrupt or kill.
@@ -216,24 +199,22 @@ Adjust the trues, falses and numbers to set different abilities. Raising the num
 - *Level 5*: Numbers and shields. 10 packets.
 - *Level 6*: Numbers and acknowledgments. Packets will be sent back and resent.
 - *Level 7*: Numbers, shields, timeouts and acknowledgments. Packets will be sent back and resent. This level is not beatable.
+{panel end}
 
-{teacher end}
+{interactive name="packet-attack" type="whole-page"}
 
-{interactive-external packet-attack title="Searching Boxes - Part 1"}
+{panel type="curiosity" summary="Creating your own levels in packet attack"}
+You can also create your own levels in Packet Attack. We’ve put a level builder in the projects section below so that you can experiment with different reliabilities or combination of defenses.
 
-{teacher}
+Adjust the trues, falses and numbers to set different abilities. Raising the numbers will effectively equate to a less reliable communication channel. Adding in more abilities (by setting shields etc to true) will make for a harder to level to beat.
+{panel end}
 
-*Packet Attack* is a direct analogy for TCP and it is intended to be an interactive simulation of it. The Packet Creatures are TCP segments, which move between two computers. The yellow/gray zone is the unreliable channel, susceptible to unreliability. That unreliability is the user playing the game. Remember from the key problems of this topic on the transport level, we have delays, corruption and lost packets, these are the attacks; *delay*, *corrupt*, *kill*. Solutions come in the form of TCP mechanisms, they are slowly added level by level. Like in TCP, the game supports packet ordering, checksums (shields), Acks and Nacks (return creatures) and timeouts .
-
-{teacher end}
 
 Let’s talk about what you saw in that game. What did the levels do to solve the issues of packet loss, delay (reordering) and corruption? TCP has several mechanisms for dealing with packet troubles.
 
-{curiosity}
-
+{panel type="curiosity" summary="What causes delays, losses, and corruption?"}
 Why do packets experience delays, loss and corruption? This is because as packets are sent over a network, they go through various *nodes*. These nodes are effectively different routers or computers. One route might experience more interference than another (causing packet loss), one might be faster or shorter than another (causing order to be lost). Corruption can happen at any time through electronic interference.  
-
-{curiosity end}
+{panel end}
 
 Firstly, TCP starts by doing what is known as a handshake. This basically means the two computers say to each other: “Hey, we’re going to use TCP for this image. Reconstruct it as you would”.
 
@@ -255,12 +236,6 @@ So do we even use such an unreliable protocol? Yes, but not for anything too imp
 
 ## The Whole Story
 
-{teacher}
-
-The OSI internet model is different from the TCP/IP model of the internet that Computer Scientists use to approach protocol design. OSI is considered and probably mentioned in the networking standards but the guide will use the computer science approach because it is simpler, however the main idea of layers of abstraction is more important to get across.  You can read more about the differences [here](http://en.wikipedia.org/wiki/Internet_protocol_suite#Comparison_of_TCP.2FIP_and_OSI_layering).
-
-{teacher end}
-
 Let’s say I want to write an online music player. Okay, so I write the code for someone to press play on a website and the song plays. Do I now need to code up the protocol that streams the music? Fine, I write some UDP code. Now, do I need to go install the cables in your house? Sure, I jump in my van and spend a few weeks running cable to your house and make sure the packets can get over too.
 
 No. This sounds absurd. As a web developer, I don’t want to worry about anything other than making my music player easy to use and fast. I *don’t* want to worry about UDP and I *don’t* want to worry about ethernet or cables. It’s already done, I can assume it’s take care of. And it is.
@@ -269,16 +244,11 @@ Internet protocols exist in layers. We have four such layers in the computer sci
 
 At each layer, data is made up of the previous layers’ whole unit of data, and then *headers* are added and passed down. At the bottom layer, the Link layer, a *footer* is added also. Below is an example of what a UDP packet looks like when it’s packaged up for transport.
 
-{jargon-buster}
-
-**Jargon Buster**
-
+{panel type="jargon-buster" summary="Headers and footers"}
 Footers and Headers are basically packet *meta-data*. Information about the information. Like a letterhead or a footnote, they’re not part of the content, but they are on the page. Headers and Footers exist on packets to store data. Headers come before the data and footers afterwards.
-
-{jargon-buster end}
+{panel end}
 
 {comment}
-
 {image filename="http://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/UDP_encapsulation.svg/800px-UDP_encapsulation.svg.png" alt="UDP Encapsulation"}
 TODO: Upload this image to field guide, and link back to svg page.
 https://commons.wikimedia.org/wiki/File:UDP_encapsulation.svg
@@ -286,15 +256,15 @@ https://commons.wikimedia.org/wiki/File:UDP_encapsulation.svg
 
 You can think of these protocols as a game of pass the parcel. When a message is sent in HTTP, it is wrapped in a TCP header, which is then wrapped in an IPv6 header, which is then wrapped in a Ethernet header and footer and sent over ethernet. At the other end, it’s unwrapped again from an ethernet *frame*, back to a IP *packet*, a TCP *datagram*, to a HTTP *request*.
 
-{jargon-buster}
-
-**Jargon Buster**
-
+{panel type="curiosity" summary="What is a Packet?"}
 The name packet is a generic term for a unit of data. In the application layer units of data are called *data* or *requests*, in the transport layer, *datagram* or *segments*, in the Network/IP layer, *packet* and in the physical layer, a *frame*. Each level has its own name for a unit of data (segment, packet, frame, request etc), however the more generic “packet” is often used instead, regardless of layer.
-
-{jargon-buster end}
+{panel end}
 
 This system is neat because each layer can assume that the layer above and below have guaranteed something about the information, and each layer (and protocol in use at that layer) has a stand-alone role. So if you’re making a website you just have to program website code, and not worry about code to make the site work over wifi as well as ethernet. A similar system is in the postal system… You don’t put the courier’s truck number on the front of the envelope! That’s take care of by the post company, which then uses a system to sort the mail and assign it to drivers, and then drivers to trucks, and then drivers to routes… none of which you need to worry about when you send or receive a letter or use a courier.
+
+{panel type="curiosity" summary="The OSI model vs the TCP/IP model"}
+The OSI internet model is different from the TCP/IP model of the internet that Computer Scientists use to approach protocol design. OSI is considered and probably mentioned in the networking standards but the guide will use the computer science approach because it is simpler, however the main idea of layers of abstraction is more important to get across. You can read more about the differences [here](http://en.wikipedia.org/wiki/Internet_protocol_suite#Comparison_of_TCP.2FIP_and_OSI_layering).
+{panel end}
 
 So what does a TCP segment look like?
 
@@ -304,8 +274,7 @@ As you can see, a packet is divided into four main parts, addresses (source, des
 
 TCP and UDP packets have a number with how big they are. This number means that the packet can actually be as big as you like. Can you think of any advantages of having small packets? How about big ones? Think about the ratio of data to information (such as those in the header and footer).
 
-{curiosity}
-
+{panel type="curiosity" summary="What does a packet trace look like?"}
 Here’s an example of a packet trace on our network…[(using tcpdump on the mac)](http://support.apple.com/kb/HT3994)
 
 ```
@@ -319,8 +288,7 @@ Here’s an example of a packet trace on our network…[(using tcpdump on the ma
 0x0050:  3a79 313a 7165
 
 ```
-
-{curiosity end}
+{panel end}
 
 
 ## Further reading
