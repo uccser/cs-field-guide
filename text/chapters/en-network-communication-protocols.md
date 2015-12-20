@@ -8,14 +8,7 @@ Think about the last time someone sent you mail via the post. They probably wrot
 
 Below we introduce some concepts, algorithms, techniques, applications and problems that relate to network protocols; it isn’t a complete list of all the ideas in the area, but should be enough to give you a good idea of what this area of computer science is about.
 
-{teacher}
-
-Running the Tablets of Stone game (below) can take some time and coordination to do properly. The game is meant to cause frustration, and is usually not finished in an a typical hour long class. The game is best when played for a short period (5 minutes or so) and then stopped and discussed. Discuss the issues the students are facing, packet loss, packet delay, etc. Then begin to discuss possible solutions. These could be packet numbering, positive or negative acknowledgments, timeouts etc. However, this may take more time, and also lets you fit less information on each tablet. Students should realise this tradeoff and understand the key problems of network communication protocols as efficiency and reliability when communicating. Tablets of Stone can be found at [University of Glasgow Computer Science Department website](http://csi.dcs.gla.ac.uk/workshop-view.php?workshopID=4). We’ve made a guide too, which you can [download freely here](other-files/uc-tablets-of-stone.pdf). Other activities you should consider are “Locked-In Syndrome, described [here](http://dl.acm.org/citation.cfm?doid=2532748.2611263) or Code.Org’s *The Internet* activity, described [here](https://learn.code.org/s/1/level/102).
-
-{teacher end}
-
 ## Getting Started
-Take part in a game of Tablets of Stone in your classroom. Your teacher will show you how it is played. Try to think about a few things while you’re playing the game. What happens if one of my messages is delayed? What happens if one of my messages gets lost completely? Will the other governor be able to put them back together?
 
 ## What is a protocol?
 
