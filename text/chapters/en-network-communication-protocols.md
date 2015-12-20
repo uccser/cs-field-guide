@@ -2,12 +2,6 @@
 
 {video url="https://www.youtube.com/embed/Hwqmu6pvr6g"}
 
-{comment}
-
-An alternative video could be this one from Family Guy: [https://www.youtube.com/watch?v=KJCfUm21BsI](https://www.youtube.com/watch?v=KJCfUm21BsI). However, it might not be appropriate for your school, as it does contain some questionable language. A vimeo version is at [http://vimeo.com/106027170](http://vimeo.com/106027170). **Network communication protocols** focus on the techniques applied in computer networks to ensure reliable communication of data between two parts of a network in the face of different kinds of threats and failures. Reliable refers to messages being on time, in order and not damaged. The project in this chapter would typically be done by giving examples of the sequence of events that occur in these situations, discussing how the protocols and their coding schemes overcome the problems, and evaluating how successful they are at addressing them. This topic is distinct from the coverage of networking in the infrastructure standards because it focuses on the issues that the protocols address (i.e. the design of the protocol), rather than how to configure a system that uses a given protocol.
-
-{comment end}
-
 ## What's the big picture?
 
 Think about the last time someone sent you mail via the post. They probably wrote some content on some paper, put it in an envelope, wrote an address and put it in a postbox. From there, the letter probably went into a sorting center, got sorted, and was put in a bag. The bag then went into a vehicle like a truck, plane or boat. The vehicle either travelled through water, the air, or on the road. The postal system is a complicated one, designed to let individuals communicate easily, yet being efficient enough to group many letters into one postal delivery. The same ideas apply to how messages move around the internet. Whether it be a ‘like’ on Facebook, a video stream or an email - the internet and its various protocols looks after it for you so it is delivered on time and intact to the other person.
