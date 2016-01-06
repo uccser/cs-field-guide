@@ -342,9 +342,28 @@ The date picker allows the user to choose invalid dates, such as Feb 30, or Nov 
 
 A related problem with dates is when a user needs to pick a start and end date (for example, booking flights or a hotel room); the system should prevent a date prior to the first date being selected for the second date.
 
+Here's a menu system that offers several choices:
+
 {interactive name="available-menu-items" type="in-page"}
 
-Any time a dialogue box comes up that says you weren't allowed to do a certain action, the system has failed to prevent an error. Of course, it may be difficult to do that because the error can depend on so many user choices, but it is ideal that the system doesn't offer something that it can't do.
+Any time a dialogue box comes up that says you weren't allowed to do a certain action, it's frustrating because the system has failed to prevent an error. Of course, it may be difficult to do that because the error can depend on so many user choices, but it is ideal that the system doesn't offer something that it can't do.
+
+Another example of preventing errors is an automatic teller machine (ATM) that can only dispense, say, $20 notes.
+If it allows you to enter any amount (such as $53.92, or even $50) then an error would be quite likely.
+What techniques have you seen used in ATM software to prevent this kind of error?
+
+{panel type="teacher-note" summary="ATM error prevention"}
+Some ATMs make it impossible to enter an incorrect amount by only offering fixed amounts for withdrawal, and/or having buttons such as +$20 and -$20.
+Searching the web for images of "ATM enter amount" might produce some reminders of various ways interfaces deal with this problem (or cause it!)
+Entering an amount for a *deposit* is different of course, because it could be any amount, so that is likely to use a different interface,
+which helps with error prevention, but now reduces consistency!
+{panel end}
+
+And here's another example, this time with a computer science slant: the following calculator has a binary mode, where it does calculations on binary numbers.
+The trouble is that in this mode you can still type in decimal digits, which gives an error when you do the calculation.
+A user could easily not notice that it's in binary mode, and the error message isn't particularly helpful!
+
+{image filename="human-computer-interaction/binary-calculator.png" alt="A calculator in binary mode that still allows you to type in digits other than 0 and 1, but complains later."}
 
 ### Recognition rather than recall
 
