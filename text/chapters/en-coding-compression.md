@@ -312,7 +312,16 @@ Notice that the colours in adjacent pixels are often very similar, even in this 
 
 Run-length encoding wouldn't work in this situation. You could use a variation that specifies a pixel's colour, and then says how many of the following pixels are the same colour, but although most adjacent pixels are nearly the same, the chances of them being identical are very low, and there would be almost no runs of identical colours.
 
-But there is a way to take advantage of the gradually changing colours. For the pixels in the red box above, you could generate an approximate version of those colours by specifying just the first and last one, and getting the computer to interpolate the ones in between smoothly. Instead of storing 5 pixel values, only 2 are needed, yet someone viewing it probably wouldn't notice any difference. This would be *lossy* because you can't reproduce the original exactly, but it would be good enough for a lot of purposes, and save a lot of space.
+But there is a way to take advantage of the gradually changing colours. For the pixels in the red box above, you could generate an approximate version of those colours by specifying just the first and last one, and getting the computer to calculate the ones in between assuming that the colour changes gradually between them. Instead of storing 5 pixel values, only 2 are needed, yet someone viewing it probably might not notice any difference. This would be *lossy* because you can't reproduce the original exactly, but it would be good enough for a lot of purposes, and save a lot of space.
+
+{panel type="jargon-buster" summary="Interpolation"}
+The process of guessing the colours of pixels between two that are known is an example of
+{glossary-def "Interpolation" "working out values between some given values;
+for example, if a sequence of 5 numbers starts with 3 and finishes with 11, we might interpolate the values 5, 7, 9 in between."}interpolation{glossary-def end}.
+A *linear* interpolation assumes that the values increase at a constant rate between the two given values; for example, for the five pixels above, suppose the first pixel has a blue colour value of 124, and the last one has a blue value of 136,
+then a linear interpolation would guess that the blue values for the ones in between are 127, 130 and 133, and this would save storing them.
+In practice, a more complex approach is used to guess what the pixels are, but linear interpolation gives the idea of what's going on.
+{panel end}
 
 The JPEG system, which is widely used for photos, uses a more sophisticated version of this idea. Instead of taking a 5 by 1 run of pixels as we did above, it works with 8 by 8 blocks of pixels. And instead of estimating the values with a linear function, it uses combinations of cosine waves.
 
