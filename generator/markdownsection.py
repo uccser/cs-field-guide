@@ -644,9 +644,7 @@ class HeadingNode:
             return '{}{}'.format('--' * (self.level - 1), self.heading)
 
     def to_html(self):
-        if self.section.title == 'Glossary' and self.level > 1:
-            html_type = 'heading-glossary'
-        elif self.number:
+        if self.number:
             html_type = 'heading-numbered'
         else:
             html_type = 'heading-unnumbered'
