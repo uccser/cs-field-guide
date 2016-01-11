@@ -22,7 +22,7 @@ For example, the JPEG method reduces photos to a tenth or smaller of their origi
 
 So what's the catch? Well, there can be an issue with the quality of the data --- for example, a highly compressed JPEG image doesn't look as sharp as an image that hasn't been compressed. Also, it takes processing time to compress and decompress the data. In most cases, the tradeoff is worth it, but not always.
 
-{interactive-inpage compression-comparer}
+{interactive name="compression-comparer" type="in-page"}
 
 In this chapter we'll look at how compression might be done, what the benefits are, and the costs associated with using compressed data that need to be considered when deciding whether or not to compress data.
 We'll start with a simple example --- Run Length Encoding --- which gives some insight into the benefits and the issues around compression.

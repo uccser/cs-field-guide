@@ -10,23 +10,27 @@ This document provides a brief introduction to teachers on the Computer Science 
 - Programming Languages
 - Human Computer Interaction
 
-Each of these topics has a chapter in the Computer Science Field Guide, which this assessment guide is based on.
+Each of these topics has a chapter in the Computer Science Field Guide.
 
 Currently, we provide two different assessment guides for algorithms (sorting and searching), and one for each of human computer interaction and programming languages. Note that students only need to follow one assessment guide for each of the three topics (i.e. they do not need to do both searching and sorting for the topic of algorithms).
 
 ## Sorting vs Searching for Algorithms
 
-For the topic of algorithms, students can demonstrate their understanding of algorithms and their costs by using either sorting algorithms or searching algorithms as their example.
+For the topic of algorithms, students can demonstrate their understanding of algorithms and their costs by using either sorting algorithms or searching algorithms.
 
-For students who are weak at math, searching algorithms is probably the better choice. Sorting algorithms requires either being good at understanding trends from data in a table or understanding how to read trends from a graph in order to achieve merit or excellence, whereas the cost of Searching algorithms can easily be seen by students carrying out the algorithms themselves.
+For students who are weak at math, searching algorithms is probably the better choice. Sorting algorithms requires either being good at understanding trends from data in a table or understanding how to read trends from a graph in order to achieve merit or excellence, whereas the cost of searching algorithms can easily be seen by students carrying out the algorithms themselves.
 
 Sorting algorithms provide a slightly richer range of possibilities, including more ways to demonstrate how they work in a student's report, and intriguing new approaches to a common and easily described task that may not have been obvious.
 
+Guidance is given for achieved, merit, and excellence for both sorting algorithms and searching algorithms.
+
 ## Order of Topics
 
-The three topics can be completed in any order, although the first bullet point in each level (comparing algorithms, programs, and informal instructions) is probably best left until both algorithms and programming languages have been completed, since they can provide examples to illustrate the points in the first bullet points.
+The three topics can be completed in any order, although the first bullet point in each level (comparing algorithms, programs, and informal instructions) is probably best left until both algorithms and programming languages have been completed, since those topics can provide examples to illustrate the points in the first bullet points.
 
 Covering Human Computer Interaction first may make the Algorithms topic more relevant to students. In many cases, a not so good algorithm will take a second to run, whereas a better algorithm will take less than a tenth of a second. This is very significant in terms of a good user interface, so covering HCI first will make students more aware of issues like this.
+
+In their report, it is important that the three topics are kept separate. Order does not matter, but the student should have three or four main headings (it is up to them whether or not they put the two parts of algorithms together), and keep all the material under the relevant headings. This will make it far easier for the marker to find the evidence they are looking for.
 
 ## Personalisation and Student Voice
 
@@ -36,9 +40,11 @@ Personalised means that the student’s example is different to their classmates
 
 If the teacher provides too many headings or leading questions for students to structure their work, this can reduce the opportunity for the report to reflect a personal understanding.
 
+There is no reason for students to paraphrase Wikipedia in this achievement standard. All explanations should be based on their own examples.
+
 ## Report Length
 
-It is important to note that the page limit given by NZQA is not a target. The markers prefer reports that are short and to the point, and the requirements of the standard can easily be met within the limit.
+It is important to note that the page limit given by NZQA is a limit - not a target. The markers prefer reports that are short and to the point. The requirements of the standard can easily be met within the limit.
 
 The page limit for 1.44 is now 10 pages to cover the three topics. A possible breakdown that leaves one additional page is:
 
@@ -46,9 +52,9 @@ The page limit for 1.44 is now 10 pages to cover the three topics. A possible br
 - Programming Languages: 2 pages
 - Human Computer Interaction: 3 pages
 
-The assessment guides provide further guidance on how to stay within these limits. Students should be mindful of the recommended limits while they are working on their reports, in order to avoid having to delete work they put a lot of effort into.
+The assessment guides for the specific topics provide further guidance on how to stay within these limits. Students should be mindful of the recommended limits while they are working on their reports, in order to avoid having to delete work they put a lot of effort into.
 
-Some hints to reduce total length and maximise readability
+Some hints to reduce total length and maximise readability:
 
 - Only include what is relevant to the standard. While covering additional material in class is valuable for learning, additional content that doesn't demonstrate understanding of the topics and bullet points in the standard is only a distraction in the report.
 - Resize screenshots and photos so that they are still readable, although don’t take up unnecessary space. Use cropping to show the relevant parts of the image.
@@ -58,9 +64,9 @@ Some hints to reduce total length and maximise readability
 
 ## Presenting the report
 
-Students should regularly check over their report by trying to think of it from the marker's point of view. A common mistake is to put in graphs without labels on the axes, which can make it difficult for the marker to know what is being shown. Additionally make sure units are given for measurements (e.g. 5 seconds, 5 minutes?). If referring to colour in an image don't print the report in black and white! Don't assume the marker will know anything about the instructions that were given in class. Good explanations of what was done and why are essential.
+Students should regularly check over their report by trying to think of it from the marker's point of view. A common mistake is to put in graphs without labels on the axes, which can make it difficult for the marker to know what is being shown. Additionally make sure units are given for measurements (e.g. 5 seconds or 5 minutes?). If referring to colour in an image, don't print the report in black and white! Don't assume the marker will know anything about the instructions that were given in class. Good explanations of what was done and why are essential.
 
-If using examples, don't use ones taken from the Field Guide or other sources - students should make up their own. For sorting and searching, make up a set of numbers or words (perhaps about 8, but not 2 or 3) to demonstrate the algorithms. For HCI, students can choose an interface to evaluate themselves.
+If using examples, don't use ones taken from the Field Guide or other sources - students should make up their own. For sorting and searching, they should actually carry out the balance scales activity using either the field guide interactives or physical balance scales. For HCI, students can choose an interface to evaluate themselves.
 
 ## General Advice
 
