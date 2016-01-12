@@ -395,14 +395,32 @@ Common tasks like copy and paste usually have keystrokes added to them, and thes
 
 *Dialogues should not contain information which is irrelevant or rarely needed. Every extra unit of information in a dialogue competes with the relevant units of information and diminishes their relative visibility.*
 
-Software can contain many features, and if they are all visible at the same time (for example, on a toolbar) this can be overwhelming for a new user.
+Software can contain many features, and if they are all visible at the same time (for example, on a toolbar), this can be overwhelming, especially for a new user.
 
-{comment}
-.. xjrm put in complicated toolbar (from Word or ppt, with all options?)
-{comment end}
+TV remote controls often provide a great example of a complicated interface.
+One reason that the have so many buttons is that it can help to make the device look impressive in the shop, but once you get it home, many of the buttons become redundant or confusing.
+{image remote-complex.jpg alt="A complex remote control." position=right}
+The remote control shown here has several buttons that could potentially do the same thing: "Direct Navigator", "Guide", "Function Menu", "Status" and "Option" all give access to different functions, but it's hard to predict which is which.
+This remote has about 55 buttons altogether!
 
+{image remote-simple.jpg alt="A simple remote control." position=left}
+In contrast, the Apple remote has very few buttons, and is a good example of a minimalist interface.
+There's only one "Menu" to choose, so it's fairly obvious what to do to select the controls needed.
+Of course, the simple remote relies on displaying menus on the screen, and these have the potential to make things more complicated.
 
+{image remote-comples.jpg alt="A complex remote control." position=right}
+The third remote control shows a solution for simplifying it to save the user from having to read extensive manual information.
+It's a bit drastic, but it might save the user from getting into modes that they can't get out of!
+Some people have reported removing keys from mobile phones, or gluing buttons in place, so that the user can't get the device into a state that they shouldn't.
+Some controls try to offer the best of both worlds by having a small flap that can be opened to reveal more functionality.
+
+{panel type="curiosity" summary="Scary interfaces"}
 The following site identified some of the "scariest" interfaces around, some of which are great examples of *not* having minimalist design:  [OK/Cancel scariest interface](http://okcancel.com/archives/article/2005/11/the-scariest-interface-part-ii.html).
+
+Cartoonist [Roz Chast](http://rozchast.com/) illustrates how scary a remote control can be with her cartoon
+["How Grandma sees the remote"](http://www.art.com/products/p15063313199-sa-i6845922/roz-chast-how-grandma-sees-the-remote-new-yorker-cartoon.htm).
+{panel end}
+
 
 
 ### Help users recognize, diagnose, and recover from errors
