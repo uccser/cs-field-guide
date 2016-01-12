@@ -382,19 +382,26 @@ The word is "ostentatious", and has been coded by shifting 16 letters to the rig
 
 These days encryption keys are normally numbers that are 128 bits or longer. You could calculate how long it would take to try out every possible 128 bit number if a computer could test a million every second (including testing if each decoded text contains English words). It will eventually crack the message, but after the amount of time it would take, it's unlikely to be useful anymore – and the user of the key has probably changed it!
 
-Infact, if we analyse it, a 128 bit key at 1,000,000 per second would take 10,790,283,070,000,000,000,000,000 years to test. Of course, it might find something in the first year, but the chances of that are ridiculously low, and it would be more realistic to hope to win the top prize in Lotto three times consecutively (and you'd probably get more money). On average, it will take around half that amount, i.e. a bit more than 5,000,000,000,000,000,000,000,000 years. Even if you get a really fast computer which can check one trillion keys a second (rather unrealistic in practice), it would still take around 5,000,000,000,000 years. Even if you could get one million of those computers (even more unrealistic in practice), it would still take 5,000,000 years.
+In fact, if we analyse it, a 128 bit key at 1,000,000 per second would take 10,790,283,070,000,000,000,000,000 years to test. Of course, it might find something in the first year, but the chances of that are ridiculously low, and it would be more realistic to hope to win the top prize in Lotto three times consecutively (and you'd probably get more money). On average, it will take around half that amount, i.e. a bit more than 5,000,000,000,000,000,000,000,000 years. Even if you get a really fast computer that can check one trillion keys a second (rather unrealistic in practice), it would still take around 5,000,000,000,000 years. Even if you could get one million of those computers (even more unrealistic in practice), it would still take 5,000,000 years.
 
 And even if you did have the hardware that was considered above, then people would start using bigger keys. Every bit added to the key will double the number of years required to guess it. Just adding an extra 15 or 20 bits to the key in the above example will safely push the time required back to well beyond the expected life span of the Earth and Sun! This is how real cryptosystems protect themselves from brute force attacks. Cryptography relies a lot on low probabilities of success.
 
-The calculator below can handle really big numbers. You can double check our math above if you want! Also, work out what would happen if the key size was double (i.e. 256 bits), or if a 1024 or 2048 bit key (common these days) was used.
+The calculator below can handle really big numbers. You can double check our calculations above if you want! Also, work out what would happen if the key size was double (i.e. 256 bits), or if a 1024 or 2048 bit key (common these days) was used.
 
 {comment}
 Need to put big numbers calculator here
 {comment end}
 
 {panel type="curiosity" summary="Tractability – problems that take too long to solve"}
-TODO
-[Link to tractability chapter](complexity-tractability.html)
+Brute force attacks try out every possible key, and the number of possible keys grows *exponentially* as the key gets longer.
+As we saw above, no modern computer system could try out all possible 128 bit key values in a useful amount of time, and even if it were possible, adding just one more bit would double how long it would take.
+
+In computer science, problems that take an exponential amount of time to solve are generally regarded as not being {glossary term="tractable" link-text="tractable" reference-text="encryption"}
+ --- that is, you can't get any traction on them; it's as if you're spinning your wheels.
+Working out which problems are tractable and which are intractable is a major area of research in computer science --- many other problems that we care about appear to be intractable, much to our frustration.
+The area of encryption is one of the few situations where we're pleased that an algorithm is intractible!
+
+This guide has a [whole chapter about tractability chapter](chapters/complexity-tractability.html), where you can explore these issues further.
 {panel end}
 
 {panel type="jargon-buster" summary="Terminology you should now be familiar with"}
@@ -500,19 +507,61 @@ Finally, this interactive is the decrypter. It is used to decrypt messages that 
 Need to put decrypter here. Note that it might need to go in an iframe, as the code will be very similar to the encrypter and collisions are likely
 {comment end}
 
-Despite even your enemies knowing your public key (as you publically announced it), they cannot use it to decrypt your messages which were encrypted using the public key. You are the only one who can decrypt messages, as that requires the private key which hopefully you are the only one who access to.
+Despite even your enemies knowing your public key (as you publicly announced it), they cannot use it to decrypt your messages which were encrypted using the public key. You are the only one who can decrypt messages, as that requires the private key which hopefully you are the only one who access to.
 
 Note that this interactive’s implementation of RSA only uses around 50 bits of encryption and has other weaknesses. It is just for demonstrating the concepts here and is not quite the same as the implementations used in live encryption systems.
 
-{panel type="curiosity" summary="Encrypting with the private key instead of the public key - Digital Signatures!"}
+{panel type="curiosity" summary="Can we reverse the RSA calculations?"}
+
+If you were asked to multiply the following two big prime numbers, you might find it a bit tiring to do by hand (although it is definitely achievable), and you could get an answer in a fraction of a second using a computer.
+
+```
+97394932817749829874327374574392098938789384897239489848732984239898983986969870902045828438234520989483483889389687489677903899
+```
+
+```
+34983724732345498523673948934032028984850938689489896586772739002430884920489508348988329829389860884285043580020020020348508591
+```
+
+If on the other hand you were asked which two prime numbers were multiplied to get the following big number, you’d have a lot more trouble!  (If you do find the answer, let us know! We’d be very interested to hear about it!)
+
+```
+3944604857329435839271430640488525351249090163937027434471421629606310815805347209533599007494460218504338388671352356418243687636083829002413783556850951365164889819793107893590524915235738706932817035504589460835204107542076784924507795112716034134062407
+```
+
+Creating an RSA code involves doing the multiplication above, which is easy for computers.
+If we could solve the second problem and find the multiples for a big number, we'd be able to crack an RSA code.
+However, no one knows a fast way to do that.
+This is called a "trapdoor" function - it's easy to go into the trapdoor (multiply two numbers), but it's pretty much impossible to get back out (find the two factors).
+
+So why is it that despite these two problems being similar, one of them is “easy” and the other one is “hard”? Well, it comes down to the algorithms we have to solve each of the problems.
+
+You have probably done long multiplication in school by making one line for each digit in the second number and then adding all the rows together. We can analyse the speed of this algorithm, much like we did in the algorithms chapter for sorting and searching.
+Assuming that each of the two numbers has the same number of digits, which we will call *n* (“Number of digits”), we need to write *n* rows.
+For each of those *n* rows, we will need to do around *n* multiplications.
+That gives us {math}n \times n{math end} little multiplications. We need to add the *n* rows together at the end as well, but that doesn’t take long so lets ignore that part. We have determined that the number of small multiplications needed to multiply two big numbers is approximately the square of the number of digits. So for two numbers with 1000 digits, that’s 1,000,000 little multiplication operations. A computer can do that in less than a second! If you know about Big-O notation, this is an {math}O(n^2){math end} algorithm, where *n* is the number of digits. Note that some slightly better algorithms have been designed, but this estimate is good enough for our purposes.
+
+For the second problem, we’d need an algorithm that could find the two numbers that were multiplied together. You might initially say, why can’t we just reverse the multiplication? The reverse of multiplication is division, so can’t we just divide to get the two numbers?
+It’s a good idea, but it won’t work. For division we need to know the big number, and one of the small numbers we want to divide into it, and that will give us the other small number. But in this case, we *only* know the big number. So it isn’t a straightforward long division problem at all!
+It turns out that there is no known fast algorithm to solve the problem. One way is to just try dividing by every number that is less than the number (well, we only need to go up to the square root, but that doesn’t help much!) There are still billions of billions of billions of numbers we need to check. Even a computer that could check 1 billion possibilities a second isn’t going to help us much with this! If you know about Big-O notation, this is an {math}O(10^n){math end} algorithm, where n is the number of digits -- even small numbers of digits are just too much to deal with!
+There are slightly better solutions, but none of them shave off enough time to actually be useful for problems of the size of the one above!
+
+The chapter on [complexity and tractability](chapters/complexity-tractability.html) looks at more computer science problems that are surprisingly challenging to solve. If you found this stuff interesting, do read about Complexity and Tractability when you are finished here!
+{panel end}
+
+{panel type="curiosity" summary="Encrypting with the private key instead of the public key --- Digital Signatures!"}
 In order to encrypt a message, the public key is used. In order to decrypt it, the corresponding private key must be used. But what would happen if the message was encrypted using the *private* key? Could you then decrypt it with the public key?
 
-Initially this might sound like a silly thing to do, as why would you encrypt a message which can be decrypted using a key that everybody in the world can access!?!  It turns out that indeed, encrypting a message with the private key and then decrypting it with the public key works, and it has a very useful application.
+Initially this might sound like a pointless thing to do --- why would you encrypt a message that can be decrypted using a key that everybody in the world can access!?!  It turns out that indeed, encrypting a message with the private key and then decrypting it with the public key works, and it has a very useful application.
 
 The only person who is able to *encrypt* the message using the *private* key is the person who owns the private key. The public key will only decrypt the message if the private key that was used to encrypt it actually is the public key’s corresponding private key. If the message can’t be decrypted, then it could not have been encrypted with that private key.
-This allows the sender to prove that the message actually is from them, and is known as a digital signature.
+This allows the sender to prove that the message actually is from them, and is known as a {glossary-definition term="digital signature" definition="An encryption system that allows the receiver to verify that a document was sent by the person who claims to have sent it."}.
 
-You could check that someone is the authentic private key holder by giving them a phrase to encrypt with their private key. You then decrypt it with the public key to check that they encrypted the phrase you gave them.
+You could check that someone is the authentic private key holder by giving them a phrase to encrypt with their private key. You then decrypt it with the public key to check that they were able to encrypt the phrase you gave them.
+
+This has the same function as a physical signature, but is more reliable because it is essentially impossible to forge.
+Some email systems use this so that you can be sure an email came from the person who claims to be sending it.
+
 {panel end}
 
 ### RSA in practice
@@ -564,7 +613,7 @@ For example, the following database table shows four users of a fictional system
 
 It might initially sound like we have the perfect system. But unfortunately, there is still a big problem.
 
-- Even worse, there are *rainbow tables* online – precomputated lists of common passwords with what value they hash to. It isn't too difficult to generate rainbow tables containing all passwords up to a certain size infact (this is one reason why using long passwords is strongly recommended!)
+- Even worse, there are *rainbow tables* online – precomputated lists of common passwords with what value they hash to. It isn't too difficult to generate rainbow tables containing all passwords up to a certain size in fact (this is one reason why using long passwords is strongly recommended!)
 
 Hashing is a good start, but we need to further improve our system so that if two users choose the same password, their hash is not the same, while still ensuring that it is possible to check whether or not a user has entered the correct password. The next idea, salting, addresses this issue.
 
@@ -611,7 +660,7 @@ While in theory, encrypting the salts sounds like a good way to add further secu
 
 This is why websites have a minimum password length, and often require a mix of lowercase, uppercase, symbols, and numbers. There are 96 standard characters you can use in a password. 26 upper case letters, 26 lower case letters, 10 digits, and 34 symbols. If the password you choose is completely random (e.g. no words or patterns), then each character you add makes your password 96 times more difficult to guess. Between 8 and 16 characters long can provide a very high level of security, as long as the password is truly random. Ideally, this is the kind of passwords you should be using (and ensure you are using a different password for each site!).
 
-Unfortunately though, these requirements don't work well for getting users to pick good passwords. Attackers know the tricks users use to make passwords that meet the restrictions, but can be remembered. For example, P@$$w0rd contains 8 characters (a commonly used minimum), and contains a mix of different types of characters. But attackers know that users like to replace S's with $'s, mix o and 0, replace i with !, etc. Infact, they can just add these tricks into their list they use for dictionary attacks! For websites that require passwords to have at least on digit, the result is even worse. Many users pick a standard english word and then add a single digit to the end of it. This again is easy work for a dictionary attack to crack!
+Unfortunately though, these requirements don't work well for getting users to pick good passwords. Attackers know the tricks users use to make passwords that meet the restrictions, but can be remembered. For example, P@$$w0rd contains 8 characters (a commonly used minimum), and contains a mix of different types of characters. But attackers know that users like to replace S's with $'s, mix o and 0, replace i with !, etc. In fact, they can just add these tricks into their list they use for dictionary attacks! For websites that require passwords to have at least on digit, the result is even worse. Many users pick a standard english word and then add a single digit to the end of it. This again is easy work for a dictionary attack to crack!
 
 As this xkcd comic points out, most password advice doesn't make a lot of sense.
 
