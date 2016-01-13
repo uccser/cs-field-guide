@@ -225,6 +225,15 @@ ul.panel {
     margin: 1rem !important;
     padding: 0 !important;
   }
+  .collapsible-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+  }
+  .panel-heading, .dropdown-menu-arrow {
+    line-height: 1.2rem;
+  }
 
   // Custom panel colours
   @include panel-color("panel-teacher-note", "blue");
