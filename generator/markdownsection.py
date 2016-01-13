@@ -523,7 +523,6 @@ class Section:
 
         file_link = os.path.join(glossary.html_path_to_root, self.file_node.path)
         back_link_id = self.create_permalink('glossary-' + term)
-        print(back_link_id)
         this_file_link = os.path.join(glossary.html_path_to_root, self.file_node.path)
         glossary_file_path = os.path.join(self.html_path_to_root, GLOSSARY_LOCATION)
 
