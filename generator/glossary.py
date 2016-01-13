@@ -12,19 +12,19 @@ class Glossary:
     def __contains__(self, word):
         return word.lower() in self.items.keys()
 
-    def add_item(self, word, definition, permalink):
+    def add_item(self, word, definition, permalink, match):
         if word.lower() in self.items.keys():
-            #already defined
-            logging.error('{} already defined in glossary'.format(word))
+            # Already defined
+            self.guide.regex_functions['glossary definition'].log("{} already defined in glossary".format(term), self, match.group(0))
         else:
             glossary_item = GlossaryItem(self, word, definition, permalink)
             self.items[word.lower()] = glossary_item
 
-    def add_back_link(self, word, permalink, text):
+    def add_back_link(self, word, permalink, text, match):
         if word.lower() in self.items.keys():
             self.items[word.lower()].add_back_link(permalink, text)
         else:
-            logging.error('{} not defined in glossary'.format(word))
+            self.guide.regex_functions['glossary definition'].log("'{} not defined in glossary".format(word), self, match.group(0))
 
 
 
@@ -49,10 +49,16 @@ class GlossaryItem:
         backwards_links = ''
         if len(self.other_occurences) >= 1:
             for link, text in self.other_occurences[:-1]:
-                backwards_links += '{}, '.format(link_template.format(permalink=link, text=text))
+                link_html = ' href="{}"'.format(link)
+                backwards_links += '{}, '.format(link_template.format(link_html=link_html,
+                                                 id_html='',
+                                                 content=text).strip())
             backwards_links += 'and ' if len(self.other_occurences) > 1 else ''
             link, text = self.other_occurences[-1]
-            backwards_links +=link_template.format(permalink=link, text=text)
+            link_html = ' href="{}"'.format(link)
+            backwards_links += link_template.format(link_html=link_html,
+                                                    id_html='',
+                                                    content=text)
             backwards_links = occurences_template.format(other_links=backwards_links)
 
         return template.format(word=self.displayed_word, lower_word = self.word, permalink=self.permalink, definition=self.definition, other_links=backwards_links)
