@@ -163,10 +163,6 @@ ul.side-nav.fixed li a {
     @include rotate(180deg);
   }
 }
-.panel p {
-  margin: 1rem !important;
-  padding: 0 !important;
-}
 .btn-expand {
   width: 100% !important;
 }
@@ -207,4 +203,31 @@ ul.side-nav.fixed li a {
 .glossary-anchor-link:target {
   background-color: color("deep-orange", "lighten-3");
   background-clip: content-box;
+}
+
+// Panels
+@mixin panel-color($class-name, $color) {
+  .#{$class-name} .collapsible-header {
+    background-color: color($color, "accent-1");
+    border: none;
+  }
+  .#{$class-name} {
+    background-color: color($color, "lighten-5");
+
+    .dropdown-menu-arrow {
+      color: color($color, "accent-4");
+    }
+  }
+}
+
+ul.panel {
+  p {
+    margin: 1rem !important;
+    padding: 0 !important;
+  }
+
+  // Custom panel colours
+  @include panel-color("panel-teacher-note", "blue");
+  @include panel-color("panel-curiosity", "green");
+  @include panel-color("panel-extra-for-experts", "lime");
 }

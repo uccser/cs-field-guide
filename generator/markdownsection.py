@@ -138,7 +138,7 @@ class Section:
                                                                   summary=summary)
             html = self.html_templates['panel'].format(panel_heading = heading,
                                                        content = content,
-                                                       type_class = ' panel-' + panel_type,
+                                                       type_class = 'panel-' + panel_type,
                                                        expanded = expanded)
         else:
             self.regex_functions['panel'].log("Panel type argument missing", self, match.group(0))
