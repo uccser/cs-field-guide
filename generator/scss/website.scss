@@ -89,7 +89,7 @@ ul.side-nav.fixed li a {
 }
 .side-nav li {
     &:hover:not(.no-padding):not(.no-highlight),
-    &.active:not(.no-padding):not(.no-highlight) {
+    &:active:not(.no-padding):not(.no-highlight) {
       background-color: #ddd;
     }
 }
@@ -203,4 +203,8 @@ ul.side-nav.fixed li a {
   @media #{$large-and-up} {
     width: 32%;
   }
+}
+.glossary-anchor-link:target {
+  background-color: color("deep-orange", "lighten-3");
+  background-clip: content-box;
 }
