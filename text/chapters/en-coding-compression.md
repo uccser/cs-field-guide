@@ -470,14 +470,28 @@ The method we have described here is named “Ziv-Lempel” compression after Ja
 
 ## Audio compression
 
-One of the most widely used methods for compressing music is MP3, which is actually from a video compression standard. The Motion Picture Expert Group (MPEG) was a consortium of companies and researchers that got together to agree on a standard so that people could easily play the same videos on different brands of equipment (especially from DVD). The very first version of their standard (called MPEG 1) had three methods of storing the sound track (layer 1, 2 and 3). One of those methods (MPEG 1 layer 3) became very popular for compressing music, and was abbreviated to MP3.
+One of the most widely used methods for compressing music is MP3, which is actually from a video compression standard called MPEG (Moving Picture Experts Group).
 
-{comment}
-.. curiosity xtcb (to write later) MP4 usually refers to the video compression system, MPEG-4 Part 14, although the Apple AAC compression method is based on the audio compression that is associated with MPEG-4.
-{comment end}
+
+{panel type="curiosity" summary="The naming of mp3"}
+The name "mp3" isn't very self explanatory because the "mp" stands for "moving picture", and the 3 is from version 1(!)
+
+The full name of the standard that it comes from is MPEG, and the missing "EG" stands for "experts group", which was a consortium of companies and researchers that got together to agree on a standard so that people could easily play the same videos on different brands of equipment (so, for example, you could play the same DVD on any brand of DVD player).
+The very first version of their standards (called MPEG-1) had three methods of storing the sound track (layer 1, 2 and 3).
+One of those methods (MPEG-1 layer 3) became very popular for compressing music, and was abbreviated to MP3.
+
+The MPEG-1 standard isn't used much for video now (for example, DVDs and TV mainly use MPEG-2), but it remains very important for audio coding.
+
+The next MPEG version is MPEG-4 (MPEG-3 was redundant before it became a standard).
+MPEG-4 offers higher quality video, and is commonly used for digital video files, streaming media, Blu-Ray discs and some broadcast TV.
+The Apple AAC audio compression method is also from the MPEG-4 standard.
+On computers, MPEG-4 Part 14 is commonly used for video, and it's often abbreviated as "MP4."
+
+So there you have it: MP3 stands for "MPEG-1 layer 3", and MP4 stands for "MPEG-4 part 14".
+{panel end}
 
 Most other audio compression methods use a similar approach to the MP3 method, although some offer better quality for the same amount of storage (or less storage for the same quality).
-It's not essential to know how this works, but the general idea is to break the sound down into bands of different frequencies, and then represent each of those bands by adding together the values of a simple formula (the sum of cosine waves, to be precise).
+We won't go into exactly how this works, but the general idea is to break the sound down into bands of different frequencies, and then represent each of those bands by adding together the values of a simple formula (the sum of cosine waves, to be precise).
 
 {comment}
 .. xtcb sometime could put in an expert section on this, perhaps with recordings or a filter showing the waveforms and adding them. Here are some links in the meantime:
@@ -503,16 +517,16 @@ Compress each of your recordings using a variety of methods, making sure that ea
 ## The whole story!
 
 The details of how compression systems work have been glossed over in this chapter, as we have been more concerned about the file sizes and speed of the methods than how they work.
-Most compression systems are variations of the ideas that have been covered here, although one fundamental method that we haven't mentioned is Huffman coding, which turns out to be useful as the final stage of all of the above methods, and is often one of the first topics mentioned in textbooks discussing compression (there's a brief [explanation of it here](http://www.cimt.plymouth.ac.uk/resources/codes/codes_u17_text.pdf).
+Most compression systems are variations of the ideas that have been covered here, although one fundamental method that we haven't mentioned is Huffman coding, which turns out to be useful as the final stage of *all* of the above methods, and is often one of the first topics mentioned in textbooks discussing compression (there's a brief [explanation of it here](http://www.cimt.plymouth.ac.uk/resources/codes/codes_u17_text.pdf).
 A closely related system is Arithmetic coding (there's an [explanation of it here](http://www.cimt.plymouth.ac.uk/resources/codes/codes_u18_text.pdf).
-Also, motion picture compression has been omitted, even though compressing videos saves more space than most kinds of compression.
-Most video compression is based on the "MPEG" standard (Motion Picture Experts Group). There is some information about how this works in the [CS4FN article on "Movie Magic"](http://www.cs4fn.org/films/mpegit.php).
+Also, video compression has been omitted, even though compressing videos saves more space than most kinds of compression.
+Most video compression is based on the "MPEG" standard (Moving Pictures Experts Group). There is some information about how this works in the [CS4FN article on "Movie Magic"](http://www.cs4fn.org/films/mpegit.php).
 
 {panel type="teacher-note" summary="Teacher guides for Plymouth resources"}
 Access to teacher guides for the Plymouth resources above are [available here](http://www.cimt.plymouth.ac.uk/resources/codes/>).
 {panel end}
 
-The Ziv-Lempel method shown is a variation of the so-called "LZ77" method. Many of the more popular compression methods are based on this, although there are many variations, and one called "LZW" has also been used a lot. Another high-compression general-purpose compression method is bzip, based on a very clever method called the Burrows-Wheeler Transform.
+The Ziv-Lempel method shown is a variation of the so-called "LZ77" method. Many of the more popular lossless compression methods are based on this, although there are many variations, and one called "LZW" has also been used a lot. Another high-compression general-purpose compression method is bzip, based on a very clever method called the Burrows-Wheeler Transform.
 
 Questions like "what is the most compression that can be achieved" are addressed by the field of [information theory](http://en.wikipedia.org/wiki/Information_theory). There is an [activity on information theory on the CS Unplugged site](http://csunplugged.org/information-theory), and there is a [fun activity that illustrates information theory](http://www.math.ucsd.edu/~crypto/java/ENTROPY/). Based on this theory, it seems that English text can't be compressed to less than about 12% of its original size at the very best. Images, sound and video can get much better compression because they can use lossy compression, and don't have to reproduce the original data exactly.
 
