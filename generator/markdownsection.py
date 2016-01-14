@@ -34,7 +34,7 @@ class Section:
         self.permalinks = set()
         # Dictionary of sets for images, interactives, and other_files
         self.required_files = setup_required_files(file_node.guide)
-        self.page_scripts = set()
+        self.page_scripts = []
         self.mathjax_required = False
         self.sectioned = False
         self.html_path_to_root = self.file_node.depth * '../'
@@ -54,6 +54,10 @@ class Section:
 
 
     # ----- Helper Functions -----
+    def add_page_script(self, script_html):
+        if script_html not in self.page_scripts:
+            self.page_scripts.append(script_html)
+
 
     def create_heading(self, match):
         """Parsing function for heading regex
@@ -366,7 +370,7 @@ class Section:
         file_link = "{location}?{parameters}".format(location=folder_location, parameters=params) if params else folder_location
         link_template = self.html_templates['interactive-iframe']
         html = link_template.format(interactive_source=file_link)
-        self.page_scripts.add(self.html_templates['interactive-iframe-script'].format(path_to_root=self.html_path_to_root))
+        self.add_page_script(self.html_templates['interactive-iframe-script'].format(path_to_root=self.html_path_to_root))
         return html
 
 
@@ -435,7 +439,7 @@ class Section:
                     link = os.path.join(self.html_path_to_root, source_folder, raw_link)
                     element[attr] = link
             if element.name == 'script' or (element.name == 'link' and element.get('rel', None) == ['stylesheet']):
-                self.page_scripts.add(element.extract())
+                self.add_page_script(element.extract())
 
 
     def check_interactive_exists(self, interactive_source, interactive_name, match):
