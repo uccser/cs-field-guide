@@ -36,6 +36,7 @@ One important example of an intractable problem that this chapter looks at is th
 It's a simple problem; if you've got a collection of places that you need to visit, and you know the distance to travel between each pair of places, what's the shortest route that visits all of the places exactly once?
 This is a very practical problem that comes up with courier vehicles choosing routes to deliver parcels, rock bands planning tours, and even a designated driver dropping friends off after an event.
 In fact, the measurement between cities doesn’t have to be distance. It could actually be the dollar cost to travel between each pair of cities. For example, if you needed to visit Queenstown, Christchurch, Auckland, and Wellington one after the other while minimising airfares and you knew the cost of an airfare between each pair of those 4 cities, you could work out what the cheapest way of flying to each of them is. This is still an example of TSP.
+And it can also be applied to problems that don't involve travel; for example, it has been used to [work out how to efficiently synthesise DNA](http://www.i-programmer.info/news/181/9340.html).
 
 The following interactive has a program that solves the problem for however many cities you want to select by trying out all possible routes, and recording the best so far.  You can get a feel for what an intractable problem looks like by seeing how long the interactive takes to solve the problem for different size maps.
 Try generating a map with about 5 cities, and press "Start" to solve the problem.
