@@ -216,7 +216,7 @@ People often perform this when they physically sort items. It can also be a very
 
 Insertion and Selection Sort may seem like logical ways to sort things into order, but they both take far too many comparisons when they are used for large amounts of data. Remember computers often have to search through HUGE amounts of data, so even if they use a good searching algorithm like Binary Search to look through their data, if they use a bad sorting algorithm to first sort that data into order then finding anything will take far too long!
 
-A much better sorting algorithm is {glossary "Quicksort"}Quicksort!{glossary end} (the name is a bit of a giveaway)
+A much better sorting algorithm is {glossary "Quicksort"}Quicksort{glossary end} (the name is a bit of a giveaway).
 
 {interactive-external sorting-boxes title="Quicksort interactive"  parameters="method=quick"}
 
