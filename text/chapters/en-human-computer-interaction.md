@@ -430,11 +430,24 @@ Cartoonist [Roz Chast](http://rozchast.com/) illustrates how scary a remote cont
 It’s not hard to find error messages that don’t really tell you what’s wrong!
 The most common examples are messages like "Misc error", "Error number -2431", or "Error in one of the input values". These force the user to go on a debugging mission to find out what went wrong, which could be anything from a disconnected cable or unfixable compatibility issue, to a missing digit in a number.
 
-A variant of this is a message that gives two alternatives, such as "File may not exist, or it may already be in use". A better message would save the user having to figure out which of these is the problem.
+For example, some troubleshooting software produced the "unexpected" error below.
+The error message is particularly unhelpful because the software was supposed to help with finding problems, but instead it has given the user a new problem to solve!
+There is some extra information not shown below such as "Path: Unknown" and "Error code: 0x80070002".
+Searching for the error code can lead to suggested solutions, but it also leads to scam software that claims to fix the problem.
+By not giving useful error recovery information, the system has put the user at the mercy of the advice available online!
 
-{comment}
-.. xtcb put in an example e.g. The android alarm clock one, when it says something like "The alarm is set to go off in 8 hours and 5 minutes" so you will notice if it is set for the wrong day?
-{comment end}
+{image filename="error-vague.png" alt="Vague error message: An unexpected error has occurred."}
+
+A variant of unhelpful error messages is one that gives two alternatives, such as "File may not exist, or it may already be in use".
+A better message would save the user having to figure out which of these is the problem.
+
+A positive example can be found in some alarm clocks such as the following one on an Android smartphone.
+For example, here the alarm time is shown at "9:00".
+In a country that uses 12-hour time, a user might mistake this for 9pm, and the alarm would go off at the wrong time.
+{image filename="Android-alarm-9am.png" alt="Android alarm clock set for 9:00."}
+
+However, the interface provides an opportunity to notice it because the display indicates how long it will be until the alarm will go off, making it easier to recognize the error of selecting the wrong time (or day).
+{image filename="Android-alarm-message.png" alt="Android alarm clock message showing how long until the alarm will trigger."}
 
 
 ### Help and documentation
