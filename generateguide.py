@@ -309,7 +309,8 @@ class Guide:
                        'language_code': self.language_code,
                        'page_scripts': file.section.page_scripts,
                        'current_page': file.path,
-                       'current_folder': current_folder
+                       'current_folder': current_folder,
+                       'analytics_code': self.generator_settings['General']['Google Analytics Code']
                       }
             html = self.website_generator.render_template(section_template, context)
             try:
