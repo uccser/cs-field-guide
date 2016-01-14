@@ -537,7 +537,7 @@ class Section:
 
         if content:
             # Create link to term in glossary
-            forward_link_id = term.lower()
+            forward_link_id = systemfunctions.to_kebab_case(term)
             forward_link = '{}#{}'.format(glossary_file_path, forward_link_id)
             link_html = ' href="{}"'.format(forward_link)
         else:

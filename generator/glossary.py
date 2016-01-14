@@ -1,5 +1,6 @@
 import os.path
 import logging
+import generator.systemfunctions as systemfunctions
 
 GLOSSARY_PATH_TO_ROOT = '..'
 
@@ -9,37 +10,39 @@ class Glossary:
         self.guide = guide
         self.html_path_to_root = GLOSSARY_PATH_TO_ROOT
 
-    def __contains__(self, word):
-        return word.lower() in self.items.keys()
+    def __contains__(self, term):
+        return systemfunctions.to_kebab_case(term) in self.items.keys()
 
-    def add_item(self, word, definition, permalink, match):
-        if word.lower() in self.items.keys():
+    def add_item(self, term, definition, back_link, match):
+        term_id = systemfunctions.to_kebab_case(term)
+        if term_id in self.items.keys():
             # Already defined
             self.guide.regex_functions['glossary definition'].log("{} already defined in glossary".format(term), self, match.group(0))
         else:
-            glossary_item = GlossaryItem(self, word, definition, permalink)
-            self.items[word.lower()] = glossary_item
+            glossary_item = GlossaryItem(self, term, definition, back_link)
+            self.items[term_id] = glossary_item
 
-    def add_back_link(self, word, permalink, text, match):
-        if word.lower() in self.items.keys():
-            self.items[word.lower()].add_back_link(permalink, text)
+    def add_back_link(self, term, back_permalink, text, match):
+        term_id = systemfunctions.to_kebab_case(term)
+        if term_id in self.items.keys():
+            self.items[term_id].add_back_link(back_permalink, text)
         else:
-            self.guide.regex_functions['glossary definition'].log("'{} not defined in glossary".format(word), self, match.group(0))
+            self.guide.regex_functions['glossary definition'].log("'{} not defined in glossary".format(term), self, match.group(0))
 
 
 
 class GlossaryItem:
-    def __init__(self, glossary, word, definition, permalink):
+    def __init__(self, glossary, term, definition, back_permalink):
         self.glossary = glossary
-        self.word = word.lower()
-        self.displayed_word = word
+        self.term_id = systemfunctions.to_kebab_case(term)
+        self.displayed_term = term
         self.definition = definition
-        self.permalink = permalink
+        self.back_permalink = back_permalink
         self.other_occurences = []
 
 
-    def add_back_link(self, permalink, text):
-        self.other_occurences.append((permalink, text))
+    def add_back_link(self, back_permalink, text):
+        self.other_occurences.append((back_permalink, text))
 
 
     def to_html(self):
@@ -61,4 +64,4 @@ class GlossaryItem:
                                                     content=text)
             backwards_links = occurences_template.format(other_links=backwards_links)
 
-        return template.format(word=self.displayed_word, lower_word = self.word, permalink=self.permalink, definition=self.definition, other_links=backwards_links)
+        return template.format(term=self.displayed_term, term_id=self.term_id, back_permalink=self.back_permalink, definition=self.definition, other_links=backwards_links)

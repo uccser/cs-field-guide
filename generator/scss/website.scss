@@ -64,13 +64,20 @@ ul.side-nav.fixed li a {
 .section_number {
   color: $primary-color-light !important;
 }
-.section_heading {
-  padding-top: 85px;
-  margin-top: -70px;
+.anchor-link {
+  padding-top: 100px;
+  margin-top: -90px;
   pointer-events: none;
+  outline: none;
   & > a {
     pointer-events: auto;
   }
+  &-empty {
+    position: absolute;
+  }
+}
+.section-heading {
+  //@extend .anchor-link;
   #page-title-header & > a {
     color: white !important;
   }
@@ -200,7 +207,8 @@ ul.side-nav.fixed li a {
     width: 32%;
   }
 }
-.glossary-anchor-link:target {
+.glossary-anchor-link:target,
+.glossary-anchor-link-highlight {
   background-color: color("deep-orange", "lighten-3");
   background-clip: content-box;
 }
