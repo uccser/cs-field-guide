@@ -384,15 +384,18 @@ A similar feature in web browsers saves users from having to remember the exact 
 
 *Accelerators -- unseen by the novice user -- may often speed up the interaction for the expert user such that the system can cater to both inexperienced and experienced users. Allow users to tailor frequent actions.*
 
-When someone is using software every day, they soon have common sequences of operations they do (such as "Open the file, find the next blank space, put in a record of what just happened"). It's good to offer ways to make this quick to do, such as "macros" which do a sequence of actions from a single keystroke.
+When someone is using software every day, they will soon have common sequences of operations they do (such as "Open the file, find the next blank space, type in a record of what just happened"). It's good to offer ways to make this quick to do, such as "macros", which do a sequence of actions from a single keystroke.
 
 Similarly, it's good to be able to customise software by allocating keystrokes for frequent actions (such as "file this email in the 'pending' folder").
 Common tasks like copy and paste usually have keystrokes added to them, and these allow experienced users to perform the task without having to reach for a mouse.
 
-{comment}
-.. xtcb put in more examples/images
-.. xtcb talk about learnability - moving from novice to experienced
-{comment end}
+An important area of research in HCI is working out how to make shortcuts easy to learn.
+You don't want them to get in the way for beginners, but you don't want frequent users to be unaware of them either.
+A simple way of doing this is having keystroke equivalents in a menu (an accelerator); the menu displayed here shows that shift-command-O will open a new project, so the user can learn this sequence if they are using the command frequently.
+{image filename="menu-keystroke-equivalent.png" alt="Menu with keystroke equivalents." position="left"}
+A flexible system would allow the user to add a keystroke equivalent for the "Close Pane" command themselves, if that turned out to be used frequently.
+Other systems might offer suggestions to the user if they notice an action being done frequently.
+A related approach is offering recent selections near the top of a list of options.
 
 ### Aesthetic and minimalist design
 
