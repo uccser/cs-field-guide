@@ -13,7 +13,7 @@ In this chapter we've tried to capture what really happens in industry, and sugg
 
 {comment}
 
-Raw notes are at https://docs.google.com/document/d/1AhHXwY5GSTElcCpfaie-emEBlFv9I6uLn3Dik-yJwQ0/. 
+Raw notes are at https://docs.google.com/document/d/1AhHXwY5GSTElcCpfaie-emEBlFv9I6uLn3Dik-yJwQ0/.
 
 {comment end}
 
@@ -21,9 +21,9 @@ Raw notes are at https://docs.google.com/document/d/1AhHXwY5GSTElcCpfaie-emEBlFv
 
 ## What's the big picture?
 
-Software failures happen all the time. Sometimes it’s a little bug that makes a program difficult to use; other times an error might crash your entire computer. Some software failures are more spectacular than others. 
+Software failures happen all the time. Sometimes it’s a little bug that makes a program difficult to use; other times an error might crash your entire computer. Some software failures are more spectacular than others.
 
-In 1996, The ARIANE 5 rocket of the European Space Agency was launched for its first test flight: Countdown, ignition, flame and smoke, soaring rocket... then BANG! Lots of little pieces scattered through the South American rainforest. Investigators had to piece together what happened and finally tracked down this tiny, irrelevant bug. A piece of software on board the rocket which was not even needed had reported an error and started a self-destruct sequence. Thankfully, no one was on board but the failure still caused about US$370m damage. 
+In 1996, The ARIANE 5 rocket of the European Space Agency was launched for its first test flight: Countdown, ignition, flame and smoke, soaring rocket... then BANG! Lots of little pieces scattered through the South American rainforest. Investigators had to piece together what happened and finally tracked down this tiny, irrelevant bug. A piece of software on board the rocket which was not even needed had reported an error and started a self-destruct sequence. Thankfully, no one was on board but the failure still caused about US$370m damage.
 
 {video http://www.youtube.com/embed/gp_D8r-2hwk?rel=0}
 
@@ -37,7 +37,7 @@ So why doesn’t it? Why do we get bugs in the first place? As it turns out, wri
 
 {image se-stacks-of-code-150.png alt="Stacks of Code Cartoon"}
 
-Software engineering is all about how we can create software despite this enormous size and complexity and hopefully get a working product in the end. It was first introduced as a topic of computer science in the 1960s during the so-called “software crisis”, when people realised that the capability of hardware was increasing at incredible speeds while our ability to develop software is staying pretty much the same. 
+Software engineering is all about how we can create software despite this enormous size and complexity and hopefully get a working product in the end. It was first introduced as a topic of computer science in the 1960s during the so-called “software crisis”, when people realised that the capability of hardware was increasing at incredible speeds while our ability to develop software is staying pretty much the same.
 
 As the name software engineering suggests, we are taking ideas and processes from other engineering disciplines (such as building bridges or computer hardware) and applying them to software. Having a structured process in place for developing software turns out to be hugely important because it allows us to manage the size and complexity of software. As a result of advances in software engineering, there are many success stories of large and complex software products which work well and contain few bugs. Think, for example, of Google who have huge projects (Google search, Gmail, …) and thousands of engineers working on them but somehow still manage to create software that does what it should.
 
@@ -69,8 +69,8 @@ In this chapter, we look at some of the basics of software engineering. We’ll 
 
 While it's good if the focus of the student work is on how to make successful software, there is also a lot that can be learnt from failures! Here are some sites that provide further material on this. The first one is specifically written for high-school students.   
 
-- [Back to the drawing board - CS4FN](http://www.cs4fn.org/softwareengineering/backtodrawingboard.php) 
-- [Why software fails - IEEE](http://spectrum.ieee.org/computing/software/why-software-fails) 
+- [Back to the drawing board - CS4FN](http://www.cs4fn.org/softwareengineering/backtodrawingboard.php)
+- [Why software fails - IEEE](http://spectrum.ieee.org/computing/software/why-software-fails)
 - [Learning from software failure - IEEE](http://spectrum.ieee.org/computing/software/learning-from-software-failure)
 - [Engineering Disasters 13: Software Flaws](http://youtu.be%2FEMVBLg2MrLs) is an excerpt from Engineering Disaster Episode 13 explaining software flaws in Ariane 5 and Patriot Missiles
 
@@ -78,27 +78,27 @@ While it's good if the focus of the student work is on how to make successful so
 
 ## Analysis: What do we build?
 
-To be able to start making software, we first have to decide what we actually want to make. We call this part of the software project *analysis* because we analyse exactly what our software needs to be able to do. Although this sounds trivial, getting the details right is pretty tricky. If someone asked you to design a physical object like a chair or a toaster, you'd probably have a pretty good idea of what the finished product would be like.  No matter how many legs you decide to put on your chair, they will still have to do the job of holding up a person against the force of gravity.  When designing software, we often don't have the benefit of creating familiar objects, or even known constraints like the laws of physics.  If your software was, say, a program to help authors invent imaginary worlds, where would you start?  What could you take for granted? 
+To be able to start making software, we first have to decide what we actually want to make. We call this part of the software project *analysis* because we analyse exactly what our software needs to be able to do. Although this sounds trivial, getting the details right is pretty tricky. If someone asked you to design a physical object like a chair or a toaster, you'd probably have a pretty good idea of what the finished product would be like.  No matter how many legs you decide to put on your chair, they will still have to do the job of holding up a person against the force of gravity.  When designing software, we often don't have the benefit of creating familiar objects, or even known constraints like the laws of physics.  If your software was, say, a program to help authors invent imaginary worlds, where would you start?  What could you take for granted?
 
-Analysis is extremely important. Obviously, if we make a mistake at this stage of the project, the software we end up building may not be what we wanted; all the other work to design, build and test the software could be for nothing. 
+Analysis is extremely important. Obviously, if we make a mistake at this stage of the project, the software we end up building may not be what we wanted; all the other work to design, build and test the software could be for nothing.
 
 For example, imagine your friend Anna asks you to write a program to help her get to school in the morning. You write a great GPS navigation system and show it to Anna, but it turns out that she takes to bus to school so what she really needed was just software showing the current bus timetable. All your hard work was in vain, because you didn’t get the details right in the start!
 
 Sometimes we are making software for ourselves; in that case, we can just decide what the software should do. (But be careful: even if you think you know what you want the software to do when you start developing it, you will probably find that by the end of the project you will have a very different view of what it should do. The problem is that before you have the software, you can’t really predict how you will use it when it’s finished. For example, the people making smart phones and software for smart phones probably didn’t anticipate how many people would want to use their smart phones as torches!)
 
-In many cases, we build software for other people. You might make a website for your aunt’s clothing shop or write software to help your friends with their maths homework. A software company might create software for a local council or a GP’s practice. Google and Microsoft make software used by millions of people around the world. Either way, whether you’re writing a program for your friends or for millions of people, you first have to find out from your customers what they actually need the software to do. 
+In many cases, we build software for other people. You might make a website for your aunt’s clothing shop or write software to help your friends with their maths homework. A software company might create software for a local council or a GP’s practice. Google and Microsoft make software used by millions of people around the world. Either way, whether you’re writing a program for your friends or for millions of people, you first have to find out from your customers what they actually need the software to do.
 
-We call anyone who has an interest in the software a *stakeholder*. These are the people that you need to talk to during the analysis part of your project to find out what they need the software to do. 
+We call anyone who has an interest in the software a *stakeholder*. These are the people that you need to talk to during the analysis part of your project to find out what they need the software to do.
 
 Imagine that you are making a phone app that allows students to preorder food from the school cafeteria. They can use the app to request the food in the morning and then just go a pick up the food at lunch time. The idea is that this should help streamline the serving of food and reduce queues in the cafeteria. Obvious stakeholders for your project are the students (who will be using the phone app) and cafeteria staff (who will be receiving requests through the app). Less obvious (and indirect) stakeholders include parents (“I have to buy Johnny an iPhone so he can use this app?”), school admin (“No phones should be used during school time!”) and school IT support who will have to deal with all the students who can’t figure out how to work the app. Different stakeholders might have very different ideas about what the app should do.
 
-To find out what our stakeholders want the software to do, we usually interview them. We ask them questions to find *functional* and *non-functional* requirements for the software. Functional requirements are things the software needs to do. For example, your phone app needs to allow students to choose the food they want to order. It should then send the order to the cafeteria, along with the student’s name so that they can be easily identified when picking up the food. 
+To find out what our stakeholders want the software to do, we usually interview them. We ask them questions to find *functional* and *non-functional* requirements for the software. Functional requirements are things the software needs to do. For example, your phone app needs to allow students to choose the food they want to order. It should then send the order to the cafeteria, along with the student’s name so that they can be easily identified when picking up the food.
 
 Non-functional requirements, on the other hand, don’t tell us *what* the software needs to do but *how* it needs to do it. How efficient does it need to be? How reliable? What sort of computer (or phone) does it need to run on? How easy to use should it be?
 
 So we first figure out who our stakeholders are and then we go to interview them to find the requirements for the software. That doesn’t sound too hard, right? Unfortunately, it’s the communication with the customer that often turns out to be most difficult.
 
-The first problem is that customers and software engineers often don’t speak the same language. Of course, we don’t mean to say that they don’t both speak English, but software engineers tend to use technical language, while customers use language specific to their work. For example, doctors might use a lot of scary medical terms that you don’t understand. 
+The first problem is that customers and software engineers often don’t speak the same language. Of course, we don’t mean to say that they don’t both speak English, but software engineers tend to use technical language, while customers use language specific to their work. For example, doctors might use a lot of scary medical terms that you don’t understand.
 
 Imagine that a customer asks you to develop a scoring system for the (fictional) sport of Whacky-Flob. The customer tells you “It’s really simple. You just need to record the foo-whacks, but not the bar-whacks, unless the Flob is circulating”. After this description, you’re probably pretty confused because you don’t know anything about the sport of Whacky-Flob and don’t know the specific terms used. (What on earth are foo-whacks???) To get started, you should attend a few games of Whacky-Flob and observe how the game and the scoring works. This way, you’ll be able to have a much better conversation with the customer since you have some knowledge about the problem domain. (Incidentally, this is one of the cool things about being a software engineer: you get exposure to all kinds of different, exciting problem domains. One project might be tracking grizzly bears, the next one might be identifying cyber terrorists or making a car drive itself.)
 
@@ -106,9 +106,9 @@ You should also never assume that a customer is familiar with technical terms th
 
 {image se-design-150.png alt="Design Cartoon"}
 
-Even if you manage to communicate with a customer, you might find that they don’t really know what they want the software to do or can’t express it. They might say they want “software to improve their business” or to “make their work more efficient” but that’s not very specific. (There’s a great cartoon of [Dilbert](http://dilbert.com/strips/comic/2006-01-29/)  which illustrates this point!) When you show them the software you have built, they can usually tell you if that’s what they wanted or what they like and don’t like about it. For that reason, it’s a good idea to build little prototypes while you’re developing your system and keep showing them to customers to get feedback from them. 
+Even if you manage to communicate with a customer, you might find that they don’t really know what they want the software to do or can’t express it. They might say they want “software to improve their business” or to “make their work more efficient” but that’s not very specific. (There’s a great cartoon of [Dilbert](http://dilbert.com/strips/comic/2006-01-29/)  which illustrates this point!) When you show them the software you have built, they can usually tell you if that’s what they wanted or what they like and don’t like about it. For that reason, it’s a good idea to build little prototypes while you’re developing your system and keep showing them to customers to get feedback from them.
 
-You’ll often find that customers have a specific process that they follow already and want the software to fit in with that. We were once involved in a project being done by university students for a library. Their staff used to write down information about borrowed items three times on a paper form, cut up the form and send the pieces to different places as records. When the students interviewed them, they asked for a screen in the program where they could enter the information three times as well (even though in a computer system there really isn’t much point in that)! 
+You’ll often find that customers have a specific process that they follow already and want the software to fit in with that. We were once involved in a project being done by university students for a library. Their staff used to write down information about borrowed items three times on a paper form, cut up the form and send the pieces to different places as records. When the students interviewed them, they asked for a screen in the program where they could enter the information three times as well (even though in a computer system there really isn’t much point in that)!
 
 Customers are usually experts in their field and are therefore likely to leave out information that they think is obvious, but may not be obvious to you. Other times, they do not really understand what can and cannot be done with computers and may not mention something because they do not realise that it is possible to do with a computer. Again, it’s up to you to get this information from them and make sure that they tell you what you need to know.
 
@@ -135,7 +135,7 @@ This project covers material for an example for the 3.44 standard through the fo
 
 For this project, you need to find someone for whom you could develop software. This could be someone from your family or a friend. They might, for example, need software to manage information about their business’ customers or their squash club might want software to schedule squash tournaments or help with the timetabling of practices. (For this project, you won’t actually be making the software, just looking at the requirements; if the project is small enough for you to program on your own, it's probably not big enough to be a good example for software engineering!)
 
-Once you’ve found a project, start by identifying and describing the stakeholders for your project. (This project will work best if you have at least two different stakeholders.) Try to find all the stakeholders, remembering that some of them might only have an indirect interest in your software. For example, if you are making a database to store customer information, the customers whose information is being stored have some interest in your software even though they never use it directly; for example, they will want the software to be secure so that their data cannot be stolen. Write up a description about each stakeholder, giving as much background detail as possible. Who are they? What interest do they have in the software? How much technical knowledge do they have? … 
+Once you’ve found a project, start by identifying and describing the stakeholders for your project. (This project will work best if you have at least two different stakeholders.) Try to find all the stakeholders, remembering that some of them might only have an indirect interest in your software. For example, if you are making a database to store customer information, the customers whose information is being stored have some interest in your software even though they never use it directly; for example, they will want the software to be secure so that their data cannot be stolen. Write up a description about each stakeholder, giving as much background detail as possible. Who are they? What interest do they have in the software? How much technical knowledge do they have? …
 
 Interview *one* of the stakeholders to find out what they want the software to do. Write up the requirements for your software, giving some detail about each requirement. Try to distinguish between functional and non-functional requirements. Make sure you find out from your stakeholder which things are most important to them. This way you can give each requirement a priority (for example high, medium, low), so that if you would actually build the software you could start with the most important features.
 
@@ -161,23 +161,23 @@ Once we have developed all the different parts, all we need to do is make them c
 
 Ok, so let’s talk about the second concept, *abstraction*. Have you ever thought about why you can drive a car without knowing how its engine works? Or how you can use a computer without knowing much about hardware? Maybe you know what a processor and a hard drive is but could you build your own computer? Could your parents? We don’t need to know exactly how computers or cars work internally to be able to use them thanks to abstraction!
 
-If we look more closely at a computer, we can see that it actually has a number of *layers* of abstraction. Right at the bottom, we have the hardware, including the processor, RAM, hard disk and various complicated looking circuit boards, cables and plugs. 
+If we look more closely at a computer, we can see that it actually has a number of *layers* of abstraction. Right at the bottom, we have the hardware, including the processor, RAM, hard disk and various complicated looking circuit boards, cables and plugs.
 
-When you boot your computer, you start running the operating system. The operating system is in charge of communicating with the hardware, usually through special driver software. Once you’ve started your computer, you can run programs, for example your browser. The browser actually doesn’t communicate with the hardware directly but always goes through the operating system. 
+When you boot your computer, you start running the operating system. The operating system is in charge of communicating with the hardware, usually through special driver software. Once you’ve started your computer, you can run programs, for example your browser. The browser actually doesn’t communicate with the hardware directly but always goes through the operating system.
 
-Finally, you’re the top layer of the system. You use the program but you will (hopefully) never have to interact with the more complicated parts of the operating system such as driver software, let alone the hardware. In this way, you can use the computer without ever having to worry about these things. 
+Finally, you’re the top layer of the system. You use the program but you will (hopefully) never have to interact with the more complicated parts of the operating system such as driver software, let alone the hardware. In this way, you can use the computer without ever having to worry about these things.
 
 {image se-computer-layers.png alt="The computer can be broken down into multiple layers, starting with the user, then the programs, then the operating system, then finally the hardware."}
 
-We call a system like this a *layered system*. You can have any number of layers you want but each layer can only communicate with the one directly below it. The operating system can directly access the hardware but a program running on the computer can't. You can use programs but hopefully will never have to access the hardware or the more complex parts of the operating system such as drivers. This again reduces the complexity of the system because each layer only needs to know about the layer directly below it, not any others. 
+We call a system like this a *layered system*. You can have any number of layers you want but each layer can only communicate with the one directly below it. The operating system can directly access the hardware but a program running on the computer can't. You can use programs but hopefully will never have to access the hardware or the more complex parts of the operating system such as drivers. This again reduces the complexity of the system because each layer only needs to know about the layer directly below it, not any others.
 
-Each layer in the system needs to provide an interface so that the layer above it can communicate with it. For example, a processor provides a set of instructions to the operating system; the operating system provides commands to programs to create or delete files on the hard drive; a program provides buttons and commands so that you can interact with it. 
+Each layer in the system needs to provide an interface so that the layer above it can communicate with it. For example, a processor provides a set of instructions to the operating system; the operating system provides commands to programs to create or delete files on the hard drive; a program provides buttons and commands so that you can interact with it.
 
 One layer knows nothing about the internal workings of the layer below; it only needs to know how to use the layer’s interface. In this way, the complexity of lower layers is completely hidden, or *abstracted*. Each layer represents a higher level of abstraction.
 
-So each layer hides some complexity, so that as we go up the layers things remain manageable. Another advantage of having layers is that we can change one layer without affecting the others, as long as we keep the layer’s interface the same of course. For example, your browser’s code might change but you might never notice as long as the browser still looks and works the same as before. Of course, if the browser stops working or new buttons appear suddenly you know that something has changed. 
- 
-We can have the same “layered” approach inside a single program. For example, websites are often designed as so-called *three-tier* systems with three layers: a database layer, a logic layer and a presentation layer. The database layer usually consists of a database with the data that the website needs. For example, Facebook has a huge database where it keeps information about its users. For each user, it stores information about who their friends are, what they have posted on their wall, what photos they have added, and so on. The logic layer processes the data that it gets from the database. Facebook’s logic layer, for example, will decide which posts to show on your “Home” feed, which people to suggest as new friends, etc. Finally, the presentation layer gets information from the logic layer which it displays. Usually, the presentation layer doesn’t do much processing on the information it gets but simply creates the HTML pages that you see. 
+So each layer hides some complexity, so that as we go up the layers things remain manageable. Another advantage of having layers is that we can change one layer without affecting the others, as long as we keep the layer’s interface the same of course. For example, your browser’s code might change but you might never notice as long as the browser still looks and works the same as before. Of course, if the browser stops working or new buttons appear suddenly you know that something has changed.
+
+We can have the same “layered” approach inside a single program. For example, websites are often designed as so-called *three-tier* systems with three layers: a database layer, a logic layer and a presentation layer. The database layer usually consists of a database with the data that the website needs. For example, Facebook has a huge database where it keeps information about its users. For each user, it stores information about who their friends are, what they have posted on their wall, what photos they have added, and so on. The logic layer processes the data that it gets from the database. Facebook’s logic layer, for example, will decide which posts to show on your “Home” feed, which people to suggest as new friends, etc. Finally, the presentation layer gets information from the logic layer which it displays. Usually, the presentation layer doesn’t do much processing on the information it gets but simply creates the HTML pages that you see.
 
 {image se-facebook-system.png alt="Facebook can be broken down into a three tier system, comprising of the presentations layer, then the logic layer, then finally the data layer."}
 
@@ -185,7 +185,7 @@ We can have the same “layered” approach inside a single program. For example
 
 **Curiosity: Reuse - Kangaroos and Helicopters**
 
-Since building software is so difficult and time-consuming, a popular idea has been to reuse existing software. Not surprisingly, we call this *software reuse*. It’s a great idea in theory (why recreate something that already exists?) but turns out to be difficult to put into practice partly because existing software is also huge and complicated. Usually when you reuse software, you want only a small part of the existing software’s functionality, rather than everything. 
+Since building software is so difficult and time-consuming, a popular idea has been to reuse existing software. Not surprisingly, we call this *software reuse*. It’s a great idea in theory (why recreate something that already exists?) but turns out to be difficult to put into practice partly because existing software is also huge and complicated. Usually when you reuse software, you want only a small part of the existing software’s functionality, rather than everything.
 
 An interesting story that illustrates the problems with software reuse (although it is unfortunately not completely accurate, see [http://www.snopes.com/humor/nonsense/kangaroo.asp](http://www.snopes.com/humor/nonsense/kangaroo.asp)) is that of helicopters and kangaroos. The Australian Air Force was developing a new helicopter simulator to train pilots. They wanted the simulator to be as realistic as possible and therefore decided to include herds of kangaroos in the simulation. To save time, they reused code from another simulator which included foot soldiers and simply changed the icons of the soldiers to kangaroos.
 
@@ -230,17 +230,17 @@ For each part that you have identified, write a brief description about what it 
 
 {comment end}
 
-We’ve decided what our software should do (analysis) and designed its internal structure (design), and the system has been programmed according to the design. Now, of course, we have to test it to make sure it works correctly. 
+We’ve decided what our software should do (analysis) and designed its internal structure (design), and the system has been programmed according to the design. Now, of course, we have to test it to make sure it works correctly.
 
 Testing is an incredibly important part of developing software. We cannot really release software that still has lots of bugs to our customers. (Well, we could but our customers wouldn’t be very happy about it.) Remember that software bugs can have both very small and very large effects. On the less serious end of the scale, they might make a program difficult to use or crash your computer. On the other hand, they can cost millions of dollars and even endanger human life. More testing might have prevented the Ariane 5 failure or might have discovered the Therac bug which ended up killing 3 patients.
 
-Unfortunately, testing is again really difficult because of the size and complexity of software. If a piece of software would take years to read and understand, imagine how long it would take to fully test it! 
+Unfortunately, testing is again really difficult because of the size and complexity of software. If a piece of software would take years to read and understand, imagine how long it would take to fully test it!
 
 When we test software, we try lots of different inputs and see what outputs or behaviour the software produces. If the output is incorrect, we have found a bug.
 
 {curiosity}
 
-**Curiosity: Bugs and Moths** 
+**Curiosity: Bugs and Moths**
 
 {image se-harvard-mark-II.jpg alt="The Mark II at Harvard"}
 
@@ -251,20 +251,20 @@ In 1947, engineers working on a computer called the *Mark II* were investigating
 The problem with testing is that it can only show the presence of errors, not their absence! If you get an incorrect output from the program, you know that you have found a bug. But if you get a correct output, can you really conclude that the program is correct? Not really. The software might work in this particular case but you cannot assume that it will work in other cases. No matter how thoroughly you test a program, you can never really be 100% sure that it’s correct. In theory, you would have to test every possible input to your system, but that’s not usually possible. Imagine testing Google for everything that people could search for! But even if we can’t test everything, we can try as many different test cases as possible and hopefully at least decrease the probability of bugs.
 
 As with design, we can’t possibly deal with the entire software at once, so we again just look at smaller pieces, testing one of them at a time. We call this approach *unit testing*. A unit test is usually done by a separate program which runs the tests on the program that you're writing. That way you can run the tests as often as you like --- perhaps once a day, or even every time there is a change to the program.
-It's not unusual to write a unit test program before you write the actual program. 
+It's not unusual to write a unit test program before you write the actual program.
 It might seem like wasted work to have to write two programs instead of one, but being able to have your system tested carefully any time you make a change greatly improves the reliability of your final product, and can save a lot of time trying to find bugs in the overall system, since you have some assurance that each unit is working correctly.
 
 Once all the separate pieces have been tested thoroughly, we can test the whole system to check if all the different parts work together correctly. This is called *integration testing*. Some testing can be automated while other testing needs to be done manually by the software engineer.
 
 If I give you a part of the software to test, how would you start? Which test inputs would you use? How many different test cases would you need? When would you feel reasonably sure that it all works correctly?
 
-There are two basic approaches you can take, which we call *black-box testing* and *white-box testing*. With black-box testing, you simply treat the program as a black box and pretend you don’t know how it’s structured and how it works internally. You give it test inputs, get outputs and see if the program acts as you expected. 
+There are two basic approaches you can take, which we call *black-box testing* and *white-box testing*. With black-box testing, you simply treat the program as a black box and pretend you don’t know how it’s structured and how it works internally. You give it test inputs, get outputs and see if the program acts as you expected.
 
-But how do you select useful test inputs? There are usually so many different ones to choose from. For example, imagine you are asked to test a program that takes a whole number and outputs its successor, the next larger number (e.g. give it 3 and you get 4, give it -10 and you get -9, etc). You can’t try the program for *all* numbers so which ones do you try? 
+But how do you select useful test inputs? There are usually so many different ones to choose from. For example, imagine you are asked to test a program that takes a whole number and outputs its successor, the next larger number (e.g. give it 3 and you get 4, give it -10 and you get -9, etc). You can’t try the program for *all* numbers so which ones do you try?
 
-You observe that many numbers are similar and if the program works for one of them it’s probably safe to assume it works for other similar numbers. For example, if the program works as you expect when you give it the number 3, it’s probably a waste of time to also try 4, 5, 6 and so on; they are just so similar to 3. 
+You observe that many numbers are similar and if the program works for one of them it’s probably safe to assume it works for other similar numbers. For example, if the program works as you expect when you give it the number 3, it’s probably a waste of time to also try 4, 5, 6 and so on; they are just so similar to 3.
 
-This is the concept of *equivalence classes*. Some inputs are so similar, you should only pick one or two and if the software works correctly for them you assume that it works for all other similar inputs. In the case of our successor program above, there are two big equivalence classes, positive numbers and negative numbers. You might also argue that zero is its own equivalence class, since it is neither positive nor negative. 
+This is the concept of *equivalence classes*. Some inputs are so similar, you should only pick one or two and if the software works correctly for them you assume that it works for all other similar inputs. In the case of our successor program above, there are two big equivalence classes, positive numbers and negative numbers. You might also argue that zero is its own equivalence class, since it is neither positive nor negative.
 
 For testing, we pick a couple of inputs from each equivalence class. The inputs at the boundary of equivalence classes are usually particularly interesting. Here, we should definitely test -1 (this should output 0), 0 (this should output 1) and 1 (this should output 2). We should also try another negative and positive number not from the boundary, such as -48 and 57. Finally, it can be interesting to try some very large numbers, so maybe we’ll take -2,338,678 and 10,462,873. We have only tested 7 different inputs, but these inputs will probably cover most of the interesting behaviour of our software and should reveal most bugs.
 
@@ -280,11 +280,11 @@ Of course, you might also want to try some invalid inputs, for example “hello�
 
 There is a black-box testing interactive under development which you can try out here. Students should try testing [this program first](http://www.cosc.canterbury.ac.nz/csfieldguide/dev/teacher/_static/widgets/SE/formatCurrencyv3.html) by trying to get it to give wrong results or errors e.g. try numbers like "3.40.3" or even text instead of a number. The test case hints will help students to choose suitable test inputs.
 
-Then you may get the students to [use this program](http://www.cosc.canterbury.ac.nz/csfieldguide/dev/teacher/_static/widgets/SE/validatorv3.html) to have a better understanding of black-box testing. In case of an invalid input, you probably want the program to tell the user that the input is invalid; you definitely don’t want it to crash! 
+Then you may get the students to [use this program](http://www.cosc.canterbury.ac.nz/csfieldguide/dev/teacher/_static/widgets/SE/validatorv3.html) to have a better understanding of black-box testing. In case of an invalid input, you probably want the program to tell the user that the input is invalid; you definitely don’t want it to crash!
 
 Finally, [try the triangle problem](http://www.cosc.canterbury.ac.nz/csfieldguide/dev/teacher/_static/widgets/SE/triangle.html). Give it wrong values and see the output and judge whether it is working as intended. It should work in all cases because the program has bugs in it. Think and write down 10 test cases and then go to the [triangle test case validator](http://www.cosc.canterbury.ac.nz/csfieldguide/dev/teacher/_static/software_engineering/SE-triangle-test-cases.pdf) and input the test cases. The validator will indicate how many of the bugs the student's tess have found. Review the feedback to check how many cases they have got right. Enjoy testing!!
 
-Challenge the students to try to find the problem(s) using as few test inputs as possible (by using the concept of equivalence classes). 
+Challenge the students to try to find the problem(s) using as few test inputs as possible (by using the concept of equivalence classes).
 
 A complete solution with all test cases that the interactive is looking for, with their equivalence classes, can be [obtained here](http://www.cosc.canterbury.ac.nz/csfieldguide/dev/teacher/_static/software_engineering/SE-triangle-test-cases-answers.pdf)
 
@@ -300,9 +300,9 @@ Black-box testing is easy to do but not always enough because sometimes finding 
 
 {comment end}
 
-Unit testing is very useful for finding bugs. It helps us find out if the program works as *we* intended. Another important question during testing is if the software does what the *customer* wanted (Did we build the right thing?). *Acceptance testing* means showing your program to your stakeholders and getting feedback about what they like or don’t like. Any mistakes that we made in the analysis stage of the project will probably show up during acceptance testing. If we misunderstood the customer during the interview, our *unit tests* might pass (i.e. the software does what we thought it should) but we may still have an unhappy customer. 
+Unit testing is very useful for finding bugs. It helps us find out if the program works as *we* intended. Another important question during testing is if the software does what the *customer* wanted (Did we build the right thing?). *Acceptance testing* means showing your program to your stakeholders and getting feedback about what they like or don’t like. Any mistakes that we made in the analysis stage of the project will probably show up during acceptance testing. If we misunderstood the customer during the interview, our *unit tests* might pass (i.e. the software does what we thought it should) but we may still have an unhappy customer.
 
-Different stakeholders can be very different, for example in terms of technical skills, or even could have given us conflicting requirements for the software. It’s therefore of course possible to get positive feedback from one stakeholder and negative feedback from another. 
+Different stakeholders can be very different, for example in terms of technical skills, or even could have given us conflicting requirements for the software. It’s therefore of course possible to get positive feedback from one stakeholder and negative feedback from another.
 
 ### Project: Acceptance Testing
 
@@ -324,11 +324,11 @@ Next, think about a stakeholder for this software. Who would use it and why? Bri
 
 Now, you can go ahead and install the program and play around with it. Try to imagine that you are the stakeholder that you described above. Put yourself in this person’s shoes. How would they feel about this program? Does it meet your requirements? What important features are missing? Try to see if you can find any particular problems or bugs in the program. (Tip: sometimes giving programs unexpected input, for example a word when they were expecting a number, can cause some interesting behaviour.)
 
-Write up a brief acceptance test report about what you found. Try to link back to the requirements that you wrote down earlier, noting which have been met (or maybe partially met) and which haven’t. Do you think that overall the stakeholder would be happy with the software? Do you think that they would be likely to use it? Which features would you tell the software developers to implement next? 
+Write up a brief acceptance test report about what you found. Try to link back to the requirements that you wrote down earlier, noting which have been met (or maybe partially met) and which haven’t. Do you think that overall the stakeholder would be happy with the software? Do you think that they would be likely to use it? Which features would you tell the software developers to implement next?
 
 {teacher}
 
-It’s important for this project that students read the description of the program and think about a stakeholder and requirements before actually trying out the software, otherwise their thinking about the stakeholder and requirements may be influenced by what they already know about the software. 
+It’s important for this project that students read the description of the program and think about a stakeholder and requirements before actually trying out the software, otherwise their thinking about the stakeholder and requirements may be influenced by what they already know about the software.
 
 {teacher end}
 
@@ -346,7 +346,7 @@ It’s important for this project that students read the description of the prog
 
 {comment end}
 
-## Software processes 
+## Software processes
 
 So far in this chapter, you’ve learned about different phases of software development: analysis, design and testing. But how do these phases fit together? At what time during the project do we do what activity? That’s the topic of *software processes*.
 
@@ -374,9 +374,9 @@ Because it’s just so nice and simple, the waterfall process is still in many s
 
 So why does the waterfall process not work for software when it clearly works very well for other engineering products like bridges (after all, most bridges seem to hold up pretty well...)? First of all, we need to remember that software is very different from bridges. It is far more complex. Understanding the plans for a single bridge and how it works might be possible for one person but the same is not true for software. We cannot easily look at software as a whole (other than the code) to see its structure. It is not physical and thus does not follow the laws of physics. Since software is so different from other engineering products, there really is no reason why the same process should necessarily work for both.
 
-To understand why the waterfall process doesn’t work, think back to our section about analysis and remember how hard it is to find the right requirements for software. Even if you manage to communicate with the customers and resolve conflicts between the stakeholders, the requirements could still change while you’re developing the software. Therefore, it is very unlikely that you will get the complete and correct requirements for the software at the start of your project. 
+To understand why the waterfall process doesn’t work, think back to our section about analysis and remember how hard it is to find the right requirements for software. Even if you manage to communicate with the customers and resolve conflicts between the stakeholders, the requirements could still change while you’re developing the software. Therefore, it is very unlikely that you will get the complete and correct requirements for the software at the start of your project.
 
-If you make mistakes during the analysis phase, most of them are usually found in the testing stage of the project, particularly when you show the customer your software during acceptance testing. At this point, the waterfall process doesn’t allow you to go back and fix the problems you find. Similarly, you can’t change the requirements halfway through the process. Once the analysis phase of the project is finished, the waterfall process “freezes” the requirements. In the end of your project, you will end up with software that hopefully fulfills *those* requirements, but it is unlikely that those will be the *correct* requirements. 
+If you make mistakes during the analysis phase, most of them are usually found in the testing stage of the project, particularly when you show the customer your software during acceptance testing. At this point, the waterfall process doesn’t allow you to go back and fix the problems you find. Similarly, you can’t change the requirements halfway through the process. Once the analysis phase of the project is finished, the waterfall process “freezes” the requirements. In the end of your project, you will end up with software that hopefully fulfills *those* requirements, but it is unlikely that those will be the *correct* requirements.
 You end up having to tell the customer that they got what they asked for, not what they needed. If they've hired you, they'll be annoyed; it it's software that you're selling (such as a smartphone app), people just won't bother buying it.
 
 You can also get things wrong at other points in the project. For example, you might realise while you’re writing the code that the design you came up with doesn’t really work. But the waterfall process tells you that you have to stick with it anyway and make it work somehow.
@@ -385,7 +385,7 @@ You can also get things wrong at other points in the project. For example, you m
 
 Design by [Paragon Innovations](http://www.paragoninnovations.com/guide.shtml) and drawn by [Project Cartoon](http://www.projectcartoon.com/about/)
 
-So if the waterfall process doesn’t work, what can we do instead? Most modern software development processes are based on the concept of iteration. We do a bit of analysis, followed by some design, some programming and some testing. (We call this one iteration.) This gives us a rather rough prototype of what the system will look like. We can play around with the prototype, show it to customers and see what works and what doesn’t. Then, we do the whole thing again. We refine our requirements and do some more design, programming and testing to make our prototype better (another iteration). Over time, the prototype grows into the final system, getting closer and closer to what we want. 
+So if the waterfall process doesn’t work, what can we do instead? Most modern software development processes are based on the concept of iteration. We do a bit of analysis, followed by some design, some programming and some testing. (We call this one iteration.) This gives us a rather rough prototype of what the system will look like. We can play around with the prototype, show it to customers and see what works and what doesn’t. Then, we do the whole thing again. We refine our requirements and do some more design, programming and testing to make our prototype better (another iteration). Over time, the prototype grows into the final system, getting closer and closer to what we want.
 
 {image se-iterative-development.png alt="The iterative software development cycle starts with feedback from showing the prototype to the customer with analysis, the back to design, implementation and testing, and then starting again with analysis."}
 
@@ -403,7 +403,7 @@ Once you’ve finished developing your program and given it to the customer, the
 
 Imagine that your project is running late and your customer is getting impatient. Your first instinct might be to ask some of your friends if they can help out so that you have more people working on the project. Brooks’s law, however, suggests that that is exactly the wrong thing to do!
 
-Brooks’s law states that “adding manpower to a late software project makes it later.” This might seem counterintuitive at first because you would assume that more people would get more work done. However, the overhead of getting new people started on the project (getting them to understand what you are trying to build, your design, the existing code, and so on) and of managing and coordinating the larger development team actually makes things slower rather than faster in the short term. 
+Brooks’s law states that “adding manpower to a late software project makes it later.” This might seem counterintuitive at first because you would assume that more people would get more work done. However, the overhead of getting new people started on the project (getting them to understand what you are trying to build, your design, the existing code, and so on) and of managing and coordinating the larger development team actually makes things slower rather than faster in the short term.
 
 {curiosity end}
 
@@ -459,23 +459,23 @@ When the builder thinks they are done, compare what you built! How precise was y
 
 ## Agile software development
 
-*Agile* software development has become popular over the last 10 years; the two most famous agile processes are called [XP](http://en.wikipedia.org/wiki/Extreme_programming) and [Scrum](http://en.wikipedia.org/wiki/Scrum_(development)). Agile software development is all about being extremely flexible and adaptive to change. Most other software processes try to manage and control changes to requirements during the process; agile processes accept and expect change.
+*Agile* software development has become popular over the last 10 years; the two most famous agile processes are called [XP](http://en.wikipedia.org/wiki/Extreme_programming) and [Scrum](http://en.wikipedia.org/wiki/Scrum_(development\)). Agile software development is all about being extremely flexible and adaptive to change. Most other software processes try to manage and control changes to requirements during the process; agile processes accept and expect change.
 
-Agile processes work similarly to iterative processes in that they do a number of iterations of analysis, design, implementation and testing. However, these iterations are extremely short, each usually lasting only about 2 weeks. 
+Agile processes work similarly to iterative processes in that they do a number of iterations of analysis, design, implementation and testing. However, these iterations are extremely short, each usually lasting only about 2 weeks.
 
 In many other processes, documentation is important. We document the requirements so that we can look back at them; we document our design so that we can refer back to it when we program the system. Agile software processes expect things to change all the time. Therefore, they do very little planning and documentation because documenting things that will change anyway is a bit of a waste of time.
 
-Agile processes include lots of interesting principles that are quite different from standard software development. We look at the most interesting ones here. If you want to find out more, have a look at [Agile Academy on Youtube](http://www.youtube.com/user/AgileAcademyAus) which has lots of videos about interesting agile practices! There’s also [another video here](http://www.youtube.com/watch?v=kqz_jDS0RWY) which explains the differences between agile software development and the waterfall process. 
+Agile processes include lots of interesting principles that are quite different from standard software development. We look at the most interesting ones here. If you want to find out more, have a look at [Agile Academy on Youtube](http://www.youtube.com/user/AgileAcademyAus) which has lots of videos about interesting agile practices! There’s also [another video here](http://www.youtube.com/watch?v=kqz_jDS0RWY) which explains the differences between agile software development and the waterfall process.
 
 Here are some general principles used for agile programming:
 
-**Pair-programming** 
- Programming is done in pairs with one person coding while the other person watches and looks for bugs and special cases that the other might have missed. It’s simply about catching small errors before they become bugs. After all, 4 eyes see more than 2. 
+**Pair-programming**
+ Programming is done in pairs with one person coding while the other person watches and looks for bugs and special cases that the other might have missed. It’s simply about catching small errors before they become bugs. After all, 4 eyes see more than 2.
 
  You might think that pair-programming is not very efficient and that it would be more productive to have programmers working separately; that way, they can write more code more quickly, right? Pair-programming is about reducing errors. Testing, finding and fixing bugs is hard; trying not to create them in the first place is easier. As a result, pair-programming has actually been shown to be more efficient than everyone programming by themselves!
 
 **YAGNI**
- YAGNI stands for “You ain’t gonna need it” and tells developers to keep things simple and only design and implement the things that you know you are really going to need. It can be tempting to think that in the future you might need feature x and so you may as well already create it now. But remember that requirements are likely to change so chances are that you won’t need it after all. 
+ YAGNI stands for “You ain’t gonna need it” and tells developers to keep things simple and only design and implement the things that you know you are really going to need. It can be tempting to think that in the future you might need feature x and so you may as well already create it now. But remember that requirements are likely to change so chances are that you won’t need it after all.
 
 [{image se-xkcd-the-general-problem.png alt="xkcd comment on YAGNI"}](http://xkcd.com/974/)
 
@@ -489,20 +489,20 @@ Here are some general principles used for agile programming:
 
  Refactoring means to change your design or implementation without changing the program’s behaviour. After a refactoring, the program will work exactly the same, but will be better structured in some way. Unit tests really come in handy here because you can use them to check that the code works the same way before and after the refactoring.
 
- Refactoring only works on software because it is “soft” and flexible. The same concept does not really work for physical engineering products. Imagine that when building a bridge, for example, you started off by doing the simplest possible thing (putting a plank over the river) and then continually refactored the bridge to get the final product. 
+ Refactoring only works on software because it is “soft” and flexible. The same concept does not really work for physical engineering products. Imagine that when building a bridge, for example, you started off by doing the simplest possible thing (putting a plank over the river) and then continually refactored the bridge to get the final product.
 
 **Courage**
  “Courage” might seem like an odd concept in the context of software development. In agile processes, things change all the time and therefore programmers need to have the courage to make changes to the code as needed, fix the problems that need to be fixed, correct the design where needed, throw away code that doesn’t work etc. This might not seem like a big deal, but it can actually be quite scary to change code, particularly if the code is complicated or has been written by a different person. Unit tests really help by giving you courage: you’ll feel more confident to change the code if you have tests that you can run to check your work later.
 
-**Test-driven development** 
+**Test-driven development**
  In standard software development, we first write some code and then test it. This makes sense: we need the code before we can test it, right? Test-driven development tells you to do the exact opposite!
 
  Before you write a piece of code, you should write a test for the code that you are about to write. This forces you to think about exactly what you’re trying to do and what special cases there are. Of course, if you try to run the test, it will fail (since the functionality it is testing does not yet exist). When you have a failing test, you can then write code to make the test pass.
 
-**Programmer welfare** 
+**Programmer welfare**
  Software developers should not work more than 40 hours per week. If they do overtime one week they should not do more overtime the following week. This helps keep software developers happy and makes sure they don’t get overworked.
 
-**Customer involvement** 
+**Customer involvement**
  A customer representative should be part of the developing team (ideally spending full-time with the team), on hand to answer questions or give feedback at all times. This is important to be able to quickly change the requirements or direction of the project. If you have to wait 2 weeks until you can get feedback from your customer, you will not be able to adapt to change very quickly!
 
  Although having a customer on the development team is a great idea in theory, it is quite hard to achieve in practice. Most customers simply want to tell you their requirements, pay you and then get the software delivered 5 months later. It’s rare to find a customer who is willing and has the time to be more involved in the project.
@@ -560,11 +560,10 @@ It can be difficult to understand the importance of some of the problems and tec
 - [Wikipedia - Software crisis](http://en.wikipedia.org/wiki/Software_crisis)
 - [IEEE - Why software fails](http://spectrum.ieee.org/computing/software/why-software-fails)
 - [Wikipedia - Software design](http://en.wikipedia.org/wiki/Software_design)
-- [Wikipedia - Abstraction](http://en.wikipedia.org/wiki/Abstraction_(computer_science))
+- [Wikipedia - Abstraction](http://en.wikipedia.org/wiki/Abstraction_(computer_science\))
 - [Wikipedia - Software testing](http://en.wikipedia.org/wiki/Software_testing)
 - [Wikipedia - Software development process](http://en.wikipedia.org/wiki/Software_development_process)
 - [Wikipedia - Waterfall model](http://en.wikipedia.org/wiki/Waterfall_model)
 - [Wikipedia - Iterative and incremental development](http://en.wikipedia.org/wiki/Iterative_and_incremental_development)
 - [Wikipedia - Agile software development](http://en.wikipedia.org/wiki/Agile_software_development)
 - [Wikipedia - Test driven development](http://en.wikipedia.org/wiki/Test-driven_development)
-

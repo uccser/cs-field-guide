@@ -120,6 +120,7 @@ class Section:
         """Create a HTML link, if local link then add path back to root"""
         link_text = match.group('link_text')
         link_url = match.group('link_url')
+        link_url = link_url.replace('\)', ')')
         if not link_url.startswith(('http://','https://','mailto:')):
             link_url = self.html_path_to_root + link_url
         html = self.html_templates['link'].format(link_text=link_text, link_url=link_url).strip()
