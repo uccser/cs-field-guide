@@ -213,12 +213,88 @@ Another idea used by HCI designers is the *principle of commensurate effort*, wh
 
 These are just a few ideas from HCI that will help you to be aware of the kinds of issues that interfaces can have.
 In the following project you can observe these kinds of problems firsthand by watching *someone else* use an interface, noting any problems they have.
-It's much easier to observe someone else than do this yourself, partly because it's hard to concentrate on the interface and taking notes at the same time, and partly because you might already know the interface and have learned to overcome some of the less usable features.
+It's much easier to observe someone else than do this yourself, partly because it's hard to concentrate on the interface and take notes at the same time, and partly because you might already know the interface and have learned to overcome some of the less usable features.
+
+{panel type="project" summary="Think aloud protocol"}
+In a think aloud protocol, you observe someone else using the interface that you want to evaluate, and encourage them to explain what they're thinking at each step.
+You'll take notes on what they say, and you can reflect on that afterwards to evaluate the interface (it can be helpful to record the session if possible.)
+
+This protocol gives insights into what might be confusing in an interface, and why.
+
+For example, if someone setting an alarm clock says "I'm pressing the up button until I get to 7am - oh bother, it stopped at 7:09, now I have to go right around again", that gives some insight into how the interface might get in the way of the users completing a task efficiently.
+
+This approach is focussed on observing a user doing a particular *task*, to capture what happens in reality when people use an interface.
+*Tasks* are often confused with *features*; you use the features of a device to accomplish a task.
+For example, a camera might have a feature of taking multiple photos quickly, but a relevant task is more likely to be to "take a photo of an action event, choose the best photo, and share it".
+This could involve a number of user actions: getting into the multi-photo mode, configuring the camera for the lighting conditions, taking the photos, choosing the best one, connect to a computer, transfer the photo to a website, and share it with friends.
+
+The project will be more interesting if your helper isn't completely familiar with the system, or if it's a system that people often find confusing or frustrating.
+Your writeup could be used to make decisions about improving the system in the future.
+
+The task could be things like setting the time on a clock, finding a recently dialled number on an unfamiliar phone, or choosing a TV program to record.
+
+To do the evaluation, you should give the device to your helper, explain the task to them, and ask them to explain what they are thinking at each step.
+Your helper may not be used to doing that, so you can prompt them as they go with questions like:
+  - what are you going to do now? Why?
+  - why did you choose that button?
+  - what are you looking for?
+  - are you having difficulty? What's the problem?
+  - can you see what went wrong?
+  - how are you feeling about this?
+
+If they get the hang of "thinking aloud", just keep quiet and take notes on what they say.
+
+It's very important not to criticise or intimidate the helper!
+If they make a mistake, try to figure out how the interface made them do the wrong thing, rather than blaming them.
+Any mistakes they make are going to be valuable for your project!
+If they get everything right, it won't be very interesting.
+
+Once you've noted what happened, go over it, looking for explanations for where the user had difficulty.
+The examples earlier in the chapter will help you to be sensitive to how interfaces can frustrate the user, and find ways that they could be improved.
+
+There's some [more information about think-aloud protocols on Wikipedia](https://en.wikipedia.org/wiki/Think_aloud_protocol),
+on [Nielsen's web site](https://www.nngroup.com/articles/thinking-aloud-the-1-usability-tool/),
+and
+[some notes put together by HCI students](http://www.psy.gla.ac.uk/~steve/HCI/cscln/trail1/Lecture5.html).
+{panel end}
+
+Another way of evaluating an interface is a "Cognitive Walkthrough".
+This is normally done without involving someone else, although the description here has been adapted to involve another user to make it a bit easier if you're not experienced at HCI evaluation.
 
 {panel type="project" summary="Cognitive walk-through"}
-The *cognitive walkthrough* is a technique that HCI experts use to do a quick evaluation of an interface. [Details of how to do one are on the cs4fn site](http://www.cs4fn.org/usability/cogwalkthrough.php).
+The *cognitive walkthrough* is a technique that HCI experts use to do a quick evaluation of an interface.
+It is particularly useful for evaluating interfaces with few steps, that are being used by new or occasional users (such as someone using a car park ticket machine at an airport, setting an alarm clock in a hotel room, or using a museum display).
 
-There is more information in the [Wikipedia entry for Cognitive Walkthrough](http://en.wikipedia.org/wiki/Cognitive_walkthrough).
+The first step is to choose a typical task that someone might do with the interface being evaluated (such as get a 2-hour ticket, set the alarm for 5:20am, or find out where a particular display is in a museum).
+
+The goal of the cognitive walkthrough is to identify if the user can see what to do at each step, and especially to notice if there is anything that is confusing or ambiguous (like which button to press next), and to find out if they're confident that the right thing happened.
+
+An experienced HCI evaluator would do this on their own, imagining what a user would do at each step, but it's may be easier for you to do this with someone else using the interface, because that lets you see the interface through someone else's eyes.
+So we recommend asking a friend to go through a task for you.
+
+The task only needs to have about 3 or 4 steps (e.g. button presses), as you'll be asking three questions at each step and taking notes on their responses, so it could take a while.
+You should know how to do the task yourself as we'll be focussing on the few steps needed to accomplish the task; if the user goes off track, you can put them back on task rather than observe them trying to recover from an HCI problem that shouldn't have been there in the first place.
+The task might be something like recording a 10-second video on a mobile phone, deleting a text message, or setting a microwave oven to reheat food for 45 seconds.
+
+Present the interface to your helper without giving any instructions on using it, and tell them what the goal of the task is.
+Before they take any action, ask:
+  - do you know what to try to do at this step?
+Then have them look at the interface, and ask:
+  - can you see how to do it?
+Then have them take the action they suggested, and ask:
+  - are you able to tell that you did the right thing?
+
+If their decisions go off track, you can reset the interface, and start over, explaining what to do for the step they took wrong if necessary (but noting that this wasn't obvious to them --- it will be a point to consider for improving the interface.)
+
+Once the first action has been completed, repeat this with the next action required (it might be pressing a button or adjusting a control).
+Once again, ask the three questions above in the process.
+
+In practice the second question (can you see how to do it?) is usually split into two: do they notice the control at all, and if so, do they realise that it's the one that is needed?
+For this exercise we'll simplfy it to just one question.
+
+[More details of how to do a cognitive walkthrough are on the cs4fn site](http://www.cs4fn.org/usability/cogwalkthrough.php).
+
+There is also more information in the [Wikipedia entry for Cognitive Walkthrough](http://en.wikipedia.org/wiki/Cognitive_walkthrough).
 {panel end}
 
 ## Usability Heuristics
