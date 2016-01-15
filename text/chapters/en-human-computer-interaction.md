@@ -399,16 +399,16 @@ Software can contain many features, and if they are all visible at the same time
 
 TV remote controls often provide a great example of a complicated interface.
 One reason that the have so many buttons is that it can help to make the device look impressive in the shop, but once you get it home, many of the buttons become redundant or confusing.
-{image remote-complex.jpg alt="A complex remote control." position=right}
+{image filename="remote-complex.jpg" alt="A complex remote control." position="right"}
 The remote control shown here has several buttons that could potentially do the same thing: "Direct Navigator", "Guide", "Function Menu", "Status" and "Option" all give access to different functions, but it's hard to predict which is which.
 This remote has about 55 buttons altogether!
 
-{image remote-simple.jpg alt="A simple remote control." position=left}
+{image filename="remote-simple.jpg" alt="A simple remote control." position="left"}
 In contrast, the Apple remote has very few buttons, and is a good example of a minimalist interface.
 There's only one "Menu" to choose, so it's fairly obvious what to do to select the controls needed.
 Of course, the simple remote relies on displaying menus on the screen, and these have the potential to make things more complicated.
 
-{image remote-comples.jpg alt="A complex remote control." position=right}
+{image filename="remote-adapted.jpg" alt="An adapted remote control." position="right"}
 The third remote control shows a solution for simplifying it to save the user from having to read extensive manual information.
 It's a bit drastic, but it might save the user from getting into modes that they can't get out of!
 Some people have reported removing keys from mobile phones, or gluing buttons in place, so that the user can't get the device into a state that they shouldn't.
