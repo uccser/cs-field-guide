@@ -248,3 +248,19 @@ ul.panel {
   @include panel-color("panel-curiosity", "green");
   @include panel-color("panel-extra-for-experts", "lime");
 }
+
+.table-of-contents {
+  li, ul, a {
+    display: block !important;
+  }
+  a {
+    height: 100% !important;
+  }
+  &-subtitle {
+    padding-left: 0.8rem;
+    font-size: 90%;
+    a:not(.active) + & {
+      display: none !important;
+    }
+  }
+}
