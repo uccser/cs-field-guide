@@ -32,7 +32,8 @@ class Guide:
         self.generator_settings = systemfunctions.read_settings(GENERATOR_SETTINGS)
         self.regex_list = systemfunctions.read_settings(REGEX_LIST)
         self.translations = systemfunctions.read_settings(TRANSLATIONS_LOCATION)
-        self.permissions = systemfunctions.read_settings(PERMISSIONS_LOCATION)
+        self.permissions_location = PERMISSIONS_LOCATION
+        self.files_with_permissions = set()
 
         self.language_code = language_code
         self.language = self.parse_language()
@@ -50,7 +51,9 @@ class Guide:
         self.required_files = setup_required_files(self)
         self.html_templates = self.read_html_templates()
 
+        # Process sections
         self.traverse_files(self.structure, getattr(self, "process_section"))
+
         if self.output_type == WEB:
             self.setup_html_output()
             self.traverse_files(self.structure, getattr(self, "write_html_file"))
@@ -174,6 +177,11 @@ class Guide:
                 self.required_files[file_type] += file_data
             if not file_node.section.title:
                 file_node.section.title = self.translations['title'][self.language_code]
+            if file_node.filename == self.permissions_location:
+                for line in file_node.section.original_text:
+                    if line.startswith('###'):
+                        for word in line.split()[1:]:
+                            self.files_with_permissions.add(word.lower())
 
 
     def compile_scss_file(self, file_name):
@@ -228,8 +236,9 @@ class Guide:
             # Copy files
             for file_object in file_data.filenames:
                 file_name = file_object.filename
-                if file_type in self.permissions.sections() and not (file_name in self.permissions[file_type]):
-                    logging.warning("No permissions information exists for {} {}!".format(file_type, file_name))
+                # Checks if file is listed within permissions file
+                if file_name.lower() not in self.files_with_permissions and not file_type == 'Interactive':
+                    logging.warning("No permissions information listed for {} {}".format(file_type, file_name))
 
                 output_location = os.path.join(file_output_folder, file_name)
                 # If data exists in file object, write file
@@ -319,16 +328,19 @@ class Guide:
             except:
                 logging.critical("Cannot write file {0}".format(path))
 
+
     def add_to_pdf_html(self, file):
-        '''Adds HTML contents of a give file node to guide's
-        PDF html string'''
+        """Adds HTML contents of a give file node to guide's
+        PDF html string"""
         if file.tracked:
             for section_content in file.section.html_content:
                 self.pdf_html += section_content
 
+
     def generate_pdf(self):
-        '''Placeholder - pdf generation function'''
+        """Placeholder - pdf generation function"""
         pass
+
 
 class FolderNode:
     """Node object for storing folder details in structure tree"""
