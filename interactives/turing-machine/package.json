@@ -1,0 +1,17 @@
+{
+    "name": "CSFG-turing-machine-interactive",
+    "version": "0.0.1",
+    "author": "James \"The Jamesernator\" Browning",
+    "description": "This is 2D Turing Machine interactive application which is designed for students to write rules for a Turing Machine-like system to solve problems",
+    "dependencies": {
+        "chart.js": "latest",
+        "es5-shim": "latest",
+        "es6-shim": "latest"
+    },
+    "devdependencies": {
+        "coffeeify": "latest"
+    },
+    "scripts": {
+        "build-js": "browserify -t coffeeify coffee/main.coffee > js/main.js"
+    }
+}
