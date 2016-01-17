@@ -181,7 +181,7 @@ class Guide:
                 for line in file_node.section.original_text:
                     if line.startswith('###'):
                         for word in line.split()[1:]:
-                            self.files_with_permissions.add(word.lower())
+                            self.files_with_permissions.add(word.lower().strip(','))
 
 
     def compile_scss_file(self, file_name):
@@ -237,8 +237,9 @@ class Guide:
             for file_object in file_data.filenames:
                 file_name = file_object.filename
                 # Checks if file is listed within permissions file
-                if file_name.lower() not in self.files_with_permissions and not file_type == 'Interactive':
-                    logging.warning("No permissions information listed for {} {}".format(file_type, file_name))
+                file_name_tail = os.path.split(file_name.lower())[-1]
+                if file_name_tail not in self.files_with_permissions and not file_type == 'Interactive':
+                    logging.warning("No permissions information listed for {} {}".format(file_type, file_name_tail))
 
                 output_location = os.path.join(file_output_folder, file_name)
                 # If data exists in file object, write file
