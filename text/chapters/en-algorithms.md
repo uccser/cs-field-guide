@@ -28,9 +28,11 @@ If you have read through the Introduction chapter you may remember that the spee
 
 At this stage you might be thinking that algorithms and computer programs kind of sound like the same thing, but they are actually two very distinct concepts. Descriptions of these and another important concept, Informal Instructions, are below. They are each different ways of describing how to do something:
 
+{glossary-definition term="Algorithm" definition="A step by step process that describes how to solve a problem and/or complete a task, which will always give a result."}
+
 - **Informal Instruction:** An instruction using natural language. They are un-precise so computers cannot understand them, but humans are able to use their own intelligence to interpret them. This is the least precise of our three descriptions for doing things, and is typically used to give a very simple description of the general idea of an algorithm.
 - **Algorithm:** step by step process that describes how to solve a problem and/or complete a task, which will always give a result. They are more precise than Informal Instructions and do not require any knowledge or intelligence to follow, however they are still not precise enough for a computer to follow. These are often expressed using [pseudo-code](http://en.wikipedia.org/wiki/Pseudocode), which matches a programming language fairly closely, but leaves out details that could easily be added later by a programmer, and doesn't specify the kinds of commands that can be used.
-- {glossary "algorithm" backref="computer program"}**Program:**{glossary end} a specific implementation of an algorithm, which is written in a specific programming language and will give a certain result. This is the most precise of these three descriptions and computers are able to follow and understand these.
+- {glossary-link term="Algorithm" reference-text="computer program"}**Program:**{glossary-link end} a specific implementation of an algorithm, which is written in a specific programming language and will give a certain result. This is the most precise of these three descriptions and computers are able to follow and understand these.
 
 For example...
 
@@ -38,7 +40,7 @@ For example...
 - **Algorithm:** 1) Go to the kitchen. 2) Pick up a glass. 3) Turn on the tap. 4) Put the glass under the running water and remove it once it is almost full. 5) Turn off the tap. 6) Take the glass back to the person who gave the instruction. A human could follow these instructions easily, but a computer could not figure out exactly what to do.
 - **Program:** A computer program, written in a programming language, which would tell a robot exactly how to retrieve a glass of water and bring it back to the person who asked for the water.
 
-{glossary "algorithm" backref="algorithm cost"}{glossary end}
+{glossary-link term="Algorithm" reference-text="algorithm cost"}{glossary-link end}
 ### Algorithm cost
 
 When Computer Scientists are comparing algorithms they often talk about the 'cost' of an algorithm. The cost of an algorithm can be interpreted in several different ways, but it is always related to how well an algorithm performs based on the size of its input, *n*. In this chapter we will talk about the cost of an algorithm as either the time it takes a program (which performs the algorithm) to complete, and the number of comparisons the algorithm makes before it finishes.
@@ -69,18 +71,22 @@ For students reports:
 More information on this can be found at the end of the chapter.
 {teacher end}
 
-{glossary "Algorithm" backref="searching algorithms"}{glossary end}
+{glossary-link term="Algorithm" reference-text="searching algorithms"}{glossary-link end}
+
 ## Searching
 
-{teacher}
-The present searching game in this section is split into two parts, the first corresponds to the Linear Search algorithm (also known as Sequential Search) and the second corresponds to {glossary-def "Binary Search" "searching a sorted list by looking at the middle item, and then searching the appropriate half recursively (used for phone books, dictionaries and computer algorithms)."}Binary Search{glossary-def end}. We recommend you play through the levels yourself for a while, or after reading this description. It is based on the [CS Unplugged Battleships game](http://csunplugged.com/searching-algorithms) which can be used as a classroom activity to enforce the lessons in this chapter (the hashing activity is not used for the present searching game). The present searching game can be done individually by students as they read through the chapter, in groups or as a class activity.
+{panel type="teacher-note" summary="Presenting searching in the classroom"}
+
+{glossary-definition term="Binary Search" definition="Searching a sorted list by looking at the middle item, and then searching the appropriate half recursively (used for phone books, dictionaries and computer algorithms)."}
+
+The present searching game in this section is split into two parts, the first corresponds to the Linear Search algorithm (also known as Sequential Search) and the second corresponds to {glossary-link term="Binary Search"}Binary Search{glossary-link end}. We recommend you play through the levels yourself for a while, or after reading this description. It is based on the [CS Unplugged Battleships game](http://csunplugged.com/searching-algorithms) which can be used as a classroom activity to enforce the lessons in this chapter (the hashing activity is not used for the present searching game). The present searching game can be done individually by students as they read through the chapter, in groups or as a class activity.
 
 To run this as a classroom activity get all the students to play each section of the game at the same time and then when they have all finished have a discussion about the results. After students have finished the first part ask them questions like "Did anyone find the pet on the first go?", "Did anyone only find it after checking every other present?", or find the average number of presents students had to open to find the pet (this should be around 5 for the first level and around 10 for the second).
 
 While they are playing the second part some may have trouble finding the correct algorithm to find the pet. If they are finding these levels confusing you can give them a hint like "Why don't you start by opening the present in the centre" and when they do ask them "What does the number you found tell you about all the numbers before it?" if the number is smaller than the one they are looking for, or "all the numbers after it?" if the number is bigger than the one they are looking for.
 
 When students have finished ask them questions like "Where you able to find the pet even though you had less lives? What strategy did you use to find the pet?", we have found that many students will have ended up doing a binary search (or similar) without even knowing what a binary search is! Explaining these algorithms to students is likely to be easier now that they have seen them in action.
-{teacher end}
+{panel end}
 
 Searching through collections of data is something computers have to do all the time. It happens every time you type in a search on Google, or when you type in a file name to search for on your computer. Computers deal with such huge amounts of data that we need fast algorithms to help us find information quickly. Lets investigate searching with a game...
 
@@ -154,7 +160,7 @@ The following files will run linear and binary search in various languages:
 - [Python (Version 2)](file linear-binary-search-python2.py)
 - [Python (Version 3)](file linear-binary-search-python3.py)
 
-{glossary "algorithm" backref="sorting algorithms"}{glossary end}
+{glossary-link term="Algorithm" reference-text="sorting algorithms"}{glossary-link end}
 ## Sorting algorithms
 
 {teacher}
@@ -231,12 +237,12 @@ The above informal instructions for insertion sort are fairly detailed and are g
 
 People often perform this when they physically sort items. It can also be a very useful algorithm to use if you already have a sorted set of data and want to add a new piece of data into the set. For example if you owned a library and purchased a new book you wouldn't do a Selection Sort on the entire library just to place this new book, you would simply insert the new book in its correct place.
 
-{glossary-def "Quicksort" "a process for achieving an outcome, normally for a general problem such as searching, sorting, finding an optimal path through a map and so on."}{glossary-def end}
+{glossary-definition term="Quicksort" definition="A process for achieving an outcome, normally for a general problem such as searching, sorting, finding an optimal path through a map and so on."}
 ### Quicksort
 
 Insertion and Selection Sort may seem like logical ways to sort things into order, but they both take far too many comparisons when they are used for large amounts of data. Remember computers often have to search through HUGE amounts of data, so even if they use a good searching algorithm like Binary Search to look through their data, if they use a bad sorting algorithm to first sort that data into order then finding anything will take far too long!
 
-A much better sorting algorithm is {glossary "Quicksort"}Quicksort!{glossary end} (the name is a bit of a giveaway)
+A much better sorting algorithm is {glossary-link term="quicksort"}Quicksort!{glossary-link end} (the name is a bit of a giveaway)
 
 {interactive-external sorting-boxes title="Quicksort interactive"  parameters="method=quick"}
 
