@@ -14,7 +14,7 @@ def to_kebab_case(text):
     The text is lower case, has spaces replaced as dashes.
     All punctuation is also removed.
     """
-    text = ''.join(letter for letter in text if letter in set(string.ascii_letters + ' -'))
+    text = ''.join(letter for letter in text if letter in set(string.ascii_letters + string.digits + ' -'))
     text = text.replace(' ', '-').lower()
     return text
 
