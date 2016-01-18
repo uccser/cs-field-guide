@@ -4,11 +4,11 @@ This page details files that are used within the Computer Science Field Guide. F
 
 {comment}
 
-To add permissions for a file, create a new level 3 Markdown heading (starts with `###`) and add the filename. When the generation script is run, it searches all headings for the filename being used (both the search query and files listed here are converted to lower case for searching purposes).
+To add permissions for a file, create a new level 3 Markdown heading (starts with `####`) and add the filename. When the generation script is run, it searches all headings for the filename being used (both the search query and files listed here are converted to lower case for searching purposes).
 
 {comment end}
 
-### coloured-roof-small.png
+#### coloured-roof-small.png
 
 **Owner:** Jack Morgan
 
@@ -17,7 +17,7 @@ To add permissions for a file, create a new level 3 Markdown heading (starts wit
 **License:**  Used with Jack Morgan's permission (email: [jack.morgan@canterbury.ac.nz](mailto:jack.morgan@canterbury.ac.nz))
 
 
-### md5.js
+#### md5.js
 
 **Owner:** Jeff Mott
 
@@ -35,7 +35,7 @@ Neither the name CryptoJS nor the names of its contributors may be used to endor
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS," AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
-### jquery.js
+#### jquery.js
 
 **Owner:** jQuery
 
@@ -44,7 +44,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS," AND
 **License:** Available freely under the [MIT license](https://jquery.org/license/)
 
 
-### Animate.js, Scroller.js, Tiling.js
+#### Animate.js, Scroller.js, Tiling.js
 
 **Owner:** Zynga Inc. Copyright 2011
 
@@ -53,7 +53,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS," AND
 **License:** MIT license
 
 
-### materialize.scss, materialize.min.js
+#### materialize.scss, materialize.min.js
 
 **Owner/Creator:** MaterializeCSS ([Dogfalo](https://github.com/Dogfalo))
 
@@ -84,7 +84,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
-### Roboto-Regular.ttf, Roboto-Regular.woff, Roboto-Regular.woff2, Roboto-Thin.ttf, Roboto-Thin.woff, Roboto-Thin.woff2, Roboto-Light.ttf, Roboto-Light.woff, Roboto-Light.woff2, Roboto-Medium.ttf, Roboto-Medium.woff, Roboto-Medium.woff2, Roboto-Bold.ttf, Roboto-Bold.woff, Roboto-Bold.woff2, Material-Design-Icons.svg, Material-Design-Icons.ttf, Material-Design-Icons.woff2, Material-Design-Icons.eot, Material-Design-Icons.woff
+#### Roboto-Regular.ttf, Roboto-Regular.woff, Roboto-Regular.woff2, Roboto-Thin.ttf, Roboto-Thin.woff, Roboto-Thin.woff2, Roboto-Light.ttf, Roboto-Light.woff, Roboto-Light.woff2, Roboto-Medium.ttf, Roboto-Medium.woff, Roboto-Medium.woff2, Roboto-Bold.ttf, Roboto-Bold.woff, Roboto-Bold.woff2, Material-Design-Icons.svg, Material-Design-Icons.ttf, Material-Design-Icons.woff2, Material-Design-Icons.eot, Material-Design-Icons.woff
 
 **Owner:** Christian Robertson (commissioned by Google)
 
@@ -268,12 +268,12 @@ incurred by, or claims asserted against, such Contributor by reason
 of your accepting any such warranty or additional liability.
 
 
-### website.css
+#### website.css
 
 This file is a combination of website.scss and materialize.scss created for output. See the details for these files for more details.
 
 
-### website.scss, website.js
+#### website.scss, website.js
 
 Created by our team for the CSFG project. The Computer Science Field Guide uses a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) license](http://creativecommons.org/licenses/by-nc-sa/4.0/).
 

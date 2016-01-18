@@ -179,7 +179,7 @@ class Guide:
                 file_node.section.title = self.translations['title'][self.language_code]
             if file_node.filename == self.permissions_location:
                 for line in file_node.section.original_text:
-                    if line.startswith('###'):
+                    if line.startswith('####'):
                         for word in line.split()[1:]:
                             self.files_with_permissions.add(word.lower().strip(','))
 

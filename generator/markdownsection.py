@@ -81,9 +81,11 @@ class Section:
                 for level in range(self.current_heading.level - heading_level + 1):
                     self.current_heading = self.current_heading.parent
             elif heading_level > self.current_heading.level + 1:
-                #Error in markdown - a heading level has been missed.
-                #Generate blank intermediate headings and log error
-                self.regex_functions['heading'].log("Heading level missed between {} {} and {}".format(self.current_heading.number, self.current_heading.heading, heading_text), self, match.group(0))
+                # Error in markdown - a heading level has been missed.
+                # Generate blank intermediate headings and log error
+                # Ignore missing headings in permissions file due to custom style
+                if not self.file_node.filename == PERMISSIONS_LOCATION:
+                    self.regex_functions['heading'].log("Heading level missed between {} {} and {}".format(self.current_heading.number, self.current_heading.heading, heading_text), self, match.group(0))
                 for level in range(heading_level - self.current_heading.level - 1):
                     intermediate_heading = HeadingNode(heading_text, '', parent = self.current_heading)
                     self.current_heading.children.append(intermediate_heading)
