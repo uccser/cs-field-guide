@@ -639,7 +639,7 @@ class HeadingNode:
             return '{}{}'.format('--' * (self.level - 1), self.heading)
 
     def to_html(self):
-        if self.number:
+        if self.section.file_node.group_type == "chapters":
             html_type = 'heading-numbered'
         else:
             html_type = 'heading-unnumbered'
