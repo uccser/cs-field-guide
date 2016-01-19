@@ -1,24 +1,16 @@
 # Coding - Error Control
 
-{teacher}
-
-The following assessment plans also cover this material:
-
-**New Zealand - AS91371 (2.44)**
-
-- [Assessment Overview](/appendices/assessment-guides/new-zealand/assessment-guide-level-2-introduction)
-- [Error Control Coding (Check Sums)](/appendices/assessment-guides/new-zealand/assessment-guide-level-2-error-control-checksums)
-
-{teacher end}  
+{panel type="teacher-note" summary="Curriculum Guides for Error Control"}
+TODO
+{panel end}  
 
 ## What's the big picture?
-{teacher}
 
+{panel type="teacher-note" summary="Using the parity trick in a classroom"}
 The parity magic trick can be an intriguing introduction to the idea of error correction, and we recommend using it at the start of teaching this topic. You need to practise it in advance, and for high school students we recommend a grid of about 7x7 or 8x8 cards to have a good impact. Details are in the [Card flip magic section](http://csunplugged.org/error-detection) of the [CS Unplugged site](http://csunplugged.org/).
+{panel end}
 
-{teacher end}
-
-{video http://www.youtube.com/embed/OXz64qCjZ6k?rel=0}
+{video url="http://www.youtube.com/embed/OXz64qCjZ6k?rel=0"}
 
 The parity magic trick (in the video above) enables the magician to detect which card out of dozens has been flipped over while they weren't looking.
 The magic in the trick is actually computer science, using the same kind of technique that computers use to detect and correct errors in data. We will talk about how it works in the next section.
@@ -46,19 +38,10 @@ Error detection is also used on barcode numbers on products you buy, as well as 
 By the end of this chapter, you should understand the basic idea of error control coding, the reasons that we require it, the differences between algorithms that can detect errors and those that can both detect and correct errors, and some of the ways that error control coding is used, in particular parity (focussing on the parity magic trick) and the check digits used to ensure book numbers, barcode numbers, and credit card numbers are entered correctly.
 
 ## The Parity Magic Trick
-{teacher}
-
-Note: It is very helpful if the students either view the video above first, or have a demonstration of the trick from the teacher.
-
-{teacher end}
 
 If you have never seen the parity magic trick before, check out the video in the “What’s the Bigger Picture?” section above. This section assumes that you know what is meant by the parity magic trick, but now we'll explain how it actually works!
 
-{comment}
-
-.. xjrm insert image from http://csunplugged.org/sites/default/files/cartoons/parity_trick.jpg?1286499792
-
-{comment end}
+{image filename="coding-error-control/parity-trick.jpg" alt="The parity magic trick"}
 
 A magician asks an observer to lay out a square grid of two-sided cards, and the magician then says they are going to make it a bit harder, and add an extra row and column to the square. The magician then faces the other way while the observer flips over one card. The magician turns back around again, and tells the observer which card was flipped!
 
@@ -66,17 +49,20 @@ The question now is, how did the magician know which card had been flipped witho
 
 ### Carrying out the parity trick
 
-You are now going to take the role of the magician and carry out the trick yourself. The interactive below will allow you to practice it.
-
 In the interactive, the computer has a 7x7 grid of black and white cards. You must choose the colour of an extra card for each row (at the right) and column (at the bottom), making an 8x8 grid of cards. Each extra card should be chosen so that each row and column has an even number of black cards (since there are 8 cards, there will also be an even number of white cards).
 The bottom right-hand card can be chosen from either its row or column; they should both give the same colour.
-Once you think you have this correct, you should tell the computer to flip a card. An animation will appear for a few seconds, and then the cards will reappear with one card flipped (all the rest will be the same as before). Your task is to identify the flipped card. You should be able to do this *without* having memorised the layout. Remember the pattern you made with the extra cards you added? That's the key to figuring it out. Once you think you have identified the card, click it to see whether or not you were right! The interactive will guide you through these instructions. If you are completely stuck identifying the flipped card, a hint follows the interactive, although you should try and figure it out for yourself first! Make sure you add the extra cards correctly; the computer won’t tell you if you get them wrong, and you probably won’t be able to identify the flipped card if the extra cards aren't chosen correctly.
 
+Once you think you have this correct, you should tell the computer to flip a card. An animation will appear for a few seconds, and then the cards will reappear with one card flipped (all the rest will be the same as before). Your task is to identify the flipped card. You should be able to do this *without* having memorised the layout. Remember the pattern you made with the extra cards you added? That's the key to figuring it out. Once you think you have identified the card, click it to see whether or not you were right. The interactive will guide you through these instructions. If you are completely stuck identifying the flipped card, a hint follows the interactive, although you should try and figure it out for yourself first. Make sure you add the extra cards correctly; the computer won’t tell you if you get them wrong, and you probably won’t be able to identify the flipped card if the extra cards aren't chosen correctly.
+
+{comment}
 <div class="widget-holder"><a href="static/widgets/DR/DR-Parity/public_html/index.html"  target="blank"><img class="widget-image" src="static/images/EC-ParityThumbnail.png" alt=""><span class="widget-subtitle">Click to load the parity widget</span></a></div>
+{comment end}
 
 Remember how you made it so that each column had an even number of black cards? When a card is flipped, this results in the row and column that the card was in having an odd number of black cards. So all you need to do is to identify the row and column that have an odd number of black and white cards, and the card that is at the intersection of them must be the one that was flipped!
 
 What we saw above is a simple error control coding algorithm, known as *2-dimensional parity*.
+
+### How does the parity trick relate to error control coding?
 
 The cards represent bits, with their two states being black and white (in the "data representation" chapter we looked at how a bit can be stored by anything that can be in one of two states: shiny/not shiny, magnetised/not magnetised, high voltage/low voltage, black/white, etc). The original 7x7 cards that the computer laid out for you could be some kind of data, for example some text represented using bits, or an image, or some numbers.
 Although they are laid out in a grid, on a computer the rows of bits would be stored or transmitted one after the other (as 8 lots of 8 bits).
@@ -88,10 +74,7 @@ When a card was flipped, this simulated an error being made in your data (such a
 If you had not added the parity bits, you would have had no way of even knowing an error had occurred, unless you had memorised the entire layout of cards!
 And what if more than one bit had been flipped? We'll consider this later.
 
-{curiosity}
-
- **Being a magician**
-
+{panel type="project" summary="Being a magician or using the parity trick as a party trick!"}
 Now that you have learnt how the parity trick works, you might like to try it with a physical set of cards like the busker in the video, or you could use any objects with two distinct sides, such as coins or cups. You could use playing cards, but the markings can be distracting, and cards with two colours are easiest (you can make them by cutting up sheets of card with the two colours on, or single coloured card with a scribble or sticker on one side).
 
 You can find details and lots of ideas relating to the trick [here](http://csunplugged.org/error-detection), or follow these instructions:
@@ -104,25 +87,20 @@ You can find details and lots of ideas relating to the trick [here](http://csunp
 It would take some practice to be able to add the extra cards, and identify the flipped card without the observer noticing that you are thinking hard about it. With practice you should be able to do it while having a casual conversation. Once you master it, you've got a great trick for parties, or even for busking.
 
 To make it more showy, you can pretend that you are mind reading the person, waving your hands over the cards. A particular impressive variation is to have an assistant come in to the room after the card has been flipped; even though they haven't seen any of the setup, they will still be able to detect the error.
+{panel end}
 
-{curiosity end}
+### Analysing the parity trick
 
-### Investigating the parity trick a little further
-
-{teacher}
-
+{panel type="teacher-note" summary="This section is for keen students, and it works for most ages"}
 This section is an extension aimed at keen students. Primary school kids have been able to understand many of these ideas, although it really depends on how engaged the students are with the material.
+{panel end}
 
-{teacher end}
-
-At this point, you should be able to carry out the parity trick well enough that you can demonstrate that you understand how to do it. The remainder of this section is focussed on exploring further ideas in error control coding related to the parity trick. You can either continue to read through the rest of this section and explore the interesting questions raised, or you can skip forward to one of the other sections.
+At this point, you should be able to carry out the parity trick well enough that you can demonstrate that you understand how to do it. The remainder of this section is focussed on exploring further ideas in error control coding related to the parity trick.
 
 It would be ideal to have some physical parity cards at this point that you can layout in front of you and play around with to explore the questions raised.
 
 {comment}
-
 .. xhtml5 (low priority) Or could we provide an interactive that was just a parity trick sandbox?
-
 {comment end}
 
 An error control coding algorithm can often detect errors more easily than it can correct them. Errors involving multiple bits can sometimes even go undetected. What if the computer (or your friend if you were being a magician with actual parity cards) had been sneaky and turned over two cards instead of one? You could start by getting a friend or classmate to actually do this. Repeat it a few times. Are you always able to correct the errors, or do you get it wrong?
@@ -131,22 +109,13 @@ Remember that to *detect* errors using this algorithm, you know that if one or m
 
 Are you always able to detect when an error has occurred if 2 cards have been flipped? Why? Are you ever able to correct the error? What about with 3 cards?
 
-{teacher}
-
-You can always detect an error when 2 cards have been flipped (i.e. a 2-bit error), but the system can't correct more than a 1-bit error. When two cards are flipped, there will be at least two choices for flipping two cards to make the parity correct, and you won't know which is the correct one. With a 3-bit error (3 cards flipped), it will always be possible to detect that there is an error (an odd number of black bits in at least one row or column), but again, correction isn't possible. With 4 cards being flipped, it's possible (but not likely) that an error can go undetected.
-
-{teacher end}
+It turns out that you can always detect an error when 2 cards have been flipped (i.e. a 2-bit error), but the system can't correct more than a 1-bit error. When two cards are flipped, there will be at least two choices for flipping two cards to make the parity correct, and you won't know which is the correct one. With a 3-bit error (3 cards flipped), it will always be possible to detect that there is an error (an odd number of black bits in at least one row or column), but again, correction isn't possible. With 4 cards being flipped, it's possible (but not likely) that an error can go undetected.
 
 There is actually a way to flip 4 cards where the error is then *undetected* meaning that the algorithm will be unable to detect the error. Can you find a way of doing this?
 
 With more parity cards, we can detect and possibly correct more errors. Lets explore a very simple system with minimal parity cards. We can have a 7x7 grid of data with just one parity card. That parity card makes it so that there is an even number of black cards in the entire layout (including the parity card). How can you use this to detect errors? Are you ever able to correct errors in this system? In what situations do errors go undetected (think when you have multiple errors, i.e. more than one card flipped).
 
-
-{teacher}
-
 With only one extra card for parity checking, a single bit error can be detected (the total number of black cards will become odd), but a 2-bit error won't be detected because the number of black cards will be even again. A 3-bit error will be detected, but in general the system isn't very reliable.
-
-{teacher end}
 
 So going back to the actual parity trick that has the 7 by 7 grid, and 15 parity cards to make it 8 by 8, it is interesting to note  that only 1 extra card was needed to detect that an error had occurred, but an extra 15 cards were needed to be able to correct the error. In terms of the cost of an algorithm, it costs a lot more space to be able to correct errors than it does to be able to simply detect them!
 

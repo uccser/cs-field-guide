@@ -23,9 +23,9 @@ As with all externally assessed reports, you should base your explanations aroun
 ## Reading from the Computer Science Field Guide
 
 {panel type="teacher-note" summary="Explanation of the recommended reading"}
-For 2.44, the students would need to read section 3.4, as heuristics are required in the standard, but for 1.44 it is okay to use the more general ideas presented in section 3.3 instead. You may edit this before giving the assessment to your students for if you have a preference about which they read.
+For the 2.44 standard, the students would need to read section 4 of the HCI chapter, as heuristics are required in the standard, but for 1.44 it is okay to use the more general ideas presented in section 3 instead. You may want to edit this before giving the assessment to your students if you have a preference about which they read.
 
-The more background they read, the more they will be sensitised to the kinds of usability problems that can be encountered, and some of the recommended books are also useful as background. However, if time is limited and students do their usability evaluation carefully, section 3.3 should have sufficient material to get them going.
+The more background they read, the more they will be sensitised to the kinds of usability problems that can be encountered, and some of the recommended books are also useful as background. However, if time is limited and students do their usability evaluation carefully, section 3 of the HCI chapter should have sufficient material to get them going.
 
 In addition to the recommended reading, you may want to carry out a demo of the project with the entire class, using a device that none of them will be using for their own project.
 {panel end}
@@ -50,7 +50,7 @@ Then read one (or both if you're keen) of these sections on usability, in order 
 {panel type="teacher-note" summary="Why we recommend students observing a helper"}
 Many students are poor at seeing things from other peoples' perspectives, and recognising problems with an interface when they are the one using it. For this reason, observing somebody else using the device as opposed to the student trying it by themselves is strongly recommended.
 
-Students could either choose a helper in the class, or they could ask somebody at home. A grandparent or parent can be ideal for this role, and infact many of the best HCI sections of 1.44 reports we have seen were based on an observation of a parent or grandparent who was not familiar with the kind of interface.
+Students could either choose a helper in the class, or they could ask somebody at home. A grandparent or parent can be ideal for this role, and in fact many of the best HCI sections of 1.44 reports we have seen were based on an observation of a parent or grandparent who was not familiar with the kind of interface.
 {panel end}
 
 In this project, you will carry out a usability evaluation by observing a helper carry out a specific task on an interface you have chosen. While you could theoretically do the task yourself and write down where you had difficulty, it is surprisingly challenging to notice and be objective of usability issues you are facing yourself.
@@ -58,9 +58,8 @@ In this project, you will carry out a usability evaluation by observing a helper
 ### Choosing an interface
 
 {panel type="teacher-note" summary="The chosen interface does not have to be a 'device'"}
-A common misconception is that the interface must be a "device", such as a cellphone or music player. The standard actually allows any computer interface, including websites. The standard even allows more general interfaces, such as microwaves, tv remotes, game controllers, and alarm clocks.
-
-This misconception probably originated from some of the first exemplars for 1.44 and 2.44, which used devices as a theme throughout.
+A common misconception is that the interface must be a "device", such as a cellphone or music player. The standard actually allows any computer interface, including websites. The standard even allows more general interfaces, such as microwaves, tv remotes, game controllers, and alarm clocks, and often these digital devices provide good examples of HCI issues.
+(This misconception probably originated from some of the first exemplars for 1.44 and 2.44, which used devices as a theme throughout.)
 
 Note that it is very important that the helper is not familiar with the interface, as once a person is an "expert" using an interface that isn't very good, they tend to lose conscious awareness of aspects of the interface that are "silly", and are able to work through them with ease.
 {panel end}
@@ -70,7 +69,7 @@ It is essential that the interface you choose is one that your helper is not alr
 Because you will need to compare related interfaces for excellence, make sure you choose an interface for which you will also be able to find a second related interface to compare with (e.g. two different alarm clocks or two different flight booking systems). The second interface should also be one that your helper is not familiar with (otherwise they may be biased towards the one they are familiar with).
 
 {panel type="teacher-note" summary="Choosing a small piece of functionality is best"}
-It is very challenging to evaluate a large complicated system, so we recommend evaluating a small component of a large system.
+It is very challenging to evaluate a large complicated system (such as a word processor), so we recommend evaluating a small component of a large system (such as checking spelling in a word processor).
 
 Even just a few button presses (such as setting the time on an alarm) can bring up several usability issues.
 {panel end}
@@ -80,7 +79,7 @@ In addition to choosing interfaces, you should also choose a specific piece of f
 Some possible pairs of interfaces you could use are: (Although remember that this list is far from exhaustive)
 
 - Online booking systems for two different airlines (e.g. Air NZ vs Jetstar).
-- Two different friend’s cell phones.
+- Two different friends' cell phones.
 - Two different email clients you have never used before (don’t forget about the many webmail clients. Even signing up for webmail addresses could prove to be challenging in some cases).
 - Two different microwaves. Cheap microwaves are notorious for being inconsistent and illogical to use. [Note that running a microwave with nothing in it will damage it! You would be best to put something inside it while you are experimenting with its interface. Water in a microwave safe glass is fine]
 - Two different apps/ programs/ for setting an alarm (many exist). You could choose ones that go on a phone or on your computer, or one of each. A physical alarm clock would be good.
@@ -109,9 +108,12 @@ Once you have chosen an interface, you need to think of one or two common tasks 
 
 Be sure to read this entire assessment guide carefully (including the sections on writing your report and the hints for success) before beginning this step.
 
-Tell your helper what the task is, and give them one of your chosen interfaces so that they can carry out the task. While they are carrying out the task, you should be observing and keeping notes on the steps they take, paying particular attention to any points at which they are confused, select an incorrect option (or menu), have to use trial and error (e.g. they know the setting they want is probably in one of three menus, but have to check all three), something they didn't expect happens, wasted time following a dead end, or knew what to do due to useful prompts on the interface (e.g. meaningful icons or naming). Ideally, they will be verbalising their thought process while attempting the task (although keep in mind that some people find this challenging to do).
+The two projects in the HCI chapter ("Think aloud protocol" and "Cognitive walkthrough") provide detailed procedures of how to do an evaluation using a widely used approach.
+We recommend choosing one of these (depending on the kind of interface).
 
-If you have more than one task for the interface, repeat the above process for each task. Also, if you have a second interface and are aiming for Excellence, repeat the process with the other interface and the same tasks. Remember to keep thorough notes on the entire process. You will need them to write a good report.
+Whichever approach you take, tell your helper what the task is, and give them one of your chosen interfaces so that they can carry out the task. While they are carrying out the task, you should be observing and keeping notes on the steps they take, paying particular attention to any points at which they are confused, select an incorrect option (or menu), have to use trial and error (e.g. they know the setting they want is probably in one of three menus, but have to check all three), something they didn't expect happens, wasted time following a dead end, or knew what to do due to useful prompts on the interface (e.g. meaningful icons or naming). Ideally, they will be verbalising their thought process while attempting the task (as in the think-aloud protocol), although keep in mind that some people find this challenging to do.
+
+If you have more than one task for the interface, repeat the above process for each task. Also, if you have a second interface and are aiming for Excellence, repeat the process with the other interface and the same tasks. Remember to keep thorough notes on the entire process. You will need them to write a report that describes and explains what you've observed.
 
 ### Writing your report
 
