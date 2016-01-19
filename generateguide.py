@@ -281,7 +281,7 @@ class Guide:
 
         if file.section:
             if file.section.mathjax_required:
-                file.section.add_page_script(self.html_templates['mathjax'])
+                file.section.add_page_script(self.html_templates['mathjax'].format(path_to_root=file.section.html_path_to_root))
 
             for section_content in file.section.html_content:
                 body_html += section_content
