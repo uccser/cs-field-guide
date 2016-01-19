@@ -34,7 +34,7 @@ class Section:
         self.permalinks = set()
         # Dictionary of sets for images, interactives, and other_files
         self.required_files = setup_required_files(file_node.guide)
-        self.page_scripts = set()
+        self.page_scripts = []
         self.mathjax_required = False
         self.sectioned = False
         self.html_path_to_root = self.file_node.depth * '../'
@@ -54,6 +54,10 @@ class Section:
 
 
     # ----- Helper Functions -----
+    def add_page_script(self, script_html):
+        if script_html not in self.page_scripts:
+            self.page_scripts.append(script_html)
+
 
     def create_heading(self, match):
         """Parsing function for heading regex
@@ -106,7 +110,7 @@ class Section:
             if link[-1].isdigit():
                 link = link[:-1] + str(count)
             else:
-                link = link + str(count)
+                link = link + '-' + str(count)
             count += 1
         self.permalinks.add(link)
         return link
@@ -116,6 +120,7 @@ class Section:
         """Create a HTML link, if local link then add path back to root"""
         link_text = match.group('link_text')
         link_url = match.group('link_url')
+        link_url = link_url.replace('\)', ')')
         if not link_url.startswith(('http://','https://','mailto:')):
             link_url = self.html_path_to_root + link_url
         html = self.html_templates['link'].format(link_text=link_text, link_url=link_url).strip()
@@ -138,7 +143,7 @@ class Section:
                                                                   summary=summary)
             html = self.html_templates['panel'].format(panel_heading = heading,
                                                        content = content,
-                                                       type_class = ' panel-' + panel_type,
+                                                       type_class = 'panel-' + panel_type,
                                                        expanded = expanded)
         else:
             self.regex_functions['panel'].log("Panel type argument missing", self, match.group(0))
@@ -366,7 +371,7 @@ class Section:
         file_link = "{location}?{parameters}".format(location=folder_location, parameters=params) if params else folder_location
         link_template = self.html_templates['interactive-iframe']
         html = link_template.format(interactive_source=file_link)
-        self.page_scripts.add(self.html_templates['interactive-iframe-script'].format(path_to_root=self.html_path_to_root))
+        self.add_page_script(self.html_templates['interactive-iframe-script'].format(path_to_root=self.html_path_to_root))
         return html
 
 
@@ -435,7 +440,7 @@ class Section:
                     link = os.path.join(self.html_path_to_root, source_folder, raw_link)
                     element[attr] = link
             if element.name == 'script' or (element.name == 'link' and element.get('rel', None) == ['stylesheet']):
-                self.page_scripts.add(element.extract())
+                self.add_page_script(element.extract())
 
 
     def check_interactive_exists(self, interactive_source, interactive_name, match):
@@ -494,67 +499,57 @@ class Section:
             return folder_link_html
 
 
-    def add_glossary_entry(self, match):
+    def add_glossary_definition(self, match):
         glossary = self.guide.glossary
-        word = match.group('word')
-        definition = match.group('def')
-        permalink_id = systemfunctions.to_kebab_case(word)
+
+        arguments = match.group('args')
+        term = parse_argument('term', arguments)
+        definition = parse_argument('definition', arguments)
+
+        permalink = self.create_permalink('glossary-' + term)
 
         this_file_link = os.path.join(glossary.html_path_to_root, self.file_node.path)
-        back_link = '{}.html#{}'.format(this_file_link, permalink_id)
-        self.guide.glossary.add_item(word, definition, back_link)
+        back_link = '{}.html#{}'.format(this_file_link, permalink)
+        self.guide.glossary.add_item(term, definition, back_link, match)
 
-        id_tag = ' id="{}"'.format(permalink_id)
-
-        content = match.group('content') if match.group('content') else ''
-
-        if content:
-            glossary_file_path = os.path.join(self.html_path_to_root, GLOSSARY_LOCATION)
-            forward_link = '{}#{}'.format(glossary_file_path, permalink_id)
-            href_tag = ' href="{}"'.format(forward_link)
-        else:
-            href_tag = ''
-
-        permalink_template = self.html_templates['glossary_permalink']
-        return permalink_template.format(id_tag=id_tag, href_tag=href_tag, content=content)
+        return self.html_templates['glossary_definition'].format(id=permalink)
 
 
     def add_glossary_link(self, match):
         glossary = self.guide.glossary
-        word = match.group('word')
+        content = match.group('content')
+        arguments = match.group('args')
+        term = parse_argument('term', arguments)
+        reference_text = parse_argument('reference-text', arguments)
 
-        if word not in glossary:
-            self.regex_functions['glossary link'].log("No glossary definition of {} to link to".format(word), self, match.group(0))
-            return ''
-
-        if not (match.group('backref') or match.group('content')):
-            self.regex_functions['glossary link'].log('Glossary link to {} has no effect. Include either a forward or back link'.format(word), self, match.group(0))
+        if term not in glossary:
+            self.regex_functions['glossary link'].log("No glossary definition of {} to link to".format(term), self, match.group(0))
             return ''
 
         file_link = os.path.join(glossary.html_path_to_root, self.file_node.path)
+        back_link_id = self.create_permalink('glossary-' + term)
+        this_file_link = os.path.join(glossary.html_path_to_root, self.file_node.path)
+        glossary_file_path = os.path.join(self.html_path_to_root, GLOSSARY_LOCATION)
 
-        if match.group('backref'):
-            backref_text = match.group('backref')
-            back_link_id = '{}-{}'.format(systemfunctions.to_kebab_case(word), backref_text)
-            this_file_link = os.path.join(glossary.html_path_to_root, self.file_node.path)
+        if reference_text:
+            # Provide ability to link to term in section
             back_link = '{}.html#{}'.format(this_file_link, back_link_id)
-            glossary.add_back_link(word, back_link, backref_text)
-            id_tag = ' id="{}"'.format(back_link_id)
+            id_html = ' id="{}"'.format(back_link_id)
+            # Add back reference link to glossary item
+            glossary.add_back_link(term, back_link, reference_text, match)
         else:
-            id_tag = ''
+            id_html = ''
 
-        if match.group('content'):
-            content = match.group('content')
-            glossary_file_path = os.path.join(self.html_path_to_root, GLOSSARY_LOCATION)
-            forward_link_id = word.lower()
+        if content:
+            # Create link to term in glossary
+            forward_link_id = systemfunctions.to_kebab_case(term)
             forward_link = '{}#{}'.format(glossary_file_path, forward_link_id)
-            href_tag = ' href="{}"'.format(forward_link)
+            link_html = ' href="{}"'.format(forward_link)
         else:
-            href_tag = ''
+            link_html = ''
             content = ''
 
-        template = self.html_templates['glossary_permalink']
-        return template.format(id_tag=id_tag, href_tag=href_tag, content=content)
+        return self.html_templates['glossary_backwards_link'].format(id_html=id_html, link_html=link_html, content=content)
 
 
     def add_glossary(self, match):
@@ -644,9 +639,7 @@ class HeadingNode:
             return '{}{}'.format('--' * (self.level - 1), self.heading)
 
     def to_html(self):
-        if self.section.title == 'Glossary' and self.level > 1:
-            html_type = 'heading-glossary'
-        elif self.number:
+        if self.section.file_node.group_type == "chapters":
             html_type = 'heading-numbered'
         else:
             html_type = 'heading-unnumbered'

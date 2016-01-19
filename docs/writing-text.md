@@ -448,17 +448,18 @@ The definition on the glossary page will also include a link back to the place t
 #### Linking to a glossary term
 
 ```
-{glossary term="complexity" link-text="program complexity" reference-text="Program complexity"}
+{glossary-link term="complexity" reference-text="Program complexity"}program complexity{glossary-link end}
 
-It's worth considering which {glossary term="algorithm" link-text="algorithms"} should be used.
+It's worth considering which {glossary-link term="algorithm"}algorithms{glossary-link end} should be used.
 ```
+
+*Note: Linking to a glossary term requires an end tag.*
 
 **Parameters:**
 - `term` - The term to link to in the glossary.
-- `link-text` (optional) - The text to display as a link to the glossary definition. If this parameter is not given, then the link is invisible however it can be used to add back reference.
 - `reference-text` (optional) - If included, adds a back reference link using the given the text after the definition on the glossary page.
 
-Each link to a glossary term requires the `term` and should define the `link-text` or `reference-text` or both.
+The text between the start and end tags are used as text to display as a link to the glossary definition. If no text is given, then the link is invisible however it can be used to add a back reference.
 
 #### Creating the glossary
 

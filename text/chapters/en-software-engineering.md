@@ -14,7 +14,7 @@ In this chapter we've tried to capture what really happens in industry, and sugg
 
 Software failures happen all the time. Sometimes it’s a little bug that makes a program difficult to use; other times an error might crash your entire computer. Some software failures are more spectacular than others.
 
-In 1996, The ARIANE 5 rocket of the European Space Agency was launched for its first test flight: Countdown, ignition, flame and smoke, soaring rocket... then BANG! Lots of little pieces scattered through the South American rainforest. Investigators had to piece together what happened and finally tracked down this tiny, irrelevant bug. A piece of software on board the rocket that was not even needed had reported an error and started a self-destruct sequence. Thankfully, no one was on board but the failure still caused about US$370m damage.
+In 1996, The ARIANE 5 rocket of the European Space Agency was launched for its first test flight: Countdown, ignition, flame and smoke, soaring rocket... then BANG! Lots of little pieces scattered through the South American rainforest. Investigators had to piece together what happened and finally tracked down this tiny, irrelevant bug. A piece of software on board the rocket which was not even needed had reported an error and started a self-destruct sequence. Thankfully, no one was on board but the failure still caused about US$370m damage.
 
 {video url="http://www.youtube.com/embed/gp_D8r-2hwk?rel=0"}
 
@@ -76,7 +76,7 @@ We call anyone who has an interest in the software a *stakeholder*. These are th
 
 Imagine that you are making a phone app that allows students to preorder food from the school cafeteria. They can use the app to request the food in the morning and then just go a pick up the food at lunch time. The idea is that this should help streamline the serving of food and reduce queues in the cafeteria. Obvious stakeholders for your project are the students (who will be using the phone app) and cafeteria staff (who will be receiving requests through the app). Less obvious (and indirect) stakeholders include parents (“I have to buy my child a smartphone so they can use this app?”), school admin (“No phones should be used during school time!”) and school IT support who will have to deal with all the students who can’t figure out how to work the app or connect to the network. Different stakeholders might have very different ideas about what the app should do.
 
-To find out what our stakeholders want the software to do, we usually interview them. We ask them questions to identify *functional* and *non-functional* requirements for the software. Functional requirements are things the software needs to do. For example, your phone app needs to allow students to choose the food they want to order. It should then send the order to the cafeteria, along with the student’s name so that they can be easily identified when picking up the food.
+To find out what our stakeholders want the software to do, we usually interview them. We ask them questions to find *functional* and *non-functional* requirements for the software. Functional requirements are things the software needs to do. For example, your phone app needs to allow students to choose the food they want to order. It should then send the order to the cafeteria, along with the student’s name so that they can be easily identified when picking up the food.
 
 Non-functional requirements, on the other hand, don’t tell us *what* the software needs to do but *how* it needs to do it. How efficient does it need to be? How reliable? What sort of computer (or phone) does it need to run on? How easy to use should it be?
 
@@ -90,7 +90,7 @@ You should also never assume that a customer is familiar with technical terms th
 
 {image filename="software-engineering/se-design-150.png" alt="Design Cartoon"}
 
-Even if you manage to communicate with a customer, you might find that they don’t really know what they want the software to do or can’t express it. They might say they want “software to improve their business” or to “make their work more efficient” but that’s not very specific. (There’s a great cartoon of [Dilbert](http://dilbert.com/strips/comic/2006-01-29/)  that illustrates this point!) When you show them the software you have built, they can usually tell you if that’s what they wanted or what they like and don’t like about it. For that reason, it’s a good idea to build little prototypes while you’re developing your system and keep showing them to customers to get feedback from them.
+Even if you manage to communicate with a customer, you might find that they don’t really know what they want the software to do or can’t express it. They might say they want “software to improve their business” or to “make their work more efficient” but that’s not very specific. (There’s a great cartoon of [Dilbert](http://dilbert.com/strips/comic/2006-01-29/) which illustrates this point!) When you show them the software you have built, they can usually tell you if that’s what they wanted or what they like and don’t like about it. For that reason, it’s a good idea to build little prototypes while you’re developing your system and keep showing them to customers to get feedback from them.
 
 You’ll often find that customers have a specific process that they follow already and want the software to fit in with that. We were once involved in a project being done by university students for a library. Their staff used to write down information about borrowed items three times on a paper form, cut up the form and send the pieces to different places as records. When the students interviewed them, they asked for a screen in the program where they could enter the information three times as well (even though in a computer system there really isn’t much point in that)!
 
@@ -157,16 +157,18 @@ We can have the same “layered” approach inside a single program. For example
 {image filename="software-engineering/se-facebook-system.png" alt="Facebook can be broken down into a three tier system, comprising of the presentations layer, then the logic layer, then finally the data layer."}
 
 {panel type="curiosity" summary="Reuse - Kangaroos and Helicopters"}
+
 Since building software is so difficult and time-consuming, a popular idea has been to reuse existing software. Not surprisingly, we call this *software reuse*. It’s a great idea in theory (why recreate something that already exists?) but turns out to be difficult to put into practice partly because existing software is also huge and complicated. Usually when you reuse software, you want only a small part of the existing software’s functionality, rather than everything.
 
 An interesting story that illustrates the problems with software reuse (although it is unfortunately not completely accurate, see [http://www.snopes.com/humor/nonsense/kangaroo.asp](http://www.snopes.com/humor/nonsense/kangaroo.asp)) is that of helicopters and kangaroos. The Australian Air Force was developing a new helicopter simulator to train pilots. They wanted the simulator to be as realistic as possible and therefore decided to include herds of kangaroos in the simulation. To save time, they reused code from another simulator which included foot soldiers and simply changed the icons of the soldiers to kangaroos.
 
 Once the program was finished, they demonstrated it to some pilots. One of the pilots decided to fly the helicopter close to a herd of kangaroos to see what would happen. The kangaroos scattered to take cover when the helicopter approached (so far so good) but then, to the pilot’s extreme surprise, pulled out their guns and missile launchers and fired at the helicopter. It seemed the programmer had forgotten to remove *that* part of the code from the original simulator.
-{panel end}
 
 {comment}
-We could include a cartoon kangaroo in the curiosity box above?
+We could include a cartoon kangaroo in this curiosity box
 {comment end}
+
+{panel end}
 
 {panel type="project" summary="Designing your software"}
 Think back to the requirements you found in the analysis project described above. In this project, we will look at how to design the software.
@@ -202,7 +204,8 @@ In 1947, engineers working on a computer called the *Mark II* were investigating
 
 The problem with testing is that it can only show the presence of errors, not their absence! If you get an incorrect output from the program, you know that you have found a bug. But if you get a correct output, can you really conclude that the program is correct? Not really. The software might work in this particular case but you cannot assume that it will work in other cases. No matter how thoroughly you test a program, you can never really be 100% sure that it’s correct. In theory, you would have to test every possible input to your system, but that’s not usually possible. Imagine testing Google for everything that people could search for! But even if we can’t test everything, we can try as many different test cases as possible and hopefully at least decrease the probability of bugs.
 
-As with design, we can’t possibly deal with the entire software at once, so we again just look at smaller pieces, testing one of them at a time. We call this approach *unit testing*. A unit test is usually done by a separate program that runs the tests on the program that you're writing. That way you can run the tests as often as you like --- perhaps once a day, or even every time there is a change to the program.
+As with design, we can’t possibly deal with the entire software at once, so we again just look at smaller pieces, testing one of them at a time. We call this approach *unit testing*. A unit test is usually done by a separate program which runs the tests on the program that you're writing. That way you can run the tests as often as you like --- perhaps once a day, or even every time there is a change to the program.
+
 It's not unusual to write a unit test program before you write the actual program.
 It might seem like wasted work to have to write two programs instead of one, but being able to have your system tested carefully any time you make a change greatly improves the reliability of your final product, and can save a lot of time trying to find bugs in the overall system, since you have some assurance that each unit is working correctly.
 
@@ -259,7 +262,10 @@ Now, you can go ahead and install the program and play around with it. Try to im
 
 Write up a brief acceptance test report about what you found. Try to link back to the requirements that you wrote down earlier, noting which have been met (or maybe partially met) and which haven’t. Do you think that overall the stakeholder would be happy with the software? Do you think that they would be likely to use it? Which features would you tell the software developers to implement next?
 
-It’s important to read the description of the program and think about a stakeholder and requirements before actually trying out the software, otherwise your thinking about the stakeholder and requirements may be influenced by what you already know about the software.
+{panel type="teacher-note" summary="Reading the description"}
+
+It’s important for this project that students read the description of the program and think about a stakeholder and requirements before actually trying out the software, otherwise their thinking about the stakeholder and requirements may be influenced by what they already know about the software.
+
 {panel end}
 
 {comment}
@@ -302,8 +308,8 @@ So why does the waterfall process not work for software when it clearly works ve
 To understand why the waterfall process doesn’t work, think back to our section about analysis and remember how hard it is to find the right requirements for software. Even if you manage to communicate with the customers and resolve conflicts between the stakeholders, the requirements could still change while you’re developing the software. Therefore, it is very unlikely that you will get the complete and correct requirements for the software at the start of your project.
 
 If you make mistakes during the analysis phase, most of them are usually found in the testing stage of the project, particularly when you show the customer your software during acceptance testing. At this point, the waterfall process doesn’t allow you to go back and fix the problems you find. Similarly, you can’t change the requirements halfway through the process. Once the analysis phase of the project is finished, the waterfall process “freezes” the requirements. In the end of your project, you will end up with software that hopefully fulfills *those* requirements, but it is unlikely that those will be the *correct* requirements.
-You end up having to tell the customer that they got what they asked for, not what they needed. If they've hired you, they'll be annoyed; if it's software that you're selling (such as a smartphone app), people just won't bother buying it.
 
+You end up having to tell the customer that they got what they asked for, not what they needed. If they've hired you, they'll be annoyed; if it's software that you're selling (such as a smartphone app), people just won't bother buying it.
 You can also get things wrong at other points in the project. For example, you might realise while you’re writing the code that the design you came up with doesn’t really work. But the waterfall process tells you that you have to stick with it anyway and make it work somehow.
 
 {comment}
@@ -329,6 +335,7 @@ Once you’ve finished developing your program and given it to the customer, the
 Imagine that your project is running late and your customer is getting impatient. Your first instinct might be to ask some of your friends if they can help out so that you have more people working on the project. Brooks’s law, however, suggests that that is exactly the wrong thing to do!
 
 Brooks’s law states that “adding manpower to a late software project makes it later.” This might seem counterintuitive at first because you would assume that more people would get more work done. However, the overhead of getting new people started on the project (getting them to understand what you are trying to build, your design, the existing code, and so on) and of managing and coordinating the larger development team actually makes things slower rather than faster in the short term.
+
 {panel end}
 
 {panel type="project" summary="Fun with the Waterfall and Agile Processes"}
@@ -482,7 +489,7 @@ It can be difficult to understand the importance of some of the problems and tec
 - [Wikipedia - Software crisis](http://en.wikipedia.org/wiki/Software_crisis)
 - [IEEE - Why software fails](http://spectrum.ieee.org/computing/software/why-software-fails)
 - [Wikipedia - Software design](http://en.wikipedia.org/wiki/Software_design)
-- [Wikipedia - Abstraction](http://en.wikipedia.org/wiki/Abstraction_(computer_science)
+- [Wikipedia - Abstraction](http://en.wikipedia.org/wiki/Abstraction_(computer_science\))
 - [Wikipedia - Software testing](http://en.wikipedia.org/wiki/Software_testing)
 - [Wikipedia - Software development process](http://en.wikipedia.org/wiki/Software_development_process)
 - [Wikipedia - Waterfall model](http://en.wikipedia.org/wiki/Waterfall_model)
