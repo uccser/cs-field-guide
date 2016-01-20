@@ -35,7 +35,7 @@ HTTP functions as a simple conversation between client and server. Think of when
 >   You: “Can I have a can of soda please?”
 >   Shop Keeper: “Sure, here’s a can of soda”
 
-{image filename="network-communication-protocols/net-soda.png" alt="Asking for a soda"}
+{image filename="asking-for-a-soda-cartoon.png" alt="Asking for a soda"}
 
 HTTP uses a request/response pattern for solving the problem of reliable communication between client and server. The “ask for” is known as a *request* and the reply is known as a *response*. Both requests and responses can also have other data or *resources* sent along with it.
 
@@ -48,7 +48,7 @@ This is happening all the time when you're browsing the web; every web page you 
 >   You: “Can I have a can of soda please?” \*You hand the shop keeper $2\*
 >   Shop Keeper: “Sure, here’s a can of soda” \*Also hands you a receipt and your change\*
 
-{image filename="network-communication-protocols/net-soda-with-cash.png" alt="Paying for a soda with cash"}
+{image filename="asking-for-a-soda-cartoon-with-cash.png" alt="Paying for a soda with cash"}
 
 There are nine *types* of requests that HTTP supports, and these are outlined below.
 
@@ -183,7 +183,7 @@ So why don’t the packets all just go from computer A to computer B just fine? 
 
 So, if we didn’t try fix these, the image wouldn’t load, bits would be missing, corrupted or computer B might not even recognise what it is!
 
-{image filename="network-communication-protocols/net-corrupt.jpg" alt="Corrupted Image"}
+{image filename="corrupted-image.jpg" alt="Corrupted Image"}
 
 So, TCP is a protocol that solves these issues. To introduce you to TCP, play the game below, called *Packet attack*. In the game, *you* are the problems (loss, delay, corruption) and as you move through the levels, pay attention to how the computer tries to combat them. Good luck trying to stop the messages getting through correctly!
 
@@ -268,7 +268,7 @@ The OSI internet model is different from the TCP/IP model of the internet that C
 
 So what does a TCP segment look like?
 
-{image filename="network-communication-protocols/net-packet-structure.png" alt="Showing the structure of a TCP packet"}
+{image filename="packet-structure-diagram.png" alt="Showing the structure of a TCP packet"}
 
 As you can see, a packet is divided into four main parts, addresses (source, destination), numbers (sequence number, ANCK number if it’s an acknowledgement), flags (urgent, checksum) in the header, then the actual data. At each level, a segment becomes the data for the next data unit, and that again gets its own header.
 

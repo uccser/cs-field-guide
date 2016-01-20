@@ -41,7 +41,7 @@ By the end of this chapter, you should understand the basic idea of error contro
 
 If you have never seen the parity magic trick before, check out the video in the “What’s the Bigger Picture?” section above. This section assumes that you know what is meant by the parity magic trick, but now we'll explain how it actually works!
 
-{image filename="coding-error-control/parity-trick.jpg" alt="The parity magic trick"}
+{image filename="parity-trick-cartoon.jpg" alt="The parity magic trick"}
 
 A magician asks an observer to lay out a square grid of two-sided cards, and the magician then says they are going to make it a bit harder, and add an extra row and column to the square. The magician then faces the other way while the observer flips over one card. The magician turns back around again, and tells the observer which card was flipped!
 

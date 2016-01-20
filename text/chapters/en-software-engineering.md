@@ -18,7 +18,7 @@ In 1996, The ARIANE 5 rocket of the European Space Agency was launched for its f
 
 {video url="http://www.youtube.com/embed/gp_D8r-2hwk?rel=0"}
 
-{image filename="software-engineering/se-ariane-5-150.png" alt="Ariane Cartoon"}
+{image filename="ariane-rocket-cartoon.png" alt="Ariane Cartoon"}
 
 In extreme cases, software bugs can endanger lives. This happened in the 1980s, for example, when a [radiation therapy machine](http://en.wikipedia.org/wiki/Therac) caused the deaths of 3 patients by giving 100 times the intended dose of radiation. And in 1979, a US army computer almost started a nuclear war, when it misinterpreted a simulation of the Soviet Union launching a missile as the real thing! (If you are interested in other software failures, [CS4FN](http://www.cs4fn.org/softwareengineering/backtodrawingboard.php) lists the most spectacular ones!)
 
@@ -26,7 +26,7 @@ Our society today is so reliant on software that we can’t even imagine life wi
 
 So why doesn’t it? Why do we get bugs in the first place? As it turns out, writing software is incredibly difficult. Software isn’t a physical product, so we can’t just look at it to see if it’s correct. On top of that, most of the software you use every day is huge and extremely complex. Windows Vista is rumoured to have around 50 million lines of code; MacOSX has 86 million. If we printed Vista out on paper, we would get a 88m high stack! That’s as high as a 22 storey building or the Statue of Liberty in New York! If you wanted to read through Vista and try to understand how it works, you can expect to get through about 120 lines per hour, so it would take you 417,000 hours or 47 ½ years! (And that’s just to read through it, not write it.)
 
-{image filename="software-engineering/se-stacks-of-code-150.png" alt="Stacks of Code Cartoon"}
+{image filename="stacks-of-code-cartoon.png" alt="Stacks of Code Cartoon"}
 
 Software engineering is all about how we can create software despite this enormous size and complexity and hopefully get a working product in the end. It was first introduced as a topic of computer science in the 1960s during the so-called “software crisis”, when people realised that the capability of hardware was increasing at incredible speeds while our ability to develop software is staying pretty much the same.
 
@@ -88,7 +88,7 @@ Imagine that a customer asks you to develop a scoring system for the (fictional)
 
 You should also never assume that a customer is familiar with technical terms that you might think everyone should know, such as JPEG, database or maybe even operating system. Something like “The metaclass subclass hierarchy was constrained to be parallel to the subclass hierarchy of the classes which are their instances” might make some sense to a software engineer, but a customer will just look at you very confused! One of the authors once took part in a customer interview where the stakeholder was asked if they want to use the system through a browser. Unfortunately, the customer had no idea what a browser was. Sometimes, customers may not want to admit that they have no idea what you’re talking about and just say “Yes” to whatever you suggest. Remember, it’s up to you to make sure you and your customer understand each other and that you get useful responses from your customer during the interview!
 
-{image filename="software-engineering/se-design-150.png" alt="Design Cartoon"}
+{image filename="overwhelming-the-user-cartoon.png" alt="Overwhelming the user with questions cartoon"}
 
 Even if you manage to communicate with a customer, you might find that they don’t really know what they want the software to do or can’t express it. They might say they want “software to improve their business” or to “make their work more efficient” but that’s not very specific. (There’s a great cartoon of [Dilbert](http://dilbert.com/strips/comic/2006-01-29/) which illustrates this point!) When you show them the software you have built, they can usually tell you if that’s what they wanted or what they like and don’t like about it. For that reason, it’s a good idea to build little prototypes while you’re developing your system and keep showing them to customers to get feedback from them.
 
@@ -142,7 +142,7 @@ When you boot your computer, you start running the operating system. The operati
 
 Finally, you’re the top layer of the system. You use the program but you will (hopefully) never have to interact with the more complicated parts of the operating system such as driver software, let alone the hardware. In this way, you can use the computer without ever having to worry about these things.
 
-{image filename="software-engineering/se-computer-layers.png" alt="The computer can be broken down into multiple layers, starting with the user, then the programs, then the operating system, then finally the hardware."}
+{image filename="computer-layers.png" alt="The computer can be broken down into multiple layers, starting with the user, then the programs, then the operating system, then finally the hardware." caption="The computer can be broken down into multiple layers, starting with the user, then the programs, then the operating system, then finally the hardware."}
 
 We call a system like this a *layered system*. You can have any number of layers you want but each layer can only communicate with the one directly below it. The operating system can directly access the hardware but a program running on the computer can't. You can use programs but hopefully will never have to access the hardware or the more complex parts of the operating system such as drivers. This again reduces the complexity of the system because each layer only needs to know about the layer directly below it, not any others.
 
@@ -154,7 +154,7 @@ So each layer hides some complexity, so that as we go up the layers things remai
 
 We can have the same “layered” approach inside a single program. For example, websites are often designed as so-called *three-tier* systems with three layers: a database layer, a logic layer and a presentation layer. The database layer usually consists of a database with the data that the website needs. For example, Facebook has a huge database where it keeps information about its users. For each user, it stores information about who their friends are, what they have posted on their wall, what photos they have added, and so on. The logic layer processes the data that it gets from the database. Facebook’s logic layer, for example, will decide which posts to show on your “Home” feed, which people to suggest as new friends, etc. Finally, the presentation layer gets information from the logic layer which it displays. Usually, the presentation layer doesn’t do much processing on the information it gets but simply creates the HTML pages that you see.
 
-{image filename="software-engineering/se-facebook-system.png" alt="Facebook can be broken down into a three tier system, comprising of the presentations layer, then the logic layer, then finally the data layer."}
+{image filename="facebook-three-tier-system.png" alt="Facebook can be broken down into a three tier system, comprising of the presentations layer, then the logic layer, then finally the data layer." caption="Facebook can be broken down into a three tier system, comprising of the presentations layer, then the logic layer, then finally the data layer."}
 
 {panel type="curiosity" summary="Reuse - Kangaroos and Helicopters"}
 
@@ -197,7 +197,7 @@ When we test software, we try lots of different inputs and see what outputs or b
 
 {panel type="curiosity" summary="Bugs and Moths"}
 
-{image "software-engineering/se-harvard-mark-II.jpg" alt="The Mark II at Harvard"}
+{image "harvard-mark-ii.jpg" alt="The Mark II at Harvard" caption="The Mark II at Harvard"}
 
 In 1947, engineers working on a computer called the *Mark II* were investigating a computer error and found that it was caused by a moth which had become trapped inside the computer! This incident is and early example of using the word *bug* to refer to computer errors. Of course, today we use the word to refer to errors in programs, rather than actual insects trapped in the computer.
 {panel end}
@@ -321,7 +321,7 @@ Design by [Paragon Innovations](http://www.paragoninnovations.com/guide.shtml) a
 So if the waterfall process doesn’t work, what can we do instead? Most modern software development processes are based on the concept of iteration. We do a bit of analysis, followed by some design, some programming and some testing. (We call this one iteration.) This gives us a rather rough prototype of what the system will look like. We can play around with the prototype, show it to customers and see what works and what doesn’t. Then, we do the whole thing again. We refine our requirements and do some more design, programming and testing to make our prototype better (another iteration). Over time, the prototype grows into the final system, getting closer and closer to what we want.
 Methodologies based on this idea are often referred to as *agile* --- they can easily adapt as changes become apparent.
 
-{image filename="software-engineering/se-iterative-development.png" alt="The iterative software development cycle starts with feedback from showing the prototype to the customer with analysis, the back to design, implementation and testing, and then starting again with analysis."}
+{image filename="iterative-software-development-diagram.png" alt="The iterative software development cycle starts with feedback from showing the prototype to the customer with analysis, the back to design, implementation and testing, and then starting again with analysis."}
 
 The advantage with this approach is that if you make a mistake, you will find it soon (probably when you show the prototype to the customer the next time) and have the opportunity to fix it. The same is true if requirements change suddenly; you are flexible and can respond to changes quickly. You also get a lot of feedback from the customers as they slowly figures out what they need.
 

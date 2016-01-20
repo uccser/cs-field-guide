@@ -356,14 +356,14 @@ There are many tasks that users ask computers to do that require some time inclu
 TODO: James is going to look at this eventually.
 {comment end}
 
-{image filename="human-computer-interaction/windows-busy-cursor.gif" alt="A Windows busy cursor"}
-{image filename="human-computer-interaction/apple-busy-cursor.gif" alt="An Apple busy cursor"}
+{image filename="windows-busy-cursor-animation.gif" alt="A Windows busy cursor"}
+{image filename="apple-busy-cursor-animation.gif" alt="An Apple busy cursor"}
 
 However, progress indicators aren't always helpful; the spinning wheels above don't indicate if you are going to have to wait a few seconds or a few minutes (or even hours) for the task to complete, which can be frustrating.
 
 Giving feedback in a "reasonable time" is really important, and the "reasonable time" is often shorter than what you might think. In the section above there was an experiment to find out at what point people perceive a delayed reaction; you probably found that it was around a tenth of a second. If a computer takes longer than that to respond then it can be confusing to use. There's more about this in the previous section.
 
-{image filename="human-computer-interaction/xkcd-estimation.png" alt="The author of the Windows file copy dialog visits some friends, and struggles to decide what time he will arrive."}
+{image filename="xkcd-estimation.png" alt="The author of the Windows file copy dialog visits some friends, and struggles to decide what time he will arrive."}
 
 From: [xkcd.com/612](http://xkcd.com/612/)
 
@@ -427,7 +427,7 @@ Consistency (something being the same every time) is extremely useful for people
 
 An example of inconsistency is generally found within spreadsheet programs, where the result of pushing "control-A" (select all) depends on whether you are editing a cell or just have the cell selected (this particular problem is a 'mode' problem). While this may make sense to a user experienced with spreadsheets, a new user can be very confused when the same action causes a different response.
 
-{image filename="human-computer-interaction/xkcd-standards.png"}
+{image filename="xkcd-standards-cartoon.png"}
 
 From: https://xkcd.com/927/
 
@@ -470,7 +470,7 @@ And here's another example, this time with a computer science slant: the followi
 The trouble is that in this mode you can still type in decimal digits, which gives an error when you do the calculation.
 A user could easily not notice that it's in binary mode, and the error message isn't particularly helpful!
 
-{image filename="human-computer-interaction/binary-calculator.png" alt="A calculator in binary mode that still allows you to type in digits other than 0 and 1, but complains later."}
+{image filename="binary-calculator-screenshot.png" alt="A calculator in binary mode that still allows you to type in digits other than 0 and 1, but complains later."}
 
 ### Recognition rather than recall
 
