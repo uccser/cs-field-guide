@@ -127,7 +127,7 @@ Keep your notes for later, as you can further analyse them once you have read th
 {panel end}
 
 {panel type="project" summary="Designing stovetops and door handles"}
-{image filename="HI-Design-Cartoon.jpg" alt="User conflict opening a door." position="right"}
+{image filename="poor-door-design-cartoon.jpg" alt="User conflict opening a door." position="right"}
 
 For this project, you will designing the top of a cooking stove, or the handles on a door.
 This isn't a computer system, but will help demonstrate some of the issues that come up.
@@ -557,10 +557,10 @@ A better message would save the user having to figure out which of these is the 
 A positive example can be found in some alarm clocks such as the following one on an Android smartphone.
 For example, here the alarm time is shown at "9:00".
 In a country that uses 12-hour time, a user might mistake this for 9pm, and the alarm would go off at the wrong time.
-{image filename="Android-alarm-9am.png" alt="Android alarm clock set for 9:00."}
+{image filename="android-alarm-9am.png" alt="Android alarm clock set for 9:00."}
 
 However, the interface provides an opportunity to notice it because the display indicates how long it will be until the alarm will go off, making it easier to recognize the error of selecting the wrong time (or day).
-{image filename="Android-alarm-message.png" alt="Android alarm clock message showing how long until the alarm will trigger."}
+{image filename="android-alarm-message.png" alt="Android alarm clock message showing how long until the alarm will trigger."}
 
 
 ### Help and documentation

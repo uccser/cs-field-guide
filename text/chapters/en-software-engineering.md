@@ -96,7 +96,7 @@ You’ll often find that customers have a specific process that they follow alre
 
 Customers are usually experts in their field and are therefore likely to leave out information that they think is obvious, but may not be obvious to you. Other times, they do not really understand what can and cannot be done with computers and may not mention something because they do not realise that it is possible to do with a computer. Again, it’s up to you to get this information from them and make sure that they tell you what you need to know.
 
-{image filename="software-engineering/xkcd-tasks.png"}
+{image filename="xkcd-tasks.png"}
 
 {panel type="curiosity" summary="Easy for computers and hard for humans vs hard for computers and easy for humans"}
 The rollover text of the above image (you will need to actually view it on [xkcd's website](http://xkcd.com/1425/)) is worth reading too. Image recognition is a problem that initially seemed straightforward, probably because humans find it easy. Interestingly, there are many problems that computers find easy, but humans find challenging, such as multiplying large numbers. Conversely, there are many other problems that computers find hard, yet humans find easy, such as recognizing that the thing in a photo is, for example, a cat.
@@ -286,13 +286,13 @@ So far in this chapter, you’ve learned about different phases of software deve
 
 The obvious answer would be to start with analysis to figure out what we want to build, then design the structure of the software, implement everything and finally test the software. This is the simplest software process, called the *waterfall process*.
 
-{image filename="software-engineering/se-waterfall-diagram.png" alt="Waterfall Diagram"}
+{image filename="waterfall-process-diagram.png" alt="Waterfall Diagram"}
 
 The waterfall process is borrowed from other kinds of engineering. If we want to build a bridge, we go through the same phases of analysis, design, implementation and testing: we decide what sort of bridge we need (How long should it be? How wide? How much load should it be able to support?), design the bridge, build it and finally test it before we open it to the public. It’s been done that way for many decades and works very well, for bridges at least.
 
 We call this process the waterfall process because once you “jump” from one phase of the project to the next, you can’t go back up to the previous one. In reality, a little bit of backtracking is allowed to fix problems from previous project phases but such backtracking is usually the exception. If during the testing phase of the project you suddenly find a problem with the requirements you certainly won’t be allowed to go back and rewrite the requirements.
 
-{image filename="software-engineering/se-waterfall-150.png" alt="Waterfall Cartoon"}
+{image filename="waterfall-process-cartoon.png" alt="Waterfall Cartoon"}
 
 An advantage of the waterfall process is that it’s very simple and easy to follow. At any point in the project, it’s very clear what stage of the project you are at. This also helps with planning: if you’re in the testing stage you know you’re quite far into the project and should finish soon. For these reasons, the waterfall process is very popular with managers who like to feel in control of where the project is and where it’s heading.
 
@@ -389,7 +389,7 @@ When the builder thinks they are done, compare what you built! How precise was y
 
 *Agile* software development has become popular over the last 10 years; two of the most famous agile processes are called [XP](http://en.wikipedia.org/wiki/Extreme_programming) and [Scrum](http://en.wikipedia.org/wiki/Scrum_(development)). Agile software development is all about being extremely flexible and adaptive to change. Most other software processes try to manage and control changes to requirements during the process; agile processes accept and expect change. The following xkcd comic illustrates part of the apparent dilemma that agile processes aim to address. With Agile, we can develop software quickly, correctly, and be adaptive to change.
 
-{image filename="software-engineering/xkcd-good-code.png"}
+{image filename="xkcd-good-code.png"}
 
 From: https://xkcd.com/844/
 
@@ -412,7 +412,7 @@ You might think that pair-programming is not very efficient and that it would be
 
 YAGNI stands for “You ain’t gonna need it” and tells developers to keep things simple and only design and implement the things that you know you are really going to need. It can be tempting to think that in the future you might need feature x and so you may as well already create it now. But remember that requirements are likely to change so chances are that you won’t need it after all.
 
-{image filename="software-engineering/xkcd-the-general-problem.png"}
+{image filename="xkcd-the-general-problem.png"}
 
 From: http://xkcd.com/974/
 
