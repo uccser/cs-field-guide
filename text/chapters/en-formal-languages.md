@@ -33,7 +33,7 @@ Formal languages aren't just used for programming languages --- they're used any
 
 In all these cases, the commands that you have typed (whether in Python, Scratch, Snap!, C, Pascal, Basic, C#, HTML, or XML) are being read by a computer program. (That's right... Python is a program that reads in Python programs.) In fact, the compiler for a programming language is often written in its own language. Most C compilers are written in C --- which begs the question, who wrote the first C compiler (and what if it had bugs)?! Computer Scientists have discovered good ways to write programs that process other programs, and a key ingredient is that you have to specify what is allowed in a program very precisely. That's where formal languages come in.
 
-Many of the concepts we'll look at in this chapter are used in a variety of other situations: checking input to a web page; analysing user interfaces; searching text, particularly with “wild cards” strings that can match any sequence of characters; creating logic circuits; specifying communication protocols; and designing embedded systems.
+Many of the concepts we'll look at in this chapter are used in a variety of other situations: checking input to a web page; analysing user interfaces; searching text, particularly with “wild cards” that can match any sequence of characters; creating logic circuits; specifying communication protocols; and designing embedded systems.
 Some advanced concepts in formal languages even used to explore limits of what can be computed.
 
 Once you're familiar with the idea of formal languages, you'll possess a powerful tool for cutting complex systems down to size using an easily specified format.
@@ -734,23 +734,24 @@ If you need to make diagrams of FSAs, the JFLAP program can be used, or there's 
 {panel type="teacher-note" summary="Regular expressions"}
 
 Regular expressions (regex for short) are closely related to FSAs, as we shall see. Much of the terminology that is needed was already covered in the previous section: we'll be using
-(it's just a string of letters),
+{glossary-link term="alphabet"}alphabets{glossary-link end} to
+put together a
+{glossary-link term="string"}string{glossary-link end}
+of letters,
 and the set of all strings that can be accepted by a particular FSA is called its
-{glossary-link term="language"}languages{glossary-link end},
-{glossary-link term="alphabet"}alphabets{glossary-link end},
-{glossary-link term="string"}strings{glossary-link end},
-the empty string ({math}\frac{\epsilon},{\lambda}{math end}),
+{glossary-link term="language"}language{glossary-link end}.
+We'll need the concept of the empty string ({math}{\epsilon}{math end} or {math}{\lambda}{math end}),
 and eventually
 {glossary-link term="finite state automaton"}finite state automata{glossary-link end}.
 So the previous section on FSAs needs to be covered before embarking on regular expressions.
 
-It may be that students have used regular expressions already, because they are built into many programming languages and are often used when writing script programs. We'll be looking briefly at such applications --- and they’re very relevant --- but in formal languages we're also interested in the limits of what can be represented, and how to convert a regex to an FSA. So there should be something here to get students thinking, even if they’re expert at programming with regexes.
+It may be that students have used regular expressions already, because they are built into many programming languages and are often used when writing script programs. We'll be looking briefly at such applications --- and they’re very relevant --- but in formal languages we're also interested in the limits of what can be represented, and how to convert a regex to an FSA. So there should be something here to get students thinking, even if they’re expert at programming with "regexes".
 
 {panel end}
 
 {panel type="teacher-note" summary="Reverse Pictionary activity"}
 
-If you have time, the following activity ("Reverse Pictionary") could be done either before or after teaching regular expressions. We recommend using it before, as it becomes a constructivist approach which encourages students to design their own notations for regular languages, and is a motivator for learning a precise notation.
+If you have time, the following activity ("Reverse Pictionary") could be done either before or after teaching regular expressions. We recommend using it before, as it becomes a constructivist approach that encourages students to design their own notations for regular languages, and is a motivator for learning a precise notation.
 
 A useful activity to develop students' familiarity with FSAs and Regular expressions is a "Reverse Pictionary" game for finite state automata, developed by Linda Pettigrew. It uses the handout [found here](files/fl-reverse-pictionary-worksheet.pdf) (or you can make up your own simple FSAs).
 
@@ -777,14 +778,14 @@ Followup discussion can review whether some descriptions were longer than they n
 
 {comment end}
 
-We've already had a taste of regular expressions in the [getting started](formal-languages.html#getting-started) section. They are just a simple way to search for things in the input, or to specify what kind of input will be accepted as legitimate.
+We've already had a taste of regular expressions in the [getting started](chapters/formal-languages.html#getting-started) section. They are just a simple way to search for things in the input, or to specify what kind of input will be accepted as legitimate.
 For example, many web scripting programs use them to check input for patterns like dates, email addresses and URLs. They've become so popular that they're now built into most programming languages.
 
 {panel type="teacher-note" summary="Rubular exercise"}
 
 Students can work through the following brief examples using Rubular, described below. Alternatively you may prefer to get them to use the excellent tutorial at [http://regexone.com/](http://regexone.com/). Both systems require online access. RegexOne provides challenges and tests answers in the same window. Students can get away with inefficient answers, but it's a good environment for playing with the idea:
 
-{image filename="fl-regex-regexone-fullscreen.png" alt="An incomplete train map"}
+{image filename="fl-regex-regexone-fullscreen.png" alt="Regexone screenshot"}
 
 {panel end}
 
@@ -859,7 +860,7 @@ Now try typing a dot (full stop or period) as the fourth character: "cat.". In a
 
 What do you get if you search for " ... " (three dots with a space before and after)?
 
-Now try searching for "ic.". The "." matches any letter, but if you really wanted a full stop, you need to write it like this "ic\\." --- use this search to find "ic" at the end of a sentence.
+Now try searching for "ic.". The "." matches any letter, so if you really wanted a full stop, you need to write it like this "ic\\." --- use this search to find "ic" at the end of a sentence.
 
 Another special symbol is "\\d", which matches any digit. Try matching 2, 3 or 4 digits in a row (for example, two digits in a row is "\\d\\d").
 
@@ -905,7 +906,9 @@ f(ff)+
 Notice the use of brackets to group parts of the regular expression. It's useful if you want the "+" or "\*" to apply to more than one character.
 
 {panel type="jargon-buster" summary="Regular expression"}
-The name regular expression is sometimes abbreviated to "regex", "regexp", or "RE".  It's "regular" because it can be used to define sets of strings from a very simple class of languages called "regular languages", and it's an "expression" because it is a combination of symbols that follow some rules.
+The term
+{glossary-link term="regular expression" reference-text="abbreviations"}regular expression{glossary-link end}
+is sometimes abbreviated to "regex", "regexp", or "RE".  It's "regular" because it can be used to define sets of strings from a very simple class of languages called "regular languages", and it's an "expression" because it is a combination of symbols that follow some rules.
 
 {panel end}
 
@@ -921,7 +924,7 @@ Of course, regular expressions are mainly used for more serious purposes. Click 
 
 [Open this challenge in Rubular and try the following expressions](http://rubular.com/r/kun5ZaJqlL).
 
-The following regular expression will find comon NZ number plates in the sample text, but can you find a shorter version using the {n} notation?
+The following regular expression will find common New Zealand number plates in the sample text, but can you find a shorter version using the {n} notation?
 
 ```
 [A-Z][A-Z][A-Z]\d\d\d
@@ -971,7 +974,9 @@ The particular form of regular expression that we've been using is for the Ruby 
 
 {comment end}
 
-But regular expressions have their limits --- for example, you won't be able to create one that can match palindromes (words and phrases that are the same backwards as forwards, such as "kayak", "rotator" and "hannah"), and you can't use one to detect strings that consist of *n* repeats of the letter "a" followed by *n* repeats of the letter "b". We'll look at other systems for doing that in the section on grammars. But nevertheless, regular expressions are very useful for a lot of common pattern matching requirements.
+But regular expressions have their limits --- for example, you won't be able to create one that can match palindromes (words and phrases that are the same backwards as forwards, such as "kayak", "rotator" and "hannah"), and you can't use one to detect strings that consist of *n* repeats of the letter "a" followed by *n* repeats of the letter "b".
+For those sort of patterns you need a more powerful system called a grammar (see the [section on Grammars](chapters/formal-languages.html#grammars-and-parsing)).
+But nevertheless, regular expressions are very useful for a lot of common pattern matching requirements.
 
 {comment}
 
@@ -1007,23 +1012,11 @@ In the above example, the FSA is a really easy way to check for the regular expr
 
 Fortunately, *every* regular expression can be converted to an FSA. We won't look at the process here, but both Exorciser and JFLAP can do it for you anyway (see the activities below).
 
-This is also built into most programming languages.
-Programmers usually use regular expressions by calling functions or methods that are passed the regex and the string to be searched. But behind the scenes, the regular expression is converted to a finite state automaton, and then the job of checking your regular expression is very easy.
+Converting a regex to an FSA also built into most programming languages.
+Programmers usually use regular expressions by calling functions or methods that are passed the regex and the string to be searched.
+Behind the scenes, the regular expression is converted to a finite state automaton, and then the job of checking your regular expression is very easy.
 
-
-### Activity: designing regular expressions
-
-{panel type="teacher-note" summary=""}
-
-This activity almost has enough depth for the 3.44 standard, although it may be difficult to use it for excellence. It covers material for an example for the 3.44 standard through the following components:
-
-- Key problem: matching input text
-- Practical application: compilers, web site input fields
-- Algorithm/technique: regular expressions
-- Evaluation: this is required for excellence, and it's hard to see how to do a reasonable evaluation; however, an in-depth reflection on the  design may be suitable if done well
-- Personalised student examples: choice of regular expression to use as an example
-
-{panel end}
+{panel type="project" summary="Designing regular expressions"}
 
 Here are some ideas for regular expressions for you to try to create. You can check them using [Rubular](http://rubular.com/) as we did earlier, but you'll need to make up your own text to check.
 When testing your expressions, make sure that they not only accept correct strings, but reject ones that don't match, even if there's just one character missing.
@@ -1050,43 +1043,9 @@ Here are some challenges to try to create regular expressions for:
 - postal codes for several countries e.g. NZ: 8041, Canada: T2N 1N4, US: 90210
 - a (limited) http URL, such as "http://abc.xyz", "http://abc.xyz#conclusion", "http://abc.xyz?search=fgh".
 
-{comment}
-
-.. xTCB give answers for above for teachers
-
-{comment end}
-
-### Project: converting Regular Expressions to FSAs
-
-{panel type="teacher-note" summary=""}
-
-This project covers material for an example for the 3.44 standard through the following components:
-
-- Key problem: checking computer input for meeting rules of a formal language
-- Practical application: compilers, web site input fields
-- Algorithm/technique: regular expressions and FSAs
-- Evaluation: the number of states in the FSA, the way the FSA reflects the meaning of the regular expression
-- Personalised student examples: choice of regular expression to use as an example
-
-This project, if done with enough reflection, has sufficient depth to meet the requirements of AS 3.44. The essence of it is to write Regular Expressions, and have them converted to an FSA by software, then demonstrate how strings are processed using the FSA.
-Students can make up their own regular expressions, which will make each project unique.
-
-The conversion of a regular expression to an FSA can either be done by [Exorcise](http://www.swisseduc.ch/compscience/exorciser/index.html) or [JFLAP](http://jflap.org). Both are suitable; Exorciser is very simple to use, but is intended for throw-away exercises, so students can't save their work and would have to record their inputs and/or take screenshots, and start from scratch if they need to get back to it. JFLAP requires extra steps to do the conversion and can be a little quirky to use, but all work can be saved, and images can be saved without having to make a screenshot. Also, it can be used for the work in the section on grammars.
-Information about both the Exorciser and JFLAP software is given in teacher notes for the projects in the previous section.
-
-For Exorciser, the conversion is intended as an exercise for the student, but that's way beyond the scope of this chapter. However, if you just ask for the solution, it will do the conversion for you, which is what we need.
-
-For JFLAP, there is a tutorial on the [program's website](http://www.jflap.org/tutorial/) and more information in the [regular expressions](formal-languages.html#regular-expressions) section.
-
-If students stick to the instructions given they will be able to use it to create their own FSA from a regular expression.
-
-The important part of the project is for the student to come up with their own regular expressions, and to demonstrate and discuss how that expression is checked by the FSA. An evaluation of the FSA would involve describing the purpose of a variety of nodes and transitions (e.g. "the loop back to node q1 on a corresponds to a* in the regular expression, because no matter how many a's occur, you'll always stay at state q1.)
-
-Note that the symbols used in JFLAP are slightly different to some of the other notations we've used; the main difference is using "+" instead of "|", which could be confusing since "+" normally means "one or more". Also, it's not possible to specify a range, so instead of "[a-d]" you need to type "a+b+c+d" in JFLAP.
-
-Here are some ideas for the types of regular expression to try: aa*, a+ab+abc+abcd [these create a predictable FSA as a warmup] ; (b(aa)*)* [strings where 'a' only appears as a pair]  ; b*(ab*a)b * [strings where there are an even number of 'a's]. As well as these artificial examples, they could explore regular expressions such as (using non-JFLAP notation) [a-zA-Z][a-zA-Z0-9]\*, which checks for identifiers that start with a letter followed any combination of letters and digits.
-
 {panel end}
+
+{panel type="project" summary="Converting Regular Expressions to FSAs"}
 
 {comment}
 
@@ -1109,9 +1068,9 @@ There's one trick you'll need to know: the software we're using doesn't have all
 Having only these three notations isn't too much of a problem, as you can get all the other notations using them.
 For example, "a+" is the same as "aa*", and "\\d" is "0|1|2|3|4|5|67|8|9". It's a bit more tedious, but we'll mainly use exercises that only use a few characters.
 
-#### Converting with Exorciser
+**Converting with Exorciser**
 
-Use this section if you're using Exorciser; if you're using JFLAP then skip to [Converting with JFLAP](formal-languages.html#converting-with-jflap).
+Use this section if you're using Exorciser; we recommend Exorciser for this project, but if you're using JFLAP then skip to **Converting with JFLAP** below.
 
 Exorciser is very simple. In fact, unless you change the default settings, it can only convert regular expressions using two characters: "a" and "b". But even that's enough (in fact, in theory any input can be represented with two characters --- that's what binary numbers are about!)
 
@@ -1145,7 +1104,7 @@ a(bb)*
 Your project report should show the regular expressions, explain what kind of strings they match, show the corresponding FSAs, show the sequence of states that some sample test strings would go through, and you should explain how the components of the FSA correspond the parts of the regular expression using examples.
 
 
-#### Converting with JFLAP
+**Converting with JFLAP**
 
 If you're using [JFLAP](http://www.jflap.org) for your project, you can have almost any character as input.
 The main exceptions are "\*", "+" (confusingly, the "+" is used instead of "|" for alternatives), and "!" (which is the empty string --- in the preferences you can choose if it is shown as {math}\lambda{math end} or {math}\epsilon{math end}).
@@ -1214,13 +1173,9 @@ In JFLAP you can create FSAs for some of regular expressions we used earlier, su
 
 Your project report should show the regular expressions, explain what kind of strings they match, show the corresponding FSAs, show the sequence of states that some sample test strings would go through, and you should explain how the components of the FSA correspond to the parts of the regular expression using examples.
 
-{comment}
+{panel end}
 
-.. regex-projects
-
-{comment end}
-
-#### Other ideas for projects and activities
+{panel type="project" summary="Other ideas for projects and activities"}
 
 Here are some more ideas that you could use to investigate regular expressions:
 
@@ -1239,19 +1194,6 @@ it can do, and write regular expressions for finding words such as:
  - words that you can make using only the notes on a piano (i.e the letters A to G and a to g)
  - words that are exceptions to the rule "i before e except after c" --- make sure you find words like "forfeit" as well as "science".
 
-{panel type="teacher-note" summary=""}
-
-For the "i before e" problem, there are two kinds of exception to find, places where "c" is followed by "ie" (easy), and places where a character that isn't "c" is followed by ei.
-
-More guidance for the above suggestions will be provided eventually.
-
-{panel end}
-
-{comment}
-
-.. xtcb provide more guidance above
-
-{comment end}
 
 - Microsoft Word’s *Find* command uses regular expressions if you select the "Use wildcards" option. For more details see [Graham Mayor](http://word.mvps.org/AboutMVPs/graham_mayor.htm)'s [Finding and Replacing Characters using Wildcards](http://word.mvps.org/FAQs/General/UsingWildcards.htm).
 
@@ -1268,12 +1210,11 @@ More guidance for the above suggestions will be provided eventually.
 - Advanced: The free tools *lex* and *flex* are able to take specifications for regular expressions and create programs that parse input according to the rules. They are commonly used as a front end to a compiler, and the input is a program that is being compiled. You could investigate these tools and demonstrate a simple implementation.
 
 {comment}
-
 .. TCB xJRM [non-urgent, and probably not likely to be successful] Are there similar patterns for flax weaving to add to the knitting patterns above? I can't open sites that should have them; for example, are there patterns here? www.alibrown.co.nz/instructions.html These might be more relevant/interesting
-
 {comment end}
+{panel end}
 
-{panel type="teacher-note" summary=""}
+{panel type="teacher-note" summary="More information on regular expressions"}
 
 There is a wealth of information on regexes at: [http://www.regular-expressions.info/](http://www.regular-expressions.info/)
 
@@ -1290,24 +1231,21 @@ Other sites for experimenting with regular expressions include:
 - [http://www.brics.dk/automaton/](http://www.brics.dk/automaton/)
 - [http://www.regular-expressions.info/javascriptexample.html](http://www.regular-expressions.info/javascriptexample.html)
 
+
 {panel end}
 
 ## Grammars and parsing
 
 {comment}
-.. warning:: this section hasn't been written yet; the material below is just an introduction
+.. warning:: this section hasn't been completed yet; the material below is just an introduction
 {comment end}
 
-{panel type="teacher-note" summary=""}
+{panel type="teacher-note" summary="Section is incomplete"}
+Currently the section is only introductory.
 
-The material prior to this section is sufficient for what is required for the NZ 3.44 standard, but for interested students this section provides something different that is accessible at high school level.
-
-Currently the section is only introductory, and we've left it here in case you have keen students who might want some extra material to investigate.
-
-There's an introduction to this topic (which dwells more on English grammar) at: http://ozark.hendrix.edu/~burch/cs/150/reading/grammar/index.html. This could be used for class discussion.
+There's an introduction to this topic (which dwells more on English grammar) at: [http://ozark.hendrix.edu/~burch/cs/150/reading/grammar/index.html](http://ozark.hendrix.edu/~burch/cs/150/reading/grammar/index.html). This could be used for class discussion.
 
 As preparation for reading this chapter, you could do the "planet ABBA" activity with the students as a class, as it will get them familiar with the notation.
-
 {panel end}
 
 {comment}
@@ -1326,7 +1264,7 @@ With unusual grammar Yoda from Star Wars speaks.
 Yet still understand him, people can.
 The flexibility of the rules of English grammar mean that you can usually be understood if you don't get it quite right, but it also means that the rules get very complicated and difficult to apply.
 
-Grammars in formal languages are much more predictable than grammars in human languages --- that's why they're called formal languages!
+Grammars in formal languages are much more predictable than grammars in human languages --- that's why they're called *formal* languages!
 When you're doing English, grammar can be a tricky topic because not only are there are so many rules, but there are also so many exceptions --- for example, you need an apostrophe if you write "the computer's USB port", but you have to leave it out if you say "its USB port".
 
 {glossary-definition term="grammar" definition="In formal languages, a set of rules for specifying a language, for example, to specify syntax for programming languages."}
@@ -1340,7 +1278,7 @@ But at least they're predictable.
 
 {comment end}
 
-In this section we'll look at the kind of grammars that are widely used in computer science.
+In this section [when it is finished!] we'll look at the kind of grammars that are widely used in computer science.
 They are very powerful because they allow a complicated system (like a compiler or a format like HTML) to be specified in a very concise way, and there are programs that will automatically take the grammar and build the system for you.
 The grammars for conventional programming languages are a bit too unwieldy to use as initial examples (they usually take a few pages to write out), so we're going to work with some small examples here, including parts of the grammars for programming languages.
 
@@ -1354,15 +1292,9 @@ Note: the remainder of this section is yet to be developed.
 {comment end}
 
 
-### Project ideas
+{panel type="project" summary="Other ideas for projects and activities"}
 
 (Note that these will make more sense when the previous introduction to grammars has been completed!)
-
-{panel type="teacher-note" summary=""}
-
-Note that the projects given earlier (on regular expressions and FSAs) are a good match for the NZ 3.44 standard. The following projects are more advanced than what is required, but would be suitable for students who wish to extend their knowledge in this area
-
-{panel end}
 
 - Demonstrate how compilers, interpreters, parsers or validators find errors in formal languages e.g. introduce an error to a compiled program, XML document file or web page, and show the effect of the error.
 
@@ -1374,7 +1306,10 @@ Note that the projects given earlier (on regular expressions and FSAs) are a goo
 
 - Find a grammar for a simple arithmetic expression in a programming language, and show the parse tree for sample expressions (such as (a+b)\*(c-d) ).
 
-### Projects: Grammars in art and music
+{panel end}
+
+{panel type="project" summary="Grammars in art and music"}
+
 
 {image filename="fl-context-free-tree.png" alt="A tree drawn using the software from contextfreeart.org"}
 
@@ -1389,15 +1324,14 @@ The *context free art* program ( [http://www.contextfreeart.org/](http://www.con
 
 {comment end}
 
-The JFLAP program that we have been using also has a feature for rendering "L-systems" ([http://en.wikipedia.org/wiki/L-system](http://en.wikipedia.org/wiki/L-system)), which are another way to use grammars to create structured images.
-You'll need to read about how they work in the JFLAP tutorial ([www.jflap.org/tutorial/index.html](www.jflap.org/tutorial/index.html)), and there's a more detailed tutorial at [http://www.cs.duke.edu/csed/pltl/exercises/lessons/20/L-system.zip.](http://www.cs.duke.edu/csed/pltl/exercises/lessons/20/L-system.zip.)
-There are some sample files here to get you inspired: (the ones starting "ex10..." [www.cs.duke.edu/csed/jflap/jflapbook/files/](www.cs.duke.edu/csed/jflap/jflapbook/files/) )
+The JFLAP program also has a feature for rendering "L-systems" ([http://en.wikipedia.org/wiki/L-system](http://en.wikipedia.org/wiki/L-system)), which are another way to use grammars to create structured images.
+You'll need to read about how they work in the JFLAP tutorial
+([http://www.jflap.org/tutorial/index.html](http://www.jflap.org/tutorial/index.html)),
+and there's a more detailed tutorial at [http://www.cs.duke.edu/csed/pltl/exercises/lessons/20/L-system.zip](http://www.cs.duke.edu/csed/pltl/exercises/lessons/20/L-system.zip).
+There are some sample files here to get you inspired: (the ones starting "ex10..." [http://www.cs.duke.edu/csed/jflap/jflapbook/files/](http://www.cs.duke.edu/csed/jflap/jflapbook/files/) )
 and here's an example of the kind of image that can be produced:
 
 {image filename="fl-ex10-tree-thick-fall-leaves.png" alt="A tree drawn using L-systems in JFLAP"}
-
-A tree drawn using L-systems in JFLAP
-
 
 There's also an online system for generating images with L-systems: [http://www.kevs3d.co.uk/dev/lsystems/](http://www.kevs3d.co.uk/dev/lsystems/)
 
@@ -1434,19 +1368,16 @@ Grammars have been used for music notation:
 .. I also stumbled across the following, which might be of interest:
 .. http://www.emergentmusics.org/theory/15-implementation
 
-## The whole story!
-
-{comment}
-
-.. TCB In this section we explain where the material above has oversimplified things, and if there are any well-known concepts or techniques that have been deliberately left out because they are too complex for this age group. This may include things that require advanced maths, advanced programming, or things where students have seen the problem but not a thorough solution. Or even simpler concepts that could have gone in, but we didn't want to make the chapter overwhelmingly long.
-
 {comment end}
 
-{panel type="teacher-note" summary="Advanced material"}
+{panel end}
 
+## The whole story!
+
+
+{panel type="teacher-note" summary="Advanced material"}
 In this section we provide some pointers to advanced material on formal languages, which are beyond the scope of this chapter.
 We wouldn't expect students to tackle the topics below, but there might be one or two who find the field interesting and want some pointers on where to look further, plus we want to make it clear that the chapter is only the beginning of what is a very rich part of computer science.
-
 {panel end}
 
 If you found the material in this chapter interesting, here are some topics that you might want to look into further, as we've only just scratched the surface of what can be done with formal languages.
@@ -1454,16 +1385,19 @@ If you found the material in this chapter interesting, here are some topics that
 Formal languages come up in various areas of computer science, and provide invaluable tools for the computer scientist to reduce incredibly complex systems to a small description, and conversely to create very complex systems from a few simple rules.
 They are essential for writing compilers, and so are activated every time someone writes a program! They are also associated with automata theory and questions relating to computability, and are used to some extent in natural language processing, where computers try to make sense of human languages.
 
-Technically the kind of finite state automata (FSA) that we used in `Finite state automata`_ section is a kind known as a *Deterministic Finite Automata* (DFA), because the decision about which transition to take is unambiguous at each step. Sometimes it's referred to as a *Finite State Acceptor* because it accepts and rejects input depending on whether it gets to the final state. There are all sorts of variants that we didn't mention, including the Mealy and Moore machines (which produce an output for each each transition taken or state reached), the nested state machine (where each state can be an FSA itself), the non-deterministic finite automata (which can have the same label on more than one transition out of a state), and the lambda-NFA (which can include transitions on the empty string, {math}\lambda{math end}). Believe it or not, all these variations are essentially equivalent, and you can convert from one to the other. They are used in a wide range of practical situations to design systems for processing input.
+Technically the kind of finite state automata (FSA) that we used in the
+[Finite state automata](chapters/formal-languages.html#regular-expressions-and-fsas)
+section is a kind known as a *Deterministic Finite Automata* (DFA), because the decision about which transition to take is unambiguous at each step.
+Sometimes it's referred to as a *Finite State Acceptor* because it accepts and rejects input depending on whether it gets to the final state.
+There are all sorts of variants that we didn't mention, including the Mealy and Moore machines (which produce an output for each each transition taken or state reached), the nested state machine (where each state can be an FSA itself), the non-deterministic finite automata (which can have the same label on more than one transition out of a state), and the lambda-NFA (which can include transitions on the empty string, {math}\lambda{math end}).
+Believe it or not, all these variations are essentially equivalent, and you can convert from one to the other. They are used in a wide range of practical situations to design systems for processing input.
 
-However, there are also more complex models of computation such as the push-down automaton (PDA) which is able to follow the rules of context-free grammars, and the most general model of computation which is called a Turing machine. These models are increasingly complicated and abstract, and structures like the Turing machine aren't used as physical devices (except for fun), but as a tool for reasoning about the limits on what can be computed.
+However, there are also more complex models of computation such as the push-down automaton (PDA) which is able to follow the rules of context-free grammars, and the most general model of computation which is called a Turing machine.
+These models are increasingly complicated and abstract, and structures like the Turing machine aren't used as physical devices (except for fun), but instead as a tool for reasoning about the limits on what can be computed.
+In fact, in principle every digital computer is a kind of limited turing machine, so whatever limits we find for a Turing machine gives us limits for everyday computation.
 
 {comment}
-
-.. xtcb reword above; every digital computer is a kind of limited turing machine
-
 .. TCB  if we decide to cover non deterministic automata - could use a humorous approach - e.g. train route is semi-random, or several passengers try out all routes?
-
 {comment end}
 
 The Turing machine is named after Alan Turing, who worked on these concepts in the early 20th century (that's the same person from whom we got the Turing test in AI, which is something quite different --- Turing's work comes up in many areas of computer science!) If you want to investigate the idea of a Turing machine and you like chocolate, there's [an activity on the cs4fn site](http://www.cs4fn.org/turing/turingmachines.php) that gives examples of how it works.
@@ -1476,7 +1410,11 @@ The Kara programming environment also has a [demonstration of Turing machines](h
 {comment end}
 
 This chapter looked at two main kinds of formal language: the regular expression (RE) and the context-free grammar (CFG). These typify the kinds of languages that are widely used in compilers and file processing systems. Regular expressions are good for finding simple patterns in a file, like identifiers, keywords and numbers in a program, or tags in an HTML file, or dates and URLs in a web form. Context-free grammars are good when you have nested structures, for example, when an expression is made up of other expressions, or when an "if" statement includes a block of statements, which in turn could be "if" statements, ad infinitum.
-There are more powerful forms of grammars that exist, the most common being context-sensitive grammars and unrestricted grammars, which allow you to have more than one non-terminal on the left hand side of a production; for example, you could have xAy {math}/to{math end} aBb, which is more flexible but a lot harder to work with.
+There are more powerful forms of grammars that exist, the most common being context-sensitive grammars and unrestricted grammars, which allow you to have more than one non-terminal on the left hand side of a production; for example, you could have
+
+xAy {math}\to{math end} aBb,
+
+which is more flexible but a lot harder to work with.
 The relationships between the main kinds of grammars was described by the linguist Noam Chomsky, and is often called the
 {glossary-definition term="Chomsky Hierarchy" definition="A hierarchy of four classifications of formal languages, ranging from simple regular expressions to very flexible (but computationally difficult) grammars."}
 {glossary-link term="Chomsky Hierarchy" reference-text="Formal languages"}Chomsky Hierarchy{glossary-link end}
@@ -1490,9 +1428,7 @@ There are many tools available that will read in the specification for a languag
 These systems make it relatively easy to make up your own programming language and construct a compiler for it, although they do demand quite a range of skills to get the whole thing working!
 
 {comment}
-
 .. xTCB need to check on facts above about lex/flex/yacc/bison
-
 {comment end}
 
 So we've barely got started on what can be done with formal languages, but the intention of this chapter is to give you a taste of the kind of structures that computer scientists work with, and the powerful tools that have been created to make it possible to work with infinitely complex systems using small descriptions.
@@ -1504,6 +1440,8 @@ Some of the material in this chapter was inspired by [http://www.ccs3.lanl.gov/m
 
 There's a good article on finite state machines at
 [http://www.i-programmer.info/babbages-bag/223-finite-state-machines.html](http://www.i-programmer.info/babbages-bag/223-finite-state-machines.html)
+
+### Books
 
 Textbooks on formal languages will have considerably more advanced material and more mathematical rigour than could be expected at High School level, but for students who really want to read more, a popular book is
 "Introduction to the Theory of Computation" by Michael Sipser.
