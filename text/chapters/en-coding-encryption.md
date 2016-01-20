@@ -81,7 +81,7 @@ If students are stuck, you might need to give them a few hints.
 
 The table they should have gotten should look like this.
 
-{image filename="caesar-table-2.png"}
+{image filename="caesar-cipher-table-2.png"}
 
 The learning objective for this activity was for students to think like cryptanalysts and to see why Caesar Cipher is not useful in practice.
 {panel end}
@@ -90,11 +90,11 @@ The learning objective for this activity was for students to think like cryptana
 
 When you looked at the Caesar Cipher in the previous section and (hopefully) broke it and figured out what it said, you probably noticed that there was a pattern in how letters from the original message corresponded to letters in the decoded one. Each letter in the original message decoded to the letter that was 10 places before it in the alphabet. The conversion table you drew should have highlighted this. Here's the table for the letter correspondences, where the letter "K" translates to an "A". It is okay if your conversion table mapped the opposite way, i.e. "A" to "K" rather than "K" to "A". If you were unable to break the Caesar Cipher in the previous section, go back to it now and decode it using the table.
 
-{image filename="ec-caesar-table-2.png"}
+{image filename="caesar-cipher-table-2.png"}
 
 For this example, we say the key is *10* because keys in Caesar Cipher are a number between 1 and 25 (think carefully about why we wouldn't want a key of 26!), which specify how far the alphabet should be rotated. If instead we used a key of *8*, the conversion table would be as follows.
 
-{image filename="ec-caesar-table-3.png"}
+{image filename="caesar-cipher-table-3.png"}
 
 {panel type="jargon-buster" summary="What is a Key in computer science?"}
 In a Caesar Cipher, the key represents how many places the alphabet should be rotated. In the examples above, we used keys of "8" and "10". More generally though, a key is simply a value that is required to do the math for the encryption and decryption. While Caesar Cipher only has 25 possible keys, real encryption systems have an infinite number of possible keys, and preferably use keys which contains hundreds or even thousands of binary digits. Having a huge number of different possible keys is important, because it would take a computer less than a second to try all 25 Caesar Cipher keys.
@@ -111,7 +111,7 @@ Before we looked at how to *crack* Casear cipher – getting the plaintext from 
 As an example of *decrypting* with Caesar Cipher, assume that we have the following ciphertext, and that the key is 6.
 
 ```
-ZNK WAOIQ HXUCT LUD PASVY UBKX ZNK RGFE JUM.
+ZNK WAOIQ HXUCT LUD PASVY UBKX ZNK RGFE JUM
 ```
 
 Because we know that the key is 6, we can subtract 6 places off each character in the ciphertext. For example, the letter 6 places before "Z" is "T", 6 places before "N" is "H", and 6 places before "K" is "E". From this, we know that the first word must be "THE". Going through the entire ciphertext in this way, we can eventually get the plaintext of:

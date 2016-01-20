@@ -20,7 +20,7 @@ In this chapter we'll explore a range of these intelligent systems. Inevitably t
 
 ## Chatterbots and The Turing Test
 
-{image computer-studying-turing-test.png alt="The computer is reading a book titled 'Talk like a human'"}
+{image filename="computer-studying-turing-test.png" alt="The computer is reading a book titled 'Talk like a human'"}
 
 Many humans take for granted the fact that they can easily have a conversation with another person, and choose appropriate things to say based on the conversation. The ability to do this is a form of intelligence, and for computers it isn’t so easy! Many attempts have been made to design computer programs that can have a conversation with a human and sound intelligent. These computer programs are called *chatterbots*, or just *chatbots*. This book uses the former term, although you may see both being used in other books or websites.
 
