@@ -141,7 +141,7 @@ class Section:
         if panel_type:
             title = systemfunctions.from_kebab_case(panel_type)
             summary_value = parse_argument('summary', arguments)
-            summary = ': ' + summary_value if summary_value else ''
+            summary = ': ' + summary_value.strip() if summary_value else ''
             expanded_value = parse_argument('expanded', arguments)
             expanded = ' active' if expanded_value == 'True'  else ''
             content = markdown(match.group('content'), extras=MARKDOWN2_EXTRAS)
