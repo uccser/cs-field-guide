@@ -121,8 +121,15 @@ class Section:
         link_text = match.group('link_text')
         link_url = match.group('link_url')
         link_url = link_url.replace('\)', ')')
+
         if not link_url.startswith(('http://','https://','mailto:')):
-            link_url = self.html_path_to_root + link_url
+            # If linked to file, add file to required files
+            if link_url.startswith(self.guide.generator_settings['Source']['File']):
+                file_name = link_url[len(self.guide.generator_settings['Source']['File']):]
+                self.required_files['File'].add(file_name)
+
+            link_url = os.path.join(self.html_path_to_root, link_url)
+
         html = self.html_templates['link'].format(link_text=link_text, link_url=link_url).strip()
         return html
 
