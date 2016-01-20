@@ -141,11 +141,12 @@ The answer to the above question is that the maximum number of checks for Linear
 
 It is important to remember that you can only perform a Binary Search if the items you are searching through are sorted into order. This makes the sorting algorithms we will look at next even more important because without sorting algorithms we wouldn't be able to use Binary Search to quickly look through data!
 
-{panel type="curiosity" summary="Code to actually run linear and binary search for yourself"}
-The following files will run linear and binary search in various languages:
-- [Scratch](file linear-binary-search-scratch.zip)
-- [Python (Version 2)](file linear-binary-search-python2.py)
-- [Python (Version 3)](file linear-binary-search-python3.py)
+
+{panel type="project" summary="Code to actually run linear and binary search for yourself"}
+The following files will run linear and binary search in various languages; you can use them to generate random lists of values and measure how long they take to be sorted:
+- [Scratch](files/linear-binary-search-scratch.zip)
+- [Python (Version 2)](files/linear-binary-search-python2.py)
+- [Python (Version 3)](files/linear-binary-search-python3.py)
 {panel end}
 
 {glossary-link term="Algorithm" reference-text="sorting algorithms"}{glossary-link end}
@@ -254,11 +255,11 @@ Quicksort can be described in the following way:
 - Place all the items that are greater than it into one subgroup and all the items that are smaller into another subgroup. Place the pivot item in between these two subgroups.
 - Choose a subgroup and repeat this process. Eventually each subgroup will contain only one item and at this stage the items will be in sorted order.
 
-{panel type="curiosity" summary="Code to actually run selection sort and quick sort for yourself"}
-The following files will run selection sort and quicksort in various languages:
-- [Scratch](file selection-quicksort-scratch.zip)
-- [Python (Version 2)](file selection-quicksort-python2.py)
-- [Python (Version 3)](file selection-quicksort-python3.py)
+{panel type="project" summary="Code to actually run selection sort and quicksort for yourself"}
+The following files will run selection sort and quicksort in various languages; you can use them to generate random lists of values and measure how long they take to be sorted:
+- [Scratch](files/selection-quicksort-scratch.zip)
+- [Python (Version 2)](files/selection-quicksort-python2.py)
+- [Python (Version 3)](files/selection-quicksort-python3.py)
 {panel end}
 
 There are dozens of sorting algorithms that have been invented; most of the ones that are used in practice are based on quicksort and/or mergesort. These, and many others, can be seen in this intriguing animated video.
