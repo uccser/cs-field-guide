@@ -121,8 +121,15 @@ class Section:
         link_text = match.group('link_text')
         link_url = match.group('link_url')
         link_url = link_url.replace('\)', ')')
+
         if not link_url.startswith(('http://','https://','mailto:')):
-            link_url = self.html_path_to_root + link_url
+            # If linked to file, add file to required files
+            if link_url.startswith(self.guide.generator_settings['Source']['File']):
+                file_name = link_url[len(self.guide.generator_settings['Source']['File']):]
+                self.required_files['File'].add(file_name)
+
+            link_url = os.path.join(self.html_path_to_root, link_url)
+
         html = self.html_templates['link'].format(link_text=link_text, link_url=link_url).strip()
         return html
 
@@ -197,12 +204,36 @@ class Section:
                     wrap = wrap_value
                 else:
                     self.regex_functions['image'].log('Image wrap value {direction} for image {filename} not recognised. Valid directions: {valid_directions}'.format(direction=wrap_value, filename=filename, valid_directions=valid_image_wrap_directions), self, match.group(0))
+
+            # Parse caption and caption-link arguments
+            caption_value = parse_argument('caption', arguments)
+            caption_link_value = parse_argument('caption-link', arguments)
+            if caption_value and not image_set:
+                if caption_link_value:
+                    caption_html = self.html_templates['link'].format(link_url=caption_link_value, link_text=caption_value)
+                else:
+                    caption_html = caption_value
+
+            # Parse source argument
+            source_value = parse_argument('source', arguments)
+            if source_value and not image_set:
+                source_html = self.html_templates['link'].format(link_url=source_value, link_text='Image source')
+
+            # Parse alt argument
             alt_value = parse_argument('alt', arguments)
             if alt_value:
                 parameters += ' '
                 parameters += self.html_templates['image-parameter-alt'].format(alt_text=alt_value)
 
         image_html = self.html_templates['image'].format(image_source=image_source, image_parameters=parameters)
+
+        if source_value and caption_value:
+            caption_html = caption_html + ' &mdash; ' + source_html
+            image_html += self.html_templates['image-caption'].format(html=caption_html)
+        elif caption_value and not source_value:
+            image_html += self.html_templates['image-caption'].format(html=caption_html)
+        elif source_value and not caption_value:
+            image_html += self.html_templates['image-caption'].format(html=source_html)
 
         if wrap:
             html = self.html_templates['image-wrapped'].format(html=image_html, wrap_direction=wrap)
@@ -512,7 +543,7 @@ class Section:
         back_link = '{}.html#{}'.format(this_file_link, permalink)
         self.guide.glossary.add_item(term, definition, back_link, match)
 
-        return self.html_templates['glossary_definition'].format(id=permalink)
+        return self.html_templates['glossary_definition'].format(id=permalink).strip()
 
 
     def add_glossary_link(self, match):
@@ -524,7 +555,7 @@ class Section:
 
         if term not in glossary:
             self.regex_functions['glossary link'].log("No glossary definition of {} to link to".format(term), self, match.group(0))
-            return ''
+            return content if content else ''
 
         file_link = os.path.join(glossary.html_path_to_root, self.file_node.path)
         back_link_id = self.create_permalink('glossary-' + term)
@@ -549,7 +580,7 @@ class Section:
             link_html = ''
             content = ''
 
-        return self.html_templates['glossary_backwards_link'].format(id_html=id_html, link_html=link_html, content=content)
+        return self.html_templates['glossary_backwards_link'].format(id_html=id_html, link_html=link_html, content=content).strip()
 
 
     def add_glossary(self, match):
