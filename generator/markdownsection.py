@@ -512,7 +512,7 @@ class Section:
         back_link = '{}.html#{}'.format(this_file_link, permalink)
         self.guide.glossary.add_item(term, definition, back_link, match)
 
-        return self.html_templates['glossary_definition'].format(id=permalink)
+        return self.html_templates['glossary_definition'].format(id=permalink).strip()
 
 
     def add_glossary_link(self, match):
@@ -524,7 +524,7 @@ class Section:
 
         if term not in glossary:
             self.regex_functions['glossary link'].log("No glossary definition of {} to link to".format(term), self, match.group(0))
-            return ''
+            return content if content else ''
 
         file_link = os.path.join(glossary.html_path_to_root, self.file_node.path)
         back_link_id = self.create_permalink('glossary-' + term)
@@ -549,7 +549,7 @@ class Section:
             link_html = ''
             content = ''
 
-        return self.html_templates['glossary_backwards_link'].format(id_html=id_html, link_html=link_html, content=content)
+        return self.html_templates['glossary_backwards_link'].format(id_html=id_html, link_html=link_html, content=content).strip()
 
 
     def add_glossary(self, match):
