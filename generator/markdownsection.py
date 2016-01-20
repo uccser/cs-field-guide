@@ -204,12 +204,36 @@ class Section:
                     wrap = wrap_value
                 else:
                     self.regex_functions['image'].log('Image wrap value {direction} for image {filename} not recognised. Valid directions: {valid_directions}'.format(direction=wrap_value, filename=filename, valid_directions=valid_image_wrap_directions), self, match.group(0))
+
+            # Parse caption and caption-link arguments
+            caption_value = parse_argument('caption', arguments)
+            caption_link_value = parse_argument('caption-link', arguments)
+            if caption_value and not image_set:
+                if caption_link_value:
+                    caption_html = self.html_templates['link'].format(link_url=caption_link_value, link_text=caption_value)
+                else:
+                    caption_html = caption_value
+
+            # Parse source argument
+            source_value = parse_argument('source', arguments)
+            if source_value and not image_set:
+                source_html = self.html_templates['link'].format(link_url=source_value, link_text='Image source')
+
+            # Parse alt argument
             alt_value = parse_argument('alt', arguments)
             if alt_value:
                 parameters += ' '
                 parameters += self.html_templates['image-parameter-alt'].format(alt_text=alt_value)
 
         image_html = self.html_templates['image'].format(image_source=image_source, image_parameters=parameters)
+
+        if source_value and caption_value:
+            caption_html = caption_html + ' &mdash; ' + source_html
+            image_html += self.html_templates['image-caption'].format(html=caption_html)
+        elif caption_value and not source_value:
+            image_html += self.html_templates['image-caption'].format(html=caption_html)
+        elif source_value and not caption_value:
+            image_html += self.html_templates['image-caption'].format(html=source_html)
 
         if wrap:
             html = self.html_templates['image-wrapped'].format(html=image_html, wrap_direction=wrap)
