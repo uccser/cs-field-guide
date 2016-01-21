@@ -48,7 +48,5 @@ def command_line_args():
 
 
 def install_dependencies():
-    """upgrade pip and install project dependencies, if required"""
-    pip.main(['install', '--upgrade', 'pip>=7.0.3'])
-    # Check dependencies
+    """Install project dependencies, if required"""
     pip.main(['install',  '-r', 'generator/dependencies.conf'])
