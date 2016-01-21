@@ -336,7 +336,7 @@ JPEGs (and MP3) are based on the idea that you can add together lots of sine or 
 Converting a waveform for a block of pixels or sample of music into a sum of simple waves can be done using a technique called a [Fourier transform](https://en.wikipedia.org/wiki/Fourier_transform), and is a widely used idea in signal processing.
 
 You can experiment with adding sine waves together to generate other shapes using the
-[spreadsheet provided](file/Adding-Sine-Waves.xls).
+[spreadsheet provided](files/Adding-Sine-Waves.xls).
 In this spreadsheet, the yellow region on the first sheet allows you to choose which sine waves to add.
 Try setting the 4 sine waves to frequencies that are 3, 9, 15, and 21 times the fundamental frequency respectively (the "fundamental" is the lowest frequency.)
 Now set the "amplitude" (equivalent to volume level) of the four to 0.5, 0.25, 0.125 and 0.0625 respectively (each is half of the previous one).
