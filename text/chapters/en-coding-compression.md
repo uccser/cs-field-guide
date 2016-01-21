@@ -331,11 +331,46 @@ A cosine wave form is from the trig function that is often used for calculating 
 {image filename="cosine-graph.png" alt="A graph showing cos(x) and sin(x) curves"}
 {panel end}
 
-{comment}
-.. xtcb adapt fourier spreadsheet and make available here (see also http://demonstrations.wolfram.com/JPEGCompressionAlgorithm/, http://demonstrations.wolfram.com/SumsOfSineWavesWithSeveralStepSizesSawtoothOrSquareApproxima/ http://demonstrations.wolfram.com/RecoveringTheFourierCoefficients/
-.. html5 low priority interactive to add cosine waves to try to match a given waveform e.g. square wave, triangle, random. Select amplitude for various frequencies. I have a spreadsheet that basically does this, could put it in for the meantime - tim
+{panel type="curiosity" summary="Adding sine or cosine waves to create any waveform"}
+JPEGs (and MP3) are based on the idea that you can add together lots of sine or cosine waves to create any waveform that you want.
+Converting a waveform for a block of pixels or sample of music into a sum of simple waves can be done using a technique called a [Fourier transform](https://en.wikipedia.org/wiki/Fourier_transform), and is a widely used idea in signal processing.
 
-The trouble with those links is that they require downloading software. And I don't know anything about that site, but it appears a bit dodgy to me (i.e. will it download rubbish as well?)
+You can experiment with adding sine waves together to generate other shapes using the
+[spreadsheet provided](file/Adding-Sine-Waves.xls).
+In this spreadsheet, the yellow region on the first sheet allows you to choose which sine waves to add.
+Try setting the 4 sine waves to frequencies that are 3, 9, 15, and 21 times the fundamental frequency respectively (the "fundamental" is the lowest frequency.)
+Now set the "amplitude" (equivalent to volume level) of the four to 0.5, 0.25, 0.125 and 0.0625 respectively (each is half of the previous one).
+This should produce the following four sine waves:
+
+{image filename="sine-waves.png" alt="Four sine waves"}
+
+When the above four waves are added together, they interfere with each other, and produce a shape that has sharper transitions:
+
+{image filename="sine-waves-sum.png" alt="The four sine waves added together"}
+
+In fact, if you were to continue the pattern with more than four sine waves, this shape would become a "square wave", which is one that suddenly goes to the maximum value, and then suddenly to the minimum.
+The one shown above is bumpy because we've only used 4 sine waves to describe it.
+
+This is exactly what is going on in JPEG if you compress a black and white image.
+The "colour" of pixels as you go across the image will either be 0 (black) or full intensity (white), but JPEG will approximate it with a small number of cosine waves (which have basically the same properties as sine waves.)
+This gives the "overshoot" that you see in the image above; in a JPEG image, this comes out as bright and dark patches surrounding the sudden change of colour, like here:
+
+{image filename="jpeg-word-zoomed.jpg"}
+
+You can experiment with different combinations of sine waves to get different shapes.
+You may need to have more than four to get good approximations to a shape that you want; that's exactly the tradeoff that JPEG is making.
+There are some suggestions for parameters on the second sheet of the spreadsheet.
+
+You can also learn about Fourier transforms using the Wolfgram Alpha software; this will require you to install a browser plugin.
+The Wolfgram demonstrations include:
+[an interactive demonstration of JPEG](http://demonstrations.wolfram.com/JPEGCompressionAlgorithm/),
+[showing the relationship between sine saves and creating other waveforms](http://demonstrations.wolfram.com/RecoveringTheFourierCoefficients/), and
+[showing how sine waves can be summed to produce other shapes](http://demonstrations.wolfram.com/SumsOfSineWavesWithSeveralStepSizesSawtoothOrSquareApproxima/).
+
+{panel end}
+
+{comment}
+.. html5 low priority interactive to add cosine waves to try to match a given waveform e.g. square wave, triangle, random. Select amplitude for various frequencies. I have a spreadsheet that basically does this, could put it in for the meantime - tim
 {comment end}
 
 You can see the 8 by 8 blocks of pixels if you zoom in on a heavily compressed JPEG image. For example, the following image has been very heavily compressed using JPEG (it is just 1.5% of its original size).
