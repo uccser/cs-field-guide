@@ -78,7 +78,7 @@ class Guide:
                 if search and ((reading_template and search.group('end')) or not reading_template):
                     if search.group('end'):
                         reading_template = False
-                        html_templates[template_name] = template_text
+                        html_templates[template_name] = template_text.strip()
                         template_text = ''
                     elif not reading_template and search.group('template_name'):
                         reading_template = True
