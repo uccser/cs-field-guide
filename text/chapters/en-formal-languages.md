@@ -96,7 +96,7 @@ This code finds words that contain x, y and z in that order, but separated by 0 
 
 To find words with all the vowels in order, the code is simply "a.\*e.\*i.\*o.\*u".
 
-Students may ask how to do more complex searches, like letters in any order. If they are interested they can explore this on their own, but this is just a warmup exercise. We'll be covering this more carefully in the section on [regular expressions](formal-languages.html#regular-expressions).
+Students may ask how to do more complex searches, like letters in any order. If they are interested they can explore this on their own, but this is just a warmup exercise. We'll be covering this more carefully in the section on [regular expressions](chapters/formal-languages.html#regular-expressions-and-fsas).
 
 {panel end}
 
@@ -778,7 +778,9 @@ Followup discussion can review whether some descriptions were longer than they n
 
 {comment end}
 
-We've already had a taste of regular expressions in the [getting started](chapters/formal-languages.html#getting-started) section. They are just a simple way to search for things in the input, or to specify what kind of input will be accepted as legitimate.
+We've already had a taste of
+{glossary-link term="Regular expression" reference-text="introduction"}regular expressions{glossary-link end}
+in the [getting started](chapters/formal-languages.html#getting-started) section. They are just a simple way to search for things in the input, or to specify what kind of input will be accepted as legitimate.
 For example, many web scripting programs use them to check input for patterns like dates, email addresses and URLs. They've become so popular that they're now built into most programming languages.
 
 {panel type="teacher-note" summary="Rubular exercise"}
@@ -906,6 +908,7 @@ f(ff)+
 Notice the use of brackets to group parts of the regular expression. It's useful if you want the "+" or "\*" to apply to more than one character.
 
 {panel type="jargon-buster" summary="Regular expression"}
+{glossary-definition term="regular expression" definition="A formula used to describe a pattern in a text that is to be matched or searched for. These are typically used for finding elements of a program (such as variable names) and checking input in forms (such as checking that an email address has the right format.)"}
 The term
 {glossary-link term="regular expression" reference-text="abbreviations"}regular expression{glossary-link end}
 is sometimes abbreviated to "regex", "regexp", or "RE".  It's "regular" because it can be used to define sets of strings from a very simple class of languages called "regular languages", and it's an "expression" because it is a combination of symbols that follow some rules.
