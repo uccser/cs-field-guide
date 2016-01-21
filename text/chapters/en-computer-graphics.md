@@ -1,11 +1,11 @@
 # Computer Graphics
 
-{teacher}
+{comment}
 The following assessment plans also cover this material:
 
 **New Zealand - AS91636 (3.44)**
 - [Assessment Overview](/appendices/assessment-guides/new-zealand/computer-graphics.html)
-{teacher end}
+{comment end}
 
 {comment}
 Visual computing is usually graphics (output) and vision (input)
@@ -13,7 +13,7 @@ Visual computing is usually graphics (output) and vision (input)
 Often the term “visual computing” encompasses computer graphics, so the term “graphics” isn’t strictly required in the name of this area; also note that in this context is does not refer to the use of “visual programming languages” or “visual programming environments” e.g. Visual Studio. The creation of images could be as simple as a 2D drawing program, or as advanced as 3D systems for entertainment or to help visualise a data set.
 {comment end}
 
-{video http://www.youtube.com/embed/5kuoRjgfCls}
+{video url="http://www.youtube.com/embed/5kuoRjgfCls"}
 
 ## What's the big picture?
 
@@ -626,11 +626,9 @@ For example, these are used as the components of scalable fonts and vector graph
 
 {comment end}
 
-{image computer-graphics/CG-i.png alt="The letter i enlarged to show the pixels used to create the word"}
+{image filename="vector-letter-with-outline.png" caption="The points used to create the letter 'g' in Google's logo"}
 
 In 3D graphics shapes are often stored using lines and curves that mark out the edges of flat surfaces, each of which is so small that you can't see them unless you zoom right in.
-
-{image computer-graphics/CG-e.gif alt="Comparison between a letter created using pixels to curves"}
 
 The lines and circles that specify an object are usually given using numbers (for example, a line between a given starting and finishing position or a circle with a given centre and radius).
 From this a graphics program must calculate which pixels on the screen should be coloured in to represent the line or circle.

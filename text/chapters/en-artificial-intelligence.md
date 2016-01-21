@@ -1,14 +1,14 @@
 # Artificial Intelligence
 
-{teacher}
+{comment}
 The following curriculum plans also cover this material:
 
 **NCEA - New Zealand - AS91636 (3.44)**
 
 - [Artificial Intelligence (Turing Test)](/appendices/assessment_guides/new_zealand/assessment-guide-level-3-artificial-intelligence-turing-test.html)
-{teacher end}
+{commment end}
 
-{video https://www.youtube.com/watch?v=ia-oYtacJHE}
+{video url="https://www.youtube.com/watch?v=ia-oYtacJHE"}
 
 ## What's the big picture?
 
@@ -40,7 +40,7 @@ Go to the link just below and have a conversation with Eliza (keeping in mind th
 
 [Click here for the Eliza chatterbot at nlp-addiction.com](http://nlp-addiction.com/eliza/)
 
-{image ai-eliza-nlp-addiction.png alt="The Eliza chatbot at nlp-addiction.com"}
+{image filename="eliza-chatbot-screenshot.png" alt="The Eliza chatbot at nlp-addiction.com"}
 
 Do you think Eliza is as smart as a human? Would you believe she was a human if somebody told you she was?
 
@@ -75,7 +75,7 @@ Try having a conversation with another chatterbot --- Alice. Note that she knows
 
 [Click here for the Alice chatterbot at pandorabots.com](http://www.pandorabots.com/pandora/talk?botid=f5d922d97e345aa1)
 
-{image ai-alice-pandorabots.png alt="The Alice chatbot at pandorabots.com"}
+{image filename="alice-chatbot-screenshot.png" alt="The Alice chatbot at pandorabots.com"}
 
 Does Alice sound more intelligent than Eliza? Does she sound as intelligent as a human, or can you trick her into saying things that make no sense? Try using the same tricks you used to fool Eliza and see if they fool Alice as well (look back at the list of bullet points in the Eliza section just above).
 
@@ -120,7 +120,7 @@ An example of a chatterbot that learns from humans is Cleverbot.
 
 [Click on this link to have a conversation with Cleverbot](http://www.cleverbot.com/)
 
-{image ai-cleverbot.png alt="The Cleverbot chatbot"}
+{image filename="cleverbot-chatbot-screenshot.png" alt="The Cleverbot chatbot"}
 
 Unlike Eliza and Alice, whose rules of what to say were determined by programmers, Cleverbot learns rules based on what people say. For example, when Cleverbot says "hi" to a person, it keeps track of all the different responses that people make to that, such as "hi", "hello!", "hey ya", "sup!". A rule is made that says that if somebody says hi to you, then the things that people have commonly said in response to Cleverbot saying hi are appropriate things to say in response to "hi". In turn, when Cleverbot says something like "sup!" or "hello!", it will look at how humans respond to that in order to learn appropriate response for those. And then it will learn responses for those responses. This allows Cleverbot to built up an increasingly large database.
 
@@ -130,11 +130,11 @@ Perhaps we need to include a diagram that shows this learning process so that th
 
 An implication of learning from humans is that Cleverbot makes the assumption that the humans actually *are* intelligent, and will teach it to say intelligent things. If for example people told Cleverbot something like "School is boring" in response to Cleverbot saying "hi", Cleverbot might learn that when a person says "hi" to it, it should say "School is boring"!
 
-{curiosity}
-##### A short film written by Cleverbot
+{panel type="curiosity" summary="A short film written by Cleverbot"}
 
 Check out the short film ["Do You Love Me"](http://www.youtube.com/watch?v=QkNA7sy5M5s) (~3 mins), the result when Chris R Wilson collaborated with Cleverbot to write a movie script.
-{curiosity end}
+
+{panel end}
 
 ### Even more Chatterbots!
 
@@ -207,7 +207,7 @@ These are some questions you can consider after you have finished carrying out t
 - Were there any questions you asked that were "unfair" --- that depended on knowledge your classmate might have but no-one (computer or person) from another place could possibly have?
 - Which gave it away more: the content of the answers, or the way in which the content was expressed?
 
-{image ai-turing-dating.png alt="The Turing dating test"}
+{image filename="turing-test-dating-show.png" alt="The Turing dating test"}
 
 ### Project: Investigating chatterbots and the Turing test
 

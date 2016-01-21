@@ -99,7 +99,7 @@ You may have noticed that the numbers on the monsters and pets in the game were 
 
 Now this next game is slightly different. You have less lives, which makes things a bit more challenging, but this time the numbers inside the boxes will be in order. The monsters, or maybe the pet, with the smallest number is in the present on the far left, and the one with the largest number is in the present on the far right. Let's see if you can collect all the pets without running out of lives...
 
-{interactive-external searching-boxes title="Searching Boxes - Part 2" parameters="level=3"}
+{interactive name="searching-boxes" type="whole-page" text="Searching Boxes - Part 2" parameters="level=3"}
 
 Now that you have played through the whole game (and hopefully found all of the lost pets!) you may have noticed that even though you had less lives in the second part of the game, and lots of presents to search through, you were still able to find the pet. Why was this possible?
 
@@ -169,7 +169,7 @@ Use the scales to compare the boxes (you can only compare two boxes at a time) a
 
 If the interactive does not run properly on your computer you can use a set of physical balance scales instead; just make sure you can only tell if one box is heavier than the other, not their exact weight (so not digital scales that show the exact weight).
 
-{interactive-external sorting-boxes title="Algorithm Sorting interactive"}
+{interactive name="sorting-boxes" type="whole-page" text="Algorithm Sorting interactive"}
 
 {comment}
 TODO: link back to the unplugged activity
@@ -240,11 +240,11 @@ Insertion and Selection Sort may seem like logical ways to sort things into orde
 
 A much better sorting algorithm is {glossary-link term="quicksort"}Quicksort!{glossary-link end} (the name is a bit of a giveaway)
 
-{interactive-external sorting-boxes title="Quicksort interactive"  parameters="method=quick"}
+{interactive name="sorting-boxes" type="whole-page" text="Quicksort interactive" parameters="method=quick"}
 
 This algorithm is a little more complicated, but is very powerful. To do this algorithm with the sorting interactive, start by randomly choosing a box and placing it on the scales. Now compare every other box to the one you selected; heavier boxes should be put on the right of the second row and lighter boxes are put on the left. When you are done, place the box you were comparing everything else to between these two groups, but to help you keep track of things, put it in the row below. The following example shows how it might look after this step. Note that the selected block is in the right place for the final sorted order, and everything on either side will remain on the side that it is on.
 
-{image alg-quicksort-interactive-step-1.png alt="Quicksort interactive in progress"}
+{image filename="quicksort-interactive-step-1.png" alt="Quicksort interactive in progress"}
 
 Now apply this process to each of the two groups of boxes (the lighter ones, then the heavier ones). Keep on doing this until they are all sorted. The boxes should then be in sorted order!
 

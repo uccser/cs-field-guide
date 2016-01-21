@@ -147,7 +147,7 @@ The following interactives are to be used in this section once the text is re-wr
 
 Most products you can buy at the shop have a barcode on them with a 13 digit global trade item number (referred to as GTIN-13). The first 12 digits are the actual identification number for the product, the 13th is the check digit calculated from the other 12. Not all barcodes are GTIN-13, there are several others around. If the barcode has 13 numbers in it, it is almost certainly GTIN-13.
 
-{image isbn-barcode.png alt="An image of a 13 digit barcode"}
+{image filename="isbn-barcode.png" alt="An image of a 13 digit barcode"}
 
 The following spreadsheet checks GTIN-13 barcodes. Enter a barcode number into the interactive, and it will tell you whether or not you typed it correctly! Start by using the barcode number of a box of 30 cans of coke; “9 300675 036009”. What happens if you then change one digit to something else?
 
