@@ -36,18 +36,15 @@ The system became very popular with people who had visual impairment as it provi
 Louis Braille's system is an early example of a "binary" representation of data --- there are only two symbols (raised and flat), and yet combinations of them can be used to represent reference books and works of literature.
 Each character in braille is represented with a cell of 6 dots. Each dot can either be raised or not raised. Different numbers and letters can be made by using different patterns of raised and not raised dots.
 
-{image dr-braille_alphabet.jpg alt="The braille alphabet"}
+{image filename="braille-alphabet-diagram.jpg" alt="The braille alphabet"}
 
 Let's work out how many different patterns can be made using the 6 dots in a Braille character.
 When working through the material in this section, a good way to draw braille on paper without having to actually make raised dots is to draw a rectangle with 6 small circles in it, and to colour in the circles that are raised, and not colour in the ones that aren’t raised.
 
 If braille used only 2 dots, there would be 4 patterns.
-
-{image dr-two-dot-combinations.png alt="Combinations of two dots"}
-
 And with 3 dots there would be 8 patterns
 
-{image dr-three-dot-combinations.png alt="Combinations of three dots"}
+{image filename="two-and-three-dot-combinations-diagram.png" alt="Combinations of both two and three dots"}
 
 {comment}
 
@@ -57,11 +54,11 @@ And with 3 dots there would be 8 patterns
 
 You may have noticed that there are twice as many patterns with 3 dots as there are with 2 dots. It turns out that every time you add an extra dot, that gives twice as many patterns (why?), so with 4 dots there are 16 patterns, 5 dots has 32 patterns, and 6 dots has 64 patterns.
 
-{teacher}
+{panel type="teacher-note" summary="Dot patterns"}
 
 The reason that the number of patterns doubles with each extra dot is that with, say, 3 dots you have 8 patterns, so with 4 dots you can use all the 3-dot patterns with the 4th dot flat, and all of them with it raised. This concept is a fundamental one for students to grasp with binary representation: each extra bit doubles the number of values that can be stored. This becomes very important in choosing the right number of bits for a value. For example, a 101-bit encryption key is *twice* as hard to crack as a 100-bit key, even though it's only 1% larger!
 
-{teacher end}
+{panel end}
 
 So, Braille can make 64 patterns.
 That's enough for all the letters of the alphabet, and other symbols too, such as digits and punctuation.
@@ -75,11 +72,11 @@ Digital devices almost always use two values (binary) for similar reasons: compu
 Arithmetic is also easy with binary values; if you have only two digits (0 and 1), then there aren't many rules to learn - adding digits only requires circuits to calculate 0+0, 0+1, 1+0 and 1+1.
 You might like to work out how many combinations of decimal digits you need to be able to add if you're doing conventional arithmetic!
 
-{teacher}
+{panel type="teacher-note" summary="Decimal vs Binary in circuits"}
 
 There are 10 decimal digits (0 to 9), and the combinations are 0+0, 0+1, 0+2,... 0+9, 1+0, 1+1,.... 9+9. That's 90 different rules that you need to know for addition (it's not 100 because combinations like 5+5 appear twice). You can get by with only 50 rules if you know that 5+3 is the same as 3+5. The point is that electronic circuitry to do this would be way more complicated than normal computers that use binary, which have only 4 main rules for addition.
 
-{teacher end}
+{panel end}
 
 In fact, every kind of file on a computer is represented using just a whole lot of binary digits --- text, pictures, spreadsheets, web pages, songs --- *everything* is stored using just two values. Even the programs (apps) that you run use binary representation --- sometimes a program file that the computer can run is referred to as a "binary file", which is a bit odd since every file on a computer is binary!
 
@@ -136,17 +133,17 @@ Below is a table that shows the patterns of bits that ASCII uses for each of the
 
 For example, the letter c (lower-case) in the table has the pattern “01100011” (the 0 at the front is just extra padding to make it up to 8 bits). The letter o has the pattern “01101111”. You could write a word out using this code, and if you give it to someone else, they should be able to decode it exactly.
 
-{teacher}
+{panel type="teacher-note" summary="Using the table"}
 
 Exchanging short messages in code will force students to use the table, and they should start to pick up some of the patterns (e.g. capital letters have a different code to lower case letters, but they only have one bit different.)
 
-{teacher end}
+{panel end}
 
 Computers can represent pieces of text with sequences of these patterns, much like Braille does. For example, the word “computers” (all lower-case) would be 01100011 01101111 01101101 01110000 01110101 01110100 01100101 01110010 01110011.
 
 How would you represent the word “science” in ASCII? What about “Wellington” (note that it starts with an upper-case “W”)? How would you represent “358” in ASCII (it is three characters, even though it looks like a number)? What about the sentence “Hello, how are you?” (look for the comma, question mark, and space characters in the ASCII table).
 
-{teacher}
+{panel type="teacher-note" summary="Answers to questions above"}
 
 "science" = 01110011 01100011 01101001 01100101 01101110 01100011 01100101
 
@@ -156,7 +153,7 @@ How would you represent the word “science” in ASCII? What about “Wellingto
 
 Note that the text "358" is treated as 3 characters in ASCII, which may be confusing, as the text "358" is different to the number 358! Students may have encountered this distinction in a spreadsheet e.g. if a cell starts with an inverted comma in Excel, it is treated as text rather than a number. One place this comes up is with phone numbers; if you type 027555555 into a spreadsheet as a number, it will come up as 27555555, but as text the 0 can be displayed.
 
-{teacher end}
+{panel end}
 
 {comment}
 
@@ -166,9 +163,7 @@ Note that the text "358" is treated as 3 characters in ASCII, which may be confu
 
 {comment end}
 
-{curiosity}
-
-**Curiosity**
+{panel type="curiosity" summary="Representing the alphabet"}
 
 If you *only* wanted to represent the 26 letters of the alphabet, and weren’t worried about upper-case or lower-case, you could get away with using just 5 bits, which allows for up to 32 different patterns. Have a look at the last 5 bits of each of the 26 lower-case letters in ASCII. Do any of the 26 lower-case letters have the same last 5 bits? Have a look at the 26 upper-case letters. Do any of the upper-case letters have the same last 5 bits?
 
@@ -187,29 +182,27 @@ The word “water” would be
 
 There's an activity that uses [five-bit text codes hidden in music here](http://csunplugged.org/modem).
 
-{curiosity end}
+{panel end}
 
-{teacher}
+{panel type="teacher-note" summary="Extra information for curiosity above"}
 
 The five-bit code activity mentioned in the above curiosity includes some songs and a video that contain many hidden messages using this code. Some students will enjoy the challenge of trying to decode the hidden messages.
 
-{teacher end}
+{panel end}
 
 English text can easily be represented using ASCII, but what about languages such as Chinese where there are thousands of different characters? The 128 patterns aren’t nearly enough to represent such languages! That's where codes that use more than 7 bits become important, and in a later section we'll look at these, but first we need to explore binary number representation and develop some efficient ways to talk about longer binary numbers.
 
-{curiosity}
-
-**Curiosity**
+{panel type="curiosity" summary="ASCII"}
 
 The name "ASCII" stands for "American Standard Code for Information Interchange", which was a particular way of assigning bit patterns to the characters on a typewriter. The ASCII system even includes "characters" for ringing a bell (useful for getting attention on old telegraph systems), deleting the previous character (kind of an early "undo"), and "end of transmission" (to let the receiver know that the message was finished). These days those characters are rarely used, but the codes for them still exist (they are the missing patterns in the table above). Nowadays ASCII has been surplanted by a code called "UTF-8", which happens to be the same as ASCII if the extra left-hand bit is a 0, but opens up a huge range of characters if the left-hand bit is a 1.
 
 There are several other codes that were popular before ASCII, including the [Baudot code](http://en.wikipedia.org/wiki/Baudot_code) and [EBCDIC](http://en.wikipedia.org/wiki/EBCDIC). A widely used variant of the Baudot code was the "Murray code", named after New Zealand born inventor [Donald Murray](http://en.wikipedia.org/wiki/Donald_Murray_(inventor)). One of Murray's significant improvements was to introduce the idea of "control characters", such as the carriage return (new line). The "control" key still exists on modern keyboards.
 
-{curiosity end}
+{panel end}
 
 ## Representing numbers with bits
 
-{teacher}
+{panel type="teacher-note" summary="CS Unplugged activity"}
 
 If you are doing a warm up exercise with the class, the CS Unplugged binary activity [http://csunplugged.org/binary-numbers](http://csunplugged.org/binary-numbers) provides scaffolding and can be used to teach concepts around binary numbers using only counting or simple addition.  In the chapter we have decided to approach this section by starting with number systems. While this may appear “scary” because of the math, most students should be quite familiar with it as it is first introduced very early in primary school in the form of recognising that numbers are made up of the “ones”, “tens”, “hundreds”, etc, and is further built on until eventually in high school they learn about the exponent notation, i.e. {math}541 = 5 \times 10^2 + 4 \times 10^1 + 1 \times 10^0{math end}. As explained in this section, binary numbers are a base 2 number system, rather than the base 10 number system we are all familiar with. The idea of number systems provides a good stepping stone into binary numbers
 
@@ -217,7 +210,7 @@ We are assuming that students already know about base 10 number systems, includi
 
 Less mathematically able students who are really struggling with number systems should be able to skip over it, and instead go directly to making binary numbers in the interactive.
 
-{teacher end}
+{panel end}
 
 The number system that humans normally use is in base 10 (also known as decimal).
 It's worth revising quickly, because binary numbers use the same ideas as decimal numbers, just with fewer digits!
@@ -246,29 +239,31 @@ The key ideas to notice from this are that the digit on the right (such as the 8
 
 ### Binary numbers
 
-{teacher}
+{panel type="teacher-note" summary="Teaching binary numbers"}
 
 This subsection is a prerequisite for the colours section, as colour representations are built on simple binary numbers.
 
 It's very common for computer science courses and books (like this one) to teach students how to convert between binary representation and decimal numbers. In practice, computer scientists hardly ever do this, but the important thing is to understand the patterns and constraints around binary numbers. A key pattern that students should pick up is that adding just one bit to a binary number *doubles* the range it can represent. The patterns around binary numbers come up in many areas of computer science, so it is well worth getting familiar with them.
 
-{teacher end}
+{panel end}
 
 As discussed earlier, computers can only store information using bits, which only have 2 possible states. This means that they cannot represent base 10 numbers using digits 0 to 9, the way we write down numbers in decimal;  instead, they use a base 2 number system, also called binary.
 
-{curiosity}
-
-**Curiosity**
+{panel type="curiosity" summary="The denary number system"}
 
 The base 10 (decimal) system is sometimes called denary, which is more consistent with the the name binary for the base 2 system. The word "denary" also refers to the Roman denarius coin, which was worth ten asses (an "as" was a copper or bronze coin).
 
-{curiosity end}
+{panel end}
 
 Because binary is base 2, there are only 2 possible digits (0 and 1), as opposed to the 10 in our standard number system, and each place value is 2 times bigger than the one to its right (in contrast to our base 10 number system where each place is 10 times bigger).
 
 The interactive below illustrates how this binary number system represents decimal numbers. Have a play around with it to see what patterns you can see. The decimal (base 10) representation for the binary number currently shown is given by the interactive on the far right.
 
+{comment}
+
 <div class="widget-holder"><a href="static/widgets/DR/DR-base-conversion/public_html/index.html?base=2&columns=7&lines=A,B,C&offset=0"  target="blank"><img class="widget-image" src="static/data_representation/images/DR-BaseConversionBinaryThumbnail.png" alt=""><span class="widget-subtitle">Click to load the<br>binary number interactive</span></a></div>
+
+{comment end}
 
 To ensure you are understanding correctly how to use the interactive, verify that when you enter the binary number 101101 it shows that the decimal representation is 45, that when you enter 100000 it shows that the decimal representation is 32, and when you enter 001010 it shows the decimal representation is 10.
 
@@ -276,7 +271,7 @@ You should try using the interactive to convert a decimal number to binary.
 For example, choose a number less than 61 (perhaps your house number, a friend's age, or the day of the month you were born on), set all the binary digits to zero, and then start with the *left-most* digit (32), trying out if it should be zero or one.
 See if you can find a method for converting the number without too much trial and error.
 
-{teacher}
+{panel type="teacher-note" summary="Using the binary number interactive"}
 
 With the interactive, students should discover that they can convert a number by working from left to right through the digits, setting the digit to 1, and resetting it to zero if the total is higher than the number being sought. After converting a few numbers they will start to anticipate what to do. This algorithm is fairly intuitive, and discoverable by quite young students. Discovering it for themselves will give a lot of confidence in their ability to convert numbers. If they need some help, get them to set the *left-most* bit to one, and ask if the total is too high. If it is, set the bit back to zero, otherwise leave it as one. Then repeat this for each bit from left to right. For example, for the number 37, the first bit gives a total of 32, which isn't too high; setting the second bit brings the total to 48, which is too high, so it stays at zero; the third bit gives a total of 32+8 = 40, which is too high; the fourth bit gives 32+4 = 36, which is ok, so that bit is a 1. The fifth bit would give 38 (too high), and the sixth bit gives the required 37, giving the binary number 100101. This approach is explained for students later in the text, but it's better if they can discover it for themselves.
 
@@ -284,19 +279,19 @@ There are a lot of interactive games for exploring binary numbers. The following
 
 There is another algorithm for conversion that is often found in textbooks, and it is easier to write a program for, but a little harder for learners. It isn't necessary to explore the concepts of this chapter, but in case a student wants to implement it, the algorithm is to work from right to left; set the right-most bit to one if the decimal number is odd, otherwise set it to zero, then divide the decimal number by 2 (rounding down), and repeat the procedure for the next digit to the left (set it to one if the number is odd, otherwise zero, then divide by 2).  This is repeated until the decimal number has been reduced to zero.
 
-{teacher end}
+{panel end}
 
 Can you figure out the binary representation for 23 without using the interactive? What about 4, 0, and 32? Check all your answers using the interactive to verify they are correct.
 
-{teacher}
+{panel type="teacher-note" summary="Answers"}
 
 23 is 010111, 4 is 000100, 0 is 000000, and 32 is 100000.
 
-{teacher end}
+{panel end}
 
 What is the largest number you can make with this binary interactive? What is the smallest? Is there any integer value in between the biggest and the smallest that you can’t make? Are there any numbers with more than one representation? Why/ why not?
 
-{teacher}
+{panel type="teacher-note" summary="Answers"}
 
 -  000000 in binary, 0 in decimal is the smallest number.
 - 111111 in binary, 63 in decimal is the largest number
@@ -306,7 +301,7 @@ The question of uniqueness will be challenging for some students. It addresses t
 
 Another way of showing the uniqueness is to work out how many bit combinations there are. For 5 bits, there are two choices for each bit, so 2x2x2x2x2 (i.e. 32) distinct 5-bit binary numbers. Since the 5-bit binary numbers cover the range from 0 to 31, there are 32 numbers, so there's a one-to-one relationship between all possible bit patterns and all numbers they can represent i.e. each number has a unique representation.
 
-{teacher end}
+{panel end}
 
 You have probably noticed from the interactive that when set to 1, the leftmost bit (the “most significant bit”) adds 32 to the total, the next adds 16, and then the rest add 8, 4, 2, and 1 respectively. When set to 0, a bit does not add anything to the total. So the idea is to make numbers by adding some or all of 32, 16, 8, 4, 2, and 1 together, and each of those numbers can only be included once.
 
@@ -315,11 +310,11 @@ Rather than just using trial and error to figure out what a decimal number is in
 So what happens if we have fewer than 6 bits? For example, with 5 bits, the place values would be 16, 8, 4, 2 and 1, so the largest value is 11111 in binary, or 31 in decimal.
 What's the largest value you can store with 4 bits? 3 bits?
 
-{teacher}
+{panel type="teacher-note" summary="Answers"}
 
 The largest value with 4 bits is 1111 in binary, or 15 in decimal. For 3 bits (111 in binary) it is 7 in decimal. Try to guide students to noticing that the largest value is one less than what the next bit value would be; for example, in a 6-bit representation, the highest bit value is the 32 (left-most bit), so the total is one less than 64, which is what the next bit would be. In general, with n bits, the highest value is {math}2^(n-1){math end}.
 
-{teacher end}
+{panel end}
 
 {comment}
 
@@ -329,11 +324,11 @@ The largest value with 4 bits is 1111 in binary, or 15 in decimal. For 3 bits (1
 
 What would happen if we have 7 bits instead of 6? The seventh bit would have a value of 64, and it would be possible to store numbers up to 127.
 
-{teacher}
+{panel type="teacher-note" summary="Binary pianos"}
 
-The "binary piano" is a simple binary conversion device that can be printed on paper, and enables students to experiment with these concepts physically. It can be [downloaded here](dr-binary-piano-uc.pdf).
+The "binary piano" is a simple binary conversion device that can be printed on paper, and enables students to experiment with these concepts physically. It can be [downloaded here](files/binary-piano.pdf).
 
-{teacher end}
+{panel end}
 
 {comment}
 
@@ -344,52 +339,46 @@ The "binary piano" is a simple binary conversion device that can be printed on p
 
 {comment end}
 
-{extra-for-experts}
-
-**Extra for Experts**
+{panel type="extra-for-experts" summary="Counting in binary"}
 
 Can you figure out a systematic approach to counting in binary? i.e. start with the number 0, then increment it to 1, then 2, then 3, etc, all the way up to the highest number that can be made with the 7 bits. Try counting from 0 to 16, and see if you can detect a pattern.
 Hint: Think about how you add 1 to a number in base 10. e.g. how do you work out 7 + 1, 38 + 1, 19 + 1, 99 + 1, 230899999 + 1, etc? Can you apply that same idea to binary?
 
 Using your new knowledge of the binary number system, can you figure out a way to count to higher than 10 using your 10 fingers? What is the highest number you can represent using your 10 fingers? What if you included your 10 toes as well (so you have 20 fingers and toes to count with).
 
-{extra-for-experts end}
+{panel end}
 
-{teacher}
+{panel type="teacher-note" summary="Extra for experts above"}
 
 For the "extra for experts" above, some students may discover that a binary number can be incremented by starting at the right and flipping all consecutive bits until a 1 comes up (which will be on the very first bit half of the time).
 
 Counting on fingers in binary means that you can count to 31 on 5 fingers, and 1023 on 10 fingers. There are a number of videos on YouTube of people counting in binary on their fingers. One twist is to wear white gloves with the numbers 16, 8, 4, 2, 1 on the 5 fingers respectively, which makes it easy to work out the value of having certain fingers raised.
 
-{teacher end}
+{panel end}
 
 An important concept with binary numbers is the range of values that can be represented using a given number of bits.
 One bit on its own might not seem very useful, but it's enough to store things like the state of a checkbox (checked or not checked).
 When we have 8 bits the binary numbers start to get useful --- they can represent values from 0 to 255, so it is enough to store someone's age, the day of the month, and so on.
 
-{jargon-buster}
-
-**Jargon Buster**
+{panel type="jargon-buster" summary="What is a byte?"}
 
 Groups of 8 bits are so useful that they have their own name: a **byte**. Computer memory and disk space is usually divided up into bytes, and bigger values are stored using more than one byte. For example, two bytes (16 bits) are enough to store numbers from 0 to 65,535. Four bytes (32 bits) can store numbers up to 42,94,967,295. You can check these numbers by working out the place values of the bits. Every bit that's added will double the range of the number.
 
-{jargon-buster end}
+{panel end}
 
-{curiosity}
-
-**Curiosity**
+{panel type="curiosity" summary="Binary cakes"}
 
 Candles on birthday cakes use the base 1 numbering system, where each place is worth 1 times the one to its right(!) For example, the number 3 is 111, and 10 is 1111111111. This can cause problems as you get older --- if you've ever seen a cake with 100 candles on it, you'll be aware that it's a serious fire hazard.
 
-{image binary-cakes.png alt="The image shows two people with birthday cakes, however a cake with 100 candles on it turns into a big fireball!"}
+{image filename="binary-cakes.png" alt="The image shows two people with birthday cakes, however a cake with 100 candles on it turns into a big fireball!"}
 
 Luckily it's possible to use binary notation for birthday candles --- each candle is either lit or not lit. For example, if you are 18, the binary notation is 10010, and you need 5 candles (with only two of them lit).
 
 There's a [video on using binary notation for counting up to 1023 on your hands, as well as using it for birthday cakes](http://www.youtube.com/watch?v=GUqle9RE3Y8).
 
-{image binary-cake.png alt="It's a lot smarter to use binary notation on candles for birthdays as you get older, as you don't need as many candles."}
+{image filename="binary-cake.png" alt="It's a lot smarter to use binary notation on candles for birthdays as you get older, as you don't need as many candles." caption="It's a lot smarter to use binary notation on candles for birthdays as you get older, as you don't need as many candles."}
 
-{curiosity end}
+{panel end}
 
 ### Shorthand for binary numbers
 
@@ -403,49 +392,8 @@ Because we now have 16 digits, this representation is called hexadecimal (or hex
 
 Here's a full table of all the 4-bit numbers and their hexadecimal digit equivalent:
 
-<div class="table-responsive">
-<table class="table table-bordered table-condensed">
-<tr>
-  <td>Binary</td>
-  <td>0000</td>
-  <td>0001</td>
-  <td>0010</td>
-  <td>0011</td>
-  <td>0100</td>
-  <td>0101</td>
-  <td>0110</td>
-  <td>0111</td>
-  <td>1000</td>
-  <td>1001</td>
-  <td>1010</td>
-  <td>1011</td>
-  <td>1100</td>
-  <td>1101</td>
-  <td>1110</td>
-  <td>1111</td>
-</tr>
-<tr>
-  <td>Hex</td>
-  <td>0</td>
-  <td>1</td>
-  <td>2</td>
-  <td>3</td>
-  <td>4</td>
-  <td>5</td>
-  <td>6</td>
-  <td>7</td>
-  <td>8</td>
-  <td>9</td>
-  <td>A</td>
-  <td>B</td>
-  <td>C</td>
-  <td>D</td>
-  <td>E</td>
-  <td>F</td>
-</tr>
-</table>
-</div>
-
+| Binary | 0000 | 0001 | 0010 | 0011 | 0100 | 0101 | 0110 | 0111 | 1000 | 1001 | 1010 | 1011 | 1100 | 1101 | 1110 | 1111 |
+| Hex | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | A | B | C | D | E | F |
 
 For example, the largest 8-bit binary number is 11111111. This can be written as FF in hexadecimal. Both of those representations mean 255 in our conventional decimal system (you can check that by converting the binary number to decimal).
 
@@ -915,7 +863,7 @@ The values to the right of the 1-bit continue to be a half of the value to their
 
 {teacher end}
 
-<div class="widget-holder"><a href="_static/widgets/DR/DR-base-conversion/public_html/index.html?base=2&columns=14&lines=A,B,C&offset=-8" target="_blank"><img class="widget-image" src="_static/images/DR-BaseConversionBinaryDecimals.png" alt=""><span class="widget-subtitle">Click to load the widget</span></a></div>
+<div class="widget-holder"><a href="static/widgets/DR/DR-base-conversion/public_html/index.html?base=2&columns=14&lines=A,B,C&offset=-8" target="blank"><img class="widget-image" src="static/images/DR-BaseConversionBinaryDecimals.png" alt=""><span class="widget-subtitle">Click to load the widget</span></a></div>
 
 {extra-for-experts end}
 

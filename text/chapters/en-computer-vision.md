@@ -4,20 +4,15 @@
 
 .. xTCB Link the project directly to A/M/E in the standard (see email from Jenny B)
 
-{comment end}
-
-{teacher}
-
-
 This chapter supports the vision part of the "Graphics and visual computing" option of the NZ achievement standard 3.44. The topic "Visual computing" is generally regarded to include computer graphics (output) and computer vision (input); this chapter focusses on the latter. For the 3.44 standard a project based on this chapter or the computer graphics chapter would only count as one topic i.e. students shouldn't choose vision and graphics as their two required topics --- but we've chosen to put them in separate chapters.
 
 Currently all material in this chapter is relevant to the standard, although students need choose only one or two examples to focus on to meet the requirements of the standard.
 
 This chapter is currently only a sketch of topics; it should be enough for students to make decisions about which optionsns to choose, but over the next month or two we'll add more specific information and interactives to support projects. Currently the interactives only work with images from a webcam, but a new version that students can load their own photos into will be available soon, as this will allow for more controlled experiments with the techniques. The ability to select example images to test these techniques is a useful skill, and a good choice of original images by students helps to show understanding of the purpose of the technique.
 
-{teacher end}
+{comment end}
 
-{video http://www.youtube.com/embed/bE2u5trQAHM?rel=0}
+{video url="http://www.youtube.com/embed/bE2u5trQAHM?rel=0"}
 
 ## What's the big picture?
 
@@ -27,27 +22,27 @@ With increases in computer power, the decrease in the size of computers and prog
 
 For example, here is a sign written in Chinese:
 
-{image CV-ocr-translate-no-smoking-source.jpg alt="Visual computing: translating a sign"}
+{image filename="no-smoking-sign.jpg" alt="Visual computing: translating a sign"}
 
 If you can’t read the Chinese characters, there are apps available for smartphones that can help:
 
-{image CV-ocr-translate-no-smoking.jpg alt="Visual computing: translating a sign"}
+{image filename="no-smoking-sign-translated.png" alt="Visual computing: translating a sign"}
 
 Having a small portable device that can "see" and translate characters makes a big difference for travellers. Note that the translation given is only for the second part of the phrase (the last two characters). The first part says “please don’t”, so it could be misleading if you think it’s translating the whole phrase!
 
 Recognising of Chinese characters may not work every time perfectly, though. Here is a warning sign:
 
-{image CV-ocr-translate-careful.jpg alt="Visual computing: translating a sign"}
+{image filename="steep-sign-translated.jpg" alt="Visual computing: translating a sign"}
 
 My phone has been able to translate the “careful” and “steep” characters, but it hasn’t recognised the last character in the line. Why do you think that might be?
 
-{teacher}
+{panel type="teacher-note" summary="The importance of image segmentation"}
 
-The last character is more difficult to recognise because the picture of the stick figure on a steep slope is too close to the character. The app can’t tell where the character ends and the picture begins. This is a problem of *image segmentation*, which we will look at later. 
+The last character is more difficult to recognise because the picture of the stick figure on a steep slope is too close to the character. The app can’t tell where the character ends and the picture begins. This is a problem of *image segmentation*, which we will look at later.
 
-{teacher end}
+{panel end}
 
-Giving users more information through computer vision is only one part of the story. Capturing information from the real world allows computers to assist us in other ways too. In some places, computer vision is already being used to help car drivers to avoid collisions on the road, warning them when other cars are too close or there are other hazards on the road ahead. Combining computer vision with map software, people have now built cars that can drive to a destination without needing a human driver to steer them. A wheelchair guidance system can take advantage of vision to avoid bumping into doors, making it much easier to operate for someone with limited mobility. 
+Giving users more information through computer vision is only one part of the story. Capturing information from the real world allows computers to assist us in other ways too. In some places, computer vision is already being used to help car drivers to avoid collisions on the road, warning them when other cars are too close or there are other hazards on the road ahead. Combining computer vision with map software, people have now built cars that can drive to a destination without needing a human driver to steer them. A wheelchair guidance system can take advantage of vision to avoid bumping into doors, making it much easier to operate for someone with limited mobility.
 
 {comment}
 
@@ -79,40 +74,40 @@ Digital cameras and human eyes fulfill largely the same function: images come in
 
 {comment end}
 
-{teacher}
+{panel type="teacher-note" summary="Digital camera sensors"}
 
 There are a number of different types of digital camera sensor, but for the purposes of this chapter we will be focusing on the [CMOS](http://en.wikipedia.org/wiki/CMOS_sensor”)sensors which are in most consumer electronics. An alternative kind of sensor is the [Charge-Coupled Device (CCD)](http://en.wikipedia.org/wiki/Charge-coupled_device), which is more commonly used for specialist applications such as astronomy.
 
-{teacher end}
+{panel end}
 
 **Human eyes** have a very sensitive area in the centre of their field of vision called the fovea. Objects that we are looking at directly are in sharp detail, while our peripheral vision is quite poor. We have separate sets of cone cells in the retina for sensing red, green and blue (RGB) light, but we also have special rod cells that are sensitive to light levels, allowing us to perceive a wide dynamic range of bright and dark colours. The retina has a blind spot (a place where all the nerves bundle together to send signals to the brain through the optic nerve), but most of the time we don’t notice it because we have two eyes with overlapping fields of view, and we can move them around very quickly.
 
 **Digital cameras** have uniform sensitivity to light across their whole field of vision. Light intensity and colour are picked up by RGB sensor elements on a silicon chip, but they aren’t as good at capturing a wide range of light levels as our eyes are. Typically, a modern digital camera can automatically tune its exposure to either bright or dark scenes, but it might lose some detail (e.g. when it is tuned for dark exposure, any bright objects might just look like white blobs).
 
-It is important to understand that neither a human eye nor a digital camera  --- even a very expensive one --- can perfectly capture all of the information in the scene in front of it. Electronic engineers and computer scientists are constantly doing research to improve the quality of the images they capture, and the speed at which they can record and process them. 
+It is important to understand that neither a human eye nor a digital camera  --- even a very expensive one --- can perfectly capture all of the information in the scene in front of it. Electronic engineers and computer scientists are constantly doing research to improve the quality of the images they capture, and the speed at which they can record and process them.
 
-{teacher}
+{panel type="curiosity" summary="Further reading"}
 
 Further reading can be found at [Cambridge in Colour](http://www.cambridgeincolour.com/tutorials/cameras-vs-human-eye.htm) and [Pixiq](http://www.pixiq.com/article/eyes-vs-cameras).
 
-{teacher end}
+{panel end}
 
 ## Noise
 
 One challenge when using digital cameras is something called *noise*. That’s when individual pixels in the image appear brighter or darker than they should be, due to interference in the electronic circuits inside the camera. It’s more of a problem when light levels are dark, and the camera tries to boost the exposure of the image so that you can see more. You can see this if you take a digital photo in low light, and the camera uses a high ASA/ISO setting to capture as much light as possible. Because the sensor has been made very sensitive to light, it is also more sensitive to random interference, and gives photos a "grainy" effect.
 
-Noise mainly appears as random changes to pixels. For example, the following image has "salt and pepper" noise. 
+Noise mainly appears as random changes to pixels. For example, the following image has "salt and pepper" noise.
 
-{image lone-banana-noise.jpg alt="An image with salt-and-pepper noise"}
+{image filename="banana-with-salt-and-pepper-noise.jpg" alt="An image of a banana with salt-and-pepper noise"}
 
 Having noise in an image can make it harder to recognise what's in the image, so an important step in computer vision is reducing the effect of noise in an image.
 There are well-understood techniques for this, but they have to be careful that they don’t discard useful information in the process. In each case, the technique has to make an educated guess about the image to predict which of the pixels that it sees are supposed to be there, and which aren’t.
 
-{teacher}
+{panel type="teacher-note" summary="Image noise on Wikipedia"}
 
 The relevant Wikipedia entry is [Image noise](http://en.wikipedia.org/wiki/Image_noise)
 
-{teacher end}
+{panel end}
 
 Since a camera image captures the levels of red, green and blue light separately for each pixel, a computer vision system can save a lot of processing time in some operations by combining all three channels into a single “grayscale” image, which just represents light intensities for each pixel.
 
@@ -124,11 +119,11 @@ Since a camera image captures the levels of red, green and blue light separately
 
 This helps to reduce the level of noise in the image. Can you tell why, and about how much less noise there might be? (As an experiment, you could take a photo in low light --- can you see small patches on it caused by noise? Now use photo editing software to change it to black and white --- does that reduce the effect of the noise?)
 
-{teacher}
+{panel type="teacher-note" summary="Noisy channels"}
 
 Each light-sensing element in the camera sensor is equally susceptible to noise. That means that noise artifacts in the red, green and blue channels are independent of each other. When the three channels are combined into one by averaging, the amount of noise is reduced to approximately one third. The answer isn’t *exactly* a third, though: there is a chance that noise will come through on two or three channels for the same pixel, in which case the averaged value may still be wildly inaccurate.
 
-{teacher end}
+{panel end}
 
 Rather than just considering the red, green and blue values of each pixel individually, most noise-reduction techniques look at other pixels in a region, to predict what the value in the middle of that neighbourhood ought to be.
 
@@ -152,7 +147,7 @@ A *Gaussian* blur is another common technique, which assumes that the closest pi
 
 ### Activity: noise reduction filters
 
-{teacher}
+{comment}
 
 The following activity can be used as part of a project for the 3.44 standard. This project covers material for an example for the 3.44 standard through the following components:
 
@@ -162,9 +157,13 @@ The following activity can be used as part of a project for the 3.44 standard. T
 - Evaluation: quality of the image and speed of the various approaches with various settings
 - Personalised student examples: applying the processing to the student's own image
 
-{teacher end}
+{comment end}
 
-<a href="http://www.cosc.canterbury.ac.nz/csfieldguide/dev/dev/_static/widgets/cv-noise-filters.html" target="_blank">Open the noise reduction filtering interactive using this link and experiment with settings as below. You will need a webcam, and the widget will ask you to allow access to it.</a>
+{comment}
+
+<a href="http://www.cosc.canterbury.ac.nz/csfieldguide/dev/dev/static/widgets/cv-noise-filters.html" target="blank">Open the noise reduction filtering interactive using this link and experiment with settings as below. You will need a webcam, and the widget will ask you to allow access to it.</a>
+
+{comment end}
 
 Mathematically, this process is applying a special kind of matrix called a *convolution kernel* to the value of each pixel in the source image, averaging it with the values of other pixels nearby and copying that average to each pixel in the new image. The average is weighted, so that the values of nearby pixels are given more importance than ones that are far away. The stronger the blur, the wider the convolution kernel has to be and the more calculations take place.
 
@@ -184,17 +183,17 @@ You can take screenshots of the image to show the effects in your writeup. You c
 
 ## Face recognition
 
-{teacher}
+{panel type="teacher-note" summary="Introductory activity"}
 
 There is a [introductory activity here](http://csi.dcs.gla.ac.uk/workshop-view.php?workshopID=15) (this uses some simple properties to classify objects). You will need to register as a teacher with the site to download the activity. In the activity, students manually classify photos by measuring properties of real images.
 
-{teacher end}
+{panel end}
 
 Recognising faces has become a widely used computer vision application.
 These days photo album systems like Picasa and Facebook can try to recognise who is in a photo using face recognition ---
 for example, the following photos were recognised in Picasa as being the same person, so to label the photos with people's names you only need to click one button rather than type each one in.
 
-{image cv-face-recognition.jpg alt="Google's Picasa recognises these photos as being the same person"}
+{image filename="face-recognition-software-screenshot.jpg" alt="Google's Picasa recognises these photos as being the same person"}
 
 There are lots of other applications.
 Security systems such as customs at country borders use face recognition to identify people and match them with their passport.
@@ -207,7 +206,7 @@ There are some relevant [articles on the cs4fn website](http://www.cs4fn.org/vis
 
 {comment}
 
-.. Possible fun image to use: 
+.. Possible fun image to use:
 .. http://facestuff.wordpress.com/2010/02/15/beady-eyed-tap-face/
 
 .. xtcb to do: Discuss techniques
@@ -218,17 +217,17 @@ There are some relevant [articles on the cs4fn website](http://www.cs4fn.org/vis
 
 ### Project: Recognising faces
 
-{teacher}
+{panel type="teacher-note" summary="NCEA"}
 
 The following activity can be used as part of a project for the 3.44 standard. This project covers material for an example for the 3.44 standard through the following components:
 
 - Key problem: face recognition in digital images
 - Practical application: security, photo album tagging
 - Algorithm/technique: Haar face detector
-- Evaluation: ability to recognise faces, false positives and negatives, processing speed 
+- Evaluation: ability to recognise faces, false positives and negatives, processing speed
 - Personalised student examples: applying the processing to the student's own images
 
-{teacher end}
+{panel end}
 
 First let's manually try some methods for recognising whether two photographs show the same person.
 
@@ -241,7 +240,11 @@ You can evaluate the effectiveness of facial recognition in free software such a
 
 Use the following face recognition interactive to see how well the Haar face recognition system can track a face in the image. What prevents it from tracking a face? Is it affected if you cover one eye or wear a hat? How much can the image change before it isn't recognised as a face? Is it possible to get it to incorrectly recognise something that isn't a face?
 
-<a href="http://inspirit.github.com/jsfeat/sample_haar_face.html" target="_blank">Open the face recognition interactive using this link and experiment with the settings. You will need a webcam, and the widget will ask you to allow access to it.</a>
+{comment}
+
+<a href="http://inspirit.github.com/jsfeat/sample_haar_face.html" target="blank">Open the face recognition interactive using this link and experiment with the settings. You will need a webcam, and the widget will ask you to allow access to it.</a>
+
+{comment end}
 
 ## Edge detection
 
@@ -250,23 +253,27 @@ Having these boundaries makes it easy to *segment* the image (break it up into s
 
 For example, here's a photo where you might want to recognise individual objects:
 
-{image fruit-bowl.jpg alt="Image with Canny edge detection applied"}
+{image filename="fruit-bowl-photo.jpg" alt="Image of a fruit bowl"}
 
 And here's a version that has been processed by an edge detection algorithm:
 
-{image fruit-bowl.canny.jpg alt="Image with Canny edge detection applied"}
+{image filename="fruit-bowl-photo-with-canny-edge-detection.jpg" alt="The image above with canny edge detection applied"}
 
 Notice that the grain on the table above has affected the quality; some pre-processing to filter that would have helped!
 
-You can experiment with edge-detection yourself. 
+You can experiment with edge-detection yourself.
 Open the following interactive, which provides a *Canny edge detector* (see the information about [Canny edge detection on Wikipedia](http://en.wikipedia.org/wiki/Canny_edge_detector)).
 This is a widely used algorithm in computer vision, developed in 1986 by John F. Canny.
 
-<a href="http://inspirit.github.com/jsfeat/sample_canny_edge.html" target="_blank">Open the edge detection interactive using this link and experiment with settings as below. You will need a webcam, and the widget will ask you to allow access to it.</a>
+{comment}
+
+<a href="http://inspirit.github.com/jsfeat/sample_canny_edge.html" target="blank">Open the edge detection interactive using this link and experiment with settings as below. You will need a webcam, and the widget will ask you to allow access to it.</a>
+
+{comment end}
 
 ### Activity: Edge detection evaluation
 
-{teacher}
+{panel type="teacher-note" summary="NCEA"}
 
 The following activity can be used as part of a project for the 3.44 standard. This project covers material for an example for the 3.44 standard through the following components:
 
@@ -276,7 +283,7 @@ The following activity can be used as part of a project for the 3.44 standard. T
 - Evaluation: ability to find all real edges (and not get false edges), and speed of the detector with various settings and types of images
 - Personalised student examples: applying the processing to the student's own images
 
-{teacher end}
+{panel end}
 
 With the canny edge detection interactive above, try putting different images in front of the camera and determine how good the algorithm is at detecting boundaries in the image.
 Capture images to put in your report as examples to illustrate your experiments with the detector.
@@ -303,7 +310,7 @@ Despite these recent changes, many of the fundamental ideas in computer vision h
 
 {comment}
 
-.. Computer Vision is a rapidly changing field because camera technology is changing fast - resolution, bnoise, infra red, stereo vision. 
+.. Computer Vision is a rapidly changing field because camera technology is changing fast - resolution, bnoise, infra red, stereo vision.
 
 {comment end}
 
@@ -311,16 +318,7 @@ Despite these recent changes, many of the fundamental ideas in computer vision h
 
 ## Further reading
 
-{comment}
-
-.. Useful Links
-.. --------------------------------------------------------------------------------------------------------------
-
-{comment end}
-
 - [http://en.wikipedia.org/wiki/Computer_vision](http://en.wikipedia.org/wiki/Computer_vision)
 - [http://en.wikipedia.org/wiki/Mri](http://en.wikipedia.org/wiki/Mri)
 - [http://www.cosc.canterbury.ac.nz/mukundan/cogr/applcogr.html](http://www.cosc.canterbury.ac.nz/mukundan/cogr/applcogr.html)
 - [http://www.cosc.canterbury.ac.nz/mukundan/covn/applcovn.html](http://www.cosc.canterbury.ac.nz/mukundan/covn/applcovn.html)
-
-
