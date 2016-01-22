@@ -1,17 +1,20 @@
 "use strict"
 
 _ = require('underscore')
+math = require('mathjs')
 
-geometricRandomNumber = (bernoulliProb) ->
-    ### This picks a random number that is drawn from a geometric
-        distribution using the formula from
-        http://stackoverflow.com/questions/23517138/
-            random-number-generator-using-geometric-distribution
-    ###
-    if bernoulliProb is 1
-        return 1
-    else
-        return Math.ceil(Math.log(1-Math.random()) / Math.log(1-bernoulliProb))
+{geometricRandom} = require('./bigRand.coffee')
+{errorCorrection} = require('./errorCorrection.coffee')
+
+# Alias for bignumber
+big = math.bignumber
+# Bignumbers everywhere for simplicity
+math.config
+    number: 'bignumber'
+    precision: 64
+
+
+# ---------------------
 
 choice = (indexable) ->
     ### Given an array-like object picks a random element ###
@@ -61,6 +64,17 @@ packetState =
                 # the location is from the most distant part of the packet
                 # e.g. a packet with bandwidth 0.5 starts at -0.5 approaching
                 # 1, location incidently should never exceed 1
+
+# This object is a reference for what should be passed to messageTCP
+messageOpts =
+    message: 'hello' # string or array: This is the data to be split
+                     # into packets to be sent
+    packetSize: 2 # int: this is the size of the packets to split the message
+                  # into
+    header: 1 # int: size of the header, add
+
+
+messageTCP = (opts={}) ->
 
 
 packetTCP = (opts={}) ->

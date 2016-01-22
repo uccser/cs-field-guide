@@ -6,13 +6,9 @@
     "dependencies": {
         "es5-shim": "latest",
         "es6-shim": "latest",
+        "mathjs": "latest",
         "underscore": "latest",
         "zen-observable": "latest"
-    },
-    "devDependencies": {
-        "coffee-script": "latest",
-        "browserify": "latest",
-        "coffeeify": "latest"
     },
     "scripts": {
         "build-js": "browserify -t coffeeify coffee/main.coffee > js/main.js"
