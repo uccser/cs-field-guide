@@ -326,8 +326,13 @@ What would happen if we have 7 bits instead of 6? The seventh bit would have a v
 
 {panel type="teacher-note" summary="Binary pianos"}
 
-The "binary piano" is a simple binary conversion device that can be printed on paper, and enables students to experiment with these concepts physically. It can be [downloaded here](files/binary-piano.pdf).
-
+The "binary piano" is a simple binary conversion device that can be printed on paper, and enables students to experiment with these concepts physically.
+It can be [downloaded here](files/binary-piano-UC.pdf)
+or as a [4-up version here](files/binary-piano-UC-4up.pdf).
+These versions have 9 bits; if you want to emphasise that bytes use 8 bits,
+you can have students ignore the 9th bit (perhaps by sticking it on 0),
+but it is useful when they want to remember the largest 8-bit value,
+since they can get it by subtracting one from the value of the 9th bit.
 {panel end}
 
 {comment}
