@@ -257,7 +257,7 @@ For example, here's a photo where you might want to recognise individual objects
 
 And here's a version that has been processed by an edge detection algorithm:
 
-{image filename="fruit-bowl-photo-with-canny-edge-detection.jpg" alt="The image above with canny edge detection applied"}
+{image filename="fruit-bowl-photo-with-canny-edge-detection.png" alt="The image above with canny edge detection applied"}
 
 Notice that the grain on the table above has affected the quality; some pre-processing to filter that would have helped!
 
