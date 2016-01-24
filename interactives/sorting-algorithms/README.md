@@ -4,7 +4,7 @@
 
 This interactive is created for teaching sorting algorithms, mostly selection, quick, and merge sort.
 
-Viewing the `index.html` file will run the interactive with 1 row (used for selection sort). To use the interactice with 2 rows (used for merge and quick sort), add `?method=quick` or `?method=merge` at the end of the URL.
+Viewing the `index.html` file will run the interactive with 1 row (used for selection sort). To use the interactive with 2 rows (used for merge and quick sort), add `?method=quick` or `?method=merge` at the end of the URL.
 
 ## Required Files
 
