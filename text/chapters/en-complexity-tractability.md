@@ -1,6 +1,6 @@
 #Complexity and tractability
 
-{panel="teacher" summary="Large numbers ahead!"}
+{panel type="teacher-note" summary="Large numbers ahead!"}
 This chapter deals a lot with very large numbers and especially the problem of exponential explosion of time taken. There are a number of resources around that illustrate these concepts. The video [The Power of Exponentials, Big and Small](http://blossoms.mit.edu/videos/lessons/power_exponentials_big_and_small) from MIT is downloadable, and illustrates exponential growth with some humorous examples.
 {panel end}
 
@@ -114,7 +114,7 @@ If you've studied algorithms, you will have learnt that some sorting algorithms,
 
 Here we're going to consider another possible sorting algorithm, called *permutation sort*. Permutation sort says “Let’s list all the possible orderings (“permutations”) of the values to be sorted, and check each one to see if it is sorted, until the sorted order is found”.  This algorithm is straightforward to describe, but is it any good?
 
-{panel="teacher" summary="Permutation sort isn't any use in practice!"}
+{panel type="teacher-note" summary="Permutation sort isn't any use in practice!"}
 
 Note that permutation sort is *not* a reasonable way to sort at all; it's just an idea to help us think about tractability. It should be obvious to students fairly quickly that it's grossly inefficient. The main thing is that is does produce the correct result, so it's an extreme example of an algorithm that works correctly, yet is way too inefficient (intractable) to be useful.
 
@@ -161,7 +161,7 @@ red, yellow, green, blue
 
 They do not need to be in any particular order, although a systematic approach is recommended to ensure you don’t forget any!
 
-{panel="teacher" summary="Solution"}
+{panel type="teacher-note" summary="Solution"}
 
 For four different words, there will be 4x3x2x1 = 24 different orders for them. For example, there are 6 starting with "red", 6 starting with "blue", and so on.
 
@@ -171,7 +171,7 @@ Once your list of permutations is complete, search down the list for the one tha
 
 Now add another word. How many possible orderings will there be with 5 words? What about with only 2 and 3 words --- how many orderings are there for those? If you gave up on writing out all the orderings with 5 words, can you now figure out how many there might be? Can you find a pattern? How many do you think there might be for 10 words? (You don’t have to write them all out!).
 
-{panel="teacher" summary="Solution"}
+{panel type="teacher-note" summary="Solution"}
 
 The number of orderings (permutations) for n words is the factorial of n; this is explained below, but basically there are n choices for the first word, n-1 for the next, and so on. For example, for 15 words, there are 15 x 14 x 13 x 12 x ... x 1 permutations, which is 1,307,674,368,000. It's a big number!
 
@@ -216,7 +216,7 @@ As a final exercise on permutation sort, calculate how long a computer would tak
 - How many orderings can be checked in a year?
 - How many years will checking all the orderings take?
 
-{panel="teacher" summary="Solution"}
+{panel type="teacher-note" summary="Solution"}
 
 The number of orderings for 100 numbers is 100!, which is 93, 326, 215, 443, 944, 152, 681, 699, 238, 856, 266, 700, 490, 715, 968, 264, 381, 621, 468, 592, 963, 895, 217, 599, 993, 229, 915, 608, 941, 463, 976, 156, 518, 286, 253, 697, 920, 827, 223, 758, 251, 185, 210, 916, 864, 000, 000, 000, 000, 000, 000, 000, 000.
 
@@ -232,7 +232,7 @@ And as an interesting thing to think about, do some calculations based on the as
 - The universe has another 14 billion years before it ends
 - Suppose every atom in the universe is a computer that can check an ordering every nanosecond
 
-{panel="teacher" summary="Solution"}
+{panel type="teacher-note" summary="Solution"}
 
 In the above example, the universe would end before the 100 numbers have been sorted!
 
@@ -271,7 +271,7 @@ The Towers of Hanoi is one problem where we know for sure that it will take expo
 
 ## Tractability
 
-{panel="teacher" summary="Working with big numbers"}
+{panel type="teacher-note" summary="Working with big numbers"}
 
 The following section relies on students using the built-in interactive to experiment with the calculations on the huge numbers that come up with the intractable problems. This may be best run as a class activity where students are guided through calculating the stupendously big numbers that come up, and they should be encouraged to appreciate how impractical the amount of time taken by a program would be --- for example, a program that takes a million years to find a solution won't be of any interest to the person who started it running, and even if a computer turned up that is 1000 times as fast, it would still take 1000 years to complete. Some of the times that turn up below are so long that they are beyond our ability to imagine, and are best illustrated by seeing how futile the times are even with 1000, a million or even a billion times the computing power.
 
@@ -291,7 +291,7 @@ For example, try choosing the factorial time for the TSP, and put in 20 for the 
 Press the return or tab key to update the calculation.
 The calculator will show a large number of seconds that the program will take to run; you can change the units to years to see how long this would be.
 
-{panel="teacher" summary="Solution"}
+{panel type="teacher-note" summary="Solution"}
 
 With the initial settings in the interactive, the TSP for 20 places will take 2,432,902,008,176,640,000.00 seconds, which is 773,056,638.51 centuries (note that the calculator needs to be set to n! to apply to the TSP). By the way, we're giving very precise numbers here just so that you know you have the right calculations in place; in practice the estimate is very crude, and rather than 773,056,638.51 centuries, it's just as accurate to say "about 770 million centuries", or even just "hundreds of millions of centuries". It may be more meaningful to students it this is converted to some geological time frame.
 
@@ -301,7 +301,7 @@ With the initial settings in the interactive, the TSP for 20 places will take 2,
 
 So far the calculation assumes that the computer would only do 1 operation per second; try changing to a million (1,000,000) operations per second, which is more realistic, and see how long that would take.
 
-{panel="teacher" summary="Solution"}
+{panel type="teacher-note" summary="Solution"}
 
 When the computer is a million times faster, the time for TSP on 20 places reduces from 773,056,638.51 centuries to 773.06 centuries. It's still completely impractical!
 
@@ -310,7 +310,7 @@ When the computer is a million times faster, the time for TSP on 20 places reduc
 Another way to solve problems faster is to have multiple processors work on different solutions at the same time.
 If you were to buy 1,000 processors (e.g. 1,000 computers, or 250 4-core computers) and have each one test out different routes, then the solution could be found 1,000 times faster. Try changing the number of processors to 1,000, and see how long that would take (you may need to change the units back --- is it seconds? hours? days?)
 
-{panel="teacher" summary="Solution"}
+{panel type="teacher-note" summary="Solution"}
 
 1,000 processors reduces the running time to 77.31 years. That's still too much computing power to be practical, but it's starting to get into the region where it's not completely impossible.
 
@@ -321,7 +321,7 @@ Let's assume that we have a *very* fast computer, faster than any that exist.
 Try putting in the assumption that the computer can do a million million (1,000,000,000,000) steps per second.
 Is that achievable? But what if you add just two more locations to the problem (i.e. n=22 instead of n=20)?
 
-{panel="teacher" summary="Solution"}
+{panel type="teacher-note" summary="Solution"}
 
 This incredibly high speed would reduce the time to 40.55 seconds. However, increasing the problem to just 22 cities blows it out again to 13.01 days. The main point is that even if you get a massively fast bank of computers that can solve a particular problem, just adding a few items to the problem will put it out of reach again.
 
@@ -333,7 +333,7 @@ Now put in 10 million for *n* --- although it's sorting a list 10 times as big, 
 At what value of *n* does the amount of time become out of the question --- that is, how large would the problem need to be for it to take years to finish?
 Is anyone ever likely to be sorting this many values --- for example, what if for some reason you were sorting the name of every person in the world, or every base in the human genome?
 
-{panel="teacher" summary="Solution"}
+{panel type="teacher-note" summary="Solution"}
 
 The {math}n^2{math end} algorithm with 10 million items takes 100 seconds above (each time n is multiplied by 10, it will take 100 times as long).
 
@@ -343,7 +343,7 @@ When n is a thousand million, it takes nearly 12 days, at which point you might 
 
 What about an algorithm with complexity of {math}n^3{math end}? What's the largest size input that it can process in a reasonable amount of time?
 
-{panel="teacher" summary="Solution"}
+{panel type="teacher-note" summary="Solution"}
 
 The {math}n^3{math end} algorithm can process 1,000,000 items in 11.57 days. A million is nothing near the population of the world, or even a lot of countries, but a lot of real life problems are smaller than that.
 
@@ -353,7 +353,7 @@ Now try the same when the number of steps is {math}2^n{math end}, but start with
 You'll probably find that for an input of about 70 items it will take an unreasonable amount of time.
 Is it much worse for 80 items?
 
-{panel="teacher" summary="Solution"}
+{panel type="teacher-note" summary="Solution"}
 
 The {math}2^n{math end} algorithm is in a completely different league to the previous ones. 10 items take a fraction of a second (1.02 nanoseconds to be precise), and 60 items take 13.34 days, but just 70 items blows out to 37.51 years, and 80 items takes 384 centuries. Small increases in the number of items (eg. cities for the TSP to visit) result in HUGE increases in the time taken to evaluate them all.
 
@@ -361,7 +361,7 @@ The {math}2^n{math end} algorithm is in a completely different league to the pre
 
 Now try increasing the number of operations per second to 10 times as many. Does this help to solve bigger problems?
 
-{panel="teacher" summary="Solution"}
+{panel type="teacher-note" summary="Solution"}
 
 10 times faster reduces 384 centuries to 38.4 centuries - much faster, but it is still an impossibly large amount of time. The lesson is that the algorithm will be so slow that even massive improvements in hardware won't have a useful impact.
 
@@ -426,7 +426,7 @@ Current algorithms for finding the optimal TSP solution aren't a lot better than
 While TSP was originally identified as being the problem that sales people face when driving to several different locations and wanting to visit them in the order that leads to the shortest route (less petrol usage), the same problem applies to many other situations as well.
 Courier and delivery companies have variants of this problem --- often with extra constraints such as limits on how long a driver can work for, or allowing for left hand turns being faster than right-hand ones (in NZ at least!)
 
-{panel="teacher" summary="More on the TSP"}
+{panel type="teacher-note" summary="More on the TSP"}
 
 There is an extensive website about the state of the art for the TSP at [http://www.tsp.gatech.edu/](http://www.tsp.gatech.edu/) . This includes games and information about the current largest solved problem (which typically take months or years to run on very powerful computers).
 
@@ -448,8 +448,7 @@ An interesting thing with intractability is that you can have two very similar p
 By the way, finding the *longest* path between two points (without going along any route twice) is also intractable, even though finding the *shortest* path is tractable!
 
 
-{panel="project" summary="The craypots problem"}
-
+{panel type="project" summary="The craypots problem"}
 
 This project is based around a scenario where there is a cray fisher who has around 18 craypots that have been laid out in open water. Each day the fisher uses a boat to go between the craypots and check each one for crayfish.
 
@@ -516,7 +515,7 @@ Find a craypot layout that results in the greedy algorithm finding what seem to 
 
 Don't forget to include an introductory paragraph in your report that outlines the key ideas. It should include a brief description of what an intractable problem is, and how a computer scientist goes about dealing with such a problem. The report should also describe the Travelling Salesman Problem and the craypot problem in your own words. Explain why the craypot problem is a realistic problem that might matter to someone.
 
-{end panel}
+{panel end}
 
 {comment}
 
@@ -526,7 +525,7 @@ Don't forget to include an introductory paragraph in your report that outlines t
 
 ## Other intractable problems
 
-{panel="teacher" summary="Under construction"}
+{panel type="teacher-note" summary="Under construction"}
 
 More material on the many intractable problems that exist is yet to be written, but in the meantime, here are some alternatives to the TSP problem that can be used to explore intractability if you have students who can work on this independently.
 
