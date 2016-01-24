@@ -255,10 +255,7 @@ Use the scales to compare the boxes (you can only compare two boxes at a time) a
 
 If the interactive does not run properly on your computer you can use a set of physical balance scales instead; just make sure you can only tell if one box is heavier than the other, not their exact weight (so not digital scales that show the exact weight).
 
-{button link="http://www.csfieldguide.org.nz/_static/interactives/alg/sorting/index.html" text="Scales Interactive"}
-{comment}
-{interactive name="sorting-boxes" type="whole-page" text="Algorithm Sorting interactive"}
-{comment end}
+{interactive name="sorting-algorithms" type="whole-page" text="Scales Interactive"}
 
 {comment}
 TODO: link back to the unplugged activity
@@ -334,10 +331,7 @@ Insertion and Selection Sort may seem like logical ways to sort things into orde
 
 A much better sorting algorithm is {glossary-link term="quicksort"}Quicksort!{glossary-link end} (the name is a bit of a giveaway)
 
-{button link="http://www.csfieldguide.org.nz/_static/interactives/alg/sorting/index.html?method=quick" text="Quicksort Interactive"}
-{comment}
-{interactive name="sorting-boxes" type="whole-page" text="Quicksort interactive" parameters="method=quick"}
-{comment end}
+{interactive name="sorting-algorithms" type="whole-page" text="Quicksort interactive" parameters="method=quick" thumbnail="thumbnail-quick.png"}
 
 This algorithm is a little more complicated, but is very powerful. To do this algorithm with the sorting interactive, start by randomly choosing a box and placing it on the scales. Now compare every other box to the one you selected; heavier boxes should be put on the right of the second row and lighter boxes are put on the left. When you are done, place the box you were comparing everything else to between these two groups, but to help you keep track of things, put it in the row below. The following example shows how it might look after this step. Note that the selected block is in the right place for the final sorted order, and everything on either side will remain on the side that it is on.
 
