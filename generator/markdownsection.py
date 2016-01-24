@@ -213,6 +213,9 @@ class Section:
                     caption_html = self.html_templates['link'].format(link_url=caption_link_value, link_text=caption_value)
                 else:
                     caption_html = caption_value
+                # Add caption as data value attribute to display in materialbox
+                parameters += ' '
+                parameters += self.html_templates['image-caption-data-value'].format(caption=caption_value)
 
             # Parse source argument
             source_value = parse_argument('source', arguments)
@@ -349,9 +352,23 @@ class Section:
 
             button_text = self.html_templates['button-download-text'].format(text=text)
             html = self.html_templates['button'].format(link=output_path, text=button_text)
-            html = self.html_templates['centered'].format(html=html)
+            # html = self.html_templates['centered'].format(html=html)
         else:
             self.regex_functions['file download button'].log("File filename argument not provided", self, match.group(0))
+        return html if html else ''
+
+
+    def create_link_button(self, match):
+        """Create a button for linking to a page"""
+        arguments = match.group('args')
+        link = parse_argument('link', arguments)
+        text = parse_argument('text', arguments)
+
+        if link and text:
+            html = self.html_templates['button'].format(link=link, text=text)
+            # html = self.html_templates['centered'].format(html=html)
+        else:
+            self.regex_functions['link button'].log("Button parameters not valid", self, match.group(0))
         return html if html else ''
 
 

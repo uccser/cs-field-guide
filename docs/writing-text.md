@@ -204,20 +204,23 @@ Check out [Google's website](https://www.google.com).
 
 #### Image links
 
-You can link an image to a specific URL using the basic link syntax with the image syntax within the square brackets. See the example below:
-
-```no-highlight
-Enjoy this amusing XKCD comic on Python.
-
-[{image filename="xkcd-python.png"}](http://xkcd.com/353/)
-```
-
-Enjoy this amusing XKCD comic on Python.
-
-![XKCD Python Comic](http://imgs.xkcd.com/comics/python.png)
+Images should now be linked using the `caption-link` and `source` arguments within the [images](#images) syntax. Direct links when clicking an image are no longer allowed as it's inconsistent to other images using the `materialbox` feature from MaterialCSS.
 
 ---
 
+
+#### Button links
+
+You can create a link on a button using the following syntax:
+
+```
+{button link="http://www.google.com" text="Visit Google"}
+```
+**Parameters:**
+- `link` - The URL to link to.
+- `text` - Text to display on the button.
+
+---
 
 ### Code
 
