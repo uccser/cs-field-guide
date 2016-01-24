@@ -18,7 +18,7 @@ Computer graphics are used in a wide variety of situations: games and animated m
 {comment} Talk about visualisation of data - any nice examples?{comment end}
 
 {panel type="jargon-buster" summary="Pixels"}
-{glossary-definition term="pixel" definition="This term is an abbreviation of *picture element*, the name given to the tiny squares that make up a grid that is used to represent images on a computer."}
+{glossary-definition term="Pixel" definition="This term is an abbreviation of *picture element*, the name given to the tiny squares that make up a grid that is used to represent images on a computer."}
 A digital image on a screen or printer is physically made up of a grid of tiny squares called
 {glossary-link term="pixel" reference-text="definition"}pixels{glossary-link end}.
 They are usually too small to see easily (otherwise the image would look blocky).
@@ -33,7 +33,6 @@ In this chapter we'll look at some of the basic techniques that are used to crea
 For this chapter we are using a system called WebGL which can render 3D graphics in your browser. If your browser is up to date everything should be fine. If you have issues, or if the performance is poor, there is [information here about how to get it going](appendices/webgl_help.html).
 
 ## Graphics transformations
-
 
 A computer graphics image is just the result of a whole lot of mathematical calculations. In fact, every pixel you see in an image has usually had many calculations made to work out what colour it should be, and there are often millions of pixels in a typical image.
 
@@ -571,8 +570,7 @@ End of WebGL project
 
 
 {comment}
-.. Colour models
-.. =====================================================
+.. ## Colour models
 
 .. this section is yet to be written
 
@@ -601,7 +599,7 @@ If the system only stored the pixels for the letter shape, then zooming in would
 
 In 3D graphics shapes are often stored using lines and curves that mark out the edges of tiny flat surfaces (usually triangles), each of which is so small that you can't see them unless you zoom right in.
 
-{image filename="gr-Dolphin_triangle_mesh.png"}
+{image filename="dolphin-triangle-mesh.png"}
 {comment}
 Public domain image: https://en.wikipedia.org/wiki/Triangle_mesh#/media/File:Dolphin_triangle_mesh.png
 {comment end}
@@ -630,27 +628,25 @@ You can try this by colouring in squares on a grid, such as the one below (they 
 We'll identify the pixels on the grid using two values, (*x*,*y*), where *x* is the distance across from the left, and *y* is the distance up from the bottom.
 The bottom left pixel below is (0,0), and the top right one is (19,19).
 
-
 On the following grid, try to draw these straight lines by filling in pixels in the grid:
 
 - from  (2, 17) to (10, 17)
 - from  (18, 2) to (18, 14)
 - from  (1, 5)  to (8, 12)
 
-{image filename="computer-graphics/20grid.png" alt="Grid for drawing line from A to B"}
+{image filename="grid-20x20-blank.png" alt="Grid for drawing line from A to B"}
 
 {comment}
 
-.. xHTML5 long term the grids in this section could be interactive, click on each pixel, and get it to check if the line is correct
+.. xHTML5 The grids in this section could be interactive, click on each pixel, and get it to check if the line is correct
 
 {comment end}
 
 {panel type="teacher-note" summary="Solution"}
 
-
 The above three lines are easy to draw as they are horizontal, vertical and diagonal.
 
-{image filename="computer-graphics/20grid-answer.png" alt="Answer for previous question on grid"}
+{image filename="grid-20x20-answer-1.png" alt="Answer for previous question on grid"}
 
 {panel end}
 
@@ -658,16 +654,14 @@ Drawing a horizontal, vertical or diagonal line like the ones above is easy; it'
 
 Without using a ruler, can you draw a straight line from A to B on the following grid by colouring in pixels?
 
-
-{image filename="computer-graphics/20grid-ab.png" alt="Grid for drawing line from A to B"}
+{image filename="grid-20x20-diagonal-question.png" alt="Grid for drawing line from A to B"}
 
 Once you have finished drawing your line, try checking it with a ruler. Place the ruler so that it goes from the centre of A to the centre of B. Does it cross all of the pixels that you have coloured?
 
 ### Using a formula to draw a line
 
-{glossary-definition term="slope" definition="This is a way of expressing the angle or gradient of a line. The slope is simply how far up the line goes for every unit we move to the right. For example, if we have a line with a slope of 2, then after moving 3 units to the right, it will have gone up 6 units. A line with a slope of 0 is horizontal.
-Normally the slope of a line is represented using the symbol
-{math}m{math end}."}
+{glossary-definition term="Slope" definition="This is a way of expressing the angle or gradient of a line. The slope is simply how far up the line goes for every unit we move to the right. For example, if we have a line with a slope of 2, then after moving 3 units to the right, it will have gone up 6 units. A line with a slope of 0 is horizontal.
+Normally the slope of a line is represented using the symbol {math}m{math end}."}
 The mathematical formula for a line is {math}y = mx + c{math end}.
 This gives you the *y* value for each *x* value across the screen,
 and you get to specify two things: the
@@ -740,11 +734,13 @@ For the next question, this can be put into a spreadsheet to give the values for
 Now draw the same line as in the previous section (between A and B) using the formula {math}y = mx + c{math end} to calculate {math}y{math end} for each value of {math}x{math end} from {math}x_1{math end} to {math}x_2{math end} (you will need to round {math}y{math end} to the nearest integer to work out which pixel to colour in).
 If the formulas have been applied correctly, the {math}y{math end} value should range from  {math}y_1{math end} to {math}y_2{math end}.
 
-{image filename="computer-graphics/20-grid-ab.png" alt="Grid for drawing line from A to B"}
+{image filename="grid-20x20-diagonal-question.png" alt="Grid for drawing line from A to B"}
 
 {panel type="teacher-note" summary="Solution"}
+
 The following image shows which pixels would be coloured in (rounding the coordinates above to the nearest integer).
-{image filename="computer-graphics/20-grid-ab-answer.png" alt="Grid for drawing line from A to B"}
+{image filename="grid-20x20-diagonal-answer.png" alt="Grid for drawing line from A to B"}
+
 {panel end}
 
 Once you have completed the line, check it with a ruler. How does it compare to your first attempt?
@@ -778,7 +774,7 @@ To draw the line, fill the starting pixel, and then for every position along the
 
 Without using a ruler, use Bresenham's Line Algorithm to draw a straight line from A to B:
 
-{image filename="computer-graphics/20grid-ab.png" alt="Grid for drawing line from A to B"}
+{image filename="grid-20x20-diagonal-question.png" alt="Grid for drawing line from A to B"}
 
 Once you have completed the line, check it with a ruler. How does it compare to the previous attempts?
 
@@ -811,7 +807,7 @@ So far the version of Bresenham's line drawing algorithm that you have used only
 - If a line is sloping downward instead of sloping upward, then when P is 0 or greater, draw the next column's pixel one row *below* the previous pixel, instead of above it.
 - If the change in {math}y{math end} value is greater than the change in {math}x{math end} value (which means that the slope is more than 1), then the calculations for A, B, and the initial value for P will need to be changed. When calculating A, B, and the initial P, use X where you previously would have used Y, and vice versa. When drawing pixels, instead of going across every column in the X axis, go through every row in the Y axis, drawing one pixel per row.
 
-{image filename="computer-graphics/20grid.png" alt="Grid for drawing line"}
+{image filename="grid-20x20-blank.png" alt="Grid for drawing line"}
 
 In the grid above, choose two points of your own that are unique to you.
 Don't choose points that will give horizontal, vertical or diagonal lines!
@@ -835,7 +831,7 @@ An algorithm similar to Bresenham's line drawing algorithm, called the Midpoint 
 
 A circle is defined by a centre point, and a radius. Points on a circle are all the radius distance from the centre of the circle.
 
-{image filename="computer-graphics/20grid-cr.png" alt="Grid for drawing a circle"}
+{image filename="grid-20x20-circle-question.png" alt="Grid for drawing a circle"}
 
 Try to draw a circle by hand by filling in pixels (without using a ruler or compass). Note how difficult it is to make the circle look round.
 
@@ -870,12 +866,12 @@ Repeat the following rules in order until {math}Y{math end} becomes greater than
 Follow the rules to draw a circle on the grid, using ({math}c_{x}{math end}, {math}c_{y}{math end})  as the centre of the circle, and {math}R{math end} the radius.
 Notice that it will only draw the start of the circle and then it stops because {math}Y{math end} is greater than {math}X{math end}\ !
 
-{image filename="computer-graphics/20grid-cr.png" alt="Grid for drawing a circle"}
+{image filename="grid-20x20-circle-question.png" alt="Grid for drawing a circle"}
 
 {panel type="teacher-note" summary="Solution"}
 In the following diagram, the black pixels below represent the initial octant of the circle drawn by the algorithm above, the darker gray pixels represent reflection along the {math}X{math end} and {math}Y{math end} axis (details are given below), and the lighter gray pixels represent the reflection along a diagonal (see also below).
 
-{image filename="computer-graphics/20grid-cr-answer.png" alt="Solution for drawing a circle"}
+{image filename="grid-20x20-circle-answer.png" alt="Solution for drawing a circle"}
 
 The values in the calculation for the above example are:
 
