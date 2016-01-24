@@ -553,6 +553,7 @@ class Section:
         arguments = match.group('args')
         term = parse_argument('term', arguments)
         definition = parse_argument('definition', arguments)
+        definition = markdown(definition, extras=MARKDOWN2_EXTRAS)
 
         permalink = self.create_permalink('glossary-' + term)
 
@@ -602,6 +603,7 @@ class Section:
 
     def add_glossary(self, match):
         glossary = self.guide.glossary
+        self.mathjax_required = True
         glossary_temp = self.html_templates['glossary']
         items = ''
         for term in sorted(glossary.items.keys()):
