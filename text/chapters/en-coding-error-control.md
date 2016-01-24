@@ -1,9 +1,5 @@
 # Coding - Error Control
 
-{panel type="teacher-note" summary="Curriculum Guides for Error Control"}
-TODO
-{panel end}  
-
 ## What's the big picture?
 
 {panel type="teacher-note" summary="Using the parity trick in a classroom"}
@@ -23,7 +19,7 @@ This chapter is about guarding against errors in data in its many different form
 
 If we don't detect that data has been changed by some physical problem (such as small scratch on a CD, or a failing circuit in a flash drive), the information will just be used with incorrect values. A very poorly written banking system could potentially result in your bank balance being changed if just one of the bits in a number was changed by a cosmic ray affecting a value in the computer's memory! If the barcode on the packet of chips you buy from the shop is scanned incorrectly, you might be charged for shampoo instead. If you transfer a music file from your laptop to your mp3 player and a few of the bits were transferred incorrectly, the mp3 player might play annoying glitches in the music. Error control codes guard against all these things, so that (most of the time) things just work without you having to worry about such errors.
 
-There are several ways that data can be changed accidentally. Networks that have a lot of "noise" on them (caused by poor quality wiring, electrical interference, or interference from other networks in the case of wireless). The bits on disks are very very small, and imperfections in the surface can eventually cause some of the storage to fail. The surfaces on compact disks and DVDs are exposed, and can easily be damaged by storage (e.g. in heat or humidity) and handling (e.g. scratches or dust). Errors can also occur when numbers are typed in, such as entering a bank account number to make a payment into, or the number of a container that is being loaded onto a ship. A barcode on a product might be slightly scratched or have a black mark on it, or perhaps the package is bent or is unable to be read properly due to the scanner being waved too fast over it. Bits getting changed on permanent storage (such as hard drives, optical disks, and solid state drives) is sometimes referred to as bit rot, and the [wikipedia page on bit rot](http://en.wikipedia.org/wiki/Bit_rot) has a list of more ways that these errors can occur.
+There are several ways that data can be changed accidentally. Networks that have a lot of "noise" on them (caused by poor quality wiring, electrical interference, or interference from other networks in the case of wireless). The bits on disks are very very small, and imperfections in the surface can eventually cause some of the storage to fail. The surfaces on compact disks and DVDs are exposed, and can easily be damaged by storage (e.g. in heat or humidity) and handling (e.g. scratches or dust). Errors can also occur when numbers are typed in, such as entering a bank account number to make a payment into, or the number of a container that is being loaded onto a ship. A barcode on a product might be slightly scratched or have a black mark on it, or perhaps the package is bent or is unable to be read properly due to the scanner being waved too fast over it. Bits getting changed on permanent storage (such as hard drives, optical disks, and solid state drives) is sometimes referred to as data rot, and the [wikipedia page on bit rot](https://en.wikipedia.org/wiki/Data_degradation) has a list of more ways that these errors can occur.
 
 Nobody wants a computer that is unreliable and won’t do what it's supposed to do because of bits being changed! So, how can we deal with these problems?
 
@@ -39,7 +35,7 @@ By the end of this chapter, you should understand the basic idea of error contro
 
 ## The Parity Magic Trick
 
-If you have never seen the parity magic trick before, check out the video in the “What’s the Bigger Picture?” section above. This section assumes that you know what is meant by the parity magic trick, but now we'll explain how it actually works!
+If you have never seen the parity magic trick before, check out the video in the “What’s the Big Picture?” section above. This section assumes that you know what is meant by the parity magic trick, but now we'll explain how it actually works!
 
 {image filename="parity-trick-cartoon.jpg" alt="The parity magic trick"}
 
@@ -67,7 +63,8 @@ What we saw above is a simple error control coding algorithm, known as *2-dimens
 The cards represent bits, with their two states being black and white (in the "data representation" chapter we looked at how a bit can be stored by anything that can be in one of two states: shiny/not shiny, magnetised/not magnetised, high voltage/low voltage, black/white, etc). The original 7x7 cards that the computer laid out for you could be some kind of data, for example some text represented using bits, or an image, or some numbers.
 Although they are laid out in a grid, on a computer the rows of bits would be stored or transmitted one after the other (as 8 lots of 8 bits).
 
-The extra cards you added are called *parity bits*. Parity simply means whether a number is even or odd (the word comes from the same root as "pair"). By adding the extra cards in a way that ensured an even number of black cards in each row and column, you made it so that the rows and columns had what is called *even parity*.
+The extra cards you added are called *parity bits*. [Parity](https://en.wikipedia.org/wiki/Parity_(mathematics))
+simply means whether a number is even or odd (the word comes from the same root as "pair"). By adding the extra cards in a way that ensured an even number of black cards in each row and column, you made it so that the rows and columns had what is called *even parity*.
 
 When a card was flipped, this simulated an error being made in your data (such as a piece of dust landing on a bit stored on a CD, or a cosmic ray changing a bit stored on a hard disk, or electrical interference changing a bit being sent over a network cable). Because you knew that each row and column was supposed to have an even number of black and white cards in it, you could tell that there was an error from the fact that there was a column and row that had an odd number of black cards in it. This means that the algorithm is able to detect errors, i.e. it has **error detection**. The specific card that had been flipped was at the intersection of the row and column that had an odd number of black cards and white cards in them, and because you were able to identify exactly which card was flipped, you were able to correct the error, i.e the algorithm has **error correction**.
 
@@ -91,7 +88,7 @@ To make it more showy, you can pretend that you are mind reading the person, wav
 
 ### Analysing the parity trick
 
-{panel type="teacher-note" summary="This section is for keen students, and it works for most ages"}
+{panel type="teacher-note" summary="This section contains extension material"}
 This section is an extension aimed at keen students. Primary school kids have been able to understand many of these ideas, although it really depends on how engaged the students are with the material.
 {panel end}
 
@@ -129,76 +126,60 @@ There's also no limit on the size. You could create a 10x10 grid (100 cards), an
 
 You probably wouldn’t be very happy if you bought a book online by entering the ISBN (International Standard Book Number), and the wrong book was sent to you, or if a few days after you ordered it, you got an email saying that the credit card number you entered was not yours, but was instead one that was one digit different and another credit card holder had complained about a false charge. Or if you went to the shop to buy a can of drink and the scanner read it as being a more expensive product. Sometimes, the scanner won’t even read the barcode at all, and the checkout operator has to manually enter the number into the computer --- but if they don't enter it exactly as it is on the barcode you could end up being charged for the wrong product. These are all examples of situations that error control coding can help prevent.
 
-Barcode numbers, credit card numbers, ISBNs, the NHI (National Health Index, the unique identifier given to all users of the NZ health system), IRD numbers (Inland Revenue Department number for all NZ taxpayers) all have error control coding in them to help reduce the chance of errors. The last digit in each of these numbers is a check digit, which is obtained doing a special calculation on all the other digits in the number. If for example you enter your credit card number into a web form to buy something, it will calculate what the 16th digit should be, using the first 15 digits and the special calculation (there are 16 digits in a credit card number). If the 16th digit that it expected is not the one you entered, it can tell that there was an error made when the number was entered and will notify you that the credit card number is not valid.
+Barcode numbers, credit card numbers, bank account numbers, ISBNs, national health and social security numbers and tax numbers all have error control coding in them to help reduce the chance of errors. The last digit in each of these numbers is a check digit, which is obtained doing a special calculation on all the other digits in the number. If for example you enter your credit card number into a web form to buy something, it will calculate what the 16th digit should be, using the first 15 digits and the special calculation (there are 16 digits in a credit card number). If the 16th digit that it expected is not the one you entered, it can tell that there was an error made when the number was entered and will notify you that the credit card number is not valid.
 
 In this section we will be initially looking at one of the most commonly used barcode number formats used on most products you buy from supermarkets and other shops.  We will then be having a look at credit card numbers. You don’t have to understand *why* the calculations work so well (this is advanced math, and isn’t important for understanding the overall ideas), and while it is good for you to know what the calculation is, it is not essential. So if math is challenging and worrying for you, don’t panic too much because what we are looking at in this section isn’t near as difficult as it might initially appear!
 
 ### Check Digits On Product Barcodes
 
-{comment}
-
-The following interactives are to be used in this section once the text is re-written to match.
-
-{comment end}
-
-{interactive name="number-generator" type="in-page"}
-
-{interactive name="checksum-calculator" type="in-page"}
-
 Most products you can buy at the shop have a barcode on them with a 13 digit global trade item number (referred to as GTIN-13). The first 12 digits are the actual identification number for the product, the 13th is the check digit calculated from the other 12. Not all barcodes are GTIN-13, there are several others around. If the barcode has 13 numbers in it, it is almost certainly GTIN-13.
 
 {image filename="isbn-barcode.png" alt="An image of a 13 digit barcode"}
 
-The following spreadsheet checks GTIN-13 barcodes. Enter a barcode number into the interactive, and it will tell you whether or not you typed it correctly! Start by using the barcode number of a box of 30 cans of coke; “9 300675 036009”. What happens if you then change one digit to something else?
+The following interactive checks GTIN-13 barcodes. Enter a barcode number into the interactive, and it will tell you whether or not you typed it correctly! Start by using the barcode number “9 300675 036009”. What happens if you then change one digit to something else?
 
 {comment}
-
-.. xjrm spreadsheet to be replaced with interactive
-
+****** interactive to check Barcode (without putting in multipliers) here
+(or else explanation below on how to calculate code needs to be copied up)
 {comment end}
 
+{comment}
+spreadsheet to be replaced with interactive
 <p><a href="static/interactives/ec/isbncreditcardcheckerv2.xlsx">Click here to download the spreadsheet.</a></p>
-
-{comment}
-
-.. ajb this widget seems to check ISBN numbers but is described as checking GTIN-13. Is this a mistake? Should it say “Click to load the barcode calculator”?
-
 {comment end}
 
-Have a look for another product that has a barcode on it, such as a food item from your lunch, or a stationery item. Your teacher might also bring various packaging that has barcodes on it for you to try. Note that some barcodes are a little different. Make sure the barcodes that you are using have 13 digits (although you might like to go and find out how the check digit works on some of the other ones). Hopefully you will find that the interactive is always able to determine whether or not you typed the barcode correctly!
+{panel type="teacher-note" summary="Getting more barcodes"}
+You could bring various packaging that has barcodes on it for the class to evaluate, or bring in photos of barcodes.
+{panel end}
 
-One of the following product numbers has one incorrect digit. Can you tell which of the products is wrong?
+Have a look for another product that has a barcode on it, such as a food item from your lunch, or a stationery item. Note that some barcodes are a little different. Make sure the barcodes that you are using have 13 digits (although you might like to go and find out how the check digit works on some of the other ones). Hopefully you will find that the interactive is always able to determine whether or not you typed the barcode correctly!
+
+One of the following product numbers has one incorrect digit. Can you tell which of the products has had its number typed incorrectly?
 
 - 9 400550 619775
 - 9 400559 001014
 - 9 300617 013199
 
-{teacher}
-
+{panel type="teacher-note" summary="Solution"}
 The last code has a typo in it; it should have been 9 300617 003199. Students should be able to detect that it is incorrect, but it isn't possible to work out what the correct value is.
-
-{teacher end}
+{panel end}
 
 If you were scanning the above barcodes in a supermarket, the incorrect one will need to be rescanned, and the system can tell that it's a wrong number without even having to look it up.
 
 You could try swapping barcode numbers with a classmate, but before giving them the number toss a coin, and if it's heads, change one digit of the barcode before you give it to them.
 Can they determine that they've been given an erroneous barcode?
 
-If one of the digits is incorrect, this calculation will produce a different value to the checksum, and signals an error. So single digit errors will always be detected, but what if two digits change --- will that always detect the error?
+If one of the digits is incorrect, this calculation will produce a different value to the checksum, and signals an error. So single digit errors will *always* be detected, but what if two digits change --- will that always detect the error?
 
-{teacher}
-
+{panel type="teacher-note" summary="Solution"}
 If two digits are changed, the error may go undetected; for example, changing 9 400559 001014 to 6 500559 001014 will still produce a checksum of 4, and appear to match. However, it's unlikely that two errors will counteract like this (students can investigate how often that will happen).
-
-{teacher end}
+{panel end}
 
 What if the error is in the checksum itself but not in the other digits - will that be detected?
 
-{teacher}
-
+{panel type="teacher-note" summary="Solution"}
 Some students might worry that there will be a problem if the checksum changes, but of course if it is typed in incorrectly, it won't match the sum for the other digits, and the error will be detected.
-
-{teacher end}
+{panel end}
 
 ### How do check digits protect against common human errors?
 
@@ -212,7 +193,7 @@ Some of the really common errors are:
 - Missing a digit
 - Adding a digit
 
-The last two will be picked up from the expected length of the number; for example,a GTIN-13 has 13 numbers, so if 12 or 14 were entered, the computer immediately knows this is not right. The first two depend on the check digit in order to be detected. Interestingly, all one digit errors will be detected by common checksum systems, and *most* transpositions will be detected (can you find examples of transpositions that aren’t detected, using the interactive above?)
+The last two will be picked up from the expected length of the number; for example,a GTIN-13 has 13 digits, so if 12 or 14 were entered, the computer immediately knows this is not right. The first two depend on the check digit in order to be detected. Interestingly, all one digit errors will be detected by common checksum systems, and *most* transpositions will be detected (can you find examples of transpositions that aren’t detected, using the interactive above?)
 
 There are also some less common errors that people make
 
@@ -223,27 +204,35 @@ There are also some less common errors that people make
 
 Experiment further with the interactives for the product barcodes and/or credit card numbers. What errors are picked up? What errors can you find that are not? Are the really common errors nearly always picked up? Can you find any situations that they are not? Try to find examples of errors that are detected and errors that are not for as many of the different types of errors as you can.
 
-{teacher}
+{panel type="teacher-note" summary="Likely errors"}
 
 Students may be tempted to do things like reverse all the digits, or completely rearrange them and show that the check digit remains the same and then claim it is a limitation of the algorithm, but this is not a good evaluation. They need to think about the algorithm under normal usage, e.g. a cashier entering a barcode number into a computer, a nurse entering an ID number of a patient, or somebody buying something online and entering their credit card number, and the errors they could realistically be expected to make. The errors listed above cover a good range, although they might think of more. Of course it is more important that the really common errors are picked up, but nice if the less common but still plausible ones are too. But remember that it would be more of an issue for the algorithm if it could not detect 1 digit being changed than if it could not detect 3 being changed for example. Dyslexia and related problems could be an interesting issue to consider, although it needs to be kept in proportion since most people are not dyslexic.
 
-{teacher end}
+{panel end}
 
-{teacher}
+{panel type="teacher-note" summary="Writing an error detection program"}
 
-Writing a program to calculate checksums is a good programming exercise. It can be made simple by having each digit entered separately, or part of the exercise could be to separate the digits. It's also not hard to create a spreadsheet to do these calculations.
+Getting students to write a program to calculate checksums is a good programming exercise. It can be made simple by having each digit entered separately, or part of the exercise could be to separate the digits. It's also not hard to create a spreadsheet to do these calculations.
 
-{teacher end}
+{panel end}
 
 ### How is the check digit on product barcodes calculated?
 
-The first 12 numbers of the barcode represent information such as the country origin, manufacturer, and an identifier for the product. The 13th digit is a check digit, it is calculated from the first 12 digits.
+
+
+The first 12 digits of the barcode represent information such as the country origin, manufacturer, and an identifier for the product. The 13th digit is a check digit, it is calculated from the first 12 digits.
+
+{interactive name="checksum-calculator" type="in-page"}
+*****
+
 
 So, given the first 12 digits of a barcode number, how is the 13th digit calculated? The following algorithm is used (also, see the example below).
 
 Multiply every second digit (starting with the second digit) by 3, and every other digit by 1 (so they stay the same).
 Add up all the multiplied numbers to obtain the *sum*.
 The check digit is whatever number would have to be added to the sum in order to bring it up to a multiple of 10 (i.e. the last digit of the sum should be 0). Or more formally, take the last digit of the sum and if it is 0, the check digit is 0. Otherwise, subtract the last digit from 10 to obtain the check digit.
+
+
 
 Lets look at an example to illustrate this algorithm. We want to confirm that the check digit that was put on the barcode of a bottle of coke was the correct one. Its barcode number is 9300675032247. The last digit, 7, is the check digit. So we take the first 12 digits and multiply them by 1 or 3, depending on their positions (9x1+3x3+0x1+0x3+6x1+7x3+5x1+0x3+3x1+2x3+2x1+4x3). We then add up all the multiplied numbers, obtaining a sum of 73. We want to add the check digit that will bring the sum up to the nearest multiple of 10, which is 80. This number is 7, which is indeed the check digit on the coke bottle’s barcode.
 
@@ -259,17 +248,27 @@ Multiply every second digit (starting with the second digit) by 3, and every oth
 Add up all the multiplied numbers to obtain the *sum*
 If the last digit of the sum is a 0, the number was entered correctly.
 
-{panel hint}
+{panel type="curiosity" summary="Working out a checksum in your head"}
 
-A quick way to add up a checksum that can be done in your head with some practice is to separate the numbers to be multiplied by 3, add them up, and then multiply by 3. For the example above (9300675032247) the two groups are 9+0+6+5+3+2+7 = 32 and 3+0+7+0+2+4= 16. So we add 32 + 16x3, which gives the total of 80 including the check digit.
+For 13-digit barcodes, a quick way to add up a checksum that can be done in your head (with some practice) is to separate the numbers to be multiplied by 3, add them up, and then multiply by 3. For the example above (9300675032247) the two groups are 9+0+6+5+3+2+7 = 32 and 3+0+7+0+2+4= 16. So we add 32 + 16x3, which gives the total of 80 including the check digit.
 
-{panel hint end}
+To make it even easier, for each of the additions you only need to note the last digit, as the other digits will never affect the final result.
+For example, the first addition above begins with 9+0+6, so you can say that it adds up to 5 (rather than 15) and still get the same result.
+The next digit (5) takes the sum to 0, and so on.
+This also means that you can group digits that add to 10 (like 1 and 9, or 5 and 5), and ignore them.
+For exam  ple, in the second group, 3+0+7 at the start adds up to 0, and the only sum that counts is 2+4, giving 6 as the total.
 
-{teacher}
+Finally, even the multiplication will be ok if you just take the last digit.
+In the example above, that means we end up working out 6x3 giving 8 (not 18); the original was 16x3 giving 48, but it's only the final 8 digit that matters.
 
-Good students should be able to recognise the relationship between the two algorithms. Because the 13th digit is in an odd numbered position, it is multiplied by 1 in the second algorithm before being added to the total. It was also effectively multiplied by 1 before being added to the total in the first algorithm. Because the check digit was chosen so that the last digit of the sum would be 0, it makes sense that a number in the second algorithm was correctly entered its sum also ends in 0.
+All these shortcuts can make it very easy to track the sum in your head.
+{panel end}
 
-{teacher end}
+{panel type="teacher-note" summary="Checking compared with calculating"}
+
+Good students should be able to recognise the relationship between the two algorithms (calculating the number compared with adding all 13 digits to do a check). Because the 13th digit is in an odd numbered position, it is multiplied by 1 in the second algorithm before being added to the total. It was also effectively multiplied by 1 before being added to the total in the first algorithm. Because the check digit was chosen so that the last digit of the sum would be 0, it makes sense that a number in the second algorithm was correctly entered its sum also ends in 0.
+
+{panel end}
 
 {comment}
 
@@ -279,9 +278,7 @@ Good students should be able to recognise the relationship between the two algor
 
 {comment end}
 
-{curiosity}
-
-**For Experts: Why does this algorithm work so well?**
+{panel type="extra-for-experts" summary="Why does this algorithm work so well?"}
 
 In order to be effective, the algorithm needs to ensure the multiplied digits will not add up to a multiple of 10 any more if the digits are changed slightly. The choice of multipliers affects how likely it is to detect small changes in the input. It's possible to analyse these mathematically to work out what sorts of errors can be detected.
 
@@ -366,7 +363,26 @@ Another error that people sometimes make is the jump transposition error. This i
 
 A pair of numbers that are two apart like this will always be multiplied by the same amount as each other, either 1 or 3. This means that the change in position of the numbers does not affect what they are multiplied by, and therefore what they contribute to the sum. So this kind of error will never be detected.
 
-{curiosity end}
+{panel end}
+{comment}End of extra-for-experts{comment end}
+
+{panel type="project" summary="Project with check sums"}
+
+The following interactive will generate random numbers of a chosen type (e.g. ISBN numbers for books).
+These numbers are random, and are not based on numbers for actual books (or bank accounts!)
+This means that you can do this project without having to ask people for their personal information such as credit card numbers (in fact, they shouldn't give you this information anyway!)
+
+Although the numbers from this interactive are random, their check digits are calculated using the appropriate method, so you can use them as examples for your project.
+Actually, not all of them will be correct, so one of your challenges is to figure out which are ok!
+
+{interactive name="number-generator" type="in-page"}
+
+Your project is to choose a checksum other than the 13-digit barcodes, and research how it is calculated (they all use slightly different multipliers).
+You should demonstrate how they work (using the following interactive if you want), and find out which of the numbers generated are incorrect.
+
+ISBN-10 is particularly effective, and you could also look into why that is.
+
+{interactive name="checksum-calculator" type="in-page"}
 
 {comment}
 
@@ -392,7 +408,7 @@ A pair of numbers that are two apart like this will always be multiplied by the 
 ### The whole story!
 
 The codes discussed in this chapter are all widely used, but the most widely used codes for data storage are more sophisticated because they need to deal with more complex errors than a single bit changing.
-For example, if a CD is scratched of a hard disk has a small fault, it's likely to affect many adjacent bits.
+For example, if a CD is scratched or a hard disk has a small fault, it's likely to affect many adjacent bits.
 These systems use codes based on more advanced mathematical concepts.
 The most widely used codes for storage and data transfer are [the Reed-Solomon codes](http://en.wikipedia.org/wiki/Reed_Solomon) and [Cyclic Redundancy Check (CRC)](http://en.wikipedia.org/wiki/CRC32).
 For human readable numbers such as bar codes, bank numbers, tax numbers, social security numbers and so on, [checksums](http://en.wikipedia.org/wiki/Checksum) are very common, and the [Luhn algorithm](http://en.wikipedia.org/wiki/Luhn_algorithm) is one of the more widely used.
@@ -404,7 +420,7 @@ The parity method is a form of [Hamming code](http://en.wikipedia.org/wiki/Hammi
 
 ###Useful Links
 - [CS Unplugged Parity Trick](http://csunplugged.org/error-detection)
-- [CS4FN](http:cs4fn.org) has a [free book](http://www.cs4fn.org/magic/) that contains the Parity Trick and a number of other tricks related to computer science.
+- [CS4FN](http://cs4fn.org) has a [free book](http://www.cs4fn.org/magic/) that contains the Parity Trick and a number of other tricks related to computer science.
 - Techradar has more [information about error detection and correction](http://www.techradar.com/news/computing/how-error-detection-and-correction-works-1080736)
 - [An explanation of error correcting codes](http://www.multiwingspan.co.uk/as1.php?page=error)
 - [A check digit calculator for common bar codes](http://www.gs1.org/barcodes/support/check_digit_calculator)
