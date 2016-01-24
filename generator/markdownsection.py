@@ -383,8 +383,8 @@ class Section:
         name = parse_argument('name', arguments)
         interactive_type = parse_argument('type', arguments)
         if name and interactive_type:
-            arg_title = parse_argument('title', arguments)
-            title = arg_title if arg_title else name
+            arg_text = parse_argument('text', arguments)
+            text = arg_text if arg_text else name
             arg_parameters = parse_argument('parameters', arguments)
             params = arg_parameters if arg_parameters else None
             source_folder = os.path.join(self.guide.generator_settings['Source']['Interactive'], name)
@@ -394,7 +394,7 @@ class Section:
                 if interactive_type == 'whole-page':
                     arg_thumbnail = parse_argument('thumbnail', arguments)
                     thumbnail = arg_thumbnail if arg_thumbnail else self.guide.generator_settings['Source']['Interactive Thumbnail']
-                    html = self.whole_page_interactive_html(source_folder, title, name, params, thumbnail, match)
+                    html = self.whole_page_interactive_html(source_folder, text, name, params, thumbnail, match)
                 elif interactive_type == 'in-page':
                     html = self.inpage_interactive_html(source_folder, name, match)
                 elif interactive_type == 'iframe':
@@ -423,10 +423,10 @@ class Section:
         return html
 
 
-    def whole_page_interactive_html(self, source_folder, title, name, params, thumbnail, match):
+    def whole_page_interactive_html(self, source_folder, text, name, params, thumbnail, match):
         """Return the html block for a link to an whole page interactive"""
         thumbnail_location = os.path.join(self.html_path_to_root, source_folder, thumbnail)
-        link_text = 'Click to load {title}'.format(title=title)
+        link_text = 'Click to load {text}'.format(text=text)
         folder_location = os.path.join(self.html_path_to_root, source_folder, self.guide.generator_settings['Source']['Interactive File'])
         file_link = "{location}?{parameters}".format(location=folder_location, parameters=params) if params else folder_location
         link_template = self.html_templates['interactive-external']
