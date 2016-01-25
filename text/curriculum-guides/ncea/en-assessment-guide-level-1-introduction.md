@@ -14,7 +14,26 @@ Each of these topics has a chapter in the Computer Science Field Guide.
 
 Currently, we provide two different assessment guides for algorithms (sorting and searching), and one for each of human computer interaction and programming languages. Note that students only need to follow one assessment guide for each of the three topics (i.e. they do not need to do both searching and sorting for the topic of algorithms).
 
+The advice below applies to the whole standard; advice specific to each topic is available through
+[the main NCEA index](curriculum-guides/ncea/index.html).
+
+
 ## Sorting vs Searching for Algorithms
+
+{comment}
+The following was removed from the algorithms chapter, and could be considered for integrating here, or deleted if already covered:
+**Key Concepts**
+- What an algorithm is and how it differs from the related concepts of programs and informal instructions.
+- That an algorithm has an associated cost, that this cost may be non-linear and is related to both running-time (of a program implementing the algorithm) and computational complexity.
+- That two algorithms may have different costs even if they solve the same problem and that this difference in costs can be non-linear.
+
+For students reports:
+- All of the algorithms in this chapter are suitable.
+- Programs which compare several of the algorithms in this chapter are available to download
+- **Achieved:** describe the differences between an algorithm, a program and informal instructions. Describe an algorithm and show understanding of the steps it involves. Report the cost of the algorithm for an input (one value of n).
+- **Merit:**  Explain the difference between an algorithm, a program and informal instructions. Report the cost of the algorithm for a range of different inputs (different values of n).
+- **Excellence:** Compare and contrast the concepts of an algorithm, a program and informal instructions. Report the cost of two different algorithms (for the same task) for a range of different values of *n* and talk about the differences in their costs.
+{comment end}
 
 For the topic of algorithms, students can demonstrate their understanding of algorithms and their costs by using either sorting algorithms or searching algorithms.
 

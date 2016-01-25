@@ -55,3 +55,19 @@ Finally you are going to show one other type of representation - the ASCII repre
 - Put a main heading for Data Representation (your report will also have main headings for Encoding and Human Computer Interaction) and subheadings for Representing Numbers and Representing Text. Be careful to put your explanations and examples under the correct headings.
 - Do not include large lists or tables, for example do not include an ASCII table or a list of binary number conversions.
 - This project should not take up more than 1 to 1½ pages in your report.
+
+{comment}
+Removed from chapter in section on negative numbers:
+{panel type="teacher-note" summary="xxxxxx"}
+Students can do this for merit, and they should also discuss why they choose the integer types they did.
+{panel end}
+{comment end}
+
+Removed from section on numbers in programming Languages
+{comment}
+{panel type="teacher-note" summary="xxxxxx"}
+
+This section is an alternative approach to doing a project with number representation which is appropriate if the students are using a text-based programming language that supports different types of integers. It involves writing programs that cause errors by overflowing the numbers, which can force them to work with quite large values!
+
+{panel end}
+{comment end}

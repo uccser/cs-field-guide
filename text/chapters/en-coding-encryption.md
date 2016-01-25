@@ -1,12 +1,5 @@
 # Coding - Encryption
 
-{panel type="teacher-note" summary="Curriculum Guides for Encryption"}
-
-- **New Zealand**:
- - [AS91371 (2.44)](assessment-guides/new-zealand/assessment-guide-level-2-introduction.html)
-
-{panel end}
-
 ## What's the big picture?
 
 Encryption is used to keep data secret. In its simplest form, a file or data transmission is garbled so that only authorised people with a secret "key" can unlock the original text.
@@ -17,7 +10,11 @@ An encryption system often consists of two computer programs: one to *encrypt* s
 
 Of course, we wouldn't need encryption if we lived in a world where everyone was honest and could be trusted, and it was ok for anyone to have access to all your personal information such as health records, online discussions, bank accounts and so on, and if you knew that no-one would interfere with things like aircraft control systems and computer controlled weapons. However, information is worth money, people value their privacy, and safety is important, so encryption has become fundamental to the design of computer systems. Even breaking the security on a traffic light system could be used to personal advantage.
 
-A big issue with encryption systems is people who want to break into them and decrypt messages without the key. Some systems that were used many years ago were discovered to be insecure because of attacks, so could no longer be used. It is possible that somebody will find an effective way of breaking into the widespread systems we use these days, which would cause a lot of problems.
+{panel type="curiosity" summary="A case of hacking traffic lights"}
+An interesting example of the value of using encryption outside of secret messages is the two engineers who were convicted of changing traffic light patterns to cause chaos during a strike [http://latimesblogs.latimes.com/lanow/2009/12/engineers-who-hacked-in-la-traffic-signal-computers-jamming-traffic-sentenced.html](http://latimesblogs.latimes.com/lanow/2009/12/engineers-who-hacked-in-la-traffic-signal-computers-jamming-traffic-sentenced.html). A related problem in the US was traffic signals that could respond to codes from emergency vehicles to change to green; originally these didn't use encryption, and people could figure out how to trigger them to their own advantage.
+{panel end}
+
+A big issue with encryption systems is people who want to break into them and decrypt messages without the key (which some secret value or setting that can be used to unlock an encrypted file). Some systems that were used many years ago were discovered to be insecure because of attacks, so could no longer be used. It is possible that somebody will find an effective way of breaking into the widespread systems we use these days, which would cause a lot of problems.
 
 Like all technologies, encryption can be used for good and bad purposes. A human rights organisation might use encryption to secretly send photographs of human rights abuse to the media, while drug traffickers might use it to avoid having their plans read by investigators. Understanding how encryption works and what is possible can help to make informed decisions around things like freedom of speech, human rights, tracking criminal activity, personal privacy, identity theft, online banking and payments, and the safety of systems that might be taken over if they were "hacked into".
 
@@ -29,13 +26,10 @@ Being a cryptanalyst is generally a good thing to do though: people who use encr
 It's like a security guard checking doors on a building; the guard hopes that they can't get in, but if a door is found unlocked, they can do something about it to make sure the bad guys can't get in. Of course, if a security guard finds an open door, and takes advantage of that to steal something for themselves, they're no longer doing their job properly!
 {panel end}
 
-{panel type="curiosity" summary="A case of hacking traffic lights"}
-An interesting example of the value of using encryption outside of secret messages is the two engineers who were convicted of changing traffic light patterns to cause chaos during a strike [http://latimesblogs.latimes.com/lanow/2009/12/engineers-who-hacked-in-la-traffic-signal-computers-jamming-traffic-sentenced.html](http://latimesblogs.latimes.com/lanow/2009/12/engineers-who-hacked-in-la-traffic-signal-computers-jamming-traffic-sentenced.html). A related problem in the US was traffic signals that could respond to codes from emergency vehicles to change to green; originally these didn't use encryption, and people could figure out how to trigger them to their own advantage.
-{panel end}
 
 ## Substitution Ciphers
 
-{panel type="teacher-note" summary="Curriculum Guides for Encryption"}
+{panel type="teacher-note" summary="Starting with a very insecure cipher!"}
 This section provides an introduction to the idea of encryption, using a very simple substitution cipher called the Caesar Cipher. While the Caesar Cipher is no longer used in practice, it is still very useful as a teaching tool for illustrating the basic ideas and terminology in encryption. The Caesar Cipher is very easily broken, even without the help of a computer, but it is for this reason that it is a good introduction to the processes around ciphers. The only reason it worked in the time of Julius Caesar was that it relied on a low level of literacy amongst those you might expect to come across it, and they would assume it was a foreign language rather than try to attack it. A 21st century high school student should have all the literacy and mathematical tools needed to break this code.
 
 Once students understand the basic concepts in Caesar Cipher, they can move on to understanding the sophisticated ciphers used in practice.
@@ -81,26 +75,33 @@ If students are stuck, you might need to give them a few hints.
 
 The table they should have gotten should look like this.
 
-{image filename="caesar-table-2.png"}
+{image filename="caesar-cipher-table-2.png"}
 
 The learning objective for this activity was for students to think like cryptanalysts and to see why Caesar Cipher is not useful in practice.
 {panel end}
 
-### How does Caesar Cipher work?
+### How does the Caesar Cipher work?
 
 When you looked at the Caesar Cipher in the previous section and (hopefully) broke it and figured out what it said, you probably noticed that there was a pattern in how letters from the original message corresponded to letters in the decoded one. Each letter in the original message decoded to the letter that was 10 places before it in the alphabet. The conversion table you drew should have highlighted this. Here's the table for the letter correspondences, where the letter "K" translates to an "A". It is okay if your conversion table mapped the opposite way, i.e. "A" to "K" rather than "K" to "A". If you were unable to break the Caesar Cipher in the previous section, go back to it now and decode it using the table.
 
-{image filename="ec-caesar-table-2.png"}
+{image filename="caesar-cipher-table-2.png"}
 
 For this example, we say the key is *10* because keys in Caesar Cipher are a number between 1 and 25 (think carefully about why we wouldn't want a key of 26!), which specify how far the alphabet should be rotated. If instead we used a key of *8*, the conversion table would be as follows.
 
-{image filename="ec-caesar-table-3.png"}
+{image filename="caesar-cipher-table-3.png"}
 
-{panel type="jargon-buster" summary="What is a Key in computer science?"}
-In a Caesar Cipher, the key represents how many places the alphabet should be rotated. In the examples above, we used keys of "8" and "10". More generally though, a key is simply a value that is required to do the math for the encryption and decryption. While Caesar Cipher only has 25 possible keys, real encryption systems have an infinite number of possible keys, and preferably use keys which contains hundreds or even thousands of binary digits. Having a huge number of different possible keys is important, because it would take a computer less than a second to try all 25 Caesar Cipher keys.
+{panel type="jargon-buster" summary="What is a key?"}
+In a Caesar Cipher, the key represents how many places the alphabet should be rotated. In the examples above, we used keys of "8" and "10". More generally though, a key is simply a value that is required to do the math for the encryption and decryption. While Caesar Cipher only has 25 possible keys, real encryption systems have an incomprehensibly large number of possible keys, and preferably use keys which contains hundreds or even thousands of binary digits. Having a huge number of different possible keys is important, because it would take a computer less than a second to try all 25 Caesar Cipher keys.
+
+In the physical world, a combination lock is completely analagous to a cipher (in fact, you could send a secret message in a box locked with a combination lock.)
+We'll assume that the only way to open the box is to work out the combination number.
+The combination number is the *key* for the box.
+If it's a three-digit lock, you'll only have 1000 values to try out, which might not take too long.
+A four-digit lock has 10 times as many values to try out, so is way more secure.
+Of course, there may be ways to reduce the amount of work required - for example, if you know that the person who locked it never has a correct digit showing, then you only have 9 digits to guess for each place, rather than 10, which would take less than three quarters of the time!
 {panel end}
 
-Try experiementing with the following interactive for Caesar Cipher. You will probably want to refer back to it later while working through the remainder of the sections on Caesar Cipher.
+Try experimenting with the following interactive for Caesar Cipher. You will probably want to refer back to it later while working through the remainder of the sections on Caesar Cipher.
 
 {interactive name="caesar-cipher" type="in-page"}
 
@@ -111,7 +112,7 @@ Before we looked at how to *crack* Casear cipher – getting the plaintext from 
 As an example of *decrypting* with Caesar Cipher, assume that we have the following ciphertext, and that the key is 6.
 
 ```
-ZNK WAOIQ HXUCT LUD PASVY UBKX ZNK RGFE JUM.
+ZNK WAOIQ HXUCT LUD PASVY UBKX ZNK RGFE JUM
 ```
 
 Because we know that the key is 6, we can subtract 6 places off each character in the ciphertext. For example, the letter 6 places before "Z" is "T", 6 places before "N" is "H", and 6 places before "K" is "E". From this, we know that the first word must be "THE". Going through the entire ciphertext in this way, we can eventually get the plaintext of:
@@ -122,7 +123,7 @@ THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG
 
 The interactive above can do this process for you. Just put the ciphertext into the box on the right, enter the key, and tell it to decrypt. You should ensure you understand how to encrypt messages yourself though!
 
-{panel type="challenge" summary="Decrypting Caesar Cipher"}
+{panel type="challenge" summary="Decrypting a Caesar Cipher"}
 **Challenge 1**
 
 Decrypt the following message using Caesar Cipher. The key is 4.
@@ -133,7 +134,7 @@ HIGVCTXMRK GEIWEV GMTLIV MW IEWC
 
 **Challenge 2**
 
-What is the key for the following *cipher text*
+What is the key for the following *cipher text*?
 
 ```
 THIS IS A TRICK QUESTION
@@ -149,7 +150,7 @@ DECRYPTING CAESAR CIPHER IS EASY
 ```  
 
 
-For the second challenge, the answer is 26 (or 0). Because that is a full rotation, the ciphertext and plaintext are equivalent.
+For the second challenge, the answer is 26 (or 0, or any multiple of 26). Because that is a full rotation, the ciphertext and plaintext are equivalent.
 {panel end}
 
 
@@ -211,7 +212,7 @@ A substitution cipher simply means that each letter in the plaintext is substitu
 
 So far, we have considered one way of cracking Caesar cipher: using patterns in the text. By looking for patterns such as one letter words, other short words, double letter patterns, apostrophe positions, and knowing rules such as all words must contain at least one of a, e, i, o, u, or y (excluding some acronyms and words written in txt language of course), cracking Caesar Cipher by looking for patterns is easy. Any good cryptosystem should not be able to be analysed in this way, i.e. it should be *semantically secure*
 
-{panel type="jargon-buster" summary="What do we mean by semantically secure"}
+{panel type="jargon-buster" summary="What do we mean by semantically secure?"}
 Semantically secure means that there is no known efficient algorithm that can use the ciphertext to get any information about the plaintext, other than the length of the message. It is very important that cryptosystems used in practice are semantically secure.
 
 As we saw above, Caesar Cipher is not semantically secure.
@@ -224,20 +225,12 @@ There are many other ways of cracking Caeser cipher which we will look at in thi
 Frequency analysis means looking at how many times each letter appears in the encrypted message, and using this information to crack the code. A letter that appears many times in a message is far more likely to be “T” than “Z”, for example.
 
 The following interactive will helps you to analyze a piece of text by counting up the letter frequencies.
+You can paste in some text to see which are the most common (and least common) characters.
 
 {interactive name="frequency-analysis" type="in-page"}
 
-
-
-
-Putting the following text into a statistical analyser such as this one on [this website](http://www.richkni.co.uk/php/crypta/freq.php) will give the output in the table below.
-
-
-
-
-
-
-
+The following text has been coded using a Caesar cipher.
+To try to make sense of it, paste it into the statistical analyser above.
 
 ```
 F QTSL RJXXFLJ HTSYFNSX QTYX TK
@@ -249,9 +242,9 @@ TK QJYYJWX HFS MJQU YT GWJFP
 YMJ HTIJ
 ```
 
-{comment}
-TODO: Reduce line spacing in this table or convert it to an image
-{comment end}
+{panel type="teacher-note" summary="Alternative analysis system"}
+There are also text analysers available online, such as the one on [this website](http://www.richkni.co.uk/php/crypta/freq.php).
+For the text given, it gives the output in the table below.
 
 ```
 Number of occurrences of each letter in the ciphertext
@@ -263,10 +256,16 @@ X: 15          M: 6          I: 3          V: 1
 T: 13          N: 5          G: 2          A: 1
 S: 10          R: 5          L: 2
 ```
+{panel end}
 
-"E" is the most common letter in the English alphabet. It is therefore a reasonable guess that "J" in the ciphertext represents "E" in the plaintext. Because "J" is 5 letters ahead of "E" in the alphabet, we can guess that the key is 5. If you put the ciphertext into the above interactive and set a key of 5, you will find that this is indeed the correct key. If it hadn't been (i.{interactive name="caesar-cipher" type="in-page"}
 
-The message you should have gotten is:
+"E" is the most common letter in the English alphabet. It is therefore a reasonable guess that "J" in the ciphertext represents "E" in the plaintext. Because "J" is 5 letters ahead of "E" in the alphabet, we can guess that the key is 5. If you put the ciphertext into the above interactive and set a key of 5, you will find that this is indeed the correct key.
+
+{interactive name="caesar-cipher" type="in-page"}
+
+{panel type="spoiler" summary="Decrypted message"}
+
+The message you should have decrypted is:
 
 ```
 A LONG MESSAGE CONTAINS LOTS OF
@@ -277,6 +276,7 @@ THE MOST COMMON PAIRS OR TRIPLES
 OF LETTERS CAN HELP TO BREAK
 THE CODE
 ```
+{panel end}
 
 As the message says, long messages contain a lot of statistical clues. Very short messages (e.g. only a few words) are unlikely to have obvious statistical trends. Very long messages (e.g. entire books) will *almost* always have "E" as the most common letter. Wikipedia has a [list of letter frequencies](https://en.wikipedia.org/wiki/Letter_frequency#Relative_frequencies_of_letters_in_the_English_language), which you might find useful.
 
@@ -331,16 +331,17 @@ Although in almost all English texts the letter E is the most common letter, it 
 {panel type="curiosity" summary="The Vigenere Cipher"}
 A slightly stronger cipher than the Caesar cipher is the [Vigenere cipher](http://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher), which is created by using multiple Caesar ciphers, where there is a key phrase (e.g. "acb"), and each letter in the key gives the offset (in the example this would be 1, 3, 2). These offsets are repeated to give the offset for encoding each character in the plaintext.
 
-By having multiple caesar ciphers, common letters such as E will no longer stand out as much, making frequency analysis a lot more challenging. The following website shows the effect on the distribution.
+By having multiple Caesar ciphers, common letters such as E will no longer stand out as much, making frequency analysis a lot more challenging. The following website shows the effect on the distribution.
 [http://www.simonsingh.net/The_Black_Chamber/vigenere_strength.html](http://www.simonsingh.net/The_Black_Chamber/vigenere_strength.html)
 
-However, while this makes the Vigenere cipher more challenging to crack than the Caeser cipher, ways have been found to crack it. In fact, once you know the key length, it just breaks down to cracking several Caesar ciphers (which as you have seen is straightforward, and you can even use frequency analysis on the individual Caesar Ciphers!). Several statistical methods have been devised for working out the key length.
+However, while this makes the Vigenere cipher more challenging to crack than the Caeser cipher, ways have been found to crack it quickly. In fact, once you know the key length, it just breaks down to cracking several Caesar ciphers (which as you have seen is straightforward, and you can even use frequency analysis on the individual Caesar Ciphers!) Several statistical methods have been devised for working out the key length.
 
-A brute force attack is harder for the Vigenere cipher because there are a lot more possible keys. The Vigenere cipher is known as a *polyalphabetic substitution cipher*, since it is uses multiple substitution rules.
+Attacking the Vigenere cipher by trying every possible key is hard because there are a lot more possible keys than for the Caesar cipher, but a statistical attack can work quite quickly.
+The Vigenere cipher is known as a *polyalphabetic substitution cipher*, since it is uses multiple substitution rules.
 {panel end}
 
 
-#### Plain Text Attacks
+#### Known Plain Text Attacks
 
 Another kind of attack is the *known plaintext* attack, where you know part or all of the solution. For example, if you know that I start all my messages with "HI THERE", you can easily determine the key for the following message.
 
@@ -348,7 +349,7 @@ Another kind of attack is the *known plaintext* attack, where you know part or a
 AB MAXKX LXVKXM FXXMBGZ TM MPH TF MANKLWTR
 ```
 
-Even if you did not know the key was a rotation (not all substitution ciphers are), you have learnt that A->H, B->I, M->T, X->E, and K->R. This goes a long way towards deciphering the message. Filling in the letters you know, you would get:
+Even if you did not know the key used a simple rotation (not all substitution ciphers are), you have learnt that A->H, B->I, M->T, X->E, and K->R. This goes a long way towards deciphering the message. Filling in the letters you know, you would get:
 
 ```
 AB MAXKX LXVKXM FXXMBGZ TM MPH TF MANKLWTR
@@ -364,9 +365,25 @@ HI THERE SECRET MEETING AT TWO AM THURSDAY
 ```
 {panel end}
 
-A known plaintext attack destroys Caesar cipher, but a good cryptosystem shouldn't have this vulnerability because it can be surprisingly easy for someone to know that a particular message is being sent. For example, a common message might be "Nothing to report", or in online banking there are likely to be common messages like headings in a bank account or parts of the web page that always appear. Even worse is a *chosen plaintext attack*, where you trick someone into sending your chosen message through their system so that you can see what its ciphertext is.
+A known plaintext attack breaks a Caesar cipher straight away, but a good cryptosystem shouldn't have this vulnerability because it can be surprisingly easy for someone to know that a particular message is being sent. For example, a common message might be "Nothing to report", or in online banking there are likely to be common messages like headings in a bank account or parts of the web page that always appear. Even worse is a *chosen plaintext attack*, where you trick someone into sending your chosen message through their system so that you can see what its ciphertext is.
 
 For this reason, it is essential for any good cryptosystem to not be breakable, even if the attacker has pieces of plaintext along with their corresponding ciphertext to work with. For this, the cryptosystem should give different ciphertext each time the same plaintext message is encrypted. It may initially sound impossible to achieve this, although there are several clever techniques used by real cryptosystems.
+
+{panel type="curiosity" summary="More general substitution ciphers"}
+While Caesar cipher has a key specifying a rotation, a more general substitution cipher could randomly scramble the entire alphabet. This requires a key consisting of a sequence of 26 letters or numbers, specifying which letter maps onto each other one. For example, the first part of the key could be “D, Z, E”, which would mean D: A, Z: B, E:C. The key would have to have another 23 letters in order to specify the rest of the mapping.
+
+This increases the number of possible keys, and thus reduces the risk of a brute force attack. A can be substituted for any of the 26 letters in the alphabet, B can then be substituted for any of the 25 remaining letters (26 minus the letter already substituted for A), C can then be substituted for any of the 24 remaining letters…
+
+This gives us 26 possibilities for A times 25 possibilities for B times 24 possibilities for C.. all the way down to 2 possibilities for Y and 1 possibility for Z.
+{math}
+26 \times 25 \times 24 \times 23 \times 22 \times 21 \times 20 \times 19 \times 18 \times 17 \times\\
+16 \times 15 \times 14 \times 13 \times 12 \times 11 \times 10 \times 9 \times 8 \times 7 \times 6 \times\\
+5 \times 4 \times 3 \times 2 \times 1 = 26!
+{math end}
+Representing each of these possibilities requires around 88 bits, making the cipher’s key size around 88 bits, which is below modern standards, although still not too bad!
+
+However, this only solves one of the problems. The other techniques for breaking Caeser cipher we have looked at are still highly effective on all substitution ciphers, in particular the frequency analysis. For this reason, we need better ciphers in practice, which we will look at shortly.
+{panel end}
 
 #### Brute force Attacks
 
@@ -396,8 +413,9 @@ Need to put big numbers calculator here
 Brute force attacks try out every possible key, and the number of possible keys grows *exponentially* as the key gets longer.
 As we saw above, no modern computer system could try out all possible 128 bit key values in a useful amount of time, and even if it were possible, adding just one more bit would double how long it would take.
 
-In computer science, problems that take an exponential amount of time to solve are generally regarded as not being {glossary term="tractable" link-text="tractable" reference-text="encryption"}
- --- that is, you can't get any traction on them; it's as if you're spinning your wheels.
+In computer science, problems that take an exponential amount of time to solve are generally regarded as not being
+{glossary-link term="tractable" reference-text="encryption"}tractable{glossary-link end}
+--- that is, you can't get any traction on them; it's as if you're spinning your wheels.
 Working out which problems are tractable and which are intractable is a major area of research in computer science --- many other problems that we care about appear to be intractable, much to our frustration.
 The area of encryption is one of the few situations where we're pleased that an algorithm is intractible!
 
@@ -410,30 +428,20 @@ The main terminology you should be familiar with now is that a *plaintext* is *e
 If you were given an example of a simple cipher being used, you should be able to talk about it using the proper terminology.
 {panel end}
 
-{panel type="curiosity" summary="More general substitution ciphers"}
-While Caesar cipher has a key specifying a rotation, a more general substitution cipher could randomly scramble the entire alphabet. This requires a key consisting of a sequence of 26 letters or numbers, specifying which letter maps onto each other one. For example, the first part of the key could be “D, Z, E”, which would mean D: A, Z: B, E:C. The key would have to have another 23 letters in order to specify the rest of the mapping.
-
-This increases the number of possible keys, and thus reduces the risk of a brute force attack. A can be substituted for any of the 26 letters in the alphabet, B can then be substituted for any of the 25 remaining letters (26 minus the letter already substituted for A), C can then be substituted for any of the 24 remaining letters…
-
-This gives us 26 possibilities for A times 25 possibilities for B times 24 possibilities for C.. all the way down to 2 possibilities for Y and 1 possibility for Z.
-26*25*24*23*22*21*20*19*18*17*16*15*14*13*12*11*10*9*8*7*6*5*4*3*2*1 = 26!
-Representing each of these possibilites requires around 88 bits, making the cipher’s key size around 88 bits, which is below modern standards, although still not too bad!
-
-However, this only solves one of the problems. The other techniques for breaking caeser cipher we have looked at are still highly effective on all substitution ciphers, in particular the frequency analysis. For this reason, we need better ciphers in practice, which we will look at shortly.
-{panel end}
-
-{panel type="curiosity" summary="The Vigenere Cipher - a slightly stronger substitution cipher"}
-A slightly stronger substitution cipher than the Caesar cipher is the [Vigenere cipher](http://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher), which is created by using multiple Caesar ciphers, where there is a key phrase (e.g. "acb"), and each letter in the key gives the offset (in the example this would be 1, 3, 2). These offsets are repeated to give the offset for encoding each character in the plaintext.
-
-By having multiple caesar ciphers, common letters such as E will no longer stand out as much, making frequency analysis a lot more challenging. The following website shows the effect on the distribution.
-[http://www.simonsingh.net/The_Black_Chamber/vigenere_strength.html](http://www.simonsingh.net/The_Black_Chamber/vigenere_strength.html)
-
-However, while this makes the Vigenere cipher more challenging to crack than the Caeser cipher, ways have been found to crack it. In fact, once you know the key length, it just breaks down to cracking several Caesar ciphers (which as you have seen is straightforward, and you can even use frequency analysis on the individual Caesar Ciphers). Several statistical methods have been devised for working out the key length.
-
-A brute force attack is harder for the Vigenere cipher because there are a lot more possible keys. The Vigenere cipher is known as a *polyalphabetic substitution cipher*, since it is uses multiple substitution rules.
-{panel end}
 
 ## Cryptosystems used in practice
+
+The substitution systems described above don't provide any security for modern digital systems.
+In the remainder of this chapter we will look at encryption systems that are used in practice.
+The first challenge is to find a way to exchange keys --- after all, if you're communicating to someone over the internet, how are you going to send the key for your secret message to them conveniently?
+
+Cryptosystems are also used for purposes such as *authentication* (checking a password).
+This sounds simple, but how do you check when someone logs in, *without* having to store their password (after all, if someone got hold of the password list, that could ruin your reputation and business, so it's even safer not to store them.)
+
+There are good solutions to these problems that are regularly used --- in fact, you probably use them online already, possibly without even knowing!
+We'll begin by looking at systems that allow people so decode secret messages without even having to be sent the key!
+
+## The Key Distribution Problem
 
 {panel type="curiosity" summary="Who are Alice, Bob, and Eve?"}
 When describing an encryption scenario, cryptographers often use the fictitious characters "Alice" and "Bob", with a message being sent from Alice to Bob (A to B).
@@ -445,17 +453,22 @@ The fictitious name for the eavesdropper is usually Eve.
 There are several other characters used to describe activities around encryption protocols: for example Mallory (a malicious attacker) and Trudy (an intruder). Wikipedia has a [list of Alice and Bob's friends](http://en.wikipedia.org/wiki/Alice_and_Bob)
 {panel end}
 
-{panel type="teacher-note" summary="Even more about Alice and Bob"}
-There's a [song about Alice and Bob](http://www.catonmat.net/blog/musical-geek-friday-alice-and-bob/) performed by rapper MC++ (yes, he specialises in computer science). Some of the language may not be suitable for use in class, so discretion is needed for how you might use it.
-
-{image filename="xkcd-alice-and-bob.png"}
-{panel end}
-
-## The Key Distribution Problem
-
-Alice sending an encrypted message to Bob raises an interesting problem in encryption. The ciphertext itself can safely be sent across an “unsafe” network (one that Eve is listening on), but the key cannot. How can Alice get the key to Bob? Remember the key is the thing that tells Bob how to convert the ciphertext back to plaintext. So Alice can’t include it in the encrypted message, because then Bob would be unable to access it. Alice can’t just include it as plaintext either, because then Eve will be able to get ahold of it and use it to decrypt any messages that come through using it. You might ask why Alice doesn’t just encrypt the key using a different encryption scheme, but then how will Bob know the new key? Alice would need to tell Bob the key that was used to encrypt it... and so on... this idea is definitely out!
+If Alice is sending an encrypted message to Bob, this raises an interesting problem in encryption.
+The ciphertext itself can safely be sent across an “unsafe” network (one that Eve is listening on), but the key cannot. How can Alice get the key to Bob? Remember the key is the thing that tells Bob how to convert the ciphertext back to plaintext. So Alice can’t include it in the encrypted message, because then Bob would be unable to access it. Alice can’t just include it as plaintext either, because then Eve will be able to get ahold of it and use it to decrypt any messages that come through using it. You might ask why Alice doesn’t just encrypt the key using a different encryption scheme, but then how will Bob know the new key? Alice would need to tell Bob the key that was used to encrypt it... and so on... this idea is definitely out!
 
 Remember that Alice and Bob might be in different countries, and can only communicate through the internet. This also rules out Alice simply passing Bob the key in person.
+
+{panel type="curiosity" summary="Are we being paranoid?"}
+In computer security we tend to assume that Eve, the eaves dropper, can read every message between Alice and Bob.
+This sounds like an inordinate level of wire tapping, but what about wireless systems?
+If you're using wireless (or a mobile phone), then all your data is being broadcast, and can be picked up by any wireless receiver in the vicinity.
+In fact, if another person in the room is also using wireless, their computer is already picking up everything being transmitted by your computer, and has to go to some trouble to ignore it.
+
+Even in a wired connection, data is passed from one network node to another, stored on computers inbetween.
+Chances are that everyone who operates those computers is trustworthy, but probably don't even know which companies have handled your data in the last 24 hours, let alone whether every one of their employees can be trusted.
+
+So assuming that somone can observe all the bits being transmitted and received from your computer is pretty reasonable.
+{panel end}
 
 Distributing keys physically is very expensive, and up to the 1970s large sums of money were spent physically sending keys internationally. Systems like this are call *symmetric* encryption, because Alice and Bob both need an identical copy of the key. The breakthrough was the realisation that you could make a system that used different keys for encoding and decoding. We will look further at this in the next section.
 
@@ -466,6 +479,13 @@ Additionally, there's a video illustrating how public key systems work using a p
 
 {video url="http://www.youtube.com/watch?v=a72fHRr6MRU"}
 {panel end}
+
+{panel type="teacher-note" summary="Even more about Alice and Bob"}
+There's a [song about Alice and Bob](http://www.catonmat.net/blog/musical-geek-friday-alice-and-bob/) performed by rapper MC++ (yes, he specialises in computer science). Some of the language may not be suitable for use in class, so discretion is needed for how you might use it.
+
+{image filename="xkcd-alice-and-bob.png"}
+{panel end}
+
 
 ### Public Key Systems
 
@@ -564,6 +584,8 @@ Some email systems use this so that you can be sure an email came from the perso
 
 {panel end}
 
+{comment}
+This section on RSA is yet to be written
 ### RSA in practice
 
 #### How does RSA Work?
@@ -571,6 +593,7 @@ Some email systems use this so that you can be sure an email came from the perso
 #### Preventing known plain text attacks
 
 #### Common usage
+{comment end}
 
 ## Storing Passwords Securely
 
@@ -607,13 +630,13 @@ The following interactive allows you to hash words, such as passwords (but pleas
 
 {interactive name="sha2" type="in-page"}
 
-For example, the following database table shows four users of a fictional system, and the hashes of their passwords. The only way you could determine their passwords is by putting various possibilities through SHA-256 and checking whether or not the output is equivalent to any of the passwords in the database.
+For example, the following database table shows four users of a fictional system, and the hashes of their passwords. You could determine their passwords by putting various possibilities through SHA-256 and checking whether or not the output is equivalent to any of the passwords in the database.
 
 {image filename="hash-passwords-table.png"}
 
 It might initially sound like we have the perfect system. But unfortunately, there is still a big problem.
-
-- Even worse, there are *rainbow tables* online – precomputated lists of common passwords with what value they hash to. It isn't too difficult to generate rainbow tables containing all passwords up to a certain size in fact (this is one reason why using long passwords is strongly recommended!)
+You can find *rainbow tables* online, which are precomputated lists of common passwords with what value they hash to. It isn't too difficult to generate rainbow tables containing all passwords up to a certain size in fact (this is one reason why using long passwords is strongly recommended!)
+This problem can be avoided by choosing a password that isn't a common word or combination of words.
 
 Hashing is a good start, but we need to further improve our system so that if two users choose the same password, their hash is not the same, while still ensuring that it is possible to check whether or not a user has entered the correct password. The next idea, salting, addresses this issue.
 
@@ -635,8 +658,10 @@ A really clever technique which solves some of the problems of using a plain has
 
 So now when a user registers, a long random salt value is generated, added to the end of their password, and the combined password and salt is hashed. The plaintext salt is stored next to the
 
+{comment}
+TODO (but beyond what we really need to cover - could be an extra for experts)
 ### Hashing passwords with a salt and stretching
-
+{comment end}
 
 ### The importance of good user passwords
 
@@ -664,21 +689,14 @@ Unfortunately though, these requirements don't work well for getting users to pi
 
 As this xkcd comic points out, most password advice doesn't make a lot of sense.
 
-{image filename="xkcd-password-strength.png"}
+{image filename="xkcd-password-strength.png" source="https://xkcd.com/936/"}
 
 You might not know what some of the words mean. In easy terms, what it is saying is that there are significantly fewer modifications of common dictionary words than there is of a random selection of four of the 2000 most common dictionary words. Note that the estimates are based on trying to guess through a login system. With a leaked database, the attacker can test billions of passwords a second rather than just a few thousand.
 
 
 
-
-
-
-
-
-
-
-
-
+{comment}
+TODO:
 ### Real world case studies
 
 #### Adobethe challenges
@@ -686,7 +704,7 @@ You might not know what some of the words mean. In easy terms, what it is saying
 - Good storage techniques
 - Unfortunately the most sensitive data was the email addresses
 
-
+{comment end}
 
 
 
@@ -694,56 +712,44 @@ You might not know what some of the words mean. In easy terms, what it is saying
 
 ### The whole story!
 
-Many of the examples in this chapter use very weak encryption methods that were chosen to illustrate concepts, but would never be used for commercial or military systems.
+The early examples in this chapter use very weak encryption methods that were chosen to illustrate concepts, but would never be used for commercial or military systems.
 
 There are many aspects to computer security beyond encryption. For example, access control (such as password systems and security on smart cards) is crucial to keeping a system secure.
-Another major problem is writing secure software which doesn't leave ways for a user to get access to information that they shouldn't (such as typing a database command into a website query and have the system accidentally run it, or overflowing the buffer with a long input, which could accidentally replace parts of the program).
+Another major problem is writing secure software that doesn't leave ways for a user to get access to information that they shouldn't (such as typing a database command into a website query and have the system accidentally run it, or overflowing the buffer with a long input, which could accidentally replace parts of the program).
 Also, systems need to be protected from "denial of service" (DOS) attacks, where they get so overloaded with requests (e.g. to view a web site) that the server can't cope, and legitimate users get very slow response from the system, or it might even fail completely.
 
 For other kinds of attacks relating to computer security, see the [Wikipedia entry on Hackers](http://en.wikipedia.org/wiki/Hacker_(computer_security)).
-
-{comment}
-
-.. xjrm I've just fixed the above link to http://en.wikipedia.org/wiki/Hacker_(computer_security); need to check it works in the next build
-
-{comment end}
 
 There's a dark cloud hanging over the security of all current encryption methods: [Quantum computing](http://en.wikipedia.org/wiki/Quantum_computer).
 Quantum computing is in its infancy, but if this approach to computing is successful, it has the potential to run very fast algorithms for attacking our most secure encryption systems (for example, it could be used to factorise numbers very quickly). In fact, the quantum algorithms have already been invented, but we don't know if quantum computers can be built to run them.
 Such computers aren't likely to appear overnight, and if they do become possible, they will also open the possibility for new encryption algorithms. This is yet another mystery in computer science where we don't know what the future holds, and where there could be major changes in the future. But we'll need very capable computer scientists around at the time to deal with these sorts of changes!
 
-{comment}
-
-
+On the positive side, [quantum information transfer protocols](http://en.wikipedia.org/wiki/Quantum_cryptography_protocol) exist and are used in practice (using specialised equipment to generate quantum bits); these provide what is in theory a perfect encryption system, and don't depend on an attacker being unable to solve a particular computational problem. Because of the need for specialised equipment, they are only used in high security environments such as banking.
 
 Of course, encryption doesn't fix all our security problems, and because we have such good encryption systems available, information thieves must turn to other approaches, especially social engineering. The easiest way to get a user's password is to ask them! A [phishing attack](http://en.wikipedia.org/wiki/Phishing) does just that, and there are estimates that as many as 1 in 20 computer users have given out secret information this way at some stage.
 
 Other social engineering approaches that can be used include bribing or blackmailing people who have access to a system, or simply looking for a password written on a sticky note on someone's monitor! Gaining access to someone's email account is a particularly easy way to get lots of passwords, because many "lost password" systems will send a new password to their email account.
 
+{comment}
 .. xtcb possibly link to http://nsf.gov/cise/csbytes/newsletter/vol3/pdf/csbb-vol3-i2.pdf and https://www.youtube.com/watch?v=T2DXrs0OpHU
 
 {comment end}
 
-On the positive side, [quantum information transfer protocols](http://en.wikipedia.org/wiki/Quantum_cryptography_protocol) exist and are used in practice (using specialised equipment to generate quantum bits); these provide what is in theory a perfect encryption system, and don't depend on an attacker being unable to solve a particular computational problem. Because of the need for specialised equipment, they are only used in high security environments such as banking.
 
 {comment}
-
 .. e.g. (bb84)
 
 .. enigma story http://www.mtholyoke.edu/~adurfee/cryptology/enigma_j.html
-
 {comment end}
 
-{curiosity}
-
- **Steganography**
+{panel type="curiosity" summary="Steganography"}
 
 Cryptography is about hiding the content of a message, but sometimes it's important to hide the *existence* of the message. Otherwise an enemy might figure out that something is being planned just because a lot more messages are being sent, even though they can't read them.
 One way to achieve this is via *steganography*, where a secret message is hidden inside another message that seems innocuous. A classic scenario would be to publish a message in the public notices of a newspaper or send a letter from prison where the number of letters in each word represent a code. To a casual reader, the message might seem unimportant (and even say the opposite of the hidden one), but someone who knows the code could work it out. Messages can be hidden in digital images by making unnoticable changes to pixels so that they store some information. You can find out [more about steganography on Wikipedia](http://en.wikipedia.org/wiki/Steganography) or in this [lecture on steganography](http://www.youtube.com/watch?v=Py-qu9KWXhk#t=29).
 
 Two fun uses of steganography that you can try to decode yourself are a [film about ciphers that contains hidden ciphers (called "The Thomas Beale Cipher")](http://www.thomasbealecipher.com/), and an activity that has [five-bit text codes hidden in music](http://csunplugged.org/modem).
 
-{curiosity end}
+{panel end}
 
 
 ## Further reading
@@ -770,11 +776,11 @@ There are lots of intriguing stories around encryption, including its use in war
 
 The following activities explore cryptographic protocols using an Unplugged approach; these methods aren't strong enough to use in practice, but provide some insight into what is possible:
 
-- http://csunplugged.org/information-hiding
+- [Information hiding](http://csunplugged.org/information-hiding)
 
-- http://csunplugged.org/cryptographic-protocols
+- [Cryptographic protocols](http://csunplugged.org/cryptographic-protocols)
 
-- http://csunplugged.org/public-key-encryption
+- [Public key encryption](http://csunplugged.org/public-key-encryption)
 
 [War in the fifth domain](http://www.economist.com/node/16478792) looks at how encryption and security are key to our defence against a new kind of war.
 
@@ -791,10 +797,3 @@ The book "Hacking Secret Ciphers with Python: A beginner's guide to cryptography
 - [Wikipedia entry on the Caesar cipher](http://en.wikipedia.org/wiki/Caesar_cypher)
 - [Videos about modern encryption methods](http://simonsingh.net/media/online-videos/cryptography/the-science-of-secrecy-going-public/)
 - [Online interactives for simple ciphers](http://www.braingle.com/brainteasers/codes/index.php)
-
-{comment}
-
-<script language="JavaScript" type="text/javascript" src="static/interactives/third-party/big.js"></script>
-<script language="JavaScript" type="text/javascript" src="static/interactives/en/en-interactives.js"></script>
-
-{comment end}

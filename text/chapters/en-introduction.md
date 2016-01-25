@@ -13,8 +13,7 @@ The best way to provide feedback is through the "Give us feedback" link (this ca
 
 {panel end}
 
-{video http://www.youtube.com/embed/v5yeq5u2RMI?rel=0}
-
+{video url="http://www.youtube.com/embed/v5yeq5u2RMI?rel=0"}
 
 ## What's the big picture?
 
@@ -105,7 +104,6 @@ We finish each chapter by talking about the "whole story," giving hints about pa
 
 If you are doing this for formal study, you'll end up having to do some sort of assessment. The chapters provide ideas for projects and activities that could be used for this, and the appendix has more detailed guidance for assessment (currently designed for the New Zealand NCEA requirements).
 
-
 ## About this guide
 
 This guide is free for you to copy, share and even modify. It is currently available online, and we plan to have versions available for ebooks, and as a downloadable PDF file (although it's much better viewed in the other formats because you can watch the videos and use the interactive activities).
@@ -118,14 +116,12 @@ Production of the guide was partially funded by a generous grant from Google Inc
 ## Further reading
 Each chapter gives suggestions for further reading for that particular topic. There are also plenty of general books and websites about computer science that you might want to read to keep your view of the topic broad.
 
-
 Books that we particularly recommend include:
 
 - Algorithmics, by David Harel
 - [Computational fairy tales](http://computationaltales.blogspot.co.nz), by Jeremy Kubica
 - Algorithmic adventures: from knowledge to magic, by Jurag Hromkovic
 - The Turing Omnibus, by A.K. Dewdney
-
 
 Wikipedia has a fairly extensive [entry on computer science](http://en.wikipedia.org/wiki/Computer_science).
 

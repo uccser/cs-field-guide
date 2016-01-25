@@ -1,9 +1,5 @@
 # Coding - Compression
 
-{panel type="teacher-note" summary="Curriculum Guides for Encryption"}
-TODO
-{panel end}
-
 ## What's the big picture?
 
 Data compression reduces the amount of space needed to store files. If you can halve the size of a file, you can store twice as many files for the same cost, or you can download the files twice as fast (and at half the cost if you're paying for the download).
@@ -315,9 +311,11 @@ Run-length encoding wouldn't work in this situation. You could use a variation t
 But there is a way to take advantage of the gradually changing colours. For the pixels in the red box above, you could generate an approximate version of those colours by specifying just the first and last one, and getting the computer to calculate the ones in between assuming that the colour changes gradually between them. Instead of storing 5 pixel values, only 2 are needed, yet someone viewing it probably might not notice any difference. This would be *lossy* because you can't reproduce the original exactly, but it would be good enough for a lot of purposes, and save a lot of space.
 
 {panel type="jargon-buster" summary="Interpolation"}
+{glossary-definition term="interpolation" definition="Working out values between some given values;
+for example, if a sequence of 5 numbers starts with 3 and finishes with 11, we might interpolate the values 5, 7, 9 in between."}
+
 The process of guessing the colours of pixels between two that are known is an example of
-{glossary-def "Interpolation" "working out values between some given values;
-for example, if a sequence of 5 numbers starts with 3 and finishes with 11, we might interpolate the values 5, 7, 9 in between."}interpolation{glossary-def end}.
+{glossary-link term="interpolation" reference-text="compressing images"}interpolation{glossary-link end}.
 A *linear* interpolation assumes that the values increase at a constant rate between the two given values; for example, for the five pixels above, suppose the first pixel has a blue colour value of 124, and the last one has a blue value of 136,
 then a linear interpolation would guess that the blue values for the ones in between are 127, 130 and 133, and this would save storing them.
 In practice, a more complex approach is used to guess what the pixels are, but linear interpolation gives the idea of what's going on.
@@ -325,17 +323,58 @@ In practice, a more complex approach is used to guess what the pixels are, but l
 
 The JPEG system, which is widely used for photos, uses a more sophisticated version of this idea. Instead of taking a 5 by 1 run of pixels as we did above, it works with 8 by 8 blocks of pixels. And instead of estimating the values with a linear function, it uses combinations of cosine waves.
 
+{comment}
+It would be good have a figure that shows a line of pixels, and the corresponding waveform.
+{comment end}
+
 {panel type="curiosity" summary="What are cosine waves"}
 A cosine wave form is from the trig function that is often used for calculating the sides of a triangle. If you plot the cosine value from 0 to 180 degrees, you get a smooth curve going from 1 to -1. Variations of this plot can be used to approximate the value of pixels, going from one colour to another. If you add in a higher frequency cosine wave, you can produce interesting shapes. In theory, any pattern of pixels can be created by adding together different cosine waves!
+
+The following graph shows the values of {math}\sin(x){math end} and {math}\cos(x){math end} for {math}x{math end} ranging from 0 to 180 degrees.
 
 {image filename="cosine-graph.png" alt="A graph showing cos(x) and sin(x) curves"}
 {panel end}
 
-{comment}
-.. xtcb adapt fourier spreadsheet and make available here (see also http://demonstrations.wolfram.com/JPEGCompressionAlgorithm/, http://demonstrations.wolfram.com/SumsOfSineWavesWithSeveralStepSizesSawtoothOrSquareApproxima/ http://demonstrations.wolfram.com/RecoveringTheFourierCoefficients/
-.. html5 low priority interactive to add cosine waves to try to match a given waveform e.g. square wave, triangle, random. Select amplitude for various frequencies. I have a spreadsheet that basically does this, could put it in for the meantime - tim
+{panel type="curiosity" summary="Adding sine or cosine waves to create any waveform"}
+JPEGs (and MP3) are based on the idea that you can add together lots of sine or cosine waves to create any waveform that you want.
+Converting a waveform for a block of pixels or sample of music into a sum of simple waves can be done using a technique called a [Fourier transform](https://en.wikipedia.org/wiki/Fourier_transform), and is a widely used idea in signal processing.
 
-The trouble with those links is that they require downloading software. And I don't know anything about that site, but it appears a bit dodgy to me (i.e. will it download rubbish as well?)
+You can experiment with adding sine waves together to generate other shapes using the
+[spreadsheet provided](files/Adding-Sine-Waves.xls).
+In this spreadsheet, the yellow region on the first sheet allows you to choose which sine waves to add.
+Try setting the 4 sine waves to frequencies that are 3, 9, 15, and 21 times the fundamental frequency respectively (the "fundamental" is the lowest frequency.)
+Now set the "amplitude" (equivalent to volume level) of the four to 0.5, 0.25, 0.125 and 0.0625 respectively (each is half of the previous one).
+This should produce the following four sine waves:
+
+{image filename="sine-waves.png" alt="Four sine waves"}
+
+When the above four waves are added together, they interfere with each other, and produce a shape that has sharper transitions:
+
+{image filename="sine-waves-sum.png" alt="The four sine waves added together"}
+
+In fact, if you were to continue the pattern with more than four sine waves, this shape would become a "square wave", which is one that suddenly goes to the maximum value, and then suddenly to the minimum.
+The one shown above is bumpy because we've only used 4 sine waves to describe it.
+
+This is exactly what is going on in JPEG if you compress a black and white image.
+The "colour" of pixels as you go across the image will either be 0 (black) or full intensity (white), but JPEG will approximate it with a small number of cosine waves (which have basically the same properties as sine waves.)
+This gives the "overshoot" that you see in the image above; in a JPEG image, this comes out as bright and dark patches surrounding the sudden change of colour, like here:
+
+{image filename="jpeg-word-zoomed.jpg"}
+
+You can experiment with different combinations of sine waves to get different shapes.
+You may need to have more than four to get good approximations to a shape that you want; that's exactly the tradeoff that JPEG is making.
+There are some suggestions for parameters on the second sheet of the spreadsheet.
+
+You can also learn about Fourier transforms using the Wolfgram Alpha software; this will require you to install a browser plugin.
+The Wolfgram demonstrations include:
+[an interactive demonstration of JPEG](http://demonstrations.wolfram.com/JPEGCompressionAlgorithm/),
+[showing the relationship between sine saves and creating other waveforms](http://demonstrations.wolfram.com/RecoveringTheFourierCoefficients/), and
+[showing how sine waves can be summed to produce other shapes](http://demonstrations.wolfram.com/SumsOfSineWavesWithSeveralStepSizesSawtoothOrSquareApproxima/).
+
+{panel end}
+
+{comment}
+.. html5 low priority interactive to add cosine waves to try to match a given waveform e.g. square wave, triangle, random. Select amplitude for various frequencies. I have a spreadsheet that basically does this, could put it in for the meantime - tim
 {comment end}
 
 You can see the 8 by 8 blocks of pixels if you zoom in on a heavily compressed JPEG image. For example, the following image has been very heavily compressed using JPEG (it is just 1.5% of its original size).
@@ -356,7 +395,7 @@ The quality is quite low, but the saving in space is huge – it's more than 60 
 low priority : interactive that could load a photo, zoom in on pixels, and change it to different qualities of jpg coding
 {comment end}
 
-{panel type="jargon-buster" summary="What exactly is JPEG?"}
+{panel type="jargon-buster" summary="Where does the term JPEG come from?"}
 The name "JPEG" is short for "Joint Photographic Experts Group", a committee that was formed in the 1980s to create standards so that digital photographs could be captured and displayed on different brands of devices. Because some file extensions are limited to three characters, it is often seen as the ".jpg" extension.
 {panel end}
 
@@ -419,9 +458,7 @@ As long as you decode them from first to last, the information will be available
 .. xhtml5 Eventually this could use a parameter so there's one version with no tabs, and a later one with them.
 {comment end}
 
-{comment}
-<div align="center"><iframe width="900" height="460" src="static/widgets/COMPRESSION/LWZ/public_html/index.html" frameborder="0">Your browser does not support iframes. Please contact the computer's administrator and upgrade <a href="http://browsehappy.com/"> to a modern browser</a> (like Google Chrome) to enable all functionality of this online textbook.</iframe></div>
-{comment end}
+{button link="http://www.csfieldguide.org.nz/_static/widgets/COMPRESSION/LWZ/public_html/index.html" text="View compression interactive"}
 
 {comment}
 .. xjrm (or Rhem): pasting text in that is too big causes it to be rejected. It would be nicer if the pasted text is truncated to the maximum length.
@@ -461,7 +498,9 @@ In fact, this is essentially what happens with GIF and PNG images; the pixel val
 {comment end}
 
 {panel type="teacher-note" summary="Unplugged activity on Ziv-Lempel approach"}
-The [CS Unplugged site has activities and information about the Ziv-Lempel approach](http://csunplugged.org/text-compression), and the ["Computing Science Inside" site also has an activity based on this method](http://csi.dcs.gla.ac.uk/workshop-view.php?workshopID=1) The CS4FN site discusses [a related approach which is a little simpler, but not so useful in practice](http://www.cs4fn.org/internet/crushed.php).
+The [CS Unplugged site has activities and information about the Ziv-Lempel approach](http://csunplugged.org/text-compression),
+and the ["Computing Science Inside" site also has an activity based on this method](http://csi.dcs.gla.ac.uk/workshop-view.php?workshopID=1).
+The CS4FN site discusses [a related approach which is a little simpler, but not so useful in practice](http://www.cs4fn.org/internet/crushed.php).
 {panel end}
 
 {panel type="curiosity" summary="ZL or LZ compression?"}
@@ -474,7 +513,7 @@ One of the most widely used methods for compressing music is MP3, which is actua
 
 
 {panel type="curiosity" summary="The naming of mp3"}
-The name "mp3" isn't very self explanatory because the "mp" stands for "moving picture", and the 3 is from version 1(!)
+The name "mp3" isn't very self explanatory because the "mp" stands for "moving picture", and the 3 is from version 1, but mp3 files are used for music!
 
 The full name of the standard that it comes from is MPEG, and the missing "EG" stands for "experts group", which was a consortium of companies and researchers that got together to agree on a standard so that people could easily play the same videos on different brands of equipment (so, for example, you could play the same DVD on any brand of DVD player).
 The very first version of their standards (called MPEG-1) had three methods of storing the sound track (layer 1, 2 and 3).
@@ -523,7 +562,7 @@ Also, video compression has been omitted, even though compressing videos saves m
 Most video compression is based on the "MPEG" standard (Moving Pictures Experts Group). There is some information about how this works in the [CS4FN article on "Movie Magic"](http://www.cs4fn.org/films/mpegit.php).
 
 {panel type="teacher-note" summary="Teacher guides for Plymouth resources"}
-Access to teacher guides for the Plymouth resources above are [available here](http://www.cimt.plymouth.ac.uk/resources/codes/>).
+Access to teacher guides for the Plymouth resources (linked in the previous paragraph) above are [available here](http://www.cimt.plymouth.ac.uk/resources/codes/>).
 {panel end}
 
 The Ziv-Lempel method shown is a variation of the so-called "LZ77" method. Many of the more popular lossless compression methods are based on this, although there are many variations, and one called "LZW" has also been used a lot. Another high-compression general-purpose compression method is bzip, based on a very clever method called the Burrows-Wheeler Transform.
