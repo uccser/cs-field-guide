@@ -132,19 +132,25 @@ In this section we will be initially looking at one of the most commonly used ba
 
 ### Check Digits On Product Barcodes
 
-Most products you can buy at the shop have a barcode on them with a 13 digit global trade item number (referred to as GTIN-13). The first 12 digits are the actual identification number for the product, the 13th is the check digit calculated from the other 12. Not all barcodes are GTIN-13, there are several others around. If the barcode has 13 numbers in it, it is almost certainly GTIN-13.
+Most products you can buy at the shop have a barcode on them with a 13 digit "global trade item number" (referred to as GTIN-13).
+The first 12 digits are the actual identification number for the product, the 13th is the check digit calculated from the other 12.
+Not all barcodes are GTIN-13, there are several other types around.
+However, if the barcode has 13 numbers in it, it is almost certainly GTIN-13.
 
 {image filename="isbn-barcode.png" alt="An image of a 13 digit barcode"}
 
-The following interactive checks GTIN-13 barcodes. Enter a barcode number into the interactive, and it will tell you whether or not you typed it correctly! Start by using the barcode number “9 300675 036009”. What happens if you then change one digit to something else?
+The last digit of these numbers is calculated from the first 12.
+This is very closely related to the parity bit that we looked at above, where the last bit of a row is "calculated" from the preceding ones.
+With a GTIN-13 code, we want to be able to detect if one of the digits might have been entered incorrectly.
+
+The following interactive checks GTIN-13 barcodes. Enter the first 12 digits of a barcode number into the interactive, and it will tell you that the last digit should be!
+You could start by using the barcode number “9 300675 036009”.
 
 {comment}
+TODO
 ****** interactive to check Barcode (without putting in multipliers) here
-(or else explanation below on how to calculate code needs to be copied up)
-{comment end}
-
-{comment}
-spreadsheet to be replaced with interactive
+reads in 12 digits of a barcode, and outputs what the 13th one should be; don't show any intermediate calcuations, just the final result.
+Replaces this spreadsheet:
 <p><a href="static/interactives/ec/isbncreditcardcheckerv2.xlsx">Click here to download the spreadsheet.</a></p>
 {comment end}
 
@@ -152,7 +158,16 @@ spreadsheet to be replaced with interactive
 You could bring various packaging that has barcodes on it for the class to evaluate, or bring in photos of barcodes.
 {panel end}
 
-Have a look for another product that has a barcode on it, such as a food item from your lunch, or a stationery item. Note that some barcodes are a little different. Make sure the barcodes that you are using have 13 digits (although you might like to go and find out how the check digit works on some of the other ones). Hopefully you will find that the interactive is always able to determine whether or not you typed the barcode correctly!
+What happens if you make a mistake when you type in the 12 digits (try changing one digit)?
+Does that enable you to detect that a mistake was made?
+
+{panel type="teacher-note" summary="Solution"}
+If only one digit is changed, the check digit will always be incorrect, and the error will be detected.
+{panel end}
+
+Have a look for another product that has a barcode on it, such as a food item from your lunch, or a stationery item.
+Note that some barcodes are a little different --- make sure the barcodes that you are using have 13 digits (although you might like to go and find out how the check digit works on some of the other ones).
+Can the interactive is always determine whether or not you typed the barcode correctly?
 
 One of the following product numbers has one incorrect digit. Can you tell which of the products has had its number typed incorrectly?
 
@@ -165,11 +180,13 @@ The last code has a typo in it; it should have been 9 300617 003199. Students sh
 {panel end}
 
 If you were scanning the above barcodes in a supermarket, the incorrect one will need to be rescanned, and the system can tell that it's a wrong number without even having to look it up.
+Typically that would be caused by the bar code itself being damaged (e.g. some ice on a frozen product making it read incorrectly).
+If an error is detected, the scanner will usually make a warning sound to alert the operator.
 
 You could try swapping barcode numbers with a classmate, but before giving them the number toss a coin, and if it's heads, change one digit of the barcode before you give it to them.
 Can they determine that they've been given an erroneous barcode?
 
-If one of the digits is incorrect, this calculation will produce a different value to the checksum, and signals an error. So single digit errors will *always* be detected, but what if two digits change --- will that always detect the error?
+If one of the digits is incorrect, this calculation for the check digit will produce a different value to the checksum, and signals an error. So single digit errors will *always* be detected, but what if two digits change --- will that always detect the error?
 
 {panel type="teacher-note" summary="Solution"}
 If two digits are changed, the error may go undetected; for example, changing 9 400559 001014 to 6 500559 001014 will still produce a checksum of 4, and appear to match. However, it's unlikely that two errors will counteract like this (students can investigate how often that will happen).
@@ -202,11 +219,16 @@ There are also some less common errors that people make
 - Muddling 3 digits, e.g. 14829 instead of 12489
 - Phonetic errors are possible when the number was read and typed by somebody listening (or reading the number to themselves as they type it). For example, "three-forty" (340) might be heard as "three-fourteen" (314), and numbers like 5 and 9 can sound similar on a bad phone line.
 
-Experiment further with the interactives for the product barcodes and/or credit card numbers. What errors are picked up? What errors can you find that are not? Are the really common errors nearly always picked up? Can you find any situations that they are not? Try to find examples of errors that are detected and errors that are not for as many of the different types of errors as you can.
+Experiment further with the interactive. What errors are picked up? What errors can you find that are not? Are the really common errors nearly always picked up? Can you find any situations that they are not? Try to find examples of errors that are detected and errors that are not for as many of the different types of errors as you can.
 
 {panel type="teacher-note" summary="Likely errors"}
 
-Students may be tempted to do things like reverse all the digits, or completely rearrange them and show that the check digit remains the same and then claim it is a limitation of the algorithm, but this is not a good evaluation. They need to think about the algorithm under normal usage, e.g. a cashier entering a barcode number into a computer, a nurse entering an ID number of a patient, or somebody buying something online and entering their credit card number, and the errors they could realistically be expected to make. The errors listed above cover a good range, although they might think of more. Of course it is more important that the really common errors are picked up, but nice if the less common but still plausible ones are too. But remember that it would be more of an issue for the algorithm if it could not detect 1 digit being changed than if it could not detect 3 being changed for example. Dyslexia and related problems could be an interesting issue to consider, although it needs to be kept in proportion since most people are not dyslexic.
+Students may be tempted to do things like reverse all the digits, or completely rearrange them and show that the check digit remains the same and then claim it is a limitation of the algorithm, but this is not a good evaluation. They need to think about the algorithm under normal usage, e.g. a cashier entering a barcode number into a computer, a nurse entering an ID number of a patient, or somebody buying something online and entering their credit card number, and the errors they could realistically be expected to make. The errors listed above cover a good range, although they might think of more. Of course it is more important that the really common errors are picked up, but nice if the less common but still plausible ones are too. But remember that it would be more of an issue for the algorithm if it could not detect 1 digit being changed than if it could not detect 3 being changed for example.
+
+The main errors that this system will pick up best are single digit typos and swapping two adjacent digits.
+It will be more a matter of chance for other types of errors.
+
+Dyslexia and related problems could be an interesting issue to consider, although it needs to be kept in proportion since most people are not dyslexic.
 
 {panel end}
 
@@ -218,23 +240,28 @@ Getting students to write a program to calculate checksums is a good programming
 
 ### How is the check digit on product barcodes calculated?
 
-
-
 The first 12 digits of the barcode represent information such as the country origin, manufacturer, and an identifier for the product. The 13th digit is a check digit, it is calculated from the first 12 digits.
+It is calculated using the following algorithm (also, see the example below).
 
-{interactive name="checksum-calculator" type="in-page"}
-*****
-
-
-So, given the first 12 digits of a barcode number, how is the 13th digit calculated? The following algorithm is used (also, see the example below).
-
-Multiply every second digit (starting with the second digit) by 3, and every other digit by 1 (so they stay the same).
-Add up all the multiplied numbers to obtain the *sum*.
-The check digit is whatever number would have to be added to the sum in order to bring it up to a multiple of 10 (i.e. the last digit of the sum should be 0). Or more formally, take the last digit of the sum and if it is 0, the check digit is 0. Otherwise, subtract the last digit from 10 to obtain the check digit.
-
-
+- Multiply every second digit (starting with the second digit) by 3, and every other digit by 1 (so they stay the same).
+- Add up all the multiplied numbers to obtain the *sum*.
+- The check digit is whatever number would have to be added to the sum in order to bring it up to a multiple of 10 (i.e. the last digit of the sum should be 0). Or more formally, take the last digit of the sum and if it is 0, the check digit is 0. Otherwise, subtract the last digit from 10 to obtain the check digit.
 
 Lets look at an example to illustrate this algorithm. We want to confirm that the check digit that was put on the barcode of a bottle of coke was the correct one. Its barcode number is 9300675032247. The last digit, 7, is the check digit. So we take the first 12 digits and multiply them by 1 or 3, depending on their positions (9x1+3x3+0x1+0x3+6x1+7x3+5x1+0x3+3x1+2x3+2x1+4x3). We then add up all the multiplied numbers, obtaining a sum of 73. We want to add the check digit that will bring the sum up to the nearest multiple of 10, which is 80. This number is 7, which is indeed the check digit on the coke bottle’s barcode.
+
+The following interactive can be used to do the calculations for you.
+To make sure you understand the process, you need to do some of the steps yourself; this interactive can be used for a wide range of check digit systems.
+To check a GTIN-13 number, enter the first 12 digits where it says "Enter the number here".
+The multipliers for GTIN-13 can be entered as "131313131313" (each alternating digit multiplied by 3).
+This will give you the products of each of the 12 digits being multiplied by the corresponding number.
+You should calculate the total of the products (the numbers in the boxes) yourself and type it in.
+Then get the remainder when divided by 10.
+To work out the checksum, you should calculate the digit needed to make this number up to 10 (for example, if the remainder is 8, the check digit is 2).
+If the remainder is 0, then the check digit is also 0.
+
+.. Check digit calculator: needs a reset button (to save reloading the page to process a new number), and "Sums" should be "Products"
+
+{interactive name="checksum-calculator" type="in-page"}
 
 {comment}
 
@@ -242,11 +269,16 @@ Lets look at an example to illustrate this algorithm. We want to confirm that th
 
 {comment end}
 
-The algorithm to check whether or not a barcode number was correctly entered is very similar. This time, we are using all 13 digits.
+Try this with some other bar codes.
+Now observe what happens to the calculation when a digit is changed, or two are swapped.
 
-Multiply every second digit (starting with the second digit) by 3, and every other digit by 1. This includes the 13th digit.
-Add up all the multiplied numbers to obtain the *sum*
+The algorithm to check whether or not a barcode number was correctly entered is very similar.
+You could just calculate the check digit and compare it with the 13th digit, but a simpler way is to enter all 13 digits.
+
+Multiply every second digit (starting with the second digit) by 3, and every other digit by 1. This includes the 13th digit, which is multiplied by 1.
+Add up all the multiplied numbers to obtain the *total*.
 If the last digit of the sum is a 0, the number was entered correctly.
+(That's the same as the remainder when divided by 10 being 0).
 
 {panel type="curiosity" summary="Working out a checksum in your head"}
 
@@ -266,17 +298,11 @@ All these shortcuts can make it very easy to track the sum in your head.
 
 {panel type="teacher-note" summary="Checking compared with calculating"}
 
-Good students should be able to recognise the relationship between the two algorithms (calculating the number compared with adding all 13 digits to do a check). Because the 13th digit is in an odd numbered position, it is multiplied by 1 in the second algorithm before being added to the total. It was also effectively multiplied by 1 before being added to the total in the first algorithm. Because the check digit was chosen so that the last digit of the sum would be 0, it makes sense that a number in the second algorithm was correctly entered its sum also ends in 0.
+Students should be able to recognise the relationship between the two algorithms (calculating the number compared with adding all 13 digits to do a check). Because the 13th digit is in an odd numbered position, it is multiplied by 1 in the second algorithm before being added to the total.
+Because the check digit was chosen so that it would make the last digit of the sum up to a multiple of 10 (which always ends with 0), it makes sense that a number in the second algorithm was correctly entered its sum also ends in 0.
 
 {panel end}
 
-{comment}
-
-.. xtcb give answer to question in following in the teacher version (" you see any pairs where the diagonals would add up to the same value? There is one!")
-
-.. xjrm end the first paragraph with " You can find some detailed examples of why the formula works so well <<in this document>>." Then put the rest of them material in a separate document. Or some other way to make the curiosity smaller!
-
-{comment end}
 
 {panel type="extra-for-experts" summary="Why does this algorithm work so well?"}
 
@@ -357,14 +383,16 @@ Some of the rows add up to the same number! Because both 4 and 9 add up to 6, th
 
 Rows that do not add will be detected. From the example above, if 22 changes to 88, this will be detected because 22’s total is 8, and 88’s total is 2.
 
-*An error which is never detected*
+*An error that is never detected*
 
 Another error that people sometimes make is the jump transposition error. This is where two digits that have one digit in between them are swapped, for example, 812 to 218.
 
 A pair of numbers that are two apart like this will always be multiplied by the same amount as each other, either 1 or 3. This means that the change in position of the numbers does not affect what they are multiplied by, and therefore what they contribute to the sum. So this kind of error will never be detected.
 
 {panel end}
-{comment}End of extra-for-experts{comment end}
+{comment}
+End of extra-for-experts
+{comment end}
 
 {panel type="project" summary="Project with check sums"}
 
@@ -383,6 +411,8 @@ You should demonstrate how they work (using the following interactive if you wan
 ISBN-10 is particularly effective, and you could also look into why that is.
 
 {interactive name="checksum-calculator" type="in-page"}
+
+{panel end}
 
 {comment}
 
