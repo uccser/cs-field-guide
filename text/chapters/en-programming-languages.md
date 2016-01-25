@@ -1,41 +1,5 @@
 # Programming Languages
 
-{comment}
-<script src="static/interactives/pl/python-editor/skulpt.min.js" type="text/javascript"></script>
-<script type="text/javascript">
-  function outf(text)
-  {
-      var output = document.getElementById("output");
-      text = text.replace(/</g, '&lt;');
-      output.innerHTML = output.innerHTML + text;
-  }
-
-  function runit()
-  {
-      var prog = document.getElementById("code").value;
-      var output = document.getElementById("output");
-      output.innerHTML = '';
-      Sk.configure({output:outf});
-      try {
-          Sk.importMainWithBody("<stdin>", false, prog);
-      } catch (e) {
-          alert(e);
-      }
-  }
-</script>
-{comment end}
-
-{teacher}
-
-The following assessment plans also cover this material:
-
-**New Zealand - AS91074 (1.44)**
-
-- [1.44 Assessment Overview](/appendices/assessment-guides/new-zealand/assessment-guide-level-1-introduction)
-- [1.44 Programming Languages Assessment Guide](/appendices/assessment-guides/new-zealand/assessment-guide-level-1-programming-languages)
-
-{teacher end}
-
 ## What's the big picture?
 
 Programming, sometimes referred to as coding, is a nuts and bolts activity for computer science. While this book won't teach you how to program (we've given some links to sites that can do this in the introduction), we are going to look at what a programming language is, and how computer scientists breath life into a language. From a programmer's point of view, they type some instructions, and the computer follows them. But how does the computer know what to do? Bear in mind that you might be using one of the many languages such as Python, Java, Scratch, Basic or C#,  yet computers only have the hardware to follow instructions in one particular language, which is usually a very simple "machine code" that is hard for humans to read and write. And if you invent a new programming language, how do you tell the computer how to use it?
@@ -54,24 +18,24 @@ A subsection on what this chapter focuses on then follows. Everybody should read
 
 ### What is programming?
 
-{teacher}
+{panel type="teacher-note" summary="Warm-up activity"}
 
 Consider doing the following [warm-up activity from CSUnplugged](http://csunplugged.org/programming-languages), or the [extended version here](http://csunplugged.org/sites/default/files/tellAndDraw1.5.pdf).
 
 Students who have never programmed should also work through the material in this section, intended to give them an overview of what programming is about so that the remainder of this chapter makes sense to them.
 
-{teacher end}
+{panel end}
 
 Note: This section is intended for those who are unfamiliar with programming. If you already know a little about programming, feel free to skip over this section. Otherwise, it will give you a quick overview so that the remainder of the chapter makes sense.
 
 An example of the simplest kind of program is as follows --- it has five instructions (one on each line) that are followed one after the other.
 
 ```
-print("************************************************")
-print("************************************************")
-print("*** Welcome to computer programming, Student ***")
-print("************************************************")
-print("************************************************")
+print("**********************************************")
+print("**********************************************")
+print("** Welcome to computer programming, Student **")
+print("**********************************************")
+print("**********************************************")
 ```
 
 This program is written in a language called Python, and when the program runs, it will print the following text to the screen
@@ -89,11 +53,11 @@ In order to run a Python program, we need something called a Python interpreter.
 
 <form>
 <textarea id="code" rows="12" cols="60" style="font-family: monospace;">
-print("************************************************")
-print("************************************************")
-print("*** Welcome to computer programming, Student ***")
-print("************************************************")
-print("************************************************")
+print("**********************************************")
+print("**********************************************")
+print("** Welcome to computer programming, Student **")
+print("**********************************************")
+print("**********************************************")
 </textarea><br>
 <button onclick="runit()" type="button">Run</button>
 <br>
@@ -117,11 +81,11 @@ If you change a critical symbol in the program you will probably find that the P
 
 Programming languages can do much more than print out text though. The following program is able to print out multiples of a number. Try running the program.
 
-{teacher}
+{panel type="teacher-note" summary="Python version"}
 
 The following Python code is written for version 3 Python, but will also work with version 2.
 
-{teacher end}
+{panel end}
 
 ```
 print("I am going to print the first 5 multiples of 3")
@@ -159,13 +123,9 @@ for recipient in spam_recipients:
 
 Try changing the recipients or the letter. Look carefully at all the symbols that were used to include the recipient's name in the letter.
 
-{jargon-buster}
-
-**Jargon Buster**
-
+{panel type="jargon-buster" summary="Syntax"}
 The detailed requirements of a programming language about exactly which characters need to be used and where, is called its *syntax*. In the example above, the syntax for the list of names requires square brackets around the list, inverted commas around the names, and a comma between each one. If you make a mistake, such as leaving out one of the square brackets, the system will have a *syntax error*, and won't be able to run the program. Every symbol counts, and one small error in a program can stop it running, or make it do the wrong thing.
-
-{jargon-buster end}
+{panel end}
 
 Programs can also use *variables* to store the results of calculations in, receive user input, and make decisions (called *conditionals*, such as *if* statements). Try running this program. Enter a number of miles to convert when asked. Don’t put units on the number you enter; for example just put “12”.
 
@@ -195,13 +155,11 @@ Firstly, you might be wondering why we need languages such as Python, and why we
 
 It isn’t this simple though, a computer cannot run instructions given directly in these languages. At the lowest level, a computer has to use physical hardware to run the instructions. Arithmetic such as addition, subtraction, multiplication, and division, or simple comparisons such as less than, greater than, or equal to are done on numbers represented in binary by putting electricity through physical computer chips containing transistors. The output is also a number represented in binary. Building a fast and cheap circuit to do simple arithmetic such as this isn't that hard, but the kind of instructions that people want to give computers (like "print the following sentence", or "repeat the following 100 times") are much harder to build circuitry for.
 
-{jargon-buster}
-
-**Jargon Buster**
+{panel type="jargon-buster" summary="Binary"}
 
 The electronics in computers uses circuitry that mainly just works with two values (represented as high and low voltages) to make it reliable and fast. This system is called *binary*, and is often written on paper using zeroes and ones. There's a lot more about binary in the [data representation](data-representation.html) chapter, and it's worth having a quick look at the first section of that now if you haven't come across binary before.
 
-{jargon-buster end}
+{panel end}
 
 {comment}
 
@@ -219,7 +177,7 @@ We will start with looking at some other programming languages that programmers 
 
 ## Machine Code (Low level languages)
 
-{teacher}
+{panel type="teacher-note" summary="Not expecting students to write machine code!"}
 
 Students are NOT expected (or even encouraged) to be able to write their own program in these languages. The purpose of the examples and getting the students to modify them is to help them understand why programming directly in these languages is best avoided, and thus the reason for high level languages.
 
@@ -227,7 +185,7 @@ If they have trouble with a lot of the modifications that are suggested, this is
 
 Having an old CPU (that you will never want to use again) that the students can pass around and look at could be a good thing to do if you can find one.
 
-{teacher end}
+{panel end}
 
 {comment}
 
@@ -398,10 +356,8 @@ There are many different programming languages. Here we have included a small su
 
 For a much larger list you can [check Wikipedia here](http://en.wikipedia.org/wiki/List_of_programming_languages).
 
-.. xtcb link to coderdojo somewhere here?
+### Python
 
-Python
---------------------------------------------------------------------------------------
 
 Python is a widely used language, that has also become very popular as a teaching language. Many people learn Python as their first programming language. In the introduction, we looked at some examples of Python programs, for those who have never programmed before.
 
@@ -445,6 +401,7 @@ This same program written in Java would require at least twice as many lines of 
 There are many other scripting languages in addition to Python, such as Perl, Bash, and Ruby.
 
 ### Scratch
+
 Scratch is a programming language used to teach people how to program. A drag and drop interface is used so that new programmers don’t have to worry so much about syntax, and programs written in Scratch are centered around controlling cartoon characters or other sprites on the screen.
 
 Scratch is never used in programming in industry, only in teaching. If you are interested in trying Scratch, [you can try it out online here](http://scratch.mit.edu/projects/editor/?tip_bar=getStarted), no need to download or install anything.
@@ -534,8 +491,7 @@ Note that this section will be completed in a future version of the field guide.
 
 Anybody can make their own programming language. Doing so involves coming up with a syntax for your language, and writing a parser and compiler or interpreter so that programs in your language can be run. Most programming languages that people have made never become widely used.
 
-In addition to programming languages that have practical uses, people have made many programming languages that were intended to be nothing more than jokes, or to test the limits of how obscure a programming language can be. Some of them make the low level machine languages you saw earlier seem rather logical! Wikipedia has a list of such languages.
-http://en.wikipedia.org/wiki/Esoteric_programming_language
+In addition to programming languages that have practical uses, people have made many programming languages that were intended to be nothing more than jokes, or to test the limits of how obscure a programming language can be. Some of them make the low level machine languages you saw earlier seem rather logical! Wikipedia has a [list of such languages](http://en.wikipedia.org/wiki/Esoteric_programming_language).
 
 You could even make your own programming language if you wanted to!
 
@@ -557,7 +513,7 @@ Interpreted programs have the advantage that they can be easier to program becau
 
 The diagram below shows the difference between what happens in an interpreter and compiler if you write and run a program that sorts some numbers. The compiler produces a machine code program that will do the sorting, and the data is fed into that second program to get the sorted result. The interpreter simply does the sorting on the input by immediately following the instructions in the program. The compiler produces a machine code program that you can distribute, but it involves an extra phase in the process.
 
-{image filename="comparing-sorting-programs-across-scratch-and-c.png"}
+{image filename="comparing-sorting-programs-across-scratch-and-c.png" alt="Comparing sorting programs across Scratch and C"}
 
 {comment}
 
@@ -583,7 +539,6 @@ The languages we have discussed in this chapter are ones that you are likely to 
 
 - [website including posters comparing programming languages](http://programming.dojo.net.nz/) by Samuel Williams
 - [tutorial comparing programming languages](http://holowczak.com/programming-concepts-tutorial-programmers/)
-- a [discussion of interpreters and compilers](http://pathfinder.scar.utoronto.ca/~dyer/csca57/book_P/node7.html)
 - a [poster with full details of the file content in an executable file](http://code.google.com/p/corkami/wiki/PE101?show=content) (the exe format)
 - David Bolton explains a [Programming Language](http://cplus.about.com/od/introductiontoprogramming/p/programming.htm), [Compiler](http://cplus.about.com/od/introductiontoprogramming/p/compiler.htm), and [the difference between Compilers and Interpreters](http://cplus.about.com/od/introductiontoprogramming/a/compinterp.htm).
 - [Computerworld article on the A to Z of programming languages](http://www.computerworld.com.au/article/344826/z_programming_languages/)
@@ -593,11 +548,11 @@ The languages we have discussed in this chapter are ones that you are likely to 
 - [99 bottles of beer song in hundreds of programming languages](http://99-bottles-of-beer.net/)
 
 
-{teacher}
+{panel type="teacher-note" summary="Links of interest"}
 
 The following links will be of more interest to teachers
 
 - [a brief overview of many of the key concepts in this chapter](http://userpages.wittenberg.edu/bshelburne/Comp150/ProgrammingLanguages.html)
 - [a humorous but not directly relevant history of programming language](http://james-iry.blogspot.co.nz/2009/05/brief-incomplete-and-mostly-wrong.html)
 
-{teacher end}
+{panel end}
