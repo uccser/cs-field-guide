@@ -584,7 +584,7 @@ So now that we know we’ll need 24 bits to represent all the possible colours t
 
 A sensible way is to use 3 binary numbers that represent the amount of each of red, green, and blue in the pixel. In order to do this, you can simply convert the decimal values on the interactive that specify how much of each of the primary colours is making up the resulting colour into binary, and put them side by side to make a full pattern of 24 bits. Because consistency is important in order for a computer to make sense of the bit pattern, the binary number for red should be put first, followed by green, and then finally blue.
 
-{image colour-purple.png alt="The colour purple."}
+{image filename="colour-purple.png" alt="The colour purple."}
 
 As an example, suppose you have the colour that has red = 145, green = 50, and blue = 123 (it is a shade of purple shown in the square above; you can see it if you set the sliders to those values in the interactive above).
 You need to convert each of the 3 numbers into binary, using 8 bits for each. You can either do this by hand if you are confident with binary numbers, use [this binary number interactive with 8 columns](DR-base-conversion/public_html/index.html?base=16&columns=7&lines=A,B,C&offset=0), or use a [binary piano](dr-binary-piano-uc.pdf).
@@ -818,7 +818,7 @@ Negative numbers are more often stored on computers using a system called "two's
 
 In some programming languages there isn't a check for when a number gets too big (overflows). For example, if you have an 8-bit number using two's complement, then 01111111 is the largest number (127), and if you add one without checking, it will change to 10000000, which happens to be the number -128. This can cause serious problems if not checked for, and is behind a variant of the Y2K problem, called the `Year 2038 problem <http://en.wikipedia.org/wiki/Year_2038_problem>`, involving a 32-bit number overflowing for dates on Tuesday, 19 January 2038.
 
-{image xkcd-cant-sleep-comic.png alt="XKCD comic on number overflow"}
+{image filename="xkcd-cant-sleep-comic.png" alt="XKCD comic on number overflow"}
 
 {curiosity end}
 
