@@ -30,6 +30,9 @@ pre > code {
   float: right;
   margin-left: 1rem;
 }
+p.image-caption {
+  font-size: 90%;
+}
 .interactive-iframe-resize {
   width: 100%;
 }
@@ -69,7 +72,7 @@ ul.side-nav.fixed li a {
   margin-top: -90px;
   pointer-events: none;
   outline: none;
-  & > a {
+  & a {
     pointer-events: auto;
   }
   &-empty {
@@ -216,14 +219,14 @@ ul.side-nav.fixed li a {
 // Panels
 @mixin panel-color($class-name, $color) {
   .#{$class-name} .collapsible-header {
-    background-color: color($color, "accent-1");
+    background-color: color($color, "lighten-2");
     border: none;
   }
   .#{$class-name} {
     background-color: color($color, "lighten-5");
 
     .dropdown-menu-arrow {
-      color: color($color, "accent-4");
+      color: color($color, "darken-2");
     }
   }
 }
@@ -245,8 +248,11 @@ ul.panel {
 
   // Custom panel colours
   @include panel-color("panel-teacher-note", "blue");
-  @include panel-color("panel-curiosity", "green");
-  @include panel-color("panel-extra-for-experts", "lime");
+  @include panel-color("panel-curiosity", "purple");
+  @include panel-color("panel-challenge", "deep-orange");
+  @include panel-color("panel-jargon-buster", "light-green");
+  @include panel-color("panel-spoiler", "blue-grey");
+  @include panel-color("panel-project", "amber");
 }
 
 .table-of-contents {
@@ -263,4 +269,7 @@ ul.panel {
       display: none !important;
     }
   }
+}
+.btn {
+  text-transform: none !important;
 }

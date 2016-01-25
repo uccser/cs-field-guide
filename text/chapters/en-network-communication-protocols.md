@@ -1,30 +1,6 @@
 # Network Communication Protocols
 
-{teacher}
-
-This chapter is under evaluation. It covers one of six topics that students must select two from for the 3.44 Achievement Standard; the other 5 topics have chapters available, so there is still a wide range of choice available. Any feedback would be greatly appreciated. If you also teach your class, please [complete the teacher survey here](http://bit.ly/NCPSurveyTeachers) and and your students can do this one [http://bit.ly/NCPSurveyStudents](http://bit.ly/NCPSurveyStudents).
-
-{teacher end}
-
-{teacher}
-
-See the URL above you? Notice how it says “http://” the p stands for protocol. They’re all around us on the web and this chapter will teach you more.
-
-This chapter supports the "Network communication protocols" option of the NZ achievement standard 3.44.
-
-Currently all material in this chapter is relevant to the standard, although students can choose one or two examples to focus on to meet the requirements of the standard.
-
-Be careful not to confuse this topic with those from the infrastructure standards such as the 2.50 or 2.51 achievement standards. 2.50 ensures a student knows the layers in the TCP/IP networking model and the role of this model in LAN architecture. We approach this from a different perspective, not touching on the OSI model, but mainly acknowledging the existence of a layered model. Similar approaches at level three in 2.50 with WAN architecture. This chapter focuses on the problems and the techniques used to solve them from a computer science perspective. While there is overlap, high achieving submissions will also take this approach.
-
-{teacher end}
-
-{video https://www.youtube.com/embed/Hwqmu6pvr6g}
-
-{teacher}
-
-An alternative video could be this one from Family Guy: [https://www.youtube.com/watch?v=KJCfUm21BsI](https://www.youtube.com/watch?v=KJCfUm21BsI). However, it might not be appropriate for your school, as it does contain some questionable language. A vimeo version is at [http://vimeo.com/106027170](http://vimeo.com/106027170). **Network communication protocols** focus on the techniques applied in computer networks to ensure reliable communication of data between two parts of a network in the face of different kinds of threats and failures. Reliable refers to messages being on time, in order and not damaged. The project in this chapter would typically be done by giving examples of the sequence of events that occur in these situations, discussing how the protocols and their coding schemes overcome the problems, and evaluating how successful they are at addressing them. This topic is distinct from the coverage of networking in the infrastructure standards because it focuses on the issues that the protocols address (i.e. the design of the protocol), rather than how to configure a system that uses a given protocol.
-
-{teacher end}
+{video url="https://www.youtube.com/embed/Hwqmu6pvr6g"}
 
 ## What's the big picture?
 
@@ -32,27 +8,10 @@ Think about the last time someone sent you mail via the post. They probably wrot
 
 Below we introduce some concepts, algorithms, techniques, applications and problems that relate to network protocols; it isn’t a complete list of all the ideas in the area, but should be enough to give you a good idea of what this area of computer science is about.
 
-{teacher}
-
-**Key concepts** that are likely to be encountered are: formal communication, structured requests/responses, addressing, packet loss, quality of service, network performance.
-
-**Algorithms:** (techniques are more relevant to this area than algorithms)
-
-**Techniques:** packet switching, handshaking, acknowledgement, checksums, redundancy, packet ordering and use of timeouts.
-
-**Applications:** Protocols that you will investigate are HTTP and IRC, and UDP and TCP. You could also look at DNS, FTP, DHCP, Telnet or SSH. The applications of network communication protocols are easier when you use those from the Application level (rather than the transport or internet), however UDP and TCP are more complex and more interesting.
-
-{teacher end}
-
-{teacher}
-
-Running the Tablets of Stone game (below) can take some time and coordination to do properly. The game is meant to cause frustration, and is usually not finished in an a typical hour long class. The game is best when played for a short period (5 minutes or so) and then stopped and discussed. Discuss the issues the students are facing, packet loss, packet delay, etc. Then begin to discuss possible solutions. These could be packet numbering, positive or negative acknowledgments, timeouts etc. However, this may take more time, and also lets you fit less information on each tablet. Students should realise this tradeoff and understand the key problems of network communication protocols as efficiency and reliability when communicating. Tablets of Stone can be found at [University of Glasgow Computer Science Department website](http://csi.dcs.gla.ac.uk/workshop-view.php?workshopID=4). We’ve made a guide too, which you can [download freely here](other-files/uc-tablets-of-stone.pdf). Other activities you should consider are “Locked-In Syndrome, described [here](http://dl.acm.org/citation.cfm?doid=2532748.2611263) or Code.Org’s *The Internet* activity, described [here](https://learn.code.org/s/1/level/102).
-
-{teacher end}
-
+{comment}
 ## Getting Started
-Take part in a game of Tablets of Stone in your classroom. Your teacher will show you how it is played. Try to think about a few things while you’re playing the game. What happens if one of my messages is delayed? What happens if one of my messages gets lost completely? Will the other governor be able to put them back together?
-
+Section not needed?
+{comment end}
 ## What is a protocol?
 
 ‘Protocol’ is a fancy word for simply saying “an agreed way to do something”. You might have heard it in a cheesy cop show -- “argh Jim, that’s against protocol!!!” -- or heard it used in a procedural sense, such as how to file a tax return or sit a driving test. We all use protocols, every day. Think of when you’re in class. The *protocol* for asking a question may be as follows: raise your hand, wait for a nod from the teacher then begin asking your question.
@@ -65,13 +24,11 @@ Activities on the internet vary a lot too (email, skype, video streaming, music,
 
 The URL for the home site of this book is http://csfieldguide.org. Ask a few friends what the "http" stands for - they have probably seen it thousands of times...do they know what it is? This section covers high level protocols such as HTTP and IRC, what they can do and how you can use them (hint: you’re already using HTTP right now).
 
-{teacher}
-
-For the activity in this section it's ideal if your school computers have a modern browser with the developer extensions enabled. [Chrome](https://www.google.com/chrome/browser/) is free to download. Follow the instructions [here](http://debugbrowser.com/) for more information on how to do this. The developer browser can’t really do any harm, and you can encourage further tinkering. However, knowledge of HTML, JavaScript or any other web design won’t be helpful in a report on protocols. If your school’s IT department can't allow you access to these features, simply encourage the students to try this at home. It’s a perfectly safe activity. Note: Details of page loads only show up if the inspector is open, you may need to refresh the current page to see this.
-
-{teacher end}
-
 ### HyperText Transfer Protocol (HTTP)
+
+{panel type="teacher-note" summary="Looking at HTTP in the classroom"}
+For the activity in this section it's ideal if your school computers have a modern browser with the developer extensions enabled. [Chrome](https://www.google.com/chrome/browser/) is free to download, and is the browser we recommend. Follow the instructions [here](http://debugbrowser.com/) for more information on how to do this. The developer browser can’t really do any harm, and you can encourage further tinkering. However, knowledge of HTML, JavaScript or any other web design won’t be helpful in a report on protocols. If your school’s IT department can't allow you access to these features, simply encourage the students to try this at home. It’s a perfectly safe activity. Note: Details of page loads only show up if the inspector is open, you may need to refresh the current page to see this.
+{panel end}
 
 The HyperText Transfer Protocol (HTTP) is the most common protocol in use on the internet. The protocol’s job is to transfer [HyperText](glossary#hypertext) (such as HTML) from a server to your computer. It’s doing that right now. You just loaded the Field Guide from the servers where it is hosted. Hit refresh and you’ll see it in action.
 
@@ -80,22 +37,20 @@ HTTP functions as a simple conversation between client and server. Think of when
 >   You: “Can I have a can of soda please?”
 >   Shop Keeper: “Sure, here’s a can of soda”
 
-{image net-soda.png alt="Asking for a soda"}
+{image filename="asking-for-a-soda-cartoon.png" alt="Asking for a soda"}
 
 HTTP uses a request/response pattern for solving the problem of reliable communication between client and server. The “ask for” is known as a *request* and the reply is known as a *response*. Both requests and responses can also have other data or *resources* sent along with it.
 
-{curiosity}
-
+{panel type="jargon-buster" summary="What is a resource?"}
 A *resource* is any item of data on a server. For example, a blog post, a customer, an item of stock or a news story. As a business or a website, you would create, read, update and delete these as part of your daily business. HTTP is well suited to that. For example, if you’re a news site, every day your authors would add stories, you could update them, delete them if they’re old or become out of date, all sorts. These sorts of methods are required to manage content on a server, and HTTP is the way to do this.
-
-{curiosity end}
+{panel end}
 
 This is happening all the time when you're browsing the web; every web page you look at is delivered using the HyperText Transfer Protocol. Going back to the shop analogy, consider the same example, this time with more resources shown in asterisk (*) characters.
 
 >   You: “Can I have a can of soda please?” \*You hand the shop keeper $2\*
 >   Shop Keeper: “Sure, here’s a can of soda” \*Also hands you a receipt and your change\*
 
-{image net-soda-with-cash.png alt="Paying for a soda with cash"}
+{image filename="asking-for-a-soda-cartoon-with-cash.png" alt="Paying for a soda with cash"}
 
 There are nine *types* of requests that HTTP supports, and these are outlined below.
 
@@ -126,12 +81,6 @@ A DELETE request does what you’d think, it deletes a resource.
 Some other request types (*HTTP methods*) exist too, but they are less used; these are TRACE, OPTIONS, CONNECT and PATCH. You can [find out more about these](http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol) on your own if you're interested.
 
 In HTTP, the first line of the response is called the *status* line and has a numeric status code such as **404** and a text-based *reason phrase* such as “Not Found”. The most common is 200 and this means successful or “OK”. HTTP status codes are primarily divided into five groups for better explanation of requests and responses between client and server and are named by purpose and a number: Informational 1XX, Successful 2XX, Redirection 3XX, Client Error 4XX and Server Error 5XX. There are many [status codes](http://en.wikipedia.org/wiki/List_of_HTTP_status_codes) for representing different cases for error or success. There’s even a nice 418: Teapot error on Google: [http://www.google.com/teapot](http://www.google.com/teapot)
-
-{teacher}
-
-[Chrome](https://www.google.com/chrome/browser/) is free to download. Follow the instructions [here](http://debugbrowser.com/) for the browser you have installed.
-
-{teacher end}
 
 So what’s actually happening? Well, let’s find out. If you’re in a Chrome or Safari browser, press Ctrl + Shift + I in windows or Command + Option + I on a mac to bring up the web inspector. Select the Network tab. Refresh the page. What you’re seeing now is a list of of HTTP requests your browser is making to the server to load the page you're currently viewing. Near the top you’ll see a request to NetworkCommunicationProtocols.html. Click that and you’ll see details of the Headers, Preview, Response, Cookies and Timing. Ignore those last two for now.
 
@@ -191,20 +140,16 @@ Go ahead and try this same process on a few other pages too. For example, try th
 - A chapter that [doesn’t exist in the Field Guide](http://csfieldguide.org.nz/Nope.html)
 - Your favourite website
 
-{curiosity}
-
+{panel type="curiosity"" summary="Who came up with HTTP?"}
 Tim Berners-Lee was credited for creating HTTP in 1989. You can read more about him [here](http://en.wikipedia.org/wiki/Tim_Berners-Lee>).
-
-{curiosity end}
+{panel end}
 
 ### Internet Relay Chat (IRC)
 
-{teacher}
-
+{panel type="teacher-note"" summary="Using IRC in the classroom"}
 For this section we suggest you use the [freenode web client](http://webchat.freenode.net/) This allows you to set up your own channel and then your students can join it too. Now, with channels on this service, anyone can join them, so if your channel name is too obvious, you might get members of the public joining. It's best to break convention with channel names and use ###irc-myschool-thedate or something similar.
 Students can also download and install IRC clients, but this is complicated to configure, so it’s best to use the web version for now. Just tell them what channel to join.
-
-{teacher end}
+{panel end}
 
 Internet Relay Chat (IRC) is a system that lets you transfer messages in the form of text. It’s essentially a chat protocol. The system uses a client-server model. Clients are chat programs installed on a user’s computer that connect to a central server. The clients communicate the message to the central server which in turn relays that to other clients. The protocol was originally designed for group communication in a discussion forum, called *channels*. IRC also supports one-to-one communication via *private messages*. It is also capable of file and data transfer too.
 
@@ -219,99 +164,6 @@ To get started with IRC, first you should get a client. A client is a program th
 Try a few things while you’re in there. Look at this [list of commands](http://en.wikipedia.org/wiki/List_of_Internet_Relay_Chat_commands) and try to use some of them. What response do you get? Does this make sense?
 
 Try a one on one conversation with a friend. If they use commands, do you see them? How about the other way around?
-
-
-
-## Projects - HTTP and IRC
-
-{teacher}
-
-As further guidance as to what students should do, we have made this overall outline of how the project fits the standard. Note that for 3.44 this covers one of the two areas of computer science students have to cover in their report. They must pick one other area of computer science to do a project on as well.
-
-**Selected Area**: Network Communication Protocols
-
-**Key Problems**:
-- The bigger problems are: Reliable, efficient communication suitable to purpose. Abstracted level of communication
-- Application layer: Transfer of text, video, audio, files. Effective error communication.
-
-**Key algorithm/Techniques**:
-- Bigger solutions: A layered network model approach, each level having its role and abstracting it from the level above.
-- Application layer: requests, responses, resources, error codes, commands.
-
-**Examples of practical applications**: Looking at web traffic with the network inspector/developer tools or using a private IRC channel and using some commands.
-
-**Personalised student examples**: Each website a student visits should be unique, they should report on unique requests and responses they see. They could talk about different error codes and why they exist in groups (100, 200, 300, 400 and 500). With IRC, a *sensible* chat session could be recorded and experiences with various commands.
-
-**For achieved, it could be expected that a student...**
-
-*"describing key problems that are addressed in selected areas of computer science"*
-
-- Describing the problems at the overall level, or on the application layer.
-
-*"describing examples of practical applications of selected areas to demonstrate the use of key algorithms and/or techniques from these areas"*
-
-- Carrying out an activities above
-- Describing how the activity went
-- Reporting on the results
-- Describing at least 2 or 3 samples of the activity
-- Showing data/results from those runs
-- Describe one technique that is used in this activity
-
-**For merit, it could be expected that a student...**
-
-*"explaining how key algorithms or techniques are applied in selected areas"*
-
-- Explaining what factors have to be considered when carrying out the the activity, to ensure a valid result.
-- Explaining what HTTP or IRC achieves and how it achieves that.
-
-*“explaining examples of practical applications of selected areas to demonstrate the use of key algorithms and/or techniques from these areas."*
-
-- Explaining how the the activity could be used to evaluate a new protocol
-- Giving examples of the protocol trying to address these issues
-
-**For excellence, it could be expected that a student...**
-
-"discussing examples of practical applications of selected areas to demonstrate the use of key algorithms and/or techniques from these areas"
-
-- Discussing other possible applications of techniques used in HTTP or IRC. This may be difficult and not suitable for excellence level.
-
-
-*"evaluating the effectiveness of algorithms, techniques, or applications from selected areas."*
-
-- Discussing the various protocols, how they are used and why.
-- Discussing the differences of HTTP and HTTPS. Discussing IRC vs another chat protocol (telnet, linux’s wall).
-
-{teacher end}
-
-**HTTP** is the most common protocol yet. We use it every day and you’re using it right now if you're viewing this on the web.
-Open up the web inspector (you might have to do this at home if your school doesn't have it available) and have a look at the traffic. You might need to refresh, depending on your browser. We recommend Chrome, which is free to download at [https://www.google.com/chrome/browser/](https://www.google.com/chrome/browser/).
-
-Bring up the Developer Tools. Find the *Network* tab. Reload the page. You should now see a slew of request form. Go through and click each one. Have a look at the details you can see under headers.
-
-- What is the remote address?
-- What type of method is it?
-- What does the status code mean?
-- What is the path?
-- What is the response?
-- What is *actually happening* here? What part of the page is loading?
-
-{teacher}
-
-Here’s a quick video from Numb3rs -["how hackers talk when they don’t want to be overheard"](https://www.youtube.com/watch?v=O2rGTXHvPCQ)
-
-{teacher end}
-
-**IRC** is a very primitive chat program which is fun to use with your friends.
-
-Go be a hacker, grab a friend and [visit freenode and create a channel for you](http://webchat.freenode.net/). Now, look at the [list of commands you can use](http://en.wikipedia.org/wiki/List_of_Internet_Relay_Chat_commands) and try to use some of them. What response do you get? Does this make sense?
-
-Try a one on one conversation with a friend. If they use commands, do you see them? How about the other way around?
-
-{teacher}
-
-TCP and UDP are a lot more complex than the protocols above. However are required to get the depth needed for Excellence and Merit. TCP is a protocol that addresses packet loss, duplication, corruption and delay, UDP does not. Packet reliability is fixed for a chosen set of solutions in TCP, in UDP it is not. Because these solutions takes time, TCP is typically not suitable for real-time communication such as Skype, music or video or online video gaming, but UDP is not suitable for email, text, downloads etc - times where all data has to be present and accounted for.  
-
-{teacher end}
 
 ## Transport Layer Protocols - TCP and UDP
 
@@ -333,16 +185,13 @@ So why don’t the packets all just go from computer A to computer B just fine? 
 
 So, if we didn’t try fix these, the image wouldn’t load, bits would be missing, corrupted or computer B might not even recognise what it is!
 
-{image images/net-corrupt.jpg alt="Corrupted Image"}
+{image filename="corrupted-image.jpg" alt="Corrupted Image"}
 
-So, TCP is a protocol that solves these issues. To introduce you to TCP, please play the game below. In the game, *you* are the problems (loss, delay, corruption) and as you move through the levels, pay attention to how the computer tries to combat them. Good luck trying to stop the messages getting through correctly!
+So, TCP is a protocol that solves these issues. To introduce you to TCP, play the game below, called *Packet attack*. In the game, *you* are the problems (loss, delay, corruption) and as you move through the levels, pay attention to how the computer tries to combat them. Good luck trying to stop the messages getting through correctly!
 
-{teacher}
+*Packet Attack* is a direct analogy for TCP and it is intended to be an interactive simulation of it. The Packet Creatures are TCP segments, which move between two computers. The yellow/gray zone is the unreliable channel, susceptible to unreliability. That unreliability is the user playing the game. Remember from the key problems of this topic on the transport level, we have delays, corruption and lost packets, these are the attacks; *delay*, *corrupt*, *kill*. Solutions come in the form of TCP mechanisms, they are slowly added level by level. Like in TCP, the game supports packet ordering, checksums (shields), Acks and Nacks (return creatures) and timeouts .
 
-You can also create your own ‘levels’ for your students in Packet Attack. We’ve also put a level builder in the projects section below so that you can make levels for your students, experiment with different reliabilities or combination of defenses.
-
-Adjust the trues, falses and numbers to set different abilities. Raising the numbers will effectively equate to a less reliable communication channel. Adding in more abilities (by setting shields etc to true) will make for a harder to level to beat.
-
+{panel type="teacher-note" summary="Packet attack spoilers"}
 **Level Overview**
 
 - *Level 1*: No defences. One packet. Students can beat by using corrupt or kill.
@@ -352,24 +201,22 @@ Adjust the trues, falses and numbers to set different abilities. Raising the num
 - *Level 5*: Numbers and shields. 10 packets.
 - *Level 6*: Numbers and acknowledgments. Packets will be sent back and resent.
 - *Level 7*: Numbers, shields, timeouts and acknowledgments. Packets will be sent back and resent. This level is not beatable.
+{panel end}
 
-{teacher end}
+{interactive name="packet-attack" type="whole-page"}
 
-{interactive-external packet-attack title="Searching Boxes - Part 1"}
+{panel type="curiosity" summary="Creating your own levels in packet attack"}
+You can also create your own levels in Packet Attack. We’ve put a level builder in the projects section below so that you can experiment with different reliabilities or combination of defenses.
 
-{teacher}
+Adjust the trues, falses and numbers to set different abilities. Raising the numbers will effectively equate to a less reliable communication channel. Adding in more abilities (by setting shields etc to true) will make for a harder to level to beat.
+{panel end}
 
-*Packet Attack* is a direct analogy for TCP and it is intended to be an interactive simulation of it. The Packet Creatures are TCP segments, which move between two computers. The yellow/gray zone is the unreliable channel, susceptible to unreliability. That unreliability is the user playing the game. Remember from the key problems of this topic on the transport level, we have delays, corruption and lost packets, these are the attacks; *delay*, *corrupt*, *kill*. Solutions come in the form of TCP mechanisms, they are slowly added level by level. Like in TCP, the game supports packet ordering, checksums (shields), Acks and Nacks (return creatures) and timeouts .
-
-{teacher end}
 
 Let’s talk about what you saw in that game. What did the levels do to solve the issues of packet loss, delay (reordering) and corruption? TCP has several mechanisms for dealing with packet troubles.
 
-{curiosity}
-
+{panel type="curiosity" summary="What causes delays, losses, and corruption?"}
 Why do packets experience delays, loss and corruption? This is because as packets are sent over a network, they go through various *nodes*. These nodes are effectively different routers or computers. One route might experience more interference than another (causing packet loss), one might be faster or shorter than another (causing order to be lost). Corruption can happen at any time through electronic interference.  
-
-{curiosity end}
+{panel end}
 
 Firstly, TCP starts by doing what is known as a handshake. This basically means the two computers say to each other: “Hey, we’re going to use TCP for this image. Reconstruct it as you would”.
 
@@ -389,135 +236,7 @@ UDP (User Datagram Protocol) is a protocol for sending packets that does not gua
 
 So do we even use such an unreliable protocol? Yes, but not for anything too important. Files, messages, emails, web pages and other text based items use TCP, but things like streaming music, video, VOIP and so on use UDP. Maybe you’ve had a call on Skype that has been poor quality. Maybe the video flickers or the sound drops for a split second.  That’s packets being lost. However, you of course get the overall picture and the conversation you’re having is successful.
 
-## Projects - TCP and UDP
-
-{teacher}
-
-As further guidance as to what students should do, we have made this overall outline of how the project fits the standard. Note that for 3.44 this covers one of the two areas of computer science students have to cover in their report. They must pick one other area of computer science to do a project on as well.
-
-**Selected Area**: Network Communication Protocols
-
-**Key Problems**:
-
-- The bigger problems are: Reliable, efficient communication suitable to purpose. Abstracted level of communication
-- Application layer: Transfer of text, video, audio, files. Effective error communication.
-- Transport layer: Packet loss, packet corruption, packet delay
-
-**Key algorithm/Techniques**:
-
-- Bigger solutions: A layered network model approach, each level having its role and abstracting it from the level above.
-- Application layer: requests, responses, resources, error codes.
-- Transport layer: packet switching, handshaking, timeouts, acknowledgements, packet ordering
-
-**Examples of practical applications**:
-
-Practical applications of TCP are non-realtime applications such as email, web browsing, file transfer and downloading. UDP is more for real time applications such as music and video streaming, online gaming and VoIP and VoLTE.  You can’t really see these in practice since they’re are abstracted away, but you can dig into it for a project with some tools. Wireshark, TCP Dump  or  [Windump](http://technet.microsoft.com/en-us/magazine/2005.05.howitworkstcpip.aspx)  Note: WinDump and TCPDump spits out your *own* TCP traffic, so there are no privacy issues there. Traffic can be recreated by adding together TCP packets, so be careful about posting packets online - they may contain sensitive data such as passwords.
-
-**Personalised student examples**:
-
-Each student experience playing Tablets of Stone or playing Packet Attack should be unique and can be used to illustrate TCP and UDP. Also, using TCPDump or Windump would be a great example, but is a little more difficult. Use the guides we’ve linked to. It’s almost certain students will have to perform these tasks at home.
-
-**For achieved, it could be expected that a student...**
-
-*"describing key problems that are addressed in selected areas of computer science"*
-
-- Describing the problems at the overall level, or at application or transport layer
-
-*"describing examples of practical applications of selected areas to demonstrate the use of key algorithms and/or techniques from these areas"*
-
-- Carrying out an activity above
-- Describing how the activity went
-- Reporting on the results
-- Describing at least 2 or 3 runs of the activity
-- Showing any data/results/screenshots/photographs from those runs
-- Describe one technique that is used in this activity
-
-Questions:
-
-- What problems did you encounter when transmitting data across networks? Talk about problems that you encountered at the start of Tablets of Stone (photos are great!)
-- What solutions did you see in Packet Attack, what attacks did they stop?
-
-**For merit, it could be expected that a student...**
-
-*"explaining how key algorithms or techniques are applied in selected areas"*
-
-- Explaining what factors have to be considered when carrying out the the activity, to ensure a valid result.
-- Explaining the details of at least two techniques used by lower level protocols to address reliability or efficiency.
-- For example, imagine you had to post a 500 page book, using only postcards. What would you use? How would you correct for lost postcards?
-
-Questions:
-
--  Explain the use of TCP and UDP in networks today, with example situations. What systems use TCP? Which use UDP?
-- Explain at least two techniques used by TCP and/or UDP to address the problems above. Show some examples from packet attack (and tablets of stone) that illustrate the concepts.
-
-*“explaining examples of practical applications of selected areas to demonstrate the use of key algorithms and/or techniques from these areas."*
-
-- Giving examples of the protocol trying to address these issues
-- Explain what headers, footers etc do on a packet, and what is in them
-- Explain what TCP is used for and what UDP is use for and why (real time vs accuracy)
-
-**For excellence, it could be expected that a student...**
-
-"discussing examples of practical applications of selected areas to demonstrate the use of key algorithms and/or techniques from these areas"
-
-- Discussing other possible applications of techniques used in Packet Attack and Tablets of Stone that display TCP and UDP principles.
-
-*"evaluating the effectiveness of algorithms, techniques, or applications from selected areas."*
-
-- Discussing the various protocols, how they are used and why.
-- Explaining how the the activity could be used to evaluate a new protocol
-- Discussing the differences of TCP vs UDP and why they exist and/or their applications. (Effectiveness could be reliability or speed - usually a trade off. Packet size? Content vs Correctness)
-- In terms of evaluation, students could use a stopwatch to time several runs of Packet Attack or Tablets of Stone and graph the trend of reliability and delivery time with all of TCP in place. For example, they could set up a custom level in packet attack with 5 kills, 10 kills, 20 kills, 50 kills and see if there is a trend. Report on it, discuss why they are seeing it.
-
-Questions:
-
-- For systems that require TCP, what might happen to them if TCP did not exist and they had to use UDP?
-- Discuss the differences between TCP and UDP, why each exists and why you would choose a particular protocol for several scenarios.
-
-{teacher end}
-
-Before writing about Network Communication Protocols, think about the following questions:
-
-**Tablets of Stone:**
-
-- How did your messaging go when you first started?
-- Did you need numbers on your tablets?
-- Was it a pain to use up tablet space on numbers and other information?
-- Did you ever get to reliable communication?
-
-**Packet Attack:**
-
-- What happens if you add too many kills, corrupts and delays? Is there a relationship between this and time taken to transmit the message? Try graphing it
-- What happens if you turn off all the defenses?
-- What happens if you have no kills, corrupts and delays?
-- What happens if you only have delays?
-- What happens if you kill a packet creature when it tries to get sent the second time?
-- What other situations can you get the protocol in?
-
-{interactive-inpage packet-attack-level-creator}
-
-{teacher}
-
-Note that the questions cover the report up to merit level, but if students are aiming for Excellence level you will need to make sure they have covered the criteria in the 3.44 standard (there's more information about this in the teacher notes above).
-
-{teacher end}
-
-For a project, using the knowledge you have gained on TCP and UDP, create some custom levels in Packet Attack using the controls just above to create some unique situations that illustrate different aspects of Network Protocols. The following questions will help you to reflect on the issues that you could talk about:
-
-1. What problems did you encounter when transmitting data across networks? Talk about problems that you encountered at the start of Tablets of Stone (photos of examples from various stages of the activity are a great way to illustrate it!)
-2. Explain the use of TCP and UDP in networks today, with example situations. Which systems use TCP? Which use UDP?
-3. Explain at least two techniques used by TCP and UDP to address the problems above. Show some examples from Packet Attack (and/or Tablets of Stone) that illustrate the concepts.
-4. For systems that require TCP, what might happen to them if TCP did not exist and they had to use UDP?
-5. Discuss the differences between TCP and UDP, why each exists, and why you would choose a particular protocol for several scenarios.
-6. How does the performance of protocols like TCP change as the reliability of the connection varies? You could look at how the speed of getting data through changes if lots of packets need to be re-sent.
-
 ## The Whole Story
-
-{teacher}
-
-The OSI internet model is different from the TCP/IP model of the internet that Computer Scientists use to approach protocol design. OSI is considered and probably mentioned in the networking standards but the guide will use the computer science approach because it is simpler, however the main idea of layers of abstraction is more important to get across.  You can read more about the differences [here](http://en.wikipedia.org/wiki/Internet_protocol_suite#Comparison_of_TCP.2FIP_and_OSI_layering).
-
-{teacher end}
 
 Let’s say I want to write an online music player. Okay, so I write the code for someone to press play on a website and the song plays. Do I now need to code up the protocol that streams the music? Fine, I write some UDP code. Now, do I need to go install the cables in your house? Sure, I jump in my van and spend a few weeks running cable to your house and make sure the packets can get over too.
 
@@ -527,38 +246,37 @@ Internet protocols exist in layers. We have four such layers in the computer sci
 
 At each layer, data is made up of the previous layers’ whole unit of data, and then *headers* are added and passed down. At the bottom layer, the Link layer, a *footer* is added also. Below is an example of what a UDP packet looks like when it’s packaged up for transport.
 
-{jargon-buster}
-
-**Jargon Buster**
-
+{panel type="jargon-buster" summary="Headers and footers"}
 Footers and Headers are basically packet *meta-data*. Information about the information. Like a letterhead or a footnote, they’re not part of the content, but they are on the page. Headers and Footers exist on packets to store data. Headers come before the data and footers afterwards.
+{panel end}
 
-{jargon-buster end}
-
-{image http://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/UDP_encapsulation.svg/800px-UDP_encapsulation.svg.png alt="UDP Encapsulation"}
+{comment}
+{image filename="http://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/UDP_encapsulation.svg/800px-UDP_encapsulation.svg.png" alt="UDP Encapsulation"}
+TODO: Upload this image to field guide, and link back to svg page.
+https://commons.wikimedia.org/wiki/File:UDP_encapsulation.svg
+{comment end}
 
 You can think of these protocols as a game of pass the parcel. When a message is sent in HTTP, it is wrapped in a TCP header, which is then wrapped in an IPv6 header, which is then wrapped in a Ethernet header and footer and sent over ethernet. At the other end, it’s unwrapped again from an ethernet *frame*, back to a IP *packet*, a TCP *datagram*, to a HTTP *request*.
 
-{jargon-buster}
-
-**Jargon Buster**
-
+{panel type="curiosity" summary="What is a Packet?"}
 The name packet is a generic term for a unit of data. In the application layer units of data are called *data* or *requests*, in the transport layer, *datagram* or *segments*, in the Network/IP layer, *packet* and in the physical layer, a *frame*. Each level has its own name for a unit of data (segment, packet, frame, request etc), however the more generic “packet” is often used instead, regardless of layer.
-
-{jargon-buster end}
+{panel end}
 
 This system is neat because each layer can assume that the layer above and below have guaranteed something about the information, and each layer (and protocol in use at that layer) has a stand-alone role. So if you’re making a website you just have to program website code, and not worry about code to make the site work over wifi as well as ethernet. A similar system is in the postal system… You don’t put the courier’s truck number on the front of the envelope! That’s take care of by the post company, which then uses a system to sort the mail and assign it to drivers, and then drivers to trucks, and then drivers to routes… none of which you need to worry about when you send or receive a letter or use a courier.
 
+{panel type="curiosity" summary="The OSI model vs the TCP/IP model"}
+The OSI internet model is different from the TCP/IP model of the internet that Computer Scientists use to approach protocol design. OSI is considered and probably mentioned in the networking standards but the guide will use the computer science approach because it is simpler, however the main idea of layers of abstraction is more important to get across. You can read more about the differences [here](http://en.wikipedia.org/wiki/Internet_protocol_suite#Comparison_of_TCP.2FIP_and_OSI_layering).
+{panel end}
+
 So what does a TCP segment look like?
 
-{image net-packet-structure.png alt="Showing the structure of a TCP packet"}
+{image filename="packet-structure-diagram.png" alt="Showing the structure of a TCP packet"}
 
 As you can see, a packet is divided into four main parts, addresses (source, destination), numbers (sequence number, ANCK number if it’s an acknowledgement), flags (urgent, checksum) in the header, then the actual data. At each level, a segment becomes the data for the next data unit, and that again gets its own header.
 
 TCP and UDP packets have a number with how big they are. This number means that the packet can actually be as big as you like. Can you think of any advantages of having small packets? How about big ones? Think about the ratio of data to information (such as those in the header and footer).
 
-{curiosity}
-
+{panel type="curiosity" summary="What does a packet trace look like?"}
 Here’s an example of a packet trace on our network…[(using tcpdump on the mac)](http://support.apple.com/kb/HT3994)
 
 ```
@@ -572,8 +290,7 @@ Here’s an example of a packet trace on our network…[(using tcpdump on the ma
 0x0050:  3a79 313a 7165
 
 ```
-
-{curiosity end}
+{panel end}
 
 
 ## Further reading
@@ -583,11 +300,19 @@ Here’s an example of a packet trace on our network…[(using tcpdump on the ma
 - Protocols are found in the strangest of places…. [Engine Order Telegraph](http://en.wikipedia.org/wiki/Engine_order_telegraph)
 - Coursera course on [Internet History, Technology, and Security](https://www.coursera.org/learn/insidetheinternet)
 
-{video https://www.youtube.com/embed/WwyJGzZmBe8}
+### Videos
 
-{video http://www.youtube.com/embed/i5oe63pOhLI}
+There and back again: a packet's tale
 
-{video http://www.youtube.com/embed/7_LPdttKXPc}
+{video url="https://www.youtube.com/embed/WwyJGzZmBe8"}
+
+How does the internet work?
+
+{video url="http://www.youtube.com/embed/i5oe63pOhLI"}
+
+How the internet works in 5 minutes
+
+{video url="http://www.youtube.com/embed/7_LPdttKXPc"}
 
 
 ### Extra Activities

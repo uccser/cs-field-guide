@@ -204,20 +204,23 @@ Check out [Google's website](https://www.google.com).
 
 #### Image links
 
-You can link an image to a specific URL using the basic link syntax with the image syntax within the square brackets. See the example below:
-
-```no-highlight
-Enjoy this amusing XKCD comic on Python.
-
-[{image filename="xkcd-python.png"}](http://xkcd.com/353/)
-```
-
-Enjoy this amusing XKCD comic on Python.
-
-![XKCD Python Comic](http://imgs.xkcd.com/comics/python.png)
+Images should now be linked using the `caption-link` and `source` arguments within the [images](#images) syntax. Direct links when clicking an image are no longer allowed as it's inconsistent to other images using the `materialbox` feature from MaterialCSS.
 
 ---
 
+
+#### Button links
+
+You can create a link on a button using the following syntax:
+
+```
+{button link="http://www.google.com" text="Visit Google"}
+```
+**Parameters:**
+- `link` - The URL to link to.
+- `text` - Text to display on the button.
+
+---
 
 ### Code
 
@@ -385,6 +388,9 @@ The following text can be used to include images into the project:
 - `filename` - The image's file name, stored in the images folder.
 - `wrap` (optional) - Either set to `left` or `right` for aligning the image on the page, rather than centered.
 - `alt` (optional) - Description text of the image.
+- `caption` (optional) - Lists the given text as a caption under the image. Does not appear under images within an `image-set`.
+- `caption-link` (optional - requires `caption` parameter) - Turns the caption text into a link to the given URL.
+- `source` (optional) - Adds a 'Image source' link under the image, and after the caption if a caption is given. Does not appear under images within an `image-set`.
 
 Images are displayed responsively, and expand to full size when clicked by the user.
 

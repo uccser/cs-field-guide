@@ -14,7 +14,7 @@ def to_kebab_case(text):
     The text is lower case, has spaces replaced as dashes.
     All punctuation is also removed.
     """
-    text = ''.join(letter for letter in text if letter in set(string.ascii_letters + ' -'))
+    text = ''.join(letter for letter in text if letter in set(string.ascii_letters + string.digits + ' -'))
     text = text.replace(' ', '-').lower()
     return text
 
@@ -48,7 +48,5 @@ def command_line_args():
 
 
 def install_dependencies():
-    """upgrade pip and install project dependencies, if required"""
-    pip.main(['install', '--upgrade', 'pip>=7.0.3'])
-    # Check dependencies
+    """Install project dependencies, if required"""
     pip.main(['install',  '-r', 'generator/dependencies.conf'])

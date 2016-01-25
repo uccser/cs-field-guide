@@ -81,7 +81,7 @@ class Guide:
                 if search and ((reading_template and search.group('end')) or not reading_template):
                     if search.group('end'):
                         reading_template = False
-                        html_templates[template_name] = template_text
+                        html_templates[template_name] = template_text.strip()
                         template_text = ''
                     elif not reading_template and search.group('template_name'):
                         reading_template = True
@@ -291,7 +291,7 @@ class Guide:
 
         if file.section:
             if file.section.mathjax_required:
-                file.section.add_page_script(self.html_templates['mathjax'])
+                file.section.add_page_script(self.html_templates['mathjax'].format(path_to_root=file.section.html_path_to_root))
 
             for section_content in file.section.html_content:
                 body_html += section_content

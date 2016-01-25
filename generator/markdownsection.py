@@ -123,8 +123,15 @@ class Section:
         link_text = match.group('link_text')
         link_url = match.group('link_url')
         link_url = link_url.replace('\)', ')')
+
         if not link_url.startswith(('http://','https://','mailto:')):
-            link_url = self.html_path_to_root + link_url
+            # If linked to file, add file to required files
+            if link_url.startswith(self.guide.generator_settings['Source']['File']):
+                file_name = link_url[len(self.guide.generator_settings['Source']['File']):]
+                self.required_files['File'].add(file_name)
+
+            link_url = os.path.join(self.html_path_to_root, link_url)
+
         html = self.html_templates['link'].format(link_text=link_text, link_url=link_url).strip()
         return html
 
@@ -136,7 +143,7 @@ class Section:
         if panel_type:
             title = systemfunctions.from_kebab_case(panel_type)
             summary_value = parse_argument('summary', arguments)
-            summary = ': ' + summary_value if summary_value else ''
+            summary = ': ' + summary_value.strip() if summary_value else ''
             expanded_value = parse_argument('expanded', arguments)
             expanded = ' active' if expanded_value == 'True'  else ''
             content = markdown(match.group('content'), extras=MARKDOWN2_EXTRAS)
@@ -199,12 +206,39 @@ class Section:
                     wrap = wrap_value
                 else:
                     self.regex_functions['image'].log('Image wrap value {direction} for image {filename} not recognised. Valid directions: {valid_directions}'.format(direction=wrap_value, filename=filename, valid_directions=valid_image_wrap_directions), self, match.group(0))
+
+            # Parse caption and caption-link arguments
+            caption_value = parse_argument('caption', arguments)
+            caption_link_value = parse_argument('caption-link', arguments)
+            if caption_value and not image_set:
+                if caption_link_value:
+                    caption_html = self.html_templates['link'].format(link_url=caption_link_value, link_text=caption_value)
+                else:
+                    caption_html = caption_value
+                # Add caption as data value attribute to display in materialbox
+                parameters += ' '
+                parameters += self.html_templates['image-caption-data-value'].format(caption=caption_value)
+
+            # Parse source argument
+            source_value = parse_argument('source', arguments)
+            if source_value and not image_set:
+                source_html = self.html_templates['link'].format(link_url=source_value, link_text='Image source')
+
+            # Parse alt argument
             alt_value = parse_argument('alt', arguments)
             if alt_value:
                 parameters += ' '
                 parameters += self.html_templates['image-parameter-alt'].format(alt_text=alt_value)
 
         image_html = self.html_templates['image'].format(image_source=image_source, image_parameters=parameters)
+
+        if source_value and caption_value:
+            caption_html = caption_html + ' &mdash; ' + source_html
+            image_html += self.html_templates['image-caption'].format(html=caption_html)
+        elif caption_value and not source_value:
+            image_html += self.html_templates['image-caption'].format(html=caption_html)
+        elif source_value and not caption_value:
+            image_html += self.html_templates['image-caption'].format(html=source_html)
 
         if wrap:
             html = self.html_templates['image-wrapped'].format(html=image_html, wrap_direction=wrap)
@@ -320,9 +354,23 @@ class Section:
 
             button_text = self.html_templates['button-download-text'].format(text=text)
             html = self.html_templates['button'].format(link=output_path, text=button_text)
-            html = self.html_templates['centered'].format(html=html)
+            # html = self.html_templates['centered'].format(html=html)
         else:
             self.regex_functions['file download button'].log("File filename argument not provided", self, match.group(0))
+        return html if html else ''
+
+
+    def create_link_button(self, match):
+        """Create a button for linking to a page"""
+        arguments = match.group('args')
+        link = parse_argument('link', arguments)
+        text = parse_argument('text', arguments)
+
+        if link and text:
+            html = self.html_templates['button'].format(link=link, text=text)
+            # html = self.html_templates['centered'].format(html=html)
+        else:
+            self.regex_functions['link button'].log("Button parameters not valid", self, match.group(0))
         return html if html else ''
 
 
@@ -337,8 +385,8 @@ class Section:
         name = parse_argument('name', arguments)
         interactive_type = parse_argument('type', arguments)
         if name and interactive_type:
-            arg_title = parse_argument('title', arguments)
-            title = arg_title if arg_title else name
+            arg_text = parse_argument('text', arguments)
+            text = arg_text if arg_text else name
             arg_parameters = parse_argument('parameters', arguments)
             params = arg_parameters if arg_parameters else None
             source_folder = os.path.join(self.guide.generator_settings['Source']['Interactive'], name)
@@ -348,7 +396,7 @@ class Section:
                 if interactive_type == 'whole-page':
                     arg_thumbnail = parse_argument('thumbnail', arguments)
                     thumbnail = arg_thumbnail if arg_thumbnail else self.guide.generator_settings['Source']['Interactive Thumbnail']
-                    html = self.whole_page_interactive_html(source_folder, title, name, params, thumbnail, match)
+                    html = self.whole_page_interactive_html(source_folder, text, name, params, thumbnail, match)
                 elif interactive_type == 'in-page':
                     html = self.inpage_interactive_html(source_folder, name, match)
                 elif interactive_type == 'iframe':
@@ -377,10 +425,10 @@ class Section:
         return html
 
 
-    def whole_page_interactive_html(self, source_folder, title, name, params, thumbnail, match):
+    def whole_page_interactive_html(self, source_folder, text, name, params, thumbnail, match):
         """Return the html block for a link to an whole page interactive"""
         thumbnail_location = os.path.join(self.html_path_to_root, source_folder, thumbnail)
-        link_text = 'Click to load {title}'.format(title=title)
+        link_text = 'Click to load {text}'.format(text=text)
         folder_location = os.path.join(self.html_path_to_root, source_folder, self.guide.generator_settings['Source']['Interactive File'])
         file_link = "{location}?{parameters}".format(location=folder_location, parameters=params) if params else folder_location
         link_template = self.html_templates['interactive-external']
@@ -507,14 +555,15 @@ class Section:
         arguments = match.group('args')
         term = parse_argument('term', arguments)
         definition = parse_argument('definition', arguments)
+        definition = markdown(definition, extras=MARKDOWN2_EXTRAS)
 
         permalink = self.create_permalink('glossary-' + term)
 
         this_file_link = os.path.join(glossary.html_path_to_root, self.file_node.path)
         back_link = '{}.html#{}'.format(this_file_link, permalink)
-        self.guide.glossary.add_item(term, definition, back_link, match)
+        self.guide.glossary.add_item(term, definition, back_link, match, self)
 
-        return self.html_templates['glossary_definition'].format(id=permalink)
+        return self.html_templates['glossary_definition'].format(id=permalink).strip()
 
 
     def add_glossary_link(self, match):
@@ -523,10 +572,6 @@ class Section:
         arguments = match.group('args')
         term = parse_argument('term', arguments)
         reference_text = parse_argument('reference-text', arguments)
-
-        if term not in glossary:
-            self.regex_functions['glossary link'].log("No glossary definition of {} to link to".format(term), self, match.group(0))
-            return ''
 
         file_link = os.path.join(glossary.html_path_to_root, self.file_node.path)
         back_link_id = self.create_permalink('glossary-' + term)
@@ -538,7 +583,7 @@ class Section:
             back_link = '{}.html#{}'.format(this_file_link, back_link_id)
             id_html = ' id="{}"'.format(back_link_id)
             # Add back reference link to glossary item
-            glossary.add_back_link(term, back_link, reference_text, match)
+            glossary.add_back_link(term, back_link, reference_text, match, self)
         else:
             id_html = ''
 
@@ -551,11 +596,12 @@ class Section:
             link_html = ''
             content = ''
 
-        return self.html_templates['glossary_backwards_link'].format(id_html=id_html, link_html=link_html, content=content)
+        return self.html_templates['glossary_backwards_link'].format(id_html=id_html, link_html=link_html, content=content).strip()
 
 
     def add_glossary(self, match):
         glossary = self.guide.glossary
+        self.mathjax_required = True
         glossary_temp = self.html_templates['glossary']
         items = ''
         for term in sorted(glossary.items.keys()):
@@ -641,7 +687,7 @@ class HeadingNode:
             return '{}{}'.format('--' * (self.level - 1), self.heading)
 
     def to_html(self):
-        if self.number:
+        if self.section.file_node.group_type == "chapters":
             html_type = 'heading-numbered'
         else:
             html_type = 'heading-unnumbered'
