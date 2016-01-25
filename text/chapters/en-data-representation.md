@@ -20,13 +20,17 @@ To make computers easier to build and keep them reliable, everything is represen
 
 When we write what is stored in a computer on paper, we normally use “0” for one of the states, and “1” for the other state. If a piece of computer memory had the following voltages: “low”, “low”, “high”, “low”, “high”, “high”, “high”, “high”, “low”, “high”, “low”, “low”, we could allocate “0” to “low”, and “1” to high” and write this sequence down as 001011110100. While this notation is used extensively, and you may often hear the data being referred to as being “0’s and 1’s”, it is important to remember that a computer does *not* store 0’s and 1’s; it has no way of doing this. They are just using physical mechanisms such as high and low voltage, north or south polarity, and light or dark materials.
 
-{jargon-buster}
+{panel type="teacher-note" summary="A warmup for binary representation"}
 
-**Jargon Buster**
+The CS Unplugged binary activity [on binary representation](http://csunplugged.org/binary-numbers) uses just 5 cards to scaffold an activity that shows students how the abstract concept of two values (black/white, zero/one, on/off or even quack/moo) can be used to represent numbers and letters.
+The exercise is engaging and kinesthetic, and is useful for getting students in the right frame of mind about this topic.
+{panel end}
+
+{panel type="jargon-buster" summary="Bits"}
 
 The use of the two digits 0 and 1 is so common that some of the best known computer jargon is used for them. Since there are only two digits, the system is called binary. The short word for a "binary digit" is made by taking the first two letters and the last letter --- a *bit* is just a digit that can have two values.
 
-{jargon-buster end}
+{panel end}
 
 Every file you save, every picture you make, every download, is just a whole lot of bits.
 Computer scientists don't spend a lot of time reading bits themselves, but knowing how they are stored is really important because it affects the amount of space that data will use, the amount of time it takes to send the data to a friend (as data that takes more space takes longer to send!) and the quality of what is being stored.
@@ -78,10 +82,19 @@ Digital devices almost always use two values (binary) for similar reasons: compu
 Arithmetic is also easy with binary values; if you have only two digits (0 and 1), then there aren't many rules to learn - adding digits only requires circuits to calculate 0+0, 0+1, 1+0 and 1+1.
 You might like to work out how many combinations of decimal digits you need to be able to add if you're doing conventional arithmetic!
 
-{panel type="teacher-note" summary="Decimal vs Binary in circuits"}
+{panel type="curiosity" summary="Decimal vs Binary in circuits"}
 
-There are 10 decimal digits (0 to 9), and the combinations are 0+0, 0+1, 0+2,... 0+9, 1+0, 1+1,.... 9+9. That's 90 different rules that you need to know for addition (it's not 100 because combinations like 5+5 appear twice). You can get by with only 50 rules if you know that 5+3 is the same as 3+5. The point is that electronic circuitry to do this would be way more complicated than normal computers that use binary, which have only 4 main rules for addition.
+Why are digital systems so hung up on only using two digits?
+After all, you could do all the same things with a 10 digit system?
 
+As it happens, people have tried to build decimal-based computers, but it's just too hard.
+Recording a digit between 0 and 9 involves having accurate equipment for reading voltage levels, magnetisation or reflections, and it's a lot easier just to check if it's mainly one way or the other.
+
+Also, it's way easier to build circuits to process binary numbers.
+For example, suppose you need to build a circuit to add two decimal digits.
+There are 10 different decimal digits (0 to 9), and the combinations for adding are 0+0, 0+1, 0+2,... 0+9, 1+0, 1+1,.... 9+9. That's 90 different rules that you need to know for addition (it's not 100 because combinations like 5+5 appear twice). You can get by with only 50 rules if you know that 5+3 is the same as 3+5. The point is that electronic circuitry to do this would be way more complicated than normal computers that use binary.
+The binary equivalent of the combinations above is 0+0, 1+0, 0+1 and 1+1.
+Just 4 main rules for addition, instead of dozens!
 {panel end}
 
 In fact, every kind of file on a computer is represented using just a whole lot of binary digits --- text, pictures, spreadsheets, web pages, songs --- *everything* is stored using just two values. Even the programs (apps) that you run use binary representation --- sometimes a program file that the computer can run is referred to as a "binary file", which is a bit odd since every file on a computer is binary!
@@ -237,7 +250,6 @@ A more sophisticated way of writing it is:
 
 If you've learnt about exponents, you could write it as
 {math}90328 = (9 \times 10^4) + (0 \times 10^3) + (3 \times 10^2) + (2 \times 10^1) + (8 \times 10^0){math end}
-90328 = (9 x {math}10^4{math end}) + (0 x {math}10^3{math end}) + (3 x {math}10^2{math end}) + (2 x {math}10^1{math end}) + (8 x {math}10^0{math end})
 
 Remember that any number to the power of 0 is 1. i.e. the 8 x {math}10^0{math end} is 8, because the {math}10^0{math end} is 1.
 
@@ -258,6 +270,7 @@ As discussed earlier, computers can only store information using bits, which onl
 {panel type="curiosity" summary="The denary number system"}
 
 The base 10 (decimal) system is sometimes called denary, which is more consistent with the the name binary for the base 2 system. The word "denary" also refers to the Roman denarius coin, which was worth ten asses (an "as" was a copper or bronze coin).
+The term "denary" seems to be used mainly in the UK; in the US, Australia and NZ the term "decimal" is more common.
 
 {panel end}
 
@@ -435,12 +448,12 @@ Another situation where different numbers of bits in a representation is importa
 
 ## Representing images with bits
 
-.. warning:: This section assumes that you understand binary numbers. If you are confused by binary numbers still, you should go back to the binary numbers section and work through the material there again until you understand it. The first part of this section is possible to understand without understanding binary numbers, although in order to actually use the material for assessment purposes, you will need to understand binary numbers, as the key idea is representing colours using *bits*, and the bits in colours are decided based on numbers.
+{panel type="caution" summary="Preparation needed"}
+This section assumes that you understand binary numbers. If you are confused by binary numbers still, you should go back to the binary numbers section and work through the material there again until you understand it. The first part of this section is possible to understand without understanding binary numbers, although in order to actually use the material for assessment purposes, you will need to understand binary numbers, as the key idea is representing colours using *bits*, and the bits in colours are decided based on numbers.
+{panel end}
 
 {panel type="teacher-note" summary="Background information"}
-
 This first subsection is not actually computers representing data using bits (as it is actually about computer screens physically displaying colour), but it provides the background before students learn about how the colours are then stored in computer memory. Students may have covered this material under other topics (e.g. image editing). Its purpose here is to link this topic back to what students are familiar with.
-
 {panel end}
 
 {comment}
@@ -457,7 +470,7 @@ Mixing red and blue  give purple, red and yellow give orange, and so on.
 Actually, while the colours blue, red and yellow are commonly used in painting, the very similar primary colours that work better for printing are cyan, magenta and yellow (CMY), which are commonly found in computer printers as well as printing presses. This kind of mixing is called "subtractive mixing", because it starts with a white canvas or paper, and subtracts colour from it. The interactive below allows you to experiment with these in case you're not familiar with them, or if you just like mixing colours.
 We've also added a "black" colour; it's not strictly necessary (you can get black by putting all the other colours on full), but it's useful for printers because it's such a common colour.
 
-{commment}
+{comment}
 <link rel="stylesheet" href="static/interactives/dr/dr_inline_interactives.css" type="text/css" />
 <script type="text/javascript" src="static/interactives/dr/dr_inline_interactives.js"></script>
 <script type="text/javascript" src="static/interactives/dr/jquery-ui.min.js"></script>
@@ -524,33 +537,32 @@ If you zoom in far enough, the interactive will show you the red-green-blue valu
 
 {interactive name="pixel-viewer" type="whole-page" text="Pixel Viewer"}
 
-{jargon-buster}
-
-**Jargon Buster**
+{panel type="jargon-buster" summary="Pixel"}
 
 The word **pixel** is short for "picture element". On computer screens and printers an image is almost always displayed using a grid of pixels, each one set to the required colour. A pixel is typically a fraction of a millimeter across, and images can be made up of millions of pixels (one megapixel is a million pixels), so you can't usually see the individual pixels.
 
-{jargon-buster end}
+{panel end}
 
-{images pixels-on-screens.jpg alt="This image shows the small red, green, and blue pixels that are used on screens to display colour."}
 
-{curiosity}
-
-**Curiosity**
-
+{panel type="curiosity" summary="Primary colours and the human eye"}
 There's a very good reason that we mix three primary colours to specify the colour of a pixel.
 The human eye has millions of light sensors in it, and the ones that detect colour are called "cones". There are three different kinds of cones, which detect red, blue, and green light respectively. Colours are perceived by the amount of red, blue, and green light in them. Computer screen pixels take advantage of this by releasing the amounts of red, blue, and green light that will be perceived as the desired colour by your eyes. So when you see "purple", it's really the red and blue cones in your eyes being stimulated, and your brain converts that to a perceived colour.
 Scientists are still working out exactly how we perceive colour, but the representations used on computers seem to be good enough give the impression of looking at real images.
 
-{curiosity end}
+This is why computer screens (and TV screens) most commonly use red, green and blue mixed together to create colour images.
+
+{image filename="pixels-on-screens.jpg" alt="This image shows the small red, green, and blue pixels that are used on screens to display colour."}
 
 For more information about RGB displays, see [RGB on Wikipedia](http://en.wikipedia.org/wiki/Rgb); for more information about the eye sensing the three colours, see [Cone cell](http://en.wikipedia.org/wiki/Cone_cell) and [trichromacy ](http://en.wikipedia.org/wiki/Trichromacy) on Wikipedia.
 
-{teacher}
+{panel end}
+
+
+{panel type="teacher-note" summary="Alternative material on bits and colour"}
 
 Another exercise to see the relationship between bit patterns and colour images is [provided here](https://sites.google.com/a/bxs.org.uk/mrkershaw/ict/bitmapgraphics).
 
-{teacher end}
+{panel end}
 
 It's not unusual for computer screens to have millions of *pixels* on them, and the computer needs to represent a colour for each one of those pixels.
 A million pixels is one *megapixel*. Photographs commonly have several megapixels in them.
@@ -618,11 +630,11 @@ For example, to specify the background colour of a page in HTML,  the body tag c
 
 You can use an HTML page to experiment with hexadecimal colours.
 
-{teacher}
+{panel type="teacher-note" summary="More information about colour representation"}
 
 More information about this kind of representation of colour can be found [here](http://en.wikipedia.org/wiki/Hexadecimal_colour). A colour picker using hex codes can be found [here](http://www.w3schools.com/tags/ref_colorpicker.asp).
 
-{teacher end}
+{panel end}
 
 Understanding how these hexadecimal colour codes are derived also allows you to change them slightly without having to refer back the colour table, when the colour isn’t exactly the one you want. Remember that in the 24 bit color code, the first 8 bits specify the amount of red (so this is the first 2 digits of the hexadecimal code), the next 8 bits specify the amount of green (the next 2 digits of the hexadecimal code), and the last 8 bits specify the amount of blue (the last 2 digits of the hexadecimal code). To increase the amount of any one of these colours, you can change the appropriate hexadecimal letters.
 
@@ -647,33 +659,31 @@ The above system used 3 bits to specify the amount of red (8 possible values), 3
 
 Using this scheme to represent all the pixels of an image takes one third of the number of bits required for 24-bit colour, but it is not as good at showing smooth changes of colours or subtle shades, because there are only 256 possible colors for each pixel. This is one of the big tradeoffs in data representation: do you allocate less space (fewer bits), or do you want higher quality?
 
-{jargon-buster}
-
-**Jargon Buster**
+{panel type="jargon-buster" summary="Bit depth"}
 
 The number of bits used to represent the colours of pixels in a particular image is sometimes referred to as its "colour depth" or "bit depth". For example, an image or display with a colour depth of 8-bits has a choice of 256 colours for each pixel. There is [more information about this in Wikipedia](http://en.wikipedia.org/wiki/Color_depth). Drastically reducing the bit depth of an image can make it look very strange; sometimes this is used as a special effect called "posterisation" (ie. making it look like a poster that has been printed with just a few colours).
 
-{jargon-buster end}
+{panel end}
 
 The following interactive shows what happens to images when you use a smaller range of colours (including right down to zero bits!) You can choose an image using the menu. In which cases is the change in quality most noticeable? In which is it not? In which would you actually care about the colours in the image? In which situations is colour actually not necessary (i.e. we are fine with two colours)?
 
-{teacher}
+{panel type="teacher-note" summary="Software for exploring colour depth"}
 
 Although we provide the simple interactive for reducing the number of bits in an image, students could also use software like Gimp or Photoshop to save files with different colour depths.
 
-{teacher end}
+{panel end}
 
 One other interesting thing to think about is whether or not we’d want more than 24 bit colour. It turns out that the human eye can only differentiate around 10 million colours, so the 16 million provided by 24 bit colour is already beyond what our eyes can distinguish.
 However, if the image were to be processed by some software that enhances the contrast, it may turn out that 24-bit colour isn't sufficient.
 Choosing the representation isn't simple!
 
-{teacher}
+{panel type="teacher-note" summary="Effect of colour depths"}
 
 8-bit colour looks particularly bad for faces, where we are used to seeing subtle skin tones. Students may perceive that the 16-bit images are as good as 24-bit images. They do indeed have a rich palette ({math}2^16{math end}, or 65,536 different colours), but they aren't true to the high quality image. The benefit is that they use two-thirds (16/24) of the space.
 
 The extreme values are very limited; two-bit colour can have only 4 different colours (the two-bit patterns are 00, 01, 10, and 11). One-bit colour has only two colours (0 and 1). Zero-bit colour is the ultimate space saver - the file doesn't use any space, but the image isn't any use either. Note that so-called "black and white" images usually have more than two colours in them; typically 256 shades of grey (8 bits) works satisfactorilly for monochrome images.
 
-{teacher end}
+{panel end}
 
 <div><iframe width="100%" height="650" src="static/widgets/DR/DR-color/CG-ColorBits_3.html" frameborder="0"></iframe></div>
 
@@ -689,11 +699,11 @@ However, compression methods require a lot more processing, and images need to b
 We will look at compression methods in a later chapter.
 The ideas in this present chapter more commonly come up when designing systems (such as graphics interfaces) and working with high-quality images (such as RAW photographs), and typically the goal is to choose the best representation possible without wasting too much space.
 
-{teacher}
+{panel type="teacher-note" summary="Colour depth and compression"}
 
 There's a subtle boundary between low quality data representations (such as 8-bit colour) and compression methods. In principle, reducing an image to 8-bit colour is a way to compress it, but it's a very poor approach, and a proper compression method like JPEG will do a much better job.
 
-{teacher end}
+{panel end}
 
 For the purposes of the New Zealand NCEA standards, reducing the bit depth of an image is ok as a second compression method to compare to specialised compression methods (JPEG, PNG, GIF etc.), but isn't very suitable for explaining how compression works (in the Achieved level requirements).
 
@@ -742,11 +752,11 @@ Some of the things that we might think of as numbers, such as the telephone numb
 On the other hand, things that don't look like a number (such as "30 January 2014") are often stored using a value that is converted to a format that is meaningful to the reader (try typing two dates into Excel, and then subtract one from the other --- the result is a useful number).
 Numbers are commonly used to store things as diverse as student marks, prices, statistics, and scientific readings.
 
-{teacher}
+{panel type="teacher-note" summary="Representing dates"}
 
 The difference between two dates in Excel is the number of days between them; the date itself (as in many systems) is stored as the amount of time elapsed since a fixed date (such as 1 January 1900). You can test this by typing a date like "1 January 1850" --- chances are that it won't be formatted as a normal date. Likewise, a date sufficiently in the future may behave strangely due to the limited number of bits available to store the date.
 
-{teacher end}
+{panel end}
 
 Any system that stores numbers needs to make a compromise between the number of bits allocated to store the number, and the range of values that can be stored.
 For example, Excel spreadsheets have a maximum value that can be stored --- try calculating 1/3, and display it to as many places of accuracy as possible.
@@ -771,7 +781,7 @@ For example, if we wanted to represent the number 41 using 6 bits (like above) a
 
 Using 7 bits as described above (one for the sign, and 6 for the actual number), what would be the binary representations for 1, -1, -8, 34, -37, -88, and 102?
 
-{teacher}
+{panel type="teacher-note" summary="Solution"}
 
 Students should have been able to do most of this by converting the rightmost 6 bits as for numbers earlier, and then putting in the correct sign bit. The answers are:
 
@@ -783,44 +793,40 @@ Students should have been able to do most of this by converting the rightmost 6 
 -  -88 is 11011000
 -  102 is 01100110
 
-{teacher end}
+{panel end}
 
 Suppose we have 8-bit numbers, with the left-most bit as a sign bit. What would the decimal values be for the following 10000110? 01111111? How about 10000000?
 
-{teacher}
+{panel type="teacher-note" summary="Solution"}
 
 10000110 is -6, and 01111111 is 127 (the maximum value with 8-bit signed numbers). 10000000 means -0, which is the same as 0, and is discussed below.
 
-{teacher end}
+{panel end}
 
 The representation 10000000 highlights a problem with this notation, as it represents the number -0, which is the same as 0. That is, there are two ways to represent the number 0, which is wasteful, and potentially confusing.
 
 It turns out that there's a notation called "two's complement" for negative numbers, which avoids this wastage, and more importantly, makes it easier to do arithmetic with negative numbers. It's beyond what is needed for this topic, but the following box gives some more information if you'd like to look into it.
 
-{extra-for-experts}
 
-**Extra for Experts**
 
-{teacher}
+{panel type="teacher-note" summary="Two's complement"}
 
 Note for teachers: While we aren’t providing support for using two’s complement, if you are confident at teaching it, or you have a capable student who can teach it to themselves and can understand it, then representing binary numbers in the way this section explains versus representing them using two’s complement would be 2 different representations of numbers that students can compare. This would be a really good approach if you have a student who is so far ahead that they need an extra challenge!
+{panel end}
 
-{teacher end}
+{panel type="extra-for-experts" summary="Two's complement"}
 
 Negative numbers are more often stored on computers using a system called "two's complement". This system makes it very easy to do arithmetic without having to treat negative numbers as a special case, so it's faster and uses less circuitry. The principle is based on a fairly simple idea: for example, in decimal, if you had to subtract the number 4 from a value, it's the same if you add 6 and subtract 10. Using the complement of the number -4 (i.e. 6) plus an indicator that it's negative can make calculations quicker and simpler. A similar approach applies in binary, and it's even easier because there are only two digits. More [information is available here on how negative numbers work](http://www.i-programmer.info/babbages-bag/200-binary-negative-numbers.html?start=1), and also on the [Wikipedia page about two's complement](http://en.wikipedia.org/wiki/Two%27s_complement), although it's quite technical.
+{panel end}
 
-{extra-for-experts end}
 
-
-{curiosity}
-
-**Curiosity**
+{panel type="curiosity" summary="Overflow and Y2K"}
 
 In some programming languages there isn't a check for when a number gets too big (overflows). For example, if you have an 8-bit number using two's complement, then 01111111 is the largest number (127), and if you add one without checking, it will change to 10000000, which happens to be the number -128. This can cause serious problems if not checked for, and is behind a variant of the Y2K problem, called the `Year 2038 problem <http://en.wikipedia.org/wiki/Year_2038_problem>`, involving a 32-bit number overflowing for dates on Tuesday, 19 January 2038.
 
 {image filename="xkcd-cant-sleep-comic.png" alt="XKCD comic on number overflow"}
 
-{curiosity end}
+{panel end}
 
 Because of the way computer memory is constructed, memory is most commonly used in chunks of  8 bits or 32 bits (or even 64 bits) at a time.  
 That means that if the computer is representing an integer as a binary number with a sign bit, it will commonly use 32 bits, where the first bit is the sign bit, and the other 31 bits represent the value of the number.
@@ -833,11 +839,11 @@ How many people are in the world?
 Would a 32 bit integer like described above be large enough to store a different identifier number for each person in the world?
 How many bits of accuracy would you want to allow for possible population growth?
 
-{teacher}
+{panel type="teacher-note" summary="Solution"}
 
 The world population is approximately 7 billion, so 32 bits isn't quite enough to have an identifier for each person in the world. 64 bits can store up to 18,446,744,073,709,600,000, so that is way more than enough. Since each extra bit doubles the range that can be stored, even 33 bits would be enough for the world population, and 34 bits would be enough even if the population doubles. The idea that one extra bit increases the range so much is an important concept in data representation.
 
-{teacher end}
+{panel end}
 
 | Type of Number  | Unsigned Range                  |                     Signed Range                         |
 |-----------------|---------------------------------|----------------------------------------------------------|
@@ -848,43 +854,31 @@ The world population is approximately 7 billion, so 32 bits isn't quite enough t
 
 So when you are storing values on a computer with very limited space, you need to be careful to pick a suitable kind of integer that has enough space, but isn’t wasting space. You also need to think about whether or not a number could potentially be negative.
 
-{teacher}
-
-Students can do this for merit, and they should also discuss why they choose the integer types they did.
-
-{teacher end}
-
 Think of a few different examples for different sized integers (both signed and unsigned ones) of a piece of data that you could store in that sized integer. For example, the age of a person could be stored in an 8 bit unsigned integer (people can’t be a negative age!), and the number of students in your school could be stored in an 8 bit or 16 bit integer, depending on how big your school is! What other examples can you think of?
 
 What are some examples of numbers you could not represent using any of these integers?
 
-{extra-for-experts}
-
-**Extra for Experts**
+{panel type="extra-for-experts" summary="Floating point values"}
 
 Another type of number used in computer systems is the "floating point" value. While we won't look at it in detail, to get a taste of what's involved, consider the bit values in a 4-bit number, which are 8, 4, 2 and 1. What would the value of a bit *to the right* of the one bit be? And to the right of that one?
 
 The following version of the base conversion interactive has bits that are smaller than the 1-bit. Try representing the decimal number 3.5 using this system. How about 2.8125? What about 2.8?
 
 This system is a fixed-point number system; floating point numbers are based on this idea, but allow for the number of digits to be fixed, but the position of the point to change (by giving an exponent value).
+{panel end}
 
-{teacher}
+{panel type="teacher-note" summary="Solution for extra for experts"}
 
 The values to the right of the 1-bit continue to be a half of the value to their left, so they are 0.5, 0.25, 0.125 and so on. The decimal number 3.5 can be represented as 11.1, and 2.8125 is 10.1101. The number 2.8 can't be represented accurately in binary! The closest value with the 10 bits in the interactive is 10.11001100. In fact, the number never finishes in binary; it contains "1100" repeating forever! This rounding error can be seen in some spreadsheets: try adding 110 + 2.8 - 2.8 - 100. With enough places of accuracy, you can see that the sum doesn't (quite) come to zero.
 
-{teacher end}
-
 <div class="widget-holder"><a href="static/widgets/DR/DR-base-conversion/public_html/index.html?base=2&columns=14&lines=A,B,C&offset=-8" target="blank"><img class="widget-image" src="static/images/DR-BaseConversionBinaryDecimals.png" alt=""><span class="widget-subtitle">Click to load the widget</span></a></div>
 
-{extra-for-experts end}
+
+{panel end}
+
+
 
 ### Numbers in programming languages
-
-{teacher}
-
-This section is an alternative approach to doing a project with number representation which is appropriate if the students are using a text-based programming language that supports different types of integers. It involves writing programs that cause errors by overflowing the numbers, which can force them to work with quite large values!
-
-{teacher end}
 
 If you are programming in a language (e.g. Python, Java, C, C++, C#) then the limitations of data representations become important very quickly, as you will have to choose what kind of data representation you want to use, and if it is too small then it can "overflow".
 For example, if you allocate a variable to be stored as a 16 bit unsigned integer, and you are counting how many characters there are in a file, then it will fail after 65,535 characters --- that's just a 65 kilobyte file.
@@ -935,5 +929,5 @@ This puzzle can be solved using the pattern in binary numbers: [http://www.cs4fn
 - [Basics of binary numbers](http://csunplugged.org/binary-numbers)
 - [Representing bits using sound <http://csunplugged.org/modem)
 - [Hex game <http://www.purposegames.com/game/049fc90a)
-- [Thriving in our digital world](https://onramps.instructure.com/courses/723227) has good illustrations of data representation
+- [Thriving in our digital world](http://www.cs.utexas.edu/~engage/) has good illustrations of data representation
 - [How a hard disk works <http://ed.ted.com/lessons/how-do-hard-drives-work-kanawat-senanan>]
