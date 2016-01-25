@@ -1,61 +1,67 @@
 # Human Computer Interaction
 
-{panel type="teacher-note" summary="Curriculum Guides for Human Computer Interaction"}
-TODO
-{panel end}
-
 ## What's the big picture?
 
-{panel type="teacher-note" summary="The wide scope of user interfaces"}
-The material in this chapter relates to "digital devices". While it definitely applies to conventional computers, it also applies to all sorts of other gadgets, such as alarm clocks, air conditioning units, microwave ovens, stopwatches, electronic instruments, point of sale units, parking meters and burglar alarms. In fact, most of the student exercises will be a lot easier to do on a device with few features, since all the likely tasks and sequences can be considered. Evaluating something like "Microsoft Windows" or "iPads" is far too wide a scope, as there are so many subsystems, each of which would make a good project on its own (how menus work, how to find files, how to open a program, perhaps even just how to switch it on!)
+{panel type="teacher-note" summary="The scope of user interfaces"}
+The material in this chapter relates to "digital devices". While it definitely applies to conventional computers, it also applies to all sorts of other gadgets, such as alarm clocks, air conditioning units, microwave ovens, stopwatches, electronic instruments, point of sale units, parking meters and burglar alarms. In fact, most of the student exercises will be a lot easier to do on a device with few features, because this makes it possible for all the likely tasks and sequences to be considered. Evaluating something like "Microsoft Windows" or "iPads" is far too wide a scope, as there are so many subsystems, each of which would make a good project on its own (how menus work, how to find files, how to open a program, perhaps even just how to switch it on!)
 {panel end}
 
-{comment}
-xtcb check for material from unplugged v2? chinese book?
-
-xtcb cartoons from http://okcancel.com/archives/comic
-{comment end}
-
-People often become frustrated with computers. At some point when using these devices, you will be annoyed that the computer did something you didn't want it to do and you can't figure out how to get the computer to do what you want, but why is that? Humans made computers, so why are computers often so frustrating to use by humans?
+People often become frustrated with computers and other digital devices.
+At some point when using these devices,
+you are likely to become annoyed that the system did something you didn't want it to do,
+or you can't figure out how to get the computer to do what you want, but why is that?
+Humans made computers, so why are computers often so frustrating for humans to use?
 
 Computers are becoming hundreds of times more powerful every decade, yet there is one important component of the computer system that hasn't changed significantly in performance since the first computers were developed in the 1940s: the human. For a computer system to work really well, it needs to be designed by people who understand the human part of the system well.
 
 In this chapter we'll look at what typically makes good and bad interfaces. The idea is to make you sensitive to the main issues so that you can critique existing interfaces, and begin to think about how you might design good interfaces.
 
-Often software developers create a computer program or system for a device that requires the user to spend some time to learn how to use the program. These interfaces might be easy to use for the developer since they know the system really well, but a user just wants to get the job done without spending too much time learning the software (they might switch to another program if it's too hard to use). A developer might treat the program and the user separately, however the user is part of the system, and a developer needs to create the software with the user in mind, designing a program that they will find easy to use and intuitive.
+Often software developers create a computer program or system for a device that requires the user to spend some time to learn how to use.
+The interface might be easy to use for the developer since they know the system really well, but a user just wants to get the job done without spending too much time learning the software (and they might switch to another program if it's too hard to use).
+A developer might think of the program and the user separately, but the user is part of the system, and a developer needs to create the software with the user in mind, designing a program that they will find easy to use and intuitive.
 
-Human-computer interaction (HCI) is about trying to make programs useful, usable, and accessible to humans. It goes way beyond choosing layouts, colours, and fonts that aren't Comics Sans for an interface. It's strongly influenced by the psychology of how people interact with digital devices, which means understanding many issues about how people behave, how they perceive things, and how they understand things so that they feel that a system is working to help them and not hinder them. By understanding HCI, developers are more likely to create software that is effective and popular. If you ask people if they have ever been frustrated using a computer system, you’ll probably get a clear message that HCI isn’t always done well.
+Human-computer interaction (HCI) is about trying to make programs useful, usable, and accessible to humans. It goes way beyond choosing layouts, colours, and fonts  for an interface.
+It's strongly influenced by the psychology of how people interact with digital devices, which means understanding many issues about how people behave, how they perceive things, and how they understand things so that they feel that a system is working to help them and not hinder them.
+By understanding HCI, developers are more likely to create software that is effective and popular.
+If you ask people if they have ever been frustrated using a computer system, you’ll probably get a clear message that HCI isn’t always done well.
 
 Try out the following interactive task, and get some friends to try it:
 
 {interactive name="deceiver" type="in-page"}
 
-Did anyone get a wrong answer to the question even though you thought you got it right? You may have noticed that the "Yes" and "No" button sometimes swap.
+Did anyone get a wrong answer to the question even though they thought they got it right?
+You may have noticed that the "Yes" and "No" buttons sometimes swap.
 Inconsistency is almost always a really bad thing in an interface, as it can easily fool the user into making an error.
 
-The only situation it might be desirable is if it was intentionally done to make a computer game more interesting (which perhaps the above interactive could be). But imagine you have a web form in which the "clear" and "submit" buttons often switched places. You would frequently clear the form when you had meant to submit it, or submit the form when you had meant to clear it!
+The only situation it might be desirable is if it was intentionally done to make a computer game more interesting (which perhaps the above interactive could be).
+But imagine you have a web form in which the "reset" and "submit" buttons often switched places.
+Users would frequently clear the form when they meant to submit it, or submit the form when they had meant to clear it!
 
 {panel type="teacher-note" summary="Accuracy vs Speed in the above interactive"}
 The swapping yes/no interactive may not fool all students, but for some it will be very frustrating. If they decide to use it slowly and carefully they may get the yes/no choices correct, but they will also get lower scores (i.e. lower productivity if this was a real interface).
 {panel end}
 
-The study of Human Computer Interaction involves a lot of psychology (how people behave) because this affects how they will use a system. As a simple example, the human short term memory only lasts for a matter of seconds (even in young people!). If a device delays a response for more than about 10 seconds, the user has to make a conscious effort to remember what they were doing, and that’s extra work for the user (which from their point of view, makes the system more tiring to use). Another example is that people get "captured" into sequences: if you start biking on a route that you take each day, you'll soon find yourself arriving without thinking about every turn along the way, which is fine unless you were supposed to go somewhere else on the way, or if you have recently moved to a new house or workplace. A similar effect occurs with confirmation dialogues; perhaps you often accidentally close a file without saving it, and the system says "Do you want to save it?", so you press "Yes". After you've done this a few times you'll be captured into that sequence, so on the one occasion that you don't want to overwrite your old file, you may accidentally click "Yes" anyway.
+The study of Human Computer Interaction involves a lot of psychology (how people behave) because this affects how they will use a system. As a simple example, the human short term memory only lasts for a matter of seconds (even in young people!)
+If a device delays a response for more than about 10 seconds, the user has to make a conscious effort to remember what they were doing, and that’s extra work for the user (which from their point of view, makes the system more tiring to use). Another example is that people get "captured" into sequences: if you start biking on a route that you take each day, you'll soon find yourself arriving without thinking about every turn along the way, which is fine unless you were supposed to go somewhere else on the way, or if you have recently moved to a new house or workplace. A similar effect occurs with confirmation dialogues; perhaps you often accidentally close a file without saving it, and the system says "Do you want to save it?", so you press "Yes". After you've done this a few times you'll be captured into that sequence, so on the one occasion that you don't want to overwrite your old file, you may accidentally click "Yes" anyway.
 
 {panel type="curiosity" summary="Capture errors"}
-Getting used to a regular route or procedure, and as a result forgetting something different you had to do that day, is called a *capture error*. This is easy to remember, as you get "captured" in your usual sequence.
+Getting used to a regular route or procedure, and as a result forgetting something different you had to do that day, is called a *capture error*.
+This is easy to remember, as you get "captured" in your usual sequence.
+Capture is a good thing much of the time, as it saves you having to think hard about everyday actions (which can literally be more tiring),
+but it can also trick you into doing something you didn't intend.
+A good interface designer will be aware of this, and avoid setting up the interface so that a user might be captured into doing something that they can't undo.
 {panel end}
 
 A lot of people might blame themselves for such errors, but basic psychology says that this is a natural error to make, and a good system should protect users from such errors (for example, by allowing them to be undone).
 
 {comment}
-.. xtcb consider looking at a button's features as an example of fine detail (slide off while pressing etc.)
-.. xjrm please put in a simple (normal) checkbox and button (and maybe menu) here so they can experiment with what happens (e.g. click but slide off before release); have widgets, and some text summarising what was selected last
-.. jrm Will keep dev log for this in Asana Interactive 1
+Consider looking at a button's features as an example of fine detail (slide off while pressing etc.);
+could add an interactive with a simple (normal) checkbox and button (and maybe menu) here so they reader can experiment with what happens (e.g. click but slide off before release)
 {comment end}
 
-Designing good interfaces is *very* difficult. Just when you think you've got a clever idea, you'll find that a whole group of people struggle to figure out how to use it, or it backfires in some situation. Even worse, some computer developers think that their users are dummies and that any interface problems are the user’s fault and not the developer’s. But the real problem is that the developer knows the system really well, whereas the user just wants to get their job done without having to spend a lot of time learning the software – if the software is too hard to use, they’ll just find something else that’s easier. Good interfaces are worth a lot in the market.
+Designing good interfaces is *very* difficult. Just when you think you've got a clever idea, you'll find that a whole group of people struggle to figure out how to use it, or it backfires in some situation. Even worse, some computer developers think that their users are dummies and that any interface problems are the user’s fault and not the developer’s. But the real problem is that the developer knows the system really well, whereas the user just wants to get their job done without having to spend a lot of time learning the software – if the software is too hard to use and they have a choice, they’ll just find something else that’s easier. Good interfaces are worth a lot in the market!
 
-There are many ways to evaluate and fine tune interfaces, and in this chapter we'll look at some of these. One important principle is that one of the worst people to evaluate an interface is the person who designed and programmed it. They know all the details of how it works, they've probably been thinking about it for weeks, they know the bits that you're not supposed to touch and the options that shouldn't be selected, and of course they have a vested interest in finding out what is *right* with it rather than what is *wrong*. It's also important that the interface should be evaluated by someone who is going to be a typical user; if you get a 12-year-old to evaluate a retirement planning system they may not know what the user will be interested in; and if you get a teacher to try out a system that students will use, they will know what the answers are and what the correct process is.
+There are many ways to evaluate and fine tune interfaces, and in this chapter we'll look at some of these. One important principle is that one of the worst people to evaluate an interface is the person who designed and programmed it. They know all the details of how it works, they've probably been thinking about it for weeks, they know the bits that you're not supposed to touch and the options that shouldn't be selected, and of course they have a vested interest in finding out what is *right* with it rather than what is *wrong*. It's also important that the interface should be evaluated by someone who is going to be a typical user; if you get a 12-year-old to evaluate a retirement planning system they may not know what the user will be interested in; and if you get a teacher to try out a system that students will use, they may know what the answers are and what the correct process is.
 
 Often interfaces are evaluated by getting typical users to try them out, and carefully noting any problems they have. There are companies that do nothing but these kinds of user tests – they will be given a prototype product, and pay groups of people to try it out. A report on the product is then produced and given to the people who are working on it. This is an expensive process, but it makes the product a lot better, and may well give it a huge advantage over its competitors. Having it evaluated by a separate company means that you avoid any bias from people in your own company who want to prove (even subconsciously) that they've done a good job designing it, rather than uncover any niggling problems in the software that will annoy users.
 
@@ -63,7 +69,7 @@ Before we look at different ways to evaluate interfaces, we need to consider wha
 
 ## Users and tasks
 
-A very important consideration when designing or evaluating an interface is who the users are likely to be. For example, the typical age of a user can be significant: very young children may have difficulty reading some words and prefer images and animations, while a business person who uses an interface frequently will want it to be very fast to use, perhaps using keyboard shortcuts only.
+A very important consideration when designing or evaluating an interface is who the users are likely to be. For example, the typical age of a user can be significant: very young children may have difficulty reading some words and prefer images and animations, while someone in a commercial setting who uses an interface frequently will want it to be very fast to use, perhaps using keyboard shortcuts only.
 
 Think about the kinds of considerations you would have to make for the following user groups.
 
@@ -73,15 +79,15 @@ Think about the kinds of considerations you would have to make for the following
 - Foreign visitors
 
 {panel type="spoiler" summary="Some possible answers: Don't open until you've thought about it!"}
-- Senior citizens: large print, few features to learn, don't rely so much on memory, poor eyesight and less agile physically (e.g. large buttons help), don't assume previous experience with computers
-- Gamers: previous experience with typical game interfaces, expecting challenges, probably running on a high end machine
+- Senior citizens: use large print, have few features to learn, don't rely so much on memory, allow for poor eyesight and less agile physically (e.g. large buttons help), don't assume previous experience with computers
+- Gamers: use previous experience with typical game interfaces, expecting challenges, probably running on a high end machine
 - Casual users: interface needs to be very easy to learn, perhaps based on widely used systems, needs clear guidance
-- Foreign visitors: simple language, use of meaningful images/icons
+- Foreign visitors: use simple language and meaningful images/icons
 {panel end}
 
 The interface is the only part of a program that the user sees (that's the definition of an interface!), so if the interface doesn't work for them, then the program doesn't work.
 
-Another important thing to do when designing and evaluating an interface is to think about what tasks it is being used for. Advertisements for digital devices often hide the complexity of a task, and simply point out the features available for doing the task. For example, suppose a smartphone is advertised as having a high resolution camera. The real task that someone might want to do is to take a photo of something they've just spotted, and send it to a friend. If you look at what happens in reality, the smartphone might be in their pocket or bag, and if they see something cool going past, they need to get it out, perhaps unlock it, open the camera app, adjust the lighting and other settings, press a button (is it easy to find when you're holding the camera up?), select the photo, choose an email option, type in the friend's address (does the system help with that?), send it (what happens if you're out of reception range?), and then put the phone away. If any one of these steps is slow or hard to remember, the whole experience can be frustrating, and it's possible the photo opportunity will be missed, or for some other reason the friend won't receive the photo.
+Another important thing to do when designing and evaluating an interface is to think about what tasks it is being used for. Advertisements for digital devices often hide the complexity of a task, and simply point out the features available for doing the task. For example, suppose a smartphone is advertised as having a high resolution camera. The real task that someone might want to do is to take a photo of something they've just spotted, and send it to a friend. If you look at what happens in reality, the smartphone might be in their pocket or bag, and if they see something cool going past, they need to get it out, perhaps unlock it, open the camera app, adjust the lighting and other settings, press a button (is it easy to find when you're holding the camera up?), select the photo, choose a sharing option, select a friend to share it with (does the system help with that?), send it (what happens if you're out of reception range?), and then put the phone away. If any one of these steps is slow or hard to remember, the whole experience can be frustrating, and it's possible the photo opportunity will be missed, or for some other reason the friend won't receive the photo.
 
 It's important to think through all the parts of a task when discussing an interface, as it's the small steps in a task that make all the difference between using the interface in a real situation, compared with a demonstration of some features of the device.
 
@@ -99,11 +105,18 @@ The educational goal for students is to see the big gulf between the naive desig
 
 - set an alarm clock: the task is often done late at night, and if a mistake is made the user may miss an important appointment or flight in the morning, so it's already challenging. Depending on the clock (it might be on a smartphone, or a physical clock), the user needs to set the alarm time (including getting the am/pm part right), switch on the sound for the alarm (perhaps making sure that the device isn't muted), and make sure it has sufficient power to last until the morning. All this is being done while tired, and a mistake could be costly!
 - show a slide (Powerpoint) presentation: this task is often done in front of an audience, and there may be limited time e.g. if the room isn't available until a few minutes before the presentation. The computer may need to be connected to a projector (a whole interface challenge in itself), the software put into presentation mode with the right image ready to start, the user needs to be able to move to the next slide, and recover from pressing a wrong key.
+To add to the challenges, a projector usually takes a while to warm up, and it can be hard to tell what's happening during that time.
 {panel end}
 
-{comment}
-.. computers can make people feel dumb - dummies books, Windows for idiots etc., and some programmers and help people use derogatory terms like luser , PEBKac Problem Exists Between Keyboard And Chair et.c http://en.wikipedia.org/wiki/User_error
-{comment end}
+{panel type="curiosity" summary="Dumb users or dumb interfaces?"}
+Computer systems often make people feel dumb - in fact, there are lots of "dummies" books available, such as "iPad for dummies" or "The Complete Idiot's Guide to Microsoft Windows 8".
+These books sell millions of copies, yet chances are the people who buy them are actually quite intelligent --- it's just that the interfaces can make people so frustrated that they feel like a dummy.
+The truth is that if an interface makes lots of people feel like an idiot, chances are the real problem is with the interface and not the user.
+In the past there has been a culture where the balance of power was with the programmers who designed a system, and they could afford to blame the users for any problems.
+However, now users have a large choice of systems, and there are competitors ready to offer a better interface, so if a programmer continually blame your users for problems, chances are it's the programmer who is the complete idiot!
+If you hear people using derogatory terms such as luser, [PEBKAC](http://ars.userfriendly.org/cartoons/?id=19980506), or ID-10T error (Idiot error),
+they may be humorous, but they usually show a disregard for the importance of getting an interface right, and are a sign that the system is badly designed.
+{panel end}
 
 {panel type="project" summary="Sending an email from multiple devices"}
 For this project, try sending an email from both a computer and a mobile phone. Take note of all the steps required from when you start using the device until the email is sent.
@@ -113,10 +126,14 @@ You will probably notice quite a few differences between the two interfaces.
 Keep your notes for later, as you can further analyse them once you have read through more of this chapter.
 {panel end}
 
-{panel type="project" summary="Designing stovetops/remote"}
-For this project, you will designing the top of a cooking stove. This isn't a computer system, but will help demonstrate some of the issues that come up. Your task is to sketch three different configurations for the stovetop which includes the arrangement of the 4 elements and the 4 control knobs.
+{panel type="project" summary="Designing stovetops and door handles"}
+{image filename="poor-door-design-cartoon.jpg" alt="User conflict opening a door." position="right"}
 
-The task is [described in detail in the HCI CS Unplugged activity](http://csunplugged.org/human-interface-design).
+For this project, you will designing the top of a cooking stove, or the handles on a door.
+This isn't a computer system, but will help demonstrate some of the issues that come up.
+The main task is to sketch three different configurations for the stovetop which includes the arrangement of the 4 elements and the 4 control knobs.
+
+The task is [described in detail in CS Unplugged human interface design activity](http://csunplugged.org/human-interface-design).
 {panel end}
 
 ## Interface Usability
@@ -124,10 +141,10 @@ The task is [described in detail in the HCI CS Unplugged activity](http://csunpl
 {panel type="teacher-note" summary="Some of the key learning objectives of this chapter"}
 Key ideas that students should be picking up include:
 
--  The “system” that has to work well is the computer and the human together.
+-  The “system” that has to work well is the computer and the human *together*.
 -  Many people get frustrated with digital devices. Sometimes they will put up with it because it’s the only option, but in other cases devices and software with good interfaces sell much better or can be priced higher because they help the user get their job done.
--  The worst person to evaluate an interface is the person who designed it. They know exactly how it should work; but if someone else tries it you’ll find out how it looks to a typical user (for this reason a student should not design an interface as a submission for this standard – it would be evidence that they don’t understand HCI evaluation!)
--  An interface is used to do a task, so it makes the most sense to identify the tasks that a particular interface is for, and then consider how difficult those tasks are using that interface. The common mistake is to focus on features of an interface, but in the real world the question is whether or not those features can be used to achieve a task from beginning to end.
+-  The worst person to evaluate an interface is the person who designed it. They know exactly how it should work; but if someone else tries it you’ll find out how it looks to a typical user (for this reason the projects here aren't about having a student write their own program and evaluate its interface – that would be evidence that they don’t understand HCI evaluation!)
+-  An interface is used to do a task, so it makes the most sense to identify the tasks that a particular interface is for, and then consider how difficult those tasks are using that interface. The common mistake is to focus on features of an interface, but in the real world the question is whether or not those features can be used to do a task from beginning to end.
 {panel end}
 
 Devices are often sold using catch phrases like "user friendly" and "intuitive", but these are vague terms that are hard to pin down. In this section we will use the more technical term, [Usability](http://en.wikipedia.org/wiki/Usability), which is well understood by HCI experts, and gives us some ways to evaluate how suitable an interface is for a particular task. Usability isn't just about an interface being nice to use: poor usability can lead to serious problems, and has been the cause of major disasters, such as airplane crashes, financial disasters, and medical mishaps. It is also important because an interface that requires a lot of dexterity, quick reactions or a good memory makes it less accessible to much of the population, when accessibility can be both a moral and legal expectation.
@@ -145,27 +162,37 @@ There are many elements that can be considered in usability, and we will mention
 
 ### Consistency
 
-One "golden rule" of usability is *consistency*. If a system keeps changing on you, it's going to be frustrating to use. Earlier we had the example of a yes/no button pair that occasionally swapped places. A positive example is the consistent use of "control-C" and "control-V" in many different programs to copy and paste text or images. This also helps *learnability*: once you have learned copy and paste in one program, you know how to use it in many others. Imagine if every program used different menu commands and keystrokes for this!
+A "golden rule" of usability is *consistency*. If a system keeps changing on you, it's going to be frustrating to use. Earlier we had the example of a yes/no button pair that occasionally swapped places. A positive example is the consistent use of "control-C" and "control-V" in many different programs to copy and paste text or images. This also helps *learnability*: once you have learned copy and paste in one program, you know how to use it in many others. Imagine if every program used different menu commands and keystrokes for this!
 
 A related issue is the [*Mode error*](http://en.wikipedia.org/wiki/Mode_error#Mode_errors), where the behaviour of an action depends on what mode you are in. A simple example is having the caps lock key down (particularly for entering a password, where you can't see the effect of the mode). A classic example is in Excel spreadsheets, where the effect of clicking on a cell depends on the mode: sometimes it selects the cell, and other times it puts the name of the cell you clicked on into another cell. Modes are considered bad practice in interface design because they can easily cause the user to make the wrong action, and should be avoided if possible.
 
 
 ### Response time
-The speed at which an interface responds (its *reaction time*) has a significant effect on usability. This is closely related to human perception of time. If something happens fast enough, we will perceive it as being instant.
+The speed at which an interface responds (its *reaction time*) has a significant effect on usability.
+The way that humans perceive time isn't always proportional to the time taken.
+If something happens fast enough, we will perceive it as being instant.
+If we have to wait and can't do anything while waiting, time can appear to go slower!
 
-The following interactive lets you find out how fast "instant" is for you. As you click on each cell, there will sometimes be a random delay before it comes up; other cells won't have a delay. Click on each cell, and if it seems to respond instantly, leave it as it is. However, if you perceive that there is a small delay before the image comes up, click it again (which makes the cell a little lighter). You can't go back and change a cell, so just make a quick, gut-level decision the first time you click each one. The delay may be very short, but only make the cell gray if you are fairly sure you noticed a delay.
+The following interactive lets you find out how fast "instant" is for you.
+As you click on each cell, there will sometimes be a random delay before it comes up; other cells won't have a delay. Click on each cell, and if it seems to respond instantly, leave it as it is.
+However, if you perceive that there is a small delay before the image comes up, click it again (which makes the cell green). Just make a quick, gut-level decision the first time you click each cell - don't overthink it.
+The delay may be very short, but only make the cell green if you are fairly sure you noticed a delay.
 
 {interactive name="delay-analyser" type="whole-page"}
 
-Once you have clicked on all the cells, click on the "Probability of perceiving delays" bar to see a graph of how often you thought there was a delay compared with how long the delay actually was. 100 ms is one tenth of a second; for most people this is where they are likely to start perceiving a delay; anything short (particularly around 50 ms) is very hard to notice. Longer delays (for example, 350 ms, which is over a third of a second) are very easy to notice.
+Once you have clicked on all the cells, click on "View stastistics" to see how long the delays were compared with your perception.
+100 ms (100 milliseconds) is one tenth of a second; for most people this is where they are likely to start perceiving a delay;
+anything shorter (particularly around 50 ms) is very hard to notice. Longer delays (for example, 350 ms, which is over a third of a second) are very easy to notice.
 
-The point of this is that any interface element (such as a button or checkbox) that takes more than 100 ms to respond is likely to be perceived by the user as not working, and they may even click it again. In the case of a checkbox, this may lead to it staying off (from the two clicks), leading the user to think that it's not working.
+The point of this is that any interface element (such as a button or checkbox) that takes more than 100 ms to respond is likely to be perceived by the user as not working, and they may even click it again. In the case of a checkbox, this may lead to it staying off (from the two clicks), making the user think that it's not working.
+Try clicking the following checkbox just enough times to make it show as selected.
 
 {interactive name="delayed-checkbox" type="in-page"}
 
 So, as you evaluate interfaces, bear in mind that even very small delays can make a system hard to use.
 
-The following video is of an experiment that was done with virtual reality goggles, to simulate Internet lag in real life situations. It is not in English, although has English captions and the most interesting content is in the imagery.
+The following video is of an experiment that was done with virtual reality goggles to simulate Internet lag in real life situations.
+It has English captions, but the most interesting part is what is happening in the action.
 
 {video url="https://www.youtube.com/watch?v=_fNp37zFn9Q"}
 
@@ -173,13 +200,11 @@ The following video is of an experiment that was done with virtual reality goggl
 
 Another important length of time to bear in mind is our *short term memory* time, which is usually a matter of seconds. To remember something for longer, the user needs to rehearse it (repeat it over) or make a note of the information, such as writing it down. If a system takes some time to respond (say, 10 seconds) then chances are the user may have forgotten some detail of what they were going to do with the system. For example, if you have a phone number to type in that someone has just told you, and it takes 12 seconds before you can type it, you may forget the number, whereas if you can access the interface within a couple of seconds, you can probably enter the number without much effort. For this reason, any part of a system that takes more than about 10 seconds to respond forces the user to rehearse or write down key information, which is more tiring.
 
-{comment}
-.. xtcb maybe put in 1 second dialogue  - in Jeff's book? or refer to http://www.nngroup.com/articles/response-times-3-important-limits/
-{comment end}
+There's some more information about "time limits" for interfaces in [this article by Jakob Nielsen](http://www.nngroup.com/articles/response-times-3-important-limits/).
 
 ### Human spatial memory
 
-Another important usability consideration is *spatial memory* – our ability to remember where things are located (such as where a button or icon is). Human spatial memory has a high capacity (you can probably remember the location of many places and objects), it is long lasting (people visiting a town they grew up in can often remember the layout), and we can remember things very quickly. A very simple aspect of usability that comes from this is that the layout of an interface shouldn't keep changing. The interactive task at the start of this chapter was deliberately set up to be frustrating by swapping the two buttons occasionally; the reason people often make a mistake in that situation is that their spatial memory takes over, so the location of the button is more important than what is written on it. Systems that aren't consistent in their spatial placement of the "OK" and "Cancel" buttons can be frustrating.
+Another important usability consideration is *spatial memory* – our ability to remember where things are located (such as where a button or icon is). Human spatial memory has a high capacity (you can probably remember the location of many places and objects), it is long lasting (people visiting a town they grew up in can often remember the layout), and we can remember things very quickly. A very simple aspect of usability that comes from this is that the layout of an interface shouldn't keep changing. The interactive task at the start of this chapter was deliberately set up to be frustrating by swapping the two buttons occasionally; the reason people often make a mistake in that situation is that their spatial memory takes over, so the location of the button is more important than what is written on it. Systems that aren't consistent in their spatial placement of the "OK" and "Cancel" buttons can easily cause people to press the wrong one.
 
 Another place that the layout of an interface changes quickly is when a tablet or smartphone is rotated. Some devices rearrange the icons for the new orientation, which loses the spatial layout, while others keep them the same (except they may not look right in the new rotation). Try a few different devices and see which ones change the layout when rotated.
 
@@ -193,13 +218,17 @@ There are a number of other situations where the layout can change suddenly for 
 - Adaptive interfaces can also be a problem; it might seem like a good idea to gradually change a menu in a program so that the frequently used items are near the top, or unused items are hidden, but this can lead to a frustrating treasure hunt for the user as they can't rely on their spatial memory to find things.
 {panel end}
 
-Associated with spatial memory is our *muscle memory*, which helps us to locate items without having to look carefully. With some practice, you can probably select a common button with a mouse just by moving your hand the same distance that you always have, rather than having to look carefully. For example, working with a new keyboard can mean having to re-learn the muscle memory that you have developed, and so may slow you down a bit.
+Associated with spatial memory is our *muscle memory*, which helps us to locate items without having to look carefully. With some practice, you can probably select a common button with a mouse just by moving your hand the same distance that you always have, rather than having to look carefully.
+Working with a new keyboard can mean having to re-learn the muscle memory that you have developed, and so may slow you down a bit or cause you to press the wrong keys.
 
 ### Missing the button
 
 One common human error that an interface needs to take account of is the *off by one error*, where the user accidentally clicks or types on an item next to the one they intended.
 For example, if the "save" menu item is next to a "delete" menu item, that is risky because one small slip could cause the user to erase a file instead of saving it.
 A similar issue occurs on keyboards; for example, control-W might close just one window in a web browser, and control-Q might close the entire web-browser, so choosing these two adjacent keys is a problem. Of course, this can be fixed by either checking if the user quits, or by having all the windows saved so that the user just needs to open the browser again to get their work back. This can also occur in web forms, where there is a reset button next to the submit button, and the off-by-one error causes the user to lose all the data they just entered.
+
+{image filename="reset-submit.png" alt="A risky interface."}
+
 
 {comment}
 .. xjrm put in menu called "Actions", with "Order a pizza", "Launch nuclear attack", "Launch toy helicopter". Each just brings up a dialogue box saying "Pizza ordered" etc. immediately.
@@ -258,10 +287,10 @@ and
 [some notes put together by HCI students](http://www.psy.gla.ac.uk/~steve/HCI/cscln/trail1/Lecture5.html).
 {panel end}
 
-Another way of evaluating an interface is a "Cognitive Walkthrough".
-This is normally done without involving someone else, although the description here has been adapted to involve another user to make it a bit easier if you're not experienced at HCI evaluation.
 
 {panel type="project" summary="Cognitive walk-through"}
+Another way of evaluating an interface is a "Cognitive Walkthrough".
+This is normally done without involving someone else, although the description here has been adapted to involve another user to make it a bit easier if you're not experienced at HCI evaluation.
 The *cognitive walkthrough* is a technique that HCI experts use to do a quick evaluation of an interface.
 It is particularly useful for evaluating interfaces with few steps, that are being used by new or occasional users (such as someone using a car park ticket machine at an airport, setting an alarm clock in a hotel room, or using a museum display).
 
@@ -300,7 +329,7 @@ There is also more information in the [Wikipedia entry for Cognitive Walkthrough
 ## Usability Heuristics
 
 {panel type="teacher-note" summary="HCI posters for your classroom!"}
-A set of posters that support this section have been published by Jennifer Gottschalk. [These are available in PDF format here](files/hci-posters.pdf).
+A set of posters that support this section have been published by Jennifer Gottschalk. [These are available in PDF format here](files/HCI-posters.pdf).
 {panel end}
 
 Evaluating an interface is best done by getting feedback from having lots of potential users try it out. However, this can be expensive and time-consuming, so HCI experts have come up with some quick rules of thumb that help us spot obvious problems quickly. The formal word for a rule of thumb is a *heuristic*, and in this section we will look at some common heuristics that can be used to critique an interface.
@@ -308,6 +337,8 @@ Evaluating an interface is best done by getting feedback from having lots of pot
 There are various sets of heuristics that people have proposed for evaluating interfaces, but a Danish researcher called Jakob Nielsen has come up with a set of 10 heuristics that have become very widely used, and we will describe them in this section. If you encounter a usability problem in an interface, it is almost certainly breaking one of these heuristics, and possibly a few of them. It's not easy to design a system that doesn't break any of the heuristics, and sometimes you wouldn't want to follow them strictly – that's why they are called heuristics, and not rules.
 
 Often a confusing feature in an interface design will break multiple heuristics. For example, the following error message (it is for real) doesn't help users recover from errors (the real error is a network setting, but it is explained as causing a flashing light!), and the "Skip", "Cancel" and "Ignore" buttons don't speak the user's language (match between the system and the real world).
+{image filename="time-capsule.png" alt="Confusing at multiple levels." side="right_wrap"}
+
 
 ### Visibility of system status
 
@@ -325,16 +356,16 @@ There are many tasks that users ask computers to do that require some time inclu
 TODO: James is going to look at this eventually.
 {comment end}
 
-{image filename="human-computer-interaction/windows-busy-cursor.gif" alt="An Windows busy cursor"}
-{image filename="human-computer-interaction/apple-busy-cursor.gif" alt="An Apple busy cursor"}
+{image filename="windows-busy-cursor-animation.gif" alt="A Windows busy cursor"}
+{image filename="apple-busy-cursor-animation.gif" alt="An Apple busy cursor"}
 
 However, progress indicators aren't always helpful; the spinning wheels above don't indicate if you are going to have to wait a few seconds or a few minutes (or even hours) for the task to complete, which can be frustrating.
 
 Giving feedback in a "reasonable time" is really important, and the "reasonable time" is often shorter than what you might think. In the section above there was an experiment to find out at what point people perceive a delayed reaction; you probably found that it was around a tenth of a second. If a computer takes longer than that to respond then it can be confusing to use. There's more about this in the previous section.
 
-{image filename="human-computer-interaction/xkcd-estimation.png" alt="The author of the Windows file copy dialog visits some friends, and struggles to decide what time he will arrive."}
+{image filename="xkcd-estimation.png" alt="The author of the Windows file copy dialog visits some friends, and struggles to decide what time he will arrive."}
 
-From: http://xkcd.com/612/
+From: [xkcd.com/612](http://xkcd.com/612/)
 
 There are some other important delay periods in interface evaluation: a delay of around 1 second is where natural dialogues start to get awkward, and around 10 seconds puts a lot of load on the user to remember what they were doing. Nielsen has an [article about the importance of these time periods](http://www.nngroup.com/articles/response-times-3-important-limits/). If you want to test these ideas, try having a conversation with someone where you wait 3 seconds before each response; or put random 10 second delays in when you're working on a task!
 
@@ -384,7 +415,7 @@ Here's an example of a button that doesn't provide user control; if you press it
 Pressing the yes button below can be very frustrating! Most modern web browsers provide some user control and freedom in this case – if your students are frustrated at having pressed the button, the page will probably be in their history menu (and some browsers even have a function to restore the last page closed).
 {panel end}
 
-Sometimes the interface can force the user into doing something the user does not want to do. For example, it is quite common for operating systems or programs to perform updates automatically that require a restart. Sometimes the interface may not give them the opportunity to cancel or delay this, and restart nevertheless. This is bad if it happens when the user is just about to give a presentation.
+Sometimes the interface can force the user into doing something the don't want to do. For example, it is quite common for operating systems or programs to perform updates automatically that require a restart. Sometimes the interface may not give them the opportunity to cancel or delay this, and restart nevertheless. This is bad if it happens when the user is just about to give a presentation.
 
 Another common form of this problem is not being able to quit a system. A positive example is the "home" button on smartphones, which almost always stops the current app that is in use.
 
@@ -396,7 +427,7 @@ Consistency (something being the same every time) is extremely useful for people
 
 An example of inconsistency is generally found within spreadsheet programs, where the result of pushing "control-A" (select all) depends on whether you are editing a cell or just have the cell selected (this particular problem is a 'mode' problem). While this may make sense to a user experienced with spreadsheets, a new user can be very confused when the same action causes a different response.
 
-{image filename="human-computer-interaction/xkcd-standards.png"}
+{image filename="xkcd-standards-cartoon.png"}
 
 From: https://xkcd.com/927/
 
@@ -439,7 +470,7 @@ And here's another example, this time with a computer science slant: the followi
 The trouble is that in this mode you can still type in decimal digits, which gives an error when you do the calculation.
 A user could easily not notice that it's in binary mode, and the error message isn't particularly helpful!
 
-{image filename="human-computer-interaction/binary-calculator.png" alt="A calculator in binary mode that still allows you to type in digits other than 0 and 1, but complains later."}
+{image filename="binary-calculator-screenshot.png" alt="A calculator in binary mode that still allows you to type in digits other than 0 and 1, but complains later."}
 
 ### Recognition rather than recall
 
@@ -526,10 +557,10 @@ A better message would save the user having to figure out which of these is the 
 A positive example can be found in some alarm clocks such as the following one on an Android smartphone.
 For example, here the alarm time is shown at "9:00".
 In a country that uses 12-hour time, a user might mistake this for 9pm, and the alarm would go off at the wrong time.
-{image filename="Android-alarm-9am.png" alt="Android alarm clock set for 9:00."}
+{image filename="android-alarm-9am.png" alt="Android alarm clock set for 9:00."}
 
 However, the interface provides an opportunity to notice it because the display indicates how long it will be until the alarm will go off, making it easier to recognize the error of selecting the wrong time (or day).
-{image filename="Android-alarm-message.png" alt="Android alarm clock message showing how long until the alarm will trigger."}
+{image filename="android-alarm-message.png" alt="Android alarm clock message showing how long until the alarm will trigger."}
 
 
 ### Help and documentation
@@ -546,7 +577,7 @@ You can find more information about the [heuristics online on Jakob Nielsen's we
 
 ## The whole story!
 
-In this chapter we've mainly looked at how to critique interfaces, but we haven't said much about how to design good interfaces. That's a whole new problem, although being able to see what's wrong with an interface is a key idea. Many commercial systems are tested using the ideas above to check that people will find them easy to use; in fact, before releasing a new application, often they are tested many times with many users.
+In this chapter we've mainly looked at how to critique interfaces, but we haven't said much about how to design good interfaces. That's a whole new problem, although being able to see what's wrong with an interface is a good basis for designing good interfaces. Many commercial systems are tested using the ideas above to check that people will find them easy to use; in fact, before releasing a new application, often they are tested many times with many users.
 Improvements are made, and then more tests need to be run to check that the improvements didn't make some other aspect of the interface worse!
 It's no wonder that good software can be expensive – there are many people and a lot of time involved in making sure that it's easy to use before it's released.
 
@@ -570,7 +601,7 @@ and many more laws, observations and guidelines about designing interfaces that 
 
 - The [cs4fn website has a lot of articles and activities on Human Computer Interaction](http://www.cs4fn.org/fundamentals/hci.php), such as [problems around reporting interface problems](http://www.cs4fn.org/chi-med/reportingincidents.php), [cultural issues in interface design](http://www.cs4fn.org/usability/tzeltal.php), and [The importance of Sushi](http://www.cs4fn.org/usability/importanceofsushi.php).
 
-- A classic book relating to usability is "The psychology of everyday things" (later changed to "The design of everyday things") by Don Norman. It's about everyday objects like doors and phones, and it was written a while ago, but it contains lots of thought provoking and often humorous examples.
+- A classic book relating to usability is "The psychology of everyday things" (later re-titled "The design of everyday things") by Don Norman. It's about everyday objects like doors and phones, and it was written a while ago, but it contains lots of thought provoking and often humorous examples.
 
 ### Useful Links
 
