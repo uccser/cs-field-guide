@@ -298,11 +298,11 @@ Here’s an example of a packet trace on our network…[(using tcpdump on the ma
 - Protocols are found in the strangest of places…. [Engine Order Telegraph](http://en.wikipedia.org/wiki/Engine_order_telegraph)
 - Coursera course on [Internet History, Technology, and Security](https://www.coursera.org/learn/insidetheinternet)
 
-{video https://www.youtube.com/embed/WwyJGzZmBe8}
+{video url="https://www.youtube.com/embed/WwyJGzZmBe8"}
 
-{video http://www.youtube.com/embed/i5oe63pOhLI}
+{video url="http://www.youtube.com/embed/i5oe63pOhLI"}
 
-{video http://www.youtube.com/embed/7_LPdttKXPc}
+{video url="http://www.youtube.com/embed/7_LPdttKXPc"}
 
 
 ### Extra Activities

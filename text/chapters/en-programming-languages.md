@@ -1,6 +1,7 @@
 # Programming Languages
 
-<script src="_static/interactives/pl/python-editor/skulpt.min.js" type="text/javascript"></script>
+{comment}
+<script src="static/interactives/pl/python-editor/skulpt.min.js" type="text/javascript"></script>
 <script type="text/javascript">
   function outf(text)
   {
@@ -22,6 +23,7 @@
       }
   }
 </script>
+{comment end}
 
 {teacher}
 
@@ -33,7 +35,7 @@ The following assessment plans also cover this material:
 - [1.44 Programming Languages Assessment Guide](/appendices/assessment-guides/new-zealand/assessment-guide-level-1-programming-languages)
 
 {teacher end}
-  
+
 ## What's the big picture?
 
 Programming, sometimes referred to as coding, is a nuts and bolts activity for computer science. While this book won't teach you how to program (we've given some links to sites that can do this in the introduction), we are going to look at what a programming language is, and how computer scientists breath life into a language. From a programmer's point of view, they type some instructions, and the computer follows them. But how does the computer know what to do? Bear in mind that you might be using one of the many languages such as Python, Java, Scratch, Basic or C#,  yet computers only have the hardware to follow instructions in one particular language, which is usually a very simple "machine code" that is hard for humans to read and write. And if you invent a new programming language, how do you tell the computer how to use it?
@@ -82,7 +84,7 @@ This program is written in a language called Python, and when the program runs, 
 ************************************************
 ```
 
-In order to run a Python program, we need something called a Python interpreter. A Python interpreter is able to read your program, and process it. Below is a Python interpreter that you can use to run your own programs. If you have a Python interpreter installed on your computer (ask your teacher if you are following this book for a class and are confused) and know how to start it and run programs in it, you can use that. 
+In order to run a Python program, we need something called a Python interpreter. A Python interpreter is able to read your program, and process it. Below is a Python interpreter that you can use to run your own programs. If you have a Python interpreter installed on your computer (ask your teacher if you are following this book for a class and are confused) and know how to start it and run programs in it, you can use that.
 
 
 <form>
@@ -133,8 +135,8 @@ Try make the following changes to the program.
 
 - Make it print multiples of 5 instead of 3. Hint: You need to change more than just the first line --- you will need to make a change on the third line as well.
 - Make it print the first 10 multiples instead of the first 5. Make sure it printed 10 multiples, and not 9 or 11!
- 
-You can also loop over a list of data. Try running the program below. It will generate a series of “spam” messages, one addressed to each person in the recipients list! 
+
+You can also loop over a list of data. Try running the program below. It will generate a series of “spam” messages, one addressed to each person in the recipients list!
 
 Note that the # symbol tells the computer that it should ignore the line, as it is a comment for the programmer.
 
@@ -142,7 +144,7 @@ Note that the # symbol tells the computer that it should ignore the line, as it 
 #List of recipients to generate messages for
 spam_recipients = ["Heidi", "Tim", "Pondy", "Jack", "Caitlin", "Sam", "David"]  
 #Go through each recipient
-for recipient in spam_recipients: 
+for recipient in spam_recipients:
 #Write out the letter for the current recipient
 	print("Dear " + recipient + ", \n")
 	print("You have been successful in the random draw for all  people ")
@@ -187,11 +189,11 @@ Programs can do many more things, such as having a graphical user interface (lik
 
 ### Where are we going?
 
-When you ran the programs, it might have seemed quite magical that the computer was able to instantly give you the output. Behind the scenes however, the computer was running your example programs through another program in order to convert them into a form that it could make sense of and then run. 
+When you ran the programs, it might have seemed quite magical that the computer was able to instantly give you the output. Behind the scenes however, the computer was running your example programs through another program in order to convert them into a form that it could make sense of and then run.
 
 Firstly, you might be wondering why we need languages such as Python, and why we can’t give computers instructions in English. If we typed into the computer “Okay computer, print me the first 5 multiples of 3”, there's no reason that it would be able to understand. For starters, it would not know what a “multiple” is. And it would not even know how to go about this task. Computers cannot be told what every word means, and they cannot know how to accomplish every possible task. Understanding human language is a very difficult task for a computer, as you will find out in the Artificial Intelligence chapter. Unlike humans who have an understanding of the world, and see meaning, computers are only able to follow the precise instructions you give them. Therefore, we need languages that are constrained and unambiguous that the computer “understands” instructions in. These can be used to give the computer instructions, like those in the previous section.
 
-It isn’t this simple though, a computer cannot run instructions given directly in these languages. At the lowest level, a computer has to use physical hardware to run the instructions. Arithmetic such as addition, subtraction, multiplication, and division, or simple comparisons such as less than, greater than, or equal to are done on numbers represented in binary by putting electricity through physical computer chips containing transistors. The output is also a number represented in binary. Building a fast and cheap circuit to do simple arithmetic such as this isn't that hard, but the kind of instructions that people want to give computers (like "print the following sentence", or "repeat the following 100 times") are much harder to build circuitry for. 
+It isn’t this simple though, a computer cannot run instructions given directly in these languages. At the lowest level, a computer has to use physical hardware to run the instructions. Arithmetic such as addition, subtraction, multiplication, and division, or simple comparisons such as less than, greater than, or equal to are done on numbers represented in binary by putting electricity through physical computer chips containing transistors. The output is also a number represented in binary. Building a fast and cheap circuit to do simple arithmetic such as this isn't that hard, but the kind of instructions that people want to give computers (like "print the following sentence", or "repeat the following 100 times") are much harder to build circuitry for.
 
 {jargon-buster}
 
@@ -219,11 +221,11 @@ We will start with looking at some other programming languages that programmers 
 
 {teacher}
 
-Students are NOT expected (or even encouraged) to be able to write their own program in these languages. The purpose of the examples and getting the students to modify them is to help them understand why programming directly in these languages is best avoided, and thus the reason for high level languages. 
+Students are NOT expected (or even encouraged) to be able to write their own program in these languages. The purpose of the examples and getting the students to modify them is to help them understand why programming directly in these languages is best avoided, and thus the reason for high level languages.
 
 If they have trouble with a lot of the modifications that are suggested, this is fine. They should not be concerned about it. Remind students that if they were able to modify the high level language programs, but really struggle with these ones, that this is the point of the exercise and that they should explain why it was so difficult in their report.
 
-Having an old CPU (that you will never want to use again) that the students can pass around and look at could be a good thing to do if you can find one. 
+Having an old CPU (that you will never want to use again) that the students can pass around and look at could be a good thing to do if you can find one.
 
 {teacher end}
 
@@ -241,7 +243,7 @@ A computer has to carry out instructions on physical circuits. These circuits co
 
 {comment end}
 
-Data such as numbers (represented using binary) have to be put into storage places called registers while the circuit is processing them. Registers can be set to values, or data from memory can be put into registers. Once in registers, they can be added, subtracted, multiplied, divided, or be checked for equality, greater than, or less than. The output is put into a register, where it can either be retrieved or used in further arithmetic. 
+Data such as numbers (represented using binary) have to be put into storage places called registers while the circuit is processing them. Registers can be set to values, or data from memory can be put into registers. Once in registers, they can be added, subtracted, multiplied, divided, or be checked for equality, greater than, or less than. The output is put into a register, where it can either be retrieved or used in further arithmetic.
 
 All computers have a machine code language (commonly referred to as an instruction set) that is used to tell the computer to put values into registers, to carry out arithmetic with the values in certain registers and put the result into another specified register like what we talked about above. Machine code also contains instructions for loading and saving values from memory (into or out of registers),  jumping to a certain line in the program (that is either before or after the current line), or to jump to the line only if a certain condition is met (by doing a specified comparisons on values in registers). There are also instructions for handling simple input/ output, and interacting with other hardware on the computer.
 
@@ -251,7 +253,7 @@ It starts by adding 2 numbers (that have been put in registers $t0 and $t1) and 
 
 ```
 .data          	 
-str:  .asciiz "\nHello World!\n" 
+str:  .asciiz "\nHello World!\n"
 #You can change what is between the  quotes if you like
 
 .text          	 
@@ -324,9 +326,9 @@ And the full MIPS program for this is as follows. You can go away and change it.
 ```
 #Define the data strings
 .data
-go_str:   .asciiz "GO!!!!!\n"	
+go_str:   .asciiz "GO!!!!!\n"
 new_line: .asciiz "\n"
-	
+
 .text
 #Where should we start?
 .globl main
@@ -335,7 +337,7 @@ main:
 	li $t0, 5    #Put our starting value 5 into register $t0. We will update it as we go
 	li $t1, 0    #Put our stopping value 0 into register $t1
 start_loop:      #This label is just used for the jumps to refer to
-	#This says that if the values in $t0 and $t1 are the same, it should jump down to the end_loop label. 
+	#This says that if the values in $t0 and $t1 are the same, it should jump down to the end_loop label.
 	#This is the main loop condition.
 	beq $t0, $t1, end_loop
 	#These three lines prepare for and print the current int
@@ -366,7 +368,7 @@ If that was too easy for you, can you make both programs print out “GO!!!!” 
 
 More than likely, you’re rather confused at this point and unable to modify the MIPS program with all these suggested changes. And if you do have an additional loop in your MIPS program correctly printing “GO!!!” 10 times, then you are well on your way to being a good programmer!
 
-So, what was the point of all this? These low level instructions may seem tedious and a bit silly, but the computer is able to directly run them on hardware due to their simplicity. A programmer can write a program in this language if they know the language, and the computer would be able to run it directly without doing any further processing. As you have probably realised though, it is extremely time consuming to have to program in this way. Moving stuff in and out of registers, implementing loops using jump and branch statements, and printing strings and integers using a three line pattern that you’d probably never have guessed was for printing had we not told you leaves even more opportunities for bugs in the program. Not to mention, the resulting programs are extremely difficult to read and understand. 
+So, what was the point of all this? These low level instructions may seem tedious and a bit silly, but the computer is able to directly run them on hardware due to their simplicity. A programmer can write a program in this language if they know the language, and the computer would be able to run it directly without doing any further processing. As you have probably realised though, it is extremely time consuming to have to program in this way. Moving stuff in and out of registers, implementing loops using jump and branch statements, and printing strings and integers using a three line pattern that you’d probably never have guessed was for printing had we not told you leaves even more opportunities for bugs in the program. Not to mention, the resulting programs are extremely difficult to read and understand.
 
 Because computers cannot directly run the instructions in the languages that programmers like, high level programming languages by themselves are not enough. The solution to this problem of different needs is to use a compiler or interpreter that is able to convert a program in the high level programming language that the programmer used into the machine code that the computer is able to understand.
 
@@ -396,7 +398,7 @@ There are many different programming languages. Here we have included a small su
 
 For a much larger list you can [check Wikipedia here](http://en.wikipedia.org/wiki/List_of_programming_languages).
 
-.. xtcb link to coderdojo somewhere here? 
+.. xtcb link to coderdojo somewhere here?
 
 Python
 --------------------------------------------------------------------------------------
@@ -443,21 +445,19 @@ This same program written in Java would require at least twice as many lines of 
 There are many other scripting languages in addition to Python, such as Perl, Bash, and Ruby.
 
 ### Scratch
-Scratch is a programming language used to teach people how to program. A drag and drop interface is used so that new programmers don’t have to worry so much about syntax, and programs written in Scratch are centered around controlling cartoon characters or other sprites on the screen. 
+Scratch is a programming language used to teach people how to program. A drag and drop interface is used so that new programmers don’t have to worry so much about syntax, and programs written in Scratch are centered around controlling cartoon characters or other sprites on the screen.
 
 Scratch is never used in programming in industry, only in teaching. If you are interested in trying Scratch, [you can try it out online here](http://scratch.mit.edu/projects/editor/?tip_bar=getStarted), no need to download or install anything.
 
-[{images pl-scratch-editor.png}](http://scratch.mit.edu/projects/19711355/#editor)
-
-Click the image above to load the project and try it for yourself.
+{button link="http://scratch.mit.edu/projects/19711355/#editor" text="Example Scratch project"}
 
 This is an example of a simple program in Scratch that is similar to the programs we have above for Python and Java. It asks the user for numbers until they say "stop" and then finds the average of the numbers given.
 
-{image pl-scratch.png}
+{image filename="scratch-example-program.png"}
 
 And this is the output that will be displayed when the green flag is clicked:
 
-{image pl-scratch-output.png}
+{image filename="scratch-example-program-output.png"}
 
 Scratch can be used for simple calculations, creating games and animations. However it doesn't have all the capabilities of other languages.
 
@@ -545,7 +545,7 @@ A programming language such as Python or Java is implemented using a program its
 
 Since the computer hardware can only run programs in a low level language (machine code), the programming system has to make it possible for your Python instructions to be executed using only machine language. There are two broad ways to do this: interpreting and compiling.
 
-[This 1983 video](http://www.youtube.com/watch?v=_C5AHaS1mOA) provides a good analogy of the difference between an interpreter and a compiler. 
+[This 1983 video](http://www.youtube.com/watch?v=_C5AHaS1mOA) provides a good analogy of the difference between an interpreter and a compiler.
 
 The main difference is that a compiler is a program that converts your program to machine language, which is then run on the computer. An interpreter is a program that reads your program line by line, works out what those instructions are, and does them immediately.
 
@@ -557,7 +557,7 @@ Interpreted programs have the advantage that they can be easier to program becau
 
 The diagram below shows the difference between what happens in an interpreter and compiler if you write and run a program that sorts some numbers. The compiler produces a machine code program that will do the sorting, and the data is fed into that second program to get the sorted result. The interpreter simply does the sorting on the input by immediately following the instructions in the program. The compiler produces a machine code program that you can distribute, but it involves an extra phase in the process.
 
-{image pl-scratch-c-sorting-program.png}
+{image filename="comparing-sorting-programs-across-scratch-and-c.png"}
 
 {comment}
 
@@ -581,10 +581,10 @@ The languages we have discussed in this chapter are ones that you are likely to 
 - CS Online has a [quick overview of this topic](http://courses.cs.vt.edu/~csonline/ProgrammingLanguages/Lessons/Introduction/index.html)
 - Wikipedia entries on [Programming language](http://en.wikipedia.org/wiki/Programming_language), [High level language](http://en.wikipedia.org/wiki/High-level_programming_language), and [Low level language](http://en.wikipedia.org/wiki/Low-level_programming_language)
 
-- [website including posters comparing programming languages](http://programming.dojo.net.nz/) by Samuel Williams 
+- [website including posters comparing programming languages](http://programming.dojo.net.nz/) by Samuel Williams
 - [tutorial comparing programming languages](http://holowczak.com/programming-concepts-tutorial-programmers/)
 - a [discussion of interpreters and compilers](http://pathfinder.scar.utoronto.ca/~dyer/csca57/book_P/node7.html)
-- a [poster with full details of the file content in an executable file](http://code.google.com/p/corkami/wiki/PE101?show=content) (the exe format) 
+- a [poster with full details of the file content in an executable file](http://code.google.com/p/corkami/wiki/PE101?show=content) (the exe format)
 - David Bolton explains a [Programming Language](http://cplus.about.com/od/introductiontoprogramming/p/programming.htm), [Compiler](http://cplus.about.com/od/introductiontoprogramming/p/compiler.htm), and [the difference between Compilers and Interpreters](http://cplus.about.com/od/introductiontoprogramming/a/compinterp.htm).
 - [Computerworld article on the A to Z of programming languages](http://www.computerworld.com.au/article/344826/z_programming_languages/)
 - [What is Python?](http://python.about.com/od/gettingstarted/ss/whatispython_4.htm) (compared with other languages)

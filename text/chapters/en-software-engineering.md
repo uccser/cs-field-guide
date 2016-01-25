@@ -197,7 +197,7 @@ When we test software, we try lots of different inputs and see what outputs or b
 
 {panel type="curiosity" summary="Bugs and Moths"}
 
-{image "harvard-mark-ii.jpg" alt="The Mark II at Harvard" caption="The Mark II at Harvard"}
+{image filename="harvard-mark-ii.jpg" alt="The Mark II at Harvard" caption="The Mark II at Harvard"}
 
 In 1947, engineers working on a computer called the *Mark II* were investigating a computer error and found that it was caused by a moth which had become trapped inside the computer! This incident is and early example of using the word *bug* to refer to computer errors. Of course, today we use the word to refer to errors in programs, rather than actual insects trapped in the computer.
 {panel end}

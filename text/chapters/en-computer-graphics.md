@@ -112,7 +112,7 @@ Transformations are usually done in graphics using *matrix* arithmetic, which is
 
 You can try it out in the following interactive:
 
-{include interactive computer-graphics-arrow parameters="&quiz=2 0 0 0 0 2 0 0 0 0 2 0 0 0 0 1"}
+{button link="http://www.csfieldguide.org.nz/_static/widgets/CG/CG-arrow/CG-arrow-matrix.html?info=You%20can%20type%20this%20matrix%20into%20the%20following%20interactive%20to%20see%20what%20it%20does%20(replace%20the%20ones%20with%20twos).%20The%20top%20left-hand%20value%20just%20means%20multiply%20all%20the%20%3Cem%3Ex%3C/em%3E%20values%20by%202,%20and%20the%20bottom%20right%20one%20means%20multiply%20all%20the%20%3Cem%3Ey%3C/em%3E%20values%20by%202.%20For%20the%20meantime,%20leave%20the%20other%20two%20values%20as%200.&quiz=2%200%200%200%200%202%200%200%200%200%202%200%200%200%200%201" text="View interactive"}
 
 At this stage you may want to have the interactive open in a separate window so that you can read the text below and interact with the interactive at the same time.
 
@@ -211,7 +211,7 @@ If your students aren't familiar with sin and cos, it may be worth going over th
 The [Khan Academy](https://www.khanacademy.org/math/trigonometry/trigonometry-right-triangles) has more information about sine and cosine functions, explained in terms of triangles.
 {panel end}
 
-{interactive computer-graphics-arrow parameters="&quiz=0.7 0.7 0 5 -0.7 0.7 0 4 0 0 1 0 0 0 0 1"}
+{button link="http://www.csfieldguide.org.nz/_static/widgets/CG/CG-arrow/CG-arrow-matrix.html?info=You%20can%20type%20these%20calculations%20directly%20into%20the%20interactive%20-%20if%20you%20type%20cos(60)%20it%20will%20work%20out%20the%20cosine%20of%2060%20degrees%20for%20you,%20which%20happens%20to%20be%20exactly%200.5.%20Or%20you%20can%20just%20type%20in%20the%20sin%20and%20cosine%20values;%20the%200.7%20numbers%20in%20the%20matrix%20above%20are%20just%20the%20values%20for%20sin(45)%20and%20so%20on%20(or%20at%20least,%20they%20approximately%20the%20value;%20it%27s%20actually%200.70710678...,%20which%20happens%20to%20be%20the%20square%20root%20of%200.5,%20but%200.7%20is%20close%20enough%20for%20our%20example).&quiz=0.7%200.7%200%205%20-0.7%200.7%200%204%200%200%201%200%200%200%200%201" text="View interactive"}
 
 What is the matrix for rotation by 360 degrees?
 
@@ -234,19 +234,19 @@ s & 0 \\
 
 A translation can't be specified by this kind of matrix, so in the interactives we've provided an extra place to specify an *x* and *y* value to translate the input.
 
-{interactive computer-graphics-arrow parameters="&quiz=1 0 0 5 0 1 0 4 0 0 1 0 0 0 0 1"}
+{button link="http://www.csfieldguide.org.nz/_static/widgets/CG/CG-arrow/CG-arrow-matrix.html?info=Try%20translating%20the%20original%20arrow%20so%20that%20it%20matches%20up%20with%20the%20red%20arrow.&quiz=1%200%200%205%200%201%200%204%200%200%201%200%200%200%200%201" text="View interactive"}
 
 {panel type="teacher-note" summary="Solution"}
 Translate x is 5 and y is 4 (5 to the right and 4 up). The matrix should be {math}\begin{bmatrix}  1 & 0 \\   0 & 1 \\   \end{bmatrix}{math end}
 {panel end}
 
-{interactive computer-graphics-arrow parameters="&quiz=2 0 0 4 0 2 0 3 0 0 2 0 0 0 0 1"}
+{button link="http://www.csfieldguide.org.nz/_static/widgets/CG/CG-arrow/CG-arrow-matrix.html?info=Now%20try%20to%20scale%20the%20original%20arrow%20in%20the%20following,%20and%20translate%20it%20to%20match%20the%20red%20arrow.&quiz=2%200%200%204%200%202%200%203%200%200%202%200%200%200%200%201" text="View interactive"}
 
 {panel type="teacher-note" summary="Solution"}
 The matrix should be {math}\begin{bmatrix}  2 & 0 \\   0 & 2 \\   \end{bmatrix}{math end} (doubles the size). Translate x is 4 and y is 3.
 {panel end}
 
-{interactive computer-graphics-arrow parameters="&quiz=2 0 0 5 0 2 0 4 0 0 2 0 0 0 0 1"}
+{button link="http://www.csfieldguide.org.nz/_static/widgets/CG/CG-arrow/CG-arrow-matrix-reversed.html?info=The%20following%20interactive%20has%20the%20translation%20and%20scaling%20the%20other%20way%20around.%20Use%20this%20one%20to%20transform%20the%20blue%20arrow%20to%20the%20red%20arrow.%20The%20order%20in%20which%20the%20operations%20happen%20makes%20a%20difference!%20&quiz=2%200%200%205%200%202%200%204%200%200%202%200%200%200%200%201" text="View interactive"}
 
 {panel type="teacher-note" summary="Solution"}
 The matrix should be {math}\begin{bmatrix}  2 & 0 \\   0 & 2 \\   \end{bmatrix}{math end} (still needed to double the size). However, the translation will be doubled as well since it comes before the matrix, therefore translate x is 2.5 and y is 2 (half of the distance needed).
@@ -255,7 +255,7 @@ The matrix should be {math}\begin{bmatrix}  2 & 0 \\   0 & 2 \\   \end{bmatrix}{
 In the above, you'll have noticed that scaling is affected by how far the object is from the centre.
 If you want to scale around a fixed point in the object (so it expands where it is), then an easy way is to translate it back to the centre (also called the *origin*), scale it, and then translate it back to where it was.  The following interactive allows you to move the arrow, then scale it, and move it back.
 
-{interactive computer_graphics_arrow_transform parameters="&zoom=-15.0 &quiz=2 0 0 -8 0 2 0 3 0 0 2 0 0 0 0 1 &start=1 0 0 -8 0 1 0 5 0 0 1 0 0 0 0 1 &allPrize=5"}
+{button link="http://www.csfieldguide.org.nz/_static/widgets/CG/CG-arrow/CG-arrow-transmatrix.html?info=The%20tip%20is%20at%20(-8,7),%20so%20you%20should%20translate%20it%20to%20(0,0),%20scale%20by%202,%20and%20translate%20back%20to%20(-8,%207).&zoom=-15.0%20&quiz=2%200%200%20-8%200%202%200%203%200%200%202%200%200%200%200%201%20&start=1%200%200%20-8%200%201%200%205%200%200%201%200%200%200%200%201%20&allPrize=5" text="View interactive"}
 
 {panel type="teacher-note" summary="Solution"}
 The first translation is x=8 and y=-7. Now the arrow tip is at the origin, and the doubling will keep the tip where it is. The matrix should be {math}\begin{bmatrix}  2 & 0 \\   0 & 2 \\   \end{bmatrix}{math end} as usual for doubling. The second translation needs to be -8,7 to get the arrow back to the starting point.
@@ -263,7 +263,7 @@ The first translation is x=8 and y=-7. Now the arrow tip is at the origin, and t
 
 The same problem comes up with rotation.
 
-{interactive computer_graphics_arrow_transform parameters="&zoom=-10.0 &quiz=0.699999988079071 0.699999988079071 0 -4.400000095367432 -0.699999988079071 0.699999988079071 0 4.599999904632568 0 0 1 0 0 0 0 1 &start=1 0 0 -3 0 1 0 4 0 0 1 0 0 0 0 1 &allPrize=5"}
+{button link="http://www.csfieldguide.org.nz/_static/widgets/CG/CG-arrow/CG-arrow-transmatrix.html?info=Try%20rotating%20this%20image%20by%2045%20degrees.You%27ll%20need%20to%20translate%20the%20tip%20to%20the%20origin,%20apply%20the%20rotation,%20and%20translate%20it%20back.&zoom=-10.0%20&quiz=0.699999988079071%200.699999988079071%200%20-4.400000095367432%20-0.699999988079071%200.699999988079071%200%204.599999904632568%200%200%201%200%200%200%200%201%20&start=1%200%200%20-3%200%201%200%204%200%200%201%200%200%200%200%201%20&allPrize=5" text="View interactive"}
 
 {panel type="teacher-note" summary="Solution"}
 
@@ -272,7 +272,7 @@ The first translation is x=8 and y=-7. Now the arrow tip is at the origin, and t
 
 The following two examples combine rotation, scaling and translation. You can use multiple matrices (that's the plural of matrix) to match up the target object --- the product of each matrix becomes the input to the next one. Oh, and the arrow is twice as fat, but still the same height (from base to tip).
 
-{interactive computer-graphics-arrow-double parameters="&zoom=-10.0 &quiz=0 1 0 4 2 0 0 -2 0 0 1 0 0 0 0 1 &allPrize=5"}
+{button link="http://www.csfieldguide.org.nz/_static/widgets/CG/CG-arrow/CG-arrow-doublematrix.html?info=Try%20matching%20the%20blue%20arrow%20to%20the%20red%20one%20using%20two%20matrices%20(one%20to%20scale%20and%20one%20to%20rotate),%20and%20adding%20a%20vector.&zoom=-10.0%20&quiz=0%201%200%204%202%200%200%20-2%200%200%201%200%200%200%200%201%20&allPrize=5" text="View interactive"}
 
 {panel type="teacher-note" summary="Solution"}
 
@@ -283,7 +283,7 @@ If you rotate first, the rotation is still {math}\begin{bmatrix}  0 & 1 \\   1 &
 This can also be done by using only one matrix (if you combine the rotation and scaling); this could be a challenge to give the faster students. In that case the matrix is {math}\begin{bmatrix}  0 & 1 \\   2 & 0 \\   \end{bmatrix}{math end}. The translation is still 4,-2.
 {panel end}
 
-{interactive computer_graphics_arrow_double parameters="&zoom=-6.0 &quiz=0.3499999940395355 -0.3499999940395355 0 -1 0.3499999940395355 0.3499999940395355 0 -2 0 0 1 0 0 0 0 1 &allPrize=5"}
+{button link="http://www.csfieldguide.org.nz/_static/widgets/CG/CG-arrow/CG-arrow-doublematrix.html?info=You%20will%20need%20to%20use%20all%20three%20operations%20to%20do%20this%20next%20one.&zoom=-6.0%20&quiz=0.3499999940395355%20-0.3499999940395355%200%20-1%200.3499999940395355%200.3499999940395355%200%20-2%200%200%201%200%200%200%200%201%20&allPrize=5" text="View interactive"}
 
 {panel type="teacher-note" summary="Solution"}
 
@@ -450,7 +450,7 @@ If you want to rotate or scale around a particular point, you can do this in thr
 
 {comment end}
 
-</section><div align="center"><a href="" onclick="linkSend(this,'teapot3Text','static/widgets/CG/CG-mini-editor/main (cutdown).html',null); return true" target="blank"><img class="widgetimage" src="static/widgets/CG/CG-mini-editor/CG-mini-editor.png" alt=""><br />Click here for the interactive to combine multiple transforms into one</a></div><br />
+{button link="http://www.csfieldguide.org.nz/_static/widgets/CG/CG-mini-editor/main%20(cutdown).html?info=%0AYou%20can%20experiment%20with%20moving%20the%20teapot%20around%20in%20space,%20changing%20its%20size,%20and%20angle.%3Cdl%20class=%22docutils%22%3E%0A%3Cdt%3EThink%20about%20the%20order%20in%20which%20you%20need%20to%20combine%20the%20transforms%20to%20get%20a%20particular%20image%20that%20you%20want.%3C/dt%3E%0A%3Cdd%3EFor%20example,%20if%20you%20translate%20an%20image%20and%20then%20scale%20it,%20you%E2%80%99ll%20get%20a%20different%20effect%20to%20scaling%20it%20then%20translating%20it.%0AIf%20you%20want%20to%20rotate%20or%20scale%20around%20a%20particular%20point,%20you%20can%20do%20this%20in%20three%20steps%20(as%20with%20the%202D%20case%20above):%20(1)%20translate%20the%20object%20so%20that%20the%20point%20you%20want%20to%20scale%20or%20rotate%20around%20is%20the%20origin%20(where%20the%20x,%20y%20and%20z%20axes%20meet),%20(2)%20do%20the%20scaling/rotation,%20(3)%20translate%20the%20object%20back%20to%20where%20it%20was.%20If%20you%20just%20scale%20an%20object%20where%20it%20is,%20its%20distance%20from%20the%20origin%20will%20also%20be%20scaled%20up.%3C/dd%3E%0A%3C/dl%3E%0A" text="View interactive"}
 
 In the above examples, when you have several matrices being applied to every point in the image, a lot of time can be saved by converting the series of matrices and transforms to just one formula that does all of the transforms in one go. The following interactive can do those calculations for you.
 
@@ -459,12 +459,11 @@ The interactive shows a matrix on the right that combines the two --- does it lo
 
 {panel type="teacher-note" summary="Explanation"}
 
-
 The combined result of scaling by 2 and then 3 should have 6 down the main diagonal (i.e. 6 times larger). The interactive gives a full derivation of the calculations being done on each x,y,z coordinate of each point in an image, but it really just has three inputs (x,y,z), which give the original position of a point, and three outputs (x',y',z') which give the transformed position of the point.
 
 {panel end}
 
-<section id="test_text">Multiple transforms</section><div align="center"><a href="" onclick="linkSend(this,'test_text','static/widgets/CG/CG-matrix-simplifier/CG-matrix-simplifier.html',null); return true" target="blank"><img class="widgetimage" src="static/widgets/CG/CG-matrix-simplifier/CG-image.png" alt=""><br />Click to load the widget.</a></div><br />
+{button link="http://www.csfieldguide.org.nz/_static/widgets/CG/CG-matrix-simplifier/CG-matrix-simplifier.html?info=Multiple%20transforms" text="View interactive"}
 
 {comment}
 .. xTCB One teacher noted that students where need to know that the it requires transform matrix and one translation
@@ -509,8 +508,6 @@ a_{13}b_{31}+a_{23}b_{32}+a_{33}b_{33} \\
 {math-block end}
 {panel end}
 
-
-
 {panel type="project" summary="3D transforms"}
 For this project, you will demonstrate what you've learned in the section above by explaining a 3D transformation of a few objects. You should take screenshots of each step to illustrate the process for your report.
 
@@ -522,15 +519,11 @@ and use the "simplifier" interactive to combine all the matrices into one operat
 
 The scene-creation interactive can be run from here:
 
-{comment} add interactive
-<section id="test_text"></section><div align="center"><a href="" onclick="linkSend(this,'test_text','static/widgets/CG/CG-mini-editor/main.html',null); return true" target="blank"><img class="widgetimage" src="static/widgets/CG/CG-mini-editor/CG-mini-editor.png" alt=""><br />Click to load the widget.</a></div><br />
-{comment end}
+{button link="http://www.csfieldguide.org.nz/_static/widgets/CG/CG-mini-editor/main.html?info=Multiple%20transforms" text="View interactive"}
 
 To generate combined transformations, you can use the following transform simplifier interactive:
 
-{comment} add interactive
-<section id="test_text"></section><div align="center"><a href="" onclick="linkSend(this,'test_text','static/widgets/CG/CG-matrix-simplifier/CG-matrix-simplifier.html',null); return true" target="blank"><img class="widgetimage" src="static/widgets/CG/CG-matrix-simplifier/CG-image.png" alt=""><br />Click to load the widget.</a></div><br />
-{comment end}
+{button link="http://www.csfieldguide.org.nz/_static/widgets/CG/CG-matrix-simplifier/CG-matrix-simplifier.html?info=Multiple%20transforms" text="View interactive"}
 
 Because you can't save your work in the interactives, keep notes and screen shots as you go along. These will be useful for your report, and also can be used if you need to start over again.
 
