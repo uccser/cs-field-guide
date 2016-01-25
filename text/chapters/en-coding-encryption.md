@@ -689,7 +689,7 @@ Unfortunately though, these requirements don't work well for getting users to pi
 
 As this xkcd comic points out, most password advice doesn't make a lot of sense.
 
-{image filename="xkcd-password-strength.png"}
+{image filename="xkcd-password-strength.png" source="https://xkcd.com/936/"}
 
 You might not know what some of the words mean. In easy terms, what it is saying is that there are significantly fewer modifications of common dictionary words than there is of a random selection of four of the 2000 most common dictionary words. Note that the estimates are based on trying to guess through a login system. With a leaked database, the attacker can test billions of passwords a second rather than just a few thousand.
 
@@ -797,10 +797,3 @@ The book "Hacking Secret Ciphers with Python: A beginner's guide to cryptography
 - [Wikipedia entry on the Caesar cipher](http://en.wikipedia.org/wiki/Caesar_cypher)
 - [Videos about modern encryption methods](http://simonsingh.net/media/online-videos/cryptography/the-science-of-secrecy-going-public/)
 - [Online interactives for simple ciphers](http://www.braingle.com/brainteasers/codes/index.php)
-
-{comment}
-
-<script language="JavaScript" type="text/javascript" src="static/interactives/third-party/big.js"></script>
-<script language="JavaScript" type="text/javascript" src="static/interactives/en/en-interactives.js"></script>
-
-{comment end}

@@ -345,16 +345,9 @@ As a simple example, consider what happens when you scale by 2 and then rotate b
 
 {math-block end}
 
-{comment}
+{button link="http://www.csfieldguide.org.nz/_static/widgets/CG/CG-arrow/CG-arrow-singlematrix.html?info=Try%20putting%20in%20the%20final%20matrix%20here%20and%20see%20if%20it%20does%20scale%20by%202%20and%20rotate%20by%2045%20degrees.&zoom=-10.0%20&quiz=1.4%201.4%200%200%20-1.4%201.4%200%200%200%200%201%200%200%200%200%201%20&allPrize=5" text="View interactive"}
 
-
-<p id="arrowEx13Text">Try putting in the final matrix here and see if it does scale by 2 and rotate by 45 degrees.</p><div align="center"><a href="" onclick= "linkSend(this, 'arrowEx13Text', 'static/widgets/CG/CG-arrow/CG-arrow-singlematrix.html','&zoom=-10.0 &quiz=1.4 1.4 0 0 -1.4 1.4 0 0 0 0 1 0 0 0 0 1 &allPrize=5'); return true" target="blank"><img class="widgetimage" src="static/widgets/CG/CG-arrow/CG-arrow-example1.png" alt=""><br />Click to load the widget.</a></div><br />
-
-<p id="arrowEx14Text">Now try multiplying two other transform matrices that you make up yourself, and see if they produce the expected result.</p><div align="center"><a href="" onclick= "linkSend(this, 'arrowEx14Text', 'static/widgets/CG/CG-arrow/CG-arrow-multiply2matrix.html','&zoom=-10.0 &quiz=1.4 1.4 0 0 -1.4 1.4 0 0 0 0 1 0 0 0 0 1 &allPrize=5'); return true" target="blank"><img class="widgetimage" src="static/widgets/CG/CG-arrow/CG-arrow-example1.png" alt=""><br />Click to load the widget.</a></div><br />
-
-The above interactives need to be linked in properly
-{comment end}
-
+{button link="http://www.csfieldguide.org.nz/_static/widgets/CG/CG-arrow/CG-arrow-multiply2matrix.html?info=Now%20try%20multiplying%20two%20other%20transform%20matrices%20that%20you%20make%20up%20yourself,%20and%20see%20if%20they%20produce%20the%20expected%20result.&zoom=-10.0%20&quiz=1.4%201.4%200%200%20-1.4%201.4%200%200%200%200%201%200%200%200%200%201%20&allPrize=5" text="View interactive"}
 
 In computer graphics systems there can be many transformations combined, and this is done by multiplying them all together (two at a time) to produce one matrix that does all the transforms in one go.
 That transform might then be applied to millions of points, so the time taken to do the matrix multiplication at the start will pay off well.
@@ -379,19 +372,11 @@ A matrix for operating on 3D points is 3 by 3. For example, the 3D matrix for do
 
 {math-block end}
 
-<section id="teapot1Text">
- In this interactive, try changing the scaling on the image (it starts with a scaling factor of 10 in all three dimensions).
-
-</section><div align="center"><a href="" onclick="linkSend(this,'teapot1Text','static/widgets/CG/CG-mini-editor/main (cutdown).html',null); return true" target="blank"><img class="widgetimage" src="static/widgets/CG/CG-mini-editor/CG-mini-editor.png" alt=""><br />Click to load the widget.</a></div><br />
+{button link="http://www.csfieldguide.org.nz/_static/widgets/CG/CG-mini-editor/main%20(cutdown).html?info=%0AIn%20this%20interactive,%20try%20changing%20the%20scaling%20on%20the%20image%20(it%20starts%20with%20a%20scaling%20factor%20of%2010%20in%20all%20three%20dimensions)." text="View interactive"}
 
 The above image mesh has 3644 points in it, and your matrix was applied to each one of them to work out the new image.
 
-<section id="teapot2Text">
-Translation requires 3 values, which are added to the *x*, *y* and *z* coordinates of each point in an object.
-
-In the following interactive, try moving the teapot left and right ( *x* ), up and down ( *y* ), and in and out of the screen ( *z* ) by adding a "vector" to the operations. Then try combining all three.
-
-</section><div align="center"><a href="" onclick="linkSend(this,'teapot2Text','static/widgets/CG/CG-mini-editor/main (cutdown).html',null); return true" target="blank"><img class="widgetimage" src="static/widgets/CG/CG-mini-editor/CG-mini-editor.png" alt=""><br />Click to load the widget.</a></div><br />
+{button link="http://www.csfieldguide.org.nz/_static/widgets/CG/CG-mini-editor/main%20(cutdown).html?info=%0ATranslation%20requires%203%20values,%20which%20are%20added%20to%20the%20*x*,%20*y*%20and%20*z*%20coordinates%20of%20each%20point%20in%20an%20object.%3Cp%3EIn%20the%20following%20interactive,%20try%20moving%20the%20teapot%20left%20and%20right%20(%20%3Cem%3Ex%3C/em%3E%20),%20up%20and%20down%20(%20%3Cem%3Ey%3C/em%3E%20),%20and%20in%20and%20out%20of%20the%20screen%20(%20%3Cem%3Ez%3C/em%3E%20)%20by%20adding%20a%20%E2%80%9Cvector%E2%80%9D%20to%20the%20operations.%20Then%20try%20combining%20all%20three.%3C/p%3E%0A" text="View interactive"}
 
 Rotation is trickier because you can now rotate in different directions.
 In 2D rotations were around the centre (origin) of the grid, but in 3D rotations are around a line (either the horizontal x-axis, the vertical y-axis, or the z-axis, which goes into the screen!)
@@ -437,12 +422,6 @@ And this one for the y-axis:
 {math-block end}
 
 The following interactive allows you to combine 3D matrices.
-
-<section id="teapot3Text">
-You can experiment with moving the teapot around in space, changing its size, and angle.
-Think about the order in which you need to combine the transforms to get a particular image that you want.
-For example, if you translate an image and then scale it, you'll get a different effect to scaling it then translating it.
-If you want to rotate or scale around a particular point, you can do this in three steps (as with the 2D case above): (1) translate the object so that the point you want to scale or rotate around is the origin (where the x, y and z axes meet), (2) do the scaling/rotation, (3) translate the object back to where it was. If you just scale an object where it is, its distance from the origin will also be scaled up.
 
 {comment}
 
@@ -604,7 +583,7 @@ For example, here's a grid of pixels with 5 lines shown magnified.
 The vertical line would have been specified as going from pixel (2,9) to (2,16) --- that is, starting 2 across and 9 up, and finishing 2 across and 16 up.
 Of course, this is only a small part of a screen, as normally they are more like 1000 by 1000 pixels or more; even a smartphone can be hundreds of pixels high and wide.
 
-{image filename="computer-graphics/20grid-example.png" alt="Drawing lines with pixels"}
+{image filename="grid-20x20-example.png" alt="An example of 5 lines drawn on a grid of pixels"}
 
 These are things that are easy to do with pencil and paper using a ruler and compass, but on a computer the calculations need to be done for every pixel, and if you use the wrong method then it will take too long and the image will be displayed slowly or a live animation will appear jerky.
 In this section we will look into some very simple but clever algorithms that enable a computer to do these calculations very quickly.

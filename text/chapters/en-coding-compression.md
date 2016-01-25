@@ -458,9 +458,7 @@ As long as you decode them from first to last, the information will be available
 .. xhtml5 Eventually this could use a parameter so there's one version with no tabs, and a later one with them.
 {comment end}
 
-{comment}
-<div align="center"><iframe width="900" height="460" src="static/widgets/COMPRESSION/LWZ/public_html/index.html" frameborder="0">Your browser does not support iframes. Please contact the computer's administrator and upgrade <a href="http://browsehappy.com/"> to a modern browser</a> (like Google Chrome) to enable all functionality of this online textbook.</iframe></div>
-{comment end}
+{button link="http://www.csfieldguide.org.nz/_static/widgets/COMPRESSION/LWZ/public_html/index.html" text="View compression interactive"}
 
 {comment}
 .. xjrm (or Rhem): pasting text in that is too big causes it to be rejected. It would be nicer if the pasted text is truncated to the maximum length.

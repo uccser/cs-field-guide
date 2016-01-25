@@ -50,9 +50,7 @@ The bottom right-hand card can be chosen from either its row or column; they sho
 
 Once you think you have this correct, you should tell the computer to flip a card. An animation will appear for a few seconds, and then the cards will reappear with one card flipped (all the rest will be the same as before). Your task is to identify the flipped card. You should be able to do this *without* having memorised the layout. Remember the pattern you made with the extra cards you added? That's the key to figuring it out. Once you think you have identified the card, click it to see whether or not you were right. The interactive will guide you through these instructions. If you are completely stuck identifying the flipped card, a hint follows the interactive, although you should try and figure it out for yourself first. Make sure you add the extra cards correctly; the computer won’t tell you if you get them wrong, and you probably won’t be able to identify the flipped card if the extra cards aren't chosen correctly.
 
-{comment}
-<div class="widget-holder"><a href="static/widgets/DR/DR-Parity/public_html/index.html"  target="blank"><img class="widget-image" src="static/images/EC-ParityThumbnail.png" alt=""><span class="widget-subtitle">Click to load the parity widget</span></a></div>
-{comment end}
+{button link="http://www.csfieldguide.org.nz/_static/widgets/DR/DR-Parity/public_html/index.html" text="View parity trick interactive"}
 
 Remember how you made it so that each column had an even number of black cards? When a card is flipped, this results in the row and column that the card was in having an odd number of black cards. So all you need to do is to identify the row and column that have an odd number of black and white cards, and the card that is at the intersection of them must be the one that was flipped!
 
@@ -146,12 +144,12 @@ With a GTIN-13 code, we want to be able to detect if one of the digits might hav
 The following interactive checks GTIN-13 barcodes. Enter the first 12 digits of a barcode number into the interactive, and it will tell you that the last digit should be!
 You could start by using the barcode number “9 300675 036009”.
 
+*Interactive coming soon*
+
 {comment}
 TODO
 ****** interactive to check Barcode (without putting in multipliers) here
 reads in 12 digits of a barcode, and outputs what the 13th one should be; don't show any intermediate calcuations, just the final result.
-Replaces this spreadsheet:
-<p><a href="static/interactives/ec/isbncreditcardcheckerv2.xlsx">Click here to download the spreadsheet.</a></p>
 {comment end}
 
 {panel type="teacher-note" summary="Getting more barcodes"}

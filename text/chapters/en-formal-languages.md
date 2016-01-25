@@ -129,7 +129,7 @@ It may be a bit young for some students, but if you can sell it to them, it's a 
 
 Here's a map of a commuter train system for the town of Trainsylvania. The trouble is, it doesn't show where the the trains go --- all you know is that there are two trains from each station, the A-train and the B-train. The inhabitants of Trainsylvania don't seem to mind this --- it's quite fun choosing trains at each station, and after a while you usually find yourself arriving where you intended.
 
-{image filename="fl-train-map-incomplete.png" alt="An incomplete train map"}
+{image filename="trainsylvania-map-incomplete.png" alt="An incomplete train map"}
 
 {comment}
 
@@ -140,7 +140,7 @@ Here's a map of a commuter train system for the town of Trainsylvania. The troub
 You can travel around Trainsylvania yourself using the following interactive. You're starting at the City Mall station, and you need to find your way to Suburbopolis.
 At each station you can choose either the A-train or the B-train --- press the button to find out where it will take you.
 But, like the residents of Trainsylvania, you'll probably want to start drawing a map of the railway, because later you might be asked to find your way somewhere else.
-If you want a template to draw on, you can [print one out from here](files/formal-languages/fl-trainsylvania-blank.pdf).
+If you want a template to draw on, you can [print one out from here](files/trainsylvania-blank.pdf).
 
 {comment}
 
@@ -150,13 +150,13 @@ If you want a template to draw on, you can [print one out from here](files/forma
 
 {interactive name="trainsylvania" type="in-page"}
 
-{panel type="teacher-note" summary="Using the interactive"}
+{panel type="teacher-note" summary="Using the interactive and solution"}
 
 You should let students devise their own notation for this. They will soon learn (possibly the hard way) that they should record all routes with an arrow (since trains don't necessarily return by the same route), and label their arrows with A or B. The full map for the activity is below, but don't spoil the students' fun by providing it --- at least, not yet.
 
-{panel end}
+{image filename="trainsylvania-map-complete.png" alt="Solution to the train map"}
 
-{image filename="fl-train-map-complete.png" alt="Solution to the train map"}
+{panel end}
 
 Did you find a sequence of trains to get from City Mall to Suburbopolis? You can test it by typing the sequence of trains in the following interactive. For example, if you took the A-train, then the B-train, then an A-train, type in ABA.
 
@@ -166,7 +166,7 @@ Can you find a sequence that takes you from City Mall to Suburbopolis? Can you f
 
 Here's another map. It's for a different city, and the stations only have numbers, not names (but you can name them if you want).
 
-{image filename="fl-train-fsa-example.png" alt="A simpler train map"}
+{image filename="finite-state-automata-train-example.png" alt="A simpler train map"}
 
 Suppose you're starting at station 1, and need to get to station 3 (it has a double circle to show that's where you're headed.)
 
@@ -221,7 +221,7 @@ If there isn't a manual, you may find yourself wanting to draw a map, just as fo
 
 The map that we used above uses a standard notation. Here's a smaller one:
 
-{image filename="fl-fsa-example-1.png" alt="A simple Finite State Automation"}
+{image filename="finite-state-automata-simple-1.png" alt="A simple Finite State Automation"}
 
 Notice that this map has routes that go straight back to where they started!
 For example, if you start at 1 and take route "b", you immediately end up back at 1.
@@ -251,7 +251,7 @@ Here's an interactive that follows the rules of the FSA above. You can use it to
 
 Here's another FSA, which looks similar to the last one but behaves quite differently. You can test it in the interactive below.
 
-{image filename="fl-fsa-example-2.png" alt="A simple Finite State Automaton"}
+{image filename="finite-state-automata-simple-2.png" alt="A simple Finite State Automaton"}
 
 Work out which of the following inputs it accepts. Remember to start in state 1 each time!
 
@@ -302,7 +302,7 @@ There's no limit to the length of the strings they can accept.
 That's good, because many real-life FSA's have to deal with "infinite" input.
 For example, the diagram below shows the FSA for the spin speed on a washing machine, where each press of the spin button changes the setting.
 
-{image filename="fl-fsa-spin-speed-example.png" alt="FSA for spin setting on a washing machine"}
+{image filename="finite-state-automata-spin-speeds.png" alt="FSA for spin setting on a washing machine"}
 
 It would be frustrating if you could only change the spin setting 50 times, and then it stopped accepting input ever again.
 If you want, you could switch from fast to slow spin by pressing the spin button 3002 times.
@@ -312,7 +312,7 @@ Or 2 times would do. Or 2 million times (try it if you're not convinced).
 
 The following diagram summarizes the terminology we have introduced. Notice that this FSA has two accepting states. You can have as many as you want, but only one start state.
 
-{image filename="fl-fsa-terminology-example.png alt="FSA terminology"}
+{image filename="finite-state-automata-train-example-terminology.png" alt="FSA terminology explained"}
 
 For this FSA, the strings "aa" and "aabba" would be accepted, and "aaa" and "ar" wouldn't.
 By the way, notice that we often put inverted commas around strings to make it clear where they start and stop.
@@ -348,7 +348,7 @@ There are different kinds of "nothing", and we need to be precise about which on
 
 Here’s the FSA for the strange light switch. You can tell that {math}\epsilon{math end} is part of the language because the start state is also a final state (in fact, it's the only final state). Actually, the switch isn't all that strange --- data projectors often require two presses of the power button, to avoid accidentally turning them off.
 
-{image filename="fl-fsa-light-switch-example-3.png" alt="The finite state machine for a strange light switch"}
+{image filename="finite-state-automata-light-switch-example.png" alt="The finite state machine for a strange light switch"}
 
 An important part of the culture of computer science is always to consider extreme cases. One kind of extreme case is where there is no input at all: what if a program is given an empty file, or your database has zero entries in it? It's always important to make sure that these situations have been thought through.
 So it's not surprising that we have a symbol for the empty string.
@@ -366,7 +366,7 @@ And by the way, the language of the three-state FSA above is infinitely large be
 
 While we're looking at extremes, here's another FSA to consider.  It uses "a" and "b" as its alphabet.
 
-{image filename="fl-fsa-abx2-example.png alt="FSA for short strings"}
+{image filename="finite-state-automata-two-or-less-letters.png" alt="FSA for short strings"}
 
 Will it accept the string "aaa"? Or "aba"? Or anything of 3 characters or more?
 
@@ -380,17 +380,17 @@ Don't forget that the empty string is also accepted. It's a very small language;
 
 Here's another FSA to consider:
 
-{image filename="fl-fsa-no-trap-example.png" alt="FSA with missing transitions"}
+{image filename="finite-state-automata-no-trap-example.png" alt="FSA with missing transitions"}
 
 It's fairly clear what it will accept: strings like "ab", "abab", "abababababab", and, of course {math}\epsilon{math end}.
 But there are some missing transitions: if you are in state 1 and get a "b" there's nowhere to go.
 If an input cannot be accepted, it will be rejected, as in this case. We could have put in a trap state to make this clear:
 
-{image filename="fl-fsa-trap-added-example.png" alt="FSA with missing transitions"}
+{image filename="finite-state-automata-trap-added-example.png" alt="FSA with missing transitions"}
 
 But things can get out of hand. What if there are more letters in the alphabet? We'd need something like this:
 
-{image filename="fl-fsa-trap-added-extreme-example.png" alt-"FSA with missing transitions"}
+{image filename="finite-state-automata-trap-added-extreme-example.png" alt-"FSA with missing transitions"}
 
 So, instead, we just say that any unspecified transition causes the input to be rejected (that is, it behaves as though it goes into a trap state). In other words, it's fine to use the simple version above, with just two transitions.
 
@@ -409,7 +409,7 @@ Once you know this sequence it's easy, but the designer should think about wheth
 These sorts of issues become clear when you look at the FSA.
 But we're straying into the area of Human-Computer Interaction! This isn't surprising because most areas of computer science end up relating to each other --- but this isn't a major application of FSAs, so let's get back to more common uses.
 
-{image filename="fl-fsa-microwave-example.png" alt="FSA for a microwave oven"}
+{image filename="finite-state-automata-microwave-example.png" alt="FSA for a microwave oven"}
 
 As we shall see in the next section, one of the most valuable uses of the FSA in computer science is for checking input to computers, whether it's a value typed into a dialogue box, a program given to a compiler, or some search text to be found in a large document.
 There are also data compression methods that use FSAs to capture patterns in the data being compressed, and variants of FSA are used to simulate large computer systems to see how best to configure it before spending money on actually building it.
@@ -449,21 +449,21 @@ A good starting point is to think of the shortest string that is needed for a pa
 {math}\epsilon{math end},
 which means that the starting state must also be a final state, so you can start by drawing this:
 
-{image filename="fl-fsa-create-example-1.png" alt="creating an FSA"}
+{image filename="finite-state-automata-create-example-1.png" alt="creating an FSA"}
 
 
 If instead you had to design an FSA where the shortest accepted string is "aba", you would need a sequence of 4 states like this:
 
-{image filename="fl-fsa-create-example-2.png" alt="creating an FSA"}
+{image filename="finite-state-automata-create-example-2.png" alt="creating an FSA"}
 
 
 Then you need to think what happens next. For example, if we are accepting strings with an even number of "b"s, a single "b" would have to take you from the start state to a non-accepting state:
 
-{image filename="fl-fsa-create-example-3.png" alt="creating an FSA"}
+{image filename="finite-state-automata-create-example-3.png" alt="creating an FSA"}
 
 But another "b" would make an even number, so that's acceptable. And for any more input the result would be the same even if all the text to that point hadn't happened, so you can return to the start state:
 
-{image filename="fl-fsa-create-example-4.png" alt="creating an FSA"}
+{image filename="finite-state-automata-create-example-4.png" alt="creating an FSA"}
 
 Usually you can find a "meaning" for a state. In this example, being in state 1 means that so far you've seen an even number of "b"s, and state 2 means that the number so far has been odd.
 
@@ -476,11 +476,11 @@ Usually you can find a "meaning" for a state. In this example, being in state 1 
 Now we need to think about missing transitions from each state.
 So far there's nothing for an "a" out of state 1. Thinking about state 1, an "a" doesn't affect the number of "b"s seen, and so we should remain in state 1:
 
-{image filename="fl-fsa-create-example-5.png" alt="creating an FSA"}
+{image filename="finite-state-automata-create-example-5.png" alt="creating an FSA"}
 
 The same applies to state 2:
 
-{image filename="fl-fsa-create-example-6.png" alt="creating an FSA"}
+{image filename="finite-state-automata-create-example-6.png" alt="creating an FSA"}
 
 Now every state has a transition for every input symbol, so the FSA is finished. You should now try some examples to check that an even number of "b"s always brings it to state 1.
 
@@ -496,7 +496,7 @@ Exorciser can be downloaded [here](http://www.swisseduc.ch/compscience/exorciser
 When you run it, select "Constructing Finite Automata" (the first menu item); click the "Beginners" link when you want a new exercise.
 The challenge in each FSA exercise is the part after the | in the braces (i.e., curly brackets). For example, in the diagram below you are being asked to draw an FSA that accepts an input string w if "w has length at least 3". You should draw and test your answer, although initially you may find it helpful to just click on "Solve exercise" to get a solution, and then follow strings around the solution to see how it works. That’s what we did to make the diagram below.
 
-{image filename="fl-fsa-exorciser.png" alt="The exorciser software from SwissEduc"}
+{image filename="finite-state-automata-exorciser-screenshot.png" alt="The exorciser software from SwissEduc"}
 
 To draw an FSA in the Exorciser system, right-click anywhere on the empty space and you'll get a menu of options for adding and deleting states, choosing the alphabet, and so on.
 To make a transition, drag from the outside circle of one state to another (or out and back to the state for a loop).
@@ -507,7 +507,7 @@ If your FSA doesn't solve their challenge, you'll get a hint in the form of a st
 You can also track input as you type it: right-click to choose that option.
 See the [SwissEduc website](http://www.swisseduc.ch/compscience/) for more instructions.
 
-{image filename="fl-fsa-exorciser-error.png" alt="The exorciser software from SwissEduc"}
+{image filename="finite-state-automata-exorciser-error-screenshot.png" alt="The exorciser software from SwissEduc"}
 
 The section after next gives some examples to try.
 If you're doing this for a report, keep copies of the automata and tests that you do. Right-click on the image for a "Save As" option, or else take screenshots of the images.
@@ -530,7 +530,7 @@ Another widely used system for experimenting with FSAs is a program called JFLAP
 
 Here's how to build an FSA using JFLAP. As an example, we'll use the following FSA:
 
-{image filename="fl-jflap-2-state.png" alt="Building an FSA --- example"}
+{image filename="jflap-create-state.png" alt="Building an FSA --- example"}
 
 {comment}
 
@@ -553,11 +553,11 @@ You can drag states around using the arrow tool.
 To watch your FSA process some input, use the "Input" menu (at the top), choose "Step with closure", type in a short string such as "abaa", and click "OK". Then at the bottom of the window you can trace the string one character at a time by pressing "Step", which highlights the current state as it steps through the string.
 If you step right through the string and end up in a final (accepting) state, the panel will come up green. To return to the Editor window, go to the “File” menu and select “Dismiss Tab”.
 
-{image filename="fl-jflap-2-state-accept.png" alt="Building an FSA - testing with input"}
+{image filename="jflap-create-accept.png" alt="Building an FSA - testing with input"}
 
 You can run multiple tests in one go. From the "Input" menu choose "Multiple Run", and type your tests into the table, or load them from a text file.
 
-{image filename="fl-jflap-2-state-accept-multi.png" alt="Building an FSA --- multiple run"}
+{image filename="jflap-create-accept-multi.png" alt="Building an FSA --- multiple run"}
 
 You can even do tests with the empty string by leaving a blank line in the table, which you can do by pressing the "Enter Lambda" button.
 
@@ -644,7 +644,7 @@ Solutions for these will be provided in a later version of this guide.
 
 If you've worked with binary numbers, see if you can figure out what this FSA does. Try each binary number as input: 0, 1, 10, 11, 100, 101, 110, etc.
 
-{image filename="fl-fsa-multiples.png" alt="An FSA to test with binary numbers as input"}
+{image filename="finite-state-automata-binary-multiples.png" alt="An FSA to test with binary numbers as input"}
 
 Can you work out what it means if the FSA finishes in state q1? State q2?
 
@@ -753,7 +753,7 @@ It may be that students have used regular expressions already, because they are 
 
 If you have time, the following activity ("Reverse Pictionary") could be done either before or after teaching regular expressions. We recommend using it before, as it becomes a constructivist approach that encourages students to design their own notations for regular languages, and is a motivator for learning a precise notation.
 
-A useful activity to develop students' familiarity with FSAs and Regular expressions is a "Reverse Pictionary" game for finite state automata, developed by Linda Pettigrew. It uses the handout [found here](files/fl-reverse-pictionary-worksheet.pdf) (or you can make up your own simple FSAs).
+A useful activity to develop students' familiarity with FSAs and Regular expressions is a "Reverse Pictionary" game for finite state automata, developed by Linda Pettigrew. It uses the handout [found here](files/reverse-pictionary-worksheet.pdf) (or you can make up your own simple FSAs).
 
 Split the class into two groups, A and B. Hand out one copy of FSM-A to each pair of students in group A and FSM-B to pairs in group B. Each pair also requires a language sheet. They will only be writing in the top half of the sheet. Students now need to describe all the acceptable inputs for the given FSA (using whatever notation they can come up with, or regular expressions if they have already encountered them). When they are happy with their description (or five minutes is up) they write it out on the language sheet. Some suitable descriptions are as follows. We've used standard regex notation, but students might make up something different.
 
@@ -787,7 +787,7 @@ For example, many web scripting programs use them to check input for patterns li
 
 Students can work through the following brief examples using Rubular, described below. Alternatively you may prefer to get them to use the excellent tutorial at [http://regexone.com/](http://regexone.com/). Both systems require online access. RegexOne provides challenges and tests answers in the same window. Students can get away with inefficient answers, but it's a good environment for playing with the idea:
 
-{image filename="fl-regex-regexone-fullscreen.png" alt="Regexone screenshot"}
+{image filename="regexone-example-screenshot.png" alt="Regexone screenshot"}
 
 {panel end}
 
@@ -822,9 +822,9 @@ The simplest kind of matching is just entering some text to match. Open a new wi
 
 [Open Rubular using this link and type the text "cat" into the box labeled "Your regular expression"](http://rubular.com/r/vCD1OSfjAc)
 
-<div align="center"><iframe width="810" height="630" src="static/widgets/FL/FL-Regex/RegexTxt.html" frameborder="0">Your browser does not support iframes. Please contact the computer's administrator and upgrade <a href="http://browsehappy.com/"> to a modern browser</a> (like Google Chrome) to enable all functionality of this online textbook.</iframe></div>
+{button link="http://www.csfieldguide.org.nz/_static/widgets/FL/FL-Regex/RegexTxt.html" text="View regular expression matcher"}
 
-{image filename="fl-regex-rubular-cat1.png" alt="Entering ab\*a into JFLAP}
+{image filename="rubular-example-screenshot.png" alt="Entering ab\*a into JFLAP}
 
 {comment}
 
@@ -997,11 +997,11 @@ There's a direct relationship between regular expressions and FSAs. For example,
 
 Now look at how the following FSA works on these strings --- you could try "aabb", "aaaabb", "aaaaaabbbb", and also see what happens for strings like "aaabb", "aa", "aabbb", and so on.
 
-{image filename="fl-re-fsa-aabb-trap.png" alt="an FSA for (aa)+(bb)+"}
+{image filename="finite-state-automata-aabb-trap.png" alt="an FSA for (aa)+(bb)+"}
 
 You may have noticed that q2 is a "trap state". We can achieve the same effect with the following FSA, where all the transitions to the trap state have been removed --- the FSA can reject the input as soon as a non-existent transition is needed.
 
-{image filename="fl-re-fsa-aabb.png" alt="an FSA for (aa)+(bb)+"}
+{image filename="finite-state-automata-aabb.png" alt="an FSA for (aa)+(bb)+"}
 
 Like an FSA, each regular expression represents a
 {glossary-link term="language" reference-text="regular expression"}language{glossary-link end},
@@ -1132,7 +1132,7 @@ ab*b
 
 On the main control window of JFLAP click on "Regular Expression", and type your regular expression into JFLAP:
 
-{image filename="fl-ab-star-a-regex.png" alt="Entering ab\*a into JFLAP"}
+{image filename="jflap-ab-star-a-regex-screenshot.png" alt="Entering ab\*a into JFLAP"}
 
 {comment}
 
@@ -1144,16 +1144,16 @@ From the "Convert" menu choose "Convert to NFA".
 This will only start the conversion; press the "Do all" button to complete it (the system is designed to show all the steps of the conversion, but we just want the final result).
 For the example, we get the following non-deterministic finite automaton (NFA), which isn't quite what we want and probably looks rather messy:
 
-{image filename="fl-ab-star-a-nfa.png" alt="The NFA produced (messy intermediate version of the FSA)"}
+{image filename="jflap-ab-star-a-nfa-screenshot.png" alt="The NFA produced (messy intermediate version of the FSA)"}
 
 We need a DFA (deterministic FA), not an NFA.
 To convert the NFA to a DFA, press the "Export" button, then from the "Convert" menu, choose "Convert to DFA", press the "Complete" button to complete the conversion, and then the "Done?" button, which will put it in a new window:
 
-{image filename="fl-ab-star-a-dfa.png" alt="After conversion to a DFA"}
+{image filename="jflap-ab-star-a-dfa-screenshot.png" alt="After conversion to a DFA"}
 
 We're nearly there. If it's hard to read the FSA, you can move states around by choosing the arrow tool (on the left of the tool bar --- if the states won't move when you grab them, so make sure you click on the arrow icon before trying to move them). The states may have some extraneous labels underneath them; you can hide those by selecting the arrow tool, right-click on the white part of the window and un-check "Display State Labels".
 
-{image filename="fl-ab-star-a-dfa-tidy.png" alt="After tidying up the DFA"}
+{image filename="jflap-ab-star-a-dfa-tidy-screenshot.png" alt="After tidying up the DFA"}
 
 If the FSA is simple enough, it may be just as easy if you now copy the diagram by hand and try to set it out tidily yourself, otherwise you can save it as an image to put into your project.
 
@@ -1167,7 +1167,7 @@ Now try some sample inputs. The starting state is labeled q0 and will have a lar
 
 Multiple runs are good for showing lots of tests on your regular expression:
 
-{image filename="fl-ab-star-a-dfa-tidy-multiple-test.png" alt="After tidying up the DFA"}
+{image filename="jflap-ab-star-a-dfa-tidy-output-screenshot.png" alt="After tidying up the DFA"}
 
 For example, "ab" is rejected because it would only get to state 2.
 
@@ -1196,7 +1196,6 @@ it can do, and write regular expressions for finding words such as:
  - words that contain all the vowels in reverse order
  - words that you can make using only the notes on a piano (i.e the letters A to G and a to g)
  - words that are exceptions to the rule "i before e except after c" --- make sure you find words like "forfeit" as well as "science".
-
 
 - Microsoft Word’s *Find* command uses regular expressions if you select the "Use wildcards" option. For more details see [Graham Mayor](http://word.mvps.org/AboutMVPs/graham_mayor.htm)'s [Finding and Replacing Characters using Wildcards](http://word.mvps.org/FAQs/General/UsingWildcards.htm).
 
@@ -1314,10 +1313,9 @@ Note: the remainder of this section is yet to be developed.
 {panel type="project" summary="Grammars in art and music"}
 
 
-{image filename="fl-context-free-tree.png" alt="A tree drawn using the software from contextfreeart.org"}
+{image filename="context-free-tree-screenshot.png" alt="A tree drawn using the software from contextfreeart.org" source="http://contextfreeart.org/"}
 
 The *context free art* program ( [http://www.contextfreeart.org/](http://www.contextfreeart.org/) ) enables you to specify images using a context-free grammar. For example, the following pictures of trees are defined by just a few rules that are based around a forest being made of trees, a tree being made of branches, and the branches in turn being made of branches themselves! These simple definitions can create images with huge amounts of detail because the drawing process can break down the grammar into as many levels as required. You can define your own grammars to generate images, and even make a movie of them being created, like the one below. Of course, if you do this as a project make sure you understand how the system works and can explain the formal language behind your creation.
-
 
 {video url="http://player.vimeo.com/video/52320658"}
 
@@ -1334,7 +1332,7 @@ and there's a more detailed tutorial at [http://www.cs.duke.edu/csed/pltl/exerci
 There are some sample files here to get you inspired: (the ones starting "ex10..." [http://www.cs.duke.edu/csed/jflap/jflapbook/files/](http://www.cs.duke.edu/csed/jflap/jflapbook/files/) )
 and here's an example of the kind of image that can be produced:
 
-{image filename="fl-ex10-tree-thick-fall-leaves.png" alt="A tree drawn using L-systems in JFLAP"}
+{image filename="jflap-tree-leaves-l-systems-screenshot.png" alt="A tree drawn using L-systems in JFLAP"}
 
 There's also an online system for generating images with L-systems: [http://www.kevs3d.co.uk/dev/lsystems/](http://www.kevs3d.co.uk/dev/lsystems/)
 

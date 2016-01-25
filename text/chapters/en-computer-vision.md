@@ -159,11 +159,7 @@ The following activity can be used as part of a project for the 3.44 standard. T
 
 {comment end}
 
-{comment}
-
-<a href="http://www.cosc.canterbury.ac.nz/csfieldguide/dev/dev/static/widgets/cv-noise-filters.html" target="blank">Open the noise reduction filtering interactive using this link and experiment with settings as below. You will need a webcam, and the widget will ask you to allow access to it.</a>
-
-{comment end}
+Open the [noise reduction filtering interactive using this link](http://www.cosc.canterbury.ac.nz/csfieldguide/dev/dev/_static/widgets/cv-noise-filters.html) and experiment with settings as below. You will need a webcam, and the interactive will ask you to allow access to it.
 
 Mathematically, this process is applying a special kind of matrix called a *convolution kernel* to the value of each pixel in the source image, averaging it with the values of other pixels nearby and copying that average to each pixel in the new image. The average is weighted, so that the values of nearby pixels are given more importance than ones that are far away. The stronger the blur, the wider the convolution kernel has to be and the more calculations take place.
 

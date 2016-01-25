@@ -33,7 +33,7 @@ And it can also be applied to problems that don't involve travel; for example, i
 The following interactive has a program that solves the problem for however many cities you want to select by trying out all possible routes, and recording the best so far.  You can get a feel for what an intractable problem looks like by seeing how long the interactive takes to solve the problem for different size maps.
 Try generating a map with about 5 cities, and press "Start" to solve the problem.
 
-<div align="center"><iframe width="700" height="500" src="static/widgets/tract-tsp-basic-v2.html" frameborder="0"></iframe></div>
+{button link="http://www.csfieldguide.org.nz/_static/widgets/tract-tsp-basic-v2.html" text="View city trip interactive"}
 
 Now try it for 10 cities (twice as many). Does it take twice as long? How about twice as many again (20 cities)? What about 50 cities? Can you guess how long it would take?
 You're starting to get a feel for what it means for a problem to be *intractable*.
@@ -204,8 +204,9 @@ For factorials of larger numbers, most desktop calculators won't work so well; f
 
 {comment}
 interactive needs fixing
-<div class="widget-holder"><a href="static/widgets/big-calculator.html?plain=true frameborder="0"" target="blank"><img class="widget-image" src="static/complexity_and_tractability/images/CT-BigCalculatorThumbnail.png" alt=""><span class="widget-subtitle">Click to load<br>big number calculator</span></a></div>
 {comment end}
+
+{button link="http://www.csfieldguide.org.nz/_static/widgets/big-calculator.html?plain=true%20frameborder=" text="View big number calculator"}
 
 Try calculating 100! using this calculator --- that's the number of different routes that a travelling salesman might take to visit 100 places (not counting the starting place). With this calculator you can copy and paste the result back into the input if you want to do further calculations on the number. If you are doing these calculations for a report, you should also copy each step of the calculation into your report to show how you got the result.
 
@@ -277,7 +278,7 @@ The Towers of Hanoi is one problem where we know for sure that it will take expo
 
 The following section relies on students using the built-in interactive to experiment with the calculations on the huge numbers that come up with the intractable problems. This may be best run as a class activity where students are guided through calculating the stupendously big numbers that come up, and they should be encouraged to appreciate how impractical the amount of time taken by a program would be --- for example, a program that takes a million years to find a solution won't be of any interest to the person who started it running, and even if a computer turned up that is 1000 times as fast, it would still take 1000 years to complete. Some of the times that turn up below are so long that they are beyond our ability to imagine, and are best illustrated by seeing how futile the times are even with 1000, a million or even a billion times the computing power.
 
-An earlier version of this chapter provided the following spreadsheet for doing these calculations; we've retained the link here for the meantime, but the new online interactive can cope a lot better with the large numbers in the calculations. If you are interested, you can [download the spreadsheet here](files/complexity-and-tractability/ct-tractable.xlsx) to do the calculations.
+An earlier version of this chapter provided the following spreadsheet for doing these calculations; we've retained the link here for the meantime, but the new online interactive can cope a lot better with the large numbers in the calculations. If you are interested, you can [download the spreadsheet here](files/tractable-spreadsheet.xlsx) to do the calculations.
 
 {panel end}
 
@@ -299,7 +300,7 @@ With the initial settings in the interactive, the TSP for 20 places will take 2,
 
 {panel end}
 
-<div class="widget-holder"><a href="static/widgets/tract-scaling-v2.html" target="blank"><img class="widget-image" src="static/images/CT-TimeCalculatorThumbnail.png" alt=""><span class="widget-subtitle">Click to load<br>big number calculator</span></a></div>
+{button link="http://www.csfieldguide.org.nz/_static/widgets/tract-scaling-v2.html" text="View big time calculator"}
 
 So far the calculation assumes that the computer would only do 1 operation per second; try changing to a million (1,000,000) operations per second, which is more realistic, and see how long that would take.
 
@@ -395,7 +396,7 @@ You're going to have to be more than patient if you want Moore's law to help out
 
 Remember that if you need to do calculations of huge numbers, there's a calculator here that you can use:
 
-<div class="widget-holder"><a href="static/widgets/big-calculator.html?plain=true frameborder="0"" target="blank"><img class="widget-image" src="static/complexity_and_tractability/images/CT-BigCalculatorThumbnail.png" alt=""><span class="widget-subtitle">Click to load<br>big number calculator</span></a></div>
+{button link="http://www.csfieldguide.org.nz/_static/widgets/big-calculator.html?plain=true%20frameborder=" text="View big number calculator"}
 
 {comment}
 
