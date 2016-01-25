@@ -8,8 +8,10 @@ Think about the last time someone sent you mail via the post. They probably wrot
 
 Below we introduce some concepts, algorithms, techniques, applications and problems that relate to network protocols; it isn’t a complete list of all the ideas in the area, but should be enough to give you a good idea of what this area of computer science is about.
 
+{comment}
 ## Getting Started
-
+Section not needed?
+{comment end}
 ## What is a protocol?
 
 ‘Protocol’ is a fancy word for simply saying “an agreed way to do something”. You might have heard it in a cheesy cop show -- “argh Jim, that’s against protocol!!!” -- or heard it used in a procedural sense, such as how to file a tax return or sit a driving test. We all use protocols, every day. Think of when you’re in class. The *protocol* for asking a question may be as follows: raise your hand, wait for a nod from the teacher then begin asking your question.
@@ -298,9 +300,17 @@ Here’s an example of a packet trace on our network…[(using tcpdump on the ma
 - Protocols are found in the strangest of places…. [Engine Order Telegraph](http://en.wikipedia.org/wiki/Engine_order_telegraph)
 - Coursera course on [Internet History, Technology, and Security](https://www.coursera.org/learn/insidetheinternet)
 
+### Videos
+
+There and back again: a packet's tale
+
 {video url="https://www.youtube.com/embed/WwyJGzZmBe8"}
 
+How does the internet work?
+
 {video url="http://www.youtube.com/embed/i5oe63pOhLI"}
+
+How the internet works in 5 minutes
 
 {video url="http://www.youtube.com/embed/7_LPdttKXPc"}
 
