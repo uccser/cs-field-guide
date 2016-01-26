@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!-- ### Enter your interactive title in the title block ### -->
+    <title>Parity Sandbox</title>
+    <link rel="stylesheet" href="../base-files/css/normalize.css">
+    <!--Import materialize.css-->
+    <link rel="stylesheet" href="../base-files/css/materialize.min.css" type="text/css" media="screen,projection"/>
+    <script src="../base-files/js/modernizr.js"></script>
+    <!-- jQuery (necessary for Materialize) -->
+    <script type="text/javascript" src="../base-files/js/jquery.js"></script>
+  </head>
+  <body>
+    <div class="container">
+    <div class="col s4 offset-s4">
+
+    <div id="interactive-parity-sandbox" class="interactive row">
+      <div class="col s12">
+        <h1>Parity Trick Sandbox</h1>
+        <div class="row">
+          <div class="col s12 m4">
+            <p>The grid is considered valid if each row and column has an even number of white squares.</p>
+            <label>Grid Size:</label>
+            <select id="interactive-parity-sandbox-grid-size" class="browser-default">
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6" selected>6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+              <option value="13">13</option>
+              <option value="14">14</option>
+              <option value="15">15</option>
+              <option value="16">16</option>
+              <option value="17">17</option>
+              <option value="18">18</option>
+              <option value="19">19</option>
+              <option value="20">20</option>
+            </select>
+            <p class="center-align">
+              <a id="interactive-parity-sandbox-check" class="waves-effect blue waves-light btn btn-large">Check parity</a>
+            </p>
+            <div id="interactive-parity-sandbox-feedback" class="center-align"></div>
+          </div>
+          <div class="col s12 m8">
+            <div id="interactive-parity-sandbox-grid"></div>
+          </div>
+          <div id="interactive-parity-sandbox-footer" class="col s12 center-align">
+            <p>Created by Jack Morgan</p>
+          </div>
+        </div>
+      </div>
+      <link rel="stylesheet" href="./css/parity-sandbox.css">
+      <script src="./js/parity-sandbox.js"></script>
+    </div>
+
+    </div>
+    </div>
+    <!-- Materialize responsive CSS -->
+    <script type="text/javascript" src="../base-files/js/materialize.min.js"></script>
+  </body>
+</html>
