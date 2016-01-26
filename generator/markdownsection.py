@@ -81,9 +81,11 @@ class Section:
                 for level in range(self.current_heading.level - heading_level + 1):
                     self.current_heading = self.current_heading.parent
             elif heading_level > self.current_heading.level + 1:
-                #Error in markdown - a heading level has been missed.
-                #Generate blank intermediate headings and log error
-                self.regex_functions['heading'].log("Heading level missed between {} {} and {}".format(self.current_heading.number, self.current_heading.heading, heading_text), self, match.group(0))
+                # Error in markdown - a heading level has been missed.
+                # Generate blank intermediate headings and log error
+                # Ignore missing headings in permissions file due to custom style
+                if not self.file_node.filename == PERMISSIONS_LOCATION:
+                    self.regex_functions['heading'].log("Heading level missed between {} {} and {}".format(self.current_heading.number, self.current_heading.heading, heading_text), self, match.group(0))
                 for level in range(heading_level - self.current_heading.level - 1):
                     intermediate_heading = HeadingNode(heading_text, '', parent = self.current_heading)
                     self.current_heading.children.append(intermediate_heading)
@@ -559,7 +561,7 @@ class Section:
 
         this_file_link = os.path.join(glossary.html_path_to_root, self.file_node.path)
         back_link = '{}.html#{}'.format(this_file_link, permalink)
-        self.guide.glossary.add_item(term, definition, back_link, match)
+        self.guide.glossary.add_item(term, definition, back_link, match, self)
 
         return self.html_templates['glossary_definition'].format(id=permalink).strip()
 
@@ -571,10 +573,6 @@ class Section:
         term = parse_argument('term', arguments)
         reference_text = parse_argument('reference-text', arguments)
 
-        if term not in glossary:
-            self.regex_functions['glossary link'].log("No glossary definition of {} to link to".format(term), self, match.group(0))
-            return content if content else ''
-
         file_link = os.path.join(glossary.html_path_to_root, self.file_node.path)
         back_link_id = self.create_permalink('glossary-' + term)
         this_file_link = os.path.join(glossary.html_path_to_root, self.file_node.path)
@@ -585,7 +583,7 @@ class Section:
             back_link = '{}.html#{}'.format(this_file_link, back_link_id)
             id_html = ' id="{}"'.format(back_link_id)
             # Add back reference link to glossary item
-            glossary.add_back_link(term, back_link, reference_text, match)
+            glossary.add_back_link(term, back_link, reference_text, match, self)
         else:
             id_html = ''
 
