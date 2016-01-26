@@ -18,8 +18,10 @@ math.config
 
 choice = (indexable) ->
     ### Given an array-like object picks a random element ###
-    return indexable[Math.floor(Math.random() * indexable.length)]
-
+    console.log math.floor(math.random())
+    console.assert indexable.length > 0,
+        "Can't pick element from empty array/string"
+    return indexable[math.floor(math.random() * indexable.length)]
 
 randomIndices = (length=10, errRate=0.5) ->
     ### This functions gives a list of indices to corrupt given a length
@@ -35,7 +37,6 @@ randomIndices = (length=10, errRate=0.5) ->
         else if Math.random() < errRate
             result.push(idx)
     return result
-
 
 # Just some arbitrary default settings
 packetDefaults =
@@ -72,9 +73,12 @@ messageOpts =
     packetSize: 2 # int: this is the size of the packets to split the message
                   # into
     header: 1 # int: size of the header, add
-
+    distance: 10 # number|bignumber: this is
+    bandwidth: 2 # number|bignumber: this is how wide the packet is
+               # this must be the same units as
 
 messageTCP = (opts={}) ->
+    ### This generates an array of packets to send a given message ###
 
 
 packetTCP = (opts={}) ->

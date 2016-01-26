@@ -2,29 +2,30 @@
     needed to correct a given number of errors
 ###
 
-math = require('mathjs')
+math = require('mathjs').create
+    number: 'bignumber'
+    precision: 64
 
 {geometricRandom} = require('./bigRand.coffee')
 
 # Alias for bignumber
 big = math.bignumber
-# Bignumbers everywhere for simplicity
-math.config
-    number: 'bignumber'
-    precision: 64
 
 # ----------
 
+BINOMIAL_COEFFICIENT = "factorial(n)/(factorial(k) * factorial(n - k))"
+
 binomialCoefficient = (n, k) ->
     ### Simply an approximation of n choose k ###
-    [n, k] = [big(n), big(k)]
+    console.assert math.eval('n > k', {n, k}), "k must not be greater than n"
+    return math.eval(BINOMIAL_COEFFICIENT, {n: n, k: k})
 
-    console.assert n.gte(k), "k must be smaller or equal to n"
+canCorrect = (messageLength, numErrors, correction=null) ->
+    ### Returns true if we can correct numErrors with n correction bits/bytes
+        on a given messageLength, all 3 should be in the same unit
+        e.g. all 3 in bits, all 3 in bytes, etc
+    ###
 
-    over = math.factorial n
-    under = math.factorial n.minus(k)
-    result = over.div(under)
-    return result
 
 canCorrect = (messageLength, numErrors, correction=null) ->
     ### Returns true if we can correct numErrors with n correction bits/bytes
@@ -32,11 +33,15 @@ canCorrect = (messageLength, numErrors, correction=null) ->
         e.g. all 3 in bits, all 3 in bytes, etc
     ###
     correction ?= big(0)
-    [ml, ne, cc] = [messageLength, numErrors, correction].map (a) -> big(a)
+    [m, n, c] = [messageLength, numErrors, correction].map (a) -> big(a)
     if ne.eq(0)
         return true
 
-    coeff = binomialCoefficient(ml.plus(cc), ne)
+    coeff = binomialCoefficient(m.plus(cc), ne)
+
+    math.eval "n + c >= n + log(n + c + 1 + coeff)",
+
+
     return ne.plus(cc).gte(
         ne.plus(
             ne.plus(cc).plus(1).plus(coeff).log(2)
