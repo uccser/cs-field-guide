@@ -42,8 +42,8 @@
 }
 #interactive-parity-sandbox-feedback {
   margin: 0;
-  padding: 10px;
-  height: 5rem;
+  padding: 10px 0;
+  height: 6rem;
 }
 #interactive-parity-sandbox-feedback,
-#interactive-parity-sandbox-grid-size,label {  font-size: 1.5rem !important;}#interactive-parity-sandbox-footer {  padding-top: 2rem;  color: grey;}#interactive-parity-sandbox-footer > p {  font-size: 0.8rem;}.error {  color: red;}
+#interactive-parity-sandbox-grid-size,label {  font-size: 1.5rem !important;}#interactive-parity-sandbox-footer {  padding-top: 2rem;  color: grey;}#interactive-parity-sandbox-footer > p {  font-size: 0.8rem;}.error {  color: red;}.btn-expand {  width: 100%;  padding: 0 0.5rem;}select {  border: 1px solid #929292;}
