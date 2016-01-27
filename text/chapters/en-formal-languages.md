@@ -38,7 +38,7 @@ Some advanced concepts in formal languages even used to explore limits of what c
 
 Once you're familiar with the idea of formal languages, you'll possess a powerful tool for cutting complex systems down to size using an easily specified format.
 
-{image filename="xkcd-tags.png" alt="xkcd comment on HTML tags"}
+{image filename="xkcd-tags.png" alt="xkcd cartoon comment on HTML tags"}
 
 ## Getting started
 
@@ -965,9 +965,12 @@ Here are two fairly simple solutions for email addresses, but more refined ones 
 
 {panel end}
 
-[{image filename="fl-xkcd-regular-expressions.png" alt="xkcd comment on regular expressions"}](http://xkcd.com/208/)
+{image filename="xkcd-regular-expressions.png" alt="xkcd cartoon comment on regular expressions"}
+{comment}Code was as follows --- issue 200 raised to decide if link required
+[{image filename="xkcd-regular-expressions.png" alt="xkcd comment on regular expressions"}](http://xkcd.com/208/)
+{comment end}
 
- Regular expressions are useful!
+Regular expressions are useful!
 
 The particular form of regular expression that we've been using is for the Ruby programming language (a popular language for web site development), although it's very similar to regular expressions used in other languages including Java, JavaScript, PHP, Python, and Microsoft's .NET Framework. Even some spreadsheets have regular expression matching facilities.
 
