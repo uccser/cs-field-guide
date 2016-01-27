@@ -114,3 +114,8 @@ Students will need to pick **one** project from here. Which they pick will depen
 **Merit/ Excellence Guides**
 
 - For Merit/ Excellence: [Human Computer Interaction - evaluating an interface with heuristics (Merit/ Excellence) ](curriculum-guides/ncea/assessment-guide-level-2-full-human-computer-interaction.html)
+
+
+# AS91636 3.44
+
+Software Engineering: [Software Methodologies](curriculum-guides/ncea/assessment-guide-level-3-software-engineering-methodologies.html)
