@@ -79,9 +79,9 @@ function checkParity() {
   // Display status
   if (valid) {
     $feedback.removeClass('error');
-    $feedback.text('Parity is valid');
+    $feedback.text('Correct: Every row and column has even parity (of white squares)');
   } else {
     $feedback.addClass('error');
-    $feedback.text('Parity is invalid');
+    $feedback.text('Incorrect: Not every row and column has even parity (of white squares)');
   }
 }
