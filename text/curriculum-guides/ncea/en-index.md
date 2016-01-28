@@ -119,3 +119,4 @@ Students will need to pick **one** project from here. Which they pick will depen
 # AS91636 3.44
 
 Software Engineering: [Software Methodologies](curriculum-guides/ncea/assessment-guide-level-3-software-engineering-methodologies.html)
+Complexibility: [The Traveling Crayfisherman](curriculum-guides/ncea/assessment-guide-level-3-complexity-tractability-TSP.html)
