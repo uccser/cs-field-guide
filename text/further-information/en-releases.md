@@ -23,16 +23,15 @@ We have listed major changes for each release below.
 
 **Release date:** 29th January 2016
 
-{panel type="changelog"}
-
 - Added Software Engineering curriculum guide [98e13bb](https://github.com/uccser/cs-field-guide/commit/98e13bbcb6327b948cb57e01e1c0699d108feda7)
 - Added Formal Languages curriculum guide [ad8441e](https://github.com/uccser/cs-field-guide/commit/ad8441ed13b2ec4d7c57cff512663104229d7d9a)
 - Added Complexity and Tractability curriculum guide [d603f52](https://github.com/uccser/cs-field-guide/commit/d603f52f1d4a8076eb0cbc2ca2c27e1f2834749b)
 - Added list of contributors [f0c235e](https://github.com/uccser/cs-field-guide/commit/f0c235efcab571e882c02dc482c52d11811e1ea9)
 - Added text around Computer Graphics interactives [099fb86](https://github.com/uccser/cs-field-guide/commit/099fb86fad205baf01890f6506872920573c0103)
-
-{panel end}
-
+- Added releases page for versioning [055783f](https://github.com/uccser/cs-field-guide/commit/055783f59ee098b69c13fa71a808e7580cf2d49d)
+- Added version number to the footer [64f40ac](https://github.com/uccser/cs-field-guide/commit/64f40ac0a02281107ed5354f51d06c196c12bbeb)
+- Added additional information panel colour [1148528](https://github.com/uccser/cs-field-guide/commit/1148528c6edfb076e62e097ba0671eadd63fb69f)
+- Add automatic pre-release warning if version number contains alpha [95a93a1](https://github.com/uccser/cs-field-guide/commit/95a93a1a389d6b96d67227d996c064dcaeba16cd)
 
 ### 2.0.0-alpha.2
 
