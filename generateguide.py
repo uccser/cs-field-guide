@@ -296,10 +296,16 @@ class Guide:
             for section_content in file.section.html_content:
                 body_html += section_content
 
+            version_number = self.generator_settings['General']['Version Number']
+            if 'alpha' in version_number:
+                prerelease_html = self.html_templates['pre-release-notice']
+            else:
+                prerelease_html = ''
+
             ## If homepage
             if file in self.structure.files and file.filename == 'index':
                 page_heading = self.html_templates['website_homepage_header']
-                body_html = self.html_templates['website_homepage_content'].format(path_to_root=file.section.html_path_to_root)
+                body_html = self.html_templates['website_homepage_content'].format(path_to_root=file.section.html_path_to_root, prerelease_notice=prerelease_html)
             else:
                 page_heading = file.section.heading.to_html()
 
@@ -308,9 +314,9 @@ class Guide:
             else:
                 current_folder = None
 
-            context = {'page_title':file.section.title,
-                       'page_heading':page_heading,
-                       'body_html':body_html,
+            context = {'page_title': file.section.title,
+                       'page_heading': page_heading,
+                       'body_html': body_html,
                        'path_to_root': file.section.html_path_to_root,
                        'project_title': self.translations['title'][self.language_code],
                        'project_title_abbreviation': self.translations['abbreviation'][self.language_code],
@@ -321,7 +327,8 @@ class Guide:
                        'current_page': file.path,
                        'current_folder': current_folder,
                        'analytics_code': self.generator_settings['General']['Google Analytics Code'],
-                       'version_number': self.generator_settings['General']['Version Number']
+                       'version_number': version_number,
+                       'prerelease_notice': prerelease_html
                       }
             html = self.website_generator.render_template(section_template, context)
             try:
