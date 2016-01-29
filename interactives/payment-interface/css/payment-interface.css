@@ -1,0 +1,13 @@
+#interactive-payment-interface-message{
+  font-weight: bold;
+}
+label{
+  color: black;
+}
+
+div#interactive-payment-interface-message.success {
+  color: green;
+}
+div#interactive-payment-interface-message.error {
+  color: red;
+}
