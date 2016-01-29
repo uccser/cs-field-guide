@@ -320,7 +320,8 @@ class Guide:
                        'page_scripts': file.section.page_scripts,
                        'current_page': file.path,
                        'current_folder': current_folder,
-                       'analytics_code': self.generator_settings['General']['Google Analytics Code']
+                       'analytics_code': self.generator_settings['General']['Google Analytics Code'],
+                       'version_number': self.generator_settings['General']['Version Number']
                       }
             html = self.website_generator.render_template(section_template, context)
             try:
