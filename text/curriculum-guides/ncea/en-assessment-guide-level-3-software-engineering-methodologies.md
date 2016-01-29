@@ -4,7 +4,8 @@ This is a guide for students attempting Software Engineering in digital technolo
 
 In order to fully cover the standard, you will also need to have done a project in one other 3.44 topic. The other project should be in either Complexity and Tractability, Artificial Intelligence, Formal Languages, Network Protocols, or Graphics and Visual Computing.
 
-{panel type="teacher-note" summary="Required skills and preparation for this project"}
+{panel type="additional-information" summary="Required skills and preparation for this project"}
+
 For this project, students will need to interview somebody from the software engineering industry about what software methodologies (Agile and Waterfall) their company uses. It would be best to pick a company that uses Agile (which is now very common). They will also need a couple of examples of projects they have done themselves: one where they used an Agile approach, and one where they used a Waterfall approach. The projects could either be ones they do this year, or ones they have done in the past.
 
 The teacher should arrange for the class to visit a local software company where there is a software engineer they can interview, or for a software engineer to visit the class. The students should prepare “interview” questions before the visit, to ask the software engineer in order to get the information they need to complete their report.
@@ -32,20 +33,20 @@ In New Zealand, a convenient way to find software engineers to come to a class f
 
 Note that a plural means “at least two” in NZQA documents. Because this is one of the two areas of computer science that the student must cover, most of the plurals effectively become singular for this project, which is half their overall report. This project will give them at least one algorithm/technique and practical application, and the other project they do will give them another of each.
 
-**Achieved: [A1]** “describing key problems that are addressed in selected areas of computer science”
-**Achieved: [A2]** “describing examples of practical applications of selected areas to demonstrate the use of key algorithms and/or techniques from these areas“
-**Merit: [M1]** “explaining how key algorithms or techniques are applied in selected areas”
-**Merit: [M2]** “explaining examples of practical applications of selected areas to demonstrate the use of key algorithms and/or techniques from these areas”
-**Excellence: [E1]** “discussing examples of practical applications of selected areas to demonstrate the use of key algorithms and/or techniques from these areas”
-**Excellence: [E2]** “evaluating the effectiveness of algorithms, techniques, or applications from selected areas”
+- **Achieved: [A1]** “describing key problems that are addressed in selected areas of computer science”
+- **Achieved: [A2]** “describing examples of practical applications of selected areas to demonstrate the use of key algorithms and/or techniques from these areas“
+- **Merit: [M1]** “explaining how key algorithms or techniques are applied in selected areas”
+- **Merit: [M2]** “explaining examples of practical applications of selected areas to demonstrate the use of key algorithms and/or techniques from these areas”
+- **Excellence: [E1]** “discussing examples of practical applications of selected areas to demonstrate the use of key algorithms and/or techniques from these areas”
+- **Excellence: [E2]** “evaluating the effectiveness of algorithms, techniques, or applications from selected areas”
 
 The terminology in the 3.44 standard can be challenging to understand because it applies to six different areas. The following list describes how the terminology of the standard maps onto this project.
 
-*Selected Area:* Software Engineering
-*Key Problem:* Minimising the risk of failure when designing large and innovative software systems.
-*Algorithms/ Techniques:* Waterfall Process, Agile Processes
-*Practical Application:* Software Development
-*Practical Application Examples:* Experiences of a software engineer working in industry (this information is obtained by interviewing them), your own experiences using the processes.
+- *Selected Area:* Software Engineering
+- *Key Problem:* Minimising the risk of failure when designing large and innovative software systems.
+- *Algorithms/ Techniques:* Waterfall Process, Agile Processes
+- *Practical Application:* Software Development
+- *Practical Application Examples:* Experiences of a software engineer working in industry (this information is obtained by interviewing them), your own experiences using the processes.
 
 In summary, to satisfy the standard you might do the following:
 - Describe the key problems, giving some background information about why they are so important. [A1]
@@ -74,7 +75,7 @@ It makes sense to structure your report based on the 4 different bullet points i
 
 Follow the page limit recommendations, as these will help you to ensure you have enough room in your report for everything. Your goal should be to write the best possible explanations and discussions you can within the page limits. Try to write concisely and to only include the most interesting points (you don’t need to include everything you know on the topic). Some points also have paragraph recommendations, to help prevent you writing more than you needed to.
 
-**Introduction (Achieved/ Merit/ Excellence)** [A1 + background for the rest of the report]
+### Introduction (Achieved/ Merit/ Excellence) [A1 + background for the rest of the report]
 
 This should ideally be no more than ½ a page long.
 
@@ -88,9 +89,10 @@ What are your own projects that you will be discussing in your report? Describe 
 
 This information is mostly to satisfy the first bullet point, and to convey key information to the marker about your personalised examples that your report uses.
 
-**Explaining how Agile Processes and the Waterfall Process are applied (Achieved/ Merit/ Excellence) [A2, M1]**
+### Explaining how Agile Processes and the Waterfall Process are applied (Achieved/ Merit/ Excellence) [A2, M1]
 
-{panel type="teacher-note" summary="This section mostly covers M1, but will help with A2"}
+{panel type="additional-information" summary="This section mostly covers M1, but will help with A2"}
+
 Even students that are only aiming for achieved should do this part. It will help count towards A2 as well. Note that forgetting to address this bullet point is a common reason that students who have otherwise done great work did not get excellence. They could potentially include it in the next section, although we recommend doing it explicitly here, unless they are a very good writer. Students who mix this section and the next one should be very careful that their report does satisfy all the criteria, in particular ensuring that they have clear examples of how Agile and Waterfall are put into practice (that is required for M1 and good students frequently overlook it).
 
 We decided to put A2 in the heading despite the limit relevance to help prevent students skipping it.
@@ -105,11 +107,11 @@ You might want to do the following:
 - Explain what Agile processes are, and the key steps in it, ensuring that your explanation is clear in why they are different to the Waterfall process.
 - Give a list of examples of ways in which the Agile and Waterfall methods are put into practice. Each example should be something you did in one of your projects, or from what the software engineer you interviewed told you. State what the practice is, which of your example projects it is from, and explain what it means (especially where jargon is involved). Don’t go into depth about the implications, you should do this in the next section. This information for this section could safely be presented as bullet points, *as long as the bullet points are each 2 to 3 full sentences.*
 
-{panel type="teacher-note" summary="An example for this section"}
+{panel type="additional-information" summary="An example for this section"}
 These points could be in the form of something like “xxxx company has stand up meetings every  morning. These go for xxxx minutes, and are so that everybody in the team can catch up with what each other is doing, and xxxx”. The key idea is that they are short, but long enough for the student to briefly explain, and they are personalised based on the situation they have heard about.
 {panel end}
 
-**Explaining and discussing examples of projects using Agile Processes or the Waterfall Process, and the implications (Achieved/ Merit/ Excellence) [A2, M2, E1]**
+### Explaining and discussing examples of projects using Agile Processes or the Waterfall Process, and the implications (Achieved/ Merit/ Excellence) [A2, M2, E1]
 
 This should ideally be around 1 ½ to 2 ½ pages long.
 
@@ -121,7 +123,7 @@ In this section, you now need to pull everything together, and discuss how your 
 - What the downsides of the process being used are for the project.
 - What you would do differently (with regards to Waterfall and Agile) if you were to do the project again (for the ones that are your projects).
 
-**Evaluating the use of Agile Processes and the Waterfall Process [E2]**
+### Evaluating the use of Agile Processes and the Waterfall Process [E2]
 
 This should ideally be around ½ to 1 page long. Remember to only include your most interesting points, and write concisely. Your goal should be to conclude your report by evaluating whether or not the Agile process addresses the key problem (go back to your first paragraph if you cannot remember what you wrote for the key problem). In addition to using the information you gained from interviewing a software engineer, you might want to do some additional reading. Some points you might consider:
 - What would happen if the company you interviewed used Waterfall instead of Agile? Would they still be able to develop their software effectively? Do they consider Agile to be effective? Is there anything about Agile that still isn’t ideal for them? (The questions you ask them when you interview them will be essential for this.)

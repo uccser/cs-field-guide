@@ -575,7 +575,7 @@ In order to encrypt a message, the public key is used. In order to decrypt it, t
 Initially this might sound like a pointless thing to do --- why would you encrypt a message that can be decrypted using a key that everybody in the world can access!?!  It turns out that indeed, encrypting a message with the private key and then decrypting it with the public key works, and it has a very useful application.
 
 The only person who is able to *encrypt* the message using the *private* key is the person who owns the private key. The public key will only decrypt the message if the private key that was used to encrypt it actually is the public key’s corresponding private key. If the message can’t be decrypted, then it could not have been encrypted with that private key.
-This allows the sender to prove that the message actually is from them, and is known as a {glossary-definition term="digital signature" definition="An encryption system that allows the receiver to verify that a document was sent by the person who claims to have sent it."}.
+This allows the sender to prove that the message actually is from them, and is known as a {glossary-definition term="Digital signature" definition="An encryption system that allows the receiver to verify that a document was sent by the person who claims to have sent it."}.
 
 You could check that someone is the authentic private key holder by giving them a phrase to encrypt with their private key. You then decrypt it with the public key to check that they were able to encrypt the phrase you gave them.
 
