@@ -8,6 +8,16 @@ To add permissions for a file, create a new level 3 Markdown heading (starts wit
 
 {comment end}
 
+#### xkcd-alice-and-bob.png, xkcd-cant-sleep-comic.png, xkcd-estimation.png, xkcd-good-code.png, xkcd-np-complete-cartoon.png, xkcd-password-strength.png, xkcd-protocol.png, xkcd-regular-expressions.png, xkcd-standards-cartoon.png, xkcd-tags.png, xkcd-tasks.png, xkcd-the-general-problem.png
+
+**Owner:** Randall Munroe
+
+**Used:** Comic images are used within text chapters.
+
+**License:** This work is licensed under a Creative Commons Attribution-NonCommercial 2.5 License. This means that you are free to copy and reuse any of my drawings (noncommercially) as long as you tell people where they're from.
+
+See [xkcd.com/license](https://xkcd.com/license.html) for more details.
+
 #### coloured-roof-small.png
 
 **Owner:** Jack Morgan
