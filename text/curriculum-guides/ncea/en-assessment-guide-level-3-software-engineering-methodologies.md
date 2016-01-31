@@ -5,6 +5,7 @@ This is a guide for students attempting Software Engineering in digital technolo
 In order to fully cover the standard, you will also need to have done a project in one other 3.44 topic. The other project should be in either Complexity and Tractability, Artificial Intelligence, Formal Languages, Network Protocols, or Graphics and Visual Computing.
 
 {panel type="additional-information" summary="Required skills and preparation for this project"}
+
 For this project, students will need to interview somebody from the software engineering industry about what software methodologies (Agile and Waterfall) their company uses. It would be best to pick a company that uses Agile (which is now very common). They will also need a couple of examples of projects they have done themselves: one where they used an Agile approach, and one where they used a Waterfall approach. The projects could either be ones they do this year, or ones they have done in the past.
 
 The teacher should arrange for the class to visit a local software company where there is a software engineer they can interview, or for a software engineer to visit the class. The students should prepare “interview” questions before the visit, to ask the software engineer in order to get the information they need to complete their report.
@@ -91,6 +92,7 @@ This information is mostly to satisfy the first bullet point, and to convey key 
 ### Explaining how Agile Processes and the Waterfall Process are applied (Achieved/ Merit/ Excellence) [A2, M1]
 
 {panel type="additional-information" summary="This section mostly covers M1, but will help with A2"}
+
 Even students that are only aiming for achieved should do this part. It will help count towards A2 as well. Note that forgetting to address this bullet point is a common reason that students who have otherwise done great work did not get excellence. They could potentially include it in the next section, although we recommend doing it explicitly here, unless they are a very good writer. Students who mix this section and the next one should be very careful that their report does satisfy all the criteria, in particular ensuring that they have clear examples of how Agile and Waterfall are put into practice (that is required for M1 and good students frequently overlook it).
 
 We decided to put A2 in the heading despite the limit relevance to help prevent students skipping it.
