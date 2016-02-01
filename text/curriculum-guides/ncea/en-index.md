@@ -20,7 +20,7 @@ There is also a lot of material available online from NZQA, and good ideas share
 
 - [Level 1 Introduction](curriculum-guides/ncea/assessment-guide-level-1-introduction.html)
 
-This guide will be added to the field guide at some point during December 2015 or January 2016.
+This guide will be added to the field guide in early 2016.
 
 - [Guide for Achieved in 1.44](https://docs.google.com/document/d/1A5x-0sbcH-73orZCIlci0CqqxQzGKCbija3z0KsIDEE/)
 - [Writing Frame](https://docs.google.com/document/d/1e41Cb50tvnjBWWPwIy3bY5CrymUK3ZJ4nnFnyRQqC2U/edit#)
@@ -60,7 +60,7 @@ Students will need to pick **one** project from here. Which they pick will depen
 
 **Merit/ Excellence Guides**
 
-Not yet released - check back December 2015 or January 2016
+Not yet released - check back in early 2016.
 
 {comment}
 - For Merit/ Excellence: [Representing Data - Exploring different representations for text and color using bits (Merit/ Excellence)](curriculum-guides/ncea/assessment-guide-level-2-full-representing-data.html)
@@ -72,7 +72,7 @@ Not yet released - check back December 2015 or January 2016
 
 **For Merit/ Excellence**, students need to pick **one Excellence project** from one of the three encoding topics, and **two Achieved projects**; with one from each of the other two encoding topics (giving a total of 3 encoding projects).
 
-Note that we are currently updating Merit/ Excellence guides to better match the expectations for students working at these levels. The updated guides will be released in December 2015 or January 2016.
+Note that we are currently updating Merit/ Excellence guides to better match the expectations for students working at these levels. The updated guides will be released in check back in early 2016.
 
 #### Error Control coding
 
@@ -82,7 +82,7 @@ Note that we are currently updating Merit/ Excellence guides to better match the
 - [Encoding - Error Control Coding with parity (Achieved)](curriculum-guides/ncea/assessment-guide-level-2-achieved-error-control-parity.html)
 
 **Merit/ Excellence Guides**
-Not yet released - check back December 2015 or January 2016
+Not yet released - check back in early 2016.
 
 #### Compression
 
@@ -91,7 +91,7 @@ Not yet released - check back December 2015 or January 2016
 - [Encoding - Compression with Run Length Encoding (Achieved) ](curriculum-guides/ncea/assessment-guide-level-2-achieved-compression-run-length-encoding.html)
 
 **Merit/ Excellence Guides**
-Not yet released - check back December 2015 or January 2016
+Not yet released - check back in early 2016.
 
 #### Encryption
 
@@ -100,7 +100,7 @@ Not yet released - check back December 2015 or January 2016
 - [Encoding - Encryption with Caesar Cipher (Achieved)](curriculum-guides/ncea/assessment-guide-level-2-achieved-encryption-caesar-cipher.html)
 
 **Merit/ Excellence Guides**
-Not yet released - check back December 2015 or January 2016
+Not yet released - check back check back in early 2016.
 
 ### Human Computer Interaction
 
@@ -114,3 +114,10 @@ Students will need to pick **one** project from here. Which they pick will depen
 **Merit/ Excellence Guides**
 
 - For Merit/ Excellence: [Human Computer Interaction - evaluating an interface with heuristics (Merit/ Excellence) ](curriculum-guides/ncea/assessment-guide-level-2-full-human-computer-interaction.html)
+
+
+# AS91636 3.44
+
+- Software Engineering: [Software Methodologies](curriculum-guides/ncea/assessment-guide-level-3-software-engineering-methodologies.html)
+- Complexibility: [The Traveling Crayfisherman](curriculum-guides/ncea/assessment-guide-level-3-complexity-tractability-TSP.html)
+- Formal Languages: [Formal Languages](curriculum-guides/ncea/assessment-guide-level-3-formal-languages-FSA-RE.html)

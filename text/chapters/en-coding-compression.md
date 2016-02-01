@@ -311,7 +311,7 @@ Run-length encoding wouldn't work in this situation. You could use a variation t
 But there is a way to take advantage of the gradually changing colours. For the pixels in the red box above, you could generate an approximate version of those colours by specifying just the first and last one, and getting the computer to calculate the ones in between assuming that the colour changes gradually between them. Instead of storing 5 pixel values, only 2 are needed, yet someone viewing it probably might not notice any difference. This would be *lossy* because you can't reproduce the original exactly, but it would be good enough for a lot of purposes, and save a lot of space.
 
 {panel type="jargon-buster" summary="Interpolation"}
-{glossary-definition term="interpolation" definition="Working out values between some given values;
+{glossary-definition term="Interpolation" definition="Working out values between some given values;
 for example, if a sequence of 5 numbers starts with 3 and finishes with 11, we might interpolate the values 5, 7, 9 in between."}
 
 The process of guessing the colours of pixels between two that are known is an example of

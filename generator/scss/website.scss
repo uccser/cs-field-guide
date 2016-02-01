@@ -80,7 +80,7 @@ ul.side-nav.fixed li a {
   }
 }
 .section-heading {
-  //@extend .anchor-link;
+  margin-bottom: 0;
   #page-title-header & > a {
     color: white !important;
   }
@@ -248,6 +248,7 @@ ul.panel {
 
   // Custom panel colours
   @include panel-color("panel-teacher-note", "blue");
+  @include panel-color("panel-additional-information", "blue");
   @include panel-color("panel-curiosity", "purple");
   @include panel-color("panel-challenge", "deep-orange");
   @include panel-color("panel-jargon-buster", "light-green");
@@ -272,4 +273,9 @@ ul.panel {
 }
 .btn {
   text-transform: none !important;
+}
+.footer-details {
+  color: rgba(255,255,255,0.8);
+  background-color: #2b387c;
+  overflow: hidden;
 }

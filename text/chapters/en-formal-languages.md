@@ -38,7 +38,7 @@ Some advanced concepts in formal languages even used to explore limits of what c
 
 Once you're familiar with the idea of formal languages, you'll possess a powerful tool for cutting complex systems down to size using an easily specified format.
 
-{image filename="xkcd-tags.png" alt="xkcd comment on HTML tags"}
+{image filename="xkcd-tags.png" alt="A xkcd cartoon comment on HTML tags" source="https://xkcd.com/1144/"}
 
 ## Getting started
 
@@ -274,7 +274,7 @@ The general rule is that the input must have an odd number of "a"s in it; the nu
 
 {button link="http://www.csfieldguide.org.nz/_static/widgets/fsa-2state-v3.html?map=two" text="View state interactive (2)"}
 
-{glossary-definition term="alphabet" definition="In formal languages, a list of characters that may occur in a language, or more generally, a list of all possible inputs that might happen."}
+{glossary-definition term="Alphabet" definition="In formal languages, a list of characters that may occur in a language, or more generally, a list of all possible inputs that might happen."}
 To keep things precise, we'll define two further technical terms.
 One is the
 {glossary-link term="alphabet" reference-text="Formal languages"}alphabet{glossary-link end},
@@ -282,9 +282,9 @@ which is just a list of all possible inputs that might happen.
 In the last couple of examples the alphabet has consisted of the two letters "a" and "b",
 but for an FSA that is processing text typed into a computer, the alphabet will have to include every letter on the keyboard.
 
-{glossary-definition term="transition" definition="In a finite state machine, the links between the states."}
-{glossary-definition term="string" definition="A sequence of characters."}
-{glossary-definition term="language" definition="In formal languages, it's the set of all strings that the language accepts i.e. that are correct."}
+{glossary-definition term="Transition" definition="In a finite state machine, the links between the states."}
+{glossary-definition term="String" definition="A sequence of characters."}
+{glossary-definition term="Language" definition="In formal languages, it's the set of all strings that the language accepts i.e. that are correct."}
 The connections between states are called
 {glossary-link term="transition" reference-text="Formal languages"}transitions{glossary-link end},
 since they are about changing state.
@@ -908,7 +908,7 @@ f(ff)+
 Notice the use of brackets to group parts of the regular expression. It's useful if you want the "+" or "\*" to apply to more than one character.
 
 {panel type="jargon-buster" summary="Regular expression"}
-{glossary-definition term="regular expression" definition="A formula used to describe a pattern in a text that is to be matched or searched for. These are typically used for finding elements of a program (such as variable names) and checking input in forms (such as checking that an email address has the right format.)"}
+{glossary-definition term="Regular expression" definition="A formula used to describe a pattern in a text that is to be matched or searched for. These are typically used for finding elements of a program (such as variable names) and checking input in forms (such as checking that an email address has the right format.)"}
 The term
 {glossary-link term="regular expression" reference-text="abbreviations"}regular expression{glossary-link end}
 is sometimes abbreviated to "regex", "regexp", or "RE".  It's "regular" because it can be used to define sets of strings from a very simple class of languages called "regular languages", and it's an "expression" because it is a combination of symbols that follow some rules.
@@ -965,9 +965,9 @@ Here are two fairly simple solutions for email addresses, but more refined ones 
 
 {panel end}
 
-[{image filename="fl-xkcd-regular-expressions.png" alt="xkcd comment on regular expressions"}](http://xkcd.com/208/)
+{image filename="xkcd-regular-expressions.png" alt="A xkcd cartoon comment on regular expressions" source="https://xkcd.com/208/"}
 
- Regular expressions are useful!
+Regular expressions are useful!
 
 The particular form of regular expression that we've been using is for the Ruby programming language (a popular language for web site development), although it's very similar to regular expressions used in other languages including Java, JavaScript, PHP, Python, and Microsoft's .NET Framework. Even some spreadsheets have regular expression matching facilities.
 
@@ -1183,7 +1183,7 @@ Your project report should show the regular expressions, explain what kind of st
 Here are some more ideas that you could use to investigate regular expressions:
 
 - On the [regexdict site](http://www.visca.com/regexdict/), read the instructions on the kinds of
-{glossary-definition term="pattern matching" definition="In formal languages, finding text that matches a particular rule, typically using a regular expression to give the rule."}
+{glossary-definition term="Pattern matching" definition="In formal languages, finding text that matches a particular rule, typically using a regular expression to give the rule."}
 {glossary-link term="pattern matching" reference-text="Formal languages"}pattern matching{glossary-link end}
 it can do, and write regular expressions for finding words such as:
 
@@ -1269,7 +1269,7 @@ The flexibility of the rules of English grammar mean that you can usually be und
 Grammars in formal languages are much more predictable than grammars in human languages --- that's why they're called *formal* languages!
 When you're doing English, grammar can be a tricky topic because not only are there are so many rules, but there are also so many exceptions --- for example, you need an apostrophe if you write "the computer's USB port", but you have to leave it out if you say "its USB port".
 
-{glossary-definition term="grammar" definition="In formal languages, a set of rules for specifying a language, for example, to specify syntax for programming languages."}
+{glossary-definition term="Grammar" definition="In formal languages, a set of rules for specifying a language, for example, to specify syntax for programming languages."}
 {glossary-link term="grammar" reference-text="Formal languages"}Grammars{glossary-link end}
 in computer science are mainly used to specify programming languages and file formats, and compilers make a fuss even if you leave out just one bracket or comma!
 But at least they're predictable.

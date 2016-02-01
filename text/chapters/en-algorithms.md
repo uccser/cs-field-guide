@@ -1,6 +1,5 @@
 # Algorithms
 
-
 {comment explain different views of algorithm (programming context) and Algorithm (that have interesting complexity); use https://www.youtube.com/watch?v=6hfOvs8pY1k for the former?}
 
 {video url="http://www.youtube.com/embed/FOwCCvHEfY0"}
@@ -79,7 +78,7 @@ If the table could be very big (perhaps we're tracking millions of games and ser
 or if the table only ever has 10 scores in it, then we know that the program is only going to do a few dozen operations, and is bound to be really fast even on a slow computer.
 
 The most precise way of giving a set of instructions is in the form of a
-{glossary-link term="Algorithms" reference-text="computer program"}program*glossary-link end},
+{glossary-link term="Algorithm" reference-text="computer program"}program{glossary-link end},
 which is a specific implementation of an algorithm, written in a specific programming language,
 with a very specific result for any particular input.
 This is the most precise of these three descriptions and computers are able to follow and understand these.
@@ -152,7 +151,7 @@ They also happen to be great for illustrating some of the key concepts that aris
 
 {panel type="teacher-note" summary="Presenting searching in the classroom"}
 
-{glossary-definition term="Binary Search" definition="Searching a sorted list by looking at the middle item, and then searching the appropriate half recursively (used for phone books, dictionaries and computer algorithms)."}
+{glossary-definition term="Binary search" definition="Searching a sorted list by looking at the middle item, and then searching the appropriate half recursively (used for phone books, dictionaries and computer algorithms)."}
 
 The present searching game in this section is split into two parts, the first corresponds to the Linear Search algorithm (also known as Sequential Search) and the second corresponds to {glossary-link term="Binary Search"}Binary Search{glossary-link end}. We recommend you play through the levels yourself for a while, or after reading this description. It is based on the [CS Unplugged Battleships game](http://csunplugged.com/searching-algorithms) which can be used as a classroom activity to enforce the lessons in this chapter (the hashing activity is not used for the present searching game). The
 
