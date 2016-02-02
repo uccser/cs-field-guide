@@ -1,5 +1,0 @@
-@media print {
-    h1 {
-      page-break-before: always;
-    }
-}

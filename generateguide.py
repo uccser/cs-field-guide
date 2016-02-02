@@ -17,11 +17,13 @@ import os.path
 import os
 import re
 import generator.languages
-from shutil import copy2
+import shutil
 from distutils.dir_util import copy_tree
 from generator.markdownsection import Section
 from generator.websitegenerator import WebsiteGenerator
+from generator.glossary import Glossary
 from generator.files import setup_required_files
+from scss.compiler import compile_string
 
 class Guide:
     def __init__(self, guide_settings, language_code, version, output_type=WEB):
@@ -30,13 +32,15 @@ class Guide:
         self.generator_settings = systemfunctions.read_settings(GENERATOR_SETTINGS)
         self.regex_list = systemfunctions.read_settings(REGEX_LIST)
         self.translations = systemfunctions.read_settings(TRANSLATIONS_LOCATION)
-        self.permissions = systemfunctions.read_settings(PERMISSIONS_LOCATION)
+        self.permissions_location = PERMISSIONS_LOCATION
+        self.files_with_permissions = set()
 
         self.language_code = language_code
         self.language = self.parse_language()
         self.version = version
         self.output_type = output_type
         self.number_generator = NumberGenerator()
+        self.glossary = Glossary(self)
 
         # Structure tree of guide
         self.structure = self.parse_structure()
@@ -45,16 +49,18 @@ class Guide:
         # Dictionary of sets for images, interactives, and other_files
         self.required_files = setup_required_files(self)
         self.html_templates = self.read_html_templates()
-        self.traverse_files(self.structure, getattr(self, "process_section"))
-        self.setup_output_folder()
 
+        # Process sections
+        self.traverse_files(self.structure, getattr(self, "process_section"))
+
+        self.setup_output_folder()
         if self.output_type == WEB:
             self.setup_html_output()
             self.traverse_files(self.structure, getattr(self, "write_html_file"))
         elif self.output_type == PDF:
             self.pdf_html = ''
             self.traverse_files(self.structure, getattr(self, "add_to_pdf_html"))
-            self.generate_pdf() #TODO: implement generate_pdf()
+            self.generate_pdf()
 
 
     def read_html_templates(self):
@@ -75,7 +81,7 @@ class Guide:
                 if search and ((reading_template and search.group('end')) or not reading_template):
                     if search.group('end'):
                         reading_template = False
-                        html_templates[template_name] = template_text
+                        html_templates[template_name] = template_text.strip()
                         template_text = ''
                     elif not reading_template and search.group('template_name'):
                         reading_template = True
@@ -126,8 +132,6 @@ class Guide:
                     file_path = os.path.join(text_root, current_folder.path, file_name)
                     if file_exists(file_path):
                         current_folder.add_file(title, group, tracked=is_tracked)
-        # Visualise folder structure for restructuring
-        #print(root_folder)
         return root_folder
 
 
@@ -170,7 +174,32 @@ class Guide:
             file_node.section.parse_markdown_content(self.html_templates)
             for file_type,file_data in file_node.section.required_files.items():
                 self.required_files[file_type] += file_data
+            if not file_node.section.title:
+                file_node.section.title = self.translations['title'][self.language_code]
+            if file_node.filename == self.permissions_location:
+                for line in file_node.section.original_text:
+                    if line.startswith('####'):
+                        for word in line.split()[1:]:
+                            self.files_with_permissions.add(word.lower().strip(','))
 
+
+    def compile_scss_file(self, file_name):
+        """Read given SCSS file, and compile to CSS,
+        store in file object, and add to required CSS files
+        """
+        scss_source_folder = self.generator_settings['Source']['SCSS']
+        scss_source_file = os.path.join(scss_source_folder, file_name)
+        try:
+            with open(scss_source_file, 'r', encoding='utf8') as scss_file:
+                scss_data = scss_file.read()
+        except:
+            logging.critical('Cannot find SCSS file {0}.'.format(file_name))
+        else:
+            # This lists all subfolders of SCSS source folder, this may cause issues
+            # later, but is an effective solution for the moment
+            scss_source_folders = [x[0] for x in os.walk(scss_source_folder)]
+            compiled_css = compile_string(scss_data, search_path=scss_source_folders, output_style='compressed')
+            return compiled_css
 
     def setup_output_folder(self):
         """Creates output folder and saves location"""
@@ -191,31 +220,55 @@ class Guide:
         for file_type,all_file_names in self.generator_settings['Website Required Files'].items():
             file_names = all_file_names.strip().split('\n')
             for file_name in file_names:
-                self.required_files[file_type].add(file_name)
+                if file_type == "SCSS":
+                    css_string = self.compile_scss_file(file_name)
+                    file_name = file_name.replace(".scss", ".css")
+                    self.required_files["CSS"].add(file_name, css_string)
+                else:
+                    self.required_files[file_type].add(file_name)
 
         # Copy all required files
-        # TODO: Handle copying interactive file type (whole folder)
         for file_type,file_data in self.required_files.items():
             # Create folder for files
             file_output_folder = os.path.join(self.output_folder, self.generator_settings['Output'][file_type])
             os.makedirs(file_output_folder, exist_ok=True)
             # Copy files
-            for file_name in file_data.filenames:
-                source_location = os.path.join(file_data.source_location, file_name)
-                if file_type in self.permissions.sections() and not (file_name in self.permissions[file_type]):
-                    logging.warning("No permissions information exists for {} {}!".format(file_type, file_name))
-                output_location = os.path.join(file_data.output_location, file_name)
-                if os.path.exists(source_location):
-                    try:
-                        if os.path.isdir(source_location):
-                            copy_tree(source_location, output_location)
-                        else:
-                            copy2(source_location, output_location)
+            for file_object in file_data.filenames:
+                file_name = file_object.filename
+                # Checks if file is listed within permissions file
+                file_name_tail = os.path.split(file_name.lower())[-1]
+                if file_name_tail not in self.files_with_permissions and not file_type == 'Interactive':
+                    logging.warning("No permissions information listed for {} {}".format(file_type, file_name_tail))
 
+                output_location = os.path.join(file_output_folder, file_name)
+                # If data exists in file object, write file
+                if file_object.file_data:
+                    try:
+                        with open(output_location, 'w', encoding='utf8') as output_file:
+                            output_file.write(file_object.file_data)
                     except:
-                        logging.error("{file_type} {file_name} could not be copied".format(file_type=file_type, file_name=file_name))
+                        logging.critical("Cannot write file {0}".format(file_name))
                 else:
-                    logging.error("{file_type} {file_name} could not be found".format(file_type=file_type,file_name=file_name))
+                    source_location = os.path.join(file_data.source_location, file_name)
+                    if os.path.exists(source_location):
+                        try:
+                            # If folder, copy folder
+                            if os.path.isdir(source_location):
+                                copy_tree(source_location, output_location)
+                            # If file, copy file
+                            else:
+                                # Check if subfolders need to be created, as file may be contained in subfolder
+                                # See 'Font' files as an example
+                                if '/' in output_location:
+                                    output_folder = os.path.split(output_location)[0]
+                                    if not os.path.exists(output_folder):
+                                        os.makedirs(output_folder, exist_ok=True)
+                                shutil.copy2(source_location, output_location)
+
+                        except:
+                            logging.error("{file_type} {file_name} could not be copied".format(file_type=file_type, file_name=file_name))
+                    else:
+                        logging.error("{file_type} {file_name} could not be found".format(file_type=file_type,file_name=file_name))
 
 
     def write_html_file(self, file):
@@ -237,18 +290,36 @@ class Guide:
 
         if file.section:
             if file.section.mathjax_required:
-                file.section.page_scripts.append(self.html_templates['mathjax'])
+                file.section.add_page_script(self.html_templates['mathjax'].format(path_to_root=file.section.html_path_to_root))
 
             for section_content in file.section.html_content:
                 body_html += section_content
+
+            ## If homepage
+            if file in self.structure.files and file.filename == 'index':
+                page_heading = self.html_templates['website_homepage_header']
+                body_html = self.html_templates['website_homepage_content'].format(path_to_root=file.section.html_path_to_root)
+            else:
+                page_heading = file.section.heading.to_html()
+
+            if os.sep in file.path:
+                current_folder = file.path.split(os.sep)[0]
+            else:
+                current_folder = None
+
             context = {'page_title':file.section.title,
+                       'page_heading':page_heading,
                        'body_html':body_html,
                        'path_to_root': file.section.html_path_to_root,
-                       'project_title': self.translations['Title'][self.language_code],
+                       'project_title': self.translations['title'][self.language_code],
+                       'project_title_abbreviation': self.translations['abbreviation'][self.language_code],
                        'root_folder': self.structure,
                        'heading_root': file.section.heading,
                        'language_code': self.language_code,
-                       'page_scripts': file.section.page_scripts
+                       'page_scripts': file.section.page_scripts,
+                       'current_page': file.path,
+                       'current_folder': current_folder,
+                       'analytics_code': self.generator_settings['General']['Google Analytics Code']
                       }
             html = self.website_generator.render_template(section_template, context)
             try:
@@ -257,43 +328,69 @@ class Guide:
             except:
                 logging.critical("Cannot write file {0}".format(path))
 
+
     def add_to_pdf_html(self, file):
-        '''Adds HTML contents of a give file node to guide's
-        PDF html string'''
+        """Adds HTML contents of a give file node to guide's
+        PDF html string"""
         if file.tracked:
             for section_content in file.section.html_content:
                 self.pdf_html += section_content
 
+
     def generate_pdf(self):
         '''Creates a PDF in the output folder'''
+        # import weasyprint
         import pdfkit
-        pdf_title = self.translations['Title'][self.language_code]
-        pdf_file_name = self.generator_settings['Output']['PDF File'].format(file_name=pdf_title)
-        html = self.pdf_html
 
-        # The processing of CSS and JS files required should be restructured
+        pdf_title = self.translations['title'][self.language_code]
+        pdf_file_name = self.generator_settings['Output']['PDF File'].format(file_name=pdf_title)
+        pdf_file = os.path.join(self.output_folder, pdf_file_name)
+
+        # Create temporary folder
+        temporary_folder = os.path.join(self.output_folder, 'temporary_files')
+        os.makedirs(temporary_folder, exist_ok=True)
+
+        # Load website requried files
         css_files = []
         for file_type,all_file_names in self.generator_settings['PDF Required Files'].items():
             file_names = all_file_names.strip().split('\n')
             for file_name in file_names:
-                if file_type == 'CSS':
-                    css_file = os.path.join(self.generator_settings['Source']['CSS'], file_name)
-                    css_files.append(css_file)
-                elif file_type == 'JS':
-                    html = self.html_templates['javascript'].format(file_name=file_name) + html
+                if file_type == "SCSS":
+                    css_string = self.compile_scss_file(file_name)
+                    file_name = file_name.replace(".scss", ".css")
+                    # Write to temporary folder
+                    file_path = os.path.join(temporary_folder, file_name)
+                    try:
+                        with open(file_path, 'w', encoding='utf8') as output_file:
+                            output_file.write(css_string)
+                        css_files.append(file_path)
+                    except:
+                        logging.critical("Cannot write CSS file {0}".format(file_name))
 
-        pdf_file = os.path.join(self.output_folder, pdf_file_name)
+        cover = 'cover.html'
+        file_path = os.path.join(temporary_folder, cover)
+        try:
+            with open(file_path, 'w', encoding='utf8') as output_file:
+                output_file.write('<h1>The CSFG PDF</h1>')
+        except:
+            logging.critical("Cannot write cover file {0}".format(file_name))
+        print(css_files[0])
         options = {
+            # 'quiet': '',
             'page-size': 'A4',
-            'zoom': 2.0,
+            'zoom': 1.0,
+            'encoding': 'utf-8',
             'javascript-delay': 1000,
-            'print-media-type': '',
-            'load-error-handling': 'ignore',
-            'load-media-error-handling': 'ignore',
-            'no-images':'',
-            'quiet': ''
+            'no-print-media-type': '',
+            'user-style-sheet': css_files[0],
+            'load-error-handling': 'ignore'
+            # 'load-media-error-handling': 'ignore',
+            # 'no-images':''
         }
-        pdfkit.from_string(html, pdf_file, options=options)
+        pdfkit.from_string(self.pdf_html, pdf_file, options=options, cover=cover)
+
+        # Delete temporary folder
+        shutil.rmtree(temporary_folder)
 
 
 class FolderNode:
@@ -310,7 +407,7 @@ class FolderNode:
         self.guide = self.parent.guide if parent else guide
         self.english_title = systemfunctions.from_kebab_case(self.name)
         if self.parent:
-            self.title = self.guide.translations[self.english_title][self.guide.language_code]
+            self.title = self.guide.translations[self.name][self.guide.language_code]
         else:
             #Folder is root folder, name is not important
             self.title = self.english_title
@@ -438,10 +535,10 @@ def main():
             else:
                 guide = Guide(guide_settings=guide_settings, language_code=language, version=version)
                 if cmd_args.include_pdf:
-                    try:
-                        pdf_guide = Guide(guide_settings=guide_settings, language_code=language, version=version, output_type=PDF)
-                    except:
-                        logging.critical("PDF generation failed. Check output folder.")
+                    # try:
+                    pdf_guide = Guide(guide_settings=guide_settings, language_code=language, version=version, output_type=PDF)
+                    # except:
+                    #     logging.critical("PDF generation failed. Check output folder.")
     logging.shutdown()
 
 

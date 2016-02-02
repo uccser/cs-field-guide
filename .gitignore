@@ -1,7 +1,23 @@
 # Ignore everything within output folder except README.md
-!output/README.md
 output/*
+!output/README.md
 
 # Ignore Python module cache files
+generator/__pycache__/*
 *.pyc
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
+
+# Vim files
+*.swo
+*.swp
+
+# PyCharm IDE files
+.idea

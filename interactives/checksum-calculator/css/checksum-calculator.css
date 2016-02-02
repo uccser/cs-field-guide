@@ -1,0 +1,34 @@
+.interactive-checksum-calculator-number-type[type="text"] {
+  font-family: monospace;
+  font-size: 1.5rem;
+  margin: 0;
+}
+.interactive-checksum-calculator-feedback {
+  color: red;
+  font-weight: bold;
+}
+#interactive-checksum-calculator-sums {
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  -webkit-flex-wrap: wrap; /* Safari */
+  flex-wrap: wrap;
+  -webkit-align-items: center; /* Safari */
+  align-items: center;
+  -webkit-justify-content: flex-start; /* Safari */
+  justify-content: flex-start;
+  -webkit-align-content: flex-start; /* Safari */
+  align-content: flex-start;
+  margin-bottom: 0.5rem;
+}
+#interactive-checksum-calculator-sums div {
+  font-family: monospace;
+  font-size: 1.5rem;
+  padding: 0 0.3rem;
+  flex: 0 1 auto;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+#interactive-checksum-calculator-calculation-controls,
+#interactive-checksum-calculator-result {
+  display: none;
+}
