@@ -26,19 +26,26 @@ from generator.files import setup_required_files
 from scss.compiler import compile_string
 
 class Guide:
-    def __init__(self, guide_settings, language_code, version, output_type=WEB):
+    def __init__(self, generator_settings, guide_settings, language_code, version, html_generator, html_templates, translations, regex_list, output_type=WEB):
+
+        # Alert user of creation process
+        print('Creating CSFG - Language: {lang} - Version: {version} - Format: {output_type}'.format(lang=language_code, version=version, output_type=output_type))
+
         # Read settings
         self.guide_settings = guide_settings
-        self.generator_settings = systemfunctions.read_settings(GENERATOR_SETTINGS)
-        self.regex_list = systemfunctions.read_settings(REGEX_LIST)
-        self.translations = systemfunctions.read_settings(TRANSLATIONS_LOCATION)
+        self.generator_settings = generator_settings
+        self.regex_list = regex_list
+        self.translations = translations
         self.permissions_location = PERMISSIONS_LOCATION
         self.files_with_permissions = set()
+        self.html_generator = html_generator
+        self.html_templates = html_templates
 
         self.language_code = language_code
         self.language = self.parse_language()
         self.version = version
         self.output_type = output_type
+        self.setup_output_path()
 
         self.number_generator = NumberGenerator()
         self.glossary = Glossary(self)
@@ -49,7 +56,7 @@ class Guide:
         self.traverse_files(self.structure, getattr(self, "read_content"))
         # Dictionary of sets for images, interactives, and other_files
         self.required_files = setup_required_files(self)
-        self.html_templates = self.read_html_templates()
+
 
         # Process sections
         self.traverse_files(self.structure, getattr(self, "process_section"))
@@ -63,32 +70,11 @@ class Guide:
             self.generate_pdf() #TODO: implement generate_pdf()
 
 
-    def read_html_templates(self):
-        """Read html templates from html-templates.conf into dictionary"""
-        html_templates = {}
-        html_template_file = self.generator_settings['Source']['HTML Templates']
-        try:
-            with open(html_template_file, 'r', encoding='utf8') as source_file:
-                data = source_file.readlines()
-        except:
-            logging.critical('Cannot find file {0}. Generation aborted.'.format(html_template_file))
-        else:
-            template_name = ''
-            template_text = ''
-            reading_template = False
-            for line in data:
-                search = re.search('^\{(?P<template_name>[^%{# }]+(?P<end> end)?)\}', line, re.MULTILINE)
-                if search and ((reading_template and search.group('end')) or not reading_template):
-                    if search.group('end'):
-                        reading_template = False
-                        html_templates[template_name] = template_text.strip()
-                        template_text = ''
-                    elif not reading_template and search.group('template_name'):
-                        reading_template = True
-                        template_name = search.group('template_name')
-                elif reading_template:
-                    template_text += line
-        return html_templates
+    def setup_output_path(self):
+        """Setup the path for output"""
+        base_output_folder = os.path.join(self.generator_settings['Output']['Base Folder'], self.language_code)
+        version_output_folder = self.generator_settings['Output'][self.version]
+        self.output_folder = os.path.join(base_output_folder, version_output_folder)
 
 
     def parse_language(self):
@@ -101,7 +87,6 @@ class Guide:
             return 'en'
         else:
             return language_name
-
 
 
     def parse_structure(self):
@@ -127,9 +112,9 @@ class Guide:
                             current_folder.add_folder(sub_folder_name)
                             current_folder = current_folder.get_folder(sub_folder_name)
                     #Add file node if correct markdown file exists
-                    text_root = self.generator_settings['Source']['text']
+                    text_root = self.generator_settings['Source']['text'].format(language=self.language_code)
                     file_template = self.generator_settings['Source']['Text Filename Template']
-                    file_name = file_template.format(title=title, language=self.language_code)
+                    file_name = file_template.format(title=title)
                     file_path = os.path.join(text_root, current_folder.path, file_name)
                     if file_exists(file_path):
                         current_folder.add_file(title, group, tracked=is_tracked)
@@ -153,9 +138,9 @@ class Guide:
         -   Calls generate_section function of section object,
             passing through markdown contents
         """
-        text_root = self.generator_settings['Source']['text']
+        text_root = self.generator_settings['Source']['text'].format(language=self.language_code)
         file_template = self.generator_settings['Source']['Text Filename Template']
-        file_name = file_template.format(title=file_node.filename, language=self.language_code)
+        file_name = file_template.format(title=file_node.filename)
         file_path = os.path.join(text_root, file_node.parent.path, file_name)
 
         # Reads markdown from file and adds this to file node
@@ -205,17 +190,13 @@ class Guide:
 
     def setup_html_output(self):
         """Preliminary setup, called before html files are written.
-        -   Create output folder
-        -   Set up WebsiteGenerator
         -   Load website required files
         -   Copy required files
         """
         # Create output folder
-        self.output_folder = self.generator_settings['Output']['Folder'].format(language=self.language_code, version=self.version)
         os.makedirs(self.output_folder, exist_ok=True)
 
-        # Create website generator
-        self.website_generator = WebsiteGenerator(self.html_templates)
+
 
         # Load website requried files
         for file_type,all_file_names in self.generator_settings['Website Required Files'].items():
@@ -273,25 +254,18 @@ class Guide:
 
 
     def write_html_file(self, file):
-        """Writes the HTML file for a given file node
-        (Temporary Solution)
-        """
+        """Writes the HTML file for a given file node"""
         # TODO:
         # -   Support all section templates (currently hardcoded)
         # -   Restructure with helper functions to allow for various
         #     components to be created in jinja2
-
-        file_name = self.generator_settings['Output']['HTML File'].format(file_name=file.filename)
-        directory = os.path.join(self.output_folder, file.parent.path)
-        os.makedirs(directory, exist_ok=True)
-        path = os.path.join(directory, file_name)
 
         body_html= ''
         section_template = self.generator_settings['HTML'][file.group_type]
 
         if file.section:
             if file.section.mathjax_required:
-                file.section.add_page_script(self.html_templates['mathjax'].format(path_to_root=file.section.html_path_to_root))
+                file.section.add_page_script(self.html_templates['mathjax'].format(path_to_guide_root=file.section.html_path_to_guide_root))
 
             for section_content in file.section.html_content:
                 body_html += section_content
@@ -305,7 +279,7 @@ class Guide:
             ## If homepage
             if file in self.structure.files and file.filename == 'index':
                 page_heading = self.html_templates['website_homepage_header']
-                body_html = self.html_templates['website_homepage_content'].format(path_to_root=file.section.html_path_to_root, prerelease_notice=prerelease_html)
+                body_html = self.html_templates['website_homepage_content'].format(path_to_guide_root=file.section.html_path_to_guide_root, prerelease_notice=prerelease_html)
             else:
                 page_heading = file.section.heading.to_html()
 
@@ -314,10 +288,17 @@ class Guide:
             else:
                 current_folder = None
 
+            output_folder = os.path.join(self.output_folder, file.parent.path)
+
+            path_to_guide_root = file.section.html_path_to_guide_root
+            output_depth = 2 if self.version == 'Teacher' else 1
+            path_to_output_folder = output_depth * '../' + path_to_guide_root
+
             context = {'page_title': file.section.title,
                        'page_heading': page_heading,
                        'body_html': body_html,
-                       'path_to_root': file.section.html_path_to_root,
+                       'path_to_guide_root': path_to_guide_root,
+                       'path_to_output_root': path_to_output_folder,
                        'project_title': self.translations['title'][self.language_code],
                        'project_title_abbreviation': self.translations['abbreviation'][self.language_code],
                        'root_folder': self.structure,
@@ -330,12 +311,7 @@ class Guide:
                        'version_number': version_number,
                        'prerelease_notice': prerelease_html
                       }
-            html = self.website_generator.render_template(section_template, context)
-            try:
-                with open(path, 'w', encoding='utf8') as output_file:
-                    output_file.write(html)
-            except:
-                logging.critical("Cannot write file {0}".format(path))
+            write_html_file(self.html_generator, output_folder, file.filename, section_template, context)
 
 
     def add_to_pdf_html(self, file):
@@ -466,6 +442,14 @@ class NumberGenerator:
         return str(self)
 
 
+class Language:
+    """Used to store language display names and paths"""
+    def __init__(self, language_code, translations):
+        self.language_code = language_code
+        self.language_text = translations['language-text'][self.language_code]
+        self.language_path = language_code + '/'
+
+
 def setup_logging():
     """Sets up the logger to write to a file"""
     logging.config.fileConfig(LOGFILE_SETTINGS)
@@ -479,18 +463,94 @@ def file_exists(file_path):
         return False
 
 
+def read_html_templates(generator_settings):
+    """Read html templates from html-templates.conf into dictionary"""
+    html_templates = {}
+    html_template_file = generator_settings['Source']['HTML Templates']
+    try:
+        with open(html_template_file, 'r', encoding='utf8') as source_file:
+            data = source_file.readlines()
+    except:
+        logging.critical('Cannot find file {0}. Generation aborted.'.format(html_template_file))
+    else:
+        template_name = ''
+        template_text = ''
+        reading_template = False
+        for line in data:
+            search = re.search('^\{(?P<template_name>[^%{# }]+(?P<end> end)?)\}', line, re.MULTILINE)
+            if search and ((reading_template and search.group('end')) or not reading_template):
+                if search.group('end'):
+                    reading_template = False
+                    html_templates[template_name] = template_text.strip()
+                    template_text = ''
+                elif not reading_template and search.group('template_name'):
+                    reading_template = True
+                    template_name = search.group('template_name')
+            elif reading_template:
+                template_text += line
+    return html_templates
+
+
+def write_html_file(html_generator, output_folder, filename, template, context):
+    """ Write a given HTML file"""
+    # Create output folder
+    if output_folder:
+        os.makedirs(output_folder, exist_ok=True)
+
+    # Create full output path
+    file_name = '{file_name}.html'.format(file_name=filename)
+    path = os.path.join(output_folder, file_name)
+    # Create HTML
+    html = html_generator.render_template(template, context)
+    try:
+        with open(path, 'w', encoding='utf8') as output_file:
+            output_file.write(html)
+    except:
+        logging.critical("Cannot write file {0}".format(path))
+
+
+def create_landing_page(languages, html_generator, generator_settings, translations):
+    """Create and write landing page with language list"""
+    languages = []
+    for language in cmd_args.languages:
+        languages.append(Language(language, translations))
+
+    context = {'project_title': translations['title']['en'],
+        'language_code': 'en',
+        # Load resources from first version as English may not be present
+        'path_to_guide_root': languages[0].language_path,
+        'analytics_code': generator_settings['General']['Google Analytics Code'],
+        'languages': languages
+        }
+    output_folder = generator_settings['Output']['Base Folder']
+    write_html_file(html_generator, output_folder, 'index', 'website_page_landing', context)
+
+
 def main():
     """Creates a Guide object"""
-    # Switch to current directory
     setup_logging()
     guide_settings = systemfunctions.read_settings(GUIDE_SETTINGS)
-    languages = guide_settings['Main']['Languages'].split()
-    versions = guide_settings['Main']['Versions'].split()
-    for language in languages:
+    generator_settings = systemfunctions.read_settings(GENERATOR_SETTINGS)
+    translations = systemfunctions.read_settings(TRANSLATIONS_LOCATION)
+    regex_list = systemfunctions.read_settings(REGEX_LIST)
+    html_templates = read_html_templates(generator_settings)
+    html_generator = WebsiteGenerator(html_templates)
+
+    # Create landing page
+    create_landing_page(cmd_args.languages, html_generator, generator_settings, translations)
+
+    # Calculate versions to create
+    versions = ['Student']
+    if cmd_args.teacher_output:
+        versions.append('Teacher')
+
+    # Create all specified CSFG
+    for language in cmd_args.languages:
         for version in versions:
-            guide = Guide(guide_settings=guide_settings, language_code=language, version=version)
+            guide = Guide(generator_settings=generator_settings, guide_settings=guide_settings, language_code=language, version=version, html_generator=html_generator, html_templates=html_templates, translations=translations, regex_list=regex_list)
             if cmd_args.include_pdf:
-                    pdf_guide = Guide(guide_settings=guide_settings, language_code=language, version=version, output_type=PDF)
+                pdf_guide = Guide(generator_settings=generator_settings, guide_settings=guide_settings, language_code=language, version=version, output_type=PDF, html_generator=html_generator, html_templates=html_templates, translations=translations, regex_list=regex_list)
+
     logging.shutdown()
 
 
