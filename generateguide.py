@@ -64,6 +64,7 @@ class Guide:
         if self.output_type == WEB:
             self.setup_html_output()
             self.traverse_files(self.structure, getattr(self, "write_html_file"))
+            self.copy_required_files()
         elif self.output_type == PDF:
             self.pdf_html = ''
             self.traverse_files(self.structure, getattr(self, "add_to_pdf_html"))
@@ -204,18 +205,8 @@ class Guide:
                     self.required_files[file_type].add(file_name)
 
 
-    def setup_html_output(self):
-        """Preliminary setup, called before html files are written.
-        -   Load website required files
-        -   Copy required files
-        """
-        # Create output folder
-        os.makedirs(self.output_folder, exist_ok=True)
-
-        # Load required files
-        self.load_required_files(self.generator_settings['Website-Required-Files'].items())
-
-        # Copy all required files
+    def copy_required_files(self):
+        """Copy all required files"""
         for file_type,file_data in self.required_files.items():
             # Create folder for files
             file_output_folder = os.path.join(self.output_folder, self.generator_settings['Output'][file_type])
@@ -258,6 +249,17 @@ class Guide:
                     else:
                         logging.error("{file_type} {file_name} could not be found".format(file_type=file_type,file_name=file_name))
 
+    def setup_html_output(self):
+        """Preliminary setup, called before html files are written.
+        -   Load website required files
+        -   Copy required files
+        """
+        # Create output folder
+        os.makedirs(self.output_folder, exist_ok=True)
+
+        # Load required files
+        self.load_required_files(self.generator_settings['Website-Required-Files'].items())
+
 
     def write_html_file(self, file):
         """Writes the HTML file for a given file node"""
@@ -270,6 +272,12 @@ class Guide:
         section_template = self.generator_settings['HTML'][file.group_type]
 
         if file.section:
+            output_folder = os.path.join(self.output_folder, file.parent.path)
+
+            path_to_guide_root = file.section.html_path_to_guide_root
+            output_depth = 2 if self.version == 'Teacher' else 1
+            path_to_output_folder = output_depth * '../' + path_to_guide_root
+
             if file.section.mathjax_required:
                 file.section.add_page_script(self.html_templates['mathjax'].format(path_to_guide_root=file.section.html_path_to_guide_root))
 
@@ -282,6 +290,13 @@ class Guide:
             else:
                 prerelease_html = ''
 
+            if self.version == 'Teacher':
+                file_name = '{file_name}.html'.format(file_name=file.filename)
+                path_to_student_page = os.path.join('../', path_to_guide_root, file.parent.path, file_name)
+                version_link_html = self.html_templates['version_link_html'].format(path_to_student_page=path_to_student_page)
+            else:
+                version_link_html = ''
+
             ## If homepage
             if file in self.structure.files and file.filename == 'index':
                 page_heading = self.html_templates['website_homepage_header']
@@ -293,12 +308,6 @@ class Guide:
                 current_folder = file.path.split(os.sep)[0]
             else:
                 current_folder = None
-
-            output_folder = os.path.join(self.output_folder, file.parent.path)
-
-            path_to_guide_root = file.section.html_path_to_guide_root
-            output_depth = 2 if self.version == 'Teacher' else 1
-            path_to_output_folder = output_depth * '../' + path_to_guide_root
 
             context = {'page_title': file.section.title,
                        'page_heading': page_heading,
@@ -315,7 +324,8 @@ class Guide:
                        'current_folder': current_folder,
                        'analytics_code': self.generator_settings['General']['Google Analytics Code'],
                        'version_number': version_number,
-                       'prerelease_notice': prerelease_html
+                       'prerelease_notice': prerelease_html,
+                       'version_link_html': version_link_html
                       }
             write_html_file(self.html_generator, output_folder, file.filename, section_template, context)
 
@@ -506,7 +516,8 @@ def write_html_file(html_generator, output_folder, filename, template, context):
     # Create full output path
     file_name = '{file_name}.html'.format(file_name=filename)
     path = os.path.join(output_folder, file_name)
-    # Create HTML
+
+    # Write HTML
     html = html_generator.render_template(template, context)
     try:
         with open(path, 'w', encoding='utf8') as output_file:
