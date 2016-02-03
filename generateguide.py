@@ -181,11 +181,27 @@ class Guide:
         except:
             logging.critical('Cannot find SCSS file {0}.'.format(file_name))
         else:
+            # Add version variable at start of SCSS data
+            scss_data = "$version: " + self.version + ";\n" + scss_data
+
             # This lists all subfolders of SCSS source folder, this may cause issues
             # later, but is an effective solution for the moment
             scss_source_folders = [x[0] for x in os.walk(scss_source_folder)]
             compiled_css = compile_string(scss_data, search_path=scss_source_folders, output_style='compressed')
             return compiled_css
+
+
+    def load_required_files(self, items):
+        """Load website requried files"""
+        for file_type,all_file_names in items:
+            file_names = all_file_names.strip().split('\n')
+            for file_name in file_names:
+                if file_type == "SCSS":
+                    css_string = self.compile_scss_file(file_name)
+                    file_name = file_name.replace(".scss", ".css")
+                    self.required_files["CSS"].add(file_name, css_string)
+                else:
+                    self.required_files[file_type].add(file_name)
 
 
     def setup_html_output(self):
@@ -196,18 +212,8 @@ class Guide:
         # Create output folder
         os.makedirs(self.output_folder, exist_ok=True)
 
-
-
-        # Load website requried files
-        for file_type,all_file_names in self.generator_settings['Website-Required-Files'].items():
-            file_names = all_file_names.strip().split('\n')
-            for file_name in file_names:
-                if file_type == "SCSS":
-                    css_string = self.compile_scss_file(file_name)
-                    file_name = file_name.replace(".scss", ".css")
-                    self.required_files["CSS"].add(file_name, css_string)
-                else:
-                    self.required_files[file_type].add(file_name)
+        # Load required files
+        self.load_required_files(self.generator_settings['Website-Required-Files'].items())
 
         # Copy all required files
         for file_type,file_data in self.required_files.items():
