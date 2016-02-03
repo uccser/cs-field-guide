@@ -324,6 +324,7 @@ class Guide:
                        'current_page': file.path,
                        'current_folder': current_folder,
                        'analytics_code': self.generator_settings['General']['Google Analytics Code'],
+                       'version': self.version,
                        'version_number': version_number,
                        'prerelease_notice': prerelease_html,
                        'version_link_html': version_link_html

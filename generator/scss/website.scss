@@ -54,9 +54,8 @@ header, main, footer {
   font-weight: bold;
 }
 ul.side-nav.fixed li a {
-  font-size: 1rem;
   line-height: 44px;
-  height: 44px;
+  height: inherit !important;
   white-space: nowrap;
 }
 .side-nav .collapsible-body li a {
@@ -139,8 +138,14 @@ ul.side-nav.fixed li a {
 }
 #logo-container {
   color: $primary-color !important;
-  font-size: 2rem;
-  font-weight: 500;
+  .title {
+    font-size: 2rem;
+    font-weight: 500;
+  }
+  .subtitle {
+    line-height: 1.1rem;
+    padding-bottom: 1rem;
+  }
 }
 // Based off Materialize flow-text rules
 .main-content p {
