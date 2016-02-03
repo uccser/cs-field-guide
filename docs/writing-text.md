@@ -545,11 +545,11 @@ This text is the panel's contents.
 The contents between these tags are only shown on the given version. The exception for this is `teacher-note` panels which are only shown in the teacher version.
 
 ```
-{version-specific version="teacher"}
+{version-specific-content version="teacher"}
 
 This text is only shown in the teacher version of the guide.
 
-{version-specific end}
+{version-specific-content end}
 ```
 
 **Parameters:**
@@ -562,11 +562,11 @@ This text is only shown in the teacher version of the guide.
 The contents between these tags are only shown if the given variable is `True`. Errors are logged if invalid `context` or `variable` are given.
 
 ```
-{conditional context="guide" variable="teacher_version_present"}
+{conditional-content context="guide" variable="teacher_version_present"}
 
 If you are a teacher (or involved in education), you can [access the teacher's version of the guide here](teacher/index.html).
 
-{conditional end}
+{conditional-content end}
 ```
 
 **Parameters:**
