@@ -199,7 +199,7 @@ class Guide:
 
 
         # Load website requried files
-        for file_type,all_file_names in self.generator_settings['Website Required Files'].items():
+        for file_type,all_file_names in self.generator_settings['Website-Required-Files'].items():
             file_names = all_file_names.strip().split('\n')
             for file_name in file_names:
                 if file_type == "SCSS":

@@ -138,9 +138,9 @@ class Section:
 
     def create_panel(self, match):
         arguments = match.group('args')
-
+        teacher_only_panels = self.guide.generator_settings['Output']['Teacher Only Panels'].strip().split('\n')
         panel_type = parse_argument('type', arguments)
-        if panel_type:
+        if panel_type and not (self.guide.version != "Teacher" and panel_type in teacher_only_panels):
             title = systemfunctions.from_kebab_case(panel_type)
             summary_value = parse_argument('summary', arguments)
             summary = ': ' + summary_value.strip() if summary_value else ''
