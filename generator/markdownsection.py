@@ -140,20 +140,25 @@ class Section:
         arguments = match.group('args')
         teacher_only_panels = self.guide.generator_settings['Output']['Teacher Only Panels'].strip().split('\n')
         panel_type = parse_argument('type', arguments)
-        if panel_type and not (self.guide.version != "Teacher" and panel_type in teacher_only_panels):
-            title = systemfunctions.from_kebab_case(panel_type)
-            summary_value = parse_argument('summary', arguments)
-            summary = ': ' + summary_value.strip() if summary_value else ''
-            expanded_value = parse_argument('expanded', arguments)
-            expanded = ' active' if expanded_value == 'True'  else ''
-            content = markdown(match.group('content'), extras=MARKDOWN2_EXTRAS)
+        if panel_type:
+            # Check if panel allowed
+            if not (self.guide.version != "Teacher" and panel_type in teacher_only_panels):
+                title = systemfunctions.from_kebab_case(panel_type)
+                summary_value = parse_argument('summary', arguments)
+                summary = ': ' + summary_value.strip() if summary_value else ''
+                expanded_value = parse_argument('expanded', arguments)
+                expanded = ' active' if expanded_value == 'True'  else ''
+                content = markdown(match.group('content'), extras=MARKDOWN2_EXTRAS)
 
-            heading = self.html_templates['panel_heading'].format(title=title,
-                                                                  summary=summary)
-            html = self.html_templates['panel'].format(panel_heading = heading,
-                                                       content = content,
-                                                       type_class = 'panel-' + panel_type,
-                                                       expanded = expanded)
+                heading = self.html_templates['panel_heading'].format(title=title,
+                                                                      summary=summary)
+                html = self.html_templates['panel'].format(panel_heading = heading,
+                                                           content = content,
+                                                           type_class = 'panel-' + panel_type,
+                                                           expanded = expanded)
+            # Panel should be ignored
+            else:
+                html = ''
         else:
             self.regex_functions['panel'].log("Panel type argument missing", self, match.group(0))
             html = ''
