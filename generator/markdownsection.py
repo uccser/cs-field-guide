@@ -37,7 +37,7 @@ class Section:
         self.page_scripts = []
         self.mathjax_required = False
         self.sectioned = False
-        self.html_path_to_root = self.file_node.depth * '../'
+        self.html_path_to_guide_root = self.file_node.depth * '../'
 
     def __repr__(self):
         """Return representation of structure of section"""
@@ -130,7 +130,7 @@ class Section:
                 file_name = link_url[len(self.guide.generator_settings['Source']['File']):]
                 self.required_files['File'].add(file_name)
 
-            link_url = os.path.join(self.html_path_to_root, link_url)
+            link_url = os.path.join(self.html_path_to_guide_root, link_url)
 
         html = self.html_templates['link'].format(link_text=link_text, link_url=link_url).strip()
         return html
@@ -138,22 +138,27 @@ class Section:
 
     def create_panel(self, match):
         arguments = match.group('args')
-
+        teacher_only_panels = self.guide.generator_settings['Output']['Teacher Only Panels'].strip().split('\n')
         panel_type = parse_argument('type', arguments)
         if panel_type:
-            title = systemfunctions.from_kebab_case(panel_type)
-            summary_value = parse_argument('summary', arguments)
-            summary = ': ' + summary_value.strip() if summary_value else ''
-            expanded_value = parse_argument('expanded', arguments)
-            expanded = ' active' if expanded_value == 'True'  else ''
-            content = markdown(match.group('content'), extras=MARKDOWN2_EXTRAS)
+            # Check if panel allowed
+            if not (self.guide.version != "teacher" and panel_type in teacher_only_panels):
+                title = systemfunctions.from_kebab_case(panel_type)
+                summary_value = parse_argument('summary', arguments)
+                summary = ': ' + summary_value.strip() if summary_value else ''
+                expanded_value = parse_argument('expanded', arguments)
+                expanded = ' active' if expanded_value == 'True'  else ''
+                content = markdown(match.group('content'), extras=MARKDOWN2_EXTRAS)
 
-            heading = self.html_templates['panel_heading'].format(title=title,
-                                                                  summary=summary)
-            html = self.html_templates['panel'].format(panel_heading = heading,
-                                                       content = content,
-                                                       type_class = 'panel-' + panel_type,
-                                                       expanded = expanded)
+                heading = self.html_templates['panel_heading'].format(title=title,
+                                                                      summary=summary)
+                html = self.html_templates['panel'].format(panel_heading = heading,
+                                                           content = content,
+                                                           type_class = 'panel-' + panel_type,
+                                                           expanded = expanded)
+            # Panel should be ignored
+            else:
+                html = ''
         else:
             self.regex_functions['panel'].log("Panel type argument missing", self, match.group(0))
             html = ''
@@ -194,7 +199,7 @@ class Section:
 
         valid_image_wrap_directions = ['left', 'right']
 
-        image_source = os.path.join(self.html_path_to_root, self.guide.generator_settings['Source']['Image'], filename)
+        image_source = os.path.join(self.html_path_to_guide_root, self.guide.generator_settings['Source']['Image'], filename)
 
         parameters = ''
         wrap = False
@@ -289,6 +294,48 @@ class Section:
             return False
 
 
+    def check_version_specific_content(self, match):
+        """Checks if content is allowed for version"""
+        arguments = match.group('args')
+        version = parse_argument('version', arguments)
+        content = match.group('content')
+
+        if version == self.guide.version:
+            html = content
+        else:
+            html = ''
+        return html
+
+
+    def check_conditional_content(self, match):
+        """Checks if content is allowed for variable"""
+        arguments = match.group('args')
+        variable = parse_argument('variable', arguments)
+        context = parse_argument('context', arguments)
+        content = match.group('content')
+
+        if context == 'guide':
+            attribute_context = self.guide
+        elif context == 'section':
+            attribute_context = self
+        else:
+            attribute_context = False
+
+        if attribute_context:
+            value = getattr(attribute_context, variable, 'Not found')
+            if value:
+                html = content
+            elif value == 'Not found':
+                self.regex_functions['conditional'].log("Invalid variable {} given".format(variable), self, match.group(0))
+            else:
+                html = ''
+        else:
+            self.regex_functions['conditional'].log("Invalid context {} given".format(context), self, match.group(0))
+
+
+        return html
+
+
     def embed_video(self, match):
         youtube_src = "http://www.youtube.com/embed/{0}?rel=0"
         vimeo_src = "http://player.vimeo.com/video/{0}"
@@ -345,7 +392,7 @@ class Section:
 
         if filename:
             self.required_files['File'].add(filename)
-            output_path = os.path.join(self.html_path_to_root, self.guide.generator_settings['Output']['File'], filename)
+            output_path = os.path.join(self.html_path_to_guide_root, self.guide.generator_settings['Output']['File'], filename)
 
             if match.group('text'):
                 text = match.group('text')
@@ -417,19 +464,19 @@ class Section:
             - A script is added to the page for a responsive iframe
             - A script is added within the iframe for a responsive iframe
         """
-        folder_location = os.path.join(self.html_path_to_root, source_folder, self.guide.generator_settings['Source']['Interactive File'])
+        folder_location = os.path.join(self.html_path_to_guide_root, source_folder, self.guide.generator_settings['Source']['Interactive File'])
         file_link = "{location}?{parameters}".format(location=folder_location, parameters=params) if params else folder_location
         link_template = self.html_templates['interactive-iframe']
         html = link_template.format(interactive_source=file_link)
-        self.add_page_script(self.html_templates['interactive-iframe-script'].format(path_to_root=self.html_path_to_root))
+        self.add_page_script(self.html_templates['interactive-iframe-script'].format(path_to_guide_root=self.html_path_to_guide_root))
         return html
 
 
     def whole_page_interactive_html(self, source_folder, text, name, params, thumbnail, match):
         """Return the html block for a link to an whole page interactive"""
-        thumbnail_location = os.path.join(self.html_path_to_root, source_folder, thumbnail)
+        thumbnail_location = os.path.join(self.html_path_to_guide_root, source_folder, thumbnail)
         link_text = 'Click to load {text}'.format(text=text)
-        folder_location = os.path.join(self.html_path_to_root, source_folder, self.guide.generator_settings['Source']['Interactive File'])
+        folder_location = os.path.join(self.html_path_to_guide_root, source_folder, self.guide.generator_settings['Source']['Interactive File'])
         file_link = "{location}?{parameters}".format(location=folder_location, parameters=params) if params else folder_location
         link_template = self.html_templates['interactive-external']
         link_html = link_template.format(interactive_thumbnail=thumbnail_location,
@@ -487,7 +534,7 @@ class Section:
             for attr in link_attributes:
                 raw_link = element.get(attr, None)
                 if raw_link and not raw_link.startswith('http://') and not raw_link == '#':
-                    link = os.path.join(self.html_path_to_root, source_folder, raw_link)
+                    link = os.path.join(self.html_path_to_guide_root, source_folder, raw_link)
                     element[attr] = link
             if element.name == 'script' or (element.name == 'link' and element.get('rel', None) == ['stylesheet']):
                 self.add_page_script(element.extract())
@@ -524,14 +571,14 @@ class Section:
 
     def _create_table_of_contents(self, root_folder, depth=None, top_level=False):
         """Recursively called from create_table_of_contents"""
-        folder_path = os.path.join(self.html_path_to_root, root_folder.path, 'index.html')
+        folder_path = os.path.join(self.html_path_to_guide_root, root_folder.path, 'index.html')
         folder_link_html = self.html_templates['link'].format(link_text=root_folder.title, link_url=folder_path)
 
         if depth is None or depth > 0:
             items = []
             for file in root_folder.files:
                 if file.tracked:
-                    link_url = self.html_path_to_root + self.guide.generator_settings['Output']['HTML File'].format(file_name=file.path)
+                    link_url = self.html_path_to_guide_root + self.guide.generator_settings['Output']['Output File'].format(file_name=file.path)
                     link_html = self.html_templates['link'].format(link_text=file.section.title, link_url=link_url)
                     items.append(link_html)
 
@@ -559,7 +606,7 @@ class Section:
 
         permalink = self.create_permalink('glossary-' + term)
 
-        this_file_link = os.path.join(glossary.html_path_to_root, self.file_node.path)
+        this_file_link = os.path.join(glossary.html_path_to_guide_root, self.file_node.path)
         back_link = '{}.html#{}'.format(this_file_link, permalink)
         self.guide.glossary.add_item(term, definition, back_link, match, self)
 
@@ -573,10 +620,10 @@ class Section:
         term = parse_argument('term', arguments)
         reference_text = parse_argument('reference-text', arguments)
 
-        file_link = os.path.join(glossary.html_path_to_root, self.file_node.path)
+        file_link = os.path.join(glossary.html_path_to_guide_root, self.file_node.path)
         back_link_id = self.create_permalink('glossary-' + term)
-        this_file_link = os.path.join(glossary.html_path_to_root, self.file_node.path)
-        glossary_file_path = os.path.join(self.html_path_to_root, GLOSSARY_LOCATION)
+        this_file_link = os.path.join(glossary.html_path_to_guide_root, self.file_node.path)
+        glossary_file_path = os.path.join(self.html_path_to_guide_root, GLOSSARY_LOCATION)
 
         if reference_text:
             # Provide ability to link to term in section
