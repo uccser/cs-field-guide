@@ -30,6 +30,7 @@ This article describes the syntax required for writing Markdown files within the
   - [Files](#files)
   - [Comments](#comments)
   - [Panels](#panels)
+  - [Version specific content](#version-specific-content)
   - [Table of contents](#table-of-contents)
   - [Escape curly braces](#escape-curly-braces)
   - [Syntax to avoid](#Syntax-to-avoid)
@@ -524,15 +525,34 @@ Panels are used to separate optional/extra content like teacher information or i
 ```
 {panel type="teacher-note" summary="Curriculum guides for Algorithms"}
 
-This text is usedthe panel contents.
+This text is the panel's contents.
 
 {panel end}
 ```
+
+ Note: `teacher-note` panels are only shown in the teacher version (this is specified in the generator settings file).
 
 **Parameters:**
 - `type` - The type of panel to create. The type is used as the title of the panel, plus as the CSS class for panel (this allows colouring of all the same types of panels).
 - `summary` (optional) - Text to display after the title to summarise the panel's contents.
 - `expanded` (optional) - If set to False, the panel is expanded at load. When not given it defaults to True.
+
+---
+
+### Version specific content
+
+The contents between these tags are only shown on the given version. The exception for this is `teacher-note` panels which are only shown in the teacher version.
+
+```
+{version-specific version="teacher"}
+
+This text is only shown in the teacher version of the guide.
+
+{version-specific end}
+```
+
+**Parameters:**
+- `version` - The version to display the contents in, currently either `student` or `teacher`. Currently only one version can be specified.
 
 ---
 

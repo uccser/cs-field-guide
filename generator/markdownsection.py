@@ -294,6 +294,48 @@ class Section:
             return False
 
 
+    def check_version_specific_content(self, match):
+        """Checks if content is allowed for version"""
+        arguments = match.group('args')
+        version = parse_argument('version', arguments)
+        content = match.group('content')
+
+        if version == self.guide.version:
+            html = content
+        else:
+            html = ''
+        return html
+
+
+    def check_conditional_content(self, match):
+        """Checks if content is allowed for variable"""
+        arguments = match.group('args')
+        variable = parse_argument('variable', arguments)
+        context = parse_argument('context', arguments)
+        content = match.group('content')
+
+        if context == 'guide':
+            attribute_context = self.guide
+        elif context == 'section':
+            attribute_context = self
+        else:
+            attribute_context = False
+
+        if attribute_context:
+            value = getattr(attribute_context, variable, 'Not found')
+            if value:
+                html = content
+            elif value == 'Not found':
+                self.regex_functions['conditional'].log("Invalid variable {} given".format(variable), self, match.group(0))
+            else:
+                html = ''
+        else:
+            self.regex_functions['conditional'].log("Invalid context {} given".format(context), self, match.group(0))
+
+
+        return html
+
+
     def embed_video(self, match):
         youtube_src = "http://www.youtube.com/embed/{0}?rel=0"
         vimeo_src = "http://player.vimeo.com/video/{0}"

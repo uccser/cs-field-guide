@@ -26,7 +26,7 @@ from generator.files import setup_required_files
 from scss.compiler import compile_string
 
 class Guide:
-    def __init__(self, generator_settings, guide_settings, language_code, version, html_generator, html_templates, translations, regex_list, output_type=WEB):
+    def __init__(self, generator_settings, guide_settings, language_code, version, html_generator, html_templates, translations, regex_list, output_type=WEB,  teacher_version_present=False):
 
         # Alert user of creation process
         print('Creating CSFG - Language: {lang} - Version: {version} - Format: {output_type}'.format(lang=language_code, version=version, output_type=output_type))
@@ -565,7 +565,7 @@ def main():
     # Create all specified CSFG
     for language in cmd_args.languages:
         for version in versions:
-            guide = Guide(generator_settings=generator_settings, guide_settings=guide_settings, language_code=language, version=version, html_generator=html_generator, html_templates=html_templates, translations=translations, regex_list=regex_list)
+            guide = Guide(generator_settings=generator_settings, guide_settings=guide_settings, language_code=language, version=version, html_generator=html_generator, html_templates=html_templates, translations=translations, regex_list=regex_list, teacher_version_present=cmd_args.teacher_output)
             if cmd_args.include_pdf:
                 pdf_guide = Guide(generator_settings=generator_settings, guide_settings=guide_settings, language_code=language, version=version, output_type=PDF, html_generator=html_generator, html_templates=html_templates, translations=translations, regex_list=regex_list)
 
