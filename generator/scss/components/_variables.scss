@@ -3,7 +3,7 @@
 // Default is student
 $primary-color: color("indigo", "base");
 
-@if $version == "Teacher" {
+@if $version == "teacher" {
   $primary-color: color("red", "base");
 }
 

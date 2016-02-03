@@ -142,7 +142,7 @@ class Section:
         panel_type = parse_argument('type', arguments)
         if panel_type:
             # Check if panel allowed
-            if not (self.guide.version != "Teacher" and panel_type in teacher_only_panels):
+            if not (self.guide.version != "teacher" and panel_type in teacher_only_panels):
                 title = systemfunctions.from_kebab_case(panel_type)
                 summary_value = parse_argument('summary', arguments)
                 summary = ': ' + summary_value.strip() if summary_value else ''

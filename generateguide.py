@@ -44,6 +44,7 @@ class Guide:
         self.language_code = language_code
         self.language = self.parse_language()
         self.version = version
+        self.teacher_version_present = teacher_version_present
         self.output_type = output_type
         self.setup_output_path()
 
@@ -275,7 +276,7 @@ class Guide:
             output_folder = os.path.join(self.output_folder, file.parent.path)
 
             path_to_guide_root = file.section.html_path_to_guide_root
-            output_depth = 2 if self.version == 'Teacher' else 1
+            output_depth = 2 if self.version == 'teacher' else 1
             path_to_output_folder = output_depth * '../' + path_to_guide_root
 
             if file.section.mathjax_required:
@@ -290,7 +291,7 @@ class Guide:
             else:
                 prerelease_html = ''
 
-            if self.version == 'Teacher':
+            if self.version == 'teacher':
                 file_name = '{file_name}.html'.format(file_name=file.filename)
                 path_to_student_page = os.path.join('../', path_to_guide_root, file.parent.path, file_name)
                 version_link_html = self.html_templates['version_link_html'].format(path_to_student_page=path_to_student_page)
@@ -557,9 +558,9 @@ def main():
     create_landing_page(cmd_args.languages, html_generator, generator_settings, translations)
 
     # Calculate versions to create
-    versions = ['Student']
+    versions = ['student']
     if cmd_args.teacher_output:
-        versions.append('Teacher')
+        versions.append('teacher')
 
     # Create all specified CSFG
     for language in cmd_args.languages:
