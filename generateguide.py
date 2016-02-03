@@ -300,7 +300,11 @@ class Guide:
 
             ## If homepage
             if file in self.structure.files and file.filename == 'index':
-                page_heading = self.html_templates['website_homepage_header']
+                if self.version == 'teacher':
+                    subtitle = '<h3>Teacher Version</h3>'
+                else:
+                    subtitle = ''
+                page_heading = self.html_templates['website_homepage_header'].format(subtitle=subtitle)
                 body_html = self.html_templates['website_homepage_content'].format(path_to_guide_root=file.section.html_path_to_guide_root, prerelease_notice=prerelease_html)
             else:
                 page_heading = file.section.heading.to_html()
