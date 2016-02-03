@@ -31,6 +31,7 @@ This article describes the syntax required for writing Markdown files within the
   - [Comments](#comments)
   - [Panels](#panels)
   - [Version specific content](#version-specific-content)
+  - [Conditional content](#conditional-content)
   - [Table of contents](#table-of-contents)
   - [Escape curly braces](#escape-curly-braces)
   - [Syntax to avoid](#Syntax-to-avoid)
@@ -553,6 +554,24 @@ This text is only shown in the teacher version of the guide.
 
 **Parameters:**
 - `version` - The version to display the contents in, currently either `student` or `teacher`. Currently only one version can be specified.
+
+---
+
+### Conditional content
+
+The contents between these tags are only shown if the given variable is `True`. Errors are logged if invalid `context` or `variable` are given.
+
+```
+{conditional context="guide" variable="teacher_version_present"}
+
+If you are a teacher (or involved in education), you can [access the teacher's version of the guide here](teacher/index.html).
+
+{conditional end}
+```
+
+**Parameters:**
+- `context` - The object to locate the variable, either `guide` or `section`.
+- `variable` - The variable to check.
 
 ---
 
