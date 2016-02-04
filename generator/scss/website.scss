@@ -282,9 +282,13 @@ ul.panel {
   background-color: $primary-color-dark;
   overflow: hidden;
 }
-.full-page-background {
-  height: 100%;
-  width: 100%;
+body.landing-page {
+  background-color: $primary-color !important;
+  padding: 2rem 1rem;
+  color: #fff;
+  footer {
+    padding-left: 0 !important;
+  }
 }
 .video-container {
   margin-top: 1rem;
