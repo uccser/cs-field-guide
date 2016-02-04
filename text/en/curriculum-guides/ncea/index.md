@@ -108,8 +108,7 @@ Students will need to pick **one** project from here. Which they pick will depen
 
 **Achieved Guides**
 
-- For Achieved: [Human Computer Interaction - identifying heuristic violations in every day life (Achieved)](curriculum-guides/ncea/assessment-guide-level-2-achieved-human-computer-interaction-general.html)
-- For Achieved: [Human Computer Interaction - identifying heuristics violations on a given interface (Achieved)](curriculum-guides/ncea/assessment-guide-level-2-achieved-human-computer-interaction-specific.html)
+- For Achieved: [Human Computer Interaction - identifying heuristic violations in every day life (Achieved)](curriculum-guides/ncea/assessment-guide-level-2-achieved-human-computer-interaction.html)
 
 **Merit/ Excellence Guides**
 
