@@ -180,6 +180,11 @@ ul.side-nav.fixed li a {
   padding: 1.5rem 0.3rem;
   margin-bottom: 1rem;
   border-radius: 4px;
+  @include transition(.2s ease-out);
+  @extend .z-depth-1;
+  &:hover {
+    @extend .z-depth-2;
+  }
   .btn-menu-link-text {
     font-size: 1.8rem;
     line-height: 115%;
