@@ -29,6 +29,12 @@ No pre-releases currently.
 
 **Downloads:** [Source available on GitHub](https://github.com/uccser/cs-field-guide/releases/tag/2.0.0)
 
+**Notable changes:**
+- First open source release
+- Produces both student and teacher versions
+- Produces landing page for selecting language
+- Added new NCEA curriculum guides on Encryption and Human Computer Interaction
+
 **Changelog**:
 - Modified process of creating CSFG versions [cffc973](https://github.com/uccser/cs-field-guide/commit/cffc973d95e5b144fad259e1877fe7e7567ed957)
 - Added link to student page from teacher pages [49531ac](https://github.com/uccser/cs-field-guide/commit/49531ac12e8875122d7ddacea1821a0507a911af)
@@ -53,6 +59,15 @@ No pre-releases currently.
 - Modified links to old CSFG to use correct link [aece47c](https://github.com/uccser/cs-field-guide/commit/aece47c)
 - Made landing page easier to read [89bd95b](https://github.com/uccser/cs-field-guide/commit/89bd95b)
 - Added useful links to 404 page [1038919](https://github.com/uccser/cs-field-guide/commit/1038919d86ee489bd3c6db7b3532fac2896f8d79)
+- Added link to calculator interactive and fixed button spacing [76b8d8f](https://github.com/uccser/cs-field-guide/commit/76b8d8f)
+- Added info text to section landing pages (fixes [#212](https://github.com/uccser/cs-field-guide/issues/212)) [2cfc5e2](https://github.com/uccser/cs-field-guide/commit/2cfc5e2)
+- Added footer information to landing page (fixes [#210](https://github.com/uccser/cs-field-guide/issues/210)) [1b16d36](https://github.com/uccser/cs-field-guide/commit/1b16d36)
+- Added Achieved guide for NCEA 2.44 HCI [493761c](https://github.com/uccser/cs-field-guide/commit/493761c)
+- Removed level 2 guides which do not satisfy 2.44 [5ffd8e4](https://github.com/uccser/cs-field-guide/commit/5ffd8e4)
+- Clarified release process in regards to pull requests [8816da5](https://github.com/uccser/cs-field-guide/commit/8816da5)
+- Added homepage button animation [99a4e6b](https://github.com/uccser/cs-field-guide/commit/99a4e6b)
+- Added documentation about release process [4869bfb](https://github.com/uccser/cs-field-guide/commit/4869bfb)
+- Resized buttons on landing page [b10ba16](https://github.com/uccser/cs-field-guide/commit/b10ba168a0e4b8e699daeebe5d1f1fec2008398c)
 
 **Comments:**
 The first major step in releasing a open source version of the Computer Science Field Guide.
