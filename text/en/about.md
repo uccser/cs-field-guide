@@ -4,7 +4,7 @@ The Computer Science Field Guide is an online resource for teaching Computer Sci
 
 {version-specific-content version="student"}
 {conditional-content context="guide" variable="teacher_version_present"}
-If you are a teacher (or involved in education), you can [access the teacher's version of the guide here](teacher/index.html).
+If you are a teacher (or involved in education), you can join the [CSFG teachers group](https://groups.google.com/forum/?fromgroups#!forum/csfg-teachers) to receive updates and also [access the teacher's version of the guide here](teacher/index.html).
 {conditional-content end}
 {version-specific-content end}
 
