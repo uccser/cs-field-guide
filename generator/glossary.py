@@ -8,7 +8,7 @@ class Glossary:
     def __init__(self, guide):
         self.items = {}
         self.guide = guide
-        self.html_path_to_root = GLOSSARY_PATH_TO_ROOT
+        self.html_path_to_guide_root = GLOSSARY_PATH_TO_ROOT
 
     def __contains__(self, term):
         return systemfunctions.to_kebab_case(term) in self.items.keys()

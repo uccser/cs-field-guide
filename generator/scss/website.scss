@@ -54,9 +54,8 @@ header, main, footer {
   font-weight: bold;
 }
 ul.side-nav.fixed li a {
-  font-size: 1rem;
   line-height: 44px;
-  height: 44px;
+  height: inherit !important;
   white-space: nowrap;
 }
 .side-nav .collapsible-body li a {
@@ -109,13 +108,9 @@ ul.side-nav.fixed li a {
 }
 #page-title-header {
   background-color: $primary-color !important;
-  h1 {
-    line-height: 4rem !important;
-    font-size: 3rem !important;
-    padding: 2rem 0;
-    margin: 0;
-    color: #fff;
-  }
+  padding: 1rem 0;
+  margin: 0;
+  color: #fff;
 }
 #page-subtitle-header {
   background-color: $primary-color-light !important;
@@ -127,9 +122,6 @@ ul.side-nav.fixed li a {
     color: #fff;
   }
 }
-#homepage-title{
-  padding-top: 0 !important;
-}
 #homepage-logo {
   height: 12rem;
   margin-top: 1rem;
@@ -139,8 +131,14 @@ ul.side-nav.fixed li a {
 }
 #logo-container {
   color: $primary-color !important;
-  font-size: 2rem;
-  font-weight: 500;
+  .title {
+    font-size: 2rem;
+    font-weight: 500;
+  }
+  .subtitle {
+    line-height: 1.1rem;
+    padding-bottom: 1rem;
+  }
 }
 // Based off Materialize flow-text rules
 .main-content p {
@@ -247,13 +245,13 @@ ul.panel {
   }
 
   // Custom panel colours
-  @include panel-color("panel-teacher-note", "blue");
-  @include panel-color("panel-additional-information", "blue");
+  @include panel-color("panel-teacher-note", "red");
+  @include panel-color("panel-additional-information", "amber");
   @include panel-color("panel-curiosity", "purple");
-  @include panel-color("panel-challenge", "deep-orange");
+  @include panel-color("panel-challenge", "orange");
   @include panel-color("panel-jargon-buster", "light-green");
   @include panel-color("panel-spoiler", "blue-grey");
-  @include panel-color("panel-project", "amber");
+  @include panel-color("panel-project", "blue");
 }
 
 .table-of-contents {
@@ -276,6 +274,10 @@ ul.panel {
 }
 .footer-details {
   color: rgba(255,255,255,0.8);
-  background-color: #2b387c;
+  background-color: $primary-color-dark;
   overflow: hidden;
+}
+.full-page-background {
+  height: 100%;
+  width: 100%;
 }
