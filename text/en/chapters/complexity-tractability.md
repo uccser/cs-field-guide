@@ -33,7 +33,7 @@ And it can also be applied to problems that don't involve travel; for example, i
 The following interactive has a program that solves the problem for however many cities you want to select by trying out all possible routes, and recording the best so far.  You can get a feel for what an intractable problem looks like by seeing how long the interactive takes to solve the problem for different size maps.
 Try generating a map with about 5 cities, and press "Start" to solve the problem.
 
-{button link="http://www.csfieldguide.org.nz/_static/widgets/tract-tsp-basic-v2.html" text="View city trip interactive"}
+{button link="http://www.csfieldguide.org.nz/releases/1.9.9/_static/widgets/tract-tsp-basic-v2.html" text="View city trip interactive"}
 
 Now try it for 10 cities (twice as many). Does it take twice as long? How about twice as many again (20 cities)? What about 50 cities? Can you guess how long it would take?
 You're starting to get a feel for what it means for a problem to be *intractable*.
@@ -206,7 +206,7 @@ For factorials of larger numbers, most desktop calculators won't work so well; f
 interactive needs fixing
 {comment end}
 
-{button link="http://www.csfieldguide.org.nz/_static/widgets/big-calculator.html?plain=true%20frameborder=" text="View big number calculator"}
+{button link="http://www.csfieldguide.org.nz/releases/1.9.9/_static/widgets/big-calculator.html?plain=true%20frameborder=" text="View big number calculator"}
 
 Try calculating 100! using this calculator --- that's the number of different routes that a travelling salesman might take to visit 100 places (not counting the starting place). With this calculator you can copy and paste the result back into the input if you want to do further calculations on the number. If you are doing these calculations for a report, you should also copy each step of the calculation into your report to show how you got the result.
 
@@ -300,7 +300,7 @@ With the initial settings in the interactive, the TSP for 20 places will take 2,
 
 {panel end}
 
-{button link="http://www.csfieldguide.org.nz/_static/widgets/tract-scaling-v2.html" text="View big time calculator"}
+{button link="http://www.csfieldguide.org.nz/releases/1.9.9/_static/widgets/tract-scaling-v2.html" text="View big time calculator"}
 
 So far the calculation assumes that the computer would only do 1 operation per second; try changing to a million (1,000,000) operations per second, which is more realistic, and see how long that would take.
 
@@ -396,7 +396,7 @@ You're going to have to be more than patient if you want Moore's law to help out
 
 Remember that if you need to do calculations of huge numbers, there's a calculator here that you can use:
 
-{button link="http://www.csfieldguide.org.nz/_static/widgets/big-calculator.html?plain=true%20frameborder=" text="View big number calculator"}
+{button link="http://www.csfieldguide.org.nz/releases/1.9.9/_static/widgets/big-calculator.html?plain=true%20frameborder=" text="View big number calculator"}
 
 {comment}
 
