@@ -30,6 +30,8 @@ This article describes the syntax required for writing Markdown files within the
   - [Files](#files)
   - [Comments](#comments)
   - [Panels](#panels)
+  - [Version specific content](#version-specific-content)
+  - [Conditional content](#conditional-content)
   - [Table of contents](#table-of-contents)
   - [Escape curly braces](#escape-curly-braces)
   - [Syntax to avoid](#Syntax-to-avoid)
@@ -143,22 +145,22 @@ The general syntax for links is `[link text](link url)` where `link text` is the
 
 #### Internal links
 
-These are links to pages within the Computer Science Field Guide. These links will not work when viewed in the Github Markdown renderer, however will function properly when run through the guide generator.
+These are links to pages within the Computer Science Field Guide. These links will not work when viewed in the GitHub Markdown renderer, however will function properly when run through the guide generator. Links to pages are referenced from the language folder within the text folder (see examples below).
 
 ##### Chapters
 
 You can refer to a chapter page by writing the chapter name with `.html` at the end. The chapter name is converted to lowercase, with spaces replaced with dashes, and punctuation removed. See the examples below:
 
 ```no-highlight
-Check out the [Algorithms chapter](algorithms.html).
-Check out the [Network Communication Protocols chapter](network-communication-protocols.html).
+Check out the [Algorithms chapter](chapters/algorithms.html).
+Check out the [Network Communication Protocols chapter](chapters/network-communication-protocols.html).
 ```
 
 *Note these links will not work on Github*
 
-Check out the [Algorithms chapter](algorithms.html).
+Check out the [Algorithms chapter](chapters/algorithms.html).
 
-Check out the [Network Communication Protocols chapter](network-communication-protocols.html).
+Check out the [Network Communication Protocols chapter](chapters/network-communication-protocols.html).
 
 ---
 
@@ -167,12 +169,12 @@ Check out the [Network Communication Protocols chapter](network-communication-pr
 You can refer to a subsection on a chapter page by following the same chapter syntax and then adding the subsection name at the end with a `#` separator, see examples below. All headers are subsections that have a link that can be linked to (called an anchor link). The link can be retrieved by right clicking on a header in a browser and selecting 'Copy link address', or convert the subsection name to lowercase, with spaces replaced with dashes, and punctuation removed.
 
 ```no-highlight
-Check out the [searching section](algorithms.html#searching) in the Algorithms chapter.
+Check out the [searching section](chapters/algorithms.html#searching) in the Algorithms chapter.
 ```
 
 *Note this link will not work on Github*
 
-Check out the [searching section](algorithms.html#searching) in the Algorithms chapter.
+Check out the [searching section](chapters/algorithms.html#searching) in the Algorithms chapter.
 
 ---
 
@@ -181,12 +183,12 @@ Check out the [searching section](algorithms.html#searching) in the Algorithms c
 The full link must given for appendices (due to the large range):
 
 ```no-highlight
-Check out the [Assessment Overview](/appendices/assessment-guides/new-zealand/assessment-guide-level-1-introduction.html).
+Check out the [Assessment Overview](curriculum-guides\ncea\assessment-guide-level-1-introduction.html).
 ```
 
 *Note this link will not work on Github*
 
-Check out the [Assessment Overview](/appendices/assessment-guides/new-zealand/assessment-guide-level-1-introduction.html).
+Check out the [Assessment Overview](curriculum-guides\ncea\assessment-guide-level-1-introduction.html).
 
 ---
 
@@ -394,7 +396,7 @@ The following text can be used to include images into the project:
 
 Images are displayed responsively, and expand to full size when clicked by the user.
 
-A set of images can be included and displayed side by side using the following syntax:
+A set of images can be included and displayed side by side using the following syntax (currently not supported in 2.0):
 
 ```
 {image-set}
@@ -524,15 +526,52 @@ Panels are used to separate optional/extra content like teacher information or i
 ```
 {panel type="teacher-note" summary="Curriculum guides for Algorithms"}
 
-This text is usedthe panel contents.
+This text is the panel's contents.
 
 {panel end}
 ```
+
+ Note: `teacher-note` panels are only shown in the teacher version (this is specified in the generator settings file).
 
 **Parameters:**
 - `type` - The type of panel to create. The type is used as the title of the panel, plus as the CSS class for panel (this allows colouring of all the same types of panels).
 - `summary` (optional) - Text to display after the title to summarise the panel's contents.
 - `expanded` (optional) - If set to False, the panel is expanded at load. When not given it defaults to True.
+
+---
+
+### Version specific content
+
+The contents between these tags are only shown on the given version. The exception for this is `teacher-note` panels which are only shown in the teacher version.
+
+```
+{version-specific-content version="teacher"}
+
+This text is only shown in the teacher version of the guide.
+
+{version-specific-content end}
+```
+
+**Parameters:**
+- `version` - The version to display the contents in, currently either `student` or `teacher`. Currently only one version can be specified.
+
+---
+
+### Conditional content
+
+The contents between these tags are only shown if the given variable is `True`. Errors are logged if invalid `context` or `variable` are given.
+
+```
+{conditional-content context="guide" variable="teacher_version_present"}
+
+If you are a teacher (or involved in education), you can [access the teacher's version of the guide here](teacher/index.html).
+
+{conditional-content end}
+```
+
+**Parameters:**
+- `context` - The object to locate the variable, either `guide` or `section`.
+- `variable` - The variable to check.
 
 ---
 
