@@ -25,7 +25,7 @@ No pre-releases currently.
 
 ### 2.0.0
 
-**Release date:** 4th February 2016
+**Release date:** 5th February 2016
 
 **Downloads:** [Source available on GitHub](https://github.com/uccser/cs-field-guide/releases/tag/2.0.0)
 
