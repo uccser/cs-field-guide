@@ -2,7 +2,7 @@
 
 {panel type="warning" summary="Interactives in Data Representation"}
 
-Most interactives on this page have not been updated to the new system. Please [view the interactives on the Data Representation page](http://www.csfieldguide.org.nz/DataRepresentation.html) on the older version of the CSFG. We are currently in the process of updating these interactives for the version 2.0 release.
+Most interactives on this page have not been updated to the new system. Please [view the interactives on the Data Representation page](http://www.csfieldguide.org.nz/releases/1.9.9/DataRepresentation.html) on the older version of the CSFG. We are currently in the process of updating these interactives for the version 2.0 release.
 
 {panel end}
 
@@ -278,11 +278,7 @@ Because binary is base 2, there are only 2 possible digits (0 and 1), as opposed
 
 The interactive below illustrates how this binary number system represents decimal numbers. Have a play around with it to see what patterns you can see. The decimal (base 10) representation for the binary number currently shown is given by the interactive on the far right.
 
-{comment}
-
-<div class="widget-holder"><a href="static/widgets/DR/DR-base-conversion/public_html/index.html?base=2&columns=7&lines=A,B,C&offset=0"  target="blank"><img class="widget-image" src="static/data_representation/images/DR-BaseConversionBinaryThumbnail.png" alt=""><span class="widget-subtitle">Click to load the<br>binary number interactive</span></a></div>
-
-{comment end}
+{button link="http://www.cosc.canterbury.ac.nz/csfieldguide/dev/dev/_static/widgets/DR/DR-base-conversion/public_html/index.html?base=2&columns=7&lines=A,B,C&offset=0" text="Click for interactive: Base Calculator"}
 
 To ensure you are understanding correctly how to use the interactive, verify that when you enter the binary number 101101 it shows that the decimal representation is 45, that when you enter 100000 it shows that the decimal representation is 32, and when you enter 001010 it shows the decimal representation is 10.
 
@@ -431,7 +427,7 @@ The hexadecimal system is also known as base 16. The following interactive conve
 
 {comment end}
 
-<div class="widget-holder"><a href="static/widgets/DR/DR-base-conversion/public_html/index.html?base=16&columns=7&lines=A,B,C&offset=0"  target="blank"><img class="widget-image" src="static/images/DR-BaseConversionHexidecimal.png" alt=""><span class="widget-subtitle">Click to load the widget</span></a></div>
+{button link="http://www.cosc.canterbury.ac.nz/csfieldguide/dev/dev/_static/widgets/DR/DR-base-conversion/public_html/index.html?base=16&columns=7&lines=A,B,C&offset=0" text="Click for interactive: Base Calculator (Hexadecimal)"}
 
 Which notation you use will depend on the situation; binary numbers represent what is actually stored, but can be confusing to read and write; hexadecimal numbers are a good shorthand; and decimal numbers are used if you're trying to understand the meaning of the number. All three get used in computer science.
 
@@ -470,38 +466,7 @@ Mixing red and blue  give purple, red and yellow give orange, and so on.
 Actually, while the colours blue, red and yellow are commonly used in painting, the very similar primary colours that work better for printing are cyan, magenta and yellow (CMY), which are commonly found in computer printers as well as printing presses. This kind of mixing is called "subtractive mixing", because it starts with a white canvas or paper, and subtracts colour from it. The interactive below allows you to experiment with these in case you're not familiar with them, or if you just like mixing colours.
 We've also added a "black" colour; it's not strictly necessary (you can get black by putting all the other colours on full), but it's useful for printers because it's such a common colour.
 
-{comment}
-<link rel="stylesheet" href="static/interactives/dr/dr_inline_interactives.css" type="text/css" />
-<script type="text/javascript" src="static/interactives/dr/dr_inline_interactives.js"></script>
-<script type="text/javascript" src="static/interactives/dr/jquery-ui.min.js"></script>
-<div class="interactive row text-center">
-<h4>CMY Colour Mixer</h4>
-	<div class="col-xs-12 col-sm-4">
-		<label for="cyan-colour">Cyan</label>
-		<div id="cyan-colour" class="slider"></div>
-		<label class="pull-left">0</label>
-		<label id="cyan-value"></label>
-		<label class="pull-right">255</label>
-	</div>
-	<div class="col-xs-12 col-sm-4">
-		<label for="magenta-colour">Magenta</label>
-		<div id="magenta-colour" class="slider"></div>
-		<label class="pull-left">0</label>
-		<label id="magenta-value"></label>
-		<label class="pull-right">255</label>
-	</div>
-	<div class="col-xs-12 col-sm-4">
-		<label for="yellow-colour">Yellow</label>
-		<div id="yellow-colour" class="slider"></div>
-		<label class="pull-left">0</label>
-		<label id="yellow-value"></label>
-		<label class="pull-right">255</label>
-	</div>
-	<div class="clearfix"></div>
-	<div class="col-xs-12" id="cmyk-colour-output">
-	</div>
-</div>
-{comment end}
+**Note:** The interactive here has not been updated to the new system. Please [view the interactives on the Data Representation page](http://www.csfieldguide.org.nz/releases/1.9.9/DataRepresentation.html) on the older version of the CSFG. We are currently in the process of updating these interactives for release.
 
 {comment}
 
@@ -523,7 +488,7 @@ Pink is made by having red on full value, and green and blue on half; students c
 
 {panel end}
 
-<div><iframe width="100%" height="270" src="static/widgets/DR/DR-color/CG-ColorBits_1.html" frameborder="0"></iframe></div>
+**Note:** The interactive here has not been updated to the new system. Please [view the interactives on the Data Representation page](http://www.csfieldguide.org.nz/releases/1.9.9/DataRepresentation.html) on the older version of the CSFG. We are currently in the process of updating these interactives for release.
 
 The key idea is that you can specify the colour of a pixel using three numbers.
 In the above example, each number is from 0 to 255.
@@ -653,7 +618,7 @@ What if we were to use fewer than 24 bits to represent each colour, i.e. each sl
 
 It should be possible to get a perfect match using 24 bit colour. Now try the 8-bit sliders. These ones have only 8 values for red and green, and just 4 values for blue!
 
-<div><iframe width="100%" height="500" src="static/widgets/DR/DR-color/CG-ColorBits_2.html" frameborder="0"></iframe></div>
+**Note:** The interactive here has not been updated to the new system. Please [view the interactives on the Data Representation page](http://www.csfieldguide.org.nz/releases/1.9.9/DataRepresentation.html) on the older version of the CSFG. We are currently in the process of updating these interactives for release.
 
 The above system used 3 bits to specify the amount of red (8 possible values), 3 bits to specify the amount of green (again 8 possible values), and 2 bits to specify the amount of blue (4 possible values). This gives a total of 8 bits (hence the name), which can be used to make 256 different bit patterns, and thus can represent 256 different colours.
 
@@ -685,7 +650,7 @@ The extreme values are very limited; two-bit colour can have only 4 different co
 
 {panel end}
 
-<div><iframe width="100%" height="650" src="static/widgets/DR/DR-color/CG-ColorBits_3.html" frameborder="0"></iframe></div>
+**Note:** The interactive here has not been updated to the new system. Please [view the interactives on the Data Representation page](http://www.csfieldguide.org.nz/releases/1.9.9/DataRepresentation.html) on the older version of the CSFG. We are currently in the process of updating these interactives for release.
 
 So is it worth the space saving to put up with a lower quality image?
 An image represented using 24 bit colour would have 24 bits per pixel. In 600 x 800 pixel image (which is a reasonable size for a photo), this would contain 600 x 800 = 480,000 pixels, and thus would use 480,000 x 24 bits = 11,520,000 bits. This works out to around 1.44 megabytes.
@@ -710,7 +675,7 @@ For the purposes of the New Zealand NCEA standards, reducing the bit depth of an
 Now that you know how the 24 bit and 8 bit colour schemes work and how to represent them using bits, what are the implications of this in practice?
 The following interactive can be used to upload your own image, and experiment with allocating different numbers of bits to each colour. You can use it to demonstrate the effect of the different numbers of bits for this data representation.
 
-<div><iframe width="100%" height="520" src="static/widgets/DR/DR-color/CG-ColorBits_4.html" frameborder="0"></iframe></div>
+**Note:** The interactive here has not been updated to the new system. Please [view the interactives on the Data Representation page](http://www.csfieldguide.org.nz/releases/1.9.9/DataRepresentation.html) on the older version of the CSFG. We are currently in the process of updating these interactives for release.
 
 {comment}
 
@@ -822,7 +787,7 @@ Negative numbers are more often stored on computers using a system called "two's
 
 {panel type="curiosity" summary="Overflow and Y2K"}
 
-In some programming languages there isn't a check for when a number gets too big (overflows). For example, if you have an 8-bit number using two's complement, then 01111111 is the largest number (127), and if you add one without checking, it will change to 10000000, which happens to be the number -128. This can cause serious problems if not checked for, and is behind a variant of the Y2K problem, called the `Year 2038 problem <http://en.wikipedia.org/wiki/Year_2038_problem>`, involving a 32-bit number overflowing for dates on Tuesday, 19 January 2038.
+In some programming languages there isn't a check for when a number gets too big (overflows). For example, if you have an 8-bit number using two's complement, then 01111111 is the largest number (127), and if you add one without checking, it will change to 10000000, which happens to be the number -128. This can cause serious problems if not checked for, and is behind a variant of the Y2K problem, called the [Year 2038 problem](http://en.wikipedia.org/wiki/Year_2038_problem), involving a 32-bit number overflowing for dates on Tuesday, 19 January 2038.
 
 {image filename="xkcd-cant-sleep-comic.png" alt="A xkcd comic on number overflow" source="https://xkcd.com/571/"}
 
@@ -871,11 +836,9 @@ This system is a fixed-point number system; floating point numbers are based on 
 
 The values to the right of the 1-bit continue to be a half of the value to their left, so they are 0.5, 0.25, 0.125 and so on. The decimal number 3.5 can be represented as 11.1, and 2.8125 is 10.1101. The number 2.8 can't be represented accurately in binary! The closest value with the 10 bits in the interactive is 10.11001100. In fact, the number never finishes in binary; it contains "1100" repeating forever! This rounding error can be seen in some spreadsheets: try adding 110 + 2.8 - 2.8 - 100. With enough places of accuracy, you can see that the sum doesn't (quite) come to zero.
 
-<div class="widget-holder"><a href="static/widgets/DR/DR-base-conversion/public_html/index.html?base=2&columns=14&lines=A,B,C&offset=-8" target="blank"><img class="widget-image" src="static/images/DR-BaseConversionBinaryDecimals.png" alt=""><span class="widget-subtitle">Click to load the widget</span></a></div>
-
+**Note:** The interactive here has not been updated to the new system. Please [view the interactives on the Data Representation page](http://www.csfieldguide.org.nz/releases/1.9.9/DataRepresentation.html) on the older version of the CSFG. We are currently in the process of updating these interactives for release.
 
 {panel end}
-
 
 
 ### Numbers in programming languages
@@ -927,7 +890,7 @@ This puzzle can be solved using the pattern in binary numbers: [http://www.cs4fn
 ### Useful Links
 
 - [Basics of binary numbers](http://csunplugged.org/binary-numbers)
-- [Representing bits using sound <http://csunplugged.org/modem)
-- [Hex game <http://www.purposegames.com/game/049fc90a)
+- [Representing bits using sound](http://csunplugged.org/modem)
+- [Hex game](http://www.purposegames.com/game/049fc90a)
 - [Thriving in our digital world](http://www.cs.utexas.edu/~engage/) has good illustrations of data representation
-- [How a hard disk works <http://ed.ted.com/lessons/how-do-hard-drives-work-kanawat-senanan>]
+- [How a hard disk works](http://ed.ted.com/lessons/how-do-hard-drives-work-kanawat-senanan)
