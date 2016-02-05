@@ -386,7 +386,7 @@ When we have 8 bits the binary numbers start to get useful --- they can represen
 
 {panel type="jargon-buster" summary="What is a byte?"}
 
-Groups of 8 bits are so useful that they have their own name: a **byte**. Computer memory and disk space is usually divided up into bytes, and bigger values are stored using more than one byte. For example, two bytes (16 bits) are enough to store numbers from 0 to 65,535. Four bytes (32 bits) can store numbers up to 42,94,967,295. You can check these numbers by working out the place values of the bits. Every bit that's added will double the range of the number.
+Groups of 8 bits are so useful that they have their own name: a **byte**. Computer memory and disk space is usually divided up into bytes, and bigger values are stored using more than one byte. For example, two bytes (16 bits) are enough to store numbers from 0 to 65,535. Four bytes (32 bits) can store numbers up to 4,294,967,295. You can check these numbers by working out the place values of the bits. Every bit that's added will double the range of the number.
 
 {panel end}
 
