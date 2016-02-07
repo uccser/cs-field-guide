@@ -61,7 +61,7 @@ What we saw above is a simple error control coding algorithm, known as *2-dimens
 The cards represent bits, with their two states being black and white (in the "data representation" chapter we looked at how a bit can be stored by anything that can be in one of two states: shiny/not shiny, magnetised/not magnetised, high voltage/low voltage, black/white, etc). The original 7x7 cards that the computer laid out for you could be some kind of data, for example some text represented using bits, or an image, or some numbers.
 Although they are laid out in a grid, on a computer the rows of bits would be stored or transmitted one after the other (as 8 lots of 8 bits).
 
-The extra cards you added are called *parity bits*. [Parity](https://en.wikipedia.org/wiki/Parity_(mathematics))
+The extra cards you added are called *parity bits*. [Parity](https://en.wikipedia.org/wiki/Parity_(mathematics\))
 simply means whether a number is even or odd (the word comes from the same root as "pair"). By adding the extra cards in a way that ensured an even number of black cards in each row and column, you made it so that the rows and columns had what is called *even parity*.
 
 When a card was flipped, this simulated an error being made in your data (such as a piece of dust landing on a bit stored on a CD, or a cosmic ray changing a bit stored on a hard disk, or electrical interference changing a bit being sent over a network cable). Because you knew that each row and column was supposed to have an even number of black and white cards in it, you could tell that there was an error from the fact that there was a column and row that had an odd number of black cards in it. This means that the algorithm is able to detect errors, i.e. it has **error detection**. The specific card that had been flipped was at the intersection of the row and column that had an odd number of black cards and white cards in them, and because you were able to identify exactly which card was flipped, you were able to correct the error, i.e the algorithm has **error correction**.
@@ -448,7 +448,7 @@ The parity method is a form of [Hamming code](http://en.wikipedia.org/wiki/Hammi
 
 ###Useful Links
 - [CS Unplugged Parity Trick](http://csunplugged.org/error-detection)
-- [CS4FN](http://cs4fn.org) has a [free book](http://www.cs4fn.org/magic/) that contains the Parity Trick and a number of other tricks related to computer science.
+- [CS4FN](http://www.cs4fn.org/) has a [free book](http://www.cs4fn.org/magic/) that contains the Parity Trick and a number of other tricks related to computer science.
 - Techradar has more [information about error detection and correction](http://www.techradar.com/news/computing/how-error-detection-and-correction-works-1080736)
 - [An explanation of error correcting codes](http://www.multiwingspan.co.uk/as1.php?page=error)
 - [A check digit calculator for common bar codes](http://www.gs1.org/barcodes/support/check_digit_calculator)

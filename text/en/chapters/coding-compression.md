@@ -499,7 +499,7 @@ In fact, this is essentially what happens with GIF and PNG images; the pixel val
 
 {panel type="teacher-note" summary="Unplugged activity on Ziv-Lempel approach"}
 The [CS Unplugged site has activities and information about the Ziv-Lempel approach](http://csunplugged.org/text-compression),
-and the ["Computing Science Inside" site also has an activity based on this method](http://csi.dcs.gla.ac.uk/workshop-view.php?workshopID=1).
+and the ["Computing Science Inside" site also has an activity based on this method](https://web.archive.org/web/20150311225517/http://csi.dcs.gla.ac.uk/workshop-view.php?workshopID=1).
 The CS4FN site discusses [a related approach which is a little simpler, but not so useful in practice](http://www.cs4fn.org/internet/crushed.php).
 {panel end}
 
@@ -562,7 +562,7 @@ Also, video compression has been omitted, even though compressing videos saves m
 Most video compression is based on the "MPEG" standard (Moving Pictures Experts Group). There is some information about how this works in the [CS4FN article on "Movie Magic"](http://www.cs4fn.org/films/mpegit.php).
 
 {panel type="teacher-note" summary="Teacher guides for Plymouth resources"}
-Access to teacher guides for the Plymouth resources (linked in the previous paragraph) above are [available here](http://www.cimt.plymouth.ac.uk/resources/codes/>).
+Access to teacher guides for the Plymouth resources (linked in the previous paragraph) above are [available here](http://www.cimt.plymouth.ac.uk/resources/codes/).
 {panel end}
 
 The Ziv-Lempel method shown is a variation of the so-called "LZ77" method. Many of the more popular lossless compression methods are based on this, although there are many variations, and one called "LZW" has also been used a lot. Another high-compression general-purpose compression method is bzip, based on a very clever method called the Burrows-Wheeler Transform.
@@ -576,7 +576,7 @@ Questions like "what is the most compression that can be achieved" are addressed
 ## Further reading
 
 - "The Data Compression Book" by Mark Nelson and Jean-Loup Gailly is a good overview of this topic
-- A list of books on this topic (and lots of other information about compression) is available from [The Data Compression Site](http://www.data-compression.info/Books/>).
+- A list of books on this topic (and lots of other information about compression) is available from [The Data Compression Site](http://www.data-compression.info/Books/).
 - Gleick's book "The Information" has some background to compression, and coding in general.
 
 

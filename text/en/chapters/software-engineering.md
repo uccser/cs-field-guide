@@ -57,7 +57,7 @@ While successful projects are desirable, there is a lot that can be learnt from 
 - [Back to the drawing board - CS4FN](http://www.cs4fn.org/softwareengineering/backtodrawingboard.php)
 - [Why software fails - IEEE](http://spectrum.ieee.org/computing/software/why-software-fails)
 - [Learning from software failure - IEEE](http://spectrum.ieee.org/computing/software/learning-from-software-failure)
-- [Engineering Disasters 13: Software Flaws](http://youtu.be%2FEMVBLg2MrLs) is an excerpt from Engineering Disaster Episode 13 explaining software flaws in Ariane 5 and Patriot Missiles
+- [Engineering Disasters 13: Software Flaws](https://www.youtube.com/watch?v=EMVBLg2MrLs) is an excerpt from Engineering Disaster Episode 13 explaining software flaws in Ariane 5 and Patriot Missiles
 {panel end}
 
 ## Analysis: What do we build?
@@ -387,7 +387,7 @@ When the builder thinks they are done, compare what you built! How precise was y
 
 ## Agile software development
 
-*Agile* software development has become popular over the last 10 years; two of the most famous agile processes are called [XP](http://en.wikipedia.org/wiki/Extreme_programming) and [Scrum](http://en.wikipedia.org/wiki/Scrum_(development)). Agile software development is all about being extremely flexible and adaptive to change. Most other software processes try to manage and control changes to requirements during the process; agile processes accept and expect change. The following xkcd comic illustrates part of the apparent dilemma that agile processes aim to address. With Agile, we can develop software quickly, correctly, and be adaptive to change.
+*Agile* software development has become popular over the last 10 years; two of the most famous agile processes are called [XP](http://en.wikipedia.org/wiki/Extreme_programming) and [Scrum](http://en.wikipedia.org/wiki/Scrum_(development\)). Agile software development is all about being extremely flexible and adaptive to change. Most other software processes try to manage and control changes to requirements during the process; agile processes accept and expect change. The following xkcd comic illustrates part of the apparent dilemma that agile processes aim to address. With Agile, we can develop software quickly, correctly, and be adaptive to change.
 
 {image filename="xkcd-good-code.png" alt="A xkcd comic on good code" source="https://xkcd.com/844/"}
 
