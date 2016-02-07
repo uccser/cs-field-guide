@@ -45,7 +45,7 @@ Once you're familiar with the idea of formal languages, you'll possess a powerfu
 To give you a taste of what can be done, let's try searching for words that fit particular patterns.
 Suppose you're looking for words that contain the name "tim".
 
-Open the [Regular Expression interactive](http://csfieldguide.org.nz/_static/widgets/FL/FL-Regex/RegexDic.html) and type in the word "tim" (or a few letters from your name), then press the "Search" button to find all words containing "tim"..
+Open the [Regular Expression interactive](http://csfieldguide.org.nz/releases/1.9.9/_static/widgets/FL/FL-Regex/RegexDic.html) and type in the word "tim" (or a few letters from your name), then press the "Search" button to find all words containing "tim"..
 
 
 {panel type="teacher-note" summary="Alternative interactive site"}
@@ -56,7 +56,7 @@ The search should be typed into the "String:" box.
 
 {comment}
 Regex Dictionary interactive goes here
-http://csfieldguide.org.nz/_static/widgets/FL/FL-Regex/RegexDic.html
+http://csfieldguide.org.nz/releases/1.9.9/_static/widgets/FL/FL-Regex/RegexDic.html
 {comment end}
 
 That's a pretty simple search (though the results may have surprised you!).
@@ -160,7 +160,7 @@ You should let students devise their own notation for this. They will soon learn
 
 Did you find a sequence of trains to get from City Mall to Suburbopolis? You can test it by typing the sequence of trains in the following interactive. For example, if you took the A-train, then the B-train, then an A-train, type in ABA.
 
-{button link="www.csfieldguide.org.nz/_static/widgets/fsa-trip-planner-v4.html" text="View trip planner interactive"}
+{button link="www.csfieldguide.org.nz/releases/1.9.9/_static/widgets/fsa-trip-planner-v4.html" text="View trip planner interactive"}
 
 Can you find a sequence that takes you from City Mall to Suburbopolis? Can you find another sequence, perhaps a longer one? Suppose you wanted to take a really long route ... can you find a sequence of 12 hops that would get you there? 20 hops?
 
@@ -247,7 +247,7 @@ The FSA above accepts any string of inputs that end with an "a", so the interact
 
 Here's an interactive that follows the rules of the FSA above. You can use it to test different inputs.
 
-{button link="http://www.csfieldguide.org.nz/_static/widgets/fsa-2state-v3.html?map=one" text="View state interactive (1)"}
+{button link="http://www.csfieldguide.org.nz/releases/1.9.9/_static/widgets/fsa-2state-v3.html?map=one" text="View state interactive (1)"}
 
 Here's another FSA, which looks similar to the last one but behaves quite differently. You can test it in the interactive below.
 
@@ -272,7 +272,7 @@ The general rule is that the input must have an odd number of "a"s in it; the nu
 
 {panel end}
 
-{button link="http://www.csfieldguide.org.nz/_static/widgets/fsa-2state-v3.html?map=two" text="View state interactive (2)"}
+{button link="http://www.csfieldguide.org.nz/releases/1.9.9/_static/widgets/fsa-2state-v3.html?map=two" text="View state interactive (2)"}
 
 {glossary-definition term="Alphabet" definition="In formal languages, a list of characters that may occur in a language, or more generally, a list of all possible inputs that might happen."}
 To keep things precise, we'll define two further technical terms.
@@ -308,7 +308,7 @@ It would be frustrating if you could only change the spin setting 50 times, and 
 If you want, you could switch from fast to slow spin by pressing the spin button 3002 times.
 Or 2 times would do. Or 2 million times (try it if you're not convinced).
 
-{button link="http://www.csfieldguide.org.nz/_static/widgets/fsa-spin-graphic.html" text="View spinner interactive"}
+{button link="http://www.csfieldguide.org.nz/releases/1.9.9/_static/widgets/fsa-spin-graphic.html" text="View spinner interactive"}
 
 The following diagram summarizes the terminology we have introduced. Notice that this FSA has two accepting states. You can have as many as you want, but only one start state.
 
@@ -330,7 +330,7 @@ For example, here's a simple finite state automaton with just one input (button 
 The reset button isn't part of the FSA; it’s just a way of letting you return to the starting state.
 See if you can figure out which patterns of input will turn the light on:
 
-{button link="http://www.csfieldguide.org.nz/_static/widgets/fsa-strangelight-v3.html" text="View light interactive"}
+{button link="http://www.csfieldguide.org.nz/releases/1.9.9/_static/widgets/fsa-strangelight-v3.html" text="View light interactive"}
 
 {panel type="teacher-note" summary="Solution"}
 The light comes on with every third button press (which is intentionally confusing --- students will probably expect every second press to work, but this is to get them thinking about what is happening here!) The sequences that will turn on the light are therefore "aaa", "aaaaaa" and so on --- any number of presses that's a multiple of three. And, of course, zero presses.
@@ -822,7 +822,7 @@ The simplest kind of matching is just entering some text to match. Open a new wi
 
 [Open Rubular using this link and type the text "cat" into the box labeled "Your regular expression"](http://rubular.com/r/vCD1OSfjAc)
 
-{button link="http://www.csfieldguide.org.nz/_static/widgets/FL/FL-Regex/RegexTxt.html" text="View regular expression matcher"}
+{button link="http://www.csfieldguide.org.nz/releases/1.9.9/_static/widgets/FL/FL-Regex/RegexTxt.html" text="View regular expression matcher"}
 
 {image filename="rubular-example-screenshot.png" alt="Entering ab\*a into JFLAP}
 

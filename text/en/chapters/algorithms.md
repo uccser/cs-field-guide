@@ -166,7 +166,7 @@ Searching through collections of data is something computers have to do all the 
 
 Lets investigate searching with a game...
 
-{button link="http://www.csfieldguide.org.nz/_static/interactives/alg/searching/index.html?max=2" text="Searching Boxes - Part 1"}
+{button link="http://www.csfieldguide.org.nz/releases/1.9.9/_static/interactives/alg/searching/index.html?max=2" text="Searching Boxes - Part 1"}
 {comment}
 {interactive name="searching-boxes" type="whole-page" title="Searching Boxes - Part 1" parameters="max=2"}
 {comment end}
@@ -175,7 +175,7 @@ You may have noticed that the numbers on the monsters and pets in the game were 
 
 Now this next game is slightly different. You have less lives, which makes things a bit more challenging, but this time the numbers inside the boxes will be in order. The monsters, or maybe the pet, with the smallest number is in the present on the far left, and the one with the largest number is in the present on the far right. Let's see if you can collect all the pets without running out of lives...
 
-{button link="http://www.csfieldguide.org.nz/_static/interactives/alg/searching/index.html?level=3" text="Searching Boxes - Part 2"}
+{button link="http://www.csfieldguide.org.nz/releases/1.9.9/_static/interactives/alg/searching/index.html?level=3" text="Searching Boxes - Part 2"}
 {comment}
 {interactive name="searching-boxes" type="whole-page" text="Searching Boxes - Part 2" parameters="level=3"}
 {comment end}

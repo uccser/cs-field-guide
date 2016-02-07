@@ -88,9 +88,9 @@ Let’s look at the first few lines of the headers:
 
 ```
 Remote Address:132.181.17.3:80
-Request URL:http://csfieldguide.org.nz/NetworkCommunicationProtocols.html
-Request Method:GET
-Status Code:200 OK
+Request URL: http://csfieldguide.org.nz/en/chapters/network-communication-protocols.html
+Request Method: GET
+Status Code: 200 OK
 ```
 
 The *Remote Address* is the address of the server of the page is hosted on. The *Request URL* is the original URL that you requested. The request method should be familiar from above. It is a GET type request, saying “can I have the web page please?” and the response is the HTML. Don’t believe me? Click the *Response* tab. Finally, the *Status Code* is a code that the page can respond with.
@@ -98,8 +98,8 @@ The *Remote Address* is the address of the server of the page is hosted on. The 
 Let’s look at the *Request Headers* now, click ‘view source’ to see the original request.
 
 ```
-GET /NetworkCommunicationProtocols.html HTTP/1.1
-Host: www.cosc.canterbury.ac.nz
+GET /network-communication-protocols.html HTTP/1.1
+Host: www.csfieldguide.org.nz
 Connection: keep-alive
 Cache-Control: max-age=0
 Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
@@ -136,8 +136,8 @@ As you can see, a request message consists of the following:
 - An optional message body.
 
 Go ahead and try this same process on a few other pages too. For example, try these sites:
-- A very busy website in terms of content, such as *Facebook.com*
-- A chapter that [doesn’t exist in the Field Guide](http://csfieldguide.org.nz/Nope.html)
+- A very busy website in terms of content, such as *facebook.com*
+- A chapter that [doesn’t exist on Google](http://google.com/nope.html)
 - Your favourite website
 
 {panel type="curiosity"" summary="Who came up with HTTP?"}

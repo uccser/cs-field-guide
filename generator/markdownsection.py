@@ -248,7 +248,7 @@ class Section:
         if wrap:
             html = self.html_templates['image-wrapped'].format(html=image_html, wrap_direction=wrap)
         else:
-            html = self.html_templates['centered'].format(html=image_html)
+            html = self.center_html(image_html, 8)
 
         return html
 
@@ -336,6 +336,12 @@ class Section:
         return html
 
 
+    def center_html(self, html, width):
+        """Centers the HTML using the given number of columns"""
+        offset_width = (12 - width) // 2
+        return self.html_templates['centered'].format(html=html, width=width, offset_width=offset_width)
+
+
     def embed_video(self, match):
         youtube_src = "http://www.youtube.com/embed/{0}?rel=0"
         vimeo_src = "http://player.vimeo.com/video/{0}"
@@ -350,6 +356,7 @@ class Section:
                 elif video_type == 'vimeo':
                     source_link = vimeo_src.format(video_identifier)
                 html = self.html_templates['video'].format(source=source_link)
+                html = self.center_html(html, 10)
         else:
             self.regex_functions['video'].log("Video url not given", self, match.group(0))
             html = ''
@@ -401,7 +408,6 @@ class Section:
 
             button_text = self.html_templates['button-download-text'].format(text=text)
             html = self.html_templates['button'].format(link=output_path, text=button_text)
-            # html = self.html_templates['centered'].format(html=html)
         else:
             self.regex_functions['file download button'].log("File filename argument not provided", self, match.group(0))
         return html if html else ''
@@ -415,7 +421,6 @@ class Section:
 
         if link and text:
             html = self.html_templates['button'].format(link=link, text=text)
-            # html = self.html_templates['centered'].format(html=html)
         else:
             self.regex_functions['link button'].log("Button parameters not valid", self, match.group(0))
         return html if html else ''
@@ -482,8 +487,8 @@ class Section:
         link_html = link_template.format(interactive_thumbnail=thumbnail_location,
                                     interactive_link_text=link_text,
                                     interactive_source=file_link)
-
-        return self.html_templates['centered'].format(html=link_html)
+        html = self.center_html(link_html, 8)
+        return html
 
 
     def inpage_interactive_html(self, source_folder, name, match):

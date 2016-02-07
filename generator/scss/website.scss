@@ -180,6 +180,11 @@ ul.side-nav.fixed li a {
   padding: 1.5rem 0.3rem;
   margin-bottom: 1rem;
   border-radius: 4px;
+  @include transition(.2s ease-out);
+  @extend .z-depth-1;
+  &:hover {
+    @extend .z-depth-2;
+  }
   .btn-menu-link-text {
     font-size: 1.8rem;
     line-height: 115%;
@@ -271,13 +276,21 @@ ul.panel {
 }
 .btn {
   text-transform: none !important;
+  margin-bottom: 1rem;
 }
 .footer-details {
   color: rgba(255,255,255,0.8);
   background-color: $primary-color-dark;
   overflow: hidden;
 }
-.full-page-background {
-  height: 100%;
-  width: 100%;
+body.landing-page {
+  background-color: $primary-color !important;
+  padding: 2rem 1rem;
+  color: #fff;
+  footer {
+    padding-left: 0 !important;
+  }
+}
+.video-container {
+  margin-top: 1rem;
 }

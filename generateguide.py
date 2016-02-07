@@ -543,6 +543,7 @@ def create_landing_page(languages, html_generator, generator_settings, translati
         # Load resources from first version as English may not be present
         'path_to_guide_root': languages[0].language_path,
         'analytics_code': generator_settings['General']['Google Analytics Code'],
+        'version_number': generator_settings['General']['Version Number'],
         'languages': languages
         }
     output_folder = generator_settings['Output']['Base Folder']
