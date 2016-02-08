@@ -331,10 +331,12 @@ Apart from the question of what we do at what point of the project, another inte
 
 Once you’ve finished developing your program and given it to the customer, the main part of the software project is over. Still, it’s important that you don’t just stop working on it. The next part of the project, which can often go on for years, is called *maintenance*. During this phase you fix bugs, provide customer support and maybe add new features that customers need.
 
-{panel type="curiosity" summary="Brook’s law"}
-Imagine that your project is running late and your customer is getting impatient. Your first instinct might be to ask some of your friends if they can help out so that you have more people working on the project. Brooks’s law, however, suggests that that is exactly the wrong thing to do!
+{panel type="curiosity" summary="Brooks' law"}
+{glossary-definition term="Brooks' law" definition="An observation that adding more people to a project that is running late may actually slow it down more."}
 
-Brooks’s law states that “adding manpower to a late software project makes it later.” This might seem counterintuitive at first because you would assume that more people would get more work done. However, the overhead of getting new people started on the project (getting them to understand what you are trying to build, your design, the existing code, and so on) and of managing and coordinating the larger development team actually makes things slower rather than faster in the short term.
+Imagine that your project is running late and your customer is getting impatient. Your first instinct might be to ask some of your friends if they can help out so that you have more people working on the project. Brooks’ law, however, suggests that that is exactly the wrong thing to do!
+
+{glossary-link term="Brooks’ law" reference-text="software engineering"}Brooks’ law{glossary-link end} states that “adding manpower to a late software project makes it later.” This might seem counterintuitive at first because you would assume that more people would get more work done. However, the overhead of getting new people started on the project (getting them to understand what you are trying to build, your design, the existing code, and so on) and of managing and coordinating the larger development team actually makes things slower rather than faster in the short term.
 
 {panel end}
 
