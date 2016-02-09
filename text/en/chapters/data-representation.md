@@ -39,7 +39,11 @@ Understanding what the bits are doing enables you to work out how much space wil
 
 This chapter is about some of the different methods that computers use to code different kinds of information in patterns of these bits, and how this affects the cost and quality of what we do on the computer, or even if something is feasible at all.
 
-## Getting Started
+## Getting Started - Representing text with Braille
+
+{panel type="additional-information" summary="Representing Braille without making holes in paper"}
+When working through the material in this section, a good way to draw braille on paper without having to actually make raised dots is to draw a rectangle with 6 small circles in it, and to colour in the circles that are raised, and not colour in the ones that aren’t raised.
+{panel end}
 
 More than 200 years ago a 15-year-old French boy invented a system for representing text using combinations of flat and raised dots on paper so that they could be read by touch.
 The system became very popular with people who had visual impairment as it provided a relatively fast and reliable way to "read" text without seeing it.
@@ -49,55 +53,43 @@ Each character in braille is represented with a cell of 6 dots. Each dot can eit
 {image filename="braille-alphabet-diagram.jpg" alt="The braille alphabet"}
 
 Let's work out how many different patterns can be made using the 6 dots in a Braille character.
-When working through the material in this section, a good way to draw braille on paper without having to actually make raised dots is to draw a rectangle with 6 small circles in it, and to colour in the circles that are raised, and not colour in the ones that aren’t raised.
-
 If braille used only 2 dots, there would be 4 patterns.
 And with 3 dots there would be 8 patterns
 
 {image filename="two-and-three-dot-combinations-diagram.png" alt="Combinations of both two and three dots"}
 
-{comment}
+You may have noticed that there are twice as many patterns with 3 dots as there are with 2 dots. It turns out that every time you add an extra dot, that gives twice as many patterns, so with 4 dots there are 16 patterns, 5 dots has 32 patterns, and 6 dots has 64 patterns. Can you come up with an explanation as to why this doubling of the number of patterns occurs?
 
-.. xHTML5 there's room for some interactives with the braille, something like getting students to try to find all the patterns for 3, 4, 5, 6 dots (as a bit of a game) [low priority]
-
-{comment end}
-
-You may have noticed that there are twice as many patterns with 3 dots as there are with 2 dots. It turns out that every time you add an extra dot, that gives twice as many patterns (why?), so with 4 dots there are 16 patterns, 5 dots has 32 patterns, and 6 dots has 64 patterns.
-
-{panel type="teacher-note" summary="Dot patterns"}
-
-The reason that the number of patterns doubles with each extra dot is that with, say, 3 dots you have 8 patterns, so with 4 dots you can use all the 3-dot patterns with the 4th dot flat, and all of them with it raised. This concept is a fundamental one for students to grasp with binary representation: each extra bit doubles the number of values that can be stored. This becomes very important in choosing the right number of bits for a value. For example, a 101-bit encryption key is *twice* as hard to crack as a 100-bit key, even though it's only 1% larger!
-
+{panel type="curiosity" summary="Why does adding one more dot double the number of possible patterns?"}
+The reason that the number of patterns doubles with each extra dot is that with, say, 3 dots you have 8 patterns, so with 4 dots you can use all the 3-dot patterns with the 4th dot flat, and all of them with it raised.
+This gives 16 4-dot patterns.
+And then, you can do the same with one more dot to bring it up to 5 dots.
+This process can be repeated infinitely.
 {panel end}
 
-So, Braille can make 64 patterns.
+{panel type="teacher-note" summary="Importance of students understanding why the number of patters double with every dot"}
+This concept is a fundamental one for students to grasp with binary representation: each extra bit doubles the number of values that can be stored. This becomes very important in choosing the right number of bits for a value. For example, a 101-bit encryption key is *twice* as hard to crack as a 100-bit key, even though it's only 1% larger!
+{panel end}
+
+So, Braille, with its 6 dots, can make 64 patterns.
 That's enough for all the letters of the alphabet, and other symbols too, such as digits and punctuation.
+
+The reason we're looking at Braille in this chapter is because it is a representation using bits.
+That is, it contains 2 different values (raised and not raised) and contains sequences of these to represent different patterns.
+The letter m, for example, could be written as 110010, where "1" means raised dot, and "0" means not raised dot (assuming we're reading from left to right and then down).
+This is the same as how we sometimes use 1's and 0's to show how a computer is representing data.
 
 Braille also illustrates why binary representation is so popular. It would be possible to have three kinds of dot: flat, half raised, and raised.
 A skilled braille reader could distinguish them, and with three values per dot, you would only need 4 dots to represent 64 patterns.
 The trouble is that you would need more accurate devices to create the dots, and people would need to be more accurate at sensing them.
 If a page was squashed, even very slightly, it could leave the information unreadable.
-
 Digital devices almost always use two values (binary) for similar reasons: computer disks and memory can be made cheaper and smaller if they only need to be able to distinguish between two extreme values (such as a high and low voltage), rather than fine-grained distinctions between very subtle differences in voltages.
-Arithmetic is also easy with binary values; if you have only two digits (0 and 1), then there aren't many rules to learn - adding digits only requires circuits to calculate 0+0, 0+1, 1+0 and 1+1.
-You might like to work out how many combinations of decimal digits you need to be able to add if you're doing conventional arithmetic!
+Using ten digits (like we do in our every day decimal counting system) would obviously be too challenging.
 
-{panel type="curiosity" summary="Decimal vs Binary in circuits"}
-
-Why are digital systems so hung up on only using two digits?
-After all, you could do all the same things with a 10 digit system?
-
+{panel type="curiosity" summary="Decimal-based computers"}
 As it happens, people have tried to build decimal-based computers, but it's just too hard.
 Recording a digit between 0 and 9 involves having accurate equipment for reading voltage levels, magnetisation or reflections, and it's a lot easier just to check if it's mainly one way or the other.
-
-Also, it's way easier to build circuits to process binary numbers.
-For example, suppose you need to build a circuit to add two decimal digits.
-There are 10 different decimal digits (0 to 9), and the combinations for adding are 0+0, 0+1, 0+2,... 0+9, 1+0, 1+1,.... 9+9. That's 90 different rules that you need to know for addition (it's not 100 because combinations like 5+5 appear twice). You can get by with only 50 rules if you know that 5+3 is the same as 3+5. The point is that electronic circuitry to do this would be way more complicated than normal computers that use binary.
-The binary equivalent of the combinations above is 0+0, 1+0, 0+1 and 1+1.
-Just 4 main rules for addition, instead of dozens!
 {panel end}
-
-In fact, every kind of file on a computer is represented using just a whole lot of binary digits --- text, pictures, spreadsheets, web pages, songs --- *everything* is stored using just two values. Even the programs (apps) that you run use binary representation --- sometimes a program file that the computer can run is referred to as a "binary file", which is a bit odd since every file on a computer is binary!
 
 ## Representing text with bits
 
