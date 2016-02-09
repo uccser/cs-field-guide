@@ -21,9 +21,31 @@
 }
 
 /* General Calculator Styling */
+#interactive-awful-calculator-interface .calculator {
+  border: 2px solid #EFEFEF;
+  border-radius: 2px;
+  margin-top: 1rem;
+  padding: 1rem !important;
+}
 #interactive-awful-calculator-interface button {
   width: 100%;
   padding: 0;
+}
+.col.s9,
+.calculator-input {
+  height: 36px;
+}
+.calculator-input {
+  margin: 0;
+  padding: 0 0.3rem;
+  width: 100%;
+  display: inline-block;
+  background-color: #EFEFEF;
+  color: #000;
+  text-align: right;
+  font-size: 1.8rem;
+  border: none;
+  border-radius: 2px;
 }
 #interactive-awful-calculator-interface .row {
   margin: 0.5rem 0;
