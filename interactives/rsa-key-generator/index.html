@@ -1,62 +1,55 @@
 <!DOCTYPE html>
-<!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]-->
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <!-- If you delete this meta tag World War Z will become a reality -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <!-- ### Enter your interactive title in the title block ### -->
     <title>RSA Key Generator</title>
     <link rel="stylesheet" href="../base-files/css/normalize.css">
-    <link rel="stylesheet" href="../base-files/css/foundation.min.css">
+    <!--Import materialize.css-->
+    <link rel="stylesheet" href="../base-files/css/materialize.min.css" type="text/css" media="screen,projection"/>
     <script src="../base-files/js/modernizr.js"></script>
-    <!-- jQuery (necessary for Foundation) -->
-    <script src="../base-files/js/jquery.js"></script>
+    <!-- jQuery (necessary for Materialize) -->
+    <script type="text/javascript" src="../base-files/js/jquery.js"></script>
   </head>
   <body>
-      <div class="row">
-      <div class="small-12 columns">
-      <div class="interactive">
-	    <!-- ### Start of required HTML for inline interactives ### -->
+    <!-- ### Start of required HTML for inline interactives ### -->
+    <div class="row interactive" id="interactive-rsa-key-generator">
+      <div class="col s12">
+        <h3>RSA Key Generator</h3>
 
-            <div class="col-xs-12 col-md-6 col-md-offset-3">
-            <div class="panel panel-default">
-            <h3 class="panel-heading">RSA Key Generator</h3>
-            <div class="panel-body">
-                <div class="row">
-                    <form id="modeSelect" class="form-horizontal" role="form">
-                        <div class="form-group">
-                            <div class="col-xs-12 text-center">
-                            <input type="button" id="generate" onclick="generate_new_keys()" value="Generate New Keys" class="btn btn-primary">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="pub_key" class="col-xs-3 control-label text-right">Public Key</label>
-                            <div class="col-xs-8">
-                                <textarea id="pub_key" class="form-control" rows="1" readonly="true"></textarea>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="priv_key" class="col-xs-3 control-label text-right">Private Key</label>
-                            <div class="col-xs-8">
-                                <textarea id="priv_key" class="form-control" rows="1" readonly="true"></textarea>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            </div>
-            </div>
-            <div class="clearfix visible-xs-block"></div>
+        <div class="row">
+          <div class="col s12 m8 offset-m2">
+            <a id="interactive-rsa-key-generator-generate" class="btn btn-large">Generate New Keys</a>
+          </div>
 
-      <!-- ### End of required HTML for inline interactives ### -->
+          <div class="col s12">
+            <h5>Public Key</h5>
+          </div>
+          <div class="col s7">
+            <textarea id="interactive-rsa-key-generator-public-key" rows="1" readonly></textarea>
+          </div>
+          <div class="col s5">
+            <a id="interactive-rsa-key-generator-copy-public" class="btn">Copy Public Key</a>
+          </div>
+
+          <div class="col s12">
+            <h5>Private Key</h5>
+          </div>
+          <div class="col s7">
+            <textarea id="interactive-rsa-key-generator-private-key" rows="1" readonly></textarea>
+          </div>
+          <div class="col s5">
+            <a id="interactive-rsa-key-generator-copy-private" class="btn">Copy Private Key</a>
+          </div>
+        </div>
       </div>
-      </div>
-      </div>
-    <!-- Foundation responsive CSS -->
-    <script src="../base-files/js/foundation.min.js"></script>
-    <script>
-      $(document).foundation();
-    </script>
+      <link rel="stylesheet" href="./css/rsa-key-generator.css">
+      <script src="./js/rsa-key-generator.js"></script>
+    </div>
+    <!-- ### End of required HTML for inline interactives ### -->
+    <!-- Materialize responsive CSS -->
+    <script type="text/javascript" src="../base-files/js/materialize.min.js"></script>
   </body>
 </html>
