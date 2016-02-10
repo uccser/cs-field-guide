@@ -32,3 +32,6 @@
 #interactive-checksum-calculator-result {
   display: none;
 }
+#interactive-checksum-calculator-reset {
+  margin-bottom: 1rem;
+}
