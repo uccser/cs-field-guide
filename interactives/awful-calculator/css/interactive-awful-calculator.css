@@ -7,7 +7,13 @@
 #interactive-calculator-awful button {
   background-color: #512da8;
 }
-#interactive-calculator-awful .row:nth-child(2n+1) button:hover {
+#interactive-calculator-awful .row button:hover {
+  -ms-transform: scale(1.8, 1.8);
+  -webkit-transform: scale(1.8, 1.8);
+  -moz-transform: scale(1.8, 1.8);
+  transform: scale(1.8, 1.8);
+}
+/*#interactive-calculator-awful .row:nth-child(2n+1) button:hover {
   -ms-transform: scale(0.6, 0.6);
   -webkit-transform: scale(0.6, 0.6);
   -moz-transform: scale(0.6, 0.6);
@@ -18,7 +24,7 @@
   -webkit-transform: scale(1.6, 1.6);
   -moz-transform: scale(1.6, 1.6);
   transform: scale(1.6, 1.6);
-}
+}*/
 
 /* General Calculator Styling */
 #interactive-awful-calculator-interface .tabs {
