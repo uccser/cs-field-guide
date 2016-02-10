@@ -4,6 +4,9 @@ $(document).ready(function(){
       crypt.getKey();
       $('#interactive-rsa-key-generator-public-key').val(removeHeaders(crypt.getPublicKey()));
       $('#interactive-rsa-key-generator-private-key').val(removeHeaders(crypt.getPrivateKey()));
+
+      // Enable copy buttons for use
+      $('.interactive-rsa-key-generator-button').prop("disabled", false);
     });
 
     $("#interactive-rsa-key-generator-copy-public").click(function() {
