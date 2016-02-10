@@ -1,3 +1,6 @@
 #interactive-rsa-key-generator a {
   width: 100%;
 }
+#interactive-rsa-key-generator textarea {
+  height: initial;
+}
