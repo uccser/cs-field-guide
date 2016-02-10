@@ -3,7 +3,7 @@ var Deceiver = {};
 $(document).ready(function(){
 
     $(".interactive-deceiver-button").click(function() {
-        var clickedButton = ($(this).html());
+        var clickedButton = ($(this).html().trim());
         console.log(clickedButton);
         if (clickedButton == "Odd") {
             if (Deceiver.number % 2 == 1) {
