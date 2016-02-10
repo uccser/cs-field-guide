@@ -34,10 +34,10 @@ class Section:
         self.permalinks = set()
         # Dictionary of sets for images, interactives, and other_files
         self.required_files = setup_required_files(file_node.guide)
-        self.page_scripts = set()
+        self.page_scripts = []
         self.mathjax_required = False
         self.sectioned = False
-        self.html_path_to_root = self.file_node.depth * '../'
+        self.html_path_to_guide_root = self.file_node.depth * '../'
 
     def __repr__(self):
         """Return representation of structure of section"""
@@ -54,6 +54,10 @@ class Section:
 
 
     # ----- Helper Functions -----
+    def add_page_script(self, script_html):
+        if script_html not in self.page_scripts:
+            self.page_scripts.append(script_html)
+
 
     def create_heading(self, match):
         """Parsing function for heading regex
@@ -77,9 +81,11 @@ class Section:
                 for level in range(self.current_heading.level - heading_level + 1):
                     self.current_heading = self.current_heading.parent
             elif heading_level > self.current_heading.level + 1:
-                #Error in markdown - a heading level has been missed.
-                #Generate blank intermediate headings and log error
-                self.regex_functions['heading'].log("Heading level missed between {} {} and {}".format(self.current_heading.number, self.current_heading.heading, heading_text), self, match.group(0))
+                # Error in markdown - a heading level has been missed.
+                # Generate blank intermediate headings and log error
+                # Ignore missing headings in permissions file due to custom style
+                if not self.file_node.filename == PERMISSIONS_LOCATION:
+                    self.regex_functions['heading'].log("Heading level missed between {} {} and {}".format(self.current_heading.number, self.current_heading.heading, heading_text), self, match.group(0))
                 for level in range(heading_level - self.current_heading.level - 1):
                     intermediate_heading = HeadingNode(heading_text, '', parent = self.current_heading)
                     self.current_heading.children.append(intermediate_heading)
@@ -106,7 +112,7 @@ class Section:
             if link[-1].isdigit():
                 link = link[:-1] + str(count)
             else:
-                link = link + str(count)
+                link = link + '-' + str(count)
             count += 1
         self.permalinks.add(link)
         return link
@@ -116,30 +122,43 @@ class Section:
         """Create a HTML link, if local link then add path back to root"""
         link_text = match.group('link_text')
         link_url = match.group('link_url')
+        link_url = link_url.replace('\)', ')')
+
         if not link_url.startswith(('http://','https://','mailto:')):
-            link_url = self.html_path_to_root + link_url
+            # If linked to file, add file to required files
+            if link_url.startswith(self.guide.generator_settings['Source']['File']):
+                file_name = link_url[len(self.guide.generator_settings['Source']['File']):]
+                self.required_files['File'].add(file_name)
+
+            link_url = os.path.join(self.html_path_to_guide_root, link_url)
+
         html = self.html_templates['link'].format(link_text=link_text, link_url=link_url).strip()
         return html
 
 
     def create_panel(self, match):
         arguments = match.group('args')
-
+        teacher_only_panels = self.guide.generator_settings['Output']['Teacher Only Panels'].strip().split('\n')
         panel_type = parse_argument('type', arguments)
         if panel_type:
-            title = systemfunctions.from_kebab_case(panel_type)
-            summary_value = parse_argument('summary', arguments)
-            summary = ': ' + summary_value if summary_value else ''
-            expanded_value = parse_argument('expanded', arguments)
-            expanded = ' active' if expanded_value == 'True'  else ''
-            content = markdown(match.group('content'), extras=MARKDOWN2_EXTRAS)
+            # Check if panel allowed
+            if not (self.guide.version != "teacher" and panel_type in teacher_only_panels):
+                title = systemfunctions.from_kebab_case(panel_type)
+                summary_value = parse_argument('summary', arguments)
+                summary = ': ' + summary_value.strip() if summary_value else ''
+                expanded_value = parse_argument('expanded', arguments)
+                expanded = ' active' if expanded_value == 'True'  else ''
+                content = markdown(match.group('content'), extras=MARKDOWN2_EXTRAS)
 
-            heading = self.html_templates['panel_heading'].format(title=title,
-                                                                  summary=summary)
-            html = self.html_templates['panel'].format(panel_heading = heading,
-                                                       content = content,
-                                                       type_class = ' panel-' + panel_type,
-                                                       expanded = expanded)
+                heading = self.html_templates['panel_heading'].format(title=title,
+                                                                      summary=summary)
+                html = self.html_templates['panel'].format(panel_heading = heading,
+                                                           content = content,
+                                                           type_class = 'panel-' + panel_type,
+                                                           expanded = expanded)
+            # Panel should be ignored
+            else:
+                html = ''
         else:
             self.regex_functions['panel'].log("Panel type argument missing", self, match.group(0))
             html = ''
@@ -180,7 +199,7 @@ class Section:
 
         valid_image_wrap_directions = ['left', 'right']
 
-        image_source = os.path.join(self.html_path_to_root, self.guide.generator_settings['Source']['Image'], filename)
+        image_source = os.path.join(self.html_path_to_guide_root, self.guide.generator_settings['Source']['Image'], filename)
 
         parameters = ''
         wrap = False
@@ -192,6 +211,25 @@ class Section:
                     wrap = wrap_value
                 else:
                     self.regex_functions['image'].log('Image wrap value {direction} for image {filename} not recognised. Valid directions: {valid_directions}'.format(direction=wrap_value, filename=filename, valid_directions=valid_image_wrap_directions), self, match.group(0))
+
+            # Parse caption and caption-link arguments
+            caption_value = parse_argument('caption', arguments)
+            caption_link_value = parse_argument('caption-link', arguments)
+            if caption_value and not image_set:
+                if caption_link_value:
+                    caption_html = self.html_templates['link'].format(link_url=caption_link_value, link_text=caption_value)
+                else:
+                    caption_html = caption_value
+                # Add caption as data value attribute to display in materialbox
+                parameters += ' '
+                parameters += self.html_templates['image-caption-data-value'].format(caption=caption_value)
+
+            # Parse source argument
+            source_value = parse_argument('source', arguments)
+            if source_value and not image_set:
+                source_html = self.html_templates['link'].format(link_url=source_value, link_text='Image source')
+
+            # Parse alt argument
             alt_value = parse_argument('alt', arguments)
             if alt_value:
                 parameters += ' '
@@ -199,10 +237,18 @@ class Section:
 
         image_html = self.html_templates['image'].format(image_source=image_source, image_parameters=parameters)
 
+        if source_value and caption_value:
+            caption_html = caption_html + ' &mdash; ' + source_html
+            image_html += self.html_templates['image-caption'].format(html=caption_html)
+        elif caption_value and not source_value:
+            image_html += self.html_templates['image-caption'].format(html=caption_html)
+        elif source_value and not caption_value:
+            image_html += self.html_templates['image-caption'].format(html=source_html)
+
         if wrap:
             html = self.html_templates['image-wrapped'].format(html=image_html, wrap_direction=wrap)
         else:
-            html = self.html_templates['centered'].format(html=image_html)
+            html = self.center_html(image_html, 8)
 
         return html
 
@@ -248,6 +294,54 @@ class Section:
             return False
 
 
+    def check_version_specific_content(self, match):
+        """Checks if content is allowed for version"""
+        arguments = match.group('args')
+        version = parse_argument('version', arguments)
+        content = match.group('content')
+
+        if version == self.guide.version:
+            html = content
+        else:
+            html = ''
+        return html
+
+
+    def check_conditional_content(self, match):
+        """Checks if content is allowed for variable"""
+        arguments = match.group('args')
+        variable = parse_argument('variable', arguments)
+        context = parse_argument('context', arguments)
+        content = match.group('content')
+
+        if context == 'guide':
+            attribute_context = self.guide
+        elif context == 'section':
+            attribute_context = self
+        else:
+            attribute_context = False
+
+        if attribute_context:
+            value = getattr(attribute_context, variable, 'Not found')
+            if value:
+                html = content
+            elif value == 'Not found':
+                self.regex_functions['conditional'].log("Invalid variable {} given".format(variable), self, match.group(0))
+            else:
+                html = ''
+        else:
+            self.regex_functions['conditional'].log("Invalid context {} given".format(context), self, match.group(0))
+
+
+        return html
+
+
+    def center_html(self, html, width):
+        """Centers the HTML using the given number of columns"""
+        offset_width = (12 - width) // 2
+        return self.html_templates['centered'].format(html=html, width=width, offset_width=offset_width)
+
+
     def embed_video(self, match):
         youtube_src = "http://www.youtube.com/embed/{0}?rel=0"
         vimeo_src = "http://player.vimeo.com/video/{0}"
@@ -262,6 +356,7 @@ class Section:
                 elif video_type == 'vimeo':
                     source_link = vimeo_src.format(video_identifier)
                 html = self.html_templates['video'].format(source=source_link)
+                html = self.center_html(html, 10)
         else:
             self.regex_functions['video'].log("Video url not given", self, match.group(0))
             html = ''
@@ -304,7 +399,7 @@ class Section:
 
         if filename:
             self.required_files['File'].add(filename)
-            output_path = os.path.join(self.html_path_to_root, self.guide.generator_settings['Output']['File'], filename)
+            output_path = os.path.join(self.html_path_to_guide_root, self.guide.generator_settings['Output']['File'], filename)
 
             if match.group('text'):
                 text = match.group('text')
@@ -313,9 +408,21 @@ class Section:
 
             button_text = self.html_templates['button-download-text'].format(text=text)
             html = self.html_templates['button'].format(link=output_path, text=button_text)
-            html = self.html_templates['centered'].format(html=html)
         else:
             self.regex_functions['file download button'].log("File filename argument not provided", self, match.group(0))
+        return html if html else ''
+
+
+    def create_link_button(self, match):
+        """Create a button for linking to a page"""
+        arguments = match.group('args')
+        link = parse_argument('link', arguments)
+        text = parse_argument('text', arguments)
+
+        if link and text:
+            html = self.html_templates['button'].format(link=link, text=text)
+        else:
+            self.regex_functions['link button'].log("Button parameters not valid", self, match.group(0))
         return html if html else ''
 
 
@@ -330,8 +437,8 @@ class Section:
         name = parse_argument('name', arguments)
         interactive_type = parse_argument('type', arguments)
         if name and interactive_type:
-            arg_title = parse_argument('title', arguments)
-            title = arg_title if arg_title else name
+            arg_text = parse_argument('text', arguments)
+            text = arg_text if arg_text else name
             arg_parameters = parse_argument('parameters', arguments)
             params = arg_parameters if arg_parameters else None
             source_folder = os.path.join(self.guide.generator_settings['Source']['Interactive'], name)
@@ -341,7 +448,7 @@ class Section:
                 if interactive_type == 'whole-page':
                     arg_thumbnail = parse_argument('thumbnail', arguments)
                     thumbnail = arg_thumbnail if arg_thumbnail else self.guide.generator_settings['Source']['Interactive Thumbnail']
-                    html = self.whole_page_interactive_html(source_folder, title, name, params, thumbnail, match)
+                    html = self.whole_page_interactive_html(source_folder, text, name, params, thumbnail, match)
                 elif interactive_type == 'in-page':
                     html = self.inpage_interactive_html(source_folder, name, match)
                 elif interactive_type == 'iframe':
@@ -362,26 +469,26 @@ class Section:
             - A script is added to the page for a responsive iframe
             - A script is added within the iframe for a responsive iframe
         """
-        folder_location = os.path.join(self.html_path_to_root, source_folder, self.guide.generator_settings['Source']['Interactive File'])
+        folder_location = os.path.join(self.html_path_to_guide_root, source_folder, self.guide.generator_settings['Source']['Interactive File'])
         file_link = "{location}?{parameters}".format(location=folder_location, parameters=params) if params else folder_location
         link_template = self.html_templates['interactive-iframe']
         html = link_template.format(interactive_source=file_link)
-        self.page_scripts.add(self.html_templates['interactive-iframe-script'].format(path_to_root=self.html_path_to_root))
+        self.add_page_script(self.html_templates['interactive-iframe-script'].format(path_to_guide_root=self.html_path_to_guide_root))
         return html
 
 
-    def whole_page_interactive_html(self, source_folder, title, name, params, thumbnail, match):
+    def whole_page_interactive_html(self, source_folder, text, name, params, thumbnail, match):
         """Return the html block for a link to an whole page interactive"""
-        thumbnail_location = os.path.join(self.html_path_to_root, source_folder, thumbnail)
-        link_text = 'Click to load {title}'.format(title=title)
-        folder_location = os.path.join(self.html_path_to_root, source_folder, self.guide.generator_settings['Source']['Interactive File'])
+        thumbnail_location = os.path.join(self.html_path_to_guide_root, source_folder, thumbnail)
+        link_text = 'Click to load {text}'.format(text=text)
+        folder_location = os.path.join(self.html_path_to_guide_root, source_folder, self.guide.generator_settings['Source']['Interactive File'])
         file_link = "{location}?{parameters}".format(location=folder_location, parameters=params) if params else folder_location
         link_template = self.html_templates['interactive-external']
         link_html = link_template.format(interactive_thumbnail=thumbnail_location,
                                     interactive_link_text=link_text,
                                     interactive_source=file_link)
-
-        return self.html_templates['centered'].format(html=link_html)
+        html = self.center_html(link_html, 8)
+        return html
 
 
     def inpage_interactive_html(self, source_folder, name, match):
@@ -432,10 +539,10 @@ class Section:
             for attr in link_attributes:
                 raw_link = element.get(attr, None)
                 if raw_link and not raw_link.startswith('http://') and not raw_link == '#':
-                    link = os.path.join(self.html_path_to_root, source_folder, raw_link)
+                    link = os.path.join(self.html_path_to_guide_root, source_folder, raw_link)
                     element[attr] = link
             if element.name == 'script' or (element.name == 'link' and element.get('rel', None) == ['stylesheet']):
-                self.page_scripts.add(element.extract())
+                self.add_page_script(element.extract())
 
 
     def check_interactive_exists(self, interactive_source, interactive_name, match):
@@ -469,14 +576,14 @@ class Section:
 
     def _create_table_of_contents(self, root_folder, depth=None, top_level=False):
         """Recursively called from create_table_of_contents"""
-        folder_path = os.path.join(self.html_path_to_root, root_folder.path, 'index.html')
+        folder_path = os.path.join(self.html_path_to_guide_root, root_folder.path, 'index.html')
         folder_link_html = self.html_templates['link'].format(link_text=root_folder.title, link_url=folder_path)
 
         if depth is None or depth > 0:
             items = []
             for file in root_folder.files:
                 if file.tracked:
-                    link_url = self.html_path_to_root + self.guide.generator_settings['Output']['HTML File'].format(file_name=file.path)
+                    link_url = self.html_path_to_guide_root + self.guide.generator_settings['Output']['Output File'].format(file_name=file.path)
                     link_html = self.html_templates['link'].format(link_text=file.section.title, link_url=link_url)
                     items.append(link_html)
 
@@ -494,71 +601,59 @@ class Section:
             return folder_link_html
 
 
-    def add_glossary_entry(self, match):
+    def add_glossary_definition(self, match):
         glossary = self.guide.glossary
-        word = match.group('word')
-        definition = match.group('def')
-        permalink_id = systemfunctions.to_kebab_case(word)
 
-        this_file_link = os.path.join(glossary.html_path_to_root, self.file_node.path)
-        back_link = '{}.html#{}'.format(this_file_link, permalink_id)
-        self.guide.glossary.add_item(word, definition, back_link)
+        arguments = match.group('args')
+        term = parse_argument('term', arguments)
+        definition = parse_argument('definition', arguments)
+        definition = markdown(definition, extras=MARKDOWN2_EXTRAS)
 
-        id_tag = ' id="{}"'.format(permalink_id)
+        permalink = self.create_permalink('glossary-' + term)
 
-        content = match.group('content') if match.group('content') else ''
+        this_file_link = os.path.join(glossary.html_path_to_guide_root, self.file_node.path)
+        back_link = '{}.html#{}'.format(this_file_link, permalink)
+        self.guide.glossary.add_item(term, definition, back_link, match, self)
 
-        if content:
-            glossary_file_path = os.path.join(self.html_path_to_root, GLOSSARY_LOCATION)
-            forward_link = '{}#{}'.format(glossary_file_path, permalink_id)
-            href_tag = ' href="{}"'.format(forward_link)
-        else:
-            href_tag = ''
-
-        permalink_template = self.html_templates['glossary_permalink']
-        return permalink_template.format(id_tag=id_tag, href_tag=href_tag, content=content)
+        return self.html_templates['glossary_definition'].format(id=permalink).strip()
 
 
     def add_glossary_link(self, match):
         glossary = self.guide.glossary
-        word = match.group('word')
+        content = match.group('content')
+        arguments = match.group('args')
+        term = parse_argument('term', arguments)
+        reference_text = parse_argument('reference-text', arguments)
 
-        if word not in glossary:
-            self.regex_functions['glossary link'].log("No glossary definition of {} to link to".format(word), self, match.group(0))
-            return ''
+        file_link = os.path.join(glossary.html_path_to_guide_root, self.file_node.path)
+        back_link_id = self.create_permalink('glossary-' + term)
+        this_file_link = os.path.join(glossary.html_path_to_guide_root, self.file_node.path)
+        glossary_file_path = os.path.join(self.html_path_to_guide_root, GLOSSARY_LOCATION)
 
-        if not (match.group('backref') or match.group('content')):
-            self.regex_functions['glossary link'].log('Glossary link to {} has no effect. Include either a forward or back link'.format(word), self, match.group(0))
-            return ''
-
-        file_link = os.path.join(glossary.html_path_to_root, self.file_node.path)
-
-        if match.group('backref'):
-            backref_text = match.group('backref')
-            back_link_id = '{}-{}'.format(systemfunctions.to_kebab_case(word), backref_text)
-            this_file_link = os.path.join(glossary.html_path_to_root, self.file_node.path)
+        if reference_text:
+            # Provide ability to link to term in section
             back_link = '{}.html#{}'.format(this_file_link, back_link_id)
-            glossary.add_back_link(word, back_link, backref_text)
-            id_tag = ' id="{}"'.format(back_link_id)
+            id_html = ' id="{}"'.format(back_link_id)
+            # Add back reference link to glossary item
+            glossary.add_back_link(term, back_link, reference_text, match, self)
         else:
-            id_tag = ''
+            id_html = ''
 
-        if match.group('content'):
-            content = match.group('content')
-            glossary_file_path = os.path.join(self.html_path_to_root, GLOSSARY_LOCATION)
-            forward_link_id = word.lower()
+        if content:
+            # Create link to term in glossary
+            forward_link_id = systemfunctions.to_kebab_case(term)
             forward_link = '{}#{}'.format(glossary_file_path, forward_link_id)
-            href_tag = ' href="{}"'.format(forward_link)
+            link_html = ' href="{}"'.format(forward_link)
         else:
-            href_tag = ''
+            link_html = ''
             content = ''
 
-        template = self.html_templates['glossary_permalink']
-        return template.format(id_tag=id_tag, href_tag=href_tag, content=content)
+        return self.html_templates['glossary_backwards_link'].format(id_html=id_html, link_html=link_html, content=content).strip()
 
 
     def add_glossary(self, match):
         glossary = self.guide.glossary
+        self.mathjax_required = True
         glossary_temp = self.html_templates['glossary']
         items = ''
         for term in sorted(glossary.items.keys()):
@@ -644,9 +739,7 @@ class HeadingNode:
             return '{}{}'.format('--' * (self.level - 1), self.heading)
 
     def to_html(self):
-        if self.section.title == 'Glossary' and self.level > 1:
-            html_type = 'heading-glossary'
-        elif self.number:
+        if self.section.file_node.group_type == "chapters":
             html_type = 'heading-numbered'
         else:
             html_type = 'heading-unnumbered'

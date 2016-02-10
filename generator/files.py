@@ -27,10 +27,9 @@ class FileType:
 
 
 def setup_required_files(guide):
-    """Sets up list of required file objects (class File)"""
+    """Sets up list of required file objects (class FileType)"""
     required_files = dict()
     file_types = guide.generator_settings['Source']['Required File Types'].strip().split('\n')
-    base_output_folder = guide.generator_settings['Output']['Folder'].format(language=guide.language_code, version=guide.version)
     for file_type in file_types:
         source_location = guide.generator_settings['Source'][file_type]
         required_files[file_type] = FileType(file_type, source_location)

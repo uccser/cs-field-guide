@@ -24,11 +24,17 @@ Within this repository, you will find the following folders:
 
 Download the latest release from the [GitHub releases page](https://github.com/uccser/cs-field-guide/releases). Run `generateguide.py` with Python 3 (which from the command line is `python generateguide.py`).
 
+This will produce an student version of the CSFG in English.
+
 ### Optional Parameters
 
 The following parameters may be used to alter the generation process:
-- `--ignore-pip`: Bypasses the installation of dependencies using pip.
-- `--pdf`: Include generation of pdf version of the field guide.
+- `--language` or `-l` followed by language codes: Outputs in the given languages
+- `--teacher` or `-t`: Outputs both student and teacher versions of the CSFG
+- `--ignore-pip` or `-i`: Bypasses the installation of dependencies using pip
+- `--pdf` or `-p`: Include generation of pdf version of the CSFG
+
+For example: Entering `python generateguide.py --language en de fr -t` will produce the CSFG in English, German, and French with teacher versions included.
 
 ## Bugs and feature requests
 
