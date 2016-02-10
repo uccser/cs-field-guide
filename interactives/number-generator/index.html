@@ -1,27 +1,28 @@
 <!DOCTYPE html>
-<!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]-->
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <!-- If you delete this meta tag World War Z will become a reality -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!-- ### Enter your interactive title in the title block ### -->
     <title>Number Generator</title>
     <link rel="stylesheet" href="../base-files/css/normalize.css">
-    <link rel="stylesheet" href="../base-files/css/foundation.min.css">
+    <!--Import materialize.css-->
+    <link rel="stylesheet" href="../base-files/css/materialize.min.css" type="text/css" media="screen,projection"/>
     <script src="../base-files/js/modernizr.js"></script>
-    <!-- jQuery (necessary for Foundation) -->
-    <script src="../base-files/js/jquery.js"></script>
+    <!-- jQuery (necessary for Materialize) -->
+    <script type="text/javascript" src="../base-files/js/jquery.js"></script>
   </head>
   <body>
     <!-- ### Start of required HTML for inline interactives ### -->
     <div class="interactive row">
-      <div id="interactive-checksum-generator" class="small-12 medium-7 large-5 columns small-centered">
+      <div id="interactive-checksum-generator" class="col s12 m8 offset-m2 center-align z-depth-1">
         <div class="row">
-          <div class="small-12 columns text-center">
+          <div class="col s12">
             <h4>Number Generator</h4>
           </div>
-          <div class="small-7 columns">
-            <select name="interactive-checksum-generator-type" id="interactive-checksum-generator-type">
+          <div class="col s12">
+            <select name="interactive-checksum-generator-type" class="browser-default" id="interactive-checksum-generator-type">
               <option selected="selected" value="ISBN-10">ISBN-10</option>
               <option value="ISBN-13">ISBN-13</option>
               <option value="EAN-13">EAN-13</option>
@@ -31,25 +32,19 @@
               <option value="passport-dates">Passport Dates</option>
             </select>
           </div>
-          <div class="small-5 columns">
-            <button type="button" id="interactive-checksum-generator-generate" class="button expand">
-              Generate
-            </button>
+          <div class="col s12">
+            <a id="interactive-checksum-generator-generate" class="waves-effect waves-light btn btn-expand">Generate</a>
           </div>
-          <div class="small-12 columns">
+          <div class="col s12">
             <textarea id="interactive-checksum-generator-codes" rows="5" readonly placeholder="Codes will be displayed here"></textarea>
           </div>
       <link rel="stylesheet" href="./css/checksum-generator.css">
       <script src="./js/checksum-generator.js"></script>
-      <script src="../base-files/js/jquery-ui.min.js"></script>
       </div>
       </div>
     </div>
     <!-- ### End of required HTML for inline interactives ### -->
-    <!-- Foundation responsive CSS -->
-    <script src="../base-files/js/foundation.min.js"></script>
-    <script>
-      $(document).foundation();
-    </script>
+    <!-- Materialize responsive CSS -->
+    <script type="text/javascript" src="../base-files/js/materialize.min.js"></script>
   </body>
 </html>
