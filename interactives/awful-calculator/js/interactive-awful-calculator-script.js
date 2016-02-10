@@ -9,18 +9,18 @@
 var AwfulCalculator = {};
 
 $(document).ready(function () {
-    AwfulCalculator.operators = ['+', '-', '×', '÷'];
+    AwfulCalculator.operators = ['+', '-', '\u00D7', '\u00F7'];
     AwfulCalculator.decimal_added = false;
 
     $("#interactive-calculator-good button").click(function(){
-        var button_value = this.innerHTML;
+        var button_value = this.innerHTML.trim();
         output_element = document.getElementById("interactive-good-calculator-output");
         processInput(button_value, output_element);
     });
 
 
     $("#interactive-calculator-awful button").click(function(){
-        var button_value = this.innerHTML;
+        var button_value = this.innerHTML.trim();
         output_element = document.getElementById("interactive-awful-calculator-output");
         var delayTime = (Math.random() * (2 - 0.1) + 0.1)*1000;
         setTimeout(function() {
@@ -41,7 +41,7 @@ function processInput(button_value, output_element) {
     else if (button_value == "=") {
 			  var last_char = output_value[output_value.length - 1];
   			// Replace all instances of x and ÷ with * and / respectively. This can be done easily using regex and the 'g' tag which will replace all instances of the matched character/substring
-  			output_value = output_value.replace(/×/g, '*').replace(/÷/g, '/');
+  			output_value = output_value.replace(/\u00D7/g, '*').replace(/\u00F7/g, '/');
 
 			// Final thing left to do is checking the last character of the equation. If it's an operator or a decimal, remove it
 			if(AwfulCalculator.operators.indexOf(last_char) > -1 || last_char == '.') {

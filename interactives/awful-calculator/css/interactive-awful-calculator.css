@@ -21,6 +21,11 @@
 }
 
 /* General Calculator Styling */
+#interactive-awful-calculator-interface .tabs {
+  font-weight: bold;
+  width: 100%;
+  padding: 0;
+}
 #interactive-awful-calculator-interface .calculator {
   border: 2px solid #EFEFEF;
   border-radius: 2px;
