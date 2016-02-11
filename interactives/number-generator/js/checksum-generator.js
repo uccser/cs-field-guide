@@ -15,6 +15,7 @@ var sum = 0;
 var primary_weights = [3, 2, 7, 6, 5, 4, 3, 2];
 var secondary_weights = [7, 4, 3, 2, 5, 2, 7, 6];
 var isbn10_weights = [10, 9, 8, 7, 6, 5, 4, 3, 2];
+var passport_weights = [7, 3, 1, 7, 3, 1];
 
 
 //get the code_type whenever selected changes
@@ -48,6 +49,8 @@ function chooseAlgorithm(code_type, count){
         creditCardGenerator(count);
     } else if (code_type == "trains") {
         trainNumberGenerator(count);
+    } else if (code_type == "passport-dates") {
+        passportDateGenerator(count);
     }
 
     example_codes.push(number);
@@ -221,6 +224,49 @@ function trainNumberGenerator(count) {
 
 }
 
+//generates random date for passport checksums
+function generateDate() {
+
+    var start_date = new Date(1900, 01, 01);
+
+    date = new Date(start_date.getTime() + Math.random() * (Date.now() - start_date.getTime()));
+    var year = date.getYear();
+
+    if (year > 99) {
+        generateDate(); //recursive NOTE: *very small* possibility that this could recursively call itself multiple times
+    } else {
+        if (year < 10) {
+            year = "0" + year.toString();
+        } else {
+            year = year.toString();
+        }
+
+        var month = date.getMonth();
+        if (month < 10) {
+            month = "0" + month.toString();
+        } else {
+            month = month.toString();
+        }
+        var day = date.getDay();
+        if (day < 10) {
+            day = "0" + day.toString();
+        } else {
+            day = day.toString();
+        }
+        number = year + month + day;
+    }
+}
+
+//generates random passport date
+function passportDateGenerator(count) {
+    generateDate();
+
+    //calculate sum of the 6 digits using passport weights
+    sum = 0;
+    calculateSumWithWeights(passport_weights);
+    number += determineCheckDigitType(count, sum, 10);
+
+}
 
 //generate the first 8 numbers
 function IRDGenerator(count) {
