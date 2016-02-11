@@ -539,11 +539,11 @@ There are thousands of problems like the TSP for which no tractable solution is 
 - [map and graph colouring](http://csunplugged.org/graph-colouring) (these can be reduced to a timetabling problem and vice versa, showing how NP-complete problems can relate to each other)
 - [the knapsack problem](http://en.wikipedia.org/wiki/Knapsack_problem)
 - [the bin packing problem](http://en.wikipedia.org/wiki/Bin_packing_problem)
-- [Hamiltonian paths](http://en.wikipedia.org/wiki/Hamiltonian_path>) (no tractable solution for this is known, yet the very similar Eulerian path, which is often presented as the seven bridges problem, has an easy tractable solution)
+- [Hamiltonian paths](http://en.wikipedia.org/wiki/Hamiltonian_path) (no tractable solution for this is known, yet the very similar Eulerian path, which is often presented as the seven bridges problem, has an easy tractable solution)
 - [Steiner trees](http://www.csunplugged.org/steiner-trees)
 - [Dominating sets](http://www.csunplugged.org/dominating-sets)
 - [Longest path](http://en.wikipedia.org/wiki/Longest_path) (this is interesting because finding the longest path is intractable, yet finding the shortest path is tractable - the shortest path is calculated when a GPS device works out the shortest route to a destination. Also, a Hamiltonian problem can be reduced easily to longest path, showing the concept of reduction when one NP-complete problem is used to solve another). [And here's a song about it!](https://www.youtube.com/watch?feature=player_embedded&v=a3ww0gwEszo)
-- [the Battleship problem](http://en.wikipedia.org/wiki/Battleship_(puzzle))
+- [the Battleship problem](http://en.wikipedia.org/wiki/Battleship_(puzzle\))
 
 {comment}
 

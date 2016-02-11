@@ -43,7 +43,7 @@ This project is the result of contributions from a large community of Computer S
 - Mike Fellows - [CS Unplugged](http://csunplugged.org/)
 - Andrea Arpaci-Dusseau - [CS Unplugged](http://csunplugged.org/)
 - Paul Curzon - [CS4FN](http://www.cs4fn.org/)
-- Quintin Cutts - [Computing Science Inside](http://csi.dcs.gla.ac.uk/)
+- Quintin Cutts - [Computing Science Inside](https://web.archive.org/web/20150517010211/http://csi.dcs.gla.ac.uk/)
 - Calvin Lin - [Thriving in our Digital World](http://www.cs.utexas.edu/~engage/)
 - Bradley Beth - [Thriving in our Digital World](http://www.cs.utexas.edu/~engage/)
 - Peter Andreae - Artificial Intelligence, Complexity and Tractability, Data Representation, Compression, Error Control, and Encryption
