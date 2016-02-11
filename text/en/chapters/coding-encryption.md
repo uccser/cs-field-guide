@@ -586,6 +586,10 @@ Some email systems use this so that you can be sure an email came from the perso
 This section on RSA is yet to be written
 ### RSA in practice
 
+Links to RSA interactives using real world jsencrypt library.
+{interactive name="rsa-jsencrypt" type="whole-page" text="RSA Encrypter (using padding)"}
+{interactive name="rsa-jsencrypt" type="whole-page" text="RSA Decrypter (using padding)" parameters="mode=decrypt" thumbnail="decrypt.png"}
+
 #### How does RSA Work?
 
 #### Preventing known plain text attacks
