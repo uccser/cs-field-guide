@@ -511,9 +511,7 @@ Firstly, you will need to generate a pair of keys using the key generator intera
 
 This next interactive is the encrypter, and it is used to encrypt messages with your **public key**. Your friends should use this to encrypt messages for you.
 
-{comment}
-Need to put the encrypter here. Note that I have given up on trying to use the same interactive for both encrypting and decrypting.
-{comment end}
+{interactive name="rsa-no-padding" type="whole-page" text="RSA Encrypter"}
 
 To ensure you understand, try encrypting a short message with your **public key**. In the next section, there is an interactive that you can then use to decrypt the message with your private key.
 
@@ -521,9 +519,7 @@ To ensure you understand, try encrypting a short message with your **public key*
 
 Finally, this interactive is the decrypter. It is used to decrypt messages that were encrypted with your public key. In order to decrypt the messages, you will need your **private key**.
 
-{comment}
-Need to put decrypter here. Note that it might need to go in an iframe, as the code will be very similar to the encrypter and collisions are likely
-{comment end}
+{interactive name="rsa-no-padding" type="whole-page" text="RSA Decrypter" parameters="mode=decrypt" thumbnail="decrypt.png"}
 
 Despite even your enemies knowing your public key (as you publicly announced it), they cannot use it to decrypt your messages which were encrypted using the public key. You are the only one who can decrypt messages, as that requires the private key which hopefully you are the only one who access to.
 
