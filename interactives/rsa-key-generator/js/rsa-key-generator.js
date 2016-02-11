@@ -1,6 +1,10 @@
 $(document).ready(function(){
     $("#interactive-rsa-key-generator-generate").click(function() {
-      var crypt = new JSEncrypt({default_key_size: 512});
+      // Get key size
+      var key_size = parseInt($('#interactive-rsa-key-generator-key-size').val());
+
+      // Create keys
+      var crypt = new JSEncrypt({default_key_size: key_size});
       crypt.getKey();
       $('#interactive-rsa-key-generator-public-key').val(removeHeaders(crypt.getPublicKey()));
       $('#interactive-rsa-key-generator-private-key').val(removeHeaders(crypt.getPrivateKey()));

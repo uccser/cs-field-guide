@@ -20,27 +20,43 @@
         <h3>RSA Key Generator</h3>
 
         <div class="row">
-          <div class="col s12 m8 offset-m2">
-            <button id="interactive-rsa-key-generator-generate" class="btn btn-large">Generate New Keys</button>
+          <div class="col s12">
+            <h5>Key Size</h5>
           </div>
+          <div class="col s7">
+            <select id="interactive-rsa-key-generator-key-size" class="browser-default">
+              <option value="256">256 bits</option>
+              <option value="512" selected>512 bits</option>
+              <option value="1024">1024 bits</option>
+              <option value="2048">2048 bits</option>
+              <option value="4096">4096 bits</option>
+            </select>
+          </div>
+          <div class="col s5">
+            <button id="interactive-rsa-key-generator-generate" class="btn">Generate Keys</button>
+          </div>
+          <div class="col s12">
+            <p><em><strong>Warning:</strong> Keys larger than 512 bits may take longer than a second to create.</em></p>
+          </div>
+
 
           <div class="col s12">
             <h5>Public Key</h5>
           </div>
-          <div class="col s7">
-            <textarea id="interactive-rsa-key-generator-public-key" rows="3" readonly></textarea>
+          <div class="col s12 m7">
+            <textarea id="interactive-rsa-key-generator-public-key" rows="5" readonly></textarea>
           </div>
-          <div class="col s5">
+          <div class="col s12 m5">
             <button id="interactive-rsa-key-generator-copy-public" class="btn interactive-rsa-key-generator-button" disabled="true">Copy Public Key</button>
           </div>
 
           <div class="col s12">
             <h5>Private Key</h5>
           </div>
-          <div class="col s7">
+          <div class="col s12 m7">
             <textarea id="interactive-rsa-key-generator-private-key" rows="8" readonly></textarea>
           </div>
-          <div class="col s5">
+          <div class="col s12 m5">
             <button id="interactive-rsa-key-generator-copy-private" class="btn interactive-rsa-key-generator-button" disabled="true">Copy Private Key</button>
           </div>
         </div>
