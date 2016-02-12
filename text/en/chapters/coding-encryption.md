@@ -103,7 +103,7 @@ Of course, there may be ways to reduce the amount of work required - for example
 
 Try experimenting with the following interactive for Caesar Cipher. You will probably want to refer back to it later while working through the remainder of the sections on Caesar Cipher.
 
-{interactive name="caesar-cipher" type="in-page"}
+{interactive name="caesar-cipher" type="iframe"}
 
 #### Decryption with Caesar Cipher
 
@@ -261,7 +261,7 @@ S: 10          R: 5          L: 2
 
 "E" is the most common letter in the English alphabet. It is therefore a reasonable guess that "J" in the ciphertext represents "E" in the plaintext. Because "J" is 5 letters ahead of "E" in the alphabet, we can guess that the key is 5. If you put the ciphertext into the above interactive and set a key of 5, you will find that this is indeed the correct key.
 
-{interactive name="caesar-cipher" type="in-page"}
+{interactive name="caesar-cipher" type="iframe"}
 
 {panel type="spoiler" summary="Decrypted message"}
 

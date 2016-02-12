@@ -33,14 +33,16 @@
   padding: 0;
 }
 #interactive-awful-calculator-interface .calculator {
-  border: 2px solid #EFEFEF;
+  border: 2px solid #D0D0D0;
   border-radius: 2px;
   margin-top: 1rem;
-  padding: 1rem !important;
+  padding: 0.6rem !important;
+  margin: 0.3rem;
 }
 #interactive-awful-calculator-interface button {
   width: 100%;
   padding: 0;
+  margin: 0;
 }
 .col.s9,
 .calculator-input {
@@ -55,12 +57,12 @@
   color: #000;
   text-align: right;
   font-size: 1.8rem;
-  border: none;
+  border: 1px solid #D0D0D0;
   border-radius: 2px;
 }
 #interactive-awful-calculator-interface .row {
-  margin: 0.5rem 0;
+  margin: 0.3rem 0;
 }
 #interactive-awful-calculator-interface .col {
-  padding: 0 0.5rem;
+  padding: 0 0.15rem;
 }
