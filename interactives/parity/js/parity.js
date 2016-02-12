@@ -46,7 +46,10 @@ $(document).ready(function(){
 
   // When the user click on the 'Flip a bit' button
   $('#interactive-parity-flip-bit').on('click', function(){
-    timer(50, 2000, randomlyToggleBits);
+    $('.interactive-parity-trick-controls').hide();
+    $('.interactive-parity-reset-controls').hide();
+    $('#interactive-parity-grid-confusation').css( "display", "flex");
+    timer(50, 2000, randomlyToggleBits, setupParityTrick);
   });
 
   // Toggle parity card when user clicks on card
@@ -64,6 +67,14 @@ $(document).ready(function(){
   });
 });
 
+// This function is trigger when the confusation stage is over. This function:
+// 1. Flips a bit in memory
+// 2. Displays new grid
+// 3. Hides the confusation overlay
+function setupParityTrick() {
+  $('#interactive-parity-grid-confusation').hide();
+};
+
 
 function setupMode() {
   var header = $('#interactive-parity-mode');
@@ -80,10 +91,12 @@ function setupMode() {
   } else if (Parity.current_mode == 'set') {
     header.text('Setting Parity');
     Parity.flipping = 'parity';
-    $('.interactive-parity-check-controls').show();
+    if (Parity.mode == 'trick') {
+      $('.interactive-parity-trick-controls').show();
+    } else {
+      $('.interactive-parity-check-controls').show();
+    }
     $('.interactive-parity-reset-controls').show();
-    setRandomData();
-  } else if (Parity.mode == 'trick') {
     setRandomData();
   } else if (Parity.current_mode == 'detect') {
     header.text('Detect the Error');
@@ -91,12 +104,13 @@ function setupMode() {
   }
 };
 
-function timer(interval, maxTime, callback) {
+function timer(interval, maxTime, callback, finished_callback) {
   var start = Date.now();
   var intervalID;
   function handler() {
     if (Date.now() - start > maxTime) {
       clearInterval(intervalID);
+      finished_callback();
     }
     else if (callback !== undefined) {
       callback();

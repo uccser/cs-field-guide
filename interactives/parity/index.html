@@ -27,6 +27,9 @@
             <p>The grid is considered valid if each row and column has an even number of white squares.</p>
             <div class="interactive-parity-controls interactive-parity-trick-controls">
               <p>
+                Click the parity bits in the last row and column to set them correctly. Click the 'Flip a bit' button when you are done.
+              </p>
+              <p>
                 <a id="interactive-parity-flip-bit" class="waves-effect blue waves-light btn btn-large btn-expand">Flip a bit</a>
               </p>
             </div>
@@ -73,7 +76,14 @@
             <p id="interactive-parity-feedback" class="center-align"></p>
           </div>
           <div class="col s12 m8">
-            <div id="interactive-parity-grid"></div>
+            <div id="interactive-parity-grid-container">
+              <div id="interactive-parity-grid"></div>
+              <div id="interactive-parity-grid-confusation">
+                <div id="interactive-parity-grid-confusation-text">
+                  Confusation - Please wait
+                </div>
+              </div>
+            </div>
           </div>
           <div id="interactive-parity-footer" class="col s12 center-align">
             <p>Created by Jack Morgan</p>
