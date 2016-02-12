@@ -81,6 +81,7 @@ A list of options for learning to program is being compiled by [code.org](http:/
 - [Khan Academy](http://www.khanacademy.org/cs/) has a "Computer Science" section; most of the material here is about programming rather than computer science in general.
 - [Grok Learning](https://groklearning.com/) is a new site for learning to code
 - [Learn Python the Hard Way](http://learnpythonthehardway.org/) is a rigorous (but fun) introduction to Python for beginners who are prepared to work hard. It's available for free online, or you can buy a book. It comes with the warning that it may cause students to think!
+- [Code World](https://code.world/#) is an educational computer programming environment using Haskell
 
 The following programming teaching systems are aimed more at younger students, or are based around a "drag and drop" language which is only intended as a teaching tool:
 
