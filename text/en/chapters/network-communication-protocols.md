@@ -141,7 +141,7 @@ Go ahead and try this same process on a few other pages too. For example, try th
 - Your favourite website
 
 {panel type="curiosity"" summary="Who came up with HTTP?"}
-Tim Berners-Lee was credited for creating HTTP in 1989. You can read more about him [here](http://en.wikipedia.org/wiki/Tim_Berners-Lee>).
+Tim Berners-Lee was credited for creating HTTP in 1989. You can read more about him [here](http://en.wikipedia.org/wiki/Tim_Berners-Lee).
 {panel end}
 
 ### Internet Relay Chat (IRC)
@@ -222,7 +222,7 @@ Firstly, TCP starts by doing what is known as a handshake. This basically means 
 
 Next is **Ordering**. Since a computer can’t look at data and order it like we can (like when we do a jigsaw puzzle or play Scrabble™) they need a way to “stitch” the packets back together. As we saw in *Packet Attack*, if you delayed a message that didn’t have ordering, the message may look like “HELOLWOLRD”. So, TCP puts a number on each packet (called a sequence number) which signifies its order. With this, it can put them back together again. It’s a bit like when you print out a few pages from a printer and you see “*Page 2 of 11*” on the bottom. Now, if packets do become out of order, TCP will wait for all of the packets to arrive and then put the message together.
 
-Another concept is **checksums**. This concept of storing information about the data may be familiar from the [error control coding chapter](http://www.cosc.canterbury.ac.nz/csfieldguide/ErrorControlCoding.html). Basically, a checksum can detect errors and sometimes with coding schemes, can correct them. In the case of a correctable packet, it is corrected. If not, the packet is useless and needs to be resent. In the game, shields represent checksums. Corrupt a checksum once, and it can recover from the error using error correction. Corrupt it again and it can’t.
+Another concept is **checksums**. This concept of storing information about the data may be familiar from the [error control coding chapter](chapters/coding-error-control.html#check-digits-on-product-barcodes). Basically, a checksum can detect errors and sometimes with coding schemes, can correct them. In the case of a correctable packet, it is corrected. If not, the packet is useless and needs to be resent. In the game, shields represent checksums. Corrupt a checksum once, and it can recover from the error using error correction. Corrupt it again and it can’t.
 
 So how do packets get re-sent? TCP has a concept of *acknowledgement* and *negative acknowledgement* messages (ACK and NACK for short). You would have seen these in the higher levels of the game as the green (ACK) and red (NACK) creatures going back. Acks are sent to let the sender know when a packet arrives and it is usable. Nacks are sent back when a packet arrives and is damaged and needs resending. ACKs and and NACKs are useful because they provide a channel *in the opposite direction* for communication. If computer A receives a NACK, they can resend the message. If it receives an Ack, the computer can stop worrying about a resend.
 
@@ -295,7 +295,7 @@ Here’s an example of a packet trace on our network…[(using tcpdump on the ma
 
 ## Further reading
 
-- The [two generals problem](http://en.wikipedia.org/wiki/Two_Generals%27_Problem) is a famous problem in protocols to talk about what happens when you can’t be sure about communication success
+- The [two generals problem](https://en.wikipedia.org/wiki/Two_Generals%27_Problem) is a famous problem in protocols to talk about what happens when you can’t be sure about communication success
 - What happens if you were to send packets tied to birds? [IP over Avian Cariers](http://en.wikipedia.org/wiki/IP_over_Avian_Carriers)
 - Protocols are found in the strangest of places…. [Engine Order Telegraph](http://en.wikipedia.org/wiki/Engine_order_telegraph)
 - Coursera course on [Internet History, Technology, and Security](https://www.coursera.org/learn/insidetheinternet)

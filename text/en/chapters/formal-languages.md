@@ -122,7 +122,7 @@ For a fun discussion, you could have the students look at the [Klingon Linguisti
 
 {panel type="teacher-note" summary="Treasure hunt (alternative introduction)"}
 
-There's a fun variant of the challenge at the start of this section that involves running around the playground. It's described as the [Treasure Hunt](http://csunplugged.org/finite-state-automata/http://csunplugged.org/information-theory) activity on the CS unplugged site.
+There's a fun variant of the challenge at the start of this section that involves running around the playground. It's described as the [Treasure Hunt](http://csunplugged.org/wp-content/uploads/2014/12/unplugged-11-finite_state_automata.pdf) activity on the CS unplugged site.
 It may be a bit young for some students, but if you can sell it to them, it's a great way to get some physical exercise away from the computers and to see most of the concepts in this section in a kinesthetic activity. Many variants are possible; for example, it can be run as a card game where the A/B card for each station is turned over on request. See the Unplugged site for other ideas.
 
 {panel end}
@@ -521,8 +521,7 @@ A program called JFLAP is an alternative to Exorciser for students to design and
 so we recommend using Exorciser if it's available.
 If you use JFLAP we recommend that you become familiar with it first so that you can guide students through it: the interface has many distracting features and can be a little quirky, and fiddling around without taking time to learn how to use it will be a frustrating experience. Fortunately there's a good tutorial about using JFLAP [here](http://www.jflap.org/tutorial/), and some material from Duke University about FSAs based around JFLAP [here](http://www.cs.duke.edu/csed/pltl/exercises/lessons/29/finiteautomata.zip) (ZIP file).
 
-If you have difficulty installing JFLAP or Exorciser, the Dyna Lab [http://www.cs.montana.edu/%7Edynalab/](http://www.cs.montana.edu/%7Edynalab/) site includes a Finite State Automaton Applet where you can create your own FSAs and test them on input strings. It animates the movement around the states (including sound!). Refer to the instructions at [http://www.cs.montana.edu/%7Edynalab/fsa/instructions.html](http://www.cs.montana.edu/%7Edynalab/fsa/instructions.html). It runs as a Java applet in the browser, so doesn't require installation: just go to the website and select "FSA" in the contents panel.
-There's also an FSA example in the "Java Applets Centre" at [http://www.cosc.canterbury.ac.nz/mukundan/thco/DFA.html](http://www.cosc.canterbury.ac.nz/mukundan/thco/DFA.html).
+If you have trouble using Exorciser or JFLAP, there's also an FSA example in the "Java Applets Centre" at [http://www.cosc.canterbury.ac.nz/mukundan/thco/DFA.html](http://www.cosc.canterbury.ac.nz/mukundan/thco/DFA.html).
 
 {panel end}
 
@@ -675,7 +674,7 @@ There are many online resources for experimenting with FSAs; we've described one
 
 The Manufactoria game is essentially about constructing a finite state machine that represents given rules. Some of the puzzles are quite tricky, and if students can solve them then they've understood FSAs well. (Hints: The conveyor belts are the transitions, the  B/R branches are the states with a transition out for blue or red. You can have conveyor belts that act as bridges). The game is available [here](http://pleasingfungus.com/#Manufactoria) and [here](http://jayisgames.com/games/manufactoria/).
 
-If you use the Java-based graphical educational system [Greenfoot](http://greenfoot.org/index.html>`_ as a programming environment, the [treasure hunt finite state automata exercise](http://greenroom.greenfoot.org/resources/5) is based on the Treasure Island FSA activity from CS Unplugged. Teachers can register at the [Greenroom](http://greenroom.greenfoot.org/door) resources area to download the software. Students can interact with the activity, without accessing source code, through: http://www.greenfoot.org/scenarios/1678 .
+If you use the Java-based graphical educational system [Greenfoot](http://www.greenfoot.org/door) as a programming environment, the [treasure hunt finite state automata exercise](http://greenroom.greenfoot.org/resources/5) is based on the Treasure Island FSA activity from CS Unplugged. Teachers can register at the [Greenroom](http://greenroom.greenfoot.org/door) resources area to download the software. Students can interact with the activity, without accessing source code, through: http://www.greenfoot.org/scenarios/1678 .
 
 If you use [Scratch](http://scratch.mit.edu/), the following program is promising, but it doesn't have an activity or guide, and Level 3 students may have progressed beyond Scratch. It implements the Finite State Automata CS Unplugged activity in Scratch, and can be downloaded as part of a [zip file](http://code.google.com/p/scratch-unplugged/downloads/detail?name=scratch-unplugged-1-0.zip&can=2&q=) of a full set of Unplugged activities. The [ReadMe.txt](http://code.google.com/p/scratch-unplugged/downloads/detail?name=readme.txt&can=2&q=) file has some documentation. It was developed by [Mordechai (Moti) Ben-Ari](http://stwww.weizmann.ac.il/g-cs/benari/) from the [Weizmann Institute of Science, Israel](http://www.weizmann.ac.il/).
 
@@ -1203,8 +1202,6 @@ it can do, and write regular expressions for finding words such as:
 
 - Knitting patterns are a form of regular expression. If you're interested in knitting, you could look into how they are related through the [article about knitting and regular expressions at CS4FN site](http://www.cs4fn.org/regularexpressions/knitters.php).
 
-- The Chesapeake NetCraftsmen site provides [a system for practising writing regular expressions](http://www.netcraftsmen.net/presos/Regex_Practice/player.html).
-
 - The "grep" command is available in many command line systems, and matches a regular expression in the command with lines in an input file. (the name comes from "Global Regular Expression Parser"). Demonstrate the grep command for various regular expressions.
 
 - Functions for matching against regular expressions appear in most programming languages. If your favourite language has this feature, you could demonstrate how it works using sample regular expressions and strings.
@@ -1229,7 +1226,7 @@ Other sites for experimenting with regular expressions include:
 - [http://www.txt2re.com/](http://www.txt2re.com/) --- you type in a sample text and it tries to suggest a regex!
 - [http://www.regextester.com/](http://www.regextester.com/)
 - [http://www.pyweek.org/e/RegExExpress/](http://www.pyweek.org/e/RegExExpress/)
-- [https://regexhero.net/  (may have a fee)](https://regexhero.net/  (may have a fee))
+- [https://regexhero.net/  (may have a fee)](https://regexhero.net/)
 - [http://www.brics.dk/automaton/](http://www.brics.dk/automaton/)
 - [http://www.regular-expressions.info/javascriptexample.html](http://www.regular-expressions.info/javascriptexample.html)
 
@@ -1355,7 +1352,7 @@ Grammars have been used for music notation:
 
 {comment end}
 
-- The following is the BNF grammar for the ABC music format: [http://www.norbeck.nu/abc/bnf/abc20bnf.htm](http://www.norbeck.nu/abc/bnf/abc20bnf.htm)
+- The following is the [BNF grammar for the ABC music format](http://web.archive.org/web/20080309023424/http://www.norbeck.nu/abc/abcbnf.htm)
 - [http://abc.sourceforge.net/](http://abc.sourceforge.net/)
 - [https://meta.wikimedia.org/wiki/Music_markup](https://meta.wikimedia.org/wiki/Music_markup)
 - [http://www.emergentmusics.org/theory/15-implementation](http://www.emergentmusics.org/theory/15-implementation)
@@ -1437,7 +1434,7 @@ So we've barely got started on what can be done with formal languages, but the i
 
 ## Further reading
 
-Some of the material in this chapter was inspired by [http://www.ccs3.lanl.gov/mega-math/workbk/machine/malearn.html](http://www.ccs3.lanl.gov/mega-math/workbk/machine/malearn.html)
+Some of the material in this chapter was inspired by [http://www.ccs3.lanl.gov/mega-math/workbk/machine/malearn.html](https://web.archive.org/web/20130102053644/http://www.ccs3.lanl.gov/mega-math/workbk/machine/malearn.html)
 
 There's a good article on finite state machines at
 [http://www.i-programmer.info/babbages-bag/223-finite-state-machines.html](http://www.i-programmer.info/babbages-bag/223-finite-state-machines.html)

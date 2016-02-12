@@ -23,6 +23,51 @@ No pre-releases currently.
 
 ## Current Release
 
+### 2.0.1
+
+**Release date:** 12th February 2016
+
+**Downloads:** [Source available on GitHub](https://github.com/uccser/cs-field-guide/releases/tag/2.0.1)
+
+**Notable changes:**
+- Fixed many broken links and typos from 2.0.0
+- Added calculator interactives to Introduction
+- Added RSA key generator to Encryption
+- Rewritten Braille Section in Data Representation
+
+**Changelog**:
+- Caesar cipher interactives run in iframe (fixes [#224](https://github.com/uccser/cs-field-guide/issues/224)) [17086ee](https://github.com/uccser/cs-field-guide/commit/17086ee)
+- Split calculators in introduction chapter (fixes [#228](https://github.com/uccser/cs-field-guide/issues/228)) [b858916](https://github.com/uccser/cs-field-guide/commit/b858916)
+- Added rsa-jsencrypt interactive (RSA using real world library) [8983e49](https://github.com/uccser/cs-field-guide/commit/8983e49)
+- Updated rsa-key-generator README [56d48fe](https://github.com/uccser/cs-field-guide/commit/56d48fe)
+- Added key size option to generator [b32575e](https://github.com/uccser/cs-field-guide/commit/b32575e)
+- Correct youtube link by replacing %2F with / [30ab814](https://github.com/uccser/cs-field-guide/commit/30ab814) - Thanks [ArloL](https://github.com/ArloL)
+- Added RSA key generator (fixes [#16](https://github.com/uccser/cs-field-guide/issues/16)) [6a8fb42](https://github.com/uccser/cs-field-guide/commit/6a8fb42)
+- Add license information for jsencrypt.js [156839f](https://github.com/uccser/cs-field-guide/commit/156839f)
+- Disabled copy buttons until after key generation [770d8ea](https://github.com/uccser/cs-field-guide/commit/770d8ea)
+- Added basic RSA key generation [247e5ef](https://github.com/uccser/cs-field-guide/commit/247e5ef)
+- Updated rsa-key-generator to MaterializeCSS [0a685eb](https://github.com/uccser/cs-field-guide/commit/0a685eb)
+- Removed debugging logs [192fb5e](https://github.com/uccser/cs-field-guide/commit/192fb5e)
+- Fixed deceiver interactive not detecting odd values (fixes [#223](https://github.com/uccser/cs-field-guide/issues/223)) [b2b5aef](https://github.com/uccser/cs-field-guide/commit/b2b5aef)
+- Added reset button to checksum-calculator [28549e9](https://github.com/uccser/cs-field-guide/commit/28549e9)
+- Added awful-calculator to chapter (fixes [#59](https://github.com/uccser/cs-field-guide/issues/59)) [e4020a5](https://github.com/uccser/cs-field-guide/commit/e4020a5)
+- Altered awful-calculator to match text description [05b9418](https://github.com/uccser/cs-field-guide/commit/05b9418)
+- Fixed whitespace and character issues when viewed in page [eac58d1](https://github.com/uccser/cs-field-guide/commit/eac58d1)
+- Finished working awful-calculator interactive [108ec53](https://github.com/uccser/cs-field-guide/commit/108ec53)
+- Styled calculator output [c1f2360](https://github.com/uccser/cs-field-guide/commit/c1f2360)
+- Updated awful-calculator CSS styling [baf27e7](https://github.com/uccser/cs-field-guide/commit/baf27e7)
+- Switched multiply and divide symbols to unicode characters [d4fdcec](https://github.com/uccser/cs-field-guide/commit/d4fdcec)
+- Switched awful-calcultor to MaterializeCSS [b529f3a](https://github.com/uccser/cs-field-guide/commit/b529f3a)
+- Rewritten Braille Section of Data Representation [d3e6d63](https://github.com/uccser/cs-field-guide/commit/d3e6d63)
+- Brooks' law adjusted [f1c3d91](https://github.com/uccser/cs-field-guide/commit/f1c3d91)
+- Added SSCC to list of numbers with check digits [aa771cc](https://github.com/uccser/cs-field-guide/commit/aa771cc)
+- Dynalab removed from Formal Languages chapter [b93aa45](https://github.com/uccser/cs-field-guide/commit/b93aa45)
+- Fixed dead links from 2.0.0 (fixes [#216](https://github.com/uccser/cs-field-guide/issues/216)) [6bd461e](https://github.com/uccser/cs-field-guide/commit/6bd461e)
+- Added details on how to escape closing brackets in link URLs [4397ac8](https://github.com/uccser/cs-field-guide/commit/4397ac8)
+- Fixed comma in wrong spot within number [72bfe28](https://github.com/uccser/cs-field-guide/commit/72bfe28)
+
+## Older Releases
+
 ### 2.0.0
 
 **Release date:** 5th February 2016
@@ -73,8 +118,6 @@ No pre-releases currently.
 The first major step in releasing a open source version of the Computer Science Field Guide.
 While some content (most notably interactives) have yet to be added to the new system, we are releasing this update for New Zealand teachers to use at the beginning of their academic year.
 For any interactives that are missing, links are in place to the older interactives.
-
-## Older Releases
 
 ### 2.0.0-alpha.3
 

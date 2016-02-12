@@ -1014,7 +1014,7 @@ An [animation of a Möbius strip](https://www.youtube.com/watch?v=ZN4TxmWK0bE) t
 
 - [http://en.wikipedia.org/wiki/Computer_graphics](http://en.wikipedia.org/wiki/Computer_graphics)
 - [http://en.wikipedia.org/wiki/Transformation_matrix](http://en.wikipedia.org/wiki/Transformation_matrix)
-- [http://en.wikipedia.org/wiki/Bresenham’s_line_algorithm](http://en.wikipedia.org/wiki/Bresenham’s_line_algorithm)
+- [http://en.wikipedia.org/wiki/Bresenham’s_line_algorithm](https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm)
 - [http://en.wikipedia.org/wiki/Ray_trace](http://en.wikipedia.org/wiki/Ray_trace)
 - [http://www.cosc.canterbury.ac.nz/mukundan/cogr/applcogr.html](http://www.cosc.canterbury.ac.nz/mukundan/cogr/applcogr.html)
 - [http://www.cosc.canterbury.ac.nz/mukundan/covn/applcovn.html](http://www.cosc.canterbury.ac.nz/mukundan/covn/applcovn.html)
