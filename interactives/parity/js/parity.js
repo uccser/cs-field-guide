@@ -20,12 +20,21 @@ $(document).ready(function(){
   }
   setupMode();
 
-
-  // Check parity on button click
+  // On 'Check parity' button click
   $('#interactive-parity-check').on('click', function(){
-     checkParity();
+    checkParity();
   });
 
+  // On 'Add random data' button click
+  $('#interactive-parity-random-data').on('click', function(){
+    clearGrid();
+    setRandomData();
+  });
+
+  // On 'Clear all' button click
+  $('#interactive-parity-clear-all').on('click', function(){
+    clearGrid();
+  });
 
   // On 'Reset' button click
   $('#interactive-parity-reset').on('click', function(){
@@ -34,7 +43,6 @@ $(document).ready(function(){
       setRandomData();
     }
   });
-
 
   // When the user click on the 'Flip a bit' button
   $('#interactive-parity-flip-bit').on('click', function(){
@@ -65,12 +73,15 @@ function setupMode() {
 
   if (Parity.current_mode == 'sandbox') {
      header.text('Sandbox Mode');
-     sandbox_controls.show();
+     $('.interactive-parity-sandbox-controls').show();
+     $('.interactive-parity-check-controls').show();
      Parity.flipping = 'all';
+     setRandomData();
   } else if (Parity.current_mode == 'set') {
     header.text('Setting Parity');
     Parity.flipping = 'parity';
     $('.interactive-parity-check-controls').show();
+    $('.interactive-parity-reset-controls').show();
     setRandomData();
   } else if (Parity.mode == 'trick') {
     setRandomData();
