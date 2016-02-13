@@ -3,6 +3,7 @@ var Parity = {};
 $(document).ready(function(){
   // Create the grid on load
   Parity.grid = $('#interactive-parity-grid');
+  Parity.feedback = $('#interactive-parity-feedback');
   setupGrid();
 
   if (getUrlParameter('mode') == 'sandbox') {
@@ -22,7 +23,15 @@ $(document).ready(function(){
 
   // On 'Check parity' button click
   $('#interactive-parity-check').on('click', function(){
-    checkParity();
+    var parity_status = checkParity();
+    // Display status
+    if (parity_status) {
+      Parity.feedback.removeClass('error');
+      Parity.feedback.text('Correct: Every row and column has even parity (of white squares)');
+    } else {
+      Parity.feedback.addClass('error');
+      Parity.feedback.text('Incorrect: Not every row and column has even parity (of white squares)');
+    }
   });
 
   // On 'Add random data' button click
@@ -38,10 +47,21 @@ $(document).ready(function(){
 
   // On 'Reset' button click
   $('#interactive-parity-reset').on('click', function(){
+    // If set stage in set or trick mode
     if (Parity.current_mode == 'set') {
       clearGrid();
       setRandomData();
+    // Else if detect stage in trick mode
+    } else if (Parity.mode == 'trick') {
+      Parity.valid_parity_bits = undefined;
+      Parity.current_mode = 'set';
+      setupMode()
+    // Else if detect stage in detect mode
+    } else {
+      // TODO
     }
+    Parity.feedback.removeClass('error');
+    Parity.feedback.text("");
   });
 
   // When the user click on the 'Flip a bit' button
@@ -54,12 +74,27 @@ $(document).ready(function(){
 
   // Toggle parity card when user clicks on card
   $('#interactive-parity-grid').on('click', '.parity-card', function(event) {
-    if (Parity.flipping == 'all') {
-      $(this).toggleClass('black');
-    } else if (Parity.flipping == 'parity' && $(this).hasClass('parity-bit')) {
-      $(this).toggleClass('black');
+    $bit = $(this);
+    if (Parity.valid_parity_bits == false) {
+      Parity.feedback.addClass('error');
+      Parity.feedback.text("Your parity bits weren't set correctly, try starting again");
+    } else if (Parity.current_mode == 'detect' && Parity.flipping == 'all') {
+      if ($bit.data("row") == Parity.flipped_row && $bit.data("col") == Parity.flipped_col) {
+        $bit.removeClass("parity-bit");
+        $bit.addClass("correct-bit");
+        Parity.feedback.removeClass('error');
+        Parity.feedback.text("Correct! You spotted the flipped bit");
+        Parity.flipping = 'none';
+      } else {
+        Parity.feedback.addClass('error');
+        Parity.feedback.text("That's not the flipped bit!");
+      }
+    } else if (Parity.flipping == 'all' || (Parity.flipping == 'parity' && $bit.hasClass('parity-bit'))) {
+      // We toggle bit manually rather than call updateGrid() to stay O(1)
+      $bit.toggleClass('black');
+      Parity.grid_values[$bit.data("row")][$bit.data("col")] = !$bit.hasClass("black");
     }
-  })
+  });
 
   // Change grid size on value change
   $('#interactive-parity-grid-size').on('change', function(){
@@ -67,15 +102,26 @@ $(document).ready(function(){
   });
 });
 
-// This function is trigger when the confusation stage is over. This function:
-// 1. Flips a bit in memory
-// 2. Displays new grid
-// 3. Hides the confusation overlay
+
+// This function is trigger when the confusation stage is over.
 function setupParityTrick() {
+  // Check if parity was incorrect before
+  Parity.valid_parity_bits = checkParity();
+  // Update interface for current mode
+  Parity.current_mode = 'detect';
+  setupMode();
+  // Flips a bit in memory
+  flipBit();
+  // Displays new grid
+  updateGrid();
+  // Hides the confusation overlay
   $('#interactive-parity-grid-confusation').hide();
+  // Allow flipping of bit
+  Parity.flipping = 'all';
 };
 
 
+// Set interface for current mode
 function setupMode() {
   var header = $('#interactive-parity-mode');
 
@@ -101,14 +147,17 @@ function setupMode() {
   } else if (Parity.current_mode == 'detect') {
     header.text('Detect the Error');
     Parity.flipping = 'none';
+    $('.interactive-parity-reset-controls').show();
   }
 };
 
-function timer(interval, maxTime, callback, finished_callback) {
+
+// Calls a function at each interval (ms) for a certain length (ms)
+function timer(interval, length, callback, finished_callback) {
   var start = Date.now();
   var intervalID;
   function handler() {
-    if (Date.now() - start > maxTime) {
+    if (Date.now() - start > length) {
       clearInterval(intervalID);
       finished_callback();
     }
@@ -120,30 +169,57 @@ function timer(interval, maxTime, callback, finished_callback) {
 };
 
 
+// This function flips one bit and does not update the grid
+function flipBit() {
+  Parity.flipped_row = Math.floor(Math.random() * Parity.grid_size);
+  Parity.flipped_col = Math.floor(Math.random() * Parity.grid_size);
+  Parity.grid_values[Parity.flipped_row][Parity.flipped_col] = !Parity.grid_values[Parity.flipped_row][Parity.flipped_col];
+};
+
+
+// Set random bit values (except for parity row)
 function setRandomData() {
-  // Set random data values (except parity bits)
-  Parity.grid.children().slice(0, -1).each(function( row_index, row ) {
-    $(row).children().slice(0, -1).each(function( col_index, col ) {
+  for (var row = 0; row < Parity.grid_values.length - 1; row++) {
+    for (var col = 0; col < Parity.grid_values.length - 1; col++) {
       if (Math.random() >= 0.5) {
-        $(col).addClass("black");
+        Parity.grid_values[row][col] = true;
+      } else {
+        Parity.grid_values[row][col] = false;
+      }
+    }
+  }
+  updateGrid();
+};
+
+
+// Set random data values (except parity bits)
+function updateGrid() {
+  Parity.grid.children().each(function( row_index, row ) {
+    $(row).children().each(function( col_index, col ) {
+      $col = $(col);
+      if (Parity.grid_values[row_index][col_index]) {
+        $col.removeClass("black");
+      } else {
+        $col.addClass("black");
       }
     });
   });
 };
 
 
+// Clear all bits
 function clearGrid() {
-  // Clear all bits
-  Parity.grid.children().each(function( row_index, row ) {
-    $(row).children().each(function( col_index, col ) {
-      $(col).removeClass("black");
-    });
-  });
+  for (var row = 0; row < Parity.grid_values.length; row++) {
+    for (var col = 0; col < Parity.grid_values.length; col++) {
+      Parity.grid_values[row][col] = true;
+    }
+  }
+  updateGrid();
 };
 
 
+// Random change bits during confusation
 function randomlyToggleBits() {
-  // Random change data values
   Parity.grid.children().each(function( row_index, row ) {
     $(row).children().each(function( col_index, col ) {
       if (Math.random() >= 0.5) {
@@ -158,74 +234,76 @@ function randomlyToggleBits() {
 };
 
 
+// Set grid size and data values
 function setupGrid(){
   // Get grid size and set it
-  Parity.gridSize = $('#interactive-parity-grid-size').val();
+  Parity.grid_size = parseInt($('#interactive-parity-grid-size').val());
+
+  // Create 2D array of bit values - true is on (white) while false is off (black)
+  Parity.grid_values = new Array(Parity.grid_size);
+  for (var row = 0; row < Parity.grid_values.length; row++) {
+    Parity.grid_values[row] = new Array(Parity.grid_size).fill(true);
+  }
 
   // Clear feedback
   $('#interactive-parity-feedback').text('');
 
-  if (Parity.gridSize > 21 || Parity.gridSize < 1 || isNaN(Parity.gridSize)) {
+  if (Parity.grid_size > 21 || Parity.grid_size < 1 || isNaN(Parity.grid_size)) {
     // Error message
     alert('Please enter a value between 1 and 20');
     // Reset grid
     $('##interactive-parity-grid-size').val(6);
   } else {
     Parity.grid.empty();
-    for(row = 0; row < Parity.gridSize; row++) {
+    for(row = 0; row < Parity.grid_size; row++) {
         var $gridRow = $('<div class="flex-container">');
         Parity.grid.append($gridRow);
-        for(col = 0; col < Parity.gridSize; col++) {
+        for(col = 0; col < Parity.grid_size; col++) {
             var $bit = $('<div class="flex-item parity-card"></div>');
             $gridRow.append($bit);
-            if (row == Parity.gridSize - 1 || col == Parity.gridSize - 1) {
+            // Storing the column and row positions on a bit
+            // allows updating grid_values in O(1)
+            $bit.data("col", col);
+            $bit.data("row", row);
+            if (row == Parity.grid_size - 1 || col == Parity.grid_size - 1) {
               $bit.addClass("parity-bit");
             }
         }
         Parity.grid.append('</div>');
     }
   }
-}
+};
 
+
+// Return boolean of parity status
 function checkParity() {
-  // Set variables
-  var $feedback = $('#interactive-parity-feedback');
-  var valid = true;
+  var parity_status = true;
 
-  // For each row
-  column_counts = new Array(Parity.grid.children().length).fill(0);
-  Parity.grid.children().each(function( row_index, row ) {
-    $row = $(row);
-    // If odd number of white cards, then invalid parity
-    if (($row.children().length - $row.children('.black').length) % 2 == 1) {
-      valid = false
-    }
-
-    // Add to column values
-    $row.children().each(function( col_index, col ) {
-      $col = $(col);
-      if (!$col.hasClass("black")) {
-        column_counts[col_index] = column_counts[col_index] + 1
+  column_counts = new Array(Parity.grid_values.length).fill(0);
+  for (var row = 0; row < Parity.grid_values.length; row++) {
+    var white_bit_count = 0;
+    for (var col = 0; col < Parity.grid_values.length; col++) {
+      // If white (true) add to counts
+      if (Parity.grid_values[row][col]) {
+        white_bit_count++;
+        column_counts[col]++;
       }
-    });
-  });
+    }
+    if (white_bit_count % 2 == 1) {
+      parity_status = false;
+    }
+  }
 
   // Check column counts
-  for (var i = 0; i < column_counts.length; i++) {
-    if (column_counts[i] % 2 == 1) {
-      valid = false
+  for (var col = 0; col < column_counts.length; col++) {
+    if (column_counts[col] % 2 == 1) {
+      parity_status = false;
     }
   }
 
-  // Display status
-  if (valid) {
-    $feedback.removeClass('error');
-    $feedback.text('Correct: Every row and column has even parity (of white squares)');
-  } else {
-    $feedback.addClass('error');
-    $feedback.text('Incorrect: Not every row and column has even parity (of white squares)');
-  }
-}
+  return parity_status;
+};
+
 
 // From jquerybyexample.net/2012/06/get-url-parameters-using-jquery.html
 function getUrlParameter(sParam) {
