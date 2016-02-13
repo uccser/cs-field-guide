@@ -77,13 +77,13 @@ $(document).ready(function(){
     $bit = $(this);
     if (Parity.valid_parity_bits == false) {
       Parity.feedback.addClass('error');
-      Parity.feedback.text("Your parity bits weren't set correctly, try starting again");
+      Parity.feedback.text("Your parity bits weren't set correctly, try starting again.");
     } else if (Parity.current_mode == 'detect' && Parity.flipping == 'all') {
       if ($bit.data("row") == Parity.flipped_row && $bit.data("col") == Parity.flipped_col) {
         $bit.removeClass("parity-bit");
         $bit.addClass("correct-bit");
         Parity.feedback.removeClass('error');
-        Parity.feedback.text("Correct! You spotted the flipped bit");
+        Parity.feedback.text("Correct! You spotted the flipped bit!");
         Parity.flipping = 'none';
       } else {
         Parity.feedback.addClass('error');
@@ -147,6 +147,7 @@ function setupMode() {
   } else if (Parity.current_mode == 'detect') {
     header.text('Detect the Error');
     Parity.flipping = 'none';
+    $('.interactive-parity-detect-controls').show();
     $('.interactive-parity-reset-controls').show();
   }
 };
