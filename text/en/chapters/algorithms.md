@@ -90,7 +90,7 @@ and would tell the robot exactly how to retrieve a glass of water and bring it b
 With the high-score problem, it would be written in a particular language; even in a particular language there are lots of choices about how to write it, but here's one particular way of working out a high score
 (don't worry too much about the detail of the program if the language isn't familiar; the main point is that you could give it to a computer that runs Python, and it would follow the instructions exactly):
 
-```
+```python
 def find_high_score(scores):
     if len(scores) == 0:
         print("No high score, table is empty")
@@ -100,7 +100,7 @@ def find_high_score(scores):
         for score in scores[1:]:
             if score > highest_so_far:
                 highest_so_far = score
-    return(highest_so_far)
+        return highest_so_far
 ```
 
 But here's another program that implements exactly the same algorithm, this time in the Scratch language.
