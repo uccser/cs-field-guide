@@ -37,7 +37,8 @@ $(document).ready(function(){
   // On 'Add random data' button click
   $('#interactive-parity-random-data').on('click', function(){
     clearGrid();
-    setRandomData();
+    setRandomBits();
+    updateGrid();
   });
 
   // On 'Clear all' button click
@@ -50,7 +51,8 @@ $(document).ready(function(){
     // If set stage in set or trick mode
     if (Parity.current_mode == 'set') {
       clearGrid();
-      setRandomData();
+      setRandomBits();
+      updateGrid();
     // Else if detect stage in trick mode
     } else if (Parity.mode == 'trick') {
       Parity.valid_parity_bits = undefined;
@@ -58,7 +60,8 @@ $(document).ready(function(){
       setupMode()
     // Else if detect stage in detect mode
     } else {
-      // TODO
+      clearGrid();
+      setupMode();
     }
     Parity.feedback.removeClass('error');
     Parity.feedback.text("");
@@ -133,7 +136,8 @@ function setupMode() {
      $('.interactive-parity-sandbox-controls').show();
      $('.interactive-parity-check-controls').show();
      Parity.flipping = 'all';
-     setRandomData();
+     setRandomBits();
+     updateGrid();
   } else if (Parity.current_mode == 'set') {
     header.text('Setting Parity');
     Parity.flipping = 'parity';
@@ -143,12 +147,19 @@ function setupMode() {
       $('.interactive-parity-check-controls').show();
     }
     $('.interactive-parity-reset-controls').show();
-    setRandomData();
+    setRandomBits();
+    updateGrid();
   } else if (Parity.current_mode == 'detect') {
     header.text('Detect the Error');
-    Parity.flipping = 'none';
+    Parity.flipping = 'all';
     $('.interactive-parity-detect-controls').show();
     $('.interactive-parity-reset-controls').show();
+    if (Parity.mode == 'detect') {
+      setRandomBits();
+      setParityBits();
+      flipBit();
+      updateGrid();
+    }
   }
 };
 
@@ -179,7 +190,7 @@ function flipBit() {
 
 
 // Set random bit values (except for parity row)
-function setRandomData() {
+function setRandomBits() {
   for (var row = 0; row < Parity.grid_values.length - 1; row++) {
     for (var col = 0; col < Parity.grid_values.length - 1; col++) {
       if (Math.random() >= 0.5) {
@@ -189,7 +200,6 @@ function setRandomData() {
       }
     }
   }
-  updateGrid();
 };
 
 
@@ -303,6 +313,35 @@ function checkParity() {
   }
 
   return parity_status;
+};
+
+
+// Sets the last row and column parity bits correctly
+function setParityBits() {
+
+  column_counts = new Array(Parity.grid_values.length).fill(0);
+  for (var row = 0; row < Parity.grid_values.length-1; row++) {
+    var white_bit_count = 0;
+    for (var col = 0; col < Parity.grid_values.length-1; col++) {
+      // If white (true) add to counts
+      if (Parity.grid_values[row][col]) {
+        white_bit_count++;
+        column_counts[col]++;
+      }
+    }
+    // Last bit in row
+    if (white_bit_count % 2 == 0) {
+      Parity.grid_values[row][Parity.grid_values.length-1] = false;
+    } else {
+      column_counts[Parity.grid_values.length-1]++;
+    }
+  }
+  // Last bit in column
+  for (var col = 0; col < column_counts.length; col++) {
+    if (column_counts[col] % 2 == 0) {
+      Parity.grid_values[Parity.grid_values.length-1][col] = false;
+    }
+  }
 };
 
 
