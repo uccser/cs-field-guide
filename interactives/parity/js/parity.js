@@ -69,6 +69,7 @@ $(document).ready(function(){
 
   // When the user click on the 'Flip a bit' button
   $('#interactive-parity-flip-bit').on('click', function(){
+    $('.interactive-parity-size-controls').hide();
     $('.interactive-parity-trick-controls').hide();
     $('.interactive-parity-reset-controls').hide();
     $('#interactive-parity-grid-confusation').css( "display", "flex");
