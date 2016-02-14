@@ -132,7 +132,7 @@ but often the "space complexity" is of interest - how much memory or disk space 
 
 There's more about how the cost of an algorithm is described in industry,
 using a widely agreed on convention called 'Big-O Notation',
-in the "The Whole Story!" section at the end of this chapter.
+in the "The whole Story!" section at the end of this chapter.
 {panel end}
 
 The amount of time a program which performs the algorithm takes to complete may seem like the simplest cost we could look at, but this can actually be affected by a lot of different things, like the speed of the computer being used, or the programming language the program has been written in. This means that if the time the program takes to complete is used to measure the cost of an algorithm it is important to use the same program and the same computer (or another computer with the same speed) for testing the algorithm with different numbers of inputs.
