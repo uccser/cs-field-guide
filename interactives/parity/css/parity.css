@@ -45,12 +45,14 @@
 #interactive-parity-feedback {
   margin: 0;
   padding: 10px 0;
+  font-size: 1.1rem;
+  line-height: 1.5rem;
   color: #4CAF50;
+  font-weight: 500;
 }
 #interactive-parity-feedback.error {
   color: red;
 }
-#interactive-parity-feedback,
 #interactive-parity-grid-size,
 label {
   font-size: 1.5rem !important;
