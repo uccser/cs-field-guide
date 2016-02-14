@@ -102,6 +102,7 @@ $(document).ready(function(){
   // Change grid size on value change
   $('#interactive-parity-grid-size').on('change', function(){
       setupGrid();
+      setupMode();
   });
 });
 
@@ -134,6 +135,7 @@ function setupMode() {
   if (Parity.current_mode == 'sandbox') {
      header.text('Sandbox Mode');
      $('.interactive-parity-sandbox-controls').show();
+     $('.interactive-parity-size-controls').show();
      $('.interactive-parity-check-controls').show();
      Parity.flipping = 'all';
      setRandomBits();
@@ -141,6 +143,7 @@ function setupMode() {
   } else if (Parity.current_mode == 'set') {
     header.text('Setting Parity');
     Parity.flipping = 'parity';
+    $('.interactive-parity-size-controls').show();
     if (Parity.mode == 'trick') {
       $('.interactive-parity-trick-controls').show();
     } else {
@@ -154,7 +157,9 @@ function setupMode() {
     Parity.flipping = 'all';
     $('.interactive-parity-detect-controls').show();
     $('.interactive-parity-reset-controls').show();
+    // If detect only mode (not trick mode)
     if (Parity.mode == 'detect') {
+      $('.interactive-parity-size-controls').show();
       setRandomBits();
       setParityBits();
       flipBit();
