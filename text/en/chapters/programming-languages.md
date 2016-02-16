@@ -20,7 +20,7 @@ A subsection on what this chapter focuses on then follows. Everybody should read
 
 {panel type="teacher-note" summary="Warm-up activity"}
 
-Consider doing the following [warm-up activity from CSUnplugged](http://csunplugged.org/programming-languages), or the [extended version here](http://csunplugged.org/sites/default/files/tellAndDraw1.5.pdf).
+Consider doing the following [warm-up activity from CSUnplugged](http://csunplugged.org/programming-languages), or the [extended version here](http://csunplugged.org/wp-content/uploads/2014/12/tellAndDraw1.5.pdf).
 
 Students who have never programmed should also work through the material in this section, intended to give them an overview of what programming is about so that the remainder of this chapter makes sense to them.
 

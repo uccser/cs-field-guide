@@ -88,7 +88,7 @@ It is important to understand that neither a human eye nor a digital camera  ---
 
 {panel type="curiosity" summary="Further reading"}
 
-Further reading can be found at [Cambridge in Colour](http://www.cambridgeincolour.com/tutorials/cameras-vs-human-eye.htm) and [Pixiq](http://www.pixiq.com/article/eyes-vs-cameras).
+Further reading can be found at [Cambridge in Colour](http://www.cambridgeincolour.com/tutorials/cameras-vs-human-eye.htm) and [Pixiq](https://web.archive.org/web/20130309170941/http://www.pixiq.com/article/eyes-vs-cameras).
 
 {panel end}
 
@@ -159,7 +159,7 @@ The following activity can be used as part of a project for the 3.44 standard. T
 
 {comment end}
 
-Open the [noise reduction filtering interactive using this link](http://www.cosc.canterbury.ac.nz/csfieldguide/dev/dev/_static/widgets/cv-noise-filters.html) and experiment with settings as below. You will need a webcam, and the interactive will ask you to allow access to it.
+Open the [noise reduction filtering interactive using this link](http://www.csfieldguide.org.nz/releases/1.9.9/_static/widgets/cv-noise-filters.html) and experiment with settings as below. You will need a webcam, and the interactive will ask you to allow access to it.
 
 Mathematically, this process is applying a special kind of matrix called a *convolution kernel* to the value of each pixel in the source image, averaging it with the values of other pixels nearby and copying that average to each pixel in the new image. The average is weighted, so that the values of nearby pixels are given more importance than ones that are far away. The stronger the blur, the wider the convolution kernel has to be and the more calculations take place.
 

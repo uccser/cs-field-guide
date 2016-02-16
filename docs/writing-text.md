@@ -143,6 +143,8 @@ There are several links that may be used:
 
 The general syntax for links is `[link text](link url)` where `link text` is the text to be displayed in the document, and `link url` is the destination of the link.
 
+**Escaping closing brackets within link URLs:** A closing bracket can be escaped by prefixing it with a backslash `\)`.
+
 #### Internal links
 
 These are links to pages within the Computer Science Field Guide. These links will not work when viewed in the GitHub Markdown renderer, however will function properly when run through the guide generator. Links to pages are referenced from the language folder within the text folder (see examples below).
