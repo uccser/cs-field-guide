@@ -56,16 +56,15 @@ header, main, footer {
 ul.side-nav.fixed li a {
   line-height: 44px;
   height: inherit !important;
-  white-space: nowrap;
   position: relative;
-  .dropdown-menu-arrow {
-    position: absolute;
-    top: 0;
-    right: 0;
-    color: $primary-color-light;
-    @include transition(all 300ms ease);
-  }
-  &.active .dropdown-menu-arrow {
+}
+.dropdown-menu-arrow {
+  position: relative;
+  float: right;
+  display: inline-block;
+  color: $primary-color-light;
+  @include transition(all 300ms ease);
+  .active & {
     @include rotate(180deg);
   }
 }
@@ -226,7 +225,6 @@ ul.side-nav.fixed li a {
 @mixin panel-color($class-name, $color) {
   .#{$class-name} .collapsible-header {
     background-color: color($color, "lighten-2");
-    border: none;
   }
   .#{$class-name} {
     background-color: color($color, "lighten-5");
@@ -238,18 +236,25 @@ ul.side-nav.fixed li a {
 }
 
 ul.panel {
+  li.panel-selector {
+    overflow: auto;
+  }
   p {
-    margin: 1rem !important;
+    margin: 1rem 0 !important;
     padding: 0 !important;
   }
   .collapsible-header {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    border: none;
     padding: 1rem;
-  }
-  .panel-heading, .dropdown-menu-arrow {
     line-height: 1.2rem;
+  }
+  .collapsible-body {
+    border: none;
+    padding: 0 1rem;
   }
 
   // Custom panel colours
