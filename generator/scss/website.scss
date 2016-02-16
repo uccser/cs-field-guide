@@ -57,6 +57,17 @@ ul.side-nav.fixed li a {
   line-height: 44px;
   height: inherit !important;
   white-space: nowrap;
+  position: relative;
+  .dropdown-menu-arrow {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: $primary-color-light;
+    @include transition(all 300ms ease);
+  }
+  &.active .dropdown-menu-arrow {
+    @include rotate(180deg);
+  }
 }
 .side-nav .collapsible-body li a {
   padding-right: 0 !important;
@@ -162,14 +173,6 @@ ul.side-nav.fixed li a {
 #page-navigation {
   padding: 1rem 1rem 0 0;
   position: fixed;
-}
-.dropdown-menu-arrow {
-  color: $primary-color-light;
-  @include transition(all 300ms ease);
-
-  .active & {
-    @include rotate(180deg);
-  }
 }
 .btn-expand {
   width: 100% !important;
