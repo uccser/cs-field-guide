@@ -2,6 +2,7 @@ ColourMatcher = {};
 
 $(document).ready(function () {
   ColourMatcher.goal_panel = document.getElementById('interactive-colour-matcher-goal');
+  ColourMatcher.help_stage = 0;
 
   // Setup 24 bit sliders
   ColourMatcher.bit_24 = {};
@@ -73,15 +74,20 @@ $(document).ready(function () {
 
   reset();
 
+  // If help button triggered
   $("#interactive-colour-matcher-help").click(function(){
-    // TODO: Implement better help message
-    ColourMatcher.bit_24.sliders[0].noUiSlider.set(ColourMatcher.red);
-    ColourMatcher.bit_24.sliders[1].noUiSlider.set(ColourMatcher.green);
-    ColourMatcher.bit_24.sliders[2].noUiSlider.set(ColourMatcher.blue);
+    if (ColourMatcher.help_stage < 3) {
+      ColourMatcher.bit_24.sliders[ColourMatcher.help_stage].noUiSlider.set(ColourMatcher.goal_colour[ColourMatcher.help_stage]);
+      ColourMatcher.bit_24.sliders[ColourMatcher.help_stage].setAttribute('disabled', true);
+      ColourMatcher.help_stage++;
+    }
+    if (ColourMatcher.help_stage == 3) {
+      $("#interactive-colour-matcher-help").addClass('disabled');
+    }
     update24BitPanel();
-    $("#interactive-colour-matcher-help").addClass('disabled');
   });
 
+  // If reset button triggered
   $("#interactive-colour-matcher-reset").click(function(){
     reset();
   });
@@ -95,25 +101,41 @@ function reset() {
   set8BitPanel();
   update8BitPanel();
   $("#interactive-colour-matcher-help").removeClass('disabled');
+  // Reset help stages
+  ColourMatcher.help_stage = 0;
+  for (var i = 0; i < ColourMatcher.bit_24.sliders.length; i++) {
+    ColourMatcher.bit_24.sliders[i].removeAttribute('disabled');
+  }
+};
+
+
+// Convert array of colour values to RGB string for setting CSS
+function toRGBString(colours, bit_type) {
+  if (bit_type == 8) {
+    colours[0] = Math.floor(colours[0] * 36.428571429);
+    colours[1] = Math.floor(colours[1] * 36.428571429);
+    colours[2] = Math.floor(colours[2] * 85);
+  }
+  return 'rgb(' + colours[0] + ',' + colours[1] + ',' + colours[2] + ')';
 };
 
 
 function setGoalPanel(){
   // Setup colours for goal panel
-  ColourMatcher.red = Math.floor(Math.random() * 256);
-  ColourMatcher.green = Math.floor(Math.random() * 256);
-  ColourMatcher.blue = Math.floor(Math.random() * 256);
+  ColourMatcher.goal_colour = [Math.floor(Math.random() * 256),
+                               Math.floor(Math.random() * 256),
+                               Math.floor(Math.random() * 256)];
 
   // Update goal panel
-  ColourMatcher.goal_panel.style.background = 'rgb(' + ColourMatcher.red + ',' + ColourMatcher.green + ',' + ColourMatcher.blue + ')';
+  ColourMatcher.goal_panel.style.background = toRGBString(ColourMatcher.goal_colour, 24)
 };
 
 
 function set24BitPanel() {
   // Pick random start positions for 24 bit
-  ColourMatcher.bit_24.sliders[0].noUiSlider.set(Math.floor(Math.random() * 256));
-  ColourMatcher.bit_24.sliders[1].noUiSlider.set(Math.floor(Math.random() * 256));
-  ColourMatcher.bit_24.sliders[2].noUiSlider.set(Math.floor(Math.random() * 256));
+  for (var i = 0; i < ColourMatcher.bit_24.sliders.length; i++) {
+    ColourMatcher.bit_24.sliders[i].noUiSlider.set(Math.floor(Math.random() * 256));
+  }
 };
 
 
@@ -124,7 +146,7 @@ function update24BitPanel(){
                  ColourMatcher.bit_24.sliders[2].noUiSlider.get()];
 
   // Update 24 bit panel
-  ColourMatcher.bit_24.result.style.background = 'rgb(' + colours[0] + ',' + colours[1] + ',' + colours[2] + ')';
+  ColourMatcher.bit_24.result.style.background = toRGBString(colours, 24);
 
   // Set text for labels
   for (var i = 0; i < ColourMatcher.bit_24.value_labels.length; i++) {
@@ -149,10 +171,7 @@ function update8BitPanel(){
 
 
   // Update 8 bit panel
-  ColourMatcher.bit_8.result.style.background = 'rgb(' +
-                          Math.floor(colours[0] * 36.428571429) + ',' +
-                          Math.floor(colours[1] * 36.428571429) + ',' +
-                          Math.floor(colours[2] * 85) + ')';
+  ColourMatcher.bit_8.result.style.background = toRGBString(colours, 8)
 
   // Set text for labels
   for (var i = 0; i < ColourMatcher.bit_8.value_labels.length; i++) {

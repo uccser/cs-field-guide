@@ -48,3 +48,14 @@ div.interactive-colour-matcher-sliders > div:nth-child(2) > div.interactive-colo
 div.interactive-colour-matcher-sliders > div:nth-child(3) > div.interactive-colour-matcher-slider {
 	background: blue;
 }
+/* Fade if disabled */
+div.interactive-colour-matcher-slider {
+  -webkit-transition: opacity 0.2s ease-in-out;
+  -moz-transition: opacity 0.2s ease-in-out;
+  -ms-transition: opacity 0.2s ease-in-out;
+  -o-transition: opacity 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
+}
+div.interactive-colour-matcher-slider[disabled=true] {
+  opacity: 0.3;
+}
