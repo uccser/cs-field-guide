@@ -32,15 +32,15 @@ $(document).ready(function () {
 
     // Bind the color changing function
     // to the slide event.
-    CMY_Mixer.sliders[i].noUiSlider.on('slide', setColor);
+    CMY_Mixer.sliders[i].noUiSlider.on('slide', CMY_Mixer.setColor);
   }
 
   // Update display
-  setColor();
+  CMY_Mixer.setColor();
 });
 
 
-function setColor(){
+CMY_Mixer.setColor = function(){
 	// Get the slider values,
 	// stick them together.
   var cmy_as_rgb = cmy_to_rgb(CMY_Mixer.sliders[0].noUiSlider.get(),
