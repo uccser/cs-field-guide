@@ -90,7 +90,7 @@ and would tell the robot exactly how to retrieve a glass of water and bring it b
 With the high-score problem, it would be written in a particular language; even in a particular language there are lots of choices about how to write it, but here's one particular way of working out a high score
 (don't worry too much about the detail of the program if the language isn't familiar; the main point is that you could give it to a computer that runs Python, and it would follow the instructions exactly):
 
-```python
+```python3
 def find_high_score(scores):
     if len(scores) == 0:
         print("No high score, table is empty")
