@@ -747,7 +747,7 @@ class HeadingNode:
         html = ''
 
         # Create section starts for Materialize ScrollSpy
-        if self.level == 2 and html_type == 'heading-numbered':
+        if self.level == 2 and self.guide.generator_settings['HTML'][self.section.file_node.group_type] == 'website_page_chapter':
             # Close previous section if needed
             if self.section.sectioned:
                 html = self.section.html_templates['section-end']

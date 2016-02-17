@@ -57,7 +57,7 @@ While successful projects are desirable, there is a lot that can be learnt from 
 - [Back to the drawing board - CS4FN](http://www.cs4fn.org/softwareengineering/backtodrawingboard.php)
 - [Why software fails - IEEE](http://spectrum.ieee.org/computing/software/why-software-fails)
 - [Learning from software failure - IEEE](http://spectrum.ieee.org/computing/software/learning-from-software-failure)
-- [Engineering Disasters 13: Software Flaws](https://www.youtube.com/watch?v=EMVBLg2MrLs) is an excerpt from Engineering Disaster Episode 13 explaining software flaws in Ariane 5 and Patriot Missiles
+- [Engineering Disasters 13: Software Flaws](http://youtu.be/EMVBLg2MrLs) is an excerpt from Engineering Disaster Episode 13 explaining software flaws in Ariane 5 and Patriot Missiles
 {panel end}
 
 ## Analysis: What do we build?

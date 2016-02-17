@@ -3,23 +3,18 @@ var Deceiver = {};
 $(document).ready(function(){
 
     $(".interactive-deceiver-button").click(function() {
-        var clickedButton = ($(this).html());
-        console.log(clickedButton);
+        var clickedButton = ($(this).html().trim());
         if (clickedButton == "Odd") {
             if (Deceiver.number % 2 == 1) {
-              console.log('A');
                 questionCorrect();
                 checkButtons();
             } else {
-              console.log('B');
                 questionIncorrect();
             }
         } else {
             if (Deceiver.number % 2 == 1) {
-              console.log('C');
                 questionIncorrect();
             } else {
-              console.log('D');
                 questionCorrect();
                 checkButtons();
             }

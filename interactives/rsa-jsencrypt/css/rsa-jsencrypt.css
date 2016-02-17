@@ -1,0 +1,7 @@
+#interactive-rsa-jsencrypt button {
+  width: 100%;
+  overflow: hidden;
+}
+#interactive-rsa-jsencrypt textarea {
+  height: initial;
+}

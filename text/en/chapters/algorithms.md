@@ -90,7 +90,7 @@ and would tell the robot exactly how to retrieve a glass of water and bring it b
 With the high-score problem, it would be written in a particular language; even in a particular language there are lots of choices about how to write it, but here's one particular way of working out a high score
 (don't worry too much about the detail of the program if the language isn't familiar; the main point is that you could give it to a computer that runs Python, and it would follow the instructions exactly):
 
-```
+```python
 def find_high_score(scores):
     if len(scores) == 0:
         print("No high score, table is empty")
@@ -100,7 +100,7 @@ def find_high_score(scores):
         for score in scores[1:]:
             if score > highest_so_far:
                 highest_so_far = score
-    return(highest_so_far)
+        return highest_so_far
 ```
 
 But here's another program that implements exactly the same algorithm, this time in the Scratch language.
@@ -132,7 +132,7 @@ but often the "space complexity" is of interest - how much memory or disk space 
 
 There's more about how the cost of an algorithm is described in industry,
 using a widely agreed on convention called 'Big-O Notation',
-in the "The Whole Story!" section at the end of this chapter.
+in the "The whole Story!" section at the end of this chapter.
 {panel end}
 
 The amount of time a program which performs the algorithm takes to complete may seem like the simplest cost we could look at, but this can actually be affected by a lot of different things, like the speed of the computer being used, or the programming language the program has been written in. This means that if the time the program takes to complete is used to measure the cost of an algorithm it is important to use the same program and the same computer (or another computer with the same speed) for testing the algorithm with different numbers of inputs.

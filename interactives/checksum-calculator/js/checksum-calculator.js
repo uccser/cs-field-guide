@@ -2,6 +2,7 @@
  * Checksum number calculator
  * For use in CS Field Guide
  * Created by Hayley van Waas, University of Canterbury
+ * Modified by Jack Morgan, University of Canterbury
  */
 
 
@@ -58,6 +59,18 @@ $(document).ready(function () {
        $("#interactive-checksum-calculator-remainder-label").addClass('active');
        $result_elements.show()
      }
+   });
+
+   // Responds to "Reset" button click
+   $("#interactive-checksum-calculator-reset").click(function() {
+     $("#interactive-checksum-calculator-number-input").val('');
+     $("#interactive-checksum-calculator-multiplier-input").val('');
+     $("#interactive-checksum-calculator-total-input").val('');
+     $("#interactive-checksum-calculator-modulo-input").val('');
+     $("#interactive-checksum-calculator-calculation-controls").hide()
+     $("#interactive-checksum-calculator-result").hide()
+     $("#interactive-checksum-calculator-sum-feedback").text('');
+     $("#interactive-checksum-calculator-sums").html("");
    });
 });
 

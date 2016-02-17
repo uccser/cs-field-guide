@@ -103,7 +103,7 @@ Of course, there may be ways to reduce the amount of work required - for example
 
 Try experimenting with the following interactive for Caesar Cipher. You will probably want to refer back to it later while working through the remainder of the sections on Caesar Cipher.
 
-{interactive name="caesar-cipher" type="in-page"}
+{interactive name="caesar-cipher" type="iframe"}
 
 #### Decryption with Caesar Cipher
 
@@ -261,7 +261,7 @@ S: 10          R: 5          L: 2
 
 "E" is the most common letter in the English alphabet. It is therefore a reasonable guess that "J" in the ciphertext represents "E" in the plaintext. Because "J" is 5 letters ahead of "E" in the alphabet, we can guess that the key is 5. If you put the ciphertext into the above interactive and set a key of 5, you will find that this is indeed the correct key.
 
-{interactive name="caesar-cipher" type="in-page"}
+{interactive name="caesar-cipher" type="iframe"}
 
 {panel type="spoiler" summary="Decrypted message"}
 
@@ -503,11 +503,9 @@ A very popular public key system is RSA. For this section on public key systems,
 One thing you might like to do is to ask each student to generate their key pair, and then put their public key alongside their name in a shared spreadsheet (for example, a google doc). Then when the students would like to send an encrypted message to one of their classmates, they can look up the person's public key in the spreadsheet.
 {panel end}
 
-Firstly, you will need to generate a pair of keys using the key generator interactive. Note that each key consists of two numbers and the interactive separates them with a “+” (this does not mean addition). You should *keep the private key secret*, and *publicly announce the public key* so that your friends can send you messages (e.g. put it on the whiteboard, or email it to some friends). Make sure you save your keys somewhere so you don’t forget them – a text file would be best.
+Firstly, you will need to generate a pair of keys using the key generator interactive. You should *keep the private key secret*, and *publicly announce the public key* so that your friends can send you messages (e.g. put it on the whiteboard, or email it to some friends). Make sure you save your keys somewhere so you don’t forget them – a text file would be best.
 
-{comment}
-Put key generating interactive here
-{comment end}
+{interactive name="rsa-key-generator" type="in-page"}
 
 #### Encrypting messages with the public key
 
@@ -587,6 +585,10 @@ Some email systems use this so that you can be sure an email came from the perso
 {comment}
 This section on RSA is yet to be written
 ### RSA in practice
+
+Links to RSA interactives using real world jsencrypt library.
+{interactive name="rsa-jsencrypt" type="whole-page" text="RSA Encrypter (using padding)"}
+{interactive name="rsa-jsencrypt" type="whole-page" text="RSA Decrypter (using padding)" parameters="mode=decrypt" thumbnail="decrypt.png"}
 
 #### How does RSA Work?
 

@@ -257,8 +257,6 @@ Then get the remainder when divided by 10.
 To work out the checksum, you should calculate the digit needed to make this number up to 10 (for example, if the remainder is 8, the check digit is 2).
 If the remainder is 0, then the check digit is also 0.
 
-.. Check digit calculator: needs a reset button (to save reloading the page to process a new number), and "Sums" should be "Products"
-
 {interactive name="checksum-calculator" type="in-page"}
 
 {comment}
