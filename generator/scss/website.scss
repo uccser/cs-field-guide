@@ -1,9 +1,12 @@
 @import "materialize";
 
+// Pygments theme for code syntax highlighting
+@import "pygments-monokai";
+
 pre {
   font-family: Consolas, "Liberation Mono", Courier, monospace;
   font-weight: normal;
-  background-color: color("blue-grey", "darken-1");
+  background-color: color("blue-grey", "darken-4");
   color: color("shades", "white");
   @extend .z-depth-1;
   padding: 1rem !important;
