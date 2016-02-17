@@ -1,0 +1,50 @@
+#interactive-colour-matcher .noUi-pips {
+  padding-top: 5px;
+}
+.interactive-colour-matcher-sliders > div {
+  padding-bottom: 5rem;
+}
+.interactive-colour-matcher-sliders > div:last-child {
+  padding-bottom: 3rem;
+}
+.interactive-rgb-mixer-slider {
+  margin-top: 0.2rem;
+}
+.interactive-colour-matcher-row {
+  padding-bottom: 1rem;
+  display: flex;
+}
+.interactive-colour-matcher-col {
+  flex: 1;
+  margin: 0 1rem;
+}
+#interactive-colour-matcher-results {
+  display: flex;
+  align-content: stretch;
+  flex-wrap: wrap;
+  border: 1px solid black;
+}
+.interactive-colour-matcher-result {
+  text-align: center;
+	background: rgb(127, 127, 127);
+  color: white;
+  font-size: 1.5rem;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+#interactive-colour-matcher-goal {
+  flex: 0 1 100%;
+}
+#interactive-colour-matcher-8-bit-result,
+#interactive-colour-matcher-24-bit-result {
+  flex: 0 1 50%;
+}
+/* RGB colours */
+div.interactive-colour-matcher-sliders > div:nth-child(1) > div.interactive-colour-matcher-slider {
+	background: red;
+}
+div.interactive-colour-matcher-sliders > div:nth-child(2) > div.interactive-colour-matcher-slider {
+	background: lime;
+}
+div.interactive-colour-matcher-sliders > div:nth-child(3) > div.interactive-colour-matcher-slider {
+	background: blue;
+}
