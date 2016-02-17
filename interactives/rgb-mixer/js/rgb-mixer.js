@@ -7,7 +7,6 @@ $(document).ready(function () {
   RGB_Mixer.maximum = 255
 
   RGB_Mixer.sliders = document.getElementsByClassName('interactive-rgb-mixer-slider');
-  console.log(RGB_Mixer.sliders);
   RGB_Mixer.result = document.getElementById('interactive-rgb-mixer-result');
 
   for ( var i = 0; i < RGB_Mixer.sliders.length; i++ ) {
