@@ -458,7 +458,7 @@ Mixing red and blue  give purple, red and yellow give orange, and so on.
 Actually, while the colours blue, red and yellow are commonly used in painting, the very similar primary colours that work better for printing are cyan, magenta and yellow (CMY), which are commonly found in computer printers as well as printing presses. This kind of mixing is called "subtractive mixing", because it starts with a white canvas or paper, and subtracts colour from it. The interactive below allows you to experiment with these in case you're not familiar with them, or if you just like mixing colours.
 We've also added a "black" colour; it's not strictly necessary (you can get black by putting all the other colours on full), but it's useful for printers because it's such a common colour.
 
-**Note:** The interactive here has not been updated to the new system. Please [view the interactives on the Data Representation page](http://www.csfieldguide.org.nz/releases/1.9.9/DataRepresentation.html) on the older version of the CSFG. We are currently in the process of updating these interactives for release.
+{interactive name="cmy-mixer" type="in-page"}
 
 {comment}
 
