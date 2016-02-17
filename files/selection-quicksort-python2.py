@@ -21,7 +21,7 @@ def test_selection_sort(n,show_list):
     if show_list:
         print "Selection sort output is", sample_list
     print "For selection sort of", n, "keys,", comparisons_made, "comparisons of keys were used"
-    print "Time taken: ", (end - start)*1000, " miliseconds elapsed"
+    print "Time taken: ", (end - start)*1000, " milliseconds elapsed"
 
 
 def selection_sort(sample_list):
@@ -51,7 +51,7 @@ def test_quick_sort(n,show_list):
     if show_list:
         print "Quicksort output is", sample_list
     print "For quicksort of", n, "keys,", comparisons_made, "comparisons of keys were used"
-    print "Time taken: ", (end - start)*1000, " miliseconds elapsed"
+    print "Time taken: ", (end - start)*1000, " milliseconds elapsed"
 
 
 def quick_sort(sample_list):

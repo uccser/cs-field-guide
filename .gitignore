@@ -3,6 +3,7 @@ output/*
 !output/README.md
 
 # Ignore Python module cache files
+generator/__pycache__/*
 *.pyc
 
 # OS generated files
@@ -14,6 +15,9 @@ output/*
 ehthumbs.db
 Thumbs.db
 
-# temp vim files
+# Vim files
 *.swo
 *.swp
+
+# PyCharm IDE files
+.idea

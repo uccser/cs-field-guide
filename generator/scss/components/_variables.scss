@@ -1,5 +1,12 @@
 /*** Colors ***/
-$primary-color: color("indigo", "base") !default;
+
+// Default is student
+$primary-color: color("indigo", "base");
+
+@if $version == "teacher" {
+  $primary-color: color("red", "base");
+}
+
 $primary-color-light: lighten($primary-color, 15%) !default;
 $primary-color-dark: darken($primary-color, 15%) !default;
 
@@ -50,7 +57,7 @@ $input-bg-color: #fff !default;
 $input-error-color: $error-color !default;
 $input-success-color: $success-color !default;
 $input-focus-color: $secondary-color !default;
-$label-font-size: .8rem !default;
+$label-font-size: 1rem !default;
 $input-disabled-color: rgba(0,0,0, .26) !default;
 $input-disabled-solid-color: #BDBDBD !default;
 
