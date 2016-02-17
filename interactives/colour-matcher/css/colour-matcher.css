@@ -13,10 +13,12 @@
 .interactive-colour-matcher-row {
   padding-bottom: 1rem;
   display: flex;
+  flex-wrap: wrap;
 }
 .interactive-colour-matcher-col {
   flex: 1;
   margin: 0 1rem;
+  min-width: 200px;
 }
 #interactive-colour-matcher-results {
   display: flex;

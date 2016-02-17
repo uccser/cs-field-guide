@@ -19,10 +19,22 @@
     <!-- ### Start of required HTML for inline interactives ### -->
     <div class="interactive" id="interactive-colour-matcher">
       <h2>Colour Matcher</h2>
-      <p>Try matching the colour in the result panel with first the 24 bit sliders (click the 'Help me' button if you're struggling), and then with the 8 bit sliders.</p>
+      <div class="interactive-colour-matcher-row">
+        <div class="interactive-colour-matcher-col">
+          <p>Try matching the colour in the result panel with first the 24 bit sliders (click the 'Help me' button if you're struggling), and then with the 8 bit sliders.</p>
+        </div>
+        <div class="interactive-colour-matcher-col">
+          <p>If you are struggling to match the 24 bit colour, you can get help by clicking the button below.</p>
+          <button id="interactive-colour-matcher-help" type="button" class="btn green">Help me</button>
+        </div>
+        <div class="interactive-colour-matcher-col">
+          <p>Want to try another random colour?</p>
+          <button id="interactive-colour-matcher-reset" type="button" class="btn orange">Try another colour</button>
+        </div>
+      </div>
 
       <div class="interactive-colour-matcher-row">
-        <div class="interactive-colour-matcher-col s4">
+        <div class="interactive-colour-matcher-col">
           <h5>24 bit</h5>
           <div id="interactive-colour-matcher-24-bit-sliders" class="interactive-colour-matcher-sliders">
             <div>
@@ -39,12 +51,12 @@
             </div>
           </div>
         </div>
-        <div id="interactive-colour-matcher-results" class="interactive-colour-matcher-col s4">
+        <div id="interactive-colour-matcher-results" class="interactive-colour-matcher-col">
           <div class="interactive-colour-matcher-result" id="interactive-colour-matcher-24-bit-result">24 bit</div>
           <div class="interactive-colour-matcher-result" id="interactive-colour-matcher-8-bit-result">8 bit</div>
           <div class="interactive-colour-matcher-result" id="interactive-colour-matcher-goal">Goal</div>
         </div>
-        <div class="interactive-colour-matcher-col s4">
+        <div class="interactive-colour-matcher-col">
           <h5>8 bit</h5>
           <div id="interactive-colour-matcher-8-bit-sliders" class="interactive-colour-matcher-sliders">
             <div>
@@ -62,9 +74,6 @@
           </div>
         </div>
       </div>
-
-      <button id="interactive-colour-matcher-help" type="button" class="btn green">Help me</button>
-      <button id="interactive-colour-matcher-reset" type="button" class="btn orange">Try another colour</button>
 
       <link rel="stylesheet" href="./css/colour-matcher.css">
       <link rel="stylesheet" href="../base-files/css/nouislider.min.css">
