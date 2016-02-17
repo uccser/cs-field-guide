@@ -480,7 +480,7 @@ Pink is made by having red on full value, and green and blue on half; students c
 
 {panel end}
 
-**Note:** The interactive here has not been updated to the new system. Please [view the interactives on the Data Representation page](http://www.csfieldguide.org.nz/releases/1.9.9/DataRepresentation.html) on the older version of the CSFG. We are currently in the process of updating these interactives for release.
+{interactive name="rgb-mixer" type="in-page"}
 
 The key idea is that you can specify the colour of a pixel using three numbers.
 In the above example, each number is from 0 to 255.
