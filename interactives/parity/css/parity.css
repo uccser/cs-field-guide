@@ -25,10 +25,10 @@
   padding-top:100%;
 }
 .parity-card {
-  border: 1px solid #929292;
+  border: 2px solid #929292;
   background: white;
   margin: 1px;
-  border-radius: 3px;
+  border-radius: 6px;
 }
 .black {
   background: black;
@@ -37,10 +37,10 @@
   cursor: cell;
 }
 .parity-bit {
-  border: 1px solid #2196F3;
+  border-color: #2196F3;
 }
 .correct-bit {
-  border: 1px solid #4CAF50;
+  border-color: #4CAF50;
 }
 #interactive-parity-feedback {
   margin: 0;
@@ -56,4 +56,4 @@
 #interactive-parity-grid-size,
 label {
   font-size: 1.5rem !important;
-}#interactive-parity-footer {  padding-top: 2rem;  color: grey;}#interactive-parity-footer > p {  font-size: 0.8rem;}.btn-expand {  width: 100%;  padding: 0 0.5rem;}select {  border: 1px solid #929292;}#interactive-parity-grid-container{  position: relative;}#interactive-parity-grid-confusation {  display: none;  position: absolute;  left: 0;  top: 0;  right: 0;  bottom: 0;  background-color: rgba(0, 0, 0, 0.5);  border-radius: 4px;  align-items: center;  justify-content: center;}#interactive-parity-grid-confusation-text {  flex: none;  color: white;  font-size: 1.8rem;  font-weight: bold;}
+}#interactive-parity-footer {  padding-top: 2rem;  color: grey;}#interactive-parity-footer > p {  font-size: 0.8rem;}.btn-expand {  width: 100%;  padding: 0 0.5rem;}select {  border: 1px solid #929292;}#interactive-parity-grid-container{  position: relative;}#interactive-parity-grid-confusation {  display: none;  position: absolute;  left: 0;  top: 0;  right: 0;  bottom: 0;  background-color: rgba(0, 0, 0, 0.5);  border-radius: 8px;  align-items: center;  justify-content: center;}#interactive-parity-grid-confusation-text {  text-align: center;  flex: none;  color: white;  font-size: 2rem;}
