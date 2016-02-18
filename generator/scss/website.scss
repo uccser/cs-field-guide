@@ -6,15 +6,12 @@
 pre {
   font-family: Consolas, "Liberation Mono", Courier, monospace;
   font-weight: normal;
+  font-size: 0.9rem !important;
   background-color: color("blue-grey", "darken-4");
   color: color("shades", "white");
   @extend .z-depth-1;
   padding: 1rem !important;
-  white-space: pre-wrap;       /* CSS 3 */
-  white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
-  white-space: -pre-wrap;      /* Opera 4-6 */
-  white-space: -o-pre-wrap;    /* Opera 7 */
-  word-wrap: break-word;       /* Internet Explorer 5.5+ */
+  overflow-x: auto;
 }
 pre > code {
   padding: 0;
