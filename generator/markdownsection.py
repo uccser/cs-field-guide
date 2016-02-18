@@ -483,7 +483,7 @@ class Section:
         link_text = 'Click to load {text}'.format(text=text)
         folder_location = os.path.join(self.html_path_to_guide_root, source_folder, self.guide.generator_settings['Source']['Interactive File'])
         file_link = "{location}?{parameters}".format(location=folder_location, parameters=params) if params else folder_location
-        link_template = self.html_templates['interactive-external']
+        link_template = self.html_templates['interactive-whole-page']
         link_html = link_template.format(interactive_thumbnail=thumbnail_location,
                                     interactive_link_text=link_text,
                                     interactive_source=file_link)

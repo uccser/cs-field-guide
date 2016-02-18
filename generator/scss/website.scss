@@ -192,6 +192,31 @@ ul.side-nav.fixed li a {
     line-height: 115%;
   }
 }
+.btn-interactive-whole-page-container {
+  position: relative;
+  width: 100%;
+  height: initial !important;
+  padding: 2em 0 !important;
+  border-radius: 5px !important;
+  overflow: hidden;
+  background-color: black !important;
+}
+.btn-interactive-whole-page-image {
+  position: absolute;
+  top: -50%;
+  left: -10%;
+  width: 120%;
+  opacity: 0.5;
+  -webkit-filter: blur(3px);
+  filter: blur(3px);
+}
+.btn-interactive-whole-page-text {
+  position: relative;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: white;
+}
 .flex-container {
   display: flex;
   flex-wrap: nowrap;
