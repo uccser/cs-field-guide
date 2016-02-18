@@ -168,7 +168,7 @@ Lets investigate searching with a game...
 
 {button link="http://www.csfieldguide.org.nz/releases/1.9.9/_static/interactives/alg/searching/index.html?max=2" text="Searching Boxes - Part 1"}
 {comment}
-{interactive name="searching-boxes" type="whole-page" title="Searching Boxes - Part 1" parameters="max=2"}
+{interactive name="searching-boxes" type="whole-page" text="Searching Boxes - Part 1" parameters="max=2"}
 {comment end}
 
 You may have noticed that the numbers on the monsters and pets in the game were in a random order, which meant that finding the pet was basically luck! You might have found it on your first try, or if you were less lucky you might have had to look inside almost all the presents before you found it. This might not seem like such a bad thing since you had enough lives to look under all the boxes, but imagine if there had been 1,000 boxes, or worse 1,000,000! It would have taken far too long to look through all the boxes and the pet might have never been found.
@@ -254,7 +254,7 @@ Use the scales to compare the boxes (you can only compare two boxes at a time) a
 
 If the interactive does not run properly on your computer you can use a set of physical balance scales instead; just make sure you can only tell if one box is heavier than the other, not their exact weight (so not digital scales that show the exact weight).
 
-{interactive name="sorting-algorithms" type="whole-page" text="Scales Interactive"}
+{interactive name="sorting-algorithms" type="whole-page" text="Scales interactive"}
 
 {comment}
 TODO: link back to the unplugged activity
