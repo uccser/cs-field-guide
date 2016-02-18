@@ -11,8 +11,8 @@ You can even create a copy to generate your own version of the CSFG.
 
 ## Quick links
 
-- [Project style guide](docs/style-guide.md)
-- [Text syntax](docs/writing-text.md)
+- [Project style guide](style-guide.md)
+- [Text syntax](writing-text.md)
 
 ## Pull requests
 
