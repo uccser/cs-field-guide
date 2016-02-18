@@ -72,7 +72,7 @@ The following Python code is written for version 3 Python, but will also work wi
 
 {panel end}
 
-```
+```python3
 print("I am going to print the first 5 multiples of 3")
 for i in range(5):
 	print(i*3)
@@ -89,7 +89,7 @@ You can also loop over a list of data. Try running the program below. It will ge
 
 Note that the # symbol tells the computer that it should ignore the line, as it is a comment for the programmer.
 
-```
+```python3
 #List of recipients to generate messages for
 spam_recipients = ["Heidi", "Tim", "Pondy", "Jack", "Caitlin", "Sam", "David"]  
 #Go through each recipient
