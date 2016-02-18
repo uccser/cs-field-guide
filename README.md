@@ -40,22 +40,9 @@ For example: Entering `python generateguide.py --language en de fr -t` will prod
 
 Have a bug or a feature request? Please first search for [existing and closed issues](https://github.com/uccser/cs-field-guide/issues) in our issue tracker. If your problem or idea is not addressed yet, please [open a new issue](https://github.com/uccser/cs-field-guide/issues/new).
 
-## Documentation
-
-Complete documentation for this project is stored in the [docs folder](docs/README.md).
-
 ## Contributing
 
-We are currently still constructing this repository to produce a complete guide so will not be accepting any pull requests until v2.0 is released (v1.0 is a closed source system, the first major release on GitHub will be v2.0). After this point we would love the community to get involved into making this guide as great as possible!
-A guide on how to contribute to the project (from correcting a spelling mistake to adding a translation) will be written as part of the documentation for the v2.0 release. Possible areas users will be able to contribute include:
-
-- Suggesting a text edit for a typo, grammar correction, or just clearing up a point.
-- Add a translation for a chapter or interactive.
-- Add a new or replacement image for a chapter.
-- Modify text and create their own version of the CSFG.
-- Add or modify an interactive for the guide.
-
-We use [Vincent Driessen's Git Branching Model](http://nvie.com/posts/a-successful-git-branching-model/) for managing development.
+For those willing to contribute to the project, check out the [project documentation](docs/README.md) for more information.
 
 ## Admin contact
 
