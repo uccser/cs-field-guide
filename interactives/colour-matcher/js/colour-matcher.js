@@ -169,12 +169,11 @@ function update8BitPanel(){
                  ColourMatcher.bit_8.sliders[1].noUiSlider.get(),
                  ColourMatcher.bit_8.sliders[2].noUiSlider.get()];
 
-
-  // Update 8 bit panel
-  ColourMatcher.bit_8.result.style.background = toRGBString(colours, 8)
-
   // Set text for labels
   for (var i = 0; i < ColourMatcher.bit_8.value_labels.length; i++) {
     ColourMatcher.bit_8.value_labels[i].innerHTML = colours[i];
   }
+
+  // Update 8 bit panel
+  ColourMatcher.bit_8.result.style.background = toRGBString(colours, 8)
 };
