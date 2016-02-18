@@ -207,7 +207,7 @@ This image is from the [CS Unplugged image representation activity](http://csunp
 
 The following interactive allows you to experiment further with Run Length Encoding.
 
-{interactive name="run-length-encoding" type="whole-page"}
+{interactive name="run-length-encoding" type="whole-page" text="Run Length Encoding interactive"}
 
 ### Analysing Run Length Encoding
 

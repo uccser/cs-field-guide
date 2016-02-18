@@ -492,7 +492,7 @@ Of course, a computer screen or printout doesn't have just one colour on it --- 
 The following interactive allows you to zoom in on an image to see the pixels that are used to represent it. Each pixel is a solid colour square, and the computer needs to store the colour for each pixel.
 If you zoom in far enough, the interactive will show you the red-green-blue values for each pixel. You can pick a pixel and put the values on the slider above - it should come out as the same colour as the pixel.
 
-{interactive name="pixel-viewer" type="whole-page" text="Pixel Viewer"}
+{interactive name="pixel-viewer" type="whole-page" text="Pixel Viewer interactive"}
 
 {panel type="jargon-buster" summary="Pixel"}
 
@@ -610,7 +610,7 @@ What if we were to use fewer than 24 bits to represent each colour, i.e. each sl
 
 It should be possible to get a perfect match using 24 bit colour. Now try the 8-bit sliders. These ones have only 8 values for red and green, and just 4 values for blue!
 
-{interactive name="colour-matcher" type="whole-page" text="Colour Matcher"}
+{interactive name="colour-matcher" type="whole-page" text="Colour Matcher interactive"}
 
 The above system used 3 bits to specify the amount of red (8 possible values), 3 bits to specify the amount of green (again 8 possible values), and 2 bits to specify the amount of blue (4 possible values). This gives a total of 8 bits (hence the name), which can be used to make 256 different bit patterns, and thus can represent 256 different colours.
 
