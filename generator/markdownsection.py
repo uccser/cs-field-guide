@@ -685,6 +685,10 @@ class Section:
         # Parse with library parser
         text = markdown(text, extras=MARKDOWN2_EXTRAS)
 
+        # Remove any empty <p></p> tags
+        # TODO: Find why this occurs and stop it
+        text = re.sub("<p><\/p>", '', text, flags=re.MULTILINE)
+
         self.html_content.append(text)
 
         # Log error messages
