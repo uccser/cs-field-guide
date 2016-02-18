@@ -23,6 +23,74 @@ No pre-releases currently.
 
 ## Current Release
 
+### 2.0.2
+
+**Release date:** 19th February 2016
+
+**Downloads:** [Source available on GitHub](https://github.com/uccser/cs-field-guide/releases/tag/2.0.2)
+
+**Notable changes:**
+- New interactive: Parity trick with separate modes for [practicing setting parity](interactives/parity/index.html?mode=set), [practicing detecting parity](interactives/parity/index.html?mode=detect), and [the whole trick](interactives/parity/index.html). Also has a [sandbox mode](interactives/parity/index.html?mode=sandbox).
+- Updated interactives: Two colour mixers, one for [RGB](interactives/rgb-mixer/index.html) and one for [CMY](interactives/cmy-mixer/index.html) have been added.
+- Updated interactive: A [colour matcher interactive](interactives/colour-matcher/index.html) has been added for matching a colour in both 24 bit and 8 bit.
+- Updated interactive: A [python interpreter interactive](interactives/python-interpreter/index.html) has been added for the programming languages chapter.
+- Website improvements: Code blocks now have syntax highlighting when a language is specified, dropdown arrows are fixed in Mozilla Firefox browsers, and whole page interactives now have nicer link buttons.
+
+**Changelog**:
+- Added first version of parity-sandbox interactive [ba272c3](https://github.com/uccser/cs-field-guide/commit/ba272c3)
+- Fixed parity-sandbox interactive size [b18a688](https://github.com/uccser/cs-field-guide/commit/b18a688)
+- Modified feedback message for clarity [00d4bbc](https://github.com/uccser/cs-field-guide/commit/00d4bbc)
+- Added parity interactive (set parity mode) [fa96933](https://github.com/uccser/cs-field-guide/commit/fa96933)
+- Removed test.js file [6553070](https://github.com/uccser/cs-field-guide/commit/6553070)
+- Added sandbox mode to parity interactive [5a204e9](https://github.com/uccser/cs-field-guide/commit/5a204e9)
+- Added first stages of parity trick [7c0fc84](https://github.com/uccser/cs-field-guide/commit/7c0fc84)
+- Added parity trick to parity interactive [41162cf](https://github.com/uccser/cs-field-guide/commit/41162cf)
+- Changed reset text to 'Start Over' [d171802](https://github.com/uccser/cs-field-guide/commit/d171802)
+- Added description text for detect stage [eda494e](https://github.com/uccser/cs-field-guide/commit/eda494e)
+- Add detect only mode to parity interactive [dbe5bc9](https://github.com/uccser/cs-field-guide/commit/dbe5bc9)
+- Removed wave effect from interactive buttons [ef1d1e7](https://github.com/uccser/cs-field-guide/commit/ef1d1e7)
+- Shrunk feedback in parity interactive for readability [346a28f](https://github.com/uccser/cs-field-guide/commit/346a28f)
+- Removed dark wave effect from buttons [de8812a](https://github.com/uccser/cs-field-guide/commit/de8812a)
+- Added size control to set and trick modes [8313616](https://github.com/uccser/cs-field-guide/commit/8313616)
+- Hide grid size selector during confusation stage [6d3a15d](https://github.com/uccser/cs-field-guide/commit/6d3a15d)
+- Increased readability of confusation and bit borders [2b4d5de](https://github.com/uccser/cs-field-guide/commit/2b4d5de)
+- Fixed links to interactives in Computer Vision chapter [51195c5](https://github.com/uccser/cs-field-guide/commit/51195c5)
+- Fixed dropdown arrows in sidebar on Firefox browsers [8664951](https://github.com/uccser/cs-field-guide/commit/8664951)
+- Fixed section links in curriculum guides (fixes [#205](https://github.com/uccser/cs-field-guide/issues/205)) [65936af](https://github.com/uccser/cs-field-guide/commit/65936af)
+- Fixed dropdown arrows rendering incorrectly in Firefox [53002d5](https://github.com/uccser/cs-field-guide/commit/53002d5)
+- Added CMY mixer interactive (fixes[ #35](https://github.com/uccser/cs-field-guide/issues/35)) [176ea4f](https://github.com/uccser/cs-field-guide/commit/176ea4f)
+- Added RGB mixer interactive (fixes[ #36](https://github.com/uccser/cs-field-guide/issues/36)) [a0dadd7](https://github.com/uccser/cs-field-guide/commit/a0dadd7)
+- Altered JS function within interactive to avoid conflicts [901e173](https://github.com/uccser/cs-field-guide/commit/901e173)
+- Removed logging statement [cf9a2ac](https://github.com/uccser/cs-field-guide/commit/cf9a2ac)
+- Added colour matcher interactive (fixes[ #38](https://github.com/uccser/cs-field-guide/issues/38)) [352b961](https://github.com/uccser/cs-field-guide/commit/352b961)
+- Added link to interactive in chapter [5c2a933](https://github.com/uccser/cs-field-guide/commit/5c2a933)
+- Added help/hint stages to colour-matcher [be03873](https://github.com/uccser/cs-field-guide/commit/be03873)
+- Tidied colour-matcher interface [ee450d0](https://github.com/uccser/cs-field-guide/commit/ee450d0)
+- Increased aesthetics of colour-matcher [20f60c0](https://github.com/uccser/cs-field-guide/commit/20f60c0)
+- Added links to program downloads (fixes [#237](https://github.com/uccser/cs-field-guide/issues/237)) [0228451](https://github.com/uccser/cs-field-guide/commit/0228451)
+- Added code syntax highlighting [5194ff9](https://github.com/uccser/cs-field-guide/commit/5194ff9)
+- Added documentation on code syntax highlighting [7cbe9ae](https://github.com/uccser/cs-field-guide/commit/7cbe9ae)
+- Fixed code type for syntax highlighting [04883ed](https://github.com/uccser/cs-field-guide/commit/04883ed)
+- Added python-interpreter interactive (fixes [#196](https://github.com/uccser/cs-field-guide/issues/196)) [413008e](https://github.com/uccser/cs-field-guide/commit/413008e)
+- Added syntax highlighting to code in programming languages chapter [b426d85](https://github.com/uccser/cs-field-guide/commit/b426d85)
+- Remove any empty `<p></p>` tags [0de2824](https://github.com/uccser/cs-field-guide/commit/0de2824)
+- Fixed labels on 8 bit sliders [b0ce415](https://github.com/uccser/cs-field-guide/commit/b0ce415)
+- Make colours harder to match with 8 bits [0f90418](https://github.com/uccser/cs-field-guide/commit/0f90418)
+- Added clearer help messages to colour-matcher [092b7f7](https://github.com/uccser/cs-field-guide/commit/092b7f7)
+- Altered how `<pre>` blocks look on mobile devices [2459d82](https://github.com/uccser/cs-field-guide/commit/2459d82)
+- Added nicer buttons to whole page interactives [ecc4137](https://github.com/uccser/cs-field-guide/commit/ecc4137)
+- Updated version number for 2.0.2 [cd61d7f](https://github.com/uccser/cs-field-guide/commit/cd61d7f)
+- Fixed confusing input colour in payment-interface (fixes [#109](https://github.com/uccser/cs-field-guide/issues/109)) [84d986b](https://github.com/uccser/cs-field-guide/commit/84d986b)
+- Added thumbnails to whole page interactives (fixes [#227](https://github.com/uccser/cs-field-guide/issues/227)) [f5e792a](https://github.com/uccser/cs-field-guide/commit/f5e792a)
+- Added manual parsing of code blocks [ba036a7](https://github.com/uccser/cs-field-guide/commit/ba036a7)
+- [Linear search Python2] Code readability improvement [e9014eb](https://github.com/uccser/cs-field-guide/commit/e9014eb) - Thanks [ner0x652](https://github.com/ner0x652)
+- Naming incosistency [08dfd4e](https://github.com/uccser/cs-field-guide/commit/08dfd4e) - Thanks [ner0x652](https://github.com/ner0x652)
+- Remove unnecessary parenthesis. For a reader that does not know Python [97b27a4](https://github.com/uccser/cs-field-guide/commit/97b27a4) - Thanks [ner0x652](https://github.com/ner0x652)
+- Added parity trick interactive to error control chapter [c986695](https://github.com/uccser/cs-field-guide/commit/c986695)
+- Added thumbnail to parity interactive [3162254](https://github.com/uccser/cs-field-guide/commit/3162254)
+
+## Older Releases
+
 ### 2.0.1
 
 **Release date:** 12th February 2016
@@ -65,8 +133,6 @@ No pre-releases currently.
 - Fixed dead links from 2.0.0 (fixes [#216](https://github.com/uccser/cs-field-guide/issues/216)) [6bd461e](https://github.com/uccser/cs-field-guide/commit/6bd461e)
 - Added details on how to escape closing brackets in link URLs [4397ac8](https://github.com/uccser/cs-field-guide/commit/4397ac8)
 - Fixed comma in wrong spot within number [72bfe28](https://github.com/uccser/cs-field-guide/commit/72bfe28)
-
-## Older Releases
 
 ### 2.0.0
 

@@ -90,7 +90,7 @@ and would tell the robot exactly how to retrieve a glass of water and bring it b
 With the high-score problem, it would be written in a particular language; even in a particular language there are lots of choices about how to write it, but here's one particular way of working out a high score
 (don't worry too much about the detail of the program if the language isn't familiar; the main point is that you could give it to a computer that runs Python, and it would follow the instructions exactly):
 
-```python
+```python3
 def find_high_score(scores):
     if len(scores) == 0:
         print("No high score, table is empty")
@@ -132,7 +132,7 @@ but often the "space complexity" is of interest - how much memory or disk space 
 
 There's more about how the cost of an algorithm is described in industry,
 using a widely agreed on convention called 'Big-O Notation',
-in the "The whole Story!" section at the end of this chapter.
+in the ["The whole story!"](chapters/algorithms.html#the-whole-story) section at the end of this chapter.
 {panel end}
 
 The amount of time a program which performs the algorithm takes to complete may seem like the simplest cost we could look at, but this can actually be affected by a lot of different things, like the speed of the computer being used, or the programming language the program has been written in. This means that if the time the program takes to complete is used to measure the cost of an algorithm it is important to use the same program and the same computer (or another computer with the same speed) for testing the algorithm with different numbers of inputs.
@@ -168,7 +168,7 @@ Lets investigate searching with a game...
 
 {button link="http://www.csfieldguide.org.nz/releases/1.9.9/_static/interactives/alg/searching/index.html?max=2" text="Searching Boxes - Part 1"}
 {comment}
-{interactive name="searching-boxes" type="whole-page" title="Searching Boxes - Part 1" parameters="max=2"}
+{interactive name="searching-boxes" type="whole-page" text="Searching Boxes - Part 1" parameters="max=2"}
 {comment end}
 
 You may have noticed that the numbers on the monsters and pets in the game were in a random order, which meant that finding the pet was basically luck! You might have found it on your first try, or if you were less lucky you might have had to look inside almost all the presents before you found it. This might not seem like such a bad thing since you had enough lives to look under all the boxes, but imagine if there had been 1,000 boxes, or worse 1,000,000! It would have taken far too long to look through all the boxes and the pet might have never been found.
@@ -227,9 +227,9 @@ It is important to remember that you can only perform a Binary Search if the ite
 {panel type="project" summary="Code to   run linear and binary search for yourself"}
 The following files will run linear and binary search in various languages; you can use them to generate random lists of values and measure how long they take to find a given value.
 Your project is to measure the amount of time taken as the number of items (*n*) increases; try drawing a graph showing this.
-- [Scratch](files/linear-binary-search-scratch.zip)
-- [Python (Version 2)](files/linear-binary-search-python2.py)
-- [Python (Version 3)](files/linear-binary-search-python3.py)
+- [Scratch](files/linear-binary-search-scratch.zip) - [Download Scratch here](https://scratch.mit.edu/scratch2download/)
+- [Python (Version 2)](files/linear-binary-search-python2.py) - [Download Python 2 here](https://www.python.org/downloads/)
+- [Python (Version 3)](files/linear-binary-search-python3.py) - [Download Python 3 here](https://www.python.org/downloads/)
 {panel end}
 
 {glossary-link term="Algorithm" reference-text="sorting algorithms"}{glossary-link end}
@@ -254,7 +254,7 @@ Use the scales to compare the boxes (you can only compare two boxes at a time) a
 
 If the interactive does not run properly on your computer you can use a set of physical balance scales instead; just make sure you can only tell if one box is heavier than the other, not their exact weight (so not digital scales that show the exact weight).
 
-{interactive name="sorting-algorithms" type="whole-page" text="Scales Interactive"}
+{interactive name="sorting-algorithms" type="whole-page" text="Scales interactive"}
 
 {comment}
 TODO: link back to the unplugged activity
@@ -349,9 +349,9 @@ Quicksort can be described in the following way:
 The following files will run selection sort and quicksort in various languages; you can use them to generate random lists of values and measure how long they take to be sorted.
 Note how long these take for various amounts of input (*n*), and show it in a table or graph.
 You should notice that the time taken by Quicksort is quite different to that taken by selection sort.
-- [Scratch](files/selection-quicksort-scratch.zip)
-- [Python (Version 2)](files/selection-quicksort-python2.py)
-- [Python (Version 3)](files/selection-quicksort-python3.py)
+- [Scratch](files/selection-quicksort-scratch.zip) - [Download Scratch here](https://scratch.mit.edu/scratch2download/)
+- [Python (Version 2)](files/selection-quicksort-python2.py) - [Download Python 2 here](https://www.python.org/downloads/)
+- [Python (Version 3)](files/selection-quicksort-python3.py) - [Download Python 3 here](https://www.python.org/downloads/)
 {panel end}
 
 There are dozens of sorting algorithms that have been invented; most of the ones that are used in practice are based on quicksort and/or mergesort. These, and many others, can be seen in this intriguing animated video.

@@ -1,17 +1,17 @@
 @import "materialize";
 
+// Pygments theme for code syntax highlighting
+@import "pygments-monokai";
+
 pre {
   font-family: Consolas, "Liberation Mono", Courier, monospace;
   font-weight: normal;
-  background-color: color("blue-grey", "darken-1");
+  font-size: 0.9rem !important;
+  background-color: color("blue-grey", "darken-4");
   color: color("shades", "white");
   @extend .z-depth-1;
   padding: 1rem !important;
-  white-space: pre-wrap;       /* CSS 3 */
-  white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
-  white-space: -pre-wrap;      /* Opera 4-6 */
-  white-space: -o-pre-wrap;    /* Opera 7 */
-  word-wrap: break-word;       /* Internet Explorer 5.5+ */
+  overflow-x: auto;
 }
 pre > code {
   padding: 0;
@@ -56,7 +56,17 @@ header, main, footer {
 ul.side-nav.fixed li a {
   line-height: 44px;
   height: inherit !important;
-  white-space: nowrap;
+  position: relative;
+}
+.dropdown-menu-arrow {
+  position: relative;
+  float: right;
+  display: inline-block;
+  color: $primary-color-light;
+  @include transition(all 300ms ease);
+  .active & {
+    @include rotate(180deg);
+  }
 }
 .side-nav .collapsible-body li a {
   padding-right: 0 !important;
@@ -163,14 +173,6 @@ ul.side-nav.fixed li a {
   padding: 1rem 1rem 0 0;
   position: fixed;
 }
-.dropdown-menu-arrow {
-  color: $primary-color-light;
-  @include transition(all 300ms ease);
-
-  .active & {
-    @include rotate(180deg);
-  }
-}
 .btn-expand {
   width: 100% !important;
 }
@@ -189,6 +191,31 @@ ul.side-nav.fixed li a {
     font-size: 1.8rem;
     line-height: 115%;
   }
+}
+.btn-interactive-whole-page-container {
+  position: relative;
+  width: 100%;
+  height: initial !important;
+  padding: 2em 0 !important;
+  border-radius: 5px !important;
+  overflow: hidden;
+  background-color: black !important;
+}
+.btn-interactive-whole-page-image {
+  position: absolute;
+  top: -50%;
+  left: -10%;
+  width: 120%;
+  opacity: 0.5;
+  -webkit-filter: blur(3px);
+  filter: blur(3px);
+}
+.btn-interactive-whole-page-text {
+  position: relative;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: white;
 }
 .flex-container {
   display: flex;
@@ -223,7 +250,6 @@ ul.side-nav.fixed li a {
 @mixin panel-color($class-name, $color) {
   .#{$class-name} .collapsible-header {
     background-color: color($color, "lighten-2");
-    border: none;
   }
   .#{$class-name} {
     background-color: color($color, "lighten-5");
@@ -235,18 +261,25 @@ ul.side-nav.fixed li a {
 }
 
 ul.panel {
+  li.panel-selector {
+    overflow: auto;
+  }
   p {
-    margin: 1rem !important;
+    margin: 1rem 0 !important;
     padding: 0 !important;
   }
   .collapsible-header {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    border: none;
     padding: 1rem;
-  }
-  .panel-heading, .dropdown-menu-arrow {
     line-height: 1.2rem;
+  }
+  .collapsible-body {
+    border: none;
+    padding: 0 1rem;
   }
 
   // Custom panel colours

@@ -1,0 +1,75 @@
+#interactive-colour-matcher .noUi-pips {
+  padding-top: 5px;
+}
+.interactive-colour-matcher-sliders > div {
+  padding-bottom: 5rem;
+}
+.interactive-colour-matcher-sliders > div:last-child {
+  padding-bottom: 3rem;
+}
+.interactive-rgb-mixer-slider {
+  margin-top: 0.2rem;
+}
+.interactive-colour-matcher-row {
+  padding-bottom: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+.interactive-colour-matcher-col {
+  flex: 1;
+  margin: 0 1rem;
+  min-width: 200px;
+}
+#interactive-colour-matcher-results {
+  display: flex;
+  align-content: stretch;
+  flex-wrap: wrap;
+}
+.interactive-colour-matcher-result {
+  text-align: center;
+	background: rgb(127, 127, 127);
+  color: white;
+  font-size: 1.5rem;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+#interactive-colour-matcher-goal,
+#interactive-colour-matcher-8-bit-result {
+  box-shadow: 0 3px 3px 0 rgba(0,0,0,0.18),0 7px 7px 0 rgba(0,0,0,0.15);
+}
+#interactive-colour-matcher-goal {
+  flex: 0 1 100%;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  z-index: 2;
+}
+#interactive-colour-matcher-8-bit-result {
+  flex: 0 1 50%;
+  border-top-right-radius: 10px;
+  z-index: 1;
+}
+#interactive-colour-matcher-24-bit-result {
+  flex: 0 1 50%;
+  border-top-left-radius: 10px;
+  z-index: 3;
+}
+/* RGB colours */
+div.interactive-colour-matcher-sliders > div:nth-child(1) > div.interactive-colour-matcher-slider {
+	background: red;
+}
+div.interactive-colour-matcher-sliders > div:nth-child(2) > div.interactive-colour-matcher-slider {
+	background: lime;
+}
+div.interactive-colour-matcher-sliders > div:nth-child(3) > div.interactive-colour-matcher-slider {
+	background: blue;
+}
+/* Fade if disabled */
+div.interactive-colour-matcher-slider {
+  -webkit-transition: opacity 0.2s ease-in-out;
+  -moz-transition: opacity 0.2s ease-in-out;
+  -ms-transition: opacity 0.2s ease-in-out;
+  -o-transition: opacity 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
+}
+div.interactive-colour-matcher-slider[disabled=true] {
+  opacity: 0.5;
+}

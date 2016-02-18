@@ -50,22 +50,7 @@ This program is written in a language called Python, and when the program runs, 
 
 In order to run a Python program, we need something called a Python interpreter. A Python interpreter is able to read your program, and process it. Below is a Python interpreter that you can use to run your own programs. If you have a Python interpreter installed on your computer (ask your teacher if you are following this book for a class and are confused) and know how to start it and run programs in it, you can use that.
 
-
-<form>
-<textarea id="code" rows="12" cols="60" style="font-family: monospace;">
-print("**********************************************")
-print("**********************************************")
-print("** Welcome to computer programming, Student **")
-print("**********************************************")
-print("**********************************************")
-</textarea><br>
-<button onclick="runit()" type="button">Run</button>
-<br>
-Output:<br>
-<textarea id="output" rows="12" cols="60" disabled style="font-family: monospace;">
-</textarea>
-</form>
-<br>
+{interactive name="python-interpreter" type="in-page"}
 
 Try changing the program so that it says your name instead of *Student*. When you think you have it right, try running the program again to see. Make sure you don’t remove the double quotes or the parentheses (round brackets) in the program by mistake. What happens if you spelt "programming" wrong? Does the computer correct it? If you are completely stuck, ask your teacher for help before going any further.
 
@@ -87,7 +72,7 @@ The following Python code is written for version 3 Python, but will also work wi
 
 {panel end}
 
-```
+```python3
 print("I am going to print the first 5 multiples of 3")
 for i in range(5):
 	print(i*3)
@@ -97,14 +82,14 @@ The first line is a print statement, like those you saw earlier, which just tell
 
 Try make the following changes to the program.
 
-- Make it print multiples of 5 instead of 3. Hint: You need to change more than just the first line --- you will need to make a change on the third line as well.
+- Make it print multiples of 5 instead of 3. *Hint:* You need to change more than just the first line, you will need to make a change on the third line as well.
 - Make it print the first 10 multiples instead of the first 5. Make sure it printed 10 multiples, and not 9 or 11!
 
 You can also loop over a list of data. Try running the program below. It will generate a series of “spam” messages, one addressed to each person in the recipients list!
 
 Note that the # symbol tells the computer that it should ignore the line, as it is a comment for the programmer.
 
-```
+```python3
 #List of recipients to generate messages for
 spam_recipients = ["Heidi", "Tim", "Pondy", "Jack", "Caitlin", "Sam", "David"]  
 #Go through each recipient

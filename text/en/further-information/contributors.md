@@ -74,6 +74,10 @@ This project is the result of contributions from a large community of Computer S
 - Michael Bell ([Orange Studio](http://orangestudio.co.nz/)) - Video production
 - Linda Pettigrew - Formal languages material
 
+## Community Contributors
+- [ArloL](https://github.com/ArloL)
+- [ner0x652](https://github.com/ner0x652)
+
 **Note:** If there is an error in the list, please contact [Jack Morgan](mailto:jack.morgan@canterbury.ac.nz)
 
 ## Acknowledgements
