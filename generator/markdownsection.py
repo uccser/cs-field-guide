@@ -11,7 +11,6 @@ from generator.files import setup_required_files
 MARKDOWN2_EXTRAS = ["code-friendly",
                     "cuddled-lists",
                     "fenced-code-blocks",
-                    "markdown-in-html",
                     "tables",
                     "wiki-tables"]
 
@@ -424,6 +423,13 @@ class Section:
         else:
             self.regex_functions['link button'].log("Button parameters not valid", self, match.group(0))
         return html if html else ''
+
+
+    def process_code_block(self, match):
+        """Create a button for linking to a page"""
+        html = markdown(match.group('code'), extras=["fenced-code-blocks"])
+        # This extra div block stops Markdown2 from not reading code blocks correctly
+        return '<div>' + html + '</div>\n'
 
 
     def add_interactive(self, match):

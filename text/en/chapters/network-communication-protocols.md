@@ -203,7 +203,7 @@ So, TCP is a protocol that solves these issues. To introduce you to TCP, play th
 - *Level 7*: Numbers, shields, timeouts and acknowledgments. Packets will be sent back and resent. This level is not beatable.
 {panel end}
 
-{interactive name="packet-attack" type="whole-page" text="Packet Attack interactive"}}
+{interactive name="packet-attack" type="whole-page" text="Packet Attack interactive"}
 
 {panel type="curiosity" summary="Creating your own levels in packet attack"}
 You can also create your own levels in Packet Attack. We’ve put a level builder in the projects section below so that you can experiment with different reliabilities or combination of defenses.
