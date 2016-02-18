@@ -610,7 +610,7 @@ What if we were to use fewer than 24 bits to represent each colour, i.e. each sl
 
 It should be possible to get a perfect match using 24 bit colour. Now try the 8-bit sliders. These ones have only 8 values for red and green, and just 4 values for blue!
 
-**Note:** The interactive here has not been updated to the new system. Please [view the interactives on the Data Representation page](http://www.csfieldguide.org.nz/releases/1.9.9/DataRepresentation.html) on the older version of the CSFG. We are currently in the process of updating these interactives for release.
+{interactive name="colour-matcher" type="whole-page" text="Colour Matcher"}
 
 The above system used 3 bits to specify the amount of red (8 possible values), 3 bits to specify the amount of green (again 8 possible values), and 2 bits to specify the amount of blue (4 possible values). This gives a total of 8 bits (hence the name), which can be used to make 256 different bit patterns, and thus can represent 256 different colours.
 
