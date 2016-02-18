@@ -121,10 +121,13 @@ function toRGBString(colours, bit_type) {
 
 
 function setGoalPanel(){
-  // Setup colours for goal panel
-  ColourMatcher.goal_colour = [Math.floor(Math.random() * 256),
-                               Math.floor(Math.random() * 256),
-                               Math.floor(Math.random() * 256)];
+  // Set goals colours as half way between 8 bit values for difficulty
+  var red = Math.floor((Math.floor(Math.random() * 7) + 0.5) * 36.428571429);
+  var green = Math.floor((Math.floor(Math.random() * 7) + 0.5) * 36.428571429);
+  var blue = Math.floor((Math.floor(Math.random() * 3) + 0.5) * 85);
+
+  // Set colour
+  ColourMatcher.goal_colour = [red, green, blue];
 
   // Update goal panel
   ColourMatcher.goal_panel.style.background = toRGBString(ColourMatcher.goal_colour, 24)
