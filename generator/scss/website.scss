@@ -1,17 +1,17 @@
 @import "materialize";
 
+// Pygments theme for code syntax highlighting
+@import "pygments-monokai";
+
 pre {
   font-family: Consolas, "Liberation Mono", Courier, monospace;
   font-weight: normal;
-  background-color: color("blue-grey", "darken-1");
+  font-size: 0.9rem !important;
+  background-color: color("blue-grey", "darken-4");
   color: color("shades", "white");
   @extend .z-depth-1;
   padding: 1rem !important;
-  white-space: pre-wrap;       /* CSS 3 */
-  white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
-  white-space: -pre-wrap;      /* Opera 4-6 */
-  white-space: -o-pre-wrap;    /* Opera 7 */
-  word-wrap: break-word;       /* Internet Explorer 5.5+ */
+  overflow-x: auto;
 }
 pre > code {
   padding: 0;
@@ -191,6 +191,31 @@ ul.side-nav.fixed li a {
     font-size: 1.8rem;
     line-height: 115%;
   }
+}
+.btn-interactive-whole-page-container {
+  position: relative;
+  width: 100%;
+  height: initial !important;
+  padding: 2em 0 !important;
+  border-radius: 5px !important;
+  overflow: hidden;
+  background-color: black !important;
+}
+.btn-interactive-whole-page-image {
+  position: absolute;
+  top: -50%;
+  left: -10%;
+  width: 120%;
+  opacity: 0.5;
+  -webkit-filter: blur(3px);
+  filter: blur(3px);
+}
+.btn-interactive-whole-page-text {
+  position: relative;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: white;
 }
 .flex-container {
   display: flex;

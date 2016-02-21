@@ -234,6 +234,22 @@ Code blocks are part of the Markdown spec, but syntax highlighting isn't.
 Inline `code` has `back-ticks around` it.
 ```
 
+You can highlight syntax by specifying the language after the first set of backticks ([good list of language codes here](https://haisum.github.io/2014/11/07/jekyll-pygments-supported-highlighters/))
+
+
+```python3
+def find_high_score(scores):
+    if len(scores) == 0:
+        print("No high score, table is empty")
+        return -1
+    else:
+        highest_so_far = scores[0]
+        for score in scores[1:]:
+            if score > highest_so_far:
+                highest_so_far = score
+        return highest_so_far
+```
+
 Inline `code` has `back-ticks around` it.
 
 Blocks of code are fenced by lines with three back-ticks <code>```</code>.

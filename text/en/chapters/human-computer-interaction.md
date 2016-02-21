@@ -178,7 +178,7 @@ As you click on each cell, there will sometimes be a random delay before it come
 However, if you perceive that there is a small delay before the image comes up, click it again (which makes the cell green). Just make a quick, gut-level decision the first time you click each cell - don't overthink it.
 The delay may be very short, but only make the cell green if you are fairly sure you noticed a delay.
 
-{interactive name="delay-analyser" type="whole-page"}
+{interactive name="delay-analyser" type="whole-page" text="Delay Analyser interactive"}
 
 Once you have clicked on all the cells, click on "View stastistics" to see how long the delays were compared with your perception.
 100 ms (100 milliseconds) is one tenth of a second; for most people this is where they are likely to start perceiving a delay;
@@ -369,7 +369,7 @@ There are some other important delay periods in interface evaluation: a delay of
 
 And if you haven't tried it already, have a go at the following interactive.
 
-{interactive name="delay-analyser" type="whole-page"}
+{interactive name="delay-analyser" type="whole-page" text="Delay Analyser interactive"}
 
 Getting computers to respond quickly often depends on the algorithms used (covered in the chapter on algorithms), and can also depend on the design of a program (such as whether it stores data on disk or waits for a network response before continuing). It is particularly noticeable on small devices like smartphones, which have limited computing power, and might take a second or two to open an app or respond to some input. It's not too hard to find these sorts of delays in systems when you're evaluating them.
 

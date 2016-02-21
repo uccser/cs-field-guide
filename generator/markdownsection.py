@@ -11,7 +11,6 @@ from generator.files import setup_required_files
 MARKDOWN2_EXTRAS = ["code-friendly",
                     "cuddled-lists",
                     "fenced-code-blocks",
-                    "markdown-in-html",
                     "tables",
                     "wiki-tables"]
 
@@ -426,6 +425,13 @@ class Section:
         return html if html else ''
 
 
+    def process_code_block(self, match):
+        """Create a button for linking to a page"""
+        html = markdown(match.group('code'), extras=["fenced-code-blocks"])
+        # This extra div block stops Markdown2 from not reading code blocks correctly
+        return '<div>' + html + '</div>\n'
+
+
     def add_interactive(self, match):
         """Regex match function for interactive blocks.
             - Adds interactive folder to set of required files
@@ -483,7 +489,7 @@ class Section:
         link_text = 'Click to load {text}'.format(text=text)
         folder_location = os.path.join(self.html_path_to_guide_root, source_folder, self.guide.generator_settings['Source']['Interactive File'])
         file_link = "{location}?{parameters}".format(location=folder_location, parameters=params) if params else folder_location
-        link_template = self.html_templates['interactive-external']
+        link_template = self.html_templates['interactive-whole-page']
         link_html = link_template.format(interactive_thumbnail=thumbnail_location,
                                     interactive_link_text=link_text,
                                     interactive_source=file_link)
@@ -684,6 +690,10 @@ class Section:
 
         # Parse with library parser
         text = markdown(text, extras=MARKDOWN2_EXTRAS)
+
+        # Remove any empty <p></p> tags
+        # TODO: Find why this occurs and stop it
+        text = re.sub("<p><\/p>", '', text, flags=re.MULTILINE)
 
         self.html_content.append(text)
 
