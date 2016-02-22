@@ -1,5 +1,9 @@
 RSAEncrypt = {}
 
+bigInt = require('big-integer')
+atob = atob ? require('atob')
+btoa = btoa ? require('btoa')
+
 $(document).ready ->
     if getUrlParameter('mode') is 'decrypt'
         setDecryptionText()
