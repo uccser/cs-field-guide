@@ -242,7 +242,7 @@ ul.side-nav.fixed li a {
 }
 .glossary-anchor-link:target,
 .glossary-anchor-link-highlight {
-  background-color: color("deep-orange", "lighten-3");
+  background-color: transparent;
   background-clip: content-box;
 }
 
