@@ -99,11 +99,11 @@ The above chapter readings include specific knowledge for - EK's marked in bold.
 - EK 5.5.1A Numbers and numerical concepts are fundamental to programming.
 - EK 5.5.1B Integers may be constrained in the maximum and minimum values that can be represented in a program because of storage limitations.
 {panel type="teacher-note" summary="Exclusion EK 5.5.1B"}
-EXCLUSION STATEMENT (for - EK 5.5.1B): Specific range limitations of all programming languages are beyond the scope of this course and the AP Exam.
+EXCLUSION STATEMENT (for EK 5.5.1B): Specific range limitations of all programming languages are beyond the scope of this course and the AP Exam.
 {panel end}
 - EK 5.5.1C Real numbers are approximated by floating-point representations that do not necessarily have infinite precision.
 {panel type="teacher-note" summary="Exclusion EK 5.5.1C"}
-EXCLUSION STATEMENT (for - EK 5.5.1C): Specific sets of values that cannot be exactly represented by floating
+EXCLUSION STATEMENT (for EK 5.5.1C): Specific sets of values that cannot be exactly represented by floating
 point numbers are beyond the scope of this course and the AP Exam.
 {panel end}
 - EK 5.5.1D Mathematical expressions using arithmetic operators are part of most programming languages.
@@ -111,5 +111,7 @@ point numbers are beyond the scope of this course and the AP Exam.
 - EK 5.5.1F Compound expressions using and, or, and not are part of most programming languages.
 - EK 5.5.1G Intuitive and formal reasoning about program components using Boolean concepts helps in developing correct programs.
 - EK 5.5.1H Computational methods may use lists and collections to solve problems.
+- EK 5.5.1I Lists and other collections can be treated as abstract data types (ADTs) in developing programs.
+- EK 5.5.1J Basic operations on collections include adding elements, removing elements, iterating over all elements, and determining whether an element is in a collection.
 
 ##Additions to FG?

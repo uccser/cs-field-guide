@@ -15,26 +15,26 @@ Start by reading through:
 The above chapter readings include specific knowledge for EK's marked in bold.
 
 ###LO 2.1.1 Describe the variety of abstractions used to represent data.
-- **EK 2.1.1A Digital data is represented by abstractions at different levels.
-- EK 2.1.1B At the lowest level, all digital data are represented by bits.
-- EK 2.1.1C At a higher level, bits are grouped to represent abstractions, including but not limited to numbers, characters, and color.
-- EK 2.1.1D Number bases, including binary, decimal, and hexadecimal, are used to represent and investigate digital data.
-- EK 2.1.1E At one of the lowest levels of abstraction, digital data is represented in binary (base 2) using only combinations of the digits zero and one.
+- **EK 2.1.1A Digital data is represented by abstractions at different levels.**
+- **EK 2.1.1B At the lowest level, all digital data are represented by bits.**
+- **EK 2.1.1C At a higher level, bits are grouped to represent abstractions, including but not limited to numbers, characters, and color.**
+- **EK 2.1.1D Number bases, including binary, decimal, and hexadecimal, are used to represent and investigate digital data.**
+- **EK 2.1.1E At one of the lowest levels of abstraction, digital data is represented in binary (base 2) using only combinations of the digits zero and one.**
 {panel type="teacher-note" summary="Exclusion EK 2.1.1E"}
 EXCLUSION STATEMENT (for - EK 2.1.1E): Two’s complement conversions are beyond the scope of this course and the AP Exam.
 {panel end}
-- EK 2.1.1F Hexadecimal (base 16) is used to represent digital data because hexadecimal representation uses fewer digits than binary.
-- EK 2.1.1G Numbers can be converted from any base to any other base.**
+- **EK 2.1.1F Hexadecimal (base 16) is used to represent digital data because hexadecimal representation uses fewer digits than binary.**
+- **EK 2.1.1G Numbers can be converted from any base to any other base.**
 
 ###LO 2.1.2 Explain how binary sequences are used to represent digital data.
-- **EK 2.1.2A A finite representation is used to model the infinite mathematical concept of a number.
+- **EK 2.1.2A A finite representation is used to model the infinite mathematical concept of a number.**
 {panel type="teacher-note" summary="Exclusion EK 2.1.2A"}
 EXCLUSION STATEMENT (for - EK 2.1.2A): Binary representations of scientific notation are beyond the scope of this course and the AP Exam.
 {panel end}
-- EK 2.1.2B In many programming languages, the fixed number of bits used to represent characters or integers limits the range of integer values and mathematical operations; this limitation can result in over flow or other errors.
+- **EK 2.1.2B In many programming languages, the fixed number of bits used to represent characters or integers limits the range of integer values and mathematical operations; this limitation can result in over flow or other errors.**
 {panel type="teacher-note" summary="Exclusion EK 2.1.2B"}
 EXCLUSION STATEMENT (for - EK 2.1.2B): Range limitations of any one language, compiler, or architecture are beyond the scope of this course and the AP Exam.
-{panel end}**
+{panel end}
 - EK 2.1.2C In many programming languages, the fixed number of bits used to represent real numbers (as floating-point numbers) limits the range of floating-point values and mathematical operations; this limitation can result in round off and other errors.
 - **EK 2.1.2D The interpretation of a binary sequence depends on how it is used.**
 - EK 2.1.2E A sequence of bits may represent instructions or data.

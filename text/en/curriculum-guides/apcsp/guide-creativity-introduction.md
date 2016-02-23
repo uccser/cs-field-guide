@@ -45,10 +45,10 @@ in developing computational artifacts.
 - EK 1.2.4F A collaboratively created computational artifact can reflect personal expressions of ideas.
 
 ###LO 1.2.5 Analyze the correctness, usability, functionality, and suitability of computational artifacts.
-- **EK 1.2.5A The context in which an artifact is used determines the correctness, usability, functionality, and suitability of the artifact.
-- EK 1.2.5B A computational artifact may have weaknesses, mistakes, or errors depending on the type of artifact.
-- EK 1.2.5C The functionality of a computational artifact may be related to how it is used or perceived.
-- EK 1.2.5D The suitability (or appropriateness) of a computational artifact may be related to how it is used or perceived.**
+- **EK 1.2.5A The context in which an artifact is used determines the correctness, usability, functionality, and suitability of the artifact.**
+- **EK 1.2.5B A computational artifact may have weaknesses, mistakes, or errors depending on the type of artifact.**
+- **EK 1.2.5C The functionality of a computational artifact may be related to how it is used or perceived.**
+- **EK 1.2.5D The suitability (or appropriateness) of a computational artifact may be related to how it is used or perceived.**
 
 ###LO 1.3.1 Use computing tools and techniques for creative expression.
 - EK 1.3.1A Creating digital effects, images, audio, video, and animations has transformed industries.
