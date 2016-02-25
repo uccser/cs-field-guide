@@ -11,8 +11,12 @@ $(document).ready(function () {
     updateWordCount();
   });
 
-  // Read file once page loaded
-  readWords();
+
+  // Read file if load button clicked
+  $("#interactive-regular-expression-filter-load").click(function(){
+    this.style.display = 'none';
+    readWords();
+  });
 });
 
 
