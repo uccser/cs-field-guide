@@ -1,18 +1,7 @@
-.interactive-regular-expression-filter-row {
-  padding-bottom: 1rem;
-  display: flex;
-  flex-wrap: wrap;
-}
-.interactive-regular-expression-filter-col {
-  flex: 1;
-  margin: 0 1rem;
-  min-width: 200px;
-}
 #interactive-regular-expression-filter-words {
-  height: 30rem;
+  height: 50vh;
   overflow: auto;
-  border: 1px solid #DDD;
-  border-radius: 3px;
+  white-space: pre-line;
 }
 #interactive-regular-expression-filter input{
   font-family: monospace;
@@ -20,7 +9,6 @@
 .btn-expand {
   width: 100%;
 }
-#interactive-regular-expression-filter-loading-progress,
-#interactive-regular-expression-filter-processing-progress {
+#interactive-regular-expression-filter-controls {
   display: none;
 }
