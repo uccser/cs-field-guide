@@ -33,6 +33,7 @@ Most of our interactives require a modern browser, if it's been updated in the l
 - [Payment Interface](interactives/payment-interface/index.html)
 - [Pixel Viewer](interactives/pixel-viewer/index.html)
 - [Python Interpreter](interactives/python-interpreter/index.html)
+- [Regular Expression Filter](interactives/regular-expression-filter/index.html)
 - [RGB Colour Mixer](interactives/rgb-mixer/index.html)
 - [RSA Key Generator](interactives/rsa-key-generator/index.html)
 - [Run Length Encoding](interactives/run-length-encoding/index.html)
