@@ -3,21 +3,30 @@ RegularExpressionFilter.regex = new RegExp('');
 
 $(document).ready(function () {
 
-  // If reset button triggered
-  $("#interactive-regular-expression-filter-filter").click(function(){
-    var regex = document.getElementById('interactive-regular-expression-filter-regex').value
-    RegularExpressionFilter.regex = new RegExp(regex);
-    displayWords();
-    updateWordCount();
-  });
+  // If filter button clicked
+  $("#interactive-regular-expression-filter-filter").click(processRegularExpression);
 
+  // If enter pushed in input box
+  $("#interactive-regular-expression-filter-regex").keyup(function(event){
+    if(event.keyCode == 13){
+      processRegularExpression();
+    }
+  });
 
   // Read file if load button clicked
   $("#interactive-regular-expression-filter-load").click(function(){
-    this.style.display = 'none';
     readWords();
   });
 });
+
+
+// Update when a new regular expression is entered
+function processRegularExpression() {
+  var regex = document.getElementById('interactive-regular-expression-filter-regex').value
+  RegularExpressionFilter.regex = new RegExp(regex);
+  displayWords();
+  updateWordCount();
+};
 
 
 // Displays the filtered words
@@ -44,6 +53,7 @@ function updateWordCount() {
 
 // Reads the words from the file
 function readWords() {
+  document.getElementById('interactive-regular-expression-filter-load').style.display = 'none';
   document.getElementById('interactive-regular-expression-filter-loading-progress').style.display = 'block';
   var request = new XMLHttpRequest();
   request.addEventListener('load', fileLoaded);
