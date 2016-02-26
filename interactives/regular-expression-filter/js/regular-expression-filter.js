@@ -55,11 +55,12 @@ function updateWordCount() {
 function readWords() {
   document.getElementById('interactive-regular-expression-filter-load').style.display = 'none';
   document.getElementById('interactive-regular-expression-filter-loading-progress').style.display = 'block';
+  var base_url = document.getElementById('interactive-regular-expression-filter-link').href;
   var request = new XMLHttpRequest();
   request.addEventListener('load', fileLoaded);
   request.addEventListener('progress', updateLoadingProgress);
   request.addEventListener('error', function() { alert('This interactive must be viewed online to load cross origin text file. Sorry for the inconvenience.')});
-  request.open('get', 'en-words.txt');
+  request.open('get', base_url + 'en-words.txt');
   request.send();
 };
 
