@@ -22,22 +22,20 @@
 
       <button id="interactive-regular-expression-filter-load" class="btn btn-expand">Load word file (2.8MB)</button>
 
+      <div id="interactive-regular-expression-filter-loading-progress">
+        <h6>Loading word file</h6>
+        <div class="progress">
+          <div id="interactive-regular-expression-filter-loading-progress-bar" class="determinate"></div>
+        </div>
+      </div>
+
       <div class="row">
-        <div class="col s12 m6">
-          <div id="interactive-regular-expression-filter-controls">
-            <h5>Regular Expression</h5>
-            <input id="interactive-regular-expression-filter-regex" type="text" placeholder="Enter expression here">
-            <button id="interactive-regular-expression-filter-filter" class="btn btn-expand">Filter words</button>
+        <div class="col s12 m6"  id="interactive-regular-expression-filter-controls">
+          <h5>Regular Expression</h5>
+          <input id="interactive-regular-expression-filter-regex" type="text" placeholder="Enter expression here">
+          <button id="interactive-regular-expression-filter-filter" class="btn btn-expand">Filter words</button>
 
-            <p id="interactive-regular-expression-filter-feedback"></p>
-          </div>
-
-          <div id="interactive-regular-expression-filter-loading-progress">
-            <h6>Loading word file</h6>
-            <div class="progress">
-              <div id="interactive-regular-expression-filter-loading-progress-bar" class="determinate"></div>
-            </div>
-          </div>
+          <p id="interactive-regular-expression-filter-feedback"></p>
         </div>
 
         <div class="col s12 m6">
