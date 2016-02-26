@@ -4,10 +4,6 @@
 
 Apple Lossless Coding, a lossless compression method for audio.
 
-## Algorithm
-
-Algorithm a process for achieving an outcome, normally for a general problem such as searching, sorting, finding an optimal path through a map and so on.
-
 ## Algorithm analysis
 
 Algorithm analysis working out the complexity of an algorithm.
@@ -15,11 +11,6 @@ Algorithm analysis working out the complexity of an algorithm.
 ## Algorithm complexity
 
 Algorithm complexity how long the algorithm takes to run (or how much memory it uses). These are almost always specified in terms of the size of input.
-
-## Alphabet
-## Alphabets
-
-In formal languages, this is the set of characters that might be processed. For many compilers and text processing systems the alphabet is the set of all ASCII characters, but for example, for a finite state automaton controlled by an “up” and “down” button, the alphabet is just the two symbols “up” and “down”. For systems processing binary numbers, the alphabet would usually be “0” and “1”. Many of the small examples just use a small alphabet of a few characters (typically “a”, “b”, “c” etc.) to keep things simple.
 
 ## ASCII
 
@@ -32,10 +23,6 @@ Gaining access to or decrypting a file that is using encryption, without having 
 ## Binary Number System
 
 The base 2 number system, i.e. numbers only made up of the digits “0” and “1”. All numbers that can be represented in the decimal number system can be uniquely represented in the binary number system.
-
-## Binary search
-
-Binary search searching a sorted list by looking at the middle item, and then searching the appropriate half recursively (used for phone books, dictionaries and computer algorithms).
 
 ## Bit
 
@@ -67,10 +54,6 @@ An extra digit that is added onto the end of a number such as an ISBN, credit ca
 ## Check equation
 
 An equation that is used to check whether or not the check digit for a number is correct.
-
-## Chomsky hierarchy
-
-A hierarchy of types of languages ranging from the simple “regular expression” through to unrestricted grammars. Each level of the hierarchy can describe more complex rules, but is also harder to implement. It is named after the linguist Noam Chomsky.
 
 ## Cipher
 
@@ -126,11 +109,6 @@ A function available on a digital device or software, such as copy/paste, autofo
 
 Responding to or acknowledging a user action. Users find the devices hard to use if the feedback is slow, confusing, or non-existent.
 
-## Finite state automaton
-## FSA
-
-A simple notation for processing input symbols to determine if they obey some specified. An FSA has a starting state, transitions between states based on the next input symbol, and “accepting” states, which indicate that the input is accepted if the processing ends up in one.
-
 ## Frequency Analysis Attack
 
 An attack on substitution ciphers that takes advantage of the fact that some letters are generally more common than others in a piece of text (e.g. in English, the letter “e” is usually the most common letter) by looking at which letters appear the most in the cipher text and guessing that they must be the substitutions for the most common letters.
@@ -142,10 +120,6 @@ A lossless image compression system typically used for small images with few col
 ## Gigabyte
 
 About 1000 megabytes (1,000,000 kilobytes and 1,000,000,000 bytes). This is 8,000 million individual bits (i.e. 0’s and 1’s). [Like a kilobyte, there are other definitions, such as 1024x1024x1024 bytes, but usually this level of accuracy isn’t important]. Commonly referred to as a “GB”.
-
-## Grammar
-
-Rules that specify a language, typically used for defining programming languages.
 
 ## Graphics
 
@@ -211,10 +185,6 @@ About 1000 bytes. This is 8,000 individual bits (i.e. 0’s and 1’s). [We say 
 
 Working out the key or method of encryption (cipher) based on having access to both the original plain-text and its encrypted form.
 
-## Language
-
-A set of strings, typically obeying some rules defined by a regular expression or grammar e.g. all strings containing the letter “a” exactly twice, or all strings that are legal Java programs.
-
 ## Lexical analysis
 
 When compiling a computer program, working out what the components of the program are e.g. identifiers, keywords, integers.
@@ -271,10 +241,6 @@ The structure derived by parsing some input.
 
 Reading some input (typically a computer program) and making sense of it by breaking it into parts according to their function.
 
-## Pattern matching
-
-Finding strings of characters that match simple rules, typically based on a regular expression.
-
 ## Plain Text
 
 Text before it has been encrypted or after it has been decrypted (so essentially text in plain language, without any encryption).
@@ -287,17 +253,9 @@ A lossless image compression system typically used for small images with few col
 
 Quadratic complexity grows with the square of the size of the problem - if the problem is twice as big, it will take roughly 4 times as long to solve.
 
-## Quick sort
-
-Quick sort pick an item at random, put all the smaller items in a group on its left and the larger items in a group on its right. Now do quick sort on the two groups. This is one of the better sorting algorithms, and is good for comparing with others. Students don’t need to understand how it works, but some may be curious.
-
 ## Redundant Bits
 
 Extra bits that are not part of the actual data but instead have been added for error detection and possibly error correction.
-
-## Regular expression
-
-A simple expression used for pattern matching, typically using characters combined with “\*” (repetition), “|” (selecting one or the other) and parenthesis (to group operations). Some systems allow more complex patterns such as ”.” (matches any character), “{n}” (repeated n times), and “\d” (digit).
 
 ## Search
 
@@ -310,11 +268,6 @@ Selection sort select the smallest item, then the second smallest, and so on. Th
 ## Sort
 
 Sort puts keys (numbers, names or other values) in order from smallest to largest (outside computer science this is usually called ordering).
-
-## String
-## Strings
-
-A sequence of characters or symbols from an alphabet. For example, the two-character strings that can be made from the alphabet {“a”,”b”} are “aa”, “ab”, “ba” and “bb”.
 
 ## Substitution Cipher
 

@@ -227,7 +227,7 @@ li $v0, 0
 jr $ra
 ```
 
-You can run this program using an online MIPS emulator. This needs to be done in 2 steps:
+You can run this program using a MIPS emulator. This can be done using Alan Hogan’s online MIPS emulator by following these 2 steps:
 
 - [Copy paste the code into the black box on the page from this link](http://alanhogan.com/asu/assembler.php) (remove ALL existing text in the box), and then click the Assemble button.
 

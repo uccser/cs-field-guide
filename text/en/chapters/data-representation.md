@@ -32,7 +32,7 @@ The use of the two digits 0 and 1 is so common that some of the best known compu
 
 {panel end}
 
-Every file you save, every picture you make, every download, is just a whole lot of bits.
+Every file you save, every picture you make, every download, every digital recording, every web page is just a whole lot of bits.
 Computer scientists don't spend a lot of time reading bits themselves, but knowing how they are stored is really important because it affects the amount of space that data will use, the amount of time it takes to send the data to a friend (as data that takes more space takes longer to send!) and the quality of what is being stored.
 You may have come across things like "24-bit colour", "128-bit encryption", "32-bit IPv4 addresses" or "8-bit ASCII".
 Understanding what the bits are doing enables you to work out how much space will be required to get high-quality colour, hard-to-crack secret codes, a unique ID for every device in the world, or text that uses more characters than the usual English alphabet.
@@ -87,8 +87,15 @@ Digital devices almost always use two values (binary) for similar reasons: compu
 Using ten digits (like we do in our every day decimal counting system) would obviously be too challenging.
 
 {panel type="curiosity" summary="Decimal-based computers"}
+Why are digital systems so hung up on only using two digits? After all, you could do all the same things with a 10 digit system?
+
 As it happens, people have tried to build decimal-based computers, but it's just too hard.
 Recording a digit between 0 and 9 involves having accurate equipment for reading voltage levels, magnetisation or reflections, and it's a lot easier just to check if it's mainly one way or the other.
+
+There's a more in-depth discussion on why we use binary here:
+
+{video url="https://www.youtube.com/watch?v=thrx3SBEpL8"}
+
 {panel end}
 
 ## Representing text with bits
@@ -492,7 +499,7 @@ Of course, a computer screen or printout doesn't have just one colour on it --- 
 The following interactive allows you to zoom in on an image to see the pixels that are used to represent it. Each pixel is a solid colour square, and the computer needs to store the colour for each pixel.
 If you zoom in far enough, the interactive will show you the red-green-blue values for each pixel. You can pick a pixel and put the values on the slider above - it should come out as the same colour as the pixel.
 
-{interactive name="pixel-viewer" type="whole-page" text="Pixel Viewer"}
+{interactive name="pixel-viewer" type="whole-page" text="Pixel Viewer interactive"}
 
 {panel type="jargon-buster" summary="Pixel"}
 
@@ -610,7 +617,7 @@ What if we were to use fewer than 24 bits to represent each colour, i.e. each sl
 
 It should be possible to get a perfect match using 24 bit colour. Now try the 8-bit sliders. These ones have only 8 values for red and green, and just 4 values for blue!
 
-{interactive name="colour-matcher" type="whole-page" text="Colour Matcher"}
+{interactive name="colour-matcher" type="whole-page" text="Colour Matcher interactive"}
 
 The above system used 3 bits to specify the amount of red (8 possible values), 3 bits to specify the amount of green (again 8 possible values), and 2 bits to specify the amount of blue (4 possible values). This gives a total of 8 bits (hence the name), which can be used to make 256 different bit patterns, and thus can represent 256 different colours.
 
@@ -859,7 +866,7 @@ There are many experiments that can be done (such as calculating 1/3, or adding 
 
 The chapter does not (yet) cover other forms of data representation, and you may wish to explore these as alternatives. The common ones are:
 
-- sound (wave files and related storage; for example, 16-bit samples are used for "CD quality", but professional systems use 24-bit or even higher) --- for some information, see the [Teach with ICT page on sound representation](http://teachwithict.weebly.com/6/post/2014/01/teaching-computer-science-day-15-everything-is-sound.html#sthash.8LIc3W01.dpbs).
+- sound (wave files and related storage; for example, 16-bit samples are used for "CD quality", but professional systems use 24-bit or even higher) --- for some information, see the [Teach with ICT page on sound representation](http://teachwithict.weebly.com/6/post/2014/01/teaching-computer-science-day-15-everything-is-sound.html#sthash.8LIc3W01.dpbs) and [Computerphile on How Digital Audio Works](https://www.youtube.com/watch?v=1RIA9U5oXro).
 - video (which are based on multiple images being played one after the other; however, these files are so large that they are almost never stored as a "raw" representation)
 
 {comment}
