@@ -462,7 +462,7 @@ Glossary terms and links are created throughout the text of the guide, and our p
 #### Defining a glossary term
 
 ```
-{glossary-definition term="complexity" definition="Something that is really complicated."}
+{glossary-definition term="Complexity" definition="Something that is really complicated."}
 ```
 
 **Parameters:**
