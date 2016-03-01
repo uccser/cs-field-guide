@@ -10,9 +10,10 @@ Start by reading through:
 
 - [Data Representation](chapters/data-representation.html)
 - [Software Engineering - Layers of Abstraction](chapters/software-engineering.html#design-how-do-we-build-it)
+- [Programming Languages](chapters/programming-languages.html)
 
 ## Learning objectives
-The above chapter readings include specific knowledge for EK's marked in bold.
+The above chapter readings include specific knowledge for EK's marked in bold. Work to include unmarked learning objectives in the CS Field Guide is currently in progress.
 
 ###LO 2.1.1 Describe the variety of abstractions used to represent data.
 - **EK 2.1.1A Digital data is represented by abstractions at different levels.**
@@ -21,7 +22,7 @@ The above chapter readings include specific knowledge for EK's marked in bold.
 - **EK 2.1.1D Number bases, including binary, decimal, and hexadecimal, are used to represent and investigate digital data.**
 - **EK 2.1.1E At one of the lowest levels of abstraction, digital data is represented in binary (base 2) using only combinations of the digits zero and one.**
 {panel type="teacher-note" summary="Exclusion EK 2.1.1E"}
-EXCLUSION STATEMENT (for - EK 2.1.1E): Two’s complement conversions are beyond the scope of this course and the AP Exam.
+EXCLUSION STATEMENT (for EK 2.1.1E): Two’s complement conversions are beyond the scope of this course and the AP Exam.
 {panel end}
 - **EK 2.1.1F Hexadecimal (base 16) is used to represent digital data because hexadecimal representation uses fewer digits than binary.**
 - **EK 2.1.1G Numbers can be converted from any base to any other base.**
@@ -29,23 +30,23 @@ EXCLUSION STATEMENT (for - EK 2.1.1E): Two’s complement conversions are beyond
 ###LO 2.1.2 Explain how binary sequences are used to represent digital data.
 - **EK 2.1.2A A finite representation is used to model the infinite mathematical concept of a number.**
 {panel type="teacher-note" summary="Exclusion EK 2.1.2A"}
-EXCLUSION STATEMENT (for - EK 2.1.2A): Binary representations of scientific notation are beyond the scope of this course and the AP Exam.
+EXCLUSION STATEMENT (for EK 2.1.2A): Binary representations of scientific notation are beyond the scope of this course and the AP Exam.
 {panel end}
 - **EK 2.1.2B In many programming languages, the fixed number of bits used to represent characters or integers limits the range of integer values and mathematical operations; this limitation can result in over flow or other errors.**
 {panel type="teacher-note" summary="Exclusion EK 2.1.2B"}
-EXCLUSION STATEMENT (for - EK 2.1.2B): Range limitations of any one language, compiler, or architecture are beyond the scope of this course and the AP Exam.
+EXCLUSION STATEMENT (for EK 2.1.2B): Range limitations of any one language, compiler, or architecture are beyond the scope of this course and the AP Exam.
 {panel end}
 - EK 2.1.2C In many programming languages, the fixed number of bits used to represent real numbers (as floating-point numbers) limits the range of floating-point values and mathematical operations; this limitation can result in round off and other errors.
 - **EK 2.1.2D The interpretation of a binary sequence depends on how it is used.**
 - EK 2.1.2E A sequence of bits may represent instructions or data.
-- EK 2.1.2F A sequence of bits may represent different types of data in different contexts.
+- **EK 2.1.2F A sequence of bits may represent different types of data in different contexts.**
 
 ###LO 2.2.1 Develop an abstraction when writing a program or creating other computational artifacts.
 - EK 2.2.1A The process of developing an abstraction involves removing detail and generalizing functionality.
 - EK 2.2.1B An abstraction extracts common features from specific examples in order to generalize concepts.
 - EK 2.2.1C An abstraction generalizes functionality with input parameters that allow software reuse.
 {panel type="teacher-note" summary="Exclusion EK 2.2.1C"}
-EXCLUSION STATEMENT (for - EK 2.2.1C): An understanding of the difference between value and reference parameters is beyond the scope of this course and the AP Exam.
+EXCLUSION STATEMENT (for EK 2.2.1C): An understanding of the difference between value and reference parameters is beyond the scope of this course and the AP Exam.
 {panel end}
 
 ###LO 2.2.2 Use multiple levels of abstraction to write programs.
@@ -53,17 +54,17 @@ EXCLUSION STATEMENT (for - EK 2.2.1C): An understanding of the difference betwee
 - EK 2.2.2B Being aware of and using multiple levels of abstraction in developing programs helps to more effectively apply available resources and tools to solve problems.
 
 ###LO 2.2.3 Identify multiple levels of abstractions that are used when writing programs.
-- EK 2.2.3A Different programming languages offer different levels of abstraction.
+- **EK 2.2.3A Different programming languages offer different levels of abstraction.**
 {panel type="teacher-note" summary="Exclusion EK 2.2.3A"}
-EXCLUSION STATEMENT (for - EK 2.2.3A): Knowledge of the abstraction capabilities of all programming languages is beyond the scope of this course and the AP Exam.
+EXCLUSION STATEMENT (for EK 2.2.3A): Knowledge of the abstraction capabilities of all programming languages is beyond the scope of this course and the AP Exam.
 {panel end}
-- EK 2.2.3B High-level programming languages provide more abstractions for the programmer and make it easier for people to read and write a program.
-- EK 2.2.3C Code in a programming language is often translated into code in another (lower level) language to be executed on a computer.
-- EK 2.2.3D In an abstraction hierarchy, higher levels of abstraction (the most general concepts) would be placed toward the top and lower level abstractions (the more specific concepts) toward the bottom.
+- **EK 2.2.3B High-level programming languages provide more abstractions for the programmer and make it easier for people to read and write a program.**
+- **EK 2.2.3C Code in a programming language is often translated into code in another (lower level) language to be executed on a computer.**
+- **EK 2.2.3D In an abstraction hierarchy, higher levels of abstraction (the most general concepts) would be placed toward the top and lower level abstractions (the more specific concepts) toward the bottom.**
 - EK 2.2.3E Binary data is processed by physical layers of computing hardware, including gates, chips, and components.
 - EK 2.2.3F A logic gate is a hardware abstraction that is modeled by a Boolean function.
 {panel type="teacher-note" summary="Exclusion EK 2.2.3F"}
-EXCLUSION STATEMENT (for - EK 2.2.3F): Memorization of specific gate visual representations is beyond
+EXCLUSION STATEMENT (for EK 2.2.3F): Memorization of specific gate visual representations is beyond
 the scope of this course and the AP Exam.
 {panel end}
 - EK 2.2.3G A chip is an abstraction composed of low-level components and circuits that perform a specific function.
@@ -87,7 +88,3 @@ the scope of this course and the AP Exam.
 - EK 2.3.2F Simulations can facilitate extensive and rapid testing of models.
 - EK 2.3.2G The time required for simulations is impacted by the level of detail and quality of the models and the software and hardware used for the simulation.
 - EK 2.3.2H Rapid and extensive testing allows models to be changed to accurately reflect the objects or phenomena being modeled.
-
-##Additions to FG?
-- re-work a unit / activity on hardware and software abstraction layers below high level language (from the software engineering one)
-- models and simulations (there are some CS unplugged ones)

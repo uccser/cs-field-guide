@@ -10,14 +10,14 @@ Start by reading through:
 - [Complexity and Tractability](chapters/complexity-tractability.html)
 
 ## Learning objectives
-The above chapter readings include specific knowledge for EK's marked in bold.
+The above chapter readings include specific knowledge for EK's marked in bold. Work to include unmarked learning objectives in the CS Field Guide is currently in progress.
 
 ### LO 4.1.1 Develop an algorithm for implementation in a program
 
 - EK 4.1.1A Sequencing, selection, and iteration are building blocks of algorithms.
 - EK 4.1.1B Sequencing is the application of each step of an algorithm in the order in which the statements are given.
 - EK 4.1.1C Selection uses a Boolean condition to determine which of two parts of an algorithm is used.
-- EK 4.1.1D Iteration is the repetition of part of an algorithm until a condition is met or for a specifed number of times.
+- EK 4.1.1D Iteration is the repetition of part of an algorithm until a condition is met or for a specified number of times.
 - EK 4.1.1E Algorithms can be combined to make new algorithms.
 - EK 4.1.1F Using existing correct algorithms as building blocks for constructing a new algorithm helps ensure the new algorithm is correct.
 - **EK 4.1.1G Knowledge of standard algorithms can help in constructing new algorithms.**
@@ -73,7 +73,7 @@ EXCLUSION STATEMENT (for EK 4.2.3C): Determining whether a given problem is unde
 {panel type="teacher-note" summary="Exclusion EK 4.2.4C"}
 EXCLUSION STATEMENT (for EK 4.2.4C): Formally proving program correctness is beyond the scope of this course and the AP Exam.
 {panel end}
-- -EK 4.2.4D Different correct algorithms for the same problem can have different efficiencies.**
+- **EK 4.2.4D Different correct algorithms for the same problem can have different efficiencies.**
 - **EK 4.2.4E Sometimes, more efficient algorithms are more complex.**
 - **EK 4.2.4F Finding an efficient algorithm for a problem can help solve larger instances of the problem.**
 - EK 4.2.4G Efficiency includes both execution time and memory usage.
@@ -81,11 +81,3 @@ EXCLUSION STATEMENT (for EK 4.2.4C): Formally proving program correctness is bey
 EXCLUSION STATEMENT (for EK 4.2.4G): Formal analysis of algorithms (Big-O) and formal reasoning using mathematical formulas are beyond the scope of this course and the AP Exam.
 {panel end}
 - **EK 4.2.4H Linear search can be used when searching for an item in any list; binary search can be used only when the list is sorted.**
-
-##Additions to FG?
-- sequencing, selection, iteration as building blocks for algorithms
-- algorithm correctness
-- combining algorithms
-- language choice for algorithms
-- theoretical vs empirical analysis
-- efficiency of memory usage

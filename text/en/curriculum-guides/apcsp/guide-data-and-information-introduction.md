@@ -10,10 +10,13 @@ Start by reading through:
 
 - [Data Representation](chapters/data-representation.html)
 - [Coding](chapters/coding-introduction.html)
+- [Compression](chapters/coding-compression.html)
+- [Encryption](chapters/coding-encryption.html)
+- [Error Control](chapters/coding-error-control.html)
 - [Human Computer Interaction](chapters/human-computer-interaction.html)
 
 ## Learning objectives
-The above chapter readings include specific knowledge for EK's marked in bold.
+The above chapter readings include specific knowledge for EK's marked in bold. Work to include unmarked learning objectives in the CS Field Guide is currently in progress.
 
 ### LO 3.1.1 Find patterns and test hypotheses about digitally processed information to gain insight and knowledge.
 - EK 3.1.1A Computers are used in an iterative and interactive way when processing digital information to gain insight and knowledge.
@@ -65,9 +68,6 @@ EXCLUSION STATEMENT (for EK 3.2.1F): Students are not expected to know specific 
 - EK 3.2.2H Analytical techniques to store, manage, transmit, and process data sets change as the size of data sets scale.
 
 ### LO 3.3.1 Analyze how data representation, storage, security, and transmission of data involve computational manipulation of information.
-- EK 3.3.1A Digital data representations involve trade-offs related to storage, security, and privacy concerns.
-- EK 3.3.1B Security concerns engender trade-offs in storing and transmitting information.
-- EK 3.3.1C There are trade-offs in using lossy and lossless compression techniques for storing and transmitting data.
-
-##Additions to FG?
-- data patterns (sequence analysis / cryptography?)
+- **EK 3.3.1A Digital data representations involve trade-offs related to storage, security, and privacy concerns.**
+- **EK 3.3.1B Security concerns engender trade-offs in storing and transmitting information.**
+- **EK 3.3.1C There are trade-offs in using lossy and lossless compression techniques for storing and transmitting data.**

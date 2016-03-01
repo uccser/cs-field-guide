@@ -12,7 +12,7 @@ Start by reading through:
  - [Interface Usability](chapters/human-computer-interaction.html#interface-usability)
 
 ## Learning objectives
-The above chapter readings include specific knowledge for EK's marked in bold.
+The above chapter readings include specific knowledge for EK's marked in bold. Work to include unmarked learning objectives in the CS Field Guide is currently in progress.
 
 ###LO 1.1.1 Apply a creative development process when creating computational artifacts.
 - EK 1.1.1A A creative process in the development of a computational artifact can include, but is not limited to, employing nontraditional, nonprescribed techniques; the use of novel combinations of artifacts, tools, and techniques; and the exploration of personal curiosities.
@@ -32,7 +32,7 @@ or interests.
 
 ###LO 1.2.3 Create a new computational artifact by combining or modifying existing artifacts.
 - EK 1.2.3A Creating computational artifacts can be done by combining and modifying existing artifacts or by creating new artifacts.
-- EK 1.2.3B Computation facilitates the creation and modi cation of computational artifacts with enhanced detail and precision.
+- EK 1.2.3B Computation facilitates the creation and modification of computational artifacts with enhanced detail and precision.
 - EK 1.2.3C Combining or modifying existing artifacts can show personal expression of ideas.
 
 ###LO 1.2.4 Collaborate in the creation of computational artifacts.
@@ -56,8 +56,3 @@ in developing computational artifacts.
 - EK 1.3.1C Digital images can be created by generating pixel patterns, manipulating existing digital images, or combining images.
 - EK 1.3.1D Digital effects and animations can be created by using existing software or modified software that includes functionality to implement the effects and animations.
 - EK 1.3.1E Computing enables creative exploration of both real and virtual phenomena.
-
-##Additions to FG?
-- computational tools such as photoshop, virtual synthesizers, etc
-- collaborative tools (open source, github/google doc)
-- computational artifacts are more than programs
