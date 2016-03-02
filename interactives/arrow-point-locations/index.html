@@ -12,15 +12,22 @@
     <link rel="stylesheet" href="style.css">
     <script src="../base-files/js/modernizr.js"></script>
     <!-- jQuery (necessary for Foundation) -->
+    <style type="text/css" media="screen">
+        body, html, svg { width: 100%; height: 100%; overflow: hidden; }
+    </style>
     <script src="../base-files/js/jquery.js"></script>
+    <script src="vivagraph.js"></script>
     <script src="script.js"></script>
   </head>
-  <body>
+  <body onload="onLoad()">
+
       <div class="row">
       <div class="small-12 columns">
       <div class="interactive">
 	    <!-- ### Start of required HTML for inline interactives ### -->
-      <div id="grid" style="z-index: 5;top:40px;position:absolute;"></div>
+
+    
+    
 
 
       <!-- ### End of required HTML for inline interactives ### -->
