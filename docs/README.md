@@ -7,7 +7,7 @@ Welcome to the CSFG developer community! We have spent many years creating the C
 - Adding a new or replacement image for a chapter.
 - Adding or modifying an interactive for the guide.
 
-You can even create a copy to generate your own version of the CSFG.
+We also have a [public chatroom for discussing the CSFG on Gitter](https://gitter.im/uccser/cs-field-guide).
 
 ## Quick links
 
