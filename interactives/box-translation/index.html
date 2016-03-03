@@ -2,25 +2,29 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>three.js canvas - geometry - cube</title>
+        <title>Graphics Translation - CSFG</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-        <style>
-            body {
-                font-family: Monospace;
-                background-color: #f0f0f0;
-                margin: 0px;
-                overflow: hidden;
-            }
-        </style>
+        <link rel="stylesheet" href="style.css"></link>
     </head>
     <body>
+
+    <div id="container">
+        <div id="user-input">
+            <h2>Translations</h2>
+            <label>X:<input type="text" name="x-coordinate"/></label>
+            <label>Y:<input type="text" name="y-coordinate"/></label>
+            <label>Z:<input type="text" name="z-coordinate"/></label>
+        </div>
+    </div>
 
         <script src="three.min.js"></script>
         <script src="Projector.js"></script>
         <script src="CanvasRenderer.js"></script>
         <script src="stats.min.js"></script>
         <script src="script.js"></script>
+
+
 
     </body>
 </html>

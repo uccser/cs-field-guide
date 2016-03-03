@@ -1,6 +1,7 @@
 
 
-var container, stats;
+var stats;
+var container = document.getElementById( 'container' );
 var camera, scene, renderer;
 var cube, plane;
 var targetRotation = 0;
@@ -11,12 +12,13 @@ var windowHalfX = window.innerWidth / 2;
 var windowHalfY = window.innerHeight / 2;
 
 init();
+//createUserInputDiv();
 animate();
 
 function init() {
 
-    container = document.createElement( 'div' );
-    document.body.appendChild( container );
+    // container = document.createElement( 'div' );
+    // document.body.appendChild( container );
 
     var info = document.createElement( 'div' );
     info.style.position = 'absolute';
@@ -37,9 +39,8 @@ function init() {
 
     for ( var i = 0; i < geometry.faces.length; i += 2 ) {
 
-        var hex = Math.random() * 0xffffff;
-        geometry.faces[ i ].color.setHex( hex );
-        geometry.faces[ i + 1 ].color.setHex( hex );
+        geometry.faces[ i ].color.setStyle( "#6aadd1" );
+        geometry.faces[ i + 1 ].color.setStyle( "#6aadd1" );
 
     }
 
@@ -77,6 +78,15 @@ function init() {
     //
 
     window.addEventListener( 'resize', onWindowResize, false );
+
+    //listeners for keypress
+    document.addEventListener( 'keydown', function(){
+        switch (event.keyCode) {
+            case 32: //space bar
+                cube.position.y = 200;
+                cube.position.x = 200;
+                break;
+        }}, false);
 
 }
 
@@ -158,7 +168,6 @@ function onDocumentTouchMove( event ) {
 }
 
 
-
 function animate() {
 
     requestAnimationFrame( animate );
@@ -174,3 +183,17 @@ function render() {
     renderer.render( scene, camera );
 
 }
+
+
+function createUserInputDiv() {
+    var user_input = document.createElement( 'div' );
+    user_input.id = "input-container";
+
+    //user_input.div
+
+    container.appendChild( user_input );
+}
+
+
+
+
