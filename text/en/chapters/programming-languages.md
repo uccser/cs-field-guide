@@ -127,9 +127,9 @@ else:
 
 The first line is a *print* statement (which you should be very familiar with by now!) The second line asks the user for a number of miles which is converted from input text (called a string) to an integer, the third line uses an *if* statement to check if the number entered was less than 0, so that it can print an error if it is. Otherwise if the number was ok, the program jumps into the *else* section (the error is not printed because the *if* was not true), calculates the number of kilometers (there are 0.6214 kilometers in a mile), stores it into a *variable* called number_of_kilometers for later reference, and then the last line prints it out. Again, we don’t have quotes around number_of_kilometers in the last line as we want to print the value out that is stored in the number_of_kilometers variable. If this doesn’t make sense, don’t worry. You aren’t expected to know how to program for this chapter, this introduction is only intended for you to have some idea of what a program is and the things it can do.
 
-If you are keen, you could modify this program to calculate something else, such as pounds to kilograms or farenheit to celcius. It may be best to use an installed Python interpreter on your computer rather than the web version, as the web version can give very unhelpful error messages when your program has a mistake in it (although all interpreters give terrible error messages at least sometimes!)
+If you are keen, you could modify this program to calculate something else, such as pounds to kilograms or Fahrenheit to Celsius. It may be best to use an installed Python interpreter on your computer rather than the web version, as the web version can give very unhelpful error messages when your program has a mistake in it (although all interpreters give terrible error messages at least sometimes!)
 
-Programs can do many more things, such as having a graphical user interface (like most computer programs you will be familiar with), being able to print graphics onto a screen, or being able to write to and from files on the computer in order to save information between each time you run the program.
+Programs can do many more things, such as having a graphical user interface (like most computer programs you will be familiar with), being able to print graphics onto a screen, or being able to write to and read from files on the computer in order to save information between each time you run the program.
 
 
 ### Where are we going?
@@ -256,7 +256,7 @@ for i in range(5,0,-1): #Start at 5, count down by 1 each time, when we get to 0
 print("GO!!!!!")
 ```
 
-But in MIPS, it isn’t that straight forward. We need to put values into registers, and we need to build the loop out of jump statements. Firstly, how can we design the loop?
+But in MIPS, it isn’t that straightforward. We need to put values into registers, and we need to build the loop out of jump statements. Firstly, how can we design the loop?
 
 {comment}
 
@@ -510,7 +510,7 @@ The diagram below shows the difference between what happens in an interpreter an
 
 There are many different programming languages, and new ones are always being invented. Each new language will need a new compiler and/or interpreter to be developed to support it. Fortunately there are good tools to help do this quickly, and some of these ideas will come up in the *Formal Languages* chapter, where things like regular expressions and grammars can be used to describe a language, and a compiler can be built automatically from the description.
 
-The languages we have discussed in this chapter are ones that you are likely to come across in introductory programming, but there are some completely different styles of languages that have very important applications. There is an approach to programming called [Functional programming](http://en.wikipedia.org/wiki/Functional_programming) where all operations are formulated as mathematical functions. Common languages that use functional techniques include Lisp, Scheme, Haskel, Clojure and F#; even some conventional languages (such as Python) include ideas from functional programming. A pure functional programming style eliminates a problem called *side effects*, and without this problem it can be easier to make sure a program does exactly what it is intended to do. Another important type of programming is [logic programming](http://en.wikipedia.org/wiki/Logic_programming), where a program can be thought of as a set of rules stating what it should do, rather than instructions on how to do it. The most well-known logic programming language is Prolog.
+The languages we have discussed in this chapter are ones that you are likely to come across in introductory programming, but there are some completely different styles of languages that have very important applications. There is an approach to programming called [Functional programming](http://en.wikipedia.org/wiki/Functional_programming) where all operations are formulated as mathematical functions. Common languages that use functional techniques include Lisp, Scheme, Haskell, Clojure and F#; even some conventional languages (such as Python) include ideas from functional programming. A pure functional programming style eliminates a problem called *side effects*, and without this problem it can be easier to make sure a program does exactly what it is intended to do. Another important type of programming is [logic programming](http://en.wikipedia.org/wiki/Logic_programming), where a program can be thought of as a set of rules stating what it should do, rather than instructions on how to do it. The most well-known logic programming language is Prolog.
 
 
 
