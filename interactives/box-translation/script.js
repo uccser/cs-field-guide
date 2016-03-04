@@ -81,12 +81,21 @@ function init() {
 
     //listeners for keypress
     document.addEventListener( 'keydown', function(){
+
         switch (event.keyCode) {
-            case 32: //space bar
-                cube.position.y = 200;
-                cube.position.x = 200;
+            // case 32: //space bar
+            case 13:
+                //cube.position.y = 200;
+                //cube.position.x = 200;
+                moveBox();
                 break;
         }}, false);
+
+    console.log(cube.position);
+
+    document.getElementById( 'x-coordinate' ).value = cube.position.x;
+    document.getElementById( 'y-coordinate' ).value = cube.position.y;
+    document.getElementById( 'z-coordinate' ).value = cube.position.z;
 
 }
 
@@ -185,15 +194,16 @@ function render() {
 }
 
 
-function createUserInputDiv() {
-    var user_input = document.createElement( 'div' );
-    user_input.id = "input-container";
-
-    //user_input.div
-
-    container.appendChild( user_input );
+function moveBox() {
+    console.log("move box");
+    var x_pos = document.getElementById( 'x-coordinate' ).value;
+    var y_pos = document.getElementById( 'y-coordinate' ).value;
+    var z_pos = document.getElementById( 'z-coordinate' ).value;
+    console.log(x_pos, y_pos, z_pos);
+    cube.position.x = x_pos;
+    cube.position.y = y_pos;
+    cube.position.z = z_pos;
 }
-
 
 
 
