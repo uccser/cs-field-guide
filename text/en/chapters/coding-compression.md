@@ -523,7 +523,7 @@ The MPEG-1 standard isn't used much for video now (for example, DVDs and TV main
 
 The next MPEG version is MPEG-4 (MPEG-3 was redundant before it became a standard).
 MPEG-4 offers higher quality video, and is commonly used for digital video files, streaming media, Blu-Ray discs and some broadcast TV.
-The Apple AAC audio compression method is also from the MPEG-4 standard.
+The AAC audio compression method, used by Apple among others, is also from the MPEG-4 standard.
 On computers, MPEG-4 Part 14 is commonly used for video, and it's often abbreviated as "MP4."
 
 So there you have it: MP3 stands for "MPEG-1 layer 3", and MP4 stands for "MPEG-4 part 14".
