@@ -50,6 +50,7 @@ function init() {
     cube.position.y = 150;
     scene.add( cube );
 
+
     // Plane
 
     var geometry = new THREE.PlaneBufferGeometry( 200, 200 );
@@ -179,10 +180,12 @@ function onDocumentTouchMove( event ) {
 
 function animate() {
 
-    requestAnimationFrame( animate );
+    requestAnimationFrame(animate);
 
     render();
     stats.update();
+
+    TWEEN.update();
 
 }
 
@@ -199,11 +202,24 @@ function moveBox() {
     var x_pos = document.getElementById( 'x-coordinate' ).value;
     var y_pos = document.getElementById( 'y-coordinate' ).value;
     var z_pos = document.getElementById( 'z-coordinate' ).value;
-    console.log(x_pos, y_pos, z_pos);
-    cube.position.x = x_pos;
-    cube.position.y = y_pos;
-    cube.position.z = z_pos;
-}
 
+    var target = { x: x_pos, y: y_pos, z: z_pos };
+
+    //var tween = new TWEEN.Tween(cube.position).to(target, 2000);
+
+    TWEEN.removeAll();
+    new TWEEN.Tween( cube.position )
+        .to( target )
+        .easing (TWEEN.Easing.Elastic.Out )
+        .onUpdate( render )
+        .start();
+
+    //cube.position.x = x_pos;
+    //cube.position.y = y_pos;
+    //cube.position.z = z_pos;
+
+    //camera.lookAt(cube.position);
+
+}
 
 
