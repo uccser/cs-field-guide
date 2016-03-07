@@ -234,7 +234,7 @@ Your project is to measure the amount of time taken as the number of items (*n*)
 
 {glossary-link term="Algorithm" reference-text="sorting algorithms"}{glossary-link end}
 
-## Sorting algorithms
+## Sorting
 
 {panel type="teacher-note" summary="Why are we also covering sorting?"}
 Our main points have already been made --- what an algorithm is, how to estimate its cost, and that the cost isn't always proportional to the amount of data.
