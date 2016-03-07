@@ -258,7 +258,7 @@ What about the worst compression? Can you find an image that actually has a *lar
 
 {panel type="spoiler" summary="Answer for above challenge"}
 The best case above is when the image is entirely white (only one number is used per line).
-The worst case is when every pixel is alternating white and black, so there's one number for every pixel.
+The worst case is when every pixel is alternating black and white, so there's one number for every pixel.
 In fact, in this case the size of the compressed file is likely to be a little larger than the original one because the numbers are likely to take more than one bit to store.
 Real systems don't represent the data exactly as we've discussed here, but the issues are the same.
 {panel end}
