@@ -33,18 +33,29 @@ function init() {
 
     scene = new THREE.Scene();
 
+
     // Cube
 
     var geometry = new THREE.BoxGeometry( 200, 200, 200 );
 
-    for ( var i = 0; i < geometry.faces.length; i += 2 ) {
+    //for ( var i = 0; i < geometry.faces.length; i += 2 ) {
 
-        geometry.faces[ i ].color.setStyle( "#6aadd1" );
-        geometry.faces[ i + 1 ].color.setStyle( "#6aadd1" );
+        // random colour
+        //var hex = Math.random() * 0xffffff;
+        //geometry.faces[ i ].color.setHex( hex );
+        //geometry.faces[ i + 1 ].color.setHex( hex );
 
-    }
+        // set colour
+        //geometry.faces[ i ].color.setStyle( "#6aadd1" );
+        //geometry.faces[ i + 1 ].color.setStyle( "#6aadd1" );
+
+    //}
 
     var material = new THREE.MeshBasicMaterial( { vertexColors: THREE.FaceColors, overdraw: 0.5 } );
+
+    // lego man
+    var texture = new THREE.TextureLoader().load( 'good_cop.jpg' );
+    var material = new THREE.MeshBasicMaterial( { map: texture } );
 
     cube = new THREE.Mesh( geometry, material );
     cube.position.y = 150;
@@ -182,6 +193,7 @@ function animate() {
 
     requestAnimationFrame(animate);
 
+    camera.lookAt(cube.position);
     render();
     stats.update();
 
@@ -210,9 +222,10 @@ function moveBox() {
     TWEEN.removeAll();
     new TWEEN.Tween( cube.position )
         .to( target )
-        .easing (TWEEN.Easing.Elastic.Out )
+        .easing ( TWEEN.Easing.Elastic.Out )
         .onUpdate( render )
         .start();
+
 
     //cube.position.x = x_pos;
     //cube.position.y = y_pos;
