@@ -43,21 +43,9 @@ Once you're familiar with the idea of formal languages, you'll possess a powerfu
 ## Getting started
 
 To give you a taste of what can be done, let's try searching for words that fit particular patterns.
-Suppose you're looking for words that contain the name "tim".
+Suppose you're looking for words that contain the name "tim", type the word "tim" (or a few letters from your name), then press the "Filter words" button to find all words containing "tim".
 
-Open the [Regular Expression interactive](http://csfieldguide.org.nz/releases/1.9.9/_static/widgets/FL/FL-Regex/RegexDic.html) and type in the word "tim" (or a few letters from your name), then press the "Search" button to find all words containing "tim"..
-
-
-{panel type="teacher-note" summary="Alternative interactive site"}
-If the search interactive isn't working, you can try the  [Regex Dictionary](http://www.visca.com/regexdict/) site, although it probably won't handle an entire class using it at the same time.
-It's best used as a class demonstration, or for students to use in free time when they aren't all using the site simultaneously.
-The search should be typed into the "String:" box.
-{panel end}
-
-{comment}
-Regex Dictionary interactive goes here
-http://csfieldguide.org.nz/releases/1.9.9/_static/widgets/FL/FL-Regex/RegexDic.html
-{comment end}
+{interactive name="regular-expression-filter" type="in-page"}
 
 That's a pretty simple search (though the results may have surprised you!).
 But now we introduce the *wildcard* code, which in this case is "." ---  this is a widely used convention in formal languages.
@@ -84,7 +72,7 @@ x.*y.*z
 
 {panel type="teacher-note" summary="Explanation of previous search"}
 
-This code finds words that contain x, y and z in that order, but separated by 0 or more characters. At the time of writing, the only two words that come up are oxymetazoline and phenoxybenzamine.
+This code finds words that contain x, y and z in that order, but separated by 0 or more characters. There are 16 words is the data set which match this.
 
 {panel end}
 
@@ -94,7 +82,7 @@ This code finds words that contain x, y and z in that order, but separated by 0 
 
 {panel type="teacher-note" summary="Vowels soluton"}
 
-To find words with all the vowels in order, the code is simply "a.\*e.\*i.\*o.\*u".
+To find words with all the vowels in order, the code is simply "a.\*e.\*i.\*o.\*u", there are 47 matches.
 
 Students may ask how to do more complex searches, like letters in any order. If they are interested they can explore this on their own, but this is just a warmup exercise. We'll be covering this more carefully in the section on [regular expressions](chapters/formal-languages.html#regular-expressions-and-fsas).
 
