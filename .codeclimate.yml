@@ -1,0 +1,17 @@
+engines:
+  coffeelint:
+    enabled: true
+  css-lint:
+      enabled: true
+  duplication:
+    enabled: true
+    exclude_paths:
+      # Currently ignore folders due to third party libraries
+    - interactives/
+    - generator/js/
+  fixme:
+    enabled: true
+  pep8:
+    enabled: true
+  scss-lint:
+      enabled: true
