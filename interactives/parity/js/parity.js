@@ -57,6 +57,7 @@ $(document).ready(function(){
     } else if (Parity.mode == 'trick') {
       Parity.valid_parity_bits = undefined;
       Parity.current_mode = 'set';
+      clearGrid();
       setupMode()
     // Else if detect stage in detect mode
     } else {
