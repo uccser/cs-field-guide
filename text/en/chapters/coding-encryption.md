@@ -511,9 +511,7 @@ Firstly, you will need to generate a pair of keys using the key generator intera
 
 This next interactive is the encrypter, and it is used to encrypt messages with your **public key**. Your friends should use this to encrypt messages for you.
 
-{comment}
-Need to put the encrypter here. Note that I have given up on trying to use the same interactive for both encrypting and decrypting.
-{comment end}
+{interactive name="rsa-no-padding" type="iframe"}
 
 To ensure you understand, try encrypting a short message with your **public key**. In the next section, there is an interactive that you can then use to decrypt the message with your private key.
 
@@ -521,13 +519,11 @@ To ensure you understand, try encrypting a short message with your **public key*
 
 Finally, this interactive is the decrypter. It is used to decrypt messages that were encrypted with your public key. In order to decrypt the messages, you will need your **private key**.
 
-{comment}
-Need to put decrypter here. Note that it might need to go in an iframe, as the code will be very similar to the encrypter and collisions are likely
-{comment end}
+{interactive name="rsa-no-padding" type="iframe" parameters="mode=decrypt"}
 
 Despite even your enemies knowing your public key (as you publicly announced it), they cannot use it to decrypt your messages which were encrypted using the public key. You are the only one who can decrypt messages, as that requires the private key which hopefully you are the only one who access to.
 
-Note that this interactive’s implementation of RSA only uses around 50 bits of encryption and has other weaknesses. It is just for demonstrating the concepts here and is not quite the same as the implementations used in live encryption systems.
+Note that this interactive’s implementation of RSA is just for demonstrating the concepts here and is not quite the same as the implementations used in live encryption systems.
 
 {panel type="curiosity" summary="Can we reverse the RSA calculations?"}
 
@@ -557,10 +553,18 @@ So why is it that despite these two problems being similar, one of them is “ea
 You have probably done long multiplication in school by making one line for each digit in the second number and then adding all the rows together. We can analyse the speed of this algorithm, much like we did in the algorithms chapter for sorting and searching.
 Assuming that each of the two numbers has the same number of digits, which we will call *n* (“Number of digits”), we need to write *n* rows.
 For each of those *n* rows, we will need to do around *n* multiplications.
-That gives us {math}n \times n{math end} little multiplications. We need to add the *n* rows together at the end as well, but that doesn’t take long so lets ignore that part. We have determined that the number of small multiplications needed to multiply two big numbers is approximately the square of the number of digits. So for two numbers with 1000 digits, that’s 1,000,000 little multiplication operations. A computer can do that in less than a second! If you know about Big-O notation, this is an {math}O(n^2){math end} algorithm, where *n* is the number of digits. Note that some slightly better algorithms have been designed, but this estimate is good enough for our purposes.
+That gives us {math}n \times n{math end} little multiplications.
+We need to add the *n* rows together at the end as well, but that doesn’t take long so lets ignore that part.
+We have determined that the number of small multiplications needed to multiply two big numbers is approximately the square of the number of digits.
+So for two numbers with 1000 digits, that’s 1,000,000 little multiplication operations.
+A computer can do that in less than a second! If you know about Big-O notation, this is an {math}O(n^2){math end} algorithm, where *n* is the number of digits.
+Note that some slightly better algorithms have been designed, but this estimate is good enough for our purposes.
 
-For the second problem, we’d need an algorithm that could find the two numbers that were multiplied together. You might initially say, why can’t we just reverse the multiplication? The reverse of multiplication is division, so can’t we just divide to get the two numbers?
-It’s a good idea, but it won’t work. For division we need to know the big number, and one of the small numbers we want to divide into it, and that will give us the other small number. But in this case, we *only* know the big number. So it isn’t a straightforward long division problem at all!
+For the second problem, we’d need an algorithm that could find the two numbers that were multiplied together.
+You might initially say, why can’t we just reverse the multiplication? The reverse of multiplication is division, so can’t we just divide to get the two numbers?
+It’s a good idea, but it won’t work.
+For division we need to know the big number, and one of the small numbers we want to divide into it, and that will give us the other small number.
+But in this case, we *only* know the big number. So it isn’t a straightforward long division problem at all!
 It turns out that there is no known fast algorithm to solve the problem. One way is to just try dividing by every number that is less than the number (well, we only need to go up to the square root, but that doesn’t help much!) There are still billions of billions of billions of numbers we need to check. Even a computer that could check 1 billion possibilities a second isn’t going to help us much with this! If you know about Big-O notation, this is an {math}O(10^n){math end} algorithm, where n is the number of digits -- even small numbers of digits are just too much to deal with!
 There are slightly better solutions, but none of them shave off enough time to actually be useful for problems of the size of the one above!
 
