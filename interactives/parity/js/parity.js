@@ -60,6 +60,11 @@ $(document).ready(function(){
       setupMode()
     // Else if detect stage in detect mode
     } else {
+      // Remove green success highlight around bit if correct bit found
+      if (Parity.flipping == 'none') {
+        var $bit = Parity.grid.children().eq(Parity.flipped_row).children().eq(Parity.flipped_col);
+        $bit.removeClass('correct-bit');
+      }
       clearGrid();
       setupMode();
     }
