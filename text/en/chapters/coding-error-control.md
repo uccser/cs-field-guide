@@ -108,7 +108,7 @@ It turns out that you can always detect an error when 2 cards have been flipped 
 
 There is actually a way to flip 4 cards where the error is then *undetected* meaning that the algorithm will be unable to detect the error. Can you find a way of doing this?
 
-With more parity cards, we can detect and possibly correct more errors. Lets explore a very simple system with minimal parity cards. We can have a 7x7 grid of data with just one parity card. That parity card makes it so that there is an even number of black cards in the entire layout (including the parity card). How can you use this to detect errors? Are you ever able to correct errors in this system? In what situations do errors go undetected (think when you have multiple errors, i.e. more than one card flipped).
+With more parity cards, we can detect and possibly correct more errors. Let's explore a very simple system with minimal parity cards. We can have a 7x7 grid of data with just one parity card. That parity card makes it so that there is an even number of black cards in the entire layout (including the parity card). How can you use this to detect errors? Are you ever able to correct errors in this system? In what situations do errors go undetected (think when you have multiple errors, i.e. more than one card flipped).
 
 With only one extra card for parity checking, a single bit error can be detected (the total number of black cards will become odd), but a 2-bit error won't be detected because the number of black cards will be even again. A 3-bit error will be detected, but in general the system isn't very reliable.
 
@@ -245,7 +245,7 @@ It is calculated using the following algorithm (also, see the example below).
 - Add up all the multiplied numbers to obtain the *sum*.
 - The check digit is whatever number would have to be added to the sum in order to bring it up to a multiple of 10 (i.e. the last digit of the sum should be 0). Or more formally, take the last digit of the sum and if it is 0, the check digit is 0. Otherwise, subtract the last digit from 10 to obtain the check digit.
 
-Lets look at an example to illustrate this algorithm. We want to confirm that the check digit that was put on the barcode of a bottle of coke was the correct one. Its barcode number is 9300675032247. The last digit, 7, is the check digit. So we take the first 12 digits and multiply them by 1 or 3, depending on their positions (9x1+3x3+0x1+0x3+6x1+7x3+5x1+0x3+3x1+2x3+2x1+4x3). We then add up all the multiplied numbers, obtaining a sum of 73. We want to add the check digit that will bring the sum up to the nearest multiple of 10, which is 80. This number is 7, which is indeed the check digit on the coke bottle’s barcode.
+Let's look at an example to illustrate this algorithm. We want to confirm that the check digit that was put on the barcode of a bottle of coke was the correct one. Its barcode number is 9300675032247. The last digit, 7, is the check digit. So we take the first 12 digits and multiply them by 1 or 3, depending on their positions (9x1+3x3+0x1+0x3+6x1+7x3+5x1+0x3+3x1+2x3+2x1+4x3). We then add up all the multiplied numbers, obtaining a sum of 73. We want to add the check digit that will bring the sum up to the nearest multiple of 10, which is 80. This number is 7, which is indeed the check digit on the coke bottle’s barcode.
 
 The following interactive can be used to do the calculations for you.
 To make sure you understand the process, you need to do some of the steps yourself; this interactive can be used for a wide range of check digit systems.
@@ -284,7 +284,7 @@ To make it even easier, for each of the additions you only need to note the last
 For example, the first addition above begins with 9+0+6, so you can say that it adds up to 5 (rather than 15) and still get the same result.
 The next digit (5) takes the sum to 0, and so on.
 This also means that you can group digits that add to 10 (like 1 and 9, or 5 and 5), and ignore them.
-For exam  ple, in the second group, 3+0+7 at the start adds up to 0, and the only sum that counts is 2+4, giving 6 as the total.
+For example, in the second group, 3+0+7 at the start adds up to 0, and the only sum that counts is 2+4, giving 6 as the total.
 
 Finally, even the multiplication will be ok if you just take the last digit.
 In the example above, that means we end up working out 6x3 giving 8 (not 18); the original was 16x3 giving 48, but it's only the final 8 digit that matters.
@@ -306,7 +306,7 @@ In order to be effective, the algorithm needs to ensure the multiplied digits wi
 
 The check digit on barcodes is described in the chapter on [error control coding](coding-error-control.html). Basically every second digit is multiplied by 3, and the sum of these multiples are added to the remaining digits.
 
-Lets look at some smaller examples with 5 digits (4 normal digits and a check digit), as the same ideas will apply to the 13 digit numbers.
+Let's look at some smaller examples with 5 digits (4 normal digits and a check digit), as the same ideas will apply to the 13 digit numbers.
 
 If we need a check digit for 8954, we would calculate (8x1)+(9x3)+(5x1)+(4x3)=52, and in order to bring this up to 60, we need to add 8. This makes the full number 89548.
 
@@ -314,7 +314,7 @@ The first thing we should observe is that only the ones column (last digit) of e
 
 *Protection against single digit errors*
 
-Next, lets look at why changing *one* digit in the number to another digit will *always* be detected with this algorithm. Each digit will contribute a number between 0 and 9 to the sum (remember we only care about the ones column now). As long as changing the digit will result in it contributing a different amount to the sum, it becomes impossible for it to still sum to a multiple of 10. Remember that each digit is either multiplied by 1 or 3 before its ones column is added to the sum.
+Next, let's look at why changing *one* digit in the number to another digit will *always* be detected with this algorithm. Each digit will contribute a number between 0 and 9 to the sum (remember we only care about the ones column now). As long as changing the digit will result in it contributing a different amount to the sum, it becomes impossible for it to still sum to a multiple of 10. Remember that each digit is either multiplied by 1 or 3 before its ones column is added to the sum.
 
 A number being multiplied by 1 will always contribute itself to the sum. If for example the digit was supposed to be 9, no other single digit can contribute 9 to the sum. So those multiplied by 1 are fine.
 

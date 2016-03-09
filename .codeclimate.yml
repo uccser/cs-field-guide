@@ -1,0 +1,31 @@
+engines:
+  coffeelint:
+    enabled: true
+  css-lint:
+      enabled: true
+  duplication:
+    enabled: true
+    config:
+      languages:
+      - python
+      - javascript
+    exclude_paths:
+      # Currently ignore folders due to third party libraries
+    - interactives/
+    - generator/js/
+  fixme:
+    enabled: true
+  pep8:
+    enabled: true
+  scss-lint:
+      enabled: true
+ratings:
+  paths:
+  - "**.css"
+  - "**.coffee"
+  - "**.inc"
+  - "**.js"
+  - "**.scss"
+exclude_paths:
+- spec/**/*
+- "**/vendor/**/*"
