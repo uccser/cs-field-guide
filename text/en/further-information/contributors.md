@@ -75,8 +75,10 @@ This project is the result of contributions from a large community of Computer S
 - Linda Pettigrew - Formal languages material
 
 ## Community Contributors
-- [ArloL](https://github.com/ArloL)
-- [ner0x652](https://github.com/ner0x652)
+- Arlo Louis O'Keeffe ([ArloL](https://github.com/ArloL))
+- Cornel Punga ([ner0x652](https://github.com/ner0x652))
+- Alan Hogan ([alanhogan](https://github.com/alanhogan))
+- Steven Maude ([StevenMaude](https://github.com/StevenMaude))
 
 **Note:** If there is an error in the list, please contact [Jack Morgan](mailto:jack.morgan@canterbury.ac.nz)
 
