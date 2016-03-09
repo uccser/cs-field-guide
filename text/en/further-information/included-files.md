@@ -26,6 +26,16 @@ See [xkcd.com/license](https://xkcd.com/license.html) for more details.
 
 **License:**  Used with Jack Morgan's permission (email: [jack.morgan@canterbury.ac.nz](mailto:jack.morgan@canterbury.ac.nz))
 
+#### mips-assembler, mips-simulator
+
+**Owner:** Alan Hogan
+
+**Used:** Within mips-assembler and mips-simulator interactives.
+
+**Source:** [MIPS Assembler](https://github.com/alanhogan/online-mips-assembler) and [MIPS Simulator](https://github.com/alanhogan/miphps-mips-simulator)
+
+**License:**  [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-nc-sa/4.0/)
+
 #### en-words.txt
 
 **Owner:** [atebits/Words](https://github.com/atebits/Words)
