@@ -680,7 +680,7 @@ jr $ra'))); ?></textarea>
   /* Load style from CSS file */
   <?php include 'css/mips-assembler.css'; ?>
   </style>
-
+  </div>
   <!-- Materialize responsive CSS -->
   <script type="text/javascript" src="../base-files/js/materialize.min.js"></script>
   </body>
