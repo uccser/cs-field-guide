@@ -227,15 +227,15 @@ li $v0, 0
 jr $ra
 ```
 
-You can run this program using a MIPS emulator using the button below.
+You can run this program using a MIPS emulator using this interactive:
 
 {interactive name="mips-assembler" type="whole-page" text="MIPS Assembler" file-type="php"}
 
-Copy and paste the output in the “Assembler Output” box into the box in this simulator interactive/
+Copy and paste the output in the “Assembler Output” box into the box in this simulator interactive:
 
 {interactive name="mips-simulator" type="whole-page" text="MIPS Simulator" file-type="php"}
 
-Once you have got the program working, try changing the values that are added. The comments tell you where these numbers that can be changed are. You should also be able to change the string (text) that is printed without too much trouble also. As a challenge, can you make it so that it subtracts rather than adds the numbers? Clue: instruction names are always very short. Unfortunately you won’t be able to make it multiply or divide using this emulator as this seems to not currently be supported. Remember that to rerun the program after changing it, you will have to follow both steps 1 and 2 again.
+Once you have got the program working, try changing the values that are added. The comments tell you where these numbers that can be changed are. You should also be able to change the string (text) that is printed without too much trouble also. As a challenge, can you make it so that it subtracts rather than adds the numbers? Clue: instruction names are always very short. Unfortunately you won’t be able to make it multiply or divide using this simulator as this is not currently supported. Remember that to rerun the program after changing it, you will have to follow both steps 1 and 2 again.
 
 You may be wondering why you have to carry out both these steps. Because computers work in 1’s and 0’s, the instructions need to simply be converted into hexadecimal. Hexadecimal is a shorthand notation for binary numbers. *Don’t muddle this process with compiling or interpreting!* Unlike these, it is much simpler as in general each instruction from the source code ends up being one line in the hexadecimal.
 
