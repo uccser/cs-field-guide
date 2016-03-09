@@ -158,7 +158,7 @@ So instead of building computers that can understand these high level instructio
 
 The conversion from a high level to a low level language can involve *compiling*, which replaces the high level instructions with machine code instructions that can then be run, or it can be done by *interpreting*, where each instruction is converted and followed one by one, as the program is run. In reality, a lot of languages use a mixture of these, sometimes compiling a program to an intermediate language, then interpreting it (Java does this). The language we looked at earlier, Python, is an interpreted language. Other languages such as C++ are compiled. We will talk more about compiling and interpreting later.
 
-We will start with looking at some other programming languages that programmers use to give instructions to computers, then we will look at low level languages and how computers actually carry out the instructions in them, and then finally we will talk about how we convert programs that were written by humans in a high level language into a low level language that the computer can carry out.
+We will start with looking at low level languages and how computers actually carry out the instructions in them, then we will look at some other programming languages that programmers use to give instructions to computers, and then finally we will talk about how we convert programs that were written by humans in a high level language into a low level language that the computer can carry out.
 
 ## Machine Code (Low level languages)
 
@@ -227,13 +227,15 @@ li $v0, 0
 jr $ra
 ```
 
-You can run this program using a MIPS emulator. This can be done using Alan Hogan’s online MIPS emulator by following these 2 steps:
+You can run this program using a MIPS emulator using this interactive:
 
-- [Copy paste the code into the black box on the page from this link](http://alanhogan.com/asu/assembler.php) (remove ALL existing text in the box), and then click the Assemble button.
+{interactive name="mips-assembler" type="whole-page" text="MIPS Assembler" file-type="php"}
 
-- [Copy paste the output in the “Assembler Output” box into the box on the page from this link](http://alanhogan.com/asu/simulator.php) (remove ALL existing text in the box), and click the Simulate Execution button, and the output should appear in a box near the top of the page
+Copy and paste the output in the “Assembler Output” box into the box in this simulator interactive:
 
-Once you have got the program working, try changing the values that are added. The comments tell you where these numbers that can be changed are. You should also be able to change the string (text) that is printed without too much trouble also. As a challenge, can you make it so that it subtracts rather than adds the numbers? Clue: instruction names are always very short. Unfortunately you won’t be able to make it multiply or divide using this emulator as this seems to not currently be supported. Remember that to rerun the program after changing it, you will have to follow both steps 1 and 2 again.
+{interactive name="mips-simulator" type="whole-page" text="MIPS Simulator" file-type="php"}
+
+Once you have got the program working, try changing the values that are added. The comments tell you where these numbers that can be changed are. You should also be able to change the string (text) that is printed without too much trouble also. As a challenge, can you make it so that it subtracts rather than adds the numbers? Clue: instruction names are always very short. Unfortunately you won’t be able to make it multiply or divide using this simulator as this is not currently supported. Remember that to rerun the program after changing it, you will have to follow both steps 1 and 2 again.
 
 You may be wondering why you have to carry out both these steps. Because computers work in 1’s and 0’s, the instructions need to simply be converted into hexadecimal. Hexadecimal is a shorthand notation for binary numbers. *Don’t muddle this process with compiling or interpreting!* Unlike these, it is much simpler as in general each instruction from the source code ends up being one line in the hexadecimal.
 

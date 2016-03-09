@@ -17,26 +17,25 @@
     <div class="row">
     <div class="col s12 m8 offset-m2 l6 offset-l3">
     <!-- ### Start of required HTML for inline interactives ### -->
-    <div class="row interactive" id="interactive-rsa-jsencrypt">
+    <div class="row interactive" id="interactive-rsa-no-padding" data-iframe-height>
       <div class="col s12">
-        <h3>RSA <span id="interactive-rsa-jsencrypt-mode">Encrypter</span></h3>
+        <h3>RSA <span id="interactive-rsa-no-padding-mode">Encrypter</span></h3>
 
         <h5>Key</h5>
-        <textarea id="interactive-rsa-jsencrypt-key" rows="5"></textarea>
+        <textarea id="interactive-rsa-no-padding-key" rows="5"></textarea>
 
-        <h5><span id="interactive-rsa-jsencrypt-input-type">Plain</span> Text</h5>
-        <textarea id="interactive-rsa-jsencrypt-input-text" rows="5"></textarea>
+        <h5><span id="interactive-rsa-no-padding-input-type">Plain</span> Text</h5>
+        <textarea id="interactive-rsa-no-padding-input-text" rows="5"></textarea>
 
-        <button id="interactive-rsa-jsencrypt-process" class="btn">Encrypt</button>
+        <button id="interactive-rsa-no-padding-process" class="btn">Encrypt</button>
 
-        <h5><span id="interactive-rsa-jsencrypt-output-type">Cipher</span> Text</h5>
-        <textarea id="interactive-rsa-jsencrypt-output-text" rows="5"></textarea>
-
-        <p>This interactive uses the <code><a href="http://travistidwell.com/jsencrypt/#">jsencrypt</a></code> library.</p>
+        <h5><span id="interactive-rsa-no-padding-output-type">Cipher</span> Text</h5>
+        <textarea id="interactive-rsa-no-padding-output-text" rows="5"></textarea>
       </div>
-      <link rel="stylesheet" href="./css/rsa-jsencrypt.css">
-      <script type="text/javascript" src="../base-files/js/jsencrypt.js"></script>
-      <script type="text/javascript" src="./js/rsa-jsencrypt.js"></script>
+      <link rel="stylesheet" href="./css/rsa-no-padding.css">
+      <script type="text/javascript" src="./js/rsa-jsencrypt-no-padding.js"></script>
+      <script type="text/javascript" src="./js/jsencrypt-no-padding.js"></script>
+      <script type="text/javascript" src="../base-files/js/iframeResizer.contentWindow.min.js"></script>
     </div>
     <!-- ### End of required HTML for inline interactives ### -->
     </div>
