@@ -452,7 +452,7 @@ The following text can include an interactive into the project:
 
 An interactive that is adding by the `iframe` type requires:
 1. `data-iframe-height` attribute on the largest element in the interactive (most likely the `row` tag from the interactive template).
-2. `<script src="../base-files/js/iframeResizer.contentWindow.min.js"></script>` at the end of the `body` element.
+2. `<script src="../base-files/js/third-party/iframeResizer.contentWindow.min.js"></script>` at the end of the `body` element.
 
 ---
 
