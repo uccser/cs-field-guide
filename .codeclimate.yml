@@ -32,4 +32,7 @@ ratings:
   - "**.php"
   - "**.scss"
 exclude_paths:
-- "**/third-party/**/*"
+  # Ignore third party libraries
+  - "*/**/third-party/**/*"
+  - "generator/font/**"
+  - "interactives/base-files/css/fonts/**"
