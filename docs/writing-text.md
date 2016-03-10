@@ -448,10 +448,11 @@ The following text can include an interactive into the project:
 - `text` (used with `whole-page` value) - Sets the text below the interactive link.
 - `parameters` (used with `whole-page` and `iframe` values) - Adds the parameters to interactive link.
 - `thumbnail` (optional - used with `whole-page` value) - Displays an alternative thumbnail for the interactive. When not provided, it defaults to the `thumbnail.png` image within the interactive's folder. The alternative thumbnail must be stored in the interactive folder.
+- `file-type` (used with `whole-page` value) - Set the file extension of the link. Defaults to `html` but was implemented for `php` interactives.
 
 An interactive that is adding by the `iframe` type requires:
 1. `data-iframe-height` attribute on the largest element in the interactive (most likely the `row` tag from the interactive template).
-2. `<script src="../base-files/js/iframeResizer.contentWindow.min.js"></script>` at the end of the `body` element.
+2. `<script src="../base-files/js/third-party/iframeResizer.contentWindow.min.js"></script>` at the end of the `body` element.
 
 ---
 
@@ -462,7 +463,7 @@ Glossary terms and links are created throughout the text of the guide, and our p
 #### Defining a glossary term
 
 ```
-{glossary-definition term="complexity" definition="Something that is really complicated."}
+{glossary-definition term="Complexity" definition="Something that is really complicated."}
 ```
 
 **Parameters:**

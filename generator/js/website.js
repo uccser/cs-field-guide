@@ -10,7 +10,7 @@ $(document).ready(function(){
   // Code for jumping to anchors
   if (window.location.hash) {
     var anchor = document.getElementById(window.location.hash.substring(1));
-    if (anchor) {
+    if (anchor && !window.location.hash.startsWith('#section-')) {
       $target = $(anchor);
       // Set target style on anchor
       $target.addClass("glossary-anchor-link-highlight");
