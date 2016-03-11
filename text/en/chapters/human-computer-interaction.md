@@ -30,7 +30,7 @@ Try out the following interactive task, and get some friends to try it:
 {interactive name="deceiver" type="in-page"}
 
 Did anyone get a wrong answer to the question even though they thought they got it right?
-You may have noticed that the "Yes" and "No" buttons sometimes swap.
+You may have noticed that the "Even" and "Odd" buttons sometimes swap.
 Inconsistency is almost always a really bad thing in an interface, as it can easily fool the user into making an error.
 
 The only situation it might be desirable is if it was intentionally done to make a computer game more interesting (which perhaps the above interactive could be).
@@ -38,7 +38,7 @@ But imagine you have a web form in which the "reset" and "submit" buttons often 
 Users would frequently clear the form when they meant to submit it, or submit the form when they had meant to clear it!
 
 {panel type="teacher-note" summary="Accuracy vs Speed in the above interactive"}
-The swapping yes/no interactive may not fool all students, but for some it will be very frustrating. If they decide to use it slowly and carefully they may get the yes/no choices correct, but they will also get lower scores (i.e. lower productivity if this was a real interface).
+The swapping even/odd interactive may not fool all students, but for some it will be very frustrating. If they decide to use it slowly and carefully they may get the even/odd choices correct, but they will also get lower scores (i.e. lower productivity if this was a real interface).
 {panel end}
 
 The study of Human Computer Interaction involves a lot of psychology (how people behave) because this affects how they will use a system. As a simple example, the human short term memory only lasts for a matter of seconds (even in young people!)
@@ -129,7 +129,7 @@ Keep your notes for later, as you can further analyse them once you have read th
 {panel type="project" summary="Designing stovetops and door handles"}
 {image filename="poor-door-design-cartoon.jpg" alt="User conflict opening a door." position="right"}
 
-For this project, you will designing the top of a cooking stove, or the handles on a door.
+For this project, you will design the top of a cooking stove, or the handles on a door.
 This isn't a computer system, but will help demonstrate some of the issues that come up.
 The main task is to sketch three different configurations for the stovetop which includes the arrangement of the 4 elements and the 4 control knobs.
 
@@ -162,7 +162,7 @@ There are many elements that can be considered in usability, and we will mention
 
 ### Consistency
 
-A "golden rule" of usability is *consistency*. If a system keeps changing on you, it's going to be frustrating to use. Earlier we had the example of a yes/no button pair that occasionally swapped places. A positive example is the consistent use of "control-C" and "control-V" in many different programs to copy and paste text or images. This also helps *learnability*: once you have learned copy and paste in one program, you know how to use it in many others. Imagine if every program used different menu commands and keystrokes for this!
+A "golden rule" of usability is *consistency*. If a system keeps changing on you, it's going to be frustrating to use. Earlier we had the example of a "Even"/"Odd" button pair that occasionally swapped places. A positive example is the consistent use of "control-C" and "control-V" in many different programs to copy and paste text or images. This also helps *learnability*: once you have learned copy and paste in one program, you know how to use it in many others. Imagine if every program used different menu commands and keystrokes for this!
 
 A related issue is the [*Mode error*](http://en.wikipedia.org/wiki/Mode_error#Mode_errors), where the behaviour of an action depends on what mode you are in. A simple example is having the caps lock key down (particularly for entering a password, where you can't see the effect of the mode). A classic example is in Excel spreadsheets, where the effect of clicking on a cell depends on the mode: sometimes it selects the cell, and other times it puts the name of the cell you clicked on into another cell. Modes are considered bad practice in interface design because they can easily cause the user to make the wrong action, and should be avoided if possible.
 
@@ -180,7 +180,7 @@ The delay may be very short, but only make the cell green if you are fairly sure
 
 {interactive name="delay-analyser" type="whole-page" text="Delay Analyser interactive"}
 
-Once you have clicked on all the cells, click on "View stastistics" to see how long the delays were compared with your perception.
+Once you have clicked on all the cells, click on "View statistics" to see how long the delays were compared with your perception.
 100 ms (100 milliseconds) is one tenth of a second; for most people this is where they are likely to start perceiving a delay;
 anything shorter (particularly around 50 ms) is very hard to notice. Longer delays (for example, 350 ms, which is over a third of a second) are very easy to notice.
 
@@ -413,7 +413,7 @@ Here's an example of a button that doesn't provide user control; if you press it
 Pressing the yes button below can be very frustrating! Most modern web browsers provide some user control and freedom in this case – if your students are frustrated at having pressed the button, the page will probably be in their history menu (and some browsers even have a function to restore the last page closed).
 {panel end}
 
-Sometimes the interface can force the user into doing something the don't want to do. For example, it is quite common for operating systems or programs to perform updates automatically that require a restart. Sometimes the interface may not give them the opportunity to cancel or delay this, and restart nevertheless. This is bad if it happens when the user is just about to give a presentation.
+Sometimes the interface can force the user into doing something they don't want to do. For example, it is quite common for operating systems or programs to perform updates automatically that require a restart. Sometimes the interface may not give them the opportunity to cancel or delay this, and restart nevertheless. This is bad if it happens when the user is just about to give a presentation.
 
 Another common form of this problem is not being able to quit a system. A positive example is the "home" button on smartphones, which almost always stops the current app that is in use.
 
@@ -427,7 +427,7 @@ An example of inconsistency is generally found within spreadsheet programs, wher
 
 {image filename="xkcd-standards-cartoon.png" alt="A xkcd comic on standards" source="https://xkcd.com/927/"}
 
-A lack of consistency is often the reason behind people not liking a new system. It is particularly noticeable between Mac and Windows user; someone who has only used one system can find the other very frustrating to use because so many things are different (consider the window controls for a start, which are in a different place and have different icons). An experienced user of one interface will think that it is "obvious", and can't understand why the other person finds it frustrating, which can lead to discussions of religious fervour on which interface is best. Similar problems can occur when a radically different version of an operating system comes out (such as Windows 8); a lot of the learning that has been done on the previous system needs to be undone, and the lack of consistency (i.e. losing prior learning) is frustrating.
+A lack of consistency is often the reason behind people not liking a new system. It is particularly noticeable between Mac and Windows users; someone who has only used one system can find the other very frustrating to use because so many things are different (consider the window controls for a start, which are in a different place and have different icons). An experienced user of one interface will think that it is "obvious", and can't understand why the other person finds it frustrating, which can lead to discussions of religious fervour on which interface is best. Similar problems can occur when a radically different version of an operating system comes out (such as Windows 8); a lot of the learning that has been done on the previous system needs to be undone, and the lack of consistency (i.e. losing prior learning) is frustrating.
 
 ### Error prevention
 
