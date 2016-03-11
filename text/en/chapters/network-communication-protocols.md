@@ -251,7 +251,7 @@ Footers and Headers are basically packet *meta-data*. Information about the info
 {panel end}
 
 {comment}
-{image filename="http://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/UDP_encapsulation.svg/800px-UDP_encapsulation.svg.png" alt="UDP Encapsulation"}
+{image filename="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/UDP_encapsulation.svg/800px-UDP_encapsulation.svg.png" alt="UDP Encapsulation"}
 TODO: Upload this image to field guide, and link back to svg page.
 https://commons.wikimedia.org/wiki/File:UDP_encapsulation.svg
 {comment end}
