@@ -20,7 +20,7 @@ In 1996, The ARIANE 5 rocket of the European Space Agency was launched for its f
 
 {image filename="ariane-rocket-cartoon.png" alt="Ariane Cartoon"}
 
-In extreme cases, software bugs can endanger lives. This happened in the 1980s, for example, when a [radiation therapy machine](http://en.wikipedia.org/wiki/Therac) caused the deaths of 3 patients by giving 100 times the intended dose of radiation. And in 1979, a US army computer almost started a nuclear war, when it misinterpreted a simulation of the Soviet Union launching a missile as the real thing! (If you are interested in other software failures, [CS4FN](http://www.cs4fn.org/softwareengineering/backtodrawingboard.php) lists the most spectacular ones!)
+In extreme cases, software bugs can endanger lives. This happened in the 1980s, for example, when a [radiation therapy machine](https://en.wikipedia.org/wiki/Therac) caused the deaths of 3 patients by giving 100 times the intended dose of radiation. And in 1979, a US army computer almost started a nuclear war, when it misinterpreted a simulation of the Soviet Union launching a missile as the real thing! (If you are interested in other software failures, [CS4FN](http://www.cs4fn.org/softwareengineering/backtodrawingboard.php) lists the most spectacular ones!)
 
 Our society today is so reliant on software that we can’t even imagine life without it anymore. In many ways, software has made our lives easier: we write emails, chat with friends on Facebook, play computer games and search for information on Google. Heaps of software is hidden behind the scenes too so we don’t even know we’re using it, for example in cars, traffic lights, TVs, washing machines, Japanese toilets, and hearing aids. We've become so used to having software, we expect it to work at all times!
 
@@ -390,7 +390,7 @@ When the builder thinks they are done, compare what you built! How precise was y
 
 ## Agile software development
 
-*Agile* software development has become popular over the last 10 years; two of the most famous agile processes are called [XP](http://en.wikipedia.org/wiki/Extreme_programming) and [Scrum](http://en.wikipedia.org/wiki/Scrum_(development\)). Agile software development is all about being extremely flexible and adaptive to change. Most other software processes try to manage and control changes to requirements during the process; agile processes accept and expect change. The following xkcd comic illustrates part of the apparent dilemma that agile processes aim to address. With Agile, we can develop software quickly, correctly, and be adaptive to change.
+*Agile* software development has become popular over the last 10 years; two of the most famous agile processes are called [XP](https://en.wikipedia.org/wiki/Extreme_programming) and [Scrum](https://en.wikipedia.org/wiki/Scrum_(development\)). Agile software development is all about being extremely flexible and adaptive to change. Most other software processes try to manage and control changes to requirements during the process; agile processes accept and expect change. The following xkcd comic illustrates part of the apparent dilemma that agile processes aim to address. With Agile, we can develop software quickly, correctly, and be adaptive to change.
 
 {image filename="xkcd-good-code.png" alt="A xkcd comic on good code" source="https://xkcd.com/844/"}
 
@@ -482,16 +482,16 @@ It can be difficult to understand the importance of some of the problems and tec
 ## Further reading
 
 ### Useful Links
-- [Wikipedia - Software engineering](http://en.wikipedia.org/wiki/Software_engineering)
+- [Wikipedia - Software engineering](https://en.wikipedia.org/wiki/Software_engineering)
 - [CS4FN - Software engineering](http://www.cs4fn.org/fundamentals/softwareeng.php)
 - [Teach ICT - Systems Life Cycle](http://www.teach-ict.com/as_a2_ict_new/ocr/A2_G063/331_systems_cycle/slc_stages/home_slc.html)
-- [Wikipedia - Software crisis](http://en.wikipedia.org/wiki/Software_crisis)
+- [Wikipedia - Software crisis](https://en.wikipedia.org/wiki/Software_crisis)
 - [IEEE - Why software fails](http://spectrum.ieee.org/computing/software/why-software-fails)
-- [Wikipedia - Software design](http://en.wikipedia.org/wiki/Software_design)
-- [Wikipedia - Abstraction](http://en.wikipedia.org/wiki/Abstraction_(computer_science\))
-- [Wikipedia - Software testing](http://en.wikipedia.org/wiki/Software_testing)
-- [Wikipedia - Software development process](http://en.wikipedia.org/wiki/Software_development_process)
-- [Wikipedia - Waterfall model](http://en.wikipedia.org/wiki/Waterfall_model)
-- [Wikipedia - Iterative and incremental development](http://en.wikipedia.org/wiki/Iterative_and_incremental_development)
-- [Wikipedia - Agile software development](http://en.wikipedia.org/wiki/Agile_software_development)
-- [Wikipedia - Test driven development](http://en.wikipedia.org/wiki/Test-driven_development)
+- [Wikipedia - Software design](https://en.wikipedia.org/wiki/Software_design)
+- [Wikipedia - Abstraction](https://en.wikipedia.org/wiki/Abstraction_(computer_science\))
+- [Wikipedia - Software testing](https://en.wikipedia.org/wiki/Software_testing)
+- [Wikipedia - Software development process](https://en.wikipedia.org/wiki/Software_development_process)
+- [Wikipedia - Waterfall model](https://en.wikipedia.org/wiki/Waterfall_model)
+- [Wikipedia - Iterative and incremental development](https://en.wikipedia.org/wiki/Iterative_and_incremental_development)
+- [Wikipedia - Agile software development](https://en.wikipedia.org/wiki/Agile_software_development)
+- [Wikipedia - Test driven development](https://en.wikipedia.org/wiki/Test-driven_development)

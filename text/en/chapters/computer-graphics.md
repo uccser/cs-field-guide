@@ -116,7 +116,7 @@ Other explanations aimed at school students include:
 - [Math is Fun - Matrix multiplying](http://www.mathsisfun.com/algebra/matrix-multiplying.html)
 - [Math in Sight - Matrix vector multiplication](http://mathinsight.org/matrix_vector_multiplication)
 - [Math Planet - Transformation using matrices](http://www.mathplanet.com/education/geometry/transformations/transformation-using-matrices)
-- [Wikipedia entry on matrix transformation](http://en.wikipedia.org/wiki/Transformation_matrix) - which likely has too much extra detail for students in it
+- [Wikipedia entry on matrix transformation](https://en.wikipedia.org/wiki/Transformation_matrix) - which likely has too much extra detail for students in it
 {panel end}  
 
 
@@ -1012,10 +1012,10 @@ An [animation of a Möbius strip](https://www.youtube.com/watch?v=ZN4TxmWK0bE) t
 
 ### Useful Links
 
-- [http://en.wikipedia.org/wiki/Computer_graphics](http://en.wikipedia.org/wiki/Computer_graphics)
-- [http://en.wikipedia.org/wiki/Transformation_matrix](http://en.wikipedia.org/wiki/Transformation_matrix)
-- [http://en.wikipedia.org/wiki/Bresenham’s_line_algorithm](https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm)
-- [http://en.wikipedia.org/wiki/Ray_trace](http://en.wikipedia.org/wiki/Ray_trace)
+- [https://en.wikipedia.org/wiki/Computer_graphics](https://en.wikipedia.org/wiki/Computer_graphics)
+- [https://en.wikipedia.org/wiki/Transformation_matrix](https://en.wikipedia.org/wiki/Transformation_matrix)
+- [https://en.wikipedia.org/wiki/Bresenham’s_line_algorithm](https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm)
+- [https://en.wikipedia.org/wiki/Ray_trace](https://en.wikipedia.org/wiki/Ray_trace)
 - [http://www.cosc.canterbury.ac.nz/mukundan/cogr/applcogr.html](http://www.cosc.canterbury.ac.nz/mukundan/cogr/applcogr.html)
 - [http://www.cosc.canterbury.ac.nz/mukundan/covn/applcovn.html](http://www.cosc.canterbury.ac.nz/mukundan/covn/applcovn.html)
 - [http://www.povray.org/resources/links/3D_Tutorials/POV-Ray_Tutorials/](http://www.povray.org/resources/links/3D_Tutorials/POV-Ray_Tutorials/)

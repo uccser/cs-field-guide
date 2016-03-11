@@ -1310,7 +1310,7 @@ The *context free art* program ( [http://www.contextfreeart.org/](http://www.con
 
 {comment end}
 
-The JFLAP program also has a feature for rendering "L-systems" ([http://en.wikipedia.org/wiki/L-system](http://en.wikipedia.org/wiki/L-system)), which are another way to use grammars to create structured images.
+The JFLAP program also has a feature for rendering "L-systems" ([https://en.wikipedia.org/wiki/L-system](https://en.wikipedia.org/wiki/L-system)), which are another way to use grammars to create structured images.
 You'll need to read about how they work in the JFLAP tutorial
 ([http://www.jflap.org/tutorial/index.html](http://www.jflap.org/tutorial/index.html)),
 and there's a more detailed tutorial at [http://www.cs.duke.edu/csed/pltl/exercises/lessons/20/L-system.zip](http://www.cs.duke.edu/csed/pltl/exercises/lessons/20/L-system.zip).
@@ -1437,15 +1437,15 @@ Regular expressions and their relationship with FSAs is explained well in the bo
 
 ### Useful Links
 
-- [http://en.wikipedia.org/wiki/Formal_language](http://en.wikipedia.org/wiki/Formal_language)
-- [http://en.wikipedia.org/wiki/Context-free_grammar#Examples](http://en.wikipedia.org/wiki/Context-free_grammar#Examples)
-- [http://en.wikipedia.org/wiki/Abstract_syntax_tree](http://en.wikipedia.org/wiki/Abstract_syntax_tree)
-- [http://en.wikipedia.org/wiki/Regular_expression](http://en.wikipedia.org/wiki/Regular_expression)
+- [https://en.wikipedia.org/wiki/Formal_language](https://en.wikipedia.org/wiki/Formal_language)
+- [https://en.wikipedia.org/wiki/Context-free_grammar#Examples](https://en.wikipedia.org/wiki/Context-free_grammar#Examples)
+- [https://en.wikipedia.org/wiki/Abstract_syntax_tree](https://en.wikipedia.org/wiki/Abstract_syntax_tree)
+- [https://en.wikipedia.org/wiki/Regular_expression](https://en.wikipedia.org/wiki/Regular_expression)
 - [http://csunplugged.org/finite-state-automata](http://csunplugged.org/finite-state-automata)
 - [http://www.i-programmer.info/babbages-bag/223-finite-state-machines.html](http://www.i-programmer.info/babbages-bag/223-finite-state-machines.html)
 - [http://www.jflap.org/](http://www.jflap.org/)
-- [http://en.wikipedia.org/wiki/Deterministic_finite_automaton](http://en.wikipedia.org/wiki/Deterministic_finite_automaton)
-- [http://en.wikipedia.org/wiki/Finite-state_machine](http://en.wikipedia.org/wiki/Finite-state_machine)
+- [https://en.wikipedia.org/wiki/Deterministic_finite_automaton](https://en.wikipedia.org/wiki/Deterministic_finite_automaton)
+- [https://en.wikipedia.org/wiki/Finite-state_machine](https://en.wikipedia.org/wiki/Finite-state_machine)
 
 {comment}
 

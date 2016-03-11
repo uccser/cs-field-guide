@@ -78,9 +78,9 @@ A DELETE request does what you’d think, it deletes a resource.
 >   Sales Rep: “We are no longer selling ‘Lemonade with Extra Vegetables’, no one likes it! Please remove them!”
 > Shop Keeper: “Okay, they are gone”.
 
-Some other request types (*HTTP methods*) exist too, but they are less used; these are TRACE, OPTIONS, CONNECT and PATCH. You can [find out more about these](http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol) on your own if you're interested.
+Some other request types (*HTTP methods*) exist too, but they are less used; these are TRACE, OPTIONS, CONNECT and PATCH. You can [find out more about these](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol) on your own if you're interested.
 
-In HTTP, the first line of the response is called the *status* line and has a numeric status code such as **404** and a text-based *reason phrase* such as “Not Found”. The most common is 200 and this means successful or “OK”. HTTP status codes are primarily divided into five groups for better explanation of requests and responses between client and server and are named by purpose and a number: Informational 1XX, Successful 2XX, Redirection 3XX, Client Error 4XX and Server Error 5XX. There are many [status codes](http://en.wikipedia.org/wiki/List_of_HTTP_status_codes) for representing different cases for error or success. There’s even a nice 418: Teapot error on Google: [http://www.google.com/teapot](http://www.google.com/teapot)
+In HTTP, the first line of the response is called the *status* line and has a numeric status code such as **404** and a text-based *reason phrase* such as “Not Found”. The most common is 200 and this means successful or “OK”. HTTP status codes are primarily divided into five groups for better explanation of requests and responses between client and server and are named by purpose and a number: Informational 1XX, Successful 2XX, Redirection 3XX, Client Error 4XX and Server Error 5XX. There are many [status codes](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes) for representing different cases for error or success. There’s even a nice 418: Teapot error on Google: [http://www.google.com/teapot](http://www.google.com/teapot)
 
 So what’s actually happening? Well, let’s find out. If you’re in a Chrome or Safari browser, press Ctrl + Shift + I in windows or Command + Option + I on a mac to bring up the web inspector. Select the Network tab. Refresh the page. What you’re seeing now is a list of of HTTP requests your browser is making to the server to load the page you're currently viewing. Near the top you’ll see a request to NetworkCommunicationProtocols.html. Click that and you’ll see details of the Headers, Preview, Response, Cookies and Timing. Ignore those last two for now.
 
@@ -141,7 +141,7 @@ Go ahead and try this same process on a few other pages too. For example, try th
 - Your favourite website
 
 {panel type="curiosity"" summary="Who came up with HTTP?"}
-Tim Berners-Lee was credited for creating HTTP in 1989. You can read more about him [here](http://en.wikipedia.org/wiki/Tim_Berners-Lee).
+Tim Berners-Lee was credited for creating HTTP in 1989. You can read more about him [here](https://en.wikipedia.org/wiki/Tim_Berners-Lee).
 {panel end}
 
 ### Internet Relay Chat (IRC)
@@ -161,7 +161,7 @@ Channels usually form around a particular topic, such as Python,  Music, TV show
 
 To get started with IRC, first you should get a client. A client is a program that let’s you connect Ask your teacher about which one to use. For this chapter, we’ll use the [freenode web client](http://webchat.freenode.net/). Check with your teacher about which channel to join, as they may have set one up for you.
 
-Try a few things while you’re in there. Look at this [list of commands](http://en.wikipedia.org/wiki/List_of_Internet_Relay_Chat_commands) and try to use some of them. What response do you get? Does this make sense?
+Try a few things while you’re in there. Look at this [list of commands](https://en.wikipedia.org/wiki/List_of_Internet_Relay_Chat_commands) and try to use some of them. What response do you get? Does this make sense?
 
 Try a one on one conversation with a friend. If they use commands, do you see them? How about the other way around?
 
@@ -265,7 +265,7 @@ The name packet is a generic term for a unit of data. In the application layer u
 This system is neat because each layer can assume that the layer above and below have guaranteed something about the information, and each layer (and protocol in use at that layer) has a stand-alone role. So if you’re making a website you just have to program website code, and not worry about code to make the site work over wifi as well as ethernet. A similar system is in the postal system… You don’t put the courier’s truck number on the front of the envelope! That’s take care of by the post company, which then uses a system to sort the mail and assign it to drivers, and then drivers to trucks, and then drivers to routes… none of which you need to worry about when you send or receive a letter or use a courier.
 
 {panel type="curiosity" summary="The OSI model vs the TCP/IP model"}
-The OSI internet model is different from the TCP/IP model of the internet that Computer Scientists use to approach protocol design. OSI is considered and probably mentioned in the networking standards but the guide will use the computer science approach because it is simpler, however the main idea of layers of abstraction is more important to get across. You can read more about the differences [here](http://en.wikipedia.org/wiki/Internet_protocol_suite#Comparison_of_TCP.2FIP_and_OSI_layering).
+The OSI internet model is different from the TCP/IP model of the internet that Computer Scientists use to approach protocol design. OSI is considered and probably mentioned in the networking standards but the guide will use the computer science approach because it is simpler, however the main idea of layers of abstraction is more important to get across. You can read more about the differences [here](https://en.wikipedia.org/wiki/Internet_protocol_suite#Comparison_of_TCP.2FIP_and_OSI_layering).
 {panel end}
 
 So what does a TCP segment look like?
@@ -296,8 +296,8 @@ Here’s an example of a packet trace on our network…[(using tcpdump on the ma
 ## Further reading
 
 - The [two generals problem](https://en.wikipedia.org/wiki/Two_Generals%27_Problem) is a famous problem in protocols to talk about what happens when you can’t be sure about communication success
-- What happens if you were to send packets tied to birds? [IP over Avian Cariers](http://en.wikipedia.org/wiki/IP_over_Avian_Carriers)
-- Protocols are found in the strangest of places…. [Engine Order Telegraph](http://en.wikipedia.org/wiki/Engine_order_telegraph)
+- What happens if you were to send packets tied to birds? [IP over Avian Cariers](https://en.wikipedia.org/wiki/IP_over_Avian_Carriers)
+- Protocols are found in the strangest of places…. [Engine Order Telegraph](https://en.wikipedia.org/wiki/Engine_order_telegraph)
 - Coursera course on [Internet History, Technology, and Security](https://www.coursera.org/learn/insidetheinternet)
 
 ### Videos
@@ -324,9 +324,9 @@ How the internet works in 5 minutes
 ### Useful Links
 
 - [http://simple.wikipedia.org/wiki/TCP/IP](http://simple.wikipedia.org/wiki/TCP/IP)
-- [http://en.wikipedia.org/wiki/Internet_protocol_suite](http://en.wikipedia.org/wiki/Internet_protocol_suite)
-- [http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol](http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol)
-- [http://en.wikipedia.org/wiki/Internet_Relay_Chat](http://en.wikipedia.org/wiki/Internet_Relay_Chat)
-- [http://en.wikipedia.org/wiki/Transmission_Control_Protocol](http://en.wikipedia.org/wiki/Transmission_Control_Protocol)
-- [http://en.wikipedia.org/wiki/User_Datagram_Protocol](http://en.wikipedia.org/wiki/User_Datagram_Protocol)
+- [https://en.wikipedia.org/wiki/Internet_protocol_suite](https://en.wikipedia.org/wiki/Internet_protocol_suite)
+- [https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol)
+- [https://en.wikipedia.org/wiki/Internet_Relay_Chat](https://en.wikipedia.org/wiki/Internet_Relay_Chat)
+- [https://en.wikipedia.org/wiki/Transmission_Control_Protocol](https://en.wikipedia.org/wiki/Transmission_Control_Protocol)
+- [https://en.wikipedia.org/wiki/User_Datagram_Protocol](https://en.wikipedia.org/wiki/User_Datagram_Protocol)
 - [http://csunplugged.org/routing-and-deadlock](http://csunplugged.org/routing-and-deadlock)

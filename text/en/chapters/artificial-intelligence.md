@@ -7,7 +7,7 @@
 
 Artificial Intelligence conjures up all sorts of images --- perhaps you think of friendly systems that can talk to you and solve tough problems; or maniac robots that are bent on world domination? There's the promise of driverless cars that are safer than human drivers, and the worry of  medical advice systems that hold peoples lives in their virtual hands. The field of Artificial Intelligence is a part of computer science that has a lot of promise and also raises a lot of concerns. It can be used to make decisions in systems as large as an aeroplane or an [autonomous dump truck](http://www.komatsu.com/CompanyInfo/profile/product_supports/), or as small as a mobile phone that accurately predicts text being typed into it. What they have in common is that they try to mimic aspects of human intelligence. And importantly, such systems can be of significant help in people's everyday lives.
 
-AI (also known as intelligent systems) is primarily a branch of computer science but it has borrowed a lot of concepts and ideas from other fields, especially [mathematics](http://en.wikipedia.org/wiki/Mathematics)(particularly logic, combinatorics, statistics, probability and optimisation theory), [biology](http://en.wikipedia.org/wiki/Biology), [psychology](http://en.wikipedia.org/wiki/Psychology), [linguistics](http://en.wikipedia.org/wiki/Linguistics), [neuroscience](http://en.wikipedia.org/wiki/Neuroscience) and [philosophy](http://en.wikipedia.org/wiki/Philosophy).
+AI (also known as intelligent systems) is primarily a branch of computer science but it has borrowed a lot of concepts and ideas from other fields, especially [mathematics](https://en.wikipedia.org/wiki/Mathematics)(particularly logic, combinatorics, statistics, probability and optimisation theory), [biology](https://en.wikipedia.org/wiki/Biology), [psychology](https://en.wikipedia.org/wiki/Psychology), [linguistics](https://en.wikipedia.org/wiki/Linguistics), [neuroscience](https://en.wikipedia.org/wiki/Neuroscience) and [philosophy](https://en.wikipedia.org/wiki/Philosophy).
 
 In this chapter we'll explore a range of these intelligent systems. Inevitably this will mean dealing with ethical and philosophical issues too --- do we really want machines to take over some of our jobs? Can we trust them? Might it all go too far one day? What do we really mean by a computer being intelligent? While we won't address these questions directly in this chapter, gaining some technical knowledge about AI will enable you to make more informed decisions about the deeper issues.
 
@@ -28,7 +28,7 @@ If this material is being used in the classroom, and time is limited, ensure stu
 {panel end}
 
 
-One such chatterbot is **Eliza**. Eliza attempts to sound like a Rogerian Psychotherapist, and sounds most intelligent in the kind of conversation that would be had in such a therapy session. ([Rogerian Psychotherapy](http://en.wikipedia.org/w/index.php?title=Rogerian_psychotherapy) is a technique that revolves around trying to understand the client by asking questions and reflecting their statements back to clarify that they've been understood).
+One such chatterbot is **Eliza**. Eliza attempts to sound like a Rogerian Psychotherapist, and sounds most intelligent in the kind of conversation that would be had in such a therapy session. ([Rogerian Psychotherapy](https://en.wikipedia.org/w/index.php?title=Rogerian_psychotherapy) is a technique that revolves around trying to understand the client by asking questions and reflecting their statements back to clarify that they've been understood).
 
 {panel type="caution" summary="Chatbots and personal information!"}
 Eliza is a system that was intended to get people thinking about AI, and you should *not* use it for your own therapeutic usage. You should never enter personal information into a computer that you wouldn’t want anybody else reading, as you can never be certain that the web site isn’t going to store the information or pass it on to someone. So you don’t want to be telling Eliza the kinds of things a person would say in a therapy session --- just make stuff up when talking to Eliza! For the same reason, do *not* tell any chatterbot other personal information such as your full name, date of birth, or address.
@@ -138,9 +138,9 @@ Check out the short film ["Do You Love Me"](http://www.youtube.com/watch?v=QkNA7
 
 ### Even more Chatterbots!
 
-There are even more chatterbots you can talk to. Try looking at the [list on wikipedia](http://en.wikipedia.org/wiki/List_of_chatterbots), or doing a google search for chatterbots. Each chatterbot on this list has its own wikipedia page. You should be able to find the chatterbots by either an internet search, or looking at the references of the wikipedia pages. Some of these will have rules that were determined by programmers, and others will have rules that were learnt from humans.
+There are even more chatterbots you can talk to. Try looking at the [list on wikipedia](https://en.wikipedia.org/wiki/List_of_chatterbots), or doing a google search for chatterbots. Each chatterbot on this list has its own wikipedia page. You should be able to find the chatterbots by either an internet search, or looking at the references of the wikipedia pages. Some of these will have rules that were determined by programmers, and others will have rules that were learnt from humans.
 
-If you have a device that runs Apple iOS (for example an iPhone), have a look at the [Siri](http://en.wikipedia.org/wiki/Siri_%28software%29) chatterbot in the device’s help system. Siri is an example of a chatterbot that has the job of *helping* a human, unlike most chatterbots which simply have the purpose of web entertainment.  It also has voice recognition, so you can talk to it rather than just typing to it.
+If you have a device that runs Apple iOS (for example an iPhone), have a look at the [Siri](https://en.wikipedia.org/wiki/Siri_%28software%29) chatterbot in the device’s help system. Siri is an example of a chatterbot that has the job of *helping* a human, unlike most chatterbots which simply have the purpose of web entertainment.  It also has voice recognition, so you can talk to it rather than just typing to it.
 
 ### The Turing Test
 
@@ -218,9 +218,9 @@ Eventually further sections on other topics in AI will be added to this chapter.
 
 - [CS Unplugged - Programming Languages - Harold the Robot](http://csunplugged.org/harold-the-robot-2/)- related to why AI is so tricky
 - [CS Unplugged - The Turing Test - Conversations with Computers](http://csunplugged.org/the-turing-test/)
-- [Wikipedia- Outline of Artificial Intelligence](http://en.wikipedia.org/wiki/Outline_of_artificial_intelligence)
-- [Wikipedia - Turing Test](http://en.wikipedia.org/wiki/Turing_test)
-- [Wikipedia - Machine Learning](http://en.wikipedia.org/wiki/Machine_learning)
+- [Wikipedia- Outline of Artificial Intelligence](https://en.wikipedia.org/wiki/Outline_of_artificial_intelligence)
+- [Wikipedia - Turing Test](https://en.wikipedia.org/wiki/Turing_test)
+- [Wikipedia - Machine Learning](https://en.wikipedia.org/wiki/Machine_learning)
 - [CS 4 FUN - Meet the Chatterbots](http://www.cs4fn.org/ai/meetthechatterbots.php)
 - [CS 4 FUN - The Illusion of Intelligence](http://www.cs4fn.org/ai/illusionintelligence.php)
 - [Alice Bot](http://www.alicebot.org/)
