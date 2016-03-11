@@ -96,10 +96,10 @@ You’ll often find that customers have a specific process that they follow alre
 
 Customers are usually experts in their field and are therefore likely to leave out information that they think is obvious, but may not be obvious to you. Other times, they do not really understand what can and cannot be done with computers and may not mention something because they do not realise that it is possible to do with a computer. Again, it’s up to you to get this information from them and make sure that they tell you what you need to know.
 
-{image filename="xkcd-tasks.png" alt="A xkcd comic on Computer Science tasks" source="http://xkcd.com/1425/"}
+{image filename="xkcd-tasks.png" alt="A xkcd comic on Computer Science tasks" source="https://xkcd.com/1425/"}
 
 {panel type="curiosity" summary="Easy for computers and hard for humans vs hard for computers and easy for humans"}
-The rollover text of the above image (you will need to actually view it on [xkcd's website](http://xkcd.com/1425/)) is worth reading too. Image recognition is a problem that initially seemed straightforward, probably because humans find it easy. Interestingly, there are many problems that computers find easy, but humans find challenging, such as multiplying large numbers. Conversely, there are many other problems that computers find hard, yet humans find easy, such as recognizing that the thing in a photo is, for example, a cat.
+The rollover text of the above image (you will need to actually view it on [xkcd's website](https://xkcd.com/1425/)) is worth reading too. Image recognition is a problem that initially seemed straightforward, probably because humans find it easy. Interestingly, there are many problems that computers find easy, but humans find challenging, such as multiplying large numbers. Conversely, there are many other problems that computers find hard, yet humans find easy, such as recognizing that the thing in a photo is, for example, a cat.
 {panel end}
 
 If you have multiple stakeholders, you can get conflicting viewpoints. For example, when you talk to the cafeteria people about your food-ordering app, they may suggest that every student should only be able to order food up to a value of $10. In this way, they can avoid prank orders. When you talk to a teacher, they agree with this suggestion because they are worried about bullying. They don’t want one student to get pressured into ordering food for lots of other students. But the students tell you that they want to be able to order food for their friends. In their view, $10 isn’t even enough for one student.
@@ -413,7 +413,7 @@ You might think that pair-programming is not very efficient and that it would be
 
 YAGNI stands for “You ain’t gonna need it” and tells developers to keep things simple and only design and implement the things that you know you are really going to need. It can be tempting to think that in the future you might need feature x and so you may as well already create it now. But remember that requirements are likely to change so chances are that you won’t need it after all.
 
-{image filename="xkcd-the-general-problem.png" alt="A xkcd comic on the general problem" source="http://xkcd.com/974/"}
+{image filename="xkcd-the-general-problem.png" alt="A xkcd comic on the general problem" source="https://xkcd.com/974/"}
 
 You ain’t gonna need it!
 

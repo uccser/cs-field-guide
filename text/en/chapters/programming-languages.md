@@ -321,7 +321,7 @@ These days, few programmers program directly in these languages. In the early da
 
 {comment}
 
-.. xtcb point out that compiling for large software can be slow http://xkcd.com/303/
+.. xtcb point out that compiling for large software can be slow https://xkcd.com/303/
 
 {comment end}
 
