@@ -25,7 +25,7 @@ In this activity, students simulate writing some text using a method used by Jea
 
 ## Run Length Encoding
 
-{video url="http://www.youtube.com/embed/uaV2RuAJTjQ?rel=0"}
+{video url="https://www.youtube.com/embed/uaV2RuAJTjQ?rel=0"}
 
 Run length encoding (RLE) is a technique that isn't so widely used these days, but it's a great way to get a feel for some of the issues around using compression.
 
@@ -180,7 +180,7 @@ The remaining rows are
 {panel type="curiosity" summary="Run Length Encoding in the CS Unplugged show"}
 In this video from a Computer Science Unplugged show, a Run length encoded image is decoded using very large pixels (the printer is a spray can!).
 
-{video url="http://www.youtube.com/watch?v=VsjpPs146d8"}
+{video url="https://www.youtube.com/watch?v=VsjpPs146d8"}
 {panel end}
 
 ### Converting Run Length Encoding back to the original representation

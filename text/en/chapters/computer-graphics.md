@@ -1,6 +1,6 @@
 # Computer Graphics
 
-{video url="http://www.youtube.com/embed/5kuoRjgfCls"}
+{video url="https://www.youtube.com/embed/5kuoRjgfCls"}
 
 ## What's the big picture?
 

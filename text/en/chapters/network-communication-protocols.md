@@ -308,11 +308,11 @@ There and back again: a packet's tale
 
 How does the internet work?
 
-{video url="http://www.youtube.com/embed/i5oe63pOhLI"}
+{video url="https://www.youtube.com/embed/i5oe63pOhLI"}
 
 How the internet works in 5 minutes
 
-{video url="http://www.youtube.com/embed/7_LPdttKXPc"}
+{video url="https://www.youtube.com/embed/7_LPdttKXPc"}
 
 
 ### Extra Activities

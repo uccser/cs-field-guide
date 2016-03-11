@@ -132,7 +132,7 @@ An implication of learning from humans is that Cleverbot makes the assumption th
 
 {panel type="curiosity" summary="A short film written by Cleverbot"}
 
-Check out the short film ["Do You Love Me"](http://www.youtube.com/watch?v=QkNA7sy5M5s) (~3 mins), the result when Chris R Wilson collaborated with Cleverbot to write a movie script.
+Check out the short film ["Do You Love Me"](https://www.youtube.com/watch?v=QkNA7sy5M5s) (~3 mins), the result when Chris R Wilson collaborated with Cleverbot to write a movie script.
 
 {panel end}
 

@@ -477,7 +477,7 @@ Distributing keys physically is very expensive, and up to the 1970s large sums o
 
 Additionally, there's a video illustrating how public key systems work using a padlock analogy.
 
-{video url="http://www.youtube.com/watch?v=a72fHRr6MRU"}
+{video url="https://www.youtube.com/watch?v=a72fHRr6MRU"}
 {panel end}
 
 {panel type="teacher-note" summary="Even more about Alice and Bob"}
@@ -751,7 +751,7 @@ Other social engineering approaches that can be used include bribing or blackmai
 {panel type="curiosity" summary="Steganography"}
 
 Cryptography is about hiding the content of a message, but sometimes it's important to hide the *existence* of the message. Otherwise an enemy might figure out that something is being planned just because a lot more messages are being sent, even though they can't read them.
-One way to achieve this is via *steganography*, where a secret message is hidden inside another message that seems innocuous. A classic scenario would be to publish a message in the public notices of a newspaper or send a letter from prison where the number of letters in each word represent a code. To a casual reader, the message might seem unimportant (and even say the opposite of the hidden one), but someone who knows the code could work it out. Messages can be hidden in digital images by making unnoticable changes to pixels so that they store some information. You can find out [more about steganography on Wikipedia](https://en.wikipedia.org/wiki/Steganography) or in this [lecture on steganography](http://www.youtube.com/watch?v=Py-qu9KWXhk#t=29).
+One way to achieve this is via *steganography*, where a secret message is hidden inside another message that seems innocuous. A classic scenario would be to publish a message in the public notices of a newspaper or send a letter from prison where the number of letters in each word represent a code. To a casual reader, the message might seem unimportant (and even say the opposite of the hidden one), but someone who knows the code could work it out. Messages can be hidden in digital images by making unnoticable changes to pixels so that they store some information. You can find out [more about steganography on Wikipedia](https://en.wikipedia.org/wiki/Steganography) or in this [lecture on steganography](https://www.youtube.com/watch?v=Py-qu9KWXhk#t=29).
 
 Two fun uses of steganography that you can try to decode yourself are a [film about ciphers that contains hidden ciphers (called "The Thomas Beale Cipher")](http://www.thomasbealecipher.com/), and an activity that has [five-bit text codes hidden in music](http://csunplugged.org/modem).
 

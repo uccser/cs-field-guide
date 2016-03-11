@@ -2,7 +2,7 @@
 
 {comment explain different views of algorithm (programming context) and Algorithm (that have interesting complexity); use https://www.youtube.com/watch?v=6hfOvs8pY1k for the former?}
 
-{video url="http://www.youtube.com/embed/FOwCCvHEfY0"}
+{video url="https://www.youtube.com/embed/FOwCCvHEfY0"}
 
 ## What's the big picture?
 
@@ -350,7 +350,7 @@ You should notice that the time taken by Quicksort is quite different to that ta
 
 There are dozens of sorting algorithms that have been invented; most of the ones that are used in practice are based on quicksort and/or mergesort. These, and many others, can be seen in this intriguing animated video.
 
-{video url="http://www.youtube.com/watch?v=kPRA0W1kECg"}
+{video url="https://www.youtube.com/watch?v=kPRA0W1kECg"}
 
 ## The whole story!
 

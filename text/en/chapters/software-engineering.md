@@ -8,7 +8,7 @@ Furthermore, to get real experience with software engineering would involve bein
 In this chapter we've tried to capture what really happens in industry, and suggest activities that will give students a realistic view of what is involved.
 {panel end}
 
-{video url="http://www.youtube.com/embed/ZNMbEbz2dys?rel=0"}
+{video url="https://www.youtube.com/embed/ZNMbEbz2dys?rel=0"}
 
 ## What's the big picture?
 
@@ -16,7 +16,7 @@ Software failures happen all the time. Sometimes it’s a little bug that makes 
 
 In 1996, The ARIANE 5 rocket of the European Space Agency was launched for its first test flight: Countdown, ignition, flame and smoke, soaring rocket... then BANG! Lots of little pieces scattered through the South American rainforest. Investigators had to piece together what happened and finally tracked down this tiny, irrelevant bug. A piece of software on board the rocket which was not even needed had reported an error and started a self-destruct sequence. Thankfully, no one was on board but the failure still caused about US$370m damage.
 
-{video url="http://www.youtube.com/embed/gp_D8r-2hwk?rel=0"}
+{video url="https://www.youtube.com/embed/gp_D8r-2hwk?rel=0"}
 
 {image filename="ariane-rocket-cartoon.png" alt="Ariane Cartoon"}
 
@@ -398,7 +398,7 @@ Agile processes work similarly to iterative processes in that they do a number o
 
 In many other processes, documentation is important. We document the requirements so that we can look back at them; we document our design so that we can refer back to it when we program the system. Agile software processes expect things to change all the time. Therefore, they do very little planning and documentation because documenting things that will change anyway is a bit of a waste of time.
 
-Agile processes include lots of interesting principles that are quite different from standard software development. We look at the most interesting ones here. If you want to find out more, have a look at [Agile Academy on Youtube](http://www.youtube.com/user/AgileAcademyAus) which has lots of videos about interesting agile practices! There’s also [another video here](http://www.youtube.com/watch?v=kqz_jDS0RWY) that explains the differences between agile software development and the waterfall process.
+Agile processes include lots of interesting principles that are quite different from standard software development. We look at the most interesting ones here. If you want to find out more, have a look at [Agile Academy on Youtube](https://www.youtube.com/user/AgileAcademyAus) which has lots of videos about interesting agile practices! There’s also [another video here](https://www.youtube.com/watch?v=kqz_jDS0RWY) that explains the differences between agile software development and the waterfall process.
 
 Here are some general principles used for agile programming:
 

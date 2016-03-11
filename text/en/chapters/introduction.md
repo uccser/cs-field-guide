@@ -13,7 +13,7 @@ The best way to provide feedback is through the "Give us feedback" link (this ca
 
 {panel end}
 
-{video url="http://www.youtube.com/embed/v5yeq5u2RMI?rel=0"}
+{video url="https://www.youtube.com/embed/v5yeq5u2RMI?rel=0"}
 
 ## What's the big picture?
 

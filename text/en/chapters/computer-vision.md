@@ -12,7 +12,7 @@ This chapter is currently only a sketch of topics; it should be enough for stude
 
 {comment end}
 
-{video url="http://www.youtube.com/embed/bE2u5trQAHM?rel=0"}
+{video url="https://www.youtube.com/embed/bE2u5trQAHM?rel=0"}
 
 ## What's the big picture?
 

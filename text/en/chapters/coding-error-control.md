@@ -6,7 +6,7 @@
 The parity magic trick can be an intriguing introduction to the idea of error correction, and we recommend using it at the start of teaching this topic. You need to practise it in advance, and for high school students we recommend a grid of about 7x7 or 8x8 cards to have a good impact. Details are in the [Card flip magic section](http://csunplugged.org/error-detection) of the [CS Unplugged site](http://csunplugged.org/).
 {panel end}
 
-{video url="http://www.youtube.com/embed/OXz64qCjZ6k?rel=0"}
+{video url="https://www.youtube.com/embed/OXz64qCjZ6k?rel=0"}
 
 The parity magic trick (in the video above) enables the magician to detect which card out of dozens has been flipped over while they weren't looking.
 The magic in the trick is actually computer science, using the same kind of technique that computers use to detect and correct errors in data. We will talk about how it works in the next section.
