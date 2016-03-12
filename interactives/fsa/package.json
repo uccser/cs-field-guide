@@ -1,0 +1,16 @@
+{
+    "name": "CSFG-fsa-interactive",
+    "version": "0.0.1",
+    "author": "James \"The Jamesernator\" Browning",
+    "description": "This is a generic runner for Finite State Automatons",
+    "dependencies": {
+        "es6-array-map": "Jamesernator/es6-array-map"
+    },
+    "devDependencies": {
+        "browserify": "latest",
+        "coffeeify": "latest"
+    },
+    "scripts": {
+        "build-js": "browserify -t coffeeify coffee/main.coffee > js/main.js"
+    }
+}
