@@ -18,7 +18,7 @@ Section not needed?
 
 Simple tasks require simple protocols like the one above; however more complicated processes may require more complicated protocols. Pilots and aviation crew have their own language (almost) for their tasks. A subset of normal language used to convey information such as altitude, heading, people on board, status and more.
 
-Activities on the internet vary a lot too (email, skype, video streaming, music, gaming, browsing, chatting), and so do the protocols used to achieve these. These collections of protocols form the topic of Networking Communication Protocols and this chapter will introduce you to some of them, what problems they solve, and what you can do to experience these protocols first hand. Let’s start by talking about the one you’re using if you're viewing this page on the web.
+Activities on the internet vary a lot too (email, Skype, video streaming, music, gaming, browsing, chatting), and so do the protocols used to achieve these. These collections of protocols form the topic of Networking Communication Protocols and this chapter will introduce you to some of them, what problems they solve, and what you can do to experience these protocols first hand. Let’s start by talking about the one you’re using if you're viewing this page on the web.
 
 ## Application Level Protocols - HTTP, IRC
 
@@ -159,7 +159,7 @@ Whilst IRC may be new to you, the concept of a group conversation online or a *c
 
 Channels usually form around a particular topic, such as Python,  Music, TV show fans, Gaming or Hacking. Convention dictates that channel names start with one or two # symbols, such as #python or ##TheBigBangTheory. *Conventions* are different to protocols in that they aren’t actually enforced by the protocol, but people choose to use it that way.
 
-To get started with IRC, first you should get a client. A client is a program that let’s you connect Ask your teacher about which one to use. For this chapter, we’ll use the [freenode web client](http://webchat.freenode.net/). Check with your teacher about which channel to join, as they may have set one up for you.
+To get started with IRC, first you should get a client. A client is a program that lets you connect. Ask your teacher about which one to use. For this chapter, we’ll use the [freenode web client](http://webchat.freenode.net/). Check with your teacher about which channel to join, as they may have set one up for you.
 
 Try a few things while you’re in there. Look at this [list of commands](http://en.wikipedia.org/wiki/List_of_Internet_Relay_Chat_commands) and try to use some of them. What response do you get? Does this make sense?
 
@@ -272,7 +272,7 @@ So what does a TCP segment look like?
 
 {image filename="packet-structure-diagram.png" alt="Showing the structure of a TCP packet"}
 
-As you can see, a packet is divided into four main parts, addresses (source, destination), numbers (sequence number, ANCK number if it’s an acknowledgement), flags (urgent, checksum) in the header, then the actual data. At each level, a segment becomes the data for the next data unit, and that again gets its own header.
+As you can see, a packet is divided into four main parts, addresses (source, destination), numbers (sequence number, ACK number if it’s an acknowledgement), flags (urgent, checksum) in the header, then the actual data. At each level, a segment becomes the data for the next data unit, and that again gets its own header.
 
 TCP and UDP packets have a number with how big they are. This number means that the packet can actually be as big as you like. Can you think of any advantages of having small packets? How about big ones? Think about the ratio of data to information (such as those in the header and footer).
 
@@ -296,7 +296,7 @@ Here’s an example of a packet trace on our network…[(using tcpdump on the ma
 ## Further reading
 
 - The [two generals problem](https://en.wikipedia.org/wiki/Two_Generals%27_Problem) is a famous problem in protocols to talk about what happens when you can’t be sure about communication success
-- What happens if you were to send packets tied to birds? [IP over Avian Cariers](http://en.wikipedia.org/wiki/IP_over_Avian_Carriers)
+- What happens if you were to send packets tied to birds? [IP over Avian Carriers](http://en.wikipedia.org/wiki/IP_over_Avian_Carriers)
 - Protocols are found in the strangest of places…. [Engine Order Telegraph](http://en.wikipedia.org/wiki/Engine_order_telegraph)
 - Coursera course on [Internet History, Technology, and Security](https://www.coursera.org/learn/insidetheinternet)
 

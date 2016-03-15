@@ -76,7 +76,7 @@ Digital cameras and human eyes fulfill largely the same function: images come in
 
 {panel type="teacher-note" summary="Digital camera sensors"}
 
-There are a number of different types of digital camera sensor, but for the purposes of this chapter we will be focusing on the [CMOS](http://en.wikipedia.org/wiki/CMOS_sensor”)sensors which are in most consumer electronics. An alternative kind of sensor is the [Charge-Coupled Device (CCD)](http://en.wikipedia.org/wiki/Charge-coupled_device), which is more commonly used for specialist applications such as astronomy.
+There are a number of different types of digital camera sensor, but for the purposes of this chapter we will be focusing on the [CMOS](http://en.wikipedia.org/wiki/CMOS_sensor”) sensors which are in most consumer electronics. An alternative kind of sensor is the [Charge-Coupled Device (CCD)](http://en.wikipedia.org/wiki/Charge-coupled_device), which is more commonly used for specialist applications such as astronomy.
 
 {panel end}
 
