@@ -1,0 +1,18 @@
+
+Start: Start
+
+States:
+    Start:
+        final: true
+        transitions:
+            0: [A, B]
+        epsilonTransitions:
+            - C
+
+    A:
+        transitions:
+            1: B
+
+    B:
+        transitions:
+            []
