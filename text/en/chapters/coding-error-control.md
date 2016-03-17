@@ -6,7 +6,7 @@
 The parity magic trick can be an intriguing introduction to the idea of error correction, and we recommend using it at the start of teaching this topic. You need to practise it in advance, and for high school students we recommend a grid of about 7x7 or 8x8 cards to have a good impact. Details are in the [Card flip magic section](http://csunplugged.org/error-detection) of the [CS Unplugged site](http://csunplugged.org/).
 {panel end}
 
-{video url="http://www.youtube.com/embed/OXz64qCjZ6k?rel=0"}
+{video url="https://www.youtube.com/embed/OXz64qCjZ6k?rel=0"}
 
 The parity magic trick (in the video above) enables the magician to detect which card out of dozens has been flipped over while they weren't looking.
 The magic in the trick is actually computer science, using the same kind of technique that computers use to detect and correct errors in data. We will talk about how it works in the next section.
@@ -436,10 +436,10 @@ ISBN-10 is particularly effective, and you could also look into why that is.
 The codes discussed in this chapter are all widely used, but the most widely used codes for data storage are more sophisticated because they need to deal with more complex errors than a single bit changing.
 For example, if a CD is scratched or a hard disk has a small fault, it's likely to affect many adjacent bits.
 These systems use codes based on more advanced mathematical concepts.
-The most widely used codes for storage and data transfer are [the Reed-Solomon codes](http://en.wikipedia.org/wiki/Reed_Solomon) and [Cyclic Redundancy Check (CRC)](http://en.wikipedia.org/wiki/CRC32).
-For human readable numbers such as bar codes, bank numbers, tax numbers, social security numbers and so on, [checksums](http://en.wikipedia.org/wiki/Checksum) are very common, and the [Luhn algorithm](http://en.wikipedia.org/wiki/Luhn_algorithm) is one of the more widely used.
+The most widely used codes for storage and data transfer are [the Reed-Solomon codes](https://en.wikipedia.org/wiki/Reed_Solomon) and [Cyclic Redundancy Check (CRC)](https://en.wikipedia.org/wiki/CRC32).
+For human readable numbers such as bar codes, bank numbers, tax numbers, social security numbers and so on, [checksums](https://en.wikipedia.org/wiki/Checksum) are very common, and the [Luhn algorithm](https://en.wikipedia.org/wiki/Luhn_algorithm) is one of the more widely used.
 Larger checksums are also used to check that downloaded files are correct.
-The parity method is a form of [Hamming code](http://en.wikipedia.org/wiki/Hamming_code).
+The parity method is a form of [Hamming code](https://en.wikipedia.org/wiki/Hamming_code).
 
 
 ## Further reading
