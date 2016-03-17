@@ -1,0 +1,12 @@
+
+Start: "LightOn"
+
+
+States:
+    A:
+        transitions:
+            x: C
+            y: D
+    B:
+        transitions:
+            x: C

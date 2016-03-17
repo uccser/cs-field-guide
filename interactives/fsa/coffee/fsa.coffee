@@ -52,8 +52,8 @@ class FSA
                     epsilonTransitions: array # This is an array of all states
                                               # reachable via epsilon from the
                                               # current state, contents
-                                              # of the array can be either strings
-                                              # or arrays (keys)
+                                              # of the array can be either
+                                              # strings or arrays (keys)
                 ...
         ###
         @title = fsa.title
@@ -71,6 +71,7 @@ class FSA
 fs = require('fs')
 yaml = require('js-yaml')
 
-file = fs.readFileSync('sample-fsas/alpha-infer-test.yaml').toString('utf8')
+file = fs.readFileSync('../sample-fsas/alpha-infer-test.yaml').toString('utf8')
 
-console.log new Fsa(yaml.load(file))
+console.log yaml.load(file)
+console.log new FSA(yaml.load(file))
