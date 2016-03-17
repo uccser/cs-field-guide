@@ -812,12 +812,12 @@ The world population is approximately 7 billion, so 32 bits isn't quite enough t
 
 {panel end}
 
-| Type of Number  | Unsigned Range                  |                     Signed Range                         |
+|      Number     |        Unsigned Range           |                     Signed Range                         |
 |-----------------|---------------------------------|----------------------------------------------------------|
-| 8 bit signed    | 0 to 255                        | -128 to 127                                              |
-| 16 bit signed   | 0 to 65,535                     | -32,768 to 32,767                                        |
-| 32 bit signed   | 0 to 4,294,967,295              | −2,147,483,648 to 2,147,483,647                          |
-| 64 bit signed   | 0 to 18,446,744,073,709,551,615 | −9,223,372,036,854,775,808 to 9,223,372,036,854,775,807  |
+| 8 bit		  | 0 to 255                        | -128 to 127                                              |
+| 16 bit	  | 0 to 65,535                     | -32,768 to 32,767                                        |
+| 32 bit	  | 0 to 4,294,967,295              | −2,147,483,648 to 2,147,483,647                          |
+| 64 bit	  | 0 to 18,446,744,073,709,551,615 | −9,223,372,036,854,775,808 to 9,223,372,036,854,775,807  |
 
 So when you are storing values on a computer with very limited space, you need to be careful to pick a suitable kind of integer that has enough space, but isn’t wasting space. You also need to think about whether or not a number could potentially be negative.
 
