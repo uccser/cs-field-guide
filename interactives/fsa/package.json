@@ -4,7 +4,8 @@
     "author": "James \"The Jamesernator\" Browning",
     "description": "This is a generic runner for Finite State Automatons",
     "dependencies": {
-        "es6-array-map": "Jamesernator/es6-array-map"
+        "es6-array-map": "Jamesernator/es6-array-map",
+        "js-yaml": "latest"
     },
     "devDependencies": {
         "browserify": "latest",
