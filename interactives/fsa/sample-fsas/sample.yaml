@@ -14,6 +14,7 @@ States: # Required but can be empty
             <Click>: A # Transitions must be from the Alphabet onto a state
 
     A:
+        name: "Waiting..." # This is the name used to display the state
         transitions:
             <Click>: B
         epsilonTransitions: # Epsilon transitions are allowed too
