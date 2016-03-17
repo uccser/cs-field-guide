@@ -214,7 +214,7 @@ English text can easily be represented using ASCII, but what about languages suc
 
 The name "ASCII" stands for "American Standard Code for Information Interchange", which was a particular way of assigning bit patterns to the characters on a typewriter. The ASCII system even includes "characters" for ringing a bell (useful for getting attention on old telegraph systems), deleting the previous character (kind of an early "undo"), and "end of transmission" (to let the receiver know that the message was finished). These days those characters are rarely used, but the codes for them still exist (they are the missing patterns in the table above). Nowadays ASCII has been supplanted by a code called "UTF-8", which happens to be the same as ASCII if the extra left-hand bit is a 0, but opens up a huge range of characters if the left-hand bit is a 1.
 
-There are several other codes that were popular before ASCII, including the [Baudot code](http://en.wikipedia.org/wiki/Baudot_code) and [EBCDIC](http://en.wikipedia.org/wiki/EBCDIC). A widely used variant of the Baudot code was the "Murray code", named after New Zealand born inventor [Donald Murray](http://en.wikipedia.org/wiki/Donald_Murray_(inventor\)). One of Murray's significant improvements was to introduce the idea of "control characters", such as the carriage return (new line). The "control" key still exists on modern keyboards.
+There are several other codes that were popular before ASCII, including the [Baudot code](https://en.wikipedia.org/wiki/Baudot_code) and [EBCDIC](https://en.wikipedia.org/wiki/EBCDIC). A widely used variant of the Baudot code was the "Murray code", named after New Zealand born inventor [Donald Murray](https://en.wikipedia.org/wiki/Donald_Murray_(inventor\)). One of Murray's significant improvements was to introduce the idea of "control characters", such as the carriage return (new line). The "control" key still exists on modern keyboards.
 
 {panel end}
 
@@ -393,7 +393,7 @@ Candles on birthday cakes use the base 1 numbering system, where each place is w
 
 Luckily it's possible to use binary notation for birthday candles --- each candle is either lit or not lit. For example, if you are 18, the binary notation is 10010, and you need 5 candles (with only two of them lit).
 
-There's a [video on using binary notation for counting up to 1023 on your hands, as well as using it for birthday cakes](http://www.youtube.com/watch?v=GUqle9RE3Y8).
+There's a [video on using binary notation for counting up to 1023 on your hands, as well as using it for birthday cakes](https://www.youtube.com/watch?v=GUqle9RE3Y8).
 
 {image filename="binary-cake.png" alt="It's a lot smarter to use binary notation on candles for birthdays as you get older, as you don't need as many candles." caption="It's a lot smarter to use binary notation on candles for birthdays as you get older, as you don't need as many candles."}
 
@@ -517,7 +517,7 @@ This is why computer screens (and TV screens) most commonly use red, green and b
 
 {image filename="pixels-on-screens.jpg" alt="This image shows the small red, green, and blue pixels that are used on screens to display colour."}
 
-For more information about RGB displays, see [RGB on Wikipedia](http://en.wikipedia.org/wiki/Rgb); for more information about the eye sensing the three colours, see [Cone cell](http://en.wikipedia.org/wiki/Cone_cell) and [trichromacy ](http://en.wikipedia.org/wiki/Trichromacy) on Wikipedia.
+For more information about RGB displays, see [RGB on Wikipedia](https://en.wikipedia.org/wiki/Rgb); for more information about the eye sensing the three colours, see [Cone cell](https://en.wikipedia.org/wiki/Cone_cell) and [trichromacy ](https://en.wikipedia.org/wiki/Trichromacy) on Wikipedia.
 
 {panel end}
 
@@ -596,7 +596,7 @@ You can use an HTML page to experiment with hexadecimal colours.
 
 {panel type="teacher-note" summary="More information about colour representation"}
 
-More information about this kind of representation of colour can be found [here](http://en.wikipedia.org/wiki/Hexadecimal_colour). A colour picker using hex codes can be found [here](http://www.w3schools.com/tags/ref_colorpicker.asp).
+More information about this kind of representation of colour can be found [here](https://en.wikipedia.org/wiki/Hexadecimal_colour). A colour picker using hex codes can be found [here](http://www.w3schools.com/tags/ref_colorpicker.asp).
 
 {panel end}
 
@@ -625,7 +625,7 @@ Using this scheme to represent all the pixels of an image takes one third of the
 
 {panel type="jargon-buster" summary="Bit depth"}
 
-The number of bits used to represent the colours of pixels in a particular image is sometimes referred to as its "colour depth" or "bit depth". For example, an image or display with a colour depth of 8-bits has a choice of 256 colours for each pixel. There is [more information about this in Wikipedia](http://en.wikipedia.org/wiki/Color_depth). Drastically reducing the bit depth of an image can make it look very strange; sometimes this is used as a special effect called "posterisation" (ie. making it look like a poster that has been printed with just a few colours).
+The number of bits used to represent the colours of pixels in a particular image is sometimes referred to as its "colour depth" or "bit depth". For example, an image or display with a colour depth of 8-bits has a choice of 256 colours for each pixel. There is [more information about this in Wikipedia](https://en.wikipedia.org/wiki/Color_depth). Drastically reducing the bit depth of an image can make it look very strange; sometimes this is used as a special effect called "posterisation" (ie. making it look like a poster that has been printed with just a few colours).
 
 {panel end}
 
@@ -687,7 +687,7 @@ The following interactive can be used to upload your own image, and experiment w
 In the introduction we looked at 8-bit ASCII representations of text (which really use 7 bits, allowing for 128 different symbols).
 As with any other kind of data represented in binary, we can get improvements by considering larger (or smaller) representations.
 
-In the curiosity earlier we observed that 5 bits are sufficient for simple coding of the English alphabet, and for very slow coding systems (like the [video that contains hidden text using musical notes](http://www.youtube.com/watch?v=L-v4Awj_p7g>) using 5 bits instead of 8 can save some time.
+In the curiosity earlier we observed that 5 bits are sufficient for simple coding of the English alphabet, and for very slow coding systems (like the [video that contains hidden text using musical notes](https://www.youtube.com/watch?v=L-v4Awj_p7g>) using 5 bits instead of 8 can save some time.
 The braille system uses only 6 bits for each character, which allows for 64 different characters, and it is also better than using 8 bits since it would take more paper and more time to read if the longer code was used.
 
 But some languages have way more than 32, or 64, or even 128 characters in their alphabet.
@@ -737,7 +737,7 @@ For example, if we wanted to represent the number 41 using 6 bits (like above) a
 
 {comment}
 
-.. 1 is for negative sign, 0 for positive: http://en.wikipedia.org/wiki/Sign_bit
+.. 1 is for negative sign, 0 for positive: https://en.wikipedia.org/wiki/Sign_bit
 
 .. Might put the answers for these in, as there isn’t a certain way for students to check their answers like there was for the above ones.
 
@@ -780,13 +780,13 @@ Note for teachers: While we aren’t providing support for using two’s complem
 
 {panel type="extra-for-experts" summary="Two's complement"}
 
-Negative numbers are more often stored on computers using a system called "two's complement". This system makes it very easy to do arithmetic without having to treat negative numbers as a special case, so it's faster and uses less circuitry. The principle is based on a fairly simple idea: for example, in decimal, if you had to subtract the number 4 from a value, it's the same if you add 6 and subtract 10. Using the complement of the number -4 (i.e. 6) plus an indicator that it's negative can make calculations quicker and simpler. A similar approach applies in binary, and it's even easier because there are only two digits. More [information is available here on how negative numbers work](http://www.i-programmer.info/babbages-bag/200-binary-negative-numbers.html?start=1), and also on the [Wikipedia page about two's complement](http://en.wikipedia.org/wiki/Two%27s_complement), although it's quite technical.
+Negative numbers are more often stored on computers using a system called "two's complement". This system makes it very easy to do arithmetic without having to treat negative numbers as a special case, so it's faster and uses less circuitry. The principle is based on a fairly simple idea: for example, in decimal, if you had to subtract the number 4 from a value, it's the same if you add 6 and subtract 10. Using the complement of the number -4 (i.e. 6) plus an indicator that it's negative can make calculations quicker and simpler. A similar approach applies in binary, and it's even easier because there are only two digits. More [information is available here on how negative numbers work](http://www.i-programmer.info/babbages-bag/200-binary-negative-numbers.html?start=1), and also on the [Wikipedia page about two's complement](https://en.wikipedia.org/wiki/Two%27s_complement), although it's quite technical.
 {panel end}
 
 
 {panel type="curiosity" summary="Overflow and Y2K"}
 
-In some programming languages there isn't a check for when a number gets too big (overflows). For example, if you have an 8-bit number using two's complement, then 01111111 is the largest number (127), and if you add one without checking, it will change to 10000000, which happens to be the number -128. This can cause serious problems if not checked for, and is behind a variant of the Y2K problem, called the [Year 2038 problem](http://en.wikipedia.org/wiki/Year_2038_problem), involving a 32-bit number overflowing for dates on Tuesday, 19 January 2038.
+In some programming languages there isn't a check for when a number gets too big (overflows). For example, if you have an 8-bit number using two's complement, then 01111111 is the largest number (127), and if you add one without checking, it will change to 10000000, which happens to be the number -128. This can cause serious problems if not checked for, and is behind a variant of the Y2K problem, called the [Year 2038 problem](https://en.wikipedia.org/wiki/Year_2038_problem), involving a 32-bit number overflowing for dates on Tuesday, 19 January 2038.
 
 {image filename="xkcd-cant-sleep-comic.png" alt="A xkcd comic on number overflow" source="https://xkcd.com/571/"}
 

@@ -25,7 +25,7 @@ In this activity, students simulate writing some text using a method used by Jea
 
 ## Run Length Encoding
 
-{video url="http://www.youtube.com/embed/uaV2RuAJTjQ?rel=0"}
+{video url="https://www.youtube.com/embed/uaV2RuAJTjQ?rel=0"}
 
 Run length encoding (RLE) is a technique that isn't so widely used these days, but it's a great way to get a feel for some of the issues around using compression.
 
@@ -104,7 +104,7 @@ If you wanted to, you could copy and paste this representation (including the he
 If you have a program on your computer able to open PBM files, you could then view the image with it. You could even write a program to output these files, and then display them as images.
 
 Because the digits are represented using ASCII in this format, it isn't very efficient, but it is useful if you want to read what's inside the file.
-There are variations of this format that pack the pixels into bits instead of characters, and variations that can be used for grey scale and colour images. More [information about this format is available on Wikipedia](http://en.wikipedia.org/wiki/Netpbm_format).
+There are variations of this format that pack the pixels into bits instead of characters, and variations that can be used for grey scale and colour images. More [information about this format is available on Wikipedia](https://en.wikipedia.org/wiki/Netpbm_format).
 {panel end}
 
 The key question in compression is whether or not we can represent the same image using fewer bits, but still be able to reconstruct the original image.
@@ -180,7 +180,7 @@ The remaining rows are
 {panel type="curiosity" summary="Run Length Encoding in the CS Unplugged show"}
 In this video from a Computer Science Unplugged show, a Run length encoded image is decoded using very large pixels (the printer is a spray can!).
 
-{video url="http://www.youtube.com/watch?v=VsjpPs146d8"}
+{video url="https://www.youtube.com/watch?v=VsjpPs146d8"}
 {panel end}
 
 ### Converting Run Length Encoding back to the original representation
@@ -418,7 +418,7 @@ For this reason, JPEG is used for photos and natural images, but other technique
 {comment}
 .. xjrm low priority create an image like the one in this link, with one, two three waveforms added http://mathworld.wolfram.com/images/eps-gif/FourierSeriesSquareWave_800.gif (then Tim to add some text)
 
-.. xhtml5 interactive (medium priority): allow user to switch on and off the 64 basis vectors (http://en.wikipedia.org/wiki/File:Dctjpeg.png) and see the combined result
+.. xhtml5 interactive (medium priority): allow user to switch on and off the 64 basis vectors (https://en.wikipedia.org/wiki/File:Dctjpeg.png) and see the combined result
 
 .. http://www.cs4fn.org/films/jpegit.php
 {comment end}
@@ -567,7 +567,7 @@ Access to teacher guides for the Plymouth resources (linked in the previous para
 
 The Ziv-Lempel method shown is a variation of the so-called "LZ77" method. Many of the more popular lossless compression methods are based on this, although there are many variations, and one called "LZW" has also been used a lot. Another high-compression general-purpose compression method is bzip, based on a very clever method called the Burrows-Wheeler Transform.
 
-Questions like "what is the most compression that can be achieved" are addressed by the field of [information theory](http://en.wikipedia.org/wiki/Information_theory). There is an [activity on information theory on the CS Unplugged site](http://csunplugged.org/information-theory), and there is a [fun activity that illustrates information theory](http://www.math.ucsd.edu/~crypto/java/ENTROPY/). Based on this theory, it seems that English text can't be compressed to less than about 12% of its original size at the very best. Images, sound and video can get much better compression because they can use lossy compression, and don't have to reproduce the original data exactly.
+Questions like "what is the most compression that can be achieved" are addressed by the field of [information theory](https://en.wikipedia.org/wiki/Information_theory). There is an [activity on information theory on the CS Unplugged site](http://csunplugged.org/information-theory), and there is a [fun activity that illustrates information theory](http://www.math.ucsd.edu/~crypto/java/ENTROPY/). Based on this theory, it seems that English text can't be compressed to less than about 12% of its original size at the very best. Images, sound and video can get much better compression because they can use lossy compression, and don't have to reproduce the original data exactly.
 
 {comment}
 .. xtcb jargon uncompressed are typically BMP or RAW. TIFF files Tagged Image File Format can contain many formats, including uncompressed, runlength and JPEG.
@@ -583,5 +583,5 @@ Questions like "what is the most compression that can be achieved" are addressed
 ### Useful Links
 
 - Images, run-length-coding [http://csunplugged.org/image-representation](http://csunplugged.org/image-representation) This is also relevant to binary representations in general, although is probably best used in the compression section.
-- There is a detailed section on [JPEG encoding on Wikipedia](http://en.wikipedia.org/wiki/Jpeg).
+- There is a detailed section on [JPEG encoding on Wikipedia](https://en.wikipedia.org/wiki/Jpeg).
 - Text compression [http://csunplugged.org/text-compression](http://csunplugged.org/text-compression)
