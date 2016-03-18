@@ -107,7 +107,8 @@ But here's another program that implements exactly the same algorithm, this time
 
 {image filename="highscore-in-scratch.png" alt="High score program in Scratch"}
 
-Both of the above programs are the same algorithm.
+Both of the above programs are the same algorithm. Programming languages are often created or adapted to better suit a specific problem domain. For example, it is easier to express mathematical algorithms in Python than Scratch. Similarly, data flow algorithms are easier to express in visual programming languages like LabVIEW than Python.
+
 In this chapter we'll look in more detail about what an algorithm is, and why they are such a fundamental idea in computer science.
 Because algorithms exist even if they aren't turned in to programs, we won't need to look at programs at all for this topic, unless you particularly want to.
 
@@ -351,6 +352,55 @@ You should notice that the time taken by Quicksort is quite different to that ta
 There are dozens of sorting algorithms that have been invented; most of the ones that are used in practice are based on quicksort and/or mergesort. These, and many others, can be seen in this intriguing animated video.
 
 {video url="http://www.youtube.com/watch?v=kPRA0W1kECg"}
+
+## What makes an algorithm?
+We've looked at algorithms that solved well known computational problems of sorting and searching data. When a computer scientist approaches a new computational problem that does not already have a well known solution they must create an algorithm.
+
+There are three building blocks to develop a new algorithm: sequencing, selection, and iteration. One interesting early result in computer science is that combined, these three building blocks are actually sufficient to represent any algorithm that solves a computational problem.
+
+### Sequencing
+Sequencing is the technique of deciding the order instructions are executed to produce the correct result. Imagine that we have the following instructions (A, B, C) to make a loaf of bread:
+
+- **A** llow to sit at room temperature for 1 hour
+- **B** ake for 30 minutes
+- **C** ombine ingredients
+
+C->A->B is a standard algorithm for a yeast bread. A different sequence, for example C->B->A, might produce a result that is edible but not high quality. Even worse, a sequence of B->C->A would not even produce something edible.
+
+### Selection
+Selection is the technique of allowing the algorithm to select which instructions to execute depending on criteria. Using our previous bread baking example, our algorithm C->A->B works if the ingredients include yeast, but C->B would be faster if the ingredients do not include yeast (for example, the recipe might include baking powder as the rising agent). Selection allows us to create one algorithm to solve both cases:
+
+1. Combine ingredients
+2. **If ingredients contain yeast,** allow to sit at room temperature for 1 hour
+3. Bake for 30 minutes
+
+### Iteration
+Iteration allows an algorithm to repeat instructions. In its simplest form we might specify the exact number of times. For example, here is an algorithm to bake 2 loaves of bread:
+
+1. **Repeat 2 times:**
+    1. Combine ingredients
+    2. If ingredients contain yeast, allow to sit at room temperature for 1 hour
+    3. Bake for 30 minutes
+
+This algorithm clearly works but it would take at least 3 hours to complete! If we had to make 20 loaves we would probably want to design a better algorithm. We could measure the size of the mixing bowl, how many loaves fit on the table to rise, and how many loaves we could bake at the same time in the oven. Our algorithm might then look like:
+
+1. **Repeat 10 times**:
+    1. Combine ingredients **for 2 loaves**
+    2. **Split dough into 2 bread pans**
+    3. If ingredients contain yeast, allow to sit at room temperature for 1 hour
+    4. Bake bread pans in the same oven for 30 minutes
+
+But what if we upgraded to a larger kitchen? Most algorithms are written to combine iteration with selection to handle arbitrarily large amounts of data (i.e. an unknown number of loaves of bread). We might create a general purpose bread baking algorithm:
+
+1. **While we have enough ingredients for at least one loaf:**
+    1. Combine ingredients **for up to X loaves** (where X is the maximum number of loaves that can fit in the mixing bowl or rising table)
+    2. Split dough into X bread pans
+    3. If ingredients contain yeast, allow to sit at room temperature for 1 hour
+    4. **While there are still bread pans on the rising table:**
+        1. Move **up to Y loaves** from the rising table to the oven (where Y is the maximum number of loaves that can fit in the oven)
+        2. Bake bread pans in the same oven for 30 minutes
+
+*Astute observers will note that this algorithm is still inefficient because the rising table and oven are not used at the same time. Designing algorithms that take advantage of parallelism is an important advanced topic in computer science.*
 
 ## The whole story!
 

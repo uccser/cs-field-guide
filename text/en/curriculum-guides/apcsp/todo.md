@@ -5,8 +5,8 @@ This "to-do" list includes general computer science topics and suggestions for h
 
 - new chapter: some topics are best put into stand-alone new field guide chapters
  - Hardware Abstractions
- - Software Abstractions
- - Models and Simulation
+ - Software Abstractions [Phase4]
+ - Models and Simulation [Phase3]
  - Network Systems
  - Logic
 - new section: add a new X.Y major section to chapter X
@@ -17,7 +17,7 @@ This "to-do" list includes general computer science topics and suggestions for h
 - floating point representation
  - **new section in data-representation**
 - bit representation of program instructions (not just data)
- - **new section in programming-languages OR part of new chapter on hardware abstractions**
+ - **new section in programming-languages OR part of new chapter on hardware abstractions** [Phase2]
 - abstraction process: removing irrelevant details, extracting common features
  - **part of new chapter on hardware abstractions**
 - explicit section on functions/functional abstraction
@@ -25,25 +25,25 @@ This "to-do" list includes general computer science topics and suggestions for h
 - re-work a unit / activity on hardware and software abstraction layers below high level language (from the software engineering one)
  - **new chapter on hardware OR software abstractions**
 - equate level of language with concept of abstraction
- - **additional wording in end of 3.1 intro to programming-languages**
+ - **additional wording in end of 3.1 intro to programming-languages** [Phase1]
 - models and simulations (there are some CS unplugged ones)
  - **new chapter on models-simulations**
 
 ##Algorithms
 - sequencing, selection, iteration as building blocks for algorithms
- - **new sub-section with specific terms in section 2.4**
+ - **new sub-section with specific terms in section 2.4** [Phase1]
 - algorithm correctness
- - **new sub-section in 2.1**
+ - **new sub-section in 2.1** [Phase1]
 - decidability
- - **new sub-section in 2.4**
+ - **new section in 11.?** [Phase2]
 - combining algorithms
- - **add terms to 2.1**
+ - **add terms to 2.1** [Phase1]
 - language choice for algorithms
- - **better description at end of section 2.1.1**
+ - **better description at end of section 2.1.1** [Phase1]
 - theoretical vs empirical analysis
- - **additional paragraph in 2.1.2**
+ - **additional paragraph in 2.1.2** [Phase2]
 - efficiency of memory usage
- - **additional paragraph in 2.1.2**
+ - **additional paragraph in 2.1.2** [Phase2]
 
 ##Creativity
 - collaborative tools (open source, github/google doc)
@@ -77,11 +77,11 @@ the students to research online after/during reading of the Blown to Bits book (
 - program documentation
  - **re-wording or new sub-section in software-engineering; include self-documenting approaches**
 - collaboration and communication within programming teams
- - **add sub-section on Scrum, issue tracking and/or other communication mechanisms to 16.6**
+ - **add sub-section on Scrum, issue tracking and/or other communication mechanisms to 16.6** [Phase2]
 - program execution / implementation of algorithm
  - **new chapter on software/hardware abstraction**
 - solving larger classes of problems with hardware and algorithm improvements over time
- - **add sub-section to 11.2 about some simple algorithms that now scale to millions of CPU cores that are solving real problems - possibly genomics, image processing for medical purposes, etc.**
+ - **add sub-section to 11.2 about some simple algorithms that now scale to millions of CPU cores that are solving real problems - possibly genomics, image processing for medical purposes, etc.** [Phase2]
 - procedures, functions, strings, lists, common programming library functions, APIs
  - **new chapter on software abstraction**
 - software quality, code metrics
@@ -89,7 +89,7 @@ the students to research online after/during reading of the Blown to Bits book (
 - debugging
  - **new chapter on software abstraction**
 - functionality vs unit testing, program correctness, justification
- - **new subsection in software-engineering 16.4**
+ - **new subsection in software-engineering 16.4** [Phase2]
 - operators
  - **new chapter on software abstraction**
 - boolean logic, algebra
