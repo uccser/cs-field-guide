@@ -103,8 +103,6 @@ function init() {
                 break;
         }}, false);
 
-    console.log(cube.position);
-
     document.getElementById( 'x-coordinate' ).value = cube.position.x;
     document.getElementById( 'y-coordinate' ).value = cube.position.y;
     document.getElementById( 'z-coordinate' ).value = cube.position.z;
@@ -210,14 +208,13 @@ function render() {
 
 
 function moveBox() {
-    console.log("move box");
-    var x_pos = document.getElementById( 'x-coordinate' ).value;
-    var y_pos = document.getElementById( 'y-coordinate' ).value;
-    var z_pos = document.getElementById( 'z-coordinate' ).value;
+
+    var x_pos = 0 + parseInt(document.getElementById( 'x-coordinate' ).value);
+    var y_pos = 0 + parseInt(document.getElementById( 'y-coordinate' ).value);
+    var z_pos = 0 + parseInt(document.getElementById( 'z-coordinate' ).value);
 
     var target = { x: x_pos, y: y_pos, z: z_pos };
 
-    //var tween = new TWEEN.Tween(cube.position).to(target, 2000);
 
     TWEEN.removeAll();
     new TWEEN.Tween( cube.position )
@@ -225,13 +222,6 @@ function moveBox() {
         .easing ( TWEEN.Easing.Elastic.Out )
         .onUpdate( render )
         .start();
-
-
-    //cube.position.x = x_pos;
-    //cube.position.y = y_pos;
-    //cube.position.z = z_pos;
-
-    //camera.lookAt(cube.position);
 
 }
 
