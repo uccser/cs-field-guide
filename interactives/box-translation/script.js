@@ -29,28 +29,30 @@ function init() {
 
     //Cube
 
+    // creates a box with sides of length 200
     var geometry = new THREE.BoxGeometry( 200, 200, 200 );
 
+    // loads all the symbols for the box
     var materials = [
-		new THREE.MeshBasicMaterial({
-		   map: new THREE.TextureLoader().load( 'square1.jpg' )
-		}),
-		new THREE.MeshBasicMaterial({
-		   map: new THREE.TextureLoader().load( 'square2.jpg' )
-		}),
-		new THREE.MeshBasicMaterial({
-		   map: new THREE.TextureLoader().load( 'square3.jpg' )
-		}),
-		new THREE.MeshBasicMaterial({
-		   map: new THREE.TextureLoader().load( 'square4.jpg' )
-		}),
-		new THREE.MeshBasicMaterial({
-		   map: new THREE.TextureLoader().load( 'square5.jpg' )
-		}),
-		new THREE.MeshBasicMaterial({
-		   map: new THREE.TextureLoader().load( 'square6.jpg' )
-		})
-	];
+        new THREE.MeshBasicMaterial({
+           map: new THREE.TextureLoader().load( 'square1.jpg' )
+        }),
+        new THREE.MeshBasicMaterial({
+           map: new THREE.TextureLoader().load( 'square2.jpg' )
+        }),
+        new THREE.MeshBasicMaterial({
+           map: new THREE.TextureLoader().load( 'square3.jpg' )
+        }),
+        new THREE.MeshBasicMaterial({
+           map: new THREE.TextureLoader().load( 'square4.jpg' )
+        }),
+        new THREE.MeshBasicMaterial({
+           map: new THREE.TextureLoader().load( 'square5.jpg' )
+        }),
+        new THREE.MeshBasicMaterial({
+           map: new THREE.TextureLoader().load( 'square6.jpg' )
+        })
+    ];
 
     //for ( var i = 0; i < geometry.faces.length; i += 2 ) {
         //console.log(i);
