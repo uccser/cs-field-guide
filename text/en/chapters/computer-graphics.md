@@ -806,7 +806,7 @@ This table shows the values that would be calculated using Bresenham's method fo
 | {math}P_9 = 9{math end} | Next pixel is on the row above the previous pixel. |
 | {math}P_{10} = -7{math end} | Next pixel is on the same row as the previous pixel. |
 | {math}P_{11} = 3{math end} | Next pixel is on the row above the previous pixel. |
-| {math}P_{12} = -13{math end} | Next pixel is on the row above the previous pixel. |
+| {math}P_{12} = -13{math end} | Next pixel is on the same row as the previous pixel. |
 
 {panel end}
 
