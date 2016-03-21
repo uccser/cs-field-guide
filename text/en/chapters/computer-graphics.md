@@ -796,7 +796,7 @@ This table shows the values that would be calculated using Bresenham's method fo
 | {math}A = 10,  B = -16{math end} | Draw the starting pixel |
 | {math}P_0 = -3{math end} | Next pixel (to the right) is on the same row as the starting pixel. |
 | {math}P_1 = 7{math end} | Next pixel is on the row above the previous pixel. |
-| {math}P_1 = -9{math end} | Next pixel is on the same row as the previous pixel. |
+| {math}P_2 = -9{math end} | Next pixel is on the same row as the previous pixel. |
 | {math}P_3 = 1{math end} | Next pixel is on the row above the previous pixel. |
 | {math}P_4 = -15{math end} | Next pixel is on the same row as the previous pixel. |
 | {math}P_5 = -5{math end} | Next pixel is on the same row as the previous pixel. |
