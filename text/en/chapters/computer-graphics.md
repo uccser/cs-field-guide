@@ -678,7 +678,7 @@ and you get to specify two things: the
 {glossary-link term="slope" reference-text="computer graphics"}slope{glossary-link end} of the line,
 which is {math}m{math end},
 and where the line crosses the *y* axis, which is {math}c{math end}.
-In other words, when you are *x* pixels across the screen with your line, the pixel to colour in would be (*x*,\ {math}mx + c{math end}).
+In other words, when you are *x* pixels across the screen with your line, the pixel to colour in would be ({math}x{math end}, {math}mx + c{math end}).
 
 For example, choosing {math}m=2{math end} and {math}c=3{math end} means that the line would go through the points (0,3), (1,5), (2,7), (3,9) and so on.
 This line goes up 2 pixels for every one across {math}m=2{math end}, and crosses the y axis 3 pixels up ({math}c=3{math end}).
@@ -866,7 +866,7 @@ Y = 0
 
 {math-block end}
 
-Repeat the following rules in order until {math}Y{math end} becomes greater than {math}X{math end}\ :
+Repeat the following rules in order until {math}Y{math end} becomes greater than {math}X{math end}:
 
 - Fill the pixel at coordinate ({math}c_{x} + X{math end}, {math}c_{y} + Y{math end})
 - Increase {math}E{math end} by {math}2 \times Y + 1{math end}
@@ -874,7 +874,7 @@ Repeat the following rules in order until {math}Y{math end} becomes greater than
 - If {math}E{math end} is greater than or equal to 0,  subtract {math}2 \times X - 1{math end} from {math}E{math end}, and then subtract 1 from {math}X{math end}.
 
 Follow the rules to draw a circle on the grid, using ({math}c_{x}{math end}, {math}c_{y}{math end})  as the centre of the circle, and {math}R{math end} the radius.
-Notice that it will only draw the start of the circle and then it stops because {math}Y{math end} is greater than {math}X{math end}\ !
+Notice that it will only draw the start of the circle and then it stops because {math}Y{math end} is greater than {math}X{math end}!
 
 {image filename="grid-20x20-circle-question.png" alt="Grid for drawing a circle"}
 
@@ -928,7 +928,7 @@ Outline fonts are one of the most common uses for vector graphics as they allow 
 Computer scientists have found fast algorithms for drawing other shapes too, which means that the image appears quickly, and graphics can display quickly on relatively slow hardware - for example, a smartphone needs to do these calculations all the time to display images, and reducing the amount of calculations can extend its battery life, as well as make it appear faster.
 
 As usual, things aren't quite as simple as shown here. For example, consider a horizontal line that goes from (0,0) to (10,0), which has 11 pixels.
-Now compare it with a 45 degree line that goes from (0,0) to (10,10). It still has 11 pixels, but the line is longer (about 41\% longer to be precise).
+Now compare it with a 45 degree line that goes from (0,0) to (10,10). It still has 11 pixels, but the line is longer (about 41% longer to be precise).
 This means that the line would appear thinner or fainter on a screen, and extra work needs to be done (mainly anti-aliasing) to make the line look ok. We've only just begun to explore how techniques in graphics are needed to quickly render high quality images.
 
 {panel type="project" summary="Line and circle drawing"}
