@@ -374,7 +374,7 @@ As a simple example, consider what happens when you scale by 2 and then rotate b
 
 {math-block end}
 
-You can put the matrix we just calculated into the following interactive to see if it does indeed scale by 2 and roate 45 degrees.
+You can put the matrix we just calculated into the following interactive to see if it does indeed scale by 2 and rotate 45 degrees.
 
 {button link="http://www.csfieldguide.org.nz/releases/1.9.9/_static/widgets/CG/CG-arrow/CG-arrow-singlematrix.html?info=Try%20putting%20in%20the%20final%20matrix%20here%20and%20see%20if%20it%20does%20scale%20by%202%20and%20rotate%20by%2045%20degrees.&zoom=-10.0%20&quiz=1.4%201.4%200%200%20-1.4%201.4%200%200%200%200%201%200%200%200%200%201%20&allPrize=5" text="Click for interactive: check a single matrix"}
 
@@ -766,7 +766,7 @@ Each point requires a multiplication and an addition, and also needs to round th
 
 ### Bresenham's Line Algorithm
 
-A faster way for a computer to calculate which pixels to colour in is to use Brensenham's Line Algorithm. It follows these simple rules. First, calculate these three values:
+A faster way for a computer to calculate which pixels to colour in is to use Bresenham's Line Algorithm. It follows these simple rules. First, calculate these three values:
 
 {math-block}
 A = 2 \times (y_2 - y_1)
@@ -994,9 +994,9 @@ Möbius is perhaps better known for coming up with the [Möbius strip](https://e
 which is a piece of paper with only one side!
 
 Matrix operations are used for many things other than computer graphics, including computer vision, engineering simulations, and solving complex equations.
-Although GPUs were developed for computer graphics, they are often used a processors in their own right because they are so fast at such calculations.
+Although GPUs were developed for computer graphics, they are often used as processors in their own right because they are so fast at such calculations.
 
-The idea of homogeneous coordinates was developed 100 years before the first working computer existing, and it's almost 200 year's later that Möbius's work is being used on millions of computers to render fast graphics.
+The idea of homogeneous coordinates was developed 100 years before the first working computer existed, and it's almost 200 years later that Möbius's work is being used on millions of computers to render fast graphics.
 An [animation of a Möbius strip](https://www.youtube.com/watch?v=ZN4TxmWK0bE) therefore uses two of his ideas, bringing things full circle, so to speak.
 {panel end}
 
