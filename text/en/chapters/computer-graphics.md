@@ -216,7 +216,7 @@ Where it gets interesting is when you use a little of each value; try the follow
 Now the *x* value of each coordinate is a mixture of 0.7 of the original *x*, and 0.7 of the original *y*.
 This is called a *rotation*.
 
-In general, to rotate an image by a given angle you need to use the sine (abbreviated sin) and cosine (abbreviated cos) functions from trigonometry. To rotate the image by {math}\theta{math end} degrees, you'll need the following values in the matrix, which rely on trig functions:
+In general, to rotate an image by a given angle you need to use the sine (abbreviated sin) and cosine (abbreviated cos) functions from trigonometry. To rotate the image anticlockwise by {math}\theta{math end} degrees, you'll need the following values in the matrix, which rely on trig functions:
 
 {math-block}
 \begin{bmatrix}
