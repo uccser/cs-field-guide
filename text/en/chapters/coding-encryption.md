@@ -375,11 +375,13 @@ While Caesar cipher has a key specifying a rotation, a more general substitution
 This increases the number of possible keys, and thus reduces the risk of a brute force attack. A can be substituted for any of the 26 letters in the alphabet, B can then be substituted for any of the 25 remaining letters (26 minus the letter already substituted for A), C can then be substituted for any of the 24 remaining letters…
 
 This gives us 26 possibilities for A times 25 possibilities for B times 24 possibilities for C.. all the way down to 2 possibilities for Y and 1 possibility for Z.
+
 {math}
 26 \times 25 \times 24 \times 23 \times 22 \times 21 \times 20 \times 19 \times 18 \times 17 \times\\
 16 \times 15 \times 14 \times 13 \times 12 \times 11 \times 10 \times 9 \times 8 \times 7 \times 6 \times\\
 5 \times 4 \times 3 \times 2 \times 1 = 26!
 {math end}
+
 Representing each of these possibilities requires around 88 bits, making the cipher’s key size around 88 bits, which is below modern standards, although still not too bad!
 
 However, this only solves one of the problems. The other techniques for breaking Caeser cipher we have looked at are still highly effective on all substitution ciphers, in particular the frequency analysis. For this reason, we need better ciphers in practice, which we will look at shortly.
