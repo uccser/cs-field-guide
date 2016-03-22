@@ -224,7 +224,7 @@ There are many other ways of cracking Caeser cipher which we will look at in thi
 
 Frequency analysis means looking at how many times each letter appears in the encrypted message, and using this information to crack the code. A letter that appears many times in a message is far more likely to be “T” than “Z”, for example.
 
-The following interactive will help you to analyze a piece of text by counting up the letter frequencies.
+The following interactive will help you analyze a piece of text by counting up the letter frequencies.
 You can paste in some text to see which are the most common (and least common) characters.
 
 {interactive name="frequency-analysis" type="in-page"}
