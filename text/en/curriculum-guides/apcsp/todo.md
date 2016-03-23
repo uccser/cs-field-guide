@@ -4,18 +4,18 @@ Several learning objectives are not currently covered by the CS Field Guide.
 This "to-do" list includes general computer science topics and suggestions for how we can update the field guide to cover the learning objectives. Different levels of changes are suggested:
 
 - new chapter: some topics are best put into stand-alone new field guide chapters
- - Hardware Abstractions [?]
+ - Hardware Abstractions [Phase+]
  - Software Abstractions [Phase4]
  - Models and Simulation [Phase3]
- - Network Systems [?]
- - Logic [?]
+ - Network Systems [Phase+]
+ - Logic [Phase+]
 - new section: add a new X.Y major section to chapter X
 - new sub-section: add a new X.Y.Z minor section to section Y of chapter X
 - edits to existing text content to use specific terminology
 
 ##Abstraction
 - floating point representation
- - **new section in data-representation**
+ - **new section in data-representation** [Phase+]
 - bit representation of program instructions (not just data)
  - **new section in programming-languages OR part of new chapter on hardware abstractions** [Phase2]
 - abstraction process: removing irrelevant details, extracting common features
@@ -73,9 +73,9 @@ the students to research online after/during reading of the Blown to Bits book (
 
 ##Programming
 - program components (modularity)
- - **additional sub-section in software-engineering**
+ - **additional sub-section in software-engineering** [Phase2]
 - program documentation
- - **re-wording or new sub-section in software-engineering; include self-documenting approaches**
+ - **re-wording or new sub-section in software-engineering; include self-documenting approaches** [Phase2]
 - collaboration and communication within programming teams
  - **add sub-section on Scrum, issue tracking and/or other communication mechanisms to 16.6** [Phase2]
 - program execution / implementation of algorithm
