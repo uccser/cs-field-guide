@@ -421,7 +421,7 @@ In computer science, problems that take an exponential amount of time to solve a
 Working out which problems are tractable and which are intractable is a major area of research in computer science --- many other problems that we care about appear to be intractable, much to our frustration.
 The area of encryption is one of the few situations where we're pleased that an algorithm is intractible!
 
-This guide has a [whole chapter about tractability chapter](chapters/complexity-tractability.html), where you can explore these issues further.
+This guide has a [whole chapter about tractability](chapters/complexity-tractability.html), where you can explore these issues further.
 {panel end}
 
 {panel type="jargon-buster" summary="Terminology you should now be familiar with"}
