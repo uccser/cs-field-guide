@@ -107,7 +107,7 @@ But here's another program that implements exactly the same algorithm, this time
 
 {image filename="highscore-in-scratch.png" alt="High score program in Scratch"}
 
-Both of the above programs are the same algorithm. Programming languages are often created or adapted to better suit a specific problem domain. For example, it is easier to express mathematical algorithms in Python than Scratch. Similarly, data flow algorithms are easier to express in visual programming languages like LabVIEW than Python.
+Both of the above programs are the same algorithm. Programming languages are often created or adapted to express algorithms clearly for a specific problem domain. For example, it is easier to read mathematical algorithms in Python than Scratch. Similarly, data flow algorithms are clearer in visual programming languages like LabVIEW than Python.
 
 In this chapter we'll look in more detail about what an algorithm is, and why they are such a fundamental idea in computer science.
 Because algorithms exist even if they aren't turned in to programs, we won't need to look at programs at all for this topic, unless you particularly want to.
@@ -140,6 +140,18 @@ The amount of time a program which performs the algorithm takes to complete may 
 
 The number of operations (such as comparisons of data items) that an algorithm makes however will not change depending on the speed of a computer, or the programming language the program using the algorithm is written in. Some algorithms will always make the same number of comparisons for a certain input size, while others might vary.
 
+### Algorithm Correctness
+If we develop or are given an algorithm to solve a problem, how do we know that it works? Sometimes we test the algorithm on specific cases for input. While this is a useful practice and can help verify that we are on the right track, it is not enough to show that our algorithm is correct. The old adage "even a broken watch is correct twice a day" is a good analogy. Even an algorithm that is correct for two inputs might be incorrect for every other input. A computer scientist must reason formally or mathematically about an algorithm to show its correctness. Typically this is done by classifying ranges of input values and showing that algorithm produces expected results for boundary values of the range and all values in between.
+
+Correctness is particularly important when comparing two algorithms that solve the same problem. If one algorithm is very fast to complete but produces incorrect results some of the time it may be far less useful than a correct algorithm that is slower. Correctness is also important when using an algorithm as the building block for another algorithm. Here is a greedy algorithm for roommate assignment:
+
+1. Search for the remaining student with the highest GPA
+2. Assign the highest GPA student their highest preference roommate from the remaining students
+3. Repeat 1-2 until no students remain
+
+This algorithm relies on a correct search algorithm in the first step. If the search algorithm incorrectly chose a random student, the greedy algorithm for roommate assignment would also be incorrect.
+
+As you will see in this chapter with searching and sorting there exist multiple correct algorithms for the same problem. Often there are good reasons to know multiple correct algorithms because there are tradeoffs in simplicity, algorithm cost, and assumptions about inputs.
 
 ### Searching and Sorting
 
@@ -402,6 +414,19 @@ But what if we upgraded to a larger kitchen? Most algorithms are written to comb
 
 *Astute observers will note that this algorithm is still inefficient because the rising table and oven are not used at the same time. Designing algorithms that take advantage of parallelism is an important advanced topic in computer science.*
 
+### Combining Algorithms
+One of the advantages of the building blocks perspective is that completed algorithms themselves can now be seen as new blocks we can build with. We can connect complete algorithms or we can interleave parts of algorithms to create new algorithms.
+
+For example, a recipe for croutons might be:
+
+1. Cut a loaf of bread into 2cm cubes
+2. Brush cubes lightly with olive oil and season with salt, pepper, and herbs
+3. Bake on large tray, flipping the cubes halfway through
+
+We can connect the algorithm for baking bread in the previous section to this algorithm to create a new algorithm that makes croutons from scratch. If we required other ingredients for our recipe, we could connect multiple algorithms to build very complex algorithms.
+
+Often when we have multiple algorithms that solve a problem there are advantages of each algorithm for specific cases. Hybrid algorithms take parts of multiple algorithms and combine them to gain the advantages of both original algorithms. For example, Timsort is one of the fastest known sorting algorithms in practice and it uses parts of insertion sort and merge sort. Insertion sort is used on very small sequences to take advantage of its speed for already or partially ordered sequences. Merge sort is used to merge these small sequences into larger ones to take advantage of the better upper bound on algorithm cost for large data sets.
+
 ## The whole story!
 
 We've only really scratched the surface of algorithms in this chapter, as there are millions of different algorithms for millions of different problems! Algorithms are used in maths, route planning, network planning and operation, problem solving, artificial intelligence, genetic programming, computer vision, the list goes on and on! But by going through this chapter you should have gained an understanding of the key concepts of algorithms and will be well prepared to tackle more complicated ones in the future.
@@ -434,7 +459,7 @@ To make things even more complicated, in practice algorithms are running on comp
 - [CS Unplugged Searching algorithms](http://csunplugged.org/searching-algorithms)
 - CS Unplugged [Sorting algorithms](http://csunplugged.org/sorting-algorithms)
 - [Searching algorithm game, may not be suitable](http://csunplugged.org/divideAndConquer)
-- Wikipedia has more details on [Linear Search](http://en.wikipedia.org/wiki/Linear_search), [Binary Search](http://en.wikipedia.org/wiki/Binary_search), [Selection sort](http://en.wikipedia.org/wiki/Selection_sort), [Insertion sort](http://en.wikipedia.org/wiki/Insertion_sort) and  [Quicksort](http://en.wikipedia.org/wiki/Quicksort).
+- Wikipedia has more details on [Linear Search](http://en.wikipedia.org/wiki/Linear_search), [Binary Search](http://en.wikipedia.org/wiki/Binary_search), [Selection sort](http://en.wikipedia.org/wiki/Selection_sort), [Insertion sort](http://en.wikipedia.org/wiki/Insertion_sort), [Quicksort](http://en.wikipedia.org/wiki/Quicksort), and [Timsort](http://en.wikipedia.org/wiki/Timsort).
 - The [Sorting Bricks game](http://mathsite.math.berkeley.edu/sorting/brick.html) is a great way to learn about several sorting algorithms (requires Java).
 - [Sorting Algorithms Visualisations](http://www.sorting-algorithms.com/) shows several different sorting algorithms racing and contains information and pseudocode for each.
 - [Beginner's Guide to Big O Notation](http://rob-bell.net/2009/06/a-beginners-guide-to-big-o-notation/)

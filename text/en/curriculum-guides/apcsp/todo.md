@@ -25,21 +25,21 @@ This "to-do" list includes general computer science topics and suggestions for h
 - re-work a unit / activity on hardware and software abstraction layers below high level language (from the software engineering one)
  - **new chapter on hardware OR software abstractions**
 - equate level of language with concept of abstraction
- - **additional wording in end of 3.1 intro to programming-languages** [Phase1]
+ - **additional wording in end of 3.1 intro to programming-languages** [Phase1][draft]
 - models and simulations (there are some CS unplugged ones)
  - **new chapter on models-simulations**
 
 ##Algorithms
 - sequencing, selection, iteration as building blocks for algorithms
- - **new sub-section with specific terms in section 2.4** [Phase1]
+ - **new sub-section with specific terms in section 2.4** [Phase1][draft]
 - algorithm correctness
- - **new sub-section in 2.1** [Phase1]
+ - **new sub-section in 2.1** [Phase1][draft]
 - decidability
  - **new section in 11.?** [Phase2]
 - combining algorithms
- - **add terms to 2.1** [Phase1]
+ - **add terms to 2.1** [Phase1][draft]
 - language choice for algorithms
- - **better description at end of section 2.1.1** [Phase1]
+ - **better description at end of section 2.1.1** [Phase1][draft]
 - theoretical vs empirical analysis
  - **additional paragraph in 2.1.2** [Phase2]
 - efficiency of memory usage
