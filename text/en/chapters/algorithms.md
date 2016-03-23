@@ -141,7 +141,7 @@ The amount of time a program which performs the algorithm takes to complete may 
 The number of operations (such as comparisons of data items) that an algorithm makes however will not change depending on the speed of a computer, or the programming language the program using the algorithm is written in. Some algorithms will always make the same number of comparisons for a certain input size, while others might vary.
 
 ### Algorithm Correctness
-If we develop or are given an algorithm to solve a problem, how do we know that it works? Sometimes we test the algorithm on specific cases for input. While this is a useful practice and can help verify that we are on the right track, it is not enough to show that our algorithm is correct. The old adage "even a broken watch is correct twice a day" is a good analogy. Even an algorithm that is correct for two inputs might be incorrect for every other input. A computer scientist must reason formally or mathematically about an algorithm to show its correctness. Typically this is done by classifying ranges of input values and showing that algorithm produces expected results for boundary values of the range and all values in between.
+If we develop or are given an algorithm to solve a problem, how do we know that it works? Sometimes we create test cases to verify the algorithm produces correct output for specific input values. While this is a useful practice and can help verify that we are on the right track, it is not enough to show that our algorithm is correct. The old adage "even a broken watch is correct twice a day" is a good analogy. Even an algorithm that is correct for two test cases might be incorrect for every other input. A computer scientist must reason formally or mathematically about an algorithm to show its correctness. Typically this is done by classifying ranges of input values and showing that algorithm produces expected results for boundary values of the range and all values in between.
 
 Correctness is particularly important when comparing two algorithms that solve the same problem. If one algorithm is very fast to complete but produces incorrect results some of the time it may be far less useful than a correct algorithm that is slower. Correctness is also important when using an algorithm as the building block for another algorithm. Here is a greedy algorithm for roommate assignment:
 
@@ -368,7 +368,7 @@ There are dozens of sorting algorithms that have been invented; most of the ones
 ## What makes an algorithm?
 We've looked at algorithms that solved well known computational problems of sorting and searching data. When a computer scientist approaches a new computational problem that does not already have a well known solution they must create an algorithm.
 
-There are three building blocks to develop a new algorithm: sequencing, selection, and iteration. One interesting early result in computer science is that combined, these three building blocks are actually sufficient to represent any algorithm that solves a computational problem.
+There are three building blocks to develop a new algorithm: sequencing, selection, and iteration. One interesting early result in computer science is that combined, these three building blocks are sufficient to represent any algorithm that solves a computational problem!
 
 ### Sequencing
 Sequencing is the technique of deciding the order instructions are executed to produce the correct result. Imagine that we have the following instructions (A, B, C) to make a loaf of bread:

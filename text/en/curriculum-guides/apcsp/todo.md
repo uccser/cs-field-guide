@@ -4,11 +4,11 @@ Several learning objectives are not currently covered by the CS Field Guide.
 This "to-do" list includes general computer science topics and suggestions for how we can update the field guide to cover the learning objectives. Different levels of changes are suggested:
 
 - new chapter: some topics are best put into stand-alone new field guide chapters
- - Hardware Abstractions
+ - Hardware Abstractions [?]
  - Software Abstractions [Phase4]
  - Models and Simulation [Phase3]
- - Network Systems
- - Logic
+ - Network Systems [?]
+ - Logic [?]
 - new section: add a new X.Y major section to chapter X
 - new sub-section: add a new X.Y.Z minor section to section Y of chapter X
 - edits to existing text content to use specific terminology
