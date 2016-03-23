@@ -523,7 +523,7 @@ Finally, this interactive is the decrypter. It is used to decrypt messages that 
 
 {interactive name="rsa-no-padding" type="iframe" parameters="mode=decrypt"}
 
-Despite even your enemies knowing your public key (as you publicly announced it), they cannot use it to decrypt your messages which were encrypted using the public key. You are the only one who can decrypt messages, as that requires the private key which hopefully you are the only one who access to.
+Despite even your enemies knowing your public key (as you publicly announced it), they cannot use it to decrypt your messages which were encrypted using the public key. You are the only one who can decrypt messages, as that requires the private key which hopefully you are the only one who has access to.
 
 Note that this interactive’s implementation of RSA is just for demonstrating the concepts here and is not quite the same as the implementations used in live encryption systems.
 
