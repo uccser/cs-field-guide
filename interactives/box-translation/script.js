@@ -32,48 +32,37 @@ function init() {
     // creates a box with sides of length 200
     var geometry = new THREE.BoxGeometry( 200, 200, 200 );
 
+    // list of possible box symbols
+    var symbols = [ 'square2.jpg', 'square3.jpg', 'square4.jpg',
+        'square5.jpg', 'square6.jpg', 'square7.jpg', 'square8.jpg' ];
+
+    var default_symbol = symbols.splice(Math.floor(Math.random()*symbols.length), 1);
+    var left_side = symbols.splice(Math.floor(Math.random()*symbols.length), 1);
+    var right_side = symbols.splice(Math.floor(Math.random()*symbols.length), 1);
+    var bottom_side = symbols.splice(Math.floor(Math.random()*symbols.length), 1);
+
     // loads all the symbols for the box
     var materials = [
         new THREE.MeshBasicMaterial({
-           map: new THREE.TextureLoader().load( 'square1.jpg' )
+            // each side randomly chosen from list
+           map: new THREE.TextureLoader().load( right_side )
         }),
         new THREE.MeshBasicMaterial({
-           map: new THREE.TextureLoader().load( 'square2.jpg' )
+           map: new THREE.TextureLoader().load( left_side )
         }),
         new THREE.MeshBasicMaterial({
-           map: new THREE.TextureLoader().load( 'square3.jpg' )
+           map: new THREE.TextureLoader().load( default_symbol ) // top, non-coded side
         }),
         new THREE.MeshBasicMaterial({
-           map: new THREE.TextureLoader().load( 'square4.jpg' )
+           map: new THREE.TextureLoader().load( bottom_side )
         }),
         new THREE.MeshBasicMaterial({
-           map: new THREE.TextureLoader().load( 'square5.jpg' )
+           map: new THREE.TextureLoader().load( default_symbol ) // front, non-coded side
         }),
         new THREE.MeshBasicMaterial({
-           map: new THREE.TextureLoader().load( 'square6.jpg' )
+           map: new THREE.TextureLoader().load( default_symbol ) // back, non-coded side
         })
     ];
-
-    //for ( var i = 0; i < geometry.faces.length; i += 2 ) {
-        //console.log(i);
-
-        // random colour
-        //var hex = Math.random() * 0xffffff;
-        //var hex = colours[i/2];
-        //geometry.faces[ i ].color.setHex( hex );
-        //geometry.faces[ i + 1 ].color.setHex( hex );
-
-        // set colour
-        //geometry.faces[ i ].color.setStyle( "#6aadd1" );
-        //geometry.faces[ i + 1 ].color.setStyle( "#6aadd1" );
-
-    //}
-
-    // lego man
-    //var texture = new THREE.TextureLoader().load( 'good_cop.jpg' );
-    //var material = new THREE.MeshBasicMaterial( { map: texture } );
-
-    //var material = new THREE.MeshBasicMaterial( { vertexColors: THREE.FaceColors, overdraw: 0.5 } );
 
     cube = new THREE.Mesh( geometry, new THREE.MeshFaceMaterial( materials ) );
     cube.position.y = 150;
