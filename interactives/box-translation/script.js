@@ -7,10 +7,22 @@ var cube, plane;
 var targetRotation = 0;
 var windowHalfX = window.innerWidth / 2;
 var windowHalfY = window.innerHeight / 2;
+var code = { 1: null, 2: null, 3: null };
+var boxSymbols = {}
+
+
+//var Code = function( position, filled ) {
+    //this.position = position;
+    //this.filled = filled;
+    //this.symbol = null;
+//}
+
+//symbol1 = new Code( 1, false );
+//symbol2 = new Code( 2, false );
+//symbol3 = new Code( 3, false );
 
 init();
 animate();
-
 
 function init() {
 
@@ -40,6 +52,11 @@ function init() {
     var left_side = symbols.splice(Math.floor(Math.random()*symbols.length), 1);
     var right_side = symbols.splice(Math.floor(Math.random()*symbols.length), 1);
     var bottom_side = symbols.splice(Math.floor(Math.random()*symbols.length), 1);
+
+    boxSymbols["default_symbol"] = default_symbol[0];
+    boxSymbols["left_side"] = left_side[0];
+    boxSymbols["right_side"] = right_side[0];
+    boxSymbols["bottom_side"] = bottom_side[0];
 
     // loads all the symbols for the box
     var materials = [
@@ -163,3 +180,45 @@ function moveBox() {
 }
 
 
+// TODO WORKING HERE
+function submitCode() {
+    console.log(code);
+    console.log(boxSymbols);
+    if ( code[1] == boxSymbols['left_side'] ) {
+        if ( code[2] == boxSymbols['bottom_side'] ) {
+            if ( code[3] == boxSymbols['right_side'] ) {
+                console.log("correct");
+            }
+        }
+    }
+}
+
+
+function clearCode() {
+    document.getElementById( 'first-symbol' ).src = 'question_mark.jpg';
+    document.getElementById( 'second-symbol' ).src = 'question_mark.jpg';
+    document.getElementById( 'third-symbol' ).src = 'question_mark.jpg';
+    code[1] = null;
+    code[2] = null;
+    code[3] = null;
+}
+
+
+function symbolClick(id) {
+    console.log("heeeeeeey");
+    console.log(code);
+    if ( code[1] == null ) {
+        code[1] = id;
+        document.getElementById( 'first-symbol' ).src = 'square' + id + '.jpg';
+        console.log(document.getElementById( 'first-symbol' ));
+    } else if ( code[2] == null ) {
+        code[2] = id;
+        document.getElementById( 'second-symbol' ).src = 'square' + id + '.jpg';
+        console.log(document.getElementById( 'second-symbol' ));
+    } else if ( code[3] == null ) {
+        code[3] = id;
+        document.getElementById( 'third-symbol' ).src = 'square' + id + '.jpg';
+        console.log(document.getElementById( 'third-symbol' ));
+    }
+
+}

@@ -18,6 +18,15 @@
     display: block;
 }
 
+#code-template img {
+    display: inline;
+    background-color: #fff;
+}
+
+#code-template button {
+    display: block;
+}
+
 img {
     width: 30px;
 }
