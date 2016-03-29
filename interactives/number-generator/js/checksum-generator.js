@@ -41,7 +41,7 @@ function chooseAlgorithm(code_type, count){
 
     if (code_type == "ISBN-10") {
         ISBN10Generator(count);
-    } else if (code_type == "ISBN-13" || code_type == "EAN-13") {
+    } else if (code_type == "ISBN-13" || code_type == "GTIN-13") {
         ISBN13Generator(count);
     } else if (code_type == "IRD-number") {
         IRDGenerator(count);

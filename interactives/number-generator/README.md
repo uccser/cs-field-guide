@@ -7,7 +7,7 @@ This interactive generates example codes for:
 
 - ISBN10
 - ISBN13
-- EAN13
+- GTIN-13
 - European train carriages
 - IRD numbers
 

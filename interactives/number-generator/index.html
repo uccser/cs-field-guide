@@ -25,7 +25,7 @@
             <select name="interactive-checksum-generator-type" class="browser-default" id="interactive-checksum-generator-type">
               <option selected="selected" value="ISBN-10">ISBN-10</option>
               <option value="ISBN-13">ISBN-13</option>
-              <option value="EAN-13">EAN-13</option>
+              <option value="GTIN-13">GTIN-13</option>
               <option value="credit-card">Credit Card</option>
               <option value="trains">Trains</option>
               <option value="IRD-number">IRD Number</option>
@@ -36,7 +36,9 @@
             <a id="interactive-checksum-generator-generate" class="waves-effect waves-light btn btn-expand">Generate</a>
           </div>
           <div class="col s12">
+            <p class="center-align">The following codes are a combination of valid and invalid codes</p>
             <textarea id="interactive-checksum-generator-codes" rows="5" readonly placeholder="Codes will be displayed here"></textarea>
+            <p class="center-align">Codes are generated with no dashes/spaces/etc</p>
           </div>
       <link rel="stylesheet" href="./css/checksum-generator.css">
       <script src="./js/checksum-generator.js"></script>
