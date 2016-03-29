@@ -159,7 +159,7 @@ Whilst IRC may be new to you, the concept of a group conversation online or a *c
 
 Channels usually form around a particular topic, such as Python,  Music, TV show fans, Gaming or Hacking. Convention dictates that channel names start with one or two # symbols, such as #python or ##TheBigBangTheory. *Conventions* are different to protocols in that they aren’t actually enforced by the protocol, but people choose to use it that way.
 
-To get started with IRC, first you should get a client. A client is a program that let’s you connect Ask your teacher about which one to use. For this chapter, we’ll use the [freenode web client](http://webchat.freenode.net/). Check with your teacher about which channel to join, as they may have set one up for you.
+To get started with IRC, first you should get a client. A client is a program that let’s you connect. Ask your teacher about which one to use. For this chapter, we’ll use the [freenode web client](http://webchat.freenode.net/). Check with your teacher about which channel to join, as they may have set one up for you.
 
 Try a few things while you’re in there. Look at this [list of commands](http://en.wikipedia.org/wiki/List_of_Internet_Relay_Chat_commands) and try to use some of them. What response do you get? Does this make sense?
 
