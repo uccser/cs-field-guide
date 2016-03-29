@@ -128,7 +128,7 @@ Barcode numbers, credit card numbers, bank account numbers, ISBNs, national heal
 
 In this section we will be initially looking at one of the most commonly used barcode number formats used on most products you buy from supermarkets and other shops.  We will then be having a look at credit card numbers. You don’t have to understand *why* the calculations work so well (this is advanced math, and isn’t important for understanding the overall ideas), and while it is good for you to know what the calculation is, it is not essential. So if math is challenging and worrying for you, don’t panic too much because what we are looking at in this section isn’t near as difficult as it might initially appear!
 
-### Check Digits On Product Barcodes
+### Check digits On product barcodes
 
 Most products you can buy at the shop have a barcode on them with a 13 digit "global trade item number" (referred to as GTIN-13).
 The first 12 digits are the actual identification number for the product, the 13th is the check digit calculated from the other 12.
@@ -144,13 +144,7 @@ With a GTIN-13 code, we want to be able to detect if one of the digits might hav
 The following interactive checks GTIN-13 barcodes. Enter the first 12 digits of a barcode number into the interactive, and it will tell you that the last digit should be!
 You could start by using the barcode number “9 300675 036009”.
 
-*Interactive coming soon*
-
-{comment}
-TODO
-****** interactive to check Barcode (without putting in multipliers) here
-reads in 12 digits of a barcode, and outputs what the 13th one should be; don't show any intermediate calcuations, just the final result.
-{comment end}
+{interactive name="checksum-calculator-gtin-13" type="in-page"}
 
 {panel type="teacher-note" summary="Getting more barcodes"}
 You could bring various packaging that has barcodes on it for the class to evaluate, or bring in photos of barcodes.
@@ -245,7 +239,7 @@ It is calculated using the following algorithm (also, see the example below).
 - Add up all the multiplied numbers to obtain the *sum*.
 - The check digit is whatever number would have to be added to the sum in order to bring it up to a multiple of 10 (i.e. the last digit of the sum should be 0). Or more formally, take the last digit of the sum and if it is 0, the check digit is 0. Otherwise, subtract the last digit from 10 to obtain the check digit.
 
-Let's look at an example to illustrate this algorithm. We want to confirm that the check digit that was put on the barcode of a bottle of coke was the correct one. Its barcode number is 9300675032247. The last digit, 7, is the check digit. So we take the first 12 digits and multiply them by 1 or 3, depending on their positions (9x1+3x3+0x1+0x3+6x1+7x3+5x1+0x3+3x1+2x3+2x1+4x3). We then add up all the multiplied numbers, obtaining a sum of 73. We want to add the check digit that will bring the sum up to the nearest multiple of 10, which is 80. This number is 7, which is indeed the check digit on the coke bottle’s barcode.
+Let's look at an example to illustrate this algorithm. We want to confirm that the check digit that was put on the barcode of a bottle of cola was the correct one. Its barcode number is 9300675032247. The last digit, 7, is the check digit. So we take the first 12 digits and multiply them by 1 or 3, depending on their positions (9x1+3x3+0x1+0x3+6x1+7x3+5x1+0x3+3x1+2x3+2x1+4x3). We then add up all the multiplied numbers, obtaining a sum of 73. We want to add the check digit that will bring the sum up to the nearest multiple of 10, which is 80. This number is 7, which is indeed the check digit on the cola bottle’s barcode.
 
 The following interactive can be used to do the calculations for you.
 To make sure you understand the process, you need to do some of the steps yourself; this interactive can be used for a wide range of check digit systems.
