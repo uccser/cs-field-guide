@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+</style>
+</head>
+<body onload="onLoadFunction()">
+
+<table>
+	<tr>
+		<td>
+			<div class="box" id="box0" onmouseover=boxMouseOver(box0) onmouseout=boxMouseOut(box0)>This is BOX0.</div>
+		</td>
+		<td>
+			<div class="box" id="box1" onmouseover=boxMouseOver(box1) onmouseout=boxMouseOut(box1)>This is BOX1.</div>
+		</td>
+		<td>
+			<div class="box" id="box2" onmouseover=boxMouseOver(box2) onmouseout=boxMouseOut(box2)>This is BOX2.</div>
+		</td>
+		<td>
+			<div class="box" id="box3" onmouseover=boxMouseOver(box3) onmouseout=boxMouseOut(box3)>This is BOX3.</div>
+		</td>
+		<td>
+			<div class="box" id="box4" onmouseover=boxMouseOver(box4) onmouseout=boxMouseOut(box4)>This is BOX4.</div>
+		</td>
+	</tr>
+</table>
+
+<form name="myForm" action="congratulations.html"
+onsubmit="return validateForm()" method="post">
+What is the largest number in the boxes? <input type="text" name="submittedInt">
+<input type="submit" value="Submit">
+</form>
+
+<script src="./findHighScore.js"></script>
+<link rel="stylesheet" href="./style.css">
+
+</body>
+</html>
