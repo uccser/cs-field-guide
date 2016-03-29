@@ -41,8 +41,8 @@ function chooseAlgorithm(code_type, count){
 
     if (code_type == "ISBN-10") {
         ISBN10Generator(count);
-    } else if (code_type == "ISBN-13" || code_type == "GTIN-13") {
-        ISBN13Generator(count);
+    } else if (code_type == "GTIN-13") {
+        GTIN13Generator(count);
     } else if (code_type == "IRD-number") {
         IRDGenerator(count);
     } else if (code_type == "credit-card") {
@@ -144,8 +144,8 @@ function ISBN10CheckDigit(check_digit) {
 }
 
 
-//generates random ISBN-13 numbers
-function ISBN13Generator(count) {
+//generates random GTIN-13 numbers
+function GTIN13Generator(count) {
 
     //generates 12 random numbers
     generateRandomDigits(12);
