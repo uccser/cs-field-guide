@@ -171,7 +171,7 @@ So far we have talked about HTTP and IRC. These protocols are at a level that ma
 
 ### TCP
 
-TCP (The Transmission Control Protocol) is one of the most important protocol on the internet. It breaks large messages up into *packets*. What is a packet? A packet is a segment of data that when combined with other packets, make up a total message (something like a HTTP request, an email, an IRC message or a file like a picture or song being downloaded). For the rest of the section, we’ll look at how these are used to load an image from a website.
+TCP (The Transmission Control Protocol) is one of the most important protocols on the internet. It breaks large messages up into *packets*. What is a packet? A packet is a segment of data that when combined with other packets, make up a total message (something like a HTTP request, an email, an IRC message or a file like a picture or song being downloaded). For the rest of the section, we’ll look at how these are used to load an image from a website.
 
 So computer A looks the file and takes it, breaks it into packets. It then sends the packets over the internet and computer B reassembles them and gives them back to you as the image, [which is demonstrated in this video.](https://www.youtube.com/watch?v=WwyJGzZmBe8)
 
