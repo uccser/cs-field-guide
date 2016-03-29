@@ -240,7 +240,7 @@ So do we even use such an unreliable protocol? Yes, but not for anything too imp
 
 Let’s say I want to write an online music player. Okay, so I write the code for someone to press play on a website and the song plays. Do I now need to code up the protocol that streams the music? Fine, I write some UDP code. Now, do I need to go install the cables in your house? Sure, I jump in my van and spend a few weeks running cable to your house and make sure the packets can get over too.
 
-No. This sounds absurd. As a web developer, I don’t want to worry about anything other than making my music player easy to use and fast. I *don’t* want to worry about UDP and I *don’t* want to worry about ethernet or cables. It’s already done, I can assume it’s take care of. And it is.
+No. This sounds absurd. As a web developer, I don’t want to worry about anything other than making my music player easy to use and fast. I *don’t* want to worry about UDP and I *don’t* want to worry about ethernet or cables. It’s already done, I can assume it’s taken care of. And it is.
 
 Internet protocols exist in layers. We have four such layers in the computer science internet model. The top two levels are discussed above in detail, the bottom two we won’t focus on.The first layer is the Application Layer, followed by the Transport, Internet and Link layers.
 
