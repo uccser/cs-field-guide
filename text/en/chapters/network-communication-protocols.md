@@ -129,7 +129,7 @@ Vary: Accept-Encoding, User-Agent
 Content-Encoding: gzip
 ```
 
-As you can see, a request message consists of the following:
+As you can see, a response message consists of the following:
 - Status Line, 200 OK means everything went well.
 - Response Headers (Content-Length, Content-Type etc)
 - An empty line
