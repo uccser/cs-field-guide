@@ -128,7 +128,7 @@ Barcode numbers, credit card numbers, bank account numbers, ISBNs, national heal
 
 In this section we will be initially looking at one of the most commonly used barcode number formats used on most products you buy from supermarkets and other shops.  We will then be having a look at credit card numbers. You don’t have to understand *why* the calculations work so well (this is advanced math, and isn’t important for understanding the overall ideas), and while it is good for you to know what the calculation is, it is not essential. So if math is challenging and worrying for you, don’t panic too much because what we are looking at in this section isn’t near as difficult as it might initially appear!
 
-### Check Digits On Product Barcodes
+### Check digits On product barcodes
 
 Most products you can buy at the shop have a barcode on them with a 13 digit "global trade item number" (referred to as GTIN-13).
 The first 12 digits are the actual identification number for the product, the 13th is the check digit calculated from the other 12.
@@ -144,13 +144,7 @@ With a GTIN-13 code, we want to be able to detect if one of the digits might hav
 The following interactive checks GTIN-13 barcodes. Enter the first 12 digits of a barcode number into the interactive, and it will tell you that the last digit should be!
 You could start by using the barcode number “9 300675 036009”.
 
-*Interactive coming soon*
-
-{comment}
-TODO
-****** interactive to check Barcode (without putting in multipliers) here
-reads in 12 digits of a barcode, and outputs what the 13th one should be; don't show any intermediate calcuations, just the final result.
-{comment end}
+{interactive name="checksum-calculator-gtin-13" type="in-page"}
 
 {panel type="teacher-note" summary="Getting more barcodes"}
 You could bring various packaging that has barcodes on it for the class to evaluate, or bring in photos of barcodes.
