@@ -56,9 +56,12 @@ function processRegularExpression() {
     if (RegularExpressionSearch.search_text_overlay) {
       RegularExpressionSearch.search_text.removeOverlay(RegularExpressionSearch.search_text_overlay);
     }
-    RegularExpressionSearch.search_text_overlay = searchOverlay(regex);
-    // Add new overlay
-    RegularExpressionSearch.search_text.addOverlay(RegularExpressionSearch.search_text_overlay);
+    // Display if regex is not empty
+    if (regex != '/(?:)/g') {
+      RegularExpressionSearch.search_text_overlay = searchOverlay(regex);
+      // Add new overlay
+      RegularExpressionSearch.search_text.addOverlay(RegularExpressionSearch.search_text_overlay);
+    }
   }
 };
 
