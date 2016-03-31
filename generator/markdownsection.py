@@ -2,6 +2,7 @@ import re
 from bs4 import BeautifulSoup, Comment
 import logging
 import os.path
+import urllib.parse
 import generator.systemfunctions as systemfunctions
 from generator.systemconstants import *
 from collections import OrderedDict
@@ -447,7 +448,7 @@ class Section:
             text = arg_text if arg_text else name
 
             arg_parameters = parse_argument('parameters', arguments)
-            params = arg_parameters if arg_parameters else None
+            params = urllib.parse.quote(arg_parameters) if arg_parameters else None
 
             file_name = self.guide.generator_settings['Source']['Interactive File Name']
             file_type = parse_argument('file-type', arguments)
