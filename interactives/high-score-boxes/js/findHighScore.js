@@ -12,7 +12,6 @@ $(document).ready(function(){
 	}
 	//assign largest of the 5 random ints to largest
 	largest = Math.max.apply(Math, randomInts);
-	createBoxElements();
 	createBoxes();
 	console.log((randomInts.toString() + " " + largest.toString()));
 	console.log(boxes);
@@ -31,13 +30,7 @@ function onLoadFunction() {
 	}
 */
 
-function createBoxElements() {]
-	for (var i = 0; i < (numberOfBoxes); i++) {
-		var iDiv = document.createElement('div');
-		iDiv.id = ('box' + i);
-		iDiv.className = 'box';
-		document.getElementById('box_holder_div')[0].appendChild(iDiv);
-	}
+function createBoxElements() {
 
 
 }
