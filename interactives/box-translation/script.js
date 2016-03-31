@@ -11,16 +11,6 @@ var code = { 1: null, 2: null, 3: null };
 var boxSymbols = {}
 
 
-//var Code = function( position, filled ) {
-    //this.position = position;
-    //this.filled = filled;
-    //this.symbol = null;
-//}
-
-//symbol1 = new Code( 1, false );
-//symbol2 = new Code( 2, false );
-//symbol3 = new Code( 3, false );
-
 init();
 animate();
 
@@ -48,12 +38,16 @@ function init() {
     var symbols = [ 'square2.jpg', 'square3.jpg', 'square4.jpg',
         'square5.jpg', 'square6.jpg', 'square7.jpg', 'square8.jpg' ];
 
+    // randomly decides which symbol to put on each side of the box
+    // means that different box is loaded each time
     var default_symbol = symbols.splice(Math.floor(Math.random()*symbols.length), 1);
     var left_side = symbols.splice(Math.floor(Math.random()*symbols.length), 1);
     var right_side = symbols.splice(Math.floor(Math.random()*symbols.length), 1);
     var bottom_side = symbols.splice(Math.floor(Math.random()*symbols.length), 1);
 
+    // this symbol will be on 3 sides of the box
     boxSymbols["default_symbol"] = default_symbol[0];
+    // unique symbols for the other 3 sides
     boxSymbols["left_side"] = left_side[0];
     boxSymbols["right_side"] = right_side[0];
     boxSymbols["bottom_side"] = bottom_side[0];
@@ -61,7 +55,6 @@ function init() {
     // loads all the symbols for the box
     var materials = [
         new THREE.MeshBasicMaterial({
-            // each side randomly chosen from list
            map: new THREE.TextureLoader().load( right_side )
         }),
         new THREE.MeshBasicMaterial({
@@ -81,8 +74,11 @@ function init() {
         })
     ];
 
+    // put the loaded materials onto the cube object
     cube = new THREE.Mesh( geometry, new THREE.MeshFaceMaterial( materials ) );
+    // set the cube's initial position
     cube.position.y = 150;
+    // add the cube to the scene
     scene.add( cube );
 
 
@@ -114,14 +110,12 @@ function init() {
     document.addEventListener( 'keydown', function(){
 
         switch (event.keyCode) {
-            // case 32: //space bar
-            case 13:
-                //cube.position.y = 200;
-                //cube.position.x = 200;
+            case 13: // enter/return key
                 moveBox();
                 break;
         }}, false);
 
+    // sets the initial values of the x/y/z-coordinate text input boxes
     document.getElementById( 'x-coordinate' ).value = cube.position.x;
     document.getElementById( 'y-coordinate' ).value = cube.position.y;
     document.getElementById( 'z-coordinate' ).value = cube.position.z;
@@ -162,14 +156,19 @@ function render() {
 
 
 function moveBox() {
+    /* triggered when the user hits the "enter" (or "return") key
+     * updates the cube's position to match the the coordinates inputted by the user
+     */
 
+    // get each coordinate value from the input box */
     var x_pos = 0 + parseInt(document.getElementById( 'x-coordinate' ).value);
     var y_pos = 0 + parseInt(document.getElementById( 'y-coordinate' ).value);
     var z_pos = 0 + parseInt(document.getElementById( 'z-coordinate' ).value);
 
+    // use the coordinates to set a new target for the box
     var target = { x: x_pos, y: y_pos, z: z_pos };
 
-
+    // move the box on the next animation loop
     TWEEN.removeAll();
     new TWEEN.Tween( cube.position )
         .to( target )
@@ -180,10 +179,11 @@ function moveBox() {
 }
 
 
-// TODO WORKING HERE
 function submitCode() {
-    console.log(code);
-    console.log(boxSymbols);
+    /* triggered when the user clicks the "submit" button
+     * checks each selected symbol for if it matches what is on the box
+     */
+
     if ( code[1] == boxSymbols['left_side'] ) {
         if ( code[2] == boxSymbols['bottom_side'] ) {
             if ( code[3] == boxSymbols['right_side'] ) {
@@ -195,6 +195,10 @@ function submitCode() {
 
 
 function clearCode() {
+    /* triggered when the user clicks the "clear" button
+     * set the selected codes to question marks and clear the dictionary
+     */
+
     document.getElementById( 'first-symbol' ).src = 'question_mark.jpg';
     document.getElementById( 'second-symbol' ).src = 'question_mark.jpg';
     document.getElementById( 'third-symbol' ).src = 'question_mark.jpg';
@@ -205,20 +209,23 @@ function clearCode() {
 
 
 function symbolClick(id) {
-    console.log("heeeeeeey");
-    console.log(code);
+    /* When a symbol is clicked, add it to the first empty spot
+     * (where "spot" refers to the boxes with question marks in them)
+     * and update the dictionary mapping the three sides to the selected symbols
+     * Input:
+     *   - id: relates to a particular symbol (each symbol's file name contains a number in 1-8)
+     */
+
+    var img_src = 'square' + id + '.jpg';
     if ( code[1] == null ) {
-        code[1] = id;
-        document.getElementById( 'first-symbol' ).src = 'square' + id + '.jpg';
-        console.log(document.getElementById( 'first-symbol' ));
+        code[1] = img_src;
+        document.getElementById( 'first-symbol' ).src = img_src;
     } else if ( code[2] == null ) {
-        code[2] = id;
-        document.getElementById( 'second-symbol' ).src = 'square' + id + '.jpg';
-        console.log(document.getElementById( 'second-symbol' ));
+        code[2] = img_src;
+        document.getElementById( 'second-symbol' ).src = img_src;
     } else if ( code[3] == null ) {
-        code[3] = id;
-        document.getElementById( 'third-symbol' ).src = 'square' + id + '.jpg';
-        console.log(document.getElementById( 'third-symbol' ));
+        code[3] = img_src;
+        document.getElementById( 'third-symbol' ).src = img_src;
     }
 
 }
