@@ -216,7 +216,7 @@ Where it gets interesting is when you use a little of each value; try the follow
 Now the *x* value of each coordinate is a mixture of 0.7 of the original *x*, and 0.7 of the original *y*.
 This is called a *rotation*.
 
-In general, to rotate an image by a given angle you need to use the sine (abbreviated sin) and cosine (abbreviated cos) functions from trigonometry. To rotate the image by {math}\theta{math end} degrees, you'll need the following values in the matrix, which rely on trig functions:
+In general, to rotate an image by a given angle you need to use the sine (abbreviated sin) and cosine (abbreviated cos) functions from trigonometry. To rotate the image anticlockwise by {math}\theta{math end} degrees, you'll need the following values in the matrix, which rely on trig functions:
 
 {math-block}
 \begin{bmatrix}
@@ -374,7 +374,7 @@ As a simple example, consider what happens when you scale by 2 and then rotate b
 
 {math-block end}
 
-You can put the matrix we just calculated into the following interactive to see if it does indeed scale by 2 and roate 45 degrees.
+You can put the matrix we just calculated into the following interactive to see if it does indeed scale by 2 and rotate 45 degrees.
 
 {button link="http://www.csfieldguide.org.nz/releases/1.9.9/_static/widgets/CG/CG-arrow/CG-arrow-singlematrix.html?info=Try%20putting%20in%20the%20final%20matrix%20here%20and%20see%20if%20it%20does%20scale%20by%202%20and%20rotate%20by%2045%20degrees.&zoom=-10.0%20&quiz=1.4%201.4%200%200%20-1.4%201.4%200%200%200%200%201%200%200%200%200%201%20&allPrize=5" text="Click for interactive: check a single matrix"}
 
@@ -678,7 +678,7 @@ and you get to specify two things: the
 {glossary-link term="slope" reference-text="computer graphics"}slope{glossary-link end} of the line,
 which is {math}m{math end},
 and where the line crosses the *y* axis, which is {math}c{math end}.
-In other words, when you are *x* pixels across the screen with your line, the pixel to colour in would be (*x*,\ {math}mx + c{math end}).
+In other words, when you are *x* pixels across the screen with your line, the pixel to colour in would be ({math}x{math end}, {math}mx + c{math end}).
 
 For example, choosing {math}m=2{math end} and {math}c=3{math end} means that the line would go through the points (0,3), (1,5), (2,7), (3,9) and so on.
 This line goes up 2 pixels for every one across {math}m=2{math end}, and crosses the y axis 3 pixels up ({math}c=3{math end}).
@@ -766,7 +766,7 @@ Each point requires a multiplication and an addition, and also needs to round th
 
 ### Bresenham's Line Algorithm
 
-A faster way for a computer to calculate which pixels to colour in is to use Brensenham's Line Algorithm. It follows these simple rules. First, calculate these three values:
+A faster way for a computer to calculate which pixels to colour in is to use Bresenham's Line Algorithm. It follows these simple rules. First, calculate these three values:
 
 {math-block}
 A = 2 \times (y_2 - y_1)
@@ -796,7 +796,7 @@ This table shows the values that would be calculated using Bresenham's method fo
 | {math}A = 10,  B = -16{math end} | Draw the starting pixel |
 | {math}P_0 = -3{math end} | Next pixel (to the right) is on the same row as the starting pixel. |
 | {math}P_1 = 7{math end} | Next pixel is on the row above the previous pixel. |
-| {math}P_1 = -9{math end} | Next pixel is on the same row as the previous pixel. |
+| {math}P_2 = -9{math end} | Next pixel is on the same row as the previous pixel. |
 | {math}P_3 = 1{math end} | Next pixel is on the row above the previous pixel. |
 | {math}P_4 = -15{math end} | Next pixel is on the same row as the previous pixel. |
 | {math}P_5 = -5{math end} | Next pixel is on the same row as the previous pixel. |
@@ -806,7 +806,7 @@ This table shows the values that would be calculated using Bresenham's method fo
 | {math}P_9 = 9{math end} | Next pixel is on the row above the previous pixel. |
 | {math}P_{10} = -7{math end} | Next pixel is on the same row as the previous pixel. |
 | {math}P_{11} = 3{math end} | Next pixel is on the row above the previous pixel. |
-| {math}P_{12} = -13{math end} | Next pixel is on the row above the previous pixel. |
+| {math}P_{12} = -13{math end} | Next pixel is on the same row as the previous pixel. |
 
 {panel end}
 
@@ -866,7 +866,7 @@ Y = 0
 
 {math-block end}
 
-Repeat the following rules in order until {math}Y{math end} becomes greater than {math}X{math end}\ :
+Repeat the following rules in order until {math}Y{math end} becomes greater than {math}X{math end}:
 
 - Fill the pixel at coordinate ({math}c_{x} + X{math end}, {math}c_{y} + Y{math end})
 - Increase {math}E{math end} by {math}2 \times Y + 1{math end}
@@ -874,7 +874,7 @@ Repeat the following rules in order until {math}Y{math end} becomes greater than
 - If {math}E{math end} is greater than or equal to 0,  subtract {math}2 \times X - 1{math end} from {math}E{math end}, and then subtract 1 from {math}X{math end}.
 
 Follow the rules to draw a circle on the grid, using ({math}c_{x}{math end}, {math}c_{y}{math end})  as the centre of the circle, and {math}R{math end} the radius.
-Notice that it will only draw the start of the circle and then it stops because {math}Y{math end} is greater than {math}X{math end}\ !
+Notice that it will only draw the start of the circle and then it stops because {math}Y{math end} is greater than {math}X{math end}!
 
 {image filename="grid-20x20-circle-question.png" alt="Grid for drawing a circle"}
 
@@ -928,7 +928,7 @@ Outline fonts are one of the most common uses for vector graphics as they allow 
 Computer scientists have found fast algorithms for drawing other shapes too, which means that the image appears quickly, and graphics can display quickly on relatively slow hardware - for example, a smartphone needs to do these calculations all the time to display images, and reducing the amount of calculations can extend its battery life, as well as make it appear faster.
 
 As usual, things aren't quite as simple as shown here. For example, consider a horizontal line that goes from (0,0) to (10,0), which has 11 pixels.
-Now compare it with a 45 degree line that goes from (0,0) to (10,10). It still has 11 pixels, but the line is longer (about 41\% longer to be precise).
+Now compare it with a 45 degree line that goes from (0,0) to (10,10). It still has 11 pixels, but the line is longer (about 41% longer to be precise).
 This means that the line would appear thinner or fainter on a screen, and extra work needs to be done (mainly anti-aliasing) to make the line look ok. We've only just begun to explore how techniques in graphics are needed to quickly render high quality images.
 
 {panel type="project" summary="Line and circle drawing"}
@@ -994,9 +994,9 @@ Möbius is perhaps better known for coming up with the [Möbius strip](https://e
 which is a piece of paper with only one side!
 
 Matrix operations are used for many things other than computer graphics, including computer vision, engineering simulations, and solving complex equations.
-Although GPUs were developed for computer graphics, they are often used a processors in their own right because they are so fast at such calculations.
+Although GPUs were developed for computer graphics, they are often used as processors in their own right because they are so fast at such calculations.
 
-The idea of homogeneous coordinates was developed 100 years before the first working computer existing, and it's almost 200 year's later that Möbius's work is being used on millions of computers to render fast graphics.
+The idea of homogeneous coordinates was developed 100 years before the first working computer existed, and it's almost 200 years later that Möbius's work is being used on millions of computers to render fast graphics.
 An [animation of a Möbius strip](https://www.youtube.com/watch?v=ZN4TxmWK0bE) therefore uses two of his ideas, bringing things full circle, so to speak.
 {panel end}
 
