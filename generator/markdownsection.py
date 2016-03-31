@@ -34,6 +34,7 @@ class Section:
         # Dictionary of sets for images, interactives, and other_files
         self.required_files = setup_required_files(file_node.guide)
         self.page_scripts = []
+        self.in_page_interactives = set()
         self.mathjax_required = False
         self.sectioned = False
         self.html_path_to_guide_root = self.file_node.depth * '../'
@@ -463,17 +464,21 @@ class Section:
                     thumbnail = arg_thumbnail if arg_thumbnail else self.guide.generator_settings['Source']['Interactive Thumbnail']
                     html = self.whole_page_interactive_html(source_folder, text, interactive_source_file, params, thumbnail, match)
                 elif interactive_type == 'in-page':
-                    html = self.inpage_interactive_html(source_folder, name, interactive_source_file, match)
+                    if name in self.in_page_interactives:
+                        self.regex_functions['interactive'].log('Interactive {} already used on this page with in-page mode. Use iframe mode for multiple occurrences.'.format(name), self, match.group(0))
+                    else:
+                        self.in_page_interactives.add(name)
+                        html = self.inpage_interactive_html(source_folder, name, interactive_source_file, match)
                 elif interactive_type == 'iframe':
                     html = self.iframe_interactive_html(source_folder, interactive_source_file, params, match)
                 else:
-                    self.regex_functions['file download button'].log('Interactive type not valid', self, match.group(0))
+                    self.regex_functions['interactive'].log('Interactive type not valid', self, match.group(0))
             else:
-                self.regex_functions['file download button'].log('Interactive {} does not exist'.format(name), self, match.group(0))
+                self.regex_functions['interactive'].log('Interactive {} does not exist'.format(name), self, match.group(0))
         elif not name:
-            self.regex_functions['file download button'].log('Interactive name argument not provided'.format(name), self, match.group(0))
+            self.regex_functions['interactive'].log('Interactive name argument not provided'.format(name), self, match.group(0))
         elif not interactive_type:
-            self.regex_functions['file download button'].log('Interactive type argument not provided'.format(name), self, match.group(0))
+            self.regex_functions['interactive'].log('Interactive type argument not provided'.format(name), self, match.group(0))
         return html if html else ''
 
 

@@ -6,6 +6,7 @@ REQUIRES: Python >= 3.4.1
 import generator.systemfunctions as systemfunctions
 from generator.systemconstants import *
 
+LOG_FILE_PATH = 'output/log.txt'
 
 cmd_args = systemfunctions.command_line_args()
 if cmd_args.install_dependencies:
@@ -472,10 +473,30 @@ class Language:
         self.language_path = language_code + '/'
 
 
-def setup_logging():
+def start_logging():
     """Sets up the logger to write to a file"""
     logging.config.fileConfig(LOGFILE_SETTINGS)
 
+
+def finish_logging():
+    """Closes the logging file and displays summary"""
+    logging.shutdown()
+
+    log_file = open(LOG_FILE_PATH)
+    log_message = log_file.readlines()
+    log_file.close()
+
+    log_levels = {}
+    for message in log_message:
+        level = message.split(' ')[2]
+        log_levels[level] = log_levels.get(level, 0) + 1
+
+    print('\nGeneration completed successfully!\n\nOutput summary:')
+
+    for (level, count) in sorted(log_levels.items()):
+        print('- {level}: {count} issues'.format(level=level.capitalize(), count=count))
+
+    print('\nSee output file ({path}) for more details.'.format(path=LOG_FILE_PATH))
 
 def file_exists(file_path):
     if os.path.exists(file_path):
@@ -552,7 +573,7 @@ def create_landing_page(languages, html_generator, generator_settings, translati
 
 def main():
     """Creates a Guide object"""
-    setup_logging()
+    start_logging()
     guide_settings = systemfunctions.read_settings(GUIDE_SETTINGS)
     generator_settings = systemfunctions.read_settings(GENERATOR_SETTINGS)
     translations = systemfunctions.read_settings(TRANSLATIONS_LOCATION)
@@ -575,7 +596,7 @@ def main():
             if cmd_args.include_pdf:
                 pdf_guide = Guide(generator_settings=generator_settings, guide_settings=guide_settings, language_code=language, version=version, output_type=PDF, html_generator=html_generator, html_templates=html_templates, translations=translations, regex_list=regex_list)
 
-    logging.shutdown()
+    finish_logging()
 
 
 if __name__ == "__main__":
