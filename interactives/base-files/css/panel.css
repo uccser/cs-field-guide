@@ -22,7 +22,7 @@ ul.panel .collapsible-header {
 }
 ul.panel .collapsible-body {
   border: none;
-  padding: 1rem;
+  padding: 0 1rem;
 }
 ul.panel .dropdown-menu-arrow {
   position: relative;

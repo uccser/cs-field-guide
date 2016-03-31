@@ -34,9 +34,123 @@ Pennsylvania 6-5000.
 Assorted exhalations: pfft pffft pft.
 Was that a match or was it not?</textarea>
 
+      <ul class="collapsible panel" data-collapsible="accordion">
+        <li class='panel-selector'>
+          <div class="collapsible-header">
+            <div class='panel-heading'><strong>Quick Reference Guide</strong></div>
+            <div class='dropdown-menu-arrow'>&#9660;</div>
+          </div>
+          <div class="collapsible-body">
+            <table class="striped">
+              <thead>
+                <tr>
+                    <th>Expression</th>
+                    <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>a?</td>
+                  <td>Zero or one of a</td>
+                </tr>
+                <tr>
+                  <td>a*</td>
+                  <td>Zero or more of a</td>
+                </tr>
+                <tr>
+                  <td>a+</td>
+                  <td>One or more of a</td>
+                </tr>
+                <tr>
+                  <td>a{3}</td>
+                  <td>Exactly 3 of a</td>
+                </tr>
+                <tr>
+                  <td>a{3,}</td>
+                  <td>3 or more of a</td>
+                </tr>
+                <tr>
+                  <td>a{3,6}</td>
+                  <td>Between 3 and 6 of a</td>
+                </tr>
+                <tr>
+                  <td>[^abc]</td>
+                  <td>Any single character except: a, b, or c</td>
+                </tr>
+                <tr>
+                  <td>[a-z]</td>
+                  <td>Any single character in the range a-z</td>
+                </tr>
+                <tr>
+                  <td>[a-zA-Z]</td>
+                  <td>Any single character in the range a-z or A-Z</td>
+                </tr>
+                <tr>
+                  <td>^</td>
+                  <td>Start of line</td>
+                </tr>
+                <tr>
+                  <td>$</td>
+                  <td>End of line</td>
+                </tr>
+                <tr>
+                  <td>\A</td>
+                  <td>Start of string</td>
+                </tr>
+                <tr>
+                  <td>\z</td>
+                  <td>End of string</td>
+                </tr>
+                <tr>
+                  <td>.</td>
+                  <td>Any single character</td>
+                </tr>
+                <tr>
+                  <td>\s</td>
+                  <td>Any whitespace character</td>
+                </tr>
+                <tr>
+                  <td>\S</td>
+                  <td>Any non-whitespace character</td>
+                </tr>
+                <tr>
+                  <td>\d</td>
+                  <td>Any digit</td>
+                </tr>
+                <tr>
+                  <td>\D</td>
+                  <td>Any non-digit</td>
+                </tr>
+                <tr>
+                  <td>\w</td>
+                  <td>Any word character (letter, number, underscore)</td>
+                </tr>
+                <tr>
+                  <td>\W</td>
+                  <td>Any non-word character</td>
+                </tr>
+                <tr>
+                  <td>\b</td>
+                  <td>Any word boundary</td>
+                </tr>
+                <tr>
+                  <td>(...)</td>
+                  <td>Capture everything enclosed</td>
+                </tr>
+                <tr>
+                  <td>(a|b)</td>
+                  <td>a or b</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </li>
+      </ul>
+
       <link rel="stylesheet" href="./css/regular-expression-search.css">
       <link rel="stylesheet" href="../base-files/css/third-party/codemirror.css">
       <link rel="stylesheet" href="../base-files/css/third-party/codemirror-mode-regex.css">
+      <link rel="stylesheet" href="../base-files/css/panel.css">
       <script type="text/javascript" src="../base-files/js/third-party/codemirror.js"></script>
       <script type="text/javascript" src="../base-files/js/third-party/codemirror-mode-regex.js"></script>
       <script type="text/javascript" src="./js/regular-expression-search.js"></script>
