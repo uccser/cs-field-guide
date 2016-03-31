@@ -78,20 +78,38 @@ function init() {
     cube = new THREE.Mesh( geometry, new THREE.MeshFaceMaterial( materials ) );
     // set the cube's initial position
     cube.position.y = 150;
+
     // add the cube to the scene
     scene.add( cube );
 
+/* test */
+var spotLight = new THREE.SpotLight( 0xffffff );
+spotLight.position.set( 100, 1000, 100 );
+
+spotLight.castShadow = true;
+
+spotLight.shadow.mapSize.width = 1024;
+spotLight.shadow.mapSize.height = 1024;
+
+spotLight.shadow.camera.near = 500;
+spotLight.shadow.camera.far = 4000;
+spotLight.shadow.camera.fov = 30;
+
+scene.add( spotLight );
 
     // Plane
-    // TODO: INVESTIGATE WHAT THIS IS
 
-    var geometry = new THREE.PlaneBufferGeometry( 200, 200 );
-    geometry.rotateX( - Math.PI / 2 );
+    /*
+    // make a square for the plane
+    //var geometry = new THREE.PlaneBufferGeometry( 200, 200 );
+    //// "lie" the plane on the x axis
+    //geometry.rotateX( - Math.PI / 2 );
 
-    var material = new THREE.MeshBasicMaterial( { color: 0xe0e0e0, overdraw: 0.5 } );
+    //var material = new THREE.MeshBasicMaterial( { color: 0xe0e0e0, overdraw: 0.5 } );
 
-    plane = new THREE.Mesh( geometry, material );
-    scene.add( plane );
+    //plane = new THREE.Mesh( geometry, material );
+    //scene.add( plane );
+    */
 
     renderer = new THREE.CanvasRenderer();
     renderer.setClearColor( 0xf0f0f0 );
@@ -149,7 +167,9 @@ function animate() {
 
 function render() {
 
-    plane.rotation.y = cube.rotation.y += ( targetRotation - cube.rotation.y ) * 0.05;
+    // TODO probably useful for the box rotation interactive
+    // rotates the plane to match the cube
+    //plane.rotation.y = cube.rotation.y += ( targetRotation - cube.rotation.y ) * 0.05;
     renderer.render( scene, camera );
 
 }
