@@ -42,10 +42,10 @@ $(document).ready(function () {
 
   // Process any given URL parameters
   if (starting_regex) {
-    RegularExpressionSearch.regex.setValue(starting_regex);
+    RegularExpressionSearch.regex.setValue(decodeURI(starting_regex));
   }
   if (starting_text) {
-    RegularExpressionSearch.search_text.setValue(starting_text);
+    RegularExpressionSearch.search_text.setValue(decodeURI(starting_text));
   }
   if (reference == 'true') {
     $('ul.panel div.collapsible-header').addClass('active');
