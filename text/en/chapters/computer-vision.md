@@ -12,7 +12,7 @@ This chapter is currently only a sketch of topics; it should be enough for stude
 
 {comment end}
 
-{video url="http://www.youtube.com/embed/bE2u5trQAHM?rel=0"}
+{video url="https://www.youtube.com/embed/bE2u5trQAHM?rel=0"}
 
 ## What's the big picture?
 
@@ -46,7 +46,7 @@ Giving users more information through computer vision is only one part of the st
 
 {comment}
 
-.. http://en.wikipedia.org/wiki/Google_driverless_car
+.. https://en.wikipedia.org/wiki/Google_driverless_car
 
 .. I think for this topic, it could be important to mention the links into math, and also provide links to more advanced stuff, as there will be some high school students who are very confident with math, and could investigate this topic quite possibly to the level that more advanced university students would (and there are probably some that already have!). Graphics seems to be popular with the “geekiest” and “smartest” students.
 
@@ -76,7 +76,7 @@ Digital cameras and human eyes fulfill largely the same function: images come in
 
 {panel type="teacher-note" summary="Digital camera sensors"}
 
-There are a number of different types of digital camera sensor, but for the purposes of this chapter we will be focusing on the [CMOS](http://en.wikipedia.org/wiki/CMOS_sensor”)sensors which are in most consumer electronics. An alternative kind of sensor is the [Charge-Coupled Device (CCD)](http://en.wikipedia.org/wiki/Charge-coupled_device), which is more commonly used for specialist applications such as astronomy.
+There are a number of different types of digital camera sensor, but for the purposes of this chapter we will be focusing on the [CMOS](https://en.wikipedia.org/wiki/CMOS_sensor”) sensors which are in most consumer electronics. An alternative kind of sensor is the [Charge-Coupled Device (CCD)](https://en.wikipedia.org/wiki/Charge-coupled_device), which is more commonly used for specialist applications such as astronomy.
 
 {panel end}
 
@@ -105,7 +105,7 @@ There are well-understood techniques for this, but they have to be careful that 
 
 {panel type="teacher-note" summary="Image noise on Wikipedia"}
 
-The relevant Wikipedia entry is [Image noise](http://en.wikipedia.org/wiki/Image_noise)
+The relevant Wikipedia entry is [Image noise](https://en.wikipedia.org/wiki/Image_noise)
 
 {panel end}
 
@@ -139,7 +139,7 @@ A *Gaussian* blur is another common technique, which assumes that the closest pi
 
 .. [side by side before-and-after image showing a Gaussian blur on a simple image (white square on black?)]
 
-.. http://en.wikipedia.org/wiki/Gaussian_blur
+.. https://en.wikipedia.org/wiki/Gaussian_blur
 
 .. At this point we could do an activity with a noisy image and a Gaussian blur - a light blur improves the picture quality, but increase the blur too much and the features start to become indistinct.
 
@@ -245,7 +245,7 @@ And here's a version that has been processed by an edge detection algorithm:
 
 Notice that the grain on the table above has affected the quality; some pre-processing to filter that would have helped!
 
-You can experiment with edge-detection yourself with the [Canny edge detector on this website](https://inspirit.github.io/jsfeat/sample_canny_edge.html) (see the information about [Canny edge detection on Wikipedia](http://en.wikipedia.org/wiki/Canny_edge_detector)).
+You can experiment with edge-detection yourself with the [Canny edge detector on this website](https://inspirit.github.io/jsfeat/sample_canny_edge.html) (see the information about [Canny edge detection on Wikipedia](https://en.wikipedia.org/wiki/Canny_edge_detector)).
 This is a widely used algorithm in computer vision, developed in 1986 by John F. Canny.
 
 ### Activity: Edge detection evaluation
@@ -295,7 +295,7 @@ Despite these recent changes, many of the fundamental ideas in computer vision h
 
 ## Further reading
 
-- [http://en.wikipedia.org/wiki/Computer_vision](http://en.wikipedia.org/wiki/Computer_vision)
-- [http://en.wikipedia.org/wiki/Mri](http://en.wikipedia.org/wiki/Mri)
+- [https://en.wikipedia.org/wiki/Computer_vision](https://en.wikipedia.org/wiki/Computer_vision)
+- [https://en.wikipedia.org/wiki/Mri](https://en.wikipedia.org/wiki/Mri)
 - [http://www.cosc.canterbury.ac.nz/mukundan/cogr/applcogr.html](http://www.cosc.canterbury.ac.nz/mukundan/cogr/applcogr.html)
 - [http://www.cosc.canterbury.ac.nz/mukundan/covn/applcovn.html](http://www.cosc.canterbury.ac.nz/mukundan/covn/applcovn.html)

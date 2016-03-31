@@ -127,9 +127,9 @@ else:
 
 The first line is a *print* statement (which you should be very familiar with by now!) The second line asks the user for a number of miles which is converted from input text (called a string) to an integer, the third line uses an *if* statement to check if the number entered was less than 0, so that it can print an error if it is. Otherwise if the number was ok, the program jumps into the *else* section (the error is not printed because the *if* was not true), calculates the number of kilometers (there are 0.6214 kilometers in a mile), stores it into a *variable* called number_of_kilometers for later reference, and then the last line prints it out. Again, we don’t have quotes around number_of_kilometers in the last line as we want to print the value out that is stored in the number_of_kilometers variable. If this doesn’t make sense, don’t worry. You aren’t expected to know how to program for this chapter, this introduction is only intended for you to have some idea of what a program is and the things it can do.
 
-If you are keen, you could modify this program to calculate something else, such as pounds to kilograms or farenheit to celcius. It may be best to use an installed Python interpreter on your computer rather than the web version, as the web version can give very unhelpful error messages when your program has a mistake in it (although all interpreters give terrible error messages at least sometimes!)
+If you are keen, you could modify this program to calculate something else, such as pounds to kilograms or Fahrenheit to Celsius. It may be best to use an installed Python interpreter on your computer rather than the web version, as the web version can give very unhelpful error messages when your program has a mistake in it (although all interpreters give terrible error messages at least sometimes!)
 
-Programs can do many more things, such as having a graphical user interface (like most computer programs you will be familiar with), being able to print graphics onto a screen, or being able to write to and from files on the computer in order to save information between each time you run the program.
+Programs can do many more things, such as having a graphical user interface (like most computer programs you will be familiar with), being able to print graphics onto a screen, or being able to write to and read from files on the computer in order to save information between each time you run the program.
 
 
 ### Where are we going?
@@ -158,7 +158,7 @@ So instead of building computers that can understand these high level instructio
 
 The conversion from a high level to a low level language can involve *compiling*, which replaces the high level instructions with machine code instructions that can then be run, or it can be done by *interpreting*, where each instruction is converted and followed one by one, as the program is run. In reality, a lot of languages use a mixture of these, sometimes compiling a program to an intermediate language, then interpreting it (Java does this). The language we looked at earlier, Python, is an interpreted language. Other languages such as C++ are compiled. We will talk more about compiling and interpreting later.
 
-We will start with looking at some other programming languages that programmers use to give instructions to computers, then we will look at low level languages and how computers actually carry out the instructions in them, and then finally we will talk about how we convert programs that were written by humans in a high level language into a low level language that the computer can carry out.
+We will start with looking at low level languages and how computers actually carry out the instructions in them, then we will look at some other programming languages that programmers use to give instructions to computers, and then finally we will talk about how we convert programs that were written by humans in a high level language into a low level language that the computer can carry out.
 
 ## Machine Code (Low level languages)
 
@@ -227,13 +227,15 @@ li $v0, 0
 jr $ra
 ```
 
-You can run this program using a MIPS emulator. This can be done using Alan Hogan’s online MIPS emulator by following these 2 steps:
+You can run this program using a MIPS emulator using this interactive:
 
-- [Copy paste the code into the black box on the page from this link](http://alanhogan.com/asu/assembler.php) (remove ALL existing text in the box), and then click the Assemble button.
+{interactive name="mips-assembler" type="whole-page" text="MIPS Assembler" file-type="php"}
 
-- [Copy paste the output in the “Assembler Output” box into the box on the page from this link](http://alanhogan.com/asu/simulator.php) (remove ALL existing text in the box), and click the Simulate Execution button, and the output should appear in a box near the top of the page
+Copy and paste the output in the “Assembler Output” box into the box in this simulator interactive:
 
-Once you have got the program working, try changing the values that are added. The comments tell you where these numbers that can be changed are. You should also be able to change the string (text) that is printed without too much trouble also. As a challenge, can you make it so that it subtracts rather than adds the numbers? Clue: instruction names are always very short. Unfortunately you won’t be able to make it multiply or divide using this emulator as this seems to not currently be supported. Remember that to rerun the program after changing it, you will have to follow both steps 1 and 2 again.
+{interactive name="mips-simulator" type="whole-page" text="MIPS Simulator" file-type="php"}
+
+Once you have got the program working, try changing the values that are added. The comments tell you where these numbers that can be changed are. You should also be able to change the string (text) that is printed without too much trouble also. As a challenge, can you make it so that it subtracts rather than adds the numbers? Clue: instruction names are always very short. Unfortunately you won’t be able to make it multiply or divide using this simulator as this is not currently supported. Remember that to rerun the program after changing it, you will have to follow both steps 1 and 2 again.
 
 You may be wondering why you have to carry out both these steps. Because computers work in 1’s and 0’s, the instructions need to simply be converted into hexadecimal. Hexadecimal is a shorthand notation for binary numbers. *Don’t muddle this process with compiling or interpreting!* Unlike these, it is much simpler as in general each instruction from the source code ends up being one line in the hexadecimal.
 
@@ -256,7 +258,7 @@ for i in range(5,0,-1): #Start at 5, count down by 1 each time, when we get to 0
 print("GO!!!!!")
 ```
 
-But in MIPS, it isn’t that straight forward. We need to put values into registers, and we need to build the loop out of jump statements. Firstly, how can we design the loop?
+But in MIPS, it isn’t that straightforward. We need to put values into registers, and we need to build the loop out of jump statements. Firstly, how can we design the loop?
 
 {comment}
 
@@ -319,7 +321,7 @@ These days, few programmers program directly in these languages. In the early da
 
 {comment}
 
-.. xtcb point out that compiling for large software can be slow http://xkcd.com/303/
+.. xtcb point out that compiling for large software can be slow https://xkcd.com/303/
 
 {comment end}
 
@@ -339,7 +341,7 @@ In summary, we require low level programming languages because the computer can 
 
 There are many different programming languages. Here we have included a small subset of languages, to illustrate the range of purposes that languages are used for. There are many, many more languages that are used for various purposes, and have a strong following of people who find them particularly useful for their applications.
 
-For a much larger list you can [check Wikipedia here](http://en.wikipedia.org/wiki/List_of_programming_languages).
+For a much larger list you can [check Wikipedia here](https://en.wikipedia.org/wiki/List_of_programming_languages).
 
 ### Python
 
@@ -476,7 +478,7 @@ Note that this section will be completed in a future version of the field guide.
 
 Anybody can make their own programming language. Doing so involves coming up with a syntax for your language, and writing a parser and compiler or interpreter so that programs in your language can be run. Most programming languages that people have made never become widely used.
 
-In addition to programming languages that have practical uses, people have made many programming languages that were intended to be nothing more than jokes, or to test the limits of how obscure a programming language can be. Some of them make the low level machine languages you saw earlier seem rather logical! Wikipedia has a [list of such languages](http://en.wikipedia.org/wiki/Esoteric_programming_language).
+In addition to programming languages that have practical uses, people have made many programming languages that were intended to be nothing more than jokes, or to test the limits of how obscure a programming language can be. Some of them make the low level machine languages you saw earlier seem rather logical! Wikipedia has a [list of such languages](https://en.wikipedia.org/wiki/Esoteric_programming_language).
 
 You could even make your own programming language if you wanted to!
 
@@ -486,7 +488,7 @@ A programming language such as Python or Java is implemented using a program its
 
 Since the computer hardware can only run programs in a low level language (machine code), the programming system has to make it possible for your Python instructions to be executed using only machine language. There are two broad ways to do this: interpreting and compiling.
 
-[This 1983 video](http://www.youtube.com/watch?v=_C5AHaS1mOA) provides a good analogy of the difference between an interpreter and a compiler.
+[This 1983 video](https://www.youtube.com/watch?v=_C5AHaS1mOA) provides a good analogy of the difference between an interpreter and a compiler.
 
 The main difference is that a compiler is a program that converts your program to machine language, which is then run on the computer. An interpreter is a program that reads your program line by line, works out what those instructions are, and does them immediately.
 
@@ -510,7 +512,7 @@ The diagram below shows the difference between what happens in an interpreter an
 
 There are many different programming languages, and new ones are always being invented. Each new language will need a new compiler and/or interpreter to be developed to support it. Fortunately there are good tools to help do this quickly, and some of these ideas will come up in the *Formal Languages* chapter, where things like regular expressions and grammars can be used to describe a language, and a compiler can be built automatically from the description.
 
-The languages we have discussed in this chapter are ones that you are likely to come across in introductory programming, but there are some completely different styles of languages that have very important applications. There is an approach to programming called [Functional programming](http://en.wikipedia.org/wiki/Functional_programming) where all operations are formulated as mathematical functions. Common languages that use functional techniques include Lisp, Scheme, Haskel, Clojure and F#; even some conventional languages (such as Python) include ideas from functional programming. A pure functional programming style eliminates a problem called *side effects*, and without this problem it can be easier to make sure a program does exactly what it is intended to do. Another important type of programming is [logic programming](http://en.wikipedia.org/wiki/Logic_programming), where a program can be thought of as a set of rules stating what it should do, rather than instructions on how to do it. The most well-known logic programming language is Prolog.
+The languages we have discussed in this chapter are ones that you are likely to come across in introductory programming, but there are some completely different styles of languages that have very important applications. There is an approach to programming called [Functional programming](https://en.wikipedia.org/wiki/Functional_programming) where all operations are formulated as mathematical functions. Common languages that use functional techniques include Lisp, Scheme, Haskell, Clojure and F#; even some conventional languages (such as Python) include ideas from functional programming. A pure functional programming style eliminates a problem called *side effects*, and without this problem it can be easier to make sure a program does exactly what it is intended to do. Another important type of programming is [logic programming](https://en.wikipedia.org/wiki/Logic_programming), where a program can be thought of as a set of rules stating what it should do, rather than instructions on how to do it. The most well-known logic programming language is Prolog.
 
 
 
@@ -520,7 +522,7 @@ The languages we have discussed in this chapter are ones that you are likely to 
 
 - The [TeachICT lesson on programming languages](http://www.teach-ict.com/gcse_computing/ocr/216_programming/programming_languages/miniweb/index.htm) covers many of the topics in this chapter
 - CS Online has a [quick overview of this topic](http://courses.cs.vt.edu/~csonline/ProgrammingLanguages/Lessons/Introduction/index.html)
-- Wikipedia entries on [Programming language](http://en.wikipedia.org/wiki/Programming_language), [High level language](http://en.wikipedia.org/wiki/High-level_programming_language), and [Low level language](http://en.wikipedia.org/wiki/Low-level_programming_language)
+- Wikipedia entries on [Programming language](https://en.wikipedia.org/wiki/Programming_language), [High level language](https://en.wikipedia.org/wiki/High-level_programming_language), and [Low level language](https://en.wikipedia.org/wiki/Low-level_programming_language)
 
 - [website including posters comparing programming languages](http://programming.dojo.net.nz/) by Samuel Williams
 - [tutorial comparing programming languages](http://holowczak.com/programming-concepts-tutorial-programmers/)

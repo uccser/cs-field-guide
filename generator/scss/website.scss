@@ -1,7 +1,7 @@
-@import "materialize";
+@import "third-party/materialize";
 
 // Pygments theme for code syntax highlighting
-@import "pygments-monokai";
+@import "third-party/pygments-monokai";
 
 pre {
   font-family: Consolas, "Liberation Mono", Courier, monospace;

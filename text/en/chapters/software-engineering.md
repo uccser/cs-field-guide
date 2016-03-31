@@ -8,7 +8,7 @@ Furthermore, to get real experience with software engineering would involve bein
 In this chapter we've tried to capture what really happens in industry, and suggest activities that will give students a realistic view of what is involved.
 {panel end}
 
-{video url="http://www.youtube.com/embed/ZNMbEbz2dys?rel=0"}
+{video url="https://www.youtube.com/embed/ZNMbEbz2dys?rel=0"}
 
 ## What's the big picture?
 
@@ -16,11 +16,11 @@ Software failures happen all the time. Sometimes it’s a little bug that makes 
 
 In 1996, The ARIANE 5 rocket of the European Space Agency was launched for its first test flight: Countdown, ignition, flame and smoke, soaring rocket... then BANG! Lots of little pieces scattered through the South American rainforest. Investigators had to piece together what happened and finally tracked down this tiny, irrelevant bug. A piece of software on board the rocket which was not even needed had reported an error and started a self-destruct sequence. Thankfully, no one was on board but the failure still caused about US$370m damage.
 
-{video url="http://www.youtube.com/embed/gp_D8r-2hwk?rel=0"}
+{video url="https://www.youtube.com/embed/gp_D8r-2hwk?rel=0"}
 
 {image filename="ariane-rocket-cartoon.png" alt="Ariane Cartoon"}
 
-In extreme cases, software bugs can endanger lives. This happened in the 1980s, for example, when a [radiation therapy machine](http://en.wikipedia.org/wiki/Therac) caused the deaths of 3 patients by giving 100 times the intended dose of radiation. And in 1979, a US army computer almost started a nuclear war, when it misinterpreted a simulation of the Soviet Union launching a missile as the real thing! (If you are interested in other software failures, [CS4FN](http://www.cs4fn.org/softwareengineering/backtodrawingboard.php) lists the most spectacular ones!)
+In extreme cases, software bugs can endanger lives. This happened in the 1980s, for example, when a [radiation therapy machine](https://en.wikipedia.org/wiki/Therac) caused the deaths of 3 patients by giving 100 times the intended dose of radiation. And in 1979, a US army computer almost started a nuclear war, when it misinterpreted a simulation of the Soviet Union launching a missile as the real thing! (If you are interested in other software failures, [CS4FN](http://www.cs4fn.org/softwareengineering/backtodrawingboard.php) lists the most spectacular ones!)
 
 Our society today is so reliant on software that we can’t even imagine life without it anymore. In many ways, software has made our lives easier: we write emails, chat with friends on Facebook, play computer games and search for information on Google. Heaps of software is hidden behind the scenes too so we don’t even know we’re using it, for example in cars, traffic lights, TVs, washing machines, Japanese toilets, and hearing aids. We've become so used to having software, we expect it to work at all times!
 
@@ -42,7 +42,7 @@ In a digital system, the human is the most important part!
 {panel type="curiosity" summary="Moore's Law"}
 In 1965, Gordon Moore noticed that the number of transistors on integrated circuits was doubling about every 2 years. This means that computers’ processing power was doubling roughly every 2 years (sometimes this is quoted as 18 months due to the combination of the numbers *and* speed increasing). Moore said that he expected this trend to continue for at least 10 years.
 
-Believe it or not, Moore’s law didn’t just last for 10 years but is still true nearly 50 years later (although a slowdown is predicted in the next couple of years). This means that computers today are over 100 million times faster than in 1965! (In 2015 it was 50 years since 1965, which means that Moore's law predicts that processing power has doubled about 25 times; {math}2^{25}{math end} is 16,777,216 so if computers could run one instruction per second in 1965, they can now run 33,554,432.) It also means that if you buy a computer today, you might regret it in two years time when new computers will be twice as fast. Moore’s law also relates to other improvements digital devices, such as processing power in cellphones and the number of pixels in digital cameras.
+Believe it or not, Moore’s law didn’t just last for 10 years but is still true nearly 50 years later (although a slowdown is predicted in the next couple of years). This means that computers today are over 100 million times faster than in 1965! (In 2015 it was 50 years since 1965, which means that Moore's law predicts that processing power has doubled about 25 times; {math}2^{25}{math end} is 16,777,216 so if computers could run one instruction per second in 1965, they can now run 33,554,432.) It also means that if you buy a computer today, you might regret it in two years time when new computers will be twice as fast. Moore’s law also relates to other improvements in digital devices, such as processing power in cellphones and the number of pixels in digital cameras.
 
 The exact numbers above will depend on exactly what you're describing, but the main point is that the processing power is increasing *exponentially* &mdash; exponential growth doesn't mean just getting a lot faster, but getting unbelievably faster; nothing in human history has ever grown this quickly! To illustrate this in reverse, the time taken to open an app on a smartphone might be half a second today, but a 1965 smartphone would have taken over a year to open the same app (and the phone would probably have been the size of a football field). It's no wonder that smartphones weren't popular in the 1960s.
 {panel end}
@@ -66,7 +66,7 @@ To be able to start making software, we first have to decide what we actually wa
 
 Analysis is extremely important. Obviously, if we make a mistake at this stage of the project, the software we end up building may not be what was wanted; all the other work to design, build and test the software could be for nothing.
 
-For example, imagine your friend Anna asks you to write a program to help her get to school in the morning. You write a great GPS navigation system and show it to Anna, but it turns out that she takes to bus to school so what she really needed was just software showing the current bus timetable. All your hard work was in vain, because you didn’t get the details right in the start!
+For example, imagine your friend Anna asks you to write a program to help her get to school in the morning. You write a great GPS navigation system and show it to Anna, but it turns out that she takes the bus to school so what she really needed was just software showing the current bus timetable. All your hard work was in vain, because you didn’t get the details right in the start!
 
 Sometimes we are making software for ourselves; in that case, we can just decide what the software should do. (But be careful: even if you think you know what you want the software to do when you start developing it, you will probably find that by the end of the project you will have a very different view of what it should do. The problem is that before you have the software, you can’t really predict how you will use it when it’s finished. For example, the people making smart phones and software for smart phones probably didn’t anticipate how many people would want to use their smart phones as torches!)
 
@@ -74,7 +74,7 @@ In many cases, we build software for other people. You might make a website for 
 
 We call anyone who has an interest in the software a *stakeholder*. These are the people that you need to talk to during the analysis part of your project to find out what they need the software to do.
 
-Imagine that you are making a phone app that allows students to preorder food from the school cafeteria. They can use the app to request the food in the morning and then just go a pick up the food at lunch time. The idea is that this should help streamline the serving of food and reduce queues in the cafeteria. Obvious stakeholders for your project are the students (who will be using the phone app) and cafeteria staff (who will be receiving requests through the app). Less obvious (and indirect) stakeholders include parents (“I have to buy my child a smartphone so they can use this app?”), school admin (“No phones should be used during school time!”) and school IT support who will have to deal with all the students who can’t figure out how to work the app or connect to the network. Different stakeholders might have very different ideas about what the app should do.
+Imagine that you are making a phone app that allows students to preorder food from the school cafeteria. They can use the app to request the food in the morning and then just go and pick up the food at lunch time. The idea is that this should help streamline the serving of food and reduce queues in the cafeteria. Obvious stakeholders for your project are the students (who will be using the phone app) and cafeteria staff (who will be receiving requests through the app). Less obvious (and indirect) stakeholders include parents (“I have to buy my child a smartphone so they can use this app?”), school admin (“No phones should be used during school time!”) and school IT support who will have to deal with all the students who can’t figure out how to work the app or connect to the network. Different stakeholders might have very different ideas about what the app should do.
 
 To find out what our stakeholders want the software to do, we usually interview them. We ask them questions to find *functional* and *non-functional* requirements for the software. Functional requirements are things the software needs to do. For example, your phone app needs to allow students to choose the food they want to order. It should then send the order to the cafeteria, along with the student’s name so that they can be easily identified when picking up the food.
 
@@ -96,10 +96,10 @@ You’ll often find that customers have a specific process that they follow alre
 
 Customers are usually experts in their field and are therefore likely to leave out information that they think is obvious, but may not be obvious to you. Other times, they do not really understand what can and cannot be done with computers and may not mention something because they do not realise that it is possible to do with a computer. Again, it’s up to you to get this information from them and make sure that they tell you what you need to know.
 
-{image filename="xkcd-tasks.png" alt="A xkcd comic on Computer Science tasks" source="http://xkcd.com/1425/"}
+{image filename="xkcd-tasks.png" alt="A xkcd comic on Computer Science tasks" source="https://xkcd.com/1425/"}
 
 {panel type="curiosity" summary="Easy for computers and hard for humans vs hard for computers and easy for humans"}
-The rollover text of the above image (you will need to actually view it on [xkcd's website](http://xkcd.com/1425/)) is worth reading too. Image recognition is a problem that initially seemed straightforward, probably because humans find it easy. Interestingly, there are many problems that computers find easy, but humans find challenging, such as multiplying large numbers. Conversely, there are many other problems that computers find hard, yet humans find easy, such as recognizing that the thing in a photo is, for example, a cat.
+The rollover text of the above image (you will need to actually view it on [xkcd's website](https://xkcd.com/1425/)) is worth reading too. Image recognition is a problem that initially seemed straightforward, probably because humans find it easy. Interestingly, there are many problems that computers find easy, but humans find challenging, such as multiplying large numbers. Conversely, there are many other problems that computers find hard, yet humans find easy, such as recognizing that the thing in a photo is, for example, a cat.
 {panel end}
 
 If you have multiple stakeholders, you can get conflicting viewpoints. For example, when you talk to the cafeteria people about your food-ordering app, they may suggest that every student should only be able to order food up to a value of $10. In this way, they can avoid prank orders. When you talk to a teacher, they agree with this suggestion because they are worried about bullying. They don’t want one student to get pressured into ordering food for lots of other students. But the students tell you that they want to be able to order food for their friends. In their view, $10 isn’t even enough for one student.
@@ -261,6 +261,7 @@ Next, think about a stakeholder for this software. Who would use it and why? Bri
 Now, you can go ahead and install the program and play around with it. Try to imagine that you are the stakeholder that you described above. Put yourself in this person’s shoes. How would they feel about this program? Does it meet your requirements? What important features are missing? Try to see if you can find any particular problems or bugs in the program. (Tip: sometimes giving programs unexpected input, for example a word when they were expecting a number, can cause some interesting behaviour.)
 
 Write up a brief acceptance test report about what you found. Try to link back to the requirements that you wrote down earlier, noting which have been met (or maybe partially met) and which haven’t. Do you think that overall the stakeholder would be happy with the software? Do you think that they would be likely to use it? Which features would you tell the software developers to implement next?
+{panel end}
 
 {panel type="teacher-note" summary="Reading the description"}
 
@@ -360,7 +361,7 @@ Which of these two approaches worked best --- designing everything first, or doi
 {panel type="teacher-note" summary="Further advice on the above project"}
 Usually the point about agile design comes across very strongly; it's rare for a designed bridge to work, but it can usually be done with the iterative agile approach. Students might point out that they aren't experts with cards, but a software engineer should be an expert with software. However, the real issue is that the software engineer probably isn't an expert at the kind of system they're implementing, since the system probably hasn't been built before.
 
-Another option is to get students to build card houses (the main point is that the students should be working in a domain they're not familiar with; if they've build card bridges before then the activity won't work!) A card house might be easier for younger students; the bridge is quite a challenge! You could challenge students to design and build a tower as high as possible out of cards. Alternatively, you could use lego but cards are definitely more challenging and harder to design with.
+Another option is to get students to build card houses (the main point is that the students should be working in a domain they're not familiar with; if they've built card bridges before then the activity won't work!) A card house might be easier for younger students; the bridge is quite a challenge! You could challenge students to design and build a tower as high as possible out of cards. Alternatively, you could use Lego but cards are definitely more challenging and harder to design with.
 {panel end}
 
 {panel type="project" summary="A Navigation Language"}
@@ -389,7 +390,7 @@ When the builder thinks they are done, compare what you built! How precise was y
 
 ## Agile software development
 
-*Agile* software development has become popular over the last 10 years; two of the most famous agile processes are called [XP](http://en.wikipedia.org/wiki/Extreme_programming) and [Scrum](http://en.wikipedia.org/wiki/Scrum_(development\)). Agile software development is all about being extremely flexible and adaptive to change. Most other software processes try to manage and control changes to requirements during the process; agile processes accept and expect change. The following xkcd comic illustrates part of the apparent dilemma that agile processes aim to address. With Agile, we can develop software quickly, correctly, and be adaptive to change.
+*Agile* software development has become popular over the last 10 years; two of the most famous agile processes are called [XP](https://en.wikipedia.org/wiki/Extreme_programming) and [Scrum](https://en.wikipedia.org/wiki/Scrum_(development\)). Agile software development is all about being extremely flexible and adaptive to change. Most other software processes try to manage and control changes to requirements during the process; agile processes accept and expect change. The following xkcd comic illustrates part of the apparent dilemma that agile processes aim to address. With Agile, we can develop software quickly, correctly, and be adaptive to change.
 
 {image filename="xkcd-good-code.png" alt="A xkcd comic on good code" source="https://xkcd.com/844/"}
 
@@ -397,7 +398,7 @@ Agile processes work similarly to iterative processes in that they do a number o
 
 In many other processes, documentation is important. We document the requirements so that we can look back at them; we document our design so that we can refer back to it when we program the system. Agile software processes expect things to change all the time. Therefore, they do very little planning and documentation because documenting things that will change anyway is a bit of a waste of time.
 
-Agile processes include lots of interesting principles that are quite different from standard software development. We look at the most interesting ones here. If you want to find out more, have a look at [Agile Academy on Youtube](http://www.youtube.com/user/AgileAcademyAus) which has lots of videos about interesting agile practices! There’s also [another video here](http://www.youtube.com/watch?v=kqz_jDS0RWY) that explains the differences between agile software development and the waterfall process.
+Agile processes include lots of interesting principles that are quite different from standard software development. We look at the most interesting ones here. If you want to find out more, have a look at [Agile Academy on Youtube](https://www.youtube.com/user/AgileAcademyAus) which has lots of videos about interesting agile practices! There’s also [another video here](https://www.youtube.com/watch?v=kqz_jDS0RWY) that explains the differences between agile software development and the waterfall process.
 
 Here are some general principles used for agile programming:
 
@@ -412,7 +413,7 @@ You might think that pair-programming is not very efficient and that it would be
 
 YAGNI stands for “You ain’t gonna need it” and tells developers to keep things simple and only design and implement the things that you know you are really going to need. It can be tempting to think that in the future you might need feature x and so you may as well already create it now. But remember that requirements are likely to change so chances are that you won’t need it after all.
 
-{image filename="xkcd-the-general-problem.png" alt="A xkcd comic on the general problem" source="http://xkcd.com/974/"}
+{image filename="xkcd-the-general-problem.png" alt="A xkcd comic on the general problem" source="https://xkcd.com/974/"}
 
 You ain’t gonna need it!
 
@@ -481,16 +482,16 @@ It can be difficult to understand the importance of some of the problems and tec
 ## Further reading
 
 ### Useful Links
-- [Wikipedia - Software engineering](http://en.wikipedia.org/wiki/Software_engineering)
+- [Wikipedia - Software engineering](https://en.wikipedia.org/wiki/Software_engineering)
 - [CS4FN - Software engineering](http://www.cs4fn.org/fundamentals/softwareeng.php)
 - [Teach ICT - Systems Life Cycle](http://www.teach-ict.com/as_a2_ict_new/ocr/A2_G063/331_systems_cycle/slc_stages/home_slc.html)
-- [Wikipedia - Software crisis](http://en.wikipedia.org/wiki/Software_crisis)
+- [Wikipedia - Software crisis](https://en.wikipedia.org/wiki/Software_crisis)
 - [IEEE - Why software fails](http://spectrum.ieee.org/computing/software/why-software-fails)
-- [Wikipedia - Software design](http://en.wikipedia.org/wiki/Software_design)
-- [Wikipedia - Abstraction](http://en.wikipedia.org/wiki/Abstraction_(computer_science\))
-- [Wikipedia - Software testing](http://en.wikipedia.org/wiki/Software_testing)
-- [Wikipedia - Software development process](http://en.wikipedia.org/wiki/Software_development_process)
-- [Wikipedia - Waterfall model](http://en.wikipedia.org/wiki/Waterfall_model)
-- [Wikipedia - Iterative and incremental development](http://en.wikipedia.org/wiki/Iterative_and_incremental_development)
-- [Wikipedia - Agile software development](http://en.wikipedia.org/wiki/Agile_software_development)
-- [Wikipedia - Test driven development](http://en.wikipedia.org/wiki/Test-driven_development)
+- [Wikipedia - Software design](https://en.wikipedia.org/wiki/Software_design)
+- [Wikipedia - Abstraction](https://en.wikipedia.org/wiki/Abstraction_(computer_science\))
+- [Wikipedia - Software testing](https://en.wikipedia.org/wiki/Software_testing)
+- [Wikipedia - Software development process](https://en.wikipedia.org/wiki/Software_development_process)
+- [Wikipedia - Waterfall model](https://en.wikipedia.org/wiki/Waterfall_model)
+- [Wikipedia - Iterative and incremental development](https://en.wikipedia.org/wiki/Iterative_and_incremental_development)
+- [Wikipedia - Agile software development](https://en.wikipedia.org/wiki/Agile_software_development)
+- [Wikipedia - Test driven development](https://en.wikipedia.org/wiki/Test-driven_development)

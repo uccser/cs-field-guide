@@ -201,7 +201,7 @@ For the second challenge, the answer is hopefully obvious to the students. Using
 
 
 {panel type="curiosity" summary="ROT13 Caesar Cipher"}
-The Caesar cipher with a key of 13 is the same as an approach called [ROT13 (rotate 13 characters)](http://en.wikipedia.org/wiki/Rot_13), which is sometimes used to obscure things like the punchline of a joke, a spoiler for a story, the answer to a question, or text that might be offensive. It is easy to decode (and there are plenty of automatic systems for doing so), but the user has to deliberately ask to see the deciphered version. A key of 13 for a Caesar cipher has the interesting property that the encryption method is identical to the decryption method i.e. the same program can be used for both. Many strong encryption methods try to make the encryption and decryption processes as similar as possible so that the same software and/or hardware can be used for both parts of the task, generally with only minor adaptions.
+The Caesar cipher with a key of 13 is the same as an approach called [ROT13 (rotate 13 characters)](https://en.wikipedia.org/wiki/Rot_13), which is sometimes used to obscure things like the punchline of a joke, a spoiler for a story, the answer to a question, or text that might be offensive. It is easy to decode (and there are plenty of automatic systems for doing so), but the user has to deliberately ask to see the deciphered version. A key of 13 for a Caesar cipher has the interesting property that the encryption method is identical to the decryption method i.e. the same program can be used for both. Many strong encryption methods try to make the encryption and decryption processes as similar as possible so that the same software and/or hardware can be used for both parts of the task, generally with only minor adaptions.
 {panel end}
 
 ### Problems with Substitution Ciphers
@@ -324,12 +324,12 @@ ZEBRAS ZACH, ZAVIER, AND ZANE ZOOMED THROUGH THE ZOO
 {panel end}
 
 {panel type="curiosity" summary="The letter E isn't always the most common letter..."}
-Although in almost all English texts the letter E is the most common letter, it isn't always. For example, the [1939 novel *Gadsby* by Ernest Vincent Wright](http://en.wikipedia.org/wiki/Gadsby_(novel\)) doesn't contain a single letter E (this is called a lipogram). Furthermore, the text you're attacking may not be English. During World War 1 and 2, the US military had many Native American [Code talkers](http://en.wikipedia.org/wiki/Code_talker) translate messages into their own language, which provided a strong layer of security at the time.
+Although in almost all English texts the letter E is the most common letter, it isn't always. For example, the [1939 novel *Gadsby* by Ernest Vincent Wright](https://en.wikipedia.org/wiki/Gadsby_(novel\)) doesn't contain a single letter E (this is called a lipogram). Furthermore, the text you're attacking may not be English. During World War 1 and 2, the US military had many Native American [Code talkers](https://en.wikipedia.org/wiki/Code_talker) translate messages into their own language, which provided a strong layer of security at the time.
 {panel end}
 
 
 {panel type="curiosity" summary="The Vigenere Cipher"}
-A slightly stronger cipher than the Caesar cipher is the [Vigenere cipher](http://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher), which is created by using multiple Caesar ciphers, where there is a key phrase (e.g. "acb"), and each letter in the key gives the offset (in the example this would be 1, 3, 2). These offsets are repeated to give the offset for encoding each character in the plaintext.
+A slightly stronger cipher than the Caesar cipher is the [Vigenere cipher](https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher), which is created by using multiple Caesar ciphers, where there is a key phrase (e.g. "acb"), and each letter in the key gives the offset (in the example this would be 1, 3, 2). These offsets are repeated to give the offset for encoding each character in the plaintext.
 
 By having multiple Caesar ciphers, common letters such as E will no longer stand out as much, making frequency analysis a lot more challenging. The following website shows the effect on the distribution.
 [http://www.simonsingh.net/The_Black_Chamber/vigenere_strength.html](http://www.simonsingh.net/The_Black_Chamber/vigenere_strength.html)
@@ -450,7 +450,7 @@ The fictitious name for the eavesdropper is usually Eve.
 
 {image filename="xkcd-protocol.png" alt="A xkcd comic on protocols" source="https://xkcd.com/1323/"}
 
-There are several other characters used to describe activities around encryption protocols: for example Mallory (a malicious attacker) and Trudy (an intruder). Wikipedia has a [list of Alice and Bob's friends](http://en.wikipedia.org/wiki/Alice_and_Bob)
+There are several other characters used to describe activities around encryption protocols: for example Mallory (a malicious attacker) and Trudy (an intruder). Wikipedia has a [list of Alice and Bob's friends](https://en.wikipedia.org/wiki/Alice_and_Bob)
 {panel end}
 
 If Alice is sending an encrypted message to Bob, this raises an interesting problem in encryption.
@@ -477,7 +477,7 @@ Distributing keys physically is very expensive, and up to the 1970s large sums o
 
 Additionally, there's a video illustrating how public key systems work using a padlock analogy.
 
-{video url="http://www.youtube.com/watch?v=a72fHRr6MRU"}
+{video url="https://www.youtube.com/watch?v=a72fHRr6MRU"}
 {panel end}
 
 {panel type="teacher-note" summary="Even more about Alice and Bob"}
@@ -511,9 +511,7 @@ Firstly, you will need to generate a pair of keys using the key generator intera
 
 This next interactive is the encrypter, and it is used to encrypt messages with your **public key**. Your friends should use this to encrypt messages for you.
 
-{comment}
-Need to put the encrypter here. Note that I have given up on trying to use the same interactive for both encrypting and decrypting.
-{comment end}
+{interactive name="rsa-no-padding" type="iframe"}
 
 To ensure you understand, try encrypting a short message with your **public key**. In the next section, there is an interactive that you can then use to decrypt the message with your private key.
 
@@ -521,13 +519,11 @@ To ensure you understand, try encrypting a short message with your **public key*
 
 Finally, this interactive is the decrypter. It is used to decrypt messages that were encrypted with your public key. In order to decrypt the messages, you will need your **private key**.
 
-{comment}
-Need to put decrypter here. Note that it might need to go in an iframe, as the code will be very similar to the encrypter and collisions are likely
-{comment end}
+{interactive name="rsa-no-padding" type="iframe" parameters="mode=decrypt"}
 
 Despite even your enemies knowing your public key (as you publicly announced it), they cannot use it to decrypt your messages which were encrypted using the public key. You are the only one who can decrypt messages, as that requires the private key which hopefully you are the only one who access to.
 
-Note that this interactive’s implementation of RSA only uses around 50 bits of encryption and has other weaknesses. It is just for demonstrating the concepts here and is not quite the same as the implementations used in live encryption systems.
+Note that this interactive’s implementation of RSA is just for demonstrating the concepts here and is not quite the same as the implementations used in live encryption systems.
 
 {panel type="curiosity" summary="Can we reverse the RSA calculations?"}
 
@@ -557,10 +553,18 @@ So why is it that despite these two problems being similar, one of them is “ea
 You have probably done long multiplication in school by making one line for each digit in the second number and then adding all the rows together. We can analyse the speed of this algorithm, much like we did in the algorithms chapter for sorting and searching.
 Assuming that each of the two numbers has the same number of digits, which we will call *n* (“Number of digits”), we need to write *n* rows.
 For each of those *n* rows, we will need to do around *n* multiplications.
-That gives us {math}n \times n{math end} little multiplications. We need to add the *n* rows together at the end as well, but that doesn’t take long so lets ignore that part. We have determined that the number of small multiplications needed to multiply two big numbers is approximately the square of the number of digits. So for two numbers with 1000 digits, that’s 1,000,000 little multiplication operations. A computer can do that in less than a second! If you know about Big-O notation, this is an {math}O(n^2){math end} algorithm, where *n* is the number of digits. Note that some slightly better algorithms have been designed, but this estimate is good enough for our purposes.
+That gives us {math}n \times n{math end} little multiplications.
+We need to add the *n* rows together at the end as well, but that doesn’t take long so lets ignore that part.
+We have determined that the number of small multiplications needed to multiply two big numbers is approximately the square of the number of digits.
+So for two numbers with 1000 digits, that’s 1,000,000 little multiplication operations.
+A computer can do that in less than a second! If you know about Big-O notation, this is an {math}O(n^2){math end} algorithm, where *n* is the number of digits.
+Note that some slightly better algorithms have been designed, but this estimate is good enough for our purposes.
 
-For the second problem, we’d need an algorithm that could find the two numbers that were multiplied together. You might initially say, why can’t we just reverse the multiplication? The reverse of multiplication is division, so can’t we just divide to get the two numbers?
-It’s a good idea, but it won’t work. For division we need to know the big number, and one of the small numbers we want to divide into it, and that will give us the other small number. But in this case, we *only* know the big number. So it isn’t a straightforward long division problem at all!
+For the second problem, we’d need an algorithm that could find the two numbers that were multiplied together.
+You might initially say, why can’t we just reverse the multiplication? The reverse of multiplication is division, so can’t we just divide to get the two numbers?
+It’s a good idea, but it won’t work.
+For division we need to know the big number, and one of the small numbers we want to divide into it, and that will give us the other small number.
+But in this case, we *only* know the big number. So it isn’t a straightforward long division problem at all!
 It turns out that there is no known fast algorithm to solve the problem. One way is to just try dividing by every number that is less than the number (well, we only need to go up to the square root, but that doesn’t help much!) There are still billions of billions of billions of numbers we need to check. Even a computer that could check 1 billion possibilities a second isn’t going to help us much with this! If you know about Big-O notation, this is an {math}O(10^n){math end} algorithm, where n is the number of digits -- even small numbers of digits are just too much to deal with!
 There are slightly better solutions, but none of them shave off enough time to actually be useful for problems of the size of the one above!
 
@@ -720,15 +724,15 @@ There are many aspects to computer security beyond encryption. For example, acce
 Another major problem is writing secure software that doesn't leave ways for a user to get access to information that they shouldn't (such as typing a database command into a website query and have the system accidentally run it, or overflowing the buffer with a long input, which could accidentally replace parts of the program).
 Also, systems need to be protected from "denial of service" (DOS) attacks, where they get so overloaded with requests (e.g. to view a web site) that the server can't cope, and legitimate users get very slow response from the system, or it might even fail completely.
 
-For other kinds of attacks relating to computer security, see the [Wikipedia entry on Hackers](http://en.wikipedia.org/wiki/Hacker_(computer_security)).
+For other kinds of attacks relating to computer security, see the [Wikipedia entry on Hackers](https://en.wikipedia.org/wiki/Hacker_(computer_security)).
 
-There's a dark cloud hanging over the security of all current encryption methods: [Quantum computing](http://en.wikipedia.org/wiki/Quantum_computer).
+There's a dark cloud hanging over the security of all current encryption methods: [Quantum computing](https://en.wikipedia.org/wiki/Quantum_computer).
 Quantum computing is in its infancy, but if this approach to computing is successful, it has the potential to run very fast algorithms for attacking our most secure encryption systems (for example, it could be used to factorise numbers very quickly). In fact, the quantum algorithms have already been invented, but we don't know if quantum computers can be built to run them.
 Such computers aren't likely to appear overnight, and if they do become possible, they will also open the possibility for new encryption algorithms. This is yet another mystery in computer science where we don't know what the future holds, and where there could be major changes in the future. But we'll need very capable computer scientists around at the time to deal with these sorts of changes!
 
-On the positive side, [quantum information transfer protocols](http://en.wikipedia.org/wiki/Quantum_cryptography_protocol) exist and are used in practice (using specialised equipment to generate quantum bits); these provide what is in theory a perfect encryption system, and don't depend on an attacker being unable to solve a particular computational problem. Because of the need for specialised equipment, they are only used in high security environments such as banking.
+On the positive side, [quantum information transfer protocols](https://en.wikipedia.org/wiki/Quantum_cryptography_protocol) exist and are used in practice (using specialised equipment to generate quantum bits); these provide what is in theory a perfect encryption system, and don't depend on an attacker being unable to solve a particular computational problem. Because of the need for specialised equipment, they are only used in high security environments such as banking.
 
-Of course, encryption doesn't fix all our security problems, and because we have such good encryption systems available, information thieves must turn to other approaches, especially social engineering. The easiest way to get a user's password is to ask them! A [phishing attack](http://en.wikipedia.org/wiki/Phishing) does just that, and there are estimates that as many as 1 in 20 computer users have given out secret information this way at some stage.
+Of course, encryption doesn't fix all our security problems, and because we have such good encryption systems available, information thieves must turn to other approaches, especially social engineering. The easiest way to get a user's password is to ask them! A [phishing attack](https://en.wikipedia.org/wiki/Phishing) does just that, and there are estimates that as many as 1 in 20 computer users have given out secret information this way at some stage.
 
 Other social engineering approaches that can be used include bribing or blackmailing people who have access to a system, or simply looking for a password written on a sticky note on someone's monitor! Gaining access to someone's email account is a particularly easy way to get lots of passwords, because many "lost password" systems will send a new password to their email account.
 
@@ -747,7 +751,7 @@ Other social engineering approaches that can be used include bribing or blackmai
 {panel type="curiosity" summary="Steganography"}
 
 Cryptography is about hiding the content of a message, but sometimes it's important to hide the *existence* of the message. Otherwise an enemy might figure out that something is being planned just because a lot more messages are being sent, even though they can't read them.
-One way to achieve this is via *steganography*, where a secret message is hidden inside another message that seems innocuous. A classic scenario would be to publish a message in the public notices of a newspaper or send a letter from prison where the number of letters in each word represent a code. To a casual reader, the message might seem unimportant (and even say the opposite of the hidden one), but someone who knows the code could work it out. Messages can be hidden in digital images by making unnoticable changes to pixels so that they store some information. You can find out [more about steganography on Wikipedia](http://en.wikipedia.org/wiki/Steganography) or in this [lecture on steganography](http://www.youtube.com/watch?v=Py-qu9KWXhk#t=29).
+One way to achieve this is via *steganography*, where a secret message is hidden inside another message that seems innocuous. A classic scenario would be to publish a message in the public notices of a newspaper or send a letter from prison where the number of letters in each word represent a code. To a casual reader, the message might seem unimportant (and even say the opposite of the hidden one), but someone who knows the code could work it out. Messages can be hidden in digital images by making unnoticable changes to pixels so that they store some information. You can find out [more about steganography on Wikipedia](https://en.wikipedia.org/wiki/Steganography) or in this [lecture on steganography](https://www.youtube.com/watch?v=Py-qu9KWXhk#t=29).
 
 Two fun uses of steganography that you can try to decode yourself are a [film about ciphers that contains hidden ciphers (called "The Thomas Beale Cipher")](http://www.thomasbealecipher.com/), and an activity that has [five-bit text codes hidden in music](http://csunplugged.org/modem).
 
@@ -756,7 +760,7 @@ Two fun uses of steganography that you can try to decode yourself are a [film ab
 
 ## Further reading
 
-The [Wikipedia entry on cryptography](http://en.wikipedia.org/wiki/Cryptography) has a fairly approachable entry going over the main terminology used in this chapter (and a lot more)
+The [Wikipedia entry on cryptography](https://en.wikipedia.org/wiki/Cryptography) has a fairly approachable entry going over the main terminology used in this chapter (and a lot more)
 
 The encryption methods used these days rely on fairly advanced maths; for this reason books about encryption tend to either be beyond high school level, or else are about codes that aren't actually used in practice.
 
@@ -795,7 +799,7 @@ The book "Hacking Secret Ciphers with Python: A beginner's guide to cryptography
 
 - [How Stuff Works entry on Encryption](http://www.howstuffworks.com/encryption.htm)
 - [Cryptool](http://www.cryptool.org/) is a free system for trying out classical and modern encryption methods. Some are beyond the scope of this chapter, but many will be useful for running demonstrations and experiments in cryptography.
-- [Wikipedia entry on Cryptographic keys](http://en.wikipedia.org/wiki/Key_%28cryptography%29)
-- [Wikipedia entry on the Caesar cipher](http://en.wikipedia.org/wiki/Caesar_cypher)
+- [Wikipedia entry on Cryptographic keys](https://en.wikipedia.org/wiki/Key_%28cryptography%29)
+- [Wikipedia entry on the Caesar cipher](https://en.wikipedia.org/wiki/Caesar_cypher)
 - [Videos about modern encryption methods](http://simonsingh.net/media/online-videos/cryptography/the-science-of-secrecy-going-public/)
 - [Online interactives for simple ciphers](http://www.braingle.com/brainteasers/codes/index.php)
