@@ -5,9 +5,14 @@ RegularExpressionSearch = {};
 
 $(document).ready(function () {
 
+  // Save URL parameters (undefined if not available)
+  var starting_regex = getUrlParameter('regex');
+  var starting_text = getUrlParameter('text');
+  var reference = getUrlParameter('reference');
+
   // Create regex CodeMirror
   RegularExpressionSearch.regex = CodeMirror(document.getElementById('interactive-regular-expression-search-regex'),{
-    value: "ca?t",
+    value: "",
     mode: "regex",
     scrollbarStyle: "null"
   });
@@ -34,6 +39,18 @@ $(document).ready(function () {
       change.update(change.from, change.to, [newtext]);
     }
   });
+
+  // Process any given URL parameters
+  if (starting_regex) {
+    RegularExpressionSearch.regex.setValue(starting_regex);
+  }
+  if (starting_text) {
+    RegularExpressionSearch.search_text.setValue(starting_text);
+  }
+  if (reference == 'true') {
+    $('ul.panel div.collapsible-header').addClass('active');
+  }
+
 
   // Highlight inital regular expression
   processRegularExpression();
@@ -81,3 +98,20 @@ function searchOverlay(query) {
     }
   }};
 }
+
+
+// From jquerybyexample.net/2012/06/get-url-parameters-using-jquery.html
+function getUrlParameter(sParam) {
+    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : sParameterName[1];
+        }
+    }
+};
