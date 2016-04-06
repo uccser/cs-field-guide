@@ -64,3 +64,6 @@
 #pixel-viewer-interactive-zoom-out {
   visibility: hidden;
 }
+#pixel-viewer-thresholder > input{
+	width: 20%;
+}

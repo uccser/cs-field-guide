@@ -14,9 +14,16 @@ this.cell_line_height = 15;
 this.cell_text = 'R \nG \nB ';
 this.text_opacity = 0;
 
+this.mode = 'datarep'
+this.filter = null
+
 this.tiling = new Tiling;
 
 $( document ).ready(function() {
+	if (getUrlParameter('mode') == 'threshold') {
+    	mode = 'threshold';
+    }
+ 	setExtraFeatureText()
   $( "#pixel-viewer-interactive-original-image" ).delay(1000).animate({width: contentWidth*0.8,
      height: contentHeight*0.8,
      overflow: "hidden",
@@ -32,6 +39,81 @@ $( document ).ready(function() {
   $( "#pixel-viewer-interactive-original-image" ).fadeOut( 2000 );
   reflow();
 });
+
+function setExtraFeatureText(){
+	if (mode == 'threshold'){
+		$("#pixel-viewer-extra-feature-description").text("Create an expression to threshold the image. Any pixels that match the expression you come up with will be turned white, and everything else will become black. What happens when you threshold on different values or for different colours? Can you use this technique to identify regions of similar colour in the image?");
+		thresholder = new Thresholder($('#pixel-viewer-image-manipulator'));
+	}
+}
+
+function sanitiseValues(){
+	$(".color_selector")
+		.filter(function(index) {return this.value == "";}).val(0);
+	$(".color_selector").val(function(index, value) {return Math.round(value)});
+}
+
+function truncateValues(){
+	$(".color_selector")
+		.filter(function(index) {return this.value > 255;}).val(255);
+	$(".color_selector")
+		.filter(function(index) {return this.value < 0;}).val(0);
+}
+
+function Thresholder(parent_element){
+	this.main_div = $("<div></div>");
+	this.main_div.attr("id", "pixel-viewer-thresholder").appendTo($(parent_element));
+	vals = ["R", "G", "B"];
+	for (val in vals){
+		this.main_div.append($("<label></label>").text(vals[val])
+		.append($("<select></select>")
+			.attr("id", vals[val] + "_lt_or_gt")
+			.append($("<option value='<'>\<</option>"))
+			.append($("<option value='>'>\></option>")))
+		.append($(document.createElement("input"))
+			.attr({"type": "number", "value": 0, "id" : vals[val] + "_selector", "class" : "color_selector"})
+			.on("input", truncateValues)
+			.on("blur", sanitiseValues))
+		);
+		if (vals.length - 1 > val){
+			this.main_div.append($("<select></select>")
+			.attr("id", "operator_" + val)
+			.append($("<option value='||'>OR</option>"))
+			.append($("<option value='&&'>AND</option>")));
+		}
+	}
+	this.main_div.append($(document.createElement("button")).text("Apply Threshold").click(applyThreshold))
+	this.main_div.append($(document.createElement("button")).text("Remove Threshold").click(removeThreshold))
+}
+
+function applyThreshold(){
+	var r_lt_or_gt = $("#R_lt_or_gt").val();
+	var r_val = $("#R_selector").val();
+	var g_lt_or_gt = $("#R_lt_or_gt").val();
+	var g_val = $("#G_selector").val();
+	var b_lt_or_gt = $("#R_lt_or_gt").val();
+	var b_val = $("#B_selector").val();
+	
+	var operator_0 = $("#operator_0").val();
+	var operator_1 = $("#operator_1").val();
+	
+	var expr = ["r", r_lt_or_gt, r_val, operator_0, "g", g_lt_or_gt, g_val, operator_1, "b", b_lt_or_gt, b_val];
+	filter = function(pixelData){
+		var expr = [pixelData[0], r_lt_or_gt, r_val, operator_0, pixelData[1], g_lt_or_gt, g_val, operator_1, pixelData[2], b_lt_or_gt, b_val].join(" ");
+		if (eval(expr)){
+			return ([255, 255, 255]);
+		}
+		else {
+			return ([0, 0, 0]);
+		}
+	}
+	scroller.scrollTo(0, 0);
+}
+
+function removeThreshold(){
+	filter = null;
+	scroller.scrollTo(0,0);
+}
 
 function loadImage(src){
     //	Prevent any non-image file type from being read.
@@ -142,6 +224,9 @@ this.scroller = new Scroller(render, {
 var paint = function(row, col, left, top, width, height, zoom) {
     // Get data for pixel
     var pixelData = source_canvas.getContext('2d').getImageData(col, row, 1, 1).data;
+    if (null != filter){
+    	pixelData = filter(pixelData);
+    } 
     context.fillStyle = 'rgb('+pixelData[0]+','+pixelData[1]+','+pixelData[2]+')';
     context.fillRect(Math.round(left), Math.round(top), Math.round(width)+1, Math.round(height)+1);
 
@@ -255,3 +340,19 @@ if ('ontouchstart' in window) {
     }, false);
 
 }
+
+// From jquerybyexample.net/2012/06/get-url-parameters-using-jquery.html
+function getUrlParameter(sParam) {
+    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : sParameterName[1];
+        }
+    }
+};
