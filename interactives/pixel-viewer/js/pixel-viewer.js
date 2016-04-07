@@ -2,6 +2,8 @@
 this.MAX_HEIGHT = 133;
 this.CELL_SIZE = 50;
 
+this.MAX_NOISE = 15;
+
 this.container = document.getElementById("pixel-viewer-interactive-container");
 this.content = document.getElementById("pixel-viewer-interactive-content");
 this.context = content.getContext('2d');
@@ -16,14 +18,19 @@ this.text_opacity = 0;
 
 this.mode = 'datarep'
 this.filter = null
+this.salt = null
 
 this.tiling = new Tiling;
 
 $( document ).ready(function() {
 	if (getUrlParameter('mode') == 'threshold') {
     	mode = 'threshold';
+    }if (getUrlParameter('mode') == 'thresholdgreyscale') {
+    	mode = 'thresholdgreyscale';
+    }if (getUrlParameter('mode') == 'blur') {
+    	mode = 'blur';
     }
- 	setExtraFeatureText()
+ 	setUpMode();
   $( "#pixel-viewer-interactive-original-image" ).delay(1000).animate({width: contentWidth*0.8,
      height: contentHeight*0.8,
      overflow: "hidden",
@@ -40,24 +47,243 @@ $( document ).ready(function() {
   reflow();
 });
 
-function setExtraFeatureText(){
+function setUpMode(){
 	if (mode == 'threshold'){
-		$("#pixel-viewer-extra-feature-description").text("Create an expression to threshold the image. Any pixels that match the expression you come up with will be turned white, and everything else will become black. What happens when you threshold on different values or for different colours? Can you use this technique to identify regions of similar colour in the image?");
-		thresholder = new Thresholder($('#pixel-viewer-image-manipulator'));
+		$("#pixel-viewer-extra-feature-description").text(
+			"Create an expression to threshold the image. Any pixels that match the\
+		 expression you come up with will be turned white, and everything else will become black. What happens \
+		 when you threshold on different values or for different colours? Can you use this technique to identify \
+		 regions of similar colour in the image?");
+		new Thresholder($('#pixel-viewer-image-manipulator'));
+	}
+	if (mode == 'thresholdgreyscale'){
+		$("#pixel-viewer-extra-feature-description").text(
+			"The image has been converted to greyscale by taking the average of the red, blue and green values for\
+			each pixel. Choose a threshold between 0 and 255 and transform this picture into black and white to \
+			identify regions and edges.");
+		filter = greyscaler;
+		new GreyscaleThresholder($('#pixel-viewer-image-manipulator'));
+	}
+	if (mode == 'blur'){
+		$("#pixel-viewer-extra-feature-description").text(
+			"Experiment with first adding some salt and pepper noise to the image, then using a blur to try remove the noise. The mean blur will take the mean values of the pixels surrounding,\
+			the median will take the median value, and the weighted blur allows you to give weights to different surrounding pixels. How do the three types of blur effect the image? How do they\
+			deal with the noise? What happens when you change values in the weighted grid? Experiment with both greyscale and rgb images.\
+			What would happen if every value in the grid was 0 except one? How come? Can you use this grid to find edges? What about if you use negative values for some weights?");
+		new Blur($('#pixel-viewer-image-manipulator'));
 	}
 }
 
+function greyscaler(col, row){
+	var pixelData = salter(col, row);
+	var sum = pixelData[0] + pixelData[1] + pixelData[2];
+	var avg = Math.round(sum / 3);
+	return [avg, avg, avg];
+}
+
 function sanitiseValues(){
-	$(".color_selector")
+	$(".int_selector")
 		.filter(function(index) {return this.value == "";}).val(0);
-	$(".color_selector").val(function(index, value) {return Math.round(value)});
+	$(".int_selector").val(function(index, value) {return Math.round(value)});
 }
 
 function truncateValues(){
 	$(".color_selector")
 		.filter(function(index) {return this.value > 255;}).val(255);
-	$(".color_selector")
+	$(".int_selector")
 		.filter(function(index) {return this.value < 0;}).val(0);
+	$(".percent_selector")
+		.filter(function(index) {return this.value > MAX_NOISE;}).val(MAX_NOISE);
+}
+
+function toggleGreyscale(){
+	if ($("#greyscale-or-rgb").val() == "greyscale"){
+		if (filter == null || filter == salter){
+			filter = greyscaler;
+		}
+	}
+	else{
+		if (filter == greyscaler){
+			filter = salter
+		}
+	}
+	scroller.scrollBy(0,0);
+}
+
+function Blur(parent_element){
+	this.main_div = $("<div></div>");
+	this.main_div.attr("id", "pixel-viewer-blur").appendTo($(parent_element));
+	
+	this.main_div.append(
+		$(document.createElement("label"))
+		.text("Greyscale or rgb")
+		.append(
+			$(document.createElement("select"))
+			.attr("id", "greyscale-or-rgb")
+			.append($("<option value=rgb>rgb</option>"))
+			.append($("<option value=greyscale>greyscale</option>"))
+			.on("input", toggleGreyscale)
+		)
+	);
+	
+	this.main_div.append($("<label></label>").text("Amount of noise (%): ")
+		.append($(document.createElement("input"))
+			.attr({"type": "number", "value": 10, "id" : "noise_selector", "class" : "percent_selector int_selector"})
+			.on("input", truncateValues)
+			.on("blur", sanitiseValues))
+		);
+	
+	this.main_div.append(
+		$(document.createElement("button")).text("Add noise")
+		.click(addNoise)
+	).append(
+		$(document.createElement("button")).text("Remove noise")
+		.click(removeSalt)
+	);
+	
+	this.main_div.append(
+		$(document.createElement("label"))
+		.text("Type of blur")
+		.append(
+			$(document.createElement("select"))
+			.attr("id", "blur-type")
+			.append($("<option value=median>median</option>"))
+			.append($("<option value=mean>mean</option>"))
+			.append($("<option value=weighted>weighted</option>"))
+			.on("input", createGrid)
+		)
+	);
+	
+	this.main_div.append(
+		$(document.createElement("label"))
+		.text("Grid size")
+		.append(
+			$(document.createElement("select"))
+			.attr("id", "grid-size")
+			.on("input", createGrid)
+			.append($("<option value=3>3x3</option>"))
+			.append($("<option value=5>5x5</option>"))
+			.append($("<option value=7>7x7</option>"))
+		)
+	);
+	this.main_div.append(
+		$(document.createElement("div"))
+		.attr("id", "blur-grid")
+	);
+	createGrid();
+	this.main_div.append(
+		$(document.createElement("button")).text("Apply blur")
+		.click(applyBlur));
+		
+	this.main_div
+		.append(
+		$(document.createElement("button")).text("Remove blur")
+		.click(removeFilters)
+	);
+}
+
+function createGrid(){
+	$("#blur-grid").empty();
+	if ($("#blur-type").val() != "weighted"){
+		return;
+	}
+	var gridSize = $("#grid-size").val();
+	$("#blur-grid").append($(document.createElement("table")).attr("id", "grid_table"));
+	for (var i = 0; i < gridSize; i++){
+		$("#grid_table").append($(document.createElement("tr")).attr("id", "grid_table_row_" + i));
+		for (var j = 0; j < gridSize; j++){
+			$("#grid_table_row_" + i).append(
+				$(document.createElement("td"))
+				.append(
+					$(document.createElement("input"))
+					.attr({
+						"id":"grid_val_" + i + "_" + j,
+						"class":"int_selector blur_selector",
+						"value":1,
+						"type":"number"}
+						)
+					.on("blur", sanitiseValues)
+				)
+			);
+		};
+	};
+}
+
+function applyBlur(){
+	filter = function(col, row){
+		var blur_type = $("#blur-type").val();	
+		var gridSize = $("#grid-size").val();
+		var shift = Math.floor(gridSize / 2);
+		var vals = Array();
+		var greyscale = ($("#greyscale-or-rgb").val() == "greyscale")
+		for (var i = 0; i < gridSize; i++){
+			var next_col = col + i - shift;
+			if (next_col < 0 || next_col > contentWidth){
+				continue;
+			}
+			else{
+				for (var j = 0; j < gridSize; j++){
+					var next_row = row + j - shift;
+					if (next_row < 0 || next_row > contentHeight){
+						continue;
+					}
+					if (greyscale){
+						pixelData = greyscaler(next_col, next_row)
+					}
+					else if (salt && salt[next_col][next_row] != false){
+						pixelData = [salt[next_col][next_row], salt[next_col][next_row], salt[next_col][next_row]];
+					}
+					else{
+						pixelData = source_canvas.getContext('2d').getImageData(next_col, next_row, 1, 1).data;
+					}
+					if (blur_type == "weighted"){
+					vals.push(pixelData.map(function(x){
+						return x * $("#grid_val_" + j + "_" + i).val();
+						}));
+					}
+					else{
+						vals.push(pixelData);
+					}
+				}
+			}
+		}
+		if (blur_type == "weighted"){
+			var totalWeight = 0
+			$(".blur_selector").each(function() {
+				totalWeight += Math.abs(parseInt(this.value));
+			})
+			if (totalWeight == 0) totalWeight = 1;
+			var sums = vals.reduce(function(prev, curr, currI, arr) {
+				var sum = Array()
+				for (var i = 0; i < curr.length; i++){
+					sum.push(prev[i] + curr[i]);
+				}
+				return sum;
+				});
+			return sums.map(function(x){return Math.floor(x / totalWeight)})
+		}
+		if (blur_type == "mean"){
+			var sums = vals.reduce(function(prev, curr, currI, arr) {
+				var sum = Array()
+				for (var i = 0; i < curr.length; i++){
+					sum.push(prev[i] + curr[i]);
+				}
+				return sum;
+				});
+			return sums.map(function(x){return Math.floor(x / vals.length)})
+		}
+		if (blur_type == "median"){
+			medians = Array();
+			// Get median for r, g and b values
+			for (var i = 0; i < vals[0].length; i++){
+				next_list = vals.map(function(val){return val[i];});
+				next_list.sort();
+				medians.push(next_list[Math.floor(vals.length / 2)]);
+			}
+			return medians;
+		}
+	}
+	scroller.scrollBy(0,0);
 }
 
 function Thresholder(parent_element){
@@ -71,7 +297,7 @@ function Thresholder(parent_element){
 			.append($("<option value='<'>\<</option>"))
 			.append($("<option value='>'>\></option>")))
 		.append($(document.createElement("input"))
-			.attr({"type": "number", "value": 0, "id" : vals[val] + "_selector", "class" : "color_selector"})
+			.attr({"type": "number", "value": 0, "id" : vals[val] + "_selector", "class" : "color_selector int_selector"})
 			.on("input", truncateValues)
 			.on("blur", sanitiseValues))
 		);
@@ -82,37 +308,111 @@ function Thresholder(parent_element){
 			.append($("<option value='&&'>AND</option>")));
 		}
 	}
-	this.main_div.append($(document.createElement("button")).text("Apply Threshold").click(applyThreshold))
-	this.main_div.append($(document.createElement("button")).text("Remove Threshold").click(removeThreshold))
+	this.main_div.append($(document.createElement("button")).text("Apply Threshold").click(applyThreshold));
+	this.main_div.append($(document.createElement("button")).text("Remove Threshold").click(removeFilters));
+}
+
+function GreyscaleThresholder(parent_element){
+	this.main_div = $("<div></div>");
+	this.main_div.attr("id", "pixel-viewer-thresholder").appendTo($(parent_element));
+	this.main_div.append($("<label></label>").text("Threshold: ")
+		.append($(document.createElement("input"))
+			.attr({"type": "number", "value": 0, "id" : "threshold_selector", "class" : "color_selector int_selector"})
+			.on("input", truncateValues)
+			.on("blur", sanitiseValues))
+		);
+	this.main_div.append($(document.createElement("button")).text("Apply Threshold").click(applyGreyThreshold));
+	this.main_div.append($(document.createElement("button")).text("Remove Threshold").click(removeGreyThreshold));
+}
+
+function addNoise(){
+	if (salt == null){
+		salt = new Array(contentWidth);
+		for (var i = 0; i < contentWidth; i++){
+			salt[i] = new Array(contentHeight);
+			var j = contentHeight
+			while (j--) salt[i][j] = false;
+		}
+	}
+	var salt_amount = Math.floor(contentWidth * contentHeight * $("#noise_selector").val()/100);
+	for (var i = 0; i < salt_amount; i++){
+		var x = randomInt(contentWidth);
+		var y = randomInt(contentHeight);
+		salt[x][y] = randomInt(256);
+	}
+	if (filter == null)
+		filter = salter;
+	scroller.scrollBy(0,0);
+}
+
+function salter(col, row){
+	if (salt != null && salt[col][row] != false){
+		var val = salt[col][row];
+		return [val,val,val];
+	}
+	else{
+		return source_canvas.getContext('2d').getImageData(col, row, 1, 1).data;
+	}
+}
+
+function removeSalt(){
+	salt = null;
+	scroller.scrollBy(0,0);
+}
+
+function removeFilters(){
+	if ($("#greyscale-or-rgb").val() == "greyscale"){
+		filter = greyscaler;
+	}
+	else {
+		filter = salter;
+	}
+	scroller.scrollBy(0,0);
+}
+
+function applyGreyThreshold(){
+	var threshold = $("#threshold_selector").val();
+	filter = function(col, row){
+		var pixelData = source_canvas.getContext('2d').getImageData(col, row, 1, 1).data;
+		var sum = pixelData[0] + pixelData[1] + pixelData[3];
+		var avg = sum / 3;
+		if (avg > threshold)
+			return [255, 255, 255];
+		else{
+			return [0,0,0]
+		}
+	}
+	scroller.scrollBy(0,0);
+}
+
+function removeGreyThreshold(){
+	filter = greyscaler;
+	scroller.scrollBy(0,0);
 }
 
 function applyThreshold(){
 	var r_lt_or_gt = $("#R_lt_or_gt").val();
 	var r_val = $("#R_selector").val();
-	var g_lt_or_gt = $("#R_lt_or_gt").val();
+	var g_lt_or_gt = $("#G_lt_or_gt").val();
 	var g_val = $("#G_selector").val();
-	var b_lt_or_gt = $("#R_lt_or_gt").val();
+	var b_lt_or_gt = $("#B_lt_or_gt").val();
 	var b_val = $("#B_selector").val();
 	
 	var operator_0 = $("#operator_0").val();
 	var operator_1 = $("#operator_1").val();
 	
-	var expr = ["r", r_lt_or_gt, r_val, operator_0, "g", g_lt_or_gt, g_val, operator_1, "b", b_lt_or_gt, b_val];
-	filter = function(pixelData){
-		var expr = [pixelData[0], r_lt_or_gt, r_val, operator_0, pixelData[1], g_lt_or_gt, g_val, operator_1, pixelData[2], b_lt_or_gt, b_val].join(" ");
+	filter = function(col, row){
+		var pixelData = source_canvas.getContext('2d').getImageData(col, row, 1, 1).data;
+		var expr = [pixelData[0], r_lt_or_gt, r_val, operator_0, pixelData[1], g_lt_or_gt, g_val, operator_1, pixelData[2], b_lt_or_gt, b_val]
+		.join(" ");
 		if (eval(expr)){
 			return ([255, 255, 255]);
 		}
 		else {
 			return ([0, 0, 0]);
-		}
-	}
-	scroller.scrollTo(0, 0);
-}
-
-function removeThreshold(){
-	filter = null;
-	scroller.scrollTo(0,0);
+		};
+	};
+	scroller.scrollBy(0, 0);
 }
 
 function loadImage(src){
@@ -223,10 +523,13 @@ this.scroller = new Scroller(render, {
 // Cell Paint Logic
 var paint = function(row, col, left, top, width, height, zoom) {
     // Get data for pixel
-    var pixelData = source_canvas.getContext('2d').getImageData(col, row, 1, 1).data;
+    var pixelData;
     if (null != filter){
-    	pixelData = filter(pixelData);
+    	pixelData = filter(col, row);
     } 
+    else {
+    	pixelData = source_canvas.getContext('2d').getImageData(col, row, 1, 1).data;
+    }
     context.fillStyle = 'rgb('+pixelData[0]+','+pixelData[1]+','+pixelData[2]+')';
     context.fillRect(Math.round(left), Math.round(top), Math.round(width)+1, Math.round(height)+1);
 
@@ -339,6 +642,10 @@ if ('ontouchstart' in window) {
         scroller.doMouseZoom(e.detail ? (e.detail * -120) : e.wheelDelta, e.timeStamp, e.pageX, e.pageY);
     }, false);
 
+}
+
+function randomInt(max){
+	return Math.floor(Math.random() * max);
 }
 
 // From jquerybyexample.net/2012/06/get-url-parameters-using-jquery.html
