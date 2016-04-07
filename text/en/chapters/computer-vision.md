@@ -145,9 +145,6 @@ A *Gaussian* blur is another common technique, which assumes that the closest pi
 
 {comment end}
 
-{interactive name="pixel-viewer" type="whole-page" text="Pixel Blur interactive"}
-
-
 ### Activity: noise reduction filters
 
 {comment}
@@ -162,7 +159,11 @@ The following activity can be used as part of a project for the 3.44 standard. T
 
 {comment end}
 
-Open the [noise reduction filtering interactive using this link](http://www.csfieldguide.org.nz/releases/1.9.9/_static/widgets/cv-noise-filters.html) and experiment with settings as below. You will need a webcam, and the interactive will ask you to allow access to it.
+.. Open the [noise reduction filtering interactive using this link](http://www.csfieldguide.org.nz/releases/1.9.9/_static/widgets/cv-noise-filters.html) and experiment with settings as below. You will need a webcam, and the interactive will ask you to allow access to it.
+
+Open the noise reduction filtering interactive below and experiment with the settings.
+
+{interactive name="pixel-viewer" type="whole-page" text="Pixel Blur interactive" parameters="mode=blur"}
 
 Mathematically, this process is applying a special kind of matrix called a *convolution kernel* to the value of each pixel in the source image, averaging it with the values of other pixels nearby and copying that average to each pixel in the new image. The average is weighted, so that the values of nearby pixels are given more importance than ones that are far away. The stronger the blur, the wider the convolution kernel has to be and the more calculations take place.
 

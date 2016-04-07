@@ -67,10 +67,10 @@ function setUpMode(){
 	}
 	if (mode == 'blur'){
 		$("#pixel-viewer-extra-feature-description").text(
-			"Experiment with first adding some salt and pepper noise to the image, then using a blur to try remove the noise. The mean blur will take the mean values of the pixels surrounding,\
-			the median will take the median value, the gaussian blurs according to a gaussian distribution, and the weighted blur allows you to give weights to different surrounding pixels. How do the three types of blur effect the image? How do they\
-			deal with the noise? What happens when you change values in the weighted grid? Experiment with both greyscale and rgb images.	\
-			What would happen if every value in the grid was 0 except one? How come? Can you use this grid to find edges? What about if you use negative values for some weights?");
+			"Experiment with using different blurs to try process the noise. The mean blur will take the mean values of the pixels surrounding,\
+			the median will take the median value, the gaussian blurs according to a gaussian distribution, and the custom blur allows you to give weights to different surrounding pixels.\
+			How do the different types of blur effect the image? What happens when you change values in the custom grid? Experiment with both greyscale and rgb images.	\
+			What would happen if every value in the grid was 0 except one? How come?");
 		new Blur($('#pixel-viewer-image-manipulator'));
 	}
 }
@@ -128,21 +128,6 @@ function Blur(parent_element){
 	);
 	toggleGreyscale()
 	
-	this.main_div.append($("<label></label>").text("Amount of noise to add (%): ")
-		.append($(document.createElement("input"))
-			.attr({"type": "number", "value": 10, "id" : "noise_selector", "class" : "percent_selector int_selector"})
-			.on("input", truncateValues)
-			.on("blur", sanitiseValues))
-		);
-	
-	this.main_div.append(
-		$(document.createElement("button")).text("Add noise")
-		.click(addNoise)
-	).append(
-		$(document.createElement("button")).text("Remove noise")
-		.click(removeSalt)
-	);
-	
 	this.main_div.append(
 		$(document.createElement("label"))
 		.text("Type of blur")
@@ -152,7 +137,7 @@ function Blur(parent_element){
 			.append($("<option value=median>median</option>"))
 			.append($("<option value=mean>mean</option>"))
 			.append($("<option value=gaussian>gaussian</option>"))
-			.append($("<option value=weighted>weighted</option>"))
+			.append($("<option value=custom>custom</option>"))
 			.on("input", createGrid)
 		)
 	);
@@ -185,11 +170,27 @@ function Blur(parent_element){
 		$(document.createElement("button")).text("Remove blur")
 		.click(removeFilters)
 	);
+	this.main_div.append($(document.createElement("p")).text("Sometimes images have noise, and applying a blur can be a helpful way to preprocess\
+	an image that contains noise before using other Computer Vision algorithms. Use this to add some \"salt and pepper\" noise to the image and then\
+	observe what happens when you apply the blurs to a noisy image."))
+	.append($("<label></label>").text("Amount of noise to add (%): ")
+		.append($(document.createElement("input"))
+			.attr({"type": "number", "value": 10, "id" : "noise_selector", "class" : "percent_selector int_selector"})
+			.on("input", truncateValues)
+			.on("blur", sanitiseValues))
+		).append(
+		$(document.createElement("button")).text("Add noise")
+		.click(addNoise)
+	).append(
+		$(document.createElement("button")).text("Remove noise")
+		.click(removeSalt)
+	);
+	this.main_div.append($("<p></p>").text("Can you use the custom grid to find edges? What would happen if you used negative values for some weights?"))
 }
 
 function createGrid(){
 	$("#blur-grid").empty();
-	if ($("#blur-type").val() != "weighted"){
+	if ($("#blur-type").val() != "custom"){
 		return;
 	}
 	var gridSize = $("#grid-size").val();
@@ -212,6 +213,9 @@ function createGrid(){
 			);
 		};
 	};
+	$("#blur-grid").append(
+		$(document.createElement("label")).text("Use absolute value of result: ").append(
+			$(document.createElement("input")).attr({"id":"use_abs_val","type":"checkbox"})));
 }
 
 function applyBlur(){
@@ -241,7 +245,7 @@ function applyBlur(){
 					else{
 						pixelData = source_canvas.getContext('2d').getImageData(next_col, next_row, 1, 1).data;
 					}
-					if (blur_type == "weighted"){
+					if (blur_type == "custom"){
 					vals.push(pixelData.map(function(x){
 						return x * $("#grid_val_" + j + "_" + i).val();
 						}));
@@ -279,7 +283,7 @@ function applyBlur(){
 			}
 			return response;
 		}
-		if (blur_type == "weighted"){
+		if (blur_type == "custom"){
 			var totalWeight = 0
 			$(".blur_selector").each(function() {
 				totalWeight += Math.abs(parseInt(this.value));
@@ -292,7 +296,7 @@ function applyBlur(){
 				}
 				return sum;
 				});
-			return sums.map(function(x){return Math.floor(x / totalWeight)})
+			return sums.map(function(x){var val = Math.floor(x / totalWeight); return $("#use_abs_val").is(":checked()") ? Math.abs(val) : val})
 		}
 		if (blur_type == "mean"){
 			var sums = vals.reduce(function(prev, curr, currI, arr) {
