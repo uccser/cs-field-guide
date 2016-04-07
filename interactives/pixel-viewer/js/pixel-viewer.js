@@ -16,9 +16,10 @@ this.cell_line_height = 15;
 this.cell_text = 'R \nG \nB ';
 this.text_opacity = 0;
 
-this.mode = 'datarep'
-this.filter = null
-this.salt = null
+this.mode = 'datarep';
+this.filter = null;
+this.salt = null;
+this.convo_k = Array(); // Convolutional Kernel for Gaussian blurring
 
 this.tiling = new Tiling;
 
@@ -67,8 +68,8 @@ function setUpMode(){
 	if (mode == 'blur'){
 		$("#pixel-viewer-extra-feature-description").text(
 			"Experiment with first adding some salt and pepper noise to the image, then using a blur to try remove the noise. The mean blur will take the mean values of the pixels surrounding,\
-			the median will take the median value, and the weighted blur allows you to give weights to different surrounding pixels. How do the three types of blur effect the image? How do they\
-			deal with the noise? What happens when you change values in the weighted grid? Experiment with both greyscale and rgb images.\
+			the median will take the median value, the gaussian blurs according to a gaussian distribution, and the weighted blur allows you to give weights to different surrounding pixels. How do the three types of blur effect the image? How do they\
+			deal with the noise? What happens when you change values in the weighted grid? Experiment with both greyscale and rgb images.	\
 			What would happen if every value in the grid was 0 except one? How come? Can you use this grid to find edges? What about if you use negative values for some weights?");
 		new Blur($('#pixel-viewer-image-manipulator'));
 	}
@@ -120,13 +121,14 @@ function Blur(parent_element){
 		.append(
 			$(document.createElement("select"))
 			.attr("id", "greyscale-or-rgb")
-			.append($("<option value=rgb>rgb</option>"))
 			.append($("<option value=greyscale>greyscale</option>"))
+			.append($("<option value=rgb>rgb</option>"))
 			.on("input", toggleGreyscale)
 		)
 	);
+	toggleGreyscale()
 	
-	this.main_div.append($("<label></label>").text("Amount of noise (%): ")
+	this.main_div.append($("<label></label>").text("Amount of noise to add (%): ")
 		.append($(document.createElement("input"))
 			.attr({"type": "number", "value": 10, "id" : "noise_selector", "class" : "percent_selector int_selector"})
 			.on("input", truncateValues)
@@ -149,6 +151,7 @@ function Blur(parent_element){
 			.attr("id", "blur-type")
 			.append($("<option value=median>median</option>"))
 			.append($("<option value=mean>mean</option>"))
+			.append($("<option value=gaussian>gaussian</option>"))
 			.append($("<option value=weighted>weighted</option>"))
 			.on("input", createGrid)
 		)
@@ -162,7 +165,9 @@ function Blur(parent_element){
 			.attr("id", "grid-size")
 			.on("input", createGrid)
 			.append($("<option value=3>3x3</option>"))
+			.append($("<option value=4>4x4</option>"))
 			.append($("<option value=5>5x5</option>"))
+			.append($("<option value=6>6x6</option>"))
 			.append($("<option value=7>7x7</option>"))
 		)
 	);
@@ -247,6 +252,33 @@ function applyBlur(){
 				}
 			}
 		}
+		if (blur_type == "gaussian"){
+			// This isn't quite right at the edges of the picture, but it should be close
+			// For red, green and blue
+			response = Array()
+			
+			// Create convolutional kernel if it hasn't already been created at this size
+			if (convo_k.length != gridSize * gridSize){
+				convo_k = Array();
+				for (var x = 0 - shift; x < gridSize - shift; x++){
+					for (var y = 0 - shift; y < gridSize - shift; y++){
+						convo_k.push(1/2*Math.PI*Math.pow(Math.E, -(x*x + y*y)/2))
+					}
+				}
+				convo_k.totalWeight = convo_k.reduce(function(prev, curr, currI, arr){
+				return prev + curr;
+				})
+			}
+			
+			for (var i = 0; i < vals[0].length; i++){
+				next_list = vals.map(function(val){return val[i];});
+				result = next_list.reduce(function(prev, curr, currI, arr) {
+					return prev + curr * convo_k[currI];
+				});
+				response.push(Math.floor(result/convo_k.totalWeight));
+			}
+			return response;
+		}
 		if (blur_type == "weighted"){
 			var totalWeight = 0
 			$(".blur_selector").each(function() {
@@ -277,7 +309,7 @@ function applyBlur(){
 			// Get median for r, g and b values
 			for (var i = 0; i < vals[0].length; i++){
 				next_list = vals.map(function(val){return val[i];});
-				next_list.sort();
+				next_list = next_list.sort();
 				medians.push(next_list[Math.floor(vals.length / 2)]);
 			}
 			return medians;
@@ -317,7 +349,7 @@ function GreyscaleThresholder(parent_element){
 	this.main_div.attr("id", "pixel-viewer-thresholder").appendTo($(parent_element));
 	this.main_div.append($("<label></label>").text("Threshold: ")
 		.append($(document.createElement("input"))
-			.attr({"type": "number", "value": 0, "id" : "threshold_selector", "class" : "color_selector int_selector"})
+			.attr({"type": "number", "value": 127, "id" : "threshold_selector", "class" : "color_selector int_selector"})
 			.on("input", truncateValues)
 			.on("blur", sanitiseValues))
 		);
@@ -421,7 +453,9 @@ function loadImage(src){
         console.log("The dropped file is not an image: ", src.type);
         return;
     }
-
+	// Remove any noise added
+	salt = null
+	
     //	Create our FileReader and run the results through the render function.
     var reader = new FileReader();
     reader.onload = function(e){
@@ -642,6 +676,27 @@ if ('ontouchstart' in window) {
         scroller.doMouseZoom(e.detail ? (e.detail * -120) : e.wheelDelta, e.timeStamp, e.pageX, e.pageY);
     }, false);
 
+}
+
+// From http://jsfiddle.net/derickbailey/5L7cLp96/
+
+function standardDeviation(values){
+  var avg = average(values);
+  
+  var squareDiffs = values.map(function(value){
+    var diff = value - avg;
+    var sqrDiff = diff * diff;
+    return sqrDiff;
+  });
+ 
+  var stdDev = Math.sqrt(average(squareDiffs));
+  return stdDev;
+}
+ 
+function average(data){
+  return data.reduce(function(sum, value){
+    return sum + value;
+  }, 0) / data.length;
 }
 
 function randomInt(max){

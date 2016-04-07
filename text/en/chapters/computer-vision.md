@@ -145,6 +145,9 @@ A *Gaussian* blur is another common technique, which assumes that the closest pi
 
 {comment end}
 
+{interactive name="pixel-viewer" type="whole-page" text="Pixel Blur interactive"}
+
+
 ### Activity: noise reduction filters
 
 {comment}
