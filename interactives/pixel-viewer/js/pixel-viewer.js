@@ -108,7 +108,7 @@ function toggleGreyscale(){
 			filter = salter
 		}
 	}
-	scroller.scrollBy(0,0);
+	refreshImage();
 }
 
 function Blur(parent_element){
@@ -319,7 +319,7 @@ function applyBlur(){
 			return medians;
 		}
 	}
-	scroller.scrollBy(0,0);
+	refreshImage();
 }
 
 function Thresholder(parent_element){
@@ -356,9 +356,9 @@ function GreyscaleThresholder(parent_element){
 			.attr({"type": "number", "value": 127, "id" : "threshold_selector", "class" : "color_selector int_selector"})
 			.on("input", truncateValues)
 			.on("blur", sanitiseValues))
-		);
-	this.main_div.append($(document.createElement("button")).text("Apply Threshold").click(applyGreyThreshold));
-	this.main_div.append($(document.createElement("button")).text("Remove Threshold").click(removeGreyThreshold));
+		)
+	.append($(document.createElement("button")).text("Apply Threshold").click(applyGreyThreshold))
+	.append($(document.createElement("button")).text("Remove Threshold").click(removeGreyThreshold));
 }
 
 function addNoise(){
@@ -378,7 +378,7 @@ function addNoise(){
 	}
 	if (filter == null)
 		filter = salter;
-	scroller.scrollBy(0,0);
+	refreshImage();
 }
 
 function salter(col, row){
@@ -393,7 +393,7 @@ function salter(col, row){
 
 function removeSalt(){
 	salt = null;
-	scroller.scrollBy(0,0);
+	refreshImage();
 }
 
 function removeFilters(){
@@ -403,7 +403,7 @@ function removeFilters(){
 	else {
 		filter = salter;
 	}
-	scroller.scrollBy(0,0);
+	refreshImage();
 }
 
 function applyGreyThreshold(){
@@ -418,12 +418,12 @@ function applyGreyThreshold(){
 			return [0,0,0]
 		}
 	}
-	scroller.scrollBy(0,0);
+	refreshImage();
 }
 
 function removeGreyThreshold(){
 	filter = greyscaler;
-	scroller.scrollBy(0,0);
+	refreshImage();
 }
 
 function applyThreshold(){
@@ -448,6 +448,11 @@ function applyThreshold(){
 			return ([0, 0, 0]);
 		};
 	};
+	refreshImage();
+}
+
+function refreshImage(){
+	// Reload image
 	scroller.scrollBy(0, 0);
 }
 
@@ -529,13 +534,15 @@ source_image.src = './img/coloured-roof-small.png';
 
 // Canvas renderer
 var render = function(left, top, zoom) {
-    // Full clearing
+	$("#loading-img-div").show()
+	setTimeout(function(){
+		// Full clearing
     context.clearRect(0, 0, canvasWidth, canvasHeight);
-
+	
     // Use tiling
     tiling.setup(canvasWidth, canvasHeight, contentWidth, contentHeight, CELL_SIZE, CELL_SIZE);
     tiling.render(left, top, zoom, paint);
-
+    
     // Variables to be calculated once per draw
     // Calculate opacity of labels
     text_opacity = zoom - 0.8
@@ -545,6 +552,9 @@ var render = function(left, top, zoom) {
     } else if (text_opacity <= 0) {
         text_opacity = 0;
     }
+    
+		$("#loading-img-div").hide();
+	}, 50)
 };
 
 // Initialize Scroller

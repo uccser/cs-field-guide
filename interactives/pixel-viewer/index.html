@@ -14,9 +14,12 @@
     <script src="../base-files/js/third-party/jquery.js"></script>
   </head>
   <body>
-      <div id="pixel-viewer-interactive" class="interactive">
+      <div id="pixel-viewer-interactive" class="interactive"> 
 	    <!-- ### Start of required HTML for inline interactives ### -->
         <div id="pixel-viewer-interactive-container">
+    	<div id="loading-img-div">
+		  	<img id="loading-img" src="./img/loading.gif">
+		 </div>     	
           <img id="pixel-viewer-interactive-original-image" src="./img/coloured-roof-small.png" />
           <div id="pixel-viewer-interactive-loader"></div>
           <canvas id="pixel-viewer-interactive-content"></canvas>

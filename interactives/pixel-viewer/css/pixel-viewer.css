@@ -64,6 +64,10 @@
 #pixel-viewer-interactive-zoom-out {
   visibility: hidden;
 }
-#pixel-viewer-thresholder{
-	width: 20%;
+#loading-img-div{
+	z-index: 15;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	display: none;
 }
