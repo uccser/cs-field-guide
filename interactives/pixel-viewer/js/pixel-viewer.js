@@ -66,11 +66,12 @@ function setUpMode(){
 		new GreyscaleThresholder($('#pixel-viewer-image-manipulator'));
 	}
 	if (mode == 'blur'){
-		$("#pixel-viewer-extra-feature-description").text(
+		$("#pixel-viewer-extra-feature-description").html(
 			"Experiment with using different blurs to try process the noise. The mean blur will take the mean values of the pixels surrounding,\
 			the median will take the median value, the gaussian blurs according to a gaussian distribution, and the custom blur allows you to give weights to different surrounding pixels.\
 			How do the different types of blur effect the image? What happens when you change values in the custom grid? Experiment with both greyscale and rgb images.	\
-			What would happen if every value in the grid was 0 except one? How come?");
+			What would happen if every value in the grid was 0 except one? How come? <br><br> If you find that the scroll and zoom are slow with a blur applied, try removing the blur, zooming or scrolling and \
+			then reapplying the blur.");
 		new Blur($('#pixel-viewer-image-manipulator'));
 	}
 }
@@ -137,7 +138,7 @@ function Blur(parent_element){
 			.append($("<option value=median>median</option>"))
 			.append($("<option value=mean>mean</option>"))
 			.append($("<option value=gaussian>gaussian</option>"))
-			.append($("<option value=custom>custom</option>"))
+			.append($("<option value=custom>custom convolutional kernel</option>"))
 			.on("input", createGrid)
 		)
 	);
@@ -150,9 +151,9 @@ function Blur(parent_element){
 			.attr("id", "grid-size")
 			.on("input", createGrid)
 			.append($("<option value=3>3x3</option>"))
-			.append($("<option value=4>4x4</option>"))
+			//.append($("<option value=4>4x4</option>"))
 			.append($("<option value=5>5x5</option>"))
-			.append($("<option value=6>6x6</option>"))
+			//.append($("<option value=6>6x6</option>"))
 			.append($("<option value=7>7x7</option>"))
 		)
 	);
@@ -225,6 +226,7 @@ function applyBlur(){
 		var shift = Math.floor(gridSize / 2);
 		var vals = Array();
 		var greyscale = ($("#greyscale-or-rgb").val() == "greyscale")
+		var greyscalerFunc = greyscaler
 		for (var i = 0; i < gridSize; i++){
 			var next_col = col + i - shift;
 			if (next_col < 0 || next_col > contentWidth){
@@ -237,7 +239,7 @@ function applyBlur(){
 						continue;
 					}
 					if (greyscale){
-						pixelData = greyscaler(next_col, next_row)
+						pixelData = greyscalerFunc(next_col, next_row)
 					}
 					else if (salt && salt[next_col][next_row] != false){
 						pixelData = [salt[next_col][next_row], salt[next_col][next_row], salt[next_col][next_row]];
@@ -256,6 +258,7 @@ function applyBlur(){
 				}
 			}
 		}
+		
 		if (blur_type == "gaussian"){
 			// This isn't quite right at the edges of the picture, but it should be close
 			// For red, green and blue
@@ -317,8 +320,9 @@ function applyBlur(){
 				medians.push(next_list[Math.floor(vals.length / 2)]);
 			}
 			return medians;
-		}
+		}	
 	}
+	
 	refreshImage();
 }
 
@@ -554,7 +558,7 @@ var render = function(left, top, zoom) {
     }
     
 		$("#loading-img-div").hide();
-	}, 50)
+	}, 100);
 };
 
 // Initialize Scroller
