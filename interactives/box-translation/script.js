@@ -82,35 +82,6 @@ function init() {
     // add the cube to the scene
     scene.add( cube );
 
-/* test */
-var spotLight = new THREE.SpotLight( 0xffffff );
-spotLight.position.set( 100, 1000, 100 );
-
-spotLight.castShadow = true;
-
-spotLight.shadow.mapSize.width = 1024;
-spotLight.shadow.mapSize.height = 1024;
-
-spotLight.shadow.camera.near = 500;
-spotLight.shadow.camera.far = 4000;
-spotLight.shadow.camera.fov = 30;
-
-scene.add( spotLight );
-
-    // Plane
-
-    /*
-    // make a square for the plane
-    //var geometry = new THREE.PlaneBufferGeometry( 200, 200 );
-    //// "lie" the plane on the x axis
-    //geometry.rotateX( - Math.PI / 2 );
-
-    //var material = new THREE.MeshBasicMaterial( { color: 0xe0e0e0, overdraw: 0.5 } );
-
-    //plane = new THREE.Mesh( geometry, material );
-    //scene.add( plane );
-    */
-
     renderer = new THREE.CanvasRenderer();
     renderer.setClearColor( 0xf0f0f0 );
     renderer.setPixelRatio( window.devicePixelRatio );
