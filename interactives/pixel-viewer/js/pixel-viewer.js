@@ -19,7 +19,7 @@ this.text_opacity = 0;
 this.mode = 'datarep';
 this.filter = null;
 this.salt = null;
-this.convo_k = Array(); // Convolutional Kernel for Gaussian blurring
+this.gaussian_kernel = Array(); // Convolutional Kernel for Gaussian blurring
 
 this.tiling = new Tiling;
 
@@ -30,6 +30,9 @@ $( document ).ready(function() {
     	mode = 'thresholdgreyscale';
     }if (getUrlParameter('mode') == 'blur') {
     	mode = 'blur';
+    }
+	if (getUrlParameter('mode') == 'edgedetection') {
+    	mode = 'edgedetection';
     }
  	setUpMode();
   $( "#pixel-viewer-interactive-original-image" ).delay(1000).animate({width: contentWidth*0.8,
@@ -74,7 +77,106 @@ function setUpMode(){
 			then reapplying the blur.");
 		new Blur($('#pixel-viewer-image-manipulator'));
 	}
+	if (mode == 'edgedetection'){
+		$("#pixel-viewer-extra-feature-description").html(
+			"Find an edge in the graph and zoom right in. What information could a computer use from the values of the pixels surrounding the edge to find it?");
+		new EdgeDetector($('#pixel-viewer-image-manipulator'));
+	}
 }
+
+function greyScaleToggler(){
+	return $(document.createElement("label"))
+		.text("Greyscale or rgb")
+		.append(
+			$(document.createElement("select"))
+			.attr("id", "greyscale-or-rgb")
+			.append($("<option value=greyscale>greyscale</option>"))
+			.append($("<option value=rgb>rgb</option>"))
+			.on("input", toggleGreyscale)
+		)
+}
+
+function gridSizeChooser(callback){
+	return $(document.createElement("label"))
+		.text("Grid size")
+		.append(
+			$(document.createElement("select"))
+			.attr("id", "grid-size")
+			.on("input", callback)
+			.append($("<option value=3>3x3</option>"))
+			//.append($("<option value=4>4x4</option>"))
+			.append($("<option value=5>5x5</option>"))
+			//.append($("<option value=6>6x6</option>"))
+			.append($("<option value=7>7x7</option>"))
+		)
+	}
+
+function EdgeDetector(parent_element){
+	this.main_div = $("<div></div>");
+	this.main_div.attr("id", "pixel-viewer-edge-detector").appendTo($(parent_element));
+	
+	this.main_div.append(
+		greyScaleToggler()
+	);
+	toggleGreyscale()
+	
+	this.main_div.append(
+		$(document.createElement("label"))
+		.text("Number of grids")
+		.append(
+			$(document.createElement("select"))
+			.attr("id", "num-grids")
+			.on("input", createGrids)
+			.append($("<option value=1>1</option>"))
+			.append($("<option value=2>2</option>"))
+			.append($("<option value=3>3</option>"))
+			.append($("<option value=4>4</option>"))
+		)
+	);
+	
+	this.main_div.append(
+		gridSizeChooser(createGrids)
+	);
+	
+	this.main_div.append($(document.createElement("div")).attr("id","grids-div"));
+	
+	createGrids();
+	
+	this.main_div
+		.append(
+			$(document.createElement("button")).text("Apply grids")
+			.click(edgeDetect)
+	);
+	this.main_div
+		.append(
+		$(document.createElement("button")).text("Restore Image")
+		.click(removeFilters)
+	);
+	
+	this.main_div.append($("<p></p>").text(
+		"Try adding a threshold to the picture once the transformation has taken place to highlight the edges you find."));
+	
+	this.main_div.append($("<label></label>").text("Threshold: ")
+		.append($(document.createElement("input"))
+			.attr({"type": "number", "value": 20, "id" : "threshold_selector", "class" : "color_selector int_selector"})
+			.on("input", truncateValues)
+			.on("blur", sanitiseValues))
+		)
+	.append($(document.createElement("button")).text("Apply grids and Threshold").click(applyGreyThreshold))
+}
+
+function edgeDetectionFilter(col, row){
+	var gridSize = $("#grid-size").val();
+	var greyscale = ($("#greyscale-or-rgb").val() == "greyscale");
+	surroundingPixels = getSurroundingPixels(col, row, gridSize, greyscale, true);
+	return applyCustomConvolutionalKernels(surroundingPixels, gridSize)
+}
+
+function edgeDetect(){
+	filter = edgeDetectionFilter;
+	refreshImage();
+}
+
 
 function greyscaler(col, row){
 	var pixelData = salter(col, row);
@@ -117,16 +219,9 @@ function Blur(parent_element){
 	this.main_div.attr("id", "pixel-viewer-blur").appendTo($(parent_element));
 	
 	this.main_div.append(
-		$(document.createElement("label"))
-		.text("Greyscale or rgb")
-		.append(
-			$(document.createElement("select"))
-			.attr("id", "greyscale-or-rgb")
-			.append($("<option value=greyscale>greyscale</option>"))
-			.append($("<option value=rgb>rgb</option>"))
-			.on("input", toggleGreyscale)
-		)
+		greyScaleToggler()
 	);
+	toggleGreyscale()
 	toggleGreyscale()
 	
 	this.main_div.append(
@@ -144,18 +239,7 @@ function Blur(parent_element){
 	);
 	
 	this.main_div.append(
-		$(document.createElement("label"))
-		.text("Grid size")
-		.append(
-			$(document.createElement("select"))
-			.attr("id", "grid-size")
-			.on("input", createGrid)
-			.append($("<option value=3>3x3</option>"))
-			//.append($("<option value=4>4x4</option>"))
-			.append($("<option value=5>5x5</option>"))
-			//.append($("<option value=6>6x6</option>"))
-			.append($("<option value=7>7x7</option>"))
-		)
+		gridSizeChooser(createGrid)
 	);
 	this.main_div.append(
 		$(document.createElement("div"))
@@ -189,22 +273,19 @@ function Blur(parent_element){
 	this.main_div.append($("<p></p>").text("Can you use the custom grid to find edges? What would happen if you used negative values for some weights?"))
 }
 
-function createGrid(){
-	$("#blur-grid").empty();
-	if ($("#blur-type").val() != "custom"){
-		return;
-	}
+function constructGrid(id = 0){
 	var gridSize = $("#grid-size").val();
-	$("#blur-grid").append($(document.createElement("table")).attr("id", "grid_table"));
+	var table = $(document.createElement("table")).attr("id", id+"_grid_table").attr("class", "grid_table");
 	for (var i = 0; i < gridSize; i++){
-		$("#grid_table").append($(document.createElement("tr")).attr("id", "grid_table_row_" + i));
+		var row = $(document.createElement("tr")).attr("id", id+"_grid_table_row_" + i);
+		table.append(row);
 		for (var j = 0; j < gridSize; j++){
-			$("#grid_table_row_" + i).append(
+			row.append(
 				$(document.createElement("td"))
 				.append(
 					$(document.createElement("input"))
 					.attr({
-						"id":"grid_val_" + i + "_" + j,
+						"id": id+"_grid_val_" + i + "_" + j,
 						"class":"int_selector blur_selector",
 						"value":1,
 						"type":"number"}
@@ -214,116 +295,194 @@ function createGrid(){
 			);
 		};
 	};
+	return table;
+}
+
+function createGrids(){
+	var numGrids = $("#num-grids").val();
+	var gridsDiv = $("#grids-div");
+	gridsDiv.empty();
+	for (var i = 0; i < numGrids; i++){
+		gridsDiv.append(constructGrid(i));
+	}
+	$("#grids-div").append(
+		$(document.createElement("label")).text("Use absolute value of result: ").append(
+			$(document.createElement("input")).attr({"id":"use_abs_val","type":"checkbox"})));
+}
+
+function createGrid(){
+	$("#blur-grid").empty();
+	if ($("#blur-type").val() != "custom"){
+		return;
+	}
+	$("#blur-grid").append(constructGrid());
 	$("#blur-grid").append(
 		$(document.createElement("label")).text("Use absolute value of result: ").append(
 			$(document.createElement("input")).attr({"id":"use_abs_val","type":"checkbox"})));
+}
+
+function getSurroundingPixels(col, row, gridSize, greyscale=false, returnGrid=true){
+	// Gets the r, g and b values for  pixels surrounding the pixel at (row, col)
+	// Grey scale is whether to return greyscale values
+	// ReturnGrid: whether to return a grid or array
+	var greyscalerFunc = greyscaler
+	var shift = Math.floor(gridSize / 2);
+	var rgb = Array(3);
+	for (var k = 0; k < 3; k++){
+		// Create three arrays for red, green and blue
+		var grid;
+		if (returnGrid){
+			grid = Array(gridSize);
+			for (var i = 0; i < gridSize; i++){
+				var new_col = Array(gridSize);
+				grid[i] = new_col;
+				for (var j = 0; j < gridSize; j++){
+					// Initialise to 0
+					new_col[j] = 0;
+				}
+			}
+		}
+		else{
+			grid = Array();
+		}
+		rgb[k] = grid;
+	}
+	// Go through the surrounding pixels and update red green and blue values
+	for (var i = 0; i < gridSize; i++){
+		var next_col = col + i - shift;
+		if (next_col < 0 || next_col > contentWidth){
+			// Leave values at 0
+			continue;
+		}
+		else{
+			for (var j = 0; j < gridSize; j++){
+				var next_row = row + j - shift;
+				if (next_row < 0 || next_row > contentHeight){
+					// Leave this value at 0
+					continue;
+				}
+				if (greyscale){
+					pixelData = greyscalerFunc(next_col, next_row)
+				}
+				else if (salt && salt[next_col][next_row] != false){
+					pixelData = [salt[next_col][next_row], salt[next_col][next_row], salt[next_col][next_row]];
+				}
+				else{
+					pixelData = source_canvas.getContext('2d').getImageData(next_col, next_row, 1, 1).data;
+				}
+				for (var k = 0; k < 3; k++){
+					// Update each of the red, green and blue grids respectively
+					if (returnGrid){
+						rgb[k][i][j] = pixelData[k];
+					}
+					else{
+						rgb[k].push(pixelData[k]);
+					}
+				}
+			}
+		}
+	}
+	return rgb;
+}
+
+function applyConvolutionalKernel(rgb, convo_k, gridSize, total_weight){
+	// Applies a convolutional kernel to an rgb grid and returns an array of red green and blue values
+	response = Array();
+	for (var k = 0; k < 3; k++){
+		var sum = 0;
+		for (i = 0; i < gridSize; i++){
+			for (j = 0; j < gridSize; j++){
+				sum += convo_k[i][j] * rgb[k][i][j];
+			}
+		}
+		response.push(Math.floor(sum/total_weight));
+	}
+	return response;
+}
+
+function applyCustomConvolutionalKernels(rgb, gridSize){
+		// Applies any custom convolutional kernels present
+		var numGrids = $(".grid_table").size();
+		var response = [0,0,0]
+		for (var i = 0; i < numGrids; i++){
+			// For each user input grid,
+			// convert user input into convolutional kernel
+			var totalWeight = 0
+			var next_grid = Array();
+			for (var j = 0; j < gridSize; j++){
+				var col = Array();
+				next_grid.push(col);
+				for (var k = 0; k < gridSize; k++){
+					var weight = parseInt($("#"+i+"_grid_val_" + j + "_" + k).val());
+					totalWeight += Math.abs(weight);
+					col.push(weight);
+				}
+			}
+			// Make sure we don't divide by 0
+			if (totalWeight == 0) totalWeight = 1;
+			// Apply convolutional kernel
+			var next_rgb = applyConvolutionalKernel(rgb, next_grid, gridSize, totalWeight);
+
+			// Add result to response
+			for (var i = 0; i < 3; i++){
+				response[i] += Math.floor(next_rgb[i])
+			}	
+		}
+
+		// Find the average of red green and blue values from all grids
+		return response.map(function(val){
+			var x =  Math.floor(val/numGrids);
+			return $('#use_abs_val').is(":checked") ? Math.abs(x) : x
+			});
+	}
+		
+function createGaussianKernel(gridSize){
+	gaussian_kernel = Array();
+	var shift = Math.floor(gridSize / 2)
+	for (var x = 0 - shift; x < gridSize - shift; x++){
+		var col = Array();
+		gaussian_kernel.push(col);
+		for (var y = 0 - shift; y < gridSize - shift; y++){
+			col.push(1/2*Math.PI*Math.pow(Math.E, -(x*x + y*y)/2))
+		}
+	}
+	gaussian_kernel.totalWeight = sum(gaussian_kernel.map(function(col){return sum(col);}));
 }
 
 function applyBlur(){
 	filter = function(col, row){
 		var blur_type = $("#blur-type").val();	
 		var gridSize = $("#grid-size").val();
-		var shift = Math.floor(gridSize / 2);
-		var vals = Array();
 		var greyscale = ($("#greyscale-or-rgb").val() == "greyscale")
-		var greyscalerFunc = greyscaler
-		for (var i = 0; i < gridSize; i++){
-			var next_col = col + i - shift;
-			if (next_col < 0 || next_col > contentWidth){
-				continue;
-			}
-			else{
-				for (var j = 0; j < gridSize; j++){
-					var next_row = row + j - shift;
-					if (next_row < 0 || next_row > contentHeight){
-						continue;
-					}
-					if (greyscale){
-						pixelData = greyscalerFunc(next_col, next_row)
-					}
-					else if (salt && salt[next_col][next_row] != false){
-						pixelData = [salt[next_col][next_row], salt[next_col][next_row], salt[next_col][next_row]];
-					}
-					else{
-						pixelData = source_canvas.getContext('2d').getImageData(next_col, next_row, 1, 1).data;
-					}
-					if (blur_type == "custom"){
-					vals.push(pixelData.map(function(x){
-						return x * $("#grid_val_" + j + "_" + i).val();
-						}));
-					}
-					else{
-						vals.push(pixelData);
-					}
-				}
-			}
-		}
 		
 		if (blur_type == "gaussian"){
 			// This isn't quite right at the edges of the picture, but it should be close
 			// For red, green and blue
-			response = Array()
+			surroundingPixels = getSurroundingPixels(col, row, gridSize, greyscale, true);
 			
 			// Create convolutional kernel if it hasn't already been created at this size
-			if (convo_k.length != gridSize * gridSize){
-				convo_k = Array();
-				for (var x = 0 - shift; x < gridSize - shift; x++){
-					for (var y = 0 - shift; y < gridSize - shift; y++){
-						convo_k.push(1/2*Math.PI*Math.pow(Math.E, -(x*x + y*y)/2))
-					}
-				}
-				convo_k.totalWeight = convo_k.reduce(function(prev, curr, currI, arr){
-				return prev + curr;
-				})
+			if (gaussian_kernel.length != gridSize){
+				createGaussianKernel(gridSize);
 			}
-			
-			for (var i = 0; i < vals[0].length; i++){
-				next_list = vals.map(function(val){return val[i];});
-				result = next_list.reduce(function(prev, curr, currI, arr) {
-					return prev + curr * convo_k[currI];
-				});
-				response.push(Math.floor(result/convo_k.totalWeight));
-			}
-			return response;
+			return applyConvolutionalKernel(surroundingPixels, gaussian_kernel, gridSize, gaussian_kernel.totalWeight);
 		}
 		if (blur_type == "custom"){
-			var totalWeight = 0
-			$(".blur_selector").each(function() {
-				totalWeight += Math.abs(parseInt(this.value));
-			})
-			if (totalWeight == 0) totalWeight = 1;
-			var sums = vals.reduce(function(prev, curr, currI, arr) {
-				var sum = Array()
-				for (var i = 0; i < curr.length; i++){
-					sum.push(prev[i] + curr[i]);
-				}
-				return sum;
-				});
-			return sums.map(function(x){var val = Math.floor(x / totalWeight); return $("#use_abs_val").is(":checked()") ? Math.abs(val) : val})
-		}
+			surroundingPixels = getSurroundingPixels(col, row, gridSize, greyscale, true);
+			return applyCustomConvolutionalKernels(surroundingPixels, gridSize)
+			}
 		if (blur_type == "mean"){
-			var sums = vals.reduce(function(prev, curr, currI, arr) {
-				var sum = Array()
-				for (var i = 0; i < curr.length; i++){
-					sum.push(prev[i] + curr[i]);
-				}
-				return sum;
-				});
-			return sums.map(function(x){return Math.floor(x / vals.length)})
+			surroundingPixels = getSurroundingPixels(col, row, gridSize, greyscale, false);
+			return surroundingPixels.map(function(x){return Math.floor(average(x));});
 		}
 		if (blur_type == "median"){
-			medians = Array();
+			surroundingPixels = getSurroundingPixels(col, row, gridSize, greyscale, false);
 			// Get median for r, g and b values
-			for (var i = 0; i < vals[0].length; i++){
-				next_list = vals.map(function(val){return val[i];});
-				next_list = next_list.sort();
-				medians.push(next_list[Math.floor(vals.length / 2)]);
-			}
-			return medians;
+			return surroundingPixels.map(function(list){list = list.sort();return list[Math.floor(list.length / 2)];});
 		}	
 	}
 	
 	refreshImage();
+		
 }
 
 function Thresholder(parent_element){
@@ -355,14 +514,6 @@ function Thresholder(parent_element){
 function GreyscaleThresholder(parent_element){
 	this.main_div = $("<div></div>");
 	this.main_div.attr("id", "pixel-viewer-thresholder").appendTo($(parent_element));
-	this.main_div.append($("<label></label>").text("Threshold: ")
-		.append($(document.createElement("input"))
-			.attr({"type": "number", "value": 127, "id" : "threshold_selector", "class" : "color_selector int_selector"})
-			.on("input", truncateValues)
-			.on("blur", sanitiseValues))
-		)
-	.append($(document.createElement("button")).text("Apply Threshold").click(applyGreyThreshold))
-	.append($(document.createElement("button")).text("Remove Threshold").click(removeGreyThreshold));
 }
 
 function addNoise(){
@@ -413,11 +564,18 @@ function removeFilters(){
 function applyGreyThreshold(){
 	var threshold = $("#threshold_selector").val();
 	filter = function(col, row){
-		var pixelData = source_canvas.getContext('2d').getImageData(col, row, 1, 1).data;
-		var sum = pixelData[0] + pixelData[1] + pixelData[3];
+		var pixelData;
+		if (mode == 'edgedetection'){
+			pixelData = edgeDetectionFilter(col, row);
+		}
+		else{
+			pixelData = source_canvas.getContext('2d').getImageData(col, row, 1, 1).data;
+		}
+		var sum = pixelData[0] + pixelData[1] + pixelData[2];
 		var avg = sum / 3;
-		if (avg > threshold)
+		if (avg > threshold){
 			return [255, 255, 255];
+		}
 		else{
 			return [0,0,0]
 		}
@@ -719,6 +877,12 @@ function average(data){
 
 function randomInt(max){
 	return Math.floor(Math.random() * max);
+}
+
+function sum(array){
+	return array.reduce(function(prev, curr, currI, arr){
+				return prev + curr;
+	});
 }
 
 // From jquerybyexample.net/2012/06/get-url-parameters-using-jquery.html
