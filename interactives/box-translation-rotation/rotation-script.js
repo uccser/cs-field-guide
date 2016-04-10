@@ -27,6 +27,7 @@ function init() {
     container.appendChild( info );
 
     camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
+    camera.position.y = 150;
     camera.position.z = 500;
 
     scene = new THREE.Scene();
@@ -78,19 +79,18 @@ function init() {
 
     // put the loaded materials onto the cube object
     cube = new THREE.Mesh( geometry, new THREE.MeshFaceMaterial( materials ) );
-    console.log( 'vertices:', cube.geometry.vertices );
+    cube.position.y = 150;
 
     // add the cube to the scene
     scene.add( cube );
 
- //Plane
- //make a square for the plane
-//var geometry = new THREE.PlaneBufferGeometry( 200, 200 );
-
-//var material = new THREE.MeshBasicMaterial( { color: 0xe0e0e0, overdraw: 0.5 } );
-//plane = new THREE.Mesh( geometry, material );
-//plane.position.y = 200;
-//scene.add( plane );
+    // Plane
+    // make a square for the plane
+    var geometry = new THREE.PlaneBufferGeometry( 200, 200 );
+    geometry.rotateX( - Math.PI / 2 );
+    var material = new THREE.MeshBasicMaterial( { color: 0xe0e0e0, overdraw: 0.5 } );
+    plane = new THREE.Mesh( geometry, material );
+    scene.add( plane );
 
 
     renderer = new THREE.CanvasRenderer();
@@ -111,7 +111,7 @@ function init() {
 
         switch (event.keyCode) {
             case 13: // enter/return key
-                moveBox();
+                rotateBox();
                 break;
         }}, false);
 
@@ -143,40 +143,27 @@ function animate() {
     render();
     stats.update();
 
-    TWEEN.update();
-
 }
 
 function render() {
 
-    // TODO probably useful for the box rotation interactive
-    // rotates the plane to match the cube
-    //plane.rotation.y = cube.rotation.y += ( targetRotation - cube.rotation.y ) * 0.05;
+    //rotates the plane to match the cube
+    plane.rotation.y = cube.rotation.y += ( targetRotation - cube.rotation.y ) * 0.05;
+
     renderer.render( scene, camera );
 
 }
 
 
-function moveBox() {
+function rotateBox() {
     /* triggered when the user hits the "enter" (or "return") key
-     * updates the cube's position to match the the coordinates inputted by the user
+     * rotates the cube to match the the values inputted by the user
      */
 
-    // get each coordinate value from the input box */
+    // get each value from the input box */
     var x_pos = 0 + parseInt(document.getElementById( 'x-coordinate' ).value);
     var y_pos = 0 + parseInt(document.getElementById( 'y-coordinate' ).value);
     var z_pos = 0 + parseInt(document.getElementById( 'z-coordinate' ).value);
-
-    // use the coordinates to set a new target for the box
-    var target = { x: x_pos, y: y_pos, z: z_pos };
-
-    // move the box on the next animation loop
-    TWEEN.removeAll();
-    new TWEEN.Tween( cube.position )
-        .to( target )
-        .easing ( TWEEN.Easing.Elastic.Out )
-        .onUpdate( render )
-        .start();
 
 }
 
