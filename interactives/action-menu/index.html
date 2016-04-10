@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!-- ### Enter your interactive title in the title block ### -->
+    <title>Delayed Checkbox</title>
+    <link rel="stylesheet" href="../base-files/css/third-party/normalize.css">
+    <!--Import materialize.css-->
+    <link rel="stylesheet" href="../base-files/css/third-party/materialize.min.css" type="text/css" media="screen,projection"/>
+    <script src="../base-files/js/third-party/modernizr.js"></script>
+    <!-- jQuery (necessary for Materialize) -->
+    <script type="text/javascript" src="../base-files/js/third-party/jquery.js"></script>
+  </head>
+  <body>
+    <div class="row interactive center-align">
+    <div class="s12 col">
+    <!-- ### Start of required HTML for inline interactives ### -->
+      <a id='dropdownMenu' class='dropdown-button btn' href='#' data-activates='dropdown-available-menu-items' data-beloworigin='true'>Available Menu Items</a>
+      <ul id='dropdown-available-menu-items' class='dropdown-content'>
+        <li><a href=javascript:; onclick=onClickPizza() id="orderAPizza">Order a pizza</a>
+        <li><a href=javascript:; onclick=onClickTV() id="turnOnTV">Turn on TV</a>
+        <li><a href=javascript:; onclick=onClickNuclearAttack() id="launchNuclearAttack">Launch nuclear attack</a>
+        <li><a href=javascript:; onclick=onClickWater() id="boilWater">Boil Water</a>
+      </ul>
+
+      <p id="confirmationText"> </p>
+
+    <!-- ### End of required HTML for inline interactives ### -->
+    </div>
+    </div>
+    <!-- jQuery (necessary for Materialize) -->
+    <script type="text/javascript" src="../base-files/js/third-party/jquery.js"></script>
+    <!-- Materialize responsive CSS -->
+    <script type="text/javascript" src="../base-files/js/third-party/materialize.min.js"></script>
+    <script src="./actionmenu.js"></script>
+
+  </body>
+	</html>
