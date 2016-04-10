@@ -16,6 +16,9 @@ animate();
 
 function init() {
 
+    // change transformation title to 'Translation'
+    document.getElementById( 'transformation-title' ).innerHTML = 'Translation';
+
     var info = document.createElement( 'div' );
     info.style.position = 'absolute';
     info.style.top = '10px';
@@ -24,7 +27,6 @@ function init() {
     container.appendChild( info );
 
     camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
-    camera.position.y = 150;
     camera.position.z = 500;
 
     scene = new THREE.Scene();
@@ -35,8 +37,8 @@ function init() {
     var geometry = new THREE.BoxGeometry( 200, 200, 200 );
 
     // list of possible box symbols
-    var symbols = [ 'square2.jpg', 'square3.jpg', 'square4.jpg',
-        'square5.jpg', 'square6.jpg', 'square7.jpg', 'square8.jpg' ];
+    var symbols = [ 'images/square2.jpg', 'images/square3.jpg', 'images/square4.jpg',
+        'images/square5.jpg', 'images/square6.jpg', 'images/square7.jpg', 'images/square8.jpg' ];
 
     // randomly decides which symbol to put on each side of the box
     // means that different box is loaded each time
@@ -76,11 +78,20 @@ function init() {
 
     // put the loaded materials onto the cube object
     cube = new THREE.Mesh( geometry, new THREE.MeshFaceMaterial( materials ) );
-    // set the cube's initial position
-    cube.position.y = 150;
+    console.log( 'vertices:', cube.geometry.vertices );
 
     // add the cube to the scene
     scene.add( cube );
+
+ //Plane
+ //make a square for the plane
+//var geometry = new THREE.PlaneBufferGeometry( 200, 200 );
+
+//var material = new THREE.MeshBasicMaterial( { color: 0xe0e0e0, overdraw: 0.5 } );
+//plane = new THREE.Mesh( geometry, material );
+//plane.position.y = 200;
+//scene.add( plane );
+
 
     renderer = new THREE.CanvasRenderer();
     renderer.setClearColor( 0xf0f0f0 );
@@ -187,12 +198,12 @@ function submitCode() {
 
 function clearCode() {
     /* triggered when the user clicks the "clear" button
-     * set the selected codes to question marks and clear the dictionary
+     * set the selected codes to ../images/question marks and clear the dictionary
      */
 
-    document.getElementById( 'first-symbol' ).src = 'question_mark.jpg';
-    document.getElementById( 'second-symbol' ).src = 'question_mark.jpg';
-    document.getElementById( 'third-symbol' ).src = 'question_mark.jpg';
+    document.getElementById( 'first-symbol' ).src = 'images/question_mark.jpg';
+    document.getElementById( 'second-symbol' ).src = 'images/question_mark.jpg';
+    document.getElementById( 'third-symbol' ).src = 'images/question_mark.jpg';
     code[1] = null;
     code[2] = null;
     code[3] = null;
@@ -201,13 +212,13 @@ function clearCode() {
 
 function symbolClick(id) {
     /* When a symbol is clicked, add it to the first empty spot
-     * (where "spot" refers to the boxes with question marks in them)
+     * (where "spot" refers to the boxes with ../images/question marks in them)
      * and update the dictionary mapping the three sides to the selected symbols
      * Input:
      *   - id: relates to a particular symbol (each symbol's file name contains a number in 1-8)
      */
 
-    var img_src = 'square' + id + '.jpg';
+    var img_src = 'images/square' + id + '.jpg';
     if ( code[1] == null ) {
         code[1] = img_src;
         document.getElementById( 'first-symbol' ).src = img_src;

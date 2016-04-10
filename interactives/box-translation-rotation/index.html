@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Graphics Translation - CSFG</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+
+    <div id="container">
+        <div id="user-input">
+            <div id="coordinates">
+                <h2 id="transformation-title"></h2>
+                <label>X:<input type="text" id="x-coordinate" autofocus/></label>
+                <label>Y:<input type="text" id="y-coordinate"/></label>
+                <label>Z:<input type="text" id="z-coordinate"/></label>
+            </div>
+            <div id="code">
+                <h2>Secret Code</h2>
+                <div id="symbol-grid">
+                    <div class="row">
+                        <img src="images/square1.jpg" onClick="symbolClick('1')">
+                        <img src="images/square2.jpg" onClick="symbolClick('2')">
+                        <img src="images/square3.jpg" onClick="symbolClick('3')">
+                        <img src="images/square4.jpg" onClick="symbolClick('4')">
+                    </div>
+                    <div class="row">
+                        <img src="images/square5.jpg" onClick="symbolClick('5')">
+                        <img src="images/square6.jpg" onClick="symbolClick('6')">
+                        <img src="images/square7.jpg" onClick="symbolClick('7')">
+                        <img src="images/square8.jpg" onClick="symbolClick('8')">
+                    </div>
+                </div>
+                <div id="code-template">
+                    <img id="first-symbol" src="images/question_mark.jpg">
+                    <img id="second-symbol" src="images/question_mark.jpg">
+                    <img id="third-symbol" src="images/question_mark.jpg">
+                    <button onClick="clearCode()">Clear</button>
+                    <button onClick="submitCode()">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <script src="js/three.min.js"></script>
+        <script src="js/Projector.js"></script>
+        <script src="js/CanvasRenderer.js"></script>
+        <script src="js/tween.js"></script>
+        <script src="js/stats.min.js"></script>
+        <script src="rotation-script.js"></script>
+
+
+
+    </body>
+</html>
