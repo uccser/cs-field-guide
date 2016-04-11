@@ -81,6 +81,8 @@ function init() {
     cube = new THREE.Mesh( geometry, new THREE.MeshFaceMaterial( materials ) );
     cube.position.y = 150;
 
+    console.log(cube.rotation);
+
     // add the cube to the scene
     scene.add( cube );
 
@@ -116,9 +118,9 @@ function init() {
         }}, false);
 
     // sets the initial values of the x/y/z-coordinate text input boxes
-    document.getElementById( 'x-coordinate' ).value = cube.position.x;
-    document.getElementById( 'y-coordinate' ).value = cube.position.y;
-    document.getElementById( 'z-coordinate' ).value = cube.position.z;
+    document.getElementById( 'x-coordinate' ).value = cube.rotation.x;
+    document.getElementById( 'y-coordinate' ).value = cube.rotation.y;
+    document.getElementById( 'z-coordinate' ).value = cube.rotation.z;
 
 }
 
@@ -143,12 +145,15 @@ function animate() {
     render();
     stats.update();
 
+    TWEEN.update();
+
 }
 
 function render() {
 
     //rotates the plane to match the cube
-    plane.rotation.y = cube.rotation.y += ( targetRotation - cube.rotation.y ) * 0.05;
+    // TODO this only matches y rotations
+    plane.rotation.y = cube.rotation.y + ( targetRotation - cube.rotation.y ) * 0.05;
 
     renderer.render( scene, camera );
 
@@ -164,6 +169,21 @@ function rotateBox() {
     var x_pos = 0 + parseInt(document.getElementById( 'x-coordinate' ).value);
     var y_pos = 0 + parseInt(document.getElementById( 'y-coordinate' ).value);
     var z_pos = 0 + parseInt(document.getElementById( 'z-coordinate' ).value);
+
+    // sets target rotations
+    // values are converted to radians
+    var target = { x: ( x_pos/360 ) * Math.PI,
+            y: ( y_pos/360 ) * Math.PI,
+            z: ( z_pos/360 ) * Math.PI
+    };
+
+    // rotate the box on the next animation loop
+    TWEEN.removeAll();
+    new TWEEN.Tween( cube.rotation )
+        .to( target )
+        .easing ( TWEEN.Easing.Elastic.Out )
+        .onUpdate( render )
+        .start();
 
 }
 
