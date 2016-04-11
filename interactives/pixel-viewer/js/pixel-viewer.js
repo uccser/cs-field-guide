@@ -17,6 +17,8 @@ this.cell_text = 'R \nG \nB ';
 this.text_opacity = 0;
 
 this.mode = 'datarep';
+this.displayFps = false
+
 this.filter = null;
 this.salt = null;
 this.gaussian_kernel = Array(); // Convolutional Kernel for Gaussian blurring
@@ -37,6 +39,10 @@ $( document ).ready(function() {
     }
 	if (getUrlParameter('mode') == 'edgedetection') {
     	mode = 'edgedetection';
+    }
+    if (getUrlParameter('fps')){
+    	// Whether or not to display frames per second
+    	displayFps = true
     }
  	setUpMode();
   $( "#pixel-viewer-interactive-original-image" ).delay(1000).animate({width: contentWidth*0.8,
@@ -479,7 +485,10 @@ function getSurroundingPixels(col, row, returnGrid=true){
 function applyConvolutionalKernel(rgb, convo_k){
 	// Applies a convolutional kernel to an rgb grid and returns an array of red green and blue values
 	response = Array();
-	for (var k = 0; k < 3; k++){
+	
+	// Save some calculations if it's greyscale
+	num_colours = isGreyscale ? 1 : 3;
+	for (var k = 0; k < num_colours; k++){
 		var sum = 0;
 		for (i = 0; i < gridSize; i++){
 			for (j = 0; j < gridSize; j++){
@@ -487,6 +496,9 @@ function applyConvolutionalKernel(rgb, convo_k){
 			}
 		}
 		response.push(Math.floor(sum/convo_k.totalWeight));
+	}
+	if (isGreyscale){
+		response = [response[0], response[0], response[0]];
 	}
 	return response;
 }
@@ -580,13 +592,26 @@ function applyBlur(){
 		if (blur_type == "mean"){
 			// Apply a mean blur
 			surroundingPixels = getSurroundingPixels(col, row, false);
+			if (isGreyscale){
+				// Save some computation if working with greyscale
+				var val = Math.floor(average(surroundingPixels[0]));
+				return [val, val, val];
+			}
 			return surroundingPixels.map(function(x){return Math.floor(average(x));});
 		}
 		if (blur_type == "median"){
 			// Apply a median blur
 			surroundingPixels = getSurroundingPixels(col, row, false);
 			// Get median for r, g and b values
-			return surroundingPixels.map(function(list){list = list.sort();return list[Math.floor(list.length / 2)];});
+			if (isGreyscale){
+				// Save some computation if working with greyscale
+				var list = surroundingPixels[0].sort()
+				var val = list[Math.floor(list.length / 2)];
+				return [val, val, val];
+			}
+			else {
+				return surroundingPixels.map(function(list){list = list.sort();return list[Math.floor(list.length / 2)];});
+			}
 		}	
 	}
 	
@@ -777,26 +802,45 @@ source_image.src = './img/coloured-roof-small.png';
 
 // Canvas renderer
 var render = function(left, top, zoom) {
+	// update fps display if setting is on and show loading image
+	start_time = new Date().getTime();
 	$("#loading-img-div").show()
+	
+	// Set a timeout for 100 ms for this function to allow enough time for the loading image to render before resources
+	// are demanded by the render function itself
 	setTimeout(function(){
 		// Full clearing
-    context.clearRect(0, 0, canvasWidth, canvasHeight);
+    	context.clearRect(0, 0, canvasWidth, canvasHeight);
 	
-    // Use tiling
-    tiling.setup(canvasWidth, canvasHeight, contentWidth, contentHeight, CELL_SIZE, CELL_SIZE);
-    tiling.render(left, top, zoom, paint);
+    	// Use tiling
+    	tiling.setup(canvasWidth, canvasHeight, contentWidth, contentHeight, CELL_SIZE, CELL_SIZE);
+    	tiling.render(left, top, zoom, paint);
     
-    // Variables to be calculated once per draw
-    // Calculate opacity of labels
-    text_opacity = zoom - 0.8
-
-    if (text_opacity >= 1) {
-        text_opacity = 1;
-    } else if (text_opacity <= 0) {
-        text_opacity = 0;
-    }
-    
+    	// Variables to be calculated once per draw
+    	// Calculate opacity of labels
+    	text_opacity = zoom - 0.8
+	
+    	if (text_opacity >= 1) {
+       		text_opacity = 1;
+   		} else if (text_opacity <= 0) {
+        	text_opacity = 0;
+    	}
+    	
+    	// Hide the loading image and calculate frames per second that could render
 		$("#loading-img-div").hide();
+		if (displayFps){
+			if (filter != null && filter != greyscaler && filter != salter){
+				end_time = new Date().getTime();
+				var fps = Math.round(100000/(end_time - start_time))/100;
+				fps = fps > 0.01 ? fps : "<0.01"
+				$("#fps-feedback").text("Frame processing rate: "+fps+" per second.")
+				.show();
+			}
+			else{
+				$("#fps-feedback").hide();
+		}
+	}
+		
 	}, 100);
 };
 

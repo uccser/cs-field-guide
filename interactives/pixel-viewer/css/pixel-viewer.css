@@ -71,3 +71,15 @@
 	left: 50%;
 	display: none;
 }
+#fps-feedback{
+	z-index: 15;
+	position: absolute;
+	bottom:5px;
+	right:5px;
+	background-color:#FFFFFF;
+	border-color:#333;
+	border:1px;
+	opacity:0.5;
+	padding:3px;
+	display: none;
+}
