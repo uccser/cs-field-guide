@@ -1,29 +1,28 @@
 //onload make array of 5 random ints
 //TODO: work out how to put number holding divs 'under' the box divs, then make them slide up
-var randomInts = [];
-var largest = 0;
-var numberOfBoxes = 15
-var boxes = []
+this.randomInts = [];
+this.largest = 0;
+this.numberOfBoxes = 15
+this.boxes = []
 
 $(document).ready(function(){
 	generateRandomNumbers();
-	createBoxElements();
-	createBoxes();
-	createIntHoldingDivs();
-	console.log((randomInts.toString() + " " + largest.toString()));
+	createBoxObjects();
 	console.log(boxes);
+	createBoxElements();
+	//createBoxes();
+	//createIntHoldingDivs();
+
+
+	//initialises onclick
+	$(".intHoldingDiv").click(function() {
+		console.log("intHoldingDiv clicked!");
+
+	})
 
 	$(".box").click(function() {
-	console.log("box clicked!");
-	for (var i = 0; i < boxes.length; i++) {
-n		if (boxes[i].element === event.target) {
-			console.log("element matched!");
-			event.target.innerHTML = boxes[i].boxInt;
-			$("#int_holder_div" + i).slideUp("slow");
-						}	    
-	}
-
-})
+		console.log("box clicked!");
+	})
 })
 
 
@@ -51,14 +50,31 @@ function generateRandomNumbers() {
 
 function createBoxElements() {
 	console.log('we in createBoxElements!')
-		for (var i = 0; i < (numberOfBoxes); i++) {
+	for (var i = 0; i < (boxes.length); i++) {
+		console.log('i is currently ' + i);
+		var boxObject; //JS object that will hold the id, int and both elements
+		var currentBox = boxes[i]
 
-		var iDiv = document.createElement('div');
-		iDiv.id = ('box' + i);
-		iDiv.className = 'box';
-		//iDiv.innerHTML = 'REEEEEE';
+		//"container" div
+		var iContainer = document.createElement('div');
+		iContainer.id = ('boxContainer' + i);
+		iContainer.className = 'boxContainer';
+		document.getElementById('box_holder_div').appendChild(iContainer);
 
-		document.getElementById('box_holder_div').appendChild(iDiv);
+		//"box (covering the div holding number"
+		var boxDiv = document.createElement('div');
+		boxDiv.id = ('box' + i);
+		boxDiv.className = 'box';
+		currentBox.divElement = boxDiv;
+		iContainer.appendChild(boxDiv);
+
+		//divs that hold the numbers
+		var intHoldingDiv = document.createElement('div');
+		intHoldingDiv.id = ('intHoldingDiv' + i);
+		intHoldingDiv.className = 'intHoldingDiv';
+		intHoldingDiv.innerHTML = currentBox.boxInt;
+		currentBox.intHoldingDivElement = intHoldingDiv;
+		iContainer.appendChild(intHoldingDiv);
 	}
 }	
 
@@ -66,17 +82,19 @@ function createIntHoldingDivs() {
 	for (var i = 0; i < (numberOfBoxes); i++) {
 		var intHoldingDiv = document.createElement('div');
 		intHoldingDiv.id = ("int_holder_div" + i);
+		intHoldingDiv.className = "intHoldingDiv"
 		intHoldingDiv.innerHTML = boxes[i].boxInt;
 		boxes[i].intHoldingDivElement = intHoldingDiv;
 		document.getElementById('box' + i).appendChild(intHoldingDiv);
 	}
 
 }
-function createBoxes() {
+//creates the JS objects with just the id and the random int, leaving space for the HTML elements
+function createBoxObjects() {
 	for (var i = 0; i < numberOfBoxes; i++) {
 		var boxObject = {
 			boxNumber: i,
-			element: document.getElementById('box' + i),
+			divElement: null,
 			boxInt: randomInts[i],
 			intHoldingDivElement: null
 		}

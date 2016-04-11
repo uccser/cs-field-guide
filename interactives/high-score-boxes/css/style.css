@@ -1,9 +1,35 @@
 
-
+/* covering boxes */
 div.box {
     width: 150px;
+    height: 40px;
     border: 10px;
     float: left;
     padding: 10px;
     border-style: solid;
     border-color: #ff0000 #0000ff;
+    position: relative;
+    background-color: white;
+    z-index: 2;
+}
+
+div.intHoldingDiv {
+	width: 150px;
+	height: 40px;
+
+	text-align: center;
+	vertical-align: middle;
+	line-height: 40px; 
+
+	float: left;
+	/*display: none;*/
+	position: absolute; 
+	z-index: 3;
+}
+
+div.boxContainer {
+	width: 150px;
+	height: 40px;
+	float: left;
+	position: relative;
+}
