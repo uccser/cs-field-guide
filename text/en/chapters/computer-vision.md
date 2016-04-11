@@ -96,7 +96,7 @@ Further reading can be found at [Cambridge in Colour](http://www.cambridgeincolo
 
 One challenge when using digital cameras is something called *noise*. That’s when individual pixels in the image appear brighter or darker than they should be, due to interference in the electronic circuits inside the camera. It’s more of a problem when light levels are dark, and the camera tries to boost the exposure of the image so that you can see more. You can see this if you take a digital photo in low light, and the camera uses a high ASA/ISO setting to capture as much light as possible. Because the sensor has been made very sensitive to light, it is also more sensitive to random interference, and gives photos a "grainy" effect.
 
-Noise mainly appears as random changes to pixels. For example, the following image has "salt and pepper" noise.
+Noise mainly appears as random changes to pixels. For example, the following image has ["salt and pepper"](https://en.wikipedia.org/wiki/Image_noise#Salt-and-pepper_noise) noise.
 
 {image filename="banana-with-salt-and-pepper-noise.jpg" alt="An image of a banana with salt-and-pepper noise"}
 
@@ -169,7 +169,7 @@ The following activity can be used as part of a project for the 3.44 standard. T
 
 Open the noise reduction filtering interactive below and experiment with the settings.
 
-{interactive name="pixel-viewer" type="whole-page" text="Noise Reduction interactive" parameters="mode=blur&fps"}
+{interactive name="pixel-viewer" type="whole-page" text="Noise Reduction interactive" parameters="mode=blur&fps&picturepicker"}
 
 Mathematically, this process is applying a special kind of matrix called a *convolution kernel* to the value of each pixel in the source image, averaging it with the values of other pixels nearby and copying that average to each pixel in the new image. In the case of the Gaussian blur, the average is weighted, so that the values of nearby pixels are given more importance than ones that are far away. The stronger the blur, the wider the convolution kernel has to be and the more calculations take place.
 

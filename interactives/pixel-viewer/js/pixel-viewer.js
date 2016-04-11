@@ -29,6 +29,8 @@ this.pixels_painted = 0;
 this.gridSize = 0; // Global to keep track of size of grid chosen
 this.isGreyscale = false; // Global to keep track of whether greyscale is on
 
+this.images = ["coloured-roof-small.png","roof.jpg"] // Names of images to be included in picture picker
+
 this.tiling = new Tiling;
 
 $( document ).ready(function() {
@@ -96,9 +98,13 @@ function setUpMode(){
 			<br><br>\
 			 If you find that the scroll and zoom are slow with a blur applied, try removing the blur, zooming or scrolling and \
 			then reapplying the blur.");
+		images = ["coloured-roof-small.png", "dark.jpg", "dark_clock.jpg"]
 		new Blur($('#pixel-viewer-image-manipulator'));
 	}
 	if (mode == 'edgedetection'){
+		images = ["coloured-roof-small.png", "alley.jpg", "bike.jpg", "boards.jpg",
+	"fence.jpg", "roof.jpg", "tuba.jpg","words.png",
+	"words_zoom.png", "knight.png"] 
 		addDescription("Edge Detection Interactive", "Find an edge in the graph and zoom right in. What information could a computer use from the values of the pixels surrounding the edge to find it?\
 		<br><br>\
 		We have supplied you with some grids to apply to the image to transorm it. The numbers in the grids are multiplied against the values of the pixels that surround each point. What numbers\
@@ -743,8 +749,6 @@ function createPicturePicker(){
 	// Create picker for default pictures
 	main_div = $("#picture-picker");
 	main_div.append($("<p></p>").text("Or choose from the following supplied images:"));
-	var images = ["alley.jpg", "bike.jpg", "boards.jpg", "fence.jpg",
-	"coloured-roof-small.png", "roof.jpg", "tuba.jpg","words.png", "words_zoom.png", "knight.png"]
 	for (var i = 0; i < images.length; i++){
 		var img_url = './img/' + images[i]
 		main_div.append(
