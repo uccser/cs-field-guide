@@ -79,7 +79,26 @@
 	background-color:#FFFFFF;
 	border-color:#333;
 	border:1px;
-	opacity:0.5;
+	opacity:0.8;
 	padding:3px;
 	display: none;
+	-webkit-touch-callout: none; /* iOS Safari */
+ 	-webkit-user-select: none;   /* Chrome/Safari/Opera */
+  	-khtml-user-select: none;    /* Konqueror */
+  	-moz-user-select: none;      /* Firefox */
+  	-ms-user-select: none;       /* IE/Edge */
+  	user-select: none; 
+}
+.img-pick{
+	width:100px;
+	height:60px;
+	border:2px solid;
+	border-color:#333;
+	margin:3px;
+	cursor: pointer;
+	cursor: hand;
+}
+.img-pick:hover{
+	 border-color:#AAA;
+	 border:1px solid;
 }

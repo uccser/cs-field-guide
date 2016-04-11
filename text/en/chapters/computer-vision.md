@@ -169,9 +169,9 @@ The following activity can be used as part of a project for the 3.44 standard. T
 
 Open the noise reduction filtering interactive below and experiment with the settings.
 
-{interactive name="pixel-viewer" type="whole-page" text="Pixel Blur interactive" parameters="mode=blur&fps"}
+{interactive name="pixel-viewer" type="whole-page" text="Noise Reduction interactive" parameters="mode=blur&fps"}
 
-Mathematically, this process is applying a special kind of matrix called a *convolution kernel* to the value of each pixel in the source image, averaging it with the values of other pixels nearby and copying that average to each pixel in the new image. The average is weighted, so that the values of nearby pixels are given more importance than ones that are far away. The stronger the blur, the wider the convolution kernel has to be and the more calculations take place.
+Mathematically, this process is applying a special kind of matrix called a *convolution kernel* to the value of each pixel in the source image, averaging it with the values of other pixels nearby and copying that average to each pixel in the new image. In the case of the Gaussian blur, the average is weighted, so that the values of nearby pixels are given more importance than ones that are far away. The stronger the blur, the wider the convolution kernel has to be and the more calculations take place.
 
 {comment}
 
@@ -179,13 +179,30 @@ Mathematically, this process is applying a special kind of matrix called a *conv
 
 {comment end}
 
-For this activity, investigate the different kinds of noise reduction filter and their settings (mask size, number of iterations) and determine:
+For this activity, investigate the different kinds of noise reduction filter and their settings (grid size, type of blur) and determine:
 
-- how well they cope with different kinds and levels of noise (you can set this in the interactive).
-- how much time it takes to do the necessary processing (the interactive shows the number of frames per second that it can process)
+- how well they cope with different levels of noise (you can set this in the interactive or upload your own noisy photos).
+- how much time it takes to do the necessary processing (the interactive shows the number of pixels per second that it can process)
 - how they affect the quality of the underlying image (a variety of images + camera)
 
 You can take screenshots of the image to show the effects in your writeup. You can discuss the tradeoffs that need to be made to reduce noise.
+
+## Thresholding
+
+Another technique that is sometimes useful in computer vision is *thresholding*. This is something which is relatively simple to implement, but can be quite useful.
+
+If you have a greyscale image, and you want to detect regions that are darker or lighter, it could be useful to simply transform any pixel above a certain level of lightness to pure white, and any other pixel to pure black. In the Data Representation chapter we talked about how pixels are all represented as sets of numbers between 0 and 255 which represent red, green and blue values. We can change a pixel to greyscale by simply taking the average of all three of these values and setting all three values to be this average.
+
+Once we have done this, we can apply a threshold to the image to decide whether certain pixels are in certain regions. The following interactive allows you to do this to an image you upload. Try using different thresholds on different images and observing the results.
+
+{interactive name="pixel-viewer" type="whole-page" text="Greyscale Thresholding interactive" parameters="mode=thresholdgreyscale"}
+
+The next interactive lets you do the same thing, but on the original colour image. You can set up more complicated statements as your threshold, such as "Red > 127 AND Green < 127 OR Blue > 63". Does applying these complex thresholds gives you more flexibility in finding specific regions of colour?
+
+{interactive name="pixel-viewer" type="whole-page" text="Colour Thresholding interactive" parameters="mode=threshold"}
+
+Thresholding on its own isn't a very powerful tool, but it can be very useful when combined with other techniques as we shall see later.
+
 
 ## Face recognition
 
@@ -255,8 +272,22 @@ And here's a version that has been processed by an edge detection algorithm:
 
 Notice that the grain on the table above has affected the quality; some pre-processing to filter that would have helped!
 
-You can experiment with edge-detection yourself with the [Canny edge detector on this website](https://inspirit.github.io/jsfeat/sample_canny_edge.html) (see the information about [Canny edge detection on Wikipedia](https://en.wikipedia.org/wiki/Canny_edge_detector)).
-This is a widely used algorithm in computer vision, developed in 1986 by John F. Canny.
+Earlier, we looked at how we could use a *convolutional kernel* to blur an image. One of the common techniques in edge detection also requires a convolutional kernel. If we multiply the values of pixels on one side of each point on the image by a negative amount, and pixels on the other side by a positive amount, then combine the results, we'll discover a number which represents the difference between pixels on the two sides. This technique is called finding the *image gradient*. The following interactive allows you to do that, then apply a threshold to the result so that you can begin to spot likely edges in a picture.
+
+{interactive name="pixel-viewer" type="whole-page" text="Edge Detection interactive" parameters="mode=edgedetection&fps&picturepicker"}
+
+There are a few commonly used convolutional kernels that people have come up with for finding edges. After you've had a go at coming up with some of your own, have a look at the [Prewitt operator](https://en.wikipedia.org/wiki/Prewitt_operator), the [Roberts cross](https://en.wikipedia.org/wiki/Roberts_cross) and [Sobel operator](https://en.wikipedia.org/wiki/Sobel_operator) on wikipedia. Try these out in the interactive. What results do you get from each of these?
+
+There are a number of good edge detections out there, but one of the more famous ones is the Canny edge detection algorithm. This is a widely used algorithm in computer vision, developed in 1986 by John F. Canny. You can read more about [Canny edge detection on Wikipedia](https://en.wikipedia.org/wiki/Canny_edge_detector).
+
+You could extend the techniques used in the above interactive by adding a few more processing stages. If you were to apply a gaussian filter to the image first, then do some work to favour edges that were connected to other edges, then you would be on your way to implementing the Canny edge detector.
+
+{comment}
+
+.. You can experiment with edge-detection yourself with the [Canny edge detector on this website](https://inspirit.github.io/jsfeat/sample_canny_edge.html) (see the information about [Canny edge detection on Wikipedia](https://en.wikipedia.org/wiki/Canny_edge_detector)).
+.. This is a widely used algorithm in computer vision, developed in 1986 by John F. Canny.
+
+{comment end}
 
 ### Activity: Edge detection evaluation
 
@@ -272,15 +303,15 @@ The following activity can be used as part of a project for the 3.44 standard. T
 
 {panel end}
 
-With the canny edge detection website above, try putting different images in front of the camera and determine how good the algorithm is at detecting boundaries in the image.
+With the canny edge detection interactive above, try uploading different images and determining how good different convolutional kernels are at detecting boundaries in the image.
 Capture images to put in your report as examples to illustrate your experiments with the detector.
 
-- Can the Canny detector find all edges in the image? If there are some missing, why might this be?
+- Can the detector find all edges in the image? If there are some missing, why might this be?
 - Are there any false edge detections? Why did they system think that they were edges?
 - Does the lighting on the scene affect the quality of edge detection?
 - Does the system find the boundary between two colours? How similar can the colours be and still have the edge detected?
-- How fast can the system process the input? Does the nature of the image affect this?
-- How well does the system deal with a page with text on it?
+- How fast can the system process the input? Does this change with more complex kernels?
+- How well does the system deal with an image with text on it?
 
 {comment}
 

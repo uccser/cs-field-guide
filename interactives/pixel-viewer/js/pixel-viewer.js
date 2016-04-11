@@ -17,12 +17,14 @@ this.cell_text = 'R \nG \nB ';
 this.text_opacity = 0;
 
 this.mode = 'datarep';
-this.displayFps = false
+this.displayFps = false;
+this.picturePicker = false;
 
 this.filter = null;
 this.salt = null;
 this.gaussian_kernel = Array(); // Convolutional Kernel for Gaussian blurring
 this.custom_kernels = Array(); // Custom kernels input by the user
+this.pixels_painted = 0;
 
 this.gridSize = 0; // Global to keep track of size of grid chosen
 this.isGreyscale = false; // Global to keep track of whether greyscale is on
@@ -42,9 +44,16 @@ $( document ).ready(function() {
     }
     if (getUrlParameter('fps')){
     	// Whether or not to display frames per second
-    	displayFps = true
+    	displayFps = true;
+    }
+    if (getUrlParameter('picturepicker')){
+    	// Whether or not to allow student to pick from set pictures
+    	picturePicker = true;
     }
  	setUpMode();
+ 	if (picturePicker){
+ 		createPicturePicker();
+ 	}
   $( "#pixel-viewer-interactive-original-image" ).delay(1000).animate({width: contentWidth*0.8,
      height: contentHeight*0.8,
      overflow: "hidden",
@@ -76,6 +85,7 @@ function setUpMode(){
 			each pixel. Choose a threshold between 0 and 255 and transform this picture into black and white to \
 			identify regions and edges.");
 		filter = greyscaler;
+		isGreyscale = true;
 		new GreyscaleThresholder($('#pixel-viewer-image-manipulator'));
 	}
 	if (mode == 'blur'){
@@ -85,22 +95,17 @@ function setUpMode(){
 			What would happen if every value in the grid was 0 except one? How come? \
 			<br><br>\
 			 If you find that the scroll and zoom are slow with a blur applied, try removing the blur, zooming or scrolling and \
-			then reapplying the blur.")
+			then reapplying the blur.");
 		new Blur($('#pixel-viewer-image-manipulator'));
 	}
 	if (mode == 'edgedetection'){
 		addDescription("Edge Detection Interactive", "Find an edge in the graph and zoom right in. What information could a computer use from the values of the pixels surrounding the edge to find it?\
 		<br><br>\
-		We have supplied you with some grid to apply to the image to transorm it. The grids are made up of numbers which are multiplied against the values of the pixels that surround each pixel. What numbers\
-		can you use in these boxes to discover edges? Below is a thresholder which you can use to apply to the result. What results can you get if you combine these two filters to the image? There is an option\
-		for outputting the absolute value of the result of the multiplication grid. What does checking and unchecking this box change about the result? What happens if you apply multiple grids?\
+		We have supplied you with some grids to apply to the image to transorm it. The numbers in the grids are multiplied against the values of the pixels that surround each point. What numbers\
+		can you use in these boxes to discover edges? \
 		<br><br>\
-		The underlying algorithm\
-		takes the result of the grid you give it multiplied with the surrounding pixels, then divides by the sum of the absolute values of these weights. If you give it multiple grids it will take the average result of\
-		all of the grids for each pixel. This information should help you in deciding an appropriate threshold to apply, but also, if you zoom right in and see the values that are output by the transform, can you work out\
-		how the algorithm is producing the values it produces?")
-		$("#pixel-viewer-extra-feature-description").html(
-			"");
+		Below the grids is a thresholder which you can apply to the result. What results can you get if you combine these two filters to the image? There is an option\
+		for outputting the absolute value of the result of the multiplication grid. What does checking and unchecking this box change about the result? What happens if you apply multiple grids?");
 		new EdgeDetector($('#pixel-viewer-image-manipulator'));
 	}
 }
@@ -131,7 +136,7 @@ function EdgeDetector(parent_element){
 			.attr("id", "num-grids")
 			.on("input", createGrids)
 			.append($("<option value=1>1</option>"))
-			.append($("<option value=2>2</option>"))
+			.append($("<option value=2 selected>2</option>"))
 			.append($("<option value=3>3</option>"))
 			.append($("<option value=4>4</option>"))
 		)
@@ -161,7 +166,7 @@ function EdgeDetector(parent_element){
 	this.main_div.append($("<p></p>").text(
 		"Try adding a threshold to the picture once the transformation has taken place to highlight the edges you find."));
 	
-	this.main_div.append(thresholdSelect(20))
+	this.main_div.append(thresholdSelect(127))
 	.append($(document.createElement("button")).text("Apply grids and Threshold").click(applyGreyThreshold))
 }
 
@@ -224,7 +229,7 @@ function Blur(parent_element){
 		$(document.createElement("button")).text("Remove noise")
 		.click(removeSalt)
 	);
-	this.main_div.append($("<p></p>").text("Can you use the custom grid to find edges? What would happen if you used negative values for some weights?"))
+	// this.main_div.append($("<p></p>").text("Can you use the custom grid to find edges? What would happen if you used negative values for some weights?"))
 }
 
 function Thresholder(parent_element){
@@ -264,7 +269,6 @@ function GreyscaleThresholder(parent_element){
 	.append($(document.createElement("button")).text("Remove Threshold").click(removeFilters)));
 }
 
-
 function greyScaleToggler(){
 	// return a select object for toggling greyscale on or off 
 	return $(document.createElement("label"))
@@ -286,7 +290,8 @@ function gridSizeChooser(callback){
 			$(document.createElement("select"))
 			.attr("id", "grid-size")
 			.on("input", callback)
-			.append($("<option value=3>3x3</option>"))
+			.append($("<option value=2>2x2</option>"))
+			.append($("<option value=3 selected>3x3</option>"))
 			.append($("<option value=5>5x5</option>"))
 			.append($("<option value=7>7x7</option>"))
 		)
@@ -495,7 +500,13 @@ function applyConvolutionalKernel(rgb, convo_k){
 				sum += convo_k[i][j] * rgb[k][i][j];
 			}
 		}
-		response.push(Math.floor(sum/convo_k.totalWeight));
+		if (mode=="edgedetection"){
+			// If we're doing blurring, we'll want to average the result, but for edge detection we just combine them
+			response.push(sum);
+		}
+		else{
+			response.push(Math.floor(sum/convo_k.totalWeight));
+		}
 	}
 	if (isGreyscale){
 		response = [response[0], response[0], response[0]];
@@ -506,13 +517,13 @@ function applyConvolutionalKernel(rgb, convo_k){
 function createCustomConvolutionalKernels(){
 	// Create the custom convolutional kernels in memory from user input
 	var numGrids = $(".grid_table").size();
-	customKernels = Array();
+	custom_kernels = Array();
 	for (var i = 0; i < numGrids; i++){
 			// For each user input grid,
 			// convert user input into convolutional kernel
 			var totalWeight = 0
 			var next_grid = Array();
-			customKernels.push(next_grid);
+			custom_kernels.push(next_grid);
 			for (var j = 0; j < gridSize; j++){
 				var col = Array();
 				next_grid.push(col);
@@ -530,11 +541,11 @@ function createCustomConvolutionalKernels(){
 
 function applyCustomConvolutionalKernels(rgb){
 		// Applies custom convolutional kernels to set of surrounding pixels
-		var numGrids = customKernels.length;
+		var numGrids = custom_kernels.length;
 		var response = [0,0,0]
 		for (var i = 0; i < numGrids; i++){
 			// Apply convolutional kernel
-			var next_rgb = applyConvolutionalKernel(rgb, customKernels[i]);
+			var next_rgb = applyConvolutionalKernel(rgb, custom_kernels[i]);
 
 			// Add result to response
 			for (var i = 0; i < 3; i++){
@@ -553,6 +564,7 @@ function createGaussianKernel(){
 	// Creates a gaussian kernel of size gridSize
 	gaussian_kernel = Array();
 	var shift = Math.floor(gridSize / 2)
+	
 	for (var x = 0 - shift; x < gridSize - shift; x++){
 		var col = Array();
 		gaussian_kernel.push(col);
@@ -610,7 +622,10 @@ function applyBlur(){
 				return [val, val, val];
 			}
 			else {
-				return surroundingPixels.map(function(list){list = list.sort();return list[Math.floor(list.length / 2)];});
+				return surroundingPixels.map(function(list){
+					list = list.sort();
+					return list[Math.floor(list.length / 2)];
+				});
 			}
 		}	
 	}
@@ -720,8 +735,25 @@ function applyThreshold(){
 }
 
 function refreshImage(){
-	// Reload image
+	// Reload image. Use if any filters have been applied.
 	scroller.scrollBy(0, 0);
+}
+
+function createPicturePicker(){
+	// Create picker for default pictures
+	main_div = $("#picture-picker");
+	main_div.append($("<p></p>").text("Or choose from the following supplied images:"));
+	var images = ["alley.jpg", "bike.jpg", "boards.jpg", "fence.jpg",
+	"coloured-roof-small.png", "roof.jpg", "tuba.jpg","words.png", "words_zoom.png", "knight.png"]
+	for (var i = 0; i < images.length; i++){
+		var img_url = './img/' + images[i]
+		main_div.append(
+			$("<img>")
+			.attr('src', img_url)
+			.attr('class', 'img-pick')
+			.click(function(){load_resize_image(this.src, false);})
+		);
+	}
 }
 
 function loadImage(src){
@@ -756,7 +788,7 @@ $( "#pixel-viewer-interactive-menu-toggle" ).click(function() {
 });
 
 
-function load_resize_image(src){
+function load_resize_image(src, user_upload=true){
     var image = new Image();
     image.onload = function(){
         var canvas = document.getElementById("pixel-viewer-interactive-source-canvas");
@@ -769,9 +801,17 @@ function load_resize_image(src){
         canvas.width = image.width;
         canvas.height = image.height;
         ctx.drawImage(image, 0, 0, image.width, image.height);
-        canvas.style.display = "inline-block";
         scroller.scrollTo(0,0);
-        $( '#pixel-viewer-interactive-resize-values' ).text("Your image has been resized for this interactive to " + image.width + " pixels wide and " + image.height + " pixels high.")
+        if(user_upload){
+        	var text = "Your image has been resized for this interactive to " + image.width + " pixels wide and " + image.height + " pixels high."
+        	canvas.style.display = "inline-block";
+        }
+        else {
+        	var text = "";
+        	canvas.style.display = "hidden";
+        }
+        
+        $( '#pixel-viewer-interactive-resize-values' ).text(text)
     };
     image.src = src;
 }
@@ -806,6 +846,9 @@ var render = function(left, top, zoom) {
 	start_time = new Date().getTime();
 	$("#loading-img-div").show()
 	
+	// Initialise pixels_painted to 0
+	pixels_painted = 0;
+	
 	// Set a timeout for 100 ms for this function to allow enough time for the loading image to render before resources
 	// are demanded by the render function itself
 	setTimeout(function(){
@@ -833,7 +876,8 @@ var render = function(left, top, zoom) {
 				end_time = new Date().getTime();
 				var fps = Math.round(100000/(end_time - start_time))/100;
 				fps = fps > 0.01 ? fps : "<0.01"
-				$("#fps-feedback").text("Frame processing rate: "+fps+" per second.")
+				pps = Math.round(fps * pixels_painted)
+				$("#fps-feedback").html("Frame processing rate: "+fps+" per second.<br>Pixels rendered: "+pixels_painted+"<br>Pixel processing rate: "+pps+" per second.")
 				.show();
 			}
 			else{
@@ -884,6 +928,8 @@ var paint = function(row, col, left, top, width, height, zoom) {
         for (var i = 0; i < cell_lines.length; i++)
             context.fillText(cell_lines[i] + pixelData[i], left + (6 * zoom), top + (14 * zoom) + (i * cell_line_height * zoom) );
     }
+    // Count this pixel as painted
+    pixels_painted += 1;
 };
 
 var rect = container.getBoundingClientRect();
@@ -977,21 +1023,6 @@ if ('ontouchstart' in window) {
         scroller.doMouseZoom(e.detail ? (e.detail * -120) : e.wheelDelta, e.timeStamp, e.pageX, e.pageY);
     }, false);
 
-}
-
-// From http://jsfiddle.net/derickbailey/5L7cLp96/
-
-function standardDeviation(values){
-  var avg = average(values);
-  
-  var squareDiffs = values.map(function(value){
-    var diff = value - avg;
-    var sqrDiff = diff * diff;
-    return sqrDiff;
-  });
- 
-  var stdDev = Math.sqrt(average(squareDiffs));
-  return stdDev;
 }
  
 function average(data){
