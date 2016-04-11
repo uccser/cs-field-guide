@@ -8,8 +8,9 @@ this.boxes = []
 $(document).ready(function(){
 	generateRandomNumbers();
 	createBoxObjects();
-	console.log(boxes);
 	createBoxElements();
+	console.log(boxes);
+
 	//createBoxes();
 	//createIntHoldingDivs();
 
@@ -18,10 +19,20 @@ $(document).ready(function(){
 	$(".intHoldingDiv").click(function() {
 		console.log("intHoldingDiv clicked!");
 
+
+
+
 	})
 
+	// makes number fade in then out
 	$(".box").click(function() {
-		console.log("box clicked!");
+		for (var i = 0; i < (boxes.length); i++) { 
+			if (document.getElementById('box' + i) ==  event.target) {
+				$('#intHoldingDiv' + i).fadeIn(1000);
+				$('#intHoldingDiv' + i).fadeOut(1000);
+			}
+		}
+			
 	})
 })
 
@@ -49,9 +60,7 @@ function generateRandomNumbers() {
 }
 
 function createBoxElements() {
-	console.log('we in createBoxElements!')
 	for (var i = 0; i < (boxes.length); i++) {
-		console.log('i is currently ' + i);
 		var boxObject; //JS object that will hold the id, int and both elements
 		var currentBox = boxes[i]
 
