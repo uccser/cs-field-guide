@@ -17,7 +17,7 @@ This "to-do" list includes general computer science topics and suggestions for h
 - floating point representation
  - **new section in data-representation** [Phase+]
 - bit representation of program instructions (not just data)
- - **new section in programming-languages OR part of new chapter on hardware abstractions** [Phase2]
+ - **new section in data-representation OR part of new chapter on hardware abstractions** [Phase2][draft]
 - abstraction process: removing irrelevant details, extracting common features
  - **part of new chapter on hardware abstractions**
 - explicit section on functions/functional abstraction
@@ -35,15 +35,15 @@ This "to-do" list includes general computer science topics and suggestions for h
 - algorithm correctness
  - **new sub-section in 2.1** [Phase1][draft]
 - decidability
- - **new section in 11.?** [Phase2]
+ - **new section in 11.?** [Phase2][draft]
 - combining algorithms
  - **add terms to 2.1** [Phase1][draft]
 - language choice for algorithms
  - **better description at end of section 2.1.1** [Phase1][draft]
 - theoretical vs empirical analysis
- - **additional paragraph in 2.1.2** [Phase2]
+ - **additional paragraph in 2.1.2** [Phase2][draft]
 - efficiency of memory usage
- - **additional paragraph in 2.1.2** [Phase2]
+ - **additional paragraph in 2.1.2** [Phase2][draft]
 
 ##Creativity
 - collaborative tools (open source, github/google doc)

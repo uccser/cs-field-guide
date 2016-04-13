@@ -562,7 +562,8 @@ The question is often referred to as whether or not P equals NP.
 Actually, things get worse.
 So far we've talked about intractable problems --- ones that can be solved, but might need billions of years on a computer.
 If you think it's bad that some problems take that long to solve, that's nothing!
-There are some well known problems that we know can *never* be solved on a computer.
+These problems are at least decidable --- if given enough time there exists an algorithm that will always lead to a correct answer.
+There are some well known problems that are undecidable -- we know we can *never* write a correct algorithm to solve the problem on a computer.
 For example, writing a program that reliably tells you if another program will finish or not is impossible!
 There are other examples of such problems here:
 
