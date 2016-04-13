@@ -10,46 +10,29 @@ $(document).ready(function(){
 	createBoxObjects();
 	createBoxElements();
 	console.log(boxes);
+	console.log(randomInts)
 
 	//createBoxes();
 	//createIntHoldingDivs();
 
 
-	//initialises onclick
 	$(".intHoldingDiv").click(function() {
 		console.log("intHoldingDiv clicked!");
-
-
-
-
 	})
 
 	// makes number fade in then out
 	$(".box").click(function() {
 		for (var i = 0; i < (boxes.length); i++) { 
 			if (document.getElementById('box' + i) ==  event.target) {
-				$('#intHoldingDiv' + i).fadeIn(1000);
-				$('#intHoldingDiv' + i).fadeOut(1000);
+				$('#intHoldingDiv' + i).fadeIn(1000).delay(1000).fadeOut(1000);
+				boxes[i].revealed_times += 1;
+				console.log(boxes[i])
+
 			}
 		}
 			
 	})
 })
-
-
-/*
-function onLoadFunction() {
-	for (var i = 4; i >= 0; i--) {
-		var currentInt = getRandomInt(1, 100);
-		randomInts[i] = currentInt;
-	}
-	//assign largest of the 5 random ints to largest
-	largest = Math.max.apply(Math, randomInts);
-	createBoxes();
-	console.log((randomInts.toString() + " " + largest.toString()));
-	console.log(boxes);
-	}
-*/
 function generateRandomNumbers() {
 		for (var i = 0; i < (numberOfBoxes); i++) {
 		var currentInt = getRandomInt(1, 100);
@@ -87,17 +70,6 @@ function createBoxElements() {
 	}
 }	
 
-function createIntHoldingDivs() {
-	for (var i = 0; i < (numberOfBoxes); i++) {
-		var intHoldingDiv = document.createElement('div');
-		intHoldingDiv.id = ("int_holder_div" + i);
-		intHoldingDiv.className = "intHoldingDiv"
-		intHoldingDiv.innerHTML = boxes[i].boxInt;
-		boxes[i].intHoldingDivElement = intHoldingDiv;
-		document.getElementById('box' + i).appendChild(intHoldingDiv);
-	}
-
-}
 //creates the JS objects with just the id and the random int, leaving space for the HTML elements
 function createBoxObjects() {
 	for (var i = 0; i < numberOfBoxes; i++) {
@@ -105,64 +77,50 @@ function createBoxObjects() {
 			boxNumber: i,
 			divElement: null,
 			boxInt: randomInts[i],
-			intHoldingDivElement: null
+			intHoldingDivElement: null,
+			revealed_times: 0
 		}
 		boxes[i] = boxObject;
 	}
-}
-
-/*
-function addOnMouseClicks(boxes) {
-	for (var i = 0; i < boxes.length; i++) {
-		console.log(boxes[i].element)
-		boxes[i].element.onmouseover=function(){
-			console.log(boxes[i]);
-			boxes[i].element.innerHTML = boxes[i].boxInt;
-		}
-	}
-}
-*/
-
-function getBoxObjectFromBoxId(boxId) {
-	//TODO: this
 }
 
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
-function boxMouseOver(boxElement) {
-	for (var i = 0; i < boxes.length; i++) {
-		if (boxes[i].element === boxElement) {
-			boxes[i].element.innerHTML = boxes[i].boxInt;
-		}	    
-	}
-}
-
-function boxMouseOut(boxElement) 
-{
-	for (var i = 0; i < boxes.length; i++) {
-		if (boxes[i].element === boxElement) {
-			boxes[i].element.innerHTML = "This is BOX " + boxes[i].boxNumber;
-		}	    
-	}
-}
-
 function validateForm() {
     var x = document.forms["myForm"]["submittedInt"].value;
+	var box_revealed_more_than_once = false;
+	var box_revealed_no_times = false;
+
 
     //if form value is a number
 	if (!(isNaN(x))) 
 	{
-		if (parseInt(x) == largest) {
-			return true;	 
+		if (parseInt(x) == largest) { // correct answer
+			for (var i = 0; i < (boxes.length); i++) {
+				if (boxes[i].revealed_times > 1) {
+					box_revealed_more_than_once = true;
+				} else if (boxes[i].revealed_times == 0) {
+					box_revealed_no_times = true;
+				}
+			}
+
+			//after checking how many times each box has been revealed...
+			if (box_revealed_no_times) {
+				alert("Correct! But you missed a box... Got lucky this time!");
+			} else if (box_revealed_more_than_once) {
+				alert("Correct! But you could've been more efficient...");
+			} else {
+				alert("Correct! You've found how to complete this challenge the most efficient way!");
+			}
+
+			return false; //will use alerts for now to sort out logic	 
 		} else {
 			alert("Incorrect!");
 			return false;
 		}
 	}
-
-	
 	//must not be a number if we're here
 	alert("Must input numbers");
 	return false;

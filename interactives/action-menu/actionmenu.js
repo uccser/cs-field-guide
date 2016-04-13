@@ -24,7 +24,7 @@ function onClickNuclearAttack() {
   var dropDownMenu = document.getElementById("dropdownMenu");
   dropDownMenu.style.display = 'none';
 
-  document.getElementById("confirmationText").innerHTML = "Nuclear attack launched!";
+  document.getElementById("confirmationText").innerHTML = "Nuclear attack launched... why did you do that?";
 }
 
 function onClickWater() {
