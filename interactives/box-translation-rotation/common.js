@@ -180,9 +180,18 @@ function submitCode() {
     if ( code[1] == boxSymbols['left_side'] ) {
         if ( code[2] == boxSymbols['bottom_side'] ) {
             if ( code[3] == boxSymbols['right_side'] ) {
-                console.log("correct");
+                end();
             }
         }
+    }
+}
+
+
+// hides the cube and show the object inside when the user enters the correct code
+function end() {
+    for (face in cube.material.materials) {
+        cube.material.materials[face].transparent = true;
+        cube.material.materials[face].opacity = 0;
     }
 }
 
