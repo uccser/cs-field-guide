@@ -57,8 +57,8 @@ function init() {
     var geometry = new THREE.BoxGeometry( 200, 200, 200 );
 
     // list of possible box symbols
-    var symbols = [ 'images/square2.jpg', 'images/square3.jpg', 'images/square4.jpg',
-        'images/square5.jpg', 'images/square6.jpg', 'images/square7.jpg', 'images/square8.jpg' ];
+    var symbols = [ 'images/square2.png', 'images/square3.png', 'images/square4.png',
+        'images/square5.png', 'images/square6.png', 'images/square7.png', 'images/square8.png' ];
 
     // randomly decides which symbol to put on each side of the box
     // means that different box is loaded each time
@@ -192,9 +192,9 @@ function clearCode() {
      * set the selected codes to ../images/question marks and clear the dictionary
      */
 
-    document.getElementById( 'first-symbol' ).src = 'images/question_mark.jpg';
-    document.getElementById( 'second-symbol' ).src = 'images/question_mark.jpg';
-    document.getElementById( 'third-symbol' ).src = 'images/question_mark.jpg';
+    document.getElementById( 'first-symbol' ).src = 'images/question_mark.png';
+    document.getElementById( 'second-symbol' ).src = 'images/question_mark.png';
+    document.getElementById( 'third-symbol' ).src = 'images/question_mark.png';
     code[1] = null;
     code[2] = null;
     code[3] = null;
@@ -209,7 +209,7 @@ function symbolClick(id) {
      *   - id: relates to a particular symbol (each symbol's file name contains a number in 1-8)
      */
 
-    var img_src = 'images/square' + id + '.jpg';
+    var img_src = 'images/square' + id + '.png';
     if ( code[1] == null ) {
         code[1] = img_src;
         document.getElementById( 'first-symbol' ).src = img_src;
