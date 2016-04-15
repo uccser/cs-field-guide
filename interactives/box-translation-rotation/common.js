@@ -22,10 +22,30 @@ function init() {
     info.style.textAlign = 'center';
     container.appendChild( info );
 
-    camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
-    camera.position.z = 500;
-
+    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 1000000);
     scene = new THREE.Scene();
+
+    ////////////////////////////// background //////////////////////////////
+
+    var textureLoader = new THREE.TextureLoader();
+    // loads the 6 background pictures (px = positive x, nx = negative x, etc)
+    var materials = [
+        new THREE.MeshBasicMaterial( { map: textureLoader.load( 'images/px.jpg' ) } ), // right
+        new THREE.MeshBasicMaterial( { map: textureLoader.load( 'images/nx.jpg' ) } ), // left
+        new THREE.MeshBasicMaterial( { map: textureLoader.load( 'images/py.jpg' ) } ), // top
+        new THREE.MeshBasicMaterial( { map: textureLoader.load( 'images/ny.jpg' ) } ), // bottom
+        new THREE.MeshBasicMaterial( { map: textureLoader.load( 'images/pz.jpg' ) } ), // back
+        new THREE.MeshBasicMaterial( { map: textureLoader.load( 'images/nz.jpg' ) } )  // front
+    ];
+    // creates a mesh, covered with the background pictures
+    // mesh is in shape of a cube, which camera/smaller cube is inside
+    mesh = new THREE.Mesh( new THREE.BoxGeometry( 10000, 10000, 10000, 7, 7, 7 ), new THREE.MultiMaterial( materials ) );
+    mesh.scale.x = - 1; // stretches out background
+    // adds the skybox to the scene
+    scene.add(mesh);
+
+    ////////////////////////////////////////////////////////////////////////
+
 
     //Cube
 
@@ -144,6 +164,11 @@ function animate() {
 }
 
 function render() {
+
+    // spins the camera based on a timer
+    var timer = - new Date().getTime() * 0.0002; 
+    camera.position.x = 1000 * Math.cos( timer );
+    camera.position.z = 1000 * Math.sin( timer );
 
     // TODO probably useful for the box rotation interactive
     // rotates the plane to match the cube
