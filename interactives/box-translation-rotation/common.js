@@ -2,7 +2,7 @@
 var stats;
 var container = document.getElementById( 'container' );
 var camera, scene, renderer;
-var cube, teapot;
+var cube, hiddenObject;
 var targetRotation = 0;
 var windowHalfX = window.innerWidth / 2;
 var windowHalfY = window.innerHeight / 2;
@@ -17,10 +17,12 @@ function init() {
 
     var info = document.createElement( 'div' );
     info.style.position = 'absolute';
-    info.style.top = '10px';
     info.style.width = '100%';
     info.style.textAlign = 'center';
+    info.innerHTML = 'Created using <a href="http://threejs.org" target="_blank">three.js</a>'
     container.appendChild( info );
+
+    if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
 
     camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 1000000 );
     camera.position.x = 0;
@@ -102,7 +104,12 @@ function init() {
     // add the cube to the scene
     scene.add( cube );
 
-    /////////////////////////////// teapot ////////////////////////////////
+    cube.material.materials[4].map = new THREE.TextureLoader().load( 'images/grayscale_square6.png', undefined, function() {
+        cube.material.materials[4].map.needsUpdate = true;
+        // TODO potential memory leak since not removing old image. check this.
+    });
+
+    /////////////////////////////// hiddenObject ////////////////////////////////
 
     var ambient = new THREE.AmbientLight( 0x444444 );
     scene.add( ambient );
@@ -110,6 +117,7 @@ function init() {
     var directionalLight = new THREE.DirectionalLight( 0xffeedd );
     directionalLight.position.set( 0, 0, 1 ).normalize();
     scene.add( directionalLight );
+
 
     var loader = new THREE.ObjectLoader();
     // wrapped in function so we can access the object file
@@ -121,9 +129,9 @@ function init() {
         return container;
     }
 
-    teapot = createObject( 'teapot.json' );
-    teapot.scale.set( 50, 50, 50);
-    //scene.add( teapot );
+    hiddenObject = createObject( 'teapot.json' );
+    hiddenObject.scale.set( 50, 50, 50);
+    // scene.add( hiddenObject );
 
     /////////////////////////////////////////////////////////////////////
 
@@ -233,11 +241,10 @@ function end() {
     fadeCube( opacity );
     window.setTimeout( function () {
         window.setInterval( function () {
-            scene.add( teapot );
+            scene.add( hiddenObject );
             if ( opacity > 0 ) {
                 opacity = opacity - 0.05;
                 fadeCube( opacity );
-                //revealSecretObject( teapot, opacity );
             } else {
                 clearInterval();
             }
