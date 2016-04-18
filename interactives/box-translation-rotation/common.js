@@ -2,7 +2,7 @@
 var stats;
 var container = document.getElementById( 'container' );
 var camera, scene, renderer;
-var cube, plane;
+var cube, teapot;
 var targetRotation = 0;
 var windowHalfX = window.innerWidth / 2;
 var windowHalfY = window.innerHeight / 2;
@@ -121,9 +121,9 @@ function init() {
         return container;
     }
 
-    var teapot = createObject( 'teapot.json' );
+    teapot = createObject( 'teapot.json' );
     teapot.scale.set( 50, 50, 50);
-    scene.add( teapot );
+    //scene.add( teapot );
 
     /////////////////////////////////////////////////////////////////////
 
@@ -209,11 +209,20 @@ function submitCode() {
 
 // hides the cube and show the object inside when the user enters the correct code
 function end() {
+    // reset cube to start position
     document.getElementById( 'x-coordinate' ).value = 0;
     document.getElementById( 'y-coordinate' ).value = 0;
     document.getElementById( 'z-coordinate' ).value = 0;
 
     moveBox();
+
+    // move camera (zoom in)
+    var target = { x: 0, y: 0, z: 350 };
+    new TWEEN.Tween( camera.position )
+        .to( target )
+        .easing ( TWEEN.Easing.Elastic.Out )
+        .onUpdate( render )
+        .start();
 
     // gradually fades cube
     for (face in cube.material.materials) {
@@ -222,15 +231,19 @@ function end() {
 
     var opacity = 1;
     fadeCube( opacity );
-    window.setInterval( function () {
-        if ( opacity > 0 ) {
-            opacity = opacity - 0.05;
-            fadeCube( opacity );
-            console.log(opacity);
-        } else {
-            clearInterval();
-        }
-    }, 75);
+    window.setTimeout( function () {
+        window.setInterval( function () {
+            scene.add( teapot );
+            if ( opacity > 0 ) {
+                opacity = opacity - 0.05;
+                fadeCube( opacity );
+                //revealSecretObject( teapot, opacity );
+            } else {
+                clearInterval();
+            }
+        }, 75);
+    }, 1500);
+
 }
 
 
@@ -240,7 +253,6 @@ function fadeCube( opacity ) {
         cube.material.materials[face].opacity = opacity;
     }
 }
-
 
 function clearCode() {
     /* triggered when the user clicks the "clear" button
