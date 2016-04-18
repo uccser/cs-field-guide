@@ -100,19 +100,38 @@ function init() {
     cube = new THREE.Mesh( geometry, new THREE.MeshFaceMaterial( materials ) );
 
     // add the cube to the scene
-    scene.add( cube );
+    //scene.add( cube );
 
- //Plane
- //make a square for the plane
-//var geometry = new THREE.PlaneBufferGeometry( 200, 200 );
+    /////////////////////////////// teapot ////////////////////////////////
 
-//var material = new THREE.MeshBasicMaterial( { color: 0xe0e0e0, overdraw: 0.5 } );
-//plane = new THREE.Mesh( geometry, material );
-//plane.position.y = 200;
-//scene.add( plane );
+    var ambient = new THREE.AmbientLight( 0x444444 );
+    scene.add( ambient );
+
+    var directionalLight = new THREE.DirectionalLight( 0xffeedd );
+    directionalLight.position.set( 0, 0, 1 ).normalize();
+    scene.add( directionalLight );
+
+    var loader = new THREE.ObjectLoader();
+    // wrapped in function so we can access the object file
+    function createObject( objectFile ) {
+        var container = new THREE.Object3D();
+        loader.load( objectFile, function ( object ) {
+            container.add( object );
+        });
+        return container;
+    }
+
+    var teapot = createObject( 'teapot.json' );
+    teapot.scale.set( 50, 50, 50);
+    scene.add( teapot );
+
+    /////////////////////////////////////////////////////////////////////
 
 
-    renderer = new THREE.CanvasRenderer();
+    // canvas renderer puts lines on every object - do not know if this can be disabled or not
+    //renderer = new THREE.CanvasRenderer();
+    // supposedly better performance than the CanvasRenderer. Have not researched this in depth.
+    renderer = new THREE.WebGLRenderer();
     renderer.setClearColor( 0xf0f0f0 );
     renderer.setPixelRatio( window.devicePixelRatio );
     renderer.setSize( window.innerWidth, window.innerHeight );
