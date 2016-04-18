@@ -22,6 +22,8 @@ $(document).ready(function(){
 
 	// makes number fade in then out
 	$(".box").click(function() {
+		$(".intHoldingDiv").stop();
+		$(".intHoldingDiv").hide();
 		for (var i = 0; i < (boxes.length); i++) { 
 			if (document.getElementById('box' + i) ==  event.target) {
 				$('#intHoldingDiv' + i).fadeIn(1000).delay(1000).fadeOut(1000);
