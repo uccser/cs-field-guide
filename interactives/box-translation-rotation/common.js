@@ -100,7 +100,7 @@ function init() {
     cube = new THREE.Mesh( geometry, new THREE.MeshFaceMaterial( materials ) );
 
     // add the cube to the scene
-    //scene.add( cube );
+    scene.add( cube );
 
     /////////////////////////////// teapot ////////////////////////////////
 
@@ -160,6 +160,7 @@ function init() {
 
 }
 
+
 function onWindowResize() {
 
     windowHalfX = window.innerWidth / 2;
@@ -208,9 +209,35 @@ function submitCode() {
 
 // hides the cube and show the object inside when the user enters the correct code
 function end() {
+    document.getElementById( 'x-coordinate' ).value = 0;
+    document.getElementById( 'y-coordinate' ).value = 0;
+    document.getElementById( 'z-coordinate' ).value = 0;
+
+    moveBox();
+
+    // gradually fades cube
     for (face in cube.material.materials) {
         cube.material.materials[face].transparent = true;
-        cube.material.materials[face].opacity = 0;
+    }
+
+    var opacity = 1;
+    fadeCube( opacity );
+    window.setInterval( function () {
+        if ( opacity > 0 ) {
+            opacity = opacity - 0.05;
+            fadeCube( opacity );
+            console.log(opacity);
+        } else {
+            clearInterval();
+        }
+    }, 75);
+}
+
+
+// adjusts the cube's opacity
+function fadeCube( opacity ) {
+    for (face in cube.material.materials) {
+        cube.material.materials[face].opacity = opacity;
     }
 }
 
