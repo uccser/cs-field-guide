@@ -8,6 +8,7 @@ var windowHalfX = window.innerWidth / 2;
 var windowHalfY = window.innerHeight / 2;
 var code = { 1: null, 2: null, 3: null };
 var boxSymbols = {}
+var selectedSymbol = { "id": null, "position": null }
 
 
 init();
@@ -59,8 +60,8 @@ function init() {
     var geometry = new THREE.BoxGeometry( 200, 200, 200 );
 
     // list of possible box symbols
-    var symbols = [ 'images/square2.png', 'images/square3.png', 'images/square4.png',
-        'images/square5.png', 'images/square6.png', 'images/square7.png', 'images/square8.png' ];
+    // numbers correspond to file names, e.g. "square1.png"
+    var symbols = [ '1', '2', '3', '4', '5', '6', '7', '8' ];
 
     // randomly decides which symbol to put on each side of the box
     // means that different box is loaded each time
@@ -79,22 +80,23 @@ function init() {
     // loads all the symbols for the box
     var materials = [
         new THREE.MeshBasicMaterial({
-           map: new THREE.TextureLoader().load( right_side )
+           map: new THREE.TextureLoader().load( 'images/grayscale_square' + right_side + '.png' )
         }),
         new THREE.MeshBasicMaterial({
-           map: new THREE.TextureLoader().load( left_side )
+            // non grey scale becuase this is the first symbol the user needs to find
+           map: new THREE.TextureLoader().load( 'images/square' + left_side + '.png' )
         }),
         new THREE.MeshBasicMaterial({
-           map: new THREE.TextureLoader().load( default_symbol ) // top, non-coded side
+           map: new THREE.TextureLoader().load( 'images/grayscale_square' + default_symbol + '.png' ) // top, non-coded side
         }),
         new THREE.MeshBasicMaterial({
-           map: new THREE.TextureLoader().load( bottom_side )
+           map: new THREE.TextureLoader().load( 'images/grayscale_square' + bottom_side + '.png' )
         }),
         new THREE.MeshBasicMaterial({
-           map: new THREE.TextureLoader().load( default_symbol ) // front, non-coded side
+           map: new THREE.TextureLoader().load( 'images/grayscale_square' + default_symbol + '.png' ) // front, non-coded side
         }),
         new THREE.MeshBasicMaterial({
-           map: new THREE.TextureLoader().load( default_symbol ) // back, non-coded side
+           map: new THREE.TextureLoader().load( 'images/grayscale_square' + default_symbol + '.png' ) // back, non-coded side
         })
     ];
 
@@ -104,10 +106,6 @@ function init() {
     // add the cube to the scene
     scene.add( cube );
 
-    cube.material.materials[4].map = new THREE.TextureLoader().load( 'images/grayscale_square6.png', undefined, function() {
-        cube.material.materials[4].map.needsUpdate = true;
-        // TODO potential memory leak since not removing old image. check this.
-    });
 
     /////////////////////////////// hiddenObject ////////////////////////////////
 
@@ -200,8 +198,37 @@ function render() {
 
 }
 
-function submitCode() {
+
+function submitSymbol() {
     /* triggered when the user clicks the "submit" button
+     * checks the selected symbol for if it matches the coloured symbol on the box
+     */
+
+    var img_src = 'images/square' + selectedSymbol["id"] + '.png';
+    if ( code[1] == null ) {
+        code[1] = img_src;
+        selectedSymbol["position"] = 1;
+        document.getElementById( 'first-symbol' ).src = img_src;
+    } else if ( code[2] == null ) {
+        code[2] = img_src;
+        selectedSymbol["position"] = 2;
+        document.getElementById( 'second-symbol' ).src = img_src;
+    } else if ( code[3] == null ) {
+        code[3] = img_src;
+        selectedSymbol["position"] = 3;
+        document.getElementById( 'third-symbol' ).src = img_src;
+    }
+
+
+    //4 = right
+    //cube.material.materials[4].map = new THREE.TextureLoader().load( 'images/grayscale_square6.png', undefined, function() {
+        //cube.material.materials[4].map.needsUpdate = true;
+        //// TODO potential memory leak since not removing old image. check this.
+    //});
+}
+
+function submitCode() {
+    /* triggered when the user clicks the "Check Code" button
      * checks each selected symbol for if it matches what is on the box
      */
 
@@ -261,14 +288,15 @@ function fadeCube( opacity ) {
     }
 }
 
+
 function clearCode() {
     /* triggered when the user clicks the "clear" button
      * set the selected codes to ../images/question marks and clear the dictionary
      */
 
-    document.getElementById( 'first-symbol' ).src = 'images/question_mark.png';
-    document.getElementById( 'second-symbol' ).src = 'images/question_mark.png';
-    document.getElementById( 'third-symbol' ).src = 'images/question_mark.png';
+    document.getElementById( 'first-symbol' ).src = 'images/question_mark.jpg';
+    document.getElementById( 'second-symbol' ).src = 'images/question_mark.jpg';
+    document.getElementById( 'third-symbol' ).src = 'images/question_mark.jpg';
     code[1] = null;
     code[2] = null;
     code[3] = null;
@@ -282,17 +310,15 @@ function symbolClick(id) {
      * Input:
      *   - id: relates to a particular symbol (each symbol's file name contains a number in 1-8)
      */
+    selectedSymbol["id"] = id;
 
-    var img_src = 'images/square' + id + '.png';
-    if ( code[1] == null ) {
-        code[1] = img_src;
-        document.getElementById( 'first-symbol' ).src = img_src;
-    } else if ( code[2] == null ) {
-        code[2] = img_src;
-        document.getElementById( 'second-symbol' ).src = img_src;
-    } else if ( code[3] == null ) {
-        code[3] = img_src;
-        document.getElementById( 'third-symbol' ).src = img_src;
+    for (var i = 1; i <= 8; i++) {
+        if (i == id) {
+            document.getElementById(i).src = 'images/square' + i + '.png';
+        } else {
+            document.getElementById(i).src = 'images/grayscale_square' + i + '.png';
+        }
     }
+
 
 }

@@ -19,27 +19,29 @@
             </div>
             <div id="code">
                 <h2>Secret Code</h2>
+                <p>Which of the symbols is coloured on the box?</p>
                 <div id="symbol-grid">
                     <div class="row">
-                        <img src="images/square1.png" onClick="symbolClick('1')">
-                        <img src="images/square2.png" onClick="symbolClick('2')">
-                        <img src="images/square3.png" onClick="symbolClick('3')">
-                        <img src="images/square4.png" onClick="symbolClick('4')">
+                        <img id="1" src="images/grayscale_square1.png" onClick="symbolClick(id)">
+                        <img id="2" src="images/grayscale_square2.png" onClick="symbolClick(id)">
+                        <img id="3" src="images/grayscale_square3.png" onClick="symbolClick(id)">
+                        <img id="4" src="images/grayscale_square4.png" onClick="symbolClick(id)">
                     </div>
                     <div class="row">
-                        <img src="images/square5.png" onClick="symbolClick('5')">
-                        <img src="images/square6.png" onClick="symbolClick('6')">
-                        <img src="images/square7.png" onClick="symbolClick('7')">
-                        <img src="images/square8.png" onClick="symbolClick('8')">
+                        <img id="5" src="images/grayscale_square5.png" onClick="symbolClick(id)">
+                        <img id="6" src="images/grayscale_square6.png" onClick="symbolClick(id)">
+                        <img id="7" src="images/grayscale_square7.png" onClick="symbolClick(id)">
+                        <img id="8" src="images/grayscale_square8.png" onClick="symbolClick(id)">
                     </div>
                 </div>
+                    <button onClick="submitSymbol()">Submit</button>
                 <div id="code-template">
                     <img id="first-symbol" src="images/question_mark.jpg">
                     <img id="second-symbol" src="images/question_mark.jpg">
                     <img id="third-symbol" src="images/question_mark.jpg">
-                    <button onClick="clearCode()">Clear</button>
-                    <button onClick="submitCode()">Submit</button>
                 </div>
+                <button onClick="clearCode()">Clear</button>
+                <button onClick="submitCode()">Check Code</button>
             </div>
         </div>
     </div>
