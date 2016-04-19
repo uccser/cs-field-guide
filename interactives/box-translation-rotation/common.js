@@ -8,7 +8,7 @@ var windowHalfX = window.innerWidth / 2;
 var windowHalfY = window.innerHeight / 2;
 var code = { 1: null, 2: null, 3: null };
 var boxSymbols = {}
-var selectedSymbol = { "id": null, "position": null }
+var selectedSymbolId;
 
 
 init();
@@ -204,23 +204,43 @@ function submitSymbol() {
      * checks the selected symbol for if it matches the coloured symbol on the box
      */
 
-    var img_src = 'images/square' + selectedSymbol["id"] + '.png';
+    var img_src = 'images/square' + selectedSymbolId + '.png';
+    var position;
+
     if ( code[1] == null ) {
         code[1] = img_src;
-        selectedSymbol["position"] = 1;
         document.getElementById( 'first-symbol' ).src = img_src;
+        position = 1;
     } else if ( code[2] == null ) {
         code[2] = img_src;
-        selectedSymbol["position"] = 2;
         document.getElementById( 'second-symbol' ).src = img_src;
+        position = 2;
     } else if ( code[3] == null ) {
         code[3] = img_src;
-        selectedSymbol["position"] = 3;
+        position = 3;
         document.getElementById( 'third-symbol' ).src = img_src;
     }
 
+    changeColouredSide( position );
+}
 
-    //4 = right
+
+function changeColouredSide( position ) {
+
+    // find coloured side, switch to grayscale
+    // getting current image: cube.material.materials[ position-in-list ].map.img.src
+    // find next side to change, switch to colour
+    if ( position == 1 ) {
+        cube.material.materials[2].map = new THREE.TextureLoader().load( 'images/square6.png', undefined, function() {
+            cube.material.materials[2].map.needsUpdate = true;
+            // TODO potential memory leak since not removing old image. check this.
+        });
+    }
+
+
+    //4 = front
+    //2 = bottom
+
     //cube.material.materials[4].map = new THREE.TextureLoader().load( 'images/grayscale_square6.png', undefined, function() {
         //cube.material.materials[4].map.needsUpdate = true;
         //// TODO potential memory leak since not removing old image. check this.
@@ -310,7 +330,7 @@ function symbolClick(id) {
      * Input:
      *   - id: relates to a particular symbol (each symbol's file name contains a number in 1-8)
      */
-    selectedSymbol["id"] = id;
+    selectedSymbolId = id;
 
     for (var i = 1; i <= 8; i++) {
         if (i == id) {
