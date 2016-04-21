@@ -71,11 +71,11 @@ function init() {
     var bottom_side = symbols.splice(Math.floor(Math.random()*symbols.length), 1);
 
     // this symbol will be on 3 sides of the box
-    boxSymbols["default_symbol"] = default_symbol[0];
+    boxSymbols['default_symbol'] = default_symbol[0];
     // unique symbols for the other 3 sides
-    boxSymbols["left_side"] = left_side[0];
-    boxSymbols["right_side"] = right_side[0];
-    boxSymbols["bottom_side"] = bottom_side[0];
+    boxSymbols['left_side'] = left_side[0];
+    boxSymbols['right_side'] = right_side[0];
+    boxSymbols['bottom_side'] = bottom_side[0];
 
     // loads all the symbols for the box
     var materials = [
@@ -202,21 +202,24 @@ function render() {
 function submitSymbol() {
     /* triggered when the user clicks the "submit" button
      * checks the selected symbol for if it matches the coloured symbol on the box
+     * changes clicked symbol back to grey on the row of buttons
      */
+
+    document.getElementById(selectedSymbolId).src = 'images/grayscale_square' + selectedSymbolId + '.png';
 
     var img_src = 'images/square' + selectedSymbolId + '.png';
     var position;
 
     if ( code[1] == null ) {
-        code[1] = img_src;
+        code[1] = selectedSymbolId;
         document.getElementById( 'first-symbol' ).src = img_src;
         position = 1;
     } else if ( code[2] == null ) {
-        code[2] = img_src;
+        code[2] = selectedSymbolId;
         document.getElementById( 'second-symbol' ).src = img_src;
         position = 2;
     } else if ( code[3] == null ) {
-        code[3] = img_src;
+        code[3] = selectedSymbolId;
         position = 3;
         document.getElementById( 'third-symbol' ).src = img_src;
     }
@@ -226,31 +229,50 @@ function submitSymbol() {
 
 
 function changeColouredSide( position ) {
+    /* logic for deciding which sides should be updated with grayscaled/coloured symbols
+     */
 
-    // find coloured side, switch to grayscale
-    // getting current image: cube.material.materials[ position-in-list ].map.img.src
-    // find next side to change, switch to colour
-    if ( position == 1 ) {
-        cube.material.materials[2].map = new THREE.TextureLoader().load( 'images/square6.png', undefined, function() {
-            cube.material.materials[2].map.needsUpdate = true;
-            // TODO potential memory leak since not removing old image. check this.
-        });
+    var currentImg;
+
+    if ( position == 1 ) { // swap colour from left to bottom
+        // replace left with grayscale
+        updateSide( 1,  boxSymbols['left_side'], false );
+        // replace bottom with colour
+        updateSide( 3,  boxSymbols['bottom_side'], true );
+    } else if ( position == 2 ) { // swap colour from bottom to right
+        // replace bottom with grayscale
+        updateSide( 3,  boxSymbols['bottom_side'], false );
+        // replace right with colour
+        updateSide( 0,  boxSymbols['right_side'], true );
+    } else { //TODO only do this when the code is correct?
+        updateSide( 1,  boxSymbols['left_side'], true );
+        updateSide( 2,  boxSymbols['default_symbol'], true );
+        updateSide( 3,  boxSymbols['bottom_side'], true );
+        updateSide( 4,  boxSymbols['default_symbol'], true );
+        updateSide( 5,  boxSymbols['default_symbol'], true );
     }
 
+}
 
-    //4 = front
-    //2 = bottom
 
-    //cube.material.materials[4].map = new THREE.TextureLoader().load( 'images/grayscale_square6.png', undefined, function() {
-        //cube.material.materials[4].map.needsUpdate = true;
-        //// TODO potential memory leak since not removing old image. check this.
-    //});
+function updateSide( side, currentImg, coloured) {
+    var format = '';
+    if ( coloured == false ) {
+        format = 'grayscale_';
+    }
+    console.log(format);
+    cube.material.materials[side].map = new THREE.TextureLoader().load( 'images/' + format + 'square' + currentImg + '.png', undefined, function() {
+        cube.material.materials[side].map.needsUpdate = true;
+        // TODO potential memory leak since not removing old image. check this.
+    });
 }
 
 function submitCode() {
     /* triggered when the user clicks the "Check Code" button
      * checks each selected symbol for if it matches what is on the box
      */
+
+    console.log("code", code);
 
     if ( code[1] == boxSymbols['left_side'] ) {
         if ( code[2] == boxSymbols['bottom_side'] ) {
