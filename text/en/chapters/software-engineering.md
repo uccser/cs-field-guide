@@ -96,7 +96,7 @@ You’ll often find that customers have a specific process that they follow alre
 
 Customers are usually experts in their field and are therefore likely to leave out information that they think is obvious, but may not be obvious to you. Other times, they do not really understand what can and cannot be done with computers and may not mention something because they do not realise that it is possible to do with a computer. Again, it’s up to you to get this information from them and make sure that they tell you what you need to know.
 
-{image filename="xkcd-tasks.png" alt="A xkcd comic on Computer Science tasks" source="https://xkcd.com/1425/"}
+{image filename="xkcd-tasks.png" hover-text="In the 60s, Marvin Minsky assigned a couple of undergrads to spend the summer programming a computer to use a camera to identify objects in a scene. He figured they'd have the problem solved by the end of the summer. Half a century later, we're still working on it." alt="A xkcd comic on Computer Science tasks" source="https://xkcd.com/1425/"}
 
 {panel type="curiosity" summary="Easy for computers and hard for humans vs hard for computers and easy for humans"}
 The rollover text of the above image (you will need to actually view it on [xkcd's website](https://xkcd.com/1425/)) is worth reading too. Image recognition is a problem that initially seemed straightforward, probably because humans find it easy. Interestingly, there are many problems that computers find easy, but humans find challenging, such as multiplying large numbers. Conversely, there are many other problems that computers find hard, yet humans find easy, such as recognizing that the thing in a photo is, for example, a cat.
@@ -392,7 +392,7 @@ When the builder thinks they are done, compare what you built! How precise was y
 
 *Agile* software development has become popular over the last 10 years; two of the most famous agile processes are called [XP](https://en.wikipedia.org/wiki/Extreme_programming) and [Scrum](https://en.wikipedia.org/wiki/Scrum_(development\)). Agile software development is all about being extremely flexible and adaptive to change. Most other software processes try to manage and control changes to requirements during the process; agile processes accept and expect change. The following xkcd comic illustrates part of the apparent dilemma that agile processes aim to address. With Agile, we can develop software quickly, correctly, and be adaptive to change.
 
-{image filename="xkcd-good-code.png" alt="A xkcd comic on good code" source="https://xkcd.com/844/"}
+{image filename="xkcd-good-code.png" hover-text="You can either hang out in the Android Loop or the HURD loop." alt="A xkcd comic on good code" source="https://xkcd.com/844/"}
 
 Agile processes work similarly to iterative processes in that they do a number of iterations of analysis, design, implementation and testing. However, these iterations are extremely short, each usually lasting only about 2 weeks.
 
@@ -413,7 +413,7 @@ You might think that pair-programming is not very efficient and that it would be
 
 YAGNI stands for “You ain’t gonna need it” and tells developers to keep things simple and only design and implement the things that you know you are really going to need. It can be tempting to think that in the future you might need feature x and so you may as well already create it now. But remember that requirements are likely to change so chances are that you won’t need it after all.
 
-{image filename="xkcd-the-general-problem.png" alt="A xkcd comic on the general problem" source="https://xkcd.com/974/"}
+{image filename="xkcd-the-general-problem.png" hover-text="I find that when someone's taking time to do something right in the present, they're a perfectionist with no ability to prioritize, whereas when someone took time to do something right in the past, they're a master artisan of great foresight." alt="A xkcd comic on the general problem" source="https://xkcd.com/974/"}
 
 You ain’t gonna need it!
 
