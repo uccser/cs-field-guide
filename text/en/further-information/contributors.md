@@ -5,7 +5,7 @@ This project is the result of contributions from a large community of Computer S
 ## Project Leads
 - Tim Bell - International Field Guide, co-founder
 - Peter Denning - International Field Guide, co-founder
-- Jack Morgan - Project manager
+- Jack Morgan - Project Manager
 
 ## Software Development
 - Jack Morgan - Technical Lead
