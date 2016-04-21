@@ -19,13 +19,8 @@ There is also a lot of material available online from NZQA, and good ideas share
 1.44 covers three topics: Algorithms, Programming Languages, and Human Computer Interaction. For Merit and Excellence, we provide separate guides for each topic. For Achieved, all the topics are in a single document, and a writing frame with a recommended layout and some useful sentence starters is also provided.
 
 - [Level 1 Introduction](curriculum-guides/ncea/assessment-guide-level-1-introduction.html)
-
-This guide will be added to the field guide in early 2016.
-
-- [Guide for Achieved in 1.44](https://docs.google.com/document/d/1A5x-0sbcH-73orZCIlci0CqqxQzGKCbija3z0KsIDEE/)
+- [Guide for Achieved in 1.44](https://docs.google.com/document/d/1A5x-0sbcH-73orZCIlci0CqqxQzGKCbija3z0KsIDEE/) - This guide contains a checklist at the end which students can use to check off things as they do them, and to ensure they do not miss anything.
 - [Writing Frame](https://docs.google.com/document/d/1e41Cb50tvnjBWWPwIy3bY5CrymUK3ZJ4nnFnyRQqC2U/edit#)
-
-The guide contains a check list at the end which students can use to check off things as they do them, and to ensure they do not miss anything.
 
 ### Algorithms
 
