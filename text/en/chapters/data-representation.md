@@ -405,14 +405,30 @@ Most of the time binary numbers are stored electronically, and we don't need to 
 
 Writing out long binary numbers is tedious --- for example, suppose you need to copy down the 16-bit number 0101001110010001. A widely used shortcut is to break the number up into 4-bit groups (in this case, 0101 0011 1001 0001), and then write down the digit that each group represents (giving 5391). There's just one small problem: each group of 4 bits can go up to 1111, which is 15, and the digits only go up to 9.
 
-The solution is simple: we introduce symbols for the digits for 1010 (10) to 1111 (15), which are just the letters A to F. So, for example, the 16-bit binary number 1011 1000 1110 0001 can be written more concisely as B8E1. The "B" represents the binary 1011, which is the decimal number 11, and the E represents binary 1110, which is decimal 14.
+The solution is simple: we introduce symbols for the digits from 1010 (10) to 1111 (15), which are just the letters A to F. So, for example, the 16-bit binary number 1011 1000 1110 0001 can be written more concisely as B8E1. The "B" represents the binary 1011, which is the decimal number 11, and the E represents binary 1110, which is decimal 14.
 
 Because we now have 16 digits, this representation is called hexadecimal (or hex for short). Converting between binary and hexadecimal is very simple, and that's why hexadecimal is a very common way of writing down large binary numbers.
 
 Here's a full table of all the 4-bit numbers and their hexadecimal digit equivalent:
 
-| Binary | 0000 | 0001 | 0010 | 0011 | 0100 | 0101 | 0110 | 0111 | 1000 | 1001 | 1010 | 1011 | 1100 | 1101 | 1110 | 1111 |
-| Hex | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | A | B | C | D | E | F |
+| **Binary** | **Hex** |
+|------------|---------|
+| 0000       | 0       |
+| 0001       | 1       |
+| 0010       | 2       |
+| 0011       | 3       |
+| 0100       | 4       |
+| 0101       | 5       |
+| 0110       | 6       |
+| 0111       | 7       |
+| 1000       | 8       |
+| 1001       | 9       |
+| 1010       | A       |
+| 1011       | B       |
+| 1100       | C       |
+| 1101       | D       |
+| 1110       | E       |
+| 1111       | F       |
 
 For example, the largest 8-bit binary number is 11111111. This can be written as FF in hexadecimal. Both of those representations mean 255 in our conventional decimal system (you can check that by converting the binary number to decimal).
 
@@ -438,7 +454,7 @@ For example, numbers in spreadsheets usually have a finite precision. Try puttin
 
 Many programming languages allow the programmer to specify the number of bits used to represent each variable (e.g. in the C language a "short int" is 16 bits or more, and a "long int" is at least 32 bits); if you are working with a language then they could investigate limits on how numbers are represented. Note that some languages, including Python, seamlessly changes the size of the representation of an integer if it gets too large, so it's harder to explore these issues in Python.
 
-Another situation where different numbers of bits in a representation is important is IP (Internet Protocol) and MAC (media access control) addresses for devices; the recent change from IPv4 to IPv6 was driven by the number of devices you could represent, and if you are interested in networks could explore the number of bits used for an address, and how many possible devices could exist before we run out of numbers.
+Another situation where different numbers of bits in a representation is important is IP (Internet Protocol) and MAC (media access control) addresses for devices; the recent change from IPv4 to IPv6 was driven by the number of devices you could represent, and if you are interested in networks you could explore the number of bits used for an address, and how many possible devices could exist before we run out of numbers.
 
 
 ## Representing images with bits
@@ -537,9 +553,9 @@ So a 2 megapixel photo, in its simplest form, needs 6 million numbers to be reco
 
 So now, how can computers represent each possible colour using bits? You may have noticed in the above interactive that for each of red, green, and blue, there are 256 different positions the slider can be in (don’t forget to include setting the slider to 0). From the numbers section, you may remember that to get 256 different possibilities, you need 8 bits. So for example, to represent the current value of the red slider, you would need 8 bits ({math}2^8 = 2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2 = 256{math end}).
 
-Because there are three primary colours,  each of which has 256 different possible values, we need 24 bits in order to have enough possible bit patterns to represent all the possible colours that this scheme can represent ({math}3 x 8 = 24{math end}).
+Because there are three primary colours,  each of which has 256 different possible values, we need 24 bits in order to have enough possible bit patterns to represent all the possible colours that this scheme can represent ({math}3 \times 8 = 24{math end}).
 
-If you calculate {math}2^24{math end} (i.e. the number of bit patterns you can get with 24 bits), and {math}256 \times 256 \times 256{math end} (i.e. the number of possible colours that can be represented using the above interactive), you will find that the result of these two calculations are the same; 16,777,216. This means that there are 16,777,216 different possible colours that can be represented using this scheme, and that's more colours than most people can distinguish, which is why 24-bit colour is regarded as high quality.
+If you calculate {math}2^{24}{math end} (i.e. the number of bit patterns you can get with 24 bits), and {math}256 \times 256 \times 256{math end} (i.e. the number of possible colours that can be represented using the above interactive), you will find that the result of these two calculations are the same; 16,777,216. This means that there are 16,777,216 different possible colours that can be represented using this scheme, and that's more colours than most people can distinguish, which is why 24-bit colour is regarded as high quality.
 
 {comment}
 
@@ -563,7 +579,7 @@ A sensible way is to use 3 binary numbers that represent the amount of each of r
 {image filename="colour-purple.png" alt="The colour purple."}
 
 As an example, suppose you have the colour that has red = 145, green = 50, and blue = 123 (it is a shade of purple shown in the square above; you can see it if you set the sliders to those values in the interactive above).
-You need to convert each of the 3 numbers into binary, using 8 bits for each. You can either do this by hand if you are confident with binary numbers, use [this binary number interactive with 8 columns](DR-base-conversion/public_html/index.html?base=16&columns=7&lines=A,B,C&offset=0), or use a [binary piano](dr-binary-piano-uc.pdf).
+You need to convert each of the 3 numbers into binary, using 8 bits for each. You can either do this by hand if you are confident with binary numbers, or use [this binary number interactive with 8 columns](DR-base-conversion/public_html/index.html?base=16&columns=7&lines=A,B,C&offset=0), or use a [binary piano](dr-binary-piano-uc.pdf).
 You should get red = 10010001,
 green = 00110010,
 and blue = 01111011.
@@ -693,7 +709,7 @@ The braille system uses only 6 bits for each character, which allows for 64 diff
 But some languages have way more than 32, or 64, or even 128 characters in their alphabet.
 In fact, the majority of the world's population use such languages!
 In this case, longer codes are needed, and the most widely used approach is a system called *Unicode*.
-A commonly used version of Unicode allows 16 bits per character. Because every extra bit that is added doubles the number of patterns possible, 16-bit codes have many more representations than 8 bit codes. In fact, with 16 bits there are {math}2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2 = 2^16 = 65,536{math end} patterns that can be represented. This is enough to assign a unique pattern of bits to the main characters in the most common languages, although there are also standards that allow 32 bits (4 bytes) for each character.
+A commonly used version of Unicode allows 16 bits per character. Because every extra bit that is added doubles the number of patterns possible, 16-bit codes have many more representations than 8 bit codes. In fact, with 16 bits there are {math}2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2 = 2^{16} = 65,536{math end} patterns that can be represented. This is enough to assign a unique pattern of bits to the main characters in the most common languages, although there are also standards that allow 32 bits (4 bytes) for each character.
 
 The Unicode table is far too big to display in this book, but you can find a variety of tables on the internet, and use them to look up codes. [This website displays all unicode characters](http://unicode-table.com/en/) with geographical data for appropriate characters.
 The 16- and 32-bit codes are usually written using hexadecimal since this is an easy abbreviation for the long binary codes, and sections of the Unicode alphabet (different languages) tend to be in multiples of 16.
@@ -731,6 +747,7 @@ There are two commonly used kinds of numbers: integers and floating point number
 
 The binary number representation in the previous section only allowed us to represent positive numbers. In practice, we will want to be able to represent negative numbers as well (such as when the amount of money earned goes to a negative amount, or the temperature falls below zero!)
 In our normal representation of base 10 numbers, we represent negative numbers by putting a minus sign in front of the number.  
+
 On a computer we don’t have minus signs, but we can do it by allocating one extra bit, called a *sign* bit, to represent the minus sign.
 We can choose the leftmost bit as the sign bit --- when the sign bit is set to “0”, that means the number is positive and when the sign bit is set to “1”, the number is negative (just as if there were a minus sign in front of it).
 For example, if we wanted to represent the number 41 using 6 bits (like above) along with an additional 7th bit that is the sign bit, assuming the sign bit is first, we would represent it by 0101001. The first bit is a 0, meaning the number is positive, then the remaining 6 bits give 41, meaning the number is +41. If we wanted to make -59, this would be 1111011. The first bit is a 1, meaning the number is negative, and then the remaining 6 bits give 59, meaning the number is -59.
@@ -809,12 +826,12 @@ The world population is approximately 7 billion, so 32 bits isn't quite enough t
 
 {panel end}
 
-| Type of Number  | Unsigned Range                  |                     Signed Range                         |
+|      Number     |        Unsigned Range           |                     Signed Range                         |
 |-----------------|---------------------------------|----------------------------------------------------------|
-| 8 bit signed    | 0 to 255                        | -128 to 127                                              |
-| 16 bit signed   | 0 to 65,535                     | -32,768 to 32,767                                        |
-| 32 bit signed   | 0 to 4,294,967,295              | −2,147,483,648 to 2,147,483,647                          |
-| 64 bit signed   | 0 to 18,446,744,073,709,551,615 | −9,223,372,036,854,775,808 to 9,223,372,036,854,775,807  |
+| 8 bit		  | 0 to 255                        | -128 to 127                                              |
+| 16 bit	  | 0 to 65,535                     | -32,768 to 32,767                                        |
+| 32 bit	  | 0 to 4,294,967,295              | −2,147,483,648 to 2,147,483,647                          |
+| 64 bit	  | 0 to 18,446,744,073,709,551,615 | −9,223,372,036,854,775,808 to 9,223,372,036,854,775,807  |
 
 So when you are storing values on a computer with very limited space, you need to be careful to pick a suitable kind of integer that has enough space, but isn’t wasting space. You also need to think about whether or not a number could potentially be negative.
 

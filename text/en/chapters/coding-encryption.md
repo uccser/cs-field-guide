@@ -14,7 +14,7 @@ Of course, we wouldn't need encryption if we lived in a world where everyone was
 An interesting example of the value of using encryption outside of secret messages is the two engineers who were convicted of changing traffic light patterns to cause chaos during a strike [http://latimesblogs.latimes.com/lanow/2009/12/engineers-who-hacked-in-la-traffic-signal-computers-jamming-traffic-sentenced.html](http://latimesblogs.latimes.com/lanow/2009/12/engineers-who-hacked-in-la-traffic-signal-computers-jamming-traffic-sentenced.html). A related problem in the US was traffic signals that could respond to codes from emergency vehicles to change to green; originally these didn't use encryption, and people could figure out how to trigger them to their own advantage.
 {panel end}
 
-A big issue with encryption systems is people who want to break into them and decrypt messages without the key (which some secret value or setting that can be used to unlock an encrypted file). Some systems that were used many years ago were discovered to be insecure because of attacks, so could no longer be used. It is possible that somebody will find an effective way of breaking into the widespread systems we use these days, which would cause a lot of problems.
+A big issue with encryption systems is people who want to break into them and decrypt messages without the key (which is some secret value or setting that can be used to unlock an encrypted file). Some systems that were used many years ago were discovered to be insecure because of attacks, so could no longer be used. It is possible that somebody will find an effective way of breaking into the widespread systems we use these days, which would cause a lot of problems.
 
 Like all technologies, encryption can be used for good and bad purposes. A human rights organisation might use encryption to secretly send photographs of human rights abuse to the media, while drug traffickers might use it to avoid having their plans read by investigators. Understanding how encryption works and what is possible can help to make informed decisions around things like freedom of speech, human rights, tracking criminal activity, personal privacy, identity theft, online banking and payments, and the safety of systems that might be taken over if they were "hacked into".
 
@@ -224,7 +224,7 @@ There are many other ways of cracking Caeser cipher which we will look at in thi
 
 Frequency analysis means looking at how many times each letter appears in the encrypted message, and using this information to crack the code. A letter that appears many times in a message is far more likely to be “T” than “Z”, for example.
 
-The following interactive will helps you to analyze a piece of text by counting up the letter frequencies.
+The following interactive will help you analyze a piece of text by counting up the letter frequencies.
 You can paste in some text to see which are the most common (and least common) characters.
 
 {interactive name="frequency-analysis" type="in-page"}
@@ -375,11 +375,13 @@ While Caesar cipher has a key specifying a rotation, a more general substitution
 This increases the number of possible keys, and thus reduces the risk of a brute force attack. A can be substituted for any of the 26 letters in the alphabet, B can then be substituted for any of the 25 remaining letters (26 minus the letter already substituted for A), C can then be substituted for any of the 24 remaining letters…
 
 This gives us 26 possibilities for A times 25 possibilities for B times 24 possibilities for C.. all the way down to 2 possibilities for Y and 1 possibility for Z.
+
 {math}
 26 \times 25 \times 24 \times 23 \times 22 \times 21 \times 20 \times 19 \times 18 \times 17 \times\\
 16 \times 15 \times 14 \times 13 \times 12 \times 11 \times 10 \times 9 \times 8 \times 7 \times 6 \times\\
 5 \times 4 \times 3 \times 2 \times 1 = 26!
 {math end}
+
 Representing each of these possibilities requires around 88 bits, making the cipher’s key size around 88 bits, which is below modern standards, although still not too bad!
 
 However, this only solves one of the problems. The other techniques for breaking Caeser cipher we have looked at are still highly effective on all substitution ciphers, in particular the frequency analysis. For this reason, we need better ciphers in practice, which we will look at shortly.
@@ -419,11 +421,11 @@ In computer science, problems that take an exponential amount of time to solve a
 Working out which problems are tractable and which are intractable is a major area of research in computer science --- many other problems that we care about appear to be intractable, much to our frustration.
 The area of encryption is one of the few situations where we're pleased that an algorithm is intractible!
 
-This guide has a [whole chapter about tractability chapter](chapters/complexity-tractability.html), where you can explore these issues further.
+This guide has a [whole chapter about tractability](chapters/complexity-tractability.html), where you can explore these issues further.
 {panel end}
 
 {panel type="jargon-buster" summary="Terminology you should now be familiar with"}
-The main terminology you should be familiar with now is that a *plaintext* is *encrypted* by to create a *ciphertext* using an *encryption key*. Someone without the encryption key who wants to *attack* the cipher could try various approaches, including a *brute force attack* (trying out all possible keys), a *frequency analysis attack* (looking for statistical patterns), and a *known plaintext attack* (matching some known text with the cipher to work out the key).
+The main terminology you should be familiar with now is that a *plaintext* is *encrypted* by a *cipher* to create a *ciphertext* using an *encryption key*. Someone without the encryption key who wants to *attack* the cipher could try various approaches, including a *brute force attack* (trying out all possible keys), a *frequency analysis attack* (looking for statistical patterns), and a *known plaintext attack* (matching some known text with the cipher to work out the key).
 
 If you were given an example of a simple cipher being used, you should be able to talk about it using the proper terminology.
 {panel end}
@@ -439,7 +441,7 @@ Cryptosystems are also used for purposes such as *authentication* (checking a pa
 This sounds simple, but how do you check when someone logs in, *without* having to store their password (after all, if someone got hold of the password list, that could ruin your reputation and business, so it's even safer not to store them.)
 
 There are good solutions to these problems that are regularly used --- in fact, you probably use them online already, possibly without even knowing!
-We'll begin by looking at systems that allow people so decode secret messages without even having to be sent the key!
+We'll begin by looking at systems that allow people to decode secret messages without even having to be sent the key!
 
 ## The Key Distribution Problem
 
@@ -459,7 +461,7 @@ The ciphertext itself can safely be sent across an “unsafe” network (one tha
 Remember that Alice and Bob might be in different countries, and can only communicate through the internet. This also rules out Alice simply passing Bob the key in person.
 
 {panel type="curiosity" summary="Are we being paranoid?"}
-In computer security we tend to assume that Eve, the eaves dropper, can read every message between Alice and Bob.
+In computer security we tend to assume that Eve, the eavesdropper, can read every message between Alice and Bob.
 This sounds like an inordinate level of wire tapping, but what about wireless systems?
 If you're using wireless (or a mobile phone), then all your data is being broadcast, and can be picked up by any wireless receiver in the vicinity.
 In fact, if another person in the room is also using wireless, their computer is already picking up everything being transmitted by your computer, and has to go to some trouble to ignore it.
@@ -521,7 +523,7 @@ Finally, this interactive is the decrypter. It is used to decrypt messages that 
 
 {interactive name="rsa-no-padding" type="iframe" parameters="mode=decrypt"}
 
-Despite even your enemies knowing your public key (as you publicly announced it), they cannot use it to decrypt your messages which were encrypted using the public key. You are the only one who can decrypt messages, as that requires the private key which hopefully you are the only one who access to.
+Despite even your enemies knowing your public key (as you publicly announced it), they cannot use it to decrypt your messages which were encrypted using the public key. You are the only one who can decrypt messages, as that requires the private key which hopefully you are the only one who has access to.
 
 Note that this interactive’s implementation of RSA is just for demonstrating the concepts here and is not quite the same as the implementations used in live encryption systems.
 
@@ -577,7 +579,9 @@ In order to encrypt a message, the public key is used. In order to decrypt it, t
 Initially this might sound like a pointless thing to do --- why would you encrypt a message that can be decrypted using a key that everybody in the world can access!?!  It turns out that indeed, encrypting a message with the private key and then decrypting it with the public key works, and it has a very useful application.
 
 The only person who is able to *encrypt* the message using the *private* key is the person who owns the private key. The public key will only decrypt the message if the private key that was used to encrypt it actually is the public key’s corresponding private key. If the message can’t be decrypted, then it could not have been encrypted with that private key.
-This allows the sender to prove that the message actually is from them, and is known as a {glossary-definition term="Digital signature" definition="An encryption system that allows the receiver to verify that a document was sent by the person who claims to have sent it."}.
+This allows the sender to prove that the message actually is from them, and is known as a
+{glossary-definition term="Digital signature" definition="An encryption system that allows the receiver to verify that a document was sent by the person who claims to have sent it."}
+{glossary-link term="Digital signature"}digital signature{glossary-link end}.
 
 You could check that someone is the authentic private key holder by giving them a phrase to encrypt with their private key. You then decrypt it with the public key to check that they were able to encrypt the phrase you gave them.
 
@@ -641,13 +645,13 @@ For example, the following database table shows four users of a fictional system
 {image filename="hash-passwords-table.png"}
 
 It might initially sound like we have the perfect system. But unfortunately, there is still a big problem.
-You can find *rainbow tables* online, which are precomputated lists of common passwords with what value they hash to. It isn't too difficult to generate rainbow tables containing all passwords up to a certain size in fact (this is one reason why using long passwords is strongly recommended!)
+You can find *rainbow tables* online, which are precomputed lists of common passwords with what value they hash to. It isn't too difficult to generate rainbow tables containing all passwords up to a certain size in fact (this is one reason why using long passwords is strongly recommended!)
 This problem can be avoided by choosing a password that isn't a common word or combination of words.
 
 Hashing is a good start, but we need to further improve our system so that if two users choose the same password, their hash is not the same, while still ensuring that it is possible to check whether or not a user has entered the correct password. The next idea, salting, addresses this issue.
 
 {panel type="curiosity" summary="Passwords that hash to the same value"}
-When we said that if the hashed password matches the one in the database, then the user has to have entered the correct password, we were not telling the full truth. Mathematically, we know that there has to be passwords which would hash to the same value. This is because the length of the output hash has a maximum length, whereas the password length (or other data being hashed) could be much larger. Therefore, there are more possible inputs than outputs, so some inputs must have the same output. When two different inputs have the same output hash, we call it a *collision*.
+When we said that if the hashed password matches the one in the database, then the user has to have entered the correct password, we were not telling the full truth. Mathematically, we know that there have to be passwords which would hash to the same value. This is because the length of the output hash has a maximum length, whereas the password length (or other data being hashed) could be much larger. Therefore, there are more possible inputs than outputs, so some inputs must have the same output. When two different inputs have the same output hash, we call it a *collision*.
 
 Currently, nobody knows of two unique passwords which hash to the same value with SHA-256. There is no known mathematical way of finding collisons, other than hashing many values and then trying to find a pair which has the same hash. The probability of finding one in this way is believed to be in the order of 1 in a trillion trillion trillion trillion trillion. With current computing power, nobody can come even close to this without it taking longer than the life of the sun and possibly the universe.
 
@@ -662,7 +666,7 @@ But hashing is used for more than just password storage. It is also used for dig
 
 A really clever technique which solves some of the problems of using a plain hash is salting. Salting simply means to attach some extra data, called *salt*, onto the end of the password and then hash the combined password and salt. Normally the salt is quite large (e.g. 128 bits). When a user tries to log in, we will need to know the salt for their password so that it can be added to the password before hashing and checking. While this initially sounds challenging, the salt should not be treated as a secret. Knowing the salt does not help the attacker to mathematically reverse the hash and recover the password. Therefore, a common practice is to store it in plaintext in the database.
 
-So now when a user registers, a long random salt value is generated, added to the end of their password, and the combined password and salt is hashed. The plaintext salt is stored next to the
+So now when a user registers, a long random salt value is generated, added to the end of their password, and the combined password and salt is hashed. The plaintext salt is stored next to the hash.
 
 {comment}
 TODO (but beyond what we really need to cover - could be an extra for experts)
@@ -675,7 +679,7 @@ If the passwords are salted and hashed, then a rainbow table is useless to the a
 
 A common brute force attack is a *dictionary attack*. This is where the attacker writes a simple program that goes through a long list of dictionary words, other common passwords, and all combinations of characters under a certain length. For each entry in the list, the program adds the salt to the entry and then hashes to see if it matches the hash they are trying to determine the password for. Good hardware can check millions, or even billions, of entries a second. Many user passwords can be recovered in less than a second using a dictionary attack.
 
-Unfortunately for end users, many companies keep database leaks very quiet as it is a huge embarrassment that could cripple the company. Sometimes the company doesn't know its database was leaked, or has suspicions that it was but for PR reasons they choose to deny it. In the best case, they might require you to pick a new password, giving a vague excuse. For this reason, it is important to use different passwords on every site to ensure that the attacker does not break into accounts you own on other sites. There is quite possibly passwords or yours that you think nobody knows, but somewhere in the world an attacker has recovered it from a database they broke into.
+Unfortunately for end users, many companies keep database leaks very quiet as it is a huge embarrassment that could cripple the company. Sometimes the company doesn't know its database was leaked, or has suspicions that it was but for PR reasons they choose to deny it. In the best case, they might require you to pick a new password, giving a vague excuse. For this reason, it is important to use different passwords on every site to ensure that the attacker does not break into accounts you own on other sites. There are quite possibly passwords of yours that you think nobody knows, but somewhere in the world an attacker has recovered it from a database they broke into.
 
 {comment}
 Have a go at the following interactive. It requires you to guess the passwords of the users.
@@ -691,7 +695,7 @@ While in theory, encrypting the salts sounds like a good way to add further secu
 
 This is why websites have a minimum password length, and often require a mix of lowercase, uppercase, symbols, and numbers. There are 96 standard characters you can use in a password. 26 upper case letters, 26 lower case letters, 10 digits, and 34 symbols. If the password you choose is completely random (e.g. no words or patterns), then each character you add makes your password 96 times more difficult to guess. Between 8 and 16 characters long can provide a very high level of security, as long as the password is truly random. Ideally, this is the kind of passwords you should be using (and ensure you are using a different password for each site!).
 
-Unfortunately though, these requirements don't work well for getting users to pick good passwords. Attackers know the tricks users use to make passwords that meet the restrictions, but can be remembered. For example, P@$$w0rd contains 8 characters (a commonly used minimum), and contains a mix of different types of characters. But attackers know that users like to replace S's with $'s, mix o and 0, replace i with !, etc. In fact, they can just add these tricks into their list they use for dictionary attacks! For websites that require passwords to have at least on digit, the result is even worse. Many users pick a standard english word and then add a single digit to the end of it. This again is easy work for a dictionary attack to crack!
+Unfortunately though, these requirements don't work well for getting users to pick good passwords. Attackers know the tricks users use to make passwords that meet the restrictions, but can be remembered. For example, P@$$w0rd contains 8 characters (a commonly used minimum), and contains a mix of different types of characters. But attackers know that users like to replace S's with $'s, mix o and 0, replace i with !, etc. In fact, they can just add these tricks into their list they use for dictionary attacks! For websites that require passwords to have at least one digit, the result is even worse. Many users pick a standard English word and then add a single digit to the end of it. This again is easy work for a dictionary attack to crack!
 
 As this xkcd comic points out, most password advice doesn't make a lot of sense.
 
