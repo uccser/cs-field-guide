@@ -151,7 +151,7 @@ function init() {
     window.addEventListener( 'resize', onWindowResize, false );
 
     //listeners for keypress
-    document.addEventListener( 'keydown', function() {
+    document.addEventListener( 'keydown', function( event ) {
         switch (event.keyCode) {
             case 13: // enter/return key
                 moveBox();
@@ -243,7 +243,6 @@ function updateSide( side, currentImg, coloured) {
     if ( coloured == false ) {
         format = 'grayscale_';
     }
-    console.log(format);
     cube.material.materials[side].map = new THREE.TextureLoader().load(
             'images/' + format + 'square' + currentImg + '.png',
             undefined,
@@ -366,12 +365,24 @@ function clearCode() {
      * set the selected codes to ../images/question marks and clear the dictionary
      */
 
+    //console.log(selectedSymbolId);
+    //console.log(code);
     document.getElementById( 'first-symbol' ).src = 'images/question_mark.jpg';
     document.getElementById( 'second-symbol' ).src = 'images/question_mark.jpg';
     document.getElementById( 'third-symbol' ).src = 'images/question_mark.jpg';
     code[1] = null;
     code[2] = null;
     code[3] = null;
+
+    // TODO working here, not sure that this works, but follow same structure as in
+    // submitsymbol function
+    submitSymbol();
+
+    //updateSide( 1,  boxSymbols['left_side'], true );
+    //updateSide( 2,  boxSymbols['default_symbol'], true );
+    //updateSide( 3,  boxSymbols['bottom_side'], true );
+    //updateSide( 4,  boxSymbols['default_symbol'], true );
+    //updateSide( 5,  boxSymbols['default_symbol'], true );
 }
 
 
