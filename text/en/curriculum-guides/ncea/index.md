@@ -52,19 +52,18 @@ The guides the student picks will depend on whether they are aiming for Merit/ E
 
 ### Representing Data
 
-Students will need to pick **one** project from here. Which they pick will depend on whether they are aiming for Merit/ Excellence or Achieved. Each guide fully covers the requirements for Representing Data at the chosen level.
-
 **Achieved Guides**
 
-- For Achieved: [Representing Data - Representing numbers and text with bits (Achieved)](curriculum-guides/ncea/assessment-guide-level-2-achieved-representing-data.html)
+For Achieved, students will only need to choose 1 guide. The guides cover 2 data representation topics, fully covering the requirements for data representation at Achieved.
+
+-[Representing Data - Representing numbers and text with bits (Achieved)](curriculum-guides/ncea/assessment-guide-level-2-achieved-representing-data.html)
 
 **Merit/ Excellence Guides**
 
-Not yet released - check back in early 2016.
+For Merit/ Excellence, students will need to choose 2 guides. Each guide covers 1 different data representation topic.
 
-{comment}
-- For Merit/ Excellence: [Representing Data - Exploring different representations for text and color using bits (Merit/ Excellence)](curriculum-guides/ncea/assessment-guide-level-2-full-representing-data.html)
-{comment end}
+- [Representing Data - Representing text with bits using ASCII and Unicode based representations (Merit/Excellence)](curriculum-guides/ncea/assessment-guide-level-2-excellence-data-representation-text.html)
+
 
 ### Encoding
 
