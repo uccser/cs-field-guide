@@ -151,8 +151,7 @@ function init() {
     window.addEventListener( 'resize', onWindowResize, false );
 
     //listeners for keypress
-    document.addEventListener( 'keydown', function(){
-
+    document.addEventListener( 'keydown', function() {
         switch (event.keyCode) {
             case 13: // enter/return key
                 moveBox();
