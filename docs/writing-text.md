@@ -407,7 +407,8 @@ The following text can be used to include images into the project:
 **Parameters:**
 - `filename` - The image's file name, stored in the images folder.
 - `wrap` (optional) - Either set to `left` or `right` for aligning the image on the page, rather than centered.
-- `alt` (optional) - Description text of the image.
+- `alt` (optional) - Description text of the image used when an image is not displayed, or can be read when using a screen reader (for those with reading difficulties).
+- `hover-text` (optional) - Additional text to be displayed when the user hovers their cursor over the image (note this won't appear on touch devices so use sparingly).
 - `caption` (optional) - Lists the given text as a caption under the image. Does not appear under images within an `image-set`.
 - `caption-link` (optional - requires `caption` parameter) - Turns the caption text into a link to the given URL.
 - `source` (optional) - Adds a 'Image source' link under the image, and after the caption if a caption is given. Does not appear under images within an `image-set`.

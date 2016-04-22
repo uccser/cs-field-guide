@@ -45,7 +45,7 @@ So one of the jobs of computer scientists is to be confident that such solutions
 
 In this chapter we will look at the TSP and other problems for which *no* tractable solutions are known, problems that would take computers millions of centuries to solve.  And we will encounter what is surely the greatest mystery in computer science today: that *no-one knows* whether there's a more efficient way of solving these problems!  It may be just that no-one has come up with a good way yet, or it may be that there is no good way.  We don't know which.  
 
-{image filename="xkcd-np-complete-cartoon.png" alt="A xkcd comic about NP complete" source="https://xkcd.com/287/"}
+{image filename="xkcd-np-complete-cartoon.png" hover-text="General solutions get you a 50% tip." alt="A xkcd comic about NP complete" source="https://xkcd.com/287/"}
 
 But let's start with a familiar problem that we can actually solve.
 

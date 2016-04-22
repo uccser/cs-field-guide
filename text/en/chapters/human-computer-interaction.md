@@ -363,7 +363,7 @@ However, progress indicators aren't always helpful; the spinning wheels above do
 
 Giving feedback in a "reasonable time" is really important, and the "reasonable time" is often shorter than what you might think. In the section above there was an experiment to find out at what point people perceive a delayed reaction; you probably found that it was around a tenth of a second. If a computer takes longer than that to respond then it can be confusing to use. There's more about this in the previous section.
 
-{image filename="xkcd-estimation.png" alt="The author of the Windows file copy dialog visits some friends, and struggles to decide what time he will arrive." source="https://xkcd.com/612/"}
+{image filename="xkcd-estimation.png" hover-text="They could say 'the connection is probably lost', but it's more fun to do naive time-averaging to give you hope that if you wait around for 1,163 hours, it will finally finish." alt="The author of the Windows file copy dialog visits some friends, and struggles to decide what time he will arrive." source="https://xkcd.com/612/"}
 
 There are some other important delay periods in interface evaluation: a delay of around 1 second is where natural dialogues start to get awkward, and around 10 seconds puts a lot of load on the user to remember what they were doing. Nielsen has an [article about the importance of these time periods](http://www.nngroup.com/articles/response-times-3-important-limits/). If you want to test these ideas, try having a conversation with someone where you wait 3 seconds before each response; or put random 10 second delays in when you're working on a task!
 
@@ -425,7 +425,7 @@ Consistency (something being the same every time) is extremely useful for people
 
 An example of inconsistency is generally found within spreadsheet programs, where the result of pushing "control-A" (select all) depends on whether you are editing a cell or just have the cell selected (this particular problem is a 'mode' problem). While this may make sense to a user experienced with spreadsheets, a new user can be very confused when the same action causes a different response.
 
-{image filename="xkcd-standards-cartoon.png" alt="A xkcd comic on standards" source="https://xkcd.com/927/"}
+{image filename="xkcd-standards-cartoon.png" hover-text="Fortunately, the charging one has been solved now that we've all standardized on mini-USB. Or is it micro-USB? Shit." alt="A xkcd comic on standards" source="https://xkcd.com/927/"}
 
 A lack of consistency is often the reason behind people not liking a new system. It is particularly noticeable between Mac and Windows users; someone who has only used one system can find the other very frustrating to use because so many things are different (consider the window controls for a start, which are in a different place and have different icons). An experienced user of one interface will think that it is "obvious", and can't understand why the other person finds it frustrating, which can lead to discussions of religious fervour on which interface is best. Similar problems can occur when a radically different version of an operating system comes out (such as Windows 8); a lot of the learning that has been done on the previous system needs to be undone, and the lack of consistency (i.e. losing prior learning) is frustrating.
 

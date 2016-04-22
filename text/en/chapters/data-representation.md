@@ -805,7 +805,7 @@ Negative numbers are more often stored on computers using a system called "two's
 
 In some programming languages there isn't a check for when a number gets too big (overflows). For example, if you have an 8-bit number using two's complement, then 01111111 is the largest number (127), and if you add one without checking, it will change to 10000000, which happens to be the number -128. This can cause serious problems if not checked for, and is behind a variant of the Y2K problem, called the [Year 2038 problem](https://en.wikipedia.org/wiki/Year_2038_problem), involving a 32-bit number overflowing for dates on Tuesday, 19 January 2038.
 
-{image filename="xkcd-cant-sleep-comic.png" alt="A xkcd comic on number overflow" source="https://xkcd.com/571/"}
+{image filename="xkcd-cant-sleep-comic.png" hover-text="If androids someday DO dream of electric sheep, don't forget to declare sheepCount as a long int." alt="A xkcd comic on number overflow" source="https://xkcd.com/571/"}
 
 {panel end}
 

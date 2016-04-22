@@ -450,7 +450,7 @@ When describing an encryption scenario, cryptographers often use the fictitious 
 We always assume that someone is eavesdropping on the conversation (in fact, if you're using a wireless connection, it's trivial to pick up the transmissions between Alice and Bob as long as you're in reach of the wireless network that one of them is using).
 The fictitious name for the eavesdropper is usually Eve.
 
-{image filename="xkcd-protocol.png" alt="A xkcd comic on protocols" source="https://xkcd.com/1323/"}
+{image filename="xkcd-protocol.png" alt="A xkcd comic on protocols" hover-text="Changing the names would be easier, but if you're not comfortable lying, try only making friends with people named Alice, Bob, Carol, etc." source="https://xkcd.com/1323/"}
 
 There are several other characters used to describe activities around encryption protocols: for example Mallory (a malicious attacker) and Trudy (an intruder). Wikipedia has a [list of Alice and Bob's friends](https://en.wikipedia.org/wiki/Alice_and_Bob)
 {panel end}
@@ -485,7 +485,7 @@ Additionally, there's a video illustrating how public key systems work using a p
 {panel type="teacher-note" summary="Even more about Alice and Bob"}
 There's a [song about Alice and Bob](http://www.catonmat.net/blog/musical-geek-friday-alice-and-bob/) performed by rapper MC++ (yes, he specialises in computer science). Some of the language may not be suitable for use in class, so discretion is needed for how you might use it.
 
-{image filename="xkcd-alice-and-bob.png" alt="A xkcd comic about Alice and Bob" source="https://xkcd.com/177/"}
+{image filename="xkcd-alice-and-bob.png" hover-text="Yet one more reason I'm barred from speaking at crypto conferences." alt="A xkcd comic about Alice and Bob" source="https://xkcd.com/177/"}
 {panel end}
 
 
@@ -699,7 +699,7 @@ Unfortunately though, these requirements don't work well for getting users to pi
 
 As this xkcd comic points out, most password advice doesn't make a lot of sense.
 
-{image filename="xkcd-password-strength.png" alt="A xkcd comic about password strength" source="https://xkcd.com/936/"}
+{image filename="xkcd-password-strength.png" hover-text="To anyone who understands information theory and security and is in an infuriating argument with someone who does not (possibly involving mixed case), I sincerely apologize." alt="A xkcd comic about password strength" source="https://xkcd.com/936/"}
 
 You might not know what some of the words mean. In easy terms, what it is saying is that there are significantly fewer modifications of common dictionary words than there is of a random selection of four of the 2000 most common dictionary words. Note that the estimates are based on trying to guess through a login system. With a leaked database, the attacker can test billions of passwords a second rather than just a few thousand.
 
