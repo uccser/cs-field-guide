@@ -213,38 +213,22 @@ function submitSymbol() {
     if ( code[1] == null ) {
         code[1] = selectedSymbolId;
         document.getElementById( 'first-symbol' ).src = img_src;
-        position = 1;
-    } else if ( code[2] == null ) {
-        code[2] = selectedSymbolId;
-        document.getElementById( 'second-symbol' ).src = img_src;
-        position = 2;
-    } else if ( code[3] == null ) {
-        code[3] = selectedSymbolId;
-        position = 3;
-        document.getElementById( 'third-symbol' ).src = img_src;
-    }
-
-    changeColouredSide( position );
-}
-
-
-function changeColouredSide( position ) {
-    /* logic for deciding which sides should be updated with grayscaled/coloured symbols
-     */
-
-    var currentImg;
-
-    if ( position == 1 ) { // swap colour from left to bottom
         // replace left with grayscale
         updateSide( 1,  boxSymbols['left_side'], false );
         // replace bottom with colour
         updateSide( 3,  boxSymbols['bottom_side'], true );
-    } else if ( position == 2 ) { // swap colour from bottom to right
+    } else if ( code[2] == null ) {
+        code[2] = selectedSymbolId;
+        document.getElementById( 'second-symbol' ).src = img_src;
         // replace bottom with grayscale
         updateSide( 3,  boxSymbols['bottom_side'], false );
         // replace right with colour
         updateSide( 0,  boxSymbols['right_side'], true );
-    } else { //TODO only do this when the code is correct?
+    } else if ( code[3] == null ) {
+        code[3] = selectedSymbolId;
+        document.getElementById( 'third-symbol' ).src = img_src;
+        // make all sides coloured
+        // TODO only do if correct
         updateSide( 1,  boxSymbols['left_side'], true );
         updateSide( 2,  boxSymbols['default_symbol'], true );
         updateSide( 3,  boxSymbols['bottom_side'], true );
@@ -261,10 +245,14 @@ function updateSide( side, currentImg, coloured) {
         format = 'grayscale_';
     }
     console.log(format);
-    cube.material.materials[side].map = new THREE.TextureLoader().load( 'images/' + format + 'square' + currentImg + '.png', undefined, function() {
-        cube.material.materials[side].map.needsUpdate = true;
-        // TODO potential memory leak since not removing old image. check this.
-    });
+    cube.material.materials[side].map = new THREE.TextureLoader().load(
+            'images/' + format + 'square' + currentImg + '.png',
+            undefined,
+            function() {
+                cube.material.materials[side].map.needsUpdate = true;
+                // TODO potential memory leak since not removing old image. check this.
+            }
+    );
 }
 
 function submitCode() {
@@ -272,26 +260,64 @@ function submitCode() {
      * checks each selected symbol for if it matches what is on the box
      */
 
-    console.log("code", code);
+    // reset cube to start position
+    document.getElementById( 'x-coordinate' ).value = 0;
+    document.getElementById( 'y-coordinate' ).value = 0;
+    document.getElementById( 'z-coordinate' ).value = 0;
+    moveBox();
 
     if ( code[1] == boxSymbols['left_side'] ) {
         if ( code[2] == boxSymbols['bottom_side'] ) {
             if ( code[3] == boxSymbols['right_side'] ) {
                 end();
+                return;
             }
         }
     }
+
+    // if the code was not correct
+    // tell the user their code was incorrect
+    incorrect();
+    // clear the code for them to start over
+    clearCode();
+}
+
+
+// tell the user their code is incorrect, and shake the box!
+function incorrect() {
+    var target;
+    var count = 0;
+    var x_pos = 20;
+    var timer = 0;
+
+    window.setTimeout( function () {
+        function run() {
+            if ( count == 10 ) {
+                clearInterval( timer );
+            } else {
+                target = { x: x_pos, y: 0, z: 0 };
+                // move the box on the next animation loop
+                TWEEN.removeAll();
+                new TWEEN.Tween( cube.position )
+                    .to( target )
+                    .easing ( TWEEN.Easing.Elastic.Out )
+                    .onUpdate( render )
+                    .start();
+                TWEEN.update();
+
+                x_pos = x_pos - ( 2 * x_pos );
+                count += 1;
+                timer = setTimeout( run, 50 );
+            }
+        }
+        timer = setTimeout( run, 50 );
+    }, 500 );
+
 }
 
 
 // hides the cube and show the object inside when the user enters the correct code
 function end() {
-    // reset cube to start position
-    document.getElementById( 'x-coordinate' ).value = 0;
-    document.getElementById( 'y-coordinate' ).value = 0;
-    document.getElementById( 'z-coordinate' ).value = 0;
-
-    moveBox();
 
     // move camera (zoom in)
     var target = { x: 0, y: 0, z: 350 };
@@ -301,24 +327,29 @@ function end() {
         .onUpdate( render )
         .start();
 
+
     // gradually fades cube
-    for (face in cube.material.materials) {
+    for ( face in cube.material.materials ) {
         cube.material.materials[face].transparent = true;
     }
 
+    var timer = 0;
     var opacity = 1;
     fadeCube( opacity );
+
     window.setTimeout( function () {
-        window.setInterval( function () {
-            scene.add( hiddenObject );
-            if ( opacity > 0 ) {
+        scene.add( hiddenObject );
+        function run() {
+            if ( opacity <= 0 ) {
+                clearInterval( timer );
+            } else {
                 opacity = opacity - 0.05;
                 fadeCube( opacity );
-            } else {
-                clearInterval();
+                timer = setTimeout( run, 75 );
             }
-        }, 75);
-    }, 1500);
+        }
+        timer = setTimeout( run, 75 );
+    }, 1500 );
 
 }
 
@@ -332,7 +363,7 @@ function fadeCube( opacity ) {
 
 
 function clearCode() {
-    /* triggered when the user clicks the "clear" button
+    /* triggered when the user clicks the "clear" button or the wrong code is submitted
      * set the selected codes to ../images/question marks and clear the dictionary
      */
 
