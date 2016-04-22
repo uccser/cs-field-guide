@@ -28,5 +28,5 @@ $(document).ready(function(){
   console.log('%chttps://github.com/uccser/cs-field-guide', 'font: 1.2em "Open Sans", sans-serif;')
   console.log('%cWe would love your help to make this guide the best it can be!', 'font: 1.2em "Open Sans", sans-serif;')
   console.log('%cThanks,', 'font: 1.2em "Open Sans", sans-serif;')
-  console.log('%cThe CSFG team', 'font: 1.2em "Open Sans", sans-serif;')
+  console.log('%cThe CSFG team :)', 'font: 1.2em "Open Sans", sans-serif;')
 });
