@@ -23,7 +23,7 @@ function moveBox() {
     // rotate the box on the next animation loop
     TWEEN.removeAll();
     new TWEEN.Tween( cube.rotation )
-        .to( target )
+        .to( target, 2000 )
         .easing ( TWEEN.Easing.Elastic.Out )
         .onUpdate( render )
         .start();
