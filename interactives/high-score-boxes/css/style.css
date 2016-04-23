@@ -1,35 +1,36 @@
 
 /* covering boxes */
 div.box {
-    width: 150px;
-    height: 40px;
-    border: 10px;
+    width: 100px;
+    height: 100px;
+    /*border: 10px;*/
     float: left;
-    padding: 10px;
-    border-style: solid;
+    /*padding: 10px; */
+    /*border-style: solid;*/
     border-color: #ff0000 #0000ff;
     position: relative;
     background-color: white;
-    z-index: 1;
+    z-index: 3;
+    background-size: contain;
 }
 
 div.intHoldingDiv {
-	width: 150px;
-	height: 40px;
+	width: 100px;
+	height: 100px;
 
 	text-align: center;
 	vertical-align: middle;
-	line-height: 40px; 
+	line-height: 100px; 
 
 	float: left;
-	display: none;
+	display: block;
 	position: absolute; 
-	z-index: 2; /*IF 1 THEN THIS DIV IS BEHIND THE OTHER ONE! */
+	z-index: 2; /*IF less than div.box THEN THIS DIV IS BEHIND THE OTHER ONE! */
 }
 
 div.boxContainer {
-	width: 150px;
-	height: 40px;
+	width: 100px;
+	height: 100px;
 	float: left;
 	position: relative;
 }

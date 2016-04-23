@@ -9,35 +9,32 @@ $(document).ready(function(){
 	generateRandomNumbers();
 	createBoxObjects();
 	createBoxElements();
-	console.log(boxes);
-	console.log(randomInts)
-
-	//createBoxes();
-	//createIntHoldingDivs();
 
 
 	$(".intHoldingDiv").click(function() {
 		console.log("intHoldingDiv clicked!");
 	})
-
-	// makes number fade in then out
+	
 	$(".box").click(function() {
-		$(".intHoldingDiv").stop();
-		$(".intHoldingDiv").hide();
+		$(".box").stop(true, true);
+		$(".box").show();
 		for (var i = 0; i < (boxes.length); i++) { 
 			if (document.getElementById('box' + i) ==  event.target) {
-				$('#intHoldingDiv' + i).fadeIn(1000).delay(1000).fadeOut(1000);
+				console.log("BOX MATCHED!");
+				$(this).fadeOut(1000);
+				$(this).fadeIn(1000);
+
 				boxes[i].revealed_times += 1;
 				console.log(boxes[i])
 
 			}
-		}
-			
+		}	
 	})
+
 })
 function generateRandomNumbers() {
 		for (var i = 0; i < (numberOfBoxes); i++) {
-		var currentInt = getRandomInt(1, 100);
+		var currentInt = getRandomInt(300, 800);
 		randomInts[i] = currentInt;
 	}
 	//assign largest of the 5 random ints to largest
@@ -59,6 +56,12 @@ function createBoxElements() {
 		var boxDiv = document.createElement('div');
 		boxDiv.id = ('box' + i);
 		boxDiv.className = 'box';
+		boxDiv.setAttribute("width", "100");
+
+
+		//set background image of div to the funky box
+		boxDiv.style.backgroundImage = 'url(./img/square' + getRandomInt(1, 9) + '.png)';
+
 		currentBox.divElement = boxDiv;
 		iContainer.appendChild(boxDiv);
 
@@ -90,6 +93,15 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
+//timing related things!
+function pad ( val ) { return val > 9 ? val : "0" + val; }
+
+setInterval( function(){
+    $("#seconds").html(pad(++sec%60));
+    $("#minutes").html(pad(parseInt(sec/60,10)));
+}, 1000);
+
+//form validation
 function validateForm() {
     var x = document.forms["myForm"]["submittedInt"].value;
 	var box_revealed_more_than_once = false;
