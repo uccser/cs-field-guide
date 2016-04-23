@@ -207,7 +207,6 @@ function submitSymbol() {
     document.getElementById(selectedSymbolId).src = 'images/grayscale_square' + selectedSymbolId + '.png';
 
     var img_src = 'images/square' + selectedSymbolId + '.png';
-    var position;
 
     if ( code[1] == null ) {
         code[1] = selectedSymbolId;
@@ -226,13 +225,6 @@ function submitSymbol() {
     } else if ( code[3] == null ) {
         code[3] = selectedSymbolId;
         document.getElementById( 'third-symbol' ).src = img_src;
-        // make all sides coloured
-        // TODO only do if correct
-        updateSide( 1,  boxSymbols['left_side'], true );
-        updateSide( 2,  boxSymbols['default_symbol'], true );
-        updateSide( 3,  boxSymbols['bottom_side'], true );
-        updateSide( 4,  boxSymbols['default_symbol'], true );
-        updateSide( 5,  boxSymbols['default_symbol'], true );
     }
 
 }
@@ -317,6 +309,13 @@ function incorrect() {
 // hides the cube and show the object inside when the user enters the correct code
 function end() {
 
+    // colour every side of the cube
+    updateSide( 1,  boxSymbols['left_side'], true );
+    updateSide( 2,  boxSymbols['default_symbol'], true );
+    updateSide( 3,  boxSymbols['bottom_side'], true );
+    updateSide( 4,  boxSymbols['default_symbol'], true );
+    updateSide( 5,  boxSymbols['default_symbol'], true );
+
     // move camera (zoom in)
     var target = { x: 0, y: 0, z: 350 };
     new TWEEN.Tween( camera.position )
@@ -365,8 +364,8 @@ function clearCode() {
      * set the selected codes to ../images/question marks and clear the dictionary
      */
 
-    //console.log(selectedSymbolId);
-    //console.log(code);
+    selectedSymbolId = code[1];
+
     document.getElementById( 'first-symbol' ).src = 'images/question_mark.jpg';
     document.getElementById( 'second-symbol' ).src = 'images/question_mark.jpg';
     document.getElementById( 'third-symbol' ).src = 'images/question_mark.jpg';
@@ -374,15 +373,13 @@ function clearCode() {
     code[2] = null;
     code[3] = null;
 
-    // TODO working here, not sure that this works, but follow same structure as in
-    // submitsymbol function
-    submitSymbol();
+    // replace left with colour
+    updateSide( 1,  boxSymbols['left_side'], true );
+    // replace bottom with grayscale
+    updateSide( 3,  boxSymbols['bottom_side'], false );
+    // replace right with colour
+    updateSide( 0,  boxSymbols['right_side'], false );
 
-    //updateSide( 1,  boxSymbols['left_side'], true );
-    //updateSide( 2,  boxSymbols['default_symbol'], true );
-    //updateSide( 3,  boxSymbols['bottom_side'], true );
-    //updateSide( 4,  boxSymbols['default_symbol'], true );
-    //updateSide( 5,  boxSymbols['default_symbol'], true );
 }
 
 
