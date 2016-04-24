@@ -1,30 +1,20 @@
 # Data Representation
 
 {panel type="warning" summary="Interactives in Data Representation"}
-
 Most interactives on this page have not been updated to the new system. Please [view the interactives on the Data Representation page](http://www.csfieldguide.org.nz/releases/1.9.9/DataRepresentation.html) on the older version of the CSFG. We are currently in the process of updating these interactives for the version 2.0 release.
-
 {panel end}
 
 {panel type="teacher-note" summary="Math in Data Representation"}
-
 A lot of the exercises in this chapter involve simple arithmetic. If students struggle to do this by hand, a lot can be done using spreadsheets.
-
 {panel end}
 
 ## What's the big picture?
 
-Computers are machines that do stuff with information. They let you view, listen, create, and edit information in documents, images, videos, sound, spreadsheets and databases. They let you play games in simulated worlds that don’t really exist except as information inside the computer’s memory and displayed on the screen. They let you compute and calculate with numerical information; they let you send and receive information over networks.   Fundamental to all of this is that the computer has to represent that information in some way inside the computer’s memory, as well as storing it on disk or sending it over a network.  
+Computers are machines that do stuff with information. They let you view, listen, create, and edit information in documents, images, videos, sound, spreadsheets and databases. They let you play games in simulated worlds that don’t really exist except as information inside the computer’s memory and displayed on the screen. They let you compute and calculate with numerical information; they let you send and receive information over networks.  Fundamental to all of this is that the computer has to represent that information in some way inside the computer’s memory, as well as storing it on disk or sending it over a network.  
 
-To make computers easier to build and keep them reliable, everything is represented using just two values. You may have seen these two values represented as 0 and 1, but on a computer they are represented by anything that can be in two states. For example, in memory a low or high voltage is used to store each 0 or 1. On a magnetic disk it's stored with, surprisingly, magnetism (whether a tiny spot on the disk is magnetised north or south).
+To make computers easier to build and keep them reliable, everything is represented using just two values. You may have seen these two values represented as 0 and 1, but on a computer they are represented by anything that can be in two states. For example, in memory a low or high voltage is used to store each 0 or 1. On a magnetic disk it's stored with magnetism (whether a tiny spot on the disk is magnetised north or south).
 
 When we write what is stored in a computer on paper, we normally use “0” for one of the states, and “1” for the other state. If a piece of computer memory had the following voltages: “low”, “low”, “high”, “low”, “high”, “high”, “high”, “high”, “low”, “high”, “low”, “low”, we could allocate “0” to “low”, and “1” to high” and write this sequence down as 001011110100. While this notation is used extensively, and you may often hear the data being referred to as being “0’s and 1’s”, it is important to remember that a computer does *not* store 0’s and 1’s; it has no way of doing this. They are just using physical mechanisms such as high and low voltage, north or south polarity, and light or dark materials.
-
-{panel type="teacher-note" summary="A warmup for binary representation"}
-
-The CS Unplugged binary activity [on binary representation](http://csunplugged.org/binary-numbers) uses just 5 cards to scaffold an activity that shows students how the abstract concept of two values (black/white, zero/one, on/off or even quack/moo) can be used to represent numbers and letters.
-The exercise is engaging and kinesthetic, and is useful for getting students in the right frame of mind about this topic.
-{panel end}
 
 {panel type="jargon-buster" summary="Bits"}
 
@@ -39,7 +29,9 @@ Understanding what the bits are doing enables you to work out how much space wil
 
 This chapter is about some of the different methods that computers use to code different kinds of information in patterns of these bits, and how this affects the cost and quality of what we do on the computer, or even if something is feasible at all.
 
-## Getting Started - Representing text with Braille
+## Getting Started - Braille
+
+To begin with, we'll look at Braille. Braille is not actually a way that computers represent data, but is a great introduction to the topic.
 
 {panel type="additional-information" summary="Representing Braille without making holes in paper"}
 When working through the material in this section, a good way to draw braille on paper without having to actually make raised dots is to draw a rectangle with 6 small circles in it, and to colour in the circles that are raised, and not colour in the ones that aren’t raised.
@@ -60,7 +52,7 @@ And with 3 dots there would be 8 patterns
 
 You may have noticed that there are twice as many patterns with 3 dots as there are with 2 dots. It turns out that every time you add an extra dot, that gives twice as many patterns, so with 4 dots there are 16 patterns, 5 dots has 32 patterns, and 6 dots has 64 patterns. Can you come up with an explanation as to why this doubling of the number of patterns occurs?
 
-{panel type="curiosity" summary="Why does adding one more dot double the number of possible patterns?"}
+{panel type="spoiler" summary="Why does adding one more dot double the number of possible patterns?"}
 The reason that the number of patterns doubles with each extra dot is that with, say, 3 dots you have 8 patterns, so with 4 dots you can use all the 3-dot patterns with the 4th dot flat, and all of them with it raised.
 This gives 16 4-dot patterns.
 And then, you can do the same with one more dot to bring it up to 5 dots.
@@ -74,6 +66,8 @@ This concept is a fundamental one for students to grasp with binary representati
 So, Braille, with its 6 dots, can make 64 patterns.
 That's enough for all the letters of the alphabet, and other symbols too, such as digits and punctuation.
 
+### So how does Braille relate to data representaton?
+
 The reason we're looking at Braille in this chapter is because it is a representation using bits.
 That is, it contains 2 different values (raised and not raised) and contains sequences of these to represent different patterns.
 The letter m, for example, could be written as 110010, where "1" means raised dot, and "0" means not raised dot (assuming we're reading from left to right and then down).
@@ -83,6 +77,7 @@ Braille also illustrates why binary representation is so popular. It would be po
 A skilled braille reader could distinguish them, and with three values per dot, you would only need 4 dots to represent 64 patterns.
 The trouble is that you would need more accurate devices to create the dots, and people would need to be more accurate at sensing them.
 If a page was squashed, even very slightly, it could leave the information unreadable.
+
 Digital devices almost always use two values (binary) for similar reasons: computer disks and memory can be made cheaper and smaller if they only need to be able to distinguish between two extreme values (such as a high and low voltage), rather than fine-grained distinctions between very subtle differences in voltages.
 Using ten digits (like we do in our every day decimal counting system) would obviously be too challenging.
 
@@ -95,23 +90,33 @@ Recording a digit between 0 and 9 involves having accurate equipment for reading
 There's a more in-depth discussion on why we use binary here:
 
 {video url="https://www.youtube.com/watch?v=thrx3SBEpL8"}
-
 {panel end}
 
-## Representing text with bits
+## Computers Representing Text
 
-We saw above that 64 unique patterns can be made using 6 dots in Braille.
-Count how many different upper-case letters, lower-case letters, numbers, and symbols that you could insert into a text editor using your keyboard. (Don’t forget to count both of the symbols that share the number keys, and the symbols to the side that are for punctuation!)
-The collective name for these is *characters* e.g. a, D, 1, h, 6, \*, ], and ~ are all characters.
+There are several different ways in which computers use bits to store text.
 
-Would 6 dots (which can represent 64 patterns) be enough to represent all these characters? If you counted correctly, you should find that there were more than 64 characters! How many bits would you need to be able to represent all the characters you counted on your keyboard?
+### ASCII
 
-It turns out that 7 dots is enough as this gives 128 possible patterns, and this is exactly what the ASCII code for text does. ASCII is one of the main systems that computers use to represent English text.
-It was first used commercially in 1963, and despite the big changes in computers since then, it is still the basis of how English text is stored on computers.
+We saw earlier that 64 unique patterns can be made using 6 dots in Braille. A dot is the same as a bit, because both dots and bits have 2 different possible values.
 
-ASCII assigned a different pattern of bits to each of the characters, along with a few other “control” characters that you don’t need to worry about yet. For reasons that we will get to later, each pattern in ASCII is usually stored in 8 bits, with one wasted bit, rather than 7 bits. However, the first bit in each 8-bit pattern is a 0, meaning there are still only 128 possible patterns.
+Count how many different characters -- upper-case letters, lower-case letters, numbers, and symbols that you could insert into a text editor using your keyboard. (Don’t forget to count both of the symbols that share the number keys, and the symbols to the side that are for punctuation!)
 
-Below is a table that shows the patterns of bits that ASCII uses for each of the characters.
+{panel type="jargon-buster" summary="Characters"}
+The collective name for upper-case letters, lower-case letters, numbers, and symbols is *characters* e.g. a, D, 1, h, 6, \*, ], and ~ are all characters.
+{panel end}
+
+If you counted correctly, you should find that there were more than 64 characters, around 95 to be exact. Because 6 bit can only represent 64 characters, we will need more than 6 bits.
+
+It turns out that we need at least 7 bits to represent all of these characters as this gives 128 possible patterns. This is exactly what the **ASCII** representation for text does.
+
+{panel type="challenge" summary="Why 7 bits?"}
+In the previous section, we explained what happens when the number of dots was increased by 1 (remember that a dot in Braille is effectively a bit). Can you explain how we knew that if 6 bits is enough to represent 64 characters, then 7 bits must be enough to represent 128 characters?
+{panel end}
+
+Each pattern in ASCII is usually stored in 8 bits, with one wasted bit, rather than 7 bits. However, the first bit in each 8-bit pattern is a 0, meaning there are still only 128 possible patterns. 8 bits on a computer is called a **byte**, and where possible we prefer to deal with full bytes. This is why ASCII has an extra wasted bit.
+
+Here is a table that shows the patterns of bits that ASCII uses for each of the characters.
 
 | Binary  | Char  | Binary  | Char | Binary  | Char  |
 |---------|-------|---------|------|---------|-------|
@@ -148,40 +153,50 @@ Below is a table that shows the patterns of bits that ASCII uses for each of the
 | 0111110 | >     | 1011110 | ^    | 1111110 | ~     |
 | 0111111 | ?     | 1011111 | _    | 1111111 | Delete   |
 
-
 For example, the letter c (lower-case) in the table has the pattern “01100011” (the 0 at the front is just extra padding to make it up to 8 bits). The letter o has the pattern “01101111”. You could write a word out using this code, and if you give it to someone else, they should be able to decode it exactly.
 
 {panel type="teacher-note" summary="Using the table"}
-
 Exchanging short messages in code will force students to use the table, and they should start to pick up some of the patterns (e.g. capital letters have a different code to lower case letters, but they only have one bit different.)
-
 {panel end}
 
-Computers can represent pieces of text with sequences of these patterns, much like Braille does. For example, the word “computers” (all lower-case) would be 01100011 01101111 01101101 01110000 01110101 01110100 01100101 01110010 01110011.
+Computers can represent pieces of text with sequences of these patterns, much like Braille does. For example, the word “computers” (all lower-case) would be 01100011 01101111 01101101 01110000 01110101 01110100 01100101 01110010 01110011. This is because "c" is "01100011", "o" is "01101111", etc. Have a look at the ASCII table above to check that we are right!
 
-How would you represent the word “science” in ASCII? What about “Wellington” (note that it starts with an upper-case “W”)? How would you represent “358” in ASCII (it is three characters, even though it looks like a number)? What about the sentence “Hello, how are you?” (look for the comma, question mark, and space characters in the ASCII table).
+{panel type="challenge" summary="More practice at ASCII"}
+- How would you represent “science” in ASCII?
+- How would you represent "Wellington" in ASCII? (note that it starts with an upper-case “W”)
+- How would you represent “358” in ASCII (it is three characters, even though it looks like a number)
+- How would you represent "Hello, how are you?" (look for the comma, question mark, and space characters in ASCII table)
 
-{panel type="teacher-note" summary="Answers to questions above"}
+Be sure to have a go at all of them before checking the answer!
+{panel end}
 
+{panel type="spoiler" summary="Answers to questions above"}
 "science" = 01110011 01100011 01101001 01100101 01101110 01100011 01100101
-
 "Wellington" = 01010111 01100101 01101100 01101100 01101001 01101110 01100111 01110100 01101111 01101110
-
 "358" = 00110011 00110101 00111000
 
-Note that the text "358" is treated as 3 characters in ASCII, which may be confusing, as the text "358" is different to the number 358! Students may have encountered this distinction in a spreadsheet e.g. if a cell starts with an inverted comma in Excel, it is treated as text rather than a number. One place this comes up is with phone numbers; if you type 027555555 into a spreadsheet as a number, it will come up as 27555555, but as text the 0 can be displayed.
-
+Note that the text "358" is treated as 3 characters in ASCII, which may be confusing, as the text "358" is different to the number 358! You may have encountered this distinction in a spreadsheet e.g. if a cell starts with an inverted comma in Excel, it is treated as text rather than a number. One place this comes up is with phone numbers; if you type 027555555 into a spreadsheet as a number, it will come up as 27555555, but as text the 0 can be displayed.
 {panel end}
 
-{comment}
+#### ASCII usage in practice
 
-.. xHTML we could make an interactive which challenges them to put in the above words. It's a nice sequence, and "358" should be particularly interesting!
+ASCII was first used commercially in 1963, and despite the big changes in computers since then, it is still the basis of how English text is stored on computers. ASCII assigned a different pattern of bits to each of the characters, along with a few other “control” characters, such as delete or backspace.
 
-.. curiosity-music:
+English text can easily be represented using ASCII, but what about languages such as Chinese where there are thousands of different characters? Unsurprisingly, the 128 patterns aren’t nearly enough to represent such languages. Because of this, ASCII is not so useful in practice, and is no longer used widely. In the next sections, we will look at Unicode and its representations. These solve the problem of being unable to represent non-english characters.
 
-{comment end}
+{panel type="curiosity" summary="What does ASCII stand for?"}
+The name "ASCII" stands for "American Standard Code for Information Interchange", which was a particular way of assigning bit patterns to the characters on a typewriter. The ASCII system even includes "characters" for ringing a bell (useful for getting attention on old telegraph systems), deleting the previous character (kind of an early "undo"), and "end of transmission" (to let the receiver know that the message was finished). These days those characters are rarely used, but the codes for them still exist (they are the missing patterns in the table above). Nowadays ASCII has been supplanted by a code called "UTF-8", which happens to be the same as ASCII if the extra left-hand bit is a 0, but opens up a huge range of characters if the left-hand bit is a 1.
+{panel end}
 
-{panel type="curiosity" summary="Representing the alphabet"}
+{panel type="curiosity" summary="What came before ASCII?"}
+There are several other codes that were popular before ASCII, including the [Baudot code](https://en.wikipedia.org/wiki/Baudot_code) and [EBCDIC](https://en.wikipedia.org/wiki/EBCDIC). A widely used variant of the Baudot code was the "Murray code", named after New Zealand born inventor [Donald Murray](https://en.wikipedia.org/wiki/Donald_Murray_(inventor\)). One of Murray's significant improvements was to introduce the idea of "control characters", such as the carriage return (new line). The "control" key still exists on modern keyboards.
+{panel end}
+
+#### Challenge: Messages hidden in music!
+
+There are messages hidden in this video using a 5-bit representation. See if you can find them! Start by reading the explanation below to ensure you understand what we mean by a 5-bit representation.
+
+{video url="https://www.youtube.com/watch?v=L-v4Awj_p7g"}
 
 If you *only* wanted to represent the 26 letters of the alphabet, and weren’t worried about upper-case or lower-case, you could get away with using just 5 bits, which allows for up to 32 different patterns. Have a look at the last 5 bits of each of the 26 lower-case letters in ASCII. Do any of the 26 lower-case letters have the same last 5 bits? Have a look at the 26 upper-case letters. Do any of the upper-case letters have the same last 5 bits?
 
@@ -197,26 +212,6 @@ The word “water” would be
 10111
 10100
 10010
-
-There's an activity that uses [five-bit text codes hidden in music here](http://csunplugged.org/modem).
-
-{panel end}
-
-{panel type="teacher-note" summary="Extra information for curiosity above"}
-
-The five-bit code activity mentioned in the above curiosity includes some songs and a video that contain many hidden messages using this code. Some students will enjoy the challenge of trying to decode the hidden messages.
-
-{panel end}
-
-English text can easily be represented using ASCII, but what about languages such as Chinese where there are thousands of different characters? The 128 patterns aren’t nearly enough to represent such languages! That's where codes that use more than 7 bits become important, and in a later section we'll look at these, but first we need to explore binary number representation and develop some efficient ways to talk about longer binary numbers.
-
-{panel type="curiosity" summary="ASCII"}
-
-The name "ASCII" stands for "American Standard Code for Information Interchange", which was a particular way of assigning bit patterns to the characters on a typewriter. The ASCII system even includes "characters" for ringing a bell (useful for getting attention on old telegraph systems), deleting the previous character (kind of an early "undo"), and "end of transmission" (to let the receiver know that the message was finished). These days those characters are rarely used, but the codes for them still exist (they are the missing patterns in the table above). Nowadays ASCII has been supplanted by a code called "UTF-8", which happens to be the same as ASCII if the extra left-hand bit is a 0, but opens up a huge range of characters if the left-hand bit is a 1.
-
-There are several other codes that were popular before ASCII, including the [Baudot code](https://en.wikipedia.org/wiki/Baudot_code) and [EBCDIC](https://en.wikipedia.org/wiki/EBCDIC). A widely used variant of the Baudot code was the "Murray code", named after New Zealand born inventor [Donald Murray](https://en.wikipedia.org/wiki/Donald_Murray_(inventor\)). One of Murray's significant improvements was to introduce the idea of "control characters", such as the carriage return (new line). The "control" key still exists on modern keyboards.
-
-{panel end}
 
 ## Representing numbers with bits
 
