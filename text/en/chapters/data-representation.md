@@ -223,13 +223,62 @@ The following interactive will allow you to explore the unicode character set. E
 
 {comment}
 Insert the simple unicode interactive here
-{end comment}
+{comment end}
 
 UTF-8, UTF-16, and UTF-32 are widely used unicode encoding schemes. Some of the unicode encoding schemes are **fixed length**, and some are **variable length**. **Fixed length** means that each character is represented using the same number of bits. **Variable length** means that some characters are represented with fewer bits than others. A good encoding scheme will be **variable length**, and will ensure that the most commonly used characters are represented with fewer bits than the uncommonly used characters. Of course, what might be the most commonly used character in English is not necessarily the most commonly used character in Japanese. You may be wondering why we need so many encoding schemes for unicode. It turns out that some are better for English language text, and some are better for Asian language text.
 
 The remainder of the text representation section will look at some of these unicode encoding schemes so that you understand how to use them, and why some of them are better than others in certain situations.
 
 ### UTF-32
+
+UTF-32 is a **fixed length** unicode encoding scheme. The representation for each character is simply its number converted to a 32 bit binary number. Leading 0's are used if there are not enough bits (just like how you can represent 254 as a 4 digit number -- 0254). 32 bits is a nice round number on a computer, often referred to as a word.
+
+For example, the character **H** in UTF-32 would be:
+```
+00000000 00000000 00000000 01001000
+```
+
+The character **$** in UTF-32 would be:
+```
+00000000 00000000 00000000 00100100
+```
+
+And the character **犬** in UTF-32 would be:
+```
+00000000 00000000 01110010 10101100
+```
+
+The following interactive will allow you to convert a unicode character to its UTF-32 representation. The unicode character's number is also displayed. The bits are simply the binary number form of the character number.
+
+{comment}
+Put UTF-32 interactive here
+{comment end}
+
+ASCII actually took the same approach. Each ASCII character has a number between 0 and 255, and the representation for the character the number converted to an 8 bit binary number. ASCII is also a fixed length encoding scheme -- every character in ASCII is represented using 8 bits.
+
+{panel type="challenge" summary="Practice with UTF-32"}
+1. Represent each character in your name using UTF-32.
+2. Check how many bits your representation required, and explain why it had this many (remember that each character should have required 32 bits)
+3. Explain how you knew how to represent each character. Even if you used the interactive, you should still be able to explain it in terms of binary numbers.
+{panel end}
+
+In practice, UTF-32 is rarely used. UTF-8 and UTF-16 are both variable length encoding schemes, and very widely used. We will look at them next.
+
+{panel type="challenge" summary="How big is 32 bits?"}
+1. What is the largest number that can be represented with 32 bits? (In both decimal and binary).
+
+2. The largest number in unicode that has a character assigned to it is not actually the largest possible 32 bit number -- it is 00000000 00010000 11111111 11111111. What is this number in decimal?
+
+3. Most numbers that can be made using 32 bits do not have a Unicode character attached to them -- there is a lot of wasted space. There are good reasons for this, but if all the space was to be used, how many bits would you need, given that there are currently around 120,000 unicode characters?
+{panel end}
+
+{panel type="spoiler" summary="Answers to above challenges"}
+1. The largest number that can be represented using 32 bits is 4,294,967,295 (around 4.3 billion). You might have seen this number before -- it is the largest unsigned integer that a 32 bit computer can easily represent in programming languages such as C.
+
+2. 1,114,111
+
+3. 17 bits. The largest number you can represent with 16 bits is 65,536, which is not enough. If we go up to 17 bits, that gives 131,072, which is larger than 120,000. Therefore, we need 17 bits.
+{panel end}
 
 ### UTF-8
 
