@@ -1,0 +1,13 @@
+
+Start: "LightOn"
+
+Title: 'Alpha Infer Test'
+
+States:
+    A:
+        transitions:
+            x: C
+            y: D
+    B:
+        transitions:
+            x: C
