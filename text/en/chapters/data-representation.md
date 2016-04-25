@@ -213,6 +213,30 @@ The word “water” would be
 10100
 10010
 
+### Introduction to Unicode
+
+In practice, we need to be able to represent more than just English characters. To solve this problem, we use a standard called **Unicode**. Unicode is a **character set** with around 120,000 different characters, in many different languages, current and historic. Each character has a unique number assigned to it, making it easy to identify.
+
+Unicode itself is not a representation -- it is a character set. In order to represent unicode characters as bits, a unicode **encoding scheme** is used. The unicode encoding scheme tells us how each number (which corresponds to a unicode character) should be represented with a pattern of bits.
+
+The following interactive will allow you to explore the unicode character set. Enter a number in the box on the left to see what unicode character corresponds to it, or enter a character on the right to see what its unicode number is.
+
+{comment}
+Insert the simple unicode interactive here
+{end comment}
+
+UTF-8, UTF-16, and UTF-32 are widely used unicode encoding schemes. Some of the unicode encoding schemes are **fixed length**, and some are **variable length**. **Fixed length** means that each character is represented using the same number of bits. **Variable length** means that some characters are represented with fewer bits than others. A good encoding scheme will be **variable length**, and will ensure that the most commonly used characters are represented with fewer bits than the uncommonly used characters. Of course, what might be the most commonly used character in English is not necessarily the most commonly used character in Japanese. You may be wondering why we need so many encoding schemes for unicode. It turns out that some are better for English language text, and some are better for Asian language text.
+
+The remainder of the text representation section will look at some of these unicode encoding schemes so that you understand how to use them, and why some of them are better than others in certain situations.
+
+### UTF-32
+
+### UTF-8
+
+### UTF-16
+
+### Comparison of text representations
+
 ## Representing numbers with bits
 
 {panel type="teacher-note" summary="CS Unplugged activity"}
