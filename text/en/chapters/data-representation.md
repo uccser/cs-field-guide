@@ -284,6 +284,57 @@ In practice, UTF-32 is rarely used. UTF-8 and UTF-16 are both variable length en
 
 ### UTF-8
 
+UTF-8 is a **variable length** encoding scheme for unicode. Characters with a lower unicode number require fewer bits for their representation than those with a higher unicode number. UTF-8 representations contain either 8, 16, 24, or 32 bits. Remembering that a **byte** is 8 bits, these are 1, 2, 3, and 4 bytes.
+
+For example, the character **H** in UTF-8 would be:
+```
+01001000
+```
+The character **ǿ** in UTF-8 would be:
+```
+11000111 10111111
+```
+
+And the character **犬** in UTF-8 would be:
+```
+11100111 10001010 10101100
+```
+
+The following interactive will allow you to convert a unicode character to its UTF-8 representation. The unicode character's number is also displayed.
+
+{comment}
+Insert UTF-8 interactive here
+{comment end}
+
+#### How does UTF-8 work?
+
+So how does UTF-8 actually work? Use the following process to do what the interactive is doing and convert characters to UTF-8 yourself.
+
+1. Lookup the unicode number of your character.
+{interactive name="unicode-chars" type="in-page"}
+
+2. Convert the unicode number to a binary number, using as **few** bits as needed. Look back to the section on binary numbers if you cannot remember how to convert a number to binary.
+
+3. Count how many bits are in the binary number, and choose the correct pattern to use, based on how many bits there were. Step 4 will explain how to use the pattern.
+
+  ```
+  7  or less bits: 0xxxxxxx
+  11 or less bits: 110xxxxx 10xxxxxx
+  16 or less bits: 1110xxxx 10xxxxxx 10xxxxxx
+  21 or less bits: 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx
+  ```
+
+4. Replace the x's in the pattern with the bits of the binary number you converted in 2. If there are more x's than bits, replace extra left-most x's with 0's.
+
+For example, if you wanted to find out the representation for **貓** (cat in chinese), the steps you would take would be as follows.
+
+1. Determine that the unicode number for **貓** is **35987**.
+2. Convert **29483** to binary -- getting **10001100 10010011**.
+3. Count that there are **15** bits, and therefore the third pattern **1110xxxx 10xxxxxx 10xxxxx** should be used.
+4. Substitute the bits into the pattern to replace the x's -- **11101000 10110010 10010011**.
+
+Therefore, the representation for **貓** is **11101000 10110010 10010011** using UTF-8.
+
 ### UTF-16
 
 ### Comparison of text representations
