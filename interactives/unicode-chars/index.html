@@ -14,24 +14,17 @@
 </head>
 
 <body>
-    <div class="interactivecenter-align">
-        <h3>Unicode Characters</h3>
-        <div class="row">
-            <h4 class="col s12 m4">Decimal</h4>
-            <h4 class="col s12 m4">Hexadecimal</h4>
-            <h4 class="col s12 m4">Character</h4>
-        </div>
-
+    <h3 class="center-align">Unicode Characters</h3>
+    <div class="interactive center-align">
         <div class="row">
             <link rel="stylesheet" href="./css/unicode-chars.css">
-            <div class="col s12 m4">
-                <input type="text" id="interactive-unicode-chars-decimal" placeholder="Enter a decimal number" title="Decimal">
+            <div class="input-field col s6 m6">
+                <input type="text" id="interactive-unicode-chars-decimal" placeholder="Enter a decimal number" title="Decimal" class="validate" pattern="\d+">
+                <label for="interactive-unicode-chars-decimal" class="active">Decimal</label>
             </div>
-            <div class="col s12 m4">
-                <input type="text" id="interactive-unicode-chars-hex" placeholder="Hexadecimal" title="Hex">
-            </div>
-            <div class="col s12 m4">
-                <input type="text" id="interactive-unicode-chars-char" placeholder="Unicode Character" title="Character">
+            <div class="input-field col s6 m6">
+                <input type="text" id="interactive-unicode-chars-char" placeholder="Unicode Character" title="Character" class="validate" maxlength="1">
+                <label for="interactive-unicode-chars-char" class="active">Character</label>
             </div>
         </div>
         <script src="./js/main.js"></script>

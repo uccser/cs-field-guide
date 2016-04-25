@@ -5,7 +5,8 @@
     "description": "This is a generic runner for Finite State Automatons",
     "dependencies": {
         "es6-array-map": "Jamesernator/es6-array-map",
-        "js-yaml": "latest"
+        "js-yaml": "latest",
+        "cytoscape": "latest"
     },
     "devDependencies": {
         "browserify": "latest",

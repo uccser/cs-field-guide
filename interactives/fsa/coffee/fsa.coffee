@@ -23,6 +23,7 @@ class FSA
             Start: string | array # This is the start state of the automaton
                                   # if string its a state label, if its an
                                   # array then we'll treat it as a state key
+                                  # if not provided defaults to 'Start'
 
             States:
                 <label>: # <label> is simply a symbolic name for the state
@@ -56,22 +57,25 @@ class FSA
                                               # strings or arrays (keys)
                 ...
         ###
-        @title = fsa.title
+        @title = fsa.Title
         if fsa.Alphabet?
             @alphabet = new Set(fsa.Alphabet)
         else
             @alphabet = new Set()
-            for state in fsa.States
-                for symbol in state.transitions
+            for id, state of fsa.States
+                for symbol, target of state.transitions
                     @alphabet.add(symbol)
 
+        @start = fsa.Start ? 'Start'
+        @states = fsa.States
+
     epsilonClosure: (state) ->
+        
 
 
 fs = require('fs')
 yaml = require('js-yaml')
 
-file = fs.readFileSync('../sample-fsas/alpha-infer-test.yaml').toString('utf8')
+file = fs.readFileSync('../sample-fsas/epsilon-closure-test.yaml').toString('utf8')
 
-console.log yaml.load(file)
 console.log new FSA(yaml.load(file))

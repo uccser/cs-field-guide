@@ -1,6 +1,7 @@
 
 Start: "LightOn"
 
+Title: 'Alpha Infer Test'
 
 States:
     A:
