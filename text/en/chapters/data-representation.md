@@ -221,6 +221,8 @@ Unicode itself is not a representation -- it is a character set. In order to rep
 
 The following interactive will allow you to explore the unicode character set. Enter a number in the box on the left to see what unicode character corresponds to it, or enter a character on the right to see what its unicode number is.
 
+{interactive name="unicode-chars" type="in-page"}
+
 {comment}
 Insert the simple unicode interactive here
 {comment end}
