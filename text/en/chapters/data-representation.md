@@ -819,33 +819,6 @@ The following interactive can be used to upload your own image, and experiment w
 
 {comment end}
 
-## General representations of text
-
-In the introduction we looked at 8-bit ASCII representations of text (which really use 7 bits, allowing for 128 different symbols).
-As with any other kind of data represented in binary, we can get improvements by considering larger (or smaller) representations.
-
-In the curiosity earlier we observed that 5 bits are sufficient for simple coding of the English alphabet, and for very slow coding systems (like the [video that contains hidden text using musical notes](https://www.youtube.com/watch?v=L-v4Awj_p7g>) using 5 bits instead of 8 can save some time.
-The braille system uses only 6 bits for each character, which allows for 64 different characters, and it is also better than using 8 bits since it would take more paper and more time to read if the longer code was used.
-
-But some languages have way more than 32, or 64, or even 128 characters in their alphabet.
-In fact, the majority of the world's population use such languages!
-In this case, longer codes are needed, and the most widely used approach is a system called *Unicode*.
-A commonly used version of Unicode allows 16 bits per character. Because every extra bit that is added doubles the number of patterns possible, 16-bit codes have many more representations than 8 bit codes. In fact, with 16 bits there are {math}2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2 = 2^{16} = 65,536{math end} patterns that can be represented. This is enough to assign a unique pattern of bits to the main characters in the most common languages, although there are also standards that allow 32 bits (4 bytes) for each character.
-
-The Unicode table is far too big to display in this book, but you can find a variety of tables on the internet, and use them to look up codes. [This website displays all unicode characters](http://unicode-table.com/en/) with geographical data for appropriate characters.
-The 16- and 32-bit codes are usually written using hexadecimal since this is an easy abbreviation for the long binary codes, and sections of the Unicode alphabet (different languages) tend to be in multiples of 16.
-
-The modern codes associated with Unicode are usually flexible in the size of the representation, so 8-bit characters can be used if that is sufficient, but 16- or 32- bit characters can be invoked for larger alphabets.
-If you are investigating these codes, you will come across standards such as the Universal Character Set (UCS), the Unicode/UCS Transformation Format (UTF-8 UTF-16, etc.), and the GB 18030 standard (which was mandated in the People's Republic of China from the year 2000).
-
-{comment}
-
-.. xtcb curiosity [to be fleshed out later]
-.. Braille is available as unicode http://www.unicode.org/charts/PDF/U2800.pdf; also, higher grades of braille use compression! Quite a confusing mixture of representations there!!
- .. Link to available braille patterns http://unicode-table.com/en/#braille-patterns
-
-{comment end}
-
 ## Computers representing numbers in practice
 
 A common place that numbers are stored on computers is in spreadsheets or databases.
