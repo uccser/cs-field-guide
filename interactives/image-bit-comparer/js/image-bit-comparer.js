@@ -6,7 +6,7 @@ var ImageBitComparer = {};
 // Setup sizing
 ImageBitComparer.BASE_WIDTH = 450
 ImageBitComparer.BASE_HEIGHT = 300
-ImageBitComparer.SCALE_FACTOR = 0.4;
+ImageBitComparer.SCALE_FACTOR = 0.9;
 ImageBitComparer.CANVAS_WIDTH = ImageBitComparer.BASE_WIDTH * ImageBitComparer.SCALE_FACTOR;
 ImageBitComparer.CANVAS_HEIGHT = ImageBitComparer.BASE_HEIGHT * ImageBitComparer.SCALE_FACTOR;
 
