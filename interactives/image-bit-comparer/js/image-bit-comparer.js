@@ -89,7 +89,7 @@ function populateSelectOptions() {
 function loadDroppedImage(file){
     //	Prevent any non-image file type from being read.
     if(!file.type.match(/image.*/)){
-        console.log("The dropped file is not an image: ", file.type);
+        alert("The dropped file is not an image! File provided was " + file.type);
     } else {
       var reader = new FileReader();
       reader.onload = function (data) {
@@ -114,7 +114,6 @@ function loadImageDialog(input) {
 
 // Load user image and set as inital image
 function loadUserImage(filename, file) {
-    console.log(filename);
     $('#interactive-image-bit-comparer-selected-image').append($('<option>').text(filename).data('file', file).attr('selected', true));
     loadImage();
 };
@@ -216,11 +215,19 @@ function loadImage() {
   var image = new Image();
   image.addEventListener('error', function (e){e.preventDefault(); alert("Starting image cannot be loaded when viewing file locally. Try another browser or the online version.");},false);
   image.onload = function() {
+      $selected_image.data('data', image);
       source_canvas_context.drawImage(image, 0, 0, source_canvas.width, source_canvas.height);
       // Update canvases from base image
       drawCanvases();
   }
-  image.src = $("#interactive-image-bit-comparer-selected-image option:selected").data('file');
+  $selected_image = $("#interactive-image-bit-comparer-selected-image option:selected");
+  if ($selected_image.data('data')) {
+    source_canvas_context.drawImage($selected_image.data('data'), 0, 0, source_canvas.width, source_canvas.height);
+    // Update canvases from base image
+    drawCanvases();
+  } else {
+    image.src = $selected_image.data('file');
+  }
 };
 
 
