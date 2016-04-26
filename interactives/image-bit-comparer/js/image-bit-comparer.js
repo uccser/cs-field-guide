@@ -57,6 +57,14 @@ $(document).ready(function(){
   } else {
     ImageBitComparer.mode = 'comparison';
   }
+  
+  // If screen is not wide enough for medium sized image,
+  // then set display to small images
+  if (document.documentElement.clientWidth < ImageBitComparer.BASE_WIDTH) {
+    $("#interactive-image-bit-comparer-image-size").val("0.6");
+    ImageBitComparer.scale_factor = 0.6;
+  }
+
   // Add image options
   populateSelectOptions();
   // Setup required canvas and controls

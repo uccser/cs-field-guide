@@ -7,6 +7,7 @@
 #interactive-image-bit-comparer-canvas-parent-container {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 .interactive-image-bit-comparer-canvas-container {
   margin: 0.3rem;
