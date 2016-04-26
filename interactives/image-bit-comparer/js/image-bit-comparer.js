@@ -4,21 +4,20 @@
 var ImageBitComparer = {};
 
 // Setup sizing
-ImageBitComparer.BASE_WIDTH = 450
-ImageBitComparer.BASE_HEIGHT = 300
-ImageBitComparer.SCALE_FACTOR = 0.9;
-ImageBitComparer.CANVAS_WIDTH = ImageBitComparer.BASE_WIDTH * ImageBitComparer.SCALE_FACTOR;
-ImageBitComparer.CANVAS_HEIGHT = ImageBitComparer.BASE_HEIGHT * ImageBitComparer.SCALE_FACTOR;
+ImageBitComparer.BASE_WIDTH = 450;
+ImageBitComparer.BASE_HEIGHT = 300;
+ImageBitComparer.scale_factor = 1;
 
 ImageBitComparer.INITAL_IMAGES = [
+                                  ['IMG_5035.jpg', 'Sunflower'],
                                   ['IMG_5264.jpg', 'Roof of Temple'],
                                   ['IMG_2223.jpg', 'Lake in New Zealand'],
                                   ['IMG_8354.jpg', 'Flower'],
                                   ['IMG_6698.jpg', 'Flower in snow'],
-                                  ['IMG_7448.jpg', 'Balloons'],
                                   ['IMG_8061.jpg', 'Duckling'],
-                                  ['IMG_5035.jpg', 'Sunflower'],
+                                  ['wedding-vehicle.jpg', 'Car'],
                                   ['IMG_2521.jpg', 'Lightning'],
+                                  ['IMG_7448.jpg', 'Balloons'],
                                   ['IMG_0775.jpg', 'Books']
                                 ];
 
@@ -44,6 +43,12 @@ $(document).ready(function(){
 
   // When user selects new image to load
   $('#interactive-image-bit-comparer-selected-image').change(function() {
+    loadImage();
+  });
+
+  // When user changes image size
+  $('#interactive-image-bit-comparer-image-size').change(function() {
+    ImageBitComparer.scale_factor = $("#interactive-image-bit-comparer-image-size").val();
     loadImage();
   });
 
@@ -136,7 +141,8 @@ function setupMode() {
       $canvas_container.append('<p class="interactive-image-bit-comparer-canvas-subtitle">' + subtitle_text + '</p>');
       var $canvas = $('<canvas class="interactive-image-bit-comparer-canvas"></canvas>');
       $canvas.data('bit_values', bit_values);
-      $canvas.prop({width: ImageBitComparer.CANVAS_WIDTH, height: ImageBitComparer.CANVAS_HEIGHT});
+      $canvas.prop({width: ImageBitComparer.BASE_WIDTH * ImageBitComparer.scale_factor,
+                    height: ImageBitComparer.BASE_HEIGHT * ImageBitComparer.scale_factor});
       $canvas_container.append($canvas);
 
       $canvas_parent_container.append($canvas_container);
@@ -158,7 +164,8 @@ function setupMode() {
       $canvas_container.append('<p class="interactive-image-bit-comparer-canvas-subtitle">' + subtitle_text + '</p>');
       var $canvas = $('<canvas class="interactive-image-bit-comparer-canvas"></canvas>');
       $canvas.data('bit_values', bit_values);
-      $canvas.prop({width: ImageBitComparer.CANVAS_WIDTH, height: ImageBitComparer.CANVAS_HEIGHT});
+      $canvas.prop({width: ImageBitComparer.BASE_WIDTH * ImageBitComparer.scale_factor,
+                    height: ImageBitComparer.BASE_HEIGHT * ImageBitComparer.scale_factor});
       $canvas_container.append($canvas);
 
       var $controls_container = $('<div class="interactive-image-bit-comparer-controls-container"></div>');
@@ -202,8 +209,8 @@ function setupMode() {
 // Load and draw image for Canvas reference
 function loadImage() {
   var source_canvas = document.getElementById('interactive-image-bit-comparer-source-canvas');
-  source_canvas.width = ImageBitComparer.CANVAS_WIDTH;
-  source_canvas.height = ImageBitComparer.CANVAS_HEIGHT;
+  source_canvas.width = ImageBitComparer.BASE_WIDTH * ImageBitComparer.scale_factor;
+  source_canvas.height = ImageBitComparer.BASE_HEIGHT * ImageBitComparer.scale_factor;
   var source_canvas_context = source_canvas.getContext('2d');
 
   var image = new Image();
@@ -220,11 +227,11 @@ function loadImage() {
 // Load inital image data values
 function initialCanvasData() {
   var source_canvas = document.getElementById('interactive-image-bit-comparer-source-canvas');
-  var source_canvas_width  = source_canvas.width;
-  var source_canvas_height = source_canvas.height;
+  var source_base_width  = ImageBitComparer.BASE_WIDTH * ImageBitComparer.scale_factor;
+  var source_base_height = ImageBitComparer.BASE_HEIGHT * ImageBitComparer.scale_factor;
   var source_canvas_context = source_canvas.getContext('2d');
   try {
-    var source_image_data = source_canvas_context.getImageData(0, 0, source_canvas_width, source_canvas_height);
+    var source_image_data = source_canvas_context.getImageData(0, 0, source_base_width, source_base_height);
   }
   catch (e) {
     alert("Starting image cannot be loaded when viewing file locally. Try another browser or the online version.");
@@ -235,6 +242,8 @@ function initialCanvasData() {
 
 // Draw the image data to a canvas using the canvas max bit values
 function drawCanvas($canvas, source_image_data) {
+  $canvas.attr('width', source_image_data.width + 'px');
+  $canvas.attr('height', source_image_data.height + 'px');
   var bit_values = $canvas.data('bit_values');
   var red_divisor = 255 / (Math.pow(2, bit_values[0]) - 1);
   var green_divisor = 255 / (Math.pow(2, bit_values[1]) - 1);

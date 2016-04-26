@@ -21,16 +21,24 @@
       <h4>Image Bit Comparer</h4>
 
       <div class="row">
-        <div class="col s12 m6 l3">
+        <div class="col s12 m4">
           <h5>Select Image</h5>
           <select id="interactive-image-bit-comparer-selected-image" class="browser-default">
           </select>
         </div>
-        <div class="col s12 m6 l3">
+        <div class="col s12 m4">
           <h5>Upload Image</h5>
           <p>Either drag and drop an image onto this page, or click the button below to load your own image into the interactive.
             <input type="file" name="image" accept="image/*" onchange="loadImageDialog(this)">
           </p>
+        </div>
+        <div class="col s12 m4">
+          <h5>Image Preview Size</h5>
+          <select id="interactive-image-bit-comparer-image-size" class="browser-default">
+            <option value="0.6">Small</option>
+            <option value="1" selected="true">Medium</option>
+            <option value="2.4">Large (may take longer to load)</option>
+          </select>
         </div>
       </div>
 
