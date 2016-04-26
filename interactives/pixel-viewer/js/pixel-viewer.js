@@ -32,8 +32,10 @@ this.isGreyscale = false; // Global to keep track of whether greyscale is on
 this.images = ["coloured-roof-small.png","roof.jpg"] // Names of images to be included in picture picker
 
 this.tiling = new Tiling;
+this.piccache = Array();
 
 $( document ).ready(function() {
+  init_cache();
 	if (getUrlParameter('mode') == 'threshold') {
     	mode = 'threshold';
     }if (getUrlParameter('mode') == 'thresholdgreyscale') {
@@ -476,7 +478,7 @@ function getSurroundingPixels(col, row, returnGrid=true){
 					pixelData = [salt[next_col][next_row], salt[next_col][next_row], salt[next_col][next_row]];
 				}
 				else{
-					pixelData = source_canvas.getContext('2d').getImageData(next_col, next_row, 1, 1).data;
+					pixelData = get_pixel_data(next_col, next_row);
 				}
 				for (var k = 0; k < 3; k++){
 					// Update each of the red, green and blue grids respectively
@@ -669,7 +671,7 @@ function salter(col, row){
 		return [val,val,val];
 	}
 	else{
-		return source_canvas.getContext('2d').getImageData(col, row, 1, 1).data;
+		return get_pixel_data(col, row);
 	}
 }
 
@@ -727,7 +729,7 @@ function applyThreshold(){
 	var operator_1 = $("#operator_1").val();
 	
 	filter = function(col, row){
-		var pixelData = source_canvas.getContext('2d').getImageData(col, row, 1, 1).data;
+		var pixelData = get_pixel_data(col, row);
 		var expr = [pixelData[0], r_lt_or_gt, r_val, operator_0, pixelData[1], g_lt_or_gt, g_val, operator_1, pixelData[2], b_lt_or_gt, b_val]
 		.join(" ");
 		if (eval(expr)){
@@ -791,6 +793,22 @@ $( "#pixel-viewer-interactive-menu-toggle" ).click(function() {
     $( "#pixel-viewer-interactive-settings" ).slideToggle( "slow" );
 });
 
+// Caches data about the image
+function init_cache(){
+	piccache = Array()
+	ctx = source_canvas.getContext('2d');
+	for (var col = 0; col<contentWidth; col++){
+		next_col = Array(contentHeight)
+		piccache.push(next_col)
+	}
+}
+
+function get_pixel_data(col, row){
+	if (piccache[col][row] == null){
+		piccache[col][row] = source_canvas.getContext('2d').getImageData(col, row, 1, 1).data;
+	}
+	return piccache[col][row];
+}
 
 function load_resize_image(src, user_upload=true){
     var image = new Image();
@@ -803,7 +821,8 @@ function load_resize_image(src, user_upload=true){
         var ctx = canvas.getContext("2d");
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         canvas.width = image.width;
-        canvas.height = image.height;
+        canvas.height = image.height;    
+	   	init_cache();
         ctx.drawImage(image, 0, 0, image.width, image.height);
         scroller.scrollTo(0,0);
         if(user_upload){
@@ -814,7 +833,6 @@ function load_resize_image(src, user_upload=true){
         	var text = "";
         	canvas.style.display = "hidden";
         }
-        
         $( '#pixel-viewer-interactive-resize-values' ).text(text)
     };
     image.src = src;
@@ -911,7 +929,7 @@ var paint = function(row, col, left, top, width, height, zoom) {
     	pixelData = filter(col, row);
     } 
     else {
-    	pixelData = source_canvas.getContext('2d').getImageData(col, row, 1, 1).data;
+    	pixelData = get_pixel_data(col, row);
     }
     context.fillStyle = 'rgb('+pixelData[0]+','+pixelData[1]+','+pixelData[2]+')';
     context.fillRect(Math.round(left), Math.round(top), Math.round(width)+1, Math.round(height)+1);
