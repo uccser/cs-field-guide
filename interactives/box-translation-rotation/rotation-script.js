@@ -9,9 +9,11 @@ function moveBox() {
      */
 
     // get each value from the input box */
-    var x_pos = 0 + parseInt(document.getElementById( 'x-coordinate' ).value);
-    var y_pos = 0 + parseInt(document.getElementById( 'y-coordinate' ).value);
-    var z_pos = 0 + parseInt(document.getElementById( 'z-coordinate' ).value);
+    x_pos = 0 + parseInt(document.getElementById( 'x-coordinate' ).value);
+    y_pos = 0 + parseInt(document.getElementById( 'y-coordinate' ).value);
+    z_pos = 0 + parseInt(document.getElementById( 'z-coordinate' ).value);
+
+    emptyCheck();
 
     // sets target rotations
     // values are converted to radians

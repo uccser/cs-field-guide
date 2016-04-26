@@ -9,7 +9,9 @@ var windowHalfY = window.innerHeight / 2;
 var code = { 1: null, 2: null, 3: null };
 var boxSymbols = {}
 var selectedSymbolId;
-
+var x_pos;
+var y_pos;
+var z_pos;
 
 init();
 animate();
@@ -28,7 +30,7 @@ function init() {
     camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 1000000 );
     camera.position.x = 0;
     camera.position.y = 0;
-    camera.position.z = 700;
+    camera.position.z = 500;
 
     scene = new THREE.Scene();
 
@@ -184,6 +186,7 @@ function animate() {
     requestAnimationFrame(animate);
 
     camera.lookAt(cube.position);
+
     render();
     stats.update();
 
@@ -400,5 +403,19 @@ function symbolClick(id) {
         }
     }
 
+}
+
+function emptyCheck() {
+
+    if ( isNaN( x_pos ) ) {
+        x_pos = 0;
+        document.getElementById( 'x-coordinate' ).value = x_pos;
+    } else if ( isNaN( y_pos ) ) {
+        y_pos = 0;
+        document.getElementById( 'y-coordinate' ).value = y_pos;
+    } else if ( isNaN( z_pos) ){
+        z_pos = 0;
+        document.getElementById( 'z-coordinate' ).value = z_pos;
+    }
 
 }
