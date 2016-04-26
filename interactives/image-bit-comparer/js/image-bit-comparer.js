@@ -10,6 +10,18 @@ ImageBitComparer.SCALE_FACTOR = 0.9;
 ImageBitComparer.CANVAS_WIDTH = ImageBitComparer.BASE_WIDTH * ImageBitComparer.SCALE_FACTOR;
 ImageBitComparer.CANVAS_HEIGHT = ImageBitComparer.BASE_HEIGHT * ImageBitComparer.SCALE_FACTOR;
 
+ImageBitComparer.INITAL_IMAGES = [
+                                  ['IMG_5264.jpg', 'Roof of Temple'],
+                                  ['IMG_2223.jpg', 'Lake in New Zealand'],
+                                  ['IMG_8354.jpg', 'Flower'],
+                                  ['IMG_6698.jpg', 'Flower in snow'],
+                                  ['IMG_7448.jpg', 'Balloons'],
+                                  ['IMG_8061.jpg', 'Duckling'],
+                                  ['IMG_5035.jpg', 'Sunflower'],
+                                  ['IMG_2521.jpg', 'Lightning'],
+                                  ['IMG_0775.jpg', 'Books']
+                                ];
+
 ImageBitComparer.colour_labels = ['Red', 'Green', 'Blue'];
 
 // The RGB values For each bit value
@@ -40,11 +52,67 @@ $(document).ready(function(){
   } else {
     ImageBitComparer.mode = 'comparison';
   }
+  // Add image options
+  populateSelectOptions();
   // Setup required canvas and controls
   setupMode();
   // Load initial image
   loadImage();
+
+  // Allow images to be draghed and dropped onto the page for loading
+  var target = document.body;
+  target.addEventListener("dragover", function(e){e.preventDefault();}, true);
+  target.addEventListener("drop", function(e){
+      e.preventDefault();
+      loadDroppedImage(e.dataTransfer.files[0]);
+  }, true);
 });
+
+
+// Add initial images to select element
+function populateSelectOptions() {
+  var $select = $('#interactive-image-bit-comparer-selected-image');
+  for (var i = 0; i < ImageBitComparer.INITAL_IMAGES.length; i++) {
+    var file = 'img/' + ImageBitComparer.INITAL_IMAGES[i][0];
+    var text = ImageBitComparer.INITAL_IMAGES[i][1];
+    $select.append($('<option>').text(text).data('file', file));
+  }
+};
+
+
+// Load image that has been dragged and dropped onto page
+function loadDroppedImage(file){
+    //	Prevent any non-image file type from being read.
+    if(!file.type.match(/image.*/)){
+        console.log("The dropped file is not an image: ", file.type);
+    } else {
+      var reader = new FileReader();
+      reader.onload = function (data) {
+          loadUserImage(file.name, data.target.result);
+      };
+      reader.readAsDataURL(file);
+    }
+};
+
+
+// Load image that has been uploaded by upload button
+function loadImageDialog(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (data) {
+            loadUserImage(input.files[0].name, data.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+};
+
+
+// Load user image and set as inital image
+function loadUserImage(filename, file) {
+    console.log(filename);
+    $('#interactive-image-bit-comparer-selected-image').append($('<option>').text(filename).data('file', file).attr('selected', true));
+    loadImage();
+};
 
 
 // Setup interface for current mode
@@ -145,7 +213,7 @@ function loadImage() {
       // Update canvases from base image
       drawCanvases();
   }
-  image.src = './img/' + $("#interactive-image-bit-comparer-selected-image").val();
+  image.src = $("#interactive-image-bit-comparer-selected-image option:selected").data('file');
 };
 
 

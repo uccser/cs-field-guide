@@ -21,19 +21,16 @@
       <h4>Image Bit Comparer</h4>
 
       <div class="row">
-        <div class="col s12 m6">
-          <label>Select Image:</label>
+        <div class="col s12 m6 l3">
+          <h5>Select Image</h5>
           <select id="interactive-image-bit-comparer-selected-image" class="browser-default">
-            <option value="IMG_5264.jpg">Roof of Temple</option>
-            <option value="IMG_2223.jpg">Lake in New Zealand</option>
-            <option value="IMG_8354.jpg">Flower</option>
-            <option value="IMG_6698.jpg">Flower in snow</option>
-            <option value="IMG_7448.jpg">Balloons</option>
-            <option value="IMG_8061.jpg">Duckling</option>
-            <option value="IMG_5035.jpg">Sunflower</option>
-            <option value="IMG_2521.jpg">Lightning</option>
-            <option value="IMG_0775.jpg">Books</option>
           </select>
+        </div>
+        <div class="col s12 m6 l3">
+          <h5>Upload Image</h5>
+          <p>Either drag and drop an image onto this page, or click the button below to load your own image into the interactive.
+            <input type="file" name="image" accept="image/*" onchange="loadImageDialog(this)">
+          </p>
         </div>
       </div>
 
