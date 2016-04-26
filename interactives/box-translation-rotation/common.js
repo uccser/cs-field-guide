@@ -12,6 +12,7 @@ var selectedSymbolId;
 var x_pos;
 var y_pos;
 var z_pos;
+var rotateObject = false;
 
 init();
 animate();
@@ -120,7 +121,7 @@ function init() {
 
 
     var loader = new THREE.ObjectLoader();
-    // wrapped in function so we can access the object file
+    // wrapped in function so we can access the object later
     function createObject( objectFile ) {
         var container = new THREE.Object3D();
         loader.load( objectFile, function ( object ) {
@@ -131,7 +132,7 @@ function init() {
 
     hiddenObject = createObject( 'teapot.json' );
     hiddenObject.scale.set( 50, 50, 50);
-    // scene.add( hiddenObject );
+    hiddenObject.position.set( 0, -150, 0 );
 
     /////////////////////////////////////////////////////////////////////
 
@@ -186,6 +187,25 @@ function animate() {
     requestAnimationFrame(animate);
 
     camera.lookAt(cube.position);
+
+    if ( rotateObject ) {
+        //hiddenObject.rotation.x += 0.005;
+        hiddenObject.rotation.y += 0.01;
+    }
+
+    render();
+    stats.update();
+
+    TWEEN.update();
+
+}
+
+function animateHiddenObject() {
+
+    requestAnimationFrame(animate);
+
+    camera.lookAt(hiddenObject.position);
+
 
     render();
     stats.update();
@@ -253,9 +273,9 @@ function submitCode() {
      * checks each selected symbol for if it matches what is on the box
      */
 
-    // reset cube to start position
+    // reset cube to start position TODO not "start" pos anymore
     document.getElementById( 'x-coordinate' ).value = 0;
-    document.getElementById( 'y-coordinate' ).value = 0;
+    document.getElementById( 'y-coordinate' ).value = -10;
     document.getElementById( 'z-coordinate' ).value = 0;
     moveBox();
 
@@ -336,6 +356,8 @@ function end() {
     var timer = 0;
     var opacity = 1;
     fadeCube( opacity );
+
+    rotateObject = true;
 
     window.setTimeout( function () {
         scene.add( hiddenObject );
