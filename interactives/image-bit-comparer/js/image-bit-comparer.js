@@ -57,7 +57,7 @@ $(document).ready(function(){
   } else {
     ImageBitComparer.mode = 'comparison';
   }
-  
+
   // If screen is not wide enough for medium sized image,
   // then set display to small images
   if (document.documentElement.clientWidth < ImageBitComparer.BASE_WIDTH) {
@@ -242,30 +242,25 @@ function loadImage() {
 // Load inital image data values
 function initialCanvasData() {
   var source_canvas = document.getElementById('interactive-image-bit-comparer-source-canvas');
-  var source_base_width  = ImageBitComparer.BASE_WIDTH * ImageBitComparer.scale_factor;
-  var source_base_height = ImageBitComparer.BASE_HEIGHT * ImageBitComparer.scale_factor;
   var source_canvas_context = source_canvas.getContext('2d');
-  try {
-    var source_image_data = source_canvas_context.getImageData(0, 0, source_base_width, source_base_height);
-  }
-  catch (e) {
-    alert("Starting image cannot be loaded when viewing file locally. Try another browser or the online version.");
-  }
+  var source_image_data = source_canvas_context.getImageData(0,
+                                                             0,
+                                                             ImageBitComparer.BASE_WIDTH * ImageBitComparer.scale_factor,
+                                                             ImageBitComparer.BASE_HEIGHT * ImageBitComparer.scale_factor);
   return source_image_data;
 };
 
 
 // Draw the image data to a canvas using the canvas max bit values
 function drawCanvas($canvas, source_image_data) {
-  $canvas.attr('width', source_image_data.width + 'px');
-  $canvas.attr('height', source_image_data.height + 'px');
+  $canvas.attr('width', ImageBitComparer.BASE_WIDTH * ImageBitComparer.scale_factor + 'px');
+  $canvas.attr('height', ImageBitComparer.BASE_HEIGHT * ImageBitComparer.scale_factor + 'px');
   var bit_values = $canvas.data('bit_values');
   var red_divisor = 255 / (Math.pow(2, bit_values[0]) - 1);
   var green_divisor = 255 / (Math.pow(2, bit_values[1]) - 1);
   var blue_divisor = 255 / (Math.pow(2, bit_values[2]) - 1);
 
   canvas_context = $canvas[0].getContext('2d');
-
   // Copy image data
   canvas_data = source_image_data;
 
