@@ -20,8 +20,8 @@ function moveBox() {
     // move the box on the next animation loop
     TWEEN.removeAll();
     new TWEEN.Tween( cube.position )
-        .to( target, 2000 )
-        .easing( TWEEN.Easing.Elastic.Out )
+        .to( target, 1000 )
+        .easing( TWEEN.Easing.Back.InOut )
         .onUpdate( render )
         .start();
 
