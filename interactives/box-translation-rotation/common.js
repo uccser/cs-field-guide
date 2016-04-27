@@ -14,8 +14,16 @@ var y_pos;
 var z_pos;
 var rotateObject = false;
 
+// TODO investigate window.onload = init;
 init();
 animate();
+
+// function clear() {
+//     var canvas = document.querySelector("canvas");
+//     console.log(canvas)
+//     var ctx = canvas.getContext("2d");
+//     ctx.clearRect(0, 0, 500, 226);
+// }
 
 function init() {
 
@@ -27,6 +35,15 @@ function init() {
     container.appendChild( info );
 
     if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
+
+    // uses regex to check if the user is on mobile or desktop
+    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+        console.log("mobile");
+        setMobileLayout();
+    } else {
+        document.getElementById( 'user-input' ).className = 'right';
+    }
+
 
     camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 1000000 );
     camera.position.x = 0;
@@ -166,8 +183,27 @@ function init() {
     document.getElementById( 'y-coordinate' ).value = cube.position.y;
     document.getElementById( 'z-coordinate' ).value = cube.position.z;
 
+    canvas = document.querySelector("canvas");
+    // var renderer = new THREE.WebGLRenderer({canvas: canvas});
+    canvas.width  = canvas.clientWidth;
+    canvas.style.height = 226;
+    // console.log(canvas);
+    // ctx = canvas.getContext("webgl");
+    // console.log(ctx);
+    // ctx.clearRect(0, 0, 500, 226);
+
 }
 
+function setMobileLayout() {
+
+    document.getElementById( 'user-input' ).className = 'below';
+    document.getElementById( 'question' ).className = 'arrange-left';
+    document.getElementById( 'symbol-grid' ).className = 'arrange-right';
+
+    var inputDivHeight = document.getElementById( 'user-input' ).clientHeight;
+    console.log(inputDivHeight, screen.height);
+
+}
 
 function onWindowResize() {
 
@@ -178,6 +214,7 @@ function onWindowResize() {
     camera.updateProjectionMatrix();
 
     renderer.setSize( window.innerWidth, window.innerHeight );
+    // renderer.setSize( window.innerWidth, 226 );
 
 }
 
@@ -372,6 +409,8 @@ function end() {
         }
         timer = setTimeout( run, 75 );
     }, 1500 );
+
+    // TODO remove cube from scene - scene.removeObject( cube ); (?)
 
 }
 

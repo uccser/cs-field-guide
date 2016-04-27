@@ -9,42 +9,42 @@
     </head>
     <body>
 
-    <div id="container">
-        <div id="user-input">
-            <div id="coordinates">
-                <h2 id="transformation-title"></h2>
-                <label>X:<input type="text" id="x-coordinate" autofocus/></label>
-                <label>Y:<input type="text" id="y-coordinate"/></label>
-                <label>Z:<input type="text" id="z-coordinate"/></label>
-            </div>
-            <div id="code">
-                <h2>Secret Code</h2>
-                <p>Which of the symbols is coloured on the box?</p>
-                <div id="symbol-grid">
-                    <div class="row">
-                        <img id="1" src="images/grayscale_square1.png" onClick="symbolClick(id)">
-                        <img id="2" src="images/grayscale_square2.png" onClick="symbolClick(id)">
-                        <img id="3" src="images/grayscale_square3.png" onClick="symbolClick(id)">
-                        <img id="4" src="images/grayscale_square4.png" onClick="symbolClick(id)">
-                    </div>
-                    <div class="row">
-                        <img id="5" src="images/grayscale_square5.png" onClick="symbolClick(id)">
-                        <img id="6" src="images/grayscale_square6.png" onClick="symbolClick(id)">
-                        <img id="7" src="images/grayscale_square7.png" onClick="symbolClick(id)">
-                        <img id="8" src="images/grayscale_square8.png" onClick="symbolClick(id)">
-                    </div>
+        <div id="container">
+            <div id="user-input">
+                <div id="coordinates">
+                    <h2 id="transformation-title"></h2>
+                    <label>X:<input type="text" id="x-coordinate" autofocus/></label>
+                    <label>Y:<input type="text" id="y-coordinate"/></label>
+                    <label>Z:<input type="text" id="z-coordinate"/></label>
                 </div>
-                    <button onClick="submitSymbol()">Submit</button>
-                <div id="code-template">
-                    <img id="first-symbol" src="images/question_mark.jpg">
-                    <img id="second-symbol" src="images/question_mark.jpg">
-                    <img id="third-symbol" src="images/question_mark.jpg">
+                <div id="code">
+                    <h2>Secret Code</h2>
+                    <p id="question">Which of the symbols is coloured on the box?</p>
+                    <div id="symbol-grid">
+                        <div class="row">
+                            <img id="1" src="images/grayscale_square1.png" onClick="symbolClick(id)">
+                            <img id="2" src="images/grayscale_square2.png" onClick="symbolClick(id)">
+                            <img id="3" src="images/grayscale_square3.png" onClick="symbolClick(id)">
+                            <img id="4" src="images/grayscale_square4.png" onClick="symbolClick(id)">
+                        </div>
+                        <div class="row">
+                            <img id="5" src="images/grayscale_square5.png" onClick="symbolClick(id)">
+                            <img id="6" src="images/grayscale_square6.png" onClick="symbolClick(id)">
+                            <img id="7" src="images/grayscale_square7.png" onClick="symbolClick(id)">
+                            <img id="8" src="images/grayscale_square8.png" onClick="symbolClick(id)">
+                        </div>
+                    </div>
+                        <button onClick="submitSymbol()">Submit</button>
+                    <div id="code-template">
+                        <img id="first-symbol" src="images/question_mark.jpg">
+                        <img id="second-symbol" src="images/question_mark.jpg">
+                        <img id="third-symbol" src="images/question_mark.jpg">
+                    </div>
+                    <button onClick="clearCode()">Clear</button>
+                    <button onClick="submitCode()">Check Code</button>
                 </div>
-                <button onClick="clearCode()">Clear</button>
-                <button onClick="submitCode()">Check Code</button>
             </div>
         </div>
-    </div>
 
         <!-- threejs -->
         <script src="js/three.min.js"></script>
@@ -57,7 +57,6 @@
         <script src="js/OBJLoader.js"></script>
 
         <!-- custom code for interactive -->
-        <!-- <script src="test.js"></script> -->
         <script src="common.js"></script>
         <script src="translation-script.js"></script>
 
