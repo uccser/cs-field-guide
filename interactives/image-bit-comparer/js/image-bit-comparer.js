@@ -12,12 +12,14 @@ ImageBitComparer.INITAL_IMAGES = [
                                   ['IMG_5035.jpg', 'Sunflower'],
                                   ['IMG_5264.jpg', 'Roof of Temple'],
                                   ['IMG_2223.jpg', 'Lake in New Zealand'],
+                                  ['faces.jpg', 'Faces'],
                                   ['IMG_8354.jpg', 'Flower'],
                                   ['IMG_6698.jpg', 'Flower in snow'],
                                   ['IMG_8061.jpg', 'Duckling'],
                                   ['wedding-vehicle.jpg', 'Car'],
                                   ['IMG_2521.jpg', 'Lightning'],
                                   ['IMG_7448.jpg', 'Balloons'],
+                                  ['black-and-white.jpg', 'Black and White Photograph'],
                                   ['IMG_0775.jpg', 'Books']
                                 ];
 
