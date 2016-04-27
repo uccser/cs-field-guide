@@ -571,6 +571,19 @@ def create_landing_page(languages, html_generator, generator_settings, translati
     write_html_file(html_generator, output_folder, 'index', 'website_page_landing', context)
 
 
+def run_source_checks(generator_settings):
+    """Runs extra checks on the CSFG source"""
+    # Check each interactive has a README
+    interactive_folder_contents = sorted(os.listdir(generator_settings['Source']['Interactive']))
+    for item in interactive_folder_contents:
+        folder_path = os.path.join(generator_settings['Source']['Interactive'], item)
+        if os.path.isdir(folder_path):
+            if not os.path.exists(os.path.join(folder_path, generator_settings['Source']['README'])):
+                message = 'No {} found within {} interactive folder'.format(generator_settings['Source']['README'], item)
+                logging.warning(message)
+                print(message)
+
+
 def main():
     """Creates a Guide object"""
     start_logging()
@@ -580,6 +593,10 @@ def main():
     regex_list = systemfunctions.read_settings(REGEX_LIST)
     html_templates = read_html_templates(generator_settings)
     html_generator = WebsiteGenerator(html_templates)
+
+    # Run checks if required
+    if cmd_args.run_checks:
+        run_source_checks(generator_settings)
 
     # Create landing page
     create_landing_page(cmd_args.languages, html_generator, generator_settings, translations)
@@ -592,9 +609,23 @@ def main():
     # Create all specified CSFG
     for language in cmd_args.languages:
         for version in versions:
-            guide = Guide(generator_settings=generator_settings, guide_settings=guide_settings, language_code=language, version=version, html_generator=html_generator, html_templates=html_templates, translations=translations, regex_list=regex_list, teacher_version_present=cmd_args.teacher_output)
+            guide = Guide(generator_settings=generator_settings,
+                          guide_settings=guide_settings,
+                          language_code=language,
+                          version=version,
+                          html_generator=html_generator,
+                          html_templates=html_templates,
+                          translations=translations, regex_list=regex_list,
+                          teacher_version_present=cmd_args.teacher_output)
             if cmd_args.include_pdf:
-                pdf_guide = Guide(generator_settings=generator_settings, guide_settings=guide_settings, language_code=language, version=version, output_type=PDF, html_generator=html_generator, html_templates=html_templates, translations=translations, regex_list=regex_list)
+                pdf_guide = Guide(generator_settings=generator_settings,
+                                  guide_settings=guide_settings, language_code=language,
+                                  version=version,
+                                  output_type=PDF,
+                                  html_generator=html_generator,
+                                  html_templates=html_templates,
+                                  translations=translations,
+                                  regex_list=regex_list)
 
     finish_logging()
 

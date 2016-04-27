@@ -61,6 +61,10 @@ def command_line_args():
                             dest='include_pdf',
                             action='store_true',
                             help='Include generation of pdf version of the CSFG')
+    argsparser.add_argument('--run-checks', '-c',
+                            dest='run_checks',
+                            action='store_true',
+                            help='Runs extra checks on the CSFG source and output')
 
     return argsparser.parse_args()
 
