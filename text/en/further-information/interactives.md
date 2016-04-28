@@ -12,6 +12,7 @@ Most of our interactives require a modern browser, if it's been updated in the l
 - [Awful Calculator](interactives/awful-calculator/index.html)
 - [Caesar Cipher](interactives/caesar-cipher/index.html)
 - [Checksum Calculator](interactives/checksum-calculator/index.html)
+  - [GTIN-13 Checksum Calculator](interactives/checksum-calculator-gtin-13/index.html)
 - [Close Window](interactives/close-window/index.html)
 - [CMY Colour Mixer](interactives/cmy-mixer/index.html)
 - [Colour Matcher](interactives/colour-matcher/index.html)
