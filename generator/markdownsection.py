@@ -1,8 +1,10 @@
 import re
-from bs4 import BeautifulSoup, Comment
+import html as html_module
 import logging
 import os.path
+import urllib.parse
 import generator.systemfunctions as systemfunctions
+from bs4 import BeautifulSoup, Comment
 from generator.systemconstants import *
 from collections import OrderedDict
 from markdown2 import markdown
@@ -34,6 +36,7 @@ class Section:
         # Dictionary of sets for images, interactives, and other_files
         self.required_files = setup_required_files(file_node.guide)
         self.page_scripts = []
+        self.in_page_interactives = set()
         self.mathjax_required = False
         self.sectioned = False
         self.html_path_to_guide_root = self.file_node.depth * '../'
@@ -233,6 +236,14 @@ class Section:
             if alt_value:
                 parameters += ' '
                 parameters += self.html_templates['image-parameter-alt'].format(alt_text=alt_value)
+
+            # Parse text hover argument
+            hover_text_value = parse_argument('hover-text', arguments)
+            if hover_text_value:
+                # Replace any existing single quotes
+                hover_text_value = html_module.escape(hover_text_value)
+                parameters += ' '
+                parameters += self.html_templates['image-parameter-title'].format(title_text=hover_text_value)
 
         image_html = self.html_templates['image'].format(image_source=image_source, image_parameters=parameters)
 
@@ -447,7 +458,7 @@ class Section:
             text = arg_text if arg_text else name
 
             arg_parameters = parse_argument('parameters', arguments)
-            params = arg_parameters if arg_parameters else None
+            params = urllib.parse.quote(arg_parameters) if arg_parameters else None
 
             file_name = self.guide.generator_settings['Source']['Interactive File Name']
             file_type = parse_argument('file-type', arguments)
@@ -463,17 +474,21 @@ class Section:
                     thumbnail = arg_thumbnail if arg_thumbnail else self.guide.generator_settings['Source']['Interactive Thumbnail']
                     html = self.whole_page_interactive_html(source_folder, text, interactive_source_file, params, thumbnail, match)
                 elif interactive_type == 'in-page':
-                    html = self.inpage_interactive_html(source_folder, name, interactive_source_file, match)
+                    if name in self.in_page_interactives:
+                        self.regex_functions['interactive'].log('Interactive {} already used on this page with in-page mode. Use iframe mode for multiple occurrences.'.format(name), self, match.group(0))
+                    else:
+                        self.in_page_interactives.add(name)
+                        html = self.inpage_interactive_html(source_folder, name, interactive_source_file, match)
                 elif interactive_type == 'iframe':
                     html = self.iframe_interactive_html(source_folder, interactive_source_file, params, match)
                 else:
-                    self.regex_functions['file download button'].log('Interactive type not valid', self, match.group(0))
+                    self.regex_functions['interactive'].log('Interactive type not valid', self, match.group(0))
             else:
-                self.regex_functions['file download button'].log('Interactive {} does not exist'.format(name), self, match.group(0))
+                self.regex_functions['interactive'].log('Interactive {} does not exist'.format(name), self, match.group(0))
         elif not name:
-            self.regex_functions['file download button'].log('Interactive name argument not provided'.format(name), self, match.group(0))
+            self.regex_functions['interactive'].log('Interactive name argument not provided'.format(name), self, match.group(0))
         elif not interactive_type:
-            self.regex_functions['file download button'].log('Interactive type argument not provided'.format(name), self, match.group(0))
+            self.regex_functions['interactive'].log('Interactive type argument not provided'.format(name), self, match.group(0))
         return html if html else ''
 
 

@@ -1,0 +1,17 @@
+#interactive-checksum-calculator-gtin-13-input {
+  font-family: monospace;
+  font-size: 1.5rem;
+}
+#interactive-checksum-generator-generate {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+#interactive-checksum-calculator-gtin-13-feedback {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: green;
+  margin-bottom: 0;
+}
+#interactive-checksum-calculator-gtin-13-feedback.invalid {
+  color: red !important;
+}

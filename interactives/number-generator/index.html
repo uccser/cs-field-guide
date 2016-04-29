@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <!-- ### Enter your interactive title in the title block ### -->
     <title>Number Generator</title>
-    <link rel="stylesheet" href="../base-files/css/normalize.css">
+    <link rel="stylesheet" href="../base-files/css/third-party/normalize.css">
     <!--Import materialize.css-->
-    <link rel="stylesheet" href="../base-files/css/materialize.min.css" type="text/css" media="screen,projection"/>
-    <script src="../base-files/js/modernizr.js"></script>
+    <link rel="stylesheet" href="../base-files/css/third-party/materialize.min.css" type="text/css" media="screen,projection"/>
+    <script src="../base-files/js/third-party/modernizr.js"></script>
     <!-- jQuery (necessary for Materialize) -->
-    <script type="text/javascript" src="../base-files/js/jquery.js"></script>
+    <script type="text/javascript" src="../base-files/js/third-party/jquery.js"></script>
   </head>
   <body>
     <!-- ### Start of required HTML for inline interactives ### -->
@@ -24,8 +24,7 @@
           <div class="col s12">
             <select name="interactive-checksum-generator-type" class="browser-default" id="interactive-checksum-generator-type">
               <option selected="selected" value="ISBN-10">ISBN-10</option>
-              <option value="ISBN-13">ISBN-13</option>
-              <option value="EAN-13">EAN-13</option>
+              <option value="GTIN-13">GTIN-13 / ISBN-13</option>
               <option value="credit-card">Credit Card</option>
               <option value="trains">Trains</option>
               <option value="IRD-number">IRD Number</option>
@@ -36,7 +35,9 @@
             <a id="interactive-checksum-generator-generate" class="waves-effect waves-light btn btn-expand">Generate</a>
           </div>
           <div class="col s12">
+            <p class="center-align">The following codes are a combination of valid and invalid codes</p>
             <textarea id="interactive-checksum-generator-codes" rows="5" readonly placeholder="Codes will be displayed here"></textarea>
+            <p class="center-align">Codes are generated with no dashes/spaces/etc</p>
           </div>
       <link rel="stylesheet" href="./css/checksum-generator.css">
       <script src="./js/checksum-generator.js"></script>
@@ -45,6 +46,6 @@
     </div>
     <!-- ### End of required HTML for inline interactives ### -->
     <!-- Materialize responsive CSS -->
-    <script type="text/javascript" src="../base-files/js/materialize.min.js"></script>
+    <script type="text/javascript" src="../base-files/js/third-party/materialize.min.js"></script>
   </body>
 </html>

@@ -567,12 +567,12 @@ if (strlen($_POST['memInput'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <!-- ### Enter your interactive title in the title block ### -->
     <title>MIPS Simulator</title>
-    <link rel="stylesheet" href="../base-files/css/normalize.css">
+    <link rel="stylesheet" href="../base-files/css/third-party/normalize.css">
     <!--Import materialize.css-->
-    <link rel="stylesheet" href="../base-files/css/materialize.min.css" type="text/css" media="screen,projection"/>
-    <script src="../base-files/js/modernizr.js"></script>
+    <link rel="stylesheet" href="../base-files/css/third-party/materialize.min.css" type="text/css" media="screen,projection"/>
+    <script src="../base-files/js/third-party/modernizr.js"></script>
     <!-- jQuery (necessary for Materialize) -->
-    <script type="text/javascript" src="../base-files/js/jquery.js"></script>
+    <script type="text/javascript" src="../base-files/js/third-party/jquery.js"></script>
   </head>
   <body>
     <div class="interactive" id="interactive-mips-simulator">
@@ -646,6 +646,6 @@ if (strlen($_POST['memInput'])) {
       </style>
     </div>
     <!-- Materialize responsive CSS -->
-    <script type="text/javascript" src="../base-files/js/materialize.min.js"></script>
+    <script type="text/javascript" src="../base-files/js/third-party/materialize.min.js"></script>
   </body>
 </html>
