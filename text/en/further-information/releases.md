@@ -23,6 +23,27 @@ No pre-releases currently.
 
 ## Current Release
 
+### 2.0.4
+
+**Release date:** 29th April 2016
+
+**Downloads:** [Source available on GitHub](https://github.com/uccser/cs-field-guide/releases/tag/2.0.4)
+
+**Notable changes:**
+- Large number of typo, grammar, link, and math syntax fixes and also content corrections by contributors.
+- New interactive: Added [GTIN-13 checksum calculator interactive](interactives/checksum-calculator-gtin-13/index.html) for calculating the last digit for a GTIN-13 barcode.
+- Updated interactive: The [regular expression search interactive](interactives/regular-expression-search/index.html) has been updated and added to the repository.
+- Updated interactive: The [image bit comparer interactive](interactives/image-bit-comparer/index.html) has been updated and added to the repository. It also has a [changing bits mode](interactives/image-bit-comparer/index.html?change-bits=true) which allows the user to modify the number of bits for storing each colour.
+- Added XKCD mouseover text (similar behaviour to website).
+- Added feedback modal to allow developers to directly post issues to GitHub.
+- Added encoding for HTML entities to stop certain characters not appearing correctly in browsers.
+- Added summary of output at end of generation script.
+- Added message for developers to contribute in the web console.
+
+A full list of changes in this version is [available on GitHub](https://github.com/uccser/cs-field-guide/compare/2.0.3...2.0.4).
+
+## Older Releases
+
 ### 2.0.3
 
 **Release date:** 10th March 2016
@@ -38,8 +59,6 @@ No pre-releases currently.
 - A list of all interactives are now available on the [interactives page](further-information/interactives.html).
 
 A full list of changes in this version is [available on GitHub](https://github.com/uccser/cs-field-guide/compare/2.0.2...2.0.3).
-
-## Older Releases
 
 ### 2.0.2
 
