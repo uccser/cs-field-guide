@@ -129,6 +129,7 @@ i {
 // Images
 img.responsive-img,
 video.responsive-video {
+  display: inline-block;
   max-width: 100%;
   height: auto;
 }
