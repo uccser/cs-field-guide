@@ -266,7 +266,7 @@ Put UTF-32 interactive here
 
 ASCII actually took the same approach. Each ASCII character has a number between 0 and 255, and the representation for the character the number converted to an 8 bit binary number. ASCII is also a fixed length encoding scheme -- every character in ASCII is represented using 8 bits.
 
-{panel type="challenge" summary="Practice with UTF-32"}
+{panel type="project" summary="Represent your name with UTF-32"}
 1. Represent each character in your name using UTF-32.
 2. Check how many bits your representation required, and explain why it had this many (remember that each character should have required 32 bits)
 3. Explain how you knew how to represent each character. Even if you used the interactive, you should still be able to explain it in terms of binary numbers.
@@ -282,8 +282,8 @@ In practice, UTF-32 is rarely used. UTF-8 and UTF-16 are both variable length en
 3. Most numbers that can be made using 32 bits do not have a Unicode character attached to them -- there is a lot of wasted space. There are good reasons for this, but if all the space was to be used, how many bits would you need, given that there are currently around 120,000 unicode characters?
 {panel end}
 
-{panel type="spoiler" summary="Answers to above challenges"}
-1. The largest number that can be represented using 32 bits is 4,294,967,295 (around 4.3 billion). You might have seen this number before -- it is the largest unsigned integer that a 32 bit computer can easily represent in programming languages such as C.
+{panel type="spoiler" summary="Answers to above challenge"}
+1: The largest number that can be represented using 32 bits is 4,294,967,295 (around 4.3 billion). You might have seen this number before -- it is the largest unsigned integer that a 32 bit computer can easily represent in programming languages such as C.
 
 2. 1,114,111
 
