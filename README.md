@@ -42,12 +42,13 @@ Have a bug or a feature request? Please first search for [existing and closed is
 
 ## Documentation
 
-Complete documentation for this project is stored in the [docs folder](docs/README.md).
+Complete documentation for this project is stored in the [docs folder](docs/).
 
 ## Contributing
 
-We are currently still constructing this repository to produce a complete guide so will not be accepting any pull requests until v2.0 is released (v1.0 is a closed source system, the first major release on GitHub will be v2.0). After this point we would love the community to get involved into making this guide as great as possible!
-A guide on how to contribute to the project (from correcting a spelling mistake to adding a translation) will be written as part of the documentation for the v2.0 release. Possible areas users will be able to contribute include:
+We would love your help to make this guide the best it can be!
+
+A guide on how to contribute to the project (from correcting a spelling mistake to adding a translation) will be available soon. Possible areas users will be able to contribute include:
 
 - Suggesting a text edit for a typo, grammar correction, or just clearing up a point.
 - Add a translation for a chapter or interactive.
