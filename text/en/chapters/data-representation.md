@@ -197,26 +197,29 @@ The name "ASCII" stands for "American Standard Code for Information Interchange"
 There are several other codes that were popular before ASCII, including the [Baudot code](https://en.wikipedia.org/wiki/Baudot_code) and [EBCDIC](https://en.wikipedia.org/wiki/EBCDIC). A widely used variant of the Baudot code was the "Murray code", named after New Zealand born inventor [Donald Murray](https://en.wikipedia.org/wiki/Donald_Murray_(inventor\)). One of Murray's significant improvements was to introduce the idea of "control characters", such as the carriage return (new line). The "control" key still exists on modern keyboards.
 {panel end}
 
-#### Challenge: Messages hidden in music!
+### Challenge: Messages hidden in music!
 
 There are messages hidden in this video using a 5-bit representation. See if you can find them! Start by reading the explanation below to ensure you understand what we mean by a 5-bit representation.
 
 {video url="https://www.youtube.com/watch?v=L-v4Awj_p7g"}
 
-If you *only* wanted to represent the 26 letters of the alphabet, and weren’t worried about upper-case or lower-case, you could get away with using just 5 bits, which allows for up to 32 different patterns. Have a look at the last 5 bits of each of the 26 lower-case letters in ASCII. Do any of the 26 lower-case letters have the same last 5 bits? Have a look at the 26 upper-case letters. Do any of the upper-case letters have the same last 5 bits?
+If you *only* wanted to represent the 26 letters of the alphabet, and weren’t worried about upper-case or lower-case, you could get away with using just 5 bits, which allows for up to 32 different patterns.
 
-You may have noticed that none of the lower-case letters have the same last 5 bits, but they do have the same last 5 bits as their corresponding upper-case letter!
+Most kids have exchanged notes which used 1 for "a", 2 for "b", 3 for "c", all the way up to 26 for "z". We can convert those numbers into 5 digit binary numbers. Additionally, you will also get the same 5 bits for each letter by looking at the last 5 bits for it in the ASCII table (and it doesn't matter whether you look at the upper case or the lower case letter).
 
-For example, a = 1100001 and A = 1000001, they both have 00001 as their last 5 bits. As another example, s = 1110011 and S = 1010011, they both have 10011 as their last 5 bits.
+Represent the word "water" with bits using this system. Check the below panel once you think you have it.
 
-An easy way to allocate patterns in this 5 bit system would be to just use the last 5 bits for each character in the ASCII table. Therefore A would be 00001, b would be 00010, c would be 00011, etc.
+{panel type="spoiler" summary="Representation for water}
+```
+w: 10111
+a: 00001
+t: 10111
+e: 10100
+r: 10010
+```
+{panel end}
 
-The word “water” would be
-10111
-00001
-10111
-10100
-10010
+**Now, have a go at decoding the music video!**
 
 ### Introduction to Unicode
 
