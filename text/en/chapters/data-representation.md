@@ -37,6 +37,8 @@ To begin with, we'll look at Braille. Braille is not actually a way that compute
 When working through the material in this section, a good way to draw braille on paper without having to actually make raised dots is to draw a rectangle with 6 small circles in it, and to colour in the circles that are raised, and not colour in the ones that aren’t raised.
 {panel end}
 
+### What is Braille?
+
 More than 200 years ago a 15-year-old French boy invented a system for representing text using combinations of flat and raised dots on paper so that they could be read by touch.
 The system became very popular with people who had visual impairment as it provided a relatively fast and reliable way to "read" text without seeing it.
 Louis Braille's system is an early example of a "binary" representation of data --- there are only two symbols (raised and flat), and yet combinations of them can be used to represent reference books and works of literature.
