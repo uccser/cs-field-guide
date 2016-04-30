@@ -94,7 +94,7 @@ There's a more in-depth discussion on why we use binary here:
 
 ## Computers Representing Text
 
-There are several different ways in which computers use bits to store text.
+There are several different ways in which computers use bits to store text. In this section, we will look at several of them and then look at the pros and cons of each representation.
 
 ### ASCII
 
@@ -162,6 +162,8 @@ Exchanging short messages in code will force students to use the table, and they
 Computers can represent pieces of text with sequences of these patterns, much like Braille does. For example, the word “computers” (all lower-case) would be 01100011 01101111 01101101 01110000 01110101 01110100 01100101 01110010 01110011. This is because "c" is "01100011", "o" is "01101111", etc. Have a look at the ASCII table above to check that we are right!
 
 {panel type="challenge" summary="More practice at ASCII"}
+Have a go at the following ASCII exercises
+
 - How would you represent “science” in ASCII?
 - How would you represent "Wellington" in ASCII? (note that it starts with an upper-case “W”)
 - How would you represent “358” in ASCII (it is three characters, even though it looks like a number)
@@ -171,9 +173,12 @@ Be sure to have a go at all of them before checking the answer!
 {panel end}
 
 {panel type="spoiler" summary="Answers to questions above"}
-"science" = 01110011 01100011 01101001 01100101 01101110 01100011 01100101
-"Wellington" = 01010111 01100101 01101100 01101100 01101001 01101110 01100111 01110100 01101111 01101110
-"358" = 00110011 00110101 00111000
+
+These are the answers.
+
+- "science" = 01110011 01100011 01101001 01100101 01101110 01100011 01100101
+- "Wellington" = 01010111 01100101 01101100 01101100 01101001 01101110 01100111 01110100 01101111 01101110
+- "358" = 00110011 00110101 00111000
 
 Note that the text "358" is treated as 3 characters in ASCII, which may be confusing, as the text "358" is different to the number 358! You may have encountered this distinction in a spreadsheet e.g. if a cell starts with an inverted comma in Excel, it is treated as text rather than a number. One place this comes up is with phone numbers; if you type 027555555 into a spreadsheet as a number, it will come up as 27555555, but as text the 0 can be displayed.
 {panel end}
