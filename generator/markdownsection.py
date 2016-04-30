@@ -1,9 +1,10 @@
 import re
-from bs4 import BeautifulSoup, Comment
+import html as html_module
 import logging
 import os.path
 import urllib.parse
 import generator.systemfunctions as systemfunctions
+from bs4 import BeautifulSoup, Comment
 from generator.systemconstants import *
 from collections import OrderedDict
 from markdown2 import markdown
@@ -235,6 +236,14 @@ class Section:
             if alt_value:
                 parameters += ' '
                 parameters += self.html_templates['image-parameter-alt'].format(alt_text=alt_value)
+
+            # Parse text hover argument
+            hover_text_value = parse_argument('hover-text', arguments)
+            if hover_text_value:
+                # Replace any existing single quotes
+                hover_text_value = html_module.escape(hover_text_value)
+                parameters += ' '
+                parameters += self.html_templates['image-parameter-title'].format(title_text=hover_text_value)
 
         image_html = self.html_templates['image'].format(image_source=image_source, image_parameters=parameters)
 
