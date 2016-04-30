@@ -264,13 +264,13 @@ The following interactive will allow you to convert a unicode character to its U
 Put UTF-32 interactive here
 {comment end}
 
-ASCII actually took the same approach. Each ASCII character has a number between 0 and 255, and the representation for the character the number converted to an 8 bit binary number. ASCII is also a fixed length encoding scheme -- every character in ASCII is represented using 8 bits.
-
 {panel type="project" summary="Represent your name with UTF-32"}
 1. Represent each character in your name using UTF-32.
 2. Check how many bits your representation required, and explain why it had this many (remember that each character should have required 32 bits)
 3. Explain how you knew how to represent each character. Even if you used the interactive, you should still be able to explain it in terms of binary numbers.
 {panel end}
+
+ASCII actually took the same approach. Each ASCII character has a number between 0 and 255, and the representation for the character the number converted to an 8 bit binary number. ASCII is also a fixed length encoding scheme -- every character in ASCII is represented using 8 bits.
 
 In practice, UTF-32 is rarely used. UTF-8 and UTF-16 are both variable length encoding schemes, and very widely used. We will look at them next.
 
@@ -345,7 +345,37 @@ Therefore, the representation for **貓** is **11101000 10110010 10010011** usin
 
 ### UTF-16
 
+Just like UTF-8, UTF-16 is a **variable length** encoding scheme for unicode. Because it is far more complex than UTF-8, we will not explain how it works.
+
+However, the following interactive will allow you to represent text with UTF-16. Try putting some text that is in English and some text that is in Japanese into it. Compare the representations to what you get with UTF-8.
+
 ### Comparison of text representations
+
+We have looked at ASCII, UTF-32, UTF-8, and UTF-16.
+
+The following table summarises some of our findings so far about each representation.
+
+Representation | Variable or Fixed | Bits per Character | Real world Usage
+--- | --- | --- | ---
+*ASCII* | Fixed Length | 8 bits | No longer widely used
+*UTF-8* | Variable Length | 8, 16, 24, or 32 bits | Very widely used
+*UTF-16* | Variable Length | 16 or 32 bits | Widely used
+*UTF-32* | Fixed Length | 32 bits | Rarely used
+
+In order to compare and evaluate them, we need to decide what it means for a representation to be "good". Two useful criteria are:
+
+1. Can represent all characters, regardless of language.
+2. Represents a piece of text using as few bits as possible.
+
+We know that UTF-8, UTF-16, and UTF-32 can represent all characters, but ASCII can only represent English. Therefore, ASCII fails the first criteria. But for the second criteria, it isn't so simple.
+
+The following interactive will allow you to find out the length of pieces of text using UTF-8, UTF-16, or UTF-32. Find some samples of English text and Asian text (forums are a good place to look), and see how long your various samples are when encoded with each of the three representations.
+
+{comment}
+Insert interactive here
+{comment end}
+
+As a general rule, UTF-8 is better for English text, and UTF-16 is better for Asian text. UTF-32 always requires 32 bits for each character, so is unpopular in practice.
 
 ## Representing numbers with bits
 
