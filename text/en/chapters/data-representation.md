@@ -571,6 +571,11 @@ Two's Complement is widely used, because it only has one representation for zero
 
 There are other systems such as One's Complement and Excess-k, but Two's Complement is by far the most widely used in practice.
 
+
+{comment}
+
+TODO: Write this section
+
 ### Representing decimal points and fractions in practice
 
 Another type of number used in computer systems is the "floating point" value. While we won't look at it in detail, to get a taste of what's involved, consider the bit values in a 4-bit number, which are 8, 4, 2 and 1. What would the value of a bit *to the right* of the one bit be? And to the right of that one?
@@ -588,6 +593,7 @@ The values to the right of the 1-bit continue to be a half of the value to their
 
 {panel end}
 
+{comment end}
 
 ## Computers Representing Text
 
