@@ -139,92 +139,15 @@ The key ideas to notice from this are:
 
 All this probably sounds really obvious, but it is worth thinking about consciously, because binary numbers have the same properties.
 
-### Binary numbers
+### Representing whole numbers in Binary with 6 bits
 
-{panel type="teacher-note" summary="Teaching binary numbers"}
-
+{panel type="teacher-note" summary="Teaching binary numbers"
 This subsection is a prerequisite for the colours section, as colour representations are built on simple binary numbers.
 
 It's very common for computer science courses and books (like this one) to teach students how to convert between binary representation and decimal numbers. In practice, computer scientists hardly ever do this, but the important thing is to understand the patterns and constraints around binary numbers. A key pattern that students should pick up is that adding just one bit to a binary number *doubles* the range it can represent. The patterns around binary numbers come up in many areas of computer science, so it is well worth getting familiar with them.
-
 {panel end}
-
-As discussed earlier, computers can only store information using bits, which only have 2 possible states. This means that they cannot represent base 10 numbers using digits 0 to 9, the way we write down numbers in decimal;  instead, they use a base 2 number system, also called binary.
-
-{panel type="curiosity" summary="The denary number system"}
-
-The base 10 (decimal) system is sometimes called denary, which is more consistent with the the name binary for the base 2 system. The word "denary" also refers to the Roman denarius coin, which was worth ten asses (an "as" was a copper or bronze coin).
-The term "denary" seems to be used mainly in the UK; in the US, Australia and NZ the term "decimal" is more common.
-
-{panel end}
-
-Because binary is base 2, there are only 2 possible digits (0 and 1), as opposed to the 10 in our standard number system, and each place value is 2 times bigger than the one to its right (in contrast to our base 10 number system where each place is 10 times bigger).
-
-The interactive below illustrates how this binary number system represents decimal numbers. Have a play around with it to see what patterns you can see. The decimal (base 10) representation for the binary number currently shown is given by the interactive on the far right.
-
-{button link="http://www.csfieldguide.org.nz/releases/1.9.9/_static/widgets/DR/DR-base-conversion/public_html/index.html?base=2&columns=7&lines=A,B,C&offset=0" text="Click for interactive: Base Calculator"}
-
-To ensure you are understanding correctly how to use the interactive, verify that when you enter the binary number 101101 it shows that the decimal representation is 45, that when you enter 100000 it shows that the decimal representation is 32, and when you enter 001010 it shows the decimal representation is 10.
-
-You should try using the interactive to convert a decimal number to binary.
-For example, choose a number less than 61 (perhaps your house number, a friend's age, or the day of the month you were born on), set all the binary digits to zero, and then start with the *left-most* digit (32), trying out if it should be zero or one.
-See if you can find a method for converting the number without too much trial and error.
-
-{panel type="teacher-note" summary="Using the binary number interactive"}
-
-With the interactive, students should discover that they can convert a number by working from left to right through the digits, setting the digit to 1, and resetting it to zero if the total is higher than the number being sought. After converting a few numbers they will start to anticipate what to do. This algorithm is fairly intuitive, and discoverable by quite young students. Discovering it for themselves will give a lot of confidence in their ability to convert numbers. If they need some help, get them to set the *left-most* bit to one, and ask if the total is too high. If it is, set the bit back to zero, otherwise leave it as one. Then repeat this for each bit from left to right. For example, for the number 37, the first bit gives a total of 32, which isn't too high; setting the second bit brings the total to 48, which is too high, so it stays at zero; the third bit gives a total of 32+8 = 40, which is too high; the fourth bit gives 32+4 = 36, which is ok, so that bit is a 1. The fifth bit would give 38 (too high), and the sixth bit gives the required 37, giving the binary number 100101. This approach is explained for students later in the text, but it's better if they can discover it for themselves.
-
-There are a lot of interactive games for exploring binary numbers. The following one works in a web browser: [Cisco Binary game](http://forums.cisco.com/CertCom/game/binary_game_page.htm). While there's a limit to the value of being able to make binary conversions, doing a number of them helps student to discover the kinds of patterns that occur in the binary number system.
-
-There is another algorithm for conversion that is often found in textbooks, and it is easier to write a program for, but a little harder for learners. It isn't necessary to explore the concepts of this chapter, but in case a student wants to implement it, the algorithm is to work from right to left; set the right-most bit to one if the decimal number is odd, otherwise set it to zero, then divide the decimal number by 2 (rounding down), and repeat the procedure for the next digit to the left (set it to one if the number is odd, otherwise zero, then divide by 2).  This is repeated until the decimal number has been reduced to zero.
-
-{panel end}
-
-Can you figure out the binary representation for 23 without using the interactive? What about 4, 0, and 32? Check all your answers using the interactive to verify they are correct.
-
-{panel type="teacher-note" summary="Answers"}
-
-23 is 010111, 4 is 000100, 0 is 000000, and 32 is 100000.
-
-{panel end}
-
-What is the largest number you can make with this binary interactive? What is the smallest? Is there any integer value in between the biggest and the smallest that you can’t make? Are there any numbers with more than one representation? Why/ why not?
-
-{panel type="teacher-note" summary="Answers"}
-
--  000000 in binary, 0 in decimal is the smallest number.
-- 111111 in binary, 63 in decimal is the largest number
-- All the integer values (0, 1, 2... 63) in the range can be represented (and there is a unique representation for each one)
-
-The question of uniqueness will be challenging for some students. It addresses the idea that every number has a unique binary representation; students who struggle with the reasoning may be prepared to just accept that this is the case. However, the following reasoning introduces the idea: have a student work out a 5-bit binary representation for, say, 12 (which is 01100). The left-most 0 represents the 16; ask if it would be possible to represent 12 if that bit is a 1 (it's not possible because you'd already have 16, which is more than 12). Now consider the next bit (the 1 represents 8). Is it possible to represent 12 without the 8? (No, because the remaining bits only add up to 7). Following on with this reasoning, the student will establish that 12 *has to* be represented as 01100.
-
-Another way of showing the uniqueness is to work out how many bit combinations there are. For 5 bits, there are two choices for each bit, so 2x2x2x2x2 (i.e. 32) distinct 5-bit binary numbers. Since the 5-bit binary numbers cover the range from 0 to 31, there are 32 numbers, so there's a one-to-one relationship between all possible bit patterns and all numbers they can represent i.e. each number has a unique representation.
-
-{panel end}
-
-You have probably noticed from the interactive that when set to 1, the leftmost bit (the “most significant bit”) adds 32 to the total, the next adds 16, and then the rest add 8, 4, 2, and 1 respectively. When set to 0, a bit does not add anything to the total. So the idea is to make numbers by adding some or all of 32, 16, 8, 4, 2, and 1 together, and each of those numbers can only be included once.
-
-Rather than just using trial and error to figure out what a decimal number is in binary, could you figure out a systematic approach? Have a look at what 100000 is in binary. What about 011111? Is it possible to make a number over 32 if the most significant bit is set to a 0? Why? And what about 001000 and 000111? Can you see a pattern that would lead to a systematic way of converting decimal numbers to binary? Hint: start with deciding the leftmost bit, and then work along to the right, bit by bit.
-
-So what happens if we have fewer than 6 bits? For example, with 5 bits, the place values would be 16, 8, 4, 2 and 1, so the largest value is 11111 in binary, or 31 in decimal.
-What's the largest value you can store with 4 bits? 3 bits?
-
-{panel type="teacher-note" summary="Answers"}
-
-The largest value with 4 bits is 1111 in binary, or 15 in decimal. For 3 bits (111 in binary) it is 7 in decimal. Try to guide students to noticing that the largest value is one less than what the next bit value would be; for example, in a 6-bit representation, the highest bit value is the 32 (left-most bit), so the total is one less than 64, which is what the next bit would be. In general, with n bits, the highest value is {math}2^(n-1){math end}.
-
-{panel end}
-
-{comment}
-
-.. xtcb add text on using the interactive with different numbers of bits?
-
-{comment end}
-
-What would happen if we have 7 bits instead of 6? The seventh bit would have a value of 64, and it would be possible to store numbers up to 127.
 
 {panel type="teacher-note" summary="Binary pianos"}
-
 The "binary piano" is a simple binary conversion device that can be printed on paper, and enables students to experiment with these concepts physically.
 It can be [downloaded here](files/binary-piano-UC.pdf)
 or as a [4-up version here](files/binary-piano-UC-4up.pdf).
@@ -234,45 +157,97 @@ but it is useful when they want to remember the largest 8-bit value,
 since they can get it by subtracting one from the value of the 9th bit.
 {panel end}
 
-{comment}
+As discussed earlier, computers can only store information using bits, which only have 2 possible states. This means that they cannot represent base 10 numbers using digits 0 to 9, the way we write down numbers in decimal. Instead, they must represent numbers using just 2 digits -- 0 and 1.
 
-.. xtcb  Add links to online resources that also cover this (there are probably more resources covering binary numbers than anything else for high schools!) eg http://www.wikihow.com/Convert-from-Decimal-to-Binary, (the second method), or https://www.khanacademy.org/science/computer-science/v/binary-numbers
-.. see also all the games from Ben's thesis
+Binary works in a very similar way to Decimal, even though it might not initially seem that way. Because there are only 2 digits, this means that each digit is **2** times the value of the one immediately to the right.
 
-  .. Need to give them some examples to work on.   Not giving the answer to these ones, they can figure it out themselves or ignore it.
+{panel type="curiosity" summary="The Denary number system"}
+The base 10 (decimal) system is sometimes called denary, which is more consistent with the the name binary for the base 2 system. The word "denary" also refers to the Roman denarius coin, which was worth ten asses (an "as" was a copper or bronze coin).
+The term "denary" seems to be used mainly in the UK; in the US, Australia and NZ the term "decimal" is more common.
+{panel end}
 
-{comment end}
+The interactive below illustrates how this binary number system represents numbers. Have a play around with it to see what patterns you can see. The decimal (base 10) representation for the binary number currently shown is given by the interactive on the far right.
 
-{panel type="extra-for-experts" summary="Counting in binary"}
+{button link="http://www.csfieldguide.org.nz/releases/1.9.9/_static/widgets/DR/DR-base-conversion/public_html/index.html?base=2&columns=7&lines=A,B,C&offset=0" text="Click for interactive: Base Calculator"}
 
+**To ensure you are understanding correctly how to use the interactive, verify that when you enter the binary number 101101 it shows that the decimal representation is 45, that when you enter 100000 it shows that the decimal representation is 32, and when you enter 001010 it shows the decimal representation is 10.**
+
+{panel type="teacher-note" summary="Using the binary number interactive"}
+With the interactive, students should discover that they can convert a number by working from left to right through the digits, setting the digit to 1, and resetting it to zero if the total is higher than the number being sought. After converting a few numbers they will start to anticipate what to do. This algorithm is fairly intuitive, and discoverable by quite young students. Discovering it for themselves will give a lot of confidence in their ability to convert numbers. If they need some help, get them to set the *left-most* bit to one, and ask if the total is too high. If it is, set the bit back to zero, otherwise leave it as one. Then repeat this for each bit from left to right. For example, for the number 37, the first bit gives a total of 32, which isn't too high; setting the second bit brings the total to 48, which is too high, so it stays at zero; the third bit gives a total of 32+8 = 40, which is too high; the fourth bit gives 32+4 = 36, which is ok, so that bit is a 1. The fifth bit would give 38 (too high), and the sixth bit gives the required 37, giving the binary number 100101. This approach is explained for students later in the text, but it's better if they can discover it for themselves.
+
+There are a lot of interactive games for exploring binary numbers. The following one works in a web browser: [Cisco Binary game](http://forums.cisco.com/CertCom/game/binary_game_page.htm). While there's a limit to the value of being able to make binary conversions, doing a number of them helps student to discover the kinds of patterns that occur in the binary number system.
+
+There is another algorithm for conversion that is often found in textbooks, and it is easier to write a program for, but a little harder for learners. It isn't necessary to explore the concepts of this chapter, but in case a student wants to implement it, the algorithm is to work from right to left; set the right-most bit to one if the decimal number is odd, otherwise set it to zero, then divide the decimal number by 2 (rounding down), and repeat the procedure for the next digit to the left (set it to one if the number is odd, otherwise zero, then divide by 2).  This is repeated until the decimal number has been reduced to zero.
+{panel end}
+
+Find the representations of 4, 7, 12, and 57 using the interactive.
+
+What is the largest number you can make with the interactive? What is the smallest? Is there any integer value in between the biggest and the smallest that you can’t make? Are there any numbers with more than one representation? Why/ why not?
+
+{panel type="spoiler" summary="Largest and smallest numbers"}
+-  000000 in binary, 0 in decimal is the smallest number.
+- 111111 in binary, 63 in decimal is the largest number
+- All the integer values (0, 1, 2... 63) in the range can be represented (and there is a unique representation for each one). This is exactly the same as decimal!
+{panel end}
+
+{panel type="teacher-note" summary="Understanding unique representations"}
+The question of uniqueness will be challenging for some students. It addresses the idea that every number has a unique binary representation; students who struggle with the reasoning may be prepared to just accept that this is the case. However, the following reasoning introduces the idea: have a student work out a 5-bit binary representation for, say, 12 (which is 01100). The left-most 0 represents the 16; ask if it would be possible to represent 12 if that bit is a 1 (it's not possible because you'd already have 16, which is more than 12). Now consider the next bit (the 1 represents 8). Is it possible to represent 12 without the 8? (No, because the remaining bits only add up to 7). Following on with this reasoning, the student will establish that 12 *has to* be represented as 01100.
+
+Another way of showing the uniqueness is to work out how many bit combinations there are. For 5 bits, there are two choices for each bit, so 2x2x2x2x2 (i.e. 32) distinct 5-bit binary numbers. Since the 5-bit binary numbers cover the range from 0 to 31, there are 32 numbers, so there's a one-to-one relationship between all possible bit patterns and all numbers they can represent i.e. each number has a unique representation.
+{panel end}
+
+You have probably noticed from the interactive that when set to 1, the leftmost bit (the “most significant bit”) adds 32 to the total, the next adds 16, and then the rest add 8, 4, 2, and 1 respectively. When set to 0, a bit does not add anything to the total. So the idea is to make numbers by adding some or all of 32, 16, 8, 4, 2, and 1 together, and each of those numbers can only be included once.
+
+{image filename="xkcd-1-to-10.png" alt="If you get an 11/100 on a CS test, but you claim it should be counted as a &#39;C&#39;, they&#39;ll probably decide you deserve the upgrade." source="https://xkcd.com/953/"}
+
+Choose a number less than 61 (perhaps your house number, your age, a friend's age, or the day of the month you were born on), set all the binary digits to zero, and then start with the *left-most* digit (32), trying out if it should be zero or one. See if you can find a method for converting the number without too much trial and error. Try different numbers until you find a quick way of doing this.
+
+Figure out the binary representation for 23 **without** using the interactive? What about 4, 0, and 32? Check all your answers using the interactive to verify they are correct.
+
+{panel type="challenge" summary="Counting in binary"}
 Can you figure out a systematic approach to counting in binary? i.e. start with the number 0, then increment it to 1, then 2, then 3, etc, all the way up to the highest number that can be made with the 7 bits. Try counting from 0 to 16, and see if you can detect a pattern.
 Hint: Think about how you add 1 to a number in base 10. e.g. how do you work out 7 + 1, 38 + 1, 19 + 1, 99 + 1, 230899999 + 1, etc? Can you apply that same idea to binary?
 
 Using your new knowledge of the binary number system, can you figure out a way to count to higher than 10 using your 10 fingers? What is the highest number you can represent using your 10 fingers? What if you included your 10 toes as well (so you have 20 fingers and toes to count with).
-
 {panel end}
 
-{panel type="teacher-note" summary="Extra for experts above"}
-
-For the "extra for experts" above, some students may discover that a binary number can be incremented by starting at the right and flipping all consecutive bits until a 1 comes up (which will be on the very first bit half of the time).
+{panel type="spoiler" summary="Counting in binary"}
+A binary number can be incremented by starting at the right and flipping all consecutive bits until a 1 comes up (which will be on the very first bit half of the time).
 
 Counting on fingers in binary means that you can count to 31 on 5 fingers, and 1023 on 10 fingers. There are a number of videos on YouTube of people counting in binary on their fingers. One twist is to wear white gloves with the numbers 16, 8, 4, 2, 1 on the 5 fingers respectively, which makes it easy to work out the value of having certain fingers raised.
-
 {panel end}
 
-An important concept with binary numbers is the range of values that can be represented using a given number of bits.
-One bit on its own might not seem very useful, but it's enough to store things like the state of a checkbox (checked or not checked).
-When we have 8 bits the binary numbers start to get useful --- they can represent values from 0 to 255, so it is enough to store someone's age, the day of the month, and so on.
+The interactive used exactly 6 bits. In practice, we can use as many or as few bits as we need, just like we do with decimal. For example, with 5 bits, the place values would be 16, 8, 4, 2 and 1, so the largest value is 11111 in binary, or 31 in decimal. Representing 14 with 5 bits would give 01110.
+
+{panel type="Challenge" summary="Representing numbers with bits"}
+Write representations for the following. If it is not possible to do the representation, put "Impossible".
+
+- Represent **101** with **7 bits**
+- Represent **28** with **10 bits**
+- Represent **7** with **3 bits**
+- Represent **18** with **4 bits**
+- Represent **28232** with **16 bits**
+{panel end}
+
+{panel type="spoiler" summary="Answers for above challenge"}
+The answers are (spaces are added to make the answers easier to read, but are not required)
+- 101 with 7 bits is: **110 0101**
+- 28 with 10 bits is: **00 0001 1100**
+- 7 with 3 bits is: **111**
+- 18 with 4 bits is: **Impossible to represent** (not enough bits)
+- 28232 with 16 bits is: 0110 1110 0100 1000
+{panel end}
+
+An important concept with binary numbers is the range of values that can be represented using a given number of bits. When we have 8 bits the binary numbers start to get useful --- they can represent values from 0 to 255, so it is enough to store someone's age, the day of the month, and so on.
 
 {panel type="jargon-buster" summary="What is a byte?"}
-
 Groups of 8 bits are so useful that they have their own name: a **byte**. Computer memory and disk space are usually divided up into bytes, and bigger values are stored using more than one byte. For example, two bytes (16 bits) are enough to store numbers from 0 to 65,535. Four bytes (32 bits) can store numbers up to 4,294,967,295. You can check these numbers by working out the place values of the bits. Every bit that's added will double the range of the number.
-
 {panel end}
 
-{panel type="curiosity" summary="Binary cakes"}
+In practice, computers store numbers with either 16, 32, or 64 bits. This is because these are full numbers of bytes (a byte is 8 bits), and makes it easier for computers to know where each number starts and stops.
 
-Candles on birthday cakes use the base 1 numbering system, where each place is worth 1 times the one to its right(!) For example, the number 3 is 111, and 10 is 1111111111. This can cause problems as you get older --- if you've ever seen a cake with 100 candles on it, you'll be aware that it's a serious fire hazard.
+{panel type="curiosity" summary="Binary cakes -- preventing fires"}
+Candles on birthday cakes use the base 1 numbering system, where each place is worth 1 more than the one to its right. For example, the number 3 is 111, and 10 is 1111111111. This can cause problems as you get older --- if you've ever seen a cake with 100 candles on it, you'll be aware that it's a serious fire hazard.
 
 {image filename="binary-cakes.png" alt="The image shows two people with birthday cakes, however a cake with 100 candles on it turns into a big fireball!"}
 
@@ -281,7 +256,6 @@ Luckily it's possible to use binary notation for birthday candles --- each candl
 There's a [video on using binary notation for counting up to 1023 on your hands, as well as using it for birthday cakes](https://www.youtube.com/watch?v=GUqle9RE3Y8).
 
 {image filename="binary-cake.png" alt="It's a lot smarter to use binary notation on candles for birthdays as you get older, as you don't need as many candles." caption="It's a lot smarter to use binary notation on candles for birthdays as you get older, as you don't need as many candles."}
-
 {panel end}
 
 ### Shorthand for binary numbers
