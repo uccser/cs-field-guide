@@ -700,30 +700,6 @@ English text can easily be represented using ASCII, but what about languages suc
 There are several other codes that were popular before ASCII, including the [Baudot code](https://en.wikipedia.org/wiki/Baudot_code) and [EBCDIC](https://en.wikipedia.org/wiki/EBCDIC). A widely used variant of the Baudot code was the "Murray code", named after New Zealand born inventor [Donald Murray](https://en.wikipedia.org/wiki/Donald_Murray_(inventor\)). One of Murray's significant improvements was to introduce the idea of "control characters", such as the carriage return (new line). The "control" key still exists on modern keyboards.
 {panel end}
 
-### Challenge: Messages hidden in music!
-
-There are messages hidden in this video using a 5-bit representation. See if you can find them! Start by reading the explanation below to ensure you understand what we mean by a 5-bit representation.
-
-{video url="https://www.youtube.com/watch?v=L-v4Awj_p7g"}
-
-If you *only* wanted to represent the 26 letters of the alphabet, and weren’t worried about upper-case or lower-case, you could get away with using just 5 bits, which allows for up to 32 different patterns.
-
-Most kids have exchanged notes which used 1 for "a", 2 for "b", 3 for "c", all the way up to 26 for "z". We can convert those numbers into 5 digit binary numbers. Additionally, you will also get the same 5 bits for each letter by looking at the last 5 bits for it in the ASCII table (and it doesn't matter whether you look at the upper case or the lower case letter).
-
-Represent the word "water" with bits using this system. Check the below panel once you think you have it.
-
-{panel type="spoiler" summary="Representation for water}
-```
-w: 10111
-a: 00001
-t: 10111
-e: 10100
-r: 10010
-```
-{panel end}
-
-**Now, have a go at decoding the music video!**
-
 ### Introduction to Unicode
 
 In practice, we need to be able to represent more than just English characters. To solve this problem, we use a standard called **Unicode**. Unicode is a **character set** with around 120,000 different characters, in many different languages, current and historic. Each character has a unique number assigned to it, making it easy to identify.
@@ -880,6 +856,29 @@ Insert interactive here
 
 As a general rule, UTF-8 is better for English text, and UTF-16 is better for Asian text. UTF-32 always requires 32 bits for each character, so is unpopular in practice.
 
+### Project: Messages hidden in music
+
+There are messages hidden in this video using a 5-bit representation. See if you can find them! Start by reading the explanation below to ensure you understand what we mean by a 5-bit representation.
+
+{video url="https://www.youtube.com/watch?v=L-v4Awj_p7g"}
+
+If you *only* wanted to represent the 26 letters of the alphabet, and weren’t worried about upper-case or lower-case, you could get away with using just 5 bits, which allows for up to 32 different patterns.
+
+Most kids have exchanged notes which used 1 for "a", 2 for "b", 3 for "c", all the way up to 26 for "z". We can convert those numbers into 5 digit binary numbers. Additionally, you will also get the same 5 bits for each letter by looking at the last 5 bits for it in the ASCII table (and it doesn't matter whether you look at the upper case or the lower case letter).
+
+Represent the word "water" with bits using this system. Check the below panel once you think you have it.
+
+{panel type="spoiler" summary="Representation for water}
+```
+w: 10111
+a: 00001
+t: 10111
+e: 10100
+r: 10010
+```
+{panel end}
+
+**Now, have a go at decoding the music video!**
 
 ## Representing images with bits
 
