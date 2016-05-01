@@ -139,7 +139,7 @@ The key ideas to notice from this are:
 
 All this probably sounds really obvious, but it is worth thinking about consciously, because binary numbers have the same properties.
 
-### Representing whole numbers in Binary with 6 bits
+### Representing whole numbers in Binary
 
 {panel type="teacher-note" summary="Teaching binary numbers"
 This subsection is a prerequisite for the colours section, as colour representations are built on simple binary numbers.
@@ -572,7 +572,6 @@ Two's Complement is widely used, because it only has one representation for zero
 There are other systems such as One's Complement and Excess-k, but Two's Complement is by far the most widely used in practice.
 
 ### Representing decimal points and fractions in practice
-
 
 Another type of number used in computer systems is the "floating point" value. While we won't look at it in detail, to get a taste of what's involved, consider the bit values in a 4-bit number, which are 8, 4, 2 and 1. What would the value of a bit *to the right* of the one bit be? And to the right of that one?
 
