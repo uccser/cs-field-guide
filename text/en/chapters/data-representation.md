@@ -325,6 +325,10 @@ In some systems (like the Java and C programming languages and databases) it's p
 
 Some are able to work with arbitrarily large numbers by increasing the space used to store them as necessary (e.g. integers in the Python programming language). However, it is likely that these are still working with a multiple of 32 bits (e.g. 64 bits, 96 bits, 128 bits, 160 bits, etc). Once the number is too big to fit in 32 bits, the computer would reallocate it to have up to 64 bits.
 
+In some programming languages there isn't a check for when a number gets too big (overflows). For example, if you have an 8-bit number using two's complement, then 01111111 is the largest number (127), and if you add one without checking, it will change to 10000000, which happens to be the number -128. This can cause serious problems if not checked for, and is behind a variant of the Y2K problem, called the [Year 2038 problem](https://en.wikipedia.org/wiki/Year_2038_problem), involving a 32-bit number overflowing for dates on Tuesday, 19 January 2038.
+
+{image filename="xkcd-cant-sleep-comic.png" alt="A xkcd comic on number overflow" source="https://xkcd.com/571/"}
+
 On tiny computers, such as those embedded inside your car, washing machine, or a tiny sensor that is barely larger than a grain of sand, we might need to specify more precisely how big a number needs to be. While computers prefer to work with chunks of 32 bits, we could write a program (as an example for an earthquake sensor) that knows the first 7 bits are the lattitude, the next 7 bits are the longitude, the next 10 bits are the depth, and the last 8 bits are the amount of force.
 
 Even on standard computers, it is important to think carefully about the amount of bits you will need. For example, if you have a field in your database that could be either "0", "1", "2", or "3" (perhaps category ID's), and you used a 64 bit number for every one, that will add up as you database grows. If you have 10,000,000 items in your database, you will have wasted 62 bits for each one (only 2 bits is needed to represent the 4 numbers in the example), a total of 620,000,000 bits, which is around 74 MB. If you are doing this a lot in your database, that will really add up.
@@ -363,95 +367,135 @@ It is really useful to know roughly how many bits you will need to represent a c
 4. d (Even 64 bits is not enough!)
 {panel end}
 
-### How many bits are used in practice?
+### Representing negative numbers in practice
 
+The binary number representation we have looked at so far only allows us to represent positive number. In practice, we will want to be able to represent negative numbers as well, such as when the amount of money earned goes to a negative amount, or the temperature falls below zero. In our normal representation of base 10 numbers, we represent negative numbers by putting a minus sign in front of the number.  But in binary, is it this simple?
 
+We will look at two possible approaches: Adding a simple sign bit, much like we do for decimal, and then a special system called Two's Complement.
 
+#### Using a simple sign bit
 
-For example, Excel spreadsheets have a maximum value that can be stored --- try calculating 1/3, and display it to as many places of accuracy as possible.
+On a computer we don’t have minus signs for numbers (we cannot use the text based one when representing a number), but we can do it by allocating one extra bit, called a *sign* bit, to represent the minus sign. Just like with decimal numbers, we should use the leftmost bit as the sign bit --- when the sign bit is set to “0”, that means the number is positive and when the sign bit is set to “1”, the number is negative (just as if there were a minus sign in front of it).
 
-There are two commonly used kinds of numbers: integers and floating point numbers. Integers are what you might know as whole numbers, and can be positive or negative, whereas floating point numbers can have a decimal point in them, and can also be positive or negative. In this section we are just going to focus on integers, as representing floating point numbers is a bit more difficult to understand (but well worth understanding if you use them a lot)!
+For example, if we wanted to represent the number **41** using 7 bits along with an additional bit that is the sign bit (to give a total of 8 bits), we would represent it by **00101001**. The first bit is a 0, meaning the number is positive, then the remaining 7 bits give **41**, meaning the number is **+41**. If we wanted to make **-59**, this would be **10111011**. The first bit is a 1, meaning the number is negative, and then the remaining 7 bits give **59**, meaning the number is **-59**.
 
-The binary number representation in the previous section only allowed us to represent positive numbers. In practice, we will want to be able to represent negative numbers as well (such as when the amount of money earned goes to a negative amount, or the temperature falls below zero!)
-In our normal representation of base 10 numbers, we represent negative numbers by putting a minus sign in front of the number.  
-
-On a computer we don’t have minus signs, but we can do it by allocating one extra bit, called a *sign* bit, to represent the minus sign.
-We can choose the leftmost bit as the sign bit --- when the sign bit is set to “0”, that means the number is positive and when the sign bit is set to “1”, the number is negative (just as if there were a minus sign in front of it).
-For example, if we wanted to represent the number 41 using 6 bits (like above) along with an additional 7th bit that is the sign bit, assuming the sign bit is first, we would represent it by 0101001. The first bit is a 0, meaning the number is positive, then the remaining 6 bits give 41, meaning the number is +41. If we wanted to make -59, this would be 1111011. The first bit is a 1, meaning the number is negative, and then the remaining 6 bits give 59, meaning the number is -59.
-
-{comment}
-
-.. 1 is for negative sign, 0 for positive: https://en.wikipedia.org/wiki/Sign_bit
-
-.. Might put the answers for these in, as there isn’t a certain way for students to check their answers like there was for the above ones.
-
-{comment end}
-
-Using 7 bits as described above (one for the sign, and 6 for the actual number), what would be the binary representations for 1, -1, -8, 34, -37, -88, and 102?
-
-{panel type="teacher-note" summary="Solution"}
-
-Students should have been able to do most of this by converting the rightmost 6 bits as for numbers earlier, and then putting in the correct sign bit. The answers are:
-
-- 1 is 00000001
--  -1 is 10000001
--  -8 is 10001000
--  34 is 00100010
--  -37 is 10100101
--  -88 is 11011000
--  102 is 01100110
-
+{panel type="challenge" summary="Representing negative numbers with sign bit"}
+Using 8 bits as described above (one for the sign, and 7 for the actual number), what would be the binary representations for 1, -1, -8, 34, -37, -88, and 102?
 {panel end}
 
-Suppose we have 8-bit numbers, with the left-most bit as a sign bit. What would the decimal values be for the following 10000110? 01111111? How about 10000000?
+{panel type="spoiler" summary="Representing negative numbers with sign bit"}
+The spaces are not necessary, but are added to make reading the binary numbers easier
 
-{panel type="teacher-note" summary="Solution"}
-
-10000110 is -6, and 01111111 is 127 (the maximum value with 8-bit signed numbers). 10000000 means -0, which is the same as 0, and is discussed below.
-
+-   1  is 0000 0001
+-  -1  is 1000 0001
+-  -8  is 1000 1000
+-  34  is 0010 0010
+-  -37 is 1010 0101
+-  -88 is 1101 1000
+-  102 is 0110 0110
 {panel end}
 
-The representation 10000000 highlights a problem with this notation, as it represents the number -0, which is the same as 0. That is, there are two ways to represent the number 0, which is wasteful, and potentially confusing.
+Going the other way is just as easy. If we have the binary number **10010111**, we know it is negative because the first digit is a 1. The number part is the next 7 bits **0010111**, which is **23**. This means the number is **-23**.
 
-It turns out that there's a notation called "two's complement" for negative numbers, which avoids this wastage, and more importantly, makes it easier to do arithmetic with negative numbers. It's beyond what is needed for this topic, but the following box gives some more information if you'd like to look into it.
-
-
-
-{panel type="teacher-note" summary="Two's complement"}
-
-Note for teachers: While we aren’t providing support for using two’s complement, if you are confident at teaching it, or you have a capable student who can teach it to themselves and can understand it, then representing binary numbers in the way this section explains versus representing them using two’s complement would be 2 different representations of numbers that students can compare. This would be a really good approach if you have a student who is so far ahead that they need an extra challenge!
+{panel type="challenge" summary="Converting binary with sign bit to decimal"}
+What would the decimal values be for the following, assuming that the first bit is a sign bit?
+- 00010011
+- 10000110
+- 10100011
+- 01111111
+- 11111111
 {panel end}
 
-{panel type="extra-for-experts" summary="Two's complement"}
+{panel type="spoiler" summary="Converting binary with sign bit to decimal"}
+- 00010011 is 19
+- 10000110 is -6
+- 10100011 is -35
+- 01111111 is 127
+- 11111111 is -127
+{panel end}
 
-Negative numbers are more often stored on computers using a system called "two's complement". This system makes it very easy to do arithmetic without having to treat negative numbers as a special case, so it's faster and uses less circuitry. The principle is based on a fairly simple idea: for example, in decimal, if you had to subtract the number 4 from a value, it's the same if you add 6 and subtract 10. Using the complement of the number -4 (i.e. 6) plus an indicator that it's negative can make calculations quicker and simpler. A similar approach applies in binary, and it's even easier because there are only two digits. More [information is available here on how negative numbers work](http://www.i-programmer.info/babbages-bag/200-binary-negative-numbers.html?start=1), and also on the [Wikipedia page about two's complement](https://en.wikipedia.org/wiki/Two%27s_complement), although it's quite technical.
+But what about **10000000?** That is **-0**. And **00000000** is **+0**. Obviously, -0 and +0 are both just 0, and it is very strange to have two different representations for the same number.
+
+For this reason, we do not use a simple sign bit in practice. Instead, we use more sophisticated representations of binary numbers, which allow for both positive and negative numbers.
+
+#### Two's Complement
+
+There's an alternative representation called *Two's Complement*, which avoids having two representations for 0, and more importantly, makes it easier to do arithmetic with negative numbers.
+
+**Representing positive numbers with Two's Complement**
+
+Representing positive numbers is the same as the method you have already learnt. Using **8 bits**, **1** would be **00000001**, and 178 would be **10110010**. *No sign bit is used*.
+
+***Representing negative numbers with Two's Complement***
+
+This is where things get more interesting. In order to convert a negative number to its two's complement representation, use the following process.
+1. Convert the number to binary (don't use a sign bit, and pretend it is a positive number).
+2. Invert all the digits (i.e. change 0's to 1's and 1's to 0's).
+3. Add 1 to the result (Think carefully about how a binary number is incremented by 1).
+
+For example, assume we want to convert **-118** to it's Two's Complement representation. We would use the process as follows.
+1. The binary number for **119** is **01110110**
+2. **01110110** with the digits inverted is **10001001**
+3. **10001001 + 1** is **10001010**
+
+Therefore, the Two's Complement representation for **-118** is **10001010**.
+
+{panel type="challenge" summary="Determining the Two's Complement"}
+What would be the two's complement representation for the following numbers, **using 8 bits**? Follow the process given in this section, and remember that you do not need to do anything special for positive numbers.
+1. 19
+2. -19
+3. 107
+4. -107
+5. -92
+{panel end}
+
+{panel type="spoiler" summary="Determining the Two's Complement"}
+1. 19 in binary is **0001 0011**, which is the two's complement for a positive number.
+2. For -19, we take the binary of the positive, which is 0001 0011 (above), invert it to 1110 1100, and add 1, giving a representation of **1110 1101**.
+3. 107 in binary is **0110 1011**, which is the two's complement for a positive number.
+4. For -107, we take the binary of the positive, which is 0110 1011 (above), invert it to 1001 0100, and add 1, giving a representation of **1001 0101**.
+5. For -92, we take the binary of the positive, which is 0101 1100, invert it to 1010 0011, and add 1, giving a representation of **1010 0100**. (If you have this incorrect, double check that you incremented by 1 correctly).
+{panel end}
+
+***Converting a Two's Complement number back to decimal***
+
+In order to reverse the process, we need to know whether the number we are looking at is positive or negative. For positive numbers, we can simply convert the binary number back to decimal. But for negative numbers, we first need to convert it back to a normal binary number.
+
+So how do we know if the number is positive or negative? It turns out (for reasons you will understand later in this section) that Two's Complement numbers that are negative always start in a 1, and positive numbers always start in a 0. Have a look back at the previous examples to double check this.
+
+So, if the number starts with a 1, use the following process to convert the number back to a negative decimal number.
+
+1. Subtract 1 from the number
+2. Invert all the digits
+3. Convert the resulting binary number to decimal
+4. Add a minus sign in front of it.
+
+So if we needed to convert 11100010 back to decimal, we would do the following.
+
+1. Subtract **1** from **11100010**, giving **11100001**.
+2. Invert all the digits, giving **00011110**.
+3. Convert **00011110** to a binary number, giving **30**.
+4. Add a negative sign, giving **-30**.
+
+{panel type="challenge" summary="Reversing Two's Complement"}
+Convert the following Two's Complement numbers to decimal.
+1. 00001100
+2. 10001100
+3. 10111111
+{panel end}
+
+{panel type="spoiler" summary="Reversing Two's Complement"}
+1. **12**
+2. 10001100 -> (-1) 10001011 -> (inversed) 01110100 -> (to decimal) 116 -> (negative sign added) **-116**
+3. 10111111 -> (-1) 10111110 -> (inversed) 01000001 -> (to decimal) 65 -> (negative sign added) **-65**
 {panel end}
 
 
-{panel type="curiosity" summary="Overflow and Y2K"}
+***How many numbers can be represented using Two's Complement?***
 
-In some programming languages there isn't a check for when a number gets too big (overflows). For example, if you have an 8-bit number using two's complement, then 01111111 is the largest number (127), and if you add one without checking, it will change to 10000000, which happens to be the number -128. This can cause serious problems if not checked for, and is behind a variant of the Y2K problem, called the [Year 2038 problem](https://en.wikipedia.org/wiki/Year_2038_problem), involving a 32-bit number overflowing for dates on Tuesday, 19 January 2038.
+While it might initially seem that there is no bit allocated as the sign bit, there actually is. With 8 bits, you can still only make 256 possible patterns of 0's and 1's. If you attempted to use 8 bits to represent positive numbers up to 255, and negative numbers down to -255, you would quickly realise that some numbers were mapped onto the same pattern of bits. Obviously, this will make it impossible to know what number is actually being represented!
 
-{image filename="xkcd-cant-sleep-comic.png" alt="A xkcd comic on number overflow" source="https://xkcd.com/571/"}
-
-{panel end}
-
-Because of the way computer memory is constructed, memory is most commonly used in chunks of  8 bits or 32 bits (or even 64 bits) at a time.  
-That means that if the computer is representing an integer as a binary number with a sign bit, it will commonly use 32 bits, where the first bit is the sign bit, and the other 31 bits represent the value of the number.
-
-In a computer that uses 32 bits for a number, how many different numbers could it represent? What’s the largest number it could represent?  Remember that every bit you add doubles how many numbers you can make. If you double 64 another 25 times (so that it is up to 31 bits), i.e. 128, 256, 512, 1024, 2048.... you get an end result of 2,147,483,648. This means that there 2,147,483,648 numbers that can be represented with 31 bits, the highest of which is 2,147,483,647. This number is just over 2 billion. With the 32nd bit, the sign bit, this means that the number can be positive or negative. This is called a *signed 32 bit integer*. So with the signed 32 bit integer, you can represent any number between -2,147,483,647 and +2,147,483,647.
-
-There is also such thing as a **32 bit *unsigned* integer**. This does not have a signed bit, and the 32nd bit is included as part of the value. As a result, it can represent twice as many positive numbers (but no negative numbers) as the 32 bit *signed* integer above. This would be 4,294,967,296 different numbers, with 4,294,967,295 being the highest.
-
-How many people are in the world?
-Would a 32 bit integer like described above be large enough to store a different identifier number for each person in the world?
-How many bits of accuracy would you want to allow for possible population growth?
-
-{panel type="teacher-note" summary="Solution"}
-
-The world population is approximately 7 billion, so 32 bits isn't quite enough to have an identifier for each person in the world. 64 bits can store up to 18,446,744,073,709,600,000, so that is way more than enough. Since each extra bit doubles the range that can be stored, even 33 bits would be enough for the world population, and 34 bits would be enough even if the population doubles. The idea that one extra bit increases the range so much is an important concept in data representation.
-
-{panel end}
+In practice, numbers within the following ranges can be represented. **Unsigned Range** is how many numbers you can represent if you only allow positive numbers (no sign is needed), and **Signed Range** is how many numbers you can represent if you require both positive and negative numbers.
 
 |      Number     |        Unsigned Range           |                     Signed Range                         |
 |-----------------|---------------------------------|----------------------------------------------------------|
@@ -460,13 +504,75 @@ The world population is approximately 7 billion, so 32 bits isn't quite enough t
 | 32 bit	  | 0 to 4,294,967,295              | −2,147,483,648 to 2,147,483,647                          |
 | 64 bit	  | 0 to 18,446,744,073,709,551,615 | −9,223,372,036,854,775,808 to 9,223,372,036,854,775,807  |
 
-So when you are storing values on a computer with very limited space, you need to be careful to pick a suitable kind of integer that has enough space, but isn’t wasting space. You also need to think about whether or not a number could potentially be negative.
+#### Adding negative binary numbers
 
-Think of a few different examples for different sized integers (both signed and unsigned ones) of a piece of data that you could store in that sized integer. For example, the age of a person could be stored in an 8 bit unsigned integer (people can’t be a negative age!), and the number of students in your school could be stored in an 8 bit or 16 bit integer, depending on how big your school is! What other examples can you think of?
+In school, you probably learnt about column addition. For example, the following column addition would be used to do **128 + 255**.
 
-What are some examples of numbers you could not represent using any of these integers?
+```
+  1   (carries)
+ 128
++255
+----
+ 383
+```
+When you go to add 5 + 8, the result is higher than 9, so you put the 3 in the one's column, and carry the 1 to the 10's column. Binary addition works in exactly the same way.
 
-{panel type="extra-for-experts" summary="Floating point values"}
+***Adding positive binary numbers***
+
+If you wanted to add two positive binary numbers, such as **00001111** and **11001110**, you would follow a similar process to the column addition you did in school.
+
+```
+    111   (carries)
+ 11001110
++00001111
+---------
+ 11011101
+```
+
+Remember that the number can only be 1 or 0. So you will need to carry a 1 to the next column if the total you get for a column is 2 or 3.
+
+***Adding negative numbers with a simple sign bit***
+
+With negative numbers using sign bits like we did before, this does not work. If you wanted to add **+11 (01011)** and **-7 (10111)**, you would expect to get an answer of **+4 (00100)**.
+
+```
+11111 (carries)
+ 01011
++10111
+100010
+```
+
+Which is **-2**.
+
+One way we could solve the problem is to use column subtraction instead. But this would require giving the computer a hardware circuit which could do this. But this is unnecessary, because addition with negative numbers works correctly using Two's Complement!
+
+***Adding negative numbers with Two's Complement***
+
+For the above addition, we can start by converting the numbers to their Two's Complement form. Because **01011 (+11)** is a positive number, it does not need to be changed. But for the negative number, **00111 (-7)** (sign bit from before removed as we don't use it for Two's Complement), we need to invert the digits and then add 1, giving **11001**.
+
+```
+ 01011
+ 11001
+100100
+```
+
+Any extra bits to the left (beyond what we are using, in this case 5 bits) is truncated. This leaves **00100**, which is **4**, like we were expecting.
+
+We can also use this for subtraction. If we are subtracting a positive number from a positive number, we would need to convert the number we are subtracting to a negative number. Then we should add the two numbers. This is the same as for decimal numbers, for example 4 - 2 = 2 is the same as 4 + (-2) = 2.
+
+This property of two's complement is very useful. It means that positive numbers and negative numbers can be handled by the same computer circuit, and addition and subtraction can be treated as the same operation.
+
+
+#### Using sign bits vs using Two's Complement
+
+We have now looked at two different ways of representing negative numbers on a computer. In practice, a simple sign bit is rarely used, because of having two different representations of zero, and requiring a different computer circuit to handle negative and positive numbers, and to do addition and subtraction.
+
+Two's Complement is widely used, because it only has one representation for zero, and it allows positive numbers and negative numbers to be treated in the same way, and addition and subtraction to be treated as one operation.
+
+There are other systems such as One's Complement and Excess-k, but Two's Complement is by far the most widely used in practice.
+
+### Representing decimal points and fractions in practice
+
 
 Another type of number used in computer systems is the "floating point" value. While we won't look at it in detail, to get a taste of what's involved, consider the bit values in a 4-bit number, which are 8, 4, 2 and 1. What would the value of a bit *to the right* of the one bit be? And to the right of that one?
 
@@ -483,25 +589,6 @@ The values to the right of the 1-bit continue to be a half of the value to their
 
 {panel end}
 
-
-### Numbers in programming languages
-
-If you are programming in a language (e.g. Python, Java, C, C++, C#) then the limitations of data representations become important very quickly, as you will have to choose what kind of data representation you want to use, and if it is too small then it can "overflow".
-For example, if you allocate a variable to be stored as a 16 bit unsigned integer, and you are counting how many characters there are in a file, then it will fail after 65,535 characters --- that's just a 65 kilobyte file.
-
-If the amount of memory your computer has to store its data in is very limited (for example, on a small portable device), you might not want to reserve 32 bits for a number if it is never going to be over 100. Or even if there is plenty of memory, if you are storing millions of data values then using 16-bit integers instead of 8-bit integers will waste millions of bytes of memory.
-
-Working out the size of an integer used in a particular programming language may take some investigation, as they are usually declared with names like "int" and "long", which don't say explicitly how many bits they use. For example, in the Java programming language, there is a data type called the "byte", which is an 8-bit integer that includes negative numbers (it goes from -128 to 127), whereas a "short" integer is 16 bits, an "int" is 32 bits, and a "long" is 64 bits. In some cases (such as the "int" type in C) the length of an integer depends on the version of the language of the type of computer it is running on, and in other cases (such as integers in Python) the representation is automatically changed for you if the number gets too big!
-
-### How do binary numbers affect us?
-
-The length of a binary number determines the range of values it can represent. Often on computers we are dealing with text, images and sound rather than numbers, but they do appear in quite a few places, and the accuracy with which they are represented can affect what we can do on a computer.
-
-For example, numbers in spreadsheets usually have a finite precision. Try putting the formula "=1/3" into a spreadsheet, and have it represented with maximum accuracy. How many decimal places does it store? This will be dictated by the number of binary digits that the spreadsheet is storing.
-
-Many programming languages allow the programmer to specify the number of bits used to represent each variable (e.g. in the C language a "short int" is 16 bits or more, and a "long int" is at least 32 bits); if you are working with a language then they could investigate limits on how numbers are represented. Note that some languages, including Python, seamlessly changes the size of the representation of an integer if it gets too large, so it's harder to explore these issues in Python.
-
-Another situation where different numbers of bits in a representation is important is IP (Internet Protocol) and MAC (media access control) addresses for devices; the recent change from IPv4 to IPv6 was driven by the number of devices you could represent, and if you are interested in networks you could explore the number of bits used for an address, and how many possible devices could exist before we run out of numbers.
 
 ## Computers Representing Text
 
