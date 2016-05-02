@@ -5,50 +5,57 @@ this.numberOfBoxes = 15
 this.boxes = []
 this.gameStarted = false;
 this.secondsTaken = 0;
-this.timerVar = setInterval(myTimer, 1000); //executes myTimer every second
-
+this.timerVar;
 
 $(document).ready(function(){
 	generateRandomNumbers();
 	createBoxObjects();
 	createBoxElements();
 
+	$("#restartButton").click(function() {
+		$("#box_holder_div").empty();
+		secondsTaken = 0;
+		gameStarted = false;
+		clearTimeout(timerVar);
+		generateRandomNumbers();
+		createBoxObjects();
+		createBoxElements();
+		$("#restartButton").hide();
+		$("#completionMessage").html("");
+		$("#answerTextForm").val('');
 
-	$(".intHoldingDiv").click(function() {
-		console.log("intHoldingDiv clicked!");
 	})
-	
-	$(".box").click(function() {
-		$(".box").stop(true, true);
-		$(".box").show();
-		for (var i = 0; i < (boxes.length); i++) { 
-			if (document.getElementById('box' + i) ==  event.target) {
-				console.log("BOX MATCHED!");
-				$(this).fadeOut(1000);
-				$(this).fadeIn(1000);
+})
 
-				boxes[i].revealed_times += 1;
-
-				console.log(boxes[i])
-			}
+$(document).on('click','.box', function() {
+	$(".box").stop(true, true);
+	$(".box").show();
+	for (var i = 0; i < (boxes.length); i++) { 
+		if (document.getElementById('box' + i) ==  event.target) {
+			$(this).fadeOut(1000);
+			$(this).fadeIn(1000);
+			boxes[i].revealed_times += 1;
 		}
-
-		//to start timer
+	}
+	//to start timer only if it hasn't started yet
+	if (!gameStarted) {
 		for (var i = boxes.length - 1; i >= 0; i--) {
 			if (boxes[i].revealed_times == 1) {
 				gameStarted = true;
+				timerVar = setInterval(myTimer, 1000); //executes myTimer every second
+
 			}
 		}
-
-	})
-
+	}
 
 })
 
 
+
+
+
 function myTimer() {
 	secondsTaken += 1;
-
 }
 
 function generateRandomNumbers() {
@@ -56,12 +63,11 @@ function generateRandomNumbers() {
 		var currentInt = getRandomInt(300, 800);
 		randomInts[i] = currentInt;
 	}
-	//assign largest of the 5 random ints to largest
 	largest = Math.max.apply(Math, randomInts);
 }
 
 function createBoxElements() {
-	for (var i = 0; i < (boxes.length); i++) {
+	for (var i = 0; i < (numberOfBoxes); i++) {
 		var boxObject; //JS object that will hold the id, int and both elements
 		var currentBox = boxes[i]
 
@@ -133,22 +139,26 @@ function validateForm() {
 
 			//after checking how many times each box has been revealed...
 			if (box_revealed_no_times) {
-				alert("Correct! But you missed a box... Got lucky this time!");
+				$("#completionMessage").html(("Correct! But you missed a box... Got lucky this time!"));
+				$("#restartButton").show();
 			} else if (box_revealed_more_than_once) {
-				alert("Correct! But you could've been more efficient...");
+				$("#completionMessage").html(("Correct! But you could've been more efficient..."));
+				$("#restartButton").show();
 			} else {
-				alert("Correct! You've found how to complete this challenge the most efficient way!\nYour time was "
-					+ secondsTaken + " seconds.");
+				$("#completionMessage").html(("Correct! You've found how to complete this challenge the most efficient way!\nYour time was "
+					+ secondsTaken + " seconds."));
+				$("#restartButton").show();
 			}
 
 			return false; //will use alerts for now to sort out logic	 
 		} else {
-			alert("Incorrect!");
+			$("#completionMessage").html("Incorrect!");
+			$("#restartButton").show();
 			return false;
 		}
 	}
 	//must not be a number if we're here
-	alert("Must input numbers");
+	$("#completionMessage").html(("Must input numbers"));
 	return false;
 }
 

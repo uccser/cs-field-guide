@@ -1,4 +1,7 @@
 
+body {
+}
+
 /* covering boxes */
 div.box {
     width: 100px;
@@ -10,7 +13,7 @@ div.box {
     right: 2rem;
     bottom: 2rem;*/
     /*border-style: solid;*/
-    border-color: #ff0000 #0000ff;
+    /*border-color: #ff0000 #0000ff;*/
     position: relative;
     background-color: white;
     z-index: 3;
@@ -30,11 +33,21 @@ div.intHoldingDiv {
 	display: block;
 	position: absolute; 
 	z-index: 2; /*IF less than div.box THEN THIS DIV IS BEHIND THE OTHER ONE! */
+
+	font-size: 1.5rem;
+	font-weight: bold;
+
 }
 
+/* holds the box and the intHoldingDiv */
 div.boxContainer {
 	width: 100px;
 	height: 100px;
 	float: left;
 	position: relative;
+	/*padding: 1rem;*/
+}
+
+#restartButton {
+	display: none;
 }
