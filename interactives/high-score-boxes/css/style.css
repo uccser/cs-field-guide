@@ -5,13 +5,17 @@ div.box {
     height: 100px;
     /*border: 10px;*/
     float: left;
-    /*padding: 10px; */
+    /*top: 2rem;
+    left: 2rem;
+    right: 2rem;
+    bottom: 2rem;*/
     /*border-style: solid;*/
     border-color: #ff0000 #0000ff;
     position: relative;
     background-color: white;
     z-index: 3;
     background-size: contain;
+
 }
 
 div.intHoldingDiv {

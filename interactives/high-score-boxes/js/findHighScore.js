@@ -1,9 +1,12 @@
 //onload make array of 5 random ints
-//TODO: work out how to put number holding divs 'under' the box divs, then make them slide up
 this.randomInts = [];
 this.largest = 0;
 this.numberOfBoxes = 15
 this.boxes = []
+this.gameStarted = false;
+this.secondsTaken = 0;
+this.timerVar = setInterval(myTimer, 1000); //executes myTimer every second
+
 
 $(document).ready(function(){
 	generateRandomNumbers();
@@ -25,13 +28,29 @@ $(document).ready(function(){
 				$(this).fadeIn(1000);
 
 				boxes[i].revealed_times += 1;
-				console.log(boxes[i])
 
+				console.log(boxes[i])
 			}
-		}	
+		}
+
+		//to start timer
+		for (var i = boxes.length - 1; i >= 0; i--) {
+			if (boxes[i].revealed_times == 1) {
+				gameStarted = true;
+			}
+		}
+
 	})
 
+
 })
+
+
+function myTimer() {
+	secondsTaken += 1;
+
+}
+
 function generateRandomNumbers() {
 		for (var i = 0; i < (numberOfBoxes); i++) {
 		var currentInt = getRandomInt(300, 800);
@@ -93,14 +112,6 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
-//timing related things!
-function pad ( val ) { return val > 9 ? val : "0" + val; }
-
-setInterval( function(){
-    $("#seconds").html(pad(++sec%60));
-    $("#minutes").html(pad(parseInt(sec/60,10)));
-}, 1000);
-
 //form validation
 function validateForm() {
     var x = document.forms["myForm"]["submittedInt"].value;
@@ -126,7 +137,8 @@ function validateForm() {
 			} else if (box_revealed_more_than_once) {
 				alert("Correct! But you could've been more efficient...");
 			} else {
-				alert("Correct! You've found how to complete this challenge the most efficient way!");
+				alert("Correct! You've found how to complete this challenge the most efficient way!\nYour time was "
+					+ secondsTaken + " seconds.");
 			}
 
 			return false; //will use alerts for now to sort out logic	 
