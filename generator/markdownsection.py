@@ -222,7 +222,7 @@ class Section:
                     caption_html = self.html_templates['link'].format(link_url=caption_link_value, link_text=caption_value)
                 else:
                     caption_html = caption_value
-                # Add caption as data value attribute to display in materialbox
+                # Add caption as data value attribute to display in lightbox
                 parameters += ' '
                 parameters += self.html_templates['image-caption-data-value'].format(caption=caption_value)
 
