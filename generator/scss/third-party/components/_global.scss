@@ -134,13 +134,13 @@ video.responsive-video {
   cursor: zoom-in;
 }
 
-// Featherlight plugin
+// Featherlight plugin style overrides
 .featherlight-content {
-  // Hide the white border around the image
+  cursor: zoom-out !important;
+
+  // Hide the image border and close button
   padding: 0 !important;
   border-bottom: none !important;
-
-  // Hide the close button
   .featherlight-close-icon {
     display: none !important;
   }
