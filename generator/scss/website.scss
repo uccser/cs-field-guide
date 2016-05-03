@@ -280,6 +280,12 @@ ul.panel {
   .collapsible-body {
     border: none;
     padding: 0 1rem;
+    ol > li {
+      list-style-type: decimal;
+    }
+    ul > li {
+      list-style-type: disc;
+    }
   }
 
   // Custom panel colours
