@@ -131,6 +131,19 @@ img.responsive-img,
 video.responsive-video {
   max-width: 100%;
   height: auto;
+  cursor: zoom-in;
+}
+
+// Featherlight plugin
+.featherlight-content {
+  // Hide the white border around the image
+  padding: 0 !important;
+  border-bottom: none !important;
+
+  // Hide the close button
+  .featherlight-close-icon {
+    display: none !important;
+  }
 }
 
 
