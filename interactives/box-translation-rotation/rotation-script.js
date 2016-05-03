@@ -1,8 +1,5 @@
 document.title = 'Graphics Rotation - CSFG';
 
-// change transformation title to 'Rotation'
-document.getElementById( 'transformation-title' ).innerHTML = 'Rotation';
-
 function moveBox() {
     /* triggered when the user hits the "enter" (or "return") key
      * rotates the cube to match the the values inputted by the user

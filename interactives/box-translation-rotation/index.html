@@ -12,13 +12,20 @@
         <div id="container">
             <div id="user-input">
                 <div id="coordinates">
-                    <h2 id="transformation-title"></h2>
-                    <label>X:<input type="text" id="x-coordinate" autofocus/></label>
-                    <label>Y:<input type="text" id="y-coordinate"/></label>
-                    <label>Z:<input type="text" id="z-coordinate"/></label>
+                    <div id="desktop-coord">
+                        <p>Type in different values of x, y and z to make the box move so you can see all the different sides.</p>
+                        <label>X:<input type="text" id="x-coordinate" autofocus/></label>
+                        <label>Y:<input type="text" id="y-coordinate"/></label>
+                        <label>Z:<input type="text" id="z-coordinate"/></label>
+                    </div>
+                    <div id="mobile-coord" class="mob-buttons">
+                        <p>Use the buttons to change the values of x, y and z to make the box move so you can see all the different sides.</p>
+                        <div id="mob-x">X<button>-</button><input type="text" id="x-coordinate"/><button>+</button></div>
+                        <div id="mob-y">Y<button>-</button><input type="text" id="y-coordinate"/><button>+</button></div>
+                        <div id="mob-z">Z<button>-</button><input type="text" id="z-coordinate"/><button>+</button></div>
+                    </div>
                 </div>
                 <div id="code">
-                    <h2>Secret Code</h2>
                     <p id="question">Which of the symbols is coloured on the box?</p>
                     <div id="symbol-grid">
                         <div class="row">
@@ -59,8 +66,6 @@
         <!-- custom code for interactive -->
         <script src="common.js"></script>
         <script src="translation-script.js"></script>
-
-
 
     </body>
 </html>
