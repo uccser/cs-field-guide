@@ -333,3 +333,27 @@ body.landing-page {
 .video-container {
   margin-top: 1rem;
 }
+// Images
+img.responsive-img {
+  cursor: zoom-in;
+}
+.featherlight {
+  cursor: zoom-out !important;
+}
+.featherlight-content {
+  background-color: transparent !important;
+
+  // Hide the image border and close button
+  padding: 0 !important;
+  border: 0 !important;
+  .featherlight-close-icon {
+    display: none !important;
+  }
+
+  // Prevent image overflowing its container
+  img {
+    max-width: 94%;
+    max-height: 94%;
+    margin: 0;
+  }
+}
