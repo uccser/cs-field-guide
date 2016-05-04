@@ -413,19 +413,7 @@ The following text can be used to include images into the project:
 - `caption-link` (optional - requires `caption` parameter) - Turns the caption text into a link to the given URL.
 - `source` (optional) - Adds a 'Image source' link under the image, and after the caption if a caption is given. Does not appear under images within an `image-set`.
 
-Images are displayed responsively, and expand to full size when clicked by the user.
-
-A set of images can be included and displayed side by side using the following syntax (currently not supported in 2.0):
-
-```
-{image-set}
-{image filename="example-1.png"}
-{image filename="example-2.png"}
-{image filename="example-3.png" alt="This is a description"}
-{image-set end}
-```
-
-The wrap parameter is ignored in an `image-set`.
+Images are displayed responsively, and expand to full size in a lightbox when clicked by the user.
 
 ---
 
