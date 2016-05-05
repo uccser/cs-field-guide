@@ -113,7 +113,7 @@ The number system that humans normally use is in base 10 (also known as decimal)
 
 In decimal, the value of each digit in a number depends on its **place** in the number. For example, in $123, the 3 represents $3, whereas the 1 represents $100. Each place value in a number is worth 10 times more than the place value to its right, i.e. there are the “ones”, the “tens”, the “hundreds”, the “thousands” the “ten thousands”, the “hundred thousands”, the “millions”, and so on. Also, there are 10 different **digits** (0,1,2,3,4,5,6,7,8,9) that can be at each of those place values.
 
-If you were only able to use one digit to represent a number, then the largest number would be 9. After that, you need a second digit, which goes to the left, giving you the next ten numbers (10, 11, 12... 19). It's because we have 10 digits that each one is worth 10 times as much as the one it its right.
+If you were only able to use one digit to represent a number, then the largest number would be 9. After that, you need a second digit, which goes to the left, giving you the next ten numbers (10, 11, 12... 19). It's because we have 10 digits that each one is worth 10 times as much as the one to its right.
 
 You may have encountered different ways of expressing numbers using “expanded form”. For example, if you want to write the number 90328 in expanded form you might have written it as:
 
@@ -131,10 +131,10 @@ Remember that any number to the power of 0 is 1. i.e. the 8 x {math}10^0{math en
 The key ideas to notice from this are:
 
 - Decimal has 10 **digits** -- 0, 1, 2, 3, 4, 5, 6, 7, 8, 9.
-- A **place** is the place in the number that a digit is, i.e. ones, tens, hundreds, thousands, etc.
-- Numbers are made with a list of digits.
-- The digit on the right is the one that's worth the least.
-- The digit on the left is the one that's worth the most.
+- A **place** is the place in the number that a digit is, i.e. ones, tens, hundreds, thousands, and so on. For example, in the number 90328, 3 is in the "hundreds" place, 2 is in the "tens" place, and 9 is in the "ten thousands" place.
+- Numbers are made with a sequence of digits.
+- The right-most digit is the one that's worth the least (in the "ones" place).
+- The left-most digit is the one that's worth the most.
 - Because we have 10 digits, the digit at each place is worth 10 times as much as the one immediately to the right of it.
 
 All this probably sounds really obvious, but it is worth thinking about consciously, because binary numbers have the same properties.
@@ -166,7 +166,7 @@ The base 10 (decimal) system is sometimes called denary, which is more consisten
 The term "denary" seems to be used mainly in the UK; in the US, Australia and NZ the term "decimal" is more common.
 {panel end}
 
-The interactive below illustrates how this binary number system represents numbers. Have a play around with it to see what patterns you can see. The decimal (base 10) representation for the binary number currently shown is given by the interactive on the far right.
+The interactive below illustrates how this binary number system represents numbers. Have a play around with it to see what patterns you can see.
 
 {button link="http://www.csfieldguide.org.nz/releases/1.9.9/_static/widgets/DR/DR-base-conversion/public_html/index.html?base=2&columns=7&lines=A,B,C&offset=0" text="Click for interactive: Base Calculator"}
 
@@ -422,7 +422,7 @@ For this reason, we do not use a simple sign bit in practice. Instead, we use mo
 
 There's an alternative representation called *Two's Complement*, which avoids having two representations for 0, and more importantly, makes it easier to do arithmetic with negative numbers.
 
-**Representing positive numbers with Two's Complement**
+***Representing positive numbers with Two's Complement***
 
 Representing positive numbers is the same as the method you have already learnt. Using **8 bits**, **1** would be **00000001**, and 178 would be **10110010**. *No sign bit is used*.
 
@@ -434,7 +434,7 @@ This is where things get more interesting. In order to convert a negative number
 3. Add 1 to the result (Think carefully about how a binary number is incremented by 1).
 
 For example, assume we want to convert **-118** to it's Two's Complement representation. We would use the process as follows.
-1. The binary number for **119** is **01110110**
+1. The binary number for **118** is **01110110**
 2. **01110110** with the digits inverted is **10001001**
 3. **10001001 + 1** is **10001010**
 
@@ -560,7 +560,7 @@ Any extra bits to the left (beyond what we are using, in this case 5 bits) is tr
 
 We can also use this for subtraction. If we are subtracting a positive number from a positive number, we would need to convert the number we are subtracting to a negative number. Then we should add the two numbers. This is the same as for decimal numbers, for example 4 - 2 = 2 is the same as 4 + (-2) = 2.
 
-This property of two's complement is very useful. It means that positive numbers and negative numbers can be handled by the same computer circuit, and addition and subtraction can be treated as the same operation.
+This property of Two's Complement is very useful. It means that positive numbers and negative numbers can be handled by the same computer circuit, and addition and subtraction can be treated as the same operation.
 
 
 #### Using sign bits vs using Two's Complement
