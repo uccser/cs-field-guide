@@ -723,10 +723,6 @@ The following interactive will allow you to explore the Unicode character set. E
 
 {interactive name="unicode-chars" type="in-page"}
 
-{comment}
-Insert the simple Unicode interactive here
-{comment end}
-
 The most widely used Unicode encoding schemes are called UTF-8, UTF-16, and UTF-32;
 you may have seen these names in email headers or describing a text file.
 Some of the Unicode encoding schemes are **fixed length**, and some are **variable length**.
@@ -853,6 +849,10 @@ Just like UTF-8, UTF-16 is a **variable length** encoding scheme for Unicode. Be
 
 However, the following interactive will allow you to represent text with UTF-16. Try putting some text that is in English and some text that is in Japanese into it. Compare the representations to what you get with UTF-8.
 
+{comment}
+Insert UTF-16 interactive here
+{comment end}
+
 ### Comparison of text representations
 
 We have looked at ASCII, UTF-32, UTF-8, and UTF-16.
@@ -877,7 +877,7 @@ But for the second criteria, it isn't so simple.
 The following interactive will allow you to find out the length of pieces of text using UTF-8, UTF-16, or UTF-32. Find some samples of English text and Asian text (forums or a translation site are a good place to look), and see how long your various samples are when encoded with each of the three representations.
 
 {comment}
-Insert interactive here
+Insert interactive here which determines the length of a piece of text with each representation
 {comment end}
 
 As a general rule, UTF-8 is better for English text, and UTF-16 is better for Asian text. UTF-32 always requires 32 bits for each character, so is unpopular in practice.
