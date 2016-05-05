@@ -29,7 +29,7 @@ Understanding what the bits are doing enables you to work out how much space wil
 
 This chapter is about some of the different methods that computers use to code different kinds of information in patterns of these bits, and how this affects the cost and quality of what we do on the computer, or even if something is feasible at all.
 
-## Getting Started - Braille
+## Getting Started
 
 To begin with, we'll look at Braille. Braille is not actually a way that computers represent data, but is a great introduction to the topic.
 
@@ -95,7 +95,7 @@ There's a more in-depth discussion on why we use binary here:
 {panel end}
 
 
-## Computers representing numbers
+## Numbers
 
 {panel type="teacher-note" summary="CS Unplugged activity"}
 If you are doing a warm up exercise with the class, the CS Unplugged binary activity [http://csunplugged.org/binary-numbers](http://csunplugged.org/binary-numbers) provides scaffolding and can be used to teach concepts around binary numbers using only counting or simple addition.  In the chapter we have decided to approach this section by starting with number systems. While this may appear “scary” because of the math, most students should be quite familiar with it as it is first introduced very early in primary school in the form of recognising that numbers are made up of the “ones”, “tens”, “hundreds”, etc, and is further built on until eventually in high school they learn about the exponent notation, i.e. {math}541 = 5 \times 10^2 + 4 \times 10^1 + 1 \times 10^0{math end}. As explained in this section, binary numbers are a base 2 number system, rather than the base 10 number system we are all familiar with. The idea of number systems provides a good stepping stone into binary numbers
@@ -595,7 +595,7 @@ The values to the right of the 1-bit continue to be a half of the value to their
 
 {comment end}
 
-## Computers Representing Text
+## Text
 
 There are several different ways in which computers use bits to store text. In this section, we will look at some common ones and then look at the pros and cons of each representation.
 
@@ -921,7 +921,7 @@ The song itself talks about how it is a form of "steganography", a term that stu
 {panel end}
 
 
-## Representing images with bits
+## Images and Colours
 
 ### How do computers display colours?
 
@@ -989,7 +989,7 @@ If you zoom in far enough, the interactive will show you the red-green-blue valu
 Another exercise to see the relationship between bit patterns and colour images is [provided here](https://sites.google.com/a/bxs.org.uk/mrkershaw/ict/bitmapgraphics).
 {panel end}
 
-### Representing high quality images using bits
+### Representing a colour with bits
 
 The next thing we need to look at is how bits are used to represent each colour in a high quality image. Firstly, how many bits do we need? Secondly, how should we decide the values of each of those bits? This section will work through those problems.
 
@@ -1076,7 +1076,7 @@ For example, #000000 has zero for red, green and blue, so setting a higher value
 You could use an HTML page to experiment with hexadecimal colours.
 {panel end}
 
-### Representing colours using fewer bits
+### Representing colours with fewer bits
 
 What if we were to use fewer than 24 bits to represent each colour? How much space will be saved, compared to the impact on the image?
 
