@@ -620,7 +620,7 @@ In the previous section, we explained what happens when the number of dots was i
 {panel end}
 
 
-Each pattern in ASCII is usually stored in 8 bits, with one wasted bit, rather than 7 bits. However, the first bit in each 8-bit pattern is a 0, meaning there are still only 128 possible patterns. 8 bits on a computer is called a **byte**, and where possible we prefer to deal with full bytes. This is why ASCII has an extra wasted bit.
+Each pattern in ASCII is usually stored in 8 bits, with one wasted bit, rather than 7 bits. However, the left-most bit in each 8-bit pattern is a 0, meaning there are still only 128 possible patterns. Where possible, we prefer to deal with  full bytes (8 bits) on a computer, this is why ASCII has an extra wasted bit.
 
 Here is a table that shows the patterns of bits that ASCII uses for each of the characters.
 
