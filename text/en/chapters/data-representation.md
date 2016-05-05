@@ -721,7 +721,7 @@ Unicode itself is not a representation -- it is a character set. In order to rep
 
 The following interactive will allow you to explore the Unicode character set. Enter a number in the box on the left to see what Unicode character corresponds to it, or enter a character on the right to see what its Unicode number is (you could paste one in from a foreign language web page to see what happens with non-English characters).
 
-{interactive name="Unicode-chars" type="in-page"}
+{interactive name="unicode-chars" type="in-page"}
 
 {comment}
 Insert the simple Unicode interactive here
