@@ -79,6 +79,7 @@ This project is the result of contributions from a large community of Computer S
 - Cornel Punga ([ner0x652](https://github.com/ner0x652))
 - Alan Hogan ([alanhogan](https://github.com/alanhogan))
 - Steven Maude ([StevenMaude](https://github.com/StevenMaude))
+- Rúben Enes ([rdpse](https://github.com/rdpse))
 
 **Note:** If there is an error in the list, please contact [Jack Morgan](mailto:jack.morgan@canterbury.ac.nz)
 

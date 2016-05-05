@@ -38,7 +38,7 @@ Some advanced concepts in formal languages even used to explore limits of what c
 
 Once you're familiar with the idea of formal languages, you'll possess a powerful tool for cutting complex systems down to size using an easily specified format.
 
-{image filename="xkcd-tags.png" alt="A xkcd cartoon comment on HTML tags" source="https://xkcd.com/1144/"}
+{image filename="xkcd-tags.png" hover-text="<A>: Like </a>this." alt="A xkcd cartoon comment on HTML tags" source="https://xkcd.com/1144/"}
 
 ## Getting started
 
@@ -900,7 +900,7 @@ Here are two fairly simple solutions for email addresses, but more refined ones 
 
 {panel end}
 
-{image filename="xkcd-regular-expressions.png" alt="A xkcd cartoon comment on regular expressions" source="https://xkcd.com/208/"}
+{image filename="xkcd-regular-expressions.png" hover-text="Wait, forgot to escape a space.  Wheeeeee[taptaptap]eeeeee." alt="A xkcd cartoon comment on regular expressions" source="https://xkcd.com/208/"}
 
 Regular expressions are useful!
 

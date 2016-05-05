@@ -1129,7 +1129,7 @@ The extreme values are very limited; two-bit colour can have only 4 different co
 
 {panel end}
 
-**Note:** The interactive here has not been updated to the new system. Please [view the interactives on the Data Representation page](http://www.csfieldguide.org.nz/releases/1.9.9/DataRepresentation.html) on the older version of the CSFG. We are currently in the process of updating these interactives for release.
+{interactive name="image-bit-comparer" type="whole-page" text="Image Bit Comparer"}
 
 So is it worth the space saving to put up with a lower quality image?
 An image represented using 24 bit colour would have 24 bits per pixel. In 600 x 800 pixel image (which is a reasonable size for a photo), this would contain 600 x 800 = 480,000 pixels, and thus would use 480,000 x 24 bits = 11,520,000 bits. This works out to around 1.44 megabytes.
@@ -1154,7 +1154,7 @@ For the purposes of the New Zealand NCEA standards, reducing the bit depth of an
 Now that you know how the 24 bit and 8 bit colour schemes work and how to represent them using bits, what are the implications of this in practice?
 The following interactive can be used to upload your own image, and experiment with allocating different numbers of bits to each colour. You can use it to demonstrate the effect of the different numbers of bits for this data representation.
 
-**Note:** The interactive here has not been updated to the new system. Please [view the interactives on the Data Representation page](http://www.csfieldguide.org.nz/releases/1.9.9/DataRepresentation.html) on the older version of the CSFG. We are currently in the process of updating these interactives for release.
+{interactive name="image-bit-comparer" type="whole-page" text="Image Bit Comparer - Change Bits mode" parameters="change-bits=true"}
 
 {comment}
 
@@ -1177,7 +1177,6 @@ The chapter does not (yet) cover other forms of data representation, and you may
 .. sound: http://code.org/files/CSEDbinary.pdf
 
 {comment end}
-
 
 ## The whole story!
 
