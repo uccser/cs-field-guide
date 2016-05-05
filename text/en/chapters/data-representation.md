@@ -1048,6 +1048,8 @@ The computer won’t ever convert the number into decimal, as it works with the 
 
 
 {panel type="curiosity" summary="Hexadecimal colour codes"}
+If you haven't already, read the section on [Hexadecimal](chapters/data-representation.html#shorthand-for-binary-numbers---hexadecimal), otherwise this section might not make sense!
+
 When writing HTML code, you often need to specify colours for text, backgrounds, and so on. One way of doing this is to specify the colour name, for example “red”, “blue”, “purple”, or “gold”. For some purposes, this is okay.
 
 However, the use of names limits the number of colours you can represent and the shade might not be exactly the one you wanted. A better way is to specify the 24 bit colour directly. Because 24 binary digits are hard to read, colours in HTML use **hexadecimal codes** as a quick way to write the 24 bits, for example #00FF9E. The hash sign means that it should be interpreted as a hexadecimal representation, and since each hexadecimal digit corresponds to 4 bits, the 6 digits represent 24 bits of colour information.
@@ -1058,7 +1060,7 @@ In the 24 bit colour example earlier, the 24 bit pattern was 1001000100110010011
 
 This can be broken up into groups of 4 bits:  1001   0001   0011   0010   0111   1011.
 
-And now, each of these groups of 4 bits will need to be represented with a digit.
+And now, each of these groups of 4 bits will need to be represented with a **hexadecimal** digit.
 
 - 1001 -> 5
 - 0001 -> 1
