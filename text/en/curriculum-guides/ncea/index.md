@@ -62,7 +62,7 @@ For Achieved, students will only need to choose 1 guide. The guides cover 2 data
 
 For Merit/ Excellence, students will need to choose 2 guides. Each guide covers 1 different data representation topic.
 
-- [Representing Data - Representing text with bits using ASCII and Unicode based representations (Merit/Excellence)](curriculum-guides/ncea/assessment-guide-level-2-excellence-data-representation-text.html)
+- [Representing Text - Unicode (Merit/Excellence)](curriculum-guides/ncea/assessment-guide-level-2-excellence-data-representation-text.html)
 
 
 ### Encoding

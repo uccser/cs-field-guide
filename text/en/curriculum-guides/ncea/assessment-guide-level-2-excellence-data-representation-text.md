@@ -20,9 +20,10 @@ As with all externally assessed reports, you should base your explanations aroun
 
 ## Reading from the Computer Science Field Guide
 
-You should read and work through the interactives in the following sections of the CS Field Guide in order to prepare yourself for the assessed project.
+You should read and work through the interactives in the following sections of the CS Field Guide in order to prepare yourself for the assessed project. Note that while you do not need to write about ASCII in this project, it is assumed you have a solid understanding of ASCII.
 
-TODO (we need to refactor this chapter)
+- [Representing whole numbers with Binary](chapters/data-representation.html#representing-whole-numbers-in-binary) - Most other representations are based on binary number representations, so understanding these first is essential. You only need to understand the material in this subsection.
+- [Represeting Text](chapters/data-representation.html#text) - You should read this entire section carefully. It is central to the project.
 
 ## Project
 
@@ -36,28 +37,17 @@ Start the data representation section of your report by writing an introduction 
 
 This explanation must be in your own words, based on what you understood in class (e.g. do not paraphrase a definition).
 
-### Representing text with ASCII
-
-***Note that this section should be short. ASCII is no longer widely used, for reasons you will explain. You are only using it to ensure you have covered the Achieved criteria and to give you a starting point for Unicode. Unicode will be the main part of this project.***
-
-This section will be around ½ of a page in your report.
-
-Start by explaining what ASCII is (no more than 1 - 2 sentences). You should **not** include an ASCII table -- this adds nothing of value to your report.
-
-Show how your first name is repesented with bits using ASCII.
-
-Explain why ASCII is no longer widely used in practice (no more than 2 - 3 sentences).
-
 ### Representing text with various Unicode systems
 
 ***This is the main part of your project.***
 
-This section will be around 1½ pages in your report. There are 4 parts to it.
+This section will be around 1½ pages in your report. There are 5 parts to it.
 
 1. Introducing the idea of Unicode and UTF (up to ½ of a page).
 2. Showing your text samples.
-3. Showing how 1 character from each text sample can be represented with UTF-8
-4. Comparing the representation size of each text sample using UTF-8, UTF-16 and UTF-32, and explaining your findings.
+3. Showing how 1 character from each text sample can be represented with UTF-32
+4. Showing how 1 character from each text sample can be represented with UTF-8
+5. Comparing the representation size of each text sample using UTF-8, UTF-16 and UTF-32, and explaining your findings.
 
 **Choosing the text samples**
 
@@ -76,6 +66,10 @@ If you are confused, reread the Unicode section in the CS Field Guide or ask you
 #### Include your text samples
 
 Show your text samples. Explain that you are going to be using them to explain the concepts in your report.
+
+#### Showing examples of UTF-32 representation
+
+Show how the first character in each of your samples is represented using UTF-32. Briefly explain what UTF-32 does.
 
 #### Showing examples of UTF-8 representation
 
