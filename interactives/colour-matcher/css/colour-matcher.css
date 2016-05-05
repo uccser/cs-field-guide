@@ -1,14 +1,18 @@
+/* Distance between bottom of slider and pips */
 #interactive-colour-matcher .noUi-pips {
-  padding-top: 5px;
+  padding-top: 0px;
 }
-.interactive-colour-matcher-sliders > div {
-  padding-bottom: 5rem;
+/* Size of large pips */
+#interactive-colour-matcher .noUi-marker-horizontal.noUi-marker-large {
+  height: 10px;
 }
-.interactive-colour-matcher-sliders > div:last-child {
+/* Distance between pips and their values */
+#interactive-colour-matcher .noUi-value-horizontal {
+  padding-top: 10px;
+}
+/* Distance between sliders */
+#interactive-colour-matcher  .interactive-colour-matcher-sliders > div {
   padding-bottom: 3rem;
-}
-.interactive-rgb-mixer-slider {
-  margin-top: 0.2rem;
 }
 .interactive-colour-matcher-row {
   padding-bottom: 1rem;
@@ -22,35 +26,14 @@
 }
 #interactive-colour-matcher-results {
   display: flex;
-  align-content: stretch;
-  flex-wrap: wrap;
 }
 .interactive-colour-matcher-result {
+  flex: 1 1 auto;
   text-align: center;
 	background: rgb(127, 127, 127);
   color: white;
   font-size: 1.5rem;
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-}
-#interactive-colour-matcher-goal,
-#interactive-colour-matcher-8-bit-result {
-  box-shadow: 0 3px 3px 0 rgba(0,0,0,0.18),0 7px 7px 0 rgba(0,0,0,0.15);
-}
-#interactive-colour-matcher-goal {
-  flex: 0 1 100%;
-  border-bottom-right-radius: 10px;
-  border-bottom-left-radius: 10px;
-  z-index: 2;
-}
-#interactive-colour-matcher-8-bit-result {
-  flex: 0 1 50%;
-  border-top-right-radius: 10px;
-  z-index: 1;
-}
-#interactive-colour-matcher-24-bit-result {
-  flex: 0 1 50%;
-  border-top-left-radius: 10px;
-  z-index: 3;
 }
 /* RGB colours */
 div.interactive-colour-matcher-sliders > div:nth-child(1) > div.interactive-colour-matcher-slider {
