@@ -331,7 +331,7 @@ In some programming languages there isn't a check for when a number gets too big
 
 On tiny computers, such as those embedded inside your car, washing machine, or a tiny sensor that is barely larger than a grain of sand, we might need to specify more precisely how big a number needs to be. While computers prefer to work with chunks of 32 bits, we could write a program (as an example for an earthquake sensor) that knows the first 7 bits are the lattitude, the next 7 bits are the longitude, the next 10 bits are the depth, and the last 8 bits are the amount of force.
 
-Even on standard computers, it is important to think carefully about the amount of bits you will need. For example, if you have a field in your database that could be either "0", "1", "2", or "3" (perhaps category ID's), and you used a 64 bit number for every one, that will add up as you database grows. If you have 10,000,000 items in your database, you will have wasted 62 bits for each one (only 2 bits is needed to represent the 4 numbers in the example), a total of 620,000,000 bits, which is around 74 MB. If you are doing this a lot in your database, that will really add up.
+Even on standard computers, it is important to think carefully about the number of bits you will need. For example, if you have a field in your database that could be either "0", "1", "2", or "3" (perhaps representing the four bases that can occur in a DNA sequence), and you used a 64 bit number for every one, that will add up as your database grows. If you have 10,000,000 items in your database, you will have wasted 62 bits for each one (only 2 bits is needed to represent the 4 numbers in the example), a total of 620,000,000 bits, which is around 74 MB. If you are doing this a lot in your database, that will really add up -- human DNA has about 3 billion base pairs in it, so it's incredibly wasteful to use more than 2 bits for each one.
 
 And for applications such as Google Maps, which are storing an astronomical amount of data, wasting space is not an option at all!
 
@@ -361,10 +361,10 @@ It is really useful to know roughly how many bits you will need to represent a c
 {panel end}
 
 {panel type="spoiler" summary="Answers for above challenge"}
-1. b
+1. b (actually, 3 bits is enough as it gives 8 values, but amounts that fit evenly into 8-bit bytes are easier to work with)
 2. c (32 bits is slightly too small, so you will need 64 bits)
-3. c (This is a challenging question, but one a database designer would have to think about. 32 bits would be the safest bet)
-4. d (Even 64 bits is not enough!)
+3. c (This is a challenging question, but one a database designer would have to think about. There's about 94,000 km of roads in NZ, so if the average length of a road was 1km, there would be too many roads for 16 bits. Either way, 32 bits would be a safe bet.)
+4. d (Even 64 bits is not enough, but 128 bits is plenty! Remember that 128 bits isn't twice the range of 64 bits.)
 {panel end}
 
 ### Representing negative numbers in practice
@@ -375,7 +375,7 @@ We will look at two possible approaches: Adding a simple sign bit, much like we 
 
 #### Using a simple sign bit
 
-On a computer we don’t have minus signs for numbers (we cannot use the text based one when representing a number), but we can do it by allocating one extra bit, called a *sign* bit, to represent the minus sign. Just like with decimal numbers, we should use the leftmost bit as the sign bit --- when the sign bit is set to “0”, that means the number is positive and when the sign bit is set to “1”, the number is negative (just as if there were a minus sign in front of it).
+On a computer we don’t have minus signs for numbers (it doesn't work very well to use the text based one when representing a number because you can't do arithmetic on characters), but we can do it by allocating one extra bit, called a *sign* bit, to represent the minus sign. Just like with decimal numbers, we should use the leftmost bit as the sign bit --- when the sign bit is set to “0”, that means the number is positive and when the sign bit is set to “1”, the number is negative (just as if there were a minus sign in front of it).
 
 For example, if we wanted to represent the number **41** using 7 bits along with an additional bit that is the sign bit (to give a total of 8 bits), we would represent it by **00101001**. The first bit is a 0, meaning the number is positive, then the remaining 7 bits give **41**, meaning the number is **+41**. If we wanted to make **-59**, this would be **10111011**. The first bit is a 1, meaning the number is negative, and then the remaining 7 bits give **59**, meaning the number is **-59**.
 
@@ -985,8 +985,9 @@ would mean the "light" was fully on.
 
 With 256 possible values for each of the three primary colours (don't forget to count 0!), that gives 256 x 256 x 256 = 16,777,216 possible colours -- more than the human eye can detect!
 
-{panel type="challenge" summary="What is special about 255"}
-Think back to the binary numbers section. What is special about the number 255?
+{panel type="challenge" summary="What is special about 255?"}
+Think back to the binary numbers section. What is special about the number 255,
+which is the maximum colour value?
 
 We'll cover the answer later in this section if you are still not sure!
 {panel end}
@@ -1020,21 +1021,22 @@ So, how many colours are there in total with 24 bits? We know that there is 256 
 
 {math}256 \times 256 \times 256 = 16,777,216 {math end}
 
-This is the same as {math}2^24{math end}
+This is the same as {math}2^{24}{math end}.
 
 Because 24 bits are required, this representation is called **24 bit colour**. 24 bit colour is sometimes referred to in settings as "True Color" (because it is more accurate than the human eye can see). On Apple systems, it is called "Millions of colours".
 
 #### How do we use bits to represent the colour?
 
-A logical way is to use 3 binary numbers that represent the amount of each of red, green, and blue in the pixel. In order to do this, convert the amount of each primary colour needed to an 8 bit binary number, and then put the 3 binary numbers side to side to give 24 bits.
+A logical way is to use 3 binary numbers that represent the amount of each of red, green, and blue in the pixel. In order to do this, convert the amount of each primary colour needed to an 8 bit binary number, and then put the 3 binary numbers side by side to give 24 bits.
 
-Because consistency is important in order for a computer to make sense of the bit pattern, the binary number for red should be put first, followed by green, and then finally blue. The only reason that red has to go first is because that is the standard that all computers assume is being used. If everybody had agreed that green should be first, then it would have been green first.
+Because consistency is important in order for a computer to make sense of the bit pattern, we normally adopt the convention that the binary number for red should be put first, followed by green, and then finally blue. The only reason that red has to go first is because that most systems assume is being used.
+If everybody had agreed that green should be first, then it would have been green first.
 
 For example, suppose you have the colour that has red = 145, green = 50, and blue = 123 that you would like to represent with bits. If you put these values into the interactive, you will get the colour below.
 
 {image filename="colour-purple.png" alt="The colour purple."}
 
-Start by converting each of the 3 numbers into binary, using 8 bits for each.
+Start by converting each of the three numbers into binary, using 8 bits for each.
 
 You should get:
 - red = 10010001,
@@ -1043,7 +1045,7 @@ You should get:
 
 Putting these values together gives 100100010011001001111011, which is the bit representation for the colour above.
 
-There are **no spaces** between the 3 numbers, as this is a pattern of bits rather than actually being 3 binary numbers, and computers don’t have any such concept of a space between bit patterns anyway --- everything must be a 0 or a 1. You could write it with spaces to make it easier to read, and to represent the idea that they are likely to be stored in 3 8-bit bytes, but inside the computer memory there is just a sequence of high and low voltages, so even writing 0 and 1 is an arbitrary notation.
+There are **no spaces** between the three numbers, as this is a pattern of bits rather than actually being three binary numbers, and computers don’t have any such concept of a space between bit patterns anyway --- everything must be a 0 or a 1. You could write it with spaces to make it easier to read, and to represent the idea that they are likely to be stored in 3 8-bit bytes, but inside the computer memory there is just a sequence of high and low voltages, so even writing 0 and 1 is an arbitrary notation.
 
 Also, all leading and trailing 0’s on each part are kept --- without them, it would be representing a shorter number. If there were 256 different possible values for each primary colour, then the final representation **must** be 24 bits long.
 
@@ -1056,6 +1058,7 @@ So for a monochromatic image, we can simply use a representation which is a sing
 {panel end}
 
 The computer won’t ever convert the number into decimal, as it works with the binary directly --- most of the process that takes the bits and makes the right pixels appear is typically done by a graphics card or a printer. We just started with decimal, because it is easier for humans to understand.
+The main point about knowing this representation is to understand the tradeoff that is being made between the accuracy of colour (which should ideally be beyond human percption) and the amount of storage (bits) needed (which should be as little as possible).
 
 
 {panel type="curiosity" summary="Hexadecimal colour codes"}
@@ -1084,9 +1087,13 @@ Which gives #51327B.
 
 Understanding how these hexadecimal colour codes are derived also allows you to change them slightly without having to refer back the colour table, when the colour isn’t exactly the one you want. Remember that in the 24 bit color code, the first 8 bits specify the amount of red (so this is the first 2 digits of the hexadecimal code), the next 8 bits specify the amount of green (the next 2 digits of the hexadecimal code), and the last 8 bits specify the amount of blue (the last 2 digits of the hexadecimal code). To increase the amount of any one of these colours, you can change the appropriate hexadecimal letters.
 
-For example, #000000 has zero for red, green and blue, so setting a higher value to the middle two digits (such as  #002300) will add some green to the colour.
+For example, #000000 has zero for red, green and blue, so setting a higher value to the middle two digits (such as  #004300) will add some green to the colour.
 
-You could use an HTML page to experiment with hexadecimal colours.
+You could use an HTML page to experiment with hexadecimal colours. Just change the <body> command to include a colour as follows:
+
+```
+<body bgcolor="#004300">
+```
 {panel end}
 
 ### Representing colours with fewer bits
@@ -1103,7 +1110,7 @@ It should be possible to get a perfect match using 24 bit colour. But what about
 
 The above system used 3 bits to specify the amount of red (8 possible values), 3 bits to specify the amount of green (again 8 possible values), and 2 bits to specify the amount of blue (4 possible values). This gives a total of 8 bits (hence the name), which can be used to make 256 different bit patterns, and thus can represent 256 different colours.
 
-You may be wondering why blue is represented with less bits than red and green. This is because the human eye is the least sensitive to blue, and therefore it is the least important colour in the representation. The representation had to use 8 bits rather than 9 bits, because computers work with full bytes (a byte is 8 bits).
+You may be wondering why blue is represented with fewer bits than red and green. This is because the human eye is the least sensitive to blue, and therefore it is the least important colour in the representation. The representation uses 8 bits rather than 9 bits because it's easiest for computers to work with full bytes.
 
 Using this scheme to represent all the pixels of an image takes one third of the number of bits required for 24-bit colour, but it is not as good at showing smooth changes of colours or subtle shades, because there are only 256 possible colors for each pixel. This is one of the big tradeoffs in data representation: do you allocate less space (fewer bits), or do you want higher quality?
 
@@ -1115,9 +1122,9 @@ The number of bits used to represent the colours of pixels in a particular image
 There's a subtle boundary between low quality data representations (such as 8-bit colour) and compression methods. In principle, reducing an image to 8-bit colour is a way to compress it, but it's a very poor approach, and a proper compression method like JPEG will do a much better job.
 {panel end}
 
-#### What impact does less bits have on the overall image?
+#### What impact does fewer bits have on the overall image?
 
-The following interactive shows what happens to images when you use a smaller range of colours (including right down to zero bits!) You can choose an image using the menu. In which cases is the change in quality most noticeable? In which is it not? In which would you actually care about the colours in the image? In which situations is colour actually not necessary (i.e. we are fine with two colours)?
+The following interactive shows what happens to images when you use a smaller range of colours (including right down to zero bits!) You can choose an image using the menu or upload your own one. In which cases is the change in quality most noticeable? In which is it not? In which would you actually care about the colours in the image? In which situations is colour actually not necessary (i.e. we are fine with two colours)?
 
 {interactive name="image-bit-comparer" type="whole-page" text="Image Bit Comparer"}
 
@@ -1139,9 +1146,9 @@ One other interesting thing to think about is whether or not we’d want more th
 
 #### How much space will low quality images save?
 
-An image represented using 24 bit colour would have 24 bits per pixel. In 600 x 800 pixel image (which is a reasonable size for a photo), this would contain {math}600 \times 800 = 480,000 {math end} pixels, and thus would use {math}480,000 \times 24 bits = 11,520,000 {math end} bits. This works out to around 1.44 megabytes. If we use 8-bit colour instead, it will use a third of the memory, so it would save nearly a megabyte of storage. Or if the image is downloaded,then a megabyte of bandwidth will be saved.
+An image represented using 24 bit colour would have 24 bits per pixel. In 600 x 800 pixel image (which is a reasonable size for a photo), this would contain {math}600 \times 800 = 480,000 {math end} pixels, and thus would use {math}480,000 \times 24 bits = 11,520,000 {math end} bits. This works out to around 1.44 megabytes. If we use 8-bit colour instead, it will use a third of the memory, so it would save nearly a megabyte of storage. Or if the image is downloaded then a megabyte of bandwidth will be saved.
 
-8 bit colour is not used much anymore, although it can still be helpful in situations such as accessing a computer desktop remotely on a slow internet connection, as the image of the desktop can instead be sent using 8 bit colour instead of 24 bit colour. Even though this may cause the desktop to appear a bit strangely, it doesn’t stop you from getting whatever it was you needed to get done, done. Seeing your desktop in 24 bit colour would not be very helpful if you couldn't get your work done!
+8 bit colour is not used much anymore, although it can still be helpful in situations such as accessing a computer desktop remotely on a slow internet connection, as the image of the desktop can instead be sent using 8 bit colour instead of 24 bit colour. Even though this may cause the desktop to appear a bit strange, it doesn’t stop you from getting whatever it was you needed to get done, done. Seeing your desktop in 24 bit colour would not be very helpful if you couldn't get your work done!
 
 In some countries, mobile internet data is very expensive. Every megabyte that is saved will be a cost saving. There are also some situations where colour doesn’t matter at all, for example diagrams, and black and white printed images.
 
