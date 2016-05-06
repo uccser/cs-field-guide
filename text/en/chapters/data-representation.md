@@ -942,7 +942,7 @@ Mixing red and blue give purple, red and yellow give orange, and so on. By mixin
 
 For printing, printers commonly use three slightly different primary colours: cyan, magenta, and yellow (CMY). All the colours on a printed document were made by mixing these primary colours.
 
-Both these kinds of mixing are called "subtractive mixing", because they starts with a white canvas or paper, and "subtract" colour from it. The interactive below allows you to experiment with CMY incase you are not familiar with it, or if you just like mixing colours.
+Both these kinds of mixing are called "subtractive mixing", because they start with a white canvas or paper, and "subtract" colour from it. The interactive below allows you to experiment with CMY incase you are not familiar with it, or if you just like mixing colours.
 
 {interactive name="cmy-mixer" type="in-page"}
 
@@ -1029,7 +1029,7 @@ Because 24 bits are required, this representation is called **24 bit colour**. 2
 
 A logical way is to use 3 binary numbers that represent the amount of each of red, green, and blue in the pixel. In order to do this, convert the amount of each primary colour needed to an 8 bit binary number, and then put the 3 binary numbers side by side to give 24 bits.
 
-Because consistency is important in order for a computer to make sense of the bit pattern, we normally adopt the convention that the binary number for red should be put first, followed by green, and then finally blue. The only reason that red has to go first is because that most systems assume is being used.
+Because consistency is important in order for a computer to make sense of the bit pattern, we normally adopt the convention that the binary number for red should be put first, followed by green, and then finally blue. The only reason we put red first is because that is the convention that most systems assume is being used.
 If everybody had agreed that green should be first, then it would have been green first.
 
 For example, suppose you have the colour that has red = 145, green = 50, and blue = 123 that you would like to represent with bits. If you put these values into the interactive, you will get the colour below.
@@ -1058,7 +1058,7 @@ So for a monochromatic image, we can simply use a representation which is a sing
 {panel end}
 
 The computer won’t ever convert the number into decimal, as it works with the binary directly --- most of the process that takes the bits and makes the right pixels appear is typically done by a graphics card or a printer. We just started with decimal, because it is easier for humans to understand.
-The main point about knowing this representation is to understand the tradeoff that is being made between the accuracy of colour (which should ideally be beyond human percption) and the amount of storage (bits) needed (which should be as little as possible).
+The main point about knowing this representation is to understand the tradeoff that is being made between the accuracy of colour (which should ideally be beyond human perception) and the amount of storage (bits) needed (which should be as little as possible).
 
 
 {panel type="curiosity" summary="Hexadecimal colour codes"}
@@ -1124,7 +1124,7 @@ There's a subtle boundary between low quality data representations (such as 8-bi
 
 #### What impact does fewer bits have on the overall image?
 
-The following interactive shows what happens to images when you use a smaller range of colours (including right down to zero bits!) You can choose an image using the menu or upload your own one. In which cases is the change in quality most noticeable? In which is it not? In which would you actually care about the colours in the image? In which situations is colour actually not necessary (i.e. we are fine with two colours)?
+The following interactive shows what happens to images when you use a smaller range of colours (including right down to zero bits!) You can choose an image using the menu or upload your own one. In which cases is the change in quality most noticeable? In which is it not? In which would you actually care about the colours in the image? In which situations is colour actually not necessary (i.e. when are we fine with two colours)?
 
 {interactive name="image-bit-comparer" type="whole-page" text="Image Bit Comparer"}
 
