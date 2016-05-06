@@ -1,20 +1,23 @@
 # Excellence Guide for Data Representation (2.44) - Numbers
 
-This is a merit/ excellence level guide for students attempting data representation in digital technologies achievement standard 1.44 (AS91074). It is aimed at students going for merit or excellence.
+This is a merit/excellence level guide for students attempting data representation in digital technologies achievement standard 1.44 (AS91074). It is aimed at students aiming for merit or excellence.
 
-**You will need to do one more project in data representation in addition to this one**, because the standard requires you to cover two. This guide only covers numbers (positive and negative numbers). Note that there is no excellence requirements for data representation -- it only goes up to merit. This guide is called an excellence guide though to avoid confusion about whether or not it is suitable for students aiming for excellence.
+**You will need to do one more project in data representation in addition to this one**, because the standard requires you to cover two types of data.
+This guide covers only numbers (positive and negative numbers).
+Note that there is no excellence requirement for data representation -- it only goes up to merit. This guide is called an excellence guide though to avoid confusion about whether or not it is suitable for students aiming for excellence.
 
-In order to fully cover the standard, you will also need to have done one more project on data representation, projects covering the three encoding topics up to the achieved level (error control coding, encryption, and compression), and a project covering human computer interaction, and included these in your report.
+In order to fully cover the standard, as well as one more investigation on data representation for another type of data, you will need to do projects covering the three encoding topics up to the achieved level (error control coding, encryption, and compression), follow one of the three coding methods to excellence level, and a project covering human computer interaction, and include these in your report.
 
 ## Overview
 
 The topic of Data Representation has the following bullet points in achievement standard 2.44, which this guide covers.
 
 **Achieved**: "describing ways in which different types of data can be represented using bits"
+
 **Merit**: "comparing and contrasting different ways in which different types of data can be
 represented using bits and discussing the implications"
 
-This guide focuses on one of the types of data you will need to cover (you will need to cover 2).
+This guide focuses on one of the types of data you will need to cover (you will need to cover two).
 
 As with all externally assessed reports, you should base your explanations around personalised examples.
 
@@ -50,15 +53,15 @@ This section will be around 2 pages in your report. There are 5 parts to it.
 3. Showing how **negative** numbers can be represented in binary using Two's Complement, and clearly explaining the process.
 4. Explaining reasons why Two's Complement is widely used, and simple sign bits are not, by showing examples of addition and subtraction. Also explain why the way a simple sign bit represents 0 is problematic.
 
-**Choosing 3 numbers for your examples**
+**Choosing three numbers for your examples**
 
-You will need to pick 3 numbers, which you will you use to illustrate the various ways of representing numbers in binary. Your chosen numbers should **not** be in field guide examples.
+You will need to pick three numbers, which you will you use to illustrate the various ways of representing numbers in binary. Your chosen numbers should **not** be in field guide examples.
 
 - A **positive** number **between 65 and 120**
 - A **negative** number **between -10 and -64**
 - A **additional positive** number, which is the "positive" form of your negative number (i.e. if you had chosen -11, this number would be 11). This number is **only used in the last part of the project**.
 
-The numbers **must be within the ranges**, to ensure they work with all the representations you'll be using them for.
+The numbers **should be within the ranges**, to ensure they work with all the representations you'll be using them for.
 
 #### Representing positive numbers in binary
 
@@ -88,37 +91,41 @@ This section should not take up more than ⅓ of a page.
 
 The field guide showed a few examples of adding and subtracting binary numbers using a simple sign bit, and then Two's Complement. These examples illustrated that Two's Complement is far easier to work with than a simple sign bit. You'll now be doing your own calculations to illustrate this point.
 
-Start by ensuring you have all the following binary representations ready to use (some of them you will not have done yet so will need to do now, do not show any more conversions to binary in your report).
+Start by ensuring you have all the following binary representations ready to use (some of them you will not have done yet so will need to do now, but do not show any more conversions to binary in your report).
 
 *All the numbers should be 8 bits long. Add leading 0's if needed, but put them* **after** *the simple sign bit if there is one*.
 
 Number 1: **positive number** in binary with a **simple sign bit**.
+
 Number 2: **additional positive number** in binary with a **simple sign bit**.
+
 Number 3: **positive number** in binary, using Two's Complement (remember that this is just a plain binary number).
+
 Number 4: **negative number** in binary, using Two's Complement.
+
 Number 5: **additional positive number** in binary, using Two's Complement (remember that this is just a plain binary number).
 
 Now, show and explain the following calculations. Indicate whether or not they lead to a correct answer. You might find it easier to do them on paper, and then scan and include them as images in your report. Read the hints for success for advice on this.
 
-Equation 1: **Number 3** {math}+{math end} **Number 5**
+Calculation 1: **Number 3** {math}+{math end} **Number 5**
 
-Use this first equation to show how two positive binary numbers can be added.
+Use this first calculation to show how two positive binary numbers can be added.
 
-Equation 2: **Number 1** {math}-{math end} **Number 2**
+Calculation 2: **Number 1** {math}-{math end} **Number 2**
 
-This equation shows whether or not subtraction can be done with two positive numbers using simple sign bits.
+This calculation shows whether or not subtraction can be done with two positive numbers using simple sign bits, without making a special case for the sign.
 
-Equation 3: **Number 3** {math}+{math end} **Number 4**
+Calculation 3: **Number 3** {math}+{math end} **Number 4**
 
-This equation shows that subtraction can be done by **adding** a negative number to the positive number (remember that with decimal numbers, a positive number + a negative number is the same as positive number - negative number. It's the same for binary)
+This calculation shows that subtraction can be done by **adding** a negative number to the positive number. (Remember that with decimal numbers, adding the negative of a number is the same as subtracting the number. It's the same for binary.)
 
-Equation 4: **Number 5** {math}+{math end} **Number 4**
+Calculation 4: **Number 5** {math}+{math end} **Number 4**
 
-This equation shows what happens when a bigger number is subtracted from a smaller number.
+This calculation shows what happens when a bigger number is subtracted from a smaller number.
 
 Explain what you have found.
 
-**Hint:** You should find that Equation 1 works (it's just adding positive numbers, so no surprise), Equation 2 fails (sign bits break it), and Equations 3 and 4 work (thanks to Two's Complement).
+**Hint:** You should find that calculation 1 works (it's just adding positive numbers, so no surprise), calculation 2 fails (the sign bits mess up the calculation), and calculations 3 and 4 work (thanks to Two's Complement).
 
 This section should not take more than 1 page in your report.
 
