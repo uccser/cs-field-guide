@@ -33,13 +33,7 @@ $(document).ready(function () {
       },
       format: wNumb({
         decimals: 0
-      }),
-      pips: {
-        mode: 'count',
-    		values: 9,
-    		density: 3,
-		    stepped: true
-    	}
+      })
     });
 
     // Bind the color changing function to the slide event.
@@ -87,7 +81,7 @@ $(document).ready(function () {
     if (i < 8) {
       bit.css('border-color', 'red');
     } else if (i < 16) {
-      bit.css('border-color', 'green');
+      bit.css('border-color', 'lime');
     } else {
       bit.css('border-color', 'blue');
     }
@@ -100,7 +94,7 @@ $(document).ready(function () {
     if (i < 3) {
       bit.css('border-color', 'red');
     } else if (i < 6) {
-      bit.css('border-color', 'green');
+      bit.css('border-color', 'lime');
     } else {
       bit.css('border-color', 'blue');
     }
@@ -241,7 +235,7 @@ function update8BitPanel(){
   setBinaryRepresentation('interactive-colour-matcher-8-bit-representation', total_binary);
 
   // Update 8 bit panel
-  ColourMatcher.bit_8.result.style.background = toRGBString(colours, 8)
+  ColourMatcher.bit_8.result.style.background = toRGBString(colours, 8);
 };
 
 

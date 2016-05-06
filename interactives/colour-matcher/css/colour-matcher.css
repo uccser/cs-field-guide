@@ -2,10 +2,21 @@
 #interactive-colour-matcher .noUi-pips {
   padding: 0px;
 }
-/* Size of large pips */
-#interactive-colour-matcher .noUi-marker-horizontal.noUi-marker-large,
-#interactive-colour-matcher .noUi-pips-horizontal {
-  height: 15px;
+/* Colour of pips */
+#interactive-colour-matcher .noUi-marker-large {
+  background-color: #000;
+}
+/* Size of pips */
+#interactive-colour-matcher .noUi-pips-horizontal,
+#interactive-colour-matcher .noUi-marker-large {
+  height: 10px;
+  top: 9px;
+  pointer-events: none;
+  opacity: 0.4
+}
+#interactive-colour-matcher .noUi-target,
+#interactive-colour-matcher .noUi-origin {
+  border-radius: 0 !important;
 }
 /* Hide slider values */
 #interactive-colour-matcher .noUi-value {
