@@ -9,7 +9,6 @@ $(document).ready(function () {
   ColourMatcher.help_stage = 0;
   ColourMatcher.help_text = [['Help me set 24 bit red', 'red'],
                              ['Help me set 24 bit green', 'green'],
-                             ['Help me set 24 bit blue', 'blue'],
                              ['All help given', 'disabled']]
 
   // Setup 24 bit sliders
@@ -105,7 +104,7 @@ $(document).ready(function () {
 
   // If help button triggered
   $("#interactive-colour-matcher-help").click(function(){
-    if (ColourMatcher.help_stage < 3) {
+    if (ColourMatcher.help_stage < 2) {
       // Set slider to correct value
       ColourMatcher.bit_24.sliders[ColourMatcher.help_stage].noUiSlider.set(ColourMatcher.goal_colour[ColourMatcher.help_stage]);
       // Set slider to disabled
