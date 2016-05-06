@@ -98,6 +98,11 @@ $decimal.on 'textInput', ->
 
 $char.on 'textInput', ->
     ### Considers only the last codepoint entered ###
+    if $char.val() is ''
+        $decimal.val('')
+        $binary.val('')
+        return
+
     chars = Array.from($char.val())
     $char.val chars[chars.length-1]
     $decimal.val $char.val().codePointAt(0)
