@@ -11,17 +11,11 @@ s = require('underscore.string');
 
 URI = require('urijs');
 
-$decimal = $("#interactive-unicode-binary-decimal");
-
-$char = $("#interactive-unicode-binary-char");
-
-$binary = $('#interactive-unicode-binary-binary');
-
 validModes = ['utf8', 'utf16', 'utf32'];
 
 query = URI.parse(window.location.href).query;
 
-MODE = ((ref = URI.parseQuery(query).mode) != null ? ref : 'utf32').toLowerCase();
+MODE = ((ref = URI.parseQuery(query).mode) != null ? ref : 'utf8').toLowerCase();
 
 if (indexOf.call(validModes, MODE) < 0) {
   alert('Mode must be in #{validModes}');
@@ -79,6 +73,15 @@ toUTF16 = function(number) {
   }
 };
 
+
+/* -------------- jQuery Event Code ---------------- */
+
+$decimal = $("#interactive-unicode-binary-decimal");
+
+$char = $("#interactive-unicode-binary-char");
+
+$binary = $('#interactive-unicode-binary-binary');
+
 updateBinary = function(number) {
 
   /* Updates the binary element with changes */
@@ -89,7 +92,7 @@ updateBinary = function(number) {
       case 'utf16':
         return toUTF16(number);
       case 'utf32':
-        return s.lpad(number.toString('2'), 32, '0').value();
+        return s.lpad(number.toString('2'), 32, '0');
     }
   })()));
 };
@@ -134,6 +137,11 @@ $char.on('textInput', function() {
 
   /* Considers only the last codepoint entered */
   var chars;
+  if ($char.val() === '') {
+    $decimal.val('');
+    $binary.val('');
+    return;
+  }
   chars = Array.from($char.val());
   $char.val(chars[chars.length - 1]);
   $decimal.val($char.val().codePointAt(0));

@@ -5,14 +5,11 @@ s = require('underscore.string')
 URI = require('urijs')
 
 
-$decimal = $("#interactive-unicode-binary-decimal")
-$char = $("#interactive-unicode-binary-char")
-$binary = $('#interactive-unicode-binary-binary')
 
 validModes = ['utf8', 'utf16', 'utf32']
 
 query = URI.parse(window.location.href).query
-MODE = (URI.parseQuery(query).mode ? 'utf32').toLowerCase()
+MODE = (URI.parseQuery(query).mode ? 'utf8').toLowerCase()
 
 if MODE not in validModes
     # Ensure the mode is an actualy encoding
@@ -58,12 +55,20 @@ toUTF16 = (number) ->
         right = (parseInt(bits[10...20], 2) + 0xDC00).toString('2')
         return left + right
 
+
+
+### -------------- jQuery Event Code ---------------- ###
+
+$decimal = $("#interactive-unicode-binary-decimal")
+$char = $("#interactive-unicode-binary-char")
+$binary = $('#interactive-unicode-binary-binary')
+
 updateBinary = (number) ->
     ### Updates the binary element with changes ###
     $binary.val byteify switch MODE
         when 'utf8' then toUTF8(number)
         when 'utf16' then toUTF16(number)
-        when 'utf32' then s.lpad(number.toString('2'), 32, '0').value()
+        when 'utf32' then s.lpad(number.toString('2'), 32, '0')
 
 
 cleanDecimal = ->
