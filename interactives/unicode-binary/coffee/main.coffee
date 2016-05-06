@@ -25,6 +25,7 @@ byteify = (binaryString) ->
 
 toUTF8 = (number) ->
     ### Converts a code point into a utf8 binary string ###
+    number = number.toString('2')
     bitLength = number.length
     if bitLength < 8
         # If its 7 bits or less then utf8 is equivalent to 7-bit ASCII
@@ -57,21 +58,12 @@ toUTF16 = (number) ->
         right = (parseInt(bits[10...20], 2) + 0xDC00).toString('2')
         return left + right
 
-updateBinary = ->
-    if $decimal.val() is ''
-        # If decimal is empty don't bother doing anything
-        $binary.val ''
-        return
-
-    if Number($decimal.val()) > 0xFFFF
-        # If invalid code point
-        $decimal[0].setCustomValidity("Out of Unicode Range")
-
-    number = Number($decimal.val()).toString(2)
+updateBinary = (number) ->
+    ### Updates the binary element with changes ###
     $binary.val byteify switch MODE
         when 'utf8' then toUTF8(number)
         when 'utf16' then toUTF16(number)
-        when 'utf32' then s(number).lpad(32, '0').value()
+        when 'utf32' then s.lpad(number.toString('2'), 32, '0').value()
 
 
 cleanDecimal = ->
@@ -82,5 +74,31 @@ $decimal.on 'textInput', ->
     ### Anytime there's input or any change in the box just remove all non
         numeric characters
     ###
+    if $decimal.val() is ''
+        $char.val('')
+        $binary.val('')
+        return
+
     $decimal.val $decimal.val().replace(/[^0-9]/g, '')
-    updateBinary()
+
+    number = Number $decimal.val()
+    if 0xD800 <= number <= 0xDFFF
+        $char.val("Characters in the range 55296 to 57343 are reserved for UTF16 encoding")
+        $binary.val('')
+        return
+    try
+        char = String.fromCodePoint(number)
+    catch err
+        $char.val("Decimal value of range")
+        $binary.val('')
+        return
+
+    $char.val(String.fromCodePoint(number))
+    updateBinary(number)
+
+$char.on 'textInput', ->
+    ### Considers only the last codepoint entered ###
+    chars = Array.from($char.val())
+    $char.val chars[chars.length-1]
+    $decimal.val $char.val().codePointAt(0)
+    updateBinary(Number $decimal.val())

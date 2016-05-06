@@ -46,6 +46,7 @@ toUTF8 = function(number) {
 
   /* Converts a code point into a utf8 binary string */
   var bitLength, firstSegmentLength, j, len, oneBits, padded, ref1, result, sixBits;
+  number = number.toString('2');
   bitLength = number.length;
   if (bitLength < 8) {
     return s(number).lpad(8, '0').value();
@@ -78,16 +79,9 @@ toUTF16 = function(number) {
   }
 };
 
-updateBinary = function() {
-  var number;
-  if ($decimal.val() === '') {
-    $binary.val('');
-    return;
-  }
-  if (Number($decimal.val()) > 0xFFFF) {
-    $decimal[0].setCustomValidity("Out of Unicode Range");
-  }
-  number = Number($decimal.val()).toString(2);
+updateBinary = function(number) {
+
+  /* Updates the binary element with changes */
   return $binary.val(byteify((function() {
     switch (MODE) {
       case 'utf8':
@@ -95,7 +89,7 @@ updateBinary = function() {
       case 'utf16':
         return toUTF16(number);
       case 'utf32':
-        return s(number).lpad(32, '0').value();
+        return s.lpad(number.toString('2'), 32, '0').value();
     }
   })()));
 };
@@ -111,8 +105,39 @@ $decimal.on('textInput', function() {
   /* Anytime there's input or any change in the box just remove all non
       numeric characters
    */
+  var char, err, error, number;
+  if ($decimal.val() === '') {
+    $char.val('');
+    $binary.val('');
+    return;
+  }
   $decimal.val($decimal.val().replace(/[^0-9]/g, ''));
-  return updateBinary();
+  number = Number($decimal.val());
+  if ((0xD800 <= number && number <= 0xDFFF)) {
+    $char.val("Characters in the range 55296 to 57343 are reserved for UTF16 encoding");
+    $binary.val('');
+    return;
+  }
+  try {
+    char = String.fromCodePoint(number);
+  } catch (error) {
+    err = error;
+    $char.val("Decimal value of range");
+    $binary.val('');
+    return;
+  }
+  $char.val(String.fromCodePoint(number));
+  return updateBinary(number);
+});
+
+$char.on('textInput', function() {
+
+  /* Considers only the last codepoint entered */
+  var chars;
+  chars = Array.from($char.val());
+  $char.val(chars[chars.length - 1]);
+  $decimal.val($char.val().codePointAt(0));
+  return updateBinary(Number($decimal.val()));
 });
 
 
