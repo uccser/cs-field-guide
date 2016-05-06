@@ -87,7 +87,7 @@ Include a table in your report which shows the size for each text sample, with e
 
 Explain your findings. Which seems to be the best for English text? Which seems to be the best for Asian text?
 
-(optional) If you are really keen, you might like to read more about [UTF-16](https://en.wikipedia.org/wiki/UTF-16) and [UTF-32](https://en.wikipedia.org/wiki/UTF-32) to try and figure out why you got the results that you did.
+(optional) If you are keen, you might like to read more about [UTF-16](https://en.wikipedia.org/wiki/UTF-16) and [UTF-32](https://en.wikipedia.org/wiki/UTF-32) to try and figure out why you got the results that you did.
 
 ## Hints for success
 
@@ -99,10 +99,7 @@ Explain your findings. Which seems to be the best for English text? Which seems 
   ***Representing Data***
     put your introduction to what bits are here
     ***Representing Text***
-      ***ASCII***
-        put all your project work related to ASCII here
-      ***Unicode***
-        put all your project work related to Unicode here
+      put all your project work related to Unicode here
     ***Representing [other topic]***
       (see relevant guide for information on structuring this section)
 
@@ -114,6 +111,6 @@ Explain your findings. Which seems to be the best for English text? Which seems 
 ```
 
 - Be careful to put your explanations and examples under the correct headings.
-- Do not include large lists or tables, for example do not include an ASCII table or a list of binary number conversions.
+- Do not include large lists or tables, for example do not include an ASCII or Unicode table or a list of binary number conversions.
 - The introduction to data representation should not take more than ½ of a page in your report.
-- The project on ASCII and Unicode in this guide should not take up more than 1 to 1½ pages in your report.
+- The project Unicode in this guide should not take up more than 1 to 1½ pages in your report.
