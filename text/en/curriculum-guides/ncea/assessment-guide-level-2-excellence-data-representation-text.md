@@ -1,29 +1,31 @@
 # Excellence Guide for Data Representation (2.44) - Text
 
-This is an excellence level guide for students attempting data representation in digital technologies achievement standard 1.44 (AS91074). It is aimed at students going for merit or excellence.
+This is an excellence level guide for students attempting data representation in digital technologies achievement standard 1.44 (AS91074). It is aimed at students aiming for merit or excellence.
 
-You will need to do one more project in data representation in addition to this one, because the standard requires you to cover two. This guide only covers text. Note that there is no excellence requirements for data representation -- it only goes up to merit. This guide is called an excellence guide though to avoid confusion about whether or not it is suitable for students aiming for excellence.
+**You will need to do one more project in data representation in addition to this one**, because the standard requires you to cover two types of data.
+This guide covers only text. Note that there is no excellence requirement for data representation -- it only goes up to merit. This guide is called an excellence guide though to avoid confusion about whether or not it is suitable for students aiming for excellence.
 
-In order to fully cover the standard, you will also need to have done one more project on data representation, projects covering the three encoding topics up to the achieved level (error control coding, encryption, and compression), and a project covering human computer interaction, and included these in your report.
+In order to fully cover the standard, as well as one more investigation on data representation for another type of data, you will need to do projects covering the three encoding topics up to the achieved level (error control coding, encryption, and compression), follow one of the three coding methods to excellence level, and a project covering human computer interaction, and include these in your report.
 
 ## Overview
 
 The topic of Data Representation has the following bullet points in achievement standard 2.44, which this guide covers.
 
 **Achieved**: "describing ways in which different types of data can be represented using bits"
+
 **Merit**: "comparing and contrasting different ways in which different types of data can be
 represented using bits and discussing the implications"
 
-This guide focusses on one of the types of data you will need to cover (you will need to cover 2).
+This guide focusses on one of the types of data you will need to cover (you will need to cover two).
 
 As with all externally assessed reports, you should base your explanations around personalised examples.
 
 ## Reading from the Computer Science Field Guide
 
-You should read and work through the interactives in the following sections of the CS Field Guide in order to prepare yourself for the assessed project. Note that while you do not need to write about ASCII in this project, it is assumed you have a solid understanding of ASCII.
+You should read and work through the interactives in the following sections of the CS Field Guide in order to prepare yourself for the assessed project. Note that while you do not need to write about ASCII in this project; it is assumed you have a solid understanding of ASCII.
 
 - [Representing whole numbers with Binary](chapters/data-representation.html#representing-whole-numbers-in-binary) - Most other representations are based on binary number representations, so understanding these first is essential. You only need to understand the material in this subsection.
-- [Represeting Text](chapters/data-representation.html#text) - You should read this entire section carefully. It is central to the project.
+- [Representing Text](chapters/data-representation.html#text) - You should read this entire section carefully. It is central to the project.
 
 ## Project
 
@@ -45,8 +47,8 @@ This section will be around 1½ pages in your report. There are 5 parts to it.
 
 1. Introducing the idea of Unicode and UTF (up to ½ of a page).
 2. Showing your text samples.
-3. Showing how 1 character from each text sample can be represented with UTF-32
-4. Showing how 1 character from each text sample can be represented with UTF-8
+3. Showing how one character from each text sample can be represented with UTF-32
+4. Showing how one character from each text sample can be represented with UTF-8
 5. Comparing the representation size of each text sample using UTF-8, UTF-16 and UTF-32, and explaining your findings.
 
 **Choosing the text samples**
@@ -57,8 +59,8 @@ Choose two text samples, which you will use to explain Unicode and the represent
 
 Start by writing an introductory paragraph to Unicode and the representations used to represent it. Your paragraph should:
 - Explain what Unicode is.
-- Explain that Unicode is a character set (and not a representation). Use one character from each of your text samples as examples in your explanation.
-- Explain that UTF-8, UTF-16, and UTF-32 are various ways of representing the Unicode characters.
+- Explain how Unicode is a character set (and not a representation). Use one character from each of your text samples as examples in your explanation.
+- Explain how UTF-8, UTF-16, and UTF-32 are various ways of representing the Unicode characters.
 The paragraph should be no more ½ of a page long.
 
 If you are confused, reread the Unicode section in the CS Field Guide or ask your teacher for help.
@@ -73,19 +75,19 @@ Show how the first character in each of your samples is represented using UTF-32
 
 #### Showing examples of UTF-8 representation
 
-Show how the first character in each of your samples is represented using UTF-8. Explain the system that was used to convert the character's unicode number into a UTF-8 representation. Your process for each character should be the following (which is in the CS Field Guide).
-1. Lookup the character in the Unicode table to get its Unicode number
+Show how the first character in each of your samples is represented using UTF-8. Explain the method that was used to convert the character's unicode number into a UTF-8 representation. Your process for each character should be the following (which is in the CS Field Guide).
+1. Look up the character in the Unicode table to get its Unicode number
 2. Convert the Unicode number into binary
 3. Look at the UTF-8 conversion table to find the correct pattern to use
 4. Fill in the blanks in the pattern with the bits in the character's binary representation
 
 #### Comparing the various UTF representations
 
-The field guide includes an interactive which is used to determine how many bits are needed to represent a piece of text, using UTF-8, UTF-16, or UTF-32. Use that interactive to determine the best UTF representation for each of your text samples.
+The field guide includes an interactive [coming soon] which is used to determine how many bits are needed to represent a piece of text, using UTF-8, UTF-16, or UTF-32. Use that interactive to determine the best UTF representation for each of your text samples.
 
-Include a table in your report which shows the size for each text sample, with each representation.
+Include a table in your report that shows the size for each text sample, with each representation.
 
-Explain your findings. Which seems to be the best for English text? Which seems to be the best for Asian text?
+Explain your findings. Which seems to be the best for English text? Which seems to be the best for Asian text? Why is this the case?
 
 (optional) If you are keen, you might like to read more about [UTF-16](https://en.wikipedia.org/wiki/UTF-16) and [UTF-32](https://en.wikipedia.org/wiki/UTF-32) to try and figure out why you got the results that you did.
 
@@ -113,4 +115,4 @@ Explain your findings. Which seems to be the best for English text? Which seems 
 - Be careful to put your explanations and examples under the correct headings.
 - Do not include large lists or tables, for example do not include an ASCII or Unicode table or a list of binary number conversions.
 - The introduction to data representation should not take more than ½ of a page in your report.
-- The project Unicode in this guide should not take up more than 1 to 1½ pages in your report.
+- The  Unicode project in this guide should not take up more than 1 to 1½ pages in your report.
