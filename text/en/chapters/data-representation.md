@@ -757,9 +757,7 @@ And the character **犬** in UTF-32 would be:
 
 The following interactive will allow you to convert a Unicode character to its UTF-32 representation. The Unicode character's number is also displayed. The bits are simply the binary number form of the character number.
 
-{comment}
-Put UTF-32 interactive here
-{comment end}
+{interactive name="unicode-binary" type="iframe" parameters="mode=utf32"}
 
 {panel type="project" summary="Represent your name with UTF-32"}
 1. Represent each character in your name using UTF-32.
@@ -809,9 +807,7 @@ And the character **犬** in UTF-8 would be:
 
 The following interactive will allow you to convert a Unicode character to its UTF-8 representation. The Unicode character's number is also displayed.
 
-{comment}
-Insert UTF-8 interactive here
-{comment end}
+{interactive name="unicode-binary" type="iframe" parameters="mode=utf8"}
 
 #### How does UTF-8 work?
 
