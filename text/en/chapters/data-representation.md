@@ -857,9 +857,7 @@ Just like UTF-8, UTF-16 is a **variable length** encoding scheme for Unicode. Be
 
 However, the following interactive will allow you to represent text with UTF-16. Try putting some text that is in English and some text that is in Japanese into it. Compare the representations to what you get with UTF-8.
 
-{comment}
-Insert UTF-16 interactive here
-{comment end}
+{interactive name="unicode-binary" type="iframe" parameters="mode=utf16"}
 
 ### Comparison of text representations
 
