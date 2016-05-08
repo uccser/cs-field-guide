@@ -156,5 +156,5 @@ This section should not take more than 1 page in your report.
 - Be careful to put your explanations and examples under the correct headings.
 - Do not include large lists or tables, for example do not include an ASCII table or a list of binary number conversions.
 - The introduction to data representation should not take more than ½ of a page in your report.
-- If you choose to include some information as scanned writing/ drawings, do **not** save as JPEG! Use PNG instead. JPEG distorts writing really badly! Be sure to use a dark pen, and if you use a camera rather than scanner to do the scanning, make sure the image is focussed properly.
+- If you choose to include some information as scanned writing/drawings, do **not** save as JPEG! Use PNG instead. JPEG distorts writing really badly! Be sure to use a dark pen, and if you use a camera rather than scanner to do the scanning, make sure the image is focussed properly.
 - The project on positive and negative numbers should not take up more than 1½ to 2 pages in your report.
