@@ -13,7 +13,7 @@ URI = require('urijs');
 
 validModes = ['utf8', 'utf16', 'utf32'];
 
-query = URI.parse(decodeURI(window.location.href)).query;
+query = URI.parse(decodeURIComponent(window.location.href)).query;
 
 MODE = ((ref = URI.parseQuery(query).mode) != null ? ref : 'utf8').toLowerCase();
 
