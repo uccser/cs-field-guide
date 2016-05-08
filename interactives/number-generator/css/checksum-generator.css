@@ -1,8 +1,23 @@
+#interactive-checksum-generator {
+  background-color: white;
+}
 #interactive-checksum-generator-type {
   font-size: 1rem;
-  height: 3.2rem;
+  height: 2.6rem;
+  margin-bottom: 1rem;
 }
-
-#interactive-checksum-generator-codes{
+#interactive-checksum-generator-codes {
   font: 1.5rem monospace;
+  height: 10rem;
+  background-color: white;
+}
+#interactive-checksum-generator-generate {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+#interactive-checksum-generator p {
+  margin: 0.25rem;
+}
+#interactive-checksum-generator .row {
+  margin-bottom: 0.25rem;
 }

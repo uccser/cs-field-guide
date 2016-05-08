@@ -28,23 +28,36 @@ keyCodes =
     TAB: 9,
     UP: 38
 
-eventStream = (selector="document", events="click", holdoff=false) ->
-    ### Returns an Observable which can be subscribed to for the given events
-        on a given element, if holdoff is true then wait until previous event
-        is processed before waiting for next one
+
+
+
+singleEvent = (selector="document", events...) ->
+    ### Returns a promise for a single event on a single element
+        with the event handler supplied by jQuery
     ###
+    return new Promise (resolve) ->
+        $(selector).one events.join(' '), resolve
+
+eventStream = (selectors="document", events...) ->
+    ### Returns an Observable which can be subscribed to for the given events
+        on a given element
+    ###
+    subscribers = new Set()
+    if selectors.join?
+        selector = selectors.join(", ")
+    else
+        selector = selectors
+
+    handler = (event) ->
+        subscribers.forEach (subscriber) ->
+            subscriber.next(event)
+
+
+    $(selector).on events.join(' '), handler
     return new Observable (subscriber) ->
-        if holdoff
-            handler = (event) ->
-                subscriber.next?(event)
-                $(selector).one events, handler
-            $(selector).one events, handler
-        else
-            handler = (event) ->
-                subscriber.next(event)
-            $(selector).on events, handler
+        subscribers.add(subscriber)
         return ->
-            $selector.off('event')
+            subscribers.delete(subscriber)
 
 ## ------ Caesar Cipher --------------
 
@@ -52,7 +65,6 @@ shift = (character, rotation=3) ->
     ### This shifts a character by rotation characters using the standard
         caesar cipher
     ###
-
     index = ALPHABET.indexOf(character)
     new_index = (index + rotation) %% ALPHABET.length
     return ALPHABET[(index + rotation) %% ALPHABET.length]
@@ -74,24 +86,10 @@ decrypt = (text, rotation=3) ->
     return encrypt(text, -rotation)
 
 
-eventStream("#interactive-caesar-encrypt").subscribe
-    next: ->
-        key = Number $('#interactive-caesar-key-input').val()
-        original = $("#interactive-caesar-plaintext").val().toUpperCase()
-        $('#interactive-caesar-plaintext').val(original)
-        $('#interactive-caesar-ciphertext').val encrypt(original, key)
-
-eventStream("#interactive-caesar-decrypt").subscribe
-    next: ->
-        key = Number $("#interactive-caesar-key-input").val()
-        original = $("#interactive-caesar-ciphertext").val().toUpperCase()
-        $('#interactive-caesar-ciphertext').val(original)
-        $('#interactive-caesar-plaintext').val decrypt(original, key)
-
-### This endlessly gets button presses and either encrypts or decrypts
+async.main ->
+    ### This endlessly gets button presses and either encrypts or decrypts
         depending on which button was pressed
     ###
-###
     while true
         yield singleEvent(
             '#interactive-caesar-encrypt, #interactive-caesar-decrypt',
@@ -106,4 +104,3 @@ eventStream("#interactive-caesar-decrypt").subscribe
             original = $('#interactive-caesar-ciphertext').val().toUpperCase()
             $('#interactive-caesar-ciphertext').val(original)
             $('#interactive-caesar-plaintext').val(decrypt(original, key))
-###

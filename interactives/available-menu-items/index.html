@@ -3,44 +3,32 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <!-- If you delete this meta tag World War Z will become a reality -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <!-- ### Enter your interactive title in the title block ### -->
     <title>Available Menu Items</title>
-    <link rel="stylesheet" href="../base-files/css/normalize.css">
-    <link rel="stylesheet" href="../base-files/css/foundation.min.css">
-    <script src="../base-files/js/modernizr.js"></script>
-    <!-- jQuery (necessary for Foundation) -->
-    <script src="../base-files/js/jquery.js"></script>
+    <link rel="stylesheet" href="../base-files/css/third-party/normalize.css">
+    <!--Import materialize.css-->
+    <link rel="stylesheet" href="../base-files/css/third-party/materialize.min.css" type="text/css" media="screen,projection"/>
+    <script src="../base-files/js/third-party/modernizr.js"></script>
   </head>
   <body>
-      <div class="row">
-      <div class="small-12 columns">
-      <div class="interactive">
-	    <!-- ### Start of required HTML for inline interactives ### -->
-        <div class="row text-center" data-equalizer>
-          <h4 class="small-12 columns">Available Menu Items</h4>
-          <div class="small-12 medium-3 columns">
-            <a class="button expand" onclick="alert('Error: Answers unavailable!');" data-equalizer-watch>Download answers</a>
-          </div>
-          <div class="small-12 medium-3 columns">
-            <a class="button expand" onclick="alert('Error: Youtube unavailable!');" data-equalizer-watch>Watch Youtube videos</a>
-          </div>
-          <div class="small-12 medium-3 columns">
-            <a class="button expand" onclick="alert('Error: Facebook unavailable!');" data-equalizer-watch>Open Facebook</a>
-          </div>
-          <div class="small-12 medium-3 columns">
-            <a class="button expand" onclick="alert('Error: Games unavailable!');" data-equalizer-watch>Play games</a>
-          </div>
-        </div>
-      <!-- ### End of required HTML for inline interactives ### -->
-      </div>
-      </div>
-      </div>
-    <!-- Foundation responsive CSS -->
-    <script src="../base-files/js/foundation.min.js"></script>
-    <script>
-      $(document).foundation();
-    </script>
+    <div class="row interactive center-align">
+    <div class="s12 col">
+    <!-- ### Start of required HTML for inline interactives ### -->
+      <a class='dropdown-button btn' href='#' data-activates='dropdown-available-menu-items' data-beloworigin='true'>Available Menu Items</a>
+      <ul id='dropdown-available-menu-items' class='dropdown-content'>
+        <li><a onclick="alert('Error: Answers unavailable!');">Download answers</a></li>
+        <li><a onclick="alert('Error: Youtube unavailable!');">Watch Youtube videos</a></li>
+        <li><a onclick="alert('Error: Facebook unavailable!');">Open Facebook</a></li>
+        <li><a onclick="alert('Error: Games unavailable!');">Play games</a></li>
+      </ul>
+    <!-- ### End of required HTML for inline interactives ### -->
+    </div>
+    </div>
+    <!-- jQuery (necessary for Materialize) -->
+    <script type="text/javascript" src="../base-files/js/third-party/jquery.js"></script>
+    <!-- Materialize responsive CSS -->
+    <script type="text/javascript" src="../base-files/js/third-party/materialize.min.js"></script>
   </body>
 </html>

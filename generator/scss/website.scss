@@ -1,20 +1,17 @@
-@import "materialize";
+@import "third-party/materialize";
 
-.interactive {
-  margin: 3em 0rem;
-}
+// Pygments theme for code syntax highlighting
+@import "third-party/pygments-monokai";
+
 pre {
   font-family: Consolas, "Liberation Mono", Courier, monospace;
   font-weight: normal;
-  background-color: color("blue-grey", "darken-1");
+  font-size: 0.9rem !important;
+  background-color: color("blue-grey", "darken-4");
   color: color("shades", "white");
   @extend .z-depth-1;
   padding: 1rem !important;
-  white-space: pre-wrap;       /* CSS 3 */
-  white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
-  white-space: -pre-wrap;      /* Opera 4-6 */
-  white-space: -o-pre-wrap;    /* Opera 7 */
-  word-wrap: break-word;       /* Internet Explorer 5.5+ */
+  overflow-x: auto;
 }
 pre > code {
   padding: 0;
@@ -33,27 +30,43 @@ pre > code {
   float: right;
   margin-left: 1rem;
 }
+p.image-caption {
+  font-size: 90%;
+}
 .interactive-iframe-resize {
   width: 100%;
 }
-
 header, main, footer {
   padding-left: 300px;
 }
-
-@media only screen and (max-width : 992px) {
+#website_header {
+  display: none;
+}
+@media only screen and (max-width : $medium-screen) {
   header, main, footer {
     padding-left: 0;
+  }
+  #website_header {
+    display: block;
   }
 }
 .bold > a {
   font-weight: bold;
 }
 ul.side-nav.fixed li a {
-  font-size: 1rem;
   line-height: 44px;
-  height: 44px;
-  white-space: nowrap;
+  height: inherit !important;
+  position: relative;
+}
+.dropdown-menu-arrow {
+  position: relative;
+  float: right;
+  display: inline-block;
+  color: $primary-color-light;
+  @include transition(all 300ms ease);
+  .active & {
+    @include rotate(180deg);
+  }
 }
 .side-nav .collapsible-body li a {
   padding-right: 0 !important;
@@ -63,13 +76,20 @@ ul.side-nav.fixed li a {
 .section_number {
   color: $primary-color-light !important;
 }
-.section_heading {
-  padding-top: 85px;
-  margin-top: -70px;
+.anchor-link {
+  padding-top: 100px;
+  margin-top: -90px;
   pointer-events: none;
-  & > a {
+  outline: none;
+  & a {
     pointer-events: auto;
   }
+  &-empty {
+    position: absolute;
+  }
+}
+.section-heading {
+  margin-bottom: 0;
   #page-title-header & > a {
     color: white !important;
   }
@@ -77,7 +97,7 @@ ul.side-nav.fixed li a {
     color: $off-black !important;
   }
 }
-.main-content ul:not(.collapsible) {
+.main-content ul:not(.collapsible):not(.dropdown-content) {
   padding-left: 40px;
   li {
     list-style-type: initial;
@@ -88,7 +108,7 @@ ul.side-nav.fixed li a {
 }
 .side-nav li {
     &:hover:not(.no-padding):not(.no-highlight),
-    &.active:not(.no-padding):not(.no-highlight) {
+    &:active:not(.no-padding):not(.no-highlight) {
       background-color: #ddd;
     }
 }
@@ -98,13 +118,9 @@ ul.side-nav.fixed li a {
 }
 #page-title-header {
   background-color: $primary-color !important;
-  h1 {
-    line-height: 4rem !important;
-    font-size: 3rem !important;
-    padding: 2rem 0;
-    margin: 0;
-    color: #fff;
-  }
+  padding: 1rem 0;
+  margin: 0;
+  color: #fff;
 }
 #page-subtitle-header {
   background-color: $primary-color-light !important;
@@ -116,9 +132,6 @@ ul.side-nav.fixed li a {
     color: #fff;
   }
 }
-#homepage-title{
-  padding-top: 0 !important;
-}
 #homepage-logo {
   height: 12rem;
   margin-top: 1rem;
@@ -128,8 +141,14 @@ ul.side-nav.fixed li a {
 }
 #logo-container {
   color: $primary-color !important;
-  font-size: 2rem;
-  font-weight: 500;
+  .title {
+    font-size: 2rem;
+    font-weight: 500;
+  }
+  .subtitle {
+    line-height: 1.1rem;
+    padding-bottom: 1rem;
+  }
 }
 // Based off Materialize flow-text rules
 .main-content p {
@@ -154,15 +173,188 @@ ul.side-nav.fixed li a {
   padding: 1rem 1rem 0 0;
   position: fixed;
 }
-.dropdown-menu-arrow {
-  color: $primary-color-light;
-  @include transition(all 300ms ease);
-
-  .active & {
-    @include rotate(180deg);
+.btn-expand {
+  width: 100% !important;
+}
+.btn-menu {
+  background-color: $primary-color-light;
+  color: white !important;
+  padding: 1.5rem 0.3rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  @include transition(.2s ease-out);
+  @extend .z-depth-1;
+  &:hover {
+    @extend .z-depth-2;
+  }
+  .btn-menu-link-text {
+    font-size: 1.8rem;
+    line-height: 115%;
   }
 }
-.panel p {
-  margin: 1rem !important;
+.btn-interactive-whole-page-container {
+  position: relative;
+  width: 100%;
+  height: initial !important;
+  padding: 2em 0 !important;
+  border-radius: 5px !important;
+  overflow: hidden;
+  background-color: black !important;
+}
+.btn-interactive-whole-page-image {
+  position: absolute;
+  top: -50%;
+  left: -10%;
+  width: 120%;
+  opacity: 0.5;
+  -webkit-filter: blur(3px);
+  filter: blur(3px);
+}
+.btn-interactive-whole-page-text {
+  position: relative;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: white;
+}
+.flex-container {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: stretch;
+  @media #{$medium-and-down} {
+    flex-direction: column;
+  }
+  @media #{$large-and-up} {
+    flex-direction: row;
+  }
+}
+.flex-item {
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
+  @media #{$medium-and-down} {
+    width: 100%;
+  }
+  @media #{$large-and-up} {
+    width: 32%;
+  }
+}
+.glossary-anchor-link:target,
+.glossary-anchor-link-highlight {
+  background-color: color("deep-orange", "lighten-3");
+  background-clip: content-box;
+}
+
+// Panels
+@mixin panel-color($class-name, $color) {
+  .#{$class-name} .collapsible-header {
+    background-color: color($color, "lighten-2");
+  }
+  .#{$class-name} {
+    background-color: color($color, "lighten-5");
+
+    .dropdown-menu-arrow {
+      color: color($color, "darken-2");
+    }
+  }
+}
+
+ul.panel {
+  li.panel-selector {
+    overflow: auto;
+  }
+  p {
+    margin: 1rem 0 !important;
+    padding: 0 !important;
+  }
+  .collapsible-header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: none;
+    padding: 1rem;
+    line-height: 1.2rem;
+  }
+  .collapsible-body {
+    border: none;
+    padding: 0 1rem;
+    ol > li {
+      list-style-type: decimal;
+    }
+    ul > li {
+      list-style-type: disc;
+    }
+  }
+
+  // Custom panel colours
+  @include panel-color("panel-teacher-note", "red");
+  @include panel-color("panel-additional-information", "amber");
+  @include panel-color("panel-curiosity", "purple");
+  @include panel-color("panel-challenge", "orange");
+  @include panel-color("panel-jargon-buster", "light-green");
+  @include panel-color("panel-spoiler", "blue-grey");
+  @include panel-color("panel-project", "blue");
+}
+
+.table-of-contents {
+  li, ul, a {
+    display: block !important;
+  }
+  a {
+    height: 100% !important;
+  }
+  &-subtitle {
+    padding-left: 0.8rem;
+    font-size: 90%;
+    a:not(.active) + & {
+      display: none !important;
+    }
+  }
+}
+.btn {
+  text-transform: none !important;
+  margin-bottom: 1rem;
+}
+.footer-details {
+  color: rgba(255,255,255,0.8);
+  background-color: $primary-color-dark;
+  overflow: hidden;
+}
+body.landing-page {
+  background-color: $primary-color !important;
+  padding: 2rem 1rem;
+  color: #fff;
+  footer {
+    padding-left: 0 !important;
+  }
+}
+.video-container {
+  margin-top: 1rem;
+}
+// Images
+img.responsive-img {
+  cursor: zoom-in;
+}
+.featherlight {
+  cursor: zoom-out !important;
+}
+.featherlight-content {
+  cursor: zoom-out !important;
+  overflow: hidden !important;
+  background-color: transparent !important;
+
+  // Hide the image border and close button
   padding: 0 !important;
+  border: 0 !important;
+  .featherlight-close-icon {
+    display: none !important;
+  }
+
+  // Prevent image overflowing its container
+  img {
+    margin: 0;
+    background-color: #FFF !important;
+  }
 }

@@ -1,0 +1,10 @@
+.sorting-algorithm-comparison-preload {
+  display: none;
+}
+.sorting-algorithm-comparison-subtitle {
+  font-weight: bold;
+}
+#sorting-algorithm-comparison-credit {
+  font-size: 0.8rem;
+  color: grey;
+}
