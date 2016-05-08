@@ -14,7 +14,19 @@ Computers are machines that do stuff with information. They let you view, listen
 
 To make computers easier to build and keep them reliable, everything is represented using just two values. You may have seen these two values represented as 0 and 1, but on a computer they are represented by anything that can be in two states. For example, in memory a low or high voltage is used to store each 0 or 1. On a magnetic disk it's stored with magnetism (whether a tiny spot on the disk is magnetised north or south).
 
-When we write what is stored in a computer on paper, we normally use “0” for one of the states, and “1” for the other state. If a piece of computer memory had the following voltages: “low”, “low”, “high”, “low”, “high”, “high”, “high”, “high”, “low”, “high”, “low”, “low”, we could allocate “0” to “low”, and “1” to high” and write this sequence down as 001011110100. While this notation is used extensively, and you may often hear the data being referred to as being “0’s and 1’s”, it is important to remember that a computer does *not* store 0’s and 1’s; it has no way of doing this. They are just using physical mechanisms such as high and low voltage, north or south polarity, and light or dark materials.
+When we write what is stored in a computer on paper, we normally use “0” for one of the states, and “1” for the other state. For example, a piece of computer memory could have the following voltages:
+
+```
+low low high low high high high high low high low low
+```
+
+We could allocate **“0”** to **“low”**, and **“1”** to **“high”** and write this sequence down as:
+
+```
+0 0 1 0 1 1 1 1 0 1 0 0
+```
+
+While this notation is used extensively, and you may often hear the data being referred to as being “0’s and 1’s”, it is important to remember that a computer does *not* store 0’s and 1’s; it has no way of doing this. They are just using physical mechanisms such as high and low voltage, north or south polarity, and light or dark materials.
 
 {panel type="jargon-buster" summary="Bits"}
 
