@@ -157,6 +157,10 @@ function init() {
                 break;
         }}, false);
 
+    // TODO working here
+    console.log("here");
+    console.log(cube.position.x);
+    console.log(document.getElementById( 'x-coordinate' ));
     // sets the initial values of the x/y/z-coordinate text input boxes
     document.getElementById( 'x-coordinate' ).value = cube.position.x;
     document.getElementById( 'y-coordinate' ).value = cube.position.y;
@@ -230,6 +234,13 @@ function animateHiddenObject() {
 function render() {
 
     renderer.render( scene, camera );
+
+}
+
+
+//triggered when user clicks +/- in mobile browser
+//change the x/y/z coordinate and move the box
+function changeCoord(increase, axis) {
 
 }
 

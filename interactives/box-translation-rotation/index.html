@@ -20,9 +20,9 @@
                     </div>
                     <div id="mobile-coord">
                         <p>Use the buttons to change the values of x, y and z to make the box move so you can see all the different sides.</p>
-                        <div id="mob-x">X<button>-</button><input type="text" id="x-coordinate"/><button>+</button></div>
-                        <div id="mob-y">Y<button>-</button><input type="text" id="y-coordinate"/><button>+</button></div>
-                        <div id="mob-z">Z<button>-</button><input type="text" id="z-coordinate"/><button>+</button></div>
+                        <div id="mob-x">X<button onClick="changeCoord(false, 'x')">-</button><input type="text" id="x-coordinate"/><button onClick="changeCoord(true, 'x')">+</button></div>
+                        <div id="mob-y">Y<button onClick="changeCoord(false, 'y')">-</button><input type="text" id="y-coordinate"/><button onClick="changeCoord(true, 'y')">+</button></div>
+                        <div id="mob-z">Z<button onClick="changeCoord(false, 'z')">-</button><input type="text" id="z-coordinate"/><button onClick="changeCoord(true, 'z')">+</button></div>
                     </div>
                 </div>
                 <div id="code">
