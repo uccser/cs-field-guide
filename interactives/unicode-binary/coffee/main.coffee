@@ -6,7 +6,7 @@ URI = require('urijs')
 
 validModes = ['utf8', 'utf16', 'utf32']
 
-query = URI.parse(decodeURI(window.location.href)).query
+query = URI.parse(decodeURIComponent(window.location.href)).query
 MODE = (URI.parseQuery(query).mode ? 'utf8').toLowerCase()
 
 if MODE not in validModes
