@@ -1,63 +1,9 @@
 "use strict"
 require('es5-shim')
 require('es6-shim')
-Observable = require('zen-observable')
+require('jquery-text-input')
 
 ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-keyCodes =
-    BACKSPACE: 8,
-    COMMA: 188,
-    DELETE: 46,
-    DOWN: 40,
-    END: 35,
-    ENTER: 13,
-    ESCAPE: 27,
-    HOME: 36,
-    LEFT: 37,
-    NUMPAD_ADD: 107,
-    NUMPAD_DECIMAL: 110,
-    NUMPAD_DIVIDE: 111,
-    NUMPAD_ENTER: 108,
-    NUMPAD_MULTIPLY: 106,
-    NUMPAD_SUBTRACT: 109,
-    PAGE_DOWN: 34,
-    PAGE_UP: 33,
-    PERIOD: 190,
-    RIGHT: 39,
-    SPACE: 32,
-    TAB: 9,
-    UP: 38
-
-
-
-
-singleEvent = (selector="document", events...) ->
-    ### Returns a promise for a single event on a single element
-        with the event handler supplied by jQuery
-    ###
-    return new Promise (resolve) ->
-        $(selector).one events.join(' '), resolve
-
-eventStream = (selectors="document", events...) ->
-    ### Returns an Observable which can be subscribed to for the given events
-        on a given element
-    ###
-    subscribers = new Set()
-    if selectors.join?
-        selector = selectors.join(", ")
-    else
-        selector = selectors
-
-    handler = (event) ->
-        subscribers.forEach (subscriber) ->
-            subscriber.next(event)
-
-
-    $(selector).on events.join(' '), handler
-    return new Observable (subscriber) ->
-        subscribers.add(subscriber)
-        return ->
-            subscribers.delete(subscriber)
 
 ## ------ Caesar Cipher --------------
 
@@ -85,22 +31,31 @@ decrypt = (text, rotation=3) ->
     ###
     return encrypt(text, -rotation)
 
+## -------------- Normal jQuery interactivity stuff ---------------
 
-async.main ->
-    ### This endlessly gets button presses and either encrypts or decrypts
-        depending on which button was pressed
-    ###
-    while true
-        yield singleEvent(
-            '#interactive-caesar-encrypt, #interactive-caesar-decrypt',
-            'click'
-        )
-        key = Number($('#interactive-caesar-key-input').val())
-        if $(event.target).attr('id') is "interactive-caesar-encrypt"
-            original = $('#interactive-caesar-plaintext').val().toUpperCase()
-            $('#interactive-caesar-plaintext').val(original)
-            $('#interactive-caesar-ciphertext').val(encrypt(original, key))
-        else
-            original = $('#interactive-caesar-ciphertext').val().toUpperCase()
-            $('#interactive-caesar-ciphertext').val(original)
-            $('#interactive-caesar-plaintext').val(decrypt(original, key))
+
+$keyInput = $("#interactive-caesar-key-input")
+$encryptButton = $("#interactive-caesar-encrypt")
+$decryptButton = $("#interactive-caesar-decrypt")
+$plaintext = $("#interactive-caesar-plaintext")
+$ciphertext = $("#interactive-caesar-ciphertext")
+
+$plaintext.on 'textInput', ->
+    ### Ensure plaintext is always uppercase ###
+    $plaintext.val $plaintext.val().toUpperCase()
+
+$ciphertext.on 'textInput', ->
+    ### Ensure ciphertext is always uppercase ###
+    $ciphertext.val $ciphertext.val().toUpperCase()
+
+$keyInput.on 'textInput', ->
+    ### Filter all non non-numeric keys ###
+    $keyInput.val $keyInput.val.replace(/[^0-9]/g, '')
+
+$encryptButton.on 'click', ->
+    key = Number $keyInput.val()
+    $ciphertext.val encrypt($plaintext.val(), key)
+
+$decryptButton.on 'click', ->
+    key = Number $keyInput.val()
+    $plaintext.val decrypt($ciphertext.val(), key)
