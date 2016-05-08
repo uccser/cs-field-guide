@@ -1,6 +1,6 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 "use strict";
-var $binary, $char, $decimal, MODE, URI, byteify, cleanDecimal, query, ref, s, toUTF16, toUTF8, updateBinary, validModes,
+var $binary, $char, $decimal, MODE, URI, byteify, cleanDecimal, query, ref, s, toUTF16, toUTF32, toUTF8, updateBinary, validModes,
   indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
 require('string.fromcodepoint');
@@ -63,7 +63,7 @@ toUTF16 = function(number) {
   /* Converts a number to a utf16 binary string */
   var bits, left, right, shifted;
   if ((0x0 <= number && number <= 0xD7FF) || (0xE000 <= number && number <= 0xFFFF)) {
-    return s.lpad(number, 16, '0');
+    return s.lpad(number.toString('2'), 16, '0');
   } else if (0x10000 <= number) {
     shifted = number - 0x10000;
     bits = s.lpad(shifted.toString('2'), 20, '0');
@@ -71,6 +71,12 @@ toUTF16 = function(number) {
     right = (parseInt(bits.slice(10, 20), 2) + 0xDC00).toString('2');
     return left + right;
   }
+};
+
+toUTF32 = function(number) {
+
+  /* Converts a number into a UTF32 bit string */
+  return s.lpad(number.toString('2'), 32, '0');
 };
 
 
@@ -92,7 +98,7 @@ updateBinary = function(number) {
       case 'utf16':
         return toUTF16(number);
       case 'utf32':
-        return s.lpad(number.toString('2'), 32, '0');
+        return toUTF32(number);
     }
   })()));
 };

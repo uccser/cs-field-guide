@@ -44,7 +44,7 @@ toUTF16 = (number) ->
     ### Converts a number to a utf16 binary string ###
     if 0x0 <= number <= 0xD7FF or 0xE000 <= number <= 0xFFFF
         # In these code point ranges we simply encode directly to 16 bits
-        return s.lpad(number, 16, '0')
+        return s.lpad(number.toString('2'), 16, '0')
     else if 0x10000 <= number
         # Else use the algorithm for converting to 32 bit surrogate pairs
         shifted = number - 0x10000
@@ -53,7 +53,9 @@ toUTF16 = (number) ->
         right = (parseInt(bits[10...20], 2) + 0xDC00).toString('2')
         return left + right
 
-
+toUTF32 = (number) ->
+    ### Converts a number into a UTF32 bit string ###
+    return s.lpad(number.toString('2'), 32, '0')
 
 ### -------------- jQuery Event Code ---------------- ###
 
@@ -66,7 +68,7 @@ updateBinary = (number) ->
     $binary.val byteify switch MODE
         when 'utf8' then toUTF8(number)
         when 'utf16' then toUTF16(number)
-        when 'utf32' then s.lpad(number.toString('2'), 32, '0')
+        when 'utf32' then toUTF32(number)
 
 
 cleanDecimal = ->
