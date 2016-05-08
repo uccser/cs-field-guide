@@ -162,37 +162,34 @@ function init() {
     document.getElementById( 'y-coordinate' ).value = cube.position.y;
     document.getElementById( 'z-coordinate' ).value = cube.position.z;
 
-    // uses regex to check if the user is on mobile or desktop
+    // uses regex to check if the user is on mobile
+    // if mobile then switches input to buttons rather than text entry
     if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-        console.log("mobile");
-        setMobileLayout();
-        //document.getElementById( 'user-input' ).className = 'right';
-    } else {
-        document.getElementById( 'user-input' ).className = 'right';
+        document.getElementById( 'desktop-coord' ).style.display = 'none';
+        document.getElementById( 'mobile-coord' ).style.display = 'inline';
     }
-}
-
-
-function setMobileLayout() {
-
-    document.getElementById( 'user-input' ).className = 'below';
-    document.getElementById( 'question' ).className = 'arrange-left';
-    document.getElementById( 'symbol-grid' ).className = 'arrange-right';
-
-    document.getElementById( 'desktop-coord' ).style.display = 'none';
-    document.getElementById( 'mobile-coord' ).style.display = 'inline';
 
 }
+
 
 function onWindowResize() {
 
-    windowHalfX = window.innerWidth / 2;
-    windowHalfY = window.innerHeight / 2;
+    var screenWidth = window.innerWidth;
+    var screenHeight = window.innerHeight;
 
-    camera.aspect = window.innerWidth / window.innerHeight;
+    // check for small screen
+    if ( screenWidth < 650 ) {
+        // sets to mobile layout
+        document.getElementById( 'user-input' ).className = 'mob-layout';
+    }
+
+    windowHalfX = screenWidth / 2;
+    windowHalfY = screenHeight / 2;
+
+    camera.aspect = screenWidth / screenHeight;
     camera.updateProjectionMatrix();
 
-    renderer.setSize( window.innerWidth, window.innerHeight );
+    renderer.setSize( screenWidth, screenHeight );
     // renderer.setSize( window.innerWidth, 226 );
 
 }

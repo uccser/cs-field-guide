@@ -1,27 +1,14 @@
-#coordinates input {
+img {
     width: 30px;
-    display: inline-block;
-    border: none;
-    border-radius: 2px;
-    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16);
-    height: 15px;
 }
 
 
-#coordinates label {
-    display: block;
-    margin: 5px;
-}
-
-
-#mobile-coord {
-    display: none;
-}
-
-
-#user-input {
-    color: #fff;
-    background-color: #3f51b5;
+body {
+    font-family: Monospace;
+    font-size: 15px;
+    background-color: #f0f0f0;
+    margin: 0px;
+    overflow: hidden;
 }
 
 
@@ -34,32 +21,58 @@ button {
     margin: 5px;
 }
 
+#user-input {
+    color: #fff;
+    background-color: #3f51b5;
+    padding: 5px;
+}
 
-.right {
+
+#coordinates {
+    padding-right: 5px;
+}
+
+
+#coordinates input {
+    width: 30px;
+    display: inline-block;
+    border: none;
+    border-radius: 2px;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16);
+    height: 15px;
+}
+
+
+.desktop-layout {
     position: absolute;
     top: 0px;
     right: 0px;
-    width: 150px;
+    width: 200px;
     text-align: center;
 }
 
 
-.below {
+#mobile-coord {
+    display: none;
+}
+
+
+#mob-x, #mob-y, #mob-z {
+    display: inline-block;
+}
+
+
+.mob-layout {
+    font-size: 12px;
     position: absolute;
     bottom: 0px;
     width: 100%;
 }
 
 
-.arrange-left {
+.mob-layout #symbol-grid {
+    width: 50%;
     float: left;
-    width: 50%;
-}
-
-
-.arrange-right {
-    float: right;
-    width: 50%;
 }
 
 
@@ -79,15 +92,9 @@ button {
 }
 
 
-img {
-    width: 30px;
+.mob-layout #code-template {
+    width: 50%;
+    float: right;
 }
 
 
-body {
-    font-family: Monospace;
-    font-size: 15px;
-    background-color: #f0f0f0;
-    margin: 0px;
-    overflow: hidden;
-}

@@ -10,7 +10,7 @@
     <body>
 
         <div id="container">
-            <div id="user-input">
+            <div id="user-input" class="desktop-layout">
                 <div id="coordinates">
                     <div id="desktop-coord">
                         <p>Type in different values of x, y and z to make the box move so you can see all the different sides.</p>
@@ -18,7 +18,7 @@
                         <label>Y:<input type="text" id="y-coordinate"/></label>
                         <label>Z:<input type="text" id="z-coordinate"/></label>
                     </div>
-                    <div id="mobile-coord" class="mob-buttons">
+                    <div id="mobile-coord">
                         <p>Use the buttons to change the values of x, y and z to make the box move so you can see all the different sides.</p>
                         <div id="mob-x">X<button>-</button><input type="text" id="x-coordinate"/><button>+</button></div>
                         <div id="mob-y">Y<button>-</button><input type="text" id="y-coordinate"/><button>+</button></div>
@@ -40,15 +40,15 @@
                             <img id="7" src="images/grayscale_square7.png" onClick="symbolClick(id)">
                             <img id="8" src="images/grayscale_square8.png" onClick="symbolClick(id)">
                         </div>
-                    </div>
                         <button onClick="submitSymbol()">Submit</button>
+                    </div>
                     <div id="code-template">
                         <img id="first-symbol" src="images/question_mark.jpg">
                         <img id="second-symbol" src="images/question_mark.jpg">
                         <img id="third-symbol" src="images/question_mark.jpg">
+                        <button onClick="clearCode()">Restart</button>
+                        <button onClick="submitCode()">Check Code</button>
                     </div>
-                    <button onClick="clearCode()">Clear</button>
-                    <button onClick="submitCode()">Check Code</button>
                 </div>
             </div>
         </div>
