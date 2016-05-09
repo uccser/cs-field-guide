@@ -8,10 +8,12 @@
         "es5-shim": "latest",
         "es6-shim": "latest"
     },
-    "devdependencies": {
-        "coffeeify": "latest"
+    "devDependencies": {
+        "coffee-script": "latest",
+        "coffeeify": "latest",
+        "browserify": "latest"
     },
     "scripts": {
-        "build-js": "browserify -t coffeeify coffee/main.coffee > js/main.js"
+        "build": "browserify -t coffeeify coffee/main.coffee > js/main.js"
     }
 }

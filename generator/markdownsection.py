@@ -1,8 +1,10 @@
 import re
-from bs4 import BeautifulSoup, Comment
+import html as html_module
 import logging
 import os.path
+import urllib.parse
 import generator.systemfunctions as systemfunctions
+from bs4 import BeautifulSoup, Comment
 from generator.systemconstants import *
 from collections import OrderedDict
 from markdown2 import markdown
@@ -34,6 +36,7 @@ class Section:
         # Dictionary of sets for images, interactives, and other_files
         self.required_files = setup_required_files(file_node.guide)
         self.page_scripts = []
+        self.in_page_interactives = set()
         self.mathjax_required = False
         self.sectioned = False
         self.html_path_to_guide_root = self.file_node.depth * '../'
@@ -219,7 +222,7 @@ class Section:
                     caption_html = self.html_templates['link'].format(link_url=caption_link_value, link_text=caption_value)
                 else:
                     caption_html = caption_value
-                # Add caption as data value attribute to display in materialbox
+                # Add caption as data value attribute to display in lightbox
                 parameters += ' '
                 parameters += self.html_templates['image-caption-data-value'].format(caption=caption_value)
 
@@ -233,6 +236,14 @@ class Section:
             if alt_value:
                 parameters += ' '
                 parameters += self.html_templates['image-parameter-alt'].format(alt_text=alt_value)
+
+            # Parse text hover argument
+            hover_text_value = parse_argument('hover-text', arguments)
+            if hover_text_value:
+                # Replace any existing single quotes
+                hover_text_value = html_module.escape(hover_text_value)
+                parameters += ' '
+                parameters += self.html_templates['image-parameter-title'].format(title_text=hover_text_value)
 
         image_html = self.html_templates['image'].format(image_source=image_source, image_parameters=parameters)
 
@@ -445,37 +456,48 @@ class Section:
         if name and interactive_type:
             arg_text = parse_argument('text', arguments)
             text = arg_text if arg_text else name
+
             arg_parameters = parse_argument('parameters', arguments)
-            params = arg_parameters if arg_parameters else None
+            params = urllib.parse.quote(arg_parameters) if arg_parameters else None
+
+            file_name = self.guide.generator_settings['Source']['Interactive File Name']
+            file_type = parse_argument('file-type', arguments)
+            file_type = file_type if file_type else self.guide.generator_settings['Source']['Interactive File Type']
+            interactive_source_file = file_name + '.' + file_type
+
             source_folder = os.path.join(self.guide.generator_settings['Source']['Interactive'], name)
 
-            if self.check_interactive_exists(source_folder, name, match):
+            if self.check_interactive_exists(source_folder, name, interactive_source_file, match):
                 self.required_files['Interactive'].add(name)
                 if interactive_type == 'whole-page':
                     arg_thumbnail = parse_argument('thumbnail', arguments)
                     thumbnail = arg_thumbnail if arg_thumbnail else self.guide.generator_settings['Source']['Interactive Thumbnail']
-                    html = self.whole_page_interactive_html(source_folder, text, name, params, thumbnail, match)
+                    html = self.whole_page_interactive_html(source_folder, text, interactive_source_file, params, thumbnail, match)
                 elif interactive_type == 'in-page':
-                    html = self.inpage_interactive_html(source_folder, name, match)
+                    if name in self.in_page_interactives:
+                        self.regex_functions['interactive'].log('Interactive {} already used on this page with in-page mode. Use iframe mode for multiple occurrences.'.format(name), self, match.group(0))
+                    else:
+                        self.in_page_interactives.add(name)
+                        html = self.inpage_interactive_html(source_folder, name, interactive_source_file, match)
                 elif interactive_type == 'iframe':
-                    html = self.iframe_interactive_html(source_folder, name, params, match)
+                    html = self.iframe_interactive_html(source_folder, interactive_source_file, params, match)
                 else:
-                    self.regex_functions['file download button'].log('Interactive type not valid', self, match.group(0))
+                    self.regex_functions['interactive'].log('Interactive type not valid', self, match.group(0))
             else:
-                self.regex_functions['file download button'].log('Interactive {} does not exist'.format(name), self, match.group(0))
+                self.regex_functions['interactive'].log('Interactive {} does not exist'.format(name), self, match.group(0))
         elif not name:
-            self.regex_functions['file download button'].log('Interactive name argument not provided'.format(name), self, match.group(0))
+            self.regex_functions['interactive'].log('Interactive name argument not provided'.format(name), self, match.group(0))
         elif not interactive_type:
-            self.regex_functions['file download button'].log('Interactive type argument not provided'.format(name), self, match.group(0))
+            self.regex_functions['interactive'].log('Interactive type argument not provided'.format(name), self, match.group(0))
         return html if html else ''
 
 
-    def iframe_interactive_html(self, source_folder, name, params, match):
+    def iframe_interactive_html(self, source_folder, interactive_source_file, params, match):
         """Create an iframe for the interactive.
             - A script is added to the page for a responsive iframe
             - A script is added within the iframe for a responsive iframe
         """
-        folder_location = os.path.join(self.html_path_to_guide_root, source_folder, self.guide.generator_settings['Source']['Interactive File'])
+        folder_location = os.path.join(self.html_path_to_guide_root, source_folder, interactive_source_file)
         file_link = "{location}?{parameters}".format(location=folder_location, parameters=params) if params else folder_location
         link_template = self.html_templates['interactive-iframe']
         html = link_template.format(interactive_source=file_link)
@@ -483,11 +505,11 @@ class Section:
         return html
 
 
-    def whole_page_interactive_html(self, source_folder, text, name, params, thumbnail, match):
+    def whole_page_interactive_html(self, source_folder, text, interactive_source_file, params, thumbnail, match):
         """Return the html block for a link to an whole page interactive"""
         thumbnail_location = os.path.join(self.html_path_to_guide_root, source_folder, thumbnail)
         link_text = 'Click to load {text}'.format(text=text)
-        folder_location = os.path.join(self.html_path_to_guide_root, source_folder, self.guide.generator_settings['Source']['Interactive File'])
+        folder_location = os.path.join(self.html_path_to_guide_root, source_folder, interactive_source_file)
         file_link = "{location}?{parameters}".format(location=folder_location, parameters=params) if params else folder_location
         link_template = self.html_templates['interactive-whole-page']
         link_html = link_template.format(interactive_thumbnail=thumbnail_location,
@@ -497,11 +519,11 @@ class Section:
         return html
 
 
-    def inpage_interactive_html(self, source_folder, name, match):
+    def inpage_interactive_html(self, source_folder, name, interactive_source_file, match):
         """Return the html for inpage interactives, with links adjusted
         to correct relative links, and comments removed.
         """
-        interactive_tree = self.get_interactive_tree(source_folder, name, match)
+        interactive_tree = self.get_interactive_tree(source_folder, name, interactive_source_file, match)
         if interactive_tree is not None:
             self.edit_interactive_tree(interactive_tree, source_folder)
             html = re.sub('(\n)*<!--(.|\s)*?-->(\n)*', '', interactive_tree.prettify(formatter=None).strip(), flags=re.MULTILINE)
@@ -510,13 +532,12 @@ class Section:
             return None
 
 
-    def get_interactive_tree(self, source_folder, name, match):
+    def get_interactive_tree(self, source_folder, name, interactive_source_file, match):
         """Return element tree for the 'class=interactive div'
         of the interactive html file. If more than one div is found,
         return None and log error
         """
-        filename = self.guide.generator_settings['Source']['Interactive File']
-        file_location = os.path.join(source_folder, filename)
+        file_location = os.path.join(source_folder, interactive_source_file)
         with open(file_location, 'r', encoding='utf-8') as source_file:
             raw_html = source_file.read()
 
@@ -551,11 +572,11 @@ class Section:
                 self.add_page_script(element.extract())
 
 
-    def check_interactive_exists(self, interactive_source, interactive_name, match):
+    def check_interactive_exists(self, interactive_source, interactive_name, interactive_source_file, match):
         """Checks if an interactive exists and has an index.html file"""
         exists = False
         if os.path.exists(interactive_source):
-            interactive_source_file = self.guide.generator_settings['Source']['Interactive File']
+            interactive_source_file = interactive_source_file
             interactive_source_file_location = os.path.join(interactive_source, interactive_source_file)
             if os.path.exists(interactive_source_file_location):
                 exists = True
