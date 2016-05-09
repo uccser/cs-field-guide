@@ -53,6 +53,13 @@
   margin: 1rem 0;
   padding: 0 1rem;
 }
+#interactive-colour-matcher .section-representation {
+  padding-left: 0.5rem;
+  margin-bottom: 1rem;
+}
+#interactive-colour-matcher .hexidecimal {
+  display: none;
+}
 #interactive-colour-matcher .bordered {
   border: 1px solid #CCC;
   border-radius: 5px;
@@ -71,10 +78,6 @@
   -o-user-select: none;
   user-select: none;
 }
-#interactive-colour-matcher .bit-representation-section {
-  padding-left: 0.5rem;
-  margin-bottom: 1rem;
-}
 #interactive-colour-matcher button {
   margin-bottom: 1rem;
   text-transform: initial;
@@ -82,8 +85,11 @@
 #interactive-colour-matcher h6 {
   font-weight: bold;
 }
-.interactive-colour-matcher-sliders span {
+#interactive-colour-matcher .representation-text {
   font-family: monospace;
+}
+#interactive-colour-matcher .hexidecimal .representation-text {
+  font-size: 1.5rem;
 }
 .interactive-colour-matcher-result {
   text-align: center;
