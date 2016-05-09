@@ -880,11 +880,9 @@ In order to compare and evaluate them, we need to decide what it means for a rep
 We know that UTF-8, UTF-16, and UTF-32 can represent all characters, but ASCII can only represent English. Therefore, ASCII fails the first criterion.
 But for the second criteria, it isn't so simple.
 
-The following interactive will allow you to find out the length of pieces of text using UTF-8, UTF-16, or UTF-32. Find some samples of English text and Asian text (forums or a translation site are a good place to look), and see how long your various samples are when encoded with each of the three representations.
+The following interactive will allow you to find out the length of pieces of text using UTF-8, UTF-16, or UTF-32. Find some samples of English text and Asian text (forums or a translation site are a good place to look), and see how long your various samples are when encoded with each of the three representations. Copy paste or type text into the box.
 
-{comment}
-Insert interactive here which determines the length of a piece of text with each representation
-{comment end}
+{interactive name="unicode-length" type="iframe"}
 
 As a general rule, UTF-8 is better for English text, and UTF-16 is better for Asian text. UTF-32 always requires 32 bits for each character, so is unpopular in practice.
 
