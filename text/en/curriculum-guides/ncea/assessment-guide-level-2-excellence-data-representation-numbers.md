@@ -133,25 +133,32 @@ This section should not take more than 1 page in your report.
 
 - Your 2.44 report should be structured in the following way. Note that the bolded parts are recommended headings. Details have not been included for sections covered in other guides. Look carefully at the Representing Data section to ensure you have structured your report properly. This will help the marker find what they need to find.
 
-```
-***Computer Science report for 2.44***
+{text-box indented="True"}
+**Computer Science Report for 2.44**
 
-  ***Representing Data***
-    put your introduction to what bits are here
-    ***Representing Numbers***
-      ***Representing positive numbers with binary***
-      ***Representing numbers in binary with a simple sign bit***
-      ***Representing numbers in binary with Two's Complement***
-      ***Simple sign bits vs Two's Complement***
-    ***Representing [other topic]***
-      (see relevant guide for information on structuring this section)
+- **Representing Data**
 
-  ***Encoding***
+  Put your introduction to what bits are here
+
+  - **Representing Numbers**
+
+    - **Representing positive numbers with binary**
+    - **Representing numbers in binary with a simple sign bit**
+    - **Representing numbers in binary with Two's Complement**
+    - **Simple sign bits vs Two's Complement**
+
+  - **Representing [other topic]**
+
     (see relevant guide for information on structuring this section)
 
-  ***Human Computer interaction***
-    (see relevant guide for information on structuring this section)
-```
+- **Encoding**
+
+  (see relevant guide for information on structuring this section)
+
+- **Human Computer Interaction**
+
+  (see relevant guide for information on structuring this section)
+{text-box end}
 
 - Be careful to put your explanations and examples under the correct headings.
 - Do not include large lists or tables, for example do not include an ASCII table or a list of binary number conversions.
