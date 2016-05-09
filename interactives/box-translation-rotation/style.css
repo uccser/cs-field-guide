@@ -9,6 +9,7 @@ body {
     background-color: #f0f0f0;
     margin: 0px;
     overflow: hidden;
+    text-align: center;
 }
 
 
@@ -48,7 +49,6 @@ button {
     top: 0px;
     right: 0px;
     width: 200px;
-    text-align: center;
 }
 
 
@@ -88,6 +88,11 @@ button {
 
 
 #code-template button {
+    display: inline-block;
+}
+
+
+#end-buttons {
     display: block;
 }
 

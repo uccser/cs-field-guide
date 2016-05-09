@@ -153,18 +153,19 @@ function init() {
     document.addEventListener( 'keydown', function( event ) {
         switch (event.keyCode) {
             case 13: // enter/return key
+                updateCoords();
                 moveBox();
                 break;
         }}, false);
 
-    // TODO working here
-    console.log("here");
-    console.log(cube.position.x);
-    console.log(document.getElementById( 'x-coordinate' ));
+
     // sets the initial values of the x/y/z-coordinate text input boxes
-    document.getElementById( 'x-coordinate' ).value = cube.position.x;
-    document.getElementById( 'y-coordinate' ).value = cube.position.y;
-    document.getElementById( 'z-coordinate' ).value = cube.position.z;
+    document.getElementById( 'desk-x-coordinate' ).value = cube.position.x;
+    document.getElementById( 'desk-y-coordinate' ).value = cube.position.y;
+    document.getElementById( 'desk-z-coordinate' ).value = cube.position.z;
+    document.getElementById( 'mob-x-coordinate' ).value = cube.position.x;
+    document.getElementById( 'mob-y-coordinate' ).value = cube.position.y;
+    document.getElementById( 'mob-z-coordinate' ).value = cube.position.z;
 
     // uses regex to check if the user is on mobile
     // if mobile then switches input to buttons rather than text entry
@@ -172,6 +173,7 @@ function init() {
         document.getElementById( 'desktop-coord' ).style.display = 'none';
         document.getElementById( 'mobile-coord' ).style.display = 'inline';
     }
+
 
 }
 
@@ -240,8 +242,40 @@ function render() {
 
 //triggered when user clicks +/- in mobile browser
 //change the x/y/z coordinate and move the box
-function changeCoord(increase, axis) {
+//TODO decide when to multiply by 10
+function updateCoords(axis, change) {
 
+    if ( change == '-' ) {
+        if ( axis == 'x' ) {
+            x_pos -= 5;
+            document.getElementById( 'mob-x-coordinate' ).value = x_pos;
+        } else if ( axis == 'y' ) {
+            y_pos -= 5;
+            document.getElementById( 'mob-y-coordinate' ).value = y_pos;
+        } else {
+            z_pos -= 5;
+            document.getElementById( 'mob-z-coordinate' ).value = z_pos;
+        }
+        moveBox();
+    } else if ( change == '+' ) {
+        if ( axis == 'x' ) {
+            x_pos += 5;
+            document.getElementById( 'mob-x-coordinate' ).value = x_pos;
+        } else if ( axis == 'y' ) {
+            y_pos += 5;
+            document.getElementById( 'mob-y-coordinate' ).value = y_pos;
+        } else {
+            z_pos += 5;
+            document.getElementById( 'mob-z-coordinate' ).value = z_pos;
+        }
+        moveBox();
+    } else { // must be input box from desktop
+        // get each coordinate value from the input box
+        // using 0 makes the value be set relative to start position, rather than previous position
+        x_pos = 0 + parseInt(document.getElementById( 'desk-x-coordinate' ).value);
+        y_pos = 0 + parseInt(document.getElementById( 'desk-y-coordinate' ).value);
+        z_pos = 0 + parseInt(document.getElementById( 'desk-z-coordinate' ).value);
+    }
 }
 
 

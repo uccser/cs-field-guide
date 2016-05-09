@@ -7,6 +7,7 @@ function moveBox() {
 
     // get each coordinate value from the input box
     // using 0 makes the value be set relative to start position, rather than previous position
+    // TODO WORKING HERE
     x_pos = 10 * ( 0 + parseInt(document.getElementById( 'x-coordinate' ).value) );
     y_pos = 10 * ( 0 + parseInt(document.getElementById( 'y-coordinate' ).value) );
     z_pos = 10 * ( 0 + parseInt(document.getElementById( 'z-coordinate' ).value) );
