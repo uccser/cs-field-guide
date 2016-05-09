@@ -34,9 +34,9 @@ bitLength = function(text, encoding) {
 };
 
 $button.on('click', function() {
-  $utf8.val(bitLength($text.val(), 'utf-8'));
-  $utf16.val(bitLength($text.val(), 'utf-16le'));
-  return $utf32.val(Array.from($text.val()).length * 32);
+  $utf8.val(bitLength($text.val(), 'utf-8') + " bits");
+  $utf16.val(bitLength($text.val(), 'utf-16le') + " bits");
+  return $utf32.val(Array.from($text.val()).length * 32 + " bits");
 });
 
 
