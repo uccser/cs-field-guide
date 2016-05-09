@@ -1,12 +1,24 @@
+// The JS is not currently written for efficiency
+// but rather as a proof of concept.
+// This JS will be rewritten in a future update.
+
 ColourMatcher = {};
 
 $(document).ready(function () {
-  ColourMatcher.goal_panel = document.getElementById('interactive-colour-matcher-goal');
+  // Default values
+  ColourMatcher.representations = [24, 8];
+  ColourMatcher.goal_panels = $('.interactive-colour-matcher-goal');
   ColourMatcher.help_stage = 0;
   ColourMatcher.help_text = [['Help me set 24 bit red', 'red'],
                              ['Help me set 24 bit green', 'green'],
-                             ['Help me set 24 bit blue', 'blue'],
                              ['All help given', 'disabled']]
+  ColourMatcher.display_hexidecimal = false;
+
+  // Display hexidecimal values
+  if (getUrlParameter('hexidecimal') == 'true') {
+    ColourMatcher.display_hexidecimal = true;
+    $('#interactive-colour-matcher .hexidecimal').show();
+  }
 
   // Setup 24 bit sliders
   ColourMatcher.bit_24 = {};
@@ -29,13 +41,7 @@ $(document).ready(function () {
       },
       format: wNumb({
         decimals: 0
-      }),
-      pips: {
-        mode: 'count',
-    		values: 9,
-    		density: 3,
-		    stepped: true
-    	}
+      })
     });
 
     // Bind the color changing function to the slide event.
@@ -76,15 +82,33 @@ $(document).ready(function () {
     ColourMatcher.bit_8.sliders[i].noUiSlider.on('slide', update8BitPanel);
   }
 
+  // Create data bits for representations
+  var representation_id = '#interactive-colour-matcher-bit-representation-';
+  for (var i = 0; i < ColourMatcher.representations.length; i++) {
+    var representation_length = ColourMatcher.representations[i];
+    var representation = $(representation_id + representation_length);
+    for (var j = 0; j < representation_length; j++) {
+      var bit = $('<div class="bit">0</div>');
+      if (j < (representation_length / 3)) {
+        bit.css('border-color', 'red');
+      } else if (j < (representation_length / 3 * 2)) {
+        bit.css('border-color', 'lime');
+      } else {
+        bit.css('border-color', 'blue');
+      }
+      representation.append(bit);
+    }
+  }
+
   reset();
 
   // If help button triggered
   $("#interactive-colour-matcher-help").click(function(){
-    if (ColourMatcher.help_stage < 3) {
+    if (ColourMatcher.help_stage < 2) {
       // Set slider to correct value
       ColourMatcher.bit_24.sliders[ColourMatcher.help_stage].noUiSlider.set(ColourMatcher.goal_colour[ColourMatcher.help_stage]);
       // Set slider to disabled
-      ColourMatcher.bit_24.sliders[ColourMatcher.help_stage].setAttribute('disabled', true);
+      // ColourMatcher.bit_24.sliders[ColourMatcher.help_stage].setAttribute('disabled', true);
       // Increment help stage
       ColourMatcher.help_stage++;
       // Set new text for help button
@@ -101,6 +125,17 @@ $(document).ready(function () {
   // If reset button triggered
   $("#interactive-colour-matcher-reset").click(function(){
     reset();
+  });
+
+  // When user clicks on bit in representation
+  $('.section').on('click', '.bit', function(){
+    var $bit = $(this);
+    if ($bit.html() == 0) {
+      $bit.html(1);
+    } else {
+      $bit.html(0);
+    }
+    updateSlidersFromRepresentation();
   });
 
 });
@@ -142,8 +177,8 @@ function setGoalPanel(){
   // Set colour
   ColourMatcher.goal_colour = [red, green, blue];
 
-  // Update goal panel
-  ColourMatcher.goal_panel.style.background = toRGBString(ColourMatcher.goal_colour, 24)
+  // Update goal panels
+  ColourMatcher.goal_panels.css('background-color', toRGBString(ColourMatcher.goal_colour, 24));
 };
 
 
@@ -164,9 +199,16 @@ function update24BitPanel(){
   // Update 24 bit panel
   ColourMatcher.bit_24.result.style.background = toRGBString(colours, 24);
 
-  // Set text for labels
+  // Set text for labels and accumulate binary
+  var total_binary = ""
   for (var i = 0; i < ColourMatcher.bit_24.value_labels.length; i++) {
-    ColourMatcher.bit_24.value_labels[i].innerHTML = colours[i];
+    var binary = convertToBinaryString(colours[i], 8);
+    total_binary += binary;
+    ColourMatcher.bit_24.value_labels[i].innerHTML = binary;
+  }
+  setBinaryRepresentation('interactive-colour-matcher-bit-representation-24', total_binary);
+  if (ColourMatcher.display_hexidecimal) {
+    setHexidecimalRepresentation('24', colours);
   }
 };
 
@@ -185,11 +227,88 @@ function update8BitPanel(){
                  ColourMatcher.bit_8.sliders[1].noUiSlider.get(),
                  ColourMatcher.bit_8.sliders[2].noUiSlider.get()];
 
-  // Set text for labels
+  // Set text for labels and accumulate binary
+  var total_binary = ""
   for (var i = 0; i < ColourMatcher.bit_8.value_labels.length; i++) {
-    ColourMatcher.bit_8.value_labels[i].innerHTML = colours[i];
+    var binary = convertToBinaryString(colours[i], i == 2 ? 2 : 3);
+    total_binary += binary;
+    ColourMatcher.bit_8.value_labels[i].innerHTML = binary;
+  }
+  setBinaryRepresentation('interactive-colour-matcher-bit-representation-8', total_binary);
+  if (ColourMatcher.display_hexidecimal) {
+    setHexidecimalRepresentation('8', colours);
   }
 
   // Update 8 bit panel
-  ColourMatcher.bit_8.result.style.background = toRGBString(colours, 8)
+  ColourMatcher.bit_8.result.style.background = toRGBString(colours, 8);
+};
+
+
+// Converts a given decimal value to binary to the given number of digits
+function convertToBinaryString(decimal_value, digits) {
+  binary_value = Number(decimal_value).toString(2);
+  padded_string = "0".repeat(digits)
+  return padded_string.substr(binary_value.length) + binary_value
+};
+
+
+// Sets the binary representation to the slider values
+function setBinaryRepresentation (representation_id, binary_string) {
+  var bits = $('#' + representation_id).children();
+  for (var i = 0; i < binary_string.length; i++) {
+    bits[i].innerHTML = binary_string[i];
+  }
+};
+
+
+// Set the hexidecimal representation from the given colours
+function setHexidecimalRepresentation(bit, colours) {
+  var hexidecimal = '';
+  for (var i = 0; i < colours.length; i++) {
+    value = Number(colours[i]).toString(16);
+    hexidecimal += "00".substr(value.length) + value
+  }
+  $('#interactive-colour-matcher-hexidecimal-representation-' + bit).html(hexidecimal.toUpperCase());
+}
+
+
+// Update sliders from binary representations
+function updateSlidersFromRepresentation() {
+  ColourMatcher.bit_24.sliders[0].noUiSlider.set(getValuesFromRepresentation(24,0,8));
+  ColourMatcher.bit_24.sliders[1].noUiSlider.set(getValuesFromRepresentation(24,8,16));
+  ColourMatcher.bit_24.sliders[2].noUiSlider.set(getValuesFromRepresentation(24,16,24));
+  update24BitPanel()
+
+  ColourMatcher.bit_8.sliders[0].noUiSlider.set(getValuesFromRepresentation(8,0,3));
+  ColourMatcher.bit_8.sliders[1].noUiSlider.set(getValuesFromRepresentation(8,3,6));
+  ColourMatcher.bit_8.sliders[2].noUiSlider.set(getValuesFromRepresentation(8,6,8));
+  update8BitPanel()
+};
+
+
+// Get specific binary string from bit representation
+function getValuesFromRepresentation(slider_id_num, start, finish) {
+  var total_binary = "";
+  var bits = $('#interactive-colour-matcher-bit-representation-' + slider_id_num).children();
+  for (var i = start; i < finish; i++) {
+    total_binary += $(bits[i]).html();
+  }
+  return parseInt(total_binary, 2);
+};
+
+
+// From jquerybyexample.net/2012/06/get-url-parameters-using-jquery.html
+function getUrlParameter(sParam) {
+    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : sParameterName[1];
+        }
+    }
 };
