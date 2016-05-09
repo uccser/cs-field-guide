@@ -888,16 +888,13 @@ Insert interactive here which determines the length of a piece of text with each
 
 As a general rule, UTF-8 is better for English text, and UTF-16 is better for Asian text. UTF-32 always requires 32 bits for each character, so is unpopular in practice.
 
-<ul class='collapsible panel' data-collapsible='accordion'>
-  <li class='panel-selector panel-curiosity'>
-    <div class='collapsible-header'>
-      <div class='panel-heading'><strong>Curiosity</strong>: Emojis &#128568</div>
-      <div class='dropdown-menu-arrow'>&#9660;</div>
-    </div>
-    <div class='collapsible-body'><p>Those cute little characters that you use in your Facebook statuses, Tweets, texts, and so on, are called "emojis" and each one of them has their own Unicode value. Japanese mobile operators were the first to use emojis, but their recent popularity has resulted in many becoming part of the Unicode Standard and today there are well over 1000 different emojis included. A current list of these can be seen <a href="http://unicode.org/emoji/charts/full-emoji-list.html">here</a>. What is interesting to notice is that a single emoji will look very different across different platforms, i.e. &#128518 ("smiling face with open mouth and tighty-closed eyes") in my Tweet will look very different to what it does on your iPhone. This is because the Unicode Consortium only provides the character codes for each emoji and the end vendors determine what that emoji will look like, e.g. for Apple devices the "Apple Color Emoji" typeface is used, (there are rules around this to make sure there is consistency across each system).</p>
-</div>
-  </li>
-</ul>
+{panel type="curiosity" summary="Emoji and Unicode"}
+Those cute little characters that you use in your Facebook statuses, Tweets, texts, and so on, are called "emojis" and each one of them has their own Unicode value.
+Japanese mobile operators were the first to use emojis, but their recent popularity has resulted in many becoming part of the Unicode Standard and today there are well over 1000 different emojis included.
+A current list of these can be seen [here](http://unicode.org/emoji/charts/full-emoji-list.html).
+What is interesting to notice is that a single emoji will look very different across different platforms, i.e. &#128518 ("smiling face with open mouth and tighty-closed eyes") in my Tweet will look very different to what it does on your iPhone.
+This is because the Unicode Consortium only provides the character codes for each emoji and the end vendors determine what that emoji will look like, e.g. for Apple devices the "Apple Color Emoji" typeface is used, (there are rules around this to make sure there is consistency across each system).
+{panel end}
 
 ### Project: Messages hidden in music
 
