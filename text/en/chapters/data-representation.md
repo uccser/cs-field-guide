@@ -469,10 +469,18 @@ The method for adding is so simple that it's easy to build computer hardware to 
 {panel type="teacher-note" summary="Method for adding one to a binary number"}
 Students should be able to work out the rule for adding 1 to a binary number by trying it out with a few numbers.
 
-The rule is simply to find the right most zero in the number, change it to a 1, and change all 1's to its right to zero. For example, consider adding 1 to 1001**0**111.
+There are different ways to express the process.
+In the "Unplugged" exercise at the start of this chapter one of the challenges was to count up through the numbers, which is adding one repeatedly, and it's not unusual for students to see the pattern when they do that.
+In that situation the rule could be expressed as "start at the right hand end, and flip bits from right to left until you change a 0 to a 1."
+(If the number ends in zero then that would be immediately.)
+
+Another way to express the rule is to find the right most zero in the number, change it to a 1, and change all 1's to its right to zero.
+For example, consider adding 1 to 1001**0**111.
 The right-most 0 is shown in bold; it changes to 1, and the three 1's to its right change to 0, giving 10011000.
 
 If you get a number with no zeroes in it (e.g. 1111111), you can put one on the left (01111111), then apply the rule, which in this case gives 10000000.
+
+It may help some students to consider what the equivalent rule is in decimal for adding 1 -- how do you add one to 284394? To 38999? 9999799?
 {panel end}
 
 
