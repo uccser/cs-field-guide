@@ -1,16 +1,11 @@
 document.title = 'Graphics Translation - CSFG';
 
+difference = 100;
+
 function moveBox() {
     /* triggered when the user hits the "enter" (or "return") key
      * updates the cube's position to match the the coordinates inputted by the user
      */
-
-    // get each coordinate value from the input box
-    // using 0 makes the value be set relative to start position, rather than previous position
-    // TODO WORKING HERE
-    x_pos = 10 * ( 0 + parseInt(document.getElementById( 'x-coordinate' ).value) );
-    y_pos = 10 * ( 0 + parseInt(document.getElementById( 'y-coordinate' ).value) );
-    z_pos = 10 * ( 0 + parseInt(document.getElementById( 'z-coordinate' ).value) );
 
     emptyCheck();
 
