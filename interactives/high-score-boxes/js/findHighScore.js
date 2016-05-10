@@ -7,6 +7,8 @@ this.gameStarted = false;
 this.secondsTaken = 0;
 this.timerVar;
 
+//this.arrayForMargins = ["top", "bottom", "right", "left"]
+
 $(document).ready(function(){
 	generateRandomNumbers();
 	createBoxObjects();
@@ -50,10 +52,6 @@ $(document).on('click','.box', function() {
 
 })
 
-
-
-
-
 function myTimer() {
 	secondsTaken += 1;
 }
@@ -76,6 +74,21 @@ function createBoxElements() {
 		iContainer.id = ('boxContainer' + i);
 		iContainer.className = 'boxContainer';
 		document.getElementById('box_holder_div').appendChild(iContainer);
+
+		//clearing a random direction's margin for the messy look
+		randomIntForMargin = getRandomInt(0, 2)
+
+		if (randomIntForMargin == 0) {
+			document.getElementById('boxContainer' + i).style.marginTop = "0px"
+		} else if (randomIntForMargin == 1) {
+			document.getElementById('boxContainer' + i).style.marginBottom = "0px"
+		} 
+		/*(else if (randomIntForMargin == 2) {
+			iContainer.style.marginLeft = "0px"
+		} else if (randomIntForMargin == 3) {
+			iContainer.style.marginRight = "0px"
+		}
+		*/
 
 		//"box (covering the div holding number"
 		var boxDiv = document.createElement('div');

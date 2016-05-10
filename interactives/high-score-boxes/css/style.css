@@ -7,17 +7,18 @@ div.box {
     width: 100px;
     height: 100px;
     /*border: 10px;*/
-    float: left;
+    /*float: left;*/
     /*top: 2rem;
     left: 2rem;
     right: 2rem;
     bottom: 2rem;*/
     /*border-style: solid;*/
     /*border-color: #ff0000 #0000ff;*/
-    position: relative;
+    position: absolute;
     background-color: white;
     z-index: 3;
     background-size: contain;
+    /*padding: 50px, 50px, 50px, 50px;*/
 
 }
 
@@ -29,13 +30,14 @@ div.intHoldingDiv {
 	vertical-align: middle;
 	line-height: 100px; 
 
-	float: left;
+	/*float: left;*/
 	display: block;
-	position: absolute; 
+	position: relative; 
 	z-index: 2; /*IF less than div.box THEN THIS DIV IS BEHIND THE OTHER ONE! */
 
 	font-size: 1.5rem;
 	font-weight: bold;
+	/*padding: 50px, 50px, 50px, 50px;*/
 
 }
 
@@ -45,7 +47,11 @@ div.boxContainer {
 	height: 100px;
 	float: left;
 	position: relative;
-	/*padding: 1rem;*/
+	/*padding: 50px, 50px, 50px, 50px;*/
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-right: 20px;
+    margin-left: 20px;
 }
 
 #restartButton {
