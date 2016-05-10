@@ -30,6 +30,7 @@ This article describes the syntax required for writing Markdown files within the
   - [Files](#files)
   - [Comments](#comments)
   - [Panels](#panels)
+  - [Text Boxes](#text-boxes)
   - [Version specific content](#version-specific-content)
   - [Conditional content](#conditional-content)
   - [Table of contents](#table-of-contents)
@@ -545,6 +546,23 @@ This text is the panel's contents.
 - `type` - The type of panel to create. The type is used as the title of the panel, plus as the CSS class for panel (this allows colouring of all the same types of panels).
 - `summary` (optional) - Text to display after the title to summarise the panel's contents.
 - `expanded` (optional) - If set to False, the panel is expanded at load. When not given it defaults to True.
+
+---
+
+### Text Boxes
+
+Text boxes are used to highlight important information that don't belong in a panel, code block, or diagram. The content within the box is padded with a shaded background and bordered to draw the attention of the reader.
+
+```
+{text-box}
+**Computer Science report for 2.44**
+
+  Put your introduction to what bits are here
+{text-box end}
+```
+
+**Parameters:**
+- `indented` - If `True` the text box will be indented to the left to match the indentation of the first level of a list.
 
 ---
 

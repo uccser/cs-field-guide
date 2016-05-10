@@ -149,7 +149,7 @@ class Section:
                 summary_value = parse_argument('summary', arguments)
                 summary = ': ' + summary_value.strip() if summary_value else ''
                 expanded_value = parse_argument('expanded', arguments)
-                expanded = ' active' if expanded_value == 'True'  else ''
+                expanded = ' active' if expanded_value == 'True' else ''
                 content = markdown(match.group('content'), extras=MARKDOWN2_EXTRAS)
 
                 heading = self.html_templates['panel_heading'].format(title=title,
@@ -163,6 +163,24 @@ class Section:
                 html = ''
         else:
             self.regex_functions['panel'].log("Panel type argument missing", self, match.group(0))
+            html = ''
+        return html
+
+
+    def create_text_box(self, match):
+        """Encompasses the given content in a text box.
+        Triggered by the text-box regex.
+        Returns: HTML of text box.
+        """
+        arguments = match.group('args')
+        content = match.group('content')
+        if content:
+            indented_value = parse_argument('indented', arguments)
+            indented = ' text-box-indented' if indented_value == 'True' else ''
+            content = markdown(content, extras=MARKDOWN2_EXTRAS).strip()
+            html = self.html_templates['text-box'].format(content=content, indented=indented)
+        else:
+            self.regex_functions['text-box'].log("Text box has zero content", self, match.group(0))
             html = ''
         return html
 

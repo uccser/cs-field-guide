@@ -297,6 +297,18 @@ ul.panel {
   @include panel-color("panel-spoiler", "blue-grey");
   @include panel-color("panel-project", "blue");
 }
+// Text Boxes
+.text-box {
+  margin: 1rem 0;
+  padding: 0 1rem;
+  border: 1px solid rgba(63, 81, 181, 0.50);
+  background: rgba(63,81,181,0.15);
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+}
+.text-box-indented {
+  margin-left: 40px !important;
+}
+
 
 .table-of-contents {
   li, ul, a {
