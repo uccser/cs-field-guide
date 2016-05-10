@@ -882,7 +882,7 @@ But for the second criteria, it isn't so simple.
 
 The following interactive will allow you to find out the length of pieces of text using UTF-8, UTF-16, or UTF-32. Find some samples of English text and Asian text (forums or a translation site are a good place to look), and see how long your various samples are when encoded with each of the three representations. Copy paste or type text into the box.
 
-{interactive name="unicode-length" type="iframe"}
+{interactive name="unicode-length" type="in-page"}
 
 As a general rule, UTF-8 is better for English text, and UTF-16 is better for Asian text. UTF-32 always requires 32 bits for each character, so is unpopular in practice.
 
