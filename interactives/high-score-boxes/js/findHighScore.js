@@ -18,7 +18,11 @@ $(document).ready(function(){
 		$("#box_holder_div").empty();
 		secondsTaken = 0;
 		gameStarted = false;
-		clearTimeout(timerVar);
+
+		if (typeof variable !== 'undefined') {
+			clearTimeout(timerVar);
+		}	
+		
 		generateRandomNumbers();
 		createBoxObjects();
 		createBoxElements();
@@ -82,13 +86,12 @@ function createBoxElements() {
 			document.getElementById('boxContainer' + i).style.marginTop = "0px"
 		} else if (randomIntForMargin == 1) {
 			document.getElementById('boxContainer' + i).style.marginBottom = "0px"
-		} 
-		/*(else if (randomIntForMargin == 2) {
-			iContainer.style.marginLeft = "0px"
+		} else if (randomIntForMargin == 2) {
+			document.getElementById('boxContainer' + i).style.marginLeft = "0px"
 		} else if (randomIntForMargin == 3) {
-			iContainer.style.marginRight = "0px"
+			document.getElementById('boxContainer' + i).style.marginRight = "0px"
 		}
-		*/
+		
 
 		//"box (covering the div holding number"
 		var boxDiv = document.createElement('div');
