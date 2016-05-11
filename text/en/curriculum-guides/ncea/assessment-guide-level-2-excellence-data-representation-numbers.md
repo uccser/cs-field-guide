@@ -1,6 +1,6 @@
 # Excellence Guide for Data Representation (2.44) - Numbers
 
-This is a merit/excellence level guide for students attempting data representation in digital technologies achievement standard 1.44 (AS91074). It is aimed at students aiming for merit or excellence.
+This is a merit/excellence level guide for students attempting data representation in digital technologies achievement standard 2.44 (AS91371). It is aimed at students aiming for merit or excellence.
 
 **You will need to do one more project in data representation in addition to this one**, because the standard requires you to cover two types of data.
 This guide covers only numbers (positive and negative numbers).
@@ -46,7 +46,7 @@ This explanation must be in your own words, based on what you understood in clas
 
 ***This is the main part of your project.***
 
-This section will be around 2 pages in your report. There are 5 parts to it.
+This section will be around 2 pages in your report. There are 4 parts to it.
 
 1. Showing how **positive** numbers can be represented in binary, and clearly explaining the process.
 2. Showing how **negative** numbers can be represented in binary with a simple sign bit.

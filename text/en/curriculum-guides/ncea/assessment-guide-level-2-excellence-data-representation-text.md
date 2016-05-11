@@ -1,6 +1,6 @@
 # Excellence Guide for Data Representation (2.44) - Text
 
-This is an excellence level guide for students attempting data representation in digital technologies achievement standard 1.44 (AS91074). It is aimed at students aiming for merit or excellence.
+This is an excellence level guide for students attempting data representation in digital technologies achievement standard 2.44 (AS91371). It is aimed at students aiming for merit or excellence.
 
 **You will need to do one more project in data representation in addition to this one**, because the standard requires you to cover two types of data.
 This guide covers only text. Note that there is no excellence requirement for data representation -- it only goes up to merit. This guide is called an excellence guide though to avoid confusion about whether or not it is suitable for students aiming for excellence.
