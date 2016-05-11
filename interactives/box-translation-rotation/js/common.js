@@ -14,21 +14,26 @@ var z_pos;
 var rotateObject = false;
 var difference;
 
-// TODO investigate window.onload = init;
+
 init();
 onWindowResize();
 animate();
 
-
+/**
+ * Creates all the required objects for the scene
+ */
 function init() {
 
+    // check that the browser is webgl compatible
     if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
 
+    // create a camera object
     camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 1000000 );
     camera.position.x = 0;
     camera.position.y = 0;
-    camera.position.z = 500;
+    camera.position.z = 500; // this sets it back from the cube object (to be created in this function)
 
+    // create a new scene
     scene = new THREE.Scene();
 
     ////////////////////////////// background //////////////////////////////
@@ -50,10 +55,9 @@ function init() {
     // adds the skybox to the scene
     scene.add( skyboxMesh );
 
-    ////////////////////////////////////////////////////////////////////////
 
+    /////////////////////////////// box ////////////////////////////////
 
-    //Cube
 
     // creates a box with sides of length 200
     var geometry = new THREE.BoxGeometry( 200, 200, 200 );
@@ -126,16 +130,14 @@ function init() {
         return container;
     }
 
-    hiddenObject = createObject( 'teapot.json' );
+    hiddenObject = createObject( 'teapot.json' ); // any json object should work
     hiddenObject.scale.set( 50, 50, 50);
     hiddenObject.position.set( 0, -100, 0 );
+    // does not add the hiddenObject to the scene until later (when the user "unlocks" the box)
 
     /////////////////////////////////////////////////////////////////////
 
 
-    // canvas renderer puts lines on every object - do not know if this can be disabled or not
-    //renderer = new THREE.CanvasRenderer();
-    // supposedly better performance than the CanvasRenderer. Have not researched this in depth.
     renderer = new THREE.WebGLRenderer();
     renderer.setClearColor( 0xf0f0f0 );
     renderer.setPixelRatio( window.devicePixelRatio );
@@ -149,10 +151,10 @@ function init() {
         switch (event.keyCode) {
             case 13: // enter/return key
                 updateCoords();
-                moveBox();
                 break;
         }}, false);
 
+    // records the current cube position
     x_pos = cube.position.x;
     y_pos = cube.position.y;
     z_pos = cube.position.z;
@@ -167,8 +169,8 @@ function init() {
     document.getElementById( 'mob-z-coordinate' ).value = z_pos;
 
     // uses regex to check if the user is on mobile
-    // if mobile then switches input to buttons rather than text entry
     if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+        // if mobile then switches input to buttons rather than text entry
         document.getElementById( 'desktop-coord' ).style.display = 'none';
         document.getElementById( 'mobile-coord' ).style.display = 'inline';
     }
@@ -177,6 +179,9 @@ function init() {
 }
 
 
+/**
+ * Adjust the scene accordingly if the user changes the size of the window
+ */
 function onWindowResize() {
 
     var screenWidth = window.innerWidth;
@@ -195,15 +200,18 @@ function onWindowResize() {
     camera.updateProjectionMatrix();
 
     renderer.setSize( screenWidth, screenHeight );
-    // renderer.setSize( window.innerWidth, 226 );
 
 }
 
 
+/**
+ * Animation loop so that the scene keeps updating
+ */
 function animate() {
 
     requestAnimationFrame(animate);
 
+    // makes the camera follow the box around the scene
     camera.lookAt(cube.position);
 
     if ( rotateObject ) {
@@ -217,18 +225,6 @@ function animate() {
 
 }
 
-function animateHiddenObject() {
-
-    requestAnimationFrame(animate);
-
-    camera.lookAt(hiddenObject.position);
-
-
-    render();
-
-    TWEEN.update();
-
-}
 
 function render() {
 
@@ -237,8 +233,13 @@ function render() {
 }
 
 
-//triggered when user clicks +/- in mobile browser
-//change the x/y/z coordinate and move the box
+/**
+ * triggered when the user changes the coordinates of the box
+ * change the x/y/z coordinate and move the box
+ * Input:
+     - axis is a string, either 'x', 'y' or 'z'\
+     - change is a string, either '-' or '+'
+ */
 function updateCoords(axis, change) {
 
     if ( change == '-' ) {
@@ -252,7 +253,6 @@ function updateCoords(axis, change) {
             z_pos = ( z_pos - difference );
             document.getElementById( 'mob-z-coordinate' ).value = z_pos;
         }
-        moveBox();
     } else if ( change == '+' ) {
         if ( axis == 'x' ) {
             x_pos = ( x_pos + difference );
@@ -264,22 +264,23 @@ function updateCoords(axis, change) {
             z_pos = ( z_pos + difference );
             document.getElementById( 'mob-z-coordinate' ).value = z_pos;
         }
-        moveBox();
-    } else { // must be input box from desktop
+    } else { // else the parameters were not given and it must be input box from desktop browser
         // get each coordinate value from the input box
         // using 0 makes the value be set relative to start position, rather than previous position
         x_pos = 10 * ( 0 + parseInt(document.getElementById( 'desk-x-coordinate' ).value) );
         y_pos = 10 * ( 0 + parseInt(document.getElementById( 'desk-y-coordinate' ).value) );
         z_pos = 10 * ( 0 + parseInt(document.getElementById( 'desk-z-coordinate' ).value) );
     }
+    moveBox();
 }
 
 
+/**
+ * triggered when the user clicks the "submit" button
+ * checks the selected symbol for if it matches the coloured symbol on the box
+ * changes clicked symbol back to grey on the row of buttons
+ */
 function submitSymbol() {
-    /* triggered when the user clicks the "submit" button
-     * checks the selected symbol for if it matches the coloured symbol on the box
-     * changes clicked symbol back to grey on the row of buttons
-     */
 
     document.getElementById(selectedSymbolId).src = 'images/grayscale_square' + selectedSymbolId + '.png';
 
@@ -307,6 +308,13 @@ function submitSymbol() {
 }
 
 
+/*
+ * changes the picture on the given side of the box
+ * Input:
+     - side: numbered side of the cube to change
+     - currentImg: integer (given as string) corresponding to number used in file names
+     - coloured: boolean value indicating whether to use grayscale or coloured image
+ */
 function updateSide( side, currentImg, coloured) {
     var format = '';
     if ( coloured == false ) {
@@ -322,11 +330,14 @@ function updateSide( side, currentImg, coloured) {
     );
 }
 
-function submitCode() {
-    /* triggered when the user clicks the "Check Code" button
-     * checks each selected symbol for if it matches what is on the box
-     */
 
+/**
+ * triggered when the user clicks the "Check Code" button
+ * checks each selected symbol for if it matches what is on the box
+ */
+function submitCode() {
+
+    // ,move box back to central position
     x_pos = 0;
     y_pos = -10;
     z_pos = 0;
@@ -349,7 +360,9 @@ function submitCode() {
 }
 
 
-// tell the user their code is incorrect, and shake the box!
+/**
+ * shake the box!
+ */
 function incorrect() {
     var target;
     var count = 0;
@@ -382,9 +395,12 @@ function incorrect() {
 }
 
 
-// hides the cube and show the object inside when the user enters the correct code
+/**
+ * hides the cube and show the object inside when the user enters the correct code
+ */
 function end() {
 
+    // hide the user input div to give more screen space
     document.getElementById( 'user-input' ).style.display = 'none';
 
     // colour every side of the cube
@@ -428,12 +444,15 @@ function end() {
         timer = setTimeout( run, 75 );
     }, 1500 );
 
-    // TODO remove cube from scene - scene.removeObject( cube ); (?)
+    // remove cube from scene
+    scene.removeObject( cube );
 
 }
 
 
-// adjusts the cube's opacity
+/**
+ * sets each side of the cube to a given opacity
+ */
 function fadeCube( opacity ) {
     for (face in cube.material.materials) {
         cube.material.materials[face].opacity = opacity;
@@ -441,10 +460,12 @@ function fadeCube( opacity ) {
 }
 
 
+/**
+ * triggered when the user clicks the "clear" button or the wrong code is submitted
+ * set the selected codes to question marks and clear the dictionary
+ */
 function clearCode() {
-    /* triggered when the user clicks the "clear" button or the wrong code is submitted
-     * set the selected codes to ../images/question marks and clear the dictionary
-     */
+
 
     selectedSymbolId = code[1];
 
@@ -462,6 +483,7 @@ function clearCode() {
     // replace right with colour
     updateSide( 0,  boxSymbols['right_side'], false );
 
+    // reset to start position
     x_pos = 0;
     y_pos = 0;
     z_pos = 0;
@@ -478,13 +500,15 @@ function clearCode() {
 }
 
 
+/*8
+ * When a symbol is clicked, add it to the first empty spot
+ * (where "spot" refers to the boxes with question marks in them)
+ * and update the dictionary mapping the three sides to the selected symbols
+ * Input:
+ *   - id: relates to a particular symbol (each symbol's file name contains a number in 1-8)
+ */
 function symbolClick(id) {
-    /* When a symbol is clicked, add it to the first empty spot
-     * (where "spot" refers to the boxes with ../images/question marks in them)
-     * and update the dictionary mapping the three sides to the selected symbols
-     * Input:
-     *   - id: relates to a particular symbol (each symbol's file name contains a number in 1-8)
-     */
+
     selectedSymbolId = id;
 
     for (var i = 1; i <= 8; i++) {
@@ -497,17 +521,29 @@ function symbolClick(id) {
 
 }
 
+
+/**
+ * check that a value was given for the cube's position
+ * if not, set it to 0 and update the entry boxes for the user
+ */
 function emptyCheck() {
 
     if ( isNaN( x_pos ) ) {
         x_pos = 0;
-        document.getElementById( 'x-coordinate' ).value = x_pos;
+        document.getElementById( 'desk-x-coordinate' ).value = x_pos;
+        document.getElementById( 'mob-x-coordinate' ).value = x_pos;
     } else if ( isNaN( y_pos ) ) {
         y_pos = 0;
-        document.getElementById( 'y-coordinate' ).value = y_pos;
+        document.getElementById( 'desk-y-coordinate' ).value = y_pos;
+        document.getElementById( 'mob-y-coordinate' ).value = y_pos;
     } else if ( isNaN( z_pos) ){
         z_pos = 0;
-        document.getElementById( 'z-coordinate' ).value = z_pos;
+        document.getElementById( 'desk-z-coordinate' ).value = z_pos;
+        document.getElementById( 'mob-z-coordinate' ).value = z_pos;
     }
 
 }
+
+
+
+
