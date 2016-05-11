@@ -1,5 +1,4 @@
 
-var stats;
 var container = document.getElementById( 'container' );
 var camera, scene, renderer;
 var cube, hiddenObject;
@@ -143,11 +142,6 @@ function init() {
     renderer.setSize( window.innerWidth, window.innerHeight );
     container.appendChild( renderer.domElement );
 
-    stats = new Stats();
-    stats.domElement.style.position = 'absolute';
-    stats.domElement.style.top = '0px';
-    container.appendChild( stats.domElement );
-
     window.addEventListener( 'resize', onWindowResize, false );
 
     //listeners for keypress
@@ -218,7 +212,6 @@ function animate() {
     }
 
     render();
-    stats.update();
 
     TWEEN.update();
 
@@ -232,7 +225,6 @@ function animateHiddenObject() {
 
 
     render();
-    stats.update();
 
     TWEEN.update();
 
