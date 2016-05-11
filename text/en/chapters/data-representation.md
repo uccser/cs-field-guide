@@ -826,7 +826,6 @@ The following interactive will allow you to convert a Unicode character to its U
 So how does UTF-8 actually work? Use the following process to do what the interactive is doing and convert characters to UTF-8 yourself.
 
 1. Lookup the Unicode number of your character.
-{interactive name="Unicode-chars" type="in-page"}
 
 2. Convert the Unicode number to a binary number, using as **few** bits as necessary.
 Look back to the section on binary numbers if you cannot remember how to convert a number to binary.
