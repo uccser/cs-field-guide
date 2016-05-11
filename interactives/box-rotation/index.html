@@ -5,7 +5,7 @@
         <title></title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="../base-files/css/translation-rotation-interactives-style.css">
     </head>
     <body>
 
@@ -29,23 +29,23 @@
                     <p id="question">Which of the symbols is coloured on the box?</p>
                     <div id="symbol-grid">
                         <div class="row">
-                            <img id="1" src="images/grayscale_square1.png" onClick="symbolClick(id)">
-                            <img id="2" src="images/grayscale_square2.png" onClick="symbolClick(id)">
-                            <img id="3" src="images/grayscale_square3.png" onClick="symbolClick(id)">
-                            <img id="4" src="images/grayscale_square4.png" onClick="symbolClick(id)">
+                            <img id="1" src="../base-files/img/translation-rotation-interactives-images/grayscale_square1.png" onClick="symbolClick(id)">
+                            <img id="2" src="../base-files/img/translation-rotation-interactives-images/grayscale_square2.png" onClick="symbolClick(id)">
+                            <img id="3" src="../base-files/img/translation-rotation-interactives-images/grayscale_square3.png" onClick="symbolClick(id)">
+                            <img id="4" src="../base-files/img/translation-rotation-interactives-images/grayscale_square4.png" onClick="symbolClick(id)">
                         </div>
                         <div class="row">
-                            <img id="5" src="images/grayscale_square5.png" onClick="symbolClick(id)">
-                            <img id="6" src="images/grayscale_square6.png" onClick="symbolClick(id)">
-                            <img id="7" src="images/grayscale_square7.png" onClick="symbolClick(id)">
-                            <img id="8" src="images/grayscale_square8.png" onClick="symbolClick(id)">
+                            <img id="5" src="../base-files/img/translation-rotation-interactives-images/grayscale_square5.png" onClick="symbolClick(id)">
+                            <img id="6" src="../base-files/img/translation-rotation-interactives-images/grayscale_square6.png" onClick="symbolClick(id)">
+                            <img id="7" src="../base-files/img/translation-rotation-interactives-images/grayscale_square7.png" onClick="symbolClick(id)">
+                            <img id="8" src="../base-files/img/translation-rotation-interactives-images/grayscale_square8.png" onClick="symbolClick(id)">
                         </div>
                         <button onClick="submitSymbol()">Submit</button>
                     </div>
                     <div id="code-template">
-                        <img id="first-symbol" src="images/question_mark.jpg">
-                        <img id="second-symbol" src="images/question_mark.jpg">
-                        <img id="third-symbol" src="images/question_mark.jpg">
+                        <img id="first-symbol" src="../base-files/img/translation-rotation-interactives-images/question_mark.jpg">
+                        <img id="second-symbol" src="../base-files/img/translation-rotation-interactives-images/question_mark.jpg">
+                        <img id="third-symbol" src="../base-files/img/translation-rotation-interactives-images/question_mark.jpg">
                         <div id="end-buttons">
                             <button onClick="clearCode()">Restart</button>
                             <button onClick="submitCode()">Check Code</button>
@@ -56,17 +56,17 @@
         </div>
 
         <!-- threejs -->
-        <script src="js/third-party/three.min.js"></script>
+        <script src="../base-files/js/third-party/threejs/three.min.js"></script>
 
         <!-- threejs libraries -->
-        <script src="js/third-party/Detector.js"></script>
-        <script src="js/third-party/Projector.js"></script>
-        <script src="js/third-party/tween.js"></script>
-        <script src="js/third-party/OBJLoader.js"></script>
+        <script src="../base-files/js/third-party/threejs/Detector.js"></script>
+        <script src="../base-files/js/third-party/threejs/Projector.js"></script>
+        <script src="../base-files/js/third-party/threejs/OBJLoader.js"></script>
+
+        <script src="../base-files/js/third-party/tween.js"></script>
 
         <!-- custom code for interactive -->
-        <script src="js/common.js"></script>
-        <!-- choose either rotation-script.js or translation-script.js -->
+        <script src="../base-files/js/translation-rotation-interactives/script.js"></script>
         <script src="js/rotation-script.js"></script>
 
     </body>

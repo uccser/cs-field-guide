@@ -1,4 +1,8 @@
+/**
+ * Common source code for the box translation and rotation interactives
+ */
 
+var imgPath = '../base-files/img/translation-rotation-interactives-images/';
 var container = document.getElementById( 'container' );
 var camera, scene, renderer;
 var cube, hiddenObject;
@@ -41,12 +45,12 @@ function init() {
     var textureLoader = new THREE.TextureLoader();
     // loads the 6 background pictures (px = positive x, nx = negative x, etc)
     var materials = [
-        new THREE.MeshBasicMaterial( { map: textureLoader.load( 'images/px.jpg' ) } ), // right
-        new THREE.MeshBasicMaterial( { map: textureLoader.load( 'images/nx.jpg' ) } ), // left
-        new THREE.MeshBasicMaterial( { map: textureLoader.load( 'images/py.jpg' ) } ), // top
-        new THREE.MeshBasicMaterial( { map: textureLoader.load( 'images/ny.jpg' ) } ), // bottom
-        new THREE.MeshBasicMaterial( { map: textureLoader.load( 'images/pz.jpg' ) } ), // back
-        new THREE.MeshBasicMaterial( { map: textureLoader.load( 'images/nz.jpg' ) } )  // front
+        new THREE.MeshBasicMaterial( { map: textureLoader.load( imgPath + 'px.jpg' ) } ), // right
+        new THREE.MeshBasicMaterial( { map: textureLoader.load( imgPath + 'nx.jpg' ) } ), // left
+        new THREE.MeshBasicMaterial( { map: textureLoader.load( imgPath + 'py.jpg' ) } ), // top
+        new THREE.MeshBasicMaterial( { map: textureLoader.load( imgPath + 'ny.jpg' ) } ), // bottom
+        new THREE.MeshBasicMaterial( { map: textureLoader.load( imgPath + 'pz.jpg' ) } ), // back
+        new THREE.MeshBasicMaterial( { map: textureLoader.load( imgPath + 'nz.jpg' ) } )  // front
     ];
     // creates a mesh, covered with the background pictures
     // mesh is in shape of a cube, which camera/smaller cube is inside
@@ -83,23 +87,23 @@ function init() {
     // loads all the symbols for the box
     var materials = [
         new THREE.MeshBasicMaterial({
-           map: new THREE.TextureLoader().load( 'images/grayscale_square' + right_side + '.png' )
+           map: new THREE.TextureLoader().load( imgPath + 'grayscale_square' + right_side + '.png' )
         }),
         new THREE.MeshBasicMaterial({
             // non grey scale becuase this is the first symbol the user needs to find
-           map: new THREE.TextureLoader().load( 'images/square' + left_side + '.png' )
+           map: new THREE.TextureLoader().load( imgPath + 'square' + left_side + '.png' )
         }),
         new THREE.MeshBasicMaterial({
-           map: new THREE.TextureLoader().load( 'images/grayscale_square' + default_symbol + '.png' ) // top, non-coded side
+           map: new THREE.TextureLoader().load( imgPath + 'grayscale_square' + default_symbol + '.png' ) // top, non-coded side
         }),
         new THREE.MeshBasicMaterial({
-           map: new THREE.TextureLoader().load( 'images/grayscale_square' + bottom_side + '.png' )
+           map: new THREE.TextureLoader().load( imgPath + 'grayscale_square' + bottom_side + '.png' )
         }),
         new THREE.MeshBasicMaterial({
-           map: new THREE.TextureLoader().load( 'images/grayscale_square' + default_symbol + '.png' ) // front, non-coded side
+           map: new THREE.TextureLoader().load( imgPath + 'grayscale_square' + default_symbol + '.png' ) // front, non-coded side
         }),
         new THREE.MeshBasicMaterial({
-           map: new THREE.TextureLoader().load( 'images/grayscale_square' + default_symbol + '.png' ) // back, non-coded side
+           map: new THREE.TextureLoader().load( imgPath + 'grayscale_square' + default_symbol + '.png' ) // back, non-coded side
         })
     ];
 
@@ -130,7 +134,7 @@ function init() {
         return container;
     }
 
-    hiddenObject = createObject( 'teapot.json' ); // any json object should work
+    hiddenObject = createObject( '../base-files/js/translation-rotation-interactives/teapot.json' ); // any json object should work
     hiddenObject.scale.set( 50, 50, 50);
     hiddenObject.position.set( 0, -100, 0 );
     // does not add the hiddenObject to the scene until later (when the user "unlocks" the box)
@@ -282,9 +286,9 @@ function updateCoords(axis, change) {
  */
 function submitSymbol() {
 
-    document.getElementById(selectedSymbolId).src = 'images/grayscale_square' + selectedSymbolId + '.png';
+    document.getElementById(selectedSymbolId).src = imgPath + 'grayscale_square' + selectedSymbolId + '.png';
 
-    var img_src = 'images/square' + selectedSymbolId + '.png';
+    var img_src = imgPath + 'square' + selectedSymbolId + '.png';
 
     if ( code[1] == null ) {
         code[1] = selectedSymbolId;
@@ -321,7 +325,7 @@ function updateSide( side, currentImg, coloured) {
         format = 'grayscale_';
     }
     cube.material.materials[side].map = new THREE.TextureLoader().load(
-            'images/' + format + 'square' + currentImg + '.png',
+            imgPath + format + 'square' + currentImg + '.png',
             undefined,
             function() {
                 cube.material.materials[side].map.needsUpdate = true;
@@ -469,9 +473,9 @@ function clearCode() {
 
     selectedSymbolId = code[1];
 
-    document.getElementById( 'first-symbol' ).src = 'images/question_mark.jpg';
-    document.getElementById( 'second-symbol' ).src = 'images/question_mark.jpg';
-    document.getElementById( 'third-symbol' ).src = 'images/question_mark.jpg';
+    document.getElementById( 'first-symbol' ).src = imgPath + 'question_mark.jpg';
+    document.getElementById( 'second-symbol' ).src =  imgPath + 'question_mark.jpg';
+    document.getElementById( 'third-symbol' ).src =  imgPath + 'question_mark.jpg';
     code[1] = null;
     code[2] = null;
     code[3] = null;
@@ -500,7 +504,7 @@ function clearCode() {
 }
 
 
-/*8
+/*
  * When a symbol is clicked, add it to the first empty spot
  * (where "spot" refers to the boxes with question marks in them)
  * and update the dictionary mapping the three sides to the selected symbols
@@ -513,9 +517,9 @@ function symbolClick(id) {
 
     for (var i = 1; i <= 8; i++) {
         if (i == id) {
-            document.getElementById(i).src = 'images/square' + i + '.png';
+            document.getElementById(i).src = imgPath + 'square' + i + '.png';
         } else {
-            document.getElementById(i).src = 'images/grayscale_square' + i + '.png';
+            document.getElementById(i).src = imgPath + 'grayscale_square' + i + '.png';
         }
     }
 
