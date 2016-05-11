@@ -129,7 +129,7 @@ function init() {
 
     hiddenObject = createObject( 'teapot.json' );
     hiddenObject.scale.set( 50, 50, 50);
-    hiddenObject.position.set( 0, -150, 0 );
+    hiddenObject.position.set( 0, -100, 0 );
 
     /////////////////////////////////////////////////////////////////////
 
@@ -335,10 +335,9 @@ function submitCode() {
      * checks each selected symbol for if it matches what is on the box
      */
 
-    // reset cube to start position TODO not "start" pos anymore
-    document.getElementById( 'x-coordinate' ).value = 0;
-    document.getElementById( 'y-coordinate' ).value = -10;
-    document.getElementById( 'z-coordinate' ).value = 0;
+    x_pos = 0;
+    y_pos = -10;
+    z_pos = 0;
     moveBox();
 
     if ( code[1] == boxSymbols['left_side'] ) {
@@ -393,6 +392,8 @@ function incorrect() {
 
 // hides the cube and show the object inside when the user enters the correct code
 function end() {
+
+    document.getElementById( 'user-input' ).style.display = 'none';
 
     // colour every side of the cube
     updateSide( 1,  boxSymbols['left_side'], true );
@@ -468,6 +469,19 @@ function clearCode() {
     updateSide( 3,  boxSymbols['bottom_side'], false );
     // replace right with colour
     updateSide( 0,  boxSymbols['right_side'], false );
+
+    x_pos = 0;
+    y_pos = 0;
+    z_pos = 0;
+
+    document.getElementById( 'desk-x-coordinate' ).value = x_pos;
+    document.getElementById( 'desk-y-coordinate' ).value = y_pos;
+    document.getElementById( 'desk-z-coordinate' ).value = z_pos;
+    document.getElementById( 'mob-x-coordinate' ).value = x_pos;
+    document.getElementById( 'mob-y-coordinate' ).value = y_pos;
+    document.getElementById( 'mob-z-coordinate' ).value = z_pos;
+
+    moveBox();
 
 }
 

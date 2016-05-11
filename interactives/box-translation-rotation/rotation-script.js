@@ -16,8 +16,6 @@ function moveBox() {
             z: ( z_pos/360 ) * Math.PI
     };
 
-    console.log(target);
-
     // rotate the box on the next animation loop
     TWEEN.removeAll();
     new TWEEN.Tween( cube.rotation )
