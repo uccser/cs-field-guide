@@ -64,7 +64,7 @@ For Merit/ Excellence, students will need to choose 2 guides. Each guide covers 
 
 - [Representing Text - Unicode (Merit/Excellence)](curriculum-guides/ncea/assessment-guide-level-2-excellence-data-representation-text.html)
 - [Representing Numbers - Two's Complement (Merit/Excellence)](curriculum-guides/ncea/assessment-guide-level-2-excellence-data-representation-numbers.html)
-
+- [Representing Colour - Various colour depths (Merit/Excellence)](curriculum-guides/ncea/assessment-guide-level-2-excellence-data-representation-colour.html)
 
 ### Encoding
 
