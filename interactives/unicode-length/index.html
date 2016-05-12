@@ -13,33 +13,33 @@
 </head>
 
 <body>
+  <div class="container">
+  <div class="row">
+  <div class="col s12 m10 offset-m1 l8 offset-l2">
+
+  <div id="interactive-unicode-length" class="row interactive">
     <h3 class="center-align">Unicode Encoding Size</h3>
-    <div class="row interactive center-align" data-iframe-height>
-        <div class="row">
-            <div class="row">
-                <div class="input-field col s12">
-                    <textarea id="interactive-unicode-length-text" class="col s12 m12"></textarea>
-                </div>
-            </div>
-            <div class="row">
-                <a id="interactive-unicode-length-button" class="waves-effect waves-light btn col s12 m12">Calculate Encoded Bit Length</a>
-            </div>
-            <div class="row">
-                <p class="col s4 m2"><b>UTF-8:</b></p>
-                <input id="interactive-unicode-length-utf8" type="text" class="col s7 m9" readonly></input>
-            </div>
-            <div class="row">
-                <p class="col s4 m2"><b>UTF-16:</b></p>
-                <input id="interactive-unicode-length-utf16" type="text" class="col s7 m9" readonly></input>
-            </div>
-            <div class="row">
-                <p class="col s4 m2"><b>UTF-32:</b></p>
-                <input id="interactive-unicode-length-utf32" type="text" class="col s7 m9" readonly></input>
-            </div>
-        </div>
-        <script src="./js/main.js"></script>
-        <script src="../base-files/js/third-party/materialize.min.js"></script>
-        <script type="text/javascript" src="../base-files/js/third-party/iframeResizer.contentWindow.min.js"></script>
+
+    <div class="col s12 m8">
+      <p>Enter text for length calculation:</p>
+      <textarea id="interactive-unicode-length-text" rows="10"></textarea>
+      <a id="interactive-unicode-length-button" class="waves-effect waves-light btn">Calculate Bit Lengths</a>
     </div>
+    <div class="col s12 m4">
+      <p>Encoding lengths:</p>
+      <p><b>UTF-8:</b> <span id="interactive-unicode-length-utf8">0 bits</span></p>
+      <p><b>UTF-16:</b> <span id="interactive-unicode-length-utf16">0 bits</span></p>
+      <p><b>UTF-32:</b> <span id="interactive-unicode-length-utf32">0 bits</span></p>
+    </div>
+
+    <link rel="stylesheet" href="./css/unicode-length.css">
+    <script type="text/javascript" src="./js/main.js"></script>
+  </div>
+  <!-- ### End of required HTML for inline interactives ### -->
+  <!-- Materialize responsive CSS -->
+  <script type="text/javascript" src="../base-files/js/third-party/materialize.min.js"></script>
+  </div>
+  </div>
+  </div>
 </body>
 </html>
