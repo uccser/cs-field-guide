@@ -149,7 +149,7 @@ class Section:
                 summary_value = parse_argument('summary', arguments)
                 summary = ': ' + summary_value.strip() if summary_value else ''
                 expanded_value = parse_argument('expanded', arguments)
-                expanded = ' active' if expanded_value == 'True'  else ''
+                expanded = ' active' if expanded_value == 'True' else ''
                 content = markdown(match.group('content'), extras=MARKDOWN2_EXTRAS)
 
                 heading = self.html_templates['panel_heading'].format(title=title,
@@ -163,6 +163,24 @@ class Section:
                 html = ''
         else:
             self.regex_functions['panel'].log("Panel type argument missing", self, match.group(0))
+            html = ''
+        return html
+
+
+    def create_text_box(self, match):
+        """Encompasses the given content in a text box.
+        Triggered by the text-box regex.
+        Returns: HTML of text box.
+        """
+        arguments = match.group('args')
+        content = match.group('content')
+        if content:
+            indented_value = parse_argument('indented', arguments)
+            indented = ' text-box-indented' if indented_value == 'True' else ''
+            content = markdown(content, extras=MARKDOWN2_EXTRAS).strip()
+            html = self.html_templates['text-box'].format(content=content, indented=indented)
+        else:
+            self.regex_functions['text-box'].log("Text box has zero content", self, match.group(0))
             html = ''
         return html
 
@@ -458,7 +476,7 @@ class Section:
             text = arg_text if arg_text else name
 
             arg_parameters = parse_argument('parameters', arguments)
-            params = urllib.parse.quote(arg_parameters) if arg_parameters else None
+            params = urllib.parse.quote(arg_parameters, safe='/=') if arg_parameters else None
 
             file_name = self.guide.generator_settings['Source']['Interactive File Name']
             file_type = parse_argument('file-type', arguments)
@@ -526,7 +544,10 @@ class Section:
         interactive_tree = self.get_interactive_tree(source_folder, name, interactive_source_file, match)
         if interactive_tree is not None:
             self.edit_interactive_tree(interactive_tree, source_folder)
-            html = re.sub('(\n)*<!--(.|\s)*?-->(\n)*', '', interactive_tree.prettify(formatter=None).strip(), flags=re.MULTILINE)
+            # Remove comments from HTML
+            html = re.sub('(\n)*<!--(.|\s)*?-->(\n)*', '', str(interactive_tree).strip(), flags=re.MULTILINE)
+            # Remove multiple consecutive newline characters from removal of <link> and <script> tags
+            html = re.sub('\n{2,}', '\n', html, flags=re.MULTILINE)
             return html
         else:
             return None
