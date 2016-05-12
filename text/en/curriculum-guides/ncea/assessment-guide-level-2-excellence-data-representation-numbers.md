@@ -142,14 +142,11 @@ This section should not take more than 1 page in your report.
 
   - **Representing Numbers**
 
-    - **Representing positive numbers with binary**
-    - **Representing numbers in binary with a simple sign bit**
-    - **Representing numbers in binary with Two's Complement**
-    - **Simple sign bits vs Two's Complement**
+       Put all your project work related to Binary numbers and Two's Complement here
 
   - **Representing [other topic]**
 
-    (see relevant guide for information on structuring this section)
+       (see relevant guide for information on structuring this section)
 
 - **Encoding**
 

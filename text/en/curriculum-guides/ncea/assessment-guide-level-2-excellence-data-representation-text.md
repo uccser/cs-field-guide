@@ -69,9 +69,13 @@ If you are confused, reread the Unicode section in the CS Field Guide or ask you
 
 Show your text samples. Explain that you are going to be using them to explain the concepts in your report.
 
+These should not take up more than ⅓ of a page in your report, for both of them. If they take more space, than use smaller samples.
+
 #### Showing examples of UTF-32 representation
 
 Show how the first character in each of your samples is represented using UTF-32. Briefly explain what UTF-32 does.
+
+This should not take up more than ⅓ to ½ of a page in your report.
 
 #### Showing examples of UTF-8 representation
 
@@ -80,6 +84,8 @@ Show how the first character in each of your samples is represented using UTF-8.
 2. Convert the Unicode number into binary
 3. Look at the UTF-8 conversion table to find the correct pattern to use
 4. Fill in the blanks in the pattern with the bits in the character's binary representation
+
+This should not take up more than ½ of a page in your report.
 
 #### Comparing the various UTF representations
 
@@ -90,6 +96,8 @@ Include a table in your report that shows the size for each text sample, with ea
 Explain your findings. Which seems to be the best for English text? Which seems to be the best for Asian text? Why is this the case?
 
 (optional) If you are keen, you might like to read more about [UTF-16](https://en.wikipedia.org/wiki/UTF-16) and [UTF-32](https://en.wikipedia.org/wiki/UTF-32) to try and figure out why you got the results that you did.
+
+This (including the table) should not take more than ⅔ of a page in your report.
 
 ## Hints for success
 
@@ -104,11 +112,11 @@ Explain your findings. Which seems to be the best for English text? Which seems 
 
   - **Representing Text**
 
-    Put all your project work related to Unicode here
+       Put all your project work related to Unicode here
 
  - **Representing [other topic]**
 
-   (see relevant guide for information on structuring this section)
+       (see relevant guide for information on structuring this section)
 
 - **Encoding**
 
@@ -122,4 +130,4 @@ Explain your findings. Which seems to be the best for English text? Which seems 
 - Be careful to put your explanations and examples under the correct headings.
 - Do not include large lists or tables, for example do not include an ASCII or Unicode table or a list of binary number conversions.
 - The introduction to data representation should not take more than ½ of a page in your report.
-- The  Unicode project in this guide should not take up more than 1 to 1½ pages in your report.
+- The  Unicode project in this guide should not take up more than 1½ to 2 pages in your report.
