@@ -544,7 +544,10 @@ class Section:
         interactive_tree = self.get_interactive_tree(source_folder, name, interactive_source_file, match)
         if interactive_tree is not None:
             self.edit_interactive_tree(interactive_tree, source_folder)
-            html = re.sub('(\n)*<!--(.|\s)*?-->(\n)*', '', interactive_tree.prettify(formatter=None).strip(), flags=re.MULTILINE)
+            # Remove comments from HTML
+            html = re.sub('(\n)*<!--(.|\s)*?-->(\n)*', '', str(interactive_tree).strip(), flags=re.MULTILINE)
+            # Remove multiple consecutive newline characters from removal of <link> and <script> tags
+            html = re.sub('\n{2,}', '\n', html, flags=re.MULTILINE)
             return html
         else:
             return None

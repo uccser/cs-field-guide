@@ -13,30 +13,29 @@
 </head>
 
 <body>
-    <h3 class="center-align">Unicode Binary</h3>
-    <div class="row interactive center-align"  data-iframe-height>
-        <form class="formValidate" id="formValidate" method="get">
-        <div class="row">
-            <link rel="stylesheet" href="./css/unicode-chars.css">
-            <div class="input-field col s6 m6">
-                <input type="text" id="interactive-unicode-binary-char" placeholder="Unicode Character" title="Character">
-                <label for="interactive-unicode-binary-char" class="active">Character</label>
-            </div>
-            <div class="input-field col s6 m6">
-                <input type="text" id="interactive-unicode-binary-decimal" placeholder="Enter a decimal number" title="Decimal" class="validate" pattern="\d+">
-                <label for="interactive-unicode-binary-decimal" class="active">Decimal</label>
-            </div>
+  <div class="interactive center-align"  data-iframe-height>
+    <h4>Unicode Binary</h4>
+    <form class="formValidate" id="formValidate" method="get">
+      <div class="row">
+        <div class="input-field col s12 m6">
+          <input type="text" id="interactive-unicode-binary-char" placeholder="Unicode Character" title="Character">
+          <label for="interactive-unicode-binary-char" class="active">Character</label>
         </div>
-        <div class="row">
-            <div class="input-field col s12 m12">
-                <input type="text" id="interactive-unicode-binary-binary" placeholder="Binary" readonly>
-                <label for="interactive-unicode-binary-binary" class="active">Binary</label>
-            </div>
+        <div class="input-field col s12 m6">
+          <input type="text" id="interactive-unicode-binary-decimal" placeholder="Enter a decimal number" title="Decimal" class="validate" pattern="\d+">
+          <label for="interactive-unicode-binary-decimal" class="active">Decimal</label>
         </div>
-        </form>
-        <script src="./js/main.js"></script>
-        <script src="../base-files/js/third-party/materialize.min.js"></script>
-        <script type="text/javascript" src="../base-files/js/third-party/iframeResizer.contentWindow.min.js"></script>
-    </div>
+        <div class="input-field col s12 m12">
+          <input type="text" id="interactive-unicode-binary-binary" placeholder="Binary" readonly>
+          <label for="interactive-unicode-binary-binary" class="active">Binary</label>
+        </div>
+      </div>
+    </form>
+    <script src="./js/main.js"></script>
+    <script type="text/javascript" src="../base-files/js/third-party/iframeResizer.contentWindow.min.js"></script>
+  </div>
+  <!-- ### End of required HTML for inline interactives ### -->
+  <!-- Materialize responsive CSS -->
+  <script src="../base-files/js/third-party/materialize.min.js"></script>
 </body>
 </html>

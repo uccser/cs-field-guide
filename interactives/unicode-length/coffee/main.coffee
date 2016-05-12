@@ -18,7 +18,7 @@ bitLength = (text, encoding='utf-8') ->
     return encoder.encode(text).length * 8
 
 $button.on 'click', ->
-    $utf8.val bitLength($text.val(), 'utf-8') + " bits"
-    $utf16.val bitLength($text.val(), 'utf-16le') + " bits"
+    $utf8.html bitLength($text.val(), 'utf-8') + " bits"
+    $utf16.html bitLength($text.val(), 'utf-16le') + " bits"
     # TextEncoder doesn't support UTF-32 so just calculate it
-    $utf32.val Array.from($text.val()).length * 32 + " bits"
+    $utf32.html Array.from($text.val()).length * 32 + " bits"
