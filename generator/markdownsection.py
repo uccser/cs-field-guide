@@ -739,15 +739,17 @@ class Section:
 
 
     def parse_section(self, match):
-        return match.group(1) + self.parse_markdown(match.group(2))
+        return self.parse_markdown(match.group(0))
 
 
-    def parse_sections(self, text):
+    def parse_sections(self, html):
         """Parses HTML within <sections>"""
-        html = re.sub('(\<section[^\>]*\>)([\s\S]*?)(?=\<\/section\>)',
-                      self.parse_section,
-                      text,
-                      flags=re.MULTILINE)
+        regexes = [
+            '\A[\s\S]*?(?=<section)', # Matches any text before first <section>
+            "(?<=class='section scrollspy'>)([\s\S]*?)(?=\<\/section\>)" # Matches between <section>
+        ]
+        for regex in regexes:
+            html = re.sub(regex, self.parse_section, html, flags=re.MULTILINE)
         return html
 
 
