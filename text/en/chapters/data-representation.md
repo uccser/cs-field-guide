@@ -1,9 +1,5 @@
 # Data Representation
 
-{panel type="warning" summary="Interactives in Data Representation"}
-Most interactives on this page have not been updated to the new system. Please [view the interactives on the Data Representation page](http://www.csfieldguide.org.nz/releases/1.9.9/DataRepresentation.html) on the older version of the CSFG. We are currently in the process of updating these interactives for the version 2.0 release.
-{panel end}
-
 {panel type="teacher-note" summary="Math in Data Representation"}
 A lot of the exercises in this chapter involve simple arithmetic. If students struggle to do this by hand, a lot can be done using spreadsheets.
 {panel end}
