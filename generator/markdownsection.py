@@ -8,6 +8,9 @@ from bs4 import BeautifulSoup, Comment
 from generator.systemconstants import *
 from collections import OrderedDict
 import mistune
+from pygments import highlight
+from pygments.lexers import get_lexer_by_name
+from pygments.formatters import HtmlFormatter
 from generator.files import setup_required_files
 
 MARKDOWN2_EXTRAS = ["code-friendly",
@@ -455,9 +458,22 @@ class Section:
 
     def process_code_block(self, match):
         """Create a button for linking to a page"""
-        html = self.parse_markdown(match.group('code'))
-        # This extra div block stops Markdown2 from not reading code blocks correctly
-        return '<div>' + html + '</div>\n'
+        language = match.group('language')
+        no_highlighting = True
+        # If language set
+        if language:
+            try:
+                lexer = get_lexer_by_name(language, stripall=True)
+            except ClassNotFound:
+                self.regex_functions['code block'].log("The language {} is not supported by Pygments".format(language), self, match.group(0))
+            else:
+                formatter = HtmlFormatter(cssclass='codehilite')
+                html = highlight(match.group('code'), lexer, formatter)
+                no_highlighting = False
+        # If no language set or not lexer founds
+        if no_highlighting:
+            html = self.parse_markdown(match.group(0))
+        return html
 
 
     def add_interactive(self, match):
