@@ -6,7 +6,7 @@ This project is the result of contributions from a large community of Computer S
 
 - Tim Bell - International Field Guide, co-founder
 - Peter Denning - International Field Guide, co-founder
-- Jack Morgan - Project manager
+- Jack Morgan - Project Manager
 
 ## Software Development
 
@@ -88,6 +88,7 @@ This project is the result of contributions from a large community of Computer S
 - Alan Hogan ([alanhogan](https://github.com/alanhogan))
 - Steven Maude ([StevenMaude](https://github.com/StevenMaude))
 - Rúben Enes ([rdpse](https://github.com/rdpse))
+- [oughter](https://github.com/oughter)
 
 **Note:** If there is an error in the list, please contact [Jack Morgan](mailto:jack.morgan@canterbury.ac.nz)
 
