@@ -400,7 +400,7 @@ You should demonstrate how they work (using the following interactive if you wan
 
 ISBN-10 is particularly effective, and you could also look into why that is.
 
-{interactive name="checksum-calculator" type="in-page"}
+{interactive name="checksum-calculator" type="iframe"}
 
 {panel end}
 

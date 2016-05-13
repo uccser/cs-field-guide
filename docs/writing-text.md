@@ -89,7 +89,9 @@ Strikethrough uses two tildes. ~~Scratch this.~~
 
 ### Lists
 
-Lists can be created by starting each line with a `-` for unordered lists or `1.` for ordered lists. The list needs to be followed by a blank line, however it doesn't require one above it (we included this feature into our parser as we believe it makes the list easier to read as it's connected to the previous paragraph). If you are having issues with a list not rendering correctly, add a blank line before the list and submit a [bug report](https://github.com/uccser/cs-field-guide/issues/new).
+Lists can be created by starting each line with a `-` for unordered lists or `1.` for ordered lists.
+The list needs to be followed by a blank line, however it doesn't require a blank line before unless the preceding text is a heading (a blank line is then required).
+If you are having issues with a list not rendering correctly, try adding a blank line before the list if there is none, and [submit a bug report](https://github.com/uccser/cs-field-guide/issues/new) if you are still having rendering issues.
 
 ```
 Unordered list:

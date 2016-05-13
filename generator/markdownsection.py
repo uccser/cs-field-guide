@@ -7,7 +7,10 @@ import generator.systemfunctions as systemfunctions
 from bs4 import BeautifulSoup, Comment
 from generator.systemconstants import *
 from collections import OrderedDict
-from markdown2 import markdown
+import mistune
+from pygments import highlight
+from pygments.lexers import get_lexer_by_name
+from pygments.formatters import HtmlFormatter
 from generator.files import setup_required_files
 
 MARKDOWN2_EXTRAS = ["code-friendly",
@@ -150,7 +153,7 @@ class Section:
                 summary = ': ' + summary_value.strip() if summary_value else ''
                 expanded_value = parse_argument('expanded', arguments)
                 expanded = ' active' if expanded_value == 'True' else ''
-                content = markdown(match.group('content'), extras=MARKDOWN2_EXTRAS)
+                content = self.parse_markdown(match.group('content'))
 
                 heading = self.html_templates['panel_heading'].format(title=title,
                                                                       summary=summary)
@@ -177,7 +180,7 @@ class Section:
         if content:
             indented_value = parse_argument('indented', arguments)
             indented = ' text-box-indented' if indented_value == 'True' else ''
-            content = markdown(content, extras=MARKDOWN2_EXTRAS).strip()
+            content = self.parse_markdown(content).strip()
             html = self.html_templates['text-box'].format(content=content, indented=indented)
         else:
             self.regex_functions['text-box'].log("Text box has zero content", self, match.group(0))
@@ -199,7 +202,6 @@ class Section:
         equation = match.group('equation')
         if match.group('type') == 'math':
             #Inline math
-            equation = re.sub("\\\\{1,}", self.double_backslashes, equation)
             html = self.html_templates['math'].format(equation=equation)
         else:
             #Block math
@@ -456,9 +458,22 @@ class Section:
 
     def process_code_block(self, match):
         """Create a button for linking to a page"""
-        html = markdown(match.group('code'), extras=["fenced-code-blocks"])
-        # This extra div block stops Markdown2 from not reading code blocks correctly
-        return '<div>' + html + '</div>\n'
+        language = match.group('language')
+        no_highlighting = True
+        # If language set
+        if language:
+            try:
+                lexer = get_lexer_by_name(language, stripall=True)
+            except ClassNotFound:
+                self.regex_functions['code block'].log("The language {} is not supported by Pygments".format(language), self, match.group(0))
+            else:
+                formatter = HtmlFormatter(cssclass='codehilite')
+                html = highlight(match.group('code'), lexer, formatter)
+                no_highlighting = False
+        # If no language set or not lexer founds
+        if no_highlighting:
+            html = self.parse_markdown(match.group(0))
+        return html
 
 
     def add_interactive(self, match):
@@ -546,6 +561,8 @@ class Section:
             self.edit_interactive_tree(interactive_tree, source_folder)
             # Remove comments from HTML
             html = re.sub('(\n)*<!--(.|\s)*?-->(\n)*', '', str(interactive_tree).strip(), flags=re.MULTILINE)
+            # Remove preceeding whitespace on lines to avoid errors with Markdown parser
+            html = re.sub('^\s*', '', html, flags=re.MULTILINE)
             # Remove multiple consecutive newline characters from removal of <link> and <script> tags
             html = re.sub('\n{2,}', '\n', html, flags=re.MULTILINE)
             return html
@@ -655,7 +672,7 @@ class Section:
         arguments = match.group('args')
         term = parse_argument('term', arguments)
         definition = parse_argument('definition', arguments)
-        definition = markdown(definition, extras=MARKDOWN2_EXTRAS)
+        definition = self.parse_markdown(definition)
 
         permalink = self.create_permalink('glossary-' + term)
 
@@ -711,6 +728,31 @@ class Section:
 
     # ----- Parsing Functions -----
 
+
+    def parse_markdown(self, text):
+        return mistune.markdown(text,
+                                escape=False,
+                                hard_wrap=False,
+                                parse_block_html=False,
+                                parse_inline_html=False,
+                                use_xhtml=False)
+
+
+    def parse_section(self, match):
+        return self.parse_markdown(match.group(0))
+
+
+    def parse_sections(self, html):
+        """Parses HTML within <sections>"""
+        regexes = [
+            '\A[\s\S]*?(?=<section)', # Matches any text before first <section>
+            "(?<=class='section scrollspy'>)([\s\S]*?)(?=\<\/section\>)" # Matches between <section>
+        ]
+        for regex in regexes:
+            html = re.sub(regex, self.parse_section, html, flags=re.MULTILINE)
+        return html
+
+
     def parse_markdown_content(self, html_templates):
         """Converts raw Markdown into HTML.
 
@@ -726,18 +768,13 @@ class Section:
         for regex in self.regex_functions.values():
             text = re.sub(regex.expression, regex.function, text, flags=re.MULTILINE)
 
-        # Close last section if needed
+        # Close last section if needed and parse left over text with parser
         if self.sectioned:
             text += self.html_templates['section-end']
-
-        # Parse with library parser
-        text = markdown(text, extras=MARKDOWN2_EXTRAS)
-
-        # Remove any empty <p></p> tags
-        # TODO: Find why this occurs and stop it
-        text = re.sub("<p><\/p>", '', text, flags=re.MULTILINE)
-
-        self.html_content.append(text)
+            html = self.parse_sections(text)
+        else:
+            html = self.parse_markdown(text)
+        self.html_content.append(html)
 
         # Log error messages
         for regex in self.regex_functions.values():
