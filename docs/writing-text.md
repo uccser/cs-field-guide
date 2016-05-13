@@ -30,6 +30,7 @@ This article describes the syntax required for writing Markdown files within the
   - [Files](#files)
   - [Comments](#comments)
   - [Panels](#panels)
+  - [Text Boxes](#text-boxes)
   - [Version specific content](#version-specific-content)
   - [Conditional content](#conditional-content)
   - [Table of contents](#table-of-contents)
@@ -88,7 +89,9 @@ Strikethrough uses two tildes. ~~Scratch this.~~
 
 ### Lists
 
-Lists can be created by starting each line with a `-` for unordered lists or `1.` for ordered lists. The list needs to be followed by a blank line, however it doesn't require one above it (we included this feature into our parser as we believe it makes the list easier to read as it's connected to the previous paragraph). If you are having issues with a list not rendering correctly, add a blank line before the list and submit a [bug report](https://github.com/uccser/cs-field-guide/issues/new).
+Lists can be created by starting each line with a `-` for unordered lists or `1.` for ordered lists.
+The list needs to be followed by a blank line, however it doesn't require a blank line before unless the preceding text is a heading (a blank line is then required).
+If you are having issues with a list not rendering correctly, try adding a blank line before the list if there is none, and [submit a bug report](https://github.com/uccser/cs-field-guide/issues/new) if you are still having rendering issues.
 
 ```
 Unordered list:
@@ -413,19 +416,7 @@ The following text can be used to include images into the project:
 - `caption-link` (optional - requires `caption` parameter) - Turns the caption text into a link to the given URL.
 - `source` (optional) - Adds a 'Image source' link under the image, and after the caption if a caption is given. Does not appear under images within an `image-set`.
 
-Images are displayed responsively, and expand to full size when clicked by the user.
-
-A set of images can be included and displayed side by side using the following syntax (currently not supported in 2.0):
-
-```
-{image-set}
-{image filename="example-1.png"}
-{image filename="example-2.png"}
-{image filename="example-3.png" alt="This is a description"}
-{image-set end}
-```
-
-The wrap parameter is ignored in an `image-set`.
+Images are displayed responsively, and expand to full size in a lightbox when clicked by the user.
 
 ---
 
@@ -557,6 +548,23 @@ This text is the panel's contents.
 - `type` - The type of panel to create. The type is used as the title of the panel, plus as the CSS class for panel (this allows colouring of all the same types of panels).
 - `summary` (optional) - Text to display after the title to summarise the panel's contents.
 - `expanded` (optional) - If set to False, the panel is expanded at load. When not given it defaults to True.
+
+---
+
+### Text Boxes
+
+Text boxes are used to highlight important information that don't belong in a panel, code block, or diagram. The content within the box is padded with a shaded background and bordered to draw the attention of the reader.
+
+```
+{text-box}
+**Computer Science report for 2.44**
+
+  Put your introduction to what bits are here
+{text-box end}
+```
+
+**Parameters:**
+- `indented` - If `True` the text box will be indented to the left to match the indentation of the first level of a list.
 
 ---
 

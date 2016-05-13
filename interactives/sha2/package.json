@@ -8,9 +8,10 @@
     },
     "devDependencies": {
         "coffee-script": "latest",
-        "coffeeify": "latest"
+        "coffeeify": "latest",
+        "browserify": "latest"
     },
     "scripts": {
-        "build-js": "browserify -t coffeeify coffee/main.coffee > js/main.js"
+        "build": "browserify -t coffeeify coffee/main.coffee > js/main.js"
     }
 }

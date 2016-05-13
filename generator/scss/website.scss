@@ -265,8 +265,10 @@ ul.panel {
     overflow: auto;
   }
   p {
-    margin: 1rem 0 !important;
     padding: 0 !important;
+  }
+  p, ul, ol {
+    margin: 1rem 0 !important;
   }
   .collapsible-header {
     position: relative;
@@ -280,6 +282,12 @@ ul.panel {
   .collapsible-body {
     border: none;
     padding: 0 1rem;
+    ol > li {
+      list-style-type: decimal;
+    }
+    ul > li {
+      list-style-type: disc;
+    }
   }
 
   // Custom panel colours
@@ -291,6 +299,18 @@ ul.panel {
   @include panel-color("panel-spoiler", "blue-grey");
   @include panel-color("panel-project", "blue");
 }
+// Text Boxes
+.text-box {
+  margin: 1rem 0;
+  padding: 0 1rem;
+  border: 1px solid rgba(63, 81, 181, 0.50);
+  background: rgba(63,81,181,0.15);
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+}
+.text-box-indented {
+  margin-left: 40px !important;
+}
+
 
 .table-of-contents {
   li, ul, a {
@@ -326,4 +346,29 @@ body.landing-page {
 }
 .video-container {
   margin-top: 1rem;
+}
+// Images
+img.responsive-img {
+  cursor: zoom-in;
+}
+.featherlight {
+  cursor: zoom-out !important;
+}
+.featherlight-content {
+  cursor: zoom-out !important;
+  overflow: hidden !important;
+  background-color: transparent !important;
+
+  // Hide the image border and close button
+  padding: 0 !important;
+  border: 0 !important;
+  .featherlight-close-icon {
+    display: none !important;
+  }
+
+  // Prevent image overflowing its container
+  img {
+    margin: 0;
+    background-color: #FFF !important;
+  }
 }

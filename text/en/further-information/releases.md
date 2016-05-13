@@ -17,11 +17,35 @@ Given a version number MAJOR.MINOR.HOTFIX:
 
 We have listed major changes for each release below.
 
-## Pre-releases
-
-No pre-releases currently.
-
 ## Current Release
+
+### v2.5.0
+
+**Release date:** 13th May 2016
+
+**Downloads:** [Source available on GitHub](https://github.com/uccser/cs-field-guide/releases/tag/v2.5.0)
+
+**Notable changes:**
+- The Data Representation chapter has been rewritten and reorganised to be easier to follow, and three NCEA assessment guides have been written for students aiming for merit/excellence:
+  - [Numbers (Two's Complement)](curriculum-guides/ncea/assessment-guide-level-2-excellence-data-representation-numbers.html)
+  - [Text (Unicode)](curriculum-guides/ncea/assessment-guide-level-2-excellence-data-representation-text.html)
+  - [Colours (Various bit depths)](curriculum-guides/ncea/assessment-guide-level-2-excellence-data-representation-colour.html)
+
+  The chapter and assessment guides have been rewritten to take account of new feedback from the marking process and our own observations of student work.
+
+  As part of the rewrite of the Data Representation chapter, the following interactives were developed:
+  - New interactive: The [unicode binary interactive](interactives/unicode-binary/index.html) displays the binary for a given character (or character by decimal number) dynamically with different encodings.
+  - New interactive: The [unicode character interactive](interactives/unicode-chars/index.html) displays the character for a given decimal value.
+  - New interactive: The [unicode length interactive](interactives/unicode-length/index.html) displays the length (in bits) of text encoded using different encodings.
+  - Updated interactive: The [colour matcher interactive](interactives/colour-matcher/index.html) has been redesigned to display values in binary, plus allow students to see and edit the bit values. The interface has also been restructured for readability and ease of use.
+
+  The old version of the Data Representation chapter can be [found here](http://csfieldguide.org.nz/releases/2.4.1/en/chapters/data-representation.html).
+- Website improvements: A new image previewer was implemented, along with bugfixes to iFrame and panel rendering.
+- Generation improvements: The Markdown parser has been replaced due to existing parsing issues. The new parser also gives us a large performance boost. A text box tag has also been added to highlight important text.
+
+A full list of changes in this version is [available on GitHub](https://github.com/uccser/cs-field-guide/compare/v2.4.1...v2.5.0).
+
+## Older Releases
 
 ### v2.4.1
 
@@ -33,8 +57,6 @@ No pre-releases currently.
 - Fixed version numbering system to allow hotfix changes
 
 A full list of changes in this version is [available on GitHub](https://github.com/uccser/cs-field-guide/compare/v2.4...v2.4.1).
-
-## Older Releases
 
 ### v2.4
 
