@@ -265,8 +265,10 @@ ul.panel {
     overflow: auto;
   }
   p {
-    margin: 1rem 0 !important;
     padding: 0 !important;
+  }
+  p, ul, ol {
+    margin: 1rem 0 !important;
   }
   .collapsible-header {
     position: relative;
