@@ -104,6 +104,7 @@ class Section:
             html = ''
         else:
             html = self.current_heading.to_html()
+            html = self.add_newline_padding(html)
         return html
 
 
@@ -212,6 +213,10 @@ class Section:
     def double_backslashes(self, match):
         return match.group(0) * 2
 
+    def add_newline_padding(self, html):
+        """Adds newlines to each side of HTML to allow the
+        Markdown parser to correctly parser surrounding text"""
+        return '\n\n' + html.strip() + '\n\n'
 
     def create_image_html(self, filename, arguments, image_set=False):
         """Create the HTML required for displaying an image.
@@ -280,7 +285,7 @@ class Section:
         else:
             html = self.center_html(image_html, 8)
 
-        return html
+        return self.add_newline_padding(html)
 
 
     def add_image(self, match):

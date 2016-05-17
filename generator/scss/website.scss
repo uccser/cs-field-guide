@@ -22,6 +22,20 @@ pre > code {
 .interactive-external {
   border: 2px solid #C3C3C3;
 }
+.image-wrap {
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+@media (min-width : $medium-screen) {
+  .image-wrap {
+    max-width: 35% !important;
+  }
+}
+.clearfix:after {
+  content: "";
+  display: block;
+  clear: both;
+}
 .image-wrap-left {
   float: left;
   margin-right: 1rem;

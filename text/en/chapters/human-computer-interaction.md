@@ -495,7 +495,7 @@ Common tasks like copy and paste usually have keystrokes added to them, and thes
 An important area of research in HCI is working out how to make shortcuts easy to learn.
 You don't want them to get in the way for beginners, but you don't want frequent users to be unaware of them either.
 A simple way of doing this is having keystroke equivalents in a menu (an accelerator); the menu displayed here shows that shift-command-O will open a new project, so the user can learn this sequence if they are using the command frequently.
-{image filename="menu-keystroke-equivalent.png" alt="Menu with keystroke equivalents." position="left"}
+{image filename="menu-keystroke-equivalent.png" alt="Menu with keystroke equivalents." wrap="left"}
 A flexible system would allow the user to add a keystroke equivalent for the "Close Pane" command themselves, if that turned out to be used frequently.
 Other systems might offer suggestions to the user if they notice an action being done frequently.
 A related approach is offering recent selections near the top of a list of options.
@@ -508,16 +508,16 @@ Software can contain many features, and if they are all visible at the same time
 
 TV remote controls often provide a great example of a complicated interface.
 One reason that the have so many buttons is that it can help to make the device look impressive in the shop, but once you get it home, many of the buttons become redundant or confusing.
-{image filename="remote-complex.jpg" alt="A complex remote control." position="right"}
+{image filename="remote-complex.jpg" alt="A complex remote control." wrap="left"}
 The remote control shown here has several buttons that could potentially do the same thing: "Direct Navigator", "Guide", "Function Menu", "Status" and "Option" all give access to different functions, but it's hard to predict which is which.
 This remote has about 55 buttons altogether!
 
-{image filename="remote-simple.jpg" alt="A simple remote control." position="left"}
+{image filename="remote-simple.jpg" alt="A simple remote control." wrap="left"}
 In contrast, the Apple remote has very few buttons, and is a good example of a minimalist interface.
 There's only one "Menu" to choose, so it's fairly obvious what to do to select the controls needed.
 Of course, the simple remote relies on displaying menus on the screen, and these have the potential to make things more complicated.
 
-{image filename="remote-adapted.jpg" alt="An adapted remote control." position="right"}
+{image filename="remote-adapted.jpg" alt="An adapted remote control." wrap="left"}
 The third remote control shows a solution for simplifying it to save the user from having to read extensive manual information.
 It's a bit drastic, but it might save the user from getting into modes that they can't get out of!
 Some people have reported removing keys from mobile phones, or gluing buttons in place, so that the user can't get the device into a state that they shouldn't.
