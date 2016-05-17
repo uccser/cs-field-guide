@@ -50,3 +50,6 @@ Most of our interactives require a modern browser, if it's been updated in the l
 - [Sorting Algorithm Comparison](interactives/sorting-algorithm-comparison/index.html)
 - [Sorting Algorithms](interactives/sorting-algorithms/index.html)
 - [Trainsylvania](interactives/trainsylvania/index.html)
+- [Unicode Binary](interactives/unicode-binary/index.html)
+- [Unicode Character](interactives/unicode-chars/index.html)
+- [Unicode Length](interactives/unicode-length/index.html)
