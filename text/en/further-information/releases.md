@@ -1,6 +1,6 @@
 # Releases
 
-This page lists the different releases to the Computer Science Field Guide.
+This page lists updates to the Computer Science Field Guide. All notable changes to this project will be documented in this file.
 
 {panel type="What numbering system do we use?"}
 
