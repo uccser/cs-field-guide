@@ -739,7 +739,7 @@ class Section:
                                 escape=False,
                                 hard_wrap=False,
                                 parse_block_html=False,
-                                parse_inline_html=False,
+                                parse_inline_html=True,
                                 use_xhtml=False)
 
 
@@ -751,7 +751,7 @@ class Section:
         """Parses HTML within <sections>"""
         regexes = [
             '\A[\s\S]*?(?=<section)', # Matches any text before first <section>
-            "(?<=class='section scrollspy'>)([\s\S]*?)(?=\<\/section\>)" # Matches between <section>
+            "(?<=class='section no-pad scrollspy'>)([\s\S]*?)(?=\<\/section\>)" # Matches between <section>
         ]
         for regex in regexes:
             html = re.sub(regex, self.parse_section, html, flags=re.MULTILINE)
