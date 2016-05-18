@@ -22,6 +22,18 @@ pre > code {
 .interactive-external {
   border: 2px solid #C3C3C3;
 }
+.clearfix {
+  margin-top: 1rem;
+}
+.image-wrap {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+@media (min-width : $medium-screen) {
+  .image-wrap {
+    max-width: 35% !important;
+  }
+}
 .image-wrap-left {
   float: left;
   margin-right: 1rem;
@@ -49,6 +61,10 @@ header, main, footer {
   #website_header {
     display: block;
   }
+  .anchor-link {
+    padding-top: 100px;
+    margin-top: -90px !important;
+  }
 }
 .bold > a {
   font-weight: bold;
@@ -73,12 +89,15 @@ ul.side-nav.fixed li a {
   line-height: 2rem !important;
   height: 2rem !important;
 }
+.section {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
 .section_number {
   color: $primary-color-light !important;
 }
 .anchor-link {
-  padding-top: 100px;
-  margin-top: -90px;
+  padding-top: 1rem;
   pointer-events: none;
   outline: none;
   & a {

@@ -104,6 +104,7 @@ class Section:
             html = ''
         else:
             html = self.current_heading.to_html()
+            html = self.add_newline_padding(html)
         return html
 
 
@@ -126,6 +127,8 @@ class Section:
     def create_link(self, match):
         """Create a HTML link, if local link then add path back to root"""
         link_text = match.group('link_text')
+        link_text = self.parse_markdown(link_text, 'p')
+
         link_url = match.group('link_url')
         link_url = link_url.replace('\)', ')')
 
@@ -212,6 +215,10 @@ class Section:
     def double_backslashes(self, match):
         return match.group(0) * 2
 
+    def add_newline_padding(self, html):
+        """Adds newlines to each side of HTML to allow the
+        Markdown parser to correctly parser surrounding text"""
+        return '\n\n' + html.strip() + '\n\n'
 
     def create_image_html(self, filename, arguments, image_set=False):
         """Create the HTML required for displaying an image.
@@ -280,7 +287,7 @@ class Section:
         else:
             html = self.center_html(image_html, 8)
 
-        return html
+        return self.add_newline_padding(html)
 
 
     def add_image(self, match):
@@ -729,14 +736,23 @@ class Section:
     # ----- Parsing Functions -----
 
 
-    def parse_markdown(self, text):
-        return mistune.markdown(text,
+    def parse_markdown(self, text, strip_tag=''):
+        """Render the given text to Markdown
+        Optional paramaters:
+        - strip_paragraph_tags: Allows removal of given tags
+        """
+        html = mistune.markdown(text,
                                 escape=False,
                                 hard_wrap=False,
                                 parse_block_html=False,
                                 parse_inline_html=False,
                                 use_xhtml=False)
-
+        if strip_tag:
+            start_tag = '<{}>'.format(strip_tag)
+            end_tag = '</{}>'.format(strip_tag)
+            html = html.replace(start_tag, '')
+            html = html.replace(end_tag, '')
+        return html
 
     def parse_section(self, match):
         return self.parse_markdown(match.group(0))
@@ -746,7 +762,7 @@ class Section:
         """Parses HTML within <sections>"""
         regexes = [
             '\A[\s\S]*?(?=<section)', # Matches any text before first <section>
-            "(?<=class='section scrollspy'>)([\s\S]*?)(?=\<\/section\>)" # Matches between <section>
+            "(?<=class='section no-pad scrollspy'>)([\s\S]*?)(?=\<\/section\>)" # Matches between <section>
         ]
         for regex in regexes:
             html = re.sub(regex, self.parse_section, html, flags=re.MULTILINE)
