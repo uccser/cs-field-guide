@@ -127,6 +127,8 @@ class Section:
     def create_link(self, match):
         """Create a HTML link, if local link then add path back to root"""
         link_text = match.group('link_text')
+        link_text = self.parse_markdown(link_text, 'p')
+
         link_url = match.group('link_url')
         link_url = link_url.replace('\)', ')')
 
@@ -734,14 +736,23 @@ class Section:
     # ----- Parsing Functions -----
 
 
-    def parse_markdown(self, text):
-        return mistune.markdown(text,
+    def parse_markdown(self, text, strip_tag=''):
+        """Render the given text to Markdown
+        Optional paramaters:
+        - strip_paragraph_tags: Allows removal of given tags
+        """
+        html = mistune.markdown(text,
                                 escape=False,
                                 hard_wrap=False,
                                 parse_block_html=False,
-                                parse_inline_html=True,
+                                parse_inline_html=False,
                                 use_xhtml=False)
-
+        if strip_tag:
+            start_tag = '<{}>'.format(strip_tag)
+            end_tag = '</{}>'.format(strip_tag)
+            html = html.replace(start_tag, '')
+            html = html.replace(end_tag, '')
+        return html
 
     def parse_section(self, match):
         return self.parse_markdown(match.group(0))
