@@ -5,13 +5,14 @@
     "description": "This is a generic runner for Finite State Automatons",
     "dependencies": {
         "es6-array-map": "Jamesernator/es6-array-map",
-        "js-yaml": "latest"
+        "underscore": "latest"
     },
     "devDependencies": {
         "browserify": "latest",
-        "coffeeify": "latest"
+        "coffeeify": "latest",
+        "coffee-script": "latest"
     },
     "scripts": {
-        "build-js": "browserify -t coffeeify coffee/main.coffee > js/main.js"
+        "build": "browserify -t coffeeify coffee/main.coffee > fsa.js"
     }
 }
