@@ -126,13 +126,16 @@ class Section:
 
     def create_link(self, match):
         """Create a HTML link, if local link then add path back to root"""
+        external_link_prefixes = ('http://', 'https://', 'mailto:')
+
         link_text = match.group('link_text')
-        link_text = self.parse_markdown(link_text, 'p').strip()
+        if not link_text.startswith(external_link_prefixes):
+            link_text = self.parse_markdown(link_text, 'p').strip()
 
         link_url = match.group('link_url')
         link_url = link_url.replace('\)', ')')
 
-        if not link_url.startswith(('http://','https://','mailto:')):
+        if not link_url.startswith(external_link_prefixes):
             # If linked to file, add file to required files
             if link_url.startswith(self.guide.generator_settings['Source']['File']):
                 file_name = link_url[len(self.guide.generator_settings['Source']['File']):]
@@ -156,12 +159,7 @@ class Section:
                 summary = ': ' + summary_value.strip() if summary_value else ''
                 expanded_value = parse_argument('expanded', arguments)
                 expanded = ' active' if expanded_value == 'True' else ''
-                if match.group('content').strip().startswith('An interesting example of the value of using e'):
-                    print('before:', match.group('content'))
-                    content = self.parse_markdown(match.group('content'))
-                    print('after:', content)
-                else:
-                    content = self.parse_markdown(match.group('content'))
+                content = self.parse_markdown(match.group('content'))
 
                 heading = self.html_templates['panel_heading'].format(title=title,
                                                                       summary=summary)
