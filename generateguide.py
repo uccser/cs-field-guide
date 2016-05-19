@@ -9,11 +9,9 @@ from generator.systemconstants import *
 LOG_FILE_PATH = 'output/log.txt'
 
 cmd_args = systemfunctions.command_line_args()
-if cmd_args.install_dependencies:
-    systemfunctions.install_dependencies()
 
 import configparser
-import logging
+import logging.config
 import os.path
 import os
 import re
