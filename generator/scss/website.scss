@@ -62,8 +62,19 @@ header, main, footer {
     display: block;
   }
   .anchor-link {
-    padding-top: 100px;
-    margin-top: -90px !important;
+    padding-top: 70px !important;
+    margin-top: -60px !important;
+  }
+}
+.anchor-link {
+  padding-top: 0;
+  pointer-events: none;
+  outline: none;
+  & a {
+    pointer-events: auto;
+  }
+  &-empty {
+    position: absolute;
   }
 }
 .bold > a {
@@ -95,17 +106,6 @@ ul.side-nav.fixed li a {
 }
 .section_number {
   color: $primary-color-light !important;
-}
-.anchor-link {
-  padding-top: 1rem;
-  pointer-events: none;
-  outline: none;
-  & a {
-    pointer-events: auto;
-  }
-  &-empty {
-    position: absolute;
-  }
 }
 .section-heading {
   margin-bottom: 0;
