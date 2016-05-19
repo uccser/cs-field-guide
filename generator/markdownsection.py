@@ -127,7 +127,7 @@ class Section:
     def create_link(self, match):
         """Create a HTML link, if local link then add path back to root"""
         link_text = match.group('link_text')
-        link_text = self.parse_markdown(link_text, 'p')
+        link_text = self.parse_markdown(link_text, 'p').strip()
 
         link_url = match.group('link_url')
         link_url = link_url.replace('\)', ')')
@@ -156,7 +156,12 @@ class Section:
                 summary = ': ' + summary_value.strip() if summary_value else ''
                 expanded_value = parse_argument('expanded', arguments)
                 expanded = ' active' if expanded_value == 'True' else ''
-                content = self.parse_markdown(match.group('content'))
+                if match.group('content').strip().startswith('An interesting example of the value of using e'):
+                    print('before:', match.group('content'))
+                    content = self.parse_markdown(match.group('content'))
+                    print('after:', content)
+                else:
+                    content = self.parse_markdown(match.group('content'))
 
                 heading = self.html_templates['panel_heading'].format(title=title,
                                                                       summary=summary)
@@ -687,7 +692,18 @@ class Section:
         back_link = '{}.html#{}'.format(this_file_link, permalink)
         self.guide.glossary.add_item(term, definition, back_link, match, self)
 
-        return self.html_templates['glossary_definition'].format(id=permalink).strip()
+        # If the definition has at least two newlines before and after it,
+        # then use a block element. Otherwise use inline element.
+        whitespace_before = match.group('before') if match.group('before') else ''
+        whitespace_after = match.group('after') if match.group('after') else ''
+        if whitespace_before and whitespace_after:
+            tag = 'div'
+        else:
+            tag = 'span'
+
+        template = self.html_templates['glossary_definition'].strip()
+        return template.format(id=permalink, tag=tag,
+        whitespace_before=whitespace_before, whitespace_after=whitespace_after)
 
 
     def add_glossary_link(self, match):
@@ -720,7 +736,18 @@ class Section:
             link_html = ''
             content = ''
 
-        return self.html_templates['glossary_backwards_link'].format(id_html=id_html, link_html=link_html, content=content).strip()
+        # If the link has at least two newlines before and after it,
+        # then use a block element. Otherwise use inline element.
+        whitespace_before = match.group('before') if match.group('before') else ''
+        whitespace_after = match.group('after') if match.group('after') else ''
+        if whitespace_before and whitespace_after:
+            tag = 'div'
+        else:
+            tag = 'span'
+
+        template = self.html_templates['glossary_backwards_link'].strip()
+        return template.format(id_html=id_html, link_html=link_html, content=content, tag=tag, whitespace_before=whitespace_before, whitespace_after=whitespace_after)
+
 
 
     def add_glossary(self, match):
