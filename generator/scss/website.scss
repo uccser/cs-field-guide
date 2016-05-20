@@ -351,10 +351,10 @@ ul.panel {
   margin-bottom: 1rem;
 }
 footer {
-  background-color: #FFF;
   color: $off-black;
   margin-top: 4rem;
   .footer-first {
+    background-color: #FFF;
     .container {
       padding-top: 1rem;
       border-top: 2px solid $primary-color;
@@ -386,13 +386,22 @@ footer {
       padding-left: 1rem;
     }
   }
+  .row {
+    margin-bottom: 0;
+  }
 }
 body.landing-page {
   background-color: $primary-color !important;
-  padding: 2rem 1rem;
-  color: #fff;
-  footer {
+  main, footer {
     padding-left: 0 !important;
+  }
+  main {
+    color: rgba(255,255,255,0.8);
+  }
+  footer {
+    .footer-first .container {
+      border-top: 0;
+    }
   }
 }
 .video-container {
