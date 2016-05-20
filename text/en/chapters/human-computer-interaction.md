@@ -30,7 +30,7 @@ Try out the following interactive task, and get some friends to try it:
 {interactive name="deceiver" type="in-page"}
 
 Did anyone get a wrong answer to the question even though they thought they got it right?
-You may have noticed that the "Yes" and "No" buttons sometimes swap.
+You may have noticed that the "Even" and "Odd" buttons sometimes swap.
 Inconsistency is almost always a really bad thing in an interface, as it can easily fool the user into making an error.
 
 The only situation it might be desirable is if it was intentionally done to make a computer game more interesting (which perhaps the above interactive could be).
@@ -38,7 +38,7 @@ But imagine you have a web form in which the "reset" and "submit" buttons often 
 Users would frequently clear the form when they meant to submit it, or submit the form when they had meant to clear it!
 
 {panel type="teacher-note" summary="Accuracy vs Speed in the above interactive"}
-The swapping yes/no interactive may not fool all students, but for some it will be very frustrating. If they decide to use it slowly and carefully they may get the yes/no choices correct, but they will also get lower scores (i.e. lower productivity if this was a real interface).
+The swapping even/odd interactive may not fool all students, but for some it will be very frustrating. If they decide to use it slowly and carefully they may get the even/odd choices correct, but they will also get lower scores (i.e. lower productivity if this was a real interface).
 {panel end}
 
 The study of Human Computer Interaction involves a lot of psychology (how people behave) because this affects how they will use a system. As a simple example, the human short term memory only lasts for a matter of seconds (even in young people!)
@@ -129,7 +129,7 @@ Keep your notes for later, as you can further analyse them once you have read th
 {panel type="project" summary="Designing stovetops and door handles"}
 {image filename="poor-door-design-cartoon.jpg" alt="User conflict opening a door." position="right"}
 
-For this project, you will designing the top of a cooking stove, or the handles on a door.
+For this project, you will design the top of a cooking stove, or the handles on a door.
 This isn't a computer system, but will help demonstrate some of the issues that come up.
 The main task is to sketch three different configurations for the stovetop which includes the arrangement of the 4 elements and the 4 control knobs.
 
@@ -147,10 +147,10 @@ Key ideas that students should be picking up include:
 -  An interface is used to do a task, so it makes the most sense to identify the tasks that a particular interface is for, and then consider how difficult those tasks are using that interface. The common mistake is to focus on features of an interface, but in the real world the question is whether or not those features can be used to do a task from beginning to end.
 {panel end}
 
-Devices are often sold using catch phrases like "user friendly" and "intuitive", but these are vague terms that are hard to pin down. In this section we will use the more technical term, [Usability](http://en.wikipedia.org/wiki/Usability), which is well understood by HCI experts, and gives us some ways to evaluate how suitable an interface is for a particular task. Usability isn't just about an interface being nice to use: poor usability can lead to serious problems, and has been the cause of major disasters, such as airplane crashes, financial disasters, and medical mishaps. It is also important because an interface that requires a lot of dexterity, quick reactions or a good memory makes it less accessible to much of the population, when accessibility can be both a moral and legal expectation.
+Devices are often sold using catch phrases like "user friendly" and "intuitive", but these are vague terms that are hard to pin down. In this section we will use the more technical term, [Usability](https://en.wikipedia.org/wiki/Usability), which is well understood by HCI experts, and gives us some ways to evaluate how suitable an interface is for a particular task. Usability isn't just about an interface being nice to use: poor usability can lead to serious problems, and has been the cause of major disasters, such as airplane crashes, financial disasters, and medical mishaps. It is also important because an interface that requires a lot of dexterity, quick reactions or a good memory makes it less accessible to much of the population, when accessibility can be both a moral and legal expectation.
 
 {panel type="curiosity" summary="When interface design goes horribly wrong"}
-- 87 people were killed when [Air Inter Flight 148 crashed](http://en.wikipedia.org/wiki/Air_Inter_Flight_148) due to the pilots entering "33" to get a 3.3 degree descent angle, but the same interface was used to enter the descent rate, which the autopilot interpreted as 3,300 feet per minute. This interface problem is called a "mode error" (described later). There is more information [here](http://blog.martindoms.com/2011/01/24/poor-ui-design-can-kill/).
+- 87 people were killed when [Air Inter Flight 148 crashed](https://en.wikipedia.org/wiki/Air_Inter_Flight_148) due to the pilots entering "33" to get a 3.3 degree descent angle, but the same interface was used to enter the descent rate, which the autopilot interpreted as 3,300 feet per minute. This interface problem is called a "mode error" (described later). There is more information [here](http://blog.martindoms.com/2011/01/24/poor-ui-design-can-kill/).
 - 13 people died and many more were injured when the pilots of [Varig Flight 254](https://en.wikipedia.org/wiki/Varig_Flight_254) entered an incorrect heading. The flight plan had specified a heading of 0270, which the captain interpreted and entered into the flight computer as 270 degrees. What it actually meant was 027.0 degrees. This confusion came about due to the format of headings and the position of the decimal point on flight plans being changed without him knowing. Unfortunately, the co-pilot mindlessly copied the captain's heading instead of reading it off the flight plan like he was supposed to. The plane then cruised on autopilot for a few hours. Unfortunately, [confirmation bias](https://en.wikipedia.org/wiki/Confirmation_bias) got the better of the pilots who were convinced they were near their destination, when in fact they were hundreds of miles away. The plane ran out of fuel and crash landed in the Amazon Jungle. Designing aircraft systems which work for humans is a big challenge, and is a part of the wider area of human factors research.
 - A bank employee [accidentally gave a customer a loan of $10 million instead of $100,000](http://edition.cnn.com/2012/08/24/world/asia/new-zealand-accidental-millionaire-sentenced/). The customer withdrew most of the money and fled to Asia, the bank lost millions of dollars in the process, and the teller concerned would have had a traumatic time just because of a typing error. The error was due to the employee typing in two extra zeroes, apparently because some interfaces automatically put in the decimal point (you could type 524 to enter $5.24), and others didn't. This error can be explained in terms of a lack of consistency in the interface, causing a mode error.
 - A 43-year old woman suffered respiratory arrest after a nurse accidentally entered 5 instead of 0.5 for a dose rate for morphine. The interface should have made it difficult to make an error by a factor of 10. There is a [paper about it](http://www.ncbi.nlm.nih.gov/pubmed/16738293), and an [article about the interface problem](http://hrcak.srce.hr/file/95851). Similar problems can occur in any control system where the operator types in a value; a better interface would force the operator to press an "up" and "down" button, so big changes take a lot of work (this is an example of an "off by one error", where one extra digit is missed or added, and also relates to the principle of commensurate effort)
@@ -162,9 +162,9 @@ There are many elements that can be considered in usability, and we will mention
 
 ### Consistency
 
-A "golden rule" of usability is *consistency*. If a system keeps changing on you, it's going to be frustrating to use. Earlier we had the example of a yes/no button pair that occasionally swapped places. A positive example is the consistent use of "control-C" and "control-V" in many different programs to copy and paste text or images. This also helps *learnability*: once you have learned copy and paste in one program, you know how to use it in many others. Imagine if every program used different menu commands and keystrokes for this!
+A "golden rule" of usability is *consistency*. If a system keeps changing on you, it's going to be frustrating to use. Earlier we had the example of a "Even"/"Odd" button pair that occasionally swapped places. A positive example is the consistent use of "control-C" and "control-V" in many different programs to copy and paste text or images. This also helps *learnability*: once you have learned copy and paste in one program, you know how to use it in many others. Imagine if every program used different menu commands and keystrokes for this!
 
-A related issue is the [*Mode error*](http://en.wikipedia.org/wiki/Mode_error#Mode_errors), where the behaviour of an action depends on what mode you are in. A simple example is having the caps lock key down (particularly for entering a password, where you can't see the effect of the mode). A classic example is in Excel spreadsheets, where the effect of clicking on a cell depends on the mode: sometimes it selects the cell, and other times it puts the name of the cell you clicked on into another cell. Modes are considered bad practice in interface design because they can easily cause the user to make the wrong action, and should be avoided if possible.
+A related issue is the [*Mode error*](https://en.wikipedia.org/wiki/Mode_error#Mode_errors), where the behaviour of an action depends on what mode you are in. A simple example is having the caps lock key down (particularly for entering a password, where you can't see the effect of the mode). A classic example is in Excel spreadsheets, where the effect of clicking on a cell depends on the mode: sometimes it selects the cell, and other times it puts the name of the cell you clicked on into another cell. Modes are considered bad practice in interface design because they can easily cause the user to make the wrong action, and should be avoided if possible.
 
 
 ### Response time
@@ -178,9 +178,9 @@ As you click on each cell, there will sometimes be a random delay before it come
 However, if you perceive that there is a small delay before the image comes up, click it again (which makes the cell green). Just make a quick, gut-level decision the first time you click each cell - don't overthink it.
 The delay may be very short, but only make the cell green if you are fairly sure you noticed a delay.
 
-{interactive name="delay-analyser" type="whole-page"}
+{interactive name="delay-analyser" type="whole-page" text="Delay Analyser interactive"}
 
-Once you have clicked on all the cells, click on "View stastistics" to see how long the delays were compared with your perception.
+Once you have clicked on all the cells, click on "View statistics" to see how long the delays were compared with your perception.
 100 ms (100 milliseconds) is one tenth of a second; for most people this is where they are likely to start perceiving a delay;
 anything shorter (particularly around 50 ms) is very hard to notice. Longer delays (for example, 350 ms, which is over a third of a second) are very easy to notice.
 
@@ -323,7 +323,7 @@ For this exercise we'll simplfy it to just one question.
 
 [More details of how to do a cognitive walkthrough are on the cs4fn site](http://www.cs4fn.org/usability/cogwalkthrough.php).
 
-There is also more information in the [Wikipedia entry for Cognitive Walkthrough](http://en.wikipedia.org/wiki/Cognitive_walkthrough).
+There is also more information in the [Wikipedia entry for Cognitive Walkthrough](https://en.wikipedia.org/wiki/Cognitive_walkthrough).
 {panel end}
 
 ## Usability Heuristics
@@ -363,13 +363,13 @@ However, progress indicators aren't always helpful; the spinning wheels above do
 
 Giving feedback in a "reasonable time" is really important, and the "reasonable time" is often shorter than what you might think. In the section above there was an experiment to find out at what point people perceive a delayed reaction; you probably found that it was around a tenth of a second. If a computer takes longer than that to respond then it can be confusing to use. There's more about this in the previous section.
 
-{image filename="xkcd-estimation.png" alt="The author of the Windows file copy dialog visits some friends, and struggles to decide what time he will arrive." source="http://xkcd.com/612/"}
+{image filename="xkcd-estimation.png" hover-text="They could say 'the connection is probably lost', but it's more fun to do naive time-averaging to give you hope that if you wait around for 1,163 hours, it will finally finish." alt="The author of the Windows file copy dialog visits some friends, and struggles to decide what time he will arrive." source="https://xkcd.com/612/"}
 
 There are some other important delay periods in interface evaluation: a delay of around 1 second is where natural dialogues start to get awkward, and around 10 seconds puts a lot of load on the user to remember what they were doing. Nielsen has an [article about the importance of these time periods](http://www.nngroup.com/articles/response-times-3-important-limits/). If you want to test these ideas, try having a conversation with someone where you wait 3 seconds before each response; or put random 10 second delays in when you're working on a task!
 
 And if you haven't tried it already, have a go at the following interactive.
 
-{interactive name="delay-analyser" type="whole-page"}
+{interactive name="delay-analyser" type="whole-page" text="Delay Analyser interactive"}
 
 Getting computers to respond quickly often depends on the algorithms used (covered in the chapter on algorithms), and can also depend on the design of a program (such as whether it stores data on disk or waits for a network response before continuing). It is particularly noticeable on small devices like smartphones, which have limited computing power, and might take a second or two to open an app or respond to some input. It's not too hard to find these sorts of delays in systems when you're evaluating them.
 
@@ -413,7 +413,7 @@ Here's an example of a button that doesn't provide user control; if you press it
 Pressing the yes button below can be very frustrating! Most modern web browsers provide some user control and freedom in this case – if your students are frustrated at having pressed the button, the page will probably be in their history menu (and some browsers even have a function to restore the last page closed).
 {panel end}
 
-Sometimes the interface can force the user into doing something the don't want to do. For example, it is quite common for operating systems or programs to perform updates automatically that require a restart. Sometimes the interface may not give them the opportunity to cancel or delay this, and restart nevertheless. This is bad if it happens when the user is just about to give a presentation.
+Sometimes the interface can force the user into doing something they don't want to do. For example, it is quite common for operating systems or programs to perform updates automatically that require a restart. Sometimes the interface may not give them the opportunity to cancel or delay this, and restart nevertheless. This is bad if it happens when the user is just about to give a presentation.
 
 Another common form of this problem is not being able to quit a system. A positive example is the "home" button on smartphones, which almost always stops the current app that is in use.
 
@@ -425,9 +425,9 @@ Consistency (something being the same every time) is extremely useful for people
 
 An example of inconsistency is generally found within spreadsheet programs, where the result of pushing "control-A" (select all) depends on whether you are editing a cell or just have the cell selected (this particular problem is a 'mode' problem). While this may make sense to a user experienced with spreadsheets, a new user can be very confused when the same action causes a different response.
 
-{image filename="xkcd-standards-cartoon.png" alt="A xkcd comic on standards" source="https://xkcd.com/927/"}
+{image filename="xkcd-standards-cartoon.png" hover-text="Fortunately, the charging one has been solved now that we've all standardized on mini-USB. Or is it micro-USB? Shit." alt="A xkcd comic on standards" source="https://xkcd.com/927/"}
 
-A lack of consistency is often the reason behind people not liking a new system. It is particularly noticeable between Mac and Windows user; someone who has only used one system can find the other very frustrating to use because so many things are different (consider the window controls for a start, which are in a different place and have different icons). An experienced user of one interface will think that it is "obvious", and can't understand why the other person finds it frustrating, which can lead to discussions of religious fervour on which interface is best. Similar problems can occur when a radically different version of an operating system comes out (such as Windows 8); a lot of the learning that has been done on the previous system needs to be undone, and the lack of consistency (i.e. losing prior learning) is frustrating.
+A lack of consistency is often the reason behind people not liking a new system. It is particularly noticeable between Mac and Windows users; someone who has only used one system can find the other very frustrating to use because so many things are different (consider the window controls for a start, which are in a different place and have different icons). An experienced user of one interface will think that it is "obvious", and can't understand why the other person finds it frustrating, which can lead to discussions of religious fervour on which interface is best. Similar problems can occur when a radically different version of an operating system comes out (such as Windows 8); a lot of the learning that has been done on the previous system needs to be undone, and the lack of consistency (i.e. losing prior learning) is frustrating.
 
 ### Error prevention
 
@@ -478,7 +478,7 @@ In general it's good for the computer to "remember" details, and the user to be 
 The exception is a system that is used all the time by an expert who knows all the options; in this case entering commands directly can sometimes be more flexible and faster than having to select from a list.
 
 For example, when you type in a place name in an online map, the system might start suggesting names based on what you're typing, and probably adapted to focus on your location or past searches.
-The following image is from Google maps, which suggests the name of the place you may be trying to type (in this case, the user has only had to type 4 letters, and the system saves them from having the recall the correct spelling of "Taumatawhakatangihangakoauauotamateapokaiwhenuakitanatahu" because they can then select it.)
+The following image is from Google maps, which suggests the name of the place you may be trying to type (in this case, the user has only had to type 4 letters, and the system saves them from having to recall the correct spelling of "Taumatawhakatangihangakoauauotamateapokaiwhenuakitanatahu" because they can then select it.)
 A similar feature in web browsers saves users from having to remember the exact details of a URL that they have used in the past; a system that required you to type in place names exactly before you could search for them could get rather frustrating.
 
 {image filename="recognition-place-names.png" alt="Map predicting possible place names"}
@@ -495,7 +495,7 @@ Common tasks like copy and paste usually have keystrokes added to them, and thes
 An important area of research in HCI is working out how to make shortcuts easy to learn.
 You don't want them to get in the way for beginners, but you don't want frequent users to be unaware of them either.
 A simple way of doing this is having keystroke equivalents in a menu (an accelerator); the menu displayed here shows that shift-command-O will open a new project, so the user can learn this sequence if they are using the command frequently.
-{image filename="menu-keystroke-equivalent.png" alt="Menu with keystroke equivalents." position="left"}
+{image filename="menu-keystroke-equivalent.png" alt="Menu with keystroke equivalents." wrap="left"}
 A flexible system would allow the user to add a keystroke equivalent for the "Close Pane" command themselves, if that turned out to be used frequently.
 Other systems might offer suggestions to the user if they notice an action being done frequently.
 A related approach is offering recent selections near the top of a list of options.
@@ -508,16 +508,16 @@ Software can contain many features, and if they are all visible at the same time
 
 TV remote controls often provide a great example of a complicated interface.
 One reason that the have so many buttons is that it can help to make the device look impressive in the shop, but once you get it home, many of the buttons become redundant or confusing.
-{image filename="remote-complex.jpg" alt="A complex remote control." position="right"}
+{image filename="remote-complex.jpg" alt="A complex remote control." wrap="left"}
 The remote control shown here has several buttons that could potentially do the same thing: "Direct Navigator", "Guide", "Function Menu", "Status" and "Option" all give access to different functions, but it's hard to predict which is which.
 This remote has about 55 buttons altogether!
 
-{image filename="remote-simple.jpg" alt="A simple remote control." position="left"}
+{image filename="remote-simple.jpg" alt="A simple remote control." wrap="left"}
 In contrast, the Apple remote has very few buttons, and is a good example of a minimalist interface.
 There's only one "Menu" to choose, so it's fairly obvious what to do to select the controls needed.
 Of course, the simple remote relies on displaying menus on the screen, and these have the potential to make things more complicated.
 
-{image filename="remote-adapted.jpg" alt="An adapted remote control." position="right"}
+{image filename="remote-adapted.jpg" alt="An adapted remote control." wrap="left"}
 The third remote control shows a solution for simplifying it to save the user from having to read extensive manual information.
 It's a bit drastic, but it might save the user from getting into modes that they can't get out of!
 Some people have reported removing keys from mobile phones, or gluing buttons in place, so that the user can't get the device into a state that they shouldn't.
@@ -578,17 +578,17 @@ Improvements are made, and then more tests need to be run to check that the impr
 It's no wonder that good software can be expensive – there are many people and a lot of time involved in making sure that it's easy to use before it's released.
 
 There are many other ideas from psychology, physiology, sociology and even anthropology that HCI experts must draw on. Things that come into play include
-[Mental models](http://en.wikipedia.org/wiki/Mental_model), about how someone believes a system works compared with how it actually works (these are almost never the same e.g. double clicking on an icon that only needs to be single clicked),
-[Fitts's law](http://en.wikipedia.org/wiki/Fitts's_law), about how long it takes to point to objects on a screen (such as clicking on a small button),
-the [Hick-Hyman law](http://en.wikipedia.org/wiki/Hick's_law), about how long it takes to make a decision between multiple choices (such as from a menu),
-[Miller's law](http://en.wikipedia.org/wiki/The_Magical_Number_Seven,_Plus_or_Minus_Two) about the number of items a person can think about at once,
-[affordances](http://en.wikipedia.org/wiki/Affordance), about how properties of an object help us to perform actions on them,
-[interaction design (IxD)](http://en.wikipedia.org/wiki/Interaction_design), about creating digital devices that work for the people who will use the product,
-[the NASA TLX (Task Load Index)](http://en.wikipedia.org/wiki/NASA-TLX) for rating the perceived workload that a task puts on a user,
+[Mental models](https://en.wikipedia.org/wiki/Mental_model), about how someone believes a system works compared with how it actually works (these are almost never the same e.g. double clicking on an icon that only needs to be single clicked),
+[Fitts's law](https://en.wikipedia.org/wiki/Fitts's_law), about how long it takes to point to objects on a screen (such as clicking on a small button),
+the [Hick-Hyman law](https://en.wikipedia.org/wiki/Hick's_law), about how long it takes to make a decision between multiple choices (such as from a menu),
+[Miller's law](https://en.wikipedia.org/wiki/The_Magical_Number_Seven,_Plus_or_Minus_Two) about the number of items a person can think about at once,
+[affordances](https://en.wikipedia.org/wiki/Affordance), about how properties of an object help us to perform actions on them,
+[interaction design (IxD)](https://en.wikipedia.org/wiki/Interaction_design), about creating digital devices that work for the people who will use the product,
+[the NASA TLX (Task Load Index)](https://en.wikipedia.org/wiki/NASA-TLX) for rating the perceived workload that a task puts on a user,
 and many more laws, observations and guidelines about designing interfaces that take account of human behaviour and how the human body functions.
 
 {comment}
-.. xtcb check with HCI group; could add above: the `Sapir-Whorf hypothesis <http://en.wikipedia.org/wiki/Linguistic_relativity>`, about how the structure of language affects one's view of the world,
+.. xtcb check with HCI group; could add above: the `Sapir-Whorf hypothesis <https://en.wikipedia.org/wiki/Linguistic_relativity>`, about how the structure of language affects one's view of the world,
 {comment end}
 
 ### Further reading

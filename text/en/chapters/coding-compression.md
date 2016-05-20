@@ -25,7 +25,7 @@ In this activity, students simulate writing some text using a method used by Jea
 
 ## Run Length Encoding
 
-{video url="http://www.youtube.com/embed/uaV2RuAJTjQ?rel=0"}
+{video url="https://www.youtube.com/embed/uaV2RuAJTjQ?rel=0"}
 
 Run length encoding (RLE) is a technique that isn't so widely used these days, but it's a great way to get a feel for some of the issues around using compression.
 
@@ -104,7 +104,7 @@ If you wanted to, you could copy and paste this representation (including the he
 If you have a program on your computer able to open PBM files, you could then view the image with it. You could even write a program to output these files, and then display them as images.
 
 Because the digits are represented using ASCII in this format, it isn't very efficient, but it is useful if you want to read what's inside the file.
-There are variations of this format that pack the pixels into bits instead of characters, and variations that can be used for grey scale and colour images. More [information about this format is available on Wikipedia](http://en.wikipedia.org/wiki/Netpbm_format).
+There are variations of this format that pack the pixels into bits instead of characters, and variations that can be used for grey scale and colour images. More [information about this format is available on Wikipedia](https://en.wikipedia.org/wiki/Netpbm_format).
 {panel end}
 
 The key question in compression is whether or not we can represent the same image using fewer bits, but still be able to reconstruct the original image.
@@ -180,7 +180,7 @@ The remaining rows are
 {panel type="curiosity" summary="Run Length Encoding in the CS Unplugged show"}
 In this video from a Computer Science Unplugged show, a Run length encoded image is decoded using very large pixels (the printer is a spray can!).
 
-{video url="http://www.youtube.com/watch?v=VsjpPs146d8"}
+{video url="https://www.youtube.com/watch?v=VsjpPs146d8"}
 {panel end}
 
 ### Converting Run Length Encoding back to the original representation
@@ -207,7 +207,7 @@ This image is from the [CS Unplugged image representation activity](http://csunp
 
 The following interactive allows you to experiment further with Run Length Encoding.
 
-{interactive name="run-length-encoding" type="whole-page"}
+{interactive name="run-length-encoding" type="whole-page" text="Run Length Encoding interactive"}
 
 ### Analysing Run Length Encoding
 
@@ -246,11 +246,11 @@ for example, songs often follow the "mp3" standard so that when they are downloa
 
 As the compressed representation of the image can be converted back to the original representation, and both the original representation and the compressed representation would give the same image when read by a computer, this compression algorithm is called *lossless*, i.e. none of the data was lost from compressing the image, and as a result the compression could be undone exactly.
 
-Not all compression algorithms are lossless though. In some types of files, in particular photos, sound, and videos, we are willing to sacrifice a little bit of the quality (i.e. lose a little of the data representing the image) if it allows us to make the file size a lot smaller. For downloading very large files such as movies, this can be essential to ensure the file size is not so big that it is infeasible to download! These compression methods are called *lossy*. If some of the data is lost, it is impossible to convert the file back to the exactly the original form when lossy compression was used, but the person viewing the movie or listening to the music may not mind the lower quality if the files are smaller. Later in this chapter, we will investigate the effects some lossy compression algorithms have on images and sound.
+Not all compression algorithms are lossless though. In some types of files, in particular photos, sound, and videos, we are willing to sacrifice a little bit of the quality (i.e. lose a little of the data representing the image) if it allows us to make the file size a lot smaller. For downloading very large files such as movies, this can be essential to ensure the file size is not so big that it is infeasible to download! These compression methods are called *lossy*. If some of the data is lost, it is impossible to convert the file back to exactly the original form when lossy compression was used, but the person viewing the movie or listening to the music may not mind the lower quality if the files are smaller. Later in this chapter, we will investigate the effects some lossy compression algorithms have on images and sound.
 
 Interestingly, it turns out that any *lossless* compression algorithm will have cases where the compressed version of the file is larger than the uncompressed version! Computer scientists have even proven this to be the case, meaning it is impossible for anybody to ever come up with a lossless compression algorithm that makes *all* possible files smaller. In most cases this isn’t an issue though, as a good lossless compression algorithm will tend to give the best compression on common patterns of data, and the worst compression on ones that are highly unlikely to occur.
 
-{panel type="challenge" summary="Best and worse cases of run length encoding"}
+{panel type="challenge" summary="Best and worst cases of run length encoding"}
 What is the image with the best compression (i.e. an image that has a size that is a very small percentage of the original) that you can come up with? This is the best case performance for this compression algorithm.
 
 What about the worst compression? Can you find an image that actually has a *larger* compressed representation? (Don’t forget the commas in the version we used!) This is the worst case performance for this compression algorithm.
@@ -258,7 +258,7 @@ What about the worst compression? Can you find an image that actually has a *lar
 
 {panel type="spoiler" summary="Answer for above challenge"}
 The best case above is when the image is entirely white (only one number is used per line).
-The worst case is when every pixel is alternating white and black, so there's one number for every pixel.
+The worst case is when every pixel is alternating black and white, so there's one number for every pixel.
 In fact, in this case the size of the compressed file is likely to be a little larger than the original one because the numbers are likely to take more than one bit to store.
 Real systems don't represent the data exactly as we've discussed here, but the issues are the same.
 {panel end}
@@ -365,8 +365,8 @@ You can experiment with different combinations of sine waves to get different sh
 You may need to have more than four to get good approximations to a shape that you want; that's exactly the tradeoff that JPEG is making.
 There are some suggestions for parameters on the second sheet of the spreadsheet.
 
-You can also learn about Fourier transforms using the Wolfgram Alpha software; this will require you to install a browser plugin.
-The Wolfgram demonstrations include:
+You can also learn about Fourier transforms using the Wolfram Alpha software; this will require you to install a browser plugin.
+The Wolfram demonstrations include:
 [an interactive demonstration of JPEG](http://demonstrations.wolfram.com/JPEGCompressionAlgorithm/),
 [showing the relationship between sine saves and creating other waveforms](http://demonstrations.wolfram.com/RecoveringTheFourierCoefficients/), and
 [showing how sine waves can be summed to produce other shapes](http://demonstrations.wolfram.com/SumsOfSineWavesWithSeveralStepSizesSawtoothOrSquareApproxima/).
@@ -418,7 +418,7 @@ For this reason, JPEG is used for photos and natural images, but other technique
 {comment}
 .. xjrm low priority create an image like the one in this link, with one, two three waveforms added http://mathworld.wolfram.com/images/eps-gif/FourierSeriesSquareWave_800.gif (then Tim to add some text)
 
-.. xhtml5 interactive (medium priority): allow user to switch on and off the 64 basis vectors (http://en.wikipedia.org/wiki/File:Dctjpeg.png) and see the combined result
+.. xhtml5 interactive (medium priority): allow user to switch on and off the 64 basis vectors (https://en.wikipedia.org/wiki/File:Dctjpeg.png) and see the combined result
 
 .. http://www.cs4fn.org/films/jpegit.php
 {comment end}
@@ -523,7 +523,7 @@ The MPEG-1 standard isn't used much for video now (for example, DVDs and TV main
 
 The next MPEG version is MPEG-4 (MPEG-3 was redundant before it became a standard).
 MPEG-4 offers higher quality video, and is commonly used for digital video files, streaming media, Blu-Ray discs and some broadcast TV.
-The Apple AAC audio compression method is also from the MPEG-4 standard.
+The AAC audio compression method, used by Apple among others, is also from the MPEG-4 standard.
 On computers, MPEG-4 Part 14 is commonly used for video, and it's often abbreviated as "MP4."
 
 So there you have it: MP3 stands for "MPEG-1 layer 3", and MP4 stands for "MPEG-4 part 14".
@@ -544,7 +544,7 @@ The main questions with compressed audio are how small the file can be made, and
 The tradeoff between quality and size of audio files can depend on the situation you're in: if you are jogging and listening to music then the quality may not matter so much, but it's good to reduce the space available to store it.
 On the other hand, someone listening to a recording at home on a good sound system might not mind about having a large device to store the music, as long as the quality is high.
 
-To evaluate an audio compression you should choose a variety of recordings that you have high quality originals for, typically on CD (or using uncompressed WAV or AIFF files). Choose different styles of music, and other kinds of audio such as speech, and perhaps even create a recording that is totally silent. Now convert these recordings to different audio format. One system for doing this that is free to download is Apple's iTunes, which can be used to rip CDs to a variety of formats, and gives a choice of settings for the quality and size.
+To evaluate an audio compression you should choose a variety of recordings that you have high quality originals for, typically on CD (or using uncompressed WAV or AIFF files). Choose different styles of music, and other kinds of audio such as speech, and perhaps even create a recording that is totally silent. Now convert these recordings to different audio formats. One system for doing this that is free to download is Apple's iTunes, which can be used to rip CDs to a variety of formats, and gives a choice of settings for the quality and size.
 A lot of other audio systems are able to convert files, or have plugins that can do the conversion.
 
 Compress each of your recordings using a variety of methods, making sure that each compressed file is created from a high quality original. Make a table showing how long it took to process each recording, the size of the compressed file, and some evaluation of the quality of the sound compared with the original. Discuss the tradeoffs involved – do you need much bigger files to store good quality sound? Is there a limit to how small you can make a file and still have it sounding ok? Do some methods work better for speech than others? Does a 2 minute recording of silence take more space than a 1 minute recording of silence? Does a 1 minute recording of music use more space than a minute of silence?
@@ -556,8 +556,8 @@ Compress each of your recordings using a variety of methods, making sure that ea
 ## The whole story!
 
 The details of how compression systems work have been glossed over in this chapter, as we have been more concerned about the file sizes and speed of the methods than how they work.
-Most compression systems are variations of the ideas that have been covered here, although one fundamental method that we haven't mentioned is Huffman coding, which turns out to be useful as the final stage of *all* of the above methods, and is often one of the first topics mentioned in textbooks discussing compression (there's a brief [explanation of it here](http://www.cimt.plymouth.ac.uk/resources/codes/codes_u17_text.pdf).
-A closely related system is Arithmetic coding (there's an [explanation of it here](http://www.cimt.plymouth.ac.uk/resources/codes/codes_u18_text.pdf).
+Most compression systems are variations of the ideas that have been covered here, although one fundamental method that we haven't mentioned is Huffman coding, which turns out to be useful as the final stage of *all* of the above methods, and is often one of the first topics mentioned in textbooks discussing compression (there's a brief [explanation of it here](http://www.cimt.plymouth.ac.uk/resources/codes/codes_u17_text.pdf)).
+A closely related system is Arithmetic coding (there's an [explanation of it here](http://www.cimt.plymouth.ac.uk/resources/codes/codes_u18_text.pdf)).
 Also, video compression has been omitted, even though compressing videos saves more space than most kinds of compression.
 Most video compression is based on the "MPEG" standard (Moving Pictures Experts Group). There is some information about how this works in the [CS4FN article on "Movie Magic"](http://www.cs4fn.org/films/mpegit.php).
 
@@ -567,7 +567,7 @@ Access to teacher guides for the Plymouth resources (linked in the previous para
 
 The Ziv-Lempel method shown is a variation of the so-called "LZ77" method. Many of the more popular lossless compression methods are based on this, although there are many variations, and one called "LZW" has also been used a lot. Another high-compression general-purpose compression method is bzip, based on a very clever method called the Burrows-Wheeler Transform.
 
-Questions like "what is the most compression that can be achieved" are addressed by the field of [information theory](http://en.wikipedia.org/wiki/Information_theory). There is an [activity on information theory on the CS Unplugged site](http://csunplugged.org/information-theory), and there is a [fun activity that illustrates information theory](http://www.math.ucsd.edu/~crypto/java/ENTROPY/). Based on this theory, it seems that English text can't be compressed to less than about 12% of its original size at the very best. Images, sound and video can get much better compression because they can use lossy compression, and don't have to reproduce the original data exactly.
+Questions like "what is the most compression that can be achieved" are addressed by the field of [information theory](https://en.wikipedia.org/wiki/Information_theory). There is an [activity on information theory on the CS Unplugged site](http://csunplugged.org/information-theory), and there is a [fun activity that illustrates information theory](http://www.math.ucsd.edu/~crypto/java/ENTROPY/). Based on this theory, it seems that English text can't be compressed to less than about 12% of its original size at the very best. Images, sound and video can get much better compression because they can use lossy compression, and don't have to reproduce the original data exactly.
 
 {comment}
 .. xtcb jargon uncompressed are typically BMP or RAW. TIFF files Tagged Image File Format can contain many formats, including uncompressed, runlength and JPEG.
@@ -583,5 +583,5 @@ Questions like "what is the most compression that can be achieved" are addressed
 ### Useful Links
 
 - Images, run-length-coding [http://csunplugged.org/image-representation](http://csunplugged.org/image-representation) This is also relevant to binary representations in general, although is probably best used in the compression section.
-- There is a detailed section on [JPEG encoding on Wikipedia](http://en.wikipedia.org/wiki/Jpeg).
+- There is a detailed section on [JPEG encoding on Wikipedia](https://en.wikipedia.org/wiki/Jpeg).
 - Text compression [http://csunplugged.org/text-compression](http://csunplugged.org/text-compression)

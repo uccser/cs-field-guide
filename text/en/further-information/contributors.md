@@ -3,15 +3,18 @@
 This project is the result of contributions from a large community of Computer Science education enthusiasts from all over the world.
 
 ## Project Leads
+
 - Tim Bell - International Field Guide, co-founder
 - Peter Denning - International Field Guide, co-founder
-- Jack Morgan - Project manager
+- Jack Morgan - Project Manager
 
 ## Software Development
+
 - Jack Morgan - Technical Lead
 - Jordan Griffiths
 
 ## Interactive Development
+
 - Jack Morgan
 - David Thompson
 - Rhem Munro
@@ -23,6 +26,7 @@ This project is the result of contributions from a large community of Computer S
 - Marcus Stenfert Kroese
 
 ## Writers
+
 - Tim Bell - Formal Languages, Compression, Human Computer Interaction, and Coding Introduction
 - Heidi Newton - NCEA Assessment Guides, Programming Languages, Data Representation, Compression, Encryption, Error Control, Artificial Intelligence, and Complexity and Tractability
 - Caitlin Duncan - Algorithms
@@ -34,12 +38,14 @@ This project is the result of contributions from a large community of Computer S
 - Joshua Scott - Computer Graphics
 
 ## Editors
+
 - Tim Bell
 - Heidi Newton
 - Jack Morgan
 - Ian Witten
 
 ## Advisors
+
 - Mike Fellows - [CS Unplugged](http://csunplugged.org/)
 - Andrea Arpaci-Dusseau - [CS Unplugged](http://csunplugged.org/)
 - Paul Curzon - [CS4FN](http://www.cs4fn.org/)
@@ -68,11 +74,21 @@ This project is the result of contributions from a large community of Computer S
 - Paul Matthews
 
 ## Other
+
 - Sumant Murugesh - Research
 - Marcus Stenfert Kroese
 - Ben Gibson - Interactive games and related material
 - Michael Bell ([Orange Studio](http://orangestudio.co.nz/)) - Video production
 - Linda Pettigrew - Formal languages material
+
+## Community Contributors
+
+- Arlo Louis O'Keeffe ([ArloL](https://github.com/ArloL))
+- Cornel Punga ([ner0x652](https://github.com/ner0x652))
+- Alan Hogan ([alanhogan](https://github.com/alanhogan))
+- Steven Maude ([StevenMaude](https://github.com/StevenMaude))
+- Rúben Enes ([rdpse](https://github.com/rdpse))
+- [oughter](https://github.com/oughter)
 
 **Note:** If there is an error in the list, please contact [Jack Morgan](mailto:jack.morgan@canterbury.ac.nz)
 

@@ -1,17 +1,21 @@
 import re
-from bs4 import BeautifulSoup, Comment
+import html as html_module
 import logging
 import os.path
+import urllib.parse
 import generator.systemfunctions as systemfunctions
+from bs4 import BeautifulSoup, Comment
 from generator.systemconstants import *
 from collections import OrderedDict
-from markdown2 import markdown
+import mistune
+from pygments import highlight
+from pygments.lexers import get_lexer_by_name
+from pygments.formatters import HtmlFormatter
 from generator.files import setup_required_files
 
 MARKDOWN2_EXTRAS = ["code-friendly",
                     "cuddled-lists",
                     "fenced-code-blocks",
-                    "markdown-in-html",
                     "tables",
                     "wiki-tables"]
 
@@ -35,6 +39,7 @@ class Section:
         # Dictionary of sets for images, interactives, and other_files
         self.required_files = setup_required_files(file_node.guide)
         self.page_scripts = []
+        self.in_page_interactives = set()
         self.mathjax_required = False
         self.sectioned = False
         self.html_path_to_guide_root = self.file_node.depth * '../'
@@ -99,6 +104,7 @@ class Section:
             html = ''
         else:
             html = self.current_heading.to_html()
+            html = self.add_newline_padding(html)
         return html
 
 
@@ -120,11 +126,16 @@ class Section:
 
     def create_link(self, match):
         """Create a HTML link, if local link then add path back to root"""
+        external_link_prefixes = ('http://', 'https://', 'mailto:')
+
         link_text = match.group('link_text')
+        if not link_text.startswith(external_link_prefixes):
+            link_text = self.parse_markdown(link_text, 'p').strip()
+
         link_url = match.group('link_url')
         link_url = link_url.replace('\)', ')')
 
-        if not link_url.startswith(('http://','https://','mailto:')):
+        if not link_url.startswith(external_link_prefixes):
             # If linked to file, add file to required files
             if link_url.startswith(self.guide.generator_settings['Source']['File']):
                 file_name = link_url[len(self.guide.generator_settings['Source']['File']):]
@@ -147,8 +158,8 @@ class Section:
                 summary_value = parse_argument('summary', arguments)
                 summary = ': ' + summary_value.strip() if summary_value else ''
                 expanded_value = parse_argument('expanded', arguments)
-                expanded = ' active' if expanded_value == 'True'  else ''
-                content = markdown(match.group('content'), extras=MARKDOWN2_EXTRAS)
+                expanded = ' active' if expanded_value == 'True' else ''
+                content = self.parse_markdown(match.group('content'))
 
                 heading = self.html_templates['panel_heading'].format(title=title,
                                                                       summary=summary)
@@ -161,6 +172,24 @@ class Section:
                 html = ''
         else:
             self.regex_functions['panel'].log("Panel type argument missing", self, match.group(0))
+            html = ''
+        return html
+
+
+    def create_text_box(self, match):
+        """Encompasses the given content in a text box.
+        Triggered by the text-box regex.
+        Returns: HTML of text box.
+        """
+        arguments = match.group('args')
+        content = match.group('content')
+        if content:
+            indented_value = parse_argument('indented', arguments)
+            indented = ' text-box-indented' if indented_value == 'True' else ''
+            content = self.parse_markdown(content).strip()
+            html = self.html_templates['text-box'].format(content=content, indented=indented)
+        else:
+            self.regex_functions['text-box'].log("Text box has zero content", self, match.group(0))
             html = ''
         return html
 
@@ -179,7 +208,6 @@ class Section:
         equation = match.group('equation')
         if match.group('type') == 'math':
             #Inline math
-            equation = re.sub("\\\\{1,}", self.double_backslashes, equation)
             html = self.html_templates['math'].format(equation=equation)
         else:
             #Block math
@@ -190,6 +218,10 @@ class Section:
     def double_backslashes(self, match):
         return match.group(0) * 2
 
+    def add_newline_padding(self, html):
+        """Adds newlines to each side of HTML to allow the
+        Markdown parser to correctly parser surrounding text"""
+        return '\n\n' + html.strip() + '\n\n'
 
     def create_image_html(self, filename, arguments, image_set=False):
         """Create the HTML required for displaying an image.
@@ -220,7 +252,7 @@ class Section:
                     caption_html = self.html_templates['link'].format(link_url=caption_link_value, link_text=caption_value)
                 else:
                     caption_html = caption_value
-                # Add caption as data value attribute to display in materialbox
+                # Add caption as data value attribute to display in lightbox
                 parameters += ' '
                 parameters += self.html_templates['image-caption-data-value'].format(caption=caption_value)
 
@@ -234,6 +266,14 @@ class Section:
             if alt_value:
                 parameters += ' '
                 parameters += self.html_templates['image-parameter-alt'].format(alt_text=alt_value)
+
+            # Parse text hover argument
+            hover_text_value = parse_argument('hover-text', arguments)
+            if hover_text_value:
+                # Replace any existing single quotes
+                hover_text_value = html_module.escape(hover_text_value)
+                parameters += ' '
+                parameters += self.html_templates['image-parameter-title'].format(title_text=hover_text_value)
 
         image_html = self.html_templates['image'].format(image_source=image_source, image_parameters=parameters)
 
@@ -250,7 +290,7 @@ class Section:
         else:
             html = self.center_html(image_html, 8)
 
-        return html
+        return self.add_newline_padding(html)
 
 
     def add_image(self, match):
@@ -426,6 +466,26 @@ class Section:
         return html if html else ''
 
 
+    def process_code_block(self, match):
+        """Create a button for linking to a page"""
+        language = match.group('language')
+        no_highlighting = True
+        # If language set
+        if language:
+            try:
+                lexer = get_lexer_by_name(language, stripall=True)
+            except ClassNotFound:
+                self.regex_functions['code block'].log("The language {} is not supported by Pygments".format(language), self, match.group(0))
+            else:
+                formatter = HtmlFormatter(cssclass='codehilite')
+                html = highlight(match.group('code'), lexer, formatter)
+                no_highlighting = False
+        # If no language set or not lexer founds
+        if no_highlighting:
+            html = self.parse_markdown(match.group(0))
+        return html
+
+
     def add_interactive(self, match):
         """Regex match function for interactive blocks.
             - Adds interactive folder to set of required files
@@ -439,37 +499,48 @@ class Section:
         if name and interactive_type:
             arg_text = parse_argument('text', arguments)
             text = arg_text if arg_text else name
+
             arg_parameters = parse_argument('parameters', arguments)
-            params = arg_parameters if arg_parameters else None
+            params = urllib.parse.quote(arg_parameters, safe='/=') if arg_parameters else None
+
+            file_name = self.guide.generator_settings['Source']['Interactive File Name']
+            file_type = parse_argument('file-type', arguments)
+            file_type = file_type if file_type else self.guide.generator_settings['Source']['Interactive File Type']
+            interactive_source_file = file_name + '.' + file_type
+
             source_folder = os.path.join(self.guide.generator_settings['Source']['Interactive'], name)
 
-            if self.check_interactive_exists(source_folder, name, match):
+            if self.check_interactive_exists(source_folder, name, interactive_source_file, match):
                 self.required_files['Interactive'].add(name)
                 if interactive_type == 'whole-page':
                     arg_thumbnail = parse_argument('thumbnail', arguments)
                     thumbnail = arg_thumbnail if arg_thumbnail else self.guide.generator_settings['Source']['Interactive Thumbnail']
-                    html = self.whole_page_interactive_html(source_folder, text, name, params, thumbnail, match)
+                    html = self.whole_page_interactive_html(source_folder, text, interactive_source_file, params, thumbnail, match)
                 elif interactive_type == 'in-page':
-                    html = self.inpage_interactive_html(source_folder, name, match)
+                    if name in self.in_page_interactives:
+                        self.regex_functions['interactive'].log('Interactive {} already used on this page with in-page mode. Use iframe mode for multiple occurrences.'.format(name), self, match.group(0))
+                    else:
+                        self.in_page_interactives.add(name)
+                        html = self.inpage_interactive_html(source_folder, name, interactive_source_file, match)
                 elif interactive_type == 'iframe':
-                    html = self.iframe_interactive_html(source_folder, name, params, match)
+                    html = self.iframe_interactive_html(source_folder, interactive_source_file, params, match)
                 else:
-                    self.regex_functions['file download button'].log('Interactive type not valid', self, match.group(0))
+                    self.regex_functions['interactive'].log('Interactive type not valid', self, match.group(0))
             else:
-                self.regex_functions['file download button'].log('Interactive {} does not exist'.format(name), self, match.group(0))
+                self.regex_functions['interactive'].log('Interactive {} does not exist'.format(name), self, match.group(0))
         elif not name:
-            self.regex_functions['file download button'].log('Interactive name argument not provided'.format(name), self, match.group(0))
+            self.regex_functions['interactive'].log('Interactive name argument not provided'.format(name), self, match.group(0))
         elif not interactive_type:
-            self.regex_functions['file download button'].log('Interactive type argument not provided'.format(name), self, match.group(0))
+            self.regex_functions['interactive'].log('Interactive type argument not provided'.format(name), self, match.group(0))
         return html if html else ''
 
 
-    def iframe_interactive_html(self, source_folder, name, params, match):
+    def iframe_interactive_html(self, source_folder, interactive_source_file, params, match):
         """Create an iframe for the interactive.
             - A script is added to the page for a responsive iframe
             - A script is added within the iframe for a responsive iframe
         """
-        folder_location = os.path.join(self.html_path_to_guide_root, source_folder, self.guide.generator_settings['Source']['Interactive File'])
+        folder_location = os.path.join(self.html_path_to_guide_root, source_folder, interactive_source_file)
         file_link = "{location}?{parameters}".format(location=folder_location, parameters=params) if params else folder_location
         link_template = self.html_templates['interactive-iframe']
         html = link_template.format(interactive_source=file_link)
@@ -477,13 +548,13 @@ class Section:
         return html
 
 
-    def whole_page_interactive_html(self, source_folder, text, name, params, thumbnail, match):
+    def whole_page_interactive_html(self, source_folder, text, interactive_source_file, params, thumbnail, match):
         """Return the html block for a link to an whole page interactive"""
         thumbnail_location = os.path.join(self.html_path_to_guide_root, source_folder, thumbnail)
         link_text = 'Click to load {text}'.format(text=text)
-        folder_location = os.path.join(self.html_path_to_guide_root, source_folder, self.guide.generator_settings['Source']['Interactive File'])
+        folder_location = os.path.join(self.html_path_to_guide_root, source_folder, interactive_source_file)
         file_link = "{location}?{parameters}".format(location=folder_location, parameters=params) if params else folder_location
-        link_template = self.html_templates['interactive-external']
+        link_template = self.html_templates['interactive-whole-page']
         link_html = link_template.format(interactive_thumbnail=thumbnail_location,
                                     interactive_link_text=link_text,
                                     interactive_source=file_link)
@@ -491,26 +562,30 @@ class Section:
         return html
 
 
-    def inpage_interactive_html(self, source_folder, name, match):
+    def inpage_interactive_html(self, source_folder, name, interactive_source_file, match):
         """Return the html for inpage interactives, with links adjusted
         to correct relative links, and comments removed.
         """
-        interactive_tree = self.get_interactive_tree(source_folder, name, match)
+        interactive_tree = self.get_interactive_tree(source_folder, name, interactive_source_file, match)
         if interactive_tree is not None:
             self.edit_interactive_tree(interactive_tree, source_folder)
-            html = re.sub('(\n)*<!--(.|\s)*?-->(\n)*', '', interactive_tree.prettify(formatter=None).strip(), flags=re.MULTILINE)
+            # Remove comments from HTML
+            html = re.sub('(\n)*<!--(.|\s)*?-->(\n)*', '', str(interactive_tree).strip(), flags=re.MULTILINE)
+            # Remove preceeding whitespace on lines to avoid errors with Markdown parser
+            html = re.sub('^\s*', '', html, flags=re.MULTILINE)
+            # Remove multiple consecutive newline characters from removal of <link> and <script> tags
+            html = re.sub('\n{2,}', '\n', html, flags=re.MULTILINE)
             return html
         else:
             return None
 
 
-    def get_interactive_tree(self, source_folder, name, match):
+    def get_interactive_tree(self, source_folder, name, interactive_source_file, match):
         """Return element tree for the 'class=interactive div'
         of the interactive html file. If more than one div is found,
         return None and log error
         """
-        filename = self.guide.generator_settings['Source']['Interactive File']
-        file_location = os.path.join(source_folder, filename)
+        file_location = os.path.join(source_folder, interactive_source_file)
         with open(file_location, 'r', encoding='utf-8') as source_file:
             raw_html = source_file.read()
 
@@ -545,11 +620,11 @@ class Section:
                 self.add_page_script(element.extract())
 
 
-    def check_interactive_exists(self, interactive_source, interactive_name, match):
+    def check_interactive_exists(self, interactive_source, interactive_name, interactive_source_file, match):
         """Checks if an interactive exists and has an index.html file"""
         exists = False
         if os.path.exists(interactive_source):
-            interactive_source_file = self.guide.generator_settings['Source']['Interactive File']
+            interactive_source_file = interactive_source_file
             interactive_source_file_location = os.path.join(interactive_source, interactive_source_file)
             if os.path.exists(interactive_source_file_location):
                 exists = True
@@ -607,7 +682,7 @@ class Section:
         arguments = match.group('args')
         term = parse_argument('term', arguments)
         definition = parse_argument('definition', arguments)
-        definition = markdown(definition, extras=MARKDOWN2_EXTRAS)
+        definition = self.parse_markdown(definition)
 
         permalink = self.create_permalink('glossary-' + term)
 
@@ -615,7 +690,18 @@ class Section:
         back_link = '{}.html#{}'.format(this_file_link, permalink)
         self.guide.glossary.add_item(term, definition, back_link, match, self)
 
-        return self.html_templates['glossary_definition'].format(id=permalink).strip()
+        # If the definition has at least two newlines before and after it,
+        # then use a block element. Otherwise use inline element.
+        whitespace_before = match.group('before') if match.group('before') else ''
+        whitespace_after = match.group('after') if match.group('after') else ''
+        if whitespace_before and whitespace_after:
+            tag = 'div'
+        else:
+            tag = 'span'
+
+        template = self.html_templates['glossary_definition'].strip()
+        return template.format(id=permalink, tag=tag,
+        whitespace_before=whitespace_before, whitespace_after=whitespace_after)
 
 
     def add_glossary_link(self, match):
@@ -648,7 +734,18 @@ class Section:
             link_html = ''
             content = ''
 
-        return self.html_templates['glossary_backwards_link'].format(id_html=id_html, link_html=link_html, content=content).strip()
+        # If the link has at least two newlines before and after it,
+        # then use a block element. Otherwise use inline element.
+        whitespace_before = match.group('before') if match.group('before') else ''
+        whitespace_after = match.group('after') if match.group('after') else ''
+        if whitespace_before and whitespace_after:
+            tag = 'div'
+        else:
+            tag = 'span'
+
+        template = self.html_templates['glossary_backwards_link'].strip()
+        return template.format(id_html=id_html, link_html=link_html, content=content, tag=tag, whitespace_before=whitespace_before, whitespace_after=whitespace_after)
+
 
 
     def add_glossary(self, match):
@@ -662,6 +759,40 @@ class Section:
 
 
     # ----- Parsing Functions -----
+
+
+    def parse_markdown(self, text, strip_tag=''):
+        """Render the given text to Markdown
+        Optional paramaters:
+        - strip_paragraph_tags: Allows removal of given tags
+        """
+        html = mistune.markdown(text,
+                                escape=False,
+                                hard_wrap=False,
+                                parse_block_html=False,
+                                parse_inline_html=False,
+                                use_xhtml=False)
+        if strip_tag:
+            start_tag = '<{}>'.format(strip_tag)
+            end_tag = '</{}>'.format(strip_tag)
+            html = html.replace(start_tag, '')
+            html = html.replace(end_tag, '')
+        return html
+
+    def parse_section(self, match):
+        return self.parse_markdown(match.group(0))
+
+
+    def parse_sections(self, html):
+        """Parses HTML within <sections>"""
+        regexes = [
+            '\A[\s\S]*?(?=<section)', # Matches any text before first <section>
+            "(?<=class='section no-pad scrollspy'>)([\s\S]*?)(?=\<\/section\>)" # Matches between <section>
+        ]
+        for regex in regexes:
+            html = re.sub(regex, self.parse_section, html, flags=re.MULTILINE)
+        return html
+
 
     def parse_markdown_content(self, html_templates):
         """Converts raw Markdown into HTML.
@@ -678,14 +809,13 @@ class Section:
         for regex in self.regex_functions.values():
             text = re.sub(regex.expression, regex.function, text, flags=re.MULTILINE)
 
-        # Close last section if needed
+        # Close last section if needed and parse left over text with parser
         if self.sectioned:
             text += self.html_templates['section-end']
-
-        # Parse with library parser
-        text = markdown(text, extras=MARKDOWN2_EXTRAS)
-
-        self.html_content.append(text)
+            html = self.parse_sections(text)
+        else:
+            html = self.parse_markdown(text)
+        self.html_content.append(html)
 
         # Log error messages
         for regex in self.regex_functions.values():

@@ -30,6 +30,7 @@ This article describes the syntax required for writing Markdown files within the
   - [Files](#files)
   - [Comments](#comments)
   - [Panels](#panels)
+  - [Text Boxes](#text-boxes)
   - [Version specific content](#version-specific-content)
   - [Conditional content](#conditional-content)
   - [Table of contents](#table-of-contents)
@@ -88,7 +89,9 @@ Strikethrough uses two tildes. ~~Scratch this.~~
 
 ### Lists
 
-Lists can be created by starting each line with a `-` for unordered lists or `1.` for ordered lists. The list needs to be followed by a blank line, however it doesn't require one above it (we included this feature into our parser as we believe it makes the list easier to read as it's connected to the previous paragraph). If you are having issues with a list not rendering correctly, add a blank line before the list and submit a [bug report](https://github.com/uccser/cs-field-guide/issues/new).
+Lists can be created by starting each line with a `-` for unordered lists or `1.` for ordered lists.
+The list needs to be followed by a blank line, however it doesn't require a blank line before unless the preceding text is a heading (a blank line is then required).
+If you are having issues with a list not rendering correctly, try adding a blank line before the list if there is none, and [submit a bug report](https://github.com/uccser/cs-field-guide/issues/new) if you are still having rendering issues.
 
 ```
 Unordered list:
@@ -232,6 +235,22 @@ Code blocks are part of the Markdown spec, but syntax highlighting isn't.
 
 ```no-highlight
 Inline `code` has `back-ticks around` it.
+```
+
+You can highlight syntax by specifying the language after the first set of backticks ([good list of language codes here](https://haisum.github.io/2014/11/07/jekyll-pygments-supported-highlighters/))
+
+
+```python3
+def find_high_score(scores):
+    if len(scores) == 0:
+        print("No high score, table is empty")
+        return -1
+    else:
+        highest_so_far = scores[0]
+        for score in scores[1:]:
+            if score > highest_so_far:
+                highest_so_far = score
+        return highest_so_far
 ```
 
 Inline `code` has `back-ticks around` it.
@@ -391,24 +410,13 @@ The following text can be used to include images into the project:
 **Parameters:**
 - `filename` - The image's file name, stored in the images folder.
 - `wrap` (optional) - Either set to `left` or `right` for aligning the image on the page, rather than centered.
-- `alt` (optional) - Description text of the image.
+- `alt` (optional) - Description text of the image used when an image is not displayed, or can be read when using a screen reader (for those with reading difficulties).
+- `hover-text` (optional) - Additional text to be displayed when the user hovers their cursor over the image (note this won't appear on touch devices so use sparingly).
 - `caption` (optional) - Lists the given text as a caption under the image. Does not appear under images within an `image-set`.
 - `caption-link` (optional - requires `caption` parameter) - Turns the caption text into a link to the given URL.
 - `source` (optional) - Adds a 'Image source' link under the image, and after the caption if a caption is given. Does not appear under images within an `image-set`.
 
-Images are displayed responsively, and expand to full size when clicked by the user.
-
-A set of images can be included and displayed side by side using the following syntax (currently not supported in 2.0):
-
-```
-{image-set}
-{image filename="example-1.png"}
-{image filename="example-2.png"}
-{image filename="example-3.png" alt="This is a description"}
-{image-set end}
-```
-
-The wrap parameter is ignored in an `image-set`.
+Images are displayed responsively, and expand to full size in a lightbox when clicked by the user.
 
 ---
 
@@ -432,10 +440,11 @@ The following text can include an interactive into the project:
 - `text` (used with `whole-page` value) - Sets the text below the interactive link.
 - `parameters` (used with `whole-page` and `iframe` values) - Adds the parameters to interactive link.
 - `thumbnail` (optional - used with `whole-page` value) - Displays an alternative thumbnail for the interactive. When not provided, it defaults to the `thumbnail.png` image within the interactive's folder. The alternative thumbnail must be stored in the interactive folder.
+- `file-type` (used with `whole-page` value) - Set the file extension of the link. Defaults to `html` but was implemented for `php` interactives.
 
 An interactive that is adding by the `iframe` type requires:
 1. `data-iframe-height` attribute on the largest element in the interactive (most likely the `row` tag from the interactive template).
-2. `<script src="../base-files/js/iframeResizer.contentWindow.min.js"></script>` at the end of the `body` element.
+2. `<script src="../base-files/js/third-party/iframeResizer.contentWindow.min.js"></script>` at the end of the `body` element.
 
 ---
 
@@ -446,7 +455,7 @@ Glossary terms and links are created throughout the text of the guide, and our p
 #### Defining a glossary term
 
 ```
-{glossary-definition term="complexity" definition="Something that is really complicated."}
+{glossary-definition term="Complexity" definition="Something that is really complicated."}
 ```
 
 **Parameters:**
@@ -539,6 +548,23 @@ This text is the panel's contents.
 - `type` - The type of panel to create. The type is used as the title of the panel, plus as the CSS class for panel (this allows colouring of all the same types of panels).
 - `summary` (optional) - Text to display after the title to summarise the panel's contents.
 - `expanded` (optional) - If set to False, the panel is expanded at load. When not given it defaults to True.
+
+---
+
+### Text Boxes
+
+Text boxes are used to highlight important information that don't belong in a panel, code block, or diagram. The content within the box is padded with a shaded background and bordered to draw the attention of the reader.
+
+```
+{text-box}
+**Computer Science report for 2.44**
+
+  Put your introduction to what bits are here
+{text-box end}
+```
+
+**Parameters:**
+- `indented` - If `True` the text box will be indented to the left to match the indentation of the first level of a list.
 
 ---
 

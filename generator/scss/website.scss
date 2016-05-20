@@ -1,17 +1,17 @@
-@import "materialize";
+@import "third-party/materialize";
+
+// Pygments theme for code syntax highlighting
+@import "third-party/pygments-monokai";
 
 pre {
   font-family: Consolas, "Liberation Mono", Courier, monospace;
   font-weight: normal;
-  background-color: color("blue-grey", "darken-1");
+  font-size: 0.9rem !important;
+  background-color: color("blue-grey", "darken-4");
   color: color("shades", "white");
   @extend .z-depth-1;
   padding: 1rem !important;
-  white-space: pre-wrap;       /* CSS 3 */
-  white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
-  white-space: -pre-wrap;      /* Opera 4-6 */
-  white-space: -o-pre-wrap;    /* Opera 7 */
-  word-wrap: break-word;       /* Internet Explorer 5.5+ */
+  overflow-x: auto;
 }
 pre > code {
   padding: 0;
@@ -21,6 +21,18 @@ pre > code {
 }
 .interactive-external {
   border: 2px solid #C3C3C3;
+}
+.clearfix {
+  margin-top: 1rem;
+}
+.image-wrap {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+@media (min-width : $medium-screen) {
+  .image-wrap {
+    max-width: 35% !important;
+  }
 }
 .image-wrap-left {
   float: left;
@@ -49,6 +61,21 @@ header, main, footer {
   #website_header {
     display: block;
   }
+  .anchor-link {
+    padding-top: 70px !important;
+    margin-top: -60px !important;
+  }
+}
+.anchor-link {
+  padding-top: 0;
+  pointer-events: none;
+  outline: none;
+  & a {
+    pointer-events: auto;
+  }
+  &-empty {
+    position: absolute;
+  }
 }
 .bold > a {
   font-weight: bold;
@@ -73,20 +100,12 @@ ul.side-nav.fixed li a {
   line-height: 2rem !important;
   height: 2rem !important;
 }
+.section {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
 .section_number {
   color: $primary-color-light !important;
-}
-.anchor-link {
-  padding-top: 100px;
-  margin-top: -90px;
-  pointer-events: none;
-  outline: none;
-  & a {
-    pointer-events: auto;
-  }
-  &-empty {
-    position: absolute;
-  }
 }
 .section-heading {
   margin-bottom: 0;
@@ -192,6 +211,31 @@ ul.side-nav.fixed li a {
     line-height: 115%;
   }
 }
+.btn-interactive-whole-page-container {
+  position: relative;
+  width: 100%;
+  height: initial !important;
+  padding: 2em 0 !important;
+  border-radius: 5px !important;
+  overflow: hidden;
+  background-color: black !important;
+}
+.btn-interactive-whole-page-image {
+  position: absolute;
+  top: -50%;
+  left: -10%;
+  width: 120%;
+  opacity: 0.5;
+  -webkit-filter: blur(3px);
+  filter: blur(3px);
+}
+.btn-interactive-whole-page-text {
+  position: relative;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: white;
+}
 .flex-container {
   display: flex;
   flex-wrap: nowrap;
@@ -240,8 +284,10 @@ ul.panel {
     overflow: auto;
   }
   p {
-    margin: 1rem 0 !important;
     padding: 0 !important;
+  }
+  p, ul, ol {
+    margin: 1rem 0 !important;
   }
   .collapsible-header {
     position: relative;
@@ -255,6 +301,12 @@ ul.panel {
   .collapsible-body {
     border: none;
     padding: 0 1rem;
+    ol > li {
+      list-style-type: decimal;
+    }
+    ul > li {
+      list-style-type: disc;
+    }
   }
 
   // Custom panel colours
@@ -266,6 +318,18 @@ ul.panel {
   @include panel-color("panel-spoiler", "blue-grey");
   @include panel-color("panel-project", "blue");
 }
+// Text Boxes
+.text-box {
+  margin: 1rem 0;
+  padding: 0 1rem;
+  border: 1px solid rgba(63, 81, 181, 0.50);
+  background: rgba(63,81,181,0.15);
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+}
+.text-box-indented {
+  margin-left: 40px !important;
+}
+
 
 .table-of-contents {
   li, ul, a {
@@ -301,4 +365,29 @@ body.landing-page {
 }
 .video-container {
   margin-top: 1rem;
+}
+// Images
+img.responsive-img {
+  cursor: zoom-in;
+}
+.featherlight {
+  cursor: zoom-out !important;
+}
+.featherlight-content {
+  cursor: zoom-out !important;
+  overflow: hidden !important;
+  background-color: transparent !important;
+
+  // Hide the image border and close button
+  padding: 0 !important;
+  border: 0 !important;
+  .featherlight-close-icon {
+    display: none !important;
+  }
+
+  // Prevent image overflowing its container
+  img {
+    margin: 0;
+    background-color: #FFF !important;
+  }
 }
