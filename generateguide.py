@@ -92,7 +92,7 @@ class Guide:
 
     def parse_structure(self):
         """Create tree of guide structure using folder and file nodes"""
-        root_folder = FolderNode('root', guide=self)
+        root_folder = FolderNode('Home', guide=self)
         content_types = [('tracked', True), ('untracked', False)] #TODO: Find better location for this data
         for content_name,is_tracked in content_types:
             group_order = self.generator_settings['Source'][content_name].split()
