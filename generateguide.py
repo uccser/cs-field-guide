@@ -279,7 +279,7 @@ class Guide:
             path_to_output_folder = output_depth * '../' + path_to_guide_root
 
             if file.section.mathjax_required:
-                file.section.add_page_script(self.html_templates['mathjax'].format(path_to_guide_root=file.section.html_path_to_guide_root))
+                file.section.add_page_script(self.html_templates['mathjax'].format(path_to_guide_root=file.section.html_path_to_guide_root, mathjax_config=self.html_templates['mathjax-config']))
 
             for section_content in file.section.html_content:
                 body_html += section_content
