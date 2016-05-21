@@ -1,47 +1,53 @@
-# Writing Text
+# Guide Content Documentation
 
-This article describes the syntax required for writing Markdown files within the CSFG project in the `text` directory.
+This documentation page provides information about the text, image, and file content of the Computer Science Field Guide.
 
 ## Table of Contents
 
-- [Text syntax](#text-syntax)
-  - [Headers](#headers)
-  - [Emphasis](#emphasis)
-  - [Lists](#lists)
-  - [Links](#links)
-    - [Internal links](#internal-links)
-      - [Chapter links](#chapters)
-      - [Chapter subsection links](#chapter-subsections)
-      - [Appendix links](#appendices)
-    - [External links](#external-links)
-    - [Image links](#image-links)
-  - [Code](#code)
-  - [Tables](#tables)
-  - [Blockquotes](#blockquotes)
-  - [Horizontal Rule](#horizontal-rule)
-  - [Line Breaks](#line-breaks)
-  - [Math](#math)
-  - [Videos](#videos)
-  - [Images](#images)
-  - [Interactives](#interactives)
-  - [Glossary links](#glossary-links)
-    - [Defining a glossary term](#defining-a-glossary-term)
-    - [Linking to a glossary term](#linking-to-a-glossary-term)
-  - [Files](#files)
-  - [Comments](#comments)
-  - [Panels](#panels)
-  - [Text Boxes](#text-boxes)
-  - [Version specific content](#version-specific-content)
-  - [Conditional content](#conditional-content)
-  - [Table of contents](#table-of-contents)
-  - [Escape curly braces](#escape-curly-braces)
-  - [Syntax to avoid](#Syntax-to-avoid)
-- [Philosophy for syntax](#philosophy-for-syntax)
+- [Text Documentation](#text-documentation)
+  - [Text syntax](#text-syntax)
+    - [Headers](#headers)
+    - [Emphasis](#emphasis)
+    - [Lists](#lists)
+    - [Links](#links)
+      - [Internal links](#internal-links)
+        - [Chapter links](#chapters)
+        - [Chapter subsection links](#chapter-subsections)
+        - [Appendix links](#appendices)
+      - [External links](#external-links)
+      - [Image links](#image-links)
+    - [Code](#code)
+    - [Tables](#tables)
+    - [Blockquotes](#blockquotes)
+    - [Horizontal Rule](#horizontal-rule)
+    - [Line Breaks](#line-breaks)
+    - [Math](#math)
+    - [Videos](#videos)
+    - [Images](#images)
+    - [Interactives](#interactives)
+    - [Glossary links](#glossary-links)
+      - [Defining a glossary term](#defining-a-glossary-term)
+      - [Linking to a glossary term](#linking-to-a-glossary-term)
+    - [Files](#files)
+    - [Comments](#comments)
+    - [Panels](#panels)
+    - [Text Boxes](#text-boxes)
+    - [Version specific content](#version-specific-content)
+    - [Conditional content](#conditional-content)
+    - [Table of contents](#table-of-contents)
+    - [Escape curly braces](#escape-curly-braces)
+    - [Syntax to avoid](#Syntax-to-avoid)
+    - [Philosophy for syntax](#philosophy-for-syntax)
+- [Images Documentation](#images-documentation)
+- [Files Documentation](#files-documentation)
 
+# Text
+
+The main text is written in a combination of [Markdown](https://daringfireball.net/projects/markdown/syntax) (as it has a great balance between readability and powerful features), and our own syntax for extra CSFG specific features (for example, embedding interactives and videos, collapsible panels, etc). Our custom tags use curly braces (`{` and `}`) and are converted to HTML with our own parser.
 
 ## Text syntax
 
-The following syntax is a combination of [Markdown](https://daringfireball.net/projects/markdown/syntax) for basic elements, however we have implemented our own syntax for some extra CSFG specific features (which are converted to HTML with our own parser)using curly braces (`{` and `}`).
+This section describes the syntax required for writing Markdown files within the CSFG project in the `text` directory.
 
 ### Headers
 
@@ -63,9 +69,9 @@ Create headings using `#` before the heading text, the number of `#` states the 
 ##### H5
 ###### H6
 
----
-
 The CSFG parser will automatic make each header a [permalink](http://en.wikipedia.org/wiki/Permalink) (mouseover a heading above for the link). Headers within chapters and appendices are also numbered (use `guide-settings.conf` to set if a page is numbered or not).
+
+---
 
 ### Emphasis
 
@@ -628,11 +634,18 @@ This is a {word with braces around it}.
 
 ## Markdown syntax to avoid
 
-The following is valid Markdown syntax that will correctly render, however we wish to avoid the follow:
+The following is valid Markdown syntax that will correctly render, however we wish to avoid the following (for consistency and readability):
 
-- Using asterisks or pluses for unordered lists, we use minuses for consistency.
-- Using inline HTML, we using our own include methods to add interactives, images, videos, etc.
+- Using underscores for emphasis, use asterisks (`*`) instead.
+- Using asterisks or pluses for unordered lists, we use minuses (`-`) for consistency.
+- Using HTML within text files, we using our own include methods to add interactives, images, videos, etc.
 
 ## Philosophy for syntax
 
-When implementing our own syntax for extra features, we balanced both readability and control by having the first value of a tag read as the feature (e.g. `interactive` or `image`), which is followed by various arguments which can be provided in any order. We believe the current syntax is a good balance of these two outcomes, while maintaining a complexity close to the original Markdown specification.
+When implementing our own syntax for extra features, we balanced both readability and control by having the first value of a tag read as the feature (e.g. `interactive` or `image`), which is followed by various arguments which can be provided in any order. We believe the current syntax is a good balance of these two outcomes, while maintaining a readability close to the original Markdown specification.
+
+# Images
+
+
+
+# Files
