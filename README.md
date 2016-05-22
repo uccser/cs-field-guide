@@ -55,7 +55,7 @@ If your problem or idea is not addressed yet, please [open a new issue](https://
 
 ## Documentation
 
-Complete documentation for this project is stored in the [docs folder](docs/).
+Documentation for this project is stored in the [documentation folder](docs/README.md).
 
 ## Contributing
 

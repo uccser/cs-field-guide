@@ -38,10 +38,10 @@ This documentation page provides information about the text, image, and file con
     - [Escape curly braces](#escape-curly-braces)
     - [Syntax to avoid](#Syntax-to-avoid)
     - [Philosophy for syntax](#philosophy-for-syntax)
-- [Images Documentation](#images-documentation)
-- [Files Documentation](#files-documentation)
+- [Image Documentation](#image-documentation)
+- [File Documentation](#file-documentation)
 
-# Text
+# Text Documentation
 
 The main text is written in a combination of [Markdown](https://daringfireball.net/projects/markdown/syntax) (as it has a great balance between readability and powerful features), and our own syntax for extra CSFG specific features (for example, embedding interactives and videos, collapsible panels, etc). Our custom tags use curly braces (`{` and `}`) and are converted to HTML with our own parser.
 
@@ -644,8 +644,9 @@ The following is valid Markdown syntax that will correctly render, however we wi
 
 When implementing our own syntax for extra features, we balanced both readability and control by having the first value of a tag read as the feature (e.g. `interactive` or `image`), which is followed by various arguments which can be provided in any order. We believe the current syntax is a good balance of these two outcomes, while maintaining a readability close to the original Markdown specification.
 
-# Images
+# Image Documentation
+
+- Any images used should be listed in `text/en/further-information/included-files.md`.
 
 
-
-# Files
+# File Documentation
