@@ -1,7 +1,6 @@
 # Contributing Guide
 
 Welcome to the Computer Science Field Guide (CSFG) developer community! We have spent many years creating the CSFG, and we would love for you to get involved into making this guide as great as possible!
-
 The following is a set of guidelines for contributing to the CSFG hosted on GitHub. These are just guidelines, not rules, use your best judgment and feel free to propose changes to this document in a pull request.
 
 #### Table Of Contents
@@ -10,7 +9,7 @@ The following is a set of guidelines for contributing to the CSFG hosted on GitH
   - [Code of Conduct](#code-of-conduct)
   - [Project Overview](#project-overview)
 
-[How can I contribute?](#how-can-i-contribute)
+[I want to contribute! Where do I start?](#i-want-to-contribute-where-do-i-start)
   - [Reporting issues](#reporting-issues)
   - [Making suggestions](#making-suggestions)
   - [Your first code contribution](#your-first-code-contribution)
@@ -55,8 +54,7 @@ There are many possible areas you can contribute, including:
 
 ## I want to contribute! Where do I start?
 
-Have a look at the following sections in this contributing guide as it will provide loads of useful information.
-Feel free to ask any questions on the [public chatroom for the CSFG on Gitter](https://gitter.im/uccser/cs-field-guide).
+Have a look at the following sections on how to contribute, and feel free to ask any questions on the [public chatroom for the CSFG on Gitter](https://gitter.im/uccser/cs-field-guide).
 
 ### Reporting issues
 
@@ -120,8 +118,8 @@ Explain the problem and include additional details to help maintainers understan
 
 Unsure where to begin contributing to CSFG? You can start by looking through these `beginner` and `help-wanted` issues:
 
-* [Beginner issues][https://github.com/uccser/cs-field-guide/labels/beginner] - issues which should only require a few lines of text or code.
-* [Help wanted issues][https://github.com/uccser/cs-field-guide/labels/help%20wanted] - issues which should be a bit more involved than `beginner` issues.
+* [Beginner issues](https://github.com/uccser/cs-field-guide/labels/beginner) - issues which should only require a few lines of text or code.
+* [Help wanted issues](https://github.com/uccser/cs-field-guide/labels/help%20wanted) - issues which should be a bit more involved than `beginner` issues.
 
 ### Pull requests
 
@@ -184,6 +182,16 @@ Our project deals with a large variety of materials with various licenses, some 
 - Files used should be listed in `text/en/further-information/included-files.md`.
 - Details on how to add license information is found at the top of this file.
 
+### What software do you use?
+
+We use a variety of software for developing the CSFG, but here are some of our favourites:
+
+- We use [Atom Editor](https://atom.io/) for modifying both text and code files ([Sublime Text](https://www.sublimetext.com/) is also popular too).
+- We use a private [Slack](https://slack.com/) for planning and discussing topics as a team.
+- We use a public [Gitter chatroom](https://gitter.im/uccser/cs-field-guide) for chatting to contributors.
+- Most of us use [Google Chrome's developers tools](https://developers.google.com/web/tools/chrome-devtools/?hl=en) for testing and debugging our interactives and website design.
+- And lastly, we use [Git](https://git-scm.com/) and [GitHub](https://github.com/) for managing version control.
+
 ### Creating a release
 
 This is our current process for creating and publishing a CSFG release.
@@ -193,6 +201,6 @@ This is our current process for creating and publishing a CSFG release.
 3. Check logs for errors, how content is displayed (especially conditional content), and command line parameters. Fix any issues that arise, or [log an issue](https://github.com/uccser/cs-field-guide/issues/new).
 4. Detail the changes on the `further-information/releases.md` page. This includes moving older versions to their new folders (if required) and creating links to their backups. New contributors should also be added to `further-information/contributors.md`.
 5. [Complete the release branch](http://nvie.com/posts/a-successful-git-branching-model/#finishing-a-release-branch). Be sure to tag the release with the version number for creating the release on GitHub.
-6. Create the release on [GitHub](https://github.com/uccser/cs-field-guide/releases/).
+6. Create the release on [GitHub](https://github.com/uccser/cs-field-guide/releases/) on the tagged commit.
 7. Upload a new version of the CSFG to our webserver.
 8. Announce release on [CSFG teachers group](https://groups.google.com/forum/?fromgroups#!forum/csfg-teachers).
