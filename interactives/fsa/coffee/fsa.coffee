@@ -1,3 +1,4 @@
+"use strict"
 require('es6-shim')
 u = require('underscore')
 ArrayMap = require('es6-array-map')
@@ -511,8 +512,7 @@ class FSARunner
             @callHandler(handler)
 
 
-root = window ? exports
-root.FSA = {
+module.exports = {
     FSA
     FSARunner
 }

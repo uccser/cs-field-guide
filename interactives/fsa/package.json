@@ -13,6 +13,6 @@
         "coffee-script": "latest"
     },
     "scripts": {
-        "build": "browserify -t coffeeify coffee/fsa.coffee > fsa.js"
+        "build": "browserify --standalone \"FSA\" -t coffeeify coffee/fsa.coffee > fsa.js"
     }
 }
