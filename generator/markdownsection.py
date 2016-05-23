@@ -649,7 +649,7 @@ class Section:
         return html
 
 
-    def _create_table_of_contents(self, root_folder, depth=None, top_level=False):
+    def _create_table_of_contents(self, root_folder, depth=None, top_level=False, list_untracked=False):
         """Recursively called from create_table_of_contents"""
         folder_path = os.path.join(self.html_path_to_guide_root, root_folder.path, 'index.html')
         folder_link_html = self.html_templates['link'].format(link_text=root_folder.title, link_url=folder_path)
@@ -657,13 +657,16 @@ class Section:
         if depth is None or depth > 0:
             items = []
             for file in root_folder.files:
-                if file.tracked:
+                if file.tracked or list_untracked:
                     link_url = self.html_path_to_guide_root + self.guide.generator_settings['Output']['Output File'].format(file_name=file.path)
                     link_html = self.html_templates['link'].format(link_text=file.section.title, link_url=link_url)
                     items.append(link_html)
 
             for folder in root_folder.folders:
-                items.append(self._create_table_of_contents(folder, depth=depth-1))
+                if depth is None:
+                    items.append(self._create_table_of_contents(folder))
+                else:
+                    items.append(self._create_table_of_contents(folder, depth=depth-1))
 
             html = ''
             for item in items:
@@ -674,6 +677,11 @@ class Section:
                 return self.html_templates['table-of-contents'].format(contents=html, folder_link=folder_link_html)
         else:
             return folder_link_html
+
+
+    def add_sitemap(self, match):
+        html = self._create_table_of_contents(self.guide.structure, list_untracked=True, top_level=True)
+        return html
 
 
     def add_glossary_definition(self, match):

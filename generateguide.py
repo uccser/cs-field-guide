@@ -92,7 +92,7 @@ class Guide:
 
     def parse_structure(self):
         """Create tree of guide structure using folder and file nodes"""
-        root_folder = FolderNode('root', guide=self)
+        root_folder = FolderNode('Home', guide=self)
         content_types = [('tracked', True), ('untracked', False)] #TODO: Find better location for this data
         for content_name,is_tracked in content_types:
             group_order = self.generator_settings['Source'][content_name].split()
@@ -279,7 +279,7 @@ class Guide:
             path_to_output_folder = output_depth * '../' + path_to_guide_root
 
             if file.section.mathjax_required:
-                file.section.add_page_script(self.html_templates['mathjax'].format(path_to_guide_root=file.section.html_path_to_guide_root))
+                file.section.add_page_script(self.html_templates['mathjax'].format(path_to_guide_root=file.section.html_path_to_guide_root, mathjax_config=self.html_templates['mathjax-config']))
 
             for section_content in file.section.html_content:
                 body_html += section_content
