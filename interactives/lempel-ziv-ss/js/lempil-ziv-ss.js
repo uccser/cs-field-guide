@@ -1,6 +1,6 @@
 var lempilZivSS = {};
 
-testString = "aaabbb"
+testString = "abracadabra"
 $(document).ready(function(){
     $('#testText').html(testString);
     })
@@ -26,19 +26,19 @@ function lzssEncode(stringToEncode) {
 		currentReadString = stringToEncode[stringIndex]
 		currentMatchString = stringToEncode[stringIndex - 1]
 
-		howManyForward = 0;
-
 		longestMatch = "";
 		indexOfLongestMatchStart = -1;
 
 		//this loop will eventually take us back to the start of the string
 		for (var matchIndex = stringIndex - 1; matchIndex >= 0; matchIndex--) {
-			howManyForward = 0;
+			howManyForward = 1;
 			currentReadString = stringToEncode.slice(stringIndex, (stringIndex + 1))
 			currentMatchString = stringToEncode.slice(matchIndex, (matchIndex+ 1))
 			console.log("	currently at position " + matchIndex +", currentReadString is " + currentReadString + ", currentMatchString is " + currentMatchString);
 
 			while (currentReadString === currentMatchString) {
+				console.log("		currentReadString " + currentReadString + " and currentMatchString " + currentMatchString + " matched! howManyForward is now: " + howManyForward);
+
 
 				if (currentMatchString.length > longestMatch.length) {
 					longestMatch = currentMatchString
@@ -47,8 +47,11 @@ function lzssEncode(stringToEncode) {
 
 				currentReadString = stringToEncode.slice(stringIndex, (stringIndex + howManyForward + 1))
 				currentMatchString = stringToEncode.slice(matchIndex, (matchIndex + howManyForward + 1))
-				console.log("		currentReadString " + currentReadString + " and currentMatchString " + currentMatchString + " matched! howManyForward is now: " + howManyForward);
-				howManyForward++;
+				
+				if ((stringIndex + howManyForward) < stringToEncode.length) {
+					howManyForward++;
+				}
+				
 				
 			}
 		}
@@ -56,7 +59,9 @@ function lzssEncode(stringToEncode) {
 		if (indexOfLongestMatchStart == -1) {
 			console.log("No match found, not encoding");
 		} else {
-		console.log("character " + stringToEncode[stringIndex] + ", index " + stringIndex + " encoded. longestMatch is " + longestMatch + " starting at index " + indexOfLongestMatchStart);
+		console.log("character " + stringToEncode[stringIndex] + ", index " + stringIndex + " encoded. longestMatch is " + longestMatch);
+		console.log("encode next " + longestMatch.length + " characters starting from " + indexOfLongestMatchStart);
+
 		}
 
 		console.log("");
