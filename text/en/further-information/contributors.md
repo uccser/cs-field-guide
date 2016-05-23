@@ -41,6 +41,7 @@ This project is the result of contributions from a large community of Computer S
 
 - Tim Bell
 - Heidi Newton
+- Hayley van Waas
 - Jack Morgan
 - Ian Witten
 
