@@ -22,6 +22,7 @@ The following is a set of guidelines for contributing to the CSFG hosted on GitH
 
 [Additional notes](#additional-notes)
   - [Managing licenses](#managing-licenses)
+  - [What software do you use?](#what-software-do-you-use)
   - [Creating a release](#code-a-release)
 
 ## What should I know before I get started?
@@ -141,8 +142,6 @@ Unsure where to begin contributing to CSFG? You can start by looking through the
 - Commits should be as descriptive as possible. Other developers (and even future you) will thank you for your forethought and verbosity for well documented commits. [Ideally follow this commit structure](http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html), otherwise in short:
   - Limit the first line to 72 characters or less
   - Reference issues and pull requests liberally
-  - Use the present tense ("Add feature" not "Added feature")
-  - Use the imperative mood ("Move cursor to..." not "Moves cursor to...")
 - Use [Vincent Driessen's Git Branching Model](http://nvie.com/posts/a-successful-git-branching-model/) for managing development. Please read this document to understand our branching methods.
 
 ### Project structure
@@ -169,9 +168,8 @@ These are our abridged guidelines for working on code within this repository:
 For more detailed specifications (including naming conventions, declaration order), we aim to follow these guides:
 - [HTML style guide](http://codeguide.co/#html)
 - [CSS style guide](http://codeguide.co/#css)
-- [JavaScript style guide](http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml)
-- [Python style guide](http://google-styleguide.googlecode.com/svn/trunk/pyguide.html)
-
+- [JavaScript style guide](https://google.github.io/styleguide/javascriptguide.xml)
+- [Python style guide](https://google.github.io/styleguide/pyguide.html)
 
 ## Additional notes
 
@@ -184,13 +182,16 @@ Our project deals with a large variety of materials with various licenses, some 
 
 ### What software do you use?
 
-We use a variety of software for developing the CSFG, but here are some of our favourites:
+We use a variety of software for developing the CSFG, but here are some of our favourites that you may find useful:
 
-- We use [Atom Editor](https://atom.io/) for modifying both text and code files ([Sublime Text](https://www.sublimetext.com/) is also popular too).
-- We use a private [Slack](https://slack.com/) for planning and discussing topics as a team.
 - We use a public [Gitter chatroom](https://gitter.im/uccser/cs-field-guide) for chatting to contributors.
 - Most of us use [Google Chrome's developers tools](https://developers.google.com/web/tools/chrome-devtools/?hl=en) for testing and debugging our interactives and website design.
 - And lastly, we use [Git](https://git-scm.com/) and [GitHub](https://github.com/) for managing version control.
+
+Internally we also use:
+
+- A private [Slack](https://slack.com/) for planning and discussing topics as a team.
+- Many different file editors including Atom, Sublime Text, vim, Notepad++, Brackets, etc (obviously vim is superior :crown:).
 
 ### Creating a release
 
