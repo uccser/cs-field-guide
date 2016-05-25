@@ -4,7 +4,7 @@ This page details files that are used within the Computer Science Field Guide. F
 
 {comment}
 
-To add permissions for a file, create a new level 3 Markdown heading (starts with `####`) and add the filename. When the generation script is run, it searches all headings for the filename being used (both the search query and files listed here are converted to lower case for searching purposes).
+To add permissions for a file, create a new level 4 Markdown heading (starts with `####`) and add the filename. When the generation script is run, it searches all headings for the filename being used (both the search query and files listed here are converted to lower case for searching purposes).
 
 {comment end}
 
@@ -513,7 +513,7 @@ of your accepting any such warranty or additional liability.
 
 #### website.css
 
-This file is a combination of website.scss and materialize.scss created for output. See the details for these files for more details.
+This file is a combination of `website.scss` and `materialize.scss` created for output. See the details for these files for more details.
 
 
 #### website.scss, website.js
