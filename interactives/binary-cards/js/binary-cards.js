@@ -7,6 +7,13 @@ $(document).ready(function () {
         HIGHEST_CARD_VALUE: 128,
     }
 
+    if (getUrlParameter('low')) {
+        binaryValueSettings.LOWEST_CARD_VALUE = Number(getUrlParameter('low'));
+    }
+    if (getUrlParameter('high')) {
+        binaryValueSettings.HIGHEST_CARD_VALUE = Number(getUrlParameter('high'));
+    }
+
     $('#interactive-binary-cards').on('click', '.binary-card', function(event) {
         $(this).toggleClass('flipped');
         updateDotCount();
@@ -133,5 +140,22 @@ function updateDotCount() {
         dotText.html('1 dot is visible');
     } else {
         dotText.html(dotCount + ' dots are visible');
+    }
+};
+
+
+// From jquerybyexample.net/2012/06/get-url-parameters-using-jquery.html
+function getUrlParameter(sParam) {
+    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : sParameterName[1];
+        }
     }
 };
