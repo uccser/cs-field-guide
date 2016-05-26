@@ -4,7 +4,7 @@ This page details files that are used within the Computer Science Field Guide. F
 
 {comment}
 
-To add permissions for a file, create a new level 3 Markdown heading (starts with `####`) and add the filename. When the generation script is run, it searches all headings for the filename being used (both the search query and files listed here are converted to lower case for searching purposes).
+To add permissions for a file, create a new level 4 Markdown heading (starts with `####`) and add the filename. When the generation script is run, it searches all headings for the filename being used (both the search query and files listed here are converted to lower case for searching purposes).
 
 {comment end}
 
@@ -35,6 +35,34 @@ See [xkcd.com/license](https://xkcd.com/license.html) for more details.
 **Source:** [MIPS Assembler](https://github.com/alanhogan/online-mips-assembler) and [MIPS Simulator](https://github.com/alanhogan/miphps-mips-simulator)
 
 **License:**  [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-nc-sa/4.0/)
+
+#### codemirror.css, codemirror.js
+
+**Used:** Within regular expression interactives.
+
+**Source:** [Available on GitHub](https://github.com/codemirror/CodeMirror)
+
+**License:**
+
+Copyright (C) 2016 by Marijn Haverbeke <marijnh@gmail.com> and others
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
 
 #### en-words.txt
 
@@ -485,7 +513,7 @@ of your accepting any such warranty or additional liability.
 
 #### website.css
 
-This file is a combination of website.scss and materialize.scss created for output. See the details for these files for more details.
+This file is a combination of `website.scss` and `materialize.scss` created for output. See the details for these files for more details.
 
 
 #### website.scss, website.js

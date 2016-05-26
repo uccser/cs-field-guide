@@ -13,7 +13,7 @@ The best way to provide feedback is through the "Give us feedback" link (this ca
 
 {panel end}
 
-{video url="http://www.youtube.com/embed/v5yeq5u2RMI?rel=0"}
+{video url="https://www.youtube.com/embed/v5yeq5u2RMI?rel=0"}
 
 ## What's the big picture?
 
@@ -30,7 +30,7 @@ Here's some advice from Fred Wilson, who has invested in many high profile tech 
 
 > First and foremost, we believe that speed is more than a feature. Speed is the most important feature. If your application is slow, people won't use it. I see this more with mainstream users than I do with power users. I think that power users sometimes have a bit of sympathetic eye to the challenges of building really fast web apps, and maybe they're willing to live with it, but when I look at my wife and kids, they're my mainstream view of the world. If something is slow, they're just gone. ... speed is more than a feature. It's a requirement.
 
-> -- [Fred Wilson](http://en.wikipedia.org/wiki/Fred_Wilson_(financier\)) ([Source](http://triple-networks.com/2011/12/06/10-golden-principles-of-successful-web-apps/))
+> -- [Fred Wilson](https://en.wikipedia.org/wiki/Fred_Wilson_(financier\)) ([Source](http://triple-networks.com/2011/12/06/10-golden-principles-of-successful-web-apps/))
 
 A key theme in computer science is working out how to make things run fast, especially if you want to be able to sell your software to the large market of people using old-generation smartphones, or run it in a data centre where you pay by the minute for computing time.
 You can't just tell your customers to buy a faster device --- you need to deliver efficient software.
@@ -121,7 +121,7 @@ Books that we particularly recommend include:
 - Algorithmic adventures: from knowledge to magic, by Jurag Hromkovic
 - The Turing Omnibus, by A.K. Dewdney
 
-Wikipedia has a fairly extensive [entry on computer science](http://en.wikipedia.org/wiki/Computer_science).
+Wikipedia has a fairly extensive [entry on computer science](https://en.wikipedia.org/wiki/Computer_science).
 
 The  AQA Computing A2 book(s), by Sylvia Langfield and Kevin Bond, give a more detailed account of many of these topics.
 

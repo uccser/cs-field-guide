@@ -4,7 +4,7 @@ We have plenty of interactives throughout the CSFG, to teach many different comp
 
 ## Troubleshooting
 
-Most of our interactives require a modern browser, if it's been updated in the last year you should be fine. We recommend [Google Chrome](https://www.google.com/chrome/) or [Mozilla Firefox](https://www.mozilla.org/en-US/firefox/). While most interactives work on both phones, tablets, and desktop computers, some of our more complex interactives require a desktop computer to achieve performance.
+Most of our interactives require a modern browser, if it's been updated in the last year you should be fine. We recommend [Google Chrome](https://www.google.com/chrome/) or [Mozilla Firefox](https://www.mozilla.org/en-US/firefox/). While most interactives work on both phones, tablets, and desktop computers, some of our more complex interactives require a desktop computer to achieve acceptable performance.
 
 ## Available Interactives
 
@@ -12,6 +12,7 @@ Most of our interactives require a modern browser, if it's been updated in the l
 - [Awful Calculator](interactives/awful-calculator/index.html)
 - [Caesar Cipher](interactives/caesar-cipher/index.html)
 - [Checksum Calculator](interactives/checksum-calculator/index.html)
+  - [GTIN-13 Checksum Calculator](interactives/checksum-calculator-gtin-13/index.html)
 - [Close Window](interactives/close-window/index.html)
 - [CMY Colour Mixer](interactives/cmy-mixer/index.html)
 - [Colour Matcher](interactives/colour-matcher/index.html)
@@ -22,6 +23,8 @@ Most of our interactives require a modern browser, if it's been updated in the l
 - [Delay Analyser](interactives/delay-analyser/index.html)
 - [Delayed Checkbox](interactives/delayed-checkbox/index.html)
 - [Frequency Analysis](interactives/frequency-analysis/index.html)
+- [Image Bit Comparer](interactives/image-bit-comparer/index.html)
+  - [Change bit mode](interactives/image-bit-comparer/index.html?change-bits=true)
 - [MIPS Assembler](interactives/mips-assembler/index.php)
 - [MIPS Simulator](interactives/mips-simulator/index.php)
 - [No Help](interactives/no-help/index.html)
@@ -36,6 +39,7 @@ Most of our interactives require a modern browser, if it's been updated in the l
 - [Pixel Viewer](interactives/pixel-viewer/index.html)
 - [Python Interpreter](interactives/python-interpreter/index.html)
 - [Regular Expression Filter](interactives/regular-expression-filter/index.html)
+- [Regular Expression Search](interactives/regular-expression-search/index.html)
 - [RGB Colour Mixer](interactives/rgb-mixer/index.html)
 - [RSA Key Generator](interactives/rsa-key-generator/index.html)
 - [RSA Encrypter](interactives/rsa-no-padding/index.html) (no padding)
@@ -46,3 +50,6 @@ Most of our interactives require a modern browser, if it's been updated in the l
 - [Sorting Algorithm Comparison](interactives/sorting-algorithm-comparison/index.html)
 - [Sorting Algorithms](interactives/sorting-algorithms/index.html)
 - [Trainsylvania](interactives/trainsylvania/index.html)
+- [Unicode Binary](interactives/unicode-binary/index.html)
+- [Unicode Character](interactives/unicode-chars/index.html)
+- [Unicode Length](interactives/unicode-length/index.html)
