@@ -2,28 +2,29 @@
   display: flex;
   flex-wrap: wrap;
   position: relative;
-  perspective: 400px;
   margin: -1rem;
 }
 #interactive-binary-cards-container div.binary-card-container {
   flex: 0 1 auto;
   margin: 1rem;
 }
-#interactive-binary-cards-container div.binary-card, #interactive-binary-cards-container div.binary-card-front, #interactive-binary-cards-container div.binary-card-back {
-  width: 4rem;
-  height: 6rem;
-}
-
 #interactive-binary-cards-container div.binary-card {
+  width: 120px;
+  height: 180px;
   position: relative;
   transform-style: preserve-3d;
+  transform: perspective(25rem);
   transition: transform 0.6s;
   border: 1px solid #000000;
   text-align: center;
   box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
 }
+#interactive-binary-cards-container div.binary-card canvas {
+  margin: 0;
+  padding: 0;
+}
 #interactive-binary-cards-container div.binary-card.flipped {
-  transform: rotateY( 180deg );
+  transform: rotateY(180deg);
 }
 #interactive-binary-cards-container div.binary-card-side {
   backface-visibility: hidden;
@@ -37,10 +38,10 @@
 #interactive-binary-cards-container div.binary-card-front {
   z-index: 2;
   background: white;
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: bold;
 }
 #interactive-binary-cards-container div.binary-card-back {
   background: black;
-  transform: rotateY( 180deg );
+  transform: rotateY(180deg) perspective(25rem);
 }
