@@ -4,7 +4,7 @@ $(document).ready(function () {
     // Settings for interactive
     var baseCalculatorSettings = {
         BASE: Number(getUrlParameter('base')) || 2,
-        NUMBER_OF_PLACES: Number(getUrlParameter('places')) || 6,
+        DIGITS: Number(getUrlParameter('digits')) || 6,
         SHOW_POWER: !(getUrlParameter('show_power') == 'false'),
         SHOW_MULTIPLICATION: !(getUrlParameter('show_multiplication') == 'false'),
         SHOW_VALUE: !(getUrlParameter('show_value') == 'false'),
@@ -74,7 +74,7 @@ function createCalculatorInterface(baseCalculatorSettings) {
         numberOfRows += 1;
     }
 
-    for (var place = baseCalculatorSettings.NUMBER_OF_PLACES; place >= 0; place--) {
+    for (var place = baseCalculatorSettings.DIGITS - 1; place >= 0; place--) {
         var columnElement = createCalculatorColumnContainer();
 
         if (baseCalculatorSettings.SHOW_POWER) {
