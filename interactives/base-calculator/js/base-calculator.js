@@ -21,8 +21,8 @@ $(document).ready(function () {
             column.find('.orignal-value').text(parseInt(select.val(), baseCalculatorSettings.BASE));
         }
         if (baseCalculatorSettings.SHOW_VALUE) {
-            var place = select.data('place');
-            column.find('.computed-value').text(calculateValue(select.val(), baseCalculatorSettings.BASE, place));
+            var digit = select.data('digit');
+            column.find('.computed-value').text(calculateValue(select.val(), baseCalculatorSettings.BASE, digit));
         }
         updateTotalColumn(baseCalculatorSettings);
     });
@@ -39,8 +39,8 @@ function updateTotalColumn(baseCalculatorSettings) {
     var total = 0;
     $('#interactive-base-calculator select').each(function() {
         var select = $(this);
-        var place = select.data('place');
-        total += calculateValue(select.val(), baseCalculatorSettings.BASE, place);
+        var digit = select.data('digit');
+        total += calculateValue(select.val(), baseCalculatorSettings.BASE, digit);
     });
 
     var totalColumn = $('#interactive-base-calculator #total-column');
@@ -48,8 +48,8 @@ function updateTotalColumn(baseCalculatorSettings) {
 };
 
 
-function calculateValue(value, base, place) {
-    return parseInt(value, base) * Math.pow(base, place);
+function calculateValue(value, base, digit) {
+    return parseInt(value, base) * Math.pow(base, digit);
 };
 
 
@@ -74,23 +74,23 @@ function createCalculatorInterface(baseCalculatorSettings) {
         numberOfRows += 1;
     }
 
-    for (var place = baseCalculatorSettings.DIGITS - 1; place >= 0; place--) {
+    for (var digit = baseCalculatorSettings.DIGITS - 1; digit >= 0; digit--) {
         var columnElement = createCalculatorColumnContainer();
 
         if (baseCalculatorSettings.SHOW_POWER) {
-            columnElement.appendChild(createPowerElement(baseCalculatorSettings, place));
+            columnElement.appendChild(createPowerElement(baseCalculatorSettings, digit));
         }
         if (baseCalculatorSettings.SHOW_MULTIPLICATION) {
-            columnElement.appendChild(createMultiplicationElement(baseCalculatorSettings, place));
+            columnElement.appendChild(createMultiplicationElement(baseCalculatorSettings, digit));
         }
         if (baseCalculatorSettings.SHOW_VALUE) {
-            columnElement.appendChild(createValueElement(baseCalculatorSettings, place));
+            columnElement.appendChild(createValueElement(baseCalculatorSettings, digit));
         }
-        columnElement.appendChild(createSelectElement(baseCalculatorSettings, place));
+        columnElement.appendChild(createSelectElement(baseCalculatorSettings, digit));
 
         calculatorColumns.appendChild(columnElement);
-        if (place > 0 || (baseCalculatorSettings.SHOW_TOTAL && place == 0)) {
-            calculatorColumns.appendChild(createSymbolColumn(place, numberOfRows));
+        if (digit > 0 || (baseCalculatorSettings.SHOW_TOTAL && digit == 0)) {
+            calculatorColumns.appendChild(createSymbolColumn(digit, numberOfRows));
         }
     }
     if (baseCalculatorSettings.SHOW_TOTAL) {
@@ -100,11 +100,11 @@ function createCalculatorInterface(baseCalculatorSettings) {
 };
 
 
-function createSelectElement(baseCalculatorSettings, place) {
+function createSelectElement(baseCalculatorSettings, digit) {
     var element = createCalculatorElement();
     element.className += ' pad-left'
     var select = document.createElement('select');
-    $(select).data('place', place);
+    $(select).data('digit', digit);
     select.className = 'calculator-element';
     for (var num = 0; num < baseCalculatorSettings.BASE; num++) {
         var option = document.createElement('option');
@@ -162,32 +162,32 @@ function createTotalsColumn(baseCalculatorSettings) {
 };
 
 
-function createPowerElement(baseCalculatorSettings, place) {
+function createPowerElement(baseCalculatorSettings, digit) {
     var element = createCalculatorElement();
     var span = document.createElement('span');
     span.className = 'orignal-value';
     span.innerHTML = 0;
     element.appendChild(span);
-    element.innerHTML += ' &times; ' + baseCalculatorSettings.BASE + '<sup>' + place + '</sup>';
+    element.innerHTML += ' &times; ' + baseCalculatorSettings.BASE + '<sup>' + digit + '</sup>';
     return element;
 };
 
 
-function createMultiplicationElement(baseCalculatorSettings, place) {
+function createMultiplicationElement(baseCalculatorSettings, digit) {
     var element = createCalculatorElement();
     var span = document.createElement('span');
     span.className = 'orignal-value';
     span.innerHTML = 0;
     element.appendChild(span);
-    element.innerHTML += ' &times; ' + Math.pow(baseCalculatorSettings.BASE, place);
+    element.innerHTML += ' &times; ' + Math.pow(baseCalculatorSettings.BASE, digit);
     return element;
 };
 
 
-function createValueElement(baseCalculatorSettings, place) {
+function createValueElement(baseCalculatorSettings, digit) {
     var element = createCalculatorElement();
     element.className += ' computed-value';
-    element.innerHTML = Math.pow(baseCalculatorSettings.BASE, place) * 0;
+    element.innerHTML = Math.pow(baseCalculatorSettings.BASE, digit) * 0;
     return element;
 };
 
