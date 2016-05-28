@@ -5,6 +5,7 @@ $(document).ready(function () {
     var baseCalculatorSettings = {
         BASE: Number(getUrlParameter('base')) || 2,
         DIGITS: Number(getUrlParameter('digits')) || 6,
+        OFFSET: Number(getUrlParameter('offset')) || 0,
         SHOW_POWER: !(getUrlParameter('show_power') == 'false'),
         SHOW_MULTIPLICATION: !(getUrlParameter('show_multiplication') == 'false'),
         SHOW_VALUE: !(getUrlParameter('show_value') == 'false'),
@@ -21,8 +22,7 @@ $(document).ready(function () {
             column.find('.orignal-value').text(parseInt(select.val(), baseCalculatorSettings.BASE));
         }
         if (baseCalculatorSettings.SHOW_VALUE) {
-            var digit = select.data('digit');
-            column.find('.computed-value').text(calculateValue(select.val(), baseCalculatorSettings.BASE, digit));
+            column.find('.computed-value').text(select.data('value'));
         }
         updateTotalColumn(baseCalculatorSettings);
     });
@@ -35,12 +35,12 @@ function updateHeading(base) {
 }
 
 
-function updateTotalColumn(baseCalculatorSettings) {
+function updateTotalColumn(settings) {
     var total = 0;
     $('#interactive-base-calculator select').each(function() {
         var select = $(this);
-        var digit = select.data('digit');
-        total += calculateValue(select.val(), baseCalculatorSettings.BASE, digit);
+        var value = select.data('value');
+        total += parseInt(select.val(), settings.BASE) * value;
     });
 
     var totalColumn = $('#interactive-base-calculator #total-column');
@@ -48,13 +48,8 @@ function updateTotalColumn(baseCalculatorSettings) {
 };
 
 
-function calculateValue(value, base, digit) {
-    return parseInt(value, base) * Math.pow(base, digit);
-};
-
-
 // Sets up the cards for the interactive
-function createCalculatorInterface(baseCalculatorSettings) {
+function createCalculatorInterface(settings) {
     var calculatorColumns = document.getElementById("interactive-base-calculator-container");
 
     // Empty container
@@ -64,51 +59,53 @@ function createCalculatorInterface(baseCalculatorSettings) {
 
     // Count number of rows needed
     var numberOfRows = 0;
-    if (baseCalculatorSettings.SHOW_POWER) {
+    if (settings.SHOW_POWER) {
         numberOfRows += 1;
     }
-    if (baseCalculatorSettings.SHOW_MULTIPLICATION) {
+    if (settings.SHOW_MULTIPLICATION) {
         numberOfRows += 1;
     }
-    if (baseCalculatorSettings.SHOW_VALUE) {
+    if (settings.SHOW_VALUE) {
         numberOfRows += 1;
     }
 
-    for (var digit = baseCalculatorSettings.DIGITS - 1; digit >= 0; digit--) {
+    var value = Math.pow(settings.BASE, settings.DIGITS + settings.OFFSET);
+    for (var digit = settings.DIGITS; digit >= 0; digit--) {
         var columnElement = createCalculatorColumnContainer();
 
-        if (baseCalculatorSettings.SHOW_POWER) {
-            columnElement.appendChild(createPowerElement(baseCalculatorSettings, digit));
+        if (settings.SHOW_POWER) {
+            columnElement.appendChild(createPowerElement(settings, digit + settings.OFFSET));
         }
-        if (baseCalculatorSettings.SHOW_MULTIPLICATION) {
-            columnElement.appendChild(createMultiplicationElement(baseCalculatorSettings, digit));
+        if (settings.SHOW_MULTIPLICATION) {
+            columnElement.appendChild(createMultiplicationElement(value));
         }
-        if (baseCalculatorSettings.SHOW_VALUE) {
-            columnElement.appendChild(createValueElement(baseCalculatorSettings, digit));
+        if (settings.SHOW_VALUE) {
+            columnElement.appendChild(createValueElement(value));
         }
-        columnElement.appendChild(createSelectElement(baseCalculatorSettings, digit));
+        columnElement.appendChild(createSelectElement(settings, value));
 
         calculatorColumns.appendChild(columnElement);
-        if (digit > 0 || (baseCalculatorSettings.SHOW_TOTAL && digit == 0)) {
+        if (digit > 0 || (settings.SHOW_TOTAL && digit == 0)) {
             calculatorColumns.appendChild(createSymbolColumn(digit, numberOfRows));
         }
+        value /= settings.BASE;
     }
-    if (baseCalculatorSettings.SHOW_TOTAL) {
-        calculatorColumns.appendChild(createTotalsColumn(baseCalculatorSettings));
+    if (settings.SHOW_TOTAL) {
+        calculatorColumns.appendChild(createTotalsColumn(numberOfRows));
     }
     return calculatorColumns;
 };
 
 
-function createSelectElement(baseCalculatorSettings, digit) {
+function createSelectElement(settings, value) {
     var element = createCalculatorElement();
     element.className += ' pad-left'
     var select = document.createElement('select');
-    $(select).data('digit', digit);
+    $(select).data('value', value);
     select.className = 'calculator-element';
-    for (var num = 0; num < baseCalculatorSettings.BASE; num++) {
+    for (var num = 0; num < settings.BASE; num++) {
         var option = document.createElement('option');
-        option.text = option.value = num.toString(baseCalculatorSettings.BASE).toUpperCase();
+        option.text = option.value = num.toString(settings.BASE).toUpperCase();
         select.appendChild(option);
     }
     element.appendChild(select);
@@ -139,21 +136,10 @@ function createSymbolColumn(columnNumber, numberOfRows) {
 };
 
 
-function createTotalsColumn(baseCalculatorSettings) {
+function createTotalsColumn(numberOfRows) {
     var columnElement = createCalculatorColumnContainer();
     columnElement.id = 'total-column';
-
-    if (baseCalculatorSettings.SHOW_POWER) {
-        var element = createCalculatorElement();
-        element.innerHTML = 0;
-        columnElement.appendChild(element);
-    }
-    if (baseCalculatorSettings.SHOW_MULTIPLICATION) {
-        var element = createCalculatorElement();
-        element.innerHTML = 0;
-        columnElement.appendChild(element);
-    }
-    if (baseCalculatorSettings.SHOW_VALUE) {
+    for (var i = 0; i < numberOfRows; i ++) {
         var element = createCalculatorElement();
         element.innerHTML = 0;
         columnElement.appendChild(element);
@@ -162,32 +148,32 @@ function createTotalsColumn(baseCalculatorSettings) {
 };
 
 
-function createPowerElement(baseCalculatorSettings, digit) {
+function createPowerElement(settings, digit) {
     var element = createCalculatorElement();
     var span = document.createElement('span');
     span.className = 'orignal-value';
     span.innerHTML = 0;
     element.appendChild(span);
-    element.innerHTML += ' &times; ' + baseCalculatorSettings.BASE + '<sup>' + digit + '</sup>';
+    element.innerHTML += ' &times; ' + settings.BASE + '<sup>' + digit + '</sup>';
     return element;
 };
 
 
-function createMultiplicationElement(baseCalculatorSettings, digit) {
+function createMultiplicationElement(value) {
     var element = createCalculatorElement();
     var span = document.createElement('span');
     span.className = 'orignal-value';
     span.innerHTML = 0;
     element.appendChild(span);
-    element.innerHTML += ' &times; ' + Math.pow(baseCalculatorSettings.BASE, digit);
+    element.innerHTML += ' &times; ' + value;
     return element;
 };
 
 
-function createValueElement(baseCalculatorSettings, digit) {
+function createValueElement(value) {
     var element = createCalculatorElement();
     element.className += ' computed-value';
-    element.innerHTML = Math.pow(baseCalculatorSettings.BASE, digit) * 0;
+    element.innerHTML = value * 0;
     return element;
 };
 
