@@ -1,6 +1,6 @@
 var lempilZivSS = {};
 
-testString = "abracadabra"
+testString = "abcxxxxxxabcxxxxxxxabcd"
 $(document).ready(function(){
     $('#testText').html(testString);
     })
@@ -15,13 +15,15 @@ function lzssEncode(stringToEncode) {
 	var currentMatchString;
 
 	var howManyForward;
-	var howManyBack;
+
+	var stringToReturn = stringToEncode.slice(0,2);
 
 	//stringIndex is going forward through string to encode, matchIndex is going backwards through string
 	//only need to start at the third character, compression will only start then
 
+
 	console.log("string to decode is: " + stringToEncode);
-	for (var stringIndex = 2; stringIndex < stringToEncode.length; stringIndex++) {
+	for (var stringIndex = 2; stringIndex < stringToEncode.length;) {
 		console.log("currently encoding character " + stringToEncode[stringIndex] + ", index " + stringIndex);
 		currentReadString = stringToEncode[stringIndex]
 		currentMatchString = stringToEncode[stringIndex - 1]
@@ -30,10 +32,10 @@ function lzssEncode(stringToEncode) {
 		indexOfLongestMatchStart = -1;
 
 		//this loop will eventually take us back to the start of the string
-		for (var matchIndex = stringIndex - 1; matchIndex >= 0; matchIndex--) {
+		for (matchIndex = stringIndex - 1; matchIndex >= 0; matchIndex--) {
 			howManyForward = 1;
 			currentReadString = stringToEncode.slice(stringIndex, (stringIndex + 1))
-			currentMatchString = stringToEncode.slice(matchIndex, (matchIndex+ 1))
+			currentMatchString = stringToEncode.slice(matchIndex, (matchIndex + 1))
 			console.log("	currently at position " + matchIndex +", currentReadString is " + currentReadString + ", currentMatchString is " + currentMatchString);
 
 			while (currentReadString === currentMatchString) {
@@ -55,17 +57,29 @@ function lzssEncode(stringToEncode) {
 				
 			}
 		}
-
+		//if nothing to encode
+		console.log("matchIndex is " + matchIndex);
 		if (indexOfLongestMatchStart == -1) {
 			console.log("No match found, not encoding");
-		} else {
-		console.log("character " + stringToEncode[stringIndex] + ", index " + stringIndex + " encoded. longestMatch is " + longestMatch);
-		console.log("encode next " + longestMatch.length + " characters starting from " + indexOfLongestMatchStart);
+			stringToReturn += stringToEncode[stringIndex];
+			stringIndex++
+
+		} else { // if something to encode, add <stepsBack, noCharacters> pair and skip forward that many characters in the string to encode
+			console.log("character " + stringToEncode[stringIndex] + ", index " + stringIndex + " encoded. longestMatch is " + longestMatch);
+			console.log("encode next " + longestMatch.length + " characters starting from " + indexOfLongestMatchStart);
+			console.log("stringIndex is " + stringIndex + " and matchIndex is " + matchIndex);
+			stringToReturn += ("<" + ((stringIndex - indexOfLongestMatchStart)) + "," + longestMatch.length + ">");
+			stringIndex += (longestMatch.length);
 
 		}
 
 		console.log("");
 		}
+
+	$('#encodedText').html(stringToReturn);
+
+
+
 		
 	}
 
