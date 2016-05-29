@@ -91,6 +91,9 @@ function createCalculatorInterface(settings) {
         value /= settings.BASE;
     }
     if (settings.SHOW_TOTAL) {
+        if (numberOfRows == 0) {
+            calculatorColumns.appendChild(createSymbolColumn(0, 1));
+        }
         calculatorColumns.appendChild(createTotalsColumn(numberOfRows));
     }
     return calculatorColumns;
@@ -139,7 +142,7 @@ function createSymbolColumn(columnNumber, numberOfRows) {
 function createTotalsColumn(numberOfRows) {
     var columnElement = createCalculatorColumnContainer();
     columnElement.id = 'total-column';
-    for (var i = 0; i < numberOfRows; i ++) {
+    for (var i = 0; i < Math.max(numberOfRows, 1); i ++) {
         var element = createCalculatorElement();
         element.innerHTML = 0;
         columnElement.appendChild(element);
