@@ -83,9 +83,28 @@ function lzssEncode(stringToEncode) {
 		
 	}
 
+//for testing purposes, having the random string just consist of abc's makes it likely for some encoding to actually be done.
+function randomABCGenerator(length) {
+	var randomABCString = "";
+	for (var i=0; i < length; i++) {
+		var randomInt = getRandomInt(0, 2);
+		if (randomInt == 0) {
+			randomABCString += "a";
+		} else if (randomInt == 1) {
+			randomABCString += "b";
+		} else {
+			randomABCString += "c";
+		}
+		
+	}
+
+	return randomABCString;
+}
 
 
-
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
 
 
