@@ -4,6 +4,11 @@
   position: relative;
   margin: -1rem;
 }
+@media (min-width: 815px) and (max-width: 1199px) {
+  #interactive-binary-cards-container {
+    width: 75%;
+  }
+}
 #interactive-binary-cards-container div.binary-card-container {
   flex: 0 1 auto;
   margin: 1rem;
