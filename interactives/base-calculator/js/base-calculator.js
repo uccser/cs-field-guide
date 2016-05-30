@@ -69,8 +69,9 @@ function createCalculatorInterface(settings) {
         numberOfRows += 1;
     }
 
-    var value = Math.pow(settings.BASE, settings.DIGITS + settings.OFFSET);
-    for (var digit = settings.DIGITS; digit >= 0; digit--) {
+    var value = Math.pow(settings.BASE, settings.DIGITS + settings.OFFSET - 1);
+
+    for (var digit = settings.DIGITS; digit > 0; digit--) {
         var columnElement = createCalculatorColumnContainer();
 
         if (settings.SHOW_POWER) {
