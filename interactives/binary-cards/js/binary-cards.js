@@ -13,6 +13,18 @@ $(document).ready(function () {
         updateDotCount();
     });
 
+    // Flip all cards to black
+    $('#interactive-binary-cards button#flip-to-black').on('click', function(){
+        $('#interactive-binary-cards-container > div.binary-card-container > div.binary-card').addClass('flipped');
+        updateDotCount();
+    });
+
+    // Flip all cards to white
+    $('#interactive-binary-cards button#flip-to-white').on('click', function(){
+        $('#interactive-binary-cards-container > div.binary-card-container > div.binary-card').removeClass('flipped');
+        updateDotCount();
+    });
+
     // Create cards within container and update count
     createCards(binaryValueSettings);
     updateDotCount();
