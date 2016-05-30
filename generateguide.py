@@ -68,7 +68,7 @@ class Guide:
         elif self.output_type == PDF:
             self.pdf_html = ''
             self.traverse_files(self.structure, getattr(self, "add_to_pdf_html"))
-            self.generate_pdf() #TODO: implement generate_pdf()
+            self.generate_pdf()
 
 
     def setup_output_path(self):
@@ -345,7 +345,8 @@ class Guide:
 
     def generate_pdf(self):
         """Placeholder - pdf generation function"""
-        pass
+        from weasyprint import HTML, CSS
+        HTML(string=self.pdf_html).write_pdf('output/CSFG.pdf')
 
 
 class FolderNode:
