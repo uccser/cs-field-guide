@@ -67,6 +67,7 @@ class Guide:
             self.copy_required_files()
         elif self.output_type == PDF:
             self.pdf_html = ''
+            self.setup_pdf_output()
             self.traverse_files(self.structure, getattr(self, "add_to_pdf_html"))
             self.generate_pdf()
 
@@ -171,9 +172,7 @@ class Guide:
 
 
     def compile_scss_file(self, file_name):
-        """Read given SCSS file, and compile to CSS,
-        store in file object, and add to required CSS files
-        """
+        """Read given SCSS file, and compile to CSS"""
         scss_source_folder = self.generator_settings['Source']['SCSS']
         scss_source_file = os.path.join(scss_source_folder, file_name)
         try:
@@ -248,6 +247,7 @@ class Guide:
                             logging.error("{file_type} {file_name} could not be copied".format(file_type=file_type, file_name=file_name))
                     else:
                         logging.error("{file_type} {file_name} could not be found".format(file_type=file_type,file_name=file_name))
+
 
     def setup_html_output(self):
         """Preliminary setup, called before html files are written.
@@ -335,6 +335,12 @@ class Guide:
             write_html_file(self.html_generator, output_folder, file.filename, section_template, context)
 
 
+    def setup_pdf_output(self):
+        """Preliminary setup, called before pdf file is written"""
+        # Create output folder
+        os.makedirs(self.output_folder, exist_ok=True)
+
+
     def add_to_pdf_html(self, file):
         """Adds HTML contents of a give file node to guide's
         PDF html string"""
@@ -344,9 +350,10 @@ class Guide:
 
 
     def generate_pdf(self):
-        """Placeholder - pdf generation function"""
+        """Creates a PDF file of the CSFG"""
         from weasyprint import HTML, CSS
-        HTML(string=self.pdf_html).write_pdf('output/CSFG.pdf')
+        stylesheets = [CSS(string=self.compile_scss_file('website.scss'))]
+        HTML(string=self.pdf_html).write_pdf('output/CSFG.pdf', stylesheets=stylesheets)
 
 
 class FolderNode:
