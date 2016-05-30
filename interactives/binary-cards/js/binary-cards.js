@@ -3,15 +3,9 @@
 $(document).ready(function () {
     // Settings for interactive
     var binaryValueSettings = {
-        LOWEST_CARD_VALUE: 1,
-        HIGHEST_CARD_VALUE: 128,
-    }
-
-    if (getUrlParameter('low')) {
-        binaryValueSettings.LOWEST_CARD_VALUE = Number(getUrlParameter('low'));
-    }
-    if (getUrlParameter('high')) {
-        binaryValueSettings.HIGHEST_CARD_VALUE = Number(getUrlParameter('high'));
+        BASE: Number(getUrlParameter('base')) || 2,
+        DIGITS: Number(getUrlParameter('digits')) || 8,
+        OFFSET: Number(getUrlParameter('offset')) || 0
     }
 
     $('#interactive-binary-cards').on('click', '.binary-card', function(event) {
@@ -26,12 +20,15 @@ $(document).ready(function () {
 
 
 // Sets up the cards for the interactive
-function createCards(binaryValueSettings) {
+function createCards(settings) {
     var cardContainer = $('#interactive-binary-cards-container');
 
+    var value = Math.pow(settings.BASE, settings.DIGITS + settings.OFFSET - 1);
+
     // Iterate through card values
-    for (var i = binaryValueSettings.HIGHEST_CARD_VALUE; i >= binaryValueSettings.LOWEST_CARD_VALUE; i /= 2) {
-        cardContainer.append(createCard(i));
+    for (var digit = settings.DIGITS; digit > 0; digit--) {
+        cardContainer.append(createCard(value));
+        value /= settings.BASE;
     }
 };
 
