@@ -591,8 +591,9 @@ def main():
     # Create all specified CSFG
     for language in cmd_args.languages:
         for version in versions:
-            guide = Guide(generator_settings=generator_settings, guide_settings=guide_settings, language_code=language, version=version, html_generator=html_generator, html_templates=html_templates, translations=translations, regex_list=regex_list, teacher_version_present=cmd_args.teacher_output)
-            if cmd_args.include_pdf:
+            if not cmd_args.pdf_only:
+                guide = Guide(generator_settings=generator_settings, guide_settings=guide_settings, language_code=language, version=version, html_generator=html_generator, html_templates=html_templates, translations=translations, regex_list=regex_list, teacher_version_present=cmd_args.teacher_output)
+            if cmd_args.include_pdf or cmd_args.pdf_only:
                 pdf_guide = Guide(generator_settings=generator_settings, guide_settings=guide_settings, language_code=language, version=version, output_type=PDF, html_generator=html_generator, html_templates=html_templates, translations=translations, regex_list=regex_list)
 
     finish_logging()
