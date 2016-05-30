@@ -18,7 +18,7 @@ The interactive can be configured by the following parameters:
 
 ### Examples
 
-- `?base=16&digits=4` - Shows the first 4 digits of base 16 (hexidecimal).
+- `?base=16&digits=4` - Shows the first 4 digits of base 16 (hexadecimal).
 - `?digits=4&offset=-2` - Shows the 4 digits of base 2 (binary), starting with the second digit and showing the next four (the 0.5 and 0.25 places).
 
 To use these parameters, the interactive must be used in either `whole-page` or `iframe` mode.
