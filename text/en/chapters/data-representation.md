@@ -176,7 +176,7 @@ The term "denary" seems to be used mainly in the UK; in the US, Australia and NZ
 
 The interactive below illustrates how this binary number system represents numbers. Have a play around with it to see what patterns you can see.
 
-{button link="http://www.csfieldguide.org.nz/releases/1.9.9/_static/widgets/DR/DR-base-conversion/public_html/index.html?base=2&columns=7&lines=A,B,C&offset=0" text="Click for interactive: Base Calculator"}
+{interactive name="base-calculator" type="whole-page" text="Binary Number Calculator"}
 
 **To ensure you are understanding correctly how to use the interactive, verify that when you enter the binary number 101101 it shows that the decimal representation is 45, that when you enter 100000 it shows that the decimal representation is 32, and when you enter 001010 it shows the decimal representation is 10.**
 
