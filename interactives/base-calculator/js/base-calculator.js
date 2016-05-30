@@ -75,7 +75,7 @@ function createCalculatorInterface(settings) {
         var columnElement = createCalculatorColumnContainer();
 
         if (settings.SHOW_POWER) {
-            columnElement.appendChild(createPowerElement(settings, digit + settings.OFFSET));
+            columnElement.appendChild(createPowerElement(settings, digit + settings.OFFSET - 1));
         }
         if (settings.SHOW_MULTIPLICATION) {
             columnElement.appendChild(createMultiplicationElement(value));
