@@ -589,8 +589,9 @@ def main():
     html_templates = read_html_templates(generator_settings)
     html_generator = WebsiteGenerator(html_templates)
 
-    # Create landing page
-    create_landing_page(cmd_args.languages, html_generator, generator_settings, translations)
+    # Create landing page if website required
+    if not cmd_args.pdf_only:
+        create_landing_page(cmd_args.languages, html_generator, generator_settings, translations)
 
     # Calculate versions to create
     versions = ['student']
