@@ -352,8 +352,10 @@ class Guide:
     def generate_pdf(self):
         """Creates a PDF file of the CSFG"""
         from weasyprint import HTML, CSS
+        filename = self.generator_settings['PDF']['Output File'].strip().format(self.version.capitalize())
+        output_path = os.path.join(self.output_folder, filename)
         stylesheets = [CSS(string=self.compile_scss_file('website.scss'))]
-        HTML(string=self.pdf_html).write_pdf('output/CSFG.pdf', stylesheets=stylesheets)
+        HTML(string=self.pdf_html).write_pdf(output_path, stylesheets=stylesheets)
 
 
 class FolderNode:
