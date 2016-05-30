@@ -85,9 +85,9 @@ function lzssEncode(stringToEncode) {
 
 //for testing purposes, having the random string just consist of abc's makes it likely for some encoding to actually be done.
 function randomABCGenerator(length) {
-	var randomABCString = "";
+	randomABCString = "";
 	for (var i=0; i < length; i++) {
-		var randomInt = getRandomInt(0, 2);
+		randomInt = getRandomInt(0, 2);
 		if (randomInt == 0) {
 			randomABCString += "a";
 		} else if (randomInt == 1) {
@@ -104,6 +104,16 @@ function randomABCGenerator(length) {
 
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function testLongStringTime(lengthOfStringToTest) {
+	stringToTest = randomABCGenerator(lengthOfStringToTest) //length of teststring
+	timeStart = performance.now();
+	lzssEncode(stringToTest);
+	timeEnd = performance.now();
+	console.log("Call to lzssEncode with " + lengthOfStringToTest + "characters took " + (timeEnd - timeStart) + " milliseconds.")
+
+
 }
 
 
