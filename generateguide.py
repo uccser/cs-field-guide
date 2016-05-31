@@ -345,6 +345,7 @@ class Guide:
         """Adds HTML contents of a give file node to guide's
         PDF html string"""
         if file.tracked:
+            self.pdf_html += file.section.heading.to_html()
             for section_content in file.section.html_content:
                 self.pdf_html += section_content
 

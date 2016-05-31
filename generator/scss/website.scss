@@ -112,7 +112,7 @@ ul.side-nav.fixed li a {
 }
 .section-heading {
   margin-bottom: 0;
-  #page-title-header & > a {
+  .page-title-header & > a {
     color: white !important;
   }
   & > a {
@@ -138,7 +138,7 @@ ul.side-nav.fixed li a {
   padding-top: 1rem !important;
   padding-left: 30px !important;
 }
-#page-title-header {
+.page-title-header {
   background-color: $primary-color !important;
   padding: 1rem 0;
   margin: 0;
