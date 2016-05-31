@@ -1,5 +1,5 @@
 @media print {
-  .hide_for_print {
+  .hide_for_print, header {
     display: none;
   }
   .print_link_box {
@@ -8,6 +8,9 @@
     padding: 0 1rem;
     font-size: 0.9rem;
     word-wrap: break-word;
+  }
+  main, footer {
+    padding-left: 0;
   }
 }
 @media screen {
