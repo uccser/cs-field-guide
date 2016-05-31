@@ -16,6 +16,24 @@
     margin-bottom: 1rem;
     page-break-before: always;
   }
+  ul.panel {
+    border-bottom: 1px solid #ddd;
+    div.collapsible-header {
+      min-height: inherit !important;
+      & > div.dropdown-menu-arrow {
+        display: none;
+      }
+    }
+    div.collapsible-body {
+      display: block !important;
+      ul {
+        padding-left: 40px;
+        li {
+          list-style-type: initial;
+        }
+      }
+    }
+  }
 }
 @media screen {
   .hide_for_screen {
