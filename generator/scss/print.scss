@@ -17,6 +17,7 @@
     page-break-before: always;
   }
   ul.panel {
+    box-shadow: none !important;
     border-bottom: 1px solid #ddd;
     div.collapsible-header {
       min-height: inherit !important;
