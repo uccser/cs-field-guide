@@ -588,18 +588,24 @@ class Section:
         """Return the html for inpage interactives, with links adjusted
         to correct relative links, and comments removed.
         """
-        interactive_tree = self.get_interactive_tree(source_folder, name, interactive_source_file, match)
-        if interactive_tree is not None:
-            self.edit_interactive_tree(interactive_tree, source_folder)
-            # Remove comments from HTML
-            html = re.sub('(\n)*<!--(.|\s)*?-->(\n)*', '', str(interactive_tree).strip(), flags=re.MULTILINE)
-            # Remove preceeding whitespace on lines to avoid errors with Markdown parser
-            html = re.sub('^\s*', '', html, flags=re.MULTILINE)
-            # Remove multiple consecutive newline characters from removal of <link> and <script> tags
-            html = re.sub('\n{2,}', '\n', html, flags=re.MULTILINE)
-            return html
-        else:
-            return None
+        interactive_link = os.path.join(source_folder, interactive_source_file)
+        if self.guide.output_type == WEB:
+            interactive_tree = self.get_interactive_tree(source_folder, name, interactive_source_file, match)
+            if interactive_tree is not None:
+                self.edit_interactive_tree(interactive_tree, source_folder)
+                # Remove comments from HTML
+                html = re.sub('(\n)*<!--(.|\s)*?-->(\n)*', '', str(interactive_tree).strip(), flags=re.MULTILINE)
+                # Remove preceeding whitespace on lines to avoid errors with Markdown parser
+                html = re.sub('^\s*', '', html, flags=re.MULTILINE)
+                # Remove multiple consecutive newline characters from removal of <link> and <script> tags
+                html = re.sub('\n{2,}', '\n', html, flags=re.MULTILINE)
+                html += self.create_link_to_online_resource('interactive', interactive_link)
+                return html
+            else:
+                return None
+        elif self.guide.output_type == PDF:
+            link = os.path.join(self.guide.generator_settings['General']['Domain'], self.guide.language_code, interactive_link)
+            return self.create_link_to_online_resource('interactive', link)
 
 
     def get_interactive_tree(self, source_folder, name, interactive_source_file, match):
