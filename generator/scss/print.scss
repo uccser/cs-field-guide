@@ -34,6 +34,12 @@
       }
     }
   }
+  img.responsive-img {
+    max-width: 80%;
+  }
+  div.image-wrap {
+    max-width: 35% !important;
+  }
 }
 @media screen {
   .hide_for_screen {

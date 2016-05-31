@@ -231,7 +231,9 @@ class Section:
 
         valid_image_wrap_directions = ['left', 'right']
 
-        image_source = os.path.join(self.html_path_to_guide_root, self.guide.generator_settings['Source']['Image'], filename)
+        image_source = os.path.join(self.guide.generator_settings['Source']['Image'], filename)
+        if self.guide.output_type == WEB:
+            image_source = os.path.join(self.html_path_to_guide_root, image_source)
 
         parameters = ''
         wrap = False

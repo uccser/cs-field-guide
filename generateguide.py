@@ -355,8 +355,9 @@ class Guide:
         from weasyprint import HTML, CSS
         filename = self.generator_settings['PDF']['Output File'].strip().format(self.version.capitalize())
         output_path = os.path.join(self.output_folder, filename)
+        base_url = ''
         stylesheets = [CSS(string=self.compile_scss_file('website.scss'))]
-        HTML(string=self.pdf_html).write_pdf(output_path, stylesheets=stylesheets)
+        HTML(string=self.pdf_html, base_url=base_url).write_pdf(output_path, stylesheets=stylesheets)
 
 
 class FolderNode:
