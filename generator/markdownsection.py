@@ -552,11 +552,15 @@ class Section:
             - A script is added to the page for a responsive iframe
             - A script is added within the iframe for a responsive iframe
         """
+        html = ''
         folder_location = os.path.join(self.html_path_to_guide_root, source_folder, interactive_source_file)
         file_link = "{location}?{parameters}".format(location=folder_location, parameters=params) if params else folder_location
         link_template = self.html_templates['interactive-iframe']
-        html = link_template.format(interactive_source=file_link)
-        self.add_page_script(self.html_templates['interactive-iframe-script'].format(path_to_guide_root=self.html_path_to_guide_root))
+        if self.guide.output_type == WEB:
+            html = link_template.format(interactive_source=file_link)
+            self.add_page_script(self.html_templates['interactive-iframe-script'].format(path_to_guide_root=self.html_path_to_guide_root))
+            html = self.hide_for_print(html)
+        html += self.create_link_to_online_resource('interactive', file_link)
         return html
 
 
