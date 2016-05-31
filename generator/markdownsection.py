@@ -525,21 +525,26 @@ class Section:
             source_folder = os.path.join(self.guide.generator_settings['Source']['Interactive'], name)
 
             if self.check_interactive_exists(source_folder, name, interactive_source_file, match):
-                self.required_files['Interactive'].add(name)
-                if interactive_type == 'whole-page':
-                    arg_thumbnail = parse_argument('thumbnail', arguments)
-                    thumbnail = arg_thumbnail if arg_thumbnail else self.guide.generator_settings['Source']['Interactive Thumbnail']
-                    html = self.whole_page_interactive_html(source_folder, text, interactive_source_file, params, thumbnail, match)
-                elif interactive_type == 'in-page':
-                    if name in self.in_page_interactives:
-                        self.regex_functions['interactive'].log('Interactive {} already used on this page with in-page mode. Use iframe mode for multiple occurrences.'.format(name), self, match.group(0))
+                if self.guide.output_type == WEB:
+                    self.required_files['Interactive'].add(name)
+                    if interactive_type == 'whole-page':
+                        arg_thumbnail = parse_argument('thumbnail', arguments)
+                        thumbnail = arg_thumbnail if arg_thumbnail else self.guide.generator_settings['Source']['Interactive Thumbnail']
+                        html = self.whole_page_interactive_html(source_folder, text, interactive_source_file, params, thumbnail, match)
+                    elif interactive_type == 'in-page':
+                        if name in self.in_page_interactives:
+                            self.regex_functions['interactive'].log('Interactive {} already used on this page with in-page mode. Use iframe mode for multiple occurrences.'.format(name), self, match.group(0))
+                        else:
+                            self.in_page_interactives.add(name)
+                            html = self.inpage_interactive_html(source_folder, name, interactive_source_file, match)
+                    elif interactive_type == 'iframe':
+                        html = self.iframe_interactive_html(source_folder, interactive_source_file, params, match)
                     else:
-                        self.in_page_interactives.add(name)
-                        html = self.inpage_interactive_html(source_folder, name, interactive_source_file, match)
-                elif interactive_type == 'iframe':
-                    html = self.iframe_interactive_html(source_folder, interactive_source_file, params, match)
-                else:
-                    self.regex_functions['interactive'].log('Interactive type not valid', self, match.group(0))
+                        self.regex_functions['interactive'].log('Interactive type not valid', self, match.group(0))
+                folder_location = os.path.join(source_folder, interactive_source_file)
+                file_link = "{location}?{parameters}".format(location=folder_location, parameters=params) if params else folder_location
+                link = os.path.join(self.guide.generator_settings['General']['Domain'], self.guide.language_code, file_link)
+                html += self.create_link_to_online_resource('interactive', link)
             else:
                 self.regex_functions['interactive'].log('Interactive {} does not exist'.format(name), self, match.group(0))
         elif not name:
@@ -562,7 +567,6 @@ class Section:
             html = link_template.format(interactive_source=file_link)
             self.add_page_script(self.html_templates['interactive-iframe-script'].format(path_to_guide_root=self.html_path_to_guide_root))
             html = self.hide_for_print(html)
-        html += self.create_link_to_online_resource('interactive', file_link)
         return html
 
 
@@ -580,7 +584,6 @@ class Section:
                                         interactive_source=file_link)
             html = self.center_html(link_html, 8)
             html = self.hide_for_print(html)
-        html += self.create_link_to_online_resource('interactive', file_link)
         return html
 
 
@@ -603,9 +606,6 @@ class Section:
                 return html
             else:
                 return None
-        elif self.guide.output_type == PDF:
-            link = os.path.join(self.guide.generator_settings['General']['Domain'], self.guide.language_code, interactive_link)
-            return self.create_link_to_online_resource('interactive', link)
 
 
     def get_interactive_tree(self, source_folder, name, interactive_source_file, match):
