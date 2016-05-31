@@ -3,6 +3,9 @@
 // Pygments theme for code syntax highlighting
 @import "third-party/pygments-monokai";
 
+// Import styles for print media
+@import "print";
+
 pre {
   font-family: Consolas, "Liberation Mono", Courier, monospace;
   font-weight: normal;

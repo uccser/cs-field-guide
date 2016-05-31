@@ -382,21 +382,33 @@ class Section:
         return self.html_templates['centered'].format(html=html, width=width, offset_width=offset_width)
 
 
-    def embed_video(self, match):
+    def hide_for_print(self, html):
+        template = 'print_hide_for_print'
+        return self.html_templates[template].format(html=html)
+
+
+    def create_link_to_online_resource(self, resource_type, url):
+        template = 'print_link_to_online_resource'
+        return self.html_templates[template].format(resource=resource_type, url=url)
+
+
+    def create_video_html(self, match):
         youtube_src = "http://www.youtube.com/embed/{0}?rel=0"
         vimeo_src = "http://player.vimeo.com/video/{0}"
         html = ''
         arguments = match.group('args')
         url = parse_argument('url', arguments)
         if url:
-            (video_type, video_identifier) = self.extract_video_identifier(url, match)
-            if video_type:
-                if video_type == 'youtube':
-                    source_link = youtube_src.format(video_identifier)
-                elif video_type == 'vimeo':
-                    source_link = vimeo_src.format(video_identifier)
-                html = self.html_templates['video'].format(source=source_link)
-                html = self.center_html(html, 10)
+            if self.guide.output_type == WEB:
+                (video_type, video_identifier) = self.extract_video_identifier(url, match)
+                if video_type:
+                    if video_type == 'youtube':
+                        source_link = youtube_src.format(video_identifier)
+                    elif video_type == 'vimeo':
+                        source_link = vimeo_src.format(video_identifier)
+                    html = self.html_templates['video'].format(source=source_link)
+                    html = self.center_html(html, 10)
+            html += self.create_link_to_online_resource('video', url)
         else:
             self.regex_functions['video'].log("Video url not given", self, match.group(0))
             html = ''
