@@ -566,15 +566,19 @@ class Section:
 
     def whole_page_interactive_html(self, source_folder, text, interactive_source_file, params, thumbnail, match):
         """Return the html block for a link to an whole page interactive"""
-        thumbnail_location = os.path.join(self.html_path_to_guide_root, source_folder, thumbnail)
-        link_text = 'Click to load {text}'.format(text=text)
+        html = ''
         folder_location = os.path.join(self.html_path_to_guide_root, source_folder, interactive_source_file)
         file_link = "{location}?{parameters}".format(location=folder_location, parameters=params) if params else folder_location
-        link_template = self.html_templates['interactive-whole-page']
-        link_html = link_template.format(interactive_thumbnail=thumbnail_location,
-                                    interactive_link_text=link_text,
-                                    interactive_source=file_link)
-        html = self.center_html(link_html, 8)
+        if self.guide.output_type == WEB:
+            thumbnail_location = os.path.join(self.html_path_to_guide_root, source_folder, thumbnail)
+            link_text = 'Click to load {text}'.format(text=text)
+            link_template = self.html_templates['interactive-whole-page']
+            link_html = link_template.format(interactive_thumbnail=thumbnail_location,
+                                        interactive_link_text=link_text,
+                                        interactive_source=file_link)
+            html = self.center_html(link_html, 8)
+            html = self.hide_for_print(html)
+        html += self.create_link_to_online_resource('interactive', file_link)
         return html
 
 
