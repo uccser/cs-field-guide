@@ -340,6 +340,11 @@ class Guide:
         # Create output folder
         os.makedirs(self.output_folder, exist_ok=True)
 
+        subtitle = '<h3>Print Edition</h3>'
+        if self.version == 'teacher':
+            subtitle += '\n<h4>Teacher Version</h4>'
+        self.pdf_html += self.html_templates['print_title_page'].format(subtitle=subtitle)
+
 
     def add_to_pdf_html(self, file):
         """Adds HTML contents of a give file node to guide's
