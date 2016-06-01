@@ -47,6 +47,21 @@
   div.image-wrap {
     max-width: 35% !important;
   }
+  @page {
+    size: a4;
+  }
+  @page:right {
+    @bottom-right {
+      color: grey;
+      content: counter(page) " of " counter(pages);
+    }
+  }
+  @page:left {
+    @bottom-left {
+      color: grey;
+      content: counter(page) " of " counter(pages);
+    }
+  }
 }
 @media screen {
   .hide_for_screen {
