@@ -368,6 +368,8 @@ class Guide:
         """Creates a PDF file of the CSFG"""
         from weasyprint import HTML, CSS
         filename = self.generator_settings['PDF']['Output File'].strip().format(self.version.capitalize())
+        # Wrap print HTML within classed div
+        self.pdf_html = self.html_templates['print_html'].format(html=self.pdf_html)
         output_path = os.path.join(self.output_folder, filename)
         base_url = ''
         stylesheets = [CSS(string=self.compile_scss_file('website.scss'))]
