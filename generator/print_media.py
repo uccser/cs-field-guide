@@ -21,7 +21,7 @@ class PrintRenderer(object):
             self.math_image_number += 1
 
             formula = formula.replace('\n', ' ')
-            request = requests.get( 'http://latex.codecogs.com/png.latex?\dpi{{300}} {formula}'.format(formula=formula))
+            request = requests.get( 'http://latex.codecogs.com/png.latex?\dpi{{120}} {formula}'.format(formula=formula))
             image = open(file_location, 'wb')
             image.write(request.content)
             image.close()

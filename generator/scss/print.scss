@@ -48,10 +48,17 @@
     max-width: 35% !important;
   }
   .math-image-inline {
-
+    display: inline;
+    max-height: 1rem;
+    vertical-align: middle;
+    width: auto;
+    margin-top: -3px;
   }
   .math-image-block {
-
+    display: block;
+    margin: 0 auto;
+    width: auto;
+    max-width: 100%;
   }
   @page {
     size: a4;
