@@ -1,7 +1,9 @@
 # Ignore everything within output folder except README.md
-temp/*
 output/*
 !output/README.md
+
+# Ignore everything within cache folder
+cache/*
 
 # Ignore Python module cache files
 generator/__pycache__/*

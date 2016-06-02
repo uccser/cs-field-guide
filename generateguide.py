@@ -74,7 +74,6 @@ class Guide:
             self.setup_pdf_output()
             self.traverse_files(self.structure, getattr(self, "add_to_pdf_html"))
             self.generate_pdf()
-            self.print_renderer.delete_temp_folder()
 
 
     def setup_output_path(self):
