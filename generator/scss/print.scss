@@ -60,8 +60,16 @@
     width: auto;
     max-width: 100%;
   }
+  h1 {
+    -weasy-string-set: chapter content()
+  }
   @page {
     size: a4;
+    @top-center {
+      color: grey;
+      content: string(chapter);
+      font-size: 0.8rem;te
+    }
   }
   @page:right {
     @bottom-left {
@@ -88,6 +96,9 @@
     }
   }
   @page:first {
+    @top-center {
+      content: normal;
+    }
     @bottom-right {
       content: normal;
     }
