@@ -87,6 +87,14 @@
       font-size: 0.8rem;
     }
   }
+  @page:first {
+    @bottom-right {
+      content: normal;
+    }
+    @bottom-left {
+      content: normal;
+    }
+  }
 }
 @media screen {
   .hide_for_screen {
