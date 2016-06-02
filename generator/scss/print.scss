@@ -64,15 +64,27 @@
     size: a4;
   }
   @page:right {
+    @bottom-left {
+      color: grey;
+      content: $website;
+      font-size: 0.8rem;
+    }
     @bottom-right {
       color: grey;
       content: counter(page) " of " counter(pages);
+      font-size: 0.8rem;
     }
   }
   @page:left {
     @bottom-left {
       color: grey;
       content: counter(page) " of " counter(pages);
+      font-size: 0.8rem;
+    }
+    @bottom-right {
+      color: grey;
+      content: $title;
+      font-size: 0.8rem;
     }
   }
 }

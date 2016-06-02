@@ -185,8 +185,10 @@ class Guide:
         except:
             logging.critical('Cannot find SCSS file {0}.'.format(file_name))
         else:
-            # Add version variable at start of SCSS data
-            scss_data = "$version: " + self.version + ";\n" + scss_data
+            # Add variables at start of SCSS data
+            scss_data = '$version: "{}";\n{}'.format(self.version, scss_data)
+            scss_data = '$title: "{}";\n{}'.format(self.translations['title'][self.language_code], scss_data)
+            scss_data = '$website: "{}";\n{}'.format(self.translations['website'][self.language_code], scss_data)
 
             # This lists all subfolders of SCSS source folder, this may cause issues
             # later, but is an effective solution for the moment
