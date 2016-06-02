@@ -72,7 +72,7 @@ class Guide:
             self.print_settings = {}
             self.pdf_html = ''
             self.setup_pdf_output()
-            self.traverse_files(self.structure, getattr(self, "add_to_pdf_html"))
+            self.traverse_files(self.structure, getattr(self, "add_to_pdf_html"), True)
             self.generate_pdf()
 
 
@@ -127,13 +127,21 @@ class Guide:
         return root_folder
 
 
-    def traverse_files(self, start_node, process_file_function):
+    def traverse_files(self, start_node, process_file_function, index_page_first=False):
         """DFS of structure tree, visits file nodes, and calls given function
         on each file node found"""
         for folder in start_node.folders:
-            self.traverse_files(folder, process_file_function)
-        for file in start_node.files:
-            process_file_function(file)
+            self.traverse_files(folder, process_file_function, index_page_first)
+        if index_page_first:
+            for file in start_node.files:
+                if file.filename == 'index':
+                    process_file_function(file)
+            for file in start_node.files:
+                if not file.filename == 'index':
+                    process_file_function(file)
+        else:
+            for file in start_node.files:
+                process_file_function(file)
 
 
     def read_content(self, file_node):
@@ -358,7 +366,7 @@ class Guide:
     def add_to_pdf_html(self, file):
         """Adds HTML contents of a give file node to guide's PDF html string"""
         mathjax_required = False
-        if file.tracked:
+        if file.tracked or (file.filename == 'index' and not file in self.structure.files):
             # Add page heading
             self.pdf_html += file.section.heading.to_html()
             # Add page content
