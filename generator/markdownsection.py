@@ -44,6 +44,7 @@ class Section:
         self.sectioned = False
         self.html_path_to_guide_root = self.file_node.depth * '../'
 
+
     def __repr__(self):
         """Return representation of structure of section"""
         output = ''
@@ -204,14 +205,20 @@ class Section:
 
 
     def process_math_text(self, match):
-        self.mathjax_required = True
+        html = ''
         equation = match.group('equation')
-        if match.group('type') == 'math':
-            #Inline math
-            html = self.html_templates['math'].format(equation=equation)
-        else:
-            #Block math
-            html = self.html_templates['math-block'].format(equation=equation)
+        if self.guide.output_type == WEB:
+            self.mathjax_required = True
+            if match.group('type') == 'math':
+                html = self.html_templates['math'].format(equation=equation)
+            else:
+                html = self.html_templates['math-block'].format(equation=equation)
+        elif self.guide.output_type == PDF:
+            image_filename = self.guide.print_renderer.render_math(equation)
+            if match.group('type') == 'math':
+                html = self.html_templates['math-image-inline'].format(image_source=image_filename)
+            else:
+                html = self.html_templates['math-image-block'].format(image_source=image_filename)
         return html
 
 

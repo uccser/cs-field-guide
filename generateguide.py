@@ -57,6 +57,9 @@ class Guide:
         # Dictionary of sets for images, interactives, and other_files
         self.required_files = setup_required_files(self)
 
+        if self.output_type == PDF:
+            import generator.print_media as print_media
+            self.print_renderer = print_media.PrintRenderer(self.generator_settings)
 
         # Process sections
         self.traverse_files(self.structure, getattr(self, "process_section"))
@@ -66,10 +69,12 @@ class Guide:
             self.traverse_files(self.structure, getattr(self, "write_html_file"))
             self.copy_required_files()
         elif self.output_type == PDF:
+            self.print_settings = {}
             self.pdf_html = ''
             self.setup_pdf_output()
             self.traverse_files(self.structure, getattr(self, "add_to_pdf_html"))
             self.generate_pdf()
+            self.print_renderer.delete_temp_folder()
 
 
     def setup_output_path(self):
@@ -279,7 +284,8 @@ class Guide:
             path_to_output_folder = output_depth * '../' + path_to_guide_root
 
             if file.section.mathjax_required:
-                file.section.add_page_script(self.html_templates['mathjax'].format(path_to_guide_root=file.section.html_path_to_guide_root, mathjax_config=self.html_templates['mathjax-config']))
+                path_to_folder = os.path.join(file.section.html_path_to_guide_root, 'js')
+                file.section.add_page_script(self.html_templates['mathjax'].format(path_to_folder=path_to_folder, mathjax_config=self.html_templates['mathjax-screen-config']))
 
             for section_content in file.section.html_content:
                 body_html += section_content
@@ -336,16 +342,20 @@ class Guide:
 
 
     def setup_pdf_output(self):
-        """Preliminary setup, called before pdf file is written"""
+        """Preliminary setup for output, called before pdf file is written
+        - Creates output folder
+        """
         # Create output folder
         os.makedirs(self.output_folder, exist_ok=True)
 
 
     def add_to_pdf_html(self, file):
-        """Adds HTML contents of a give file node to guide's
-        PDF html string"""
+        """Adds HTML contents of a give file node to guide's PDF html string"""
+        mathjax_required = False
         if file.tracked:
+            # Add page heading
             self.pdf_html += file.section.heading.to_html()
+            # Add page content
             for section_content in file.section.html_content:
                 self.pdf_html += section_content
 

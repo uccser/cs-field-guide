@@ -1,4 +1,5 @@
 # Ignore everything within output folder except README.md
+temp/*
 output/*
 !output/README.md
 

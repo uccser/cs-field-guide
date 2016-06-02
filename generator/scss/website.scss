@@ -98,6 +98,9 @@ ul.side-nav.fixed li a {
     @include rotate(180deg);
   }
 }
+.side-nav {
+  z-index: 2 !important;
+}
 .side-nav .collapsible-body li a {
   padding-right: 0 !important;
   line-height: 2rem !important;
