@@ -1,4 +1,10 @@
 @media print {
+  div#print-title-page {
+    width: 100%;
+    margin-top: 20%;
+    text-align: center;
+    padding: 4rem;
+  }
   .hide_for_print, header {
     display: none;
   }
@@ -46,6 +52,21 @@
   }
   .math-image-block {
 
+  }
+  @page {
+    size: a4;
+  }
+  @page:right {
+    @bottom-right {
+      color: grey;
+      content: counter(page) " of " counter(pages);
+    }
+  }
+  @page:left {
+    @bottom-left {
+      color: grey;
+      content: counter(page) " of " counter(pages);
+    }
   }
 }
 @media screen {
