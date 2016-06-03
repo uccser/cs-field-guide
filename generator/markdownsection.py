@@ -609,7 +609,6 @@ class Section:
                 html = re.sub('^\s*', '', html, flags=re.MULTILINE)
                 # Remove multiple consecutive newline characters from removal of <link> and <script> tags
                 html = re.sub('\n{2,}', '\n', html, flags=re.MULTILINE)
-                html += self.create_link_to_online_resource('interactive', interactive_link)
                 return html
             else:
                 return None
