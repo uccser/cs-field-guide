@@ -792,6 +792,7 @@ class Section:
 
     def add_glossary(self, match):
         glossary = self.guide.glossary
+        glossary.set_glossary_depth_for_print_html(self.file_node.depth)
         self.mathjax_required = True
         glossary_temp = self.html_templates['glossary']
         items = ''
