@@ -60,15 +60,51 @@
     width: auto;
     max-width: 100%;
   }
+  // Header Styles
+  .print-heading-1 {
+    font-size: $h1-fontsize !important;
+    line-height: 110% !important;
+    margin: ($h1-fontsize / 2) 0 ($h1-fontsize / 2.5) 0 !important;
+  }
+  .print-heading-2,
+  .print-subtitle {
+    font-size: $h2-fontsize !important;
+    line-height: 110% !important;
+    margin: ($h2-fontsize / 2) 0 ($h2-fontsize / 2.5) 0 !important;
+  }
+  .print-heading-3,
+  .print-second-subtitle {
+    font-size: $h3-fontsize !important;
+    line-height: 110% !important;
+    margin: ($h3-fontsize / 2) 0 ($h3-fontsize / 2.5) 0 !important;
+  }
+  .print-heading-4 {
+    font-size: $h4-fontsize !important;
+    line-height: 110% !important;
+    margin: ($h4-fontsize / 2) 0 ($h4-fontsize / 2.5) 0 !important;
+  }
+  .print-heading-5 {
+    font-size: $h5-fontsize !important;
+    line-height: 110% !important;
+    margin: ($h5-fontsize / 2) 0 ($h5-fontsize / 2.5) 0 !important;
+  }
+  .print-heading-6 {
+    font-size: $h6-fontsize !important;
+    line-height: 110% !important;
+    margin: ($h6-fontsize / 2) 0 ($h6-fontsize / 2.5) 0 !important;
+  }
   h1 {
-    -weasy-string-set: chapter content()
+    -weasy-bookmark-level: none;
+  }
+  h2, h3 {
+    -weasy-string-set: chapter content();
   }
   @page {
     size: a4;
     @top-center {
       color: grey;
       content: string(chapter);
-      font-size: 0.8rem;te
+      font-size: 0.8rem;
     }
   }
   @page:right {

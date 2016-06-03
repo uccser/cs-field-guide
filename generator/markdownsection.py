@@ -919,20 +919,38 @@ class HeadingNode:
 
         html = ''
 
-        # Create section starts for Materialize ScrollSpy
-        if self.level == 2 and self.guide.generator_settings['HTML'][self.section.file_node.group_type] == 'website_page_chapter':
-            # Close previous section if needed
-            if self.section.sectioned:
-                html = self.section.html_templates['section-end']
-            html += self.section.html_templates['section-start'].format(permalink=self.permalink)
-            self.section.sectioned = True
+        if self.guide.output_type == WEB:
+            # Create section starts for Materialize ScrollSpy
+            if self.level == 2 and self.guide.generator_settings['HTML'][self.section.file_node.group_type] == 'website_page_chapter':
+                # Close previous section if needed
+                if self.section.sectioned:
+                    html = self.section.html_templates['section-end']
+                html += self.section.html_templates['section-start'].format(permalink=self.permalink)
+                self.section.sectioned = True
 
-        html += self.section.html_templates[html_type].format(heading_level=self.level,
-                                                      section_number=self.number,
-                                                      heading_text=self.heading,
-                                                      heading_permalink=self.permalink)
-        if self.section.heading == self:
-            html = self.section.html_templates['heading-page-title'].format(heading=html)
+            html += self.section.html_templates[html_type].format(heading_level=self.level,
+            section_number=self.number,
+            heading_text=self.heading,
+            heading_permalink=self.permalink)
+
+            if self.section.heading == self:
+                html = self.section.html_templates['heading-page-title'].format(heading=html)
+
+        elif self.guide.output_type == PDF:
+            level = self.level + self.section.file_node.depth
+            if not self.section.file_node.filename == 'index':
+                level += 1
+            level = min(level, 6)
+            formatted_level = self.level
+            html_type = 'print-' + html_type
+            html += self.section.html_templates[html_type].format(heading_level=level,
+                formatted_level=formatted_level,
+                section_number=self.number,
+                heading_text=self.heading,
+                heading_permalink=self.permalink)
+
+            if self.section.heading == self:
+                html = self.section.html_templates['print-heading-page-title'].format(heading=html)
 
         return html
 

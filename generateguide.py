@@ -130,16 +130,18 @@ class Guide:
     def traverse_files(self, start_node, process_file_function, index_page_first=False):
         """DFS of structure tree, visits file nodes, and calls given function
         on each file node found"""
-        for folder in start_node.folders:
-            self.traverse_files(folder, process_file_function, index_page_first)
         if index_page_first:
             for file in start_node.files:
                 if file.filename == 'index':
                     process_file_function(file)
+            for folder in start_node.folders:
+                self.traverse_files(folder, process_file_function, index_page_first)
             for file in start_node.files:
                 if not file.filename == 'index':
                     process_file_function(file)
         else:
+            for folder in start_node.folders:
+                self.traverse_files(folder, process_file_function, index_page_first)
             for file in start_node.files:
                 process_file_function(file)
 
@@ -357,9 +359,9 @@ class Guide:
         # Create output folder
         os.makedirs(self.output_folder, exist_ok=True)
 
-        subtitle = '<h3>Print Edition</h3>'
+        subtitle = '<p class="print-subtitle">Print Edition</p>'
         if self.version == 'teacher':
-            subtitle += '\n<h4>Teacher Version</h4>'
+            subtitle += '\n<p class="print-second-subtitle">Teacher Version</p>'
         self.pdf_html += self.html_templates['print_title_page'].format(subtitle=subtitle)
 
 
