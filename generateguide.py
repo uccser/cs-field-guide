@@ -199,6 +199,11 @@ class Guide:
             scss_data = '$version: "{}";\n{}'.format(self.version, scss_data)
             scss_data = '$title: "{}";\n{}'.format(self.translations['title'][self.language_code], scss_data)
             scss_data = '$website: "{}";\n{}'.format(self.translations['website'][self.language_code], scss_data)
+            if self.output_type == WEB:
+                font_path_prefix = '..'
+            elif self.output_type == PDF:
+                font_path_prefix = 'generator'
+            scss_data = '$font-path-prefix: "{}";\n{}'.format(font_path_prefix, scss_data)
 
             # This lists all subfolders of SCSS source folder, this may cause issues
             # later, but is an effective solution for the moment

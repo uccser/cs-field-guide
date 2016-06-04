@@ -60,6 +60,9 @@
     width: auto;
     max-width: 100%;
   }
+  strong {
+    font-weight: 700;
+  }
   // Header Styles
   .print-heading-1 {
     font-size: $h1-fontsize !important;
