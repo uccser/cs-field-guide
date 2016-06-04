@@ -63,6 +63,11 @@
   strong {
     font-weight: 700;
   }
+  pre {
+    font-size: 0.75rem !important;
+    overflow-x: visible !important;
+    white-space: pre-wrap;
+  }
   // Header Styles
   .print-heading-1 {
     font-size: $h1-fontsize !important;
