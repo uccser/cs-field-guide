@@ -90,6 +90,7 @@ This project is the result of contributions from a large community of Computer S
 - Steven Maude ([StevenMaude](https://github.com/StevenMaude))
 - Rúben Enes ([rdpse](https://github.com/rdpse))
 - [oughter](https://github.com/oughter)
+- [digitalDojoNZ](https://github.com/digitalDojoNZ)
 
 **Note:** If there is an error in the list, please contact [Jack Morgan](mailto:jack.morgan@canterbury.ac.nz)
 

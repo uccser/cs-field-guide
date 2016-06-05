@@ -905,8 +905,8 @@ Look back to the section on binary numbers if you cannot remember how to convert
 For example, if you wanted to find out the representation for **貓** (cat in Chinese), the steps you would take would be as follows.
 
 1. Determine that the Unicode number for **貓** is **35987**.
-2. Convert **29483** to binary -- giving **10001100 10010011**.
-3. Count that there are **15** bits, and therefore the third pattern **1110xxxx 10xxxxxx 10xxxxx** should be used.
+2. Convert **35987** to binary -- giving **10001100 10010011**.
+3. Count that there are **16** bits, and therefore the third pattern **1110xxxx 10xxxxxx 10xxxxx** should be used.
 4. Substitute the bits into the pattern to replace the x's -- **11101000 10110010 10010011**.
 
 Therefore, the representation for **貓** is **11101000 10110010 10010011** using UTF-8.
