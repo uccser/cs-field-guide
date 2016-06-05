@@ -1,13 +1,40 @@
 var lempilZivSS = {};
 
-testString = "abcxxxxxxabcxxxxxxxabcd"
+/*testString = "abcxxxxxxabcxxxxxxxabcd"
 $(document).ready(function(){
     $('#testText').html(testString);
     })
+*/
+//file input stuff
+window.onload = function() {
+		var fileInput = document.getElementById('fileInput');
+		var testText = document.getElementById('testText');
+
+		fileInput.addEventListener('change', function(e) {
+			var file = fileInput.files[0];
+			var textType = /text.*/;
+
+			if (file.type.match(textType)) {
+				var reader = new FileReader();
+
+				reader.onload = function(e) {
+					testText.innerHTML = reader.result;
+					lzssEncode(reader.result);
+				}
+
+				reader.readAsText(file);
 
 
 
-function lzssEncode(stringToEncode) {
+			} else {
+				fileDisplayArea.innerText = "File not supported!"
+			}
+		});
+}
+
+
+
+function lzssEncode(stringToEncode, slidingWindowLength) {
 //make string to encode an array
 	var arrayToEncode = stringToEncode.split("");
 
@@ -31,8 +58,9 @@ function lzssEncode(stringToEncode) {
 		longestMatch = "";
 		indexOfLongestMatchStart = -1;
 
-		//this loop will eventually take us back to the start of the string
-		for (matchIndex = stringIndex - 1; matchIndex >= 0; matchIndex--) {
+		//stop looking back when we either hit the start of the string or 
+		for (matchIndex = stringIndex - 1; (((matchIndex >= 0) && ((stringIndex - matchIndex) < slidingWindowLength))); matchIndex--) {
+			console.log("gone back " + String(stringIndex - matchIndex) + " characters");
 			howManyForward = 1;
 			currentReadString = stringToEncode.slice(stringIndex, (stringIndex + 1))
 			currentMatchString = stringToEncode.slice(matchIndex, (matchIndex + 1))
@@ -59,7 +87,7 @@ function lzssEncode(stringToEncode) {
 		}
 		//if nothing to encode
 		console.log("matchIndex is " + matchIndex);
-		if (indexOfLongestMatchStart == -1) {
+		if ((indexOfLongestMatchStart == -1) || (longestMatch.length < 3)) {
 			console.log("No match found, not encoding");
 			stringToReturn += stringToEncode[stringIndex];
 			stringIndex++
@@ -76,8 +104,9 @@ function lzssEncode(stringToEncode) {
 		console.log("");
 		}
 
+	$('#testText').html(stringToEncode);
 	$('#encodedText').html(stringToReturn);
-
+	stringToReturn;
 
 
 		
@@ -87,13 +116,17 @@ function lzssEncode(stringToEncode) {
 function randomABCGenerator(length) {
 	randomABCString = "";
 	for (var i=0; i < length; i++) {
-		randomInt = getRandomInt(0, 2);
+		randomInt = getRandomInt(0, 4).p;
 		if (randomInt == 0) {
 			randomABCString += "a";
 		} else if (randomInt == 1) {
 			randomABCString += "b";
-		} else {
+		} else if (randomInt == 2) {
 			randomABCString += "c";
+		} else if (randomInt == 3) {
+			randomABCString += "d";
+		} else {
+			randomABCString += "e";
 		}
 		
 	}
@@ -104,6 +137,13 @@ function randomABCGenerator(length) {
 
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function getTestStringFromFile() {
+	alert("we in function!");
+	jQuery.get('testString.txt', function(data) {
+    	alert(data);
+	});
 }
 
 function testLongStringTime(lengthOfStringToTest) {
@@ -120,4 +160,5 @@ function testLongStringTime(lengthOfStringToTest) {
 
 
 
-lzssEncode(testString);
+
+//lzssEncode(testString);
