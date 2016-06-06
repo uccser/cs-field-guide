@@ -22,13 +22,13 @@ You should read and work through the interactives in the following sections of t
 
 Read all of these sections, as they give the necessary introduction of the topics
 
-[What’s the Big Picture?](coding-encryption.html#whats-the-big-picture)
+[What’s the Big Picture?](chapters/coding-encryption.html#whats-the-big-picture)
 
-[Substitution Ciphers](coding-encryption.html#substitution-ciphers)
+[Substitution Ciphers](chapters/coding-encryption.html#substitution-ciphers)
 
 If you are really keen, you might like to read further into the problems with substitution ciphers, although note that this is optional because it is not necessary for the project in this guide.
 
-[Problems with Substitution Ciphers](coding-encryption.html#problems-with-substitution-ciphers)
+[Problems with Substitution Ciphers](chapters/coding-encryption.html#problems-with-substitution-ciphers)
 
 ## Project
 

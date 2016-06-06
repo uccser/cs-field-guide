@@ -142,7 +142,7 @@ It isn’t this simple though, a computer cannot run instructions given directly
 
 {panel type="jargon-buster" summary="Binary"}
 
-The electronics in computers uses circuitry that mainly just works with two values (represented as high and low voltages) to make it reliable and fast. This system is called *binary*, and is often written on paper using zeroes and ones. There's a lot more about binary in the [data representation](data-representation.html) chapter, and it's worth having a quick look at the first section of that now if you haven't come across binary before.
+The electronics in computers uses circuitry that mainly just works with two values (represented as high and low voltages) to make it reliable and fast. This system is called *binary*, and is often written on paper using zeroes and ones. There's a lot more about binary in the [data representation](chapters/data-representation.html) chapter, and it's worth having a quick look at the first section of that now if you haven't come across binary before.
 
 {panel end}
 

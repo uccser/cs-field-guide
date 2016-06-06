@@ -80,16 +80,16 @@ This code finds words that contain x, y and z in that order, but separated by 0 
 - What about words containing the letters from your name in the correct order?
 - Are there any words that contain all the vowels in order (a, e, i, o, u)?
 
-{panel type="teacher-note" summary="Vowels soluton"}
+{panel type="teacher-note" summary="Vowels solution"}
 
 To find words with all the vowels in order, the code is simply "a.\*e.\*i.\*o.\*u", there are 47 matches.
 
-Students may ask how to do more complex searches, like letters in any order. If they are interested they can explore this on their own, but this is just a warmup exercise. We'll be covering this more carefully in the section on [regular expressions](chapters/formal-languages.html#regular-expressions-and-fsas).
+Students may ask how to do more complex searches, like letters in any order. If they are interested they can explore this on their own, but this is just a warmup exercise. We'll be covering this more carefully in the section on [regular expressions](chapters/formal-languages.html#regular-expressions).
 
 {panel end}
 
 The code you've used above is a part of a formal language called a "regular expression". Computer programs that accept typed input use regular expressions for checking items like dates, credit card numbers and product codes. They’re used extensively by programming language compilers and interpreters to make sense of the text that a programmer types in.
-We'll look at them in more detail in the section on [regular expressions](formal-languages.html#regular-expressions).
+We'll look at them in more detail in the section on [regular expressions](chapters/formal-languages.html#regular-expressions).
 
 Next we examine a simple system for reading input called a
 {glossary-link term="finite state automaton" reference-text="Formal languages"}finite state automaton{glossary-link end},

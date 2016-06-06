@@ -37,9 +37,9 @@ As with all externally assessed Digital Technology reports, you should base your
 
 You should read and work through the interactives in the following sections of the CS Field Guide in order to prepare yourself for the assessed project.
 
-[2.1 - What’s the big picture?](algorithms.html#whats-the-big-picture)
+[2.1 - What’s the big picture?](chapters/algorithms.html#whats-the-big-picture)
 
-[2.2 - Searching Algorithms](algorithms.html#searching-algorithms)
+[2.2 - Searching Algorithms](chapters/algorithms.html#searching)
 
 ## Project
 

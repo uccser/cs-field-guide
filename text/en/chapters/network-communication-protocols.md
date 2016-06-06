@@ -30,7 +30,7 @@ The URL for the home site of this book is http://csfieldguide.org. Ask a few fri
 For the activity in this section it's ideal if your school computers have a modern browser with the developer extensions enabled. [Chrome](https://www.google.com/chrome/browser/) is free to download, and is the browser we recommend. Follow the instructions [here](http://debugbrowser.com/) for more information on how to do this. The developer browser can’t really do any harm, and you can encourage further tinkering. However, knowledge of HTML, JavaScript or any other web design won’t be helpful in a report on protocols. If your school’s IT department can't allow you access to these features, simply encourage the students to try this at home. It’s a perfectly safe activity. Note: Details of page loads only show up if the inspector is open, you may need to refresh the current page to see this.
 {panel end}
 
-The HyperText Transfer Protocol (HTTP) is the most common protocol in use on the internet. The protocol’s job is to transfer [HyperText](glossary#hypertext) (such as HTML) from a server to your computer. It’s doing that right now. You just loaded the Field Guide from the servers where it is hosted. Hit refresh and you’ll see it in action.
+The HyperText Transfer Protocol (HTTP) is the most common protocol in use on the internet. The protocol’s job is to transfer [HyperText](https://en.wikipedia.org/wiki/Hypertext) (such as HTML) from a server to your computer. It’s doing that right now. You just loaded the Field Guide from the servers where it is hosted. Hit refresh and you’ll see it in action.
 
 HTTP functions as a simple conversation between client and server. Think of when you’re at a shop:
 

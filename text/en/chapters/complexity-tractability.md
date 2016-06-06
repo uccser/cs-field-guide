@@ -65,7 +65,9 @@ But let's start with a familiar problem that we can actually solve.
 
 {comment end}
 
-[Complexity](glossary.html#complexity) is an important concept with problems and algorithms that solve them.
+{glossary-definition term="Complexity" definition="Complexity how long it takes to solve a problem. A problem has an inherent complexity (minimum time needed to solve it); any algorithm to solve the problem will have a higher complexity (take at least that long)."}
+
+{glossary-link term="Complexity" reference-text="problems and algorithms"}Complexity{glossary-link end} is an important concept with problems and algorithms that solve them.
 Usually complexity is just the amount of time it takes to solve a problem, but there are several ways that we can measure the "time".
 Using the actual time on a particular computer can be useful, but to get a rough idea of the inherent behaviour of an algorithm, computer scientists often start by estimating the number of steps the algorithm will take for *n* items.
 For example, a linear search can end up checking each of *n* items being searched, so the algorithm will take *n* steps.
