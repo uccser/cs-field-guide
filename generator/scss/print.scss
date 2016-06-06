@@ -11,9 +11,12 @@
   .print_link_box {
     border: 2px dashed color("orange", "base");
     background-color: color("orange", "lighten-4");
-    padding: 0 1rem;
-    font-size: 0.9rem;
+    padding: 0.75rem;
+    font-size: 0.8rem;
     word-wrap: break-word;
+    p {
+      margin: 0;
+    }
   }
   main, footer {
     padding-left: 0;
