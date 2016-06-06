@@ -32,3 +32,16 @@ class PrintRenderer(object):
     def create_cache_folder(self):
         """Creates the folder for creating and caching print media"""
         os.makedirs(self.math_cache_folder, exist_ok=True)
+
+
+def convert_to_print_link(path, is_anchor=False):
+    """Converts a path used for WEB media to a single string (for either anchor
+    or link) for use in PDF media."""
+    path = path.replace('/', '-').replace('#', '')
+    if path.endswith('.html'):
+        path = path[:-5]
+    else:
+        path = path.replace('.html', '-')
+    if is_anchor:
+        path = '#' + path
+    return path

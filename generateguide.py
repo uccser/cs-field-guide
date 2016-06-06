@@ -22,6 +22,7 @@ from generator.markdownsection import Section
 from generator.websitegenerator import WebsiteGenerator
 from generator.glossary import Glossary
 from generator.files import setup_required_files
+import generator.print_media as print_media
 from scss.compiler import compile_string
 
 class Guide:
@@ -58,7 +59,6 @@ class Guide:
         self.required_files = setup_required_files(self)
 
         if self.output_type == PDF:
-            import generator.print_media as print_media
             self.print_renderer = print_media.PrintRenderer(self.generator_settings)
 
         # Process sections
@@ -376,6 +376,8 @@ class Guide:
         if file.tracked or (file.filename == 'index' and not file in self.structure.files):
             # Add page heading
             self.pdf_html += file.section.heading.to_html()
+            # Add page id link
+            self.pdf_html += self.html_templates['link'].format(link_url=print_media.convert_to_print_link(file.path), link_text='')
             # Add page content
             for section_content in file.section.html_content:
                 self.pdf_html += section_content

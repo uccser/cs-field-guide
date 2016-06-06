@@ -6,6 +6,7 @@ import urllib.parse
 import generator.systemfunctions as systemfunctions
 from bs4 import BeautifulSoup, Comment
 from generator.systemconstants import *
+import generator.print_media as print_media
 from collections import OrderedDict
 import mistune
 from pygments import highlight
@@ -73,7 +74,7 @@ class Section:
         """
         heading_text = match.group('heading')
         heading_level = len(match.group('heading_level'))
-        permalink = self.create_permalink(heading_text)
+        permalink = self.create_permalink(heading_text, heading_level)
         if not self.title:
             # If title not set from heading
             self.heading = HeadingNode(heading_text, permalink, section=self)
@@ -109,11 +110,16 @@ class Section:
         return html
 
 
-    def create_permalink(self, text):
+    def create_permalink(self, text, heading_level=None):
         """Helper function for create_heading
         -   returns a unique permalink for each heading
         """
         link = systemfunctions.to_kebab_case(text)
+        if self.guide.output_type == PDF:
+            if heading_level == 1:
+                link = self.file_node.path.replace('/', '-')
+            else:
+                link = os.path.join(self.file_node.path, link).replace('/', '-')
         count = 2
         while link in self.permalinks:
             if link[-1].isdigit():
@@ -128,6 +134,8 @@ class Section:
     def create_link(self, match):
         """Create a HTML link, if local link then add path back to root"""
         external_link_prefixes = ('http://', 'https://', 'mailto:')
+        file_path = self.guide.generator_settings['Source']['File']
+        interactive_path = self.guide.generator_settings['Source']['Interactive']
 
         link_text = match.group('link_text')
         if not link_text.startswith(external_link_prefixes):
@@ -138,11 +146,16 @@ class Section:
 
         if not link_url.startswith(external_link_prefixes):
             # If linked to file, add file to required files
-            if link_url.startswith(self.guide.generator_settings['Source']['File']):
-                file_name = link_url[len(self.guide.generator_settings['Source']['File']):]
+            if link_url.startswith(file_path) and self.guide.output_type == WEB:
+                file_name = link_url[len(file_path):]
                 self.required_files['File'].add(file_name)
+            elif self.guide.output_type == PDF and link_url.startswith(interactive_path) or link_url.startswith(file_path):
+                link_url = os.path.join(self.guide.generator_settings['General']['Domain'], self.guide.language_code, link_url)
+            elif self.guide.output_type == PDF:
+                link_url = '#' + print_media.convert_to_print_link(link_url)
 
-            link_url = os.path.join(self.html_path_to_guide_root, link_url)
+            if not link_url.startswith(external_link_prefixes) and not link_url.startswith('#'):
+                link_url = os.path.join(self.html_path_to_guide_root, link_url)
 
         html = self.html_templates['link'].format(link_text=link_text, link_url=link_url).strip()
         return html
@@ -685,14 +698,20 @@ class Section:
 
     def _create_table_of_contents(self, root_folder, depth=None, top_level=False, list_untracked=False):
         """Recursively called from create_table_of_contents"""
-        folder_path = os.path.join(self.html_path_to_guide_root, root_folder.path, 'index.html')
+        if self.guide.output_type == WEB:
+            folder_path = os.path.join(self.html_path_to_guide_root, root_folder.path, 'index.html')
+        elif self.guide.output_type == PDF:
+            folder_path = print_media.convert_to_print_link(os.path.join(root_folder.path, 'index.html'), True)
         folder_link_html = self.html_templates['link'].format(link_text=root_folder.title, link_url=folder_path)
 
         if depth is None or depth > 0:
             items = []
             for file in root_folder.files:
                 if file.tracked or list_untracked:
-                    link_url = self.html_path_to_guide_root + self.guide.generator_settings['Output']['Output File'].format(file_name=file.path)
+                    if self.guide.output_type == WEB:
+                        link_url = self.html_path_to_guide_root + self.guide.generator_settings['Output']['Output File'].format(file_name=file.path)
+                    elif self.guide.output_type == PDF:
+                        link_url = print_media.convert_to_print_link(file.path, True)
                     link_html = self.html_templates['link'].format(link_text=file.section.title, link_url=link_url)
                     items.append(link_html)
 
@@ -727,9 +746,11 @@ class Section:
         definition = self.parse_markdown(definition)
 
         permalink = self.create_permalink('glossary-' + term)
-
-        this_file_link = os.path.join(glossary.html_path_to_guide_root, self.file_node.path)
-        back_link = '{}.html#{}'.format(this_file_link, permalink)
+        if self.guide.output_type == WEB:
+            this_file_link = os.path.join(glossary.html_path_to_guide_root, self.file_node.path)
+            back_link = '{}.html#{}'.format(this_file_link, permalink)
+        elif self.guide.output_type == PDF:
+            back_link = '#' + os.path.join(self.file_node.path, systemfunctions.to_kebab_case('glossary-' + term)).replace('/', '-')
         self.guide.glossary.add_item(term, definition, back_link, match, self)
 
         # If the definition has at least two newlines before and after it,
@@ -760,7 +781,10 @@ class Section:
 
         if reference_text:
             # Provide ability to link to term in section
-            back_link = '{}.html#{}'.format(this_file_link, back_link_id)
+            if self.guide.output_type == WEB:
+                back_link = '{}.html#{}'.format(this_file_link, back_link_id)
+            elif self.guide.output_type == PDF:
+                back_link = '#' + back_link_id
             id_html = ' id="{}"'.format(back_link_id)
             # Add back reference link to glossary item
             glossary.add_back_link(term, back_link, reference_text, match, self)
@@ -770,7 +794,10 @@ class Section:
         if content:
             # Create link to term in glossary
             forward_link_id = systemfunctions.to_kebab_case(term)
-            forward_link = '{}#{}'.format(glossary_file_path, forward_link_id)
+            if self.guide.output_type == WEB:
+                forward_link = '{}#{}'.format(glossary_file_path, forward_link_id)
+            elif self.guide.output_type == PDF:
+                forward_link = '#further-information-glossary-' + forward_link_id
             link_html = ' href="{}"'.format(forward_link)
         else:
             link_html = ''
