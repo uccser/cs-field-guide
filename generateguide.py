@@ -375,7 +375,7 @@ class Guide:
         os.makedirs(self.output_folder, exist_ok=True)
 
         if self.version == 'teacher':
-            subtitle += '\n<p class="print-second-subtitle">Teacher Version</p>'
+            subtitle = '\n<p class="print-second-subtitle">Teacher Version</p>'
         else:
             subtitle = ''
         self.pdf_html += self.html_templates['print_title_page'].format(subtitle=subtitle, version_number=self.generator_settings['General']['Version Number'])
