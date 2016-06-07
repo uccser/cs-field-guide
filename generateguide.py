@@ -200,6 +200,7 @@ class Guide:
             scss_data = '$version: "{}";\n{}'.format(self.version, scss_data)
             scss_data = '$title: "{}";\n{}'.format(self.translations['title'][self.language_code], scss_data)
             scss_data = '$website: "{}";\n{}'.format(self.translations['website'][self.language_code], scss_data)
+            scss_data = '$version_number: "{}";\n{}'.format(self.generator_settings['General']['Version Number'], scss_data)
             if self.output_type == WEB:
                 font_path_prefix = '..'
             elif self.output_type == PDF:
