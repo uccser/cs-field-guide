@@ -10,5 +10,6 @@
 *.css text
 *.js text
 
-# Set vendor folders to be ignored in linguist statistics
-generator/scss/components/* linguist-vendored
+# Set third party folders and documentation to be ignored in GitHub linguist statistics
+^.*third-party/ linguist-vendored
+docs/* linguist-documentation

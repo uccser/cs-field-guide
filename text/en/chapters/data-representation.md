@@ -176,7 +176,7 @@ The term "denary" seems to be used mainly in the UK; in the US, Australia and NZ
 
 The interactive below illustrates how this binary number system represents numbers. Have a play around with it to see what patterns you can see.
 
-{button link="http://www.csfieldguide.org.nz/releases/1.9.9/_static/widgets/DR/DR-base-conversion/public_html/index.html?base=2&columns=7&lines=A,B,C&offset=0" text="Click for interactive: Base Calculator"}
+{interactive name="base-calculator" type="whole-page" text="Binary Number Calculator"}
 
 **To ensure you are understanding correctly how to use the interactive, verify that when you enter the binary number 101101 it shows that the decimal representation is 45, that when you enter 100000 it shows that the decimal representation is 32, and when you enter 001010 it shows the decimal representation is 10.**
 
@@ -905,8 +905,8 @@ Look back to the section on binary numbers if you cannot remember how to convert
 For example, if you wanted to find out the representation for **貓** (cat in Chinese), the steps you would take would be as follows.
 
 1. Determine that the Unicode number for **貓** is **35987**.
-2. Convert **29483** to binary -- giving **10001100 10010011**.
-3. Count that there are **15** bits, and therefore the third pattern **1110xxxx 10xxxxxx 10xxxxx** should be used.
+2. Convert **35987** to binary -- giving **10001100 10010011**.
+3. Count that there are **16** bits, and therefore the third pattern **1110xxxx 10xxxxxx 10xxxxx** should be used.
 4. Substitute the bits into the pattern to replace the x's -- **11101000 10110010 10010011**.
 
 Therefore, the representation for **貓** is **11101000 10110010 10010011** using UTF-8.

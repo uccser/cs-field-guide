@@ -111,8 +111,8 @@ Both of the above programs are the same algorithm.
 In this chapter we'll look in more detail about what an algorithm is, and why they are such a fundamental idea in computer science.
 Because algorithms exist even if they aren't turned in to programs, we won't need to look at programs at all for this topic, unless you particularly want to.
 
-
 {glossary-link term="Algorithm" reference-text="algorithm cost"}{glossary-link end}
+
 ### Algorithm cost
 
 When Computer Scientists are comparing algorithms they often talk about the 'cost' of an algorithm. The cost of an algorithm can be interpreted in several different ways, but it is always related to how well an algorithm performs based on the size of its input, *n*. In this chapter we will talk about the cost of an algorithm as either the time it takes a program (which performs the algorithm) to complete, or the number of steps that the algorithm makes before it finishes.

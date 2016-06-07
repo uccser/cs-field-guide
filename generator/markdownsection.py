@@ -126,13 +126,16 @@ class Section:
 
     def create_link(self, match):
         """Create a HTML link, if local link then add path back to root"""
+        external_link_prefixes = ('http://', 'https://', 'mailto:')
+
         link_text = match.group('link_text')
-        link_text = self.parse_markdown(link_text, 'p')
+        if not link_text.startswith(external_link_prefixes):
+            link_text = self.parse_markdown(link_text, 'p').strip()
 
         link_url = match.group('link_url')
         link_url = link_url.replace('\)', ')')
 
-        if not link_url.startswith(('http://','https://','mailto:')):
+        if not link_url.startswith(external_link_prefixes):
             # If linked to file, add file to required files
             if link_url.startswith(self.guide.generator_settings['Source']['File']):
                 file_name = link_url[len(self.guide.generator_settings['Source']['File']):]
@@ -646,7 +649,7 @@ class Section:
         return html
 
 
-    def _create_table_of_contents(self, root_folder, depth=None, top_level=False):
+    def _create_table_of_contents(self, root_folder, depth=None, top_level=False, list_untracked=False):
         """Recursively called from create_table_of_contents"""
         folder_path = os.path.join(self.html_path_to_guide_root, root_folder.path, 'index.html')
         folder_link_html = self.html_templates['link'].format(link_text=root_folder.title, link_url=folder_path)
@@ -654,13 +657,16 @@ class Section:
         if depth is None or depth > 0:
             items = []
             for file in root_folder.files:
-                if file.tracked:
+                if file.tracked or list_untracked:
                     link_url = self.html_path_to_guide_root + self.guide.generator_settings['Output']['Output File'].format(file_name=file.path)
                     link_html = self.html_templates['link'].format(link_text=file.section.title, link_url=link_url)
                     items.append(link_html)
 
             for folder in root_folder.folders:
-                items.append(self._create_table_of_contents(folder, depth=depth-1))
+                if depth is None:
+                    items.append(self._create_table_of_contents(folder))
+                else:
+                    items.append(self._create_table_of_contents(folder, depth=depth-1))
 
             html = ''
             for item in items:
@@ -671,6 +677,11 @@ class Section:
                 return self.html_templates['table-of-contents'].format(contents=html, folder_link=folder_link_html)
         else:
             return folder_link_html
+
+
+    def add_sitemap(self, match):
+        html = self._create_table_of_contents(self.guide.structure, list_untracked=True, top_level=True)
+        return html
 
 
     def add_glossary_definition(self, match):
@@ -687,7 +698,18 @@ class Section:
         back_link = '{}.html#{}'.format(this_file_link, permalink)
         self.guide.glossary.add_item(term, definition, back_link, match, self)
 
-        return self.html_templates['glossary_definition'].format(id=permalink).strip()
+        # If the definition has at least two newlines before and after it,
+        # then use a block element. Otherwise use inline element.
+        whitespace_before = match.group('before') if match.group('before') else ''
+        whitespace_after = match.group('after') if match.group('after') else ''
+        if whitespace_before and whitespace_after:
+            tag = 'div'
+        else:
+            tag = 'span'
+
+        template = self.html_templates['glossary_definition'].strip()
+        return template.format(id=permalink, tag=tag,
+        whitespace_before=whitespace_before, whitespace_after=whitespace_after)
 
 
     def add_glossary_link(self, match):
@@ -720,7 +742,18 @@ class Section:
             link_html = ''
             content = ''
 
-        return self.html_templates['glossary_backwards_link'].format(id_html=id_html, link_html=link_html, content=content).strip()
+        # If the link has at least two newlines before and after it,
+        # then use a block element. Otherwise use inline element.
+        whitespace_before = match.group('before') if match.group('before') else ''
+        whitespace_after = match.group('after') if match.group('after') else ''
+        if whitespace_before and whitespace_after:
+            tag = 'div'
+        else:
+            tag = 'span'
+
+        template = self.html_templates['glossary_backwards_link'].strip()
+        return template.format(id_html=id_html, link_html=link_html, content=content, tag=tag, whitespace_before=whitespace_before, whitespace_after=whitespace_after)
+
 
 
     def add_glossary(self, match):

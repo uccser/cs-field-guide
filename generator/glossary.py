@@ -52,7 +52,7 @@ class GlossaryItem:
     def to_html(self):
         if self.defined:
             template = self.glossary.guide.html_templates['glossary_item']
-            link_template = self.glossary.guide.html_templates['glossary_backwards_link']
+            link_template = self.glossary.guide.html_templates['glossary_backwards_link'].strip()
             occurences_template = self.glossary.guide.html_templates['glossary_other_occurences']
             backwards_links = ''
             if len(self.other_occurences) >= 1:
@@ -60,13 +60,19 @@ class GlossaryItem:
                     link_html = " href='{}'".format(link)
                     backwards_links += '{}, '.format(link_template.format(link_html=link_html,
                                                      id_html='',
-                                                     content=text).strip())
+                                                     content=text,
+                                                     tag='span',
+                                                     whitespace_before='',
+                                                     whitespace_after=''))
                 backwards_links += 'and ' if len(self.other_occurences) > 1 else ''
                 link, text = self.other_occurences[-1]
                 link_html = " href='{}'".format(link)
                 backwards_links += link_template.format(link_html=link_html,
                                                         id_html='',
-                                                        content=text).strip()
+                                                        content=text,
+                                                        tag='span',
+                                                        whitespace_before='',
+                                                        whitespace_after='')
                 backwards_links = occurences_template.format(other_links=backwards_links)
 
             return template.format(term=self.displayed_term, term_id=self.term_id, back_permalink=self.back_permalink, definition=self.definition, other_links=backwards_links)

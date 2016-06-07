@@ -62,8 +62,19 @@ header, main, footer {
     display: block;
   }
   .anchor-link {
-    padding-top: 100px;
-    margin-top: -90px !important;
+    padding-top: 70px !important;
+    margin-top: -60px !important;
+  }
+}
+.anchor-link {
+  padding-top: 0;
+  pointer-events: none;
+  outline: none;
+  & a {
+    pointer-events: auto;
+  }
+  &-empty {
+    position: absolute;
   }
 }
 .bold > a {
@@ -95,17 +106,6 @@ ul.side-nav.fixed li a {
 }
 .section_number {
   color: $primary-color-light !important;
-}
-.anchor-link {
-  padding-top: 1rem;
-  pointer-events: none;
-  outline: none;
-  & a {
-    pointer-events: auto;
-  }
-  &-empty {
-    position: absolute;
-  }
 }
 .section-heading {
   margin-bottom: 0;
@@ -350,17 +350,58 @@ ul.panel {
   text-transform: none !important;
   margin-bottom: 1rem;
 }
-.footer-details {
-  color: rgba(255,255,255,0.8);
-  background-color: $primary-color-dark;
-  overflow: hidden;
+footer {
+  color: $off-black;
+  margin-top: 4rem;
+  .footer-first {
+    background-color: #FFF;
+    .container {
+      padding-top: 1rem;
+      border-top: 2px solid $primary-color;
+    }
+    .sponsor-logos {
+      display: flex;
+      flex-wrap: wrap;
+      a {
+        flex: 0 1 auto;
+        margin: 0 3rem 3rem 0;
+        width: 10rem;
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
+  .footer-second {
+    color: rgba(255,255,255,0.8);
+    background-color: $primary-color;
+    overflow: hidden;
+  }
+  .footer-third {
+    color: rgba(255,255,255,0.8);
+    background-color: $primary-color-dark;
+    overflow: hidden;
+    .version-number {
+      float: right !important;
+      padding-left: 1rem;
+    }
+  }
+  .row {
+    margin-bottom: 0;
+  }
 }
 body.landing-page {
   background-color: $primary-color !important;
-  padding: 2rem 1rem;
-  color: #fff;
-  footer {
+  main, footer {
     padding-left: 0 !important;
+  }
+  main {
+    color: rgba(255,255,255,0.8);
+  }
+  footer {
+    .footer-first .container {
+      border-top: 0;
+    }
   }
 }
 .video-container {
