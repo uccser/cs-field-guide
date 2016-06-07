@@ -26,7 +26,7 @@ import generator.print_media as print_media
 from scss.compiler import compile_string
 
 class Guide:
-    def __init__(self, generator_settings, guide_settings, language_code, version, html_generator, html_templates, translations, regex_list, output_type=WEB,  teacher_version_present=False):
+    def __init__(self, generator_settings, guide_settings, language_code, version, html_generator, html_templates, translations, regex_list, output_type=WEB,  teacher_version_present=False, pdf_version_present=False):
 
         # Alert user of creation process
         print('Creating CSFG - Language: {lang} - Version: {version} - Format: {output_type}'.format(lang=language_code, version=version, output_type=output_type))
@@ -45,6 +45,7 @@ class Guide:
         self.language = self.parse_language()
         self.version = version
         self.teacher_version_present = teacher_version_present
+        self.pdf_version_present = pdf_version_present
         self.output_type = output_type
         self.setup_output_path()
 
@@ -326,7 +327,14 @@ class Guide:
                 else:
                     subtitle = ''
                 page_heading = self.html_templates['website_homepage_header'].format(subtitle=subtitle)
-                body_html = self.html_templates['website_homepage_content'].format(path_to_guide_root=file.section.html_path_to_guide_root, prerelease_notice=prerelease_html)
+                if self.pdf_version_present:
+                    filename = self.generator_settings['PDF']['Output File'].strip().format(self.version.capitalize())
+                    output_path = os.path.join(self.output_folder, filename)
+                    filesize = os.path.getsize(output_path) / 1024 / 1024
+                    pdf_button = self.html_templates['website_homepage_pdf_button'].format(filesize=filesize, path_to_pdf=filename)
+                else:
+                    pdf_button = ''
+                body_html = self.html_templates['website_homepage_content'].format(path_to_guide_root=file.section.html_path_to_guide_root, prerelease_notice=prerelease_html, pdf_button=pdf_button)
             else:
                 page_heading = file.section.heading.to_html()
 
@@ -638,10 +646,10 @@ def main():
     # Create all specified CSFG
     for language in cmd_args.languages:
         for version in versions:
-            if not cmd_args.pdf_only:
-                guide = Guide(generator_settings=generator_settings, guide_settings=guide_settings, language_code=language, version=version, html_generator=html_generator, html_templates=html_templates, translations=translations, regex_list=regex_list, teacher_version_present=cmd_args.teacher_output)
             if cmd_args.include_pdf or cmd_args.pdf_only:
                 pdf_guide = Guide(generator_settings=generator_settings, guide_settings=guide_settings, language_code=language, version=version, output_type=PDF, html_generator=html_generator, html_templates=html_templates, translations=translations, regex_list=regex_list)
+            if not cmd_args.pdf_only:
+                guide = Guide(generator_settings=generator_settings, guide_settings=guide_settings, language_code=language, version=version, html_generator=html_generator, html_templates=html_templates, translations=translations, regex_list=regex_list, teacher_version_present=cmd_args.teacher_output, pdf_version_present=cmd_args.include_pdf)
 
     finish_logging()
 

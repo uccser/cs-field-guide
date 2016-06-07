@@ -145,7 +145,7 @@ ul.side-nav.fixed li a {
   color: #fff;
 }
 #page-subtitle-header {
-  background-color: $primary-color-light !important;
+  background-color: $secondary-color !important;
   h4 {
     line-height: 2rem !important;
     font-size: 1.5rem !important;
@@ -198,22 +198,6 @@ ul.side-nav.fixed li a {
 .btn-expand {
   width: 100% !important;
 }
-.btn-menu {
-  background-color: $primary-color-light;
-  color: white !important;
-  padding: 1.5rem 0.3rem;
-  margin-bottom: 1rem;
-  border-radius: 4px;
-  @include transition(.2s ease-out);
-  @extend .z-depth-1;
-  &:hover {
-    @extend .z-depth-2;
-  }
-  .btn-menu-link-text {
-    font-size: 1.8rem;
-    line-height: 115%;
-  }
-}
 .btn-interactive-whole-page-container {
   position: relative;
   width: 100%;
@@ -239,27 +223,37 @@ ul.side-nav.fixed li a {
   font-weight: 500;
   color: white;
 }
-.flex-container {
+div#homepage-buttons {
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: stretch;
-  @media #{$medium-and-down} {
-    flex-direction: column;
-  }
-  @media #{$large-and-up} {
-    flex-direction: row;
-  }
-}
-.flex-item {
-  flex-grow: 0;
-  flex-shrink: 1;
-  flex-basis: auto;
-  @media #{$medium-and-down} {
+  .btn-menu {
+    flex: 0 1 auto;
     width: 100%;
+    @media #{$medium-and-up} {
+      width: 49% !important;
+    }
+    text-align: center;
+    padding: 1rem 0.3rem;
+    margin-bottom: 1rem;
+    color: white !important;
+    background-color: $primary-color;
+    border-radius: 4px;
+    font-size: 1.2rem;
+    line-height: 115%;
+    @include transition(.1s ease-out);
+    @extend .z-depth-1;
+    &:hover {
+      @extend .z-depth-2;
+    }
+    .btn-menu-fade {
+      font-size: 1rem;
+      opacity: 0.5;
+    }
   }
-  @media #{$large-and-up} {
-    width: 32%;
+  .btn-menu-light {
+    background-color: $primary-color-light !important;
   }
 }
 .glossary-anchor-link:target,
@@ -267,7 +261,6 @@ ul.side-nav.fixed li a {
   background-color: color("deep-orange", "lighten-3");
   background-clip: content-box;
 }
-
 // Panels
 @mixin panel-color($class-name, $color) {
   .#{$class-name} .collapsible-header {
