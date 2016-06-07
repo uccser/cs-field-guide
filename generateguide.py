@@ -361,7 +361,8 @@ class Guide:
                        'version': self.version,
                        'version_number': version_number,
                        'prerelease_notice': prerelease_html,
-                       'version_link_html': version_link_html
+                       'version_link_html': version_link_html,
+                       'contributors_path': path_to_guide_root + 'further-information/contributors.html'
                       }
             write_html_file(self.html_generator, output_folder, file.filename, section_template, context)
 
@@ -373,10 +374,17 @@ class Guide:
         # Create output folder
         os.makedirs(self.output_folder, exist_ok=True)
 
-        subtitle = '<p class="print-subtitle">Print Edition</p>'
         if self.version == 'teacher':
             subtitle += '\n<p class="print-second-subtitle">Teacher Version</p>'
-        self.pdf_html += self.html_templates['print_title_page'].format(subtitle=subtitle)
+        else:
+            subtitle = ''
+        self.pdf_html += self.html_templates['print_title_page'].format(subtitle=subtitle, version_number=self.generator_settings['General']['Version Number'])
+        context = {
+            'path_to_guide_root': '',
+            'version_number': self.generator_settings['General']['Version Number'],
+            'contributors_path': '#further-information-contributors'
+            }
+        self.pdf_html += self.html_generator.render_template( 'website_footer', context)
 
 
     def add_to_pdf_html(self, file):
