@@ -472,16 +472,19 @@ class Section:
         text = parse_argument('text', arguments)
 
         if filename:
-            self.required_files['File'].add(filename)
-            output_path = os.path.join(self.html_path_to_guide_root, self.guide.generator_settings['Output']['File'], filename)
-
             if match.group('text'):
                 text = match.group('text')
             else:
                 text = filename
-
-            button_text = self.html_templates['button-download-text'].format(text=text)
-            html = self.html_templates['button'].format(link=output_path, text=button_text)
+            file_path = os.path.join(self.guide.generator_settings['Output']['File'], filename)
+            if self.guide.output_type == WEB:
+                self.required_files['File'].add(filename)
+                output_path = os.path.join(self.html_path_to_guide_root, file_path)
+                button_text = self.html_templates['button-download-text'].format(text=text)
+                html = self.html_templates['button'].format(link=output_path, text=button_text)
+            elif self.guide.output_type == PDF:
+                url = os.path.join(self.guide.generator_settings['General']['Domain'], self.guide.language_code, file_path)
+                html = self.create_link_to_online_resource(text, url)
         else:
             self.regex_functions['file download button'].log("File filename argument not provided", self, match.group(0))
         return html if html else ''
@@ -495,6 +498,7 @@ class Section:
 
         if link and text:
             html = self.html_templates['button'].format(link=link, text=text)
+            html += self.create_link_to_online_resource('link', link)
         else:
             self.regex_functions['link button'].log("Button parameters not valid", self, match.group(0))
         return html if html else ''
