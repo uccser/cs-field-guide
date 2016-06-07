@@ -87,6 +87,7 @@ ul.side-nav.fixed li a {
   line-height: 44px;
   height: inherit !important;
   position: relative;
+  margin-left: 0;
 }
 .dropdown-menu-arrow {
   position: relative;
@@ -129,14 +130,13 @@ ul.side-nav.fixed li a {
   z-index: 997 !important;
 }
 .side-nav li {
-    &:hover:not(.no-padding):not(.no-highlight),
-    &:active:not(.no-padding):not(.no-highlight) {
+    &:hover:not(.no-highlight),
+    &:active:not(.no-highlight) {
       background-color: #ddd;
     }
 }
 .nav-subtitle {
   padding-top: 1rem !important;
-  padding-left: 30px !important;
 }
 .page-title-header {
   background-color: $primary-color !important;
@@ -162,14 +162,14 @@ ul.side-nav.fixed li a {
   color: $primary-color-light !important;
 }
 #logo-container {
+  padding-right: 0;
   color: $primary-color !important;
   .title {
-    font-size: 2rem;
+    font-size: 1.2rem;
     font-weight: 500;
   }
   .subtitle {
     line-height: 1.1rem;
-    padding-bottom: 1rem;
   }
 }
 // Based off Materialize flow-text rules
