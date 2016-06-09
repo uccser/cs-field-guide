@@ -2,6 +2,8 @@
 
 This documentation page provides information about the HTML generator used to create the Computer Science Field Guide.
 
+**Note:** The documentation for the generation script is quite light currently as the generation system is being extracted from this repository into its own Python package. We plan on creating full documentation and unit tests for this package, while refactoring and reorganising the code base.
+
 ## Key terms
 
 The following terms are useful to understand when reading this document.
