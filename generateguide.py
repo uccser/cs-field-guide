@@ -366,6 +366,19 @@ class Guide:
                       }
             write_html_file(self.html_generator, output_folder, file.filename, section_template, context)
 
+    def convert_to_print_link(self, path, is_anchor=False):
+        """Converts a path used for WEB media to a single string (for either anchor
+        or link) for use in PDF media."""
+        path = path.replace('/', '-').replace('#', '')
+        if path.endswith('.html'):
+            path = path[:-5]
+        else:
+            path = path.replace('.html', '-')
+        if is_anchor:
+            path = '#' + path
+        return path
+
+
 
     def setup_pdf_output(self):
         """Preliminary setup for output, called before pdf file is written
@@ -394,7 +407,7 @@ class Guide:
             # Add page heading
             self.pdf_html += file.section.heading.to_html()
             # Add page id link
-            self.pdf_html += self.html_templates['link'].format(link_url=print_media.convert_to_print_link(file.path), link_text='')
+            self.pdf_html += self.html_templates['link'].format(link_url=self.convert_to_print_link(file.path), link_text='')
             # Add page content
             for section_content in file.section.html_content:
                 self.pdf_html += section_content

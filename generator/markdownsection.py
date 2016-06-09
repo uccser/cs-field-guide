@@ -152,7 +152,7 @@ class Section:
             elif self.guide.output_type == PDF and link_url.startswith(interactive_path) or link_url.startswith(file_path):
                 link_url = os.path.join(self.guide.generator_settings['General']['Domain'], self.guide.language_code, link_url)
             elif self.guide.output_type == PDF:
-                link_url = '#' + print_media.convert_to_print_link(link_url)
+                link_url = '#' + self.guide.convert_to_print_link(link_url)
 
             if not link_url.startswith(external_link_prefixes) and not link_url.startswith('#'):
                 link_url = os.path.join(self.html_path_to_guide_root, link_url)
@@ -705,7 +705,7 @@ class Section:
         if self.guide.output_type == WEB:
             folder_path = os.path.join(self.html_path_to_guide_root, root_folder.path, 'index.html')
         elif self.guide.output_type == PDF:
-            folder_path = print_media.convert_to_print_link(os.path.join(root_folder.path, 'index.html'), True)
+            folder_path = self.guide.convert_to_print_link(os.path.join(root_folder.path, 'index.html'), True)
         folder_link_html = self.html_templates['link'].format(link_text=root_folder.title, link_url=folder_path)
 
         if depth is None or depth > 0:
@@ -715,7 +715,7 @@ class Section:
                     if self.guide.output_type == WEB:
                         link_url = self.html_path_to_guide_root + self.guide.generator_settings['Output']['Output File'].format(file_name=file.path)
                     elif self.guide.output_type == PDF:
-                        link_url = print_media.convert_to_print_link(file.path, True)
+                        link_url = self.guide.convert_to_print_link(file.path, True)
                     link_html = self.html_templates['link'].format(link_text=file.section.title, link_url=link_url)
                     items.append(link_html)
 
