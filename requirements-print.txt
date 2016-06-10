@@ -1,0 +1,2 @@
+WeasyPrint>=0.28    # Used for converting HTML to PDF
+requests>=2.10.0    # Used for retrieving images from internet

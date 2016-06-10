@@ -1,6 +1,7 @@
 import os.path
 import logging
 import generator.systemfunctions as systemfunctions
+from generator.systemconstants import *
 
 GLOSSARY_PATH_TO_ROOT = '..'
 
@@ -34,6 +35,9 @@ class Glossary:
             glossary_item = GlossaryItem(self, term, defined=False)
             self.items[term_id] = glossary_item
         self.items[term_id].add_back_link(back_permalink, text)
+
+    def set_glossary_depth_for_print_html(self, depth):
+        self.glossary_depth = depth
 
 
 class GlossaryItem:
@@ -75,7 +79,16 @@ class GlossaryItem:
                                                         whitespace_after='')
                 backwards_links = occurences_template.format(other_links=backwards_links)
 
-            return template.format(term=self.displayed_term, term_id=self.term_id, back_permalink=self.back_permalink, definition=self.definition, other_links=backwards_links)
+            if self.glossary.guide.output_type == WEB:
+                heading_level = 3
+                extra_classes = ''
+                term_id=self.term_id
+            elif self.glossary.guide.output_type == PDF:
+                heading_level = self.glossary.glossary_depth + 3
+                extra_classes = ' print-heading-3'
+                term_id= 'further-information-glossary-' + self.term_id
+
+            return template.format(term=self.displayed_term, term_id=term_id, back_permalink=self.back_permalink, definition=self.definition, other_links=backwards_links, heading_level=heading_level, extra_classes=extra_classes)
         else:
             logging.error("No glossary definition of {} found".format(self.displayed_term))
             return ''

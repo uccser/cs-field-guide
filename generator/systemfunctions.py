@@ -53,6 +53,10 @@ def command_line_args():
     argsparser.add_argument('--pdf', '-p',
                             dest='include_pdf',
                             action='store_true',
-                            help='Include generation of pdf version of the CSFG')
+                            help='Include generation of PDF version of the CSFG')
+    argsparser.add_argument('--pdf-only', '-q',
+                            dest='pdf_only',
+                            action='store_true',
+                            help='Only generate PDF version of the CSFG')
 
     return argsparser.parse_args()
