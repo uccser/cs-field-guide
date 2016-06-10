@@ -17,6 +17,7 @@ script:
 # Stop email notifications but post to Slack channel
 notifications:
   email: false
-  slack: deptfunstuff:abJKvzApk5SKtcEyAgtswXAv
+  slack:
+    rooms: deptfunstuff:abJKvzApk5SKtcEyAgtswXAv
     on_success: change
     on_failure: change
