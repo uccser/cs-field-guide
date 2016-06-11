@@ -1,4 +1,5 @@
 var lempilZivSS = {};
+this.slidingWindow = 4000
 
 /*testString = "abcxxxxxxabcxxxxxxxabcd"
 $(document).ready(function(){
@@ -19,7 +20,12 @@ window.onload = function() {
 
 				reader.onload = function(e) {
 					testText.innerHTML = reader.result;
-					lzssEncode(reader.result);
+					timeStart = performance.now();
+					lzssEncode(reader.result, slidingWindow);
+					timeEnd = performance.now();
+					console.log("Call to lzssEncode with .txt file with length " + reader.result.length + " took " + (timeEnd - timeStart) + " milliseconds.")
+
+
 				}
 
 				reader.readAsText(file);
@@ -49,25 +55,25 @@ function lzssEncode(stringToEncode, slidingWindowLength) {
 	//only need to start at the third character, compression will only start then
 
 
-	console.log("string to decode is: " + stringToEncode);
+	//console.log("string to decode is: " + stringToEncode);
 	for (var stringIndex = 2; stringIndex < stringToEncode.length;) {
-		console.log("currently encoding character " + stringToEncode[stringIndex] + ", index " + stringIndex);
+		//console.log("currently encoding character " + stringToEncode[stringIndex] + ", index " + stringIndex);
 		currentReadString = stringToEncode[stringIndex]
 		currentMatchString = stringToEncode[stringIndex - 1]
 
 		longestMatch = "";
 		indexOfLongestMatchStart = -1;
 
-		//stop looking back when we either hit the start of the string or 
+		//stop looking back when we either hit the start of the string or we're at edge of sliding window
 		for (matchIndex = stringIndex - 1; (((matchIndex >= 0) && ((stringIndex - matchIndex) < slidingWindowLength))); matchIndex--) {
-			console.log("gone back " + String(stringIndex - matchIndex) + " characters");
+			//console.log("gone back " + String(stringIndex - matchIndex) + " characters");
 			howManyForward = 1;
 			currentReadString = stringToEncode.slice(stringIndex, (stringIndex + 1))
 			currentMatchString = stringToEncode.slice(matchIndex, (matchIndex + 1))
-			console.log("	currently at position " + matchIndex +", currentReadString is " + currentReadString + ", currentMatchString is " + currentMatchString);
+			//console.log("	currently at position " + matchIndex +", currentReadString is " + currentReadString + ", currentMatchString is " + currentMatchString);
 
 			while (currentReadString === currentMatchString) {
-				console.log("		currentReadString " + currentReadString + " and currentMatchString " + currentMatchString + " matched! howManyForward is now: " + howManyForward);
+				//console.log("		currentReadString " + currentReadString + " and currentMatchString " + currentMatchString + " matched! howManyForward is now: " + howManyForward);
 
 
 				if (currentMatchString.length > longestMatch.length) {
@@ -86,22 +92,22 @@ function lzssEncode(stringToEncode, slidingWindowLength) {
 			}
 		}
 		//if nothing to encode
-		console.log("matchIndex is " + matchIndex);
+		//console.log("matchIndex is " + matchIndex);
 		if ((indexOfLongestMatchStart == -1) || (longestMatch.length < 3)) {
-			console.log("No match found, not encoding");
+			//console.log("No match found, not encoding");
 			stringToReturn += stringToEncode[stringIndex];
 			stringIndex++
 
 		} else { // if something to encode, add <stepsBack, noCharacters> pair and skip forward that many characters in the string to encode
-			console.log("character " + stringToEncode[stringIndex] + ", index " + stringIndex + " encoded. longestMatch is " + longestMatch);
-			console.log("encode next " + longestMatch.length + " characters starting from " + indexOfLongestMatchStart);
-			console.log("stringIndex is " + stringIndex + " and matchIndex is " + matchIndex);
+			//console.log("character " + stringToEncode[stringIndex] + ", index " + stringIndex + " encoded. longestMatch is " + longestMatch);
+			//console.log("encode next " + longestMatch.length + " characters starting from " + indexOfLongestMatchStart);
+			//console.log("stringIndex is " + stringIndex + " and matchIndex is " + matchIndex);
 			stringToReturn += ("<" + ((stringIndex - indexOfLongestMatchStart)) + "," + longestMatch.length + ">");
 			stringIndex += (longestMatch.length);
 
 		}
 
-		console.log("");
+		//console.log("");
 		}
 
 	$('#testText').html(stringToEncode);
