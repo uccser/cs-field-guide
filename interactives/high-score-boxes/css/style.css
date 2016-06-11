@@ -2,23 +2,15 @@
 body {
 }
 
-/* covering boxes */
 div.box {
     width: 100px;
     height: 100px;
-    /*border: 10px;*/
-    /*float: left;*/
-    /*top: 2rem;
-    left: 2rem;
-    right: 2rem;
-    bottom: 2rem;*/
-    /*border-style: solid;*/
-    /*border-color: #ff0000 #0000ff;*/
+
     position: absolute;
     background-color: white;
     z-index: 3;
     background-size: contain;
-    /*padding: 50px, 50px, 50px, 50px;*/
+
 
 }
 
@@ -30,24 +22,20 @@ div.intHoldingDiv {
 	vertical-align: middle;
 	line-height: 100px; 
 
-	/*float: left;*/
+
 	display: block;
 	position: relative; 
-	z-index: 2; /*IF less than div.box THEN THIS DIV IS BEHIND THE OTHER ONE! */
-
+	z-index: 2; 
 	font-size: 1.5rem;
 	font-weight: bold;
-	/*padding: 50px, 50px, 50px, 50px;*/
 
 }
 
-/* holds the box and the intHoldingDiv */
 div.boxContainer {
 	width: 100px;
 	height: 100px;
 	float: left;
 	position: relative;
-	/*padding: 50px, 50px, 50px, 50px;*/
     margin-top: 40px;
     margin-bottom: 40px;
     margin-right: 20px;
@@ -56,4 +44,6 @@ div.boxContainer {
 
 #restartButton {
 	display: none;
+    padding: 50px, 50px, 50px, 50px;
+
 }

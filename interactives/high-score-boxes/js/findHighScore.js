@@ -19,7 +19,7 @@ $(document).ready(function(){
 		secondsTaken = 0;
 		gameStarted = false;
 
-		if (typeof variable !== 'undefined') {
+		if (typeof timerVar !== 'undefined') {
 			clearTimeout(timerVar);
 		}	
 		
