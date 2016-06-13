@@ -7,28 +7,28 @@ $(document).ready(function () {
         var y = getYValue();
 
         if (x && button_type == 'factorial') {
-            updateResult(factorial(x));
+            updateResult(factorial(x), true);
         } else if (x && y) {
             if (button_type == 'addition') {
-                updateResult(x.add(y).toString());
+                updateResult(x.add(y).toString(), true);
             }
             else if (button_type == 'subtraction') {
-                updateResult(x.minus(y).toString());
+                updateResult(x.minus(y).toString(), true);
             }
             else if (button_type == 'multiply') {
-                updateResult(x.times(y).toString());
+                updateResult(x.times(y).toString(), true);
             }
             else if (button_type == 'division') {
-                updateResult(x.div(y).toString());
+                updateResult(x.div(y).toString(), true);
             }
             else if (button_type == 'power') {
                 var power = parseInt(document.getElementById('interactive-big-number-calculator-y').value.replace(/[\,\s]/g, ""))
-                updateResult(x.pow(power).toFixed(0));
+                updateResult(x.pow(power).toFixed(0), true);
             }
         } else if (x === undefined) {
-            updateResult('Error! Your X value is not a valid number.');
+            updateResult('Error! Your X value is not a valid number.', false);
         } else if (y === undefined) {
-            updateResult('Error! Your Y value is not a valid number.');
+            updateResult('Error! Your Y value is not a valid number.', false);
         }
 
     });
@@ -76,6 +76,12 @@ function getYValue() {
 };
 
 
-function updateResult(string) {
-    $('#interactive-big-number-calculator-result').val(string).trigger('autoresize');
+function updateResult(string, is_success) {
+    var $result = $('#interactive-big-number-calculator-result');
+    $result.val(string).trigger('autoresize');
+    if (is_success == true) {
+        $result.removeClass('error');
+    } else {
+        $result.addClass('error');
+    }
 }

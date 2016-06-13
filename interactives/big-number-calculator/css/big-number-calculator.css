@@ -7,8 +7,13 @@
 #interactive-big-number-calculator textarea {
   border: 1px solid #9e9e9e;
   font-family: monospace;
-  padding: 0;
+  padding: 0.1em 0.3em;
   margin: 0;
+}
+#interactive-big-number-calculator textarea#interactive-big-number-calculator-result.error {
+  color: red;
+  font-weight: bold;
+  font-family: sans-serif;
 }
 #interactive-big-number-calculator textarea.materialize-textarea:focus:not([readonly]) {
   box-shadow: none !important;
