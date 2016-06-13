@@ -350,12 +350,6 @@ One of the simplest statuses for a device is on or off, which is usually a colou
 
 There are many tasks that users ask computers to do that require some time including copying documents, downloading files, and loading video games. In this situation, one of the most common ways to keep a user informed of the task is the progress bar.
 
-{comment}
-<div class="progress progress-striped active"><div class="progress-bar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 85%"><span class="sr-only">85% Complete</span></div></div>
-
-TODO: James is going to look at this eventually.
-{comment end}
-
 {image filename="windows-busy-cursor-animation.gif" alt="A Windows busy cursor" wrap="right"}
 {image filename="apple-busy-cursor-animation.gif" alt="An Apple busy cursor" wrap="right" remove-preceeding-line-break="true"}
 
