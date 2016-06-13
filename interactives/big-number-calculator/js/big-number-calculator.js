@@ -7,7 +7,7 @@ $(document).ready(function () {
         var y = getYValue();
 
         if (x && button_type == 'factorial') {
-            updateResult(factorial(x), true);
+            factorial(x);
         } else if (x && y) {
             if (button_type == 'addition') {
                 updateResult(x.add(y).toString(), true);
@@ -43,12 +43,15 @@ $(document).ready(function () {
 
 
 function factorial(value) {
-    var total = new Big(value);
-    for (var i = value - 1; i > 0; i--) {
-        total = total.times(i);
-        console.log(i);
+    if (value < 1800){
+        var total = new Big(value);
+        for (var i = value - 1; i > 0; i--) {
+            total = total.times(i);
+        }
+        updateResult(total.toString(), true);
+    } else {
+        updateResult("The result of this factorial will be massive, over 5000 digits long! We won't try calculating this number as it's so big!", false);
     }
-    return total.toString();
 };
 
 

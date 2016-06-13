@@ -9,6 +9,7 @@
   font-family: monospace;
   padding: 0.1em 0.3em;
   margin: 0;
+  font-size: 1.2em;
 }
 #interactive-big-number-calculator textarea#interactive-big-number-calculator-result.error {
   color: red;
