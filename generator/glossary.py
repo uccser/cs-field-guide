@@ -67,7 +67,8 @@ class GlossaryItem:
                                                      content=text,
                                                      tag='span',
                                                      whitespace_before='',
-                                                     whitespace_after=''))
+                                                     whitespace_after='',
+                                                     extra_classes=''))
                 backwards_links += 'and ' if len(self.other_occurences) > 1 else ''
                 link, text = self.other_occurences[-1]
                 link_html = " href='{}'".format(link)
@@ -76,7 +77,8 @@ class GlossaryItem:
                                                         content=text,
                                                         tag='span',
                                                         whitespace_before='',
-                                                        whitespace_after='')
+                                                        whitespace_after='',
+                                                        extra_classes='')
                 backwards_links = occurences_template.format(other_links=backwards_links)
 
             if self.glossary.guide.output_type == WEB:

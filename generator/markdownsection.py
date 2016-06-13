@@ -184,6 +184,14 @@ class Section:
             # Panel should be ignored
             else:
                 html = ''
+            # Check for tags within panel that could cause dead links within student version
+            if panel_type in teacher_only_panels:
+                content = match.group('content')
+                for line in content.split('\n'):
+                    if 'glossary-definition' in line:
+                        self.regex_functions['panel'].log('This teacher only panel contains a glossary definition. The definition must be moved outside the teacher only section to function correctly.', self, match.group(0).split('\n')[0])
+                    if 'glossary-link-back-reference' in line:
+                        self.regex_functions['panel'].log('This teacher only panel contains a glossary link with a back reference. We currently don\'t support back references within teacher only panels, please remove the reference.', self, match.group(0).split('\n')[0])
         else:
             self.regex_functions['panel'].log("Panel type argument missing", self, match.group(0))
             html = ''
@@ -795,10 +803,12 @@ class Section:
             elif self.guide.output_type == PDF:
                 back_link = '#' + back_link_id
             id_html = ' id="{}"'.format(back_link_id)
+            extra_classes = ' glossary-link-back-reference'
             # Add back reference link to glossary item
             glossary.add_back_link(term, back_link, reference_text, match, self)
         else:
             id_html = ''
+            extra_classes = ''
 
         if content:
             # Create link to term in glossary
@@ -822,7 +832,7 @@ class Section:
             tag = 'span'
 
         template = self.html_templates['glossary_backwards_link'].strip()
-        return template.format(id_html=id_html, link_html=link_html, content=content, tag=tag, whitespace_before=whitespace_before, whitespace_after=whitespace_after)
+        return template.format(id_html=id_html, link_html=link_html, content=content, tag=tag, whitespace_before=whitespace_before, whitespace_after=whitespace_after, extra_classes=extra_classes)
 
 
 
@@ -904,6 +914,9 @@ class Section:
                     regex.errors[0].log_message(i + 1)
                     regex.errors.pop(0)
                 i += 1
+            while regex.errors:
+                regex.errors[0].log_message('Unknown')
+                regex.errors.pop(0)
 
 
     def create_regex_functions(self):
