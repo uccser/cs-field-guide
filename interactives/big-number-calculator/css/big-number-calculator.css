@@ -11,6 +11,10 @@
   margin: 0;
   font-size: 1.2em;
 }
+#interactive-big-number-calculator textarea#interactive-big-number-calculator-result {
+  padding: 1.2em 0.3em;
+  transition: none;
+}
 #interactive-big-number-calculator textarea#interactive-big-number-calculator-result.error {
   color: red;
   font-weight: bold;

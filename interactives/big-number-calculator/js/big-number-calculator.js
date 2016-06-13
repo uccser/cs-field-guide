@@ -10,20 +10,31 @@ $(document).ready(function () {
             factorial(x);
         } else if (x && y) {
             if (button_type == 'addition') {
-                updateResult(x.add(y).toString(), true);
+                updateResult(x.add(y).toFixed(), true);
             }
             else if (button_type == 'subtraction') {
-                updateResult(x.minus(y).toString(), true);
+                updateResult(x.minus(y).toFixed(), true);
             }
             else if (button_type == 'multiply') {
-                updateResult(x.times(y).toString(), true);
+                if (x.toString().length > 5000 || y.toString().length > 5000) {
+                    updateResult("The result of this calculation will be massive! We won't try calculating this number as it's so big!", false);
+                } else {
+                    updateResult(x.times(y).toFixed(), true);
+                }
             }
             else if (button_type == 'division') {
-                updateResult(x.div(y).toString(), true);
+                try {
+                    updateResult(x.div(y).toFixed(), true);
+                } catch (exception) {
+                    updateResult(exception, false);
+                }
             }
             else if (button_type == 'power') {
-                var power = parseInt(document.getElementById('interactive-big-number-calculator-y').value.replace(/[\,\s]/g, ""))
-                updateResult(x.pow(power).toFixed(0), true);
+                try {
+                    updateResult(x.pow(y).toFixed(0), true);
+                } catch (exception) {
+                    updateResult("The result of this calculation will be massive! We won't try calculating this number as it's so big!", false);
+                }
             }
         } else if (x === undefined) {
             updateResult('Error! Your X value is not a valid number.', false);
@@ -81,10 +92,11 @@ function getYValue() {
 
 function updateResult(string, is_success) {
     var $result = $('#interactive-big-number-calculator-result');
-    $result.val(string).trigger('autoresize');
+    $result.val(string);
     if (is_success == true) {
         $result.removeClass('error');
     } else {
         $result.addClass('error');
     }
+    $result.trigger('autoresize');
 }
