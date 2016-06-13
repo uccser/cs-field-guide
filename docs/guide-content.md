@@ -416,6 +416,7 @@ The following text can be used to include images into the project:
 **Parameters:**
 - `filename` - The image's file name, stored in the images folder.
 - `wrap` (optional) - Either set to `left` or `right` for aligning the image on the page, rather than centered.
+- `remove-preceeding-line-break` (optional - requires `wrap` parameter) - If `true`, removes the line break before the wrapped image. This allows images to be wrapped side by side. Defaults to `false`.
 - `alt` (optional) - Description text of the image used when an image is not displayed, or can be read when using a screen reader (for those with reading difficulties).
 - `hover-text` (optional) - Additional text to be displayed when the user hovers their cursor over the image (note this won't appear on touch devices so use sparingly).
 - `caption` (optional) - Lists the given text as a caption under the image. Does not appear under images within an `image-set`.
