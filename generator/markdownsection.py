@@ -507,7 +507,12 @@ class Section:
     def process_code_block(self, match):
         """Create a button for linking to a page"""
         language = match.group('language')
+        code = match.group('code')
         no_highlighting = True
+        max_line_length = int(self.guide.generator_settings['PDF']['Code Line Length'])
+        for line_number, line in enumerate(code.split('\n')):
+            if len(line) >= max_line_length:
+                self.regex_functions['code block'].log("The line within the code block is longer than {} characters. This may cause text to wrap on PDF output. Please shorten the line.".format(max_line_length), self, line)
         # If language set
         if language:
             try:
@@ -516,7 +521,7 @@ class Section:
                 self.regex_functions['code block'].log("The language {} is not supported by Pygments".format(language), self, match.group(0))
             else:
                 formatter = HtmlFormatter(cssclass='codehilite')
-                html = highlight(match.group('code'), lexer, formatter)
+                html = highlight(code, lexer, formatter)
                 no_highlighting = False
         # If no language set or not lexer founds
         if no_highlighting:
