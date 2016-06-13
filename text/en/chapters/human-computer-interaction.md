@@ -356,8 +356,8 @@ There are many tasks that users ask computers to do that require some time inclu
 TODO: James is going to look at this eventually.
 {comment end}
 
-{image filename="windows-busy-cursor-animation.gif" alt="A Windows busy cursor"}
-{image filename="apple-busy-cursor-animation.gif" alt="An Apple busy cursor"}
+{image filename="windows-busy-cursor-animation.gif" alt="A Windows busy cursor" wrap="right"}
+{image filename="apple-busy-cursor-animation.gif" alt="An Apple busy cursor" wrap="right" remove-preceeding-line-break="true"}
 
 However, progress indicators aren't always helpful; the spinning wheels above don't indicate if you are going to have to wait a few seconds or a few minutes (or even hours) for the task to complete, which can be frustrating.
 

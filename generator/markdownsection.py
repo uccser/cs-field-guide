@@ -316,7 +316,13 @@ class Section:
             image_html += self.html_templates['image-caption'].format(html=source_html)
 
         if wrap:
-            html = self.html_templates['image-wrapped'].format(html=image_html, wrap_direction=wrap)
+            # Parse preceding newline argument
+            remove_preceeding_line_break = parse_argument('remove-preceeding-line-break', arguments)
+            if remove_preceeding_line_break == 'true':
+                clearfix = ''
+            else:
+                clearfix = self.html_templates['clearfix']
+            html = self.html_templates['image-wrapped'].format(html=image_html, wrap_direction=wrap, clearfix=clearfix)
         else:
             html = self.center_html(image_html, 8)
 
