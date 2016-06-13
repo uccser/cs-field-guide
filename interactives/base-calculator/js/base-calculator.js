@@ -71,11 +71,11 @@ function createCalculatorInterface(settings) {
 
     var value = Math.pow(settings.BASE, settings.DIGITS + settings.OFFSET - 1);
 
-    for (var digit = settings.DIGITS; digit > 0; digit--) {
+    for (var digit = settings.DIGITS - 1; digit >= 0; digit--) {
         var columnElement = createCalculatorColumnContainer();
 
         if (settings.SHOW_POWER) {
-            columnElement.appendChild(createPowerElement(settings, digit + settings.OFFSET - 1));
+            columnElement.appendChild(createPowerElement(settings, digit + settings.OFFSET));
         }
         if (settings.SHOW_MULTIPLICATION) {
             columnElement.appendChild(createMultiplicationElement(value));

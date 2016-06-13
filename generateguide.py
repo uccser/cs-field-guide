@@ -22,10 +22,11 @@ from generator.markdownsection import Section
 from generator.websitegenerator import WebsiteGenerator
 from generator.glossary import Glossary
 from generator.files import setup_required_files
+import generator.print_media as print_media
 from scss.compiler import compile_string
 
 class Guide:
-    def __init__(self, generator_settings, guide_settings, language_code, version, html_generator, html_templates, translations, regex_list, output_type=WEB,  teacher_version_present=False):
+    def __init__(self, generator_settings, guide_settings, language_code, version, html_generator, html_templates, translations, regex_list, output_type=WEB,  teacher_version_present=False, pdf_version_present=False):
 
         # Alert user of creation process
         print('Creating CSFG - Language: {lang} - Version: {version} - Format: {output_type}'.format(lang=language_code, version=version, output_type=output_type))
@@ -44,6 +45,7 @@ class Guide:
         self.language = self.parse_language()
         self.version = version
         self.teacher_version_present = teacher_version_present
+        self.pdf_version_present = pdf_version_present
         self.output_type = output_type
         self.setup_output_path()
 
@@ -57,6 +59,8 @@ class Guide:
         # Dictionary of sets for images, interactives, and other_files
         self.required_files = setup_required_files(self)
 
+        if self.output_type == PDF:
+            self.print_renderer = print_media.PrintRenderer(self.generator_settings)
 
         # Process sections
         self.traverse_files(self.structure, getattr(self, "process_section"))
@@ -66,9 +70,11 @@ class Guide:
             self.traverse_files(self.structure, getattr(self, "write_html_file"))
             self.copy_required_files()
         elif self.output_type == PDF:
+            self.print_settings = {}
             self.pdf_html = ''
-            self.traverse_files(self.structure, getattr(self, "add_to_pdf_html"))
-            self.generate_pdf() #TODO: implement generate_pdf()
+            self.setup_pdf_output()
+            self.traverse_files(self.structure, getattr(self, "add_to_pdf_html"), True)
+            self.generate_pdf()
 
 
     def setup_output_path(self):
@@ -122,13 +128,23 @@ class Guide:
         return root_folder
 
 
-    def traverse_files(self, start_node, process_file_function):
+    def traverse_files(self, start_node, process_file_function, index_page_first=False):
         """DFS of structure tree, visits file nodes, and calls given function
         on each file node found"""
-        for folder in start_node.folders:
-            self.traverse_files(folder, process_file_function)
-        for file in start_node.files:
-            process_file_function(file)
+        if index_page_first:
+            for file in start_node.files:
+                if file.filename == 'index':
+                    process_file_function(file)
+            for folder in start_node.folders:
+                self.traverse_files(folder, process_file_function, index_page_first)
+            for file in start_node.files:
+                if not file.filename == 'index':
+                    process_file_function(file)
+        else:
+            for folder in start_node.folders:
+                self.traverse_files(folder, process_file_function, index_page_first)
+            for file in start_node.files:
+                process_file_function(file)
 
 
     def read_content(self, file_node):
@@ -171,9 +187,7 @@ class Guide:
 
 
     def compile_scss_file(self, file_name):
-        """Read given SCSS file, and compile to CSS,
-        store in file object, and add to required CSS files
-        """
+        """Read given SCSS file, and compile to CSS"""
         scss_source_folder = self.generator_settings['Source']['SCSS']
         scss_source_file = os.path.join(scss_source_folder, file_name)
         try:
@@ -182,8 +196,16 @@ class Guide:
         except:
             logging.critical('Cannot find SCSS file {0}.'.format(file_name))
         else:
-            # Add version variable at start of SCSS data
-            scss_data = "$version: " + self.version + ";\n" + scss_data
+            # Add variables at start of SCSS data
+            scss_data = '$version: "{}";\n{}'.format(self.version, scss_data)
+            scss_data = '$title: "{}";\n{}'.format(self.translations['title'][self.language_code], scss_data)
+            scss_data = '$website: "{}";\n{}'.format(self.translations['website'][self.language_code], scss_data)
+            scss_data = '$version_number: "{}";\n{}'.format(self.generator_settings['General']['Version Number'], scss_data)
+            if self.output_type == WEB:
+                font_path_prefix = '..'
+            elif self.output_type == PDF:
+                font_path_prefix = 'generator'
+            scss_data = '$font-path-prefix: "{}";\n{}'.format(font_path_prefix, scss_data)
 
             # This lists all subfolders of SCSS source folder, this may cause issues
             # later, but is an effective solution for the moment
@@ -249,6 +271,7 @@ class Guide:
                     else:
                         logging.error("{file_type} {file_name} could not be found".format(file_type=file_type,file_name=file_name))
 
+
     def setup_html_output(self):
         """Preliminary setup, called before html files are written.
         -   Load website required files
@@ -279,7 +302,8 @@ class Guide:
             path_to_output_folder = output_depth * '../' + path_to_guide_root
 
             if file.section.mathjax_required:
-                file.section.add_page_script(self.html_templates['mathjax'].format(path_to_guide_root=file.section.html_path_to_guide_root, mathjax_config=self.html_templates['mathjax-config']))
+                path_to_folder = os.path.join(file.section.html_path_to_guide_root, 'js')
+                file.section.add_page_script(self.html_templates['mathjax'].format(path_to_folder=path_to_folder, mathjax_config=self.html_templates['mathjax-screen-config']))
 
             for section_content in file.section.html_content:
                 body_html += section_content
@@ -304,7 +328,14 @@ class Guide:
                 else:
                     subtitle = ''
                 page_heading = self.html_templates['website_homepage_header'].format(subtitle=subtitle)
-                body_html = self.html_templates['website_homepage_content'].format(path_to_guide_root=file.section.html_path_to_guide_root, prerelease_notice=prerelease_html)
+                if self.pdf_version_present:
+                    filename = self.generator_settings['PDF']['Output File'].strip().format(self.version.capitalize())
+                    output_path = os.path.join(self.output_folder, filename)
+                    filesize = os.path.getsize(output_path) / 1024 / 1024
+                    pdf_button = self.html_templates['website_homepage_pdf_button'].format(filesize=filesize, path_to_pdf=filename)
+                else:
+                    pdf_button = ''
+                body_html = self.html_templates['website_homepage_content'].format(path_to_guide_root=file.section.html_path_to_guide_root, prerelease_notice=prerelease_html, pdf_button=pdf_button)
             else:
                 page_heading = file.section.heading.to_html()
 
@@ -330,22 +361,68 @@ class Guide:
                        'version': self.version,
                        'version_number': version_number,
                        'prerelease_notice': prerelease_html,
-                       'version_link_html': version_link_html
+                       'version_link_html': version_link_html,
+                       'contributors_path': path_to_guide_root + 'further-information/contributors.html'
                       }
             write_html_file(self.html_generator, output_folder, file.filename, section_template, context)
 
+    def convert_to_print_link(self, path, is_anchor=False):
+        """Converts a path used for WEB media to a single string (for either anchor
+        or link) for use in PDF media."""
+        path = path.replace('/', '-').replace('#', '')
+        if path.endswith('.html'):
+            path = path[:-5]
+        else:
+            path = path.replace('.html', '-')
+        if is_anchor:
+            path = '#' + path
+        return path
+
+
+
+    def setup_pdf_output(self):
+        """Preliminary setup for output, called before pdf file is written
+        - Creates output folder
+        """
+        # Create output folder
+        os.makedirs(self.output_folder, exist_ok=True)
+
+        if self.version == 'teacher':
+            subtitle = '\n<p class="print-second-subtitle">Teacher Version</p>'
+        else:
+            subtitle = ''
+        self.pdf_html += self.html_templates['print_title_page'].format(subtitle=subtitle, version_number=self.generator_settings['General']['Version Number'])
+        context = {
+            'path_to_guide_root': '',
+            'version_number': self.generator_settings['General']['Version Number'],
+            'contributors_path': '#further-information-contributors'
+            }
+        self.pdf_html += self.html_generator.render_template( 'website_footer', context)
+
 
     def add_to_pdf_html(self, file):
-        """Adds HTML contents of a give file node to guide's
-        PDF html string"""
-        if file.tracked:
+        """Adds HTML contents of a give file node to guide's PDF html string"""
+        mathjax_required = False
+        if file.tracked or (file.filename == 'index' and not file in self.structure.files):
+            # Add page heading
+            self.pdf_html += file.section.heading.to_html()
+            # Add page id link
+            self.pdf_html += self.html_templates['link'].format(link_url=self.convert_to_print_link(file.path), link_text='')
+            # Add page content
             for section_content in file.section.html_content:
                 self.pdf_html += section_content
 
 
     def generate_pdf(self):
-        """Placeholder - pdf generation function"""
-        pass
+        """Creates a PDF file of the CSFG"""
+        from weasyprint import HTML, CSS
+        filename = self.generator_settings['PDF']['Output File'].strip().format(self.version.capitalize())
+        # Wrap print HTML within classed div
+        self.pdf_html = self.html_templates['print_html'].format(html=self.pdf_html)
+        output_path = os.path.join(self.output_folder, filename)
+        base_url = ''
+        stylesheets = [CSS(string=self.compile_scss_file('website.scss'))]
+        HTML(string=self.pdf_html, base_url=base_url).write_pdf(output_path, stylesheets=stylesheets)
 
 
 class FolderNode:
@@ -579,8 +656,9 @@ def main():
     html_templates = read_html_templates(generator_settings)
     html_generator = WebsiteGenerator(html_templates)
 
-    # Create landing page
-    create_landing_page(cmd_args.languages, html_generator, generator_settings, translations)
+    # Create landing page if website required
+    if not cmd_args.pdf_only:
+        create_landing_page(cmd_args.languages, html_generator, generator_settings, translations)
 
     # Calculate versions to create
     versions = ['student']
@@ -590,9 +668,10 @@ def main():
     # Create all specified CSFG
     for language in cmd_args.languages:
         for version in versions:
-            guide = Guide(generator_settings=generator_settings, guide_settings=guide_settings, language_code=language, version=version, html_generator=html_generator, html_templates=html_templates, translations=translations, regex_list=regex_list, teacher_version_present=cmd_args.teacher_output)
-            if cmd_args.include_pdf:
+            if cmd_args.include_pdf or cmd_args.pdf_only:
                 pdf_guide = Guide(generator_settings=generator_settings, guide_settings=guide_settings, language_code=language, version=version, output_type=PDF, html_generator=html_generator, html_templates=html_templates, translations=translations, regex_list=regex_list)
+            if not cmd_args.pdf_only:
+                guide = Guide(generator_settings=generator_settings, guide_settings=guide_settings, language_code=language, version=version, html_generator=html_generator, html_templates=html_templates, translations=translations, regex_list=regex_list, teacher_version_present=cmd_args.teacher_output, pdf_version_present=cmd_args.include_pdf)
 
     finish_logging()
 
