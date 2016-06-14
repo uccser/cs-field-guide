@@ -1,6 +1,6 @@
 # Representing Data using Bits (Binary Numbers) (2.44)
 
-This is a guide for students attempting Representing Data using Bits in digital technologies achievement standard 1.44 (AS91074). You will need to cover **two** different types of data to meet the requirements of the standard (each assessment guide only covers one).
+This is a guide for students attempting Representing Data using Bits in digital technologies achievement standard 2.44 (AS91371). You will need to cover **two** different types of data to meet the requirements of the standard (each assessment guide only covers one).
 
 {teacher}
 
@@ -16,7 +16,7 @@ In order to fully cover the standard, you will also need to have done one more p
 
 ## Overview
 
-The topic of representing data using bits has the following bullet points in achievement standard 1.44, which this guide covers. Note that there is no excellence criteria for this topic. This assessment guide only covers one of the two types of data required for achieved.
+The topic of representing data using bits has the following bullet points in achievement standard 2.44, which this guide covers. Note that there is no excellence criteria for this topic. This assessment guide only covers one of the two types of data required for achieved.
 
 **Achieved**: “describing ways in which different types of data can be represented using bits”
 
