@@ -1,0 +1,7 @@
+#interactive-trainsylvania-planner-input {
+  font-size: 1.2em;
+  width: 80%;
+}
+#interactive-trainsylvania-planner-result.error {
+  color: red;
+}
