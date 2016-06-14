@@ -31,7 +31,12 @@ $(document).ready(function () {
             }
             else if (button_type == 'power') {
                 try {
-                    updateResult(x.pow(y).toFixed(0), true);
+                    var y = parseInt(document.getElementById('interactive-big-number-calculator-y').value.replace(/[\,\s]/g, ""));
+                    if ((x.toString().length + y.toString().length) < 12) {
+                        updateResult(x.pow(y).toFixed(0), true);
+                    } else {
+                        throw false;
+                    }
                 } catch (exception) {
                     updateResult("The result of this calculation will be massive! We won't try calculating this number as it's so big!", false);
                 }
