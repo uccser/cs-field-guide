@@ -136,7 +136,7 @@ You should let students devise their own notation for this. They will soon learn
 
 Did you find a sequence of trains to get from City Mall to Suburbopolis? You can test it by typing the sequence of trains in the following interactive. For example, if you took the A-train, then the B-train, then an A-train, type in ABA.
 
-{button link="http://www.csfieldguide.org.nz/releases/1.9.9/_static/widgets/fsa-trip-planner-v4.html" text="View trip planner interactive"}
+{interactive name="trainsylvania-planner" type="in-page"}
 
 Can you find a sequence that takes you from City Mall to Suburbopolis? Can you find another sequence, perhaps a longer one? Suppose you wanted to take a really long route ... can you find a sequence of 12 hops that would get you there? 20 hops?
 
