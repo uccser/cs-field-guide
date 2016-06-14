@@ -14,15 +14,15 @@ Planner.stations = {
   'west'      : 'West Station'
 };
 Planner.station_destinations = {
-  'central'   : {'a': 'city'    ,'b': 'midway'},
-  'city'      : {'a': 'west'    ,'b': 'south'},
-  'east'      : {'a': 'west'    ,'b': 'railington'},
-  'railington': {'a': 'city'    ,'b': 'east'},
-  'midway'    : {'a': 'north'   ,'b': 'railington'},
-  'north'     : {'a': 'central' ,'b': 'suburb'},
-  'south'     : {'a': 'city'    ,'b': 'railington'},
-  'suburb'    : {'a': 'west'    ,'b': 'central'},
-  'west'      : {'a': 'east'    ,'b': 'central'}
+  'central'   : {'A': 'city'    ,'B': 'midway'},
+  'city'      : {'A': 'west'    ,'B': 'south'},
+  'east'      : {'A': 'west'    ,'B': 'railington'},
+  'railington': {'A': 'city'    ,'B': 'east'},
+  'midway'    : {'A': 'north'   ,'B': 'railington'},
+  'north'     : {'A': 'central' ,'B': 'suburb'},
+  'south'     : {'A': 'city'    ,'B': 'railington'},
+  'suburb'    : {'A': 'west'    ,'B': 'central'},
+  'west'      : {'A': 'east'    ,'B': 'central'}
 };
 Planner.station_start = 'city';
 
@@ -34,7 +34,7 @@ $(document).ready(function() {
 });
 
 function updatePlannerResult() {
-    var trains = $('#interactive-trainsylvania-planner-input').val();
+    var trains = $('#interactive-trainsylvania-planner-input').val().toUpperCase();
     var result = $('#interactive-trainsylvania-planner-result');
     result.removeClass('error');
     result.html(travelOnTrain(Planner.station_start, trains, 1));
@@ -50,7 +50,7 @@ function travelOnTrain(current_station, trains_to_ride, trip_number) {
             return travelOnTrain(current_station, trains_to_ride.substring(1), trip_number + 1);
         } else {
             $('#interactive-trainsylvania-planner-result').addClass('error');
-            return Planner.stations[current_station] + ' has no ' + train_to_ride + ' train for ride number ' + trip_number;
+            return Planner.stations[current_station] + " has no '" + train_to_ride + "' train for ride number " + trip_number;
         }
     }
 };
