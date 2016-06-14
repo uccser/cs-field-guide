@@ -1,9 +1,13 @@
+#interactive-trainsylvania {
+  overflow: hidden;
+}
 #interactive-trainsylvania-image-link {
   display: none;
 }
 #interactive-trainsylvania-image-div {
   min-height: 6rem;
   position: relative;
+  margin-bottom: 2em;
 }
 img.interactive-trainsylvania-image {
   display: none;
