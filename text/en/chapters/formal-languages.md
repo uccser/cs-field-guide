@@ -117,24 +117,12 @@ It may be a bit young for some students, but if you can sell it to them, it's a 
 
 Here's a map of a commuter train system for the town of Trainsylvania. The trouble is, it doesn't show where the the trains go --- all you know is that there are two trains from each station, the A-train and the B-train. The inhabitants of Trainsylvania don't seem to mind this --- it's quite fun choosing trains at each station, and after a while you usually find yourself arriving where you intended.
 
-{image filename="trainsylvania-map-incomplete.png" alt="An incomplete train map"}
-
-{comment}
-
-.. TCB Suggestions for station names (from Andrew): Not "Happyland"; change to "Railington" or "Enginopolis"?
-
-{comment end}
+{image filename="trainsylvania-blank.png" alt="An incomplete train map" caption="Click image to enlarge"}
 
 You can travel around Trainsylvania yourself using the following interactive. You're starting at the City Mall station, and you need to find your way to Suburbopolis.
 At each station you can choose either the A-train or the B-train --- press the button to find out where it will take you.
 But, like the residents of Trainsylvania, you'll probably want to start drawing a map of the railway, because later you might be asked to find your way somewhere else.
 If you want a template to draw on, you can [print one out from here](files/trainsylvania-blank.pdf).
-
-{comment}
-
-.. Andrew suggested a new name for Happyland: e.g. "Railington" or "Enginopolis" :-) This image also appears above as FL-trains-incomplete.jpg
-
-{comment end}
 
 {interactive name="trainsylvania" type="in-page"}
 
@@ -142,7 +130,7 @@ If you want a template to draw on, you can [print one out from here](files/train
 
 You should let students devise their own notation for this. They will soon learn (possibly the hard way) that they should record all routes with an arrow (since trains don't necessarily return by the same route), and label their arrows with A or B. The full map for the activity is below, but don't spoil the students' fun by providing it --- at least, not yet.
 
-{image filename="trainsylvania-map-complete.png" alt="Solution to the train map"}
+{image filename="trainsylvania-complete.png" alt="Solution to the train map" caption="Click image to enlarge"}
 
 {panel end}
 
