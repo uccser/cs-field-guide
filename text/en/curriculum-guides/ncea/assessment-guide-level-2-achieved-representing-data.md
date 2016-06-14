@@ -1,6 +1,6 @@
 # Achieved Guide for Data Representation (2.44) - Numbers and Text
 
-This is an achieved level guide for students attempting data representation in digital technologies achievement standard 1.44 (AS91074). It is only suitable for students who aren't aiming to get more than achieved.
+This is an achieved level guide for students attempting data representation in digital technologies achievement standard 2.44 (AS91371). It is only suitable for students who aren't aiming to get more than achieved.
 
 Note that this is the *only* guide you need to follow to satisfy the data representation requirements up to achieved. It covers two different data types - numbers and text.
 
@@ -8,7 +8,7 @@ In order to fully cover the standard, you will also need to have done projects c
 
 ## Overview
 
-The topic of Data Representation has the following achieved bullet point in achievement standard 1.44, which this guide covers.
+The topic of Data Representation has the following achieved bullet point in achievement standard 2.44, which this guide covers.
 
 **Achieved**: “describing ways in which different types of data can be represented using bits”
 
