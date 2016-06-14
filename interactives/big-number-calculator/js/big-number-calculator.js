@@ -32,7 +32,7 @@ $(document).ready(function () {
             else if (button_type == 'power') {
                 try {
                     var y = parseInt(document.getElementById('interactive-big-number-calculator-y').value.replace(/[\,\s]/g, ""));
-                    if ((x.toString().length + y.toString().length) < 12) {
+                    if ((x.toString().length + y.toString().length) < 10) {
                         updateResult(x.pow(y).toFixed(0), true);
                     } else {
                         throw false;
@@ -53,7 +53,7 @@ $(document).ready(function () {
     $('#interactive-big-number-calculator-clear').on('click', function(){
         $('#interactive-big-number-calculator-x').val('').trigger('autoresize');
         $('#interactive-big-number-calculator-y').val('').trigger('autoresize');
-        $('#interactive-big-number-calculator-result').val('').trigger('autoresize');
+        $('#interactive-big-number-calculator-result').text('');
     });
 });
 
@@ -97,11 +97,10 @@ function getYValue() {
 
 function updateResult(string, is_success) {
     var $result = $('#interactive-big-number-calculator-result');
-    $result.val(string);
+    $result.text(string);
     if (is_success == true) {
         $result.removeClass('error');
     } else {
         $result.addClass('error');
     }
-    $result.trigger('autoresize');
 }
