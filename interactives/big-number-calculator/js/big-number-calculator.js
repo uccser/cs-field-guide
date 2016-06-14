@@ -64,7 +64,7 @@ function factorial(value) {
         for (var i = value - 1; i > 0; i--) {
             total = total.times(i);
         }
-        updateResult(total.toString(), true);
+        updateResult(total.toFixed(), true);
     } else {
         updateResult("The result of this factorial will be massive, over 5000 digits long! We won't try calculating this number as it's so big!", false);
     }
