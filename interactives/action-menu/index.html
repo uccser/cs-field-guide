@@ -17,24 +17,28 @@
     <div class="row interactive center-align">
     <div class="s12 col">
     <!-- ### Start of required HTML for inline interactives ### -->
-      <a id='dropdownMenu' class='dropdown-button btn' href='#' data-activates='dropdown-available-menu-items' data-beloworigin='true'>Available Menu Items</a>
-      <ul id='dropdown-available-menu-items' class='dropdown-content'>
-        <li><a href=javascript:; onclick=onClickPizza() id="orderAPizza">Order a pizza</a>
-        <li><a href=javascript:; onclick=onClickTV() id="turnOnTV">Turn on TV</a>
-        <li><a href=javascript:; onclick=onClickNuclearAttack() id="launchNuclearAttack">Launch nuclear attack</a>
-        <li><a href=javascript:; onclick=onClickWater() id="boilWater">Boil Water</a>
+      <a id='dropdownMenu' class='dropdown-button btn' href='#' data-activates='dropdown-action-menu' data-beloworigin='true'>Action Menu</a>
+      <ul id='dropdown-action-menu' class='dropdown-content'>
+        <li><a onclick=onClickPizza() id="orderAPizza">Order a pizza</a>
+        <li><a onclick=onClickTV() id="turnOnTV">Turn on TV</a>
+        <li><a onclick=onClickNuclearAttack() id="launchNuclearAttack">Launch nuclear attack</a>
+        <li><a onclick=onClickWater() id="boilWater">Boil Water</a>
+
       </ul>
 
       <p id="confirmationText"> </p>
 
     <!-- ### End of required HTML for inline interactives ### -->
     </div>
-    </div>
+
     <!-- jQuery (necessary for Materialize) -->
     <script type="text/javascript" src="../base-files/js/third-party/jquery.js"></script>
     <!-- Materialize responsive CSS -->
     <script type="text/javascript" src="../base-files/js/third-party/materialize.min.js"></script>
     <script src="./js/actionmenu.js"></script>
+    
+    </div>
+
 
   </body>
 	</html>
