@@ -106,7 +106,12 @@ There's a more in-depth discussion on why we use binary here:
 ## Numbers
 
 {panel type="teacher-note" summary="CS Unplugged activity"}
-If you are doing a warm up exercise with the class, the CS Unplugged binary activity [http://csunplugged.org/binary-numbers](http://csunplugged.org/binary-numbers) provides scaffolding and can be used to teach concepts around binary numbers using only counting or simple addition.  In the chapter we have decided to approach this section by starting with number systems. While this may appear “scary” because of the math, most students should be quite familiar with it as it is first introduced very early in primary school in the form of recognising that numbers are made up of the “ones”, “tens”, “hundreds”, etc, and is further built on until eventually in high school they learn about the exponent notation, i.e. {math}541 = 5 \times 10^2 + 4 \times 10^1 + 1 \times 10^0{math end}. As explained in this section, binary numbers are a base 2 number system, rather than the base 10 number system we are all familiar with. The idea of number systems provides a good stepping stone into binary numbers
+If you are doing a warm up exercise with the class, the CS Unplugged binary activity [http://csunplugged.org/binary-numbers](http://csunplugged.org/binary-numbers) provides scaffolding and can be used to teach concepts around binary numbers using only counting or simple addition.
+We also have an interactive which emulates the physical binary cards here:
+
+{interactive name="binary-cards" type="whole-page" text="Binary Cards"}
+
+In the chapter we have decided to approach this section by starting with number systems. While this may appear “scary” because of the math, most students should be quite familiar with it as it is first introduced very early in primary school in the form of recognising that numbers are made up of the “ones”, “tens”, “hundreds”, etc, and is further built on until eventually in high school they learn about the exponent notation, i.e. {math}541 = 5 \times 10^2 + 4 \times 10^1 + 1 \times 10^0{math end}. As explained in this section, binary numbers are a base 2 number system, rather than the base 10 number system we are all familiar with. The idea of number systems provides a good stepping stone into binary numbers
 
 We are assuming that students already know about base 10 number systems, including the exponent notation. The initial information in this section on them is only intended to trigger recall, rather than actually teaching them the concept.
 
