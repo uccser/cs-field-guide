@@ -24,6 +24,7 @@ This project is the result of contributions from a large community of Computer S
 - Hayley van Waas
 - Hannah Taylor
 - Marcus Stenfert Kroese
+- Victor Chang
 
 ## Writers
 
