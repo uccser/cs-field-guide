@@ -101,7 +101,7 @@ another kind of formal language that can deal with more complicated forms of inp
 
 {panel type="teacher-note" summary="Klingon linguistics activity"}
 
-For a fun discussion, you could have the students look at the [Klingon Linguistics activity at CS4FN](http://www.cs4fn.org/linguistics/klingon.html). This page introduces the fundamentals of languages — words (the alphabet) and {glossary-link term="grammar" reference-text="Formal languages"}grammar{glossary-link end} (the rules of syntax). It discusses why languages are translated and how meaning can be changed by translation. It also explains why computer languages need to be translated.
+For a fun discussion, you could have the students look at the [Klingon Linguistics activity at CS4FN](http://www.cs4fn.org/linguistics/klingon.html). This page introduces the fundamentals of languages — words (the alphabet) and {glossary-link term="grammar"}grammar{glossary-link end} (the rules of syntax). It discusses why languages are translated and how meaning can be changed by translation. It also explains why computer languages need to be translated.
 
 {panel end}
 
