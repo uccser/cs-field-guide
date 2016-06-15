@@ -75,7 +75,7 @@ The following Python code is written for version 3 Python, but will also work wi
 ```python3
 print("I am going to print the first 5 multiples of 3")
 for i in range(5):
-	print(i*3)
+  print(i*3)
 ```
 
 The first line is a print statement, like those you saw earlier, which just tells the system to put the message on the screen. The second line is a *loop*, which says to repeat the lines after it 5 times. Each time it loops, the value of i changes. i.e. the first time i is 0, then 1, then 2, then 3, and finally 4. It may seem weird that it goes from 0 to 4 rather than 1 to 5, but programmers tend to like counting from 0 as it makes some things work out a bit simpler. The third line says to print the current value of i multiplied by 3 (because we want multiples of 3). Note that there is *not* double quotes around the last print statement, as they are only used when we want to print out a something literally as text. If we did put them in, this program would print the text "i*3" out 5 times instead of the value we want!
@@ -90,20 +90,20 @@ You can also loop over a list of data. Try running the program below. It will ge
 Note that the # symbol tells the computer that it should ignore the line, as it is a comment for the programmer.
 
 ```python3
-#List of recipients to generate messages for
-spam_recipients = ["Heidi", "Tim", "Pondy", "Jack", "Caitlin", "Sam", "David"]  
-#Go through each recipient
+# List of recipients to generate messages for
+spam_recipients = ["Heidi", "Tim", "Pondy", "Jack", "Caitlin", "Sam", "David"]
+# Go through each recipient
 for recipient in spam_recipients:
-#Write out the letter for the current recipient
-	print("Dear " + recipient + ", \n")
-	print("You have been successful in the random draw for all  people ")
-	print("who have walked over a specific piece of ground located 2 meters ")
-	print("from the engineering road entrance to Canterbury University.\n")
-	print("For being successful in this draw you, " + recipient + ", win ")
-	print("a prize of 10 million kilograms of chocolate!!!\n")
-	print("And " + recipient + " if you phone us within the next 10 minutes ")
-	print("you will get a bonus 5 million kilograms of chocolate!!! \n")
-	print("\n\n\n") #Put some new lines between the messages
+# Write out the letter for the current recipient
+  print("Dear " + recipient + ", \n")
+  print("You have been successful in the random draw for all  people ")
+  print("who have walked over a specific piece of ground located 2 meters ")
+  print("from the engineering road entrance to Canterbury University.\n")
+  print("For being successful in this draw you, " + recipient + ", win ")
+  print("a prize of 10 million kilograms of chocolate!!!\n")
+  print("And " + recipient + " if you phone us within the next 10 minutes ")
+  print("you will get a bonus 5 million kilograms of chocolate!!! \n")
+  print("\n\n\n") # Put some new lines between the messages
 ```
 
 Try changing the recipients or the letter. Look carefully at all the symbols that were used to include the recipient's name in the letter.
@@ -118,11 +118,11 @@ Programs can also use *variables* to store the results of calculations in, recei
 print("This program will convert miles to kilometers")
 number_of_miles = int(input("Number of miles: "))
 if number_of_miles < 0:
-	print("Error: Can only convert a positive number of miles!")
+  print("Error: Can only convert a positive number of miles!")
 else:
-	number_of_kilometers = number_of_miles / 0.6214
-	print("Calculated number of kilometers...")
-	print(number_of_kilometers)
+  number_of_kilometers = number_of_miles / 0.6214
+  print("Calculated number of kilometers...")
+  print(number_of_kilometers)
 ```
 
 The first line is a *print* statement (which you should be very familiar with by now!) The second line asks the user for a number of miles which is converted from input text (called a string) to an integer, the third line uses an *if* statement to check if the number entered was less than 0, so that it can print an error if it is. Otherwise if the number was ok, the program jumps into the *else* section (the error is not printed because the *if* was not true), calculates the number of kilometers (there are 0.6214 kilometers in a mile), stores it into a *variable* called number_of_kilometers for later reference, and then the last line prints it out. Again, we don’t have quotes around number_of_kilometers in the last line as we want to print the value out that is stored in the number_of_kilometers variable. If this doesn’t make sense, don’t worry. You aren’t expected to know how to program for this chapter, this introduction is only intended for you to have some idea of what a program is and the things it can do.
@@ -197,32 +197,35 @@ It starts by adding 2 numbers (that have been put in registers $t0 and $t1) and 
 ```
 .data          	 
 str:  .asciiz "\nHello World!\n"
-#You can change what is between the  quotes if you like
+# You can change what is between the  quotes if you like
 
 .text          	 
 .globl main       	 
 
 main:
-#Do the addition
-#For this, we first need to put the values to add into registers  ($t0 and $t1)
+# Do the addition
+# For this, we first need to put the values to add into registers ($t0 and $t1)
 li $t0, 10 #You can change the 10
 li $t1, 20 #You can change the 20
-#Now we can add the values in $t0 and $t1, putting the result in special register $a0
+# Now we can add the values together, putting the result in register $a0
 add $a0, $t0, $t1
-#Set up for printing the value in $a0. A 1 in $v0 means we want to print an int
+# Set up for printing the value in $a0.
+# A '1' in $v0 means we want to print an int
 li $v0, 1
-#The system call looks at what is in $v0 and $a0, and knows to print what is in $a0
+# The system call looks at what is in $v0 and $a0,
+# and knows to print what is in $a0
 syscall    	 
 
-#Now we want to print Hello World
-#So we load the (address of the) string into $a0
+# Now we want to print 'Hello World!'
+# So we load the (address of the) string into $a0
 la $a0, str
-#And put a 4 in $v0 to mean print a string
+# A '4' in $v0 means we want to print an string
 li $v0, 4
-#And just like before syscall looks at $v0 and $a0 and knows to print the string
+# And just like before syscall looks at $v0 and $a0
+# and knows to print the string
 syscall
 
-#Nicely end the program
+# Nicely end the program
 li $v0, 0
 jr $ra
 ```
@@ -253,8 +256,9 @@ One thing you might have noticed while reading over the possible instructions is
 The jumping to a line, and jumping to a line if a condition is met can be used to make loops! A very simple program we could write that requires a loop is one that counts down from five and then says “Go!!!!” once it gets down to one. In Python we can easily write this program in three lines.
 
 ```
-for i in range(5,0,-1): #Start at 5, count down by 1 each time, when we get to 0 stop
-   print(i)
+# Start at 5, count down by 1 each time, and stop when we get to 0
+for number in range(5, 0, -1):
+   print(number)
 print("GO!!!!!")
 ```
 
@@ -269,40 +273,51 @@ But in MIPS, it isn’t that straightforward. We need to put values into registe
 And the full MIPS program for this is as follows. You can go away and change it.
 
 ```
-#Define the data strings
+# Define the data strings
 .data
 go_str:   .asciiz "GO!!!!!\n"
 new_line: .asciiz "\n"
 
 .text
-#Where should we start?
+# Where should we start?
 .globl main
 
 main:
-	li $t0, 5    #Put our starting value 5 into register $t0. We will update it as we go
-	li $t1, 0    #Put our stopping value 0 into register $t1
-start_loop:      #This label is just used for the jumps to refer to
-	#This says that if the values in $t0 and $t1 are the same, it should jump down to the end_loop label.
-	#This is the main loop condition.
-	beq $t0, $t1, end_loop
-	#These three lines prepare for and print the current int
-	move $a0, $t0 # It must be moved into $a0 for the printing
-	li $v0, 1         	
-	syscall       
-	#These three lines print a new line character so that each number is on a new line
-	li $v0, 4
-	la $a0, new_line
-	syscall           	
-	addi $t0, $t0, -1 #Add -1 to the value in $t0, i.e decrement it by 1
-	j start_loop  #Jump back up to the start_loop label    	
-end_loop: #This is the end loop label that we jumped to when the loop is false
-	#These three lines print the “GO!!!!” string
-	li $v0, 4
-	la $a0, go_str        	
-	syscall
-	#And these 2 lines make the program exit nicely
-	li $v0, 0
-	jr $ra
+  # Put our starting value 5 into register $t0. We will update it as we go
+  li $t0, 5
+  # Put our stopping value 0 into register $t1
+  li $t1, 0
+
+# This label is just used for the jumps to refer to
+start_loop:
+  # This says that if the values in $t0 and $t1 are the same,
+  # it should jump down to the end_loop label. This is the
+  # main loop condition.
+  beq $t0, $t1, end_loop
+  # These three lines prepare for and print the current int
+  # It must be moved into $a0 for the printing
+  move $a0, $t0
+  li $v0, 1
+  syscall
+  # These three lines print a new line character so that
+  # each number is on a new line
+  li $v0, 4
+  la $a0, new_line
+  syscall
+  # Add -1 to the value in $t0, i.e decrement it by 1
+  addi $t0, $t0, -1
+  # Jump back up to the start_loop label
+  j start_loop
+
+# This is the end loop label that we jumped to when the loop is false
+end_loop:
+  # These three lines print the “GO!!!!” string
+  li $v0, 4
+  la $a0, go_str
+  syscall
+  # And these 2 lines make the program exit nicely
+  li $v0, 0
+  jr $ra
 ```
 
 Can you change the Python program so that it counts down from 10? What about so it stops at 5? (You might have to try a couple of times, as it is somewhat counter intuitive. Remember that when i is the stopping number, it stops there and does not run the loop for that value!). And what about decrementing by 2 instead of 1? And changing the string (text) that is printed at the end?
@@ -365,16 +380,26 @@ She realises she needs to know the average (assuming 5 quizzes) that each studen
 
 Note that understanding the details of this code is irrelevant to this chapter, particularly if you aren’t yet a programmer. Just read the comments (the things that start with a “#”) if you don’t understand, so that you can get a vague idea of how the problem was approached.
 
-```
-raw_scores_file = open("scores.txt", "r") #Open the raw score file for reading
-processed_scores_file = open("processed_scores.txt", "w") #Create and open a file for writing the processed scores into
-for line in raw_scores_file.readlines(): #For each line in the file
-    name = line.split()[0] #Get the name, which is in the first part of the line
-    scores_on_line = [int(score) for score in line.split()[1:]] #Get a list of the scores, which are on the remainder of the line after the name
-    average = sum(scores_on_line)/5 #Calculate the average, which is the sum of the scores divided by 5
-    processed_scores_file.write(name + " " + str(average) + "\n") #Write the average to the processed scores output file
-raw_scores_file.close() #Close the raw scores file
-processed_scores_file.close() #Close the processed scores file
+```python3
+# Open the raw score file for reading
+raw_scores_file = open("scores.txt", "r")
+# Create and open a file for writing the processed scores into
+processed_scores_file = open("processed_scores.txt", "w")
+
+# For each line in the file
+for line in raw_scores_file.readlines():
+    # Get the name, which is in the first part of the line
+    name = line.split()[0]
+    # Get a list of the scores, which are on the remainder of the lines
+    scores_on_line = [int(score) for score in line.split()[1:]]
+    # Calculate the average, which is the sum of the scores divided by 5
+    average = sum(scores_on_line) / 5
+    # Write the average to the processed scores output file
+    processed_scores_file.write(name + " " + str(average) + "\n")
+
+# Close both files
+raw_scores_file.close()
+processed_scores_file.close()
 ```
 
 This will generate a file that contains each student’s name followed by the result of adding their scores and dividing the sum by 5. You can try the code if you have python installed on your computer (it won’t work on the online interpreter, because it needs access to a file system). Just put the raw data into a file called “scores.txt” in the same format it was displayed above. As long as it is in the same directory as the source code file you make for the code, it will work.
@@ -413,29 +438,32 @@ Java is a popular general purpose software engineering language. It is used to b
 
 This is the Java code for solving the same problem that we looked at in Python; generating a file of averages.
 
-```
+```java
 import java.io.*;
 import java.util.*;
-public class Averager
-{	 public static void main() {
-   	 try {
-       	 Scanner scanner = new Scanner(new File("scores.txt"));
-       	 PrintStream outputFile = new PrintStream(new File("processed_scores.txt"));
-       	 while (scanner.hasNextLine()) {
-           	 String name = scanner.next();
-           	 Scanner numbersToRead = new Scanner(scanner.nextLine());
-           	 int totalForLine = 0;
-           	 while (numbersToRead.hasNextInt()) {
-               	 totalForLine += numbersToRead.nextInt();
-           	 }
-           	 outputFile.println(name + " " + totalForLine/5.0 + "\n");
-       	 }
-       	 outputFile.close();
-   	 }
-   	 catch (IOException e) {
-       	 System.out.println("The file could not be opened!" + e);
-   	 }
-     print("I am finished!");	 }
+
+public class Averager {
+    public static void main() {
+        String inputFile = "scores.txt";
+        String outputFile = "processed_scores.txt";
+       	try {
+           	Scanner scanner = new Scanner(new File(inputFile));
+           	PrintStream outputFile = new PrintStream(new File(outputFile));
+           	while (scanner.hasNextLine()) {
+               	String name = scanner.next();
+               	Scanner numbersToRead = new Scanner(scanner.nextLine());
+               	int totalForLine = 0;
+               	while (numbersToRead.hasNextInt()) {
+                    totalForLine += numbersToRead.nextInt();
+               	}
+               	outputFile.println(name + " " + totalForLine/5.0 + "\n");
+           	}
+           	outputFile.close();
+       	} catch (IOException e) {
+            System.out.println("The file could not be opened!" + e);
+       	}
+    System.out.println("I am finished!");
+    }
 }
 ```
 
