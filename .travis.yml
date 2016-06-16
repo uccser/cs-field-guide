@@ -5,10 +5,19 @@ python:
   - "3.5"
   - "3.5-dev" # 3.5 development branch
 
-# Tests to run (PDF generation to be added later)
-script:
-  - python generateguide.py
+# Install dependencies for both screen and print versions
+install:
+  - pip install -r requirements.txt
+  - pip install -r requirements-print.txt
 
-# Stop email notifications (possibly add Slack later)
+# Creates the CSFG with print and teacher versions
+script:
+  - python generateguide.py -p -t
+
+# Stop email notifications but post to Slack channel
 notifications:
   email: false
+  slack:
+    rooms: deptfunstuff:abJKvzApk5SKtcEyAgtswXAv
+    on_success: change
+    on_failure: change

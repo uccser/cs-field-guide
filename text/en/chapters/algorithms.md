@@ -24,21 +24,7 @@ Often you can get away with describing a process just using some sort of informa
 "please get me a glass of water".
 A human can understand what this means and can figure out how to accomplish this task by thinking, but a computer would have no idea how to do this!
 
-{comment}
-[Add new text and interactive here for finding the high score in a table.
-Interactive could have doors or boxes to open with numbers in them; only one is visible at a time, and the challenge is to find the highest number.
-There could be a space to type the number, and a button to press to check if it's correct.
-The preceding text could be as follows:]
-For example, suppose you have to work out the highest score from a group of players.
-It sounds easy enough for a small list like this one:
-[image of list of 5 high scores]
-But what about this list:
-[image of list of about 100 high scores, not lined up, non-proportional font, not so easy to spot large numbers]
-Now you need some sort of organised process --- an algorithm --- to find the highest score with absolute certainty.
-Try finding the high score the following interactive, thinking about what process you'll use to be sure of getting the right answer.
-(The process will be fairly simple; we're not looking for a particularly clever solution, but just want to think about how to express the process really clearly.)
-[note: will also need to make slight changes to the next few paragraphs that mention a high-score algorithm.]
-{comment end}
+{interactive name="high-score-boxes" type="whole-page" text="High Score Boxes"}
 
 An example in a computational context might be if you wanted to find a high score in a table of scores:
 go through each score keeping track of the largest so far.
@@ -111,8 +97,8 @@ Both of the above programs are the same algorithm.
 In this chapter we'll look in more detail about what an algorithm is, and why they are such a fundamental idea in computer science.
 Because algorithms exist even if they aren't turned in to programs, we won't need to look at programs at all for this topic, unless you particularly want to.
 
-
 {glossary-link term="Algorithm" reference-text="algorithm cost"}{glossary-link end}
+
 ### Algorithm cost
 
 When Computer Scientists are comparing algorithms they often talk about the 'cost' of an algorithm. The cost of an algorithm can be interpreted in several different ways, but it is always related to how well an algorithm performs based on the size of its input, *n*. In this chapter we will talk about the cost of an algorithm as either the time it takes a program (which performs the algorithm) to complete, or the number of steps that the algorithm makes before it finishes.
@@ -151,8 +137,6 @@ They also happen to be great for illustrating some of the key concepts that aris
 
 {panel type="teacher-note" summary="Presenting searching in the classroom"}
 
-{glossary-definition term="Binary search" definition="Searching a sorted list by looking at the middle item, and then searching the appropriate half recursively (used for phone books, dictionaries and computer algorithms)."}
-
 The present searching game in this section is split into two parts, the first corresponds to the Linear Search algorithm (also known as Sequential Search) and the second corresponds to {glossary-link term="Binary Search"}Binary Search{glossary-link end}. We recommend you play through the levels yourself for a while, or after reading this description. It is based on the [CS Unplugged Battleships game](http://csunplugged.com/searching-algorithms) which can be used as a classroom activity to enforce the lessons in this chapter (the hashing activity is not used for the present searching game). The
 
 To run this as a classroom activity get all the students to play each section of the game at the same time and then when they have all finished have a discussion about the results. After students have finished the first part ask them questions like "Did anyone find the pet on the first go?", "Did anyone only find it after checking every other present?", or find the average number of presents students had to open to find the pet (this should be around 5 for the first level and around 10 for the second).
@@ -190,6 +174,8 @@ If you watched the video at the beginning of the chapter you might be thinking t
 {panel end}
 
 ### Binary search
+
+{glossary-definition term="Binary Search" definition="Searching a sorted list by looking at the middle item, and then searching the appropriate half recursively (used for phone books, dictionaries and computer algorithms)."}
 
 A much better algorithm to use is called Binary Search. In the second part of the present searching game the boxes were in order, which meant you were able to be more clever when you were searching for the pet, and you might have been using a Binary Search without realising!
 

@@ -3,6 +3,9 @@
 // Pygments theme for code syntax highlighting
 @import "third-party/pygments-monokai";
 
+// Import styles for print media
+@import "print";
+
 pre {
   font-family: Consolas, "Liberation Mono", Courier, monospace;
   font-weight: normal;
@@ -21,6 +24,18 @@ pre > code {
 }
 .interactive-external {
   border: 2px solid #C3C3C3;
+}
+.clearfix {
+  margin-top: 1rem;
+}
+.image-wrap {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+@media (min-width : $medium-screen) {
+  .image-wrap {
+    max-width: 35% !important;
+  }
 }
 .image-wrap-left {
   float: left;
@@ -49,6 +64,21 @@ header, main, footer {
   #website_header {
     display: block;
   }
+  .anchor-link {
+    padding-top: 70px !important;
+    margin-top: -60px !important;
+  }
+}
+.anchor-link {
+  padding-top: 0;
+  pointer-events: none;
+  outline: none;
+  & a {
+    pointer-events: auto;
+  }
+  &-empty {
+    position: absolute;
+  }
 }
 .bold > a {
   font-weight: bold;
@@ -57,6 +87,7 @@ ul.side-nav.fixed li a {
   line-height: 44px;
   height: inherit !important;
   position: relative;
+  margin-left: 0;
 }
 .dropdown-menu-arrow {
   position: relative;
@@ -73,24 +104,16 @@ ul.side-nav.fixed li a {
   line-height: 2rem !important;
   height: 2rem !important;
 }
+.section {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
 .section_number {
   color: $primary-color-light !important;
 }
-.anchor-link {
-  padding-top: 100px;
-  margin-top: -90px;
-  pointer-events: none;
-  outline: none;
-  & a {
-    pointer-events: auto;
-  }
-  &-empty {
-    position: absolute;
-  }
-}
 .section-heading {
   margin-bottom: 0;
-  #page-title-header & > a {
+  .page-title-header & > a {
     color: white !important;
   }
   & > a {
@@ -107,23 +130,25 @@ ul.side-nav.fixed li a {
   z-index: 997 !important;
 }
 .side-nav li {
-    &:hover:not(.no-padding):not(.no-highlight),
-    &:active:not(.no-padding):not(.no-highlight) {
+    &:hover:not(.no-highlight),
+    &:active:not(.no-highlight) {
       background-color: #ddd;
     }
 }
+.side-nav div.collapsible-body a {
+  padding-left: 30px;
+}
 .nav-subtitle {
   padding-top: 1rem !important;
-  padding-left: 30px !important;
 }
-#page-title-header {
+.page-title-header {
   background-color: $primary-color !important;
   padding: 1rem 0;
   margin: 0;
   color: #fff;
 }
 #page-subtitle-header {
-  background-color: $primary-color-light !important;
+  background-color: $secondary-color !important;
   h4 {
     line-height: 2rem !important;
     font-size: 1.5rem !important;
@@ -140,14 +165,14 @@ ul.side-nav.fixed li a {
   color: $primary-color-light !important;
 }
 #logo-container {
+  padding-right: 0;
   color: $primary-color !important;
   .title {
-    font-size: 2rem;
+    font-size: 1.2rem;
     font-weight: 500;
   }
   .subtitle {
     line-height: 1.1rem;
-    padding-bottom: 1rem;
   }
 }
 // Based off Materialize flow-text rules
@@ -176,22 +201,6 @@ ul.side-nav.fixed li a {
 .btn-expand {
   width: 100% !important;
 }
-.btn-menu {
-  background-color: $primary-color-light;
-  color: white !important;
-  padding: 1.5rem 0.3rem;
-  margin-bottom: 1rem;
-  border-radius: 4px;
-  @include transition(.2s ease-out);
-  @extend .z-depth-1;
-  &:hover {
-    @extend .z-depth-2;
-  }
-  .btn-menu-link-text {
-    font-size: 1.8rem;
-    line-height: 115%;
-  }
-}
 .btn-interactive-whole-page-container {
   position: relative;
   width: 100%;
@@ -217,27 +226,37 @@ ul.side-nav.fixed li a {
   font-weight: 500;
   color: white;
 }
-.flex-container {
+div#homepage-buttons {
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: stretch;
-  @media #{$medium-and-down} {
-    flex-direction: column;
-  }
-  @media #{$large-and-up} {
-    flex-direction: row;
-  }
-}
-.flex-item {
-  flex-grow: 0;
-  flex-shrink: 1;
-  flex-basis: auto;
-  @media #{$medium-and-down} {
+  .btn-menu {
+    flex: 0 1 auto;
     width: 100%;
+    @media #{$medium-and-up} {
+      width: 49% !important;
+    }
+    text-align: center;
+    padding: 1rem 0.3rem;
+    margin-bottom: 1rem;
+    color: white !important;
+    background-color: $primary-color;
+    border-radius: 4px;
+    font-size: 1.2rem;
+    line-height: 115%;
+    @include transition(.1s ease-out);
+    @extend .z-depth-1;
+    &:hover {
+      @extend .z-depth-2;
+    }
+    .btn-menu-fade {
+      font-size: 1rem;
+      opacity: 0.5;
+    }
   }
-  @media #{$large-and-up} {
-    width: 32%;
+  .btn-menu-light {
+    background-color: $primary-color-light !important;
   }
 }
 .glossary-anchor-link:target,
@@ -245,7 +264,6 @@ ul.side-nav.fixed li a {
   background-color: color("deep-orange", "lighten-3");
   background-clip: content-box;
 }
-
 // Panels
 @mixin panel-color($class-name, $color) {
   .#{$class-name} .collapsible-header {
@@ -261,6 +279,7 @@ ul.side-nav.fixed li a {
 }
 
 ul.panel {
+  background-color: white;
   li.panel-selector {
     overflow: auto;
   }
@@ -331,17 +350,58 @@ ul.panel {
   text-transform: none !important;
   margin-bottom: 1rem;
 }
-.footer-details {
-  color: rgba(255,255,255,0.8);
-  background-color: $primary-color-dark;
-  overflow: hidden;
+footer {
+  color: $off-black;
+  margin-top: 4rem;
+  .footer-first {
+    background-color: #FFF;
+    .container {
+      padding-top: 1rem;
+      border-top: 2px solid $primary-color;
+    }
+    .sponsor-logos {
+      display: flex;
+      flex-wrap: wrap;
+      a {
+        flex: 0 1 auto;
+        margin: 0 3rem 3rem 0;
+        width: 10rem;
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
+  .footer-second {
+    color: rgba(255,255,255,0.8);
+    background-color: $primary-color;
+    overflow: hidden;
+  }
+  .footer-third {
+    color: rgba(255,255,255,0.8);
+    background-color: $primary-color-dark;
+    overflow: hidden;
+    .version-number {
+      float: right !important;
+      padding-left: 1rem;
+    }
+  }
+  .row {
+    margin-bottom: 0;
+  }
 }
 body.landing-page {
   background-color: $primary-color !important;
-  padding: 2rem 1rem;
-  color: #fff;
-  footer {
+  main, footer {
     padding-left: 0 !important;
+  }
+  main {
+    color: rgba(255,255,255,0.8);
+  }
+  footer {
+    .footer-first .container {
+      border-top: 0;
+    }
   }
 }
 .video-container {

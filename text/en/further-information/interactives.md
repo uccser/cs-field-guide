@@ -8,8 +8,12 @@ Most of our interactives require a modern browser, if it's been updated in the l
 
 ## Available Interactives
 
+- [Action Menu](interactives/action-menu/index.html)
 - [Available Menu Items](interactives/available-menu-items/index.html)
 - [Awful Calculator](interactives/awful-calculator/index.html)
+- [Base Calculator](interactives/base-calculator/index.html)
+- [Big Number Calculator](interactives/big-number-calculator/index.html)
+- [Binary Cards](interactives/binary-cards/index.html)
 - [Caesar Cipher](interactives/caesar-cipher/index.html)
 - [Checksum Calculator](interactives/checksum-calculator/index.html)
   - [GTIN-13 Checksum Calculator](interactives/checksum-calculator-gtin-13/index.html)
@@ -23,6 +27,7 @@ Most of our interactives require a modern browser, if it's been updated in the l
 - [Delay Analyser](interactives/delay-analyser/index.html)
 - [Delayed Checkbox](interactives/delayed-checkbox/index.html)
 - [Frequency Analysis](interactives/frequency-analysis/index.html)
+- [High Score Boxes](interactives/high-score-boxes/index.html)
 - [Image Bit Comparer](interactives/image-bit-comparer/index.html)
   - [Change bit mode](interactives/image-bit-comparer/index.html?change-bits=true)
 - [MIPS Assembler](interactives/mips-assembler/index.php)
@@ -50,3 +55,7 @@ Most of our interactives require a modern browser, if it's been updated in the l
 - [Sorting Algorithm Comparison](interactives/sorting-algorithm-comparison/index.html)
 - [Sorting Algorithms](interactives/sorting-algorithms/index.html)
 - [Trainsylvania](interactives/trainsylvania/index.html)
+- [Trainsylvania Planner](interactives/trainsylvania-planner/index.html)
+- [Unicode Binary](interactives/unicode-binary/index.html)
+- [Unicode Character](interactives/unicode-chars/index.html)
+- [Unicode Length](interactives/unicode-length/index.html)

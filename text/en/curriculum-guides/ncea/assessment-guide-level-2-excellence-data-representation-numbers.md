@@ -57,9 +57,9 @@ This section will be around 2 pages in your report. There are 4 parts to it.
 
 You will need to pick three numbers, which you will you use to illustrate the various ways of representing numbers in binary. Your chosen numbers should **not** be in field guide examples.
 
-- A **positive** number **between 65 and 120**
-- A **negative** number **between -10 and -64**
-- A **additional positive** number, which is the "positive" form of your negative number (i.e. if you had chosen -11, this number would be 11). This number is **only used in the last part of the project**.
+1. A **positive** number **between 65 and 120**
+2. A **negative** number **between -10 and -64**
+3. A **additional positive** number, which is the "positive" form of your negative number (i.e. if you had chosen -11, this number would be 11). This number is **only used in the last part of the project**.
 
 The numbers **should be within the ranges**, to ensure they work with all the representations you'll be using them for.
 
@@ -95,31 +95,37 @@ Start by ensuring you have all the following binary representations ready to use
 
 *All the numbers should be 8 bits long. Add leading 0's if needed, but put them* **after** *the simple sign bit if there is one*.
 
-Number 1: **positive number** in binary with a **simple sign bit**.
-
-Number 2: **additional positive number** in binary with a **simple sign bit**.
-
-Number 3: **positive number** in binary, using Two's Complement (remember that this is just a plain binary number).
-
-Number 4: **negative number** in binary, using Two's Complement.
-
+{text-box}
+Number 1: **positive number** in binary with a **simple sign bit**.  
+Number 2: **additional positive number** in binary with a **simple sign bit**.  
+Number 3: **positive number** in binary, using Two's Complement (remember that this is just a plain binary number).  
+Number 4: **negative number** in binary, using Two's Complement.  
 Number 5: **additional positive number** in binary, using Two's Complement (remember that this is just a plain binary number).
+{text-box end}
 
 Now, show and explain the following calculations. Indicate whether or not they lead to a correct answer. You might find it easier to do them on paper, and then scan and include them as images in your report. Read the hints for success for advice on this.
 
-Calculation 1: **Number 3** {math}+{math end} **Number 5**
+{text-box}
+**Calculation 1:** Number 3 {math}+{math end} Number 5
+{text-box end}
 
 Use this first calculation to show how two positive binary numbers can be added.
 
-Calculation 2: **Number 1** {math}-{math end} **Number 2**
+{text-box}
+**Calculation 2:** Number 1 {math}-{math end} Number 2
+{text-box end}
 
 This calculation shows whether or not subtraction can be done with two positive numbers using simple sign bits, without making a special case for the sign.
 
-Calculation 3: **Number 3** {math}+{math end} **Number 4**
+{text-box}
+**Calculation 3:** Number 3 {math}+{math end} Number 4
+{text-box end}
 
 This calculation shows that subtraction can be done by **adding** a negative number to the positive number. (Remember that with decimal numbers, adding the negative of a number is the same as subtracting the number. It's the same for binary.)
 
-Calculation 4: **Number 5** {math}+{math end} **Number 4**
+{text-box}
+**Calculation 4:** Number 5 {math}+{math end} Number 4
+{text-box end}
 
 This calculation shows what happens when a bigger number is subtracted from a smaller number.
 
@@ -142,14 +148,11 @@ This section should not take more than 1 page in your report.
 
   - **Representing Numbers**
 
-    - **Representing positive numbers with binary**
-    - **Representing numbers in binary with a simple sign bit**
-    - **Representing numbers in binary with Two's Complement**
-    - **Simple sign bits vs Two's Complement**
+       Put all your project work related to Binary numbers and Two's Complement here
 
   - **Representing [other topic]**
 
-    (see relevant guide for information on structuring this section)
+       (see relevant guide for information on structuring this section)
 
 - **Encoding**
 

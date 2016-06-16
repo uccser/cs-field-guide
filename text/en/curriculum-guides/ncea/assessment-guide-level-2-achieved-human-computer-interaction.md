@@ -20,8 +20,8 @@ As with all externally assessed reports, you should base your explanations aroun
 
 Start by reading these introduction sections. They will give you a general overview of what Human Computer Interaction is all about. If you read them last year for 1.44 and remember the material well, you can just quickly skim over them.
 
-- [What’s the Big Picture?](human-computer-interaction.html#whats-the-big-picture)
-- [Usability Heuristics](human-computer-interaction.html#usability-heuristics)
+- [What’s the Big Picture?](chapters/human-computer-interaction.html#whats-the-big-picture)
+- [Usability Heuristics](chapters/human-computer-interaction.html#usability-heuristics)
 
 {panel type="teacher-note" summary="Should students read the other sections as well?"}
 It is ideal for students to read/ be taught the entire chapter. However, we realise that learning large amounts of information is not desirable for students who only want achieved. Therefore, we have recommended only the sections that are essential.

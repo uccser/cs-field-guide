@@ -106,7 +106,12 @@ There's a more in-depth discussion on why we use binary here:
 ## Numbers
 
 {panel type="teacher-note" summary="CS Unplugged activity"}
-If you are doing a warm up exercise with the class, the CS Unplugged binary activity [http://csunplugged.org/binary-numbers](http://csunplugged.org/binary-numbers) provides scaffolding and can be used to teach concepts around binary numbers using only counting or simple addition.  In the chapter we have decided to approach this section by starting with number systems. While this may appear “scary” because of the math, most students should be quite familiar with it as it is first introduced very early in primary school in the form of recognising that numbers are made up of the “ones”, “tens”, “hundreds”, etc, and is further built on until eventually in high school they learn about the exponent notation, i.e. {math}541 = 5 \times 10^2 + 4 \times 10^1 + 1 \times 10^0{math end}. As explained in this section, binary numbers are a base 2 number system, rather than the base 10 number system we are all familiar with. The idea of number systems provides a good stepping stone into binary numbers
+If you are doing a warm up exercise with the class, the CS Unplugged binary activity [http://csunplugged.org/binary-numbers](http://csunplugged.org/binary-numbers) provides scaffolding and can be used to teach concepts around binary numbers using only counting or simple addition.
+We also have an interactive which emulates the physical binary cards here:
+
+{interactive name="binary-cards" type="whole-page" text="Binary Cards"}
+
+In the chapter we have decided to approach this section by starting with number systems. While this may appear “scary” because of the math, most students should be quite familiar with it as it is first introduced very early in primary school in the form of recognising that numbers are made up of the “ones”, “tens”, “hundreds”, etc, and is further built on until eventually in high school they learn about the exponent notation, i.e. {math}541 = 5 \times 10^2 + 4 \times 10^1 + 1 \times 10^0{math end}. As explained in this section, binary numbers are a base 2 number system, rather than the base 10 number system we are all familiar with. The idea of number systems provides a good stepping stone into binary numbers
 
 We are assuming that students already know about base 10 number systems, including the exponent notation. The initial information in this section on them is only intended to trigger recall, rather than actually teaching them the concept.
 
@@ -176,7 +181,7 @@ The term "denary" seems to be used mainly in the UK; in the US, Australia and NZ
 
 The interactive below illustrates how this binary number system represents numbers. Have a play around with it to see what patterns you can see.
 
-{button link="http://www.csfieldguide.org.nz/releases/1.9.9/_static/widgets/DR/DR-base-conversion/public_html/index.html?base=2&columns=7&lines=A,B,C&offset=0" text="Click for interactive: Base Calculator"}
+{interactive name="base-calculator" type="whole-page" text="Binary Number Calculator"}
 
 **To ensure you are understanding correctly how to use the interactive, verify that when you enter the binary number 101101 it shows that the decimal representation is 45, that when you enter 100000 it shows that the decimal representation is 32, and when you enter 001010 it shows the decimal representation is 10.**
 
@@ -905,8 +910,8 @@ Look back to the section on binary numbers if you cannot remember how to convert
 For example, if you wanted to find out the representation for **貓** (cat in Chinese), the steps you would take would be as follows.
 
 1. Determine that the Unicode number for **貓** is **35987**.
-2. Convert **29483** to binary -- giving **10001100 10010011**.
-3. Count that there are **15** bits, and therefore the third pattern **1110xxxx 10xxxxxx 10xxxxx** should be used.
+2. Convert **35987** to binary -- giving **10001100 10010011**.
+3. Count that there are **16** bits, and therefore the third pattern **1110xxxx 10xxxxxx 10xxxxx** should be used.
 4. Substitute the bits into the pattern to replace the x's -- **11101000 10110010 10010011**.
 
 Therefore, the representation for **貓** is **11101000 10110010 10010011** using UTF-8.
