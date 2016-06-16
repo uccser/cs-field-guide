@@ -82,13 +82,13 @@ Some other request types (*HTTP methods*) exist too, but they are less used; the
 
 In HTTP, the first line of the response is called the *status* line and has a numeric status code such as **404** and a text-based *reason phrase* such as “Not Found”. The most common is 200 and this means successful or “OK”. HTTP status codes are primarily divided into five groups for better explanation of requests and responses between client and server are named by purpose and a number: Informational 1XX, Successful 2XX, Redirection 3XX, Client Error 4XX and Server Error 5XX. There are many [status codes](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes) for representing different cases for error or success. There’s even a nice 418: Teapot error on Google: [https://www.google.com/teapot](https://www.google.com/teapot)
 
-So what’s actually happening? Well, let’s find out. If you’re in a Chrome or Safari browser, press Ctrl + Shift + I in windows or Command + Option + I on a mac to bring up the web inspector. Select the Network tab. Refresh the page. What you’re seeing now is a list of of HTTP requests your browser is making to the server to load the page you're currently viewing. Near the top you’ll see a request to NetworkCommunicationProtocols.html. Click that and you’ll see details of the Headers, Preview, Response, Cookies and Timing. Ignore those last two for now.
+So what’s actually happening? Well, let’s find out. Open a new tab in your browser and open the homepage of the [CS Field Guide here](index.html). If you’re in a Chrome or Safari browser, press Ctrl + Shift + I in Windows or Command + Option + I on a Mac to bring up the web inspector. Select the Network tab. Refresh the page. What you’re seeing now is a list of of HTTP requests your browser is making to the server to load the page you're currently viewing. Near the top you’ll see a request to `index.html`. Click that and you’ll see details of the Headers, Preview, Response, Cookies and Timing. Ignore those last two for now.
 
 Let’s look at the first few lines of the headers:
 
 ```
-Remote Address:132.181.17.3:80
-Request URL: http://csfieldguide.org.nz/en/chapters/network-communication-protocols.html
+Remote Address: 132.181.2.122:3128
+Request URL: http://www.csfieldguide.org.nz/en/index.html
 Request Method: GET
 Status Code: 200 OK
 ```
@@ -98,11 +98,11 @@ The *Remote Address* is the address of the server of the page is hosted on. The 
 Let’s look at the *Request Headers* now, click ‘view source’ to see the original request.
 
 ```
-GET /network-communication-protocols.html HTTP/1.1
+GET /index.html HTTP/1.1
 Host: www.csfieldguide.org.nz
 Connection: keep-alive
 Cache-Control: max-age=0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+Accept: text/html,application/xhtml+xml;q=0.9,image/webp,*/*;q=0.8
 User-Agent: Chrome/34.0.1847.116
 Accept-Encoding: gzip,deflate,sdch
 Accept-Language: en-US,en;q=0.8
@@ -115,7 +115,6 @@ As you can see, a request message consists of the following:
 - An optional message body.
 
 Let’s look at the *Response Headers*:
-
 
 ```
 HTTP/1.1 200 OK

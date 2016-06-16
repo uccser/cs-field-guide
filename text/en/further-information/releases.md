@@ -4,7 +4,7 @@ This page lists updates to the Computer Science Field Guide. All notable changes
 
 {panel type="What numbering system do we use?"}
 
-We base our numbering system from the guidelines at [Semantic Versioning 2.0.0](http://semver.org/spec/v2.0.0.html), however since our project started before it was migrated to GitHub, the first open source release is being labeled as 2.0.
+We base our numbering system from the guidelines at [Semantic Versioning 2.0.0](http://semver.org/spec/v2.0.0.html), however since our project started before it was migrated to GitHub, the first open source release is being labeled as `v2.0`.
 
 Given a version number MAJOR.MINOR.HOTFIX:
 
@@ -18,6 +18,30 @@ Given a version number MAJOR.MINOR.HOTFIX:
 We have listed major changes for each release below.
 
 ## Current Release
+
+### v2.6.0
+
+**Release date:** 16th June 2016
+
+**Downloads:** [Source available on GitHub](https://github.com/uccser/cs-field-guide/releases/tag/v2.6.0)
+
+**Notable changes:**
+- **New feature:** PDF output - A downloadable PDF of both student and teacher versions is now available from the homepage. The PDF also functions well as an ebook, with functional links to headings, glossary entries, interactives, and online resources.
+- **New feature:** Printer friendly webpages - When printing a page of the CSFG through a browser, the page displays in a printer friendly manner by hiding navigational panels, opening all panels, and providing extra links to online resources.
+- **New interactive:** The [binary cards interactive](interactives/binary-cards/index.html) emulates the Binary Cards CS Unplugged activity, used to teach binary numbers.
+- **New interactive:** The [high score boxes interactive](interactives/high-score-boxes/index.html) was developed to give an example of searching boxes to find a maximum value to the student.
+- **New interactive:** The [action menu interactive](interactives/action-menu/index.html) is a small dropdown menu with one option that has severe consequences, but no confirmation screen if user selects that option (used to demonstrate a key HCI concept).
+- **Updated interactive:** The [trainsylvania interactive](interactives/trainsylvania/index.html) (and supporting images/files) have been given a fresh coat of colour and a new station name.
+- **Updated interactive:** The [trainsylvania planner interactive](interactives/trainsylvania-planner/index.html) is used alongside the trainsylvania interactive, and allows the user to input a path of train trips to see the resulting destination.
+- **Updated interactive:** The [base calculator](interactives/base-calculator/index.html) allows a student to calculate a number, using a specific number base (binary, hexadecimal, etc).
+- **Updated interactive:** The [big number calculator](interactives/big-number-calculator/index.html) allows a student to perform calculations with very large numbers/results.
+- **Website improvements:** Redesigned homepage and footer with useful links and a splash of colour. Math equations are now line wrapped, and MathJax is loaded from a CDN. Images can now have text wrapped around them on a page.
+- **Generation improvements:** Improvements to internal link creation (glossary links in particular). Separated dependency installation from generation script (see documentation for how to install and run generation script).
+- **Project improvements:** Added documentation for contributing to and developing this project, including a code of conduct.
+
+A full list of changes in this version is [available on GitHub](https://github.com/uccser/cs-field-guide/compare/v2.5.0...v2.6.0).
+
+## Older Releases
 
 ### v2.5.0
 
@@ -44,8 +68,6 @@ We have listed major changes for each release below.
 - Generation improvements: The Markdown parser has been replaced due to existing parsing issues. The new parser also gives us a large performance boost. A text box tag has also been added to highlight important text.
 
 A full list of changes in this version is [available on GitHub](https://github.com/uccser/cs-field-guide/compare/v2.4.1...v2.5.0).
-
-## Older Releases
 
 ### v2.4.1
 
