@@ -29,6 +29,11 @@ $(document).ready(function() {
 
   $('#reset').on('click', function(){
     setup_delay_grid();
+    if ($('#statistics-div').is(":visible")) {
+      $('#toggle-view').html('View grid');
+    } else {
+      $('#toggle-view').html('View statistics');
+    }
   });
 
   // Create the grid on load
