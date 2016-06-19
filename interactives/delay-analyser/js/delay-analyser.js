@@ -66,6 +66,12 @@ function calculateStatistics() {
   });
   delays_perceived.sort(function(a,b){return a[0] > b[0] ? 1 : (a[0] < b[0] ? -1 : 0);})
 
+  if (delays_perceived.length == 0) {
+      $('#statistics-table').hide();
+  } else {
+      $('#statistics-table').show();
+  }
+
   if (delays_perceived.length != gridSize * gridSize) {
     $('#statistics-feedback').html("You still have tiles to reveal!");
     $('#statistics-feedback').show();
