@@ -558,7 +558,7 @@ class Section:
             text = arg_text if arg_text else name
 
             arg_parameters = parse_argument('parameters', arguments)
-            params = urllib.parse.quote(arg_parameters, safe='/=') if arg_parameters else None
+            params = urllib.parse.quote(arg_parameters, safe='/=&') if arg_parameters else None
 
             file_name = self.guide.generator_settings['Source']['Interactive File Name']
             file_type = parse_argument('file-type', arguments)
