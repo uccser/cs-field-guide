@@ -1,7 +1,7 @@
 WEB = 'web'
 PDF = 'pdf'
 
-GUIDE_SETTINGS = 'guide-settings.conf'
+GUIDE_SETTINGS = 'text/{language}/settings.conf'
 GENERATOR_SETTINGS = 'generator/generator-settings.conf'
 REGEX_LIST = 'generator/regex-list.conf'
 LOGFILE_SETTINGS = 'generator/logging.conf'

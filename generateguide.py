@@ -26,13 +26,12 @@ import generator.print_media as print_media
 from scss.compiler import compile_string
 
 class Guide:
-    def __init__(self, generator_settings, guide_settings, language_code, version, html_generator, html_templates, translations, regex_list, output_type=WEB,  teacher_version_present=False, pdf_version_present=False):
+    def __init__(self, generator_settings, language_code, version, html_generator, html_templates, translations, regex_list, output_type=WEB,  teacher_version_present=False, pdf_version_present=False):
 
         # Alert user of creation process
         print('Creating CSFG - Language: {lang} - Version: {version} - Format: {output_type}'.format(lang=language_code, version=version, output_type=output_type))
 
         # Read settings
-        self.guide_settings = guide_settings
         self.generator_settings = generator_settings
         self.regex_list = regex_list
         self.translations = translations
@@ -42,6 +41,7 @@ class Guide:
         self.html_templates = html_templates
 
         self.language_code = language_code
+        self.guide_settings = systemfunctions.read_settings(GUIDE_SETTINGS.format(language=self.language_code))
         self.language = self.parse_language()
         self.version = version
         self.teacher_version_present = teacher_version_present
@@ -649,7 +649,6 @@ def create_landing_page(languages, html_generator, generator_settings, translati
 def main():
     """Creates a Guide object"""
     start_logging()
-    guide_settings = systemfunctions.read_settings(GUIDE_SETTINGS)
     generator_settings = systemfunctions.read_settings(GENERATOR_SETTINGS)
     translations = systemfunctions.read_settings(TRANSLATIONS_LOCATION)
     regex_list = systemfunctions.read_settings(REGEX_LIST)
@@ -669,9 +668,9 @@ def main():
     for language in cmd_args.languages:
         for version in versions:
             if cmd_args.include_pdf or cmd_args.pdf_only:
-                pdf_guide = Guide(generator_settings=generator_settings, guide_settings=guide_settings, language_code=language, version=version, output_type=PDF, html_generator=html_generator, html_templates=html_templates, translations=translations, regex_list=regex_list)
+                pdf_guide = Guide(generator_settings=generator_settings, language_code=language, version=version, output_type=PDF, html_generator=html_generator, html_templates=html_templates, translations=translations, regex_list=regex_list)
             if not cmd_args.pdf_only:
-                guide = Guide(generator_settings=generator_settings, guide_settings=guide_settings, language_code=language, version=version, html_generator=html_generator, html_templates=html_templates, translations=translations, regex_list=regex_list, teacher_version_present=cmd_args.teacher_output, pdf_version_present=cmd_args.include_pdf)
+                guide = Guide(generator_settings=generator_settings, language_code=language, version=version, html_generator=html_generator, html_templates=html_templates, translations=translations, regex_list=regex_list, teacher_version_present=cmd_args.teacher_output, pdf_version_present=cmd_args.include_pdf)
 
     finish_logging()
 
