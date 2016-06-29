@@ -25,7 +25,7 @@ import generator.print_media as print_media
 from scss.compiler import compile_string
 
 class Guide:
-    def __init__(self, generator_settings, language_code, version, html_generator, html_templates, translations, regex_list, output_type=WEB,  teacher_version_present=False, pdf_version_present=False):
+    def __init__(self, generator_settings, language_code, version, html_generator, html_templates, regex_list, output_type=WEB,  teacher_version_present=False, pdf_version_present=False):
 
         # Alert user of creation process
         print('Creating CSFG - Language: {lang} - Version: {version} - Format: {output_type}'.format(lang=language_code, version=version, output_type=output_type))
@@ -33,7 +33,6 @@ class Guide:
         # Read settings
         self.generator_settings = generator_settings
         self.regex_list = regex_list
-        self.translations = translations
         self.permissions_location = PERMISSIONS_LOCATION
         self.files_with_permissions = set()
         self.html_generator = html_generator
@@ -42,6 +41,7 @@ class Guide:
         self.language_code = language_code
         self.guide_settings = systemfunctions.read_settings(GUIDE_SETTINGS.format(language=self.language_code), 'yaml')
         self.language = self.guide_settings['language']
+        self.translations = self.guide_settings['text_values']
         self.version = version
         self.teacher_version_present = teacher_version_present
         self.pdf_version_present = pdf_version_present
@@ -157,7 +157,7 @@ class Guide:
             for file_type,file_data in file_node.section.required_files.items():
                 self.required_files[file_type] += file_data
             if not file_node.section.title:
-                file_node.section.title = self.translations['title'][self.language_code]
+                file_node.section.title = self.translations['project_title']
             if file_node.filename == self.permissions_location:
                 for line in file_node.section.original_text:
                     if line.startswith('####'):
@@ -177,8 +177,8 @@ class Guide:
         else:
             # Add variables at start of SCSS data
             scss_data = '$version: "{}";\n{}'.format(self.version, scss_data)
-            scss_data = '$title: "{}";\n{}'.format(self.translations['title'][self.language_code], scss_data)
-            scss_data = '$website: "{}";\n{}'.format(self.translations['website'][self.language_code], scss_data)
+            scss_data = '$title: "{}";\n{}'.format(self.translations['project_title'], scss_data)
+            scss_data = '$website: "{}";\n{}'.format(self.guide_settings['website'], scss_data)
             scss_data = '$version_number: "{}";\n{}'.format(self.generator_settings['General']['Version Number'], scss_data)
             if self.output_type == WEB:
                 font_path_prefix = '..'
@@ -328,8 +328,8 @@ class Guide:
                        'body_html': body_html,
                        'path_to_guide_root': path_to_guide_root,
                        'path_to_output_root': path_to_output_folder,
-                       'project_title': self.translations['title'][self.language_code],
-                       'project_title_abbreviation': self.translations['abbreviation'][self.language_code],
+                       'project_title': self.translations['project_title'],
+                       'project_title_abbreviation': self.translations['project_title_abbreviation'],
                        'root_folder': self.structure,
                        'heading_root': file.section.heading,
                        'language_code': self.language_code,
@@ -416,12 +416,7 @@ class FolderNode:
         self.depth = (parent.depth + 1) if parent else -1
         self.path = os.path.join(self.parent.path, self.name) if self.parent else ''
         self.guide = self.parent.guide if parent else guide
-        self.english_title = systemfunctions.from_kebab_case(self.name)
-        if self.parent:
-            self.title = self.guide.translations[self.name][self.guide.language_code]
-        else:
-            #Folder is root folder, name is not important
-            self.title = self.english_title
+        self.title = self.name
 
 
     def add_folder(self, folder_name):
@@ -520,14 +515,6 @@ class NumberGenerator:
         return str(self)
 
 
-class Language:
-    """Used to store language display names and paths"""
-    def __init__(self, language_code, translations):
-        self.language_code = language_code
-        self.language_text = translations['language-text'][self.language_code]
-        self.language_path = language_code + '/'
-
-
 def start_logging():
     """Sets up the logger to write to a file"""
     logging.config.fileConfig(LOGFILE_SETTINGS)
@@ -608,19 +595,14 @@ def write_html_file(html_generator, output_folder, filename, template, context):
         logging.critical("Cannot write file {0}".format(path))
 
 
-def create_landing_page(languages, html_generator, generator_settings, translations):
+def create_landing_page(outputted_languages, html_generator, generator_settings):
     """Create and write landing page with language list"""
-    languages = []
-    for language in cmd_args.languages:
-        languages.append(Language(language, translations))
-
-    context = {'project_title': translations['title']['en'],
-        'language_code': 'en',
-        # Load resources from first version as English may not be present
-        'path_to_guide_root': languages[0].language_path,
+    context = {'project_title': 'Computer Science Field Guide',
+        'language_code': outputted_languages[0][0],
+        'languages': outputted_languages,
+        'path_to_guide_root': outputted_languages[0][0] + '/',
         'analytics_code': generator_settings['General']['Google Analytics Code'],
-        'version_number': generator_settings['General']['Version Number'],
-        'languages': languages
+        'version_number': generator_settings['General']['Version Number']
         }
     output_folder = generator_settings['Output']['Base Folder']
     write_html_file(html_generator, output_folder, 'index', 'website_page_landing', context)
@@ -630,27 +612,29 @@ def main():
     """Creates a Guide object"""
     start_logging()
     generator_settings = systemfunctions.read_settings(GENERATOR_SETTINGS)
-    translations = systemfunctions.read_settings(TRANSLATIONS_LOCATION)
     regex_list = systemfunctions.read_settings(REGEX_LIST)
     html_templates = read_html_templates(generator_settings)
     html_generator = WebsiteGenerator(html_templates)
-
-    # Create landing page if website required
-    if not cmd_args.pdf_only:
-        create_landing_page(cmd_args.languages, html_generator, generator_settings, translations)
 
     # Calculate versions to create
     versions = ['student']
     if cmd_args.teacher_output:
         versions.append('teacher')
 
+    outputted_languages = []
+
     # Create all specified CSFG
     for language in cmd_args.languages:
         for version in versions:
             if cmd_args.include_pdf or cmd_args.pdf_only:
-                pdf_guide = Guide(generator_settings=generator_settings, language_code=language, version=version, output_type=PDF, html_generator=html_generator, html_templates=html_templates, translations=translations, regex_list=regex_list)
+                pdf_guide = Guide(generator_settings=generator_settings, language_code=language, version=version, output_type=PDF, html_generator=html_generator, html_templates=html_templates, regex_list=regex_list)
             if not cmd_args.pdf_only:
-                guide = Guide(generator_settings=generator_settings, language_code=language, version=version, html_generator=html_generator, html_templates=html_templates, translations=translations, regex_list=regex_list, teacher_version_present=cmd_args.teacher_output, pdf_version_present=cmd_args.include_pdf)
+                guide = Guide(generator_settings=generator_settings, language_code=language, version=version, html_generator=html_generator, html_templates=html_templates, regex_list=regex_list, teacher_version_present=cmd_args.teacher_output, pdf_version_present=cmd_args.include_pdf)
+                outputted_languages.append((guide.language_code, guide.language))
+
+    # Create landing page if website required
+    if not cmd_args.pdf_only:
+        create_landing_page(outputted_languages, html_generator, generator_settings)
 
     finish_logging()
 

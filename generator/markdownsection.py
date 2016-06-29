@@ -81,6 +81,8 @@ class Section:
             self.current_heading = self.heading
             self.title = heading_text
             page_heading = True
+            if self.file_node.filename_without_extension == 'index':
+                self.file_node.parent.title = self.title
         else:
             page_heading = False
             if heading_level <= self.current_heading.level:
