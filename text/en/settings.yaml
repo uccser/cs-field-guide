@@ -1,76 +1,73 @@
 ---
-
-- chapters:
-    - source_files:
-        - chapters/introduction.md
-        - chapters/algorithms.md
-        - chapters/programming-languages.md
-        - chapters/human-computer-interaction.md
-        - chapters/data-representation.md
-        - chapters/coding-introduction.md
-        - chapters/coding-compression.md
-        - chapters/coding-encryption.md
-        - chapters/coding-error-control.md
-        - chapters/artificial-intelligence.md
-        - chapters/complexity-tractability.md
-        - chapters/computer-graphics.md
-        - chapters/computer-vision.md
-        - chapters/formal-languages.md
-        - chapters/network-communication-protocols.md
-        - chapters/software-engineering.md
-    - numbered: yes
-    - listed: yes
-    - navigation_sidebar: yes
-
-- curriculum-guides:
-    - source_files:
-        - curriculum-guides/ncea/assessment-guide-level-1-introduction.md
-        - curriculum-guides/ncea/assessment-guide-level-1-searching-algorithms.md
-        - curriculum-guides/ncea/assessment-guide-level-1-sorting-algorithms.md
-        - curriculum-guides/ncea/assessment-guide-level-1-human-computer-interaction.md
-        - curriculum-guides/ncea/assessment-guide-level-1-programming-languages.md
-        - curriculum-guides/ncea/assessment-guide-level-2-introduction.md
-        - curriculum-guides/ncea/assessment-guide-level-2-achieved-representing-data.md
-        - curriculum-guides/ncea/assessment-guide-level-2-achieved-compression-run-length-encoding.md
-        - curriculum-guides/ncea/assessment-guide-level-2-achieved-error-control-check-sums.md
-        - curriculum-guides/ncea/assessment-guide-level-2-achieved-error-control-parity.md
-        - curriculum-guides/ncea/assessment-guide-level-2-achieved-encryption-caesar-cipher.md
-        - curriculum-guides/ncea/assessment-guide-level-2-achieved-human-computer-interaction.md
-        - curriculum-guides/ncea/assessment-guide-level-2-full-human-computer-interaction.md
-        - curriculum-guides/ncea/assessment-guide-level-2-excellence-data-representation-text.md
-        - curriculum-guides/ncea/assessment-guide-level-2-excellence-data-representation-numbers.md
-        - curriculum-guides/ncea/assessment-guide-level-2-excellence-data-representation-colour.md
-        - curriculum-guides/ncea/assessment-guide-level-3-software-engineering-methodologies.md
-        - curriculum-guides/ncea/assessment-guide-level-3-complexity-tractability-TSP.md
-        - curriculum-guides/ncea/assessment-guide-level-3-formal-languages-FSA-RE.md
-    - numbered: yes
-    - listed: yes
-    - navigation_sidebar: yes
-
-- further-information:
-    - source_files:
-        - further-information/glossary.md
-        - further-information/contributors.md
-        - further-information/interactives.md
-        - further-information/releases.md
-        - further-information/included-files.md
-    - numbered: no
-    - listed: yes
-    - navigation_sidebar: no
-
-- static-pages:
-    - source_files:
-        - index.md
-        - about.md
-        - search.md
-        - 404.md
-        - sitemap.md
-        - chapters/index.md
-        - curriculum-guides/index.md
-        - curriculum-guides/ncea/index.md
-        - further-information/index.md
-    - numbered: no
-    - listed: no
-    - navigation_sidebar: no
-
+language: "English"
+structure:
+    - chapters:
+        numbered: yes
+        listed: yes
+        navigation_sidebar: yes
+        source_files:
+            - chapters/introduction.md
+            - chapters/algorithms.md
+            - chapters/programming-languages.md
+            - chapters/human-computer-interaction.md
+            - chapters/data-representation.md
+            - chapters/coding-introduction.md
+            - chapters/coding-compression.md
+            - chapters/coding-encryption.md
+            - chapters/coding-error-control.md
+            - chapters/artificial-intelligence.md
+            - chapters/complexity-tractability.md
+            - chapters/computer-graphics.md
+            - chapters/computer-vision.md
+            - chapters/formal-languages.md
+            - chapters/network-communication-protocols.md
+            - chapters/software-engineering.md
+    - curriculum-guides:
+        numbered: no
+        listed: yes
+        navigation_sidebar: yes
+        source_files:
+            - curriculum-guides/ncea/assessment-guide-level-1-introduction.md
+            - curriculum-guides/ncea/assessment-guide-level-1-searching-algorithms.md
+            - curriculum-guides/ncea/assessment-guide-level-1-sorting-algorithms.md
+            - curriculum-guides/ncea/assessment-guide-level-1-human-computer-interaction.md
+            - curriculum-guides/ncea/assessment-guide-level-1-programming-languages.md
+            - curriculum-guides/ncea/assessment-guide-level-2-introduction.md
+            - curriculum-guides/ncea/assessment-guide-level-2-achieved-representing-data.md
+            - curriculum-guides/ncea/assessment-guide-level-2-achieved-compression-run-length-encoding.md
+            - curriculum-guides/ncea/assessment-guide-level-2-achieved-error-control-check-sums.md
+            - curriculum-guides/ncea/assessment-guide-level-2-achieved-error-control-parity.md
+            - curriculum-guides/ncea/assessment-guide-level-2-achieved-encryption-caesar-cipher.md
+            - curriculum-guides/ncea/assessment-guide-level-2-achieved-human-computer-interaction.md
+            - curriculum-guides/ncea/assessment-guide-level-2-full-human-computer-interaction.md
+            - curriculum-guides/ncea/assessment-guide-level-2-excellence-data-representation-text.md
+            - curriculum-guides/ncea/assessment-guide-level-2-excellence-data-representation-numbers.md
+            - curriculum-guides/ncea/assessment-guide-level-2-excellence-data-representation-colour.md
+            - curriculum-guides/ncea/assessment-guide-level-3-software-engineering-methodologies.md
+            - curriculum-guides/ncea/assessment-guide-level-3-complexity-tractability-TSP.md
+            - curriculum-guides/ncea/assessment-guide-level-3-formal-languages-FSA-RE.md
+    - further-information:
+        numbered: no
+        listed: yes
+        navigation_sidebar: no
+        source_files:
+            - further-information/glossary.md
+            - further-information/contributors.md
+            - further-information/interactives.md
+            - further-information/releases.md
+            - further-information/included-files.md
+    - static-pages:
+        numbered: no
+        listed: no
+        navigation_sidebar: no
+        source_files:
+            - index.md
+            - about.md
+            - search.md
+            - 404.md
+            - sitemap.md
+            - chapters/index.md
+            - curriculum-guides/index.md
+            - curriculum-guides/ncea/index.md
+            - further-information/index.md
 ...

@@ -15,7 +15,6 @@ import logging.config
 import os.path
 import os
 import re
-import generator.languages
 from shutil import copy2
 from distutils.dir_util import copy_tree
 from generator.markdownsection import Section
@@ -41,8 +40,8 @@ class Guide:
         self.html_templates = html_templates
 
         self.language_code = language_code
-        self.guide_settings = systemfunctions.read_settings(GUIDE_SETTINGS.format(language=self.language_code))
-        self.language = self.parse_language()
+        self.guide_settings = systemfunctions.read_settings(GUIDE_SETTINGS.format(language=self.language_code), 'yaml')
+        self.language = self.guide_settings['language']
         self.version = version
         self.teacher_version_present = teacher_version_present
         self.pdf_version_present = pdf_version_present
@@ -83,48 +82,29 @@ class Guide:
         version_output_folder = self.generator_settings['Output'][self.version]
         self.output_folder = os.path.join(base_output_folder, version_output_folder)
 
-
-    def parse_language(self):
-        """Returns language name from ISO 639-1 language code"""
-        try:
-            language_name = generator.languages.language_names[self.language_code]
-        except KeyError:
-            logging.error('Language code {} not found, please check list at https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes'.format(self.language_code))
-            # Default to English
-            return 'en'
-        else:
-            return language_name
-
-
     def parse_structure(self):
         """Create tree of guide structure using folder and file nodes"""
         root_folder = FolderNode('Home', guide=self)
-        content_types = [('tracked', True), ('untracked', False)] #TODO: Find better location for this data
-        for content_name,is_tracked in content_types:
-            group_order = self.generator_settings['Source'][content_name].split()
-            # For each group in order, create folder nodes and file nodes
-            for group in group_order:
-                group_root_folder = self.generator_settings['Source'][group]
-                title_paths = self.guide_settings['Guide Structure'][group].strip().split('\n')
-                for title_path in title_paths:
-                    current_folder = root_folder # Reset current folder to root
-                    full_title_path = os.path.join(group_root_folder, title_path)
-                    folder_path, title = os.path.split(full_title_path)
-                    folder_path = folder_path.split('/')
-                    # Navigate to correct folder
-                    while folder_path:
-                        sub_folder_name = folder_path.pop(0)
-                        if sub_folder_name:
-                            # add_folder ignores creation if folder exists
-                            current_folder.add_folder(sub_folder_name)
-                            current_folder = current_folder.get_folder(sub_folder_name)
-                    #Add file node if correct markdown file exists
-                    text_root = self.generator_settings['Source']['text'].format(language=self.language_code)
-                    file_template = self.generator_settings['Source']['Text Filename Template']
-                    file_name = file_template.format(title=title)
-                    file_path = os.path.join(text_root, current_folder.path, file_name)
-                    if file_exists(file_path):
-                        current_folder.add_file(title, group, tracked=is_tracked)
+        for content_data in self.guide_settings['structure']:
+            content_type = list(content_data.keys())[0]
+            content_settings = list(content_data.values())[0]
+            for title_path in content_settings['source_files']:
+                # Reset current folder to root
+                current_folder = root_folder
+                folder_path, file_name = os.path.split(title_path)
+                folder_path = folder_path.split('/')
+                # Navigate to correct folder
+                while folder_path:
+                    sub_folder_name = folder_path.pop(0)
+                    if sub_folder_name:
+                        # add_folder() ignores creation if folder exists
+                        current_folder.add_folder(sub_folder_name)
+                        current_folder = current_folder.get_folder(sub_folder_name)
+                # Add file node if correct Markdown file exists
+                text_root = self.generator_settings['Source']['Text Root'].format(language=self.language_code)
+                file_path = os.path.join(text_root, current_folder.path, file_name)
+                if file_exists(file_path):
+                    current_folder.add_file(file_name, content_type, tracked=content_settings['listed'])
         return root_folder
 
 
@@ -155,9 +135,8 @@ class Guide:
         -   Calls generate_section function of section object,
             passing through markdown contents
         """
-        text_root = self.generator_settings['Source']['text'].format(language=self.language_code)
-        file_template = self.generator_settings['Source']['Text Filename Template']
-        file_name = file_template.format(title=file_node.filename)
+        text_root = self.generator_settings['Source']['Text Root'].format(language=self.language_code)
+        file_name = file_node.filename
         file_path = os.path.join(text_root, file_node.parent.path, file_name)
 
         # Reads markdown from file and adds this to file node
@@ -322,7 +301,7 @@ class Guide:
                 version_link_html = ''
 
             ## If homepage
-            if file in self.structure.files and file.filename == 'index':
+            if file in self.structure.files and file.filename == 'index.md':
                 if self.version == 'teacher':
                     subtitle = '<h3>Teacher Version</h3>'
                 else:
@@ -364,7 +343,7 @@ class Guide:
                        'version_link_html': version_link_html,
                        'contributors_path': path_to_guide_root + 'further-information/contributors.html'
                       }
-            write_html_file(self.html_generator, output_folder, file.filename, section_template, context)
+            write_html_file(self.html_generator, output_folder, file.filename_without_extension, section_template, context)
 
     def convert_to_print_link(self, path, is_anchor=False):
         """Converts a path used for WEB media to a single string (for either anchor
@@ -487,14 +466,15 @@ class FolderNode:
 
 class FileNode:
     """Node object for storing file details in structure tree"""
-    def __init__(self, name, group_type, parent, tracked):
-        self.filename = name
+    def __init__(self, filename, group_type, parent, tracked):
+        self.filename = filename
+        self.filename_without_extension = self.filename.rsplit('.', 1)[0]
         self.group_type = group_type
         self.parent = parent
         self.section = None
         self.tracked = tracked
         self.depth = (parent.depth + 1)
-        self.path = os.path.join(self.parent.path, self.filename)
+        self.path = os.path.join(self.parent.path, self.filename_without_extension)
         self.guide = self.parent.guide
 
     def generate_section(self, markdown_data):
