@@ -79,7 +79,9 @@ class GlossaryItem:
                                                         whitespace_before='',
                                                         whitespace_after='',
                                                         extra_classes='')
-                backwards_links = occurences_template.format(other_links=backwards_links)
+                prefix = self.glossary.guide.translation('glossary_see_also_prefix')
+                backwards_links = occurences_template.format(text_prefix=prefix,
+                                                             other_links=backwards_links)
 
             if self.glossary.guide.output_type == WEB:
                 heading_level = 3

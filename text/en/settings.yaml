@@ -116,5 +116,5 @@ text_values:
     print_link_to_online_resource_image: "View the image online at"
     print_link_to_online_resource_interactive: "Use the interactive online at"
     teacher_link_to_student_text: "Click here to view this page on the student version"
-    glossary_see_also: "See also"
+    glossary_see_also_prefix: "See also"
 ...
