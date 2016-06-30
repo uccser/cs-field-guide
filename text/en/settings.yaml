@@ -108,7 +108,6 @@ text_values:
     feedback_button: "Submit Feedback"
     feedback_subheading: "Do you have a GitHub account?"
     feedback_paragraph_2: "You can directly <a href='https://github.com/uccser/cs-field-guide/issues/new'>create an issue on our GitHub repository here</a>."
-    button_download: "Click to download"
     pre-release-text: "Please be aware this is a pre-release version, contents may change before release."
     print_link_to_online_resource_video: "Watch the video online at"
     print_link_to_online_resource_link: "View the link online at"

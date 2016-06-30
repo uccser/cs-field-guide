@@ -497,8 +497,7 @@ class Section:
             if self.guide.output_type == WEB:
                 self.required_files['File'].add(filename)
                 output_path = os.path.join(self.html_path_to_guide_root, file_path)
-                button_text = self.html_templates['button-download-text'].format(text=text)
-                html = self.html_templates['button'].format(link=output_path, text=button_text)
+                html = self.html_templates['button'].format(link=output_path, text=text)
             elif self.guide.output_type == PDF:
                 url = os.path.join(self.guide.generator_settings['General']['Domain'], self.guide.language_code, file_path)
                 html = self.create_link_to_online_resource(text, url)
