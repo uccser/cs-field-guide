@@ -41,7 +41,7 @@ class Guide:
         self.language_code = language_code
         self.guide_settings = systemfunctions.read_settings(GUIDE_SETTINGS.format(language=self.language_code), 'yaml')
         self.language = self.guide_settings['language']
-        self.translations = self.guide_settings['text_values']
+        self.translations = Translations(self.language_code, self.guide_settings['text_values'])
         self.version = version
         self.teacher_version_present = teacher_version_present
         self.pdf_version_present = pdf_version_present
@@ -81,16 +81,6 @@ class Guide:
         base_output_folder = os.path.join(self.generator_settings['Output']['Base Folder'], self.language_code)
         version_output_folder = self.generator_settings['Output'][self.version]
         self.output_folder = os.path.join(base_output_folder, version_output_folder)
-
-
-    def translation(self, key):
-        """Returns a text translation for the given key. If the key is not
-        found, an error is logged and an empty string is returned."""
-        if key in self.translations:
-            return self.translations[key]
-        else:
-            logging.error("Cannot find '{}' text translation for '{}'".format(self.language_code, key))
-            return ''
 
 
     def parse_structure(self):
@@ -300,7 +290,7 @@ class Guide:
 
             version_number = self.generator_settings['General']['Version Number']
             if 'alpha' in version_number:
-                text = self.translation('pre-release-text')
+                text = self.translations['pre-release-text']
                 template = self.html_templates['pre-release-notice']
                 prerelease_html = template.format(text=text)
             else:
@@ -309,7 +299,7 @@ class Guide:
             if self.version == 'teacher':
                 file_name = '{file_name}.html'.format(file_name=file.filename_without_extension)
                 path_to_student_page = os.path.join('../', path_to_guide_root, file.parent.path, file_name)
-                version_link_text = self.translation('teacher_link_to_student_text')
+                version_link_text = self.translations['teacher_link_to_student_text']
                 template = self.html_templates['version_link_html']
                 version_link_html = template.format(text=version_link_text,
                                                     path_to_student_page=path_to_student_page)
@@ -499,6 +489,24 @@ class FileNode:
         indent = (self.depth + 1) * '--'
         string = string_template.format(self.filename, self.depth, self.path, self.tracked, indent=indent)
         return string
+
+
+class Translations(dict):
+    """Translations dictionary that automatically logs error if
+    key not found"""
+    def __init__(self, language_code, *args, **kwargs):
+        self.language_code = language_code
+        self.update(*args, **kwargs)
+
+    def __getitem__(self, text):
+        """Returns a text translation for the given key. If the key is not found, an error is logged and an empty string is returned."""
+        try:
+            value = dict.__getitem__(self, text)
+        except KeyError:
+            logging.error("Cannot find '{}' text translation for '{}'".format(self.language_code, text))
+            return ''
+        else:
+            return value
 
 
 class NumberGenerator:

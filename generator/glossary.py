@@ -79,7 +79,7 @@ class GlossaryItem:
                                                         whitespace_before='',
                                                         whitespace_after='',
                                                         extra_classes='')
-                prefix = self.glossary.guide.translation('glossary_see_also_prefix')
+                prefix = self.glossary.guide.translations['glossary_see_also_prefix']
                 backwards_links = occurences_template.format(text_prefix=prefix,
                                                              other_links=backwards_links)
 
