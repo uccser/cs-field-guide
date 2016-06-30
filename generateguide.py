@@ -82,6 +82,17 @@ class Guide:
         version_output_folder = self.generator_settings['Output'][self.version]
         self.output_folder = os.path.join(base_output_folder, version_output_folder)
 
+
+    def translation(self, key):
+        """Returns a text translation for the given key. If the key is not
+        found, an error is logged and an empty string is returned."""
+        if key in self.translations:
+            return self.translations[key]
+        else:
+            logging.error("Cannot find '{}' text translation for '{}'".format(self.language_code, key))
+            return ''
+
+
     def parse_structure(self):
         """Create tree of guide structure using folder and file nodes"""
         root_folder = FolderNode('Home', guide=self)
