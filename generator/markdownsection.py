@@ -427,7 +427,8 @@ class Section:
 
     def create_link_to_online_resource(self, resource_type, url):
         template = 'print_link_to_online_resource'
-        return self.html_templates[template].format(resource=resource_type, url=url)
+        text_value = self.guide.translation(template + '_' + resource_type)
+        return self.html_templates[template].format(text=text_value, url=url)
 
 
     def create_video_html(self, match):
