@@ -305,9 +305,12 @@ class Guide:
                 prerelease_html = ''
 
             if self.version == 'teacher':
-                file_name = '{file_name}.html'.format(file_name=file.filename)
+                file_name = '{file_name}.html'.format(file_name=file.filename_without_extension)
                 path_to_student_page = os.path.join('../', path_to_guide_root, file.parent.path, file_name)
-                version_link_html = self.html_templates['version_link_html'].format(path_to_student_page=path_to_student_page)
+                version_link_text = self.translation('teacher_link_to_student_text')
+                template = self.html_templates['version_link_html']
+                version_link_html = template.format(text=version_link_text,
+                                                    path_to_student_page=path_to_student_page)
             else:
                 version_link_html = ''
 
