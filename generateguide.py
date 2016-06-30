@@ -300,7 +300,9 @@ class Guide:
 
             version_number = self.generator_settings['General']['Version Number']
             if 'alpha' in version_number:
-                prerelease_html = self.html_templates['pre-release-notice']
+                text = self.translation('pre-release-text')
+                template = self.html_templates['pre-release-notice']
+                prerelease_html = template.format(text=text)
             else:
                 prerelease_html = ''
 
