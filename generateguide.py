@@ -105,7 +105,7 @@ class Guide:
                 text_root = self.generator_settings['Source']['Text Root'].format(language=self.language_code)
                 file_path = os.path.join(text_root, current_folder.path, file_name)
                 if file_exists(file_path):
-                    current_folder.add_file(file_name, content_type, tracked=content_settings['listed'])
+                    current_folder.add_file(file_name, content_type, content_settings)
         return root_folder
 
 
@@ -272,9 +272,12 @@ class Guide:
         #     components to be created in jinja2
 
         body_html= ''
-        section_template = self.generator_settings['HTML'][file.group_type]
+        section_template = 'website_layout'
 
         if file.section:
+            context = {
+                'file': file
+            }
             output_folder = os.path.join(self.output_folder, file.parent.path)
 
             path_to_guide_root = file.section.html_path_to_guide_root
@@ -317,10 +320,8 @@ class Guide:
                     filename = self.generator_settings['PDF']['Output File'].strip().format(self.version.capitalize())
                     output_path = os.path.join(self.output_folder, filename)
                     filesize = os.path.getsize(output_path) / 1024 / 1024
-                    pdf_button = self.html_templates['website_homepage_pdf_button'].format(filesize=filesize, path_to_pdf=filename)
-                else:
-                    pdf_button = ''
-                body_html = self.html_templates['website_homepage_content'].format(path_to_guide_root=file.section.html_path_to_guide_root, prerelease_notice=prerelease_html, pdf_button=pdf_button)
+                    context['pdf_button'] = self.html_templates['website_homepage_pdf_button'].format(filesize=filesize, path_to_pdf=filename)
+                body_html = self.html_templates['website_homepage_content']
             else:
                 page_heading = file.section.heading.to_html()
 
@@ -329,27 +330,28 @@ class Guide:
             else:
                 current_folder = None
 
-            context = {'page_title': file.section.title,
-                       'page_heading': page_heading,
-                       'body_html': body_html,
-                       'path_to_guide_root': path_to_guide_root,
-                       'path_to_output_root': path_to_output_folder,
-                       'project_title': self.translations['project_title'],
-                       'project_title_abbreviation': self.translations['project_title_abbreviation'],
-                       'translations': self.translations,
-                       'root_folder': self.structure,
-                       'heading_root': file.section.heading,
-                       'language_code': self.language_code,
-                       'page_scripts': file.section.page_scripts,
-                       'current_page': file.path,
-                       'current_folder': current_folder,
-                       'analytics_code': self.generator_settings['General']['Google Analytics Code'],
-                       'version': self.version,
-                       'version_number': version_number,
-                       'prerelease_notice': prerelease_html,
-                       'version_link_html': version_link_html,
-                       'contributors_path': path_to_guide_root + 'further-information/contributors.html'
-                      }
+            context.update({'page_title': file.section.title,
+               'page_heading': page_heading,
+               'path_to_guide_root': path_to_guide_root,
+               'path_to_output_root': path_to_output_folder,
+               'project_title': self.translations['project_title'],
+               'project_title_abbreviation': self.translations['project_title_abbreviation'],
+               'translations': self.translations,
+               'root_folder': self.structure,
+               'heading_root': file.section.heading,
+               'language_code': self.language_code,
+               'page_scripts': file.section.page_scripts,
+               'current_page': file.path,
+               'current_folder': current_folder,
+               'analytics_code': self.generator_settings['General']['Google Analytics Code'],
+               'version': self.version,
+               'version_number': version_number,
+               'prerelease_notice': prerelease_html,
+               'version_link_html': version_link_html,
+               'contributors_path': path_to_guide_root + 'further-information/contributors.html'
+            })
+            body_html = self.html_generator.render_string(body_html, context)
+            context.update({'body_html': body_html})
             write_html_file(self.html_generator, output_folder, file.filename_without_extension, section_template, context)
 
     def convert_to_print_link(self, path, is_anchor=False):
@@ -435,11 +437,11 @@ class FolderNode:
             self.folders.append(folder_node)
             self.folders_dict[folder_name] = len(self.folders) - 1
 
-    def add_file(self, file_name, group_type, tracked=True):
+    def add_file(self, file_name, group_type, file_settings):
         """Add file to files list. Updates dictionary
         of index references
         """
-        file_node = FileNode(file_name, group_type, parent=self, tracked=tracked)
+        file_node = FileNode(file_name, file_settings, group_type, parent=self)
         self.files.append(file_node)
         self.files_dict[file_name] = len(self.files) - 1
 
@@ -468,13 +470,14 @@ class FolderNode:
 
 class FileNode:
     """Node object for storing file details in structure tree"""
-    def __init__(self, filename, group_type, parent, tracked):
+    def __init__(self, filename, settings, group_type, parent):
         self.filename = filename
         self.filename_without_extension = self.filename.rsplit('.', 1)[0]
         self.group_type = group_type
         self.parent = parent
         self.section = None
-        self.tracked = tracked
+        self.settings = settings
+        self.tracked = settings['listed']
         self.depth = (parent.depth + 1)
         self.path = os.path.join(self.parent.path, self.filename_without_extension)
         self.guide = self.parent.guide
