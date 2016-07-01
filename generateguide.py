@@ -623,16 +623,17 @@ def write_html_file(html_generator, output_folder, filename, template, context):
         logging.critical("Cannot write file {0}".format(path))
 
 
-def create_landing_page(outputted_languages, html_generator, generator_settings):
+def create_landing_page(outputted_languages, html_generator, primary_guide):
     """Create and write landing page with language list"""
     context = {'project_title': 'Computer Science Field Guide',
+        'translations': primary_guide.translations,
         'language_code': outputted_languages[0][0],
         'languages': outputted_languages,
         'path_to_guide_root': outputted_languages[0][0] + '/',
-        'analytics_code': generator_settings['General']['Google Analytics Code'],
-        'version_number': generator_settings['General']['Version Number']
+        'analytics_code': primary_guide.generator_settings['General']['Google Analytics Code'],
+        'version_number': primary_guide.generator_settings['General']['Version Number']
         }
-    output_folder = generator_settings['Output']['Base Folder']
+    output_folder = primary_guide.generator_settings['Output']['Base Folder']
     write_html_file(html_generator, output_folder, 'index', 'website_page_landing', context)
 
 
@@ -662,7 +663,7 @@ def main():
 
     # Create landing page if website required
     if not cmd_args.pdf_only:
-        create_landing_page(outputted_languages, html_generator, generator_settings)
+        create_landing_page(outputted_languages, html_generator, guide)
 
     finish_logging()
 
