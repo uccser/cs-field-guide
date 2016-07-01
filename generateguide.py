@@ -354,6 +354,7 @@ class Guide:
             context.update({'body_html': body_html})
             write_html_file(self.html_generator, output_folder, file.filename_without_extension, section_template, context)
 
+
     def convert_to_print_link(self, path, is_anchor=False):
         """Converts a path used for WEB media to a single string (for either anchor
         or link) for use in PDF media."""
@@ -374,18 +375,18 @@ class Guide:
         """
         # Create output folder
         os.makedirs(self.output_folder, exist_ok=True)
-
-        if self.version == 'teacher':
-            subtitle = '\n<p class="print-second-subtitle">Teacher Version</p>'
-        else:
-            subtitle = ''
-        self.pdf_html += self.html_templates['print_title_page'].format(subtitle=subtitle, version_number=self.generator_settings['General']['Version Number'])
         context = {
+            'translations': self.translations,
             'path_to_guide_root': '',
             'version_number': self.generator_settings['General']['Version Number'],
             'contributors_path': '#further-information-contributors'
-            }
-        self.pdf_html += self.html_generator.render_template( 'website_footer', context)
+        }
+
+        if self.version == 'teacher':
+            context.update({'subtitle': self.translations['teacher_version_text']})
+        pdf_cover_template = self.html_templates['print_title_page']
+        self.pdf_html += self.html_generator.render_string(pdf_cover_template, context)
+        self.pdf_html += self.html_generator.render_template('website_footer', context)
 
 
     def add_to_pdf_html(self, file):
