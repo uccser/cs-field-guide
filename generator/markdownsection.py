@@ -409,8 +409,6 @@ class Section:
                 html = ''
         else:
             self.regex_functions['conditional'].log("Invalid context {} given".format(context), self, match.group(0))
-
-
         return html
 
 

@@ -276,7 +276,14 @@ class Guide:
 
         if file.section:
             context = {
-                'file': file
+                'file': file,
+                'guide': self,
+                'project_title': self.translations['project_title'],
+                'project_title_abbreviation': self.translations['project_title_abbreviation'],
+                'translations': self.translations,
+                'root_folder': self.structure,
+                'language_code': self.language_code,
+                'analytics_code': self.generator_settings['General']['Google Analytics Code']
             }
             output_folder = os.path.join(self.output_folder, file.parent.path)
 
@@ -311,11 +318,7 @@ class Guide:
 
             ## If homepage
             if file in self.structure.files and file.filename == 'index.md':
-                if self.version == 'teacher':
-                    subtitle = '<h3>Teacher Version</h3>'
-                else:
-                    subtitle = ''
-                page_heading = self.html_templates['website_homepage_header'].format(subtitle=subtitle)
+                page_heading = self.html_generator.render_template('website_homepage_header', context)
                 if self.pdf_version_present:
                     filename = self.generator_settings['PDF']['Output File'].strip().format(self.version.capitalize())
                     output_path = os.path.join(self.output_folder, filename)
@@ -330,25 +333,19 @@ class Guide:
             else:
                 current_folder = None
 
-            context.update({'page_title': file.section.title,
-               'page_heading': page_heading,
-               'path_to_guide_root': path_to_guide_root,
-               'path_to_output_root': path_to_output_folder,
-               'project_title': self.translations['project_title'],
-               'project_title_abbreviation': self.translations['project_title_abbreviation'],
-               'translations': self.translations,
-               'root_folder': self.structure,
-               'heading_root': file.section.heading,
-               'language_code': self.language_code,
-               'page_scripts': file.section.page_scripts,
-               'current_page': file.path,
-               'current_folder': current_folder,
-               'analytics_code': self.generator_settings['General']['Google Analytics Code'],
-               'version': self.version,
-               'version_number': version_number,
-               'prerelease_notice': prerelease_html,
-               'version_link_html': version_link_html,
-               'contributors_path': path_to_guide_root + 'further-information/contributors.html'
+            context.update({
+                'page_title': file.section.title,
+                'page_heading': page_heading,
+                'path_to_guide_root': path_to_guide_root,
+                'path_to_output_root': path_to_output_folder,
+                'heading_root': file.section.heading,
+                'page_scripts': file.section.page_scripts,
+                'current_page': file.path,
+                'current_folder': current_folder,
+                'version_number': version_number,
+                'prerelease_notice': prerelease_html,
+                'version_link_html': version_link_html,
+                'contributors_path': path_to_guide_root + 'further-information/contributors.html'
             })
             body_html = self.html_generator.render_string(body_html, context)
             context.update({'body_html': body_html})
