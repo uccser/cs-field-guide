@@ -278,8 +278,6 @@ class Guide:
             context = {
                 'file': file,
                 'guide': self,
-                'project_title': self.translations['project_title'],
-                'project_title_abbreviation': self.translations['project_title_abbreviation'],
                 'translations': self.translations,
                 'root_folder': self.structure,
                 'language_code': self.language_code,
