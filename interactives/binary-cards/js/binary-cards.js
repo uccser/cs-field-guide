@@ -36,7 +36,7 @@ function createCards(settings) {
     var cardContainer = $('#interactive-binary-cards-container');
 
     var value = Math.pow(settings.BASE, settings.DIGITS + settings.OFFSET - 1);
-    var starting_sides = getUrlParameter('start');
+    var starting_sides = getUrlParameter('start') || "";
 
     // Iterate through card values
     for (var digit = 0; digit < settings.DIGITS; digit++) {
