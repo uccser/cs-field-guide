@@ -16,25 +16,35 @@
   <body>
 	    <!-- ### Start of required HTML for inline interactives ### -->
       <div class="row interactive">
-      <div class="col s12 m8 offset-m2">
-      <div id="lempil-ziv-ss">
+        <div class="col s12 m8 offset-m2">
+          <div id="lempil-ziv-ss">
 
           <div>
-      Select a text file: 
-      <input type="file" id="fileInput">
-    </div>
-    <pre id="fileDisplayArea"><pre>
-      Test Text:
-      <p id="testText"> </p>
+            Select a text file: 
+            <input type="file" id="fileInput">
+          </div>
+
+          <div>
+          <textarea id="text-to-encode-textarea"></textarea> 
+          <button id="text-area-encode-button" class="btn btn-large" onclick="encodeTextArea()">Encode!</button>
+          </div>
+          
 
 
 
-      Encoded Text:
-      <p id="encodedText"> </p>
 
-        <script src="./js/lempil-ziv-ss.js"></script>
-      </div>
-      </div>
+          <pre id="fileDisplayArea"><pre>
+            <h5>Test Text:</h5>
+            <div class="displayed-text" id="testText"></div>
+
+            <h5>Encoded Text:</h5>
+            <div class="displayed-text" id="encodedText"></div>
+
+
+            <link rel="stylesheet" href="./css/lempil-ziv-ss.css">
+            <script src="./js/lempil-ziv-ss.js"></script>
+          </div>
+        </div>
       </div>
       <!-- ### End of required HTML for inline interactives ### -->
       <!-- Materialize responsive CSS -->

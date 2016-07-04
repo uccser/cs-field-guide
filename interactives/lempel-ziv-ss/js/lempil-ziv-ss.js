@@ -1,5 +1,5 @@
 var lempilZivSS = {};
-this.slidingWindow = 4000
+this.slidingWindow = 2000
 
 /*testString = "abcxxxxxxabcxxxxxxxabcd"
 $(document).ready(function(){
@@ -8,6 +8,7 @@ $(document).ready(function(){
 */
 //file input stuff
 window.onload = function() {
+	//########### File Input things#################
 		var fileInput = document.getElementById('fileInput');
 		var testText = document.getElementById('testText');
 
@@ -19,13 +20,20 @@ window.onload = function() {
 				var reader = new FileReader();
 
 				reader.onload = function(e) {
-					testText.innerHTML = reader.result;
-					timeStart = performance.now();
-					lzssEncode(reader.result, slidingWindow);
-					timeEnd = performance.now();
-					console.log("Call to lzssEncode with .txt file with length " + reader.result.length + " took " + (timeEnd - timeStart) + " milliseconds.")
+					//###execution time testing purposes, encodes string with many different sliding windows and outputs time taken
 
+					var slidingWindows = [100, 500, 1000, 2000, 4000, 10000, reader.result.length]
 
+					for (var i = 0; i < slidingWindows.length; i++) {
+					
+						timeStart = performance.now();
+						lzssEncode(reader.result, slidingWindows[i]);
+						timeEnd = performance.now();
+						console.log("Call to lzssEncode with .txt file with length " + reader.result.length + " took " + (timeEnd - timeStart) + " milliseconds with sliding window of " + slidingWindows[i]);
+						console.log("Text before encoding was " + $('#testText').text().length + " characters, and after it was " + $('#encodedText').text().length + "characters");
+ 
+					}
+					//###########################################################
 				}
 
 				reader.readAsText(file);
@@ -36,9 +44,17 @@ window.onload = function() {
 				fileDisplayArea.innerText = "File not supported!"
 			}
 		});
+	//##############################################
+
+	//########## Encode Button ##################
+
+
 }
 
-
+function encodeTextArea() {
+	var textInTextArea = document.getElementById("text-to-encode-textarea").value;
+	lzssEncode(textInTextArea, slidingWindow);
+}
 
 function lzssEncode(stringToEncode, slidingWindowLength) {
 //make string to encode an array
@@ -93,7 +109,7 @@ function lzssEncode(stringToEncode, slidingWindowLength) {
 		}
 		//if nothing to encode
 		//console.log("matchIndex is " + matchIndex);
-		if ((indexOfLongestMatchStart == -1) || (longestMatch.length < 3)) {
+		if ((indexOfLongestMatchStart == -1) || (longestMatch.length < 5)) {
 			//console.log("No match found, not encoding");
 			stringToReturn += stringToEncode[stringIndex];
 			stringIndex++
