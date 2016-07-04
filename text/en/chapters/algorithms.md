@@ -24,21 +24,7 @@ Often you can get away with describing a process just using some sort of informa
 "please get me a glass of water".
 A human can understand what this means and can figure out how to accomplish this task by thinking, but a computer would have no idea how to do this!
 
-{comment}
-[Add new text and interactive here for finding the high score in a table.
-Interactive could have doors or boxes to open with numbers in them; only one is visible at a time, and the challenge is to find the highest number.
-There could be a space to type the number, and a button to press to check if it's correct.
-The preceding text could be as follows:]
-For example, suppose you have to work out the highest score from a group of players.
-It sounds easy enough for a small list like this one:
-[image of list of 5 high scores]
-But what about this list:
-[image of list of about 100 high scores, not lined up, non-proportional font, not so easy to spot large numbers]
-Now you need some sort of organised process --- an algorithm --- to find the highest score with absolute certainty.
-Try finding the high score the following interactive, thinking about what process you'll use to be sure of getting the right answer.
-(The process will be fairly simple; we're not looking for a particularly clever solution, but just want to think about how to express the process really clearly.)
-[note: will also need to make slight changes to the next few paragraphs that mention a high-score algorithm.]
-{comment end}
+{interactive name="high-score-boxes" type="whole-page" text="High Score Boxes"}
 
 An example in a computational context might be if you wanted to find a high score in a table of scores:
 go through each score keeping track of the largest so far.
