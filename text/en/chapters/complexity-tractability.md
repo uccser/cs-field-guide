@@ -45,7 +45,7 @@ So one of the jobs of computer scientists is to be confident that such solutions
 
 In this chapter we will look at the TSP and other problems for which *no* tractable solutions are known, problems that would take computers millions of centuries to solve.  And we will encounter what is surely the greatest mystery in computer science today: that *no-one knows* whether there's a more efficient way of solving these problems!  It may be just that no-one has come up with a good way yet, or it may be that there is no good way.  We don't know which.  
 
-{image filename="xkcd-np-complete-cartoon.png" alt="A xkcd comic about NP complete" source="https://xkcd.com/287/"}
+{image filename="xkcd-np-complete-cartoon.png" hover-text="General solutions get you a 50% tip." alt="A xkcd comic about NP complete" source="https://xkcd.com/287/"}
 
 But let's start with a familiar problem that we can actually solve.
 
@@ -65,7 +65,9 @@ But let's start with a familiar problem that we can actually solve.
 
 {comment end}
 
-[Complexity](glossary.html#complexity) is an important concept with problems and algorithms that solve them.
+{glossary-definition term="Complexity" definition="Complexity how long it takes to solve a problem. A problem has an inherent complexity (minimum time needed to solve it); any algorithm to solve the problem will have a higher complexity (take at least that long)."}
+
+{glossary-link term="Complexity" reference-text="problems and algorithms"}Complexity{glossary-link end} is an important concept with problems and algorithms that solve them.
 Usually complexity is just the amount of time it takes to solve a problem, but there are several ways that we can measure the "time".
 Using the actual time on a particular computer can be useful, but to get a rough idea of the inherent behaviour of an algorithm, computer scientists often start by estimating the number of steps the algorithm will take for *n* items.
 For example, a linear search can end up checking each of *n* items being searched, so the algorithm will take *n* steps.
@@ -177,7 +179,9 @@ Now add another word. How many possible orderings will there be with 5 words? Wh
 
 The number of orderings (permutations) for n words is the factorial of n; this is explained below, but basically there are n choices for the first word, n-1 for the next, and so on. For example, for 15 words, there are 15 x 14 x 13 x 12 x ... x 1 permutations, which is 1,307,674,368,000. It's a big number!
 
-The factorial of a number can be calculated using a spreadsheet (in Excel the formula for {math}15!{math end} is =FACT(15). A lot of calculators have a factorial button ("!").  You can even type {math}15!{math end} into a Google search and get the answer. However, for dealing with very large numbers, the field guide has a simple calculator that can work with huge numbers; it is in the text below, or you can open it [here](_static/widgets/big-calculator.html?plain=true frameborder="0").  
+The factorial of a number can be calculated using a spreadsheet (in Excel the formula for {math}15!{math end} is =FACT(15). A lot of calculators have a factorial button ("!").  You can even type {math}15!{math end} into a Google search and get the answer. However, for dealing with very large numbers, the field guide has a simple calculator that can work with huge numbers; it is in the text below, or you can open it here:
+
+{interactive name="big-number-calculator" type="whole-page" text="Big Number Calculator"}
 
 For the above questions, the number of permutations are:
 
@@ -202,11 +206,7 @@ Your calculator may have a "!" button for calculating factorials and spreadsheet
 
 For factorials of larger numbers, most desktop calculators won't work so well; for example, 100! has 158 digits. You can use the calculator below to work with huge numbers (especially when using factorials and exponents).  
 
-{comment}
-interactive needs fixing
-{comment end}
-
-{button link="http://www.csfieldguide.org.nz/releases/1.9.9/_static/widgets/big-calculator.html?plain=true%20frameborder=" text="View big number calculator"}
+{interactive name="big-number-calculator" type="whole-page" text="Big Number Calculator"}
 
 Try calculating 100! using this calculator --- that's the number of different routes that a travelling salesman might take to visit 100 places (not counting the starting place). With this calculator you can copy and paste the result back into the input if you want to do further calculations on the number. If you are doing these calculations for a report, you should also copy each step of the calculation into your report to show how you got the result.
 
@@ -396,11 +396,9 @@ You're going to have to be more than patient if you want Moore's law to help out
 
 Remember that if you need to do calculations of huge numbers, there's a calculator here that you can use:
 
-{button link="http://www.csfieldguide.org.nz/releases/1.9.9/_static/widgets/big-calculator.html?plain=true%20frameborder=" text="View big number calculator"}
+{interactive name="big-number-calculator" type="whole-page" text="Big Number Calculator"}
 
 {comment}
-
-.. xJRM force above link to open in new window; also, nice if there's an icon/screenshot/image in the link
 
 .. Exercise: password cracking
 .. ------------------------------------------------------------

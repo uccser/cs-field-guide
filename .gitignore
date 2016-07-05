@@ -2,6 +2,9 @@
 output/*
 !output/README.md
 
+# Ignore everything within cache folder
+cache/*
+
 # Ignore Python module cache files
 generator/__pycache__/*
 *.pyc
@@ -14,6 +17,7 @@ generator/__pycache__/*
 .Trashes
 ehthumbs.db
 Thumbs.db
+*.Rhistory
 
 # Vim files
 *.swo

@@ -29,6 +29,11 @@ $(document).ready(function() {
 
   $('#reset').on('click', function(){
     setup_delay_grid();
+    if ($('#statistics-div').is(":visible")) {
+      $('#toggle-view').html('View grid');
+    } else {
+      $('#toggle-view').html('View statistics');
+    }
   });
 
   // Create the grid on load
@@ -60,6 +65,12 @@ function calculateStatistics() {
     });
   });
   delays_perceived.sort(function(a,b){return a[0] > b[0] ? 1 : (a[0] < b[0] ? -1 : 0);})
+
+  if (delays_perceived.length == 0) {
+      $('#statistics-table').hide();
+  } else {
+      $('#statistics-table').show();
+  }
 
   if (delays_perceived.length != gridSize * gridSize) {
     $('#statistics-feedback').html("You still have tiles to reveal!");
