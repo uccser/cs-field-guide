@@ -22,9 +22,9 @@ You should read and work through the interactives in the following sections of t
 
 Read all of these sections, as they give the necessary introduction of the topics
 
-[7.1 - What’s the Big Picture?](coding-compression.html#whats-the-big-picture)
+[7.1 - What’s the Big Picture?](chapters/coding-compression.html#whats-the-big-picture)
 
-[7.2 - Run Length Encoding](coding-compression.html#run-length-encoding)
+[7.2 - Run Length Encoding](chapters/coding-compression.html#run-length-encoding)
 
 ## Project
 
@@ -40,7 +40,7 @@ Start this section by writing an introduction to the topic of compression. *Brie
 
 Now you are going to make an example of compression in action to include in your report. Start by making a grid of squares (any size is fine, but it should be at least 6x6) and draw a picture by filling some of the squares with black and leave others white. Underneath (or alongside each row), show how a computer could represent your image using Run Length Encoding. You should not worry about how it is represented at the bit level. It is fine to just use normal numbers which are comma separated, like what was done in the field guide chapter on compression.
 
-Count how many characters are needed to represent your image in its original form (i.e. how many squares does it contain?). Count how many characters were used in your Run Length Encoding representation. Don’t forget to include the commas! (check the field guide or read the teacher note if you don't understand why we say you must count the commas). How well did Run Length Encoding compress your image? You might choose to use [Hannah Taylor's Run Length Encoding interactive](http://taylormade.io/run-length-encoding.html).
+Count how many characters are needed to represent your image in its original form (i.e. how many squares does it contain?). Count how many characters were used in your Run Length Encoding representation. Don’t forget to include the commas! (check the field guide or read the teacher note if you don't understand why we say you must count the commas). How well did Run Length Encoding compress your image? You might choose to use [the Run Length Encoding interactive](interactives/run-length-encoding/index.html).
 
 *Briefly* describe what Run Length Encoding is, relating back to the example you have just put in your report. Regardless of whether you use the interactive or calculate the run length encoding by hand, describe how you arrived at your answer for a couple of lines in the image. The marker needs to be able to know that you understand the example, and what it is of.
 

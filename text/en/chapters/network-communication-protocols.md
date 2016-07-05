@@ -30,7 +30,7 @@ The URL for the home site of this book is http://csfieldguide.org. Ask a few fri
 For the activity in this section it's ideal if your school computers have a modern browser with the developer extensions enabled. [Chrome](https://www.google.com/chrome/browser/) is free to download, and is the browser we recommend. Follow the instructions [here](http://debugbrowser.com/) for more information on how to do this. The developer browser can’t really do any harm, and you can encourage further tinkering. However, knowledge of HTML, JavaScript or any other web design won’t be helpful in a report on protocols. If your school’s IT department can't allow you access to these features, simply encourage the students to try this at home. It’s a perfectly safe activity. Note: Details of page loads only show up if the inspector is open, you may need to refresh the current page to see this.
 {panel end}
 
-The HyperText Transfer Protocol (HTTP) is the most common protocol in use on the internet. The protocol’s job is to transfer [HyperText](glossary#hypertext) (such as HTML) from a server to your computer. It’s doing that right now. You just loaded the Field Guide from the servers where it is hosted. Hit refresh and you’ll see it in action.
+The HyperText Transfer Protocol (HTTP) is the most common protocol in use on the internet. The protocol’s job is to transfer [HyperText](https://en.wikipedia.org/wiki/Hypertext) (such as HTML) from a server to your computer. It’s doing that right now. You just loaded the Field Guide from the servers where it is hosted. Hit refresh and you’ll see it in action.
 
 HTTP functions as a simple conversation between client and server. Think of when you’re at a shop:
 
@@ -80,15 +80,15 @@ A DELETE request does what you’d think, it deletes a resource.
 
 Some other request types (*HTTP methods*) exist too, but they are less used; these are TRACE, OPTIONS, CONNECT and PATCH. You can [find out more about these](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol) on your own if you're interested.
 
-In HTTP, the first line of the response is called the *status* line and has a numeric status code such as **404** and a text-based *reason phrase* such as “Not Found”. The most common is 200 and this means successful or “OK”. HTTP status codes are primarily divided into five groups for better explanation of requests and responses between client and server and are named by purpose and a number: Informational 1XX, Successful 2XX, Redirection 3XX, Client Error 4XX and Server Error 5XX. There are many [status codes](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes) for representing different cases for error or success. There’s even a nice 418: Teapot error on Google: [https://www.google.com/teapot](https://www.google.com/teapot)
+In HTTP, the first line of the response is called the *status* line and has a numeric status code such as **404** and a text-based *reason phrase* such as “Not Found”. The most common is 200 and this means successful or “OK”. HTTP status codes are primarily divided into five groups for better explanation of requests and responses between client and server are named by purpose and a number: Informational 1XX, Successful 2XX, Redirection 3XX, Client Error 4XX and Server Error 5XX. There are many [status codes](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes) for representing different cases for error or success. There’s even a nice 418: Teapot error on Google: [https://www.google.com/teapot](https://www.google.com/teapot)
 
-So what’s actually happening? Well, let’s find out. If you’re in a Chrome or Safari browser, press Ctrl + Shift + I in windows or Command + Option + I on a mac to bring up the web inspector. Select the Network tab. Refresh the page. What you’re seeing now is a list of of HTTP requests your browser is making to the server to load the page you're currently viewing. Near the top you’ll see a request to NetworkCommunicationProtocols.html. Click that and you’ll see details of the Headers, Preview, Response, Cookies and Timing. Ignore those last two for now.
+So what’s actually happening? Well, let’s find out. Open a new tab in your browser and open the homepage of the [CS Field Guide here](index.html). If you’re in a Chrome or Safari browser, press Ctrl + Shift + I in Windows or Command + Option + I on a Mac to bring up the web inspector. Select the Network tab. Refresh the page. What you’re seeing now is a list of of HTTP requests your browser is making to the server to load the page you're currently viewing. Near the top you’ll see a request to `index.html`. Click that and you’ll see details of the Headers, Preview, Response, Cookies and Timing. Ignore those last two for now.
 
 Let’s look at the first few lines of the headers:
 
 ```
-Remote Address:132.181.17.3:80
-Request URL: http://csfieldguide.org.nz/en/chapters/network-communication-protocols.html
+Remote Address: 132.181.2.122:3128
+Request URL: http://www.csfieldguide.org.nz/en/index.html
 Request Method: GET
 Status Code: 200 OK
 ```
@@ -98,11 +98,11 @@ The *Remote Address* is the address of the server of the page is hosted on. The 
 Let’s look at the *Request Headers* now, click ‘view source’ to see the original request.
 
 ```
-GET /network-communication-protocols.html HTTP/1.1
+GET /index.html HTTP/1.1
 Host: www.csfieldguide.org.nz
 Connection: keep-alive
 Cache-Control: max-age=0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+Accept: text/html,application/xhtml+xml;q=0.9,image/webp,*/*;q=0.8
 User-Agent: Chrome/34.0.1847.116
 Accept-Encoding: gzip,deflate,sdch
 Accept-Language: en-US,en;q=0.8
@@ -116,7 +116,6 @@ As you can see, a request message consists of the following:
 
 Let’s look at the *Response Headers*:
 
-
 ```
 HTTP/1.1 200 OK
 Date: Sun, 11 May 2014 03:52:56 GMT
@@ -129,7 +128,7 @@ Vary: Accept-Encoding, User-Agent
 Content-Encoding: gzip
 ```
 
-As you can see, a request message consists of the following:
+As you can see, a response message consists of the following:
 - Status Line, 200 OK means everything went well.
 - Response Headers (Content-Length, Content-Type etc)
 - An empty line
@@ -159,7 +158,7 @@ Whilst IRC may be new to you, the concept of a group conversation online or a *c
 
 Channels usually form around a particular topic, such as Python,  Music, TV show fans, Gaming or Hacking. Convention dictates that channel names start with one or two # symbols, such as #python or ##TheBigBangTheory. *Conventions* are different to protocols in that they aren’t actually enforced by the protocol, but people choose to use it that way.
 
-To get started with IRC, first you should get a client. A client is a program that lets you connect. Ask your teacher about which one to use. For this chapter, we’ll use the [freenode web client](http://webchat.freenode.net/). Check with your teacher about which channel to join, as they may have set one up for you.
+To get started with IRC, first you should get a client. A client is a program that let's you connect. Ask your teacher about which one to use. For this chapter, we’ll use the [freenode web client](http://webchat.freenode.net/). Check with your teacher about which channel to join, as they may have set one up for you.
 
 Try a few things while you’re in there. Look at this [list of commands](https://en.wikipedia.org/wiki/List_of_Internet_Relay_Chat_commands) and try to use some of them. What response do you get? Does this make sense?
 
@@ -171,7 +170,7 @@ So far we have talked about HTTP and IRC. These protocols are at a level that ma
 
 ### TCP
 
-TCP (The Transmission Control Protocol) is one of the most important protocol on the internet. It breaks large messages up into *packets*. What is a packet? A packet is a segment of data that when combined with other packets, make up a total message (something like a HTTP request, an email, an IRC message or a file like a picture or song being downloaded). For the rest of the section, we’ll look at how these are used to load an image from a website.
+TCP (The Transmission Control Protocol) is one of the most important protocols on the internet. It breaks large messages up into *packets*. What is a packet? A packet is a segment of data that when combined with other packets, make up a total message (something like a HTTP request, an email, an IRC message or a file like a picture or song being downloaded). For the rest of the section, we’ll look at how these are used to load an image from a website.
 
 So computer A looks the file and takes it, breaks it into packets. It then sends the packets over the internet and computer B reassembles them and gives them back to you as the image, [which is demonstrated in this video.](https://www.youtube.com/watch?v=WwyJGzZmBe8)
 
@@ -240,7 +239,7 @@ So do we even use such an unreliable protocol? Yes, but not for anything too imp
 
 Let’s say I want to write an online music player. Okay, so I write the code for someone to press play on a website and the song plays. Do I now need to code up the protocol that streams the music? Fine, I write some UDP code. Now, do I need to go install the cables in your house? Sure, I jump in my van and spend a few weeks running cable to your house and make sure the packets can get over too.
 
-No. This sounds absurd. As a web developer, I don’t want to worry about anything other than making my music player easy to use and fast. I *don’t* want to worry about UDP and I *don’t* want to worry about ethernet or cables. It’s already done, I can assume it’s take care of. And it is.
+No. This sounds absurd. As a web developer, I don’t want to worry about anything other than making my music player easy to use and fast. I *don’t* want to worry about UDP and I *don’t* want to worry about ethernet or cables. It’s already done, I can assume it’s taken care of. And it is.
 
 Internet protocols exist in layers. We have four such layers in the computer science internet model. The top two levels are discussed above in detail, the bottom two we won’t focus on.The first layer is the Application Layer, followed by the Transport, Internet and Link layers.
 
@@ -262,7 +261,7 @@ You can think of these protocols as a game of pass the parcel. When a message is
 The name packet is a generic term for a unit of data. In the application layer units of data are called *data* or *requests*, in the transport layer, *datagram* or *segments*, in the Network/IP layer, *packet* and in the physical layer, a *frame*. Each level has its own name for a unit of data (segment, packet, frame, request etc), however the more generic “packet” is often used instead, regardless of layer.
 {panel end}
 
-This system is neat because each layer can assume that the layer above and below have guaranteed something about the information, and each layer (and protocol in use at that layer) has a stand-alone role. So if you’re making a website you just have to program website code, and not worry about code to make the site work over wifi as well as ethernet. A similar system is in the postal system… You don’t put the courier’s truck number on the front of the envelope! That’s take care of by the post company, which then uses a system to sort the mail and assign it to drivers, and then drivers to trucks, and then drivers to routes… none of which you need to worry about when you send or receive a letter or use a courier.
+This system is neat because each layer can assume that the layers above and below have guaranteed something about the information, and each layer (and protocol in use at that layer) has a stand-alone role. So if you’re making a website you just have to program website code, and not worry about code to make the site work over wifi as well as ethernet. A similar system is in the postal system… You don’t put the courier’s truck number on the front of the envelope! That’s taken care of by the post company, which then uses a system to sort the mail and assign it to drivers, and then drivers to trucks, and then drivers to routes… none of which you need to worry about when you send or receive a letter or use a courier.
 
 {panel type="curiosity" summary="The OSI model vs the TCP/IP model"}
 The OSI internet model is different from the TCP/IP model of the internet that Computer Scientists use to approach protocol design. OSI is considered and probably mentioned in the networking standards but the guide will use the computer science approach because it is simpler, however the main idea of layers of abstraction is more important to get across. You can read more about the differences [here](https://en.wikipedia.org/wiki/Internet_protocol_suite#Comparison_of_TCP.2FIP_and_OSI_layering).

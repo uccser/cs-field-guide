@@ -67,10 +67,6 @@ Text which has been encrypted.
 
 Compiler translates an entire program written in a high level language to machine language in advance before running it.
 
-## Complexity
-
-Complexity how long it takes to solve a problem. A problem has an inherent complexity (minimum time needed to solve it); any algorithm to solve the problem will have a higher complexity (take at least that long). See also algorithm complexity.
-
 ## Compression
 
 Compression making a file smaller by removing redundant information (typically using standards like zip, jpeg, mpeg, mp3).
