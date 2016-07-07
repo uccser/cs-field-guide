@@ -16,7 +16,7 @@ var x_pos;
 var y_pos;
 var z_pos;
 var rotateObject = false;
-var difference; = 10;
+var difference = 10;
 
 
 init();
