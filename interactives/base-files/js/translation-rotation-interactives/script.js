@@ -462,9 +462,6 @@ function end() {
         timer = setTimeout( run, 75 );
     }, 1500 );
 
-    // remove cube from scene
-    scene.removeObject( cube );
-
 }
 
 
