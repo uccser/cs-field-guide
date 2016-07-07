@@ -183,6 +183,8 @@ function init() {
         document.getElementById( 'mobile-coord' ).style.display = 'inline';
     }
 
+    clearCode();
+
 
 }
 
@@ -354,7 +356,7 @@ function updateSide( side, currentImg, coloured) {
  */
 function submitCode() {
 
-    // ,move box back to central position
+    // move box back to central position
     x_pos = 0;
     y_pos = -10;
     z_pos = 0;
@@ -419,6 +421,8 @@ function end() {
 
     // hide the user input div to give more screen space
     document.getElementById( 'user-input' ).style.display = 'none';
+
+    document.getElementById( 'restart-button' ).style.display = 'block';
 
     // colour every side of the cube
     updateSide( 0,  boxSymbols['right_side'], true );
@@ -560,5 +564,16 @@ function emptyCheck() {
 }
 
 
+// TODO working on restart button
+function reset() {
 
+    // hide restart button
+    document.getElementById( 'restart-button' ).style.display = 'none';
+    document.getElementById( 'user-input' ).style.display = 'block';
 
+    scene.remove( hiddenObject );
+
+    //init();
+    clearCode();
+
+}

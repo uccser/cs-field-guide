@@ -22,6 +22,12 @@ button {
     margin: 5px;
 }
 
+
+#restart-button {
+    display: none;
+}
+
+
 #user-input {
     color: #fff;
     background-color: #3f51b5;

@@ -1,4 +1,3 @@
-document.title = 'Graphics Translation - CSFG';
 
 function moveBox() {
     /* triggered when the user hits the "enter" (or "return") key
