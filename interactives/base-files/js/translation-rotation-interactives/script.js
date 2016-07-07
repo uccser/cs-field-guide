@@ -291,6 +291,11 @@ function updateCoords(axis, change) {
  */
 function submitSymbol() {
 
+    // checks that the user has selected a symbol
+    if ( selectedSymbolId == undefined ) {
+        return;
+    }
+
     document.getElementById(selectedSymbolId).src = imgPath + 'grayscale_square' + selectedSymbolId + '.png';
 
     var img_src = imgPath + 'square' + selectedSymbolId + '.png';
@@ -313,6 +318,9 @@ function submitSymbol() {
         code[3] = selectedSymbolId;
         document.getElementById( 'third-symbol' ).src = img_src;
     }
+
+    selectedSymbolId = undefined;
+
 
 }
 
