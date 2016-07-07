@@ -1,7 +1,5 @@
 document.title = 'Graphics Translation - CSFG';
 
-difference = 100;
-
 function moveBox() {
     /* triggered when the user hits the "enter" (or "return") key
      * updates the cube's position to match the the coordinates inputted by the user
@@ -10,7 +8,11 @@ function moveBox() {
     emptyCheck();
 
     // use the coordinates to set a new target for the box
-    var target = { x: x_pos, y: y_pos, z: z_pos };
+    var target = {
+        x: x_pos * 10,
+        y: y_pos * 10,
+        z: z_pos * 10
+    };
 
     // move the box on the next animation loop
     TWEEN.removeAll();

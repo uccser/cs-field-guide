@@ -16,7 +16,7 @@ var x_pos;
 var y_pos;
 var z_pos;
 var rotateObject = false;
-var difference;
+var difference; = 10;
 
 
 init();
@@ -72,17 +72,21 @@ function init() {
 
     // randomly decides which symbol to put on each side of the box
     // means that different box is loaded each time
-    var default_symbol = symbols.splice(Math.floor(Math.random()*symbols.length), 1);
+    var top_side = symbols.splice(Math.floor(Math.random()*symbols.length), 1);
+    var back_side = symbols.splice(Math.floor(Math.random()*symbols.length), 1);
+    var front_side = symbols.splice(Math.floor(Math.random()*symbols.length), 1);
     var left_side = symbols.splice(Math.floor(Math.random()*symbols.length), 1);
     var right_side = symbols.splice(Math.floor(Math.random()*symbols.length), 1);
     var bottom_side = symbols.splice(Math.floor(Math.random()*symbols.length), 1);
 
-    // this symbol will be on 3 sides of the box
-    boxSymbols['default_symbol'] = default_symbol[0];
-    // unique symbols for the other 3 sides
+    // saved in a dictionary because we need to access them later to check user's selection
+    boxSymbols['top_side'] = top_side[0];
+    boxSymbols['back_side'] = back_side[0];
+    boxSymbols['front_side'] = front_side[0];
     boxSymbols['left_side'] = left_side[0];
     boxSymbols['right_side'] = right_side[0];
     boxSymbols['bottom_side'] = bottom_side[0];
+
 
     // loads all the symbols for the box
     var materials = [
@@ -94,16 +98,16 @@ function init() {
            map: new THREE.TextureLoader().load( imgPath + 'square' + left_side + '.png' )
         }),
         new THREE.MeshBasicMaterial({
-           map: new THREE.TextureLoader().load( imgPath + 'grayscale_square' + default_symbol + '.png' ) // top, non-coded side
+           map: new THREE.TextureLoader().load( imgPath + 'grayscale_square' + top_side + '.png' ) // top, non-coded side
         }),
         new THREE.MeshBasicMaterial({
            map: new THREE.TextureLoader().load( imgPath + 'grayscale_square' + bottom_side + '.png' )
         }),
         new THREE.MeshBasicMaterial({
-           map: new THREE.TextureLoader().load( imgPath + 'grayscale_square' + default_symbol + '.png' ) // front, non-coded side
+           map: new THREE.TextureLoader().load( imgPath + 'grayscale_square' + front_side + '.png' ) // front, non-coded side
         }),
         new THREE.MeshBasicMaterial({
-           map: new THREE.TextureLoader().load( imgPath + 'grayscale_square' + default_symbol + '.png' ) // back, non-coded side
+           map: new THREE.TextureLoader().load( imgPath + 'grayscale_square' + back_side + '.png' ) // back, non-coded side
         })
     ];
 
@@ -243,6 +247,7 @@ function render() {
  * Input:
      - axis is a string, either 'x', 'y' or 'z'\
      - change is a string, either '-' or '+'
+     - axis and change come from the mobile version of the page (input buttons)
  */
 function updateCoords(axis, change) {
 
@@ -271,9 +276,9 @@ function updateCoords(axis, change) {
     } else { // else the parameters were not given and it must be input box from desktop browser
         // get each coordinate value from the input box
         // using 0 makes the value be set relative to start position, rather than previous position
-        x_pos = 10 * ( 0 + parseInt(document.getElementById( 'desk-x-coordinate' ).value) );
-        y_pos = 10 * ( 0 + parseInt(document.getElementById( 'desk-y-coordinate' ).value) );
-        z_pos = 10 * ( 0 + parseInt(document.getElementById( 'desk-z-coordinate' ).value) );
+        x_pos = ( 0 + parseInt(document.getElementById( 'desk-x-coordinate' ).value) );
+        y_pos = ( 0 + parseInt(document.getElementById( 'desk-y-coordinate' ).value) );
+        z_pos = ( 0 + parseInt(document.getElementById( 'desk-z-coordinate' ).value) );
     }
     moveBox();
 }
@@ -408,11 +413,12 @@ function end() {
     document.getElementById( 'user-input' ).style.display = 'none';
 
     // colour every side of the cube
+    updateSide( 0,  boxSymbols['right_side'], true );
     updateSide( 1,  boxSymbols['left_side'], true );
-    updateSide( 2,  boxSymbols['default_symbol'], true );
+    updateSide( 2,  boxSymbols['top_side'], true );
     updateSide( 3,  boxSymbols['bottom_side'], true );
-    updateSide( 4,  boxSymbols['default_symbol'], true );
-    updateSide( 5,  boxSymbols['default_symbol'], true );
+    updateSide( 4,  boxSymbols['front_side'], true );
+    updateSide( 5,  boxSymbols['back_side'], true );
 
     // move camera (zoom in)
     var target = { x: 0, y: 0, z: 350 };

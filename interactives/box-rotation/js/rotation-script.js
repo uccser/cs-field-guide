@@ -1,7 +1,5 @@
 document.title = 'Graphics Rotation - CSFG';
 
-difference = 10;
-
 function moveBox() {
     /* triggered when the user hits the "enter" (or "return") key
      * rotates the cube to match the the values inputted by the user
@@ -10,10 +8,11 @@ function moveBox() {
     emptyCheck();
 
     // sets target rotations
-    // values are converted to radians
-    var target = { x: ( x_pos/360 ) * Math.PI,
-            y: ( y_pos/360 ) * Math.PI,
-            z: ( z_pos/360 ) * Math.PI
+    // values are converted to radians (divide by 360 and multiply by 2 Pi)
+    var target = {
+        x: ( x_pos/180 ) * Math.PI,
+        y: ( y_pos/180 ) * Math.PI,
+        z: ( z_pos/180 ) * Math.PI
     };
 
     // rotate the box on the next animation loop
