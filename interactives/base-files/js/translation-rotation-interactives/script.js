@@ -525,9 +525,9 @@ function clearCode() {
 
     selectedSymbolId = code[1];
 
-    document.getElementById( 'first-symbol' ).src = imgPath + 'question_mark.jpg';
-    document.getElementById( 'second-symbol' ).src =  imgPath + 'question_mark.jpg';
-    document.getElementById( 'third-symbol' ).src =  imgPath + 'question_mark.jpg';
+    document.getElementById( 'first-symbol' ).src = imgPath + 'question-1.png';
+    document.getElementById( 'second-symbol' ).src =  imgPath + 'question-2.png';
+    document.getElementById( 'third-symbol' ).src =  imgPath + 'question-3.png';
     code[1] = null;
     code[2] = null;
     code[3] = null;
