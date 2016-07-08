@@ -1,3 +1,4 @@
+scale = 1;
 
 function moveBox() {
     /* triggered when the user hits the "enter" (or "return") key

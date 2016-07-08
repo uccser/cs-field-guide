@@ -17,6 +17,7 @@ var y_pos;
 var z_pos;
 var rotateObject = false;
 var difference = 10;
+var scale;
 
 
 init();
@@ -356,11 +357,6 @@ function updateSide( side, currentImg, coloured) {
  */
 function submitCode() {
 
-    // move box back to central position
-    x_pos = 0;
-    y_pos = -10;
-    z_pos = 0;
-    moveBox();
 
     if ( code[1] == boxSymbols['left_side'] ) {
         if ( code[2] == boxSymbols['bottom_side'] ) {
@@ -374,8 +370,6 @@ function submitCode() {
     // if the code was not correct
     // tell the user their code was incorrect
     incorrect();
-    // clear the code for them to start over
-    clearCode();
 }
 
 
@@ -383,17 +377,33 @@ function submitCode() {
  * shake the box!
  */
 function incorrect() {
+
+    updateCoords(); //checks for if user clicks "Check Code" without changing coordinates
+
     var target;
     var count = 0;
-    var x_pos = 20;
+    //var x_pos = 20;
     var timer = 0;
+    var shift = 20;
+
+    x_pos *= scale;
+    y_pos *= scale;
+    z_pos *= scale;
+    var start_pos = x_pos;
+    x_pos += shift;
 
     window.setTimeout( function () {
         function run() {
             if ( count == 10 ) {
                 clearInterval( timer );
+                // clear the code for the user to start over
+                clearCode();
             } else {
-                target = { x: x_pos, y: 0, z: 0 };
+                console.log(y_pos);
+                if ( count == 9 ) {
+                    x_pos = start_pos;
+                }
+                target = { x: x_pos, y: y_pos, z: z_pos };
                 // move the box on the next animation loop
                 TWEEN.removeAll();
                 new TWEEN.Tween( cube.position )
@@ -403,13 +413,18 @@ function incorrect() {
                     .start();
                 TWEEN.update();
 
-                x_pos = x_pos - ( 2 * x_pos );
+                if ( x_pos == start_pos + shift ) {
+                    x_pos = start_pos - shift;
+                } else {
+                    x_pos = start_pos + shift;
+                }
+
                 count += 1;
                 timer = setTimeout( run, 50 );
             }
         }
         timer = setTimeout( run, 50 );
-    }, 500 );
+    }, 50 );
 
 }
 
@@ -431,6 +446,12 @@ function end() {
     updateSide( 3,  boxSymbols['bottom_side'], true );
     updateSide( 4,  boxSymbols['front_side'], true );
     updateSide( 5,  boxSymbols['back_side'], true );
+
+    // move box back to central position
+    x_pos = 0;
+    y_pos = -10;
+    z_pos = 0;
+    moveBox();
 
     // move camera (zoom in)
     var target = { x: 0, y: 0, z: 350 };
@@ -486,6 +507,21 @@ function fadeCube( opacity ) {
  */
 function clearCode() {
 
+    // TODO make the box move THEN change coloured side
+
+    // reset to start position
+    x_pos = 0;
+    y_pos = 0;
+    z_pos = 0;
+
+    document.getElementById( 'desk-x-coordinate' ).value = x_pos;
+    document.getElementById( 'desk-y-coordinate' ).value = y_pos;
+    document.getElementById( 'desk-z-coordinate' ).value = z_pos;
+    document.getElementById( 'mob-x-coordinate' ).value = x_pos;
+    document.getElementById( 'mob-y-coordinate' ).value = y_pos;
+    document.getElementById( 'mob-z-coordinate' ).value = z_pos;
+
+    moveBox();
 
     selectedSymbolId = code[1];
 
@@ -503,19 +539,6 @@ function clearCode() {
     // replace right with colour
     updateSide( 0,  boxSymbols['right_side'], false );
 
-    // reset to start position
-    x_pos = 0;
-    y_pos = 0;
-    z_pos = 0;
-
-    document.getElementById( 'desk-x-coordinate' ).value = x_pos;
-    document.getElementById( 'desk-y-coordinate' ).value = y_pos;
-    document.getElementById( 'desk-z-coordinate' ).value = z_pos;
-    document.getElementById( 'mob-x-coordinate' ).value = x_pos;
-    document.getElementById( 'mob-y-coordinate' ).value = y_pos;
-    document.getElementById( 'mob-z-coordinate' ).value = z_pos;
-
-    moveBox();
 
 }
 

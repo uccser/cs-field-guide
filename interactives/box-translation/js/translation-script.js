@@ -1,3 +1,4 @@
+scale = 10;
 
 function moveBox() {
     /* triggered when the user hits the "enter" (or "return") key
@@ -8,9 +9,9 @@ function moveBox() {
 
     // use the coordinates to set a new target for the box
     var target = {
-        x: x_pos * 10,
-        y: y_pos * 10,
-        z: z_pos * 10
+        x: x_pos * scale,
+        y: y_pos * scale,
+        z: z_pos * scale
     };
 
     // move the box on the next animation loop
