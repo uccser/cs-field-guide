@@ -79,7 +79,7 @@ function init() {
     var right_side = symbols.splice(Math.floor(Math.random()*symbols.length), 1);
     var bottom_side = symbols.splice(Math.floor(Math.random()*symbols.length), 1);
 
-    // saved in a dictionary because we need to access them later to check user's selection
+    // saved in a dictionary because we need to access them later to compare with user's selection
     boxSymbols['top_side'] = top_side[0];
     boxSymbols['back_side'] = back_side[0];
     boxSymbols['front_side'] = front_side[0];
@@ -446,6 +446,7 @@ function end() {
         cube.material.materials[face].transparent = true;
     }
 
+
     var timer = 0;
     var opacity = 1;
     fadeCube( opacity );
@@ -564,16 +565,25 @@ function emptyCheck() {
 }
 
 
-// TODO working on restart button
 function reset() {
 
     // hide restart button
     document.getElementById( 'restart-button' ).style.display = 'none';
     document.getElementById( 'user-input' ).style.display = 'block';
 
+    // hide the teapot
     scene.remove( hiddenObject );
 
-    //init();
     clearCode();
+    // reset cube to be visible again
+    adjustOpacity( 1 );
+
+    // move camera (zoom out)
+    var target = { x: 0, y: 0, z: 500 };
+    new TWEEN.Tween( camera.position )
+        .to( target )
+        .easing ( TWEEN.Easing.Elastic.Out )
+        .onUpdate( render )
+        .start();
 
 }
