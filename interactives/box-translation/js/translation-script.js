@@ -23,3 +23,21 @@ function moveBox() {
         .start();
 
 }
+
+
+/*
+ * triggered when user types input
+ * checks that input is within (360, 360)
+ */
+// TODO WORKING HERE deal with mobile input
+function limiter( input ) {
+
+    if (input.value < -360) {
+        input.value = 360;
+    } else if (input.value > 360) {
+        input.value = 360;
+    }
+
+    updateCoords();
+
+}

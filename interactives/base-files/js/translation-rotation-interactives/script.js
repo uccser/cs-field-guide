@@ -101,14 +101,6 @@ function init() {
 
     window.addEventListener( 'resize', onWindowResize, false );
 
-    //listeners for keypress
-    document.addEventListener( 'keydown', function( event ) {
-        switch (event.keyCode) {
-            case 13: // enter/return key
-                updateCoords();
-                break;
-        }}, false);
-
     // records the current cube position
     x_pos = cube.position.x;
     y_pos = cube.position.y;
@@ -625,3 +617,4 @@ function reset() {
         .start();
 
 }
+
