@@ -4,12 +4,18 @@ img {
 
 
 body {
-    font-family: Monospace;
-    font-size: 15px;
+    font-family: "Roboto",sans-serif;
+    font-size: 17px;
     background-color: #f0f0f0;
     margin: 0px;
     overflow: hidden;
     text-align: center;
+}
+
+label {
+    display: block;
+    font-size: 20px;
+    margin: 10px;
 }
 
 
@@ -20,11 +26,19 @@ button {
     border-radius: 2px;
     box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16);
     margin: 5px;
+    padding: 5px;
+}
+
+label, #mob-x, #mob-y, #mob-z {
+    font-family: "Cambria",Georgia,serif;
+    font-style: italic;
 }
 
 
 #restart-button {
     display: none;
+    margin: 10px auto;
+    font-size: 20px;
 }
 
 
@@ -47,6 +61,7 @@ button {
     border-radius: 2px;
     box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16);
     height: 15px;
+    padding: 2px;
 }
 
 
@@ -65,6 +80,8 @@ button {
 
 #mob-x, #mob-y, #mob-z {
     display: inline-block;
+    font-size: 15px;
+    margin: 2px;
 }
 
 
@@ -73,6 +90,11 @@ button {
     position: absolute;
     bottom: 0px;
     width: 100%;
+}
+
+
+.mob-layout button {
+    font-size: 14px;
 }
 
 
