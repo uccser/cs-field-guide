@@ -61,63 +61,9 @@ function init() {
     scene.add( skyboxMesh );
 
 
-    /////////////////////////////// box ////////////////////////////////
+    //////////////////////////////////// box /////////////////////////////////////
 
-
-    // creates a box with sides of length 200
-    var geometry = new THREE.BoxGeometry( 200, 200, 200 );
-
-    // list of possible box symbols
-    // numbers correspond to file names, e.g. "square1.png"
-    var symbols = [ '1', '2', '3', '4', '5', '6', '7', '8' ];
-
-    // randomly decides which symbol to put on each side of the box
-    // means that different box is loaded each time
-    var top_side = symbols.splice(Math.floor(Math.random()*symbols.length), 1);
-    var back_side = symbols.splice(Math.floor(Math.random()*symbols.length), 1);
-    var front_side = symbols.splice(Math.floor(Math.random()*symbols.length), 1);
-    var left_side = symbols.splice(Math.floor(Math.random()*symbols.length), 1);
-    var right_side = symbols.splice(Math.floor(Math.random()*symbols.length), 1);
-    var bottom_side = symbols.splice(Math.floor(Math.random()*symbols.length), 1);
-
-    // saved in a dictionary because we need to access them later to compare with user's selection
-    boxSymbols['top_side'] = top_side[0];
-    boxSymbols['back_side'] = back_side[0];
-    boxSymbols['front_side'] = front_side[0];
-    boxSymbols['left_side'] = left_side[0];
-    boxSymbols['right_side'] = right_side[0];
-    boxSymbols['bottom_side'] = bottom_side[0];
-
-
-    // loads all the symbols for the box
-    var materials = [
-        new THREE.MeshBasicMaterial({
-           map: new THREE.TextureLoader().load( imgPath + 'grayscale_square' + right_side + '.png' )
-        }),
-        new THREE.MeshBasicMaterial({
-            // non grey scale becuase this is the first symbol the user needs to find
-           map: new THREE.TextureLoader().load( imgPath + 'square' + left_side + '.png' )
-        }),
-        new THREE.MeshBasicMaterial({
-           map: new THREE.TextureLoader().load( imgPath + 'grayscale_square' + top_side + '.png' ) // top, non-coded side
-        }),
-        new THREE.MeshBasicMaterial({
-           map: new THREE.TextureLoader().load( imgPath + 'grayscale_square' + bottom_side + '.png' )
-        }),
-        new THREE.MeshBasicMaterial({
-           map: new THREE.TextureLoader().load( imgPath + 'grayscale_square' + front_side + '.png' ) // front, non-coded side
-        }),
-        new THREE.MeshBasicMaterial({
-           map: new THREE.TextureLoader().load( imgPath + 'grayscale_square' + back_side + '.png' ) // back, non-coded side
-        })
-    ];
-
-    // put the loaded materials onto the cube object
-    cube = new THREE.Mesh( geometry, new THREE.MeshFaceMaterial( materials ) );
-
-    // add the cube to the scene
-    scene.add( cube );
-
+    buildCube();
 
     /////////////////////////////// hiddenObject ////////////////////////////////
 
@@ -186,6 +132,68 @@ function init() {
 
     clearCode();
 
+
+}
+
+
+/*
+ * creates cube geometry and adds it to the scene
+ */
+function buildCube() {
+
+    // creates a box with sides of length 200
+    var geometry = new THREE.BoxGeometry( 200, 200, 200 );
+
+    // list of possible box symbols
+    // numbers correspond to file names, e.g. "square1.png"
+    var symbols = [ '1', '2', '3', '4', '5', '6', '7', '8' ];
+
+    // randomly decides which symbol to put on each side of the box
+    // means that different box is loaded each time
+    var top_side = symbols.splice(Math.floor(Math.random()*symbols.length), 1);
+    var back_side = symbols.splice(Math.floor(Math.random()*symbols.length), 1);
+    var front_side = symbols.splice(Math.floor(Math.random()*symbols.length), 1);
+    var left_side = symbols.splice(Math.floor(Math.random()*symbols.length), 1);
+    var right_side = symbols.splice(Math.floor(Math.random()*symbols.length), 1);
+    var bottom_side = symbols.splice(Math.floor(Math.random()*symbols.length), 1);
+
+    // saved in a dictionary because we need to access them later to compare with user's selection
+    boxSymbols['top_side'] = top_side[0];
+    boxSymbols['back_side'] = back_side[0];
+    boxSymbols['front_side'] = front_side[0];
+    boxSymbols['left_side'] = left_side[0];
+    boxSymbols['right_side'] = right_side[0];
+    boxSymbols['bottom_side'] = bottom_side[0];
+
+
+    // loads all the symbols for the box
+    var materials = [
+        new THREE.MeshBasicMaterial({
+           map: new THREE.TextureLoader().load( imgPath + 'grayscale_square' + right_side + '.png' )
+        }),
+        new THREE.MeshBasicMaterial({
+            // non grey scale becuase this is the first symbol the user needs to find
+           map: new THREE.TextureLoader().load( imgPath + 'square' + left_side + '.png' )
+        }),
+        new THREE.MeshBasicMaterial({
+           map: new THREE.TextureLoader().load( imgPath + 'grayscale_square' + top_side + '.png' ) // top, non-coded side
+        }),
+        new THREE.MeshBasicMaterial({
+           map: new THREE.TextureLoader().load( imgPath + 'grayscale_square' + bottom_side + '.png' )
+        }),
+        new THREE.MeshBasicMaterial({
+           map: new THREE.TextureLoader().load( imgPath + 'grayscale_square' + front_side + '.png' ) // front, non-coded side
+        }),
+        new THREE.MeshBasicMaterial({
+           map: new THREE.TextureLoader().load( imgPath + 'grayscale_square' + back_side + '.png' ) // back, non-coded side
+        })
+    ];
+
+    // put the loaded materials onto the cube object
+    cube = new THREE.Mesh( geometry, new THREE.MeshFaceMaterial( materials ) );
+
+    // add the cube to the scene
+    scene.add( cube );
 
 }
 
@@ -470,7 +478,7 @@ function end() {
 
     var timer = 0;
     var opacity = 1;
-    fadeCube( opacity );
+    adjustOpacity( opacity );
 
     rotateObject = true;
 
@@ -481,7 +489,7 @@ function end() {
                 clearInterval( timer );
             } else {
                 opacity = opacity - 0.05;
-                fadeCube( opacity );
+                adjustOpacity( opacity );
                 timer = setTimeout( run, 75 );
             }
         }
@@ -494,7 +502,7 @@ function end() {
 /**
  * sets each side of the cube to a given opacity
  */
-function fadeCube( opacity ) {
+function adjustOpacity( opacity ) {
     for (face in cube.material.materials) {
         cube.material.materials[face].opacity = opacity;
     }
@@ -588,6 +596,9 @@ function emptyCheck() {
 }
 
 
+/**
+ * triggered when user clicks "Restart" button after correctly guessing code
+ */
 function reset() {
 
     // hide restart button
@@ -598,8 +609,12 @@ function reset() {
     scene.remove( hiddenObject );
 
     clearCode();
-    // reset cube to be visible again
-    adjustOpacity( 1 );
+
+    // rebuilds the cube
+    //   - the sides of the cube have to be randomly selected again and set to be visible again
+    //     therefore it is easier to just rebuild the cube than edit every side
+    scene.remove( cube );
+    buildCube();
 
     // move camera (zoom out)
     var target = { x: 0, y: 0, z: 500 };
