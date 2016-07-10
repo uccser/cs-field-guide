@@ -553,7 +553,7 @@ There are thousands of problems like the TSP for which no tractable solution is 
 
 The question of tractability is a big one in computer science --- in fact, what is widely regarded as the biggest unsolved problem in computer science revolves around it.
 You may recall that we mentioned that there are thousands of problems that are we don't have a tractable solution for, yet a tractable solution to one can be adapted to all the others.
-This groups of problems is called "NP-complete" (NP stands for non-deterministic polynomial if you really want to know; complete just means that they can all be converted to each other!)
+This group of problems is called "NP-complete" (NP stands for non-deterministic polynomial if you really want to know; complete just means that they can all be converted to each other!)
 The big question is whether or not there is a polynomial time algorithm for any one of them, in which case all NP problems will have a P (polynomial time) solution.
 The question is often referred to as whether or not P equals NP.
 
