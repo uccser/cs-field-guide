@@ -29,12 +29,10 @@ function moveBox() {
 /*
  * triggered when user types input
  */
-// TODO WORKING HERE deal with mobile input
-function limiter( input ) {
+function limiter( pos ) {
 
     // takes the mod360 of the given input (to match 360 degree revolution)
-    input.value = input.value%360;
-
-    updateCoords();
+    return pos%360;
 
 }
+

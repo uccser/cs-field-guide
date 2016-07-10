@@ -15,9 +15,9 @@
                 <div id="coordinates">
                     <div id="desktop-coord">
                         <p>Type in different values of x, y and z to make the box move so you can see all the different sides.</p>
-                        <label>x = <input type="text" id="desk-x-coordinate" onchange="limiter(this);" autofocus/></label>
-                        <label>y = <input type="text" id="desk-y-coordinate" onchange="limiter(this);"></label>
-                        <label>z = <input type="text" id="desk-z-coordinate" onchange="limiter(this);"></label>
+                        <label>x = <input type="text" id="desk-x-coordinate" onchange="updateCoords('x')" autofocus/></label>
+                        <label>y = <input type="text" id="desk-y-coordinate" onchange="updateCoords('y')"></label>
+                        <label>z = <input type="text" id="desk-z-coordinate" onchange="updateCoords('z')"></label>
                     </div>
                     <div id="mobile-coord">
                         <p>Use the buttons to change the values of x, y and z to make the box move so you can see all the different sides.</p>

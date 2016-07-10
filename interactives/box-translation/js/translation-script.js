@@ -29,15 +29,13 @@ function moveBox() {
  * triggered when user types input
  * checks that input is within (360, 360)
  */
-// TODO WORKING HERE deal with mobile input
-function limiter( input ) {
+function limiter( pos ) {
 
-    if (input.value < -360) {
-        input.value = 360;
-    } else if (input.value > 360) {
-        input.value = 360;
+    if ( pos < -360 ) {
+        return -360;
+    } else if ( pos > 360 ) {
+        return 360;
     }
-
-    updateCoords();
+    return pos;
 
 }

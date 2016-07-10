@@ -254,36 +254,44 @@ function render() {
  */
 function updateCoords(axis, change) {
 
-    if ( change == '-' ) {
-        if ( axis == 'x' ) {
+    if ( axis == 'x' ) {
+        if ( change == '-' ) {
             x_pos = ( x_pos - difference );
-            document.getElementById( 'mob-x-coordinate' ).value = x_pos;
-        } else if ( axis == 'y' ) {
-            y_pos = ( y_pos - difference );
-            document.getElementById( 'mob-y-coordinate' ).value = y_pos;
-        } else {
-            z_pos = ( z_pos - difference );
-            document.getElementById( 'mob-z-coordinate' ).value = z_pos;
-        }
-    } else if ( change == '+' ) {
-        if ( axis == 'x' ) {
+        } else if ( change == '+' ) {
             x_pos = ( x_pos + difference );
-            document.getElementById( 'mob-x-coordinate' ).value = x_pos;
-        } else if ( axis == 'y' ) {
-            y_pos = ( y_pos + difference );
-            document.getElementById( 'mob-y-coordinate' ).value = y_pos;
-        } else {
-            z_pos = ( z_pos + difference );
-            document.getElementById( 'mob-z-coordinate' ).value = z_pos;
+        } else { // else the parameters were not given and it must be input box from desktop browser
+            // using 0 makes the value be set relative to start position, rather than previous position
+            x_pos = ( 0 + parseInt(document.getElementById( 'desk-x-coordinate' ).value) );
         }
-    } else { // else the parameters were not given and it must be input box from desktop browser
-        // get each coordinate value from the input box
-        // using 0 makes the value be set relative to start position, rather than previous position
-        x_pos = ( 0 + parseInt(document.getElementById( 'desk-x-coordinate' ).value) );
-        y_pos = ( 0 + parseInt(document.getElementById( 'desk-y-coordinate' ).value) );
-        z_pos = ( 0 + parseInt(document.getElementById( 'desk-z-coordinate' ).value) );
+        x_pos = limiter( x_pos );
+        document.getElementById( 'mob-x-coordinate' ).value = x_pos;
+        document.getElementById( 'desk-x-coordinate' ).value = x_pos;
+    } else if ( axis == 'y' ) {
+        if ( change == '-' ) {
+            y_pos = ( y_pos - difference );
+        } else if ( change == '+' ) {
+            y_pos = ( y_pos + difference );
+        } else {
+            y_pos = ( 0 + parseInt(document.getElementById( 'desk-y-coordinate' ).value) );
+        }
+        y_pos = limiter( y_pos );
+        document.getElementById( 'mob-y-coordinate' ).value = y_pos;
+        document.getElementById( 'desk-y-coordinate' ).value = y_pos;
+    } else {
+        if ( change == '-' ) {
+            z_pos = ( z_pos - difference );
+        } else if ( change == '+' ) {
+            z_pos = ( z_pos + difference );
+        } else {
+            z_pos = ( 0 + parseInt(document.getElementById( 'desk-z-coordinate' ).value) );
+        }
+        z_pos = limiter( z_pos );
+        document.getElementById( 'mob-z-coordinate' ).value = z_pos;
+        document.getElementById( 'desk-z-coordinate' ).value = z_pos;
     }
+
     moveBox();
+
 }
 
 
