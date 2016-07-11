@@ -433,7 +433,9 @@ If you were given an example of a simple cipher being used, you should be able t
 The substitution systems described above don't provide any security for modern digital systems.
 In the remainder of this chapter we will look at encryption systems that are used in practice.
 
-## The Key Distribution Problem
+## Public Key Systems
+
+### The Key Distribution Problem
 
 The next challenge is to find a way to exchange keys --- after all, if you're communicating to someone over the internet, how are you going to send the key for your secret message to them conveniently? There are good solutions to this problems that are regularly used --- in fact, you probably use them online already, possibly without even knowing. We'll now look at systems that allow people to decode secret messages without even having to be sent the key.
 
@@ -480,8 +482,7 @@ There's a [song about Alice and Bob](http://www.catonmat.net/blog/musical-geek-f
 {image filename="xkcd-alice-and-bob.png" hover-text="Yet one more reason I'm barred from speaking at crypto conferences." alt="A xkcd comic about Alice and Bob" source="https://xkcd.com/177/"}
 {panel end}
 
-
-### Public Key Systems
+### Public key encryption solves the problem
 
 One of the remarkable discoveries in computer science in the 1970s was a method called *public key encryption*, where it's fine to tell everyone what the key is to encrypt any messages, but you need a special private key to decrypt it. Because Alice and Bob use different keys, this is called an *asymmetric* encryption system.
 
@@ -491,7 +492,7 @@ Public key encryption is very heavily used for online commerce (such as internet
 
 A very popular public key system is RSA. For this section on public key systems, we will use RSA as an example.
 
-#### Generating the encryption and decryption keys
+### Generating the encryption and decryption keys
 
 {panel type="teacher-note" summary="Ideas for RSA fun in the classroom"}
 One thing you might like to do is to ask each student to generate their key pair, and then put their public key alongside their name in a shared spreadsheet (for example, a google doc). Then when the students would like to send an encrypted message to one of their classmates, they can look up the person's public key in the spreadsheet.
@@ -501,7 +502,7 @@ Firstly, you will need to generate a pair of keys using the key generator intera
 
 {interactive name="rsa-key-generator" type="in-page"}
 
-#### Encrypting messages with the public key
+### Encrypting messages with the public key
 
 This next interactive is the encrypter, and it is used to encrypt messages with your **public key**. Your friends should use this to encrypt messages for you.
 
