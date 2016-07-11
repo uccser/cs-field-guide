@@ -10,6 +10,53 @@ Computers are machines that do stuff with information. They let you view, listen
 
 To make computers easier to build and keep them reliable, everything is represented using just two values. You may have seen these two values represented as 0 and 1, but on a computer they are represented by anything that can be in two states. For example, in memory a low or high voltage is used to store each 0 or 1. On a magnetic disk it's stored with magnetism (whether a tiny spot on the disk is magnetised north or south).
 
+The idea that *everything* stored and transmitted in our digital world is stored using just two values might seem somewhat fantastic, but here's an exercise that will give you a little experience using just black and white cards to represent numbers.
+In the following interactive, click on the last card (on the right) to reveal that it has one dot on it.
+Now click on the previous card, which should have two dots on it.
+Before clicking on the next one, how many dots do you predict it will have?
+Carry on clicking on each card moving left, trying to guess how many dots each has.
+
+{interactive name="binary-cards" type="whole-page" text="Binary Cards" parameters="digits=5&start=BBBBB"}
+
+The challenge for you now is to find a way to have exactly 22 dots showing
+(the answer is in the spoiler below).
+Now try making up other numbers of dots, such as 11, 29 and 19.
+Is there any number that can't be represented? To test this, try counting up from 0.
+
+{panel type="teacher-note" summary="Patterns in the cards"}
+
+This exercise comes up again below as an introduction to representing numbers.
+The card interactive can also be done with physical cards as a change from doing things on a computer.
+
+If students have trouble solving the puzzles, start at the left and ask "Can you use the 16 dots? 8 dots?" and so on.
+Each one will either be obviously too big, or otherwise it should be used.
+
+With some guidance students should notice patterns, for example,
+that the one-dot card is coming up every second time (the odd numbers).
+
+{panel end}
+
+{panel type="spoiler" summary="Solution to card puzzles"}
+
+You may have noticed that each card shows twice as many dots as the one to its right.
+This is an important pattern in data representation on computers.
+
+The number 22 requires the cards to be "white, black, white, white, black",
+11 is "black, white, black, white, white",
+29 is "white, white, white, black, white", and
+19 is "white, black, black, black, white".
+
+{panel end}
+
+
+
+
+You should have found that any number from 0 to 31 can be represented with 5 cards.
+Each of the numbers could be communicated using just two words: black and white.
+For example, 22 dots is "white, black, white, white, black".
+Or you could decode "black, black, white, white, white" to the number 7.
+This is the basis of data representation - anything that can have two different states can represent anything on a digital device.
+
 When we write what is stored in a computer on paper, we normally use “0” for one of the states, and “1” for the other state. For example, a piece of computer memory could have the following voltages:
 
 ```
@@ -31,6 +78,9 @@ The use of the two digits 0 and 1 is so common that some of the best known compu
 {panel end}
 
 Every file you save, every picture you make, every download, every digital recording, every web page is just a whole lot of bits.
+These binary digits are what make digital technology *digital*!
+And the nature of these digits unlock a powerful world of storing and sharing a wealth of information and entertainment.
+
 Computer scientists don't spend a lot of time reading bits themselves, but knowing how they are stored is really important because it affects the amount of space that data will use, the amount of time it takes to send the data to a friend (as data that takes more space takes longer to send!) and the quality of what is being stored.
 You may have come across things like "24-bit colour", "128-bit encryption", "32-bit IPv4 addresses" or "8-bit ASCII".
 Understanding what the bits are doing enables you to work out how much space will be required to get high-quality colour, hard-to-crack secret codes, a unique ID for every device in the world, or text that uses more characters than the usual English alphabet.
@@ -106,7 +156,12 @@ There's a more in-depth discussion on why we use binary here:
 ## Numbers
 
 {panel type="teacher-note" summary="CS Unplugged activity"}
-If you are doing a warm up exercise with the class, the CS Unplugged binary activity [http://csunplugged.org/binary-numbers](http://csunplugged.org/binary-numbers) provides scaffolding and can be used to teach concepts around binary numbers using only counting or simple addition.  In the chapter we have decided to approach this section by starting with number systems. While this may appear “scary” because of the math, most students should be quite familiar with it as it is first introduced very early in primary school in the form of recognising that numbers are made up of the “ones”, “tens”, “hundreds”, etc, and is further built on until eventually in high school they learn about the exponent notation, i.e. {math}541 = 5 \times 10^2 + 4 \times 10^1 + 1 \times 10^0{math end}. As explained in this section, binary numbers are a base 2 number system, rather than the base 10 number system we are all familiar with. The idea of number systems provides a good stepping stone into binary numbers
+If you are doing a warm up exercise with the class, the CS Unplugged binary activity [http://csunplugged.org/binary-numbers](http://csunplugged.org/binary-numbers) provides scaffolding and can be used to teach concepts around binary numbers using only counting or simple addition.
+We also have an interactive which emulates the physical binary cards here:
+
+{interactive name="binary-cards" type="whole-page" text="Binary Cards"}
+
+In the chapter we have decided to approach this section by starting with number systems. While this may appear “scary” because of the math, most students should be quite familiar with it as it is first introduced very early in primary school in the form of recognising that numbers are made up of the “ones”, “tens”, “hundreds”, etc, and is further built on until eventually in high school they learn about the exponent notation, i.e. {math}541 = 5 \times 10^2 + 4 \times 10^1 + 1 \times 10^0{math end}. As explained in this section, binary numbers are a base 2 number system, rather than the base 10 number system we are all familiar with. The idea of number systems provides a good stepping stone into binary numbers
 
 We are assuming that students already know about base 10 number systems, including the exponent notation. The initial information in this section on them is only intended to trigger recall, rather than actually teaching them the concept.
 
@@ -176,7 +231,7 @@ The term "denary" seems to be used mainly in the UK; in the US, Australia and NZ
 
 The interactive below illustrates how this binary number system represents numbers. Have a play around with it to see what patterns you can see.
 
-{button link="http://www.csfieldguide.org.nz/releases/1.9.9/_static/widgets/DR/DR-base-conversion/public_html/index.html?base=2&columns=7&lines=A,B,C&offset=0" text="Click for interactive: Base Calculator"}
+{interactive name="base-calculator" type="whole-page" text="Binary Number Calculator"}
 
 **To ensure you are understanding correctly how to use the interactive, verify that when you enter the binary number 101101 it shows that the decimal representation is 45, that when you enter 100000 it shows that the decimal representation is 32, and when you enter 001010 it shows the decimal representation is 10.**
 
@@ -905,8 +960,8 @@ Look back to the section on binary numbers if you cannot remember how to convert
 For example, if you wanted to find out the representation for **貓** (cat in Chinese), the steps you would take would be as follows.
 
 1. Determine that the Unicode number for **貓** is **35987**.
-2. Convert **29483** to binary -- giving **10001100 10010011**.
-3. Count that there are **15** bits, and therefore the third pattern **1110xxxx 10xxxxxx 10xxxxx** should be used.
+2. Convert **35987** to binary -- giving **10001100 10010011**.
+3. Count that there are **16** bits, and therefore the third pattern **1110xxxx 10xxxxxx 10xxxxx** should be used.
 4. Substitute the bits into the pattern to replace the x's -- **11101000 10110010 10010011**.
 
 Therefore, the representation for **貓** is **11101000 10110010 10010011** using UTF-8.

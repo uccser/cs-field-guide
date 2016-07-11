@@ -4,6 +4,11 @@
   position: relative;
   margin: -1rem;
 }
+@media (min-width: 815px) and (max-width: 1199px) {
+  #interactive-binary-cards-container {
+    width: 75%;
+  }
+}
 #interactive-binary-cards-container div.binary-card-container {
   flex: 0 1 auto;
   margin: 1rem;
@@ -44,4 +49,17 @@
 #interactive-binary-cards-container div.binary-card-back {
   background: black;
   transform: rotateY(180deg) perspective(25rem);
+}
+#interactive-binary-cards button {
+  border: 1px solid #888;
+  height: 2rem;
+  line-height: 2rem;
+}
+#interactive-binary-cards button#flip-to-black {
+  background: black;
+  color: white;
+}
+#interactive-binary-cards button#flip-to-white {
+  background: white;
+  color: black;
 }

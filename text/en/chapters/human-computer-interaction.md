@@ -238,6 +238,8 @@ A similar issue occurs on keyboards; for example, control-W might close just one
 
 Another idea used by HCI designers is the *principle of commensurate effort*, which says that frequently done simple tasks should be easy to do, but it's ok to require a complex procedure for a complex task. For example, in a word processor, printing a page as it is displayed should be easy, but it's ok if some effort is required to make it double sided, two to a page, with a staple in the top left corner. In fact, sometimes more effort should be *required* if the command has a serious consequence, such as deleting a file, wiping a device, or closing an account. In such cases artificial tasks may be added, such as asking "Are you sure?", or to get an extreme setting on a device (like setting a voltage for a power supply) might require pressing an "up" button many times, rather than letting the user type in an extra couple of zeroes.
 
+{interactive name="action-menu" type="in-page"}
+
 ### In summary
 
 These are just a few ideas from HCI that will help you to be aware of the kinds of issues that interfaces can have.
@@ -350,14 +352,8 @@ One of the simplest statuses for a device is on or off, which is usually a colou
 
 There are many tasks that users ask computers to do that require some time including copying documents, downloading files, and loading video games. In this situation, one of the most common ways to keep a user informed of the task is the progress bar.
 
-{comment}
-<div class="progress progress-striped active"><div class="progress-bar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 85%"><span class="sr-only">85% Complete</span></div></div>
-
-TODO: James is going to look at this eventually.
-{comment end}
-
-{image filename="windows-busy-cursor-animation.gif" alt="A Windows busy cursor"}
-{image filename="apple-busy-cursor-animation.gif" alt="An Apple busy cursor"}
+{image filename="windows-busy-cursor-animation.gif" alt="A Windows busy cursor" wrap="right"}
+{image filename="apple-busy-cursor-animation.gif" alt="An Apple busy cursor" wrap="right" remove-preceeding-line-break="true"}
 
 However, progress indicators aren't always helpful; the spinning wheels above don't indicate if you are going to have to wait a few seconds or a few minutes (or even hours) for the task to complete, which can be frustrating.
 

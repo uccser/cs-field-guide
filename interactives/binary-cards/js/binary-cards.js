@@ -3,19 +3,25 @@
 $(document).ready(function () {
     // Settings for interactive
     var binaryValueSettings = {
-        LOWEST_CARD_VALUE: 1,
-        HIGHEST_CARD_VALUE: 128,
-    }
-
-    if (getUrlParameter('low')) {
-        binaryValueSettings.LOWEST_CARD_VALUE = Number(getUrlParameter('low'));
-    }
-    if (getUrlParameter('high')) {
-        binaryValueSettings.HIGHEST_CARD_VALUE = Number(getUrlParameter('high'));
+        BASE: Number(getUrlParameter('base')) || 2,
+        DIGITS: Number(getUrlParameter('digits')) || 8,
+        OFFSET: Number(getUrlParameter('offset')) || 0
     }
 
     $('#interactive-binary-cards').on('click', '.binary-card', function(event) {
         $(this).toggleClass('flipped');
+        updateDotCount();
+    });
+
+    // Flip all cards to black
+    $('#interactive-binary-cards button#flip-to-black').on('click', function(){
+        $('#interactive-binary-cards-container > div.binary-card-container > div.binary-card').addClass('flipped');
+        updateDotCount();
+    });
+
+    // Flip all cards to white
+    $('#interactive-binary-cards button#flip-to-white').on('click', function(){
+        $('#interactive-binary-cards-container > div.binary-card-container > div.binary-card').removeClass('flipped');
         updateDotCount();
     });
 
@@ -26,18 +32,22 @@ $(document).ready(function () {
 
 
 // Sets up the cards for the interactive
-function createCards(binaryValueSettings) {
+function createCards(settings) {
     var cardContainer = $('#interactive-binary-cards-container');
 
+    var value = Math.pow(settings.BASE, settings.DIGITS + settings.OFFSET - 1);
+    var starting_sides = getUrlParameter('start') || "";
+
     // Iterate through card values
-    for (var i = binaryValueSettings.HIGHEST_CARD_VALUE; i >= binaryValueSettings.LOWEST_CARD_VALUE; i /= 2) {
-        cardContainer.append(createCard(i));
+    for (var digit = 0; digit < settings.DIGITS; digit++) {
+        cardContainer.append(createCard(value, starting_sides[digit] == 'B'));
+        value /= settings.BASE;
     }
 };
 
 
 // Returns the HTML for a card for a given value
-function createCard(value) {
+function createCard(value, is_black) {
     var cardContainer = $("<div class='binary-card-container'></div>");
     var card = $("<div class='binary-card'></div>");
     cardContainer.append(card);
@@ -47,6 +57,9 @@ function createCard(value) {
     card.append(front);
     card.append($("<div class='binary-card-side binary-card-back'></div>"));
     card.data("value", value);
+    if (is_black == true) {
+        card.addClass('flipped');
+    }
     return cardContainer;
 };
 
