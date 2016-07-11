@@ -1,0 +1,15 @@
+{
+    "name": "CSFG-fsa-spin",
+    "version": "0.0.1",
+    "author": "James \"The Jamesernator\" Browning",
+    "description": "This is a simple demonstration of an FSA using a spinning fan",
+    "dependencies": {},
+    "devDependencies": {
+        "coffee-script": "latest",
+        "coffeeify": "latest",
+        "browserify": "latest"
+    },
+    "scripts": {
+        "build": "browserify -t coffeeify coffee/main.coffee > main.js"
+    }
+}
