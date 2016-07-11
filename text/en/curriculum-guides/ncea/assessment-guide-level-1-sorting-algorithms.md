@@ -38,7 +38,7 @@ You should read and work through the interactives in the following sections of t
 
 [2.1 - What’s the bigger picture?](chapters/algorithms.html#whats-the-big-picture)
 
-[2.3 - Sorting Algorithms](chapters/algorithms.html#sorting-algorithms)
+[2.3 - Sorting Algorithms](chapters/algorithms.html#sorting)
 
 Note that 2.2 is not necessary for this project, as 2.2 focuses on *searching* algorithms, whereas this project focuses on *sorting* algorithms.
 

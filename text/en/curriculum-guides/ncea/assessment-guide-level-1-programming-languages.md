@@ -30,7 +30,7 @@ You should read and work through the interactives and activities in the followin
 
 [4.1 - What’s the Big Picture?](chapters/programming-languages.html#whats-the-big-picture) (and an introduction to what programming is, intended for those of you with limited programming experience)
 
-[4.2 - Machine Code (Low Level Languages)](chapters/programming-languages.html#machine-code)
+[4.2 - Machine Code (Low Level Languages)](chapters/programming-languages.html#machine-code-low-level-languages)
 
 [4.3 - A Babel of Programming Languages (High Level Languages)](chapters/programming-languages.html#a-babel-of-programming-languages) (optional, don't spend too much time on this)
 

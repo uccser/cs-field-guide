@@ -1,0 +1,49 @@
+
+body {
+}
+
+div.box {
+    width: 100px;
+    height: 100px;
+
+    position: absolute;
+    background-color: white;
+    z-index: 3;
+    background-size: contain;
+
+
+}
+
+div.intHoldingDiv {
+	width: 100px;
+	height: 100px;
+
+	text-align: center;
+	vertical-align: middle;
+	line-height: 100px; 
+
+
+	display: block;
+	position: relative; 
+	z-index: 2; 
+	font-size: 1.5rem;
+	font-weight: bold;
+
+}
+
+div.boxContainer {
+	width: 100px;
+	height: 100px;
+	float: left;
+	position: relative;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+#restartButton {
+	display: none;
+    padding: 50px, 50px, 50px, 50px;
+
+}

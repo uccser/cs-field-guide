@@ -1,0 +1,19 @@
+{
+    "name": "CSFG-Caesar-Interactive",
+    "version": "0.0.1",
+    "author": "James \"The Jamesernator\" Browning",
+    "description": "This is a basic caesar interactive",
+    "dependencies": {
+        "es5-shim": "latest",
+        "es6-shim": "latest",
+        "jquery-text-input": "Jamesernator/jquery-text-input"
+    },
+    "devDependencies": {
+        "coffee-script": "latest",
+        "browserify": "latest",
+        "coffeeify": "latest"
+    },
+    "scripts": {
+        "build": "browserify -t coffeeify coffee/caesar.coffee > js/caesar.js"
+    }
+}

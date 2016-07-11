@@ -1,6 +1,6 @@
 # Achieved Guide for Data Representation (2.44) - Numbers and Text
 
-This is an achieved level guide for students attempting data representation in digital technologies achievement standard 1.44 (AS91074). It is only suitable for students who aren't aiming to get more than achieved.
+This is an achieved level guide for students attempting data representation in digital technologies achievement standard 2.44 (AS91371). It is only suitable for students who aren't aiming to get more than achieved.
 
 Note that this is the *only* guide you need to follow to satisfy the data representation requirements up to achieved. It covers two different data types - numbers and text.
 
@@ -8,7 +8,7 @@ In order to fully cover the standard, you will also need to have done projects c
 
 ## Overview
 
-The topic of Data Representation has the following achieved bullet point in achievement standard 1.44, which this guide covers.
+The topic of Data Representation has the following achieved bullet point in achievement standard 2.44, which this guide covers.
 
 **Achieved**: “describing ways in which different types of data can be represented using bits”
 
@@ -22,9 +22,9 @@ Read all of these sections, as they give the necessary introduction of the topic
 
 [What’s the Big Picture?](chapters/data-representation.html#whats-the-big-picture)
 
-[Representing numbers with bits](chapters/data-representation.html#representing-numbers-with-bits)
+[Representing numbers with bits](chapters/data-representation.html#numbers)
 
-[Representing text with bits](chapters/data-representation.html#representing-text-with-bits)
+[Representing text with bits](chapters/data-representation.html#text)
 
 ## Project
 
@@ -41,7 +41,7 @@ If the student cannot explain what a "bit" or "data representation" means in the
 Start this section by writing an introduction to the topic of data representation. Describe what a "bit" is, and why computers use bits to represent data. This introduction only needs to be a couple of sentences - you are just showing the marker that you understand what a "bit" is, and how "bits" are used to represent data. It must be in your own words, based on what you understood in class (e.g. do not paraphrase a definition).
 
 {panel type="teacher-note" summary="A possible way of presenting the binary number examples"}
-In Computer Science Unplugged, binary numbers are taught using cards with dots on them. Check out the [activity](http://csunplugged.org/wp-content/uploads/2014/12/unplugged-01-binary_numbers.pdf) if you are not familar with this.
+In Computer Science Unplugged, binary numbers are taught using cards with dots on them. Check out the [activity](http://csunplugged.org/wp-content/uploads/2014/12/unplugged-01-binary_numbers.pdf) if you are not familiar with this.
 
 What students could do in their report is to draw cards with dots (or take photos of actual cards) to show how the binary number is determined, convert it to 1's and 0's, and then describe how they knew which cards needed to be showing, and how they know their representation is correct (i.e. the number of dots adds up to the number they are trying to make). Note that the binary cards can be drawn very small, yet still be legible.
 {panel end}

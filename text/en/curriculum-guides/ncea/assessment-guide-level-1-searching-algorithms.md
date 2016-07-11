@@ -39,7 +39,7 @@ You should read and work through the interactives in the following sections of t
 
 [2.1 - What’s the big picture?](chapters/algorithms.html#whats-the-big-picture)
 
-[2.2 - Searching Algorithms](chapters/algorithms.html#searching-algorithms)
+[2.2 - Searching Algorithms](chapters/algorithms.html#searching)
 
 ## Project
 
