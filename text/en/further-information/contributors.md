@@ -24,6 +24,7 @@ This project is the result of contributions from a large community of Computer S
 - Hayley van Waas
 - Hannah Taylor
 - Marcus Stenfert Kroese
+- Victor Chang
 
 ## Writers
 
@@ -96,8 +97,13 @@ This project is the result of contributions from a large community of Computer S
 
 ## Acknowledgements
 
-This project has grown out of a partnership for an international field guide to computing. In the [University of Canterbury](http://www.canterbury.ac.nz/) CSSE department, it grew from the [Computer Science Unplugged project](csunplugged.org) and the [New Zealand Computer Science resource guides](nzacditt.org.nz/resources). At the Naval Postgraduate School in Monterey, California, it grew from a project called [A Field Guide to the Science of Computation](http://nps.edu/Cebrowski/FGSC.html) and the [Great Principles of Computing project](http://denninginstitute.com/pjd/GP/GP-site/welcome.html), both led by Peter Denning.
+This project has grown out of a partnership for an international field guide to computing.
+In the [University of Canterbury](http://www.canterbury.ac.nz/) CSSE department, it grew from the [Computer Science Unplugged project](http://csunplugged.org) and the [New Zealand Computer Science resource guides](http://nzacditt.org.nz/resources).
+At the Naval Postgraduate School in Monterey, California, it grew from a project called [A Field Guide to the Science of Computation](http://nps.edu/Cebrowski/FGSC.html) and the [Great Principles of Computing project](http://denninginstitute.com/pjd/GP/GP-site/welcome.html), both led by Peter Denning.
 
-Funding for this online textbook has been provided by Google Inc. In addition, countless hours of volunteer time have been contributed by those listed above. Tim Bell prepared an initial draft of this material while visiting Huazhong University of Science and Technology, Wuhan, China, whom we thank for providing an excellent environment for writing. The project is based at the [University of Canterbury](http://www.canterbury.ac.nz/), Christchurch, New Zealand; other authors are at [Victoria University of Wellington](http://www.victoria.ac.nz/), New Zealand, and [Cambridge University](http://www.cam.ac.uk/), UK.
+Funding for this online textbook has been provided by Google Inc.
+In addition, countless hours of volunteer time have been contributed by those listed above.
+Tim Bell prepared an initial draft of this material while visiting Huazhong University of Science and Technology, Wuhan, China, whom we thank for providing an excellent environment for writing
+The project is based at the [University of Canterbury](http://www.canterbury.ac.nz/), Christchurch, New Zealand; other authors are at [Victoria University of Wellington](http://www.victoria.ac.nz/), New Zealand, and [Cambridge University](http://www.cam.ac.uk/), UK.
 
 Partial funding for the US field guide project was provided by the US National Science Foundation under Grant No. 0938809.

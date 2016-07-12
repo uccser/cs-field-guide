@@ -80,16 +80,16 @@ This code finds words that contain x, y and z in that order, but separated by 0 
 - What about words containing the letters from your name in the correct order?
 - Are there any words that contain all the vowels in order (a, e, i, o, u)?
 
-{panel type="teacher-note" summary="Vowels soluton"}
+{panel type="teacher-note" summary="Vowels solution"}
 
 To find words with all the vowels in order, the code is simply "a.\*e.\*i.\*o.\*u", there are 47 matches.
 
-Students may ask how to do more complex searches, like letters in any order. If they are interested they can explore this on their own, but this is just a warmup exercise. We'll be covering this more carefully in the section on [regular expressions](chapters/formal-languages.html#regular-expressions-and-fsas).
+Students may ask how to do more complex searches, like letters in any order. If they are interested they can explore this on their own, but this is just a warmup exercise. We'll be covering this more carefully in the section on [regular expressions](chapters/formal-languages.html#regular-expressions).
 
 {panel end}
 
 The code you've used above is a part of a formal language called a "regular expression". Computer programs that accept typed input use regular expressions for checking items like dates, credit card numbers and product codes. They’re used extensively by programming language compilers and interpreters to make sense of the text that a programmer types in.
-We'll look at them in more detail in the section on [regular expressions](formal-languages.html#regular-expressions).
+We'll look at them in more detail in the section on [regular expressions](chapters/formal-languages.html#regular-expressions).
 
 Next we examine a simple system for reading input called a
 {glossary-link term="finite state automaton" reference-text="Formal languages"}finite state automaton{glossary-link end},
@@ -101,7 +101,7 @@ another kind of formal language that can deal with more complicated forms of inp
 
 {panel type="teacher-note" summary="Klingon linguistics activity"}
 
-For a fun discussion, you could have the students look at the [Klingon Linguistics activity at CS4FN](http://www.cs4fn.org/linguistics/klingon.html). This page introduces the fundamentals of languages — words (the alphabet) and {glossary-link term="grammar" reference-text="Formal languages"}grammar{glossary-link end} (the rules of syntax). It discusses why languages are translated and how meaning can be changed by translation. It also explains why computer languages need to be translated.
+For a fun discussion, you could have the students look at the [Klingon Linguistics activity at CS4FN](http://www.cs4fn.org/linguistics/klingon.html). This page introduces the fundamentals of languages — words (the alphabet) and {glossary-link term="grammar"}grammar{glossary-link end} (the rules of syntax). It discusses why languages are translated and how meaning can be changed by translation. It also explains why computer languages need to be translated.
 
 {panel end}
 
@@ -117,24 +117,12 @@ It may be a bit young for some students, but if you can sell it to them, it's a 
 
 Here's a map of a commuter train system for the town of Trainsylvania. The trouble is, it doesn't show where the the trains go --- all you know is that there are two trains from each station, the A-train and the B-train. The inhabitants of Trainsylvania don't seem to mind this --- it's quite fun choosing trains at each station, and after a while you usually find yourself arriving where you intended.
 
-{image filename="trainsylvania-map-incomplete.png" alt="An incomplete train map"}
-
-{comment}
-
-.. TCB Suggestions for station names (from Andrew): Not "Happyland"; change to "Railington" or "Enginopolis"?
-
-{comment end}
+{image filename="trainsylvania-blank.png" alt="An incomplete train map" caption="Click image to enlarge"}
 
 You can travel around Trainsylvania yourself using the following interactive. You're starting at the City Mall station, and you need to find your way to Suburbopolis.
 At each station you can choose either the A-train or the B-train --- press the button to find out where it will take you.
 But, like the residents of Trainsylvania, you'll probably want to start drawing a map of the railway, because later you might be asked to find your way somewhere else.
 If you want a template to draw on, you can [print one out from here](files/trainsylvania-blank.pdf).
-
-{comment}
-
-.. Andrew suggested a new name for Happyland: e.g. "Railington" or "Enginopolis" :-) This image also appears above as FL-trains-incomplete.jpg
-
-{comment end}
 
 {interactive name="trainsylvania" type="in-page"}
 
@@ -142,13 +130,13 @@ If you want a template to draw on, you can [print one out from here](files/train
 
 You should let students devise their own notation for this. They will soon learn (possibly the hard way) that they should record all routes with an arrow (since trains don't necessarily return by the same route), and label their arrows with A or B. The full map for the activity is below, but don't spoil the students' fun by providing it --- at least, not yet.
 
-{image filename="trainsylvania-map-complete.png" alt="Solution to the train map"}
+{image filename="trainsylvania-complete.png" alt="Solution to the train map" caption="Click image to enlarge"}
 
 {panel end}
 
 Did you find a sequence of trains to get from City Mall to Suburbopolis? You can test it by typing the sequence of trains in the following interactive. For example, if you took the A-train, then the B-train, then an A-train, type in ABA.
 
-{button link="http://www.csfieldguide.org.nz/releases/1.9.9/_static/widgets/fsa-trip-planner-v4.html" text="View trip planner interactive"}
+{interactive name="trainsylvania-planner" type="in-page"}
 
 Can you find a sequence that takes you from City Mall to Suburbopolis? Can you find another sequence, perhaps a longer one? Suppose you wanted to take a really long route ... can you find a sequence of 12 hops that would get you there? 20 hops?
 

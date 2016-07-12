@@ -23,7 +23,7 @@ The following is a set of guidelines for contributing to the CSFG hosted on GitH
 [Additional notes](#additional-notes)
   - [Managing licenses](#managing-licenses)
   - [What software do you use?](#what-software-do-you-use)
-  - [Creating a release](#code-a-release)
+  - [Creating a release](#creating-a-release)
 
 ## What should I know before I get started?
 

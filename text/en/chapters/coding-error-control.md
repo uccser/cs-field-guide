@@ -298,7 +298,7 @@ Because the check digit was chosen so that it would make the last digit of the s
 
 In order to be effective, the algorithm needs to ensure the multiplied digits will not add up to a multiple of 10 any more if the digits are changed slightly. The choice of multipliers affects how likely it is to detect small changes in the input. It's possible to analyse these mathematically to work out what sorts of errors can be detected.
 
-The check digit on barcodes is described in the chapter on [error control coding](coding-error-control.html). Basically every second digit is multiplied by 3, and the sum of these multiples are added to the remaining digits.
+The check digit on barcodes is described in the chapter on [error control coding](chapters/coding-error-control.html). Basically every second digit is multiplied by 3, and the sum of these multiples are added to the remaining digits.
 
 Let's look at some smaller examples with 5 digits (4 normal digits and a check digit), as the same ideas will apply to the 13 digit numbers.
 
