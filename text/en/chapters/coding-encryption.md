@@ -437,44 +437,36 @@ In the remainder of this chapter we will look at encryption systems that are use
 
 ### The Key Distribution Problem
 
-The next challenge is to find a way to exchange keys --- after all, if you're communicating to someone over the internet, how are you going to send the key for your secret message to them conveniently? There are good solutions to this problems that are regularly used --- in fact, you probably use them online already, possibly without even knowing. We'll now look at systems that allow people to decode secret messages without even having to be sent the key.
+The next challenge is to find a way to exchange keys. If you're communicating to someone over the Internet, how are you going to send the key for your secret message to them? There are good solutions to this problems that are often used. You probably use them online already, possibly without even knowing. We'll now look at systems that solve this problem, using the communication between Alice and Bob as an example, along with Eve who is trying to listen in to their conversation.
 
 {panel type="curiosity" summary="Who are Alice, Bob, and Eve?"}
-When describing an encryption scenario, cryptographers often use the fictitious characters "Alice" and "Bob", with a message being sent from Alice to Bob (A to B).
-We always assume that someone is eavesdropping on the conversation (in fact, if you're using a wireless connection, it's trivial to pick up the transmissions between Alice and Bob as long as you're in reach of the wireless network that one of them is using).
-The fictitious name for the eavesdropper is usually Eve.
+When explaining examples of encryption, cryptographers often use the fictional characters "Alice" and "Bob", with a message being sent from Alice to Bob (A to B).\
+
+We always assume that someone is eavesdropping on the conversation. The fictional name for the eavesdropper is usually Eve.
+{panel end}
 
 {image filename="xkcd-protocol.png" alt="A xkcd comic on protocols" hover-text="Changing the names would be easier, but if you're not comfortable lying, try only making friends with people named Alice, Bob, Carol, etc." source="https://xkcd.com/1323/"}
 
-There are several other characters used to describe activities around encryption protocols: for example Mallory (a malicious attacker) and Trudy (an intruder). Wikipedia has a [list of Alice and Bob's friends](https://en.wikipedia.org/wiki/Alice_and_Bob)
+There are several other characters used to describe various situations in encryption, for example Mallory (a malicious attacker) and Trudy (an intruder). Wikipedia has a [list of Alice and Bob's friends](https://en.wikipedia.org/wiki/Alice_and_Bob)
 {panel end}
 
 If Alice is sending an encrypted message to Bob, this raises an interesting problem in encryption.
-The ciphertext itself can safely be sent across an “unsafe” network (one that Eve is listening on), but the key cannot. How can Alice get the key to Bob? Remember the key is the thing that tells Bob how to convert the ciphertext back to plaintext. So Alice can’t include it in the encrypted message, because then Bob would be unable to access it. Alice can’t just include it as plaintext either, because then Eve will be able to get ahold of it and use it to decrypt any messages that come through using it. You might ask why Alice doesn’t just encrypt the key using a different encryption scheme, but then how will Bob know the new key? Alice would need to tell Bob the key that was used to encrypt it... and so on... this idea is definitely out!
 
-Remember that Alice and Bob might be in different countries, and can only communicate through the internet. This also rules out Alice simply passing Bob the key in person.
+The ciphertext itself can safely be sent across an “unsafe” network (one that Eve is listening on), but the key cannot. How can Alice get the key to Bob? Remember the key is what tells Bob how to convert the ciphertext back to plaintext. Alice cannot include it in the encrypted message, because then Bob would be unable to access it. Alice cannot just include it as plaintext either, because then Eve will be able to get ahold of it and use it to decrypt any further messages sent between Alice and Bob.
 
-{panel type="curiosity" summary="Are we being paranoid?"}
+Alice can't even encrypt the key using a different encryption scheme, because Bob would need to know the key she used to encrypt the new key! Alice and Bob also live in different countries, and can only communicate through the internet. This means that Alice can't even pass Bob the key in person.
+
+{panel type="curiosity" summary="Are we worrying too much?"}
 In computer security we tend to assume that Eve, the eavesdropper, can read every message between Alice and Bob.
-This sounds like an inordinate level of wire tapping, but what about wireless systems?
-If you're using wireless (or a mobile phone), then all your data is being broadcast, and can be picked up by any wireless receiver in the vicinity.
-In fact, if another person in the room is also using wireless, their computer is already picking up everything being transmitted by your computer, and has to go to some trouble to ignore it.
+If you're using wireless (or a mobile phone), then all your data is being broadcast, and can be picked up by any wireless receiver nearby.
+Interestingly, if another person in the room is also using wireless, their computer is already picking up everything being transmitted by your computer, and has to go to some trouble to ignore it.
 
-Even in a wired connection, data is passed from one network node to another, stored on computers inbetween.
-Chances are that everyone who operates those computers is trustworthy, but probably don't even know which companies have handled your data in the last 24 hours, let alone whether every one of their employees can be trusted.
+Even in a wired connection, data is passed through many computers and routers around the world, stored on computers in between. This is the only way of getting data between two people on opposite sides of the world. It is likely that everyone who operates those computers is trustworthy, but you probably don't even know which companies have handled your data in the last 24 hours, let alone whether or not  very one of their employees can be trusted.
 
-So assuming that somone can observe all the bits being transmitted and received from your computer is pretty reasonable.
+So assuming that someone can observe all the data being transmitted and received from your computer is pretty reasonable. This is why encryption is so important!
 {panel end}
 
-Distributing keys physically is very expensive, and up to the 1970s large sums of money were spent physically sending keys internationally. Systems like this are call *symmetric* encryption, because Alice and Bob both need an identical copy of the key. The breakthrough was the realisation that you could make a system that used different keys for encoding and decoding. We will look further at this in the next section.
-
-{panel type="curiosity" summary="Some additional viewing"}
-[Simon Singh's video](http://simonsingh.net/media/online-videos/cryptography/the-science-of-secrecy-going-public/) gives a good explanation of key distribution.
-
-Additionally, there's a video illustrating how public key systems work using a padlock analogy.
-
-{video url="https://www.youtube.com/watch?v=a72fHRr6MRU"}
-{panel end}
+Sending keys in the post is very expensive, and up to the 1970s, a lot of money was spent on sending keys internationally in the post.
 
 {panel type="teacher-note" summary="Even more about Alice and Bob"}
 There's a [song about Alice and Bob](http://www.catonmat.net/blog/musical-geek-friday-alice-and-bob/) performed by rapper MC++ (yes, he specialises in computer science). Some of the language may not be suitable for use in class, so discretion is needed for how you might use it.
@@ -484,18 +476,37 @@ There's a [song about Alice and Bob](http://www.catonmat.net/blog/musical-geek-f
 
 ### Public key encryption solves the problem
 
-One of the remarkable discoveries in computer science in the 1970s was a method called *public key encryption*, where it's fine to tell everyone what the key is to encrypt any messages, but you need a special private key to decrypt it. Because Alice and Bob use different keys, this is called an *asymmetric* encryption system.
+One of the remarkable discoveries in computer science in the 1970s was a method called *public key encryption*, where it's fine to tell everyone what the key is to encrypt any messages, but you need a special private key to decrypt it. Mathematicians have found clever ways of making this possible.
 
-It's like giving out padlocks to all your friends, so anyone can lock a box and send it to you, but if you have the only (private) key, then you are the only person who can open the boxes. Once your friend locks a box, even they can't unlock it. It's really easy to distribute the padlocks. Public keys are the same – you can make them completely public – often people put them on their website or attach them to all emails they send. That's quite different to having to hire a security firm to deliver them to your colleagues.
+This means that the encryption system has *two* keys instead of one. Encryption systems with one key are called *symmetric*, and encryption systems with two keys are called *assymetric*.
 
-Public key encryption is very heavily used for online commerce (such as internet banking and credit card payment) because your computer can set up a connection with the business or bank automatically using a public key system without you having to get together in advance to set up a key. Public key systems are generally slower than symmetric systems, so the public key system is often used to then send a new key for a symmetric system just once per session, and the symmetric key can be used from then on with a faster symmetric encryption system.
+It's like giving out padlocks to all your friends, so anyone can lock a box and send it to you, but if you have the only (private) key, then you are the only person who can open the boxes. Once your friend locks a box, even they can't unlock it. It's really easy to distribute the padlocks. Public keys are the same – you can make them completely public. Often people put them on their website or attach them to all emails they send. That's much easier than having to hire a security firm to deliver keys to your colleagues!
 
-A very popular public key system is RSA. For this section on public key systems, we will use RSA as an example.
+{panel type="curiosity" summary="Some additional viewing"}
+[Simon Singh's video](http://simonsingh.net/media/online-videos/cryptography/the-science-of-secrecy-going-public/) gives a good explanation of key distribution.
+
+Additionally, there's a video illustrating how public key systems work using a padlock analogy.
+
+{video url="https://www.youtube.com/watch?v=a72fHRr6MRU"}
+{panel end}
+
+Public key encryption is very heavily used for online commerce (such as internet banking and credit card payment) because your computer can set up a connection with the business or bank automatically using a public key system without you having to get together in advance to set up a key. Public key systems are generally slower than symmetric systems, so the public key system is often used to then send a new key for a symmetric system each time you use the website, and the symmetric key can be used from then on with a faster symmetric encryption system. We'll talk more about this later.
 
 ### Generating the encryption and decryption keys
 
+A very popular public key system is RSA. For this section on public key systems, we'll use RSA as an example.
+
 {panel type="teacher-note" summary="Ideas for RSA fun in the classroom"}
-One thing you might like to do is to ask each student to generate their key pair, and then put their public key alongside their name in a shared spreadsheet (for example, a google doc). Then when the students would like to send an encrypted message to one of their classmates, they can look up the person's public key in the spreadsheet.
+One thing you might like to do is to ask each student to generate their key pair, and then email *the public key* to you. You should put all the public keys into a Google Document, along with the name of the student the public key corresponds with. The students should have read only access to the Google Document. When the students would like to send an encrypted message to one of their classmates, they can look up the person's public key in the Google Document, and then use it to encrypt the message.
+
+**Discussion Points**
+
+There are a few interesting things you can discuss with the class.
+- Why should they only send you their *public* key? Why not their private key?
+- Why should they only have read access to the Google Doc, wouldn't it have been easier for them to add their public key to it themselves?
+
+Private keys should never be given to anybody. The only person who needs access to it is the owner of it. Distributing the private key would lead to security problems. As for only giving them read-only access, if they had write access, they could modify the keys of their classmates (and even put their own public key next to somebody elses name!). The teacher acts as a trusted entity. This is similar to how public keys are managed in the real world! The teacher could also require students to show proof of ID when they give their public key, to ensure it really is them, but this might be a bit excessive in a classroom!
+
 {panel end}
 
 Firstly, you will need to generate a pair of keys using the key generator interactive. You should *keep the private key secret*, and *publicly announce the public key* so that your friends can send you messages (e.g. put it on the whiteboard, or email it to some friends). Make sure you save your keys somewhere so you don’t forget them – a text file would be best.
