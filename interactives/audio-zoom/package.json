@@ -1,0 +1,17 @@
+{
+    "name": "CSFG-Audio-Zoom-Interactive",
+    "version": "0.0.1",
+    "author": "James \"The Jamesernator\" Browning",
+    "description": "This is a interactive to show internals of audio files",
+    "dependencies": {
+        "es6-simple-async": "latest"
+    },
+    "devDependencies": {
+        "coffee-script": "latest",
+        "coffeeify": "latest",
+        "browserify": "latest"
+    },
+    "scripts": {
+        "build": "browserify -t coffeeify coffee/main.coffee > main.js"
+    }
+}
