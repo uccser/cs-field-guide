@@ -1,58 +1,99 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 "use strict";
-var async, toAudioBuffer;
+var SCALE, async, split, toAudioBuffer, wait;
 
 async = require('es6-simple-async');
 
-toAudioBuffer = async(function*(arrayBuffer) {
+toAudioBuffer = function(arrayBuffer) {
 
   /* This converts an ArrayBuffer into an AudioBuffer returning a Promise
       containing the AudioBuffer
    */
   var audioCtx;
   audioCtx = new OfflineAudioContext(2, 44100 * 1, 44100);
-  return (yield audioCtx.decodeAudioData(arrayBuffer));
-});
+  return audioCtx.decodeAudioData(arrayBuffer);
+};
+
+SCALE = 30;
+
+split = function(arr, chunks) {
+  var change, currentLocation, nextLocation, result;
+  if (chunks == null) {
+    chunks = 2;
+  }
+
+  /* Splits an array into given number of chunks, the final chunk may
+      be smaller than the rest, if chunks > array.length then we'll throw
+      an error
+   */
+  if (chunks > arr.length) {
+    throw new Error("Can't split arr with length " + arr.length + " into " + chunks + " chunks");
+  }
+  result = [];
+  currentLocation = 0;
+  change = arr.length / chunks;
+  while (currentLocation < arr.length) {
+    nextLocation = currentLocation + change;
+    result.push(arr.slice(Math.round(currentLocation), Math.round(nextLocation)));
+    currentLocation = nextLocation;
+  }
+  return result;
+};
+
+wait = function(time) {
+  return new Promise(function(resolve) {
+    return setTimeout(resolve, time);
+  });
+};
 
 async.main(function*() {
-  var $audio, $status, arrBuff, audioData, channelData, i, maxHeight, points, res, str;
-  $audio = document.querySelector('#audio');
+  var $audio, $image, $status, arrBuff, audioData, audioPart, channelData, idx, lines, max, maxHeight, min, res, svgLine;
+  $audio = document.querySelector('#audio3');
   $status = document.querySelector('#status');
+  $image = document.querySelector('#img');
   $status.innerHTML = 'fetching...';
   res = (yield fetch($audio.getAttribute('src')));
   arrBuff = (yield res.arrayBuffer());
   $status.innerHTML = 'converting...';
   audioData = (yield toAudioBuffer(arrBuff));
-  window.$audioData = audioData;
-  $status.innerHTML = 'finding points...';
+  $status.innerHTML = 'scanning points...';
   channelData = audioData.getChannelData(0);
-  maxHeight = channelData.slice(0, 500000).reduce(function(acc, b) {
-    if (acc > b) {
-      return acc;
-    } else {
-      return b;
-    }
+  maxHeight = channelData.reduce(function(acc, i) {
+    return Math.max(acc, Math.abs(i));
   });
-  $status.innerHTML = 'processing points...';
-  points = (function() {
-    var j, results;
+  $status.innerHTML = 'creating lines';
+  window.audioParts = (yield split(channelData, 1000));
+  lines = (yield* (function*() {
+    var j, len, results;
     results = [];
-    for (i = j = 0; j < 500000; i = ++j) {
-      results.push({
-        x: i / 500,
-        y: Math.floor(500 * channelData[i] / maxHeight + 500)
+    for (idx = j = 0, len = audioParts.length; j < len; idx = ++j) {
+      audioPart = audioParts[idx];
+      max = audioPart.reduce(function(acc, i) {
+        return Math.max(acc, i);
       });
+      min = audioPart.reduce(function(acc, i) {
+        return Math.min(acc, i);
+      });
+      svgLine = document.createElementNS($image.namespaceURI, "line");
+      svgLine.setAttributeNS(null, "class", "wave-line");
+      svgLine.setAttributeNS(null, "x1", idx);
+      svgLine.setAttributeNS(null, "x2", idx);
+      svgLine.setAttributeNS(null, "y1", 500 * min / maxHeight + 500);
+      svgLine.setAttributeNS(null, "y2", 500 * max / maxHeight + 500);
+      $image.appendChild(svgLine);
+      results.push((yield void 0));
     }
     return results;
-  })();
-  $status.innerHTML = 'drawing points...';
-  str = points.map(function(arg) {
-    var x, y;
-    x = arg.x, y = arg.y;
-    return x + "," + y;
-  }).join(' ');
-  $("#graph").attr('points', str);
-  return $status.innerHTML = 'done';
+  })());
+  svgLine = document.createElementNS($image.namespaceURI, "line");
+  svgLine.setAttributeNS(null, "style", "stroke:red;stroke-width:1");
+  svgLine.setAttributeNS(null, "x1", 0);
+  svgLine.setAttributeNS(null, "x2", 1000);
+  svgLine.setAttributeNS(null, "y1", 500);
+  svgLine.setAttributeNS(null, "y2", 500);
+  $image.appendChild(svgLine);
+  $status.innerHTML = 'done and done';
+  return 2;
 });
 
 
@@ -92,7 +133,6 @@ async.main(function*() {
               next = nextFunc();
             } catch (error) {
               err = error;
-              console.log(err);
               reject(err);
               return;
             }

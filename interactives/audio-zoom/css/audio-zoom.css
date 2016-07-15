@@ -1,4 +1,8 @@
-#graph {
+#img {
+  border: 1px solid black;
+}
+
+.wave-line {
   stroke: black;
   stroke-width: 1;
   fill: none;
