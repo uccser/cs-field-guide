@@ -1,11 +1,15 @@
+var hex_start_colour;
+
+window.onload = function() {
+    hex_start_colour = document.body.style.backgroundColor;
+}
+
 
 function changeColour() {
-    console.log("hi");
     var new_colour = document.getElementById('interactive-hex-background-colour-input').value;
-    console.log(new_colour);
-    document.body.style.background = '#' + new_colour;
 }
 
 
 function resetColour() {
+    document.body.style.backgroundColor = hex_start_colour;
 }

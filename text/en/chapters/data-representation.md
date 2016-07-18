@@ -1207,10 +1207,10 @@ For example, #000000 has zero for red, green and blue, so setting a higher value
 
 You could use an HTML page to experiment with hexadecimal colours. Just change the <body> command to include a colour as follows:
 
-```
-<body bgcolor="#004300">
-```
+
+{interactive name="hex-background-colour" type="in-page"}
 {panel end}
+
 
 ### Representing colours with fewer bits
 

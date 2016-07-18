@@ -1,12 +1,12 @@
 
-#interactive-hex-background-colour-container {
-  background: #FFFFFF;
-}
-
 #interactive-hex-background-colour-container input[type=text] {
   width: 60px;
 }
 
 #interactive-hex-background-colour-container a {
     display: inline-block;
+}
+
+#interactive-hex-background-colour-container {
+    text-align: center;
 }
