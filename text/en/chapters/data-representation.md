@@ -1205,10 +1205,10 @@ Understanding how these hexadecimal colour codes are derived also allows you to 
 
 For example, #000000 has zero for red, green and blue, so setting a higher value to the middle two digits (such as  #004300) will add some green to the colour.
 
-You could use an HTML page to experiment with hexadecimal colours. Just change the <body> command to include a colour as follows:
-
+You can use this HTML page to experiment with hexadecimal colours. Just enter a colour in the space below:
 
 {interactive name="hex-background-colour" type="in-page"}
+
 {panel end}
 
 
