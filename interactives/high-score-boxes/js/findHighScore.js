@@ -33,7 +33,7 @@ $(document).ready(function(){
 	})
 })
 
-$(document).on('click','.box', function() {
+$(document).on('click','.box', function (event) {
 	$(".box").stop(true, true);
 	$(".box").show();
 	for (var i = 0; i < (boxes.length); i++) { 
@@ -75,6 +75,7 @@ function createBoxElements() {
 
 		//"container" div
 		var iContainer = document.createElement('div');
+		iContainer.draggable = false;
 		iContainer.id = ('boxContainer' + i);
 		iContainer.className = 'boxContainer';
 		document.getElementById('box_holder_div').appendChild(iContainer);
@@ -95,6 +96,8 @@ function createBoxElements() {
 
 		//"box (covering the div holding number"
 		var boxDiv = document.createElement('div');
+		boxDiv.draggable = false;
+
 		boxDiv.id = ('box' + i);
 		boxDiv.className = 'box';
 		boxDiv.setAttribute("width", "100");
@@ -108,6 +111,8 @@ function createBoxElements() {
 
 		//divs that hold the numbers
 		var intHoldingDiv = document.createElement('div');
+		intHoldingDiv.draggable = false;
+
 		intHoldingDiv.id = ('intHoldingDiv' + i);
 		intHoldingDiv.className = 'intHoldingDiv';
 		intHoldingDiv.innerHTML = currentBox.boxInt;
