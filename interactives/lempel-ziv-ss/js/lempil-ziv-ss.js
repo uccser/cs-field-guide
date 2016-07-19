@@ -1,5 +1,9 @@
 var lempilZivSS = {};
-this.slidingWindow = 2000
+this.slidingWindow = 2000;
+this.textBeforeBits = 0;
+this.textAfterBits = 0;	
+this.sizeOfCharacterInBits = 8
+this.sizeOfLZSSPairInBits = 16
 
 /*testString = "abcxxxxxxabcxxxxxxxabcd"
 $(document).ready(function(){
@@ -20,9 +24,17 @@ window.onload = function() {
 				var reader = new FileReader();
 
 				reader.onload = function(e) {
+					/*
+						timeStart = performance.now();
+						lzssEncode(reader.result, slidingWindow);
+						timeEnd = performance.now();
+						console.log("Call to lzssEncode with .txt file with length " + reader.result.length + " took " + (timeEnd - timeStart) + " milliseconds with sliding window of " + slidingWindow);
+						console.log("Text before encoding was " + textBeforeBits + " bits, and after it was " + textAfterBits + "bits which is a " + ((textAfterBits / textBeforeBits) * 100) + "% compression");
+					
+ 					*/
 					//###execution time testing purposes, encodes string with many different sliding windows and outputs time taken
-
-					var slidingWindows = [100, 500, 1000, 2000, 4000, 10000, reader.result.length]
+					
+					var slidingWindows = [100, 500, 1000, 2000, 4000, 10000]
 
 					for (var i = 0; i < slidingWindows.length; i++) {
 					
@@ -30,9 +42,10 @@ window.onload = function() {
 						lzssEncode(reader.result, slidingWindows[i]);
 						timeEnd = performance.now();
 						console.log("Call to lzssEncode with .txt file with length " + reader.result.length + " took " + (timeEnd - timeStart) + " milliseconds with sliding window of " + slidingWindows[i]);
-						console.log("Text before encoding was " + $('#testText').text().length + " characters, and after it was " + $('#encodedText').text().length + "characters");
- 
+						console.log("Text before encoding was " + textBeforeBits + " bits, and after it was " + textAfterBits + "bits which is a " + ((textAfterBits / textBeforeBits)) + "% compression");
+ 						console.log("");
 					}
+					
 					//###########################################################
 				}
 
@@ -58,28 +71,21 @@ function encodeTextArea() {
 
 function lzssEncode(stringToEncode, slidingWindowLength) {
 //make string to encode an array
+	textBeforeBits = 0;
+	textAfterBits = 0;	
+	$('#encodedText').empty();
 	var arrayToEncode = stringToEncode.split("");
-
 	var currentReadString;
 	var currentMatchString;
-
 	var howManyForward;
-
 	var stringToReturn = stringToEncode.slice(0,2);
-
-	//stringIndex is going forward through string to encode, matchIndex is going backwards through string
-	//only need to start at the third character, compression will only start then
-
-
 	//console.log("string to decode is: " + stringToEncode);
-	for (var stringIndex = 2; stringIndex < stringToEncode.length;) {
+	for (var stringIndex = 0 ; stringIndex < stringToEncode.length;) {
 		//console.log("currently encoding character " + stringToEncode[stringIndex] + ", index " + stringIndex);
 		currentReadString = stringToEncode[stringIndex]
 		currentMatchString = stringToEncode[stringIndex - 1]
-
 		longestMatch = "";
 		indexOfLongestMatchStart = -1;
-
 		//stop looking back when we either hit the start of the string or we're at edge of sliding window
 		for (matchIndex = stringIndex - 1; (((matchIndex >= 0) && ((stringIndex - matchIndex) < slidingWindowLength))); matchIndex--) {
 			//console.log("gone back " + String(stringIndex - matchIndex) + " characters");
@@ -87,48 +93,49 @@ function lzssEncode(stringToEncode, slidingWindowLength) {
 			currentReadString = stringToEncode.slice(stringIndex, (stringIndex + 1))
 			currentMatchString = stringToEncode.slice(matchIndex, (matchIndex + 1))
 			//console.log("	currently at position " + matchIndex +", currentReadString is " + currentReadString + ", currentMatchString is " + currentMatchString);
-
-			while (currentReadString === currentMatchString) {
+			while ((currentReadString === currentMatchString) && longestMatch.length < 16) {
 				//console.log("		currentReadString " + currentReadString + " and currentMatchString " + currentMatchString + " matched! howManyForward is now: " + howManyForward);
-
-
 				if (currentMatchString.length > longestMatch.length) {
 					longestMatch = currentMatchString
 					indexOfLongestMatchStart = matchIndex;
 				}
-
 				currentReadString = stringToEncode.slice(stringIndex, (stringIndex + howManyForward + 1))
 				currentMatchString = stringToEncode.slice(matchIndex, (matchIndex + howManyForward + 1))
-				
+
 				if ((stringIndex + howManyForward) < stringToEncode.length) {
 					howManyForward++;
-				}
-				
-				
+				}	
 			}
 		}
 		//if nothing to encode
 		//console.log("matchIndex is " + matchIndex);
-		if ((indexOfLongestMatchStart == -1) || (longestMatch.length < 5)) {
+		if ((indexOfLongestMatchStart == -1) || (longestMatch.length < 3)) {
 			//console.log("No match found, not encoding");
-			stringToReturn += stringToEncode[stringIndex];
+			$('#encodedText').append(stringToEncode[stringIndex]);
+			//console.log("appended " + stringToEncode[stringIndex]);
 			stringIndex++
+			textAfterBits += sizeOfCharacterInBits // add one character's worth of bits
 
 		} else { // if something to encode, add <stepsBack, noCharacters> pair and skip forward that many characters in the string to encode
 			//console.log("character " + stringToEncode[stringIndex] + ", index " + stringIndex + " encoded. longestMatch is " + longestMatch);
 			//console.log("encode next " + longestMatch.length + " characters starting from " + indexOfLongestMatchStart);
 			//console.log("stringIndex is " + stringIndex + " and matchIndex is " + matchIndex);
-			stringToReturn += ("<" + ((stringIndex - indexOfLongestMatchStart)) + "," + longestMatch.length + ">");
+			$('#encodedText').append("<span style='color:red;'>" + "<" + ((stringIndex - indexOfLongestMatchStart)) + "," + longestMatch.length + ">" + "</span>")
+			//$('#encodedText').append( "<span style="color:blue">" + "<"((stringIndex - indexOfLongestMatchStart)) + "," + longestMatch.length + ">" + "</span");
 			stringIndex += (longestMatch.length);
+			textAfterBits += sizeOfLZSSPairInBits //add one pair's worth of bits
 
 		}
 
 		//console.log("");
 		}
 
+
 	$('#testText').html(stringToEncode);
-	$('#encodedText').html(stringToReturn);
-	stringToReturn;
+	//$('#encodedText').html(stringToReturn);
+	textBeforeBits = $('#testText').text().length * sizeOfCharacterInBits;	
+
+	//stringToReturn;
 
 
 		
