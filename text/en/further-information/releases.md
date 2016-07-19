@@ -19,6 +19,17 @@ We have listed major changes for each release below.
 
 ## Current Release
 
+### v2.6.1
+
+**Release date:** 14th July 2016
+
+**Downloads:** [Source available on GitHub](https://github.com/uccser/cs-field-guide/releases/tag/v2.6.1)
+
+**Notable changes:**
+- Fixed issue on Human Computer Interaction chapter where duplicate library was causing several UI elements to not behave correctly.
+
+## Older Releases
+
 ### v2.6.0
 
 **Release date:** 16th June 2016
@@ -40,8 +51,6 @@ We have listed major changes for each release below.
 - **Project improvements:** Added documentation for contributing to and developing this project, including a code of conduct.
 
 A full list of changes in this version is [available on GitHub](https://github.com/uccser/cs-field-guide/compare/v2.5.0...v2.6.0).
-
-## Older Releases
 
 ### v2.5.0
 
