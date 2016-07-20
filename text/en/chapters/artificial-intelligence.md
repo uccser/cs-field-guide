@@ -144,6 +144,14 @@ If you have a device that runs Apple iOS (for example an iPhone), have a look at
 
 ### The Turing Test
 
+{panel type="teacher-note" summary="TED video introducing the Turing Test"}
+There is a TED video that gives an overview of the Turing Test
+[on YouTube](https://www.youtube.com/watch?v=3wLqsRLvV-c).
+
+{panel end}
+
+
+
 In the above sections you met some chatterbots, and (hopefully!) have drawn the conclusion that they aren’t entirely convincing in terms of sounding like a human (although some are better than others!). But maybe soon, there will be new chatterbots that don’t have the same limitations. Should we consider them to be intelligent?  How could we tell?  Is there a formal way we can determine whether or not a chatterbot is of the level of human intelligence?
 
 A very famous computer scientist, Alan Turing, answered this question back in 1950, before the first chatterbots even existed! Alan Turing had an extraordinary vision of the future, and knew that coming up with computers that were intelligent would become a big thing, and that we would need a way to know when we have succeeded in creating a truly intelligent computer.
