@@ -1,0 +1,133 @@
+img {
+    width: 30px;
+}
+
+
+body {
+    font-family: "Roboto",sans-serif;
+    font-size: 17px;
+    background-color: #f0f0f0;
+    margin: 0px;
+    overflow: hidden;
+    text-align: center;
+}
+
+label {
+    display: block;
+    font-size: 20px;
+    margin: 10px;
+}
+
+
+button {
+    color: #fff;
+    background-color: #ff7043;
+    border: none;
+    border-radius: 2px;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16);
+    margin: 5px;
+    padding: 5px;
+}
+
+label, #mob-x, #mob-y, #mob-z {
+    font-family: "Cambria",Georgia,serif;
+    font-style: italic;
+}
+
+
+#restart-button {
+    display: none;
+    margin: 10px auto;
+    font-size: 20px;
+}
+
+
+#user-input {
+    color: #fff;
+    background-color: #3f51b5;
+    padding: 5px;
+}
+
+
+#coordinates {
+    padding-right: 5px;
+}
+
+
+#coordinates input {
+    width: 30px;
+    display: inline-block;
+    border: none;
+    border-radius: 2px;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16);
+    height: 15px;
+    padding: 2px;
+}
+
+
+.desktop-layout {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 200px;
+}
+
+
+#mobile-coord {
+    display: none;
+}
+
+
+#mob-x, #mob-y, #mob-z {
+    display: inline-block;
+    font-size: 15px;
+    margin: 2px;
+}
+
+
+.mob-layout {
+    font-size: 12px;
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+}
+
+
+.mob-layout button {
+    font-size: 14px;
+}
+
+
+.mob-layout #symbol-grid {
+    width: 50%;
+    float: left;
+}
+
+
+#symbol-grid, .row {
+    display: block;
+}
+
+
+#code-template img {
+    display: inline;
+    background-color: #fff;
+}
+
+
+#code-template button {
+    display: inline-block;
+}
+
+
+#end-buttons {
+    display: block;
+}
+
+
+.mob-layout #code-template {
+    width: 50%;
+    float: right;
+}
+
+
