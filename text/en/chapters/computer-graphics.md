@@ -42,14 +42,14 @@ You can move it around using what's called a *transform*, which simply adjusts w
 Try typing in 3D coordinates into this interactive to find each code.
 
 {comment}{include interactive computer-graphics-box-translation}{comment end}
-{button link="http://csfieldguide.org.nz/releases/1.9.9/_static/widgets/CG/CG-box/CG-box-translation.html?info=In%20this%20example%20the%20only%20transforms%20we%27ve%20supplied%20are%20to%20%3Cem%3Etranslate%3C/em%3E%20it%20in%20three%20dimensions.%20The%20dimensions%20are%20%3Cem%3Ex%3C/em%3E%20(left%20and%20right),%20%3Cem%3Ey%3C/em%3E%20(up%20and%20down)%20and%20%3Cem%3Ez%3C/em%3E%20(in%20and%20out%20of%20the%20screen).%20Your%20goal%20is%20to%20type%20in%20how%20far%20it%20should%20be%20transformed%20in%20each%20of%20these%20directions%20so%20that%20you%20can%20see%20the%20symbol%20on%20each%20face,%20and%20put%20those%20symbols%20on%20the%20spinner%20wheels%20shown.%20(The%20order%20of%20the%20symbols%20doesn%27t%20matter)." text="Click for interactive: box translation challenge"}
+{interactive name="box-translation" type="whole-page" text="Box Translation interactive"}
 
 You've just applied 3D *translation transforms* to the cube. Translation just means moving it in the three dimensions up and down, forward and back, and sideways.
 
 Now try the following challenge, which requires you to rotate the box to find the codes.
 
 {comment}{include interactive computer-graphics-box-rotation}{comment end}
-{button link="http://csfieldguide.org.nz/releases/1.9.9/_static/widgets/CG/CG-box/CG-box-rotation.html?info=Another%20common%20transform%20is%20%3Cem%3Erotation%3C/em%3E,%20which%20you%20can%20use%20in%20the%20following%20image%20to%20find%20the%20symbols%20(the%20rotation%20is%20measured%20in%20degrees)." text="Click for interactive: box rotation challenge"}
+{interactive name="box-rotation" type="whole-page" text="Box Rotation interactive"}
 
 There are several transformations that are used in computer graphics, but the most common ones are translation (moving the object), rotation (spinning it) and scaling (changing its size).
 They come up often in graphics because they are applied not only to objects, but to things like the positions of the camera and lighting sources.
