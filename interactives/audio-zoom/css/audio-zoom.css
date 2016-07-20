@@ -2,6 +2,13 @@
   border: 1px solid black;
 }
 
+#graph {
+  fill: none;
+  stroke: black;
+  stroke-width: 1;
+}
+
+
 .wave-line {
   stroke: black;
   stroke-width: 1;
