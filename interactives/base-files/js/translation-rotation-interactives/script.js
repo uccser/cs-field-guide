@@ -407,7 +407,6 @@ function incorrect() {
                 // clear the code for the user to start over
                 clearCode();
             } else {
-                console.log(y_pos);
                 if ( count == 9 ) {
                     x_pos = start_pos;
                 }
