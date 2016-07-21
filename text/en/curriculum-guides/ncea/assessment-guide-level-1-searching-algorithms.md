@@ -37,9 +37,9 @@ As with all externally assessed Digital Technology reports, you should base your
 
 You should read and work through the interactives in the following sections of the CS Field Guide in order to prepare yourself for the assessed project.
 
-[2.1 - What’s the big picture?](algorithms.html#whats-the-big-picture)
+[2.1 - What’s the big picture?](chapters/algorithms.html#whats-the-big-picture)
 
-[2.2 - Searching Algorithms](algorithms.html#searching-algorithms)
+[2.2 - Searching Algorithms](chapters/algorithms.html#searching)
 
 ## Project
 
@@ -75,7 +75,7 @@ Describe (in your own words with 1 - 3 sentences) the overall process you carrie
 Note that while only the first part is necessary for achieved, it is probably easier to cover the achieved by doing the merit. Teachers should supply a suitable program for the student's to annotate.
 {panel end}
 
-You also need to show the kinds of steps that can be an algorithm, such as iterative, conditional, and sequential. If you don’t know what these terms mean, go have another look at the field guide. Get a Scratch program (or another language if you are fairly confident with understanding the language) that implements binary search. Take a screenshot of it, or a large part of it (you want to ensure that the screenshot takes up no more than half a page in the report, but is still readable) and open it in a drawing program such as paint. Add arrows and notes showing a part of the algorithm that is sequential, part that is conditional, and part that is iterative.
+You also need to show the kinds of steps that can be in an algorithm, such as iterative, conditional, and sequential. If you don’t know what these terms mean, go have another look at the field guide. Get a Scratch program (or another language if you are fairly confident with understanding the language) that implements binary search. Take a screenshot of it, or a large part of it (you want to ensure that the screenshot takes up no more than half a page in the report, but is still readable) and open it in a drawing program such as paint. Add arrows and notes showing a part of the algorithm that is sequential, part that is conditional, and part that is iterative.
 
 **Merit/ Excellence**
 

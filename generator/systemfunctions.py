@@ -5,9 +5,7 @@
 
 import string
 import configparser
-import pip
 import argparse
-import sys
 
 def to_kebab_case(text):
     """Returns the given text as kebab case.
@@ -52,19 +50,13 @@ def command_line_args():
                             dest='teacher_output',
                             action='store_true',
                             help='Outputs both student and teacher versions of the CSFG')
-    argsparser.add_argument('--ignore-pip', '-i',
-                            dest='install_dependencies',
-                            action='store_false',
-                            default='store_true',
-                            help='Bypasses the installation of dependencies using pip')
     argsparser.add_argument('--pdf', '-p',
                             dest='include_pdf',
                             action='store_true',
-                            help='Include generation of pdf version of the CSFG')
+                            help='Include generation of PDF version of the CSFG')
+    argsparser.add_argument('--pdf-only', '-q',
+                            dest='pdf_only',
+                            action='store_true',
+                            help='Only generate PDF version of the CSFG')
 
     return argsparser.parse_args()
-
-
-def install_dependencies():
-    """Install project dependencies, if required"""
-    pip.main(['install',  '-r', 'generator/dependencies.conf'])

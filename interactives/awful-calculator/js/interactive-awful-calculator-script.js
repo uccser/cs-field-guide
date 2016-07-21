@@ -1,5 +1,5 @@
 /**
- * Awful Calculator Floateractive
+ * Awful Calculator Interactive
  * For use in the CS Field Guide
  * Created by Hayley van Waas, University of Canterbury
  * Modified by Jack Morgan, University of Canterbury

@@ -57,9 +57,15 @@ $(document).ready(function(){
     } else if (Parity.mode == 'trick') {
       Parity.valid_parity_bits = undefined;
       Parity.current_mode = 'set';
+      clearGrid();
       setupMode()
     // Else if detect stage in detect mode
     } else {
+      // Remove green success highlight around bit if correct bit found
+      if (Parity.flipping == 'none') {
+        var $bit = Parity.grid.children().eq(Parity.flipped_row).children().eq(Parity.flipped_col);
+        $bit.removeClass('correct-bit');
+      }
       clearGrid();
       setupMode();
     }

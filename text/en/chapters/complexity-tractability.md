@@ -45,7 +45,7 @@ So one of the jobs of computer scientists is to be confident that such solutions
 
 In this chapter we will look at the TSP and other problems for which *no* tractable solutions are known, problems that would take computers millions of centuries to solve.  And we will encounter what is surely the greatest mystery in computer science today: that *no-one knows* whether there's a more efficient way of solving these problems!  It may be just that no-one has come up with a good way yet, or it may be that there is no good way.  We don't know which.  
 
-{image filename="xkcd-np-complete-cartoon.png" alt="A xkcd comic about NP complete" source="http://xkcd.com/287/"}
+{image filename="xkcd-np-complete-cartoon.png" hover-text="General solutions get you a 50% tip." alt="A xkcd comic about NP complete" source="https://xkcd.com/287/"}
 
 But let's start with a familiar problem that we can actually solve.
 
@@ -65,7 +65,9 @@ But let's start with a familiar problem that we can actually solve.
 
 {comment end}
 
-[Complexity](glossary.html#complexity) is an important concept with problems and algorithms that solve them.
+{glossary-definition term="Complexity" definition="How long it takes to solve a problem. A problem has an inherent complexity (minimum time needed to solve it); any algorithm to solve the problem will have a higher complexity (take at least that long)."}
+
+{glossary-link term="Complexity" reference-text="problems and algorithms"}Complexity{glossary-link end} is an important concept with problems and algorithms that solve them.
 Usually complexity is just the amount of time it takes to solve a problem, but there are several ways that we can measure the "time".
 Using the actual time on a particular computer can be useful, but to get a rough idea of the inherent behaviour of an algorithm, computer scientists often start by estimating the number of steps the algorithm will take for *n* items.
 For example, a linear search can end up checking each of *n* items being searched, so the algorithm will take *n* steps.
@@ -177,7 +179,9 @@ Now add another word. How many possible orderings will there be with 5 words? Wh
 
 The number of orderings (permutations) for n words is the factorial of n; this is explained below, but basically there are n choices for the first word, n-1 for the next, and so on. For example, for 15 words, there are 15 x 14 x 13 x 12 x ... x 1 permutations, which is 1,307,674,368,000. It's a big number!
 
-The factorial of a number can be calculated using a spreadsheet (in Excel the formula for {math}15!{math end} is =FACT(15). A lot of calculators have a factorial button ("!").  You can even type {math}15!{math end} into a Google search and get the answer. However, for dealing with very large numbers, the field guide has a simple calculator that can work with huge numbers; it is in the text below, or you can open it [here](_static/widgets/big-calculator.html?plain=true frameborder="0").  
+The factorial of a number can be calculated using a spreadsheet (in Excel the formula for {math}15!{math end} is =FACT(15). A lot of calculators have a factorial button ("!").  You can even type {math}15!{math end} into a Google search and get the answer. However, for dealing with very large numbers, the field guide has a simple calculator that can work with huge numbers; it is in the text below, or you can open it here:
+
+{interactive name="big-number-calculator" type="whole-page" text="Big Number Calculator"}
 
 For the above questions, the number of permutations are:
 
@@ -202,11 +206,7 @@ Your calculator may have a "!" button for calculating factorials and spreadsheet
 
 For factorials of larger numbers, most desktop calculators won't work so well; for example, 100! has 158 digits. You can use the calculator below to work with huge numbers (especially when using factorials and exponents).  
 
-{comment}
-interactive needs fixing
-{comment end}
-
-{button link="http://www.csfieldguide.org.nz/releases/1.9.9/_static/widgets/big-calculator.html?plain=true%20frameborder=" text="View big number calculator"}
+{interactive name="big-number-calculator" type="whole-page" text="Big Number Calculator"}
 
 Try calculating 100! using this calculator --- that's the number of different routes that a travelling salesman might take to visit 100 places (not counting the starting place). With this calculator you can copy and paste the result back into the input if you want to do further calculations on the number. If you are doing these calculations for a report, you should also copy each step of the calculation into your report to show how you got the result.
 
@@ -258,7 +258,7 @@ But the *problem* of sorting items into order is not intractable - even though t
 
 {panel type="curiosity" summary="Towers of Hanoi"}
 
-The Towers of Hanoi problem is a challenge where you have a stack of disks of increasing size on one peg, and two empty pegs. The challenge is to move all the disks from one peg to another, but you may not put a larger disk on top of a smaller one. There's a description of it at [Wikipedia](http://en.wikipedia.org/wiki/Tower_of_Hanoi).
+The Towers of Hanoi problem is a challenge where you have a stack of disks of increasing size on one peg, and two empty pegs. The challenge is to move all the disks from one peg to another, but you may not put a larger disk on top of a smaller one. There's a description of it at [Wikipedia](https://en.wikipedia.org/wiki/Tower_of_Hanoi).
 
 This problem cannot be solved in fewer than {math}2^{n-1}{math end} moves, so it's an intractable problem (a computer program that lists all the moves to make would use at least {math}2^{n-1}{math end} steps). For 6 disks it only needs 63 moves, but for 50 disks this would be 1,125,899,906,842,623 moves.
 
@@ -396,11 +396,9 @@ You're going to have to be more than patient if you want Moore's law to help out
 
 Remember that if you need to do calculations of huge numbers, there's a calculator here that you can use:
 
-{button link="http://www.csfieldguide.org.nz/releases/1.9.9/_static/widgets/big-calculator.html?plain=true%20frameborder=" text="View big number calculator"}
+{interactive name="big-number-calculator" type="whole-page" text="Big Number Calculator"}
 
 {comment}
-
-.. xJRM force above link to open in new window; also, nice if there's an icon/screenshot/image in the link
 
 .. Exercise: password cracking
 .. ------------------------------------------------------------
@@ -437,7 +435,7 @@ There is an extensive website about the state of the art for the TSP at [http://
 
 {comment}
 
-.. xHRN Put in a paragraph or two about the greedy heuristic as a practical way to solve the problem (but point out that it's not the best heuristic, give some % bounds to give an idea of the accuracy --- according to http://en.wikipedia.org/wiki/Travelling_salesman_problem#Heuristic_and_approximation_algorithms the greedy algorithm averages 25% worse than optimal; there are more complex algorithms that typically come within about 3% of optimal.)
+.. xHRN Put in a paragraph or two about the greedy heuristic as a practical way to solve the problem (but point out that it's not the best heuristic, give some % bounds to give an idea of the accuracy --- according to https://en.wikipedia.org/wiki/Travelling_salesman_problem#Heuristic_and_approximation_algorithms the greedy algorithm averages 25% worse than optimal; there are more complex algorithms that typically come within about 3% of optimal.)
 
 {comment end}
 
@@ -537,13 +535,13 @@ More material on the many intractable problems that exist is yet to be written, 
 There are thousands of problems like the TSP for which no tractable solution is known. Extra sections will eventually be added here to introduce some of them, but in the meantime, if you are keen you might like to explore some of these problems:
 
 - [map and graph colouring](http://csunplugged.org/graph-colouring) (these can be reduced to a timetabling problem and vice versa, showing how NP-complete problems can relate to each other)
-- [the knapsack problem](http://en.wikipedia.org/wiki/Knapsack_problem)
-- [the bin packing problem](http://en.wikipedia.org/wiki/Bin_packing_problem)
-- [Hamiltonian paths](http://en.wikipedia.org/wiki/Hamiltonian_path) (no tractable solution for this is known, yet the very similar Eulerian path, which is often presented as the seven bridges problem, has an easy tractable solution)
+- [the knapsack problem](https://en.wikipedia.org/wiki/Knapsack_problem)
+- [the bin packing problem](https://en.wikipedia.org/wiki/Bin_packing_problem)
+- [Hamiltonian paths](https://en.wikipedia.org/wiki/Hamiltonian_path) (no tractable solution for this is known, yet the very similar Eulerian path, which is often presented as the seven bridges problem, has an easy tractable solution)
 - [Steiner trees](http://www.csunplugged.org/steiner-trees)
 - [Dominating sets](http://www.csunplugged.org/dominating-sets)
-- [Longest path](http://en.wikipedia.org/wiki/Longest_path) (this is interesting because finding the longest path is intractable, yet finding the shortest path is tractable - the shortest path is calculated when a GPS device works out the shortest route to a destination. Also, a Hamiltonian problem can be reduced easily to longest path, showing the concept of reduction when one NP-complete problem is used to solve another). [And here's a song about it!](https://www.youtube.com/watch?feature=player_embedded&v=a3ww0gwEszo)
-- [the Battleship problem](http://en.wikipedia.org/wiki/Battleship_(puzzle\))
+- [Longest path](https://en.wikipedia.org/wiki/Longest_path) (this is interesting because finding the longest path is intractable, yet finding the shortest path is tractable - the shortest path is calculated when a GPS device works out the shortest route to a destination. Also, a Hamiltonian problem can be reduced easily to longest path, showing the concept of reduction when one NP-complete problem is used to solve another). [And here's a song about it!](https://www.youtube.com/watch?feature=player_embedded&v=a3ww0gwEszo)
+- [the Battleship problem](https://en.wikipedia.org/wiki/Battleship_(puzzle\))
 
 {comment}
 
@@ -555,7 +553,7 @@ There are thousands of problems like the TSP for which no tractable solution is 
 
 The question of tractability is a big one in computer science --- in fact, what is widely regarded as the biggest unsolved problem in computer science revolves around it.
 You may recall that we mentioned that there are thousands of problems that are we don't have a tractable solution for, yet a tractable solution to one can be adapted to all the others.
-This groups of problems is called "NP-complete" (NP stands for non-deterministic polynomial if you really want to know; complete just means that they can all be converted to each other!)
+This group of problems is called "NP-complete" (NP stands for non-deterministic polynomial if you really want to know; complete just means that they can all be converted to each other!)
 The big question is whether or not there is a polynomial time algorithm for any one of them, in which case all NP problems will have a P (polynomial time) solution.
 The question is often referred to as whether or not P equals NP.
 
@@ -585,7 +583,7 @@ It's also a fascinating area of research with opportunities to make a discovery 
 
 .. mention Turing's contributions - halting problem etc.
 
-.. another NP-complete problem: http://en.wikipedia.org/wiki/Instant_Insanity
+.. another NP-complete problem: https://en.wikipedia.org/wiki/Instant_Insanity
 
 {comment end}
 
@@ -595,11 +593,11 @@ This topic is covered very thoroughly in a way that is accessible to non-special
 
 ### Useful Links
 
-- [http://en.wikipedia.org/wiki/Computational_complexity_theory](http://en.wikipedia.org/wiki/Computational_complexity_theory)
+- [https://en.wikipedia.org/wiki/Computational_complexity_theory](https://en.wikipedia.org/wiki/Computational_complexity_theory)
 - [http://www.tsp.gatech.edu/games/index.html](http://www.tsp.gatech.edu/games/index.html)
 - [http://csunplugged.org/graph-colouring](http://csunplugged.org/graph-colouring)
-- [http://en.wikipedia.org/wiki/Travelling_salesman_problem](http://en.wikipedia.org/wiki/Travelling_salesman_problem)
-- [http://en.wikipedia.org/wiki/Knapsack_problem](http://en.wikipedia.org/wiki/Knapsack_problem)
-- [http://en.wikipedia.org/wiki/Bin_packing_problem](http://en.wikipedia.org/wiki/Bin_packing_problem)
-- [http://en.wikipedia.org/wiki/Hamiltonian_path](http://en.wikipedia.org/wiki/Hamiltonian_path)
-- [http://en.wikipedia.org/wiki/Brute-force_search](http://en.wikipedia.org/wiki/Brute-force_search)
+- [https://en.wikipedia.org/wiki/Travelling_salesman_problem](https://en.wikipedia.org/wiki/Travelling_salesman_problem)
+- [https://en.wikipedia.org/wiki/Knapsack_problem](https://en.wikipedia.org/wiki/Knapsack_problem)
+- [https://en.wikipedia.org/wiki/Bin_packing_problem](https://en.wikipedia.org/wiki/Bin_packing_problem)
+- [https://en.wikipedia.org/wiki/Hamiltonian_path](https://en.wikipedia.org/wiki/Hamiltonian_path)
+- [https://en.wikipedia.org/wiki/Brute-force_search](https://en.wikipedia.org/wiki/Brute-force_search)

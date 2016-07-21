@@ -2,7 +2,7 @@
 
 {comment explain different views of algorithm (programming context) and Algorithm (that have interesting complexity); use https://www.youtube.com/watch?v=6hfOvs8pY1k for the former?}
 
-{video url="http://www.youtube.com/embed/FOwCCvHEfY0"}
+{video url="https://www.youtube.com/embed/FOwCCvHEfY0"}
 
 ## What's the big picture?
 
@@ -24,21 +24,7 @@ Often you can get away with describing a process just using some sort of informa
 "please get me a glass of water".
 A human can understand what this means and can figure out how to accomplish this task by thinking, but a computer would have no idea how to do this!
 
-{comment}
-[Add new text and interactive here for finding the high score in a table.
-Interactive could have doors or boxes to open with numbers in them; only one is visible at a time, and the challenge is to find the highest number.
-There could be a space to type the number, and a button to press to check if it's correct.
-The preceding text could be as follows:]
-For example, suppose you have to work out the highest score from a group of players.
-It sounds easy enough for a small list like this one:
-[image of list of 5 high scores]
-But what about this list:
-[image of list of about 100 high scores, not lined up, non-proportional font, not so easy to spot large numbers]
-Now you need some sort of organised process --- an algorithm --- to find the highest score with absolute certainty.
-Try finding the high score the following interactive, thinking about what process you'll use to be sure of getting the right answer.
-(The process will be fairly simple; we're not looking for a particularly clever solution, but just want to think about how to express the process really clearly.)
-[note: will also need to make slight changes to the next few paragraphs that mention a high-score algorithm.]
-{comment end}
+{interactive name="high-score-boxes" type="whole-page" text="High Score Boxes"}
 
 An example in a computational context might be if you wanted to find a high score in a table of scores:
 go through each score keeping track of the largest so far.
@@ -50,7 +36,7 @@ In contrast, an {glossary-link term="algorithm" reference-text="introduction"}al
 For our previous non-computing example, the algorithm might be
 1) Go to the kitchen. 2) Pick up a glass. 3) Turn on the tap. 4) Put the glass under the running water and remove it once it is almost full. 5) Turn off the tap. 6) Take the glass back to the person who gave the instruction. A human could follow these instructions easily, but it's still using general English language rather than a strict list of computer instructions.
 
-Algorithms are often expressed using a loosely defined format called [pseudo-code](http://en.wikipedia.org/wiki/Pseudocode),
+Algorithms are often expressed using a loosely defined format called [pseudo-code](https://en.wikipedia.org/wiki/Pseudocode),
 which matches a programming language fairly closely,
 but leaves out details that could easily be added later by a programmer.
 Pseudocode doesn't have strict rules about the sorts of commands you can use, but it's halfway between an informal instruction and a specific computer program.
@@ -111,8 +97,8 @@ Both of the above programs are the same algorithm.
 In this chapter we'll look in more detail about what an algorithm is, and why they are such a fundamental idea in computer science.
 Because algorithms exist even if they aren't turned in to programs, we won't need to look at programs at all for this topic, unless you particularly want to.
 
-
 {glossary-link term="Algorithm" reference-text="algorithm cost"}{glossary-link end}
+
 ### Algorithm cost
 
 When Computer Scientists are comparing algorithms they often talk about the 'cost' of an algorithm. The cost of an algorithm can be interpreted in several different ways, but it is always related to how well an algorithm performs based on the size of its input, *n*. In this chapter we will talk about the cost of an algorithm as either the time it takes a program (which performs the algorithm) to complete, or the number of steps that the algorithm makes before it finishes.
@@ -151,8 +137,6 @@ They also happen to be great for illustrating some of the key concepts that aris
 
 {panel type="teacher-note" summary="Presenting searching in the classroom"}
 
-{glossary-definition term="Binary search" definition="Searching a sorted list by looking at the middle item, and then searching the appropriate half recursively (used for phone books, dictionaries and computer algorithms)."}
-
 The present searching game in this section is split into two parts, the first corresponds to the Linear Search algorithm (also known as Sequential Search) and the second corresponds to {glossary-link term="Binary Search"}Binary Search{glossary-link end}. We recommend you play through the levels yourself for a while, or after reading this description. It is based on the [CS Unplugged Battleships game](http://csunplugged.com/searching-algorithms) which can be used as a classroom activity to enforce the lessons in this chapter (the hashing activity is not used for the present searching game). The
 
 To run this as a classroom activity get all the students to play each section of the game at the same time and then when they have all finished have a discussion about the results. After students have finished the first part ask them questions like "Did anyone find the pet on the first go?", "Did anyone only find it after checking every other present?", or find the average number of presents students had to open to find the pet (this should be around 5 for the first level and around 10 for the second).
@@ -166,19 +150,13 @@ Searching through collections of data is something computers have to do all the 
 
 Lets investigate searching with a game...
 
-{button link="http://www.csfieldguide.org.nz/releases/1.9.9/_static/interactives/alg/searching/index.html?max=2" text="Searching Boxes - Part 1"}
-{comment}
-{interactive name="searching-boxes" type="whole-page" text="Searching Boxes - Part 1" parameters="max=2"}
-{comment end}
+{interactive name="searching-algorithms" type="whole-page" text="Searching Boxes - Part 1" parameters="max=2"}
 
 You may have noticed that the numbers on the monsters and pets in the game were in a random order, which meant that finding the pet was basically luck! You might have found it on your first try, or if you were less lucky you might have had to look inside almost all the presents before you found it. This might not seem like such a bad thing since you had enough lives to look under all the boxes, but imagine if there had been 1,000 boxes, or worse 1,000,000! It would have taken far too long to look through all the boxes and the pet might have never been found.
 
 Now this next game is slightly different. You have less lives, which makes things a bit more challenging, but this time the numbers inside the boxes will be in order. The monsters, or maybe the pet, with the smallest number is in the present on the far left, and the one with the largest number is in the present on the far right. Let's see if you can collect all the pets without running out of lives...
 
-{button link="http://www.csfieldguide.org.nz/releases/1.9.9/_static/interactives/alg/searching/index.html?level=3" text="Searching Boxes - Part 2"}
-{comment}
-{interactive name="searching-boxes" type="whole-page" text="Searching Boxes - Part 2" parameters="level=3"}
-{comment end}
+{interactive name="searching-algorithms" type="whole-page" text="Searching Boxes - Part 2" parameters="level=3" thumbnail="thumbnail2.png"}
 
 Now that you have played through the whole game (and hopefully found all of the lost pets!) you may have noticed that even though you had less lives in the second part of the game, and lots of presents to search through, you were still able to find the pet. Why was this possible?
 
@@ -196,6 +174,8 @@ If you watched the video at the beginning of the chapter you might be thinking t
 {panel end}
 
 ### Binary search
+
+{glossary-definition term="Binary Search" definition="Searching a sorted list by looking at the middle item, and then searching the appropriate half recursively (used for phone books, dictionaries and computer algorithms)."}
 
 A much better algorithm to use is called Binary Search. In the second part of the present searching game the boxes were in order, which meant you were able to be more clever when you were searching for the pet, and you might have been using a Binary Search without realising!
 
@@ -234,7 +214,7 @@ Your project is to measure the amount of time taken as the number of items (*n*)
 
 {glossary-link term="Algorithm" reference-text="sorting algorithms"}{glossary-link end}
 
-## Sorting algorithms
+## Sorting
 
 {panel type="teacher-note" summary="Why are we also covering sorting?"}
 Our main points have already been made --- what an algorithm is, how to estimate its cost, and that the cost isn't always proportional to the amount of data.
@@ -284,7 +264,7 @@ For example: To calculate the number of comparisons required for 20 boxes, using
 
 = 190 comparisons
 
-Some students may recognise this formula as Gauss' trick (see [the anecdotes about Gauss on Wikipedia](http://en.wikipedia.org/wiki/Carl_Friedrich_Gauss#Anecdotes). One way of expressing this trick for the above example is that 20 boxes would require summing the numbers 1+2+3+...+17+18+19. If we write the numbers backwards (19+18+17+...3+2+1) then it would be the same sum. Now if we add these two lists together, pairing up the corresponding numbers, we get (1+19)+(2+18)+(3+17)+...+(17+3)+(18+2)+(19+1). Each pair in this sum adds up to 20, and there are 19 pairs, so adding the two lists together is just 20x19. Since both lists add up to the same amount, the original sum is a half of that, or 20x19/2, which is 190 comparisons, which is what we got from the formula above. If students can follow this reasoning then they can easily work out the comparisons needed for a large number of boxes, and the don't have to use the "magic" formula given above. There's a visual explanation in [this video](http://www.numberphile.com/videos/one_to_million.html) and more examples on [this page](http://nzmaths.co.nz/gauss-trick-staff-seminar).
+Some students may recognise this formula as Gauss' trick (see [the anecdotes about Gauss on Wikipedia](https://en.wikipedia.org/wiki/Carl_Friedrich_Gauss#Anecdotes). One way of expressing this trick for the above example is that 20 boxes would require summing the numbers 1+2+3+...+17+18+19. If we write the numbers backwards (19+18+17+...3+2+1) then it would be the same sum. Now if we add these two lists together, pairing up the corresponding numbers, we get (1+19)+(2+18)+(3+17)+...+(17+3)+(18+2)+(19+1). Each pair in this sum adds up to 20, and there are 19 pairs, so adding the two lists together is just 20x19. Since both lists add up to the same amount, the original sum is a half of that, or 20x19/2, which is 190 comparisons, which is what we got from the formula above. If students can follow this reasoning then they can easily work out the comparisons needed for a large number of boxes, and the don't have to use the "magic" formula given above. There's a visual explanation in [this video](http://www.numberphile.com/videos/one_to_million.html) and more examples on [this page](http://nzmaths.co.nz/gauss-trick-staff-seminar).
 {panel end}
 
 {comment}
@@ -312,7 +292,7 @@ Try this with the scales interactive. Start by moving all the boxes to one side 
 
 To insert another box into the sorted group, compare it to the box that is already in the sorted group and then arrange these two boxes in the correct order. Then to add the next box compare it to these boxes (depending on the weight of the box you might only have to compare it to one!) and then arrange these three boxes in the correct order. Continue inserting boxes until the sorted list is complete. Don't forget to count how many comparisons you had to make!
 
-This algorithm is called Insertion Sort. If you're not quite sure if you've got the idea of the algorithm yet then have a look at [this animation](http://upload.wikimedia.org/wikipedia/commons/0/0f/Insertion-sort-example-300px.gif) from [Wikipedia](http://en.wikipedia.org/wiki/Insertion_sort).
+This algorithm is called Insertion Sort. If you're not quite sure if you've got the idea of the algorithm yet then have a look at [this animation](https://upload.wikimedia.org/wikipedia/commons/0/0f/Insertion-sort-example-300px.gif) from [Wikipedia](https://en.wikipedia.org/wiki/Insertion_sort).
 
 Insertion sort can be described with informal instructions as follows:
 - Take an item from your unsorted list and place it to the side, this will be your sorted list.
@@ -356,7 +336,7 @@ You should notice that the time taken by Quicksort is quite different to that ta
 
 There are dozens of sorting algorithms that have been invented; most of the ones that are used in practice are based on quicksort and/or mergesort. These, and many others, can be seen in this intriguing animated video.
 
-{video url="http://www.youtube.com/watch?v=kPRA0W1kECg"}
+{video url="https://www.youtube.com/watch?v=kPRA0W1kECg"}
 
 ## The whole story!
 
@@ -390,7 +370,7 @@ To make things even more complicated, in practice algorithms are running on comp
 - [CS Unplugged Searching algorithms](http://csunplugged.org/searching-algorithms)
 - CS Unplugged [Sorting algorithms](http://csunplugged.org/sorting-algorithms)
 - [Searching algorithm game, may not be suitable](http://csunplugged.org/divideAndConquer)
-- Wikipedia has more details on [Linear Search](http://en.wikipedia.org/wiki/Linear_search), [Binary Search](http://en.wikipedia.org/wiki/Binary_search), [Selection sort](http://en.wikipedia.org/wiki/Selection_sort), [Insertion sort](http://en.wikipedia.org/wiki/Insertion_sort) and  [Quicksort](http://en.wikipedia.org/wiki/Quicksort).
+- Wikipedia has more details on [Linear Search](https://en.wikipedia.org/wiki/Linear_search), [Binary Search](https://en.wikipedia.org/wiki/Binary_search), [Selection sort](https://en.wikipedia.org/wiki/Selection_sort), [Insertion sort](https://en.wikipedia.org/wiki/Insertion_sort) and  [Quicksort](https://en.wikipedia.org/wiki/Quicksort).
 - The [Sorting Bricks game](http://mathsite.math.berkeley.edu/sorting/brick.html) is a great way to learn about several sorting algorithms (requires Java).
 - [Sorting Algorithms Visualisations](http://www.sorting-algorithms.com/) shows several different sorting algorithms racing and contains information and pseudocode for each.
 - [Beginner's Guide to Big O Notation](http://rob-bell.net/2009/06/a-beginners-guide-to-big-o-notation/)

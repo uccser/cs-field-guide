@@ -1,0 +1,28 @@
+#interactive-image-bit-comparer select {
+  border-color: #333;
+}
+#interactive-image-bit-comparer-source-canvas {
+  display: none;
+}
+#interactive-image-bit-comparer-canvas-parent-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.interactive-image-bit-comparer-canvas-container {
+  margin: 0.3rem;
+  padding: 0.3rem;
+  text-align: center;
+  font-weight: bold;
+}
+.interactive-image-bit-comparer-canvas-container p {
+  margin: 0;
+}
+.interactive-image-bit-comparer-canvas-container .interactive-image-bit-comparer-controls-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+.interactive-image-bit-comparer-canvas-container .interactive-image-bit-comparer-controls-container > div {
+  flex: 1 1 auto;
+  padding: 0 0.2rem;
+}

@@ -38,26 +38,14 @@ Some advanced concepts in formal languages even used to explore limits of what c
 
 Once you're familiar with the idea of formal languages, you'll possess a powerful tool for cutting complex systems down to size using an easily specified format.
 
-{image filename="xkcd-tags.png" alt="A xkcd cartoon comment on HTML tags" source="https://xkcd.com/1144/"}
+{image filename="xkcd-tags.png" hover-text="<A>: Like </a>this." alt="A xkcd cartoon comment on HTML tags" source="https://xkcd.com/1144/"}
 
 ## Getting started
 
 To give you a taste of what can be done, let's try searching for words that fit particular patterns.
-Suppose you're looking for words that contain the name "tim".
+Suppose you're looking for words that contain the name "tim", type the word "tim" (or a few letters from your name), then press the "Filter words" button to find all words containing "tim".
 
-Open the [Regular Expression interactive](http://csfieldguide.org.nz/releases/1.9.9/_static/widgets/FL/FL-Regex/RegexDic.html) and type in the word "tim" (or a few letters from your name), then press the "Search" button to find all words containing "tim"..
-
-
-{panel type="teacher-note" summary="Alternative interactive site"}
-If the search interactive isn't working, you can try the  [Regex Dictionary](http://www.visca.com/regexdict/) site, although it probably won't handle an entire class using it at the same time.
-It's best used as a class demonstration, or for students to use in free time when they aren't all using the site simultaneously.
-The search should be typed into the "String:" box.
-{panel end}
-
-{comment}
-Regex Dictionary interactive goes here
-http://csfieldguide.org.nz/releases/1.9.9/_static/widgets/FL/FL-Regex/RegexDic.html
-{comment end}
+{interactive name="regular-expression-filter" type="in-page"}
 
 That's a pretty simple search (though the results may have surprised you!).
 But now we introduce the *wildcard* code, which in this case is "." ---  this is a widely used convention in formal languages.
@@ -84,7 +72,7 @@ x.*y.*z
 
 {panel type="teacher-note" summary="Explanation of previous search"}
 
-This code finds words that contain x, y and z in that order, but separated by 0 or more characters. At the time of writing, the only two words that come up are oxymetazoline and phenoxybenzamine.
+This code finds words that contain x, y and z in that order, but separated by 0 or more characters. There are 16 words is the data set which match this.
 
 {panel end}
 
@@ -92,16 +80,16 @@ This code finds words that contain x, y and z in that order, but separated by 0 
 - What about words containing the letters from your name in the correct order?
 - Are there any words that contain all the vowels in order (a, e, i, o, u)?
 
-{panel type="teacher-note" summary="Vowels soluton"}
+{panel type="teacher-note" summary="Vowels solution"}
 
-To find words with all the vowels in order, the code is simply "a.\*e.\*i.\*o.\*u".
+To find words with all the vowels in order, the code is simply "a.\*e.\*i.\*o.\*u", there are 47 matches.
 
-Students may ask how to do more complex searches, like letters in any order. If they are interested they can explore this on their own, but this is just a warmup exercise. We'll be covering this more carefully in the section on [regular expressions](chapters/formal-languages.html#regular-expressions-and-fsas).
+Students may ask how to do more complex searches, like letters in any order. If they are interested they can explore this on their own, but this is just a warmup exercise. We'll be covering this more carefully in the section on [regular expressions](chapters/formal-languages.html#regular-expressions).
 
 {panel end}
 
 The code you've used above is a part of a formal language called a "regular expression". Computer programs that accept typed input use regular expressions for checking items like dates, credit card numbers and product codes. They’re used extensively by programming language compilers and interpreters to make sense of the text that a programmer types in.
-We'll look at them in more detail in the section on [regular expressions](formal-languages.html#regular-expressions).
+We'll look at them in more detail in the section on [regular expressions](chapters/formal-languages.html#regular-expressions).
 
 Next we examine a simple system for reading input called a
 {glossary-link term="finite state automaton" reference-text="Formal languages"}finite state automaton{glossary-link end},
@@ -113,7 +101,7 @@ another kind of formal language that can deal with more complicated forms of inp
 
 {panel type="teacher-note" summary="Klingon linguistics activity"}
 
-For a fun discussion, you could have the students look at the [Klingon Linguistics activity at CS4FN](http://www.cs4fn.org/linguistics/klingon.html). This page introduces the fundamentals of languages — words (the alphabet) and {glossary-link term="grammar" reference-text="Formal languages"}grammar{glossary-link end} (the rules of syntax). It discusses why languages are translated and how meaning can be changed by translation. It also explains why computer languages need to be translated.
+For a fun discussion, you could have the students look at the [Klingon Linguistics activity at CS4FN](http://www.cs4fn.org/linguistics/klingon.html). This page introduces the fundamentals of languages — words (the alphabet) and {glossary-link term="grammar"}grammar{glossary-link end} (the rules of syntax). It discusses why languages are translated and how meaning can be changed by translation. It also explains why computer languages need to be translated.
 
 {panel end}
 
@@ -129,24 +117,12 @@ It may be a bit young for some students, but if you can sell it to them, it's a 
 
 Here's a map of a commuter train system for the town of Trainsylvania. The trouble is, it doesn't show where the the trains go --- all you know is that there are two trains from each station, the A-train and the B-train. The inhabitants of Trainsylvania don't seem to mind this --- it's quite fun choosing trains at each station, and after a while you usually find yourself arriving where you intended.
 
-{image filename="trainsylvania-map-incomplete.png" alt="An incomplete train map"}
-
-{comment}
-
-.. TCB Suggestions for station names (from Andrew): Not "Happyland"; change to "Railington" or "Enginopolis"?
-
-{comment end}
+{image filename="trainsylvania-blank.png" alt="An incomplete train map" caption="Click image to enlarge"}
 
 You can travel around Trainsylvania yourself using the following interactive. You're starting at the City Mall station, and you need to find your way to Suburbopolis.
 At each station you can choose either the A-train or the B-train --- press the button to find out where it will take you.
 But, like the residents of Trainsylvania, you'll probably want to start drawing a map of the railway, because later you might be asked to find your way somewhere else.
 If you want a template to draw on, you can [print one out from here](files/trainsylvania-blank.pdf).
-
-{comment}
-
-.. Andrew suggested a new name for Happyland: e.g. "Railington" or "Enginopolis" :-) This image also appears above as FL-trains-incomplete.jpg
-
-{comment end}
 
 {interactive name="trainsylvania" type="in-page"}
 
@@ -154,13 +130,13 @@ If you want a template to draw on, you can [print one out from here](files/train
 
 You should let students devise their own notation for this. They will soon learn (possibly the hard way) that they should record all routes with an arrow (since trains don't necessarily return by the same route), and label their arrows with A or B. The full map for the activity is below, but don't spoil the students' fun by providing it --- at least, not yet.
 
-{image filename="trainsylvania-map-complete.png" alt="Solution to the train map"}
+{image filename="trainsylvania-complete.png" alt="Solution to the train map" caption="Click image to enlarge"}
 
 {panel end}
 
 Did you find a sequence of trains to get from City Mall to Suburbopolis? You can test it by typing the sequence of trains in the following interactive. For example, if you took the A-train, then the B-train, then an A-train, type in ABA.
 
-{button link="www.csfieldguide.org.nz/releases/1.9.9/_static/widgets/fsa-trip-planner-v4.html" text="View trip planner interactive"}
+{interactive name="trainsylvania-planner" type="in-page"}
 
 Can you find a sequence that takes you from City Mall to Suburbopolis? Can you find another sequence, perhaps a longer one? Suppose you wanted to take a really long route ... can you find a sequence of 12 hops that would get you there? 20 hops?
 
@@ -701,7 +677,7 @@ If you need to make diagrams of FSAs, the JFLAP program can be used, or there's 
 
 .. exercise/example that wasn't used: for fsa language, transformation for complement (change accept states), reverse?
 
-.. JRM  fsm intro video: http://www.youtube.com/watch?v=Obt3L1YBwlM It's quite clear in it's explanation, but don't know how well it will be received by younger audiences. It's quite long (15 minutes) but pretty standard presentation (powerpoint with hand drawing over top with narration). It was good for me, but don't know how good it is for children. If you watch the first two minutes, you get a good idea of the style. He starts from the basics and builds up at a nice steady pace, he uses 'bits' a lot which is good, but at the start he mentions 'clock pulse' and it took me a while to get it. There is a smaller error in the video, he has an annotation explaining it though. It's a pretty good video overall.
+.. JRM  fsm intro video: https://www.youtube.com/watch?v=Obt3L1YBwlM It's quite clear in it's explanation, but don't know how well it will be received by younger audiences. It's quite long (15 minutes) but pretty standard presentation (powerpoint with hand drawing over top with narration). It was good for me, but don't know how good it is for children. If you watch the first two minutes, you get a good idea of the style. He starts from the basics and builds up at a nice steady pace, he uses 'bits' a lot which is good, but at the start he mentions 'clock pulse' and it took me a while to get it. There is a smaller error in the video, he has an annotation explaining it though. It's a pretty good video overall.
 
 .. For the record, an early and still very readable, article about FSAs appears at the following
 .. site, but it would be distracting to link to it here:
@@ -767,93 +743,39 @@ The language sheets from both groups are then collected in. Sheets from group A 
 
 The language sheets are then collected in again, and those from group A distributed to group B and group B’s to group A. There is no need for pairs to get their original sheet back. The pairs are now “computers” and need to check that the input provided at the bottom of the language sheet conforms to the FSA. If one of the strings is accepted or rejected incorrectly, groups will need to work out where the error came from.
 
-Followup discussion can review whether some descriptions were longer than they needed to be or confusing to understand, and whether the language of the machines were captured properly.
+Follow-up discussion can review whether some descriptions were longer than they needed to be or confusing to understand, and whether the language of the machines were captured properly.
 
 {panel end}
-
-{comment}
-
-.. xtcb consider using http://www.debuggex.com/?re=(foo|bar)baz*&str=
-
-{comment end}
 
 We've already had a taste of
 {glossary-link term="Regular expression" reference-text="introduction"}regular expressions{glossary-link end}
 in the [getting started](chapters/formal-languages.html#getting-started) section. They are just a simple way to search for things in the input, or to specify what kind of input will be accepted as legitimate.
 For example, many web scripting programs use them to check input for patterns like dates, email addresses and URLs. They've become so popular that they're now built into most programming languages.
 
-{panel type="teacher-note" summary="Rubular exercise"}
-
-Students can work through the following brief examples using Rubular, described below. Alternatively you may prefer to get them to use the excellent tutorial at [http://regexone.com/](http://regexone.com/). Both systems require online access. RegexOne provides challenges and tests answers in the same window. Students can get away with inefficient answers, but it's a good environment for playing with the idea:
-
-{image filename="regexone-example-screenshot.png" alt="Regexone screenshot"}
-
-{panel end}
-
-{comment}
-
-.. tcb if above image is too big, there's a smaller part of the image at FL-regex-regexone-example.png
-
-.. TCB RegexOne was made by http://stackoverflow.com/users/77340/wchung, see his blog at
-.. http://mesopixel.com/article/learning-regular-expressions-from-experimentation
-.. Rubular is by Michael Lovitt (http://lovitt.net), and has a Google group: http://groups.google.com/group/rubular , plus accepts donations
-
-.. Here's an alternative to Rubular in case there are problems: http://pcreck.com
-
-.. html5 sometime we could consider having something like http://rubular.com/ or regexOne built in to the system, rather than have the links below, but wait and see how tricky it is for schools to use them externally
-
-{comment end}
-
 You might already have a suspicion that regular expressions are related to
 {glossary-link term="finite state automaton" reference-text="related to regular expressions"}finite state automata{glossary-link end}.
 And you'd be right, because it turns out that every regular expression has a Finite State Automaton that can check for matches, and every Finite State Automaton can be converted to a regular expression that shows exactly what it does (and doesn’t) match.
 Regular expressions are usually easier for humans to read. For machines, a computer program can convert any regular expression to an FSA, and then the computer can follow very simple rules to check the input.
 
-{comment}
+The simplest kind of matching is just entering some text to match. Open the interactive below and type the text "cat" into the box labeled "Regular expression":
 
-.. TCB Rubular also had a feature where you can pass the data in the URL (http://rubular.com/?regex=ham&test=hamsandwich), but it's currently broken (3 Nov 2012)
-.. info at https://groups.google.com/forum/?fromgroups=#!topic/rubular/VnoDwLRFQB0
-.. The permalink is probably better, but this might become an option too
+{interactive name="regular-expression-search" type="whole-page" text="Regular Expression Search - Exercise 1" parameters="text=The fat cat sat on the mat.%0AThe vindication was catastrophic.%0AThe bilocation of the cataract required certification.%0AThe 42 buffalo baffled them with a pfffffffft sound.%0APennsylvania 6-5000.%0AAssorted exhalations: pfft pffft pft.%0AWas that a match or was it not?"}
 
-{comment end}
+{panel type="teacher-note" summary="Alternative websites for practicing regular expressions"}
 
-The simplest kind of matching is just entering some text to match. Open a new window to the "Rubular" system (a screenshot is shown below) by clicking on the following challenge:
+Students can also work through the examples in this section using either [Rubular](http://rubular.com/) or [Regex101](https://regex101.com/).
 
-[Open Rubular using this link and type the text "cat" into the box labeled "Your regular expression"](http://rubular.com/r/vCD1OSfjAc)
+Alternatively you may prefer to get them to use the excellent tutorial at [RegexOne](http://regexone.com/). RegexOne provides challenges and tests answers in the same window. Students can get away with inefficient answers, but it's a good environment for playing with the idea.
 
-{button link="http://www.csfieldguide.org.nz/releases/1.9.9/_static/widgets/FL/FL-Regex/RegexTxt.html" text="View regular expression matcher"}
-
-{image filename="rubular-example-screenshot.png" alt="Entering ab\*a into JFLAP}
+{image filename="regexone-example-screenshot.png" alt="Regexone screenshot"}
 
 {comment}
 
-.. TCB Here is the material that is in the two Rubulator permalinks:
-
-.. The fat cat sat on the mat.
-.. The vindication was catastrophic.
-.. The bilocation of the cataract required certification.
-.. The 42 buffalo baffled them with a pfffffffft sound.
-.. Pennsylvania 6-5000.
-.. Assorted exhalations: pfft pffft pft.
-.. Was that a match or was it not?
-
-.. meeeeeeeow
-.. meoooooooooooow
-
-.. woof
-.. mew
-.. cluck
-
-.. Contact me at spam@mymail.com or on 555-1234
-.. FFE962
-.. Details: fred@cheapmail.org.nz (03) 987-6543
-.. Looking forward to 21 Oct 2015
-.. Good old 5 Nov 1955
-.. Back in 2 Sep 1885 is the earliest date
-.. ABC123
-.. Let's buy another 2 Mac 9012 systems @ $2000 each.
+Consider using http://www.debuggex.com/?re=(foo|bar)baz* however as of 31/03/2016 the website appears to not be actively maintained
 
 {comment end}
+
+{panel end}
 
 If you've only typed the 3 characters "cat", then it should find 6 matches.
 
@@ -914,7 +836,9 @@ is sometimes abbreviated to "regex", "regexp", or "RE".  It's "regular" because 
 
 {panel end}
 
-[Click here for another challenge: you should try to write a short regular expression to match the first two words, but not the last three](http://rubular.com/r/AdmyZ5aPtD).
+Click here for another challenge: you should try to write a short regular expression to match the first two words, but not the last three:
+
+{interactive name="regular-expression-search" type="whole-page" text="Regular Expression Search - Exercise 2" parameters="text=meeeeeeeow%0Ameoooooooooooow%0A%0Awoof%0Amew%0Acluck"}
 
 {panel type="teacher-note" summary="Solution"}
 
@@ -922,9 +846,9 @@ is sometimes abbreviated to "regex", "regexp", or "RE".  It's "regular" because 
 
 {panel end}
 
-Of course, regular expressions are mainly used for more serious purposes. Click on the following challenge to get some new text to search:
+Of course, regular expressions are mainly used for more serious purposes. Click on the following interactive to get some new text to search:
 
-[Open this challenge in Rubular and try the following expressions](http://rubular.com/r/kun5ZaJqlL).
+{interactive name="regular-expression-search" type="whole-page" text="Regular Expression Search - Exercise 3" parameters="text=Contact me at spam@mymail.com or on 555-1234%0AFFE962%0ADetails: fred@cheapmail.org.nz (03) 987-6543%0ALooking forward to 21 Oct 2015%0AGood old 5 Nov 1955%0ABack in 2 Sep 1885 is the earliest date%0AABC123%0ALet's buy another 2 Mac 9012 systems @ $2000 each."}
 
 The following regular expression will find common New Zealand number plates in the sample text, but can you find a shorter version using the {n} notation?
 
@@ -964,7 +888,7 @@ Here are two fairly simple solutions for email addresses, but more refined ones 
 
 {panel end}
 
-{image filename="xkcd-regular-expressions.png" alt="A xkcd cartoon comment on regular expressions" source="https://xkcd.com/208/"}
+{image filename="xkcd-regular-expressions.png" hover-text="Wait, forgot to escape a space.  Wheeeeee[taptaptap]eeeeee." alt="A xkcd cartoon comment on regular expressions" source="https://xkcd.com/208/"}
 
 Regular expressions are useful!
 
@@ -1020,7 +944,7 @@ Behind the scenes, the regular expression is converted to a finite state automat
 
 {panel type="project" summary="Designing regular expressions"}
 
-Here are some ideas for regular expressions for you to try to create. You can check them using [Rubular](http://rubular.com/) as we did earlier, but you'll need to make up your own text to check.
+Here are some ideas for regular expressions for you to try to create. You can check them using the [Regular Expression Searcher](interactives/regular-expression-search/index.html?reference=true) as we did earlier, but you'll need to make up your own text to check your regular expression.
 When testing your expressions, make sure that they not only accept correct strings, but reject ones that don't match, even if there's just one character missing.
 
 You may find it easier to have one test match string per line in "Your test string".
@@ -1322,7 +1246,7 @@ The *context free art* program ( [http://www.contextfreeart.org/](http://www.con
 
 {comment end}
 
-The JFLAP program also has a feature for rendering "L-systems" ([http://en.wikipedia.org/wiki/L-system](http://en.wikipedia.org/wiki/L-system)), which are another way to use grammars to create structured images.
+The JFLAP program also has a feature for rendering "L-systems" ([https://en.wikipedia.org/wiki/L-system](https://en.wikipedia.org/wiki/L-system)), which are another way to use grammars to create structured images.
 You'll need to read about how they work in the JFLAP tutorial
 ([http://www.jflap.org/tutorial/index.html](http://www.jflap.org/tutorial/index.html)),
 and there's a more detailed tutorial at [http://www.cs.duke.edu/csed/pltl/exercises/lessons/20/L-system.zip](http://www.cs.duke.edu/csed/pltl/exercises/lessons/20/L-system.zip).
@@ -1449,15 +1373,15 @@ Regular expressions and their relationship with FSAs is explained well in the bo
 
 ### Useful Links
 
-- [http://en.wikipedia.org/wiki/Formal_language](http://en.wikipedia.org/wiki/Formal_language)
-- [http://en.wikipedia.org/wiki/Context-free_grammar#Examples](http://en.wikipedia.org/wiki/Context-free_grammar#Examples)
-- [http://en.wikipedia.org/wiki/Abstract_syntax_tree](http://en.wikipedia.org/wiki/Abstract_syntax_tree)
-- [http://en.wikipedia.org/wiki/Regular_expression](http://en.wikipedia.org/wiki/Regular_expression)
+- [https://en.wikipedia.org/wiki/Formal_language](https://en.wikipedia.org/wiki/Formal_language)
+- [https://en.wikipedia.org/wiki/Context-free_grammar#Examples](https://en.wikipedia.org/wiki/Context-free_grammar#Examples)
+- [https://en.wikipedia.org/wiki/Abstract_syntax_tree](https://en.wikipedia.org/wiki/Abstract_syntax_tree)
+- [https://en.wikipedia.org/wiki/Regular_expression](https://en.wikipedia.org/wiki/Regular_expression)
 - [http://csunplugged.org/finite-state-automata](http://csunplugged.org/finite-state-automata)
 - [http://www.i-programmer.info/babbages-bag/223-finite-state-machines.html](http://www.i-programmer.info/babbages-bag/223-finite-state-machines.html)
 - [http://www.jflap.org/](http://www.jflap.org/)
-- [http://en.wikipedia.org/wiki/Deterministic_finite_automaton](http://en.wikipedia.org/wiki/Deterministic_finite_automaton)
-- [http://en.wikipedia.org/wiki/Finite-state_machine](http://en.wikipedia.org/wiki/Finite-state_machine)
+- [https://en.wikipedia.org/wiki/Deterministic_finite_automaton](https://en.wikipedia.org/wiki/Deterministic_finite_automaton)
+- [https://en.wikipedia.org/wiki/Finite-state_machine](https://en.wikipedia.org/wiki/Finite-state_machine)
 
 {comment}
 

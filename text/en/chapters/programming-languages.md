@@ -75,7 +75,7 @@ The following Python code is written for version 3 Python, but will also work wi
 ```python3
 print("I am going to print the first 5 multiples of 3")
 for i in range(5):
-	print(i*3)
+  print(i*3)
 ```
 
 The first line is a print statement, like those you saw earlier, which just tells the system to put the message on the screen. The second line is a *loop*, which says to repeat the lines after it 5 times. Each time it loops, the value of i changes. i.e. the first time i is 0, then 1, then 2, then 3, and finally 4. It may seem weird that it goes from 0 to 4 rather than 1 to 5, but programmers tend to like counting from 0 as it makes some things work out a bit simpler. The third line says to print the current value of i multiplied by 3 (because we want multiples of 3). Note that there is *not* double quotes around the last print statement, as they are only used when we want to print out a something literally as text. If we did put them in, this program would print the text "i*3" out 5 times instead of the value we want!
@@ -90,20 +90,20 @@ You can also loop over a list of data. Try running the program below. It will ge
 Note that the # symbol tells the computer that it should ignore the line, as it is a comment for the programmer.
 
 ```python3
-#List of recipients to generate messages for
-spam_recipients = ["Heidi", "Tim", "Pondy", "Jack", "Caitlin", "Sam", "David"]  
-#Go through each recipient
+# List of recipients to generate messages for
+spam_recipients = ["Heidi", "Tim", "Pondy", "Jack", "Caitlin", "Sam", "David"]
+# Go through each recipient
 for recipient in spam_recipients:
-#Write out the letter for the current recipient
-	print("Dear " + recipient + ", \n")
-	print("You have been successful in the random draw for all  people ")
-	print("who have walked over a specific piece of ground located 2 meters ")
-	print("from the engineering road entrance to Canterbury University.\n")
-	print("For being successful in this draw you, " + recipient + ", win ")
-	print("a prize of 10 million kilograms of chocolate!!!\n")
-	print("And " + recipient + " if you phone us within the next 10 minutes ")
-	print("you will get a bonus 5 million kilograms of chocolate!!! \n")
-	print("\n\n\n") #Put some new lines between the messages
+# Write out the letter for the current recipient
+  print("Dear " + recipient + ", \n")
+  print("You have been successful in the random draw for all  people ")
+  print("who have walked over a specific piece of ground located 2 meters ")
+  print("from the engineering road entrance to Canterbury University.\n")
+  print("For being successful in this draw you, " + recipient + ", win ")
+  print("a prize of 10 million kilograms of chocolate!!!\n")
+  print("And " + recipient + " if you phone us within the next 10 minutes ")
+  print("you will get a bonus 5 million kilograms of chocolate!!! \n")
+  print("\n\n\n") # Put some new lines between the messages
 ```
 
 Try changing the recipients or the letter. Look carefully at all the symbols that were used to include the recipient's name in the letter.
@@ -118,18 +118,18 @@ Programs can also use *variables* to store the results of calculations in, recei
 print("This program will convert miles to kilometers")
 number_of_miles = int(input("Number of miles: "))
 if number_of_miles < 0:
-	print("Error: Can only convert a positive number of miles!")
+  print("Error: Can only convert a positive number of miles!")
 else:
-	number_of_kilometers = number_of_miles / 0.6214
-	print("Calculated number of kilometers...")
-	print(number_of_kilometers)
+  number_of_kilometers = number_of_miles / 0.6214
+  print("Calculated number of kilometers...")
+  print(number_of_kilometers)
 ```
 
 The first line is a *print* statement (which you should be very familiar with by now!) The second line asks the user for a number of miles which is converted from input text (called a string) to an integer, the third line uses an *if* statement to check if the number entered was less than 0, so that it can print an error if it is. Otherwise if the number was ok, the program jumps into the *else* section (the error is not printed because the *if* was not true), calculates the number of kilometers (there are 0.6214 kilometers in a mile), stores it into a *variable* called number_of_kilometers for later reference, and then the last line prints it out. Again, we don’t have quotes around number_of_kilometers in the last line as we want to print the value out that is stored in the number_of_kilometers variable. If this doesn’t make sense, don’t worry. You aren’t expected to know how to program for this chapter, this introduction is only intended for you to have some idea of what a program is and the things it can do.
 
-If you are keen, you could modify this program to calculate something else, such as pounds to kilograms or farenheit to celcius. It may be best to use an installed Python interpreter on your computer rather than the web version, as the web version can give very unhelpful error messages when your program has a mistake in it (although all interpreters give terrible error messages at least sometimes!)
+If you are keen, you could modify this program to calculate something else, such as pounds to kilograms or Fahrenheit to Celsius. It may be best to use an installed Python interpreter on your computer rather than the web version, as the web version can give very unhelpful error messages when your program has a mistake in it (although all interpreters give terrible error messages at least sometimes!)
 
-Programs can do many more things, such as having a graphical user interface (like most computer programs you will be familiar with), being able to print graphics onto a screen, or being able to write to and from files on the computer in order to save information between each time you run the program.
+Programs can do many more things, such as having a graphical user interface (like most computer programs you will be familiar with), being able to print graphics onto a screen, or being able to write to and read from files on the computer in order to save information between each time you run the program.
 
 
 ### Where are we going?
@@ -142,7 +142,7 @@ It isn’t this simple though, a computer cannot run instructions given directly
 
 {panel type="jargon-buster" summary="Binary"}
 
-The electronics in computers uses circuitry that mainly just works with two values (represented as high and low voltages) to make it reliable and fast. This system is called *binary*, and is often written on paper using zeroes and ones. There's a lot more about binary in the [data representation](data-representation.html) chapter, and it's worth having a quick look at the first section of that now if you haven't come across binary before.
+The electronics in computers uses circuitry that mainly just works with two values (represented as high and low voltages) to make it reliable and fast. This system is called *binary*, and is often written on paper using zeroes and ones. There's a lot more about binary in the [data representation](chapters/data-representation.html) chapter, and it's worth having a quick look at the first section of that now if you haven't come across binary before.
 
 {panel end}
 
@@ -158,7 +158,7 @@ So instead of building computers that can understand these high level instructio
 
 The conversion from a high level to a low level language can involve *compiling*, which replaces the high level instructions with machine code instructions that can then be run, or it can be done by *interpreting*, where each instruction is converted and followed one by one, as the program is run. In reality, a lot of languages use a mixture of these, sometimes compiling a program to an intermediate language, then interpreting it (Java does this). The language we looked at earlier, Python, is an interpreted language. Other languages such as C++ are compiled. We will talk more about compiling and interpreting later.
 
-We will start with looking at some other programming languages that programmers use to give instructions to computers, then we will look at low level languages and how computers actually carry out the instructions in them, and then finally we will talk about how we convert programs that were written by humans in a high level language into a low level language that the computer can carry out.
+We will start with looking at low level languages and how computers actually carry out the instructions in them, then we will look at some other programming languages that programmers use to give instructions to computers, and then finally we will talk about how we convert programs that were written by humans in a high level language into a low level language that the computer can carry out.
 
 ## Machine Code (Low level languages)
 
@@ -197,43 +197,48 @@ It starts by adding 2 numbers (that have been put in registers $t0 and $t1) and 
 ```
 .data          	 
 str:  .asciiz "\nHello World!\n"
-#You can change what is between the  quotes if you like
+# You can change what is between the  quotes if you like
 
 .text          	 
 .globl main       	 
 
 main:
-#Do the addition
-#For this, we first need to put the values to add into registers  ($t0 and $t1)
+# Do the addition
+# For this, we first need to put the values to add into registers ($t0 and $t1)
 li $t0, 10 #You can change the 10
 li $t1, 20 #You can change the 20
-#Now we can add the values in $t0 and $t1, putting the result in special register $a0
+# Now we can add the values together, putting the result in register $a0
 add $a0, $t0, $t1
-#Set up for printing the value in $a0. A 1 in $v0 means we want to print an int
+# Set up for printing the value in $a0.
+# A '1' in $v0 means we want to print an int
 li $v0, 1
-#The system call looks at what is in $v0 and $a0, and knows to print what is in $a0
+# The system call looks at what is in $v0 and $a0,
+# and knows to print what is in $a0
 syscall    	 
 
-#Now we want to print Hello World
-#So we load the (address of the) string into $a0
+# Now we want to print 'Hello World!'
+# So we load the (address of the) string into $a0
 la $a0, str
-#And put a 4 in $v0 to mean print a string
+# A '4' in $v0 means we want to print an string
 li $v0, 4
-#And just like before syscall looks at $v0 and $a0 and knows to print the string
+# And just like before syscall looks at $v0 and $a0
+# and knows to print the string
 syscall
 
-#Nicely end the program
+# Nicely end the program
 li $v0, 0
 jr $ra
 ```
 
-You can run this program using a MIPS emulator. This can be done using Alan Hogan’s online MIPS emulator by following these 2 steps:
+You can run this program using a MIPS emulator using this interactive:
 
-- [Copy paste the code into the black box on the page from this link](http://alanhogan.com/asu/assembler.php) (remove ALL existing text in the box), and then click the Assemble button.
+{interactive name="mips-assembler" type="whole-page" text="MIPS Assembler" file-type="php"}
 
-- [Copy paste the output in the “Assembler Output” box into the box on the page from this link](http://alanhogan.com/asu/simulator.php) (remove ALL existing text in the box), and click the Simulate Execution button, and the output should appear in a box near the top of the page
+Copy and paste the output in the “Assembler Output” box into the box in this simulator interactive:
 
-Once you have got the program working, try changing the values that are added. The comments tell you where these numbers that can be changed are. You should also be able to change the string (text) that is printed without too much trouble also. As a challenge, can you make it so that it subtracts rather than adds the numbers? Clue: instruction names are always very short. Unfortunately you won’t be able to make it multiply or divide using this emulator as this seems to not currently be supported. Remember that to rerun the program after changing it, you will have to follow both steps 1 and 2 again.
+{interactive name="mips-simulator" type="whole-page" text="MIPS Simulator" file-type="php"}
+
+Once you have got the program working, try changing the values that are added. The comments tell you where these numbers that can be changed are. You should also be able to change the string (text) that is printed without too much trouble also. As a challenge, can you make it so that it subtracts rather than adds the numbers? Clue: instruction names are always very short. Unfortunately you won’t be able to make it multiply or divide using this simulator as this is not currently supported. Remember that to rerun the program after changing it, you will have to follow both steps 1 and 2 again.
 
 You may be wondering why you have to carry out both these steps. Because computers work in 1’s and 0’s, the instructions need to simply be converted into hexadecimal. Hexadecimal is a shorthand notation for binary numbers. *Don’t muddle this process with compiling or interpreting!* Unlike these, it is much simpler as in general each instruction from the source code ends up being one line in the hexadecimal.
 
@@ -251,12 +256,13 @@ One thing you might have noticed while reading over the possible instructions is
 The jumping to a line, and jumping to a line if a condition is met can be used to make loops! A very simple program we could write that requires a loop is one that counts down from five and then says “Go!!!!” once it gets down to one. In Python we can easily write this program in three lines.
 
 ```
-for i in range(5,0,-1): #Start at 5, count down by 1 each time, when we get to 0 stop
-   print(i)
+# Start at 5, count down by 1 each time, and stop when we get to 0
+for number in range(5, 0, -1):
+   print(number)
 print("GO!!!!!")
 ```
 
-But in MIPS, it isn’t that straight forward. We need to put values into registers, and we need to build the loop out of jump statements. Firstly, how can we design the loop?
+But in MIPS, it isn’t that straightforward. We need to put values into registers, and we need to build the loop out of jump statements. Firstly, how can we design the loop?
 
 {comment}
 
@@ -267,40 +273,51 @@ But in MIPS, it isn’t that straight forward. We need to put values into regist
 And the full MIPS program for this is as follows. You can go away and change it.
 
 ```
-#Define the data strings
+# Define the data strings
 .data
 go_str:   .asciiz "GO!!!!!\n"
 new_line: .asciiz "\n"
 
 .text
-#Where should we start?
+# Where should we start?
 .globl main
 
 main:
-	li $t0, 5    #Put our starting value 5 into register $t0. We will update it as we go
-	li $t1, 0    #Put our stopping value 0 into register $t1
-start_loop:      #This label is just used for the jumps to refer to
-	#This says that if the values in $t0 and $t1 are the same, it should jump down to the end_loop label.
-	#This is the main loop condition.
-	beq $t0, $t1, end_loop
-	#These three lines prepare for and print the current int
-	move $a0, $t0 # It must be moved into $a0 for the printing
-	li $v0, 1         	
-	syscall       
-	#These three lines print a new line character so that each number is on a new line
-	li $v0, 4
-	la $a0, new_line
-	syscall           	
-	addi $t0, $t0, -1 #Add -1 to the value in $t0, i.e decrement it by 1
-	j start_loop  #Jump back up to the start_loop label    	
-end_loop: #This is the end loop label that we jumped to when the loop is false
-	#These three lines print the “GO!!!!” string
-	li $v0, 4
-	la $a0, go_str        	
-	syscall
-	#And these 2 lines make the program exit nicely
-	li $v0, 0
-	jr $ra
+  # Put our starting value 5 into register $t0. We will update it as we go
+  li $t0, 5
+  # Put our stopping value 0 into register $t1
+  li $t1, 0
+
+# This label is just used for the jumps to refer to
+start_loop:
+  # This says that if the values in $t0 and $t1 are the same,
+  # it should jump down to the end_loop label. This is the
+  # main loop condition.
+  beq $t0, $t1, end_loop
+  # These three lines prepare for and print the current int
+  # It must be moved into $a0 for the printing
+  move $a0, $t0
+  li $v0, 1
+  syscall
+  # These three lines print a new line character so that
+  # each number is on a new line
+  li $v0, 4
+  la $a0, new_line
+  syscall
+  # Add -1 to the value in $t0, i.e decrement it by 1
+  addi $t0, $t0, -1
+  # Jump back up to the start_loop label
+  j start_loop
+
+# This is the end loop label that we jumped to when the loop is false
+end_loop:
+  # These three lines print the “GO!!!!” string
+  li $v0, 4
+  la $a0, go_str
+  syscall
+  # And these 2 lines make the program exit nicely
+  li $v0, 0
+  jr $ra
 ```
 
 Can you change the Python program so that it counts down from 10? What about so it stops at 5? (You might have to try a couple of times, as it is somewhat counter intuitive. Remember that when i is the stopping number, it stops there and does not run the loop for that value!). And what about decrementing by 2 instead of 1? And changing the string (text) that is printed at the end?
@@ -319,7 +336,7 @@ These days, few programmers program directly in these languages. In the early da
 
 {comment}
 
-.. xtcb point out that compiling for large software can be slow http://xkcd.com/303/
+.. xtcb point out that compiling for large software can be slow https://xkcd.com/303/
 
 {comment end}
 
@@ -339,7 +356,7 @@ In summary, we require low level programming languages because the computer can 
 
 There are many different programming languages. Here we have included a small subset of languages, to illustrate the range of purposes that languages are used for. There are many, many more languages that are used for various purposes, and have a strong following of people who find them particularly useful for their applications.
 
-For a much larger list you can [check Wikipedia here](http://en.wikipedia.org/wiki/List_of_programming_languages).
+For a much larger list you can [check Wikipedia here](https://en.wikipedia.org/wiki/List_of_programming_languages).
 
 ### Python
 
@@ -363,16 +380,26 @@ She realises she needs to know the average (assuming 5 quizzes) that each studen
 
 Note that understanding the details of this code is irrelevant to this chapter, particularly if you aren’t yet a programmer. Just read the comments (the things that start with a “#”) if you don’t understand, so that you can get a vague idea of how the problem was approached.
 
-```
-raw_scores_file = open("scores.txt", "r") #Open the raw score file for reading
-processed_scores_file = open("processed_scores.txt", "w") #Create and open a file for writing the processed scores into
-for line in raw_scores_file.readlines(): #For each line in the file
-    name = line.split()[0] #Get the name, which is in the first part of the line
-    scores_on_line = [int(score) for score in line.split()[1:]] #Get a list of the scores, which are on the remainder of the line after the name
-    average = sum(scores_on_line)/5 #Calculate the average, which is the sum of the scores divided by 5
-    processed_scores_file.write(name + " " + str(average) + "\n") #Write the average to the processed scores output file
-raw_scores_file.close() #Close the raw scores file
-processed_scores_file.close() #Close the processed scores file
+```python3
+# Open the raw score file for reading
+raw_scores_file = open("scores.txt", "r")
+# Create and open a file for writing the processed scores into
+processed_scores_file = open("processed_scores.txt", "w")
+
+# For each line in the file
+for line in raw_scores_file.readlines():
+    # Get the name, which is in the first part of the line
+    name = line.split()[0]
+    # Get a list of the scores, which are on the remainder of the lines
+    scores_on_line = [int(score) for score in line.split()[1:]]
+    # Calculate the average, which is the sum of the scores divided by 5
+    average = sum(scores_on_line) / 5
+    # Write the average to the processed scores output file
+    processed_scores_file.write(name + " " + str(average) + "\n")
+
+# Close both files
+raw_scores_file.close()
+processed_scores_file.close()
 ```
 
 This will generate a file that contains each student’s name followed by the result of adding their scores and dividing the sum by 5. You can try the code if you have python installed on your computer (it won’t work on the online interpreter, because it needs access to a file system). Just put the raw data into a file called “scores.txt” in the same format it was displayed above. As long as it is in the same directory as the source code file you make for the code, it will work.
@@ -411,29 +438,32 @@ Java is a popular general purpose software engineering language. It is used to b
 
 This is the Java code for solving the same problem that we looked at in Python; generating a file of averages.
 
-```
+```java
 import java.io.*;
 import java.util.*;
-public class Averager
-{	 public static void main() {
-   	 try {
-       	 Scanner scanner = new Scanner(new File("scores.txt"));
-       	 PrintStream outputFile = new PrintStream(new File("processed_scores.txt"));
-       	 while (scanner.hasNextLine()) {
-           	 String name = scanner.next();
-           	 Scanner numbersToRead = new Scanner(scanner.nextLine());
-           	 int totalForLine = 0;
-           	 while (numbersToRead.hasNextInt()) {
-               	 totalForLine += numbersToRead.nextInt();
-           	 }
-           	 outputFile.println(name + " " + totalForLine/5.0 + "\n");
-       	 }
-       	 outputFile.close();
-   	 }
-   	 catch (IOException e) {
-       	 System.out.println("The file could not be opened!" + e);
-   	 }
-     print("I am finished!");	 }
+
+public class Averager {
+    public static void main() {
+        String inputFile = "scores.txt";
+        String outputFile = "processed_scores.txt";
+       	try {
+           	Scanner scanner = new Scanner(new File(inputFile));
+           	PrintStream outputFile = new PrintStream(new File(outputFile));
+           	while (scanner.hasNextLine()) {
+               	String name = scanner.next();
+               	Scanner numbersToRead = new Scanner(scanner.nextLine());
+               	int totalForLine = 0;
+               	while (numbersToRead.hasNextInt()) {
+                    totalForLine += numbersToRead.nextInt();
+               	}
+               	outputFile.println(name + " " + totalForLine/5.0 + "\n");
+           	}
+           	outputFile.close();
+       	} catch (IOException e) {
+            System.out.println("The file could not be opened!" + e);
+       	}
+    System.out.println("I am finished!");
+    }
 }
 ```
 
@@ -476,7 +506,7 @@ Note that this section will be completed in a future version of the field guide.
 
 Anybody can make their own programming language. Doing so involves coming up with a syntax for your language, and writing a parser and compiler or interpreter so that programs in your language can be run. Most programming languages that people have made never become widely used.
 
-In addition to programming languages that have practical uses, people have made many programming languages that were intended to be nothing more than jokes, or to test the limits of how obscure a programming language can be. Some of them make the low level machine languages you saw earlier seem rather logical! Wikipedia has a [list of such languages](http://en.wikipedia.org/wiki/Esoteric_programming_language).
+In addition to programming languages that have practical uses, people have made many programming languages that were intended to be nothing more than jokes, or to test the limits of how obscure a programming language can be. Some of them make the low level machine languages you saw earlier seem rather logical! Wikipedia has a [list of such languages](https://en.wikipedia.org/wiki/Esoteric_programming_language).
 
 You could even make your own programming language if you wanted to!
 
@@ -486,7 +516,7 @@ A programming language such as Python or Java is implemented using a program its
 
 Since the computer hardware can only run programs in a low level language (machine code), the programming system has to make it possible for your Python instructions to be executed using only machine language. There are two broad ways to do this: interpreting and compiling.
 
-[This 1983 video](http://www.youtube.com/watch?v=_C5AHaS1mOA) provides a good analogy of the difference between an interpreter and a compiler.
+[This 1983 video](https://www.youtube.com/watch?v=_C5AHaS1mOA) provides a good analogy of the difference between an interpreter and a compiler.
 
 The main difference is that a compiler is a program that converts your program to machine language, which is then run on the computer. An interpreter is a program that reads your program line by line, works out what those instructions are, and does them immediately.
 
@@ -510,7 +540,7 @@ The diagram below shows the difference between what happens in an interpreter an
 
 There are many different programming languages, and new ones are always being invented. Each new language will need a new compiler and/or interpreter to be developed to support it. Fortunately there are good tools to help do this quickly, and some of these ideas will come up in the *Formal Languages* chapter, where things like regular expressions and grammars can be used to describe a language, and a compiler can be built automatically from the description.
 
-The languages we have discussed in this chapter are ones that you are likely to come across in introductory programming, but there are some completely different styles of languages that have very important applications. There is an approach to programming called [Functional programming](http://en.wikipedia.org/wiki/Functional_programming) where all operations are formulated as mathematical functions. Common languages that use functional techniques include Lisp, Scheme, Haskel, Clojure and F#; even some conventional languages (such as Python) include ideas from functional programming. A pure functional programming style eliminates a problem called *side effects*, and without this problem it can be easier to make sure a program does exactly what it is intended to do. Another important type of programming is [logic programming](http://en.wikipedia.org/wiki/Logic_programming), where a program can be thought of as a set of rules stating what it should do, rather than instructions on how to do it. The most well-known logic programming language is Prolog.
+The languages we have discussed in this chapter are ones that you are likely to come across in introductory programming, but there are some completely different styles of languages that have very important applications. There is an approach to programming called [Functional programming](https://en.wikipedia.org/wiki/Functional_programming) where all operations are formulated as mathematical functions. Common languages that use functional techniques include Lisp, Scheme, Haskell, Clojure and F#; even some conventional languages (such as Python) include ideas from functional programming. A pure functional programming style eliminates a problem called *side effects*, and without this problem it can be easier to make sure a program does exactly what it is intended to do. Another important type of programming is [logic programming](https://en.wikipedia.org/wiki/Logic_programming), where a program can be thought of as a set of rules stating what it should do, rather than instructions on how to do it. The most well-known logic programming language is Prolog.
 
 
 
@@ -520,7 +550,7 @@ The languages we have discussed in this chapter are ones that you are likely to 
 
 - The [TeachICT lesson on programming languages](http://www.teach-ict.com/gcse_computing/ocr/216_programming/programming_languages/miniweb/index.htm) covers many of the topics in this chapter
 - CS Online has a [quick overview of this topic](http://courses.cs.vt.edu/~csonline/ProgrammingLanguages/Lessons/Introduction/index.html)
-- Wikipedia entries on [Programming language](http://en.wikipedia.org/wiki/Programming_language), [High level language](http://en.wikipedia.org/wiki/High-level_programming_language), and [Low level language](http://en.wikipedia.org/wiki/Low-level_programming_language)
+- Wikipedia entries on [Programming language](https://en.wikipedia.org/wiki/Programming_language), [High level language](https://en.wikipedia.org/wiki/High-level_programming_language), and [Low level language](https://en.wikipedia.org/wiki/Low-level_programming_language)
 
 - [website including posters comparing programming languages](http://programming.dojo.net.nz/) by Samuel Williams
 - [tutorial comparing programming languages](http://holowczak.com/programming-concepts-tutorial-programmers/)
