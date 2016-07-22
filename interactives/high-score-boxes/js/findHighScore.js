@@ -1,7 +1,7 @@
 //onload make array of 5 random ints
 this.randomInts = [];
 this.largest = 0;
-this.numberOfBoxes = 15
+this.numberOfBoxes = 3
 this.boxes = []
 this.gameStarted = false;
 this.secondsTaken = 0;
@@ -39,7 +39,7 @@ $(document).on('click','.box', function (event) {
 	for (var i = 0; i < (boxes.length); i++) { 
 		if (document.getElementById('box' + i) ==  event.target) {
 			$(this).fadeOut(1000);
-			$(this).fadeIn(1000);
+			$(this).fadeTo(1000, 0.5);
 			boxes[i].revealed_times += 1;
 		}
 	}
@@ -61,10 +61,23 @@ function myTimer() {
 }
 
 function generateRandomNumbers() {
-		for (var i = 0; i < (numberOfBoxes); i++) {
-		var currentInt = getRandomInt(300, 800);
+	var intervals = [0, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
+	shuffle(intervals);
+
+	var twoIntervals = intervals.slice(0, 2);
+	twoIntervals.sort();
+
+	for (var i = 0; i < (numberOfBoxes); i++) {
+
+		var currentInt = getRandomInt(twoIntervals[0], twoIntervals[1]);
+		while (randomInts.indexOf(currentInt) != -1) {
+			var currentInt = getRandomInt(twoIntervals[0], twoIntervals[1]);
+		}
+
 		randomInts[i] = currentInt;
 	}
+	console.log(twoIntervals[0] +" " + twoIntervals[1])
+
 	largest = Math.max.apply(Math, randomInts);
 }
 
@@ -137,6 +150,20 @@ function createBoxObjects() {
 
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
+}
+
+/**
+ * Shuffles array in place.
+ * @param {Array} a items The array containing the items.
+ */
+function shuffle(a) {
+    var j, x, i;
+    for (i = a.length; i; i--) {
+        j = Math.floor(Math.random() * i);
+        x = a[i - 1];
+        a[i - 1] = a[j];
+        a[j] = x;
+    }
 }
 
 //form validation

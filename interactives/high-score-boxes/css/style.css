@@ -30,6 +30,13 @@ div.intHoldingDiv {
 	font-size: 1.5rem;
 	font-weight: bold;
 
+	/*disabling dragging/selecting*/
+    -WEBKIT-USER-SELECT: NONE; /* SAFARI, CHROME */
+    -KHTML-USER-SELECT: NONE; /* KONQUEROR */
+    -MOZ-USER-SELECT: NONE; /* FIREFOX */
+    -MS-USER-SELECT: NONE; /* IE */
+    USER-SELECT: NONE; /* CSS3 */
+
 }
 
 div.boxContainer {
