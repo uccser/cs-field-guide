@@ -2,15 +2,17 @@
     of Range Max Query but any comparison function may be used
 ###
 "use strict"
-greaterThan = (a, b) ->
+max = (a, b) ->
     unless b?
         return a
-    if a > b
+    if isNaN(b)
+        a
+    else if a > b
         a
     else
         b
 
-segmentTree = (arr) ->
+segmentTree = (arr, queryFunc=max) ->
     ### This creates a segmentTree from an arr ###
     ArrType = arr.constructor
     # Tree size must bethe size of the nearest (rounded up) power of
@@ -26,24 +28,24 @@ segmentTree = (arr) ->
         tree[i] = queryFunc(tree[i*2], tree[i*2 + 1])
     return tree
 
+span = (node, arrLen) ->
+    ### Returns what range is spanned by a given node e.g.
+        span(1) is the entire segment tree so [0, treeSize]
+    ###
+    upperPowerOfTwo = 2**Math.ceil(Math.log2(arrLen))
+    lowerPowerOfTwo = 2**(Math.log2(node) // 1)
+    diff = node - lowerPowerOfTwo
+    # Size of the range spanned
+    change = upperPowerOfTwo / lowerPowerOfTwo
+    return [
+        change * diff
+        change * (diff + 1)
+    ]
+
 rangeQuery = (tree, queryFunc=greaterThan) ->
     ### This creates a function that allows you to query the max value inside
         a range of a given array (or any query given a queryFunction
     ###
-    # We'll construct a new array of the type given
-    span = (node) ->
-        ### Returns what range is spanned by a given node e.g.
-            span(1) is the entire segment tree so [0, treeSize]
-        ###
-        lowerPowerOfTwo = 2**(Math.log2(node) // 1)
-        diff = node - lowerPowerOfTwo
-        # Size of the range spanned
-        change = upperPowerOfTwo / lowerPowerOfTwo
-        return [
-            change * diff
-            change * (diff + 1)
-        ]
-
     return query = (lower=0, upper=arr.length) ->
         ### This function queries the segment tree recursively
             it tries to select a minimum number of points that describe

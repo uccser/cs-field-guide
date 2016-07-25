@@ -4,7 +4,8 @@
     "author": "James \"The Jamesernator\" Browning",
     "description": "This is a interactive to show internals of audio files",
     "dependencies": {
-        "es6-simple-async": "latest"
+        "es6-simple-async": "latest",
+        "webworkify": "latest"
     },
     "devDependencies": {
         "coffee-script": "latest",
@@ -12,6 +13,6 @@
         "browserify": "latest"
     },
     "scripts": {
-        "build": "browserify -t coffeeify coffee/main.coffee > main.js"
+        "build": "browserify -t coffeeify coffee/main.coffee > main.js && browserify -t coffeeify coffee/segmentTreeWorker.coffee > segmentTreeWorker.js"
     }
 }

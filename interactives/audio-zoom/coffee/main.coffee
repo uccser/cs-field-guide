@@ -1,6 +1,10 @@
 "use strict"
 async = require('es6-simple-async')
 rangeQuery = require('./rangeQuery.coffee')
+work = require('webworkify')
+PromiseWorker = require('./promiseWorker.coffee')
+
+segmentWorker = new PromiseWorker(new Worker('./segmentTreeWorker.js'))
 
 toAudioBuffer = (arrayBuffer) ->
     ### This converts an ArrayBuffer into an AudioBuffer returning a Promise
@@ -31,9 +35,19 @@ split = (arr, chunks=2) ->
         currentLocation = nextLocation
     return result
 
+max = (a=NaN, b=NaN) ->
+    ### For NaN we'll ignore it and return the real max ###
+    if isNaN(b)
+        a
+    else if a > b
+        a
+    else
+        b
+
 class AudioGraph
-    constructor: (@svgElement, @channelData) ->
-        @query = rangeQuery(channelData)
+    constructor: (@svgElement, channelData) ->
+        @dataLength = channelData.length
+        @maxQuery = rangeQuery(channelData, max)
         @viewbox = if svg.hasAttribute('viewBox')
             svg.getAttribute('viewBox').split(' ')
         else
@@ -57,7 +71,7 @@ class AudioGraph
 
             $image.appendChild(svgLine)
             yield null
-
+        return this
 
 drawLines = async (channelData) ->
     $image = document.querySelector("#audio-image-lines")
@@ -143,11 +157,6 @@ drawDense = async (channelData) ->
     svgLine.setAttributeNS(null, "y2", (VIEWPORT/2))
     $image.appendChild(svgLine)
 
-class ArrayView
-    constructor: (@arr, @start, @end) ->
-
-        @length = @end - @start
-
 
 async.main ->
     $audio = document.querySelector('#audio3')
@@ -164,8 +173,8 @@ async.main ->
     $status.innerHTML = 'creating lines'
     try
         yield Promise.all [
-            drawDense(channelData)
-            drawBars(channelData)
+            #drawDense(channelData)
+            #drawBars(channelData)
             #drawLines(channelData)
         ]
         $status.innerHTML = 'done and done'

@@ -1,10 +1,16 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 "use strict";
-var ArrayView, AudioGraph, VIEWPORT, async, drawBars, drawDense, drawLines, rangeQuery, split, toAudioBuffer;
+var AudioGraph, PromiseWorker, VIEWPORT, async, drawBars, drawDense, drawLines, max, rangeQuery, segmentWorker, split, toAudioBuffer, work;
 
 async = require('es6-simple-async');
 
 rangeQuery = require('./rangeQuery.coffee');
+
+work = require('webworkify');
+
+PromiseWorker = require('./promiseWorker.coffee');
+
+segmentWorker = new PromiseWorker(new Worker('./segmentTreeWorker.js'));
 
 toAudioBuffer = function(arrayBuffer) {
 
@@ -45,12 +51,30 @@ split = function(arr, chunks) {
   return result;
 };
 
+max = function(a, b) {
+  if (a == null) {
+    a = NaN;
+  }
+  if (b == null) {
+    b = NaN;
+  }
+
+  /* For NaN we'll ignore it and return the real max */
+  if (isNaN(b)) {
+    return a;
+  } else if (a > b) {
+    return a;
+  } else {
+    return b;
+  }
+};
+
 AudioGraph = (function() {
-  function* AudioGraph(svgElement, channelData1) {
-    var audioPart, idx, lines, max, min, svgLine;
+  function* AudioGraph(svgElement, channelData) {
+    var audioPart, idx, lines, min, svgLine;
     this.svgElement = svgElement;
-    this.channelData = channelData1;
-    this.query = rangeQuery(channelData);
+    this.dataLength = channelData.length;
+    this.maxQuery = rangeQuery(channelData, max);
     this.viewbox = svg.hasAttribute('viewBox') ? svg.getAttribute('viewBox').split(' ') : svg.set;
     lines = (yield* (function*() {
       var j, len, results;
@@ -79,6 +103,7 @@ AudioGraph = (function() {
       }
       return results;
     })());
+    return this;
   }
 
   return AudioGraph;
@@ -118,7 +143,7 @@ drawLines = async(function*(channelData) {
 });
 
 drawBars = async(function*(channelData) {
-  var $image, audioPart, audioParts, idx, lines, max, maxHeight, min, svgLine;
+  var $image, audioPart, audioParts, idx, lines, maxHeight, min, svgLine;
   $image = document.querySelector('#audio-image-bars');
   maxHeight = channelData.reduce(function(acc, i) {
     return Math.max(acc, Math.abs(i));
@@ -161,7 +186,7 @@ drawBars = async(function*(channelData) {
 });
 
 drawDense = async(function*(channelData) {
-  var $image, audioPart, audioParts, idx, lines, max, maxHeight, min, svgLine;
+  var $image, audioPart, audioParts, idx, lines, maxHeight, min, svgLine;
   $image = document.querySelector('#audio-image');
   maxHeight = channelData.reduce(function(acc, i) {
     return Math.max(acc, Math.abs(i));
@@ -198,18 +223,6 @@ drawDense = async(function*(channelData) {
   return $image.appendChild(svgLine);
 });
 
-ArrayView = (function() {
-  function ArrayView(arr1, start, end) {
-    this.arr = arr1;
-    this.start = start;
-    this.end = end;
-    this.length = this.end - this.start;
-  }
-
-  return ArrayView;
-
-})();
-
 async.main(function*() {
   var $audio, $status, arrBuff, audioData, channelData, err, error, res;
   $audio = document.querySelector('#audio3');
@@ -225,7 +238,7 @@ async.main(function*() {
   window.channelData = channelData;
   $status.innerHTML = 'creating lines';
   try {
-    (yield Promise.all([drawDense(channelData), drawBars(channelData)]));
+    (yield Promise.all([]));
     $status.innerHTML = 'done and done';
     return 2;
   } catch (error) {
@@ -237,29 +250,91 @@ async.main(function*() {
 window.async = async;
 
 
-},{"./rangeQuery.coffee":2,"es6-simple-async":3}],2:[function(require,module,exports){
+},{"./promiseWorker.coffee":2,"./rangeQuery.coffee":3,"es6-simple-async":4,"webworkify":5}],2:[function(require,module,exports){
+"use strict";
+var PromiseWorker;
+
+PromiseWorker = (function() {
+  function PromiseWorker(worker) {
+    this.worker = worker;
+    this.waiting = {};
+    this.currentID = 0;
+    this.worker.onmessage = (function(_this) {
+      return function(event) {
+        if (!event.data.error) {
+          _this.waiting[event.data.id].resolve(event.data.message);
+        } else {
+          _this.waiting[event.data.id].reject(event.data.message);
+        }
+        return delete _this.waiting[event.data.id];
+      };
+    })(this);
+    this.worker.onerror = function(err) {
+      return console.error("If you see this error please put in a bug report");
+    };
+  }
+
+  PromiseWorker.prototype.postMessage = function(message, transferables) {
+
+    /* This posts a message to the worker and returns a promise that'll
+        resolve when the message is returned
+     */
+    return new Promise((function(_this) {
+      return function(resolve, reject) {
+        var newMessage;
+        _this.waiting[_this.currentID] = {
+          resolve: resolve,
+          reject: reject
+        };
+        newMessage = {
+          id: _this.currentID,
+          message: message
+        };
+        _this.worker.postMessage(newMessage, transferables);
+        return _this.currentID += 1;
+      };
+    })(this));
+  };
+
+  PromiseWorker.prototype.terminate = function() {
+    return this.worker.terminate();
+  };
+
+  return PromiseWorker;
+
+})();
+
+module.exports = PromiseWorker;
+
+
+},{}],3:[function(require,module,exports){
 
 /* This is an implementation of range query specially as in the definition
     of Range Max Query but any comparison function may be used
  */
 "use strict";
-var greaterThan, rangeQuery, segmentTree;
+var max, rangeQuery, segmentTree, span;
 
-greaterThan = function(a, b) {
+max = function(a, b) {
   if (b == null) {
     return a;
   }
-  if (a > b) {
+  if (isNaN(b)) {
+    return a;
+  } else if (a > b) {
     return a;
   } else {
     return b;
   }
 };
 
-segmentTree = function(arr) {
+segmentTree = function(arr, queryFunc) {
+  var ArrType, err, error, i, j, ref, tree, treeSize, upperPowerOfTwo;
+  if (queryFunc == null) {
+    queryFunc = max;
+  }
 
   /* This creates a segmentTree from an arr */
-  var ArrType, err, error, i, j, ref, tree, treeSize, upperPowerOfTwo;
   ArrType = arr.constructor;
   upperPowerOfTwo = Math.pow(2, Math.ceil(Math.log2(arr.length)));
   treeSize = upperPowerOfTwo + arr.length;
@@ -276,8 +351,21 @@ segmentTree = function(arr) {
   return tree;
 };
 
-rangeQuery = function(arr, queryFunc) {
-  var query, span;
+span = function(node, arrLen) {
+
+  /* Returns what range is spanned by a given node e.g.
+      span(1) is the entire segment tree so [0, treeSize]
+   */
+  var change, diff, lowerPowerOfTwo, upperPowerOfTwo;
+  upperPowerOfTwo = Math.pow(2, Math.ceil(Math.log2(arrLen)));
+  lowerPowerOfTwo = Math.pow(2, Math.floor(Math.log2(node) / 1));
+  diff = node - lowerPowerOfTwo;
+  change = upperPowerOfTwo / lowerPowerOfTwo;
+  return [change * diff, change * (diff + 1)];
+};
+
+rangeQuery = function(tree, queryFunc) {
+  var query;
   if (queryFunc == null) {
     queryFunc = greaterThan;
   }
@@ -285,17 +373,6 @@ rangeQuery = function(arr, queryFunc) {
   /* This creates a function that allows you to query the max value inside
       a range of a given array (or any query given a queryFunction
    */
-  span = function(node) {
-
-    /* Returns what range is spanned by a given node e.g.
-        span(1) is the entire segment tree so [0, treeSize]
-     */
-    var change, diff, lowerPowerOfTwo;
-    lowerPowerOfTwo = Math.pow(2, Math.floor(Math.log2(node) / 1));
-    diff = node - lowerPowerOfTwo;
-    change = upperPowerOfTwo / lowerPowerOfTwo;
-    return [change * diff, change * (diff + 1)];
-  };
   return query = function(lower, upper) {
     var _query;
     if (lower == null) {
@@ -338,10 +415,13 @@ rangeQuery = function(arr, queryFunc) {
   };
 };
 
-exports.rangeQuery = rangeQuery;
+module.exports = {
+  rangeQuery: rangeQuery,
+  segmentTree: segmentTree
+};
 
 
-},{}],3:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 // Generated by CoffeeScript 1.10.0
 
 /* Author James "The Jamesernator" Browning
@@ -455,5 +535,74 @@ exports.rangeQuery = rangeQuery;
   }
 
 }).call(this);
+
+},{}],5:[function(require,module,exports){
+var bundleFn = arguments[3];
+var sources = arguments[4];
+var cache = arguments[5];
+
+var stringify = JSON.stringify;
+
+module.exports = function (fn, options) {
+    var wkey;
+    var cacheKeys = Object.keys(cache);
+
+    for (var i = 0, l = cacheKeys.length; i < l; i++) {
+        var key = cacheKeys[i];
+        var exp = cache[key].exports;
+        // Using babel as a transpiler to use esmodule, the export will always
+        // be an object with the default export as a property of it. To ensure
+        // the existing api and babel esmodule exports are both supported we
+        // check for both
+        if (exp === fn || exp && exp.default === fn) {
+            wkey = key;
+            break;
+        }
+    }
+
+    if (!wkey) {
+        wkey = Math.floor(Math.pow(16, 8) * Math.random()).toString(16);
+        var wcache = {};
+        for (var i = 0, l = cacheKeys.length; i < l; i++) {
+            var key = cacheKeys[i];
+            wcache[key] = key;
+        }
+        sources[wkey] = [
+            Function(['require','module','exports'], '(' + fn + ')(self)'),
+            wcache
+        ];
+    }
+    var skey = Math.floor(Math.pow(16, 8) * Math.random()).toString(16);
+
+    var scache = {}; scache[wkey] = wkey;
+    sources[skey] = [
+        Function(['require'], (
+            // try to call default if defined to also support babel esmodule
+            // exports
+            'var f = require(' + stringify(wkey) + ');' +
+            '(f.default ? f.default : f)(self);'
+        )),
+        scache
+    ];
+
+    var src = '(' + bundleFn + ')({'
+        + Object.keys(sources).map(function (key) {
+            return stringify(key) + ':['
+                + sources[key][0]
+                + ',' + stringify(sources[key][1]) + ']'
+            ;
+        }).join(',')
+        + '},{},[' + stringify(skey) + '])'
+    ;
+
+    var URL = window.URL || window.webkitURL || window.mozURL || window.msURL;
+
+    var blob = new Blob([src], { type: 'text/javascript' });
+    if (options && options.bare) { return blob; }
+    var workerUrl = URL.createObjectURL(blob);
+    var worker = new Worker(workerUrl);
+    worker.objectURL = workerUrl;
+    return worker;
+};
 
 },{}]},{},[1]);
