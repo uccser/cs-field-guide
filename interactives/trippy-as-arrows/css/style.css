@@ -4,3 +4,7 @@ body, html, svg {
   height: 100%;
   overflow: hidden;
 }
+
+canvas {
+  border: 1px solid black;
+}
