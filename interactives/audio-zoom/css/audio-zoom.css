@@ -1,16 +1,28 @@
 #img {
-  border: 1px solid black;
+    border: 1px solid black;
 }
 
 #graph {
-  fill: none;
-  stroke: black;
-  stroke-width: 1;
+    fill: none;
+    stroke: black;
+    stroke-width: 1;
 }
 
 
 .wave-line {
-  stroke: black;
-  stroke-width: 1;
-  fill: none;
+    stroke: black;
+    stroke-width: 1;
+    fill: none;
+}
+
+.loading-border {
+    fill: none;
+    fill-opacity: 0;
+    stroke-width: 3;
+    stroke: black;
+}
+
+.loading-bar {
+    fill: blue;
+    fill-opacity: 1;
 }

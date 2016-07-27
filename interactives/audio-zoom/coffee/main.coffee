@@ -1,10 +1,10 @@
 "use strict"
 async = require('es6-simple-async')
-rangeQuery = require('./rangeQuery.coffee')
+rangeQuery = require('./rangeQuery.coffee').rangeQuery
 work = require('webworkify')
 PromiseWorker = require('./promiseWorker.coffee')
+Rx = require('rxjs')
 
-segmentWorker = new PromiseWorker(new Worker('./segmentTreeWorker.js'))
 
 toAudioBuffer = (arrayBuffer) ->
     ### This converts an ArrayBuffer into an AudioBuffer returning a Promise
@@ -13,149 +13,195 @@ toAudioBuffer = (arrayBuffer) ->
     audioCtx = new OfflineAudioContext(2,44100*1,44100)
     return audioCtx.decodeAudioData(arrayBuffer)
 
-VIEWPORT = 1000
-
-split = (arr, chunks=2) ->
-    ### Splits an array into given number of chunks, the final chunk may
-        be smaller than the rest, if chunks > array.length then we'll throw
-        an error
-    ###
-    if chunks > arr.length
-        throw new Error("Can't split arr with length #{arr.length} into
-                         #{chunks} chunks")
-    result = []
-
-    currentLocation = 0
-    change = arr.length/chunks
-    while currentLocation < arr.length
-        nextLocation = currentLocation + change
-        chunk = arr[Math.round(currentLocation)...Math.round(nextLocation)]
-        if chunk.length isnt 0
-            result.push(chunk)
-        currentLocation = nextLocation
-    return result
 
 max = (a=NaN, b=NaN) ->
     ### For NaN we'll ignore it and return the real max ###
     if isNaN(b)
-        a
+        return a
     else if a > b
-        a
+        return a
     else
-        b
+        return b
+
+min = (a=NaN, b=NaN) ->
+    if isNaN(b)
+        return a
+    else if a < b
+        return a
+    else
+        return b
+
+getViewBox = (svgElement) ->
+    ### This extracts the viewBox of an svg node ###
+    viewBox = svgElement
+        .getAttribute('viewBox')
+        .split(',')
+        .map(Number)
+
+    return {
+        minX: viewBox[0]
+        minY: viewBox[1]
+        width: viewBox[2]
+        height: viewBox[3]
+    }
+
+class LoadingBar
+    width: 0.05
+    constructor: (@svgElement) ->
+        ### This creates a loading bar on a given svg element ###
+        @svgNS = @svgElement.getAttribute('xmlns')
+        # Find the dimensions we need to render within
+        @viewBox = getViewBox(@svgElement)
+        # Create a border around the loading bar
+        @createLoadingBorder()
+        @update(0)
+
+    createLoadingBorder: ->
+        ### This creates a border for the loading bar ###
+        @loadingBorder = document.createElementNS(@svgNS, 'rect')
+
+        @loadingBorder.classList.add('loading-border')
+        #@loadingBorder.setAttributeNS(null, 'fill-opacity', 0)
+
+        @loadingBorder.setAttributeNS(null, 'x', 0)
+        @loadingBorder.setAttributeNS(null, 'width', @viewBox.width)
+
+        @loadingBorder.setAttributeNS(
+            null,
+            'y',
+            @viewBox.height * (0.5 - @width/2)
+        )
+        @loadingBorder.setAttributeNS(
+            null,
+            'height',
+            @viewBox.height * @width
+        )
+
+        @svgElement.appendChild(@loadingBorder)
+
+    update: (proportion) ->
+        ### Creates a loading bar of size percent ###
+        if @disposed
+            return
+        if @loadingBar?
+            @svgElement.removeChild(@loadingBar)
+
+        @loadingBar = document.createElementNS(@svgNS, 'rect')
+        @loadingBar.classList.add('loading-bar')
+
+        @loadingBar.setAttributeNS(null, 'x', 0)
+        @loadingBar.setAttributeNS(null, 'width', proportion*@viewBox.width)
+
+        @loadingBar.setAttributeNS(
+            null,
+            'y',
+            @viewBox.height * (0.5 - @width/2)
+        )
+        @loadingBar.setAttributeNS(
+            null,
+            'height',
+            @viewBox.height * @width
+        )
+
+        @svgElement.appendChild(@loadingBar)
+
+    dispose: ->
+        ### Removes the loading bar from the svg element ###
+        @disposed = true
+        @svgElement.removeChild(@loadingBorder)
+        @svgElement.removeChild(@loadingBar)
+
+
 
 class AudioGraph
-    constructor: (@svgElement, channelData) ->
-        @dataLength = channelData.length
-        @maxQuery = rangeQuery(channelData, max)
-        @viewbox = if svg.hasAttribute('viewBox')
-            svg.getAttribute('viewBox').split(' ')
-        else
-            svg.set
-        lines = for audioPart, idx in audioParts
-            max = audioPart.reduce (acc, i) -> return Math.max(acc, i)
-            min = audioPart.reduce (acc, i) -> return Math.min(acc, i)
+    maxWorker = new PromiseWorker(new Worker('./segmentTreeWorker.js'))
+    minWorker = new PromiseWorker(new Worker('./segmentTreeWorker.js'))
 
-            svgLine = document.createElementNS($image.namespaceURI,"line")
+    constructor: ({@svgElement, @dataLength, @maxQuery, @minQuery}) ->
+        @viewBox = getViewBox(@svgElement)
+        @renderRange(0, @dataLength)
+
+    clear: ->
+        while @svgElement.lastChild
+            @svgElement.removeChild(@svgElement.lastChild)
+
+    renderRange: (lower=0, upper=@dataLength) ->
+        @clear()
+        maxHeight = Math.max(
+            Math.abs(@maxQuery(lower, upper)),
+            Math.abs(@minQuery(lower, upper))
+        )
+        sectionWidth = (upper - lower) / @viewBox.width
+        lines = for idx in [0...@viewBox.width]
+            rangeMax = Math.max 0, @maxQuery(
+                lower + Math.floor(sectionWidth*idx),
+                lower + Math.ceil(sectionWidth*(idx+1))
+            )
+            rangeMin = Math.min 0, @minQuery(
+                lower + Math.floor(sectionWidth*idx),
+                lower + Math.ceil(sectionWidth*(idx+1))
+            )
+
+            svgLine = document.createElementNS(@svgElement.namespaceURI,"line")
 
             svgLine.setAttributeNS(null, "class", "wave-line")
+
             svgLine.setAttributeNS(null, "x1", idx)
             svgLine.setAttributeNS(null, "x2", idx)
-            if Math.abs(min) < Math.abs(max)
-                svgLine.setAttributeNS(null, "y1", VIEWPORT/2)
-                svgLine.setAttributeNS(null, "y2", ((VIEWPORT/2)*max/maxHeight+(VIEWPORT/2))
-                )
-            else
-                svgLine.setAttributeNS(null, "y1", ((VIEWPORT/2)*min/maxHeight+VIEWPORT/2))
-                svgLine.setAttributeNS(null, "y2", VIEWPORT/2)
 
-            $image.appendChild(svgLine)
-            yield null
-        return this
+            _max = (@viewBox.height/2)*rangeMin/maxHeight + (@viewBox.height/2)
+            svgLine.setAttributeNS(null, "y1", _max)
 
-drawLines = async (channelData) ->
-    $image = document.querySelector("#audio-image-lines")
-    maxHeight = channelData.reduce (acc, i) -> Math.max(acc, Math.abs(i))
+            _min = (@viewBox.height/2)*rangeMax/maxHeight + (@viewBox.height/2)
+            svgLine.setAttributeNS(null, "y2", _min)
+            @svgElement.appendChild(svgLine)
 
-    points = for i in [0...channelData.length]
-        {
-            x: VIEWPORT*i/channelData.length
-            y: Math.floor((VIEWPORT/2)*channelData[i]/maxHeight + VIEWPORT/2)
+        svgLine = document.createElementNS(@svgElement.namespaceURI, "line")
+        svgLine.setAttributeNS(null, "style", "stroke:red;stroke-width:1")
+        svgLine.setAttributeNS(null, "x1", 0)
+        svgLine.setAttributeNS(null, "x2", @viewBox.height)
+        svgLine.setAttributeNS(null, "y1", @viewBox.height/2)
+        svgLine.setAttributeNS(null, "y2", @viewBox.height/2)
+        @svgElement.appendChild(svgLine)
+
+    @fromChannelData: async (svgElement, channelData) ->
+        ### This creates an Audio Graph from the given channel data ###
+        dataLength = channelData.length
+        maxTree = maxWorker.postMessage {
+            channelData: channelData
+            functionString: max.toString()
         }
-    str = points
-        .map ({x, y}) -> "#{x},#{y}"
-        .join(' ')
+        minTree = minWorker.postMessage {
+            channelData: channelData
+            functionString: min.toString()
+        }
+        lastMinProgress = 0
+        lastMaxProgress = 0
 
+        loadingBar = new LoadingBar(svgElement)
 
-    yield $("#graph").attr('points', str)
+        maxTree.progressed (progress) ->
+            lastMaxProgress = progress
+            loadingBar.update((lastMinProgress + lastMaxProgress)/2)
+            document.querySelector('#progress').innerHTML = "#{progress*100} %"
+        minTree.progressed (progress) ->
+            lastMinProgress = progress
+            loadingBar.update((lastMinProgress + lastMaxProgress)/2)
+            document.querySelector('#progress').innerHTML = "#{progress*100} %"
+        [minTree, maxTree] = yield Promise.all [
+            minTree
+            maxTree
+        ]
+        loadingBar.dispose()
+        window.maxTree = maxTree
+        window.minTree = minTree
+        return new AudioGraph {
+            svgElement: svgElement
+            dataLength: channelData.length
+            maxQuery: rangeQuery(maxTree, max)
+            minQuery: rangeQuery(minTree, min)
+        }
 
-    svgLine = document.createElementNS($image.namespaceURI, "line")
-    svgLine.setAttributeNS(null, "style", "stroke:red;stroke-width:1")
-    svgLine.setAttributeNS(null, "x1", 0)
-    svgLine.setAttributeNS(null, "x2", VIEWPORT)
-    svgLine.setAttributeNS(null, "y1", VIEWPORT/2)
-    svgLine.setAttributeNS(null, "y2", VIEWPORT/2)
-    $image.appendChild(svgLine)
-
-drawBars = async (channelData) ->
-    $image = document.querySelector('#audio-image-bars')
-    maxHeight = channelData.reduce (acc, i) -> Math.max(acc, Math.abs(i))
-    audioParts = yield split(channelData, VIEWPORT)
-
-    svgLine = document.createElementNS($image.namespaceURI, "line")
-    svgLine.setAttributeNS(null, "style", "stroke:red;stroke-width:1")
-    svgLine.setAttributeNS(null, "x1", 0)
-    svgLine.setAttributeNS(null, "x2", VIEWPORT)
-    svgLine.setAttributeNS(null, "y1", VIEWPORT/2)
-    svgLine.setAttributeNS(null, "y2", VIEWPORT/2)
-    $image.appendChild(svgLine)
-
-    lines = for audioPart, idx in audioParts
-        max = audioPart.reduce (acc, i) -> return Math.max(acc, i)
-        min = audioPart.reduce (acc, i) -> return Math.min(acc, i)
-
-        svgLine = document.createElementNS($image.namespaceURI,"line")
-
-        svgLine.setAttributeNS(null, "class", "wave-line")
-        svgLine.setAttributeNS(null, "x1", idx)
-        svgLine.setAttributeNS(null, "x2", idx)
-        if Math.abs(min) < Math.abs(max)
-            svgLine.setAttributeNS(null, "y1", VIEWPORT/2)
-            svgLine.setAttributeNS(null, "y2", ((VIEWPORT/2)*max/maxHeight+(VIEWPORT/2))
-            )
-        else
-            svgLine.setAttributeNS(null, "y1", ((VIEWPORT/2)*min/maxHeight+VIEWPORT/2))
-            svgLine.setAttributeNS(null, "y2", VIEWPORT/2)
-
-        $image.appendChild(svgLine)
-        yield null
-
-drawDense = async (channelData) ->
-    $image = document.querySelector('#audio-image')
-    maxHeight = channelData.reduce (acc, i) -> Math.max(acc, Math.abs(i))
-    audioParts = yield split(channelData, VIEWPORT)
-
-    lines = for audioPart, idx in audioParts
-        max = Math.max 0, audioPart.reduce((acc, i) -> return Math.max(acc, i))
-        min = Math.min 0, audioPart.reduce((acc, i) -> return Math.min(acc, i))
-
-        svgLine = document.createElementNS($image.namespaceURI,"line")
-
-        svgLine.setAttributeNS(null, "class", "wave-line")
-        svgLine.setAttributeNS(null, "x1", idx)
-        svgLine.setAttributeNS(null, "x2", idx)
-        svgLine.setAttributeNS(null, "y1", ((VIEWPORT/2)*min/maxHeight+(VIEWPORT/2)))
-        svgLine.setAttributeNS(null, "y2", ((VIEWPORT/2)*max/maxHeight+(VIEWPORT/2)))
-        $image.appendChild(svgLine)
-        yield null
-
-    svgLine = document.createElementNS($image.namespaceURI, "line")
-    svgLine.setAttributeNS(null, "style", "stroke:red;stroke-width:1")
-    svgLine.setAttributeNS(null, "x1", 0)
-    svgLine.setAttributeNS(null, "x2", VIEWPORT)
-    svgLine.setAttributeNS(null, "y1", (VIEWPORT/2))
-    svgLine.setAttributeNS(null, "y2", (VIEWPORT/2))
-    $image.appendChild(svgLine)
 
 
 async.main ->
@@ -168,18 +214,15 @@ async.main ->
     audioData = yield toAudioBuffer(arrBuff)
     yield null
     $status.innerHTML = 'scanning points...'
-    channelData = audioData.getChannelData(0)#[700000...800000]
+    channelData = audioData.getChannelData(0)#[790000...800000]
     window.channelData = channelData
-    $status.innerHTML = 'creating lines'
-    try
-        yield Promise.all [
-            #drawDense(channelData)
-            #drawBars(channelData)
-            #drawLines(channelData)
-        ]
-        $status.innerHTML = 'done and done'
-        return 2
-    catch err
-        $status.innerHTML = "failed with #{err}"
+    $status.innerHTML = 'preprocessing'
+
+    window.graph = yield AudioGraph.fromChannelData(
+        document.querySelector('svg'),
+        channelData
+    )
+
+    $status.innerHTML = 'done and done'
 
 window.async = async

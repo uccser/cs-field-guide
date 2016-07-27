@@ -1,16 +1,14 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 "use strict";
-var AudioGraph, PromiseWorker, VIEWPORT, async, drawBars, drawDense, drawLines, max, rangeQuery, segmentWorker, split, toAudioBuffer, work;
+var AudioGraph, LoadingBar, PromiseWorker, async, getViewBox, max, min, rangeQuery, toAudioBuffer, work;
 
 async = require('es6-simple-async');
 
-rangeQuery = require('./rangeQuery.coffee');
+rangeQuery = require('./rangeQuery.coffee').rangeQuery;
 
 work = require('webworkify');
 
 PromiseWorker = require('./promiseWorker.coffee');
-
-segmentWorker = new PromiseWorker(new Worker('./segmentTreeWorker.js'));
 
 toAudioBuffer = function(arrayBuffer) {
 
@@ -20,35 +18,6 @@ toAudioBuffer = function(arrayBuffer) {
   var audioCtx;
   audioCtx = new OfflineAudioContext(2, 44100 * 1, 44100);
   return audioCtx.decodeAudioData(arrayBuffer);
-};
-
-VIEWPORT = 1000;
-
-split = function(arr, chunks) {
-  var change, chunk, currentLocation, nextLocation, result;
-  if (chunks == null) {
-    chunks = 2;
-  }
-
-  /* Splits an array into given number of chunks, the final chunk may
-      be smaller than the rest, if chunks > array.length then we'll throw
-      an error
-   */
-  if (chunks > arr.length) {
-    throw new Error("Can't split arr with length " + arr.length + " into " + chunks + " chunks");
-  }
-  result = [];
-  currentLocation = 0;
-  change = arr.length / chunks;
-  while (currentLocation < arr.length) {
-    nextLocation = currentLocation + change;
-    chunk = arr.slice(Math.round(currentLocation), Math.round(nextLocation));
-    if (chunk.length !== 0) {
-      result.push(chunk);
-    }
-    currentLocation = nextLocation;
-  }
-  return result;
 };
 
 max = function(a, b) {
@@ -69,162 +38,195 @@ max = function(a, b) {
   }
 };
 
+min = function(a, b) {
+  if (a == null) {
+    a = NaN;
+  }
+  if (b == null) {
+    b = NaN;
+  }
+  if (isNaN(b)) {
+    return a;
+  } else if (a < b) {
+    return a;
+  } else {
+    return b;
+  }
+};
+
+getViewBox = function(svgElement) {
+
+  /* This extracts the viewBox of an svg node */
+  var viewBox;
+  viewBox = svgElement.getAttribute('viewBox').split(',').map(Number);
+  return {
+    minX: viewBox[0],
+    minY: viewBox[1],
+    width: viewBox[2],
+    height: viewBox[3]
+  };
+};
+
+LoadingBar = (function() {
+  LoadingBar.prototype.width = 0.05;
+
+  function LoadingBar(svgElement1) {
+    this.svgElement = svgElement1;
+
+    /* This creates a loading bar on a given svg element */
+    this.svgNS = this.svgElement.getAttribute('xmlns');
+    this.viewBox = getViewBox(this.svgElement);
+    this.createLoadingBorder();
+    this.update(0);
+  }
+
+  LoadingBar.prototype.createLoadingBorder = function() {
+
+    /* This creates a border for the loading bar */
+    this.loadingBorder = document.createElementNS(this.svgNS, 'rect');
+    this.loadingBorder.classList.add('loading-border');
+    this.loadingBorder.setAttributeNS(null, 'x', 0);
+    this.loadingBorder.setAttributeNS(null, 'width', this.viewBox.width);
+    this.loadingBorder.setAttributeNS(null, 'y', this.viewBox.height * (0.5 - this.width / 2));
+    this.loadingBorder.setAttributeNS(null, 'height', this.viewBox.height * this.width);
+    return this.svgElement.appendChild(this.loadingBorder);
+  };
+
+  LoadingBar.prototype.update = function(proportion) {
+
+    /* Creates a loading bar of size percent */
+    if (this.disposed) {
+      return;
+    }
+    if (this.loadingBar != null) {
+      this.svgElement.removeChild(this.loadingBar);
+    }
+    this.loadingBar = document.createElementNS(this.svgNS, 'rect');
+    this.loadingBar.classList.add('loading-bar');
+    this.loadingBar.setAttributeNS(null, 'x', 0);
+    this.loadingBar.setAttributeNS(null, 'width', proportion * this.viewBox.width);
+    this.loadingBar.setAttributeNS(null, 'y', this.viewBox.height * (0.5 - this.width / 2));
+    this.loadingBar.setAttributeNS(null, 'height', this.viewBox.height * this.width);
+    return this.svgElement.appendChild(this.loadingBar);
+  };
+
+  LoadingBar.prototype.dispose = function() {
+
+    /* Removes the loading bar from the svg element */
+    this.disposed = true;
+    this.svgElement.removeChild(this.loadingBorder);
+    return this.svgElement.removeChild(this.loadingBar);
+  };
+
+  return LoadingBar;
+
+})();
+
 AudioGraph = (function() {
-  function* AudioGraph(svgElement, channelData) {
-    var audioPart, idx, lines, min, svgLine;
-    this.svgElement = svgElement;
-    this.dataLength = channelData.length;
-    this.maxQuery = rangeQuery(channelData, max);
-    this.viewbox = svg.hasAttribute('viewBox') ? svg.getAttribute('viewBox').split(' ') : svg.set;
-    lines = (yield* (function*() {
-      var j, len, results;
+  var maxWorker, minWorker;
+
+  maxWorker = new PromiseWorker(new Worker('./segmentTreeWorker.js'));
+
+  minWorker = new PromiseWorker(new Worker('./segmentTreeWorker.js'));
+
+  function AudioGraph(arg) {
+    this.svgElement = arg.svgElement, this.dataLength = arg.dataLength, this.maxQuery = arg.maxQuery, this.minQuery = arg.minQuery;
+    this.viewBox = getViewBox(this.svgElement);
+    this.renderRange(0, this.dataLength);
+  }
+
+  AudioGraph.prototype.clear = function() {
+    var results;
+    results = [];
+    while (this.svgElement.lastChild) {
+      results.push(this.svgElement.removeChild(this.svgElement.lastChild));
+    }
+    return results;
+  };
+
+  AudioGraph.prototype.renderRange = function(lower, upper) {
+    var _max, _min, idx, lines, maxHeight, rangeMax, rangeMin, sectionWidth, svgLine;
+    if (lower == null) {
+      lower = 0;
+    }
+    if (upper == null) {
+      upper = this.dataLength;
+    }
+    this.clear();
+    maxHeight = Math.max(Math.abs(this.maxQuery(lower, upper)), Math.abs(this.minQuery(lower, upper)));
+    sectionWidth = (upper - lower) / this.viewBox.width;
+    console.log(sectionWidth);
+    lines = (function() {
+      var i, ref, results;
       results = [];
-      for (idx = j = 0, len = audioParts.length; j < len; idx = ++j) {
-        audioPart = audioParts[idx];
-        max = audioPart.reduce(function(acc, i) {
-          return Math.max(acc, i);
-        });
-        min = audioPart.reduce(function(acc, i) {
-          return Math.min(acc, i);
-        });
-        svgLine = document.createElementNS($image.namespaceURI, "line");
+      for (idx = i = 0, ref = this.viewBox.width; 0 <= ref ? i < ref : i > ref; idx = 0 <= ref ? ++i : --i) {
+        rangeMax = Math.max(0, this.maxQuery(lower + Math.floor(sectionWidth * idx), lower + Math.ceil(sectionWidth * (idx + 1))));
+        rangeMin = Math.min(0, this.minQuery(lower + Math.floor(sectionWidth * idx), lower + Math.ceil(sectionWidth * (idx + 1))));
+        svgLine = document.createElementNS(this.svgElement.namespaceURI, "line");
         svgLine.setAttributeNS(null, "class", "wave-line");
         svgLine.setAttributeNS(null, "x1", idx);
         svgLine.setAttributeNS(null, "x2", idx);
-        if (Math.abs(min) < Math.abs(max)) {
-          svgLine.setAttributeNS(null, "y1", VIEWPORT / 2);
-          svgLine.setAttributeNS(null, "y2", (VIEWPORT / 2) * max / maxHeight + (VIEWPORT / 2));
-        } else {
-          svgLine.setAttributeNS(null, "y1", (VIEWPORT / 2) * min / maxHeight + VIEWPORT / 2);
-          svgLine.setAttributeNS(null, "y2", VIEWPORT / 2);
-        }
-        $image.appendChild(svgLine);
-        results.push((yield null));
+        _max = (this.viewBox.height / 2) * rangeMin / maxHeight + (this.viewBox.height / 2);
+        svgLine.setAttributeNS(null, "y1", _max);
+        _min = (this.viewBox.height / 2) * rangeMax / maxHeight + (this.viewBox.height / 2);
+        svgLine.setAttributeNS(null, "y2", _min);
+        results.push(this.svgElement.appendChild(svgLine));
       }
       return results;
-    })());
-    return this;
-  }
+    }).call(this);
+    svgLine = document.createElementNS(this.svgElement.namespaceURI, "line");
+    svgLine.setAttributeNS(null, "style", "stroke:red;stroke-width:1");
+    svgLine.setAttributeNS(null, "x1", 0);
+    svgLine.setAttributeNS(null, "x2", this.viewBox.height);
+    svgLine.setAttributeNS(null, "y1", this.viewBox.height / 2);
+    svgLine.setAttributeNS(null, "y2", this.viewBox.height / 2);
+    return this.svgElement.appendChild(svgLine);
+  };
+
+  AudioGraph.fromChannelData = async(function*(svgElement, channelData) {
+
+    /* This creates an Audio Graph from the given channel data */
+    var dataLength, lastMaxProgress, lastMinProgress, loadingBar, maxTree, minTree, ref;
+    dataLength = channelData.length;
+    maxTree = maxWorker.postMessage({
+      channelData: channelData,
+      functionString: max.toString()
+    });
+    minTree = minWorker.postMessage({
+      channelData: channelData,
+      functionString: min.toString()
+    });
+    lastMinProgress = 0;
+    lastMaxProgress = 0;
+    loadingBar = new LoadingBar(svgElement);
+    maxTree.progressed(function(progress) {
+      lastMaxProgress = progress;
+      loadingBar.update((lastMinProgress + lastMaxProgress) / 2);
+      return document.querySelector('#progress').innerHTML = (progress * 100) + " %";
+    });
+    minTree.progressed(function(progress) {
+      lastMinProgress = progress;
+      loadingBar.update((lastMinProgress + lastMaxProgress) / 2);
+      return document.querySelector('#progress').innerHTML = (progress * 100) + " %";
+    });
+    ref = (yield Promise.all([minTree, maxTree])), minTree = ref[0], maxTree = ref[1];
+    loadingBar.dispose();
+    window.maxTree = maxTree;
+    window.minTree = minTree;
+    return new AudioGraph({
+      svgElement: svgElement,
+      dataLength: channelData.length,
+      maxQuery: rangeQuery(maxTree, max),
+      minQuery: rangeQuery(minTree, min)
+    });
+  });
 
   return AudioGraph;
 
 })();
 
-drawLines = async(function*(channelData) {
-  var $image, i, maxHeight, points, str, svgLine;
-  $image = document.querySelector("#audio-image-lines");
-  maxHeight = channelData.reduce(function(acc, i) {
-    return Math.max(acc, Math.abs(i));
-  });
-  points = (function() {
-    var j, ref, results;
-    results = [];
-    for (i = j = 0, ref = channelData.length; 0 <= ref ? j < ref : j > ref; i = 0 <= ref ? ++j : --j) {
-      results.push({
-        x: VIEWPORT * i / channelData.length,
-        y: Math.floor((VIEWPORT / 2) * channelData[i] / maxHeight + VIEWPORT / 2)
-      });
-    }
-    return results;
-  })();
-  str = points.map(function(arg) {
-    var x, y;
-    x = arg.x, y = arg.y;
-    return x + "," + y;
-  }).join(' ');
-  (yield $("#graph").attr('points', str));
-  svgLine = document.createElementNS($image.namespaceURI, "line");
-  svgLine.setAttributeNS(null, "style", "stroke:red;stroke-width:1");
-  svgLine.setAttributeNS(null, "x1", 0);
-  svgLine.setAttributeNS(null, "x2", VIEWPORT);
-  svgLine.setAttributeNS(null, "y1", VIEWPORT / 2);
-  svgLine.setAttributeNS(null, "y2", VIEWPORT / 2);
-  return $image.appendChild(svgLine);
-});
-
-drawBars = async(function*(channelData) {
-  var $image, audioPart, audioParts, idx, lines, maxHeight, min, svgLine;
-  $image = document.querySelector('#audio-image-bars');
-  maxHeight = channelData.reduce(function(acc, i) {
-    return Math.max(acc, Math.abs(i));
-  });
-  audioParts = (yield split(channelData, VIEWPORT));
-  svgLine = document.createElementNS($image.namespaceURI, "line");
-  svgLine.setAttributeNS(null, "style", "stroke:red;stroke-width:1");
-  svgLine.setAttributeNS(null, "x1", 0);
-  svgLine.setAttributeNS(null, "x2", VIEWPORT);
-  svgLine.setAttributeNS(null, "y1", VIEWPORT / 2);
-  svgLine.setAttributeNS(null, "y2", VIEWPORT / 2);
-  $image.appendChild(svgLine);
-  return lines = (yield* (function*() {
-    var j, len, results;
-    results = [];
-    for (idx = j = 0, len = audioParts.length; j < len; idx = ++j) {
-      audioPart = audioParts[idx];
-      max = audioPart.reduce(function(acc, i) {
-        return Math.max(acc, i);
-      });
-      min = audioPart.reduce(function(acc, i) {
-        return Math.min(acc, i);
-      });
-      svgLine = document.createElementNS($image.namespaceURI, "line");
-      svgLine.setAttributeNS(null, "class", "wave-line");
-      svgLine.setAttributeNS(null, "x1", idx);
-      svgLine.setAttributeNS(null, "x2", idx);
-      if (Math.abs(min) < Math.abs(max)) {
-        svgLine.setAttributeNS(null, "y1", VIEWPORT / 2);
-        svgLine.setAttributeNS(null, "y2", (VIEWPORT / 2) * max / maxHeight + (VIEWPORT / 2));
-      } else {
-        svgLine.setAttributeNS(null, "y1", (VIEWPORT / 2) * min / maxHeight + VIEWPORT / 2);
-        svgLine.setAttributeNS(null, "y2", VIEWPORT / 2);
-      }
-      $image.appendChild(svgLine);
-      results.push((yield null));
-    }
-    return results;
-  })());
-});
-
-drawDense = async(function*(channelData) {
-  var $image, audioPart, audioParts, idx, lines, maxHeight, min, svgLine;
-  $image = document.querySelector('#audio-image');
-  maxHeight = channelData.reduce(function(acc, i) {
-    return Math.max(acc, Math.abs(i));
-  });
-  audioParts = (yield split(channelData, VIEWPORT));
-  lines = (yield* (function*() {
-    var j, len, results;
-    results = [];
-    for (idx = j = 0, len = audioParts.length; j < len; idx = ++j) {
-      audioPart = audioParts[idx];
-      max = Math.max(0, audioPart.reduce(function(acc, i) {
-        return Math.max(acc, i);
-      }));
-      min = Math.min(0, audioPart.reduce(function(acc, i) {
-        return Math.min(acc, i);
-      }));
-      svgLine = document.createElementNS($image.namespaceURI, "line");
-      svgLine.setAttributeNS(null, "class", "wave-line");
-      svgLine.setAttributeNS(null, "x1", idx);
-      svgLine.setAttributeNS(null, "x2", idx);
-      svgLine.setAttributeNS(null, "y1", (VIEWPORT / 2) * min / maxHeight + (VIEWPORT / 2));
-      svgLine.setAttributeNS(null, "y2", (VIEWPORT / 2) * max / maxHeight + (VIEWPORT / 2));
-      $image.appendChild(svgLine);
-      results.push((yield null));
-    }
-    return results;
-  })());
-  svgLine = document.createElementNS($image.namespaceURI, "line");
-  svgLine.setAttributeNS(null, "style", "stroke:red;stroke-width:1");
-  svgLine.setAttributeNS(null, "x1", 0);
-  svgLine.setAttributeNS(null, "x2", VIEWPORT);
-  svgLine.setAttributeNS(null, "y1", VIEWPORT / 2);
-  svgLine.setAttributeNS(null, "y2", VIEWPORT / 2);
-  return $image.appendChild(svgLine);
-});
-
 async.main(function*() {
-  var $audio, $status, arrBuff, audioData, channelData, err, error, res;
+  var $audio, $status, arrBuff, audioData, channelData, res;
   $audio = document.querySelector('#audio3');
   $status = document.querySelector('#status');
   $status.innerHTML = 'fetching...';
@@ -236,23 +238,82 @@ async.main(function*() {
   $status.innerHTML = 'scanning points...';
   channelData = audioData.getChannelData(0);
   window.channelData = channelData;
-  $status.innerHTML = 'creating lines';
-  try {
-    (yield Promise.all([]));
-    $status.innerHTML = 'done and done';
-    return 2;
-  } catch (error) {
-    err = error;
-    return $status.innerHTML = "failed with " + err;
-  }
+  $status.innerHTML = 'preprocessing';
+  window.graph = (yield AudioGraph.fromChannelData(document.querySelector('svg'), channelData));
+  return $status.innerHTML = 'done and done';
 });
 
 window.async = async;
 
 
-},{"./promiseWorker.coffee":2,"./rangeQuery.coffee":3,"es6-simple-async":4,"webworkify":5}],2:[function(require,module,exports){
+},{"./promiseWorker.coffee":3,"./rangeQuery.coffee":4,"es6-simple-async":5,"webworkify":6}],2:[function(require,module,exports){
 "use strict";
-var PromiseWorker;
+var ProgressPromise,
+  slice = [].slice;
+
+ProgressPromise = (function() {
+  function ProgressPromise(func) {
+    var progress;
+    this.finished = false;
+    this._progressHandlers = [];
+    progress = (function(_this) {
+      return function(val) {
+        var handler, i, len, ref, results;
+        if (typeof finished === "undefined" || finished === null) {
+          ref = _this._progressHandlers;
+          results = [];
+          for (i = 0, len = ref.length; i < len; i++) {
+            handler = ref[i];
+            results.push(handler(val));
+          }
+          return results;
+        }
+      };
+    })(this);
+    this._promise = new Promise(function(resolve, reject) {
+      return func(resolve, reject, progress);
+    });
+    this._promise.then((function(_this) {
+      return function() {
+        return _this.finished = true;
+      };
+    })(this));
+    this._promise["catch"]((function(_this) {
+      return function() {
+        return _this.finished = true;
+      };
+    })(this));
+  }
+
+  ProgressPromise.prototype.progressed = function(callback) {
+    this._progressHandlers.push(callback);
+    return this;
+  };
+
+  ProgressPromise.prototype.then = function() {
+    var args, ref;
+    args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+    return (ref = this._promise).then.apply(ref, args);
+  };
+
+  ProgressPromise.prototype["catch"] = function() {
+    var args, ref;
+    args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+    return (ref = this._promise)["catch"].apply(ref, args);
+  };
+
+  return ProgressPromise;
+
+})();
+
+module.exports = ProgressPromise;
+
+
+},{}],3:[function(require,module,exports){
+"use strict";
+var ProgressPromise, PromiseWorker;
+
+ProgressPromise = require('./progressPromise.coffee');
 
 PromiseWorker = (function() {
   function PromiseWorker(worker) {
@@ -261,12 +322,16 @@ PromiseWorker = (function() {
     this.currentID = 0;
     this.worker.onmessage = (function(_this) {
       return function(event) {
-        if (!event.data.error) {
-          _this.waiting[event.data.id].resolve(event.data.message);
-        } else {
-          _this.waiting[event.data.id].reject(event.data.message);
+        switch (event.data.type) {
+          case 'error':
+            _this.waiting[event.data.id].reject(event.data.message);
+            return delete _this.waiting[event.data.id];
+          case 'progress':
+            return _this.waiting[event.data.id].progress(event.data.message);
+          default:
+            _this.waiting[event.data.id].resolve(event.data.message);
+            return delete _this.waiting[event.data.id];
         }
-        return delete _this.waiting[event.data.id];
       };
     })(this);
     this.worker.onerror = function(err) {
@@ -274,17 +339,22 @@ PromiseWorker = (function() {
     };
   }
 
-  PromiseWorker.prototype.postMessage = function(message, transferables) {
+  PromiseWorker.prototype.postMessage = function(message, transferables, onProgress) {
+    var promise;
+    if (onProgress == null) {
+      onProgress = null;
+    }
 
     /* This posts a message to the worker and returns a promise that'll
         resolve when the message is returned
      */
-    return new Promise((function(_this) {
-      return function(resolve, reject) {
+    return promise = new ProgressPromise((function(_this) {
+      return function(resolve, reject, progress) {
         var newMessage;
         _this.waiting[_this.currentID] = {
           resolve: resolve,
-          reject: reject
+          reject: reject,
+          progress: progress
         };
         newMessage = {
           id: _this.currentID,
@@ -307,7 +377,7 @@ PromiseWorker = (function() {
 module.exports = PromiseWorker;
 
 
-},{}],3:[function(require,module,exports){
+},{"./progressPromise.coffee":2}],4:[function(require,module,exports){
 
 /* This is an implementation of range query specially as in the definition
     of Range Max Query but any comparison function may be used
@@ -316,9 +386,6 @@ module.exports = PromiseWorker;
 var max, rangeQuery, segmentTree, span;
 
 max = function(a, b) {
-  if (b == null) {
-    return a;
-  }
   if (isNaN(b)) {
     return a;
   } else if (a > b) {
@@ -329,25 +396,25 @@ max = function(a, b) {
 };
 
 segmentTree = function(arr, queryFunc) {
-  var ArrType, err, error, i, j, ref, tree, treeSize, upperPowerOfTwo;
+  var ArrType, i, j, ref, tree, treeSize, upperPowerOfTwo;
   if (queryFunc == null) {
     queryFunc = max;
   }
 
-  /* This creates a segmentTree from an arr */
+  /* This creates a segmentTree from an array */
   ArrType = arr.constructor;
   upperPowerOfTwo = Math.pow(2, Math.ceil(Math.log2(arr.length)));
   treeSize = upperPowerOfTwo + arr.length;
   tree = new ArrType(treeSize);
-  try {
+  if (ArrType === Array) {
     [].splice.apply(tree, [upperPowerOfTwo, treeSize - upperPowerOfTwo].concat(arr)), arr;
-  } catch (error) {
-    err = error;
+  } else {
     tree.set(arr, upperPowerOfTwo);
   }
   for (i = j = ref = upperPowerOfTwo - 1; ref <= 0 ? j < 0 : j > 0; i = ref <= 0 ? ++j : --j) {
     tree[i] = queryFunc(tree[i * 2], tree[i * 2 + 1]);
   }
+  tree.dataLength = arr.length;
   return tree;
 };
 
@@ -364,8 +431,9 @@ span = function(node, arrLen) {
   return [change * diff, change * (diff + 1)];
 };
 
-rangeQuery = function(tree, queryFunc) {
-  var query;
+rangeQuery = function(arg, queryFunc) {
+  var dataLength, query, tree;
+  tree = arg.tree, dataLength = arg.dataLength;
   if (queryFunc == null) {
     queryFunc = greaterThan;
   }
@@ -379,7 +447,7 @@ rangeQuery = function(tree, queryFunc) {
       lower = 0;
     }
     if (upper == null) {
-      upper = arr.length;
+      upper = dataLength;
     }
 
     /* This function queries the segment tree recursively
@@ -387,28 +455,28 @@ rangeQuery = function(tree, queryFunc) {
         the range entered
      */
     _query = function(node) {
-      var leftMax, middle, ref, rightMax, spanLower, spanUpper;
+      var leftBest, middle, ref, rightBest, spanLower, spanUpper;
       if (lower >= upper) {
         throw new Error("Queried range smaller than size 1");
       } else if (lower < 0) {
         throw new Error("Lower bound is below zero");
-      } else if (upper > arr.length) {
+      } else if (upper > dataLength) {
         throw new Error("Upper bound is beyond array");
       }
-      ref = span(node), spanLower = ref[0], spanUpper = ref[1];
+      ref = span(node, dataLength), spanLower = ref[0], spanUpper = ref[1];
       middle = Math.floor((spanLower + spanUpper) / 2);
       if (lower <= spanLower && upper >= spanUpper) {
         return tree[node];
       } else if (spanUpper - spanLower === 1) {
         return tree[node];
-      } else if (upper < middle) {
+      } else if (upper <= middle) {
         return _query(node * 2);
       } else if (lower >= middle) {
         return _query(node * 2 + 1);
       } else {
-        leftMax = _query(node * 2);
-        rightMax = _query(node * 2 + 1);
-        return queryFunc(leftMax, rightMax);
+        leftBest = _query(node * 2);
+        rightBest = _query(node * 2 + 1);
+        return queryFunc(leftBest, rightBest);
       }
     };
     return _query(1);
@@ -421,7 +489,7 @@ module.exports = {
 };
 
 
-},{}],4:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 // Generated by CoffeeScript 1.10.0
 
 /* Author James "The Jamesernator" Browning
@@ -536,7 +604,7 @@ module.exports = {
 
 }).call(this);
 
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 var bundleFn = arguments[3];
 var sources = arguments[4];
 var cache = arguments[5];
