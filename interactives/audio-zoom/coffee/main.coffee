@@ -54,11 +54,6 @@ class LoadingBar
         @createLoadingBorder()
         @update(0)
 
-
-
-
-
-
     createLoadingBorder: ->
         ### This creates a border for the loading bar ###
         @loadingBorder = document.createElementNS(@svgNS, 'rect')
@@ -114,12 +109,65 @@ class LoadingBar
         @svgElement.removeChild(@loadingBorder)
         @svgElement.removeChild(@loadingBar)
 
-toViewBoxCoords = (svgElement) ->
-    viewBox = svgElement.getAttribute('viewBox').split(',').map(Number)
-    svgWidth = svgElement.getAttribute('width')
-    svgHeight = svgElement.getAttribute('height')
+relativeTo = (element) -> (event) ->
+    ### This returns the [x, y] coordinates of an event relative to
+        the given element
+    ###
+    x = event.pageX - element.getBoundingClientRect().left
+    y = event.pageY - element.getBoundingClientRect().top
+    return [x, y]
+
+toProportionalCoords = (element) ->
+    ### This returns a function that tranforms the given coordinates
+        into proportions of the element
+    ###
+    {width, height} = element.getBoundingClientRect()
     return ([x, y]) ->
-        return [x/svgWidth*viewBox[2], y/svgHeight*viewBox[3]]
+        ### The result of this function isn't neccesarily in the range
+            [0, 1] as its purely relative to not just within
+        ###
+        return [x/width, y/height]
+
+toViewBoxCoords = (svgElement) ->
+    ### This returns a function that transforms the given proportional
+        coordinates to coordinates in the svgElement's viewBox
+    ###
+    try
+        viewBox = svgElement.getAttribute('viewBox').split(',').map(Number)
+    catch err
+        throw new Error("SVGElement doesn't use the viewBox coordinate system")
+    return ([x, y]) ->
+        return [x*viewBox[2], y*viewBox[3]]
+
+class Selection
+    constructor: (@start=0, @end=null, @dataLength=null) ->
+        @end ?= start + 1
+        @dataLength ?= @end - @start
+        @length = @end - @start
+        if @dataLength is 0
+            throw new Error('Data must be longer than 0')
+
+    select: (proportionStart=0, proportionEnd=1) ->
+        ### This returns a new selection that represents a selection
+            of a selection
+        ###
+        unless proportionStart < proportionEnd
+            throw new Error("Start must be lower than end")
+        newStart = Math.min @dataLength, Math.max(
+            0,
+            Math.round(@start + proportionStart*@length)
+        )
+        newEnd = Math.max 0, Math.min(
+            @dataLength,
+            Math.round(@start + proportionEnd*@length)
+        )
+        if newEnd - newStart is 0
+            if newEnd is @dataLength
+                newStart -= 1
+            else
+                newEnd += 1
+
+        return new Selection(newStart, newEnd, @dataLength)
 
 
 class AudioGraph
@@ -127,51 +175,75 @@ class AudioGraph
     minWorker = new PromiseWorker(new Worker('./segmentTreeWorker.js'))
 
     constructor: ({@svgElement, @dataLength, @maxQuery, @minQuery}) ->
+        @selection = new Selection(0, @dataLength)
         @viewBox = getViewBox(@svgElement)
-        @renderRange(0, @dataLength)
+        @render()
 
-        @select = document.createElementNS(
-            @svgElement.namespaceURI,
-            'polygon'
-        )
-        @select.classList.add('select')
-        @svgElement.appendChild(@select)
+        selectWithin(@svgElement)
+        .forEach (select) =>
+            highlight = document.createElementNS(
+                @svgElement.namespaceURI,
+                'polygon'
+            )
+            highlight.classList.add('select')
+            @svgElement.appendChild(highlight)
 
-        selectWithin(@svgElement).forEach (select) =>
-            select.forEach ( [[startX], [endX]] ) =>
+            proportionalCoords = select
+                .map((points) => points.map(toProportionalCoords(@svgElement)))
+
+            proportionalCoords
+            .map((points) => points.map(toViewBoxCoords(@svgElement)))
+            .forEach ( [[startX], [endX]] ) =>
                 points = [
                     [startX, 0]
                     [endX, 0]
                     [endX, @viewBox.height]
                     [startX, @viewBox.height]
-                ].map(toViewBoxCoords(@svgElement))
-                    .map((point) -> point.join(',')).join(' ')
-                @select.setAttribute('points', points)
+                ].map((point) -> point.join(',')).join(' ')
 
-    selectRange: (leftX, rightX) ->
-        ### Given leftX and rightX returns the range in channelData which is
-            spanned by the selection
-        ###
+                highlight.setAttribute('points', points)
+
+            proportionalCoords.last().forEach ( [[startX], [endX]] ) =>
+                @svgElement.removeChild(highlight)
+                @zoom(startX, endX)
+
+        @svgElement.addEventListener 'wheel', (event) =>
+            event.preventDefault()
+            [x] = toProportionalCoords(@svgElement)(
+                relativeTo(@svgElement)(event)
+            )
+            if event.deltaY < 0
+                @zoom(x-0.25, x+0.25)
+            else if event.deltaY > 0
+                @zoom(-0.5, 1.5)
+
 
     clear: ->
         while @svgElement.lastChild
             @svgElement.removeChild(@svgElement.lastChild)
 
-    renderRange: (lower=0, upper=@dataLength) ->
+    zoom: (proportionStart=0, proportionEnd=1) ->
+        ### Given a proportion to zoom to it zooms into such a selection
+            and rerenders
+        ###
+        @selection = @selection.select(proportionStart, proportionEnd)
+        @render()
+
+    render: ->
         @clear()
         maxHeight = Math.max(
-            Math.abs(@maxQuery(lower, upper)),
-            Math.abs(@minQuery(lower, upper))
+            Math.abs(@maxQuery(@selection.start, @selection.end)),
+            Math.abs(@minQuery(@selection.start, @selection.end))
         )
-        sectionWidth = (upper - lower) / @viewBox.width
+        sectionWidth = @selection.length / @viewBox.width
         lines = for idx in [0...@viewBox.width]
             rangeMax = Math.max 0, @maxQuery(
-                lower + Math.floor(sectionWidth*idx),
-                lower + Math.ceil(sectionWidth*(idx+1))
+                @selection.start + Math.floor(sectionWidth*idx),
+                @selection.start + Math.ceil(sectionWidth*(idx+1))
             )
             rangeMin = Math.min 0, @minQuery(
-                lower + Math.floor(sectionWidth*idx),
-                lower + Math.ceil(sectionWidth*(idx+1))
+                @selection.start + Math.floor(sectionWidth*idx),
+                @selection.start + Math.ceil(sectionWidth*(idx+1))
             )
 
             svgLine = document.createElementNS(@svgElement.namespaceURI,"line")
