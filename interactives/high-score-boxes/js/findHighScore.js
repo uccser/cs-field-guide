@@ -1,7 +1,7 @@
 //onload make array of 5 random ints
 this.randomInts = [];
 this.largest = 0;
-this.numberOfBoxes = 3
+this.numberOfBoxes = 15
 this.boxes = []
 this.gameStarted = false;
 this.secondsTaken = 0;
@@ -34,12 +34,15 @@ $(document).ready(function(){
 })
 
 $(document).on('click','.box', function (event) {
+	var filterVal = 'grayscale(100)';
+
 	$(".box").stop(true, true);
 	$(".box").show();
 	for (var i = 0; i < (boxes.length); i++) { 
 		if (document.getElementById('box' + i) ==  event.target) {
 			$(this).fadeOut(1000);
-			$(this).fadeTo(1000, 0.5);
+			$(this).fadeIn(1000);
+			$(this).addClass( "clicked" );
 			boxes[i].revealed_times += 1;
 		}
 	}
