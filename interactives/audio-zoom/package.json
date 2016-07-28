@@ -4,8 +4,9 @@
     "author": "James \"The Jamesernator\" Browning",
     "description": "This is a interactive to show internals of audio files",
     "dependencies": {
+        "jquery": "latest",
         "es6-simple-async": "latest",
-        "webworkify": "latest"
+        "rxjs": "latest"
     },
     "devDependencies": {
         "coffee-script": "latest",

@@ -1,10 +1,8 @@
 "use strict"
 async = require('es6-simple-async')
 rangeQuery = require('./rangeQuery.coffee').rangeQuery
-work = require('webworkify')
 PromiseWorker = require('./promiseWorker.coffee')
-Rx = require('rxjs')
-
+selectWithin = require('./selectWithin.coffee')
 
 toAudioBuffer = (arrayBuffer) ->
     ### This converts an ArrayBuffer into an AudioBuffer returning a Promise
@@ -55,6 +53,11 @@ class LoadingBar
         # Create a border around the loading bar
         @createLoadingBorder()
         @update(0)
+
+
+
+
+
 
     createLoadingBorder: ->
         ### This creates a border for the loading bar ###
@@ -111,6 +114,12 @@ class LoadingBar
         @svgElement.removeChild(@loadingBorder)
         @svgElement.removeChild(@loadingBar)
 
+toViewBoxCoords = (svgElement) ->
+    viewBox = svgElement.getAttribute('viewBox').split(',').map(Number)
+    svgWidth = svgElement.getAttribute('width')
+    svgHeight = svgElement.getAttribute('height')
+    return ([x, y]) ->
+        return [x/svgWidth*viewBox[2], y/svgHeight*viewBox[3]]
 
 
 class AudioGraph
@@ -120,6 +129,29 @@ class AudioGraph
     constructor: ({@svgElement, @dataLength, @maxQuery, @minQuery}) ->
         @viewBox = getViewBox(@svgElement)
         @renderRange(0, @dataLength)
+
+        @select = document.createElementNS(
+            @svgElement.namespaceURI,
+            'polygon'
+        )
+        @select.classList.add('select')
+        @svgElement.appendChild(@select)
+
+        selectWithin(@svgElement).forEach (select) =>
+            select.forEach ( [[startX], [endX]] ) =>
+                points = [
+                    [startX, 0]
+                    [endX, 0]
+                    [endX, @viewBox.height]
+                    [startX, @viewBox.height]
+                ].map(toViewBoxCoords(@svgElement))
+                    .map((point) -> point.join(',')).join(' ')
+                @select.setAttribute('points', points)
+
+    selectRange: (leftX, rightX) ->
+        ### Given leftX and rightX returns the range in channelData which is
+            spanned by the selection
+        ###
 
     clear: ->
         while @svgElement.lastChild
@@ -167,6 +199,7 @@ class AudioGraph
     @fromChannelData: async (svgElement, channelData) ->
         ### This creates an Audio Graph from the given channel data ###
         dataLength = channelData.length
+        # create two query trees, one for querying max and one for querying min
         maxTree = maxWorker.postMessage {
             channelData: channelData
             functionString: max.toString()
@@ -175,26 +208,28 @@ class AudioGraph
             channelData: channelData
             functionString: min.toString()
         }
+
+        # set up a loading bar and progress whenever the tree workers send
+        # progress updates
         lastMinProgress = 0
         lastMaxProgress = 0
-
         loadingBar = new LoadingBar(svgElement)
 
         maxTree.progressed (progress) ->
             lastMaxProgress = progress
             loadingBar.update((lastMinProgress + lastMaxProgress)/2)
-            document.querySelector('#progress').innerHTML = "#{progress*100} %"
         minTree.progressed (progress) ->
             lastMinProgress = progress
             loadingBar.update((lastMinProgress + lastMaxProgress)/2)
-            document.querySelector('#progress').innerHTML = "#{progress*100} %"
+
+        # when they're done preprocessing the channelData dispose of the
+        # loading bar
         [minTree, maxTree] = yield Promise.all [
             minTree
             maxTree
         ]
         loadingBar.dispose()
-        window.maxTree = maxTree
-        window.minTree = minTree
+        # And finally return the AudioGraph with the queries
         return new AudioGraph {
             svgElement: svgElement
             dataLength: channelData.length

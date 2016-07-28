@@ -26,3 +26,9 @@
     fill: blue;
     fill-opacity: 1;
 }
+
+.select {
+    stroke-width: 0;
+    fill: grey;
+    fill-opacity: 0.3;
+}
