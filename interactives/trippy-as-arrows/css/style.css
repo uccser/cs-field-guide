@@ -7,4 +7,15 @@ body, html, svg {
 
 canvas {
   border: 1px solid black;
+  float: right;
+  width: 75%;
+  margin: 1%;
+}
+
+div#instructions {
+  position: absolute;
+  float: left;
+  width: 22%;
+  margin: 1%;
+  border: 2px solid black;
 }
