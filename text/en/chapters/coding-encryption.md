@@ -496,7 +496,7 @@ Public key encryption is very heavily used for online commerce (such as internet
 
 A very popular public key system is RSA. For this section on public key systems, we'll use RSA as an example.
 
-{panel type="teacher-note" summary="Ideas for RSA fun in the classroom"}
+{panel type="teacher-note" summary="Activity: Simulate Public Key Systems in the classroom"}
 One thing you might like to do is to ask each student to generate their key pair, and then email *the public key* to you. You should put all the public keys into a Google Document, along with the name of the student the public key corresponds with. The students should have read only access to the Google Document. When the students would like to send an encrypted message to one of their classmates, they can look up the person's public key in the Google Document, and then use it to encrypt the message.
 
 **Discussion Points**
@@ -506,7 +506,6 @@ There are a few interesting things you can discuss with the class.
 - Why should they only have read access to the Google Doc, wouldn't it have been easier for them to add their public key to it themselves?
 
 Private keys should never be given to anybody. The only person who needs access to it is the owner of it. Distributing the private key would lead to security problems. As for only giving them read-only access, if they had write access, they could modify the keys of their classmates (and even put their own public key next to somebody elses name!). The teacher acts as a trusted entity. This is similar to how public keys are managed in the real world! The teacher could also require students to show proof of ID when they give their public key, to ensure it really is them, but this might be a bit excessive in a classroom!
-
 {panel end}
 
 Firstly, you will need to generate a pair of keys using the key generator interactive. You should *keep the private key secret*, and *publicly announce the public key* so that your friends can send you messages (e.g. put it on the whiteboard, or email it to some friends). Make sure you save your keys somewhere so you don’t forget them – a text file would be best.
