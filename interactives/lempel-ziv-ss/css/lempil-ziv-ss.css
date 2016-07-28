@@ -4,6 +4,21 @@ textarea {
     display:block;
 }
 
+.interactive-input{
+	/*
+	float: left;
+	*/
+}
+input {
+	/*
+	float: left;
+	*/
+}
+
+#interactive-displayed-text {
+	font-family: "Courier New", Courier, monospace
+}
+
 .displayed-text { 
    white-space: pre-wrap;      /* CSS3 */   
    white-space: -moz-pre-wrap; /* Firefox */    

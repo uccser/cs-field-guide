@@ -2,8 +2,10 @@ var lempilZivSS = {};
 this.slidingWindow = 2000;
 this.textBeforeBits = 0;
 this.textAfterBits = 0;	
-this.sizeOfCharacterInBits = 8
-this.sizeOfLZSSPairInBits = 16
+this.sizeOfCharacterInBits = 8;
+this.sizeOfLZSSPairInBits = 16;
+
+this.encodedTextList = [];
 
 /*testString = "abcxxxxxxabcxxxxxxxabcd"
 $(document).ready(function(){
@@ -41,9 +43,9 @@ window.onload = function() {
 						timeStart = performance.now();
 						lzssEncode(reader.result, slidingWindows[i]);
 						timeEnd = performance.now();
-						console.log("Call to lzssEncode with .txt file with length " + reader.result.length + " took " + (timeEnd - timeStart) + " milliseconds with sliding window of " + slidingWindows[i]);
-						console.log("Text before encoding was " + textBeforeBits + " bits, and after it was " + textAfterBits + "bits which is a " + ((textAfterBits / textBeforeBits)) + "% compression");
- 						console.log("");
+						//console.log("Call to lzssEncode with .txt file with length " + reader.result.length + " took " + (timeEnd - timeStart) + " milliseconds with sliding window of " + slidingWindows[i]);
+						//console.log("Text before encoding was " + textBeforeBits + " bits, and after it was " + textAfterBits + "bits which is a " + ((textAfterBits / textBeforeBits)) + "% compression");
+ 						//console.log("");
 					}
 					
 					//###########################################################
@@ -71,6 +73,7 @@ function encodeTextArea() {
 
 function lzssEncode(stringToEncode, slidingWindowLength) {
 //make string to encode an array
+	encodedTextList = [];
 	textBeforeBits = 0;
 	textAfterBits = 0;	
 	$('#encodedText').empty();
@@ -112,6 +115,7 @@ function lzssEncode(stringToEncode, slidingWindowLength) {
 		if ((indexOfLongestMatchStart == -1) || (longestMatch.length < 3)) {
 			//console.log("No match found, not encoding");
 			$('#encodedText').append(stringToEncode[stringIndex]);
+			encodedTextList.push(stringToEncode[stringIndex]); //for encoded text array things
 			//console.log("appended " + stringToEncode[stringIndex]);
 			stringIndex++
 			textAfterBits += sizeOfCharacterInBits // add one character's worth of bits
@@ -122,65 +126,95 @@ function lzssEncode(stringToEncode, slidingWindowLength) {
 			//console.log("stringIndex is " + stringIndex + " and matchIndex is " + matchIndex);
 			$('#encodedText').append("<span style='color:red;'>" + "<" + ((stringIndex - indexOfLongestMatchStart)) + "," + longestMatch.length + ">" + "</span>")
 			//$('#encodedText').append( "<span style="color:blue">" + "<"((stringIndex - indexOfLongestMatchStart)) + "," + longestMatch.length + ">" + "</span");
+
+			//stuff for the encoded text array things
+			var thisPairList = [(stringIndex - indexOfLongestMatchStart), longestMatch.length];
+			encodedTextList.push(thisPairList);
+			//////
+
 			stringIndex += (longestMatch.length);
 			textAfterBits += sizeOfLZSSPairInBits //add one pair's worth of bits
+
+
 
 		}
 
 		//console.log("");
-		}
-
+	}
 
 	$('#testText').html(stringToEncode);
-	//$('#encodedText').html(stringToReturn);
 	textBeforeBits = $('#testText').text().length * sizeOfCharacterInBits;	
 
-	//stringToReturn;
+	parseEncodedTextList(encodedTextList, stringToEncode.split(''));
 
-
-		
-	}
-
-//for testing purposes, having the random string just consist of abc's makes it likely for some encoding to actually be done.
-function randomABCGenerator(length) {
-	randomABCString = "";
-	for (var i=0; i < length; i++) {
-		randomInt = getRandomInt(0, 4).p;
-		if (randomInt == 0) {
-			randomABCString += "a";
-		} else if (randomInt == 1) {
-			randomABCString += "b";
-		} else if (randomInt == 2) {
-			randomABCString += "c";
-		} else if (randomInt == 3) {
-			randomABCString += "d";
-		} else {
-			randomABCString += "e";
-		}
-		
-	}
-
-	return randomABCString;
 }
 
+function parseEncodedTextList(encodedTextList, rawTextList) {
+	console.log(encodedTextList);
+	console.log(rawTextList);
+
+	var encodedTextListIterator = 0
+
+	for (var i = 0; i < rawTextList.length;) {
+		current = rawTextList[i];
+		if (encodedTextList[encodedTextListIterator] instanceof Array) {
+			current = encodedTextList[encodedTextListIterator]
+			matchLength = current[1];
+
+			matchString = rawTextList.slice((i - current[0]), (i - current[0] + current[1])).join('');
+			console.log("Match text here should be " + matchString);
+
+			var iDiv = document.createElement('div');
+			iDiv.className = "interactive-input";
+			iDiv.style.width = matchLength + "ch";
+			iDiv.innerHTML += "<input type='text' name='pin' maxlength='" + matchLength + "' size='" + matchLength + "' >"
+
+			$('#interactive-displayed-text').append(iDiv);
+			i += (matchLength);
+			encodedTextListIterator += 1;
+
+
+		} else {
+			$('#interactive-displayed-text').append(current);
+			i++
+			encodedTextListIterator += 1;
+		}
+		console.log(current);
+		//if encodedTextList[i[]]
+	}
+}
+
+//each MatchObject will have a stepsBack, toEncode, what the text should say (for validation) and a div with a input inside it
+function createMatchObject(matchArray, matchString) {
+
+	var iDiv = document.createElement('div');
+	iDiv.className = "interactive-input";
+	iDiv.style.width = matchLength + "ch";
+	iDiv.innerHTML += "<input type='text' name='pin' maxlength='" + matchArray[0] + "' size='" + matchArray[0] + "' >"
+
+	var matchObject = {
+		stepsBack: matchArray[0],
+		toEncode: matchArray[1],
+		validationString: matchString,
+		divWithInput: iDiv
+	}
+
+
+
+}
 
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function getTestStringFromFile() {
-	alert("we in function!");
-	jQuery.get('testString.txt', function(data) {
-    	alert(data);
-	});
-}
+
 
 function testLongStringTime(lengthOfStringToTest) {
 	stringToTest = randomABCGenerator(lengthOfStringToTest) //length of teststring
 	timeStart = performance.now();
 	lzssEncode(stringToTest);
 	timeEnd = performance.now();
-	console.log("Call to lzssEncode with " + lengthOfStringToTest + "characters took " + (timeEnd - timeStart) + " milliseconds.")
+	//console.log("Call to lzssEncode with " + lengthOfStringToTest + "characters took " + (timeEnd - timeStart) + " milliseconds.")
 
 
 }
