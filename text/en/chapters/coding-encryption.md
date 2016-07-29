@@ -497,7 +497,7 @@ Public key encryption is very heavily used for online commerce (such as internet
 A very popular public key system is RSA. For this section on public key systems, we'll use RSA as an example.
 
 {panel type="teacher-note" summary="Activity: Simulate Public Key Systems in the classroom"}
-One thing you might like to do is to ask each student to generate their key pair, and then email *the public key* to you. You should put all the public keys into a Google Document, along with the name of the student the public key corresponds with. The students should have read only access to the Google Document. When the students would like to send an encrypted message to one of their classmates, they can look up the person's public key in the Google Document, and then use it to encrypt the message.
+Tell each student to generate their key pair, and then email *the public key* to you. You should put all the public keys into a Google Document, along with the name of the student the public key corresponds with. The students should have read only access to the Google Document. When the students would like to send an encrypted message to one of their classmates, they can look up the person's public key in the Google Document, and then use it to encrypt the message.
 
 **Discussion Points**
 
@@ -520,7 +520,7 @@ This next interactive is the encrypter, and it is used to encrypt messages with 
 
 To ensure you understand, try encrypting a short message with your **public key**. In the next section, there is an interactive that you can then use to decrypt the message with your private key.
 
-#### Decrypting messages with the private key
+### Decrypting messages with the private key
 
 Finally, this interactive is the decrypter. It is used to decrypt messages that were encrypted with your public key. In order to decrypt the messages, you will need your **private key**.
 
@@ -529,6 +529,49 @@ Finally, this interactive is the decrypter. It is used to decrypt messages that 
 Despite even your enemies knowing your public key (as you publicly announced it), they cannot use it to decrypt your messages which were encrypted using the public key. You are the only one who can decrypt messages, as that requires the private key which hopefully you are the only one who has access to.
 
 Note that this interactive’s implementation of RSA is just for demonstrating the concepts here and is not quite the same as the implementations used in live encryption systems.
+
+### Real World Problems
+
+On first glance, this system might seem flawless. But in practice, there are many potential problems which need to be addressed. The remainder of this section will investigate some of these problems.
+
+- **Public key not belonging to who it says it does**. Just because you are told a public key belongs to somebody, doesn't necessarily mean it does. If you use that public key to encrypt a secret message, and it turns out that it is actually the public key for a *different* person's private key, then they can encrypt your message! We need a way to prove that a public key actually does belong to somebody, and that the person is who they say they are.
+- **Private key no longer secret, but the people who use the public key to encrypt don't realise**. How does the owner of the public/ private key pair tell everybody in the world who has been using their public key, that it is no longer safe to use? What if you send out an email alert to all the users of it, but not all of them check their email, or accidentally delete it, or it goes in their spam folder?
+- **Known plain text attacks**. You might have noticed that if you used the same key to encode the same plaintext message twice, you got the same ciphertext each time. This could be a problem, because Eve could encode lots of different plaintext messages using Bob's public key (remember, she has access to it too!), so that she can see what the ciphertext message for each one looked like. Then, when Alice sends a message to Bob using his public Key, Eve can look at all her pieces of ciphertext and see if any of them are the same as the one Alice just sent Bob. Even a message such as "Yes" could give Eve information that Alice and Bob did not want her to have.
+
+### Digital Signatures
+
+Something else we can do is *encrypt messages with the* ***private key***. When a message was encrypted with the private key, it can only be decrypted with the public key (when the two keys are generated, it actually doesn't matter which was chosen to be the public key and which was chosen to be the private key). Have a go with the interactives above if you don't believe us. Just encrypt a message using the private key (paste the private key where you would normally paste the public key), and then decrypt it using the public key.
+
+Despite initially seeming like a strange thing to do, this has a valuable application: Proving that a message actually was sent by the private key holder. Whenever the private key holder sends a message to somebody, they can attach what is called a
+{glossary-definition term="Digital signature" definition="An encryption system that allows the receiver to verify that a document was sent by the person who claims to have sent it."}
+{glossary-link term="Digital signature"}digital signature{glossary-link end}.
+to the message. A digital signature is a small piece of text that has been encrypted using the **private key**. When the receiver receives the message, they can check that the message actually was from that person, by using the public key to decrypt the signature. If the signature will not decrypt with the public key, then the message could not be from the private key holder!
+
+This has the same function as a physical signature, but is more reliable because it is essentially impossible to forge. Some email systems use this so that you can be sure an email came from the person who claims to be sending it.
+
+This partially solves the problem of ensuring that messages are from who they say they are from.
+
+### Combining Digital Signatures with Encryption
+
+In practice, it is useful to combine both encryption and digital signatures. Alice and Bob should **each** have a public key and private key pair, so that they can communicate with one another. This means there are 4 keys involved in the communication between Alice and Bob.
+
+1. Alice's Private Key (Only known by Alice)
+2. Alice's Public Key (Known by everybody)
+3. Bob's Private Key (Only known by Alice)
+4. Bob's Public Key (Known by everybody)
+
+If Alice wants to send a message to Bob, so that only Bob can encrypt it, **and** Bob is able to ensure that the message actually was sent by Alice, then Alice does the following.
+
+1. Encrypting the message with her own (Alice's) Private Key (This is the digital signature part).
+2. Encrypting the message with Bob's Public Key (This is the encryption part).
+
+Bob then needs to decrypt the message by doing the following.
+
+1. Decrypting the message with his own (Bob's) Private Key (This is the decryption part).
+2. Decrypting the message with Alice's Public Key (This is the digital signature verification part).
+
+It does not matter whether Alice decides to encrypt with her own Private Key or with Bob's Public Key first. But Bob must use the corresponding keys in the opposite order. You can think of it like wrapping layers of paper around a parcel. Alice needs to wrap her parcel in a layer for encryption and a layer for her digital signature. When bob unwraps the parcel, the outermost layer, which is the one Alice added second, is the one he must remove first.
+
 
 {panel type="curiosity" summary="Can we reverse the RSA calculations?"}
 
@@ -574,23 +617,6 @@ It turns out that there is no known fast algorithm to solve the problem. One way
 There are slightly better solutions, but none of them shave off enough time to actually be useful for problems of the size of the one above!
 
 The chapter on [complexity and tractability](chapters/complexity-tractability.html) looks at more computer science problems that are surprisingly challenging to solve. If you found this stuff interesting, do read about Complexity and Tractability when you are finished here!
-{panel end}
-
-{panel type="curiosity" summary="Encrypting with the private key instead of the public key --- Digital Signatures!"}
-In order to encrypt a message, the public key is used. In order to decrypt it, the corresponding private key must be used. But what would happen if the message was encrypted using the *private* key? Could you then decrypt it with the public key?
-
-Initially this might sound like a pointless thing to do --- why would you encrypt a message that can be decrypted using a key that everybody in the world can access!?!  It turns out that indeed, encrypting a message with the private key and then decrypting it with the public key works, and it has a very useful application.
-
-The only person who is able to *encrypt* the message using the *private* key is the person who owns the private key. The public key will only decrypt the message if the private key that was used to encrypt it actually is the public key’s corresponding private key. If the message can’t be decrypted, then it could not have been encrypted with that private key.
-This allows the sender to prove that the message actually is from them, and is known as a
-{glossary-definition term="Digital signature" definition="An encryption system that allows the receiver to verify that a document was sent by the person who claims to have sent it."}
-{glossary-link term="Digital signature"}digital signature{glossary-link end}.
-
-You could check that someone is the authentic private key holder by giving them a phrase to encrypt with their private key. You then decrypt it with the public key to check that they were able to encrypt the phrase you gave them.
-
-This has the same function as a physical signature, but is more reliable because it is essentially impossible to forge.
-Some email systems use this so that you can be sure an email came from the person who claims to be sending it.
-
 {panel end}
 
 {comment}
