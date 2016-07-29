@@ -203,7 +203,9 @@ class AudioGraph
 
                 highlight.setAttribute('points', points)
 
-            proportionalCoords.last().forEach ( [[startX], [endX]] ) =>
+            proportionalCoords.takeLast(1).forEach ( [[startX], [endX]] ) =>
+                if startX > endX
+                    [startX, endX] = [endX, startX]
                 @svgElement.removeChild(highlight)
                 @zoom(startX, endX)
 
@@ -263,7 +265,7 @@ class AudioGraph
         svgLine = document.createElementNS(@svgElement.namespaceURI, "line")
         svgLine.setAttributeNS(null, "style", "stroke:red;stroke-width:1")
         svgLine.setAttributeNS(null, "x1", 0)
-        svgLine.setAttributeNS(null, "x2", @viewBox.height)
+        svgLine.setAttributeNS(null, "x2", @viewBox.width)
         svgLine.setAttributeNS(null, "y1", @viewBox.height/2)
         svgLine.setAttributeNS(null, "y2", @viewBox.height/2)
         @svgElement.appendChild(svgLine)

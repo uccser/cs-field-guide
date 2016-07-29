@@ -15,6 +15,10 @@
     fill: none;
 }
 
+.wave-line:hover {
+    stroke: blue;
+}
+
 .loading-border {
     fill: none;
     fill-opacity: 0;

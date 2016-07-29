@@ -251,9 +251,12 @@ AudioGraph = (function() {
           }).join(' ');
           return highlight.setAttribute('points', points);
         });
-        return proportionalCoords.last().forEach(function(arg1) {
-          var endX, ref, ref1, startX;
+        return proportionalCoords.takeLast(1).forEach(function(arg1) {
+          var endX, ref, ref1, ref2, startX;
           (ref = arg1[0], startX = ref[0]), (ref1 = arg1[1], endX = ref1[0]);
+          if (startX > endX) {
+            ref2 = [endX, startX], startX = ref2[0], endX = ref2[1];
+          }
           _this.svgElement.removeChild(highlight);
           return _this.zoom(startX, endX);
         });
@@ -323,7 +326,7 @@ AudioGraph = (function() {
     svgLine = document.createElementNS(this.svgElement.namespaceURI, "line");
     svgLine.setAttributeNS(null, "style", "stroke:red;stroke-width:1");
     svgLine.setAttributeNS(null, "x1", 0);
-    svgLine.setAttributeNS(null, "x2", this.viewBox.height);
+    svgLine.setAttributeNS(null, "x2", this.viewBox.width);
     svgLine.setAttributeNS(null, "y1", this.viewBox.height / 2);
     svgLine.setAttributeNS(null, "y2", this.viewBox.height / 2);
     return this.svgElement.appendChild(svgLine);
