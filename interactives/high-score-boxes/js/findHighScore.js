@@ -37,7 +37,7 @@ $(document).on('click','.box', function() {
 	$(".box").stop(true, true);
 	$(".box").show();
 	for (var i = 0; i < (boxes.length); i++) { 
-		if (document.getElementById('box' + i) ==  event.target) {
+		if (document.getElementById('box' + i) == event.target) {
 			$(this).fadeOut(1000);
 			$(this).fadeIn(1000);
 			boxes[i].revealed_times += 1;

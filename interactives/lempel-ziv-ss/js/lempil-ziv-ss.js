@@ -6,6 +6,7 @@ this.sizeOfCharacterInBits = 8;
 this.sizeOfLZSSPairInBits = 16;
 
 this.encodedTextList = [];
+this.allMatchObjects = [];
 
 /*testString = "abcxxxxxxabcxxxxxxxabcd"
 $(document).ready(function(){
@@ -26,14 +27,15 @@ window.onload = function() {
 				var reader = new FileReader();
 
 				reader.onload = function(e) {
-					/*
+					
 						timeStart = performance.now();
 						lzssEncode(reader.result, slidingWindow);
 						timeEnd = performance.now();
-						console.log("Call to lzssEncode with .txt file with length " + reader.result.length + " took " + (timeEnd - timeStart) + " milliseconds with sliding window of " + slidingWindow);
-						console.log("Text before encoding was " + textBeforeBits + " bits, and after it was " + textAfterBits + "bits which is a " + ((textAfterBits / textBeforeBits) * 100) + "% compression");
+						//console.log("Call to lzssEncode with .txt file with length " + reader.result.length + " took " + (timeEnd - timeStart) + " milliseconds with sliding window of " + slidingWindow);
+						//console.log("Text before encoding was " + textBeforeBits + " bits, and after it was " + textAfterBits + "bits which is a " + ((textAfterBits / textBeforeBits) * 100) + "% compression");
 					
- 					*/
+ 					
+ 					/*
 					//###execution time testing purposes, encodes string with many different sliding windows and outputs time taken
 					
 					var slidingWindows = [100, 500, 1000, 2000, 4000, 10000]
@@ -47,6 +49,7 @@ window.onload = function() {
 						//console.log("Text before encoding was " + textBeforeBits + " bits, and after it was " + textAfterBits + "bits which is a " + ((textAfterBits / textBeforeBits)) + "% compression");
  						//console.log("");
 					}
+					*/
 					
 					//###########################################################
 				}
@@ -59,12 +62,24 @@ window.onload = function() {
 				fileDisplayArea.innerText = "File not supported!"
 			}
 		});
-	//##############################################
-
-	//########## Encode Button ##################
-
-
 }
+
+$(document).on('blur', 'input', function() {
+	for (var i = 0; i < allMatchObjects.length; i++) {
+		console.log(allMatchObjects[i].inputElement)
+		if (allMatchObjects[i].inputElement == event.target) {
+			console.log("text in this input should be " + allMatchObjects[i].validationString);
+			console.log("text in the input actually is " + event.target.value);
+			if (event.target.value == allMatchObjects[i].validationString) {
+				console.log("Correct!");
+			} else {
+				console.log("incorrect!");
+			}			
+		}
+	}
+	console.log(event.target);
+
+});
 
 function encodeTextArea() {
 	var textInTextArea = document.getElementById("text-to-encode-textarea").value;
@@ -153,25 +168,29 @@ function parseEncodedTextList(encodedTextList, rawTextList) {
 	console.log(encodedTextList);
 	console.log(rawTextList);
 
-	var encodedTextListIterator = 0
+
+	var encodedTextListIterator = 0;
+
+	var matchNumber = 0; //used to assign id to each match object
 
 	for (var i = 0; i < rawTextList.length;) {
 		current = rawTextList[i];
 		if (encodedTextList[encodedTextListIterator] instanceof Array) {
 			current = encodedTextList[encodedTextListIterator]
 			matchLength = current[1];
-
 			matchString = rawTextList.slice((i - current[0]), (i - current[0] + current[1])).join('');
-			console.log("Match text here should be " + matchString);
+			//console.log("Match text here should be " + matchString);
 
-			var iDiv = document.createElement('div');
-			iDiv.className = "interactive-input";
-			iDiv.style.width = matchLength + "ch";
-			iDiv.innerHTML += "<input type='text' name='pin' maxlength='" + matchLength + "' size='" + matchLength + "' >"
 
-			$('#interactive-displayed-text').append(iDiv);
+			newMatchObject = createMatchObject(current, matchString, matchNumber)
+			matchNumber += 1;
 			i += (matchLength);
 			encodedTextListIterator += 1;
+
+			$('#interactive-displayed-text').append(newMatchObject.divWithInput	);
+
+
+
 
 
 		} else {
@@ -179,25 +198,37 @@ function parseEncodedTextList(encodedTextList, rawTextList) {
 			i++
 			encodedTextListIterator += 1;
 		}
-		console.log(current);
+		//console.log(current);
 		//if encodedTextList[i[]]
 	}
 }
 
 //each MatchObject will have a stepsBack, toEncode, what the text should say (for validation) and a div with a input inside it
-function createMatchObject(matchArray, matchString) {
+function createMatchObject(matchArray, matchString, matchNumber) {
 
 	var iDiv = document.createElement('div');
 	iDiv.className = "interactive-input";
 	iDiv.style.width = matchLength + "ch";
-	iDiv.innerHTML += "<input type='text' name='pin' maxlength='" + matchArray[0] + "' size='" + matchArray[0] + "' >"
+	iDiv.id = "matchDiv" + matchNumber;
+
+	var input = document.createElement("INPUT");
+	input.setAttribute("type", "text");
+	input.setAttribute("maxLength", matchArray[1]);
+	input.setAttribute("size", matchArray[1]);
+
+	iDiv.appendChild(input)
 
 	var matchObject = {
+		matchNumber: matchNumber,
 		stepsBack: matchArray[0],
 		toEncode: matchArray[1],
 		validationString: matchString,
+		inputElement: input,
 		divWithInput: iDiv
 	}
+	allMatchObjects.push(matchObject);
+
+	return matchObject
 
 
 
