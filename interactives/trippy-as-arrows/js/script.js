@@ -39,7 +39,22 @@ function draw() {
 }
 
 
+/* Draws the arrow and places in the middle of the grid */
 function drawArrow() {
+    /*
+     * Points of arrow referenced according to diagram below
+     *         p1
+     *         /\
+     *        /  \
+     *       /    \
+     *      /      \
+     *  p2 /__p3  __\p7
+     *        |  |p6
+     *        |  |
+     *        |  |
+     *        |__|
+     *       p4  p5
+    */
 
     // create new space to draw
     ctx.beginPath();
@@ -51,17 +66,39 @@ function drawArrow() {
     var arrow_width = 2.5;
     var arrow_height = 7;
 
-    ctx.moveTo(x, y);
-    ctx.lineTo(x - (arrow_width * square_size), y + (arrow_width * square_size));
-    ctx.lineTo(x - (square_size), y + (arrow_width * square_size));
-    ctx.lineTo(x - (square_size), y + (arrow_height * square_size));
-    ctx.lineTo(x + (square_size), y + (arrow_height * square_size));
-    ctx.lineTo(x + (square_size), y + (arrow_width * square_size));
-    ctx.lineTo(x + (arrow_width * square_size), y + (arrow_width * square_size));
-    ctx.moveTo(x, y);
+    var coordinates = {
+        "p1": [x, y],
+        "p2": [x - (arrow_width * square_size), y + (arrow_width * square_size)],
+        "p3": [x - (square_size), y + (arrow_width * square_size)],
+        "p4": [x - (square_size), y + (arrow_height * square_size)],
+        "p5": [x + (square_size), y + (arrow_height * square_size)],
+        "p6": [x + (square_size), y + (arrow_width * square_size)],
+        "p7": [x + (arrow_width * square_size), y + (arrow_width * square_size)]
+    }
+
+    ctx.moveTo(coordinates["p1"][0], coordinates["p1"][1]);
+    ctx.lineTo(coordinates["p2"][0], coordinates["p2"][1]);
+    ctx.lineTo(coordinates["p3"][0], coordinates["p3"][1]);
+    ctx.lineTo(coordinates["p4"][0], coordinates["p4"][1]);
+    ctx.lineTo(coordinates["p5"][0], coordinates["p5"][1]);
+    ctx.lineTo(coordinates["p6"][0], coordinates["p6"][1]);
+    ctx.lineTo(coordinates["p7"][0], coordinates["p7"][1]);
+    ctx.moveTo(coordinates["p1"][0], coordinates["p1"][1]);
+
+    // TODO working here
+    // NOTE: needs to change each input individually - edit html
+    /*
+    document.getElementById('p1-input').value = coordinates["p1"][0]
+    document.getElementById('p2-input').value = 
+    document.getElementById('p3-input').value = 
+    document.getElementById('p4-input').value = 
+    document.getElementById('p5-input').value = 
+    document.getElementById('p7-input').value = 
+    */
 
     // fill arrow with colour
     ctx.fillStyle = "#3F51B5";
     ctx.fill();
 
 }
+
