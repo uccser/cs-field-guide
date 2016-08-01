@@ -40,27 +40,28 @@ function draw() {
 
 
 function drawArrow() {
-    console.log(ctx);
 
     // create new space to draw
     ctx.beginPath();
 
-    // set start position
-    ctx.moveTo(500, 500);
-    // draw arrow
-    ctx.lineTo(400, 600);
-    ctx.lineTo(460, 600);
-    ctx.lineTo(460, 800);
-    ctx.lineTo(540, 800);
-    ctx.lineTo(540, 600);
-    ctx.lineTo(600, 600);
-    ctx.lineTo(500, 500);
+    var x = width / 2;
+    // taking mod of height ensures that the arrow starts exactly on a line
+    var y = (height / 3) - ((height / 3) % square_size);
+
+    var arrow_width = 2.5;
+    var arrow_height = 7;
+
+    ctx.moveTo(x, y);
+    ctx.lineTo(x - (arrow_width * square_size), y + (arrow_width * square_size));
+    ctx.lineTo(x - (square_size), y + (arrow_width * square_size));
+    ctx.lineTo(x - (square_size), y + (arrow_height * square_size));
+    ctx.lineTo(x + (square_size), y + (arrow_height * square_size));
+    ctx.lineTo(x + (square_size), y + (arrow_width * square_size));
+    ctx.lineTo(x + (arrow_width * square_size), y + (arrow_width * square_size));
+    ctx.moveTo(x, y);
 
     // fill arrow with colour
     ctx.fillStyle = "#3F51B5";
     ctx.fill();
 
-    //var x = width / 2;
-    //var y = height / 2;
-    //ctx.fillRect(x, y, 100, 100);
 }
