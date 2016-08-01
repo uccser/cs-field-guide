@@ -34,5 +34,33 @@ function draw() {
         }
     }
 
+    drawArrow();
+
 }
 
+
+function drawArrow() {
+    console.log(ctx);
+
+    // create new space to draw
+    ctx.beginPath();
+
+    // set start position
+    ctx.moveTo(500, 500);
+    // draw arrow
+    ctx.lineTo(400, 600);
+    ctx.lineTo(460, 600);
+    ctx.lineTo(460, 800);
+    ctx.lineTo(540, 800);
+    ctx.lineTo(540, 600);
+    ctx.lineTo(600, 600);
+    ctx.lineTo(500, 500);
+
+    // fill arrow with colour
+    ctx.fillStyle = "#3F51B5";
+    ctx.fill();
+
+    //var x = width / 2;
+    //var y = height / 2;
+    //ctx.fillRect(x, y, 100, 100);
+}
