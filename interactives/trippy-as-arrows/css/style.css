@@ -8,10 +8,12 @@ body, html, svg {
 }
 
 canvas {
-  border: 1px solid black;
-  float: right;
+  position: absolute;
+  right: 0px;
   width: 75%;
   margin: 1%;
+  border: 1px solid black;
+  z-index: -1;
 }
 
 div#instructions {
