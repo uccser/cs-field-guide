@@ -1,20 +1,66 @@
-textarea {
+#text-to-encode-textarea {
+  
     width: 50em;
     height: 10em;
     display:block;
+    
+}
+
+.net-div {
+  opacity: 0.2;
+  position: absolute;
+  
+  min-height: 1.25em;
+  
+  
+  width: 1ch;
+  pointer-events: none;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+  -khtml-user-select: none;    /* Konqueror */
+  -moz-user-select: none;      /* Firefox */
+  -ms-user-select: none;       /* Internet Explorer/Edge */
+  user-select: none;           /* Non-prefixed version, currently
+                                  not supported by any browser */
+  /*
+  top: 0em;
+  left: 2ch;
+  */
 }
 
 .interactive-input{
-	/*
-	float: left;
-	*/
-}
-input {
-  
+    /*font-family: "Courier New", Courier, monospace
+
+    display: inline;	
+    resize: vertical;
+    */
 }
 
+/*
+textarea {
+  display: inline;
+}
+*/
+div input,
+input {
+  display: inline;
+  border-width: 0.3px;
+  padding: 0px;
+
+}
+ 
+/*
+#interactive-displayed-text-highlight-container {
+  position: absolute;
+  z-index: 10
+}
+*/
+
 #interactive-displayed-text {
-	font-family: "Courier New", Courier, monospace
+	font-family: "Courier New", Courier, monospace;
+  position: relative;
+  line-height: 1.25;
+
 }
 
 .displayed-text { 
