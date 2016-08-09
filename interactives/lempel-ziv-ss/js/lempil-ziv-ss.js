@@ -8,11 +8,18 @@ this.sizeOfLZSSPairInBits = 16;
 this.encodedTextList = [];
 this.allMatchObjects = [];
 
-/*testString = "abcxxxxxxabcxxxxxxxabcd"
-$(document).ready(function(){
-    $('#testText').html(testString);
-    })
+/*
+var matchObject = {
+		positionInString: positionInString,
+		matchNumber: matchNumber,
+		stepsBack: matchArray[0],
+		toEncode: matchArray[1],
+		validationString: matchString,
+		inputElement: input,
+		//divWithInput: iDiv
+	}
 */
+
 //file input stuff
 window.onload = function() {
 	//########### File Input things#################
@@ -81,6 +88,29 @@ $(document).on('blur', 'input', function() {
 	console.log(event.target);
 
 });
+
+//on mouseover an input, highlight what should go in the input
+$(document).on('mouseover', 'input', function() {
+	for (var i = 0; i < allMatchObjects.length; i++) {
+		if (allMatchObjects[i].inputElement == event.target) {
+			correctMatchObject = allMatchObjects[i]; // this is the one we want 'coordinates' from
+		}
+	}
+	startOfHighlighting = (correctMatchObject.positionInString - correctMatchObject.stepsBack);
+	endOfHighlighting = (startOfHighlighting + correctMatchObject.toEncode);
+	$('.net-div').slice(startOfHighlighting, endOfHighlighting).addClass('highlight');
+})
+
+$(document).on('mouseout', 'input', function() {
+	for (var i = 0; i < allMatchObjects.length; i++) {
+		if (allMatchObjects[i].inputElement == event.target) {
+			correctMatchObject = allMatchObjects[i]; // this is the one we want 'coordinates' from
+		}
+	}
+	startOfHighlighting = (correctMatchObject.positionInString - correctMatchObject.stepsBack);
+	endOfHighlighting = (startOfHighlighting + correctMatchObject.toEncode);
+	$('.net-div').slice(startOfHighlighting, endOfHighlighting).removeClass('highlight');
+})
 
 function encodeTextArea() {
 	var textInTextArea = document.getElementById("text-to-encode-textarea").value;
@@ -184,7 +214,7 @@ function parseEncodedTextList(encodedTextList, rawTextList) {
 
 		//for newlines for netdivs
 		if (current.match(/\r\n|\r|\n/)) {
-			console.log("newline detected");
+			//console.log("newline detected");
 			howManyDown += 1.2;
 			howManyAcross = 0;
 		}
@@ -198,7 +228,7 @@ function parseEncodedTextList(encodedTextList, rawTextList) {
 			//console.log("Match text here should be " + matchString);
 
 
-			newMatchObject = createMatchObject(current, matchString, matchNumber)
+			newMatchObject = createMatchObject(i, current, matchString, matchNumber)
 			matchNumber += 1;
 			
 			encodedTextListIterator += 1;
@@ -206,9 +236,8 @@ function parseEncodedTextList(encodedTextList, rawTextList) {
 			$('#interactive-displayed-text').append(newMatchObject.inputElement);
 
 			for (var j = 0; j < matchLength; j++) {
-				netDiv = createNetDiv((i + j), howManyAcross, howManyDown);
 				howManyAcross += 1
-				console.log("howManyAcross is: " + howManyAcross + " and howManyDown is: " + howManyDown);
+				//console.log("howManyAcross is: " + howManyAcross + " and howManyDown is: " + howManyDown);
 
 				$('#interactive-displayed-text').append(netDiv)
 			}
@@ -219,7 +248,7 @@ function parseEncodedTextList(encodedTextList, rawTextList) {
 			encodedTextListIterator += 1;
 
 			netDiv = createNetDiv(i, howManyAcross, howManyDown);
-			console.log("howManyAcross is: " + howManyAcross + " and howManyDown is: " + howManyDown);
+			//console.log("howManyAcross is: " + howManyAcross + " and howManyDown is: " + howManyDown);
 			howManyAcross += 1;
 
 			$('#interactive-displayed-text').append(netDiv)
@@ -227,7 +256,7 @@ function parseEncodedTextList(encodedTextList, rawTextList) {
 
 		}
 
-		console.log("howManyAcross is: " + howManyAcross + " and howManyDown is: " + howManyDown);
+		//console.log("howManyAcross is: " + howManyAcross + " and howManyDown is: " + howManyDown);
 		//console.log(current);
 		//if encodedTextList[i[]]
 
@@ -241,11 +270,14 @@ function createNetDiv(divIndex, howManyAcross, howManyDown) {
 
 	netDiv = document.createElement("DIV");
 
+	//TODO figure out positioning of netdivs
+	/*
 	if ((divIndex % 2) == 0) {
 		netDiv.style.background = 'red';
 	} else {
 		netDiv.style.background = 'blue';
 	}
+	*/
 
 	netDiv.className = "net-div";
 	netDiv.id = "netDiv" + divIndex;
@@ -260,29 +292,17 @@ function createNetDiv(divIndex, howManyAcross, howManyDown) {
 }
 
 //each MatchObject will have a stepsBack, toEncode, what the text should say (for validation) and a div with a input inside it
-function createMatchObject(matchArray, matchString, matchNumber) {
-
-	/*
-	var iDiv = document.createElement('div');
-	iDiv.className = "interactive-input";
-	iDiv.style.width = matchLength + "ch";
-	iDiv.id = "matchDiv" + matchNumber;
-	*/
+function createMatchObject(positionInString, matchArray, matchString, matchNumber) {
 
 	var input = document.createElement("INPUT");
-	//inputTextArea.maxLength = matchArray[1];
-	//inputTextArea.style.overflow = "hidden";
-	//inputTextArea.cols = 20;
-	//inputTextArea.rows = 1;
-	//inputTextArea.style.height = "1.5em";
-	//inputTextArea.style.width = ((matchArray[1]) + "em");
-	//inputTextArea.style.resize = "none";
+
 	input.setAttribute("maxLength", matchArray[1]);
 	input.setAttribute("size", matchArray[1]);
 
 	//iDiv.appendChild(input)
 
 	var matchObject = {
+		positionInString: positionInString,
 		matchNumber: matchNumber,
 		stepsBack: matchArray[0],
 		toEncode: matchArray[1],

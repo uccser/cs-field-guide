@@ -36,6 +36,11 @@
     */
 }
 
+.net-div.highlight {
+  background-color: green;
+}
+
+
 /*
 textarea {
   display: inline;
