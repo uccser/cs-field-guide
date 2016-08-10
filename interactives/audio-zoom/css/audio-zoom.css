@@ -1,22 +1,11 @@
-#img {
-    border: 1px solid black;
-}
-
-#graph {
-    fill: none;
+.audio-bar {
+    fill: grey;
     stroke: black;
     stroke-width: 1;
 }
 
-
-.wave-line {
-    stroke: black;
-    stroke-width: 1;
-    fill: none;
-}
-
-.wave-line:hover {
-    stroke: blue;
+.audio-bar:hover {
+    fill: blue;
 }
 
 .loading-border {
@@ -35,4 +24,15 @@
     stroke-width: 0;
     fill: grey;
     fill-opacity: 0.3;
+}
+
+.tooltip-text {
+    pointer-events: none;
+    stroke: black;
+    font-size: 25px;
+}
+
+.tooltip-background {
+    pointer-events: none;
+    fill: white;
 }

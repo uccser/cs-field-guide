@@ -1,6 +1,6 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 "use strict";
-var AudioGraph, LoadingBar, PromiseWorker, Selection, async, getViewBox, max, min, rangeQuery, relativeTo, selectWithin, toAudioBuffer, toProportionalCoords, toViewBoxCoords;
+var AudioGraph, BoundedGraph, LoadingBar, PromiseWorker, Selection, ToolTip, async, getViewBox, max, min, rangeQuery, relativeTo, sections, selectWithin, svgRectangle, toAudioBuffer, toProportionalCoords, toViewBoxCoords;
 
 async = require('es6-simple-async');
 
@@ -58,7 +58,7 @@ getViewBox = function(svgElement) {
 
   /* This extracts the viewBox of an svg node */
   var viewBox;
-  viewBox = svgElement.getAttribute('viewBox').split(',').map(Number);
+  viewBox = svgElement.getAttribute('viewBox').split(/,|\s/).map(Number);
   return {
     minX: viewBox[0],
     minY: viewBox[1],
@@ -131,7 +131,11 @@ relativeTo = function(element) {
     var x, y;
     x = event.pageX - element.getBoundingClientRect().left;
     y = event.pageY - element.getBoundingClientRect().top;
-    return [x, y];
+    return {
+      x: x,
+      y: y,
+      event: event
+    };
   };
 };
 
@@ -143,13 +147,16 @@ toProportionalCoords = function(element) {
   var height, ref, width;
   ref = element.getBoundingClientRect(), width = ref.width, height = ref.height;
   return function(arg) {
-    var x, y;
-    x = arg[0], y = arg[1];
+    var event, x, y;
+    x = arg.x, y = arg.y, event = arg.event;
 
     /* The result of this function isn't neccesarily in the range
         [0, 1] as its purely relative to not just within
      */
-    return [x / width, y / height];
+    return {
+      x: x / width,
+      y: y / height
+    };
   };
 };
 
@@ -166,22 +173,43 @@ toViewBoxCoords = function(svgElement) {
     throw new Error("SVGElement doesn't use the viewBox coordinate system");
   }
   return function(arg) {
-    var x, y;
-    x = arg[0], y = arg[1];
-    return [x * viewBox[2], y * viewBox[3]];
+    var event, x, y;
+    x = arg.x, y = arg.y, event = arg.event;
+    return {
+      x: x * viewBox[2],
+      y: y * viewBox[3],
+      event: event
+    };
   };
 };
 
+svgRectangle = function(arg) {
+  var namespace, points, pointsString, rectangle, ref, svgElement, x1, x2, y1, y2;
+  x1 = arg.x1, x2 = arg.x2, y1 = arg.y1, y2 = arg.y2, svgElement = arg.svgElement;
+
+  /* Creates an SVG Polygon element shaped like a rectangle from
+      the given points
+   */
+  namespace = (ref = svgElement != null ? svgElement.namespaceURI : void 0) != null ? ref : "http://www.w3.org/2000/svg";
+  rectangle = document.createElementNS(namespace, "polygon");
+  points = [[x1, y1], [x1, y2], [x2, y2], [x2, y1]];
+  pointsString = points.map(function(point) {
+    return point.join(',');
+  }).join(' ');
+  rectangle.setAttributeNS(null, "points", pointsString);
+  return rectangle;
+};
+
 Selection = (function() {
-  function Selection(start1, end, dataLength1) {
+  function Selection(start1, end1, dataLength1) {
     this.start = start1 != null ? start1 : 0;
-    this.end = end != null ? end : null;
+    this.end = end1 != null ? end1 : null;
     this.dataLength = dataLength1 != null ? dataLength1 : null;
     if (this.end == null) {
       this.end = start + 1;
     }
     if (this.dataLength == null) {
-      this.dataLength = this.end - this.start;
+      this.dataLength = this.end;
     }
     this.length = this.end - this.start;
     if (this.dataLength === 0) {
@@ -189,7 +217,7 @@ Selection = (function() {
     }
   }
 
-  Selection.prototype.select = function(proportionStart, proportionEnd) {
+  Selection.prototype.selectProportion = function(proportionStart, proportionEnd) {
     var newEnd, newStart;
     if (proportionStart == null) {
       proportionStart = 0;
@@ -216,7 +244,135 @@ Selection = (function() {
     return new Selection(newStart, newEnd, this.dataLength);
   };
 
+  Selection.prototype.selectRange = function(start, end) {
+    var newEnd, newStart;
+    if (start == null) {
+      start = 0;
+    }
+    if (end == null) {
+      end = this.length;
+    }
+
+    /* This selects a range from within the given selection
+        e.g. new Selection(100, 200, 300).selectRange(0, 20) is equal to
+        new Selection(100, 120, 300)
+     */
+    if (!(start < end)) {
+      throw new Error("Start must be lower than end");
+    }
+    newStart = Math.min(this.dataLength, Math.max(0, this.start + start));
+    newEnd = Math.max(0, Math.min(this.dataLength, this.start + end));
+    if (newEnd - newStart === 0) {
+      if (newEnd === this.dataLength) {
+        newStart -= 1;
+      } else {
+        newEnd += 1;
+      }
+    }
+    return new Selection(newStart, newEnd, this.dataLength);
+  };
+
   return Selection;
+
+})();
+
+sections = function(selection, slices) {
+  var i, j, k, length, ref, ref1, result;
+  if (slices == null) {
+    slices = 1;
+  }
+
+  /* This returns an array of sections where each section describes
+      the start and end slice for each sub selection of size slices
+      the resulting array will always be of smaller or equal length
+      to the number of slices
+   */
+  result = [];
+  if (selection.length > slices) {
+    for (i = j = 0, ref = slices; 0 <= ref ? j < ref : j > ref; i = 0 <= ref ? ++j : --j) {
+      result.push({
+        selection: selection.selectProportion(i / slices, (i + 1) / slices),
+        startSlice: i,
+        endSlice: i + 1
+      });
+    }
+  } else {
+    length = selection.length;
+    for (i = k = 0, ref1 = length; 0 <= ref1 ? k < ref1 : k > ref1; i = 0 <= ref1 ? ++k : --k) {
+      result.push({
+        selection: selection.selectRange(i, i + 1),
+        startSlice: Math.floor(slices * i / length),
+        endSlice: Math.floor(slices * (i + 1) / length)
+      });
+    }
+  }
+  return result;
+};
+
+ToolTip = (function() {
+  function ToolTip(arg) {
+    var location, text;
+    this.parent = arg.parent, text = arg.text, location = arg.location;
+    this.textElement = document.createElementNS(this.parent.namespaceURI, "text");
+    this.background = document.createElementNS(this.parent.namespaceURI, "rect");
+    this.textElement.textContent = text;
+    this.appendTo(this.parent);
+    this.moveTo(location);
+  }
+
+  ToolTip.prototype.sizeBackground = function() {
+    var textBBox;
+    textBBox = this.textElement.getBBox();
+    this.background.setAttributeNS(null, "x", textBBox.x);
+    this.background.setAttributeNS(null, "y", textBBox.y);
+    this.background.setAttributeNS(null, "width", textBBox.width);
+    return this.background.setAttributeNS(null, "height", textBBox.height);
+  };
+
+  ToolTip.prototype.moveTo = function(location) {
+    this.textElement.setAttributeNS(null, "x", location.x);
+    this.textElement.setAttributeNS(null, "y", location.y);
+    return this.sizeBackground();
+  };
+
+  ToolTip.prototype.appendTo = function(element) {
+    var observer;
+    element.appendChild(this.background);
+    element.appendChild(this.textElement);
+    observer = new MutationObserver((function(_this) {
+      return function() {
+        return _this.sizeBackground();
+      };
+    })(this));
+    return observer.observe(this.textElement, {
+      attributes: true
+    });
+  };
+
+  ToolTip.prototype.dispose = function() {
+    return this.removeFrom(this.parent);
+  };
+
+  ToolTip.prototype.removeFrom = function(element) {
+    element.removeChild(this.textElement);
+    return element.removeChild(this.background);
+  };
+
+  return ToolTip;
+
+})();
+
+BoundedGraph = (function() {
+  BoundedGraph.prototype.svgNS = "http://www.w3.org/2000/svg";
+
+  function BoundedGraph(opts) {
+    var viewBox;
+    this.root = opts.parent;
+    this.graphElement = document.createElementNS(this.svgNS, 'svg');
+    viewBox = "0, 0, " + ", ";
+  }
+
+  return BoundedGraph;
 
 })();
 
@@ -227,10 +383,15 @@ AudioGraph = (function() {
 
   minWorker = new PromiseWorker(new Worker('./segmentTreeWorker.js'));
 
-  function AudioGraph(arg) {
-    this.svgElement = arg.svgElement, this.dataLength = arg.dataLength, this.maxQuery = arg.maxQuery, this.minQuery = arg.minQuery;
+  function AudioGraph(opts) {
+    var ref;
+    this.svgElement = opts.svgElement;
+    this.dataLength = opts.dataLength;
+    this.maxQuery = opts.maxQuery;
+    this.minQuery = opts.minQuery;
     this.selection = new Selection(0, this.dataLength);
     this.viewBox = getViewBox(this.svgElement);
+    this.slices = (ref = opts.slices) != null ? ref : this.viewBox.width;
     this.render();
     selectWithin(this.svgElement).forEach((function(_this) {
       return function(select) {
@@ -243,19 +404,19 @@ AudioGraph = (function() {
         });
         proportionalCoords.map(function(points) {
           return points.map(toViewBoxCoords(_this.svgElement));
-        }).forEach(function(arg1) {
-          var endX, points, ref, ref1, startX;
-          (ref = arg1[0], startX = ref[0]), (ref1 = arg1[1], endX = ref1[0]);
+        }).forEach(function(arg) {
+          var endX, points, ref1, ref2, startX;
+          (ref1 = arg[0], startX = ref1.x), (ref2 = arg[1], endX = ref2.x);
           points = [[startX, 0], [endX, 0], [endX, _this.viewBox.height], [startX, _this.viewBox.height]].map(function(point) {
             return point.join(',');
           }).join(' ');
           return highlight.setAttribute('points', points);
         });
-        return proportionalCoords.takeLast(1).forEach(function(arg1) {
-          var endX, ref, ref1, ref2, startX;
-          (ref = arg1[0], startX = ref[0]), (ref1 = arg1[1], endX = ref1[0]);
+        return proportionalCoords.takeLast(1).forEach(function(arg) {
+          var endX, ref1, ref2, ref3, startX;
+          (ref1 = arg[0], startX = ref1.x), (ref2 = arg[1], endX = ref2.x);
           if (startX > endX) {
-            ref2 = [endX, startX], startX = ref2[0], endX = ref2[1];
+            ref3 = [endX, startX], startX = ref3[0], endX = ref3[1];
           }
           _this.svgElement.removeChild(highlight);
           return _this.zoom(startX, endX);
@@ -266,7 +427,7 @@ AudioGraph = (function() {
       return function(event) {
         var x;
         event.preventDefault();
-        x = toProportionalCoords(_this.svgElement)(relativeTo(_this.svgElement)(event))[0];
+        x = toProportionalCoords(_this.svgElement)(relativeTo(_this.svgElement)(event)).x;
         if (event.deltaY < 0) {
           return _this.zoom(x - 0.25, x + 0.25);
         } else if (event.deltaY > 0) {
@@ -296,29 +457,124 @@ AudioGraph = (function() {
     /* Given a proportion to zoom to it zooms into such a selection
         and rerenders
      */
-    this.selection = this.selection.select(proportionStart, proportionEnd);
+    this.selection = this.selection.selectProportion(proportionStart, proportionEnd);
     return this.render();
   };
 
-  AudioGraph.prototype.render = function() {
-    var _max, _min, idx, lines, maxHeight, rangeMax, rangeMin, sectionWidth, svgLine;
+  AudioGraph.prototype.renderRectangle = function(arg) {
+    var bottom, left, rect, right, toolTip, tooltip, top, value;
+    top = arg.top, bottom = arg.bottom, left = arg.left, right = arg.right, value = arg.value, tooltip = arg.tooltip;
+    rect = svgRectangle({
+      x1: left,
+      x2: right,
+      y1: top,
+      y2: bottom
+    });
+    rect.setAttributeNS(null, "class", "audio-bar");
+    toolTip = null;
+    rect.addEventListener('mouseover', (function(_this) {
+      return function(event) {
+        var proportionalCoords, relativeCoords, viewBoxCoords;
+        relativeCoords = relativeTo(_this.svgElement)(event);
+        proportionalCoords = toProportionalCoords(_this.svgElement)(relativeCoords);
+        viewBoxCoords = toViewBoxCoords(_this.svgElement)(proportionalCoords);
+        if (tooltip) {
+          toolTip = new ToolTip({
+            location: viewBoxCoords,
+            parent: _this.svgElement,
+            text: value.sectionMax === 0 ? Math.round(value.sectionMin) : Math.round(value.sectionMax)
+          });
+          toolTip.background.classList.add('tooltip-background');
+          return toolTip.textElement.classList.add('tooltip-text');
+        }
+      };
+    })(this));
+    rect.addEventListener('mouseleave', function() {
+      if (toolTip != null) {
+        return toolTip.dispose();
+      }
+    });
+    return this.svgElement.appendChild(rect);
+  };
+
+  AudioGraph.prototype.render = async(function*() {
+    var center, j, len, maxHeight, pixelBottom, pixelLeft, pixelRight, pixelTop, pixelsPerSlice, rangePerSlice, ref, section, sectionMax, sectionMin;
+    this.clear();
+    center = this.viewBox.height / 2;
+    maxHeight = 65535 * Math.max(Math.abs(this.maxQuery(this.selection.start, this.selection.end)), Math.abs(this.minQuery(this.selection.start, this.selection.end)));
+    rangePerSlice = this.selection.length / this.slices;
+    pixelsPerSlice = this.viewBox.width / this.slices;
+    ref = sections(this.selection, this.slices);
+    for (j = 0, len = ref.length; j < len; j++) {
+      section = ref[j];
+      pixelLeft = section.startSlice * pixelsPerSlice;
+      pixelRight = section.endSlice * pixelsPerSlice;
+      sectionMax = 65535 * Math.max(0, this.maxQuery(section.selection.start, section.selection.end));
+      sectionMin = 65535 * Math.min(0, this.minQuery(section.selection.start, section.selection.end));
+      pixelBottom = center - center * sectionMin / maxHeight;
+      pixelTop = center - center * sectionMax / maxHeight;
+      (yield this.renderRectangle({
+        left: pixelLeft,
+        right: pixelRight,
+        top: pixelTop,
+        bottom: pixelBottom,
+        value: {
+          sectionMax: sectionMax,
+          sectionMin: sectionMin
+        },
+        tooltip: section.selection.length === 1
+      }));
+
+      /*
+      svgLine = document.createElementNS(@svgElement.namespaceURI,"line")
+      
+      svgLine.setAttributeNS(null, "class", "wave-line")
+      
+      svgLine.setAttributeNS(null, "x1", (pixelLeft+pixelRight)/2)
+      svgLine.setAttributeNS(null, "x2", (pixelLeft+pixelRight)/2)
+      
+      svgLine.setAttributeNS(null, "y1", pixelTop)
+      
+      svgLine.setAttributeNS(null, "y2", pixelBottom)
+      @svgElement.appendChild(svgLine)
+       */
+    }
+  });
+
+  AudioGraph.prototype._render = function() {
+    var _max, _min, idx, lines, maxHeight, rangeMax, rangeMin, sectionWidth, svgLine, viewWidth;
     this.clear();
     maxHeight = Math.max(Math.abs(this.maxQuery(this.selection.start, this.selection.end)), Math.abs(this.minQuery(this.selection.start, this.selection.end)));
     sectionWidth = this.selection.length / this.viewBox.width;
+    viewWidth = this.viewBox.width;
     lines = (function() {
-      var i, ref, results;
+      var j, ref, results;
       results = [];
-      for (idx = i = 0, ref = this.viewBox.width; 0 <= ref ? i < ref : i > ref; idx = 0 <= ref ? ++i : --i) {
+      for (idx = j = 0, ref = this.viewBox.width; 0 <= ref ? j < ref : j > ref; idx = 0 <= ref ? ++j : --j) {
         rangeMax = Math.max(0, this.maxQuery(this.selection.start + Math.floor(sectionWidth * idx), this.selection.start + Math.ceil(sectionWidth * (idx + 1))));
         rangeMin = Math.min(0, this.minQuery(this.selection.start + Math.floor(sectionWidth * idx), this.selection.start + Math.ceil(sectionWidth * (idx + 1))));
+
+        /*
+        audioBar = document.createElementNS(
+            @svgElement.namespaceURI,
+            "polygon"
+        )
+        
+        audioBar.setAttribute(null, "class", "audio-bar")
+        points = [
+            [viewWidth*idx, _max],
+        
+        ].map((point) -> point.join(',')).join(' ')
+        audioBar.setAttribute('points', points)
+         */
         svgLine = document.createElementNS(this.svgElement.namespaceURI, "line");
         svgLine.setAttributeNS(null, "class", "wave-line");
         svgLine.setAttributeNS(null, "x1", idx);
         svgLine.setAttributeNS(null, "x2", idx);
         _max = (this.viewBox.height / 2) * rangeMin / maxHeight + (this.viewBox.height / 2);
-        svgLine.setAttributeNS(null, "y1", _max);
+        svgLine.setAttributeNS(null, "y1", _max + 0.5);
         _min = (this.viewBox.height / 2) * rangeMax / maxHeight + (this.viewBox.height / 2);
-        svgLine.setAttributeNS(null, "y2", _min);
+        svgLine.setAttributeNS(null, "y2", _min + 0.5);
         results.push(this.svgElement.appendChild(svgLine));
       }
       return results;
@@ -650,7 +906,11 @@ relativeTo = function(element, event) {
   var x, y;
   x = event.pageX - element.getBoundingClientRect().left;
   y = event.pageY - element.getBoundingClientRect().top;
-  return [x, y];
+  return {
+    x: x,
+    y: y,
+    event: event
+  };
 };
 
 selectWithin = function(element) {
@@ -659,7 +919,9 @@ selectWithin = function(element) {
       observable gives a set of coordinates of the start and endpoints
    */
   var mouseDowns, mouseMoves, mouseUps;
-  mouseDowns = Observable.fromEvent(element, "mousedown");
+  mouseDowns = Observable.fromEvent(element, "mousedown").filter(function(event) {
+    return event.button === 0;
+  });
   mouseMoves = Observable.fromEvent(document.body, "mousemove");
   mouseUps = Observable.fromEvent(document.body, "mouseup");
   return mouseDowns.map(function(mouseDown) {

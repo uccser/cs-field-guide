@@ -8,13 +8,14 @@ relativeTo = (element, event) ->
     ###
     x = event.pageX - element.getBoundingClientRect().left
     y = event.pageY - element.getBoundingClientRect().top
-    return [x, y]
+    return {x, y, event}
 
 selectWithin = (element) ->
     ### This is an observable of selectWithin observables, each selectWithin
         observable gives a set of coordinates of the start and endpoints
     ###
     mouseDowns = Observable.fromEvent(element, "mousedown")
+        .filter((event) -> event.button is 0)
     mouseMoves = Observable.fromEvent(document.body, "mousemove")
     mouseUps   = Observable.fromEvent(document.body, "mouseup")
 

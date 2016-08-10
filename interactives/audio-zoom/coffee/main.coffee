@@ -33,7 +33,7 @@ getViewBox = (svgElement) ->
     ### This extracts the viewBox of an svg node ###
     viewBox = svgElement
         .getAttribute('viewBox')
-        .split(',')
+        .split(/,|\s/)
         .map(Number)
 
     return {
@@ -115,18 +115,25 @@ relativeTo = (element) -> (event) ->
     ###
     x = event.pageX - element.getBoundingClientRect().left
     y = event.pageY - element.getBoundingClientRect().top
-    return [x, y]
+    return {
+        x
+        y
+        event
+    }
 
 toProportionalCoords = (element) ->
     ### This returns a function that tranforms the given coordinates
         into proportions of the element
     ###
     {width, height} = element.getBoundingClientRect()
-    return ([x, y]) ->
+    return ({x, y, event}) ->
         ### The result of this function isn't neccesarily in the range
             [0, 1] as its purely relative to not just within
         ###
-        return [x/width, y/height]
+        return {
+            x: x/width
+            y: y/height
+        }
 
 toViewBoxCoords = (svgElement) ->
     ### This returns a function that transforms the given proportional
@@ -136,18 +143,45 @@ toViewBoxCoords = (svgElement) ->
         viewBox = svgElement.getAttribute('viewBox').split(',').map(Number)
     catch err
         throw new Error("SVGElement doesn't use the viewBox coordinate system")
-    return ([x, y]) ->
-        return [x*viewBox[2], y*viewBox[3]]
+    return ({x, y, event}) ->
+        return {
+            x: x*viewBox[2]
+            y: y*viewBox[3]
+            event: event
+        }
+
+svgRectangle = ({x1, x2, y1, y2, svgElement}) ->
+    ### Creates an SVG Polygon element shaped like a rectangle from
+        the given points
+    ###
+    namespace = svgElement?.namespaceURI ? "http://www.w3.org/2000/svg"
+    rectangle = document.createElementNS(
+        namespace,
+        "polygon"
+    )
+
+    points = [
+        [x1, y1],
+        [x1, y2],
+        [x2, y2],
+        [x2, y1]
+    ]
+
+    pointsString = points
+        .map((point) -> point.join(',')).join(' ')
+
+    rectangle.setAttributeNS(null, "points", pointsString)
+    return rectangle
 
 class Selection
     constructor: (@start=0, @end=null, @dataLength=null) ->
         @end ?= start + 1
-        @dataLength ?= @end - @start
+        @dataLength ?= @end
         @length = @end - @start
         if @dataLength is 0
             throw new Error('Data must be longer than 0')
 
-    select: (proportionStart=0, proportionEnd=1) ->
+    selectProportion: (proportionStart=0, proportionEnd=1) ->
         ### This returns a new selection that represents a selection
             of a selection
         ###
@@ -169,14 +203,147 @@ class Selection
 
         return new Selection(newStart, newEnd, @dataLength)
 
+    selectRange: (start=0, end=@length) ->
+        ### This selects a range from within the given selection
+            e.g. new Selection(100, 200, 300).selectRange(0, 20) is equal to
+            new Selection(100, 120, 300)
+        ###
+        unless start < end
+            throw new Error("Start must be lower than end")
+
+        newStart = Math.min(@dataLength, Math.max(0, @start + start))
+        newEnd   = Math.max(0, Math.min(@dataLength, @start + end))
+
+        if newEnd - newStart is 0
+            if newEnd is @dataLength
+                newStart -= 1
+            else
+                newEnd += 1
+
+        return new Selection(newStart, newEnd, @dataLength)
+
+sections = (selection, slices=1) ->
+    ### This returns an array of sections where each section describes
+        the start and end slice for each sub selection of size slices
+        the resulting array will always be of smaller or equal length
+        to the number of slices
+    ###
+    result = []
+    if selection.length > slices
+        for i in [0...slices]
+            result.push {
+                selection: selection.selectProportion(i/slices, (i+1)/slices)
+                startSlice: i
+                endSlice: i + 1
+            }
+    else
+        length = selection.length
+        for i in [0...length]
+            result.push {
+                selection: selection.selectRange(i, i+1)
+                startSlice: Math.floor(slices * i/length)
+                endSlice: Math.floor(slices * (i+1)/length)
+            }
+
+    return result
+
+class ToolTip
+    constructor: ({@parent, text, location}) ->
+        @textElement = document.createElementNS(@parent.namespaceURI, "text")
+        @background = document.createElementNS(@parent.namespaceURI, "rect")
+
+        @textElement.textContent = text
+        @appendTo(@parent)
+        @moveTo(location)
+
+    sizeBackground: ->
+        textBBox = @textElement.getBBox()
+        @background.setAttributeNS(null, "x", textBBox.x)
+        @background.setAttributeNS(null, "y", textBBox.y)
+        @background.setAttributeNS(null, "width", textBBox.width)
+        @background.setAttributeNS(null, "height", textBBox.height)
+
+    moveTo: (location) ->
+        @textElement.setAttributeNS(null, "x", location.x)
+        @textElement.setAttributeNS(null, "y", location.y)
+        @sizeBackground()
+
+
+    appendTo: (element) ->
+        element.appendChild(@background)
+        element.appendChild(@textElement)
+        observer = new MutationObserver =>
+            @sizeBackground()
+        observer.observe @textElement, {attributes: true}
+
+    dispose: ->
+        @removeFrom(@parent)
+
+    removeFrom: (element) ->
+        element.removeChild(@textElement)
+        element.removeChild(@background)
+
+class BoundedGraph
+    svgNS: "http://www.w3.org/2000/svg"
+    constructor: (opts) ->
+        @parent = opts.parent
+        @graphElement = document.createElementNS(@svgNS, 'svg')
+        @viewBox = opts.viewBox ? {width: 1000, height: 1000}
+        viewBoxAttr = "
+            0,
+            0,
+            #{@viewBox.width ? 1000},
+            #{@viewBox.height ? 1000}
+        "
+        @graphElement.setAttribute('viewBox', viewBoxAttr)
+        @slices = opts.slices ? @viewBox.width
+        @parent.appendChild(@graphElement)
+
+    placeAt: (location) ->
+        @graphElement.setAttribute('x', location.x)
+        @graphElement.setAttribute('y', location.y)
+        @graphElement.setAttribute('width', location.width)
+        @graphElement.setAttribute('height', location.height)
+
+    renderData: (sections) ->
+        throw new Error("Can't render abstract BoundedGraph")
+
+
+class RangeBarGraph extends BoundedGraph
+    renderData: (data, opts) ->
+        unless data.length <= @slices
+            throw new Error("More data than slices to place in")
+        max = data.map(([x1, x2]) -> x2).reduce ((x, acc) -> Math.max(x, acc))
+        min = data.map(([x1, x2]) -> x1).reduce ((x, acc) -> Math.min(x, acc))
+        diff = max - min
+        for item, idx in data
+            x1 = @viewBox.width * idx/data.length
+            x2 = @viewBox.width * (idx+1)/data.length
+            y1 = @viewBox.height - @viewBox.height * (item[0] - min)/diff
+            y2 = @viewBox.height - @viewBox.height * (item[1] - min)/diff
+            rect = svgRectangle {
+                x1, x2, y1, y2,
+                svgElement: @graphElement
+            }
+            @graphElement.appendChild(rect)
+            @_placeLabelAbove(rect, item)
+
+    _placeLabelAbove: (rect, labelText) ->
+        ### This places a label above the given rect ###
+        
 
 class AudioGraph
     maxWorker = new PromiseWorker(new Worker('./segmentTreeWorker.js'))
     minWorker = new PromiseWorker(new Worker('./segmentTreeWorker.js'))
 
-    constructor: ({@svgElement, @dataLength, @maxQuery, @minQuery}) ->
+    constructor: (opts) ->
+        @svgElement = opts.svgElement
+        @dataLength = opts.dataLength
+        @maxQuery   = opts.maxQuery
+        @minQuery   = opts.minQuery
         @selection = new Selection(0, @dataLength)
         @viewBox = getViewBox(@svgElement)
+        @slices = opts.slices ? @viewBox.width
         @render()
 
         selectWithin(@svgElement)
@@ -191,9 +358,10 @@ class AudioGraph
             proportionalCoords = select
                 .map((points) => points.map(toProportionalCoords(@svgElement)))
 
+
             proportionalCoords
             .map((points) => points.map(toViewBoxCoords(@svgElement)))
-            .forEach ( [[startX], [endX]] ) =>
+            .forEach ( [{x: startX}, {x: endX}] ) =>
                 points = [
                     [startX, 0]
                     [endX, 0]
@@ -203,7 +371,9 @@ class AudioGraph
 
                 highlight.setAttribute('points', points)
 
-            proportionalCoords.takeLast(1).forEach ( [[startX], [endX]] ) =>
+            proportionalCoords
+            .takeLast(1)
+            .forEach ( [{x: startX}, {x: endX}] ) =>
                 if startX > endX
                     [startX, endX] = [endX, startX]
                 @svgElement.removeChild(highlight)
@@ -211,7 +381,7 @@ class AudioGraph
 
         @svgElement.addEventListener 'wheel', (event) =>
             event.preventDefault()
-            [x] = toProportionalCoords(@svgElement)(
+            {x} = toProportionalCoords(@svgElement)(
                 relativeTo(@svgElement)(event)
             )
             if event.deltaY < 0
@@ -228,16 +398,102 @@ class AudioGraph
         ### Given a proportion to zoom to it zooms into such a selection
             and rerenders
         ###
-        @selection = @selection.select(proportionStart, proportionEnd)
+        @selection = @selection.selectProportion(proportionStart, proportionEnd)
         @render()
 
-    render: ->
+
+    renderRectangle: ({top, bottom, left, right, value, tooltip}) ->
+        rect = svgRectangle({x1: left, x2: right, y1: top, y2: bottom})
+        rect.setAttributeNS(null, "class", "audio-bar")
+
+        toolTip = null
+        rect.addEventListener 'mouseover', (event) =>
+            relativeCoords = relativeTo(@svgElement)(event)
+            proportionalCoords = toProportionalCoords(@svgElement)(
+                relativeCoords
+            )
+            viewBoxCoords = toViewBoxCoords(@svgElement)(proportionalCoords)
+            if tooltip
+                toolTip = new ToolTip {
+                    location: viewBoxCoords
+                    parent: @svgElement
+                    text: if value.sectionMax is 0
+                        Math.round(value.sectionMin)
+                    else
+                        Math.round(value.sectionMax)
+                }
+                toolTip.background.classList.add('tooltip-background')
+                toolTip.textElement.classList.add('tooltip-text')
+
+
+        rect.addEventListener 'mouseleave', ->
+            if toolTip?
+                toolTip.dispose()
+
+        @svgElement.appendChild(rect)
+
+    render: async ->
+        @clear()
+        # Find the max height needed to be rendered
+        center = @viewBox.height/2
+        maxHeight = 65535 * Math.max(
+            Math.abs(@maxQuery(@selection.start, @selection.end)),
+            Math.abs(@minQuery(@selection.start, @selection.end))
+        )
+        rangePerSlice = @selection.length / @slices
+        pixelsPerSlice = @viewBox.width / @slices
+
+        for section in sections(@selection, @slices)
+            pixelLeft = section.startSlice * pixelsPerSlice
+            pixelRight = section.endSlice * pixelsPerSlice
+            sectionMax = 65535 * Math.max 0, @maxQuery(
+                section.selection.start,
+                section.selection.end
+            )
+            sectionMin = 65535 * Math.min 0, @minQuery(
+                section.selection.start
+                section.selection.end
+            )
+
+            pixelBottom =  center - center*sectionMin/maxHeight
+
+            pixelTop = center - center*sectionMax/maxHeight
+
+            yield @renderRectangle {
+                left: pixelLeft
+                right: pixelRight
+                top: pixelTop
+                bottom: pixelBottom
+                value: {
+                    sectionMax,
+                    sectionMin,
+                }
+                tooltip: section.selection.length is 1
+            }
+            ###
+            svgLine = document.createElementNS(@svgElement.namespaceURI,"line")
+
+            svgLine.setAttributeNS(null, "class", "wave-line")
+
+            svgLine.setAttributeNS(null, "x1", (pixelLeft+pixelRight)/2)
+            svgLine.setAttributeNS(null, "x2", (pixelLeft+pixelRight)/2)
+
+            svgLine.setAttributeNS(null, "y1", pixelTop)
+
+            svgLine.setAttributeNS(null, "y2", pixelBottom)
+            @svgElement.appendChild(svgLine)
+            ###
+        return
+
+
+    _render: ->
         @clear()
         maxHeight = Math.max(
             Math.abs(@maxQuery(@selection.start, @selection.end)),
             Math.abs(@minQuery(@selection.start, @selection.end))
         )
         sectionWidth = @selection.length / @viewBox.width
+        viewWidth = @viewBox.width
         lines = for idx in [0...@viewBox.width]
             rangeMax = Math.max 0, @maxQuery(
                 @selection.start + Math.floor(sectionWidth*idx),
@@ -247,20 +503,33 @@ class AudioGraph
                 @selection.start + Math.floor(sectionWidth*idx),
                 @selection.start + Math.ceil(sectionWidth*(idx+1))
             )
+            ###
+            audioBar = document.createElementNS(
+                @svgElement.namespaceURI,
+                "polygon"
+            )
 
+            audioBar.setAttribute(null, "class", "audio-bar")
+            points = [
+                [viewWidth*idx, _max],
+
+            ].map((point) -> point.join(',')).join(' ')
+            audioBar.setAttribute('points', points)
+            ###
             svgLine = document.createElementNS(@svgElement.namespaceURI,"line")
 
             svgLine.setAttributeNS(null, "class", "wave-line")
 
-            svgLine.setAttributeNS(null, "x1", idx)
+            svgLine.setAttributeNS(null, "x1", idx )
             svgLine.setAttributeNS(null, "x2", idx)
 
             _max = (@viewBox.height/2)*rangeMin/maxHeight + (@viewBox.height/2)
-            svgLine.setAttributeNS(null, "y1", _max)
+            svgLine.setAttributeNS(null, "y1", _max + 0.5)
 
             _min = (@viewBox.height/2)*rangeMax/maxHeight + (@viewBox.height/2)
-            svgLine.setAttributeNS(null, "y2", _min)
+            svgLine.setAttributeNS(null, "y2", _min + 0.5)
             @svgElement.appendChild(svgLine)
+
 
         svgLine = document.createElementNS(@svgElement.namespaceURI, "line")
         svgLine.setAttributeNS(null, "style", "stroke:red;stroke-width:1")
