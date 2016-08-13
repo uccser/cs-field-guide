@@ -29,7 +29,7 @@
                          .attr("fill", "#00a2e8");
                     ui.addEventListener('click', function () {
                         // toggle pinned mode
-                        layout.pinNode(node, !layout.isNodePinned(node));
+                        layout.pinNode(node, layout.isNodePinned(node));
                     });
                     return ui;
                 });

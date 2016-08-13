@@ -1,0 +1,73 @@
+
+body, html, svg {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+}
+
+body {
+  background-color: #269;
+  /*background-size: 50% 50%, 50% 50%, 10px 10px, 10px 10px;*/
+  background-size: 80px 80px, 80px 80px, 40px 40px, 40px 40px;
+  /*background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;*/
+  /* seems to work like padding */
+  background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
+  /* white lines */
+  background-image: -webkit-linear-gradient(white 2px, transparent 2px),
+                  -webkit-linear-gradient(0, white 2px, transparent 2px),
+                  -webkit-linear-gradient(rgba(255,255,255,.3) 1px, transparent 1px),
+                  -webkit-linear-gradient(0, rgba(255,255,255,.3) 1px, transparent 1px);
+  background-image: -moz-linear-gradient(white 2px, transparent 2px),
+                  -moz-linear-gradient(0, white 2px, transparent 2px),
+                  -moz-linear-gradient(rgba(255,255,255,.3) 1px, transparent 1px),
+                  -moz-linear-gradient(0, rgba(255,255,255,.3) 1px, transparent 1px);
+  background-image: linear-gradient(white 2px, transparent 2px),
+                  linear-gradient(90deg, white 2px, transparent 2px),
+                  linear-gradient(rgba(255,255,255,.3) 1px, transparent 1px),
+                  linear-gradient(90deg, rgba(255,255,255,.3) 1px, transparent 1px);
+  -pie-background: linear-gradient(white 2px, transparent 2px) -2px -2px / 100px,
+                 linear-gradient(90deg, white 2px, transparent 2px) -2px -2px / 100px,
+                 linear-gradient(rgba(255,255,255,.3) 1px, transparent 1px) -1px -1px / 20px,
+                 linear-gradient(90deg, rgba(255,255,255,.3) 1px, transparent 1px) -1px -1px / 20px,
+                 #269;
+  behavior: url(/pie/PIE.htc);
+}
+
+
+div#instructions {
+  position: absolute;
+  float: left;
+  width: 22%;
+  margin: 1%;
+  text-align: center;
+}
+
+
+div#heading p, .input-row input{
+  display: inline-block;
+  width: 43%;
+  margin: 1px;
+  padding: 5px;
+}
+
+div#heading p {
+  font-family: "Cambria", Georgia, serif;
+  font-style: italic;
+}
+
+.input-row input {
+  border: 1px solid #FF7043;
+}
+
+div#instructions button {
+  margin: 1px;
+  padding: 5px;
+  background-color: #FF7043;
+  color: #FFF;
+  border: 1px solid #FF7043;
+  border-radius: 1px;
+  width: 96%;
+}
+
