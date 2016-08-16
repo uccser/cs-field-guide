@@ -1,0 +1,17 @@
+{
+    "chapters": {
+        "introduction": {
+            "en": {
+                "page_number": 1
+            }
+        },
+        "algorithms": {
+            "en": {
+                "page_number": 2
+            },
+            "de": {
+                "page_number": 1
+            }
+        }
+    }
+}
