@@ -65,7 +65,6 @@ class Guide(object):
             json.dump(self.structure, f, indent=4)
 
     def copy_static_files(self):
-        shutil.rmtree('output')
         outdir = 'output/static/main/images'
         if not os.path.exists(outdir):
             os.makedirs(outdir)
@@ -97,6 +96,7 @@ class Guide(object):
 
 
 def run():
+    shutil.rmtree('output')
     with open('generator/structure.json') as f:
         structure = json.load(f)
     guide = Guide(structure=structure)
