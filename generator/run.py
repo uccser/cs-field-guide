@@ -5,8 +5,7 @@ import markdown
 import sys
 from collections import defaultdict
 import shutil
-sys.path.insert(0, '/home/cosc/student/jlg108/dev/kordac')
-from csfg_extension import CSFGExtension
+import kordac.csfg_extension as csfg_ext
 
 PAGE_TEMPLATE = "generator/page_template.html"
 
@@ -21,7 +20,7 @@ class Page(object):
         self.lang = lang
         self.num = num
         self.title = None
-        self.mdx = CSFGExtension()
+        self.mdx = csfg_ext.CSFGExtension()
         self.required_files = {}
 
     def parse(self):
@@ -66,6 +65,7 @@ class Guide(object):
             json.dump(self.structure, f, indent=4)
 
     def copy_static_files(self):
+        shutil.rmtree('output')
         outdir = 'output/static/main/images'
         if not os.path.exists(outdir):
             os.makedirs(outdir)

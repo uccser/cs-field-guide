@@ -1,0 +1,3 @@
+[submodule "kordac"]
+	path = kordac
+	url = https://github.com/uccser/kordac/
