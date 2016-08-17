@@ -96,7 +96,8 @@ class Guide(object):
 
 
 def run():
-    shutil.rmtree('output')
+    if os.path.exists('output'):
+        shutil.rmtree('output')
     with open('generator/structure.json') as f:
         structure = json.load(f)
     guide = Guide(structure=structure)
