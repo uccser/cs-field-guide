@@ -7,13 +7,11 @@ body, html, svg {
   font-size: 20px;
 }
 
-body {
+div#container {
+  width: 90%;
+  height: 90%;
   background-color: #269;
-  /*background-size: 50% 50%, 50% 50%, 10px 10px, 10px 10px;*/
-  /*background-size: 80px 80px, 80px 80px, 40px 40px, 40px 40px;*/
-  /*background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;*/
-  /* seems to work like padding */
-  background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
+  background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px; /* seems to work like padding */
   /* white lines */
   background-image: -webkit-linear-gradient(white 2px, transparent 2px),
                   -webkit-linear-gradient(0, white 2px, transparent 2px),
