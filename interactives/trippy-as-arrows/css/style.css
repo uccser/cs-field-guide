@@ -8,6 +8,7 @@ body, html, svg {
 }
 
 div#container {
+  display: none;
   width: 90%;
   height: 90%;
   background-color: #269;
