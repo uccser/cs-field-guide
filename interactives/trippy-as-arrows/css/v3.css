@@ -10,7 +10,7 @@ body, html, svg {
 body {
   background-color: #269;
   /*background-size: 50% 50%, 50% 50%, 10px 10px, 10px 10px;*/
-  background-size: 80px 80px, 80px 80px, 40px 40px, 40px 40px;
+  /*background-size: 80px 80px, 80px 80px, 40px 40px, 40px 40px;*/
   /*background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;*/
   /* seems to work like padding */
   background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;

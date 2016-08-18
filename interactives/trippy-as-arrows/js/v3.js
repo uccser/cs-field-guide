@@ -1,10 +1,31 @@
-var ctx = document.getElementById("canvas").getContext("2d");
+//var ctx = document.getElementById("canvas").getContext("2d");
+
+//TODO convert to style guide -camel case not snake case
 
 var square_size = 40;
 var base_width = window.innerWidth * 0.75;
 var width = base_width - (base_width % square_size);
 var base_height = window.innerHeight * 0.95;
 var height = base_height - (base_height % square_size);
+
+// TODO there must be a better way to do this - onload?
+drawBackground();
+test();
+
+function drawBackground() {
+    //document.body.style.backgroundSize = "50% 50%, 50% 50%, 10px 10px, 10px 10px";
+    var square_size = 20;
+    var base_width = window.innerWidth;
+    //var width = base_width - (base_width % square_size);
+    var width = (base_width - (base_width % 20)) / 2;
+    console.log(width);
+
+    var background_size_format = width + "px " + width + "px, " + width + "px " + width + "px, " + square_size + "px " + square_size + "px, " + square_size + "px " + square_size + "px";
+    document.body.style.backgroundSize = background_size_format;
+}
+
+
+
 /* Draws the arrow and places in the middle of the grid */
 function drawArrow() {
     /*
