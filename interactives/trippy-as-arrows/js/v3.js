@@ -2,11 +2,11 @@
 
 //TODO convert to style guide -camel case not snake case
 
-var square_size = 40;
-var base_width = window.innerWidth * 0.75;
-var width = base_width - (base_width % square_size);
-var base_height = window.innerHeight * 0.95;
-var height = base_height - (base_height % square_size);
+var squareSize = 40;
+var baseWidth = window.innerWidth * 0.75;
+var width = baseWidth - (baseWidth % squareSize);
+var baseHeight = window.innerHeight * 0.95;
+var height = baseHeight - (baseHeight % squareSize);
 
 // TODO there must be a better way to do this - onload?
 drawBackground();
@@ -14,14 +14,14 @@ test();
 
 function drawBackground() {
     //document.body.style.backgroundSize = "50% 50%, 50% 50%, 10px 10px, 10px 10px";
-    var square_size = 20;
-    var base_width = window.innerWidth;
-    //var width = base_width - (base_width % square_size);
-    var width = (base_width - (base_width % 20)) / 2;
+    var squareSize = 20;
+    var baseWidth = window.innerWidth;
+    //var width = baseWidth - (baseWidth % squareSize);
+    var width = (baseWidth - (baseWidth % 20)) / 2;
     console.log(width);
 
-    var background_size_format = width + "px " + width + "px, " + width + "px " + width + "px, " + square_size + "px " + square_size + "px, " + square_size + "px " + square_size + "px";
-    document.body.style.backgroundSize = background_size_format;
+    var backgroungSizeFormat = width + "px " + width + "px, " + width + "px " + width + "px, " + squareSize + "px " + squareSize + "px, " + squareSize + "px " + squareSize + "px";
+    document.body.style.backgroundSize = backgroungSizeFormat;
 }
 
 
@@ -48,19 +48,19 @@ function drawArrow() {
 
     var x = width / 2;
     // taking mod of height ensures that the arrow starts exactly on a line
-    var y = (height / 3) - ((height / 3) % square_size);
+    var y = (height / 3) - ((height / 3) % squareSize);
 
-    var arrow_width = 2.5;
-    var arrow_height = 7;
+    var arrowWidth = 2.5;
+    var arrowHeight = 7;
 
     var coordinates = {
         "p1": [x, y],
-        "p2": [x - (arrow_width * square_size), y + (arrow_width * square_size)],
-        "p3": [x - (square_size), y + (arrow_width * square_size)],
-        "p4": [x - (square_size), y + (arrow_height * square_size)],
-        "p5": [x + (square_size), y + (arrow_height * square_size)],
-        "p6": [x + (square_size), y + (arrow_width * square_size)],
-        "p7": [x + (arrow_width * square_size), y + (arrow_width * square_size)]
+        "p2": [x - (arrowWidth * squareSize), y + (arrowWidth * squareSize)],
+        "p3": [x - (squareSize), y + (arrowWidth * squareSize)],
+        "p4": [x - (squareSize), y + (arrowHeight * squareSize)],
+        "p5": [x + (squareSize), y + (arrowHeight * squareSize)],
+        "p6": [x + (squareSize), y + (arrowWidth * squareSize)],
+        "p7": [x + (arrowWidth * squareSize), y + (arrowWidth * squareSize)]
     }
 
     ctx.moveTo(coordinates["p1"][0], coordinates["p1"][1]);
