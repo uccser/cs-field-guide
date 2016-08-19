@@ -5,34 +5,49 @@
 // TODO when hover over x/y inputs, light up corresponding point on arrow
 // NTS maybe use additional svgs of small circles that sit on top of each point (only show when hovered)
 
-/* NTS this is gross code
- * should go in a function or something
- */
-var container = document.getElementById('container'); // NTS is it more efficient to do this, or to access it directly everytime?...
-var squareSize = 20;
 
-var containerWidth = container.offsetWidth;
 
-var numSquares = Math.floor(containerWidth / squareSize);
-var midPoint = Math.floor(numSquares / 2);
-var xIntercept = midPoint * squareSize;
+window.onload = function() {
+    var container = document.getElementById('container'); // NTS is it more efficient to do this, or to access it directly everytime?...
+    var squareSize = 20;
 
-var containerHeight = container.offsetHeight;
-numSquares = Math.floor(containerHeight / squareSize);
-midPoint = Math.floor(numSquares / 2);
-yIntercept = midPoint * squareSize;
+    var containerWidth = container.offsetWidth;
+    var xNumSquares = Math.floor(containerWidth / squareSize);
+    var xMidPoint = Math.floor(xNumSquares / 2);
+    var xIntercept = xMidPoint * squareSize;
 
-/* end gross code */
+    var containerHeight = container.offsetHeight;
+    var yNumSquares = Math.floor(containerHeight / squareSize);
+    var yMidPoint = Math.floor(yNumSquares / 2);
+    var yIntercept = yMidPoint * squareSize;
 
-// NTS there must be a better way to do this - onload?
-drawBackground();
-drawArrow();
+
+    var dimensions = {
+        CONTAINER:       container, // only constant
+        containerWidth:  containerWidth,
+        containerHeight: containerHeight,
+        squareSize:      squareSize,
+        xNumSquares:     xNumSquares,
+        xMidPoint:       xMidPoint,
+        xIntercept:      xIntercept,
+        yNumSquares:     yNumSquares,
+        yMidPoint:       yMidPoint,
+        yIntercept:      yIntercept
+    };
+    // NTS there must be a better way to do this - onload?
+    drawBackground(dimensions);
+    drawArrow();
+
+}
+
 
 /*
  * Draws the graph background
  * TODO needs to update on window resize
  */
-function drawBackground() {
+function drawBackground(dimensions) {
+    // NTS WORKINGHERE
+    console.log(dimensions);
 
     // Buid the string for creating the grid background
     var backgroundSizeFormat = xIntercept + 'px ' + yIntercept + 'px, ' + xIntercept + 'px ' + yIntercept + 'px, ' + squareSize + 'px ' + squareSize + 'px, ' + squareSize + 'px ' + squareSize + 'px';
