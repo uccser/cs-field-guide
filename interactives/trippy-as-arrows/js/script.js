@@ -2,6 +2,9 @@
 
 // TODO set container width/height from within js
 
+// TODO when hover over x/y inputs, light up corresponding point on arrow
+// NTS maybe use additional svgs of small circles that sit on top of each point (only show when hovered)
+
 /* NTS this is gross code
  * should go in a function or something
  */
@@ -65,6 +68,7 @@ function drawArrow() {
      * find points in relative coord space
      * build arrow
      */
+
 
 }
 

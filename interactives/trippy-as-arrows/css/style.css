@@ -2,15 +2,22 @@
 body, html, svg {
   width: 100%;
   height: 100%;
+  margin: 0px;
   overflow: hidden;
   font-family: "Roboto", sans-serif;
   font-size: 20px;
 }
 
+
+svg {
+  position: absolute;
+}
+
+
 div#container {
-  display: none;
-  width: 90%;
-  height: 90%;
+  /*display: none;*/
+  width: 100%;
+  height: 100%;
   background-color: #269;
   background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px; /* seems to work like padding */
   /* white lines */
