@@ -211,14 +211,7 @@ function parseEncodedTextList(encodedTextList, rawTextList) {
 	for (var i = 0; i < rawTextList.length;) {
 		current = rawTextList[i];
 
-
-		//for newlines for netdivs
-		if (current.match(/\r\n|\r|\n/)) {
-			//console.log("newline detected");
-			howManyDown += 1.2;
-			howManyAcross = 0;
-		}
-
+		//if it's a match pair
 		if (encodedTextList[encodedTextListIterator] instanceof Array) {
 
 
@@ -247,11 +240,11 @@ function parseEncodedTextList(encodedTextList, rawTextList) {
 			$('#interactive-displayed-text').append(current);
 			encodedTextListIterator += 1;
 
-			netDiv = createNetDiv(i, howManyAcross, howManyDown);
+			netSpan = createNetSpan(i, howManyAcross, howManyDown);
 			//console.log("howManyAcross is: " + howManyAcross + " and howManyDown is: " + howManyDown);
 			howManyAcross += 1;
 
-			$('#interactive-displayed-text').append(netDiv)
+			$('#interactive-displayed-text').append(netSpan)
 			i++;
 
 		}
@@ -266,9 +259,12 @@ function parseEncodedTextList(encodedTextList, rawTextList) {
 	}
 }
 
-function createNetDiv(divIndex, howManyAcross, howManyDown) {
+function createNetSpan(divIndex, howManyAcross, howManyDown) {
 
+	netSpan = document.createElement("SPAN");
 	netDiv = document.createElement("DIV");
+	netSpan.className = "net-span";
+	netSpan.id = "netSpan" + divIndex;
 
 	//TODO figure out positioning of netdivs
 	
@@ -281,12 +277,13 @@ function createNetDiv(divIndex, howManyAcross, howManyDown) {
 
 	netDiv.className = "net-div";
 	netDiv.id = "netDiv" + divIndex;
-	netDiv.style.top = howManyDown + "em";
-	netDiv.style.left = howManyAcross + "ch";
+
+	netSpan.appendChild(netDiv);
 
 
 
-	return netDiv;
+
+	return netSpan;
 
 
 }

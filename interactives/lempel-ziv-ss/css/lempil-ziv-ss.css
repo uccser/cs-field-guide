@@ -6,9 +6,14 @@
     
 }
 
+.net-span {}
+
+
 .net-div {
   opacity: 0.2;
   position: absolute;
+
+  z-index: 5;
   
   min-height: 1.25em;
   
