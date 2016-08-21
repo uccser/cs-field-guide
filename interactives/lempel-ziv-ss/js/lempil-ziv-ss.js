@@ -74,7 +74,7 @@ window.onload = function() {
 //checking inputs on change for validation
 $(document).on('blur', 'input', function() {
 	for (var i = 0; i < allMatchObjects.length; i++) {
-		console.log(allMatchObjects[i].inputElement)
+		//console.log(allMatchObjects[i].inputElement)
 		if (allMatchObjects[i].inputElement == event.target) {
 			//console.log("text in this input should be " + allMatchObjects[i].validationString);
 			//console.log("text in the input actually is " + event.target.value);
@@ -85,7 +85,7 @@ $(document).on('blur', 'input', function() {
 			}			
 		}
 	}
-	console.log(event.target);
+	//console.log(event.target);
 
 });
 
@@ -271,13 +271,13 @@ function createNetDiv(divIndex, howManyAcross, howManyDown) {
 	netDiv = document.createElement("DIV");
 
 	//TODO figure out positioning of netdivs
-	/*
+	
 	if ((divIndex % 2) == 0) {
 		netDiv.style.background = 'red';
 	} else {
 		netDiv.style.background = 'blue';
 	}
-	*/
+	
 
 	netDiv.className = "net-div";
 	netDiv.id = "netDiv" + divIndex;
