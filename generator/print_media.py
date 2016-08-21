@@ -19,7 +19,7 @@ class PrintRenderer(object):
         file_location = os.path.join(self.math_cache_folder, filename)
         if not os.path.isfile(file_location):
             formula = formula.replace('\n', ' ')
-            request = requests.get( 'http://latex.codecogs.com/png.latex?\dpi{{120}} {formula}'.format(formula=formula))
+            request = requests.get( 'http://latex.codecogs.com/png.latex?\dpi{{120}} {formula}'.format(formula=formula), timeout=(13, 61))
             image = open(file_location, 'wb')
             image.write(request.content)
             image.close()

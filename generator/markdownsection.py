@@ -195,7 +195,7 @@ class Section:
                     if 'glossary-link-back-reference' in line:
                         self.regex_functions['panel'].log('This teacher only panel contains a glossary link with a back reference. We currently don\'t support back references within teacher only panels, please remove the reference.', self, match.group(0).split('\n')[0])
         else:
-            self.regex_functions['panel'].log("Panel type argument missing", self, match.group(0))
+            self.regex_functions['panel'].log("Panel type argument missing", self, match.group(0).split('\n')[0])
             html = ''
         return html
 

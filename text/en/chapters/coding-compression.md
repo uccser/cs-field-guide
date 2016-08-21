@@ -215,7 +215,9 @@ How much space have we saved using this alternate representation, and how can we
 
 In the original representation, 225 digits (ones and zeroes) were required to represent the image. Count up the number of commas and digits (but not spaces or newlines, ignore those) in the new representation. This is the number of characters required to represent the image with the new representation (to ensure you are on the right track, the first 3 rows that were given to you contain 29 characters).
 
-Assuming you got the new image representation correct, and counted correctly, you should have found there are 119 characters in the new image (double check if your number differs). This means that the new representation only requires around 53% as many characters to represent (calculated using 119/225). This is a significant reduction in the amount of space required to store the image --- it's about half the size. The new representation is a *compressed* form of the old one.
+Assuming you got the new image representation correct, and counted correctly, you should have found there are 121 characters in the new image (double check if your number differs).
+This means that the new representation only requires around 54% as many characters to represent (calculated using 121/225).
+This is a significant reduction in the amount of space required to store the image --- it's about half the size. The new representation is a *compressed* form of the old one.
 
 {panel type="curiosity" summary="Run length coding representation in practice"}
 In practice this method (with some extra tricks) can be used to compress images to about 15% of their original size. In real systems, the original image only uses one bit for every pixel to store the black and white values (not one character, which we used for our calculations).

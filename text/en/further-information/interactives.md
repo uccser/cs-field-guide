@@ -1,10 +1,29 @@
 # Interactives
 
 We have plenty of interactives throughout the CSFG, to teach many different computer science concepts.
+This page details some troubleshooting tips if you encounter issues, and a list of all available interactives.
 
 ## Troubleshooting
 
-Most of our interactives require a modern browser, if it's been updated in the last year you should be fine. We recommend [Google Chrome](https://www.google.com/chrome/) or [Mozilla Firefox](https://www.mozilla.org/en-US/firefox/). While most interactives work on both phones, tablets, and desktop computers, some of our more complex interactives require a desktop computer to achieve acceptable performance.
+Most of our interactives require a modern browser, if it's been updated in the last year you should be fine.
+We recommend:
+
+- [Google Chrome](https://www.google.com/chrome/)
+- [Mozilla Firefox](https://www.mozilla.org/en-US/firefox/)
+- [Microsoft Edge](https://www.microsoft.com/en-nz/windows/microsoft-edge)
+- [Safari](https://support.apple.com/downloads/safari)
+- [Opera](http://www.opera.com/)
+
+While most interactives work on both phones, tablets, and desktop computers, some of our more complex interactives require a desktop computer to achieve acceptable performance.
+
+### WebGL
+
+The computer graphics and vision chapters use [WebGL](https://en.wikipedia.org/wiki/WebGL), which is a system that can render 3D images in a web browser. It is relatively new, so older browsers and operating systems may not have it setup correctly.
+The [CanIUse website](http://caniuse.com/#search=webgl) is a quick way to check if WebGL will work in your browser on your operating system.
+The general rule of thumb is if you are using an up-to-date version of a browser and the drivers for your operating system are up-to-date and the computer has a suitable GPU, then it should work.
+
+If you are still having issues, this [answer on SuperUser](http://superuser.com/a/836833) is quite useful.
+Also try searching your browser version and operating system in Google.
 
 ## Available Interactives
 
