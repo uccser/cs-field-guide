@@ -4,6 +4,7 @@
 
 // TODO when hover over x/y inputs, light up corresponding point on arrow
 // NTS maybe use additional svgs of small circles that sit on top of each point (only show when hovered)
+// NTS passing around dimensions variable - might as well be global?
 
 
 
@@ -13,13 +14,11 @@ window.onload = function() {
 
     var containerWidth = container.offsetWidth;
     var xNumSquares = Math.floor(containerWidth / squareSize);
-    var xMidPoint = Math.floor(xNumSquares / 2);
-    var xIntercept = xMidPoint * squareSize;
+    var xIntercept = Math.floor(xNumSquares / 2) * squareSize;
 
     var containerHeight = container.offsetHeight;
     var yNumSquares = Math.floor(containerHeight / squareSize);
-    var yMidPoint = Math.floor(yNumSquares / 2);
-    var yIntercept = yMidPoint * squareSize;
+    var yIntercept = Math.floor(yNumSquares / 2) * squareSize;
 
 
     var dimensions = {
@@ -28,15 +27,13 @@ window.onload = function() {
         containerHeight: containerHeight,
         squareSize:      squareSize,
         xNumSquares:     xNumSquares,
-        xMidPoint:       xMidPoint,
         xIntercept:      xIntercept,
         yNumSquares:     yNumSquares,
-        yMidPoint:       yMidPoint,
         yIntercept:      yIntercept
     };
     // NTS there must be a better way to do this - onload?
     drawBackground(dimensions);
-    drawArrow();
+    drawArrow(dimensions);
 
 }
 
@@ -46,44 +43,63 @@ window.onload = function() {
  * TODO needs to update on window resize
  */
 function drawBackground(dimensions) {
-    // NTS WORKINGHERE
-    console.log(dimensions);
 
-    // Buid the string for creating the grid background
-    var backgroundSizeFormat = xIntercept + 'px ' + yIntercept + 'px, ' + xIntercept + 'px ' + yIntercept + 'px, ' + squareSize + 'px ' + squareSize + 'px, ' + squareSize + 'px ' + squareSize + 'px';
+    // Buid the css string for creating the grid background
+    var backgroundSizeFormat = dimensions.xIntercept + 'px ' + dimensions.yIntercept + 'px, ' +
+        dimensions.xIntercept + 'px ' + dimensions.yIntercept + 'px, '
+        + dimensions.squareSize + 'px ' + dimensions.squareSize + 'px, '
+        + dimensions.squareSize + 'px ' + dimensions.squareSize + 'px';
 
     // Apply the background styling to the container element
     container.style.backgroundSize = backgroundSizeFormat;
 }
 
 
-function drawArrow() {
+function drawArrow(dimensions) {
     /*
      * Points of arrow referenced according to diagram below
-     *         p1
+     *         p0
      *         /\
      *        /  \
      *       /    \
      *      /      \
-     *  p2 /__p3  __\p7
-     *        |  |p6
+     *  p1 /__p2  __\p6
+     *        |  |p5
      *        |  |
      *        |  |
      *        |__|
-     *       p4  p5
+     *       p3  p4
     */
 
-    /* NTS can access points in polygon with
-     * var p = polygon.points
-     * p.getItem(index of point)
-     * p.x = new value
-     * p.y = new value
-     */
-    /* TODO
-     * find points in relative coord space
-     * build arrow
-     */
+    var polygon = document.getElementsByTagName('polygon')[0]; // the svg arrow
+    var points = polygon.getAttribute('points'); // gets all points in form of string
 
+    // chosen these values at random, possible below in dimensions dictionary
+    var arrowWidth = 2.5;
+    var arrowHeight = 7;
+
+    var points = polygon.points; // object containing all points, length of list and number of points
+
+    points.getItem(0).x = dimensions.xIntercept;
+    points.getItem(0).y = dimensions.yIntercept;
+
+    points.getItem(1).x = dimensions.xIntercept - (arrowWidth * dimensions.squareSize);
+    points.getItem(1).y = dimensions.yIntercept + (arrowWidth * dimensions.squareSize);
+
+    points.getItem(2).x = dimensions.xIntercept - dimensions.squareSize;
+    points.getItem(2).y = dimensions.yIntercept + (arrowWidth * dimensions.squareSize);
+
+    points.getItem(3).x = dimensions.xIntercept - dimensions.squareSize;
+    points.getItem(3).y = dimensions.yIntercept + (arrowHeight * dimensions.squareSize);
+
+    points.getItem(4).x = dimensions.xIntercept + dimensions.squareSize;
+    points.getItem(4).y = dimensions.yIntercept + (arrowHeight * dimensions.squareSize);
+
+    points.getItem(5).x = dimensions.xIntercept + dimensions.squareSize;
+    points.getItem(5).y = dimensions.yIntercept + (arrowWidth * dimensions.squareSize);
+
+    points.getItem(6).x = dimensions.xIntercept + (arrowWidth * dimensions.squareSize);
+    points.getItem(6).y = dimensions.yIntercept + (arrowWidth * dimensions.squareSize);
 
 }
 
