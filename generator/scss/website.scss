@@ -149,6 +149,7 @@ ul.side-nav.fixed li a {
 }
 #page-subtitle-header {
   background-color: $secondary-color !important;
+  margin-bottom: 20px;
   h4 {
     line-height: 2rem !important;
     font-size: 1.5rem !important;
@@ -348,7 +349,10 @@ ul.panel {
 }
 .btn {
   text-transform: none !important;
-  margin-bottom: 1rem;
+  height: initial !important;
+  line-height: 1.5rem !important;
+  padding: 0.5rem !important;
+  margin-bottom: 1rem !important;
 }
 footer {
   color: $off-black;

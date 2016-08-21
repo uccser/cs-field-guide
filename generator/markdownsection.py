@@ -81,6 +81,8 @@ class Section:
             self.current_heading = self.heading
             self.title = heading_text
             page_heading = True
+            if self.file_node.filename_without_extension == 'index':
+                self.file_node.parent.title = self.title
         else:
             page_heading = False
             if heading_level <= self.current_heading.level:
@@ -407,8 +409,6 @@ class Section:
                 html = ''
         else:
             self.regex_functions['conditional'].log("Invalid context {} given".format(context), self, match.group(0))
-
-
         return html
 
 
@@ -425,7 +425,8 @@ class Section:
 
     def create_link_to_online_resource(self, resource_type, url):
         template = 'print_link_to_online_resource'
-        return self.html_templates[template].format(resource=resource_type, url=url)
+        text_value = self.guide.translations[template + '_' + resource_type]
+        return self.html_templates[template].format(text=text_value, url=url)
 
 
     def create_video_html(self, match):
@@ -494,8 +495,7 @@ class Section:
             if self.guide.output_type == WEB:
                 self.required_files['File'].add(filename)
                 output_path = os.path.join(self.html_path_to_guide_root, file_path)
-                button_text = self.html_templates['button-download-text'].format(text=text)
-                html = self.html_templates['button'].format(link=output_path, text=button_text)
+                html = self.html_templates['button'].format(link=output_path, text=text)
             elif self.guide.output_type == PDF:
                 url = os.path.join(self.guide.generator_settings['General']['Domain'], self.guide.language_code, file_path)
                 html = self.create_link_to_online_resource(text, url)
@@ -976,7 +976,7 @@ class HeadingNode:
 
         if self.guide.output_type == WEB:
             # Create section starts for Materialize ScrollSpy
-            if self.level == 2 and self.guide.generator_settings['HTML'][self.section.file_node.group_type] == 'website_page_chapter':
+            if self.level == 2 and self.section.file_node.settings['table_of_contents_sidebar']:
                 # Close previous section if needed
                 if self.section.sectioned:
                     html = self.section.html_templates['section-end']
