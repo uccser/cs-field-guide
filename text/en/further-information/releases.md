@@ -28,6 +28,7 @@ We have listed major changes for each release below.
 **Notable changes:**
 - **New video:** Formal Languages now has an introductory video.
 - **New interactive:** The [hexadecimal background colour interactive](interactives/hex-background-colour/index.html) allows a user to change the background colour of the page.
+- **New curriculum guide:** A guide for NCEA [Artificial Intelligence: Turing Test](https://docs.google.com/document/d/1TnP0sCW33Yhy4wQITDre1sirB0IonesCfdbO0WqJjow) has been added.
 - **Updated interactives:** The [box translation](interactives/box-translation/index.html) and [box rotation](interactives/box-rotation/index.html) interactives are now open source and have been given a new look and made mobile friendly.
 - **Generation improvements:** Basic translation support. Settings are now specific to each language, and contain the translation text.
 - **Website improvements:** Added [help guide](further-information/interactives.html) for WebGL interactives.
