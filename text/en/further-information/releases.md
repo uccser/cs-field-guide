@@ -19,6 +19,24 @@ We have listed major changes for each release below.
 
 ## Current Release
 
+### v2.7.0
+
+**Release date:** 23rd August 2016
+
+**Downloads:** [Source available on GitHub](https://github.com/uccser/cs-field-guide/releases/tag/v2.7.0)
+
+**Notable changes:**
+- **New video:** Formal Languages now has an introductory video.
+- **New interactive:** The [hexadecimal background colour interactive](interactives/hex-background-colour/index.html) allows a user to change the background colour of the page.
+- **Updated interactives:** The [box translation](interactives/box-translation/index.html) and [box rotation](interactives/box-rotation/index.html) interactives are now open source and have been given a new look and made mobile friendly.
+- **Generation improvements:** Basic translation support. Settings are now specific to each language, and contain the translation text.
+- **Website improvements:** Added [help guide](further-information/interactives.html) for WebGL interactives.
+- Also includes bug fixes to interactives, new links to supporting videos, and various text corrections from our staff and contributors.
+
+A full list of changes in this version is [available on GitHub](https://github.com/uccser/cs-field-guide/compare/v2.6.1...v2.7.0).
+
+## Older Releases
+
 ### v2.6.1
 
 **Release date:** 14th July 2016
@@ -27,8 +45,6 @@ We have listed major changes for each release below.
 
 **Notable changes:**
 - Fixed issue on Human Computer Interaction chapter where duplicate library was causing several UI elements to not behave correctly.
-
-## Older Releases
 
 ### v2.6.0
 
@@ -41,7 +57,7 @@ We have listed major changes for each release below.
 - **New feature:** Printer friendly webpages - When printing a page of the CSFG through a browser, the page displays in a printer friendly manner by hiding navigational panels, opening all panels, and providing extra links to online resources.
 - **New interactive:** The [binary cards interactive](interactives/binary-cards/index.html) emulates the Binary Cards CS Unplugged activity, used to teach binary numbers.
 - **New interactive:** The [high score boxes interactive](interactives/high-score-boxes/index.html) was developed to give an example of searching boxes to find a maximum value to the student.
-- **New interactive:** The [action menu interactive](interactives/action-menu/index.html) is a small dropdown menu with one option that has severe consequences, but no confirmation screen if user selects that option (used to demonstrate a key HCI concept).
+- **New interactive:** The [action menu interactive](interactives/action-menu/index.html) is a small dropdown menu with one option that has severe consequences, but no confirmation screen if the user selects that option (used to demonstrate a key HCI concept).
 - **Updated interactive:** The [trainsylvania interactive](interactives/trainsylvania/index.html) (and supporting images/files) have been given a fresh coat of colour and a new station name.
 - **Updated interactive:** The [trainsylvania planner interactive](interactives/trainsylvania-planner/index.html) is used alongside the trainsylvania interactive, and allows the user to input a path of train trips to see the resulting destination.
 - **Updated interactive:** The [base calculator](interactives/base-calculator/index.html) allows a student to calculate a number, using a specific number base (binary, hexadecimal, etc).
