@@ -32,18 +32,31 @@ function calculateAllTheThings() {
 
     var container = document.getElementById('container');
     var polygon = document.getElementsByTagName('polygon')[0]; // the svg arrow
+
     var squareSize = 20;
-
-    var containerWidth = container.offsetWidth;
-    var xNumSquares = Math.floor(containerWidth / squareSize);
-    var xIntercept = Math.floor(xNumSquares / 2) * squareSize;
-
-    var containerHeight = container.offsetHeight;
-    var yNumSquares = Math.floor(containerHeight / squareSize);
-    var yIntercept = Math.floor(yNumSquares / 2) * squareSize;
-
     var arrowWidth = 3;
     var arrowHeight = 8;
+
+    // width settings
+    var windowWidth = window.innerWidth;
+    var xNumSquares = Math.floor(windowWidth / squareSize);
+    var xIntercept = Math.floor(xNumSquares / 2) * squareSize;
+    var containerWidth = xIntercept * 2;
+
+    // height settings
+    var windowHeight = window.innerHeight;
+    var yNumSquares = Math.floor(windowHeight / squareSize);
+    var yIntercept = Math.floor(yNumSquares / 2) * squareSize;
+    var containerHeight = yIntercept * 2;
+
+    // restricts dimensions of container to match whole squares in grid
+    container.style.width = containerWidth + 'px';
+    container.style.height = containerHeight + 'px';
+
+    // WTF dynamically sets topMargin because CSS doesn't want to CSS...
+    var topMargin = (windowHeight - containerHeight) / 2;
+    container.style.marginTop = topMargin + 'px';
+
 
     dimensions = {
         CONTAINER:       container,
