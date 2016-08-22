@@ -1,4 +1,3 @@
-//var ctx = document.getElementById('canvas').getContext('2d');
 
 // TODO set container width/height from within js
 
@@ -70,36 +69,60 @@ function drawArrow(dimensions) {
      *        |__|
      *       p3  p4
     */
+    // TODO manipulate numbers as if center is (0,0) - i.e. needs negative values
 
     var polygon = document.getElementsByTagName('polygon')[0]; // the svg arrow
-    var points = polygon.getAttribute('points'); // gets all points in form of string
 
-    // chosen these values at random, possible below in dimensions dictionary
-    var arrowWidth = 2.5;
-    var arrowHeight = 7;
+    // arbitrary values, possible belong in dimensions dictionary
+    var arrowWidth = 3;
+    var arrowHeight = 8;
+    var offset = arrowHeight / 2;
 
-    var points = polygon.points; // object containing all points, length of list and number of points
+    var p0 = polygon.points.getItem(0);
+    p0.x = dimensions.xIntercept;
+    p0.y = dimensions.yIntercept - offset * dimensions.squareSize;
 
-    points.getItem(0).x = dimensions.xIntercept;
-    points.getItem(0).y = dimensions.yIntercept;
+    var p1 = polygon.points.getItem(1);
+    p1.x = dimensions.xIntercept - (arrowWidth * dimensions.squareSize);
+    p1.y = dimensions.yIntercept + (arrowWidth * dimensions.squareSize) - offset * dimensions.squareSize;
 
-    points.getItem(1).x = dimensions.xIntercept - (arrowWidth * dimensions.squareSize);
-    points.getItem(1).y = dimensions.yIntercept + (arrowWidth * dimensions.squareSize);
+    var p2 = polygon.points.getItem(2);
+    p2.x = dimensions.xIntercept - dimensions.squareSize;
+    p2.y = dimensions.yIntercept + (arrowWidth * dimensions.squareSize) - offset * dimensions.squareSize;
 
-    points.getItem(2).x = dimensions.xIntercept - dimensions.squareSize;
-    points.getItem(2).y = dimensions.yIntercept + (arrowWidth * dimensions.squareSize);
+    var p3 = polygon.points.getItem(3);
+    p3.x = dimensions.xIntercept - dimensions.squareSize;
+    p3.y = dimensions.yIntercept + (arrowHeight * dimensions.squareSize) - offset * dimensions.squareSize;
 
-    points.getItem(3).x = dimensions.xIntercept - dimensions.squareSize;
-    points.getItem(3).y = dimensions.yIntercept + (arrowHeight * dimensions.squareSize);
+    var p4 = polygon.points.getItem(4);
+    p4.x = dimensions.xIntercept + dimensions.squareSize;
+    p4.y = dimensions.yIntercept + (arrowHeight * dimensions.squareSize) - offset * dimensions.squareSize;
 
-    points.getItem(4).x = dimensions.xIntercept + dimensions.squareSize;
-    points.getItem(4).y = dimensions.yIntercept + (arrowHeight * dimensions.squareSize);
+    var p5 = polygon.points.getItem(5);
+    p5.x = dimensions.xIntercept + dimensions.squareSize;
+    p5.y = dimensions.yIntercept + (arrowWidth * dimensions.squareSize) - offset * dimensions.squareSize;
 
-    points.getItem(5).x = dimensions.xIntercept + dimensions.squareSize;
-    points.getItem(5).y = dimensions.yIntercept + (arrowWidth * dimensions.squareSize);
+    var p6 = polygon.points.getItem(6);
+    p6.x = dimensions.xIntercept + (arrowWidth * dimensions.squareSize);
+    p6.y = dimensions.yIntercept + (arrowWidth * dimensions.squareSize) - offset * dimensions.squareSize;
 
-    points.getItem(6).x = dimensions.xIntercept + (arrowWidth * dimensions.squareSize);
-    points.getItem(6).y = dimensions.yIntercept + (arrowWidth * dimensions.squareSize);
+    updateInputBoxes([p0, p1, p2, p3, p4, p5, p6]); // NTS maybe this list should be a variable
 
 }
+
+
+function updateInputBoxes(points) {
+
+    var inputId = '';
+
+    // uses index to determine which input box to reference
+    for (var i = 0; i < points.length; i++) {
+        inputId = 'p' + i + '-input-x';
+        document.getElementById(inputId).value = points[i].x;
+        inputId = 'p' + i + '-input-y';
+        document.getElementById(inputId).value = points[i].y;
+    }
+
+}
+
 
