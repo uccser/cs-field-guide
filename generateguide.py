@@ -659,7 +659,8 @@ def main():
                 pdf_guide = Guide(generator_settings=generator_settings, language_code=language, version=version, output_type=PDF, html_generator=html_generator, html_templates=html_templates, regex_list=regex_list)
             if not cmd_args.pdf_only:
                 guide = Guide(generator_settings=generator_settings, language_code=language, version=version, html_generator=html_generator, html_templates=html_templates, regex_list=regex_list, teacher_version_present=cmd_args.teacher_output, pdf_version_present=cmd_args.include_pdf)
-                outputted_languages.append((guide.language_code, guide.language))
+                if version == 'student':
+                    outputted_languages.append((guide.language_code, guide.language))
 
     # Create landing page if website required
     if not cmd_args.pdf_only:
