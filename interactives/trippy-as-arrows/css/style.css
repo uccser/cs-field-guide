@@ -13,6 +13,10 @@ svg {
   position: absolute;
 }
 
+svg circle {
+  fill: #FF7043;
+}
+
 
 div#container {
   margin: auto;

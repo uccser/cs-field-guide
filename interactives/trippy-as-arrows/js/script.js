@@ -164,12 +164,17 @@ function updateArrow(newPoints) {
     // (rather than updating all of them)
 
     var point;
+    var circle;
 
-    for (var i = 0; i < newPoints.length; i++) {
+    for (var i = 0; i < 7; i++) { // 7 points on an arrow
 
         point = dimensions.POLYGON.points.getItem(i);
         point.x = newPoints[i].x;
         point.y = newPoints[i].y;
+
+        circle = document.getElementById('c' + i);
+        circle.setAttribute('cx', newPoints[i].x + 'px');
+        circle.setAttribute('cy', newPoints[i].y + 'px');
 
     }
 
