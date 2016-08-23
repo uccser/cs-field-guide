@@ -10,6 +10,53 @@ Computers are machines that do stuff with information. They let you view, listen
 
 To make computers easier to build and keep them reliable, everything is represented using just two values. You may have seen these two values represented as 0 and 1, but on a computer they are represented by anything that can be in two states. For example, in memory a low or high voltage is used to store each 0 or 1. On a magnetic disk it's stored with magnetism (whether a tiny spot on the disk is magnetised north or south).
 
+The idea that *everything* stored and transmitted in our digital world is stored using just two values might seem somewhat fantastic, but here's an exercise that will give you a little experience using just black and white cards to represent numbers.
+In the following interactive, click on the last card (on the right) to reveal that it has one dot on it.
+Now click on the previous card, which should have two dots on it.
+Before clicking on the next one, how many dots do you predict it will have?
+Carry on clicking on each card moving left, trying to guess how many dots each has.
+
+{interactive name="binary-cards" type="whole-page" text="Binary Cards" parameters="digits=5&start=BBBBB"}
+
+The challenge for you now is to find a way to have exactly 22 dots showing
+(the answer is in the spoiler below).
+Now try making up other numbers of dots, such as 11, 29 and 19.
+Is there any number that can't be represented? To test this, try counting up from 0.
+
+{panel type="teacher-note" summary="Patterns in the cards"}
+
+This exercise comes up again below as an introduction to representing numbers.
+The card interactive can also be done with physical cards as a change from doing things on a computer.
+
+If students have trouble solving the puzzles, start at the left and ask "Can you use the 16 dots? 8 dots?" and so on.
+Each one will either be obviously too big, or otherwise it should be used.
+
+With some guidance students should notice patterns, for example,
+that the one-dot card is coming up every second time (the odd numbers).
+
+{panel end}
+
+{panel type="spoiler" summary="Solution to card puzzles"}
+
+You may have noticed that each card shows twice as many dots as the one to its right.
+This is an important pattern in data representation on computers.
+
+The number 22 requires the cards to be "white, black, white, white, black",
+11 is "black, white, black, white, white",
+29 is "white, white, white, black, white", and
+19 is "white, black, black, black, white".
+
+{panel end}
+
+
+
+
+You should have found that any number from 0 to 31 can be represented with 5 cards.
+Each of the numbers could be communicated using just two words: black and white.
+For example, 22 dots is "white, black, white, white, black".
+Or you could decode "black, black, white, white, white" to the number 7.
+This is the basis of data representation - anything that can have two different states can represent anything on a digital device.
+
 When we write what is stored in a computer on paper, we normally use “0” for one of the states, and “1” for the other state. For example, a piece of computer memory could have the following voltages:
 
 ```
@@ -31,6 +78,9 @@ The use of the two digits 0 and 1 is so common that some of the best known compu
 {panel end}
 
 Every file you save, every picture you make, every download, every digital recording, every web page is just a whole lot of bits.
+These binary digits are what make digital technology *digital*!
+And the nature of these digits unlock a powerful world of storing and sharing a wealth of information and entertainment.
+
 Computer scientists don't spend a lot of time reading bits themselves, but knowing how they are stored is really important because it affects the amount of space that data will use, the amount of time it takes to send the data to a friend (as data that takes more space takes longer to send!) and the quality of what is being stored.
 You may have come across things like "24-bit colour", "128-bit encryption", "32-bit IPv4 addresses" or "8-bit ASCII".
 Understanding what the bits are doing enables you to work out how much space will be required to get high-quality colour, hard-to-crack secret codes, a unique ID for every device in the world, or text that uses more characters than the usual English alphabet.
@@ -1124,8 +1174,7 @@ So for a monochromatic image, we can simply use a representation which is a sing
 {panel end}
 
 The computer won’t ever convert the number into decimal, as it works with the binary directly --- most of the process that takes the bits and makes the right pixels appear is typically done by a graphics card or a printer. We just started with decimal, because it is easier for humans to understand.
-The main point about knowing this representation is to understand the tradeoff that is being made between the accuracy of colour (which should ideally be beyond human perception) and the amount of storage (bits) needed (which should be as little as possible).
-
+The main point about knowing this representation is to understand the trade-off that is being made between the accuracy of colour (which should ideally be beyond human perception) and the amount of storage (bits) needed (which should be as little as possible).
 
 {panel type="curiosity" summary="Hexadecimal colour codes"}
 If you haven't already, read the section on [Hexadecimal](chapters/data-representation.html#shorthand-for-binary-numbers---hexadecimal), otherwise this section might not make sense!
@@ -1155,12 +1204,12 @@ Understanding how these hexadecimal colour codes are derived also allows you to 
 
 For example, #000000 has zero for red, green and blue, so setting a higher value to the middle two digits (such as  #004300) will add some green to the colour.
 
-You could use an HTML page to experiment with hexadecimal colours. Just change the <body> command to include a colour as follows:
+You can use this HTML page to experiment with hexadecimal colours. Just enter a colour in the space below:
 
-```
-<body bgcolor="#004300">
-```
+{interactive name="hex-background-colour" type="in-page"}
+
 {panel end}
+
 
 ### Representing colours with fewer bits
 

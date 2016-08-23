@@ -1,6 +1,7 @@
 # Curriculum Guides
 
-We currently provide guides for using the Computer Science Field Guide in the following curriculums:
+We currently provide guides for using the Computer Science Field Guide in the following curricula.
+We aim to provide guides for curricula all over the world, to aid educators and students on how to teach and learn Computer Science using the Computer Science Field Guide.
 
 {table-of-contents depth="1"}
 

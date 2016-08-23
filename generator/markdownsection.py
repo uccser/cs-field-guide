@@ -81,6 +81,8 @@ class Section:
             self.current_heading = self.heading
             self.title = heading_text
             page_heading = True
+            if self.file_node.filename_without_extension == 'index':
+                self.file_node.parent.title = self.title
         else:
             page_heading = False
             if heading_level <= self.current_heading.level:
@@ -193,7 +195,7 @@ class Section:
                     if 'glossary-link-back-reference' in line:
                         self.regex_functions['panel'].log('This teacher only panel contains a glossary link with a back reference. We currently don\'t support back references within teacher only panels, please remove the reference.', self, match.group(0).split('\n')[0])
         else:
-            self.regex_functions['panel'].log("Panel type argument missing", self, match.group(0))
+            self.regex_functions['panel'].log("Panel type argument missing", self, match.group(0).split('\n')[0])
             html = ''
         return html
 
@@ -407,8 +409,6 @@ class Section:
                 html = ''
         else:
             self.regex_functions['conditional'].log("Invalid context {} given".format(context), self, match.group(0))
-
-
         return html
 
 
@@ -425,7 +425,8 @@ class Section:
 
     def create_link_to_online_resource(self, resource_type, url):
         template = 'print_link_to_online_resource'
-        return self.html_templates[template].format(resource=resource_type, url=url)
+        text_value = self.guide.translations[template + '_' + resource_type]
+        return self.html_templates[template].format(text=text_value, url=url)
 
 
     def create_video_html(self, match):
@@ -494,8 +495,7 @@ class Section:
             if self.guide.output_type == WEB:
                 self.required_files['File'].add(filename)
                 output_path = os.path.join(self.html_path_to_guide_root, file_path)
-                button_text = self.html_templates['button-download-text'].format(text=text)
-                html = self.html_templates['button'].format(link=output_path, text=button_text)
+                html = self.html_templates['button'].format(link=output_path, text=text)
             elif self.guide.output_type == PDF:
                 url = os.path.join(self.guide.generator_settings['General']['Domain'], self.guide.language_code, file_path)
                 html = self.create_link_to_online_resource(text, url)
@@ -558,7 +558,7 @@ class Section:
             text = arg_text if arg_text else name
 
             arg_parameters = parse_argument('parameters', arguments)
-            params = urllib.parse.quote(arg_parameters, safe='/=') if arg_parameters else None
+            params = urllib.parse.quote(arg_parameters, safe='/=&') if arg_parameters else None
 
             file_name = self.guide.generator_settings['Source']['Interactive File Name']
             file_type = parse_argument('file-type', arguments)
@@ -976,7 +976,7 @@ class HeadingNode:
 
         if self.guide.output_type == WEB:
             # Create section starts for Materialize ScrollSpy
-            if self.level == 2 and self.guide.generator_settings['HTML'][self.section.file_node.group_type] == 'website_page_chapter':
+            if self.level == 2 and self.section.file_node.settings['table_of_contents_sidebar']:
                 # Close previous section if needed
                 if self.section.sectioned:
                     html = self.section.html_templates['section-end']

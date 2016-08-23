@@ -69,7 +69,7 @@ Create headings using `#` before the heading text, the number of `#` states the 
 ##### H5
 ###### H6
 
-The CSFG parser will automatic make each header a [permalink](http://en.wikipedia.org/wiki/Permalink) (mouseover a heading above for the link). Headers within chapters and appendices are also numbered (use `guide-settings.conf` to set if a page is numbered or not).
+The CSFG parser will automatic make each header a [permalink](http://en.wikipedia.org/wiki/Permalink) (mouseover a heading above for the link). Headers within chapters and appendices are also numbered (use your language's `settings.conf` to set if a page is numbered or not).
 
 ---
 
