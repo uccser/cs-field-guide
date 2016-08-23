@@ -320,8 +320,12 @@ class Guide:
                 if self.pdf_version_present:
                     filename = self.generator_settings['PDF']['Output File'].strip().format(self.version.capitalize())
                     output_path = os.path.join(self.output_folder, filename)
-                    filesize = os.path.getsize(output_path) / 1024 / 1024
-                    context['pdf_button'] = self.html_templates['website_homepage_pdf_button'].format(filesize=filesize, path_to_pdf=filename)
+                    filesize_text = "{:.1f}".format(os.path.getsize(output_path) / 1024 / 1024)
+                    context.update({
+                        'pdf_file': True,
+                        'pdf_filesize_text': filesize_text,
+                        'path_to_pdf': filename
+                    })
                 body_html = self.html_templates['website_homepage_content']
             else:
                 page_heading = file.section.heading.to_html()
