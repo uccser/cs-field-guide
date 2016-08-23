@@ -110,7 +110,7 @@ Not all algorithms take double the time for double the input; some take a lot mo
 That's worth knowing in advance because we usually need our programs to scale up well;
 in the case of the high scores, if you're running a game that suddenly becomes popular, you want to know in advance that the high score algorithm will be fast enough if you get more scores to check.
 
-{panel type="extra-for-experts" "Algorithm complexity"}
+{panel type="extra-for-experts" summary="Algorithm complexity"}
 The formal term for working out the cost of an algorithm is [algorithm analysis](https://en.wikipedia.org/wiki/Analysis_of_algorithms),
 and we often refer to the cost as the algorithm's *complexity*.
 The most common complexity is the "time complexity" (a rough idea of how long it takes to run),

@@ -207,7 +207,7 @@ ul.side-nav.fixed li a {
   width: 100%;
   height: initial !important;
   padding: 2em 0 !important;
-  border-radius: 5px !important;
+  border: 5px solid $primary-color-light !important;
   overflow: hidden;
   background-color: black !important;
 }
@@ -349,10 +349,9 @@ ul.panel {
 }
 .btn {
   text-transform: none !important;
-  height: initial !important;
-  line-height: 1.5rem !important;
-  padding: 0.5rem !important;
   margin-bottom: 1rem !important;
+  height: initial !important;
+  padding: 0.5rem !important;
 }
 footer {
   color: $off-black;

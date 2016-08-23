@@ -15,7 +15,7 @@ install:
 
 # Creates the CSFG with print and teacher versions
 script:
-  - python generateguide.py -p -t
+  - python generateguide.py -t
 
 # Stop email notifications but post to Slack channel
 notifications:

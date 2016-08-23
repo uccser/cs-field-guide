@@ -1,5 +1,7 @@
 # Formal Languages
 
+{video url="https://www.youtube.com/embed/VnMGOSDkEx4"}
+
 ## What's the big picture?
 
 {comment}
