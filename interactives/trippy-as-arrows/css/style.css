@@ -17,6 +17,12 @@ svg circle {
   fill: #FF7043;
 }
 
+/* WORKINGHERE
+.input-row:hover ~ svg {
+    fill: #000;
+}
+*/
+
 
 div#container {
   margin: auto;

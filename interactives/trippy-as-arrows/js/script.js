@@ -1,6 +1,4 @@
 
-// TODO set container width/height from within js
-
 // TODO when hover over x/y inputs, light up corresponding point on arrow
 // NTS maybe use additional svgs of small circles that sit on top of each point (only show when hovered)
 
@@ -226,4 +224,9 @@ function getNewCoordinates() {
 
 }
 
+
+function highlight(row) {
+    circle = document.getElementById(row);
+    circle.style.fill = 'black';
+}
 
