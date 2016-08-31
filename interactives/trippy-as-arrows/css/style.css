@@ -52,9 +52,14 @@ div#instructions {
 }
 
 
+div#instructions p#input-instructions {
+    font-size: 14px;
+}
+
+
 div#heading p, .input-row input{
   display: inline-block;
-  width: 43%;
+  width: 20%;
   margin: 1px;
   padding: 5px;
 }
@@ -80,6 +85,6 @@ div#instructions button {
   color: #FFF;
   border: 1px solid #FF7043;
   border-radius: 1px;
-  width: 96%;
+  width: 60%;
 }
 

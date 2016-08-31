@@ -1,7 +1,4 @@
 
-// TODO when hover over x/y inputs, light up corresponding point on arrow
-// NTS maybe use additional svgs of small circles that sit on top of each point (only show when hovered)
-
 var dimensions;
 
 /* Class for generating new points */
@@ -78,7 +75,6 @@ function calculateAllTheThings() {
 
 /*
  * Draws the grid background by building css string
- * TODO needs to update on window resize
  */
 function drawBackground() {
 
