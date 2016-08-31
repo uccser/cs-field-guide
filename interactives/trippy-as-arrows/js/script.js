@@ -224,9 +224,19 @@ function getNewCoordinates() {
 
 }
 
-
+/* Highlights a point on the arrow
+ * Input: id of input row hovered over by mouse
+ * */
 function highlight(row) {
     circle = document.getElementById(row);
-    circle.style.fill = 'black';
+    circle.style.fill = '#FF7043';
+}
+
+/* Resets colour of point on the arrow
+ * Input: id of input row hovered over by mouse
+ * */
+function removeHighlight(row) {
+    circle = document.getElementById(row);
+    circle.style.fill = '#000';
 }
 
