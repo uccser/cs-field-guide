@@ -19,6 +19,19 @@ We have listed major changes for each release below.
 
 ## Current Release
 
+### v2.7.1
+
+**Release date:** 5th September 2016
+
+**Downloads:** [Source available on GitHub](https://github.com/uccser/cs-field-guide/releases/tag/v2.7.1)
+
+**Notable changes:**
+- Fixed broken link in footer to contributors page.
+
+A full list of changes in this version is [available on GitHub](https://github.com/uccser/cs-field-guide/compare/v2.7.0...v2.7.1).
+
+## Older Releases
+
 ### v2.7.0
 
 **Release date:** 23rd August 2016
@@ -35,8 +48,6 @@ We have listed major changes for each release below.
 - Also includes bug fixes to interactives, new links to supporting videos, and various text corrections from our staff and contributors.
 
 A full list of changes in this version is [available on GitHub](https://github.com/uccser/cs-field-guide/compare/v2.6.1...v2.7.0).
-
-## Older Releases
 
 ### v2.6.1
 
