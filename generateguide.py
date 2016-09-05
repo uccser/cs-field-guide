@@ -631,7 +631,8 @@ def create_landing_page(outputted_languages, html_generator, primary_guide):
         'languages': outputted_languages,
         'path_to_guide_root': outputted_languages[0][0] + '/',
         'analytics_code': primary_guide.generator_settings['General']['Google Analytics Code'],
-        'version_number': primary_guide.generator_settings['General']['Version Number']
+        'version_number': primary_guide.generator_settings['General']['Version Number'],
+        'contributors_path': outputted_languages[0][0] + '/further-information/contributors.html'
         }
     output_folder = primary_guide.generator_settings['Output']['Base Folder']
     write_html_file(html_generator, output_folder, 'index', 'website_page_landing', context)
