@@ -95,7 +95,7 @@ text_values:
     footer_useful_links_sitemap: "Sitemap"
     footer_useful_links_twitter: "Twitter"
     footer_useful_links_github: "GitHub"
-    footer_contributor_text: "Produced by the <a href='http://www.cosc.canterbury.ac.nz/research/RG/CSE/'>CS Education Research Group</a>, <a href='http://www.canterbury.ac.nz/'>University of Canterbury</a>, New Zealand, and <a href='{{ contributors_path }}'>by many others</a>."
+    footer_contributor_text: "Produced by the <a href='http://www.cosc.canterbury.ac.nz/research/RG/CSE/'>CS Education Research Group</a>, <a href='http://www.canterbury.ac.nz/'>University of Canterbury</a>, New Zealand, and <a href='%s'>by many others</a>."
     footer_license_text: "The Computer Science Field Guide uses a <a rel='license' href='https://creativecommons.org/licenses/by-nc-sa/4.0/'>Creative Commons (CC BY-NC-SA 4.0) license</a>."
     homepage_chapters: "Chapters"
     homepage_curriculum_guides: "Curriculum Guides"
