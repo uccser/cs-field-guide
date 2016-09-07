@@ -1126,7 +1126,7 @@ it can do, and write regular expressions for finding words such as:
 
 - Explore regular expressions in spreadsheets. The Google docs spreadsheet has a function called RegExMatch, RegExExtract and RegExReplace. In Excel they are available via Visual Basic.
 
-- Knitting patterns are a form of regular expression. If you're interested in knitting, you could look into how they are related through the [article about knitting and regular expressions at CS4FN site](http://www.cs4fn.org/regularexpressions/knitters.php).
+- Knitting patterns are a form of regular expression. If you're interested in knitting, you could look into how they are related through the [article about knitting and regular expressions at the CS4FN site](http://www.cs4fn.org/regularexpressions/knitters.php).
 
 - The "grep" command is available in many command line systems, and matches a regular expression in the command with lines in an input file. (the name comes from "Global Regular Expression Parser"). Demonstrate the grep command for various regular expressions.
 
