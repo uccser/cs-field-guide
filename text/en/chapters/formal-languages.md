@@ -1318,7 +1318,7 @@ Believe it or not, all these variations are essentially equivalent, and you can 
 
 However, there are also more complex models of computation such as the push-down automaton (PDA) which is able to follow the rules of context-free grammars, and the most general model of computation which is called a Turing machine.
 These models are increasingly complicated and abstract, and structures like the Turing machine aren't used as physical devices (except for fun), but instead as a tool for reasoning about the limits on what can be computed.
-In fact, in principle every digital computer is a kind of limited turing machine, so whatever limits we find for a Turing machine gives us limits for everyday computation.
+In fact, in principle every digital computer is a kind of limited Turing machine, so whatever limits we find for a Turing machine gives us limits for everyday computation.
 
 {comment}
 .. TCB  if we decide to cover non deterministic automata - could use a humorous approach - e.g. train route is semi-random, or several passengers try out all routes?
