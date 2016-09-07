@@ -940,7 +940,7 @@ In the above example, the FSA is a really easy way to check for the regular expr
 
 Fortunately, *every* regular expression can be converted to an FSA. We won't look at the process here, but both Exorciser and JFLAP can do it for you anyway (see the activities below).
 
-Converting a regex to an FSA also built into most programming languages.
+Converting a regex to an FSA is also built into most programming languages.
 Programmers usually use regular expressions by calling functions or methods that are passed the regex and the string to be searched.
 Behind the scenes, the regular expression is converted to a finite state automaton, and then the job of checking your regular expression is very easy.
 
