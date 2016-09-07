@@ -551,7 +551,7 @@ Using Exorciser or JFLAP, construct an FSA that takes inputs made of the letters
 - strings that have an even number of the letter "a" (e.g. "aa", "abaaa", "bbbb"; and don’t forget the empty string {math}\epsilon{math end}).
 - strings that have an odd number of the letter "a" (e.g. "a", "baaa", "bbbab", but not {math}\epsilon{math end}).
 - strings where the number of "a"s in the input is a multiple of three (e.g. "aabaaaa", "bababab").
-- strings where every time an a appears in the input, it is followed by a b (e.g. "abb", "bbababbbabab", "bbb").
+- strings where every time an "a" appears in the input, it is followed by a "b" (e.g. "abb", "bbababbbabab", "bbb").
 - strings that end with "ab"
 - strings that start with "ab" and end with "ba", and only have "b" in the middle (e.g. "abba", "abbbbba")
 
