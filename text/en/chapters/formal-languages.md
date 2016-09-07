@@ -169,7 +169,7 @@ Being comfortable with such structures is a useful skill for computer scientists
 
 {panel type="jargon-buster" summary="Finite State Automaton"}
 
-{glossary-definition term="Finite State Automaton" definition="In formal languages, a simple "machine" that has states, and transitions from one state to another based on strings of input symbols."}
+{glossary-definition term="Finite State Automaton" definition="In formal languages, a simple 'machine' that has states, and transitions from one state to another based on strings of input symbols."}
 The name
 {glossary-link term="finite state automaton" reference-text="Formal languages"}finite state automaton{glossary-link end} (FSA) might seem strange, but each word is quite simple.
 "Finite" just means that there is a limited number of states (such as train stations) in the map. The "state" is just as another name for the train stations we were using. "Automaton" is an old word meaning a machine that acts on its own, following simple rules (such as the cuckoo in a cuckoo clock).
