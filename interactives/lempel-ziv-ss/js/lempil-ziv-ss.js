@@ -1,27 +1,36 @@
 var lempilZivSS = {};
+
+// 'GLOBALS'
 this.slidingWindow = 2000;
 this.textBeforeBits = 0;
 this.textAfterBits = 0;	
 this.sizeOfCharacterInBits = 8;
 this.sizeOfLZSSPairInBits = 16;
+this.redHighlight = 'rgba(200, 0, 0, 0.2)';
+this.greenHighlight = 'rgba(0, 200, 0, 0.2)';
+this.blueHighlight = 'rgba(0, 0, 200, 0.2)';
+
+this.samIAmTestString = "I am Sam\n\nSam I am\n\nThat Sam-I-am!\nThat Sam-I-am!\n\nI do not like\nthat Sam-I-am!";
+
+/*
+	var matchObject = {
+		positionInString: positionInString,
+		matchNumber: matchNumber,
+		stepsBack: matchArray[0],
+		toEncode: matchString.length,
+		validationString: matchString,
+		inputElement: input,
+		//divWithInput: iDiv
+	}*/
 
 this.encodedTextList = [];
 this.allMatchObjects = [];
 
-/*
-var matchObject = {
-		positionInString: positionInString,
-		matchNumber: matchNumber,
-		stepsBack: matchArray[0],
-		toEncode: matchArray[1],
-		validationString: matchString,
-		inputElement: input,
-		//divWithInput: iDiv
-	}
-*/
 
 //file input stuff
 window.onload = function() {
+	jsPlumb.setContainer(document.getElementById('interactive-displayed-text'));
+
 	//########### File Input things#################
 		var fileInput = document.getElementById('fileInput');
 		var testText = document.getElementById('testText');
@@ -66,10 +75,22 @@ window.onload = function() {
 
 
 			} else {
-				fileDisplayArea.innerText = "File not supported!"
+				fileDisplayArea.innerText = "File not supported!";
 			}
 		});
+
+
+	//generate SVG element that covers whole page that will be used to draw arrows on
+
+	//draw = SVG('drawing');
+
+	lzssEncode(samIAmTestString, slidingWindow);
+
+
+
 }
+
+/*################## THINGS TO DO WITH THE INPUTS AND MOUSING OVER THEM ############################### */
 
 //checking inputs on change for validation
 $(document).on('blur', 'input', function() {
@@ -79,9 +100,11 @@ $(document).on('blur', 'input', function() {
 			//console.log("text in this input should be " + allMatchObjects[i].validationString);
 			//console.log("text in the input actually is " + event.target.value);
 			if (event.target.value == allMatchObjects[i].validationString) {
-				console.log("Correct!");
+				$(this).removeClass('input-incorrect');
+				$(this).addClass('input-correct');
 			} else {
-				console.log("incorrect!");
+				$(this).removeClass('input-correct');
+				$(this).addClass('input-incorrect');
 			}			
 		}
 	}
@@ -90,27 +113,102 @@ $(document).on('blur', 'input', function() {
 });
 
 //on mouseover an input, highlight what should go in the input
-$(document).on('mouseover', 'input', function() {
+$(document).on('focus', '.interactive-input', function() {
+	var correctMatchObject;
 	for (var i = 0; i < allMatchObjects.length; i++) {
 		if (allMatchObjects[i].inputElement == event.target) {
 			correctMatchObject = allMatchObjects[i]; // this is the one we want 'coordinates' from
+			//console.log(correctMatchObject)
 		}
 	}
-	startOfHighlighting = (correctMatchObject.positionInString - correctMatchObject.stepsBack);
-	endOfHighlighting = (startOfHighlighting + correctMatchObject.toEncode);
-	$('.net-div').slice(startOfHighlighting, endOfHighlighting).addClass('highlight');
+
+
+	var startOfHighlighting = (correctMatchObject.positionInString - correctMatchObject.stepsBack);
+	var endOfHighlighting = (startOfHighlighting + correctMatchObject.toEncode);
+	$('.highlight-square').slice(startOfHighlighting, endOfHighlighting).addClass('highlighted');
+
+	var middleOfHighlighting = ~~((endOfHighlighting + startOfHighlighting) / 2);
+	var endElement = $('#highlight' + endOfHighlighting); 
+	var startInputElement = $(event.target);
+	//console.log(endMiddleElement)
+
+	// arrow from input to highlighting
+    jsPlumb.connect({
+		source:'highlight' + correctMatchObject.positionInString,
+		target:'highlight' + middleOfHighlighting,
+		connector:'Straight',
+		anchors: ['TopCenter', 'Bottom'],
+		paintStyle:{ strokeStyle:"blue", lineWidth:2 },
+        overlays:[ 
+            ["Arrow" , { width:10, length:10, location:1 }]
+        ],
+		endpoint:'Blank'
+	});
+
+	//draw box around highlighted elements
+	jsPlumbBox(startOfHighlighting, endOfHighlighting);
+	//});
+	//jsPlumb.repaintEverything()
+
 })
 
-$(document).on('mouseout', 'input', function() {
+function jsPlumbBox(startOfHighlighting, endOfHighlighting) {
+	//bottom line
+	jsPlumb.connect({
+		connector: 'Straight',
+		endpoint:'Blank',
+		paintStyle:{ strokeStyle: "black", lineWidth:2 },
+		source: 'highlight' + startOfHighlighting,
+		target: 'highlight' + endOfHighlighting,
+		anchors: ['BottomLeft', 'BottomRight']
+	})
+
+	//top line
+	jsPlumb.connect({
+		connector: 'Straight',
+		endpoint:'Blank',
+		paintStyle:{ strokeStyle: "black", lineWidth:2 },
+		source: 'highlight' + startOfHighlighting,
+		target: 'highlight' + endOfHighlighting,
+		anchors: ['TopLeft', 'TopRight']
+	})
+
+	//left line
+	jsPlumb.connect({
+		connector: 'Straight',
+		endpoint:'Blank',
+		paintStyle:{ strokeStyle: "black", lineWidth:2 },
+		source: 'highlight' + startOfHighlighting,
+		target: 'highlight' + startOfHighlighting,
+		anchors: ['TopLeft', 'BottomLeft']
+	})
+
+	//right line
+	jsPlumb.connect({
+		connector: 'Straight',
+		endpoint:'Blank',
+		paintStyle:{ strokeStyle: "black", lineWidth:2 },
+		source: 'highlight' + endOfHighlighting,
+		target: 'highlight' + endOfHighlighting,
+		anchors: ['TopRight', 'BottomRight']
+	})
+
+}
+
+
+$(document).on('focusout', '.interactive-input', function() {
+	jsPlumb.detachEveryConnection();
 	for (var i = 0; i < allMatchObjects.length; i++) {
 		if (allMatchObjects[i].inputElement == event.target) {
-			correctMatchObject = allMatchObjects[i]; // this is the one we want 'coordinates' from
+			var correctMatchObject = allMatchObjects[i]; // this is the one we want 'coordinates' from
 		}
 	}
-	startOfHighlighting = (correctMatchObject.positionInString - correctMatchObject.stepsBack);
-	endOfHighlighting = (startOfHighlighting + correctMatchObject.toEncode);
-	$('.net-div').slice(startOfHighlighting, endOfHighlighting).removeClass('highlight');
+	var startOfHighlighting = (correctMatchObject.positionInString - correctMatchObject.stepsBack);
+	var endOfHighlighting = (startOfHighlighting + correctMatchObject.toEncode);
+	$('.highlight-square').slice(startOfHighlighting, endOfHighlighting).removeClass('highlighted');
 })
+
+/*######################################### #######################################*/
 
 function encodeTextArea() {
 	var textInTextArea = document.getElementById("text-to-encode-textarea").value;
@@ -120,11 +218,12 @@ function encodeTextArea() {
 function lzssEncode(rawStringToEncode, slidingWindowLength) {
 
 	//var stringToEncode = rawStringToEncode.replace(/[^\x20-\x7E]+/g, " "); // replace non-printable characters (newline, tab, etc.) with space
+	var newLineRegex = /[^\x20-\x7E]/; //for newlines and other non-printable characters
 	var stringToEncode = rawStringToEncode;
 //make string to encode an array
-	encodedTextList = [];
-	textBeforeBits = 0;
-	textAfterBits = 0;	
+	var encodedTextList = [];
+	var textBeforeBits = 0;
+	var textAfterBits = 0;	
 	$('#encodedText').empty();
 	var arrayToEncode = stringToEncode.split("");
 	var currentReadString;
@@ -133,60 +232,79 @@ function lzssEncode(rawStringToEncode, slidingWindowLength) {
 	var stringToReturn = stringToEncode.slice(0,2);
 	//console.log("string to decode is: " + stringToEncode);
 	for (var stringIndex = 0 ; stringIndex < stringToEncode.length;) {
+		
 		//console.log("currently encoding character " + stringToEncode[stringIndex] + ", index " + stringIndex);
 		currentReadString = stringToEncode[stringIndex]
 		currentMatchString = stringToEncode[stringIndex - 1]
 		longestMatch = "";
 		indexOfLongestMatchStart = -1;
+
+		//console.log("currentReadString is " + currentReadString);
+		if ((currentReadString == '\n') || (currentReadString == '\r\n')) {
+			//console.log(currentReadString);
+			stringIndex++;
+			encodedTextList.push(currentReadString);
+			continue;
+		}
+		
+
 		//stop looking back when we either hit the start of the string or we're at edge of sliding window
-		for (matchIndex = stringIndex - 1; (((matchIndex >= 0) && ((stringIndex - matchIndex) < slidingWindowLength))); matchIndex--) {
-			//console.log("gone back " + String(stringIndex - matchIndex) + " characters");
-			howManyForward = 1;
-			currentReadString = stringToEncode.slice(stringIndex, (stringIndex + 1))
-			currentMatchString = stringToEncode.slice(matchIndex, (matchIndex + 1))
-			//console.log("	currently at position " + matchIndex +", currentReadString is " + currentReadString + ", currentMatchString is " + currentMatchString);
-			while ((currentReadString === currentMatchString) && longestMatch.length < 16) {
-				//console.log("		currentReadString " + currentReadString + " and currentMatchString " + currentMatchString + " matched! howManyForward is now: " + howManyForward);
-				if (currentMatchString.length > longestMatch.length) {
-					longestMatch = currentMatchString
-					indexOfLongestMatchStart = matchIndex;
+			for (matchIndex = stringIndex - 1; (((matchIndex >= 0) && ((stringIndex - matchIndex) < slidingWindowLength))); matchIndex--) {
+				if ((stringToEncode[stringIndex - matchIndex] == '\n') || (stringToEncode[stringIndex - matchIndex] == '\r\n')) {
+					//console.log(stringToEncode[matchIndex]);
+					//console.log("newline found on way back!");
+					//break;
 				}
-				currentReadString = stringToEncode.slice(stringIndex, (stringIndex + howManyForward + 1))
-				currentMatchString = stringToEncode.slice(matchIndex, (matchIndex + howManyForward + 1))
+				//console.log("gone back " + String(stringIndex - matchIndex) + " characters");
+				howManyForward = 1;
+				currentReadString = stringToEncode.slice(stringIndex, (stringIndex + 1))
+				currentMatchString = stringToEncode.slice(matchIndex, (matchIndex + 1))
+				//console.log("	currently at position " + matchIndex +", currentReadString is " + currentReadString + ", currentMatchString is " + currentMatchString);
+				while ((currentReadString === currentMatchString) && longestMatch.length < 16) {
+					//console.log("		currentReadString " + currentReadString + " and currentMatchString " + currentMatchString + " matched! howManyForward is now: " + howManyForward);
+					if (currentMatchString.length > longestMatch.length) {
+						longestMatch = currentMatchString
+						indexOfLongestMatchStart = matchIndex;
+					}
+					currentReadString = stringToEncode.slice(stringIndex, (stringIndex + howManyForward + 1))
+					currentMatchString = stringToEncode.slice(matchIndex, (matchIndex + howManyForward + 1))
 
-				if ((stringIndex + howManyForward) < stringToEncode.length) {
-					howManyForward++;
-				}	
+					if ((stringIndex + howManyForward) < stringToEncode.length) {
+						howManyForward++;
+					}	
+				}
 			}
-		}
-		//if nothing to encode
-		//console.log("matchIndex is " + matchIndex);
-		if ((indexOfLongestMatchStart == -1) || (longestMatch.length < 3)) {
-			//console.log("No match found, not encoding");
-			$('#encodedText').append(stringToEncode[stringIndex]);
-			encodedTextList.push(stringToEncode[stringIndex]); //for encoded text array things
-			//console.log("appended " + stringToEncode[stringIndex]);
-			stringIndex++
-			textAfterBits += sizeOfCharacterInBits // add one character's worth of bits
+			//if nothing to encode
+			//console.log("matchIndex is " + matchIndex);
+			if ((indexOfLongestMatchStart == -1) || (longestMatch.length < 3)) {
+				//console.log("No match found, not encoding");
+				$('#encodedText').append(stringToEncode[stringIndex]);
+				encodedTextList.push(stringToEncode[stringIndex]); //for encoded text array things
+				//console.log("appended " + stringToEncode[stringIndex]);
+				stringIndex++
+				textAfterBits += sizeOfCharacterInBits // add one character's worth of bits
 
-		} else { // if something to encode, add <stepsBack, noCharacters> pair and skip forward that many characters in the string to encode
-			//console.log("character " + stringToEncode[stringIndex] + ", index " + stringIndex + " encoded. longestMatch is " + longestMatch);
-			//console.log("encode next " + longestMatch.length + " characters starting from " + indexOfLongestMatchStart);
-			//console.log("stringIndex is " + stringIndex + " and matchIndex is " + matchIndex);
-			$('#encodedText').append("<span style='color:red;'>" + "<" + ((stringIndex - indexOfLongestMatchStart)) + "," + longestMatch.length + ">" + "</span>")
-			//$('#encodedText').append( "<span style="color:blue">" + "<"((stringIndex - indexOfLongestMatchStart)) + "," + longestMatch.length + ">" + "</span");
+			} else { // if something to encode, add <stepsBack, noCharacters> pair and skip forward that many characters in the string to encode
+				//console.log("character " + stringToEncode[stringIndex] + ", index " + stringIndex + " encoded. longestMatch is " + longestMatch);
+				//console.log("encode next " + longestMatch.length + " characters starting from " + indexOfLongestMatchStart);
+				//console.log("stringIndex is " + stringIndex + " and matchIndex is " + matchIndex);
 
-			//stuff for the encoded text array things
-			var thisPairList = [(stringIndex - indexOfLongestMatchStart), longestMatch.length];
-			encodedTextList.push(thisPairList);
-			//////
+				//take out new lines
 
-			stringIndex += (longestMatch.length);
-			textAfterBits += sizeOfLZSSPairInBits //add one pair's worth of bits
+				$('#encodedText').append("<span style='color:red;'>" + "<" + ((stringIndex - indexOfLongestMatchStart)) + "," + longestMatch.length + ">" + "</span>")
+				//$('#encodedText').append( "<span style="color:blue">" + "<"((stringIndex - indexOfLongestMatchStart)) + "," + longestMatch.length + ">" + "</span");
+
+				//stuff for the encoded text array things
+				var thisPairList = [(stringIndex - indexOfLongestMatchStart), longestMatch.length];
+				encodedTextList.push(thisPairList);
+				//////
+
+				stringIndex += (longestMatch.length);
+				textAfterBits += sizeOfLZSSPairInBits //add one pair's worth of bits
 
 
-
-		}
+			}
+		
 
 		//console.log("");
 	}
@@ -204,7 +322,6 @@ function parseEncodedTextList(encodedTextList, rawTextList) {
 	var encodedTextListIterator = 0;
 
 	var matchNumber = 0; //used to assign id to each match object
-
 	var howManyAcross = 0;
 	var howManyDown = 0; // for creating net divs to now how many em across and down the div needs to be placed
 
@@ -216,33 +333,56 @@ function parseEncodedTextList(encodedTextList, rawTextList) {
 
 
 			current = encodedTextList[encodedTextListIterator]
-			matchLength = current[1];
+			
 			matchString = rawTextList.slice((i - current[0]), (i - current[0] + current[1])).join('');
+			matchString = matchString.replace('\r', '').replace('\n', '').replace('\r\n', '');
+			matchLength = matchString.length;
+			newMatchObject = createMatchObject(i, current, matchString, matchNumber)
+
 			//console.log("Match text here should be " + matchString);
 
+			//create a div that's as wide as the input
+			var inputDiv = document.createElement("DIV");
+			inputDiv.className += "input-highlight-container-div";
+			inputDiv.setAttribute("style","width:" + matchLength + "ch");
+			inputDiv.id = 'inputDiv' + matchNumber;
 
+			for (var j = 0; j < matchLength; j++) {
+				var highlightDiv = document.createElement("DIV");
+				highlightDiv.id = "highlight" + (i + j);
+				highlightDiv.className += 'highlight-div-in-input'
+				highlightDiv.className += ' highlight-square';
+				highlightDiv.setAttribute("style", "left:" + (1.1*j) + "ch");
+				//highlightDiv.style.background = greenHighlight
+
+				inputDiv.appendChild(highlightDiv);
+
+
+	
+			}
+			$('#interactive-displayed-text').append(inputDiv);
+
+			//create the input form
 			newMatchObject = createMatchObject(i, current, matchString, matchNumber)
 			matchNumber += 1;
 			
 			encodedTextListIterator += 1;
 
-			$('#interactive-displayed-text').append(newMatchObject.inputElement);
 
-			for (var j = 0; j < matchLength; j++) {
-				howManyAcross += 1
-				//console.log("howManyAcross is: " + howManyAcross + " and howManyDown is: " + howManyDown);
+			inputDiv.appendChild(newMatchObject.inputElement);
 
-				$('#interactive-displayed-text').append(netDiv)
-			}
+
+
+
 			i += (matchLength);
 
 		} else {
-			$('#interactive-displayed-text').append(current);
 			encodedTextListIterator += 1;
 
 			netSpan = createNetSpan(i, howManyAcross, howManyDown);
 			//console.log("howManyAcross is: " + howManyAcross + " and howManyDown is: " + howManyDown);
 			howManyAcross += 1;
+			netSpan.innerHTML = current;
 
 			$('#interactive-displayed-text').append(netSpan)
 			i++;
@@ -263,28 +403,22 @@ function createNetSpan(divIndex, howManyAcross, howManyDown) {
 
 	netSpan = document.createElement("SPAN");
 	netDiv = document.createElement("DIV");
-	netSpan.className = "net-span";
-	netSpan.id = "netSpan" + divIndex;
+	netSpan.className = "highlight" + divIndex;
+	netSpan.className += " highlight-square"
+	netSpan.id = "highlight" + divIndex;
 
-	//TODO figure out positioning of netdivs
-	
+	/*"debug"
 	if ((divIndex % 2) == 0) {
-		netDiv.style.background = 'red';
+		netSpan.style.background = redHighlight;
 	} else {
-		netDiv.style.background = 'blue';
+		netSpan.style.background = blueHighlight;
 	}
-	
-
-	netDiv.className = "net-div";
-	netDiv.id = "netDiv" + divIndex;
-
-	netSpan.appendChild(netDiv);
-
-
-
+	*/
 
 	return netSpan;
+}
 
+function createInputHighlightDiv() {
 
 }
 
@@ -293,8 +427,10 @@ function createMatchObject(positionInString, matchArray, matchString, matchNumbe
 
 	var input = document.createElement("INPUT");
 
-	input.setAttribute("maxLength", matchArray[1]);
-	input.setAttribute("size", matchArray[1]);
+	input.setAttribute("maxLength", matchString.length);
+	input.setAttribute("size", matchString.length);
+	input.className += 'interactive-input';
+	input.id = 'input' + matchNumber;
 
 	//iDiv.appendChild(input)
 
@@ -302,7 +438,7 @@ function createMatchObject(positionInString, matchArray, matchString, matchNumbe
 		positionInString: positionInString,
 		matchNumber: matchNumber,
 		stepsBack: matchArray[0],
-		toEncode: matchArray[1],
+		toEncode: matchString.length,
 		validationString: matchString,
 		inputElement: input,
 		//divWithInput: iDiv

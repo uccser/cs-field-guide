@@ -1,24 +1,58 @@
+
+#interactive-svg {
+  position: absolute;
+}
 #text-to-encode-textarea {
   
     width: 50em;
     height: 10em;
-    display:block;
+    display:inline;
     
 }
 
-.net-span {}
+#text-area-encode-button{
+  display: block;
+}
+.highlight-div-in-input {
+  /*display: absolute;*/
+  width: 1.1ch;
+  min-height: 1.2em;
+  z-index: 10;
+  position: absolute;
+  top: 0;
+  pointer-events: none;
+
+}
+
+.input-highlight-container-div {
+  display: inline;
+  overflow: auto;
+  position: relative;
+}
+
+.net-span {
+  position: inline;
+  z-index: 6
+  background-color: rgba(0, 0, 0, 0.2);
+
+}
+
+.highlight-square {
+/*  border-style: solid;
+  border-width: 1px;*/
+  
+}
 
 
 .net-div {
   opacity: 0.2;
-  position: absolute;
+  position: inline;
 
   z-index: 5;
   
   min-height: 1.25em;
-  
-  
   width: 1ch;
+
   pointer-events: none;
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none;   /* Chrome/Safari/Opera */
@@ -34,6 +68,7 @@
 }
 
 .interactive-input{
+  border: 1px solid rgba(0, 0, 0, 1.0);
     /*font-family: "Courier New", Courier, monospace
 
     display: inline;	
@@ -41,8 +76,16 @@
     */
 }
 
-.net-div.highlight {
-  background-color: green;
+.highlighted {
+  background-color: rgba(0, 200, 0, 0.2);
+}
+
+.input-correct {
+  border: 1px solid rgba(0, 255, 0, 0.8);
+}
+
+.input-incorrect {
+  border: 1px solid rgba(255, 0, 0, 0.8);
 }
 
 
@@ -51,13 +94,14 @@ textarea {
   display: inline;
 }
 */
-div input,
+/*div input,
 input {
   display: inline;
   border-width: 0.3px;
   padding: 0px;
+  z-index: 1;
 
-}
+}*/
  
 /*
 #interactive-displayed-text-highlight-container {
@@ -69,7 +113,7 @@ input {
 #interactive-displayed-text {
 	font-family: "Courier New", Courier, monospace;
   position: relative;
-  line-height: 1.25;
+  line-height: 150%;
 
 }
 

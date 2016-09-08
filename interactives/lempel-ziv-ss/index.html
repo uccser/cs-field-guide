@@ -14,44 +14,52 @@
     <script type="text/javascript" src="../base-files/js/third-party/jquery.js"></script>
   </head>
   <body>
+
 	    <!-- ### Start of required HTML for inline interactives ### -->
-      <div class="row interactive">
-        <div class="col s12 m8 offset-m2">
-          <div id="lempil-ziv-ss">
 
-          <div>
-            Select a text file: 
-            <input type="file" id="fileInput">
-          </div>
+        <div class="row interactive">
+          <div class="col s12 m8 offset-m2">
+            <div id="lempil-ziv-ss">
 
-          <div>
-          <textarea id="text-to-encode-textarea"></textarea> 
-          <button id="text-area-encode-button" class="btn btn-large" onclick="encodeTextArea()">Encode!</button>
-          </div>
-          
+            <div>
+              Select a text file: 
+              <input type="file" id="fileInput">
+            </div>
 
-
-
-
-          <pre id="fileDisplayArea"><pre>
-            <h5>Test Text:</h5>
-            <div class="displayed-text" id="testText"></div>
-            <h5>Encoded Text:</h5>
-            <div class="displayed-text" id="encodedText"></div>
-            <h5>Display:</h5>
-            <div id="interactive-displayed-text">
-             <!-- <div id="interactive-displayed-text-highlight-container"></div> -->
+            <div>
+            <textarea id="text-to-encode-textarea"></textarea> 
+            <button id="text-area-encode-button" class="btn btn-large" onclick="encodeTextArea()">Encode!</button>
             </div>
             
 
+
+
+
+            <pre id="fileDisplayArea"> </pre>
+            
+              <h5>Test Text:</h5>
+              <div class="displayed-text" id="testText"></div>
+              <h5>Encoded Text:</h5>
+              <div class="displayed-text" id="encodedText"></div>
+              <h5>Display:</h5>
+              <pre>
+              <div id="interactive-displayed-text">
+              </div>
+              </pre>
+              
+           
+              
+
+            </div>
           </div>
         </div>
-      </div>
       <!-- ### End of required HTML for inline interactives ### -->
       <!-- Materialize responsive CSS -->
 
       <link rel="stylesheet" href="./css/lempil-ziv-ss.css">
       <script src="./js/lempil-ziv-ss.js"></script>
+      <script src="./js/jsPlumb-2.1.5-min.js"></script>
+      <!--<script src="./js/svg.min.js"></script>-->
      <!-- <script type="text/javascript" src="../base-files/js/third-party/materialize.min.js"></script>-->
   </body>
 </html>
