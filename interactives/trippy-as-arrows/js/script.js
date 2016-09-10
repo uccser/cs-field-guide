@@ -236,3 +236,9 @@ function removeHighlight(row) {
     circle.style.fill = '#000';
 }
 
+
+/*
+function getNewCoordinate(input) {
+    console.log(input);
+}
+*/
