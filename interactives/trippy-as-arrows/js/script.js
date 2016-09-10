@@ -35,6 +35,9 @@ function calculateAllTheThings() {
     var arrowWidth = 3;
     var arrowHeight = 8;
 
+    // offset used to center arrow in grid
+    var offset = (arrowHeight / 2) * squareSize;
+
     // width settings
     var windowWidth = window.innerWidth;
     var xNumSquares = Math.floor(windowWidth / squareSize);
@@ -68,6 +71,7 @@ function calculateAllTheThings() {
         yIntercept:      yIntercept,
         arrowWidth:      arrowWidth,
         arrowHeight:     arrowHeight,
+        offset:          offset,
         startPosition:   []
     };
 
@@ -112,41 +116,37 @@ function drawArrow() {
      *       p3  p4
      */
 
-    // offset used to center arrow in grid
-    var offset = (dimensions.arrowHeight / 2) * dimensions.squareSize;
-
-
     /* For each of the 7 points on the arrow:
      *     - Create a new Point object
      *     - Assign (x,y) coordinate
      */
     var p0 = new Point();
     p0.x = dimensions.xIntercept;
-    p0.y = dimensions.yIntercept - offset;
+    p0.y = dimensions.yIntercept - dimensions.offset;
 
     var p1 = new Point();
     p1.x = dimensions.xIntercept - (dimensions.arrowWidth * dimensions.squareSize);
-    p1.y = dimensions.yIntercept + (dimensions.arrowWidth * dimensions.squareSize) - offset;
+    p1.y = dimensions.yIntercept + (dimensions.arrowWidth * dimensions.squareSize) - dimensions.offset;
 
     var p2 = new Point();
     p2.x = dimensions.xIntercept - dimensions.squareSize;
-    p2.y = dimensions.yIntercept + (dimensions.arrowWidth * dimensions.squareSize) - offset;
+    p2.y = dimensions.yIntercept + (dimensions.arrowWidth * dimensions.squareSize) - dimensions.offset;
 
     var p3 = new Point();
     p3.x = dimensions.xIntercept - dimensions.squareSize;
-    p3.y = dimensions.yIntercept + (dimensions.arrowHeight * dimensions.squareSize) - offset;
+    p3.y = dimensions.yIntercept + (dimensions.arrowHeight * dimensions.squareSize) - dimensions.offset;
 
     var p4 = new Point();
     p4.x = dimensions.xIntercept + dimensions.squareSize;
-    p4.y = dimensions.yIntercept + (dimensions.arrowHeight * dimensions.squareSize) - offset;
+    p4.y = dimensions.yIntercept + (dimensions.arrowHeight * dimensions.squareSize) - dimensions.offset;
 
     var p5 = new Point();
     p5.x = dimensions.xIntercept + dimensions.squareSize;
-    p5.y = dimensions.yIntercept + (dimensions.arrowWidth * dimensions.squareSize) - offset;
+    p5.y = dimensions.yIntercept + (dimensions.arrowWidth * dimensions.squareSize) - dimensions.offset;
 
     var p6 = new Point();
     p6.x = dimensions.xIntercept + (dimensions.arrowWidth * dimensions.squareSize);
-    p6.y = dimensions.yIntercept + (dimensions.arrowWidth * dimensions.squareSize) - offset;
+    p6.y = dimensions.yIntercept + (dimensions.arrowWidth * dimensions.squareSize) - dimensions.offset;
 
     dimensions.startPosition = [p0, p1, p2, p3, p4, p5, p6];
 
@@ -226,19 +226,18 @@ function getNewCoordinates() {
 
 
 /* Uses matrix multiplication to calculate new position of each point on the arrow
- * Triggered when user clicks "update" button under input matrix
+ * Triggered when user clicks "Scale" button under input matrix
  */
 function useMatrixToScale() {
 
     var matrix = [];
+    var newPoints = [];
+    var point = null;
 
     matrix[0] = document.getElementById("matrix-row-0-col-0").value;
     matrix[1] = document.getElementById("matrix-row-0-col-1").value;
     matrix[2] = document.getElementById("matrix-row-1-col-0").value;
     matrix[3] = document.getElementById("matrix-row-1-col-1").value;
-
-    var point = null;
-    var newPoints = [];
 
     for (var i = 0; i < 7; i++) { // 7 points on arrow
 
@@ -252,6 +251,36 @@ function useMatrixToScale() {
         newPoints.push(newPoint);
 
     }
+    updateArrow(newPoints);
+
+}
+
+
+/* Uses matrix addition to calculate new position of each point on the arrow
+ * Triggered user clicks "Translate" button under input matrix
+ */
+function useMatrixToTranslate() {
+
+    var matrix = [];
+    var newPoints = [];
+    var point = null;
+
+    matrix[0] = parseInt(document.getElementById("matrix-translate-row-0-col-0").value) * 20;
+    matrix[1] = parseInt(document.getElementById("matrix-translate-row-1-col-0").value) * 20;
+
+    for (var i = 0; i < 7; i++) { // 7 points on arrow
+
+        var newPoint = new Point();
+
+        point = dimensions.startPosition[i];
+
+        newPoint.x = point.x + matrix[0];
+        newPoint.y = point.y - matrix[1];
+
+        newPoints.push(newPoint);
+
+    }
+
     updateArrow(newPoints);
 
 }
