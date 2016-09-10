@@ -220,6 +220,17 @@ function getNewCoordinates() {
 
 }
 
+
+function doMatrixThings() {
+    console.log("matrix things");
+    var matrix = [];
+    matrix[0] = document.getElementById("matrix-row-0-col-0").value;
+    matrix[1] = document.getElementById("matrix-row-0-col-1").value;
+    matrix[2] = document.getElementById("matrix-row-1-col-0").value;
+    matrix[3] = document.getElementById("matrix-row-1-col-1").value;
+    console.log(matrix);
+}
+
 /* Highlights a point on the arrow
  * Input: id of input row hovered over by mouse
  * */
@@ -242,3 +253,5 @@ function getNewCoordinate(input) {
     console.log(input);
 }
 */
+
+
