@@ -222,13 +222,35 @@ function getNewCoordinates() {
 
 
 function doMatrixThings() {
+
     console.log("matrix things");
     var matrix = [];
+
     matrix[0] = document.getElementById("matrix-row-0-col-0").value;
     matrix[1] = document.getElementById("matrix-row-0-col-1").value;
     matrix[2] = document.getElementById("matrix-row-1-col-0").value;
     matrix[3] = document.getElementById("matrix-row-1-col-1").value;
     console.log(matrix);
+
+    var point = null;
+    var newPoints = [];
+
+    for (var i = 0; i < 7; i++) { // 7 points on arrow
+
+        var newPoint = new Point();
+        point = dimensions.POLYGON.points.getItem(i);
+
+        newPoint.x = (point.x * matrix[0]) + (point.y * matrix[1]) + dimensions.xIntercept;
+        newPoint.y = (point.x * matrix[2]) + (point.y * matrix[3]) + dimensions.yIntercept;
+
+        newPoints.push(newPoint);
+
+    }
+
+    console.log(newPoints);
+
+    updateArrow(newPoints);
+
 }
 
 /* Highlights a point on the arrow
