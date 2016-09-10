@@ -1,5 +1,7 @@
+//NTS should grid have unit size 1? or is 20 ok?
 
-var dimensions;
+/* Global variable is a dictionary of variables relating to size and position of grid and arrow */
+var dimensions = {};
 
 /* Class for generating new points */
 function Point(x, y) {
@@ -23,6 +25,7 @@ window.onresize = function(event) {
 
 
 /* Calculate size of grid and arrow and save to global variable */
+// TODO should probably change the name of this function
 function calculateAllTheThings() {
 
     var container = document.getElementById('container');
@@ -65,6 +68,7 @@ function calculateAllTheThings() {
         yIntercept:      yIntercept,
         arrowWidth:      arrowWidth,
         arrowHeight:     arrowHeight,
+        startPosition:   []
     };
 
     drawBackground();
@@ -144,10 +148,10 @@ function drawArrow() {
     p6.x = dimensions.xIntercept + (dimensions.arrowWidth * dimensions.squareSize);
     p6.y = dimensions.yIntercept + (dimensions.arrowWidth * dimensions.squareSize) - offset;
 
-    var newPoints = [p0, p1, p2, p3, p4, p5, p6];
+    dimensions.startPosition = [p0, p1, p2, p3, p4, p5, p6];
 
-    updateArrow(newPoints);
-    updateInputBoxes(newPoints);
+    updateArrow(dimensions.startPosition);
+    updateInputBoxes(dimensions.startPosition);
 
 }
 
@@ -221,16 +225,17 @@ function getNewCoordinates() {
 }
 
 
-function doMatrixThings() {
+/* Uses matrix multiplication to calculate new position of each point on the arrow
+ * Triggered when user clicks "update" button under input matrix
+ */
+function useMatrixToScale() {
 
-    console.log("matrix things");
     var matrix = [];
 
     matrix[0] = document.getElementById("matrix-row-0-col-0").value;
     matrix[1] = document.getElementById("matrix-row-0-col-1").value;
     matrix[2] = document.getElementById("matrix-row-1-col-0").value;
     matrix[3] = document.getElementById("matrix-row-1-col-1").value;
-    console.log(matrix);
 
     var point = null;
     var newPoints = [];
@@ -238,20 +243,19 @@ function doMatrixThings() {
     for (var i = 0; i < 7; i++) { // 7 points on arrow
 
         var newPoint = new Point();
-        point = dimensions.POLYGON.points.getItem(i);
+        point = dimensions.startPosition[i];
 
-        newPoint.x = (point.x * matrix[0]) + (point.y * matrix[1]) + dimensions.xIntercept;
-        newPoint.y = (point.x * matrix[2]) + (point.y * matrix[3]) + dimensions.yIntercept;
+        // have to subtract intercept in order to get original value, then add intercept back on
+        newPoint.x = ((point.x - dimensions.xIntercept) * matrix[0]) + ((point.y - dimensions.yIntercept) * matrix[1]) + dimensions.xIntercept;
+        newPoint.y = ((point.x - dimensions.xIntercept) * matrix[2]) + ((point.y - dimensions.yIntercept) * matrix[3]) + dimensions.yIntercept;
 
         newPoints.push(newPoint);
 
     }
-
-    console.log(newPoints);
-
     updateArrow(newPoints);
 
 }
+
 
 /* Highlights a point on the arrow
  * Input: id of input row hovered over by mouse
