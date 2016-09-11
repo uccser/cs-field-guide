@@ -72,7 +72,8 @@ function calculateAllTheThings() {
         arrowWidth:      arrowWidth,
         arrowHeight:     arrowHeight,
         offset:          offset,
-        startPosition:   []
+        startPosition:   [],
+        currentPosition: []
     };
 
     drawBackground();
@@ -149,17 +150,16 @@ function drawArrow() {
     p6.y = dimensions.yIntercept + (dimensions.arrowWidth * dimensions.squareSize) - dimensions.offset;
 
     dimensions.startPosition = [p0, p1, p2, p3, p4, p5, p6];
+    dimensions.currentPosition = dimensions.startPosition;
 
-    updateArrow(dimensions.startPosition);
+    updateArrow();
     updateInputBoxes(dimensions.startPosition);
 
 }
 
 
 /* Updates each coordinate in the arrow */
-function updateArrow(newPoints) {
-    // TODO for input boxes, might just be able to link each input to corresponding point on the arrow
-    // (rather than updating all of them)
+function updateArrow() {
 
     var point;
     var circle;
@@ -167,12 +167,12 @@ function updateArrow(newPoints) {
     for (var i = 0; i < 7; i++) { // 7 points on an arrow
 
         point = dimensions.POLYGON.points.getItem(i);
-        point.x = newPoints[i].x;
-        point.y = newPoints[i].y;
+        point.x = dimensions.currentPosition[i].x;
+        point.y = dimensions.currentPosition[i].y;
 
         circle = document.getElementById('c' + i);
-        circle.setAttribute('cx', newPoints[i].x + 'px');
-        circle.setAttribute('cy', newPoints[i].y + 'px');
+        circle.setAttribute('cx', dimensions.currentPosition[i].x + 'px');
+        circle.setAttribute('cy', dimensions.currentPosition[i].y + 'px');
 
     }
 
@@ -199,28 +199,55 @@ function updateInputBoxes(points) {
 }
 
 
-/* Gets new coordinates from input boxes
- * Offsets the real value of the coordinate to give impression that centre of grid is position (0,0)
+/* Gets new coordinates from *all* input boxes
+ * Triggered when use clicks "update" button
  */
 function getNewCoordinates() {
 
     var inputId = '';
-    var newPoints = [];
 
     for (var i = 0; i < 7; i++) { // 7 points on arrow
 
         var newPoint = new Point();
 
+        // Offsets the real value of the coordinate to give impression that centre of grid is position (0,0)
         inputId = 'p' + i + '-input-x';
         newPoint.x = parseInt(document.getElementById(inputId).value) + dimensions.xIntercept;
         inputId = 'p' + i + '-input-y';
         newPoint.y = parseInt(document.getElementById(inputId).value) + dimensions.yIntercept;
 
-        newPoints.push(newPoint);
+        dimensions.currentPosition[i] = newPoint;
 
     }
 
-    updateArrow(newPoints);
+    updateArrow();
+
+}
+
+
+/* Gets new coordinate from single input box
+ * Triggered when the user deslects a coordinate input box
+ */
+function getNewCoordinate(input) {
+
+    // uses id of input element to find index in points array and if it is x or y that changed
+    var index = input.id.slice(1,2);
+    var newValue = parseInt(input.value);
+
+    // Offsets the real value of the coordinate to give impression that centre of grid is position (0,0)
+    var coord = input.id.slice(9);
+    if (coord == 'x') {
+        newValue += dimensions.xIntercept;
+    } else {
+        newValue += dimensions.yIntercept;
+    }
+
+    // if the value is has changed, update the arrow
+    if (dimensions.currentPosition[index][coord] != newValue) {
+        dimensions.currentPosition[index][coord] = newValue;
+        updateArrow();
+    }
+
 
 }
 
@@ -231,13 +258,12 @@ function getNewCoordinates() {
 function useMatrixToScale() {
 
     var matrix = [];
-    var newPoints = [];
     var point = null;
 
-    matrix[0] = document.getElementById("matrix-row-0-col-0").value;
-    matrix[1] = document.getElementById("matrix-row-0-col-1").value;
-    matrix[2] = document.getElementById("matrix-row-1-col-0").value;
-    matrix[3] = document.getElementById("matrix-row-1-col-1").value;
+    matrix[0] = document.getElementById('matrix-row-0-col-0').value;
+    matrix[1] = document.getElementById('matrix-row-0-col-1').value;
+    matrix[2] = document.getElementById('matrix-row-1-col-0').value;
+    matrix[3] = document.getElementById('matrix-row-1-col-1').value;
 
     for (var i = 0; i < 7; i++) { // 7 points on arrow
 
@@ -248,10 +274,10 @@ function useMatrixToScale() {
         newPoint.x = ((point.x - dimensions.xIntercept) * matrix[0]) + ((point.y - dimensions.yIntercept) * matrix[1]) + dimensions.xIntercept;
         newPoint.y = ((point.x - dimensions.xIntercept) * matrix[2]) + ((point.y - dimensions.yIntercept) * matrix[3]) + dimensions.yIntercept;
 
-        newPoints.push(newPoint);
+        dimensions.currentPosition[i] = newPoint;
 
     }
-    updateArrow(newPoints);
+    updateArrow();
 
 }
 
@@ -262,7 +288,6 @@ function useMatrixToScale() {
 function useMatrixToTranslate() {
 
     var matrix = [];
-    var newPoints = [];
     var point = null;
 
     matrix[0] = parseInt(document.getElementById("matrix-translate-row-0-col-0").value) * 20;
@@ -277,11 +302,11 @@ function useMatrixToTranslate() {
         newPoint.x = point.x + matrix[0];
         newPoint.y = point.y - matrix[1];
 
-        newPoints.push(newPoint);
+        dimensions.currentPosition[i] = newPoint;
 
     }
 
-    updateArrow(newPoints);
+    updateArrow();
 
 }
 
@@ -303,10 +328,5 @@ function removeHighlight(row) {
 }
 
 
-/*
-function getNewCoordinate(input) {
-    console.log(input);
-}
-*/
 
 
