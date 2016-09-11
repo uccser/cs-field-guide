@@ -15,6 +15,11 @@ function Point(x, y) {
 /* On load and resize build the grid and arrow */
 window.onload = function(event) {
     calculateAllTheThings();
+
+    loadJSON(function(response) {
+        var actual_JSON = JSON.parse(response);
+        console.log(actual_JSON);
+    });
 }
 
 window.onresize = function(event) {
@@ -23,6 +28,22 @@ window.onresize = function(event) {
 
 ////////////////////////////////////////////////////////////
 
+// JSON magic
+
+function loadJSON(callback) {
+    var xobj = new XMLHttpRequest();
+    xobj.overrideMimeType("application/json"); // tells the browser what type of file it is
+    xobj.open('GET', 'config.json');
+    xobj.onreadystatechange = function() {
+        if (xobj.readyState == 4 && xobj.status == "200") { // where 4 = DONE and 200 = successful request
+            callback(xobj.responseText);
+        }
+    };
+    xobj.send(null);
+}
+
+
+////////////////////////////////////////////////////////////
 
 /* Calculate size of grid and arrow and save to global variable */
 // TODO should probably change the name of this function
@@ -290,8 +311,8 @@ function useMatrixToTranslate() {
     var matrix = [];
     var point = null;
 
-    matrix[0] = parseInt(document.getElementById("matrix-translate-row-0-col-0").value) * 20;
-    matrix[1] = parseInt(document.getElementById("matrix-translate-row-1-col-0").value) * 20;
+    matrix[0] = parseInt(document.getElementById('matrix-translate-row-0-col-0').value) * 20;
+    matrix[1] = parseInt(document.getElementById('matrix-translate-row-1-col-0').value) * 20;
 
     for (var i = 0; i < 7; i++) { // 7 points on arrow
 
