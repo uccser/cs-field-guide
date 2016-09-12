@@ -1,3 +1,5 @@
 {
-    "type": "matrix"
+    "type": "coordinates",
+    "task": "< Instructions here about the task to complete >",
+    "target": "660 500 600 560 640 560 640 660 680 660 680 560 720 560"
 }

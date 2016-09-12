@@ -48,14 +48,16 @@ function loadJSON(callback) {
 
 function loadModules(config) {
 
-    console.log(config["type"]);
+    console.log(config['type']);
 
-    if (config["type"] == "matrix") {
+    if (config['type'] == 'matrix') {
         // show matrix elements
-        document.getElementById("matrices").style.display = "block";
-    } else {
+        document.getElementById('matrices').style.display = 'block';
+    } else if (config['type'] == 'coordinates') {
         // show coordinate elements
-        document.getElementById("coordinates").style.display = "block";
+        document.getElementById('coordinates').style.display = 'block';
+        document.getElementById('task').innerHTML = config['task'];
+        drawTargetArrow(config['target']);
     }
 
 }
@@ -68,7 +70,9 @@ function loadModules(config) {
 function calculateAllTheThings() {
 
     var container = document.getElementById('container');
-    var polygon = document.getElementsByTagName('polygon')[0]; // the svg arrow
+    //var polygon = document.getElementsByTagName('polygon')[0]; // the svg arrow
+    var polygon = document.getElementById('dynamic-polygon');
+    var target_polygon = document.getElementById('target-polygon');
 
     var squareSize = 20;
     var arrowWidth = 3;
@@ -101,6 +105,7 @@ function calculateAllTheThings() {
     dimensions = {
         CONTAINER:       container,
         POLYGON:         polygon,
+        TARGET_POLYGON:  target_polygon,
         containerWidth:  containerWidth,
         containerHeight: containerHeight,
         squareSize:      squareSize,
@@ -112,7 +117,8 @@ function calculateAllTheThings() {
         arrowHeight:     arrowHeight,
         offset:          offset,
         startPosition:   [],
-        currentPosition: []
+        currentPosition: [],
+        targetPosition:  []
     };
 
     drawBackground();
@@ -193,6 +199,36 @@ function drawArrow() {
 
     updateArrow();
     updateInputBoxes(dimensions.startPosition);
+
+}
+
+
+/* Draws arrow shape
+ * Used on load and when "reset" button is clicked
+ */
+function drawTargetArrow(points) {
+
+    points = points.split(' ');
+
+    for (var i = 0; i < 14; i+=2) { // 7 points on an arrow, each with x and y value
+        var p = new Point();
+        p.x = points[i];
+        p.y = points[i+1];
+        dimensions.targetPosition.push(p);
+    }
+
+
+    // WORKINGHERE
+    // just need to figure out how to merge these two forloops
+
+    var point;
+
+    for (var i = 0; i < 7; i++) { // 7 points on an arrow
+
+        point = dimensions.TARGET_POLYGON.points.getItem(i);
+        point.x = dimensions.targetPosition[i].x;
+        point.y = dimensions.targetPosition[i].y;
+    }
 
 }
 
