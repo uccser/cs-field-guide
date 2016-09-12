@@ -14,12 +14,13 @@ function Point(x, y) {
 
 /* On load and resize build the grid and arrow */
 window.onload = function(event) {
-    calculateAllTheThings();
 
     loadJSON(function(response) {
-        var actual_JSON = JSON.parse(response);
-        console.log(actual_JSON);
+        var config = JSON.parse(response);
+        loadModules(config);
     });
+
+    calculateAllTheThings();
 }
 
 window.onresize = function(event) {
@@ -40,6 +41,23 @@ function loadJSON(callback) {
         }
     };
     xobj.send(null);
+}
+
+
+////////////////////////////////////////////////////////////
+
+function loadModules(config) {
+
+    console.log(config["type"]);
+
+    if (config["type"] == "matrix") {
+        // show matrix elements
+        document.getElementById("matrices").style.display = "block";
+    } else {
+        // show coordinate elements
+        document.getElementById("coordinates").style.display = "block";
+    }
+
 }
 
 

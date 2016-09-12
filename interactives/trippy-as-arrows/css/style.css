@@ -43,6 +43,14 @@ div#container {
 }
 
 
+div #coordinates {
+  display: none;
+}
+
+div #matrices {
+  display: none;
+}
+
 div#instructions {
   position: absolute;
   float: left;
