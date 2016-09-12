@@ -48,8 +48,6 @@ function loadJSON(callback) {
 
 function loadModules(config) {
 
-    console.log(config['type']);
-
     if (config['type'] == 'matrix') {
         // show matrix elements
         document.getElementById('matrices').style.display = 'block';
@@ -208,26 +206,23 @@ function drawArrow() {
  */
 function drawTargetArrow(points) {
 
+    var point;
+    var xPos = 0;
+    var yPos = 1;
+
     points = points.split(' ');
 
-    for (var i = 0; i < 14; i+=2) { // 7 points on an arrow, each with x and y value
-        var p = new Point();
-        p.x = points[i];
-        p.y = points[i+1];
-        dimensions.targetPosition.push(p);
-    }
-
-
-    // WORKINGHERE
-    // just need to figure out how to merge these two forloops
-
-    var point;
-
-    for (var i = 0; i < 7; i++) { // 7 points on an arrow
+    for (var i = 0; i < 7; i++) { // 7 points on an arrow, each with x and y value
 
         point = dimensions.TARGET_POLYGON.points.getItem(i);
-        point.x = dimensions.targetPosition[i].x;
-        point.y = dimensions.targetPosition[i].y;
+        point.x = points[xPos];
+        point.y = points[yPos];
+
+        dimensions.targetPosition.push(point);
+
+        xPos += 2;
+        yPos += 2;
+
     }
 
 }
