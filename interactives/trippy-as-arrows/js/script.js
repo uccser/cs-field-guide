@@ -34,7 +34,7 @@ window.onresize = function(event) {
 function loadJSON(callback) {
     var xobj = new XMLHttpRequest();
     xobj.overrideMimeType("application/json"); // tells the browser what type of file it is
-    xobj.open('GET', 'config.json');
+    xobj.open('GET', 'translation.json');
     xobj.onreadystatechange = function() {
         if (xobj.readyState == 4 && xobj.status == "200") { // where 4 = DONE and 200 = successful request
             callback(xobj.responseText);
@@ -215,8 +215,9 @@ function drawTargetArrow(points) {
     for (var i = 0; i < 7; i++) { // 7 points on an arrow, each with x and y value
 
         point = dimensions.TARGET_POLYGON.points.getItem(i);
-        point.x = points[xPos];
-        point.y = points[yPos];
+        point.x = (points[xPos] * dimensions.squareSize) + dimensions.xIntercept;
+        // have to multiply by -1 becuase y axis is reversed in the svg coordinate space
+        point.y = (points[yPos] * dimensions.squareSize * -1) + dimensions.yIntercept;
 
         dimensions.targetPosition.push(point);
 
