@@ -260,9 +260,9 @@ function updateInputBoxes(points) {
     for (var i = 0; i < 7; i++) { // 7 points on arrow
 
         inputId = 'p' + i + '-input-x';
-        document.getElementById(inputId).value = points[i].x - dimensions.xIntercept;
+        document.getElementById(inputId).value = (points[i].x - dimensions.xIntercept) / dimensions.squareSize;
         inputId = 'p' + i + '-input-y';
-        document.getElementById(inputId).value = points[i].y - dimensions.yIntercept;
+        document.getElementById(inputId).value = ((points[i].y - dimensions.yIntercept) / dimensions.squareSize) * -1;
 
     }
 
@@ -282,9 +282,9 @@ function getNewCoordinates() {
 
         // Offsets the real value of the coordinate to give impression that centre of grid is position (0,0)
         inputId = 'p' + i + '-input-x';
-        newPoint.x = parseInt(document.getElementById(inputId).value) + dimensions.xIntercept;
+        newPoint.x = (parseInt(document.getElementById(inputId).value) * dimensions.squareSize) + dimensions.xIntercept;
         inputId = 'p' + i + '-input-y';
-        newPoint.y = parseInt(document.getElementById(inputId).value) + dimensions.yIntercept;
+        newPoint.y = (parseInt(document.getElementById(inputId).value) * -1 * dimensions.squareSize) + dimensions.yIntercept;
 
         dimensions.currentPosition[i] = newPoint;
 
@@ -302,13 +302,14 @@ function getNewCoordinate(input) {
 
     // uses id of input element to find index in points array and if it is x or y that changed
     var index = input.id.slice(1,2);
-    var newValue = parseInt(input.value);
+    var newValue = parseInt(input.value) * dimensions.squareSize;
 
     // Offsets the real value of the coordinate to give impression that centre of grid is position (0,0)
     var coord = input.id.slice(9);
     if (coord == 'x') {
         newValue += dimensions.xIntercept;
     } else {
+        newValue *= -1;
         newValue += dimensions.yIntercept;
     }
 
@@ -360,8 +361,8 @@ function useMatrixToTranslate() {
     var matrix = [];
     var point = null;
 
-    matrix[0] = parseInt(document.getElementById('matrix-translate-row-0-col-0').value) * 20;
-    matrix[1] = parseInt(document.getElementById('matrix-translate-row-1-col-0').value) * 20;
+    matrix[0] = parseInt(document.getElementById('matrix-translate-row-0-col-0').value) * dimensions.squareSize;
+    matrix[1] = parseInt(document.getElementById('matrix-translate-row-1-col-0').value) * dimensions.squareSize;
 
     for (var i = 0; i < 7; i++) { // 7 points on arrow
 
