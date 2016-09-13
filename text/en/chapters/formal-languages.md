@@ -169,7 +169,7 @@ Being comfortable with such structures is a useful skill for computer scientists
 
 {panel type="jargon-buster" summary="Finite State Automaton"}
 
-{glossary-definition term="Finite State Automaton" definition="In formal languages, a simple "machine" that has states, and transitions from one state to another based on strings of input symbols."}
+{glossary-definition term="Finite State Automaton" definition="In formal languages, a simple 'machine' that has states, and transitions from one state to another based on strings of input symbols."}
 The name
 {glossary-link term="finite state automaton" reference-text="Formal languages"}finite state automaton{glossary-link end} (FSA) might seem strange, but each word is quite simple.
 "Finite" just means that there is a limited number of states (such as train stations) in the map. The "state" is just as another name for the train stations we were using. "Automaton" is an old word meaning a machine that acts on its own, following simple rules (such as the cuckoo in a cuckoo clock).
@@ -253,7 +253,7 @@ The general rule is that the input must have an odd number of "a"s in it; the nu
 {button link="http://www.csfieldguide.org.nz/releases/1.9.9/_static/widgets/fsa-2state-v3.html?map=two" text="View state interactive (2)"}
 
 {glossary-definition term="Alphabet" definition="In formal languages, a list of characters that may occur in a language, or more generally, a list of all possible inputs that might happen."}
-To keep things precise, we'll define two further technical terms.
+To keep things precise, we'll define four further technical terms.
 One is the
 {glossary-link term="alphabet" reference-text="Formal languages"}alphabet{glossary-link end},
 which is just a list of all possible inputs that might happen.
@@ -551,7 +551,7 @@ Using Exorciser or JFLAP, construct an FSA that takes inputs made of the letters
 - strings that have an even number of the letter "a" (e.g. "aa", "abaaa", "bbbb"; and don’t forget the empty string {math}\epsilon{math end}).
 - strings that have an odd number of the letter "a" (e.g. "a", "baaa", "bbbab", but not {math}\epsilon{math end}).
 - strings where the number of "a"s in the input is a multiple of three (e.g. "aabaaaa", "bababab").
-- strings where every time an a appears in the input, it is followed by a b (e.g. "abb", "bbababbbabab", "bbb").
+- strings where every time an "a" appears in the input, it is followed by a "b" (e.g. "abb", "bbababbbabab", "bab").
 - strings that end with "ab"
 - strings that start with "ab" and end with "ba", and only have "b" in the middle (e.g. "abba", "abbbbba")
 
@@ -940,7 +940,7 @@ In the above example, the FSA is a really easy way to check for the regular expr
 
 Fortunately, *every* regular expression can be converted to an FSA. We won't look at the process here, but both Exorciser and JFLAP can do it for you anyway (see the activities below).
 
-Converting a regex to an FSA also built into most programming languages.
+Converting a regex to an FSA is also built into most programming languages.
 Programmers usually use regular expressions by calling functions or methods that are passed the regex and the string to be searched.
 Behind the scenes, the regular expression is converted to a finite state automaton, and then the job of checking your regular expression is very easy.
 
@@ -1126,7 +1126,7 @@ it can do, and write regular expressions for finding words such as:
 
 - Explore regular expressions in spreadsheets. The Google docs spreadsheet has a function called RegExMatch, RegExExtract and RegExReplace. In Excel they are available via Visual Basic.
 
-- Knitting patterns are a form of regular expression. If you're interested in knitting, you could look into how they are related through the [article about knitting and regular expressions at CS4FN site](http://www.cs4fn.org/regularexpressions/knitters.php).
+- Knitting patterns are a form of regular expression. If you're interested in knitting, you could look into how they are related through the [article about knitting and regular expressions at the CS4FN site](http://www.cs4fn.org/regularexpressions/knitters.php).
 
 - The "grep" command is available in many command line systems, and matches a regular expression in the command with lines in an input file. (the name comes from "Global Regular Expression Parser"). Demonstrate the grep command for various regular expressions.
 
@@ -1318,7 +1318,7 @@ Believe it or not, all these variations are essentially equivalent, and you can 
 
 However, there are also more complex models of computation such as the push-down automaton (PDA) which is able to follow the rules of context-free grammars, and the most general model of computation which is called a Turing machine.
 These models are increasingly complicated and abstract, and structures like the Turing machine aren't used as physical devices (except for fun), but instead as a tool for reasoning about the limits on what can be computed.
-In fact, in principle every digital computer is a kind of limited turing machine, so whatever limits we find for a Turing machine gives us limits for everyday computation.
+In fact, in principle every digital computer is a kind of limited Turing machine, so whatever limits we find for a Turing machine gives us limits for everyday computation.
 
 {comment}
 .. TCB  if we decide to cover non deterministic automata - could use a humorous approach - e.g. train route is semi-random, or several passengers try out all routes?
@@ -1348,7 +1348,7 @@ There is a direct correspondence between the "machines" (such as the FSA) and la
 For example, an FSA can be used to determine if the input matches a given Regular Expression, but a PDA is needed to match a string to a CFG.
 The study of formal languages looks at these relationships, and comes up with ways to create the appropriate machines for a given language and vice versa.
 
-There are many tools available that will read in the specification for a language and produce another program to parse the language; some common ones are called "Lex" and "Flex" (both perform lexical anaylsis of regular expressions), "Yacc" ("yet another compiler compiler") and "Bison" (an improved version of Yacc).
+There are many tools available that will read in the specification for a language and produce another program to parse the language; some common ones are called "Lex" and "Flex" (both perform lexical analysis of regular expressions), "Yacc" ("yet another compiler compiler") and "Bison" (an improved version of Yacc).
 These systems make it relatively easy to make up your own programming language and construct a compiler for it, although they do demand quite a range of skills to get the whole thing working!
 
 {comment}
