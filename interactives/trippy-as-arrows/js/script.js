@@ -1,4 +1,3 @@
-//NTS should grid have unit size 1? or is 20 ok?
 
 /* Global variable is a dictionary of variables relating to size and position of grid and arrow */
 var dimensions = {};
@@ -12,8 +11,22 @@ function Point(x, y) {
 
 ////////////////////////////////////////////////////////////
 
-/* On load and resize build the grid and arrow */
+/* On load get config and build the grid and both arrows */
 window.onload = function(event) {
+
+    loadJSON(function(response) {
+        var config = JSON.parse(response);
+        loadModules(config);
+    });
+
+    calculateAllTheThings();
+
+}
+
+/* Rebuilds dynamic on window resize */
+window.onresize = function(event) {
+    // NTS means that the JSON file is being loaded potentially many times
+    // TODO should figure out how to do this without having to reload the json file
 
     loadJSON(function(response) {
         var config = JSON.parse(response);
@@ -23,14 +36,11 @@ window.onload = function(event) {
     calculateAllTheThings();
 }
 
-window.onresize = function(event) {
-    calculateAllTheThings();
-}
-
 ////////////////////////////////////////////////////////////
 
 // JSON magic
 
+/* Loads JSON config file */
 function loadJSON(callback) {
     var xobj = new XMLHttpRequest();
     xobj.overrideMimeType("application/json"); // tells the browser what type of file it is
