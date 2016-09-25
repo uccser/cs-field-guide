@@ -14,6 +14,16 @@ function Point(x, y) {
 /* On load get config and build the grid and both arrows */
 window.onload = function(event) {
 
+    // gets url query string
+    var url = window.location.search.replace('?', '');
+    // pulls out value of each parameter
+    const params = new URLSearchParams(url);
+    console.log(params.get('input'));
+    /* NTS
+     * - specify in url which concept the interactive is demonstrating
+     * - uses this to decide which config file to load
+     */
+
     loadJSON(function(response) {
         var config = JSON.parse(response);
         loadModules(config);
@@ -44,7 +54,7 @@ window.onresize = function(event) {
 function loadJSON(callback) {
     var xobj = new XMLHttpRequest();
     xobj.overrideMimeType("application/json"); // tells the browser what type of file it is
-    xobj.open('GET', 'translation.json');
+    xobj.open('GET', 'matrix.json');
     xobj.onreadystatechange = function() {
         if (xobj.readyState == 4 && xobj.status == "200") { // where 4 = DONE and 200 = successful request
             callback(xobj.responseText);
