@@ -69,7 +69,15 @@ function generateRandomNumbers() {
 }
 
 function createBoxElements() {
+	//TODO: get random number from range, remove it from the array after each loop
+	var range = Array.apply(null, Array(15)).map(function (_, i) {return i;});
+	shuffle(range);
+
+	console.log(range);
+
+
 	for (var i = 0; i < (numberOfBoxes); i++) {
+
 		var boxObject; //JS object that will hold the id, int and both elements
 		var currentBox = boxes[i]
 
@@ -101,7 +109,10 @@ function createBoxElements() {
 
 
 		//set background image of div to the funky box
-		boxDiv.style.backgroundImage = 'url(./img/square' + getRandomInt(1, 9) + '.png)';
+		var boxImageIndex = (i + 1);
+		boxDiv.style.backgroundImage = 'url(./img/square' + boxImageIndex + '.png)';
+		console.log(range);
+
 
 		currentBox.divElement = boxDiv;
 		iContainer.appendChild(boxDiv);
@@ -128,6 +139,20 @@ function createBoxObjects() {
 		}
 		boxes[i] = boxObject;
 	}
+}
+
+/**
+ * Shuffles array in place.
+ * @param {Array} a items The array containing the items.
+ */
+function shuffle(a) {
+    var j, x, i;
+    for (i = a.length; i; i--) {
+        j = Math.floor(Math.random() * i);
+        x = a[i - 1];
+        a[i - 1] = a[j];
+        a[j] = x;
+    }
 }
 
 function getRandomInt(min, max) {

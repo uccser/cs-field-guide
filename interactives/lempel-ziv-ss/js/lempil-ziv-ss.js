@@ -10,7 +10,12 @@ this.redHighlight = 'rgba(200, 0, 0, 0.2)';
 this.greenHighlight = 'rgba(0, 200, 0, 0.2)';
 this.blueHighlight = 'rgba(0, 0, 200, 0.2)';
 
-this.samIAmTestString = "I am Sam\n\nSam I am\n\nThat Sam-I-am!\nThat Sam-I-am!\n\nI do not like\nthat Sam-I-am!";
+this.samIAmTestString = "I am Sam\nSam I am\n\nThat Sam-I-am!\nThat Sam-I-am!\n\nI do not like\nthat Sam-I-am!";
+this.quickTestString = "I am Sam\nSam I am";
+this.levelTwoString = "Would you like them\r\nin a house?\r\nWould you like them\r\nwith a mouse?\r\n\r\nI do not like them\r\nin a house.\r\nI do not like them \r\nwith a mouse."
+
+this.difficultyLevel = 1;
+
 
 /*
 	var matchObject = {
@@ -32,74 +37,76 @@ window.onload = function() {
 	jsPlumb.setContainer(document.getElementById('interactive-displayed-text'));
 
 	//########### File Input things#################
-		var fileInput = document.getElementById('fileInput');
-		var testText = document.getElementById('testText');
+		// var fileInput = document.getElementById('fileInput');
+		// var testText = document.getElementById('testText');
 
-		fileInput.addEventListener('change', function(e) {
-			var file = fileInput.files[0];
-			var textType = /text.*/;
+		// fileInput.addEventListener('change', function(e) {
+		// 	var file = fileInput.files[0];
+		// 	var textType = /text.*/;
 
-			if (file.type.match(textType)) {
-				var reader = new FileReader();
+		// 	if (file.type.match(textType)) {
+		// 		var reader = new FileReader();
 
-				reader.onload = function(e) {
+		// 		reader.onload = function(e) {
 					
-						timeStart = performance.now();
-						lzssEncode(reader.result, slidingWindow);
-						timeEnd = performance.now();
-						//console.log("Call to lzssEncode with .txt file with length " + reader.result.length + " took " + (timeEnd - timeStart) + " milliseconds with sliding window of " + slidingWindow);
-						//console.log("Text before encoding was " + textBeforeBits + " bits, and after it was " + textAfterBits + "bits which is a " + ((textAfterBits / textBeforeBits) * 100) + "% compression");
+		// 				timeStart = performance.now();
+		// 				lzssEncode(reader.result, slidingWindow);
+		// 				timeEnd = performance.now();
+		// 				//console.log("Call to lzssEncode with .txt file with length " + reader.result.length + " took " + (timeEnd - timeStart) + " milliseconds with sliding window of " + slidingWindow);
+		// 				//console.log("Text before encoding was " + textBeforeBits + " bits, and after it was " + textAfterBits + "bits which is a " + ((textAfterBits / textBeforeBits) * 100) + "% compression");
 					
  					
- 					/*
-					//###execution time testing purposes, encodes string with many different sliding windows and outputs time taken
+ 					
+		// 			//###execution time testing purposes, encodes string with many different sliding windows and outputs time taken
 					
-					var slidingWindows = [100, 500, 1000, 2000, 4000, 10000]
+		// 			var slidingWindows = [100, 500, 1000, 2000, 4000, 10000]
 
-					for (var i = 0; i < slidingWindows.length; i++) {
+		// 			for (var i = 0; i < slidingWindows.length; i++) {
 					
-						timeStart = performance.now();
-						lzssEncode(reader.result, slidingWindows[i]);
-						timeEnd = performance.now();
-						//console.log("Call to lzssEncode with .txt file with length " + reader.result.length + " took " + (timeEnd - timeStart) + " milliseconds with sliding window of " + slidingWindows[i]);
-						//console.log("Text before encoding was " + textBeforeBits + " bits, and after it was " + textAfterBits + "bits which is a " + ((textAfterBits / textBeforeBits)) + "% compression");
- 						//console.log("");
-					}
-					*/
+		// 				timeStart = performance.now();
+		// 				lzssEncode(reader.result, slidingWindows[i]);
+		// 				timeEnd = performance.now();
+		// 				//console.log("Call to lzssEncode with .txt file with length " + reader.result.length + " took " + (timeEnd - timeStart) + " milliseconds with sliding window of " + slidingWindows[i]);
+		// 				//console.log("Text before encoding was " + textBeforeBits + " bits, and after it was " + textAfterBits + "bits which is a " + ((textAfterBits / textBeforeBits)) + "% compression");
+ 	// 					//console.log("");
+		// 			}
 					
-					//###########################################################
-				}
+					
+		// 			//###########################################################
+		// 		}
 
-				reader.readAsText(file);
+		// 		reader.readAsText(file);
 
 
 
-			} else {
-				fileDisplayArea.innerText = "File not supported!";
-			}
-		});
+		// 	} else {
+		// 		fileDisplayArea.innerText = "File not supported!";
+		// 	}
+		// });
 
 
 	//generate SVG element that covers whole page that will be used to draw arrows on
 
 	//draw = SVG('drawing');
 
-	lzssEncode(samIAmTestString, slidingWindow);
+	lzssEncode(quickTestString, slidingWindow);
 
 
 
 }
 
-/*################## THINGS TO DO WITH THE INPUTS AND MOUSING OVER THEM ############################### */
+/*################## THINGS TO DO WITH THE INPUTS ############################### */
 
 //checking inputs on change for validation
 $(document).on('blur', 'input', function() {
+	var allCorrect = true;
 	for (var i = 0; i < allMatchObjects.length; i++) {
+
 		//console.log(allMatchObjects[i].inputElement)
 		if (allMatchObjects[i].inputElement == event.target) {
 			//console.log("text in this input should be " + allMatchObjects[i].validationString);
 			//console.log("text in the input actually is " + event.target.value);
-			if (event.target.value == allMatchObjects[i].validationString) {
+			if (allMatchObjects[i].inputElement.value == allMatchObjects[i].validationString) {
 				$(this).removeClass('input-incorrect');
 				$(this).addClass('input-correct');
 			} else {
@@ -107,6 +114,15 @@ $(document).on('blur', 'input', function() {
 				$(this).addClass('input-incorrect');
 			}			
 		}
+
+		if (allMatchObjects[i].inputElement.value != allMatchObjects[i].validationString) {
+			allCorrect = false;
+		}
+	}
+
+	if (allCorrect == true) {
+		console.log("next button should show now!")
+		$('#next-button').show()
 	}
 	//console.log(event.target);
 
@@ -118,14 +134,111 @@ $(document).on('focus', '.interactive-input', function() {
 	for (var i = 0; i < allMatchObjects.length; i++) {
 		if (allMatchObjects[i].inputElement == event.target) {
 			correctMatchObject = allMatchObjects[i]; // this is the one we want 'coordinates' from
-			//console.log(correctMatchObject)
+			console.log(correctMatchObject)
 		}
 	}
 
 
 	var startOfHighlighting = (correctMatchObject.positionInString - correctMatchObject.stepsBack);
+	var endOfHighlighting = (startOfHighlighting + correctMatchObject.toEncode) - 1;
+
+	if (difficultyLevel == 1) {
+	levelOneHighlight(startOfHighlighting, endOfHighlighting, correctMatchObject);
+	} else if (difficultyLevel == 2) {
+		levelTwoHighlight(startOfHighlighting, endOfHighlighting, correctMatchObject);
+	}
+	
+	//});
+	//jsPlumb.repaintEverything()
+
+})
+
+
+
+
+function jsPlumbBox(startOfHighlighting, endOfHighlighting) {
+
+	//direction defining - these all have a little bit of anchor offset applied
+	var topLeft = [0,0,0,0,-3,-3];
+	var bottomLeft = [0,1,0,0,-3,3];
+	var topRight = [1,0,0, 0,3,-3];
+	var bottomRight = [1,1,0,0,3,3];
+
+	
+
+	//bottom line
+	jsPlumb.connect({
+		connector: 'Straight',
+		endpoint:'Blank',
+		paintStyle:{ strokeStyle: "black", lineWidth:2 },
+		source: 'highlight' + startOfHighlighting,
+		target: 'highlight' + (endOfHighlighting),
+		anchors: [bottomLeft, bottomRight]
+	})
+
+	//top line
+	jsPlumb.connect({
+		connector: 'Straight',
+		endpoint:'Blank',
+		paintStyle:{ strokeStyle: "black", lineWidth:2 },
+		source: 'highlight' + startOfHighlighting,
+		target: 'highlight' + (endOfHighlighting),
+		anchors: [topLeft, topRight]
+	})
+
+	//left line
+	jsPlumb.connect({
+		connector: 'Straight',
+		endpoint:'Blank',
+		paintStyle:{ strokeStyle: "black", lineWidth:2 },
+		source: 'highlight' + startOfHighlighting,
+		target: 'highlight' + startOfHighlighting,
+		anchors: [topLeft, bottomLeft] 
+	})
+
+	//right line
+	jsPlumb.connect({
+		connector: 'Straight',
+		endpoint:'Blank',
+		paintStyle:{ strokeStyle: "black", lineWidth:2 },
+		source: 'highlight' + (endOfHighlighting),
+		target: 'highlight' + (endOfHighlighting),
+		anchors: [topRight, bottomRight]
+	})
+
+}
+
+function jsPlumbUnderline(startOfHighlighting, endOfHighlighting) {
+	var bottomLeft = [0,1,0,0,-3,3];
+	var bottomRight = [1,1,0,0,3,3];
+
+	//bottom line
+	jsPlumb.connect({
+		connector: 'Straight',
+		endpoint:'Blank',
+		paintStyle:{ strokeStyle: "black", lineWidth:2 },
+		source: 'highlight' + startOfHighlighting,
+		target: 'highlight' + (endOfHighlighting),
+		anchors: [bottomLeft, bottomRight]
+	})
+
+}
+
+
+$(document).on('focusout', '.interactive-input', function() {
+	jsPlumb.detachEveryConnection();
+	for (var i = 0; i < allMatchObjects.length; i++) {
+		if (allMatchObjects[i].inputElement == event.target) {
+			var correctMatchObject = allMatchObjects[i]; // this is the one we want 'coordinates' from
+		}
+	}
+	var startOfHighlighting = (correctMatchObject.positionInString - correctMatchObject.stepsBack);
 	var endOfHighlighting = (startOfHighlighting + correctMatchObject.toEncode);
-	$('.highlight-square').slice(startOfHighlighting, endOfHighlighting).addClass('highlighted');
+	$('.highlight-square').slice(startOfHighlighting, endOfHighlighting).removeClass('highlighted');
+})
+
+function levelOneHighlight(startOfHighlighting, endOfHighlighting, correctMatchObject) {
+	$('.highlight-square').slice(startOfHighlighting, endOfHighlighting + 1).addClass('highlighted');
 
 	var middleOfHighlighting = ~~((endOfHighlighting + startOfHighlighting) / 2);
 	var endElement = $('#highlight' + endOfHighlighting); 
@@ -146,69 +259,22 @@ $(document).on('focus', '.interactive-input', function() {
 	});
 
 	//draw box around highlighted elements
+	console.log("startOfHighlighting: " + startOfHighlighting + " endOfHighlighting: " + endOfHighlighting);
 	jsPlumbBox(startOfHighlighting, endOfHighlighting);
-	//});
-	//jsPlumb.repaintEverything()
-
-})
-
-function jsPlumbBox(startOfHighlighting, endOfHighlighting) {
-	//bottom line
-	jsPlumb.connect({
-		connector: 'Straight',
-		endpoint:'Blank',
-		paintStyle:{ strokeStyle: "black", lineWidth:2 },
-		source: 'highlight' + startOfHighlighting,
-		target: 'highlight' + endOfHighlighting,
-		anchors: ['BottomLeft', 'BottomRight']
-	})
-
-	//top line
-	jsPlumb.connect({
-		connector: 'Straight',
-		endpoint:'Blank',
-		paintStyle:{ strokeStyle: "black", lineWidth:2 },
-		source: 'highlight' + startOfHighlighting,
-		target: 'highlight' + endOfHighlighting,
-		anchors: ['TopLeft', 'TopRight']
-	})
-
-	//left line
-	jsPlumb.connect({
-		connector: 'Straight',
-		endpoint:'Blank',
-		paintStyle:{ strokeStyle: "black", lineWidth:2 },
-		source: 'highlight' + startOfHighlighting,
-		target: 'highlight' + startOfHighlighting,
-		anchors: ['TopLeft', 'BottomLeft']
-	})
-
-	//right line
-	jsPlumb.connect({
-		connector: 'Straight',
-		endpoint:'Blank',
-		paintStyle:{ strokeStyle: "black", lineWidth:2 },
-		source: 'highlight' + endOfHighlighting,
-		target: 'highlight' + endOfHighlighting,
-		anchors: ['TopRight', 'BottomRight']
-	})
-
 }
 
+function changeToLevelTwo() {
+	difficultyLevel = 2;
+	lzssEncode(levelTwoString, slidingWindow);
+	console.log("Level two!");
+}
 
-$(document).on('focusout', '.interactive-input', function() {
-	jsPlumb.detachEveryConnection();
-	for (var i = 0; i < allMatchObjects.length; i++) {
-		if (allMatchObjects[i].inputElement == event.target) {
-			var correctMatchObject = allMatchObjects[i]; // this is the one we want 'coordinates' from
-		}
-	}
-	var startOfHighlighting = (correctMatchObject.positionInString - correctMatchObject.stepsBack);
-	var endOfHighlighting = (startOfHighlighting + correctMatchObject.toEncode);
-	$('.highlight-square').slice(startOfHighlighting, endOfHighlighting).removeClass('highlighted');
-})
-
+function levelTwoHighlight(startOfHighlighting, endOfHighlighting, correctMatchObject) {
+	$('.highlight-square').slice(startOfHighlighting, endOfHighlighting + 1).addClass('highlighted');
+	jsPlumbUnderline(startOfHighlighting, endOfHighlighting);
+}
 /*######################################### #######################################*/
+
 
 function encodeTextArea() {
 	var textInTextArea = document.getElementById("text-to-encode-textarea").value;
@@ -240,11 +306,11 @@ function lzssEncode(rawStringToEncode, slidingWindowLength) {
 		indexOfLongestMatchStart = -1;
 
 		//console.log("currentReadString is " + currentReadString);
-		if ((currentReadString == '\n') || (currentReadString == '\r\n')) {
+		if ((currentReadString == '\n') || (currentReadString == '\r\n') || (currentReadString == '\n\n')) {
 			//console.log(currentReadString);
 			stringIndex++;
-			encodedTextList.push(currentReadString);
-			continue;
+			encodedTextList.push("");
+			//continue;
 		}
 		
 
@@ -253,7 +319,7 @@ function lzssEncode(rawStringToEncode, slidingWindowLength) {
 				if ((stringToEncode[stringIndex - matchIndex] == '\n') || (stringToEncode[stringIndex - matchIndex] == '\r\n')) {
 					//console.log(stringToEncode[matchIndex]);
 					//console.log("newline found on way back!");
-					//break;
+					continue;
 				}
 				//console.log("gone back " + String(stringIndex - matchIndex) + " characters");
 				howManyForward = 1;
@@ -295,7 +361,7 @@ function lzssEncode(rawStringToEncode, slidingWindowLength) {
 				//$('#encodedText').append( "<span style="color:blue">" + "<"((stringIndex - indexOfLongestMatchStart)) + "," + longestMatch.length + ">" + "</span");
 
 				//stuff for the encoded text array things
-				var thisPairList = [(stringIndex - indexOfLongestMatchStart), longestMatch.length];
+				var thisPairList = [(stringIndex - indexOfLongestMatchStart), longestMatch.length, rawStringToEncode.slice((stringIndex - indexOfLongestMatchStart), ((stringIndex - indexOfLongestMatchStart) + longestMatch.length + 1))];
 				encodedTextList.push(thisPairList);
 				//////
 
@@ -335,9 +401,10 @@ function parseEncodedTextList(encodedTextList, rawTextList) {
 			current = encodedTextList[encodedTextListIterator]
 			
 			matchString = rawTextList.slice((i - current[0]), (i - current[0] + current[1])).join('');
-			matchString = matchString.replace('\r', '').replace('\n', '').replace('\r\n', '');
+			matchString = matchString.replace(/(\r\n|\n|\r)/gm,"");;
+			console.log(matchString);
 			matchLength = matchString.length;
-			newMatchObject = createMatchObject(i, current, matchString, matchNumber)
+			//newMatchObject = createMatchObject(i, current, matchString, matchNumber)
 
 			//console.log("Match text here should be " + matchString);
 
@@ -383,8 +450,10 @@ function parseEncodedTextList(encodedTextList, rawTextList) {
 			//console.log("howManyAcross is: " + howManyAcross + " and howManyDown is: " + howManyDown);
 			howManyAcross += 1;
 			netSpan.innerHTML = current;
+			netDiv = document.createElement("DIV");
+			//$(netSpan).append(netDiv);
 
-			$('#interactive-displayed-text').append(netSpan)
+			$('#interactive-displayed-text').append(netSpan);
 			i++;
 
 		}
@@ -402,7 +471,7 @@ function parseEncodedTextList(encodedTextList, rawTextList) {
 function createNetSpan(divIndex, howManyAcross, howManyDown) {
 
 	netSpan = document.createElement("SPAN");
-	netDiv = document.createElement("DIV");
+	
 	netSpan.className = "highlight" + divIndex;
 	netSpan.className += " highlight-square"
 	netSpan.id = "highlight" + divIndex;
@@ -444,10 +513,7 @@ function createMatchObject(positionInString, matchArray, matchString, matchNumbe
 		//divWithInput: iDiv
 	}
 	allMatchObjects.push(matchObject);
-
 	return matchObject
-
-
 
 }
 

@@ -1,6 +1,6 @@
 
-#interactive-svg {
-  position: absolute;
+#next-button {
+  display:none;
 }
 #text-to-encode-textarea {
   
@@ -38,6 +38,7 @@
 }
 
 .highlight-square {
+  /*padding: 1.5px;*/
 /*  border-style: solid;
   border-width: 1px;*/
   
@@ -69,6 +70,7 @@
 
 .interactive-input{
   border: 1px solid rgba(0, 0, 0, 1.0);
+  letter-spacing: 0.5px;
     /*font-family: "Courier New", Courier, monospace
 
     display: inline;	
@@ -112,8 +114,10 @@ input {
 
 #interactive-displayed-text {
 	font-family: "Courier New", Courier, monospace;
+  padding: 50px;
+  font-size: 200%;
   position: relative;
-  line-height: 150%;
+  line-height: 200%;
 
 }
 
