@@ -12,9 +12,11 @@ this.blueHighlight = 'rgba(0, 0, 200, 0.2)';
 
 this.samIAmTestString = "I am Sam\nSam I am\n\nThat Sam-I-am!\nThat Sam-I-am!\n\nI do not like\nthat Sam-I-am!";
 this.quickTestString = "I am Sam\nSam I am";
-this.levelTwoString = "Would you like them\r\nin a house?\r\nWould you like them\r\nwith a mouse?\r\n\r\nI do not like them\r\nin a house.\r\nI do not like them \r\nwith a mouse."
+this.levelTwoString = "Would you like them\nin a house?\nWould you like them\nwith a mouse?\n\nI do not like them\nin a house.\nI do not like them\nwith a mouse."
 
 this.difficultyLevel = 1;
+this.newLineRegex = /[^\x20-\x7E]/; //for newlines and other non-printable characters
+
 
 
 /*
@@ -89,7 +91,7 @@ window.onload = function() {
 
 	//draw = SVG('drawing');
 
-	lzssEncode(quickTestString, slidingWindow);
+	lzssEncode(levelTwoString, slidingWindow);
 
 
 
@@ -266,11 +268,13 @@ function levelOneHighlight(startOfHighlighting, endOfHighlighting, correctMatchO
 function changeToLevelTwo() {
 	difficultyLevel = 2;
 	lzssEncode(levelTwoString, slidingWindow);
+	console.log(rawTextList);
+	console.log(encodedTextList);
 	console.log("Level two!");
 }
 
 function levelTwoHighlight(startOfHighlighting, endOfHighlighting, correctMatchObject) {
-	$('.highlight-square').slice(startOfHighlighting, endOfHighlighting + 1).addClass('highlighted');
+	$('.highlight-square').slice(startOfHighlighting, endOfHighlighting + 1).addClass('highlighted');	
 	jsPlumbUnderline(startOfHighlighting, endOfHighlighting);
 }
 /*######################################### #######################################*/
@@ -284,7 +288,6 @@ function encodeTextArea() {
 function lzssEncode(rawStringToEncode, slidingWindowLength) {
 
 	//var stringToEncode = rawStringToEncode.replace(/[^\x20-\x7E]+/g, " "); // replace non-printable characters (newline, tab, etc.) with space
-	var newLineRegex = /[^\x20-\x7E]/; //for newlines and other non-printable characters
 	var stringToEncode = rawStringToEncode;
 //make string to encode an array
 	var encodedTextList = [];
@@ -296,64 +299,75 @@ function lzssEncode(rawStringToEncode, slidingWindowLength) {
 	var currentMatchString;
 	var howManyForward;
 	var stringToReturn = stringToEncode.slice(0,2);
-	//console.log("string to decode is: " + stringToEncode);
+	console.log("string to decode is: " + stringToEncode);
 	for (var stringIndex = 0 ; stringIndex < stringToEncode.length;) {
 		
-		//console.log("currently encoding character " + stringToEncode[stringIndex] + ", index " + stringIndex);
+		console.log("currently encoding character " + stringToEncode[stringIndex] + ", index " + stringIndex);
 		currentReadString = stringToEncode[stringIndex]
 		currentMatchString = stringToEncode[stringIndex - 1]
 		longestMatch = "";
 		indexOfLongestMatchStart = -1;
 
-		//console.log("currentReadString is " + currentReadString);
-		if ((currentReadString == '\n') || (currentReadString == '\r\n') || (currentReadString == '\n\n')) {
-			//console.log(currentReadString);
-			stringIndex++;
-			encodedTextList.push("");
-			//continue;
-		}
+		console.log("currentReadString is " + currentReadString);
 		
 
 		//stop looking back when we either hit the start of the string or we're at edge of sliding window
-			for (matchIndex = stringIndex - 1; (((matchIndex >= 0) && ((stringIndex - matchIndex) < slidingWindowLength))); matchIndex--) {
-				if ((stringToEncode[stringIndex - matchIndex] == '\n') || (stringToEncode[stringIndex - matchIndex] == '\r\n')) {
-					//console.log(stringToEncode[matchIndex]);
-					//console.log("newline found on way back!");
-					continue;
-				}
-				//console.log("gone back " + String(stringIndex - matchIndex) + " characters");
-				howManyForward = 1;
-				currentReadString = stringToEncode.slice(stringIndex, (stringIndex + 1))
-				currentMatchString = stringToEncode.slice(matchIndex, (matchIndex + 1))
-				//console.log("	currently at position " + matchIndex +", currentReadString is " + currentReadString + ", currentMatchString is " + currentMatchString);
-				while ((currentReadString === currentMatchString) && longestMatch.length < 16) {
-					//console.log("		currentReadString " + currentReadString + " and currentMatchString " + currentMatchString + " matched! howManyForward is now: " + howManyForward);
-					if (currentMatchString.length > longestMatch.length) {
-						longestMatch = currentMatchString
-						indexOfLongestMatchStart = matchIndex;
-					}
-					currentReadString = stringToEncode.slice(stringIndex, (stringIndex + howManyForward + 1))
-					currentMatchString = stringToEncode.slice(matchIndex, (matchIndex + howManyForward + 1))
+			for (matchIndex = stringIndex - 1; (((matchIndex > 0) && ((stringIndex - matchIndex) < slidingWindowLength))); matchIndex--) {
+				if ((stringToEncode[stringIndex - matchIndex].match(newLineRegex) != null)) {
 
-					if ((stringIndex + howManyForward) < stringToEncode.length) {
-						howManyForward++;
-					}	
+					//console.log(stringToEncode[matchIndex]);
+					console.log("newline found on way back!");
+					//continue;
+				} else {
+					console.log("gone back " + String(stringIndex - matchIndex) + " characters");
+					howManyForward = 1;
+					currentReadString = stringToEncode.slice(stringIndex, (stringIndex + 1))
+					currentMatchString = stringToEncode.slice(matchIndex, (matchIndex + 1))
+					console.log("	currently at position " + matchIndex +", currentReadString is " + currentReadString + ", currentMatchString is " + currentMatchString);
+					while ((currentReadString === currentMatchString) && longestMatch.length < 16) {
+						if (currentReadString.match(newLineRegex)) {
+							console.log("there's a newline in this match string!!! do something about it!!!");
+							break;
+						}
+						console.log("		currentReadString " + currentReadString + " and currentMatchString " + currentMatchString + " matched! howManyForward is now: " + howManyForward);
+						if (currentMatchString.length > longestMatch.length) {
+							longestMatch = currentMatchString
+							indexOfLongestMatchStart = matchIndex;
+						}
+						currentReadString = stringToEncode.slice(stringIndex, (stringIndex + howManyForward + 1))
+						currentMatchString = stringToEncode.slice(matchIndex, (matchIndex + howManyForward + 1))
+
+						if ((stringIndex + howManyForward) < stringToEncode.length) {
+							howManyForward++;
+						}	
+					}
 				}
 			}
+
 			//if nothing to encode
 			//console.log("matchIndex is " + matchIndex);
 			if ((indexOfLongestMatchStart == -1) || (longestMatch.length < 3)) {
-				//console.log("No match found, not encoding");
+				console.log("No long enough found, not encoding, appended '" + stringToEncode[stringIndex] + "'");
+				console.log("");
 				$('#encodedText').append(stringToEncode[stringIndex]);
 				encodedTextList.push(stringToEncode[stringIndex]); //for encoded text array things
-				//console.log("appended " + stringToEncode[stringIndex]);
 				stringIndex++
 				textAfterBits += sizeOfCharacterInBits // add one character's worth of bits
 
-			} else { // if something to encode, add <stepsBack, noCharacters> pair and skip forward that many characters in the string to encode
-				//console.log("character " + stringToEncode[stringIndex] + ", index " + stringIndex + " encoded. longestMatch is " + longestMatch);
-				//console.log("encode next " + longestMatch.length + " characters starting from " + indexOfLongestMatchStart);
-				//console.log("stringIndex is " + stringIndex + " and matchIndex is " + matchIndex);
+			} else if (stringToEncode[stringIndex].match(newLineRegex)) {
+				console.log("character was a newline, just going to add a newline to encodedText, a newline to encodedTextList, increment stringIndex, and not do anything else");
+				console.log("");
+				$('#encodedText').append(stringToEncode[stringIndex]);
+				encodedTextList.push(stringToEncode[stringIndex]);
+				stringIndex++
+
+
+				} else {
+	 // if something to encode, add <stepsBack, noCharacters> pair and skip forward that many characters in the string to encode
+				console.log("character " + stringToEncode[stringIndex] + ", index " + stringIndex + " encoded. longestMatch is " + longestMatch);
+				console.log("encode next " + longestMatch.length + " characters starting from " + indexOfLongestMatchStart);
+				console.log("stringIndex is " + stringIndex + " and matchIndex is " + matchIndex);
+				console.log("");
 
 				//take out new lines
 
@@ -367,13 +381,15 @@ function lzssEncode(rawStringToEncode, slidingWindowLength) {
 
 				stringIndex += (longestMatch.length);
 				textAfterBits += sizeOfLZSSPairInBits //add one pair's worth of bits
-
-
 			}
+
+
+			
+		}	
 		
 
 		//console.log("");
-	}
+	
 
 	$('#testText').html(stringToEncode);
 	textBeforeBits = $('#testText').text().length * sizeOfCharacterInBits;	
