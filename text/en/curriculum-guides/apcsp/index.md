@@ -69,12 +69,12 @@ The learning objectives (including the essential knowledge statements and comput
 ###Explore Performance Task
 >Students will select and investigate a computing innovation that has had, or has the potential to have, a significant impact, both beneficial and harmful, on society, economy, or culture. **8 classroom hours**
 
-- [Guide](curriculum-guides/apcsp/guide-explore-performance-task.html)
+- Guide coming soon
 
 ###Create Performance Task
 >Students will develop a program on a topic that interests them. **12 classroom hours**
 
-- [Guide](curriculum-guides/apcsp/guide-create-performance-task.html)
+- Guide coming soon
 
 ###Exam
 > The AP Computer Science Exam is 120 minutes long and includes 74 multiple-choice questions and is 60 percent of a student’s AP Computer Science Principles score.
