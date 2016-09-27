@@ -58,8 +58,6 @@ structure:
             - curriculum-guides/apcsp/guide-global-impact-introduction.md
             - curriculum-guides/apcsp/guide-programming-introduction.md
             - curriculum-guides/apcsp/guide-the-internet-introduction.md
-            - curriculum-guides/apcsp/guide-create-performance-task.md
-            - curriculum-guides/apcsp/guide-explore-performance-task.md
     - further-information:
         numbered: no
         listed: yes
