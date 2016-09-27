@@ -51,6 +51,15 @@ structure:
             - curriculum-guides/ncea/assessment-guide-level-3-software-engineering-methodologies.md
             - curriculum-guides/ncea/assessment-guide-level-3-complexity-tractability-TSP.md
             - curriculum-guides/ncea/assessment-guide-level-3-formal-languages-FSA-RE.md
+            - curriculum-guides/apcsp/guide-algorithms-introduction.md
+            - curriculum-guides/apcsp/guide-abstraction-introduction.md
+            - curriculum-guides/apcsp/guide-creativity-introduction.md
+            - curriculum-guides/apcsp/guide-data-and-information-introduction.md
+            - curriculum-guides/apcsp/guide-global-impact-introduction.md
+            - curriculum-guides/apcsp/guide-programming-introduction.md
+            - curriculum-guides/apcsp/guide-the-internet-introduction.md
+            - curriculum-guides/apcsp/guide-create-performance-task.md
+            - curriculum-guides/apcsp/guide-explore-performance-task.md
     - further-information:
         numbered: no
         listed: yes
@@ -74,6 +83,7 @@ structure:
             - chapters/index.md
             - curriculum-guides/index.md
             - curriculum-guides/ncea/index.md
+            - curriculum-guides/apscp/index.md
             - further-information/index.md
 text_values:
     project_title: "Computer Science Field Guide"
