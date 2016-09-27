@@ -138,14 +138,14 @@ Typically this is done by classifying ranges of input values and showing that al
 Correctness is particularly important when comparing two algorithms that solve the same problem.
 If one algorithm is very fast to complete but produces incorrect results some of the time it may be far less useful than a correct algorithm that is slower.
 Correctness is also important when using an algorithm as the building block for another algorithm.
-Here is a greedy algorithm for assigning students a partner for an assignment:
+Here is an algorithm for assigning animals as pets to people on a waitlist:
 
-1. Search for the remaining student with the highest GPA
-2. Assign the highest GPA student their highest preference roommate from the remaining students
-3. Repeat 1-2 until no students remain
+1. Search for the person who is earliest on the the waitlist
+2. Assign the person who is earliest on the waitlist with their preferred animal as a pet
+3. Repeat 1-2 until no people remain on the waitlist
 
 This algorithm relies on a correct search algorithm in the first step.
-If the search algorithm incorrectly chose a random student, the greedy algorithm for roommate assignment would also be incorrect.
+If the search algorithm incorrectly chose a random person, the algorithm for assigning animals as pets would also be incorrect.
 
 As you will see in this chapter with searching and sorting there exist multiple correct algorithms for the same problem.
 Often there are good reasons to know multiple correct algorithms because there are tradeoffs in simplicity, algorithm cost, and assumptions about inputs.
