@@ -15,7 +15,7 @@ Start by reading through:
 ## Learning objectives
 The above chapter readings include specific knowledge for EK's marked in bold. Work to include unmarked learning objectives in the CS Field Guide is currently in progress.
 
-###LO 2.1.1 Describe the variety of abstractions used to represent data.
+### LO 2.1.1 Describe the variety of abstractions used to represent data.
 - **EK 2.1.1A Digital data is represented by abstractions at different levels.**
 - **EK 2.1.1B At the lowest level, all digital data are represented by bits.**
 - **EK 2.1.1C At a higher level, bits are grouped to represent abstractions, including but not limited to numbers, characters, and color.**
@@ -27,7 +27,7 @@ EXCLUSION STATEMENT (for EK 2.1.1E): Two’s complement conversions are beyond t
 - **EK 2.1.1F Hexadecimal (base 16) is used to represent digital data because hexadecimal representation uses fewer digits than binary.**
 - **EK 2.1.1G Numbers can be converted from any base to any other base.**
 
-###LO 2.1.2 Explain how binary sequences are used to represent digital data.
+### LO 2.1.2 Explain how binary sequences are used to represent digital data.
 - **EK 2.1.2A A finite representation is used to model the infinite mathematical concept of a number.**
 {panel type="teacher-note" summary="Exclusion EK 2.1.2A"}
 EXCLUSION STATEMENT (for EK 2.1.2A): Binary representations of scientific notation are beyond the scope of this course and the AP Exam.
@@ -41,7 +41,7 @@ EXCLUSION STATEMENT (for EK 2.1.2B): Range limitations of any one language, comp
 - EK 2.1.2E A sequence of bits may represent instructions or data.
 - **EK 2.1.2F A sequence of bits may represent different types of data in different contexts.**
 
-###LO 2.2.1 Develop an abstraction when writing a program or creating other computational artifacts.
+### LO 2.2.1 Develop an abstraction when writing a program or creating other computational artifacts.
 - EK 2.2.1A The process of developing an abstraction involves removing detail and generalizing functionality.
 - EK 2.2.1B An abstraction extracts common features from specific examples in order to generalize concepts.
 - EK 2.2.1C An abstraction generalizes functionality with input parameters that allow software reuse.
@@ -49,11 +49,11 @@ EXCLUSION STATEMENT (for EK 2.1.2B): Range limitations of any one language, comp
 EXCLUSION STATEMENT (for EK 2.2.1C): An understanding of the difference between value and reference parameters is beyond the scope of this course and the AP Exam.
 {panel end}
 
-###LO 2.2.2 Use multiple levels of abstraction to write programs.
+### LO 2.2.2 Use multiple levels of abstraction to write programs.
 - EK 2.2.2A Software is developed using multiple levels of abstractions, such as constants, expressions, statements, procedures, and libraries.
 - EK 2.2.2B Being aware of and using multiple levels of abstraction in developing programs helps to more effectively apply available resources and tools to solve problems.
 
-###LO 2.2.3 Identify multiple levels of abstractions that are used when writing programs.
+### LO 2.2.3 Identify multiple levels of abstractions that are used when writing programs.
 - **EK 2.2.3A Different programming languages offer different levels of abstraction.**
 {panel type="teacher-note" summary="Exclusion EK 2.2.3A"}
 EXCLUSION STATEMENT (for EK 2.2.3A): Knowledge of the abstraction capabilities of all programming languages is beyond the scope of this course and the AP Exam.
@@ -73,13 +73,13 @@ the scope of this course and the AP Exam.
 - EK 2.2.3J Applications and systems are designed, developed, and analyzed using levels of hardware, software, and conceptual abstractions.
 - EK 2.2.3K Lower level abstractions can be combined to make higher level abstractions, such as short message services (SMS) or email messages, images, audio files, and videos.
 
-###LO 2.3.1 Use models and simulations to represent phenomena.
+### LO 2.3.1 Use models and simulations to represent phenomena.
 - EK 2.3.1A Models and simulations are simplified representations of more complex objects or phenomena.
 - EK 2.3.1B Models may use different abstractions or levels of abstraction depending on the objects or phenomena being posed.
 - EK 2.3.1C Models often omit unnecessary features of the objects or phenomena that are being modeled.
 - EK 2.3.1D Simulations mimic real-world events without the cost or danger of building and testing the phenomena in the real world.
 
-###LO 2.3.2 Use models and simulations to formulate, refine, and test hypotheses.
+### LO 2.3.2 Use models and simulations to formulate, refine, and test hypotheses.
 - EK 2.3.2A Models and simulations facilitate the formulation and refinement of hypotheses related to the objects or phenomena under consideration.
 - EK 2.3.2B Hypotheses are formulated to explain the objects or phenomena being modeled.
 - EK 2.3.2C Hypotheses are re ned by examining the insights that models and simulations provide into the objects or phenomena.

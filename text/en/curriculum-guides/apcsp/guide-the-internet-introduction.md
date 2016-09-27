@@ -12,7 +12,7 @@
 ## Learning objectives
 The above chapter readings include specific knowledge for EK's marked in bold. Work to include unmarked learning objectives in the CS Field Guide is currently in progress.
 
-###LO 6.1.1 Explain the abstractions in the Internet and how the Internet functions.
+### LO 6.1.1 Explain the abstractions in the Internet and how the Internet functions.
 {panel type="teacher-note" summary="Exclusion LO 6.1.1"}
 EXCLUSION STATEMENT (for LO 6.1.1): Specific devices used to implement the abstractions in the Internet are beyond the scope of this course and the AP Exam.
 {panel end}
@@ -30,14 +30,14 @@ EXCLUSION STATEMENT (for EK 6.1.1F): Specific details of any particular standard
 - EK 6.1.1H The number of devices that could use an IP address has grown so fast that a new protocol (IPv6) has been established to handle routing of many more devices.
 - EK 6.1.1I Standards such as hypertext transfer protocol (HTTP), IP, and simple mail transfer protocol (SMTP) are developed and overseen by the Internet Engineering Task Force (IETF).
 
-###LO 6.2.1 Explain characteristics of the Internet and the systems built on it.
+### LO 6.2.1 Explain characteristics of the Internet and the systems built on it.
 
 - EK 6.2.1A The Internet and the systems built on it are hierarchical and redundant.
 - EK 6.2.1B The domain name syntax is hierarchical.
 - EK 6.2.1C IP addresses are hierarchical.
 - EK 6.2.1D Routing on the Internet is fault tolerant and redundant.
 
-###LO 6.2.2 Explain how the characteristics of the Internet influence the systems built on it.
+### LO 6.2.2 Explain how the characteristics of the Internet influence the systems built on it.
 - EK 6.2.2A Hierarchy and redundancy help systems scale.
 - EK 6.2.2B The redundancy of routing (i.e., more than one way to route data) between two points on the Internet increases the reliability of the Internet and helps it scale to more devices and more people.
 - EK 6.2.2C Hierarchy in the DNS helps that system scale.
@@ -59,7 +59,7 @@ EXCLUSION STATEMENT (for EK 6.2.2H): Understanding the technical aspects of how 
 - EK 6.2.2J The bandwidth of a system is a measure of bit rate—the amount of data (measured in bits) that can be sent in a fixed amount of time.
 - EK 6.2.2K The latency of a system is the time elapsed between the transmission and the receipt of a request.
 
-###LO 6.3.1 Identify existing cybersecurity concerns and potential options to address these issues with the Internet and the systems built on it.
+### LO 6.3.1 Identify existing cybersecurity concerns and potential options to address these issues with the Internet and the systems built on it.
 - EK 6.3.1A The trust model of the Internet involves trade-offs.
 - EK 6.3.1B The DNS was not designed to be completely secure.
 - EK 6.3.1C Implementing cybersecurity has software, hardware, and human components.

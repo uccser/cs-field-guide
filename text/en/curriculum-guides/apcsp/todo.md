@@ -1,4 +1,4 @@
-#To Do
+# To Do
 
 Several learning objectives are not currently covered by the CS Field Guide.
 This "to-do" list includes general computer science topics and suggestions for how we can update the field guide to cover the learning objectives. Different levels of changes are suggested:
@@ -13,7 +13,7 @@ This "to-do" list includes general computer science topics and suggestions for h
 - new sub-section: add a new X.Y.Z minor section to section Y of chapter X
 - edits to existing text content to use specific terminology
 
-##Abstraction
+## Abstraction
 - floating point representation
  - **new section in data-representation** [Phase+]
 - bit representation of program instructions (not just data)
@@ -29,7 +29,7 @@ This "to-do" list includes general computer science topics and suggestions for h
 - models and simulations (there are some CS unplugged ones)
  - **new chapter on models-simulations**
 
-##Algorithms
+## Algorithms
 - sequencing, selection, iteration as building blocks for algorithms
  - **new sub-section with specific terms in section 2.4** [Phase1][draft]
 - algorithm correctness
@@ -45,7 +45,7 @@ This "to-do" list includes general computer science topics and suggestions for h
 - efficiency of memory usage
  - **additional paragraph in 2.1.2** [Phase2][draft]
 
-##Creativity
+## Creativity
 - collaborative tools (open source, github/google doc)
  - **new chapter on data analysis, visualization, processing, etc.**
 - computational artifacts as more than programs
@@ -53,7 +53,7 @@ This "to-do" list includes general computer science topics and suggestions for h
 - computational tools to transform digital media industries such as photoshop, virtual synthesizers, etc
  - **new chapter on data analysis, visualization, processing, etc.**
 
-##Data
+## Data
 - large data sets (databases), queries, filtering
  - **new chapter on data analysis, visualization, processing, etc.**
 - data patterns (sequence analysis / cryptography?)
@@ -65,13 +65,13 @@ This "to-do" list includes general computer science topics and suggestions for h
 - metadata
  - **new chapter on data analysis, visualization, processing, etc.**
 
-##Impact
+## Impact
 **Most AP curriculum include specific lesson plans to cover these topic by requiring
 the students to research online after/during reading of the Blown to Bits book (freely available online). A teaching guide on how to use Blown to Bits in the classroom along with discussion questions and essay/project ideas should be sufficient. No new CS Field Guide content is suggested for these.**
 - computer ethics
 - social computing
 
-##Programming
+## Programming
 - program components (modularity)
  - **additional sub-section in software-engineering** [Phase2]
 - program documentation
@@ -95,7 +95,7 @@ the students to research online after/during reading of the Blown to Bits book (
 - boolean logic, algebra
  - **new chapter on logic**
 
-##Internet
+## Internet
 **New chapter on Network Systems with sections for the below**
 - internet system model: hierarchy, redundancy, fault tolerance (addresses, protocols, services)
 - bandwidth, latency
