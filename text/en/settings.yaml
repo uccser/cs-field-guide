@@ -81,7 +81,7 @@ structure:
             - chapters/index.md
             - curriculum-guides/index.md
             - curriculum-guides/ncea/index.md
-            - curriculum-guides/apscp/index.md
+            - curriculum-guides/apcsp/index.md
             - further-information/index.md
 text_values:
     project_title: "Computer Science Field Guide"
