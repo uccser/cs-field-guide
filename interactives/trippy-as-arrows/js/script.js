@@ -1,3 +1,7 @@
+/* NTS
+ * - specify in url which concept the interactive is demonstrating
+ * - uses this to decide which config file to load
+ */
 
 /* Global variable is a dictionary of variables relating to size and position of grid and arrow */
 var dimensions = {};
@@ -13,16 +17,6 @@ function Point(x, y) {
 
 /* On load get config and build the grid and both arrows */
 window.onload = function(event) {
-
-    // gets url query string
-    var url = window.location.search.replace('?', '');
-    // pulls out value of each parameter
-    const params = new URLSearchParams(url);
-    console.log(params.get('input'));
-    /* NTS
-     * - specify in url which concept the interactive is demonstrating
-     * - uses this to decide which config file to load
-     */
 
     loadJSON(function(response) {
         var config = JSON.parse(response);
@@ -51,10 +45,16 @@ window.onresize = function(event) {
 // JSON magic
 
 /* Loads JSON config file */
-function loadJSON(callback) {
+function loadJSON(callback, thing) {
+
+    // Get json file name from url
+    var url = window.location.search.replace('?', '');
+    const params = new URLSearchParams(url); // pulls out value of each parameter
+    var filename = 'config/' + params.get('input') + '.json';
+
     var xobj = new XMLHttpRequest();
     xobj.overrideMimeType("application/json"); // tells the browser what type of file it is
-    xobj.open('GET', 'matrix.json');
+    xobj.open('GET', filename);
     xobj.onreadystatechange = function() {
         if (xobj.readyState == 4 && xobj.status == "200") { // where 4 = DONE and 200 = successful request
             callback(xobj.responseText);
