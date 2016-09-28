@@ -25,12 +25,13 @@
 
       <div id="instructions">
 
+        <p id="task">
+        </p>
+        <p id="input-instructions">
+          Type coordinates in the boxes below to move points on the arrow.
+        </p>
+
         <div id="coordinates">
-          <p id="task">
-          </p>
-          <p id="input-instructions">
-            Type coordinates in the boxes below to move points on the arrow.
-          </p>
           <div id="heading"><p>x</p><p>y</p></div>
           <div class="input-row" onmouseover="highlight('c0')" onmouseout="removeHighlight('c0')"><input id="p0-input-x" onblur="getNewCoordinate(this)"/><input id="p0-input-y" onblur="getNewCoordinate(this)"></div>
           <div class="input-row" onmouseover="highlight('c1')" onmouseout="removeHighlight('c1')"><input id="p1-input-x" onblur="getNewCoordinate(this)"/><input id="p1-input-y" onblur="getNewCoordinate(this)"></div>

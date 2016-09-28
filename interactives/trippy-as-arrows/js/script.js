@@ -3,6 +3,9 @@
  * - uses this to decide which config file to load
  */
 
+// NTS needs to be able to handle sin() cos() functions
+// NTS should react to tabbing through matrix input
+
 /* Global variable is a dictionary of variables relating to size and position of grid and arrow */
 var dimensions = {};
 
@@ -74,9 +77,9 @@ function loadModules(config) {
     } else if (config['type'] == 'coordinates') {
         // show coordinate elements
         document.getElementById('coordinates').style.display = 'block';
-        document.getElementById('task').innerHTML = config['task'];
-        drawTargetArrow(config['target']);
     }
+    document.getElementById('task').innerHTML = config['task'];
+    drawTargetArrow(config['target']);
 
 }
 
