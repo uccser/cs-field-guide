@@ -356,11 +356,10 @@ function useMatrixToScale() {
     var matrix = [];
     var point = null;
 
-    matrix[0] = parseInt(document.getElementById('matrix-row-0-col-0').value);
-    matrix[1] = parseInt(document.getElementById('matrix-row-0-col-1').value);
-    matrix[2] = parseInt(document.getElementById('matrix-row-1-col-0').value);
-    matrix[3] = parseInt(document.getElementById('matrix-row-1-col-1').value);
-    console.log(matrix);
+    matrix[0] = parseFloat(document.getElementById('matrix-row-0-col-0').value);
+    matrix[1] = parseFloat(document.getElementById('matrix-row-0-col-1').value);
+    matrix[2] = parseFloat(document.getElementById('matrix-row-1-col-0').value);
+    matrix[3] = parseFloat(document.getElementById('matrix-row-1-col-1').value);
 
     for (var i = 0; i < 7; i++) { // 7 points on arrow
 
@@ -373,7 +372,6 @@ function useMatrixToScale() {
         newPoint.x = (newPoint.x * dimensions.squareSize) + dimensions.xIntercept;
         newPoint.y = (newPoint.y * dimensions.squareSize * -1) + dimensions.yIntercept;
 
-        console.log(newPoint.x, newPoint.y);
         dimensions.currentPosition[i] = newPoint;
     }
     updateArrow();
