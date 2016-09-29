@@ -5,6 +5,7 @@
 
 // NTS needs to be able to handle sin() cos() functions
 // NTS should react to tabbing through matrix input
+// TODO function to convert between coord spaces?
 
 /* Global variable is a dictionary of variables relating to size and position of grid and arrow */
 var dimensions = {};
@@ -351,26 +352,29 @@ function getNewCoordinate(input) {
  * Triggered when user clicks "Scale" button under input matrix
  */
 function useMatrixToScale() {
-
+    // BUG scales in relation to prev position - should be relative to start position
     var matrix = [];
     var point = null;
 
-    matrix[0] = document.getElementById('matrix-row-0-col-0').value;
-    matrix[1] = document.getElementById('matrix-row-0-col-1').value;
-    matrix[2] = document.getElementById('matrix-row-1-col-0').value;
-    matrix[3] = document.getElementById('matrix-row-1-col-1').value;
+    matrix[0] = parseInt(document.getElementById('matrix-row-0-col-0').value);
+    matrix[1] = parseInt(document.getElementById('matrix-row-0-col-1').value);
+    matrix[2] = parseInt(document.getElementById('matrix-row-1-col-0').value);
+    matrix[3] = parseInt(document.getElementById('matrix-row-1-col-1').value);
+    console.log(matrix);
 
     for (var i = 0; i < 7; i++) { // 7 points on arrow
 
         var newPoint = new Point();
-        point = dimensions.startPosition[i];
+        var currPoint = dimensions.startPosition[i];
 
-        // have to subtract intercept in order to get original value, then add intercept back on
-        newPoint.x = ((point.x - dimensions.xIntercept) * matrix[0]) + ((point.y - dimensions.yIntercept) * matrix[1]) + dimensions.xIntercept;
-        newPoint.y = ((point.x - dimensions.xIntercept) * matrix[2]) + ((point.y - dimensions.yIntercept) * matrix[3]) + dimensions.yIntercept;
+        newPoint.x = ((currPoint.x - dimensions.xIntercept)/dimensions.squareSize) * matrix[0] + ((currPoint.y - dimensions.yIntercept)/dimensions.squareSize) * matrix[1] * -1;
+        newPoint.y = ((currPoint.x - dimensions.xIntercept)/dimensions.squareSize) * matrix[2] + ((currPoint.y - dimensions.yIntercept)/dimensions.squareSize) * matrix[3] * -1;
 
+        newPoint.x = (newPoint.x * dimensions.squareSize) + dimensions.xIntercept;
+        newPoint.y = (newPoint.y * dimensions.squareSize * -1) + dimensions.yIntercept;
+
+        console.log(newPoint.x, newPoint.y);
         dimensions.currentPosition[i] = newPoint;
-
     }
     updateArrow();
 
