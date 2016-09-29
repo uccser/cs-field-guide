@@ -56,13 +56,13 @@
 
             <!-- default value is identity matrix -->
             <div id="matrix-row-0">
-              <input id="matrix-row-0-col-0" value="1"/>
-              <input id="matrix-row-0-col-1" value="0"/>
+              <input id="matrix-row-0-col-0" value="1" onblur="useMatrixToScale()" />
+              <input id="matrix-row-0-col-1" value="0" onblur="useMatrixToScale()" />
             </div>
 
             <div id="matrix-row-1">
-              <input id="matrix-row-1-col-0" value="0"/>
-              <input id="matrix-row-1-col-1" value="1"/>
+              <input id="matrix-row-1-col-0" value="0" onblur="useMatrixToScale()" />
+              <input id="matrix-row-1-col-1" value="1" onblur="useMatrixToScale()" />
             </div>
 
             <button onclick="useMatrixToScale()">Scale</button>

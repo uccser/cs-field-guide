@@ -353,6 +353,7 @@ function getNewCoordinate(input) {
  */
 function useMatrixToScale() {
     // BUG scales in relation to prev position - should be relative to start position
+    // NTS somewhere it is updating startPosition....
     var matrix = [];
     var point = null;
 
@@ -361,10 +362,13 @@ function useMatrixToScale() {
     matrix[2] = parseFloat(document.getElementById('matrix-row-1-col-0').value);
     matrix[3] = parseFloat(document.getElementById('matrix-row-1-col-1').value);
 
+    console.log(matrix);
+
     for (var i = 0; i < 7; i++) { // 7 points on arrow
 
         var newPoint = new Point();
         var currPoint = dimensions.startPosition[i];
+        console.log(currPoint.x, currPoint.y);
 
         newPoint.x = ((currPoint.x - dimensions.xIntercept)/dimensions.squareSize) * matrix[0] + ((currPoint.y - dimensions.yIntercept)/dimensions.squareSize) * matrix[1] * -1;
         newPoint.y = ((currPoint.x - dimensions.xIntercept)/dimensions.squareSize) * matrix[2] + ((currPoint.y - dimensions.yIntercept)/dimensions.squareSize) * matrix[3] * -1;
