@@ -6,7 +6,8 @@
     "dependencies": {
         "jquery": "latest",
         "es6-simple-async": "latest",
-        "rxjs": "latest"
+        "rxjs": "latest",
+        "underscore": "latest"
     },
     "devDependencies": {
         "coffee-script": "latest",

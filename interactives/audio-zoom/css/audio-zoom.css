@@ -8,6 +8,16 @@
     fill: blue;
 }
 
+.audio-bar-label {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none;   /* Chrome/Safari/Opera */
+    -khtml-user-select: none;    /* Konqueror */
+    -moz-user-select: none;      /* Firefox */
+    -ms-user-select: none;       /* Internet Explorer/Edge */
+    user-select: none;           /* Non-prefixed version, currently
+                                  not supported by any browser */
+}
+
 .loading-border {
     fill: none;
     fill-opacity: 0;
@@ -26,13 +36,11 @@
     fill-opacity: 0.3;
 }
 
-.tooltip-text {
-    pointer-events: none;
-    stroke: black;
-    font-size: 25px;
+.hide {
+    visibility: hidden;
 }
 
-.tooltip-background {
-    pointer-events: none;
-    fill: white;
+.axis {
+    stroke-width: 2px;
+    stroke: grey;
 }
