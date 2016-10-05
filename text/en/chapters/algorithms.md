@@ -446,7 +446,7 @@ Insertion sort is used on very small sequences to take advantage of its speed fo
 Merge sort is used to merge these small sequences into larger ones to take advantage of the better upper bound on algorithm cost for large data sets.
 
 {panel type="curiosity" summary="Why are there so many different programming languages?"}
-So if we know how to define an algorithm, why are thereso many programming languages?
+So if we know how to define an algorithm, why are there so many programming languages?
 Programming languages are often created or adapted to express algorithms clearly for a specific problem domain.
 For example, it is easier to read mathematical algorithms in Python than Scratch.
 Similarly, data flow algorithms are clearer in visual programming languages like LabVIEW than Python.
@@ -463,7 +463,7 @@ In this chapter we have only talked about the number of comparisons an algorithm
 An algorithm often uses computer memory to store temporary data such as a partial sum of a list of numbers or a list of products that match some search criteria.
 With the large size of modern computer memory this may seem to not be as important as the number of steps an algorithm takes, but a poorly performing algorithm in terms of computer memory may be limited in its ability to work with the large data sets common in many industry applications.
 For example, a query algorithm that stored even a single bit for each record it searched could quickly overwhelm a web server's memory if it was searching a large data set such as Netflix's current movie offerings.
-Minimizing memory usage while also minimizing the number of steps an algorithm takes is not always possible; there is often a tradeoff between computation and memory usage.
+Minimising memory usage while also minimizing the number of steps an algorithm takes is not always possible; there is often a tradeoff between computation and memory usage.
 
 Computer Scientists use 'Big O notation' to more accurately describe the performance or complexity of an algorithm, and you are likely to come across this notation very quickly when investigating the performance of algorithms. It characterises the resources needed by an algorithm and is usually applied to the execution time required, or sometimes the space used by the algorithm.
 
