@@ -314,7 +314,8 @@ ul.panel {
   @include panel-color("panel-teacher-note", "red");
   @include panel-color("panel-additional-information", "amber");
   @include panel-color("panel-curiosity", "purple");
-  @include panel-color("panel-challenge", "orange");
+  @include panel-color("panel-challenge", "deep-orange");
+  @include panel-color("panel-caution", "orange");
   @include panel-color("panel-jargon-buster", "light-green");
   @include panel-color("panel-spoiler", "blue-grey");
   @include panel-color("panel-project", "blue");
