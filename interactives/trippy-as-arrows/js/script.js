@@ -20,7 +20,6 @@
 
 /* Global variable is a dictionary of variables relating to size and position of grid and arrow */
 var dimensions = {};
-var matrix = [1, 0, 0, 1];
 
 /* Class for generating new points */
 function Point(x, y) {
@@ -152,7 +151,9 @@ function calculateAllTheThings() {
         offset:          offset,
         startPosition:   [],
         currentPosition: [],
-        targetPosition:  []
+        targetPosition:  [],
+        scaleMatrix:     [0, 0],
+        translateMatrix: [1, 0, 0, 1]
     };
 
     drawBackground();
@@ -367,16 +368,16 @@ function useMatrixToScale() {
     // NTS make version for single input, this function can be for scale button only...or delete scale button since it is redundant?
     var point = null;
     var newMatrix = [];
+    var same = true;
 
     newMatrix[0] = parseInt(document.getElementById('matrix-row-0-col-0').value);
     newMatrix[1] = parseInt(document.getElementById('matrix-row-0-col-1').value);
     newMatrix[2] = parseInt(document.getElementById('matrix-row-1-col-0').value);
     newMatrix[3] = parseInt(document.getElementById('matrix-row-1-col-1').value);
 
-    var same = true;
     for (var i = 0; i < 4; i++) { // 4 values in 2x2 matrix
-        if (matrix[i] != newMatrix[i]) {
-            matrix[i] = newMatrix[i];
+        if (dimensions.scaleMatrix[i] != newMatrix[i]) {
+            dimensions.scaleMatrix[i] = newMatrix[i];
             same = false;
         }
     }
@@ -388,8 +389,8 @@ function useMatrixToScale() {
             var newPoint = new Point();
             var currPoint = dimensions.startPosition[i];
 
-            newPoint.x = ((currPoint.x - dimensions.xIntercept)/dimensions.squareSize) * matrix[0] + ((currPoint.y - dimensions.yIntercept)/dimensions.squareSize) * matrix[1] * -1;
-            newPoint.y = ((currPoint.x - dimensions.xIntercept)/dimensions.squareSize) * matrix[2] + ((currPoint.y - dimensions.yIntercept)/dimensions.squareSize) * matrix[3] * -1;
+            newPoint.x = ((currPoint.x - dimensions.xIntercept)/dimensions.squareSize) * dimensions.scaleMatrix[0] + ((currPoint.y - dimensions.yIntercept)/dimensions.squareSize) * dimensions.scaleMatrix[1] * -1;
+            newPoint.y = ((currPoint.x - dimensions.xIntercept)/dimensions.squareSize) * dimensions.scaleMatrix[2] + ((currPoint.y - dimensions.yIntercept)/dimensions.squareSize) * dimensions.scaleMatrix[3] * -1;
 
             newPoint.x = (newPoint.x * dimensions.squareSize) + dimensions.xIntercept;
             newPoint.y = (newPoint.y * dimensions.squareSize * -1) + dimensions.yIntercept;
@@ -402,32 +403,47 @@ function useMatrixToScale() {
 
 }
 
+/* BUG
+ * matrix scale and translate are getting in the way of each other
+ * translate shouldn't change back to normal arrow shape if it's already been scaled
+ */
 
 /* Uses matrix addition to calculate new position of each point on the arrow
  * Triggered user clicks "Translate" button under input matrix
  */
 function useMatrixToTranslate() {
 
-    var matrix = [];
+    var newMatrix = [];
     var point = null;
+    var same = true;
 
-    matrix[0] = parseInt(document.getElementById('matrix-translate-row-0-col-0').value) * dimensions.squareSize;
-    matrix[1] = parseInt(document.getElementById('matrix-translate-row-1-col-0').value) * dimensions.squareSize;
+    newMatrix[0] = parseInt(document.getElementById('matrix-translate-row-0-col-0').value) * dimensions.squareSize;
+    newMatrix[1] = parseInt(document.getElementById('matrix-translate-row-1-col-0').value) * dimensions.squareSize;
 
-    for (var i = 0; i < 7; i++) { // 7 points on arrow
-
-        var newPoint = new Point();
-
-        point = dimensions.startPosition[i];
-
-        newPoint.x = point.x + matrix[0];
-        newPoint.y = point.y - matrix[1];
-
-        dimensions.currentPosition[i] = newPoint;
-
+    if (dimensions.translateMatrix[0] != newMatrix[0]) {
+        dimensions.translateMatrix[0] = newMatrix[0];
+        same = false;
+    }
+    if (dimensions.translateMatrix[1] != newMatrix[1]) {
+        dimensions.translateMatrix[1] = newMatrix[1];
+        same = false;
     }
 
-    updateArrow();
+    if (same == false) {
+        for (var i = 0; i < 7; i++) { // 7 points on arrow
+
+            var newPoint = new Point();
+
+            point = dimensions.currentPosition[i];
+
+            newPoint.x = point.x + dimensions.translateMatrix[0];
+            newPoint.y = point.y - dimensions.translateMatrix[1];
+
+            dimensions.currentPosition[i] = newPoint;
+
+        }
+        updateArrow();
+    }
 
 }
 
