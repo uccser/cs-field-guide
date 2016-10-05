@@ -1,3 +1,9 @@
+/* BUG: clicking scale causes to scale twice since the function is already called
+ * when focus leaves input box
+ */
+
+// NTS I should split this into multiple files...
+
 /* NTS
  * - specify in url which concept the interactive is demonstrating
  * - uses this to decide which config file to load
@@ -9,6 +15,7 @@
 
 /* Global variable is a dictionary of variables relating to size and position of grid and arrow */
 var dimensions = {};
+var matrix = [1, 0, 0, 1];
 
 /* Class for generating new points */
 function Point(x, y) {
@@ -352,33 +359,42 @@ function getNewCoordinate(input) {
  * Triggered when user clicks "Scale" button under input matrix
  */
 function useMatrixToScale() {
-    // BUG scales in relation to prev position - should be relative to start position
-    // NTS somewhere it is updating startPosition....
-    var matrix = [];
+    // NTS make version for single input, this function can be for scale button only...or delete scale button since it is redundant?
     var point = null;
+    var newMatrix = [];
 
-    matrix[0] = parseFloat(document.getElementById('matrix-row-0-col-0').value);
-    matrix[1] = parseFloat(document.getElementById('matrix-row-0-col-1').value);
-    matrix[2] = parseFloat(document.getElementById('matrix-row-1-col-0').value);
-    matrix[3] = parseFloat(document.getElementById('matrix-row-1-col-1').value);
+    newMatrix[0] = parseInt(document.getElementById('matrix-row-0-col-0').value);
+    newMatrix[1] = parseInt(document.getElementById('matrix-row-0-col-1').value);
+    newMatrix[2] = parseInt(document.getElementById('matrix-row-1-col-0').value);
+    newMatrix[3] = parseInt(document.getElementById('matrix-row-1-col-1').value);
 
-    console.log(matrix);
-
-    for (var i = 0; i < 7; i++) { // 7 points on arrow
-
-        var newPoint = new Point();
-        var currPoint = dimensions.startPosition[i];
-        console.log(currPoint.x, currPoint.y);
-
-        newPoint.x = ((currPoint.x - dimensions.xIntercept)/dimensions.squareSize) * matrix[0] + ((currPoint.y - dimensions.yIntercept)/dimensions.squareSize) * matrix[1] * -1;
-        newPoint.y = ((currPoint.x - dimensions.xIntercept)/dimensions.squareSize) * matrix[2] + ((currPoint.y - dimensions.yIntercept)/dimensions.squareSize) * matrix[3] * -1;
-
-        newPoint.x = (newPoint.x * dimensions.squareSize) + dimensions.xIntercept;
-        newPoint.y = (newPoint.y * dimensions.squareSize * -1) + dimensions.yIntercept;
-
-        dimensions.currentPosition[i] = newPoint;
+    var same = true;
+    for (var i = 0; i < 4; i++) { // 4 values in 2x2 matrix
+        if (matrix[i] != newMatrix[i]) {
+            matrix[i] = newMatrix[i];
+            same = false;
+        }
     }
-    updateArrow();
+
+    if (same == false) {
+
+        for (var i = 0; i < 7; i++) { // 7 points on arrow
+
+            var newPoint = new Point();
+            var currPoint = dimensions.startPosition[i];
+            //console.log(currPoint.x, currPoint.y);
+
+            newPoint.x = ((currPoint.x - dimensions.xIntercept)/dimensions.squareSize) * matrix[0] + ((currPoint.y - dimensions.yIntercept)/dimensions.squareSize) * matrix[1] * -1;
+            newPoint.y = ((currPoint.x - dimensions.xIntercept)/dimensions.squareSize) * matrix[2] + ((currPoint.y - dimensions.yIntercept)/dimensions.squareSize) * matrix[3] * -1;
+
+            newPoint.x = (newPoint.x * dimensions.squareSize) + dimensions.xIntercept;
+            newPoint.y = (newPoint.y * dimensions.squareSize * -1) + dimensions.yIntercept;
+
+            dimensions.currentPosition[i] = newPoint;
+        }
+        updateArrow();
+
+    }
 
 }
 
