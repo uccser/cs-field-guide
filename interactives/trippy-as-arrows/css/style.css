@@ -66,6 +66,9 @@ div#instructions {
   width: 22%;
   margin: 1%;
   text-align: center;
+  background-color: rgba(255, 255, 255, 0.51);
+  border: 2px solid white;
+  border-radius: 5px;
 }
 
 

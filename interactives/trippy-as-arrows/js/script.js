@@ -2,6 +2,14 @@
  * when focus leaves input box
  */
 
+/* NTS
+ * Reacting to updating inputs:
+ *   - should react on tab
+ *   - react on button click
+ *   - be able to to choose tab/button click
+ *   - button only on mobile?
+ */
+
 // NTS I should split this into multiple files...
 
 /* NTS
