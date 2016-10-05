@@ -125,6 +125,30 @@ The amount of time a program which performs the algorithm takes to complete may 
 
 The number of operations (such as comparisons of data items) that an algorithm makes however will not change depending on the speed of a computer, or the programming language the program using the algorithm is written in. Some algorithms will always make the same number of comparisons for a certain input size, while others might vary.
 
+### Algorithm Correctness
+
+If we develop or are given an algorithm to solve a problem, how do we know that it works?
+Sometimes we create test cases to verify the algorithm produces correct output for specific input values.
+While this is a useful practice and can help verify that we are on the right track, it is not enough to show that our algorithm is correct.
+The old adage "even a broken watch is correct twice a day" is a good analogy.
+Even an algorithm that is correct for two test cases might be incorrect for every other input.
+A computer scientist must reason formally or mathematically about an algorithm to show its correctness.
+Typically this is done by classifying ranges of input values and showing that algorithm produces expected results for boundary values of the range and all values in between.
+
+Correctness is particularly important when comparing two algorithms that solve the same problem.
+If one algorithm is very fast to complete but produces incorrect results some of the time it may be far less useful than a correct algorithm that is slower.
+Correctness is also important when using an algorithm as the building block for another algorithm.
+Here is an algorithm for assigning animals as pets to people on a waitlist:
+
+1. Search for the person who is earliest on the the waitlist
+2. Assign the person who is earliest on the waitlist with their preferred animal as a pet
+3. Repeat 1-2 until no people remain on the waitlist
+
+This algorithm relies on a correct search algorithm in the first step.
+If the search algorithm incorrectly chose a random person, the algorithm for assigning animals as pets would also be incorrect.
+
+As you will see in this chapter with searching and sorting there exist multiple correct algorithms for the same problem.
+Often there are good reasons to know multiple correct algorithms because there are tradeoffs in simplicity, algorithm cost, and assumptions about inputs.
 
 ### Searching and Sorting
 
@@ -338,13 +362,110 @@ There are dozens of sorting algorithms that have been invented; most of the ones
 
 {video url="https://www.youtube.com/watch?v=kPRA0W1kECg"}
 
+## What makes an algorithm?
+We've looked at algorithms that solved well known computational problems of sorting and searching data.
+When a computer scientist approaches a new computational problem that does not already have a well known solution they must create an algorithm.
+
+There are three building blocks to develop a new algorithm: sequencing, selection, and iteration.
+One interesting early result in computer science is that combined, these three building blocks are sufficient to represent any algorithm that solves a computational problem!
+
+### Sequencing
+Sequencing is the technique of deciding the order instructions are executed to produce the correct result.
+Imagine that we have the following instructions (A, B, C) to make a loaf of bread:
+
+- **A** llow to sit at room temperature for 1 hour
+- **B** ake for 30 minutes
+- **C** ombine ingredients
+
+C->A->B is a standard algorithm for a yeast bread.
+A different sequence, for example C->B->A, might produce a result that is edible but not high quality.
+Even worse, a sequence of B->C->A would not even produce something edible.
+
+### Selection
+Selection is the technique of allowing the algorithm to select which instructions to execute depending on criteria.
+Using our previous bread baking example, our algorithm C->A->B works if the ingredients include yeast, but C->B would be faster if the ingredients do not include yeast (for example, the recipe might include baking powder as the rising agent).
+Selection allows us to create one algorithm to solve both cases:
+
+1. Combine ingredients
+2. **If ingredients contain yeast,** allow to sit at room temperature for 1 hour
+3. Bake for 30 minutes
+
+### Iteration
+Iteration allows an algorithm to repeat instructions.
+In its simplest form we might specify the exact number of times.
+For example, here is an algorithm to bake 2 loaves of bread:
+
+1. **Repeat 2 times:**
+    1. Combine ingredients
+    2. If ingredients contain yeast, allow to sit at room temperature for 1 hour
+    3. Bake for 30 minutes
+
+This algorithm clearly works but it would take at least 3 hours to complete!
+If we had to make 20 loaves we would probably want to design a better algorithm.
+We could measure the size of the mixing bowl, how many loaves fit on the table to rise, and how many loaves we could bake at the same time in the oven.
+Our algorithm might then look like:
+
+1. **Repeat 10 times**:
+    1. Combine ingredients **for 2 loaves**
+    2. **Split dough into 2 bread pans**
+    3. If ingredients contain yeast, allow to sit at room temperature for 1 hour
+    4. Bake bread pans in the same oven for 30 minutes
+
+But what if we upgraded to a larger kitchen?
+Most algorithms are written to combine iteration with selection to handle arbitrarily large amounts of data (i.e. an unknown number of loaves of bread).
+We might create a general purpose bread baking algorithm:
+
+1. **While we have enough ingredients for at least one loaf:**
+    1. Combine ingredients **for up to X loaves** (where X is the maximum number of loaves that can fit in the mixing bowl or rising table)
+    2. Split dough into X bread pans
+    3. If ingredients contain yeast, allow to sit at room temperature for 1 hour
+    4. **While there are still bread pans on the rising table:**
+        1. Move **up to Y loaves** from the rising table to the oven (where Y is the maximum number of loaves that can fit in the oven)
+        2. Bake bread pans in the same oven for 30 minutes
+
+*Astute observers will note that this algorithm is still inefficient because the rising table and oven are not used at the same time.
+Designing algorithms that take advantage of parallelism is an important advanced topic in computer science.*
+
+### Combining Algorithms
+One of the advantages of the building blocks perspective is that completed algorithms themselves can now be seen as new blocks we can build with.
+We can connect complete algorithms or we can interleave parts of algorithms to create new algorithms.
+
+For example, a recipe for croutons might be:
+
+1. Cut a loaf of bread into 2cm cubes
+2. Brush cubes lightly with olive oil and season with salt, pepper, and herbs
+3. Bake on large tray, flipping the cubes halfway through
+
+We can connect the algorithm for baking bread in the previous section to this algorithm to create a new algorithm that makes croutons from scratch.
+If we required other ingredients for our recipe, we could connect multiple algorithms to build very complex algorithms.
+
+Often when we have multiple algorithms that solve a problem there are advantages of each algorithm for specific cases.
+Hybrid algorithms take parts of multiple algorithms and combine them to gain the advantages of both original algorithms.
+For example, Timsort is one of the fastest known sorting algorithms in practice and it uses parts of insertion sort and merge sort.
+Insertion sort is used on very small sequences to take advantage of its speed for already or partially ordered sequences.
+Merge sort is used to merge these small sequences into larger ones to take advantage of the better upper bound on algorithm cost for large data sets.
+
+{panel type="curiosity" summary="Why are there so many different programming languages?"}
+So if we know how to define an algorithm, why are there so many programming languages?
+Programming languages are often created or adapted to express algorithms clearly for a specific problem domain.
+For example, it is easier to read mathematical algorithms in Python than Scratch.
+Similarly, data flow algorithms are clearer in visual programming languages like LabVIEW than Python.
+{panel end}
+
 ## The whole story!
 
 We've only really scratched the surface of algorithms in this chapter, as there are millions of different algorithms for millions of different problems! Algorithms are used in maths, route planning, network planning and operation, problem solving, artificial intelligence, genetic programming, computer vision, the list goes on and on! But by going through this chapter you should have gained an understanding of the key concepts of algorithms and will be well prepared to tackle more complicated ones in the future.
 
 The algorithms introduced in this chapter aren't even necessarily the best for any situation; there are several other common ways of searching (e.g. hashing and search trees) and sorting (e.g. mergesort), and a computer scientist needs to know them, and be able to apply and fine tune the right one to a given situation.
 
-In this chapter we have only talked about the number of comparisons an algorithm makes, and the amount of time a program takes to complete as 'costs' of algorithms. There are actually many other ways of measuring the cost of an algorithm. These include the amount of memory the algorithm uses and its computational complexity. Computer Scientists use 'Big O notation' to more accurately describe the performance or complexity of an algorithm, and you are likely to come across this notation very quickly when investigating the performance of algorithms. It characterises the resources needed by an algorithm and is usually applied to the execution time required, or sometimes the space used by the algorithm.
+In this chapter we have only talked about the number of comparisons an algorithm makes, and the amount of time a program takes to complete as 'costs' of algorithms. There are actually many other ways of measuring the cost of an algorithm. These include the amount of memory the algorithm uses and its computational complexity.
+
+An algorithm often uses computer memory to store temporary data such as a partial sum of a list of numbers or a list of products that match some search criteria.
+With the large size of modern computer memory this may seem to not be as important as the number of steps an algorithm takes, but a poorly performing algorithm in terms of computer memory may be limited in its ability to work with the large data sets common in many industry applications.
+For example, a query algorithm that stored even a single bit for each record it searched could quickly overwhelm a web server's memory if it was searching a large data set such as Netflix's current movie offerings.
+Minimising memory usage while also minimizing the number of steps an algorithm takes is not always possible; there is often a tradeoff between computation and memory usage.
+
+Computer Scientists use 'Big O notation' to more accurately describe the performance or complexity of an algorithm, and you are likely to come across this notation very quickly when investigating the performance of algorithms. It characterises the resources needed by an algorithm and is usually applied to the execution time required, or sometimes the space used by the algorithm.
 
 {panel type="extra-for-experts" summary="Examples of Big O notation"}
 Here are some Big O examples:
@@ -356,7 +477,10 @@ Here are some Big O examples:
 
 Big O Notation however requires some advanced mathematics to explore thoroughly so has been intentionally left out of this main chapter, but if you want to learn more check out the Useful Links section. These topics are looked at in more depth in the Complexity and Tractability chapter.
 
-To make things even more complicated, in practice algorithms are running on computers that have cached memory and virtual memory, where the time to access a particular value can be particularly short, or particularly long. There is a whole range of algorithms that are used for this situation to make sure that the algorithm still runs efficiently in such environments. Such algorithms are still based on the ideas we've looked at in this chapter, but require some clever adjustments to ensure that they work well.
+To make things even more complicated, theoretical analysis techniques such as Big O Notation are extremely useful when designing and predicting performance but empirical analysis such as stopwatch timing shows that in practice algorithm performance can vary greatly due to hardware and operating system design.
+Most computers have cached memory and virtual memory, where the time to access a particular value can be particularly short, or particularly long.
+There is a whole range of algorithms that are used for this situation to make sure that the algorithm still runs efficiently in such environments.
+Such algorithms are still based on the ideas we've looked at in this chapter, but require some clever adjustments to ensure that they work well.
 
 ## Further reading
 
@@ -370,7 +494,7 @@ To make things even more complicated, in practice algorithms are running on comp
 - [CS Unplugged Searching algorithms](http://csunplugged.org/searching-algorithms)
 - CS Unplugged [Sorting algorithms](http://csunplugged.org/sorting-algorithms)
 - [Searching algorithm game, may not be suitable](http://csunplugged.org/divideAndConquer)
-- Wikipedia has more details on [Linear Search](https://en.wikipedia.org/wiki/Linear_search), [Binary Search](https://en.wikipedia.org/wiki/Binary_search), [Selection sort](https://en.wikipedia.org/wiki/Selection_sort), [Insertion sort](https://en.wikipedia.org/wiki/Insertion_sort) and  [Quicksort](https://en.wikipedia.org/wiki/Quicksort).
+- Wikipedia has more details on [Linear Search](http://en.wikipedia.org/wiki/Linear_search), [Binary Search](http://en.wikipedia.org/wiki/Binary_search), [Selection sort](http://en.wikipedia.org/wiki/Selection_sort), [Insertion sort](http://en.wikipedia.org/wiki/Insertion_sort), [Quicksort](http://en.wikipedia.org/wiki/Quicksort), and [Timsort](http://en.wikipedia.org/wiki/Timsort).
 - The [Sorting Bricks game](http://mathsite.math.berkeley.edu/sorting/brick.html) is a great way to learn about several sorting algorithms (requires Java).
 - [Sorting Algorithms Visualisations](http://www.sorting-algorithms.com/) shows several different sorting algorithms racing and contains information and pseudocode for each.
 - [Beginner's Guide to Big O Notation](http://rob-bell.net/2009/06/a-beginners-guide-to-big-o-notation/)

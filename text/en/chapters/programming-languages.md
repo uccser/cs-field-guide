@@ -158,6 +158,10 @@ So instead of building computers that can understand these high level instructio
 
 The conversion from a high level to a low level language can involve *compiling*, which replaces the high level instructions with machine code instructions that can then be run, or it can be done by *interpreting*, where each instruction is converted and followed one by one, as the program is run. In reality, a lot of languages use a mixture of these, sometimes compiling a program to an intermediate language, then interpreting it (Java does this). The language we looked at earlier, Python, is an interpreted language. Other languages such as C++ are compiled. We will talk more about compiling and interpreting later.
 
+Different levels of programming languages are an abstraction that allows programmers to concern themselves with only the necessary details of a single level.
+High level programmers can produce sophisticated programs in Python without expert knowledge of low level languages such as MIPS, x86, or ARM.
+Low level programmers can produce embedded programs in ARM without expert knowledge of electronic circuitry.
+
 We will start with looking at low level languages and how computers actually carry out the instructions in them, then we will look at some other programming languages that programmers use to give instructions to computers, and then finally we will talk about how we convert programs that were written by humans in a high level language into a low level language that the computer can carry out.
 
 ## Machine Code (Low level languages)
