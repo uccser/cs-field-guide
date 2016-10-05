@@ -197,7 +197,8 @@ ul.side-nav.fixed li a {
 }
 #page-navigation {
   padding: 1rem 1rem 0 0;
-  position: fixed;
+  width: 24%;
+  float: right;
 }
 .btn-expand {
   width: 100% !important;
@@ -330,14 +331,12 @@ ul.panel {
 .text-box-indented {
   margin-left: 40px !important;
 }
-
-
 .table-of-contents {
   li, ul, a {
     display: block !important;
   }
   a {
-    height: 100% !important;
+    height: initial !important;
   }
   &-subtitle {
     padding-left: 0.8rem;
