@@ -1,6 +1,3 @@
-/* BUG: clicking scale causes to scale twice since the function is already called
- * when focus leaves input box
- */
 
 /* NTS
  * Reacting to updating inputs:
@@ -232,7 +229,7 @@ function drawArrow() {
     p6.y = dimensions.yIntercept + (dimensions.arrowWidth * dimensions.squareSize) - dimensions.offset;
 
     dimensions.startPosition = [p0, p1, p2, p3, p4, p5, p6];
-    dimensions.currentPosition = dimensions.startPosition;
+    dimensions.currentPosition = [p0, p1, p2, p3, p4, p5, p6];
 
     updateArrow();
     updateInputBoxes(dimensions.startPosition);
@@ -390,7 +387,6 @@ function useMatrixToScale() {
 
             var newPoint = new Point();
             var currPoint = dimensions.startPosition[i];
-            //console.log(currPoint.x, currPoint.y);
 
             newPoint.x = ((currPoint.x - dimensions.xIntercept)/dimensions.squareSize) * matrix[0] + ((currPoint.y - dimensions.yIntercept)/dimensions.squareSize) * matrix[1] * -1;
             newPoint.y = ((currPoint.x - dimensions.xIntercept)/dimensions.squareSize) * matrix[2] + ((currPoint.y - dimensions.yIntercept)/dimensions.squareSize) * matrix[3] * -1;
