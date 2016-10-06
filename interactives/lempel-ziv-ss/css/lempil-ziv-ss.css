@@ -15,7 +15,7 @@
 }
 .highlight-div-in-input {
   /*display: absolute;*/
-  width: 1.1ch;
+  width: 1.0ch;
   min-height: 1.2em;
   z-index: 10;
   position: absolute;
@@ -28,6 +28,7 @@
   display: inline;
   overflow: auto;
   position: relative;
+  pointer-events: auto;
 }
 
 .net-span {
@@ -90,35 +91,19 @@
   border: 1px solid rgba(255, 0, 0, 0.8);
 }
 
-
-/*
-textarea {
-  display: inline;
+#index-counter {
+  float: left;
 }
-*/
-/*div input,
-input {
-  display: inline;
-  border-width: 0.3px;
-  padding: 0px;
-  z-index: 1;
-
-}*/
- 
-/*
-#interactive-displayed-text-highlight-container {
-  position: absolute;
-  z-index: 10
-}
-*/
 
 #interactive-displayed-text {
 	font-family: "Courier New", Courier, monospace;
-  padding: 50px;
+  padding: 20px;
   font-size: 200%;
   position: relative;
-  line-height: 150%;
-
+  line-height: 300%;
+}
+.jsplumb-overlay {
+  font-size: 100%;
 }
 
 .displayed-text { 

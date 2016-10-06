@@ -10,9 +10,9 @@ this.redHighlight = 'rgba(200, 0, 0, 0.2)';
 this.greenHighlight = 'rgba(0, 200, 0, 0.2)';
 this.blueHighlight = 'rgba(0, 0, 200, 0.2)';
 
-this.samIAmTestString = "I am Sam\nSam I am\n\nThat Sam-I-am!\nThat Sam-I-am!\n\nI do not like\nthat Sam-I-am!";
+this.levelTwoString = "I am Sam\nSam I am\n\nThat Sam-I-am!\nThat Sam-I-am!\n\nI do not like\nthat Sam-I-am!";
 this.quickTestString = "I am Sam\nSam I am";
-this.levelTwoString = "Would you like them\nin a house?\nWould you like them\nwith a mouse?\n\nI do not like them\nin a house.\nI do not like them\nwith a mouse."
+this.levelOneString = "Would you like them\nin a house?\nWould you like them\nwith a mouse?\n\nI do not like them\nin a house.\nI do not like them\nwith a mouse."
 
 this.difficultyLevel = 1;
 this.newLineRegex = /[^\x20-\x7E]/; //for newlines and other non-printable characters
@@ -30,7 +30,6 @@ this.newLineRegex = /[^\x20-\x7E]/; //for newlines and other non-printable chara
 		//divWithInput: iDiv
 	}*/
 
-this.encodedTextList = [];
 this.allMatchObjects = [];
 
 
@@ -91,13 +90,21 @@ window.onload = function() {
 
 	//draw = SVG('drawing');
 
-	lzssEncode(levelTwoString, slidingWindow);
+	lzssEncode(levelOneString, slidingWindow);
 
 
 
 }
 
 /*################## THINGS TO DO WITH THE INPUTS ############################### */
+
+//mouseover and show index TODO:
+$(document).on("mouseenter", ".highlight-square, .highlight-div-in-input", function() {
+	var currentIndex = (event.target.id).match(/\d+$/)[0];
+	console.log(currentIndex);
+	$('#index-counter').text("index: " + currentIndex);
+	//console.log(event.target.id)
+});
 
 //checking inputs on change for validation
 $(document).on('blur', 'input', function() {
@@ -145,8 +152,9 @@ $(document).on('focus', '.interactive-input', function() {
 	var endOfHighlighting = (startOfHighlighting + correctMatchObject.toEncode) - 1;
 
 	if (difficultyLevel == 1) {
-	levelOneHighlight(startOfHighlighting, endOfHighlighting, correctMatchObject);
+		levelOneHighlight(startOfHighlighting, endOfHighlighting, correctMatchObject, event.target);
 	} else if (difficultyLevel == 2) {
+		jsPlumb.detachEveryConnection();
 		levelTwoHighlight(startOfHighlighting, endOfHighlighting, correctMatchObject);
 	}
 	
@@ -214,6 +222,8 @@ function jsPlumbUnderline(startOfHighlighting, endOfHighlighting) {
 	var bottomLeft = [0,1,0,0,-3,3];
 	var bottomRight = [1,1,0,0,3,3];
 
+	console.log("startOfHighlighting is: " + startOfHighlighting + " and endOfHighlighting is: " + endOfHighlighting)
+
 	//bottom line
 	jsPlumb.connect({
 		connector: 'Straight',
@@ -239,23 +249,25 @@ $(document).on('focusout', '.interactive-input', function() {
 	$('.highlight-square').slice(startOfHighlighting, endOfHighlighting).removeClass('highlighted');
 })
 
-function levelOneHighlight(startOfHighlighting, endOfHighlighting, correctMatchObject) {
+function levelOneHighlight(startOfHighlighting, endOfHighlighting, correctMatchObject, sourceInput) {
 	$('.highlight-square').slice(startOfHighlighting, endOfHighlighting + 1).addClass('highlighted');
 
 	var middleOfHighlighting = ~~((endOfHighlighting + startOfHighlighting) / 2);
 	var endElement = $('#highlight' + endOfHighlighting); 
 	var startInputElement = $(event.target);
+	var pairString = "<" + correctMatchObject.stepsBack + "," + correctMatchObject.toEncode + ">";
 	//console.log(endMiddleElement)
 
 	// arrow from input to highlighting
     jsPlumb.connect({
-		source:'highlight' + correctMatchObject.positionInString,
+		source:'highlight' + ((correctMatchObject.positionInString) + ~~(correctMatchObject.toEncode / 2)),
 		target:'highlight' + middleOfHighlighting,
 		connector:'Straight',
 		anchors: ['TopCenter', 'Bottom'],
-		paintStyle:{ strokeStyle:"blue", lineWidth:2 },
+		paintStyle:{ strokeStyle:"blue", lineWidth:4 },
         overlays:[ 
-            ["Arrow" , { width:10, length:10, location:1 }]
+            ["Arrow" , { width:15, length:15, location:1 }],
+            ["Label" , {label:pairString, id:"label", labelStyle: {fillStyle:"white", font:"75% Courier New", color:'red', borderWidth:'1', borderStyle:'blue'}}]
         ],
 		endpoint:'Blank'
 	});
@@ -267,6 +279,7 @@ function levelOneHighlight(startOfHighlighting, endOfHighlighting, correctMatchO
 
 function changeToLevelTwo() {
 	difficultyLevel = 2;
+	jsPlumb.detachEveryConnection();
 	lzssEncode(levelTwoString, slidingWindow);
 	console.log(rawTextList);
 	console.log(encodedTextList);
@@ -274,7 +287,25 @@ function changeToLevelTwo() {
 }
 
 function levelTwoHighlight(startOfHighlighting, endOfHighlighting, correctMatchObject) {
+	var middleOfHighlighting = ~~((endOfHighlighting + startOfHighlighting) / 2);
+
 	$('.highlight-square').slice(startOfHighlighting, endOfHighlighting + 1).addClass('highlighted');	
+	var pairString = "<" + correctMatchObject.stepsBack + "," + correctMatchObject.toEncode + ">";
+
+
+    jsPlumb.connect({
+		source:'highlight' + ((correctMatchObject.positionInString) + ~~(correctMatchObject.toEncode / 2)),
+		target:'highlight' + middleOfHighlighting,
+		connector:'Straight',
+		anchors: ['TopCenter', 'Bottom'],
+		paintStyle:{ strokeStyle:"blue", lineWidth:0.05 },
+        overlays:[ 
+            //["Arrow" , { width:10, length:10, location:1 }],
+            ["Label" , {label:pairString, id:"label",color:'red', location:0.1, labelStyle: {fillStyle:"white", font:"75% Courier New", color: 'red'}}]
+        ],
+		endpoint:'Blank'
+	});
+
 	jsPlumbUnderline(startOfHighlighting, endOfHighlighting);
 }
 /*######################################### #######################################*/
@@ -435,7 +466,7 @@ function parseEncodedTextList(encodedTextList, rawTextList) {
 				highlightDiv.id = "highlight" + (i + j);
 				highlightDiv.className += 'highlight-div-in-input'
 				highlightDiv.className += ' highlight-square';
-				highlightDiv.setAttribute("style", "left:" + (1.1*j) + "ch");
+				highlightDiv.setAttribute("style", "left:" + (j) + "ch");
 				//highlightDiv.style.background = greenHighlight
 
 				inputDiv.appendChild(highlightDiv);
@@ -462,35 +493,54 @@ function parseEncodedTextList(encodedTextList, rawTextList) {
 		} else {
 			encodedTextListIterator += 1;
 
-			netSpan = createNetSpan(i, howManyAcross, howManyDown);
+			highlightDiv = createHighlightDiv(i, howManyAcross, howManyDown);
 			//console.log("howManyAcross is: " + howManyAcross + " and howManyDown is: " + howManyDown);
 			howManyAcross += 1;
-			netSpan.innerHTML = current;
+			highlightDiv.innerHTML = current;
 			netDiv = document.createElement("DIV");
 			//$(netSpan).append(netDiv);
+			var containerDiv = document.createElement("DIV");
+			containerDiv.id = ("container" + i);
+			//$(containerDiv).css('display', 'inline');
+			//$(containerDiv).css('position', 'relative');
 
-			$('#interactive-displayed-text').append(netSpan);
+			$('#interactive-displayed-text').append(highlightDiv);
+			//$(containerDiv).append(highlightDiv);
+
+			//create index holding div and pu in container div too
+			//createIndexHoldingDiv(i, containerDiv)
+
+
 			i++;
 
 		}
-
-		//console.log("howManyAcross is: " + howManyAcross + " and howManyDown is: " + howManyDown);
-		//console.log(current);
-		//if encodedTextList[i[]]
-
-
-
-
 	}
 }
 
-function createNetSpan(divIndex, howManyAcross, howManyDown) {
+function createIndexHoldingDiv(divIndex, containerDiv) {
+	var indexHoldingDiv = document.createElement("DIV");
+	indexHoldingDiv.innerHTML = divIndex;
+	//$(indexHoldingDiv).css('display', 'inline');
+	//$(indexHoldingDiv).css('position', 'absolute');
+	//$(indexHoldingDiv).css('bottom', '0');
+	//$(containerDiv).append(indexHoldingDiv);
+}
 
-	netSpan = document.createElement("SPAN");
+function createHighlightDiv(divIndex) {
+
+	var highlightDiv = document.createElement("DIV");
 	
-	netSpan.className = "highlight" + divIndex;
-	netSpan.className += " highlight-square"
-	netSpan.id = "highlight" + divIndex;
+	highlightDiv.className = "highlight" + divIndex;
+	highlightDiv.className += " highlight-square"
+	highlightDiv.id = "highlight" + divIndex;
+
+	$('containerDiv').append(highlightDiv);
+
+	$(highlightDiv).css('display', 'inline');
+	//$(highlightDiv).css('position', 'absolute');
+	//$(highlightDiv).css('top', '0');
+
+
 
 	/*"debug"
 	if ((divIndex % 2) == 0) {
@@ -500,7 +550,7 @@ function createNetSpan(divIndex, howManyAcross, howManyDown) {
 	}
 	*/
 
-	return netSpan;
+	return highlightDiv;
 }
 
 function createInputHighlightDiv() {
