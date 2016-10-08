@@ -85,6 +85,9 @@ function generateRandomNumbers() {
 }
 
 function createBoxElements() {
+
+	var range = Array.apply(null, Array(15)).map(function (_, i) {return i;});
+	shuffle(range);
 	for (var i = 0; i < (numberOfBoxes); i++) {
 		var boxObject; //JS object that will hold the id, int and both elements
 		var currentBox = boxes[i]
@@ -120,7 +123,8 @@ function createBoxElements() {
 
 
 		//set background image of div to the funky box
-		boxDiv.style.backgroundImage = 'url(./img/square' + getRandomInt(1, 9) + '.png)';
+		var boxImageIndex = range[i] + 1;
+		boxDiv.style.backgroundImage = 'url(./img/square' + boxImageIndex + '.png)';
 
 		currentBox.divElement = boxDiv;
 		iContainer.appendChild(boxDiv);
