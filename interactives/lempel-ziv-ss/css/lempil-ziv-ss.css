@@ -100,8 +100,15 @@
   padding: 20px;
   font-size: 200%;
   position: relative;
-  line-height: 300%;
+  line-height: 200%;
 }
+
+.index-holding-span {
+  width: 1ch;
+  font-size: 50%;
+
+}
+
 .jsplumb-overlay {
   font-size: 100%;
 }

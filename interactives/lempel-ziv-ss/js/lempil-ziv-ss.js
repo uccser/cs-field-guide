@@ -101,7 +101,7 @@ window.onload = function() {
 //mouseover and show index TODO:
 $(document).on("mouseenter", ".highlight-square, .highlight-div-in-input", function() {
 	var currentIndex = (event.target.id).match(/\d+$/)[0];
-	console.log(currentIndex);
+	//console.log(currentIndex);
 	$('#index-counter').text("index: " + currentIndex);
 	//console.log(event.target.id)
 });
@@ -130,7 +130,7 @@ $(document).on('blur', 'input', function() {
 	}
 
 	if (allCorrect == true) {
-		console.log("next button should show now!")
+		//console.log("next button should show now!")
 		$('#next-button').show()
 	}
 	//console.log(event.target);
@@ -143,7 +143,7 @@ $(document).on('focus', '.interactive-input', function() {
 	for (var i = 0; i < allMatchObjects.length; i++) {
 		if (allMatchObjects[i].inputElement == event.target) {
 			correctMatchObject = allMatchObjects[i]; // this is the one we want 'coordinates' from
-			console.log(correctMatchObject)
+			//console.log(correctMatchObject)
 		}
 	}
 
@@ -222,7 +222,7 @@ function jsPlumbUnderline(startOfHighlighting, endOfHighlighting) {
 	var bottomLeft = [0,1,0,0,-3,3];
 	var bottomRight = [1,1,0,0,3,3];
 
-	console.log("startOfHighlighting is: " + startOfHighlighting + " and endOfHighlighting is: " + endOfHighlighting)
+	//console.log("startOfHighlighting is: " + startOfHighlighting + " and endOfHighlighting is: " + endOfHighlighting)
 
 	//bottom line
 	jsPlumb.connect({
@@ -273,7 +273,7 @@ function levelOneHighlight(startOfHighlighting, endOfHighlighting, correctMatchO
 	});
 
 	//draw box around highlighted elements
-	console.log("startOfHighlighting: " + startOfHighlighting + " endOfHighlighting: " + endOfHighlighting);
+	//console.log("startOfHighlighting: " + startOfHighlighting + " endOfHighlighting: " + endOfHighlighting);
 	jsPlumbBox(startOfHighlighting, endOfHighlighting);
 }
 
@@ -281,9 +281,9 @@ function changeToLevelTwo() {
 	difficultyLevel = 2;
 	jsPlumb.detachEveryConnection();
 	lzssEncode(levelTwoString, slidingWindow);
-	console.log(rawTextList);
-	console.log(encodedTextList);
-	console.log("Level two!");
+	//console.log(rawTextList);
+	//console.log(encodedTextList);
+	//console.log("Level two!");
 }
 
 function levelTwoHighlight(startOfHighlighting, endOfHighlighting, correctMatchObject) {
@@ -330,16 +330,16 @@ function lzssEncode(rawStringToEncode, slidingWindowLength) {
 	var currentMatchString;
 	var howManyForward;
 	var stringToReturn = stringToEncode.slice(0,2);
-	console.log("string to decode is: " + stringToEncode);
+	//console.log("string to decode is: " + stringToEncode);
 	for (var stringIndex = 0 ; stringIndex < stringToEncode.length;) {
 		
-		console.log("currently encoding character " + stringToEncode[stringIndex] + ", index " + stringIndex);
+		//console.log("currently encoding character " + stringToEncode[stringIndex] + ", index " + stringIndex);
 		currentReadString = stringToEncode[stringIndex]
 		currentMatchString = stringToEncode[stringIndex - 1]
 		longestMatch = "";
 		indexOfLongestMatchStart = -1;
 
-		console.log("currentReadString is " + currentReadString);
+		//console.log("currentReadString is " + currentReadString);
 		
 
 		//stop looking back when we either hit the start of the string or we're at edge of sliding window
@@ -347,20 +347,20 @@ function lzssEncode(rawStringToEncode, slidingWindowLength) {
 				if ((stringToEncode[stringIndex - matchIndex].match(newLineRegex) != null)) {
 
 					//console.log(stringToEncode[matchIndex]);
-					console.log("newline found on way back!");
+					//console.log("newline found on way back!");
 					//continue;
 				} else {
-					console.log("gone back " + String(stringIndex - matchIndex) + " characters");
+					//console.log("gone back " + String(stringIndex - matchIndex) + " characters");
 					howManyForward = 1;
 					currentReadString = stringToEncode.slice(stringIndex, (stringIndex + 1))
 					currentMatchString = stringToEncode.slice(matchIndex, (matchIndex + 1))
-					console.log("	currently at position " + matchIndex +", currentReadString is " + currentReadString + ", currentMatchString is " + currentMatchString);
+					//console.log("	currently at position " + matchIndex +", currentReadString is " + currentReadString + ", currentMatchString is " + currentMatchString);
 					while ((currentReadString === currentMatchString) && longestMatch.length < 16) {
 						if (currentReadString.match(newLineRegex)) {
-							console.log("there's a newline in this match string!!! do something about it!!!");
+							//console.log("there's a newline in this match string!!! do something about it!!!");
 							break;
 						}
-						console.log("		currentReadString " + currentReadString + " and currentMatchString " + currentMatchString + " matched! howManyForward is now: " + howManyForward);
+						//console.log("		currentReadString " + currentReadString + " and currentMatchString " + currentMatchString + " matched! howManyForward is now: " + howManyForward);
 						if (currentMatchString.length > longestMatch.length) {
 							longestMatch = currentMatchString
 							indexOfLongestMatchStart = matchIndex;
@@ -378,16 +378,16 @@ function lzssEncode(rawStringToEncode, slidingWindowLength) {
 			//if nothing to encode
 			//console.log("matchIndex is " + matchIndex);
 			if ((indexOfLongestMatchStart == -1) || (longestMatch.length < 3)) {
-				console.log("No long enough found, not encoding, appended '" + stringToEncode[stringIndex] + "'");
-				console.log("");
+				//console.log("No long enough found, not encoding, appended '" + stringToEncode[stringIndex] + "'");
+				//console.log("");
 				$('#encodedText').append(stringToEncode[stringIndex]);
 				encodedTextList.push(stringToEncode[stringIndex]); //for encoded text array things
 				stringIndex++
 				textAfterBits += sizeOfCharacterInBits // add one character's worth of bits
 
 			} else if (stringToEncode[stringIndex].match(newLineRegex)) {
-				console.log("character was a newline, just going to add a newline to encodedText, a newline to encodedTextList, increment stringIndex, and not do anything else");
-				console.log("");
+				//console.log("character was a newline, just going to add a newline to encodedText, a newline to encodedTextList, increment stringIndex, and not do anything else");
+				//console.log("");
 				$('#encodedText').append(stringToEncode[stringIndex]);
 				encodedTextList.push(stringToEncode[stringIndex]);
 				stringIndex++
@@ -395,10 +395,10 @@ function lzssEncode(rawStringToEncode, slidingWindowLength) {
 
 				} else {
 	 // if something to encode, add <stepsBack, noCharacters> pair and skip forward that many characters in the string to encode
-				console.log("character " + stringToEncode[stringIndex] + ", index " + stringIndex + " encoded. longestMatch is " + longestMatch);
-				console.log("encode next " + longestMatch.length + " characters starting from " + indexOfLongestMatchStart);
-				console.log("stringIndex is " + stringIndex + " and matchIndex is " + matchIndex);
-				console.log("");
+				//console.log("character " + stringToEncode[stringIndex] + ", index " + stringIndex + " encoded. longestMatch is " + longestMatch);
+				//console.log("encode next " + longestMatch.length + " characters starting from " + indexOfLongestMatchStart);
+				//console.log("stringIndex is " + stringIndex + " and matchIndex is " + matchIndex);
+				//console.log("");
 
 				//take out new lines
 
@@ -438,8 +438,12 @@ function parseEncodedTextList(encodedTextList, rawTextList) {
 	var howManyAcross = 0;
 	var howManyDown = 0; // for creating net divs to now how many em across and down the div needs to be placed
 
+	var numberOfCharactersThisLine = 0;
+
 	for (var i = 0; i < rawTextList.length;) {
 		current = rawTextList[i];
+
+
 
 		//if it's a match pair
 		if (encodedTextList[encodedTextListIterator] instanceof Array) {
@@ -449,7 +453,7 @@ function parseEncodedTextList(encodedTextList, rawTextList) {
 			
 			matchString = rawTextList.slice((i - current[0]), (i - current[0] + current[1])).join('');
 			matchString = matchString.replace(/(\r\n|\n|\r)/gm,"");;
-			console.log(matchString);
+			//console.log(matchString);
 			matchLength = matchString.length;
 			//newMatchObject = createMatchObject(i, current, matchString, matchNumber)
 
@@ -489,6 +493,7 @@ function parseEncodedTextList(encodedTextList, rawTextList) {
 
 
 			i += (matchLength);
+			numberOfCharactersThisLine += (matchLength);
 
 		} else {
 			encodedTextListIterator += 1;
@@ -505,6 +510,8 @@ function parseEncodedTextList(encodedTextList, rawTextList) {
 			//$(containerDiv).css('position', 'relative');
 
 			$('#interactive-displayed-text').append(highlightDiv);
+
+
 			//$(containerDiv).append(highlightDiv);
 
 			//create index holding div and pu in container div too
@@ -512,25 +519,45 @@ function parseEncodedTextList(encodedTextList, rawTextList) {
 
 
 			i++;
+			numberOfCharactersThisLine++;
+
+			if (current.match(newLineRegex)) {
+			//($'#interactive-displayed-text').append('\n');
+
+				for (var j = 0; j < numberOfCharactersThisLine; j++) {
+			    	var indexSpan = document.createElement("SPAN");
+			    	indexSpan.className += "index-holding-span";
+			    	indexSpan.innerHTML = (i + j);
+			    	$('#interactive-displayed-text').append(indexSpan);
+				}
+				var br = document.createElement('br');
+
+				$('#interactive-displayed-text').append(br);
+		
+			numberOfCharactersThisLine = 0;
+			}
 
 		}
 	}
 }
 
-function createIndexHoldingDiv(divIndex, containerDiv) {
-	var indexHoldingDiv = document.createElement("DIV");
-	indexHoldingDiv.innerHTML = divIndex;
-	//$(indexHoldingDiv).css('display', 'inline');
-	//$(indexHoldingDiv).css('position', 'absolute');
-	//$(indexHoldingDiv).css('bottom', '0');
-	//$(containerDiv).append(indexHoldingDiv);
+function makeIndexTrackerLine(numberOfCharacters) {
+	for (var i = 0; i < numberOfCharacters; i++) {
+		
+	}
+	var oneCharacterSpan = document.createElement("SPAN");
+
+
+	
+
 }
+
 
 function createHighlightDiv(divIndex) {
 
 	var highlightDiv = document.createElement("DIV");
 	
-	highlightDiv.className = "highlight" + divIndex;
+	//highlightDiv.className = "highlight" + divIndex;
 	highlightDiv.className += " highlight-square"
 	highlightDiv.id = "highlight" + divIndex;
 
