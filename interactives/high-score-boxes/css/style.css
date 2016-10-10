@@ -10,8 +10,21 @@ div.box {
     background-color: white;
     z-index: 3;
     background-size: contain;
+    cursor: pointer;
+
+        /*disabling dragging/selecting*/
+    -WEBKIT-USER-SELECT: NONE; /* SAFARI, CHROME */
+    -KHTML-USER-SELECT: NONE; /* KONQUEROR */
+    -MOZ-USER-SELECT: NONE; /* FIREFOX */
+    -MS-USER-SELECT: NONE; /* IE */
+    USER-SELECT: NONE; /* CSS3 */
 
 
+}
+
+.clicked {
+    -webkit-filter: grayscale(100%); /* Chrome, Safari, Opera */
+    filter: grayscale(100%);
 }
 
 div.intHoldingDiv {
@@ -29,6 +42,8 @@ div.intHoldingDiv {
 	font-size: 1.5rem;
 	font-weight: bold;
 
+
+
 }
 
 div.boxContainer {
@@ -40,6 +55,13 @@ div.boxContainer {
     margin-bottom: 40px;
     margin-right: 20px;
     margin-left: 20px;
+
+        /*disabling dragging/selecting*/
+    -WEBKIT-USER-SELECT: NONE; /* SAFARI, CHROME */
+    -KHTML-USER-SELECT: NONE; /* KONQUEROR */
+    -MOZ-USER-SELECT: NONE; /* FIREFOX */
+    -MS-USER-SELECT: NONE; /* IE */
+    USER-SELECT: NONE; /* CSS3 */
 }
 
 #restartButton {
