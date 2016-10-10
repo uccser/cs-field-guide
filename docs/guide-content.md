@@ -554,7 +554,7 @@ This text is the panel's contents.
 **Parameters:**
 - `type` - The type of panel to create. The type is used as the title of the panel, plus as the CSS class for panel (this allows colouring of all the same types of panels).
 - `summary` (optional) - Text to display after the title to summarise the panel's contents.
-- `expanded` (optional) - If set to False, the panel is expanded at load. When not given it defaults to True.
+- `expanded` (optional) - If set to `True`, the panel is expanded at load. If set to `Always`, the panel is expanded at load and cannot be closed. When a value is not given, the panel is closed on load.
 
 ---
 

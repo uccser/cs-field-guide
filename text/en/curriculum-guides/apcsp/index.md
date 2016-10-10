@@ -1,7 +1,7 @@
 # APCSP Curriculum Guides
 These curriculum guides have been written to assist teachers for the Advanced Placement Computer Science Principles course.
 
-{panel type="caution" expanded="True"}
+{panel type="caution" expanded="Always"}
 These guides are still a work in progress!
 {panel end}
 
