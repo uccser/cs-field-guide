@@ -10,7 +10,7 @@ The computer science externals can be particularly time consuming for Merit and 
 For some students, it is better to just focus on doing the Achieved material well.
 For this reason, we provide separate guides for students aiming for subject endorsement and for students aiming to get the credits.
 
-{panel type="caution" expanded="True"}
+{panel type="caution" expanded="Always"}
 These guides are still a work in progress.
 
 We recommend reading the guidance on this page very carefully to ensure students are working on the right material.
