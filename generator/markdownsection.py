@@ -174,18 +174,22 @@ class Section:
                 summary_value = parse_argument('summary', arguments)
                 summary = ': ' + summary_value.strip() if summary_value else ''
                 expanded_value = parse_argument('expanded', arguments)
-                expanded = ' active' if expanded_value == 'True' else ''
-                content = self.parse_markdown(match.group('content'))
-
-                heading = self.html_templates['panel_heading'].format(title=title,
-                                                                      summary=summary)
-                html = self.html_templates['panel'].format(panel_heading = heading,
-                                                           content = content,
-                                                           type_class = 'panel-' + panel_type,
-                                                           expanded = expanded)
+                collapsible = False if expanded_value == 'Always' else True
+                valid_expanded_values = ['True', 'Always']
+                expanded = expanded_value in valid_expanded_values
+                context = {
+                    'type_class': panel_type,
+                    'title': title,
+                    'summary': summary,
+                    'content': self.parse_markdown(match.group('content')),
+                    'expanded': expanded,
+                    'collapsible': collapsible
+                }
+                html = self.guide.html_generator.render_template('panel', context)
             # Panel should be ignored
             else:
                 html = ''
+
             # Check for tags within panel that could cause dead links within student version
             if panel_type in teacher_only_panels:
                 content = match.group('content')
