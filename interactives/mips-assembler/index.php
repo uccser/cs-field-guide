@@ -582,7 +582,7 @@ if (strlen($_POST['input'])) {
         <div class="col s12 l6">
 
           <h4>MIPS Input</h4>
-          <p>Please enter MIPS code below to see the assembler output. A subset of MIPS is implemented. Comments start with #.</p>
+          <p>Please enter MIPS code below to see the assembler output. <strong>Note:</strong> Only a subset of MIPS is implemented, and negative values will be read as zero. Comments start with #.</p>
 
           <?php print '<form action="'.$_ENV['SCRIPT_URL'].'" method="post">'; ?>
 <textarea name="input" id="mips_input" class="code"><?php
