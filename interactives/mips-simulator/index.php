@@ -382,6 +382,11 @@ if (strlen($_POST['memInput'])) {
                            hexdec($reg->read($instr->rtdec)) * pow(2,$instr->shamtdec)
                            );
                        break;
+                   case 0x22: //subtract
+                       $reg->write($instr->rddec,
+                           smarthexdec($reg->read($instr->rsdec)) - smarthexdec($reg->read($instr->rtdec))
+                           );
+                       break;
                    case 0x2: // srl
 
                        break;
