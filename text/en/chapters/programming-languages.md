@@ -199,34 +199,43 @@ The instructions are quite different to the ones you will have seen before in hi
 It starts by adding 2 numbers (that have been put in registers $t0 and $t1) and printing out the result. It then prints “Hello World!” Don’t worry, we aren’t about to make you learn how to actually program in this language! And if you don’t really understand the program, that’s also fine because many software engineers wouldn’t either! (We are showing it to you to help you to appreciate high level languages!)
 
 ```
-.data          	 
+.data
 str:  .asciiz "\nHello World!\n"
 # You can change what is between the  quotes if you like
 
-.text          	 
-.globl main       	 
+.text
+.globl main
 
 main:
 # Do the addition
-# For this, we first need to put the values to add into registers ($t0 and $t1)
-li $t0, 10 #You can change the 10
-li $t1, 20 #You can change the 20
-# Now we can add the values together, putting the result in register $a0
-add $a0, $t0, $t1
-# Set up for printing the value in $a0.
-# A '1' in $v0 means we want to print an int
-li $v0, 1
-# The system call looks at what is in $v0 and $a0,
-# and knows to print what is in $a0
-syscall    	 
+# For this, we first need to put the values
+# to add into registers  ($t0 and $t1)
+# You can change the 30 below to another value
+li $t0, 30
+# You can change the 20 below to another value
+li $t1, 20
 
-# Now we want to print 'Hello World!'
+# Now we can add the values in $t0
+# and $t1, putting the result in special register $a0
+add $a0, $t0, $t1
+
+# Set up for printing the value in $a0.
+# A 1 in $v0 means we want to print an int
+li $v0, 1
+
+# The system call looks at what is in $v0
+# and $a0, and knows to print what is in $a0
+syscall
+
+# Now we want to print Hello World
 # So we load the (address of the) string into $a0
 la $a0, str
-# A '4' in $v0 means we want to print an string
+
+# And put a 4 in $v0 to mean print a string
 li $v0, 4
-# And just like before syscall looks at $v0 and $a0
-# and knows to print the string
+
+# And just like before syscall looks at
+# $v0 and $a0 and knows to print the string
 syscall
 
 # Nicely end the program

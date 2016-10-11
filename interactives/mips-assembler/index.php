@@ -603,8 +603,10 @@ main:
 # Do the addition
 # For this, we first need to put the values
 # to add into registers  ($t0 and $t1)
-li $t0, 10    # You can change the 10
-li $t1, 20    # You can change the 20
+# You can change the 30 below to another value
+li $t0, 30
+# You can change the 20 below to another value
+li $t1, 20
 
 # Now we can add the values in $t0
 # and $t1, putting the result in special register $a0
