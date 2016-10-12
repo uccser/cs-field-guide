@@ -1,163 +1,191 @@
-//onload make array of 5 random ints
-this.randomInts = [];
-this.largest = 0;
-this.numberOfBoxes = 15
-this.boxes = []
-this.gameStarted = false;
-this.secondsTaken = 0;
-this.timerVar;
-
-//this.arrayForMargins = ["top", "bottom", "right", "left"]
+var HighScoreBoxes = {};
+HighScoreBoxes.randomInts = [];
+HighScoreBoxes.largestNumber = 0;
+HighScoreBoxes.numberOfBoxes = 11;
+HighScoreBoxes.boxes = [];
+HighScoreBoxes.gameStarted = false;
+HighScoreBoxes.secondsTaken = 0;
+HighScoreBoxes.timerVar;
+HighScoreBoxes.availableBoxImages = 15;
 
 $(document).ready(function(){
-	generateRandomNumbers();
-	createBoxObjects();
-	createBoxElements();
+    // Setup interactive on load
+    resetHighScoreBoxes();
 
-	$("#restartButton").click(function() {
-		$("#box_holder_div").empty();
-		secondsTaken = 0;
-		gameStarted = false;
-
-		if (typeof timerVar !== 'undefined') {
-			clearTimeout(timerVar);
-		}	
-		
-		generateRandomNumbers();
-		createBoxObjects();
-		createBoxElements();
-		$("#restartButton").hide();
-		$("#completionMessage").html("");
-		$("#answerTextForm").val('');
-
-	})
-})
-
-$(document).on('click','.box', function (event) {
-	var filterVal = 'grayscale(100)';
-
-	$(".box").stop(true, true);
-	$(".box").show();
-	for (var i = 0; i < (boxes.length); i++) { 
-		if (document.getElementById('box' + i) ==  event.target) {
-			$(this).fadeOut(1000);
-			$(this).fadeIn(1000);
-			$(this).addClass( "clicked" );
-			boxes[i].revealed_times += 1;
+	$('#restart-button').click(function() {
+		$('#boxes-container').empty();
+		HighScoreBoxes.secondsTaken = 0;
+		HighScoreBoxes.gameStarted = false;
+		if (typeof HighScoreBoxes.timerVar !== 'undefined') {
+			clearTimeout(HighScoreBoxes.timerVar);
 		}
-	}
-	//to start timer only if it hasn't started yet
-	if (!gameStarted) {
-		for (var i = boxes.length - 1; i >= 0; i--) {
-			if (boxes[i].revealed_times == 1) {
-				gameStarted = true;
-				timerVar = setInterval(myTimer, 1000); //executes myTimer every second
+        resetHighScoreBoxes();
+	});
 
-			}
-		}
-	}
+    $('#submit-button').on('click', function(){
+      processInput();
+    });
 
-})
+    $('#boxes-container').on('click', '.box', function(event) {
+        $box = $(this);
+        // Stop all box animations
+    	$('.box').finish();
+        box_number = $box.attr('id').substring(3)
+        $(this).fadeOut(1000, function(){
+            $(this).fadeIn(1000);
+            $(this).addClass('clicked');
+        });
+    	HighScoreBoxes.boxes[box_number].revealed_times += 1;
 
-function myTimer() {
-	secondsTaken += 1;
+    	//to start timer only if it hasn't started yet
+    	if (!HighScoreBoxes.gameStarted) {
+			HighScoreBoxes.gameStarted = true;
+			HighScoreBoxes.timerVar = setInterval(incrementTimer, 1000);
+    	}
+    });
+});
+
+
+function resetHighScoreBoxes() {
+    generateRandomNumbers();
+    createBoxObjects();
+    createBoxElements();
+    $('#restart-button').hide();
+    $('#completion-message').html('');
+    $('#interactive-high-score-boxes-input').val('');
 }
 
-function generateRandomNumbers() {
-	var intervals = [0, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
-	shuffle(intervals);
 
+// Increment timer value by 1
+function incrementTimer() {
+	HighScoreBoxes.secondsTaken += 1;
+}
+
+
+// Create random numbers for boxes
+function generateRandomNumbers() {
+	var intervals = [0, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
+	shuffle(intervals);
 	var twoIntervals = intervals.slice(0, 2);
 	twoIntervals.sort();
 
-	for (var i = 0; i < (numberOfBoxes); i++) {
-
+	for (var i = 0; i < (HighScoreBoxes.numberOfBoxes); i++) {
 		var currentInt = getRandomInt(twoIntervals[0], twoIntervals[1]);
-		while (randomInts.indexOf(currentInt) != -1) {
+		while (HighScoreBoxes.randomInts.indexOf(currentInt) != -1) {
 			var currentInt = getRandomInt(twoIntervals[0], twoIntervals[1]);
 		}
-
-		randomInts[i] = currentInt;
+		HighScoreBoxes.randomInts[i] = currentInt;
 	}
-	console.log(twoIntervals[0] +" " + twoIntervals[1])
 
-	largest = Math.max.apply(Math, randomInts);
+	HighScoreBoxes.largestNumber = Math.max.apply(Math, HighScoreBoxes.randomInts);
 }
 
+
+// Create box elements inside container
 function createBoxElements() {
+	var box_images = Array.apply(null, Array(HighScoreBoxes.availableBoxImages)).map(function (_, i) {return i;});
+	shuffle(box_images);
+	for (var i = 0; i < (HighScoreBoxes.numberOfBoxes); i++) {
+		var currentboxObject = HighScoreBoxes.boxes[i]
 
-	var range = Array.apply(null, Array(15)).map(function (_, i) {return i;});
-	shuffle(range);
-	for (var i = 0; i < (numberOfBoxes); i++) {
-		var boxObject; //JS object that will hold the id, int and both elements
-		var currentBox = boxes[i]
-
-		//"container" div
-		var iContainer = document.createElement('div');
-		iContainer.draggable = false;
-		iContainer.id = ('boxContainer' + i);
-		iContainer.className = 'boxContainer';
-		document.getElementById('box_holder_div').appendChild(iContainer);
+		// Box container
+		var box_container = document.createElement('div');
+		box_container.draggable = false;
+		box_container.id = ('boxContainer' + i);
+		box_container.className = 'boxContainer';
+		document.getElementById('boxes-container').appendChild(box_container);
 
 		//clearing a random direction's margin for the messy look
-		randomIntForMargin = getRandomInt(0, 2)
+		randomIntForMargin = getRandomInt(0, 10);
 
-		if (randomIntForMargin == 0) {
-			document.getElementById('boxContainer' + i).style.marginTop = "0px"
-		} else if (randomIntForMargin == 1) {
-			document.getElementById('boxContainer' + i).style.marginBottom = "0px"
-		} else if (randomIntForMargin == 2) {
-			document.getElementById('boxContainer' + i).style.marginLeft = "0px"
-		} else if (randomIntForMargin == 3) {
-			document.getElementById('boxContainer' + i).style.marginRight = "0px"
-		}
-		
+		if (randomIntForMargin <= 4) {
+			box_container.style.paddingLeft = (randomIntForMargin / 2) + 'rem';
+        }
+		else {
+			box_container.style.paddingRight = ((randomIntForMargin - 4) / 2) + 'rem';
+        }
 
-		//"box (covering the div holding number"
-		var boxDiv = document.createElement('div');
-		boxDiv.draggable = false;
-
-		boxDiv.id = ('box' + i);
-		boxDiv.className = 'box';
-		boxDiv.setAttribute("width", "100");
-
-
-		//set background image of div to the funky box
-		var boxImageIndex = range[i] + 1;
-		boxDiv.style.backgroundImage = 'url(./img/square' + boxImageIndex + '.png)';
-
-		currentBox.divElement = boxDiv;
-		iContainer.appendChild(boxDiv);
+		// Box image (covering a number)
+		var box_image = document.createElement('img');
+		box_image.id = 'box' + i;
+		box_image.className = 'box';
+        box_image.draggable = false;
+		box_image.src = './img/square' + (box_images[i] + 1) + '.png';
+		currentboxObject.divElement = box_image;
 
 		//divs that hold the numbers
-		var intHoldingDiv = document.createElement('div');
-		intHoldingDiv.draggable = false;
+		var box_number = document.createElement('div');
+		box_number.className = 'box_number';
+        box_number.draggable = false;
+		box_number.innerHTML = currentboxObject.boxInt;
+		currentboxObject.intHoldingDivElement = box_number;
 
-		intHoldingDiv.id = ('intHoldingDiv' + i);
-		intHoldingDiv.className = 'intHoldingDiv';
-		intHoldingDiv.innerHTML = currentBox.boxInt;
-		currentBox.intHoldingDivElement = intHoldingDiv;
-		iContainer.appendChild(intHoldingDiv);
+        // Append elements to box container
+        box_container.appendChild(box_image);
+		box_container.appendChild(box_number);
 	}
-}	
+}
 
-//creates the JS objects with just the id and the random int, leaving space for the HTML elements
+// Creates JS objects for storing box data
 function createBoxObjects() {
-	for (var i = 0; i < numberOfBoxes; i++) {
+	for (var i = 0; i < HighScoreBoxes.numberOfBoxes; i++) {
 		var boxObject = {
 			boxNumber: i,
 			divElement: null,
-			boxInt: randomInts[i],
+			boxInt: HighScoreBoxes.randomInts[i],
 			intHoldingDivElement: null,
 			revealed_times: 0
 		}
-		boxes[i] = boxObject;
+		HighScoreBoxes.boxes[i] = boxObject;
 	}
 }
+
+
+// Process submitted user answer
+function processInput() {
+    var user_answer = document.getElementById('interactive-high-score-boxes-input').value;
+	var box_revealed_more_than_once = false;
+	var box_revealed_no_times = false;
+    var $feedback = $('#completion-message');
+
+    //if form value is a number
+	if (!(isNaN(user_answer))) {
+		if (parseInt(user_answer) == HighScoreBoxes.largestNumber) { // correct answer
+			for (var i = 0; i < (HighScoreBoxes.boxes.length); i++) {
+				if (HighScoreBoxes.boxes[i].revealed_times > 1) {
+					box_revealed_more_than_once = true;
+				} else if (HighScoreBoxes.boxes[i].revealed_times == 0) {
+					box_revealed_no_times = true;
+				}
+			}
+
+			//after checking how many times each box has been revealed...
+			if (box_revealed_no_times) {
+				$feedback.html(('Correct! But you missed a box... You got lucky this time!'));
+			} else if (box_revealed_more_than_once) {
+				$feedback.html(("Correct! But you could've been more efficient..."));
+			} else {
+				$feedback.html(("Correct! You've found how to complete this challenge the most efficient way!\nYour time was "
+					+ HighScoreBoxes.secondsTaken + ' seconds.'));
+			}
+            $('#restart-button').show();
+		} else {
+			$feedback.html('Incorrect!');
+			$('#restart-button').show();
+		}
+	} else {
+        // Submitted value is not a number
+        $feedback.html(('Inputted value must be a whole number'));
+    }
+}
+
+
+// ULTILITY FUNCTIONS
 
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
+
 
 /**
  * Shuffles array in place.
@@ -172,48 +200,3 @@ function shuffle(a) {
         a[j] = x;
     }
 }
-
-//form validation
-function validateForm() {
-    var x = document.forms["myForm"]["submittedInt"].value;
-	var box_revealed_more_than_once = false;
-	var box_revealed_no_times = false;
-
-
-    //if form value is a number
-	if (!(isNaN(x))) 
-	{
-		if (parseInt(x) == largest) { // correct answer
-			for (var i = 0; i < (boxes.length); i++) {
-				if (boxes[i].revealed_times > 1) {
-					box_revealed_more_than_once = true;
-				} else if (boxes[i].revealed_times == 0) {
-					box_revealed_no_times = true;
-				}
-			}
-
-			//after checking how many times each box has been revealed...
-			if (box_revealed_no_times) {
-				$("#completionMessage").html(("Correct! But you missed a box... Got lucky this time!"));
-				$("#restartButton").show();
-			} else if (box_revealed_more_than_once) {
-				$("#completionMessage").html(("Correct! But you could've been more efficient..."));
-				$("#restartButton").show();
-			} else {
-				$("#completionMessage").html(("Correct! You've found how to complete this challenge the most efficient way!\nYour time was "
-					+ secondsTaken + " seconds."));
-				$("#restartButton").show();
-			}
-
-			return false; //will use alerts for now to sort out logic	 
-		} else {
-			$("#completionMessage").html("Incorrect!");
-			$("#restartButton").show();
-			return false;
-		}
-	}
-	//must not be a number if we're here
-	$("#completionMessage").html(("Must input numbers"));
-	return false;
-}
-
