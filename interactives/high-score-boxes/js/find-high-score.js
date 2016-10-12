@@ -110,7 +110,7 @@ function createBoxElements() {
 		box_image.id = 'box' + i;
 		box_image.className = 'box';
         box_image.draggable = false;
-		box_image.src = './img/square' + (box_images[i] + 1) + '.png';
+		box_image.src = '../base-files/img/colourful-box-images/square' + (box_images[i] + 1) + '-200px-rounded.png';
 		currentboxObject.divElement = box_image;
 
 		//divs that hold the numbers
