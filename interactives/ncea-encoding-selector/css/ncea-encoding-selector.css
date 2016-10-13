@@ -1,5 +1,6 @@
-#interactive-ncea-encoding-selector div#selector-container {
+#interactive-ncea-encoding-selector div.selector {
   border: 1px solid black;
+  margin: 1rem 0;
 }
 #interactive-ncea-encoding-selector div.flex-container {
   padding: 0;
@@ -45,7 +46,12 @@
   cursor: default;
 }
 #interactive-ncea-encoding-selector div.flex-item div.selectable-item.selected {
-  background-color: #4eda4e;
+  background-color: #a2d8ff;
+}
+#interactive-ncea-encoding-selector div.flex-item-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  background-color: #a2d8ff;
 }
 #interactive-ncea-encoding-selector .heading {
   font-weight: bold;
@@ -55,13 +61,13 @@
   background-color: #8def8d;
 }
 @media (max-width: 600px) {
-  #interactive-ncea-encoding-selector div.flex-item-blank {
-    display: none;
+  #interactive-ncea-encoding-selector div.flex-item-title {
+    width: 100%;
   }
   #interactive-ncea-encoding-selector div.flex-item-level {
-    width: 100%
+    width: 100%;
   }
   #interactive-ncea-encoding-selector div.flex-item-topics {
-    width: 100%
+    width: 100%;
   }
 }
