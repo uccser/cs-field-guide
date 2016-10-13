@@ -353,6 +353,37 @@ ul.panel {
   height: initial !important;
   padding: 0.5rem !important;
 }
+.csfg-button {
+  width: 100%;
+  @media #{$medium-only} {
+    width: 80% !important;
+  }
+  @media #{$large-and-up} {
+    width: 60% !important;
+  }
+  display: inline-block;
+  text-align: center;
+  padding: 1rem 0.3rem;
+  margin-bottom: 1rem;
+  color: white !important;
+  background-color: $primary-color;
+  border-radius: 4px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  line-height: 115%;
+  @include transition(.1s ease-out);
+  @extend .z-depth-1;
+  &:hover {
+    @extend .z-depth-2;
+  }
+  .btn-menu-light {
+    background-color: $primary-color-light !important;
+  }
+  span.btn-subtitle {
+    font-size: 0.9rem;
+    font-weight: normal;
+  }
+}
 footer {
   color: $off-black;
   margin-top: 4rem;

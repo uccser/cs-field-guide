@@ -513,9 +513,17 @@ class Section:
         arguments = match.group('args')
         link = parse_argument('link', arguments)
         text = parse_argument('text', arguments)
+        line_2 = parse_argument('line_2', arguments)
+        line_3 = parse_argument('line_3', arguments)
 
         if link and text:
-            html = self.html_templates['button'].format(link=link, text=text)
+            context = {
+                'link': link,
+                'text': text,
+                'line_2': line_2,
+                'line_3': line_3
+            }
+            html = self.guide.html_generator.render_template('button', context)
             html += self.create_link_to_online_resource('link', link)
         else:
             self.regex_functions['link button'].log("Button parameters not valid", self, match.group(0))
