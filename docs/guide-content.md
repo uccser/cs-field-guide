@@ -16,6 +16,7 @@ This documentation page provides information about the text, image, and file con
         - [Appendix links](#appendices)
       - [External links](#external-links)
       - [Image links](#image-links)
+      - [Button links](#button-links)
     - [Code](#code)
     - [Tables](#tables)
     - [Blockquotes](#blockquotes)
@@ -232,6 +233,8 @@ You can create a link on a button using the following syntax:
 **Parameters:**
 - `link` - The URL to link to.
 - `text` - Text to display on the button.
+- `line_2` (optional) - Text to display under the main text on the button.
+- `line_3` (optional) - Text to display under `line_2` on the button, or under the main text if `line_2` is not given.
 
 ---
 
