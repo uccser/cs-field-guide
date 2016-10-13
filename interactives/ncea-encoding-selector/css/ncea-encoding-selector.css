@@ -14,38 +14,45 @@
 }
 #interactive-ncea-encoding-selector div.flex-item {
   text-align: center;
-  flex: 1 0 auto;
+  flex: 1 1 auto;
   border: 1px solid black;
-}
-#interactive-ncea-encoding-selector div.flex-item-third {
-  width: 33%
-}
-#interactive-ncea-encoding-selector div.flex-item-level {
-  width: 30%
-}
-#interactive-ncea-encoding-selector div.flex-item-topics {
-  width: 70%
+  width: 25%;
+  padding: 0.5rem;
+  /* Center align contents */
+  display: flex;
+  align-items: center;
+  flex-flow: column nowrap;
+  justify-content: center;
 }
 #interactive-ncea-encoding-selector div.flex-item div.selectable-item {
   display: block;
-  margin: 0.5rem;
+  margin: 0.5rem 0;
   padding: 0.5rem;
+  width: 100%;
   border: 1px solid grey;
   border-radius: 1rem;
   cursor: pointer;
+  background-color: #ffffff;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 #interactive-ncea-encoding-selector div.flex-item div.selectable-item.selected {
   background-color: #4eda4e;
 }
 #interactive-ncea-encoding-selector .heading {
   font-weight: bold;
+  font-size: 1.2rem;
 }
-#interactive-ncea-encoding-selector div.secondary-heading {
-  display: none;
+#interactive-ncea-encoding-selector div.flex-container div.flex-item:nth-child(2n) {
+  background-color: #f4f4f4;
 }
-@media (max-width: 390px) {
-  #interactive-ncea-encoding-selector div.secondary-heading {
-    display: flex;
+@media (max-width: 600px) {
+  #interactive-ncea-encoding-selector div.flex-item-blank {
+    display: none;
   }
   #interactive-ncea-encoding-selector div.flex-item-level {
     width: 100%
