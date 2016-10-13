@@ -32,25 +32,25 @@ structure:
         listed: yes
         table_of_contents_sidebar: yes
         source_files:
-            - curriculum-guides/ncea/assessment-guide-level-1-introduction.md
-            - curriculum-guides/ncea/assessment-guide-level-1-searching-algorithms.md
-            - curriculum-guides/ncea/assessment-guide-level-1-sorting-algorithms.md
-            - curriculum-guides/ncea/assessment-guide-level-1-human-computer-interaction.md
-            - curriculum-guides/ncea/assessment-guide-level-1-programming-languages.md
-            - curriculum-guides/ncea/assessment-guide-level-2-introduction.md
-            - curriculum-guides/ncea/assessment-guide-level-2-achieved-representing-data.md
-            - curriculum-guides/ncea/assessment-guide-level-2-achieved-compression-run-length-encoding.md
-            - curriculum-guides/ncea/assessment-guide-level-2-achieved-error-control-check-sums.md
-            - curriculum-guides/ncea/assessment-guide-level-2-achieved-error-control-parity.md
-            - curriculum-guides/ncea/assessment-guide-level-2-achieved-encryption-caesar-cipher.md
-            - curriculum-guides/ncea/assessment-guide-level-2-achieved-human-computer-interaction.md
-            - curriculum-guides/ncea/assessment-guide-level-2-full-human-computer-interaction.md
-            - curriculum-guides/ncea/assessment-guide-level-2-excellence-data-representation-text.md
-            - curriculum-guides/ncea/assessment-guide-level-2-excellence-data-representation-numbers.md
-            - curriculum-guides/ncea/assessment-guide-level-2-excellence-data-representation-colour.md
-            - curriculum-guides/ncea/assessment-guide-level-3-software-engineering-methodologies.md
-            - curriculum-guides/ncea/assessment-guide-level-3-complexity-tractability-TSP.md
-            - curriculum-guides/ncea/assessment-guide-level-3-formal-languages-FSA-RE.md
+            - curriculum-guides/ncea/level-1/introduction.md
+            - curriculum-guides/ncea/level-1/searching-algorithms.md
+            - curriculum-guides/ncea/level-1/sorting-algorithms.md
+            - curriculum-guides/ncea/level-1/human-computer-interaction.md
+            - curriculum-guides/ncea/level-1/programming-languages.md
+            - curriculum-guides/ncea/level-2/introduction.md
+            - curriculum-guides/ncea/level-2/achieved-representing-data.md
+            - curriculum-guides/ncea/level-2/achieved-compression-run-length-encoding.md
+            - curriculum-guides/ncea/level-2/achieved-error-control-check-sums.md
+            - curriculum-guides/ncea/level-2/achieved-error-control-parity.md
+            - curriculum-guides/ncea/level-2/achieved-encryption-caesar-cipher.md
+            - curriculum-guides/ncea/level-2/achieved-human-computer-interaction.md
+            - curriculum-guides/ncea/level-2/full-human-computer-interaction.md
+            - curriculum-guides/ncea/level-2/excellence-data-representation-text.md
+            - curriculum-guides/ncea/level-2/excellence-data-representation-numbers.md
+            - curriculum-guides/ncea/level-2/excellence-data-representation-colour.md
+            - curriculum-guides/ncea/level-3/software-engineering-methodologies.md
+            - curriculum-guides/ncea/level-3/complexity-tractability-TSP.md
+            - curriculum-guides/ncea/level-3/formal-languages-FSA-RE.md
             - curriculum-guides/apcsp/guide-algorithms-introduction.md
             - curriculum-guides/apcsp/guide-abstraction-introduction.md
             - curriculum-guides/apcsp/guide-creativity-introduction.md
@@ -81,6 +81,9 @@ structure:
             - chapters/index.md
             - curriculum-guides/index.md
             - curriculum-guides/ncea/index.md
+            - curriculum-guides/ncea/level-1/index.md
+            - curriculum-guides/ncea/level-2/index.md
+            - curriculum-guides/ncea/level-3/index.md
             - curriculum-guides/apcsp/index.md
             - further-information/index.md
 text_values:
