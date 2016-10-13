@@ -517,6 +517,24 @@ class Section:
         line_3 = parse_argument('line_3', arguments)
 
         if link and text:
+            external_link_prefixes = ('http://', 'https://', 'mailto:')
+            file_path = self.guide.generator_settings['Source']['File']
+            interactive_path = self.guide.generator_settings['Source']['Interactive']
+            link = link.replace('\)', ')')
+
+            if not link.startswith(external_link_prefixes):
+                # If linked to file, add file to required files
+                if link.startswith(file_path) and self.guide.output_type == WEB:
+                    file_name = link[len(file_path):]
+                    self.required_files['File'].add(file_name)
+                elif self.guide.output_type == PDF and link.startswith(interactive_path) or link.startswith(file_path):
+                    link = os.path.join(self.guide.generator_settings['General']['Domain'], self.guide.language_code, link)
+                elif self.guide.output_type == PDF:
+                    link = '#' + self.guide.convert_to_print_link(link)
+
+                if not link.startswith(external_link_prefixes) and not link.startswith('#'):
+                    link = os.path.join(self.html_path_to_guide_root, link)
+
             context = {
                 'link': link,
                 'text': text,
