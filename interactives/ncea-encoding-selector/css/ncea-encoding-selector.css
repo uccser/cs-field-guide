@@ -1,0 +1,56 @@
+#interactive-ncea-encoding-selector div#selector-container {
+  border: 1px solid black;
+}
+#interactive-ncea-encoding-selector div.flex-container {
+  padding: 0;
+  margin: 0;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+#interactive-ncea-encoding-selector div.flex-item {
+  text-align: center;
+  flex: 1 0 auto;
+  border: 1px solid black;
+}
+#interactive-ncea-encoding-selector div.flex-item-third {
+  width: 33%
+}
+#interactive-ncea-encoding-selector div.flex-item-level {
+  width: 30%
+}
+#interactive-ncea-encoding-selector div.flex-item-topics {
+  width: 70%
+}
+#interactive-ncea-encoding-selector div.flex-item div.selectable-item {
+  display: block;
+  margin: 0.5rem;
+  padding: 0.5rem;
+  border: 1px solid grey;
+  border-radius: 1rem;
+  cursor: pointer;
+}
+#interactive-ncea-encoding-selector div.flex-item div.selectable-item.selected {
+  background-color: #4eda4e;
+}
+#interactive-ncea-encoding-selector .heading {
+  font-weight: bold;
+}
+#interactive-ncea-encoding-selector div.secondary-heading {
+  display: none;
+}
+@media (max-width: 390px) {
+  #interactive-ncea-encoding-selector div.secondary-heading {
+    display: flex;
+  }
+  #interactive-ncea-encoding-selector div.flex-item-level {
+    width: 100%
+  }
+  #interactive-ncea-encoding-selector div.flex-item-topics {
+    width: 100%
+  }
+}
