@@ -3,11 +3,11 @@
 These assessment guides have been written to assist teachers and students
 for the following NCEA Achievement Standards:
 
-{button link="./curriculum-guides/ncea/level-1/index.html" text="AS91074" line_2="Digital Technology 1.44" line_3="Demonstrate understanding of basic concepts in computer science"}
+{button link="curriculum-guides/ncea/level-1/index.html" text="AS91074" line_2="Digital Technology 1.44" line_3="Demonstrate understanding of basic concepts in computer science"}
 
-{button link="./curriculum-guides/ncea/level-2/index.html" text="AS91371" line_2="Digital Technology 2.44" line_3="Demonstrate understanding of advanced concepts in computer science"}
+{button link="curriculum-guides/ncea/level-2/index.html" text="AS91371" line_2="Digital Technology 2.44" line_3="Demonstrate understanding of advanced concepts in computer science"}
 
-{button link="./curriculum-guides/ncea/level-3/index.html" text="AS91636" line_2="Digital Technology 3.44" line_3="Demonstrate understanding of areas of computer science"}
+{button link="curriculum-guides/ncea/level-3/index.html" text="AS91636" line_2="Digital Technology 3.44" line_3="Demonstrate understanding of areas of computer science"}
 
 The computer science externals can be particularly time consuming for Merit and Excellence.
 For some students, it is better to just focus on doing the Achieved material well.
