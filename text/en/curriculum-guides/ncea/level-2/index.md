@@ -29,7 +29,7 @@ For Merit/Excellence, students will need to choose 2 guides. Each guide covers 1
 
 **For Merit/Excellence**, students need to pick **one Excellence project** from one of the three encoding topics, and **two Achieved projects**; with one from each of the other two encoding topics (giving a total of 3 encoding projects).
 
-Note that we are currently updating Merit/Excellence guides to better match the expectations for students working at these levels. The updated guides will be released in check back in early 2016.
+Note that we are currently updating Merit/Excellence guides to better match the expectations for students working at these levels.
 
 ### Error Control coding
 
