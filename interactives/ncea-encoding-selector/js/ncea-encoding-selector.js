@@ -1,5 +1,49 @@
 ncea_encoding_selector = [
   {
+    "name": "Data Reprentation",
+    "levels": [
+      {
+        "name": "Achieved",
+        "max": 2
+      },
+      {
+        "name": "Merit / Excellence",
+        "max": 2
+      }
+    ],
+    "structure": {
+      "Numbers": {
+        "Achieved": [
+          "Binary Numbers"
+        ],
+        "Merit / Excellence": [
+          "Two's Compliment",
+          "Floating Point Numbers"
+        ]
+      },
+      "Text": {
+        "Achieved": [
+          "ASCII"
+        ],
+        "Merit / Excellence": [
+          "Unicode"
+        ]
+      },
+      "Colours / Images": {
+        "Achieved": [
+          "Colours"
+        ],
+        "Merit / Excellence": [
+          "Colour depths and images"
+        ]
+      }
+    },
+    "settings": {
+      "max-topic": 1,
+      "max-total": 2
+    }
+  },
+  {
     "name": "Encoding",
     "levels": [
       {
