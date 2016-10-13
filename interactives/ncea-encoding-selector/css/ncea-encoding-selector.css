@@ -40,6 +40,10 @@
   -ms-user-select: none;
   user-select: none;
 }
+#interactive-ncea-encoding-selector div.flex-item div.selectable-item.disabled {
+  opacity: 0.3;
+  cursor: default;
+}
 #interactive-ncea-encoding-selector div.flex-item div.selectable-item.selected {
   background-color: #4eda4e;
 }
@@ -47,8 +51,8 @@
   font-weight: bold;
   font-size: 1.2rem;
 }
-#interactive-ncea-encoding-selector div.flex-container div.flex-item:nth-child(2n) {
-  background-color: #f4f4f4;
+#interactive-ncea-encoding-selector div.valid {
+  background-color: #8def8d;
 }
 @media (max-width: 600px) {
   #interactive-ncea-encoding-selector div.flex-item-blank {
