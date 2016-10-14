@@ -1,6 +1,6 @@
 ncea_encoding_selector = [
   {
-    "name": "Data Reprentation",
+    "name": "Data Representation",
     "levels": [
       {
         "name": "Achieved",
