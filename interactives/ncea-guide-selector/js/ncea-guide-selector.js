@@ -4,11 +4,17 @@ ncea_encoding_selector = [
     "levels": [
       {
         "name": "Achieved",
-        "max": 2
+        "max": 2,
+        "conflicts": [
+          "Merit / Excellence"
+        ]
       },
       {
         "name": "Merit / Excellence",
-        "max": 2
+        "max": 2,
+        "conflicts": [
+          "Achieved"
+        ]
       }
     ],
     "structure": {
@@ -154,20 +160,20 @@ function createGrids() {
   for (var j = 0; j < ncea_encoding_selector.length; j++) {
     var grid_data = ncea_encoding_selector[j];
 
-    var structure = grid_data["structure"];
+    var structure = grid_data['structure'];
     var levels = grid_data['levels'];
     grid_data['elements'] = {};
     $selector = $('<div class="selector"></div>');
     $selector.data('grid_data', grid_data);
 
     $achievement_level_row = $('<div class="flex-container"></div>');
-    $title_cell = $('<div class="flex-item flex-item-title"></div>');
-    $title_cell.html(grid_data["name"]);
+    $title_cell = $('<div class="flex-item flex-item-title heading"></div>');
+    $title_cell.html(grid_data['name']);
     $achievement_level_row.append($title_cell);
     for (var i = 0; i < levels.length; i++) {
       $achievement_level = $('<div class="flex-item heading"></div>');
       $achievement_level.html(levels[i]['name']);
-      $achievement_level.data('level', levels[i]['name']);
+      $achievement_level.data('level_data', levels[i]);
       grid_data['settings']['max-'+levels[i]['name']] = levels[i]['max'];
       $achievement_level_row.append($achievement_level);
       grid_data['elements'][levels[i]['name']] = [];
@@ -187,20 +193,20 @@ function createGrids() {
       // For each achievement level
       for (var i = 0; i < levels.length; i++) {
         var level_text = levels[i]['name'];
-        $achievement_group = $('<div class="flex-item"></div>');
-        $achievement_group.data('level', level_text);
-        $achievement_group.data('topic', topic_name);
+        $group = $('<div class="flex-item"></div>');
+        $group.data('level_data', levels[i]);
+        $group.data('topic', topic_name);
         // For each item in this achievement level
         for (var item in structure[topic_name][level_text]) {
           $item = $('<div class="selectable-item"></div>');
           $item.html(structure[topic_name][level_text][item]);
-          $item.data('level', level_text);
+          $item.data('level_data', levels[i]);
           $item.data('topic', topic_name);
           grid_data['elements'][level_text].push($item);
           grid_data['elements'][topic_name].push($item);
-          $achievement_group.append($item);
+          $group.append($item);
         }
-        $topic_row.append($achievement_group);
+        $topic_row.append($group);
       }
       $selector.append($topic_row);
     }
@@ -219,26 +225,30 @@ function updateGrid($container, counts) {
     $container = $(this);
     $container.children('div.flex-item').each(function () {
       $group = $(this);
-      group_level = $group.data('level');
+      var group_level_data = $group.data('level_data');
+      var group_level_name = group_level_data ? group_level_data['name'] : undefined;
       group_topic = $group.data('topic');
-      if ((grid_counts[group_level] >= settings['max-'+group_level]
-        || grid_counts[group_topic] >= settings['max-topic']
+      if ((grid_counts[group_level_name] == settings['max-'+group_level_name]
+        || grid_counts[group_topic] == settings['max-topic']
         || grid_counts['total'] >= settings['max-total'])
-        && (grid_counts[group_level] > 0 || grid_counts[group_topic] > 0)) {
-        $group.addClass('valid');
+        && (grid_counts[group_level_name] > 0 || grid_counts[group_topic] > 0)) {
+          $group.addClass('valid');
       } else {
         $group.removeClass('valid');
       }
       $group.children('div.selectable-item').each(function () {
         $item = $(this);
-        item_level = $item.data('level');
+        var item_level_data = $item.data('level_data');
+        var item_level_name = item_level_data ? item_level_data['name'] : undefined;
         item_topic = $item.data('topic');
-        if ((grid_counts[item_level] >= settings['max-'+item_level]
+        console.log($item);
+        if ((grid_counts[item_level_name] >= settings['max-'+item_level_name]
           || grid_counts[item_topic] >= settings['max-topic']
-          || grid_counts['total'] >= settings['max-total'])
+          || grid_counts['total'] >= settings['max-total']
+          || isConflict(item_level_data['conflicts'], grid_counts))
           && !$item.hasClass('selected')) {
           $item.addClass('disabled');
-        } else if (grid_counts[item_level] < settings['max-'+item_level]
+        } else if (grid_counts[item_level_name] < settings['max-'+item_level_name]
           && $item.hasClass('disabled')) {
           $item.removeClass('disabled');
         }
@@ -288,4 +298,17 @@ function countValues() {
 
 function updateFeedback() {
   return 0;
+}
+
+
+function isConflict(conflict_values, count) {
+  is_conflict = false;
+  if (conflict_values) {
+    for (var i = 0; i < conflict_values.length; i++) {
+      if (count[conflict_values[i]] > 0) {
+        is_conflict = true;
+      }
+    }
+  }
+  return is_conflict;
 }
