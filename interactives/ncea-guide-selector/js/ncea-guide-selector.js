@@ -241,11 +241,10 @@ function updateGrid($container, counts) {
         var item_level_data = $item.data('level_data');
         var item_level_name = item_level_data ? item_level_data['name'] : undefined;
         item_topic = $item.data('topic');
-        console.log($item);
-        if ((grid_counts[item_level_name] >= settings['max-'+item_level_name]
-          || grid_counts[item_topic] >= settings['max-topic']
-          || grid_counts['total'] >= settings['max-total']
-          || isConflict(item_level_data['conflicts'], grid_counts))
+        if ((grid_counts[item_level_name] == settings['max-'+item_level_name]
+          || grid_counts[item_topic] == settings['max-topic']
+          || grid_counts['total'] == settings['max-total']
+          || meetsCriteria(item_level_data['conflicts'], grid_counts, 0))
           && !$item.hasClass('selected')) {
           $item.addClass('disabled');
         } else if (grid_counts[item_level_name] < settings['max-'+item_level_name]
@@ -301,14 +300,14 @@ function updateFeedback() {
 }
 
 
-function isConflict(conflict_values, count) {
-  is_conflict = false;
-  if (conflict_values) {
-    for (var i = 0; i < conflict_values.length; i++) {
-      if (count[conflict_values[i]] > 0) {
-        is_conflict = true;
+function meetsCriteria(criteria_values, count_values, value_to_pass) {
+  var status = false;
+  if (criteria_values) {
+    for (var i = 0; i < criteria_values.length; i++) {
+      if (count_values[criteria_values[i]] > value_to_pass) {
+        status = true;
       }
     }
   }
-  return is_conflict;
+  return status;
 }
