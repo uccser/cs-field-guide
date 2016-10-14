@@ -7,6 +7,9 @@ ncea_encoding_selector = [
         "max": 2,
         "conflicts": [
           "Merit / Excellence"
+        ],
+        "superceded_by": [
+          "Merit / Excellence"
         ]
       },
       {
@@ -106,10 +109,13 @@ ncea_encoding_selector = [
       {
         "name": "Achieved",
         "max": 1,
+        "superceded_by": [
+          "Merit / Excellence"
+        ]
       },
       {
         "name": "Merit / Excellence",
-        "max": 1,
+        "max": 1
       }
     ],
     "structure": {
@@ -227,11 +233,13 @@ function updateGrid($container, counts) {
       $group = $(this);
       var group_level_data = $group.data('level_data');
       var group_level_name = group_level_data ? group_level_data['name'] : undefined;
+      var group_level_superceded_by = group_level_data ? group_level_data['superceded_by'] : undefined;
       group_topic = $group.data('topic');
       if ((grid_counts[group_level_name] == settings['max-'+group_level_name]
         || grid_counts[group_topic] == settings['max-topic']
         || grid_counts['total'] >= settings['max-total'])
-        && (grid_counts[group_level_name] > 0 || grid_counts[group_topic] > 0)) {
+        && (grid_counts[group_level_name] > 0 || grid_counts[group_topic] > 0)
+        || meetsCriteria(group_level_superceded_by, grid_counts, settings['max-total']-1)) {
           $group.addClass('valid');
       } else {
         $group.removeClass('valid');
