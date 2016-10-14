@@ -23,27 +23,48 @@ ncea_encoding_selector = [
     "structure": {
       "Numbers": {
         "Achieved": [
-          "Binary Numbers"
+          {
+            "name": "Binary Numbers",
+            "url": "#"
+          }
         ],
         "Merit / Excellence": [
-          "Two's Compliment",
-          "Floating Point Numbers"
+          {
+            "name": "Two's Compliment",
+            "url": "#"
+          },
+          {
+            "name": "Floating Point Numbers",
+            "url": "#"
+          }
         ]
       },
       "Text": {
         "Achieved": [
-          "ASCII"
+          {
+            "name": "ASCII",
+            "url": "#"
+          },
         ],
         "Merit / Excellence": [
-          "Unicode"
+          {
+            "name": "Unicode",
+            "url": "#"
+          }
         ]
       },
       "Colours / Images": {
         "Achieved": [
-          "Colours"
+          {
+            "name": "Colours",
+            "url": "#"
+          }
         ],
         "Merit / Excellence": [
-          "Colour depths and images"
+          {
+            "name": "Colour depths and images",
+            "url": "#"
+          }
         ]
       }
     },
@@ -67,34 +88,76 @@ ncea_encoding_selector = [
     "structure": {
       "Error Control Coding": {
         "Achieved": [
-          "Check Sums",
-          "Parity"
+          {
+            "name": "Check Sums",
+            "url": "#"
+          },
+          {
+            "name": "Parity",
+            "url": "#"
+          }
         ],
         "Merit / Excellence": [
-          "M/E Placeholder",
-          "M/E Placeholder",
-          "M/E Placeholder"
+          {
+            "name": "M/E Placeholder",
+            "url": "#"
+          },
+          {
+            "name": "M/E Placeholder",
+            "url": "#"
+          },
+          {
+            "name": "M/E Placeholder",
+            "url": "#"
+          }
         ]
       },
       "Encryption": {
         "Achieved": [
-          "Caesar Cipher",
-          "Achieved Placeholder",
-          "Achieved Placeholder"
+          {
+            "name": "Caesar Cipher",
+            "url": "#"
+          },
+          {
+            "name": "Achieved Placeholder",
+            "url": "#"
+          },
+          {
+            "name": "Achieved Placeholder",
+            "url": "#"
+          }
         ],
         "Merit / Excellence": [
-          "M/E Placeholder",
-          "M/E Placeholder",
-          "M/E Placeholder"
+          {
+            "name": "M/E Placeholder",
+            "url": "#"
+          },
+          {
+            "name": "M/E Placeholder",
+            "url": "#"
+          },
+          {
+            "name": "M/E Placeholder",
+            "url": "#"
+          }
         ]
       },
       "Compression": {
         "Achieved": [
-          "Run Length Encoding",
-          "Achieved Placeholder"
+          {
+            "name": "Run Length Encoding",
+            "url": "#"
+          },
+          {
+            "name": "Achieved Placeholder",
+            "url": "#"
+          }
         ],
         "Merit / Excellence": [
-          "M/E Placeholder"
+          {
+            "name": "M/E Placeholder",
+            "url": "#"
+          }
         ]
       }
     },
@@ -121,10 +184,16 @@ ncea_encoding_selector = [
     "structure": {
       "Heuristics": {
         "Achieved": [
-          "Identifying heuristic violations in every day life"
+          {
+            "name": "Identifying heuristic violations in every day life",
+            "url": "#"
+          }
         ],
         "Merit / Excellence": [
-          "Evaluating an interface with heuristics "
+          {
+            "name": "Evaluating an interface with heuristics",
+            "url": "#"
+          }
         ]
       }
     },
@@ -153,6 +222,7 @@ $(document).ready(function(){
       var counts = countValues();
       updateGrid($selectable_item.closest('.selector'), counts);
       updateFeedback();
+      updateGuides();
     }
   });
 
@@ -205,8 +275,9 @@ function createGrids() {
         // For each item in this achievement level
         for (var item in structure[topic_name][level_text]) {
           $item = $('<div class="selectable-item"></div>');
-          $item.html(structure[topic_name][level_text][item]);
+          $item.html(structure[topic_name][level_text][item]['name']);
           $item.data('level_data', levels[i]);
+          $item.data('url', structure[topic_name][level_text][item]['url']);
           $item.data('topic', topic_name);
           grid_data['elements'][level_text].push($item);
           grid_data['elements'][topic_name].push($item);
@@ -305,6 +376,23 @@ function countValues() {
 
 function updateFeedback() {
   return 0;
+}
+
+
+function updateGuides() {
+  $guide_container = $('#selector-guides');
+  $guide_container.empty();
+  $('div.flex-container > div.flex-item > div.selectable-item.selected').each(function () {
+    $selected_item = $(this);
+    var link = document.createElement('a');
+    var link_text = document.createTextNode($selected_item.data('topic') + ' - ' + $selected_item.text());
+    link.appendChild(link_text);
+    link.title = $selected_item.text();
+    link.href = $selected_item.data('url');
+    var list_item = document.createElement('li');
+    list_item.appendChild(link);
+    $guide_container.append(list_item);
+  });
 }
 
 
