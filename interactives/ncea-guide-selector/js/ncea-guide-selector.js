@@ -177,7 +177,7 @@ function createGrids() {
     $title_cell.html(grid_data['name']);
     $achievement_level_row.append($title_cell);
     for (var i = 0; i < levels.length; i++) {
-      $achievement_level = $('<div class="flex-item heading"></div>');
+      $achievement_level = $('<div class="flex-item heading flex-item-level"></div>');
       $achievement_level.html(levels[i]['name']);
       $achievement_level.data('level_data', levels[i]);
       grid_data['settings']['max-'+levels[i]['name']] = levels[i]['max'];
@@ -191,7 +191,7 @@ function createGrids() {
       grid_data['elements'][topic_name] = [];
 
       // Heading column
-      $topic_heading = $('<div class="flex-item heading flex-item-level"></div>');
+      $topic_heading = $('<div class="flex-item heading flex-item-topic"></div>');
       $topic_heading.html(topic_name);
       $topic_heading.data('topic', topic_name);
       $topic_row.append($topic_heading);

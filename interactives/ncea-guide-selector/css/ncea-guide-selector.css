@@ -57,8 +57,11 @@
   font-weight: bold;
   font-size: 1.2rem;
 }
-#interactive-ncea-encoding-selector div.valid {
+#interactive-ncea-encoding-selector div.heading.flex-item-level.valid {
   background-color: #8def8d;
+}
+#interactive-ncea-encoding-selector div.heading.flex-item-topic.valid {
+  background-color: #cfebff;
 }
 @media (max-width: 600px) {
   #interactive-ncea-encoding-selector div.flex-item-title {
@@ -67,7 +70,7 @@
   #interactive-ncea-encoding-selector div.flex-item-level {
     width: 100%;
   }
-  #interactive-ncea-encoding-selector div.flex-item-topics {
+  #interactive-ncea-encoding-selector div.flex-item-topic {
     width: 100%;
   }
 }
