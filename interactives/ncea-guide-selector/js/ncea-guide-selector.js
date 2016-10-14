@@ -235,11 +235,12 @@ function updateGrid($container, counts) {
       var group_level_name = group_level_data ? group_level_data['name'] : undefined;
       var group_level_superceded_by = group_level_data ? group_level_data['superceded_by'] : undefined;
       group_topic = $group.data('topic');
-      if ((grid_counts[group_level_name] == settings['max-'+group_level_name]
-        || grid_counts[group_topic] == settings['max-topic']
+      if ($group.hasClass('heading')
+        && (grid_counts[group_level_name] == settings['max-'+group_level_name]
         || grid_counts['total'] >= settings['max-total'])
-        && (grid_counts[group_level_name] > 0 || grid_counts[group_topic] > 0)
-        || meetsCriteria(group_level_superceded_by, grid_counts, settings['max-total']-1)) {
+        && (grid_counts[group_level_name] > 0
+        || grid_counts[group_topic] > 0
+        || meetsCriteria(group_level_superceded_by, grid_counts, settings['max-total']-1))) {
           $group.addClass('valid');
       } else {
         $group.removeClass('valid');
