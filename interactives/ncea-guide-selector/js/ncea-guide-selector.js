@@ -221,7 +221,7 @@ $(document).ready(function(){
     if (update) {
       var counts = countValues();
       updateGrid($selectable_item.closest('.selector'), counts);
-      updateFeedback();
+      updateSummary(counts);
       updateGuides();
     }
   });
@@ -340,6 +340,7 @@ function updateGrid($container, counts) {
 // Count values for all grids
 function countValues() {
   var counts = {};
+  var overall_total = 0;
   var count;
   for (var j = 0; j < ncea_encoding_selector.length; j++) {
     var grid_data = ncea_encoding_selector[j];
@@ -354,6 +355,7 @@ function countValues() {
         if (element.hasClass('selected')) {
           count++;
           total++;
+          overall_total++;
         }
       });
       counts[selector_name][level_text] = count;
@@ -369,13 +371,15 @@ function countValues() {
     }
     counts[selector_name]['total'] = total;
   }
+  counts['overall_total'] = overall_total;
   console.log("Counts:" ,counts);
   return counts;
 }
 
 
-function updateFeedback() {
-  return 0;
+function updateSummary(counts) {
+  var $summary_container = $('div#selector-summary');
+  $summary_container.empty();
 }
 
 
