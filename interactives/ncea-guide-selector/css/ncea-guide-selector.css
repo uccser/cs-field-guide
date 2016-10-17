@@ -24,6 +24,7 @@
   align-items: center;
   flex-flow: column nowrap;
   justify-content: center;
+  transition: .1s ease-out;
 }
 #interactive-ncea-encoding-selector div.flex-item div.selectable-item {
   display: block;
@@ -40,6 +41,11 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  transition: .1s ease-out;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+}
+#interactive-ncea-encoding-selector div.flex-item div.selectable-item:not(.disabled):hover {
+  box-shadow: 0 6px 12px 0 rgba(0,0,0,0.2);
 }
 #interactive-ncea-encoding-selector div.flex-item div.selectable-item.disabled {
   border-color: #dcdcdc;
@@ -48,6 +54,7 @@
 }
 #interactive-ncea-encoding-selector div.flex-item div.selectable-item.selected {
   background-color: #a2d8ff;
+  border-color: #6fa0c3;
 }
 #interactive-ncea-encoding-selector div.flex-item-title {
   font-size: 1.6rem;
