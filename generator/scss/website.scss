@@ -390,6 +390,16 @@ footer {
       padding-left: 1rem;
     }
   }
+  @if $version == "teacher" {
+    .footer-second a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: underline;
+    }
+    .footer-third a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: underline;
+    }
+  }
   .row {
     margin-bottom: 0;
   }
