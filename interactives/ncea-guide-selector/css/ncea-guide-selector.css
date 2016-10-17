@@ -42,7 +42,8 @@
   user-select: none;
 }
 #interactive-ncea-encoding-selector div.flex-item div.selectable-item.disabled {
-  opacity: 0.3;
+  border-color: #dcdcdc;
+  color: #dcdcdc;
   cursor: default;
 }
 #interactive-ncea-encoding-selector div.flex-item div.selectable-item.selected {

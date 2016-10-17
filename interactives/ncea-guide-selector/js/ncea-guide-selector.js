@@ -320,15 +320,46 @@ function updateGrid($container, counts) {
         var item_level_data = $item.data('level_data');
         var item_level_name = item_level_data ? item_level_data['name'] : undefined;
         item_topic = $item.data('topic');
-        if ((grid_counts[item_level_name] == settings['max-'+item_level_name]
-          || grid_counts[item_topic] == settings['max-topic']
-          || grid_counts['total'] == settings['max-total']
-          || meetsCriteria(item_level_data['conflicts'], grid_counts, 0))
-          && !$item.hasClass('selected')) {
-          $item.addClass('disabled');
-        } else if (grid_counts[item_level_name] < settings['max-'+item_level_name]
-          && $item.hasClass('disabled')) {
-          $item.removeClass('disabled');
+        var disable_item = false;
+        var tooltip_message;
+        if (!$item.hasClass('selected')) {
+          if (meetsCriteria(item_level_data['conflicts'], grid_counts, 0)) {
+            disable_item = true;
+            tooltip_message = 'This guide is not available as guide/s on another level are selected'
+          }
+          else if (grid_counts[item_level_name] == settings['max-'+item_level_name]) {
+            disable_item = true;
+            if (grid_counts[item_level_name] == 1) {
+              tooltip_message = 'The required 1 guide for ' + item_level_name + ' has been selected'
+            } else {
+              tooltip_message = 'The required ' + settings['max-'+item_level_name] + ' guides for ' + item_level_name + ' have been selected'
+            }
+          }
+          else if (grid_counts[item_topic] == settings['max-topic']) {
+            disable_item = true;
+            if (settings['max-topic'] == 1) {
+              tooltip_message = 'The required 1 guide for ' + item_topic + ' has been selected'
+            } else {
+              tooltip_message = 'The required ' + settings['max-total'] + ' guides for ' + item_topic + ' have been selected'
+            }
+          }
+          else if (grid_counts['total'] == settings['max-total']) {
+            disable_item = true;
+            if (settings['max-total'] == 1) {
+              tooltip_message = 'The required 1 guide for ' + grid_data['name'] + ' has been selected'
+            } else {
+              tooltip_message = 'The required ' + settings['max-total'] + ' guides for ' + grid_data['name'] + ' have been selected'
+            }
+          }
+        }
+
+        if (disable_item) {
+          $item.addClass('disabled hint--top hint--medium');
+          $item.attr('aria-label', tooltip_message);
+        }
+        else if ($item.hasClass('disabled')
+          && grid_counts[item_level_name] < settings['max-'+item_level_name]) {
+          $item.removeClass('disabled hint--top hint--medium');
         }
       });
     });
