@@ -226,6 +226,11 @@ $(document).ready(function(){
     }
   });
 
+  // On 'Clear all' button click
+  $('#interactive-ncea-encoding-selector-clear').on('click', function(){
+    clearSelections();
+  });
+
   createGrids();
 });
 
@@ -408,6 +413,13 @@ function countValues() {
   return counts;
 }
 
+
+function clearSelections() {
+  $('div.flex-container > div.flex-item').removeClass('valid');
+  $('div.flex-container > div.flex-item > div.selectable-item').removeClass('selected disabled hint--top hint--medium');
+  $('div#selector-summary').empty();
+  $('#selector-guides').empty();
+}
 
 function updateSummary(counts) {
   var $summary_container = $('div#selector-summary');
