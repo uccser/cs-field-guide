@@ -279,6 +279,7 @@ function createGrids() {
           $item.data('level_data', levels[i]);
           $item.data('url', structure[topic_name][level_text][item]['url']);
           $item.data('topic', topic_name);
+          $item.data('section', grid_data['name']);
           grid_data['elements'][level_text].push($item);
           grid_data['elements'][topic_name].push($item);
           $group.append($item);
@@ -420,13 +421,14 @@ function updateGuides() {
   $('div.flex-container > div.flex-item > div.selectable-item.selected').each(function () {
     $selected_item = $(this);
     var link = document.createElement('a');
-    var link_text = document.createTextNode($selected_item.data('topic') + ' - ' + $selected_item.text());
+    var link_text = document.createTextNode($selected_item.data('section') +
+      ' - ' + $selected_item.data('topic') +
+      ' - ' + $selected_item.text());
     link.appendChild(link_text);
     link.title = $selected_item.text();
     link.href = $selected_item.data('url');
-    var list_item = document.createElement('li');
-    list_item.appendChild(link);
-    $guide_container.append(list_item);
+    link.className = 'collection-item';
+    $guide_container.append(link);
   });
 }
 
