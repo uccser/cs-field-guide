@@ -64,6 +64,9 @@
 #interactive-ncea-encoding-selector div.heading.flex-item-topic.valid {
   background-color: #cfebff;
 }
+#interactive-ncea-encoding-selector div#selector-guides:empty {
+  border: none;
+}
 @media (max-width: 600px) {
   #interactive-ncea-encoding-selector div.flex-item-title {
     width: 100%;
