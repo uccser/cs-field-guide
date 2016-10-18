@@ -11,78 +11,83 @@ structure:
         listed: yes
         table_of_contents_sidebar: yes
         source_files:
-            - chapters/introduction.md
-            - chapters/algorithms.md
-            - chapters/programming-languages.md
-            - chapters/human-computer-interaction.md
-            - chapters/data-representation.md
-            - chapters/coding-introduction.md
-            - chapters/coding-compression.md
-            - chapters/coding-encryption.md
-            - chapters/coding-error-control.md
-            - chapters/artificial-intelligence.md
-            - chapters/complexity-tractability.md
-            - chapters/computer-graphics.md
-            - chapters/computer-vision.md
-            - chapters/formal-languages.md
-            - chapters/network-communication-protocols.md
-            - chapters/software-engineering.md
+            - file: chapters/introduction.md
+            - file: chapters/algorithms.md
+              authors:
+                - Caitlin Duncan
+                - Tim Bell
+            - file: chapters/programming-languages.md
+            - file: chapters/human-computer-interaction.md
+            - file: chapters/data-representation.md
+            - file: chapters/coding-introduction.md
+            - file: chapters/coding-compression.md
+            - file: chapters/coding-encryption.md
+            - file: chapters/coding-error-control.md
+            - file: chapters/artificial-intelligence.md
+            - file: chapters/complexity-tractability.md
+            - file: chapters/computer-graphics.md
+            - file: chapters/computer-vision.md
+            - file: chapters/formal-languages.md
+            - file: chapters/network-communication-protocols.md
+              authors:
+                - Sam Jarman
+            - file: chapters/software-engineering.md
     - curriculum-guides:
         numbered: no
         listed: yes
         table_of_contents_sidebar: yes
         source_files:
-            - curriculum-guides/ncea/assessment-guide-level-1-introduction.md
-            - curriculum-guides/ncea/assessment-guide-level-1-searching-algorithms.md
-            - curriculum-guides/ncea/assessment-guide-level-1-sorting-algorithms.md
-            - curriculum-guides/ncea/assessment-guide-level-1-human-computer-interaction.md
-            - curriculum-guides/ncea/assessment-guide-level-1-programming-languages.md
-            - curriculum-guides/ncea/assessment-guide-level-2-introduction.md
-            - curriculum-guides/ncea/assessment-guide-level-2-achieved-representing-data.md
-            - curriculum-guides/ncea/assessment-guide-level-2-achieved-compression-run-length-encoding.md
-            - curriculum-guides/ncea/assessment-guide-level-2-achieved-error-control-check-sums.md
-            - curriculum-guides/ncea/assessment-guide-level-2-achieved-error-control-parity.md
-            - curriculum-guides/ncea/assessment-guide-level-2-achieved-encryption-caesar-cipher.md
-            - curriculum-guides/ncea/assessment-guide-level-2-achieved-human-computer-interaction.md
-            - curriculum-guides/ncea/assessment-guide-level-2-full-human-computer-interaction.md
-            - curriculum-guides/ncea/assessment-guide-level-2-excellence-data-representation-text.md
-            - curriculum-guides/ncea/assessment-guide-level-2-excellence-data-representation-numbers.md
-            - curriculum-guides/ncea/assessment-guide-level-2-excellence-data-representation-colour.md
-            - curriculum-guides/ncea/assessment-guide-level-3-software-engineering-methodologies.md
-            - curriculum-guides/ncea/assessment-guide-level-3-complexity-tractability-TSP.md
-            - curriculum-guides/ncea/assessment-guide-level-3-formal-languages-FSA-RE.md
-            - curriculum-guides/apcsp/guide-algorithms-introduction.md
-            - curriculum-guides/apcsp/guide-abstraction-introduction.md
-            - curriculum-guides/apcsp/guide-creativity-introduction.md
-            - curriculum-guides/apcsp/guide-data-and-information-introduction.md
-            - curriculum-guides/apcsp/guide-global-impact-introduction.md
-            - curriculum-guides/apcsp/guide-programming-introduction.md
-            - curriculum-guides/apcsp/guide-the-internet-introduction.md
+            - file: curriculum-guides/ncea/assessment-guide-level-1-introduction.md
+            - file: curriculum-guides/ncea/assessment-guide-level-1-searching-algorithms.md
+            - file: curriculum-guides/ncea/assessment-guide-level-1-sorting-algorithms.md
+            - file: curriculum-guides/ncea/assessment-guide-level-1-human-computer-interaction.md
+            - file: curriculum-guides/ncea/assessment-guide-level-1-programming-languages.md
+            - file: curriculum-guides/ncea/assessment-guide-level-2-introduction.md
+            - file: curriculum-guides/ncea/assessment-guide-level-2-achieved-representing-data.md
+            - file: curriculum-guides/ncea/assessment-guide-level-2-achieved-compression-run-length-encoding.md
+            - file: curriculum-guides/ncea/assessment-guide-level-2-achieved-error-control-check-sums.md
+            - file: curriculum-guides/ncea/assessment-guide-level-2-achieved-error-control-parity.md
+            - file: curriculum-guides/ncea/assessment-guide-level-2-achieved-encryption-caesar-cipher.md
+            - file: curriculum-guides/ncea/assessment-guide-level-2-achieved-human-computer-interaction.md
+            - file: curriculum-guides/ncea/assessment-guide-level-2-full-human-computer-interaction.md
+            - file: curriculum-guides/ncea/assessment-guide-level-2-excellence-data-representation-text.md
+            - file: curriculum-guides/ncea/assessment-guide-level-2-excellence-data-representation-numbers.md
+            - file: curriculum-guides/ncea/assessment-guide-level-2-excellence-data-representation-colour.md
+            - file: curriculum-guides/ncea/assessment-guide-level-3-software-engineering-methodologies.md
+            - file: curriculum-guides/ncea/assessment-guide-level-3-complexity-tractability-TSP.md
+            - file: curriculum-guides/ncea/assessment-guide-level-3-formal-languages-FSA-RE.md
+            - file: curriculum-guides/apcsp/guide-algorithms-introduction.md
+            - file: curriculum-guides/apcsp/guide-abstraction-introduction.md
+            - file: curriculum-guides/apcsp/guide-creativity-introduction.md
+            - file: curriculum-guides/apcsp/guide-data-and-information-introduction.md
+            - file: curriculum-guides/apcsp/guide-global-impact-introduction.md
+            - file: curriculum-guides/apcsp/guide-programming-introduction.md
+            - file: curriculum-guides/apcsp/guide-the-internet-introduction.md
     - further-information:
         numbered: no
         listed: yes
         table_of_contents_sidebar: no
         source_files:
-            - further-information/glossary.md
-            - further-information/contributors.md
-            - further-information/interactives.md
-            - further-information/releases.md
-            - further-information/included-files.md
+            - file: further-information/glossary.md
+            - file: further-information/contributors.md
+            - file: further-information/interactives.md
+            - file: further-information/releases.md
+            - file: further-information/included-files.md
     - static-pages:
         numbered: no
         listed: no
         table_of_contents_sidebar: no
         source_files:
-            - index.md
-            - about.md
-            - search.md
-            - 404.md
-            - sitemap.md
-            - chapters/index.md
-            - curriculum-guides/index.md
-            - curriculum-guides/ncea/index.md
-            - curriculum-guides/apcsp/index.md
-            - further-information/index.md
+            - file: index.md
+            - file: about.md
+            - file: search.md
+            - file: 404.md
+            - file: sitemap.md
+            - file: chapters/index.md
+            - file: curriculum-guides/index.md
+            - file: curriculum-guides/ncea/index.md
+            - file: curriculum-guides/apcsp/index.md
+            - file: further-information/index.md
 text_values:
     project_title: "Computer Science Field Guide"
     project_title_abbreviation: "CSFG"
@@ -90,6 +95,7 @@ text_values:
     teacher_version_text: "Teacher Version"
     print_edition_text: "Print Edition"
     table_of_contents: "Table of Contents"
+    authors: "Authors"
     menu_navigation: "Navigation"
     menu_item_about: "About"
     menu_item_feedback: "Give us feedback"

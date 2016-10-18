@@ -197,9 +197,12 @@ ul.side-nav.fixed li a {
   padding: 0 1rem;
 }
 #page-navigation {
-  padding: 1rem 1rem 0 0;
+  padding-top: 1rem;
   width: 24%;
   float: right;
+  .author-list {
+    font-weight: 300;
+  }
 }
 .btn-expand {
   width: 100% !important;
