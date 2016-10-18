@@ -4,7 +4,7 @@ This page lists updates to the Computer Science Field Guide. All notable changes
 
 {panel type="What numbering system do we use?"}
 
-We base our numbering system from the guidelines at [Semantic Versioning 2.0.0](http://semver.org/spec/v2.0.0.html), however since our project started before it was migrated to GitHub, the first open source release is being labeled as `v2.0`.
+We base our numbering system from the guidelines at [Semantic Versioning 2.0.0](http://semver.org/spec/v2.0.0.html), however since our project started before it was migrated to GitHub, the first open source release is being labeled as `v2.0.0`.
 
 Given a version number MAJOR.MINOR.HOTFIX:
 
@@ -19,6 +19,23 @@ We have listed major changes for each release below.
 
 ## Current Release
 
+### v2.8.0
+
+**Release date:** 19th October 2016
+
+**Downloads:** [Source available on GitHub](https://github.com/uccser/cs-field-guide/releases/tag/v2.8.0)
+
+**Notable changes:**
+- **New video:** Human Computer Interaction now has an introductory video.
+- **New curriculum guides:** A draft version of [guides for the AP CSP curriculum](curriculum-guides/apcsp/index.html) have been added.
+- **Updated interactives:** The [high score boxes](interactives/high-score-boxes/index.html) interactive has been completely re-factored to fix various bugs, and the [MIPS simulator](interactives/mips-simulator/index.php) interactive can now handle subtraction down to zero.
+- **Content improvements:** Typo, grammar, and link fixes by community members.
+- **Website improvements:** Updated our sponsor logos, fixed the positioning of the table of contents sidebar, and improved the visibilty of warning panels.
+
+A full list of changes in this version is [available on GitHub](https://github.com/uccser/cs-field-guide/compare/v2.7.1...v2.8.0).
+
+## Older Releases
+
 ### v2.7.1
 
 **Release date:** 5th September 2016
@@ -29,8 +46,6 @@ We have listed major changes for each release below.
 - Fixed broken link in footer to contributors page.
 
 A full list of changes in this version is [available on GitHub](https://github.com/uccser/cs-field-guide/compare/v2.7.0...v2.7.1).
-
-## Older Releases
 
 ### v2.7.0
 
