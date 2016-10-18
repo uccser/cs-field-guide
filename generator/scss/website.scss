@@ -200,6 +200,28 @@ ul.side-nav.fixed li a {
   padding-top: 1rem;
   width: 24%;
   float: right;
+  ul.table-of-contents {
+    li, ul, a {
+      display: block !important;
+    }
+    a {
+      height: initial !important;
+      padding-left: 10px;
+      &:hover {
+        padding-left: 9px;
+      }
+      &.active {
+        padding-left: 8px;
+      }
+    }
+    ul.table-of-contents-subtitle {
+      padding-left: 10px;
+      font-size: 0.9em;
+    }
+    a:not(.active) + ul.table-of-contents-subtitle {
+      display: none !important;
+    }
+  }
   .author-list {
     font-weight: 300;
   }
@@ -335,21 +357,6 @@ ul.panel {
 }
 .text-box-indented {
   margin-left: 40px !important;
-}
-.table-of-contents {
-  li, ul, a {
-    display: block !important;
-  }
-  a {
-    height: initial !important;
-  }
-  &-subtitle {
-    padding-left: 0.8rem;
-    font-size: 90%;
-    a:not(.active) + & {
-      display: none !important;
-    }
-  }
 }
 .btn {
   text-transform: none !important;
