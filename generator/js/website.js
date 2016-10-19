@@ -6,6 +6,7 @@ $(document).ready(function(){
     }
   );
   $('.scrollspy').scrollSpy();
+  $("#page-navigation").stick_in_parent();
 
   // Code for jumping to anchors
   if (window.location.hash) {

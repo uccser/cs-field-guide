@@ -3,6 +3,7 @@
  */
 
 var imgPath = '../base-files/img/translation-rotation-interactives-images/';
+var boxImgPath = '../base-files/img/colourful-box-images/';
 var container = document.getElementById( 'container' );
 var camera, scene, renderer;
 var cube, hiddenObject;
@@ -161,23 +162,23 @@ function buildCube() {
     // loads all the symbols for the box
     var materials = [
         new THREE.MeshBasicMaterial({
-           map: new THREE.TextureLoader().load( imgPath + 'grayscale_square' + right_side + '.png' )
+           map: new THREE.TextureLoader().load( boxImgPath + 'square' + right_side + '-256px-grayscale.png' )
         }),
         new THREE.MeshBasicMaterial({
             // non grey scale becuase this is the first symbol the user needs to find
-           map: new THREE.TextureLoader().load( imgPath + 'square' + left_side + '.png' )
+           map: new THREE.TextureLoader().load( boxImgPath + 'square' + left_side + '-256px.png' )
         }),
         new THREE.MeshBasicMaterial({
-           map: new THREE.TextureLoader().load( imgPath + 'grayscale_square' + top_side + '.png' ) // top, non-coded side
+           map: new THREE.TextureLoader().load( boxImgPath + 'square' + top_side + '-256px-grayscale.png' ) // top, non-coded side
         }),
         new THREE.MeshBasicMaterial({
-           map: new THREE.TextureLoader().load( imgPath + 'grayscale_square' + bottom_side + '.png' )
+           map: new THREE.TextureLoader().load( boxImgPath + 'square' + bottom_side + '-256px-grayscale.png' )
         }),
         new THREE.MeshBasicMaterial({
-           map: new THREE.TextureLoader().load( imgPath + 'grayscale_square' + front_side + '.png' ) // front, non-coded side
+           map: new THREE.TextureLoader().load( boxImgPath + 'square' + front_side + '-256px-grayscale.png' ) // front, non-coded side
         }),
         new THREE.MeshBasicMaterial({
-           map: new THREE.TextureLoader().load( imgPath + 'grayscale_square' + back_side + '.png' ) // back, non-coded side
+           map: new THREE.TextureLoader().load( boxImgPath + 'square' + back_side + '-256px-grayscale.png' ) // back, non-coded side
         })
     ];
 
@@ -307,9 +308,9 @@ function submitSymbol() {
         return;
     }
 
-    document.getElementById(selectedSymbolId).src = imgPath + 'grayscale_square' + selectedSymbolId + '.png';
+    document.getElementById(selectedSymbolId).src = boxImgPath + 'square' + selectedSymbolId + '-256px-grayscale.png';
 
-    var img_src = imgPath + 'square' + selectedSymbolId + '.png';
+    var img_src = boxImgPath + 'square' + selectedSymbolId + '-256px.png';
 
     if ( code[1] == null ) {
         code[1] = selectedSymbolId;
@@ -346,10 +347,10 @@ function submitSymbol() {
 function updateSide( side, currentImg, coloured) {
     var format = '';
     if ( coloured == false ) {
-        format = 'grayscale_';
+        format = '-grayscale';
     }
     cube.material.materials[side].map = new THREE.TextureLoader().load(
-            imgPath + format + 'square' + currentImg + '.png',
+            boxImgPath + 'square' + currentImg + '-256px' + format + '.png',
             undefined,
             function() {
                 cube.material.materials[side].map.needsUpdate = true;
@@ -563,9 +564,9 @@ function symbolClick(id) {
 
     for (var i = 1; i <= 8; i++) {
         if (i == id) {
-            document.getElementById(i).src = imgPath + 'square' + i + '.png';
+            document.getElementById(i).src = boxImgPath + 'square' + i + '-256px.png';
         } else {
-            document.getElementById(i).src = imgPath + 'grayscale_square' + i + '.png';
+            document.getElementById(i).src = boxImgPath + 'square' + i + '-256px-grayscale.png';
         }
     }
 
@@ -624,4 +625,3 @@ function reset() {
         .start();
 
 }
-
