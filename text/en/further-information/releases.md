@@ -23,16 +23,31 @@ We have listed major changes for each release below.
 
 **Release date:** 19th October 2016
 
-**Downloads:** [Source available on GitHub](https://github.com/uccser/cs-field-guide/releases/tag/v2.8.0)
+**Downloads:** [Source downloads are available on GitHub](https://github.com/uccser/cs-field-guide/releases/tag/v2.8.0)
 
 **Notable changes:**
-- **New video:** Human Computer Interaction now has an introductory video.
-- **New curriculum guides:** A draft version of [guides for the AP CSP curriculum](curriculum-guides/apcsp/index.html) have been added.
-- **Updated interactives:** The [high score boxes](interactives/high-score-boxes/index.html) interactive has been completely re-factored to fix various bugs, and the [MIPS simulator](interactives/mips-simulator/index.php) interactive can now handle subtraction down to zero.
-- **Content improvements:** Typo, grammar, and link fixes by community members.
-- **Website improvements:** Updated our sponsor logos, fixed the positioning of the table of contents sidebar, and improved the visibilty of warning panels.
 
-A full list of changes in this version is [available on GitHub](https://github.com/uccser/cs-field-guide/compare/v2.7.1...v2.8.0).
+This release adds an introductory video for the Human Computer Interaction chapter, plus a draft of guides for mapping the Computer Science Field Guide to the AP CSP curriculum.
+
+**Changelog:**
+- Add introductory video to Human Computer Interaction chapter.
+  - [Hayley van Waas](https://github.com/hayleyavw)
+- Add draft of guides for the AP CSP curriculum.
+  - [James Atlas](https://github.com/jamesatlas) [#316](https://github.com/uccser/cs-field-guide/pull/316)
+- Update and fix issues in high-score-boxes interactive.
+  - [Victor Chang](https://github.com/thevictorchang) [#390](https://github.com/uccser/cs-field-guide/pull/390)
+  - [Jack Morgan](https://github.com/JackMorganNZ)  [#382](https://github.com/uccser/cs-field-guide/issues/391)
+- Add subtraction command to mips-simulator interactive. The interactive can now handle subtraction down to zero.
+  - [Jack Morgan](https://github.com/JackMorganNZ) [#382](https://github.com/uccser/cs-field-guide/issues/382)
+- Update sponsor information  in footer.
+  - [Jack Morgan](https://github.com/JackMorganNZ)
+- Improve the visibilty of warning panels.
+  - [Jack Morgan](https://github.com/JackMorganNZ)  [#389](https://github.com/uccser/cs-field-guide/issues/389)
+- Fix positioning of table of contents sidebar.
+  - [Jack Morgan](https://github.com/JackMorganNZ) [#387](https://github.com/uccser/cs-field-guide/issues/387)
+- Fix typos, grammar errors, and broken links.
+  - [Steven Maude](https://github.com/StevenMaude) [#385](https://github.com/uccser/cs-field-guide/pull/385)
+  - [Jack Morgan](https://github.com/JackMorganNZ) [#383](https://github.com/uccser/cs-field-guide/issues/383) [#384](https://github.com/uccser/cs-field-guide/issues/384)
 
 ## Older Releases
 
