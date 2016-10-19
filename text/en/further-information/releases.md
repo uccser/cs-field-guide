@@ -36,18 +36,30 @@ This release adds an introductory video for the Human Computer Interaction chapt
   - [James Atlas](https://github.com/jamesatlas) [#316](https://github.com/uccser/cs-field-guide/pull/316)
 - Update and fix issues in high-score-boxes interactive.
   - [Victor Chang](https://github.com/thevictorchang) [#390](https://github.com/uccser/cs-field-guide/pull/390)
-  - [Jack Morgan](https://github.com/JackMorganNZ)  [#382](https://github.com/uccser/cs-field-guide/issues/391)
+  - [Jack Morgan](https://github.com/JackMorganNZ) [#391](https://github.com/uccser/cs-field-guide/issues/391) [#393](https://github.com/uccser/cs-field-guide/issues/393)
 - Add subtraction command to mips-simulator interactive. The interactive can now handle subtraction down to zero.
   - [Jack Morgan](https://github.com/JackMorganNZ) [#382](https://github.com/uccser/cs-field-guide/issues/382)
-- Update sponsor information  in footer.
+- Update sponsor information in footer.
   - [Jack Morgan](https://github.com/JackMorganNZ)
 - Improve the visibilty of warning panels.
-  - [Jack Morgan](https://github.com/JackMorganNZ)  [#389](https://github.com/uccser/cs-field-guide/issues/389)
+  - [Jack Morgan](https://github.com/JackMorganNZ) [#389](https://github.com/uccser/cs-field-guide/issues/389)
 - Fix positioning of table of contents sidebar.
   - [Jack Morgan](https://github.com/JackMorganNZ) [#387](https://github.com/uccser/cs-field-guide/issues/387)
-- Fix typos, grammar errors, and broken links.
+- Fix typos in Formal Languages chapter.
   - [Steven Maude](https://github.com/StevenMaude) [#385](https://github.com/uccser/cs-field-guide/pull/385)
-  - [Jack Morgan](https://github.com/JackMorganNZ) [#383](https://github.com/uccser/cs-field-guide/issues/383) [#384](https://github.com/uccser/cs-field-guide/issues/384)
+- Update 404 page to avoid updating after each release.
+  - [Karthikeya Pammi](https://github.com/pvskarthikeya) [#394](https://github.com/uccser/cs-field-guide/pull/394)
+- Remove duplicate introduction to teacher guide.
+  - [Jack Morgan](https://github.com/JackMorganNZ) [#213](https://github.com/uccser/cs-field-guide/issues/213)
+- Add link to article on representing a 1 bit image.
+  - [Jack Morgan](https://github.com/JackMorganNZ) [#376](https://github.com/uccser/cs-field-guide/issues/376)
+- Fix broken link to contributors page in footer.
+  - [Jack Morgan](https://github.com/JackMorganNZ) [#383](https://github.com/uccser/cs-field-guide/issues/383)
+- Replace broken link to Eliza chatterbot.
+  - [Jack Morgan](https://github.com/JackMorganNZ) [#384](https://github.com/uccser/cs-field-guide/issues/384)
+- Fix footer link colour in teacher version.
+  - [Jack Morgan](https://github.com/JackMorganNZ) [#395](https://github.com/uccser/cs-field-guide/issues/395)
+
 
 ## Older Releases
 
