@@ -238,8 +238,8 @@ function createGrids() {
   $selector_container = $('#selector-container');
   $selector_container.empty();
 
-  for (var j = 0; j < ncea_encoding_selector.length; j++) {
-    var grid_data = ncea_encoding_selector[j];
+  for (var i = 0; i < ncea_encoding_selector.length; i++) {
+    var grid_data = ncea_encoding_selector[i];
 
     var structure = grid_data['structure'];
     var levels = grid_data['levels'];
@@ -251,13 +251,13 @@ function createGrids() {
     $title_cell = $('<div class="flex-item flex-item-title heading"></div>');
     $title_cell.html(grid_data['name']);
     $achievement_level_row.append($title_cell);
-    for (var i = 0; i < levels.length; i++) {
+    for (var j = 0; j < levels.length; j++) {
       $achievement_level = $('<div class="flex-item heading flex-item-level"></div>');
-      $achievement_level.html(levels[i]['name']);
-      $achievement_level.data('level_data', levels[i]);
-      grid_data['settings']['max-'+levels[i]['name']] = levels[i]['max'];
+      $achievement_level.html(levels[j]['name']);
+      $achievement_level.data('level_data', levels[j]);
+      grid_data['settings']['max-'+levels[j]['name']] = levels[j]['max'];
       $achievement_level_row.append($achievement_level);
-      grid_data['elements'][levels[i]['name']] = [];
+      grid_data['elements'][levels[j]['name']] = [];
     }
     $selector.append($achievement_level_row);
 
@@ -272,16 +272,16 @@ function createGrids() {
       $topic_row.append($topic_heading);
 
       // For each achievement level
-      for (var i = 0; i < levels.length; i++) {
-        var level_text = levels[i]['name'];
+      for (var j = 0; j < levels.length; j++) {
+        var level_text = levels[j]['name'];
         $group = $('<div class="flex-item"></div>');
-        $group.data('level_data', levels[i]);
+        $group.data('level_data', levels[j]);
         $group.data('topic', topic_name);
         // For each item in this achievement level
         for (var item in structure[topic_name][level_text]) {
           $item = $('<div class="selectable-item"></div>');
           $item.html(structure[topic_name][level_text][item]['name']);
-          $item.data('level_data', levels[i]);
+          $item.data('level_data', levels[j]);
           $item.data('url', structure[topic_name][level_text][item]['url']);
           $item.data('topic', topic_name);
           $item.data('section', grid_data['name']);
@@ -379,15 +379,15 @@ function countValues() {
   var counts = {};
   var overall_total = 0;
   var count;
-  for (var j = 0; j < ncea_encoding_selector.length; j++) {
-    var grid_data = ncea_encoding_selector[j];
+  for (var i = 0; i < ncea_encoding_selector.length; i++) {
+    var grid_data = ncea_encoding_selector[i];
     var selector_name = grid_data['name'];
     counts[selector_name] = {};
     var total = 0;
     var levels = grid_data['levels'];
-    for (var i = 0; i < levels.length; i++) {
+    for (var j = 0; j < levels.length; j++) {
       count = 0;
-      var level_text = levels[i]['name'];
+      var level_text = levels[j]['name'];
       $.each(grid_data['elements'][level_text], function( index, element ) {
         if (element.hasClass('selected')) {
           count++;
