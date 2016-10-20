@@ -1,11 +1,11 @@
-# APCSP Curriculum Guides
+# AP-CSP Curriculum Guides
 These curriculum guides have been written to assist teachers for the Advanced Placement Computer Science Principles course.
 
 {panel type="caution" expanded="Always"}
 These guides are still a work in progress!
 {panel end}
 
-*We recommend following one of the full course curriculum listed on the [APCSP](http://apcsp.org/) and using these guides to integrate CS field guide resources for specific units or lessons. Descriptions of the big ideas, learning objectives, and essential knowledge statements are directly from CC BY-SA 4.0 licensed APCSP resources*
+*We recommend following one of the full course curriculum listed on the [AP-CSP](http://apcsp.org/) and using these guides to integrate CS field guide resources for specific units or lessons. Descriptions of the big ideas, learning objectives, and essential knowledge statements are directly from CC BY-SA 4.0 licensed AP-CSP resources*
 
 >The major areas of study in the course are organized around seven big ideas, which encompass ideas foundational to studying computer science. These big ideas connect students to a curriculum scope that includes the
 art of programming but is not programming-centric.
