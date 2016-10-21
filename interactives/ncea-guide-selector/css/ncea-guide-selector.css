@@ -26,6 +26,12 @@
   justify-content: center;
   transition: .1s ease-out;
 }
+#interactive-ncea-encoding-selector div.flex-summary {
+  width: 100% !important;
+}
+#interactive-ncea-encoding-selector div.flex-summary:empty {
+  display:none;
+}
 #interactive-ncea-encoding-selector div.flex-item div.selectable-item {
   display: block;
   margin: 0.5rem 0;

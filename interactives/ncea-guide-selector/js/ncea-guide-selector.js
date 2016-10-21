@@ -10,14 +10,16 @@ ncea_encoding_selector = [
         ],
         "superceded_by": [
           "Merit / Excellence"
-        ]
+        ],
+        "summary": "The selected guides can help you achieve an Achieved grade."
       },
       {
         "name": "Merit / Excellence",
         "max": 2,
         "conflicts": [
           "Achieved"
-        ]
+        ],
+        "summary": "The selected guides can help you achieve an Excellence grade."
       }
     ],
     "structure": {
@@ -293,6 +295,9 @@ function createGrids() {
       }
       $selector.append($topic_row);
     }
+    $selector_summary = $('<div class="flex-item flex-summary"></div>');
+    grid_data['elements']['summary'] = $selector_summary;
+    $selector.append($selector_summary);
     $selector_container.append($selector);
   }
 }
@@ -302,12 +307,14 @@ function updateGrid($container, counts) {
   var grid_data = $container.data('grid_data');
   var settings = grid_data['settings'];
   var grid_counts = counts[grid_data['name']];
+  var highest_valid_level;
   console.log("Grid Counts:", grid_counts);
   console.log("Grid Settings:", settings);
   $container.children('div.flex-container').each(function () {
     $container = $(this);
     $container.children('div.flex-item').each(function () {
       $group = $(this);
+      console.log($group);
       var group_level_data = $group.data('level_data');
       var group_level_name = group_level_data ? group_level_data['name'] : undefined;
       var group_level_superceded_by = group_level_data ? group_level_data['superceded_by'] : undefined;
@@ -318,6 +325,9 @@ function updateGrid($container, counts) {
         || grid_counts[group_topic] > 0
         || meetsCriteria(group_level_superceded_by, grid_counts, settings['max-total']-1))) {
           $group.addClass('valid');
+          if (group_level_name) {
+            highest_valid_level = group_level_name;
+          }
       } else {
         $group.removeClass('valid');
       }
@@ -371,6 +381,7 @@ function updateGrid($container, counts) {
     });
   });
   // Update message at bottom
+  updateGridSummary(grid_data, highest_valid_level);
 }
 
 
@@ -420,6 +431,22 @@ function clearSelections() {
   $('div#selector-summary').empty();
   $('#selector-guides').empty();
 }
+
+
+function updateGridSummary(grid_data, highest_valid_level) {
+  var clear = true;
+  var summary_element = grid_data['elements']['summary'];
+  for (var i = 0; i < grid_data['levels'].length; i++) {
+    if (grid_data['levels'][i]['name'] == highest_valid_level) {
+      summary_element.text(grid_data['levels'][i]['summary']);
+      clear = false;
+    }
+  }
+  if (clear) {
+    summary_element.text('');
+  }
+}
+
 
 function updateSummary(counts) {
   var $summary_container = $('div#selector-summary');
