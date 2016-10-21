@@ -2,7 +2,7 @@
 These curriculum guides have been written to assist teachers for the Advanced Placement Computer Science Principles course.
 
 {panel type="caution" expanded="Always"}
-These guides are still a work in progress!
+These guides are still a work in progress! We are currently updating these guides to match the minor changes to the curriculum in the Fall 2016 version.
 {panel end}
 
 *We recommend following one of the full course curriculum listed on the [AP-CSP](http://apcsp.org/) and using these guides to integrate CS field guide resources for specific units or lessons. Descriptions of the big ideas, learning objectives, and essential knowledge statements are directly from CC BY-SA 4.0 licensed AP-CSP resources*
