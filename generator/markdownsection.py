@@ -141,7 +141,11 @@ class Section:
 
         link_text = match.group('link_text')
         if not link_text.startswith(external_link_prefixes):
-            link_text = self.parse_markdown(link_text, 'p').strip()
+            text_prefix = ''
+            while link_text[0] == '#':
+                text_prefix += '#'
+                link_text = link_text[1:]
+            link_text = text_prefix + self.parse_markdown(link_text, 'p').strip()
 
         link_url = match.group('link_url')
         link_url = link_url.replace('\)', ')')

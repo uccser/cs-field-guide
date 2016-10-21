@@ -19,6 +19,22 @@ We have listed major changes for each release below.
 
 ## Current Release
 
+### v2.8.1
+
+**Release date:** 21st October 2016
+
+**Downloads:** [Source downloads are available on GitHub](https://github.com/uccser/cs-field-guide/releases/tag/v2.8.1)
+
+**Changelog:**
+- Update introduction chapter.
+  - [Jack Morgan](https://github.com/JackMorganNZ) [#231](https://github.com/uccser/cs-field-guide/issues/231)
+- Add notice of changes to AP-CSP curriculum in Fall 2016 release.
+  - [Jack Morgan](https://github.com/JackMorganNZ)
+- Skip parsing `#` characters at start of Markdown links.
+  - [Jack Morgan](https://github.com/JackMorganNZ)
+
+## Older Releases
+
 ### v2.8.0
 
 **Release date:** 19th October 2016
@@ -59,9 +75,6 @@ This release adds an introductory video for the Human Computer Interaction chapt
   - [Jack Morgan](https://github.com/JackMorganNZ) [#384](https://github.com/uccser/cs-field-guide/issues/384)
 - Fix footer link colour in teacher version.
   - [Jack Morgan](https://github.com/JackMorganNZ) [#395](https://github.com/uccser/cs-field-guide/issues/395)
-
-
-## Older Releases
 
 ### v2.7.1
 
