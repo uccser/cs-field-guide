@@ -4,9 +4,8 @@ getViewBox = (svgElement) ->
     ### This extracts the viewBox of an svg node ###
     viewBox = svgElement
         .getAttribute('viewBox')
-        .split(/,|\s/)
+        .split(/,/)
         .map(Number)
-
     return {
         minX: viewBox[0]
         minY: viewBox[1]

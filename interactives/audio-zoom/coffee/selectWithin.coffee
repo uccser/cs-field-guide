@@ -1,19 +1,13 @@
 "use strict"
 Rx = require('rxjs')
 Observable = Rx.Observable
+relativeTo = require('./relativeTo.coffee')
 
-relativeTo = (element, event) ->
-    ### This returns the [x, y] coordinates of an event relative to
-        the given element
-    ###
-    x = event.pageX - element.getBoundingClientRect().left
-    y = event.pageY - element.getBoundingClientRect().top
-    return {x, y, event}
-
-selectWithin = (element) ->
+selectWithin = (element, relativeElement=null) ->
     ### This is an observable of selectWithin observables, each selectWithin
         observable gives a set of coordinates of the start and endpoints
     ###
+    relativeElement ?= element
     mouseDowns = Observable.fromEvent(element, "mousedown")
         .filter((event) -> event.button is 0)
     mouseMoves = Observable.fromEvent(document.body, "mousemove")
@@ -24,13 +18,13 @@ selectWithin = (element) ->
         return new Observable (moveObserver) ->
             movesSubscription = mouseMoves.subscribe next: (mouseMove) ->
                 moveObserver.next [
-                    relativeTo(element, mouseDown),
-                    relativeTo(element, mouseMove)
+                    relativeTo(relativeElement, mouseDown),
+                    relativeTo(relativeElement, mouseMove)
                 ]
             upSubscription = mouseUps.subscribe next: (mouseUp) ->
                 moveObserver.complete [
-                    relativeTo(element, mouseDown),
-                    relativeTo(element, mouseUp)
+                    relativeTo(relativeElement, mouseDown),
+                    relativeTo(relativeElement, mouseUp)
                 ]
                 movesSubscription.unsubscribe()
                 upSubscription.unsubscribe()

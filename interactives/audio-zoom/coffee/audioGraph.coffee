@@ -2,12 +2,21 @@
 "use strict"
 async = require('es6-simple-async')
 Selection = require('./selection.coffee')
-RangeBarGraph = require('./boundedGraph.coffee').RangeBarGraph
+Graph = require('./boundedGraph.coffee').Graph
 getViewBox = require('./getViewBox.coffee')
 PromiseWorker = require('./promiseWorker.coffee')
 LoadingBar = require('./loadingBar.coffee')
 rangeQuery = require('./rangeQuery.coffee').rangeQuery
 selectWithin = require('./selectWithin.coffee')
+relativeTo = require('./relativeTo.coffee')
+
+audioContext = new AudioContext()
+
+Function::getter = (prop, get) ->
+    Object.defineProperty @prototype, prop, {get, configurable: yes}
+
+Function::setter = (prop, set) ->
+    Object.defineProperty @prototype, prop, {set, configurable: yes}
 
 max = (a=NaN, b=NaN) ->
     ### For NaN we'll ignore it and return the real max ###
@@ -26,17 +35,8 @@ min = (a=NaN, b=NaN) ->
     else
         return b
 
-relativeTo = (element) -> (event) ->
-    ### This returns the [x, y] coordinates of an event relative to
-        the given element
-    ###
-    x = event.pageX - element.getBoundingClientRect().left
-    y = event.pageY - element.getBoundingClientRect().top
-    return {
-        x
-        y
-        event
-    }
+VALUE_PRECISION = 5
+TIME_PRECISION = 5
 
 toProportionalCoords = (element) ->
     ### This returns a function that tranforms the given coordinates
@@ -69,7 +69,7 @@ toViewBoxCoords = (svgElement) ->
 
 sections = (selection, slices=1) ->
     ### This returns an array of sections where each section describes
-        the start and end slice for each sub selection of size slices
+        the start and end for each sub selection of size slices
         the resulting array will always be of smaller or equal length
         to the number of slices
     ###
@@ -78,92 +78,107 @@ sections = (selection, slices=1) ->
         for i in [0...slices]
             result.push {
                 selection: selection.selectProportion(i/slices, (i+1)/slices)
-                startSlice: i
-                endSlice: i + 1
+                start: i / slices
+                end: (i + 1) / slices
             }
     else
         length = selection.length
         for i in [0...length]
             result.push {
                 selection: selection.selectRange(i, i+1)
-                startSlice: Math.floor(slices * i/length)
-                endSlice: Math.floor(slices * (i+1)/length)
+                start: Math.floor(slices * i/length) / slices
+                end: Math.floor(slices * (i+1)/length) / slices
             }
 
     return result
+
+
+
+class Player
+    constructor: (audioBuffer) ->
+        # We need to store the buffer that we'll render
+        @audioBuffer = audioBuffer
+        @audioLength = @audioBuffer.length / audioContext.sampleRate
+
+        @onprogress = null
+        @source = null
+
+    @getter 'currentPosition', ->
+        # This returns the current position through the track
+        unless @source?
+            return 0
+        return audioContext.currentTime / @audioLength
+
+    play: ->
+        # This starts playback and
+        # sends progress events to the onprogress/onended event handlers
+        @stop()
+        @source = audioContext.createBufferSource()
+        @source.connect(audioContext.destination)
+        @source.buffer = @audioBuffer
+        @source.start(0)
+        # Begun at currentTime
+        start = audioContext.currentTime
+        progress = =>
+            # Work out the current progress through the track as a proportion
+            currentProportion = (audioContext.currentTime-start)/@audioLength
+            # Send it to onProgress
+            if currentProportion > 1
+                # and stop if we're done
+                @onprogress?(1)
+                @onended?()
+                return @stop()
+            else
+                @onprogress?(currentProportion)
+
+            if @source?
+                # Only progress if there's still animationFrames
+                requestAnimationFrame(progress)
+
+        requestAnimationFrame(progress)
+
+    stop: ->
+        @source?.stop?()
+        @source = null
 
 class AudioGraph
     maxWorker = new PromiseWorker(new Worker('./segmentTreeWorker.js'))
     minWorker = new PromiseWorker(new Worker('./segmentTreeWorker.js'))
 
     constructor: (opts) ->
-        @svgElement = opts.svgElement
+        @parent = opts.parent
+        @audioBuffer = opts.audioBuffer
         @dataLength = opts.dataLength
         @maxQuery   = opts.maxQuery
         @minQuery   = opts.minQuery
         @selection = new Selection(0, @dataLength)
-        @viewBox = getViewBox(@svgElement)
-        @slices = opts.slices ? @viewBox.width
+        @slices = 1000
 
-        @graph = new RangeBarGraph {
-            parent: @svgElement
-            viewBox: @viewBox
+        @graph = new Graph {
+            parent: @parent
         }
 
-        @graph.placeAt {
-            x: @viewBox.width*0.1
-            y: @viewBox.width*0.1
-            width: @viewBox.width*0.8
-            height: @viewBox.height*0.8
-        }
-        selectWithin(@svgElement)
-        .forEach (select) =>
-            highlight = document.createElementNS(
-                @graph.graphElement.namespaceURI,
-                'polygon'
-            )
-            highlight.classList.add('select')
-            @graph.graphElement.appendChild(highlight)
+        @player = new Player(opts.audioBuffer)
+        @playbackPosition = null
+        @player.onprogress = (proportion) =>
+            @_highlightPlaybackPosition(proportion)
 
-            proportionalCoords = select
-                .map((points) => points.map(
-                    toProportionalCoords(@graph.graphElement)
-                ))
+    _highlightPlaybackPosition: (proportion) ->
+        if @playbackPosition? and
+        (0 <= @selection.proportionWithin(@playbackPosition) < 1)
+            proportionWithin = @selection.proportionWithin(@playbackPosition)
+            barNum = proportionWithin * @graph.barView.bars.length // 1
+            @graph.barView.bars[barNum].classList.remove('playback-position')
 
+        proportionWithin = @selection.proportionWithin(proportion)
+        if 0 <= proportionWithin < 1
+            barNum = proportionWithin * @graph.barView.bars.length // 1
+            @graph.barView.bars[barNum].classList.add('playback-position')
+        @playbackPosition = proportion
 
-            proportionalCoords
-            .map((points) => points.map(toViewBoxCoords(@graph.graphElement)))
-            .forEach ( [{x: startX}, {x: endX}] ) =>
-                points = [
-                    [startX, 0]
-                    [endX, 0]
-                    [endX, @graph.viewBox.height]
-                    [startX, @graph.viewBox.height]
-                ].map((point) -> point.join(',')).join(' ')
-
-                highlight.setAttribute('points', points)
-
-            proportionalCoords
-            .takeLast(1)
-            .forEach ( [{x: startX}, {x: endX}] ) =>
-                if startX > endX
-                    [startX, endX] = [endX, startX]
-                @graph.graphElement.removeChild(highlight)
-                @zoom(startX, endX)
-
-        @svgElement.addEventListener 'wheel', (event) =>
-            event.preventDefault()
-            {x} = toProportionalCoords(@graph.graphElement)(
-                relativeTo(@graph.graphElement)(event)
-            )
-            if event.deltaY < 0
-                @zoom(x-0.25, x+0.25)
-            else if event.deltaY > 0
-                @zoom(-0.5, 1.5)
-
-
-    clear: async ->
-        yield @graph.clear()
+    delete: async ->
+        yield @player.stop()
+        yield @graph.delete()
 
     zoom: async (proportionStart=0, proportionEnd=1) ->
         ### Given a proportion to zoom to it zooms into such a selection
@@ -173,46 +188,91 @@ class AudioGraph
         yield @render()
 
     render: async ->
-        @clear()
+        @graph.clear()
         data = sections(@selection, @slices)
-            .map ({selection, startSlice, endSlice}) =>
+            .map ({selection, start, end}) =>
                 # Transform each element of data to be used by
-                # RangeBarGraph
+                # the Graph renderer
                 labelCssClasses = ['audio-bar-label']
                 lower = @minQuery(selection.start, selection.end)
                 upper = @maxQuery(selection.start, selection.end)
                 return {
-                    startSlice
-                    endSlice
+                    start
+                    end
                     lower: Math.min(lower, 0)
                     upper: Math.max(upper, 0)
                     cssClasses: ['audio-bar']
                     label:
-                        padding: 5 # Ensure a bit of padding around the text
+                        # Ensure a bit of padding around the text
+                        barPadding: 20
                         text: if lower is 0
-                            upper.toFixed(4)
+                            upper.toFixed(VALUE_PRECISION)
                         else
-                            lower.toFixed(4)
+                            lower.toFixed(VALUE_PRECISION)
                         cssClasses: labelCssClasses
                         position: if upper > 0
                             'top'
                         else
                             'bottom'
-                    axis:
-                        value: selection.start
 
                 }
+
+        minValue = @minQuery(@selection.start, @selection.end)
+        maxValue = @maxQuery(@selection.start, @selection.end)
+        startTime = @selection.start / audioContext.sampleRate
+        endTime = @selection.end / audioContext.sampleRate
         yield @graph.renderData(data, {
             renderLabels: (@selection.length <= 100)
             axis:
-                nibScale: 2/3
-                cssClasses: ['axis']
-                fontProportion: 0.2
+                x:
+                    left: "#{startTime.toFixed(TIME_PRECISION)}s"
+                    right: "#{endTime.toFixed(TIME_PRECISION)}s"
+                y:
+                    top: Math.max(0, maxValue).toFixed(VALUE_PRECISION)
+                    bottom: Math.min(0, minValue).toFixed(VALUE_PRECISION)
         })
 
+        selectWithin(@graph.barView.svgElement, @graph.barView.background)
+        .forEach (select) =>
+            highlight = document.createElementNS(
+                @graph.barView.svgElement.namespaceURI,
+                'polygon'
+            )
+            highlight.classList.add('select')
+            @graph.barView.svgElement.appendChild(highlight)
 
-    @fromChannelData: async (svgElement, channelData) ->
+
+            select.forEach ( [{x: startX}, {x: endX}] ) =>
+                points = [
+                    [startX, 0]
+                    [endX, 0]
+                    [endX, @graph.barView.viewBox.height]
+                    [startX, @graph.barView.viewBox.height]
+                ].map((point) -> point.join(',')).join(' ')
+                highlight.setAttribute('points', points)
+
+            select.takeLast(1)
+            .forEach ( [{x: startX}, {x: endX}] ) =>
+                if startX > endX
+                    [startX, endX] = [endX, startX]
+                startXProportional = startX / @graph.barView.viewBox.width
+                endXProportional = endX / @graph.barView.viewBox.width
+                @graph.barView.svgElement.removeChild(highlight)
+                @zoom(startXProportional, endXProportional)
+
+        @graph.barView.svgElement.addEventListener 'wheel', (event) =>
+            event.preventDefault()
+            {x} = toProportionalCoords(@graph.barView.background)(
+                relativeTo(@graph.barView.svgElement, event, false)
+            )
+            if event.deltaY < 0
+                @zoom(x-0.25, x+0.25)
+            else if event.deltaY > 0
+                @zoom(-0.5, 1.5)
+
+    @fromAudioBuffer: async (parent, audioBuffer) ->
         ### This creates an Audio Graph from the given channel data ###
+        channelData = audioBuffer.getChannelData(0)
         dataLength = channelData.length
         # create two query trees, one for querying max and one for querying min
         maxTree = maxWorker.postMessage {
@@ -228,7 +288,7 @@ class AudioGraph
         # progress updates
         lastMinProgress = 0
         lastMaxProgress = 0
-        loadingBar = new LoadingBar(svgElement)
+        loadingBar = new LoadingBar(parent)
 
         maxTree.progressed (progress) ->
             lastMaxProgress = progress
@@ -246,8 +306,9 @@ class AudioGraph
         yield loadingBar.dispose()
         # And finally return the AudioGraph with the queries
         return new AudioGraph {
-            svgElement: svgElement
+            parent: parent
             dataLength: channelData.length
+            audioBuffer: audioBuffer
             maxQuery: rangeQuery(maxTree, max)
             minQuery: rangeQuery(minTree, min)
         }

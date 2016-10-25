@@ -49,4 +49,14 @@ class Selection
 
         return new Selection(newStart, newEnd, @dataLength)
 
+    proportionWithin: (overallProportion) ->
+        ### This returns how far as proportion of the current selection that
+            a given proportion over the whole data range is
+            e.g.
+            new Selection(0, 100, 1000).proportionWithin(0.05) will
+            return 0.5 as 0.05 globally is 50% within the selection
+        ###
+        return (overallProportion * @dataLength - @start) / @length
+
+
 module.exports = Selection

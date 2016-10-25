@@ -1,12 +1,15 @@
 .audio-bar {
     fill: grey;
     stroke: black;
-    stroke-width: 1;
+    stroke-width: 10;
 }
 
 .audio-bar:hover {
     fill: blue;
+    stroke: blue;
 }
+
+
 
 .audio-bar-label {
     -webkit-touch-callout: none; /* iOS Safari */
@@ -21,7 +24,7 @@
 .loading-border {
     fill: none;
     fill-opacity: 0;
-    stroke-width: 3;
+    stroke-width: 1%;
     stroke: black;
 }
 
@@ -43,4 +46,17 @@
 .axis {
     stroke-width: 2px;
     stroke: grey;
+}
+
+#audio-graph {
+    border: 1px solid black;
+}
+
+.playback-position {
+    fill: red;
+    stroke: red;
+}
+
+.play-button {
+    color: red;
 }

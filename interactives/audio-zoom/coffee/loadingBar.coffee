@@ -1,23 +1,25 @@
 "use strict"
-getViewBox = require('./getViewBox.coffee')
+svgNS = 'http://www.w3.org/2000/svg'
 
 class LoadingBar
-    width: 0.05
-    constructor: (@svgElement) ->
+    width: 0.2
+    constructor: (@parent) ->
         ### This creates a loading bar on a given svg element ###
-        @svgNS = @svgElement.getAttribute('xmlns')
+        @svgElement = document.createElementNS(svgNS, 'svg')
+        @svgElement.setAttributeNS(null, 'width', '100%')
+        @svgElement.setAttributeNS(null, 'height', '100%')
+        @parent.appendChild(@svgElement)
         # Find the dimensions we need to render within
-        @viewBox = getViewBox(@svgElement)
+        @viewBox = @svgElement.getBoundingClientRect()
         # Create a border around the loading bar
-        @createLoadingBorder()
+        #@createLoadingBorder()
         @update(0)
 
     createLoadingBorder: ->
         ### This creates a border for the loading bar ###
-        @loadingBorder = document.createElementNS(@svgNS, 'rect')
+        @loadingBorder = document.createElementNS(svgNS, 'rect')
 
         @loadingBorder.classList.add('loading-border')
-        #@loadingBorder.setAttributeNS(null, 'fill-opacity', 0)
 
         @loadingBorder.setAttributeNS(null, 'x', 0)
         @loadingBorder.setAttributeNS(null, 'width', @viewBox.width)
@@ -42,7 +44,7 @@ class LoadingBar
         if @loadingBar?
             @svgElement.removeChild(@loadingBar)
 
-        @loadingBar = document.createElementNS(@svgNS, 'rect')
+        @loadingBar = document.createElementNS(svgNS, 'rect')
         @loadingBar.classList.add('loading-bar')
 
         @loadingBar.setAttributeNS(null, 'x', 0)
@@ -63,8 +65,9 @@ class LoadingBar
 
     dispose: ->
         ### Removes the loading bar from the svg element ###
-        @disposed = true
-        @svgElement.removeChild(@loadingBorder)
+        @parent.removeChild(@svgElement)
+        #@svgElement.removeChild(@loadingBorder)
         @svgElement.removeChild(@loadingBar)
+        @disposed = true
 
 module.exports = LoadingBar
