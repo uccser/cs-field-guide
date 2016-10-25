@@ -12,26 +12,61 @@ structure:
         table_of_contents_sidebar: yes
         source_files:
             - file: chapters/introduction.md
+                - Tim Bell
+                - Jack Morgan
             - file: chapters/algorithms.md
               authors:
                 - Caitlin Duncan
                 - Tim Bell
             - file: chapters/programming-languages.md
+              authors:
+                - Heidi Newton
+                - Tim Bell
             - file: chapters/human-computer-interaction.md
+              authors:
+                - Tim Bell
+                - Heidi Newton
             - file: chapters/data-representation.md
+              authors:
+                - Heidi Newton
+                - Tim Bell
             - file: chapters/coding-introduction.md
+              authors:
+                - Heidi Newton
+                - Tim Bell
             - file: chapters/coding-compression.md
+              authors:
+                - Tim Bell
+                - Heidi Newton
             - file: chapters/coding-encryption.md
+              authors:
+                - Heidi Newton
+                - Tim Bell
             - file: chapters/coding-error-control.md
+              authors:
+                - Heidi Newton
             - file: chapters/artificial-intelligence.md
+              authors:
+                - Heidi Newton
             - file: chapters/complexity-tractability.md
+              authors:
+                - Heidi Newton
+                - Tim Bell
             - file: chapters/computer-graphics.md
+              authors:
+                - Rhem Munro
             - file: chapters/computer-vision.md
+              authors:
+                - David Thompson
             - file: chapters/formal-languages.md
+              authors:
+                - Tim Bell
             - file: chapters/network-communication-protocols.md
               authors:
                 - Sam Jarman
             - file: chapters/software-engineering.md
+              authors:
+                - Janina Voigt
     - curriculum-guides:
         numbered: no
         listed: yes
