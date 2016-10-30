@@ -17,82 +17,13 @@ this.levelOneString = "Would you like them\nin a house?\nWould you like them\nwi
 this.difficultyLevel = 1;
 this.newLineRegex = /[^\x20-\x7E]/; //for newlines and other non-printable characters
 
-
-
-/*
-	var matchObject = {
-		positionInString: positionInString,
-		matchNumber: matchNumber,
-		stepsBack: matchArray[0],
-		toEncode: matchString.length,
-		validationString: matchString,
-		inputElement: input,
-		//divWithInput: iDiv
-	}*/
-
 this.allMatchObjects = [];
 
 
 //file input stuff
 window.onload = function() {
 	jsPlumb.setContainer(document.getElementById('interactive-displayed-text'));
-
-	//########### File Input things#################
-		// var fileInput = document.getElementById('fileInput');
-		// var testText = document.getElementById('testText');
-
-		// fileInput.addEventListener('change', function(e) {
-		// 	var file = fileInput.files[0];
-		// 	var textType = /text.*/;
-
-		// 	if (file.type.match(textType)) {
-		// 		var reader = new FileReader();
-
-		// 		reader.onload = function(e) {
-					
-		// 				timeStart = performance.now();
-		// 				lzssEncode(reader.result, slidingWindow);
-		// 				timeEnd = performance.now();
-		// 				//console.log("Call to lzssEncode with .txt file with length " + reader.result.length + " took " + (timeEnd - timeStart) + " milliseconds with sliding window of " + slidingWindow);
-		// 				//console.log("Text before encoding was " + textBeforeBits + " bits, and after it was " + textAfterBits + "bits which is a " + ((textAfterBits / textBeforeBits) * 100) + "% compression");
-					
- 					
- 					
-		// 			//###execution time testing purposes, encodes string with many different sliding windows and outputs time taken
-					
-		// 			var slidingWindows = [100, 500, 1000, 2000, 4000, 10000]
-
-		// 			for (var i = 0; i < slidingWindows.length; i++) {
-					
-		// 				timeStart = performance.now();
-		// 				lzssEncode(reader.result, slidingWindows[i]);
-		// 				timeEnd = performance.now();
-		// 				//console.log("Call to lzssEncode with .txt file with length " + reader.result.length + " took " + (timeEnd - timeStart) + " milliseconds with sliding window of " + slidingWindows[i]);
-		// 				//console.log("Text before encoding was " + textBeforeBits + " bits, and after it was " + textAfterBits + "bits which is a " + ((textAfterBits / textBeforeBits)) + "% compression");
- 	// 					//console.log("");
-		// 			}
-					
-					
-		// 			//###########################################################
-		// 		}
-
-		// 		reader.readAsText(file);
-
-
-
-		// 	} else {
-		// 		fileDisplayArea.innerText = "File not supported!";
-		// 	}
-		// });
-
-
-	//generate SVG element that covers whole page that will be used to draw arrows on
-
-	//draw = SVG('drawing');
-
 	lzssEncode(levelOneString, slidingWindow);
-
-
 
 }
 
@@ -151,7 +82,7 @@ $(document).on('focus', '.interactive-input', function() {
 	var startOfHighlighting = (correctMatchObject.positionInString - correctMatchObject.stepsBack);
 	var endOfHighlighting = (startOfHighlighting + correctMatchObject.toEncode) - 1;
 
-	if (difficultyLevel == 1) {
+	if ((difficultyLevel == 1) || (difficultyLevel == 3)) {
 		levelOneHighlight(startOfHighlighting, endOfHighlighting, correctMatchObject, event.target);
 	} else if (difficultyLevel == 2) {
 		jsPlumb.detachEveryConnection();
@@ -267,7 +198,8 @@ function levelOneHighlight(startOfHighlighting, endOfHighlighting, correctMatchO
 		paintStyle:{ strokeStyle:"blue", lineWidth:4 },
         overlays:[ 
             ["Arrow" , { width:15, length:15, location:1 }],
-            ["Label" , {label:pairString, id:"label", labelStyle: {fillStyle:"white", font:"75% Courier New", color:'red', borderWidth:'1', borderStyle:'blue'}}]
+            ["Label" , {label:pairString, id:"label", labelStyle: 
+            {fillStyle:"white", font:"75% Courier New", color:'red', borderWidth:'1', borderStyle:'blue'}}]
         ],
 		endpoint:'Blank'
 	});
@@ -277,10 +209,20 @@ function levelOneHighlight(startOfHighlighting, endOfHighlighting, correctMatchO
 	jsPlumbBox(startOfHighlighting, endOfHighlighting);
 }
 
-function changeToLevelTwo() {
-	difficultyLevel = 2;
-	jsPlumb.detachEveryConnection();
-	lzssEncode(levelTwoString, slidingWindow);
+function levelUp() {
+	difficultyLevel++;
+	//jsPlumb.detachEveryConnection();
+	jsPlumb.reset();
+
+	if (difficultyLevel == 2) {
+		lzssEncode(levelTwoString, slidingWindow);
+		$('#next-button').css('display', 'none');
+	} else if (difficultyLevel == 3) {
+		lzssEncode("", slidingWindow);
+		$('#user-input-block').css('display', 'block');
+		$('#next-button').css('display', 'none');
+
+	}
 	//console.log(rawTextList);
 	//console.log(encodedTextList);
 	//console.log("Level two!");
@@ -440,6 +382,8 @@ function parseEncodedTextList(encodedTextList, rawTextList) {
 
 	var numberOfCharactersThisLine = 0;
 
+	var indexTracker = 0
+
 	for (var i = 0; i < rawTextList.length;) {
 		current = rawTextList[i];
 
@@ -521,36 +465,52 @@ function parseEncodedTextList(encodedTextList, rawTextList) {
 			i++;
 			numberOfCharactersThisLine++;
 
+			//make a line for index holding
 			if (current.match(newLineRegex)) {
-			//($'#interactive-displayed-text').append('\n');
-
 				for (var j = 0; j < numberOfCharactersThisLine; j++) {
-			    	var indexSpan = document.createElement("SPAN");
+			    	var indexSpan = document.createElement("DIV");
 			    	indexSpan.className += "index-holding-span";
-			    	indexSpan.innerHTML = (i + j);
+			    	indexSpan.id = "index-holder" + indexTracker;
+			    	indexSpan.innerHTML = (indexTracker);
+			    	$(indexSpan).width($('#highlight0').width());
+
+			    	//only show every 3rd index
+			    	if ((indexTracker % 3) == 0) {
+				    	$(indexSpan).css('visibility', 'visible')
+			    	}
+			    	indexTracker++;
 			    	$('#interactive-displayed-text').append(indexSpan);
 				}
 				var br = document.createElement('br');
-
 				$('#interactive-displayed-text').append(br);
-		
 			numberOfCharactersThisLine = 0;
 			}
-
 		}
 	}
-}
 
-function makeIndexTrackerLine(numberOfCharacters) {
-	for (var i = 0; i < numberOfCharacters; i++) {
-		
+	var br = document.createElement('br');
+	$('#interactive-displayed-text').append(br);	
+
+	for (var j = 0; j < numberOfCharactersThisLine; j++) {
+    	var indexSpan = document.createElement("DIV");
+    	indexSpan.className += "index-holding-span";
+    	indexSpan.id = "index-holder" + indexTracker;
+    	indexSpan.innerHTML = (indexTracker);
+    	$(indexSpan).width($('#highlight0').width());
+
+    	//only show every 5th index
+    	if ((indexTracker % 3) == 0) {
+	    	$(indexSpan).css('visibility', 'visible')
+    	}
+    	indexTracker++;
+    	$('#interactive-displayed-text').append(indexSpan);
 	}
-	var oneCharacterSpan = document.createElement("SPAN");
+	var br = document.createElement('br');
 
-
-	
-
+	$('#interactive-displayed-text').append(br);
 }
+
+
 
 
 function createHighlightDiv(divIndex) {

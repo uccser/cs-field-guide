@@ -2,6 +2,10 @@
 #next-button {
   display:none;
 }
+
+#user-input-block {
+  display:none;
+}
 #text-to-encode-textarea {
   
     width: 50em;
@@ -100,18 +104,24 @@
   padding: 20px;
   font-size: 200%;
   position: relative;
-  line-height: 200%;
+  line-height: 125%;
 }
 
 .index-holding-span {
-  width: 1ch;
-  font-size: 50%;
+  font-size: 33.3333333%;
+  display: inline-block;
+  text-align: center;
+  visibility: hidden;
+  line-height: 1em;
+  /*width: 3ch;*/
 
 }
 
 .jsplumb-overlay {
   font-size: 100%;
 }
+
+
 
 .displayed-text { 
    white-space: pre-wrap;      /* CSS3 */   
