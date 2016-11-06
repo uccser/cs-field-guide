@@ -79,6 +79,10 @@ function loadModules(config) {
     if (config['type'] == 'matrix') {
         // show matrix elements
         document.getElementById('matrices').style.display = 'block';
+        modules = config['modules'];
+        for (var i = 0; i < modules.length; i++) {
+            document.getElementById('matrix-' + modules[i]).style.display = 'block';
+        }
     } else if (config['type'] == 'coordinates') {
         // show coordinate elements
         document.getElementById('coordinates').style.display = 'block';

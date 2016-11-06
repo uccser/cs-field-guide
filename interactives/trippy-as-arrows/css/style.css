@@ -60,6 +60,14 @@ div #matrices {
   display: none;
 }
 
+div #matrix-scale {
+  display: none;
+}
+
+div #matrix-translate {
+  display: none;
+}
+
 div#instructions {
   position: absolute;
   float: left;
