@@ -77,11 +77,11 @@
 
             <!-- default value is identity matrix -->
             <div id="matrix-row-0">
-              <input id="matrix-translate-row-0-col-0" value="0"/>
+              <input id="matrix-translate-row-0-col-0" value="0" onblur="matrixOperations()" />
             </div>
 
             <div id="matrix-row-1">
-              <input id="matrix-translate-row-1-col-0" value="0"/>
+              <input id="matrix-translate-row-1-col-0" value="0" onblur="matrixOperations()" />
             </div>
 
             <button onclick="matrixOperations()">Translate</button>
