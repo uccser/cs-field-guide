@@ -5,21 +5,33 @@ function useMatrixToScale() {
     // NTS make version for single input, this function can be for scale button only...or delete scale button since it is redundant?
     var point = null;
     var newMatrix = [];
-    var same = true;
+    var newScale = true; // will use these to figure out when to scale, and when it has already been scaled
+    var startPos = true; // will use these to figure out when to scale, and when it has already been scaled
 
     newMatrix[0] = parseInt(document.getElementById('matrix-row-0-col-0').value);
     newMatrix[1] = parseInt(document.getElementById('matrix-row-0-col-1').value);
     newMatrix[2] = parseInt(document.getElementById('matrix-row-1-col-0').value);
     newMatrix[3] = parseInt(document.getElementById('matrix-row-1-col-1').value);
 
-    for (var i = 0; i < 4; i++) { // 4 values in 2x2 matrix
-        if (dimensions.scaleMatrix[i] != newMatrix[i]) {
-            dimensions.scaleMatrix[i] = newMatrix[i];
-            same = false;
+    // checks if the arrow has been shifted back to the start position
+    for (var i in dimensions.startPosition) {
+        if (dimensions.startPosition[i] != dimensions.currentPosition[i]) {
+            startPos = false; // not in the start position
+            break;
         }
     }
 
-    if (same == false) {
+    if (startPos == false) { // no point doing this operation if we have already decided to scale!
+        // makes sure that the scale matrix has changed
+        for (var i = 0; i < 4; i++) { // 4 values in 2x2 matrix
+            if (dimensions.scaleMatrix[i] != newMatrix[i]) {
+                dimensions.scaleMatrix[i] = newMatrix[i];
+                newScale = false; // new scale matrix
+            }
+        }
+    }
+
+    if (newScale == false || startPos == true) {
 
         for (var i = 0; i < 7; i++) { // 7 points on arrow
 
