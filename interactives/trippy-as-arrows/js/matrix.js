@@ -7,10 +7,10 @@ function useMatrixToScale() {
     var newMatrix = [];
     var newScale = false;
 
-    newMatrix[0] = parseInt(document.getElementById('matrix-row-0-col-0').value);
-    newMatrix[1] = parseInt(document.getElementById('matrix-row-0-col-1').value);
-    newMatrix[2] = parseInt(document.getElementById('matrix-row-1-col-0').value);
-    newMatrix[3] = parseInt(document.getElementById('matrix-row-1-col-1').value);
+    newMatrix[0] = parseFloat(document.getElementById('matrix-row-0-col-0').value);
+    newMatrix[1] = parseFloat(document.getElementById('matrix-row-0-col-1').value);
+    newMatrix[2] = parseFloat(document.getElementById('matrix-row-1-col-0').value);
+    newMatrix[3] = parseFloat(document.getElementById('matrix-row-1-col-1').value);
 
 
     // makes sure that the scale matrix has changed
@@ -55,8 +55,8 @@ function useMatrixToTranslate() {
     var point = null;
     var same = true;
 
-    newMatrix[0] = parseInt(document.getElementById('matrix-translate-row-0-col-0').value) * dimensions.squareSize;
-    newMatrix[1] = parseInt(document.getElementById('matrix-translate-row-1-col-0').value) * dimensions.squareSize;
+    newMatrix[0] = parseFloat(document.getElementById('matrix-translate-row-0-col-0').value) * dimensions.squareSize;
+    newMatrix[1] = parseFloat(document.getElementById('matrix-translate-row-1-col-0').value) * dimensions.squareSize;
 
     if (dimensions.translateMatrix[0] != newMatrix[0]) {
         dimensions.translateMatrix[0] = newMatrix[0];
