@@ -150,7 +150,7 @@ function calculateAllTheThings() {
         currentPosition: [],
         targetPosition:  [],
         scaleMatrix:     [0, 0],
-        translateMatrix: [1, 0, 0, 1]
+        translateMatrix: [0, 0]
     };
 
     drawBackground();

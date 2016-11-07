@@ -57,16 +57,16 @@
             <!-- default value is identity matrix -->
             <!-- TODO should rename these id's to include scale (see translate rows below) -->
             <div id="matrix-row-0">
-              <input id="matrix-row-0-col-0" value="1" onblur="useMatrixToScale()" />
-              <input id="matrix-row-0-col-1" value="0" onblur="useMatrixToScale()" />
+              <input id="matrix-row-0-col-0" value="1" onblur="matrixOperations()" />
+              <input id="matrix-row-0-col-1" value="0" onblur="matrixOperations()" />
             </div>
 
             <div id="matrix-row-1">
-              <input id="matrix-row-1-col-0" value="0" onblur="useMatrixToScale()" />
-              <input id="matrix-row-1-col-1" value="1" onblur="useMatrixToScale()" />
+              <input id="matrix-row-1-col-0" value="0" onblur="matrixOperations()" />
+              <input id="matrix-row-1-col-1" value="1" onblur="matrixOperations()" />
             </div>
 
-            <button onclick="useMatrixToScale()">Scale</button>
+            <button onclick="matrixOperations()">Scale</button>
 
           </div>
 
@@ -84,7 +84,7 @@
               <input id="matrix-translate-row-1-col-0" value="0"/>
             </div>
 
-            <button onclick="useMatrixToTranslate()">Translate</button>
+            <button onclick="matrixOperations()">Translate</button>
 
           </div>
 
