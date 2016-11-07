@@ -13,20 +13,21 @@ function useMatrixToScale() {
     newMatrix[2] = parseInt(document.getElementById('matrix-row-1-col-0').value);
     newMatrix[3] = parseInt(document.getElementById('matrix-row-1-col-1').value);
 
-    // checks if the arrow has been shifted back to the start position
-    for (var i in dimensions.startPosition) {
-        if (dimensions.startPosition[i] != dimensions.currentPosition[i]) {
-            startPos = false; // not in the start position
-            break;
+
+    // makes sure that the scale matrix has changed
+    for (var i = 0; i < 4; i++) { // 4 values in 2x2 matrix
+        if (dimensions.scaleMatrix[i] != newMatrix[i]) {
+            dimensions.scaleMatrix[i] = newMatrix[i];
+            newScale = false; // new scale matrix
         }
     }
 
-    if (startPos == false) { // no point doing this operation if we have already decided to scale!
-        // makes sure that the scale matrix has changed
-        for (var i = 0; i < 4; i++) { // 4 values in 2x2 matrix
-            if (dimensions.scaleMatrix[i] != newMatrix[i]) {
-                dimensions.scaleMatrix[i] = newMatrix[i];
-                newScale = false; // new scale matrix
+    if (newScale == true) { // no point doing this if we've already decided to scale!
+        // checks if the arrow has been shifted back to the start position
+        for (var i in dimensions.startPosition) { //TODO reformat this for loop to match the others
+            if (dimensions.startPosition[i] != dimensions.currentPosition[i]) {
+                startPos = false; // not in the start position
+                break;
             }
         }
     }
