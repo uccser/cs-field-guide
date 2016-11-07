@@ -55,6 +55,7 @@
             </p>
 
             <!-- default value is identity matrix -->
+            <!-- TODO should rename these id's to include scale (see translate rows below) -->
             <div id="matrix-row-0">
               <input id="matrix-row-0-col-0" value="1" onblur="useMatrixToScale()" />
               <input id="matrix-row-0-col-1" value="0" onblur="useMatrixToScale()" />
@@ -87,7 +88,7 @@
 
           </div>
 
-          <button onclick="drawArrow()">Reset</button>
+          <button onclick="resetMatrices()">Reset</button>
         </div>
 
 

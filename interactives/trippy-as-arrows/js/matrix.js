@@ -5,8 +5,7 @@ function useMatrixToScale() {
     // NTS make version for single input, this function can be for scale button only...or delete scale button since it is redundant?
     var point = null;
     var newMatrix = [];
-    var newScale = true; // will use these to figure out when to scale, and when it has already been scaled
-    var startPos = true; // will use these to figure out when to scale, and when it has already been scaled
+    var newScale = false;
 
     newMatrix[0] = parseInt(document.getElementById('matrix-row-0-col-0').value);
     newMatrix[1] = parseInt(document.getElementById('matrix-row-0-col-1').value);
@@ -18,21 +17,11 @@ function useMatrixToScale() {
     for (var i = 0; i < 4; i++) { // 4 values in 2x2 matrix
         if (dimensions.scaleMatrix[i] != newMatrix[i]) {
             dimensions.scaleMatrix[i] = newMatrix[i];
-            newScale = false; // new scale matrix
+            newScale = true; // new scale matrix
         }
     }
 
-    if (newScale == true) { // no point doing this if we've already decided to scale!
-        // checks if the arrow has been shifted back to the start position
-        for (var i in dimensions.startPosition) { //TODO reformat this for loop to match the others
-            if (dimensions.startPosition[i] != dimensions.currentPosition[i]) {
-                startPos = false; // not in the start position
-                break;
-            }
-        }
-    }
-
-    if (newScale == false || startPos == true) {
+    if (newScale == true) {
 
         for (var i = 0; i < 7; i++) { // 7 points on arrow
 
@@ -48,7 +37,6 @@ function useMatrixToScale() {
             dimensions.currentPosition[i] = newPoint;
         }
         updateArrow();
-
     }
 
 }
@@ -94,5 +82,22 @@ function useMatrixToTranslate() {
         }
         updateArrow();
     }
+
+}
+
+
+function resetMatrices() {
+
+    // place the arrow back in the start position
+    drawArrow();
+
+    // reset to default values of matrices
+    document.getElementById('matrix-row-0-col-0').value = 1;
+    document.getElementById('matrix-row-0-col-1').value = 0;
+    document.getElementById('matrix-row-1-col-0').value = 0;
+    document.getElementById('matrix-row-1-col-1').value = 1;
+
+    document.getElementById('matrix-translate-row-0-col-0').value = 0;
+    document.getElementById('matrix-translate-row-1-col-0').value = 0;
 
 }
