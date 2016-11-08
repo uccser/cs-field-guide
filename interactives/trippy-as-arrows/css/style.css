@@ -118,13 +118,13 @@ div#instructions button {
   border: 1px solid #FF7043;
 }
 
-input#matrix-scale-row-0-col-0, input#matrix-scale-row-0-col-1, input#matrix-scale-row-1-col-0, input#matrix-scale-row-1-col-1 {
+input#matrix-a-scale-row-0-col-0, input#matrix-a-scale-row-0-col-1, input#matrix-a-scale-row-1-col-0, input#matrix-a-scale-row-1-col-1, input#matrix-b-scale-row-0-col-0, input#matrix-b-scale-row-0-col-1, input#matrix-b-scale-row-1-col-0, input#matrix-b-scale-row-1-col-1 {
   display: inline-block;
   padding: 5px;
   width: 40%;
 }
 
-input#matrix-scale-row-0, input#matrix-scale-row-1 {
+input#matrix-a-scale-row-0, input#matrix-a-scale-row-1, input#matrix-b-scale-row-0, input#matrix-b-scale-row-1 {
   display: block;
   width: 100%;
 }

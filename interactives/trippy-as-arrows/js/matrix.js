@@ -3,16 +3,18 @@
  */
 function matrixOperations() {
     // commonly accepted order is scale -> rotate -> translate
-    scale();
-    translate();
+    scale('a');
+    scale('b');
+    translate('a');
+    translate('b');
     updateArrow();
 }
 
 
 /* Scale the arrow according to the user's inputted matrix
  */
-function scale() {
-    // NTS make version for single input, this function can be for scale button only...or delete scale button since it is redundant?
+function scale(id) {
+
     var point = null;
     var newMatrix = [];
 

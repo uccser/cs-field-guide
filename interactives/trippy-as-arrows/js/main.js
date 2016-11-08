@@ -75,35 +75,20 @@ function loadJSON(callback, thing) {
 ////////////////////////////////////////////////////////////
 
 function loadModules(config) {
+    // TODO there has got to be a better way to do this....there's a lot of nesting here...
 
     var scale_a = false;
     var translate_a = false;
 
     if (config['type'] == 'matrix') {
         // show matrix elements
-        document.getElementById('matrices').style.display = 'block';
+        var parentDiv = document.getElementById('matrices');
+        parentDiv.style.display = 'block';
         modules = config['modules'];
         for (var i = 0; i < modules.length; i++) {
-            module = modules[i];
-            if (module == 'scale') {
-                if (scale_a == false) {
-                    document.getElementById('matrix-a-scale').style.display = 'block';
-                    scale_a = true;
-                } else {
-                    document.getElementById('matrix-b-scale').style.display = 'block';
-                }
-            } else if (module == 'translate') {
-                if (translate_a == false) {
-                    if (i == 2) {
-                        document.getElementById('matrix-b-translate').style.display = 'block';
-                    } else {
-                        document.getElementById('matrix-b-translate').style.display = 'block';
-                        translate_a = true;
-                    }
-                } else {
-                    document.getElementById('matrix-b-translate').style.display = 'block';
-                }
-            }
+            newModule = document.getElementById('matrix-' +  modules[i]);
+            newModule.style.display = 'block';
+            parentDiv.appendChild(newModule);
         }
     } else if (config['type'] == 'coordinates') {
         // show coordinate elements
@@ -113,7 +98,6 @@ function loadModules(config) {
     drawTargetArrow(config['target']);
 
 }
-
 
 ////////////////////////////////////////////////////////////
 

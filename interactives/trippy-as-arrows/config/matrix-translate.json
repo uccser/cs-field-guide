@@ -2,5 +2,5 @@
     "type": "matrix",
     "task": "< translate with matrices >",
     "target": "9 -3 12 -6 10 -6 10 -11 8 -11 8 -6 6 -6",
-    "modules": ["translate"]
+    "modules": ["a-translate"]
 }
