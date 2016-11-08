@@ -3,10 +3,23 @@
  */
 function matrixOperations() {
     // commonly accepted order is scale -> rotate -> translate
-    scale('a');
-    scale('b');
-    translate('a');
-    translate('b');
+    //scale('a');
+    //scale('b');
+    //translate('a');
+    //translate('b');
+    //updateArrow();
+    console.log(dimensions.startPosition);
+    var matrixElements = document.getElementById('matrices').children;
+    for (var i = 0; i < matrixElements.length; i++) {
+        var element = matrixElements[i];
+        if (element.style.display == 'block') {
+            if (element.id.indexOf('scale') != -1) {
+                scale(element.id.slice(7,8)); // nasty hard coding
+            } else {
+                translate(element.id.slice(7,8));
+            }
+        }
+    }
     updateArrow();
 }
 
@@ -17,17 +30,24 @@ function scale(id) {
 
     var point = null;
     var newMatrix = [];
+    var positions = [];
 
-    dimensions.scaleMatrix[0] = parseFloat(document.getElementById('matrix-scale-row-0-col-0').value);
-    dimensions.scaleMatrix[1] = parseFloat(document.getElementById('matrix-scale-row-0-col-1').value);
-    dimensions.scaleMatrix[2] = parseFloat(document.getElementById('matrix-scale-row-1-col-0').value);
-    dimensions.scaleMatrix[3] = parseFloat(document.getElementById('matrix-scale-row-1-col-1').value);
+    dimensions.scaleMatrix[0] = parseFloat(document.getElementById('matrix-' + id + '-scale-row-0-col-0').value);
+    dimensions.scaleMatrix[1] = parseFloat(document.getElementById('matrix-' + id + '-scale-row-0-col-1').value);
+    dimensions.scaleMatrix[2] = parseFloat(document.getElementById('matrix-' + id + '-scale-row-1-col-0').value);
+    dimensions.scaleMatrix[3] = parseFloat(document.getElementById('matrix-' + id + '-scale-row-1-col-1').value);
 
+    if (id == 'a') {
+        positions = dimensions.startPosition;
+    } else {
+        positions = dimensions.currentPosition;
+    }
 
     for (var i = 0; i < 7; i++) { // 7 points on arrow
 
         var newPoint = new Point();
-        var currPoint = dimensions.startPosition[i];
+        //var currPoint = dimensions.startPosition[i];
+        var currPoint = positions[i];
 
         newPoint.x = ((currPoint.x - dimensions.xIntercept)/dimensions.squareSize) * dimensions.scaleMatrix[0] + ((currPoint.y - dimensions.yIntercept)/dimensions.squareSize) * dimensions.scaleMatrix[1] * -1;
         newPoint.y = ((currPoint.x - dimensions.xIntercept)/dimensions.squareSize) * dimensions.scaleMatrix[2] + ((currPoint.y - dimensions.yIntercept)/dimensions.squareSize) * dimensions.scaleMatrix[3] * -1;
@@ -43,12 +63,13 @@ function scale(id) {
 
 /* Translate the arrow according to the user's inputted matrix
  */
-function translate() {
+function translate(id) {
+    console.log('hey, time time to translate!');
     var newMatrix = [];
     var point = null;
 
-    dimensions.translateMatrix[0] = parseFloat(document.getElementById('matrix-translate-row-0-col-0').value) * dimensions.squareSize;
-    dimensions.translateMatrix[1] = parseFloat(document.getElementById('matrix-translate-row-1-col-0').value) * dimensions.squareSize;
+    dimensions.translateMatrix[0] = parseFloat(document.getElementById('matrix-' + id + '-translate-row-0-col-0').value) * dimensions.squareSize;
+    dimensions.translateMatrix[1] = parseFloat(document.getElementById('matrix-' + id + '-translate-row-1-col-0').value) * dimensions.squareSize;
 
 
     for (var i = 0; i < 7; i++) { // 7 points on arrow
@@ -74,12 +95,20 @@ function resetMatrices() {
     drawArrow();
 
     // reset to default values of matrices
-    document.getElementById('matrix-scale-row-0-col-0').value = 1;
-    document.getElementById('matrix-scale-row-0-col-1').value = 0;
-    document.getElementById('matrix-scale-row-1-col-0').value = 0;
-    document.getElementById('matrix-scale-row-1-col-1').value = 1;
+    document.getElementById('matrix-a-scale-row-0-col-0').value = 1;
+    document.getElementById('matrix-a-scale-row-0-col-1').value = 0;
+    document.getElementById('matrix-a-scale-row-1-col-0').value = 0;
+    document.getElementById('matrix-a-scale-row-1-col-1').value = 1;
 
-    document.getElementById('matrix-translate-row-0-col-0').value = 0;
-    document.getElementById('matrix-translate-row-1-col-0').value = 0;
+    document.getElementById('matrix-a-translate-row-0-col-0').value = 0;
+    document.getElementById('matrix-a-translate-row-1-col-0').value = 0;
+
+    document.getElementById('matrix-b-scale-row-0-col-0').value = 1;
+    document.getElementById('matrix-b-scale-row-0-col-1').value = 0;
+    document.getElementById('matrix-b-scale-row-1-col-0').value = 0;
+    document.getElementById('matrix-b-scale-row-1-col-1').value = 1;
+
+    document.getElementById('matrix-b-translate-row-0-col-0').value = 0;
+    document.getElementById('matrix-b-translate-row-1-col-0').value = 0;
 
 }
