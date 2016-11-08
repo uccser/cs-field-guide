@@ -48,31 +48,74 @@
 
         <div id="matrices">
 
-          <div id="matrix-scale">
+          <div id="matrix-a-scale">
 
             <p id="matrix-instructions">
-                Oh look, some input boxes.
+                matrix-a scale
             </p>
 
             <!-- default value is identity matrix -->
-            <!-- TODO should rename these id's to include scale (see translate rows below) -->
             <div id="matrix-row-0">
-              <input id="matrix-row-0-col-0" value="1" onblur="matrixOperations()" />
-              <input id="matrix-row-0-col-1" value="0" onblur="matrixOperations()" />
+              <input id="matrix-scale-row-0-col-0" value="1" onblur="matrixOperations()" />
+              <input id="matrix-scale-row-0-col-1" value="0" onblur="matrixOperations()" />
             </div>
 
             <div id="matrix-row-1">
-              <input id="matrix-row-1-col-0" value="0" onblur="matrixOperations()" />
-              <input id="matrix-row-1-col-1" value="1" onblur="matrixOperations()" />
+              <input id="matrix-scale-row-1-col-0" value="0" onblur="matrixOperations()" />
+              <input id="matrix-scale-row-1-col-1" value="1" onblur="matrixOperations()" />
             </div>
 
             <button onclick="matrixOperations()">Scale</button>
 
           </div>
 
-          <div id="matrix-translate">
+
+          <div id="matrix-a-translate">
+
             <p id="matrix-instructions">
-                Oh look, some input boxes.
+                matrix-a translate
+            </p>
+
+            <!-- default value is identity matrix -->
+            <div id="matrix-row-0">
+              <input id="matrix-translate-row-0-col-0" value="0" onblur="matrixOperations()" />
+            </div>
+
+            <div id="matrix-row-1">
+              <input id="matrix-translate-row-1-col-0" value="0" onblur="matrixOperations()" />
+            </div>
+
+            <button onclick="matrixOperations()">Translate</button>
+
+          </div>
+
+
+          <div id="matrix-b-scale">
+
+            <p id="matrix-instructions">
+                matrix-b scale
+            </p>
+
+            <!-- default value is identity matrix -->
+            <div id="matrix-row-0">
+              <input id="matrix-scale-row-0-col-0" value="1" onblur="matrixOperations()" />
+              <input id="matrix-scale-row-0-col-1" value="0" onblur="matrixOperations()" />
+            </div>
+
+            <div id="matrix-row-1">
+              <input id="matrix-scale-row-1-col-0" value="0" onblur="matrixOperations()" />
+              <input id="matrix-scale-row-1-col-1" value="1" onblur="matrixOperations()" />
+            </div>
+
+            <button onclick="matrixOperations()">Scale</button>
+
+          </div>
+
+
+          <div id="matrix-b-translate">
+
+            <p id="matrix-instructions">
+                matrix-b translate
             </p>
 
             <!-- default value is identity matrix -->

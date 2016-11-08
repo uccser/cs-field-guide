@@ -76,12 +76,34 @@ function loadJSON(callback, thing) {
 
 function loadModules(config) {
 
+    var scale_a = false;
+    var translate_a = false;
+
     if (config['type'] == 'matrix') {
         // show matrix elements
         document.getElementById('matrices').style.display = 'block';
         modules = config['modules'];
         for (var i = 0; i < modules.length; i++) {
-            document.getElementById('matrix-' + modules[i]).style.display = 'block';
+            module = modules[i];
+            if (module == 'scale') {
+                if (scale_a == false) {
+                    document.getElementById('matrix-a-scale').style.display = 'block';
+                    scale_a = true;
+                } else {
+                    document.getElementById('matrix-b-scale').style.display = 'block';
+                }
+            } else if (module == 'translate') {
+                if (translate_a == false) {
+                    if (i == 2) {
+                        document.getElementById('matrix-b-translate').style.display = 'block';
+                    } else {
+                        document.getElementById('matrix-b-translate').style.display = 'block';
+                        translate_a = true;
+                    }
+                } else {
+                    document.getElementById('matrix-b-translate').style.display = 'block';
+                }
+            }
         }
     } else if (config['type'] == 'coordinates') {
         // show coordinate elements

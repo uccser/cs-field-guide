@@ -16,10 +16,10 @@ function scale() {
     var point = null;
     var newMatrix = [];
 
-    dimensions.scaleMatrix[0] = parseFloat(document.getElementById('matrix-row-0-col-0').value);
-    dimensions.scaleMatrix[1] = parseFloat(document.getElementById('matrix-row-0-col-1').value);
-    dimensions.scaleMatrix[2] = parseFloat(document.getElementById('matrix-row-1-col-0').value);
-    dimensions.scaleMatrix[3] = parseFloat(document.getElementById('matrix-row-1-col-1').value);
+    dimensions.scaleMatrix[0] = parseFloat(document.getElementById('matrix-scale-row-0-col-0').value);
+    dimensions.scaleMatrix[1] = parseFloat(document.getElementById('matrix-scale-row-0-col-1').value);
+    dimensions.scaleMatrix[2] = parseFloat(document.getElementById('matrix-scale-row-1-col-0').value);
+    dimensions.scaleMatrix[3] = parseFloat(document.getElementById('matrix-scale-row-1-col-1').value);
 
 
     for (var i = 0; i < 7; i++) { // 7 points on arrow
@@ -72,10 +72,10 @@ function resetMatrices() {
     drawArrow();
 
     // reset to default values of matrices
-    document.getElementById('matrix-row-0-col-0').value = 1;
-    document.getElementById('matrix-row-0-col-1').value = 0;
-    document.getElementById('matrix-row-1-col-0').value = 0;
-    document.getElementById('matrix-row-1-col-1').value = 1;
+    document.getElementById('matrix-scale-row-0-col-0').value = 1;
+    document.getElementById('matrix-scale-row-0-col-1').value = 0;
+    document.getElementById('matrix-scale-row-1-col-0').value = 0;
+    document.getElementById('matrix-scale-row-1-col-1').value = 1;
 
     document.getElementById('matrix-translate-row-0-col-0').value = 0;
     document.getElementById('matrix-translate-row-1-col-0').value = 0;
