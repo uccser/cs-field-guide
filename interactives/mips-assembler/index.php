@@ -582,7 +582,7 @@ if (strlen($_POST['input'])) {
         <div class="col s12 l6">
 
           <h4>MIPS Input</h4>
-          <p>Please enter MIPS code below to see the assembler output. A subset of MIPS is implemented. Comments start with #.</p>
+          <p>Please enter MIPS code below to see the assembler output. <strong>Note:</strong> Only a subset of MIPS is implemented, and negative values will be read as zero. Comments start with #.</p>
 
           <?php print '<form action="'.$_ENV['SCRIPT_URL'].'" method="post">'; ?>
 <textarea name="input" id="mips_input" class="code"><?php
@@ -603,8 +603,10 @@ main:
 # Do the addition
 # For this, we first need to put the values
 # to add into registers  ($t0 and $t1)
-li $t0, 10    # You can change the 10
-li $t1, 20    # You can change the 20
+# You can change the 30 below to another value
+li $t0, 30
+# You can change the 20 below to another value
+li $t1, 20
 
 # Now we can add the values in $t0
 # and $t1, putting the result in special register $a0

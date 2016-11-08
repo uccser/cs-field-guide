@@ -81,6 +81,8 @@ class Section:
             self.current_heading = self.heading
             self.title = heading_text
             page_heading = True
+            if self.file_node.filename_without_extension == 'index':
+                self.file_node.parent.title = self.title
         else:
             page_heading = False
             if heading_level <= self.current_heading.level:
@@ -139,7 +141,11 @@ class Section:
 
         link_text = match.group('link_text')
         if not link_text.startswith(external_link_prefixes):
-            link_text = self.parse_markdown(link_text, 'p').strip()
+            text_prefix = ''
+            while link_text[0] == '#':
+                text_prefix += '#'
+                link_text = link_text[1:]
+            link_text = text_prefix + self.parse_markdown(link_text, 'p').strip()
 
         link_url = match.group('link_url')
         link_url = link_url.replace('\)', ')')
@@ -172,18 +178,22 @@ class Section:
                 summary_value = parse_argument('summary', arguments)
                 summary = ': ' + summary_value.strip() if summary_value else ''
                 expanded_value = parse_argument('expanded', arguments)
-                expanded = ' active' if expanded_value == 'True' else ''
-                content = self.parse_markdown(match.group('content'))
-
-                heading = self.html_templates['panel_heading'].format(title=title,
-                                                                      summary=summary)
-                html = self.html_templates['panel'].format(panel_heading = heading,
-                                                           content = content,
-                                                           type_class = 'panel-' + panel_type,
-                                                           expanded = expanded)
+                collapsible = False if expanded_value == 'Always' else True
+                valid_expanded_values = ['True', 'Always']
+                expanded = expanded_value in valid_expanded_values
+                context = {
+                    'type_class': panel_type,
+                    'title': title,
+                    'summary': summary,
+                    'content': self.parse_markdown(match.group('content')),
+                    'expanded': expanded,
+                    'collapsible': collapsible
+                }
+                html = self.guide.html_generator.render_template('panel', context)
             # Panel should be ignored
             else:
                 html = ''
+
             # Check for tags within panel that could cause dead links within student version
             if panel_type in teacher_only_panels:
                 content = match.group('content')
@@ -193,7 +203,7 @@ class Section:
                     if 'glossary-link-back-reference' in line:
                         self.regex_functions['panel'].log('This teacher only panel contains a glossary link with a back reference. We currently don\'t support back references within teacher only panels, please remove the reference.', self, match.group(0).split('\n')[0])
         else:
-            self.regex_functions['panel'].log("Panel type argument missing", self, match.group(0))
+            self.regex_functions['panel'].log("Panel type argument missing", self, match.group(0).split('\n')[0])
             html = ''
         return html
 
@@ -407,8 +417,6 @@ class Section:
                 html = ''
         else:
             self.regex_functions['conditional'].log("Invalid context {} given".format(context), self, match.group(0))
-
-
         return html
 
 
@@ -425,7 +433,8 @@ class Section:
 
     def create_link_to_online_resource(self, resource_type, url):
         template = 'print_link_to_online_resource'
-        return self.html_templates[template].format(resource=resource_type, url=url)
+        text_value = self.guide.translations[template + '_' + resource_type]
+        return self.html_templates[template].format(text=text_value, url=url)
 
 
     def create_video_html(self, match):
@@ -494,8 +503,7 @@ class Section:
             if self.guide.output_type == WEB:
                 self.required_files['File'].add(filename)
                 output_path = os.path.join(self.html_path_to_guide_root, file_path)
-                button_text = self.html_templates['button-download-text'].format(text=text)
-                html = self.html_templates['button'].format(link=output_path, text=button_text)
+                html = self.html_templates['button'].format(link=output_path, text=text)
             elif self.guide.output_type == PDF:
                 url = os.path.join(self.guide.generator_settings['General']['Domain'], self.guide.language_code, file_path)
                 html = self.create_link_to_online_resource(text, url)
@@ -976,7 +984,7 @@ class HeadingNode:
 
         if self.guide.output_type == WEB:
             # Create section starts for Materialize ScrollSpy
-            if self.level == 2 and self.guide.generator_settings['HTML'][self.section.file_node.group_type] == 'website_page_chapter':
+            if self.level == 2 and self.section.file_node.settings['table_of_contents_sidebar']:
                 # Close previous section if needed
                 if self.section.sectioned:
                     html = self.section.html_templates['section-end']

@@ -69,7 +69,7 @@ Create headings using `#` before the heading text, the number of `#` states the 
 ##### H5
 ###### H6
 
-The CSFG parser will automatic make each header a [permalink](http://en.wikipedia.org/wiki/Permalink) (mouseover a heading above for the link). Headers within chapters and appendices are also numbered (use `guide-settings.conf` to set if a page is numbered or not).
+The CSFG parser will automatic make each header a [permalink](http://en.wikipedia.org/wiki/Permalink) (mouseover a heading above for the link). Headers within chapters and appendices are also numbered (use your language's `settings.conf` to set if a page is numbered or not).
 
 ---
 
@@ -554,7 +554,7 @@ This text is the panel's contents.
 **Parameters:**
 - `type` - The type of panel to create. The type is used as the title of the panel, plus as the CSS class for panel (this allows colouring of all the same types of panels).
 - `summary` (optional) - Text to display after the title to summarise the panel's contents.
-- `expanded` (optional) - If set to False, the panel is expanded at load. When not given it defaults to True.
+- `expanded` (optional) - If set to `True`, the panel is expanded at load. If set to `Always`, the panel is expanded at load and cannot be closed. When a value is not given, the panel is closed on load.
 
 ---
 

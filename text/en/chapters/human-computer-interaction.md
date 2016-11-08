@@ -1,5 +1,7 @@
 # Human Computer Interaction
 
+{video url="https://www.youtube.com/embed/Uw0PISu2pog"}
+
 ## What's the big picture?
 
 {panel type="teacher-note" summary="The scope of user interfaces"}

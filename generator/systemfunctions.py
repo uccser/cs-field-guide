@@ -24,14 +24,21 @@ def from_kebab_case(text):
     return text.replace('-', ' ').title()
 
 
-def read_settings(settings_location):
+def read_settings(settings_location, file_type='conf'):
     """Read the given setting file
     and return the configparser
     """
-    settings = configparser.ConfigParser()
-    settings.optionxform = str
-    #settings.default_section = 'Main'
-    settings.read(settings_location)
+    settings = None
+    if file_type == 'conf':
+        settings = configparser.ConfigParser()
+        settings.optionxform = str
+        #settings.default_section = 'Main'
+        settings.read(settings_location)
+    elif file_type == 'yaml':
+        with open(settings_location, 'r', encoding='utf8') as settings_file:
+            settings_text = settings_file.read()
+        import yaml
+        settings = yaml.load(settings_text)
     return settings
 
 

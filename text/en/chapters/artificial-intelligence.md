@@ -36,9 +36,9 @@ Eliza is a system that was intended to get people thinking about AI, and you sho
 
 Go to the link just below and have a conversation with Eliza (keeping in mind that she is supposed to be a Rogerian Psychotherapist, so will respond like one).
 
-[Click here for the Eliza chatterbot at nlp-addiction.com](http://nlp-addiction.com/eliza/)
+[Click here to use the Eliza chatterbot](http://www.manifestation.com/neurotoys/eliza.php3)
 
-{image filename="eliza-chatbot-screenshot.png" alt="The Eliza chatbot at nlp-addiction.com"}
+{image filename="eliza-chatbot-screenshot.png" alt="A screenshot of an Eliza chatbot"}
 
 Do you think Eliza is as smart as a human? Would you believe she was a human if somebody told you she was?
 

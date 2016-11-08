@@ -4,7 +4,7 @@ This page lists updates to the Computer Science Field Guide. All notable changes
 
 {panel type="What numbering system do we use?"}
 
-We base our numbering system from the guidelines at [Semantic Versioning 2.0.0](http://semver.org/spec/v2.0.0.html), however since our project started before it was migrated to GitHub, the first open source release is being labeled as `v2.0`.
+We base our numbering system from the guidelines at [Semantic Versioning 2.0.0](http://semver.org/spec/v2.0.0.html), however since our project started before it was migrated to GitHub, the first open source release is being labeled as `v2.0.0`.
 
 Given a version number MAJOR.MINOR.HOTFIX:
 
@@ -19,6 +19,91 @@ We have listed major changes for each release below.
 
 ## Current Release
 
+### v2.8.1
+
+**Release date:** 21st October 2016
+
+**Downloads:** [Source downloads are available on GitHub](https://github.com/uccser/cs-field-guide/releases/tag/v2.8.1)
+
+**Changelog:**
+- Update introduction chapter.
+  - [Jack Morgan](https://github.com/JackMorganNZ) [#231](https://github.com/uccser/cs-field-guide/issues/231)
+- Add notice of changes to AP-CSP curriculum in Fall 2016 release.
+  - [Jack Morgan](https://github.com/JackMorganNZ)
+- Skip parsing `#` characters at start of Markdown links.
+  - [Jack Morgan](https://github.com/JackMorganNZ)
+
+## Older Releases
+
+### v2.8.0
+
+**Release date:** 19th October 2016
+
+**Downloads:** [Source downloads are available on GitHub](https://github.com/uccser/cs-field-guide/releases/tag/v2.8.0)
+
+**Notable changes:**
+
+This release adds an introductory video for the Human Computer Interaction chapter, plus a draft of guides for mapping the Computer Science Field Guide to the AP CSP curriculum.
+
+**Changelog:**
+- Add introductory video to Human Computer Interaction chapter.
+  - [Hayley van Waas](https://github.com/hayleyavw)
+- Add draft of guides for the AP CSP curriculum.
+  - [James Atlas](https://github.com/jamesatlas) [#316](https://github.com/uccser/cs-field-guide/pull/316)
+- Update and fix issues in high-score-boxes interactive.
+  - [Victor Chang](https://github.com/thevictorchang) [#390](https://github.com/uccser/cs-field-guide/pull/390)
+  - [Jack Morgan](https://github.com/JackMorganNZ) [#391](https://github.com/uccser/cs-field-guide/issues/391) [#393](https://github.com/uccser/cs-field-guide/issues/393)
+- Add subtraction command to mips-simulator interactive. The interactive can now handle subtraction down to zero.
+  - [Jack Morgan](https://github.com/JackMorganNZ) [#382](https://github.com/uccser/cs-field-guide/issues/382)
+- Update sponsor information in footer.
+  - [Jack Morgan](https://github.com/JackMorganNZ)
+- Improve the visibilty of warning panels.
+  - [Jack Morgan](https://github.com/JackMorganNZ) [#389](https://github.com/uccser/cs-field-guide/issues/389)
+- Fix positioning of table of contents sidebar.
+  - [Jack Morgan](https://github.com/JackMorganNZ) [#387](https://github.com/uccser/cs-field-guide/issues/387)
+- Fix typos in Formal Languages chapter.
+  - [Steven Maude](https://github.com/StevenMaude) [#385](https://github.com/uccser/cs-field-guide/pull/385)
+- Update 404 page to avoid updating after each release.
+  - [Karthikeya Pammi](https://github.com/pvskarthikeya) [#394](https://github.com/uccser/cs-field-guide/pull/394)
+- Remove duplicate introduction to teacher guide.
+  - [Jack Morgan](https://github.com/JackMorganNZ) [#213](https://github.com/uccser/cs-field-guide/issues/213)
+- Add link to article on representing a 1 bit image.
+  - [Jack Morgan](https://github.com/JackMorganNZ) [#376](https://github.com/uccser/cs-field-guide/issues/376)
+- Fix broken link to contributors page in footer.
+  - [Jack Morgan](https://github.com/JackMorganNZ) [#383](https://github.com/uccser/cs-field-guide/issues/383)
+- Replace broken link to Eliza chatterbot.
+  - [Jack Morgan](https://github.com/JackMorganNZ) [#384](https://github.com/uccser/cs-field-guide/issues/384)
+- Fix footer link colour in teacher version.
+  - [Jack Morgan](https://github.com/JackMorganNZ) [#395](https://github.com/uccser/cs-field-guide/issues/395)
+
+### v2.7.1
+
+**Release date:** 5th September 2016
+
+**Downloads:** [Source available on GitHub](https://github.com/uccser/cs-field-guide/releases/tag/v2.7.1)
+
+**Notable changes:**
+- Fixed broken link in footer to contributors page.
+
+A full list of changes in this version is [available on GitHub](https://github.com/uccser/cs-field-guide/compare/v2.7.0...v2.7.1).
+
+### v2.7.0
+
+**Release date:** 23rd August 2016
+
+**Downloads:** [Source available on GitHub](https://github.com/uccser/cs-field-guide/releases/tag/v2.7.0)
+
+**Notable changes:**
+- **New video:** Formal Languages now has an introductory video.
+- **New interactive:** The [hexadecimal background colour interactive](interactives/hex-background-colour/index.html) allows a user to change the background colour of the page.
+- **New curriculum guide:** A guide for NCEA [Artificial Intelligence: Turing Test](https://docs.google.com/document/d/1TnP0sCW33Yhy4wQITDre1sirB0IonesCfdbO0WqJjow) has been added.
+- **Updated interactives:** The [box translation](interactives/box-translation/index.html) and [box rotation](interactives/box-rotation/index.html) interactives are now open source and have been given a new look and made mobile friendly.
+- **Generation improvements:** Basic translation support. Settings are now specific to each language, and contain the translation text.
+- **Website improvements:** Added [help guide](further-information/interactives.html) for WebGL interactives.
+- Also includes bug fixes to interactives, new links to supporting videos, and various text corrections from our staff and contributors.
+
+A full list of changes in this version is [available on GitHub](https://github.com/uccser/cs-field-guide/compare/v2.6.1...v2.7.0).
+
 ### v2.6.1
 
 **Release date:** 14th July 2016
@@ -27,8 +112,6 @@ We have listed major changes for each release below.
 
 **Notable changes:**
 - Fixed issue on Human Computer Interaction chapter where duplicate library was causing several UI elements to not behave correctly.
-
-## Older Releases
 
 ### v2.6.0
 
@@ -41,7 +124,7 @@ We have listed major changes for each release below.
 - **New feature:** Printer friendly webpages - When printing a page of the CSFG through a browser, the page displays in a printer friendly manner by hiding navigational panels, opening all panels, and providing extra links to online resources.
 - **New interactive:** The [binary cards interactive](interactives/binary-cards/index.html) emulates the Binary Cards CS Unplugged activity, used to teach binary numbers.
 - **New interactive:** The [high score boxes interactive](interactives/high-score-boxes/index.html) was developed to give an example of searching boxes to find a maximum value to the student.
-- **New interactive:** The [action menu interactive](interactives/action-menu/index.html) is a small dropdown menu with one option that has severe consequences, but no confirmation screen if user selects that option (used to demonstrate a key HCI concept).
+- **New interactive:** The [action menu interactive](interactives/action-menu/index.html) is a small dropdown menu with one option that has severe consequences, but no confirmation screen if the user selects that option (used to demonstrate a key HCI concept).
 - **Updated interactive:** The [trainsylvania interactive](interactives/trainsylvania/index.html) (and supporting images/files) have been given a fresh coat of colour and a new station name.
 - **Updated interactive:** The [trainsylvania planner interactive](interactives/trainsylvania-planner/index.html) is used alongside the trainsylvania interactive, and allows the user to input a path of train trips to see the resulting destination.
 - **Updated interactive:** The [base calculator](interactives/base-calculator/index.html) allows a student to calculate a number, using a specific number base (binary, hexadecimal, etc).

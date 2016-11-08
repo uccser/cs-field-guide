@@ -158,6 +158,10 @@ So instead of building computers that can understand these high level instructio
 
 The conversion from a high level to a low level language can involve *compiling*, which replaces the high level instructions with machine code instructions that can then be run, or it can be done by *interpreting*, where each instruction is converted and followed one by one, as the program is run. In reality, a lot of languages use a mixture of these, sometimes compiling a program to an intermediate language, then interpreting it (Java does this). The language we looked at earlier, Python, is an interpreted language. Other languages such as C++ are compiled. We will talk more about compiling and interpreting later.
 
+Different levels of programming languages are an abstraction that allows programmers to concern themselves with only the necessary details of a single level.
+High level programmers can produce sophisticated programs in Python without expert knowledge of low level languages such as MIPS, x86, or ARM.
+Low level programmers can produce embedded programs in ARM without expert knowledge of electronic circuitry.
+
 We will start with looking at low level languages and how computers actually carry out the instructions in them, then we will look at some other programming languages that programmers use to give instructions to computers, and then finally we will talk about how we convert programs that were written by humans in a high level language into a low level language that the computer can carry out.
 
 ## Machine Code (Low level languages)
@@ -195,34 +199,43 @@ The instructions are quite different to the ones you will have seen before in hi
 It starts by adding 2 numbers (that have been put in registers $t0 and $t1) and printing out the result. It then prints “Hello World!” Don’t worry, we aren’t about to make you learn how to actually program in this language! And if you don’t really understand the program, that’s also fine because many software engineers wouldn’t either! (We are showing it to you to help you to appreciate high level languages!)
 
 ```
-.data          	 
+.data
 str:  .asciiz "\nHello World!\n"
 # You can change what is between the  quotes if you like
 
-.text          	 
-.globl main       	 
+.text
+.globl main
 
 main:
 # Do the addition
-# For this, we first need to put the values to add into registers ($t0 and $t1)
-li $t0, 10 #You can change the 10
-li $t1, 20 #You can change the 20
-# Now we can add the values together, putting the result in register $a0
-add $a0, $t0, $t1
-# Set up for printing the value in $a0.
-# A '1' in $v0 means we want to print an int
-li $v0, 1
-# The system call looks at what is in $v0 and $a0,
-# and knows to print what is in $a0
-syscall    	 
+# For this, we first need to put the values
+# to add into registers  ($t0 and $t1)
+# You can change the 30 below to another value
+li $t0, 30
+# You can change the 20 below to another value
+li $t1, 20
 
-# Now we want to print 'Hello World!'
+# Now we can add the values in $t0
+# and $t1, putting the result in special register $a0
+add $a0, $t0, $t1
+
+# Set up for printing the value in $a0.
+# A 1 in $v0 means we want to print an int
+li $v0, 1
+
+# The system call looks at what is in $v0
+# and $a0, and knows to print what is in $a0
+syscall
+
+# Now we want to print Hello World
 # So we load the (address of the) string into $a0
 la $a0, str
-# A '4' in $v0 means we want to print an string
+
+# And put a 4 in $v0 to mean print a string
 li $v0, 4
-# And just like before syscall looks at $v0 and $a0
-# and knows to print the string
+
+# And just like before syscall looks at
+# $v0 and $a0 and knows to print the string
 syscall
 
 # Nicely end the program

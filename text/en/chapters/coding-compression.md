@@ -22,7 +22,6 @@ An intriguing activity that relates to compression is the ["locked-in" activity]
 In this activity, students simulate writing some text using a method used by Jean-Dominique Bauby, who was completely unable to move except for blinking one eye. With a simple binary interface (blinking or not blinking) he was able to author an entire book. It is well worth getting students to work in pairs, and have one try to communicate a word or short phrase strictly by blinking only. It raises many questions, including how it could be done in the shortest time and with the minimum effort. Of course, the first step is to work out how to convey any text at all!
 {panel end}
 
-
 ## Run Length Encoding
 
 {video url="https://www.youtube.com/embed/uaV2RuAJTjQ?rel=0"}
@@ -581,9 +580,12 @@ Questions like "what is the most compression that can be achieved" are addressed
 - A list of books on this topic (and lots of other information about compression) is available from [The Data Compression Site](http://www.data-compression.info/Books/).
 - Gleick's book "The Information" has some background to compression, and coding in general.
 
-
-### Useful Links
+### Useful links
 
 - Images, run-length-coding [http://csunplugged.org/image-representation](http://csunplugged.org/image-representation) This is also relevant to binary representations in general, although is probably best used in the compression section.
 - There is a detailed section on [JPEG encoding on Wikipedia](https://en.wikipedia.org/wiki/Jpeg).
 - Text compression [http://csunplugged.org/text-compression](http://csunplugged.org/text-compression)
+
+### Interesting articles
+
+- [One pixel is worth three thousand words](http://cloudinary.com/blog/one_pixel_is_worth_three_thousand_words) by Jon Sneyers from [cloudinary.com](http://cloudinary.com/)
