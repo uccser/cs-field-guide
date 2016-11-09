@@ -2,52 +2,42 @@
 /* Sets up order of matrix operations and moves the arrow to new position
  */
 function matrixOperations() {
-    // commonly accepted order is scale -> rotate -> translate
-    //scale('a');
-    //scale('b');
-    //translate('a');
-    //translate('b');
-    //updateArrow();
-    console.log(dimensions.startPosition);
+
+    var productMatrix = dimensions.startPosition;
+    var count = 0;
     var matrixElements = document.getElementById('matrices').children;
+
     for (var i = 0; i < matrixElements.length; i++) {
         var element = matrixElements[i];
+
         if (element.style.display == 'block') {
             if (element.id.indexOf('scale') != -1) {
-                scale(element.id.slice(7,8)); // nasty hard coding
+                productMatrix = scale(element.id.slice(7,8), productMatrix); // nasty hard coding
             } else {
-                translate(element.id.slice(7,8));
+                productMatrix = translate(element.id.slice(7,8), productMatrix);
             }
+            count += 1;
         }
+
     }
+
     updateArrow();
 }
 
 
 /* Scale the arrow according to the user's inputted matrix
  */
-function scale(id) {
-
-    var point = null;
-    var newMatrix = [];
-    var positions = [];
+function scale(id, productMatrix) {
 
     dimensions.scaleMatrix[0] = parseFloat(document.getElementById('matrix-' + id + '-scale-row-0-col-0').value);
     dimensions.scaleMatrix[1] = parseFloat(document.getElementById('matrix-' + id + '-scale-row-0-col-1').value);
     dimensions.scaleMatrix[2] = parseFloat(document.getElementById('matrix-' + id + '-scale-row-1-col-0').value);
     dimensions.scaleMatrix[3] = parseFloat(document.getElementById('matrix-' + id + '-scale-row-1-col-1').value);
 
-    if (id == 'a') {
-        positions = dimensions.startPosition;
-    } else {
-        positions = dimensions.currentPosition;
-    }
-
     for (var i = 0; i < 7; i++) { // 7 points on arrow
 
         var newPoint = new Point();
-        //var currPoint = dimensions.startPosition[i];
-        var currPoint = positions[i];
+        var currPoint = productMatrix[i];
 
         newPoint.x = ((currPoint.x - dimensions.xIntercept)/dimensions.squareSize) * dimensions.scaleMatrix[0] + ((currPoint.y - dimensions.yIntercept)/dimensions.squareSize) * dimensions.scaleMatrix[1] * -1;
         newPoint.y = ((currPoint.x - dimensions.xIntercept)/dimensions.squareSize) * dimensions.scaleMatrix[2] + ((currPoint.y - dimensions.yIntercept)/dimensions.squareSize) * dimensions.scaleMatrix[3] * -1;
@@ -57,33 +47,31 @@ function scale(id) {
 
         dimensions.currentPosition[i] = newPoint;
     }
+    return dimensions.currentPosition;
 
 }
 
 
 /* Translate the arrow according to the user's inputted matrix
  */
-function translate(id) {
-    console.log('hey, time time to translate!');
-    var newMatrix = [];
-    var point = null;
+function translate(id, productMatrix) {
 
     dimensions.translateMatrix[0] = parseFloat(document.getElementById('matrix-' + id + '-translate-row-0-col-0').value) * dimensions.squareSize;
     dimensions.translateMatrix[1] = parseFloat(document.getElementById('matrix-' + id + '-translate-row-1-col-0').value) * dimensions.squareSize;
 
-
     for (var i = 0; i < 7; i++) { // 7 points on arrow
 
         var newPoint = new Point();
+        var currPoint = productMatrix[i];
 
-        point = dimensions.currentPosition[i];
-
-        newPoint.x = point.x + dimensions.translateMatrix[0];
-        newPoint.y = point.y - dimensions.translateMatrix[1];
+        newPoint.x = currPoint.x + dimensions.translateMatrix[0];
+        newPoint.y = currPoint.y - dimensions.translateMatrix[1];
 
         dimensions.currentPosition[i] = newPoint;
 
     }
+
+    return dimensions.currentPosition;
 }
 
 
