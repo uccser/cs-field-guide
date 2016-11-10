@@ -1,3 +1,6 @@
+#interactive-ncea-encoding-selector {
+  display: none;
+}
 #interactive-ncea-encoding-selector div.selector {
   border: 1px solid black;
   margin: 1rem 0;

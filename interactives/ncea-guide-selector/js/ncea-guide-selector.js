@@ -36,6 +36,7 @@ $(document).ready(function() {
       success: function(config_data) {
         ncea_encoding_selector = config_data;
         createGrids();
+        $('#interactive-ncea-encoding-selector').show();
       },
       error: function() {
         alert('Config file not found!');
