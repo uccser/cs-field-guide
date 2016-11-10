@@ -25,57 +25,74 @@ function Point(x, y) {
 
 /* On load get config and build the grid and both arrows */
 window.onload = function(event) {
-
-    loadJSON(function(response) {
-        var config = JSON.parse(response);
-        loadModules(config);
-    });
-
     calculateAllTheThings();
 
+    get('config/matrix-rotate.json').then(function(response) {
+        var config = JSON.parse(response);
+        dimensions.thing = config['test'];
+        loadModules(config);
+    }, function(error) {
+      console.error("Failed!", error);
+    });
+
 }
+
 
 /* Rebuilds dynamic on window resize */
 window.onresize = function(event) {
     // NTS means that the JSON file is being loaded potentially many times
     // TODO should figure out how to do this without having to reload the json file
 
-    loadJSON(function(response) {
+    calculateAllTheThings();
+
+    get('config/matrix-rotate.json').then(function(response) {
         var config = JSON.parse(response);
         loadModules(config);
+    }, function(error) {
+      console.error("Failed!", error);
     });
 
-    calculateAllTheThings();
 }
 
 ////////////////////////////////////////////////////////////
 
 // JSON magic
 
-/* Loads JSON config file */
-function loadJSON(callback, thing) {
+function get(url) {
+  // Return a new promise.
+  return new Promise(function(resolve, reject) {
+    // Do the usual XHR stuff
+    var req = new XMLHttpRequest();
+    req.open('GET', url);
 
-    // Get json file name from url
-    var url = window.location.search.replace('?', '');
-    const params = new URLSearchParams(url); // pulls out value of each parameter
-    var filename = 'config/' + params.get('input') + '.json';
-
-    var xobj = new XMLHttpRequest();
-    xobj.overrideMimeType("application/json"); // tells the browser what type of file it is
-    xobj.open('GET', filename);
-    xobj.onreadystatechange = function() {
-        if (xobj.readyState == 4 && xobj.status == "200") { // where 4 = DONE and 200 = successful request
-            callback(xobj.responseText);
-        }
+    req.onload = function() {
+      // This is called even on 404 etc
+      // so check the status
+      if (req.status == 200) {
+        // Resolve the promise with the response text
+        resolve(req.response);
+      }
+      else {
+        // Otherwise reject with the status text
+        // which will hopefully be a meaningful error
+        reject(Error(req.statusText));
+      }
     };
-    xobj.send(null);
+
+    // Handle network errors
+    req.onerror = function() {
+      reject(Error("Network Error"));
+    };
+
+    // Make the request
+    req.send();
+  });
 }
 
 
 ////////////////////////////////////////////////////////////
 
 function loadModules(config) {
-    // TODO there has got to be a better way to do this....there's a lot of nesting here...
 
     var scale_a = false;
     var translate_a = false;
@@ -139,6 +156,7 @@ function calculateAllTheThings() {
 
 
     dimensions = {
+        thing: "",
         CONTAINER:       container,
         POLYGON:         polygon,
         TARGET_POLYGON:  target_polygon,
