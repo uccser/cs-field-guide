@@ -120,13 +120,10 @@ function updateGrid($container, counts) {
   var settings = grid_data['settings'];
   var grid_counts = counts[grid_data['name']];
   var highest_valid_level;
-  console.log("Grid Counts:", grid_counts);
-  console.log("Grid Settings:", settings);
   $container.children('div.flex-container').each(function () {
     $container = $(this);
     $container.children('div.flex-item').each(function () {
       $group = $(this);
-      console.log($group);
       var group_level_data = $group.data('level_data');
       var group_level_name = group_level_data ? group_level_data['name'] : undefined;
       var group_level_superceded_by = group_level_data ? group_level_data['superceded_by'] : undefined;
@@ -232,7 +229,6 @@ function countValues() {
     counts[selector_name]['total'] = total;
   }
   counts['overall_total'] = overall_total;
-  console.log("Counts:" ,counts);
   return counts;
 }
 
