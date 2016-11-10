@@ -1,212 +1,6 @@
-ncea_encoding_selector = [
-  {
-    "name": "Data Representation",
-    "levels": [
-      {
-        "name": "Achieved",
-        "max": 2,
-        "conflicts": [
-          "Merit / Excellence"
-        ],
-        "superceded_by": [
-          "Merit / Excellence"
-        ],
-        "summary": "The selected guides can help you achieve an Achieved grade."
-      },
-      {
-        "name": "Merit / Excellence",
-        "max": 2,
-        "conflicts": [
-          "Achieved"
-        ],
-        "summary": "The selected guides can help you achieve an Excellence grade."
-      }
-    ],
-    "structure": {
-      "Numbers": {
-        "Achieved": [
-          {
-            "name": "Binary Numbers",
-            "url": "#"
-          }
-        ],
-        "Merit / Excellence": [
-          {
-            "name": "Two's Compliment",
-            "url": "#"
-          },
-          {
-            "name": "Floating Point Numbers",
-            "url": "#"
-          }
-        ]
-      },
-      "Text": {
-        "Achieved": [
-          {
-            "name": "ASCII",
-            "url": "#"
-          },
-        ],
-        "Merit / Excellence": [
-          {
-            "name": "Unicode",
-            "url": "#"
-          }
-        ]
-      },
-      "Colours / Images": {
-        "Achieved": [
-          {
-            "name": "Colours",
-            "url": "#"
-          }
-        ],
-        "Merit / Excellence": [
-          {
-            "name": "Colour depths and images",
-            "url": "#"
-          }
-        ]
-      }
-    },
-    "settings": {
-      "max-topic": 1,
-      "max-total": 2
-    }
-  },
-  {
-    "name": "Encoding",
-    "levels": [
-      {
-        "name": "Achieved",
-        "max": 3,
-      },
-      {
-        "name": "Merit / Excellence",
-        "max": 1,
-      }
-    ],
-    "structure": {
-      "Error Control Coding": {
-        "Achieved": [
-          {
-            "name": "Check Sums",
-            "url": "#"
-          },
-          {
-            "name": "Parity",
-            "url": "#"
-          }
-        ],
-        "Merit / Excellence": [
-          {
-            "name": "M/E Placeholder",
-            "url": "#"
-          },
-          {
-            "name": "M/E Placeholder",
-            "url": "#"
-          },
-          {
-            "name": "M/E Placeholder",
-            "url": "#"
-          }
-        ]
-      },
-      "Encryption": {
-        "Achieved": [
-          {
-            "name": "Caesar Cipher",
-            "url": "#"
-          },
-          {
-            "name": "Achieved Placeholder",
-            "url": "#"
-          },
-          {
-            "name": "Achieved Placeholder",
-            "url": "#"
-          }
-        ],
-        "Merit / Excellence": [
-          {
-            "name": "M/E Placeholder",
-            "url": "#"
-          },
-          {
-            "name": "M/E Placeholder",
-            "url": "#"
-          },
-          {
-            "name": "M/E Placeholder",
-            "url": "#"
-          }
-        ]
-      },
-      "Compression": {
-        "Achieved": [
-          {
-            "name": "Run Length Encoding",
-            "url": "#"
-          },
-          {
-            "name": "Achieved Placeholder",
-            "url": "#"
-          }
-        ],
-        "Merit / Excellence": [
-          {
-            "name": "M/E Placeholder",
-            "url": "#"
-          }
-        ]
-      }
-    },
-    "settings": {
-      "max-topic": 1,
-      "max-total": 3
-    }
-  },
-  {
-    "name": "Human Computer Interaction",
-    "levels": [
-      {
-        "name": "Achieved",
-        "max": 1,
-        "superceded_by": [
-          "Merit / Excellence"
-        ]
-      },
-      {
-        "name": "Merit / Excellence",
-        "max": 1
-      }
-    ],
-    "structure": {
-      "Heuristics": {
-        "Achieved": [
-          {
-            "name": "Identifying heuristic violations in every day life",
-            "url": "#"
-          }
-        ],
-        "Merit / Excellence": [
-          {
-            "name": "Evaluating an interface with heuristics",
-            "url": "#"
-          }
-        ]
-      }
-    },
-    "settings": {
-      "max-topic": 1,
-      "max-total": 1
-    }
-  }
-]
+var ncea_encoding_selector;
 
-$(document).ready(function(){
+$(document).ready(function() {
   $('#interactive-ncea-encoding-selector').on('click', '.selectable-item', function(event) {
     $selectable_item = $(this);
     var update = false;
@@ -233,7 +27,24 @@ $(document).ready(function(){
     clearSelections();
   });
 
-  createGrids();
+  var config_name = getUrlParameter('config');
+  if (config_name) {
+    var config_path = 'config/' + config_name + '.json'
+    $.ajax({
+      dataType: "json",
+      url: config_path,
+      success: function(config_data) {
+        ncea_encoding_selector = config_data;
+        createGrids();
+      },
+      error: function() {
+        alert('Config file not found!');
+      },
+      timeout: 3000
+    })
+  } else {
+    alert('No config file provided as parameter!');
+  }
 });
 
 function createGrids() {
@@ -482,4 +293,21 @@ function meetsCriteria(criteria_values, count_values, value_to_pass) {
     }
   }
   return status;
+}
+
+
+// From jquerybyexample.net/2012/06/get-url-parameters-using-jquery.html
+function getUrlParameter(sParam) {
+    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : sParameterName[1];
+        }
+    }
 }
