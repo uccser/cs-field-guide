@@ -3,7 +3,7 @@
  */
 function matrixOperations() {
 
-    var productMatrix = dimensions.startPosition;
+    var productMatrix = configSettings.startPosition;
     var count = 0;
     var matrixElements = document.getElementById('matrices').children;
 
@@ -29,25 +29,25 @@ function matrixOperations() {
  */
 function scale(id, productMatrix) {
 
-    dimensions.scaleMatrix[0] = parseFloat(document.getElementById('matrix-' + id + '-scale-row-0-col-0').value);
-    dimensions.scaleMatrix[1] = parseFloat(document.getElementById('matrix-' + id + '-scale-row-0-col-1').value);
-    dimensions.scaleMatrix[2] = parseFloat(document.getElementById('matrix-' + id + '-scale-row-1-col-0').value);
-    dimensions.scaleMatrix[3] = parseFloat(document.getElementById('matrix-' + id + '-scale-row-1-col-1').value);
+    currentState.scaleMatrix[0] = parseFloat(document.getElementById('matrix-' + id + '-scale-row-0-col-0').value);
+    currentState.scaleMatrix[1] = parseFloat(document.getElementById('matrix-' + id + '-scale-row-0-col-1').value);
+    currentState.scaleMatrix[2] = parseFloat(document.getElementById('matrix-' + id + '-scale-row-1-col-0').value);
+    currentState.scaleMatrix[3] = parseFloat(document.getElementById('matrix-' + id + '-scale-row-1-col-1').value);
 
     for (var i = 0; i < 7; i++) { // 7 points on arrow
 
         var newPoint = new Point();
         var currPoint = productMatrix[i];
 
-        newPoint.x = ((currPoint.x - dimensions.xIntercept)/dimensions.squareSize) * dimensions.scaleMatrix[0] + ((currPoint.y - dimensions.yIntercept)/dimensions.squareSize) * dimensions.scaleMatrix[1] * -1;
-        newPoint.y = ((currPoint.x - dimensions.xIntercept)/dimensions.squareSize) * dimensions.scaleMatrix[2] + ((currPoint.y - dimensions.yIntercept)/dimensions.squareSize) * dimensions.scaleMatrix[3] * -1;
+        newPoint.x = ((currPoint.x - interfaceSettings.xIntercept)/interfaceSettings.squareSize) * currentState.scaleMatrix[0] + ((currPoint.y - interfaceSettings.yIntercept)/interfaceSettings.squareSize) * currentState.scaleMatrix[1] * -1;
+        newPoint.y = ((currPoint.x - interfaceSettings.xIntercept)/interfaceSettings.squareSize) * currentState.scaleMatrix[2] + ((currPoint.y - interfaceSettings.yIntercept)/interfaceSettings.squareSize) * currentState.scaleMatrix[3] * -1;
 
-        newPoint.x = (newPoint.x * dimensions.squareSize) + dimensions.xIntercept;
-        newPoint.y = (newPoint.y * dimensions.squareSize * -1) + dimensions.yIntercept;
+        newPoint.x = (newPoint.x * interfaceSettings.squareSize) + interfaceSettings.xIntercept;
+        newPoint.y = (newPoint.y * interfaceSettings.squareSize * -1) + interfaceSettings.yIntercept;
 
-        dimensions.currentPosition[i] = newPoint;
+        currentState.currentPosition[i] = newPoint;
     }
-    return dimensions.currentPosition;
+    return currentState.currentPosition;
 
 }
 
@@ -56,22 +56,22 @@ function scale(id, productMatrix) {
  */
 function translate(id, productMatrix) {
 
-    dimensions.translateMatrix[0] = parseFloat(document.getElementById('matrix-' + id + '-translate-row-0-col-0').value) * dimensions.squareSize;
-    dimensions.translateMatrix[1] = parseFloat(document.getElementById('matrix-' + id + '-translate-row-1-col-0').value) * dimensions.squareSize;
+    currentState.translateMatrix[0] = parseFloat(document.getElementById('matrix-' + id + '-translate-row-0-col-0').value) * interfaceSettings.squareSize;
+    currentState.translateMatrix[1] = parseFloat(document.getElementById('matrix-' + id + '-translate-row-1-col-0').value) * interfaceSettings.squareSize;
 
     for (var i = 0; i < 7; i++) { // 7 points on arrow
 
         var newPoint = new Point();
         var currPoint = productMatrix[i];
 
-        newPoint.x = currPoint.x + dimensions.translateMatrix[0];
-        newPoint.y = currPoint.y - dimensions.translateMatrix[1];
+        newPoint.x = currPoint.x + currentState.translateMatrix[0];
+        newPoint.y = currPoint.y - currentState.translateMatrix[1];
 
-        dimensions.currentPosition[i] = newPoint;
+        currentState.currentPosition[i] = newPoint;
 
     }
 
-    return dimensions.currentPosition;
+    return currentState.currentPosition;
 }
 
 

@@ -12,7 +12,9 @@
 // TODO function to convert between coord spaces?
 
 /* Global variable is a dictionary of variables relating to size and position of grid and arrow */
-var dimensions = {};
+var interfaceSettings = {};
+var configSettings = {};
+var currentState = {};
 
 /* Class for generating new points */
 function Point(x, y) {
@@ -29,7 +31,6 @@ window.onload = function(event) {
 
     get('config/matrix-rotate.json').then(function(response) {
         var config = JSON.parse(response);
-        dimensions.thing = config['test'];
         loadModules(config);
     }, function(error) {
       console.error("Failed!", error);
@@ -154,12 +155,8 @@ function calculateAllTheThings() {
     var topMargin = (windowHeight - containerHeight) / 2;
     container.style.marginTop = topMargin + 'px';
 
-
-    dimensions = {
-        thing: "",
+    interfaceSettings = {
         CONTAINER:       container,
-        POLYGON:         polygon,
-        TARGET_POLYGON:  target_polygon,
         containerWidth:  containerWidth,
         containerHeight: containerHeight,
         squareSize:      squareSize,
@@ -170,9 +167,17 @@ function calculateAllTheThings() {
         arrowWidth:      arrowWidth,
         arrowHeight:     arrowHeight,
         offset:          offset,
+    };
+
+    configSettings = {
+        POLYGON:         polygon,
+        TARGET_POLYGON:  target_polygon,
         startPosition:   [],
-        currentPosition: [],
         targetPosition:  [],
+    };
+
+    currentState = {
+        currentPosition: [],
         scaleMatrix:     [0, 0],
         translateMatrix: [0, 0]
     };
@@ -188,13 +193,13 @@ function calculateAllTheThings() {
  */
 function drawBackground() {
 
-    var backgroundSizeFormat = dimensions.xIntercept + 'px ' + dimensions.yIntercept + 'px, ' +
-        dimensions.xIntercept + 'px ' + dimensions.yIntercept + 'px, '
-        + dimensions.squareSize + 'px ' + dimensions.squareSize + 'px, '
-        + dimensions.squareSize + 'px ' + dimensions.squareSize + 'px';
+    var backgroundSizeFormat = interfaceSettings.xIntercept + 'px ' + interfaceSettings.yIntercept + 'px, ' +
+        interfaceSettings.xIntercept + 'px ' + interfaceSettings.yIntercept + 'px, '
+        + interfaceSettings.squareSize + 'px ' + interfaceSettings.squareSize + 'px, '
+        + interfaceSettings.squareSize + 'px ' + interfaceSettings.squareSize + 'px';
 
     // Apply the background styling to the container element
-    container.style.backgroundSize = backgroundSizeFormat; // WTF why did this not have to get container though dimensions.CONTAINER??
+    container.style.backgroundSize = backgroundSizeFormat; // WTF why did this not have to get container though interfaceSettings.CONTAINER??
 
 }
 
@@ -223,38 +228,38 @@ function drawArrow() {
      *     - Assign (x,y) coordinate
      */
     var p0 = new Point();
-    p0.x = dimensions.xIntercept;
-    p0.y = dimensions.yIntercept - dimensions.offset;
+    p0.x = interfaceSettings.xIntercept;
+    p0.y = interfaceSettings.yIntercept - interfaceSettings.offset;
 
     var p1 = new Point();
-    p1.x = dimensions.xIntercept - (dimensions.arrowWidth * dimensions.squareSize);
-    p1.y = dimensions.yIntercept + (dimensions.arrowWidth * dimensions.squareSize) - dimensions.offset;
+    p1.x = interfaceSettings.xIntercept - (interfaceSettings.arrowWidth * interfaceSettings.squareSize);
+    p1.y = interfaceSettings.yIntercept + (interfaceSettings.arrowWidth * interfaceSettings.squareSize) - interfaceSettings.offset;
 
     var p2 = new Point();
-    p2.x = dimensions.xIntercept - dimensions.squareSize;
-    p2.y = dimensions.yIntercept + (dimensions.arrowWidth * dimensions.squareSize) - dimensions.offset;
+    p2.x = interfaceSettings.xIntercept - interfaceSettings.squareSize;
+    p2.y = interfaceSettings.yIntercept + (interfaceSettings.arrowWidth * interfaceSettings.squareSize) - interfaceSettings.offset;
 
     var p3 = new Point();
-    p3.x = dimensions.xIntercept - dimensions.squareSize;
-    p3.y = dimensions.yIntercept + (dimensions.arrowHeight * dimensions.squareSize) - dimensions.offset;
+    p3.x = interfaceSettings.xIntercept - interfaceSettings.squareSize;
+    p3.y = interfaceSettings.yIntercept + (interfaceSettings.arrowHeight * interfaceSettings.squareSize) - interfaceSettings.offset;
 
     var p4 = new Point();
-    p4.x = dimensions.xIntercept + dimensions.squareSize;
-    p4.y = dimensions.yIntercept + (dimensions.arrowHeight * dimensions.squareSize) - dimensions.offset;
+    p4.x = interfaceSettings.xIntercept + interfaceSettings.squareSize;
+    p4.y = interfaceSettings.yIntercept + (interfaceSettings.arrowHeight * interfaceSettings.squareSize) - interfaceSettings.offset;
 
     var p5 = new Point();
-    p5.x = dimensions.xIntercept + dimensions.squareSize;
-    p5.y = dimensions.yIntercept + (dimensions.arrowWidth * dimensions.squareSize) - dimensions.offset;
+    p5.x = interfaceSettings.xIntercept + interfaceSettings.squareSize;
+    p5.y = interfaceSettings.yIntercept + (interfaceSettings.arrowWidth * interfaceSettings.squareSize) - interfaceSettings.offset;
 
     var p6 = new Point();
-    p6.x = dimensions.xIntercept + (dimensions.arrowWidth * dimensions.squareSize);
-    p6.y = dimensions.yIntercept + (dimensions.arrowWidth * dimensions.squareSize) - dimensions.offset;
+    p6.x = interfaceSettings.xIntercept + (interfaceSettings.arrowWidth * interfaceSettings.squareSize);
+    p6.y = interfaceSettings.yIntercept + (interfaceSettings.arrowWidth * interfaceSettings.squareSize) - interfaceSettings.offset;
 
-    dimensions.startPosition = [p0, p1, p2, p3, p4, p5, p6];
-    dimensions.currentPosition = [p0, p1, p2, p3, p4, p5, p6];
+    configSettings.startPosition = [p0, p1, p2, p3, p4, p5, p6];
+    currentState.currentPosition = [p0, p1, p2, p3, p4, p5, p6];
 
     updateArrow();
-    updateInputBoxes(dimensions.startPosition);
+    updateInputBoxes(configSettings.startPosition);
 
 }
 
@@ -272,12 +277,12 @@ function drawTargetArrow(points) {
 
     for (var i = 0; i < 7; i++) { // 7 points on an arrow, each with x and y value
 
-        point = dimensions.TARGET_POLYGON.points.getItem(i);
-        point.x = (points[xPos] * dimensions.squareSize) + dimensions.xIntercept;
+        point = configSettings.TARGET_POLYGON.points.getItem(i);
+        point.x = (points[xPos] * interfaceSettings.squareSize) + interfaceSettings.xIntercept;
         // have to multiply by -1 becuase y axis is reversed in the svg coordinate space
-        point.y = (points[yPos] * dimensions.squareSize * -1) + dimensions.yIntercept;
+        point.y = (points[yPos] * interfaceSettings.squareSize * -1) + interfaceSettings.yIntercept;
 
-        dimensions.targetPosition.push(point);
+        configSettings.targetPosition.push(point);
 
         xPos += 2;
         yPos += 2;
@@ -295,13 +300,13 @@ function updateArrow() {
 
     for (var i = 0; i < 7; i++) { // 7 points on an arrow
 
-        point = dimensions.POLYGON.points.getItem(i);
-        point.x = dimensions.currentPosition[i].x;
-        point.y = dimensions.currentPosition[i].y;
+        point = configSettings.POLYGON.points.getItem(i);
+        point.x = currentState.currentPosition[i].x;
+        point.y = currentState.currentPosition[i].y;
 
         circle = document.getElementById('c' + i);
-        circle.setAttribute('cx', dimensions.currentPosition[i].x + 'px');
-        circle.setAttribute('cy', dimensions.currentPosition[i].y + 'px');
+        circle.setAttribute('cx', currentState.currentPosition[i].x + 'px');
+        circle.setAttribute('cy', currentState.currentPosition[i].y + 'px');
 
     }
 

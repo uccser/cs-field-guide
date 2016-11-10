@@ -9,9 +9,9 @@ function updateInputBoxes(points) {
     for (var i = 0; i < 7; i++) { // 7 points on arrow
 
         inputId = 'p' + i + '-input-x';
-        document.getElementById(inputId).value = (points[i].x - dimensions.xIntercept) / dimensions.squareSize;
+        document.getElementById(inputId).value = (points[i].x - interfaceSettings.xIntercept) / interfaceSettings.squareSize;
         inputId = 'p' + i + '-input-y';
-        document.getElementById(inputId).value = ((points[i].y - dimensions.yIntercept) / dimensions.squareSize) * -1;
+        document.getElementById(inputId).value = ((points[i].y - interfaceSettings.yIntercept) / interfaceSettings.squareSize) * -1;
 
     }
 
@@ -31,11 +31,11 @@ function getNewCoordinates() {
 
         // Offsets the real value of the coordinate to give impression that centre of grid is position (0,0)
         inputId = 'p' + i + '-input-x';
-        newPoint.x = (parseInt(document.getElementById(inputId).value) * dimensions.squareSize) + dimensions.xIntercept;
+        newPoint.x = (parseInt(document.getElementById(inputId).value) * interfaceSettings.squareSize) + interfaceSettings.xIntercept;
         inputId = 'p' + i + '-input-y';
-        newPoint.y = (parseInt(document.getElementById(inputId).value) * -1 * dimensions.squareSize) + dimensions.yIntercept;
+        newPoint.y = (parseInt(document.getElementById(inputId).value) * -1 * interfaceSettings.squareSize) + interfaceSettings.yIntercept;
 
-        dimensions.currentPosition[i] = newPoint;
+        currentState.currentPosition[i] = newPoint;
 
     }
 
@@ -51,20 +51,20 @@ function getNewCoordinate(input) {
 
     // uses id of input element to find index in points array and if it is x or y that changed
     var index = input.id.slice(1,2);
-    var newValue = parseInt(input.value) * dimensions.squareSize;
+    var newValue = parseInt(input.value) * interfaceSettings.squareSize;
 
     // Offsets the real value of the coordinate to give impression that centre of grid is position (0,0)
     var coord = input.id.slice(9);
     if (coord == 'x') {
-        newValue += dimensions.xIntercept;
+        newValue += interfaceSettings.xIntercept;
     } else {
         newValue *= -1;
-        newValue += dimensions.yIntercept;
+        newValue += interfaceSettings.yIntercept;
     }
 
     // if the value is has changed, update the arrow
-    if (dimensions.currentPosition[index][coord] != newValue) {
-        dimensions.currentPosition[index][coord] = newValue;
+    if (currentState.currentPosition[index][coord] != newValue) {
+        currentState.currentPosition[index][coord] = newValue;
         updateArrow();
     }
 
