@@ -29,7 +29,11 @@ function Point(x, y) {
 window.onload = function(event) {
     calculateAllTheThings();
 
-    get('config/matrix-rotate.json').then(function(response) {
+    var url = window.location.search.replace('?', '');
+    const params = new URLSearchParams(url); // pulls out the value of each parameter
+    var filename = 'config/' + params.get('input') + '.json';
+
+    get(filename).then(function(response) {
         var config = JSON.parse(response);
         loadModules(config);
     }, function(error) {
@@ -46,7 +50,11 @@ window.onresize = function(event) {
 
     calculateAllTheThings();
 
-    get('config/matrix-rotate.json').then(function(response) {
+    var url = window.location.search.replace('?', '');
+    const params = new URLSearchParams(url); // pulls out the value of each parameter
+    var filename = 'config/' + params.get('input') + '.json';
+
+    get(filename).then(function(response) {
         var config = JSON.parse(response);
         loadModules(config);
     }, function(error) {
