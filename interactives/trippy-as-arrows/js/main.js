@@ -12,9 +12,33 @@
 // TODO function to convert between coord spaces?
 
 /* Global variable is a dictionary of variables relating to size and position of grid and arrow */
-var interfaceSettings = {};
-var configSettings = {};
-var currentState = {};
+var interfaceSettings = {
+    CONTAINER:       null,
+    containerWidth:  0,
+    containerHeight: 0,
+    squareSize:      0,
+    xNumSquares:     0,
+    xIntercept:      0,
+    yNumSquares:     0,
+    yIntercept:      0,
+    arrowWidth:      0,
+    arrowHeight:     0,
+    offset:          0
+};
+
+var configSettings = {
+    FILE:            '',
+    POLYGON:         null,
+    TARGET_POLYGON:  null,
+    startPosition:   [],
+    targetPosition:  []
+};
+
+var currentState = {
+    currentPosition: [],
+    scaleMatrix:     [0, 0],
+    translateMatrix: [0, 0]
+};
 
 /* Class for generating new points */
 function Point(x, y) {
@@ -27,7 +51,7 @@ function Point(x, y) {
 
 /* On load get config and build the grid and both arrows */
 window.onload = function(event) {
-    calculateAllTheThings();
+    setUpInterface();
 
     var url = window.location.search.replace('?', '');
     const params = new URLSearchParams(url); // pulls out the value of each parameter
@@ -36,6 +60,9 @@ window.onload = function(event) {
     get(filename).then(function(response) {
         var config = JSON.parse(response);
         loadModules(config);
+        saveConfig(filename, config);
+        drawArrow();
+        drawTargetArrow(config['target']);
     }, function(error) {
       console.error("Failed!", error);
     });
@@ -48,18 +75,9 @@ window.onresize = function(event) {
     // NTS means that the JSON file is being loaded potentially many times
     // TODO should figure out how to do this without having to reload the json file
 
-    calculateAllTheThings();
-
-    var url = window.location.search.replace('?', '');
-    const params = new URLSearchParams(url); // pulls out the value of each parameter
-    var filename = 'config/' + params.get('input') + '.json';
-
-    get(filename).then(function(response) {
-        var config = JSON.parse(response);
-        loadModules(config);
-    }, function(error) {
-      console.error("Failed!", error);
-    });
+    setUpInterface();
+    drawArrow();
+    // TODO needs to redraw arrow
 
 }
 
@@ -101,6 +119,18 @@ function get(url) {
 
 ////////////////////////////////////////////////////////////
 
+function saveConfig(filename, config) {
+
+    var container = document.getElementById('container');
+    var polygon = document.getElementById('dynamic-polygon');
+    var targetPolygon = document.getElementById('target-polygon');
+
+    configSettings.FILE = filename;
+    configSettings.POLYGON = polygon;
+    configSettings.TARGET_POLYGON = targetPolygon;
+    configSettings.targetPosition;
+}
+
 function loadModules(config) {
 
     var scale_a = false;
@@ -121,7 +151,6 @@ function loadModules(config) {
         document.getElementById('coordinates').style.display = 'block';
     }
     document.getElementById('task').innerHTML = config['task'];
-    drawTargetArrow(config['target']);
 
 }
 
@@ -129,12 +158,7 @@ function loadModules(config) {
 
 /* Calculate size of grid and arrow and save to global variable */
 // TODO should probably change the name of this function
-function calculateAllTheThings() {
-
-    var container = document.getElementById('container');
-    //var polygon = document.getElementsByTagName('polygon')[0]; // the svg arrow
-    var polygon = document.getElementById('dynamic-polygon');
-    var target_polygon = document.getElementById('target-polygon');
+function setUpInterface() {
 
     var squareSize = 20;
     var arrowWidth = 3;
@@ -163,35 +187,19 @@ function calculateAllTheThings() {
     var topMargin = (windowHeight - containerHeight) / 2;
     container.style.marginTop = topMargin + 'px';
 
-    interfaceSettings = {
-        CONTAINER:       container,
-        containerWidth:  containerWidth,
-        containerHeight: containerHeight,
-        squareSize:      squareSize,
-        xNumSquares:     xNumSquares,
-        xIntercept:      xIntercept,
-        yNumSquares:     yNumSquares,
-        yIntercept:      yIntercept,
-        arrowWidth:      arrowWidth,
-        arrowHeight:     arrowHeight,
-        offset:          offset,
-    };
-
-    configSettings = {
-        POLYGON:         polygon,
-        TARGET_POLYGON:  target_polygon,
-        startPosition:   [],
-        targetPosition:  [],
-    };
-
-    currentState = {
-        currentPosition: [],
-        scaleMatrix:     [0, 0],
-        translateMatrix: [0, 0]
-    };
+    interfaceSettings.CONTAINER = container;
+    interfaceSettings.containerWidth = containerWidth;
+    interfaceSettings.containerHeight = containerHeight;
+    interfaceSettings.squareSize = squareSize;
+    interfaceSettings.xNumSquares = xNumSquares;
+    interfaceSettings.xIntercept = xIntercept;
+    interfaceSettings.yNumSquares = yNumSquares;
+    interfaceSettings.yIntercept = yIntercept;
+    interfaceSettings.arrowWidth = arrowWidth;
+    interfaceSettings.arrowHeight = arrowHeight;
+    interfaceSettings.offset = offset;
 
     drawBackground();
-    drawArrow();
 
 }
 
