@@ -7,12 +7,15 @@
  *   - button only on mobile?
  */
 
+// NTS should probably s/arrow/polygon for consistency and robustness
 
-// NTS needs to be able to handle sin() cos() functions
+// NTS needs to be able to handle sin() cos() functions? - security issue...
 // TODO function to convert between coord spaces?
 
 /* Global variable is a dictionary of variables relating to size and position of grid and arrow */
 var interfaceSettings = {
+    POLYGON:         null,
+    TARGET_POLYGON:  null,
     CONTAINER:       null,
     containerWidth:  0,
     containerHeight: 0,
@@ -26,21 +29,24 @@ var interfaceSettings = {
     offset:          0
 };
 
+/* Settings retrieved from config file */
 var configSettings = {
     FILE:            '',
-    POLYGON:         null,
-    TARGET_POLYGON:  null,
-    startPosition:   [],
-    targetPosition:  []
+    TARGET_POSITION_STRING: '',
+    START_POSITION:  [],
+    TARGET_POSITION: [],
+    TASK:            '',
+    MODULES:         []
 };
 
+/* Setting related to current state of the arrow */
 var currentState = {
     currentPosition: [],
     scaleMatrix:     [0, 0],
     translateMatrix: [0, 0]
 };
 
-/* Class for generating new points */
+/* Class for point objects */
 function Point(x, y) {
     this.x = x;
     this.y = y;
@@ -51,18 +57,21 @@ function Point(x, y) {
 
 /* On load get config and build the grid and both arrows */
 window.onload = function(event) {
+
     setUpInterface();
 
+    // gets name of config file according to url parameter
     var url = window.location.search.replace('?', '');
     const params = new URLSearchParams(url); // pulls out the value of each parameter
     var filename = 'config/' + params.get('input') + '.json';
 
+    // load the json file and assemble the interface
     get(filename).then(function(response) {
         var config = JSON.parse(response);
-        loadModules(config);
         saveConfig(filename, config);
+        loadModules(config);
         drawArrow();
-        drawTargetArrow(config['target']);
+        drawTargetArrow();
     }, function(error) {
       console.error("Failed!", error);
     });
@@ -70,14 +79,13 @@ window.onload = function(event) {
 }
 
 
-/* Rebuilds dynamic on window resize */
+/* Rebuilds grid and arrows on window resize */
 window.onresize = function(event) {
-    // NTS means that the JSON file is being loaded potentially many times
-    // TODO should figure out how to do this without having to reload the json file
 
+    // recalculates size of grid and redraws arrow and target arrow
     setUpInterface();
     drawArrow();
-    // TODO needs to redraw arrow
+    drawTargetArrow();
 
 }
 
@@ -119,28 +127,23 @@ function get(url) {
 
 ////////////////////////////////////////////////////////////
 
+/* Saves information from config file that is used later */
 function saveConfig(filename, config) {
 
-    var container = document.getElementById('container');
-    var polygon = document.getElementById('dynamic-polygon');
-    var targetPolygon = document.getElementById('target-polygon');
-
     configSettings.FILE = filename;
-    configSettings.POLYGON = polygon;
-    configSettings.TARGET_POLYGON = targetPolygon;
-    configSettings.targetPosition;
+    configSettings.TARGET_POSITION_STRING = config['target'];
+    configSettings.TASK = config['task'];
+    configSettings.MODULES = config['modules'];
 }
 
+/* Figures out which input elements to show */
 function loadModules(config) {
-
-    var scale_a = false;
-    var translate_a = false;
 
     if (config['type'] == 'matrix') {
         // show matrix elements
         var parentDiv = document.getElementById('matrices');
         parentDiv.style.display = 'block';
-        modules = config['modules'];
+        modules = configSettings.MODULES;
         for (var i = 0; i < modules.length; i++) {
             newModule = document.getElementById('matrix-' +  modules[i]);
             newModule.style.display = 'block';
@@ -150,16 +153,20 @@ function loadModules(config) {
         // show coordinate elements
         document.getElementById('coordinates').style.display = 'block';
     }
-    document.getElementById('task').innerHTML = config['task'];
+    document.getElementById('task').innerHTML = configSettings.TASK;
 
 }
 
 ////////////////////////////////////////////////////////////
 
-/* Calculate size of grid and arrow and save to global variable */
-// TODO should probably change the name of this function
+/* Uses the window size to calculate the grid size and position */
 function setUpInterface() {
 
+    var container = document.getElementById('container');
+    var polygon = document.getElementById('dynamic-polygon');
+    var targetPolygon = document.getElementById('target-polygon');
+
+    // arbitrary numbers that seem to work well
     var squareSize = 20;
     var arrowWidth = 3;
     var arrowHeight = 8;
@@ -187,6 +194,8 @@ function setUpInterface() {
     var topMargin = (windowHeight - containerHeight) / 2;
     container.style.marginTop = topMargin + 'px';
 
+    interfaceSettings.POLYGON = polygon;
+    interfaceSettings.TARGET_POLYGON = targetPolygon;
     interfaceSettings.CONTAINER = container;
     interfaceSettings.containerWidth = containerWidth;
     interfaceSettings.containerHeight = containerHeight;
@@ -271,11 +280,11 @@ function drawArrow() {
     p6.x = interfaceSettings.xIntercept + (interfaceSettings.arrowWidth * interfaceSettings.squareSize);
     p6.y = interfaceSettings.yIntercept + (interfaceSettings.arrowWidth * interfaceSettings.squareSize) - interfaceSettings.offset;
 
-    configSettings.startPosition = [p0, p1, p2, p3, p4, p5, p6];
+    configSettings.START_POSITION = [p0, p1, p2, p3, p4, p5, p6];
     currentState.currentPosition = [p0, p1, p2, p3, p4, p5, p6];
 
     updateArrow();
-    updateInputBoxes(configSettings.startPosition);
+    updateInputBoxes(configSettings.START_POSITION);
 
 }
 
@@ -283,22 +292,22 @@ function drawArrow() {
 /* Draws arrow shape
  * Used on load and when "reset" button is clicked
  */
-function drawTargetArrow(points) {
+function drawTargetArrow() {
 
     var point;
     var xPos = 0;
     var yPos = 1;
 
-    points = points.split(' ');
+    points = configSettings.TARGET_POSITION_STRING.split(' ');
 
     for (var i = 0; i < 7; i++) { // 7 points on an arrow, each with x and y value
 
-        point = configSettings.TARGET_POLYGON.points.getItem(i);
+        point = interfaceSettings.TARGET_POLYGON.points.getItem(i);
         point.x = (points[xPos] * interfaceSettings.squareSize) + interfaceSettings.xIntercept;
         // have to multiply by -1 becuase y axis is reversed in the svg coordinate space
         point.y = (points[yPos] * interfaceSettings.squareSize * -1) + interfaceSettings.yIntercept;
 
-        configSettings.targetPosition.push(point);
+        configSettings.TARGET_POSITION.push(point);
 
         xPos += 2;
         yPos += 2;
@@ -316,7 +325,7 @@ function updateArrow() {
 
     for (var i = 0; i < 7; i++) { // 7 points on an arrow
 
-        point = configSettings.POLYGON.points.getItem(i);
+        point = interfaceSettings.POLYGON.points.getItem(i);
         point.x = currentState.currentPosition[i].x;
         point.y = currentState.currentPosition[i].y;
 

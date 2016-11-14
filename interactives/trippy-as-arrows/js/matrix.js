@@ -3,7 +3,7 @@
  */
 function matrixOperations() {
 
-    var productMatrix = configSettings.startPosition;
+    var productMatrix = configSettings.START_POSITION;
     var count = 0;
     var matrixElements = document.getElementById('matrices').children;
 
