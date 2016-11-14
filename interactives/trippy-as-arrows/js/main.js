@@ -235,8 +235,9 @@ function drawBothArrows() {
 
     // create the user's arrow
     var arrowShape = generateArrowShape(configSettings.START_POSITION_STRING);
-    configSettings.START_POSITION = arrowShape;
-    currentState.currentPosition = arrowShape;
+    // takes a copy of arrowShape list because otherwise pointers get in the way with updating the arrow
+    configSettings.START_POSITION = arrowShape.slice(0);
+    currentState.currentPosition = arrowShape.slice(0);
     updateArrow();
     updateInputBoxes(configSettings.START_POSITION);
 

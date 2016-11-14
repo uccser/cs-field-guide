@@ -3,8 +3,8 @@
  */
 function matrixOperations() {
 
+    console.log('here');
     var productMatrix = configSettings.START_POSITION;
-    var count = 0;
     var matrixElements = document.getElementById('matrices').children;
 
     for (var i = 0; i < matrixElements.length; i++) {
@@ -16,7 +16,6 @@ function matrixOperations() {
             } else {
                 productMatrix = translate(element.id.slice(7,8), productMatrix);
             }
-            count += 1;
         }
 
     }
