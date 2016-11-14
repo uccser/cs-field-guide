@@ -32,6 +32,7 @@ var interfaceSettings = {
 /* Settings retrieved from config file */
 var configSettings = {
     FILE:            '',
+    START_POSITION_STRING: '',
     TARGET_POSITION_STRING: '',
     START_POSITION:  [],
     TARGET_POSITION: [],
@@ -70,8 +71,7 @@ window.onload = function(event) {
         var config = JSON.parse(response);
         saveConfig(filename, config);
         loadModules(config);
-        drawArrow();
-        drawTargetArrow();
+        drawBothArrows();
     }, function(error) {
       console.error("Failed!", error);
     });
@@ -81,12 +81,9 @@ window.onload = function(event) {
 
 /* Rebuilds grid and arrows on window resize */
 window.onresize = function(event) {
-
     // recalculates size of grid and redraws arrow and target arrow
     setUpInterface();
-    drawArrow();
-    drawTargetArrow();
-
+    drawBothArrows();
 }
 
 ////////////////////////////////////////////////////////////
@@ -134,6 +131,11 @@ function saveConfig(filename, config) {
     configSettings.TARGET_POSITION_STRING = config['target'];
     configSettings.TASK = config['task'];
     configSettings.MODULES = config['modules'];
+    if (config['start'] == undefined) {
+        configSettings.START_POSITION_STRING = '0 4 -3 1 -1 1 -1 -4 1 -4 1 1 3 1';
+    } else {
+        configSettings.START_POSITION_STRING = config['start'];
+    }
 }
 
 /* Figures out which input elements to show */
@@ -228,89 +230,57 @@ function drawBackground() {
 
 }
 
+/* Creates and draws both the user's and target arrow */
+function drawBothArrows() {
 
-/* Draws arrow shape
- * Used on load and when "reset" button is clicked
- */
-function drawArrow() {
-    /*
-     * Points of arrow referenced according to diagram below
-     *         p0
-     *         /\
-     *        /  \
-     *       /    \
-     *      /      \
-     *  p1 /__p2  __\p6
-     *        |  |p5
-     *        |  |
-     *        |  |
-     *        |__|
-     *       p3  p4
-     */
-
-    /* For each of the 7 points on the arrow:
-     *     - Create a new Point object
-     *     - Assign (x,y) coordinate
-     */
-    var p0 = new Point();
-    p0.x = interfaceSettings.xIntercept;
-    p0.y = interfaceSettings.yIntercept - interfaceSettings.offset;
-
-    var p1 = new Point();
-    p1.x = interfaceSettings.xIntercept - (interfaceSettings.arrowWidth * interfaceSettings.squareSize);
-    p1.y = interfaceSettings.yIntercept + (interfaceSettings.arrowWidth * interfaceSettings.squareSize) - interfaceSettings.offset;
-
-    var p2 = new Point();
-    p2.x = interfaceSettings.xIntercept - interfaceSettings.squareSize;
-    p2.y = interfaceSettings.yIntercept + (interfaceSettings.arrowWidth * interfaceSettings.squareSize) - interfaceSettings.offset;
-
-    var p3 = new Point();
-    p3.x = interfaceSettings.xIntercept - interfaceSettings.squareSize;
-    p3.y = interfaceSettings.yIntercept + (interfaceSettings.arrowHeight * interfaceSettings.squareSize) - interfaceSettings.offset;
-
-    var p4 = new Point();
-    p4.x = interfaceSettings.xIntercept + interfaceSettings.squareSize;
-    p4.y = interfaceSettings.yIntercept + (interfaceSettings.arrowHeight * interfaceSettings.squareSize) - interfaceSettings.offset;
-
-    var p5 = new Point();
-    p5.x = interfaceSettings.xIntercept + interfaceSettings.squareSize;
-    p5.y = interfaceSettings.yIntercept + (interfaceSettings.arrowWidth * interfaceSettings.squareSize) - interfaceSettings.offset;
-
-    var p6 = new Point();
-    p6.x = interfaceSettings.xIntercept + (interfaceSettings.arrowWidth * interfaceSettings.squareSize);
-    p6.y = interfaceSettings.yIntercept + (interfaceSettings.arrowWidth * interfaceSettings.squareSize) - interfaceSettings.offset;
-
-    configSettings.START_POSITION = [p0, p1, p2, p3, p4, p5, p6];
-    currentState.currentPosition = [p0, p1, p2, p3, p4, p5, p6];
-
+    // create the user's arrow
+    var arrowShape = generateArrowShape(configSettings.START_POSITION_STRING);
+    configSettings.START_POSITION = arrowShape;
+    currentState.currentPosition = arrowShape;
     updateArrow();
     updateInputBoxes(configSettings.START_POSITION);
 
+    // create the target arrow
+    configSettings.TARGET_POSITION = generateArrowShape(configSettings.TARGET_POSITION_STRING);
+    drawTargetArrow();
+
 }
 
+/* Translates string of coordinates into list of points with x and y attributes that fit in the svg coordinate space */
+function generateArrowShape(pointString) {
 
-/* Draws arrow shape
- * Used on load and when "reset" button is clicked
- */
-function drawTargetArrow() {
-
-    var point;
     var xPos = 0;
     var yPos = 1;
-
-    points = configSettings.TARGET_POSITION_STRING.split(' ');
+    var arrow = [];
+    var points = pointString.split(' ');
 
     for (var i = 0; i < 7; i++) { // 7 points on an arrow, each with x and y value
 
-        point = interfaceSettings.TARGET_POLYGON.points.getItem(i);
+        //point = interfaceSettings.POLYGON.points.getItem(i);
+        var point = new Point();
         point.x = (points[xPos] * interfaceSettings.squareSize) + interfaceSettings.xIntercept;
         // have to multiply by -1 becuase y axis is reversed in the svg coordinate space
         point.y = (points[yPos] * interfaceSettings.squareSize * -1) + interfaceSettings.yIntercept;
 
-        configSettings.TARGET_POSITION.push(point);
+        arrow.push(point);
 
         xPos += 2;
         yPos += 2;
+    }
+    return arrow;
+
+}
+
+/* Draws arrow shape */
+function drawTargetArrow() {
+
+    var point;
+
+    for (var i = 0; i < 7; i++) { // 7 points on an arrow, each with x and y value
+
+        point = interfaceSettings.TARGET_POLYGON.points.getItem(i);
+        point.x = configSettings.TARGET_POSITION[i].x;
+        point.y = configSettings.TARGET_POSITION[i].y;
 
     }
 
