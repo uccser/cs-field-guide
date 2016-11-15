@@ -17,6 +17,11 @@ function updateInputBoxes(points) {
 
 }
 
+function coordTab() {
+    if (currentState.instantUpdate == true) {
+        getNewCoordinates();
+    }
+}
 
 /* Gets new coordinates from *all* input boxes
  * Triggered when use clicks "update" button

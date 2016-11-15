@@ -52,16 +52,15 @@ div#container {
 }
 
 
-div #coordinates, #matrices{
+div#coordinates, div#matrices{
   display: none;
 }
 
-
-div #matrix-a-scale, #matrix-b-scale {
+div#matrix-first-scale, div#matrix-second-scale {
   display: none;
 }
 
-div #matrix-a-translate, #matrix-b-translate {
+div#matrix-first-translate, div#matrix-second-translate {
   display: none;
 }
 
@@ -114,17 +113,18 @@ div#instructions button {
 }
 
 
-#matrices input {
+div#matrices input {
   border: 1px solid #FF7043;
 }
 
-input#matrix-a-scale-row-0-col-0, input#matrix-a-scale-row-0-col-1, input#matrix-a-scale-row-1-col-0, input#matrix-a-scale-row-1-col-1, input#matrix-b-scale-row-0-col-0, input#matrix-b-scale-row-0-col-1, input#matrix-b-scale-row-1-col-0, input#matrix-b-scale-row-1-col-1 {
+input#matrix-first-scale-row-0-col-0, input#matrix-first-scale-row-0-col-1, input#matrix-first-scale-row-1-col-0, input#matrix-first-scale-row-1-col-1, input#matrix-second-scale-row-0-col-0, input#matrix-second-scale-row-0-col-1, input#matrix-second-scale-row-1-col-0, input#matrix-second-scale-row-1-col-1 {
   display: inline-block;
   padding: 5px;
   width: 40%;
 }
 
-input#matrix-a-scale-row-0, input#matrix-a-scale-row-1, input#matrix-b-scale-row-0, input#matrix-b-scale-row-1 {
+input#matrix-first-scale-row-0, input#matrix-first-scale-row-1, input#matrix-second-scale-row-0, input#matrix-second-scale-row-1 {
   display: block;
   width: 100%;
 }
+

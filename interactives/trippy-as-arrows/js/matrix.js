@@ -1,9 +1,14 @@
 
+function matrixTab() {
+    if (currentState.instantUpdate == true) {
+        matrixOperations();
+    }
+}
+
 /* Sets up order of matrix operations and moves the arrow to new position
  */
 function matrixOperations() {
 
-    console.log('here');
     var productMatrix = configSettings.START_POSITION;
     var matrixElements = document.getElementById('matrices').children;
 
@@ -12,9 +17,9 @@ function matrixOperations() {
 
         if (element.style.display == 'block') {
             if (element.id.indexOf('scale') != -1) {
-                productMatrix = scale(element.id.slice(7,8), productMatrix); // nasty hard coding
+                productMatrix = scale(element.id.split('-')[1], productMatrix); // nasty hard coding
             } else {
-                productMatrix = translate(element.id.slice(7,8), productMatrix);
+                productMatrix = translate(element.id.split('-')[1], productMatrix);
             }
         }
 
@@ -79,23 +84,23 @@ function translate(id, productMatrix) {
 function resetMatrices() {
 
     // place the arrow back in the start position
-    drawArrow();
+    drawBothArrows();
 
     // reset to default values of matrices
-    document.getElementById('matrix-a-scale-row-0-col-0').value = 1;
-    document.getElementById('matrix-a-scale-row-0-col-1').value = 0;
-    document.getElementById('matrix-a-scale-row-1-col-0').value = 0;
-    document.getElementById('matrix-a-scale-row-1-col-1').value = 1;
+    document.getElementById('matrix-first-scale-row-0-col-0').value = 1;
+    document.getElementById('matrix-first-scale-row-0-col-1').value = 0;
+    document.getElementById('matrix-first-scale-row-1-col-0').value = 0;
+    document.getElementById('matrix-first-scale-row-1-col-1').value = 1;
 
-    document.getElementById('matrix-a-translate-row-0-col-0').value = 0;
-    document.getElementById('matrix-a-translate-row-1-col-0').value = 0;
+    document.getElementById('matrix-first-translate-row-0-col-0').value = 0;
+    document.getElementById('matrix-first-translate-row-1-col-0').value = 0;
 
-    document.getElementById('matrix-b-scale-row-0-col-0').value = 1;
-    document.getElementById('matrix-b-scale-row-0-col-1').value = 0;
-    document.getElementById('matrix-b-scale-row-1-col-0').value = 0;
-    document.getElementById('matrix-b-scale-row-1-col-1').value = 1;
+    document.getElementById('matrix-second-scale-row-0-col-0').value = 1;
+    document.getElementById('matrix-second-scale-row-0-col-1').value = 0;
+    document.getElementById('matrix-second-scale-row-1-col-0').value = 0;
+    document.getElementById('matrix-second-scale-row-1-col-1').value = 1;
 
-    document.getElementById('matrix-b-translate-row-0-col-0').value = 0;
-    document.getElementById('matrix-b-translate-row-1-col-0').value = 0;
+    document.getElementById('matrix-second-translate-row-0-col-0').value = 0;
+    document.getElementById('matrix-second-translate-row-1-col-0').value = 0;
 
 }

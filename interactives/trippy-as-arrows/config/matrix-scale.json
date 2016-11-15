@@ -2,5 +2,5 @@
     "type": "matrix",
     "task": "< scale, but with matrices... >",
     "target": "0 8 -6 2 -2 2 -2 -8 2 -8 2 2 6 2",
-    "modules": ["a-scale"]
+    "modules": ["first-scale"]
 }

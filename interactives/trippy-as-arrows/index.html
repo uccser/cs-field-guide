@@ -28,18 +28,20 @@
         <p id="task">
         </p>
         <p id="input-instructions">
-          Type coordinates in the boxes below to move points on the arrow.
+           insert useful instructions here...
         </p>
+
+        <label id="instant-update-label"><input type="checkbox" id="instant-update-check" checked onclick="instantUpdateToggle(this)">Instant Update</label>
 
         <div id="coordinates">
           <div id="heading"><p>x</p><p>y</p></div>
-          <div class="input-row" onmouseover="highlight('c0')" onmouseout="removeHighlight('c0')"><input id="p0-input-x" onblur="getNewCoordinate(this)"/><input id="p0-input-y" onblur="getNewCoordinate(this)"></div>
-          <div class="input-row" onmouseover="highlight('c1')" onmouseout="removeHighlight('c1')"><input id="p1-input-x" onblur="getNewCoordinate(this)"/><input id="p1-input-y" onblur="getNewCoordinate(this)"></div>
-          <div class="input-row" onmouseover="highlight('c2')" onmouseout="removeHighlight('c2')"><input id="p2-input-x" onblur="getNewCoordinate(this)"/><input id="p2-input-y" onblur="getNewCoordinate(this)"></div>
-          <div class="input-row" onmouseover="highlight('c3')" onmouseout="removeHighlight('c3')"><input id="p3-input-x" onblur="getNewCoordinate(this)"/><input id="p3-input-y" onblur="getNewCoordinate(this)"></div>
-          <div class="input-row" onmouseover="highlight('c4')" onmouseout="removeHighlight('c4')"><input id="p4-input-x" onblur="getNewCoordinate(this)"/><input id="p4-input-y" onblur="getNewCoordinate(this)"></div>
-          <div class="input-row" onmouseover="highlight('c5')" onmouseout="removeHighlight('c5')"><input id="p5-input-x" onblur="getNewCoordinate(this)"/><input id="p5-input-y" onblur="getNewCoordinate(this)"></div>
-          <div class="input-row" onmouseover="highlight('c6')" onmouseout="removeHighlight('c6')"><input id="p6-input-x" onblur="getNewCoordinate(this)"/><input id="p6-input-y" onblur="getNewCoordinate(this)"></div>
+          <div class="input-row" onmouseover="highlight('c0')" onmouseout="removeHighlight('c0')"><input id="p0-input-x" onblur="coordTab(this)"/><input id="p0-input-y" onblur="coordTab(this)"></div>
+          <div class="input-row" onmouseover="highlight('c1')" onmouseout="removeHighlight('c1')"><input id="p1-input-x" onblur="coordTab(this)"/><input id="p1-input-y" onblur="coordTab(this)"></div>
+          <div class="input-row" onmouseover="highlight('c2')" onmouseout="removeHighlight('c2')"><input id="p2-input-x" onblur="coordTab(this)"/><input id="p2-input-y" onblur="coordTab(this)"></div>
+          <div class="input-row" onmouseover="highlight('c3')" onmouseout="removeHighlight('c3')"><input id="p3-input-x" onblur="coordTab(this)"/><input id="p3-input-y" onblur="coordTab(this)"></div>
+          <div class="input-row" onmouseover="highlight('c4')" onmouseout="removeHighlight('c4')"><input id="p4-input-x" onblur="coordTab(this)"/><input id="p4-input-y" onblur="coordTab(this)"></div>
+          <div class="input-row" onmouseover="highlight('c5')" onmouseout="removeHighlight('c5')"><input id="p5-input-x" onblur="coordTab(this)"/><input id="p5-input-y" onblur="coordTab(this)"></div>
+          <div class="input-row" onmouseover="highlight('c6')" onmouseout="removeHighlight('c6')"><input id="p6-input-x" onblur="coordTab(this)"/><input id="p6-input-y" onblur="coordTab(this)"></div>
 
           <button onclick="getNewCoordinates()">Update</button>
           <button onclick="drawBothArrows()">Reset</button>
@@ -48,90 +50,84 @@
 
         <div id="matrices">
 
-          <div id="matrix-a-scale">
+          <div id="matrix-first-scale">
 
-            <p id="matrix-a-instructions">
-                matrix-a scale
+            <p id="matrix-first-instructions">
+                matrix-first scale
             </p>
 
             <!-- default value is identity matrix -->
-            <div id="matrix-a-row-0">
-              <input id="matrix-a-scale-row-0-col-0" value="1" onblur="matrixOperations()" />
-              <input id="matrix-a-scale-row-0-col-1" value="0" onblur="matrixOperations()" />
+            <div id="matrix-first-row-0">
+              <input id="matrix-first-scale-row-0-col-0" value="1" onblur="matrixTab()" />
+              <input id="matrix-first-scale-row-0-col-1" value="0" onblur="matrixTab()" />
             </div>
 
-            <div id="matrix-a-row-1">
-              <input id="matrix-a-scale-row-1-col-0" value="0" onblur="matrixOperations()" />
-              <input id="matrix-a-scale-row-1-col-1" value="1" onblur="matrixOperations()" />
+            <div id="matrix-first-row-1">
+              <input id="matrix-first-scale-row-1-col-0" value="0" onblur="matrixTab()" />
+              <input id="matrix-first-scale-row-1-col-1" value="1" onblur="matrixTab()" />
             </div>
 
-            <button onclick="matrixOperations()">Scale</button>
 
           </div>
 
 
-          <div id="matrix-a-translate">
+          <div id="matrix-first-translate">
 
-            <p id="matrix-a-instructions">
-                matrix-a translate
+            <p id="matrix-first-instructions">
+                matrix-first translate
             </p>
 
             <!-- default value is identity matrix -->
-            <div id="matrix-a-row-0">
-              <input id="matrix-a-translate-row-0-col-0" value="0" onblur="matrixOperations()" />
+            <div id="matrix-first-row-0">
+              <input id="matrix-first-translate-row-0-col-0" value="0" onblur="matrixTab()" />
             </div>
 
-            <div id="matrix-a-row-1">
-              <input id="matrix-a-translate-row-1-col-0" value="0" onblur="matrixOperations()" />
+            <div id="matrix-first-row-1">
+              <input id="matrix-first-translate-row-1-col-0" value="0" onblur="matrixTab()" />
             </div>
-
-            <button onclick="matrixOperations()">Translate</button>
 
           </div>
 
 
-          <div id="matrix-b-scale">
+          <div id="matrix-second-scale">
 
-            <p id="matrix-b-instructions">
-                matrix-b scale
+            <p id="matrix-second-instructions">
+                matrix-second scale
             </p>
 
             <!-- default value is identity matrix -->
-            <div id="matrix-b-row-0">
-              <input id="matrix-b-scale-row-0-col-0" value="1" onblur="matrixOperations()" />
-              <input id="matrix-b-scale-row-0-col-1" value="0" onblur="matrixOperations()" />
+            <div id="matrix-second-row-0">
+              <input id="matrix-second-scale-row-0-col-0" value="1" onblur="matrixTab()" />
+              <input id="matrix-second-scale-row-0-col-1" value="0" onblur="matrixTab()" />
             </div>
 
-            <div id="matrix-b-row-1">
-              <input id="matrix-b-scale-row-1-col-0" value="0" onblur="matrixOperations()" />
-              <input id="matrix-b-scale-row-1-col-1" value="1" onblur="matrixOperations()" />
+            <div id="matrix-second-row-1">
+              <input id="matrix-second-scale-row-1-col-0" value="0" onblur="matrixTab()" />
+              <input id="matrix-second-scale-row-1-col-1" value="1" onblur="matrixTab()" />
             </div>
-
-            <button onclick="matrixOperations()">Scale</button>
 
           </div>
 
 
-          <div id="matrix-b-translate">
+          <div id="matrix-second-translate">
 
-            <p id="matrix-b-instructions">
-                matrix-b translate
+            <p id="matrix-second-instructions">
+                matrix-second translate
             </p>
 
             <!-- default value is identity matrix -->
-            <div id="matrix-b-row-0">
-              <input id="matrix-b-translate-row-0-col-0" value="0" onblur="matrixOperations()" />
+            <div id="matrix-second-row-0">
+              <input id="matrix-second-translate-row-0-col-0" value="0" onblur="matrixTab()" />
             </div>
 
-            <div id="matrix-b-row-1">
-              <input id="matrix-b-translate-row-1-col-0" value="0" onblur="matrixOperations()" />
+            <div id="matrix-second-row-1">
+              <input id="matrix-second-translate-row-1-col-0" value="0" onblur="matrixTab()" />
             </div>
-
-            <button onclick="matrixOperations()">Translate</button>
 
           </div>
 
-          <button onclick="resetMatrices()">Reset</button>
+          <button onclick="matrixOperations()">Update</button>
+          <button id="reset-button" onclick="resetMatrices()">Reset</button>
         </div>
 
 

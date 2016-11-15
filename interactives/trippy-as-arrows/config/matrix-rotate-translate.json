@@ -1,6 +1,7 @@
 {
     "type": "matrix",
     "task": "< scale and rotate with matrices >",
+    "start": "5 12 2 9 4 9 4 4 6 4 6 9 8 9",
     "target": "5 12 5 6 7 8 12 3 14 5 9 10 11 12",
-    "modules": ["a-translate", "a-scale", "b-translate"]
+    "modules": ["first-translate", "first-scale", "second-translate"]
 }

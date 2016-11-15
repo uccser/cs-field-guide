@@ -10,7 +10,6 @@
 // NTS should probably s/arrow/polygon for consistency and robustness
 
 // NTS needs to be able to handle sin() cos() functions? - security issue...
-// TODO function to convert between coord spaces?
 
 /* Global variable is a dictionary of variables relating to size and position of grid and arrow */
 var interfaceSettings = {
@@ -32,7 +31,7 @@ var interfaceSettings = {
 /* Settings retrieved from config file */
 var configSettings = {
     FILE:            '',
-    START_POSITION_STRING: '',
+    START_POSITION_STRING: '0 4 -3 1 -1 1 -1 -4 1 -4 1 1 3 1',
     TARGET_POSITION_STRING: '',
     START_POSITION:  [],
     TARGET_POSITION: [],
@@ -42,6 +41,7 @@ var configSettings = {
 
 /* Setting related to current state of the arrow */
 var currentState = {
+    instantUpdate:   true,
     currentPosition: [],
     scaleMatrix:     [0, 0],
     translateMatrix: [0, 0]
@@ -131,9 +131,7 @@ function saveConfig(filename, config) {
     configSettings.TARGET_POSITION_STRING = config['target'];
     configSettings.TASK = config['task'];
     configSettings.MODULES = config['modules'];
-    if (config['start'] == undefined) {
-        configSettings.START_POSITION_STRING = '0 4 -3 1 -1 1 -1 -4 1 -4 1 1 3 1';
-    } else {
+    if (config['start'] != undefined) {
         configSettings.START_POSITION_STRING = config['start'];
     }
 }
@@ -306,6 +304,15 @@ function updateArrow() {
 
     }
 
+}
+
+
+function instantUpdateToggle(checkbox) {
+    if (checkbox.checked == true) {
+        currentState.instantUpdate = true;
+    } else {
+        currentState.instantUpdate = false;
+    }
 }
 
 

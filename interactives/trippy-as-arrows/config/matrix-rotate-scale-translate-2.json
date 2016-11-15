@@ -2,5 +2,5 @@
     "type": "matrix",
     "task": "< scale and rotate with matrices >",
     "target": "-9.6 -1.4 -9.6 -9.8 -6.8 -7 -0.2 -14 3 -11.2 -4 -4.2 -1.2 -1.4",
-    "modules": ["a-scale", "b-scale", "a-translate"]
+    "modules": ["first-scale", "second-scale", "first-translate"]
 }
