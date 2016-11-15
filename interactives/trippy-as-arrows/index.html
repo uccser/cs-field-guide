@@ -32,13 +32,13 @@
 
         <div id="coordinates">
           <div id="heading"><p>x</p><p>y</p></div>
-          <div class="input-row" onmouseover="highlight('c0')" onmouseout="removeHighlight('c0')"><input id="p0-input-x" onblur="coordTab(this)"/><input id="p0-input-y" onblur="coordTab(this)"></div>
-          <div class="input-row" onmouseover="highlight('c1')" onmouseout="removeHighlight('c1')"><input id="p1-input-x" onblur="coordTab(this)"/><input id="p1-input-y" onblur="coordTab(this)"></div>
-          <div class="input-row" onmouseover="highlight('c2')" onmouseout="removeHighlight('c2')"><input id="p2-input-x" onblur="coordTab(this)"/><input id="p2-input-y" onblur="coordTab(this)"></div>
-          <div class="input-row" onmouseover="highlight('c3')" onmouseout="removeHighlight('c3')"><input id="p3-input-x" onblur="coordTab(this)"/><input id="p3-input-y" onblur="coordTab(this)"></div>
-          <div class="input-row" onmouseover="highlight('c4')" onmouseout="removeHighlight('c4')"><input id="p4-input-x" onblur="coordTab(this)"/><input id="p4-input-y" onblur="coordTab(this)"></div>
-          <div class="input-row" onmouseover="highlight('c5')" onmouseout="removeHighlight('c5')"><input id="p5-input-x" onblur="coordTab(this)"/><input id="p5-input-y" onblur="coordTab(this)"></div>
-          <div class="input-row" onmouseover="highlight('c6')" onmouseout="removeHighlight('c6')"><input id="p6-input-x" onblur="coordTab(this)"/><input id="p6-input-y" onblur="coordTab(this)"></div>
+          <div onmouseover="highlight('c0')" onmouseout="removeHighlight('c0')"><input id="p0-input-x" onblur="coordTab(this)"/><input id="p0-input-y" onblur="coordTab(this)"></div>
+          <div onmouseover="highlight('c1')" onmouseout="removeHighlight('c1')"><input id="p1-input-x" onblur="coordTab(this)"/><input id="p1-input-y" onblur="coordTab(this)"></div>
+          <div onmouseover="highlight('c2')" onmouseout="removeHighlight('c2')"><input id="p2-input-x" onblur="coordTab(this)"/><input id="p2-input-y" onblur="coordTab(this)"></div>
+          <div onmouseover="highlight('c3')" onmouseout="removeHighlight('c3')"><input id="p3-input-x" onblur="coordTab(this)"/><input id="p3-input-y" onblur="coordTab(this)"></div>
+          <div onmouseover="highlight('c4')" onmouseout="removeHighlight('c4')"><input id="p4-input-x" onblur="coordTab(this)"/><input id="p4-input-y" onblur="coordTab(this)"></div>
+          <div onmouseover="highlight('c5')" onmouseout="removeHighlight('c5')"><input id="p5-input-x" onblur="coordTab(this)"/><input id="p5-input-y" onblur="coordTab(this)"></div>
+          <div onmouseover="highlight('c6')" onmouseout="removeHighlight('c6')"><input id="p6-input-x" onblur="coordTab(this)"/><input id="p6-input-y" onblur="coordTab(this)"></div>
 
         </div>
 
@@ -122,10 +122,6 @@
           </div>
         </div>
 
-      </div>
-
-      <div id="status-buttons">
-        <label id="instant-update-label"><input type="checkbox" id="instant-update-check" checked onclick="instantUpdateToggle(this)">Instant Update</label>
 
         <div id="coord-buttons">
           <button onclick="getNewCoordinates()">Update</button>
@@ -136,7 +132,8 @@
           <button onclick="matrixOperations()">Update</button>
           <button onclick="resetMatrices()">Reset</button>
         </div>
-      </div>
+        <label id="instant-update-label"><input type="checkbox" id="instant-update-check" checked onclick="instantUpdateToggle(this)">Instant Update</label>
+
 
 
     </div>

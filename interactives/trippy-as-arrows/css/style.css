@@ -73,8 +73,8 @@ div#matrix-first-translate, div#matrix-second-translate {
   display: none;
 }
 
-div#instructions, div#modules, div#status-buttons {
-  width: 22%;
+div#instructions, div#modules {
+  width: 250px;
   margin: 1%;
   text-align: center;
   background-color: rgba(255, 255, 255, 0.51);
@@ -82,13 +82,16 @@ div#instructions, div#modules, div#status-buttons {
   border-radius: 5px;
 }
 
+div#modules {
+  padding-bottom: 10px;
+}
 
 div#modules p#input-instructions, p#matrix-instructions  {
     font-size: 14px;
 }
 
 
-div#heading p, .input-row input{
+div#heading p, div#coordinates input{
   display: inline-block;
   width: 10%;
   margin: 1px;
@@ -102,18 +105,14 @@ div#heading p {
 }
 
 
-div#status-buttons {
-  padding: 5px 0 5px 0;
-}
-
-div#status-buttons button {
+div#modules button {
   margin: 3px;
   padding: 5px;
   background-color: #FF7043;
   color: #FFF;
   border: 1px solid #FF7043;
   border-radius: 1px;
-  width: 30%;
+  width: 60px;
   height: 30%;
 }
 
