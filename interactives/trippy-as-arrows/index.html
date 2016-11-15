@@ -24,12 +24,11 @@
       </svg>
 
       <div id="instructions">
+        <h1 id="title"></h1>
+        <p id="task"></p>
+      </div>
 
-        <p id="task">
-        </p>
-        <p id="input-instructions">
-           insert useful instructions here...
-        </p>
+      <div id="modules">
 
         <div id="coordinates">
           <div id="heading"><p>x</p><p>y</p></div>
@@ -48,17 +47,17 @@
 
           <div id="matrix-first-scale">
 
-            <p id="matrix-first-instructions">
-                matrix-first scale
-            </p>
+            <h2>
+              Multiplication Matrix
+            </h2>
 
             <!-- default value is identity matrix -->
-            <div id="matrix-first-row-0">
+            <div class="matrix-row">
               <input id="matrix-first-scale-row-0-col-0" value="1" onblur="matrixTab()" />
               <input id="matrix-first-scale-row-0-col-1" value="0" onblur="matrixTab()" />
             </div>
 
-            <div id="matrix-first-row-1">
+            <div class="matrix-row">
               <input id="matrix-first-scale-row-1-col-0" value="0" onblur="matrixTab()" />
               <input id="matrix-first-scale-row-1-col-1" value="1" onblur="matrixTab()" />
             </div>
@@ -69,16 +68,16 @@
 
           <div id="matrix-first-translate">
 
-            <p id="matrix-first-instructions">
-                matrix-first translate
-            </p>
+            <h2>
+              Translation Matrix
+            </h2>
 
             <!-- default value is identity matrix -->
-            <div id="matrix-first-row-0">
+            <div class="matrix-row">
               <input id="matrix-first-translate-row-0-col-0" value="0" onblur="matrixTab()" />
             </div>
 
-            <div id="matrix-first-row-1">
+            <div class="matrix-row">
               <input id="matrix-first-translate-row-1-col-0" value="0" onblur="matrixTab()" />
             </div>
 
@@ -87,17 +86,17 @@
 
           <div id="matrix-second-scale">
 
-            <p id="matrix-second-instructions">
-                matrix-second scale
-            </p>
+            <h2>
+                Multiplication Matrix
+            </h2>
 
             <!-- default value is identity matrix -->
-            <div id="matrix-second-row-0">
+            <div class="matrix-row">
               <input id="matrix-second-scale-row-0-col-0" value="1" onblur="matrixTab()" />
               <input id="matrix-second-scale-row-0-col-1" value="0" onblur="matrixTab()" />
             </div>
 
-            <div id="matrix-second-row-1">
+            <div class="matrix-row">
               <input id="matrix-second-scale-row-1-col-0" value="0" onblur="matrixTab()" />
               <input id="matrix-second-scale-row-1-col-1" value="1" onblur="matrixTab()" />
             </div>
@@ -107,38 +106,38 @@
 
           <div id="matrix-second-translate">
 
-            <p id="matrix-second-instructions">
-                matrix-second translate
-            </p>
+            <h2>
+              Translation Matrix
+            </h2>
 
             <!-- default value is identity matrix -->
-            <div id="matrix-second-row-0">
+            <div class="matrix-row">
               <input id="matrix-second-translate-row-0-col-0" value="0" onblur="matrixTab()" />
             </div>
 
-            <div id="matrix-second-row-1">
+            <div class="matrix-row">
               <input id="matrix-second-translate-row-1-col-0" value="0" onblur="matrixTab()" />
             </div>
 
           </div>
-
-        </div>
-
-        <div id="status-buttons">
-          <label id="instant-update-label"><input type="checkbox" id="instant-update-check" checked onclick="instantUpdateToggle(this)">Instant Update</label>
-
-          <div id="coord-buttons">
-            <button onclick="getNewCoordinates()">Update</button>
-            <button onclick="drawBothArrows()">Reset</button>
-          </div>
-
-          <div id="matrix-buttons">
-            <button onclick="matrixOperations()">Update</button>
-            <button onclick="resetMatrices()">Reset</button>
-          </div>
         </div>
 
       </div>
+
+      <div id="status-buttons">
+        <label id="instant-update-label"><input type="checkbox" id="instant-update-check" checked onclick="instantUpdateToggle(this)">Instant Update</label>
+
+        <div id="coord-buttons">
+          <button onclick="getNewCoordinates()">Update</button>
+          <button onclick="drawBothArrows()">Reset</button>
+        </div>
+
+        <div id="matrix-buttons">
+          <button onclick="matrixOperations()">Update</button>
+          <button onclick="resetMatrices()">Reset</button>
+        </div>
+      </div>
+
 
     </div>
 

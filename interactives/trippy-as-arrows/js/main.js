@@ -35,6 +35,7 @@ var configSettings = {
     TARGET_POSITION_STRING: '',
     START_POSITION:  [],
     TARGET_POSITION: [],
+    TITLE:           '',
     TASK:            '',
     MODULES:         []
 };
@@ -129,6 +130,7 @@ function saveConfig(filename, config) {
 
     configSettings.FILE = filename;
     configSettings.TARGET_POSITION_STRING = config['target'];
+    configSettings.TITLE = config['title'];
     configSettings.TASK = config['task'];
     configSettings.MODULES = config['modules'];
     if (config['start'] != undefined) {
@@ -155,6 +157,7 @@ function loadModules(config) {
         document.getElementById('coordinates').style.display = 'block';
         document.getElementById('coord-buttons').style.display = 'block';
     }
+    document.getElementById('title').innerHTML = configSettings.TITLE;
     document.getElementById('task').innerHTML = configSettings.TASK;
 
 }
