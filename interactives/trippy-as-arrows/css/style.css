@@ -128,3 +128,6 @@ input#matrix-first-scale-row-0, input#matrix-first-scale-row-1, input#matrix-sec
   width: 100%;
 }
 
+div#coord-buttons, div#matrix-buttons {
+  display: none;
+}

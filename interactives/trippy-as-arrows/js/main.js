@@ -149,9 +149,11 @@ function loadModules(config) {
             newModule.style.display = 'block';
             parentDiv.appendChild(newModule);
         }
+        document.getElementById('matrix-buttons').style.display = 'block';
     } else if (config['type'] == 'coordinates') {
         // show coordinate elements
         document.getElementById('coordinates').style.display = 'block';
+        document.getElementById('coord-buttons').style.display = 'block';
     }
     document.getElementById('task').innerHTML = configSettings.TASK;
 

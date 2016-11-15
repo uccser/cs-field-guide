@@ -49,35 +49,6 @@ function getNewCoordinates() {
 }
 
 
-/* Gets new coordinate from single input box
- * Triggered when the user deslects a coordinate input box
- */
-function getNewCoordinate(input) {
-
-    // uses id of input element to find index in points array and if it is x or y that changed
-    var index = input.id.slice(1,2);
-    var newValue = parseInt(input.value) * interfaceSettings.squareSize;
-
-    // Offsets the real value of the coordinate to give impression that centre of grid is position (0,0)
-    var coord = input.id.slice(9);
-    if (coord == 'x') {
-        newValue += interfaceSettings.xIntercept;
-    } else {
-        newValue *= -1;
-        newValue += interfaceSettings.yIntercept;
-    }
-
-    // if the value is has changed, update the arrow
-    if (currentState.currentPosition[index][coord] != newValue) {
-        currentState.currentPosition[index][coord] = newValue;
-        updateArrow();
-    }
-
-
-}
-
-
-
 /* Highlights a point on the arrow
  * Input: id of input row hovered over by mouse
  * */
