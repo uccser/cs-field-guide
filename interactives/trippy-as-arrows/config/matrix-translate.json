@@ -1,6 +1,7 @@
 {
     "type": "matrix",
-    "task": "< translate with matrices >",
+    "title": "Translation",
+    "task": "Translate the arrow so that it matches up with the INSERT OTHER COLOUR HERE arrow",
     "target": "9 -3 12 -6 10 -6 10 -11 8 -11 8 -6 6 -6",
     "modules": ["first-translate"]
 }

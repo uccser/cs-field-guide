@@ -1,6 +1,7 @@
 {
     "type": "matrix",
-    "task": "< scale and rotate with matrices >",
+    "title": "Multiple Transformation Challenge",
+    "task": "Try moving the arrow to the target position by using the two multiplication matrices (one to scale and one to rotate) then translating.",
     "target": "-9.6 -1.4 -9.6 -9.8 -6.8 -7 -0.2 -14 3 -11.2 -4 -4.2 -1.2 -1.4",
     "modules": ["first-scale", "second-scale", "first-translate"]
 }

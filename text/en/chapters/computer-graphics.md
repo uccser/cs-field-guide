@@ -37,7 +37,7 @@ For this chapter we are using a system called WebGL which can render 3D graphics
 A computer graphics image is just the result of a whole lot of mathematical calculations. In fact, every pixel you see in an image has usually had many calculations made to work out what colour it should be, and there are often millions of pixels in a typical image.
 
 Let's start with some simple but common calculations that are needed for in graphics programming.
-The following interactive shows a cube with writing on each face.
+The following interactive shows a cube with symbols on each face.
 You can move it around using what's called a *transform*, which simply adjusts where it is placed in space.
 Try typing in 3D coordinates into this interactive to find each code.
 
@@ -54,13 +54,11 @@ They come up often in graphics because they are applied not only to objects, but
 
 In this section you can apply transformations to various images. We'll start by making the changes manually, one point at a time, but we'll move up to a quick shortcut method that uses a *matrix* to do the work for you. We'll start by looking at how these work in two dimensions - it's a bit easier to think about than three dimensions.
 
-The following interactive shows an arrow, and on the right you can see a list of the points that correspond to its 7 corners. The arrow is on a grid (usually referred to as *cartesian coordinates*), where the centre point is the "zero" point. Points are specified using two numbers, *x* and *y*, usually written as (*x*,*y*). The *x* value is how far the point is to the right of the centre and the *y* value is how far above the centre it is. For example, the first point in the list is the tip at (0,2), which means it's 0 units to the right of the centre (i.e. at the centre), and 2 units above it. Which point does the last pair (2,0) correspond to? What does it mean if a coordinate has a negative *x* value?
+The following interactive shows an arrow, and on the right you can see a list of the points that correspond to its 7 corners (usually referred to as *cartesian coordinates*). The arrow is on a grid, where the centre point is the "zero" point. Points are specified using two numbers, *x* and *y*, usually written as (*x*,*y*). The *x* value is how far the point is to the right of the centre and the *y* value is how far above the centre it is. For example, the first point in the list is the tip at (0,4), which means it's 0 units to the right of the centre (i.e. at the centre), and 4 units above it. Which point does the last pair (3,1) correspond to? What does it mean if a coordinate has a negative *x* value?
 
 {panel type="teacher-note" summary="Solutions to questions"}
-(2,0) is the right-most corner of the arrow. A negative *x* value means that it's to the *left* of the centre instead of the right. (A negative *y* value is below the centre).
+(3,1) is the right-most corner of the arrow. A negative *x* value means that it's to the *left* of the centre instead of the right. (A negative *y* value is below the centre).
 {panel end}
-
-The first list of coordinates is for the original arrow position, and in the second list, you can type in the transformed points to move the arrow --- the original is shown in green and the moved one is in blue.
 
 {interactive name="trippy-as-arrows" type="whole-page" text="Changing Point Locations" parameters="config=coord-translate"}
 
@@ -123,6 +121,8 @@ Transformations are usually done in graphics using *matrix* arithmetic, which is
 \end{bmatrix}
 {math-block end}
 
+Where the top left value just means multiply all the x values by 2, and the bottom right value means multiply all the y values by 2.
+
 You can try it out in the following interactive:
 
 {interactive name="trippy-as-arrows" type="whole-page" text="2D Scaling" parameters="config=matrix-scale"}
@@ -152,12 +152,6 @@ or
 These should create an arrow 3 times as big and 0.2 (i.e. scaled down to one fifth of the size) times as big respectively.
 {panel end}
 
-The "add translate" values in the interactive are added to each *x* and *y* coordinate; experiment with them to see what they do. Now try to find suitable values for these and the matrix to match the arrow up with the red one.
-
-{panel type="teacher-note" summary="Explanation"}
-
-This needs the matrix {math}\begin{bmatrix}  2 & 0 \\   0 & 2 \\   \end{bmatrix}{math end} and the x,y values 5 and 4 (this doubles the size of the arrow and moves it 5 across and 4 up).
-{panel end}
 
 What happens if you use the following matrix?
 
@@ -251,7 +245,7 @@ Try it out in the following interactive.
 {interactive name="trippy-as-arrows" type="whole-page" text="Translation Challenge" parameters="config=matrix-translate"}
 
 {panel type="teacher-note" summary="Solution"}
-Translate x is 5 and y is 4 (5 to the right and 4 up). The matrix should be {math}\begin{bmatrix}  1 & 0 \\   0 & 1 \\   \end{bmatrix}{math end}
+Translate x is 9 and y is -7 (9 to the right and 7 down).
 {panel end}
 
 The next interactive needs you to combine translation with scaling.
@@ -259,16 +253,16 @@ The next interactive needs you to combine translation with scaling.
 {interactive name="trippy-as-arrows" type="whole-page" text="Scaling and Translation Challenge" parameters="config=matrix-scale-translate"}
 
 {panel type="teacher-note" summary="Solution"}
-The matrix should be {math}\begin{bmatrix}  2 & 0 \\   0 & 2 \\   \end{bmatrix}{math end} (doubles the size). Translate x is 4 and y is 3.
+The matrix should be {math}\begin{bmatrix}  2 & 0 \\   0 & 2 \\   \end{bmatrix}{math end} (doubles the size). Translate x is 9 and y is -6.
 {panel end}
 
 The order in which translation and scaling happen makes a difference.
 Try the following challenge!
 
-{interactive name="trippy-as-arrows" type="whole-page" text="Translating before Scaling" parameters="config=matrix-scale-translate-2"}
+{interactive name="trippy-as-arrows" type="whole-page" text="Translation before Scaling" parameters="config=matrix-scale-translate-2"}
 
 {panel type="teacher-note" summary="Solution"}
-The matrix should be {math}\begin{bmatrix}  2 & 0 \\   0 & 2 \\   \end{bmatrix}{math end} (still needed to double the size). However, the translation will be doubled as well since it comes before the matrix, therefore translate x is 2.5 and y is 2 (half of the distance needed).
+The matrix should be {math}\begin{bmatrix}  2 & 0 \\   0 & 2 \\   \end{bmatrix}{math end} (still needed to double the size). However, the translation will be doubled as well since it comes before the matrix, therefore translate x is 4.5 and y is 2 (half of the distance needed).
 {panel end}
 
 In the above, you'll have noticed that scaling is affected by how far the object is from the centre.
@@ -277,7 +271,7 @@ If you want to scale around a fixed point in the object (so it expands where it 
 {interactive name="trippy-as-arrows" type="whole-page" text="Using Translation to Simplify Scaling" parameters="config=matrix-scale-translate-3"}
 
 {panel type="teacher-note" summary="Solution"}
-The first translation is x=8 and y=-7. Now the arrow tip is at the origin, and the doubling will keep the tip where it is. The matrix should be {math}\begin{bmatrix}  2 & 0 \\   0 & 2 \\   \end{bmatrix}{math end} as usual for doubling. The second translation needs to be -8,7 to get the arrow back to the starting point.
+The first translation is x = -12 and y = -12. Now the arrow tip is at the origin, and the doubling will keep the tip where it is. The matrix should be {math}\begin{bmatrix}  2 & 0 \\   0 & 2 \\   \end{bmatrix}{math end} as usual for doubling. The second translation needs to be 12,12 to get the arrow back to the starting point.
 {panel end}
 
 The same problem comes up with rotation.
@@ -287,29 +281,26 @@ The following interactive allows you to use a translation first to make the scal
 
 {panel type="teacher-note" summary="Solution"}
 
-The first translation is x=8 and y=-7. Now the arrow tip is at the origin, and the doubling will keep the tip where it is. The matrix should be {math}\begin{bmatrix}  2 & 0 \\   0 & 2 \\   \end{bmatrix}{math end} as usual for doubling. The second translation needs to be -8,7 to get the arrow back to the starting point.
+The first translation is -5.-12 to put the arrow tip at the origin. The matrix should be {math}\begin{bmatrix}  1 & -1 \\   1 & 1 \\   \end{bmatrix}{math end}. The second translation needs to be 5,12 to get the arrow back to the starting point.
 {panel end}
 
-The following two examples combine rotation, scaling and translation. You can use multiple matrices (that's the plural of matrix) to match up the target object --- the product of each matrix becomes the input to the next one. Oh, and the arrow is twice as fat, but still the same height (from base to tip).
+Now that you've had a bit of practice with translation, scaling and rotation, try out these two challenges that combine all three:
 
 {interactive name="trippy-as-arrows" type="whole-page" text="Combining Translation, Scaling and Rotation" parameters="config=matrix-rotate-scale-translate"}
 
 {panel type="teacher-note" summary="Solution"}
 
-There are two solutions depending on whether you scale or rotate first. If scaling first, the scaling matrix is {math}\begin{bmatrix}  2 & 0 \\   0 & 1 \\   \end{bmatrix}{math end}. That makes the arrow twice as fat, but still the same height. The rotation matrix is {math}\begin{bmatrix}  0 & 1 \\   1 & 0 \\   \end{bmatrix}{math end} -- that's a 90 degree clockwise rotation. The translation vector is 4, -2.
+Scale matrix is {math}\begin{bmatrix}  2 & 0 \\   0 & 1 \\   \end{bmatrix}{math end}. The rotation matrix is {math}\begin{bmatrix}  0 & 1 \\  1 & 0 \\   \end{bmatrix}{math end} -- that's a 90 degree clockwise rotation. The translation vector is 8,4.
 
-If you rotate first, the rotation is still {math}\begin{bmatrix}  0 & 1 \\   1 & 0 \\   \end{bmatrix}{math end} (90 degrees clockwise) but the scaling is {math}\begin{bmatrix}  1 & 0 \\   0 & 2 \\   \end{bmatrix}{math end}, since it now needs to be scaled in the y direction. The translation vector is still 4, -2.
-
-This can also be done by using only one matrix (if you combine the rotation and scaling); this could be a challenge to give the faster students. In that case the matrix is {math}\begin{bmatrix}  0 & 1 \\   2 & 0 \\   \end{bmatrix}{math end}. The translation is still 4,-2.
 {panel end}
 
-Here's another challenge combining all three transformations:
 
 {interactive name="trippy-as-arrows" type="whole-page" text="Multiple Transformation Challenge" parameters="config=matrix-rotate-scale-translate-2"}
 
 {panel type="teacher-note" summary="Solution"}
 
-The solution will depend on the order of scaling and rotating, but a simple solution is {math}\begin{bmatrix}  0.7 & -0.7 \\   0.7 & 0.7 \\   \end{bmatrix}{math end}  for the first matrix, {math}\begin{bmatrix}  0.5 & 0 \\   0 & 0.5 \\   \end{bmatrix}{math end} for the second matrix, and -1,-2 for the translation.
+Scale matrix is {math}\begin{bmatrix}  2 & 0 \\   0 & 2 \\   \end{bmatrix}{math end}. The rotation matrix is {math}\begin{bmatrix}  0.7 & -0.7 \\  0.7 & 0.7 \\   \end{bmatrix}{math end} -- that's a 45 degree anticlockwise rotation. The translation vector is -4,-7.
+
 {panel end}
 
 These combined transformations are common, and they might seem like a lot of work because each matrix has to be applied to every point in an object. Our arrows only had 7 points, but complex images can have thousands or even millions of points in them. Fortunately we can combine all the matrix operations in advance to give just one operation to apply to each point.
@@ -367,14 +358,9 @@ As a simple example, consider what happens when you scale by 2 and then rotate b
 
 {math-block end}
 
-You can put the matrix we just calculated into the following interactive to see if it does indeed scale by 2 and rotate 45 degrees.
+You can put the matrix we just calculated into the following interactive to see if it does indeed scale by 2 and rotate 45 degrees. Also try making up your own combination of transforms to see if they give the result you expect.
 
 {interactive name="trippy-as-arrows" type="whole-page" text="Check a Single Matrix" parameters="config=matrix-single"}
-
-Now try making up your own combination of transforms to see if they give the result you expect.
-In this interactive you can drag the matrices to change their order.
-
-{button link="http://www.csfieldguide.org.nz/releases/1.9.9/_static/widgets/CG/CG-arrow/CG-arrow-multiply2matrix.html?info=Now%20try%20multiplying%20two%20other%20transform%20matrices%20that%20you%20make%20up%20yourself,%20and%20see%20if%20they%20produce%20the%20expected%20result.&zoom=-10.0%20&quiz=1.4%201.4%200%200%20-1.4%201.4%200%200%200%200%201%200%200%200%200%201%20&allPrize=5" text="Click for interactive: multiple matrices"}
 
 In computer graphics systems there can be many transformations combined, and this is done by multiplying them all together (two at a time) to produce one matrix that does all the transforms in one go.
 That transform might then be applied to millions of points, so the time taken to do the matrix multiplication at the start will pay off well.
