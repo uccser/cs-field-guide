@@ -203,7 +203,11 @@ Where it gets interesting is when you use a little of each value; try the follow
 Now the *x* value of each coordinate is a mixture of 0.7 of the original *x*, and 0.7 of the original *y*.
 This is called a *rotation*.
 
-In general, to rotate an image by a given angle you need to use the sine (abbreviated sin) and cosine (abbreviated cos) functions from trigonometry. To rotate the image anticlockwise by {math}\theta{math end} degrees, you'll need the following values in the matrix, which rely on trig functions:
+In general, to rotate an image by a given angle you need to use the sine (abbreviated sin) and cosine (abbreviated cos) functions from trigonometry. You can use the interactive below to calculate values for the sin and cos functions.
+
+{interactive name="trig-function-calculator" type="whole-page" text="Trig Function Calculator"}
+
+To rotate the image anticlockwise by {math}\theta{math end} degrees, you'll need the following values in the matrix, which rely on trig functions:
 
 {math-block}
 \begin{bmatrix}
@@ -217,6 +221,7 @@ In general, to rotate an image by a given angle you need to use the sine (abbrev
 If your students aren't familiar with sin and cos, it may be worth going over them separately, including the idea that the angle is usually measured in degrees, and the sin and cos functions will produce a number between 0  and 1.
 The [Khan Academy](https://www.khanacademy.org/math/trigonometry/trigonometry-right-triangles) has more information about sine and cosine functions, explained in terms of triangles.
 {panel end}
+
 
 {interactive name="trippy-as-arrows" type="whole-page" text="Matrix Rotation" parameters="config=matrix-rotate"}
 
