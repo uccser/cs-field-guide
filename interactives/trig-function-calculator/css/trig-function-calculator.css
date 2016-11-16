@@ -13,6 +13,10 @@ h2 {
   font-size: 14px;
 }
 
+p#info {
+  margin-bottom: 10px;
+}
+
 div#input {
   margin: auto;
   width: 50%;
@@ -26,6 +30,12 @@ div#input input {
 div#input button {
   display: block;
   margin-top: 10px;
+}
+
+div#error {
+  display: none;
+  color: red;
+  text-align: center;
 }
 
 div#output {

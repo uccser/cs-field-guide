@@ -2,6 +2,14 @@
 function calculate() {
     var xValue = document.getElementById('x').value;
 
-    document.getElementById('sin-result').innerText = Math.sin(xValue);
-    document.getElementById('cos-result').innerText = Math.cos(xValue);
+    var sinResult = Math.sin(xValue);
+    var cosResult = Math.cos(xValue);
+
+    if (isNaN(sinResult)) {
+        document.getElementById('error').style.display = 'block';
+    } else {
+        document.getElementById('error').style.display = 'none';
+        document.getElementById('sin-result').innerText = sinResult;
+        document.getElementById('cos-result').innerText = cosResult;
+    }
 }
