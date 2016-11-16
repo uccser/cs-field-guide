@@ -80,6 +80,7 @@ div#instructions, div#modules {
   background-color: rgba(255, 255, 255, 0.51);
   border: 2px solid white;
   border-radius: 5px;
+  position: relative;
 }
 
 div#modules {
