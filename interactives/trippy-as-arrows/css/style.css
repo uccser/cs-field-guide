@@ -8,6 +8,17 @@ body, html, svg {
   font-size: 14px;
 }
 
+label#y-label, label#x-label {
+  font-size: 25px;
+  color: white;
+}
+
+label#x-label {
+  float: right;
+  margin-right: 10px;
+}
+
+
 h1 {
   font-size: 18px;
 }
@@ -94,13 +105,13 @@ div#modules p#input-instructions, p#matrix-instructions  {
 
 div#heading p, div#coordinates input{
   display: inline-block;
-  width: 10%;
+  width: 15%;
   margin: 1px;
   padding: 5px;
 }
 
 
-div#heading p {
+div#heading p, label#y-label, label#x-label {
   font-family: "Cambria", Georgia, serif;
   font-style: italic;
 }
@@ -121,12 +132,14 @@ div#modules button {
 input {
   border: 1px solid #FF7043;
   text-align: center;
+  font-family: monospace;
 }
 
 .matrix-row input {
   display: inline-block;
   padding: 5px;
-  width: 20%;
+  width: 15%;
+  margin-bottom: 3px;
 }
 
 

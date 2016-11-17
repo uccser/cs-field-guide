@@ -195,6 +195,10 @@ function setUpInterface() {
     container.style.width = containerWidth + 'px';
     container.style.height = containerHeight + 'px';
 
+    // place y and x labels to edge of grid
+    document.getElementById('y-label').style.marginLeft = (containerWidth / 2) + 5 + 'px';
+    document.getElementById('x-label').style.marginTop = (containerHeight / 2) - 5 + 'px';
+
     // WTF dynamically sets topMargin because CSS doesn't want to CSS...
     var topMargin = (windowHeight - containerHeight) / 2;
     container.style.marginTop = topMargin + 'px';
