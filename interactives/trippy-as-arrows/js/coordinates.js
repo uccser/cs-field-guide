@@ -17,7 +17,8 @@ function updateInputBoxes(points) {
 
 }
 
-function coordTab() {
+function coordTab(inputBox) {
+    checkForValidInput(inputBox);
     if (currentState.instantUpdate == true) {
         getNewCoordinates();
     }

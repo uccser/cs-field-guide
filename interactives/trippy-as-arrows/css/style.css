@@ -143,6 +143,10 @@ input {
   margin-bottom: 3px;
 }
 
+.invalid {
+  background-color: red;
+}
+
 
 div#coord-buttons, div#matrix-buttons {
   display: none;

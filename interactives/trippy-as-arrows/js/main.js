@@ -328,6 +328,15 @@ function instantUpdateToggle(checkbox) {
 }
 
 
+function checkForValidInput(inputBox) {
+    if (isNaN(inputBox.value)) { // does not contain a valid number
+        inputBox.className += 'invalid';
+    } else {
+        inputBox.className = '';
+    }
+}
+
+
 /* checks if arrow position matches target position */
 function checkForMatch() {
     var match = true;

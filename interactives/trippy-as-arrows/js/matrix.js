@@ -1,6 +1,8 @@
 
 function matrixTab(matrixInputBox) {
 
+    checkForValidInput(matrixInputBox);
+
     // round floats to two decimal places
     var num = matrixInputBox.value;
     if (num.indexOf('.') != -1) { //is a float
