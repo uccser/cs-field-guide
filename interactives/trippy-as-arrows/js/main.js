@@ -245,11 +245,12 @@ function drawBothArrows() {
     // takes a copy of arrowShape list because otherwise pointers get in the way with updating the arrow
     configSettings.START_POSITION = arrowShape.slice(0);
     currentState.currentPosition = arrowShape.slice(0);
-    updateArrow();
     updateInputBoxes(configSettings.START_POSITION);
 
     // create the target arrow
     configSettings.TARGET_POSITION = generateArrowShape(configSettings.TARGET_POSITION_STRING);
+
+    updateArrow();
     drawTargetArrow();
 
 }
@@ -313,6 +314,8 @@ function updateArrow() {
 
     }
 
+    checkForMatch();
+
 }
 
 
@@ -324,4 +327,24 @@ function instantUpdateToggle(checkbox) {
     }
 }
 
+
+/* checks if arrow position matches target position */
+function checkForMatch() {
+    var match = true;
+    for (var i = 0; i < 7; i++) { // 7 points on arrow
+        if (currentState.currentPosition[i].x != configSettings.TARGET_POSITION[i].x) {
+            match = false;
+            break;
+        }
+        if (currentState.currentPosition[i].y != configSettings.TARGET_POSITION[i].y) {
+            match = false;
+            break;
+        }
+    }
+    if (match) {
+        interfaceSettings.POLYGON.style.fill = '#9C43AB';
+    } else {
+        interfaceSettings.POLYGON.style.fill = '#008000';
+    }
+}
 
