@@ -222,8 +222,13 @@ If your students aren't familiar with sin and cos, it may be worth going over th
 The [Khan Academy](https://www.khanacademy.org/math/trigonometry/trigonometry-right-triangles) has more information about sine and cosine functions, explained in terms of triangles.
 {panel end}
 
+Note that the following interactives involving rotation transformations expect accuracy of 2 decimal places.
 
 {interactive name="trippy-as-arrows" type="whole-page" text="Matrix Rotation" parameters="config=matrix-rotate"}
+
+{panel type="teacher-note" summary="Solution"}
+Using x = 45 in the trig function calculator, the matrix should be {math}\begin{bmatrix}  0.71 & -0.71 \\   0.71 & 0.71 \\   \end{bmatrix}{math end}. The translation needs to be 5,4.
+{panel end}
 
 What is the matrix for rotation by 360 degrees?
 
@@ -286,7 +291,7 @@ The following interactive allows you to use a translation first to make the scal
 
 {panel type="teacher-note" summary="Solution"}
 
-The first translation is -5.-12 to put the arrow tip at the origin. The matrix should be {math}\begin{bmatrix}  1 & -1 \\   1 & 1 \\   \end{bmatrix}{math end}. The second translation needs to be 5,12 to get the arrow back to the starting point.
+The first translation is -5.-12 to put the arrow tip at the origin. Using x = 45 in the trig function calculator, the matrix should be {math}\begin{bmatrix}  0.71 & -0.71 \\   0.71 & 0.71 \\   \end{bmatrix}{math end}. The second translation needs to be 5,12 to get the arrow back to the starting point.
 {panel end}
 
 Now that you've had a bit of practice with translation, scaling and rotation, try out these two challenges that combine all three:
@@ -295,7 +300,7 @@ Now that you've had a bit of practice with translation, scaling and rotation, tr
 
 {panel type="teacher-note" summary="Solution"}
 
-Scale matrix is {math}\begin{bmatrix}  2 & 0 \\   0 & 1 \\   \end{bmatrix}{math end}. The rotation matrix is {math}\begin{bmatrix}  0 & 1 \\  1 & 0 \\   \end{bmatrix}{math end} -- that's a 90 degree clockwise rotation. The translation vector is 8,4.
+Scale matrix is {math}\begin{bmatrix}  2 & 0 \\   0 & 1 \\   \end{bmatrix}{math end}. Using x = -90 in the trig function calculator, the rotation matrix is {math}\begin{bmatrix}  0 & 1 \\  -1 & 0 \\   \end{bmatrix}{math end} -- that's a 90 degree clockwise rotation. The translation vector is 8,4.
 
 {panel end}
 
@@ -304,7 +309,7 @@ Scale matrix is {math}\begin{bmatrix}  2 & 0 \\   0 & 1 \\   \end{bmatrix}{math 
 
 {panel type="teacher-note" summary="Solution"}
 
-Scale matrix is {math}\begin{bmatrix}  2 & 0 \\   0 & 2 \\   \end{bmatrix}{math end}. The rotation matrix is {math}\begin{bmatrix}  0.7 & -0.7 \\  0.7 & 0.7 \\   \end{bmatrix}{math end} -- that's a 45 degree anticlockwise rotation. The translation vector is -4,-7.
+Scale matrix is {math}\begin{bmatrix}  2 & 0 \\   0 & 2 \\   \end{bmatrix}{math end}. Using x = 45 in the trig function calculator, the rotation matrix is {math}\begin{bmatrix}  0.71 & -0.71 \\  0.71 & 0.71 \\   \end{bmatrix}{math end} -- that's a 45 degree anticlockwise rotation. The translation vector is -4,-7.
 
 {panel end}
 
