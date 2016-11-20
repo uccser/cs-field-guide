@@ -8,6 +8,27 @@ body, html, svg {
   font-size: 14px;
 }
 
+div#warning {
+  display: none;
+  padding: 10px;
+}
+
+div#warning label {
+  padding: 10px;
+  text-align: center;
+  background-color: rgba(244, 67, 54, 0.51);
+  border: 2px solid #FF4336;
+  border-radius: 5px;
+  z-index: 1;
+  display: block;
+}
+
+@media (max-width: 600px) {
+div#warning {
+  display: block;
+}
+}
+
 label#y-label, label#x-label {
   font-size: 25px;
   color: white;
