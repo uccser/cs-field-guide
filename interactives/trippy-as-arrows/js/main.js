@@ -351,9 +351,9 @@ function checkForMatch() {
         }
     }
     if (match) {
-        interfaceSettings.POLYGON.style.fill = '#9C43AB';
+        interfaceSettings.POLYGON.style.fill = '#4CAF50';
     } else {
-        interfaceSettings.POLYGON.style.fill = '#008000';
+        interfaceSettings.POLYGON.style.fill = '#FF9800';//'#008000';
     }
 }
 

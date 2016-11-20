@@ -32,13 +32,9 @@ svg {
   position: absolute;
 }
 
-polygon#dynamic-polygon {
-  fill: #008000;
-}
-
 polygon#target-polygon {
-  fill: #008000;
   fill-opacity: 0.4;
+  fill: #FF9800;
 }
 
 
@@ -48,7 +44,7 @@ svg circle {
 
 div#container {
   margin: auto;
-  background-color: #269;
+  background-color: #3498DB; /*#269*/
   background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px; /* seems to work like padding */
   /* white lines */
   background-image: -webkit-linear-gradient(white 2px, transparent 2px),
