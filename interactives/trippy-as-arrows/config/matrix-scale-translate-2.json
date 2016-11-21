@@ -1,7 +1,7 @@
 {
     "type": "matrix",
     "title": "Translation before Scaling",
-    "task": "This time, the order of translation and scaling has been swapped. Try to transform the arrow to the INSERT COLOUR HERE arrow. The order in which operations happens makes a difference!",
-    "target": "9 2 15 -4 11 -4 11 -14 7 -14 7 -4 3 -4",
+    "task": "This time, the order of translation and scaling has been swapped. Try to transform the arrow to the target position. The order in which operations happens makes a difference!",
+    "target": "9 2 3 -4 7 -4 7 -14 11 -14 11 -4 15 -4",
     "modules": ["first-translate", "first-scale"]
 }

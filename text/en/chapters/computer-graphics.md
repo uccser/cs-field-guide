@@ -74,7 +74,7 @@ The next challenge involves changing the size of the image.
 
 
 {panel type="teacher-note" summary="Solution"}
-Multiplying by 2 makes the arrow twice as large in each dimension. Multiplying by 10 makes it 10 times as large, which won't fit in the view. Multiplying by 0.5 makes the arrow half the size. Multiplying only the x values makes the arrow wider horizontally only.
+Multiplying by 2 makes the arrow twice as large in each dimension. Multiplying by 10 makes it 10 times as large. Multiplying by 0.5 makes the arrow half the size. Multiplying only the x values makes the arrow wider horizontally only.
 {panel end}
 
 This transformation is called *scaling*, and although it can obviously be used to control the size of an object, this can in turn be used to create a visual effect such as making the object appear closer or further away.
@@ -227,7 +227,7 @@ Note that the following interactives involving rotation transformations expect a
 {interactive name="trippy-as-arrows" type="whole-page" text="Matrix Rotation" parameters="config=matrix-rotate"}
 
 {panel type="teacher-note" summary="Solution"}
-Using x = 45 in the trig function calculator, the matrix should be {math}\begin{bmatrix}  0.71 & -0.71 \\   0.71 & 0.71 \\   \end{bmatrix}{math end}. The translation needs to be 5,4.
+Using x = 45 in the trig function calculator, the matrix should be {math}\begin{bmatrix}  0.71 & 0.71 \\   -0.71 & 0.71 \\   \end{bmatrix}{math end}. The translation needs to be 5,4.
 {panel end}
 
 What is the matrix for rotation by 360 degrees?
@@ -272,7 +272,7 @@ Try the following challenge!
 {interactive name="trippy-as-arrows" type="whole-page" text="Translation before Scaling" parameters="config=matrix-scale-translate-2"}
 
 {panel type="teacher-note" summary="Solution"}
-The matrix should be {math}\begin{bmatrix}  2 & 0 \\   0 & 2 \\   \end{bmatrix}{math end} (still needed to double the size). However, the translation will be doubled as well since it comes before the matrix, therefore translate x is 4.5 and y is 2 (half of the distance needed).
+The matrix should be {math}\begin{bmatrix}  2 & 0 \\   0 & 2 \\   \end{bmatrix}{math end} (still needed to double the size). However, the translation will be doubled as well since it comes before the matrix, therefore translate x is 4.5 and y is -3 (half of the distance needed).
 {panel end}
 
 In the above, you'll have noticed that scaling is affected by how far the object is from the centre.
@@ -291,7 +291,7 @@ The following interactive allows you to use a translation first to make the scal
 
 {panel type="teacher-note" summary="Solution"}
 
-The first translation is -5.-12 to put the arrow tip at the origin. Using x = 45 in the trig function calculator, the matrix should be {math}\begin{bmatrix}  0.71 & -0.71 \\   0.71 & 0.71 \\   \end{bmatrix}{math end}. The second translation needs to be 5,12 to get the arrow back to the starting point.
+The first translation is -5,-12 to put the arrow tip at the origin. Using x = 45 in the trig function calculator, the matrix should be {math}\begin{bmatrix}  0.71 & -0.71 \\   0.71 & 0.71 \\   \end{bmatrix}{math end}. The second translation needs to be 5,12 to get the arrow back to the starting point.
 {panel end}
 
 Now that you've had a bit of practice with translation, scaling and rotation, try out these two challenges that combine all three:

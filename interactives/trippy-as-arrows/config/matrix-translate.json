@@ -1,7 +1,7 @@
 {
     "type": "matrix",
     "title": "Translation",
-    "task": "Translate the arrow so that it matches up with the INSERT OTHER COLOUR HERE arrow",
-    "target": "9 -3 12 -6 10 -6 10 -11 8 -11 8 -6 6 -6",
+    "task": "Use the translation matrix to move the arrow to it's target position.",
+    "target": "9 -3 6 -6 8 -6 8 -11 10 -11 10 -6 12 -6",
     "modules": ["first-translate"]
 }

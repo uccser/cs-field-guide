@@ -1,15 +1,4 @@
 
-/* NTS
- * Reacting to updating inputs:
- *   - should react on tab
- *   - react on button click
- *   - be able to to choose tab/button click
- *   - button only on mobile?
- */
-
-// NTS should probably s/arrow/polygon for consistency and robustness
-
-// NTS needs to be able to handle sin() cos() functions? - security issue...
 
 /* Global variable is a dictionary of variables relating to size and position of grid and arrow */
 var interfaceSettings = {
@@ -329,7 +318,7 @@ function instantUpdateToggle(checkbox) {
 
 
 function checkForValidInput(inputBox) {
-    if (isNaN(inputBox.value)) { // does not contain a valid number
+    if (isNaN(inputBox.value) || inputBox.value == '') { // does not contain a valid number
         inputBox.className += 'invalid';
     } else {
         inputBox.className = '';
@@ -341,11 +330,11 @@ function checkForValidInput(inputBox) {
 function checkForMatch() {
     var match = true;
     for (var i = 0; i < 7; i++) { // 7 points on arrow
-        if (currentState.currentPosition[i].x != configSettings.TARGET_POSITION[i].x) {
+        if ((Math.round(currentState.currentPosition[i].x * 100) / 100) != (Math.round(configSettings.TARGET_POSITION[i].x * 100) / 100)) {
             match = false;
             break;
         }
-        if (currentState.currentPosition[i].y != configSettings.TARGET_POSITION[i].y) {
+        if ((Math.round(currentState.currentPosition[i].y * 100) / 100) != (Math.round(configSettings.TARGET_POSITION[i].y * 100) / 100)) {
             match = false;
             break;
         }
