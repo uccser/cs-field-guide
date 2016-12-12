@@ -26,7 +26,7 @@ EXCLUSION STATEMENT (for LO 6.1.1): Specific devices used to implement the abstr
 {panel type="teacher-note" summary="Exclusion EK 6.1.1F"}
 EXCLUSION STATEMENT (for EK 6.1.1F): Specific details of any particular standard for addresses are beyond the scope of this course and the AP Exam.
 {panel end}
-- EK 6.1.1G The domain name system (DNS) translates names to IP addresses.
+- EK 6.1.1G The domain name system (DNS) translates domain names to IP addresses.
 - EK 6.1.1H The number of devices that could use an IP address has grown so fast that a new protocol (IPv6) has been established to handle routing of many more devices.
 - EK 6.1.1I Standards such as hypertext transfer protocol (HTTP), IP, and simple mail transfer protocol (SMTP) are developed and overseen by the Internet Engineering Task Force (IETF).
 
