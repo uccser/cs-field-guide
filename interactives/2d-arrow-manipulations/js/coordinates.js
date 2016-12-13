@@ -19,6 +19,7 @@ function coordTab(inputBox) {
     if (currentState.instantUpdate == true) {
         getNewCoordinates();
     }
+    removeHighlight(inputBox);
 }
 
 
@@ -45,8 +46,8 @@ function getNewCoordinates() {
 /* Highlights a point on the arrow
  * Input: id of input row hovered over by mouse
  * */
-function highlight(row) {
-    circle = document.getElementById(row);
+function highlight(element) {
+    circle = document.getElementById(element.parentNode.getAttribute("node-id"));
     circle.style.fill = '#FF7043';
 }
 
@@ -54,7 +55,7 @@ function highlight(row) {
 /* Resets colour of point on the arrow
  * Input: id of input row hovered over by mouse
  * */
-function removeHighlight(row) {
-    circle = document.getElementById(row);
+function removeHighlight(element) {
+    circle = document.getElementById(element.parentNode.getAttribute("node-id"));
     circle.style.fill = '#000';
 }
