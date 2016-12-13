@@ -12,6 +12,7 @@ structure:
         table_of_contents_sidebar: yes
         source_files:
             - file: chapters/introduction.md
+              authors:
                 - Tim Bell
                 - Jack Morgan
             - file: chapters/algorithms.md
