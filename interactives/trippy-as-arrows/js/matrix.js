@@ -1,6 +1,4 @@
-
 function matrixTab(matrixInputBox) {
-
     checkForValidInput(matrixInputBox);
 
     // round floats to two decimal places
@@ -15,10 +13,10 @@ function matrixTab(matrixInputBox) {
     }
 }
 
+
 /* Sets up order of matrix operations and moves the arrow to new position
  */
 function matrixOperations() {
-
     var productMatrix = configSettings.START_POSITION;
     var matrixElements = document.getElementById('matrices').children;
 
@@ -32,9 +30,7 @@ function matrixOperations() {
                 productMatrix = translate(element.id.split('-')[1], productMatrix);
             }
         }
-
     }
-
     updateArrow();
 }
 
@@ -42,14 +38,12 @@ function matrixOperations() {
 /* Scale the arrow according to the user's inputted matrix
  */
 function scale(id, productMatrix) {
-
     currentState.scaleMatrix[0] = parseFloat(document.getElementById('matrix-' + id + '-scale-row-0-col-0').value);
     currentState.scaleMatrix[1] = parseFloat(document.getElementById('matrix-' + id + '-scale-row-0-col-1').value);
     currentState.scaleMatrix[2] = parseFloat(document.getElementById('matrix-' + id + '-scale-row-1-col-0').value);
     currentState.scaleMatrix[3] = parseFloat(document.getElementById('matrix-' + id + '-scale-row-1-col-1').value);
 
     for (var i = 0; i < 7; i++) { // 7 points on arrow
-
         var newPoint = new Point();
         var currPoint = productMatrix[i];
 
@@ -62,19 +56,16 @@ function scale(id, productMatrix) {
         currentState.currentPosition[i] = newPoint;
     }
     return currentState.currentPosition;
-
 }
 
 
 /* Translate the arrow according to the user's inputted matrix
  */
 function translate(id, productMatrix) {
-
     currentState.translateMatrix[0] = parseFloat(document.getElementById('matrix-' + id + '-translate-row-0-col-0').value) * interfaceSettings.squareSize;
     currentState.translateMatrix[1] = parseFloat(document.getElementById('matrix-' + id + '-translate-row-1-col-0').value) * interfaceSettings.squareSize;
 
     for (var i = 0; i < 7; i++) { // 7 points on arrow
-
         var newPoint = new Point();
         var currPoint = productMatrix[i];
 
@@ -82,9 +73,7 @@ function translate(id, productMatrix) {
         newPoint.y = currPoint.y - currentState.translateMatrix[1];
 
         currentState.currentPosition[i] = newPoint;
-
     }
-
     return currentState.currentPosition;
 }
 
@@ -92,7 +81,6 @@ function translate(id, productMatrix) {
 /* Move the arrow back to the start position and set the matrices to the default values
  */
 function resetMatrices() {
-
     // place the arrow back in the start position
     drawBothArrows();
 
@@ -112,5 +100,4 @@ function resetMatrices() {
 
     document.getElementById('matrix-second-translate-row-0-col-0').value = 0;
     document.getElementById('matrix-second-translate-row-1-col-0').value = 0;
-
 }

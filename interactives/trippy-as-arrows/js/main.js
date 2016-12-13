@@ -1,5 +1,3 @@
-
-
 /* Global variable is a dictionary of variables relating to size and position of grid and arrow */
 var interfaceSettings = {
     POLYGON:         null,
@@ -43,12 +41,10 @@ function Point(x, y) {
     this.y = y;
 }
 
-
 ////////////////////////////////////////////////////////////
 
 /* On load get config and build the grid and both arrows */
 window.onload = function(event) {
-
     setUpInterface();
 
     // gets name of config file according to url parameter
@@ -65,7 +61,6 @@ window.onload = function(event) {
     }, function(error) {
       console.error("Failed!", error);
     });
-
 }
 
 
@@ -111,7 +106,6 @@ function get(url) {
   });
 }
 
-
 ////////////////////////////////////////////////////////////
 
 /* Saves information from config file that is used later */
@@ -126,6 +120,7 @@ function saveConfig(filename, config) {
         configSettings.START_POSITION_STRING = config['start'];
     }
 }
+
 
 /* Figures out which input elements to show */
 function loadModules(config) {
@@ -148,14 +143,12 @@ function loadModules(config) {
     }
     document.getElementById('title').innerHTML = configSettings.TITLE;
     document.getElementById('task').innerHTML = configSettings.TASK;
-
 }
 
 ////////////////////////////////////////////////////////////
 
 /* Uses the window size to calculate the grid size and position */
 function setUpInterface() {
-
     var container = document.getElementById('container');
     var polygon = document.getElementById('dynamic-polygon');
     var targetPolygon = document.getElementById('target-polygon');
@@ -207,7 +200,6 @@ function setUpInterface() {
     interfaceSettings.offset = offset;
 
     drawBackground();
-
 }
 
 
@@ -215,7 +207,6 @@ function setUpInterface() {
  * Draws the grid background by building css string
  */
 function drawBackground() {
-
     var backgroundSizeFormat = interfaceSettings.xIntercept + 'px ' + interfaceSettings.yIntercept + 'px, ' +
         interfaceSettings.xIntercept + 'px ' + interfaceSettings.yIntercept + 'px, '
         + interfaceSettings.squareSize + 'px ' + interfaceSettings.squareSize + 'px, '
@@ -223,12 +214,11 @@ function drawBackground() {
 
     // Apply the background styling to the container element
     container.style.backgroundSize = backgroundSizeFormat; // WTF why did this not have to get container though interfaceSettings.CONTAINER??
-
 }
+
 
 /* Creates and draws both the user's and target arrow */
 function drawBothArrows() {
-
     // create the user's arrow
     var arrowShape = generateArrowShape(configSettings.START_POSITION_STRING);
     // takes a copy of arrowShape list because otherwise pointers get in the way with updating the arrow
@@ -241,12 +231,10 @@ function drawBothArrows() {
 
     updateArrow();
     drawTargetArrow();
-
 }
 
 /* Translates string of coordinates into list of points with x and y attributes that fit in the svg coordinate space */
 function generateArrowShape(pointString) {
-
     var xPos = 0;
     var yPos = 1;
     var arrow = [];
@@ -266,12 +254,10 @@ function generateArrowShape(pointString) {
         yPos += 2;
     }
     return arrow;
-
 }
 
 /* Draws arrow shape */
 function drawTargetArrow() {
-
     var point;
 
     for (var i = 0; i < 7; i++) { // 7 points on an arrow, each with x and y value
@@ -279,20 +265,16 @@ function drawTargetArrow() {
         point = interfaceSettings.TARGET_POLYGON.points.getItem(i);
         point.x = configSettings.TARGET_POSITION[i].x;
         point.y = configSettings.TARGET_POSITION[i].y;
-
     }
-
 }
 
 
 /* Updates each coordinate in the arrow */
 function updateArrow() {
-
     var point;
     var circle;
 
     for (var i = 0; i < 7; i++) { // 7 points on an arrow
-
         point = interfaceSettings.POLYGON.points.getItem(i);
         point.x = currentState.currentPosition[i].x;
         point.y = currentState.currentPosition[i].y;
@@ -300,11 +282,8 @@ function updateArrow() {
         circle = document.getElementById('c' + i);
         circle.setAttribute('cx', currentState.currentPosition[i].x + 'px');
         circle.setAttribute('cy', currentState.currentPosition[i].y + 'px');
-
     }
-
     checkForMatch();
-
 }
 
 
@@ -345,4 +324,3 @@ function checkForMatch() {
         interfaceSettings.POLYGON.style.fill = '#FF9800';//'#008000';
     }
 }
-

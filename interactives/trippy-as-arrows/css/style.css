@@ -1,4 +1,3 @@
-
 body, html, svg {
   width: 100%;
   height: 100%;
@@ -24,9 +23,9 @@ div#warning label {
 }
 
 @media (max-width: 600px) {
-div#warning {
-  display: block;
-}
+  div#warning {
+    display: block;
+  }
 }
 
 label#y-label, label#x-label {
@@ -39,7 +38,6 @@ label#x-label {
   margin-right: 10px;
 }
 
-
 h1 {
   font-size: 18px;
 }
@@ -47,7 +45,6 @@ h1 {
 h2 {
   font-size: 15px;
 }
-
 
 svg {
   position: absolute;
@@ -58,7 +55,6 @@ polygon#target-polygon {
   fill: #FF9800;
 }
 
-
 svg circle {
   fill: #000;
 }
@@ -66,7 +62,7 @@ svg circle {
 div#container {
   margin: auto;
   background-color: #3498DB; /*#269*/
-  background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px; /* seems to work like padding */
+  background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
   /* white lines */
   background-image: -webkit-linear-gradient(white 2px, transparent 2px),
                   -webkit-linear-gradient(0, white 2px, transparent 2px),
@@ -87,7 +83,6 @@ div#container {
                  #269;
   behavior: url(/pie/PIE.htc);
 }
-
 
 div#coordinates, div#matrices{
   display: none;
@@ -120,7 +115,6 @@ div#modules p#input-instructions, p#matrix-instructions  {
     font-size: 14px;
 }
 
-
 div#heading p, div#coordinates input{
   display: inline-block;
   width: 15%;
@@ -128,12 +122,10 @@ div#heading p, div#coordinates input{
   padding: 5px;
 }
 
-
 div#heading p, label#y-label, label#x-label {
   font-family: "Cambria", Georgia, serif;
   font-style: italic;
 }
-
 
 div#modules button {
   margin: 3px;
@@ -145,7 +137,6 @@ div#modules button {
   width: 60px;
   height: 30%;
 }
-
 
 input {
   border: 1px solid #FF7043;
@@ -164,7 +155,6 @@ input {
   background-color: red;
 }
 
-
 div#coord-buttons, div#matrix-buttons {
   display: none;
 }
@@ -172,4 +162,3 @@ div#coord-buttons, div#matrix-buttons {
 div#status-buttons label#instant-update-label {
   font-size: 14px;
 }
-

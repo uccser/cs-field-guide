@@ -1,7 +1,6 @@
 
 # Graphics Translations
 
-
 **Author:** Hayley van Waas
 
 This is the base system for a series of interactive used to show how to translate, scale and rotate an image by using coordinates and/or matrices.
