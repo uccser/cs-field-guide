@@ -1,0 +1,161 @@
+body, html, svg {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  overflow: hidden;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+}
+
+div#warning {
+  display: none;
+  padding: 10px;
+}
+
+div#warning label {
+  padding: 10px;
+  text-align: center;
+  background-color: rgba(244, 67, 54, 0.51);
+  border: 2px solid #FF4336;
+  border-radius: 5px;
+  z-index: 1;
+  display: block;
+}
+
+@media (max-width: 600px) {
+  div#warning {
+    display: block;
+  }
+}
+
+label#y-label, label#x-label {
+  font-size: 25px;
+  color: white;
+}
+
+label#x-label {
+  float: right;
+  margin-right: 10px;
+}
+
+h1 {
+  font-size: 18px;
+}
+
+h2 {
+  font-size: 15px;
+}
+
+svg {
+  position: absolute;
+}
+
+polygon#target-polygon {
+  fill-opacity: 0.4;
+  fill: #FF9800;
+}
+
+svg circle {
+  fill: #000;
+}
+
+div#container {
+  margin: auto;
+  background-color: #3498DB; /*#269*/
+  background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
+  /* white lines */
+  background-image: -webkit-linear-gradient(white 2px, transparent 2px),
+                  -webkit-linear-gradient(0, white 2px, transparent 2px),
+                  -webkit-linear-gradient(rgba(255,255,255,.3) 1px, transparent 1px),
+                  -webkit-linear-gradient(0, rgba(255,255,255,.3) 1px, transparent 1px);
+  background-image: -moz-linear-gradient(white 2px, transparent 2px),
+                  -moz-linear-gradient(0, white 2px, transparent 2px),
+                  -moz-linear-gradient(rgba(255,255,255,.3) 1px, transparent 1px),
+                  -moz-linear-gradient(0, rgba(255,255,255,.3) 1px, transparent 1px);
+  background-image: linear-gradient(white 2px, transparent 2px),
+                  linear-gradient(90deg, white 2px, transparent 2px),
+                  linear-gradient(rgba(255,255,255,.3) 1px, transparent 1px),
+                  linear-gradient(90deg, rgba(255,255,255,.3) 1px, transparent 1px);
+  -pie-background: linear-gradient(white 2px, transparent 2px) -2px -2px / 100px,
+                 linear-gradient(90deg, white 2px, transparent 2px) -2px -2px / 100px,
+                 linear-gradient(rgba(255,255,255,.3) 1px, transparent 1px) -1px -1px / 20px,
+                 linear-gradient(90deg, rgba(255,255,255,.3) 1px, transparent 1px) -1px -1px / 20px,
+                 #269;
+  behavior: url(/pie/PIE.htc);
+}
+
+div#coordinates, div#matrices{
+  display: none;
+  padding-bottom: 10px;
+}
+
+div#matrix-first-scale, div#matrix-second-scale {
+  display: none;
+}
+
+div#matrix-first-translate, div#matrix-second-translate {
+  display: none;
+}
+
+div#instructions, div#modules {
+  width: 250px;
+  margin: 1%;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.7);
+  border: 2px solid white;
+  border-radius: 5px;
+  position: relative;
+  padding: 0.3em;
+}
+
+div#modules p#input-instructions, p#matrix-instructions  {
+    font-size: 14px;
+}
+
+div#heading p, div#coordinates input{
+  display: inline-block;
+  width: 15%;
+  margin: 1px;
+  padding: 5px;
+}
+
+div#heading p, label#y-label, label#x-label {
+  font-family: "Cambria", Georgia, serif;
+  font-style: italic;
+}
+
+div#modules button {
+  margin: 3px;
+  padding: 5px;
+  background-color: #FF7043;
+  color: #FFF;
+  border: 1px solid #FF7043;
+  border-radius: 1px;
+  width: 60px;
+  height: 30%;
+}
+
+input {
+  border: 1px solid #FF7043;
+  text-align: center;
+  font-family: monospace;
+}
+
+.matrix-row input {
+  display: inline-block;
+  padding: 5px;
+  width: 15%;
+  margin-bottom: 3px;
+}
+
+.invalid {
+  background-color: red;
+}
+
+div#coord-buttons, div#matrix-buttons {
+  display: none;
+}
+
+div#status-buttons label#instant-update-label {
+  font-size: 14px;
+}
