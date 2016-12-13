@@ -975,7 +975,7 @@ class HeadingNode:
             return '{}{}'.format('--' * (self.level - 1), self.heading)
 
     def to_html(self):
-        if self.section.file_node.group_type == "chapters":
+        if self.section.file_node.content_type == "chapters":
             html_type = 'heading-numbered'
         else:
             html_type = 'heading-unnumbered'
@@ -984,7 +984,7 @@ class HeadingNode:
 
         if self.guide.output_type == WEB:
             # Create section starts for Materialize ScrollSpy
-            if self.level == 2 and self.section.file_node.settings['table_of_contents_sidebar']:
+            if self.level == 2 and self.section.file_node.type_settings['table_of_contents_sidebar']:
                 # Close previous section if needed
                 if self.section.sectioned:
                     html = self.section.html_templates['section-end']
