@@ -8,6 +8,11 @@ function calculate() {
     var sinResult = Math.sin(xValue);
     var cosResult = Math.cos(xValue);
 
+    // round to 9 dp (arbitrary number small enough to
+    // avoid floating point errors but large enough for accuracy)
+    sinResult = Math.round(sinResult * Math.pow(10, 9)) / Math.pow(10, 9);
+    cosResult = Math.round(cosResult * Math.pow(10, 9)) / Math.pow(10, 9);
+
     if (isNaN(sinResult)) {
         document.getElementById('error').style.display = 'block';
     } else {
