@@ -60,7 +60,7 @@ The following interactive shows an arrow, and on the right you can see a list of
 (3,1) is the right-most corner of the arrow. A negative *x* value means that it's to the *left* of the centre instead of the right. (A negative *y* value is below the centre).
 {panel end}
 
-{interactive name="trippy-as-arrows" type="whole-page" text="Changing Point Locations" parameters="config=coord-translate"}
+{interactive name="2d-arrow-manipulations" type="whole-page" text="Changing Point Locations" parameters="config=coord-translate"}
 
 {panel type="teacher-note" summary="Solution"}
 The transform in this interactive *translates* the arrow 2 units to the right and 3 units up. Subtracting three translates the arrow down and to the left.
@@ -70,7 +70,7 @@ The above transform is called a *translation* --- it translates the arrow around
 
 The next challenge involves changing the size of the image.
 
-{interactive name="trippy-as-arrows" type="whole-page" text="Scaling" parameters="config=coord-scale"}
+{interactive name="2d-arrow-manipulations" type="whole-page" text="Scaling" parameters="config=coord-scale"}
 
 
 {panel type="teacher-note" summary="Solution"}
@@ -81,11 +81,11 @@ This transformation is called *scaling*, and although it can obviously be used t
 
 In the following interactive, try to get the blue arrow to match up with the red one. It will require a mixture of scaling and translation.
 
-{interactive name="trippy-as-arrows" type="whole-page" text="Scaling and Translating" parameters="config=coord-scale-translate"}
+{interactive name="2d-arrow-manipulations" type="whole-page" text="Scaling and Translating" parameters="config=coord-scale-translate"}
 
 Next, see what happens if you swap the *x* and *y* value for each coordinate.
 
-{interactive name="trippy-as-arrows" type="whole-page" text="Swapping Coordinates" parameters="config=coord-swap"}
+{interactive name="2d-arrow-manipulations" type="whole-page" text="Swapping Coordinates" parameters="config=coord-swap"}
 
 This is a simple *rotation* transformation, also useful for positioning objects in a scene,
 but also for specifying things like camera angles.
@@ -125,7 +125,7 @@ Where the top left value just means multiply all the x values by 2, and the bott
 
 You can try it out in the following interactive:
 
-{interactive name="trippy-as-arrows" type="whole-page" text="2D Scaling" parameters="config=matrix-scale"}
+{interactive name="2d-arrow-manipulations" type="whole-page" text="2D Scaling" parameters="config=matrix-scale"}
 
 At this stage you may want to have the interactive open in a separate window so that you can read the text below and work on the interactive at the same time.
 
@@ -224,7 +224,7 @@ The [Khan Academy](https://www.khanacademy.org/math/trigonometry/trigonometry-ri
 
 Note that the following interactives involving rotation transformations expect accuracy of 2 decimal places.
 
-{interactive name="trippy-as-arrows" type="whole-page" text="Matrix Rotation" parameters="config=matrix-rotate"}
+{interactive name="2d-arrow-manipulations" type="whole-page" text="Matrix Rotation" parameters="config=matrix-rotate"}
 
 {panel type="teacher-note" summary="Solution"}
 Using x = 45 in the trig function calculator, the matrix should be {math}\begin{bmatrix}  0.71 & 0.71 \\   -0.71 & 0.71 \\   \end{bmatrix}{math end}. The translation needs to be 5,4.
@@ -252,7 +252,7 @@ s & 0 \\
 A translation can't be specified by this kind of matrix, so in the interactives we've provided an extra place to specify an *x* and *y* value to translate the input.
 Try it out in the following interactive.
 
-{interactive name="trippy-as-arrows" type="whole-page" text="Translation Challenge" parameters="config=matrix-translate"}
+{interactive name="2d-arrow-manipulations" type="whole-page" text="Translation Challenge" parameters="config=matrix-translate"}
 
 {panel type="teacher-note" summary="Solution"}
 Translate x is 9 and y is -7 (9 to the right and 7 down).
@@ -260,7 +260,7 @@ Translate x is 9 and y is -7 (9 to the right and 7 down).
 
 The next interactive needs you to combine translation with scaling.
 
-{interactive name="trippy-as-arrows" type="whole-page" text="Scaling and Translation Challenge" parameters="config=matrix-scale-translate"}
+{interactive name="2d-arrow-manipulations" type="whole-page" text="Scaling and Translation Challenge" parameters="config=matrix-scale-translate"}
 
 {panel type="teacher-note" summary="Solution"}
 The matrix should be {math}\begin{bmatrix}  2 & 0 \\   0 & 2 \\   \end{bmatrix}{math end} (doubles the size). Translate x is 9 and y is -6.
@@ -269,7 +269,7 @@ The matrix should be {math}\begin{bmatrix}  2 & 0 \\   0 & 2 \\   \end{bmatrix}{
 The order in which translation and scaling happen makes a difference.
 Try the following challenge!
 
-{interactive name="trippy-as-arrows" type="whole-page" text="Translation before Scaling" parameters="config=matrix-scale-translate-2"}
+{interactive name="2d-arrow-manipulations" type="whole-page" text="Translation before Scaling" parameters="config=matrix-scale-translate-2"}
 
 {panel type="teacher-note" summary="Solution"}
 The matrix should be {math}\begin{bmatrix}  2 & 0 \\   0 & 2 \\   \end{bmatrix}{math end} (still needed to double the size). However, the translation will be doubled as well since it comes before the matrix, therefore translate x is 4.5 and y is -3 (half of the distance needed).
@@ -278,7 +278,7 @@ The matrix should be {math}\begin{bmatrix}  2 & 0 \\   0 & 2 \\   \end{bmatrix}{
 In the above, you'll have noticed that scaling is affected by how far the object is from the centre.
 If you want to scale around a fixed point in the object (so it expands where it is), then an easy way is to translate it back to the centre (also called the *origin*), scale it, and then translate it back to where it was.  The following interactive allows you to move the arrow, then scale it, and move it back.
 
-{interactive name="trippy-as-arrows" type="whole-page" text="Using Translation to Simplify Scaling" parameters="config=matrix-scale-translate-3"}
+{interactive name="2d-arrow-manipulations" type="whole-page" text="Using Translation to Simplify Scaling" parameters="config=matrix-scale-translate-3"}
 
 {panel type="teacher-note" summary="Solution"}
 The first translation is x = -12 and y = -12. Now the arrow tip is at the origin, and the doubling will keep the tip where it is. The matrix should be {math}\begin{bmatrix}  2 & 0 \\   0 & 2 \\   \end{bmatrix}{math end} as usual for doubling. The second translation needs to be 12,12 to get the arrow back to the starting point.
@@ -287,7 +287,7 @@ The first translation is x = -12 and y = -12. Now the arrow tip is at the origin
 The same problem comes up with rotation.
 The following interactive allows you to use a translation first to make the scaling more predicable.
 
-{interactive name="trippy-as-arrows" type="whole-page" text="Using Translation to Simplify Rotation" parameters="config=matrix-rotate-translate"}
+{interactive name="2d-arrow-manipulations" type="whole-page" text="Using Translation to Simplify Rotation" parameters="config=matrix-rotate-translate"}
 
 {panel type="teacher-note" summary="Solution"}
 
@@ -296,7 +296,7 @@ The first translation is -5,-12 to put the arrow tip at the origin. Using x = 45
 
 Now that you've had a bit of practice with translation, scaling and rotation, try out these two challenges that combine all three:
 
-{interactive name="trippy-as-arrows" type="whole-page" text="Combining Translation, Scaling and Rotation" parameters="config=matrix-rotate-scale-translate"}
+{interactive name="2d-arrow-manipulations" type="whole-page" text="Combining Translation, Scaling and Rotation" parameters="config=matrix-rotate-scale-translate"}
 
 {panel type="teacher-note" summary="Solution"}
 
@@ -305,7 +305,7 @@ Scale matrix is {math}\begin{bmatrix}  2 & 0 \\   0 & 1 \\   \end{bmatrix}{math 
 {panel end}
 
 
-{interactive name="trippy-as-arrows" type="whole-page" text="Multiple Transformation Challenge" parameters="config=matrix-rotate-scale-translate-2"}
+{interactive name="2d-arrow-manipulations" type="whole-page" text="Multiple Transformation Challenge" parameters="config=matrix-rotate-scale-translate-2"}
 
 {panel type="teacher-note" summary="Solution"}
 
@@ -370,7 +370,7 @@ As a simple example, consider what happens when you scale by 2 and then rotate b
 
 You can put the matrix we just calculated into the following interactive to see if it does indeed scale by 2 and rotate 45 degrees. Also try making up your own combination of transforms to see if they give the result you expect.
 
-{interactive name="trippy-as-arrows" type="whole-page" text="Check a Single Matrix" parameters="config=matrix-single"}
+{interactive name="2d-arrow-manipulations" type="whole-page" text="Check a Single Matrix" parameters="config=matrix-single"}
 
 In computer graphics systems there can be many transformations combined, and this is done by multiplying them all together (two at a time) to produce one matrix that does all the transforms in one go.
 That transform might then be applied to millions of points, so the time taken to do the matrix multiplication at the start will pay off well.
