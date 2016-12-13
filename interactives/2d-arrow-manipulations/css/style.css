@@ -101,14 +101,11 @@ div#instructions, div#modules {
   width: 250px;
   margin: 1%;
   text-align: center;
-  background-color: rgba(255, 255, 255, 0.51);
+  background-color: rgba(255, 255, 255, 0.7);
   border: 2px solid white;
   border-radius: 5px;
   position: relative;
-}
-
-div#modules {
-  padding-bottom: 10px;
+  padding: 0.3em;
 }
 
 div#modules p#input-instructions, p#matrix-instructions  {
