@@ -31,7 +31,7 @@ function matrixOperations() {
             }
         }
     }
-    updateArrow();
+    updateArrow(false);
 }
 
 
