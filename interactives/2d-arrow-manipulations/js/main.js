@@ -16,7 +16,6 @@ var interfaceSettings = {
 };
 
 /* Settings retrieved from config file */
-// constants becaue they are set once when the config file is loaded
 var configSettings = {
     FILE:            '',
     START_POSITION_STRING: '0 4 -3 1 -1 1 -1 -4 1 -4 1 1 3 1',
@@ -33,9 +32,7 @@ var currentState = {
     instantUpdate:   true,
     currentPosition: [],
     scaleMatrix:     [0, 0],
-    translateMatrix: [0, 0],
-    distanceFromYIntercept: 0,
-    distanceFromXIntercept: 0
+    translateMatrix: [0, 0]
 };
 
 /* Class for point objects */
@@ -71,13 +68,7 @@ window.onload = function(event) {
 window.onresize = function(event) {
     // recalculates size of grid and redraws arrow and target arrow
     setUpInterface();
-    //drawBothArrows();
-    var xOffset = interfaceSettings.yIntercept - currentState.currentPosition[0].x;
-    var yOffset = 0;
-    realignDynamicArrow(xOffset, yOffset);
-
-    configSettings.TARGET_POSITION = generateArrowShape(configSettings.TARGET_POSITION_STRING);
-    drawTargetArrow();
+    drawBothArrows();
 }
 
 ////////////////////////////////////////////////////////////
@@ -128,10 +119,6 @@ function saveConfig(filename, config) {
     if (config['start'] != undefined) {
         configSettings.START_POSITION_STRING = config['start'];
     }
-    configSettings.START_POSITION = generateArrowShape(configSettings.START_POSITION_STRING);
-    currentState.currentPosition = configSettings.START_POSITION.slice(0);
-    currentState.distanceFromXIntercept = interfaceSettings.xIntercept - currentState.currentPosition[0].x;
-    currentState.distanceFromYIntercept = interfaceSettings.yIntercept - currentState.currentPosition[0].y;
 }
 
 
@@ -230,15 +217,19 @@ function drawBackground() {
 }
 
 
-//TODO move this to the one place it is called
 /* Creates and draws both the user's and target arrow */
 function drawBothArrows() {
-    updateInputBoxes(currentState.currentPosition);
+    // create the user's arrow
+    var arrowShape = generateArrowShape(configSettings.START_POSITION_STRING);
+    // takes a copy of arrowShape list because otherwise pointers get in the way with updating the arrow
+    configSettings.START_POSITION = arrowShape.slice(0);
+    currentState.currentPosition = arrowShape.slice(0);
+    updateInputBoxes(configSettings.START_POSITION);
 
     // create the target arrow
     configSettings.TARGET_POSITION = generateArrowShape(configSettings.TARGET_POSITION_STRING);
 
-    updateArrow(false);
+    updateArrow();
     drawTargetArrow();
 }
 
@@ -265,7 +256,6 @@ function generateArrowShape(pointString) {
     return arrow;
 }
 
-
 /* Draws arrow shape */
 function drawTargetArrow() {
     var point;
@@ -280,7 +270,7 @@ function drawTargetArrow() {
 
 
 /* Updates each coordinate in the arrow */
-function updateArrow(screenResize) {
+function updateArrow() {
     var point;
     var circle;
 
@@ -290,39 +280,10 @@ function updateArrow(screenResize) {
         point.y = currentState.currentPosition[i].y;
 
         circle = document.getElementById('c' + i);
-        circle.setAttribute('cx', point.x + 'px');//currentState.currentPosition[i].x + 'px');
-        circle.setAttribute('cy', point.y + 'px'); //currentState.currentPosition[i].y + 'px');
+        circle.setAttribute('cx', currentState.currentPosition[i].x + 'px');
+        circle.setAttribute('cy', currentState.currentPosition[i].y + 'px');
     }
-
-    if (screenResize == false) {
-    currentState.distanceFromXIntercept = interfaceSettings.xIntercept - currentState.currentPosition[0].x;
-    currentState.distanceFromYIntercept = interfaceSettings.yIntercept - currentState.currentPosition[0].y;
-    }
-
     checkForMatch();
-
-}
-
-
-function realignDynamicArrow(xOffset, yOffset) {
-
-    console.log(currentState.distanceFromXIntercept);
-    console.log(currentState.currentPosition[0].x);
-
-    for (var i = 0; i < 7; i++) {
-        point = interfaceSettings.POLYGON.points.getItem(i);
-        console.log(currentState.currentPosition[i].x);
-        point.x = currentState.currentPosition[i].x + currentState.distanceFromXIntercept;// + xOffset;
-        point.y = currentState.currentPosition[i].y + currentState.distanceFromYIntercept;// + yOffset;
-        console.log(point.x);
-
-        circle = document.getElementById('c' + i);
-        circle.setAttribute('cx', point.x + 'px');//currentState.currentPosition[i].x + 'px');
-        circle.setAttribute('cy', point.y + 'px'); //currentState.currentPosition[i].y + 'px');
-    }
-
-    updateArrow(true);
-    updateInputBoxes(currentState.currentPosition);
 }
 
 

@@ -39,7 +39,7 @@ function getNewCoordinates() {
 
         currentState.currentPosition[i] = newPoint;
     }
-    updateArrow(false);
+    updateArrow();
 }
 
 
