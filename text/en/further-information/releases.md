@@ -19,6 +19,27 @@ We have listed major changes for each release below.
 
 ## Current Release
 
+### v2.9.0
+**Release date:** 16th December 2016
+
+**Notable changes:**
+
+This release adds an introductory video for the Complexity and Tractability chapter, as well as updated versions of the 2D Arrow Manipulation interactives in the Computer Graphics chapter.
+
+**Downloads:** [Source downloads are available on GitHub](https://github.com/uccser/cs-field-guide/releases/tag/v2.9.0)
+
+**Changelog:**
+- Add introductory video to Complexity and Tractability chapter.
+  - [Heidi Newton](https://github.com/Heidirose)
+- Rewrote 2D Arrow Manipulation interactives
+  - [Hayley van Waas](https://github.com/hayleyavw)[#372](https://github.com/uccser/cs-field-guide/issues/372) [#373](https://github.com/uccser/cs-field-guide/issues/373)
+- Add ability to list authors in the sidebar of a chapter page
+  - [Jack Morgan](https://github.com/JackMorganNZ) [#396](https://github.com/uccser/cs-field-guide/issues/396)
+- Updated APCSP framework
+  - [Paul Tymann](https://github.com/ptymann) [#399](https://github.com/uccser/cs-field-guide/issues/399)
+
+## Older Releases
+
 ### v2.8.1
 
 **Release date:** 21st October 2016
@@ -32,8 +53,6 @@ We have listed major changes for each release below.
   - [Jack Morgan](https://github.com/JackMorganNZ)
 - Skip parsing `#` characters at start of Markdown links.
   - [Jack Morgan](https://github.com/JackMorganNZ)
-
-## Older Releases
 
 ### v2.8.0
 
