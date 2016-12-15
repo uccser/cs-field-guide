@@ -22,6 +22,7 @@ var configSettings = {
     TARGET_POSITION_STRING: '',
     START_POSITION:  [],
     TARGET_POSITION: [],
+    TYPE:            '',
     TITLE:           '',
     TASK:            '',
     MODULES:         []
@@ -57,18 +58,33 @@ window.onload = function(event) {
         var config = JSON.parse(response);
         saveConfig(filename, config);
         loadModules(config);
-        drawBothArrows();
+        setUpInitialDynamicArrowPosition();
+        setUpInitialTargetArrowPosition();
+        drawArrow();
+        drawTargetArrow();
     }, function(error) {
       console.error("Failed!", error);
     });
 }
 
-
 /* Rebuilds grid and arrows on window resize */
 window.onresize = function(event) {
     // recalculates size of grid and redraws arrow and target arrow
     setUpInterface();
-    drawBothArrows();
+    console.log('or', interfaceSettings.xIntercept);
+    setUpInitialTargetArrowPosition();
+    drawTargetArrow();
+    if (configSettings.TYPE == 'matrix') {
+        matrixOperations();
+    } else {
+        getNewCoordinates();
+    }
+}
+
+/* on reset button click draw the dynamic arrow in it's start position */
+function reset() { 
+    setUpInitialDynamicArrowPosition();
+    drawArrow();
 }
 
 ////////////////////////////////////////////////////////////
@@ -113,6 +129,7 @@ function saveConfig(filename, config) {
 
     configSettings.FILE = filename;
     configSettings.TARGET_POSITION_STRING = config['target'];
+    configSettings.TYPE = config['type'];
     configSettings.TITLE = config['title'];
     configSettings.TASK = config['task'];
     configSettings.MODULES = config['modules'];
@@ -218,7 +235,7 @@ function drawBackground() {
 
 
 /* Creates and draws both the user's and target arrow */
-function drawBothArrows() {
+function setUpInitialDynamicArrowPosition() {
     // create the user's arrow
     var arrowShape = generateArrowShape(configSettings.START_POSITION_STRING);
     // takes a copy of arrowShape list because otherwise pointers get in the way with updating the arrow
@@ -226,12 +243,12 @@ function drawBothArrows() {
     currentState.currentPosition = arrowShape.slice(0);
     updateInputBoxes(configSettings.START_POSITION);
 
-    // create the target arrow
-    configSettings.TARGET_POSITION = generateArrowShape(configSettings.TARGET_POSITION_STRING);
-
-    updateArrow();
-    drawTargetArrow();
 }
+
+function setUpInitialTargetArrowPosition() {
+    configSettings.TARGET_POSITION = generateArrowShape(configSettings.TARGET_POSITION_STRING);
+}
+
 
 /* Translates string of coordinates into list of points with x and y attributes that fit in the svg coordinate space */
 function generateArrowShape(pointString) {
@@ -270,7 +287,7 @@ function drawTargetArrow() {
 
 
 /* Updates each coordinate in the arrow */
-function updateArrow() {
+function drawArrow() {
     var point;
     var circle;
 
