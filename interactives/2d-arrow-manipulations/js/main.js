@@ -8,8 +8,10 @@ var interfaceSettings = {
     squareSize:      0,
     xNumSquares:     0,
     xIntercept:      0,
+    initialXIntercept: 0,
     yNumSquares:     0,
     yIntercept:      0,
+    initialYIntercept: 0,
     arrowWidth:      0,
     arrowHeight:     0,
     offset:          0
@@ -71,7 +73,6 @@ window.onload = function(event) {
 window.onresize = function(event) {
     // recalculates size of grid and redraws arrow and target arrow
     setUpInterface();
-    console.log('or', interfaceSettings.xIntercept);
     setUpInitialTargetArrowPosition();
     drawTargetArrow();
     if (configSettings.TYPE == 'matrix') {
@@ -215,6 +216,11 @@ function setUpInterface() {
     interfaceSettings.arrowWidth = arrowWidth;
     interfaceSettings.arrowHeight = arrowHeight;
     interfaceSettings.offset = offset;
+
+    if (interfaceSettings.initialXIntercept == 0) {
+        interfaceSettings.initialXIntercept = xIntercept;
+        interfaceSettings.initialYIntercept = yIntercept;
+    }
 
     drawBackground();
 }

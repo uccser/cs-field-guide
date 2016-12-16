@@ -18,12 +18,11 @@ function matrixTab(matrixInputBox) {
  */
 function matrixOperations(test) {
     var matrixElements = document.getElementById('matrices').children;
-    // var productMatrix = configSettings.START_POSITION;
     var productMatrix = [];
     for (var i = 0; i < 7; i++) {
         var newPoint = new Point();
-        newPoint.x = configSettings.START_POSITION[i].x + interfaceSettings.xIntercept;
-        newPoint.y = configSettings.START_POSITION[i].y + interfaceSettings.yIntercept;
+        newPoint.x = configSettings.START_POSITION[i].x + interfaceSettings.xIntercept - interfaceSettings.initialXIntercept;
+        newPoint.y = configSettings.START_POSITION[i].y + interfaceSettings.yIntercept - interfaceSettings.initialYIntercept;
         productMatrix[i] = newPoint;
     }
 
@@ -38,13 +37,6 @@ function matrixOperations(test) {
             }
         }
     }
-
-    // for (var i = 0; i < 7; i++) { // 7 points on arrow
-    //     var newPoint = new Point();
-    //     newPoint.x = currentState.currentPosition[i].x - interfaceSettings.xIntercept;
-    //     newPoint.y = currentState.currentPosition[i].y - interfaceSettings.yIntercept;
-    //     currentState.currentPosition[i] = newPoint;
-    // }
 
     drawArrow();
 }
