@@ -52,8 +52,9 @@ window.onload = function(event) {
 
     // gets name of config file according to url parameter
     var url = window.location.search.replace('?', '');
-    const params = new URLSearchParams(url); // pulls out the value of each parameter
-    var filename = 'config/' + params.get('config') + '.json';
+    var configFileRegex = /config=((matrix|coord)-([a-z]*|-)*)/g;
+    var configFile = configFileRegex.exec(url)[1];
+    var filename = 'config/' + configFile + '.json';
 
     // load the json file and assemble the interface
     get(filename).then(function(response) {
