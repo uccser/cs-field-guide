@@ -11,8 +11,9 @@ $(document).ready(function() {
   });
 
   // On 'reset' button click
-  $('#interactive-parity-clear-all').on('click', function(){
-    clearGrid();
+  $('#interactive-fsa-light-reset').on('click', function(){
+    fsa_light_config['current_state'] = fsa_light_config['initial_state'];
+    updateInterface();
   });
 });
 
