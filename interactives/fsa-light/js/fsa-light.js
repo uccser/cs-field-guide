@@ -1,7 +1,8 @@
 var fsa_light_config;
 
 $(document).ready(function() {
-  loadConfig();
+  var config_name = getUrlParameter('config') || 'example-1';
+  loadConfig(config_name);
 
   // When state button is clicked
   $('#interactive-fsa-light-buttons').on('click', '.btn', function(event) {
@@ -17,26 +18,21 @@ $(document).ready(function() {
   });
 });
 
-function loadConfig() {
-  var config_name = getUrlParameter('config');
-  if (config_name) {
-    var config_path = 'config/' + config_name + '.json'
-    $.ajax({
-      dataType: "json",
-      url: config_path,
-      success: function(config_data) {
-        fsa_light_config = config_data;
-        setupInterface();
-        updateInterface();
-      },
-      error: function() {
-        alert('Config file not found!');
-      },
-      timeout: 3000
-    })
-  } else {
-    alert('No config file provided as parameter!');
-  }
+function loadConfig(config_name) {
+  var config_path = 'config/' + config_name + '.json'
+  $.ajax({
+    dataType: "json",
+    url: config_path,
+    success: function(config_data) {
+      fsa_light_config = config_data;
+      setupInterface();
+      updateInterface();
+    },
+    error: function() {
+      alert('Config file not found!');
+    },
+    timeout: 3000
+  })
 }
 
 
