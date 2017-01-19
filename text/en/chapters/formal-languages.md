@@ -225,7 +225,7 @@ The FSA above accepts any string of inputs that end with an "a", so the interact
 
 Here's an interactive that follows the rules of the FSA above. You can use it to test different inputs.
 
-{button link="http://www.csfieldguide.org.nz/releases/1.9.9/_static/widgets/fsa-2state-v3.html?map=one" text="View state interactive (1)"}
+{interactive name="fsa-box" type="iframe" parameters="config=example-1"}
 
 Here's another FSA, which looks similar to the last one but behaves quite differently. You can test it in the interactive below.
 
