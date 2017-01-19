@@ -250,7 +250,7 @@ The general rule is that the input must have an odd number of "a"s in it; the nu
 
 {panel end}
 
-{button link="http://www.csfieldguide.org.nz/releases/1.9.9/_static/widgets/fsa-2state-v3.html?map=two" text="View state interactive (2)"}
+{interactive name="fsa-box" type="iframe" parameters="config=example-2"}
 
 {glossary-definition term="Alphabet" definition="In formal languages, a list of characters that may occur in a language, or more generally, a list of all possible inputs that might happen."}
 To keep things precise, we'll define four further technical terms.
