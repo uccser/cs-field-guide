@@ -308,7 +308,7 @@ For example, here's a simple finite state automaton with just one input (button 
 The reset button isn't part of the FSA; it’s just a way of letting you return to the starting state.
 See if you can figure out which patterns of input will turn the light on:
 
-{button link="http://www.csfieldguide.org.nz/releases/1.9.9/_static/widgets/fsa-strangelight-v3.html" text="View light interactive"}
+{interactive name="fsa-light" type="iframe" parameters="config=example-1"}
 
 {panel type="teacher-note" summary="Solution"}
 The light comes on with every third button press (which is intentionally confusing --- students will probably expect every second press to work, but this is to get them thinking about what is happening here!) The sequences that will turn on the light are therefore "aaa", "aaaaaa" and so on --- any number of presses that's a multiple of three. And, of course, zero presses.
