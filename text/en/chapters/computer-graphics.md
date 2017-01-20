@@ -54,7 +54,7 @@ They come up often in graphics because they are applied not only to objects, but
 
 In this section you can apply transformations to various images. We'll start by making the changes manually, one point at a time, but we'll move up to a quick shortcut method that uses a *matrix* to do the work for you. We'll start by looking at how these work in two dimensions - it's a bit easier to think about than three dimensions.
 
-The following interactive shows an arrow, and on the right you can see a list of the points that correspond to its 7 corners (usually referred to as *cartesian coordinates*). The arrow is on a grid, where the centre point is the "zero" point. Points are specified using two numbers, *x* and *y*, usually written as (*x*,*y*). The *x* value is how far the point is to the right of the centre and the *y* value is how far above the centre it is. For example, the first point in the list is the tip at (0,4), which means it's 0 units to the right of the centre (i.e. at the centre), and 4 units above it. Which point does the last pair (3,1) correspond to? What does it mean if a coordinate has a negative *x* value?
+The following interactive shows an arrow, and on the left you can see a list of the points that correspond to its 7 corners (usually referred to as *cartesian coordinates*). The arrow is on a grid, where the centre point is the "zero" point. Points are specified using two numbers, *x* and *y*, usually written as (*x*,*y*). The *x* value is how far the point is to the right of the centre and the *y* value is how far above the centre it is. For example, the first point in the list is the tip at (0,4), which means it's 0 units to the right of the centre (i.e. at the centre), and 4 units above it. Which point does the last pair (3,1) correspond to? What does it mean if a coordinate has a negative *x* value?
 
 {panel type="teacher-note" summary="Solutions to questions"}
 (3,1) is the right-most corner of the arrow. A negative *x* value means that it's to the *left* of the centre instead of the right. (A negative *y* value is below the centre).
@@ -129,6 +129,43 @@ You can try it out in the following interactive:
 
 At this stage you may want to have the interactive open in a separate window so that you can read the text below and work on the interactive at the same time.
 
+Let's take a closer look at what is happening here.
+As we mentioned earlier, each point on our arrow can be represented by two values (x and y).
+The rightmost point, on the arrow in the interactive above, we say is at point (3,1) in our coordinate space.
+We can also write this in a 2x1 matrix (a matrix with 2 rows and 1 column):
+
+{math-block}
+\begin{bmatrix}
+3 \\
+1 \\
+\end{bmatrix}
+{math-block end}
+
+Applying a scaling transformation is another way of saying we are doing a "matrix multiplication."
+For example, let's scale point (3,1) by a factor of 2 as we did in the previous interactive:
+
+{math-block}
+\begin{bmatrix}
+2 & 0 \\  
+0 & 2 \\  
+\end{bmatrix}
+\times
+\begin{bmatrix}
+3 \\
+1 \\
+\end{bmatrix}
+=
+\begin{bmatrix}
+6 \\
+2 \\
+\end{bmatrix}
+{math-block end}
+
+This gives us a new position of (6,2) for the rightmost point, which matches the previous interactive after applying the scaling matrix!
+This same matrix multiplication is applied to each of the seven points on the arrow.
+
+
+
 Now try changing the matrix to
 
 {math-block}
@@ -138,7 +175,26 @@ Now try changing the matrix to
 \end{bmatrix}
 {math-block end}
 
-or
+For the rightmost point (starting at (3,1)), the matrix muliplication for scaling by a factor of 3 is:
+
+{math-block}
+\begin{bmatrix}
+3 & 0 \\  
+0 & 3 \\  
+\end{bmatrix}
+\times
+\begin{bmatrix}
+3 \\
+1 \\
+\end{bmatrix}
+=
+\begin{bmatrix}
+9 \\
+3 \\
+\end{bmatrix}
+{math-block end}
+
+Now let's try scaling with a number less than one:
 
 {math-block}
 \begin{bmatrix}
@@ -147,9 +203,54 @@ or
 \end{bmatrix}
 {math-block end}
 
+For the rightmost point (starting at (3,1)), the matrix muliplication for scaling by a factor of 0.2 is:
+
+{math-block}
+\begin{bmatrix}
+0.2 & 0 \\  
+0 & 0.2 \\  
+\end{bmatrix}
+\times
+\begin{bmatrix}
+3 \\
+1 \\
+\end{bmatrix}
+=
+\begin{bmatrix}
+0.6 \\
+0.2 \\
+\end{bmatrix}
+{math-block end}
+
 {panel type="teacher-note" summary="Explanation"}
 
 These should create an arrow 3 times as big and 0.2 (i.e. scaled down to one fifth of the size) times as big respectively.
+{panel end}
+
+
+By now you might be starting to see a recurring pattern in our matrix multiplication for scaling.
+To scale by a factor of s, we can apply the general rule:
+
+{math-block}
+\begin{bmatrix}
+s & 0 \\  
+0 & s \\  
+\end{bmatrix}
+\times
+\begin{bmatrix}
+x \\
+y \\
+\end{bmatrix}
+=
+\begin{bmatrix}
+sx \\
+sy \\
+\end{bmatrix}
+{math-block end}
+
+
+{panel type="extra-for-experts" summary="Matrix Multiplication Challenge"}
+Pick 2 or 3 more points on the arrow (include some with negative x and y values) and try to do the matrix multiplication for scaling each factor above (2, 3 and 0.2). You'll know if you got the correct answer because it should match the scaled arrow in the interactive!
 {panel end}
 
 
@@ -167,17 +268,6 @@ What happens if you use the following matrix?
 The x values are doubled but the y values are multiplied by 4, so it is stretched twice as much vertically as horizontally.
 {panel end}
 
-Now try the following matrix:
-
-{math-block}
-\begin{bmatrix}
-0 & 1 \\  
-1 & 0 \\  
-\end{bmatrix}
-{math-block end}
-
-This matrix should have rotated the arrow to the right.
-
 A simple way of looking at the matrix is that the top row determines the transformed *x* value, simply by saying how much of the original *x* value and *y* value contribute to the new *x* value. So in the matrix:
 
 {math-block}
@@ -189,7 +279,18 @@ A simple way of looking at the matrix is that the top row determines the transfo
 
 The top row just means that the new *x* value is 2 lots of the original *x*, and none of the original y, which is why all the *x* values double. The second row determines the *y* value: in the above example, it means that the new *y* value uses none of the original x, but 4 times the original *y* value. If you try this matrix, you should find that the location of all the *x* points is doubled, and the location of all the y points is multiplied by 4.
 
-That now explains the {math}\begin{bmatrix}  0 & 1 \\   1 & 0 \\   \end{bmatrix}{math end} matrix. The new *x* value has none of the original *x*, but exactly the original *y* value, and vice versa. This swaps all the *x* and *y* coordinates, which is the same as rotating the object to the right.
+Now try the following matrix:
+
+{math-block}
+\begin{bmatrix}
+0 & 1 \\  
+1 & 0 \\  
+\end{bmatrix}
+{math-block end}
+
+This matrix should have rotated the arrow to the right.
+
+The new *x* value has none of the original *x*, but exactly the original *y* value, and vice versa. This swaps all the *x* and *y* coordinates, which is the same as rotating the object to the right.
 
 Where it gets interesting is when you use a little of each value; try the following matrix:
 
@@ -240,7 +341,7 @@ because
 This is also known as the 'identity' matrix because it makes no change to the original image. You get this matrix if you rotate by a multiple of 360 (including 0 degrees of course).
 {panel end}
 
-The general matrix for *scaling* is a bit simpler than the one for rotation; if you want to scale by a factor of *s*, then you just use the matrix:
+Recall that the genearl matrix for scaling is:
 
 {math-block}
 \begin{bmatrix}
@@ -248,6 +349,8 @@ s & 0 \\
 0 & s \\  
 \end{bmatrix}
 {math-block end}
+
+A bit simpler than the one for rotation!
 
 A translation can't be specified by this kind of matrix, so in the interactives we've provided an extra place to specify an *x* and *y* value to translate the input.
 Try it out in the following interactive.
@@ -275,7 +378,7 @@ Try the following challenge!
 The matrix should be {math}\begin{bmatrix}  2 & 0 \\   0 & 2 \\   \end{bmatrix}{math end} (still needed to double the size). However, the translation will be doubled as well since it comes before the matrix, therefore translate x is 4.5 and y is -3 (half of the distance needed).
 {panel end}
 
-In the above, you'll have noticed that scaling is affected by how far the object is from the centre.
+In the above interactive, you'll have noticed that scaling is affected by how far the object is from the centre.
 If you want to scale around a fixed point in the object (so it expands where it is), then an easy way is to translate it back to the centre (also called the *origin*), scale it, and then translate it back to where it was.  The following interactive allows you to move the arrow, then scale it, and move it back.
 
 {interactive name="2d-arrow-manipulations" type="whole-page" text="Using Translation to Simplify Scaling" parameters="config=matrix-scale-translate-3"}
@@ -319,7 +422,7 @@ These combined transformations are common, and they might seem like a lot of wor
 
 Several transforms being applied to the same image can be made more efficient by creating one matrix that has the effect of all the transforms combined.The combination is done by "multiplying" all the matrices.
 
-Multiplying two matrices can't be done by just multiplying the corresponding elements; if you are multiplying two matrices with the *a* and *b* values shown below, the resulting values from the multiplication are calculated as follows:
+Multiplying two matrices can't be done by just multiplying the corresponding elements (as we learned earlier when applying scaling transformations); if you are multiplying two 2x2 matrices with the *a* and *b* values shown below, the resulting values from the multiplication are calculated as follows:
 
 {math-block}
 
