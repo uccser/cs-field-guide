@@ -1,0 +1,42 @@
+#interactive-nfa-guesser-image {
+  max-width: 40em;
+}
+#interactive-nfa-guesser-input-sequence {
+  font-size: 1.5em;
+}
+#interactive-nfa-guesser-input-sequence-value {
+  font-weight: bold;
+}
+div#interactive-nfa-guesser-state-checkboxes {
+  margin: 1em;
+}
+div#interactive-nfa-guesser-state-checkboxes label {
+  position: inherit;
+  padding: 0;
+  margin: 0 0.5em;
+  cursor: pointer;
+  display: inline-block;
+  height: inherit;
+  line-height: inherit;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #000;
+}
+div#interactive-nfa-guesser-state-checkboxes label input {
+  height: 1.2em;
+  width: 1.2em;
+  margin: 0.2em;
+  position: relative;
+  left: inherit;
+  top: 0.3em;
+  visibility: visible;
+}
+#interactive-nfa-guesser-result {
+  font-size: 1.5em;
+  margin: 0.5em;
+  font-weight: bold;
+  color: #F44336;
+}
+#interactive-nfa-guesser-result.valid {
+  color: #4CAF50 !important;
+}
