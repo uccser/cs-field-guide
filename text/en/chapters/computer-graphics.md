@@ -132,16 +132,8 @@ At this stage you may want to have the interactive open in a separate window so 
 Let's take a closer look at what is happening here.
 As we mentioned earlier, each point on our arrow can be represented by two values (x and y).
 The rightmost point, on the arrow in the interactive above, we say is at point (3,1) in our coordinate space.
-We can also write this in a 2x1 matrix (a matrix with 2 rows and 1 column):
 
-{math-block}
-\begin{bmatrix}
-3 \\
-1 \\
-\end{bmatrix}
-{math-block end}
-
-Applying a scaling transformation is another way of saying we are doing a "matrix multiplication."
+When we are applying a scaling transformation we are actually doing a type of "matrix multiplication."
 For example, let's scale point (3,1) by a factor of 2 as we did in the previous interactive:
 
 {math-block}
@@ -341,7 +333,7 @@ because
 This is also known as the 'identity' matrix because it makes no change to the original image. You get this matrix if you rotate by a multiple of 360 (including 0 degrees of course).
 {panel end}
 
-Recall that the genearl matrix for scaling is:
+Recall that the general matrix for scaling is:
 
 {math-block}
 \begin{bmatrix}
