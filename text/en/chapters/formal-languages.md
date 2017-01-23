@@ -286,7 +286,7 @@ It would be frustrating if you could only change the spin setting 50 times, and 
 If you want, you could switch from fast to slow spin by pressing the spin button 3002 times.
 Or 2 times would do. Or 2 million times (try it if you're not convinced).
 
-{button link="http://www.csfieldguide.org.nz/releases/1.9.9/_static/widgets/fsa-spin-graphic.html" text="View spinner interactive"}
+{interactive name="fsa-washing-machine" type="in-page"}
 
 The following diagram summarizes the terminology we have introduced. Notice that this FSA has two accepting states. You can have as many as you want, but only one start state.
 
