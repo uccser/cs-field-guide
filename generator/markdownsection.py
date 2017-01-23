@@ -687,7 +687,7 @@ class Section:
             - Implement better system for checking whether link is relative
             and needs to be adjusted
         """
-        link_attributes = ['href', 'src']
+        link_attributes = ['href', 'src', 'data']
         for element in root.find_all():
             for attr in link_attributes:
                 raw_link = element.get(attr, None)
