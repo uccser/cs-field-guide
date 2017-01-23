@@ -119,8 +119,8 @@ function createStateCheckboxes() {
         checkbox.type = 'checkbox';
         checkbox.id = checkbox_id;
         checkbox_label.appendChild(checkbox);
-        checkbox_label.append(state);
-
+        var state_text = document.createTextNode(state);
+        checkbox_label.appendChild(state_text);
 
         checkbox_group.appendChild(checkbox_label);
     }
