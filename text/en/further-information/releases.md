@@ -20,22 +20,31 @@ We have listed major changes for each release below.
 ## Current Release
 
 ### v2.9.0
-**Release date:** 16th December 2016
+
+aka [Pōhutukawa](https://en.wikipedia.org/wiki/Metrosideros_excelsa)
+
+**Release date:** 27th January 2017
+
+**Downloads:** [Source downloads are available on GitHub](https://github.com/uccser/cs-field-guide/releases/tag/v2.9.0)
 
 **Notable changes:**
 
-This release adds an introductory video for the Complexity and Tractability chapter, as well as updated versions of the 2D Arrow Manipulation interactives in the Computer Graphics chapter.
-
-**Downloads:** [Source downloads are available on GitHub](https://github.com/uccser/cs-field-guide/releases/tag/v2.9.0)
+This release adds an introductory video for the Complexity and Tractability chapter, updated text for Graphics Transformations section of the Computer Graphics chapter, as well as updated versions of the 2D Arrow Manipulation and FSA interactives.
 
 **Changelog:**
 - Add introductory video to Complexity and Tractability chapter.
   - [Heidi Newton](https://github.com/Heidirose)
-- Rewrote 2D Arrow Manipulation interactives
-  - [Hayley van Waas](https://github.com/hayleyavw)[#372](https://github.com/uccser/cs-field-guide/issues/372) [#373](https://github.com/uccser/cs-field-guide/issues/373)
-- Add ability to list authors in the sidebar of a chapter page
+- Rewrite Graphics Transformations section of Computer Graphics chapter
+  - [Hayley van Waas](https://github.com/hayleyavw) [#402](https://github.com/uccser/cs-field-guide/issues/402)
+- Rewrite 2D Arrow Manipulation interactives
+  - [Hayley van Waas](https://github.com/hayleyavw) [#372](https://github.com/uccser/cs-field-guide/issues/372) [#373](https://github.com/uccser/cs-field-guide/issues/373)
+- Add list of authors in the sidebar of chapter page
   - [Jack Morgan](https://github.com/JackMorganNZ) [#396](https://github.com/uccser/cs-field-guide/issues/396)
-- Updated APCSP framework
+- Update FSA interactives
+  - [Jack Morgan](https://github.com/JackMorganNZ) [#45](https://github.com/uccser/cs-field-guide/issues/45) [#46](https://github.com/uccser/cs-field-guide/issues/46) [#47](https://github.com/uccser/cs-field-guide/issues/47) [#48](https://github.com/uccser/cs-field-guide/issues/48)
+- Add NFA guesser interactive
+  - [Jack Morgan](https://github.com/JackMorganNZ)
+- Update APCSP framework
   - [Paul Tymann](https://github.com/ptymann) [#399](https://github.com/uccser/cs-field-guide/issues/399)
 
 ## Older Releases
