@@ -66,7 +66,7 @@ The following interactive shows an arrow, and on the left you can see a list of 
 The transform in this interactive *translates* the arrow 2 units to the right and 3 units up. Subtracting three translates the arrow down and to the left.
 {panel end}
 
-The above transform is called a *translation* --- it translates the arrow around the grid. This kind of transform is used in graphics to specify where an object should be placed in a scene, but it has many other uses, such as making an animated object move along a path, or specifying the position of the imaginary camera (viewpoint).
+The transform you did in the above interactive is called a *translation* --- it translates the arrow around the grid. This kind of transform is used in graphics to specify where an object should be placed in a scene, but it has many other uses, such as making an animated object move along a path, or specifying the position of the imaginary camera (viewpoint).
 
 The next challenge involves changing the size of the image.
 
@@ -121,7 +121,7 @@ Transformations are usually done in graphics using *matrix* arithmetic, which is
 \end{bmatrix}
 {math-block end}
 
-Where the top left value just means multiply all the x values by 2, and the bottom right value means multiply all the y values by 2.
+where the top left value just means multiply all the x values by 2, and the bottom right value means multiply all the y values by 2.
 
 You can try it out in the following interactive:
 
@@ -269,7 +269,7 @@ A simple way of looking at the matrix is that the top row determines the transfo
 \end{bmatrix}
 {math-block end}
 
-The top row just means that the new *x* value is 2 lots of the original *x*, and none of the original y, which is why all the *x* values double. The second row determines the *y* value: in the above example, it means that the new *y* value uses none of the original x, but 4 times the original *y* value. If you try this matrix, you should find that the location of all the *x* points is doubled, and the location of all the y points is multiplied by 4.
+the top row just means that the new *x* value is 2 lots of the original *x*, and none of the original y, which is why all the *x* values double. The second row determines the *y* value: in the above example, it means that the new *y* value uses none of the original x, but 4 times the original *y* value. If you try this matrix, you should find that the location of all the *x* points is doubled, and the location of all the y points is multiplied by 4.
 
 Now try the following matrix:
 
@@ -412,7 +412,7 @@ These combined transformations are common, and they might seem like a lot of wor
 
 ### Combining transformations
 
-Several transforms being applied to the same image can be made more efficient by creating one matrix that has the effect of all the transforms combined.The combination is done by "multiplying" all the matrices.
+Several transforms being applied to the same image (for example, rotate, move and scale the wheel of a car) can be made more efficient by creating one matrix that has the effect of all the transforms combined.The combination is done by "multiplying" all the matrices.
 
 Multiplying two matrices can't be done by just multiplying the corresponding elements (as we learned earlier when applying scaling transformations); if you are multiplying two 2x2 matrices with the *a* and *b* values shown below, the resulting values from the multiplication are calculated as follows:
 
