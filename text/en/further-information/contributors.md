@@ -60,6 +60,8 @@ This project is the result of contributions from a large community of Computer S
 - Jenny Baker - Curriculum (NCEA)
 - Neil Leslie - Curriculum (NCEA)
 - Hannah Taylor - Curriculum (NCEA)
+- James Atlas - Curriculum (AP-CSP)
+- Paul Tymann - Curriculum (AP-CSP)
 - Dr Mukundan - Computer Graphics & Vision
 - Richard Green - Computer Vision
 - DongSeong Kim - Network Communication Protocols, Encryption
@@ -82,6 +84,7 @@ This project is the result of contributions from a large community of Computer S
 - Ben Gibson - Interactive games and related material
 - Michael Bell ([Orange Studio](http://orangestudio.co.nz/)) - Video production
 - Linda Pettigrew - Formal languages material
+- Sarang Love Leehan - Illustrations
 
 ## Community Contributors
 
