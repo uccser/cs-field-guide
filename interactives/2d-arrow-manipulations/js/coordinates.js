@@ -28,6 +28,7 @@ function coordTab(inputBox) {
  */
 function getNewCoordinates() {
     var inputId = '';
+
     for (var i = 0; i < 7; i++) { // 7 points on arrow
         var newPoint = new Point();
 
@@ -39,7 +40,7 @@ function getNewCoordinates() {
 
         currentState.currentPosition[i] = newPoint;
     }
-    updateArrow();
+    drawArrow();
 }
 
 
