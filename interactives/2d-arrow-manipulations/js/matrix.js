@@ -16,9 +16,15 @@ function matrixTab(matrixInputBox) {
 
 /* Sets up order of matrix operations and moves the arrow to new position
  */
-function matrixOperations() {
-    var productMatrix = configSettings.START_POSITION;
+function matrixOperations(test) {
     var matrixElements = document.getElementById('matrices').children;
+    var productMatrix = [];
+    for (var i = 0; i < 7; i++) {
+        var newPoint = new Point();
+        newPoint.x = configSettings.START_POSITION[i].x + interfaceSettings.xIntercept - interfaceSettings.initialXIntercept;
+        newPoint.y = configSettings.START_POSITION[i].y + interfaceSettings.yIntercept - interfaceSettings.initialYIntercept;
+        productMatrix[i] = newPoint;
+    }
 
     for (var i = 0; i < matrixElements.length; i++) {
         var element = matrixElements[i];
@@ -31,7 +37,8 @@ function matrixOperations() {
             }
         }
     }
-    updateArrow();
+
+    drawArrow();
 }
 
 
@@ -52,7 +59,6 @@ function scale(id, productMatrix) {
 
         newPoint.x = (newPoint.x * interfaceSettings.squareSize) + interfaceSettings.xIntercept;
         newPoint.y = (newPoint.y * interfaceSettings.squareSize * -1) + interfaceSettings.yIntercept;
-
         currentState.currentPosition[i] = newPoint;
     }
     return currentState.currentPosition;
@@ -69,8 +75,8 @@ function translate(id, productMatrix) {
         var newPoint = new Point();
         var currPoint = productMatrix[i];
 
-        newPoint.x = currPoint.x + currentState.translateMatrix[0];
-        newPoint.y = currPoint.y - currentState.translateMatrix[1];
+        newPoint.x = currPoint.x + currentState.translateMatrix[0];// + interfaceSettings.xIntercept;
+        newPoint.y = currPoint.y - currentState.translateMatrix[1];// + interfaceSettings.yIntercept;
 
         currentState.currentPosition[i] = newPoint;
     }
@@ -82,7 +88,7 @@ function translate(id, productMatrix) {
  */
 function resetMatrices() {
     // place the arrow back in the start position
-    drawBothArrows();
+    reset();
 
     // reset to default values of matrices
     document.getElementById('matrix-first-scale-row-0-col-0').value = 1;
