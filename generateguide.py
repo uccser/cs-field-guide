@@ -88,11 +88,11 @@ class Guide:
         root_folder = FolderNode('Home', guide=self)
         for content_data in self.guide_settings['structure']:
             content_type = list(content_data.keys())[0]
-            content_settings = list(content_data.values())[0]
-            for title_path in content_settings['source_files']:
+            type_settings = list(content_data.values())[0]
+            for file_data in type_settings['source_files']:
                 # Reset current folder to root
                 current_folder = root_folder
-                folder_path, file_name = os.path.split(title_path)
+                folder_path, file_name = os.path.split(file_data['file'])
                 folder_path = folder_path.split('/')
                 # Navigate to correct folder
                 while folder_path:
@@ -105,7 +105,7 @@ class Guide:
                 text_root = self.generator_settings['Source']['Text Root'].format(language=self.language_code)
                 file_path = os.path.join(text_root, current_folder.path, file_name)
                 if file_exists(file_path):
-                    current_folder.add_file(file_name, content_type, content_settings)
+                    current_folder.add_file(file_name, content_type, file_data, type_settings)
         return root_folder
 
 
@@ -437,11 +437,11 @@ class FolderNode:
             self.folders.append(folder_node)
             self.folders_dict[folder_name] = len(self.folders) - 1
 
-    def add_file(self, file_name, group_type, file_settings):
+    def add_file(self, file_name, content_type, file_settings, type_settings):
         """Add file to files list. Updates dictionary
         of index references
         """
-        file_node = FileNode(file_name, file_settings, group_type, parent=self)
+        file_node = FileNode(file_name, file_settings, type_settings, content_type, parent=self)
         self.files.append(file_node)
         self.files_dict[file_name] = len(self.files) - 1
 
@@ -470,14 +470,15 @@ class FolderNode:
 
 class FileNode:
     """Node object for storing file details in structure tree"""
-    def __init__(self, filename, settings, group_type, parent):
+    def __init__(self, filename, file_settings, type_settings, content_type, parent):
         self.filename = filename
         self.filename_without_extension = self.filename.rsplit('.', 1)[0]
-        self.group_type = group_type
+        self.content_type = content_type
         self.parent = parent
         self.section = None
-        self.settings = settings
-        self.tracked = settings['listed']
+        self.file_settings = file_settings
+        self.type_settings = type_settings
+        self.tracked = type_settings['listed']
         self.depth = (parent.depth + 1)
         self.path = os.path.join(self.parent.path, self.filename_without_extension)
         self.guide = self.parent.guide

@@ -225,7 +225,7 @@ The FSA above accepts any string of inputs that end with an "a", so the interact
 
 Here's an interactive that follows the rules of the FSA above. You can use it to test different inputs.
 
-{button link="http://www.csfieldguide.org.nz/releases/1.9.9/_static/widgets/fsa-2state-v3.html?map=one" text="View state interactive (1)"}
+{interactive name="fsa-box" type="iframe" parameters="config=example-1"}
 
 Here's another FSA, which looks similar to the last one but behaves quite differently. You can test it in the interactive below.
 
@@ -250,7 +250,7 @@ The general rule is that the input must have an odd number of "a"s in it; the nu
 
 {panel end}
 
-{button link="http://www.csfieldguide.org.nz/releases/1.9.9/_static/widgets/fsa-2state-v3.html?map=two" text="View state interactive (2)"}
+{interactive name="fsa-box" type="iframe" parameters="config=example-2"}
 
 {glossary-definition term="Alphabet" definition="In formal languages, a list of characters that may occur in a language, or more generally, a list of all possible inputs that might happen."}
 To keep things precise, we'll define four further technical terms.
@@ -286,7 +286,7 @@ It would be frustrating if you could only change the spin setting 50 times, and 
 If you want, you could switch from fast to slow spin by pressing the spin button 3002 times.
 Or 2 times would do. Or 2 million times (try it if you're not convinced).
 
-{button link="http://www.csfieldguide.org.nz/releases/1.9.9/_static/widgets/fsa-spin-graphic.html" text="View spinner interactive"}
+{interactive name="fsa-washing-machine" type="in-page"}
 
 The following diagram summarizes the terminology we have introduced. Notice that this FSA has two accepting states. You can have as many as you want, but only one start state.
 
@@ -308,7 +308,7 @@ For example, here's a simple finite state automaton with just one input (button 
 The reset button isn't part of the FSA; it’s just a way of letting you return to the starting state.
 See if you can figure out which patterns of input will turn the light on:
 
-{button link="http://www.csfieldguide.org.nz/releases/1.9.9/_static/widgets/fsa-strangelight-v3.html" text="View light interactive"}
+{interactive name="fsa-light" type="iframe" parameters="config=example-1"}
 
 {panel type="teacher-note" summary="Solution"}
 The light comes on with every third button press (which is intentionally confusing --- students will probably expect every second press to work, but this is to get them thinking about what is happening here!) The sequences that will turn on the light are therefore "aaa", "aaaaaa" and so on --- any number of presses that's a multiple of three. And, of course, zero presses.
@@ -1315,6 +1315,8 @@ section is a kind known as a *Deterministic Finite Automata* (DFA), because the 
 Sometimes it's referred to as a *Finite State Acceptor* because it accepts and rejects input depending on whether it gets to the final state.
 There are all sorts of variants that we didn't mention, including the Mealy and Moore machines (which produce an output for each each transition taken or state reached), the nested state machine (where each state can be an FSA itself), the non-deterministic finite automata (which can have the same label on more than one transition out of a state), and the lambda-NFA (which can include transitions on the empty string, {math}\lambda{math end}).
 Believe it or not, all these variations are essentially equivalent, and you can convert from one to the other. They are used in a wide range of practical situations to design systems for processing input.
+
+{interactive name="nfa-guesser" type="in-page"}
 
 However, there are also more complex models of computation such as the push-down automaton (PDA) which is able to follow the rules of context-free grammars, and the most general model of computation which is called a Turing machine.
 These models are increasingly complicated and abstract, and structures like the Turing machine aren't used as physical devices (except for fun), but instead as a tool for reasoning about the limits on what can be computed.
