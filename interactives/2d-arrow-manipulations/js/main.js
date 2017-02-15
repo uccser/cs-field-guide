@@ -52,7 +52,7 @@ window.onload = function(event) {
 
     // gets name of config file according to url parameter
     var url = window.location.search.replace('?', '');
-    var configFileRegex = /config=((matrix|coord)-([a-z]*|-)*)/g;
+    var configFileRegex = /config=((matrix|coord)-(\w*|-)*)/g;
     var configFile = configFileRegex.exec(url)[1];
     var filename = 'config/' + configFile + '.json';
 
