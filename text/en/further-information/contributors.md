@@ -96,6 +96,7 @@ This project is the result of contributions from a large community of Computer S
 - [oughter](https://github.com/oughter)
 - [digitalDojoNZ](https://github.com/digitalDojoNZ)
 - [pvskarthikeya](https://github.com/pvskarthikeya) (Karthikeya Pammi)
+- [Goldob](https://github.com/Goldob) (Adam Gotlib)
 
 **Note:** If there is an error in the list, please contact [Jack Morgan](mailto:jack.morgan@canterbury.ac.nz)
 
