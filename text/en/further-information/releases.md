@@ -19,6 +19,19 @@ We have listed major changes for each release below.
 
 ## Current Release
 
+### v2.9.1
+**Release date:** 20th February 2017
+
+**Downloads:** [Source downloads are available on GitHub](https://github.com/uccser/cs-field-guide/releases/tag/v2.9.1)
+
+**Notable changes:**
+
+This release fixes a bug in the Computer Graphics chapter where some links to the 2D Arrow Manipulation interactives were broken due to an incorrect regex.
+
+**Changelog:**
+- [Adam Gotlib](https://github.com/Goldob) [#404](https://github.com/uccser/cs-field-guide/pull/404)
+
+
 ### v2.9.0
 
 aka [Pōhutukawa](https://en.wikipedia.org/wiki/Metrosideros_excelsa)
