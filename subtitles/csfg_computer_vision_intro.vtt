@@ -1,0 +1,60 @@
+WEBVTT
+
+NOTE
+Computer Science Education Research,
+University of Canterbury, New Zealand
+Subtitle file for the video "Computer Science Field Guide: Computer Vision"
+Author: Alasdair Smith
+Date: 15/02/2017
+
+
+00:00.000 --> 00:03.000
+Computer Vision
+<00:01.000>The idea of a computer being able to see
+
+00:03.000 --> 00:05.000
+is no longer science fiction.
+
+00:05.000 --> 00:11.400
+There are good methods available for recognising
+where a face is in an image, or even who it might be.
+
+00:11.400 --> 00:13.000
+Recognising where abjects are in a scene
+
+00:13.000 --> 00:16.400
+makes it possible to navigate vehicles without
+bumping into anything.
+
+00:16.400 --> 00:22.200
+That's especially important for things like
+wheelchairs, robots or even a self-driving car.
+
+00:22.200 --> 00:25.800
+Analysing objects enables a system
+to detect interesting features,
+
+00:25.800 --> 00:30.200
+such as the quality of fruit being packed.
+
+00:31.800 --> 00:35.200
+Or even a tumour in a medical scan.
+
+00:35.200 --> 00:39.400
+In this chapter, you'll look at Computer Vision
+methods for things like:
+
+00:39.400 --> 00:42.600
+finding the edges around objects;
+
+00:42.600 --> 00:45.400
+recognising faces;
+
+00:45.400 --> 00:48.000
+recognising characters;
+
+00:54.000 --> 00:57.600
+and tracking objects moving through a scene.
+
+00:57.600 --> 00:59.400
+Computer Vision

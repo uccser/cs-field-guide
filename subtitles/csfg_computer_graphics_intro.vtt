@@ -1,0 +1,70 @@
+WEBVTT
+
+NOTE
+Computer Science Education Research,
+University of Canterbury, New Zealand
+Subtitle file for the video "Computer Science Field Guide: Computer Graphics"
+Author: Alasdair Smith
+Date: 10/02/2017
+
+00:00.000 --> 00:04.800
+Computer Graphics is used to create all sorts of images.
+
+00:06.200 --> 00:10.600
+But at the end of the day they're just
+<00.08.000>pixels that have been given a certain colour value.
+
+00:10.600 --> 00:13.000
+Computer Scientists who work in Computer Graphics
+
+00:13.000 --> 00:15.400
+work out how to take an object,
+
+00:15.400 --> 00:19.000
+do some calculations and translate that
+to a computer screen.
+
+00:19.000 --> 00:23.000
+For example: we need to think about an object's rotation;
+
+00:24.600 --> 00:27.000
+its position in 3D space;
+
+00:32.000 --> 00:33.600
+and its size.<00:33.200> [quack]
+
+00:33.600 --> 00:38.000
+This also involves specifying colours mathematically,
+
+00:38.600 --> 00:44.000
+and working out what objects should
+appear in front of others.
+
+00:45.600 --> 00:50.000
+And how to add shadows,<00:47:600> and reflections.
+
+00:52.000 --> 00:58.000
+Even working out which pixels to use
+to draw a circle, or a line
+
+00:58.000 --> 00:59.800
+isn't that simple.
+
+00:59.800 --> 01:01.600
+In this chapter, we're going to look at
+
+01:01.600 --> 01:04.200
+some of the challenges
+and some of the calculations needed
+
+01:04.200 --> 01:06.000
+to get the right pixels
+
+01:06.600 --> 01:08.400
+in the right places
+
+01:09.200 --> 01:12.000
+on the screen.
+
+01:16.000 --> 01:17.800
+Computer Graphics

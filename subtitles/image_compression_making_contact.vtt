@@ -1,0 +1,129 @@
+WEBVTT
+
+NOTE
+Computer Science Education Research,
+University of Canterbury, New Zealand
+Subtitle file for the video "Image Compression - Making Contact"
+Author: Alasdair Smith
+Date: 15/02/2017
+
+00:02.000 --> 00:04.400
+Computer Science Unplugged
+
+00:05.800 --> 00:08.000
+Image Compression - Making Contact
+
+00:08.600 --> 00:12.800
+Is anyone from outer space trying
+to make contact with us?
+
+00:12.800 --> 00:16.800
+A science-fiction writer called Carl Sagan
+suggested that if someone was,
+
+00:16.800 --> 00:20.600
+they might send us a picture coded as numbers.
+
+00:20.600 --> 00:24.800
+In fact, we already have digital systems
+for sending pictures as numbers.
+
+00:24.800 --> 00:27.600
+One of them is called a fax machine.
+
+00:27.600 --> 00:31.000
+Suppose you wanted to send this picture
+over a long distance.
+
+00:31.000 --> 00:36.400
+Here it has been broken up into lots of
+black and white squares, called <i>pixels.</i>
+
+00:36.400 --> 00:41.000
+Rather than transmit every pixel separately,
+we can speed things up by grouping pixels
+
+00:41.000 --> 00:44.200
+in runs of the same colour.
+
+00:44.200 --> 00:50.800
+Here we have a run of three white pixels,
+then four black ones, then one white.
+
+00:50.800 --> 00:53.600
+Now the picture is represented with
+a whole lot of numbers,
+
+00:53.600 --> 00:58.400
+which makes it easy to store and transmit.
+
+00:58.400 --> 01:02.600
+Here we're going to send this picture
+from the paper to the side of a wall.
+
+01:02.600 --> 01:07.600
+The printer at the other end is a student,
+who will paint black and white pixels for us.
+
+01:07.600 --> 01:16.000
+The first message is the number of white pixels to skip,
+then we send a message to colour in three black pixels.
+
+01:17.600 --> 01:23.000
+We carry on alternating numbers for white,
+then black pixels.
+
+01:23.000 --> 01:28.800
+The person sending the image just needs to count
+the number of white squares until the next black one.
+
+01:28.800 --> 01:34.000
+Then the number of black squares
+until the next white one.
+
+01:34.000 --> 01:38.600
+It's always alternating: white, and black.
+
+01:40.000 --> 01:45.000
+These pixels are more than a thousand times
+larger than the ones on a fax machine.
+
+01:45.000 --> 01:50.200
+Even though we've only sent a few numbers,
+we've communicated the whole picture.
+
+01:50.200 --> 01:56.400
+Of course, in class you don't have
+to use a sheet of paper this big.
+
+01:56.400 --> 01:59.600
+Fax machines use a similar principle
+for sending pictures.
+
+01:59.600 --> 02:04.400
+If they sent each pixel individually,
+they'd be about seven times slower.
+
+02:04.400 --> 02:09.400
+And if you need to contact someone in outer space,
+perhaps you'd want to use this system too.
+
+02:09.400 --> 02:13.000
+For more information about this activity,
+and the Unplugged project,
+
+02:13.000 --> 02:18.400
+visit our website at csunplugged.org
+<02:15.400>Unplugged material created by Tim Bell,
+<02:15.400>Mike Fellows and Ian Witten.
+
+02:18.400 --> 02:21.400
+Film by Richard Bell, Shuriken
+
+02:21.400 --> 02:23.800
+Thanks to the teachers and children of
+Chisnallwood Intermediate School
+Christchurch, New Zealand
+
+02:23.800 --> 02:26.800
+Computer Science Unplugged
