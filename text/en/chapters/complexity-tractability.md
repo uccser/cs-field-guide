@@ -532,13 +532,39 @@ Don't forget to include an introductory paragraph in your report that outlines t
 
 {image filename="knapsack-truck.png" alt="A picture of a truck storing crates"}
 
-- [the knapsack problem](https://en.wikipedia.org/wiki/Knapsack_problem)
+Imagine you work for a shipping company, * **insert parody name here** *, and your job is to decide which crates get loaded into each truck.
+It's important to use as much space in a truck as possible so that you don't have to send out too many trucks.
+But of course, each truck can only take so much weight!
+Each crate is worth a different amount of money, and your goal is to get the highest total value of crates into the truck, without going over the truck's weight limit.
+It's not hard to see how this would start getting difficult quite quickly.
 
-Imagine you work for a shipping company, < insert parody name here >, and your job is to decide which crates get loaded into each truck. It's important to use as much space in a truck as possible so that you don't have to send out too many trucks. But of course, each truck can only take so much weight! Each crate is worth a different amount of money, and your goal is to get the highest total value of crates into the truck, without going over the truck's weight limit. It's not hard to see how this would start getting difficult quite quickly.
-
-A more general way to think about this is imagine you have a set of items. Each of thes iteams has a value and a weight. The knapsack problem is deciding how many of each of these items to include in order to maximise the total value, but the total weight must be less than or eqaual to a set limit. Simply put, the knapsack problem is a decision making problem with resource constraints.
+A more general way to think about this is imagine you have a set of items.
+Each of thes iteams has a value and a weight.
+The knapsack problem is deciding how many of each of these items to include in order to maximise the total value, but the total weight must be less than or equal to a set limit.
+Simply put, the knapsack problem is a decision making problem with resource constraints.
 
 We could use a greedy algorithm to solve the knapsack problem (i.e. take the most valuable items until we reach the most valuable item), but we are certainly not guaranteed to maximise the total value every time by using this approach.
+
+### Dominating Sets
+
+* **Tourist Town** *
+
+The above picture depicts a map of Tourist Town.
+The lines are streets and the dots are street corners.
+The town is in a very hot country, and in the summer season ice-cream vans park at street corners and sell ice-creams to tourists.
+We want to place the vans so that anyone can reach one by walking to the end of their street and then at most one block further.
+**(this confuses me: and then at most one block further. )**
+(It may be easier to imagine people living at the intersections rather than along the streets; then they must be able to get ice-cream by walking at most one block.)
+The question is, how many ice-cream vans are needed and on which intersections should they be placed?
+
+The solution that you find is referred to as a "dominating set".
+A dominating set is a subset of vertices (or in our case, "street corners") in a graph (or "Tourist Town") such that every vertex not included in the subset is only one "street" away from a vertice that is in the subset.
+
+Finding a dominating set is easy, simply select every second vertice in your graph (or even **every** vertice for that matter)! But this is definitely a heuristic as we can often come up with a much smaller subset than what this method would give us (and therefore requiring much fewer ice-cream vans).
+
+Dominating sets also have many other real world applications, think of computers in a company (or in your school, on your street, etc).
+All of these computers need access to the internet, and that means routers are needed.
+Every computer could be connected to it's own router, but this is a waste of resources, instead we would be much better off figuring out the dominating set in order to minimise the number of routers we need.
 
 ### And many more!
 
@@ -555,7 +581,6 @@ There are thousands of other problems like the TSP for which no tractable soluti
 - [the bin packing problem](https://en.wikipedia.org/wiki/Bin_packing_problem)
 - [Hamiltonian paths](https://en.wikipedia.org/wiki/Hamiltonian_path) (no tractable solution for this is known, yet the very similar Eulerian path, which is often presented as the seven bridges problem, has an easy tractable solution)
 - [Steiner trees](http://www.csunplugged.org/steiner-trees)
-- [Dominating sets](http://www.csunplugged.org/dominating-sets)
 - [Longest path](https://en.wikipedia.org/wiki/Longest_path) (this is interesting because finding the longest path is intractable, yet finding the shortest path is tractable - the shortest path is calculated when a GPS device works out the shortest route to a destination. Also, a Hamiltonian problem can be reduced easily to longest path, showing the concept of reduction when one NP-complete problem is used to solve another). [And here's a song about it!](https://www.youtube.com/watch?feature=player_embedded&v=a3ww0gwEszo)
 - [the Battleship problem](https://en.wikipedia.org/wiki/Battleship_(puzzle\))
 
