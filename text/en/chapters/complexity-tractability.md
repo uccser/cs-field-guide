@@ -528,16 +528,30 @@ Don't forget to include an introductory paragraph in your report that outlines t
 
 ## Other intractable problems
 
+### The Knapsack Problem
+
+{image filename="knapsack-truck.png" alt="A picture of a truck storing crates"}
+
+- [the knapsack problem](https://en.wikipedia.org/wiki/Knapsack_problem)
+
+Imagine you work for a shipping company, < insert parody name here >, and your job is to decide which crates get loaded into each truck. It's important to use as much space in a truck as possible so that you don't have to send out too many trucks. But of course, each truck can only take so much weight! Each crate is worth a different amount of money, and your goal is to get the highest total value of crates into the truck, without going over the truck's weight limit. It's not hard to see how this would start getting difficult quite quickly.
+
+A more general way to think about this is imagine you have a set of items. Each of thes iteams has a value and a weight. The knapsack problem is deciding how many of each of these items to include in order to maximise the total value, but the total weight must be less than or eqaual to a set limit. Simply put, the knapsack problem is a decision making problem with resource constraints.
+
+We could use a greedy algorithm to solve the knapsack problem (i.e. take the most valuable items until we reach the most valuable item), but we are certainly not guaranteed to maximise the total value every time by using this approach.
+
+### And many more!
+
 {panel type="teacher-note" summary="Under construction"}
 
 More material on the many intractable problems that exist is yet to be written, but in the meantime, here are some alternatives to the TSP problem that can be used to explore intractability if you have students who can work on this independently.
 
 {panel end}
 
-There are thousands of problems like the TSP for which no tractable solution is known. Extra sections will eventually be added here to introduce some of them, but in the meantime, if you are keen you might like to explore some of these problems:
+There are thousands of other problems like the TSP for which no tractable solution is known. If you are interested you might like to explore some of these problems:
 
 - [map and graph colouring](http://csunplugged.org/graph-colouring) (these can be reduced to a timetabling problem and vice versa, showing how NP-complete problems can relate to each other)
-- [the knapsack problem](https://en.wikipedia.org/wiki/Knapsack_problem)
+
 - [the bin packing problem](https://en.wikipedia.org/wiki/Bin_packing_problem)
 - [Hamiltonian paths](https://en.wikipedia.org/wiki/Hamiltonian_path) (no tractable solution for this is known, yet the very similar Eulerian path, which is often presented as the seven bridges problem, has an easy tractable solution)
 - [Steiner trees](http://www.csunplugged.org/steiner-trees)
