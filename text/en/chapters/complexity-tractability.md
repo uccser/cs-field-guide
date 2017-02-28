@@ -528,6 +528,19 @@ Don't forget to include an introductory paragraph in your report that outlines t
 
 ## Other intractable problems
 
+### Bin Packing
+
+Imagine you are moving overseas, you have a lot to pack up and take with you.
+Obviously, you want to minimise the number of suitcases that you have to carry, but also want to take as many items with you as possible!
+
+* **example here** *
+
+The optimal solution would be to have all your suitcases completely full, rather than have one or more with spare space.
+However, this solution is not always easy to find, and sometimes does not even exist!
+
+This is an example of a bin packing problem, an intractable problem that pops up everywhere in everyday life (think about a shipping company packing crates into trucks, fitting ads into tv and radio breaks).
+
+
 ### The Knapsack Problem
 
 {image filename="knapsack-truck.png" alt="A picture of a truck storing crates"}
@@ -543,7 +556,8 @@ Each of thes iteams has a value and a weight.
 The knapsack problem is deciding how many of each of these items to include in order to maximise the total value, but the total weight must be less than or equal to a set limit.
 Simply put, the knapsack problem is a decision making problem with resource constraints.
 
-We could use a greedy algorithm to solve the knapsack problem (i.e. take the most valuable items until we reach the most valuable item), but we are certainly not guaranteed to maximise the total value every time by using this approach.
+We could use a greedy algorithm to solve the knapsack problem (i.e. take the most valuable items until we reach the limit), but we are certainly not guaranteed to maximise the total value every time by using this approach.
+* **For example, suppose you have the following items a greedy algorithm would give you...., while the optimal is....  ** *
 
 ### Dominating Sets
 
@@ -553,7 +567,6 @@ The above picture depicts a map of Tourist Town.
 The lines are streets and the dots are street corners.
 The town is in a very hot country, and in the summer season ice-cream vans park at street corners and sell ice-creams to tourists.
 We want to place the vans so that anyone can reach one by walking to the end of their street and then at most one block further.
-**(this confuses me: and then at most one block further. )**
 (It may be easier to imagine people living at the intersections rather than along the streets; then they must be able to get ice-cream by walking at most one block.)
 The question is, how many ice-cream vans are needed and on which intersections should they be placed?
 
@@ -564,7 +577,38 @@ Finding a dominating set is easy, simply select every second vertice in your gra
 
 Dominating sets also have many other real world applications, think of computers in a company (or in your school, on your street, etc).
 All of these computers need access to the internet, and that means routers are needed.
-Every computer could be connected to it's own router, but this is a waste of resources, instead we would be much better off figuring out the dominating set in order to minimise the number of routers we need.
+Every computer could be connected to its own router, but this is a waste of resources, instead we would be much better off figuring out the dominating set in order to minimise the number of routers we need.
+
+* **Creating a dominating set problem is not too difficult....** *
+
+### Vertex Covering
+
+Vertex covering is very similar to dominating sets, but rather than having every intersection a single street away, we want to cover enough intersections such that at least one end of every street is covered. 
+
+Like many intractable problems, it's easy to check if a solution is valid.
+For the vertex cover problem, you just to mark off all the 'covered' intersection.
+
+* **pics here** *
+
+So a "brute force" solution is to try every combination of intersection, with each one either selected or not. For this simple map, there are 8 solutions.
+
+* **pics here** *
+
+The first one solves the problem, but the second one is better.
+We choose the most economical one that solves the problem (with one intersection chosen).
+Some of the solutions are obviously bad, e.g. choosing every intersetion, or choosing none, and refining this approach is possible, but at least we have an algorithm that works.
+
+But how many potential solutions need to be tried out?
+There are two possibilities for each intersection: chosen, or not chosen.
+So for the 3 intersections, we need to multiply the options for each one, giving {math}2*2*2{math end}.
+
+Try writing all the possibilities for 4 intersections to verify this.
+
+The problem with this is that for {math}n{math end} intersections, it will take {math}2^n{math end} evaluations.
+That grows very fast with {math}n{math end} - it's exponential!
+So it is not a practical solution to the problem.
+
+
 
 ### And many more!
 
