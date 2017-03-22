@@ -59,6 +59,7 @@ structure:
             - file: chapters/computer-vision.md
               authors:
                 - David Thompson
+                - Hayden Jackson
             - file: chapters/formal-languages.md
               authors:
                 - Tim Bell
