@@ -58,7 +58,7 @@ Giving users more information through computer vision is only one part of the st
 
 ## Human Vision vs. Computer Vision
 
-Digital cameras and human eyes fulfill largely the same function: images come in through a lens and are focused onto a light sensitive surface, which converts them into electrical impulses that can be processed by the brain or a computer respectively. There are some differences, however.
+Digital cameras and human eyes fulfill largely the same function: images come in through a lens and are focused onto a light sensitive surface, which converts them into electrical impulses that can be processed by the brain or a computer respectively. There are some differences, that we cover in this section.
 
 It is important to understand that neither a human eye nor a digital camera  --- even a very expensive one --- can perfectly capture all of the information in the scene in front of it. Electronic engineers and computer scientists are constantly doing research to improve the quality of the images they capture, and the speed at which they can record and process them.
 
@@ -66,7 +66,9 @@ It is important to understand that neither a human eye nor a digital camera  ---
 
 The most important to distinguish with the word *image* and *digital image* even though they are frequently used interchangeably. So then what is an image? An image may be described as an *artificial resemblance*, hereby a painting or even sculpture may be considered an image. This definition allows for all forms of images from familiar images such as drawings or photos to that of the mind.
 
-So what is a *digital image* and why are they special? Well a digital image is a numerical representation of a two-dimensional image. The most common type of digital image is raster images, these images are made up of a finite set of digital images.
+So what is a *digital image* and why are they special? Well a digital image is a numerical representation of a two-dimensional image. In this chapter the representation we use is known as a raster image, these images are made up of a finite set of pixels. A pixel being the smallest element of an image holding values that represent some colour illumination.
+
+{comment TODO interactive of raster image here.}
 
 ### The Human Eye
 
@@ -91,6 +93,15 @@ The last feature of the retina to discuss is the blind spot where there are no r
 {panel end}
 
 #### The Electromagnetic Spectrum
+In physics light refers to the photons (an elementary particle) propagating through space carrying some energy. The energy of the photon can be quantified as the wavelength through which the particle oscillates. In these terms the human eye can only see a small fraction of the light around us, hereby it is possible to see in different bands of light using specialised equipment such as thermal cameras, x-ray machines, and many other instruments.
+
+The human eye has (in general) 3 types of cone cells that are responsive to different bands of light. This is labelled in the spectrum of light (also known as the electromagnetic spectrum) as the visible spectrum. Where either side lies the ultraviolet spectrum and infra-red spectrum. Most birds and many other animals have cones for ultra violet light.
+
+{comment TODO image of electromagnetic spectrum with highlight of visible light}
+
+{comment TODO graph of responsiveness of the eye in the electromagnetic spectrum}
+
+From this graph we can see that the 3 types of cone cells are reactive to different wavelengths of light by the peaks in the graph. This cone cells correlating with the colours; blue, green, and red.
 
 ### Digital Cameras
 
@@ -100,12 +111,33 @@ There are a number of different types of digital camera sensor, but for the purp
 
 {panel end}
 
+{comment TODO diagram of a CCD}
+
 **Digital cameras** have uniform sensitivity to light across their whole field of vision. Light intensity and colour are picked up by RGB sensor elements on a silicon chip, but they aren’t as good at capturing a wide range of light levels as our eyes are. Typically, a modern digital camera can automatically tune its exposure to either bright or dark scenes, but it might lose some detail (e.g. when it is tuned for dark exposure, any bright objects might just look like white blobs).
 
-#### Prisms and CCDs
+{comment TODO image of Bayer colour filter}
 
 #### Colour Spaces
 
+When working with *digital images* colour representation is an important issue, a colour space is a mathematical model describing how colours may be represented in an image.
+
+{panel type="teacher-note" summary="Colour spaces"}
+
+In this section we cover the RGB and HSV colour spaces. There are many different types of colour spaces, many for specialised purposes that we do not cover here.
+
+{panel end}
+
+**RGB** uses additive colour mixing making it useful for light emitters e.g. Monitors, TVs etc.
+
+{comment TODO RGB Colour Space (Cube) and additive colour mixing image}
+
+**CMYK** uses subtractive colour mixing technique making it useful for printing.
+
+{comment TODO subtractive colour mixing image}
+
+**HSV** uses hue, saturation and value (brightness) to describe the colour of a pixel.
+
+{comment TODO HSV Colour Space (Cone) image}
 
 {panel type="curiosity" summary="Further reading"}
 
