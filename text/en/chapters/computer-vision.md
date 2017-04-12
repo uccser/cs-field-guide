@@ -60,25 +60,27 @@ Giving users more information through computer vision is only one part of the st
 
 Digital cameras and human eyes fulfill largely the same function: images come in through a lens and are focused onto a light sensitive surface, which converts them into electrical impulses that can be processed by the brain or a computer respectively. There are some differences, that we cover in this section.
 
-It is important to understand that neither a human eye nor a digital camera  --- even a very expensive one --- can perfectly capture all of the information in the scene in front of it. Electronic engineers and computer scientists are constantly doing research to improve the quality of the images they capture, and the speed at which they can record and process them.
+It is important to understand that neither a human eye nor a digital camera --- even a very expensive one --- can perfectly capture all of the information in the scene in front of it. Electronic engineers and computer scientists are constantly doing research to improve the quality of the images they capture, and the speed at which they can record and process them.
+
+This section will focus on colour, light, and image representation which rooted in theory from physics. While a basic understanding physics (particularly light) is useful in this section it is not required to understand this chapter or computer vision as a whole.
 
 ### What is an Image?
 
 The most important to distinguish with the word *image* and *digital image* even though they are frequently used interchangeably. So then what is an image? An image may be described as an *artificial resemblance*, hereby a painting or even sculpture may be considered an image. This definition allows for all forms of images from familiar images such as drawings or photos to that of the mind.
 
-So what is a *digital image* and why are they special? Well a digital image is a numerical representation of a two-dimensional image. In this chapter the representation we use is known as a raster image, these images are made up of a finite set of pixels. A pixel being the smallest element of an image holding values that represent some colour illumination.
+So what is a *digital image* and why are they special? Well a digital image is a numerical representation of a two-dimensional image. In this chapter the representation we refer to is known as a raster image, these images are made up of a finite set of pixels. A pixel being the smallest element of an image holding values that represent some colour illumination.
 
 {comment TODO interactive of raster image here.}
 
 ### The Human Eye
 
-The human eye is an important sensory organ of the body which reacts to light and pressure. Our eyes provide us with a three dimensional moving picture of world due to the retina which is a part of the eye that exists inside the eye where the most sensitive area, called the fovea, is opposite the pupil.
+The human eye is an important sensory organ of the body which reacts to light and pressure. Our eyes provide us with a three dimensional moving picture of world due to the retina which is a part of the eye that exists on the inside the eye where the most sensitive area, called the fovea, is opposite the pupil.
 
 {image filename="retina-diagram.jpg" alt="The Retina consists of 4 features, rod cells, cone cells, the fovea and the blind spot."}
 
-Cones cells are what allow us to see colour, and function best in bright light. The majority of cone cells are situated in a dense cluster around the center of the retina, called the fovea. The cone cells within the fovea give us fine information used for reading or seeing brush strokes, while cone cells external to the fovea give colour to our peripheral vision.
+Cones cells are what allow us to see colour, and function best in bright light. The majority of cone cells are situated in a dense cluster around the center of the retina, called the fovea. The cone cells within the fovea give us fine information used for reading or seeing brush strokes, while the cone cells external to the fovea give colour to our peripheral vision.
 
-Rod cells are sensitive to light levels, allowing us to perceive a wide dynamic range of bright and dark colours. Unlike cones cells, rods cells are distributed away from the center of the eye forming the major component of our peripheral vision. These features of the rod cells are why, in the dark, it is easier to see out of the corner of your eye (averted vision).
+Rod cells are sensitive to light levels which allows us to perceive a wide dynamic range of bright and dark colours. Unlike cones cells, rods cells are distributed away from the center of the eye forming the major component of our peripheral vision. These features of the rod cells are why, in the dark, it is easier to see out of the corner of your eye (averted vision).
 
 The last feature of the retina to discuss is the blind spot where there are no rod cells or cone cells. Most of the time we don’t notice our blind spots because we have two eyes with overlapping fields of view, and we can move them around very quickly.
 
@@ -93,15 +95,22 @@ The last feature of the retina to discuss is the blind spot where there are no r
 {panel end}
 
 #### The Electromagnetic Spectrum
-In physics light refers to the photons (an elementary particle) propagating through space carrying some energy. The energy of the photon can be quantified as the wavelength through which the particle oscillates. In these terms the human eye can only see a small fraction of the light around us, hereby it is possible to see in different bands of light using specialised equipment such as thermal cameras, x-ray machines, and many other instruments.
 
-The human eye has (in general) 3 types of cone cells that are responsive to different bands of light. This is labelled in the spectrum of light (also known as the electromagnetic spectrum) as the visible spectrum. Where either side lies the ultraviolet spectrum and infra-red spectrum. Most birds and many other animals have cones for ultra violet light.
+In physics light refers to the photons (an elementary particle) propagating through space carrying some energy. The energy of the photon can be quantified as the wavelength through which the particle oscillates, on these terms the human eye can only see a small fraction of the light around us as it is only sensitive to light between roughly $780$ nanometers and $390$ nanometers. The other wavelengths of light not visible to the human eye can only be seen by using specialised equipment such as thermal cameras, and x-ray machines though only through encoding the image with the visible light we can see.
+
+The human eye has (in general) 3 types of cone cells that are responsive to different bands of light. This is labelled in the spectrum of light (also known as the electromagnetic spectrum) as the visible spectrum. Where either side lies the ultraviolet spectrum at smaller wavelengths and infra-red spectrum at bigger wavelength although these are not the only spectrums of light. What is really interesting is that other animals such as birds have cones for other spectrums of light such as ultraviolet.
+
+{comment TODO image of flower in visible light vs flower in ultraviolet}
 
 {comment TODO image of electromagnetic spectrum with highlight of visible light}
 
 {comment TODO graph of responsiveness of the eye in the electromagnetic spectrum}
 
-From this graph we can see that the 3 types of cone cells are reactive to different wavelengths of light by the peaks in the graph. This cone cells correlating with the colours; blue, green, and red.
+From this graph we can see that the 3 types of cone cells are reactive to different wavelengths of light where each type of cone cell corresponds to a peaks in the graph. We can see that these cones cells could be referred to the red cone cell, green cone cell, and blue cone cell due to their responsiveness at particular wavelengths. It is through the combined response of these cone cells that you can see colour.
+
+{comment compare to monitors or to much information }
+
+{comment TODO interactive with combining colours }
 
 ### Digital Cameras
 
@@ -111,19 +120,17 @@ There are a number of different types of digital camera sensor, but for the purp
 
 {panel end}
 
-{comment TODO diagram of a CCD}
-
-**Digital cameras** have uniform sensitivity to light across their whole field of vision. Light intensity and colour are picked up by RGB sensor elements on a silicon chip, but they aren’t as good at capturing a wide range of light levels as our eyes are. Typically, a modern digital camera can automatically tune its exposure to either bright or dark scenes, but it might lose some detail (e.g. when it is tuned for dark exposure, any bright objects might just look like white blobs).
+Digital cameras have uniform sensitivity to light across their whole field of vision. Light intensity and colour are picked up by RGB sensor elements on a silicon chip, but they aren’t as good at capturing a wide range of light levels as our eyes are. Typically, a modern digital camera can automatically tune its exposure to either bright or dark scenes, but it might lose some detail (e.g. when it is tuned for dark exposure, any bright objects might just look like white blobs).
 
 {comment TODO image of Bayer colour filter}
 
 #### Colour Spaces
 
-When working with *digital images* colour representation is an important issue, a colour space is a mathematical model describing how colours may be represented in an image.
+When working with *digital images* colour representation is an important issue, as these images are just a bunch of arbitrary values. A colour space is a mathematical model describing how colours may be represented in an image. Many colour spaces focus on trying to produce colour similar to responsiveness of the humna eye, while others have a more machine orientated purpose.
 
 {panel type="teacher-note" summary="Colour spaces"}
 
-In this section we cover the RGB and HSV colour spaces. There are many different types of colour spaces, many for specialised purposes that we do not cover here.
+In this section we cover the RGB, CMYK, and HSV colour spaces. There are many different types of colour spaces, many for specialised purposes that we do not cover here.
 
 {panel end}
 
