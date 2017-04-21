@@ -108,8 +108,6 @@ The human eye has (in general) 3 types of cone cells that are responsive to diff
 
 From this graph we can see that the 3 types of cone cells are reactive to different wavelengths of light where each type of cone cell corresponds to a peaks in the graph. We can see that these cones cells could be referred to the red cone cell, green cone cell, and blue cone cell due to their responsiveness at particular wavelengths. It is through the combined response of these cone cells that you can see colour.
 
-{comment compare to monitors or to much information }
-
 {comment TODO interactive with combining colours }
 
 ### Digital Cameras
@@ -120,31 +118,32 @@ There are a number of different types of digital camera sensor, but for the purp
 
 {panel end}
 
-Digital cameras have uniform sensitivity to light across their whole field of vision. Light intensity and colour are picked up by RGB sensor elements on a silicon chip, but they aren’t as good at capturing a wide range of light levels as our eyes are. Typically, a modern digital camera can automatically tune its exposure to either bright or dark scenes, but it might lose some detail (e.g. when it is tuned for dark exposure, any bright objects might just look like white blobs).
+Digital cameras have uniform sensitivity to light across their whole field of vision. Light intensity and colour are picked up by sensor elements on a silicon chip filtered by a red, blue, and green filters (Bayer filter) but they are not as good at capturing a wide range of light levels as our eyes are. Typically, a modern digital camera can automatically tune its exposure to either bright or dark scenes, but it might lose some detail (e.g. when it is tuned for dark exposure, any bright objects might just look like white blobs).
 
 {comment TODO image of Bayer colour filter}
 
 #### Colour Spaces
 
-When working with *digital images* colour representation is an important issue, as these images are just a bunch of arbitrary values. A colour space is a mathematical model describing how colours may be represented in an image. Many colour spaces focus on trying to produce colour similar to responsiveness of the humna eye, while others have a more machine orientated purpose.
+When working with *digital images* colour representation is an important issue, as these images are just a bunch of arbitrary values. A colour space is a mathematical model describing how colours may be represented in an image. Many colour spaces focus on trying to produce colour similar to responsiveness of the human eye, while others have a more machine orientated purpose.
 
 {panel type="teacher-note" summary="Colour spaces"}
 
-In this section we cover the RGB, CMYK, and HSV colour spaces. There are many different types of colour spaces, many for specialised purposes that we do not cover here.
+In this section we cover the RGB, CMYK, and HSV colour spaces. There are many more types of colour spaces, many for specialised purposes that we do not cover here.
 
 {panel end}
 
-**RGB** uses additive colour mixing making it useful for light emitters e.g. Monitors, TVs etc.
+**RGB** uses additive colour mixing making it useful for light emitters e.g. Monitors, TVs etc. This is because the more light you add the brighter the light is perceived, and more wavelengths of light the whiter the light is perceived.
 
-{comment TODO RGB Colour Space (Cube) and additive colour mixing image}
+{comment TODO RGB Colour Space (Cube)}
+{comment TODO additive colour mixing image}
 
-**CMYK** uses subtractive colour mixing technique making it useful for printing.
+**CMYK** uses subtractive colour mixing technique making it useful for printing. A physical object we see (that does not emit its own light) gets it colour from reflecting some wavelengths of light while the others are absorbed. This can easily be seen with paints, where the more paint is mixed the darker the colour as the pigments are absorbing the light received as well as the light reflected from other pigments.
 
 {comment TODO subtractive colour mixing image}
 
-**HSV** uses hue, saturation and value (brightness) to describe the colour of a pixel.
+**HSV** is a colour space that rearranges the RGB colour space to be more intuitive by projecting the Cartesian representation into a cylindrical-coordinate space. The HSV colour space is described by 3 coordinates; hue representing the colour or wavelength of light, value representing the brightness of the light, and saturation representing chroma or the purity of light.
 
-{comment TODO HSV Colour Space (Cone) image}
+{comment TODO HSV Colour Space (Cylinder) image}
 
 {panel type="curiosity" summary="Further reading"}
 
