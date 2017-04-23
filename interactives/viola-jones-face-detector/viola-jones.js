@@ -83,7 +83,6 @@
 //   });
   var result = [];
   var img = document.getElementById('drop-image');
-
   var canvas = document.getElementById('canvas');
   var context = canvas.getContext('2d');
   var rect = img.getBoundingClientRect();
@@ -94,14 +93,18 @@ window.onload = function() {
   canvas.width = 400;
   canvas.height = 500;
   context.drawImage(img,0,0, canvas.width, canvas.height);
-  var myData = context.getImageData(0, 0, img.width, img.height);
+  var myData = context.getImageData(0, 0, canvas.width, canvas.height);
   tracking.Image.computeIntegralImage(myData.data, myData.width, myData.height, result);
 
 };
 
 interact('.drag-element-source').draggable({
   'manualStart' : true,      
-  'onmove' : dragMoveListener
+  'onmove' : dragMoveListener,
+  restrict: {
+      restriction: canvas,
+      elementRect: { left: 0, right: 1, top: 0, bottom: 1 }
+    }
     
 }).on('move', function (event) {
 
@@ -162,8 +165,8 @@ function dragMoveListener (event) {
     target.setAttribute('pointC-y', pointC.y);
     target.setAttribute('pointD-x', pointD.x);
     target.setAttribute('pointD-y', pointD.y);
-    // context.rect(pointA.x, pointA.y, currentrec.width, currentrec.height);
-    // context.stroke();
+    context.rect(pointA.x, pointA.y, currentrec.width, currentrec.height);
+    context.stroke();
 
 
     if(target.classList.contains("haar1")){
@@ -189,10 +192,19 @@ function dragMoveListener (event) {
 
 interact('.drag-clone')
   .draggable({
-    onmove: window.dragMoveListener
+    onmove: window.dragMoveListener,
+    restrict: {
+      restriction: canvas,
+      elementRect: { left: 0, right: 1, top: 0, bottom: 1 }
+    }
+  
   })
   .resizable({
-    edges: { left: true, right: true, bottom: true, top: true }
+    edges: { left: true, right: true, bottom: true, top: true },
+    restrict: {
+      restriction: canvas,
+      elementRect: { left: 0, right: 1, top: 0, bottom: 1 }
+    }
   })
   .on('resizemove', function (event) {
     var target = event.target;
@@ -227,14 +239,14 @@ interact('.drag-clone')
       var indexB = pointAB.y * img.width + pointAB.x;
       var indexD = pointD.y * img.width + pointD.x;
       var indexA = pointA.y * img.width + pointA.x;
-      //console.log(result[indexC] - result[indexB] - result[indexD] + result[indexA]);
+      console.log(result[indexC] - result[indexB] - result[indexD] + result[indexA]);
 
       //black square
       var blackIndexC = pointC.y * img.width + pointC.x;
       var blackIndexB = pointB.y * img.width + pointB.x;
       var blackIndexD = pointCB.y * img.width + pointCB.x;
       var blackIndexA = pointAB.y * img.width + pointAB.x;
-      //console.log(result[blackIndexC] - result[blackIndexB] - result[blackIndexD] + result[blackIndexA]);
+      console.log(result[blackIndexC] - result[blackIndexB] - result[blackIndexD] + result[blackIndexA]);
   }
 });
 
