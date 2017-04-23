@@ -9,6 +9,7 @@
     <title>Viola Jones Object Detection</title>
     <link rel="stylesheet" href="../base-files/css/normalize.css">
     <style>
+  
   #drop-zone {
     width: 400px;
   }
@@ -19,35 +20,47 @@
   #canvas {
     width: 400px;
     height: 500px;
+    column-span: 1;
   }
   .haar {
-    max-width: 300px;
+    width: 30px;
   }
   #bucket {
     background-color: grey;
   }
-  .row1 {
-    position: relative;
-    top: 0px;
-    left: 10px;
+  .column1 {
+    display: flex;
+    flex-direction: column;
+  }
+  .column {
+    display: flex;
+    flex-direction: row;
   }
   .drag-element {
     position: absolute;
   }
   .same {
     position: relative;
-    width: 400px;
-    height: 200px;
+    width: 50px;
+    height: 50px;
+  }
+  .row {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
   }
   </style>
   </head>
   <body>
-      <div class="row" >
+    <div class="row">      
+      <div class="column" >
         <canvas id="canvas"></canvas>
-      <div id="drop-zone" style="display:none">      
-          <img id="drop-image" src="./images/isabelle.jpg">
+        <div id="drop-zone" style="display:none">      
+            <img id="drop-image" src="./images/isabelle.jpg">
         </div>
-      </div><div class="row1" id="bucket">
+      </div>
+      <div class="column1" id="bucket">
+        <h1>Haar-like Features</h1>
         <div class="same">      
           <img class="haar drag-element-source drag-element haar1" src="./images/haar1.jpg" draggable="false">
         </div>
@@ -63,14 +76,18 @@
         <div class="same">      
           <img class="haar drag-element-source drag-element" src="./images/haar5.jpg" draggable="false">
         </div>
+        <div id="values">
+          <span><h3>White Square intensity: </h3><h4 id="whiteValue"></h4></span>
+          <span><h3>Black Square intensity: </h3><h4 id="blackValue"></h4></span>
         </div>
-      <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-      <script src="./libs/tracking.js"></script>
-      <script src="./libs/interact.js"></script>
-      <script src="./libs/eye-min.js"></script>
-      <script src="./libs/face-min.js"></script>
-      <script src="./libs/mouth-min.js"></script>
-      <script src="./viola-jones.js"></script>
       </div>
+    </div>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <script src="./libs/tracking.js"></script>
+    <script src="./libs/interact.js"></script>
+    <script src="./libs/eye-min.js"></script>
+    <script src="./libs/face-min.js"></script>
+    <script src="./libs/mouth-min.js"></script>
+    <script src="./viola-jones.js"></script>
   </body>
 </html>

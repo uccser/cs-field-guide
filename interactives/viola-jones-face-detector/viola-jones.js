@@ -157,16 +157,6 @@ function dragMoveListener (event) {
     var pointB = {x: currentrec.right - rect.left, y: currentrec.top - rect.top}
     var pointC = {x: currentrec.right - rect.left, y: currentrec.bottom - rect.top}
     var pointD = {x: currentrec.left - rect.left, y: currentrec.bottom - rect.top}
-    target.setAttribute('pointA-x', pointA.x);
-    target.setAttribute('pointA-y', pointA.y);
-    target.setAttribute('pointB-x', pointB.x);
-    target.setAttribute('pointB-y', pointB.y);
-    target.setAttribute('pointC-x', pointC.x);
-    target.setAttribute('pointC-y', pointC.y);
-    target.setAttribute('pointD-x', pointD.x);
-    target.setAttribute('pointD-y', pointD.y);
-    context.rect(pointA.x, pointA.y, currentrec.width, currentrec.height);
-    context.stroke();
 
 
     if(target.classList.contains("haar1")){
@@ -174,17 +164,27 @@ function dragMoveListener (event) {
       var pointCB = {x: pointD.x + ((pointC.x-pointD.x)/2), y: pointD.y};
       //Formula is C - B - D + A
       //white square
-      var indexC = (pointCB.y-1) * canvas.width + pointCB.x;
-      var indexB = (pointAB.y-1) * canvas.width + pointAB.x;
-      var indexD = (pointD.y-1) * canvas.width + pointD.x;
-      var indexA = (pointA.y-1) * canvas.width + pointA.x;
-      console.log(result[indexC] - result[indexB] - result[indexD] + result[indexA]);
+      var indexC = Math.round((pointCB.y-1) * canvas.width + pointCB.x-1);
+      var indexB = Math.round((pointAB.y-1) * canvas.width + pointAB.x-1);
+      var indexD = Math.round((pointD.y-1) * canvas.width + pointD.x-1);
+      var indexA = Math.round((pointA.y-1) * canvas.width + pointA.x-1);
+      var whiteSquareIntensity = result[indexC] - result[indexB] - result[indexD] + result[indexA];
+      console.log(whiteSquareIntensity);
       //black square
-      var blackIndexC = (pointC.y-1) * canvas.width + pointC.x;
-      var blackIndexB = (pointB.y-1) * canvas.width + pointB.x;
-      var blackIndexD = (pointCB.y-1) * canvas.width + pointCB.x;
-      var blackIndexA = (pointAB.y-1) * canvas.width + pointAB.x;
-      console.log(result[blackIndexC] - result[blackIndexB] - result[blackIndexD] + result[blackIndexA]);
+      var blackIndexC = Math.round((pointC.y-1) * canvas.width + pointC.x-1);
+      var blackIndexB = Math.round((pointB.y-1) * canvas.width + pointB.x-1);
+      var blackIndexD = Math.round((pointCB.y-1) * canvas.width + pointCB.x-1);
+      var blackIndexA = Math.round((pointAB.y-1) * canvas.width + pointAB.x-1);
+      var blackSquareIntensity = result[blackIndexC] - result[blackIndexB] - result[blackIndexD] + result[blackIndexA];
+      console.log(blackSquareIntensity);
+
+      if(blackSquareIntensity < whiteSquareIntensity){
+        console.log(true);
+      }
+      var black = document.getElementById("blackValue");
+      black.innerHTML = blackSquareIntensity;
+      var white = document.getElementById("whiteValue");
+      white.innerHTML = whiteSquareIntensity;
     }
 
 
@@ -234,20 +234,31 @@ interact('.drag-clone')
       var pointAB = {x: pointA.x + ((pointB.x-pointA.x)/2), y: pointA.y};
       var pointCB = {x: pointD.x + ((pointC.x-pointD.x)/2), y: pointD.y};
       //Formula is C - B - D + A
-      //white square
-      var indexC = (pointCB.y-1) * canvas.width + pointCB.x;
-      var indexB = (pointAB.y-1) * canvas.width + pointAB.x;
-      var indexD = (pointD.y-1) * canvas.width + pointD.x;
-      var indexA = (pointA.y-1) * canvas.width + pointA.x;
-      console.log(result[indexC] - result[indexB] - result[indexD] + result[indexA]);
 
+      //TODO: fix issue in row zero
+      //white square
+      var indexC = Math.round((pointCB.y-1) * canvas.width + pointCB.x-1);
+      var indexB = Math.round((pointAB.y-1) * canvas.width + pointAB.x-1);
+      var indexD = Math.round((pointD.y-1) * canvas.width + pointD.x-1);
+      var indexA = Math.round((pointA.y-1) * canvas.width + pointA.x-1);
+      var whiteSquareIntensity = result[indexC] - result[indexB] - result[indexD] + result[indexA];
+      console.log(whiteSquareIntensity);
       //black square
-      var blackIndexC = (pointC.y-1) * canvas.width + pointC.x;
-      var blackIndexB = (pointB.y-1) * canvas.width + pointB.x;
-      var blackIndexD = (pointCB.y-1) * canvas.width + pointCB.x;
-      var blackIndexA = (pointAB.y-1) * canvas.width + pointAB.x;
-      console.log(result[blackIndexC] - result[blackIndexB] - result[blackIndexD] + result[blackIndexA]);
-  }
+      var blackIndexC = Math.round((pointC.y-1) * canvas.width + pointC.x-1);
+      var blackIndexB = Math.round((pointB.y-1) * canvas.width + pointB.x-1);
+      var blackIndexD = Math.round((pointCB.y-1) * canvas.width + pointCB.x-1);
+      var blackIndexA = Math.round((pointAB.y-1) * canvas.width + pointAB.x-1);
+      var blackSquareIntensity = result[blackIndexC] - result[blackIndexB] - result[blackIndexD] + result[blackIndexA];
+      console.log(blackSquareIntensity);
+
+      if(blackSquareIntensity < whiteSquareIntensity){
+        console.log(true);  
+      }
+      var black = document.getElementById("blackValue");
+      black.innerHTML = blackSquareIntensity;
+      var white = document.getElementById("whiteValue");
+      white.innerHTML = whiteSquareIntensity;
+    }
 });
 
 
