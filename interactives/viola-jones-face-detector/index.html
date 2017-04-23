@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <!-- If you delete this meta tag World War Z will become a reality -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- ### Enter your interactive title in the title block ### -->
+    <title>Viola Jones Object Detection</title>
+    <link rel="stylesheet" href="../base-files/css/normalize.css">
+    <style>
+  #drop-zone {
+    width: 400px;
+  }
+  #drop-image {
+    width: 400px;
+    height: 500px;
+  }
+  .haar {
+    max-width: 300px;
+  }
+  #bucket {
+    background-color: grey;
+  }
+  .row1 {
+    position: relative;
+    top: 0px;
+    left: 10px;
+  }
+  .drag-element {
+    position: absolute;
+  }
+  .same {
+    position: relative;
+    width: 400px;
+    height: 200px;
+  }
+  </style>
+  </head>
+  <body>
+      <div class="row" >
+        <canvas id="canvas"></canvas>
+      <div id="drop-zone" style="display:none">      
+          <img id="drop-image" src="./images/isabelle.jpg">
+        </div>
+      </div><div class="row1" id="bucket">
+        <div class="same">      
+          <img class="haar drag-element-source drag-element haar1" src="./images/haar1.jpg" draggable="false">
+        </div>
+        <div class="same">      
+          <img class="haar drag-element-source drag-element" src="./images/haar2.jpeg" draggable="false">
+        </div>
+        <div class="same">      
+          <img class="haar drag-element-source drag-element" src="./images/haar3.jpg" draggable="false">
+        </div>
+        <div class="same">       
+          <img class="haar drag-element-source drag-element" src="./images/haar4.jpeg" draggable="false">
+        </div>
+        <div class="same">      
+          <img class="haar drag-element-source drag-element" src="./images/haar5.jpg" draggable="false">
+        </div>
+        </div>
+      <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+      <script src="./libs/tracking.js"></script>
+      <script src="./libs/interact.js"></script>
+      <script src="./libs/eye-min.js"></script>
+      <script src="./libs/face-min.js"></script>
+      <script src="./libs/mouth-min.js"></script>
+      <script src="./viola-jones.js"></script>
+      </div>
+  </body>
+</html>
