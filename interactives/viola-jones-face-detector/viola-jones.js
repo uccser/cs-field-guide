@@ -174,17 +174,17 @@ function dragMoveListener (event) {
       var pointCB = {x: pointD.x + ((pointC.x-pointD.x)/2), y: pointD.y};
       //Formula is C - B - D + A
       //white square
-      var indexC = pointCB.y * img.width + pointCB.x;
-      var indexB = pointAB.y * img.width + pointAB.x;
-      var indexD = pointD.y * img.width + pointD.x;
-      var indexA = pointA.y * img.width + pointA.x;
-      //console.log(result[indexC] - result[indexB] - result[indexD] + result[indexA]);
+      var indexC = (pointCB.y-1) * canvas.width + pointCB.x;
+      var indexB = (pointAB.y-1) * canvas.width + pointAB.x;
+      var indexD = (pointD.y-1) * canvas.width + pointD.x;
+      var indexA = (pointA.y-1) * canvas.width + pointA.x;
+      console.log(result[indexC] - result[indexB] - result[indexD] + result[indexA]);
       //black square
-      var blackIndexC = pointC.y * img.width + pointC.x;
-      var blackIndexB = pointB.y * img.width + pointB.x;
-      var blackIndexD = pointCB.y * img.width + pointCB.x;
-      var blackIndexA = pointAB.y * img.width + pointAB.x;
-      //console.log(result[blackIndexC] - result[blackIndexB] - result[blackIndexD] + result[blackIndexA]);
+      var blackIndexC = (pointC.y-1) * canvas.width + pointC.x;
+      var blackIndexB = (pointB.y-1) * canvas.width + pointB.x;
+      var blackIndexD = (pointCB.y-1) * canvas.width + pointCB.x;
+      var blackIndexA = (pointAB.y-1) * canvas.width + pointAB.x;
+      console.log(result[blackIndexC] - result[blackIndexB] - result[blackIndexD] + result[blackIndexA]);
     }
 
 
@@ -235,17 +235,17 @@ interact('.drag-clone')
       var pointCB = {x: pointD.x + ((pointC.x-pointD.x)/2), y: pointD.y};
       //Formula is C - B - D + A
       //white square
-      var indexC = pointCB.y * img.width + pointCB.x;
-      var indexB = pointAB.y * img.width + pointAB.x;
-      var indexD = pointD.y * img.width + pointD.x;
-      var indexA = pointA.y * img.width + pointA.x;
+      var indexC = (pointCB.y-1) * canvas.width + pointCB.x;
+      var indexB = (pointAB.y-1) * canvas.width + pointAB.x;
+      var indexD = (pointD.y-1) * canvas.width + pointD.x;
+      var indexA = (pointA.y-1) * canvas.width + pointA.x;
       console.log(result[indexC] - result[indexB] - result[indexD] + result[indexA]);
 
       //black square
-      var blackIndexC = pointC.y * img.width + pointC.x;
-      var blackIndexB = pointB.y * img.width + pointB.x;
-      var blackIndexD = pointCB.y * img.width + pointCB.x;
-      var blackIndexA = pointAB.y * img.width + pointAB.x;
+      var blackIndexC = (pointC.y-1) * canvas.width + pointC.x;
+      var blackIndexB = (pointB.y-1) * canvas.width + pointB.x;
+      var blackIndexD = (pointCB.y-1) * canvas.width + pointCB.x;
+      var blackIndexA = (pointAB.y-1) * canvas.width + pointAB.x;
       console.log(result[blackIndexC] - result[blackIndexB] - result[blackIndexD] + result[blackIndexA]);
   }
 });
