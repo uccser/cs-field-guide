@@ -81,11 +81,12 @@
 //     target.setAttribute('data-y', y);
 //     target.textContent = Math.round(event.rect.width) + '×' + Math.round(event.rect.height);
 //   });
-  var result = [];
-  var img = document.getElementById('drop-image');
-  var canvas = document.getElementById('canvas');
-  var context = canvas.getContext('2d');
-  var rect = img.getBoundingClientRect();
+var result = [];
+var img = document.getElementById('drop-image');
+var canvas = document.getElementById('canvas');
+var context = canvas.getContext('2d');
+var rect = img.getBoundingClientRect();
+var currentTarget = null;
 
 
 window.onload = function() {
@@ -102,14 +103,18 @@ interact('.drag-element-source').draggable({
   'manualStart' : true,      
   'onmove' : dragMoveListener,
   restrict: {
-      restriction: canvas,
-      elementRect: { left: 0, right: 1, top: 0, bottom: 1 }
-    }
+    restriction: canvas,
+    elementRect: { left: 0, right: 1, top: 0, bottom: 1 }
+  },
+  snap: {
+    targets: [
+    interact.createSnapGrid({ x: 10, y: 10 })
+    ],}
     
-}).on('move', function (event) {
+  }).on('move', function (event) {
 
-  var interaction = event.interaction;
-  console.log('dragmove');
+    var interaction = event.interaction;
+    console.log('dragmove');
 
   // if the pointer was moved while being held down
   // and an interaction hasn't started yet
@@ -122,7 +127,7 @@ interact('.drag-element-source').draggable({
 
     // Remove CSS class using JS only (not jQuery or jQLite) - http://stackoverflow.com/a/2155786/4972844
     clone.className = clone.className.replace(/\bdrag-element-source\b/,'drag-clone');
-      
+
     // insert the clone to the page
     // TODO: position the clone appropriately
     event.currentTarget.parentNode.appendChild(clone);
@@ -137,7 +142,7 @@ interact('.drag-element-source').draggable({
 });
 
 function dragMoveListener (event) {
-    var target = event.target,
+  var target = event.target,
         // keep the dragged position in the data-x/data-y attributes
         x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
         y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
@@ -145,7 +150,7 @@ function dragMoveListener (event) {
     // translate the element
     target.style.webkitTransform =
     target.style.transform =
-      'translate(' + x + 'px, ' + y + 'px)';
+    'translate(' + x + 'px, ' + y + 'px)';
 
     // update the posiion attributes
     target.setAttribute('data-x', x);
@@ -180,7 +185,22 @@ function dragMoveListener (event) {
 
       if(blackSquareIntensity < whiteSquareIntensity){
         console.log(true);
+        if (target.childNodes.length === 3) {
+          target.style.border = "thin solid blue";
+          var tick = document.createElement("img");
+          tick.width = "10";
+          tick.id = "tick";
+          tick.src = "images/tick.png";
+          target.appendChild(tick);
+        
+      } else {
+        target.style.border = "none";
+        if(target.childNodes.length > 3){
+          var tick = target.childNodes[3];
+          target.removeChild(tick);
+        }
       }
+    }
       var black = document.getElementById("blackValue");
       black.innerHTML = blackSquareIntensity;
       var white = document.getElementById("whiteValue");
@@ -190,26 +210,30 @@ function dragMoveListener (event) {
 
   }
 
-interact('.drag-clone')
+  interact('.drag-clone')
   .draggable({
     onmove: window.dragMoveListener,
     restrict: {
       restriction: canvas,
       elementRect: { left: 0, right: 1, top: 0, bottom: 1 }
     }
-  
+
   })
   .resizable({
     edges: { left: true, right: true, bottom: true, top: true },
     restrict: {
       restriction: canvas,
       elementRect: { left: 0, right: 1, top: 0, bottom: 1 }
-    }
-  })
+    },
+    snap: {
+      targets: [
+      interact.createSnapGrid({ x: 10, y: 10 })
+      ],}
+    })
   .on('resizemove', function (event) {
     var target = event.target;
-        x = (parseFloat(target.getAttribute('data-x')) || 0),
-        y = (parseFloat(target.getAttribute('data-y')) || 0);
+    x = (parseFloat(target.getAttribute('data-x')) || 0),
+    y = (parseFloat(target.getAttribute('data-y')) || 0);
 
     // update the element's style
     target.style.width  = event.rect.width + 'px';
@@ -220,7 +244,7 @@ interact('.drag-clone')
     y += event.deltaRect.top;
 
     target.style.webkitTransform = target.style.transform =
-        'translate(' + x + 'px,' + y + 'px)';
+    'translate(' + x + 'px,' + y + 'px)';
 
     target.setAttribute('data-x', x);
     target.setAttribute('data-y', y);
@@ -252,21 +276,38 @@ interact('.drag-clone')
       console.log(blackSquareIntensity);
 
       if(blackSquareIntensity < whiteSquareIntensity){
-        console.log(true);  
+          console.log(true);
+        if (target.childNodes.length === 3) {
+          target.style.border = "thin solid blue";
+          var tick = document.createElement("img");
+          tick.width = "10";
+          tick.id = "tick";
+          tick.src = "images/tick.png";
+          target.appendChild(tick);
+        
+       
+    } else {
+        target.style.border = "none";
+        if(target.childNodes.length > 3){
+          var tick = target.childNodes[3];
+          target.removeChild(tick);
+        }
       }
+    }
+      
       var black = document.getElementById("blackValue");
       black.innerHTML = blackSquareIntensity;
       var white = document.getElementById("whiteValue");
       white.innerHTML = whiteSquareIntensity;
     }
-});
+  });
 
 
 
 
 
   // enable draggables to be dropped into this
-interact('#drop-container').dropzone({
+  interact('#drop-container').dropzone({
   // only accept elements matching this CSS selector
   accept: '.drag-element',
   // Require a 75% element overlap for a drop to be possible
@@ -274,42 +315,42 @@ interact('#drop-container').dropzone({
 
   // listen for drop related events:
   ondropactivate: function (event) {
-      
+
     // add active dropzone feedback
     event.target.classList.add('drop-active');
-      
+
   },
   ondragenter: function (event) {
-      
+
     var draggableElement = event.relatedTarget;
     var dropzoneElement = event.target;
 
     // feedback the possibility of a drop
     dropzoneElement.classList.add('drop-target');
     draggableElement.classList.add('can-drop');
-      
+
   },
   ondragleave: function (event) {
-      
+
     // remove the drop feedback style
     event.target.classList.remove('drop-target');
     event.relatedTarget.classList.remove('can-drop');
-      
+
   },
   ondrop: function (event) {
 
-      console.log('Drop Zone: ', event);
-      console.log('Dropped Element: ', event.relatedTarget);
-      
-      event.relatedTarget.classList.remove('can-drop');
-      event.relatedTarget.classList.add('dropped');
-      
+    console.log('Drop Zone: ', event);
+    console.log('Dropped Element: ', event.relatedTarget);
+
+    event.relatedTarget.classList.remove('can-drop');
+    event.relatedTarget.classList.add('dropped');
+
   },
   ondropdeactivate: function (event) {
-      
+
     // remove active dropzone feedback
     event.target.classList.remove('drop-active');
     event.target.classList.remove('drop-target');
-      
+
   }
 });
