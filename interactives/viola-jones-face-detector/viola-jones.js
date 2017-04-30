@@ -1,5 +1,5 @@
 // listen for HTML5 native drag and drop API dragstart event
-document.addEventListener('dragstart', function (event) {
+document.addEventListener('dragstart', function(event) {
     // use interact.js' matchesSelector polyfil to
     // check for match with your draggable target
     if (interact.matchesSelector(event.target, '.drag-element, .drag-element *')) {
@@ -11,20 +11,22 @@ document.addEventListener('dragstart', function (event) {
 
 
 var result = [];
-var img = document.getElementById('drop-image');
-var canvas = document.getElementById('canvas');
-var context = canvas.getContext('2d');
-var rect = img.getBoundingClientRect();
-var currentTarget = null;
+var haarFound = 0;
 
 
 window.onload = function() {
+    img = document.getElementById('drop-image');
+    canvas = document.getElementById('canvas');
+    context = canvas.getContext('2d');
+    rect = canvas.getBoundingClientRect();
     var canvas = document.getElementById('canvas');
     canvas.width = 400;
     canvas.height = 500;
     context.drawImage(img, 0, 0, canvas.width, canvas.height);
     var myData = context.getImageData(0, 0, canvas.width, canvas.height);
     tracking.Image.computeIntegralImage(myData.data, myData.width, myData.height, result);
+    var found = document.getElementById("found");
+    found.innerHTML = haarFound;
 
 };
 
@@ -44,11 +46,10 @@ interact('.drag-element-source').draggable({
 }).on('move', function(event) {
 
     var interaction = event.interaction;
-    console.log('dragmove');
-
     // if the pointer was moved while being held down
     // and an interaction hasn't started yet
-    if (interaction.pointerIsDown && !interaction.interacting() && event.currentTarget.classList.contains('drag-element-source')) {
+    if (interaction.pointerIsDown && !interaction.interacting() &&
+        event.currentTarget.classList.contains('drag-element-source')) {
 
         var original = event.currentTarget;
 
@@ -68,6 +69,12 @@ interact('.drag-element-source').draggable({
 
     } else {
         interaction.start({ name: 'drag' }, event.interactable, event.currentTarget);
+    }
+}).actionChecker(function(event, action, interactable, element) {
+    if (haarFound === 10) {
+        return null;
+    } else {
+        return action;
     }
 });
 
@@ -136,40 +143,145 @@ interact('.drag-clone')
     });
 
 function isHaarFeature(target) {
+    // A----AB-----B
+    // |           |
+    // |           |
+    // AD          BC
+    // |           |
+    // |           |
+    // D----DC-----C
+
     var currentrec = target.getBoundingClientRect();
+    console.log(currentrec);
     var pointA = { x: currentrec.left - rect.left, y: currentrec.top - rect.top }
     var pointB = { x: currentrec.right - rect.left, y: currentrec.top - rect.top }
     var pointC = { x: currentrec.right - rect.left, y: currentrec.bottom - rect.top }
     var pointD = { x: currentrec.left - rect.left, y: currentrec.bottom - rect.top }
+    var pointAB = { x: pointA.x + ((pointB.x - pointA.x) / 2), y: pointA.y };
+    var pointDC = { x: pointD.x + ((pointC.x - pointD.x) / 2), y: pointD.y };
+    var pointAD = { x: pointA.x, y: pointA.y + ((pointD.y - pointA.y) / 2) };
+    var pointBC = { x: pointB.x, y: pointB.y + ((pointC.y - pointB.y) / 2) };
 
     if (target.classList.contains("haar1")) {
-        var pointAB = { x: pointA.x + ((pointB.x - pointA.x) / 2), y: pointA.y };
-        var pointCB = { x: pointD.x + ((pointC.x - pointD.x) / 2), y: pointD.y };
+
         //Formula is C - B - D + A
 
         //TODO: fix issue in row zero
         //white square
-        var indexC = Math.round((pointCB.y - 1) * canvas.width + pointCB.x - 1);
-        var indexB = Math.round((pointAB.y - 1) * canvas.width + pointAB.x - 1);
-        var indexD = Math.round((pointD.y - 1) * canvas.width + pointD.x - 1);
-        var indexA = Math.round((pointA.y - 1) * canvas.width + pointA.x - 1);
-        var whiteSquareIntensity = result[indexC] - result[indexB] - result[indexD] + result[indexA];
+        var indexA = indexCalculation(pointA);
+        var indexB = indexCalculation(pointAB);
+        var indexC = indexCalculation(pointDC);
+        console.log(indexA);
+        console.log(indexC);
+        var indexD = indexCalculation(pointD);
+        var whiteSquareIntensity = calculateIntegralImage(indexA, indexB, indexC, indexD);
         //black square
-        var blackIndexC = Math.round((pointC.y - 1) * canvas.width + pointC.x - 1);
-        var blackIndexB = Math.round((pointB.y - 1) * canvas.width + pointB.x - 1);
-        var blackIndexD = Math.round((pointCB.y - 1) * canvas.width + pointCB.x - 1);
-        var blackIndexA = Math.round((pointAB.y - 1) * canvas.width + pointAB.x - 1);
-        var blackSquareIntensity = result[blackIndexC] - result[blackIndexB] - result[blackIndexD] + result[blackIndexA];
+        var blackIndexA = indexCalculation(pointAB)
+        var blackIndexB = indexCalculation(pointB)
+        var blackIndexC = indexCalculation(pointC)
+        var blackIndexD = indexCalculation(pointDC)
+        console.log(blackIndexA);
+        console.log(blackIndexC);
+        var blackSquareIntensity = calculateIntegralImage(blackIndexA, blackIndexB, blackIndexC, blackIndexD);
 
-        if (blackSquareIntensity < whiteSquareIntensity) {
-            target.style.border = "solid green";
-        } else {
-            target.style.border = "none";
+    } else if (target.classList.contains("haar2")) {
+
+        //white square
+        var indexA = indexCalculation(pointAD);
+        var indexB = indexCalculation(pointBC);
+        var indexC = indexCalculation(pointC);
+        var indexD = indexCalculation(pointD);
+
+        var whiteSquareIntensity = calculateIntegralImage(indexA, indexB, indexC, indexD);
+        //black square
+        var blackIndexA = indexCalculation(pointA);
+        var blackIndexB = indexCalculation(pointB);
+        var blackIndexC = indexCalculation(pointBC);
+        var blackIndexD = indexCalculation(pointAD);
+        var blackSquareIntensity = calculateIntegralImage(blackIndexA, blackIndexB, blackIndexC, blackIndexD);
+
+    } else if (target.classList.contains("haar3")) {
+      // A----E----F----B
+      // |              |
+      // |              |
+      // |              |
+      // |              |
+      // D----H----G----C
+        // Extra points needed
+        var pointE = {x: pointA.x + (pointB.x-pointA.x)/3, y: pointA.y}
+        var pointF = {x: pointB.x - (pointB.x-pointA.x)/3, y: pointA.y}
+        var pointG = {x: pointC.x - (pointC.x-pointD.x)/3, y: pointC.y}
+        var pointH = {x: pointD.x + (pointC.x-pointD.x)/3, y: pointC.y}
+        // white square 1
+        var indexA = indexCalculation(pointA);
+        var indexB = indexCalculation(pointE);
+        var indexC = indexCalculation(pointH);
+        var indexD = indexCalculation(pointD);
+        var whiteSquareIntensity = calculateIntegralImage(indexA, indexB, indexC, indexD);
+
+        // black square
+        var blackIndexA = indexCalculation(pointE);
+        var blackIndexB = indexCalculation(pointF);
+        var blackIndexC = indexCalculation(pointG);
+        var blackIndexD = indexCalculation(pointH);
+        var blackSquareIntensity = calculateIntegralImage(blackIndexA, blackIndexB, blackIndexC, blackIndexD);
+
+        // white square 2
+        var index2A = indexCalculation(pointF);
+        var index2B = indexCalculation(pointB);
+        var index2C = indexCalculation(pointC);
+        var index2D = indexCalculation(pointG);
+        whiteSquareIntensity = whiteSquareIntensity + calculateIntegralImage(index2A, index2B, index2C, index2D);
+        whiteSquareIntensity = Math.round(whiteSquareIntensity/2);
+
+    }
+    updateDisplay(whiteSquareIntensity, blackSquareIntensity, target);
+
+}
+
+/*
+ * This calculates the index in the results array where the integral image of the point can be found.
+ */
+function indexCalculation(point) {
+    return Math.round(point.y) * canvas.width + Math.round(point.x);
+}
+
+/*
+* Calculates the integral image of a rectangle in the image, using the results array 
+* - which contains the integral image at every point in the image.
+*/
+function calculateIntegralImage(A, B, C, D) {
+    return result[C] - result[B] - result[D] + result[A];
+}
+
+/*
+ * Checks if a haar feature has been found and updates display to show it.
+ */
+function updateDisplay(whiteSquareIntensity, blackSquareIntensity, target) {
+    if (blackSquareIntensity * 1.1 < whiteSquareIntensity) {
+        if (target.style.border != "medium solid green") {
+            target.style.border = "medium solid green";
+            haarFound = haarFound + 1;
         }
+    } else {
+        if (target.style.border === "medium solid green") {
+            target.style.border = "none";
+            haarFound = haarFound - 1;
+        }
+    }
+    var found = document.getElementById("found");
+    found.innerHTML = haarFound;
+    var black = document.getElementById("blackValue");
+    black.innerHTML = blackSquareIntensity;
+    var white = document.getElementById("whiteValue");
+    white.innerHTML = whiteSquareIntensity;
 
-        var black = document.getElementById("blackValue");
-        black.innerHTML = blackSquareIntensity;
-        var white = document.getElementById("whiteValue");
-        white.innerHTML = whiteSquareIntensity;
+    if (haarFound === 10) {
+        context.font = "30px Arial";
+        context.fillStyle = "dark green";
+        context.textAlign = "center";
+        context.fillText("Well Done!", canvas.width / 2, canvas.height / 2);
+        canvas.style.zIndex = "100";
+        canvas.style.opacity = "0.5";
     }
 }

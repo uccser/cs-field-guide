@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>tracking.js - face hello world</title>
+  <script src="libs/tracking.js"></script>
+  <script src="libs/face-min.js"></script>
+  <script src="libs/eye-min.js"></script>
+  <script src="libs/mouth-min.js"></script>
+
+  <style>
+  .rect {
+    border: 2px solid #a64ceb;
+    left: -1000px;
+    position: absolute;
+    top: -1000px;
+  }
+/*  #img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -173px 0 0 -300px;
+  }*/
+  </style>
+</head>
+<body>
+
+  <div class="demo-frame">
+    <div id="viola-jones">
+      <img id="img" onClick="replaceImage()" src="images/smile.jpg" />
+    </div>
+  </div>
+  <script src="facedetection.js"></script>
