@@ -12,21 +12,28 @@ document.addEventListener('dragstart', function(event) {
 
 var result = [];
 var haarFound = 0;
+MAX_WIDTH = 700;
 
 
 window.onload = function() {
-    img = document.getElementById('drop-image');
+    img = document.getElementById('img');
     canvas = document.getElementById('canvas');
     context = canvas.getContext('2d');
     rect = canvas.getBoundingClientRect();
     var canvas = document.getElementById('canvas');
-    canvas.width = 400;
-    canvas.height = 500;
-    context.drawImage(img, 0, 0, canvas.width, canvas.height);
+    canvas.width = img.width;
+    canvas.height = img.height;
+    draw_grayscale_image(img);
+
     var myData = context.getImageData(0, 0, canvas.width, canvas.height);
     tracking.Image.computeIntegralImage(myData.data, myData.width, myData.height, result);
+
     var found = document.getElementById("found");
     found.innerHTML = haarFound;
+    var black = document.getElementById("blackValue");
+    black.innerHTML = 0;
+    var white = document.getElementById("whiteValue");
+    white.innerHTML = 0;
 
 };
 
@@ -152,7 +159,6 @@ function isHaarFeature(target) {
     // D----DC-----C
 
     var currentrec = target.getBoundingClientRect();
-    console.log(currentrec);
     var pointA = { x: currentrec.left - rect.left, y: currentrec.top - rect.top }
     var pointB = { x: currentrec.right - rect.left, y: currentrec.top - rect.top }
     var pointC = { x: currentrec.right - rect.left, y: currentrec.bottom - rect.top }
@@ -171,8 +177,6 @@ function isHaarFeature(target) {
         var indexA = indexCalculation(pointA);
         var indexB = indexCalculation(pointAB);
         var indexC = indexCalculation(pointDC);
-        console.log(indexA);
-        console.log(indexC);
         var indexD = indexCalculation(pointD);
         var whiteSquareIntensity = calculateIntegralImage(indexA, indexB, indexC, indexD);
         //black square
@@ -180,8 +184,6 @@ function isHaarFeature(target) {
         var blackIndexB = indexCalculation(pointB)
         var blackIndexC = indexCalculation(pointC)
         var blackIndexD = indexCalculation(pointDC)
-        console.log(blackIndexA);
-        console.log(blackIndexC);
         var blackSquareIntensity = calculateIntegralImage(blackIndexA, blackIndexB, blackIndexC, blackIndexD);
 
     } else if (target.classList.contains("haar2")) {
@@ -201,18 +203,18 @@ function isHaarFeature(target) {
         var blackSquareIntensity = calculateIntegralImage(blackIndexA, blackIndexB, blackIndexC, blackIndexD);
 
     } else if (target.classList.contains("haar3")) {
-      // A----E----F----B
-      // |              |
-      // |              |
-      // |              |
-      // |              |
-      // D----H----G----C
+        // A----E----F----B
+        // |              |
+        // |              |
+        // |              |
+        // |              |
+        // D----H----G----C
         // Extra points needed
-        var pointE = {x: pointA.x + (pointB.x-pointA.x)/3, y: pointA.y}
-        var pointF = {x: pointB.x - (pointB.x-pointA.x)/3, y: pointA.y}
-        var pointG = {x: pointC.x - (pointC.x-pointD.x)/3, y: pointC.y}
-        var pointH = {x: pointD.x + (pointC.x-pointD.x)/3, y: pointC.y}
-        // white square 1
+        var pointE = { x: pointA.x + (pointB.x - pointA.x) / 3, y: pointA.y }
+        var pointF = { x: pointB.x - (pointB.x - pointA.x) / 3, y: pointA.y }
+        var pointG = { x: pointC.x - (pointC.x - pointD.x) / 3, y: pointC.y }
+        var pointH = { x: pointD.x + (pointC.x - pointD.x) / 3, y: pointC.y }
+            // white square 1
         var indexA = indexCalculation(pointA);
         var indexB = indexCalculation(pointE);
         var indexC = indexCalculation(pointH);
@@ -232,7 +234,7 @@ function isHaarFeature(target) {
         var index2C = indexCalculation(pointC);
         var index2D = indexCalculation(pointG);
         whiteSquareIntensity = whiteSquareIntensity + calculateIntegralImage(index2A, index2B, index2C, index2D);
-        whiteSquareIntensity = Math.round(whiteSquareIntensity/2);
+        whiteSquareIntensity = Math.round(whiteSquareIntensity / 2);
 
     }
     updateDisplay(whiteSquareIntensity, blackSquareIntensity, target);
@@ -247,9 +249,9 @@ function indexCalculation(point) {
 }
 
 /*
-* Calculates the integral image of a rectangle in the image, using the results array 
-* - which contains the integral image at every point in the image.
-*/
+ * Calculates the integral image of a rectangle in the image, using the results array 
+ * - which contains the integral image at every point in the image.
+ */
 function calculateIntegralImage(A, B, C, D) {
     return result[C] - result[B] - result[D] + result[A];
 }
@@ -283,5 +285,111 @@ function updateDisplay(whiteSquareIntensity, blackSquareIntensity, target) {
         context.fillText("Well Done!", canvas.width / 2, canvas.height / 2);
         canvas.style.zIndex = "100";
         canvas.style.opacity = "0.5";
+    }
+}
+
+function loadImageDialog(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            load_resize_image(e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+function load_resize_image(src) {
+    var invis_img = document.getElementById("img");
+    invis_img.src = src;
+    img = new Image();
+    img.src = src;
+    img.onload = function() {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+
+        if (img.width > MAX_WIDTH) {
+            img.height *= MAX_WIDTH / img.width;
+            img.width = MAX_WIDTH;
+            invis_img.height = img.height;
+            invis_img.width = img.width;
+        }
+        canvas.width = img.width;
+        canvas.height = img.height;
+        canvas.style.display = "inline-block";
+
+        draw_grayscale_image(img);
+        var myData = context.getImageData(0, 0, canvas.width, canvas.height);
+        tracking.Image.computeIntegralImage(myData.data, myData.width, myData.height, result);
+    };
+    clear_features();
+    clear_rectangles();
+
+}
+
+function clear_features() {
+    var features = document.getElementsByClassName('drag-clone');
+
+    while (features[0]) {
+        features[0].parentNode.removeChild(features[0]);
+    }
+    haarFound = 0;
+
+    var found = document.getElementById("found");
+    found.innerHTML = haarFound;
+    var black = document.getElementById("blackValue");
+    black.innerHTML = 0;
+    var white = document.getElementById("whiteValue");
+    white.innerHTML = 0;
+    canvas.style.zIndex = "-100";
+    canvas.style.opacity = "1";
+    draw_grayscale_image(img);
+}
+
+function draw_grayscale_image(img) {
+    context.drawImage(img, 0, 0, img.width, img.height);
+    var imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+    var data = imageData.data;
+
+    for (var i = 0; i < data.length; i += 4) {
+        var brightness = 0.34 * data[i] + 0.5 * data[i + 1] + 0.16 * data[i + 2];
+        // red
+        data[i] = brightness;
+        // green
+        data[i + 1] = brightness;
+        // blue
+        data[i + 2] = brightness;
+    }
+
+    // overwrite original image
+    context.putImageData(imageData, 0, 0);
+}
+
+function findFaces() {
+    var img = document.getElementById('img');
+    var tracker = new tracking.ObjectTracker(['face']);
+    tracker.setStepSize(2);
+    trackerTask = tracking.track('#img', tracker, { camera: true });
+    tracker.on('track', function(event) {
+        event.data.forEach(function(rect) {
+            console.log("plotting");
+            window.plot(rect.x, rect.y, rect.width, rect.height);
+        });
+    });
+}
+
+window.plot = function(x, y, w, h) {
+    var rect = document.createElement('div');
+    document.getElementById('image').appendChild(rect);
+    rect.classList.add('rect');
+    rect.style.width = w + 'px';
+    rect.style.height = h + 'px';
+    rect.style.left = (img.offsetLeft + 320 + x) + 'px';
+    rect.style.top = (img.offsetTop + y) + 'px';
+};
+
+function clear_rectangles() {
+  var rect = document.getElementsByClassName('rect');
+
+    while (rect[0]) {
+        rect[0].parentNode.removeChild(rect[0]);
     }
 }
