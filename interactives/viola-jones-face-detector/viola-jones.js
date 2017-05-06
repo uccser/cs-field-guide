@@ -21,6 +21,13 @@ window.onload = function() {
     context = canvas.getContext('2d');
     rect = canvas.getBoundingClientRect();
     var canvas = document.getElementById('canvas');
+
+    if (img.width > MAX_WIDTH) {
+        img.height *= MAX_WIDTH / img.width;
+        img.width = MAX_WIDTH;
+    }
+    canvas.width = img.width;
+    canvas.height = img.height;
     canvas.width = img.width;
     canvas.height = img.height;
     draw_grayscale_image(img);
@@ -46,7 +53,7 @@ interact('.drag-element-source').draggable({
     },
     snap: {
         targets: [
-            interact.createSnapGrid({ x: 10, y: 10 })
+            interact.createSnapGrid({ x: 5, y: 5 })
         ],
     }
 
@@ -214,27 +221,62 @@ function isHaarFeature(target) {
         var pointF = { x: pointB.x - (pointB.x - pointA.x) / 3, y: pointA.y }
         var pointG = { x: pointC.x - (pointC.x - pointD.x) / 3, y: pointC.y }
         var pointH = { x: pointD.x + (pointC.x - pointD.x) / 3, y: pointC.y }
-            // white square 1
-        var indexA = indexCalculation(pointA);
-        var indexB = indexCalculation(pointE);
-        var indexC = indexCalculation(pointH);
-        var indexD = indexCalculation(pointD);
-        var whiteSquareIntensity = calculateIntegralImage(indexA, indexB, indexC, indexD);
+            //This is the whole feature intensity
+        var whiteSquareIntensity = calculateIntegralImage(indexCalculation(pointA),
+            indexCalculation(pointB), indexCalculation(pointC), indexCalculation(pointD));
 
         // black square
         var blackIndexA = indexCalculation(pointE);
         var blackIndexB = indexCalculation(pointF);
         var blackIndexC = indexCalculation(pointG);
         var blackIndexD = indexCalculation(pointH);
-        var blackSquareIntensity = calculateIntegralImage(blackIndexA, blackIndexB, blackIndexC, blackIndexD);
+        var blackSquareIntensity = calculateIntegralImage(blackIndexA, blackIndexB, blackIndexC, blackIndexD) * 3;
 
-        // white square 2
-        var index2A = indexCalculation(pointF);
-        var index2B = indexCalculation(pointB);
-        var index2C = indexCalculation(pointC);
-        var index2D = indexCalculation(pointG);
-        whiteSquareIntensity = whiteSquareIntensity + calculateIntegralImage(index2A, index2B, index2C, index2D);
-        whiteSquareIntensity = Math.round(whiteSquareIntensity / 2);
+    } else if (target.classList.contains("haar4")) {
+        // A--------B
+        // |        |
+        // E        G
+        // |        |
+        // F        H
+        // |        |
+        // D--------C
+        // Extra points needed
+        var pointE = { x: pointA.x, y: pointA.y + (pointD.y - pointA.y) / 3 }
+        var pointF = { x: pointA.x, y: pointD.y - (pointD.y - pointA.y) / 3 }
+        var pointG = { x: pointB.x, y: pointB.y + (pointC.y - pointB.y) / 3 }
+        var pointH = { x: pointB.x, y: pointC.y - (pointC.y - pointB.y) / 3 }
+        // This is the whole feature.
+        var whiteSquareIntensity = calculateIntegralImage(indexCalculation(pointA),
+            indexCalculation(pointB), indexCalculation(pointC), indexCalculation(pointD));
+
+        // black square
+        var blackIndexA = indexCalculation(pointE);
+        var blackIndexB = indexCalculation(pointG);
+        var blackIndexC = indexCalculation(pointH);
+        var blackIndexD = indexCalculation(pointF);
+        var blackSquareIntensity = calculateIntegralImage(blackIndexA, blackIndexB, blackIndexC, blackIndexD) * 3;
+
+    } else if (target.classList.contains("haar5")) {
+        // A------------B
+        // |            |
+        // |   E----F   |
+        // |   |    |   |
+        // |   H----G   |
+        // |            |
+        // D------------C
+        var pointE = { x: pointA.x + (pointB.x - pointA.x) / 4, y: pointA.y + (pointD.y - pointA.y) / 4 }
+        var pointF = { x: pointB.x - (pointB.x - pointA.x) / 4, y: pointA.y + (pointD.y - pointA.y) / 4 }
+        var pointG = { x: pointB.x - (pointB.x - pointA.x) / 4, y: pointD.y - (pointD.y - pointA.y) / 4 }
+        var pointH = { x: pointA.x + (pointB.x - pointA.x) / 4, y: pointD.y - (pointD.y - pointA.y) / 4 }
+        // This is the whole feature.
+        var whiteSquareIntensity = calculateIntegralImage(indexCalculation(pointA),
+            indexCalculation(pointB), indexCalculation(pointC), indexCalculation(pointD));
+        // black square
+        var blackIndexA = indexCalculation(pointE);
+        var blackIndexB = indexCalculation(pointF);
+        var blackIndexC = indexCalculation(pointG);
+        var blackIndexD = indexCalculation(pointH);
+        var blackSquareIntensity = calculateIntegralImage(blackIndexA, blackIndexB, blackIndexC, blackIndexD) * 4;
 
     }
     updateDisplay(whiteSquareIntensity, blackSquareIntensity, target);
@@ -260,7 +302,7 @@ function calculateIntegralImage(A, B, C, D) {
  * Checks if a haar feature has been found and updates display to show it.
  */
 function updateDisplay(whiteSquareIntensity, blackSquareIntensity, target) {
-    if (blackSquareIntensity * 1.1 < whiteSquareIntensity) {
+    if (blackSquareIntensity < whiteSquareIntensity) {
         if (target.style.border != "medium solid green") {
             target.style.border = "medium solid green";
             haarFound = haarFound + 1;
@@ -370,7 +412,6 @@ function findFaces() {
     trackerTask = tracking.track('#img', tracker, { camera: true });
     tracker.on('track', function(event) {
         event.data.forEach(function(rect) {
-            console.log("plotting");
             window.plot(rect.x, rect.y, rect.width, rect.height);
         });
     });
@@ -387,7 +428,7 @@ window.plot = function(x, y, w, h) {
 };
 
 function clear_rectangles() {
-  var rect = document.getElementsByClassName('rect');
+    var rect = document.getElementsByClassName('rect');
 
     while (rect[0]) {
         rect[0].parentNode.removeChild(rect[0]);
