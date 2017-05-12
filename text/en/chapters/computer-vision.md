@@ -66,9 +66,11 @@ This section will focus on colour, light, and image representation which rooted 
 
 ### What is an Image?
 
-The most important to distinguish with the word *image* and *digital image* even though they are frequently used interchangeably. So then what is an image? An image may be described as an *artificial resemblance*, hereby a painting or even sculpture may be considered an image. This definition allows for all forms of images from familiar images such as drawings or photos to that of the mind.
+To communicate our ideas in the chapter we need to be able to distinguish between the word *image* and *digital image*. These words are commonly used interchangeably in day-to-day life.
 
-So what is a *digital image* and why are they special? Well a digital image is a numerical representation of a two-dimensional image. In this chapter the representation we refer to is known as a raster image, these images are made up of a finite set of pixels. A pixel being the smallest element of an image holding values that represent some colour illumination.
+So then what is an image? An image may be described as an *artificial resemblance*. This definition defines that a painting or even sculpture may be considered an image, as well as images formed on the surface of water and in the human eye, an even mental images of graphs and functions.
+
+So what is a *digital image* and why are they special? Well a digital image is a numerical representation of a two-dimensional image. In this chapter the representation we refer to is known as a raster image, these images being made up of a finite set of pixels, where a pixel is the smallest element of an image holding values that represent some colour illumination.
 
 {comment TODO interactive of raster image here.}
 
@@ -98,19 +100,23 @@ The last feature of the retina to discuss is the blind spot where there are no r
 
 In physics light refers to the photons (an elementary particle) propagating through space carrying some energy. The energy of the photon can be quantified as the wavelength through which the particle oscillates, on these terms the human eye can only see a small fraction of the light around us as it is only sensitive to light between roughly $780$ nanometers and $390$ nanometers. The other wavelengths of light not visible to the human eye can only be seen by using specialised equipment such as thermal cameras, and x-ray machines though only through encoding the image with the visible light we can see.
 
-The human eye has (in general) 3 types of cone cells that are responsive to different bands of light. This is labelled in the spectrum of light (also known as the electromagnetic spectrum) as the visible spectrum. Where either side lies the ultraviolet spectrum at smaller wavelengths and infra-red spectrum at bigger wavelength although these are not the only spectrums of light. What is really interesting is that other animals such as birds have cones for other spectrums of light such as ultraviolet.
+{image filename="placehold.it.500x400.png" caption="The electromagnetic spectrum, where the visible band of light is between 390nm to 700nm."}
 
-{comment TODO image of flower in visible light vs flower in ultraviolet}
+The human eye has (in general) 3 types of cone cells that are responsive to different bands of light. This is labelled in the spectrum of light (also known as the electromagnetic spectrum) as the visible spectrum.
 
-{comment TODO image of electromagnetic spectrum with highlight of visible light}
-
-{comment TODO graph of responsiveness of the eye in the electromagnetic spectrum}
+{image filename="placehold.it.500x400.png" caption="The responsiveness of the human retina within the visible light spectrum."}
 
 From this graph we can see that the 3 types of cone cells are reactive to different wavelengths of light where each type of cone cell corresponds to a peaks in the graph. We can see that these cones cells could be referred to the red cone cell, green cone cell, and blue cone cell due to their responsiveness at particular wavelengths. It is through the combined response of these cone cells that you can see colour.
 
+Either side of the visible spectrum lies the ultraviolet spectrum at smaller wavelengths and infra-red spectrum at bigger wavelength, although these are not the only spectrums of light. What is really interesting is that other animals such as birds have cones for other spectrums of light such as ultraviolet as something as innocuous as a flower may look completely different to them.
+
+{image filename="placehold.it.500x400.png" caption="On the left a flower in visible light, while on the right the same flower in ultraviolet light."}
+
 {comment TODO interactive with combining colours }
 
-### Digital Cameras
+### Digital Images
+
+Digital images are most commonly understood to be created by software or digital cameras.
 
 {panel type="teacher-note" summary="Digital camera sensors"}
 
@@ -120,7 +126,7 @@ There are a number of different types of digital camera sensor, but for the purp
 
 Digital cameras have uniform sensitivity to light across their whole field of vision. Light intensity and colour are picked up by sensor elements on a silicon chip filtered by a red, blue, and green filters (Bayer filter) but they are not as good at capturing a wide range of light levels as our eyes are. Typically, a modern digital camera can automatically tune its exposure to either bright or dark scenes, but it might lose some detail (e.g. when it is tuned for dark exposure, any bright objects might just look like white blobs).
 
-{comment TODO image of Bayer colour filter}
+{image filename="placehold.it.500x400.png" caption="The Bayer colour filter, for filtering light into red, green and blue for a light sensor."}
 
 #### Colour Spaces
 
@@ -134,16 +140,17 @@ In this section we cover the RGB, CMYK, and HSV colour spaces. There are many mo
 
 **RGB** uses additive colour mixing making it useful for light emitters e.g. Monitors, TVs etc. This is because the more light you add the brighter the light is perceived, and more wavelengths of light the whiter the light is perceived.
 
-{comment TODO RGB Colour Space (Cube)}
-{comment TODO additive colour mixing image}
+{image filename="placehold.it.500x400.png" caption="The Cartesian cube of the RGB colour space. Any colour that exists in the RGB colour space exists as a discrete point within this cube."}
+
+{image filename="placehold.it.500x400.png" caption="A Venn-diagram showing additive colour mixing of red, green and blue."}
 
 **CMYK** uses subtractive colour mixing technique making it useful for printing. A physical object we see (that does not emit its own light) gets it colour from reflecting some wavelengths of light while the others are absorbed. This can easily be seen with paints, where the more paint is mixed the darker the colour as the pigments are absorbing the light received as well as the light reflected from other pigments.
 
-{comment TODO subtractive colour mixing image}
+{image filename="placehold.it.500x400.png" caption="A Venn-diagram showing subtractive colour mixing of red, green and blue."}
 
 **HSV** is a colour space that rearranges the RGB colour space to be more intuitive by projecting the Cartesian representation into a cylindrical-coordinate space. The HSV colour space is described by 3 coordinates; hue representing the colour or wavelength of light, value representing the brightness of the light, and saturation representing chroma or the purity of light.
 
-{comment TODO HSV Colour Space (Cylinder) image}
+{image filename="placehold.it.500x400.png" caption="The HSV colour space, where any colour that exists in the RGB colour space can be mapped to a discrete point within this cylinder."}
 
 {panel type="curiosity" summary="Further reading"}
 
