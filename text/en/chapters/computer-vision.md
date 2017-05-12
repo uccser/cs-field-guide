@@ -116,7 +116,7 @@ Either side of the visible spectrum lies the ultraviolet spectrum at smaller wav
 
 ### Digital Images
 
-Digital images are most commonly understood to be created by software or digital cameras.
+Digital images are most commonly created through software such as Google Drawings, Microsoft Paint, or Adobe Photoshop; or by hardware such as a digital camera or other sensors.
 
 {panel type="teacher-note" summary="Digital camera sensors"}
 
