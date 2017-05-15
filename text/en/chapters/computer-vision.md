@@ -98,7 +98,7 @@ The last feature of the retina to discuss is the blind spot where there are no r
 
 #### The Electromagnetic Spectrum
 
-In physics light refers to the photons (an elementary particle) propagating through space carrying some energy. The energy of the photon can be quantified as the wavelength through which the particle oscillates, on these terms the human eye can only see a small fraction of the light around us as it is only sensitive to light between roughly $780$ nanometers and $390$ nanometers. The other wavelengths of light not visible to the human eye can only be seen by using specialised equipment such as thermal cameras, and x-ray machines though only through encoding the image with the visible light we can see.
+In physics light refers to the photons (an elementary particle) propagating through space carrying some energy. The energy of the photon can be quantified as the wavelength through which the particle oscillates, in these terms the human eye can only see a small fraction of the light around us as it is only sensitive to light with a wavelength roughly between 780 nanometers and 390 nanometers. The other wavelengths of light not visible to the human eye can only be seen by using specialised equipment such as thermal cameras, and x-ray machines. We can see these different wavelengths by re-encoding the image with into the visible light spectrum. In the following figure we see the electromagnetic spectrum annotated with devices that see and phenomena that produce different wavelengths of light.
 
 {image filename="placehold.it.500x400.png" caption="The electromagnetic spectrum, where the visible band of light is between 390nm to 700nm."}
 
@@ -106,9 +106,9 @@ The human eye has (in general) 3 types of cone cells that are responsive to diff
 
 {image filename="placehold.it.500x400.png" caption="The responsiveness of the human retina within the visible light spectrum."}
 
-From this graph we can see that the 3 types of cone cells are reactive to different wavelengths of light where each type of cone cell corresponds to a peaks in the graph. We can see that these cones cells could be referred to the red cone cell, green cone cell, and blue cone cell due to their responsiveness at particular wavelengths. It is through the combined response of these cone cells that you can see colour.
+From this graph we can see that the 3 types of cone cells are reactive to different wavelengths of light where each type of cone cell corresponds to a peaks in the graph. We can see that these cones cells could be referred to the red cone cell, green cone cell, and blue cone cell due to their responsiveness at particular wavelengths. It is through the combined response of these cone cells that it is possible to see colour.
 
-Either side of the visible spectrum lies the ultraviolet spectrum at smaller wavelengths and infra-red spectrum at bigger wavelength, although these are not the only spectrums of light. What is really interesting is that other animals such as birds have cones for other spectrums of light such as ultraviolet as something as innocuous as a flower may look completely different to them.
+Either side of the visible spectrum lies the ultraviolet spectrum at smaller wavelengths and infra-red spectrum at bigger wavelengths, although these are not the only spectra of light. What is really interesting is that other animals such as birds have cones for other spectra of light such as ultraviolet where something as innocuous as a flower may look completely different to them.
 
 {image filename="placehold.it.500x400.png" caption="On the left a flower in visible light, while on the right the same flower in ultraviolet light."}
 
