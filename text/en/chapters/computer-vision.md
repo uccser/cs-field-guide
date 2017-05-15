@@ -116,7 +116,7 @@ Either side of the visible spectrum lies the ultraviolet spectrum at smaller wav
 
 ### Digital Images
 
-Digital images are most commonly created through software such as Google Drawings, Microsoft Paint, or Adobe Photoshop; or by hardware such as a digital camera or other sensors.
+Digital images are most commonly created through software such as Google Drawings, Microsoft Paint, or Adobe Photoshop; or by hardware such as a digital camera and other sensors.
 
 {panel type="teacher-note" summary="Digital camera sensors"}
 
@@ -124,13 +124,15 @@ There are a number of different types of digital camera sensor, but for the purp
 
 {panel end}
 
-Digital cameras have uniform sensitivity to light across their whole field of vision. Light intensity and colour are picked up by sensor elements on a silicon chip filtered by a red, blue, and green filters (Bayer filter) but they are not as good at capturing a wide range of light levels as our eyes are. Typically, a modern digital camera can automatically tune its exposure to either bright or dark scenes, but it might lose some detail (e.g. when it is tuned for dark exposure, any bright objects might just look like white blobs).
+The sensor in digital cameras have uniform sensitivity to light across their whole field of vision. Light intensity and colour are picked up by sensor elements on a silicon chip filtered by a red, blue, and green filters (Bayer filter). Typically, a modern digital camera can automatically tune its exposure to either bright or dark scenes, but it might lose some detail (e.g. when it is tuned for dark exposure, any bright objects might just look like white blobs). Since an image can only be taken at one exposure level a single photo cannot capture the wide range of light levels the human eye perceives, although similar results can be achieved by composing multiple photos at different exposures together, commonly referred to as HDR mode.
 
 {image filename="placehold.it.500x400.png" caption="The Bayer colour filter, for filtering light into red, green and blue for a light sensor."}
 
 #### Colour Spaces
 
-When working with *digital images* colour representation is an important issue, as these images are just a bunch of arbitrary values. A colour space is a mathematical model describing how colours may be represented in an image. Many colour spaces focus on trying to produce colour similar to responsiveness of the human eye, while others have a more machine orientated purpose.
+When working with *digital images* colour representation is an important issue, otherwise an image is just a bunch of arbitrary values. A colour space is a mathematical model describing how colours may be represented in an image. Many colour spaces focus on trying to produce colour similar to responsiveness of the human eye, while others have a more machine orientated purpose.
+
+For example a very simple colour space is gray-scale where the numbers could represent the number of photons to fall on each pixel. The gray-scale encoding of an image such that a white pixel would have high number, a black pixel would be zero, and everything in-between being various shades of gray.
 
 {panel type="teacher-note" summary="Colour spaces"}
 
