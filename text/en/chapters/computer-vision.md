@@ -136,7 +136,7 @@ For example a very simple colour space is gray-scale where the numbers could rep
 
 {panel type="teacher-note" summary="Colour spaces"}
 
-In this section we cover the RGB, CMYK, and HSV colour spaces. There are many more types of colour spaces, many for specialised purposes that we do not cover here.
+In this section we cover the RGB, CMYK, and HSV colour spaces, as they are either used commonly for everyday purposes or . There are many more types of colour spaces, many for specialised purposes that we do not cover here.
 
 {panel end}
 
@@ -355,7 +355,7 @@ Despite these recent changes, many of the fundamental ideas in computer vision h
 
 {comment}
 
-.. Computer Vision is a rapidly changing field because camera technology is changing fast - resolution, bnoise, infra red, stereo vision.
+.. Computer Vision is a rapidly changing field because camera technology is changing fast - resolution, noise, infra red, stereo vision.
 
 {comment end}
 
