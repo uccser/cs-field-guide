@@ -160,6 +160,43 @@ Further reading can be found at [Cambridge in Colour](http://www.cambridgeincolo
 
 {panel end}
 
+## Character Recognition
+
+### Filters
+
+### Noise
+{comment interactive: custom blur filter}
+
+### Edge Detection
+{comment interactive: custom Sobel-lite operator}
+
+### Feature Extraction
+
+### Recognition
+{comment interactive: build custom gradient points tree-like decisions}
+
+
+## Facial Detection
+
+### Application Issues
+{comment project?}
+
+### Haar Face Cascades
+{comment interactive}
+{comment Isabelle}
+
+### Face Map
+{comment interactive: build Face Map from input images}
+
+### Extension: Eigenfaces
+
+
+## Extension: Fourier Transform
+
+### Hybrid Images
+{comment interactive: input multiple images and combine factor}
+
+
 ## Noise
 
 One challenge when using digital cameras is something called *noise*. That’s when individual pixels in the image appear brighter or darker than they should be, due to interference in the electronic circuits inside the camera. It’s more of a problem when light levels are dark, and the camera tries to boost the exposure of the image so that you can see more. You can see this if you take a digital photo in low light, and the camera uses a high ASA/ISO setting to capture as much light as possible. Because the sensor has been made very sensitive to light, it is also more sensitive to random interference, and gives photos a "grainy" effect.
