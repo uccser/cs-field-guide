@@ -15,14 +15,7 @@ from .base import *  # noqa: F403
 # ----------------------------------------------------------------------------
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#databases
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'csfieldguide',
-        'USER': 'hayleyavw',
-        'PASSWORD': 'password',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
-    }
+    "default": env.db("DATABASE_URL"),  # noqa: F405
 }
 DATABASES["default"]["ATOMIC_REQUESTS"] = True
 

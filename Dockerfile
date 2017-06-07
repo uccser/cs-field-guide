@@ -8,7 +8,7 @@ LABEL maintainer="csse-education-research@canterbury.ac.nz"
 # Set terminal to be noninteractive
 ARG DEBIAN_FRONTEND=noninteractive
 
-ENV DJANGO_PRODUCTION=True
+ENV DJANGO_PRODUCTION=False
 
 # Install packages, running of Python 3.4.2
 RUN apt-get update && apt-get install -y \
@@ -18,13 +18,12 @@ RUN apt-get update && apt-get install -y \
 RUN apt-get clean && rm /var/lib/apt/lists/*_*
 
 EXPOSE 8080
-RUN mkdir /csfieldguide
-WORKDIR /csfieldguide
 
 # Copy and install Python dependencies
 RUN python -m virtualenv --python=python3.4 /docker_venv
 COPY requirements /requirements
-RUN /docker_venv/bin/pip3 install -r /requirements/requirements.txt
+RUN /docker_venv/bin/pip3 install -r /requirements/local.txt
 
-ADD ./csfieldguide /csfieldguide/
-CMD /docker_venv/bin/gunicorn -c gunicorn.conf.py -b :8080 config.wsgi
+RUN mkdir /cs-field-guide/
+RUN mkdir /cs-field-guide/csfieldguide/
+WORKDIR /cs-field-guide/csfieldguide/
