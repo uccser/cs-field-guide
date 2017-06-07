@@ -1,0 +1,32 @@
+version: '1'
+services:
+  postgres:
+    restart: always
+    image: postgres
+
+  django:
+    build:
+      context: .
+      dockerfile: ./Dockerfile-local
+    command: /cs-field-guide/csfieldguide/docker-development-entrypoint.sh
+    volumes:
+      - .:/cs-field-guide
+    environment:
+      - PORT=8080
+      - USE_DOCKER=yes
+      - DATABASE_URL=postgres://postgres@postgres:5432/postgres
+      - DJANGO_SETTINGS_MODULE=config.settings.local
+    depends_on:
+      - postgres
+
+  nginx:
+    build:
+      context: .
+      dockerfile: ./infrastructure/nginx/Dockerfile
+    volumes:
+      - ./csfieldguide/:/app/
+      # - /app/node_modules
+    depends_on:
+      - django
+    ports:
+      - "80:80"
