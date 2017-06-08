@@ -1,0 +1,23 @@
+{% load i18n %}
+{% load static %}
+
+{% block title %}
+  {% trans "Chapters" %}
+{% endblock title %}
+
+{% block page_heading %}
+  <h1>{% trans "Chapters" %}</h1>
+{% endblock page_heading %}
+
+{% block content %}
+  {% if all_chapters %}
+      {% for chapter in all_chapters %}
+        <a href="{% url 'chapters:chapter' chapter.slug %}">
+          <img src="{% if chapter.icon %}{% static chapter.icon %}{% else %}http://placehold.it/238x200{% endif %}">
+          <h3>{{ chapter.name }}</h3>
+        </a>
+      {% endfor %}
+  {% else %}
+    <p>No chapters are available.</p>
+  {% endif %}
+{% endblock content %}

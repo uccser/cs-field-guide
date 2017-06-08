@@ -1,0 +1,423 @@
+#!/bin/bash
+# Helper script for commands related to the CS Field Guide repository.
+#
+# Notes:
+#  - Changes to template only require user to refresh browser.
+#  - Changes to static files require the 'static' command to be run.
+#  - Changes to Python code are detected by gunicorn and should take effect
+#    on the server after a few seconds.
+#
+# Future plans:
+#  - Start systems when a command is given (for example: 'static') when the
+#    development system has not yet been started.
+#  - When 'start' is run open website in default browser without creating
+#    new terminal prompt.
+
+# Constants
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+NC='\033[0m' # No Color
+
+# Print out help information
+function helpmenu {
+  printf "Script for performing tasks related to the CS Unplugged repository.\n\n"
+  printf "Usage: ./csu [COMMAND]\n"
+  printf "Replace [COMMAND] with a word from the list below.\n\n"
+  printf "COMMAND list:\n"
+  build_help
+  clean_help
+  printf "   dev [DEV_COMMAND] Run a developer command.\n"
+  end_help
+  printf "   help              View all help.\n"
+  restart_help
+  start_help
+  update_help
+  wipe_help
+  printf "\nDEV_COMMAND list:\n"
+  documentation_help
+  flush_help
+  logs_help
+  makemigrations_help
+  makeresources_help
+  migrate_help
+  shell_help
+  static_help
+  static_prod_help
+  style_help
+  test_suite_help
+  test_suite_backwards_help
+  test_coverage_help
+  test_specific_help
+  updatedata_help
+}
+
+# Start development environment
+function start {
+  printf "Creating systems...\n"
+  docker-compose up -d
+  printf "\n"
+  # Run helper functions
+  update
+  # Alert user that system is ready
+  printf "\n${GREEN}Systems are ready!${NC}\n"
+  printf "Open your preferred web browser to the URL 'localhost'\n"
+}
+function start_help {
+  printf "   start             Start development environment (this also runs\n"
+  printf "                     the update command).\n"
+}
+
+# Stop development environment
+function end {
+  printf "Stopping systems... (takes roughly 10 to 20 seconds)\n"
+  docker-compose down
+  printf "\nDeleting system volumes...\n"
+  docker volume ls -qf dangling=true | xargs -r docker volume rm
+}
+function end_help {
+  printf "   end               Stop development environment.\n"
+}
+
+# Stop and then restart development environment
+function restart_help {
+  printf "   restart           Stop and then restart development environment.\n"
+}
+
+# Run Django migrate and updatedata commands
+function update {
+  static
+
+  printf "\n"
+  migrate
+
+  printf "\n"
+  updatedata
+
+  static_scratch
+  collect_static
+}
+function update_help {
+  printf "   update            Run Django migrate and updatedata commands\n"
+  printf "                     and build static files.\n"
+}
+
+# Run Django flush command
+function flush {
+  docker-compose exec django /docker_venv/bin/python3 ./manage.py flush
+}
+function flush_help {
+  printf "   flush             Run Django flush command.\n"
+}
+
+# Run Django makemigrations command
+function makemigrations {
+  printf "Creating database migrations...\n"
+  docker-compose exec django /docker_venv/bin/python3 ./manage.py makemigrations
+}
+function makemigrations_help {
+  printf "   makemigrations    Run Django makemigrations command.\n"
+}
+
+# Run Django makeresources command
+function makeresources {
+  printf "Creating static resource PDFs...\n"
+  docker-compose exec django /docker_venv/bin/python3 ./manage.py makeresources
+}
+function makeresources_help {
+  printf "   makeresources     Run Django makeresources command.\n"
+}
+
+# Run Django migrate command
+function migrate {
+  printf "Applying database migrations...\n"
+  docker-compose exec django /docker_venv/bin/python3 ./manage.py migrate
+}
+function migrate_help {
+  printf "   migrate           Run Django migrate command.\n"
+}
+
+# Run Django updatedata command
+function updatedata {
+  printf "Loading chapters content...\n"
+  docker-compose exec django /docker_venv/bin/python3 ./manage.py updatedata
+}
+function updatedata_help {
+  printf "   updatedata        Run updatedata command.\n"
+}
+
+# Build Docker images
+function build {
+  printf "Building Docker images...\n"
+  docker-compose build
+  printf "\nDeleting untagged images...\n"
+  docker images --no-trunc | grep '<none>' | awk '{ print $3 }' | xargs -r docker rmi
+}
+function build_help {
+  printf "   build             Build or rebuild Docker images.\n"
+}
+
+# Build static files
+function static {
+  printf "Building static files...\n"
+  docker-compose exec nginx gulp build
+}
+function static_help {
+  printf "   static            Build static files.\n"
+}
+
+# Build production static files
+function static_prod {
+  printf "Building production static files...\n"
+  docker-compose exec nginx gulp build --production
+}
+function static_prod_help {
+  printf "   static_prod       Build production static files.\n"
+}
+
+# Build scratch static files
+function static_scratch {
+  printf "Building scratch images...\n"
+  docker-compose exec nginx gulp scratch
+}
+
+# Collecting static files
+function collect_static {
+  printf "\nCollecting static files..."
+  docker-compose exec django /docker_venv/bin/python3 ./manage.py collectstatic --no-input --clear
+}
+
+# Run shell
+function shell {
+  docker-compose exec django bash
+}
+function shell_help {
+  printf "   shell             Open shell to Django folder.\n"
+}
+
+# Run style checks
+function style {
+  printf "Running PEP8 style checker...\n"
+  docker-compose exec django /docker_venv/bin/flake8
+  pep8_status=$?
+  printf "\nRunning Python docstring checker...\n"
+  docker-compose exec django /docker_venv/bin/pydocstyle --count --explain
+  pydocstyle_status=$?
+  ! (( $pep8_status || $pydocstyle_status ))
+}
+function style_help {
+  printf "   style             Run style checks.\n"
+}
+
+# Run test suite
+function test_suite {
+  printf "Running test suite...\n"
+  docker-compose exec django /docker_venv/bin/coverage run --rcfile=/cs-unplugged/.coveragerc ./manage.py test --settings=config.settings.testing --pattern "test_*.py" -v 3
+}
+function test_suite_help {
+  printf "   test              Run test suite with code coverage.\n"
+}
+
+# Run specific test suite
+function test_specific {
+  printf "Running specific test suite...\n"
+  docker-compose exec django /docker_venv/bin/python3 ./manage.py test --settings=config.settings.testing "${1}" -v 3
+}
+function test_specific_help {
+  printf "   test_specific     Run specific test suite. Pass in parameter\n"
+  printf "                     of Python test module.\n"
+}
+
+# Display test coverage table
+function test_coverage {
+  printf "Displaying test suite coverage...\n"
+  docker-compose exec django /docker_venv/bin/coverage xml -i
+  docker-compose exec django /docker_venv/bin/coverage report -m --skip-covered
+}
+function test_coverage_help {
+  printf "   test_coverage     Display code coverage report.\n"
+}
+
+# Run test suite backwards for CI testing
+function test_suite_backwards {
+  printf "Running test suite backwards...\n"
+  if [ "$TRAVIS_PULL_REQUEST" != "false" ]
+  then
+    docker-compose exec django /docker_venv/bin/python3 ./manage.py test --settings=config.settings.testing --pattern "test_*.py" --reverse -v 0
+  fi
+}
+function test_suite_backwards_help {
+  printf "   test_backwards    Run test suite backwards.\n"
+}
+
+# Generates the documentation (with warnings as errors)
+function documentation {
+  printf "Removing any existing documentation...\n"
+  docker-compose exec django rm -rf /cs-unplugged/docs/build/
+  docker-compose exec django mkdir /cs-unplugged/docs/build/
+  printf "\nCreating documentation...\n"
+  docker-compose exec django /docker_venv/bin/sphinx-build -W /cs-unplugged/docs/source/ /cs-unplugged/docs/build/
+}
+function documentation_help {
+  printf "   docs              Generate documentation.\n"
+}
+
+# Delete all untagged dangling Docker images
+function clean {
+  printf "If the following commands return an argument not found error,\n"
+  printf "this is because there is nothing to delete for clean up.\n"
+
+  printf "\nDeleting unused volumes...\n"
+  docker volume ls -qf dangling=true | xargs -r docker volume rm
+  printf "\nDeleting exited containers...\n"
+  docker ps --filter status=dead --filter status=exited -aq | xargs docker rm -v
+  printf "\nDeleting dangling images...\n"
+  docker rmi $(docker images -f "dangling=true" -q)
+}
+function clean_help {
+  printf "   clean             Delete unused Docker files.\n"
+}
+
+# Delete all Docker containers and images
+function wipe {
+  docker rm $(docker ps -a -q)
+  docker rmi $(docker images -q)
+}
+function wipe_help {
+  printf "   wipe              Delete all Docker containers and images.\n"
+}
+
+# View logs
+function logs {
+  docker-compose logs
+}
+function logs_help {
+  printf "   logs              View logs.\n"
+}
+
+function process_dev_command() {
+  if [ $# -lt 1 ]
+  then
+    printf "${RED}ERROR: dev command requires one parameter!${NC}\n"
+    helpmenu
+    exit 1
+  else
+    case "$1" in
+      docs)
+        documentation
+        exit
+        ;;
+      flush)
+        flush
+        exit
+        ;;
+      logs)
+        logs
+        exit
+        ;;
+      makeresources)
+        makeresources
+        exit
+        ;;
+      makemigrations)
+        makemigrations
+        exit
+        ;;
+      migrate)
+        migrate
+        exit
+        ;;
+      shell)
+        shell
+        exit
+        ;;
+      static)
+        static
+        static_scratch
+        collect_static
+        exit
+        ;;
+      static_prod)
+        static_prod
+        static_scratch
+        collect_static
+        exit
+        ;;
+      style)
+        style
+        exit
+        ;;
+      test)
+        test_suite
+        exit
+        ;;
+      test_backwards)
+        test_suite_backwards
+        exit
+        ;;
+      test_coverage)
+        test_coverage
+        exit
+        ;;
+      test_specific)
+        test_specific $2
+        exit
+        ;;
+      updatedata)
+        updatedata
+        exit
+        ;;
+    esac
+  fi
+}
+
+
+# If no command given
+if [ $# -eq 0 ]
+then
+  printf "${RED}ERROR: This script requires a command!${NC}\n"
+  helpmenu
+  exit 1
+fi
+case "$1" in
+  build)
+    build
+    exit
+    ;;
+  clean)
+    clean
+    exit
+    ;;
+  dev)
+    process_dev_command $2 $3
+    ;;
+  end)
+    end
+    exit
+    ;;
+  help)
+    helpmenu
+    exit
+    ;;
+  restart)
+    end
+    start
+    exit
+    ;;
+  start)
+    start
+    exit
+    ;;
+  update)
+    update
+    exit
+    ;;
+  wipe)
+    wipe
+    exit
+    ;;
+esac
+
+# If no command triggered
+printf "${RED}ERROR: Unknown command!${NC}\n"
+printf "Type './csu help' for available commands.\n"
+exit 1
