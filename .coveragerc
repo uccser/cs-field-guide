@@ -1,0 +1,17 @@
+[run]
+branch = True
+source =
+    chapters
+    config
+    general
+    static
+    templates
+    utils
+omit =
+    # Omit migration files
+    */migrations/*
+    # Omit database proxy file used with Google Cloud SQL Proxy
+    csunplugged/config/settings/database_proxy.py
+
+[report]
+fail_under=20
