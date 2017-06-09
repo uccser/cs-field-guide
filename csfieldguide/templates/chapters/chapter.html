@@ -6,6 +6,12 @@
   {{ chapter.name }}
 {% endblock title %}
 
-<h1>{{ chapter.name }}</h1>
+{% block page_heading %}
+<h1 id="chapters" class="section-heading anchor-link">{{ chapter.name }}</h1>
+{% endblock page_heading %}
 
-{% render_html_field chapter.content %}
+{% block content %}
+
+  {% render_html_field chapter.content %}
+
+{% endblock content %}
