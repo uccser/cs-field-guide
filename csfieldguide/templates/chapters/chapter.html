@@ -1,7 +1,11 @@
+{% extends "base.html" %}
+
+{% load render_html_field %}
+
 {% block title %}
   {{ chapter.name }}
 {% endblock title %}
 
 <h1>{{ chapter.name }}</h1>
 
-{{ chapter.content }}
+{% render_html_field chapter.content %}

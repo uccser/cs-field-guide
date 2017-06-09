@@ -143,6 +143,9 @@ TEMPLATES = [
                 "django.contrib.messages.context_processors.messages",
                 # Your stuff: custom template context processors go here
             ],
+            "libraries": {
+                "render_html_field": "general.templatetags.render_html_field",
+            },
         },
     },
 ]
