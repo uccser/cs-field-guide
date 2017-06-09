@@ -1,21 +1,28 @@
+sudo: required
+services:
+- docker
+env:
+- DOCKER_COMPOSE_VERSION=1.11.2
 language: python
-
 python:
-  - "3.4"
-  - "3.5"
-  - "3.5-dev" # 3.5 development branch
-
-before_install:
-  - pip install --upgrade pip setuptools
-
-# Install dependencies for both screen and print versions
+- '3.6'
 install:
-  - pip install -r requirements.txt
-  - pip install -r requirements-print.txt
-
-# Creates the CSFG with print and teacher versions
-script:
-  - python generateguide.py -t
+- sudo apt-get update
+- sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-engine
+- sudo rm /usr/local/bin/docker-compose
+- curl -L "https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" > docker-compose
+- chmod +x docker-compose
+- sudo mv docker-compose /usr/local/bin
+- sudo docker --version
+- sudo docker-compose --version
+before_script:
+- "./csfg start"
+# script:
+# - "./csfg dev test"
+# - "./csfg dev test_backwards"
+# - "./csfg dev test_coverage"
+# - "./csfg dev style"
+# - "./csfg dev docs"
 
 # Stop email notifications but post to Slack channel
 notifications:
@@ -24,3 +31,5 @@ notifications:
     rooms: deptfunstuff:abJKvzApk5SKtcEyAgtswXAv
     on_success: change
     on_failure: change
+
+
