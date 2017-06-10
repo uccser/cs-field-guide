@@ -9,7 +9,7 @@ Reporting Issues and Making Suggestions
 ==============================================================================
 
 This section guides you through submitting an issue or making a suggestion
-for the CS Unplugged project.
+for the CS Field Guide project.
 Following these guidelines helps maintainers and the community understand
 your findings.
 
@@ -65,7 +65,7 @@ understand the changes:
   suggestion.
 - **Clearly and concisely describe the suggestion** and provide screenshots if
   required.
-- **Explain why this suggestion would be useful** to most CS Unplugged users
+- **Explain why this suggestion would be useful** to most CS Field Guide users
   and isn't something that should be a implemented as a community variant of
   the project.
 - **Link any related existing suggestions**.
@@ -84,7 +84,7 @@ understand the changes:
 Your First Code Contribution (pull request)
 ==============================================================================
 
-Unsure where to begin contributing to CS Unplugged?
+Unsure where to begin contributing to CS Field Guide?
 You can start by looking through the `issue tracker`_.
 
 Pull Requests
@@ -106,7 +106,7 @@ Pull Requests
 - Link to any relevant existing issues/suggestions.
 - Add necessary documentation (if appropriate).
 
-We aim to keep the CS Unplugged project as robust as possible, so please do
+We aim to keep the CS Field Guide project as robust as possible, so please do
 your best to ensure your changes won't break anything!
 
 Style and Etiquette Guides

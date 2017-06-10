@@ -1,7 +1,7 @@
 Developer Documentation
 ##############################################################################
 
-The following pages are for those wanting to develop the CS Unplugged system.
+The following pages are for those wanting to develop the CS Field Guide system.
 
 .. toctree::
     :maxdepth: 1

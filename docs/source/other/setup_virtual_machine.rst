@@ -2,14 +2,14 @@ Setting up a Virtual Machine
 =================================================
 
 The following steps are just one way to set up an Linux virtual machine
-for CS Unplugged development, and are intended for those new to setting up
+for CS Field Guide development, and are intended for those new to setting up
 virtual machines.
 
 1. Download and install `Oracle VirtualBox`_.
 2. Download installation of preferred Linux operating system.
    A common choice is `Ubuntu 16.04.2 LTS`_.
 3. Open VirtualBox and click ``New``.
-4. Enter a name for your virtual machine, for example "CS Unplugged".
+4. Enter a name for your virtual machine, for example "CS Field Guide".
    Also select the type and version of your operating system.
    If you downloaded the Ubuntu linked above, the type is "Linux",
    and version is "Ubuntu (64-bit)". Click "Next/Continue".
@@ -25,7 +25,7 @@ virtual machines.
 10. Select the maximum size that the hard drive can grow to (be aware of
     how much space you have available on your machine).
     We recommend 20 GB, as this is enough space to store the Ubuntu operating
-    system and the CS Unplugged project.
+    system and the CS Field Guide project.
     Click "Create".
 11. Select your virtual machine by clicking on it, and click "Settings" above.
     Within these settings you can also setup a shared clipboard between the
@@ -43,7 +43,7 @@ virtual machines.
     The operating system installation screen should appear upon starting.
 14. Install the operating system using the default settings.
 15. Once the operating system has completed installation, you are ready to use
-    it for developing the CS Unplugged project.
+    it for developing the CS Field Guide project.
     You're now ready for :ref:`step-2-install-git` in the
     installation guide.
 

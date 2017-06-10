@@ -1,7 +1,7 @@
 Author Documentation
 ##############################################################################
 
-The following pages are for those wanting to write or edit CS Unplugged content.
+The following pages are for those wanting to write or edit CS Field Guide content.
 
 .. toctree::
     :maxdepth: 1

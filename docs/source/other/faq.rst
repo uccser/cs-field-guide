@@ -1,7 +1,7 @@
 Frequently Asked Questions
 ##############################################################################
 
-The topics application is the main focus of the CS Unplugged website, as it
+The topics application is the main focus of the CS Field Guide website, as it
 contains the majority of educational material for the project.
 
 .. contents:: Contents
@@ -50,9 +50,9 @@ What is an Application?
 
 Django contains 'applications' which are Python packages that provide
 some set of features.
-Each large part/chunk of the CS Unplugged is a separate application.
+Each large part/chunk of the CS Field Guide is a separate application.
 Read :ref:`this section in our project structure guide <django-applications>`
-for details of the applications used in the CS Unplugged system.
+for details of the applications used in the CS Field Guide system.
 
 .. _what-is-a-virtual-environment:
 
