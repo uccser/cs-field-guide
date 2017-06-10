@@ -17,10 +17,10 @@ install:
 - sudo docker-compose --version
 before_script:
 - "./csfg start"
-# script:
-# - "./csfg dev test"
-# - "./csfg dev test_backwards"
-# - "./csfg dev test_coverage"
+script:
+- "./csfg dev test"
+- "./csfg dev test_backwards"
+- "./csfg dev test_coverage"
 # - "./csfg dev style"
 # - "./csfg dev docs"
 
