@@ -211,7 +211,7 @@ function style_help {
 # Run test suite
 function test_suite {
   printf "Running test suite...\n"
-  docker-compose exec django /docker_venv/bin/coverage run --rcfile=/cs-unplugged/.coveragerc ./manage.py test --settings=config.settings.testing --pattern "test_*.py" -v 3
+  docker-compose exec django /docker_venv/bin/coverage run --rcfile=/cs-field-guide/.coveragerc ./manage.py test --settings=config.settings.testing --pattern "test_*.py" -v 3
 }
 function test_suite_help {
   printf "   test              Run test suite with code coverage.\n"
@@ -252,10 +252,10 @@ function test_suite_backwards_help {
 # Generates the documentation (with warnings as errors)
 function documentation {
   printf "Removing any existing documentation...\n"
-  docker-compose exec django rm -rf /cs-unplugged/docs/build/
-  docker-compose exec django mkdir /cs-unplugged/docs/build/
+  docker-compose exec django rm -rf /cs-field-guide/docs/build/
+  docker-compose exec django mkdir /cs-field-guide/docs/build/
   printf "\nCreating documentation...\n"
-  docker-compose exec django /docker_venv/bin/sphinx-build -W /cs-unplugged/docs/source/ /cs-unplugged/docs/build/
+  docker-compose exec django /docker_venv/bin/sphinx-build -W /cs-field-guide/docs/source/ /cs-field-guide/docs/build/
 }
 function documentation_help {
   printf "   docs              Generate documentation.\n"
