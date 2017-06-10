@@ -20,3 +20,4 @@ Welcome to the CS Field Guide!
     getting_started/index
     author/index
     developer/index
+    other/index
