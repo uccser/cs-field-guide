@@ -11,7 +11,13 @@ urlpatterns = [
     	views.IndexView.as_view(),
     	name="index"
     ),
-    # eg: /topics/algorithms/
+    # eg: /chapters/glossary/
+    url(
+        r"^glossary/$",
+        views.GlossaryList.as_view(),
+        name="glossary"
+    ),
+    # eg: /chapters/algorithms/
     url(
         r"^(?P<chapter_slug>[-\w]+)/$",
         views.ChapterView.as_view(),
