@@ -21,3 +21,5 @@ They are each different ways of describing how to do something, but at different
 Often you can get away with describing a process just using some sort of informal instructions using natural language; for example, an informal instruction in a non computing context might be
 "please get me a glass of water".
 A human can understand what this means and can figure out how to accomplish this task by thinking, but a computer would have no idea how to do this!
+
+Here is a glossary link being used in a sentence {glossary-link term="algorithm"}algorithms{glossary-link end}!
