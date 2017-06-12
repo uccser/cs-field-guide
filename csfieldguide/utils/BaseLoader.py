@@ -10,7 +10,7 @@ from os import listdir
 from verto import Verto
 
 # from .check_required_files import check_converter_required_files
-# from .check_glossary_links import check_converter_glossary_links
+from utils.check_glossary_links import check_converter_glossary_links
 from utils.errors.CouldNotFindMarkdownFileError import CouldNotFindMarkdownFileError
 from utils.errors.EmptyMarkdownFileError import EmptyMarkdownFileError
 from utils.errors.EmptyConfigFileError import EmptyConfigFileError
@@ -82,7 +82,7 @@ class BaseLoader():
         if len(result.html_string) == 0:
             raise EmptyMarkdownFileError(md_file_path)
         # check_converter_required_files(result.required_files, md_file_path)
-        # check_converter_glossary_links(result.required_glossary_terms, md_file_path)
+        check_converter_glossary_links(result.required_glossary_terms, md_file_path)
         return result
 
     def log(self, message, indent_amount=0):
