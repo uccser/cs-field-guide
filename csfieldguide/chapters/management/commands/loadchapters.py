@@ -33,6 +33,15 @@ class Command(BaseCommand):
 
         structure_file = base_loader.load_yaml_file(structure_file_path)
 
+        if "glossary-folder" in structure_file:
+            glossary_folder_path = structure_file["glossary-folder"]
+            if glossary_folder_path is not None:
+                factory.create_glossary_terms_loader(
+                    glossary_folder_path,
+                    structure_file_path,
+                    BASE_PATH
+                ).load()
+
         chapters = structure_file.get("chapters", None)
         if chapters is None:
             raise MissingRequiredFieldError(
