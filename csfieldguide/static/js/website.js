@@ -24,7 +24,8 @@ $(document).ready(function(){
   }
 
   // Activate modal buttons
-  $('.modal-trigger').leanModal();
+  // $('.modal-trigger').leanModal();
+  $('.modal').openModal();
 
   // Display an invitation to developers to contribute to this project
   console.log('%cAre you a developer?', 'font: bold 1.5em "Open Sans", sans-serif;')
@@ -43,10 +44,12 @@ function open_glossary_definition() {
   /**
    * Retrieve glossary definition.
    */
+  console.log("cats")
   var glossary_modal = $("#glossary-modal");
-  if (!glossary_modal.hasClass('show')) {
-    glossary_modal.modal('show');
-  }
+  glossary_modal.openModal();
+  // if (!glossary_modal.hasClass('show')) {
+  //   glossary_modal.modal('show');
+  // }
 
   var slug = $(this).data("glossary-term");
   if (glossary_modal.attr("data-glossary-term") != slug) {
