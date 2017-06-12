@@ -1,9 +1,17 @@
 Contributing Guide
 ##############################################################################
 
+Welcome to the Computer Science Field Guide (CSFG) developer community!
+We have spent many years creating the CSFG, and we would love for you to get involved into making this guide as great as possible!
+
 This page lists a set of guidelines for contributing to the project.
 These are just guidelines, not rules, use your best judgment and feel
 free to propose changes to this document in a pull request.
+
+As a contributor, you agree to uphold our :doc:`code_of_conduct`.
+
+.. contents:: Contents
+  :local:
 
 Reporting Issues and Making Suggestions
 ==============================================================================
