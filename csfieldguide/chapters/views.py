@@ -1,7 +1,10 @@
 """Views for the chapters application."""
 
+from django.shortcuts import get_object_or_404
 from django.views import generic
-from django.http import HttpResponse
+from django.http import JsonResponse, Http404
+
+from general.templatetags.render_html_field import render_html_with_static
 
 from .models import Chapter, GlossaryTerm
 
@@ -52,3 +55,29 @@ class ChapterView(generic.DetailView):
     #     # Call the base implementation first to get a context
     #     context = super(ChapterView, self).get_context_data(**kwargs)
     #     return context
+
+
+def glossary_json(request, **kwargs):
+    """Provide JSON data for glossary term.
+
+    Args:
+        request: The HTTP request.
+
+    Returns:
+        JSON response is sent containing data for the requested term.
+    """
+    # If term parameter, then return JSON
+    if "term" in request.GET:
+        glossary_slug = request.GET.get("term")
+        glossary_item = get_object_or_404(
+            GlossaryTerm,
+            slug=glossary_slug
+        )
+        data = {
+            "slug": glossary_slug,
+            "term": glossary_item.term,
+            "definition": render_html_with_static(glossary_item.definition)
+        }
+        return JsonResponse(data)
+    else:
+        raise Http404("Term parameter not specified.")
