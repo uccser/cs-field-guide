@@ -37,17 +37,7 @@ go through each score keeping track of the largest so far.
 Informal instructions like this aren't precise; there's no way that a computer could follow those instructions exactly, but a human could probably get the general idea of what you mean if they know what you're trying to achieve.
 This sort of description is only useful for quickly giving another human the general idea of what you mean, and even then there's a risk that they won't properly understand it.
 
-{comment glossary-definition term="Algorithm" definition="A step by step process that describes how to solve a problem and/or complete a task, which will always give a result."}
-
-In contrast, an
-
-{comment glossary-link term="algorithm" reference-text="introduction"}
-
-algorithm
-
-{comment glossary-link end}
-
-is a step by step process that describes how to solve a problem and/or complete a task, which will always give the correct result.
+In contrast, an {glossary-link term="algorithm" reference-text="introduction"}algorithm{glossary-link end} is a step by step process that describes how to solve a problem and/or complete a task, which will always give the correct result.
 For our previous non-computing example, the algorithm might be
 1) Go to the kitchen.
 2) Pick up a glass.
@@ -77,15 +67,7 @@ The other important thing with this level of precision is that we can often make
 For the high score problem above, if the score table gets twice as big, the algorithm will take about twice as long.
 If the table could be very big (perhaps we're tracking millions of games and serving up the high score many times each second), that might already be enough to tell us that we need a better algorithm to track high scores regardless of which language it's going to be programmed in; or if the table only ever has 10 scores in it, then we know that the program is only going to do a few dozen operations, and is bound to be really fast even on a slow computer.
 
-The most precise way of giving a set of instructions is in the form of a 
-
-{comment glossary-link term="Algorithm" reference-text="computer program"}
-
-program
-
-{comment glossary-link end}
-
-, which is a specific implementation of an algorithm, written in a specific programming language, with a very specific result for any particular input.
+The most precise way of giving a set of instructions is in the form of a {glossary-link term="algorithm" reference-text="computer program"}program{glossary-link end}, which is a specific implementation of an algorithm, written in a specific programming language, with a very specific result for any particular input.
 This is the most precise of these three descriptions and computers are able to follow and understand these.
 
 For the example with getting a drink, we might program a robot to do that; it would be written in some programming language that the robot's computer can run, and would tell the robot exactly how to retrieve a glass of water and bring it back to the person who asked for the water.
@@ -113,9 +95,7 @@ Both of the above programs are the same algorithm.
 In this chapter we'll look in more detail about what an algorithm is, and why they are such a fundamental idea in computer science.
 Because algorithms exist even if they aren't turned in to programs, we won't need to look at programs at all for this topic, unless you particularly want to.
 
-{comment glossary-link term="Algorithm" reference-text="algorithm cost"}
-
-{comment glossary-link end}
+{glossary-link term="algorithm" reference-text="algorithm cost"}{glossary-link end}
 
 ### Algorithm cost
 
@@ -173,23 +153,14 @@ Often there are good reasons to know multiple correct algorithms because there a
 In this chapter we will look at two of the most common and important types of algorithms, Searching and Sorting. You probably come across these kinds of algorithms every time you use a computer without even realising!
 They also happen to be great for illustrating some of the key concepts that arise with algorithms.
 
-{comment glossary-link term="Algorithm" reference-text="searching algorithms"}
-
-{comment glossary-link end}
+{glossary-link term="algorithm" reference-text="searching algorithms"}{glossary-link end}
 
 ## Searching
 
 {panel type="teacher-note" title="Presenting searching in the classroom"}
 
-The present searching game in this section is split into two parts, the first corresponds to the Linear Search algorithm (also known as Sequential Search) and the second corresponds to 
+The present searching game in this section is split into two parts, the first corresponds to the Linear Search algorithm (also known as Sequential Search) and the second corresponds to {glossary-link term="binary-search"}Binary Search{glossary-link end}.
 
-{comment glossary-link term="Binary Search"}
-
-Binary Search
-
-{comment glossary-link end}
-
-.
 We recommend you play through the levels yourself for a while, or after reading this description.
 It is based on the [CS Unplugged Battleships game](http://csunplugged.com/searching-algorithms) which can be used as a classroom activity to enforce the lessons in this chapter (the hashing activity is not used for the present searching game).
 
@@ -248,10 +219,7 @@ This means you might end up checking the same present again and again and again 
 
 ### Binary search
 
-{comment glossary-definition term="Binary Search" definition="Searching a sorted list by looking at the middle item, and then searching the appropriate half recursively (used for phone books, dictionaries and computer algorithms)."}
-
-A much better algorithm to use is called Binary Search.
-In the second part of the present searching game the boxes were in order, which meant you were able to be more clever when you were searching for the pet, and you might have been using a Binary Search without realising!
+A much better algorithm to use is called Binary Search. In the second part of the present searching game the boxes were in order, which meant you were able to be more clever when you were searching for the pet, and you might have been using a Binary Search without realising!
 
 {panel type="teacher-note" title="Teaching binary search with a phone book"}
 
@@ -303,9 +271,7 @@ Your project is to measure the amount of time taken as the number of items (*n*)
 
 {panel end}
 
-{comment glossary-link term="Algorithm" reference-text="sorting algorithms"}
-
-{comment glossary-link end}
+{glossary-link term="algorithm" reference-text="sorting algorithms"}{glossary-link end}
 
 ## Sorting
 
@@ -430,22 +396,12 @@ People often perform this when they physically sort items.
 It can also be a very useful algorithm to use if you already have a sorted set of data and want to add a new piece of data into the set.
 For example if you owned a library and purchased a new book you wouldn't do a Selection Sort on the entire library just to place this new book, you would simply insert the new book in its correct place.
 
-{comment glossary-definition term="Quicksort" definition="A process for achieving an outcome, normally for a general problem such as searching, sorting, finding an optimal path through a map and so on."}
-
 ### Quicksort
 
 Insertion and Selection Sort may seem like logical ways to sort things into order, but they both take far too many comparisons when they are used for large amounts of data.
 Remember computers often have to search through HUGE amounts of data, so even if they use a good searching algorithm like Binary Search to look through their data, if they use a bad sorting algorithm to first sort that data into order then finding anything will take far too long!
 
-A much better sorting algorithm is
-
-{comment glossary-link term="quicksort"}
-
-Quicksort!
-
-{comment glossary-link end}
-
-(the name is a bit of a giveaway)
+A much better sorting algorithm is {glossary-link term="quicksort"}Quicksort{glossary-link end}! (the name is a bit of a giveaway)
 
 {comment interactive name="sorting-algorithms" type="whole-page" text="Quicksort interactive" parameters="method=quick" thumbnail="thumbnail-quick.png"}
 
