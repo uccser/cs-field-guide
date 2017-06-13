@@ -21,8 +21,8 @@ script:
 - "./csfg dev test"
 - "./csfg dev test_backwards"
 - "./csfg dev test_coverage"
-# - "./csfg dev style"
-# - "./csfg dev docs"
+- "./csfg dev style"
+- "./csfg dev docs"
 after_script:
 - bash <(curl -s https://codecov.io/bash)
 # Stop email notifications but post to Slack channel
