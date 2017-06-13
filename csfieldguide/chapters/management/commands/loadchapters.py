@@ -13,7 +13,7 @@ class Command(BaseCommand):
     """Required command class for the custom Django loadchapters command.
 
     Raises:
-    	MissingRequiredFieldError: when no object can be found with the matching
+        MissingRequiredFieldError: when no object can be found with the matching
                 attribute.
     """
 
@@ -50,8 +50,8 @@ class Command(BaseCommand):
                 "Application Structure"
             )
         for chapter in chapters:
-	        factory.create_chapter_loader(
-	        	structure_file_path,
-	            chapter,
-	            BASE_PATH
-	        ).load()
+            factory.create_chapter_loader(
+                structure_file_path,
+                chapter,
+                BASE_PATH
+            ).load()

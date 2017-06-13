@@ -7,9 +7,10 @@ from . import views
 app_name = "chapters"
 urlpatterns = [
     # eg: /chapters/
-    url(r"^$",
-    	views.IndexView.as_view(),
-    	name="index"
+    url(
+        r"^$",
+        views.IndexView.as_view(),
+        name="index"
     ),
     # eg: /chapters/glossary/
     url(

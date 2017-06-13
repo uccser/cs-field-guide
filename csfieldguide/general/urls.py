@@ -8,4 +8,3 @@ urlpatterns = [
     url(r"^$", views.GeneralIndexView.as_view(), name="home"),
     url(r"^about$", views.GeneralAboutView.as_view(), name="about"),
 ]
-

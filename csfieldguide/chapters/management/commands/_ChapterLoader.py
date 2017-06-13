@@ -6,7 +6,6 @@ from django.db import transaction
 from utils.BaseLoader import BaseLoader
 # from utils.check_required_files import find_image_files
 
-from utils.errors.MissingRequiredFieldError import MissingRequiredFieldError
 
 from chapters.models import Chapter
 
@@ -35,9 +34,6 @@ class ChapterLoader(BaseLoader):
             MissingRequiredFieldError: when no object can be found with the matching
                 attribute.
         """
-        topic_structure = self.load_yaml_file(self.structure_file_path)
-
-
         # Convert the content to HTML
         chapter_content = self.convert_md_file(
             os.path.join(

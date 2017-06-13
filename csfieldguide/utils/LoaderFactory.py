@@ -3,6 +3,7 @@
 from chapters.management.commands._ChapterLoader import ChapterLoader
 from chapters.management.commands._GlossaryTermsLoader import GlossaryTermsLoader
 
+
 class LoaderFactory:
     """Factory for creating loader objects."""
 

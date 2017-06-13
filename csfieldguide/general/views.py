@@ -1,7 +1,6 @@
 """Views for the general application."""
 
 from django.views.generic import TemplateView
-from django.http import HttpResponse
 
 
 class GeneralIndexView(TemplateView):
