@@ -6,7 +6,7 @@ from django.http import JsonResponse, Http404
 
 from general.templatetags.render_html_field import render_html_with_static
 
-from .models import Chapter, GlossaryTerm
+from .models import Chapter, GlossaryTerm, Interactive
 
 
 class IndexView(generic.ListView):
@@ -50,9 +50,16 @@ class ChapterView(generic.DetailView):
 class InteractiveView(generic.DetailView):
     """View for a specific topic."""
 
-    model = Chapter
-    template_name = "chapters/interactives/whole-page-interactive-base.html"
+    model = Interactive
     slug_url_kwarg = "interactive_slug"
+    template_name = "chapters/interactives/whole-page-interactive-base.html"
+    # context_object_name = "interactive"
+
+    # def get_context_data(self, **kwargs):
+    #     context["interactive_template"] = "chapters/interactives/{}.html".format(
+    #         self.object.slug
+    #     )
+
 
 def glossary_json(request, **kwargs):
     """Provide JSON data for glossary term.
