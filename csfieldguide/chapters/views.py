@@ -46,16 +46,13 @@ class ChapterView(generic.DetailView):
     template_name = "chapters/chapter.html"
     slug_url_kwarg = "chapter_slug"
 
-    # def get_context_data(self, **kwargs):
-    #     """Provide the context data for the chapter view.
 
-    #     Returns:
-    #         Dictionary of context data.
-    #     """
-    #     # Call the base implementation first to get a context
-    #     context = super(ChapterView, self).get_context_data(**kwargs)
-    #     return context
+class InteractiveView(generic.DetailView):
+    """View for a specific topic."""
 
+    model = Chapter
+    template_name = "chapters/interactives/whole-page-interactive-base.html"
+    slug_url_kwarg = "interactive_slug"
 
 def glossary_json(request, **kwargs):
     """Provide JSON data for glossary term.
