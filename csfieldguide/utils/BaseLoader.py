@@ -37,7 +37,7 @@ class BaseLoader():
         The converter is created with custom processors, html templates,
         and extensions.
         """
-        # templates = self.load_template_files()
+        templates = self.load_template_files()
         extensions = [
             "markdown.extensions.fenced_code",
             "markdown.extensions.codehilite",
@@ -45,7 +45,7 @@ class BaseLoader():
             "markdown.extensions.tables",
             mdx_math.MathExtension(enable_dollar_delimiter=True)
         ]
-        self.converter = Verto(extensions=extensions)
+        self.converter = Verto(html_templates=templates, extensions=extensions)
         custom_processors = self.converter.processor_defaults()
         custom_processors.add("remove-title")
         self.converter.update_processors(custom_processors)

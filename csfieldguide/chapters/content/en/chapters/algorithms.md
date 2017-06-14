@@ -10,7 +10,7 @@ Every computer device you have ever used, from your school computers to your cal
 Algorithms are a very important topic in Computer Science because they help software developers create efficient and error free programs.
 The most important thing to remember about algorithms is that there can be many different algorithms for the same problem, but some are much better than others!
 
-{comment interactive name="sorting-algorithm-comparison" type="in-page"}
+{interactive name="sorting-algorithm-comparison" type="in-page"}
 
 Computers are incredibly fast at manipulating, moving and looking through data.
 However the amount of data computers use is often so large that it doesn't matter how fast the computer is, it will take it far too long to examine every single piece of data (companies like Google, Facebook and Twitter routinely process billions of things per day, and in some cases, per minute!)
