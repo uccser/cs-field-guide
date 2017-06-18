@@ -30,7 +30,7 @@ Often you can get away with describing a process just using some sort of informa
 "please get me a glass of water".
 A human can understand what this means and can figure out how to accomplish this task by thinking, but a computer would have no idea how to do this!
 
-{comment interactive name="high-score-boxes" type="whole-page" text="High Score Boxes"}
+{interactive name="high-score-boxes" type="whole-page" text="High Score Boxes"}
 
 An example in a computational context might be if you wanted to find a high score in a table of scores:
 go through each score keeping track of the largest so far.
@@ -303,7 +303,7 @@ Once you think they are in order click 'Test order'.
 
 If the interactive does not run properly on your computer you can use a set of physical balance scales instead; just make sure you can only tell if one box is heavier than the other, not their exact weight (so not digital scales that show the exact weight).
 
-{interactive name="sorting-algorithms" type="whole-page" text="Scales interactive"}
+{comment interactive name="sorting-algorithms" type="whole-page" text="Scales interactive"}
 
 {comment link back to the unplugged activity}
 

@@ -53,6 +53,8 @@ class ChapterLoader(BaseLoader):
         )
         chapter.save()
 
+        #call interactive loader
+
         self.log("Added Chapter: {}".format(chapter.name))
 
         self.log("")
