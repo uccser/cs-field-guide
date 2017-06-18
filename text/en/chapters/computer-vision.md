@@ -167,38 +167,6 @@ Further reading can be found at [Cambridge in Colour](http://www.cambridgeincolo
 ### Noise
 {comment interactive: custom blur filter}
 
-### Edge Detection
-{comment interactive: custom Sobel-lite operator}
-
-### Feature Extraction
-
-### Recognition
-{comment interactive: build custom gradient points tree-like decisions}
-
-
-## Facial Detection
-
-### Application Issues
-{comment project?}
-
-### Haar Face Cascades
-{comment interactive}
-{comment Isabelle}
-
-### Face Map
-{comment interactive: build Face Map from input images}
-
-### Extension: Eigenfaces
-
-
-## Extension: Fourier Transform
-
-### Hybrid Images
-{comment interactive: input multiple images and combine factor}
-
-
-## Noise
-
 One challenge when using digital cameras is something called *noise*. That’s when individual pixels in the image appear brighter or darker than they should be, due to interference in the electronic circuits inside the camera. It’s more of a problem when light levels are dark, and the camera tries to boost the exposure of the image so that you can see more. You can see this if you take a digital photo in low light, and the camera uses a high ASA/ISO setting to capture as much light as possible. Because the sensor has been made very sensitive to light, it is also more sensitive to random interference, and gives photos a "grainy" effect.
 
 Noise mainly appears as random changes to pixels. For example, the following image has "salt and pepper" noise.
@@ -250,7 +218,7 @@ A *Gaussian* blur is another common technique, which assumes that the closest pi
 
 {comment end}
 
-### Activity: noise reduction filters
+#### Activity: noise reduction filters
 
 {comment}
 
@@ -282,7 +250,77 @@ For this activity, investigate the different kinds of noise reduction filter and
 
 You can take screenshots of the image to show the effects in your writeup. You can discuss the tradeoffs that need to be made to reduce noise.
 
-## Face recognition
+### Edge Detection
+{comment interactive: custom Sobel-lite operator}
+
+A useful technique in computer vision is *edge detection*, where the boundaries between objects are automatically identified.
+Having these boundaries makes it easy to *segment* the image (break it up into separate objects or areas), which can then be recognised separately.
+
+For example, here's a photo where you might want to recognise individual objects:
+
+{image filename="fruit-bowl-photo.jpg" alt="Image of a fruit bowl"}
+
+And here's a version that has been processed by an edge detection algorithm:
+
+{image filename="fruit-bowl-photo-with-canny-edge-detection.png" alt="The image above with canny edge detection applied"}
+
+Notice that the grain on the table above has affected the quality; some pre-processing to filter that would have helped!
+
+You can experiment with edge-detection yourself with the [Canny edge detector on this website](https://inspirit.github.io/jsfeat/sample_canny_edge.html) (see the information about [Canny edge detection on Wikipedia](https://en.wikipedia.org/wiki/Canny_edge_detector)).
+This is a widely used algorithm in computer vision, developed in 1986 by John F. Canny.
+
+#### Activity: Edge detection evaluation
+
+{panel type="teacher-note" summary="NCEA"}
+
+The following activity can be used as part of a project for the 3.44 standard. This project covers material for an example for the 3.44 standard through the following components:
+
+- Key problem: edge detection in digital images
+- Practical application: segmenting an image into component objects
+- Algorithm/technique: Canny Edge detector
+- Evaluation: ability to find all real edges (and not get false edges), and speed of the detector with various settings and types of images
+- Personalised student examples: applying the processing to the student's own images
+
+{panel end}
+
+With the canny edge detection website above, try putting different images in front of the camera and determine how good the algorithm is at detecting boundaries in the image.
+Capture images to put in your report as examples to illustrate your experiments with the detector.
+
+- Can the Canny detector find all edges in the image? If there are some missing, why might this be?
+- Are there any false edge detections? Why did they system think that they were edges?
+- Does the lighting on the scene affect the quality of edge detection?
+- Does the system find the boundary between two colours? How similar can the colours be and still have the edge detected?
+- How fast can the system process the input? Does the nature of the image affect this?
+- How well does the system deal with a page with text on it?
+
+{comment}
+
+.. spare material moved to https://docs.google.com/document/d/1qYEMq4LcTvotXrfkhS5rvOu0gQCHezGSSaX3vIi9mVo/
+
+{comment end}
+
+### Feature Extraction
+
+### Recognition
+{comment interactive: build custom gradient points tree-like decisions}
+
+
+## Facial Detection
+
+### Application Issues
+{comment project?}
+
+### Haar Face Cascades
+{comment interactive}
+{comment Isabelle}
+
+### Face Map
+{comment interactive: build Face Map from input images}
+
+### Extension: Eigenfaces
+
+
+### Recognition
 
 Recognising faces has become a widely used computer vision application.
 These days photo album systems like Picasa and Facebook can try to recognise who is in a photo using face recognition ---
@@ -335,53 +373,10 @@ You can evaluate the effectiveness of facial recognition in free software such a
 
 Try using [face recognition on this website](https://inspirit.github.com/jsfeat/sample_haar_face.html) to see how well the Haar face recognition system can track a face in the image. What prevents it from tracking a face? Is it affected if you cover one eye or wear a hat? How much can the image change before it isn't recognised as a face? Is it possible to get it to incorrectly recognise something that isn't a face?
 
-## Edge detection
+## Extension: Fourier Transform
 
-A useful technique in computer vision is *edge detection*, where the boundaries between objects are automatically identified.
-Having these boundaries makes it easy to *segment* the image (break it up into separate objects or areas), which can then be recognised separately.
-
-For example, here's a photo where you might want to recognise individual objects:
-
-{image filename="fruit-bowl-photo.jpg" alt="Image of a fruit bowl"}
-
-And here's a version that has been processed by an edge detection algorithm:
-
-{image filename="fruit-bowl-photo-with-canny-edge-detection.png" alt="The image above with canny edge detection applied"}
-
-Notice that the grain on the table above has affected the quality; some pre-processing to filter that would have helped!
-
-You can experiment with edge-detection yourself with the [Canny edge detector on this website](https://inspirit.github.io/jsfeat/sample_canny_edge.html) (see the information about [Canny edge detection on Wikipedia](https://en.wikipedia.org/wiki/Canny_edge_detector)).
-This is a widely used algorithm in computer vision, developed in 1986 by John F. Canny.
-
-### Activity: Edge detection evaluation
-
-{panel type="teacher-note" summary="NCEA"}
-
-The following activity can be used as part of a project for the 3.44 standard. This project covers material for an example for the 3.44 standard through the following components:
-
-- Key problem: edge detection in digital images
-- Practical application: segmenting an image into component objects
-- Algorithm/technique: Canny Edge detector
-- Evaluation: ability to find all real edges (and not get false edges), and speed of the detector with various settings and types of images
-- Personalised student examples: applying the processing to the student's own images
-
-{panel end}
-
-With the canny edge detection website above, try putting different images in front of the camera and determine how good the algorithm is at detecting boundaries in the image.
-Capture images to put in your report as examples to illustrate your experiments with the detector.
-
-- Can the Canny detector find all edges in the image? If there are some missing, why might this be?
-- Are there any false edge detections? Why did they system think that they were edges?
-- Does the lighting on the scene affect the quality of edge detection?
-- Does the system find the boundary between two colours? How similar can the colours be and still have the edge detected?
-- How fast can the system process the input? Does the nature of the image affect this?
-- How well does the system deal with a page with text on it?
-
-{comment}
-
-.. spare material moved to https://docs.google.com/document/d/1qYEMq4LcTvotXrfkhS5rvOu0gQCHezGSSaX3vIi9mVo/
-
-{comment end}
+### Hybrid Images
+{comment interactive: input multiple images and combine factor}
 
 ## The whole story!
 
