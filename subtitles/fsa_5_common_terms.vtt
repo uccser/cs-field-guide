@@ -1,0 +1,83 @@
+WEBVTT
+
+NOTE
+Computer Science Education Research,
+University of Canterbury, New Zealand
+Subtitle file for the video "Finite State Automata - 5 - Another Example and Common Terms"
+Author: Alasdair Smith
+Language: English
+Date: 10/04/2017
+
+00:00.200 --> 00:05.800
+Let’s look at another sentence: “URL.com”
+
+00:05.800 --> 00:13.000
+Starting again from the start state we take
+the uppercase letter ‘U’ transition to State 3,
+
+00:13.000 --> 00:16.800
+then an uppercase ‘R’ transition to State 3,
+
+00:16.800 --> 00:21.000
+another uppercase ‘L’ transition to State 3,
+
+00:21.000 --> 00:24.000
+a full stop transition to State 4,
+
+00:24.000 --> 00:28.200
+a lowercase ‘c’ transition back to State 3,
+
+00:28.200 --> 00:32.000
+another lowercase ‘o’ transition to State 3,
+
+00:32.000 --> 00:37.600
+and lastly the lowercase ‘m’ transition to State 3.
+
+00:37.600 --> 00:44.400
+This time we are not at an accepting state,
+so even though we passed through the accepting state,
+
+00:44.400 --> 00:50.200
+the automaton does not accept
+“URL.com” as a valid sentence.
+
+00:50.200 --> 00:53.400
+However, with the addition of one more full stop,
+
+00:53.400 --> 00:58.200
+we can make this into a sentence
+accepted by the automaton.
+
+01:00.900 --> 01:07.800
+In a more general sense, there are three
+extra words we often use in Finite State Automata.
+
+01:07.800 --> 01:11.800
+The first is called the <i>alphabet</i> of our automaton.
+
+01:11.800 --> 01:16.800
+This is just a list of
+all possible inputs that result in a transition.
+
+01:16.800 --> 01:22.200
+In our example, our alphabet is ‘U’, ‘S’, and ‘L’.
+
+01:22.200 --> 01:27.400
+The sentences we use to test
+this automaton are known as <i>strings</i>,
+
+01:27.400 --> 01:37.400
+which are sequences of inputs from our alphabet.
+“Moo.” and “URL.com” are examples of this.
+
+01:37.400 --> 01:45.800
+Lastly, we have a <i>language</i>. This is all the
+possible strings that are accepted by our automaton.
+
+01:45.800 --> 01:53.000
+“Moo.” is one of the many strings in this language,
+but although “URL.com” is a string,
+
+01:53.000 --> 01:59.800
+it is not in our language,
+because it was not accepted by our automaton.

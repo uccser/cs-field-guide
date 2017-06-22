@@ -1,0 +1,60 @@
+WEBVTT
+
+NOTE
+Computer Science Education Research,
+University of Canterbury, New Zealand
+Subtitle file for the video "Regular Expressions - 2 - Basic Symbols"
+Author: Alasdair Smith
+Language: English
+Date: 20/06/17
+
+00:00.000 --> 00:05.800
+Let’s take a look at how we use
+the four basic symbols in a Regular Expression,
+
+00:05.800 --> 00:08.500
+starting with the parentheses.
+
+00:08.500 --> 00:17.400
+In arithmetic, if we have the equation 1 + 2 x 3,
+we follow the order of arithmetic expressions
+
+00:17.400 --> 00:24.200
+and solve the multiplication first.
+So we get 1 + 6 which equals 7,
+
+00:24.200 --> 00:32.600
+but if we add parentheses around 1 + 2,
+it holds the highest precedence and so we get 3 x 3,
+
+00:32.600 --> 00:41.400
+which equals 9. In regex, parentheses work
+in the same way, specifying the highest precedence.
+
+00:41.400 --> 00:49.000
+Next we have the Kleene star, named after the man
+who helped found the concept of Regular Expressions.
+
+00:49.000 --> 00:54.000
+This matches the preceding symbol
+repeated zero or more times.
+
+00:54.000 --> 01:04.600
+For example, BA* will match
+B and BA and BAA and BAAA and so on.
+
+01:04.600 --> 01:10.200
+Lastly we have the alternation symbol.
+This can be read as a choice,
+
+01:10.200 --> 01:19.800
+so the expression A(A|B)
+matches both AA and AB.
+
+01:19.800 --> 01:29.600
+We usually refer to this as ‘bar’ and read it as ‘or.’
+<01:25.400>Bar has the lowest precedence of the basic regex symbols,
+
+01:29.600 --> 01:42.200
+so A|B* is the same as saying A|(B*),
+which means you can either match an A, or any number of Bs.
