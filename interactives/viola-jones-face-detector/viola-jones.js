@@ -1,4 +1,4 @@
-// listen for HTML5 native drag and drop API dragstart event
+// listen for HTML5 native drag and drop API dragstart event and ignore them.
 document.addEventListener('dragstart', function(event) {
     // use interact.js' matchesSelector polyfil to
     // check for match with your draggable target
@@ -15,6 +15,9 @@ var haarFound = 0;
 MAX_WIDTH = 700;
 
 
+/*
+ * Set up functionality.
+ */
 window.onload = function() {
     img = document.getElementById('img');
     canvas = document.getElementById('canvas');
@@ -30,7 +33,7 @@ window.onload = function() {
     canvas.height = img.height;
     canvas.width = img.width;
     canvas.height = img.height;
-    draw_grayscale_image(img);
+    drawGrayscaleImage(img);
 
     var myData = context.getImageData(0, 0, canvas.width, canvas.height);
     tracking.Image.computeIntegralImage(myData.data, myData.width, myData.height, result);
@@ -41,9 +44,11 @@ window.onload = function() {
     black.innerHTML = 0;
     var white = document.getElementById("whiteValue");
     white.innerHTML = 0;
-
 };
 
+/**
+ * When the Haar original feature is created, a clone is made and the clone becomes the new target.
+ */
 interact('.drag-element-source').draggable({
     'manualStart': true,
     'onmove': dragMoveListener,
@@ -92,6 +97,9 @@ interact('.drag-element-source').draggable({
     }
 });
 
+/**
+ * The target is moved when dragged.
+ */
 function dragMoveListener(event) {
     var target = event.target,
         // keep the dragged position in the data-x/data-y attributes
@@ -111,6 +119,10 @@ function dragMoveListener(event) {
 
 }
 
+/**
+ * This code allows the cloned Haar feature to be dragged around the image, snapping to the nearest 10 pixels.
+ * On every move or resize, the isHaarFeature method is called to check if it is a valid Haar feature.
+ */
 interact('.drag-clone')
     .draggable({
         onmove: window.dragMoveListener,
@@ -156,6 +168,10 @@ interact('.drag-clone')
 
     });
 
+/*
+ * Calculates the position of the current Haar-like feature. 
+ * Then finds the index of each point in the results array. 
+ */
 function isHaarFeature(target) {
     // A----AB-----B
     // |           |
@@ -179,7 +195,6 @@ function isHaarFeature(target) {
 
         //Formula is C - B - D + A
 
-        //TODO: fix issue in row zero
         //white square
         var indexA = indexCalculation(pointA);
         var indexB = indexCalculation(pointAB);
@@ -245,7 +260,7 @@ function isHaarFeature(target) {
         var pointF = { x: pointA.x, y: pointD.y - (pointD.y - pointA.y) / 3 }
         var pointG = { x: pointB.x, y: pointB.y + (pointC.y - pointB.y) / 3 }
         var pointH = { x: pointB.x, y: pointC.y - (pointC.y - pointB.y) / 3 }
-        // This is the whole feature.
+            // This is the whole feature.
         var whiteSquareIntensity = calculateIntegralImage(indexCalculation(pointA),
             indexCalculation(pointB), indexCalculation(pointC), indexCalculation(pointD));
 
@@ -268,14 +283,18 @@ function isHaarFeature(target) {
         var pointF = { x: pointB.x - (pointB.x - pointA.x) / 4, y: pointA.y + (pointD.y - pointA.y) / 4 }
         var pointG = { x: pointB.x - (pointB.x - pointA.x) / 4, y: pointD.y - (pointD.y - pointA.y) / 4 }
         var pointH = { x: pointA.x + (pointB.x - pointA.x) / 4, y: pointD.y - (pointD.y - pointA.y) / 4 }
-        // This is the whole feature.
+            // This is the whole feature.
+
         var whiteSquareIntensity = calculateIntegralImage(indexCalculation(pointA),
             indexCalculation(pointB), indexCalculation(pointC), indexCalculation(pointD));
+
+
         // black square
         var blackIndexA = indexCalculation(pointE);
         var blackIndexB = indexCalculation(pointF);
         var blackIndexC = indexCalculation(pointG);
         var blackIndexD = indexCalculation(pointH);
+
         var blackSquareIntensity = calculateIntegralImage(blackIndexA, blackIndexB, blackIndexC, blackIndexD) * 4;
 
     }
@@ -284,7 +303,7 @@ function isHaarFeature(target) {
 }
 
 /*
- * This calculates the index in the results array where the integral image of the point can be found.
+ * Calculates the index in the results array where the integral image of the point can be found.
  */
 function indexCalculation(point) {
     return Math.round(point.y) * canvas.width + Math.round(point.x);
@@ -330,17 +349,23 @@ function updateDisplay(whiteSquareIntensity, blackSquareIntensity, target) {
     }
 }
 
+/*
+ * Function called when the load image button is clicker, displays file chooser.
+ */
 function loadImageDialog(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
         reader.onload = function(e) {
-            load_resize_image(e.target.result);
+            loadResizeImage(e.target.result);
         }
         reader.readAsDataURL(input.files[0]);
     }
 }
 
-function load_resize_image(src) {
+/**
+ * Resizes the image that is chosen to be loaded and makes it grayscale.
+ */
+function loadResizeImage(src) {
     var invis_img = document.getElementById("img");
     invis_img.src = src;
     img = new Image();
@@ -358,16 +383,20 @@ function load_resize_image(src) {
         canvas.height = img.height;
         canvas.style.display = "inline-block";
 
-        draw_grayscale_image(img);
+        drawGrayscaleImage(img);
         var myData = context.getImageData(0, 0, canvas.width, canvas.height);
         tracking.Image.computeIntegralImage(myData.data, myData.width, myData.height, result);
+
     };
-    clear_features();
-    clear_rectangles();
+    clearFeatures();
+    clearRectangles();
 
 }
 
-function clear_features() {
+/*
+ * Removes all the Haar-like features that have been dragged onto the image. Resets the counter to 0.
+ */
+function clearFeatures() {
     var features = document.getElementsByClassName('drag-clone');
 
     while (features[0]) {
@@ -383,10 +412,13 @@ function clear_features() {
     white.innerHTML = 0;
     canvas.style.zIndex = "-100";
     canvas.style.opacity = "1";
-    draw_grayscale_image(img);
+    drawGrayscaleImage(img);
 }
 
-function draw_grayscale_image(img) {
+/*
+ * Redraws the image as a grayscale version.
+ */
+function drawGrayscaleImage(img) {
     context.drawImage(img, 0, 0, img.width, img.height);
     var imageData = context.getImageData(0, 0, canvas.width, canvas.height);
     var data = imageData.data;
@@ -405,18 +437,28 @@ function draw_grayscale_image(img) {
     context.putImageData(imageData, 0, 0);
 }
 
+/*
+ * Function is called when the find faces button is clicked.
+ * Runs the algorithm to find faces and draws a rectange around them.
+ */
 function findFaces() {
     var img = document.getElementById('img');
     var tracker = new tracking.ObjectTracker(['face']);
     tracker.setStepSize(2);
     trackerTask = tracking.track('#img', tracker, { camera: true });
+    var t0 = performance.now();
     tracker.on('track', function(event) {
         event.data.forEach(function(rect) {
             window.plot(rect.x, rect.y, rect.width, rect.height);
         });
+        var t1 = performance.now();
+        console.log(t1 - t0);
     });
 }
 
+/**
+ * Draws a rectangle around the face.
+ */
 window.plot = function(x, y, w, h) {
     var rect = document.createElement('div');
     document.getElementById('image').appendChild(rect);
@@ -427,7 +469,10 @@ window.plot = function(x, y, w, h) {
     rect.style.top = (img.offsetTop + y) + 'px';
 };
 
-function clear_rectangles() {
+/*
+ * Removes and rectangles drawn around faces in the image.
+ */
+function clearRectangles() {
     var rect = document.getElementsByClassName('rect');
 
     while (rect[0]) {
