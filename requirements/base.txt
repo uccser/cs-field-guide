@@ -11,7 +11,7 @@ django==1.11.2
 django-environ==0.4.3
 
 # Images
-Pillow==4.1.1
+Pillow==4.2.0
 
 # Markdown
 verto==0.6.1
