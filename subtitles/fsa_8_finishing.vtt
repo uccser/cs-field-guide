@@ -1,0 +1,82 @@
+WEBVTT
+
+NOTE
+Computer Science Education Research,
+University of Canterbury, New Zealand
+Subtitle file for the video "Finite State Automata - 8 - Finishing Up"
+Author: Alasdair Smith
+Language: English
+Date: 10/04/2017
+
+00:00.800 --> 00:08.800
+The last thing we need to do is show
+the ‘A’ transitions out of States 0, 1, and 2.
+
+00:08.800 --> 00:14.200
+Let’s take another step back from our automaton
+and think about it logically.
+
+00:14.200 --> 00:19.400
+We have any number of ‘B’s in a row,
+and then we get an ‘A’.
+
+00:19.400 --> 00:25.800
+That breaks our row of ‘B’s,
+and we go back to having zero ‘B’s in a row.
+
+00:25.800 --> 00:27.800
+Now back to our automaton.
+
+00:27.800 --> 00:33.200
+We have zero, one or two ‘B’s in a row,
+and then we get an ‘A’.
+
+00:33.200 --> 00:37.400
+We just decided that we go back
+to the beginning, so let’s do it.
+
+00:37.400 --> 00:46.000
+Our ‘A’ transitions are from
+0 to 0, 1 to 0, and 2 to 0.
+
+00:47.600 --> 00:50.600
+So, have we finished?
+Let’s check.
+
+00:50.600 --> 00:55.000
+State 0 has an ‘A’ transition and a ‘B’ transition.
+
+00:55.000 --> 00:58.600
+State 1 has an ‘A’ transition and a ‘B’ transition.
+
+00:58.600 --> 01:02.400
+State 2 has an ‘A’ transition and a ‘B’ transition.
+
+01:02.400 --> 01:06.800
+And State 3 has an ‘A’ transition and a ‘B’ transition.
+
+01:06.800 --> 01:14.000
+We have our start state: ‘0’,
+and we have our accepting states: ‘0’, ‘1’ and ‘2’.
+
+01:14.000 --> 01:18.600
+Awesome! All we have to do now is make sure it works.
+
+01:18.600 --> 01:25.000
+I’ll leave you to run through it with a few test cases.
+If you’re watching on YouTube then leave us a comment,
+
+01:25.000 --> 01:29.800
+let us know how you go or if you have
+any feedback on this series of videos.
+
+01:29.800 --> 01:35.200
+And for more information and examples,
+check out the Computer Science Field Guide.
+
+01:35.200 --> 01:41.200
+Follow the link in the description below
+and navigate to chapter 14: Formal Languages.
+
+01:41.200 --> 01:43.000
+Thanks for watching!
