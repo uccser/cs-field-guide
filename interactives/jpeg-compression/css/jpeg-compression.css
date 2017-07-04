@@ -1,74 +1,110 @@
 .stepper {
-  position: relative;
-  width: 100%;
-  height: 30px;
-  cursor: col-resize;
+    position: relative;
+    width: 100%;
+    height: 30px;
+    cursor: col-resize;
 }
 
 .stepper-progress {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background-color: rgba(255, 255, 255, 0.2);
-  -webkit-transform-origin: 0 0;
-  -ms-transform-origin: 0 0;
-  transform-origin: 0 0;
-  -webkit-transition: background-color 0.1s linear;
-  transition: background-color 0.1s linear;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: rgba(255, 255, 255, 0.2);
+    -webkit-transform-origin: 0 0;
+    -ms-transform-origin: 0 0;
+    transform-origin: 0 0;
+    -webkit-transition: background-color 0.1s linear;
+    transition: background-color 0.1s linear;
 }
 
 .stepper-number {
-  position: relative;
-  width: 100%;
-  height: 28px;
-  line-height: 28px;
-  padding: 0 6px;
-  color: black;
-  background: transparent;
-  border: 0;
-  outline: 0;
-  outline-offset: 0;
-  cursor: col-resize;
-  z-index: 2;
-  border: none;
+    position: relative;
+    width: 100%;
+    height: 28px !important;
+    line-height: 28px;
+    padding: 0 6px;
+    color: black;
+    background: transparent;
+    border: 0;
+    outline: 0;
+    outline-offset: 0;
+    cursor: col-resize;
+    z-index: 2;
+    border-bottom: 0px !important;
 }
 
 .stepper-number:focus {
-  border: none;
+    border: none !important;
+    box-shadow: none !important;
 }
 
 .stepper.is-changing .stepper-progress {
-  background-color: #1baee1;
+    background-color: #1baee1;
 }
 
 .stepper.is-scrubbing {
-  background: rgba(255, 255, 255, 0.8)
+    background: rgba(255, 255, 255, 0.8)
 }
 
 #little_drag_square {
-  border: 2px solid #fd008c;
-  height: 8px;
-  width: 8px;
-  position: absolute;
-  top: 0px;
-  left: 0px;
+    border: 2px solid #fd008c;
+    height: 8px;
+    width: 8px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
 }
 
 #big_image {
-  position: relative;
-  padding: 0px;
-  height: 320px;
-  width: 320px;
-  float: left;
+    position: relative;
+    padding: 0px;
+    height: 320px;
+    width: 320px;
+    float: left;
 }
 
-canvas{
-    image-rendering: optimizeSpeed;
-    image-rendering: -moz-crisp-edges;
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: optimize-contrast;
-    image-rendering: pixelated;
-    -ms-interpolation-mode: nearest-neighbor;
+.relative {
+    position: relative;
+}
+
+#labels_8_by_8 {
+    position: absolute;
+    left: 10px;
+    top: 0px;
+    max-width: 240px;
+    table-layout: fixed;
+    font-family: Arial, Verdana, sans-serif;
+    font-size: 0.7em;
+    color: #fff;
+}
+
+#before_8_by_8 {
+    position: absolute;
+    left: 10px;
+    top: 0px;
+    width: 240px;
+    height: 240px;
+}
+
+.label_row {
+    max-height: 20;
+    padding: 0px;
+}
+
+.label_data {
+    width: 30px;
+    height: 30px;
+    padding: 0px;
+    text-align: center;
+}
+
+#dct_table td {
+    padding: 2px;
+}
+
+.switch {
+    position: absolute;
+    top: 250px;
 }
