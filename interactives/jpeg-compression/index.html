@@ -1,50 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <!--Let browser know website is optimized for mobile-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- ### Enter your interactive title in the title block ### -->
     <title>JPEG Compression</title>
     <link rel="stylesheet" href="../base-files/css/normalize.css">
     <!--Import materialize.css-->
-    <link rel="stylesheet" href="../base-files/css/materialize.min.css" type="text/css" media="screen,projection"/>
+    <link rel="stylesheet" href="../base-files/css/materialize.min.css" type="text/css" media="screen,projection" />
+    <link rel="stylesheet" href="./css/jpeg-compression.css">
     <script src="../base-files/js/modernizr.js"></script>
     <!-- jQuery (necessary for Materialize) -->
     <script type="text/javascript" src="../base-files/js/jquery.js"></script>
+</head>
 
-  </head>
-  <body>
-      <div class="container">
-      <div class="row interactive center-align">
-        <div class="col s5" id="big_image">
-          <canvas id="before_image_canvas" width="320" height="320"></canvas>
-          <canvas  style="display:none" id="placeholder_canvas" width="8" height="8"></canvas>
-          <div class="draggable" id="little_drag_square"></div>
+<body>
+    <div class="container">
+        <div class="row interactive center-align">
         </div>
-        
-        <div class="col s3">
-          <canvas id="8_by_8_before" width="160" height="160"></canvas>
+        <div class="row interactive center-align">
+            <div class="col s4 relative" id="big_image">
+                <canvas id="before_image_canvas" width="320" height="320"></canvas>
+                <canvas style="display:none" id="placeholder_canvas" width="8" height="8"></canvas>
+                <div class="draggable" id="little_drag_square"></div>
+            </div>
+            <div class="col s4 relative">
+                <canvas id="before_8_by_8" width="240" height="240"></canvas>
+                <table id="labels_8_by_8" width="240" height="240"></table>
+                <div class="switch" id="toggleNumber">
+                    <label>Display numbers
+                        <input type="checkbox" checked><span class="lever"></span></label>
+                </div>
+            </div>
         </div>
+        <div class="row interactive center-align">
+            <div class="col s12">
+                <!-- ### Start of required HTML for inline interactives ### -->
+                <div id="jpeg-compression">
+                    <table id="dct_table">
+                    </table>
+                </div>
+                <script type="text/javascript" src="./js/dct.js"></script>
+                <!-- ### End of required HTML for inline interactives ### -->
+            </div>
         </div>
-      <div class="row interactive center-align">
-      <div class="col s12">
-	    <!-- ### Start of required HTML for inline interactives ### -->
-      <div id="jpeg-compression">
-        <p>ddfsdfs</p>
-        <table class="bordered" id="dct_table">
-        </table>
+        <!-- Materialize responsive CSS -->
+        <script type="text/javascript" src="../base-files/js/materialize.min.js"></script>
+        <script src="./js/jquery.stepper.js"></script>
+        <script src="./js/interact.min.js"></script>
+</body>
 
-          
-      </div>
-      <link rel="stylesheet" href="./css/jpeg-compression.css">
-      <script type="text/javascript" src="./js/dct.js"></script>
-      <!-- ### End of required HTML for inline interactives ### -->
-      </div>
-      </div>
-      <!-- Materialize responsive CSS -->
-      <script type="text/javascript" src="../base-files/js/materialize.min.js"></script>
-      <script src="./js/jquery.stepper.js"></script>
-      <script src="./js/interact.min.js"></script>
-  </body>
 </html>
