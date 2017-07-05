@@ -162,7 +162,21 @@ Further reading can be found at [Cambridge in Colour](http://www.cambridgeincolo
 
 ## Character Recognition
 
+A simple yet very practical application of computer vision is character recognition. Words are everywhere you use them in your essays, to understand menus, and learn where you are from street signs. Learning to read reveals a plethora of information about the world.
+
+An automated driving assistant that learns to read road and street signs can learn where it is, what speed to drive at, and special conditions such as how to navigate detours and follow instructions through road works.
+
+There are many ways to teach a computer to read text, in this section we will cover character recognition and the tools used to achieve it.
+
 ### Filters
+
+A filter is a technique that modifies an image, usually used to enhance an image by emphasizing or removing certain features. This is not some instagram or snapchat filter though.
+
+Linear filtering is performed using an operation called convolution. The convolution operation creates another image where the each element (or pixel) is a weighted combination of neighbouring pixels of the pixel in the original image. This matrix of weights is known as the called the convolution kernel, or filter.
+
+Using the following interactive experiment with experiement with your own convolution filters:
+
+{comment: convolution interactive}
 
 ### Noise
 {comment interactive: custom blur filter}
