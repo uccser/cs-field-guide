@@ -70,9 +70,9 @@ To communicate our ideas in the chapter we need to be able to distinguish betwee
 
 So then what is an image? An image may be described as an *artificial resemblance*. This definition defines that a painting or even sculpture may be considered an image, as well as images formed on the surface of water and in the human eye, an even mental images of graphs and functions.
 
-So what is a *digital image* and why are they special? Well a digital image is a numerical representation of a two-dimensional image. In this chapter the representation we refer to is known as a raster image, these images being made up of a finite set of pixels, where a pixel is the smallest element of an image holding values that represent some colour illumination.
+So what is a *digital image* and why are they special? Well a digital image is a numerical representation of a two-dimensional image. In this chapter the representation we refer to is known as a raster image, these images being made up of a finite set of pixels, where a pixel is the smallest element of an image holding values that represent some colour illumination. Use the following interactive to look at an image and see how it is made up of pixels, where each is made up of digits for its red, green and blue value.
 
-{comment TODO interactive of raster image here.}
+{interactive name="pixel-viewer" type="whole-page" text="Pixel Viewer"}
 
 ### The Human Eye
 
@@ -162,7 +162,39 @@ Further reading can be found at [Cambridge in Colour](http://www.cambridgeincolo
 
 ## Character Recognition
 
+A simple yet practical application of computer vision is character recognition, not a television character but a letter or number. We use words everyday and everywhere, from quick handwritten notes to street signs. Learning to read can reveal a plethora of information about the world around us.
+
+For example, if an automated driving system learns to read it could:
+
+- Adjust speed for temporary speed limits.
+- Find out where it is by reading street signs and house numbers.
+- Follow special instructions, like detours for closed exits on the highway.
+
+There are many ways to teach a computer to read, in this section we will cover the tools and techniques that can be used to recognise written characters. Since we are recognising characters we also depend heavily on machine-learning and artificial intelligence for the recognition stage and the useful information is extracted using image-processing techniques.
+
+{panel type="extra-for-experts" summary="MNIST Database"}
+
+If you are interested in trying out your own character recognition you can used the [MNIST Database](http://yann.lecun.com/exdb/mnist/). This is a dataset of handwritten digits for both training and testing your recognition methods.
+
+{panel end}
+
 ### Filters
+
+Filters allow use to modify the pixels in an image based on some function of a local neighbourhood of each pixel. The function by which each pixel is modifed is called the kernel, or convolution matrix.
+
+Filters can be applied against an image to:
+
+- Enhance the image
+- Extract information
+- Detect patterns
+
+Some examples would be to reduce noise, detect edges, and find corners.  
+
+{panel type="extra-for-experts" summary="Image Edges"}
+
+Considering the kernel (or convolution matrix) of a filter, what happens when we come to the edge of an image? What methods could we used to handle image edges?
+
+{panel end}
 
 ### Noise
 {comment interactive: custom blur filter}
