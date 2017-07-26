@@ -53,26 +53,41 @@
     height: 8px;
     width: 8px;
     position: absolute;
-    top: 0px;
+    top: 30px;
     left: 0px;
 }
 
 #big_image {
     position: relative;
     padding: 0px;
-    height: 320px;
+    height: 430px;
     width: 320px;
     float: left;
+}
+
+#before {
+  position: relative;
+    height: 240px;
+    width: 240px;
+    float: left;
+
+}
+#after {
+  position: relative;
+    height: 240px;
+    width: 240px;
+    float: left;
+    margin-left: 10px;
 }
 
 .relative {
     position: relative;
 }
 
-#labels_8_by_8 {
+#before_labels_8_by_8 {
     position: absolute;
     left: 10px;
-    top: 0px;
+    top: 30px;
     max-width: 240px;
     table-layout: fixed;
     font-family: Arial, Verdana, sans-serif;
@@ -80,13 +95,17 @@
     color: #fff;
 }
 
-#before_8_by_8 {
+#after_labels_8_by_8 {
     position: absolute;
     left: 10px;
-    top: 0px;
-    width: 240px;
-    height: 240px;
+    top: 30px;
+    max-width: 240px;
+    table-layout: fixed;
+    font-family: Arial, Verdana, sans-serif;
+    font-size: 0.7em;
+    color: #fff;
 }
+
 
 .label_row {
     max-height: 20;
@@ -106,5 +125,12 @@
 
 .switch {
     position: absolute;
-    top: 250px;
+    top: 280px;
 }
+
+.btn {
+  margin-bottom: 10px;
+  width: 300px;
+
+}
+
