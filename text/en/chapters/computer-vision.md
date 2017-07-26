@@ -165,7 +165,6 @@ Further reading can be found at [Cambridge in Colour](http://www.cambridgeincolo
 A simple yet practical application of computer vision is character recognition, not a television character but a letter or number. We use words everyday and everywhere, from quick handwritten notes to street signs. Learning to read can reveal a plethora of information about the world around us.
 
 For example, if an automated driving system learns to read it could:
-
 - Adjust speed for temporary speed limits.
 - Find out where it is by reading street signs and house numbers.
 - Follow special instructions, like detours for closed exits on the highway.
@@ -180,7 +179,9 @@ If you are interested in trying out your own character recognition you can used 
 
 ### Filters
 
-Filters allow use to modify the pixels in an image based on some function of a local neighbourhood of each pixel. The function by which each pixel is modifed is called the kernel, or convolution matrix.
+A filter is a technique that modifies an image, usually used to enhance an image by emphasizing or removing certain features. This is not some instagram or snapchat filter though.
+
+Filters allow use to modify the pixels in an image based on some function of a local neighbourhood of each pixel. Linear filtering is performed using an operation called convolution. The convolution operation creates another image where the each element (or pixel) is a weighted combination of neighbouring pixels from the original image. This matrix of weights is known as the called the convolution kernel, or filter.
 
 Filters can be applied against an image to:
 
@@ -189,6 +190,10 @@ Filters can be applied against an image to:
 - Detect patterns
 
 Some examples would be to reduce noise, detect edges, and find corners.  
+
+Using the following interactive experiment with your own convolution filters:
+
+{comment: convolution interactive}
 
 {panel type="extra-for-experts" summary="Image Edges"}
 
