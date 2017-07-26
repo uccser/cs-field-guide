@@ -1,0 +1,28 @@
+#interactive-image-filters select {
+  border-color: #333;
+}
+#interactive-image-filters-source-canvas {
+  display: none;
+}
+#interactive-image-filters-canvas-parent-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.interactive-image-filters-canvas-container {
+  margin: 0.3rem;
+  padding: 0.3rem;
+  text-align: center;
+  font-weight: bold;
+}
+.interactive-image-filters-canvas-container p {
+  margin: 0;
+}
+.interactive-image-filters-canvas-container .interactive-image-filters-controls-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+.interactive-image-filters-canvas-container .interactive-image-filters-controls-container > div {
+  flex: 1 1 auto;
+  padding: 0 0.2rem;
+}
