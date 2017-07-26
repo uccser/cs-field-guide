@@ -11,6 +11,7 @@
     <!--Import materialize.css-->
     <link rel="stylesheet" href="../base-files/css/materialize.min.css" type="text/css" media="screen,projection" />
     <link rel="stylesheet" href="./css/jpeg-compression.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="../base-files/js/modernizr.js"></script>
     <!-- jQuery (necessary for Materialize) -->
     <script type="text/javascript" src="../base-files/js/jquery.js"></script>
@@ -20,23 +21,35 @@
     <div class="container">
         <div class="row interactive center-align">
         </div>
-        <div class="row interactive center-align">
-            <div class="col s4 relative" id="big_image">
+        <div class="row interactive left-align">
+            <div class="col s3 relative" id="big_image">
+                <h6>Drag the square around the image:</h6>
                 <canvas id="before_image_canvas" width="320" height="320"></canvas>
                 <canvas style="display:none" id="placeholder_canvas" width="8" height="8"></canvas>
                 <div class="draggable" id="little_drag_square"></div>
             </div>
-            <div class="col s4 relative">
+            <div class="col s4" id="before">
+                <h6>Original Image Pixels</h6>
                 <canvas id="before_8_by_8" width="240" height="240"></canvas>
-                <table id="labels_8_by_8" width="240" height="240"></table>
-                <div class="switch" id="toggleNumber">
-                    <label>Display numbers
+                <table id="before_labels_8_by_8" width="240" height="240"></table>
+                <div class="switch" id="toggleNumberBefore">
+                    <label>Display numbers:
                         <input type="checkbox" checked><span class="lever"></span></label>
                 </div>
             </div>
+            <div class="col s4" id="after">
+                <h6>Processed Image Pixels</h6>
+                <canvas id="after_8_by_8" width="240" height="240"></canvas>
+                <table id="after_labels_8_by_8" width="240" height="240"></table>
+               
+                    <div class="switch" id="toggleDifference">
+                    <label>Difference Values:
+                        <input type="checkbox" ><span class="lever"></span></label>
+                </div>
+            </div>
         </div>
-        <div class="row interactive center-align">
-            <div class="col s12">
+        <div class="row interactive left-align">
+            <div class="col s8">
                 <!-- ### Start of required HTML for inline interactives ### -->
                 <div id="jpeg-compression">
                     <table id="dct_table">
@@ -44,6 +57,11 @@
                 </div>
                 <script type="text/javascript" src="./js/dct.js"></script>
                 <!-- ### End of required HTML for inline interactives ### -->
+            </div>
+            <div class="col s4">
+                <a class="waves-effect waves-light btn" id="quantisationButton"><i class="material-icons left">flare</i>Apply Quantisation</a>
+                <a class="waves-effect waves-light btn" id="zeroButton"><i class="material-icons left">remove_circle_outline</i>Zero All</a>
+                <a class="waves-effect waves-light btn" id="resetButton"><i class="material-icons left">restore</i>Reset to Original</a>
             </div>
         </div>
         <!-- Materialize responsive CSS -->
