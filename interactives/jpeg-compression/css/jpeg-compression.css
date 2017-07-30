@@ -32,7 +32,7 @@
     outline-offset: 0;
     cursor: col-resize;
     z-index: 2;
-    border-bottom: 0px !important;
+    border-bottom: 0 !important;
 }
 
 .stepper-number:focus {
@@ -48,32 +48,34 @@
     background: rgba(255, 255, 255, 0.8)
 }
 
-#little_drag_square {
+#little-drag-square {
     border: 2px solid #fd008c;
     height: 8px;
     width: 8px;
     position: absolute;
     top: 30px;
-    left: 0px;
+    left: 0;
 }
 
-#big_image {
+#big-image {
     position: relative;
-    padding: 0px;
-    height: 430px;
-    width: 320px;
+    padding: 0;
+    height: 300px;
+    width: 360px;
     float: left;
 }
 
 #before {
-  position: relative;
+    position: relative;
     height: 240px;
     width: 240px;
     float: left;
+    margin-left: 10px;
 
 }
+
 #after {
-  position: relative;
+    position: relative;
     height: 240px;
     width: 240px;
     float: left;
@@ -84,7 +86,7 @@
     position: relative;
 }
 
-#before_labels_8_by_8 {
+#before-labels-8-by-8 {
     position: absolute;
     left: 10px;
     top: 30px;
@@ -95,7 +97,7 @@
     color: #fff;
 }
 
-#after_labels_8_by_8 {
+#after-labels-8-by-8 {
     position: absolute;
     left: 10px;
     top: 30px;
@@ -106,20 +108,19 @@
     color: #fff;
 }
 
-
-.label_row {
-    max-height: 20;
-    padding: 0px;
+.label-row {
+    max-height: 20px;
+    padding: 0;
 }
 
-.label_data {
+.label-data {
     width: 30px;
     height: 30px;
-    padding: 0px;
+    padding: 0;
     text-align: center;
 }
 
-#dct_table td {
+#dct-table td {
     padding: 2px;
 }
 
@@ -129,8 +130,8 @@
 }
 
 .btn {
-  margin-bottom: 10px;
-  width: 300px;
+    margin-bottom: 10px;
+    width: 300px;
 
 }
 

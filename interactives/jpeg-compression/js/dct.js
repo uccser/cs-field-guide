@@ -1,190 +1,168 @@
-$(function() {
-    document.onselectstart = function() {
+$(function () {
+    document.onselectstart = function () {
         return false;
-    }
+    };
 
 
-    var big_canvas = document.getElementById("before_image_canvas");
-    var big_canvas_context = big_canvas.getContext("2d");
-    var small_canvas = document.getElementById("before_8_by_8");
-    var small_canvas_ctx = small_canvas.getContext("2d");
-    var smallCanvasAfter = document.getElementById("after_8_by_8");
+    var bigCanvasContext = document.getElementById("before-image-canvas").getContext("2d");
+    var smallCanvasBefore = document.getElementById("before-8-by-8");
+    var smallCanvasBeforeContext = smallCanvasBefore.getContext("2d");
+    var smallCanvasAfter = document.getElementById("after-8-by-8");
     var smallCanvasAfterContext = smallCanvasAfter.getContext("2d");
-    var placeholder_canvas = document.getElementById("placeholder_canvas");
-    var placeholder_canvas_context = placeholder_canvas.getContext("2d");
+
     var quantisation = [16, 11, 12, 15, 21, 32, 50, 66, 11, 12, 13, 18, 24, 46, 62, 73, 12, 13,
         16, 23, 38, 56, 73, 75, 15, 18, 23, 29, 53, 75, 83, 83, 21, 24, 38, 53, 68, 95, 103, 103, 32, 46,
         56, 75, 95, 104, 117, 117, 50, 62, 73, 83, 103, 117, 120, 120, 66, 73, 75, 83, 103, 117, 120, 120
     ];
+    var canvasScalingFactor = 30;
+    var before = new CloseUp8By8("before", smallCanvasBeforeContext);
+    var after = new CloseUp8By8("after", smallCanvasAfterContext);
+
 
     // Need to see the individual pixels on the canvases - so disable smoothing.
-    function disableSmoothing (canvasContext) {
+    function disableSmoothing(canvasContext) {
         canvasContext.mozImageSmoothingEnabled = false;
         canvasContext.webkitImageSmoothingEnabled = false;
         canvasContext.msImageSmoothingEnabled = false;
         canvasContext.imageSmoothingEnabled = false;
     }
-    disableSmoothing(small_canvas_ctx);
-    disableSmoothing(placeholder_canvas_context);
-    disableSmoothing(big_canvas_context);
-    disableSmoothing(smallCanvasAfterContext);
-    small_canvas_ctx.scale(30, 30);
-    smallCanvasAfterContext.scale(30, 30);
 
-    var before = new closeUp8By8("before", small_canvas, small_canvas_ctx);
-    var after = new closeUp8By8("after", smallCanvasAfter, smallCanvasAfterContext);
-    $("#toggleDifference").prop("checked", false);
-
-    create_dct_table();
-    createLabelGrid("before");
-    createLabelGrid("after");
-    drag_8_by_8();
+    createDCTTable();
+    dragSmallSquare();
     createBigImage();
 
-    $("#toggleNumberBefore").change(function() {
-        $("#before_labels_8_by_8").toggle("fade");
-        $("#after_labels_8_by_8").toggle("fade");
+    $("#toggleNumberBefore").change(function () {
+        $("#before-labels-8-by-8").toggle("fade");
+        $("#after-labels-8-by-8").toggle("fade");
     });
 
-    $(".stepper-number").on("change paste keyup", function() {
+    $(".stepper-number").on("change paste keyup", function () {
         DCTGrid.updateValues();
         drawAfterFromDCT();
     });
-    $("#zeroButton").click(function() {
-        DCTGrid.setValues(Array.apply(null, Array(64)).map(Number.prototype.valueOf, 0));
+
+    $("#zeroButton").click(function () {
+        DCTGrid.setValues(Array.apply(null, new Array(64)).map(Number.prototype.valueOf, 0));
         drawAfterFromDCT();
     });
-    $("#resetButton").click(function() {
+
+    $("#resetButton").click(function () {
         after.setToMatch(before);
     });
-    $("#quantisationButton").click(function() {
+
+    $("#quantisationButton").click(function () {
         applyQuantisation();
     });
-    $("#toggleDifference").change(function() {
-        after.toggleDifference(before);
-    })
-    $('input[name="group1"]:radio').change(function() {
-        if (this.id == 'none') {
-            $("#after_labels_8_by_8").fadeOut();
-        } else if (this.id == 'diff') {
-            $("#after_labels_8_by_8").fadeIn();
-            after.showDiff(before);
-        } else if (this.id == 'colour') {
-            $("#after_labels_8_by_8").fadeIn();
-            var data = idct(DCTGrid.getValues());
-            for (var i = data.length - 1; i >= 0; i--) {
-                data[i] = Math.round(data[i]);
-                if (data[i] > 255) {
-                    data[i] = 255;
-                } else if (data[i] < 0) {
-                    data[i] = 0;
-                }
-            }
-            after.updateGridLabels(data);
-        }
 
+    $("#toggleDifference").change(function () {
+        after.toggleDifference(before);
     });
 
     var DCTGrid = {
         values: [],
 
-        getValues: function() {
+        getValues: function () {
             return values;
         },
 
-        updateValues: function() {
-            var data = []
+        updateValues: function () {
+            var data = [];
             for (var i = 1; i <= 8; i++) {
                 for (var j = 1; j <= 8; j++) {
-                    data.push($('#stepper_number_' + i + j).val());
-                };
-            };
+                    data.push($('#stepper-number-' + i + j).val());
+                }
+            }
             values = data;
 
         },
 
-        setValues: function(data) {
+        setValues: function (data) {
             values = data;
             var index = 0;
             for (var i = 1; i <= 8; i++) {
                 for (var j = 1; j <= 8; j++) {
-                    $('#stepper_number_' + i + j).val(Math.round((data[index] + 0.00001) * 100) / 100);
+                    $('#stepper-number-' + i + j).val(Math.round((data[index] + 0.00001) * 100) / 100);
                     index++;
-                };
-            };
-        },
-    }
+                }
+            }
+        }
+    };
 
-    function closeUp8By8(type, canvas, canvas_ctx) {
+    function CloseUp8By8(type, canvasContext) {
         this.type = type;
-        this.canvas = canvas;
-        this.canvas_ctx = canvas_ctx;
-        this.currentLabels = Array.apply(null, Array(64)).map(Number.prototype.valueOf, 0);
-        this.colourLabels = Array.apply(null, Array(64)).map(Number.prototype.valueOf, 0);
-        this.differenceLabels = Array.apply(null, Array(64)).map(Number.prototype.valueOf, 0);
+        this.canvasContext = canvasContext;
+        this.currentLabels = Array.apply(null, new Array(64)).map(Number.prototype.valueOf, 0);
+        this.colourLabels = Array.apply(null, new Array(64)).map(Number.prototype.valueOf, 0);
+        this.differenceLabels = Array.apply(null, new Array(64)).map(Number.prototype.valueOf, 0);
         this.diff = false;
+        disableSmoothing(canvasContext);
+        canvasContext.scale(canvasScalingFactor, canvasScalingFactor);
+        createLabelGrid(type);
 
-        this.setCurrentLabels = function(data) {
+        this.setCurrentLabels = function (data) {
             this.currentLabels = data;
             var index = 0;
             for (var i = 1; i <= 8; i++) {
                 for (var j = 1; j <= 8; j++) {
-                    $('#' + this.type + 'cell' + i + j).text(data[index])
+                    var cell = $('#' + this.type + 'cell' + i + j);
+                    cell.text(data[index]);
                     if (data[index] > 127) {
-                        $('#' + this.type + 'cell' + i + j).css('color', 'black');
+                        cell.css('color', 'black');
                     } else {
-                        $('#' + this.type + 'cell' + i + j).css('color', 'white');
+                        cell.css('color', 'white');
                     }
                     index++;
-                };
+                }
             }
 
         };
 
-        this.toggleDifference = function(closeUp8By8Var) {
-            if(this.diff) {
+        this.toggleDifference = function (closeUp8By8Var) {
+            if (this.diff) {
                 this.diff = false;
                 this.setLabelsToCurrentColorVal();
             } else {
                 this.diff = true;
                 this.showDiff(closeUp8By8Var);
             }
-        }
+        };
 
-        this.getCurrentGridLabels = function() {
+        this.getCurrentGridLabels = function () {
             return this.currentLabels;
-        }
+        };
 
-        this.getColorLabels = function() {
+        this.getColorLabels = function () {
             return this.colourLabels;
-        }
+        };
 
-        this.getDifferenceLabels = function() {
+        this.getDifferenceLabels = function () {
             return this.differenceLabels;
-        }
+        };
 
-        this.setColourLabels = function(labels) {
+        this.setColourLabels = function (labels) {
             this.colourLabels = labels;
-        }
+        };
 
-        this.drawPixels = function(data) {
-            placeholder_canvas_context.putImageData(data, 0, 0);
+        this.drawPixels = function (data) {
+            var placeholderCanvas = document.getElementById("placeholder-canvas");
+            var placeholderCanvasContext = placeholderCanvas.getContext("2d");
+            placeholderCanvasContext.putImageData(data, 0, 0);
 
-            var zoomed_bit = new Image();
-            zoomed_bit.src = placeholder_canvas.toDataURL();
-            placeholder_canvas_context.clearRect(0, 0, 8, 8);
+            var zoomedBit = new Image();
+            zoomedBit.src = placeholderCanvas.toDataURL();
+            placeholderCanvasContext.clearRect(0, 0, 8, 8);
             var current = this;
 
-            zoomed_bit.onload = function() {
-                current.canvas_ctx.drawImage(zoomed_bit, 0, 0, 8, 8);
+            zoomedBit.onload = function () {
+                current.canvasContext.drawImage(zoomedBit, 0, 0, 8, 8);
             }
-        }
+        };
 
-        this.setToMatch = function(closeUp8By8Var) {
+        this.setToMatch = function (closeUp8By8Var) {
             var labels = closeUp8By8Var.getColorLabels();
             this.colourLabels = labels;
             this.setCurrentLabels(labels);
-            var imageData = closeUp8By8Var.canvas_ctx.createImageData(8, 8);
+            var imageData = closeUp8By8Var.canvasContext.createImageData(8, 8);
             var pixels = imageData.data;
             var index = 0;
             for (var i = 0; i < pixels.length; i += 1) {
@@ -196,16 +174,16 @@ $(function() {
                 }
             }
             this.drawPixels(imageData);
-            DCTGrid.setValues(dct(labels))
-            if(this.diff) {
+            DCTGrid.setValues(dct(labels));
+            if (this.diff) {
                 this.showDiff(closeUp8By8Var);
             }
-        }
+        };
 
-        this.showDiff = function(closeUp8By8Var) {
+        this.showDiff = function (closeUp8By8Var) {
             var labels = closeUp8By8Var.getColorLabels();
             var current = this.getColorLabels();
-            var diffValues = []
+            var diffValues = [];
             for (var i = 0; i < current.length; i++) {
                 var diff = current[i] - labels[i];
                 if (diff > 0) {
@@ -213,11 +191,11 @@ $(function() {
                 }
                 diffValues[i] = diff;
 
-            };
+            }
             this.differenceLabels = diffValues;
             this.setCurrentLabels(diffValues);
-        }
-        this.setLabelsToCurrentColorVal = function() {
+        };
+        this.setLabelsToCurrentColorVal = function () {
             this.setCurrentLabels(this.colourLabels);
         }
 
@@ -225,23 +203,24 @@ $(function() {
 
 
     /* Creates html table that contains the DCT images and the (changeable) value 
-    associated with each one. */
-    function create_dct_table() {
+     associated with each one. */
+    function createDCTTable() {
 
         for (var i = 1; i <= 8; i++) {
-            var row = $('<tr></tr>');
+            var row = $("<tr></tr>");
             for (var j = 1; j <= 8; j++) {
-                var rowData = $('<td></td>').append('<img src="./img/basis_functions/DCTr' + i + 'c' + j + '.png">');
-                rowData.append('<div class="stepper" id="stepper_' + i + j + '"><div class="stepper-progress"></div><input type="text" class="stepper-number" id="stepper_number_' + i + j + '"></div>');
+                var rowData = $("<td></td>").append('<img src="./img/basis_functions/DCTr' + i + 'c' + j + '.png">');
+                rowData.append('<div class="stepper" id="stepper-' + i + j + "\"><div class=\"stepper-progress\"></div><input type=\"text\" class=\"stepper-number\" id=\"stepper-number-" + i + j + '"></div>');
                 row.append(rowData);
-            };
-            $('#dct_table').append(row);
-        };
+            }
+            $('#dct-table').append(row);
+        }
 
-        for (var i = 1; i <= 8; i++) {
-            for (var j = 1; j <= 8; j++) {
+        // initialises the stepper that allows the user to drag the nume
+        for (i = 1; i <= 8; i++) {
+            for (j = 1; j <= 8; j++) {
                 if (i != 1 || j != 1) {
-                    $('#stepper_' + i + j).stepper({
+                    $('#stepper-' + i + j).stepper({
                         unit: '',
                         initialValue: 0,
                         min: -1024,
@@ -249,9 +228,10 @@ $(function() {
                         stepSize: 1
                     });
                 }
-            };
-        };
-        $('#stepper_11').stepper({
+            }
+        }
+
+        $('#stepper-11').stepper({
             unit: '',
             initialValue: 0,
             min: 0,
@@ -262,7 +242,7 @@ $(function() {
 
     }
 
-    var dct = function(input) {
+    function dct(input) {
         var output = [],
             v, u, x, y, sum, val, au, av;
         for (v = 0; v < 8; v++) {
@@ -284,7 +264,7 @@ $(function() {
         return output;
     }
 
-    var idct = function(input) {
+    function idct(input) {
         var output = [],
             v, u, x, y, sum, val, au, av;
         for (y = 0; y < 8; y++) {
@@ -309,8 +289,7 @@ $(function() {
     }
 
 
-
-    function drag_8_by_8() {
+    function dragSmallSquare() {
         // target elements with the "draggable" class
         interact('.draggable')
             .draggable({
@@ -318,22 +297,22 @@ $(function() {
                 inertia: false,
                 // keep the element within the area of it's parent
                 restrict: {
-                    restriction: document.getElementById("before_image_canvas"),
+                    restriction: document.getElementById("before-image-canvas"),
                     endOnly: false,
-                    elementRect: { top: 0, left: 0, bottom: 1, right: 1 }
+                    elementRect: {top: 0, left: 0, bottom: 1, right: 1}
                 },
                 snap: {
                     targets: [
-                        interact.createSnapGrid({ x: 8, y: 8 })
+                        interact.createSnapGrid({x: 8, y: 8})
                     ],
                     range: Infinity,
-                    relativePoints: [{ x: 0, y: 0 }]
+                    relativePoints: [{x: 0, y: 0}]
                 },
                 // enable autoScroll
                 autoScroll: true,
 
                 // call this function on every dragmove event
-                onmove: dragMoveListener,
+                onmove: dragMoveListener
                 // call this function on every dragend event
             });
 
@@ -347,39 +326,38 @@ $(function() {
             // translate the element
             target.style.webkitTransform =
                 target.style.transform =
-                'translate(' + x + 'px, ' + y + 'px)';
+                    'translate(' + x + 'px, ' + y + 'px)';
 
             // update the position attributes
             target.setAttribute('data-x', x);
             target.setAttribute('data-y', y);
-            dragMoved(x, y);
+            dragMoved(x, y, bigCanvasContext);
         }
     }
 
     function applyQuantisation() {
-
         var values = DCTGrid.getValues();
         for (var i = 0; i < values.length; i++) {
             var initial = Math.round(values[i] / quantisation[i]);
             values[i] = initial * quantisation[i];
-        };
+        }
         DCTGrid.setValues(values);
         drawAfterFromDCT();
     }
 
     function createLabelGrid(labelName) {
         for (var i = 1; i <= 8; i++) {
-            var row = $('<tr class="label_row"></tr>');
+            var row = $('<tr class="label-row"></tr>');
             for (var j = 1; j <= 8; j++) {
-                var rowData = $('<td class="label_data" id="' + labelName + 'cell' + i + j + '"></td>').append('0');
+                var rowData = $('<td class="label-data" id="' + labelName + 'cell' + i + j + '"></td>').append('0');
                 row.append(rowData);
-            };
-            $('#' + labelName + '_labels_8_by_8').append(row);
-        };
+            }
+            $('#' + labelName + '-labels-8-by-8').append(row);
+        }
     }
 
-    function dragMoved(x, y) {
-        var imageData = big_canvas_context.getImageData(x, y, 8, 8);
+    function dragMoved(x, y, canvasContext) {
+        var imageData = canvasContext.getImageData(x, y, 8, 8);
         var pixels = imageData.data;
         var yData = [];
         for (var i = 0; i < pixels.length; i += 4) {
@@ -403,11 +381,11 @@ $(function() {
             } else if (inverse[i] < 0) {
                 inverse[i] = 0;
             }
-        };
-        var imageData = small_canvas_ctx.createImageData(8, 8);
+        }
+        var imageData = smallCanvasBeforeContext.createImageData(8, 8);
         var pixels = imageData.data;
         var index = 0;
-        for (var i = 0; i < pixels.length; i += 1) {
+        for (i = 0; i < pixels.length; i += 1) {
             if ((i + 1) % 4 == 0) {
                 pixels[i] = 255;
                 index++;
@@ -417,21 +395,24 @@ $(function() {
         }
         after.drawPixels(imageData);
         after.setColourLabels(inverse);
-        if(after.diff) {
+        if (after.diff) {
             after.showDiff(before);
         } else {
             after.setCurrentLabels(inverse);
         }
     }
 
+    /* 
+     * Load image and then replace it with the greyscale version of itself.
+     */
     function createBigImage() {
-        var big_canvas = document.getElementById("before_image_canvas");
-        var big_canvas_context = big_canvas.getContext("2d");
         var img = new Image();
-        img.src = "./img/dandelion.jpg";
-        img.onload = function() {
-            big_canvas_context.drawImage(img, 0, 0, 320, 320);
-            var imageData = big_canvas_context.getImageData(0, 0, 320, 320);
+        img.src = "./img/IMG_5035.jpg";
+        img.onload = function () {
+            bigCanvasContext.drawImage(img, 0, 0, 360, 240);
+
+            // Retrieves image data and calculates the greyscale version.
+            var imageData = bigCanvasContext.getImageData(0, 0, 360, 240);
             var data = imageData.data;
             for (var i = 0; i < data.length; i += 4) {
                 var y = 0.299 * data[i] + 0.587 * data[i + 1] + 0.114 * data[i + 2];
@@ -439,25 +420,14 @@ $(function() {
                 data[i + 1] = y;
                 data[i + 2] = y;
             }
-            big_canvas_context.putImageData(imageData, 0, 0);
-            dragMoved(0, 0);
+            // Draws greyscale version of image.
+            bigCanvasContext.putImageData(imageData, 0, 0);
+
+            // Initialises the small canvas to show 8x8 pixels at 0,0 of big image.
+            // This is where the small square to drag begins.
+            dragMoved(0, 0, bigCanvasContext);
         };
     }
-
-
-
-    // $(big_canvas).click(function(jqEvent) {
-    // var coords = {
-    //     x: jqEvent.pageX - $(big_canvas).offset().left,
-    //     y: jqEvent.pageY - $(big_canvas).offset().top};
-    //     //$("#little_drag_square").css("transform":"translate(" + x + "px," + y + "px)");
-    // var event = new CustomEvent("clickCanvas");
-    // event.target = $("#little_drag_square").get();
-    // event.target.setAttribute("data-x", coords.x);
-    // event.target.setAttribute("data-y", coords.y);
-    // dragMoveListener(event);
-    // });
-
 
 
 });
