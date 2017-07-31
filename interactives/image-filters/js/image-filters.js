@@ -24,7 +24,8 @@ ImageFiltersEnvironment.INITIAL_IMAGES = [
                                   ['IMG_0775.jpg', 'Books']
                                 ];
 
-ImageFiltersEnvironment.colour_labels = ['Red', 'Green', 'Blue'];
+ImageFiltersEnvironment.current_control = $('#interactive-image-filters-grayscale-controls');
+ImageFiltersEnvironment.current_control_paragraph = $('#interactive-image-filters-grayscale-paragraph');
 
 // The RGB values For each bit value
 ImageFiltersEnvironment.kernel = [
@@ -168,8 +169,8 @@ ImageFilters.brightness = function(image_data, value) {
 }
 
 ImageFilters.convolute = function(image_data, kernel, edge_mode) {
-  var kernel_size = Math.round(Math.sqrt(kernel.length))  // assumes square
-  var half_kernel_size = Math.floor(kernel_size / 2)
+  var kernel_size = Math.round(Math.sqrt(kernel.length));  // assumes square
+  var half_kernel_size = Math.floor(kernel_size / 2);
 
   var src = image_data.data;
   var src_width = image_data.width;
@@ -331,9 +332,62 @@ function setupMode() {
     var subtitle_text = "Simple Mode";
     $canvas_container = addCanvas("interactive-image-filters-simple-canvas", subtitle_text);
     $canvas_parent_container.append($canvas_container);
+    updateSimpleKernelTable();
   }
 };
 
+function changeControlMode() {
+  var $selector = $('#interactive-image-filters-mode-select-control');
+  var control_name = $selector[0].value;
+
+  if (ImageFiltersEnvironment.current_control !== null) {
+    ImageFiltersEnvironment.current_control[0].style.display = 'none';
+    ImageFiltersEnvironment.current_control_paragraph[0].style.display = 'none';
+  }
+
+  var $div = null;
+  var $p = null;
+  if (control_name === 'grayscale') {
+    $div = $('#interactive-image-filters-grayscale-controls');
+    $p = $('#interactive-image-filters-grayscale-paragraph');
+  } else if (control_name === 'threshold') {
+    $div = $('#interactive-image-filters-threshold-controls');
+    $p = $('#interactive-image-filters-threshold-paragraph');
+  } else if (control_name === 'brightness') {
+    $div = $('#interactive-image-filters-brightness-controls');
+    $p = $('#interactive-image-filters-brightness-paragraph');
+  } else if (control_name === 'simple_kernels') {
+    $div = $('#interactive-image-filters-simple-kernel-controls');
+    $p = $('#interactive-image-filters-simple-kernel-paragraph');
+  } else {
+    throw 'Unknown control mode.'
+  }
+
+  $div[0].style.display = 'block';
+  $p[0].style.display = 'block';
+  ImageFiltersEnvironment.current_control = $div;
+  ImageFiltersEnvironment.current_control_paragraph = $p;
+}
+
+function showKernel($table, kernel) {
+  $table.empty();
+
+  var kernel_size = Math.round(Math.sqrt(kernel.length));  // assumes square
+  var half_kernel_size = Math.floor(kernel_size / 2);
+
+  for (var row = 0; row < kernel_size; row += 1) {
+    $tr = $('<tr>')
+            .addClass('interactive-image-filters-kernel-table');
+    $table.append($tr);
+    for (var col = 0; col < kernel_size; col += 1) {
+      var index = (row * kernel_size + col);
+      $td = $('<td>')
+              .addClass('interactive-image-filters-kernel-table')
+              .text(kernel[index].toFixed(4));
+      $tr.append($td);
+    }
+  }
+}
 
 // Load and draw image for Canvas reference
 function loadImage() {
@@ -404,17 +458,19 @@ function runFilter(id, filter, var_args) {
 function drawCanvases() {
   var source_image_data = initialCanvasData();
   $('#interactive-image-filters-canvas-parent-container canvas').each(function () {
-    drawCanvas($(this), source_image_data)
+    drawCanvas($(this), source_image_data);
   });
 };
 
-function resetCanvases() {
-
+function updateSimpleKernelTable() {
+  var $table = $('#interactive-image-filters-simple-kernel-table');
+  var $selector = $('#interactive-image-filters-simple-kernel-selector')[0];
+  var kernel_name = $selector.value;
+  var kernel = ImageFiltersEnvironment.simple_kernels[kernel_name];
+  showKernel($table, kernel);
 }
 
 function apply(filter, var_args) {
-  // runFilter('grayscale', ImageFilters.grayscale);
-  // runFilter('blurC', ImageFilters.convolute, ImageFiltersEnvironment.kernel);
   generic_args = [];
   for (var i = 1; i < arguments.length; i += 1) {
     generic_args.push(arguments[i]);

@@ -45,41 +45,50 @@
       <div id="interactive-image-filters-canvas-parent-container"></div>
 
       <div class="row">
-        <div class="col s12 m4">
+        <div id="interactive-image-filters-mode-controls" class="col s12 m4">
           <h5>Mode Select</h5>
-          <select id="interactive-image-filters-mode-select-control-image" class="browser-default">
+          <label for="interactive-image-filters-mode-select-control">Selected Mode:</label>
+          <select id="interactive-image-filters-mode-select-control" class="browser-default" onchange="changeControlMode()">
+            <option value="grayscale" selected="selected">Grayscale</option>
             <option value="threshold">Threshold</option>
-            <option value="grayscale">Grayscale</option>
             <option value="brightness">Brightness</option>
+            <option value="simple_kernels">Kernels</option>
           </select>
+          <div id="interactive-image-filters-grayscale-paragraph"><p>Converts the image to grayscale, this is particularly useful for edge detection kernels.</p></div>
+          <div id="interactive-image-filters-threshold-paragraph" style="display:none"><p>Compares the grayscale value of every pixel in the image to some threshold value; if it is above is set to white, otherwise it is set to black.</p></div>
+          <div id="interactive-image-filters-brightness-paragraph" style="display:none"><p>A simple filter where, every pixel in the image is adjusted by some constant.</p></div>
+          <div id="interactive-image-filters-simple-kernel-paragraph" style="display:none"><p>Applies a kernel as shown to the image, where every pixel is adjusted based on the value of its neighbours.</p></div>
         </div>
         <div id="interactive-image-filters-grayscale-controls" class="col s12 m4">
           <h5>Grayscale Controls</h5>
           <!-- TODO: <button onclick="">Preview</button> -->
           <button onclick="apply_grayscale()">Apply</button>
         </div>
-        <div id="interactive-image-filters-threshold-controls" class="col s12 m4">
+        <div id="interactive-image-filters-threshold-controls" class="col s12 m4" style="display:none">
           <h5>Threshold Controls</h5>
           <label for="interactive-image-filters-threshold-slider">Threshold Value:</label>
           <input id="interactive-image-filters-threshold-slider" type="range" name="threshold" value="100" min="0" max="255" step="1">
           <button onclick="apply_threshold()">Apply</button>
         </div>
-        <div id="interactive-image-filters-brightness-controls" class="col s12 m4">
+        <div id="interactive-image-filters-brightness-controls" class="col s12 m4" style="display:none">
           <h5>Brightness Controls</h5>
-          <label for="interactive-image-filters-brightness-slider">Brightness Value:</label>
+          <label for="interactive-image-filters-brightness-slider">Brightness Adjust:</label>
           <input id="interactive-image-filters-brightness-slider" type="range" name="threshold" value="0" min="-40" max="40" step="1">
           <button onclick="apply_brightness()">Apply</button>
         </div>
-        <div id="interactive-image-filters-simple-kernel-controls" class="col s12 m4">
-          <h5>Simple Kernels</h5>
-          <select id ="interactive-image-filters-simple-kernel-selector" class="browser-default">
+        <div id="interactive-image-filters-simple-kernel-controls" class="col s12 m4" style="display:none">
+          <h5>Kernels</h5>
+          <label for="interactive-image-filters-simple-kernel-selector">Selected Kernel:</label>
+          <select id ="interactive-image-filters-simple-kernel-selector" class="browser-default" onchange="updateSimpleKernelTable()">
             <option value="identity">Identity</option>
             <option value="sharpen">Sharpen</option>
             <option value="box_blur">Box Blur</option>
             <option value="gaussian_blur">Gaussian Blur</option>
             <option value="edge_detect">Edge Detect</option>
           </select>
-          <!-- TODO: Show kernel -->
+          <label for="interactive-image-filters-simple-kernel-table">Kernel:</label>
+          <table id="interactive-image-filters-simple-kernel-table" class="interactive-image-filters-kernel-table">
+          </table>
           <button onclick="apply_simple_kernel()">Apply</button>
         </div>
       </div>

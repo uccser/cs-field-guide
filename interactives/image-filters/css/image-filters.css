@@ -26,3 +26,7 @@
   flex: 1 1 auto;
   padding: 0 0.2rem;
 }
+.interactive-image-filters-kernel-table {
+  border: 1px solid black;
+  text-align: center;
+}
