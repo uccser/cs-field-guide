@@ -28,6 +28,14 @@
         <canvas style="display:none" id="placeholder-canvas" width="8" height="8"></canvas>
         <div class="draggable" id="little-drag-square"></div>
     </div>
+    <div class="col s3" id="puzzle-stuff">
+        <h6>Instructions</h6>
+        <p>Adjust the numbers below the basis functions to make the image on the right.</p>
+        <p id="level-specific">Level 1 - the image can be made using just 1 basis function.</p>
+        <p>Press the help button to have 1 basis function set to the correct value for you.</p>
+
+        <a class="waves-effect waves-light btn" id="helpButton"><i class="material-icons left">help</i>Help Me</a>
+    </div>
     <div class="col s3" id="before">
         <h6>Original Image Pixels</h6>
         <canvas id="before-8-by-8" width="240" height="240"></canvas>
@@ -47,14 +55,7 @@
                 <input type="checkbox"><span class="lever"></span></label>
         </div>
     </div>
-    <div class="col s3" id="puzzle-stuff">
-        <h6>Instructions</h6>
-        <p>Drag the numbers below the basis functions to make the image shown on the left.</p>
-        <p id="level-specific">Since you are on Level 1 - the image can be made using just one basis function.</p>
-        <p>Press the help button to have 1 basis function set to the correct value for you.</p>
 
-        <a class="waves-effect waves-light btn" id="helpButton"><i class="material-icons left">help</i>Help Me</a>
-    </div>
 </div>
 <div class="row interactive left-align">
     <div class="col s8">
@@ -67,7 +68,11 @@
         <script type="text/javascript" src="./js/dct.js"></script>
         <!-- ### End of required HTML for inline interactives ### -->
     </div>
-    <div class="col s4">
+    <div class="col s4" id="puzzle-next-level">
+        <h5>That's correct!</h5>
+        <a class="waves-effect waves-light btn" id="nextLevelButton"><i class="material-icons left">navigate_next</i>Next Level</a>
+    </div>
+    <div class="col s4" id="right-of-dct">
         <a class="waves-effect waves-light btn" id="quantisationButton"><i class="material-icons left">flare</i>Apply
             Quantisation</a>
         <a class="waves-effect waves-light btn" id="zeroButton"><i

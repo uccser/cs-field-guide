@@ -177,38 +177,36 @@ $(function () {
 
         checkForMatch () {
             if (arraysEqual(after.getColorLabels(), before.getColorLabels())) {
-                this.level++;
-                alert("Congratulations. You have moved up to level " + this.level + "!");
-                this.setupLevel();
+                $("#puzzle-next-level").show();
+            } else {
+                $("#puzzle-next-level").hide();
             }
         };
 
         giveHelp () {
             var numberValue = Math.floor(Math.random() * this.level);
+            while(this.helpGiven.indexOf(numberValue) >= 0) {
+                numberValue = Math.floor(Math.random() * this.level)
+            }
+            this.helpGiven.push(numberValue);
             var currentIndex = 0;
             var helpIndex;
-            var helpValue;
             while (numberValue != -1 && currentIndex <= 63) {
                 if (this.currentLevel[currentIndex] != 0) {
                     numberValue--;
                 }
                 if (numberValue == -1) {
                     helpIndex = currentIndex;
-                    helpValue = this.currentLevel[currentIndex];
                 }
                 currentIndex++
             }
-
-
-            if (currentIndex === 64 && typeof helpIndex == 'undefined') {
-                $("#helpButton").attr("disabled", true);
-            }
-            dctGrid.setSpecificValue(helpIndex, helpValue);
-            this.helpGiven.push(helpIndex);
+            dctGrid.setSpecificValue(helpIndex, this.currentLevel[helpIndex]);
             drawAfterFromDCT();
         };
 
         setupLevel () {
+            dctGrid.setAllValues(Array.apply(null, new Array(64)).map(Number.prototype.valueOf, 0));
+            this.helpGiven = [];
             this.indicesSet = [0];
             for (var data = this.level; data != 1; data--) {
                 var index = Math.floor(Math.random() * 63) + 1;
@@ -252,14 +250,14 @@ $(function () {
     var dctGrid = new DCTGrid();
     var puzzle;
     createDCTTable();
+    $("#puzzle-next-level").hide();
 
     if (!puzzleSetting.PUZZLE) {
         dragSmallSquare();
         createBigImage();
         $("#puzzle-stuff").hide();
     } else {
-        $("#quantisationButton").hide();
-        $("#resetButton").hide();
+        $("#right-of-dct").hide();
         $("#big-image").hide();
         puzzle = new Puzzle();
     }
@@ -271,11 +269,19 @@ $(function () {
     });
 
     $(".stepper-number").on("change paste keyup", function () {
-        DCTGrid.updateValues();
+        dctGrid.updateValues();
         drawAfterFromDCT();
         if (puzzleSetting.PUZZLE) {
             puzzle.checkForMatch();
         }
+    });
+
+    $("#nextLevelButton").click(function () {
+        puzzle.level = puzzle.level + 1;
+        puzzle.setupLevel();
+        $("#puzzle-next-level").hide();
+        $("#level-specific").text("Level " + puzzle.level + " - the image can be made by combining " + puzzle.level + " basis functions.");
+
     });
 
     $("#zeroButton").click(function () {
@@ -473,7 +479,7 @@ $(function () {
         drawAfterFromDCT();
     }
 
-    // Creates labels for the
+    // Creates labels for the 8x8 grids.
     function createLabelGrid(labelName) {
         for (var i = 0; i < 8; i++) {
             var row = $('<tr class="label-row"></tr>');
