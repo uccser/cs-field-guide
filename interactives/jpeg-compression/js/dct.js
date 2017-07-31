@@ -285,7 +285,7 @@ $(function () {
     });
 
     $("#zeroButton").click(function () {
-        DCTGrid.setAllValues(Array.apply(null, new Array(64)).map(Number.prototype.valueOf, 0));
+        dctGrid.setAllValues(Array.apply(null, new Array(64)).map(Number.prototype.valueOf, 0));
         drawAfterFromDCT();
     });
 
