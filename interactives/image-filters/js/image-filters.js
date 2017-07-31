@@ -33,6 +33,34 @@ ImageFiltersEnvironment.kernel = [
   0, 0, 0
 ];
 
+ImageFiltersEnvironment.simple_kernels = {
+  'identity': [
+    0, 0, 0,
+    0, 1, 0,
+    0, 0, 0
+  ],
+  'sharpen': [
+    0, -1,  0,
+    -1, 5, -1,
+    0, -1,  0
+  ],
+  'box_blur': [
+    1/9, 1/9, 1/9,
+    1/9, 1/9, 1/9,
+    1/9, 1/9, 1/9
+  ],
+  'gaussian_blur': [
+    1/16, 2/16, 1/16,
+    2/16, 4/16, 2/16,
+    1/16, 2/16, 1/16
+  ],
+  'edge_detect': [
+    -1, -1, -1,
+    -1, 8, -1,
+    -1, -1, -1
+  ]
+};
+
 ImageFiltersEnvironment.edge_kernels = {
   'sobel_x': [
     1, 0, -1,
@@ -63,7 +91,7 @@ ImageFilters.getPixels = function(image) {
   var canvas;
   var context;
 
-  if (img.getContext) {
+  if (image.getContext) {
     canvas = image;
     try {
       context = canvas.getContext('2d');
@@ -83,9 +111,9 @@ ImageFilters.getPixels = function(image) {
 
 ImageFilters.createCanvas = function(width, height) {
   var canvas = document.createElement('canvas');
-  canvas.attr('width', width + 'px');
-  canvas.attr('height', height + 'px');
-  return c;
+  canvas.width = width;
+  canvas.height = height;
+  return canvas;
 };
 
 ImageFilters.createImageData = function(width, height) {
@@ -103,18 +131,41 @@ ImageFilters.filterImage = function(filter, image, var_args) {
 ImageFilters.grayscale = function(image_data, args) {
   var dst = image_data.data;
 
-  for (var i = 0; i < d.length; i += 4) {
+  for (var i = 0; i < dst.length; i += 4) {
     var red = dst[i];
     var green = dst[i + 1];
     var blue = dst[i + 2];
 
     // CIE luminance <- http://lmgtfy.com/?q=CIE+Luminance
     var luminance = 0.2126 * red + 0.7152 * green + 0.0722 * blue;
-    dst[i] = d[i + 1] = d[i + 2] = luminance;
+    dst[i] = dst[i + 1] = dst[i + 2] = luminance;
   }
 
   return image_data;
 };
+
+ImageFilters.threshold = function(image_data, threshold) {
+  var dst = image_data.data;
+  for (var i = 0; i < dst.length; i += 4) {
+    var red = dst[i];
+    var green = dst[i + 1];
+    var blue = dst[i + 2];
+    var value = (0.2126 * red + 0.7152 * green + 0.0722 * blue >= threshold) ? 255 : 0;
+    dst[i] = dst[i + 1] = dst[i + 2] = Math.max(0, value)
+  }
+  return image_data;
+};
+
+ImageFilters.brightness = function(image_data, value) {
+  var dst = image_data.data;
+  for (var i = 0; i < dst.length; i += 4) {
+    dst[i] = Math.max(0, dst[i] + value);
+    dst[i + 1] = Math.max(0, dst[i + 1] + value);
+    dst[i + 2] = Math.max(0, dst[i + 2] + value);
+  }
+
+  return image_data;
+}
 
 ImageFilters.convolute = function(image_data, kernel, edge_mode) {
   var kernel_size = Math.round(Math.sqrt(kernel.length))  // assumes square
@@ -157,15 +208,15 @@ ImageFilters.convolute = function(image_data, kernel, edge_mode) {
           }
         }
       }
-
-      dst[dst_offset] = red;
-      dst[dst_offset + 1] = green;
-      dst[dst_offset + 2] = blue;
-      dst[dst_offset + 3] = alpha;
+      dst[dst_offset] = Math.max(0, red);
+      dst[dst_offset + 2] = Math.max(0, blue);
+      dst[dst_offset + 1] = Math.max(0, green);
+      dst[dst_offset + 3] = 255;  // Ignore alpha channel for now
     }
   }
-};
 
+  return output;
+};
 
 $(document).ready(function(){
 
@@ -326,11 +377,9 @@ function initialCanvasData() {
 function drawCanvas($canvas, source_image_data) {
   var width = ImageFiltersEnvironment.BASE_WIDTH * ImageFiltersEnvironment.scale_factor;
   var height = ImageFiltersEnvironment.BASE_HEIGHT * ImageFiltersEnvironment.scale_factor;
-
   $canvas.attr('width', width + 'px');
   $canvas.attr('height', height + 'px');
 
-  var kernel = $canvas.data('kernel')
   canvas_context = $canvas[0].getContext('2d');
   canvas_data = source_image_data;
 
@@ -360,12 +409,47 @@ function drawCanvases() {
 };
 
 function resetCanvases() {
-  
+
 }
 
-function applySimpleFilter() {
+function apply(filter, var_args) {
   // runFilter('grayscale', ImageFilters.grayscale);
   // runFilter('blurC', ImageFilters.convolute, ImageFiltersEnvironment.kernel);
+  generic_args = [];
+  for (var i = 1; i < arguments.length; i += 1) {
+    generic_args.push(arguments[i]);
+  }
+
+  $('#interactive-image-filters-canvas-parent-container canvas').each(function () {
+    var image = $(this)[0];
+    var args = [filter, image].concat(generic_args);
+
+    var output = ImageFilters.filterImage.apply(ImageFilters, args);
+    drawCanvas($(this), output);
+  });
+}
+
+function apply_grayscale() {
+  apply(ImageFilters.grayscale);
+}
+
+function apply_threshold() {
+  var $slider = $('#interactive-image-filters-threshold-slider')[0];
+  var threshold = $slider.value;
+  apply(ImageFilters.threshold, threshold);
+}
+
+function apply_brightness() {
+  var $slider = $('#interactive-image-filters-brightness-slider')[0];
+  var value = parseInt($slider.value);
+  apply(ImageFilters.brightness, value);
+}
+
+function apply_simple_kernel() {
+  var $selector = $('#interactive-image-filters-simple-kernel-selector')[0];
+  var kernel_name = $selector.value;
+  var kernel = ImageFiltersEnvironment.simple_kernels[kernel_name];
+  apply(ImageFilters.convolute, kernel);
 }
 
 // From jquerybyexample.net/2012/06/get-url-parameters-using-jquery.html

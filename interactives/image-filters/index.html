@@ -44,6 +44,46 @@
 
       <div id="interactive-image-filters-canvas-parent-container"></div>
 
+      <div class="row">
+        <div class="col s12 m4">
+          <h5>Mode Select</h5>
+          <select id="interactive-image-filters-mode-select-control-image" class="browser-default">
+            <option value="threshold">Threshold</option>
+            <option value="grayscale">Grayscale</option>
+            <option value="brightness">Brightness</option>
+          </select>
+        </div>
+        <div id="interactive-image-filters-grayscale-controls" class="col s12 m4">
+          <h5>Grayscale Controls</h5>
+          <!-- TODO: <button onclick="">Preview</button> -->
+          <button onclick="apply_grayscale()">Apply</button>
+        </div>
+        <div id="interactive-image-filters-threshold-controls" class="col s12 m4">
+          <h5>Threshold Controls</h5>
+          <label for="interactive-image-filters-threshold-slider">Threshold Value:</label>
+          <input id="interactive-image-filters-threshold-slider" type="range" name="threshold" value="100" min="0" max="255" step="1">
+          <button onclick="apply_threshold()">Apply</button>
+        </div>
+        <div id="interactive-image-filters-brightness-controls" class="col s12 m4">
+          <h5>Brightness Controls</h5>
+          <label for="interactive-image-filters-brightness-slider">Brightness Value:</label>
+          <input id="interactive-image-filters-brightness-slider" type="range" name="threshold" value="0" min="-40" max="40" step="1">
+          <button onclick="apply_brightness()">Apply</button>
+        </div>
+        <div id="interactive-image-filters-simple-kernel-controls" class="col s12 m4">
+          <h5>Simple Kernels</h5>
+          <select id ="interactive-image-filters-simple-kernel-selector" class="browser-default">
+            <option value="identity">Identity</option>
+            <option value="sharpen">Sharpen</option>
+            <option value="box_blur">Box Blur</option>
+            <option value="gaussian_blur">Gaussian Blur</option>
+            <option value="edge_detect">Edge Detect</option>
+          </select>
+          <!-- TODO: Show kernel -->
+          <button onclick="apply_simple_kernel()">Apply</button>
+        </div>
+      </div>
+
       <!-- Source canvas for loading images, hidden from user -->
       <canvas id="interactive-image-filters-source-canvas"></canvas>
 
