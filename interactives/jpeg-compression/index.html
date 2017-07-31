@@ -21,7 +21,7 @@
 <div class="container">
 <div class="row interactive center-align">
 </div>
-<div class="row interactive left-align">
+<div class="row interactive left-align" id="images">
     <div class="col s5 relative" id="big-image">
         <h6>Drag the square around the image:</h6>
         <canvas id="before-image-canvas" width="360" height="240"></canvas>
@@ -47,11 +47,20 @@
                 <input type="checkbox"><span class="lever"></span></label>
         </div>
     </div>
+    <div class="col s3" id="puzzle-stuff">
+        <h6>Instructions</h6>
+        <p>Drag the numbers below the basis functions to make the image shown on the left.</p>
+        <p id="level-specific">Since you are on Level 1 - the image can be made using just one basis function.</p>
+        <p>Press the help button to have 1 basis function set to the correct value for you.</p>
+
+        <a class="waves-effect waves-light btn" id="helpButton"><i class="material-icons left">help</i>Help Me</a>
+    </div>
 </div>
 <div class="row interactive left-align">
     <div class="col s8">
         <!-- ### Start of required HTML for inline interactives ### -->
         <div id="jpeg-compression">
+            <h6>Basis functions</h6>
             <table id="dct-table">
             </table>
         </div>
