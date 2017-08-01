@@ -48,7 +48,7 @@
         <div id="interactive-image-filters-mode-controls" class="col s12 m4">
           <h5>Mode Select</h5>
           <label for="interactive-image-filters-mode-select-control">Selected Mode:</label>
-          <select id="interactive-image-filters-mode-select-control" class="browser-default" onchange="changeControlMode()">
+          <select id="interactive-image-filters-mode-select-control" class="browser-default">
             <option value="grayscale" selected="selected">Grayscale</option>
             <option value="threshold">Threshold</option>
             <option value="brightness">Brightness</option>
@@ -62,24 +62,24 @@
         <div id="interactive-image-filters-grayscale-controls" class="col s12 m4">
           <h5>Grayscale Controls</h5>
           <!-- TODO: <button onclick="">Preview</button> -->
-          <button onclick="apply_grayscale()">Apply</button>
+          <button id="interactive-image-filters-grayscale-apply-button">Apply</button>
         </div>
         <div id="interactive-image-filters-threshold-controls" class="col s12 m4" style="display:none">
           <h5>Threshold Controls</h5>
           <label for="interactive-image-filters-threshold-slider">Threshold Value:</label>
           <input id="interactive-image-filters-threshold-slider" type="range" name="threshold" value="100" min="0" max="255" step="1">
-          <button onclick="apply_threshold()">Apply</button>
+          <button id="interactive-image-filters-threshold-apply-button">Apply</button>
         </div>
         <div id="interactive-image-filters-brightness-controls" class="col s12 m4" style="display:none">
           <h5>Brightness Controls</h5>
           <label for="interactive-image-filters-brightness-slider">Brightness Adjust:</label>
           <input id="interactive-image-filters-brightness-slider" type="range" name="threshold" value="0" min="-40" max="40" step="1">
-          <button onclick="apply_brightness()">Apply</button>
+          <button id="interactive-image-filters-brightness-apply-button">Apply</button>
         </div>
         <div id="interactive-image-filters-simple-kernel-controls" class="col s12 m4" style="display:none">
           <h5>Kernels</h5>
           <label for="interactive-image-filters-simple-kernel-selector">Selected Kernel:</label>
-          <select id ="interactive-image-filters-simple-kernel-selector" class="browser-default" onchange="updateSimpleKernelTable()">
+          <select id ="interactive-image-filters-simple-kernel-selector" class="browser-default">
             <option value="identity">Identity</option>
             <option value="sharpen">Sharpen</option>
             <option value="box_blur">Box Blur</option>
@@ -89,7 +89,7 @@
           <label for="interactive-image-filters-simple-kernel-table">Kernel:</label>
           <table id="interactive-image-filters-simple-kernel-table" class="interactive-image-filters-kernel-table">
           </table>
-          <button onclick="apply_simple_kernel()">Apply</button>
+          <button id="interactive-image-filters-simple-kernel-apply-button">Apply</button>
         </div>
       </div>
 
@@ -97,6 +97,7 @@
       <canvas id="interactive-image-filters-source-canvas"></canvas>
 
       <link rel="stylesheet" href="./css/image-filters.css">
+      <script src="./js/filters.js"></script>
       <script src="./js/image-filters.js"></script>
     </div>
     </div>
