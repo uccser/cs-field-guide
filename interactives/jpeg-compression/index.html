@@ -29,12 +29,12 @@
         <div class="draggable" id="little-drag-square"></div>
     </div>
     <div class="col s3" id="puzzle-stuff">
-        <h6>Instructions</h6>
+        <h5>Instructions</h5>
         <p>Adjust the numbers below the basis functions to make the image on the right.</p>
+        <p>The error value below shows how different the two images are. The goal is to make is equal zero.</p>
+        <p id="mse">0</p>
         <p id="level-specific">Level 1 - the image can be made using just 1 basis function.</p>
-        <p>Press the help button to have 1 basis function set to the correct value for you.</p>
 
-        <a class="waves-effect waves-light btn" id="helpButton"><i class="material-icons left">help</i>Help Me</a>
     </div>
     <div class="col s3" id="before">
         <h6>Original Image Pixels</h6>
@@ -58,19 +58,23 @@
 
 </div>
 <div class="row interactive left-align">
-    <div class="col s8">
+    <div class="col s6">
         <!-- ### Start of required HTML for inline interactives ### -->
         <div id="jpeg-compression">
-            <h6>Basis functions</h6>
+            <h5>Basis functions</h5>
             <table id="dct-table">
             </table>
         </div>
         <script type="text/javascript" src="./js/dct.js"></script>
         <!-- ### End of required HTML for inline interactives ### -->
     </div>
-    <div class="col s4" id="puzzle-next-level">
-        <h5>That's correct!</h5>
-        <a class="waves-effect waves-light btn" id="nextLevelButton"><i class="material-icons left">navigate_next</i>Next Level</a>
+    <div class="col s4" id="help">
+        <p>Press the help button to have 1 basis function set to the correct value for you.</p>
+        <a class="waves-effect waves-light btn" id="helpButton"><i class="material-icons left">help</i>Help Me</a>
+        <div id="puzzle-next-level">
+            <h5>That's correct!</h5>
+            <a class="waves-effect waves-light btn" id="nextLevelButton"><i class="material-icons left">navigate_next</i>Next Level</a>
+        </div>
     </div>
     <div class="col s4" id="right-of-dct">
         <a class="waves-effect waves-light btn" id="quantisationButton"><i class="material-icons left">flare</i>Apply

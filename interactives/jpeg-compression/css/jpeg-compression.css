@@ -71,7 +71,6 @@
     width: 240px;
     float: left;
     margin-left: 10px;
-
 }
 
 #after {
@@ -143,3 +142,12 @@
     margin-left: 10px;
 }
 
+#nextLevelButton {
+     width: 200px;
+ }
+#helpButton {
+    width: 200px;
+}
+#right-of-dct, #help {
+    margin-top: 20px;
+}

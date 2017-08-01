@@ -104,6 +104,11 @@ $(function () {
         };
 
         showDiff(closeUp8By8Var) {
+            this.updateDiff(closeUp8By8Var);
+            this.setCurrentLabels(this.differenceLabels);
+        };
+
+        updateDiff(closeUp8By8Var) {
             var labels = closeUp8By8Var.getColorLabels();
             var current = this.getColorLabels();
             var diffValues = [];
@@ -116,8 +121,10 @@ $(function () {
 
             }
             this.differenceLabels = diffValues;
-            this.setCurrentLabels(diffValues);
-        };
+            showMSE(calulateMeanSquaredError(this.differenceLabels));
+        }
+
+
 
         setLabelsToCurrentColorVal() {
             this.setCurrentLabels(this.colourLabels);
@@ -175,7 +182,7 @@ $(function () {
             this.setupLevel();
         }
 
-        checkForMatch () {
+        static checkForMatch () {
             if (arraysEqual(after.getColorLabels(), before.getColorLabels())) {
                 $("#puzzle-next-level").show();
             } else {
@@ -185,8 +192,10 @@ $(function () {
 
         giveHelp () {
             var numberValue = Math.floor(Math.random() * this.level);
-            while(this.helpGiven.indexOf(numberValue) >= 0) {
+            var count = 0;
+            while(this.helpGiven.indexOf(numberValue) >= 0 && count < 64) {
                 numberValue = Math.floor(Math.random() * this.level)
+                count++;
             }
             this.helpGiven.push(numberValue);
             var currentIndex = 0;
@@ -202,6 +211,9 @@ $(function () {
             }
             dctGrid.setSpecificValue(helpIndex, this.currentLevel[helpIndex]);
             drawAfterFromDCT();
+            if(this.helpGiven.length === puzzle.level) {
+                $("#helpButton").addClass('disabled');
+            }
         };
 
         setupLevel () {
@@ -256,6 +268,8 @@ $(function () {
         dragSmallSquare();
         createBigImage();
         $("#puzzle-stuff").hide();
+        after.toggleDifference(before);
+        after.toggleDifference(before);
     } else {
         $("#right-of-dct").hide();
         $("#big-image").hide();
@@ -272,7 +286,7 @@ $(function () {
         dctGrid.updateValues();
         drawAfterFromDCT();
         if (puzzleSetting.PUZZLE) {
-            puzzle.checkForMatch();
+            Puzzle.checkForMatch();
         }
     });
 
@@ -281,6 +295,7 @@ $(function () {
         puzzle.setupLevel();
         $("#puzzle-next-level").hide();
         $("#level-specific").text("Level " + puzzle.level + " - the image can be made by combining " + puzzle.level + " basis functions.");
+        $("#helpButton").removeClass('disabled');
 
     });
 
@@ -303,8 +318,12 @@ $(function () {
 
     $("#helpButton").click(function () {
         puzzle.giveHelp();
-        puzzle.checkForMatch();
+        Puzzle.checkForMatch();
     });
+
+    function showMSE(mse) {
+        $("#mse").text(mse);
+    }
 
     // Compares two arrays for equality.
     function arraysEqual(a, b) {
@@ -327,6 +346,18 @@ $(function () {
         canvasContext.webkitImageSmoothingEnabled = false;
         canvasContext.msImageSmoothingEnabled = false;
         canvasContext.imageSmoothingEnabled = false;
+    }
+
+    function calulateMeanSquaredError(input) {
+        var sum = 0;
+        for(var i = 0; i < input.length; i++) {
+            // Have to remove the plus signs in the difference labels.
+            if(input[i].toString().indexOf("+") == 0){
+                input[i] = parseInt(input[i].substr(0));
+            }
+            sum += input[i];
+        }
+        return sum/64;
     }
 
 
@@ -518,6 +549,7 @@ $(function () {
         if (after.diff) {
             after.showDiff(before);
         } else {
+            after.updateDiff(before);
             after.setCurrentLabels(inverse);
         }
     }
