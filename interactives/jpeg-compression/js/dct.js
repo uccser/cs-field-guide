@@ -268,6 +268,7 @@ $(function () {
         dragSmallSquare();
         createBigImage();
         $("#puzzle-stuff").hide();
+        $("#help").hide();
         after.toggleDifference(before);
         after.toggleDifference(before);
     } else {
