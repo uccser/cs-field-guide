@@ -8,7 +8,7 @@ Trainsylvania.stations = {
   'central' : 'Central Station',
   'city'    : 'City Mall Station',
   'east'    : 'East Station',
-  'happy'   : 'Happyland Station',
+  'railington'   : 'Railington Station',
   'midway'  : 'Midway Station',
   'north'   : 'North Station',
   'south'   : 'South Station',
@@ -18,11 +18,11 @@ Trainsylvania.stations = {
 Trainsylvania.station_destinations = {
   'central' : {'a': 'city'    ,'b': 'midway'},
   'city'    : {'a': 'west'    ,'b': 'south'},
-  'east'    : {'a': 'west'    ,'b': 'happy'},
-  'happy'   : {'a': 'city'    ,'b': 'east'},
-  'midway'  : {'a': 'north'   ,'b': 'happy'},
+  'east'    : {'a': 'west'    ,'b': 'railington'},
+  'railington'   : {'a': 'city'    ,'b': 'east'},
+  'midway'  : {'a': 'north'   ,'b': 'railington'},
   'north'   : {'a': 'central' ,'b': 'suburb'},
-  'south'   : {'a': 'city'    ,'b': 'happy'},
+  'south'   : {'a': 'city'    ,'b': 'railington'},
   'suburb'  : {'a': 'west'    ,'b': 'central'},
   'west'    : {'a': 'east'    ,'b': 'central'}
 };

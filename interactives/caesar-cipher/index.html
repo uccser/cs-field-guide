@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <!-- ### Enter your interactive title in the title block ### -->
     <title>Caesar Cipher</title>
-    <link rel="stylesheet" href="../base-files/css/normalize.css">
+    <link rel="stylesheet" href="../base-files/css/third-party/normalize.css">
     <!--Import materialize.css-->
-    <link rel="stylesheet" href="../base-files/css/materialize.min.css" type="text/css" media="screen,projection"/>
-    <script src="../base-files/js/modernizr.js"></script>
+    <link rel="stylesheet" href="../base-files/css/third-party/materialize.min.css" type="text/css" media="screen,projection"/>
+    <script src="../base-files/js/third-party/modernizr.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 </head>
 
@@ -22,7 +22,7 @@
         </div>
         <div class="col s12 m4">
             <h4>Rotation Amount</h4>
-            <input id="interactive-caesar-key-input" type="number" min="1" max="26" value="1" onkeydown="return isNumber(event,this);" class="interactive-input">
+            <input id="interactive-caesar-key-input" type="number" min="1" max="26" value="1" class="interactive-input">
         </div>
         <div class="col s12 m4">
             <h4>Ciphertext</h4>
@@ -30,10 +30,8 @@
             <button id="interactive-caesar-decrypt" type="button" class="waves-effect waves-light btn btn-expand">Decrypt</button>
         </div>
     <link rel="stylesheet" href="./css/caesar-cipher.css">
-    <script src="./lib/zen-observable.js"></script>
-    <script src="./lib/async.js"></script>
     <script src="./js/caesar.js" type="text/javascript"></script>
-    <script src="../base-files/js/iframeResizer.contentWindow.min.js"></script>
+    <script src="../base-files/js/third-party/iframeResizer.contentWindow.min.js"></script>
     </div>
 </body>
 </html>

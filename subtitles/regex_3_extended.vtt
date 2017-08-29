@@ -1,0 +1,82 @@
+WEBVTT
+
+NOTE
+Computer Science Education Research,
+University of Canterbury, New Zealand
+Subtitle file for the video "Regular Expressions - 3 - Extended Syntax"
+Author: Alasdair Smith
+Language: English
+Date: 20/06/17
+
+00:00.000 --> 00:04.600
+Let’s say we want to match every number in a text.
+
+00:04.600 --> 00:09.600
+Numbers are made up of
+one or more digits concatenated together.
+
+00:09.600 --> 00:21.000
+Using our basic regex symbols that would be any digit:
+<00:14.000>0 or 1 or 2 or 3 or 4 or 5 or 6 or 7 or 8 or 9,
+
+00:21.000 --> 00:31.600
+concatenated with zero or more of any digit:
+<00:24.800>0 or 1 or 2 or 3 or 4 or 5 or 6 or 7 or 8 or 9 star.
+
+00:31.600 --> 00:36.400
+Now this is <i>far</i> too long for a busy computer scientist.
+
+00:36.400 --> 00:44.600
+Thankfully, we can use some extended regex syntax
+to describe this and others using only a few symbols.
+
+00:44.600 --> 00:57.400
+In many systems, a list of symbols between square brackets,
+like [0,1,2,3,4,5] means “choose one from this list,”
+
+00:57.400 --> 01:07.800
+and we can shorten this further to [0-5],
+which means “choose any symbol in the range 0 to 5."
+
+01:07.800 --> 01:16.000
+But in our example, we want any single digit,
+so we can use another code: backslash d (\d).
+
+01:16.000 --> 01:26.200
+\d(\d)* is so much shorter now,
+but it still matches exactly the same pattern!
+
+01:26.200 --> 01:32.400
+In fact we can shorten it even more
+by introducing the plus notation.
+
+01:32.400 --> 01:40.600
+While A* matches zero or more As,
+A+ matches one or more As.
+
+01:40.600 --> 01:49.000
+So we can now write our regex formula
+that will match any number as (\d)+.
+
+01:49.000 --> 01:55.800
+Other common symbols are: the question mark,
+which matches an optional occurrence of the symbol;
+
+01:55.800 --> 02:02.600
+a number in curly braces, which matches exactly
+that number of the previous symbol;
+
+02:02.600 --> 02:08.800
+and the period or full stop,
+which matches any single character once.
+
+02:08.800 --> 02:17.000
+Remember, all of these extended regex symbols
+may be pretty fancy, and they shorten things a lot.
+
+02:17.000 --> 02:23.800
+But they are really just shortcuts that could be
+written longhand using the four basic symbols;
+
+02:23.800 --> 02:27.600
+bar, star and the parentheses.

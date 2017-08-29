@@ -1,4 +1,4 @@
-from jinja2 import Environment, DictLoader
+from jinja2 import Environment, DictLoader, Template
 
 class WebsiteGenerator:
     """Object for generating websites from a guide object"""
@@ -8,3 +8,6 @@ class WebsiteGenerator:
 
     def render_template(self, template, context):
         return self.env.get_template(template).render(context)
+
+    def render_string(self, string, context):
+        return Template(string).render(context)

@@ -2,7 +2,7 @@
 
 {comment explain different views of algorithm (programming context) and Algorithm (that have interesting complexity); use https://www.youtube.com/watch?v=6hfOvs8pY1k for the former?}
 
-{video url="http://www.youtube.com/embed/FOwCCvHEfY0"}
+{video url="https://www.youtube.com/embed/FOwCCvHEfY0"}
 
 ## What's the big picture?
 
@@ -24,21 +24,7 @@ Often you can get away with describing a process just using some sort of informa
 "please get me a glass of water".
 A human can understand what this means and can figure out how to accomplish this task by thinking, but a computer would have no idea how to do this!
 
-{comment}
-[Add new text and interactive here for finding the high score in a table.
-Interactive could have doors or boxes to open with numbers in them; only one is visible at a time, and the challenge is to find the highest number.
-There could be a space to type the number, and a button to press to check if it's correct.
-The preceding text could be as follows:]
-For example, suppose you have to work out the highest score from a group of players.
-It sounds easy enough for a small list like this one:
-[image of list of 5 high scores]
-But what about this list:
-[image of list of about 100 high scores, not lined up, non-proportional font, not so easy to spot large numbers]
-Now you need some sort of organised process --- an algorithm --- to find the highest score with absolute certainty.
-Try finding the high score the following interactive, thinking about what process you'll use to be sure of getting the right answer.
-(The process will be fairly simple; we're not looking for a particularly clever solution, but just want to think about how to express the process really clearly.)
-[note: will also need to make slight changes to the next few paragraphs that mention a high-score algorithm.]
-{comment end}
+{interactive name="high-score-boxes" type="whole-page" text="High Score Boxes"}
 
 An example in a computational context might be if you wanted to find a high score in a table of scores:
 go through each score keeping track of the largest so far.
@@ -50,7 +36,7 @@ In contrast, an {glossary-link term="algorithm" reference-text="introduction"}al
 For our previous non-computing example, the algorithm might be
 1) Go to the kitchen. 2) Pick up a glass. 3) Turn on the tap. 4) Put the glass under the running water and remove it once it is almost full. 5) Turn off the tap. 6) Take the glass back to the person who gave the instruction. A human could follow these instructions easily, but it's still using general English language rather than a strict list of computer instructions.
 
-Algorithms are often expressed using a loosely defined format called [pseudo-code](http://en.wikipedia.org/wiki/Pseudocode),
+Algorithms are often expressed using a loosely defined format called [pseudo-code](https://en.wikipedia.org/wiki/Pseudocode),
 which matches a programming language fairly closely,
 but leaves out details that could easily be added later by a programmer.
 Pseudocode doesn't have strict rules about the sorts of commands you can use, but it's halfway between an informal instruction and a specific computer program.
@@ -90,7 +76,7 @@ and would tell the robot exactly how to retrieve a glass of water and bring it b
 With the high-score problem, it would be written in a particular language; even in a particular language there are lots of choices about how to write it, but here's one particular way of working out a high score
 (don't worry too much about the detail of the program if the language isn't familiar; the main point is that you could give it to a computer that runs Python, and it would follow the instructions exactly):
 
-```
+```python3
 def find_high_score(scores):
     if len(scores) == 0:
         print("No high score, table is empty")
@@ -100,7 +86,7 @@ def find_high_score(scores):
         for score in scores[1:]:
             if score > highest_so_far:
                 highest_so_far = score
-    return(highest_so_far)
+        return highest_so_far
 ```
 
 But here's another program that implements exactly the same algorithm, this time in the Scratch language.
@@ -111,8 +97,8 @@ Both of the above programs are the same algorithm.
 In this chapter we'll look in more detail about what an algorithm is, and why they are such a fundamental idea in computer science.
 Because algorithms exist even if they aren't turned in to programs, we won't need to look at programs at all for this topic, unless you particularly want to.
 
-
 {glossary-link term="Algorithm" reference-text="algorithm cost"}{glossary-link end}
+
 ### Algorithm cost
 
 When Computer Scientists are comparing algorithms they often talk about the 'cost' of an algorithm. The cost of an algorithm can be interpreted in several different ways, but it is always related to how well an algorithm performs based on the size of its input, *n*. In this chapter we will talk about the cost of an algorithm as either the time it takes a program (which performs the algorithm) to complete, or the number of steps that the algorithm makes before it finishes.
@@ -124,7 +110,7 @@ Not all algorithms take double the time for double the input; some take a lot mo
 That's worth knowing in advance because we usually need our programs to scale up well;
 in the case of the high scores, if you're running a game that suddenly becomes popular, you want to know in advance that the high score algorithm will be fast enough if you get more scores to check.
 
-{panel type="extra-for-experts" "Algorithm complexity"}
+{panel type="extra-for-experts" summary="Algorithm complexity"}
 The formal term for working out the cost of an algorithm is [algorithm analysis](https://en.wikipedia.org/wiki/Analysis_of_algorithms),
 and we often refer to the cost as the algorithm's *complexity*.
 The most common complexity is the "time complexity" (a rough idea of how long it takes to run),
@@ -132,13 +118,37 @@ but often the "space complexity" is of interest - how much memory or disk space 
 
 There's more about how the cost of an algorithm is described in industry,
 using a widely agreed on convention called 'Big-O Notation',
-in the "The Whole Story!" section at the end of this chapter.
+in the ["The whole story!"](chapters/algorithms.html#the-whole-story) section at the end of this chapter.
 {panel end}
 
 The amount of time a program which performs the algorithm takes to complete may seem like the simplest cost we could look at, but this can actually be affected by a lot of different things, like the speed of the computer being used, or the programming language the program has been written in. This means that if the time the program takes to complete is used to measure the cost of an algorithm it is important to use the same program and the same computer (or another computer with the same speed) for testing the algorithm with different numbers of inputs.
 
 The number of operations (such as comparisons of data items) that an algorithm makes however will not change depending on the speed of a computer, or the programming language the program using the algorithm is written in. Some algorithms will always make the same number of comparisons for a certain input size, while others might vary.
 
+### Algorithm Correctness
+
+If we develop or are given an algorithm to solve a problem, how do we know that it works?
+Sometimes we create test cases to verify the algorithm produces correct output for specific input values.
+While this is a useful practice and can help verify that we are on the right track, it is not enough to show that our algorithm is correct.
+The old adage "even a broken watch is correct twice a day" is a good analogy.
+Even an algorithm that is correct for two test cases might be incorrect for every other input.
+A computer scientist must reason formally or mathematically about an algorithm to show its correctness.
+Typically this is done by classifying ranges of input values and showing that algorithm produces expected results for boundary values of the range and all values in between.
+
+Correctness is particularly important when comparing two algorithms that solve the same problem.
+If one algorithm is very fast to complete but produces incorrect results some of the time it may be far less useful than a correct algorithm that is slower.
+Correctness is also important when using an algorithm as the building block for another algorithm.
+Here is an algorithm for assigning animals as pets to people on a waitlist:
+
+1. Search for the person who is earliest on the the waitlist
+2. Assign the person who is earliest on the waitlist with their preferred animal as a pet
+3. Repeat 1-2 until no people remain on the waitlist
+
+This algorithm relies on a correct search algorithm in the first step.
+If the search algorithm incorrectly chose a random person, the algorithm for assigning animals as pets would also be incorrect.
+
+As you will see in this chapter with searching and sorting there exist multiple correct algorithms for the same problem.
+Often there are good reasons to know multiple correct algorithms because there are tradeoffs in simplicity, algorithm cost, and assumptions about inputs.
 
 ### Searching and Sorting
 
@@ -150,8 +160,6 @@ They also happen to be great for illustrating some of the key concepts that aris
 ## Searching
 
 {panel type="teacher-note" summary="Presenting searching in the classroom"}
-
-{glossary-definition term="Binary search" definition="Searching a sorted list by looking at the middle item, and then searching the appropriate half recursively (used for phone books, dictionaries and computer algorithms)."}
 
 The present searching game in this section is split into two parts, the first corresponds to the Linear Search algorithm (also known as Sequential Search) and the second corresponds to {glossary-link term="Binary Search"}Binary Search{glossary-link end}. We recommend you play through the levels yourself for a while, or after reading this description. It is based on the [CS Unplugged Battleships game](http://csunplugged.com/searching-algorithms) which can be used as a classroom activity to enforce the lessons in this chapter (the hashing activity is not used for the present searching game). The
 
@@ -166,19 +174,13 @@ Searching through collections of data is something computers have to do all the 
 
 Lets investigate searching with a game...
 
-{button link="http://www.csfieldguide.org.nz/releases/1.9.9/_static/interactives/alg/searching/index.html?max=2" text="Searching Boxes - Part 1"}
-{comment}
-{interactive name="searching-boxes" type="whole-page" title="Searching Boxes - Part 1" parameters="max=2"}
-{comment end}
+{interactive name="searching-algorithms" type="whole-page" text="Searching Boxes - Part 1" parameters="max=2"}
 
 You may have noticed that the numbers on the monsters and pets in the game were in a random order, which meant that finding the pet was basically luck! You might have found it on your first try, or if you were less lucky you might have had to look inside almost all the presents before you found it. This might not seem like such a bad thing since you had enough lives to look under all the boxes, but imagine if there had been 1,000 boxes, or worse 1,000,000! It would have taken far too long to look through all the boxes and the pet might have never been found.
 
 Now this next game is slightly different. You have less lives, which makes things a bit more challenging, but this time the numbers inside the boxes will be in order. The monsters, or maybe the pet, with the smallest number is in the present on the far left, and the one with the largest number is in the present on the far right. Let's see if you can collect all the pets without running out of lives...
 
-{button link="http://www.csfieldguide.org.nz/releases/1.9.9/_static/interactives/alg/searching/index.html?level=3" text="Searching Boxes - Part 2"}
-{comment}
-{interactive name="searching-boxes" type="whole-page" text="Searching Boxes - Part 2" parameters="level=3"}
-{comment end}
+{interactive name="searching-algorithms" type="whole-page" text="Searching Boxes - Part 2" parameters="level=3" thumbnail="thumbnail2.png"}
 
 Now that you have played through the whole game (and hopefully found all of the lost pets!) you may have noticed that even though you had less lives in the second part of the game, and lots of presents to search through, you were still able to find the pet. Why was this possible?
 
@@ -196,6 +198,8 @@ If you watched the video at the beginning of the chapter you might be thinking t
 {panel end}
 
 ### Binary search
+
+{glossary-definition term="Binary Search" definition="Searching a sorted list by looking at the middle item, and then searching the appropriate half recursively (used for phone books, dictionaries and computer algorithms)."}
 
 A much better algorithm to use is called Binary Search. In the second part of the present searching game the boxes were in order, which meant you were able to be more clever when you were searching for the pet, and you might have been using a Binary Search without realising!
 
@@ -227,14 +231,14 @@ It is important to remember that you can only perform a Binary Search if the ite
 {panel type="project" summary="Code to   run linear and binary search for yourself"}
 The following files will run linear and binary search in various languages; you can use them to generate random lists of values and measure how long they take to find a given value.
 Your project is to measure the amount of time taken as the number of items (*n*) increases; try drawing a graph showing this.
-- [Scratch](files/linear-binary-search-scratch.zip)
-- [Python (Version 2)](files/linear-binary-search-python2.py)
-- [Python (Version 3)](files/linear-binary-search-python3.py)
+- [Scratch](files/linear-binary-search-scratch.zip) - [Download Scratch here](https://scratch.mit.edu/scratch2download/)
+- [Python (Version 2)](files/linear-binary-search-python2.py) - [Download Python 2 here](https://www.python.org/downloads/)
+- [Python (Version 3)](files/linear-binary-search-python3.py) - [Download Python 3 here](https://www.python.org/downloads/)
 {panel end}
 
 {glossary-link term="Algorithm" reference-text="sorting algorithms"}{glossary-link end}
 
-## Sorting algorithms
+## Sorting
 
 {panel type="teacher-note" summary="Why are we also covering sorting?"}
 Our main points have already been made --- what an algorithm is, how to estimate its cost, and that the cost isn't always proportional to the amount of data.
@@ -254,7 +258,7 @@ Use the scales to compare the boxes (you can only compare two boxes at a time) a
 
 If the interactive does not run properly on your computer you can use a set of physical balance scales instead; just make sure you can only tell if one box is heavier than the other, not their exact weight (so not digital scales that show the exact weight).
 
-{interactive name="sorting-algorithms" type="whole-page" text="Scales Interactive"}
+{interactive name="sorting-algorithms" type="whole-page" text="Scales interactive"}
 
 {comment}
 TODO: link back to the unplugged activity
@@ -284,7 +288,7 @@ For example: To calculate the number of comparisons required for 20 boxes, using
 
 = 190 comparisons
 
-Some students may recognise this formula as Gauss' trick (see [the anecdotes about Gauss on Wikipedia](http://en.wikipedia.org/wiki/Carl_Friedrich_Gauss#Anecdotes). One way of expressing this trick for the above example is that 20 boxes would require summing the numbers 1+2+3+...+17+18+19. If we write the numbers backwards (19+18+17+...3+2+1) then it would be the same sum. Now if we add these two lists together, pairing up the corresponding numbers, we get (1+19)+(2+18)+(3+17)+...+(17+3)+(18+2)+(19+1). Each pair in this sum adds up to 20, and there are 19 pairs, so adding the two lists together is just 20x19. Since both lists add up to the same amount, the original sum is a half of that, or 20x19/2, which is 190 comparisons, which is what we got from the formula above. If students can follow this reasoning then they can easily work out the comparisons needed for a large number of boxes, and the don't have to use the "magic" formula given above. There's a visual explanation in [this video](http://www.numberphile.com/videos/one_to_million.html) and more examples on [this page](http://nzmaths.co.nz/gauss-trick-staff-seminar).
+Some students may recognise this formula as Gauss' trick (see [the anecdotes about Gauss on Wikipedia](https://en.wikipedia.org/wiki/Carl_Friedrich_Gauss#Anecdotes). One way of expressing this trick for the above example is that 20 boxes would require summing the numbers 1+2+3+...+17+18+19. If we write the numbers backwards (19+18+17+...3+2+1) then it would be the same sum. Now if we add these two lists together, pairing up the corresponding numbers, we get (1+19)+(2+18)+(3+17)+...+(17+3)+(18+2)+(19+1). Each pair in this sum adds up to 20, and there are 19 pairs, so adding the two lists together is just 20x19. Since both lists add up to the same amount, the original sum is a half of that, or 20x19/2, which is 190 comparisons, which is what we got from the formula above. If students can follow this reasoning then they can easily work out the comparisons needed for a large number of boxes, and the don't have to use the "magic" formula given above. There's a visual explanation in [this video](http://www.numberphile.com/videos/one_to_million.html) and more examples on [this page](http://nzmaths.co.nz/gauss-trick-staff-seminar).
 {panel end}
 
 {comment}
@@ -312,7 +316,7 @@ Try this with the scales interactive. Start by moving all the boxes to one side 
 
 To insert another box into the sorted group, compare it to the box that is already in the sorted group and then arrange these two boxes in the correct order. Then to add the next box compare it to these boxes (depending on the weight of the box you might only have to compare it to one!) and then arrange these three boxes in the correct order. Continue inserting boxes until the sorted list is complete. Don't forget to count how many comparisons you had to make!
 
-This algorithm is called Insertion Sort. If you're not quite sure if you've got the idea of the algorithm yet then have a look at [this animation](http://upload.wikimedia.org/wikipedia/commons/0/0f/Insertion-sort-example-300px.gif) from [Wikipedia](http://en.wikipedia.org/wiki/Insertion_sort).
+This algorithm is called Insertion Sort. If you're not quite sure if you've got the idea of the algorithm yet then have a look at [this animation](https://upload.wikimedia.org/wikipedia/commons/0/0f/Insertion-sort-example-300px.gif) from [Wikipedia](https://en.wikipedia.org/wiki/Insertion_sort).
 
 Insertion sort can be described with informal instructions as follows:
 - Take an item from your unsorted list and place it to the side, this will be your sorted list.
@@ -349,14 +353,104 @@ Quicksort can be described in the following way:
 The following files will run selection sort and quicksort in various languages; you can use them to generate random lists of values and measure how long they take to be sorted.
 Note how long these take for various amounts of input (*n*), and show it in a table or graph.
 You should notice that the time taken by Quicksort is quite different to that taken by selection sort.
-- [Scratch](files/selection-quicksort-scratch.zip)
-- [Python (Version 2)](files/selection-quicksort-python2.py)
-- [Python (Version 3)](files/selection-quicksort-python3.py)
+- [Scratch](files/selection-quicksort-scratch.zip) - [Download Scratch here](https://scratch.mit.edu/scratch2download/)
+- [Python (Version 2)](files/selection-quicksort-python2.py) - [Download Python 2 here](https://www.python.org/downloads/)
+- [Python (Version 3)](files/selection-quicksort-python3.py) - [Download Python 3 here](https://www.python.org/downloads/)
 {panel end}
 
 There are dozens of sorting algorithms that have been invented; most of the ones that are used in practice are based on quicksort and/or mergesort. These, and many others, can be seen in this intriguing animated video.
 
-{video url="http://www.youtube.com/watch?v=kPRA0W1kECg"}
+{video url="https://www.youtube.com/watch?v=kPRA0W1kECg"}
+
+## What makes an algorithm?
+We've looked at algorithms that solved well known computational problems of sorting and searching data.
+When a computer scientist approaches a new computational problem that does not already have a well known solution they must create an algorithm.
+
+There are three building blocks to develop a new algorithm: sequencing, selection, and iteration.
+One interesting early result in computer science is that combined, these three building blocks are sufficient to represent any algorithm that solves a computational problem!
+
+### Sequencing
+Sequencing is the technique of deciding the order instructions are executed to produce the correct result.
+Imagine that we have the following instructions (A, B, C) to make a loaf of bread:
+
+- **A** llow to sit at room temperature for 1 hour
+- **B** ake for 30 minutes
+- **C** ombine ingredients
+
+C->A->B is a standard algorithm for a yeast bread.
+A different sequence, for example C->B->A, might produce a result that is edible but not high quality.
+Even worse, a sequence of B->C->A would not even produce something edible.
+
+### Selection
+Selection is the technique of allowing the algorithm to select which instructions to execute depending on criteria.
+Using our previous bread baking example, our algorithm C->A->B works if the ingredients include yeast, but C->B would be faster if the ingredients do not include yeast (for example, the recipe might include baking powder as the rising agent).
+Selection allows us to create one algorithm to solve both cases:
+
+1. Combine ingredients
+2. **If ingredients contain yeast,** allow to sit at room temperature for 1 hour
+3. Bake for 30 minutes
+
+### Iteration
+Iteration allows an algorithm to repeat instructions.
+In its simplest form we might specify the exact number of times.
+For example, here is an algorithm to bake 2 loaves of bread:
+
+1. **Repeat 2 times:**
+    1. Combine ingredients
+    2. If ingredients contain yeast, allow to sit at room temperature for 1 hour
+    3. Bake for 30 minutes
+
+This algorithm clearly works but it would take at least 3 hours to complete!
+If we had to make 20 loaves we would probably want to design a better algorithm.
+We could measure the size of the mixing bowl, how many loaves fit on the table to rise, and how many loaves we could bake at the same time in the oven.
+Our algorithm might then look like:
+
+1. **Repeat 10 times**:
+    1. Combine ingredients **for 2 loaves**
+    2. **Split dough into 2 bread pans**
+    3. If ingredients contain yeast, allow to sit at room temperature for 1 hour
+    4. Bake bread pans in the same oven for 30 minutes
+
+But what if we upgraded to a larger kitchen?
+Most algorithms are written to combine iteration with selection to handle arbitrarily large amounts of data (i.e. an unknown number of loaves of bread).
+We might create a general purpose bread baking algorithm:
+
+1. **While we have enough ingredients for at least one loaf:**
+    1. Combine ingredients **for up to X loaves** (where X is the maximum number of loaves that can fit in the mixing bowl or rising table)
+    2. Split dough into X bread pans
+    3. If ingredients contain yeast, allow to sit at room temperature for 1 hour
+    4. **While there are still bread pans on the rising table:**
+        1. Move **up to Y loaves** from the rising table to the oven (where Y is the maximum number of loaves that can fit in the oven)
+        2. Bake bread pans in the same oven for 30 minutes
+
+*Astute observers will note that this algorithm is still inefficient because the rising table and oven are not used at the same time.
+Designing algorithms that take advantage of parallelism is an important advanced topic in computer science.*
+
+### Combining Algorithms
+One of the advantages of the building blocks perspective is that completed algorithms themselves can now be seen as new blocks we can build with.
+We can connect complete algorithms or we can interleave parts of algorithms to create new algorithms.
+
+For example, a recipe for croutons might be:
+
+1. Cut a loaf of bread into 2cm cubes
+2. Brush cubes lightly with olive oil and season with salt, pepper, and herbs
+3. Bake on large tray, flipping the cubes halfway through
+
+We can connect the algorithm for baking bread in the previous section to this algorithm to create a new algorithm that makes croutons from scratch.
+If we required other ingredients for our recipe, we could connect multiple algorithms to build very complex algorithms.
+
+Often when we have multiple algorithms that solve a problem there are advantages of each algorithm for specific cases.
+Hybrid algorithms take parts of multiple algorithms and combine them to gain the advantages of both original algorithms.
+For example, Timsort is one of the fastest known sorting algorithms in practice and it uses parts of insertion sort and merge sort.
+Insertion sort is used on very small sequences to take advantage of its speed for already or partially ordered sequences.
+Merge sort is used to merge these small sequences into larger ones to take advantage of the better upper bound on algorithm cost for large data sets.
+
+{panel type="curiosity" summary="Why are there so many different programming languages?"}
+So if we know how to define an algorithm, why are there so many programming languages?
+Programming languages are often created or adapted to express algorithms clearly for a specific problem domain.
+For example, it is easier to read mathematical algorithms in Python than Scratch.
+Similarly, data flow algorithms are clearer in visual programming languages like LabVIEW than Python.
+{panel end}
 
 ## The whole story!
 
@@ -364,7 +458,14 @@ We've only really scratched the surface of algorithms in this chapter, as there 
 
 The algorithms introduced in this chapter aren't even necessarily the best for any situation; there are several other common ways of searching (e.g. hashing and search trees) and sorting (e.g. mergesort), and a computer scientist needs to know them, and be able to apply and fine tune the right one to a given situation.
 
-In this chapter we have only talked about the number of comparisons an algorithm makes, and the amount of time a program takes to complete as 'costs' of algorithms. There are actually many other ways of measuring the cost of an algorithm. These include the amount of memory the algorithm uses and its computational complexity. Computer Scientists use 'Big O notation' to more accurately describe the performance or complexity of an algorithm, and you are likely to come across this notation very quickly when investigating the performance of algorithms. It characterises the resources needed by an algorithm and is usually applied to the execution time required, or sometimes the space used by the algorithm.
+In this chapter we have only talked about the number of comparisons an algorithm makes, and the amount of time a program takes to complete as 'costs' of algorithms. There are actually many other ways of measuring the cost of an algorithm. These include the amount of memory the algorithm uses and its computational complexity.
+
+An algorithm often uses computer memory to store temporary data such as a partial sum of a list of numbers or a list of products that match some search criteria.
+With the large size of modern computer memory this may seem to not be as important as the number of steps an algorithm takes, but a poorly performing algorithm in terms of computer memory may be limited in its ability to work with the large data sets common in many industry applications.
+For example, a query algorithm that stored even a single bit for each record it searched could quickly overwhelm a web server's memory if it was searching a large data set such as Netflix's current movie offerings.
+Minimising memory usage while also minimizing the number of steps an algorithm takes is not always possible; there is often a tradeoff between computation and memory usage.
+
+Computer Scientists use 'Big O notation' to more accurately describe the performance or complexity of an algorithm, and you are likely to come across this notation very quickly when investigating the performance of algorithms. It characterises the resources needed by an algorithm and is usually applied to the execution time required, or sometimes the space used by the algorithm.
 
 {panel type="extra-for-experts" summary="Examples of Big O notation"}
 Here are some Big O examples:
@@ -376,7 +477,10 @@ Here are some Big O examples:
 
 Big O Notation however requires some advanced mathematics to explore thoroughly so has been intentionally left out of this main chapter, but if you want to learn more check out the Useful Links section. These topics are looked at in more depth in the Complexity and Tractability chapter.
 
-To make things even more complicated, in practice algorithms are running on computers that have cached memory and virtual memory, where the time to access a particular value can be particularly short, or particularly long. There is a whole range of algorithms that are used for this situation to make sure that the algorithm still runs efficiently in such environments. Such algorithms are still based on the ideas we've looked at in this chapter, but require some clever adjustments to ensure that they work well.
+To make things even more complicated, theoretical analysis techniques such as Big O Notation are extremely useful when designing and predicting performance but empirical analysis such as stopwatch timing shows that in practice algorithm performance can vary greatly due to hardware and operating system design.
+Most computers have cached memory and virtual memory, where the time to access a particular value can be particularly short, or particularly long.
+There is a whole range of algorithms that are used for this situation to make sure that the algorithm still runs efficiently in such environments.
+Such algorithms are still based on the ideas we've looked at in this chapter, but require some clever adjustments to ensure that they work well.
 
 ## Further reading
 
@@ -390,7 +494,8 @@ To make things even more complicated, in practice algorithms are running on comp
 - [CS Unplugged Searching algorithms](http://csunplugged.org/searching-algorithms)
 - CS Unplugged [Sorting algorithms](http://csunplugged.org/sorting-algorithms)
 - [Searching algorithm game, may not be suitable](http://csunplugged.org/divideAndConquer)
-- Wikipedia has more details on [Linear Search](http://en.wikipedia.org/wiki/Linear_search), [Binary Search](http://en.wikipedia.org/wiki/Binary_search), [Selection sort](http://en.wikipedia.org/wiki/Selection_sort), [Insertion sort](http://en.wikipedia.org/wiki/Insertion_sort) and  [Quicksort](http://en.wikipedia.org/wiki/Quicksort).
+- [Video series on Algorithms by Nested](https://www.youtube.com/playlist?list=PLPUZjuDvxs5OFPMjzjz13hq0yP7zJU6D2)
+- Wikipedia has more details on [Linear Search](http://en.wikipedia.org/wiki/Linear_search), [Binary Search](http://en.wikipedia.org/wiki/Binary_search), [Selection sort](http://en.wikipedia.org/wiki/Selection_sort), [Insertion sort](http://en.wikipedia.org/wiki/Insertion_sort), [Quicksort](http://en.wikipedia.org/wiki/Quicksort), and [Timsort](http://en.wikipedia.org/wiki/Timsort).
 - The [Sorting Bricks game](http://mathsite.math.berkeley.edu/sorting/brick.html) is a great way to learn about several sorting algorithms (requires Java).
 - [Sorting Algorithms Visualisations](http://www.sorting-algorithms.com/) shows several different sorting algorithms racing and contains information and pseudocode for each.
 - [Beginner's Guide to Big O Notation](http://rob-bell.net/2009/06/a-beginners-guide-to-big-o-notation/)

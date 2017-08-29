@@ -8,11 +8,11 @@ This chapter supports the vision part of the "Graphics and visual computing" opt
 
 Currently all material in this chapter is relevant to the standard, although students need choose only one or two examples to focus on to meet the requirements of the standard.
 
-This chapter is currently only a sketch of topics; it should be enough for students to make decisions about which optionsns to choose, but over the next month or two we'll add more specific information and interactives to support projects. Currently the interactives only work with images from a webcam, but a new version that students can load their own photos into will be available soon, as this will allow for more controlled experiments with the techniques. The ability to select example images to test these techniques is a useful skill, and a good choice of original images by students helps to show understanding of the purpose of the technique.
+This chapter is currently only a sketch of topics; it should be enough for students to make decisions about which options to choose, but over the next month or two we'll add more specific information and interactives to support projects. Currently the interactives only work with images from a webcam, but a new version that students can load their own photos into will be available soon, as this will allow for more controlled experiments with the techniques. The ability to select example images to test these techniques is a useful skill, and a good choice of original images by students helps to show understanding of the purpose of the technique.
 
 {comment end}
 
-{video url="http://www.youtube.com/embed/bE2u5trQAHM?rel=0"}
+{video url="https://www.youtube.com/embed/bE2u5trQAHM?rel=0"}
 
 ## What's the big picture?
 
@@ -46,7 +46,7 @@ Giving users more information through computer vision is only one part of the st
 
 {comment}
 
-.. http://en.wikipedia.org/wiki/Google_driverless_car
+.. https://en.wikipedia.org/wiki/Google_driverless_car
 
 .. I think for this topic, it could be important to mention the links into math, and also provide links to more advanced stuff, as there will be some high school students who are very confident with math, and could investigate this topic quite possibly to the level that more advanced university students would (and there are probably some that already have!). Graphics seems to be popular with the “geekiest” and “smartest” students.
 
@@ -76,7 +76,7 @@ Digital cameras and human eyes fulfill largely the same function: images come in
 
 {panel type="teacher-note" summary="Digital camera sensors"}
 
-There are a number of different types of digital camera sensor, but for the purposes of this chapter we will be focusing on the [CMOS](http://en.wikipedia.org/wiki/CMOS_sensor”)sensors which are in most consumer electronics. An alternative kind of sensor is the [Charge-Coupled Device (CCD)](http://en.wikipedia.org/wiki/Charge-coupled_device), which is more commonly used for specialist applications such as astronomy.
+There are a number of different types of digital camera sensor, but for the purposes of this chapter we will be focusing on the [CMOS](https://en.wikipedia.org/wiki/CMOS_sensor”) sensors which are in most consumer electronics. An alternative kind of sensor is the [Charge-Coupled Device (CCD)](https://en.wikipedia.org/wiki/Charge-coupled_device), which is more commonly used for specialist applications such as astronomy.
 
 {panel end}
 
@@ -105,7 +105,7 @@ There are well-understood techniques for this, but they have to be careful that 
 
 {panel type="teacher-note" summary="Image noise on Wikipedia"}
 
-The relevant Wikipedia entry is [Image noise](http://en.wikipedia.org/wiki/Image_noise)
+The relevant Wikipedia entry is [Image noise](https://en.wikipedia.org/wiki/Image_noise)
 
 {panel end}
 
@@ -139,7 +139,7 @@ A *Gaussian* blur is another common technique, which assumes that the closest pi
 
 .. [side by side before-and-after image showing a Gaussian blur on a simple image (white square on black?)]
 
-.. http://en.wikipedia.org/wiki/Gaussian_blur
+.. https://en.wikipedia.org/wiki/Gaussian_blur
 
 .. At this point we could do an activity with a noisy image and a Gaussian blur - a light blur improves the picture quality, but increase the blur too much and the features start to become indistinct.
 
@@ -169,7 +169,7 @@ Mathematically, this process is applying a special kind of matrix called a *conv
 
 {comment end}
 
-For your project, investigate the different kinds of noise reduction filter and their settings (mask size, number of iterations) and determine:
+For this activity, investigate the different kinds of noise reduction filter and their settings (mask size, number of iterations) and determine:
 
 - how well they cope with different kinds and levels of noise (you can set this in the interactive).
 - how much time it takes to do the necessary processing (the interactive shows the number of frames per second that it can process)
@@ -178,12 +178,6 @@ For your project, investigate the different kinds of noise reduction filter and 
 You can take screenshots of the image to show the effects in your writeup. You can discuss the tradeoffs that need to be made to reduce noise.
 
 ## Face recognition
-
-{panel type="teacher-note" summary="Introductory activity"}
-
-There is a [introductory activity here](http://csi.dcs.gla.ac.uk/workshop-view.php?workshopID=15) (this uses some simple properties to classify objects). You will need to register as a teacher with the site to download the activity. In the activity, students manually classify photos by measuring properties of real images.
-
-{panel end}
 
 Recognising faces has become a widely used computer vision application.
 These days photo album systems like Picasa and Facebook can try to recognise who is in a photo using face recognition ---
@@ -234,13 +228,7 @@ First let's manually try some methods for recognising whether two photographs sh
 
 You can evaluate the effectiveness of facial recognition in free software such as Google’s Picasa or the Facebook photo tagging system, but uploading photos of a variety of people and seeing if it recognises photos of the same person. Are there any false negatives or positives? How much can you change your face when the photo is being taken to not have it match your face in the system? Does it recognise a person as being the same in photos taken several years apart? Does a baby photo match of a person get matched with them when they are five years old? When they are an adult? Why or why not does this work?
 
-Use the following face recognition interactive to see how well the Haar face recognition system can track a face in the image. What prevents it from tracking a face? Is it affected if you cover one eye or wear a hat? How much can the image change before it isn't recognised as a face? Is it possible to get it to incorrectly recognise something that isn't a face?
-
-{comment}
-
-<a href="http://inspirit.github.com/jsfeat/sample_haar_face.html" target="blank">Open the face recognition interactive using this link and experiment with the settings. You will need a webcam, and the widget will ask you to allow access to it.</a>
-
-{comment end}
+Try using [face recognition on this website](https://inspirit.github.com/jsfeat/sample_haar_face.html) to see how well the Haar face recognition system can track a face in the image. What prevents it from tracking a face? Is it affected if you cover one eye or wear a hat? How much can the image change before it isn't recognised as a face? Is it possible to get it to incorrectly recognise something that isn't a face?
 
 ## Edge detection
 
@@ -257,15 +245,8 @@ And here's a version that has been processed by an edge detection algorithm:
 
 Notice that the grain on the table above has affected the quality; some pre-processing to filter that would have helped!
 
-You can experiment with edge-detection yourself.
-Open the following interactive, which provides a *Canny edge detector* (see the information about [Canny edge detection on Wikipedia](http://en.wikipedia.org/wiki/Canny_edge_detector)).
+You can experiment with edge-detection yourself with the [Canny edge detector on this website](https://inspirit.github.io/jsfeat/sample_canny_edge.html) (see the information about [Canny edge detection on Wikipedia](https://en.wikipedia.org/wiki/Canny_edge_detector)).
 This is a widely used algorithm in computer vision, developed in 1986 by John F. Canny.
-
-{comment}
-
-<a href="http://inspirit.github.com/jsfeat/sample_canny_edge.html" target="blank">Open the edge detection interactive using this link and experiment with settings as below. You will need a webcam, and the widget will ask you to allow access to it.</a>
-
-{comment end}
 
 ### Activity: Edge detection evaluation
 
@@ -281,7 +262,7 @@ The following activity can be used as part of a project for the 3.44 standard. T
 
 {panel end}
 
-With the canny edge detection interactive above, try putting different images in front of the camera and determine how good the algorithm is at detecting boundaries in the image.
+With the canny edge detection website above, try putting different images in front of the camera and determine how good the algorithm is at detecting boundaries in the image.
 Capture images to put in your report as examples to illustrate your experiments with the detector.
 
 - Can the Canny detector find all edges in the image? If there are some missing, why might this be?
@@ -314,7 +295,7 @@ Despite these recent changes, many of the fundamental ideas in computer vision h
 
 ## Further reading
 
-- [http://en.wikipedia.org/wiki/Computer_vision](http://en.wikipedia.org/wiki/Computer_vision)
-- [http://en.wikipedia.org/wiki/Mri](http://en.wikipedia.org/wiki/Mri)
+- [https://en.wikipedia.org/wiki/Computer_vision](https://en.wikipedia.org/wiki/Computer_vision)
+- [https://en.wikipedia.org/wiki/Mri](https://en.wikipedia.org/wiki/Mri)
 - [http://www.cosc.canterbury.ac.nz/mukundan/cogr/applcogr.html](http://www.cosc.canterbury.ac.nz/mukundan/cogr/applcogr.html)
 - [http://www.cosc.canterbury.ac.nz/mukundan/covn/applcovn.html](http://www.cosc.canterbury.ac.nz/mukundan/covn/applcovn.html)

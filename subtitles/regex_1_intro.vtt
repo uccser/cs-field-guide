@@ -1,0 +1,85 @@
+WEBVTT
+
+NOTE
+Computer Science Education Research,
+University of Canterbury, New Zealand
+Subtitle file for the video "Regular Expressions - 1 - Introduction"
+Author: Alasdair Smith
+Language: English
+Date: 20/06/17
+
+00:00.000 --> 00:07.200
+A Regular Expression,
+abbreviated to RE, regexp, regex and more,
+
+00:07.200 --> 00:14.200
+is commonly used in software development and
+searching algorithms for matching patterns in text;
+
+00:14.200 --> 00:19.800
+they are particularly important for
+implementing programming languages.
+
+00:19.800 --> 00:25.200
+Regular Expressions are powerful formulae
+for defining patterns to search for,
+
+00:25.200 --> 00:32.400
+yet they are also very simple; they can be
+defined with combinations of just four symbols:
+
+00:32.400 --> 00:38.800
+the ‘Kleene star’ (shown as an asterisk),
+<00:36.000>‘alternation’ (a vertical bar)
+
+00:38.800 --> 00:43.400
+and the open & closed parentheses.
+
+00:43.400 --> 00:48.400
+Say we want to search these
+Terms and Conditions for important dates.
+
+00:48.400 --> 00:52.400
+For simplicity we’ll only worry about numerical dates.
+
+00:52.400 --> 00:57.600
+There are only a few different formats
+we can expect dates to be in right?
+
+00:57.600 --> 01:01.800
+We just search for day-day-month-month-year-year.
+
+01:01.800 --> 01:07.800
+However it could be day-day-month-month-year-year-year-year
+if you’re being formal,
+
+01:07.800 --> 01:12.800
+or maybe just day-day-month-month
+if you don’t need the year.
+
+01:12.800 --> 01:20.200
+But the first month digit can only be 0 or 1
+and the first day digit can only be 0 to 3.
+
+01:20.200 --> 01:26.600
+Sometimes people ignore the 0 if the date is
+only one digit, so it could just be day-month.
+
+01:26.600 --> 01:33.000
+But for other people the month comes <i>before</i> the day
+so we have to account for that too.
+
+01:33.000 --> 01:36.600
+My word it’s all so complicated isn’t it?
+
+01:36.600 --> 01:43.800
+Thankfully, we can use Regular Expressions to
+simplify writing rules for the patterns we want to match.
+
+01:43.800 --> 01:50.400
+This series of videos explores the idea more closely,
+looking at the meaning of these basic symbols,
+
+01:50.400 --> 01:58.800
+some common extended syntax, and the close connection
+between Regular Expressions and Finite State Automata.

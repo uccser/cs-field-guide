@@ -1,0 +1,90 @@
+WEBVTT
+
+NOTE
+Computer Science Education Research,
+University of Canterbury, New Zealand
+Subtitle file for the video "Finite State Automata - 6 - Let's Build Our Own"
+Author: Alasdair Smith
+Language: English
+Date: 10/04/2017
+
+00:00.200 --> 00:05.800
+By now we should have an okay understanding
+of Finite State Automata,
+
+00:05.800 --> 00:11.600
+what they’re used for and how to read them.
+Let’s try to create our own.
+
+00:11.600 --> 00:17.400
+First up, we need to define
+what we want this automaton to achieve.
+
+00:17.400 --> 00:19.200
+Let’s go with this:
+
+00:19.200 --> 00:29.800
+This automaton is to accept any string of ‘A’s and ‘B’s
+that has no more than two ‘B’s in a row.
+
+00:29.800 --> 00:37.200
+Okay, we have our definition,
+now let’s break it up to understand what it means:
+
+00:37.200 --> 00:40.000
+“Any string of ‘A’s and ‘B’s.”
+
+00:40.000 --> 00:48.400
+This tells us that in our alphabet
+we have two transition types, ‘A’ and ‘B’.
+
+00:48.400 --> 00:55.200
+“Accept… no more than two ‘B’s in a row.”
+This tells us that our language,
+
+00:55.200 --> 01:05.400
+or the set of strings our automaton will accept,
+is all strings with at most zero, one or two ‘B’s in a row.
+
+01:05.400 --> 01:07.800
+So let’s begin our diagram.
+
+01:07.800 --> 01:13.600
+A good starting point is the start state,
+a circle with an arrow into it.
+
+01:13.600 --> 01:16.400
+Let’s call this state '0'.
+
+01:16.400 --> 01:19.400
+That’s great, what else can we do?
+
+01:19.400 --> 01:25.200
+Well, let’s look at what we expect
+to happen if we give the automaton nothing.
+
+01:25.200 --> 01:29.400
+A string containing zero ‘A’s and zero ‘B’s.
+
+01:29.400 --> 01:35.600
+That may seem a bit odd but an empty string,
+denoted as <i>epsilon</i> or sometimes <i>lambda</i>,
+
+01:35.600 --> 01:40.000
+is very useful for understanding
+how our automaton works.
+
+01:40.000 --> 01:46.400
+So, we put in nothing.
+There are at most zero ‘B’s in a row in our string.
+
+01:46.400 --> 01:52.200
+Zero ‘B’s is obviously fewer than three ‘B’s,
+so the string is accepted.
+
+01:52.200 --> 01:56.800
+This means that our first state
+is also an accepting state.
+
+01:56.800 --> 02:00.000
+Let’s give it another circle to show this.

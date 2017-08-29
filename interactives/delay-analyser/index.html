@@ -6,15 +6,15 @@
     <!-- If you delete this meta tag World War Z will become a reality -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Delay Analyser</title>
-    <link rel="stylesheet" href="../base-files/css/normalize.css">
-    <link rel="stylesheet" href="../base-files/css/foundation.min.css">
-    <script src="../base-files/js/modernizr.js"></script>
-    <script src="../base-files/js/jquery.js"></script>
+    <link rel="stylesheet" href="../base-files/css/third-party/normalize.css">
+    <link rel="stylesheet" href="../base-files/css/third-party/foundation.min.css">
+    <script src="../base-files/js/third-party/modernizr.js"></script>
+    <script src="../base-files/js/third-party/jquery.js"></script>
   </head>
   <body>
     <div class="row">
     <div class="small-12 columns">
-    <div class="interactive row">
+    <div id="delay-analyser-interactive" class="interactive row">
       <div class="small-12 columns text-center">
         <h1 id="heading">Delay Analyser</h1>
       </div>
@@ -34,7 +34,7 @@
       </div>
       <div id="statistics-div" class="small-12 medium-7 large-6 columns">
         <p id="statistics-feedback"></p>
-        <table role="grid">
+        <table id="statistics-table" role="grid">
           <thead>
             <tr>
               <th>Not Perceived</th>
@@ -55,7 +55,7 @@
       <script src="./js/delay-analyser.js"></script>
     </div>
       <!-- Foundation responsive CSS -->
-      <script src="../base-files/js/foundation.min.js"></script>
+      <script src="../base-files/js/third-party/foundation.min.js"></script>
     </div>
     </div>
     <script>
