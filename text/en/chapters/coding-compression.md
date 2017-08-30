@@ -373,14 +373,14 @@ There are some suggestions for parameters on the second sheet of the spreadsheet
 .. html5 low priority interactive to add cosine waves to try to match a given waveform e.g. square wave, triangle, random. Select amplitude for various frequencies. I have a spreadsheet that basically does this, could put it in for the meantime - tim
 {comment end}
 
-Each 8 by 8 block of pixels in a JPEG image can be created by adding together different amounts of up to 64 patterns based on cosine waves. The waves can be represented visually as patterns of white and black pixels, as shown in the image below. 
+Each 8 by 8 block of pixels in a JPEG image can be created by adding together different amounts of up to 64 patterns based on cosine waves. The waves can be represented visually as patterns of white and black pixels, as shown in the image below.
 
 {image filename="jpeg-discrete-cosine-transform.png"}
 
 These particular waves are known as "basis functions" because any 8 by 8 block of pixels can be created by combining them. The basis function in the top left is the average colour of the 8 by 8 block. By adding more of it (increasing the coefficient that it is multiplied by) the resultant 8 by 8 block will become darker. The basis functions become more complex towards the bottom right, and are therefore used less commonly. How often would an image have every pixel a different color, as in the bottom right basis function?
 To investigate how the 64 basis functions can be combined to form any pattern in 8 by 8 block of pixels - try out this puzzle!
 
-{button link="http://www.csfieldguide.org.nz/en/interactives/jpeg-compression/index.html?puzzle=true" text="JPEG puzzle interactive"}
+{interactive name="jpeg-compression" type="whole-page" parameters="puzzle=true" text="JPEG puzzle interactive"}
 
 So 64 pixels (in an 8 by 8 block) can be represented by 64 coefficients that tell us how much of each basis function to use. But how does this help us save space and compress the image? At the moment we are still storing exactly the same amount of data, just in a different way.
 
@@ -412,8 +412,8 @@ After Quantisation:
 
 Notice how the images look very similar, even though the second one has many zero coefficients. The differences we can see will be barely visible when the image is viewed at its original size.
 
-Try this out yourself: 
-{button link="http://www.csfieldguide.org.nz/en/interactives/jpeg-compression/index.html" text="JPEG interactive"}
+Try this out yourself:
+{interactive name="jpeg-compression" type="whole-page" text="JPEG interactive"}
 
 We still have 64 numbers even with the many zeros, so how do we save space when storing the zeros? You will notice that the zeros are bunched towards the bottom right. This means if we list the coefficients in a zig-zag, starting from the top left corner, we will end up with many zeros in a row. Instead of writing 20 zeros we can store the fact that there are 20 zeros using a method of run-length encoding very similar to the one discussed earlier in this chapter.
 
@@ -421,7 +421,7 @@ We still have 64 numbers even with the many zeros, so how do we save space when 
 
 And finally, the numbers that we are left with are converted to bits using Huffman coding, so that more common values take less space and vice versa.
 
-All those things happen every time you take a photo and save it as a JPEG file, and it happens to every 8 by 8 block of pixels. When you display the image, the software needs to reverse the process, adding all the basis functions together for each block - and there will be hundereds of thousands of blocks for each image. 
+All those things happen every time you take a photo and save it as a JPEG file, and it happens to every 8 by 8 block of pixels. When you display the image, the software needs to reverse the process, adding all the basis functions together for each block - and there will be hundereds of thousands of blocks for each image.
 
 
 An important issue arises because JPEG represents images as smoothly varying colours: what happens if the colours change suddenly?
