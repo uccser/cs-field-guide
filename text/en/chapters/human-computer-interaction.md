@@ -600,9 +600,18 @@ and many more laws, observations and guidelines about designing interfaces that 
 ### Useful Links
 
 - [The ten usability heuristics on Nielsen's website](http://www.nngroup.com/articles/ten-usability-heuristics/), and a [collection of articles about usability heuristics](http://www.nngroup.com/topic/heuristic-evaluation/)
+
 -  There is a [CS Unplugged activity on HCI](http://csunplugged.org/wp-content/uploads/2014/12/unplugged-19-human_interface_design_0.pdf) which includes background information
+
 - There is [extensive material on HCI on the cs4fn website](http://www.cs4fn.org/fundamentals/hci.php)
+
 - A [glossary of usability terms](http://www.usabilityfirst.com/glossary/)
+
+- Here is a series of humorous videos that highlight how some missteps in the online shopping experience would look if they actually played out in real life.
+
+  - [Google Analytics In Real Life - Site Search](https://www.youtube.com/watch?v=cbtf1oyNg-8)
+  - [Google Analytics In Real Life - Online Checkout](https://www.youtube.com/watch?v=3Sk7cOqB9Dk)
+  - [Google Analytics In Real Life - Landing Page Optimization](https://www.youtube.com/watch?v=N5WurXNec7E)
 
 {comment}
 .. xjrm everything from here down seems to be raw material; i should go through it sometime(!) but can you either comment it out easily? otherwise put it somewhere else with a link here so its easy to find? -tim
