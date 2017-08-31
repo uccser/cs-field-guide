@@ -80,21 +80,21 @@ A pbm file for the diamond image used earlier would be as follows:
 ```
 P1
 15 15
-011000010000110
-100000111000001
-000001111100000
-000011111110000
-000111111111000
-001111101111100
-011111000111110
-111110000011111
-011111000111110
-001111101111100
-000111111111000
-000011111110000
-000001111100000
-100000111000001
-011000010000110
+0 1 1 0 0 0 0 1 0 0 0 0 1 1 0
+1 0 0 0 0 0 1 1 1 0 0 0 0 0 1
+0 0 0 0 0 1 1 1 1 1 0 0 0 0 0
+0 0 0 0 1 1 1 1 1 1 1 0 0 0 0
+0 0 0 1 1 1 1 1 1 1 1 1 0 0 0
+0 0 1 1 1 1 1 0 1 1 1 1 1 0 0
+0 1 1 1 1 1 0 0 0 1 1 1 1 1 0
+1 1 1 1 1 0 0 0 0 0 1 1 1 1 1
+0 1 1 1 1 1 0 0 0 1 1 1 1 1 0
+0 0 1 1 1 1 1 0 1 1 1 1 1 0 0
+0 0 0 1 1 1 1 1 1 1 1 1 0 0 0
+0 0 0 0 1 1 1 1 1 1 1 0 0 0 0
+0 0 0 0 0 1 1 1 1 1 0 0 0 0 0
+1 0 0 0 0 0 1 1 1 0 0 0 0 0 1
+0 1 1 0 0 0 0 1 0 0 0 0 1 1 0
 ```
 
 The first two lines are the header.  The first line specifies the format of the file (P1 means that the file contains ASCII zeroes and ones). The second line specifies the width and then the height of the image in pixels. This allows the computer to know the size and dimensions of the image, even if the newline characters separating the rows in the file were missing.
