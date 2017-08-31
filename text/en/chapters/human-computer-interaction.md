@@ -579,8 +579,8 @@ It's no wonder that good software can be expensive – there are many people and
 
 There are many other ideas from psychology, physiology, sociology and even anthropology that HCI experts must draw on. Things that come into play include
 [Mental models](https://en.wikipedia.org/wiki/Mental_model), about how someone believes a system works compared with how it actually works (these are almost never the same e.g. double clicking on an icon that only needs to be single clicked),
-[Fitts's law](https://en.wikipedia.org/wiki/Fitts's_law), about how long it takes to point to objects on a screen (such as clicking on a small button),
-the [Hick-Hyman law](https://en.wikipedia.org/wiki/Hick's_law), about how long it takes to make a decision between multiple choices (such as from a menu),
+[Fitts's law](https://en.wikipedia.org/wiki/Fitts%27s_law), about how long it takes to point to objects on a screen (such as clicking on a small button),
+the [Hick-Hyman law](https://en.wikipedia.org/wiki/Hick%27s_law), about how long it takes to make a decision between multiple choices (such as from a menu),
 [Miller's law](https://en.wikipedia.org/wiki/The_Magical_Number_Seven,_Plus_or_Minus_Two) about the number of items a person can think about at once,
 [affordances](https://en.wikipedia.org/wiki/Affordance), about how properties of an object help us to perform actions on them,
 [interaction design (IxD)](https://en.wikipedia.org/wiki/Interaction_design), about creating digital devices that work for the people who will use the product,
