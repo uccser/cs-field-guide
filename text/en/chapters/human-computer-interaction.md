@@ -498,7 +498,9 @@ A flexible system would allow the user to add a keystroke equivalent for the "Cl
 Other systems might offer suggestions to the user if they notice an action being done frequently.
 A related approach is offering recent selections near the top of a list of options.
 
-### Aesthetic and minimalist design
+{glossary-definition term="Aesthetics" definition="Aesthetics is a branch of philosophy that explores the nature of art, beauty, and taste, with the creation and appreciation of beauty."}
+
+### Aesthetics and minimalist design
 
 *Dialogues should not contain information which is irrelevant or rarely needed. Every extra unit of information in a dialogue competes with the relevant units of information and diminishes their relative visibility.*
 
