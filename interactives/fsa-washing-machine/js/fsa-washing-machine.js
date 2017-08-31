@@ -25,25 +25,25 @@ var fsa_washing_machine_config = {
 
 
 $(document).ready(function() {
-    setupInterface();
-    updateInterface();
+    setupFSAWashingMachineInterface();
+    updateFSAWashingMachineInterface();
 
     // When state button is clicked
     $('#interactive-fsa-washing-machine-buttons').on('click', '.btn', function(event) {
         var button_text = $(this).text();
-        changeState(button_text);
-        updateInterface();
+        changeFSAWashingMachineState(button_text);
+        updateFSAWashingMachineInterface();
     });
 
   // On 'reset' button click
      $('#interactive-fsa-washing-machine-reset').on('click', function(){
         fsa_washing_machine_config['current_state'] = fsa_washing_machine_config['initial_state'];
-        updateInterface();
+        updateFSAWashingMachineInterface();
      });
 });
 
 
-function setupInterface() {
+function setupFSAWashingMachineInterface() {
     var button_container = $('#interactive-fsa-washing-machine-buttons');
     var available_buttons = fsa_washing_machine_config['available_buttons'];
     for (var i = 0; i < available_buttons.length; i++) {
@@ -56,13 +56,13 @@ function setupInterface() {
 }
 
 
-function changeState(button_text) {
+function changeFSAWashingMachineState(button_text) {
     var states = fsa_washing_machine_config['states']
     fsa_washing_machine_config['current_state'] = states[fsa_washing_machine_config['current_state']]['destinations'][button_text]
 }
 
 
-function updateInterface() {
+function updateFSAWashingMachineInterface() {
     var current_state = fsa_washing_machine_config['current_state'];
     var current_washing_machine_state = fsa_washing_machine_config['states'][current_state]['speed'];
 
