@@ -121,9 +121,9 @@ function createDots(dots) {
 function createCardLabel(value) {
     var label;
     if (value < 1) {
-        label = '<sup>1</sup>&frasl;<sub>' + 1 / value + '</sub>';
+        label = '<sup>1</sup>&frasl;<sub>' + (1 / value).toLocaleString() + '</sub>';
     } else {
-        label = value
+        label = value.toLocaleString();
     }
     return label
 }
