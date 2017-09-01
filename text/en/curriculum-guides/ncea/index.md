@@ -22,8 +22,8 @@ There is also a lot of material available online from NZQA, and good ideas share
 1.44 covers three topics: Algorithms, Programming Languages, and Human Computer Interaction. For Merit and Excellence, we provide separate guides for each topic. For Achieved, all the topics are in a single document, and a writing frame with a recommended layout and some useful sentence starters is also provided.
 
 - [Level 1 Introduction](curriculum-guides/ncea/assessment-guide-level-1-introduction.html)
-- [Guide for Achieved in 1.44](https://docs.google.com/document/d/1A5x-0sbcH-73orZCIlci0CqqxQzGKCbija3z0KsIDEE/) - This guide contains a checklist at the end which students can use to check off things as they do them, and to ensure they do not miss anything.
-- [Writing Frame](https://docs.google.com/document/d/1e41Cb50tvnjBWWPwIy3bY5CrymUK3ZJ4nnFnyRQqC2U/edit#)
+- [Guide for Achieved in 1.44](files/Achievement-project-for-AS91074.pdf) - This guide contains a checklist at the end which students can use to check off things as they do them, and to ensure they do not miss anything.
+- [Writing Frame](files/Writing-Frame-for-AS91074-Achieved.pdf)
 
 ### Algorithms
 
@@ -116,10 +116,9 @@ Students will need to pick **one** project from here. Which they pick will depen
 
 - For Merit/Excellence: [Human Computer Interaction - evaluating an interface with heuristics (Merit/Excellence) ](curriculum-guides/ncea/assessment-guide-level-2-full-human-computer-interaction.html)
 
-
 ## AS91636 (3.44)
 
-- Artificial Intelligence: [Turing Test](https://docs.google.com/document/d/1TnP0sCW33Yhy4wQITDre1sirB0IonesCfdbO0WqJjow)
+- Artificial Intelligence: [Turing Test](files/3.44-Artificial-Intelligence-Turing-Test-Assessment-Guide.pdf)
 - Complexity and Tractability: [The Traveling Crayfisher](curriculum-guides/ncea/assessment-guide-level-3-complexity-tractability-TSP.html)
 - Formal Languages: [Formal Languages](curriculum-guides/ncea/assessment-guide-level-3-formal-languages-FSA-RE.html)
 - Software Engineering: [Software Methodologies](curriculum-guides/ncea/assessment-guide-level-3-software-engineering-methodologies.html)
