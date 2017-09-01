@@ -53,7 +53,12 @@ function createCard(value, is_black) {
     cardContainer.append(card);
     var front = $("<div class='binary-card-side binary-card-front'></div>");
     front.append(createDots(value));
-    front.append($("<div class='binary-card-number'>" + createCardLabel(value) + "</div>"));
+    var label = $("<div class='binary-card-number'></div>");
+    label.html(createCardLabel(value))
+    if (value > 9999999) {
+      label.addClass('small-text');
+    }
+    front.append(label);
     card.append(front);
     card.append($("<div class='binary-card-side binary-card-back'></div>"));
     card.data("value", value);
@@ -72,24 +77,40 @@ function createDots(dots) {
     var context = canvas.getContext('2d');
     context.imageSmoothingEnabled = true;
 
-    var sizes = calculateDotGridSize(dots);
-    var gridRows = sizes[0] + 1;
-    var gridRowWidth = canvas.height / gridRows;
-    var gridCols = sizes[1] + 1;
-    var gridColWidth = canvas.width / gridCols;
-    var dotSize = Math.min(gridRowWidth, gridColWidth) * 0.4;
-    var dotStartAngle = Math.PI * 0.5;
-    var dotFinishAngle = Math.min(Math.PI * 2, Math.PI * 2 * dots) + dotStartAngle;
-    for (var row = 1; row < gridRows; row++) {
-        for (var col = 1; col < gridCols; col++) {
-            context.beginPath();
-            context.arc(col * gridColWidth, row * gridRowWidth, dotSize, dotStartAngle, dotFinishAngle, false);
-            if (dots < 1) {
-                context.lineTo(col * gridColWidth, row * gridRowWidth);
-            }
-            context.closePath();
-            context.fill();
-        }
+    if (dots < 5000) {
+      var sizes = calculateDotGridSize(dots);
+      var gridRows = sizes[0] + 1;
+      var gridRowWidth = canvas.height / gridRows;
+      var gridCols = sizes[1] + 1;
+      var gridColWidth = canvas.width / gridCols;
+      var dotSize = Math.min(gridRowWidth, gridColWidth) * 0.4;
+      var dotStartAngle = Math.PI * 0.5;
+      var dotFinishAngle = Math.min(Math.PI * 2, Math.PI * 2 * dots) + dotStartAngle;
+      for (var row = 1; row < gridRows; row++) {
+          for (var col = 1; col < gridCols; col++) {
+              context.beginPath();
+              context.arc(col * gridColWidth, row * gridRowWidth, dotSize, dotStartAngle, dotFinishAngle, false);
+              if (dots < 1) {
+                  context.lineTo(col * gridColWidth, row * gridRowWidth);
+              }
+              context.closePath();
+              context.fill();
+          }
+      }
+    } else {
+      var gradient_circle_size = canvas.width / 2
+      var gradient = context.createRadialGradient(
+          gradient_circle_size,
+          gradient_circle_size,
+          gradient_circle_size * 5,
+          gradient_circle_size,
+          gradient_circle_size,
+          10
+      );
+      gradient.addColorStop(0, "white");
+      gradient.addColorStop(1, "black");
+      context.fillStyle = gradient;
+      context.fillRect(1, 1, canvas.width - 4, canvas.height - 4);
     }
     return canvas;
 };
@@ -100,9 +121,9 @@ function createDots(dots) {
 function createCardLabel(value) {
     var label;
     if (value < 1) {
-        label = '<sup>1</sup>&frasl;<sub>' + 1 / value + '</sub>';
+        label = '<sup>1</sup>&frasl;<sub>' + (1 / value).toLocaleString() + '</sub>';
     } else {
-        label = value
+        label = value.toLocaleString();
     }
     return label
 }
