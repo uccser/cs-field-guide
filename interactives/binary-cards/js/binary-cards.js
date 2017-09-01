@@ -55,7 +55,7 @@ function createCard(value, is_black) {
     front.append(createDots(value));
     var label = $("<div class='binary-card-number'></div>");
     label.html(createCardLabel(value))
-    if (value > 999999999) {
+    if (value > 9999999) {
       label.addClass('small-text');
     }
     front.append(label);
