@@ -72,24 +72,40 @@ function createDots(dots) {
     var context = canvas.getContext('2d');
     context.imageSmoothingEnabled = true;
 
-    var sizes = calculateDotGridSize(dots);
-    var gridRows = sizes[0] + 1;
-    var gridRowWidth = canvas.height / gridRows;
-    var gridCols = sizes[1] + 1;
-    var gridColWidth = canvas.width / gridCols;
-    var dotSize = Math.min(gridRowWidth, gridColWidth) * 0.4;
-    var dotStartAngle = Math.PI * 0.5;
-    var dotFinishAngle = Math.min(Math.PI * 2, Math.PI * 2 * dots) + dotStartAngle;
-    for (var row = 1; row < gridRows; row++) {
-        for (var col = 1; col < gridCols; col++) {
-            context.beginPath();
-            context.arc(col * gridColWidth, row * gridRowWidth, dotSize, dotStartAngle, dotFinishAngle, false);
-            if (dots < 1) {
-                context.lineTo(col * gridColWidth, row * gridRowWidth);
-            }
-            context.closePath();
-            context.fill();
-        }
+    if (dots < 5000) {
+      var sizes = calculateDotGridSize(dots);
+      var gridRows = sizes[0] + 1;
+      var gridRowWidth = canvas.height / gridRows;
+      var gridCols = sizes[1] + 1;
+      var gridColWidth = canvas.width / gridCols;
+      var dotSize = Math.min(gridRowWidth, gridColWidth) * 0.4;
+      var dotStartAngle = Math.PI * 0.5;
+      var dotFinishAngle = Math.min(Math.PI * 2, Math.PI * 2 * dots) + dotStartAngle;
+      for (var row = 1; row < gridRows; row++) {
+          for (var col = 1; col < gridCols; col++) {
+              context.beginPath();
+              context.arc(col * gridColWidth, row * gridRowWidth, dotSize, dotStartAngle, dotFinishAngle, false);
+              if (dots < 1) {
+                  context.lineTo(col * gridColWidth, row * gridRowWidth);
+              }
+              context.closePath();
+              context.fill();
+          }
+      }
+    } else {
+      var gradient_circle_size = canvas.width / 2
+      var gradient = context.createRadialGradient(
+          gradient_circle_size,
+          gradient_circle_size,
+          gradient_circle_size * 5,
+          gradient_circle_size,
+          gradient_circle_size,
+          10
+      );
+      gradient.addColorStop(0, "white");
+      gradient.addColorStop(1, "black");
+      context.fillStyle = gradient;
+      context.fillRect(1, 1, canvas.width - 4, canvas.height - 4);
     }
     return canvas;
 };
