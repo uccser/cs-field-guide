@@ -46,6 +46,9 @@
   font-size: 1.5rem;
   font-weight: bold;
 }
+#interactive-binary-cards-container div.small-text {
+  font-size: 1rem;
+}
 #interactive-binary-cards-container div.binary-card-back {
   background: black;
   transform: rotateY(180deg) perspective(25rem);

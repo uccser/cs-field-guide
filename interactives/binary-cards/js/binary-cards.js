@@ -53,7 +53,12 @@ function createCard(value, is_black) {
     cardContainer.append(card);
     var front = $("<div class='binary-card-side binary-card-front'></div>");
     front.append(createDots(value));
-    front.append($("<div class='binary-card-number'>" + createCardLabel(value) + "</div>"));
+    var label = $("<div class='binary-card-number'></div>");
+    label.html(createCardLabel(value))
+    if (value > 999999999) {
+      label.addClass('small-text');
+    }
+    front.append(label);
     card.append(front);
     card.append($("<div class='binary-card-side binary-card-back'></div>"));
     card.data("value", value);
