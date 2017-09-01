@@ -148,6 +148,12 @@ ul.side-nav.fixed li a {
   margin: 0;
   color: #fff;
 }
+#homepage-title-header {
+  background-image: url("../images/csfg-background-tile.gif");
+  background-repeat: repeat;
+  background-size: 16rem;
+  padding: 0 0 1rem 0;
+}
 #page-subtitle-header {
   background-color: $secondary-color !important;
   margin-bottom: 20px;
