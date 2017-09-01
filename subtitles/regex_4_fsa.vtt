@@ -1,0 +1,91 @@
+WEBVTT
+
+NOTE
+Computer Science Education Research,
+University of Canterbury, New Zealand
+Subtitle file for the video "Regular Expressions - 4 - Regex and Finite State Automata"
+Author: Alasdair Smith
+Language: English
+Date: 20/06/17
+
+00:00.000 --> 00:09.800
+Finite State Automata, explained in an earlier series,
+describe exactly the same languages as Regular Expressions.
+
+00:09.800 --> 00:15.400
+Every Regular Expression can be
+converted to a Finite State Automaton,
+
+00:15.400 --> 00:21.000
+and every Finite State Automaton can be
+expressed as a Regular Expression.
+
+00:21.000 --> 00:29.600
+For example, our Regular Expression for numbers: (\d)+,
+can be converted to this automaton:
+
+00:29.600 --> 00:35.600
+a non-accepting start state
+and an accepting state, with two transitions.
+
+00:35.600 --> 00:42.000
+You may notice that in this automaton,
+there is no transition for anything other than a digit.
+
+00:42.000 --> 00:46.600
+We could include these other transitions by
+introducing a trap state,
+
+00:46.600 --> 00:51.400
+as our Regular Expression
+only allows digits in its language.
+
+00:51.400 --> 00:58.000
+But usually this is left out for simplicity;
+if a symbol has no transition out of a state,
+
+00:58.000 --> 01:06.400
+we assume it goes to a trap state and hence
+the associated string is not accepted as part of the language.
+
+01:06.400 --> 01:09.200
+So what’s all this about languages?
+
+01:09.200 --> 01:15.800
+Well, here we are not talking about the usual
+human languages like the variations of English;
+
+01:15.800 --> 01:24.400
+we’re talking about Formal Languages, each of which being
+a set of strings that are accepted by some rule;
+
+01:24.400 --> 01:39.200
+for example, (\d)+ produces a language that includes strings
+like 203, 57, and even 000. But not b17, or -12.
+
+01:39.200 --> 01:49.400
+Regular Expressions and Finite State Automata describe
+a very particular type of Formal Language known as Regular Languages.
+
+01:49.400 --> 01:56.200
+These may be one of the most basic Formal Languages,
+so they can’t describe everything,
+
+01:56.200 --> 02:00.000
+but they still have a huge number of uses;
+
+02:00.000 --> 02:09.400
+variable names, numbers, URLs, email addresses and phone numbers
+can all be described by Regular Languages.
+
+02:09.400 --> 02:15.800
+Computer Scientists find it easier to read
+Regular Expressions than Finite State Automata,
+
+02:15.800 --> 02:21.800
+but computers are better at following automata,
+so usually we design an expression,
+
+02:21.800 --> 02:29.000
+then use a computer program to convert
+it to an automaton, which is then used as required.

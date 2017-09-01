@@ -1,0 +1,100 @@
+WEBVTT
+
+NOTE
+Computer Science Education Research,
+University of Canterbury, New Zealand
+Subtitle file for the video "Computer Science Field Guide: Introduction"
+Author: Alasdair Smith
+Date: 14/02/2017
+
+00:00.000 --> 00:02.700
+Welcome to our guide to Computer Science.
+
+00:02.700 --> 00:05.400
+One of the main reasons that
+we've created this guide is that
+
+00:05.400 --> 00:09.200
+although computers are a big part
+of our lives and in the world all around us,
+
+00:09.200 --> 00:13.000
+A lot of people don't really understand
+what Computer Science is.
+
+00:13.000 --> 00:18.000
+<i>I was going to take Computer Science but,</i>
+<00:15.400><i>I basically already know how to use Word and Excel.</i>
+
+00:18.000 --> 00:22.200
+And it is one of those things that
+you don't really notice until it's missing.
+
+00:22.200 --> 00:32.200
+For example then you end up with things like
+<00:24.400>really.<00:27.200> Slow.<00:29.800> Programs.
+
+00:36.200 --> 00:46.600
+Or, incredibly,<00:39.200> frustrating,<00:44.600> interfaces.
+
+00:51.200 --> 00:55.600
+Or, systems, that can't cope with
+large amounts of data.
+
+00:55.600 --> 00:59.600
+And these days, a business can become
+a thousand times bigger overnight.
+
+00:59.600 --> 01:03.600
+That's exactly when you need it
+to be able to cope with a lot of data.
+
+01:03.600 --> 01:06.000
+We'll look at topics like: Computer Security,
+
+01:06.000 --> 01:10.400
+to make sure that any personal information
+you're holding can't be accessed by hackers;
+
+01:10.400 --> 01:14.800
+or Artificial Intelligence,
+for planning and decision making;
+
+01:14.800 --> 01:19.600
+Computer Graphics, for entertainment
+and also visualising large amounts of data;
+
+01:19.600 --> 01:26.200
+and Computer Vision, where a computer can sense
+objects and even people in the world around it.
+
+01:26.200 --> 01:30.200
+We'll look at computer programs that take so long to run
+that they won't finish in a lifetime,
+
+01:30.200 --> 01:32.600
+even on the fastest computer.
+
+01:32.600 --> 01:36.000
+We'll think about what it means for a computer
+to be <i>intelligent</i>.
+
+01:36.000 --> 01:39.800
+And we'll look at how compression works
+so that we can take thousands of songs
+
+01:39.800 --> 01:43.200
+and fit them on a device that's
+small enough to fit in your pocket.
+
+01:43.200 --> 01:47.800
+Computer Science is many things to many people,
+and after working through this guide,
+
+01:47.800 --> 01:52.400
+you'll have a better idea of what Computer Science is,
+and especially how we can use it
+
+01:52.400 --> 01:57.000
+to design software that will help people
+in their everyday lives.

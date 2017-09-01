@@ -9,6 +9,13 @@ for the following NCEA Achievement Standards:
 
 {button link="curriculum-guides/ncea/level-3/index.html" text="AS91636" line_2="Digital Technology 3.44" line_3="Demonstrate understanding of areas of computer science"}
 
+{panel type="caution" expanded="Always"}
+
+A new curriculum for NCEA Digital Technologies is planned on being rolled out from 2018 onwards.
+This will require changes for these guides, so please stay tuned for updates.
+
+{panel end}
+
 The computer science externals can be particularly time consuming for Merit and Excellence.
 For some students, it is better to just focus on doing the Achieved material well.
 For this reason, we provide separate guides for students aiming for subject endorsement and for students aiming to get the credits.

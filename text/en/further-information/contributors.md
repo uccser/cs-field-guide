@@ -60,6 +60,8 @@ This project is the result of contributions from a large community of Computer S
 - Jenny Baker - Curriculum (NCEA)
 - Neil Leslie - Curriculum (NCEA)
 - Hannah Taylor - Curriculum (NCEA)
+- James Atlas - Curriculum (AP-CSP)
+- Paul Tymann - Curriculum (AP-CSP)
 - Dr Mukundan - Computer Graphics & Vision
 - Richard Green - Computer Vision
 - DongSeong Kim - Network Communication Protocols, Encryption
@@ -82,16 +84,19 @@ This project is the result of contributions from a large community of Computer S
 - Ben Gibson - Interactive games and related material
 - Michael Bell ([Orange Studio](http://orangestudio.co.nz/)) - Video production
 - Linda Pettigrew - Formal languages material
+- Sarang Love Leehan - Illustrations
 
 ## Community Contributors
 
-- Arlo Louis O'Keeffe ([ArloL](https://github.com/ArloL))
-- Cornel Punga ([ner0x652](https://github.com/ner0x652))
-- Alan Hogan ([alanhogan](https://github.com/alanhogan))
-- Steven Maude ([StevenMaude](https://github.com/StevenMaude))
-- Rúben Enes ([rdpse](https://github.com/rdpse))
+- [ArloL](https://github.com/ArloL) (Arlo Louis O'Keeffe)
+- [ner0x652](https://github.com/ner0x652) (Cornel Punga)
+- [alanhogan](https://github.com/alanhogan) (Alan Hogan)
+- [StevenMaude](https://github.com/StevenMaude) (Steven Maude)
+- [rdpse](https://github.com/rdpse) (Rúben Enes)
 - [oughter](https://github.com/oughter)
 - [digitalDojoNZ](https://github.com/digitalDojoNZ)
+- [pvskarthikeya](https://github.com/pvskarthikeya) (Karthikeya Pammi)
+- [Goldob](https://github.com/Goldob) (Adam Gotlib)
 
 **Note:** If there is an error in the list, please contact [Jack Morgan](mailto:jack.morgan@canterbury.ac.nz)
 

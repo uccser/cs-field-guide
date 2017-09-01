@@ -1,0 +1,63 @@
+WEBVTT
+
+NOTE
+Computer Science Education Research,
+University of Canterbury, New Zealand
+Subtitle file for the video "Finite State Automata - 4 - An Example 'Sentence'"
+Author: Alasdair Smith
+Language: English
+Date: 10/04/2017
+
+00:00.200 --> 00:08.200
+Let’s get a fresh diagram, exactly the same as before.
+How do we actually use it?
+
+00:08.200 --> 00:11.400
+Let’s say we get the sentence: “Moo.”
+
+00:11.400 --> 00:16.400
+We can already see that it starts with
+a capital letter and ends with a full stop,
+
+00:16.400 --> 00:20.600
+but let’s run it through the automaton
+to see what happens.
+
+00:20.600 --> 00:26.200
+Beginning from the start state (which is '1'),
+we take each character in turn,
+
+00:26.200 --> 00:29.000
+following the transition for each one.
+
+00:29.000 --> 00:36.200
+The first character ‘M’ is uppercase,
+so we follow the ‘U’ transition to State 3.
+
+00:36.200 --> 00:43.200
+Then we have a lowercase ‘o’, so we follow
+the ‘L’ transition which loops around and back to State 3.
+
+00:43.200 --> 00:49.200
+Another lowercase ‘o’, so again we follow
+the ‘L’ transition back to State 3.
+
+00:49.200 --> 00:56.400
+And lastly we have a full stop so we follow
+the ‘S’ transition to State 4.
+
+00:57.400 --> 01:02.200
+So, we’ve gone through the string of letters
+and ended up at State 4.
+
+01:02.200 --> 01:08.200
+Remember from before that this is an accepting state
+because it has two circles.
+
+01:08.200 --> 01:13.400
+Since we ended up in an accepting state,
+the sentence “Moo.” is accepted;
+
+01:13.400 --> 01:20.000
+it does indeed start with a capital letter
+and end with a full stop.

@@ -141,7 +141,11 @@ class Section:
 
         link_text = match.group('link_text')
         if not link_text.startswith(external_link_prefixes):
-            link_text = self.parse_markdown(link_text, 'p').strip()
+            text_prefix = ''
+            while link_text[0] == '#':
+                text_prefix += '#'
+                link_text = link_text[1:]
+            link_text = text_prefix + self.parse_markdown(link_text, 'p').strip()
 
         link_url = match.group('link_url')
         link_url = link_url.replace('\)', ')')
@@ -711,7 +715,7 @@ class Section:
             - Implement better system for checking whether link is relative
             and needs to be adjusted
         """
-        link_attributes = ['href', 'src']
+        link_attributes = ['href', 'src', 'data']
         for element in root.find_all():
             for attr in link_attributes:
                 raw_link = element.get(attr, None)
@@ -999,7 +1003,7 @@ class HeadingNode:
             return '{}{}'.format('--' * (self.level - 1), self.heading)
 
     def to_html(self):
-        if self.section.file_node.group_type == "chapters":
+        if self.section.file_node.content_type == "chapters":
             html_type = 'heading-numbered'
         else:
             html_type = 'heading-unnumbered'
@@ -1008,7 +1012,7 @@ class HeadingNode:
 
         if self.guide.output_type == WEB:
             # Create section starts for Materialize ScrollSpy
-            if self.level == 2 and self.section.file_node.settings['table_of_contents_sidebar']:
+            if self.level == 2 and self.section.file_node.type_settings['table_of_contents_sidebar']:
                 # Close previous section if needed
                 if self.section.sectioned:
                     html = self.section.html_templates['section-end']

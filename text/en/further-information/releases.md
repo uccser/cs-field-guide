@@ -4,7 +4,7 @@ This page lists updates to the Computer Science Field Guide. All notable changes
 
 {panel type="What numbering system do we use?"}
 
-We base our numbering system from the guidelines at [Semantic Versioning 2.0.0](http://semver.org/spec/v2.0.0.html), however since our project started before it was migrated to GitHub, the first open source release is being labeled as `v2.0`.
+We base our numbering system from the guidelines at [Semantic Versioning 2.0.0](http://semver.org/spec/v2.0.0.html), however since our project started before it was migrated to GitHub, the first open source release is being labeled as `v2.0.0`.
 
 Given a version number MAJOR.MINOR.HOTFIX:
 
@@ -19,6 +19,104 @@ We have listed major changes for each release below.
 
 ## Current Release
 
+### v2.9.1
+**Release date:** 20th February 2017
+
+**Downloads:** [Source downloads are available on GitHub](https://github.com/uccser/cs-field-guide/releases/tag/v2.9.1)
+
+**Notable changes:**
+
+This release fixes a bug in the Computer Graphics chapter where some links to the 2D Arrow Manipulation interactives were broken due to an incorrect regex.
+
+**Changelog:**
+- [Adam Gotlib](https://github.com/Goldob) [#404](https://github.com/uccser/cs-field-guide/pull/404)
+
+
+### v2.9.0
+
+aka [Pōhutukawa](https://en.wikipedia.org/wiki/Metrosideros_excelsa)
+
+**Release date:** 27th January 2017
+
+**Downloads:** [Source downloads are available on GitHub](https://github.com/uccser/cs-field-guide/releases/tag/v2.9.0)
+
+**Notable changes:**
+
+This release adds an introductory video for the Complexity and Tractability chapter, updated text for Graphics Transformations section of the Computer Graphics chapter, as well as updated versions of the 2D Arrow Manipulation and FSA interactives.
+
+**Changelog:**
+- Add introductory video to Complexity and Tractability chapter.
+  - [Heidi Newton](https://github.com/Heidirose)
+- Rewrite Graphics Transformations section of Computer Graphics chapter
+  - [Hayley van Waas](https://github.com/hayleyavw) [#402](https://github.com/uccser/cs-field-guide/issues/402)
+- Rewrite 2D Arrow Manipulation interactives
+  - [Hayley van Waas](https://github.com/hayleyavw) [#372](https://github.com/uccser/cs-field-guide/issues/372) [#373](https://github.com/uccser/cs-field-guide/issues/373)
+- Add list of authors in the sidebar of chapter page
+  - [Jack Morgan](https://github.com/JackMorganNZ) [#396](https://github.com/uccser/cs-field-guide/issues/396)
+- Update FSA interactives
+  - [Jack Morgan](https://github.com/JackMorganNZ) [#45](https://github.com/uccser/cs-field-guide/issues/45) [#46](https://github.com/uccser/cs-field-guide/issues/46) [#47](https://github.com/uccser/cs-field-guide/issues/47) [#48](https://github.com/uccser/cs-field-guide/issues/48)
+- Add NFA guesser interactive
+  - [Jack Morgan](https://github.com/JackMorganNZ)
+- Update APCSP framework
+  - [Paul Tymann](https://github.com/ptymann) [#399](https://github.com/uccser/cs-field-guide/issues/399)
+
+## Older Releases
+
+### v2.8.1
+
+**Release date:** 21st October 2016
+
+**Downloads:** [Source downloads are available on GitHub](https://github.com/uccser/cs-field-guide/releases/tag/v2.8.1)
+
+**Changelog:**
+- Update introduction chapter.
+  - [Jack Morgan](https://github.com/JackMorganNZ) [#231](https://github.com/uccser/cs-field-guide/issues/231)
+- Add notice of changes to AP-CSP curriculum in Fall 2016 release.
+  - [Jack Morgan](https://github.com/JackMorganNZ)
+- Skip parsing `#` characters at start of Markdown links.
+  - [Jack Morgan](https://github.com/JackMorganNZ)
+
+### v2.8.0
+
+**Release date:** 19th October 2016
+
+**Downloads:** [Source downloads are available on GitHub](https://github.com/uccser/cs-field-guide/releases/tag/v2.8.0)
+
+**Notable changes:**
+
+This release adds an introductory video for the Human Computer Interaction chapter, plus a draft of guides for mapping the Computer Science Field Guide to the AP CSP curriculum.
+
+**Changelog:**
+- Add introductory video to Human Computer Interaction chapter.
+  - [Hayley van Waas](https://github.com/hayleyavw)
+- Add draft of guides for the AP CSP curriculum.
+  - [James Atlas](https://github.com/jamesatlas) [#316](https://github.com/uccser/cs-field-guide/pull/316)
+- Update and fix issues in high-score-boxes interactive.
+  - [Victor Chang](https://github.com/thevictorchang) [#390](https://github.com/uccser/cs-field-guide/pull/390)
+  - [Jack Morgan](https://github.com/JackMorganNZ) [#391](https://github.com/uccser/cs-field-guide/issues/391) [#393](https://github.com/uccser/cs-field-guide/issues/393)
+- Add subtraction command to mips-simulator interactive. The interactive can now handle subtraction down to zero.
+  - [Jack Morgan](https://github.com/JackMorganNZ) [#382](https://github.com/uccser/cs-field-guide/issues/382)
+- Update sponsor information in footer.
+  - [Jack Morgan](https://github.com/JackMorganNZ)
+- Improve the visibilty of warning panels.
+  - [Jack Morgan](https://github.com/JackMorganNZ) [#389](https://github.com/uccser/cs-field-guide/issues/389)
+- Fix positioning of table of contents sidebar.
+  - [Jack Morgan](https://github.com/JackMorganNZ) [#387](https://github.com/uccser/cs-field-guide/issues/387)
+- Fix typos in Formal Languages chapter.
+  - [Steven Maude](https://github.com/StevenMaude) [#385](https://github.com/uccser/cs-field-guide/pull/385)
+- Update 404 page to avoid updating after each release.
+  - [Karthikeya Pammi](https://github.com/pvskarthikeya) [#394](https://github.com/uccser/cs-field-guide/pull/394)
+- Remove duplicate introduction to teacher guide.
+  - [Jack Morgan](https://github.com/JackMorganNZ) [#213](https://github.com/uccser/cs-field-guide/issues/213)
+- Add link to article on representing a 1 bit image.
+  - [Jack Morgan](https://github.com/JackMorganNZ) [#376](https://github.com/uccser/cs-field-guide/issues/376)
+- Fix broken link to contributors page in footer.
+  - [Jack Morgan](https://github.com/JackMorganNZ) [#383](https://github.com/uccser/cs-field-guide/issues/383)
+- Replace broken link to Eliza chatterbot.
+  - [Jack Morgan](https://github.com/JackMorganNZ) [#384](https://github.com/uccser/cs-field-guide/issues/384)
+- Fix footer link colour in teacher version.
+  - [Jack Morgan](https://github.com/JackMorganNZ) [#395](https://github.com/uccser/cs-field-guide/issues/395)
+
 ### v2.7.1
 
 **Release date:** 5th September 2016
@@ -29,8 +127,6 @@ We have listed major changes for each release below.
 - Fixed broken link in footer to contributors page.
 
 A full list of changes in this version is [available on GitHub](https://github.com/uccser/cs-field-guide/compare/v2.7.0...v2.7.1).
-
-## Older Releases
 
 ### v2.7.0
 

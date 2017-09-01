@@ -1,0 +1,48 @@
+WEBVTT
+
+NOTE
+Computer Science Education Research,
+University of Canterbury, New Zealand
+Subtitle file for the video "Finite State Automata - 1 - Introduction"
+Author: Alasdair Smith
+Language: English
+Date: 10/04/2017
+
+00:00.200 --> 00:06.400
+Let’s have a look at Finite State Automata
+<00:03.900>or FSA for short.
+
+00:06.400 --> 00:11.200
+In this series of videos
+we’re going to look at how FSA are useful,
+
+00:11.200 --> 00:15.000
+use them in an example
+to test for valid sentences,
+
+00:15.000 --> 00:20.400
+and then build our own automata
+to explore other uses.
+
+00:20.400 --> 00:25.800
+So, what do these words mean?
+<i>Finite State Automata</i>
+
+00:25.800 --> 00:28.600
+Finite means that there are a limited number,
+
+00:28.600 --> 00:33.400
+as opposed to infinite,
+which means the number is unlimited.
+
+00:33.400 --> 00:41.400
+A State is a condition at a particular time.
+<00:37.000>And Automata is the plural for Automaton;
+
+00:41.400 --> 00:47.600
+a machine that functions on its own,
+following some simple instructions and rules.
+
+00:47.600 --> 00:54.600
+Therefore, a Finite State Automaton
+is a simple machine with a finite number of states.

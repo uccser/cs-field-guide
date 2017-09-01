@@ -4,7 +4,7 @@ The following guides are currently available for AS91636.
 
 ## Artificial Intelligence
 
-- [Turing Test](https://docs.google.com/document/d/1TnP0sCW33Yhy4wQITDre1sirB0IonesCfdbO0WqJjow)
+- [Turing Test](files/3.44-Artificial-Intelligence-Turing-Test-Assessment-Guide.pdf)
 
 ## Complexity and Tractability
 

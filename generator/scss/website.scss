@@ -113,6 +113,7 @@ ul.side-nav.fixed li a {
 }
 .section-heading {
   margin-bottom: 0;
+  margin-top: 1em;
   .page-title-header & > a {
     color: white !important;
   }
@@ -196,9 +197,36 @@ ul.side-nav.fixed li a {
   padding: 0 1rem;
 }
 #page-navigation {
-  padding: 1rem 1rem 0 0;
   width: 24%;
   float: right;
+  h6 {
+    margin-top: 15px;
+  }
+  ul.table-of-contents {
+    li, ul, a {
+      display: block !important;
+    }
+    a {
+      height: initial !important;
+      padding-left: 10px;
+      &:hover {
+        padding-left: 9px;
+      }
+      &.active {
+        padding-left: 8px;
+      }
+    }
+    ul.table-of-contents-subtitle {
+      padding-left: 10px;
+      font-size: 0.9em;
+    }
+    a:not(.active) + ul.table-of-contents-subtitle {
+      display: none !important;
+    }
+  }
+  .author-list {
+    font-weight: 300;
+  }
 }
 .btn-expand {
   width: 100% !important;
@@ -332,21 +360,6 @@ ul.panel {
 .text-box-indented {
   margin-left: 40px !important;
 }
-.table-of-contents {
-  li, ul, a {
-    display: block !important;
-  }
-  a {
-    height: initial !important;
-  }
-  &-subtitle {
-    padding-left: 0.8rem;
-    font-size: 90%;
-    a:not(.active) + & {
-      display: none !important;
-    }
-  }
-}
 .btn {
   text-transform: none !important;
   margin-bottom: 1rem !important;
@@ -420,6 +433,16 @@ footer {
       padding-left: 1rem;
     }
   }
+  @if $version == "teacher" {
+    .footer-second a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: underline;
+    }
+    .footer-third a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: underline;
+    }
+  }
   .row {
     margin-bottom: 0;
   }
@@ -430,7 +453,7 @@ body.landing-page {
     padding-left: 0 !important;
   }
   main {
-    color: rgba(255,255,255,0.8);
+    color: rgb(255,255,255);
   }
   footer {
     .footer-first .container {

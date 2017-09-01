@@ -36,9 +36,10 @@ The above chapter readings include specific knowledge for EK's marked in bold. W
 EXCLUSION STATEMENT (for LO 4.2.1): Any discussion of nondeterministic polynomial (NP) is beyond the scope of this course and the AP Exam.
 {panel end}
 - **EK 4.2.1A Many problems can be solved in a reasonable time.**
-- **EK 4.2.1B Reasonable time means that as the input size grows, the number of steps the algorithm takes is proportional
-to the square (or cube, fourth power, fifth power, etc.)
-of the size of the input.**
+- **EK 4.2.1B Reasonable time means that the number of steps the algorithm takes is less than or equal to a polynomial function (constant, linear, square, cube, etc.) of the size of the input.**
+{panel type="teacher-note" summary="Exclusion EK 4.2.1B"}
+EXCLUSION STATEMENT (for EK 4.2.1B): Using nonpolynomial functions to describe relationships between the number of steps required by an algorithm and the input size is beyond the scope of this course and the AP Exam.
+{panel end}
 - **EK 4.2.1C Some problems cannot be solved in a reasonable time, even for small input sizes.**
 - **EK 4.2.1D Some problems can be solved but not in a reasonable time. In these cases, heuristic approaches may be helpful to
 find solutions in reasonable time.**

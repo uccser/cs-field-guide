@@ -1,0 +1,162 @@
+WEBVTT
+
+NOTE
+Computer Science Education Research,
+University of Canterbury, New Zealand
+Subtitle file for the video "Network Protocols"
+Author: Alasdair Smith
+Date: 16/02/2017
+
+
+00:00.000 --> 00:01.200
+Network Protocols
+
+00:01.200 --> 00:04.400
+Talking is easy, right?
+We all do it every day.
+
+00:04.400 --> 00:08.000
+Whether it's in person, by email, or by text.
+
+00:08.000 --> 00:10.200
+But what happens when something goes wrong?
+
+00:10.200 --> 00:15.200
+What happens when what we're using to communicate
+<00:12.400>just isn't reliable <00:13.400>reliable <00:14.000>relelelelelel.
+
+00:15.200 --> 00:16.800
+We use protocols.
+
+00:16.800 --> 00:21.000
+Protocols is a fancy word for a simple concept:
+<00:19.600>Communicating formally.
+
+00:21.000 --> 00:25.000
+<i>The stock market's doing so poorly,
+whatever shall I do?</i>
+
+00:25.000 --> 00:29.800
+Not like that.
+<00:28.400>Pilots use protocols.
+
+00:29.800 --> 00:33.000
+Their communication has to be reliable and efficient.
+
+00:33.000 --> 00:36.600
+They have to be able to communicate
+with other planes and various airports
+
+00:36.600 --> 00:39.600
+in order to stay safe.
+
+00:39.600 --> 00:45.400
+For example: how do they report their position?
+What happens if they don't understand what was said?
+
+00:45.400 --> 00:47.600
+What happens if they don't hear back?
+
+00:47.600 --> 00:50.000
+You can get into some pretty awkward situations.
+
+00:50.000 --> 00:54.400
+- So what runway should we use?
+<00:52.000>- [Incomprehensible]
+
+00:54.400 --> 00:56.800
+I think he said 'land on the cake'
+
+00:56.800 --> 01:01.000
+Okay, we're landing on the cake.
+
+01:03.600 --> 01:05.800
+What now?
+
+01:05.800 --> 01:08.200
+To avoid this, we use protocols.
+
+01:08.200 --> 01:13.600
+Protocols are a way to formalise communication,
+such that we don't get ourselves in trouble.
+
+01:13.600 --> 01:17.000
+That's why pilots are always repeating stuff.
+<01:15.800>Always repeating stuff.
+
+01:17.000 --> 01:20.200
+And use special codewords to avoid being misheard.
+
+01:20.200 --> 01:25.000
+Christchurch tower, charlie charlie alpha approaching
+eastern fire break, one thousand five hundred.
+
+01:25.000 --> 01:31.400
+We have Information Julie at 1-0-3-4 in 4-B-O-B.
+Request landing on runway.
+
+01:31.400 --> 01:38.800
+Pilots, emergency services, law enforcement, surgeons,
+builders and even you use protocols every day.
+
+01:38.800 --> 01:42.800
+They are essential to effective
+and efficient communication.
+
+01:42.800 --> 01:46.600
+Scalpel.
+
+01:48.200 --> 01:52.000
+A lot of people think the internet is bulletproof.
+<01:50.800>But it's not.
+
+01:52.000 --> 01:56.600
+Messages are lost, corrupted,
+and delivered out of order all the time.
+
+01:56.600 --> 02:01.000
+Think about when you send a message on Facebook.
+
+02:03.200 --> 02:07.600
+If we didn't have protocols,
+it would look something like this:
+
+02:07.600 --> 02:13.600
+[H3y *>%thony, How a$$re you?!?]
+
+02:13.600 --> 02:17.800
+Luckily, the message arrives on
+the other side of the world just fine.
+
+02:17.800 --> 02:25.800
+The protocol is in place to ensure each word or letter
+is delivered properly, and if need be, they are resent.
+
+02:25.800 --> 02:29.600
+In this chapter, you'll learn about
+protocols such as TCP and UP,
+
+02:29.600 --> 02:33.000
+which are used to build
+awesome applications on the web.
+
+02:33.000 --> 02:38.000
+Even people in the film industry use protocols.
+For example, to finish filming people say cut.
+
+02:38.000 --> 02:41.600
+- He said cut!
+<02:39.400>All sorts of people use protocols.
+<02:41.000>- Good for me
+
+02:41.600 --> 02:43.800
+- I think that's a wrap.
+But in this chapter,<02:42.200> guys?
+<02:42.200>- Yep, audio's good.
+
+02:43.800 --> 02:45.200
+Guys?
+- See you tommorrow Sam.
+
+02:45.200 --> 02:47.600
+Are we still filming?

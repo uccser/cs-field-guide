@@ -35,7 +35,7 @@ The above chapter readings include specific knowledge for EK's marked in bold. W
 - EK 5.1.2B Developing correct program components and then combining them helps in creating correct programs.
 - EK 5.1.2C Incrementally adding tested program segments to correct working programs helps create large correct programs.
 - **EK 5.1.2D Program documentation helps programmers develop and maintain correct programs to efficiently solve problems.**
-- **EK 5.1.2E Documentation about program components, such as blocks and procedures, helps in developing and maintaining programs.**
+- **EK 5.1.2E Documentation about program components, such as code segments and procedures, helps in developing and maintaining programs.**
 - EK 5.1.2F Documentation helps in developing and maintaining programs when working individually or in collaborative programming environments.
 - **EK 5.1.2G Program development includes identifying programmer and user concerns that affect the solution to problems.**
 - **EK 5.1.2H Consultation and communication with program users is an important aspect of program development to solve problems.**
@@ -84,14 +84,14 @@ The above chapter readings include specific knowledge for EK's marked in bold. W
 - EK 5.4.1A Program style can affect the determination of program correctness.
 - EK 5.4.1B Duplicated code can make it harder to reason about a program.
 - EK 5.4.1C Meaningful names for variables and procedures help people better understand programs.
-- EK 5.4.1D Longer code blocks are harder to reason about than shorter code blocks in a program.
+- EK 5.4.1D Longer code segments are harder to reason about than shorter code segments in a program.
 - EK 5.4.1E Locating and correcting errors in a program is called debugging the program.
 - EK 5.4.1F Knowledge of what a program is supposed to do is required in order to find most program errors.
 - EK 5.4.1G Examples of intended behavior on specific inputs help people understand what a program is supposed to do.
 - EK 5.4.1H Visual displays (or different modalities) of program state can help in finding errors.
 - EK 5.4.1I Programmers justify and explain a program’s correctness.
 - EK 5.4.1J Justification can include a written explanation about how a program meets its specifications.
-- EK 5.4.1K Correctness of a program depends on correctness of program components, including code blocks and procedures.
+- EK 5.4.1K Correctness of a program depends on correctness of program components, including code segments and procedures.
 - EK 5.4.1L An explanation of a program helps people understand the functionality and purpose of it.
 - EK 5.4.1M The functionality of a program is often described by how a user interacts with it.
 - EK 5.4.1N The functionality of a program is best described at a high level by what the program does, not at the lower level of how the program statements work to accomplish this.

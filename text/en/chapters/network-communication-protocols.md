@@ -172,7 +172,7 @@ So far we have talked about HTTP and IRC. These protocols are at a level that ma
 
 TCP (The Transmission Control Protocol) is one of the most important protocols on the internet. It breaks large messages up into *packets*. What is a packet? A packet is a segment of data that when combined with other packets, make up a total message (something like a HTTP request, an email, an IRC message or a file like a picture or song being downloaded). For the rest of the section, we’ll look at how these are used to load an image from a website.
 
-So computer A looks the file and takes it, breaks it into packets. It then sends the packets over the internet and computer B reassembles them and gives them back to you as the image, [which is demonstrated in this video.](https://www.youtube.com/watch?v=WwyJGzZmBe8)
+So computer A looks the file and takes it, breaks it into packets. It then sends the packets over the internet and computer B reassembles them and gives them back to you as the image, [which is demonstrated in this video](https://www.youtube.com/watch?v=ewrBalT_eBM).
 
 By now you’re probably wondering why we bother splitting up packets… wouldn’t it be easier to send the file as a whole? Well, it solves congestion. Imagine you’re in a bus, in rush hour and you have to be home by 5. The road is jammed and there’s no way you and your friends are getting home on time. So you decide to get out of the bus and go your own separate ways. Web pages are like this too. They are too big to travel together so they are split up and sent in tiny pieces and then reassembled at the other end.
 
@@ -303,7 +303,7 @@ Here’s an example of a packet trace on our network…[(using tcpdump on the ma
 
 There and back again: a packet's tale
 
-{video url="https://www.youtube.com/embed/WwyJGzZmBe8"}
+{video url="https://www.youtube.com/embed/ewrBalT_eBM"}
 
 How does the internet work?
 
