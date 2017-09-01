@@ -149,7 +149,11 @@ ul.side-nav.fixed li a {
   color: #fff;
 }
 #homepage-title-header {
-  background-image: url("../images/csfg-background-tile.gif");
+  @if $version == "teacher" {
+    background-image: url("../images/csfg-background-tile-teacher.gif");
+  } @else {
+    background-image: url("../images/csfg-background-tile.gif");
+  }
   background-repeat: repeat;
   background-size: 16rem;
   padding: 0 0 1rem 0;
