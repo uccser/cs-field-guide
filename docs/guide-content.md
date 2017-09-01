@@ -16,6 +16,7 @@ This documentation page provides information about the text, image, and file con
         - [Appendix links](#appendices)
       - [External links](#external-links)
       - [Image links](#image-links)
+      - [Button links](#button-links)
     - [Code](#code)
     - [Tables](#tables)
     - [Blockquotes](#blockquotes)
@@ -232,6 +233,8 @@ You can create a link on a button using the following syntax:
 **Parameters:**
 - `link` - The URL to link to.
 - `text` - Text to display on the button.
+- `line_2` (optional) - Text to display under the main text on the button.
+- `line_3` (optional) - Text to display under `line_2` on the button, or under the main text if `line_2` is not given.
 
 ---
 
@@ -553,6 +556,7 @@ This text is the panel's contents.
 
 **Parameters:**
 - `type` - The type of panel to create. The type is used as the title of the panel, plus as the CSS class for panel (this allows colouring of all the same types of panels).
+- `title` (optional) - Text to display as the title of the panel. If not title is given, the `type` value is converted to English and is used. This value will need to be required eventually to allow non-English text for panel titles.
 - `summary` (optional) - Text to display after the title to summarise the panel's contents.
 - `expanded` (optional) - If set to `True`, the panel is expanded at load. If set to `Always`, the panel is expanded at load and cannot be closed. When a value is not given, the panel is closed on load.
 
