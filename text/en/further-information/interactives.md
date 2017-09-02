@@ -49,6 +49,8 @@ Also try searching your browser version and operating system in Google.
 - [High Score Boxes](interactives/high-score-boxes/index.html)
 - [Image Bit Comparer](interactives/image-bit-comparer/index.html)
   - [Change bit mode](interactives/image-bit-comparer/index.html?change-bits=true)
+- [JPEG Compression](interactives/jpeg-compression/index.html)
+  - [Puzzle mode](interactives/jpeg-compression/index.html?puzzle=true)
 - [MIPS Assembler](interactives/mips-assembler/index.php)
 - [MIPS Simulator](interactives/mips-simulator/index.php)
 - [No Help](interactives/no-help/index.html)
