@@ -19,6 +19,52 @@ We have listed major changes for each release below.
 
 ## Current Release
 
+### 2.10.0
+
+**Release date:** 2nd September 2017
+
+**Downloads:** [Source downloads are available on GitHub](https://github.com/uccser/cs-field-guide/releases/tag/2.10.0)
+
+**Notable changes:**
+
+This release adds a JPEG compression interactive, along with many bug fixes, corrections, and.
+
+The version numbering scheme now does not start with the `v` character (so `v2.9.1` is `2.9.1`).
+This to make the numbering consistent with our other projects (CS Unplugged and cs4teachers).
+
+**Changelog:**
+
+- Update Delay Analyser reset button to avoid accidental resets.
+  - [Jamie Dawson](https://github.com/JamieDawson) [#413](https://github.com/uccser/cs-field-guide/issues/413)
+- Add video subtitle files.
+  - Alasdair Mark Smith
+- Clean up homepage for the NCEA Curriculum Guides.
+  - [Jack Morgan](https://github.com/JackMorganNZ) [#358](https://github.com/uccser/cs-field-guide/issues/358)
+- Replace cosine image.
+  - [Jack Morgan](https://github.com/JackMorganNZ) [#73](https://github.com/uccser/cs-field-guide/issues/73)
+- Fix bug in detecting defined permissions of files.
+  - [Jack Morgan](https://github.com/JackMorganNZ) [#73](https://github.com/uccser/cs-field-guide/issues/73)
+- Add Google Analytic skit videos to HCI chapter.
+  - [Jack Morgan](https://github.com/JackMorganNZ) [#247](https://github.com/uccser/cs-field-guide/issues/247)
+- Fix Washing Machine interactive in Formal Languages chapter.
+  - [Jack Morgan](https://github.com/JackMorganNZ) [#411](https://github.com/uccser/cs-field-guide/issues/411)
+- Correct spelling of aesthetics and add glossary definition.
+  - [Jack Morgan](https://github.com/JackMorganNZ) [#405](https://github.com/uccser/cs-field-guide/issues/405)
+- Fix rendering of glossary definition headings.
+  - [Jack Morgan](https://github.com/JackMorganNZ)
+- Fix PBM image data.
+  - [Jack Morgan](https://github.com/JackMorganNZ) [#412](https://github.com/uccser/cs-field-guide/issues/412)
+- Fix link error in HCI chapter.
+  - [Jack Morgan](https://github.com/JackMorganNZ) [#410](https://github.com/uccser/cs-field-guide/issues/410)
+- Add missing NCEA guides files.
+  - [Jack Morgan](https://github.com/JackMorganNZ) [#472](https://github.com/uccser/cs-field-guide/issues/472)
+- Fix link to private YouTube video on packets.
+  - [Jack Morgan](https://github.com/JackMorganNZ) [#408](https://github.com/uccser/cs-field-guide/issues/408)
+- Update binary-cards interactive to handle a higher number of cards.
+  - [Jack Morgan](https://github.com/JackMorganNZ) [#407](https://github.com/uccser/cs-field-guide/issues/407)
+- Add ability to hide pixel colours in pixel value interactive.
+  - [Jack Morgan](https://github.com/JackMorganNZ) [#476](https://github.com/uccser/cs-field-guide/issues/476)
+
 ### 2.9.1
 
 **Release date:** 20th February 2017
@@ -46,17 +92,17 @@ This release adds an introductory video for the Complexity and Tractability chap
 **Changelog:**
 - Add introductory video to Complexity and Tractability chapter.
   - [Heidi Newton](https://github.com/Heidirose)
-- Rewrite Graphics Transformations section of Computer Graphics chapter
+- Rewrite Graphics Transformations section of Computer Graphics chapter.
   - [Hayley van Waas](https://github.com/hayleyavw) [#402](https://github.com/uccser/cs-field-guide/issues/402)
-- Rewrite 2D Arrow Manipulation interactives
+- Rewrite 2D Arrow Manipulation interactives.
   - [Hayley van Waas](https://github.com/hayleyavw) [#372](https://github.com/uccser/cs-field-guide/issues/372) [#373](https://github.com/uccser/cs-field-guide/issues/373)
-- Add list of authors in the sidebar of chapter page
+- Add list of authors in the sidebar of chapter page.
   - [Jack Morgan](https://github.com/JackMorganNZ) [#396](https://github.com/uccser/cs-field-guide/issues/396)
-- Update FSA interactives
+- Update FSA interactives.
   - [Jack Morgan](https://github.com/JackMorganNZ) [#45](https://github.com/uccser/cs-field-guide/issues/45) [#46](https://github.com/uccser/cs-field-guide/issues/46) [#47](https://github.com/uccser/cs-field-guide/issues/47) [#48](https://github.com/uccser/cs-field-guide/issues/48)
-- Add NFA guesser interactive
+- Add NFA guesser interactive.
   - [Jack Morgan](https://github.com/JackMorganNZ)
-- Update APCSP framework
+- Update APCSP framework.
   - [Paul Tymann](https://github.com/ptymann) [#399](https://github.com/uccser/cs-field-guide/issues/399)
 
 ## Older Releases
