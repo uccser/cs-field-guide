@@ -1,0 +1,158 @@
+WEBVTT
+
+NOTE
+Computer Science Education Research,
+University of Canterbury, New Zealand
+Subtitle file for the video "Computer Science Field Guide: Tractability"
+Author: Alasdair Smith
+Date: 15/02/2017
+
+
+00:00.000 --> 00:02.400
+Tractability
+
+00:03.000 --> 00:06.800
+I've got four party invites to deliver to four friends,
+
+00:06.800 --> 00:09.300
+and I've worked out the best way of delivering them.
+
+00:09.300 --> 00:11.500
+I calculated how long it would take to visit:
+
+NOTE
+The next section transitions very rapidly so could be difficult to read.
+The names Alice, Bob, Carol and David have been shortened to
+persons A,B,C and D
+
+00:11.500 --> 00:13.000
+friend A then B then C then D;
+
+00:13.000 --> 00:14.800
+or B, A, C, D;
+
+00:14.800 --> 00:16.400
+or A, B, D, C;
+
+00:16.400 --> 00:18.000
+or B, A, D, C;
+
+00:18.000 --> 00:20.000
+or A, C, B, D.
+
+NOTE end of section
+
+00:20.000 --> 00:22.400
+[<i>sigh</i>] You get the idea.
+
+00:22.400 --> 00:26.600
+With four friends there are 24 orders I would have to try.
+
+00:26.600 --> 00:29.400
+I considered inviting my fifth friend,
+
+00:29.400 --> 00:33.200
+but that would mean there was 120 different combinations I'd have to try,
+
+00:33.200 --> 00:35.200
+so she didn't get invited.
+
+00:35.200 --> 00:37.200
+I actually have 35 friends,
+
+00:37.200 --> 00:38.800
+but to invite them all I'd have to try
+
+00:38.800 --> 00:42.600
+ten thousand <00:00:39.400>million <00:00:39.800>million <00:00:40.200>million
+<00:00:40.800>million <00:00:41.400>million <00:00:41.800>million (rounded)
+
+00:42.600 --> 00:44.200
+different combinations.
+
+00:44.200 --> 00:49.600
+In fact, if a dinosaur had started this calculation
+using the fastest computer currently available,
+
+NOTE added 'currently' in the above line for clarity
+
+00:49.600 --> 00:52.800
+it would still only be a fraction of a percent
+complete today.
+
+00:52.800 --> 00:58.400
+Also, by the time the sun dies out,
+it will still only be 1% complete.
+
+00:58.400 --> 01:02.800
+The trouble is that there are many important problems
+in Computer Science that are difficult,
+
+01:02.800 --> 01:04.800
+and nobody's found out a good way of programming,
+
+NOTE changed 'there is' to 'there are' in above line
+
+01:04.800 --> 01:07.600
+such as: cutting shapes out of material;
+
+01:07.600 --> 01:10.200
+loading freight onto trucks in the optimal way;
+
+01:10.200 --> 01:12.600
+working out timetables;
+
+01:12.600 --> 01:15.000
+even solving large Sudoku puzzles.
+
+NOTE
+not sure what was said between 'Solving' and 'Sudoku',
+'large' is my best guess
+
+01:16.400 --> 01:20.000
+It's also a good thing that these problems exist,
+here's an example:
+
+01:20.000 --> 01:22.400
+Most internet security is based on <i>Security Keys</i>,
+
+NOTE
+YouTube doesn't seem to recognise <i> when uploading the file
+but it does after it is published
+
+01:22.400 --> 01:25.400
+which are a product of two large prime numbers,
+
+01:25.400 --> 01:28.600
+which will take billions of years
+to figure out the factors of.
+
+NOTE italics in above 'security keys'
+
+01:28.600 --> 01:30.800
+If you don't believe me, try this:
+
+01:30.800 --> 01:34.000
+The number I'm displaying on the screen
+is a product of two prime numbers.
+
+01:34.000 --> 01:36.800
+If you can work out what the
+two factors of this number are,
+
+01:36.800 --> 01:39.600
+send us a message, and we will send you a free T-shirt.
+
+01:39.600 --> 01:44.200
+Computer Scientists don't even know if there are
+better ways of finding the optimal solution.
+
+01:44.200 --> 01:48.800
+In the meantime the focus is just on calculating
+good enough solutions.
+
+01:49.600 --> 01:54.800
+Or, you could just invite four friends to your party.
+
+01:56.400 --> 01:59.000
+Tractability

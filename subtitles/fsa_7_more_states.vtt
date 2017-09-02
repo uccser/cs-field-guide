@@ -1,0 +1,73 @@
+WEBVTT
+
+NOTE
+Computer Science Education Research,
+University of Canterbury, New Zealand
+Subtitle file for the video "Finite State Automata - 7 - Adding More States"
+Author: Alasdair Smith
+Language: English
+Date: 10/04/2017
+
+00:00.200 --> 00:06.200
+Now we can look at what happens when we
+transition away from our start state.
+
+00:06.200 --> 00:12.000
+What conditions will result in a string
+that is <b>not</b> accepted by our automaton?
+
+00:12.000 --> 00:17.900
+From our definition that would be a string
+that contains three or more ‘B’s in a row.
+
+00:17.900 --> 00:24.100
+Therefore, we need to add more states:
+One for one ‘B’ in a row, named ‘1’;
+
+00:24.100 --> 00:27.800
+one for two ‘B’s in a row, named ‘2’;
+
+00:27.800 --> 00:33.200
+and one for three or more ‘B’s in a row, named ‘3’.
+
+00:33.200 --> 00:36.000
+We can connect them with ‘B’ transitions.
+
+00:36.000 --> 00:42.000
+Each transition represents an increment
+of the number of ‘B’s in a row by one.
+
+00:43.600 --> 00:49.200
+What can we interpret from these new states?
+We know from our definition that if there are
+
+00:49.200 --> 00:55.800
+zero, one or two ‘B’s in a row,
+that string so far is still acceptable.
+
+00:55.800 --> 01:01.700
+Therefore, we can call States
+1 and 2 accepting states also.
+
+01:01.700 --> 01:06.400
+We get to State 3 after three
+‘B’ transitions in a row,
+
+01:06.400 --> 01:13.400
+so this must be our non-accepting state.
+No matter what character we put in after this,
+
+01:13.400 --> 01:19.800
+we already know that there have been
+three ‘B’s in a row and so the string is not acceptable.
+
+01:19.800 --> 01:26.900
+Let’s show this by adding a loop transition
+back to State 3 and calling that ‘A, B’.
+
+01:26.900 --> 01:30.800
+Both ‘A’ and ‘B’ follow this transition.
+
+01:30.800 --> 01:40.000
+State 3 can also be called a trap state,
+as once we get there, there is no transition out again.

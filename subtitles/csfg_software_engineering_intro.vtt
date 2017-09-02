@@ -1,0 +1,156 @@
+WEBVTT
+
+NOTE
+Computer Science Education Research,
+University of Canterbury, New Zealand
+Subtitle file for the video "Computer Science Field Guide: Software Engineering"
+Author: Alasdair Smith
+Date: 15/02/2017
+
+
+00:00.000 --> 00:02.000
+Software Engineering
+
+00:02.000 --> 00:04.400
+Software is essential to our lives.
+
+00:04.400 --> 00:09.800
+Imagine living without the internet,
+Google, Facebook or your smartphone
+
+00:09.800 --> 00:12.200
+We expect our software to work correctly.
+
+00:12.200 --> 00:15.600
+A bug in a program can make it
+really frustrating to use,
+
+00:15.600 --> 00:19.400
+or it could even <00:18.000>crash your computer.
+
+00:19.400 --> 00:21.800
+But it could also be a lot worse than that.
+
+00:21.800 --> 00:24.800
+What if the software controlling
+a nuclear power plant fails?
+
+NOTE
+The next section has been broken up to make different
+combinations of subtitles appear at the same time
+
+00:24.800 --> 00:29.200
+Or the software controlling an aeroplane?
+<00:27.000>[Screams]
+
+00:29.200 --> 00:31.600
+Fortunately, Software Engineering techniques
+[Screams]
+
+00:31.600 --> 00:36.600
+can help us make software that works correctly.
+<00:34.000>[Yay]
+
+NOTE end of section
+
+00:36.600 --> 00:41.600
+Making good software is difficult
+because often software is huge and complex.
+
+00:41.600 --> 00:45.000
+Some large systems have
+tens of millions of lines of code.
+
+00:45.000 --> 00:48.200
+If you printed them out on paper
+and stacked them like a book,
+
+00:48.200 --> 00:51.200
+You'd get a stack that is
+around a hundred meters high.
+
+00:51.200 --> 00:54.600
+That's as high as a 25 storey building.
+
+00:54.600 --> 00:59.000
+If you wanted to read through a program that size,
+to try to understand how it works,
+
+00:59.000 --> 01:02.200
+It's likely to take you about 50 years!
+
+01:02.200 --> 01:05.400
+If some software takes almost a lifetime
+just to read through,
+
+01:05.400 --> 01:07.800
+imagine how long it would take to write it.
+
+01:07.800 --> 01:13.000
+Of course no single person can do this alone.
+We need teams of developers working on software.
+
+01:13.000 --> 01:14.600
+Sometimes three developers,
+
+01:14.600 --> 01:16.200
+sometimes ten developers,
+
+01:16.200 --> 01:19.400
+sometimes a hundred,
+<01:17.400>and sometimes more.
+
+01:19.400 --> 01:21.800
+This is where Software Engineering comes in.
+
+01:21.800 --> 01:25.200
+How do we get a team of developers
+to write huge software,
+
+01:25.200 --> 01:30.200
+where all the pieces fit together,
+it works reliably, and it does what the user wants.
+
+01:30.200 --> 01:33.800
+Software Engineering is about
+so much more than just programming.
+
+01:33.800 --> 01:39.600
+In fact, the actual programming part
+is usually only about 20% of software projects.
+
+01:39.600 --> 01:43.400
+Even today we are not good
+at getting software development right.
+
+01:43.400 --> 01:48.000
+A survey in 2009 found that only
+around a third of software projects succeeded.
+
+01:48.000 --> 01:50.400
+While a quarter of projects failed outright,
+
+01:50.400 --> 01:53.600
+or were cancelled before
+the software could be delivered.
+
+01:53.600 --> 01:58.200
+Fortunately we now know a lot
+about what works and what doesn't.
+
+01:58.200 --> 02:02.000
+In this chapter, we'll look at
+some approaches that are doomed to failure,
+
+02:02.000 --> 02:04.000
+but are still used surprisingly often.
+
+02:04.000 --> 02:08.400
+And some approaches that seems to work a lot better,
+and can helps us create software
+
+02:08.400 --> 02:11.000
+that does what it's meant to.
+
+02:11.000 --> 02:14.000
+Software Engineering

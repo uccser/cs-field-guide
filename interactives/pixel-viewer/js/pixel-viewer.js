@@ -62,6 +62,9 @@ $( "#pixel-viewer-interactive-menu-toggle" ).click(function() {
     $( "#pixel-viewer-interactive-settings" ).slideToggle( "slow" );
 });
 
+$('#pixel-viewer-interactive-show-pixel-fill').change(function() {
+    scroller.finishPullToRefresh();
+});
 
 function load_resize_image(src){
     var image = new Image();
@@ -131,9 +134,9 @@ var render = function(left, top, zoom) {
 this.scroller = new Scroller(render, {
     zooming: true,
     bouncing: false,
-    locking: true,
+    locking: false,
     paging: false,
-    snapping: true,
+    snapping: false,
     minZoom: 0.001,
     maxZoom: 4
 });
@@ -141,18 +144,24 @@ this.scroller = new Scroller(render, {
 // Cell Paint Logic
 var paint = function(row, col, left, top, width, height, zoom) {
     // Get data for pixel
+    var show_pixel_fill = document.getElementById('pixel-viewer-interactive-show-pixel-fill').checked;
     var pixelData = source_canvas.getContext('2d').getImageData(col, row, 1, 1).data;
-    context.fillStyle = 'rgb('+pixelData[0]+','+pixelData[1]+','+pixelData[2]+')';
-    context.fillRect(Math.round(left), Math.round(top), Math.round(width)+1, Math.round(height)+1);
+    if (show_pixel_fill) {
+      context.fillStyle = 'rgb('+pixelData[0]+','+pixelData[1]+','+pixelData[2]+')';
+      context.fillRect(Math.round(left), Math.round(top), Math.round(width)+1, Math.round(height)+1);
+    } else {
+      context.strokeRect(Math.round(left), Math.round(top), Math.round(width)+1, Math.round(height)+1);
+    }
 
     // If text opacity is greater than 0, then display RGB values
-    if(text_opacity > 0) {
+    if (text_opacity > 0) {
         context.font = (14 * zoom).toFixed(2) + 'px Consolas, Courier New, monospace';
-        var cell_lightness = ((pixelData[0] / 255) + (pixelData[1] / 255) + (pixelData[2] / 255)) / 3;
-        if(cell_lightness >= 0.85) {
-            context.fillStyle = "rgba(110, 110, 110, " + text_opacity + ")";
-        } else {
+        if (!show_pixel_fill) {
+            context.fillStyle = "rgba(0, 0, 0, " + text_opacity + ")";
+        } else if ((((pixelData[0] / 255) + (pixelData[1] / 255) + (pixelData[2] / 255)) / 3) < 0.85) {
             context.fillStyle = "rgba(255, 255, 255, " + text_opacity + ")";
+        } else {
+            context.fillStyle = "rgba(110, 110, 110, " + text_opacity + ")";
         }
 
         // Pretty primitive text positioning :)

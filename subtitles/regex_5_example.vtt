@@ -1,0 +1,96 @@
+WEBVTT
+
+NOTE
+Computer Science Education Research,
+University of Canterbury, New Zealand
+Subtitle file for the video "Regular Expressions - 5 - A Bigger Example"
+Author: Alasdair Smith
+Language: English
+Date: 20/06/17
+
+00:00.000 --> 00:10.400
+Let’s take a look at another common example, URLs.
+<00:05.800>Here is a regular expression for URLs I came up with earlier.
+
+00:10.400 --> 00:16.600
+It isn’t perfect, perhaps by the end of this video
+you’ll have figured out some things that are missing,
+
+00:16.600 --> 00:21.400
+but it’s a good starting example so let’s take a look.
+
+00:21.400 --> 00:25.800
+Before we do though we need to make
+one more clarification.
+
+00:25.800 --> 00:33.000
+Apart from some cases such as backslash d,
+the backslash is used as an escape character
+
+00:33.000 --> 00:36.400
+and so the following symbol is matched ‘as-is.’
+
+00:36.400 --> 00:44.600
+We found before that the period matches any single character,
+but backslash period matches the period itself.
+
+00:44.600 --> 00:51.400
+This is the same for backslash forwardslash,
+as forwardslash normally matches the division symbol.
+
+00:51.400 --> 01:04.400
+So, first we have the Hypertext Transfer Protocol, HTTP,
+with zero or one of an S, followed by colon, forwardslash forwardslash.
+
+01:04.400 --> 01:12.000
+This is the part of the URL you see before the actual web address.
+This entire sequence can be left out,
+
+01:12.000 --> 01:16.800
+so it is enclosed in parentheses
+and followed by a question mark.
+
+01:16.800 --> 01:23.000
+The next sequence, the main web address,
+is a combination of characters and symbols.
+
+01:23.000 --> 01:29.200
+We have a choice between a letter or a digit
+or a period or a hyphen or a forwardslash,
+
+NOTE the hyphen was accidentally left out in the drawing
+
+01:29.200 --> 01:37.000
+but we almost certainly need more than one,
+so it is wrapped in parentheses and given a plus symbol.
+
+01:37.000 --> 01:43.400
+After this there is a period, then the suffix.
+.com is the most common example in business,
+
+NOTE 'in business' was accidentally left out in the audio
+
+01:43.400 --> 01:53.600
+but there are many many regional alternatives;
+such as .co.nz for New Zealand and .co.uk for the United Kingdom.
+
+01:53.600 --> 01:59.600
+In this series of videos we took a look at
+the basic meaning of Regular Expressions,
+
+01:59.600 --> 02:05.600
+what they’re used for, as well as some of
+the many different symbols used in practical systems,
+
+02:05.600 --> 02:10.000
+though they all can be expressed in terms of just four.
+
+02:10.000 --> 02:15.600
+For more information and examples,
+check out the Computer Science Field Guide.
+
+02:15.600 --> 02:20.200
+Regular Expressions is in the chapter on Formal Languages.
+
+02:20.200 --> 02:22.000
+Thanks for watching!

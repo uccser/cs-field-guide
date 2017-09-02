@@ -80,21 +80,21 @@ A pbm file for the diamond image used earlier would be as follows:
 ```
 P1
 15 15
-011000010000110
-100000111000001
-000001111100000
-000011111110000
-000111111111000
-001111101111100
-011111000111110
-111110000011111
-011111000111110
-001111101111100
-000111111111000
-000011111110000
-000001111100000
-100000111000001
-011000010000110
+0 1 1 0 0 0 0 1 0 0 0 0 1 1 0
+1 0 0 0 0 0 1 1 1 0 0 0 0 0 1
+0 0 0 0 0 1 1 1 1 1 0 0 0 0 0
+0 0 0 0 1 1 1 1 1 1 1 0 0 0 0
+0 0 0 1 1 1 1 1 1 1 1 1 0 0 0
+0 0 1 1 1 1 1 0 1 1 1 1 1 0 0
+0 1 1 1 1 1 0 0 0 1 1 1 1 1 0
+1 1 1 1 1 0 0 0 0 0 1 1 1 1 1
+0 1 1 1 1 1 0 0 0 1 1 1 1 1 0
+0 0 1 1 1 1 1 0 1 1 1 1 1 0 0
+0 0 0 1 1 1 1 1 1 1 1 1 0 0 0
+0 0 0 0 1 1 1 1 1 1 1 0 0 0 0
+0 0 0 0 0 1 1 1 1 1 0 0 0 0 0
+1 0 0 0 0 0 1 1 1 0 0 0 0 0 1
+0 1 1 0 0 0 0 1 0 0 0 0 1 1 0
 ```
 
 The first two lines are the header.  The first line specifies the format of the file (P1 means that the file contains ASCII zeroes and ones). The second line specifies the width and then the height of the image in pixels. This allows the computer to know the size and dimensions of the image, even if the newline characters separating the rows in the file were missing.
@@ -366,11 +366,6 @@ You can experiment with different combinations of sine waves to get different sh
 You may need to have more than four to get good approximations to a shape that you want; that's exactly the tradeoff that JPEG is making.
 There are some suggestions for parameters on the second sheet of the spreadsheet.
 
-You can also learn about Fourier transforms using the Wolfram Alpha software; this will require you to install a browser plugin.
-The Wolfram demonstrations include:
-[an interactive demonstration of JPEG](http://demonstrations.wolfram.com/JPEGCompressionAlgorithm/),
-[showing the relationship between sine saves and creating other waveforms](http://demonstrations.wolfram.com/RecoveringTheFourierCoefficients/), and
-[showing how sine waves can be summed to produce other shapes](http://demonstrations.wolfram.com/SumsOfSineWavesWithSeveralStepSizesSawtoothOrSquareApproxima/).
 
 {panel end}
 
@@ -378,23 +373,16 @@ The Wolfram demonstrations include:
 .. html5 low priority interactive to add cosine waves to try to match a given waveform e.g. square wave, triangle, random. Select amplitude for various frequencies. I have a spreadsheet that basically does this, could put it in for the meantime - tim
 {comment end}
 
-You can see the 8 by 8 blocks of pixels if you zoom in on a heavily compressed JPEG image. For example, the following image has been very heavily compressed using JPEG (it is just 1.5% of its original size).
+Each 8 by 8 block of pixels in a JPEG image can be created by adding together different amounts of up to 64 patterns based on cosine waves. The waves can be represented visually as patterns of white and black pixels, as shown in the image below.
 
-{image filename="compressed-jpeg.png"}
+{image filename="jpeg-discrete-cosine-transform.png"}
 
-If we zoom in on the eye area, you can see the 8 x 8 blocks of pixels:
+These particular waves are known as "basis functions" because any 8 by 8 block of pixels can be created by combining them. The basis function in the top left is the average colour of the 8 by 8 block. By adding more of it (increasing the coefficient that it is multiplied by) the resultant 8 by 8 block will become darker. The basis functions become more complex towards the bottom right, and are therefore used less commonly. How often would an image have every pixel a different color, as in the bottom right basis function?
+To investigate how the 64 basis functions can be combined to form any pattern in 8 by 8 block of pixels - try out this puzzle!
 
-{image filename="compressed-jpeg-zoomed.png"}
+{interactive name="jpeg-compression" type="whole-page" parameters="puzzle=true" text="JPEG puzzle interactive"}
 
-Notice that there is very little variation across each block. In the following image the block in the red box only changes from top to bottom, and could probably be specified by giving just two values, and having the ones in between calculated by the decoder as for the line example before. The green square only varies from left to right, and again might only need 2 values stored instead of 64. The blue block has only one colour in it! The yellow block is more complicated because there is more activity in that part of the image, which is where the cosine waves come in. A "wave" value varies up and down, so this one can be represented by a left-to-right variation from dark to light to dark, and a top-to-bottom variation mainly from dark to light. Thus still only a few values need to be stored instead of the full 64.
-
-{image filename="compressed-jpeg-zoomed-highlighted.png"}
-
-The quality is quite low, but the saving in space is huge – it's more than 60 times smaller (for example, it would download 60 times faster). Higher quality JPEG images store more detail for each 8 by 8 block, which makes it closer to the original image, but makes bigger files because more details are being stored. You can experiment with these tradeoffs by saving JPEGs with differing choices of the quality, and see how the file size changes. Most image processing software offers this option when you save an image as a JPEG.
-
-{comment}
-low priority : interactive that could load a photo, zoom in on pixels, and change it to different qualities of jpg coding
-{comment end}
+So 64 pixels (in an 8 by 8 block) can be represented by 64 coefficients that tell us how much of each basis function to use. But how does this help us save space and compress the image? At the moment we are still storing exactly the same amount of data, just in a different way.
 
 {panel type="jargon-buster" summary="Where does the term JPEG come from?"}
 The name "JPEG" is short for "Joint Photographic Experts Group", a committee that was formed in the 1980s to create standards so that digital photographs could be captured and displayed on different brands of devices. Because some file extensions are limited to three characters, it is often seen as the ".jpg" extension.
@@ -403,6 +391,38 @@ The name "JPEG" is short for "Joint Photographic Experts Group", a committee tha
 {panel type="curiosity" summary="More about cosine waves"}
 The cosine waves used for JPEG images are based on a "Discrete Cosine Transform". The "Discrete" means that the waveform is digital – it is the opposite of continuous, where any value can occur. In a JPEG wave, there are only 8 x 8 values (for the block being coded), and each of those values can have a limited range of numbers (binary integers), rather than any value at all.
 {panel end}
+
+The advantage of using this DCT representation is that it allows us to separate the low frequency changes (top left ones) from high frequency changes (bottom right), and JPEG compression uses that to its advantage. The human eye does not usually notice high frequency changes in an image so they can often be discarded without affecting the visual quality of the image. The low frequency (less varied) basis functions are far more important to an image.
+
+JPEG compression uses a process called quantisation to set any insignificant basis function coefficients to zero. But how do we decide what is insignificant? Quantisation requires a quantisation table of 64 numbers. Each coefficient value is divided by the corresponding value in the quantisation table and rounded down to the nearest integer. This means many coefficients become zero, and when multiplied back with the quantisation table, remain zero.
+
+There is no optimal quantisation table for every image, but many camera or image processing companies have worked to develop very good quantisation tables. As a result, many are kept secret. Some companies have also developed software to analyse images and select the most appropriate quantisation table for the particular image. For example, for an image with text in it, high frequency detail is important, so the quantisation table should have lower values in the bottom right so more detail is kept. Of course, this will also result in the image size remaining relatively large. Lossy compression is all about compromise!
+
+The figure below shows an image before and after it has had quantisation applied to it.
+
+Before Quantisation:
+
+{image filename="before.png"}
+{image filename="beforedct.png"}
+
+After Quantisation:
+
+{image filename="after.png"}
+{image filename="afterdct.png"}
+
+Notice how the images look very similar, even though the second one has many zero coefficients. The differences we can see will be barely visible when the image is viewed at its original size.
+
+Try this out yourself:
+{interactive name="jpeg-compression" type="whole-page" text="JPEG interactive"}
+
+We still have 64 numbers even with the many zeros, so how do we save space when storing the zeros? You will notice that the zeros are bunched towards the bottom right. This means if we list the coefficients in a zig-zag, starting from the top left corner, we will end up with many zeros in a row. Instead of writing 20 zeros we can store the fact that there are 20 zeros using a method of run-length encoding very similar to the one discussed earlier in this chapter.
+
+{image filename="direction.png"}
+
+And finally, the numbers that we are left with are converted to bits using Huffman coding, so that more common values take less space and vice versa.
+
+All those things happen every time you take a photo and save it as a JPEG file, and it happens to every 8 by 8 block of pixels. When you display the image, the software needs to reverse the process, adding all the basis functions together for each block - and there will be hundereds of thousands of blocks for each image.
+
 
 An important issue arises because JPEG represents images as smoothly varying colours: what happens if the colours change suddenly?
 In that case, lots of values need to be stored so that lots of cosine waves can be added together to make the sudden change in colour, or else the edge of the image become fuzzy.

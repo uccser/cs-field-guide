@@ -1,0 +1,222 @@
+WEBVTT
+
+NOTE
+Computer Science Education Research,
+University of Canterbury, New Zealand
+Subtitle file for the video "Computer Science Field Guide: Algorithms"
+Author: Alasdair Smith
+Date: 14/02/2017
+
+00:00.000 --> 00:02.000
+Algorithms
+
+00:02.000 --> 00:02.000
+We use computers to do hundreds
+of different tasks every day:
+
+00:05.400 --> 00:10.200
+Things like searching the internet;
+<00:07.000>editing an image; or finding a route on a map.
+
+00:10.200 --> 00:13.600
+But have you ever wondered how a computer
+figures out how to do these things?
+
+00:13.600 --> 00:18.400
+An algorithm is a step-by-step process
+which tells a computer how to do a specific task.
+
+00:18.400 --> 00:21.200
+But there can be many different
+algorithms for the same problem,
+
+00:21.200 --> 00:24.400
+kind of like how there can be many
+different recipies for baking a cake.
+
+00:24.400 --> 00:27.400
+But as we know,
+some recipies can be a lot better than others.
+
+00:27.400 --> 00:31.400
+So we're going to do a little experiment
+to see if the same thing is true for algorithms.
+
+00:31.400 --> 00:34.600
+Here we are in front of
+the University of Canterbury Library.
+
+00:34.600 --> 00:37.000
+About to start the great algorithms race.
+
+00:37.000 --> 00:43.800
+Competing today we have:
+Speedy Spencer, and Slowcoach Slade.
+
+00:43.800 --> 00:46.600
+Their task is to run to the library,
+and find this book by <i>Knuth</i>
+
+00:46.600 --> 00:50.400
+amongst the millions of books in there.
+First one to find it wins.
+
+00:50.400 --> 00:55.600
+Are you ready?<00:52.02> Go!
+
+00:58.600 --> 01:02.000
+Spencer!
+
+01:07.200 --> 01:11.600
+Speedy Spencer is off to a flying start;
+he's searched dozens of books already.
+
+01:11.600 --> 01:15.400
+He seems to be employing a <i>Sequencial Search</i>
+algorithm, so he looks at the first book,
+
+01:15.400 --> 01:19.000
+and then continues on and looks at each
+individual book until he...
+
+01:19.000 --> 01:21.800
+Where's he going?
+
+01:21.800 --> 01:26.600
+He seems to know exactly what he's looking for.
+
+01:39.000 --> 01:43.400
+Slade seems to be employing something like a
+<i>Binary Search</i> algorithm as his strategy.
+
+01:43.400 --> 01:46.600
+He's looked at a book at the center of the library,
+and by looking at that one book,
+
+01:46.600 --> 01:49.600
+he's realised that the book he's looking for
+can't be in the first half.
+
+01:49.600 --> 01:53.000
+So by making one query,
+he's eliminated half of the books in the library.
+
+01:53.000 --> 01:55.800
+He may be slow, but he's intelligent.
+
+02:00.000 --> 02:02.600
+Spencer seems to have almost finished
+his first shelf of books.
+
+02:02.600 --> 02:06.200
+He's got a few thousand more to go though
+before he finds the right book.
+
+02:06.200 --> 02:08.400
+It's a bit like if he took
+one of the world's fastest computers,
+
+02:08.400 --> 02:12.400
+and gave it one of the world's worst algorithms.
+
+02:12.400 --> 02:15.800
+Imagine if a fast engine like Google
+returned results to you by searching through
+
+02:15.800 --> 02:19.800
+every page on the internet one by one.
+
+02:19.800 --> 02:23.200
+Now back to Slade, how are you going Slade?
+
+02:23.200 --> 02:28.000
+SLADE: Exactly as I planned. I narrowed it down,
+and it should be on this shelf.
+
+02:28.000 --> 02:31.400
+You already know the book is on this shelf?
+
+02:31.400 --> 02:33.200
+SLADE: This half of the shelf
+
+02:33.200 --> 02:34.600
+BOZO: Excuse me!
+
+02:34.600 --> 02:37.000
+Bozo?, are you searching for the book as well?
+
+02:37.000 --> 02:39.200
+BOZO: Yep! I'm doing a Bozo Search.
+
+02:39.200 --> 02:44.600
+How does that work?
+<02:40.200>BOZO: Well, I take a book,
+and hopefully it's the right book.
+
+02:44.600 --> 02:46.400
+But what if it isn't the right book?
+
+02:46.400 --> 02:51.200
+BOZO: Well then, I'll go and look for another book.
+<02:50.000>Excuse me.
+
+02:51.200 --> 02:53.000
+SLADE: Here it is!
+
+02:53.000 --> 03:00.200
+Congratulations Slade, you've won!
+Guys you can stop searching now.<02:58.200> Guys.
+
+03:00.200 --> 03:03.400
+Slade's found the book.
+
+03:03.400 --> 03:07.400
+Guys you can stop searching now.
+Slade's won.
+
+03:07.400 --> 03:13.000
+Guys. Guys you can stop now.
+<03:11.000>[sigh]
+
+03:13.800 --> 03:16.600
+So it looks like the algorithm you choose
+can make a big difference,
+
+03:16.600 --> 03:18.600
+particularly with large amounts of data.
+
+03:18.600 --> 03:21.800
+You see, if the library had been twice the size,
+it would take Speedy Spencer
+
+03:21.800 --> 03:27.200
+twice as long to find the book. But Slowcoach Slade
+would have only needed to check one extra book.
+
+03:27.200 --> 03:30.200
+In this chapter, we'll be looking more
+at what algorithms are used for,
+
+03:30.200 --> 03:32.600
+and why it's important to choose the right one.
+
+03:32.600 --> 03:37.200
+So Slowcoach Slade, if you were an algorithm
+in a program I was writing.
+
+03:37.200 --> 03:41.000
+I would be the happiest programmer alive.
+
+03:42.700 --> 03:45.700
+Algorithms
+
+03:47.600 --> 03:52.000
+SPENCER: Yes! Found it
+<03:50.200>Bozo? What are you reading?
+
+03:52.000 --> 03:56.800
+BOZO: Oh, it's a book on Metaginetics
+in Argentina and Peru.
+
+03:56.800 --> 03:59.400
+SPENCER: Hmm, close enough.
