@@ -29,6 +29,8 @@ We have listed major changes for each release below.
   - [microlith57](https://github.com/microlith57) [#483](https://github.com/uccser/cs-field-guide/issues/483)
 - Fix broken link to research paper.
   - [Jack Morgan](https://github.com/JackMorganNZ) [#484](https://github.com/uccser/cs-field-guide/issues/484)
+- Fix panels showing 'None' as title.
+  - [Jack Morgan](https://github.com/JackMorganNZ) [#485](https://github.com/uccser/cs-field-guide/issues/485)
 
 ## 2.10.0
 
