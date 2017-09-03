@@ -17,7 +17,7 @@ Given a version number MAJOR.MINOR.HOTFIX:
 
 We have listed major changes for each release below.
 
-### 2.10.1
+## 2.10.1
 
 **Release date:** 3rd September 2017
 
@@ -30,7 +30,7 @@ We have listed major changes for each release below.
 - Fix broken link to research paper.
   - [Jack Morgan](https://github.com/JackMorganNZ) [#484](https://github.com/uccser/cs-field-guide/issues/484)
 
-### 2.10.0
+## 2.10.0
 
 **Release date:** 2nd September 2017
 
@@ -76,7 +76,7 @@ This to make the numbering consistent with our other projects (CS Unplugged and 
 - Add ability to hide pixel colours in pixel value interactive.
   - [Jack Morgan](https://github.com/JackMorganNZ) [#476](https://github.com/uccser/cs-field-guide/issues/476)
 
-### 2.9.1
+## 2.9.1
 
 **Release date:** 20th February 2017
 
@@ -89,7 +89,7 @@ This release fixes a bug in the Computer Graphics chapter where some links to th
 **Changelog:**
 - [Adam Gotlib](https://github.com/Goldob) [#404](https://github.com/uccser/cs-field-guide/pull/404)
 
-### 2.9.0
+## 2.9.0
 
 **Release date:** 27th January 2017
 
@@ -115,7 +115,7 @@ This release adds an introductory video for the Complexity and Tractability chap
 - Update APCSP framework.
   - [Paul Tymann](https://github.com/ptymann) [#399](https://github.com/uccser/cs-field-guide/issues/399)
 
-### 2.8.1
+## 2.8.1
 
 **Release date:** 21st October 2016
 
@@ -129,7 +129,7 @@ This release adds an introductory video for the Complexity and Tractability chap
 - Skip parsing `#` characters at start of Markdown links.
   - [Jack Morgan](https://github.com/JackMorganNZ)
 
-### 2.8.0
+## 2.8.0
 
 **Release date:** 19th October 2016
 
@@ -170,7 +170,7 @@ This release adds an introductory video for the Human Computer Interaction chapt
 - Fix footer link colour in teacher version.
   - [Jack Morgan](https://github.com/JackMorganNZ) [#395](https://github.com/uccser/cs-field-guide/issues/395)
 
-### 2.7.1
+## 2.7.1
 
 **Release date:** 5th September 2016
 
@@ -181,7 +181,7 @@ This release adds an introductory video for the Human Computer Interaction chapt
 
 A full list of changes in this version is [available on GitHub](https://github.com/uccser/cs-field-guide/compare/v2.7.0...v2.7.1).
 
-### 2.7.0
+## 2.7.0
 
 **Release date:** 23rd August 2016
 
@@ -198,7 +198,7 @@ A full list of changes in this version is [available on GitHub](https://github.c
 
 A full list of changes in this version is [available on GitHub](https://github.com/uccser/cs-field-guide/compare/v2.6.1...v2.7.0).
 
-### 2.6.1
+## 2.6.1
 
 **Release date:** 14th July 2016
 
@@ -207,7 +207,7 @@ A full list of changes in this version is [available on GitHub](https://github.c
 **Notable changes:**
 - Fixed issue on Human Computer Interaction chapter where duplicate library was causing several UI elements to not behave correctly.
 
-### 2.6.0
+## 2.6.0
 
 **Release date:** 16th June 2016
 
@@ -229,7 +229,7 @@ A full list of changes in this version is [available on GitHub](https://github.c
 
 A full list of changes in this version is [available on GitHub](https://github.com/uccser/cs-field-guide/compare/v2.5.0...v2.6.0).
 
-### 2.5.0
+## 2.5.0
 
 **Release date:** 13th May 2016
 
@@ -255,7 +255,7 @@ A full list of changes in this version is [available on GitHub](https://github.c
 
 A full list of changes in this version is [available on GitHub](https://github.com/uccser/cs-field-guide/compare/v2.4.1...v2.5.0).
 
-### 2.4.1
+## 2.4.1
 
 **Release date:** 29th April 2016
 
@@ -266,7 +266,7 @@ A full list of changes in this version is [available on GitHub](https://github.c
 
 A full list of changes in this version is [available on GitHub](https://github.com/uccser/cs-field-guide/compare/v2.4...v2.4.1).
 
-### 2.4
+## 2.4
 
 **Release date:** 29th April 2016
 
@@ -285,7 +285,7 @@ A full list of changes in this version is [available on GitHub](https://github.c
 
 A full list of changes in this version is [available on GitHub](https://github.com/uccser/cs-field-guide/compare/v2.3...v2.4).
 
-### 2.3
+## 2.3
 
 **Release date:** 10th March 2016
 
@@ -301,7 +301,7 @@ A full list of changes in this version is [available on GitHub](https://github.c
 
 A full list of changes in this version is [available on GitHub](https://github.com/uccser/cs-field-guide/compare/v2.2...v2.3).
 
-### 2.2
+## 2.2
 
 **Release date:** 19th February 2016
 
@@ -316,7 +316,7 @@ A full list of changes in this version is [available on GitHub](https://github.c
 
 A full list of changes in this version is [available on GitHub](https://github.com/uccser/cs-field-guide/compare/v2.1...v2.2).
 
-### 2.1
+## 2.1
 
 **Release date:** 12th February 2016
 
@@ -330,7 +330,7 @@ A full list of changes in this version is [available on GitHub](https://github.c
 
 A full list of changes in this version is [available on GitHub](https://github.com/uccser/cs-field-guide/compare/v2.0...v2.1).
 
-### 2.0
+## 2.0
 
 **Release date:** 5th February 2016
 
@@ -349,24 +349,24 @@ The first major step in releasing a open source version of the Computer Science 
 While some content (most notably interactives) have yet to be added to the new system, we are releasing this update for New Zealand teachers to use at the beginning of their academic year.
 For any interactives that are missing, links are in place to the older interactives.
 
-### 2.0-alpha.3
+## 2.0-alpha.3
 
 **Release date:** 29th January 2016
 
 **Downloads:** [Source available on GitHub](https://github.com/uccser/cs-field-guide/compare/d8a69d50575cac8c4e2686ee4d9af7c22b7131a7...v2.0-alpha.3)
 
-### 2.0-alpha.2
+## 2.0-alpha.2
 
 **Release date:** 25th January 2016
 
-### 2.0-alpha.1
+## 2.0-alpha.1
 
 **Release date:** 2nd December 2015
 
 **Comments:**
 Released at CS4HS 2015.
 
-### 1.?.?
+## 1.?.?
 
 **Release date:** 3rd February 2015
 
