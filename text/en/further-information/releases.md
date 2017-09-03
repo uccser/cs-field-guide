@@ -17,7 +17,16 @@ Given a version number MAJOR.MINOR.HOTFIX:
 
 We have listed major changes for each release below.
 
-## Current Release
+### 2.10.1
+
+**Release date:** 3rd September 2017
+
+**Downloads:** [Source downloads are available on GitHub](https://github.com/uccser/cs-field-guide/releases/tag/2.10.1)
+
+**Changelog:**
+
+- Fix broken links to NCEA curriculum guides.
+  - [microlith57](https://github.com/microlith57) [#483](https://github.com/uccser/cs-field-guide/issues/483)
 
 ### 2.10.0
 
@@ -78,7 +87,6 @@ This release fixes a bug in the Computer Graphics chapter where some links to th
 **Changelog:**
 - [Adam Gotlib](https://github.com/Goldob) [#404](https://github.com/uccser/cs-field-guide/pull/404)
 
-
 ### 2.9.0
 
 **Release date:** 27th January 2017
@@ -104,8 +112,6 @@ This release adds an introductory video for the Complexity and Tractability chap
   - [Jack Morgan](https://github.com/JackMorganNZ)
 - Update APCSP framework.
   - [Paul Tymann](https://github.com/ptymann) [#399](https://github.com/uccser/cs-field-guide/issues/399)
-
-## Older Releases
 
 ### 2.8.1
 
