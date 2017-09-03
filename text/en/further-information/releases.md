@@ -2,7 +2,7 @@
 
 This page lists updates to the Computer Science Field Guide. All notable changes to this project will be documented in this file.
 
-{panel type="What numbering system do we use?"}
+{panel type="general" title="What numbering system do we use?"}
 
 We base our numbering system from the guidelines at [Semantic Versioning 2.0.0](http://semver.org/spec/v2.0.0.html), however since our project started before it was migrated to GitHub, the first open source release is being labeled as `2.0.0`.
 
