@@ -8,7 +8,7 @@ The following guides are currently available for AS91636.
 
 ## Complexity and Tractability
 
-- [The Traveling Crayfisher](curriculum-guides/ncea/assessment-guide-level-3-complexity-tractability-TSP.html)
+- [The Traveling Crayfisher](curriculum-guides/ncea/level-3/complexity-tractability-TSP.html)
 
 ## Computer Graphics
 
@@ -20,7 +20,7 @@ No assessment guides are currently available for computer vision.
 
 ## Formal Languages
 
-- [Formal Languages](curriculum-guides/ncea/assessment-guide-level-3-formal-languages-FSA-RE.html)
+- [Formal Languages](curriculum-guides/ncea/level-3/formal-languages-FSA-RE.html)
 
 ## Network Communication Protocols
 
@@ -28,4 +28,4 @@ No assessment guides are currently available for network communication protocols
 
 ## Software Engineering
 
-- [Software Methodologies](curriculum-guides/ncea/assessment-guide-level-3-software-engineering-methodologies.html)
+- [Software Methodologies](curriculum-guides/ncea/level-3/software-engineering-methodologies.html)

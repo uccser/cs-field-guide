@@ -229,9 +229,9 @@ A full list of changes in this version is [available on GitHub](https://github.c
 
 **Notable changes:**
 - The Data Representation chapter has been rewritten and reorganised to be easier to follow, and three NCEA assessment guides have been written for students aiming for merit/excellence:
-  - [Numbers (Two's Complement)](curriculum-guides/ncea/assessment-guide-level-2-excellence-data-representation-numbers.html)
-  - [Text (Unicode)](curriculum-guides/ncea/assessment-guide-level-2-excellence-data-representation-text.html)
-  - [Colours (Various bit depths)](curriculum-guides/ncea/assessment-guide-level-2-excellence-data-representation-colour.html)
+  - [Numbers (Two's Complement)](curriculum-guides/ncea/level-2/excellence-data-representation-numbers.html)
+  - [Text (Unicode)](curriculum-guides/ncea/level-2/excellence-data-representation-text.html)
+  - [Colours (Various bit depths)](curriculum-guides/ncea/level-2/excellence-data-representation-colour.html)
 
   The chapter and assessment guides have been rewritten to take account of new feedback from the marking process and our own observations of student work.
 
