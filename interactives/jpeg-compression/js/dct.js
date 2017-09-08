@@ -321,6 +321,8 @@ $(function () {
         puzzle.giveHelp();
         Puzzle.checkForMatch();
     });
+    
+    $('img').on('dragstart', function(event) { event.preventDefault(); });
 
     function showMSE(mse) {
         $("#mse").text(mse);
