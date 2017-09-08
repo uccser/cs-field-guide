@@ -73,25 +73,25 @@ structure:
         listed: yes
         table_of_contents_sidebar: yes
         source_files:
-            - file: curriculum-guides/ncea/assessment-guide-level-1-introduction.md
-            - file: curriculum-guides/ncea/assessment-guide-level-1-searching-algorithms.md
-            - file: curriculum-guides/ncea/assessment-guide-level-1-sorting-algorithms.md
-            - file: curriculum-guides/ncea/assessment-guide-level-1-human-computer-interaction.md
-            - file: curriculum-guides/ncea/assessment-guide-level-1-programming-languages.md
-            - file: curriculum-guides/ncea/assessment-guide-level-2-introduction.md
-            - file: curriculum-guides/ncea/assessment-guide-level-2-achieved-representing-data.md
-            - file: curriculum-guides/ncea/assessment-guide-level-2-achieved-compression-run-length-encoding.md
-            - file: curriculum-guides/ncea/assessment-guide-level-2-achieved-error-control-check-sums.md
-            - file: curriculum-guides/ncea/assessment-guide-level-2-achieved-error-control-parity.md
-            - file: curriculum-guides/ncea/assessment-guide-level-2-achieved-encryption-caesar-cipher.md
-            - file: curriculum-guides/ncea/assessment-guide-level-2-achieved-human-computer-interaction.md
-            - file: curriculum-guides/ncea/assessment-guide-level-2-full-human-computer-interaction.md
-            - file: curriculum-guides/ncea/assessment-guide-level-2-excellence-data-representation-text.md
-            - file: curriculum-guides/ncea/assessment-guide-level-2-excellence-data-representation-numbers.md
-            - file: curriculum-guides/ncea/assessment-guide-level-2-excellence-data-representation-colour.md
-            - file: curriculum-guides/ncea/assessment-guide-level-3-software-engineering-methodologies.md
-            - file: curriculum-guides/ncea/assessment-guide-level-3-complexity-tractability-TSP.md
-            - file: curriculum-guides/ncea/assessment-guide-level-3-formal-languages-FSA-RE.md
+            - file: curriculum-guides/ncea/level-1/introduction.md
+            - file: curriculum-guides/ncea/level-1/searching-algorithms.md
+            - file: curriculum-guides/ncea/level-1/sorting-algorithms.md
+            - file: curriculum-guides/ncea/level-1/human-computer-interaction.md
+            - file: curriculum-guides/ncea/level-1/programming-languages.md
+            - file: curriculum-guides/ncea/level-2/introduction.md
+            - file: curriculum-guides/ncea/level-2/achieved-representing-data.md
+            - file: curriculum-guides/ncea/level-2/achieved-compression-run-length-encoding.md
+            - file: curriculum-guides/ncea/level-2/achieved-error-control-check-sums.md
+            - file: curriculum-guides/ncea/level-2/achieved-error-control-parity.md
+            - file: curriculum-guides/ncea/level-2/achieved-encryption-caesar-cipher.md
+            - file: curriculum-guides/ncea/level-2/achieved-human-computer-interaction.md
+            - file: curriculum-guides/ncea/level-2/full-human-computer-interaction.md
+            - file: curriculum-guides/ncea/level-2/excellence-data-representation-text.md
+            - file: curriculum-guides/ncea/level-2/excellence-data-representation-numbers.md
+            - file: curriculum-guides/ncea/level-2/excellence-data-representation-colour.md
+            - file: curriculum-guides/ncea/level-3/software-engineering-methodologies.md
+            - file: curriculum-guides/ncea/level-3/complexity-tractability-TSP.md
+            - file: curriculum-guides/ncea/level-3/formal-languages-FSA-RE.md
             - file: curriculum-guides/apcsp/guide-algorithms-introduction.md
             - file: curriculum-guides/apcsp/guide-abstraction-introduction.md
             - file: curriculum-guides/apcsp/guide-creativity-introduction.md
@@ -122,6 +122,9 @@ structure:
             - file: chapters/index.md
             - file: curriculum-guides/index.md
             - file: curriculum-guides/ncea/index.md
+            - file: curriculum-guides/ncea/level-1/index.md
+            - file: curriculum-guides/ncea/level-2/index.md
+            - file: curriculum-guides/ncea/level-3/index.md
             - file: curriculum-guides/apcsp/index.md
             - file: further-information/index.md
 text_values:
