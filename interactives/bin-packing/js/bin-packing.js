@@ -23,8 +23,14 @@ $(function() {
             return this.contains + size_to_add <= this.size;
         }
 
+        setContains(number) {
+            this.contains = number;
+            $("#bin" + this.id).children(".right-bin").children("p").text(this.spaceRemaining());
+            $("#bin" + this.id).children(".left-bin").children("p").text(this.contains);
+        }
+
         add(size_to_add) {
-            this.contains += size_to_add;
+            this.setContains(this.contains + size_to_add);
         }
 
         spaceRemaining() {
@@ -56,73 +62,119 @@ $(function() {
         }
 
         getSorted() {
-        	return this.items.slice().sort(function(obj1, obj2) {
-				// Descending
-					return obj2.size - obj1.size;
-			});
+            return this.items.slice().sort(function(obj1, obj2) {
+                // Descending
+                return obj2.size - obj1.size;
+            });
         }
     }
 
     var item_list = new ItemList();
     var bin_list = new ItemList();
 
+    // Creates a new empty bin.
     $("#add-bin").click(function() {
-        drawNewBin(bin_list.getItems().length)
+        drawAndGenerateNewBin(bin_list.getItems().length)
         dragItems();
     });
 
+    // Unpacks all the items from the bins.
+    $("#reset").click(function() {
+        $("div.fill").remove();
+        $("div.item").css("display", "inline-block");
+        $("div.item").css("transform", "translate(0px,0px)");
+        $("div.item").attr('data-x', 0);
+        $("div.item").attr('data-y', 0);
 
+        for (var i = bin_list.getItems().length - 1; i >= 0; i--) {
+            bin_list.getItems()[i].setContains(0);
+        };
+
+        for (var i = item_list.getItems().length - 1; i >= 0; i--) {
+            item_list.getItems()[i].packed = false;
+        };
+    });
+
+    // Starts a new game, first checking if the set item sizes checkbox is checked.
+    $("#new").click(function() {
+        var checked = $("#filled-in-box").is(':checked');
+        if (checked) {
+            $('#modal1').openModal();
+        } else {
+            setupGame(getUrlParameters());
+        }
+    })
+
+    // Starts a new game with the item sizes specified by the user.
+    $("#done").click(function() {
+        var itemSizes = $("#sizes").val().replace(/\s+/g, '').split(',');
+        var arr = itemSizes.filter(function(el) {
+            return el !== "";
+        });
+        setupGame(arr);
+    });
+
+    // Generates a number of items of random sizes. The number of items generated will between min and max.
     function generateItems(min, max) {
         var number_of_items = Math.floor((Math.random() * max) + min);
-        //Each item can be from 0.1 * bin_size to 0.8 * bin_size;
+        //Each item can be from 0.02 * bin_size to 0.72 * bin_size;
         while (number_of_items > 0) {
-            var new_item = new Item(Math.floor((Math.random() * (0.8 * bin_size) + (0.1 * bin_size))));
+            var new_item = new Item(Math.floor((Math.random() * (0.7 * bin_size)) + (0.02 * bin_size)));
             item_list.addItem(new_item);
             number_of_items--;
         }
     }
 
+    // Draws the HTML divs for each item in the item_list.
     function drawItemList() {
         for (var i = item_list.getItems().length - 1; i >= 0; i--) {
             var item = item_list.getItems()[i];
-            var $div = $("<div>", { "id": "item" + i, "class": "item draggable", "height": "40px", "width": item.size * width_multiplier + "px" });
-            $div.css('background-color', '#008fc5');
-            $div.css('margin-right', '10px');
-            $div.css('display', 'inline-block');
+            var $div = $("<div>", { "id": "item" + i, "class": "item draggable", "width": item.size / bin_size * 100 + "%" });
             $div.append("<p>" + item.size + "</p>")
             $("#items_area").append($div);
         };
 
     }
 
-    function drawBins() {
-        for (var i = 2; i >= 0; i--) {
-            drawNewBin(i);
+    // Draws and generates the 3 beginning bins.
+    function drawAndGenerateBins() {
+        for (var i = 0; i <= 2; i++) {
+            drawAndGenerateNewBin(i);
         }
     }
 
-    function drawNewBin(id) {
-        var $bin = $("<div>", { "id": "bin" + id, "class": "bin", "height": "40px", "width": bin_size * width_multiplier + "px" });
-        $bin.css('background-color', '#bec5c7');
-        $bin.css('margin-top', '10px');
+    // Creates a new HTML bin, as well as a new Bin Object.
+    function drawAndGenerateNewBin(id) {
+        var $bin = $("<div>", { "id": "bin" + id, "class": "bin", "width": "100%" });
         $bin.append("<div class='left-bin'><p>" + 0 + "</p></div>");
         $bin.append("<div class='right-bin'><p>" + bin_size + "</p></div>");
         $($bin).insertBefore($("#add-bin"));
         bin_list.addItem(new Bin(id));
     }
 
-
-    function setupGame() {
+    // Starts a new game. Resets everything and uses the item sizes provided if applicable.
+    function setupGame(itemSizes) {
         item_list.resetItems();
-        generateItems(4, 12);
+        bin_list.resetItems();
+        $("#items_area").children().remove();
+        $("#bins_area").children("div").remove();
+        if (itemSizes.length == 0) {
+            generateItems(4, 12);
+        } else {
+            for (var i = itemSizes.length - 1; i >= 0; i--) {
+                var new_item = new Item(Number(itemSizes[i]));
+                item_list.addItem(new_item);
+            };
+        }
+
         drawItemList();
-        drawBins();
+        drawAndGenerateBins();
         dragItems();
     }
 
-    setupGame();
+    setupGame(getUrlParameters());
 
-    // Handles the dragging of the square around the big image.
+    // Handles the dragging of the items into the bin.
     function dragItems() {
         // target elements with the "draggable" class
         interact('.draggable')
@@ -137,9 +189,9 @@ $(function() {
                 // call this function on every dragend event
                 onend: function(event) {
                     if (!event.target.classList.contains('can-drop')) {
-                        event.target.style.webkitTransform = 
-                        	event.target.style.transform = 
-                        		'translate(0px, 0px)';
+                        event.target.style.webkitTransform =
+                            event.target.style.transform =
+                            'translate(0px, 0px)';
                         event.target.setAttribute('data-x', 0);
                         event.target.setAttribute('data-y', 0);
                     }
@@ -147,7 +199,7 @@ $(function() {
             });
 
         interact('.bin').dropzone({
-            overlap: 0.7,
+            overlap: 0.5,
             accept: '.draggable',
 
             ondragenter: function(event) {
@@ -165,6 +217,7 @@ $(function() {
                 var bin = bin_list.getItem((binTarget.id).substring(3, ));
                 var item = item_list.getItem((itemTarget.id).substring(4, ));
 
+                // Only allow drop if the item fits in the bin. Otherwise item goes back to original position.
                 if (bin.canAdd(item.size)) {
                     packed(itemTarget.id, binTarget.id, item, bin);
                 } else {
@@ -194,12 +247,10 @@ $(function() {
         }
     }
 
+    // Called when each item is packed. Updates the appropriate bin and hides the item.
     function packed(itemId, binId, item, bin) {
         $("#" + itemId).css('display', 'none');
-        var $div = $("<div>", { "class": "fill", "width": item.size * width_multiplier + "px", "height": "40px" })
-        $div.css('background-color', '#008fc5');
-        $div.css('display', 'inline-block');
-        $div.css('float', 'left')
+        var $div = $("<div>", { "class": "fill", "width": item.size / bin_size * 100 + "%" })
         $("#" + binId).append($div);
         bin.add(item.size);
         item.packed = true;
@@ -207,11 +258,10 @@ $(function() {
             var $h5 = $("<h5>");
             $h5.append('Congratulations you packed the items in ' + getNonEmptyBins() + ' bins!');
             $("#items_area").append($h5);
-            var $p = $("<p>").append('The first fit algorithm used ' + firstFit(false) + ' bins and the first fit decreasing algorithm used ' + firstFit(true) + ' bins.');
-            $("#items_area").append($p);
         }
     }
 
+    // Return whether all items have been packed.
     function allPacked() {
         for (var i = item_list.getItems().length - 1; i >= 0; i--) {
             if (!item_list.getItems()[i].packed) {
@@ -221,6 +271,7 @@ $(function() {
         return true;
     }
 
+    // Get the number of bins that contain 1 or more items.
     function getNonEmptyBins() {
         var number_non_empty_bins = 0;
         for (var i = bin_list.getItems().length - 1; i >= 0; i--) {
@@ -231,38 +282,17 @@ $(function() {
         return number_non_empty_bins;
     }
 
-    function firstFit(decreasing) {
-    	var items = item_list.getItems();
-    	if(decreasing) {
-    		var items = item_list.getSorted();
-    	}
-        var bins = new ItemList();
-        bins.addItem(new Bin(bins.getItems().length));
+    // Item sizes can be specified in the url separate by '&' character.
+    function getUrlParameters() {
+        var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+            itemSizes = sPageURL.split('&');
 
-        for (var i = 0; i < items.length; i++) {
-            var packed = false;
-            for (var j = 0; j < bins.getItems().length; j++) {
-                var current_item_size = items[i].size;
-                if ((bins.getItem(j)).canAdd(current_item_size)) {
-                    bins.getItem(j).add(items[i].size);
-                    packed = true;
-                    break;
-                }
-            }
-            if (!packed) {
-                bins.addItem(new Bin(bins.getItems().length));
-                bins.getItem(bins.getItems().length-1).add(current_item_size);
-            }
-        }
-        return bins.getItems().length;
+        // Removes empty strings
+        var arr = itemSizes.filter(function(el) {
+            return el !== "";
+        });
+
+        return arr;
     }
-
-    console.log(firstFit(true));
-    console.log(firstFit(false));
-
-
-
-
-
 
 });
