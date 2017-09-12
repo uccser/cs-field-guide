@@ -526,6 +526,24 @@ Don't forget to include an introductory paragraph in your report that outlines t
 
 {comment end}
 
+## Bin Packing Problem
+
+The bin packing problem is another intractable problem that is encountered in many different forms in everyday life. In the bin packing problem there are a number of items of varying sizes and the goal is to minimise the number of bins required to fit all the items. A real life example of this would be packing boxes into the back of a truck.
+
+
+Since this problem is intractable, there is no algorithm that will result in the minimum number of bins used every time. However, there are a number of heuristics that can very quickly give a non-optimal solution.
+One of these is the first fit algorithm. This algorithm uses the following steps:
+
+1. Select an item.
+2. Place it in the first bin that has space available for it. If there are no bins with space, add a new bin.
+
+These steps are repeated until there are no items left.
+
+A variation of the first fit algorithm involves sorting the items in decreasing order first. This means the largest items are packed first.
+
+Try out these algorithms or your own ideas using this interactive:
+ {interactive name="bin-packing" type="whole-page" text="Bin Packing Interactive"}
+
 ## Other intractable problems
 
 {panel type="teacher-note" summary="Under construction"}
@@ -538,7 +556,6 @@ There are thousands of problems like the TSP for which no tractable solution is 
 
 - [map and graph colouring](http://csunplugged.org/graph-colouring) (these can be reduced to a timetabling problem and vice versa, showing how NP-complete problems can relate to each other)
 - [the knapsack problem](https://en.wikipedia.org/wiki/Knapsack_problem)
-- [the bin packing problem](https://en.wikipedia.org/wiki/Bin_packing_problem)
 - [Hamiltonian paths](https://en.wikipedia.org/wiki/Hamiltonian_path) (no tractable solution for this is known, yet the very similar Eulerian path, which is often presented as the seven bridges problem, has an easy tractable solution)
 - [Steiner trees](http://www.csunplugged.org/steiner-trees)
 - [Dominating sets](http://www.csunplugged.org/dominating-sets)
