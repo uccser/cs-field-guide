@@ -530,8 +530,7 @@ Don't forget to include an introductory paragraph in your report that outlines t
 
 The bin packing problem is another intractable problem that is encountered in many different forms in everyday life. In the bin packing problem there are a number of items of varying sizes and the goal is to minimise the number of bins required to fit all the items. A real life example of this would be packing boxes into the back of a truck.
 
-
-Since this problem is intractable, there is no algorithm that will result in the minimum number of bins used every time. However, there are a number of heuristics that can very quickly give a non-optimal solution.
+There is no known tractable solution to this problem, which means that we only currently have exponential-time algorithms that work out the minimum number of bins needed. However, there are a number of heuristics that can very quickly give a non-optimal solution.
 One of these is the first fit algorithm. This algorithm uses the following steps:
 
 1. Select an item.
