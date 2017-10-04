@@ -541,7 +541,8 @@ These steps are repeated until there are no items left.
 A variation of the first fit algorithm involves sorting the items in decreasing order first. This means the largest items are packed first.
 
 Try out these algorithms or your own ideas using this interactive:
- {interactive name="bin-packing" type="whole-page" text="Bin Packing Interactive"}
+
+{interactive name="bin-packing" type="whole-page" text="Bin Packing Interactive"}
 
 ## Other intractable problems
 
