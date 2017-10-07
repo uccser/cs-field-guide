@@ -321,6 +321,8 @@ $(function () {
         puzzle.giveHelp();
         Puzzle.checkForMatch();
     });
+    
+    $('img').on('dragstart', function(event) { event.preventDefault(); });
 
     function showMSE(mse) {
         $("#mse").text(mse);
@@ -369,7 +371,7 @@ $(function () {
         for (var i = 1; i <= 8; i++) {
             var row = $("<tr></tr>");
             for (var j = 1; j <= 8; j++) {
-                var rowData = $("<td></td>").append('<img src="./img/basis_functions/DCTr' + i + 'c' + j + '.png">');
+                var rowData = $("<td id='dctData'></td>").append('<img src="./img/basis_functions/DCTr' + i + 'c' + j + '.png">');
                 rowData.append('<div class="stepper" id="stepper-' + (i - 1) + (j - 1) + "\"><div class=\"stepper-progress\"></div><input type=\"text\" class=\"stepper-number\" id=\"stepper-number-" + (i - 1) + (j - 1) + '"></div>');
                 row.append(rowData);
             }

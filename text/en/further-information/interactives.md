@@ -32,6 +32,7 @@ Also try searching your browser version and operating system in Google.
 - [Awful Calculator](interactives/awful-calculator/index.html)
 - [Base Calculator](interactives/base-calculator/index.html)
 - [Big Number Calculator](interactives/big-number-calculator/index.html)
+- [Bin Packing](interactives/bin-packing/index.html)
 - [Binary Cards](interactives/binary-cards/index.html)
 - [Caesar Cipher](interactives/caesar-cipher/index.html)
 - [Checksum Calculator](interactives/checksum-calculator/index.html)
