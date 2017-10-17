@@ -1,0 +1,10 @@
+#interactive-tree-simulator #grid-container {
+  border: 5px solid black;
+  cursor: default;
+  overflow: hidden;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}

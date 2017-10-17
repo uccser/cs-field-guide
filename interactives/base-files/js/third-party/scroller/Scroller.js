@@ -172,10 +172,10 @@ var Scroller;
 		__contentHeight: 0,
 
 		/** {Integer} Snapping width for content */
-		__snapWidth: 50,
+		__snapWidth: 100,
 
 		/** {Integer} Snapping height for content */
-		__snapHeight: 50,
+		__snapHeight: 100,
 
 		/** {Integer} Height to assign to refresh area */
 		__refreshHeight: null,
@@ -193,8 +193,7 @@ var Scroller;
 		__refreshStart: null,
 
 		/** {Number} Zoom level */
-        // Changed to 0.8 for this interactive
-		__zoomLevel: 0.8,
+		__zoomLevel: 1,
 
 		/** {Number} Scroll position on x-axis */
 		__scrollLeft: 0,
@@ -596,7 +595,9 @@ var Scroller;
 			}
 
 			// Publish new values
-			self.__publish(left, top, zoom, animate);
+			if (!self.__isTracking) {
+        self.__publish(left, top, zoom, animate);
+      }
 
 		},
 
@@ -981,6 +982,8 @@ var Scroller;
 							if (!self.__refreshActive) {
 								self.__startDeceleration(timeStamp);
 							}
+						} else {
+							self.options.scrollingComplete();
 						}
 					} else {
 						self.options.scrollingComplete();
@@ -1196,7 +1199,7 @@ var Scroller;
 			};
 
 			// How much velocity is required to keep the deceleration running
-			var minVelocityToKeepDecelerating = self.options.snapping ? 4 : 0.1;
+			var minVelocityToKeepDecelerating = self.options.snapping ? 4 : 0.001;
 
 			// Detect whether it's still worth to continue animating steps
 			// If we are already slow enough to not being user perceivable anymore, we stop the whole process here.
