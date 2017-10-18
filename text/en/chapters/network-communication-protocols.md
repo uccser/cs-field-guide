@@ -22,7 +22,7 @@ Activities on the internet vary a lot too (email, Skype, video streaming, music,
 
 ## Application Level Protocols - HTTP, IRC
 
-The URL for the home site of this book is http://csfieldguide.org. Ask a few friends what the "http" stands for - they have probably seen it thousands of times...do they know what it is? This section covers high level protocols such as HTTP and IRC, what they can do and how you can use them (hint: you’re already using HTTP right now).
+The URL for the home site of this book is http://www.csfieldguide.org.nz. Ask a few friends what the "http" stands for - they have probably seen it thousands of times...do they know what it is? This section covers high level protocols such as HTTP and IRC, what they can do and how you can use them (hint: you’re already using HTTP right now).
 
 ### HyperText Transfer Protocol (HTTP)
 
