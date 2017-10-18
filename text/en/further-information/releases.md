@@ -17,6 +17,22 @@ Given a version number MAJOR.MINOR.HOTFIX:
 
 We have listed major changes for each release below.
 
+## 2.11.0
+
+**Release date:** 18th October 2017
+
+**Downloads:** [Source downloads are available on GitHub](https://github.com/uccser/cs-field-guide/releases/tag/2.11.0)
+
+**Changelog:**
+
+- Add Bin Packing interactice. [#490](https://github.com/uccser/cs-field-guide/pull/490)
+- Correct Two's Complement text. [#503](https://github.com/uccser/cs-field-guide/issues/503)
+- Remove contributor names from changelogs.
+- Update JPEG interactive. [#488](https://github.com/uccser/cs-field-guide/pull/488)
+- Remove search as it focuses on outdated releases. [#508](https://github.com/uccser/cs-field-guide/pull/508)
+- Correctly detect text size for Unicode Length interactive. [#501](https://github.com/uccser/cs-field-guide/pull/501)
+- Fix broken link to CSFG in Network Protocols chapter. [#504](https://github.com/uccser/cs-field-guide/pull/504)
+
 ## 2.10.1
 
 **Release date:** 3rd September 2017
