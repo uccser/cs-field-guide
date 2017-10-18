@@ -1,5 +1,5 @@
 function bitLength(text, utf_encoding) {
-  // Returns the bit length of an string for the given UTF encoding
+  // Returns the bit length of a string for the given UTF encoding
   var bits = 0;
   for (var i=text.length-1; i>=0; i--) {
     var character_code = text.charCodeAt(i);
