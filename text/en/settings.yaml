@@ -116,7 +116,6 @@ structure:
         source_files:
             - file: index.md
             - file: about.md
-            - file: search.md
             - file: 404.md
             - file: sitemap.md
             - file: chapters/index.md
