@@ -17,6 +17,23 @@ Given a version number MAJOR.MINOR.HOTFIX:
 
 We have listed major changes for each release below.
 
+## 2.11.0
+
+**Release date:** 18th October 2017
+
+**Downloads:** [Source downloads are available on GitHub](https://github.com/uccser/cs-field-guide/releases/tag/2.11.0)
+
+**Changelog:**
+
+- Add Bin Packing interactice. [#490](https://github.com/uccser/cs-field-guide/pull/490)
+- Correct Two's Complement text. [#503](https://github.com/uccser/cs-field-guide/issues/503)
+- Remove contributor names from changelogs.
+- Update JPEG interactive. [#488](https://github.com/uccser/cs-field-guide/pull/488)
+- Remove search as it focuses on outdated releases. [#508](https://github.com/uccser/cs-field-guide/pull/508)
+- Correctly detect text size for Unicode Length interactive. [#501](https://github.com/uccser/cs-field-guide/pull/501)
+- Fix broken link to CSFG in Network Protocols chapter. [#504](https://github.com/uccser/cs-field-guide/pull/504)
+- Fix typo in section 2.1.3. [#507](https://github.com/uccser/cs-field-guide/pull/507)
+
 ## 2.10.1
 
 **Release date:** 3rd September 2017
@@ -25,12 +42,9 @@ We have listed major changes for each release below.
 
 **Changelog:**
 
-- Fix broken links to NCEA curriculum guides.
-  - [microlith57](https://github.com/microlith57) [#483](https://github.com/uccser/cs-field-guide/issues/483)
-- Fix broken link to research paper.
-  - [Jack Morgan](https://github.com/JackMorganNZ) [#484](https://github.com/uccser/cs-field-guide/issues/484)
-- Fix panels showing 'None' as title.
-  - [Jack Morgan](https://github.com/JackMorganNZ) [#485](https://github.com/uccser/cs-field-guide/issues/485)
+- Fix broken links to NCEA curriculum guides. [#483](https://github.com/uccser/cs-field-guide/issues/483)
+- Fix broken link to research paper. [#484](https://github.com/uccser/cs-field-guide/issues/484)
+- Fix panels showing 'None' as title. [#485](https://github.com/uccser/cs-field-guide/issues/485)
 
 ## 2.10.0
 
@@ -47,36 +61,21 @@ This to make the numbering consistent with our other projects (CS Unplugged and 
 
 **Changelog:**
 
-- Update Delay Analyser reset button to avoid accidental resets.
-  - [Jamie Dawson](https://github.com/JamieDawson) [#413](https://github.com/uccser/cs-field-guide/issues/413)
+- Update Delay Analyser reset button to avoid accidental resets. [#413](https://github.com/uccser/cs-field-guide/issues/413)
 - Add video subtitle files.
-  - Alasdair Mark Smith
-- Clean up homepage for the NCEA Curriculum Guides.
-  - [Jack Morgan](https://github.com/JackMorganNZ) [#358](https://github.com/uccser/cs-field-guide/issues/358)
-- Replace cosine image.
-  - [Jack Morgan](https://github.com/JackMorganNZ) [#73](https://github.com/uccser/cs-field-guide/issues/73)
-- Fix bug in detecting defined permissions of files.
-  - [Jack Morgan](https://github.com/JackMorganNZ) [#73](https://github.com/uccser/cs-field-guide/issues/73)
-- Add Google Analytic skit videos to HCI chapter.
-  - [Jack Morgan](https://github.com/JackMorganNZ) [#247](https://github.com/uccser/cs-field-guide/issues/247)
-- Fix Washing Machine interactive in Formal Languages chapter.
-  - [Jack Morgan](https://github.com/JackMorganNZ) [#411](https://github.com/uccser/cs-field-guide/issues/411)
-- Correct spelling of aesthetics and add glossary definition.
-  - [Jack Morgan](https://github.com/JackMorganNZ) [#405](https://github.com/uccser/cs-field-guide/issues/405)
+- Clean up homepage for the NCEA Curriculum Guides. [#358](https://github.com/uccser/cs-field-guide/issues/358)
+- Replace cosine image. [#73](https://github.com/uccser/cs-field-guide/issues/73)
+- Fix bug in detecting defined permissions of files. [#73](https://github.com/uccser/cs-field-guide/issues/73)
+- Add Google Analytic skit videos to HCI chapter. [#247](https://github.com/uccser/cs-field-guide/issues/247)
+- Fix Washing Machine interactive in Formal Languages chapter. [#411](https://github.com/uccser/cs-field-guide/issues/411)
+- Correct spelling of aesthetics and add glossary definition. [#405](https://github.com/uccser/cs-field-guide/issues/405)
 - Fix rendering of glossary definition headings.
-  - [Jack Morgan](https://github.com/JackMorganNZ)
-- Fix PBM image data.
-  - [Jack Morgan](https://github.com/JackMorganNZ) [#412](https://github.com/uccser/cs-field-guide/issues/412)
-- Fix link error in HCI chapter.
-  - [Jack Morgan](https://github.com/JackMorganNZ) [#410](https://github.com/uccser/cs-field-guide/issues/410)
-- Add missing NCEA guides files.
-  - [Jack Morgan](https://github.com/JackMorganNZ) [#472](https://github.com/uccser/cs-field-guide/issues/472)
-- Fix link to private YouTube video on packets.
-  - [Jack Morgan](https://github.com/JackMorganNZ) [#408](https://github.com/uccser/cs-field-guide/issues/408)
-- Update binary-cards interactive to handle a higher number of cards.
-  - [Jack Morgan](https://github.com/JackMorganNZ) [#407](https://github.com/uccser/cs-field-guide/issues/407)
-- Add ability to hide pixel colours in pixel value interactive.
-  - [Jack Morgan](https://github.com/JackMorganNZ) [#476](https://github.com/uccser/cs-field-guide/issues/476)
+- Fix PBM image data. [#412](https://github.com/uccser/cs-field-guide/issues/412)
+- Fix link error in HCI chapter. [#410](https://github.com/uccser/cs-field-guide/issues/410)
+- Add missing NCEA guides files. [#472](https://github.com/uccser/cs-field-guide/issues/472)
+- Fix link to private YouTube video on packets. [#408](https://github.com/uccser/cs-field-guide/issues/408)
+- Update binary-cards interactive to handle a higher number of cards. [#407](https://github.com/uccser/cs-field-guide/issues/407)
+- Add ability to hide pixel colours in pixel value interactive. [#476](https://github.com/uccser/cs-field-guide/issues/476)
 
 ## 2.9.1
 
@@ -103,19 +102,12 @@ This release adds an introductory video for the Complexity and Tractability chap
 
 **Changelog:**
 - Add introductory video to Complexity and Tractability chapter.
-  - [Heidi Newton](https://github.com/Heidirose)
-- Rewrite Graphics Transformations section of Computer Graphics chapter.
-  - [Hayley van Waas](https://github.com/hayleyavw) [#402](https://github.com/uccser/cs-field-guide/issues/402)
-- Rewrite 2D Arrow Manipulation interactives.
-  - [Hayley van Waas](https://github.com/hayleyavw) [#372](https://github.com/uccser/cs-field-guide/issues/372) [#373](https://github.com/uccser/cs-field-guide/issues/373)
-- Add list of authors in the sidebar of chapter page.
-  - [Jack Morgan](https://github.com/JackMorganNZ) [#396](https://github.com/uccser/cs-field-guide/issues/396)
-- Update FSA interactives.
-  - [Jack Morgan](https://github.com/JackMorganNZ) [#45](https://github.com/uccser/cs-field-guide/issues/45) [#46](https://github.com/uccser/cs-field-guide/issues/46) [#47](https://github.com/uccser/cs-field-guide/issues/47) [#48](https://github.com/uccser/cs-field-guide/issues/48)
+- Rewrite Graphics Transformations section of Computer Graphics chapter. [#402](https://github.com/uccser/cs-field-guide/issues/402)
+- Rewrite 2D Arrow Manipulation interactives. [#372](https://github.com/uccser/cs-field-guide/issues/372) [#373](https://github.com/uccser/cs-field-guide/issues/373)
+- Add list of authors in the sidebar of chapter page. [#396](https://github.com/uccser/cs-field-guide/issues/396)
+- Update FSA interactives. [#45](https://github.com/uccser/cs-field-guide/issues/45) [#46](https://github.com/uccser/cs-field-guide/issues/46) [#47](https://github.com/uccser/cs-field-guide/issues/47) [#48](https://github.com/uccser/cs-field-guide/issues/48)
 - Add NFA guesser interactive.
-  - [Jack Morgan](https://github.com/JackMorganNZ)
-- Update APCSP framework.
-  - [Paul Tymann](https://github.com/ptymann) [#399](https://github.com/uccser/cs-field-guide/issues/399)
+- Update APCSP framework. [#399](https://github.com/uccser/cs-field-guide/issues/399)
 
 ## 2.8.1
 
@@ -124,12 +116,9 @@ This release adds an introductory video for the Complexity and Tractability chap
 **Downloads:** [Source downloads are available on GitHub](https://github.com/uccser/cs-field-guide/releases/tag/v2.8.1)
 
 **Changelog:**
-- Update introduction chapter.
-  - [Jack Morgan](https://github.com/JackMorganNZ) [#231](https://github.com/uccser/cs-field-guide/issues/231)
+- Update introduction chapter. [#231](https://github.com/uccser/cs-field-guide/issues/231)
 - Add notice of changes to AP-CSP curriculum in Fall 2016 release.
-  - [Jack Morgan](https://github.com/JackMorganNZ)
 - Skip parsing `#` characters at start of Markdown links.
-  - [Jack Morgan](https://github.com/JackMorganNZ)
 
 ## 2.8.0
 
@@ -143,34 +132,19 @@ This release adds an introductory video for the Human Computer Interaction chapt
 
 **Changelog:**
 - Add introductory video to Human Computer Interaction chapter.
-  - [Hayley van Waas](https://github.com/hayleyavw)
-- Add draft of guides for the AP CSP curriculum.
-  - [James Atlas](https://github.com/jamesatlas) [#316](https://github.com/uccser/cs-field-guide/pull/316)
-- Update and fix issues in high-score-boxes interactive.
-  - [Victor Chang](https://github.com/thevictorchang) [#390](https://github.com/uccser/cs-field-guide/pull/390)
-  - [Jack Morgan](https://github.com/JackMorganNZ) [#391](https://github.com/uccser/cs-field-guide/issues/391) [#393](https://github.com/uccser/cs-field-guide/issues/393)
-- Add subtraction command to mips-simulator interactive. The interactive can now handle subtraction down to zero.
-  - [Jack Morgan](https://github.com/JackMorganNZ) [#382](https://github.com/uccser/cs-field-guide/issues/382)
+- Add draft of guides for the AP CSP curriculum. [#316](https://github.com/uccser/cs-field-guide/pull/316)
+- Update and fix issues in high-score-boxes interactive. [#390](https://github.com/uccser/cs-field-guide/pull/390) [#391](https://github.com/uccser/cs-field-guide/issues/391) [#393](https://github.com/uccser/cs-field-guide/issues/393)
+- Add subtraction command to mips-simulator interactive. The interactive can now handle subtraction down to zero. [#382](https://github.com/uccser/cs-field-guide/issues/382)
 - Update sponsor information in footer.
-  - [Jack Morgan](https://github.com/JackMorganNZ)
-- Improve the visibilty of warning panels.
-  - [Jack Morgan](https://github.com/JackMorganNZ) [#389](https://github.com/uccser/cs-field-guide/issues/389)
-- Fix positioning of table of contents sidebar.
-  - [Jack Morgan](https://github.com/JackMorganNZ) [#387](https://github.com/uccser/cs-field-guide/issues/387)
-- Fix typos in Formal Languages chapter.
-  - [Steven Maude](https://github.com/StevenMaude) [#385](https://github.com/uccser/cs-field-guide/pull/385)
-- Update 404 page to avoid updating after each release.
-  - [Karthikeya Pammi](https://github.com/pvskarthikeya) [#394](https://github.com/uccser/cs-field-guide/pull/394)
-- Remove duplicate introduction to teacher guide.
-  - [Jack Morgan](https://github.com/JackMorganNZ) [#213](https://github.com/uccser/cs-field-guide/issues/213)
-- Add link to article on representing a 1 bit image.
-  - [Jack Morgan](https://github.com/JackMorganNZ) [#376](https://github.com/uccser/cs-field-guide/issues/376)
-- Fix broken link to contributors page in footer.
-  - [Jack Morgan](https://github.com/JackMorganNZ) [#383](https://github.com/uccser/cs-field-guide/issues/383)
-- Replace broken link to Eliza chatterbot.
-  - [Jack Morgan](https://github.com/JackMorganNZ) [#384](https://github.com/uccser/cs-field-guide/issues/384)
-- Fix footer link colour in teacher version.
-  - [Jack Morgan](https://github.com/JackMorganNZ) [#395](https://github.com/uccser/cs-field-guide/issues/395)
+- Improve the visibilty of warning panels. [#389](https://github.com/uccser/cs-field-guide/issues/389)
+- Fix positioning of table of contents sidebar. [#387](https://github.com/uccser/cs-field-guide/issues/387)
+- Fix typos in Formal Languages chapter. [#385](https://github.com/uccser/cs-field-guide/pull/385)
+- Update 404 page to avoid updating after each release. [#394](https://github.com/uccser/cs-field-guide/pull/394)
+- Remove duplicate introduction to teacher guide. [#213](https://github.com/uccser/cs-field-guide/issues/213)
+- Add link to article on representing a 1 bit image. [#376](https://github.com/uccser/cs-field-guide/issues/376)
+- Fix broken link to contributors page in footer. [#383](https://github.com/uccser/cs-field-guide/issues/383)
+- Replace broken link to Eliza chatterbot. [#384](https://github.com/uccser/cs-field-guide/issues/384)
+- Fix footer link colour in teacher version. [#395](https://github.com/uccser/cs-field-guide/issues/395)
 
 ## 2.7.1
 

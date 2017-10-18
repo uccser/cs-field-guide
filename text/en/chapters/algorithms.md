@@ -147,7 +147,7 @@ Here is an algorithm for assigning animals as pets to people on a waitlist:
 This algorithm relies on a correct search algorithm in the first step.
 If the search algorithm incorrectly chose a random person, the algorithm for assigning animals as pets would also be incorrect.
 
-As you will see in this chapter with searching and sorting there exist multiple correct algorithms for the same problem.
+As you will see in this chapter with searching and sorting there are multiple correct algorithms for the same problem.
 Often there are good reasons to know multiple correct algorithms because there are tradeoffs in simplicity, algorithm cost, and assumptions about inputs.
 
 ### Searching and Sorting
