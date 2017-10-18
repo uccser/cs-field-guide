@@ -593,8 +593,8 @@ While it might initially seem that there is no bit allocated as the sign bit, th
 With 8 bits, you can still only make 256 possible patterns of 0's and 1's. If you attempted to use 8 bits to represent positive numbers up to 255, and negative numbers down to -255, you would quickly realise that some numbers were mapped onto the same pattern of bits. Obviously, this will make it impossible to know what number is actually being represented!
 
 In practice, numbers within the following ranges can be represented. **Unsigned Range** is how many numbers you can represent if you only allow positive numbers (no sign is needed), and **Two's Complement Range** is how many numbers you can represent if you require both positive and negative numbers.
-You can work these out because the range of unsigned values (for 8 bits) will be from 00000000 to 11111111,
-while the unsigned range is from 10000000 (the lowest number) to 01111111 (the highest).
+You can work these out because the range of 8-bit values if they are stored using unsigned numbers will be from 00000000 to 11111111 (i.e. 0 to 255 in decimal), while the signed two's complement range is from 10000000 (the lowest number, -128 in decimal) to 01111111 (the highest number, 127 in decimal).
+This might seem a bit weird, but it works out really well because normal binary addition can be used if you use this representation even if you're adding a negative number.
 
 |      Number     |        Unsigned Range           |                Two's Complement Range                    |
 |-----------------|---------------------------------|----------------------------------------------------------|
