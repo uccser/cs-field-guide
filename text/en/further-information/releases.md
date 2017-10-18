@@ -32,6 +32,7 @@ We have listed major changes for each release below.
 - Remove search as it focuses on outdated releases. [#508](https://github.com/uccser/cs-field-guide/pull/508)
 - Correctly detect text size for Unicode Length interactive. [#501](https://github.com/uccser/cs-field-guide/pull/501)
 - Fix broken link to CSFG in Network Protocols chapter. [#504](https://github.com/uccser/cs-field-guide/pull/504)
+- Fix typo in section 2.1.3. [#507](https://github.com/uccser/cs-field-guide/pull/507)
 
 ## 2.10.1
 
