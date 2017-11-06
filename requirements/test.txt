@@ -5,4 +5,4 @@ flake8==3.4.1
 pydocstyle==2.0.0
 
 #Coverage Tools
-coverage==4.4.1
+coverage==4.4.2
