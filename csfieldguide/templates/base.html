@@ -47,24 +47,9 @@
             <li class='bold'>
               <a class='collapsible-header waves-effect'>Chapters<div class='dropdown-menu-arrow'>&#9660;</div></a>
               <div class='collapsible-body'>
-                <ul>
-                  <li><a href='chapters/introduction.html'>Introduction</a></li>
-                  <li><a href='chapters/algorithms.html'>Algorithms</a></li>
-                  <li><a href='chapters/programming-languages.html'>Programming Languages</a></li>
-                  <li><a href='chapters/human-computer-interaction.html'>Human Computer Interaction</a></li>
-                  <li><a href='chapters/data-representation.html'>Data Representation</a></li>
-                  <li><a href='chapters/coding-introduction.html'>Coding - Introduction</a></li>
-                  <li><a href='chapters/coding-compression.html'>Coding - Compression</a></li>
-                  <li><a href='chapters/coding-encryption.html'>Coding - Encryption</a></li>
-                  <li><a href='chapters/coding-error-control.html'>Coding - Error Control</a></li>
-                  <li><a href='chapters/artificial-intelligence.html'>Artificial Intelligence</a></li>
-                  <li><a href='chapters/complexity-tractability.html'>Complexity and tractability</a></li>
-                  <li><a href='chapters/computer-graphics.html'>Computer Graphics</a></li>
-                  <li><a href='chapters/computer-vision.html'>Computer Vision</a></li>
-                  <li><a href='chapters/formal-languages.html'>Formal Languages</a></li>
-                  <li><a href='chapters/network-communication-protocols.html'>Network Communication Protocols</a></li>
-                  <li><a href='chapters/software-engineering.html'>Software Engineering</a></li>
-                </ul>
+                <ul>{% for chapter in chapters %}
+                    <li><a href="{% url 'chapters:chapter' chapter.slug %}">{{ chapter.name }}</a></li>
+                </ul>{% endfor %}
               </div>
             </li>
             <li class='bold'>
