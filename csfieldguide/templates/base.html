@@ -49,7 +49,7 @@
               <div class='collapsible-body'>
                 <ul>{% for chapter in chapters %}
                     <li><a href="{% url 'chapters:chapter' chapter.slug %}">{{ chapter.name }}</a></li>
-                </ul>{% endfor %}
+                {% endfor %}</ul>
               </div>
             </li>
             <li class='bold'>
