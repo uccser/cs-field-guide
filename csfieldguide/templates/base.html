@@ -25,69 +25,66 @@
   <body>
 
     <header>
-      <div id='website_header' class='navbar-fixed'>
-        <nav class='z-depth-0'>
-          <div class='nav-wrapper'>
-            <a href='#' data-activates='nav-mobile' class='button-collapse waves-effect waves-light circle'><i class='mdi-navigation-menu'></i></a>
-            <a href='index.html' class='brand-logo center'>CSFG</a>
+      <div id="website_header" class="navbar-fixed">
+        <nav class="z-depth-0">
+          <div class="nav-wrapper">
+            <a href="#" data-activates="nav-mobile" class="button-collapse waves-effect waves-light circle"><i class="mdi-navigation-menu"></i></a>
+            <a href="{% url 'general:home' %}" class="brand-logo center">CSFG</a>
           </div>
         </nav>
       </div>
-      <ul id='nav-mobile' class='side-nav fixed'>
-        <li class='logo no-padding'>
-          <a id='logo-container' href='index.html'>
-            <div class='title'>Computer Science Field Guide</div>
+      <ul id="nav-mobile" class="side-nav fixed">
+        <li class="logo no-padding">
+          <a id="logo-container" href="{% url 'general:home' %}">
+            <div class="title">Computer Science Field Guide</div>
           </a>
         </li>
-        <li class='no-highlight nav-subtitle text-lighten-1'>Navigation</li>
-        <div class='divider'></div>
-        <li class='bold no-padding'><a href='about.html' class='waves-effect'>About</a></li>
-        <li class='no-padding no-highlight'>
-          <ul class='collapsible' data-collapsible='expandable'>
-            <li class='bold'>
-              <a class='collapsible-header waves-effect'>Chapters<div class='dropdown-menu-arrow'>&#9660;</div></a>
-              <div class='collapsible-body'>
+        <li class="no-highlight nav-subtitle text-lighten-1">Navigation</li>
+        <div class="divider"></div>
+        <li class="bold no-padding"><a href="{% url 'general:about' %}" class="waves-effect">About</a></li>
+        <li class="no-padding no-highlight">
+          <ul class="collapsible" data-collapsible="expandable">
+            <li class="bold">
+              <a class="collapsible-header waves-effect">Chapters<div class="dropdown-menu-arrow">&#9660;</div></a>
+              <div class="collapsible-body">
                 <ul>{% for chapter in chapters %}
                     <li><a href="{% url 'chapters:chapter' chapter.slug %}">{{ chapter.name }}</a></li>
                 {% endfor %}</ul>
               </div>
             </li>
-            <li class='bold'>
-              <a class='collapsible-header waves-effect'>Curriculum Guides<div class='dropdown-menu-arrow'>&#9660;</div></a>
-              <div class='collapsible-body'>
+            <li class="bold">
+              <a class="collapsible-header waves-effect">Curriculum Guides<div class="dropdown-menu-arrow">&#9660;</div></a>
+              <div class="collapsible-body">
                 <ul>
-                  <li><a href='curriculum-guides/ncea/index.html'>NCEA Curriculum Guides</a></li>
-                  <li><a href='curriculum-guides/apcsp/index.html'>AP-CSP Curriculum Guides</a></li>
+                  <li><a href="curriculum-guides/ncea/index.html">NCEA Curriculum Guides</a></li>
+                  <li><a href="curriculum-guides/apcsp/index.html">AP-CSP Curriculum Guides</a></li>
                 </ul>
               </div>
             </li>
-            <li class='bold'>
-              <a class='collapsible-header waves-effect'>Further Information<div class='dropdown-menu-arrow'>&#9660;</div></a>
-              <div class='collapsible-body'>
+            <li class="bold">
+              <a class="collapsible-header waves-effect">Further Information<div class="dropdown-menu-arrow">&#9660;</div></a>
+              <div class="collapsible-body">
                 <ul>
-                  <li><a href='further-information/glossary.html'>Glossary</a></li>
-                  <li><a href='further-information/contributors.html'>Contributors</a></li>
-                  <li><a href='further-information/interactives.html'>Interactives</a></li>
-                  <li><a href='further-information/releases.html'>Releases</a></li>
-                  <li><a href='further-information/included-files.html'>Included Files</a></li>
+                  <li><a href="{% url 'chapters:glossary' %}">Glossary</a></li>
+                  <li><a href="further-information/contributors.html">Contributors</a></li>
+                  <li><a href="further-information/interactives.html">Interactives</a></li>
+                  <li><a href="further-information/releases.html">Releases</a></li>
+                  <li><a href="further-information/included-files.html">Included Files</a></li>
                 </ul>
               </div>
             </li>
           </ul>
         </li>
-        <div class='divider'></div>
-        <li class='no-padding'>
-          <a href='#feedback-modal' class='waves-effect modal-trigger'>Give us feedback</a>
+        <div class="divider"></div>
+        <li class="no-padding">
+          <a href="#feedback-modal" class="waves-effect modal-trigger">Give us feedback</a>
         </li>
-        <li class='no-padding'>
-          <a href='search.html' class='waves-effect'>Search</a>
+        <li class="no-padding">
+          <a href="https://github.com/uccser/cs-field-guide" class="waves-effect">Contribute on GitHub</a>
         </li>
-        <li class='no-padding'>
-          <a href='https://github.com/uccser/cs-field-guide' class='waves-effect'>Contribute on GitHub</a>
-        </li>
-        <div class='divider'></div>
-        <li class='no-padding'>
-          <a href='../index.html' class='waves-effect'>Change language</a>
+        <div class="divider"></div>
+        <li class="no-padding">
+          <a href="../index.html" class="waves-effect">Change language</a>
         </li>
       </ul>
     </header>
@@ -95,7 +92,7 @@
     <main>
 
       {% block body_container %}
-        <div class='z-depth-0 page-title-header'>
+        <div class="z-depth-0 page-title-header">
           <div class="container">
             <div class="clearfix">
               {% block page_heading %}
@@ -104,9 +101,9 @@
           </div>
         </div>
         {% block content_container %}
-          <div class='container'>
-            <div class='row'>
-              <div class='col s12 main-content'>
+          <div class="container">
+            <div class="row">
+              <div class="col s12 main-content">
                 {% block content %}
                 {% endblock content %}
               </div>
@@ -134,7 +131,7 @@
           <div class="col l3 s12 hide_for_print">
             <h4>Useful Links</h4>
             <ul>
-              <li><a href="about.html">About</a></li>
+              <li><a href="{% url 'general:about' %}">About</a></li>
               <li><a href="sitemap.html">Sitemap</a></li>
               <li><a href="https://twitter.com/UCCSEd">Twitter</a></li>
               <li><a href="https://github.com/uccser/cs-field-guide">GitHub</a></li>
@@ -155,6 +152,24 @@
       </div>
     </div>
   </footer>
+
+  <div id='feedback-modal' class='modal'>
+    <div class='modal-content'>
+      <h4>Want to give us feedback?</h4>
+      <p>
+        Because this textbook is online it’s easy for us to update it.
+        Please use this form for any form of feedback, from tiny obvious suggestions to broad observations.
+        We love getting positive feedback too (and it helps us to get support for this work).
+      </p>
+      <p>
+        <a href='https://docs.google.com/forms/d/1gCOwTMAd6idaeIRwvIELARfQsyL6lpI5P4EQa9bIW9w/viewform?formkey=dExMejRvei05OWFVbzJ2eENpdWRvcEE6MQ' class='waves-effect waves-light btn'>Submit Feedback</a>
+      </p>
+      <h5>Do you have a GitHub account?</h5>
+      <p>
+        You can directly <a href='https://github.com/uccser/cs-field-guide/issues/new'>create an issue on our GitHub repository here</a>.
+      </p>
+    </div>
+  </div>
 
   <div id="glossary-modal" class="modal">
     <div class="modal-content">
