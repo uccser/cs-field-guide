@@ -8,8 +8,6 @@ from utils.LoaderFactory import LoaderFactory
 
 from utils.errors.MissingRequiredFieldError import MissingRequiredFieldError
 
-from chapters.models import Interactive
-
 
 class Command(BaseCommand):
     """Required command class for the custom Django loadchapters command.
@@ -57,9 +55,3 @@ class Command(BaseCommand):
                 chapter,
                 BASE_PATH
             ).load()
-
-        new_interactive = Interactive(
-            slug="sorting-algorithms",
-            template="chapters/interactives/sorting-algorithms.html"
-        )
-        new_interactive.save()

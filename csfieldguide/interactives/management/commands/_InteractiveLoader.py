@@ -5,14 +5,14 @@ from django.db import transaction
 
 from utils.BaseLoader import BaseLoader
 
-from chapters.models import Interactive
+from .models import Interactive
 
 
 class InteractiveLoader(BaseLoader):
-    """Custom loader for loading chapters."""
+    """Custom loader for loading interacgives."""
 
     def __init__(self, structure_file_path, interactives, BASE_PATH):
-        """Create the loader for loading a topic.
+        """Create the loader for loading an interactive.
 
         Args:
             structure_file_path: path to application structure file (str).
