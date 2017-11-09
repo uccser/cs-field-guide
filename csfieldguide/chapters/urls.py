@@ -12,6 +12,12 @@ urlpatterns = [
         views.IndexView.as_view(),
         name="home"
     ),
+    # eg: /chapters/interactives/sorting-algorithms/
+    url(
+        r"^interactives/(?P<interactive_slug>[-\w]+)/$",
+        views.InteractiveView.as_view(),
+        name="interactive"
+    ),
     # eg: /chapters/glossary/
     url(
         r"^glossary/$",
@@ -30,4 +36,5 @@ urlpatterns = [
         views.ChapterView.as_view(),
         name="chapter"
     ),
+
 ]
