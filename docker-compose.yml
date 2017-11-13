@@ -2,12 +2,14 @@ version: '3'
 services:
   postgres:
     restart: always
-    image: postgres
+    image: postgres:9.6.5
+    # Set port to non-standard value to not use Travis CI Postgres server.
+    command: postgres -p 5434
 
   django:
     build:
       context: .
-      dockerfile: ./Dockerfile
+      dockerfile: ./Dockerfile-local
     command: /cs-field-guide/csfieldguide/docker-development-entrypoint.sh
     volumes:
       - .:/cs-field-guide
