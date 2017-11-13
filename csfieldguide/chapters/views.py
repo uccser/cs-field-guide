@@ -71,4 +71,3 @@ def glossary_json(request, **kwargs):
         return JsonResponse(data)
     else:
         raise Http404("Term parameter not specified.")
-

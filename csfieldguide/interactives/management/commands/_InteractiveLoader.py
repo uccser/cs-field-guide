@@ -1,15 +1,12 @@
 """Custom loader for loading an interactive."""
 
-import os.path
 from django.db import transaction
-
 from utils.BaseLoader import BaseLoader
-
 from interactives.models import Interactive
 
 
 class InteractiveLoader(BaseLoader):
-    """Custom loader for loading interacgives."""
+    """Custom loader for loading interactives."""
 
     def __init__(self, structure_file_path, interactives, BASE_PATH):
         """Create the loader for loading an interactive.
@@ -26,7 +23,6 @@ class InteractiveLoader(BaseLoader):
     @transaction.atomic
     def load(self):
         """Load the paths to interactive templates."""
-
         # Create interactive object and save to the db
         interactive = Interactive(
         )

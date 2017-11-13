@@ -4,9 +4,6 @@ import os.path
 from django.db import transaction
 
 from utils.BaseLoader import BaseLoader
-# from utils.check_required_files import find_image_files
-
-
 from chapters.models import Chapter
 
 
@@ -53,7 +50,7 @@ class ChapterLoader(BaseLoader):
         )
         chapter.save()
 
-        #call interactive loader
+        # call interactive loader
 
         self.log("Added Chapter: {}".format(chapter.name))
 

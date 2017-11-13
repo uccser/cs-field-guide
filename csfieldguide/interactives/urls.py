@@ -6,7 +6,7 @@ from . import views
 
 app_name = "interactives"
 urlpatterns = [
-	# eg: /interactives/
+    # eg: /interactives/
     url(
         r"^$",
         views.IndexView.as_view(),
@@ -19,5 +19,3 @@ urlpatterns = [
         name="interactive"
     ),
 ]
-
-

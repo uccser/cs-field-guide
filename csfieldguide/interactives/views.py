@@ -1,4 +1,4 @@
-"""Views for the interactives application"""
+"""Views for the interactives application."""
 
 from django.views import generic
 

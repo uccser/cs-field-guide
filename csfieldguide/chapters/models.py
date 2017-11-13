@@ -37,4 +37,3 @@ class Chapter(models.Model):
             Name of chapter (str).
         """
         return self.name
-

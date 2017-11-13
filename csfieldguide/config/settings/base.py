@@ -151,8 +151,6 @@ TEMPLATES = [
         },
     },
 ]
-#"TEMPLATE_CONTEXT_PROCESSORS": "('general.context_processors.nav_context',)"
-
 
 # STATIC FILE CONFIGURATION
 # ------------------------------------------------------------------------------

@@ -1,10 +1,7 @@
 """Module for the custom Django loadinteractives command."""
 
-import os.path
 from django.core.management.base import BaseCommand
-
 from interactives.models import Interactive
-from utils.errors.MissingRequiredFieldError import MissingRequiredFieldError
 
 
 class Command(BaseCommand):
@@ -19,7 +16,6 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         """Automatically called when the loadinteractives command is given."""
-
         # Hardcoded for testing, TODO this should be in _InteractiveLoader.py
         new_interactive = Interactive(
             slug="sorting-algorithm-comparison",

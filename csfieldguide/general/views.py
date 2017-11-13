@@ -28,5 +28,4 @@ class NavView(ListView):
         Returns:
             Queryset of Topic objects ordered by name.
         """
-        print(Chapter.objects)
         return Chapter.objects.order_by("name")
