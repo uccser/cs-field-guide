@@ -3,10 +3,8 @@
 import os.path
 from django.core.management.base import BaseCommand
 
-
+from interactives.models import Interactive
 from utils.errors.MissingRequiredFieldError import MissingRequiredFieldError
-
-from .models import Interactive
 
 
 class Command(BaseCommand):
@@ -24,7 +22,13 @@ class Command(BaseCommand):
 
         # Hardcoded for testing, TODO this should be in _InteractiveLoader.py
         new_interactive = Interactive(
-            slug="sorting-algorithms",
-            template="chapters/interactives/sorting-algorithms.html"
+            slug="sorting-algorithm-comparison",
+            template="interactives/sorting-algorithm-comparison.html"
+        )
+        new_interactive.save()
+
+        new_interactive = Interactive(
+            slug="high-score-boxes",
+            template="interactives/high-score-boxes.html"
         )
         new_interactive.save()

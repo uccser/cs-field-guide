@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -6,13 +8,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <!-- ### Enter your interactive title in the title block ### -->
     <title>High Score Boxes </title>
-    <link rel="stylesheet" href="../base-files/css/third-party/normalize.css">
+    
+    <link rel="stylesheet" href="{% static 'css/third-party/normalize.css' %}">
     <!--Import materialize.css-->
-    <link rel="stylesheet" href="../base-files/css/third-party/materialize.min.css" type="text/css" media="screen,projection"/>
-    <script src="../base-files/js/third-party/modernizr.js"></script>
+    <link rel="stylesheet" href="{% static 'css/third-party/materialize.min.css' %}" type="text/css" media="screen,projection"/>
+    
+    <script src="{% static 'js/third-party/modernizr.js' %}"></script>
     <!-- jQuery (necessary for Materialize) -->
-    <script type="text/javascript" src="../base-files/js/third-party/jquery.js"></script>
+    <script type="text/javascript" src="{% static 'js/third-party/jquery.js' %}"></script>
   </head>
+  
   <body>
     <div class="row">
       <div class="col s12 m10 l8 offset-l2 offset-m1">
@@ -26,10 +31,13 @@
           <button id="submit-button" class="btn">Submit</button>
           <p id="completion-message"></p>
           <button id="restart-button" class="btn red">Restart</button>
-          <link rel="stylesheet" href="./css/find-high-score.css">
-          <script type="text/javascript" src="./js/find-high-score.js"></script>
+          
+          <link rel="stylesheet" href="{% static 'interactives/high-score-boxes/css/find-high-score.css' %}">
+          <script type="text/javascript" src="{% static 'interactives/high-score-boxes/js/find-high-score.js' %}"></script>
+
         </div>
       </div>
     </div>
   </body>
+
 </html>

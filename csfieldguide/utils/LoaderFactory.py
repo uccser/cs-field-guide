@@ -1,9 +1,8 @@
 """Factory for creating loader objects."""
 
 from chapters.management.commands._ChapterLoader import ChapterLoader
-from chapters.management.commands._InteractiveLoader import InteractiveLoader
 from chapters.management.commands._GlossaryTermsLoader import GlossaryTermsLoader
-
+from interactives.management.commands._InteractiveLoader import InteractiveLoader
 
 class LoaderFactory:
     """Factory for creating loader objects."""

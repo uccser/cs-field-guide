@@ -14,7 +14,7 @@ urlpatterns = [
     ),
     # eg: /interactives/sorting-algorithms/
     url(
-        r"^interactives/(?P<interactive_slug>[-\w]+)/$",
+        r"^(?P<interactive_slug>[-\w]+)/$",
         views.InteractiveView.as_view(),
         name="interactive"
     ),

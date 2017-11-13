@@ -5,7 +5,7 @@ from django.db import transaction
 
 from utils.BaseLoader import BaseLoader
 
-from .models import Interactive
+from interactives.models import Interactive
 
 
 class InteractiveLoader(BaseLoader):

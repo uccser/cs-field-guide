@@ -12,12 +12,12 @@ class IndexView(generic.ListView):
     context_object_name = "all_interactives"
 
     def get_queryset(self):
-        """Get queryset of all chapters.
+        """Get queryset of all interactives.
 
         Returns:
-            Queryset of Chapter objects ordered by name.
+            Queryset of Interactive objects ordered by name.
         """
-        return Interactive.objects.order_by("name")
+        return Interactive.objects.order_by("id")
 
 
 class InteractiveView(generic.DetailView):
@@ -25,4 +25,4 @@ class InteractiveView(generic.DetailView):
 
     model = Interactive
     slug_url_kwarg = "interactive_slug"
-    template_name = "chapters/interactives/whole-page-interactive-base.html"
+    template_name = "interactives/whole-page-interactive-base.html"
