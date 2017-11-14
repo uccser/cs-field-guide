@@ -9,7 +9,7 @@ class IndexURLTest(BaseTestWithDB):
         self.language = "en"
 
     def test_valid_index(self):
-        url = reverse("chapters:index")
+        url = reverse("chapters:home")
         self.assertEqual(url, "/en/chapters/")
 
         response = self.client.get(url)
