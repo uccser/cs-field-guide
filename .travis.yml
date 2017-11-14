@@ -15,10 +15,10 @@ install:
 jobs:
   include:
     - stage: test
-    - script: ./csu ci test_backwards
+    - script: ./csfg ci test_backwards
       if: type = pull_request
-    - script: ./csu ci style
-    - script: ./csu ci docs
+    - script: ./csfg ci style
+    - script: ./csfg ci docs
 notifications:
   email: false
   slack:
