@@ -104,7 +104,6 @@ cmd_update() {
 
   dev_static_scratch
   echo ""
-  dev_makeresourcethumbnails
   dev_collect_static
 }
 defhelp update 'Run Django migrate and updatedata commands and build static files.'
@@ -129,13 +128,6 @@ dev_makemigrations() {
   docker-compose exec django /docker_venv/bin/python3 ./manage.py makemigrations
 }
 defhelp -dev makemigrations 'Run Django makemigrations command.'
-
-# Run Django makeresources command
-dev_makeresources() {
-  echo "Creating static resource PDFs..."
-  docker-compose exec django /docker_venv/bin/python3 ./manage.py makeresources
-}
-defhelp -dev makeresources 'Run Django makeresources command.'
 
 # Run Django makeresourcethumbnails command
 dev_makeresourcethumbnails() {

@@ -16,7 +16,7 @@ services:
     environment:
       - PORT=8080
       - USE_DOCKER=yes
-      - DATABASE_URL=postgres://postgres@postgres:5432/postgres
+      - DATABASE_URL=postgres://postgres@postgres:5434/postgres
       - DJANGO_SETTINGS_MODULE=config.settings.local
     depends_on:
       - postgres
