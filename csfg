@@ -228,11 +228,12 @@ defhelp -dev style 'Run style checks.'
 # Run test suite
 dev_test_suite() {
   echo "Running test suite..."
-  if [ "$CONTINUOUS_INTEGRATION" == "true" ]; then
-    docker-compose exec django /docker_venv/bin/coverage run --rcfile=/cs-field-guide/.coveragerc ./manage.py test --settings=config.settings.testing --pattern "test_*.py" -v 3
-  else
-    docker-compose exec django /docker_venv/bin/coverage run --rcfile=/cs-field-guide/.coveragerc ./manage.py test --settings=config.settings.testing --pattern "test_*.py" -v 3 --nomigrations
-  fi
+  docker-compose exec django /docker_venv/bin/coverage run --rcfile=/cs-field-guide/.coveragerc ./manage.py test --settings=config.settings.testing --pattern "test_*.py" -v 3
+  # if [ "$CONTINUOUS_INTEGRATION" == "true" ]; then
+  #  docker-compose exec django /docker_venv/bin/coverage run --rcfile=/cs-field-guide/.coveragerc ./manage.py test --settings=config.settings.testing --pattern "test_*.py" -v 3
+  # else
+  #  docker-compose exec django /docker_venv/bin/coverage run --rcfile=/cs-field-guide/.coveragerc ./manage.py test --settings=config.settings.testing --pattern "test_*.py" -v 3 --nomigrations
+  # fi
 }
 defhelp -dev test_suite 'Run test suite with code coverage.'
 
@@ -317,6 +318,11 @@ ci_test_general() {
   coverage_status=$?
   bash <(curl -s https://codecov.io/bash)
   ! (( $test_status || $coverage_status ))
+}
+
+# Run test suite
+ci_test_suite() {
+  dev_test_suite
 }
 
 ci_style() {
