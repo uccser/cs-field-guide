@@ -1,7 +1,7 @@
 {%- if type == 'in-page' -%}
-<remove>
+<div>
 {{ "{% include 'interactives/" }}{{ name }}{{ ".html' %}" }}
-</remove>
+</div>
 {% elif type == 'iframe' -%}
 <iframe src="{{ "{% url 'interactive' name='" }}{{ name }}{{ "' %}" }}{% if parameters %}?{{ parameters }}{% endif %}">
 <p>Your browser does not support iframes.</p>
