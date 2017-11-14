@@ -35,6 +35,8 @@ $(document).ready(function(){
   $("body").on("click", ".glossary-term", open_glossary_definition);
 });
 
+  // Activate modal buttons
+  $('.modal-trigger').leanModal();
 
 function open_glossary_definition() {
   /**
