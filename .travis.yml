@@ -15,7 +15,7 @@ install:
 jobs:
   include:
     - stage: test
-    - script: ./csfg ci test_suite
+      script: ./csfg ci test_suite
     - script: ./csfg ci test_backwards
       if: type = pull_request
     - script: ./csfg ci style
@@ -26,3 +26,5 @@ notifications:
     rooms: deptfunstuff:abJKvzApk5SKtcEyAgtswXAv
     on_success: change
     on_failure: change
+stages:
+  - name: test
