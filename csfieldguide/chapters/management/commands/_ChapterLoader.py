@@ -10,7 +10,7 @@ from chapters.models import Chapter
 class ChapterLoader(BaseLoader):
     """Custom loader for loading chapters."""
 
-    def __init__(self, structure_file_path, chapter, BASE_PATH):
+    def __init__(self, structure_file_path, chapter_slug, BASE_PATH):
         """Create the loader for loading a topic.
 
         Args:
@@ -20,7 +20,7 @@ class ChapterLoader(BaseLoader):
         """
         super().__init__(BASE_PATH)
         self.structure_file_path = structure_file_path
-        self.chapter_slug = chapter
+        self.chapter_slug = chapter_slug
         self.BASE_PATH = os.path.join(BASE_PATH, "chapters")
 
     @transaction.atomic

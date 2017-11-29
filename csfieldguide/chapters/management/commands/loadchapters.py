@@ -49,9 +49,9 @@ class Command(BaseCommand):
                 ["chapters"],
                 "Application Structure"
             )
-        for chapter in chapters:
+        for chapter_name in chapters:
             factory.create_chapter_loader(
                 structure_file_path,
-                chapter,
+                chapter_name,
                 BASE_PATH
             ).load()

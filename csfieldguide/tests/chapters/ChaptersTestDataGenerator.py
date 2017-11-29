@@ -11,7 +11,7 @@ class ChaptersTestDataGenerator:
 
     def __init__(self):
         """Create ChaptersTestDataGenerator object."""
-        self.BASE_PATH = "tests/topics/"
+        self.BASE_PATH = "tests/chapters/"
         self.LOADER_ASSET_PATH = os.path.join(self.BASE_PATH, "loaders/assets/")
 
     def load_yaml_file(self, yaml_file_path):

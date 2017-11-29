@@ -55,7 +55,7 @@ class BaseLoader():
 
         Args:
             md_file_path: Location of Markdown file to convert (str).
-            config_file_path: Path to related the config file (str).
+            config_file_path: Path to related config file (str).
 
         Returns:
             VertoResult object
