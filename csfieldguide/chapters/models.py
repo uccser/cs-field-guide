@@ -20,7 +20,8 @@ class GlossaryTerm(models.Model):
         return self.term
 
     class Meta:
-        """Set consistent ordering of Glossary Terms"""
+        """Set consistent ordering of Glossary Terms."""
+
         ordering = ["term"]
 
 
