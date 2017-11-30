@@ -102,7 +102,6 @@ cmd_update() {
   echo ""
   dev_updatedata
 
-  dev_static_scratch
   echo ""
   dev_collect_static
 }
@@ -191,13 +190,6 @@ dev_static_prod() {
   docker-compose exec nginx gulp build --production
 }
 defhelp -dev static_prod 'Build production static files.'
-
-# Build scratch static files
-dev_static_scratch() {
-  echo "Building scratch images..."
-  docker-compose exec nginx gulp scratch
-}
-defhelp -dev static_scratch "Build scratch images."
 
 # Run shell
 dev_shell() {

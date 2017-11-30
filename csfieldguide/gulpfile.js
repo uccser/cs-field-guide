@@ -23,12 +23,6 @@ var sourcemaps = require('gulp-sourcemaps');
 var jshint = require('gulp-jshint');
 var stylish = require('jshint-stylish');
 
-// Scratch image rendering
-var scratchblocks = require('scratchblocks');
-var rename = require("gulp-rename");
-var through = require('through2');
-var PluginError = require('gulp-util').PluginError;
-
 // gulp build --production
 var production = !!argv.production;
 // determine if we're doing a build
@@ -63,33 +57,6 @@ var handleError = function(task) {
   };
 };
 
-var scratchSVG = function() {
-  var PLUGIN_NAME = 'scratchSVG';
-  return through.obj(function(file, encoding, callback) {
-    if (file.isNull()) {
-        // nothing to do
-        return callback(null, file);
-    }
-
-    if (file.isStream()) {
-        // file.contents is a Stream - https://nodejs.org/api/stream.html
-        this.emit('error', new PluginError(PLUGIN_NAME, 'Streams not supported!'));
-    } else if (file.isBuffer()) {
-        // file.contents is a Buffer - https://nodejs.org/api/buffer.html
-        var doc = scratchblocks.parse(file.contents.toString())
-        doc.render(svg => {
-          var string = doc.exportSVGString();
-          // Remove invalid xmlns attribute due to issue https://github.com/scratchblocks/scratchblocks/issues/219
-          string = string.replace(
-            /<use xmlns="http:\/\/www\.w3\.org\/1999\/xlink"/g,
-            '<use'
-          );
-          file.contents = new Buffer(string);
-        })
-        return callback(null, file);
-    }
-  });
-};
 // --------------------------
 // CUSTOM TASK METHODS
 // --------------------------
@@ -120,18 +87,6 @@ var tasks = {
   js: function() {
     return gulp.src('static/js/**/*.js')
       .pipe(gulp.dest('build/js'));
-  },
-  // --------------------------
-  // Scratch
-  // --------------------------
-  scratch: function() {
-    return gulp.src('temp/scratch-blocks-*.txt')
-      .pipe(scratchSVG())
-      .pipe(rename(function (path) {
-        path.extname = ".svg"
-      }))
-      // give it a file and save
-      .pipe(gulp.dest('build/img'));
   },
   // --------------------------
   // SASS (libsass)
@@ -192,7 +147,6 @@ gulp.task('images', req, tasks.images);
 gulp.task('js', req, tasks.js);
 gulp.task('css', req, tasks.css);
 gulp.task('sass', req, tasks.sass);
-gulp.task('scratch', req, tasks.scratch);
 gulp.task('lint:js', tasks.lintjs);
 
 // // build task
