@@ -6,4 +6,4 @@ from django.apps import AppConfig
 class GeneralConfig(AppConfig):
     """Configuration object for the general application."""
 
-    name = 'general'
+    name = "general"

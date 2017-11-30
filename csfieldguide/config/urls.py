@@ -11,6 +11,7 @@ from django.contrib import admin
 
 urlpatterns = i18n_patterns(
     url(r"", include("general.urls", namespace="general")),
+    url(r"^interactives/", include("interactives.urls", namespace="interactives")),
     url(r"^chapters/", include("chapters.urls", namespace="chapters")),
     url(r"^admin/", include(admin.site.urls)),
 )

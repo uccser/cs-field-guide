@@ -10,7 +10,7 @@ urlpatterns = [
     url(
         r"^$",
         views.IndexView.as_view(),
-        name="index"
+        name="home"
     ),
     # eg: /chapters/glossary/
     url(
@@ -18,7 +18,7 @@ urlpatterns = [
         views.GlossaryList.as_view(),
         name="glossary"
     ),
-    # eg: /topics/glossary/json/
+    # eg: /chapters/glossary/json/
     url(
         r"^glossary/json/$",
         views.glossary_json,
@@ -30,4 +30,5 @@ urlpatterns = [
         views.ChapterView.as_view(),
         name="chapter"
     ),
+
 ]
