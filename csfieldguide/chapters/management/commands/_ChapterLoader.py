@@ -14,9 +14,9 @@ class ChapterLoader(BaseLoader):
         """Create the loader for loading a topic.
 
         Args:
-            structure_file_path: path to application structure file (str).
-            chapter: key for chapter to load (str)
-            BASE_PATH: Base file path (str).
+            structure_file_path (str): path to application structure file.
+            chapter_slug (str): key for chapter to load.
+            BASE_PATH (str): Base file path.
         """
         super().__init__(BASE_PATH)
         self.structure_file_path = structure_file_path
@@ -49,8 +49,6 @@ class ChapterLoader(BaseLoader):
             icon=None
         )
         chapter.save()
-
-        # call interactive loader
 
         self.log("Added Chapter: {}".format(chapter.name))
 

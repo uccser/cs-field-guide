@@ -1,4 +1,4 @@
-"""Create test data for topic tests."""
+"""Create test data for chapter tests."""
 
 import os.path
 import yaml
@@ -30,10 +30,7 @@ class ChaptersTestDataGenerator:
         """Create chapter object.
 
         Args:
-            topic: The related Topic object (Topic).
-            number: Identifier of the topic (int).
-            lessons: List of prerequisite lessons (list).
-            curriculum_areas: List of curriculum areas (list).
+            number: Identifier of the chapter (int).
 
         Returns:
             Chapter object.

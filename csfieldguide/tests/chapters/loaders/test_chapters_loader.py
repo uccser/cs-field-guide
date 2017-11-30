@@ -12,8 +12,8 @@ class ChapterLoaderTest(BaseTestWithDB):
         self.loader_name = "chapters"
         self.base_path = self.test_data.LOADER_ASSET_PATH
 
-    def test_basic_chapter_loader_configuration(self):
-        """
+    def test_loading_single_chapter(self):
+        """Tests that chapter loader can load single chapter.
         """
         config_file = "basic-config.yaml"  # placeholder, required parameter for error raised in chapter loader
         chapter_slug = "chapter-1"

@@ -12,7 +12,7 @@ class ChapterURLTest(BaseTestWithDB):
         self.language = "en"
 
     def test_valid_chapter_url(self):
-        """
+        """Tests url for viewing specific chapter.
         """
         self.test_data.create_chapter("1")
 

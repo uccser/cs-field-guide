@@ -12,7 +12,7 @@ class IndexViewTest(BaseTestWithDB):
         self.language = "en"
 
     def test_index_with_one_chapter(self):
-        """
+        """Tests view for index with one chapter.
         """
         self.test_data.create_chapter("1")
 

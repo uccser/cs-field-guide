@@ -8,7 +8,7 @@ class ChapterModelTest(BaseTestWithDB):
         super().__init__(*args, **kwargs)
 
     def test_one_chapter(self):
-        """
+        """Tests creating one chapter.
         """
         new_chapter_term = Chapter.objects.create(
             slug="chapter-1",
@@ -19,7 +19,7 @@ class ChapterModelTest(BaseTestWithDB):
         self.assertEqual(query_result, new_chapter_term)
 
     def test_two_chapters(self):
-        """
+        """Tests creaing two chapters.
         """
         Chapter.objects.create(
             slug="chapter-1",

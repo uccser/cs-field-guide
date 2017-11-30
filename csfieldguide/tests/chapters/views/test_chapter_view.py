@@ -12,7 +12,7 @@ class ChapterViewTest(BaseTestWithDB):
         self.language = "en"
 
     def test_chapter_view_with_valid_slugs(self):
-        """
+        """Tests view for individual chapter.
         """
         self.test_data.create_chapter("1")
 
