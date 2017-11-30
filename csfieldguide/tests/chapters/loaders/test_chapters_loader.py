@@ -1,5 +1,3 @@
-import os.path
-
 from tests.BaseTestWithDB import BaseTestWithDB
 from tests.chapters.ChaptersTestDataGenerator import ChaptersTestDataGenerator
 from chapters.management.commands._ChapterLoader import ChapterLoader
@@ -12,7 +10,7 @@ class ChapterLoaderTest(BaseTestWithDB):
         super().__init__(*args, **kwargs)
         self.test_data = ChaptersTestDataGenerator()
         self.loader_name = "chapters"
-        self.base_path = os.path.join(self.test_data.LOADER_ASSET_PATH)
+        self.base_path = self.test_data.LOADER_ASSET_PATH
 
     def test_basic_chapter_loader_configuration(self):
         """

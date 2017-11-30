@@ -37,9 +37,9 @@ class Command(BaseCommand):
             glossary_folder_path = structure_file["glossary-folder"]
             if glossary_folder_path is not None:
                 factory.create_glossary_terms_loader(
-                    glossary_folder_path,
-                    structure_file_path,
-                    BASE_PATH
+                    glossary_folder_path=glossary_folder_path,
+                    structure_file_path=structure_file_path,
+                    BASE_PATH=BASE_PATH
                 ).load()
 
         chapters = structure_file.get("chapters", None)
@@ -51,7 +51,7 @@ class Command(BaseCommand):
             )
         for chapter_name in chapters:
             factory.create_chapter_loader(
-                structure_file_path,
-                chapter_name,
-                BASE_PATH
+                structure_file_path=structure_file_path,
+                chapter_name=chapter_name,
+                BASE_PATH=BASE_PATH
             ).load()

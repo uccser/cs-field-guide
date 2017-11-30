@@ -21,19 +21,20 @@ class GlossaryTermsLoader(BaseLoader):
         """
         super().__init__(BASE_PATH)
         self.structure_file_path = structure_file_path
-        self.BASE_PATH = os.path.join(self.BASE_PATH, glossary_folder_path)
+        self.glossary_folder_path = os.path.join(self.BASE_PATH, glossary_folder_path)
         self.FILE_EXTENSION = ".md"
 
     @transaction.atomic
     def load(self):
         """Load the glossary content into the database."""
         # glossary_slugs = set()
-        for filename in listdir(self.BASE_PATH):
+
+        for filename in listdir(self.glossary_folder_path):
             if filename.endswith(self.FILE_EXTENSION):
                 glossary_slug = filename.split(".")[0]
 
                 glossary_term_file_path = os.path.join(
-                    self.BASE_PATH,
+                    self.glossary_folder_path,
                     "{}{}".format(glossary_slug, self.FILE_EXTENSION)
                 )
                 glossary_term_content = self.convert_md_file(
@@ -47,6 +48,6 @@ class GlossaryTermsLoader(BaseLoader):
                 )
                 new_glossary_term.save()
 
-            self.log("Added glossary term: {}".format(new_glossary_term.__str__()))
+                self.log("Added glossary term: {}".format(new_glossary_term.__str__()))
 
         self.log("All glossary terms loaded!\n")
