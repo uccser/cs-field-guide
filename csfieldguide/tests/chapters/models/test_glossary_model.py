@@ -17,12 +17,12 @@ class GlossaryModelTest(BaseTestWithDB):
         self.assertEqual(query_result, new_glossary_term)
 
     def test_two_glossary_terms(self):
-        new_glossary_term_1 = GlossaryTerm.objects.create(
+        GlossaryTerm.objects.create(
             slug="glossary-term-1",
             term="Glossary Term 1",
             definition="A definition for glossary term 1"
         )
-        new_glossary_term_2 = GlossaryTerm.objects.create(
+        GlossaryTerm.objects.create(
             slug="glossary-term-2",
             term="Glossary Term 2",
             definition="A definition for glossary term 2"

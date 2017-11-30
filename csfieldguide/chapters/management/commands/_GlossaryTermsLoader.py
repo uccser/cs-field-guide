@@ -46,7 +46,7 @@ class GlossaryTermsLoader(BaseLoader):
                     definition=glossary_term_content.html_string
                 )
                 new_glossary_term.save()
-            
+
             self.log("Added glossary term: {}".format(new_glossary_term.__str__()))
 
         self.log("All glossary terms loaded!\n")

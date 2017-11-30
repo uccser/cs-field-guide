@@ -1,5 +1,9 @@
+"""Application configuration for the chapters application."""
+
 from django.apps import AppConfig
 
 
 class ChaptersConfig(AppConfig):
-    name = 'chapters'
+    """Configuration object for the chapters application."""
+
+    name = "chapters"

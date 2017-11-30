@@ -1,36 +1,28 @@
 sudo: required
 services:
-- docker
-env:
-- DOCKER_COMPOSE_VERSION=1.11.2
+  - docker
 language: python
 python:
-- '3.6'
+  - '3.6'
+before_install:
+  # See https://github.com/travis-ci/travis-ci/issues/7940
+  - sudo rm -f /etc/boto.cfg
 install:
-- sudo apt-get update
-- sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-engine
-- sudo rm /usr/local/bin/docker-compose
-- curl -L "https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" > docker-compose
-- chmod +x docker-compose
-- sudo mv docker-compose /usr/local/bin
-- sudo docker --version
-- sudo docker-compose --version
-before_script:
-- "./csfg start"
-script:
-- "./csfg dev test"
-- "./csfg dev test_backwards"
-- "./csfg dev test_coverage"
-# - "./csfg dev style"
-# - "./csfg dev docs"
-after_script:
-- bash <(curl -s https://codecov.io/bash)
-# Stop email notifications but post to Slack channel
+  - sudo docker --version
+  - sudo docker-compose --version
+jobs:
+  include:
+    - stage: test
+      script: ./csfg ci test_suite
+    - script: ./csfg ci test_backwards
+      if: type = pull_request
+    - script: ./csfg ci style
+    - script: ./csfg ci docs
 notifications:
   email: false
   slack:
     rooms: deptfunstuff:abJKvzApk5SKtcEyAgtswXAv
     on_success: change
     on_failure: change
-
-
+stages:
+  - name: test

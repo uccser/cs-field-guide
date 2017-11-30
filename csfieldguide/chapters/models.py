@@ -1,3 +1,5 @@
+"""Models for the chapters application."""
+
 from django.db import models
 
 

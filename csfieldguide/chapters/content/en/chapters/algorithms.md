@@ -10,7 +10,7 @@ Every computer device you have ever used, from your school computers to your cal
 Algorithms are a very important topic in Computer Science because they help software developers create efficient and error free programs.
 The most important thing to remember about algorithms is that there can be many different algorithms for the same problem, but some are much better than others!
 
-{comment interactive name="sorting-algorithm-comparison" type="in-page"}
+{interactive name="sorting-algorithm-comparison" type="in-page"}
 
 Computers are incredibly fast at manipulating, moving and looking through data.
 However the amount of data computers use is often so large that it doesn't matter how fast the computer is, it will take it far too long to examine every single piece of data (companies like Google, Facebook and Twitter routinely process billions of things per day, and in some cases, per minute!)
@@ -30,7 +30,7 @@ Often you can get away with describing a process just using some sort of informa
 "please get me a glass of water".
 A human can understand what this means and can figure out how to accomplish this task by thinking, but a computer would have no idea how to do this!
 
-{comment interactive name="high-score-boxes" type="whole-page" text="High Score Boxes"}
+{interactive name="high-score-boxes" type="whole-page" text="High Score Boxes"}
 
 An example in a computational context might be if you wanted to find a high score in a table of scores:
 go through each score keeping track of the largest so far.
@@ -89,7 +89,7 @@ def find_high_score(scores):
 
 But here's another program that implements exactly the same algorithm, this time in the Scratch language.
 
-{image file-path="highscore-in-scratch.png" alt="High score program in Scratch"}
+{image file-path="img/chapters/highscore-in-scratch.png" alt="High score program in Scratch"}
 
 Both of the above programs are the same algorithm.
 In this chapter we'll look in more detail about what an algorithm is, and why they are such a fundamental idea in computer science.
@@ -411,7 +411,7 @@ Now compare every other box to the one you selected; heavier boxes should be put
 When you are done, place the box you were comparing everything else to between these two groups, but to help you keep track of things, put it in the row below.
 The following example shows how it might look after this step. Note that the selected block is in the right place for the final sorted order, and everything on either side will remain on the side that it is on.
 
-{image file-path="quicksort-interactive-step-1.png" alt="Quicksort interactive in progress"}
+{image file-path="img/chapters/quicksort-interactive-step-1.png" alt="Quicksort interactive in progress"}
 
 Now apply this process to each of the two groups of boxes (the lighter ones, then the heavier ones).
 Keep on doing this until they are all sorted. The boxes should then be in sorted order!

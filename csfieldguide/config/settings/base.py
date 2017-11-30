@@ -38,6 +38,7 @@ DJANGO_APPS = [
 # Apps specific for this project go here.
 LOCAL_APPS = [
     "general.apps.GeneralConfig",
+    "interactives.apps.InteractivesConfig",
     "chapters.apps.ChaptersConfig",
 ]
 
@@ -142,6 +143,7 @@ TEMPLATES = [
                 "django.template.context_processors.tz",
                 "django.contrib.messages.context_processors.messages",
                 # Your stuff: custom template context processors go here
+                'general.context_processors.nav_context.nav_context'
             ],
             "libraries": {
                 "render_html_field": "general.templatetags.render_html_field",
