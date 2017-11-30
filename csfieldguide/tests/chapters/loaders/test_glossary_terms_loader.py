@@ -22,8 +22,8 @@ class GlossaryTermsLoaderTest(BaseTestWithDB):
         glossary_folder = "glossary-1"
 
         glossary_terms_loader = GlossaryTermsLoader(
-            glossary_folder_path=glossary_folder,
             structure_file_path=self.config_file,
+            glossary_directory_name=glossary_folder,
             BASE_PATH=self.base_path
         )
         glossary_terms_loader.load()

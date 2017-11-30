@@ -11,7 +11,7 @@ from chapters.models import GlossaryTerm
 class GlossaryTermsLoader(BaseLoader):
     """Custom loader for loading glossary terms."""
 
-    def __init__(self, glossary_folder_path, structure_file_path, BASE_PATH):
+    def __init__(self, structure_file_path, glossary_directory_name, BASE_PATH):
         """Create the loader for loading glossary terms.
 
         Args:
@@ -20,8 +20,9 @@ class GlossaryTermsLoader(BaseLoader):
             BASE_PATH: Base file path (string).
         """
         super().__init__(BASE_PATH)
+        print(self.BASE_PATH, glossary_directory_name)
         self.structure_file_path = structure_file_path
-        self.glossary_folder_path = os.path.join(self.BASE_PATH, glossary_folder_path)
+        self.glossary_folder_path = os.path.join(self.BASE_PATH, glossary_directory_name)
         self.FILE_EXTENSION = ".md"
 
     @transaction.atomic
