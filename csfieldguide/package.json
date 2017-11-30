@@ -1,0 +1,30 @@
+{
+  "name": "cs-field-guide-assets",
+  "version": "0.0.3",
+  "main": "gulpfile.js",
+  "private": true,
+  "dependencies": {
+    "autoprefixer": "7.1.6",
+    "child_process": "1.0.2",
+    "del": "3.0.0",
+    "gulp": "3.9.1",
+    "gulp-if": "2.0.2",
+    "gulp-jshint": "2.0.4",
+    "gulp-notify": "3.0.0",
+    "gulp-postcss": "7.0.0",
+    "gulp-rename": "1.2.2",
+    "gulp-sass": "3.1.0",
+    "gulp-sourcemaps": "2.6.1",
+    "gulp-util": "3.0.8",
+    "jshint": "2.9.5",
+    "jshint-stylish": "2.2.1",
+    "node-gyp": "^3.6.2",
+    "postcss-flexbugs-fixes": "3.2.0",
+    "rebuild": "^0.1.2",
+    "run-sequence": "2.2.0",
+    "scratchblocks": "3.1.2",
+    "through2": "2.0.3",
+    "vinyl-buffer": "1.0.0",
+    "yargs": "10.0.3"
+  }
+}

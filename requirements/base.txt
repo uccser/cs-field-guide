@@ -5,7 +5,7 @@
 wheel==0.30.0
 
 # Django
-django==1.11.5
+django==1.11.7
 
 # Configuration
 django-environ==0.4.4
@@ -18,7 +18,7 @@ verto==0.6.1
 python-markdown-math==0.3
 
 # Python-PostgreSQL Database Adapter
-psycopg2==2.7.3.1
+psycopg2==2.7.3.2
 
 # YAML Loading
 PyYAML==3.12
