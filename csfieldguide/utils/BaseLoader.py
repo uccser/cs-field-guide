@@ -83,7 +83,6 @@ class BaseLoader():
             raise EmptyMarkdownFileError(md_file_path)
         # check_converter_required_files(result.required_files, md_file_path)
         check_converter_glossary_links(result.required_glossary_terms, md_file_path)
-        print(result.required_files)
         return result
 
     def log(self, message, indent_amount=0):
