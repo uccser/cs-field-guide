@@ -15,6 +15,10 @@ class GeneralAboutView(TemplateView):
 
     template_name = "general/about.html"
 
+class GeneralContributorsView(TemplateView):
+    """View for the homepage that renders from a template."""
+
+    template_name = "general/contributors.html"
 
 class NavView(ListView):
     """View for the navigation bar."""
