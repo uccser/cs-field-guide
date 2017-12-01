@@ -27,8 +27,7 @@ class ChapterLoader(BaseLoader):
 
     @transaction.atomic
     def load(self):
-        """Load the content for a chapter.
-        """
+        """Load the content for a chapter."""
         # Convert the content to HTML
         chapter_content = self.convert_md_file(
             os.path.join(
