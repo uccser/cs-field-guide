@@ -1,0 +1,16 @@
+<div class='row'>
+<div class='col s12 m8 offset-m2 center-align'>
+<img src="{{ file_path }}"
+{% if alt %} alt="{{ alt }}" {% endif -%}
+{%- if hover_text %} title="{{ hover_text }}" {% endif -%}
+ class="responsive-img {% if alignment == 'left' %}left-align{% elif alignment =='center' %}center-align{% elif alignment =='right' %}right-align{% endif %}">
+{% if caption and caption_link -%}
+<p><a href="{{ caption_link }}">{{ caption }}</a></p>
+{%- elif caption -%}
+<p>{{ caption }}</p>
+{%- endif -%}
+{%- if source_link -%}
+<p><a href="{{ source_link }}">Source</a></p>
+{%- endif -%}
+</div>
+</div>
