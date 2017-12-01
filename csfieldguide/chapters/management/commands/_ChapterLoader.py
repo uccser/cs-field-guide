@@ -14,9 +14,10 @@ class ChapterLoader(BaseLoader):
         """Create the loader for loading a topic.
 
         Args:
-            structure_file_path: path to application structure file (str).
-            chapter: key for chapter to load (str)
-            BASE_PATH: Base file path (str).
+            structure_file_path (str): path to application structure file.
+            chapter (str): key for chapter to load.
+            chapter_stucture (dict): Attributes for the chapter (e.g. chapter number).
+            BASE_PATH (str): Base file path.
         """
         super().__init__(BASE_PATH)
         self.structure_file_path = structure_file_path
@@ -27,10 +28,6 @@ class ChapterLoader(BaseLoader):
     @transaction.atomic
     def load(self):
         """Load the content for a chapter.
-
-        Raise:
-            MissingRequiredFieldError: when no object can be found with the matching
-                attribute.
         """
         # Convert the content to HTML
         chapter_content = self.convert_md_file(
@@ -53,8 +50,6 @@ class ChapterLoader(BaseLoader):
             icon=None
         )
         chapter.save()
-
-        # call interactive loader
 
         self.log("Added Chapter: {}".format(chapter.name))
 
