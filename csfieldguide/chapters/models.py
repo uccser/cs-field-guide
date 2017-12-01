@@ -26,6 +26,7 @@ class Chapter(models.Model):
     #  Auto-incrementing 'id' field is automatically set by Django
     slug = models.SlugField(unique=True)
     name = models.CharField(max_length=100)
+    number = models.SmallIntegerField(unique=True)
     content = models.TextField()
     other_resources = models.TextField(null=True)
     icon = models.CharField(max_length=100, null=True)
@@ -37,3 +38,8 @@ class Chapter(models.Model):
             Name of chapter (str).
         """
         return self.name
+
+    class Meta:
+        """Set consistent ordering of chapters."""
+
+        ordering = ["number"]

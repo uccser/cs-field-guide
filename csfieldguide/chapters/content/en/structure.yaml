@@ -1,7 +1,11 @@
 chapters:
-  - introduction
-  - algorithms
-  - artificial-intelligence
-  - coding-compression
+  introduction:
+      number: 1
+  algorithms:
+      number: 2
+  artificial-intelligence:
+      number: 3
+  coding-compression:
+      number: 4
 
 glossary-folder: glossary

@@ -8,9 +8,9 @@ from interactives.management.commands._InteractiveLoader import InteractiveLoade
 class LoaderFactory:
     """Factory for creating loader objects."""
 
-    def create_chapter_loader(self, structure_file_path, chapter, BASE_PATH):
+    def create_chapter_loader(self, structure_file_path, chapter_slug, chapter_structure, BASE_PATH):
         """Create chapter loader."""
-        return ChapterLoader(structure_file_path, chapter, BASE_PATH)
+        return ChapterLoader(structure_file_path, chapter_slug, chapter_structure, BASE_PATH)
 
     def create_interactive_loader(self, structure_file_path, interactives, BASE_PATH):
         """Create interactive loader."""
