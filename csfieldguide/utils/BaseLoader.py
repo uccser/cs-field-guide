@@ -70,7 +70,7 @@ class BaseLoader():
         try:
             # check file exists
             content = open(md_file_path, encoding="UTF-8").read()
-        except:
+        except FileNotFoundError:
             raise CouldNotFindMarkdownFileError(md_file_path, config_file_path)
 
         result = self.converter.convert(content)
@@ -113,12 +113,12 @@ class BaseLoader():
         """
         try:
             yaml_file = open(yaml_file_path, encoding="UTF-8").read()
-        except:
+        except FileNotFoundError:
             raise CouldNotFindConfigFileError(yaml_file_path)
 
         try:
             yaml_contents = yaml.load(yaml_file)
-        except:
+        except yaml.YAMLError:
             raise InvalidConfigFileError(yaml_file_path)
 
         if yaml_contents is None:
