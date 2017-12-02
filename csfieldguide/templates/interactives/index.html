@@ -15,6 +15,7 @@
 
   {% if all_interactives %}
 
+    <!-- bug! does not show interactive objects in for loop -->
     {% for interative in all_interactives %}
         <h3>{{ interactive.slug }}</h3>
     {% endfor %}
