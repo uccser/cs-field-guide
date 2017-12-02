@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-  
+
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -20,7 +20,7 @@
     <link rel="shortcut icon" href="{% static 'img/guide-favicon.png' %}">
     <script type="text/javascript" src="{% static 'js/third-party/modernizr.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/third-party/jquery.js' %}"></script>
-  
+
   </head>
 
   <body>
@@ -68,7 +68,7 @@
                 <ul>
                   <li><a href="{% url 'chapters:glossary' %}">Glossary</a></li>
                   <li><a href="{% url 'general:contributors' %}">Contributors</a></li>
-                  <li><a href="further-information/interactives.html">Interactives</a></li>
+                  <li><a href="{% url 'interactives:index' %}">Interactives</a></li>
                   <li><a href="further-information/releases.html">Releases</a></li>
                   <li><a href="further-information/included-files.html">Included Files</a></li>
                 </ul>
@@ -114,7 +114,7 @@
       {% endblock body_container %}
 
     </main>
-  
+
     <footer>
     <div class="footer-first">
       <div class="container">
@@ -187,7 +187,7 @@
     </div>
   </div>
 
-  
+
   <script type="text/javascript" src="{% static 'js/third-party/materialize.min.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/third-party/featherlight.min.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/third-party/jquery.sticky-kit.min.js' %}"></script>

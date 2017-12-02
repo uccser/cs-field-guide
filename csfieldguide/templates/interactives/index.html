@@ -14,7 +14,7 @@
 {% block content %}
 
   {% if all_interactives %}
-    
+
     {% for interative in all_interactives %}
         <h3>{{ interactive.slug }}</h3>
     {% endfor %}
@@ -22,7 +22,7 @@
   {% else %}
 
     <p>No interactives are available.</p>
-  
+
   {% endif %}
 
 {% endblock content %}
