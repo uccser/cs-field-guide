@@ -11,6 +11,3 @@ class IndexURLTest(BaseTestWithDB):
     def test_valid_index(self):
         url = reverse("chapters:home")
         self.assertEqual(url, "/en/chapters/")
-
-        response = self.client.get(url)
-        self.assertEqual(200, response.status_code)

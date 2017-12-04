@@ -19,6 +19,11 @@ class GlossaryTerm(models.Model):
         """
         return self.term
 
+    class Meta:
+        """Set consistent ordering of Glossary Terms."""
+
+        ordering = ["term"]
+
 
 class Chapter(models.Model):
     """Model for chapter in database."""

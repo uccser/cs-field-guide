@@ -11,29 +11,31 @@ from chapters.models import GlossaryTerm
 class GlossaryTermsLoader(BaseLoader):
     """Custom loader for loading glossary terms."""
 
-    def __init__(self, glossary_folder_path, structure_file_path, BASE_PATH):
+    def __init__(self, structure_file_path, glossary_directory_name, BASE_PATH):
         """Create the loader for loading glossary terms.
 
         Args:
-            glossary_folder_path: Folder path to definition files (string).
-            structure_file_path: Path to the config file, used for errors.
-            BASE_PATH: Base file path (string).
+            structure_file_path (str): Path to the config file, used for errors.
+            glossary_directory_name (str): Folder path to definition files.
+            BASE_PATH (str): Base file path.
         """
         super().__init__(BASE_PATH)
+        print(self.BASE_PATH, glossary_directory_name)
         self.structure_file_path = structure_file_path
-        self.BASE_PATH = os.path.join(self.BASE_PATH, glossary_folder_path)
+        self.glossary_folder_path = os.path.join(self.BASE_PATH, glossary_directory_name)
         self.FILE_EXTENSION = ".md"
 
     @transaction.atomic
     def load(self):
         """Load the glossary content into the database."""
         # glossary_slugs = set()
-        for filename in listdir(self.BASE_PATH):
+
+        for filename in listdir(self.glossary_folder_path):
             if filename.endswith(self.FILE_EXTENSION):
                 glossary_slug = filename.split(".")[0]
 
                 glossary_term_file_path = os.path.join(
-                    self.BASE_PATH,
+                    self.glossary_folder_path,
                     "{}{}".format(glossary_slug, self.FILE_EXTENSION)
                 )
                 glossary_term_content = self.convert_md_file(
@@ -47,6 +49,6 @@ class GlossaryTermsLoader(BaseLoader):
                 )
                 new_glossary_term.save()
 
-            self.log("Added glossary term: {}".format(new_glossary_term.__str__()))
+                self.log("Added glossary term: {}".format(new_glossary_term.__str__()))
 
         self.log("All glossary terms loaded!\n")

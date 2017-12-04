@@ -16,6 +16,6 @@ class LoaderFactory:
         """Create interactive loader."""
         return InteractiveLoader(structure_file_path, interactives, BASE_PATH)
 
-    def create_glossary_terms_loader(self, structure_file_path, glossary_folder_path, BASE_PATH):
+    def create_glossary_terms_loader(self, structure_file_path, glossary_directory_name, BASE_PATH):
         """Create glossary terms loader."""
-        return GlossaryTermsLoader(structure_file_path, glossary_folder_path, BASE_PATH)
+        return GlossaryTermsLoader(structure_file_path, glossary_directory_name, BASE_PATH)
