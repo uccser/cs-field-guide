@@ -5,7 +5,7 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
-    # e.g. csfieldguide.com/
+    # e.g. csfieldguide.org.nz/
     url(
         r"^$",
         views.GeneralIndexView.as_view(),
