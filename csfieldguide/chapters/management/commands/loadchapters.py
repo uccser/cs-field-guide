@@ -34,12 +34,12 @@ class Command(BaseCommand):
         structure_file = base_loader.load_yaml_file(structure_file_path)
 
         if "glossary-folder" in structure_file:
-            glossary_folder_path = structure_file["glossary-folder"]
-            if glossary_folder_path is not None:
+            glossary_directory_name = structure_file["glossary-folder"]
+            if glossary_directory_name is not None:
                 factory.create_glossary_terms_loader(
-                    glossary_folder_path,
-                    structure_file_path,
-                    BASE_PATH
+                    structure_file_path=structure_file_path,
+                    glossary_directory_name=glossary_directory_name,
+                    BASE_PATH=BASE_PATH
                 ).load()
 
         chapters = structure_file.get("chapters", None)
@@ -49,9 +49,9 @@ class Command(BaseCommand):
                 ["chapters"],
                 "Application Structure"
             )
-        for chapter in chapters:
+        for chapter_slug in chapters:
             factory.create_chapter_loader(
-                structure_file_path,
-                chapter,
-                BASE_PATH
+                structure_file_path=structure_file_path,
+                chapter_slug=chapter_slug,
+                BASE_PATH=BASE_PATH
             ).load()
