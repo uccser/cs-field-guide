@@ -68,7 +68,7 @@ cmd_start() {
   cmd_update
   # Alert user that system is ready
   echo -e "\n${GREEN}Systems are ready!${NC}"
-  echo "Open your preferred web browser to the URL 'localhost'"
+  echo "Open your preferred web browser to the URL 'localhost:81'"
 }
 
 defhelp start 'Start development environment (this also runs the update command).'
