@@ -17,10 +17,12 @@ class ChapterLoaderTest(BaseTestWithDB):
         """
         config_file = "basic-config.yaml"  # placeholder, required parameter for error raised in chapter loader
         chapter_slug = "chapter-1"
+        chapter_structure = {"number": 1}
 
         chapter_loader = ChapterLoader(
             structure_file_path=config_file,
             chapter_slug=chapter_slug,
+            chapter_structure=chapter_structure,
             BASE_PATH=self.base_path
         )
         chapter_loader.load()

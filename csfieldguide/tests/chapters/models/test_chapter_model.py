@@ -13,6 +13,7 @@ class ChapterModelTest(BaseTestWithDB):
         new_chapter_term = Chapter.objects.create(
             slug="chapter-1",
             name="Chapter 1",
+            number=1,
             content="This is the content for chapter 1."
         )
         query_result = Chapter.objects.get(slug="chapter-1")
@@ -24,11 +25,13 @@ class ChapterModelTest(BaseTestWithDB):
         Chapter.objects.create(
             slug="chapter-1",
             name="Chapter 1",
+            number=1,
             content="This is the content for chapter 1."
         )
         Chapter.objects.create(
             slug="chapter-2",
             name="Chapter 2",
+            number=2,
             content="This is the content for chapter 2."
         )
         self.assertQuerysetEqual(
