@@ -2,8 +2,8 @@
 
 import os.path
 from django.db import transaction
-
 from utils.BaseLoader import BaseLoader
+from utils.errors.MissingRequiredFieldError import MissingRequiredFieldError
 from chapters.models import Chapter
 
 
@@ -27,7 +27,11 @@ class ChapterLoader(BaseLoader):
 
     @transaction.atomic
     def load(self):
-        """Load the content for a chapter."""
+        """Load the content for a chapter.
+
+        Raise:
+            MissingRequiredFieldError: when no object can be found with the matching attribute.
+        """
         # Convert the content to HTML
         chapter_content = self.convert_md_file(
             os.path.join(
@@ -37,7 +41,13 @@ class ChapterLoader(BaseLoader):
             self.structure_file_path
         )
 
-        chapter_number = self.chapter_structure.get('number')
+        chapter_number = self.chapter_structure.get('number', None)
+        if chapter_number is None:
+            raise MissingRequiredFieldError(
+                self.structure_file_path,
+                ["number"],
+                "Chapter Number"
+            )
 
         # Create chapter object and save to the db
         chapter = Chapter(
