@@ -16,9 +16,7 @@ class GlossaryTermsLoaderTest(BaseTestWithDB):
         # placeholder, required parameter for error raised in chapter loader
         self.config_file = "basic-config.yaml"
 
-    def test_multiple_glossary_terms(self):
-        """Tests saving multiple glossary terms.
-        """
+    def test_chapters_glossary_loader_multiple_glossary_terms(self):
         glossary_folder = "glossary-1"
 
         glossary_terms_loader = GlossaryTermsLoader(
