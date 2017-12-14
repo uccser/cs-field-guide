@@ -10,7 +10,7 @@ urlpatterns = [
     url(
         r"^$",
         views.IndexView.as_view(),
-        name="home"
+        name="index"
     ),
     # eg: /chapters/glossary/
     url(

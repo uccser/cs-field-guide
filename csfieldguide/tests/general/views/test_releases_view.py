@@ -10,8 +10,6 @@ class ReleasesViewTest(BaseTestWithDB):
         self.language = "en"
 
     def test_general_releases_view(self):
-        """Tests view for releases page.
-        """
         url = reverse("general:releases")
         response = self.client.get(url)
 

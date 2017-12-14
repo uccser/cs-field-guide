@@ -8,6 +8,6 @@ class AboutURLTest(BaseTestWithDB):
         super().__init__(*args, **kwargs)
         self.language = "en"
 
-    def test_valid_about_url(self):
+    def test_general_valid_about_url(self):
         url = reverse("general:about")
         self.assertEqual(url, "/en/about")

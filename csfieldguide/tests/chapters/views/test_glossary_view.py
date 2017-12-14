@@ -9,13 +9,13 @@ class GlossaryViewTest(BaseTestWithDB):
         super().__init__(*args, **kwargs)
         self.language = "en"
 
-    def test_glossary_with_no_definitions(self):
+    def test_chapters_glossary_view_with_no_definitions(self):
         url = reverse("chapters:glossary")
         response = self.client.get(url)
         self.assertEqual(200, response.status_code)
         self.assertEqual(len(response.context["glossary_terms"]), 0)
 
-    def test_glossary_with_one_definition(self):
+    def test_chapters_glossary_view_with_one_definition(self):
         term = GlossaryTerm(
             slug="algorithm",
             term="Algorithms",
@@ -32,7 +32,7 @@ class GlossaryViewTest(BaseTestWithDB):
             ["<GlossaryTerm: Algorithms>"]
         )
 
-    def test_glossary_with_two_definitions(self):
+    def test_chapters_glossary_view_with_two_definitions(self):
         term1 = GlossaryTerm(
             slug="algorithm",
             term="Algorithms",
@@ -55,7 +55,7 @@ class GlossaryViewTest(BaseTestWithDB):
             ["<GlossaryTerm: Algorithms>", "<GlossaryTerm: Pixel>"]
         )
 
-    def test_glossary_order(self):
+    def test_chapters_glossary_view_order(self):
         term_c = GlossaryTerm(
             slug="c",
             term="C",
@@ -88,7 +88,7 @@ class GlossaryViewTest(BaseTestWithDB):
             ]
         )
 
-    def test_glossary_json_with_one_definition(self):
+    def test_chapters_glossary_view_json_with_one_definition(self):
         term = GlossaryTerm(
             slug="algorithm",
             term="Algorithms",
@@ -108,7 +108,7 @@ class GlossaryViewTest(BaseTestWithDB):
             }
         )
 
-    def test_glossary_json_with_two_definitions(self):
+    def test_chapters_glossary_view_json_with_two_definitions(self):
         term1 = GlossaryTerm(
             slug="algorithm",
             term="Algorithms",
@@ -134,7 +134,7 @@ class GlossaryViewTest(BaseTestWithDB):
             }
         )
 
-    def test_glossary_json_with_invalid_term(self):
+    def test_chapters_glossary_view_json_with_invalid_term(self):
         term = GlossaryTerm(
             slug="algorithm",
             term="Algorithms",
@@ -146,7 +146,7 @@ class GlossaryViewTest(BaseTestWithDB):
         response = self.client.get(url, {"term": "pixel"})
         self.assertEqual(404, response.status_code)
 
-    def test_glossary_json_with_invalid_key(self):
+    def test_chapters_glossary_view_json_with_invalid_key(self):
         term = GlossaryTerm(
             slug="algorithm",
             term="Algorithms",

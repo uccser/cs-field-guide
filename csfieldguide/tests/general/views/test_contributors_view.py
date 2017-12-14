@@ -10,8 +10,6 @@ class ContributorsViewTest(BaseTestWithDB):
         self.language = "en"
 
     def test_general_about_view(self):
-        """Tests view for contributors page.
-        """
         url = reverse("general:contributors")
         response = self.client.get(url)
 

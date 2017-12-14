@@ -10,9 +10,7 @@ class IndexViewTest(BaseTestWithDB):
         self.language = "en"
 
     def test_general_index_view(self):
-        """Tests view for index with one chapter.
-        """
-        url = reverse("general:home")
+        url = reverse("general:index")
         response = self.client.get(url)
 
         self.assertEqual(HTTPStatus.OK, response.status_code)

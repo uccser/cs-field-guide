@@ -7,7 +7,7 @@ class GlossaryModelTest(BaseTestWithDB):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-    def test_one_glossary_term(self):
+    def test_chapters_glossary_model_one_glossary_term(self):
         new_glossary_term = GlossaryTerm.objects.create(
             slug="glossary-term-1",
             term="Glossary Term 1",
@@ -16,7 +16,7 @@ class GlossaryModelTest(BaseTestWithDB):
         query_result = GlossaryTerm.objects.get(slug="glossary-term-1")
         self.assertEqual(query_result, new_glossary_term)
 
-    def test_two_glossary_terms(self):
+    def test_chapters_glossary_model_two_glossary_terms(self):
         GlossaryTerm.objects.create(
             slug="glossary-term-1",
             term="Glossary Term 1",

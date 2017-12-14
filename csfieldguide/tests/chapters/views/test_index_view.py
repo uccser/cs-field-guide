@@ -11,12 +11,10 @@ class IndexViewTest(BaseTestWithDB):
         self.test_data = ChaptersTestDataGenerator()
         self.language = "en"
 
-    def test_index_with_one_chapter(self):
-        """Tests view for index with one chapter.
-        """
+    def test_chapters_index_view_with_one_chapter(self):
         self.test_data.create_chapter("1")
 
-        url = reverse("chapters:home")
+        url = reverse("chapters:index")
         response = self.client.get(url)
 
         self.assertEqual(HTTPStatus.OK, response.status_code)

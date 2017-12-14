@@ -9,7 +9,7 @@ urlpatterns = [
     url(
         r"^$",
         views.GeneralIndexView.as_view(),
-        name="home"
+        name="index"
     ),
     # e.g. /about
     url(

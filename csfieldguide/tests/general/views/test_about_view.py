@@ -10,8 +10,6 @@ class AboutViewTest(BaseTestWithDB):
         self.language = "en"
 
     def test_general_about_view(self):
-        """Tests view for about page.
-        """
         url = reverse("general:about")
         response = self.client.get(url)
 
