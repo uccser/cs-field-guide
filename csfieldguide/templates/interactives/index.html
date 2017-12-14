@@ -13,16 +13,20 @@
 
 {% block content %}
 
+  <h2>List of interactives</h2>
   {% if all_interactives %}
-    
-    {% for interative in all_interactives %}
-        <h3>{{ interactive.slug }}</h3>
-    {% endfor %}
-
+    <ul>
+      {% for interactive in all_interactives %}
+        <li>
+          <a href="{% url 'interactives:interactive' interactive.slug %}">
+            {{ interactive.slug }} <!-- Temporary until name is implemented -->
+            {{ interactive.name }}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
   {% else %}
-
     <p>No interactives are available.</p>
-  
   {% endif %}
 
 {% endblock content %}
