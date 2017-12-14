@@ -34,9 +34,7 @@ class ChapterLoaderTest(BaseTestWithDB):
             ["<Chapter: Chapter 1>"]
         )
 
-    def test_missing_chapter_number(self):
-        """Tests MissingRequiredFieldError raised when chapter number not specified.
-        """
+    def test_chapters_chapter_loader_missing_chapter_number(self):
         config_file = "basic-config.yaml"
         chapter_slug = "chapter-1"
         chapter_structure = {}
@@ -57,9 +55,7 @@ class ChapterLoaderTest(BaseTestWithDB):
         """
         pass
 
-    def test_title_empty_content(self):
-        """Tests EmptyMarkdownFileError raised when no content in file.
-        """
+    def test_chapters_chapter_loader_title_empty_content(self):
         config_file = "basic-config.yaml"
         chapter_slug = "missing-content"
         chapter_structure = {"number": 1}
@@ -75,9 +71,7 @@ class ChapterLoaderTest(BaseTestWithDB):
             chapter_loader.load
         )
 
-    def tests_empty_file(self):
-        """Tests NoHeadingFoundInMarkdownFileError raised when markdown file is empty.
-        """
+    def test_chapters_chapter_loader_empty_file(self):
         config_file = "basic-config.yaml"
         chapter_slug = "empty-file"
         chapter_structure = {"number": 1}
@@ -93,9 +87,7 @@ class ChapterLoaderTest(BaseTestWithDB):
             chapter_loader.load
         )
 
-    def test_missing_markdown_file(self):
-        """Tests CouldNotFindMarkdownFileError raised when markdown file matching slug does not exist.
-        """
+    def test_chapters_chapter_loader_missing_markdown_file(self):
         config_file = "basic-config.yaml"
         chapter_slug = "this-file-does-not-exist"
         chapter_structure = {"number": 1}
