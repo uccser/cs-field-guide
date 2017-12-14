@@ -7,7 +7,7 @@ from chapters.models import Chapter
 
 
 class ChaptersTestDataGenerator:
-    """Class for generating test data for topics."""
+    """Class for generating test data for chapters."""
 
     def __init__(self):
         """Create ChaptersTestDataGenerator object."""

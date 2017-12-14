@@ -11,7 +11,7 @@ class ChapterViewTest(BaseTestWithDB):
         self.test_data = ChaptersTestDataGenerator()
         self.language = "en"
 
-    def test_chapters_chapter_view_with_valid_slugs(self):
+    def test_chapters_chapter_view_with_valid_slug(self):
         self.test_data.create_chapter("1")
 
         kwargs = {
