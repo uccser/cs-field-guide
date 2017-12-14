@@ -10,9 +10,7 @@ class ChapterURLTest(BaseTestWithDB):
         self.test_data = ChaptersTestDataGenerator()
         self.language = "en"
 
-    def test_valid_chapter_url(self):
-        """Tests url for viewing specific chapter.
-        """
+    def test_chapters_valid_chapter_url(self):
         self.test_data.create_chapter("1")
 
         kwargs = {

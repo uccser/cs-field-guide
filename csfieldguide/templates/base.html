@@ -5,22 +5,17 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-  
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <title>{% block custom_title %}{% block title %}{% endblock title %} - CS Field Guide{% endblock custom_title %}</title>
     <meta name="description" content="">
     <meta name="author" content="">
-
-
     <link rel="stylesheet" href="{% static 'css/website.css' %}">
     <link rel="stylesheet" href="{% static 'css/third-party/featherlight.min.css' %}">
     <link rel="shortcut icon" href="{% static 'img/guide-favicon.png' %}">
     <script type="text/javascript" src="{% static 'js/third-party/modernizr.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/third-party/jquery.js' %}"></script>
-  
   </head>
 
   <body>
@@ -30,13 +25,13 @@
         <nav class="z-depth-0">
           <div class="nav-wrapper">
             <a href="#" data-activates="nav-mobile" class="button-collapse waves-effect waves-light circle"><i class="mdi-navigation-menu"></i></a>
-            <a href="{% url 'general:home' %}" class="brand-logo center">CSFG</a>
+            <a href="{% url 'general:index' %}" class="brand-logo center">CSFG</a>
           </div>
         </nav>
       </div>
       <ul id="nav-mobile" class="side-nav fixed">
         <li class="logo no-padding">
-          <a id="logo-container" href="{% url 'general:home' %}">
+          <a id="logo-container" href="{% url 'general:index' %}">
             <div class="title">Computer Science Field Guide</div>
           </a>
         </li>
@@ -67,9 +62,9 @@
               <div class="collapsible-body">
                 <ul>
                   <li><a href="{% url 'chapters:glossary' %}">Glossary</a></li>
-                  <li><a href="further-information/contributors.html">Contributors</a></li>
-                  <li><a href="further-information/interactives.html">Interactives</a></li>
-                  <li><a href="further-information/releases.html">Releases</a></li>
+                  <li><a href="{% url 'general:contributors' %}">Contributors</a></li>
+                  <li><a href="{% url 'interactives:index' %}">Interactives</a></li>
+                  <li><a href="{% url 'general:releases' %}">Releases</a></li>
                   <li><a href="further-information/included-files.html">Included Files</a></li>
                 </ul>
               </div>
@@ -114,7 +109,7 @@
       {% endblock body_container %}
 
     </main>
-  
+
     <footer>
     <div class="footer-first">
       <div class="container">
@@ -187,7 +182,7 @@
     </div>
   </div>
 
-  
+
   <script type="text/javascript" src="{% static 'js/third-party/materialize.min.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/third-party/featherlight.min.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/third-party/jquery.sticky-kit.min.js' %}"></script>
