@@ -1,3 +1,15 @@
 img.chapter-icon {
-	background-color: #7280ce
+	color: red;
+	background-color: #7280ce;
+	width: 20% !important;
+	border: 5px #7280ce solid;
+	border-radius: 4px;
+}
+
+.chapter-list {
+	padding-top: 20px;
+}
+
+.chapter-list-item p {
+	color: #000;
 }
