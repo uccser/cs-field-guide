@@ -49,6 +49,8 @@ class ChapterLoader(BaseLoader):
                 "Chapter Number"
             )
 
+        chapter_icon = self.chapter_structure.get('icon', None)
+
         # Create chapter object and save to the db
         chapter = Chapter(
             slug=self.chapter_slug,
@@ -56,7 +58,7 @@ class ChapterLoader(BaseLoader):
             number=chapter_number,
             content=chapter_content.html_string,
             other_resources=None,
-            icon=None
+            icon=chapter_icon
         )
         chapter.save()
 

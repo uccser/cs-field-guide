@@ -16,7 +16,7 @@
   {% if all_chapters %}
       {% for chapter in all_chapters %}
         <a href="{% url 'chapters:chapter' chapter.slug %}">
-          <img src="{% if chapter.icon %}{% static chapter.icon %}{% else %}http://placehold.it/238x200{% endif %}">
+          <img class="chapter-icon" src="{% if chapter.icon %}{% static chapter.icon %}{% else %}http://placehold.it/238x200{% endif %}">
           <h3>{{ chapter.name }}</h3>
         </a>
       {% endfor %}
