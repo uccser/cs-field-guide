@@ -21,7 +21,7 @@ class IndexView(generic.ListView):
         Returns:
             Queryset of Chapter objects ordered by name.
         """
-        return Chapter.objects.order_by("name")
+        return Chapter.objects.all()
 
 
 class GlossaryList(generic.ListView):
