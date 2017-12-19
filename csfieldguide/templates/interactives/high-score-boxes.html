@@ -33,6 +33,12 @@
           <button id="restart-button" class="btn red">Restart</button>
           
           <link rel="stylesheet" href="{% static 'interactives/high-score-boxes/css/find-high-score.css' %}">
+          <script type="text/javascript">
+            var colourful_box_images = []
+            for var(i = 0; i < 15; i++) {
+              var colourful_box_images.push("{% static 'img/colourful-box-images/square' + i + '-200px-rounded.png' %}")
+            }
+          </script>
           <script type="text/javascript" src="{% static 'interactives/high-score-boxes/js/find-high-score.js' %}"></script>
 
         </div>
