@@ -85,7 +85,6 @@ function generateRandomNumbers() {
 function createBoxElements() {
 	var box_images = Array.apply(null, Array(HighScoreBoxes.availableBoxImages)).map(function (_, i) {return i;});
 	shuffle(box_images);
-	console.log(colourful_box_images);
 	for (var i = 0; i < (HighScoreBoxes.numberOfBoxes); i++) {
 		var currentboxObject = HighScoreBoxes.boxes[i]
 
