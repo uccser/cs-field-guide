@@ -1,0 +1,13 @@
+img.chapter-icon {
+  background-color: #7280ce;
+  border: 5px #7280ce solid;
+  border-radius: 4px;
+}
+
+.chapter-list {
+  margin-top: 1em;
+}
+
+.chapter-list p {
+  color: #000;
+}
