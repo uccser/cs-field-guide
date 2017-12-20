@@ -1,7 +1,5 @@
 img.chapter-icon {
-  fill: red;
   background-color: #7280ce;
-  width: 20% !important;
   border: 5px #7280ce solid;
   border-radius: 4px;
 }
