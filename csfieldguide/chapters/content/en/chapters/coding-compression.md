@@ -19,7 +19,9 @@ In this chapter we'll look at how compression might be done, what the benefits a
 
 We'll start with a simple example – Run Length Encoding – which gives some insight into the benefits and the issues around compression.
 
-{panel type="teacher-note" title="Locked in activity"}
+{panel type="teacher-note"}
+
+# Locked in activity
 
 An intriguing activity that relates to compression is the ["locked-in" activity](http://www.cs4fn.org/lockedin.html) from CS4FN.
 In this activity, students simulate writing some text using a method used by Jean-Dominique Bauby, who was completely unable to move except for blinking one eye.
@@ -36,7 +38,9 @@ Of course, the first step is to work out how to convey any text at all!
 
 Run length encoding (RLE) is a technique that isn't so widely used these days, but it's a great way to get a feel for some of the issues around using compression.
 
-{panel type="teacher-note" title="Who uses run length encoding?"}
+{panel type="teacher-note"}
+
+# Who uses run length encoding?
 
 [Run-length_encoding](https://en.wikipedia.org/wiki/Run-length_encoding) was widely used when black and white images were the norm.
 One of its key roles was as the compression method that made Fax (facsimile) machines possible in a standard that was adopted in 1980.
@@ -76,7 +80,9 @@ Using this method, the above image would be represented in the following way:
 
 {comment Interactive to make low priority; interactive for images. If we were going to put in the interactive that takes the 1’s and 0’s and converts it into an image for the students, I’d want to put that in here. This would mostly be a convenience thing that allows students to easily see what an image looks like. We would also provide an interactive that can take a number representation and show the image for that. We do NOT want to provide a tool that converts between the 2; we want students to do the converting by hand. The tool will allow them to see if the images they got are the same though.}
 
-{panel type="curiosity" title="The PBM file format"}
+{panel type="curiosity"}
+
+# The PBM file format
 
 There is an image format that uses the simple one-symbol-per-pixel representation we have just described.
 The format is called "portable bitmap format" (PBM).
@@ -176,7 +182,9 @@ That means we get the following representation for the first three rows.
 
 You can work out what the other rows would be following this same system.
 
-{panel type="spoiler" title="Representation for the remaining rows"}
+{panel type="spoiler"}
+
+# Representation for the remaining rows
 
 The remaining rows are
 
@@ -197,7 +205,9 @@ The remaining rows are
 
 {panel end}
 
-{panel type="curiosity" title="Run Length Encoding in the CS Unplugged show"}
+{panel type="curiosity"}
+
+# Run Length Encoding in the CS Unplugged show
 
 In this video from a Computer Science Unplugged show, a Run length encoded image is decoded using very large pixels (the printer is a spray can!).
 
@@ -223,7 +233,9 @@ Just to ensure that we can reverse the compression process, have a go at finding
 
 What is the image of? How many pixels were there in the original image? How many numbers were used to represent those pixels?
 
-{panel type="spoiler" title="Answer for the above image"}
+{panel type="spoiler"}
+
+# Answer for the above image
 
 This image is from the [CS Unplugged image representation activity](http://csunplugged.org/image-representation), and the solution is available in the activity (it is a cup and saucer).
 
@@ -246,7 +258,9 @@ This means that the new representation only requires around 54% as many characte
 This is a significant reduction in the amount of space required to store the image --- it's about half the size.
 The new representation is a *compressed* form of the old one.
 
-{panel type="curiosity" title="Run length coding representation in practice"}
+{panel type="curiosity"}
+
+# Run length coding representation in practice
 
 In practice this method (with some extra tricks) can be used to compress images to about 15% of their original size.
 In real systems, the original image only uses one bit for every pixel to store the black and white values (not one character, which we used for our calculations).
@@ -264,7 +278,9 @@ A typical fax page is 200 pixels across or more, so replacing 200 bits with one 
 The number itself can take a few bits to represent, and in some places on the scanned page only a few consecutive pixels are replaced with a number, but overall the saving is significant.
 In fact, fax machines would take 7 times longer to send pages if they didn't use compression.
 
-{panel type="project" title="Using Run Length Encoding for yourself"}
+{panel type="project"}
+
+# Using Run Length Encoding for yourself
 
 Now that you know how run length encoding works, you can come up with and compress your own black and white image, as well as uncompress an image that somebody else has given you.
 
@@ -298,7 +314,9 @@ Later in this chapter, we will investigate the effects some lossy compression al
 Interestingly, it turns out that any *lossless* compression algorithm will have cases where the compressed version of the file is larger than the uncompressed version! Computer scientists have even proven this to be the case, meaning it is impossible for anybody to ever come up with a lossless compression algorithm that makes *all* possible files smaller.
 In most cases this isn’t an issue though, as a good lossless compression algorithm will tend to give the best compression on common patterns of data, and the worst compression on ones that are highly unlikely to occur.
 
-{panel type="challenge" title="Best and worst cases of run length encoding"}
+{panel type="challenge"}
+
+# Best and worst cases of run length encoding
 
 What is the image with the best compression (i.e. an image that has a size that is a very small percentage of the original) that you can come up with? This is the best case performance for this compression algorithm.
 
@@ -306,7 +324,9 @@ What about the worst compression? Can you find an image that actually has a *lar
 
 {panel end}
 
-{panel type="spoiler" title="Answer for above challenge"}
+{panel type="spoiler"}
+
+# Answer for above challenge
 
 The best case above is when the image is entirely white (only one number is used per line).
 The worst case is when every pixel is alternating black and white, so there's one number for every pixel.
@@ -315,7 +335,9 @@ Real systems don't represent the data exactly as we've discussed here, but the i
 
 {panel end}
 
-{panel type="curiosity" title="Compression methods can expand files"}
+{panel type="curiosity"}
+
+# Compression methods can expand files
 
 In the worst case (with alternating black and white pixels) the run length encoding method will result in a file that's larger than the original!
 As noted above, *every* lossless compression method that makes at least one file smaller must also have some files that it makes larger --- it's not
@@ -374,7 +396,9 @@ For the pixels in the red box above, you could generate an approximate version o
 Instead of storing 5 pixel values, only 2 are needed, yet someone viewing it probably might not notice any difference.
 This would be *lossy* because you can't reproduce the original exactly, but it would be good enough for a lot of purposes, and save a lot of space.
 
-{panel type="jargon-buster" title="Interpolation"}
+{panel type="jargon-buster"}
+
+# Interpolation
 
 The process of guessing the colours of pixels between two that are known is an example of {glossary-link term="interpolation" reference-text="compressing images"}interpolation{glossary-link end}.
 
@@ -390,7 +414,9 @@ And instead of estimating the values with a linear function, it uses combination
 
 {comment It would be good have a figure that shows a line of pixels, and the corresponding waveform.}
 
-{panel type="curiosity" title="What are cosine waves"}
+{panel type="curiosity"}
+
+# What are cosine waves
 
 A cosine wave form is from the trig function that is often used for calculating the sides of a triangle.
 If you plot the cosine value from 0 to 180 degrees, you get a smooth curve going from 1 to -1.
@@ -404,7 +430,9 @@ The following graph shows the values of {math}\sin(x){math end} and {math}\cos(x
 
 {panel end}
 
-{panel type="curiosity" title="Adding sine or cosine waves to create any waveform"}
+{panel type="curiosity"}
+
+# Adding sine or cosine waves to create any waveform
 
 JPEGs (and MP3) are based on the idea that you can add together lots of sine or cosine waves to create any waveform that you want.
 Converting a waveform for a block of pixels or sample of music into a sum of simple waves can be done using a technique called a [Fourier transform](https://en.wikipedia.org/wiki/Fourier_transform), and is a widely used idea in signal processing.
@@ -470,14 +498,18 @@ Most image processing software offers this option when you save an image as a JP
 
 {comment low priority : interactive that could load a photo, zoom in on pixels, and change it to different qualities of jpg coding}
 
-{panel type="jargon-buster" title="Where does the term JPEG come from?"}
+{panel type="jargon-buster"}
+
+# Where does the term JPEG come from?
 
 The name "JPEG" is short for "Joint Photographic Experts Group", a committee that was formed in the 1980s to create standards so that digital photographs could be captured and displayed on different brands of devices.
 Because some file extensions are limited to three characters, it is often seen as the ".jpg" extension.
 
 {panel end}
 
-{panel type="curiosity" title="More about cosine waves"}
+{panel type="curiosity"}
+
+# More about cosine waves
 
 The cosine waves used for JPEG images are based on a "Discrete Cosine Transform".
 The "Discrete" means that the waveform is digital – it is the opposite of continuous, where any value can occur.
@@ -551,7 +583,9 @@ But it works very poorly with photographs, where pixel patterns are very unlikel
 
 {comment xtcb extra for experts: compress "aaaaaaaaaa". how can it decode? .. xtcb  Project .. Students should try an algorithm [zip, gzip etc.] on several different text files, image files, sound files, and video files. .. What would happen if text compression was lossy? (I think this should be a part of their merit discussion)}
 
-{panel type="teacher-note" title="Unplugged activity on Ziv-Lempel approach"}
+{panel type="teacher-note"}
+
+# Unplugged activity on Ziv-Lempel approach
 
 The [CS Unplugged site has activities and information about the Ziv-Lempel approach](http://csunplugged.org/text-compression),
 and the ["Computing Science Inside" site also has an activity based on this method](https://web.archive.org/web/20150311225517/http://csi.dcs.gla.ac.uk/workshop-view.php?workshopID=1).
@@ -559,7 +593,9 @@ The CS4FN site discusses [a related approach which is a little simpler, but not 
 
 {panel end}
 
-{panel type="curiosity" title="ZL or LZ compression?"}
+{panel type="curiosity"}
+
+# ZL or LZ compression?
 
 The method we have described here is named “Ziv-Lempel” compression after Jacob Ziv and Abraham Lempel, the two computer scientists who invented it in the 1970s.
 Unfortunately someone mixed up the order of their names when they wrote an article about it, and called it “LZ” compression instead of “ZL” compression.
@@ -571,7 +607,9 @@ So many people copied the mistake that Ziv and Lempel’s method is now usually 
 
 One of the most widely used methods for compressing music is MP3, which is actually from a video compression standard called MPEG (Moving Picture Experts Group).
 
-{panel type="curiosity" title="The naming of mp3"}
+{panel type="curiosity"}
+
+# The naming of mp3
 
 The name "mp3" isn't very self explanatory because the "mp" stands for "moving picture", and the 3 is from version 1, but mp3 files are used for music!
 
@@ -626,7 +664,9 @@ Also, video compression has been omitted, even though compressing videos saves m
 Most video compression is based on the "MPEG" standard (Moving Pictures Experts Group).
 There is some information about how this works in the [CS4FN article on "Movie Magic"](http://www.cs4fn.org/films/mpegit.php).
 
-{panel type="teacher-note" title="Teacher guides for Plymouth resources"}
+{panel type="teacher-note"}
+
+# Teacher guides for Plymouth resources
 
 Access to teacher guides for the Plymouth resources (linked in the previous paragraph) above are [available here](http://www.cimt.plymouth.ac.uk/resources/codes/).
 
