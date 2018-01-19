@@ -1,11 +1,15 @@
 chapters:
   introduction:
       number: 1
+      icon: img/chapters/introduction-icon.svg
   algorithms:
       number: 2
+      icon: img/chapters/algorithms-icon.svg
   artificial-intelligence:
       number: 3
+      icon: img/chapters/artificial-intelligence-icon.svg
   coding-compression:
       number: 4
+      icon: img/chapters/coding-compression-icon.svg
 
 glossary-folder: glossary
