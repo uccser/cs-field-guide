@@ -5,6 +5,9 @@ chapters:
   algorithms:
       number: 2
       icon: img/chapters/algorithms-icon.svg
+      interactives:
+        - sorting-algorithm-comparison
+        - high-score-boxes
   artificial-intelligence:
       number: 3
       icon: img/chapters/artificial-intelligence-icon.svg

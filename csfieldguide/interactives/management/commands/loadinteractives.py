@@ -1,7 +1,11 @@
 """Module for the custom Django loadinteractives command."""
 
+import os.path
 from django.core.management.base import BaseCommand
+
+from utils.BaseLoader import BaseLoader
 from interactives.models import Interactive
+from chapters.models import Chapter
 
 
 class Command(BaseCommand):
@@ -17,14 +21,25 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         """Automatically called when the loadinteractives command is given."""
         # Hardcoded for testing, TODO this should be in _InteractiveLoader.py
-        new_interactive = Interactive(
-            slug="sorting-algorithm-comparison",
-            template="interactives/sorting-algorithm-comparison.html"
-        )
-        new_interactive.save()
 
-        new_interactive = Interactive(
-            slug="high-score-boxes",
-            template="interactives/high-score-boxes.html"
+        base_loader = BaseLoader()
+        BASE_PATH = "interactives/"
+
+        structure_file_path = os.path.join(
+            BASE_PATH,
+            "interactive_list.yaml"
         )
-        new_interactive.save()
+
+        structure_file = base_loader.load_yaml_file(structure_file_path)
+
+        # print(Chapter.objects.get())
+
+        interactives = structure_file['interactives']
+
+        for interactive_slug in interactives:
+            new_interactive = Interactive(
+                slug=interactive_slug,
+                template="interactives/{}.html".format(interactive_slug)
+            )
+            new_interactive.save()
+            base_loader.log("Added Interactive: {}".format(new_interactive.slug))
