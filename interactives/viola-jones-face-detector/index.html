@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]-->
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <!-- If you delete this meta tag World War Z will become a reality -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- ### Enter your interactive title in the title block ### -->
+    <title>Viola Jones Object Detection</title>
+    <link rel="stylesheet" href="libs/normalize.css">
+    <style>
+    #bucket {
+        background-color: #98AFC7;
+    }
+    
+    .rect {
+        border: 2px solid #a64ceb;
+        left: -1000px;
+        position: absolute;
+        top: -1000px;
+    }
+    
+    .column1 {
+        float: left;
+    }
+    
+    .column {
+        float: left;
+        width: 300px;
+        padding: 10px;
+        height: 100vh;
+    }
+    
+    .drag-element {
+        width: 50px;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+    
+    .haar {
+        width: 100%;
+        height: 100%;
+    }
+    
+    .same {
+        position: relative;
+        width: 30px;
+        height: 30px;
+        margin: 6px;
+        float: left;
+    }
+    h4,
+    h3 {
+        display: inline;
+    }
+    
+    #values {
+        display: block;
+    }
+    #features {
+    	height: 70px;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="row">
+        <div class="column" id="bucket">
+            <h1>Haar-like Features</h1>
+            <p>Click and drag the features onto the image.</p>
+            <div id="features">
+                <div class="same">
+                    <img class="haar haar1 drag-element-source drag-element" src="./images/haar1.jpg" draggable="false">
+                </div>
+                <div class="same">
+                    <img class="haar haar2 drag-element-source drag-element" src="./images/haar2.jpeg" draggable="false">
+                </div>
+                <div class="same">
+                    <img class="haar haar3 drag-element-source drag-element" src="./images/haar3.jpg" draggable="false">
+                </div>
+                <div class="same">
+                    <img class="haar haar4 drag-element-source drag-element" src="./images/haar4.jpeg" draggable="false">
+                </div>
+                <div class="same">
+                    <img class="haar haar5 drag-element-source drag-element" src="./images/haar5.jpg" draggable="false">
+                </div>
+            </div>
+            <div id="values">
+                <div>
+                    <h4>White Square intensity: </h4>
+                    <h4 id="whiteValue"></h4></div>
+                <div>
+                    <h4>Black Square intensity: </h4>
+                    <h4 id="blackValue"></h4></div>
+                <div>
+                	<p>
+                    <h4>Haar-like Features found: </h4>
+                    <h4 id="found"></h4>
+                    <h4>/10</h4></div>
+                </p>
+            </div>
+            <p>Upload a custom image:
+                <input type="file" class="form-control" name="image" onchange="loadImageDialog(this)" accept="image/*" />
+            </p>
+            <p>
+                <input type="button" name="Clear features" onclick="clear_features()" value="Clear features" />
+            </p>
+            <input type="button" name="Find Faces" onclick="findFaces()" value="Find Faces" />
+            <input type="button" name="Hide Faces" onclick="clear_rectangles()" value="Hide Faces" />
+        </div>
+    </div>
+    <div class="column1" id="image">
+        <canvas id="canvas" class="greyscale"></canvas>
+        <div id="drop-zone" style="display:none">
+            <img id="img" src="./images/award.jpg">
+        </div>
+    </div>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <script src="./libs/tracking.js"></script>
+    <script src="./libs/interact.js"></script>
+    <script src="./libs/eye-min.js"></script>
+    <script src="./libs/face-min.js"></script>
+    <script src="./libs/mouth-min.js"></script>
+    <script src="./viola-jones.js"></script>
+</body>
+
+</html>
