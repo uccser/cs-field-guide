@@ -11,5 +11,8 @@ chapters:
   coding-compression:
       number: 4
       icon: img/chapters/coding-compression-icon.svg
+  coding-encryption:
+      number: 5
+      icon: img/chapters/coding-encryption-icon.svg
 
 glossary-folder: glossary
