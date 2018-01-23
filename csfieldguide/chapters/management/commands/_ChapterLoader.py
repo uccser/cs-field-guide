@@ -5,6 +5,7 @@ from django.db import transaction
 from utils.BaseLoader import BaseLoader
 from utils.errors.MissingRequiredFieldError import MissingRequiredFieldError
 from chapters.models import Chapter
+from interactives.models import Interactive
 
 
 class ChapterLoader(BaseLoader):
@@ -61,6 +62,13 @@ class ChapterLoader(BaseLoader):
             icon=chapter_icon
         )
         chapter.save()
+
+        chapter_interactives = self.chapter_structure.get('interactives', None)
+        # TODO error handling
+        if chapter_interactives:
+            for interactive_slug in chapter_interactives:
+                interactive = Interactive.objects.get(slug=interactive_slug)
+                chapter.interactives.add(interactive)
 
         self.log("Added Chapter: {}".format(chapter.name))
 

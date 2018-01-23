@@ -1,6 +1,7 @@
 """Models for the chapters application."""
 
 from django.db import models
+from interactives.models import Interactive
 
 
 class GlossaryTerm(models.Model):
@@ -35,6 +36,10 @@ class Chapter(models.Model):
     content = models.TextField()
     other_resources = models.TextField(null=True)
     icon = models.CharField(max_length=100, null=True)
+    interactives = models.ManyToManyField(
+        Interactive,
+        related_name="chapter",
+    )
 
     def __str__(self):
         """Text representation of Chapter object.

@@ -5,7 +5,6 @@ from django.core.management.base import BaseCommand
 
 from utils.BaseLoader import BaseLoader
 from interactives.models import Interactive
-from chapters.models import Chapter
 
 
 class Command(BaseCommand):
@@ -31,8 +30,6 @@ class Command(BaseCommand):
         )
 
         structure_file = base_loader.load_yaml_file(structure_file_path)
-
-        # print(Chapter.objects.get())
 
         interactives = structure_file['interactives']
 
