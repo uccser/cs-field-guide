@@ -169,8 +169,8 @@ interact('.drag-clone')
     });
 
 /*
- * Calculates the position of the current Haar-like feature. 
- * Then finds the index of each point in the results array. 
+ * Calculates the position of the current Haar-like feature.
+ * Then finds the index of each point in the results array.
  */
 function isHaarFeature(target) {
     // A----AB-----B
@@ -310,7 +310,7 @@ function indexCalculation(point) {
 }
 
 /*
- * Calculates the integral image of a rectangle in the image, using the results array 
+ * Calculates the integral image of a rectangle in the image, using the results array
  * - which contains the integral image at every point in the image.
  */
 function calculateIntegralImage(A, B, C, D) {
@@ -328,7 +328,7 @@ function updateDisplay(whiteSquareIntensity, blackSquareIntensity, target) {
         }
     } else {
         if (target.style.border === "medium solid green") {
-            target.style.border = "none";
+            target.style.border = "medium solid transparent";
             haarFound = haarFound - 1;
         }
     }
@@ -340,12 +340,11 @@ function updateDisplay(whiteSquareIntensity, blackSquareIntensity, target) {
     white.innerHTML = whiteSquareIntensity;
 
     if (haarFound === 10) {
-        context.font = "30px Arial";
+        context.font = "40px Arial";
         context.fillStyle = "dark green";
         context.textAlign = "center";
-        context.fillText("Well Done!", canvas.width / 2, canvas.height / 2);
+        context.fillText("Well Done!", canvas.width / 2, canvas.height * 0.1);
         canvas.style.zIndex = "100";
-        canvas.style.opacity = "0.5";
     }
 }
 
@@ -446,13 +445,10 @@ function findFaces() {
     var tracker = new tracking.ObjectTracker(['face']);
     tracker.setStepSize(2);
     trackerTask = tracking.track('#img', tracker, { camera: true });
-    var t0 = performance.now();
     tracker.on('track', function(event) {
         event.data.forEach(function(rect) {
             window.plot(rect.x, rect.y, rect.width, rect.height);
         });
-        var t1 = performance.now();
-        console.log(t1 - t0);
     });
 }
 
@@ -465,8 +461,8 @@ window.plot = function(x, y, w, h) {
     rect.classList.add('rect');
     rect.style.width = w + 'px';
     rect.style.height = h + 'px';
-    rect.style.left = (img.offsetLeft + 320 + x) + 'px';
-    rect.style.top = (img.offsetTop + y) + 'px';
+    rect.style.left = x + 'px';
+    rect.style.top = y + 'px';
 };
 
 /*
