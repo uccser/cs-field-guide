@@ -26,7 +26,7 @@ class BaseLoader():
         """Create a BaseLoader object.
 
         Args:
-            BASE_PATH: string of base path (str).
+            BASE_PATH (str): string of base path.
         """
         self.BASE_PATH = BASE_PATH
         self.setup_md_to_html_converter()
@@ -54,8 +54,8 @@ class BaseLoader():
         """Return the Verto object for a given Markdown file.
 
         Args:
-            md_file_path: Location of Markdown file to convert (str).
-            config_file_path: Path to related the config file (str).
+            md_file_path (str): Location of Markdown file to convert.
+            config_file_path (str): Path to related config file.
 
         Returns:
             VertoResult object
@@ -70,7 +70,7 @@ class BaseLoader():
         try:
             # check file exists
             content = open(md_file_path, encoding="UTF-8").read()
-        except:
+        except FileNotFoundError:
             raise CouldNotFindMarkdownFileError(md_file_path, config_file_path)
 
         result = self.converter.convert(content)
@@ -89,8 +89,8 @@ class BaseLoader():
         """Output the log message to the load log.
 
         Args:
-            message: Text to display (str).
-            indent_amount: Amount of indentation required (int).
+            message (str): Text to display.
+            indent_amount (str): Amount of indentation required.
         """
         indent = "  " * indent_amount
         text = "{indent}{text}\n".format(indent=indent, text=message)
@@ -100,7 +100,7 @@ class BaseLoader():
         """Load and read given YAML file.
 
         Args:
-            file_path: location of yaml file to read (str).
+            file_path (str): location of yaml file to read.
 
         Returns:
             Either list or string, depending on structure of given yaml file
@@ -112,12 +112,12 @@ class BaseLoader():
         """
         try:
             yaml_file = open(yaml_file_path, encoding="UTF-8").read()
-        except:
+        except FileNotFoundError:
             raise CouldNotFindConfigFileError(yaml_file_path)
 
         try:
             yaml_contents = yaml.load(yaml_file)
-        except:
+        except yaml.YAMLError:
             raise InvalidConfigFileError(yaml_file_path)
 
         if yaml_contents is None:

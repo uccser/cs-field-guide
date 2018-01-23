@@ -1,7 +1,6 @@
 """Views for the interactives application."""
 
 from django.views import generic
-
 from .models import Interactive
 
 
@@ -15,9 +14,9 @@ class IndexView(generic.ListView):
         """Get queryset of all interactives.
 
         Returns:
-            Queryset of Interactive objects ordered by name.
+            Queryset of Interactive objects.
         """
-        return Interactive.objects.order_by("id")
+        return Interactive.objects.all()
 
 
 class InteractiveView(generic.DetailView):

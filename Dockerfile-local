@@ -22,5 +22,5 @@ RUN mkdir /cs-field-guide/csfielguide/
 WORKDIR /cs-field-guide/csfieldguide/
 
 # Copy and install fonts
-COPY csfieldguide/static/fonts/ /usr/share/fonts/
+COPY csfieldguide/static/font/ /usr/share/fonts/
 RUN fc-cache -fv

@@ -13,19 +13,26 @@
 
 {% block content %}
 
-  {% if all_chapters %}
-      
-      {% for chapter in all_chapters %}
-        <a href="{% url 'chapters:chapter' chapter.slug %}">
-          <img src="{% if chapter.icon %}{% static chapter.icon %}{% else %}http://placehold.it/238x200{% endif %}">
-          <h3>{{ chapter.name }}</h3>
-        </a>
-      {% endfor %}
+  <div class="row chapter-list">
 
-  {% else %}
-    
-    <p>No chapters are available.</p>
-  
-  {% endif %}
+      {% if all_chapters %}
+          {% for chapter in all_chapters %}
+          <div class="l12">
+            <div class="row">
+              <a href="{% url 'chapters:chapter' chapter.slug %}">
+                <div class="col l3">
+                  <img class="chapter-icon responsive-img" src="{% if chapter.icon %}{% static chapter.icon %}{% endif %}">
+                </div>
+                <div class="col l9">
+                  <h3>{{ chapter.name }}</h3>
+                </div>
+              </a>
+            </div>
+          </div>
+          {% endfor %}
+      {% else %}
+        <p>No chapters are available.</p>
+      {% endif %}
+  </div>
 
 {% endblock content %}

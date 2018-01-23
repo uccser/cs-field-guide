@@ -68,7 +68,7 @@ cmd_start() {
   cmd_update
   # Alert user that system is ready
   echo -e "\n${GREEN}Systems are ready!${NC}"
-  echo "Open your preferred web browser to the URL 'localhost'"
+  echo "Open your preferred web browser to the URL 'localhost:81'"
 }
 
 defhelp start 'Start development environment (this also runs the update command).'
@@ -221,6 +221,11 @@ defhelp -dev style 'Run style checks.'
 dev_test_suite() {
   echo "Running test suite..."
   docker-compose exec django /docker_venv/bin/coverage run --rcfile=/cs-field-guide/.coveragerc ./manage.py test --settings=config.settings.testing --pattern "test_*.py" -v 3
+  test_status=$?
+  dev_test_coverage
+  coverage_status=$?
+  bash <(curl -s https://codecov.io/bash)
+  ! (( $test_status || $coverage_status ))
   # if [ "$CONTINUOUS_INTEGRATION" == "true" ]; then
   #  docker-compose exec django /docker_venv/bin/coverage run --rcfile=/cs-field-guide/.coveragerc ./manage.py test --settings=config.settings.testing --pattern "test_*.py" -v 3
   # else
@@ -302,15 +307,6 @@ cmd_logs() {
   docker-compose logs
 }
 defhelp logs 'View logs.'
-
-ci_test_general() {
-  docker-compose exec django /docker_venv/bin/coverage run --rcfile=/cs-field-guide/.coveragerc ./manage.py test --settings=config.settings.testing --pattern "test_*.py" -v 3 --exclude-tag=resource --exclude-tag=management
-  test_status=$?
-  dev_test_coverage
-  coverage_status=$?
-  bash <(curl -s https://codecov.io/bash)
-  ! (( $test_status || $coverage_status ))
-}
 
 # Run test suite
 ci_test_suite() {

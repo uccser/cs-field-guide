@@ -35,7 +35,9 @@ We'll start off by looking at some very simple chatterbots that are only designe
 
 ### A Therapy Session with Eliza the Chatterbot
 
-{panel type="teacher-note" title="Chatterbots in the classroom"}
+{panel type="teacher-note"}
+
+# Chatterbots in the classroom"}
 
 If this material is being used in the classroom, and time is limited, ensure students don’t spend too long talking to each chatterbot.
 15 minutes maximum for each of Eliza, Alice, and Cleverbot (45 minutes total), and an extra 15 - 45 minutes (depending on time constraints) for students to search for other chatterbots will be sufficient for students to learn about the different chatterbots.
@@ -46,7 +48,9 @@ If this material is being used in the classroom, and time is limited, ensure stu
 One such chatterbot is **Eliza**.
 Eliza attempts to sound like a Rogerian Psychotherapist, and sounds most intelligent in the kind of conversation that would be had in such a therapy session. ([Rogerian Psychotherapy](https://en.wikipedia.org/w/index.php?title=Rogerian_psychotherapy) is a technique that revolves around trying to understand the client by asking questions and reflecting their statements back to clarify that they've been understood).
 
-{panel type="caution" title="Chatbots and personal information!"}
+{panel type="caution"}
+
+# Chatbots and personal information!"}
 
 Eliza is a system that was intended to get people thinking about AI, and you should *not* use it for your own therapeutic usage.
 You should never enter personal information into a computer that you wouldn’t want anybody else reading, as you can never be certain that the web site isn’t going to store the information or pass it on to someone.
@@ -80,7 +84,9 @@ Eliza also has rules that are triggered if somebody repeats themselves that say 
 Because Eliza doesn’t actually understand meanings but instead just follows rules that say what might be appropriate responses, she had no way of knowing that it actually *was* meaningful for me to respond with "Yes" twice!
 This is a big giveaway that Eliza really isn’t that intelligent, and doesn’t actually understand meanings in conversation, or even whether or not a response to her own question is actually reasonable.
 
-{panel type="teacher-note" title="Eliza's responses"}
+{panel type="teacher-note"}
+
+# Eliza's responses
 
 These responses that Eliza is giving are called *canned responses*.
 
@@ -153,7 +159,9 @@ Most of these chatterbots aim to have very general conversations, i.e. they aren
 
 If it is human intelligence you are trying to simulate, then perhaps learning from humans is the way to go?
 
-{panel type="caution" title="Interacting with chatbots that learn"}
+{panel type="caution"}
+
+# Interacting with chatbots that learn
 
 Please note that the following exercise involves interacting with one of these chatterbots.
 Because the chatterbot has learnt from humans, it will quite possibly have been taught to say things that you may find highly offensive.
@@ -186,7 +194,9 @@ This allows Cleverbot to built up an increasingly large database.
 An implication of learning from humans is that Cleverbot makes the assumption that the humans actually *are* intelligent, and will teach it to say intelligent things.
 If for example people told Cleverbot something like "School is boring" in response to Cleverbot saying "hi", Cleverbot might learn that when a person says "hi" to it, it should say "School is boring"!
 
-{panel type="curiosity" title="A short film written by Cleverbot"}
+{panel type="curiosity"}
+
+# A short film written by Cleverbot
 
 Check out the short film ["Do You Love Me"](https://www.youtube.com/watch?v=QkNA7sy5M5s) (~3 mins), the result when Chris R Wilson collaborated with Cleverbot to write a movie script.
 
@@ -205,7 +215,9 @@ It also has voice recognition, so you can talk to it rather than just typing to 
 
 ### The Turing Test
 
-{panel type="teacher-note" title="TED video introducing the Turing Test"}
+{panel type="teacher-note"}
+
+# TED video introducing the Turing Test
 
 There is a TED video that gives an overview of the Turing Test [on YouTube](https://www.youtube.com/watch?v=3wLqsRLvV-c).
 
@@ -246,7 +258,9 @@ In fact, many parts of human intelligence could be tested using a variation of t
 If you wanted a computer chess player that seemed like a human as opposed to a computer (as some people might prefer to be playing against a human rather than a computer), you could use a Turing Test for this as well!
 What other possible Turing Tests can you think of?
 
-{panel type="curiosity" title="The real Turing test"}
+{panel type="curiosity"}
+
+# The real Turing test
 
 Alan Turing actually started by suggesting a simple party game requiring three players, where the first player was female, the second player was male, and the third player could be either male or female, and took the role of the "interrogator".
 The interrogator would be in a separate room to the other two players, and could only communicate with them by passing written notes (for example, by passing the notes under a door).
@@ -255,7 +269,9 @@ At the end the interrogator had to say which was the male and which was the fema
 
 {panel end}
 
-{panel type="project" title="Run your own Turing test on a chatterbot"}
+{panel type="project"}
+
+# Run your own Turing test on a chatterbot
 
 This section will involve you actually carrying out the Turing Test.
 Read this entire section carefully (and the previous section if you haven’t done so already) before you start, and make sure you understand it all before starting.
