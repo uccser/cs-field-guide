@@ -339,9 +339,24 @@ t: 1
 ```
 
 {image filename="huffman-tree-dna.png"}
+{comment}
+Dot notation for image above, created with viz-js.com
+digraph G {
+  graph [ranksep=0,bgcolor=transparent];
+  node [shape=Mrecord];
+  3 [label=""];
+  6 [label=""];
+  3 -> a [label=0];
+  3 -> g [label=1];
+  6 -> 3 [label=1];
+  6 -> c [label=0];
+  start -> t [label=1];
+  start -> 6 [label=0];
+}
+{comment end}
 
-To decode something using this structure (e.g. the code 0100110011110001011001 above), start at the left side, and choose a branch based each successive bit in the coded file. The first bit is a 0, so we follow the branch up, then the 1 branch, then the 0 branch, which leads us to the letter a.
-After each letter is decoded, we start again at the left.
+To decode something using this structure (e.g. the code 0100110011110001011001 above), start at the top, and choose a branch based each successive bit in the coded file. The first bit is a 0, so we follow the left branch, then the 1 branch, then the 0 branch, which leads us to the letter a.
+After each letter is decoded, we start again at the top.
 The next few bits are 011..., and following these labels from the start takes us to "g", and so on.
 The tree makes it very easy to decode any input, and there's never any confusion about which branch to follow, and therefore which letter to decode each time.
 
@@ -354,7 +369,6 @@ The technical terms for the elements of a tree derive from botanical trees:
 the start is called the "root" since it's the base of the tree,
 each split is called a "branch",
 and when you get to the end of the tree you reach a "leaf".
-We've drawn the tree sideways on here; sometimes they are drawn with the root at the bottom, but most often the root is drawn at the top.
 
 To write a computer program that stores a Huffman tree, you could either use a technique called pointers to represent the branches, or (in most fast implementations) a special format called a "Canonical Huffman Tree" is used, but you don't need to worry about that implementation detail to understand the principle that they use to compress data.
 {panel end}
@@ -369,21 +383,63 @@ g: 1 time
 t: 7 times
 ```
 
-We build the tree from the right by finding the two characters that have the smallest counts ("a" and "g" in this example).
-These are made to be a branch at the right of the tree, and to the left of the branch we write the sum of their two values (2+1, which is 3).
+We build the tree from the bottom by finding the two characters that have the smallest counts ("a" and "g" in this example).
+These are made to be a branch at the bottom of the tree, and at the top of the branch we write the sum of their two values (2+1, which is 3).
 The branches are labelled with a 0 and 1 respectively (it doesn't matter which way around you do it).
 
 {image filename="huffman-tree-dna-building-1.png"}
+{comment}
+Dot notation for image above, created with viz-js.com
+digraph G {
+  graph [ranksep=0,bgcolor=transparent];
+  node [shape=Mrecord];
+  a [label="{2|a}"];
+  g [label="{1|g}"];
+  3 -> a [label=0];
+  3 -> g [label=1];
+}
+{comment end}
 
 We then forget about the counts for the two characters just combined, but we use the combined total to repeat the same step: the counts to choose from are 3 (for the combined total), 3 (for "c"), and 7 (for "t"), so we combine the two smallest values (3 and 3) to make a new branch:
 
 {image filename="huffman-tree-dna-building-2.png"}
+{comment}
+Dot notation for image above, created with viz-js.com
+digraph G {
+  graph [ranksep=0,bgcolor=transparent];
+  node [shape=Mrecord];
+  a [label="{2|a}"];
+  g [label="{1|g}"];
+  c [label="{3|c}"];
+  3 -> a [label=0];
+  3 -> g [label=1];
+  6 -> 3 [label=1];
+  6 -> c [label=0];
+}
+{comment end}
 
 This leaves just two counts to consider (6 and 7), so these are combined to form the final tree:
 
 {image filename="huffman-tree-dna-building-3.png"}
+{comment}
+Dot notation for image above, created with viz-js.com
+digraph G {
+  graph [ranksep=0,bgcolor=transparent];
+  node [shape=Mrecord];
+  a [label="{2|a}"];
+  g [label="{1|g}"];
+  c [label="{3|c}"];
+  t [label="{7|t}"];
+  3 -> a [label=0];
+  3 -> g [label=1];
+  6 -> 3 [label=1];
+  6 -> c [label=0];
+  13 -> t [label=1];
+  13 -> 6 [label=0];
+}
+{comment end}
 
-You can then read off the codes for each character by following the 0 and 1 labels from left to right, or you could use the tree directly for coding.
+You can then read off the codes for each character by following the 0 and 1 labels from top to bottom, or you could use the tree directly for coding.
 
 If you look at other textbooks about Huffman coding, you might find English text used as an example, where letters like "e" and "t" get shorter codes while "z" and "q" get longer ones.
 As long as the codes are calculated using Huffman's method of combining the two smallest values, you'll end up with the optimal code.
@@ -416,9 +472,42 @@ As an experiment, try calculating a Huffman code for the four letters a, b, c an
 {panel type="spoiler" summary="Solutions for Huffman codes"}
 The tree for "abcddcbaaabbccddcbdaabcd" is likely to be this shape:
 {image filename="huffman-tree-abcd-uniform.png"}
+{comment}
+Dot notation for image above, created with viz-js.com
+digraph G {
+  graph [ranksep=0,bgcolor=transparent];
+  node [shape=Mrecord];
+  a [label="{6|a}"];
+  b [label="{6|b}"];
+  c [label="{6|c}"];
+  d [label="{6|d}"];
+  ab [label="12"];
+  cd [label="12"];
+  24 -> ab [label=0];
+  24 -> cd [label=1];
+  ab -> a [label=0];
+  ab -> b [label=1];
+  cd -> d [label=1];
+  cd -> c [label=0];
+}
+{comment end}
 
 whereas the tree for "aabbabcabcaaabdbacbbdcdd" has a shorter code for "b"
 {image filename="huffman-tree-abcd-non-uniform.png"}
+{comment}
+Dot notation for image above, created with viz-js.com
+digraph G {
+  graph [ranksep=0,bgcolor=transparent];
+  a [shape=Mrecord, label="{10|a}"];
+  b [shape=Mrecord, label="{8|b}"];
+  c [shape=Mrecord, label="{3|c}"];
+  d [shape=Mrecord, label="{3|d}"];
+  24 -> a [label=1];
+  24 -> 14 -> 6 -> c [label=0];
+  14 -> b [label=1];
+  6 -> d [label=1];
+}
+{comment end}
 
 The first one will use two bits for each character; since there are 24 characters in total, it will use 48 bits in total to represent all of the characters.
 
@@ -443,7 +532,34 @@ You can work out the average number of bits used to record each dice roll, since
 Another thing to note from this is that there are some arbitary choices in how the tree was made (e.g. the 4 value might have been given 2 bits and the 6 value might have been given 3 bits), but the average number of bits will be the same.
 
 {image filename="huffman-tree-dice.png"}
-
+{comment}
+Dot notation for image above, created with viz-js.com
+digraph G {
+  graph [ranksep=0,bgcolor=transparent];
+  node [shape=Mrecord];
+  start [label="start"];
+  0 [label=""];
+  00 [label="&#9856;",fontsize=30];
+  01 [label=""];
+  010 [label="&#9857;",fontsize=30];
+  011 [label="&#9858;",fontsize=30];
+  1 [label=""];
+  10 [label=""];
+  100 [label="&#9859;",fontsize=30];
+  101 [label="&#9860;",fontsize=30];
+  11 [label="&#9861;",fontsize=30];
+  start -> 0 [label="0"];
+  start -> 1 [label="1"];
+  0 -> 00 [label="0"];
+  0 -> 01 [label="1"];
+  01 -> 010 [label="0"];
+  01 -> 011 [label="1"];
+  1 -> 10 [label="0"];
+  10 -> 100 [label="0"];
+  10 -> 101 [label="1"];
+  1 -> 11 [label="1"];
+}
+{comment end}
 
 {panel end}
 
