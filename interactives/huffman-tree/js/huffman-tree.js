@@ -9,35 +9,13 @@ $(document).ready(function () {
   });
 });
 
-
-
 // Returns the HTML for the card label to represent a given
 // value. Decimals are represented as fractions.
 function generateTree() {
   var text = $("#text-input").val();
-  var letter_counts = new Map();
-  for (var i=0; i < text.length; i++) {
-    var letter = text[i];
-    if (letter.match(/[a-zA-Z0-9\ \.\,\']/)) {
-      var current_value = letter_counts.get(letter);
-      if (current_value === undefined) {
-        letter_counts.set(letter, 1);
-      } else {
-        letter_counts.set(letter, current_value + 1);
-      }
-    }
-  }
-
-  var dot_notation = 'digraph {' +
-    'graph [ranksep=0,bgcolor=transparent];' +
-    'node [shape=Mrecord];';
-
-  var letter_count_array = [];
-  var id_count = 0;
-  for (var [letter, count] of letter_counts) {
-    letter_count_array.push([count, 'node' + id_count, letter]);
-    id_count++;
-  }
+  var letter_counts = letterCounts(text);
+  var letter_count_array = createNodeArray(letter_counts);
+  var dot_notation = '';
 
   // Create labels
   for (var i=0; i < letter_count_array.length; i++) {
@@ -70,7 +48,8 @@ function generateTree() {
     dot_notation += parent_id + '->' + id2 + '[label="1"];';
     letter_count_array.sort(sortByNumber);
   }
-  dot_notation += '}'
+
+  dot_notation = finalizeGraphString(dot_notation);
   $('#output').html(Viz(dot_notation));
 }
 
@@ -89,4 +68,39 @@ function findSmallest(letter_count_array) {
     }
   }
   return lowest_node_index;
+}
+
+function finalizeGraphString(node_dot_notation) {
+  var dot_notation = 'digraph {' +
+    'graph [ranksep=0,bgcolor=transparent];' +
+    'node [shape=Mrecord];' +
+    node_dot_notation +
+    '}';
+  return dot_notation;
+}
+
+function createNodeArray(letter_counts) {
+  var letter_count_array = [];
+  var id_count = 0;
+  for (var [letter, count] of letter_counts) {
+    letter_count_array.push([count, 'node' + id_count, letter]);
+    id_count++;
+  }
+  return letter_count_array;
+}
+
+function letterCounts(text) {
+  var letter_counts = new Map();
+  for (var i=0; i < text.length; i++) {
+    var letter = text[i];
+    if (letter.match(/[a-zA-Z0-9\ \.\,\']/)) {
+      var current_value = letter_counts.get(letter);
+      if (current_value === undefined) {
+        letter_counts.set(letter, 1);
+      } else {
+        letter_counts.set(letter, current_value + 1);
+      }
+    }
+  }
+  return letter_counts;
 }
