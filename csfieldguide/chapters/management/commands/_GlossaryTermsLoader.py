@@ -20,7 +20,6 @@ class GlossaryTermsLoader(BaseLoader):
             BASE_PATH (str): Base file path.
         """
         super().__init__(BASE_PATH)
-        print(self.BASE_PATH, glossary_directory_name)
         self.structure_file_path = structure_file_path
         self.glossary_folder_path = os.path.join(self.BASE_PATH, glossary_directory_name)
         self.FILE_EXTENSION = ".md"
@@ -28,7 +27,6 @@ class GlossaryTermsLoader(BaseLoader):
     @transaction.atomic
     def load(self):
         """Load the glossary content into the database."""
-        # glossary_slugs = set()
 
         for filename in listdir(self.glossary_folder_path):
             if filename.endswith(self.FILE_EXTENSION):

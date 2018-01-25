@@ -3,7 +3,7 @@
 {{ "{% include 'interactives/" }}{{ name }}{{ ".html' %}" }}
 </div>
 {% elif type == 'iframe' -%}
-<iframe src="{{ "{% url 'interactive' name='" }}{{ name }}{{ "' %}" }}{% if parameters %}?{{ parameters }}{% endif %}">
+<iframe src="{{ "{% url 'interactives:interactive' '" }}{{ name }}{{ "' %}" }}{% if parameters %}?{{ parameters }}{% endif %}">
 <p>Your browser does not support iframes.</p>
 </iframe>
 {% elif type == 'whole-page' -%}

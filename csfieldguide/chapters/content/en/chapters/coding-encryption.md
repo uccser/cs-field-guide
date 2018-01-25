@@ -160,7 +160,7 @@ Of course, there may be ways to reduce the amount of work required - for example
 Try experimenting with the following interactive for Caesar Cipher.
 You will probably want to refer back to it later while working through the remainder of the sections on Caesar Cipher.
 
-{comment interactive name="caesar-cipher" type="iframe"}
+{interactive name="caesar-cipher" type="iframe"}
 
 #### Decryption with Caesar Cipher
 

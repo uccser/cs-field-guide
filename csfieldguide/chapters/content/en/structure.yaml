@@ -19,5 +19,7 @@ chapters:
   coding-encryption:
       number: 5
       icon: img/chapters/coding-encryption-icon.svg
+      interactives:
+        - caesar-cipher
 
 glossary-folder: glossary
