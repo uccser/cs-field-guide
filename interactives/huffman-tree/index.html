@@ -17,8 +17,11 @@
     <div class="container">
       <div class="row">
         <div class="col s12">
-          <textarea placeholder="Enter some text to create Huffman Tree" id="text-input">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sed felis eget velit aliquet. Elementum pulvinar etiam non quam. Enim nulla aliquet porttitor lacus luctus accumsan. Id porta nibh venenatis cras sed felis eget velit aliquet. Nunc sed augue lacus viverra. Ut morbi tincidunt augue interdum velit euismod in pellentesque. Pretium nibh ipsum consequat nisl vel pretium lectus. Quisque non tellus orci ac auctor augue. Mattis enim ut tellus elementum sagittis vitae et leo duis. Lorem ipsum dolor sit amet consectetur adipiscing. Habitant morbi tristique senectus et netus et malesuada fames ac. Neque vitae tempus quam pellentesque nec nam aliquam.</textarea>
-          <a id="generate-tree" class="btn btn-large">Generate tree</a>
+          <h3>Huffman Tree Generator</h3>
+          <p>Enter text below to create a Huffman Tree. The following characters will be used to create the tree: letters, numbers, full stop, comma, single quote. All other characters are ignored.</p>
+
+          <textarea placeholder="Enter some text to create Huffman Tree" id="text-input"></textarea>
+          <p><a id="generate-tree" class="btn btn-large disabled">Loading generator...</a></p>
           <div id="output"></div>
         </div>
       </div>

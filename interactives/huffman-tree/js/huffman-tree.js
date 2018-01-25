@@ -1,7 +1,10 @@
 "use strict";
 
 $(document).ready(function () {
-  $('#generate-tree').on('click', function(){
+  $('#generate-tree').removeClass('disabled');
+  $('#generate-tree').text('Generate tree');
+
+  $('#generate-tree:not(.disabled)').on('click', function(){
     generateTree();
   });
 });
@@ -15,7 +18,7 @@ function generateTree() {
   var letter_counts = new Map();
   for (var i=0; i < text.length; i++) {
     var letter = text[i];
-    if (letter.match(/[a-zA-Z0-9\ \.\,"']/)) {
+    if (letter.match(/[a-zA-Z0-9\ \.\,\']/)) {
       var current_value = letter_counts.get(letter);
       if (current_value === undefined) {
         letter_counts.set(letter, 1);
@@ -36,36 +39,35 @@ function generateTree() {
     id_count++;
   }
 
-  letter_count_array.sort(sortByNumber);
-
   // Create labels
   for (var i=0; i < letter_count_array.length; i++) {
     var count = letter_count_array[i][0];
     var id = letter_count_array[i][1];
     var letter = letter_count_array[i][2];
+    if (letter === " ") {
+        letter = "Space";
+    }
     dot_notation += id + '[label="{' + count + '|' + letter + '}"];';
   }
 
   while (letter_count_array.length > 1) {
-    console.log(letter_count_array.length);
-    console.log("Child 1");
-    console.log(letter_count_array[0]);
-    console.log("Child 2");
-    console.log(letter_count_array[1]);
-    var count1 = letter_count_array[0][0];
-    var id1 = letter_count_array[0][1];
-    var count2 = letter_count_array[1][0];
-    var id2 = letter_count_array[1][1];
-    console.log("Parent");
+    var first_node_index = findSmallest(letter_count_array);
+    var count1 = letter_count_array[first_node_index][0];
+    var id1 = letter_count_array[first_node_index][1];
+    letter_count_array.splice(first_node_index, 1);
+
+    var second_node_index = findSmallest(letter_count_array);
+    var count2 = letter_count_array[second_node_index][0];
+    var id2 = letter_count_array[second_node_index][1];
+    letter_count_array.splice(second_node_index, 1);
+
     var parent_count = count1 + count2;
     var parent_id = 'node' + id_count;
     id_count++;
-    console.log(parent_count, parent_id);
     letter_count_array.push([parent_count, parent_id]);
     dot_notation += parent_id + '[label="' + parent_count + '"];';
     dot_notation += parent_id + '->' + id1 + '[label="0"];';
     dot_notation += parent_id + '->' + id2 + '[label="1"];';
-    letter_count_array.splice(0,2);
     letter_count_array.sort(sortByNumber);
   }
   dot_notation += '}'
@@ -74,4 +76,17 @@ function generateTree() {
 
 function sortByNumber(a, b) {
   return a[0] > b[0];
+}
+
+function findSmallest(letter_count_array) {
+  var lowest_node_index = 0;
+  var lowest_node_value = letter_count_array[0][0];
+  for (var i=1; i < letter_count_array.length; i++) {
+    var node_value = letter_count_array[i][0];
+    if (node_value < lowest_node_value) {
+      lowest_node_index = i;
+      lowest_node_value = node_value;
+    }
+  }
+  return lowest_node_index;
 }
