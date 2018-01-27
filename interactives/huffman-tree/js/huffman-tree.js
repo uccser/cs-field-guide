@@ -9,6 +9,8 @@ $(document).ready(function () {
   });
 });
 
+var id_count = 0;
+
 // Returns the HTML for the card label to represent a given
 // value. Decimals are represented as fractions.
 function generateTree() {
@@ -81,7 +83,6 @@ function finalizeGraphString(node_dot_notation) {
 
 function createNodeArray(letter_counts) {
   var letter_count_array = [];
-  var id_count = 0;
   for (var [letter, count] of letter_counts) {
     letter_count_array.push([count, 'node' + id_count, letter]);
     id_count++;
