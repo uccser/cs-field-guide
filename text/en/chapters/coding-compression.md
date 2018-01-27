@@ -39,7 +39,6 @@ Run length encoding is still used as part of JPEG compression, although not to c
 We have introduced RLE here because it is a practical approach to compression, and most importantly it shows the key benefits and problems that arise in compression.
 {panel end}
 
-
 Imagine we have the following simple black and white image.
 
 {image filename="pixel-diamond.png" alt="A diamond shape made out of pixels"}
@@ -242,7 +241,6 @@ It is very important for compression algorithms to follow standards so that a fi
 for example, songs often follow the "mp3" standard so that when they are downloaded they can be played on a variety of devices.
 {panel end}
 
-
 ## Huffman coding
 
 A common way to compress data is to give short codes to common symbols, and long codes to things that are rare.
@@ -252,8 +250,8 @@ On average, this is better than using the same length code for every symbol.
 But working out the optimal code for each symbol is harder than it might seem - in fact, no-one could work out an algorithm to compute the best code until a student called David Huffman did it in 1951, and his achievement was impressive enough that he was allowed to pass his course without sitting the final exam.
 
 The technique of Huffman coding is the final stage in many compression methods, including JPEG, MP3, and zip.
-The purpose of Huffman coding is to take a set of "symbols" (which could be characters in text, run lengths in RLE, pointer values in an LZ system, or parameters in lossy systems), and provide the optimal bit patterns with which they can be represented.
-It's normally presented as a way of compressing textual documents, and while it can do that reasonably well, it works much better in combination with LZ coding (see below).
+The purpose of Huffman coding is to take a set of "symbols" (which could be characters in text, run lengths in RLE, pointer values in an Ziv-Lempel system, or parameters in lossy systems), and provide the optimal bit patterns with which they can be represented.
+It's normally presented as a way of compressing textual documents, and while it can do that reasonably well, it works much better in combination with Ziv-Lempel coding (see below).
 
 But let's start with a very simple textual example.
 This example language uses only 4 different characters, and yet is incredibly important to us: it's the language used to represent DNA, which is made up of sequences of four characters A, C, G and T).
@@ -444,16 +442,11 @@ You can then read off the codes for each character by following the 0 and 1 labe
 If you look at other textbooks about Huffman coding, you might find English text used as an example, where letters like "e" and "t" get shorter codes while "z" and "q" get longer ones.
 As long as the codes are calculated using Huffman's method of combining the two smallest values, you'll end up with the optimal code.
 
-{panel type="interactive" summary="An online Huffman tree builder"}
-
 Huffman trees aren't built manually - in fact, a Huffman trees are built every time you take a photo as a JPG, or zip a file, or record a video.
-
-You can use an on-line system to generate Huffman trees at [this location]http://huffman.ooz.ie/?text=agcttttcattct (the link will generate the tree for the above example, but you can also type in your own text).
-Note that the trees are drawn with the "root" at the top instead of on the left.
-The nodes contain the counts and totals, and the "leaves" show the Huffman code for that symbol.
-
+You can generate your own Huffman Trees using the interactive below.
 Try some different texts, such as one with only two different characters; one where all the characters are equally likely; and one where one character is way more likely than the others.
-{panel end}
+
+{interactive name="huffman-tree" type="whole-page" text="Huffman Tree generator"}
 
 {panel type="video" summary="Other explanations of Huffman coding"}
 There are video explanations of how to build a Huffman tree on Computerphile,
@@ -461,7 +454,7 @@ one by [Professor David Brailsford](https://www.youtube.com/watch?v=umTbivyJoiI)
 and another by [Tom Scott](https://www.youtube.com/watch?v=JsTptu56GM8)
 {panel end}
 
-In practice Huffman's code isn't usually applied to letters, but to things like the lengths of run length codes (some lengths will be more common than others), or the match length of a point for a LZ code (again, some lengths will be more common than others),
+In practice Huffman's code isn't usually applied to letters, but to things like the lengths of run length codes (some lengths will be more common than others), or the match length of a point for a Ziv-Lempel code (again, some lengths will be more common than others),
 or the parameters in a JPEG or MP3 file.
 By using a Huffman code instead of a simple binary code, these methods get just a little more compression for the data.
 
