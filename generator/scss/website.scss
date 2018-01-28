@@ -155,8 +155,19 @@ ul.side-nav.fixed li a {
     background-image: url("../images/csfg-background-tile.gif");
   }
   background-repeat: repeat;
-  background-size: 16rem;
-  padding: 0 0 1rem 0;
+  background-size: 20em;
+  height: 20rem;
+  justify-content: center;
+  h1 {
+    background-color: #fff;
+    position: relative;
+    padding: .4em .7em;
+    margin: 1em;
+    font-weight: 500;
+    color: $primary-color !important;
+    -webkit-clip-path: polygon(100% 0, 97% 50%, 100% 100%, 0 100%, 3% 50%, 0 0);
+    clip-path: polygon(100% 0, 97% 50%, 100% 100%, 0 100%, 3% 50%, 0 0);
+  }
 }
 #page-subtitle-header {
   background-color: $secondary-color !important;
