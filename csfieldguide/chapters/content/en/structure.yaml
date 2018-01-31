@@ -5,21 +5,14 @@ chapters:
   algorithms:
       number: 2
       icon: img/chapters/algorithms-icon.svg
-      interactives:
-        - sorting-algorithm-comparison
-        - high-score-boxes
   artificial-intelligence:
       number: 3
       icon: img/chapters/artificial-intelligence-icon.svg
-      interactives:
-        - sorting-algorithm-comparison
   coding-compression:
       number: 4
       icon: img/chapters/coding-compression-icon.svg
   coding-encryption:
       number: 5
       icon: img/chapters/coding-encryption-icon.svg
-      interactives:
-        - caesar-cipher
 
 glossary-folder: glossary

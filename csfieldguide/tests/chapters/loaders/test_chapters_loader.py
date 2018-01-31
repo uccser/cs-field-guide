@@ -1,5 +1,6 @@
 from tests.BaseTestWithDB import BaseTestWithDB
 from tests.chapters.ChaptersTestDataGenerator import ChaptersTestDataGenerator
+from tests.interactives.InteractivesTestDataGenerator import InteractivesTestDataGenerator
 
 from chapters.management.commands._ChapterLoader import ChapterLoader
 from chapters.models import Chapter
@@ -16,16 +17,17 @@ class ChapterLoaderTest(BaseTestWithDB):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.test_data = ChaptersTestDataGenerator()
+        self.test_interactive_data = InteractivesTestDataGenerator()
         self.loader_name = "chapters"
+        self.config_file = "basic-config.yaml"  # placeholder, required parameter for error raised in chapter loader
         self.base_path = self.test_data.LOADER_ASSET_PATH
 
     def test_chapters_chapter_loader_single_chapter(self):
-        config_file = "basic-config.yaml"  # placeholder, required parameter for error raised in chapter loader
         chapter_slug = "chapter-1"
         chapter_structure = {"number": 1, "icon": "legitimage.png"}
 
         chapter_loader = ChapterLoader(
-            structure_file_path=config_file,
+            structure_file_path=self.config_file,
             chapter_slug=chapter_slug,
             chapter_structure=chapter_structure,
             BASE_PATH=self.base_path
@@ -38,12 +40,11 @@ class ChapterLoaderTest(BaseTestWithDB):
         )
 
     def test_chapters_chapter_loader_missing_chapter_number(self):
-        config_file = "basic-config.yaml"
         chapter_slug = "chapter-1"
         chapter_structure = {"icon": "image.png"}
 
         chapter_loader = ChapterLoader(
-            structure_file_path=config_file,
+            structure_file_path=self.config_file,
             chapter_slug=chapter_slug,
             chapter_structure=chapter_structure,
             BASE_PATH=self.base_path
@@ -54,12 +55,11 @@ class ChapterLoaderTest(BaseTestWithDB):
         )
 
     def test_chapters_chapter_loader_missing_chapter_icon(self):
-        config_file = "basic-config.yaml"
         chapter_slug = "chapter-1"
         chapter_structure = {"number": 1}
 
         chapter_loader = ChapterLoader(
-            structure_file_path=config_file,
+            structure_file_path=self.config_file,
             chapter_slug=chapter_slug,
             chapter_structure=chapter_structure,
             BASE_PATH=self.base_path
@@ -69,17 +69,37 @@ class ChapterLoaderTest(BaseTestWithDB):
             chapter_loader.load
         )
 
-    def test_chapters_chapter_loader_incorrect_interactive_slug(self):
-        config_file = "basic-config.yaml"
-        chapter_slug = "chapter-1"
+    def test_chapters_chapter_loader_chapter_with_interactive(self):
+        chapter_slug = "chapter-with-interactive"
         chapter_structure = {
             "number": 1,
             "icon": "image.png",
-            "interactives": ["does-not-exist"]
         }
+        self.test_interactive_data.create_interactive(1)
 
         chapter_loader = ChapterLoader(
-            structure_file_path=config_file,
+            structure_file_path=self.config_file,
+            chapter_slug=chapter_slug,
+            chapter_structure=chapter_structure,
+            BASE_PATH=self.base_path
+        )
+        chapter_loader.load()
+
+        self.assertQuerysetEqual(
+            Chapter.objects.all(),
+            ["<Chapter: Chapter 1>"]
+        )
+
+    def test_chapters_chapter_loader_chapter_with_incorrect_interactive_slug(self):
+        chapter_slug = "chapter-with-incorrect-interactive-slug"
+        chapter_structure = {
+            "number": 1,
+            "icon": "image.png",
+        }
+        self.test_interactive_data.create_interactive(1)
+
+        chapter_loader = ChapterLoader(
+            structure_file_path=self.config_file,
             chapter_slug=chapter_slug,
             chapter_structure=chapter_structure,
             BASE_PATH=self.base_path
@@ -90,12 +110,11 @@ class ChapterLoaderTest(BaseTestWithDB):
         )
 
     def test_missing_heading(self):
-        config_file = "basic-config.yaml"
         chapter_slug = "missing-heading"
         chapter_structure = {"number": 1, "icon": "image.png"}
 
         chapter_loader = ChapterLoader(
-            structure_file_path=config_file,
+            structure_file_path=self.config_file,
             chapter_slug=chapter_slug,
             chapter_structure=chapter_structure,
             BASE_PATH=self.base_path
@@ -106,12 +125,11 @@ class ChapterLoaderTest(BaseTestWithDB):
         )
 
     def test_chapters_chapter_loader_title_empty_content(self):
-        config_file = "basic-config.yaml"
         chapter_slug = "missing-content"
         chapter_structure = {"number": 1, "icon": "image.png"}
 
         chapter_loader = ChapterLoader(
-            structure_file_path=config_file,
+            structure_file_path=self.config_file,
             chapter_slug=chapter_slug,
             chapter_structure=chapter_structure,
             BASE_PATH=self.base_path
@@ -122,12 +140,11 @@ class ChapterLoaderTest(BaseTestWithDB):
         )
 
     def test_chapters_chapter_loader_empty_file(self):
-        config_file = "basic-config.yaml"
         chapter_slug = "empty-file"
         chapter_structure = {"number": 1, "icon": "image.png"}
 
         chapter_loader = ChapterLoader(
-            structure_file_path=config_file,
+            structure_file_path=self.config_file,
             chapter_slug=chapter_slug,
             chapter_structure=chapter_structure,
             BASE_PATH=self.base_path
@@ -138,12 +155,11 @@ class ChapterLoaderTest(BaseTestWithDB):
         )
 
     def test_chapters_chapter_loader_missing_markdown_file(self):
-        config_file = "basic-config.yaml"
         chapter_slug = "this-file-does-not-exist"
         chapter_structure = {"number": 1, "icon": "image.png"}
 
         chapter_loader = ChapterLoader(
-            structure_file_path=config_file,
+            structure_file_path=self.config_file,
             chapter_slug=chapter_slug,
             chapter_structure=chapter_structure,
             BASE_PATH=self.base_path

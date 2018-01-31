@@ -71,12 +71,13 @@ class ChapterLoader(BaseLoader):
             name=chapter_content.title,
             number=chapter_number,
             content=chapter_content.html_string,
+
             other_resources=None,
             icon=chapter_icon
         )
         chapter.save()
 
-        chapter_interactives = self.chapter_structure.get('interactives', None)
+        chapter_interactives = chapter_content.required_files['interactives']
         if chapter_interactives:
             for interactive_slug in chapter_interactives:
                 try:
