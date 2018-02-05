@@ -10,6 +10,7 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 """
 
 import environ
+import os.path
 
 # cs-field-guide/csfieldguide/config/settings/base.py - 3 = csfieldguide/
 ROOT_DIR = environ.Path(__file__) - 3
@@ -158,11 +159,13 @@ TEMPLATES = [
 STATIC_ROOT = str(ROOT_DIR.path("staticfiles"))
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#static-url
+BUILD_ROOT = os.path.join(str(ROOT_DIR.path("build")), "")
 STATIC_URL = "/staticfiles/"
 
 # See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
 STATICFILES_DIRS = [
     str(ROOT_DIR.path("static")),
+    BUILD_ROOT,
 ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#staticfiles-finders
