@@ -11,3 +11,7 @@ img.chapter-icon {
 .chapter-list p {
   color: #000;
 }
+
+nav {
+	background-color: #2b387c !important;
+}

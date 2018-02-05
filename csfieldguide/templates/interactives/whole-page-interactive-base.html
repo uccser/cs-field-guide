@@ -1,6 +1,7 @@
 {% load static %}
 {% load render_html_field %}
 
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -8,6 +9,14 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/website.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/third-party/featherlight.min.css' %}">
+    <link rel="shortcut icon" href="{% static 'img/guide-favicon.png' %}">
+    <script type="text/javascript" src="{% static 'js/third-party/modernizr.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/third-party/jquery.js' %}"></script>
+  </head>
 
     <title></title>
 
@@ -15,7 +24,24 @@
   
   <body>
 
+  	<header>
+
+		<div class="whole-page-interactive-header">
+		  	<nav class="z-depth-0">
+			    <div class="nav-wrapper">
+		           <a href="#" class="button-collapse"><i class="material-icons">arrow_back</i></a>
+		            <a href="/en/" class="brand-logo center">CSFG</a>
+	          	</div>
+	    	</nav>
+	    </div>
+
+	</header>
+
+	<main>
+    
     {% include interactive.template %}
+
+	</main>
 
   </body>
   
