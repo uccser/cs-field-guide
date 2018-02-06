@@ -481,3 +481,11 @@ img.chapter-icon {
 nav {
   background-color: #2b387c !important;
 }
+
+main.whole-page-interactive-content, header.whole-page-interactive-header {
+    padding-left: 0px;
+}
+
+a.back-button {
+  float: left;
+}
