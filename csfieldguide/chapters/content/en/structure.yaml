@@ -1,7 +1,7 @@
 chapters:
   introduction:
       chapter-number: 1
-      title: introduction
+      title: Introduction
       icon: img/chapters/introduction-icon.svg
       sections:
         introduction-for-teachers:

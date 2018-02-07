@@ -1,4 +1,4 @@
-## Further reading
+# Further reading
 
 Each chapter gives suggestions for further reading for that particular topic. There are also plenty of general books and websites about computer science that you might want to read to keep your view of the topic broad.
 

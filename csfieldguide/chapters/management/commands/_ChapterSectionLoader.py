@@ -35,12 +35,11 @@ class ChapterSectionLoader(BaseLoader):
         """
         # Convert the content to HTML
         section_content = self.convert_md_file(
-            md_file_path=os.path.join(
+            os.path.join(
                 self.BASE_PATH,
                 "{}.md".format(self.section_slug)
             ),
-            config_file_path=self.structure_file_path,
-            heading_required=False
+            self.structure_file_path,
         )
 
         section_number = self.section_structure.get("section-number", None)
@@ -54,8 +53,7 @@ class ChapterSectionLoader(BaseLoader):
         # Create ChapterSection object and save to the db
         chapter_section = ChapterSection(
             slug=self.section_slug,
-            # heading=section_content.title,
-            heading="cats",
+            heading=section_content.title,
             number=section_number,
             content=section_content.html_string,
             chapter=self.chapter

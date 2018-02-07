@@ -30,5 +30,10 @@ urlpatterns = [
         views.ChapterView.as_view(),
         name="chapter"
     ),
-
+    # eg: /chapters/introduction/the-big-picture
+    url(
+        r"^(?P<chapter_slug>[-\w]+)/(?P<chapter_section_slug>[-\w]+)/$",
+        views.ChapterSectionView.as_view(),
+        name="chapter_section"
+    ),
 ]
