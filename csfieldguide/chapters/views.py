@@ -5,6 +5,7 @@ from django.views import generic
 from django.http import JsonResponse, Http404
 
 from general.templatetags.render_html_field import render_html_with_static
+from chapters.utils.add_first_section_to_chapter_objects import add_first_section_to_chapter_objects
 
 from .models import Chapter, ChapterSection, GlossaryTerm
 
@@ -23,6 +24,17 @@ class IndexView(generic.ListView):
         """
         return Chapter.objects.order_by("number")
 
+    def get_context_data(self, **kwargs):
+        context = super(IndexView, self).get_context_data(**kwargs)
+        chapter_sections = ChapterSection.objects.all()
+        for chapter in self.object_list:
+            chapter.first_section = chapter_sections.get(
+                chapter=chapter,
+                number=1
+            )
+        # add_first_section_to_chapter_objects(self.object_list)
+        return context
+
 
 class GlossaryList(generic.ListView):
     """Provide glossary view of all terms."""
@@ -37,14 +49,6 @@ class GlossaryList(generic.ListView):
             Queryset of GlossaryTerm objects ordered by term.
         """
         return GlossaryTerm.objects.order_by("term")
-
-
-class ChapterView(generic.DetailView):
-    """View for a specific chapter."""
-
-    model = Chapter
-    template_name = "chapters/chapter.html"
-    slug_url_kwarg = "chapter_slug"
 
 
 class ChapterSectionView(generic.DetailView):

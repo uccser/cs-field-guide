@@ -1,7 +1,7 @@
 """Views for the general application."""
 
 from django.views.generic import TemplateView, ListView
-from chapters.models import Chapter
+from chapters.models import Chapter, ChapterSection
 
 
 class GeneralIndexView(TemplateView):
@@ -41,3 +41,14 @@ class NavView(ListView):
             Queryset of Topic objects ordered by name.
         """
         return Chapter.objects.order_by("name")
+
+    def get_context_data(self, **kwargs):
+        context = super(NavView, self).get_context_data(**kwargs)
+        chapter_sections = ChapterSection.objects.all()
+        for chapter in self.object_list:
+            chapter.first_section = chapter_sections.get(
+                chapter=chapter,
+                number=1
+            )
+        # add_first_section_to_chapter_objects(self.object_list)
+        return context
