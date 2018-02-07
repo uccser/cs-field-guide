@@ -1,15 +1,22 @@
 chapters:
   introduction:
-      number: 1
+      chapter_number: 1
+      title: introduction
       icon: img/chapters/introduction-icon.svg
-  algorithms:
-      number: 2
-      icon: img/chapters/algorithms-icon.svg
-  artificial-intelligence:
-      number: 3
-      icon: img/chapters/artificial-intelligence-icon.svg
-  coding-compression:
-      number: 4
-      icon: img/chapters/coding-compression-icon.svg
+      sections:
+        introduction-for-teachers:
+          section_number: 1
+        big-picture:
+          section_number: 2
+        beyond-speed:
+          section_number: 3
+        programming:
+          section_number: 4
+        how-to-use-this-guide:
+          section_number: 5
+        about-this-guide:
+          section_number: 6
+        further-reading:
+          section_number: 7
 
 glossary-folder: glossary
