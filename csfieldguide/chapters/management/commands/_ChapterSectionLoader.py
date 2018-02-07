@@ -21,6 +21,7 @@ class ChapterSectionLoader(BaseLoader):
         """
         super().__init__(BASE_PATH)
         self.structure_file_path = structure_file_path
+        self.chapter = chapter
         self.section_slug = section_slug
         self.section_structure = section_structure
         self.BASE_PATH = BASE_PATH
@@ -34,28 +35,30 @@ class ChapterSectionLoader(BaseLoader):
         """
         # Convert the content to HTML
         section_content = self.convert_md_file(
-            os.path.join(
+            md_file_path=os.path.join(
                 self.BASE_PATH,
                 "{}.md".format(self.section_slug)
             ),
-            self.structure_file_path
+            config_file_path=self.structure_file_path,
+            heading_required=False
         )
 
-        section_number = self.section_structure.get("number", None)
+        section_number = self.section_structure.get("section-number", None)
         if section_number is None:
             raise MissingRequiredFieldError(
                 self.structure_file_path,
                 ["number"],
-                "Section Number"
+                "Chapter section"
             )
 
         # Create ChapterSection object and save to the db
         chapter_section = ChapterSection(
             slug=self.section_slug,
-            heading=section_content.title,
+            # heading=section_content.title,
+            heading="cats",
             number=section_number,
             content=section_content.html_string,
-            chapter=chapter
+            chapter=self.chapter
         )
         chapter_section.save()
 

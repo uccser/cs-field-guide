@@ -1,22 +1,22 @@
 chapters:
   introduction:
-      chapter_number: 1
+      chapter-number: 1
       title: introduction
       icon: img/chapters/introduction-icon.svg
       sections:
         introduction-for-teachers:
-          section_number: 1
+          section-number: 1
         big-picture:
-          section_number: 2
+          section-number: 2
         beyond-speed:
-          section_number: 3
+          section-number: 3
         programming:
-          section_number: 4
+          section-number: 4
         how-to-use-this-guide:
-          section_number: 5
+          section-number: 5
         about-this-guide:
-          section_number: 6
+          section-number: 6
         further-reading:
-          section_number: 7
+          section-number: 7
 
 glossary-folder: glossary

@@ -1,6 +1,5 @@
 """Custom loader for loading a topic."""
 
-import os.path
 from django.db import transaction
 from utils.BaseLoader import BaseLoader
 from utils.errors.MissingRequiredFieldError import MissingRequiredFieldError
@@ -24,7 +23,7 @@ class ChapterLoader(BaseLoader):
         self.structure_file_path = structure_file_path
         self.chapter_slug = chapter_slug
         self.chapter_structure = chapter_structure
-        self.BASE_PATH = "{}/chapters/{}".format(BASE_PATH, self.chapter_slug)
+        self.BASE_PATH = "{}chapters/{}".format(BASE_PATH, self.chapter_slug)
 
     @transaction.atomic
     def load(self):
@@ -33,11 +32,11 @@ class ChapterLoader(BaseLoader):
         Raise:
             MissingRequiredFieldError: when no object can be found with the matching attribute.
         """
-        chapter_number = self.chapter_structure.get("chapter_number", None)
+        chapter_number = self.chapter_structure.get("chapter-number", None)
         if chapter_number is None:
             raise MissingRequiredFieldError(
                 self.structure_file_path,
-                ["sections", "chapter_number", "title"],
+                ["sections", "chapter-number", "title"],
                 "Chapter number"
             )
 
@@ -45,7 +44,7 @@ class ChapterLoader(BaseLoader):
         if chapter_title is None:
             raise MissingRequiredFieldError(
                 self.structure_file_path,
-                ["sections", "chapter_number", "title"],
+                ["sections", "chapter-number", "title"],
                 "Chapter title"
             )
 
@@ -65,7 +64,7 @@ class ChapterLoader(BaseLoader):
         if chapter_sections is None:
             raise MissingRequiredFieldError(
                 self.structure_file_path,
-                ["sections", "chapter_number", "title"],
+                ["sections", "chapter-number", "title"],
                 "Chapter sections"
             )
 
