@@ -18,7 +18,7 @@ verto==0.7.3
 python-markdown-math==0.3
 
 # Python-PostgreSQL Database Adapter
-psycopg2==2.7.3.2
+psycopg2==2.7.4
 
 # YAML Loading
 PyYAML==3.12
