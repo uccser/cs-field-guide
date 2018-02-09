@@ -15,8 +15,12 @@
   </head>
   <body>
       <div id="pixel-viewer-interactive" class="interactive">
-	    <!-- ### Start of required HTML for inline interactives ### -->
+      <!-- ### Start of required HTML for inline interactives ### -->
         <div id="pixel-viewer-interactive-container">
+          <div id="loading-img-div">
+            <img id="loading-img" src="./img/loading.gif">
+          </div>
+          <div id="fps-feedback"></div>
           <img id="pixel-viewer-interactive-original-image" src="./img/coloured-roof-small.png" />
           <div id="pixel-viewer-interactive-loader"></div>
           <canvas id="pixel-viewer-interactive-content"></canvas>
@@ -28,8 +32,12 @@
         </div>
         <div class="row full-width">
           <div id="pixel-viewer-interactive-settings" class="small-6 large-4 columns end">
-            <h3>Pixel Value Interactive</h3>
+            <h3 id="name-of-interactive">Pixel Value Interactive</h3>
             <p>This interactive allows you to see the pixels of an image, and details about those pixels. <strong>Zoom in</strong> to see details about individual pixels.</p>
+
+            <p id="pixel-viewer-extra-feature-description"></p>
+
+            <span id="pixel-viewer-image-manipulator"></span>
 
             <p>This interactive works best on a desktop Chrome browser, due to the heavy performance load.</p>
 
@@ -53,7 +61,10 @@
               <i><span id="pixel-viewer-interactive-resize-values"></span></i>
             </p>
 
+            <div id="picture-picker"></div>
+
             <p>You can save an image of this interactive by right clicking on the zoomed image and clicking "Save image as..." (Chrome/Firefox).</p>
+
 
             <hr>
 
