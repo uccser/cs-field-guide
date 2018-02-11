@@ -11,11 +11,13 @@ class ChapterURLTest(BaseTestWithDB):
         self.language = "en"
 
     def test_chapters_valid_chapter_url(self):
-        self.test_data.create_chapter("1")
+        chapter = self.test_data.create_chapter("1")
+        self.test_data.create_chapter_section(chapter, "1")
 
         kwargs = {
-            "chapter_slug": "chapter-1"
+            "chapter_slug": "chapter-1",
+            "chapter_section_slug": "section-1"
         }
 
-        url = reverse("chapters:chapter", kwargs=kwargs)
-        self.assertEqual(url, "/en/chapters/chapter-1/")
+        url = reverse("chapters:chapter_section", kwargs=kwargs)
+        self.assertEqual(url, "/en/chapters/chapter-1/section-1/")
