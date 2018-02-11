@@ -45,9 +45,9 @@
               <a class="collapsible-header waves-effect">Chapters<div class="dropdown-menu-arrow">&#9660;</div></a>
               <div class="collapsible-body">
                 <ul>{% for chapter in chapters %}
-                  {{ chapter }}
-                  {{ chapter.first_section }}
-                {% endfor %}</ul>
+                  <li><a href="{% url 'chapters:chapter_section' chapter.slug chapter.first_section.slug %}">{{ chapter }}</a></li>
+                </ul>
+                {% endfor %}
               </div>
             </li>
             <li class="bold">
