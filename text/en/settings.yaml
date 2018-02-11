@@ -71,8 +71,11 @@ structure:
     - curriculum-guides:
         numbered: no
         listed: yes
-        table_of_contents_sidebar: yes
+        table_of_contents_sidebar: no
         source_files:
+            - file: curriculum-guides/ncea/as91885/index.md
+            - file: curriculum-guides/ncea/as91886/index.md
+            - file: curriculum-guides/ncea/as91887/index.md
             - file: curriculum-guides/ncea/level-1/introduction.md
             - file: curriculum-guides/ncea/level-1/searching-algorithms.md
             - file: curriculum-guides/ncea/level-1/sorting-algorithms.md
