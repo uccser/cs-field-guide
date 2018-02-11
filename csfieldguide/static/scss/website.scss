@@ -1,3 +1,7 @@
+// Override MaterializeCSS variables
+$roboto-font-path: "../font/roboto/";
+$icons-font-path: "../font/material-design-icons/";
+
 @import "third-party/materialize";
 
 // Pygments theme for code syntax highlighting
