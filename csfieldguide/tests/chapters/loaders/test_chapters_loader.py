@@ -45,6 +45,53 @@ class ChapterLoaderTest(BaseTestWithDB):
             ["<Chapter: Chapter 1>"]
         )
 
+    def test_chapters_chapter_loader_multiple_chapters(self):
+        chapter_1_slug = "chapter-1"
+        chapter_1_structure = {
+            "chapter-number": 1,
+            "title": "Chapter 1",
+            "sections": {
+                "introduction-for-teachers": {
+                    "section-number": 1
+                }
+            }
+        }
+        chapter_loader = ChapterLoader(
+            factory=self.factory,
+            structure_file_path=self.config_file,
+            chapter_slug=chapter_1_slug,
+            chapter_structure=chapter_1_structure,
+            BASE_PATH=self.base_path
+        )
+        chapter_loader.load()
+
+        chapter_2_slug = "chapter-2"
+        chapter_2_structure = {
+            "chapter-number": 2,
+            "title": "Chapter 2",
+            "sections": {
+                "introduction-for-teachers": {
+                    "section-number": 1
+                }
+            }
+        }
+        chapter_loader = ChapterLoader(
+            factory=self.factory,
+            structure_file_path=self.config_file,
+            chapter_slug=chapter_2_slug,
+            chapter_structure=chapter_2_structure,
+            BASE_PATH=self.base_path
+        )
+        chapter_loader.load()
+
+        self.assertQuerysetEqual(
+            Chapter.objects.all(),
+            [
+                "<Chapter: Chapter 1>",
+                "<Chapter: Chapter 2>"
+            ]
+        )
+
     def test_chapters_chapter_loader_missing_chapter_number(self):
         chapter_slug = "chapter-1"
         chapter_structure = {
@@ -68,7 +115,7 @@ class ChapterLoaderTest(BaseTestWithDB):
             chapter_loader.load
         )
 
-    def test_missing_title(self):
+    def test_chapters_chapter_loader_missing_title(self):
         chapter_slug = "missing-title"
         chapter_structure = {
             "chapter-number": 1,
@@ -86,6 +133,7 @@ class ChapterLoaderTest(BaseTestWithDB):
             chapter_structure=chapter_structure,
             BASE_PATH=self.base_path
         )
+
         self.assertRaises(
             MissingRequiredFieldError,
             chapter_loader.load
@@ -105,6 +153,7 @@ class ChapterLoaderTest(BaseTestWithDB):
             chapter_structure=chapter_structure,
             BASE_PATH=self.base_path
         )
+
         self.assertRaises(
             MissingRequiredFieldError,
             chapter_loader.load

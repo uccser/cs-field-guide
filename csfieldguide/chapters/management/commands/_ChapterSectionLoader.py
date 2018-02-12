@@ -46,7 +46,7 @@ class ChapterSectionLoader(BaseLoader):
         if section_number is None:
             raise MissingRequiredFieldError(
                 self.structure_file_path,
-                ["number"],
+                ["section-number"],
                 "Chapter section"
             )
 
