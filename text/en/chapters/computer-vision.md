@@ -159,17 +159,9 @@ The following activity can be used as part of a project for the 3.44 standard. T
 
 {comment end}
 
-{comment}
-
-.. This is the old interactive.
-
-.. Open the [noise reduction filtering interactive using this link](http://www.csfieldguide.org.nz/releases/1.9.9/_static/widgets/cv-noise-filters.html) and experiment with settings as below. You will need a webcam, and the interactive will ask you to allow access to it.
-
-{comment end}
-
 Open the noise reduction filtering interactive below and experiment with the settings.
 
-{interactive name="pixel-viewer" type="whole-page" text="Noise Reduction interactive" parameters="mode=blur&fps&picturepicker"}
+{interactive name="pixel-viewer" type="whole-page" text="Noise Reduction interactive" parameters="mode=blur&picturepicker"}
 
 Mathematically, this process is applying a special kind of matrix called a *convolution kernel* to the value of each pixel in the source image, averaging it with the values of other pixels nearby and copying that average to each pixel in the new image. In the case of the Gaussian blur, the average is weighted, so that the values of nearby pixels are given more importance than ones that are far away. The stronger the blur, the wider the convolution kernel has to be and the more calculations take place.
 
@@ -202,7 +194,6 @@ The next interactive lets you do the same thing, but on the original colour imag
 {interactive name="pixel-viewer" type="whole-page" text="Colour Thresholding interactive" parameters="mode=threshold"}
 
 Thresholding on its own isn't a very powerful tool, but it can be very useful when combined with other techniques as we shall see later.
-
 
 ## Face recognition
 
@@ -274,20 +265,13 @@ Notice that the grain on the table above has affected the quality; some pre-proc
 
 Earlier, we looked at how we could use a *convolutional kernel* to blur an image. One of the common techniques in edge detection also requires a convolutional kernel. If we multiply the values of pixels on one side of each point on the image by a negative amount, and pixels on the other side by a positive amount, then combine the results, we'll discover a number which represents the difference between pixels on the two sides. This technique is called finding the *image gradient*. The following interactive allows you to do that, then apply a threshold to the result so that you can begin to spot likely edges in a picture.
 
-{interactive name="pixel-viewer" type="whole-page" text="Edge Detection interactive" parameters="mode=edgedetection&fps&picturepicker"}
+{interactive name="pixel-viewer" type="whole-page" text="Edge Detection interactive" parameters="mode=edgedetection&picturepicker"}
 
 There are a few commonly used convolutional kernels that people have come up with for finding edges. After you've had a go at coming up with some of your own, have a look at the [Prewitt operator](https://en.wikipedia.org/wiki/Prewitt_operator), the [Roberts cross](https://en.wikipedia.org/wiki/Roberts_cross) and [Sobel operator](https://en.wikipedia.org/wiki/Sobel_operator) on wikipedia. Try these out in the interactive. What results do you get from each of these?
 
 There are a number of good edge detections out there, but one of the more famous ones is the Canny edge detection algorithm. This is a widely used algorithm in computer vision, developed in 1986 by John F. Canny. You can read more about [Canny edge detection on Wikipedia](https://en.wikipedia.org/wiki/Canny_edge_detector).
 
 You could extend the techniques used in the above interactive by adding a few more processing stages. If you were to apply a gaussian filter to the image first, then do some work to favour edges that were connected to other edges, then you would be on your way to implementing the Canny edge detector.
-
-{comment}
-
-.. You can experiment with edge-detection yourself with the [Canny edge detector on this website](https://inspirit.github.io/jsfeat/sample_canny_edge.html) (see the information about [Canny edge detection on Wikipedia](https://en.wikipedia.org/wiki/Canny_edge_detector)).
-.. This is a widely used algorithm in computer vision, developed in 1986 by John F. Canny.
-
-{comment end}
 
 ### Activity: Edge detection evaluation
 
