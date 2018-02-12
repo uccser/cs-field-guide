@@ -1,8 +1,25 @@
-ORIGINAL IMAGE PERMISSIONS
+IMAGE PERMISSIONS
 ----------------------------------------------------------------------------
 
-The original image was taken by Jack Morgan and is used with his permission.
+This image was taken by Jack Morgan and is used with his permission.
 Email: jack.morgan@canterbury.ac.nz
+
+- `coloured-roof-small.png`
+
+These images were taken by Andy Bell and are used with his permission.
+Email: andy.belltree@gmail.com
+
+- `alley.jpg`
+- `bike.jpg`
+- `boards.jpg`
+- `dark_clock.jpg`
+- `dark.jpg`
+- `fence.jpg`
+- `knight.png`
+- `roof.jpg`
+- `tuba.jpg`
+- `words_zoom.png`
+- `words.png`
 
 ----------------------------------------------------------------------------
 
@@ -11,7 +28,7 @@ Email: jack.morgan@canterbury.ac.nz
 JQUERY
 ----------------------------------------------------------------------------
 
-The interactive uses jQuery (available freely under the MIT license 
+The interactive uses jQuery (available freely under the MIT license
 https://jquery.org/license/).
 
 ----------------------------------------------------------------------------

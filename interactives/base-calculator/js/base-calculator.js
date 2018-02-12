@@ -22,7 +22,7 @@ $(document).ready(function () {
             column.find('.orignal-value').text(parseInt(select.val(), baseCalculatorSettings.BASE));
         }
         if (baseCalculatorSettings.SHOW_VALUE) {
-            column.find('.computed-value').text(select.data('value'));
+            column.find('.computed-value').text(select.val() * select.data('value'));
         }
         updateTotalColumn(baseCalculatorSettings);
     });
