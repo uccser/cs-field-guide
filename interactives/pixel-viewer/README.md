@@ -1,36 +1,29 @@
 # Pixel Viewer Interactive
 
-**Author:** Jack Morgan
+**Author:** Jack Morgan  
+**Updated by:** Andy Bell
 
 This interactive is created to allow users to see the values of each pixels of an image.
 The user can zoom in and out of the image, and when close enough the pixel values are displayed.
 
+## Usage
+
+The interactive has the following parameters to configure the interactive:
+
+- `mode=type` (optional) - Where `type` is one of the following:
+
+  - `datarep` (default) - Normal for viewing pixels in image.
+  - `threshold` - Adds controls for manipulating pixels by threshold controls for colour pixels.
+  - `thresholdgreyscale` - Adds controls for manipulating pixels by threshold controls for greyscale pixels.
+  - `blur` - Adds controls for investigating blurring with images.
+  - `edgedetection` - Adds controls for investigating edge detection.
+
+- `picturepicker` (optional) - Displays a set of pictures available for using.
+
 ## Required files
 
 - This interactive uses MaterializeCSS, Modernizer, and jQuery (all loaded from base-files folder).
-- The original image was taken by [Jack Morgan](jack.morgan@canterbury.ac.nz) and is used with his permission under the same Creative Commons license this project uses.
-- Several [ZYNGA JavaScript Libraries](zynga.github.io/scroller/) are used under the following license:
-
-  Copyright (c) 2011 Zynga Inc., http://zynga.com/
-
-  Permission is hereby granted, free of charge, to any person obtaining
-  a copy of this software and associated documentation files (the
-  "Software"), to deal in the Software without restriction, including
-  without limitation the rights to use, copy, modify, merge, publish,
-  distribute, sublicense, and/or sell copies of the Software, and to
-  permit persons to whom the Software is furnished to do so, subject to
-  the following conditions:
-
-  The above copyright notice and this permission notice shall be
-  included in all copies or substantial portions of the Software.
-
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-  LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-  OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+- Several [ZYNGA JavaScript Libraries](zynga.github.io/scroller/) are used.
 
 ## Future Plans
 
