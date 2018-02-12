@@ -14,6 +14,7 @@ There is also a lot of material available online from NZQA, and good ideas share
 
 The standards below were trialled in 2017, and are available from 2018. They replace AS91074 (1.44), which is available up to 2018.
 The form of assessment for the external standards is still being clarified, so the guide relates to the standards rather than the details of how the assessment is done.
+At present NZQA is proposing a Common Assessment Task (CAT), which would guide students through how they should demonstrate their understanding of the concepts in the standard.
 
 {button link="curriculum-guides/ncea/as91885/index.html" text="AS91885" line_2="Digital Technology 1.9" line_3="Demonstrate understanding of searching and sorting algorithms"}
 
