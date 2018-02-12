@@ -113,7 +113,7 @@ function setUpMode(){
 
 function addDescription(title, description){
   // Add title and description to page
-  $("#name-of-interactive").text(title);
+  $("#name-of-interactive").html(title + ' <span class="alert round label">Beta</span>');
   $("#pixel-viewer-extra-feature-description").html(description);
 }
 
