@@ -7,16 +7,17 @@ from utils.errors.MissingRequiredFieldError import MissingRequiredFieldError
 from chapters.models import ChapterSection
 
 
-class ChapterSectionLoader(BaseLoader):
+class ChapterSectionsLoader(BaseLoader):
     """Custom loader for loading chapter sections."""
 
     def __init__(self, structure_file_path, chapter, section_slug, section_structure, BASE_PATH):
         """Create the loader for loading a chapter section.
 
         Args:
-            structure_file_path (str): path to application structure file.
-            chapter (str): key for chapter to load.
-            chapter_stucture (dict): Attributes for the chapter (e.g. chapter number).
+            structure_file_path (str): Path to application structure file.
+            chapter (Chapter): Chapter object to attach section to.
+            section_slug (str): Key for section to create.
+            section_stucture (dict): Attributes for the chapter section (e.g. section number).
             BASE_PATH (str): Base file path.
         """
         super().__init__(BASE_PATH)
@@ -30,8 +31,9 @@ class ChapterSectionLoader(BaseLoader):
     def load(self):
         """Load the content for a section.
 
-        Raise:
-            MissingRequiredFieldError: when no object can be found with the matching attribute.
+        Raises:
+            MissingRequiredFieldError: When a config (yaml) file is missing a required
+                field.
         """
         # Convert the content to HTML
         section_content = self.convert_md_file(

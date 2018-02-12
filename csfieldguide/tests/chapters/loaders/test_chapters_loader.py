@@ -3,13 +3,13 @@ from unittest.mock import Mock
 from tests.BaseTestWithDB import BaseTestWithDB
 from tests.chapters.ChaptersTestDataGenerator import ChaptersTestDataGenerator
 
-from chapters.management.commands._ChapterLoader import ChapterLoader
+from chapters.management.commands._ChaptersLoader import ChaptersLoader
 from chapters.models import Chapter
 
 from utils.errors.MissingRequiredFieldError import MissingRequiredFieldError
 
 
-class ChapterLoaderTest(BaseTestWithDB):
+class ChaptersLoaderTest(BaseTestWithDB):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -31,7 +31,7 @@ class ChapterLoaderTest(BaseTestWithDB):
             }
         }
 
-        chapter_loader = ChapterLoader(
+        chapter_loader = ChaptersLoader(
             factory=self.factory,
             structure_file_path=self.config_file,
             chapter_slug=chapter_slug,
@@ -56,7 +56,7 @@ class ChapterLoaderTest(BaseTestWithDB):
                 }
             }
         }
-        chapter_loader = ChapterLoader(
+        chapter_loader = ChaptersLoader(
             factory=self.factory,
             structure_file_path=self.config_file,
             chapter_slug=chapter_1_slug,
@@ -75,7 +75,7 @@ class ChapterLoaderTest(BaseTestWithDB):
                 }
             }
         }
-        chapter_loader = ChapterLoader(
+        chapter_loader = ChaptersLoader(
             factory=self.factory,
             structure_file_path=self.config_file,
             chapter_slug=chapter_2_slug,
@@ -103,7 +103,7 @@ class ChapterLoaderTest(BaseTestWithDB):
             }
         }
 
-        chapter_loader = ChapterLoader(
+        chapter_loader = ChaptersLoader(
             factory=self.factory,
             structure_file_path=self.config_file,
             chapter_slug=chapter_slug,
@@ -126,7 +126,7 @@ class ChapterLoaderTest(BaseTestWithDB):
             }
         }
 
-        chapter_loader = ChapterLoader(
+        chapter_loader = ChaptersLoader(
             factory=self.factory,
             structure_file_path=self.config_file,
             chapter_slug=chapter_slug,
@@ -146,7 +146,7 @@ class ChapterLoaderTest(BaseTestWithDB):
             "title": "Chapter 1",
         }
 
-        chapter_loader = ChapterLoader(
+        chapter_loader = ChaptersLoader(
             factory=self.factory,
             structure_file_path=self.config_file,
             chapter_slug=chapter_slug,

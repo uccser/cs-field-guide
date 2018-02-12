@@ -6,15 +6,16 @@ from utils.errors.MissingRequiredFieldError import MissingRequiredFieldError
 from chapters.models import Chapter
 
 
-class ChapterLoader(BaseLoader):
+class ChaptersLoader(BaseLoader):
     """Custom loader for loading chapters."""
 
     def __init__(self, factory, structure_file_path, chapter_slug, chapter_structure, BASE_PATH):
         """Create the loader for loading a topic.
 
         Args:
-            structure_file_path (str): path to application structure file.
-            chapter (str): key for chapter to load.
+            factory (LoaderFactory): Object for creating other loaders.
+            structure_file_path (str): Path to application structure file.
+            chapter_slug (str): Key for chapter to load.
             chapter_stucture (dict): Attributes for the chapter (e.g. chapter number).
             BASE_PATH (str): Base file path.
         """
@@ -29,8 +30,9 @@ class ChapterLoader(BaseLoader):
     def load(self):
         """Load the content for a chapter.
 
-        Raise:
-            MissingRequiredFieldError: when no object can be found with the matching attribute.
+        Raises:
+            MissingRequiredFieldError: When a config (yaml) file is missing a required
+                field.
         """
         chapter_number = self.chapter_structure.get("chapter-number", None)
         if chapter_number is None:

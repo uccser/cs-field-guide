@@ -50,7 +50,7 @@ class Chapter(models.Model):
 
 
 class ChapterSection(models.Model):
-    """Model for each section in a chapter."""
+    """Model for each section in a chapter in database."""
 
     #  Auto-incrementing 'id' field is automatically set by Django
     slug = models.SlugField(unique=True)

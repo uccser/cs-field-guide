@@ -4,16 +4,15 @@ from unittest.mock import Mock
 from tests.BaseTestWithDB import BaseTestWithDB
 from tests.chapters.ChaptersTestDataGenerator import ChaptersTestDataGenerator
 
-from chapters.management.commands._ChapterSectionLoader import ChapterSectionLoader
+from chapters.management.commands._ChapterSectionsLoader import ChapterSectionsLoader
 from chapters.models import Chapter
 
 from utils.errors.MissingRequiredFieldError import MissingRequiredFieldError
-from utils.errors.EmptyMarkdownFileError import EmptyMarkdownFileError
 from utils.errors.NoHeadingFoundInMarkdownFileError import NoHeadingFoundInMarkdownFileError
 from utils.errors.CouldNotFindMarkdownFileError import CouldNotFindMarkdownFileError
 
 
-class ChapterSectionLoaderTest(BaseTestWithDB):
+class ChapterSectionsLoaderTest(BaseTestWithDB):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -30,7 +29,7 @@ class ChapterSectionLoaderTest(BaseTestWithDB):
             "section-number": 1
         }
 
-        chapter_section_loader = ChapterSectionLoader(
+        chapter_section_loader = ChapterSectionsLoader(
             structure_file_path=self.config_file,
             chapter=chapter,
             section_slug=section_slug,
@@ -51,7 +50,7 @@ class ChapterSectionLoaderTest(BaseTestWithDB):
             "section-number": 1
         }
 
-        chapter_section_loader = ChapterSectionLoader(
+        chapter_section_loader = ChapterSectionsLoader(
             structure_file_path=self.config_file,
             chapter=chapter,
             section_slug=section_1_slug,
@@ -65,7 +64,7 @@ class ChapterSectionLoaderTest(BaseTestWithDB):
             "section-number": 2
         }
 
-        chapter_section_loader = ChapterSectionLoader(
+        chapter_section_loader = ChapterSectionsLoader(
             structure_file_path=self.config_file,
             chapter=chapter,
             section_slug=section_2_slug,
@@ -84,7 +83,7 @@ class ChapterSectionLoaderTest(BaseTestWithDB):
         section_slug = "single-section"
         section_structure = {}
 
-        chapter_section_loader = ChapterSectionLoader(
+        chapter_section_loader = ChapterSectionsLoader(
             structure_file_path=self.config_file,
             chapter=chapter,
             section_slug=section_slug,
@@ -107,7 +106,7 @@ class ChapterSectionLoaderTest(BaseTestWithDB):
             "section-number": 1
         }
 
-        chapter_section_loader = ChapterSectionLoader(
+        chapter_section_loader = ChapterSectionsLoader(
             structure_file_path=self.config_file,
             chapter=chapter,
             section_slug=section_slug,
@@ -127,7 +126,7 @@ class ChapterSectionLoaderTest(BaseTestWithDB):
             "section-number": 1
         }
 
-        chapter_section_loader = ChapterSectionLoader(
+        chapter_section_loader = ChapterSectionsLoader(
             structure_file_path=self.config_file,
             chapter=chapter,
             section_slug=section_slug,
@@ -147,7 +146,7 @@ class ChapterSectionLoaderTest(BaseTestWithDB):
             "section-number": 1
         }
 
-        chapter_section_loader = ChapterSectionLoader(
+        chapter_section_loader = ChapterSectionsLoader(
             structure_file_path=self.config_file,
             chapter=chapter,
             section_slug=section_slug,

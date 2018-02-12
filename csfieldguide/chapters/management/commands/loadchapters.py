@@ -13,8 +13,8 @@ class Command(BaseCommand):
     """Required command class for the custom Django loadchapters command.
 
     Raises:
-        MissingRequiredFieldError: when no object can be found with the matching
-                attribute.
+        MissingRequiredFieldError: when a config (yaml) file is missing a required
+            field.
     """
 
     help = "Converts Markdown files listed in structure file and stores"
