@@ -804,13 +804,15 @@ function get_pixel_data(col, row){
   if (piccache.length <= col || piccache[col].length <= row){
     // If we're looking outside the range of the size of picture just make it white
     return [255,255,255]
-  }
-  if (piccache[col][row] == null){
+  } else if (piccache[col][row] == null){
     // Otherwise if we haven't already cached this then cache it
-    piccache[col][row] = source_canvas.getContext('2d').getImageData(col, row, 1, 1).data;
+    var value = source_canvas.getContext('2d').getImageData(col, row, 1, 1).data;
+    piccache[col][row] = value;
+    return value;
+  } else {
+    // Return the value from the cache
+    return piccache[col][row];
   }
-  // Return the value from the cache
-  return piccache[col][row];
 }
 
 function load_resize_image(src, user_upload=true){
@@ -825,7 +827,7 @@ function load_resize_image(src, user_upload=true){
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         canvas.width = image.width;
         canvas.height = image.height;
-       init_cache(image.width, image.height);
+        init_cache(image.width, image.height);
         ctx.drawImage(image, 0, 0, image.width, image.height);
         scroller.scrollTo(0,0);
         if(user_upload){
@@ -859,6 +861,7 @@ source_image.addEventListener('error', function (e){e.preventDefault(); alert("S
 
 source_image.onload = function() {
     source_canvas_context.drawImage(source_image, 0, 0);
+    init_cache(source_image.width, source_image.height);
     //Trigger canvas draw after image load
     scroller.scrollTo(0,0);
 }
