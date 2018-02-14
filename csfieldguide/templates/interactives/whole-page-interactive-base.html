@@ -21,14 +21,14 @@
 
       <header class="whole-page-interactive-header">
 
-          <div>
-            <nav class="z-depth-0">
-              <div class="nav-wrapper">
-            <img src="{% static 'img/logos/guide-logo-light.png' %}">
+        <div>
+          <nav class="z-depth-0">
+            <div class="nav-wrapper">
+              <img src="{% static 'img/logos/guide-logo-light.png' %}">
               <a href="/en/" class="brand-logo">CSFG</a>
-            <h4>{{ interactive.name }}</h4>
-          </div>
-        </nav>
+              <h4>{{ interactive.name }}</h4>
+            </div>
+          </nav>
         </div>
 
       </header>
@@ -38,6 +38,16 @@
     {% include interactive.template %}
 
     </main>
+
+
+    <footer class="whole-page-interactive-footer">
+      <div class="footer-third">
+        <div class="container">
+          <a href="further-information/releases.html" class="version-number">v2.9.1</a>
+          <p>The Computer Science Field Guide uses a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons (CC BY-NC-SA 4.0) license</a>.</p>
+        </div>
+      </div>
+    </footer>
 
   </body>
 

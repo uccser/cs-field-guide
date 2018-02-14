@@ -486,8 +486,8 @@ nav {
   background-color: #2b387c !important;
 }
 
-main.whole-page-interactive-content, header.whole-page-interactive-header {
-    padding-left: 0px;
+main.whole-page-interactive-content, header.whole-page-interactive-header, .whole-page-interactive-footer {
+    padding-left: 0px !important;
 }
 
 .whole-page-interactive-header {
@@ -498,4 +498,8 @@ main.whole-page-interactive-content, header.whole-page-interactive-header {
   h4 {
     float: right;
   }
+}
+
+.whole-page-interactive-footer {
+  width: 100%;
 }
