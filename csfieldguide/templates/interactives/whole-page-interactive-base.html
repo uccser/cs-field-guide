@@ -5,10 +5,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-  
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{{ interactive.name }} - CS Field Guide</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/website.css' %}">
     <link rel="stylesheet" href="{% static 'css/third-party/featherlight.min.css' %}">
@@ -17,31 +17,28 @@
     <script type="text/javascript" src="{% static 'js/third-party/jquery.js' %}"></script>
   </head>
 
-    <title></title>
-
-  </head>
-  
   <body>
 
-  	<header class="whole-page-interactive-header">
+      <header class="whole-page-interactive-header">
 
-		<div>
-	  	<nav class="z-depth-0">
-		    <div class="nav-wrapper">
-	        <a href="#" class="back-button"><i class="material-icons">arrow_back</i></a>
-	        <a href="/en/" class="brand-logo center">CSFG</a>
+          <div>
+            <nav class="z-depth-0">
+              <div class="nav-wrapper">
+            <img src="{% static 'img/logos/guide-logo-light.png' %}">
+              <a href="/en/" class="brand-logo">CSFG</a>
+            <h4>{{ interactive.name }}</h4>
+          </div>
+        </nav>
         </div>
-      </nav>
-	  </div>
 
-	</header>
+      </header>
 
-	<main class="whole-page-interactive-content">
-    
+    <main class="whole-page-interactive-content">
+
     {% include interactive.template %}
 
-	</main>
+    </main>
 
   </body>
-  
+
 </html>

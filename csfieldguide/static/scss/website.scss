@@ -490,6 +490,12 @@ main.whole-page-interactive-content, header.whole-page-interactive-header {
     padding-left: 0px;
 }
 
-a.back-button {
-  float: left;
+.whole-page-interactive-header {
+  img {
+    float: left;
+    height: 90%;
+  }
+  h4 {
+    float: right;
+  }
 }

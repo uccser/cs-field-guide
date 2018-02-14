@@ -33,9 +33,10 @@ class Command(BaseCommand):
 
         interactives = structure_file['interactives']
 
-        for interactive_slug in interactives:
+        for (interactive_slug,interactive_structure) in interactives.items():
             new_interactive = Interactive(
                 slug=interactive_slug,
+                name=interactive_structure["name"],
                 template="interactives/{}.html".format(interactive_slug)
             )
             new_interactive.save()
