@@ -5,6 +5,7 @@ from django.core.management.base import BaseCommand
 from utils.BaseLoader import BaseLoader
 from utils.LoaderFactory import LoaderFactory
 from interactives.models import Interactive
+from utils.errors.MissingRequiredFieldError import MissingRequiredFieldError
 
 
 class Command(BaseCommand):
@@ -32,7 +33,7 @@ class Command(BaseCommand):
         structure_file = base_loader.load_yaml_file(structure_file_path)
 
         interactives = structure_file.get("interactives", None)
-        if interactives is None or not isinstance(structure_file["interactives"], list):
+        if interactives is None or not isinstance(structure_file["interactives"], dict):
             raise MissingRequiredFieldError(
                 structure_file,
                 ["interactives"],
