@@ -13,3 +13,11 @@ class Interactive(models.Model):
     slug = models.SlugField(unique=True)
     name = models.CharField(max_length=100)
     template = models.CharField(max_length=150)
+
+    def __str__(self):
+        """Text representation of Interactive object.
+
+        Returns:
+            Name attribute of Interactive (str).
+        """
+        return self.name

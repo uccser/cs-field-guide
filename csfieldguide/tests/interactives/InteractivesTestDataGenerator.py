@@ -1,5 +1,7 @@
 """Create test data for interactive tests."""
 
+import os.path
+
 from interactives.models import Interactive
 
 
@@ -8,7 +10,7 @@ class InteractivesTestDataGenerator:
 
     def __init__(self):
         """Create InteractivesTestDataGenerator object."""
-        pass
+        self.LOADER_ASSET_PATH = "tests/chapters/loaders/assets/interactives/"
 
     def create_interactive(self, number):
         """Create interactive object.
@@ -21,6 +23,7 @@ class InteractivesTestDataGenerator:
         """
         interactive = Interactive(
             slug="interactive-{}".format(number),
+            name="Interacive {}".format(number),
             template="interactive-{}-template".format(number)
         )
         interactive.save()
