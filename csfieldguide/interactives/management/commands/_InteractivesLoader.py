@@ -1,8 +1,9 @@
 """Custom loader for loading an interactive."""
 
 from django.db import transaction
-from utils.BaseLoader import BaseLoader
 from interactives.models import Interactive
+from utils.BaseLoader import BaseLoader
+from utils.errors.MissingRequiredFieldError import MissingRequiredFieldError
 
 
 class InteractivesLoader(BaseLoader):

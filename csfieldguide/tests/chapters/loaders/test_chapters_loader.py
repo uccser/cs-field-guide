@@ -12,7 +12,7 @@ from utils.errors.NoHeadingFoundInMarkdownFileError import NoHeadingFoundInMarkd
 from utils.errors.CouldNotFindMarkdownFileError import CouldNotFindMarkdownFileError
 
 
-class ChapterLoaderTest(BaseTestWithDB):
+class ChaptersLoaderTest(BaseTestWithDB):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -22,28 +22,28 @@ class ChapterLoaderTest(BaseTestWithDB):
         self.config_file = "basic-config.yaml"  # placeholder, required parameter for error raised in chapter loader
         self.base_path = self.test_data.LOADER_ASSET_PATH
 
-    def test_chapters_chapter_loader_single_chapter(self):
+    def test_chapters_chapters_loader_single_chapter(self):
         chapter_slug = "chapter-1"
         chapter_structure = {"number": 1, "icon": "legitimage.png"}
 
-        chapter_loader = ChapterLoader(
+        chapters_loader = ChapterLoader(
             structure_file_path=self.config_file,
             chapter_slug=chapter_slug,
             chapter_structure=chapter_structure,
             BASE_PATH=self.base_path
         )
-        chapter_loader.load()
+        chapters_loader.load()
 
         self.assertQuerysetEqual(
             Chapter.objects.all(),
             ["<Chapter: Chapter 1>"]
         )
 
-    def test_chapters_chapter_loader_missing_chapter_number(self):
+    def test_chapters_chapters_loader_missing_chapter_number(self):
         chapter_slug = "chapter-1"
         chapter_structure = {"icon": "image.png"}
 
-        chapter_loader = ChapterLoader(
+        chapters_loader = ChapterLoader(
             structure_file_path=self.config_file,
             chapter_slug=chapter_slug,
             chapter_structure=chapter_structure,
@@ -51,14 +51,14 @@ class ChapterLoaderTest(BaseTestWithDB):
         )
         self.assertRaises(
             MissingRequiredFieldError,
-            chapter_loader.load
+            chapters_loader.load
         )
 
-    def test_chapters_chapter_loader_missing_chapter_icon(self):
+    def test_chapters_chapters_loader_missing_chapter_icon(self):
         chapter_slug = "chapter-1"
         chapter_structure = {"number": 1}
 
-        chapter_loader = ChapterLoader(
+        chapters_loader = ChapterLoader(
             structure_file_path=self.config_file,
             chapter_slug=chapter_slug,
             chapter_structure=chapter_structure,
@@ -66,10 +66,10 @@ class ChapterLoaderTest(BaseTestWithDB):
         )
         self.assertRaises(
             MissingRequiredFieldError,
-            chapter_loader.load
+            chapters_loader.load
         )
 
-    def test_chapters_chapter_loader_chapter_with_interactive(self):
+    def test_chapters_chapters_loader_chapter_with_interactive(self):
         chapter_slug = "chapter-with-interactive"
         chapter_structure = {
             "number": 1,
@@ -77,20 +77,20 @@ class ChapterLoaderTest(BaseTestWithDB):
         }
         self.test_interactive_data.create_interactive(1)
 
-        chapter_loader = ChapterLoader(
+        chapters_loader = ChapterLoader(
             structure_file_path=self.config_file,
             chapter_slug=chapter_slug,
             chapter_structure=chapter_structure,
             BASE_PATH=self.base_path
         )
-        chapter_loader.load()
+        chapters_loader.load()
 
         self.assertQuerysetEqual(
             Chapter.objects.all(),
             ["<Chapter: Chapter 1>"]
         )
 
-    def test_chapters_chapter_loader_chapter_with_incorrect_interactive_slug(self):
+    def test_chapters_chapters_loader_chapter_with_incorrect_interactive_slug(self):
         chapter_slug = "chapter-with-incorrect-interactive-slug"
         chapter_structure = {
             "number": 1,
@@ -98,7 +98,7 @@ class ChapterLoaderTest(BaseTestWithDB):
         }
         self.test_interactive_data.create_interactive(1)
 
-        chapter_loader = ChapterLoader(
+        chapters_loader = ChapterLoader(
             structure_file_path=self.config_file,
             chapter_slug=chapter_slug,
             chapter_structure=chapter_structure,
@@ -106,14 +106,14 @@ class ChapterLoaderTest(BaseTestWithDB):
         )
         self.assertRaises(
             KeyNotFoundError,
-            chapter_loader.load
+            chapters_loader.load
         )
 
     def test_missing_heading(self):
         chapter_slug = "missing-heading"
         chapter_structure = {"number": 1, "icon": "image.png"}
 
-        chapter_loader = ChapterLoader(
+        chapters_loader = ChapterLoader(
             structure_file_path=self.config_file,
             chapter_slug=chapter_slug,
             chapter_structure=chapter_structure,
@@ -121,14 +121,14 @@ class ChapterLoaderTest(BaseTestWithDB):
         )
         self.assertRaises(
             NoHeadingFoundInMarkdownFileError,
-            chapter_loader.load
+            chapters_loader.load
         )
 
-    def test_chapters_chapter_loader_title_empty_content(self):
+    def test_chapters_chapters_loader_title_empty_content(self):
         chapter_slug = "missing-content"
         chapter_structure = {"number": 1, "icon": "image.png"}
 
-        chapter_loader = ChapterLoader(
+        chapters_loader = ChapterLoader(
             structure_file_path=self.config_file,
             chapter_slug=chapter_slug,
             chapter_structure=chapter_structure,
@@ -136,14 +136,14 @@ class ChapterLoaderTest(BaseTestWithDB):
         )
         self.assertRaises(
             EmptyMarkdownFileError,
-            chapter_loader.load
+            chapters_loader.load
         )
 
-    def test_chapters_chapter_loader_empty_file(self):
+    def test_chapters_chapters_loader_empty_file(self):
         chapter_slug = "empty-file"
         chapter_structure = {"number": 1, "icon": "image.png"}
 
-        chapter_loader = ChapterLoader(
+        chapters_loader = ChapterLoader(
             structure_file_path=self.config_file,
             chapter_slug=chapter_slug,
             chapter_structure=chapter_structure,
@@ -151,14 +151,14 @@ class ChapterLoaderTest(BaseTestWithDB):
         )
         self.assertRaises(
             NoHeadingFoundInMarkdownFileError,
-            chapter_loader.load
+            chapters_loader.load
         )
 
-    def test_chapters_chapter_loader_missing_markdown_file(self):
+    def test_chapters_chapters_loader_missing_markdown_file(self):
         chapter_slug = "this-file-does-not-exist"
         chapter_structure = {"number": 1, "icon": "image.png"}
 
-        chapter_loader = ChapterLoader(
+        chapters_loader = ChapterLoader(
             structure_file_path=self.config_file,
             chapter_slug=chapter_slug,
             chapter_structure=chapter_structure,
@@ -166,5 +166,5 @@ class ChapterLoaderTest(BaseTestWithDB):
         )
         self.assertRaises(
             CouldNotFindMarkdownFileError,
-            chapter_loader.load
+            chapters_loader.load
         )
