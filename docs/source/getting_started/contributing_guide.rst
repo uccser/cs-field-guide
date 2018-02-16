@@ -217,8 +217,8 @@ We aim to abide by the following style guides:
 Licensing
 ------------------------------------------------------------------------------
 
-Any third-party libraries or packages used within this project should have
-their listed within the ``LICENSE-THIRD-PARTY`` file, with a full copy of the
+Any third-party libraries or packages used within this project should be listed
+within the ``LICENSE-THIRD-PARTY`` file, with a full copy of the
 license available within the ``third-party-licenses`` directory.
 
 Final Comments
