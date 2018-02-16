@@ -14,6 +14,12 @@ urlpatterns = [
     ),
     # eg: /interactives/sorting-algorithms/
     url(
+        r"^iframe/(?P<interactive_slug>[-\w]+)/$",
+        views.IFrameInteractiveView.as_view(),
+        name="iframe_interactive"
+    ),
+    # eg: /interactives/sorting-algorithms/
+    url(
         r"^(?P<interactive_slug>[-\w]+)/$",
         views.InteractiveView.as_view(),
         name="interactive"

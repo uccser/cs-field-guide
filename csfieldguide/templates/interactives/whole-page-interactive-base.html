@@ -12,7 +12,17 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/website.css' %}">
     <link rel="stylesheet" href="{% static 'css/third-party/featherlight.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/third-party/normalize.css' %}">
+
+    {% with 'interactives/'|add:interactive.slug|add:'/css/style.css' as css_static %}
+      <link rel="stylesheet" href="{% static css_static %}">
+    {% endwith %}
+    
+    <!--Import materialize.css-->
+    <link rel="stylesheet" href="{% static 'css/third-party/materialize.min.css' %}" type="text/css" media="screen,projection"/>
+    
     <link rel="shortcut icon" href="{% static 'img/guide-favicon.png' %}">
+
     <script type="text/javascript" src="{% static 'js/third-party/modernizr.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/third-party/jquery.js' %}"></script>
   </head>
@@ -35,10 +45,21 @@
 
     <main class="whole-page-interactive-content">
 
-    {% include interactive.template %}
+      <body>
+        <div class="row">
+          <div class="col s12 m10 l8 offset-l2 offset-m1">
+            <div class="interactive" id="interactive-high-score-boxes">
+              {% include interactive.template %}
+            </div>
+          </div>
+        </div>
+      </body>
 
     </main>
 
+    {% with 'interactives/'|add:interactive.slug|add:'/js/script.js' as js_static %}
+      <script type="text/javascript" src="{% static js_static %}"></script>
+    {% endwith %}
 
     <footer class="whole-page-interactive-footer">
       <div class="footer-third">

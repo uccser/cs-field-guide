@@ -25,3 +25,11 @@ class InteractiveView(generic.DetailView):
     model = Interactive
     slug_url_kwarg = "interactive_slug"
     template_name = "interactives/whole-page-interactive-base.html"
+
+
+class IFrameInteractiveView(generic.DetailView):
+    """View for a specific interactive."""
+
+    model = Interactive
+    slug_url_kwarg = "interactive_slug"
+    template_name = "interactives/iframe-interactive-base.html"
