@@ -43,9 +43,8 @@ class InteractivesLoader(BaseLoader):
         new_interactive = Interactive(
             slug=self.interactive_slug,
             name=interactive_name,
-            template="interactives/{}.html".format(interactive_name)
+            template="interactives/{}.html".format(self.interactive_slug)
         )
         new_interactive.save()
 
         self.log("Added interactive: {}".format(new_interactive.name))
-
