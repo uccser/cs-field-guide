@@ -4,7 +4,6 @@ import os.path
 from django.core.management.base import BaseCommand
 from utils.BaseLoader import BaseLoader
 from utils.LoaderFactory import LoaderFactory
-from interactives.models import Interactive
 from utils.errors.MissingRequiredFieldError import MissingRequiredFieldError
 
 

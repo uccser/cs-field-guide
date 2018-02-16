@@ -12,7 +12,7 @@ class InteractivesLoaderTest(BaseTestWithDB):
         self.test_data = InteractivesTestDataGenerator()
         self.loader_name = "interactives"
         self.base_path = self.test_data.LOADER_ASSET_PATH
-        self.config_file = "basic-config.yaml"  # placeholder, required parameter for error raised in interactive loader
+        self.config_file = "basic-config.yaml"
 
     def test_interactives_interactives_loader_single_interactive(self):
         interactive_slug = "interactive-1"
@@ -48,4 +48,3 @@ class InteractivesLoaderTest(BaseTestWithDB):
             MissingRequiredFieldError,
             interactive_loader.load
         )
-

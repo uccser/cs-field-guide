@@ -3,8 +3,6 @@ from tests.BaseTestWithDB import BaseTestWithDB
 from tests.chapters.ChaptersTestDataGenerator import ChaptersTestDataGenerator
 from django.urls import reverse
 
-from chapters.models import Chapter
-
 
 class IndexViewTest(BaseTestWithDB):
 
@@ -45,7 +43,7 @@ class IndexViewTest(BaseTestWithDB):
         self.test_data.create_chapter("2")
         self.test_data.create_chapter("1")
         self.test_data.create_chapter("3")
-        
+
         url = reverse("chapters:index")
         response = self.client.get(url)
 

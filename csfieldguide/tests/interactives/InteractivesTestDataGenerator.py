@@ -1,7 +1,5 @@
 """Create test data for interactive tests."""
 
-import os.path
-
 from interactives.models import Interactive
 
 

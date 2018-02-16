@@ -27,7 +27,6 @@ class GlossaryTermsLoader(BaseLoader):
     @transaction.atomic
     def load(self):
         """Load the glossary content into the database."""
-
         for filename in listdir(self.glossary_folder_path):
             if filename.endswith(self.FILE_EXTENSION):
                 glossary_slug = filename.split(".")[0]

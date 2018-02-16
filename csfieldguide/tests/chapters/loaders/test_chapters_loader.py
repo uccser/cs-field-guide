@@ -19,7 +19,7 @@ class ChaptersLoaderTest(BaseTestWithDB):
         self.test_data = ChaptersTestDataGenerator()
         self.test_interactive_data = InteractivesTestDataGenerator()
         self.loader_name = "chapters"
-        self.config_file = "basic-config.yaml"  # placeholder, required parameter for error raised in chapter loader
+        self.config_file = "basic-config.yaml"
         self.base_path = self.test_data.LOADER_ASSET_PATH
 
     def test_chapters_chapters_loader_single_chapter(self):

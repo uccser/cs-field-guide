@@ -8,7 +8,7 @@ class InteractiveModelTest(BaseTestWithDB):
         super().__init__(*args, **kwargs)
 
     def test_interactives_interactive_model(self):
-        new_interactive = Interactive.objects.create(
+        Interactive.objects.create(
             slug="interactive-1",
             name="Interactive 1",
             template="interactive-1-template"
