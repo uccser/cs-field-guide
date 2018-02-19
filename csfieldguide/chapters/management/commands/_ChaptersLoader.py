@@ -62,13 +62,15 @@ class ChaptersLoader(BaseLoader):
         )
         chapter.save()
 
-        chapter_sections = self.chapter_structure.get("sections", None)
-        if chapter_sections is None:
+        sections_yaml = self.section_structure.get("sections", None)
+        if sections_yaml is None:
             raise MissingRequiredFieldError(
                 self.structure_file_path,
                 ["sections", "chapter-number", "title"],
                 "Chapter sections"
             )
+
+        sections_path, sections_structure_file = os.path.split(sections_yaml)
 
         for (section_slug, section_structure) in chapter_sections.items():
             self.factory.create_chapter_section_loader(

@@ -1,22 +1,8 @@
 chapters:
   introduction:
-      chapter-number: 1
-      title: Introduction
-      icon: img/chapters/introduction-icon.svg
-      sections:
-        introduction-for-teachers:
-          section-number: 1
-        big-picture:
-          section-number: 2
-        beyond-speed:
-          section-number: 3
-        programming:
-          section-number: 4
-        how-to-use-this-guide:
-          section-number: 5
-        about-this-guide:
-          section-number: 6
-        further-reading:
-          section-number: 7
+    chapter-number: 1
+    title: Introduction
+    icon: img/chapters/introduction-icon.svg
+    sections: chapters/introduction/sections.yaml
 
 glossary-folder: glossary
