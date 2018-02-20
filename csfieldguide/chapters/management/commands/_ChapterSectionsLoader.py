@@ -21,6 +21,7 @@ class ChapterSectionsLoader(BaseLoader):
         super().__init__()
         self.chapter = chapter
         self.section_structure_file_path = section_structure_file_path
+        self.section_structure = self.load_yaml_file(self.section_structure_file_path)
 
     @transaction.atomic
     def load(self):
