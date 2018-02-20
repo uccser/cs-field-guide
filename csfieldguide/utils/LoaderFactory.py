@@ -9,13 +9,17 @@ from interactives.management.commands._InteractiveLoader import InteractiveLoade
 class LoaderFactory:
     """Factory for creating loader objects."""
 
-    def create_chapter_loader(self, structure_file_path, chapter_slug, chapter_structure, BASE_PATH):
+    def create_chapter_loader(self, chapter_structure_file_path, chapter_slug, chapter_number, BASE_PATH):
         """Create chapter loader."""
-        return ChaptersLoader(self, structure_file_path, chapter_slug, chapter_structure, BASE_PATH)
+        return ChaptersLoader(self, chapter_structure_file_path, chapter_slug, chapter_number, BASE_PATH)
 
-    def create_chapter_section_loader(self, structure_file_path, chapter, section_slug, section_structure, BASE_PATH):
+    # def create_chapter_section_loader(self, structure_file_path, chapter, section_slug, section_structure, BASE_PATH):
+        # """Create chapter loader."""
+        # return ChapterSectionsLoader(structure_file_path, chapter, section_slug, section_structure, BASE_PATH)
+
+    def create_chapter_section_loader(self, chapter, section_structure_file_path):
         """Create chapter loader."""
-        return ChapterSectionsLoader(structure_file_path, chapter, section_slug, section_structure, BASE_PATH)
+        return ChapterSectionsLoader(chapter, section_structure_file_path)
 
     def create_interactive_loader(self, structure_file_path, interactives, BASE_PATH):
         """Create interactive loader."""

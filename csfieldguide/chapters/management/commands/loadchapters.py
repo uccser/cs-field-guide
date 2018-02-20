@@ -49,10 +49,17 @@ class Command(BaseCommand):
                 ["chapters"],
                 "Application Structure"
             )
-        for (chapter_slug, chapter_structure) in chapters.items():
-            factory.create_chapter_loader(
-                structure_file_path,
-                chapter_slug,
-                chapter_structure,
-                BASE_PATH
-            ).load()
+        else:
+            for chapter_slug in chapters:
+                chapter_structure_file_path = os.path.join(
+                    BASE_PATH,
+                    "{}/{}.yaml".format(chapter_slug, chapter_slug)
+                )
+                chapter_number = chapters[chapter_slug]["chapter-number"]
+                # TODO check chapter_number is int
+                factory.create_chapter_loader(
+                    chapter_structure_file_path,
+                    chapter_slug,
+                    chapter_number,
+                    BASE_PATH
+                ).load()

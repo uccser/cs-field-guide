@@ -1,8 +1,5 @@
 chapters:
   introduction:
     chapter-number: 1
-    title: Introduction
-    icon: img/chapters/introduction-icon.svg
-    sections: chapters/introduction/sections.yaml
 
 glossary-folder: glossary

@@ -1,5 +1,6 @@
 """Custom loader for loading a topic."""
 
+import os.path
 from django.db import transaction
 from utils.BaseLoader import BaseLoader
 from utils.errors.MissingRequiredFieldError import MissingRequiredFieldError
@@ -9,22 +10,23 @@ from chapters.models import Chapter
 class ChaptersLoader(BaseLoader):
     """Custom loader for loading chapters."""
 
-    def __init__(self, factory, structure_file_path, chapter_slug, chapter_structure, BASE_PATH):
-        """Create the loader for loading a topic.
+    def __init__(self, factory, chapter_structure_file_path, chapter_slug, chapter_number, BASE_PATH):
+        """Create the loader for loading a Chapter.
 
         Args:
             factory (LoaderFactory): Object for creating other loaders.
-            structure_file_path (str): Path to application structure file.
+            chapter_structure_file_path (str): Path to chapter structure file.
             chapter_slug (str): Key for chapter to load.
-            chapter_stucture (dict): Attributes for the chapter (e.g. chapter number).
+            chapter_number (int): Chapter number relative to other chapters.
             BASE_PATH (str): Base file path.
         """
         super().__init__(BASE_PATH)
         self.factory = factory
-        self.structure_file_path = structure_file_path
+        self.chapter_structure_file_path = chapter_structure_file_path
+        self.chapter_structure = self.load_yaml_file(self.chapter_structure_file_path)
         self.chapter_slug = chapter_slug
-        self.chapter_structure = chapter_structure
-        self.BASE_PATH = "{}chapters/{}".format(BASE_PATH, self.chapter_slug)
+        self.chapter_number = chapter_number
+        self.chapter_path = os.path.join(BASE_PATH, self.chapter_slug)
 
     @transaction.atomic
     def load(self):
@@ -34,52 +36,45 @@ class ChaptersLoader(BaseLoader):
             MissingRequiredFieldError: When a config (yaml) file is missing a required
                 field.
         """
-        chapter_number = self.chapter_structure.get("chapter-number", None)
-        if chapter_number is None:
-            raise MissingRequiredFieldError(
-                self.structure_file_path,
-                ["sections", "chapter-number", "title"],
-                "Chapter number"
-            )
-
-        chapter_title = self.chapter_structure.get("title", None)
-        if chapter_title is None:
-            raise MissingRequiredFieldError(
-                self.structure_file_path,
-                ["sections", "chapter-number", "title"],
-                "Chapter title"
-            )
+        chapter_introduction = self.convert_md_file(
+            os.path.join(
+                self.chapter_path,
+                "{}.md".format(self.chapter_slug)
+            ),
+            self.chapter_structure_file_path,
+        )
 
         chapter_icon = self.chapter_structure.get("icon", None)
 
         # Create chapter object and save to the db
         chapter = Chapter(
             slug=self.chapter_slug,
-            name=chapter_title,
-            number=chapter_number,
+            name=chapter_introduction.title,
+            number=self.chapter_number,
+            introduction=chapter_introduction,
             other_resources=None,
             icon=chapter_icon
         )
         chapter.save()
 
-        sections_yaml = self.section_structure.get("sections", None)
+        sections_yaml = self.chapter_structure.get("sections", None)
         if sections_yaml is None:
             raise MissingRequiredFieldError(
-                self.structure_file_path,
+                self.chapter_structure_file_path,
                 ["sections", "chapter-number", "title"],
                 "Chapter sections"
             )
 
         sections_path, sections_structure_file = os.path.split(sections_yaml)
 
-        for (section_slug, section_structure) in chapter_sections.items():
-            self.factory.create_chapter_section_loader(
-                self.structure_file_path,
-                chapter,
-                section_slug,
-                section_structure,
-                self.BASE_PATH
-            ).load()
+        sections_structure_file_path = os.path.join(
+            self.BASE_PATH,
+            "{}/sections.yaml".format(self.chapter_slug)
+        )
+        self.factory.create_chapter_section_loader(
+            chapter,
+            sections_structure_file_path,
+        ).load()
 
         self.log("Added Chapter: {}".format(chapter.name))
 
