@@ -1,6 +1,7 @@
 """Models for the chapters application."""
 
 from django.db import models
+from django.core.exceptions import ValidationError
 
 
 class GlossaryTerm(models.Model):
@@ -54,9 +55,9 @@ class ChapterSection(models.Model):
     """Model for each section in a chapter in database."""
 
     #  Auto-incrementing 'id' field is automatically set by Django
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField()
     heading = models.CharField(max_length=100)
-    number = models.SmallIntegerField(unique=True)
+    number = models.SmallIntegerField()
     content = models.TextField()
     chapter = models.ForeignKey(
         Chapter,
@@ -71,6 +72,16 @@ class ChapterSection(models.Model):
             Heading of chapter section (str).
         """
         return self.heading
+
+    def clean(self):
+        raise ValidationError(('Section number must be unique per chapter.'))
+        sections = ChapterSection.objects.filter(number=self.number)
+        if sections.filter(chapter__number=self.chapter__number).exists():
+            raise ValidationError(('Section number must be unique per chapter.'))
+
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        super(ChapterSection, self).save(*args, **kwargs)
 
     class Meta:
         """Set consistent ordering of chapter sections."""
