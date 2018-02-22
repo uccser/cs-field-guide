@@ -63,3 +63,6 @@ class Command(BaseCommand):
                     chapter_number,
                     BASE_PATH
                 ).load()
+
+            base_loader.log("All chapters loaded!")
+            base_loader.log("")

@@ -1,20 +1,17 @@
-introduction-for-teachers:
+big-picture:
   section-number: 1
 
-big-picture:
+beyond-speed:
   section-number: 2
 
-beyond-speed:
+programming:
   section-number: 3
 
-programming:
+how-to-use-this-guide:
   section-number: 4
 
-how-to-use-this-guide:
+about-this-guide:
   section-number: 5
 
-about-this-guide:
-  section-number: 6
-
 further-reading:
-  section-number: 7
+  section-number: 6

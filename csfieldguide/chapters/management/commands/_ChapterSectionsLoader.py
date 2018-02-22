@@ -10,16 +10,17 @@ from chapters.models import ChapterSection
 class ChapterSectionsLoader(BaseLoader):
     """Custom loader for loading chapter sections."""
 
-    def __init__(self, chapter, section_structure_file_path):
+    def __init__(self, chapter, chapter_path, section_structure_file_path):
         """Create the loader for loading a ChapterSection.
 
         Args:
             chapter (Chapter): Chapter object to attach section to.
-            section_stucture (dict): Attributes for the chapter section (e.g. section number).
-            BASE_PATH (str): Base file path.
+            chapter_path (str): Path to chapter's files
+            section_stucture_file_path (str): Path to sections structure file.
         """
         super().__init__()
         self.chapter = chapter
+        self.section_path = os.path.join(chapter_path, "sections")
         self.section_structure_file_path = section_structure_file_path
         self.section_structure = self.load_yaml_file(self.section_structure_file_path)
 
@@ -31,34 +32,32 @@ class ChapterSectionsLoader(BaseLoader):
             MissingRequiredFieldError: When a config (yaml) file is missing a required
                 field.
         """
-        print(self.chapter, self.section_structure_file_path)
-        # Convert the content to HTML
-        section_content = self.convert_md_file(
-            os.path.join(
-                self.BASE_PATH,
-                "{}.md".format(self.section_slug)
-            ),
-            self.structure_file_path,
-        )
-
-        section_number = self.section_structure.get("section-number", None)
-        if section_number is None:
-            raise MissingRequiredFieldError(
-                self.structure_file_path,
-                ["section-number"],
-                "Chapter section"
+        for section_slug, section_structure in self.section_structure.items():
+            # Convert the content to HTML
+            section_content = self.convert_md_file(
+                os.path.join(
+                    self.section_path,
+                    "{}.md".format(section_slug)
+                ),
+                self.section_structure_file_path,
             )
 
-        # Create ChapterSection object and save to the db
-        chapter_section = ChapterSection(
-            slug=self.section_slug,
-            heading=section_content.title,
-            number=section_number,
-            content=section_content.html_string,
-            chapter=self.chapter
-        )
-        chapter_section.save()
+            section_number = section_structure.get("section-number", None)
+            if section_number is None:
+                raise MissingRequiredFieldError(
+                    self.section_structure_file_path,
+                    ["section-number"],
+                    "Chapter section"
+                )
 
-        self.log("Added Chapter Section: {}".format(chapter_section.heading))
+            # Create ChapterSection object and save to the db
+            chapter_section = ChapterSection(
+                slug=section_slug,
+                heading=section_content.title,
+                number=section_number,
+                content=section_content.html_string,
+                chapter=self.chapter
+            )
+            chapter_section.save()
 
-        self.log("")
+            self.log("Added Chapter Section: {}".format(chapter_section.heading), 1)
