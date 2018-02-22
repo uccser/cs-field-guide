@@ -74,9 +74,11 @@ class ChapterSection(models.Model):
         return self.heading
 
     def clean(self):
-        raise ValidationError(('Section number must be unique per chapter.'))
-        sections = ChapterSection.objects.filter(number=self.number)
-        if sections.filter(chapter__number=self.chapter__number).exists():
+        """Used to check for unique section numbers."""
+        # get all sections with same section number and chapter as new section being added
+        sections = ChapterSection.objects.filter(number=self.number, chapter=self.chapter)
+        # if already exists section with same number in same chapter, then throw error!
+        if len(sections) >= 1:
             raise ValidationError(('Section number must be unique per chapter.'))
 
     def save(self, *args, **kwargs):

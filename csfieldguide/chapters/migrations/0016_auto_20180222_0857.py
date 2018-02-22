@@ -16,6 +16,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='chaptersection',
             name='number',
-            field=models.SmallIntegerField(validators=[chapters.models.unique_validator]),
+            field=models.SmallIntegerField(),
         ),
     ]
