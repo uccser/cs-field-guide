@@ -12,6 +12,13 @@
 
 {% block content %}
 
-  {% render_html_field chapter.name %}
+  {% render_html_field chapter.introduction %}
+
+  <h2>Sections in this chapter:</h2>
+  <ol>
+    {% for section in chapter_sections %}
+    <li><a href="{% url 'chapters:chapter_section' chapter.slug section.slug %}">{{ section.heading }}</a>
+    {% endfor %}
+  </ol>
 
 {% endblock content %}

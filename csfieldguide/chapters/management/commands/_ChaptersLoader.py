@@ -51,7 +51,7 @@ class ChaptersLoader(BaseLoader):
             slug=self.chapter_slug,
             name=chapter_introduction.title,
             number=self.chapter_number,
-            introduction=chapter_introduction,
+            introduction=chapter_introduction.html_string,
             other_resources=None,
             icon=chapter_icon
         )
