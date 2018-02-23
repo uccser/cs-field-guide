@@ -3,5 +3,9 @@ chapters:
     chapter-number: 1
   algorithms:
     chapter-number: 2
+  artificial-intelligence:
+    chapter-number: 3
+  coding-compression:
+    chapter-number: 4
 
 glossary-folder: glossary

@@ -1,0 +1,20 @@
+the-big-picture:
+  section-number: 1
+
+run-length-encoding:
+  section-number: 2
+
+image-compression-using-jpeg:
+  section-number: 3
+
+general-purpose:
+  section-number: 4
+
+audio-compression:
+  section-number: 5
+
+the-whole-story:
+  section-number: 6
+
+further-reading:
+  section-number: 7
