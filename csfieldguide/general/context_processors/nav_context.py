@@ -1,6 +1,6 @@
 """Context processor for displaying chapters in nav bar."""
 
-from chapters.models import Chapter, ChapterSection
+from chapters.models import Chapter
 
 
 def nav_context(context):
@@ -9,12 +9,4 @@ def nav_context(context):
     Returns:
         Dictionary containing list of chapter objects
     """
-    chapters = Chapter.objects.all()
-    # Add first chapter section to each chapter
-    chapter_sections = ChapterSection.objects.all()
-    for chapter in chapters:
-        chapter.first_section = chapter_sections.get(
-            chapter=chapter,
-            number=1
-        )
-    return {'chapters': chapters}
+    return {'chapters': Chapter.objects.all()}
