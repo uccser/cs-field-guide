@@ -1,7 +1,6 @@
 """Views for the general application."""
 
-from django.views.generic import TemplateView, ListView
-from chapters.models import Chapter, ChapterSection
+from django.views.generic import TemplateView
 
 
 class GeneralIndexView(TemplateView):

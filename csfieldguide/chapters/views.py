@@ -24,6 +24,11 @@ class IndexView(generic.ListView):
         return Chapter.objects.order_by("number")
 
     def get_context_data(self, **kwargs):
+        """Provide the context data for the index view.
+
+        Returns:
+            Dictionary of context data.
+        """
         context = super(IndexView, self).get_context_data(**kwargs)
         chapter_sections = ChapterSection.objects.all()
         for chapter in self.object_list:
@@ -57,12 +62,25 @@ class ChapterView(generic.DetailView):
     context_object_name = "chapter"
 
     def get_object(self, **kwargs):
+        """Retrieve object for the chapter view.
+
+        Returns:
+            Chapter object (Chapter).
+
+        Raises:
+           404 error: if oject cannot be found.
+        """
         return get_object_or_404(
             self.model.objects.select_related(),
             slug=self.kwargs.get("chapter_slug", None)
         )
 
     def get_context_data(self, **kwargs):
+        """Provide the context data for the chapter view.
+
+        Returns:
+            Dictionary of context data.
+        """
         context = super(ChapterView, self).get_context_data(**kwargs)
         context["chapter_sections"] = ChapterSection.objects.filter(
             chapter__slug=self.object.slug
@@ -78,6 +96,14 @@ class ChapterSectionView(generic.DetailView):
     context_object_name = "chapter_section"
 
     def get_object(self, **kwargs):
+        """Retrieve object for the chapter section view.
+
+        Returns:
+            ChapterSection object (ChapterSection).
+
+        Raises:
+           404 error: if oject cannot be found.
+        """
         return get_object_or_404(
             self.model.objects.select_related(),
             slug=self.kwargs.get("chapter_section_slug", None),
@@ -85,6 +111,11 @@ class ChapterSectionView(generic.DetailView):
         )
 
     def get_context_data(self, **kwargs):
+        """Provide the context data for the chapter section view.
+
+        Returns:
+            Dictionary of context data.
+        """
         context = super(ChapterSectionView, self).get_context_data(**kwargs)
         current_section_number = self.object.number
         context["previous_section"] = ChapterSection.objects.filter(
