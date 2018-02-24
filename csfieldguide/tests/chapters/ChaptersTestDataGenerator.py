@@ -38,7 +38,8 @@ class ChaptersTestDataGenerator:
         chapter = Chapter(
             slug="chapter-{}".format(number),
             name="Chapter {}".format(number),
-            number=number
+            number=number,
+            introduction="Introducation for chapter {}".format(number)
         )
         chapter.save()
         return chapter
