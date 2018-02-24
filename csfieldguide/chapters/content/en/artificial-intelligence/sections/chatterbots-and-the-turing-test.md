@@ -1,4 +1,4 @@
-## Chatterbots and The Turing Test
+# Chatterbots and The Turing Test
 
 {image file-path="computer-studying-turing-test.png" alt="The computer is reading a book titled 'Talk like a human'"}
 
@@ -11,7 +11,7 @@ You may come across chatterbots online for serious uses (such as giving help on 
 Sometimes it's hard to tell if you're getting an automated response.
 We'll start off by looking at some very simple chatterbots that are only designed as an experiment rather than to offer serious advice.
 
-### A Therapy Session with Eliza the Chatterbot
+## A Therapy Session with Eliza the Chatterbot
 
 {panel type="teacher-note"}
 
@@ -80,7 +80,7 @@ How many can you find? In addition, how does Eliza respond when you do the follo
 - If you say the same thing you said earlier in the conversation, does Eliza always respond in the same way? (When you say it immediately after, she probably won’t, as she’ll comment on the fact that you repeated yourself the second time!)
 - What happens when you talk about things that are unrelated to what would be said in a therapy session, i.e. you try to have a general conversation with Eliza (remember that Eliza works in a restricted domain, i.e. she assumes she is a therapist).
 
-### Alice the Chatterbot
+## Alice the Chatterbot
 
 We saw above that Eliza is a chatterbot who works with a restricted domain (trying to take the role of a therapist), and tried to sound intelligent by giving very general responses.
 As you probably found out though, this quickly reveals that Eliza really isn’t intelligent at all, and will just repeat the same things over and over again.
@@ -125,7 +125,7 @@ While Alice is undoubtedly more intelligent than Eliza, Alice still has her limi
 
 I suppose I was a bit mean for tricking her and saying "what will". Her rules assume a human wouldn’t mislead her like that.
 
-### Chatterbots that learn from humans
+## Chatterbots that learn from humans
 
 We saw in the previous sections examples of two chatterbots that have rules that help them determine suitable things to say.
 One of those chatterbots only works in a restricted domain, taking the role of a therapist, and is unable to have very general conversations, and the other is able to have more general conversations.
@@ -180,7 +180,7 @@ Check out the short film ["Do You Love Me"](https://www.youtube.com/watch?v=QkNA
 
 {panel end}
 
-### Even more Chatterbots!
+## Even more Chatterbots!
 
 There are even more chatterbots you can talk to.
 Try looking at the [list on wikipedia](https://en.wikipedia.org/wiki/List_of_chatterbots), or doing a google search for chatterbots.
@@ -191,7 +191,7 @@ If you have a device that runs Apple iOS (for example an iPhone), have a look at
 Siri is an example of a chatterbot that has the job of *helping* a human, unlike most chatterbots which simply have the purpose of web entertainment.
 It also has voice recognition, so you can talk to it rather than just typing to it.
 
-### The Turing Test
+## The Turing Test
 
 {panel type="teacher-note"}
 

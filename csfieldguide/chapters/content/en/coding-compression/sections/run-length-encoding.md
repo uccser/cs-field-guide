@@ -1,4 +1,4 @@
-## Run Length Encoding
+# Run Length Encoding
 
 {video url="https://www.youtube.com/embed/uaV2RuAJTjQ?rel=0"}
 
@@ -181,7 +181,7 @@ In this video from a Computer Science Unplugged show, a Run length encoded image
 
 {panel end}
 
-### Converting Run Length Encoding back to the original representation
+## Converting Run Length Encoding back to the original representation
 
 Just to ensure that we can reverse the compression process, have a go at finding the original representation (zeroes and ones) of this (compressed) image.
 
@@ -211,7 +211,7 @@ The following interactive allows you to experiment further with Run Length Encod
 
 {comment interactive name="run-length-encoding" type="whole-page" text="Run Length Encoding interactive"}
 
-### Analysing Run Length Encoding
+## Analysing Run Length Encoding
 
 How much space have we saved using this alternate representation, and how can we measure it? One simple way to consider this is to imagine you were typing these representations, so you could think of each of the original bits being stored as one character, and each of the RLE codes using a character for each digit and comma (this is a bit crude, but it's a starting point).
 
@@ -235,7 +235,7 @@ The bit patterns used are usually based on a technique called Huffman coding, bu
 
 {panel end}
 
-### Where is Run Length Encoding used in practice?
+## Where is Run Length Encoding used in practice?
 
 The main place that black and white scanned images are used now is on fax machines, which use this approach to compression.
 One reason that it works so well with scanned pages the number of consecutive white pixels is huge.
@@ -266,8 +266,7 @@ for example, songs often follow the "mp3" standard so that when they are downloa
 
 {panel end}
 
-
-### Lossy vs Lossless compression
+## Lossy vs Lossless compression
 
 As the compressed representation of the image can be converted back to the original representation, and both the original representation and the compressed representation would give the same image when read by a computer, this compression algorithm is called *lossless*, i.e. none of the data was lost from compressing the image, and as a result the compression could be undone exactly.
 

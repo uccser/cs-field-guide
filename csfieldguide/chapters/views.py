@@ -90,7 +90,7 @@ class ChapterSectionView(generic.DetailView):
         context["previous_section"] = ChapterSection.objects.filter(
             chapter=self.object.chapter,
             number=current_section_number - 1
-        )[0]
+        )
         context["next_section"] = ChapterSection.objects.filter(
             chapter=self.object.chapter,
             number=current_section_number + 1

@@ -1,4 +1,4 @@
-## Image compression using JPEG
+# Image compression using JPEG
 
 Images can take up a lot of space, and most of the time that pictures are stored on a computer they are compressed to avoid wasting too much space.
 With a lot of images (especially photographs), there's no need to store the image exactly as it was originally, because it contains way more detail than anyone can see.

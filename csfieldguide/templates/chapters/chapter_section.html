@@ -17,12 +17,12 @@
 
   <div id="chapter-section-buttons">
     {% if previous_section %}
-      <a href="{% url 'chapters:chapter_section' chapter.slug previous_section.0.slug %}" class="btn-menu">
+      <a id="section-prev-btn" href="{% url 'chapters:chapter_section' chapter.slug previous_section.0.slug %}" class="btn-menu">
         Previous: {{ previous_section.0.heading }}
       </a>
     {% endif %}
     {% if next_section %}
-      <a href="{% url 'chapters:chapter_section' chapter.slug next_section.0.slug %}" class="btn-menu">
+      <a id="section-next-btn" href="{% url 'chapters:chapter_section' chapter.slug next_section.0.slug %}" class="btn-menu">
         Next: {{ next_section.0.heading }}
       </a>
     {% endif %}

@@ -1,4 +1,4 @@
-## Audio compression
+# Audio compression
 
 One of the most widely used methods for compressing music is MP3, which is actually from a video compression standard called MPEG (Moving Picture Experts Group).
 

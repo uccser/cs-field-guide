@@ -1,4 +1,4 @@
-## General purpose compression
+# General purpose compression
 
 General purpose compression methods need to be lossless because you can't assume that the user won't mind if the data is changed.
 The most widely used general purpose compression algorithms (such as ZIP, gzip, and rar) are based on a method called "Ziv-Lempel coding", invented by Jacob Ziv and Abraham Lempel in the 1970s.
