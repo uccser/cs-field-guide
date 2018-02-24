@@ -46,13 +46,26 @@ class ChaptersLoader(BaseLoader):
 
         chapter_icon = self.chapter_structure.get("icon", None)
 
+        chapter_other_resources_html = None
+        if "other-resources" in self.chapter_structure:
+            chapter_other_resources_file = self.chapter_structure.get("other-resources", None)
+            if chapter_other_resources_file is not None:
+                other_resources_content = self.convert_md_file(
+                    os.path.join(
+                        self.chapter_path,
+                        chapter_other_resources_file,
+                    ),
+                    self.chapter_structure_file_path,
+                )
+                chapter_other_resources_html = other_resources_content.html_string
+
         # Create chapter object and save to the db
         chapter = Chapter(
             slug=self.chapter_slug,
             name=chapter_introduction.title,
             number=self.chapter_number,
             introduction=chapter_introduction.html_string,
-            other_resources=None,
+            other_resources=chapter_other_resources_html,
             icon=chapter_icon
         )
         chapter.save()

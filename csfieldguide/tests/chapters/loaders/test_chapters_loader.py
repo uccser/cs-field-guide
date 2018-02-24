@@ -6,6 +6,7 @@ from chapters.management.commands._ChaptersLoader import ChaptersLoader
 from chapters.models import Chapter
 from utils.errors.MissingRequiredFieldError import MissingRequiredFieldError
 from utils.errors.NoHeadingFoundInMarkdownFileError import NoHeadingFoundInMarkdownFileError
+from utils.errors.EmptyMarkdownFileError import EmptyMarkdownFileError
 
 
 class ChaptersLoaderTest(BaseTestWithDB):
@@ -103,6 +104,27 @@ class ChaptersLoaderTest(BaseTestWithDB):
             chapter_loader.load
         )
 
+    def test_chapters_chapter_loader_introduction_missing_content(self):
+        chapter_slug = "missing-content"
+        chapter_number = 1
+        chapter_structure_file_path = os.path.join(
+            self.base_path,
+            chapter_slug,
+            "{}.yaml".format(chapter_slug)
+        )
+
+        chapter_loader = ChaptersLoader(
+            factory=self.factory,
+            chapter_structure_file_path=chapter_structure_file_path,
+            chapter_slug=chapter_slug,
+            chapter_number=chapter_number,
+            BASE_PATH=self.base_path
+        )
+        self.assertRaises(
+            EmptyMarkdownFileError,
+            chapter_loader.load
+        )
+
     def test_chapters_chapter_loader_missing_sections(self):
         chapter_slug = "missing-sections"
         chapter_number = 1
@@ -124,3 +146,42 @@ class ChaptersLoaderTest(BaseTestWithDB):
             MissingRequiredFieldError,
             chapter_loader.load
         )
+
+    def test_chapters_chapter_loader_no_icon(self):
+        chapter_slug = "no-icon"
+        chapter_number = 1
+        chapter_structure_file_path = os.path.join(
+            self.base_path,
+            chapter_slug,
+            "{}.yaml".format(chapter_slug)
+        )
+        chapter_loader = ChaptersLoader(
+            factory=self.factory,
+            chapter_structure_file_path=chapter_structure_file_path,
+            chapter_slug=chapter_slug,
+            chapter_number=chapter_number,
+            BASE_PATH=self.base_path
+        )
+        chapter_loader.load()
+
+    def test_chapters_chapter_loader_other_resources(self):
+        chapter_slug = "other-resources"
+        chapter_number = 1
+        chapter_structure_file_path = os.path.join(
+            self.base_path,
+            chapter_slug,
+            "{}.yaml".format(chapter_slug)
+        )
+        chapter_loader = ChaptersLoader(
+            factory=self.factory,
+            chapter_structure_file_path=chapter_structure_file_path,
+            chapter_slug=chapter_slug,
+            chapter_number=chapter_number,
+            BASE_PATH=self.base_path
+        )
+        chapter_loader.load()
+
+        chapter = Chapter.objects.get(
+            slug=chapter_slug
+        )
+        self.assertIsNotNone(chapter.other_resources)
