@@ -33,6 +33,13 @@ class ChapterSectionsLoader(BaseLoader):
                 field.
         """
         for section_slug, section_structure in self.section_structure.items():
+            if section_structure is None:  # must be missing the single required field
+                raise MissingRequiredFieldError(
+                    self.section_structure_file_path,
+                    ["section-number"],
+                    "Chapter section"
+                )
+
             # Convert the content to HTML
             section_content = self.convert_md_file(
                 os.path.join(
