@@ -64,7 +64,9 @@ class ChapterView(generic.DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(ChapterView, self).get_context_data(**kwargs)
-        context["chapter_sections"] = ChapterSection.objects.all()
+        context["chapter_sections"] = ChapterSection.objects.filter(
+            chapter__slug=self.object.slug
+        )
         return context
 
 
@@ -86,9 +88,11 @@ class ChapterSectionView(generic.DetailView):
         context = super(ChapterSectionView, self).get_context_data(**kwargs)
         current_section_number = self.object.number
         context["previous_section"] = ChapterSection.objects.filter(
+            chapter=self.object.chapter,
             number=current_section_number - 1
-        )
+        )[0]
         context["next_section"] = ChapterSection.objects.filter(
+            chapter=self.object.chapter,
             number=current_section_number + 1
         )
         context["chapter"] = self.object.chapter
