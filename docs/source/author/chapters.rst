@@ -34,7 +34,7 @@ Application Structure Configuration File
 
         - **Required Fields:**
 
-      	  - ``chapter-number:`` The number order for this chapter.
+          - ``chapter-number:`` The number order for this chapter.
 
 - **Optional Fields:**
 
@@ -43,7 +43,7 @@ Application Structure Configuration File
 A complete chapter application structure file with multiple chapters may look like the following:
 
   .. code-block:: yaml
-    
+
     chapters:
       introduction:
         chapter-number: 1
@@ -76,7 +76,7 @@ Chapter Configuration File
 A complete chapter structure file may look like the following:
 
   .. code-block:: yaml
-    
+
     icon: img/chapters/introduction-thumbnail.png
     sections: sections/sections.yaml
     other-resources: other-resources.md
@@ -104,7 +104,7 @@ Chapter Sections Configuration File
 A complete chapter application structure file with multiple chapters may look like the following:
 
   .. code-block:: yaml
-    
+
     introduction-for-teachers:
       section-number: 1
 
