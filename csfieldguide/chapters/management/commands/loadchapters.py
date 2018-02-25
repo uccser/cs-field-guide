@@ -2,11 +2,10 @@
 
 import os.path
 from django.core.management.base import BaseCommand
-
 from utils.BaseLoader import BaseLoader
 from utils.LoaderFactory import LoaderFactory
-
 from utils.errors.MissingRequiredFieldError import MissingRequiredFieldError
+from utils.errors.InvalidYAMLValueError import InvalidYAMLValueError
 
 
 class Command(BaseCommand):
@@ -56,7 +55,12 @@ class Command(BaseCommand):
                     "{}/{}.yaml".format(chapter_slug, chapter_slug)
                 )
                 chapter_number = chapters[chapter_slug]["chapter-number"]
-                # TODO check chapter_number is int
+                if isinstance(chapter_number, int) is False:
+                    raise InvalidYAMLValueError(
+                        structure_file_path,
+                        "chapter-number - value '{}' is invalid".format(chapter_number),
+                        "chapter-number must be an integer value."
+                    )
                 factory.create_chapter_loader(
                     chapter_structure_file_path,
                     chapter_slug,

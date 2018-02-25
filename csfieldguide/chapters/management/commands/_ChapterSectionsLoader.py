@@ -4,6 +4,7 @@ import os.path
 from django.db import transaction
 from utils.BaseLoader import BaseLoader
 from utils.errors.MissingRequiredFieldError import MissingRequiredFieldError
+from utils.errors.InvalidYAMLValueError import InvalidYAMLValueError
 from chapters.models import ChapterSection
 
 
@@ -23,6 +24,7 @@ class ChapterSectionsLoader(BaseLoader):
         self.section_path = os.path.join(chapter_path, "sections")
         self.section_structure_file_path = section_structure_file_path
         self.section_structure = self.load_yaml_file(self.section_structure_file_path)
+        self.required_fields = ["section-number"]
 
     @transaction.atomic
     def load(self):
@@ -36,7 +38,7 @@ class ChapterSectionsLoader(BaseLoader):
             if section_structure is None:  # must be missing the single required field
                 raise MissingRequiredFieldError(
                     self.section_structure_file_path,
-                    ["section-number"],
+                    self.required_fields,
                     "Chapter section"
                 )
 
@@ -50,11 +52,17 @@ class ChapterSectionsLoader(BaseLoader):
             )
 
             section_number = section_structure.get("section-number", None)
+            if isinstance(section_number, int) is False:
+                raise InvalidYAMLValueError(
+                    self.structure_file_path,
+                    "section-number - value '{}' is invalid".format(section_number),
+                    "section-number must be an integer value."
+                )
             if section_number is None:
                 raise MissingRequiredFieldError(
                     self.section_structure_file_path,
-                    ["section-number"],
-                    "Chapter section"
+                    self.required_fields,
+                    "ChapterSection"
                 )
 
             # Create ChapterSection object and save to the db
