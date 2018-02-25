@@ -12,12 +12,11 @@ for the project.
 Chapters Overview
 ==============================================================================
 
+The application is made up of **chapters** and each **chapter** is broken down into **sections** which are specified in the ``structure.yaml`` file, which is in YAML format.
+
 
 Application Structure Configuration File
 ==============================================================================
-
-
-The application is made up of **chapters** and each **chapter** is broken down into **sections** which are specified in the ``structure.yaml`` file, which is in YAML format.
 
 - **File Name:** ``structure.yaml``
 
@@ -27,7 +26,7 @@ The application is made up of **chapters** and each **chapter** is broken down i
 
 - **Required Fields:**
 
-  - ``chapters:`` A dictionary of chapters, where eacy key is a chapter.
+  - ``chapters:`` A dictionary of chapters, where each key is a chapter.
 
     - **Required Fields:**
 
@@ -36,20 +35,6 @@ The application is made up of **chapters** and each **chapter** is broken down i
         - **Required Fields:**
 
       	  - ``chapter-number:`` The number order for this chapter.
-
-          - ``title:`` The title of the chapter.
-
-          - ``icon:`` The file path to the icon for the chapter.
-
-          - ``sections:`` A dictionary of sections, where each key is the key to a section.
-
-      	    - **Required Fields:**
-
-      	      - ``<section-key>:`` The key for a section.
-
-      	        - **Required Fields:**
-
-            	  - ``section-number:`` The number order for this section.
 
 - **Optional Fields:**
 
@@ -62,20 +47,66 @@ A complete chapter application structure file with multiple chapters may look li
     chapters:
       introduction:
         chapter-number: 1
-        title: Introduction
-        icon: img/chapters/introduction-icon.png
-        sections:
-          introduction-for-teachers:
-            section-number: 1
-          further-reading:
-            section-number: 2
       algorithms:
-        chapter-number: 1
-        title: Algorithms
-        icon: img/chapters/algorithms-icon.png
-        sections:
-          the-big-picture:
-            section-number: 1
-          sorting-algorithms:
-            section-number: 2
-      glossary-folder: glossary
+        chapter-number: 2
+    glossary-folder: glossary
+
+
+Chapter Configuration File
+==============================================================================
+
+- **File Name:** ``<chapter-key>.yaml``
+
+- **Location:** ``chapters/content/en/<chapter-key>/``
+
+- **Referenced in:** ``chapters/content/en/structure.yaml``
+
+- **Purpose:** Defines the attributes for a particular chapter.
+
+- **Required Fields:**
+
+  - ``icon:`` File path to the icon for the chapter.
+
+  - ``sections:`` File path to the configuration files for sections in the chapter.
+
+- **Optional Fields:**
+
+  - ``other-resources``: File path to a file with additional resources for the chapter.
+
+A complete chapter structure file may look like the following:
+
+  .. code-block:: yaml
+    
+    icon: img/chapters/introduction-thumbnail.png
+    sections: sections/sections.yaml
+    other-resources: other-resources.md
+
+
+Chapter Sections Configuration File
+==============================================================================
+
+- **File Name:** ``sections.yaml``
+
+- **Location:** ``chapters/content/en/<chapter-key>/sections/``
+
+- **Referenced in:** ``chapters/content/en/<chapter-key>/<chapter-key>.yaml``
+
+- **Purpose:** Specifiy sections for a chapter and their relative order.
+
+- **Required Fields:**
+
+  - ``<section-key>:`` Key for the section.
+
+    - **Required Fields:**
+
+      - ``section-number:`` Number order for the section in the chapter.
+
+A complete chapter application structure file with multiple chapters may look like the following:
+
+  .. code-block:: yaml
+    
+    introduction-for-teachers:
+      section-number: 1
+
+    further-reading:
+      section-number: 2
