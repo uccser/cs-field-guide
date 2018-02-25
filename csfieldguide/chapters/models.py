@@ -35,7 +35,7 @@ class Chapter(models.Model):
     number = models.SmallIntegerField(unique=True)
     introduction = models.TextField()
     other_resources = models.TextField(null=True)
-    icon = models.CharField(max_length=100, null=True)
+    icon = models.CharField(max_length=100)
 
     def __str__(self):
         """Text representation of Chapter object.
