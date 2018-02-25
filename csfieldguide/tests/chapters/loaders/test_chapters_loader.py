@@ -162,7 +162,10 @@ class ChaptersLoaderTest(BaseTestWithDB):
             chapter_number=chapter_number,
             BASE_PATH=self.base_path
         )
-        chapter_loader.load()
+        self.assertRaises(
+            MissingRequiredFieldError,
+            chapter_loader.load
+        )
 
     def test_chapters_chapter_loader_other_resources(self):
         chapter_slug = "other-resources"

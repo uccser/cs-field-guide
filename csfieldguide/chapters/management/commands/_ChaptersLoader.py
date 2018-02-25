@@ -27,6 +27,7 @@ class ChaptersLoader(BaseLoader):
         self.chapter_slug = chapter_slug
         self.chapter_number = chapter_number
         self.chapter_path = os.path.join(BASE_PATH, self.chapter_slug)
+        self.required_fields = ["sections", "icon"],
 
     @transaction.atomic
     def load(self):
@@ -45,6 +46,12 @@ class ChaptersLoader(BaseLoader):
         )
 
         chapter_icon = self.chapter_structure.get("icon", None)
+        if chapter_icon is None:
+            raise MissingRequiredFieldError(
+                self.chapter_structure_file_path,
+                self.required_fields,
+                "Chapter"
+            )
 
         chapter_other_resources_html = None
         if "other-resources" in self.chapter_structure:
@@ -76,8 +83,8 @@ class ChaptersLoader(BaseLoader):
         if sections_yaml is None:
             raise MissingRequiredFieldError(
                 self.chapter_structure_file_path,
-                ["sections", "chapter-number", "title"],
-                "Chapter sections"
+                self.required_fields,
+                "Chapter"
             )
 
         sections_structure_file_path = os.path.join(
