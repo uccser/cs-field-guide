@@ -17,11 +17,11 @@ Interactive Types
 
 There are three different kinds of interactive, these are:
 
-- ``in-page``: This is an interactive that is embedded in a chapter using a particular HTML templatd (see below).
-    This is the preferred method for including an interactive on a page.
-- ``iframe``: This is an interactive that is embedded in a chapter by using an iframe.
-    This is used if the interactive is included multiple times in the chapter (to avoid conflicts in JS/CSS).
-- ``whole-page``: This in an interactive that is displayed on a new page, which is accessible via a button from the chapter.
+- ``in-page`` - This is an interactive that is embedded in a chapter using a particular HTML template (see below).
+  This is the preferred method for including an interactive on a page.
+- ``iframe`` - This is an interactive that is embedded in a chapter by using an iframe.
+  This is used if the interactive is included multiple times in the chapter (to avoid conflicts in JS/CSS).
+- ``whole-page`` - This in an interactive that is displayed on a new page, which is accessible via a button from the chapter.
 
 Adding Interactives
 ==============================================================================
@@ -155,7 +155,7 @@ A completed interactive requires the following to be included into the repositor
 - The interactive is primarily written in JS, HTML, and CSS.
 - The main file of the interactive must be ``index.html``.
 - A ``README.md`` file explaining the interactive, linking to any necessary wiki pages.
-- Extra libraries/scripts that have been used have been used and attributed correctly, see [details about how to do this here](CONTRIBUTING.md#managing-licenses).
+- Extra libraries/scripts that have been used have been used and attributed correctly, see :ref:`licence-files`.
 - Be easily accessible on desktop and mobile, or show a disclaimer that it is suited for desktop use only.
 - Abides by the repository contribution style guidelines.
 - All internal links (links to other files in the project) must be relative links.

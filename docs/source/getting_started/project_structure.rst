@@ -28,9 +28,9 @@ The repository directory (or root directory) contains the following:
   - This file contains an introduction and important information for the
     repository.
 
-- ``LICENSE.md``
+- ``LICENCE.md``
 
-  - This file details the licenses the repository uses.
+  - This file details the licences the repository uses.
 
 - Plus other files used for installation and repository configuration.
 
