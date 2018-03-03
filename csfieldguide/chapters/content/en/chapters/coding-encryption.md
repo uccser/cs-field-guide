@@ -484,7 +484,6 @@ The Vigenere cipher is known as a *polyalphabetic substitution cipher*, since it
 
 {panel end}
 
-
 #### Known Plain Text Attacks
 
 Another kind of attack is the *known plaintext* attack, where you know part or all of the solution.
@@ -820,7 +819,7 @@ If you found this stuff interesting, do read about Complexity and Tractability w
 
 {panel type="curiosity"}
 
-# Encrypting with the private key instead of the public key --- Digital Signatures!
+# Encrypting with the private key instead of the public key - Digital Signatures!
 
 In order to encrypt a message, the public key is used.
 In order to decrypt it, the corresponding private key must be used.
@@ -1091,11 +1090,11 @@ The easiest way to get a user's password is to ask them! A [phishing attack](htt
 
 Other social engineering approaches that can be used include bribing or blackmailing people who have access to a system, or simply looking for a password written on a sticky note on someone's monitor! Gaining access to someone's email account is a particularly easy way to get lots of passwords, because many "lost password" systems will send a new password to their email account.
 
-{comment .. xtcb possibly link to http://nsf.gov/cise/csbytes/newsletter/vol3/pdf/csbb-vol3-i2.pdf and https://www.youtube.com/watch?v=T2DXrs0OpHU}
+{comment possibly link to http://nsf.gov/cise/csbytes/newsletter/vol3/pdf/csbb-vol3-i2.pdf and https://www.youtube.com/watch?v=T2DXrs0OpHU}
 
-{comment .. e.g. (bb84)}
+{comment e.g. (bb84)}
 
-{comment .. enigma story http://www.mtholyoke.edu/~adurfee/cryptology/enigma_j.html}
+{comment enigma story http://www.mtholyoke.edu/~adurfee/cryptology/enigma_j.html}
 
 {panel type="curiosity"}
 
@@ -1119,7 +1118,7 @@ The [Wikipedia entry on cryptography](https://en.wikipedia.org/wiki/Cryptography
 
 The encryption methods used these days rely on fairly advanced maths; for this reason books about encryption tend to either be beyond high school level, or else are about codes that aren't actually used in practice.
 
-{comment .. example of good book of each type?}
+{comment example of good book of each type?}
 
 There are lots of intriguing stories around encryption, including its use in wartime and for spying e.g.
 

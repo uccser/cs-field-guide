@@ -377,7 +377,7 @@ Image compression methods like JPEG, GIF and PNG are designed to take advantage 
 
 {image file-path="img/chapters/compression-comparison.png" alt="Three pictures compressed using different methods."}
 
-{comment xtcb low priority: these are all jpgs of the originals; consider replacing them with actual originals (as long as the browser can render them all). ..ajb these images seem to appear in the wrong order to what is described for me… The middle one and left one should be swapped around?}
+{comment low priority: these are all jpgs of the originals; consider replacing them with actual originals (as long as the browser can render them all). ..ajb these images seem to appear in the wrong order to what is described for me… The middle one and left one should be swapped around?}
 
 For example, the following image shows a zoomed in view of the pixels that are part of the detail around an eye from the above (high quality) image.
 
@@ -581,7 +581,7 @@ Here are some of the bits from the example earlier in this chapter; you can past
 In fact, this is essentially what happens with GIF and PNG images; the pixel values are compressed using the Ziv-Lempel algorithm, which works well if you have lots of consecutive pixels the same colour.
 But it works very poorly with photographs, where pixel patterns are very unlikely to be repeated.
 
-{comment xtcb extra for experts: compress "aaaaaaaaaa". how can it decode? .. xtcb  Project .. Students should try an algorithm [zip, gzip etc.] on several different text files, image files, sound files, and video files. .. What would happen if text compression was lossy? (I think this should be a part of their merit discussion)}
+{comment extra for experts: compress "aaaaaaaaaa". how can it decode? ..  Project .. Students should try an algorithm [zip, gzip etc.] on several different text files, image files, sound files, and video files. .. What would happen if text compression was lossy? (I think this should be a part of their merit discussion)}
 
 {panel type="teacher-note"}
 
@@ -631,7 +631,7 @@ So there you have it: MP3 stands for "MPEG-1 layer 3", and MP4 stands for "MPEG-
 Most other audio compression methods use a similar approach to the MP3 method, although some offer better quality for the same amount of storage (or less storage for the same quality).
 We won't go into exactly how this works, but the general idea is to break the sound down into bands of different frequencies, and then represent each of those bands by adding together the values of a simple formula (the sum of cosine waves, to be precise).
 
-{comment xtcb sometime could put in an expert section on this, perhaps with recordings or a filter showing the waveforms and adding them. Here are some links in the meantime:}
+{comment sometime could put in an expert section on this, perhaps with recordings or a filter showing the waveforms and adding them. Here are some links in the meantime:}
 
 There is some [more detail about how MP3 coding works on the cs4fn site](http://www.cs4fn.org/mathemagic/sonic.html), and also in [an article on the I Programmer site](http://www.i-programmer.info/babbages-bag/1222-mp3.html).
 
@@ -653,7 +653,7 @@ Compress each of your recordings using a variety of methods, making sure that ea
 Make a table showing how long it took to process each recording, the size of the compressed file, and some evaluation of the quality of the sound compared with the original.
 Discuss the tradeoffs involved – do you need much bigger files to store good quality sound? Is there a limit to how small you can make a file and still have it sounding ok? Do some methods work better for speech than others? Does a 2 minute recording of silence take more space than a 1 minute recording of silence? Does a 1 minute recording of music use more space than a minute of silence?
 
-{comment xtcb could have a section on Huffman coding sometime (remove from "the whole story")}
+{comment could have a section on Huffman coding sometime (remove from "the whole story")}
 
 ## The whole story!
 
@@ -681,7 +681,7 @@ There is an [activity on information theory on the CS Unplugged site](http://csu
 Based on this theory, it seems that English text can't be compressed to less than about 12% of its original size at the very best.
 Images, sound and video can get much better compression because they can use lossy compression, and don't have to reproduce the original data exactly.
 
-{comment xtcb jargon uncompressed are typically BMP or RAW. TIFF files Tagged Image File Format can contain many formats, including uncompressed, runlength and JPEG.}
+{comment jargon uncompressed are typically BMP or RAW. TIFF files Tagged Image File Format can contain many formats, including uncompressed, runlength and JPEG.}
 
 ## Further reading
 
