@@ -1,14 +1,11 @@
-"""Custom loader for loading a topic."""
+"""Custom loader for loading topics."""
 
 import os.path
-
 from django.db import transaction
 from django.core.exceptions import ObjectDoesNotExist
-
 from utils.BaseLoader import BaseLoader
 from utils.errors.MissingRequiredFieldError import MissingRequiredFieldError
 from utils.errors.KeyNotFoundError import KeyNotFoundError
-
 from chapters.models import Chapter
 from interactives.models import Interactive
 
@@ -17,7 +14,7 @@ class ChapterLoader(BaseLoader):
     """Custom loader for loading chapters."""
 
     def __init__(self, structure_file_path, chapter_slug, chapter_structure, BASE_PATH):
-        """Create the loader for loading a topic.
+        """Create the loader for loading a chapter.
 
         Args:
             structure_file_path (str): path to application structure file.
@@ -82,14 +79,14 @@ class ChapterLoader(BaseLoader):
             for interactive_slug in chapter_interactives:
                 try:
                     interactive = Interactive.objects.get(slug=interactive_slug)
-                    chapter.interactives.add(interactive)
                 except ObjectDoesNotExist:
                     raise KeyNotFoundError(
                         self.structure_file_path,
                         interactive_slug,
                         "Interactive"
                     )
+                chapter.interactives.add(interactive)
 
-        self.log("Added Chapter: {}".format(chapter.name))
+        self.log("Added chapter: {}".format(chapter.name))
 
         self.log("")

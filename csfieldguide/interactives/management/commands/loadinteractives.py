@@ -15,7 +15,7 @@ class Command(BaseCommand):
             required field.
     """
 
-    help = "Converts Markdown files listed in structure file and stores"
+    help = "Creates Interacive objects as defined in config files and stores them in the database."
 
     def handle(self, *args, **options):
         """Automatically called when the loadinteractives command is given."""

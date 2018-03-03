@@ -1,7 +1,6 @@
 """Models for the interactives application."""
 
 from django.db import models
-# from chapters.models import Chapter
 
 # Create your models here.
 

@@ -1,4 +1,4 @@
-"""Custom loader for loading an interactive."""
+"""Custom loader for loading interactives."""
 
 from django.db import transaction
 from interactives.models import Interactive
