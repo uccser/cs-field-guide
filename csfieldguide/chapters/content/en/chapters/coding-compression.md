@@ -55,7 +55,7 @@ We have introduced RLE here because it is a practical approach to compression, a
 
 Imagine we have the following simple black and white image.
 
-{image file-path="pixel-diamond.png" alt="A diamond shape made out of pixels"}
+{image file-path="img/chapters/pixel-diamond.png" alt="A diamond shape made out of pixels"}
 
 One very simple way a computer can store this image in binary is by using a format where '0' means white and '1' means black (this is a "bit map", because we've mapped the pixels onto the values of bits).
 Using this method, the above image would be represented in the following way:
@@ -375,18 +375,18 @@ Furthermore, with JPEG, you can choose the tradeoff between quality and file siz
 Reducing the number of bits (the colour depth) is sufficiently crude that we don't really regard it as a compression method, but just a low quality representation.
 Image compression methods like JPEG, GIF and PNG are designed to take advantage of the patterns in an image to get a good reduction in file size without losing more quality than necessary.
 
-{image file-path="compression-comparison.png"}
+{image file-path="img/chapters/compression-comparison.png" alt="Three pictures compressed using different methods."}
 
 {comment xtcb low priority: these are all jpgs of the originals; consider replacing them with actual originals (as long as the browser can render them all). ..ajb these images seem to appear in the wrong order to what is described for me… The middle one and left one should be swapped around?}
 
 For example, the following image shows a zoomed in view of the pixels that are part of the detail around an eye from the above (high quality) image.
 
-{image file-path="zoomed-eye.png"}
+{image file-path="img/chapters/zoomed-eye.png" alt="Zoomed in image of a picture of pixels around an eye."}
 
 Notice that the colours in adjacent pixels are often very similar, even in this part of the picture that has a lot of detail.
 For example, the pixels shown in the red box below just change gradually from very dark to very light.
 
-{image file-path="zoomed-eye-highlighted.png"}
+{image file-path="img/chapters/zoomed-eye-highlighted.png" alt="Zoomed in image of a picture of pixels around an eye, with some highlighted to show light to dark colour transition."}
 
 Run-length encoding wouldn't work in this situation.
 You could use a variation that specifies a pixel's colour, and then says how many of the following pixels are the same colour, but although most adjacent pixels are nearly the same, the chances of them being identical are very low, and there would be almost no runs of identical colours.
@@ -426,7 +426,7 @@ In theory, any pattern of pixels can be created by adding together different cos
 
 The following graph shows the values of {math}\sin(x){math end} and {math}\cos(x){math end} for {math}x{math end} ranging from 0 to 180 degrees.
 
-{image file-path="cosine-graph.png" alt="A graph showing cos(x) and sin(x) curves"}
+{image file-path="img/chapters/cosine-graph.png" alt="A graph showing cos(x) and sin(x) curves"}
 
 {panel end}
 
@@ -444,11 +444,11 @@ Try setting the 4 sine waves to frequencies that are 3, 9, 15, and 21 times the 
 Now set the "amplitude" (equivalent to volume level) of the four to 0.5, 0.25, 0.125 and 0.0625 respectively (each is half of the previous one).
 This should produce the following four sine waves:
 
-{image file-path="sine-waves.png" alt="Four sine waves"}
+{image file-path="img/chapters/sine-waves.png" alt="Four sine waves"}
 
 When the above four waves are added together, they interfere with each other, and produce a shape that has sharper transitions:
 
-{image file-path="sine-waves-sum.png" alt="The four sine waves added together"}
+{image file-path="img/chapters/sine-waves-sum.png" alt="The four sine waves added together"}
 
 In fact, if you were to continue the pattern with more than four sine waves, this shape would become a "square wave", which is one that suddenly goes to the maximum value, and then suddenly to the minimum.
 The one shown above is bumpy because we've only used 4 sine waves to describe it.
@@ -457,7 +457,7 @@ This is exactly what is going on in JPEG if you compress a black and white image
 The "colour" of pixels as you go across the image will either be 0 (black) or full intensity (white), but JPEG will approximate it with a small number of cosine waves (which have basically the same properties as sine waves.)
 This gives the "overshoot" that you see in the image above; in a JPEG image, this comes out as bright and dark patches surrounding the sudden change of colour, like here:
 
-{image file-path="jpeg-word-zoomed.jpg"}
+{image file-path="img/chapters/jpeg-word-zoomed.jpg" alt="Zoomed in image of pixels showing a sudden dark to ligh transistion, with dark patches surrounding."}
 
 You can experiment with different combinations of sine waves to get different shapes.
 You may need to have more than four to get good approximations to a shape that you want; that's exactly the tradeoff that JPEG is making.
@@ -476,11 +476,11 @@ The Wolfram demonstrations include:
 You can see the 8 by 8 blocks of pixels if you zoom in on a heavily compressed JPEG image.
 For example, the following image has been very heavily compressed using JPEG (it is just 1.5% of its original size).
 
-{image file-path="compressed-jpeg.png"}
+{image file-path="img/chapters/compressed-jpeg.png" alt="Heavily compressed jpeg image of two children."}
 
 If we zoom in on the eye area, you can see the 8 x 8 blocks of pixels:
 
-{image file-path="compressed-jpeg-zoomed.png"}
+{image file-path="img/chapters/compressed-jpeg-zoomed.png" alt="Heavily compressed jpeg image of two children, zoomed in on an eye."}
 
 Notice that there is very little variation across each block.
 In the following image the block in the red box only changes from top to bottom, and could probably be specified by giving just two values, and having the ones in between calculated by the decoder as for the line example before.
@@ -489,7 +489,7 @@ The blue block has only one colour in it! The yellow block is more complicated b
 A "wave" value varies up and down, so this one can be represented by a left-to-right variation from dark to light to dark, and a top-to-bottom variation mainly from dark to light.
 Thus still only a few values need to be stored instead of the full 64.
 
-{image file-path="compressed-jpeg-zoomed-highlighted.png"}
+{image file-path="img/chapters/compressed-jpeg-zoomed-highlighted.png" alt="Heavily compressed jpeg image of two children, zoomed in on an eye with some pixels highlighted.""}
 
 The quality is quite low, but the saving in space is huge – it's more than 60 times smaller (for example, it would download 60 times faster).
 Higher quality JPEG images store more detail for each 8 by 8 block, which makes it closer to the original image, but makes bigger files because more details are being stored.
@@ -521,11 +521,11 @@ An important issue arises because JPEG represents images as smoothly varying col
 In that case, lots of values need to be stored so that lots of cosine waves can be added together to make the sudden change in colour, or else the edge of the image become fuzzy.
 You can think of it as the cosine waves overshooting on the sudden changes, producing artifacts like the ones in the following image where the edges are messy.
 
-{image file-path="jpeg-word.jpg"}
+{image file-path="img/chapters/jpeg-word.jpg" alt="The word jpeg."}
 
 The original had sharp edges, but this zoomed in view of the JPEG version of it show that not only are the edges gradual, but some darker pixels occur further into the white space, looking a bit like shadows or echoes.
 
-{image file-path="jpeg-word-zoomed.jpg"}
+{image file-path="img/chapters/jpeg-word-zoomed.jpg" alt="Zoomed in image of the word jpeg."}
 
 For this reason, JPEG is used for photos and natural images, but other techniques (such as GIF and PNG, which we will look at in another section) work better for artificial images like this one.
 

@@ -116,7 +116,7 @@ If students are stuck, you might need to give them a few hints.
 
 The table they should have gotten should look like this.
 
-{image file-path="img/chapters/caesar-cipher-table-2.png"}
+{image file-path="img/chapters/caesar-cipher-table-2.png" alt="Table showing the new letter each letter in the alphabet now corresponds to."}
 
 The learning objective for this activity was for students to think like cryptanalysts and to see why Caesar Cipher is not useful in practice.
 
@@ -131,12 +131,12 @@ Here's the table for the letter correspondences, where the letter "K" translates
 It is okay if your conversion table mapped the opposite way, i.e. "A" to "K" rather than "K" to "A".
 If you were unable to break the Caesar Cipher in the previous section, go back to it now and decode it using the table.
 
-{image file-path="img/chapters/caesar-cipher-table-2.png"}
+{image file-path="img/chapters/caesar-cipher-table-2.png" alt="Table showing the encryption code using a key of 10."}
 
 For this example, we say the key is *10* because keys in Caesar Cipher are a number between 1 and 25 (think carefully about why we wouldn't want a key of 26!), which specify how far the alphabet should be rotated.
 If instead we used a key of *8*, the conversion table would be as follows.
 
-{image file-path="img/chapters/caesar-cipher-table-3.png"}
+{image file-path="img/chapters/caesar-cipher-table-3.png" alt="Table showing the encryption code using a key of 8."}
 
 {panel type="jargon-buster"}
 
@@ -925,7 +925,7 @@ If you were to enter a well chosen password (e.g. a random string of numbers and
 For example, the following database table shows four users of a fictional system, and the hashes of their passwords.
 You could determine their passwords by putting various possibilities through SHA-256 and checking whether or not the output is equivalent to any of the passwords in the database.
 
-{image file-path="img/chapters/hash-passwords-table.png"}
+{image file-path="img/chapters/hash-passwords-table.png" alt="Table showing 4 users in a database and their hashed passwords."}
 
 It might initially sound like we have the perfect system.
 But unfortunately, there is still a big problem.
