@@ -26,12 +26,12 @@ There are three different kinds of interactive, these are:
 Adding Interactives
 ==============================================================================
 
-Once you have developed your interactive (see ***insert link here***), it's time to add it to the chapter.
+Once you have developed your interactive (see :ref:`developing-interactives`), it's time to add it to the chapter.
 This includes embedding the interactive in the chapter text see :ref:`writing-guide-interactive`.
 
 .. note::
   
-  When adding an interactive using the verto syntax, note that verto uses the term ``name``, this is actually referring to the ``slug`` of the interactive.
+  When adding an interactive using the Verto syntax, note that Verto uses the term ``name``, this is actually referring to the ``slug`` of the interactive.
 
 
 The interactive will also need to be added to the list of interactives in the interactive configuration file (see below).
@@ -71,6 +71,8 @@ A complete interactive structure file may look like the following:
     caesar-cipher:
       name: Caesar Cipher
 
+
+.. _developing-interactives:
 
 Developing Interactives
 ==============================================================================
@@ -142,22 +144,20 @@ Items of interest from this diagram:
  
 .. note::
 
-  When creating a new interactive, we suggest you copy the ``static/interactives/example-structure/`` directory and rename it to the slug for your interactive.
+  When creating a new interactive, we suggest you copy the ``static/interactives/starter-structure/`` directory and rename it to the slug for your interactive.
   This directory has the basic structure already mapped out to get you started.
 
-  Similarly, within the ``templates/interactives/`` directory, there is a starter template for each of the interactive types (``iframe-template.html``, ``in-page-template.html`` and ``whole-page-template.html``).
+  Similarly, within the ``templates/interactives/`` directory, there is a starter template for each of the interactive types (``starter-iframe-template.html``, ``starter-in-page-template.html`` and ``starter-whole-page-template.html``).
 
 Interactive Requirements
 ------------------------------------------------------------------------------
 
 A completed interactive requires the following to be included into the repository for release:
 
-- The interactive is primarily written in JS, HTML, and CSS.
 - The main file of the interactive must be ``index.html``.
 - A ``README.md`` file explaining the interactive, linking to any necessary wiki pages.
 - Extra libraries/scripts that have been used have been used and attributed correctly, see :ref:`licence-files`.
 - Be easily accessible on desktop and mobile, or show a disclaimer that it is suited for desktop use only.
 - Abides by the repository contribution style guidelines.
-- All internal links (links to other files in the project) must be relative links.
 - Must work in browsers updated within the last year.
   So try and avoid experimental features but don't worry about supporting older browsers (but it's great if it can!).
