@@ -1,5 +1,7 @@
 {% load static %}
 
+<link rel="stylesheet" href="{% static 'interactives/high-score-boxes/css/style.css' %}">
+
 <p>Clicking a box will reveal its number; your task is to find the highest number and enter it below. </p>
 <div id="boxes-container"></div>
 <strong>Highest number:</strong>
@@ -27,3 +29,5 @@
     "{% static 'interactives/high-score-boxes/img/square15-200px-rounded.png' %}",
   ]
 </script>
+
+<script type="text/javascript" src="{% static 'interactives/high-score-boxes/js/script.js' %}"></script>
