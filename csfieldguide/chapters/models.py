@@ -34,7 +34,6 @@ class Chapter(models.Model):
     name = models.CharField(max_length=100)
     number = models.SmallIntegerField(unique=True)
     introduction = models.TextField()
-    other_resources = models.TextField(null=True)
     icon = models.CharField(max_length=100)
 
     def __str__(self):

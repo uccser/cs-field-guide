@@ -166,25 +166,3 @@ class ChaptersLoaderTest(BaseTestWithDB):
             MissingRequiredFieldError,
             chapter_loader.load
         )
-
-    def test_chapters_chapter_loader_other_resources(self):
-        chapter_slug = "other-resources"
-        chapter_number = 1
-        chapter_structure_file_path = os.path.join(
-            self.base_path,
-            chapter_slug,
-            "{}.yaml".format(chapter_slug)
-        )
-        chapter_loader = ChaptersLoader(
-            factory=self.factory,
-            chapter_structure_file_path=chapter_structure_file_path,
-            chapter_slug=chapter_slug,
-            chapter_number=chapter_number,
-            BASE_PATH=self.base_path
-        )
-        chapter_loader.load()
-
-        chapter = Chapter.objects.get(
-            slug=chapter_slug
-        )
-        self.assertIsNotNone(chapter.other_resources)
