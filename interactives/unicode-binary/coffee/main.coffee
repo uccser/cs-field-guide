@@ -12,6 +12,8 @@ MODE = (URI.parseQuery(query).mode ? 'utf8').toLowerCase()
 if MODE not in validModes
     # Ensure the mode is an actualy encoding
     alert 'Mode must be in #{validModes}'
+else
+  $("#interactive-unicode-binary-mode").text(MODE.substr -2)
 
 byteify = (binaryString) ->
     ### Splits a binary string up into bytes seperated by spaces ###
