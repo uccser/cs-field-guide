@@ -17,6 +17,20 @@ Given a version number MAJOR.MINOR.HOTFIX:
 
 We have listed major changes for each release below.
 
+## 2.12.1
+
+**Release date:** 7th March 2018
+
+**Downloads:** [Source downloads are available on GitHub](https://github.com/uccser/cs-field-guide/releases/tag/2.12.1)
+
+**Changelog:**
+
+- Update Artificial Intelligence chapter to use shorter introduction video.
+- Update Unicode Binary interactive to display UTF mode.
+- Bugfixes for Sorting/Searching Boxes interactives.
+- Grammar/spelling fixes for HCI chapter.
+- Correct quote by Mike Fellows in Introduction chapter.
+
 ## 2.12.0
 
 **Release date:** 13th February 2018

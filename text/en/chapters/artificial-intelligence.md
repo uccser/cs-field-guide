@@ -1,7 +1,6 @@
 # Artificial Intelligence
 
-
-{video url="https://www.youtube.com/watch?v=ia-oYtacJHE"}
+{video url="https://www.youtube.com/watch?v=EDfovEqDY2o"}
 
 ## What's the big picture?
 
