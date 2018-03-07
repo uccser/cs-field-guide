@@ -21,7 +21,7 @@ MODE = ((ref = URI.parseQuery(query).mode) != null ? ref : 'utf8').toLowerCase()
 if (indexOf.call(validModes, MODE) < 0) {
   // Ensure the mode is an actualy encoding
   alert('Mode must be in #{validModes}');
-} else {
+} else if (MODE !== 'utf8') {
   $("#interactive-unicode-binary-mode").text(MODE.substr(-2));
 }
 
