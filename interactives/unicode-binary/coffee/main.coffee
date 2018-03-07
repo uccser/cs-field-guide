@@ -12,7 +12,7 @@ MODE = (URI.parseQuery(query).mode ? 'utf8').toLowerCase()
 if MODE not in validModes
     # Ensure the mode is an actualy encoding
     alert 'Mode must be in #{validModes}'
-else
+else if MODE != 'utf8'
   $("#interactive-unicode-binary-mode").text(MODE.substr -2)
 
 byteify = (binaryString) ->
