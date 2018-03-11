@@ -1,0 +1,4 @@
+exclude_directories:
+  - .git/
+  - docs/build/
+  - output/
