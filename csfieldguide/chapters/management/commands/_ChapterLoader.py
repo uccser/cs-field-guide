@@ -54,7 +54,6 @@ class ChapterLoader(BaseLoader):
         if chapter_icon is not None:
             find_image_files([chapter_icon], self.structure_file_path)
 
-
         # Create chapter object and save to the db
         chapter = Chapter(
             slug=self.chapter_slug,

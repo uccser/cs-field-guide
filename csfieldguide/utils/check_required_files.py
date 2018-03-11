@@ -1,9 +1,6 @@
 """Module for checking required files found within Markdown conversions."""
 
-import os
-import os.path
 from django.contrib.staticfiles import finders
-from django.conf import settings
 from utils.errors.CouldNotFindImageError import CouldNotFindImageError
 
 
