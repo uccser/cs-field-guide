@@ -22,7 +22,7 @@ While we won't address these questions directly in this chapter, gaining some te
 
 ## Chatterbots and The Turing Test
 
-{image file-path="computer-studying-turing-test.png" alt="The computer is reading a book titled 'Talk like a human'"}
+{image file-path="img/chapters/computer-studying-turing-test.png" alt="The computer is reading a book titled 'Talk like a human'"}
 
 Many humans take for granted the fact that they can easily have a conversation with another person, and choose appropriate things to say based on the conversation.
 The ability to do this is a form of intelligence, and for computers it isn’t so easy!
@@ -63,7 +63,7 @@ Go to the link just below and have a conversation with Eliza (keeping in mind th
 
 [Click here to use the Eliza chatterbot](http://www.manifestation.com/neurotoys/eliza.php3)
 
-{image file-path="eliza-chatbot-screenshot.png" alt="A screenshot of an Eliza chatbot"}
+{image file-path="img/chapters/eliza-chatbot-screenshot.png" alt="A screenshot of an Eliza chatbot"}
 
 Do you think Eliza is as smart as a human? Would you believe she was a human if somebody told you she was?
 
@@ -114,7 +114,7 @@ You might work out why she calls you this once you have read the sections on the
 
 [Click here for the Alice chatterbot at pandorabots.com](http://www.pandorabots.com/pandora/talk?botid=f5d922d97e345aa1)
 
-{image file-path="alice-chatbot-screenshot.png" alt="The Alice chatbot at pandorabots.com"}
+{image file-path="img/chapters/alice-chatbot-screenshot.png" alt="The Alice chatbot at pandorabots.com"}
 
 Does Alice sound more intelligent than Eliza?
 Does she sound as intelligent as a human, or can you trick her into saying things that make no sense?
@@ -180,7 +180,7 @@ An example of a chatterbot that learns from humans is Cleverbot.
 
 [Click on this link to have a conversation with Cleverbot](http://www.cleverbot.com/)
 
-{image file-path="cleverbot-chatbot-screenshot.png" alt="The Cleverbot chatbot"}
+{image file-path="img/chapters/cleverbot-chatbot-screenshot.png" alt="The Cleverbot chatbot"}
 
 Unlike Eliza and Alice, whose rules of what to say were determined by programmers, Cleverbot learns rules based on what people say.
 For example, when Cleverbot says "hi" to a person, it keeps track of all the different responses that people make to that, such as "hi", "hello!", "hey ya", "sup!".
@@ -340,7 +340,7 @@ Turing Test:
 
 {panel end}
 
-{image file-path="turing-test-dating-show.png" alt="The Turing dating test"}
+{image file-path="img/chapters/turing-test-dating-show.png" alt="The Turing dating test"}
 
 ## The whole story!
 
