@@ -54,4 +54,4 @@ The Computer Science Field Guide uses a [Creative Commons Attribution-NonCommerc
 
 ## Contact
 
-This repository is currently primarily managed by [Jack Morgan](http://jackmorgannz.github.io/), with [Hayley van Waas](http://hayleyavw.com/) and [Tim Bell](mailto:tim.bell@canterbury.ac.nz) as backup administrators.
+This repository is currently primarily managed by [Jack Morgan](http://jackmorgannz.github.io/), with [Hayley van Waas](https://twitter.com/hayleyavw) and [Tim Bell](mailto:tim.bell@canterbury.ac.nz) as backup administrators.
