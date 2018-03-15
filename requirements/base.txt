@@ -4,12 +4,6 @@
 # Verified bug on Python 3.5.1
 wheel==0.30.0
 
-# Django
-django==1.11.9 # pyup: >=1.11,<2.0
-
-# Configuration
-django-environ==0.4.4
-
 # Images
 Pillow==5.0.0
 
@@ -17,12 +11,5 @@ Pillow==5.0.0
 verto==0.7.3
 python-markdown-math==0.3
 
-# Python-PostgreSQL Database Adapter
-psycopg2==2.7.3.2
-
 # YAML Loading
 PyYAML==3.12
-
-# Web serving
-gevent==1.2.2
-gunicorn==19.7.1
