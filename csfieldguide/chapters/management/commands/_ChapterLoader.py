@@ -3,6 +3,7 @@
 import os.path
 from django.db import transaction
 from utils.BaseLoader import BaseLoader
+from utils.check_required_files import find_image_files
 from utils.errors.MissingRequiredFieldError import MissingRequiredFieldError
 from chapters.models import Chapter
 
@@ -41,7 +42,7 @@ class ChapterLoader(BaseLoader):
             self.structure_file_path
         )
 
-        chapter_number = self.chapter_structure.get('number', None)
+        chapter_number = self.chapter_structure.get("number", None)
         if chapter_number is None:
             raise MissingRequiredFieldError(
                 self.structure_file_path,
@@ -50,6 +51,8 @@ class ChapterLoader(BaseLoader):
             )
 
         chapter_icon = self.chapter_structure.get('icon', None)
+        if chapter_icon is not None:
+            find_image_files([chapter_icon], self.structure_file_path)
 
         # Create chapter object and save to the db
         chapter = Chapter(
