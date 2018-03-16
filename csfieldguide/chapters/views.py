@@ -6,7 +6,7 @@ from django.http import JsonResponse, Http404
 
 from general.templatetags.render_html_field import render_html_with_static
 
-from .models import Chapter, GlossaryTerm
+from .models import Chapter, ChapterSection, GlossaryTerm
 
 
 class IndexView(generic.ListView):
@@ -40,11 +40,66 @@ class GlossaryList(generic.ListView):
 
 
 class ChapterView(generic.DetailView):
-    """View for a specific topic."""
+    """View for intro section of a chapter."""
 
     model = Chapter
-    template_name = "chapters/chapter.html"
+    template_name = "chapters/chapter_index.html"
+    context_object_name = "chapter"
     slug_url_kwarg = "chapter_slug"
+
+    def get_context_data(self, **kwargs):
+        """Provide the context data for the chapter view.
+
+        Returns:
+            Dictionary of context data.
+        """
+        context = super(ChapterView, self).get_context_data(**kwargs)
+        context["chapter_sections"] = ChapterSection.objects.filter(
+            chapter__slug=self.object.slug
+        )
+        return context
+
+
+class ChapterSectionView(generic.DetailView):
+    """View for a specific section of a chapter."""
+
+    model = ChapterSection
+    template_name = "chapters/chapter_section.html"
+    context_object_name = "chapter_section"
+
+    def get_object(self, **kwargs):
+        """Retrieve object for the chapter section view.
+
+        Returns:
+            ChapterSection object (ChapterSection).
+
+        Raises:
+           404 error: if oject cannot be found.
+        """
+        return get_object_or_404(
+            self.model.objects.select_related(),
+            slug=self.kwargs.get("chapter_section_slug", None),
+            chapter__slug=self.kwargs.get("chapter_slug", None)
+        )
+
+    def get_context_data(self, **kwargs):
+        """Provide the context data for the chapter section view.
+
+        Returns:
+            Dictionary of context data.
+        """
+        context = super(ChapterSectionView, self).get_context_data(**kwargs)
+        current_section_number = self.object.number
+        context["previous_section"] = ChapterSection.objects.filter(
+            chapter=self.object.chapter,
+            number=current_section_number - 1
+        )
+        context["next_section"] = ChapterSection.objects.filter(
+            chapter=self.object.chapter,
+            number=current_section_number + 1
+        )
+        context["chapter"] = self.object.chapter
+        return context
 
 
 def glossary_json(request, **kwargs):

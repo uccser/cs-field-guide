@@ -1,6 +1,7 @@
 """Factory for creating loader objects."""
 
-from chapters.management.commands._ChapterLoader import ChapterLoader
+from chapters.management.commands._ChaptersLoader import ChaptersLoader
+from chapters.management.commands._ChapterSectionsLoader import ChapterSectionsLoader
 from chapters.management.commands._GlossaryTermsLoader import GlossaryTermsLoader
 from interactives.management.commands._InteractiveLoader import InteractiveLoader
 
@@ -8,9 +9,13 @@ from interactives.management.commands._InteractiveLoader import InteractiveLoade
 class LoaderFactory:
     """Factory for creating loader objects."""
 
-    def create_chapter_loader(self, structure_file_path, chapter_slug, chapter_structure, BASE_PATH):
+    def create_chapter_loader(self, chapter_structure_file_path, chapter_slug, chapter_number, BASE_PATH):
         """Create chapter loader."""
-        return ChapterLoader(structure_file_path, chapter_slug, chapter_structure, BASE_PATH)
+        return ChaptersLoader(self, chapter_structure_file_path, chapter_slug, chapter_number, BASE_PATH)
+
+    def create_chapter_section_loader(self, chapter, chapter_path, section_structure_file_path):
+        """Create chapter loader."""
+        return ChapterSectionsLoader(chapter, chapter_path, section_structure_file_path)
 
     def create_interactive_loader(self, structure_file_path, interactives, BASE_PATH):
         """Create interactive loader."""

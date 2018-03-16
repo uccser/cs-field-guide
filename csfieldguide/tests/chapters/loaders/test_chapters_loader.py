@@ -1,30 +1,37 @@
+import os.path
+from unittest.mock import Mock
 from tests.BaseTestWithDB import BaseTestWithDB
 from tests.chapters.ChaptersTestDataGenerator import ChaptersTestDataGenerator
-from chapters.management.commands._ChapterLoader import ChapterLoader
+from chapters.management.commands._ChaptersLoader import ChaptersLoader
 from chapters.models import Chapter
 from utils.errors.MissingRequiredFieldError import MissingRequiredFieldError
-from utils.errors.EmptyMarkdownFileError import EmptyMarkdownFileError
 from utils.errors.NoHeadingFoundInMarkdownFileError import NoHeadingFoundInMarkdownFileError
-from utils.errors.CouldNotFindMarkdownFileError import CouldNotFindMarkdownFileError
+from utils.errors.EmptyMarkdownFileError import EmptyMarkdownFileError
 
 
-class ChapterLoaderTest(BaseTestWithDB):
+class ChaptersLoaderTest(BaseTestWithDB):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.test_data = ChaptersTestDataGenerator()
         self.loader_name = "chapters"
-        self.base_path = self.test_data.LOADER_ASSET_PATH
+        self.base_path = os.path.join(self.test_data.LOADER_ASSET_PATH, self.loader_name)
+        self.factory = Mock()
 
     def test_chapters_chapter_loader_single_chapter(self):
-        config_file = "basic-config.yaml"  # placeholder, required parameter for error raised in chapter loader
         chapter_slug = "chapter-1"
-        chapter_structure = {"number": 1}
+        chapter_number = 1
+        chapter_structure_file_path = os.path.join(
+            self.base_path,
+            chapter_slug,
+            "{}.yaml".format(chapter_slug)
+        )
 
-        chapter_loader = ChapterLoader(
-            structure_file_path=config_file,
+        chapter_loader = ChaptersLoader(
+            factory=self.factory,
+            chapter_structure_file_path=chapter_structure_file_path,
             chapter_slug=chapter_slug,
-            chapter_structure=chapter_structure,
+            chapter_number=chapter_number,
             BASE_PATH=self.base_path
         )
         chapter_loader.load()
@@ -34,36 +41,83 @@ class ChapterLoaderTest(BaseTestWithDB):
             ["<Chapter: Chapter 1>"]
         )
 
-    def test_chapters_chapter_loader_missing_chapter_number(self):
-        config_file = "basic-config.yaml"
-        chapter_slug = "chapter-1"
-        chapter_structure = {}
-
-        chapter_loader = ChapterLoader(
-            structure_file_path=config_file,
-            chapter_slug=chapter_slug,
-            chapter_structure=chapter_structure,
+    def test_chapters_chapter_loader_multiple_chapters(self):
+        chapter_1_slug = "chapter-1"
+        chapter_1_number = 1
+        chapter_1_structure_file_path = os.path.join(
+            self.base_path,
+            chapter_1_slug,
+            "{}.yaml".format(chapter_1_slug)
+        )
+        chapter_loader = ChaptersLoader(
+            factory=self.factory,
+            chapter_structure_file_path=chapter_1_structure_file_path,
+            chapter_slug=chapter_1_slug,
+            chapter_number=chapter_1_number,
             BASE_PATH=self.base_path
         )
+        chapter_loader.load()
+
+        chapter_2_slug = "chapter-2"
+        chapter_2_number = 2
+        chapter_2_structure_file_path = os.path.join(
+            self.base_path,
+            chapter_2_slug,
+            "{}.yaml".format(chapter_2_slug)
+        )
+        chapter_loader = ChaptersLoader(
+            factory=self.factory,
+            chapter_structure_file_path=chapter_2_structure_file_path,
+            chapter_slug=chapter_2_slug,
+            chapter_number=chapter_2_number,
+            BASE_PATH=self.base_path
+        )
+        chapter_loader.load()
+
+        self.assertQuerysetEqual(
+            Chapter.objects.all(),
+            [
+                "<Chapter: Chapter 1>",
+                "<Chapter: Chapter 2>"
+            ]
+        )
+
+    def test_chapters_chapter_loader_introduction_missing_heading(self):
+        chapter_slug = "missing-heading"
+        chapter_number = 1
+        chapter_structure_file_path = os.path.join(
+            self.base_path,
+            chapter_slug,
+            "{}.yaml".format(chapter_slug)
+        )
+
+        chapter_loader = ChaptersLoader(
+            factory=self.factory,
+            chapter_structure_file_path=chapter_structure_file_path,
+            chapter_slug=chapter_slug,
+            chapter_number=chapter_number,
+            BASE_PATH=self.base_path
+        )
+
         self.assertRaises(
-            MissingRequiredFieldError,
+            NoHeadingFoundInMarkdownFileError,
             chapter_loader.load
         )
 
-    def test_missing_heading(self):
-        """
-        """
-        pass
-
-    def test_chapters_chapter_loader_title_empty_content(self):
-        config_file = "basic-config.yaml"
+    def test_chapters_chapter_loader_introduction_missing_content(self):
         chapter_slug = "missing-content"
-        chapter_structure = {"number": 1}
+        chapter_number = 1
+        chapter_structure_file_path = os.path.join(
+            self.base_path,
+            chapter_slug,
+            "{}.yaml".format(chapter_slug)
+        )
 
-        chapter_loader = ChapterLoader(
-            structure_file_path=config_file,
+        chapter_loader = ChaptersLoader(
+            factory=self.factory,
+            chapter_structure_file_path=chapter_structure_file_path,
             chapter_slug=chapter_slug,
-            chapter_structure=chapter_structure,
+            chapter_number=chapter_number,
             BASE_PATH=self.base_path
         )
         self.assertRaises(
@@ -71,34 +125,44 @@ class ChapterLoaderTest(BaseTestWithDB):
             chapter_loader.load
         )
 
-    def test_chapters_chapter_loader_empty_file(self):
-        config_file = "basic-config.yaml"
-        chapter_slug = "empty-file"
-        chapter_structure = {"number": 1}
+    def test_chapters_chapter_loader_missing_sections(self):
+        chapter_slug = "missing-sections"
+        chapter_number = 1
+        chapter_structure_file_path = os.path.join(
+            self.base_path,
+            chapter_slug,
+            "{}.yaml".format(chapter_slug)
+        )
 
-        chapter_loader = ChapterLoader(
-            structure_file_path=config_file,
+        chapter_loader = ChaptersLoader(
+            factory=self.factory,
+            chapter_structure_file_path=chapter_structure_file_path,
             chapter_slug=chapter_slug,
-            chapter_structure=chapter_structure,
+            chapter_number=chapter_number,
             BASE_PATH=self.base_path
         )
+
         self.assertRaises(
-            NoHeadingFoundInMarkdownFileError,
+            MissingRequiredFieldError,
             chapter_loader.load
         )
 
-    def test_chapters_chapter_loader_missing_markdown_file(self):
-        config_file = "basic-config.yaml"
-        chapter_slug = "this-file-does-not-exist"
-        chapter_structure = {"number": 1}
-
-        chapter_loader = ChapterLoader(
-            structure_file_path=config_file,
+    def test_chapters_chapter_loader_no_icon(self):
+        chapter_slug = "no-icon"
+        chapter_number = 1
+        chapter_structure_file_path = os.path.join(
+            self.base_path,
+            chapter_slug,
+            "{}.yaml".format(chapter_slug)
+        )
+        chapter_loader = ChaptersLoader(
+            factory=self.factory,
+            chapter_structure_file_path=chapter_structure_file_path,
             chapter_slug=chapter_slug,
-            chapter_structure=chapter_structure,
+            chapter_number=chapter_number,
             BASE_PATH=self.base_path
         )
         self.assertRaises(
-            CouldNotFindMarkdownFileError,
+            MissingRequiredFieldError,
             chapter_loader.load
         )
