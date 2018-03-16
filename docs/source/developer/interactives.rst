@@ -1,8 +1,8 @@
 Interactives
 ##############################################################################
 
-An *Interactive* is an interactive component of the page.
-This could be an educational game or demonstration that is created in HTML, CSS and JavaScript.
+An *interactive* is an interactive component on a page.
+This could be an educational game or demonstration that is created in HTML, CSS, and JavaScript.
 
 This documentation page provides information about the interactive content of the Computer Science Field Guide.
 Interactives are a great resource for teaching and practicing concepts in the CSFG.
@@ -12,27 +12,27 @@ It also allows developers to make modifications to existing interactive with eas
 .. contents:: Contents
   :local:
 
-Interactive Types
+Interactive Modes
 ==============================================================================
 
-There are three different kinds of interactive, these are:
+Interactives can be included on a page in three different modes, these are:
 
-- ``in-page`` - This is an interactive that is embedded in a chapter using a particular HTML template (see below).
-  This is the preferred method for including an interactive on a page.
+- ``in-page`` - This is an interactive that is embedded within a page, for example, a chapter section.
 - ``iframe`` - This is an interactive that is embedded in a chapter by using an iframe.
   This is used if the interactive is included multiple times in the chapter (to avoid conflicts in JS/CSS).
 - ``whole-page`` - This in an interactive that is displayed on a new page, which is accessible via a button from the chapter.
 
+An interactive could be displayed with any of the three modes, but generally an interactive is developed with ``in-page`` or ``whole-page`` as the target usage.
+
 Adding Interactives
 ==============================================================================
 
-Once you have developed your interactive (see :ref:`developing-interactives`), it's time to add it to the chapter.
+Once you have developed your interactive (see :ref:`developing-interactives`), it's time to add it to a page.
 This includes embedding the interactive in the chapter text see :ref:`writing-guide-interactive`.
 
 .. note::
-  
-  When adding an interactive using the Verto syntax, note that Verto uses the term ``name``, this is actually referring to the ``slug`` of the interactive.
 
+  When adding an interactive using the Verto syntax, note that Verto uses the term ``name``, this is actually referring to the ``slug`` of the interactive.
 
 The interactive will also need to be added to the list of interactives in the interactive configuration file (see below).
 
@@ -71,7 +71,6 @@ A complete interactive structure file may look like the following:
     caesar-cipher:
       name: Caesar Cipher
 
-
 .. _developing-interactives:
 
 Developing Interactives
@@ -89,11 +88,10 @@ Directory Structure
   - JavaScript
   - How to use a responsive grid based CSS framework
 
-
 Every interactive will follow a very similar file structure as given below:
 
 .. code-block:: none
-      
+
   └── csfieldguide/
       ├── static/
       │   ├── interactives/
@@ -110,16 +108,14 @@ Every interactive will follow a very similar file structure as given below:
       │   ├── js/
       │   │   └── third-party/
       │   └── css/
-      │       └── third-party/      
+      │       └── third-party/
       └── templates/
           └── interactives/
               └── <interactive-slug>.html
 
-
 .. note::
 
   Each interactive has a unique ``slug``, which is used in file/directory names and urls. For example the slug for the ``High Score Boxes`` interactive is ``high-score-boxes``.
-
 
 Items of interest from this diagram:
 
@@ -141,23 +137,37 @@ Items of interest from this diagram:
   The image should be at least 900px wide, and of moderate quality (small size is more important than quality).
 
 - ``templates/interactives/<interactive-slug>.html`` - This is the HTML template for the interactive and it's name must match the slug of the interactive.
- 
-.. note::
 
-  When creating a new interactive, we suggest you copy the ``static/interactives/starter-structure/`` directory and rename it to the slug for your interactive.
-  This directory has the basic structure already mapped out to get you started.
+  The HTML file should have the following contents:
 
-  Similarly, within the ``templates/interactives/`` directory, there is a starter template for each of the interactive types (``starter-iframe-template.html``, ``starter-in-page-template.html`` and ``starter-whole-page-template.html``).
+  .. code-block:: html
+
+    {% extends interactive_mode %}
+
+    {% block html %}
+      <!-- The HTML of your interactive goes here -->
+    {% endblock html %}
+
+    {% block css %}
+      <!-- The CSS of your interactive goes here -->
+    {% endblock css %}
+
+    {% block js %}
+      <!-- The JavaScript of your interactive goes here -->
+    {% endblock js %}
+
+  The first line ``{% extends interactive_mode %}`` is required for all interactives.
+
+We recommend looking at existing interactives and how their files are organised to become familiar with developing your own interactive.
 
 Interactive Requirements
 ------------------------------------------------------------------------------
 
 A completed interactive requires the following to be included into the repository for release:
 
-- The main file of the interactive must be ``index.html``.
 - A ``README.md`` file explaining the interactive, linking to any necessary wiki pages.
 - Extra libraries/scripts that have been used have been used and attributed correctly, see :ref:`licence-files`.
 - Be easily accessible on desktop and mobile, or show a disclaimer that it is suited for desktop use only.
 - Abides by the repository contribution style guidelines.
 - Must work in browsers updated within the last year.
-  So try and avoid experimental features but don't worry about supporting older browsers (but it's great if it can!).
+  Therefore try and avoid experimental features but don't worry about supporting older browsers (but it's great if it can!).
