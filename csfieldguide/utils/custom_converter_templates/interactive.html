@@ -1,32 +1,32 @@
 {%- if type == 'in-page' -%}
-<div>
-{{ "{% include 'interactives/" }}{{ name }}{{ ".html' %}" }}
-</div>
+  <div class="interactive-in-page">
+    {{ "{% render_interactive_in_page '" }}{{ name }}{{ "' %}" }}
+  </div>
 {% elif type == 'iframe' -%}
-<iframe src="{{ "{% url 'interactives:iframe_interactive' '" }}{{ name }}{{ "' %}" }}{% if parameters %}?{{ parameters }}{% endif %}" class="interactive-iframe-resize" frameborder="0" scrolling="no">
-<p>Your browser does not support iframes.</p>
-</iframe>
+  <iframe src="{{ "{% url 'interactives:iframe_interactive' '" }}{{ name }}{{ "' %}" }}{% if parameters %}?{{ parameters }}{% endif %}" class="interactive-iframe-resize" frameborder="0" scrolling="no">
+  <p>Your browser does not support iframes.</p>
+  </iframe>
 {% elif type == 'whole-page' -%}
-<div class="row">
-	<div class="col s12 m8 offset-m2 center-align">
-		<a href="{{ "{% url 'interactives:interactive' '" }}{{ name }}{{ "' %}" }}{% if parameters %}?{{ parameters }}{% endif %}"
-		   class="btn btn-expand btn-interactive-whole-page-container">
-			<img class="btn-interactive-whole-page-image"
-			{% if thumbnail_file_relative %}
-			{% autoescape false -%}
-			src="{{ "{% static '" }}{{ thumbnail_file_path }}{{ "' %}" }}"
-			{%- endautoescape %}
-			{% else %}
-			src="{{ thumbnail_file_path }}"
-			{% endif %}/>
-			<div class="btn-interactive-whole-page-text">
-			{% if text -%}
-			{{ text }}
-			{% else -%}
-			Click to load {{ name }}
-			{% endif -%}
-			</div>
-		</a>
-	</div>
-</div>
+  <div class="row">
+    <div class="col s12 m8 offset-m2 center-align">
+      <a href="{{ "{% url 'interactives:interactive' '" }}{{ name }}{{ "' %}" }}{% if parameters %}?{{ parameters }}{% endif %}"
+         class="btn btn-expand btn-interactive-whole-page-container">
+        <img class="btn-interactive-whole-page-image"
+        {% if thumbnail_file_relative %}
+        {% autoescape false -%}
+        src="{{ "{% static '" }}{{ thumbnail_file_path }}{{ "' %}" }}"
+        {%- endautoescape %}
+        {% else %}
+        src="{{ thumbnail_file_path }}"
+        {% endif %}/>
+        <div class="btn-interactive-whole-page-text">
+        {% if text -%}
+        {{ text }}
+        {% else -%}
+        Click to load {{ name }}
+        {% endif -%}
+        </div>
+      </a>
+    </div>
+  </div>
 {%- endif -%}

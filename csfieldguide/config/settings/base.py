@@ -147,7 +147,8 @@ TEMPLATES = [
                 'general.context_processors.nav_context.nav_context'
             ],
             "libraries": {
-                "render_html_field": "general.templatetags.render_html_field",
+                "render_html_field": "config.templatetags.render_html_field",
+                "render_interactive_in_page": "config.templatetags.render_interactive_in_page",
             },
         },
     },

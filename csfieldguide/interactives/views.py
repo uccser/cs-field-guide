@@ -1,8 +1,9 @@
 """Views for the interactives application."""
 
 from django.views import generic
-from .models import Interactive
-
+from django.http import HttpResponse
+from interactives.models import Interactive
+from config.templatetags.render_interactive_in_page import render_interactive_html
 
 class IndexView(generic.ListView):
     """View for the interactives application homepage."""
@@ -19,17 +20,11 @@ class IndexView(generic.ListView):
         return Interactive.objects.all()
 
 
-class InteractiveView(generic.DetailView):
-    """View for a specific interactive."""
-
-    model = Interactive
-    slug_url_kwarg = "interactive_slug"
-    template_name = "interactives/whole-page-interactive-base.html"
+def interactive_whole_page_view(request, interactive_slug):
+    """View for a interactive in whole page mode."""
+    return HttpResponse(render_interactive_html(interactive_slug, "whole-page"))
 
 
-class IFrameInteractiveView(generic.DetailView):
-    """View for a specific interactive."""
-
-    model = Interactive
-    slug_url_kwarg = "interactive_slug"
-    template_name = "interactives/iframe-interactive-base.html"
+def interactive_iframe_view(request, interactive_slug):
+    """View for a interactive in whole page mode."""
+    return HttpResponse(render_interactive_html(interactive_slug, "iframe"))

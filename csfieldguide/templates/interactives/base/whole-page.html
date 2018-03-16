@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}
+  {{ interactive.name }}
+{% endblock title %}
+
+{% block navbar %}
+  <header class="whole-page-interactive-header">
+    <div>
+      <nav class="z-depth-0">
+        <div class="nav-wrapper">
+          <img src="{% static 'img/logos/guide-logo-light.png' %}">
+          <a href="/en/" class="brand-logo">CSFG</a>
+          <h4>{{ interactive.name }}</h4>
+        </div>
+      </nav>
+    </div>
+  </header>
+{% endblock navbar %}
+
+{% block body_container %}
+  {% block html %}
+  {% endblock html %}
+{% endblock body_container %}

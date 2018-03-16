@@ -4,7 +4,7 @@ from django.shortcuts import get_object_or_404
 from django.views import generic
 from django.http import JsonResponse, Http404
 
-from general.templatetags.render_html_field import render_html_with_static
+from config.templatetags.render_html_field import render_html_with_static
 
 from .models import Chapter, GlossaryTerm
 

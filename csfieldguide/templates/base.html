@@ -13,13 +13,16 @@
     <meta name="author" content="">
     <link rel="stylesheet" href="{% static 'css/website.css' %}">
     <link rel="stylesheet" href="{% static 'css/third-party/featherlight.min.css' %}">
+    {% block css %}
+    {% endblock css %}
     <link rel="shortcut icon" href="{% static 'img/guide-favicon.png' %}">
     <script type="text/javascript" src="{% static 'js/third-party/modernizr.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/third-party/jquery.js' %}"></script>
   </head>
 
   <body>
-
+    {% block body %}
+    {% block navbar %}
     <header>
       <div id="website_header" class="navbar-fixed">
         <nav class="z-depth-0">
@@ -84,6 +87,7 @@
         </li>
       </ul>
     </header>
+    {% endblock navbar %}
 
     <main>
 
@@ -182,7 +186,6 @@
     </div>
   </div>
 
-
   <script type="text/javascript" src="{% static 'js/third-party/materialize.min.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/third-party/featherlight.min.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/third-party/jquery.sticky-kit.min.js' %}"></script>
@@ -197,5 +200,8 @@
     ga("create", "UA-49289263-2", "auto");
     ga("send", "pageview");
   </script>
+  {% endblock body %}
+  {% block js %}
+  {% endblock js %}
 </body>
 </html>
