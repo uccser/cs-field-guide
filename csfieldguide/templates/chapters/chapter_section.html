@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% load render_html_field %}
+
+{% block title %}
+  {{ chapter_section.chapter.name }}
+{% endblock title %}
+
+{% block page_heading %}
+<h1 id="chapters" class="section-heading anchor-link">{{ chapter_section.chapter.name }}</h1>
+{% endblock page_heading %}
+
+{% block content %}
+
+  <h2>{{ chapter_section.heading }}</h2>
+  {% render_html_field chapter_section.content %}
+
+
+  <div>
+    {% if previous_section %}
+      <a href="{% url 'chapters:chapter_section' chapter.slug previous_section.0.slug %}" class="btn left">
+        Previous: {{ previous_section.0.heading }}
+      </a>
+    {% endif %}
+    {% if next_section %}
+      <a id="section-next-btn" href="{% url 'chapters:chapter_section' chapter.slug next_section.0.slug %}" class="btn right">
+        Next: {{ next_section.0.heading }}
+      </a>
+    {% endif %}
+  </div>
+
+{% endblock content %}

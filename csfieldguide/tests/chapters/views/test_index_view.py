@@ -12,7 +12,8 @@ class IndexViewTest(BaseTestWithDB):
         self.language = "en"
 
     def test_chapters_index_view_with_one_chapter(self):
-        self.test_data.create_chapter("1")
+        chapter = self.test_data.create_chapter("1")
+        self.test_data.create_chapter_section(chapter, "1")
 
         url = reverse("chapters:index")
         response = self.client.get(url)

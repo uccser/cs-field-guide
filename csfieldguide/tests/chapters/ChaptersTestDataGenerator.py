@@ -3,7 +3,7 @@
 import os.path
 import yaml
 
-from chapters.models import Chapter
+from chapters.models import Chapter, ChapterSection
 
 
 class ChaptersTestDataGenerator:
@@ -27,7 +27,7 @@ class ChaptersTestDataGenerator:
         return yaml.load(yaml_file)
 
     def create_chapter(self, number):
-        """Create chapter object.
+        """Create Chapter object.
 
         Args:
             number: Identifier of the chapter (int).
@@ -39,7 +39,26 @@ class ChaptersTestDataGenerator:
             slug="chapter-{}".format(number),
             name="Chapter {}".format(number),
             number=number,
-            content="<p>Content for chapter {}.</p>".format(number)
+            introduction="Introducation for chapter {}".format(number)
         )
         chapter.save()
         return chapter
+
+    def create_chapter_section(self, chapter, number):
+        """Create ChapterSection object.
+
+        Args:
+            number: Identifier of the chapter section (int).
+
+        Returns:
+            ChapterSection object.
+        """
+        chapter_section = ChapterSection(
+            slug="section-{}".format(number),
+            heading="Section {}".format(number),
+            number=number,
+            content="<p>Content for section {}.</p>".format(number),
+            chapter=chapter
+        )
+        chapter_section.save()
+        return chapter_section

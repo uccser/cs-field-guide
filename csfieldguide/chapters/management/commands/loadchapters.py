@@ -5,14 +5,15 @@ from django.core.management.base import BaseCommand
 from utils.BaseLoader import BaseLoader
 from utils.LoaderFactory import LoaderFactory
 from utils.errors.MissingRequiredFieldError import MissingRequiredFieldError
+from utils.errors.InvalidYAMLValueError import InvalidYAMLValueError
 
 
 class Command(BaseCommand):
     """Required command class for the custom Django loadchapters command.
 
     Raises:
-        MissingRequiredFieldError: when no object can be found with the matching
-                attribute.
+        MissingRequiredFieldError: when a config (yaml) file is missing a required
+            field.
     """
 
     help = "Converts Markdown files listed in structure file and stores"
@@ -47,10 +48,25 @@ class Command(BaseCommand):
                 ["chapters"],
                 "Application Structure"
             )
-        for (chapter_slug, chapter_structure) in chapters.items():
-            factory.create_chapter_loader(
-                structure_file_path,
-                chapter_slug,
-                chapter_structure,
-                BASE_PATH
-            ).load()
+        else:
+            for chapter_slug in chapters:
+                chapter_structure_file_path = os.path.join(
+                    BASE_PATH,
+                    "{}/{}.yaml".format(chapter_slug, chapter_slug)
+                )
+                chapter_number = chapters[chapter_slug]["chapter-number"]
+                if isinstance(chapter_number, int) is False:
+                    raise InvalidYAMLValueError(
+                        structure_file_path,
+                        "chapter-number - value '{}' is invalid".format(chapter_number),
+                        "chapter-number must be an integer value."
+                    )
+                factory.create_chapter_loader(
+                    chapter_structure_file_path,
+                    chapter_slug,
+                    chapter_number,
+                    BASE_PATH
+                ).load()
+
+            base_loader.log("All chapters loaded!")
+            base_loader.log("")
