@@ -1,11 +1,8 @@
 """Models for the chapters application."""
 
 from django.db import models
-<<<<<<< HEAD
 from interactives.models import Interactive
-=======
 from django.core.exceptions import ValidationError
->>>>>>> milestone/django-system
 
 
 class GlossaryTerm(models.Model):
