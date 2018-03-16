@@ -5,6 +5,7 @@ from django.http import HttpResponse
 from interactives.models import Interactive
 from config.templatetags.render_interactive_in_page import render_interactive_html
 
+
 class IndexView(generic.ListView):
     """View for the interactives application homepage."""
 

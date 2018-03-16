@@ -2,9 +2,11 @@
 
 import os.path
 from django.db import transaction
+from django.core.exceptions import ObjectDoesNotExist
 from utils.BaseLoader import BaseLoader
 from utils.errors.MissingRequiredFieldError import MissingRequiredFieldError
 from utils.errors.InvalidYAMLValueError import InvalidYAMLValueError
+from utils.errors.KeyNotFoundError import KeyNotFoundError
 from chapters.models import ChapterSection
 from interactives.models import Interactive
 
@@ -88,6 +90,5 @@ class ChapterSectionsLoader(BaseLoader):
                 chapter=self.chapter
             )
             chapter_section.save()
-
 
             self.log("Added Chapter Section: {}".format(chapter_section.heading), 1)

@@ -1,4 +1,4 @@
-"""Module for the custom render_interactive template tag."""
+"""Module for the rendering HTML for an interactive."""
 
 from django.template.loader import render_to_string
 from django.shortcuts import get_object_or_404
@@ -12,8 +12,14 @@ ALLOWED_MODES = (
 
 
 def render_interactive_html(interactive_slug, mode):
-    """
+    """Return the HTML for an interactive.
 
+    Args:
+        interactive_slug (str): Slug of interactive.
+        mode (str): Mode interactive should be rendered in.
+
+    Returns:
+        Rendered string of HTML.
     """
     interactive = get_object_or_404(
         Interactive,

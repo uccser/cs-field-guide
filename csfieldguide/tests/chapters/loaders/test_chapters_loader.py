@@ -4,8 +4,6 @@ from tests.BaseTestWithDB import BaseTestWithDB
 from tests.chapters.ChaptersTestDataGenerator import ChaptersTestDataGenerator
 from chapters.management.commands._ChaptersLoader import ChaptersLoader
 from chapters.models import Chapter
-
-from utils.errors.KeyNotFoundError import KeyNotFoundError
 from utils.errors.MissingRequiredFieldError import MissingRequiredFieldError
 from utils.errors.NoHeadingFoundInMarkdownFileError import NoHeadingFoundInMarkdownFileError
 from utils.errors.EmptyMarkdownFileError import EmptyMarkdownFileError
