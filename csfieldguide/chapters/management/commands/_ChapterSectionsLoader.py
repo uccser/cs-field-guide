@@ -6,6 +6,7 @@ from utils.BaseLoader import BaseLoader
 from utils.errors.MissingRequiredFieldError import MissingRequiredFieldError
 from utils.errors.InvalidYAMLValueError import InvalidYAMLValueError
 from chapters.models import ChapterSection
+from interactives.models import Interactive
 
 
 class ChapterSectionsLoader(BaseLoader):

@@ -5,6 +5,7 @@ from django.db import transaction
 from utils.BaseLoader import BaseLoader
 from utils.errors.MissingRequiredFieldError import MissingRequiredFieldError
 from chapters.models import Chapter
+from interactives.models import Interactive
 
 
 class ChaptersLoader(BaseLoader):
