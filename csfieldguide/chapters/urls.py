@@ -24,13 +24,13 @@ urlpatterns = [
         views.glossary_json,
         name="glossary_json"
     ),
-    # eg: /chapters/introduction/
+    # eg: /chapters/algorithms/
     url(
         r"^(?P<chapter_slug>[-\w]+)/$",
         views.ChapterView.as_view(),
         name="chapter"
     ),
-    # eg: /chapters/introduction/the-big-picture
+    # eg: /chapters/algorithms/searching/
     url(
         r"^(?P<chapter_slug>[-\w]+)/(?P<chapter_section_slug>[-\w]+)/$",
         views.ChapterSectionView.as_view(),

@@ -18,7 +18,7 @@
           {% for chapter in all_chapters %}
           <div class="l12">
             <div class="row">
-              <a href="{% url 'chapters:chapter_section' chapter.slug chapter.first_section.slug %}">
+              <a href="{% url 'chapters:chapter' chapter.slug %}">
                 <div class="col l3">
                   <img class="chapter-icon responsive-img" src="{% if chapter.icon %}{% static chapter.icon %}{% endif %}">
                 </div>

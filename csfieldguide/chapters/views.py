@@ -23,21 +23,6 @@ class IndexView(generic.ListView):
         """
         return Chapter.objects.order_by("number")
 
-    def get_context_data(self, **kwargs):
-        """Provide the context data for the index view.
-
-        Returns:
-            Dictionary of context data.
-        """
-        context = super(IndexView, self).get_context_data(**kwargs)
-        chapter_sections = ChapterSection.objects.all()
-        for chapter in self.object_list:
-            chapter.first_section = chapter_sections.get(
-                chapter=chapter,
-                number=1
-            )
-        return context
-
 
 class GlossaryList(generic.ListView):
     """Provide glossary view of all terms."""
@@ -60,20 +45,7 @@ class ChapterView(generic.DetailView):
     model = Chapter
     template_name = "chapters/chapter_index.html"
     context_object_name = "chapter"
-
-    def get_object(self, **kwargs):
-        """Retrieve object for the chapter view.
-
-        Returns:
-            Chapter object (Chapter).
-
-        Raises:
-           404 error: if oject cannot be found.
-        """
-        return get_object_or_404(
-            self.model.objects.select_related(),
-            slug=self.kwargs.get("chapter_slug", None)
-        )
+    slug_url_kwarg = "chapter_slug"
 
     def get_context_data(self, **kwargs):
         """Provide the context data for the chapter view.
