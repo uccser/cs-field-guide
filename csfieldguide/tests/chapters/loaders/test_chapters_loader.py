@@ -16,7 +16,6 @@ class ChaptersLoaderTest(BaseTestWithDB):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.test_data = ChaptersTestDataGenerator()
-        self.test_interactive_data = InteractivesTestDataGenerator()
         self.loader_name = "chapters"
         self.base_path = os.path.join(self.test_data.LOADER_ASSET_PATH, self.loader_name)
         self.factory = Mock()
@@ -37,7 +36,7 @@ class ChaptersLoaderTest(BaseTestWithDB):
             chapter_number=chapter_number,
             BASE_PATH=self.base_path
         )
-        chapters_loader.load()
+        chapter_loader.load()
 
         self.assertQuerysetEqual(
             Chapter.objects.all(),
@@ -125,7 +124,7 @@ class ChaptersLoaderTest(BaseTestWithDB):
         )
         self.assertRaises(
             EmptyMarkdownFileError,
-            chapters_loader.load
+            chapter_loader.load
         )
 
     def test_chapters_chapter_loader_missing_sections(self):

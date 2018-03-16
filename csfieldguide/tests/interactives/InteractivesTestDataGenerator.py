@@ -22,7 +22,7 @@ class InteractivesTestDataGenerator:
         interactive = Interactive(
             slug="interactive-{}".format(number),
             name="Interacive {}".format(number),
-            template="interactive-{}-template".format(number)
+            template="interactive-{}.html".format(number)
         )
         interactive.save()
         return interactive
