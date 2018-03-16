@@ -1,13 +1,15 @@
 import os.path
+from unittest import mock
 from django.core.exceptions import ValidationError
-from unittest.mock import Mock
 from tests.BaseTestWithDB import BaseTestWithDB
 from tests.chapters.ChaptersTestDataGenerator import ChaptersTestDataGenerator
+from tests.interactives.InteractivesTestDataGenerator import InteractivesTestDataGenerator
 from chapters.management.commands._ChapterSectionsLoader import ChapterSectionsLoader
-from chapters.models import ChapterSection
+from chapters.models import Chapter, ChapterSection
 from utils.errors.MissingRequiredFieldError import MissingRequiredFieldError
 from utils.errors.NoHeadingFoundInMarkdownFileError import NoHeadingFoundInMarkdownFileError
 from utils.errors.CouldNotFindMarkdownFileError import CouldNotFindMarkdownFileError
+from utils.errors.KeyNotFoundError import KeyNotFoundError
 
 
 class ChapterSectionsLoaderTest(BaseTestWithDB):
@@ -15,9 +17,10 @@ class ChapterSectionsLoaderTest(BaseTestWithDB):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.test_data = ChaptersTestDataGenerator()
+        self.interactives_test_data = InteractivesTestDataGenerator()
         self.loader_name = "chapter_section"
         self.base_path = os.path.join(self.test_data.LOADER_ASSET_PATH, "sections")
-        self.factory = Mock()
+        self.factory = mock.Mock()
 
     def test_chapters_chapter_section_loader_single_section(self):
         test_name = "single-section"
@@ -182,4 +185,65 @@ class ChapterSectionsLoaderTest(BaseTestWithDB):
         self.assertRaises(
             CouldNotFindMarkdownFileError,
             chapter_section_loader.load
+        )
+
+    @mock.patch(
+        "django.contrib.staticfiles.finders.find",
+        return_value=True
+    )
+    def test_chapters_chapter_section_loader_interactive(self, find_image_files):
+        section_slug = "interactives"
+        chapter = self.test_data.create_chapter("1")
+        structure_file_path = os.path.join(
+            self.base_path,
+            section_slug,
+            "{}.yaml".format(section_slug)
+        )
+        chapter_path = os.path.join(
+            self.base_path,
+            section_slug,
+        )
+        interactive1 = self.interactives_test_data.create_interactive(1)
+        interactive2 = self.interactives_test_data.create_interactive(2)
+        interactive3 = self.interactives_test_data.create_interactive(3)
+        section_loader = ChapterSectionsLoader(
+            chapter=chapter,
+            chapter_path=chapter_path,
+            section_structure_file_path=structure_file_path,
+        )
+        section_loader.load()
+        self.assertTrue(find_image_files.called)
+        self.assertQuerysetEqual(
+            ChapterSection.objects.all(),
+            ["<ChapterSection: Interactives>"]
+        )
+        self.assertEqual(
+            list(Chapter.objects.get(slug=chapter.slug).interactives.order_by("slug")),
+            [
+                interactive1,
+                interactive2,
+                interactive3,
+            ]
+        )
+
+    def test_chapters_chapter_section_loader_interactive_invalid(self):
+        section_slug = "invalid-interactive"
+        chapter = self.test_data.create_chapter("1")
+        structure_file_path = os.path.join(
+            self.base_path,
+            section_slug,
+            "{}.yaml".format(section_slug)
+        )
+        chapter_path = os.path.join(
+            self.base_path,
+            section_slug,
+        )
+        section_loader = ChapterSectionsLoader(
+            chapter=chapter,
+            chapter_path=chapter_path,
+            section_structure_file_path=structure_file_path,
+        )
+        self.assertRaises(
+            KeyNotFoundError,
+            section_loader.load
         )

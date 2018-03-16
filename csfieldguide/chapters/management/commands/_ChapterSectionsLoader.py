@@ -61,7 +61,7 @@ class ChapterSectionsLoader(BaseLoader):
                         interactive = Interactive.objects.get(slug=interactive_slug)
                     except ObjectDoesNotExist:
                         raise KeyNotFoundError(
-                            self.structure_file_path,
+                            self.section_structure_file_path,
                             interactive_slug,
                             "Interactive"
                         )
