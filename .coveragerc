@@ -4,6 +4,7 @@ source =
     chapters
     config
     general
+    interactives
     static
     templates
     utils
