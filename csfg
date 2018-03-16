@@ -108,49 +108,6 @@ cmd_update() {
 }
 defhelp update 'Run Django migrate and updatedata commands and build static files.'
 
-# Collecting static files
-dev_collect_static() {
-  echo
-  echo "Collecting static files..."
-  docker-compose exec django /docker_venv/bin/python3 ./manage.py collectstatic --no-input --clear
-}
-defhelp -dev collect_static "Collecting static files."
-
-# Run Django makemigrations command
-dev_makemigrations() {
-  echo "Creating database migrations..."
-  docker-compose exec django /docker_venv/bin/python3 ./manage.py makemigrations --no-input
-}
-defhelp -dev makemigrations 'Run Django makemigrations command.'
-
-# Run Django makemessages command
-dev_makemessages() {
-  echo "Creating message files..."
-  docker-compose exec django /docker_venv/bin/python3 ./manage.py makemessages -l en
-}
-defhelp -dev makemessages 'Run Django makemessages command.'
-
-# Run Django compilemessages command
-dev_compilemessages() {
-  echo "Compiling message files..."
-  docker-compose exec django /docker_venv/bin/python3 ./manage.py compilemessages
-}
-defhelp -dev compilemessages 'Run Django compilemessages command.'
-
-# Run Django migrate command
-dev_migrate() {
-  echo "Applying database migrations..."
-  docker-compose exec django /docker_venv/bin/python3 ./manage.py migrate
-}
-defhelp -dev migrate 'Run Django migrate command.'
-
-# Run Django updatedata command
-dev_updatedata() {
-  echo "Loading content..."
-  docker-compose exec django /docker_venv/bin/python3 ./manage.py updatedata
-}
-defhelp -dev updatedata 'Run updatedata command.'
-
 # Build Docker images
 dev_build() {
   echo "Building Docker images..."
@@ -163,6 +120,66 @@ dev_build() {
   fi
 }
 defhelp -dev build 'Build or rebuild Docker images.'
+
+# Collecting static files
+dev_collect_static() {
+  echo
+  echo "Collecting static files..."
+  docker-compose exec django /docker_venv/bin/python3 ./manage.py collectstatic --no-input --clear
+}
+defhelp -dev collect_static "Collecting static files."
+
+# Run Django compilemessages command
+dev_compilemessages() {
+  echo "Compiling message files..."
+  docker-compose exec django /docker_venv/bin/python3 ./manage.py compilemessages
+}
+defhelp -dev compilemessages 'Run Django compilemessages command.'
+
+# Generates the documentation (with warnings as errors)
+dev_docs() {
+  echo "Removing any existing documentation..."
+  docker-compose exec django rm -rf /cs-field-guide/docs/build/
+  docker-compose exec django mkdir /cs-field-guide/docs/build/
+  echo
+  echo "Creating documentation..."
+  docker-compose exec django /docker_venv/bin/sphinx-build -W /cs-field-guide/docs/source/ /cs-field-guide/docs/build/
+}
+defhelp -dev docs 'Generate documentation.'
+
+# Run Django makemessages command
+dev_makemessages() {
+  echo "Creating message files..."
+  docker-compose exec django /docker_venv/bin/python3 ./manage.py makemessages -l en
+}
+defhelp -dev makemessages 'Run Django makemessages command.'
+
+# Run Django makemigrations command
+dev_makemigrations() {
+  echo "Creating database migrations..."
+  docker-compose exec django /docker_venv/bin/python3 ./manage.py makemigrations --no-input
+}
+defhelp -dev makemigrations 'Run Django makemigrations command.'
+
+# Run Django migrate command
+dev_migrate() {
+  echo "Applying database migrations..."
+  docker-compose exec django /docker_venv/bin/python3 ./manage.py migrate
+}
+defhelp -dev migrate 'Run Django migrate command.'
+
+# Reboot Django Docker container
+dev_reboot_django() {
+  echo "Rebooting Django Docker container..."
+  docker-compose restart django
+}
+defhelp -dev reboot_django 'Reboot Django Docker container.'
+
+# Run shell
+dev_shell() {
+  docker-compose exec django bash
+}
+defhelp -dev shell "Open shell to Django folder."
 
 # Build static files
 dev_static() {
@@ -177,19 +194,6 @@ dev_static_prod() {
   docker-compose exec nginx gulp build --production
 }
 defhelp -dev static_prod 'Build production static files.'
-
-# Run shell
-dev_shell() {
-  docker-compose exec django bash
-}
-defhelp -dev shell "Open shell to Django folder."
-
-# Reboot Django Docker container
-dev_reboot_django() {
-  echo "Rebooting Django Docker container..."
-  docker-compose restart django
-}
-defhelp -dev reboot_django 'Reboot Django Docker container.'
 
 # Run style checks
 dev_style() {
@@ -233,16 +237,12 @@ dev_test_backwards() {
 }
 defhelp -dev test_backwards 'Run test suite backwards.'
 
-# Generates the documentation (with warnings as errors)
-dev_docs() {
-  echo "Removing any existing documentation..."
-  docker-compose exec django rm -rf /cs-field-guide/docs/build/
-  docker-compose exec django mkdir /cs-field-guide/docs/build/
-  echo
-  echo "Creating documentation..."
-  docker-compose exec django /docker_venv/bin/sphinx-build -W /cs-field-guide/docs/source/ /cs-field-guide/docs/build/
+# Run Django updatedata command
+dev_updatedata() {
+  echo "Loading content..."
+  docker-compose exec django /docker_venv/bin/python3 ./manage.py updatedata
 }
-defhelp -dev docs 'Generate documentation.'
+defhelp -dev updatedata 'Run updatedata command.'
 
 # Delete all untagged dangling Docker images
 cmd_clean() {
