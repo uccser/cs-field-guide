@@ -75,6 +75,13 @@ var tasks = {
       .pipe(gulp.dest('build/img'));
   },
   // --------------------------
+  // Copy interactive files
+  // --------------------------
+  interactives: function() {
+    return gulp.src('static/interactives/**/*')
+      .pipe(gulp.dest('build/interactives'));
+  },
+  // --------------------------
   // CSS
   // --------------------------
   css: function() {
@@ -144,6 +151,7 @@ gulp.task('clean', tasks.clean);
 var req = [];
 // // individual tasks
 gulp.task('images', req, tasks.images);
+gulp.task('interactives', req, tasks.interactives);
 gulp.task('js', req, tasks.js);
 gulp.task('css', req, tasks.css);
 gulp.task('sass', req, tasks.sass);
@@ -151,5 +159,5 @@ gulp.task('lint:js', tasks.lintjs);
 
 // // build task
 gulp.task('build', function(callback) {
-  runSequence('clean', ['images', 'css', 'js', 'sass'], callback);
+  runSequence('clean', ['images', 'css', 'js', 'sass', 'interactives'], callback);
 });
