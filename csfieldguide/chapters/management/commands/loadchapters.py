@@ -2,6 +2,7 @@
 
 import os.path
 from django.core.management.base import BaseCommand
+from django.conf import settings
 from utils.BaseLoader import BaseLoader
 from utils.LoaderFactory import LoaderFactory
 from utils.errors.MissingRequiredFieldError import MissingRequiredFieldError
@@ -23,10 +24,10 @@ class Command(BaseCommand):
         factory = LoaderFactory()
         # Get structure and content files
         base_loader = BaseLoader()
-        BASE_PATH = "chapters/content/en/"
+        base_path = settings.CHAPTERS_CONTENT_BASE_PATH
 
         structure_file_path = os.path.join(
-            BASE_PATH,
+            base_path,
             "structure.yaml"
         )
 
@@ -38,7 +39,7 @@ class Command(BaseCommand):
                 factory.create_glossary_terms_loader(
                     structure_file_path=structure_file_path,
                     glossary_directory_name=glossary_directory_name,
-                    BASE_PATH=BASE_PATH
+                    BASE_PATH=base_path
                 ).load()
 
         chapters = structure_file.get("chapters", None)
@@ -51,7 +52,7 @@ class Command(BaseCommand):
         else:
             for chapter_slug in chapters:
                 chapter_structure_file_path = os.path.join(
-                    BASE_PATH,
+                    base_path,
                     "{}/{}.yaml".format(chapter_slug, chapter_slug)
                 )
                 chapter_number = chapters[chapter_slug]["chapter-number"]
@@ -65,7 +66,7 @@ class Command(BaseCommand):
                     chapter_structure_file_path,
                     chapter_slug,
                     chapter_number,
-                    BASE_PATH
+                    base_path
                 ).load()
 
             base_loader.log("All chapters loaded!")

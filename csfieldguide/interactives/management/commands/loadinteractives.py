@@ -2,6 +2,7 @@
 
 import os.path
 from django.core.management.base import BaseCommand
+from django.conf import settings
 from utils.BaseLoader import BaseLoader
 from utils.LoaderFactory import LoaderFactory
 from utils.errors.MissingRequiredFieldError import MissingRequiredFieldError
@@ -22,11 +23,11 @@ class Command(BaseCommand):
         factory = LoaderFactory()
 
         base_loader = BaseLoader()
-        BASE_PATH = "interactives/"
+        base_path = settings.INTERACTIVES_CONTENT_BASE_PATH
 
         structure_file_path = os.path.join(
-            BASE_PATH,
-            "interactive_list.yaml"
+            base_path,
+            "interactives.yaml"
         )
 
         structure_file = base_loader.load_yaml_file(structure_file_path)
@@ -44,6 +45,6 @@ class Command(BaseCommand):
                     structure_file_path,
                     interactive_slug,
                     interactive_structure,
-                    BASE_PATH
+                    base_path
                 ).load()
             base_loader.log("All interactives loaded!\n")
