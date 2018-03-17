@@ -10,7 +10,7 @@ class IndexView(generic.ListView):
     """View for the interactives application homepage."""
 
     template_name = "interactives/index.html"
-    context_object_name = "all_interactives"
+    context_object_name = "interactives"
 
     def get_queryset(self):
         """Get queryset of all interactives.
