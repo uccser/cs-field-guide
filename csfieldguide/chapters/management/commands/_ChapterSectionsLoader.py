@@ -91,4 +91,4 @@ class ChapterSectionsLoader(BaseLoader):
             )
             chapter_section.save()
 
-            self.log("Added Chapter Section: {}".format(chapter_section.heading), 1)
+            self.log("Added chapter section: {}".format(chapter_section.heading), 1)

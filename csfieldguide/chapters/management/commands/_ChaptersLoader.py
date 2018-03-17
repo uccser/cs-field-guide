@@ -66,7 +66,7 @@ class ChaptersLoader(BaseLoader):
         )
         chapter.save()
 
-        self.log("Added Chapter: {}".format(chapter.name))
+        self.log("Added chapter: {}".format(chapter.name))
 
         chapter_interactives = chapter_introduction.required_files["interactives"]
         if chapter_interactives:
