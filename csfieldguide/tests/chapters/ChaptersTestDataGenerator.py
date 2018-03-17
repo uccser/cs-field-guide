@@ -26,7 +26,7 @@ class ChaptersTestDataGenerator:
         yaml_file = open(yaml_file_path, encoding="UTF-8").read()
         return yaml.load(yaml_file)
 
-    def create_chapter(self, number):
+    def create_chapter(self, number, introduction=None):
         """Create Chapter object.
 
         Args:
@@ -35,11 +35,13 @@ class ChaptersTestDataGenerator:
         Returns:
             Chapter object.
         """
+        if not introduction:
+            introduction = "<p>Introduction for chapter {}</p>".format(number)
         chapter = Chapter(
             slug="chapter-{}".format(number),
             name="Chapter {}".format(number),
             number=number,
-            introduction="Introducation for chapter {}".format(number)
+            introduction=introduction,
         )
         chapter.save()
         return chapter

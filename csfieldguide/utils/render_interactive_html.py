@@ -1,7 +1,9 @@
 """Module for the rendering HTML for an interactive."""
 
+from os.path import join
 from django.template.loader import render_to_string
 from django.shortcuts import get_object_or_404
+from django.conf import settings
 from interactives.models import Interactive
 
 ALLOWED_MODES = (
@@ -26,9 +28,10 @@ def render_interactive_html(interactive_slug, mode):
         slug=interactive_slug
     )
     if mode in ALLOWED_MODES:
+        mode_template = join(settings.INTERACTIVES_BASE_TEMPLATES_PATH, "{}.html".format(mode))
         context = {
             "interactive": interactive,
-            "interactive_mode": "interactives/base/{}.html".format(mode),
+            "interactive_mode_template": mode_template,
         }
     else:
         # Flesh out this error checking

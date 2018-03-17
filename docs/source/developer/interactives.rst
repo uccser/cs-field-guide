@@ -142,7 +142,7 @@ Items of interest from this diagram:
 
   .. code-block:: html
 
-    {% extends interactive_mode %}
+    {% extends interactive_mode_template %}
 
     {% block html %}
       <!-- The HTML of your interactive goes here -->
@@ -156,7 +156,7 @@ Items of interest from this diagram:
       <!-- The JavaScript of your interactive goes here -->
     {% endblock js %}
 
-  The first line ``{% extends interactive_mode %}`` is required for all interactives.
+  The first line ``{% extends interactive_mode_template %}`` is required for all interactives.
 
 We recommend looking at existing interactives and how their files are organised to become familiar with developing your own interactive.
 

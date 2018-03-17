@@ -212,3 +212,4 @@ AUTH_PASSWORD_VALIDATORS = [
 # ------------------------------------------------------------------------------
 CHAPTERS_CONTENT_BASE_PATH = os.path.join(str(ROOT_DIR.path("chapters")), "content", "en")
 INTERACTIVES_CONTENT_BASE_PATH = os.path.join(str(ROOT_DIR.path("interactives")), "content")
+INTERACTIVES_BASE_TEMPLATES_PATH = os.path.join("interactives", "base")
