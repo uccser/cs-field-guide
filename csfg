@@ -302,6 +302,8 @@ ci_style() {
 }
 
 ci_test_backwards() {
+  dev_static
+  dev_collect_static
   dev_test_backwards
 }
 
