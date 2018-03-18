@@ -21,7 +21,7 @@ class InteractivesTestDataGenerator:
         """
         interactive = Interactive(
             slug="interactive-{}".format(number),
-            name="Interacive {}".format(number),
+            name="Interactive {}".format(number),
             template="interactive-{}.html".format(number)
         )
         interactive.save()
