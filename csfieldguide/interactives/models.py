@@ -20,3 +20,8 @@ class Interactive(models.Model):
             Name attribute of Interactive (str).
         """
         return self.name
+
+    class Meta:
+        """Set consistent ordering of interactives."""
+
+        ordering = ["name"]
