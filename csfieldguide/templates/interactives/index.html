@@ -12,14 +12,30 @@
 {% endblock page_heading %}
 
 {% block content %}
+  <h2>List of interactives by chapter</h2>
+  {% for chapter in chapters %}
+    <h3>{{ chapter.name }}</h3>
+    {% if chapter.interactives.all %}
+      <ul>
+        {% for interactive in chapter.interactives.all %}
+          <li>
+            <a href="{% url 'interactives:interactive' interactive.slug %}">
+              {{ interactive.name }}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No interactives are available for {{ chapter.name }}.</p>
+    {% endif %}
+  {% endfor %}
 
-  <h2>List of interactives</h2>
+  <h2>List of interactives alphabetically</h2>
   {% if interactives %}
     <ul>
       {% for interactive in interactives %}
         <li>
           <a href="{% url 'interactives:interactive' interactive.slug %}">
-            {{ interactive.slug }} <!-- Temporary until name is implemented -->
             {{ interactive.name }}
           </a>
         </li>
@@ -28,5 +44,4 @@
   {% else %}
     <p>No interactives are available.</p>
   {% endif %}
-
 {% endblock content %}
