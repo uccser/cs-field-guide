@@ -64,14 +64,12 @@ cmd_start() {
   echo "Creating systems..."
   docker-compose up -d
   echo ""
-  # Run helper functions
-  cmd_update
   # Alert user that system is ready
-  echo -e "\n${GREEN}Systems are ready!${NC}"
-  echo "Open your preferred web browser to the URL 'localhost:81'"
+  echo -e "\n${GREEN}System is up!${NC}"
+  echo "Run the command ./csfg update to load content."
 }
 
-defhelp start 'Start development environment (this also runs the update command).'
+defhelp start 'Start development environment.'
 
 # Stop development environment
 cmd_end() {
@@ -104,65 +102,11 @@ cmd_update() {
 
   echo ""
   dev_collect_static
+  echo ""
+  echo -e "\n${GREEN}Content is loaded!${NC}"
+  echo "Open your preferred web browser to the URL 'localhost:81'"
 }
 defhelp update 'Run Django migrate and updatedata commands and build static files.'
-
-# Collecting static files
-dev_collect_static() {
-  echo
-  echo "Collecting static files..."
-  docker-compose exec django /docker_venv/bin/python3 ./manage.py collectstatic --no-input --clear
-}
-defhelp -dev collect_static "Collecting static files."
-
-# Run Django flush command
-dev_flush() {
-  docker-compose exec django /docker_venv/bin/python3 ./manage.py flush
-}
-defhelp -dev flush 'Run Django flush command.'
-
-# Run Django makemigrations command
-dev_makemigrations() {
-  echo "Creating database migrations..."
-  docker-compose exec django /docker_venv/bin/python3 ./manage.py makemigrations
-}
-defhelp -dev makemigrations 'Run Django makemigrations command.'
-
-# Run Django makeresourcethumbnails command
-dev_makeresourcethumbnails() {
-  echo "Creating thumbnails for resource PDFs..."
-  docker-compose exec django /docker_venv/bin/python3 ./manage.py makeresourcethumbnails
-}
-defhelp -dev makeresourcethumbnails 'Run Django makeresourcethumbnails command.'
-
-
-# Run Django makemessages command
-dev_makemessages() {
-  echo "Creating message files..."
-  docker-compose exec django /docker_venv/bin/python3 ./manage.py makemessages -l en
-}
-defhelp -dev makemessages 'Run Django makemessages command.'
-
-# Run Django compilemessages command
-dev_compilemessages() {
-  echo "Compiling message files..."
-  docker-compose exec django /docker_venv/bin/python3 ./manage.py compilemessages
-}
-defhelp -dev compilemessages 'Run Django compilemessages command.'
-
-# Run Django migrate command
-dev_migrate() {
-  echo "Applying database migrations..."
-  docker-compose exec django /docker_venv/bin/python3 ./manage.py migrate
-}
-defhelp -dev migrate 'Run Django migrate command.'
-
-# Run Django updatedata command
-dev_updatedata() {
-  echo "Loading content..."
-  docker-compose exec django /docker_venv/bin/python3 ./manage.py updatedata
-}
-defhelp -dev updatedata 'Run updatedata command.'
 
 # Build Docker images
 dev_build() {
@@ -177,6 +121,66 @@ dev_build() {
 }
 defhelp -dev build 'Build or rebuild Docker images.'
 
+# Collecting static files
+dev_collect_static() {
+  echo
+  echo "Collecting static files..."
+  docker-compose exec django /docker_venv/bin/python3 ./manage.py collectstatic --no-input --clear
+}
+defhelp -dev collect_static "Collecting static files."
+
+# Run Django compilemessages command
+dev_compilemessages() {
+  echo "Compiling message files..."
+  docker-compose exec django /docker_venv/bin/python3 ./manage.py compilemessages
+}
+defhelp -dev compilemessages 'Run Django compilemessages command.'
+
+# Generates the documentation (with warnings as errors)
+dev_docs() {
+  echo "Removing any existing documentation..."
+  docker-compose exec django rm -rf /cs-field-guide/docs/build/
+  docker-compose exec django mkdir /cs-field-guide/docs/build/
+  echo
+  echo "Creating documentation..."
+  docker-compose exec django /docker_venv/bin/sphinx-build -W /cs-field-guide/docs/source/ /cs-field-guide/docs/build/
+}
+defhelp -dev docs 'Generate documentation.'
+
+# Run Django makemessages command
+dev_makemessages() {
+  echo "Creating message files..."
+  docker-compose exec django /docker_venv/bin/python3 ./manage.py makemessages -l en
+}
+defhelp -dev makemessages 'Run Django makemessages command.'
+
+# Run Django makemigrations command
+dev_makemigrations() {
+  echo "Creating database migrations..."
+  docker-compose exec django /docker_venv/bin/python3 ./manage.py makemigrations --no-input
+}
+defhelp -dev makemigrations 'Run Django makemigrations command.'
+
+# Run Django migrate command
+dev_migrate() {
+  echo "Applying database migrations..."
+  docker-compose exec django /docker_venv/bin/python3 ./manage.py migrate
+}
+defhelp -dev migrate 'Run Django migrate command.'
+
+# Reboot Django Docker container
+dev_reboot_django() {
+  echo "Rebooting Django Docker container..."
+  docker-compose restart django
+}
+defhelp -dev reboot_django 'Reboot Django Docker container.'
+
+# Run shell
+dev_shell() {
+  docker-compose exec django bash
+}
+defhelp -dev shell "Open shell to Django folder."
+
 # Build static files
 dev_static() {
   echo "Building static files..."
@@ -190,19 +194,6 @@ dev_static_prod() {
   docker-compose exec nginx gulp build --production
 }
 defhelp -dev static_prod 'Build production static files.'
-
-# Run shell
-dev_shell() {
-  docker-compose exec django bash
-}
-defhelp -dev shell "Open shell to Django folder."
-
-# Reboot Django Docker container
-dev_reboot_django() {
-  echo "Rebooting Django Docker container..."
-  docker-compose restart django
-}
-defhelp -dev reboot_django 'Reboot Django Docker container.'
 
 # Run style checks
 dev_style() {
@@ -220,17 +211,7 @@ defhelp -dev style 'Run style checks.'
 # Run test suite
 dev_test_suite() {
   echo "Running test suite..."
-  docker-compose exec django /docker_venv/bin/coverage run --rcfile=/cs-field-guide/.coveragerc ./manage.py test --settings=config.settings.testing --pattern "test_*.py" -v 3
-  test_status=$?
-  dev_test_coverage
-  coverage_status=$?
-  bash <(curl -s https://codecov.io/bash)
-  ! (( $test_status || $coverage_status ))
-  # if [ "$CONTINUOUS_INTEGRATION" == "true" ]; then
-  #  docker-compose exec django /docker_venv/bin/coverage run --rcfile=/cs-field-guide/.coveragerc ./manage.py test --settings=config.settings.testing --pattern "test_*.py" -v 3
-  # else
-  #  docker-compose exec django /docker_venv/bin/coverage run --rcfile=/cs-field-guide/.coveragerc ./manage.py test --settings=config.settings.testing --pattern "test_*.py" -v 3 --nomigrations
-  # fi
+  docker-compose exec django /docker_venv/bin/coverage run --rcfile=/cs-field-guide/.coveragerc ./manage.py test --settings=config.settings.testing --pattern "test_*.py" -v 3 --nomigrations
 }
 defhelp -dev test_suite 'Run test suite with code coverage.'
 
@@ -252,20 +233,16 @@ defhelp -dev test_coverage 'Display code coverage report.'
 # Run test suite backwards for CI testing
 dev_test_backwards() {
   echo "Running test suite backwards..."
-  docker-compose exec django /docker_venv/bin/python3 ./manage.py test --settings=config.settings.testing --pattern "test_*.py" --reverse -v 0
+  docker-compose exec django /docker_venv/bin/python3 ./manage.py test --settings=config.settings.testing --pattern "test_*.py" --reverse -v 0 --nomigrations
 }
 defhelp -dev test_backwards 'Run test suite backwards.'
 
-# Generates the documentation (with warnings as errors)
-dev_docs() {
-  echo "Removing any existing documentation..."
-  docker-compose exec django rm -rf /cs-field-guide/docs/build/
-  docker-compose exec django mkdir /cs-field-guide/docs/build/
-  echo
-  echo "Creating documentation..."
-  docker-compose exec django /docker_venv/bin/sphinx-build -W /cs-field-guide/docs/source/ /cs-field-guide/docs/build/
+# Run Django updatedata command
+dev_updatedata() {
+  echo "Loading content..."
+  docker-compose exec django /docker_venv/bin/python3 ./manage.py updatedata
 }
-defhelp -dev docs 'Generate documentation.'
+defhelp -dev updatedata 'Run updatedata command.'
 
 # Delete all untagged dangling Docker images
 cmd_clean() {
@@ -310,7 +287,14 @@ defhelp logs 'View logs.'
 
 # Run test suite
 ci_test_suite() {
+  dev_static
+  dev_collect_static
   dev_test_suite
+  test_status=$?
+  dev_test_coverage
+  coverage_status=$?
+  bash <(curl -s https://codecov.io/bash)
+  ! (( $test_status || $coverage_status ))
 }
 
 ci_style() {
@@ -318,6 +302,8 @@ ci_style() {
 }
 
 ci_test_backwards() {
+  dev_static
+  dev_collect_static
   dev_test_backwards
 }
 
