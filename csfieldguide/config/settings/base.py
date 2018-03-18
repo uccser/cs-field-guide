@@ -157,7 +157,7 @@ TEMPLATES = [
 # STATIC FILE CONFIGURATION
 # ------------------------------------------------------------------------------
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#static-root
-STATIC_ROOT = str(ROOT_DIR.path("staticfiles"))
+STATIC_ROOT = os.path.join(str(ROOT_DIR.path("staticfiles")), "")
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#static-url
 BUILD_ROOT = os.path.join(str(ROOT_DIR.path("build")), "")
@@ -165,7 +165,6 @@ STATIC_URL = "/staticfiles/"
 
 # See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
 STATICFILES_DIRS = [
-    str(ROOT_DIR.path("static")),
     BUILD_ROOT,
 ]
 
@@ -208,3 +207,9 @@ AUTH_PASSWORD_VALIDATORS = [
         "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
+
+# OTHER SETTINGS
+# ------------------------------------------------------------------------------
+CHAPTERS_CONTENT_BASE_PATH = os.path.join(str(ROOT_DIR.path("chapters")), "content", "en")
+INTERACTIVES_CONTENT_BASE_PATH = os.path.join(str(ROOT_DIR.path("interactives")), "content")
+INTERACTIVES_BASE_TEMPLATES_PATH = os.path.join("interactives", "base")

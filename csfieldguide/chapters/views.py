@@ -4,7 +4,7 @@ from django.shortcuts import get_object_or_404
 from django.views import generic
 from django.http import JsonResponse, Http404
 
-from config.templatetags.render_html_field import render_html_with_static
+from utils.render_html_with_load_tags import render_html_with_load_tags
 
 from .models import Chapter, ChapterSection, GlossaryTerm
 
@@ -121,7 +121,7 @@ def glossary_json(request, **kwargs):
         data = {
             "slug": glossary_slug,
             "term": glossary_item.term,
-            "definition": render_html_with_static(glossary_item.definition)
+            "definition": render_html_with_load_tags(glossary_item.definition)
         }
         return JsonResponse(data)
     else:

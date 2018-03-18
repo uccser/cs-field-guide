@@ -2,8 +2,10 @@
 
 import os.path
 from django.db import transaction
+from django.core.exceptions import ObjectDoesNotExist
 from utils.BaseLoader import BaseLoader
 from utils.errors.MissingRequiredFieldError import MissingRequiredFieldError
+from utils.errors.KeyNotFoundError import KeyNotFoundError
 from chapters.models import Chapter
 from interactives.models import Interactive
 
@@ -64,7 +66,7 @@ class ChaptersLoader(BaseLoader):
         )
         chapter.save()
 
-        self.log("Added Chapter: {}".format(chapter.name))
+        self.log("Added chapter: {}".format(chapter.name))
 
         chapter_interactives = chapter_introduction.required_files["interactives"]
         if chapter_interactives:
@@ -73,7 +75,7 @@ class ChaptersLoader(BaseLoader):
                     interactive = Interactive.objects.get(slug=interactive_slug)
                 except ObjectDoesNotExist:
                     raise KeyNotFoundError(
-                        self.structure_file_path,
+                        self.chapter_structure_file_path,
                         interactive_slug,
                         "Interactive"
                     )

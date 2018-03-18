@@ -1,3 +1,5 @@
+"""Module for helper functions for test suite."""
+
 from os.path import join, dirname
 from django.conf import settings
 
