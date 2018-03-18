@@ -1,30 +1,50 @@
 """Module for the custom Django loadinteractives command."""
 
+import os.path
 from django.core.management.base import BaseCommand
-from interactives.models import Interactive
+from django.conf import settings
+from utils.BaseLoader import BaseLoader
+from utils.LoaderFactory import LoaderFactory
+from utils.errors.MissingRequiredFieldError import MissingRequiredFieldError
 
 
 class Command(BaseCommand):
     """Required command class for the custom Django loadinteractives command.
 
     Raises:
-        MissingRequiredFieldError: when no object can be found with the matching
-                attribute.
+        MissingRequiredFieldError: When a config (yaml) file is missing a
+            required field.
     """
 
-    help = "Converts Markdown files listed in structure file and stores"
+    help = "Creates Interacive objects as defined in config files and stores them in the database."
 
     def handle(self, *args, **options):
         """Automatically called when the loadinteractives command is given."""
-        # Hardcoded for testing, TODO this should be in _InteractiveLoader.py
-        new_interactive = Interactive(
-            slug="sorting-algorithm-comparison",
-            template="interactives/sorting-algorithm-comparison.html"
-        )
-        new_interactive.save()
+        factory = LoaderFactory()
 
-        new_interactive = Interactive(
-            slug="high-score-boxes",
-            template="interactives/high-score-boxes.html"
+        base_loader = BaseLoader()
+        base_path = settings.INTERACTIVES_CONTENT_BASE_PATH
+
+        structure_file_path = os.path.join(
+            base_path,
+            "interactives.yaml"
         )
-        new_interactive.save()
+
+        structure_file = base_loader.load_yaml_file(structure_file_path)
+
+        interactives = structure_file.get("interactives", None)
+        if interactives is None or not isinstance(structure_file["interactives"], dict):
+            raise MissingRequiredFieldError(
+                structure_file,
+                ["interactives"],
+                "Interactive"
+            )
+        else:
+            for (interactive_slug, interactive_structure) in interactives.items():
+                factory.create_interactives_loader(
+                    structure_file_path,
+                    interactive_slug,
+                    interactive_structure,
+                    base_path
+                ).load()
+            base_loader.log("All interactives loaded!\n")

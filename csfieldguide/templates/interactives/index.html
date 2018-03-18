@@ -14,9 +14,9 @@
 {% block content %}
 
   <h2>List of interactives</h2>
-  {% if all_interactives %}
+  {% if interactives %}
     <ul>
-      {% for interactive in all_interactives %}
+      {% for interactive in interactives %}
         <li>
           <a href="{% url 'interactives:interactive' interactive.slug %}">
             {{ interactive.slug }} <!-- Temporary until name is implemented -->

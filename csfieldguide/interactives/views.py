@@ -1,14 +1,16 @@
 """Views for the interactives application."""
 
 from django.views import generic
-from .models import Interactive
+from django.http import HttpResponse
+from interactives.models import Interactive
+from config.templatetags.render_interactive_in_page import render_interactive_html
 
 
 class IndexView(generic.ListView):
     """View for the interactives application homepage."""
 
     template_name = "interactives/index.html"
-    context_object_name = "all_interactives"
+    context_object_name = "interactives"
 
     def get_queryset(self):
         """Get queryset of all interactives.
@@ -19,9 +21,11 @@ class IndexView(generic.ListView):
         return Interactive.objects.all()
 
 
-class InteractiveView(generic.DetailView):
-    """View for a specific interactive."""
+def interactive_whole_page_view(request, interactive_slug):
+    """View for a interactive in whole page mode."""
+    return HttpResponse(render_interactive_html(interactive_slug, "whole-page"))
 
-    model = Interactive
-    slug_url_kwarg = "interactive_slug"
-    template_name = "interactives/whole-page-interactive-base.html"
+
+def interactive_iframe_view(request, interactive_slug):
+    """View for a interactive in whole page mode."""
+    return HttpResponse(render_interactive_html(interactive_slug, "iframe"))

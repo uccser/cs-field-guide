@@ -2,10 +2,13 @@
 
 import os.path
 from django.db import transaction
+from django.core.exceptions import ObjectDoesNotExist
 from utils.BaseLoader import BaseLoader
 from utils.errors.MissingRequiredFieldError import MissingRequiredFieldError
 from utils.errors.InvalidYAMLValueError import InvalidYAMLValueError
+from utils.errors.KeyNotFoundError import KeyNotFoundError
 from chapters.models import ChapterSection
+from interactives.models import Interactive
 
 
 class ChapterSectionsLoader(BaseLoader):
@@ -51,6 +54,19 @@ class ChapterSectionsLoader(BaseLoader):
                 self.section_structure_file_path,
             )
 
+            interactives = section_content.required_files["interactives"]
+            if interactives:
+                for interactive_slug in interactives:
+                    try:
+                        interactive = Interactive.objects.get(slug=interactive_slug)
+                    except ObjectDoesNotExist:
+                        raise KeyNotFoundError(
+                            self.section_structure_file_path,
+                            interactive_slug,
+                            "Interactive"
+                        )
+                    self.chapter.interactives.add(interactive)
+
             section_number = section_structure.get("section-number", None)
             if isinstance(section_number, int) is False:
                 raise InvalidYAMLValueError(
@@ -75,4 +91,4 @@ class ChapterSectionsLoader(BaseLoader):
             )
             chapter_section.save()
 
-            self.log("Added Chapter Section: {}".format(chapter_section.heading), 1)
+            self.log("Added chapter section: {}".format(chapter_section.heading), 1)

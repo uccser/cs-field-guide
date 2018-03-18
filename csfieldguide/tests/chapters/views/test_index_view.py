@@ -23,3 +23,37 @@ class IndexViewTest(BaseTestWithDB):
             response.context["all_chapters"],
             ["<Chapter: Chapter 1>"]
         )
+
+    def test_chapters_index_view_with_two_chapters(self):
+        self.test_data.create_chapter("1")
+        self.test_data.create_chapter("2")
+
+        url = reverse("chapters:index")
+        response = self.client.get(url)
+
+        self.assertEqual(HTTPStatus.OK, response.status_code)
+        self.assertQuerysetEqual(
+            response.context["all_chapters"],
+            [
+                "<Chapter: Chapter 1>",
+                "<Chapter: Chapter 2>"
+            ]
+        )
+
+    def test_chapters_index_view_with_three_chapters(self):
+        self.test_data.create_chapter("2")
+        self.test_data.create_chapter("1")
+        self.test_data.create_chapter("3")
+
+        url = reverse("chapters:index")
+        response = self.client.get(url)
+
+        self.assertEqual(HTTPStatus.OK, response.status_code)
+        self.assertQuerysetEqual(
+            response.context["all_chapters"],
+            [
+                "<Chapter: Chapter 1>",
+                "<Chapter: Chapter 2>",
+                "<Chapter: Chapter 3>"
+            ]
+        )

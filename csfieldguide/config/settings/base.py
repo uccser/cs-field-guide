@@ -10,6 +10,7 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 """
 
 import environ
+import os.path
 
 # cs-field-guide/csfieldguide/config/settings/base.py - 3 = csfieldguide/
 ROOT_DIR = environ.Path(__file__) - 3
@@ -146,7 +147,8 @@ TEMPLATES = [
                 'general.context_processors.nav_context.nav_context'
             ],
             "libraries": {
-                "render_html_field": "general.templatetags.render_html_field",
+                "render_html_field": "config.templatetags.render_html_field",
+                "render_interactive_in_page": "config.templatetags.render_interactive_in_page",
             },
         },
     },
@@ -155,14 +157,15 @@ TEMPLATES = [
 # STATIC FILE CONFIGURATION
 # ------------------------------------------------------------------------------
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#static-root
-STATIC_ROOT = str(ROOT_DIR.path("staticfiles"))
+STATIC_ROOT = os.path.join(str(ROOT_DIR.path("staticfiles")), "")
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#static-url
+BUILD_ROOT = os.path.join(str(ROOT_DIR.path("build")), "")
 STATIC_URL = "/staticfiles/"
 
 # See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
 STATICFILES_DIRS = [
-    str(ROOT_DIR.path("static")),
+    BUILD_ROOT,
 ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#staticfiles-finders
@@ -204,3 +207,9 @@ AUTH_PASSWORD_VALIDATORS = [
         "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
+
+# OTHER SETTINGS
+# ------------------------------------------------------------------------------
+CHAPTERS_CONTENT_BASE_PATH = os.path.join(str(ROOT_DIR.path("chapters")), "content", "en")
+INTERACTIVES_CONTENT_BASE_PATH = os.path.join(str(ROOT_DIR.path("interactives")), "content")
+INTERACTIVES_BASE_TEMPLATES_PATH = os.path.join("interactives", "base")

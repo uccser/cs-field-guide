@@ -1,6 +1,7 @@
 """Models for the chapters application."""
 
 from django.db import models
+from interactives.models import Interactive
 from django.core.exceptions import ValidationError
 
 
@@ -35,6 +36,10 @@ class Chapter(models.Model):
     number = models.SmallIntegerField(unique=True)
     introduction = models.TextField()
     icon = models.CharField(max_length=100)
+    interactives = models.ManyToManyField(
+        Interactive,
+        related_name="chapter",
+    )
 
     def __str__(self):
         """Text representation of Chapter object.

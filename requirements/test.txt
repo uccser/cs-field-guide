@@ -6,3 +6,6 @@ pydocstyle==2.1.1
 
 #Coverage Tools
 coverage==4.5.1
+
+# Skip migration files for local testing
+django-test-without-migrations==0.6
