@@ -287,6 +287,8 @@ defhelp logs 'View logs.'
 
 # Run test suite
 ci_test_suite() {
+  dev_static
+  dev_collect_static
   dev_test_suite
   test_status=$?
   dev_test_coverage
