@@ -18,53 +18,38 @@ class ChapterSectionsLoaderTest(BaseTestWithDB):
         super().__init__(*args, **kwargs)
         self.test_data = ChaptersTestDataGenerator()
         self.interactives_test_data = InteractivesTestDataGenerator()
-        self.loader_name = "chapter_section"
-        self.base_path = os.path.join(self.test_data.LOADER_ASSET_PATH, "sections")
-        self.factory = mock.Mock()
+        self.loader_name = "chapter-sections"
+        self.base_path = os.path.join(self.test_data.LOADER_ASSET_PATH, self.loader_name)
 
     def test_chapters_chapter_section_loader_single_section(self):
-        test_name = "single-section"
+        test_slug = "single-section"
         chapter = self.test_data.create_chapter("1")
-        section_structure_file_path = os.path.join(
-            self.base_path,
-            "{}/{}.yaml".format(test_name, test_name)
-        )
-        chapter_path = os.path.join(
-            self.base_path,
-            test_name,
-        )
-
+        factory = mock.Mock()
         chapter_section_loader = ChapterSectionsLoader(
-            chapter=chapter,
-            chapter_path=chapter_path,
-            section_structure_file_path=section_structure_file_path,
+            factory,
+            chapter,
+            base_path=self.base_path,
+            content_path=test_slug,
+            structure_filename="{}.yaml".format(test_slug),
         )
         chapter_section_loader.load()
-
         self.assertQuerysetEqual(
             ChapterSection.objects.all(),
             ["<ChapterSection: This is the section heading>"]
         )
 
     def test_chapters_chapter_section_loader_multiple_sections(self):
-        test_name = "multiple-sections"
+        test_slug = "multiple-sections"
         chapter = self.test_data.create_chapter("1")
-        section_structure_file_path = os.path.join(
-            self.base_path,
-            "{}/{}.yaml".format(test_name, test_name)
-        )
-        chapter_path = os.path.join(
-            self.base_path,
-            test_name,
-        )
-
+        factory = mock.Mock()
         chapter_section_loader = ChapterSectionsLoader(
-            chapter=chapter,
-            chapter_path=chapter_path,
-            section_structure_file_path=section_structure_file_path,
+            factory,
+            chapter,
+            base_path=self.base_path,
+            content_path=test_slug,
+            structure_filename="{}.yaml".format(test_slug),
         )
         chapter_section_loader.load()
-
         self.assertQuerysetEqual(
             ChapterSection.objects.all(),
             [
@@ -74,44 +59,31 @@ class ChapterSectionsLoaderTest(BaseTestWithDB):
         )
 
     def test_chapters_chapter_section_loader_missing_section_number(self):
-        test_name = "missing-section-number"
+        test_slug = "missing-section-number"
         chapter = self.test_data.create_chapter("1")
-        section_structure_file_path = os.path.join(
-            self.base_path,
-            "{}/{}.yaml".format(test_name, test_name)
-        )
-        chapter_path = os.path.join(
-            self.base_path,
-            test_name,
-        )
-
+        factory = mock.Mock()
         chapter_section_loader = ChapterSectionsLoader(
-            chapter=chapter,
-            chapter_path=chapter_path,
-            section_structure_file_path=section_structure_file_path,
+            factory,
+            chapter,
+            base_path=self.base_path,
+            content_path=test_slug,
+            structure_filename="{}.yaml".format(test_slug),
         )
-
         self.assertRaises(
             MissingRequiredFieldError,
             chapter_section_loader.load
         )
 
     def test_chapters_chapter_section_loader_duplicate_section_numbers(self):
-        test_name = "duplicate-section-numbers"
+        test_slug = "duplicate-section-numbers"
         chapter = self.test_data.create_chapter("1")
-        section_structure_file_path = os.path.join(
-            self.base_path,
-            "{}/{}.yaml".format(test_name, test_name)
-        )
-        chapter_path = os.path.join(
-            self.base_path,
-            test_name,
-        )
-
+        factory = mock.Mock()
         chapter_section_loader = ChapterSectionsLoader(
-            chapter=chapter,
-            chapter_path=chapter_path,
-            section_structure_file_path=section_structure_file_path,
+            factory,
+            chapter,
+            base_path=self.base_path,
+            content_path=test_slug,
+            structure_filename="{}.yaml".format(test_slug),
         )
         self.assertRaises(
             ValidationError,
@@ -119,99 +91,41 @@ class ChapterSectionsLoaderTest(BaseTestWithDB):
         )
 
     def test_chapters_chapter_section_loader_missing_name(self):
-        test_name = "missing-name"
+        test_slug = "missing-name"
         chapter = self.test_data.create_chapter("1")
-        section_structure_file_path = os.path.join(
-            self.base_path,
-            "{}/{}.yaml".format(test_name, test_name)
-        )
-        chapter_path = os.path.join(
-            self.base_path,
-            test_name,
-        )
-
+        factory = mock.Mock()
         chapter_section_loader = ChapterSectionsLoader(
-            chapter=chapter,
-            chapter_path=chapter_path,
-            section_structure_file_path=section_structure_file_path,
+            factory,
+            chapter,
+            base_path=self.base_path,
+            content_path=test_slug,
+            structure_filename="{}.yaml".format(test_slug),
         )
-
         self.assertRaises(
             NoHeadingFoundInMarkdownFileError,
             chapter_section_loader.load
         )
 
-    def test_chapters_chapter_section_loader_empty_file(self):
-        test_name = "empty-file"
-        chapter = self.test_data.create_chapter("1")
-        section_structure_file_path = os.path.join(
-            self.base_path,
-            "{}/{}.yaml".format(test_name, test_name)
-        )
-        chapter_path = os.path.join(
-            self.base_path,
-            test_name,
-        )
-
-        chapter_section_loader = ChapterSectionsLoader(
-            chapter=chapter,
-            chapter_path=chapter_path,
-            section_structure_file_path=section_structure_file_path,
-        )
-
-        self.assertRaises(
-            NoHeadingFoundInMarkdownFileError,
-            chapter_section_loader.load
-        )
-
-    def test_chapters_chapter_section_loader_missing_markdown_file(self):
-        test_name = "missing-markdown-file"
-        chapter = self.test_data.create_chapter("1")
-        section_structure_file_path = os.path.join(
-            self.base_path,
-            "{}/{}.yaml".format(test_name, test_name)
-        )
-        chapter_path = os.path.join(
-            self.base_path,
-            test_name,
-        )
-
-        chapter_section_loader = ChapterSectionsLoader(
-            chapter=chapter,
-            chapter_path=chapter_path,
-            section_structure_file_path=section_structure_file_path,
-        )
-
-        self.assertRaises(
-            CouldNotFindMarkdownFileError,
-            chapter_section_loader.load
-        )
 
     @mock.patch(
         "django.contrib.staticfiles.finders.find",
         return_value=True
     )
     def test_chapters_chapter_section_loader_interactive(self, find_image_files):
-        section_slug = "interactives"
+        test_slug = "interactives"
         chapter = self.test_data.create_chapter("1")
-        structure_file_path = os.path.join(
-            self.base_path,
-            section_slug,
-            "{}.yaml".format(section_slug)
-        )
-        chapter_path = os.path.join(
-            self.base_path,
-            section_slug,
-        )
         interactive1 = self.interactives_test_data.create_interactive(1)
         interactive2 = self.interactives_test_data.create_interactive(2)
         interactive3 = self.interactives_test_data.create_interactive(3)
-        section_loader = ChapterSectionsLoader(
-            chapter=chapter,
-            chapter_path=chapter_path,
-            section_structure_file_path=structure_file_path,
+        factory = mock.Mock()
+        chapter_section_loader = ChapterSectionsLoader(
+            factory,
+            chapter,
+            base_path=self.base_path,
+            content_path=test_slug,
+            structure_filename="{}.yaml".format(test_slug),
         )
-        section_loader.load()
+        chapter_section_loader.load()
         self.assertTrue(find_image_files.called)
         self.assertQuerysetEqual(
             ChapterSection.objects.all(),
@@ -227,23 +141,17 @@ class ChapterSectionsLoaderTest(BaseTestWithDB):
         )
 
     def test_chapters_chapter_section_loader_interactive_invalid(self):
-        section_slug = "invalid-interactive"
+        test_slug = "invalid-interactive"
         chapter = self.test_data.create_chapter("1")
-        structure_file_path = os.path.join(
-            self.base_path,
-            section_slug,
-            "{}.yaml".format(section_slug)
-        )
-        chapter_path = os.path.join(
-            self.base_path,
-            section_slug,
-        )
-        section_loader = ChapterSectionsLoader(
-            chapter=chapter,
-            chapter_path=chapter_path,
-            section_structure_file_path=structure_file_path,
+        factory = mock.Mock()
+        chapter_section_loader = ChapterSectionsLoader(
+            factory,
+            chapter,
+            base_path=self.base_path,
+            content_path=test_slug,
+            structure_filename="{}.yaml".format(test_slug),
         )
         self.assertRaises(
             KeyNotFoundError,
-            section_loader.load
+            chapter_section_loader.load
         )

@@ -19,7 +19,8 @@ class GlossaryViewTest(BaseTestWithDB):
         term = GlossaryTerm(
             slug="algorithm",
             term="Algorithms",
-            definition="<p>Algorithms definition.</p>"
+            definition="<p>Algorithms definition.</p>",
+            languages=[self.language],
         )
         term.save()
 
@@ -36,13 +37,15 @@ class GlossaryViewTest(BaseTestWithDB):
         term1 = GlossaryTerm(
             slug="algorithm",
             term="Algorithms",
-            definition="<p>Algorithms definition.</p>"
+            definition="<p>Algorithms definition.</p>",
+            languages=[self.language],
         )
         term1.save()
         term2 = GlossaryTerm(
             slug="pixel",
             term="Pixel",
-            definition="<p>Pixel definition.</p>"
+            definition="<p>Pixel definition.</p>",
+            languages=[self.language],
         )
         term2.save()
 
@@ -59,19 +62,22 @@ class GlossaryViewTest(BaseTestWithDB):
         term_c = GlossaryTerm(
             slug="c",
             term="C",
-            definition=""
+            definition="",
+            languages=[self.language],
         )
         term_c.save()
         term_b = GlossaryTerm(
             slug="b",
             term="B",
-            definition=""
+            definition="",
+            languages=[self.language],
         )
         term_b.save()
         term_a = GlossaryTerm(
             slug="a",
             term="A",
-            definition=""
+            definition="",
+            languages=[self.language],
         )
         term_a.save()
 
@@ -92,7 +98,8 @@ class GlossaryViewTest(BaseTestWithDB):
         term = GlossaryTerm(
             slug="algorithm",
             term="Algorithms",
-            definition="<p>Algorithms definition.</p>"
+            definition="<p>Algorithms definition.</p>",
+            languages=[self.language],
         )
         term.save()
 
@@ -112,13 +119,15 @@ class GlossaryViewTest(BaseTestWithDB):
         term1 = GlossaryTerm(
             slug="algorithm",
             term="Algorithms",
-            definition="<p>Algorithms definition.</p>"
+            definition="<p>Algorithms definition.</p>",
+            languages=[self.language],
         )
         term1.save()
         term2 = GlossaryTerm(
             slug="pixel",
             term="Pixel",
-            definition="<p>Pixel definition.</p>"
+            definition="<p>Pixel definition.</p>",
+            languages=[self.language],
         )
         term2.save()
 

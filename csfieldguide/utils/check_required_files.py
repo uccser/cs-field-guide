@@ -50,7 +50,7 @@ def check_interactives(interactives, file_path, chapter=None):
                 interactive = Interactive.objects.get(slug=interactive_slug)
             except ObjectDoesNotExist:
                 raise KeyNotFoundError(
-                    section_structure_file_path,
+                    file_path,
                     interactive_slug,
                     "Interactive"
                 )

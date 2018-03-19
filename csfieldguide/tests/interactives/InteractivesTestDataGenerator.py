@@ -6,10 +6,6 @@ from interactives.models import Interactive
 class InteractivesTestDataGenerator:
     """Class for generating test data for interactives."""
 
-    def __init__(self):
-        """Create InteractivesTestDataGenerator object."""
-        self.LOADER_ASSET_PATH = "tests/chapters/loaders/assets/interactives/"
-
     def create_interactive(self, number):
         """Create interactive object.
 

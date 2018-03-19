@@ -53,8 +53,8 @@ class ChaptersLoader(TranslatableModelLoader):
         chapter_icon = chapter_structure.get("icon", None)
         if chapter_icon is None:
             raise MissingRequiredFieldError(
-                self.chapter_structure_file_path,
-                self.required_fields,
+                self.structure_file_path,
+                ["icon"],
                 "Chapter"
             )
 
@@ -74,6 +74,7 @@ class ChaptersLoader(TranslatableModelLoader):
         check_interactives(
             introduction_translations[get_default_language()].required_files["interactives"],
             self.structure_file_path,
+            chapter,
         )
 
         # Load chapter sections

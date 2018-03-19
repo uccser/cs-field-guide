@@ -81,4 +81,5 @@ class ChapterSectionsLoader(TranslatableModelLoader):
             check_interactives(
                 content_translations[get_default_language()].required_files["interactives"],
                 self.structure_file_path,
+                self.chapter,
             )

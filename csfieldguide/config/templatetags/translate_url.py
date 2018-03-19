@@ -32,6 +32,6 @@ def translate_url(context, lang, *args, **kwargs):
         url = reverse(url_parts.view_name, kwargs=url_parts.kwargs)
         activate(cur_language)
     except Resolver404:
-        url = reverse("general:home")
+        url = reverse("general:index")
 
     return str(url)
