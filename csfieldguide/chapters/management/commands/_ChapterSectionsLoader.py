@@ -45,7 +45,7 @@ class ChapterSectionsLoader(TranslatableModelLoader):
             if section_number is None:
                 raise MissingRequiredFieldError(
                     self.structure_file_path,
-                    self.required_fields,
+                    ["section-number"],
                     "ChapterSection"
                 )
             if isinstance(section_number, int) is False:

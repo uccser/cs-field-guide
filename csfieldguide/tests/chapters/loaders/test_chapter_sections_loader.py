@@ -8,6 +8,7 @@ from chapters.management.commands._ChapterSectionsLoader import ChapterSectionsL
 from chapters.models import Chapter, ChapterSection
 from utils.errors.MissingRequiredFieldError import MissingRequiredFieldError
 from utils.errors.NoHeadingFoundInMarkdownFileError import NoHeadingFoundInMarkdownFileError
+from utils.errors.InvalidYAMLValueError import InvalidYAMLValueError
 from utils.errors.KeyNotFoundError import KeyNotFoundError
 
 
@@ -57,6 +58,22 @@ class ChapterSectionsLoaderTest(BaseTestWithDB):
             ]
         )
 
+    def test_chapters_chapter_section_loader_missing_section_data(self):
+        test_slug = "missing-section-data"
+        chapter = self.test_data.create_chapter("1")
+        factory = mock.Mock()
+        chapter_section_loader = ChapterSectionsLoader(
+            factory,
+            chapter,
+            base_path=self.base_path,
+            content_path=test_slug,
+            structure_filename="{}.yaml".format(test_slug),
+        )
+        self.assertRaises(
+            MissingRequiredFieldError,
+            chapter_section_loader.load
+        )
+
     def test_chapters_chapter_section_loader_missing_section_number(self):
         test_slug = "missing-section-number"
         chapter = self.test_data.create_chapter("1")
@@ -70,6 +87,22 @@ class ChapterSectionsLoaderTest(BaseTestWithDB):
         )
         self.assertRaises(
             MissingRequiredFieldError,
+            chapter_section_loader.load
+        )
+
+    def test_chapters_chapter_section_loader_invalid_section_number(self):
+        test_slug = "invalid-section-number"
+        chapter = self.test_data.create_chapter("1")
+        factory = mock.Mock()
+        chapter_section_loader = ChapterSectionsLoader(
+            factory,
+            chapter,
+            base_path=self.base_path,
+            content_path=test_slug,
+            structure_filename="{}.yaml".format(test_slug),
+        )
+        self.assertRaises(
+            InvalidYAMLValueError,
             chapter_section_loader.load
         )
 
