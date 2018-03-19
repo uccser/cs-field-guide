@@ -3,9 +3,10 @@
 from django.db import models
 from interactives.models import Interactive
 from django.core.exceptions import ValidationError
+from utils.TranslatableModel import TranslatableModel
 
 
-class GlossaryTerm(models.Model):
+class GlossaryTerm(TranslatableModel):
     """Model for glossary term in database."""
 
     #  Auto-incrementing 'id' field is automatically set by Django
@@ -27,7 +28,7 @@ class GlossaryTerm(models.Model):
         ordering = ["term"]
 
 
-class Chapter(models.Model):
+class Chapter(TranslatableModel):
     """Model for chapter in database."""
 
     #  Auto-incrementing 'id' field is automatically set by Django
@@ -55,7 +56,7 @@ class Chapter(models.Model):
         ordering = ["number"]
 
 
-class ChapterSection(models.Model):
+class ChapterSection(TranslatableModel):
     """Model for each section in a chapter in database."""
 
     #  Auto-incrementing 'id' field is automatically set by Django
@@ -66,7 +67,7 @@ class ChapterSection(models.Model):
     chapter = models.ForeignKey(
         Chapter,
         null=False,
-        related_name="chapter_section"
+        related_name="chapter_sections"
     )
 
     def __str__(self):

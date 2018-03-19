@@ -1,11 +1,10 @@
 """Models for the interactives application."""
 
 from django.db import models
+from utils.TranslatableModel import TranslatableModel
 
-# Create your models here.
 
-
-class Interactive(models.Model):
+class Interactive(TranslatableModel):
     """Model for interactive in database."""
 
     #  Auto-incrementing 'id' field is automatically set by Django

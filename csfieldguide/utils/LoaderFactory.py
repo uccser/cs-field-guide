@@ -9,18 +9,18 @@ from interactives.management.commands._InteractivesLoader import InteractivesLoa
 class LoaderFactory:
     """Factory for creating loader objects."""
 
-    def create_chapter_loader(self, chapter_structure_file_path, chapter_slug, chapter_number, BASE_PATH):
+    def create_chapter_loader(self, **kwargs):
         """Create chapter loader."""
-        return ChaptersLoader(self, chapter_structure_file_path, chapter_slug, chapter_number, BASE_PATH)
+        return ChaptersLoader(**kwargs)
 
-    def create_chapter_section_loader(self, chapter, chapter_path, section_structure_file_path):
+    def create_chapter_section_loader(self, **kwargs):
         """Create chapter loader."""
-        return ChapterSectionsLoader(chapter, chapter_path, section_structure_file_path)
+        return ChapterSectionsLoader(**kwargs)
 
-    def create_interactives_loader(self, structure_file_path, interactive_slug, interactive_structure, BASE_PATH):
+    def create_interactives_loader(self, **kwargs):
         """Create interactive loader."""
-        return InteractivesLoader(structure_file_path, interactive_slug, interactive_structure, BASE_PATH)
+        return InteractivesLoader(**kwargs)
 
-    def create_glossary_terms_loader(self, structure_file_path, glossary_directory_name, BASE_PATH):
+    def create_glossary_terms_loader(self, **kwargs):
         """Create glossary terms loader."""
-        return GlossaryTermsLoader(structure_file_path, glossary_directory_name, BASE_PATH)
+        return GlossaryTermsLoader(**kwargs)

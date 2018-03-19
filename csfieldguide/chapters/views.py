@@ -1,12 +1,16 @@
 """Views for the chapters application."""
 
+from django.db.models import Q
 from django.shortcuts import get_object_or_404
 from django.views import generic
 from django.http import JsonResponse, Http404
-
+from django.utils.translation import get_language
 from utils.render_html_with_load_tags import render_html_with_load_tags
-
-from .models import Chapter, ChapterSection, GlossaryTerm
+from chapters.models import (
+    Chapter,
+    ChapterSection,
+    GlossaryTerm,
+)
 
 
 class IndexView(generic.ListView):
@@ -22,21 +26,6 @@ class IndexView(generic.ListView):
             Queryset of Chapter objects ordered by name.
         """
         return Chapter.objects.all()
-
-
-class GlossaryList(generic.ListView):
-    """Provide glossary view of all terms."""
-
-    template_name = "chapters/glossary.html"
-    context_object_name = "glossary_terms"
-
-    def get_queryset(self):
-        """Get queryset of all glossary terms.
-
-        Returns:
-            Queryset of GlossaryTerm objects ordered by term.
-        """
-        return GlossaryTerm.objects.order_by("term")
 
 
 class ChapterView(generic.DetailView):
@@ -100,6 +89,32 @@ class ChapterSectionView(generic.DetailView):
         )
         context["chapter"] = self.object.chapter
         return context
+
+
+class GlossaryList(generic.ListView):
+    """Provide glossary view of all terms."""
+
+    template_name = "chapters/glossary.html"
+    context_object_name = "glossary_terms"
+
+    def get_queryset(self):
+        """Get queryset of all glossary terms.
+
+        Returns:
+            Queryset of GlossaryTerm objects ordered by term.
+        """
+        return GlossaryTerm.objects.order_by("term")
+
+    def get_context_data(self):
+        """Get context data for template rendering."""
+        return {
+            "glossary_terms": GlossaryTerm.objects.filter(
+                Q(languages__contains=[get_language()])
+            ).order_by("term_en"),
+            "untranslated_glossary_terms": GlossaryTerm.objects.filter(
+                ~Q(languages__contains=[get_language()])
+            ).order_by("term_en")
+        }
 
 
 def glossary_json(request, **kwargs):
