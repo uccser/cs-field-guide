@@ -26,13 +26,23 @@ class InteractivesLoaderTest(BaseTestWithDB):
             ["<Interactive: Interactive Untranslated>"]
         )
 
+    def test_interactives_interactives_missing_interactive_list(self):
+        interactive_loader = InteractivesLoader(
+            base_path=self.BASE_PATH,
+            content_path="",
+            structure_filename="missing-interactives.yaml"
+        )
+        self.assertRaises(
+            MissingRequiredFieldError,
+            interactive_loader.load
+        )
+
     def test_interactives_interactives_missing_name(self):
         interactive_loader = InteractivesLoader(
             base_path=self.BASE_PATH,
             content_path="",
             structure_filename="missing-name.yaml"
         )
-
         self.assertRaises(
             MissingRequiredFieldError,
             interactive_loader.load
