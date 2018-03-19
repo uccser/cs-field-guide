@@ -71,7 +71,6 @@ class GlossaryTermsLoaderTest(BaseTestWithDB):
             self.assertEqual("Term 1 German", translated_term.term)
             self.assertIn("German definition.", translated_term.definition)
 
-
     def test_missing_title(self):
         folder = "glossary-missing-title"
         glossary_loader = GlossaryTermsLoader(base_path=self.base_path, content_path=folder)

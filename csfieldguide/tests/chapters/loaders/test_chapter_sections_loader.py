@@ -8,7 +8,6 @@ from chapters.management.commands._ChapterSectionsLoader import ChapterSectionsL
 from chapters.models import Chapter, ChapterSection
 from utils.errors.MissingRequiredFieldError import MissingRequiredFieldError
 from utils.errors.NoHeadingFoundInMarkdownFileError import NoHeadingFoundInMarkdownFileError
-from utils.errors.CouldNotFindMarkdownFileError import CouldNotFindMarkdownFileError
 from utils.errors.KeyNotFoundError import KeyNotFoundError
 
 
@@ -105,7 +104,6 @@ class ChapterSectionsLoaderTest(BaseTestWithDB):
             NoHeadingFoundInMarkdownFileError,
             chapter_section_loader.load
         )
-
 
     @mock.patch(
         "django.contrib.staticfiles.finders.find",

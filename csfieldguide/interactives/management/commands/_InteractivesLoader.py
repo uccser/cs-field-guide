@@ -16,7 +16,15 @@ class InteractivesLoader(TranslatableModelLoader):
         MissingRequiredFieldError: When a config (yaml) file is missing a
             required field.
         """
-        interactives = self.load_yaml_file(self.structure_file_path)["interactives"]
+        interactives_structure = self.load_yaml_file(self.structure_file_path)
+        interactives = interactives_structure.get("interactives", None)
+        if interactives is None:
+            raise MissingRequiredFieldError(
+                self.structure_file_path,
+                ["interactives"],
+                "Interactive"
+            )
+
         interactive_translations = self.get_yaml_translations(
             self.structure_filename,
             required_slugs=interactives,

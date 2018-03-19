@@ -38,6 +38,7 @@ class GlossaryTermTranslationOptions(TranslationOptions):
         "definition": None
     }
 
+
 translator.register(Chapter, ChapterTranslationOptions)
 translator.register(ChapterSection, ChapterSectionTranslationOptions)
 translator.register(GlossaryTerm, GlossaryTermTranslationOptions)

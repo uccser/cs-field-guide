@@ -1,6 +1,5 @@
 import os.path
 from unittest import mock
-from django.utils import translation
 from tests.BaseTestWithDB import BaseTestWithDB
 from tests.chapters.ChaptersTestDataGenerator import ChaptersTestDataGenerator
 from tests.interactives.InteractivesTestDataGenerator import InteractivesTestDataGenerator

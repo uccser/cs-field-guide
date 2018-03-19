@@ -2,9 +2,8 @@
 
 from os import listdir
 from django.db import transaction
-
-from utils.language_utils import get_default_language
 from chapters.models import GlossaryTerm
+from utils.language_utils import get_default_language
 from utils.TranslatableModelLoader import TranslatableModelLoader
 
 

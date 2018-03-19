@@ -1,14 +1,11 @@
 """Custom loader for loading a topic."""
 
-import os.path
 from django.db import transaction
 from utils.TranslatableModelLoader import TranslatableModelLoader
 from utils.errors.MissingRequiredFieldError import MissingRequiredFieldError
 from utils.errors.InvalidYAMLValueError import InvalidYAMLValueError
 from utils.language_utils import get_default_language
 from utils.check_required_files import check_interactives
-from chapters.models import ChapterSection
-from interactives.models import Interactive
 
 
 class ChapterSectionsLoader(TranslatableModelLoader):
@@ -25,6 +22,7 @@ class ChapterSectionsLoader(TranslatableModelLoader):
         self.factory = factory
         self.chapter = chapter
 
+    @transaction.atomic
     def load(self):
         """Load the content for a section.
 

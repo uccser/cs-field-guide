@@ -7,7 +7,6 @@ from utils.errors.MissingRequiredFieldError import MissingRequiredFieldError
 from utils.language_utils import get_default_language
 from utils.check_required_files import check_interactives
 from chapters.models import Chapter
-from interactives.models import Interactive
 
 
 class ChaptersLoader(TranslatableModelLoader):
