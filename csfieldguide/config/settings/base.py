@@ -246,7 +246,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # OTHER SETTINGS
 # ------------------------------------------------------------------------------
-CHAPTERS_CONTENT_BASE_PATH = os.path.join(str(ROOT_DIR.path("chapters")), "content", "en")
+CHAPTERS_CONTENT_BASE_PATH = os.path.join(str(ROOT_DIR.path("chapters")), "content")
 INTERACTIVES_CONTENT_BASE_PATH = os.path.join(str(ROOT_DIR.path("interactives")), "content")
 INTERACTIVES_BASE_TEMPLATES_PATH = os.path.join("interactives", "base")
 MODELTRANSLATION_CUSTOM_FIELDS = ("JSONField",)
+CUSTOM_VERTO_TEMPLATES = os.path.join(str(ROOT_DIR.path("utils")), "custom_converter_templates", "")

@@ -9,7 +9,7 @@ class Interactive(TranslatableModel):
 
     #  Auto-incrementing 'id' field is automatically set by Django
     slug = models.SlugField(unique=True)
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, default="")
     template = models.CharField(max_length=150)
 
     def __str__(self):

@@ -12,7 +12,7 @@ Options:
 """
 
 
-class CouldNotFindGlossaryTerm(Error):
+class CouldNotFindGlossaryTermError(Error):
     """Custom error for missing glossary term."""
 
     def __init__(self, term, reference_file_path):

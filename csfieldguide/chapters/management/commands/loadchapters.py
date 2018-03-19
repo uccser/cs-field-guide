@@ -71,7 +71,7 @@ class Command(BaseCommand):
                     base_path=base_path,
                     content_path=chapter_slug,
                     chapter_number=chapter_number,
-                    structure_filename=chapter_structure_file_path,
+                    structure_filename=chapter_structure_file,
                 ).load()
 
             base_loader.log("All chapters loaded!")

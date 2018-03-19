@@ -1,7 +1,7 @@
 """Module for checking glossary links found within Markdown conversions."""
 
 from django.core.exceptions import ObjectDoesNotExist
-from utils.errors.CouldNotFindGlossaryTerm import CouldNotFindGlossaryTerm
+from utils.errors.CouldNotFindGlossaryTermError import CouldNotFindGlossaryTermError
 from chapters.models import GlossaryTerm
 
 
@@ -15,4 +15,4 @@ def check_converter_glossary_links(glossary_links, md_file_path):
         try:
             GlossaryTerm.objects.get(slug=slug)
         except ObjectDoesNotExist:
-            raise CouldNotFindGlossaryTerm(slug, md_file_path)
+            raise CouldNotFindGlossaryTermError(slug, md_file_path)

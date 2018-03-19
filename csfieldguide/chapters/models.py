@@ -11,7 +11,7 @@ class GlossaryTerm(TranslatableModel):
 
     #  Auto-incrementing 'id' field is automatically set by Django
     slug = models.SlugField(unique=True)
-    term = models.CharField(max_length=200, unique=True, null=True)
+    term = models.CharField(max_length=200, unique=True)
     definition = models.TextField()
 
     def __str__(self):
@@ -33,9 +33,9 @@ class Chapter(TranslatableModel):
 
     #  Auto-incrementing 'id' field is automatically set by Django
     slug = models.SlugField(unique=True)
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, default="")
     number = models.SmallIntegerField(unique=True)
-    introduction = models.TextField()
+    introduction = models.TextField(default="")
     icon = models.CharField(max_length=100)
     interactives = models.ManyToManyField(
         Interactive,
@@ -61,9 +61,9 @@ class ChapterSection(TranslatableModel):
 
     #  Auto-incrementing 'id' field is automatically set by Django
     slug = models.SlugField()
-    heading = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, default="")
     number = models.SmallIntegerField()
-    content = models.TextField()
+    content = models.TextField(default="")
     chapter = models.ForeignKey(
         Chapter,
         null=False,
@@ -76,7 +76,7 @@ class ChapterSection(TranslatableModel):
         Returns:
             Heading of chapter section (str).
         """
-        return self.heading
+        return self.name
 
     def clean(self):
         """Use to check for unique section numbers.
@@ -88,13 +88,13 @@ class ChapterSection(TranslatableModel):
         # get all sections with same section number and chapter as new section being added
         sections = ChapterSection.objects.filter(number=self.number, chapter=self.chapter)
         # if already exists section with same number in same chapter, then throw error!
-        if len(sections) >= 1:
+        if len(sections) > 1:
             raise ValidationError(('Section number must be unique per chapter.'))
 
     def save(self, *args, **kwargs):
         """Override save method to validate unique section numbers."""
-        self.full_clean()
         super(ChapterSection, self).save(*args, **kwargs)
+        self.clean()
 
     class Meta:
         """Set consistent ordering of chapter sections."""

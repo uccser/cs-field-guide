@@ -17,7 +17,7 @@ class InteractivesLoader(TranslatableModelLoader):
             required field.
         """
         interactives = self.load_yaml_file(self.structure_file_path)["interactives"]
-        classroom_resources_translations = self.get_yaml_translations(
+        interactive_translations = self.get_yaml_translations(
             self.structure_filename,
             required_slugs=interactives,
             required_fields=["name"]
@@ -26,7 +26,7 @@ class InteractivesLoader(TranslatableModelLoader):
         for interactive_slug in interactives:
             translations = interactive_translations.get(interactive_slug, dict())
             interactive = Interactive(
-                slug=classroom_resource_slug,
+                slug=interactive_slug,
                 template="interactives/{}.html".format(interactive_slug)
             )
             self.populate_translations(interactive, translations)

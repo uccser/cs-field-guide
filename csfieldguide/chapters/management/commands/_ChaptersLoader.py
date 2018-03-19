@@ -2,10 +2,10 @@
 
 import os.path
 from django.db import transaction
-from django.core.exceptions import ObjectDoesNotExist
 from utils.TranslatableModelLoader import TranslatableModelLoader
 from utils.errors.MissingRequiredFieldError import MissingRequiredFieldError
-from utils.errors.KeyNotFoundError import KeyNotFoundError
+from utils.language_utils import get_default_language
+from utils.check_required_files import check_interactives
 from chapters.models import Chapter
 from interactives.models import Interactive
 
@@ -13,13 +13,13 @@ from interactives.models import Interactive
 class ChaptersLoader(TranslatableModelLoader):
     """Custom loader for loading chapters."""
 
-    def __init__(self, factory, **kwargs):
+    def __init__(self, factory, chapter_number, **kwargs):
         """Create the loader for loading a Chapter.
 
         Args:
             factory (LoaderFactory): Object for creating other loaders.
         """
-        super().__init__(BASE_PATH)
+        super().__init__(**kwargs)
         self.factory = factory
         self.chapter_slug = self.content_path
         self.chapter_number = chapter_number
@@ -44,7 +44,7 @@ class ChaptersLoader(TranslatableModelLoader):
 
         chapter_translations = self.get_blank_translation_dictionary()
 
-        introduction_filename = "{}.md".format(self.topic_slug)
+        introduction_filename = "{}.md".format(self.chapter_slug)
         introduction_translations = self.get_markdown_translations(introduction_filename)
         for language, content in introduction_translations.items():
             chapter_translations[language]["introduction"] = content.html_string
@@ -71,24 +71,16 @@ class ChaptersLoader(TranslatableModelLoader):
 
         self.log("Added chapter: {}".format(chapter.name))
 
-        interactives = introduction_translations[get_default_language()].required_files["interactives"]
-        for interactive_slug in interactives:
-            try:
-                interactive = Interactive.objects.get(slug=interactive_slug)
-            except ObjectDoesNotExist:
-                raise KeyNotFoundError(
-                    self.chapter_structure_file_path,
-                    interactive_slug,
-                    "Interactive"
-                )
-            chapter.interactives.add(interactive)
+        check_interactives(
+            introduction_translations[get_default_language()].required_files["interactives"],
+            self.structure_file_path,
+        )
 
         # Load chapter sections
-        for section_file_path in sections:
-            content_path, structure_filename = os.path.split(section_file_path)
-            self.factory.create_chapter_section_loader(
-                chapter,
-                base_path=self.base_path,
-                content_path=os.path.join(self.content_path, content_path),
-                structure_filename=structure_filename
-            ).load()
+        content_path, structure_filename = os.path.split(sections)
+        self.factory.create_chapter_section_loader(
+            chapter,
+            base_path=self.base_path,
+            content_path=os.path.join(self.content_path, content_path),
+            structure_filename=structure_filename
+        ).load()

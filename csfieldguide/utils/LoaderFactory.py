@@ -11,11 +11,11 @@ class LoaderFactory:
 
     def create_chapter_loader(self, **kwargs):
         """Create chapter loader."""
-        return ChaptersLoader(**kwargs)
+        return ChaptersLoader(self, **kwargs)
 
-    def create_chapter_section_loader(self, **kwargs):
+    def create_chapter_section_loader(self, chapter, **kwargs):
         """Create chapter loader."""
-        return ChapterSectionsLoader(**kwargs)
+        return ChapterSectionsLoader(self, chapter, **kwargs)
 
     def create_interactives_loader(self, **kwargs):
         """Create interactive loader."""

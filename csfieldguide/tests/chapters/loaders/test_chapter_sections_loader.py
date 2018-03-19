@@ -118,8 +118,8 @@ class ChapterSectionsLoaderTest(BaseTestWithDB):
             chapter_section_loader.load
         )
 
-    def test_chapters_chapter_section_loader_missing_heading(self):
-        test_name = "missing-heading"
+    def test_chapters_chapter_section_loader_missing_name(self):
+        test_name = "missing-name"
         chapter = self.test_data.create_chapter("1")
         section_structure_file_path = os.path.join(
             self.base_path,

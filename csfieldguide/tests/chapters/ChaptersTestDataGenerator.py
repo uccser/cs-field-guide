@@ -57,7 +57,7 @@ class ChaptersTestDataGenerator:
         """
         chapter_section = ChapterSection(
             slug="section-{}".format(number),
-            heading="Section {}".format(number),
+            name="Section {}".format(number),
             number=number,
             content="<p>Content for section {}.</p>".format(number),
             chapter=chapter
