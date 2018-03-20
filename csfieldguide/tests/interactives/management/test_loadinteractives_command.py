@@ -5,7 +5,6 @@ from unittest import mock
 from tests.BaseTestWithDB import BaseTestWithDB
 from django.core import management
 from django.test import tag, override_settings
-from utils.errors.MissingRequiredFieldError import MissingRequiredFieldError
 
 INTERACTIVES_PATH = "tests/interactives/management/assets/"
 

@@ -14,9 +14,9 @@ class CheckRequiredFilesTest(BaseTestWithDB):
         self.test_data = ChaptersTestDataGenerator()
 
     def test_check_glossary_links_valid(self):
-        term1 = self.test_data.create_glossary_term(1)
-        term2 = self.test_data.create_glossary_term(2)
-        term3 = self.test_data.create_glossary_term(3)
+        self.test_data.create_glossary_term(1)
+        self.test_data.create_glossary_term(2)
+        self.test_data.create_glossary_term(3)
         glossary_links = {
             "glossary-term-1": [],
             "glossary-term-2": [],
