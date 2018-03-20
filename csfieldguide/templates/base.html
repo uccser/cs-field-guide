@@ -1,24 +1,31 @@
 {% load i18n %}
 {% load static %}
 {% load render_html_field %}
+{% load translate_url %}
+
+{% get_language_info for LANGUAGE_CODE as current_language %}
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>{% block custom_title %}{% block title %}{% endblock title %} - Computer Science Field Guide{% endblock custom_title %}</title>
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="stylesheet" href="{% static 'css/website.css' %}">
-    <link rel="stylesheet" href="{% static 'css/third-party/featherlight.min.css' %}">
-    {% block css %}
-    {% endblock css %}
+    <title>
+      {% block custom_title %}
+        {% block title %}{% endblock title %} - {% trans "Computer Science Field Guide" %}
+      {% endblock custom_title %}
+    </title>
+    <meta name="description" content="{% trans "An online interactive resource for high school students learning about computer science" %}">
+    <meta name="author" content="University of Canterbury Computer Science Education Research Group">
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+    {% if LANGUAGE_BIDI %}
+      <link rel="stylesheet" href="{% static 'css/website-rtl.css' %}">
+    {% else %}
+      <link rel="stylesheet" href="{% static 'css/website.css' %}">
+    {% endif %}
     <link rel="shortcut icon" href="{% static 'img/guide-favicon.png' %}">
-    <script type="text/javascript" src="{% static 'js/third-party/modernizr.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/third-party/jquery.js' %}"></script>
   </head>
+
 
   <body>
     {% block body %}
