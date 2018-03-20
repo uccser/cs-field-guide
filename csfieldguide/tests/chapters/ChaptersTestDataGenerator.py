@@ -3,7 +3,11 @@
 import os.path
 import yaml
 
-from chapters.models import Chapter, ChapterSection
+from chapters.models import (
+    Chapter,
+    ChapterSection,
+    GlossaryTerm,
+)
 
 
 class ChaptersTestDataGenerator:
@@ -64,3 +68,20 @@ class ChaptersTestDataGenerator:
         )
         chapter_section.save()
         return chapter_section
+
+    def create_glossary_term(self, number):
+        """Create GlossaryTerm object.
+
+        Args:
+            number: Identifier of the glossary term (int).
+
+        Returns:
+            GlossaryTerm object.
+        """
+        glossary_term = GlossaryTerm(
+            slug="glossary-term-{}".format(number),
+            term="Glossary Term {}".format(number),
+            definition="<p>Definition for glossary term {}.</p>".format(number),
+        )
+        glossary_term.save()
+        return glossary_term
