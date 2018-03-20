@@ -36,9 +36,6 @@ DJANGO_APPS = [
 
     # Useful template tags
     "django.contrib.humanize",
-
-    # Admin
-    "django.contrib.admin",
 ]
 
 THIRD_PARTY_APPS = [
