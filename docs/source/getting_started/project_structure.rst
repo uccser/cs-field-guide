@@ -55,12 +55,16 @@ The project currently contains the following applications:
 
 - ``general/``
 
-  - This applicate displays webpages for generic pages on the website.
+  - This application displays webpages for generic pages on the website.
     For example: homepage, about page, contact page, etc.
 
 - ``chapters/``
 
   - The core CS Field Guide content is split into chapters.
+
+- ``interactives/``
+
+  - This application stores all data related to interactives in the CS Field Guide.
 
 Details on how to modify an application can be found within their relavent
 author and developer documentation pages.

@@ -1,3 +1,4 @@
+from django.utils import translation
 from tests.BaseTestWithDB import BaseTestWithDB
 from tests.interactives.InteractivesTestDataGenerator import InteractivesTestDataGenerator
 from interactives.management.commands._InteractivesLoader import InteractivesLoader
@@ -11,40 +12,52 @@ class InteractivesLoaderTest(BaseTestWithDB):
         super().__init__(*args, **kwargs)
         self.test_data = InteractivesTestDataGenerator()
         self.loader_name = "interactives"
-        self.base_path = self.test_data.LOADER_ASSET_PATH
-        self.config_file = "basic-config.yaml"
+        self.BASE_PATH = "tests/interactives/loaders/assets/interactives/"
 
     def test_interactives_interactives_loader_single_interactive(self):
-        interactive_slug = "interactive-1"
-        interactive_structure = {
-            "name": "Interactive 1"
-        }
-
         interactive_loader = InteractivesLoader(
-            structure_file_path=self.config_file,
-            interactive_slug=interactive_slug,
-            interactive_structure=interactive_structure,
-            BASE_PATH=self.base_path
+            base_path=self.BASE_PATH,
+            content_path="",
+            structure_filename="basic-config.yaml"
         )
         interactive_loader.load()
-
         self.assertQuerysetEqual(
             Interactive.objects.all(),
-            ["<Interactive: Interactive 1>"]
+            ["<Interactive: Interactive Untranslated>"]
         )
 
-    def test_interactives_interactives_missing_name(self):
-        interactive_slug = "interactive-1"
-        interactive_structure = {}
-
+    def test_interactives_interactives_missing_interactive_list(self):
         interactive_loader = InteractivesLoader(
-            structure_file_path=self.config_file,
-            interactive_slug=interactive_slug,
-            interactive_structure=interactive_structure,
-            BASE_PATH=self.base_path
+            base_path=self.BASE_PATH,
+            content_path="",
+            structure_filename="missing-interactives.yaml"
         )
-
         self.assertRaises(
             MissingRequiredFieldError,
             interactive_loader.load
         )
+
+    def test_interactives_interactives_missing_name(self):
+        interactive_loader = InteractivesLoader(
+            base_path=self.BASE_PATH,
+            content_path="",
+            structure_filename="missing-name.yaml"
+        )
+        self.assertRaises(
+            MissingRequiredFieldError,
+            interactive_loader.load
+        )
+
+    def test_resource_loader_translation(self):
+        interactive_loader = InteractivesLoader(
+            base_path=self.BASE_PATH,
+            content_path="",
+            structure_filename="translation.yaml"
+        )
+        interactive_loader.load()
+        interactives = Interactive.objects.all()
+        self.assertEqual(1, len(interactives))
+        interactive = interactives[0]
+        self.assertEqual("Interactive English", interactive.name)
+        with translation.override("de"):
+            self.assertEqual("Interactive German", interactive.name)

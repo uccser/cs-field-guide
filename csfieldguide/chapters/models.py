@@ -3,14 +3,15 @@
 from django.db import models
 from interactives.models import Interactive
 from django.core.exceptions import ValidationError
+from utils.TranslatableModel import TranslatableModel
 
 
-class GlossaryTerm(models.Model):
+class GlossaryTerm(TranslatableModel):
     """Model for glossary term in database."""
 
     #  Auto-incrementing 'id' field is automatically set by Django
     slug = models.SlugField(unique=True)
-    term = models.CharField(max_length=200, unique=True, null=True)
+    term = models.CharField(max_length=200, unique=True)
     definition = models.TextField()
 
     def __str__(self):
@@ -27,14 +28,14 @@ class GlossaryTerm(models.Model):
         ordering = ["term"]
 
 
-class Chapter(models.Model):
+class Chapter(TranslatableModel):
     """Model for chapter in database."""
 
     #  Auto-incrementing 'id' field is automatically set by Django
     slug = models.SlugField(unique=True)
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, default="")
     number = models.SmallIntegerField(unique=True)
-    introduction = models.TextField()
+    introduction = models.TextField(default="")
     icon = models.CharField(max_length=100)
     interactives = models.ManyToManyField(
         Interactive,
@@ -55,18 +56,18 @@ class Chapter(models.Model):
         ordering = ["number"]
 
 
-class ChapterSection(models.Model):
+class ChapterSection(TranslatableModel):
     """Model for each section in a chapter in database."""
 
     #  Auto-incrementing 'id' field is automatically set by Django
     slug = models.SlugField()
-    heading = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, default="")
     number = models.SmallIntegerField()
-    content = models.TextField()
+    content = models.TextField(default="")
     chapter = models.ForeignKey(
         Chapter,
         null=False,
-        related_name="chapter_section"
+        related_name="chapter_sections"
     )
 
     def __str__(self):
@@ -75,7 +76,7 @@ class ChapterSection(models.Model):
         Returns:
             Heading of chapter section (str).
         """
-        return self.heading
+        return self.name
 
     def clean(self):
         """Use to check for unique section numbers.
@@ -87,13 +88,13 @@ class ChapterSection(models.Model):
         # get all sections with same section number and chapter as new section being added
         sections = ChapterSection.objects.filter(number=self.number, chapter=self.chapter)
         # if already exists section with same number in same chapter, then throw error!
-        if len(sections) >= 1:
+        if len(sections) > 1:
             raise ValidationError(('Section number must be unique per chapter.'))
 
     def save(self, *args, **kwargs):
         """Override save method to validate unique section numbers."""
-        self.full_clean()
         super(ChapterSection, self).save(*args, **kwargs)
+        self.clean()
 
     class Meta:
         """Set consistent ordering of chapter sections."""

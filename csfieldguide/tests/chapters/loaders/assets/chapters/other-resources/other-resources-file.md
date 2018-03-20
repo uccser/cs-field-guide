@@ -1,3 +1,0 @@
-# Other resouces
-
-Resources here.

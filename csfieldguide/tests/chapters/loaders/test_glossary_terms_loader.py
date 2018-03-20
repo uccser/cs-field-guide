@@ -1,5 +1,5 @@
 import os.path
-
+from django.utils import translation
 from tests.BaseTestWithDB import BaseTestWithDB
 from tests.chapters.ChaptersTestDataGenerator import ChaptersTestDataGenerator
 from chapters.management.commands._GlossaryTermsLoader import GlossaryTermsLoader
@@ -15,88 +15,82 @@ class GlossaryTermsLoaderTest(BaseTestWithDB):
         self.test_data = ChaptersTestDataGenerator()
         self.loader_name = "glossary-terms"
         self.base_path = os.path.join(self.test_data.LOADER_ASSET_PATH, self.loader_name)
-        # placeholder, required parameter for error raised in chapter loader
-        self.config_file = "config.yaml"
 
-    def test_chapters_glossary_loader_single_glossary_terms(self):
-        glossary_folder = "glossary-single"
-        glossary_terms_loader = GlossaryTermsLoader(
-            structure_file_path=self.config_file,
-            glossary_directory_name=glossary_folder,
-            BASE_PATH=self.base_path
-        )
-        glossary_terms_loader.load()
+    def test_basic_config(self):
+        folder = "glossary-single"
+        glossary_loader = GlossaryTermsLoader(base_path=self.base_path, content_path=folder)
+        glossary_loader.load()
+        glossary_objects = GlossaryTerm.objects.all()
         self.assertQuerysetEqual(
-            GlossaryTerm.objects.order_by("term"),
-            [
-                "<GlossaryTerm: Term 1>",
-            ]
+            glossary_objects,
+            ["<GlossaryTerm: Term 1>"]
         )
 
-    def test_chapters_glossary_loader_multiple_glossary_terms(self):
-        glossary_folder = "glossary-multiple"
-        glossary_terms_loader = GlossaryTermsLoader(
-            structure_file_path=self.config_file,
-            glossary_directory_name=glossary_folder,
-            BASE_PATH=self.base_path
-        )
-        glossary_terms_loader.load()
+    def test_multiple_files(self):
+        folder = "glossary-multiple"
+        glossary_loader = GlossaryTermsLoader(base_path=self.base_path, content_path=folder)
+        glossary_loader.load()
+        glossary_objects = GlossaryTerm.objects.order_by("term")
         self.assertQuerysetEqual(
-            GlossaryTerm.objects.order_by("term"),
+            glossary_objects,
             [
                 "<GlossaryTerm: Term 1>",
                 "<GlossaryTerm: Term 2>",
-                "<GlossaryTerm: Term 3>",
-            ]
+                "<GlossaryTerm: Term 3>"
+            ],
         )
 
-    def test_chapters_glossary_loader_invalid_glossary_term_files(self):
-        glossary_folder = "glossary-invalid-files"
-        glossary_terms_loader = GlossaryTermsLoader(
-            structure_file_path=self.config_file,
-            glossary_directory_name=glossary_folder,
-            BASE_PATH=self.base_path
-        )
-        glossary_terms_loader.load()
+    def test_invalid_files(self):
+        folder = "glossary-invalid-files"
+        glossary_loader = GlossaryTermsLoader(base_path=self.base_path, content_path=folder)
+        glossary_loader.load()
+        glossary_objects = GlossaryTerm.objects.all()
         self.assertQuerysetEqual(
-            GlossaryTerm.objects.order_by("term"),
-            [
-                "<GlossaryTerm: Term 1>",
-            ]
+            glossary_objects,
+            ["<GlossaryTerm: Term 1>"]
         )
+
+    def test_translation(self):
+        folder = "glossary-translation"
+
+        glossary_loader = GlossaryTermsLoader(base_path=self.base_path, content_path=folder)
+        glossary_loader.load()
+
+        glossary_objects = GlossaryTerm.objects.all()
+        self.assertEqual(2, len(glossary_objects))
+
+        translated_term = GlossaryTerm.objects.get(slug="glossary-term-1")
+        untranslated_term = GlossaryTerm.objects.get(slug="glossary-term-2")
+
+        self.assertSetEqual(set(["en", "de"]), set(translated_term.languages))
+        self.assertSetEqual(set(["en"]), set(untranslated_term.languages))
+
+        self.assertEqual("Term 1 English", translated_term.term)
+        self.assertIn("English definition.", translated_term.definition)
+        with translation.override("de"):
+            self.assertEqual("Term 1 German", translated_term.term)
+            self.assertIn("German definition.", translated_term.definition)
 
     def test_missing_title(self):
-        glossary_folder = "glossary-missing-title"
-        glossary_terms_loader = GlossaryTermsLoader(
-            structure_file_path=self.config_file,
-            glossary_directory_name=glossary_folder,
-            BASE_PATH=self.base_path
-        )
+        folder = "glossary-missing-title"
+        glossary_loader = GlossaryTermsLoader(base_path=self.base_path, content_path=folder)
         self.assertRaises(
             NoHeadingFoundInMarkdownFileError,
-            glossary_terms_loader.load,
+            glossary_loader.load,
         )
 
     def test_title_empty_content(self):
-        glossary_folder = "glossary-missing-content"
-        glossary_terms_loader = GlossaryTermsLoader(
-            structure_file_path=self.config_file,
-            glossary_directory_name=glossary_folder,
-            BASE_PATH=self.base_path
-        )
+        folder = "glossary-missing-content"
+        glossary_loader = GlossaryTermsLoader(base_path=self.base_path, content_path=folder)
         self.assertRaises(
             EmptyMarkdownFileError,
-            glossary_terms_loader.load,
+            glossary_loader.load,
         )
 
     def tests_empty_file(self):
-        glossary_folder = "glossary-empty-file"
-        glossary_terms_loader = GlossaryTermsLoader(
-            structure_file_path=self.config_file,
-            glossary_directory_name=glossary_folder,
-            BASE_PATH=self.base_path
-        )
+        folder = "glossary-empty-file"
+        glossary_loader = GlossaryTermsLoader(base_path=self.base_path, content_path=folder)
         self.assertRaises(
             NoHeadingFoundInMarkdownFileError,
-            glossary_terms_loader.load,
+            glossary_loader.load,
         )

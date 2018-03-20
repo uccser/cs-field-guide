@@ -12,15 +12,74 @@ for the project.
 Chapters Overview
 ==============================================================================
 
-The application is made up of **chapters** and each **chapter** is broken down into **sections** which are specified in the ``structure.yaml`` file, which is in YAML format.
+The application is made up of **chapters** and each **chapter** is broken down into **sections**.
 
+.. _chapters-directory-structure:
+
+Chapters Content Directory
+==============================================================================
+
+The ``content`` directory for the chapters application contains
+
+- a directory for each language in which content exists, named using the Django locale code. This directory contains
+
+  - Content Markdown files
+  - YAML files containing translatable strings
+
+- a special ``structure`` directory which contains all configuration YAML files
+
+.. _file-types:
+
+Content Files
+==============================================================================
+
+There are 3 different types of files used for adding content to CS Unplugged:
+
+- Content Markdown files
+- YAML files containing translatable strings
+- YAML configuration files
+
+All files live inside the ``chapters/content`` directory.
+The first two files are unique for each translation language, and are stored in a directory tree specific to that language.
+This directory is named using the languages Django locale code (for example: ``en`` or ``de``).
+Configuration files are shared amongst all languages, because the content structure is the same for all languages.
+These files live under a special ``structure`` directory.
+
+As a simple rule, structure files situated inside the ``structure`` directory contain **no** text a website user will see.
+Any user facing text lives in either a Markdown file or a YAML translation file inside the locale specific directories.
+
+Configuration Files
+==============================================================================
+
+This section details configuration files within the ``content/structure`` directory.
+These files are in YAML format. If you are not familiar with YAML, see
+:doc:`understanding_configuration_files`.
+
+The diagram below shows an example of YAML file locations for the
+``content/structure/`` language directory, where:
+
+- Blue is directories.
+- Red is YAML configuration files.
+
+.. raw:: html
+  :file: ../_static/html_snippets/chapters_content_directory_tree_only_yaml.html
+
+In the following sections, each configuration file is exaplained in more detail.
+
+.. note::
+
+  - Some of the keys (:ref:`what-is-a-key`) have angle brackets around them,
+    ``<like so>``. This means that they are variables and you can call them
+    whatever you like in your configuration file (without the angle brackets).
+
+.. _application-structure-file:
 
 Application Structure Configuration File
-==============================================================================
+------------------------------------------------------------------------------
 
 - **File Name:** ``structure.yaml``
 
-- **Location:** ``chapters/content/en/``
+- **Location:** ``chapters/content/structure/``
 
 - **Purpose:** Defines the structure and location of all the different chapters.
 
@@ -53,13 +112,13 @@ A complete chapter application structure file with multiple chapters may look li
 
 
 Chapter Configuration File
-==============================================================================
+------------------------------------------------------------------------------
 
 - **File Name:** ``<chapter-key>.yaml``
 
-- **Location:** ``chapters/content/en/<chapter-key>/``
+- **Location:** ``chapters/content/structure/<chapter-key>/``
 
-- **Referenced in:** ``chapters/content/en/structure.yaml``
+- **Referenced in:** ``chapters/content/structure/structure.yaml``
 
 - **Purpose:** Defines the attributes for a particular chapter.
 
@@ -69,27 +128,21 @@ Chapter Configuration File
 
   - ``sections:`` File path to the configuration files for sections in the chapter.
 
-- **Optional Fields:**
-
-  - ``other-resources``: File path to a file with additional resources for the chapter.
-
 A complete chapter structure file may look like the following:
 
   .. code-block:: yaml
 
     icon: img/chapters/introduction-thumbnail.png
     sections: sections/sections.yaml
-    other-resources: other-resources.md
-
 
 Chapter Sections Configuration File
-==============================================================================
+------------------------------------------------------------------------------
 
 - **File Name:** ``sections.yaml``
 
-- **Location:** ``chapters/content/en/<chapter-key>/sections/``
+- **Location:** ``chapters/content/structure/<chapter-key>/sections/``
 
-- **Referenced in:** ``chapters/content/en/<chapter-key>/<chapter-key>.yaml``
+- **Referenced in:** ``chapters/content/structure/<chapter-key>/<chapter-key>.yaml``
 
 - **Purpose:** Specifiy sections for a chapter and their relative order.
 
@@ -107,6 +160,5 @@ A complete chapter application structure file with multiple chapters may look li
 
     introduction-for-teachers:
       section-number: 1
-
     further-reading:
       section-number: 2

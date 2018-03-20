@@ -11,8 +11,11 @@ source =
 omit =
     # Omit migration files
     */migrations/*
-    # Omit database proxy file used with Google Cloud SQL Proxy
-    csunplugged/config/settings/database_proxy.py
+    # Omit settings files for local and production environments
+    # TODO: Add integration tests for local and production environments
+    */config/settings/*
+    # Omit pregenerated files
+    */config/wsgi.py
 
 [report]
 fail_under=20

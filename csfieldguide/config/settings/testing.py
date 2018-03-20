@@ -69,4 +69,15 @@ TEMPLATES[0]["OPTIONS"]["loaders"] = [  # noqa: F405
 # ----------------------------------------------------------------------------
 INSTALLED_APPS += [  # noqa: F405
     "test_without_migrations",
+    # Model for TranslatableModel tests
+    "tests.utils.translatable_model",
 ]
+
+# Override production value of LANGUAGES - this is what django-modeltranslation
+# will use when adding translated fields to the models on startup, which is
+# necessary to test i18n backend functionality.
+LANGUAGES = (
+    ("en", "English"),
+    ("de", "German"),
+    ("fr", "French"),
+)

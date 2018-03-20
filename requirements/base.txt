@@ -13,3 +13,9 @@ python-markdown-math==0.3
 
 # YAML Loading
 PyYAML==3.12
+
+# I18n
+django-modeltranslation==0.12.2
+uniseg==0.7.1
+python-bidi==0.4.0
+django-bidi-utils==1.0

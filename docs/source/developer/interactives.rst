@@ -36,34 +36,43 @@ This includes embedding the interactive in the chapter text see :ref:`writing-gu
 
 The interactive will also need to be added to the list of interactives in the interactive configuration file (see below).
 
-.. _interactive-configuration-file:
+.. _interactive-configuration-files:
 
-Interactive Configuration File
+Interactive Configuration Files
 ------------------------------------------------------------------------------
 
-- **File Name:** ``interactive_list.yaml``
+- **File Name:** ``interactives.yaml``
 
-- **Location:** ``interactives/``
+- **Location:** ``interactives/content/structure/``
 
 - **Purpose:** Defines the list of interactives in the Field Guide.
 
 - **Required Fields:**
 
-  - ``interactives:`` A dictionary of interactives, where each key is a slug for an interacive.
-
-  - **Required Fields:**
-
-    - ``<interactive-key>:`` The slug for the interactive.
-
-    - **Required Fields:**
-
-      - ``name:`` The name for the interactive, this is what will be displayed to the user.
+  - ``interactives:`` A list of interactives, where each item is a slug for an interacive.
 
 A complete interactive structure file may look like the following:
 
 .. code-block:: yaml
 
   interactives:
+    - sorting-algorithm-comparison
+    - high-score-boxes
+    - caesar-cipher
+
+Every interactive must also have a YAML file within each locale containing the names of the interactives, in the language for that particular locale.
+
+The translation YAML file:
+
+- **Is in:** ``topics/content/<locale>/``
+- **Is called:** ``interactives.yaml``
+- **Contains:** Provides names of all interactives.
+  Every interactive slug present in the interactive structure file must be present in each locale's translation file.
+
+  For example,
+
+  .. code-block:: yaml
+
     sorting-algorithm-comparison:
       name: Sorting Algorithm Comparison
     high-score-boxes:

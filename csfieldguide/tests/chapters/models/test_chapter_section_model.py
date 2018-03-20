@@ -14,7 +14,7 @@ class ChapterSectionSectionModelTest(BaseTestWithDB):
         chapter = self.test_data.create_chapter("1")
         section = ChapterSection.objects.create(
             slug="the-first-section",
-            heading="The First Section",
+            name="The First Section",
             number=1,
             content="<p>Some content for the first section</p>.",
             chapter=chapter
@@ -28,7 +28,7 @@ class ChapterSectionSectionModelTest(BaseTestWithDB):
         chapter = self.test_data.create_chapter("1")
         ChapterSection.objects.create(
             slug="section-1",
-            heading="Section 1",
+            name="Section 1",
             number=1,
             content="<p>Some content for section 1</p>.",
             chapter=chapter
@@ -44,14 +44,14 @@ class ChapterSectionSectionModelTest(BaseTestWithDB):
         chapter = self.test_data.create_chapter("1")
         ChapterSection.objects.create(
             slug="section-1",
-            heading="Section 1",
+            name="Section 1",
             number=1,
             content="<p>Some content for the first section</p>.",
             chapter=chapter
         )
         ChapterSection.objects.create(
             slug="section-2",
-            heading="Section 2",
+            name="Section 2",
             number=2,
             content="<p>Some content for the second section</p>.",
             chapter=chapter

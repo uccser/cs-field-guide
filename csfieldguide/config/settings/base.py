@@ -12,6 +12,11 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 import environ
 import os.path
 
+# Add custom languages not provided by Django
+import django.conf.locale
+from django.conf import global_settings
+from django.utils.translation import ugettext_lazy as _
+
 # cs-field-guide/csfieldguide/config/settings/base.py - 3 = csfieldguide/
 ROOT_DIR = environ.Path(__file__) - 3
 
@@ -36,6 +41,11 @@ DJANGO_APPS = [
     "django.contrib.admin",
 ]
 
+THIRD_PARTY_APPS = [
+    "modeltranslation",
+    "bidiutils",
+]
+
 # Apps specific for this project go here.
 LOCAL_APPS = [
     "general.apps.GeneralConfig",
@@ -44,7 +54,7 @@ LOCAL_APPS = [
 ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
-INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS
+INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRD_PARTY_APPS
 
 # MIDDLEWARE CONFIGURATION
 # ----------------------------------------------------------------------------
@@ -71,22 +81,6 @@ FIXTURE_DIRS = (
     str(ROOT_DIR.path("fixtures")),
 )
 
-# EMAIL CONFIGURATION
-# -----------------------------------------------------------------------------
-# EMAIL_BACKEND = env("DJANGO_EMAIL_BACKEND",
-#                     default="django.core.mail.backends.smtp.EmailBackend")
-
-# MANAGER CONFIGURATION
-# ----------------------------------------------------------------------------
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#admins
-# ADMINS = [
-#     ("University of Canterbury Computer Science Research Group",
-#      "csse-education@canterbury.ac.nz"),
-# ]
-
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#managers
-# MANAGERS = ADMINS
-
 # GENERAL CONFIGURATION
 # ----------------------------------------------------------------------------
 # Local time zone for this installation. Choices can be found here:
@@ -96,7 +90,48 @@ FIXTURE_DIRS = (
 TIME_ZONE = "UTC"
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#language-code
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "en"
+
+INCONTEXT_L10N_PSEUDOLANGUAGE = "xx-lr"
+INCONTEXT_L10N_PSEUDOLANGUAGE_BIDI = "yy-rl"
+INCONTEXT_L10N_PSEUDOLANGUAGES = (
+    INCONTEXT_L10N_PSEUDOLANGUAGE,
+    INCONTEXT_L10N_PSEUDOLANGUAGE_BIDI
+)
+
+LANGUAGES = (
+    ("en", "English"),
+)
+
+if env.bool("INCLUDE_INCONTEXT_L10N", False):
+    EXTRA_LANGUAGES = [
+        (INCONTEXT_L10N_PSEUDOLANGUAGE, "Translation mode"),
+        (INCONTEXT_L10N_PSEUDOLANGUAGE_BIDI, "Translation mode (Bi-directional)"),
+    ]
+
+    EXTRA_LANG_INFO = {
+        INCONTEXT_L10N_PSEUDOLANGUAGE: {
+            'bidi': False,
+            'code': INCONTEXT_L10N_PSEUDOLANGUAGE,
+            'name': "Translation mode",
+            'name_local': _("Translation mode"),
+        },
+        INCONTEXT_L10N_PSEUDOLANGUAGE_BIDI: {
+            'bidi': True,
+            'code': INCONTEXT_L10N_PSEUDOLANGUAGE_BIDI,
+            'name': "Translation mode (Bi-directional)",
+            'name_local': _("Translation mode (Bi-directional)"),
+        }
+    }
+
+    django.conf.locale.LANG_INFO.update(EXTRA_LANG_INFO)
+    # Add new languages to the list of all django languages
+    global_settings.LANGUAGES = global_settings.LANGUAGES + EXTRA_LANGUAGES
+    global_settings.LANGUAGES_BIDI = (global_settings.LANGUAGES_BIDI +
+                                      [INCONTEXT_L10N_PSEUDOLANGUAGE_BIDI.split('-')[0]])
+    # Add new languages to the list of languages used for this project
+    LANGUAGES += tuple(EXTRA_LANGUAGES)
+    LANGUAGES_BIDI = global_settings.LANGUAGES_BIDI
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#site-id
 SITE_ID = 1
@@ -143,12 +178,13 @@ TEMPLATES = [
                 "django.template.context_processors.static",
                 "django.template.context_processors.tz",
                 "django.contrib.messages.context_processors.messages",
-                # Your stuff: custom template context processors go here
-                'general.context_processors.nav_context.nav_context'
+                "general.context_processors.nav_context.nav_context",
+                "bidiutils.context_processors.bidi",
             ],
             "libraries": {
                 "render_html_field": "config.templatetags.render_html_field",
                 "render_interactive_in_page": "config.templatetags.render_interactive_in_page",
+                "translate_url": "config.templatetags.translate_url",
             },
         },
     },
@@ -210,6 +246,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # OTHER SETTINGS
 # ------------------------------------------------------------------------------
-CHAPTERS_CONTENT_BASE_PATH = os.path.join(str(ROOT_DIR.path("chapters")), "content", "en")
+CHAPTERS_CONTENT_BASE_PATH = os.path.join(str(ROOT_DIR.path("chapters")), "content")
 INTERACTIVES_CONTENT_BASE_PATH = os.path.join(str(ROOT_DIR.path("interactives")), "content")
 INTERACTIVES_BASE_TEMPLATES_PATH = os.path.join("interactives", "base")
+MODELTRANSLATION_CUSTOM_FIELDS = ("JSONField",)
+CUSTOM_VERTO_TEMPLATES = os.path.join(str(ROOT_DIR.path("utils")), "custom_converter_templates", "")
