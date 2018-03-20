@@ -285,11 +285,21 @@ cmd_logs() {
 }
 defhelp logs 'View logs.'
 
-# Run test suite
-ci_test_suite() {
+ci_test_general() {
   dev_static
   dev_collect_static
-  dev_test_suite
+  docker-compose exec django /docker_venv/bin/coverage run --rcfile=/cs-field-guide/.coveragerc ./manage.py test --settings=config.settings.testing --pattern "test_*.py" -v 3 --nomigrations --exclude-tag=management
+  test_status=$?
+  dev_test_coverage
+  coverage_status=$?
+  bash <(curl -s https://codecov.io/bash)
+  ! (( $test_status || $coverage_status ))
+}
+
+ci_test_management() {
+  dev_static
+  dev_collect_static
+  docker-compose exec django /docker_venv/bin/coverage run --rcfile=/cs-field-guide/.coveragerc ./manage.py test --settings=config.settings.testing --pattern "test_*.py" -v 3 --nomigrations --tag=management
   test_status=$?
   dev_test_coverage
   coverage_status=$?
@@ -309,6 +319,10 @@ ci_test_backwards() {
 
 ci_docs() {
   dev_docs
+}
+
+ci_load_content() {
+  cmd_update
 }
 
 cmd_ci() {

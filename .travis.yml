@@ -13,7 +13,9 @@ install:
 jobs:
   include:
     - stage: test
-      script: ./csfg ci test_suite
+      script: ./csfg ci load_content
+    - script: ./csfg ci test_general
+    - script: ./csfg ci test_management
     - script: ./csfg ci test_backwards
       if: type = pull_request
     - script: ./csfg ci style
