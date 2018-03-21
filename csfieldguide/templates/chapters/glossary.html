@@ -7,14 +7,12 @@
 {% endblock title %}
 
 {% block page_heading %}
-<h1 id="glossary" class="section-heading anchor-link">Glossary</h1>
+Glossary
 {% endblock page_heading %}
 
 {% block content %}
-
   {% for glossary_term in glossary_terms %}
     <h3>{{ glossary_term.term }}</h3>
     {% render_html_field glossary_term.definition %}
   {% endfor %}
-
 {% endblock content %}

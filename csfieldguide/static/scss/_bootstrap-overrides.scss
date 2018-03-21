@@ -1,3 +1,5 @@
+@import "core-variables";
+
 // Bootstrap overrides
 //
 // Copy variables from `_variables.scss` to this file to override default values
@@ -20,7 +22,7 @@ $blue:                      #3366ff;
 $teal:                      #0d84c7;
 $pink:                      #ff4464;
 $light-purple:              #892f8b;
-$purple:                    #6e3896;
+$purple:                    $csfg;
 
 $transparent:               rgba(0,0,0,0);
 
@@ -58,7 +60,7 @@ $breadcrumb-bg:                 inherit;
 // Font, line-height, and color for body text, headings, and more.
 
 $font-family-sans-serif: "Noto Sans", sans-serif;
-$headings-font-family: "Sniglet", cursive;
+$headings-font-family: "Roboto", cursive;
 $font-family-base: $font-family-sans-serif;
 
 // Links

@@ -15,7 +15,6 @@
   <h2>{{ chapter_section.name }}</h2>
   {% render_html_field chapter_section.content %}
 
-
   <div>
     {% if previous_section %}
       <a href="{% url 'chapters:chapter_section' chapter.slug previous_section.0.slug %}" class="btn left">

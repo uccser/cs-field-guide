@@ -1,6 +1,7 @@
 @import "third-party/bootstrap/functions";
 @import "third-party/bootstrap/variables";
 @import "third-party/bootstrap/mixins";
+@import "core-variables";
 @import "bootstrap-overrides";
 @import "third-party/bootstrap/root";
 @import "third-party/bootstrap/print";
@@ -39,9 +40,24 @@
 @import "third-party/directional";
 @import "third-party/featherlight";
 @import "panels";
-@import url('https://fonts.googleapis.com/css?family=Sniglet');
+@import "navbar";
+@import "footer";
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans');
 
+body {
+  padding-top: $navbar-height;
+  position: relative;
+  background-color: $gray-100;
+}
+
+#page-header {
+  background-color: $csfg-light;
+  color: #fff;
+  h1 {
+    margin: 0;
+  }
+}
 
 .embed-responsive {
    margin: $spacer 0;
