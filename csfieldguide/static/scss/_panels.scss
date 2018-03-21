@@ -1,21 +1,17 @@
-@import "third-party/bootstrap/functions";
-@import "third-party/bootstrap/variables";
-@import "third-party/bootstrap/mixins";
-@import "bootstrap-overrides";
-
 @mixin detail-colour-variant($color) {
   > summary {
-    background-color: hsl(hue($color), saturation($color), 90%);
-    color: $color !important;
+    background-color: hsl(hue($color), saturation($color), 65%);
+    color: rgba($text-color, 0.8);
     &:hover {
-      background-color: hsl(hue($color), saturation($color), 85%);
+      background-color: hsl(hue($color), saturation($color), 60%);
     }
   }
+  border-color: $color;
+  background-color: hsl(hue($color), saturation($color), 90%);
 }
 
 .boxed-text {
-  border: 2px dashed $gray-light;
-  border-radius: $border-radius;
+  border: 1px solid $gray-light;
   margin-bottom: $spacer;
 
   .boxed-text-content {
@@ -31,6 +27,7 @@
 $details-summary-bg: #dde0e2;
 details {
   @extend .boxed-text;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.12);
   overflow: hidden;
   background-color: $gray-lighter;
 
@@ -39,7 +36,7 @@ details {
     color: $gray-dark;
     cursor: pointer;
     font-size: 1.1em;
-    padding: ($spacer * .25) ($spacer * .25) ($spacer * .25) $spacer;
+    padding: ($spacer * .5) $spacer;
     display: flex;
     align-items: center;
     .inline-image {
@@ -51,6 +48,32 @@ details {
   }
   summary:hover {
     background-color: darken($details-summary-bg, 10%);
+  }
+  &.panel-{
+    &teacher-note {
+      @include detail-colour-variant(#e57373);
+    }
+    &additional-information {
+      @include detail-colour-variant($amber);
+    }
+    &curiosity {
+      @include detail-colour-variant($purple);
+    }
+    &challenge {
+      @include detail-colour-variant(#ff5722);
+    }
+    &caution {
+      @include detail-colour-variant($orange);
+    }
+    &jargon-buster {
+      @include detail-colour-variant(#8bc34a);
+    }
+    &spoiler {
+      @include detail-colour-variant(#607d8b);
+    }
+    &project {
+      @include detail-colour-variant($blue);
+    }
   }
 }
 

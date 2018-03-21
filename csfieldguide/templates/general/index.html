@@ -1,43 +1,53 @@
 {% extends "base.html" %}
+
+{% load i18n %}
 {% load static %}
 
-{% block title %}
-  Home
-{% endblock title %}
+{% block custom_title %}
+  {% trans "Computer Science Field Guide" %}
+{% endblock custom_title %}
 
 {% block body_container %}
-  <div class="page-title-header">
-    <div class="container center">
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container text-center">
       <img id="homepage-logo" src="{% static 'img/logos/guide-logo-light.png' %}">
-      <h1>Computer Science Field Guide</h1>
-    
+      <h1>
+        {% blocktrans trimmed %}
+        Computer Science<br>Field Guide
+        {% endblocktrans %}
+      </h1>
+      <p class="lead text-center">
+        {% blocktrans trimmed %}
+        An online interactive resource for high school students learning about computer science.
+        {% endblocktrans %}
+      </p>
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-10 col-lg-8">
+        </div>
+      </div>
     </div>
   </div>
-  <div id="page-subtitle-header">
-    <div class="container">
-      <h4 class="light center-align">An online interactive resource for high school students learning about computer science</h4>
-    </div>
-  </div>
+
   <div class="container">
     <div class="row">
       <div class="col s12 main-content">
         <div id="homepage-buttons">
-		  <a href="{% url 'chapters:index' %}" class="btn-menu">
-		    Chapters
-		  </a>
-	      <a href="curriculum-guides/index.html" class="btn-menu">
-		    Curriculum Guides
-		  </a>
-	      <a href="further-information/index.html" class="btn-menu">
-		    Further Information
-		  </a>
-	    </div>
-
-	    <p>A teacher's guide is available, read the <a href="{% url 'general:about' %}">About section</a> for more details to access this.</p>
-
-	    <p>This guide features interactive activities within some of the chapters. These should work with any modern browser updated in the last year, but we are continually expanding the compatibility of these. This guide is open source and <a href="https://github.com/uccser/cs-field-guide">available on GitHub</a>.</p>
-
+      <a href="{% url 'chapters:index' %}" class="btn-menu">
+        Chapters
+      </a>
+        <a href="curriculum-guides/index.html" class="btn-menu">
+        Curriculum Guides
+      </a>
+        <a href="further-information/index.html" class="btn-menu">
+        Further Information
+      </a>
       </div>
+
+      <p>A teacher's guide is available, read the <a href="{% url 'general:about' %}">About section</a> for more details to access this.</p>
+
+      <p>This guide features interactive activities within some of the chapters. These should work with any modern browser updated in the last year, but we are continually expanding the compatibility of these. This guide is open source and <a href="https://github.com/uccser/cs-field-guide">available on GitHub</a>.</p>
+
+    </div>
   </div>
 </div>
 {% endblock body_container %}
