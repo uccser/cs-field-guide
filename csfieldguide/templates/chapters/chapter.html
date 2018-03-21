@@ -17,7 +17,11 @@
   <h2>Sections in this chapter:</h2>
   <ol>
     {% for section in chapter_sections %}
-    <li><a href="{% url 'chapters:chapter_section' chapter.slug section.slug %}">{{ section.name }}</a>
+      <li>
+        <a href="{% url 'chapters:chapter_section' chapter.slug section.slug %}">
+          {{ section.name }}
+        </a>
+      </li>
     {% endfor %}
   </ol>
 

@@ -54,10 +54,17 @@ body {
 
 #page-header {
   background-color: $csfg-light;
-  color: #fff;
+  color: $white;
   h1 {
     margin: 0;
+    small {
+      color: mix($csfg-light, $white, 60%);
+    }
   }
+}
+
+#sticky-sidebar {
+  top: $navbar-height + $navbar-padding-bottom;
 }
 
 .embed-responsive {

@@ -24,6 +24,8 @@
       <link rel="stylesheet" href="{% static 'css/website.css' %}">
     {% endif %}
     <link rel="shortcut icon" href="{% static 'img/guide-favicon.png' %}">
+    <!-- Loaded in head to be available for in-page interactives -->
+    <script src="{% static 'js/third-party/jquery-3.3.1.min.js' %}"></script>
   </head>
   <body style="text-align: {{LANGUAGE_START}};">
     <nav class="navbar fixed-top navbar-expand-md navbar-dark py-1 d-print-none">
@@ -235,7 +237,6 @@
     <script>
       glossary_url = "{% url 'chapters:glossary_json' %}";
     </script>
-    <script src="{% static 'js/third-party/jquery-3.3.1.min.js' %}"></script>
     <script src="{% static 'js/third-party/popper.min.js' %}"></script>
     <script src="{% static 'js/third-party/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/website.js' %}"></script>

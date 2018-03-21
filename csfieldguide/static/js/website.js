@@ -2,9 +2,6 @@ $(document).ready(function(){
   // Display glossary-modal
   $("#content-container, #glossary-modal").on("click", ".glossary-term", open_glossary_definition);
 
-  // Scrollspy for sidebar table of contents
-  $("body").scrollspy({ target: "#scrollspy-table-of-contents", offset: 140});
-
   // If anchor link in URL, move page up to avoid link being covered by navbar
   window.addEventListener("hashchange", function() { scrollBy(0, -72) })
 

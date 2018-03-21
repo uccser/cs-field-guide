@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content_container %}
+  <div class="col-12 col-md-4 order-md-2 print-col-12 print-order-1">
+    {% block right_column_content %}
+    {% endblock right_column_content %}
+  </div>
+  <div class="col-12 col-md-8 order-md-1 print-col-12 print-order-2">
+    {% block left_column_content %}
+    {% endblock left_column_content %}
+  </div>
+{% endblock content_container %}
