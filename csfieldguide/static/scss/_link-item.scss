@@ -1,0 +1,35 @@
+.link-item {
+  @extend .shadow;
+  @extend .no-text-decoration;
+  @extend .d-block;
+  @extend .h-100;
+  @extend .text-center;
+  background-color: $csfg-light;
+  color: $white !important;
+  border: 1px solid $csfg;
+  @include border-radius($border-radius)
+  padding: 0.5rem 1rem;
+  img {
+    height: 4rem;
+  }
+  &:hover {
+    transform: translateY(2px);
+    background-color: darken($csfg-light, 5%);
+  }
+  &.unavailable {
+    background-color: rgba($black, 0.2);
+    img {
+      opacity: 0.5;
+    }
+  }
+  h2 {
+    margin: 0;
+    font-size: 1.5rem;
+  }
+  .badge-language-unavailable {
+    margin-#{$right}: auto;
+    margin-bottom: auto;
+    margin-top: 0;
+    margin-#{$left}: 0;
+  }
+}

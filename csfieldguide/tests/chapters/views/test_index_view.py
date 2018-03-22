@@ -20,7 +20,7 @@ class IndexViewTest(BaseTestWithDB):
 
         self.assertEqual(HTTPStatus.OK, response.status_code)
         self.assertQuerysetEqual(
-            response.context["all_chapters"],
+            response.context["chapters"],
             ["<Chapter: Chapter 1>"]
         )
 
@@ -33,7 +33,7 @@ class IndexViewTest(BaseTestWithDB):
 
         self.assertEqual(HTTPStatus.OK, response.status_code)
         self.assertQuerysetEqual(
-            response.context["all_chapters"],
+            response.context["chapters"],
             [
                 "<Chapter: Chapter 1>",
                 "<Chapter: Chapter 2>"
@@ -50,7 +50,7 @@ class IndexViewTest(BaseTestWithDB):
 
         self.assertEqual(HTTPStatus.OK, response.status_code)
         self.assertQuerysetEqual(
-            response.context["all_chapters"],
+            response.context["chapters"],
             [
                 "<Chapter: Chapter 1>",
                 "<Chapter: Chapter 2>",
