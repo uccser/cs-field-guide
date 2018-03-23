@@ -11,6 +11,18 @@ urlpatterns = [
         views.GeneralIndexView.as_view(),
         name="index"
     ),
+    # e.g. /teacher/
+    url(
+        r"^teacher",
+        views.teacher_mode_login,
+        name="teacher_mode_login"
+    ),
+    # e.g. /logout/
+    url(
+        r"^logout$",
+        views.teacher_mode_logout,
+        name="teacher_mode_logout"
+    ),
     # e.g. /about
     url(
         r"^about$",

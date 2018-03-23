@@ -1,6 +1,7 @@
 """Views for the general application."""
 
 from django.views.generic import TemplateView
+from django.shortcuts import redirect
 
 
 class GeneralIndexView(TemplateView):
@@ -25,3 +26,13 @@ class GeneralReleasesView(TemplateView):
     """View for the releases page that renders from a template."""
 
     template_name = "general/releases.html"
+
+
+def teacher_mode_login(request):
+    request.session["teacher-mode"] = True
+    return redirect("general:index", permanent=False)
+
+
+def teacher_mode_logout(request):
+    request.session["teacher-mode"] = False
+    return redirect("general:index", permanent=False)
