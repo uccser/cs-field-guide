@@ -71,7 +71,7 @@
     </nav>
 
     {% block body_container %}
-      <div id="page-header" class="py-4 mb-3">
+      <div id="page-header" class="py-4 mb-3{% if teacher_mode %} teacher-mode{% endif %}">
         <div class="container">
           <h1>
             {% block page_heading %}{% endblock page_heading %}

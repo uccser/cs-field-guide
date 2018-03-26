@@ -100,7 +100,7 @@ Informally, the Binary Search algorithm is as follows:
 Binary Search is a very powerful algorithm.
 If you had 1000 presents to search through it would take you at most 10 checks for Binary search to find something and Linear search would take at most 1000 checks, but if you doubled the number of presents to search through how would this change the number of checks made by Binary Search and Linear search?
 
-{panel type="spoiler"} 
+{panel type="spoiler"}
 
 # How does doubling the number of boxes affect the number of checks required?
 
