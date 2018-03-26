@@ -30,9 +30,9 @@ class GeneralReleasesView(TemplateView):
 
 def teacher_mode_login(request):
     request.session["teacher-mode"] = True
-    return redirect("general:index", permanent=False)
+    return redirect(request.GET.get("next", "general:index"), permanent=False)
 
 
 def teacher_mode_logout(request):
     request.session["teacher-mode"] = False
-    return redirect("general:index", permanent=False)
+    return redirect(request.GET.get("next", "general:index"), permanent=False)

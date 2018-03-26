@@ -51,7 +51,7 @@
           {% if LANGUAGES|length > 1 %}
             <div class="navbar-nav">
               {% if teacher_mode %}
-                <div class="nav-item">
+                <div class="nav-item nav-link no-text-decoration">
                   Teacher Mode
                 </div>
               {% endif %}
@@ -198,11 +198,11 @@
           </div>
           <p>
             {% if teacher_mode %}
-              <a href="{% url 'general:teacher_mode_logout' %}">
+              <a href="{% url 'general:teacher_mode_logout' %}?next={{ request.path }}">
                 Switch to student mode
               </a>
             {% else %}
-              <a href="{% url 'general:teacher_mode_login' %}">
+              <a href="{% url 'general:teacher_mode_login' %}?next={{ request.path }}">
                 Switch to teacher mode
               </a>
             {% endif %}
