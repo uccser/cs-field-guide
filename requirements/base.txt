@@ -5,7 +5,7 @@
 wheel==0.30.0
 
 # Images
-Pillow==5.0.0
+Pillow==5.1.0
 
 # Markdown
 verto==0.7.3
