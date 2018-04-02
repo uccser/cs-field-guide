@@ -17,7 +17,7 @@ class IndexView(generic.ListView):
     """View for the chapters application homepage."""
 
     template_name = "chapters/index.html"
-    context_object_name = "all_chapters"
+    context_object_name = "chapters"
 
     def get_queryset(self):
         """Get queryset of all chapters.

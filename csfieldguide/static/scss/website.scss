@@ -44,6 +44,7 @@
 @import "footer";
 @import "jumbotron";
 @import "teacher-mode";
+@import "link-item";
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans');
 
@@ -70,6 +71,14 @@ body {
 
 .embed-responsive {
    margin: $spacer 0;
+}
+
+.no-text-decoration {
+  text-decoration: none !important;
+}
+
+.shadow {
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.12);
 }
 
 .btn {

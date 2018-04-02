@@ -6,7 +6,7 @@
       background-color: hsl(hue($color), saturation($color), 60%);
     }
   }
-  border-color: $color;
+  border-color: hsl(hue($color), saturation($color), 65%);
   background-color: hsl(hue($color), saturation($color), 90%);
 }
 
@@ -27,7 +27,7 @@
 $details-summary-bg: #dde0e2;
 details {
   @extend .boxed-text;
-  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.12);
+  @extend .shadow;
   overflow: hidden;
   background-color: $gray-lighter;
 
