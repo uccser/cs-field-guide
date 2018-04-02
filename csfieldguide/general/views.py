@@ -28,11 +28,16 @@ class GeneralReleasesView(TemplateView):
     template_name = "general/releases.html"
 
 
-def teacher_mode_login(request):
-    request.session["teacher-mode"] = True
-    return redirect(request.GET.get("next", "general:index"), permanent=False)
+def set_teacher_mode(request, mode=False):
+    """Set session variable 'teacher mode' to true.
 
+    Args:
+        request (Request): Object of user's request.
+        mode (Bool): True if user's session should be set to teacher mode,
+            False if user should revert to student mode.
 
-def teacher_mode_logout(request):
-    request.session["teacher-mode"] = False
+    Returns:
+        Redirect back to previous page or homepage.
+    """
+    request.session["teacher-mode"] = mode
     return redirect(request.GET.get("next", "general:index"), permanent=False)

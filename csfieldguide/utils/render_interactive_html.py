@@ -5,7 +5,6 @@ from django.template.loader import render_to_string
 from django.shortcuts import get_object_or_404
 from django.conf import settings
 from interactives.models import Interactive
-from django.template.context_processors import i18n
 
 ALLOWED_MODES = (
     "in-page",
@@ -35,7 +34,6 @@ def render_interactive_html(interactive_slug, mode, request=None):
             "interactive": interactive,
             "interactive_mode_template": mode_template,
         }
-        # context.update(i18n(None))
     else:
         # Flesh out this error checking
         raise Exception("Interactive must be one of the following modes...")

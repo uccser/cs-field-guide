@@ -14,13 +14,15 @@ urlpatterns = [
     # e.g. /teacher/login/
     url(
         r"^teacher/login$",
-        views.teacher_mode_login,
+        views.set_teacher_mode,
+        {"mode": True},
         name="teacher_mode_login"
     ),
     # e.g. /teacher/logout/
     url(
         r"^teacher/logout$",
-        views.teacher_mode_logout,
+        views.set_teacher_mode,
+        {"mode": False},
         name="teacher_mode_logout"
     ),
     # e.g. /about
