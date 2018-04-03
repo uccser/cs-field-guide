@@ -28,7 +28,7 @@ class GeneralReleasesView(TemplateView):
     template_name = "general/releases.html"
 
 
-def set_teacher_mode(request, mode=False):
+def set_teacher_mode(request, mode):
     """Set session variable 'teacher mode' to true.
 
     Args:
