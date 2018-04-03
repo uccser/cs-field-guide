@@ -175,7 +175,9 @@ TEMPLATES = [
                 "django.template.context_processors.static",
                 "django.template.context_processors.tz",
                 "django.contrib.messages.context_processors.messages",
-                "general.context_processors.nav_context.nav_context",
+                "config.context_processors.version_number.version_number",
+                "config.context_processors.deployed.deployed",
+                "config.context_processors.teacher_mode.teacher_mode",
                 "bidiutils.context_processors.bidi",
             ],
             "libraries": {

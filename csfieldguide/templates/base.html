@@ -29,7 +29,7 @@
   </head>
   <body style="text-align: {{LANGUAGE_START}};">
     {% block body %}
-      <nav class="navbar fixed-top navbar-expand-md navbar-dark py-1 d-print-none">
+      <nav class="navbar fixed-top navbar-expand-md navbar-dark py-1 d-print-none{% if teacher_mode %} navbar-teacher-mode{% endif %}">
         <div class="container px-0">
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -49,8 +49,13 @@
                 {% trans "About" %}
               </a>
             </div>
-            {% if LANGUAGES|length > 1 %}
-              <div class="navbar-nav">
+            <div class="navbar-nav">
+              {% if LANGUAGES|length > 1 %}
+                {% if teacher_mode %}
+                  <div class="nav-item nav-link no-text-decoration">
+                    Teacher Mode
+                  </div>
+                {% endif %}
                 <div class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbarLanguageSelector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ current_language.name_local|capfirst }}</a>
                   <div class="dropdown-menu dropdown-menu-{{ LANGUAGE_END }}" aria-labelledby="navbarLanguageSelector">
@@ -60,14 +65,14 @@
                     {% endfor %}
                   </div>
                 </div>
-              </div>
-            {% endif %}
+              {% endif %}
+            </div>
           </div>
         </div>
       </nav>
 
       {% block body_container %}
-        <div id="page-header" class="py-4 mb-3">
+        <div id="page-header" class="py-4 mb-3{% if teacher_mode %} teacher-mode{% endif %}">
           <div class="container">
             <h1>
               {% block page_heading %}{% endblock page_heading %}
@@ -193,6 +198,17 @@
               </ul>
             </div>
           </div>
+          <p class="text-center">
+            {% if teacher_mode %}
+              <a href="{% url 'general:teacher_mode_logout' %}?next={{ request.path }}">
+                Switch to student mode
+              </a>
+            {% else %}
+              <a href="{% url 'general:teacher_mode_login' %}?next={{ request.path }}">
+                Switch to teacher mode
+              </a>
+            {% endif %}
+          </p>
         </div>
 
         <div class="container py-3 footer-statement text-center">
