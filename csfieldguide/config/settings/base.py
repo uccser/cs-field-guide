@@ -41,6 +41,7 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
     "modeltranslation",
     "bidiutils",
+    "svg",
 ]
 
 # Apps specific for this project go here.

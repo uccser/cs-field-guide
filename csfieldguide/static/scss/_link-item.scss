@@ -4,9 +4,9 @@
   @extend .d-block;
   @extend .h-100;
   @extend .text-center;
-  background-color: $csfg-light;
-  color: $white !important;
-  border: 1px solid $csfg;
+  background-color: $white;
+  color: $csfg !important;
+  border: 2px solid $csfg;
   @include border-radius($border-radius)
   padding: 0.5rem 1rem;
   img {
@@ -14,11 +14,11 @@
   }
   &:hover {
     transform: translateY(2px);
-    background-color: darken($csfg-light, 5%);
+    background-color: mix($csfg-light, $white, 10%);
   }
   &.unavailable {
     background-color: rgba($black, 0.2);
-    img {
+    .icon {
       opacity: 0.5;
     }
   }
