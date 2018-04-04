@@ -6,8 +6,8 @@ from utils.render_html_with_load_tags import render_html_with_load_tags
 register = template.Library()
 
 
-@register.simple_tag
-def render_html_field(html):
+@register.simple_tag(takes_context=True)
+def render_html_field(context, html):
     """Render the HTML with the static template tag.
 
     Args:
@@ -16,4 +16,4 @@ def render_html_field(html):
     Returns:
         Rendered string of HTML.
     """
-    return render_html_with_load_tags(html)
+    return render_html_with_load_tags(html, context)

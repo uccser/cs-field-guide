@@ -18,6 +18,7 @@ services:
       - USE_DOCKER=yes
       - DATABASE_URL=postgres://postgres@postgres:5434/postgres
       - DJANGO_SETTINGS_MODULE=config.settings.local
+      - INCLUDE_INCONTEXT_L10N=True
     depends_on:
       - postgres
 

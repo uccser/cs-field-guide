@@ -13,12 +13,13 @@ ALLOWED_MODES = (
 )
 
 
-def render_interactive_html(interactive_slug, mode):
+def render_interactive_html(interactive_slug, mode, request=None):
     """Return the HTML for an interactive.
 
     Args:
         interactive_slug (str): Slug of interactive.
         mode (str): Mode interactive should be rendered in.
+        request (Request): Request object to render template with.
 
     Returns:
         Rendered string of HTML.
@@ -36,4 +37,4 @@ def render_interactive_html(interactive_slug, mode):
     else:
         # Flesh out this error checking
         raise Exception("Interactive must be one of the following modes...")
-    return render_to_string(interactive.template, context)
+    return render_to_string(interactive.template, context, request=request)

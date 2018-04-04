@@ -56,6 +56,10 @@ class ChaptersLoader(TranslatableModelLoader):
                 ["icon"],
                 "Chapter"
             )
+        else:
+            # TODO: Check icon exists here before path modification
+            # Remove directory and extension as svg templatetag automatically adds these
+            chapter_icon = chapter_icon[4:-4]
 
         # Create chapter object and save to the db
         chapter = Chapter(

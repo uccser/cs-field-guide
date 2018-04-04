@@ -1,0 +1,25 @@
+.jumbotron {
+  background-color: $csfg-light;
+  width: 100%;
+  #homepage-logo {
+    height: 12rem;
+  }
+  h1 {
+    font-family: $headings-font-family;
+    color: $white;
+    font-size: 3.5rem;
+  }
+  p {
+    color: $gray-lighter;
+  }
+}
+
+#trailer-modal {
+  .modal-body {
+    padding: $spacer;
+  }
+  .modal-content {
+    height: auto;
+    min-height: 100%;
+  }
+}

@@ -2,36 +2,35 @@
 
 {% load i18n %}
 {% load static %}
+{% load svg %}
 
 {% block title %}
   {% trans "Chapters" %}
 {% endblock title %}
 
 {% block page_heading %}
-  <h1 id="chapters" class="section-heading anchor-link">Chapters</h1>
+  Chapters
 {% endblock page_heading %}
 
 {% block content %}
 
-  <div class="row chapter-list">
-      {% if all_chapters %}
-          {% for chapter in all_chapters %}
-          <div class="l12">
-            <div class="row">
-              <a href="{% url 'chapters:chapter' chapter.slug %}">
-                <div class="col l3">
-                  <img class="chapter-icon responsive-img" src="{% if chapter.icon %}{% static chapter.icon %}{% endif %}">
-                </div>
-                <div class="col l9">
-                  <h3>{{ chapter.name }}</h3>
-                </div>
-              </a>
-            </div>
-          </div>
-          {% endfor %}
-      {% else %}
-        <p>No chapters are available.</p>
-      {% endif %}
-  </div>
+  <p>{% trans "The following chapters cover key topics within Computer Science." %}</p>
 
+  {% if chapters %}
+    <div class="row justify-content-between">
+      {% for chapter in chapters %}
+        <div class="col-12 col-md-6 col-lg-4 mb-4">
+          <a class="link-item{% if not chapter.translation_available %} unavailable{% endif %}" href="{% url 'chapters:chapter' chapter.slug %}">
+            <span class="icon chapter-icon">{% svg chapter.icon %}</span>
+            <h2>{{ chapter.name }}</h2>
+            {% if not chapter.translation_available %}
+              {% include "generic/not-available-badge.html" %}
+            {% endif %}
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>No chapters are available.</p>
+  {% endif %}
 {% endblock content %}

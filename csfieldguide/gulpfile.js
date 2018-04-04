@@ -81,6 +81,13 @@ var tasks = {
     return gulp.src('static/interactives/**/*')
       .pipe(gulp.dest('build/interactives'));
   },
+  // --------------------------
+  // Copy SVG files
+  // --------------------------
+  svg: function() {
+    return gulp.src('static/svg/**/*')
+      .pipe(gulp.dest('build/svg'));
+  },
     // --------------------------
   // Copy font files
   // --------------------------
@@ -159,6 +166,7 @@ var req = [];
 // // individual tasks
 gulp.task('images', req, tasks.images);
 gulp.task('interactives', req, tasks.interactives);
+gulp.task('svg', req, tasks.svg);
 gulp.task('font', req, tasks.font);
 gulp.task('js', req, tasks.js);
 gulp.task('css', req, tasks.css);
@@ -167,5 +175,5 @@ gulp.task('lint:js', tasks.lintjs);
 
 // // build task
 gulp.task('build', function(callback) {
-  runSequence('clean', ['images', 'css', 'js', 'sass', 'interactives', 'font'], callback);
+  runSequence('clean', ['images', 'svg', 'css', 'js', 'sass', 'interactives', 'font'], callback);
 });

@@ -33,10 +33,26 @@ class IndexView(generic.ListView):
 
 
 def interactive_whole_page_view(request, interactive_slug):
-    """View for a interactive in whole page mode."""
-    return HttpResponse(render_interactive_html(interactive_slug, "whole-page"))
+    """View for a interactive in whole page mode.
+
+    Args:
+        request (Request): Object of request.
+        interactive_slug (str): Slug of interactive.
+
+    Returns:
+        HTTP response of rendered interactive.
+    """
+    return HttpResponse(render_interactive_html(interactive_slug, "whole-page", request))
 
 
 def interactive_iframe_view(request, interactive_slug):
-    """View for a interactive in whole page mode."""
-    return HttpResponse(render_interactive_html(interactive_slug, "iframe"))
+    """View for a interactive in iframe mode.
+
+    Args:
+        request (Request): Object of request.
+        interactive_slug (str): Slug of interactive.
+
+    Returns:
+        HTTP response of rendered interactive.
+    """
+    return HttpResponse(render_interactive_html(interactive_slug, "iframe", request))

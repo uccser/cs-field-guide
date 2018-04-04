@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 
+{% load static %}
 {% load render_html_field %}
 
 {% block title %}
@@ -7,7 +8,7 @@
 {% endblock title %}
 
 {% block page_heading %}
-<h1 id="chapters" class="section-heading anchor-link">{{ chapter.name }}</h1>
+  {{ chapter.name }}
 {% endblock page_heading %}
 
 {% block content %}
@@ -17,7 +18,11 @@
   <h2>Sections in this chapter:</h2>
   <ol>
     {% for section in chapter_sections %}
-    <li><a href="{% url 'chapters:chapter_section' chapter.slug section.slug %}">{{ section.name }}</a>
+      <li>
+        <a href="{% url 'chapters:chapter_section' chapter.slug section.slug %}">
+          {{ section.name }}
+        </a>
+      </li>
     {% endfor %}
   </ol>
 
