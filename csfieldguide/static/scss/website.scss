@@ -42,7 +42,7 @@
 @import "panels";
 @import "navbar";
 @import "footer";
-@import "jumbotron";
+@import "homepage";
 @import "teacher-mode";
 @import "link-item";
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
@@ -67,10 +67,6 @@ body {
 
 #sticky-sidebar {
   top: $navbar-height + $navbar-padding-bottom;
-}
-
-.embed-responsive {
-   margin: $spacer 0;
 }
 
 .no-text-decoration {

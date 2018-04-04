@@ -13,3 +13,13 @@
     color: $gray-lighter;
   }
 }
+
+#trailer-modal {
+  .modal-body {
+    padding: $spacer;
+  }
+  .modal-content {
+    height: auto;
+    min-height: 100%;
+  }
+}
