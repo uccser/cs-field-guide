@@ -1,0 +1,36 @@
+WEBVTT
+
+NOTE
+Computer Science Education Research,
+University of Canterbury, New Zealand
+Subtitle file for the video "Finite State Automata - 2 - Uses"
+Author: Alasdair Smith
+Language: English
+Date: 10/04/2017
+
+00:00.200 --> 00:04.400
+If you have any experience
+with text-based programming,
+
+00:04.400 --> 00:09.400
+calculations in Excel,
+or even writing sentences in Word,
+
+00:09.400 --> 00:13.200
+you may have encountered the dreaded <i>Syntax Error</i>,
+
+00:13.200 --> 00:18.200
+where you accidentally left out a bracket
+or misspelled a word.
+
+00:18.200 --> 00:22.600
+Even before your computer runs your code
+or makes that calculation,
+
+00:22.600 --> 00:28.600
+it knows that you’ve made a mistake;
+and it can often tell you exactly where it is.
+
+00:28.600 --> 00:34.000
+We can use Finite State Automata
+to find some of these errors.

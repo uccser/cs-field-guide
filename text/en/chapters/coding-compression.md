@@ -39,7 +39,6 @@ Run length encoding is still used as part of JPEG compression, although not to c
 We have introduced RLE here because it is a practical approach to compression, and most importantly it shows the key benefits and problems that arise in compression.
 {panel end}
 
-
 Imagine we have the following simple black and white image.
 
 {image filename="pixel-diamond.png" alt="A diamond shape made out of pixels"}
@@ -80,21 +79,21 @@ A pbm file for the diamond image used earlier would be as follows:
 ```
 P1
 15 15
-011000010000110
-100000111000001
-000001111100000
-000011111110000
-000111111111000
-001111101111100
-011111000111110
-111110000011111
-011111000111110
-001111101111100
-000111111111000
-000011111110000
-000001111100000
-100000111000001
-011000010000110
+0 1 1 0 0 0 0 1 0 0 0 0 1 1 0
+1 0 0 0 0 0 1 1 1 0 0 0 0 0 1
+0 0 0 0 0 1 1 1 1 1 0 0 0 0 0
+0 0 0 0 1 1 1 1 1 1 1 0 0 0 0
+0 0 0 1 1 1 1 1 1 1 1 1 0 0 0
+0 0 1 1 1 1 1 0 1 1 1 1 1 0 0
+0 1 1 1 1 1 0 0 0 1 1 1 1 1 0
+1 1 1 1 1 0 0 0 0 0 1 1 1 1 1
+0 1 1 1 1 1 0 0 0 1 1 1 1 1 0
+0 0 1 1 1 1 1 0 1 1 1 1 1 0 0
+0 0 0 1 1 1 1 1 1 1 1 1 0 0 0
+0 0 0 0 1 1 1 1 1 1 1 0 0 0 0
+0 0 0 0 0 1 1 1 1 1 0 0 0 0 0
+1 0 0 0 0 0 1 1 1 0 0 0 0 0 1
+0 1 1 0 0 0 0 1 0 0 0 0 1 1 0
 ```
 
 The first two lines are the header.  The first line specifies the format of the file (P1 means that the file contains ASCII zeroes and ones). The second line specifies the width and then the height of the image in pixels. This allows the computer to know the size and dimensions of the image, even if the newline characters separating the rows in the file were missing.
@@ -242,8 +241,322 @@ It is very important for compression algorithms to follow standards so that a fi
 for example, songs often follow the "mp3" standard so that when they are downloaded they can be played on a variety of devices.
 {panel end}
 
+## Huffman coding
 
-### Lossy vs Lossless compression
+A common way to compress data is to give short codes to common symbols, and long codes to things that are rare.
+For example, Morse code represents the letter "e" with a single dot, whereas the letter "z" is two dashes followed by two dots.
+On average, this is better than using the same length code for every symbol.
+
+But working out the optimal code for each symbol is harder than it might seem - in fact, no-one could work out an algorithm to compute the best code until a student called David Huffman did it in 1951, and his achievement was impressive enough that he was allowed to pass his course without sitting the final exam.
+
+The technique of Huffman coding is the final stage in many compression methods, including JPEG, MP3, and zip.
+The purpose of Huffman coding is to take a set of "symbols" (which could be characters in text, run lengths in RLE, pointer values in an Ziv-Lempel system, or parameters in lossy systems), and provide the optimal bit patterns with which they can be represented.
+It's normally presented as a way of compressing textual documents, and while it can do that reasonably well, it works much better in combination with Ziv-Lempel coding (see below).
+
+But let's start with a very simple textual example.
+This example language uses only 4 different characters, and yet is incredibly important to us: it's the language used to represent DNA, which is made up of sequences of four characters A, C, G and T).
+For example, the 4.6 million characters representing an E.coli DNA sequence happens to start with:
+
+```
+agcttttcattct
+```
+
+Using a simple data representation, with four characters you'd expect to represent each character using 2 bits, such as:
+
+```
+a: 00
+c: 01
+g: 10
+t: 11
+```
+
+The 13 characters above would be written using 26 bits as follows - notice that we don't need gaps between the codes for each bits.
+
+```
+00100111111111010011110111
+```
+
+But we can do better than this.
+In the short sample text above the letter "t" is more common than the other letters
+("t" occurs 7 times, "c" 3 times, "a" twice, and "g" just once).
+If we give a shorter code to "t" then 54% of the time (7 out of 13 characters) we'd be using less space.
+For example, we could use the codes:
+
+```
+a: 010
+c: 00
+g: 011
+t: 1
+```
+
+Then our 13 characters would be coded as:
+
+```
+0100110011110001011001
+```
+
+which is just 22 bits.
+
+This new code can still be decoded even though the lengths are different.
+For example, try to decode the following bits using the code we were just using.
+The main thing is to start at the first bit on the left, and match up the codes from left to right:
+
+```
+111001
+```
+
+{panel type="spoiler" summary="Decoding 111001"}
+The sequence of bits 111001 decodes to "tttct".
+Starting at the left, the first bit is a 1, which only starts a "t". There are two more of these, and then we encounter a 0. This could start any of the other three characters, but because it is followed by another 0, it can only represent "c".
+This leaves a 1 at the end, which is a "t".
+{panel end}
+
+But is the code above the best possible code for these characters?  (As it happens, this one is optimal for this case.) And how can we be sure the codes can be decoded?
+For example, if we just reduced the length for "t" like this:
+a: 00
+c: 01
+g: 10
+t: 1
+try decoding the message "11001".
+
+{panel type="spoiler" summary="Decoding 11001"}
+This message wasn't generated properly, and it can't be worked out because the original could have been "tgc" or "ttat".
+The clever thing about a Huffman code is that it won't let this happen.
+{panel end}
+
+David Huffman's breakthrough was to come up with an algorithm to calculate the optimal bit patterns based on how frequent each character is.
+His algorithm is fairly simple to do by hand, and is usually expressed as building up structure called a "tree".
+
+For example, the code we used above (and repeated here) corresponds to the tree shown below.
+
+```
+a: 010
+c: 00
+g: 011
+t: 1
+```
+
+{image filename="huffman-tree-dna.png"}
+{comment}
+Dot notation for image above, created with viz-js.com
+digraph G {
+  graph [ranksep=0,bgcolor=transparent];
+  node [shape=Mrecord];
+  3 [label=""];
+  6 [label=""];
+  3 -> a [label=0];
+  3 -> g [label=1];
+  6 -> 3 [label=1];
+  6 -> c [label=0];
+  start -> t [label=1];
+  start -> 6 [label=0];
+}
+{comment end}
+
+To decode something using this structure (e.g. the code 0100110011110001011001 above), start at the top, and choose a branch based each successive bit in the coded file. The first bit is a 0, so we follow the left branch, then the 1 branch, then the 0 branch, which leads us to the letter a.
+After each letter is decoded, we start again at the top.
+The next few bits are 011..., and following these labels from the start takes us to "g", and so on.
+The tree makes it very easy to decode any input, and there's never any confusion about which branch to follow, and therefore which letter to decode each time.
+
+The shape of the tree will depend on how common each symbol is. In the example above, "t" is very common, so it is near the start of the tree, whereas "a" and "g" are three branches along the tree (each branch corresponds to a bit).
+
+{panel type="curiosity" summary="What kind of tree is that?"}
+The concept of a "tree" is very common in computer science.
+A Huffman tree always has two branches at each junction, for 0 and 1 respectively.
+The technical terms for the elements of a tree derive from botanical trees:
+the start is called the "root" since it's the base of the tree,
+each split is called a "branch",
+and when you get to the end of the tree you reach a "leaf".
+
+To write a computer program that stores a Huffman tree, you could either use a technique called pointers to represent the branches, or (in most fast implementations) a special format called a "Canonical Huffman Tree" is used, but you don't need to worry about that implementation detail to understand the principle that they use to compress data.
+{panel end}
+
+Huffman's algorithm for building the tree would work like this.
+
+First, we count how often each character occurs (or we can work out its probability):
+```
+a: 2 times
+c: 3 times
+g: 1 time
+t: 7 times
+```
+
+We build the tree from the bottom by finding the two characters that have the smallest counts ("a" and "g" in this example).
+These are made to be a branch at the bottom of the tree, and at the top of the branch we write the sum of their two values (2+1, which is 3).
+The branches are labelled with a 0 and 1 respectively (it doesn't matter which way around you do it).
+
+{image filename="huffman-tree-dna-building-1.png"}
+{comment}
+Dot notation for image above, created with viz-js.com
+digraph G {
+  graph [ranksep=0,bgcolor=transparent];
+  node [shape=Mrecord];
+  a [label="{2|a}"];
+  g [label="{1|g}"];
+  3 -> a [label=0];
+  3 -> g [label=1];
+}
+{comment end}
+
+We then forget about the counts for the two characters just combined, but we use the combined total to repeat the same step: the counts to choose from are 3 (for the combined total), 3 (for "c"), and 7 (for "t"), so we combine the two smallest values (3 and 3) to make a new branch:
+
+{image filename="huffman-tree-dna-building-2.png"}
+{comment}
+Dot notation for image above, created with viz-js.com
+digraph G {
+  graph [ranksep=0,bgcolor=transparent];
+  node [shape=Mrecord];
+  a [label="{2|a}"];
+  g [label="{1|g}"];
+  c [label="{3|c}"];
+  3 -> a [label=0];
+  3 -> g [label=1];
+  6 -> 3 [label=1];
+  6 -> c [label=0];
+}
+{comment end}
+
+This leaves just two counts to consider (6 and 7), so these are combined to form the final tree:
+
+{image filename="huffman-tree-dna-building-3.png"}
+{comment}
+Dot notation for image above, created with viz-js.com
+digraph G {
+  graph [ranksep=0,bgcolor=transparent];
+  node [shape=Mrecord];
+  a [label="{2|a}"];
+  g [label="{1|g}"];
+  c [label="{3|c}"];
+  t [label="{7|t}"];
+  3 -> a [label=0];
+  3 -> g [label=1];
+  6 -> 3 [label=1];
+  6 -> c [label=0];
+  13 -> t [label=1];
+  13 -> 6 [label=0];
+}
+{comment end}
+
+You can then read off the codes for each character by following the 0 and 1 labels from top to bottom, or you could use the tree directly for coding.
+
+If you look at other textbooks about Huffman coding, you might find English text used as an example, where letters like "e" and "t" get shorter codes while "z" and "q" get longer ones.
+As long as the codes are calculated using Huffman's method of combining the two smallest values, you'll end up with the optimal code.
+
+Huffman trees aren't built manually - in fact, a Huffman trees are built every time you take a photo as a JPG, or zip a file, or record a video.
+You can generate your own Huffman Trees using the interactive below.
+Try some different texts, such as one with only two different characters; one where all the characters are equally likely; and one where one character is way more likely than the others.
+
+{interactive name="huffman-tree" type="whole-page" text="Huffman Tree generator"}
+
+{panel type="video" summary="Other explanations of Huffman coding"}
+There are video explanations of how to build a Huffman tree on Computerphile,
+one by [Professor David Brailsford](https://www.youtube.com/watch?v=umTbivyJoiI)
+and another by [Tom Scott](https://www.youtube.com/watch?v=JsTptu56GM8)
+{panel end}
+
+In practice Huffman's code isn't usually applied to letters, but to things like the lengths of run length codes (some lengths will be more common than others), or the match length of a point for a Ziv-Lempel code (again, some lengths will be more common than others),
+or the parameters in a JPEG or MP3 file.
+By using a Huffman code instead of a simple binary code, these methods get just a little more compression for the data.
+
+As an experiment, try calculating a Huffman code for the four letters a, b, c and d, for each of the following:
+"abcddcbaaabbccddcbdaabcd" (every letter is equally likely), and
+"abaacbaabbbbaabbaacdadcd" ("b" is much more common).
+
+{panel type="spoiler" summary="Solutions for Huffman codes"}
+The tree for "abcddcbaaabbccddcbdaabcd" is likely to be this shape:
+{image filename="huffman-tree-abcd-uniform.png"}
+{comment}
+Dot notation for image above, created with viz-js.com
+digraph G {
+  graph [ranksep=0,bgcolor=transparent];
+  node [shape=Mrecord];
+  a [label="{6|a}"];
+  b [label="{6|b}"];
+  c [label="{6|c}"];
+  d [label="{6|d}"];
+  ab [label="12"];
+  cd [label="12"];
+  24 -> ab [label=0];
+  24 -> cd [label=1];
+  ab -> a [label=0];
+  ab -> b [label=1];
+  cd -> d [label=1];
+  cd -> c [label=0];
+}
+{comment end}
+
+whereas the tree for "aabbabcabcaaabdbacbbdcdd" has a shorter code for "b"
+{image filename="huffman-tree-abcd-non-uniform.png"}
+{comment}
+Dot notation for image above, created with viz-js.com
+digraph G {
+  graph [ranksep=0,bgcolor=transparent];
+  a [shape=Mrecord, label="{10|a}"];
+  b [shape=Mrecord, label="{8|b}"];
+  c [shape=Mrecord, label="{3|c}"];
+  d [shape=Mrecord, label="{3|d}"];
+  24 -> a [label=1];
+  24 -> 14 -> 6 -> c [label=0];
+  14 -> b [label=1];
+  6 -> d [label=1];
+}
+{comment end}
+
+The first one will use two bits for each character; since there are 24 characters in total, it will use 48 bits in total to represent all of the characters.
+
+In contrast, the second tree uses just 1 bit for the character "a", 2 bits for "b", and 3 bits for both "c" and "d".
+Since "a" occurs 10 times, "b" 8 times and "c" and "d" both occur 2 times, that's a total of 10x1 + 8x2 + 3x3 + 3x3 = 44 bits.
+That's an average of 1.83 bits for each character, compared with 2 bits for each character if you used a simple code or were assuming that they are all equally likely.
+
+This shows how it is taking advantage of one character being more likely than another.
+With more text a Huffman code can usually get even better compression than this.
+{panel end}
+
+
+{panel type="Extra for experts" summary="Other kinds of symbols"}
+The examples above used letters of the alphabet, but notice that we referred to them as "symbols".
+That's because the value being coded could be all sorts of things: it might be the colour of a pixel,
+a sample value from a sound file, or even a reading such as a the status of a thermostat.
+
+As an extreme example, here's a Huffman tree for a dice roll.
+You'd expect all 6 values to be equally likely, but because of the nature of the tree, some values get shorter codes than others.
+You can work out the average number of bits used to record each dice roll, since 2/6 of the time it will be 2 bits, and 4/6 of the time it will be 3 bits. The average is 2/6 x 2 + 4/6 x 3, which is 2.67 bits per roll.
+
+Another thing to note from this is that there are some arbitary choices in how the tree was made (e.g. the 4 value might have been given 2 bits and the 6 value might have been given 3 bits), but the average number of bits will be the same.
+
+{image filename="huffman-tree-dice.png"}
+{comment}
+Dot notation for image above, created with viz-js.com
+digraph G {
+  graph [ranksep=0,bgcolor=transparent];
+  node [shape=Mrecord];
+  start [label="start"];
+  0 [label=""];
+  00 [label="&#9856;",fontsize=30];
+  01 [label=""];
+  010 [label="&#9857;",fontsize=30];
+  011 [label="&#9858;",fontsize=30];
+  1 [label=""];
+  10 [label=""];
+  100 [label="&#9859;",fontsize=30];
+  101 [label="&#9860;",fontsize=30];
+  11 [label="&#9861;",fontsize=30];
+  start -> 0 [label="0"];
+  start -> 1 [label="1"];
+  0 -> 00 [label="0"];
+  0 -> 01 [label="1"];
+  01 -> 010 [label="0"];
+  01 -> 011 [label="1"];
+  1 -> 10 [label="0"];
+  10 -> 100 [label="0"];
+  10 -> 101 [label="1"];
+  1 -> 11 [label="1"];
+}
+{comment end}
+
+{panel end}
+
+## Lossy vs Lossless compression
 
 As the compressed representation of the image can be converted back to the original representation, and both the original representation and the compressed representation would give the same image when read by a computer, this compression algorithm is called *lossless*, i.e. none of the data was lost from compressing the image, and as a result the compression could be undone exactly.
 
@@ -366,11 +679,6 @@ You can experiment with different combinations of sine waves to get different sh
 You may need to have more than four to get good approximations to a shape that you want; that's exactly the tradeoff that JPEG is making.
 There are some suggestions for parameters on the second sheet of the spreadsheet.
 
-You can also learn about Fourier transforms using the Wolfram Alpha software; this will require you to install a browser plugin.
-The Wolfram demonstrations include:
-[an interactive demonstration of JPEG](http://demonstrations.wolfram.com/JPEGCompressionAlgorithm/),
-[showing the relationship between sine saves and creating other waveforms](http://demonstrations.wolfram.com/RecoveringTheFourierCoefficients/), and
-[showing how sine waves can be summed to produce other shapes](http://demonstrations.wolfram.com/SumsOfSineWavesWithSeveralStepSizesSawtoothOrSquareApproxima/).
 
 {panel end}
 
@@ -378,23 +686,16 @@ The Wolfram demonstrations include:
 .. html5 low priority interactive to add cosine waves to try to match a given waveform e.g. square wave, triangle, random. Select amplitude for various frequencies. I have a spreadsheet that basically does this, could put it in for the meantime - tim
 {comment end}
 
-You can see the 8 by 8 blocks of pixels if you zoom in on a heavily compressed JPEG image. For example, the following image has been very heavily compressed using JPEG (it is just 1.5% of its original size).
+Each 8 by 8 block of pixels in a JPEG image can be created by adding together different amounts of up to 64 patterns based on cosine waves. The waves can be represented visually as patterns of white and black pixels, as shown in the image below.
 
-{image filename="compressed-jpeg.png"}
+{image filename="jpeg-discrete-cosine-transform.png"}
 
-If we zoom in on the eye area, you can see the 8 x 8 blocks of pixels:
+These particular waves are known as "basis functions" because any 8 by 8 block of pixels can be created by combining them. The basis function in the top left is the average colour of the 8 by 8 block. By adding more of it (increasing the coefficient that it is multiplied by) the resultant 8 by 8 block will become darker. The basis functions become more complex towards the bottom right, and are therefore used less commonly. How often would an image have every pixel a different color, as in the bottom right basis function?
+To investigate how the 64 basis functions can be combined to form any pattern in 8 by 8 block of pixels - try out this puzzle!
 
-{image filename="compressed-jpeg-zoomed.png"}
+{interactive name="jpeg-compression" type="whole-page" parameters="puzzle=true" text="JPEG puzzle interactive"}
 
-Notice that there is very little variation across each block. In the following image the block in the red box only changes from top to bottom, and could probably be specified by giving just two values, and having the ones in between calculated by the decoder as for the line example before. The green square only varies from left to right, and again might only need 2 values stored instead of 64. The blue block has only one colour in it! The yellow block is more complicated because there is more activity in that part of the image, which is where the cosine waves come in. A "wave" value varies up and down, so this one can be represented by a left-to-right variation from dark to light to dark, and a top-to-bottom variation mainly from dark to light. Thus still only a few values need to be stored instead of the full 64.
-
-{image filename="compressed-jpeg-zoomed-highlighted.png"}
-
-The quality is quite low, but the saving in space is huge – it's more than 60 times smaller (for example, it would download 60 times faster). Higher quality JPEG images store more detail for each 8 by 8 block, which makes it closer to the original image, but makes bigger files because more details are being stored. You can experiment with these tradeoffs by saving JPEGs with differing choices of the quality, and see how the file size changes. Most image processing software offers this option when you save an image as a JPEG.
-
-{comment}
-low priority : interactive that could load a photo, zoom in on pixels, and change it to different qualities of jpg coding
-{comment end}
+So 64 pixels (in an 8 by 8 block) can be represented by 64 coefficients that tell us how much of each basis function to use. But how does this help us save space and compress the image? At the moment we are still storing exactly the same amount of data, just in a different way.
 
 {panel type="jargon-buster" summary="Where does the term JPEG come from?"}
 The name "JPEG" is short for "Joint Photographic Experts Group", a committee that was formed in the 1980s to create standards so that digital photographs could be captured and displayed on different brands of devices. Because some file extensions are limited to three characters, it is often seen as the ".jpg" extension.
@@ -403,6 +704,38 @@ The name "JPEG" is short for "Joint Photographic Experts Group", a committee tha
 {panel type="curiosity" summary="More about cosine waves"}
 The cosine waves used for JPEG images are based on a "Discrete Cosine Transform". The "Discrete" means that the waveform is digital – it is the opposite of continuous, where any value can occur. In a JPEG wave, there are only 8 x 8 values (for the block being coded), and each of those values can have a limited range of numbers (binary integers), rather than any value at all.
 {panel end}
+
+The advantage of using this DCT representation is that it allows us to separate the low frequency changes (top left ones) from high frequency changes (bottom right), and JPEG compression uses that to its advantage. The human eye does not usually notice high frequency changes in an image so they can often be discarded without affecting the visual quality of the image. The low frequency (less varied) basis functions are far more important to an image.
+
+JPEG compression uses a process called quantisation to set any insignificant basis function coefficients to zero. But how do we decide what is insignificant? Quantisation requires a quantisation table of 64 numbers. Each coefficient value is divided by the corresponding value in the quantisation table and rounded down to the nearest integer. This means many coefficients become zero, and when multiplied back with the quantisation table, remain zero.
+
+There is no optimal quantisation table for every image, but many camera or image processing companies have worked to develop very good quantisation tables. As a result, many are kept secret. Some companies have also developed software to analyse images and select the most appropriate quantisation table for the particular image. For example, for an image with text in it, high frequency detail is important, so the quantisation table should have lower values in the bottom right so more detail is kept. Of course, this will also result in the image size remaining relatively large. Lossy compression is all about compromise!
+
+The figure below shows an image before and after it has had quantisation applied to it.
+
+Before Quantisation:
+
+{image filename="before.png"}
+{image filename="beforedct.png"}
+
+After Quantisation:
+
+{image filename="after.png"}
+{image filename="afterdct.png"}
+
+Notice how the images look very similar, even though the second one has many zero coefficients. The differences we can see will be barely visible when the image is viewed at its original size.
+
+Try this out yourself:
+{interactive name="jpeg-compression" type="whole-page" text="JPEG interactive"}
+
+We still have 64 numbers even with the many zeros, so how do we save space when storing the zeros? You will notice that the zeros are bunched towards the bottom right. This means if we list the coefficients in a zig-zag, starting from the top left corner, we will end up with many zeros in a row. Instead of writing 20 zeros we can store the fact that there are 20 zeros using a method of run-length encoding very similar to the one discussed earlier in this chapter.
+
+{image filename="direction.png"}
+
+And finally, the numbers that we are left with are converted to bits using Huffman coding, so that more common values take less space and vice versa.
+
+All those things happen every time you take a photo and save it as a JPEG file, and it happens to every 8 by 8 block of pixels. When you display the image, the software needs to reverse the process, adding all the basis functions together for each block - and there will be hundereds of thousands of blocks for each image.
+
 
 An important issue arises because JPEG represents images as smoothly varying colours: what happens if the colours change suddenly?
 In that case, lots of values need to be stored so that lots of cosine waves can be added together to make the sudden change in colour, or else the edge of the image become fuzzy.

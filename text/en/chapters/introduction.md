@@ -21,7 +21,7 @@ Why is it that people have a love-hate relationship with computers? Why are some
 
 I'm glad you asked! Put simply, computer science is about tools and techniques for designing and building applications that are very fast, have great interfaces, are reliable, secure, helpful --- even fun.
 
-A lot of people confuse computer science with programming. It has been said that "computer science is no more about programming than astronomy is about telescopes" ([Mike Fellows](http://en.wikiquote.org/wiki/Computer_science)).
+A lot of people confuse computer science with programming. It has been said that "computer science is no more about computers than astronomy is about telescopes" ([Mike Fellows](http://en.wikiquote.org/wiki/Computer_science)).
 Programming is the tool that computer scientists use to bring great ideas to life, but just knowing how to give programmed instructions to a computer isn't enough to create software that delights and empowers people.
 
 For example, computers can perform billions of operations every second, and yet people often complain that they are too slow. Humans can perceive delays of about one tenth of a second, and if your program takes longer than that to respond it will be regarded as sluggish, jerky or frustrating. You've got well under a second to delight the user! If you are searching millions of items of data, or displaying millions of pixels (megapixels), you can't afford to do things the wrong way, and you can't just tell your users that they should buy a faster computer ... they'll probably just buy someone else's faster software instead!

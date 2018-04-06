@@ -302,7 +302,7 @@ The first step is to choose a typical task that someone might do with the interf
 
 The goal of the cognitive walkthrough is to identify if the user can see what to do at each step, and especially to notice if there is anything that is confusing or ambiguous (like which button to press next), and to find out if they're confident that the right thing happened.
 
-An experienced HCI evaluator would do this on their own, imagining what a user would do at each step, but it's may be easier for you to do this with someone else using the interface, because that lets you see the interface through someone else's eyes.
+An experienced HCI evaluator would do this on their own, imagining what a user would do at each step, but it may be easier for you to do this with someone else using the interface, because that lets you see the interface through someone else's eyes.
 So we recommend asking a friend to go through a task for you.
 
 The task only needs to have about 3 or 4 steps (e.g. button presses), as you'll be asking three questions at each step and taking notes on their responses, so it could take a while.
@@ -383,7 +383,7 @@ The language, colours and notation in an interface should match the user's world
 The buttons have the colours switched, the colour for cancel is green (commonly used for go) and the colour for confirm is red (commonly used for stop or warning).
 {panel end}
 
-The following interface is from a bank system for paying another person. Suppose you get an email asking someone to pay you $1699.50 dollars for a used car; try entering "$1699.50" into the box.
+The following interface is from a bank system for paying another person. Suppose you get an email asking someone to pay you $1699.50 for a used car; try entering "$1699.50" into the box.
 
 {interactive name="payment-interface" type="in-page"}
 
@@ -498,14 +498,16 @@ A flexible system would allow the user to add a keystroke equivalent for the "Cl
 Other systems might offer suggestions to the user if they notice an action being done frequently.
 A related approach is offering recent selections near the top of a list of options.
 
-### Aesthetic and minimalist design
+{glossary-definition term="Aesthetics" definition="Aesthetics is a branch of philosophy that explores the nature of art, beauty, and taste, with the creation and appreciation of beauty."}
+
+### Aesthetics and minimalist design
 
 *Dialogues should not contain information which is irrelevant or rarely needed. Every extra unit of information in a dialogue competes with the relevant units of information and diminishes their relative visibility.*
 
 Software can contain many features, and if they are all visible at the same time (for example, on a toolbar), this can be overwhelming, especially for a new user.
 
 TV remote controls often provide a great example of a complicated interface.
-One reason that the have so many buttons is that it can help to make the device look impressive in the shop, but once you get it home, many of the buttons become redundant or confusing.
+One reason that they have so many buttons is that it can help to make the device look impressive in the shop, but once you get it home, many of the buttons become redundant or confusing.
 {image filename="remote-complex.jpg" alt="A complex remote control." wrap="left"}
 The remote control shown here has several buttons that could potentially do the same thing: "Direct Navigator", "Guide", "Function Menu", "Status" and "Option" all give access to different functions, but it's hard to predict which is which.
 This remote has about 55 buttons altogether!
@@ -577,8 +579,8 @@ It's no wonder that good software can be expensive – there are many people and
 
 There are many other ideas from psychology, physiology, sociology and even anthropology that HCI experts must draw on. Things that come into play include
 [Mental models](https://en.wikipedia.org/wiki/Mental_model), about how someone believes a system works compared with how it actually works (these are almost never the same e.g. double clicking on an icon that only needs to be single clicked),
-[Fitts's law](https://en.wikipedia.org/wiki/Fitts's_law), about how long it takes to point to objects on a screen (such as clicking on a small button),
-the [Hick-Hyman law](https://en.wikipedia.org/wiki/Hick's_law), about how long it takes to make a decision between multiple choices (such as from a menu),
+[Fitts's law](https://en.wikipedia.org/wiki/Fitts%27s_law), about how long it takes to point to objects on a screen (such as clicking on a small button),
+the [Hick-Hyman law](https://en.wikipedia.org/wiki/Hick%27s_law), about how long it takes to make a decision between multiple choices (such as from a menu),
 [Miller's law](https://en.wikipedia.org/wiki/The_Magical_Number_Seven,_Plus_or_Minus_Two) about the number of items a person can think about at once,
 [affordances](https://en.wikipedia.org/wiki/Affordance), about how properties of an object help us to perform actions on them,
 [interaction design (IxD)](https://en.wikipedia.org/wiki/Interaction_design), about creating digital devices that work for the people who will use the product,
@@ -600,9 +602,18 @@ and many more laws, observations and guidelines about designing interfaces that 
 ### Useful Links
 
 - [The ten usability heuristics on Nielsen's website](http://www.nngroup.com/articles/ten-usability-heuristics/), and a [collection of articles about usability heuristics](http://www.nngroup.com/topic/heuristic-evaluation/)
+
 -  There is a [CS Unplugged activity on HCI](http://csunplugged.org/wp-content/uploads/2014/12/unplugged-19-human_interface_design_0.pdf) which includes background information
+
 - There is [extensive material on HCI on the cs4fn website](http://www.cs4fn.org/fundamentals/hci.php)
+
 - A [glossary of usability terms](http://www.usabilityfirst.com/glossary/)
+
+- Here is a series of humorous videos that highlight how some missteps in the online shopping experience would look if they actually played out in real life.
+
+  - [Google Analytics In Real Life - Site Search](https://www.youtube.com/watch?v=cbtf1oyNg-8)
+  - [Google Analytics In Real Life - Online Checkout](https://www.youtube.com/watch?v=3Sk7cOqB9Dk)
+  - [Google Analytics In Real Life - Landing Page Optimization](https://www.youtube.com/watch?v=N5WurXNec7E)
 
 {comment}
 .. xjrm everything from here down seems to be raw material; i should go through it sometime(!) but can you either comment it out easily? otherwise put it somewhere else with a link here so its easy to find? -tim

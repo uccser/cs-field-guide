@@ -3,5 +3,3 @@
 Use the scales to compare the boxes (you can only compare two boxes at a time) and then arrange them along the bottom of the screen. Arrange them so that the lightest box is on the far left and the heaviest is on the far right. Once you think they are in order click ‘Test order’.
 
 If the interactive does not run properly on your computer you can use a set of physical balance scales instead --- just make sure you can only tell if one box is heavier than the other, not their exact weight (so not digital scales that show the exact weight).
-
-If you find any bugs or have any comments, flick the developer an email at jack.morgan@canterbury.ac.nz

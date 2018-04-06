@@ -174,7 +174,9 @@ class Section:
         if panel_type:
             # Check if panel allowed
             if not (self.guide.version != "teacher" and panel_type in teacher_only_panels):
-                title = systemfunctions.from_kebab_case(panel_type)
+                title = parse_argument('title', arguments)
+                if not title:
+                    title = systemfunctions.from_kebab_case(panel_type)
                 summary_value = parse_argument('summary', arguments)
                 summary = ': ' + summary_value.strip() if summary_value else ''
                 expanded_value = parse_argument('expanded', arguments)
@@ -517,9 +519,35 @@ class Section:
         arguments = match.group('args')
         link = parse_argument('link', arguments)
         text = parse_argument('text', arguments)
+        line_2 = parse_argument('line_2', arguments)
+        line_3 = parse_argument('line_3', arguments)
 
         if link and text:
-            html = self.html_templates['button'].format(link=link, text=text)
+            external_link_prefixes = ('http://', 'https://', 'mailto:')
+            file_path = self.guide.generator_settings['Source']['File']
+            interactive_path = self.guide.generator_settings['Source']['Interactive']
+            link = link.replace('\)', ')')
+
+            if not link.startswith(external_link_prefixes):
+                # If linked to file, add file to required files
+                if link.startswith(file_path) and self.guide.output_type == WEB:
+                    file_name = link[len(file_path):]
+                    self.required_files['File'].add(file_name)
+                elif self.guide.output_type == PDF and link.startswith(interactive_path) or link.startswith(file_path):
+                    link = os.path.join(self.guide.generator_settings['General']['Domain'], self.guide.language_code, link)
+                elif self.guide.output_type == PDF:
+                    link = '#' + self.guide.convert_to_print_link(link)
+
+                if not link.startswith(external_link_prefixes) and not link.startswith('#'):
+                    link = os.path.join(self.html_path_to_guide_root, link)
+
+            context = {
+                'link': link,
+                'text': text,
+                'line_2': line_2,
+                'line_3': line_3
+            }
+            html = self.guide.html_generator.render_template('button', context)
             html += self.create_link_to_online_resource('link', link)
         else:
             self.regex_functions['link button'].log("Button parameters not valid", self, match.group(0))

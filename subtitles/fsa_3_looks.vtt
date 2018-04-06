@@ -1,0 +1,85 @@
+WEBVTT
+
+NOTE
+Computer Science Education Research,
+University of Canterbury, New Zealand
+Subtitle file for the video "Finite State Automata - 3 - What it Looks Like"
+Author: Alasdair Smith
+Language: English
+Date: 10/04/2017
+
+00:00.200 --> 00:04.800
+Let’s take a look at this simple automaton I made.
+
+00:04.800 --> 00:11.200
+Its purpose is to check that a given sentence
+starts with a capital letter and ends with a full stop.
+
+00:11.200 --> 00:16.400
+It may seem a little daunting right now
+so let’s look through it step by step.
+
+00:16.400 --> 00:25.400
+First, we can see that this diagram has four circles
+labelled 1, 2, 3 and 4.
+
+00:25.400 --> 00:29.200
+These are the different <i>States</i> of our automaton.
+
+00:29.200 --> 00:34.600
+Between these states are arrows labelled with:
+‘U’ for uppercase characters;
+
+00:34.600 --> 00:36.500
+‘S’, for a full stop;
+
+00:36.500 --> 00:42.000
+and ‘L’ for lowercase characters
+as well as any other punctuation.
+
+00:42.000 --> 00:46.800
+These represent <i>transitions</i> from one state to the next.
+
+00:46.800 --> 00:53.000
+For example, if we are at state ‘1’
+then the ‘U’ arrow will transition us
+
+00:53.000 --> 00:59.800
+(or move us) to state ‘3’
+while the ‘L, S’ arrow would transition us to state ‘2’.
+
+00:59.800 --> 01:07.600
+Here ‘L, S’ just means that both ‘L’ and ‘S’
+result in the same transition.
+
+01:07.600 --> 01:13.600
+Now note that the arrow on the far left is not labelled
+and does not transition between states,
+
+01:13.600 --> 01:16.500
+instead only entering state ‘1’.
+
+01:16.500 --> 01:20.800
+This tells us that state ‘1’ is the <i>Start State</i>,
+
+01:20.800 --> 01:27.400
+so whenever we run through this automaton,
+we always start from here.
+
+01:27.400 --> 01:35.200
+Lastly, state ‘4’ on the right is two circles,
+telling us that this is an <i>Accepting State</i>.
+
+01:35.200 --> 01:41.200
+For this example, acceptable sentences that
+begin with a capital letter and end with a full stop
+
+01:41.200 --> 01:45.500
+will result in transitions that end at this state.
+
+01:45.500 --> 01:51.800
+We can have any number of accepting states;
+even the start state can be an accepting one!
+
+01:51.800 --> 01:56.000
+But we can only have one start state.

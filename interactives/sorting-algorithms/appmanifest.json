@@ -1,6 +1,6 @@
 ﻿{
-	"name": "Sorting Prototype",
-	"short_name": "Sorting Prototype",
+	"name": "Sorting Algorithms Interactive",
+	"short_name": "Sorting Algorithms Interactive",
 	"start_url": "index.html",
 	"display": "fullscreen",
 	"orientation": "landscape",

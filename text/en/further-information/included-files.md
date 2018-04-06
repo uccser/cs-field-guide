@@ -26,6 +26,14 @@ See [xkcd.com/license](https://xkcd.com/license.html) for more details.
 
 **License:**  Used with Jack Morgan's permission (email: [jack.morgan@canterbury.ac.nz](mailto:jack.morgan@canterbury.ac.nz))
 
+#### cosine-graph.png
+
+**Owner:** [Geek3](https://commons.wikimedia.org/wiki/User:Geek3)
+
+**Used:** Within Coding Compression chapter.
+
+**License:** Permission is granted to copy, distribute and/or modify this document under the terms of the [GNU Free Documentation License](https://en.wikipedia.org/wiki/en:GNU_Free_Documentation_License), Version 1.2 or any later version published by the Free Software Foundation; with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts. A copy of the license is [found here](https://commons.wikimedia.org/wiki/Commons:GNU_Free_Documentation_License,_version_1.2). This file is licensed under the [Creative Commons Attribution 3.0 Unported](https://creativecommons.org/licenses/by/3.0/deed.en) license.
+
 #### mips-assembler, mips-simulator
 
 **Owner:** Alan Hogan
