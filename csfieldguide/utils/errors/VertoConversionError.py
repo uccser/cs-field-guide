@@ -2,7 +2,7 @@
 
 from .Error import Error
 
-ERROR_MESSAGE = "\nConversion of file {filename} failed with error: \"{message}\"\n"
+ERROR_MESSAGE = "\nConversion failed with error: \"{message}\"\n"
 ERROR_MESSAGE_CODE_PART = "{line_number:<6}{line}\n"
 
 
@@ -22,7 +22,7 @@ class VertoConversionError(Error):
             Error message for Verto error.
         """
         base_message = self.base_message.format(filename=self.markdown_path)
-        custom_message = ERROR_MESSAGE.format(filename=self.markdown_path, message=self.verto_error.message)
+        custom_message = ERROR_MESSAGE.format(message=self.verto_error.message)
         if hasattr(self.verto_error, "line_nums") and hasattr(self.verto_error, "lines"):
             for i, line_num in enumerate(self.verto_error.line_nums):
                 custom_message += ERROR_MESSAGE_CODE_PART.format(
