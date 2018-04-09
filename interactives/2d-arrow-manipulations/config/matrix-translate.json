@@ -1,7 +1,0 @@
-{
-    "type": "matrix",
-    "title": "Translation",
-    "task": "Use the translation matrix to move the arrow to it's target position.",
-    "target": "9 -3 6 -6 8 -6 8 -11 10 -11 10 -6 12 -6",
-    "modules": ["first-translate"]
-}

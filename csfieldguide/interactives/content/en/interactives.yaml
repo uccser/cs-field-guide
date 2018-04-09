@@ -1,6 +1,104 @@
-sorting-algorithm-comparison:
-  name: Sorting Algorithm Comparison
-high-score-boxes:
-  name: High Score Boxes
 caesar-cipher:
-  name: Caesar Cipher
+  name: Caesar Cipher (broken)
+checksum-calculator:
+  name: checksum-calculator (broken)
+checksum-calculator-gtin-13:
+  name: checksum-calculator-gtin-13 (broken)
+close-window:
+  name: close-window (broken)
+cmy-mixer:
+  name: cmy-mixer (broken)
+colour-matcher:
+  name: colour-matcher (broken)
+compression-comparer:
+  name: compression-comparer (broken)
+confused-buttons:
+  name: confused-buttons (broken)
+date-picker:
+  name: date-picker (broken)
+deceiver:
+  name: deceiver (broken)
+delay-analyser:
+  name: delay-analyser (broken)
+delayed-checkbox:
+  name: delayed-checkbox (broken)
+frequency-analysis:
+  name: frequency-analysis (broken)
+fsa-box:
+  name: fsa-box (broken)
+fsa-light:
+  name: fsa-light (broken)
+fsa-washing-machine:
+  name: fsa-washing-machine (broken)
+hex-background-colour:
+  name: hex-background-colour (broken)
+high-score-boxes:
+  name: High Score Boxes (broken)
+huffman-tree:
+  name: huffman-tree (broken)
+image-bit-comparer:
+  name: image-bit-comparer (broken)
+jpeg-compression:
+  name: jpeg-compression (broken)
+MD5-hash:
+  name: MD5-hash (broken)
+mips-assembler:
+  name: mips-assembler (broken)
+mips-simulator:
+  name: mips-simulator (broken)
+ncea-guide-selector:
+  name: ncea-guide-selector (broken)
+nfa-guesser:
+  name: nfa-guesser (broken)
+no-help:
+  name: no-help (broken)
+number-generator:
+  name: number-generator (broken)
+packet-attack:
+  name: packet-attack (broken)
+packet-attack-level-creator:
+  name: packet-attack-level-creator (broken)
+parity:
+  name: parity (broken)
+payment-interface:
+  name: payment-interface (broken)
+pixel-viewer:
+  name: pixel-viewer (broken)
+python-interpreter:
+  name: python-interpreter (broken)
+regular-expression-filter:
+  name: regular-expression-filter (broken)
+regular-expression-search:
+  name: regular-expression-search (broken)
+rgb-mixer:
+  name: rgb-mixer (broken)
+rsa-jsencrypt:
+  name: rsa-jsencrypt (broken)
+rsa-key-generator:
+  name: rsa-key-generator (broken)
+rsa-no-padding:
+  name: rsa-no-padding (broken)
+run-length-encoding:
+  name: run-length-encoding (broken)
+searching-algorithms:
+  name: searching-algorithms (broken)
+sha2:
+  name: sha2 (broken)
+sorting-algorithm-comparison:
+  name: Sorting Algorithm Comparison (broken)
+sorting-algorithms:
+  name: sorting-algorithms (broken)
+trainsylvania:
+  name: trainsylvania (broken)
+trainsylvania-planner:
+  name: trainsylvania-planner (broken)
+trig-function-calculator:
+  name: trig-function-calculator (broken)
+unicode-binary:
+  name: unicode-binary (broken)
+unicode-chars:
+  name: unicode-chars (broken)
+unicode-length:
+  name: unicode-length (broken)
+viola-jones-face-detector:
+  name: viola-jones-face-detector (broken)

@@ -61,21 +61,21 @@ A pbm file for the diamond image used earlier would be as follows:
 ```
 P1
 15 15
-011000010000110
-100000111000001
-000001111100000
-000011111110000
-000111111111000
-001111101111100
-011111000111110
-111110000011111
-011111000111110
-001111101111100
-000111111111000
-000011111110000
-000001111100000
-100000111000001
-011000010000110
+0 1 1 0 0 0 0 1 0 0 0 0 1 1 0
+1 0 0 0 0 0 1 1 1 0 0 0 0 0 1
+0 0 0 0 0 1 1 1 1 1 0 0 0 0 0
+0 0 0 0 1 1 1 1 1 1 1 0 0 0 0
+0 0 0 1 1 1 1 1 1 1 1 1 0 0 0
+0 0 1 1 1 1 1 0 1 1 1 1 1 0 0
+0 1 1 1 1 1 0 0 0 1 1 1 1 1 0
+1 1 1 1 1 0 0 0 0 0 1 1 1 1 1
+0 1 1 1 1 1 0 0 0 1 1 1 1 1 0
+0 0 1 1 1 1 1 0 1 1 1 1 1 0 0
+0 0 0 1 1 1 1 1 1 1 1 1 0 0 0
+0 0 0 0 1 1 1 1 1 1 1 0 0 0 0
+0 0 0 0 0 1 1 1 1 1 0 0 0 0 0
+1 0 0 0 0 0 1 1 1 0 0 0 0 0 1
+0 1 1 0 0 0 0 1 0 0 0 0 1 1 0
 ```
 
 The first two lines are the header.
@@ -263,57 +263,5 @@ Once they are done, check their conversion against your original.
 Imagining that you and your friend are both computers, by doing this you have shown that images using these systems of representations can be compressed on one computer, and decompressed on another, as long as you have standards that you've agreed on (e.g. that every line begins with a white pixel).
 It is very important for compression algorithms to follow standards so that a file compressed on one computer can be decompressed on another;
 for example, songs often follow the "mp3" standard so that when they are downloaded they can be played on a variety of devices.
-
-{panel end}
-
-## Lossy vs Lossless compression
-
-As the compressed representation of the image can be converted back to the original representation, and both the original representation and the compressed representation would give the same image when read by a computer, this compression algorithm is called *lossless*, i.e. none of the data was lost from compressing the image, and as a result the compression could be undone exactly.
-
-Not all compression algorithms are lossless though.
-In some types of files, in particular photos, sound, and videos, we are willing to sacrifice a little bit of the quality (i.e. lose a little of the data representing the image) if it allows us to make the file size a lot smaller.
-For downloading very large files such as movies, this can be essential to ensure the file size is not so big that it is infeasible to download! These compression methods are called *lossy*.
-If some of the data is lost, it is impossible to convert the file back to exactly the original form when lossy compression was used, but the person viewing the movie or listening to the music may not mind the lower quality if the files are smaller.
-Later in this chapter, we will investigate the effects some lossy compression algorithms have on images and sound.
-
-Interestingly, it turns out that any *lossless* compression algorithm will have cases where the compressed version of the file is larger than the uncompressed version! Computer scientists have even proven this to be the case, meaning it is impossible for anybody to ever come up with a lossless compression algorithm that makes *all* possible files smaller.
-In most cases this isn’t an issue though, as a good lossless compression algorithm will tend to give the best compression on common patterns of data, and the worst compression on ones that are highly unlikely to occur.
-
-{panel type="challenge"}
-
-# Best and worst cases of run length encoding
-
-What is the image with the best compression (i.e. an image that has a size that is a very small percentage of the original) that you can come up with? This is the best case performance for this compression algorithm.
-
-What about the worst compression? Can you find an image that actually has a *larger* compressed representation? (Don’t forget the commas in the version we used!) This is the worst case performance for this compression algorithm.
-
-{panel end}
-
-{panel type="spoiler"}
-
-# Answer for above challenge
-
-The best case above is when the image is entirely white (only one number is used per line).
-The worst case is when every pixel is alternating black and white, so there's one number for every pixel.
-In fact, in this case the size of the compressed file is likely to be a little larger than the original one because the numbers are likely to take more than one bit to store.
-Real systems don't represent the data exactly as we've discussed here, but the issues are the same.
-
-{panel end}
-
-{panel type="curiosity"}
-
-# Compression methods can expand files
-
-In the worst case (with alternating black and white pixels) the run length encoding method will result in a file that's larger than the original!
-As noted above, *every* lossless compression method that makes at least one file smaller must also have some files that it makes larger --- it's not
-mathematically possible to have a method that always makes files smaller unless the method is lossy.
-As a trivial example, suppose someone claims to have a compression method that will convert any 3-bit file into a 2-bit file.
-How many different 3-bit files are there? (There are 8.) How many different 2-bit files are there? (There are 4.) Can you see the problem? We've got 8 possible files that we might want to compress, but only 4 ways to represent them.
-So some of them will have identical representations, and can't be decoded exactly.
-
-Over the years there have been several frauds based on claims of a lossless compression method that will compress every file that it is given.
-This can only be true if the method is lossy (loses information); all lossless methods must expand some files.
-It would be nice if all files could be compressed without loss; you could compress a huge file, then apply compression to the compressed file, and make it smaller again, repeating this until it was only one byte --- or one bit!
-Unfortunately, this isn't possible.
 
 {panel end}
