@@ -30,7 +30,7 @@ Like all technologies, encryption can be used for good and bad purposes.
 A human rights organisation might use encryption to secretly send photographs of human rights abuse to the media, while drug traffickers might use it to avoid having their plans read by investigators.
 Understanding how encryption works and what is possible can help to make informed decisions around things like freedom of speech, human rights, tracking criminal activity, personal privacy, identity theft, online banking and payments, and the safety of systems that might be taken over if they were "hacked into".
 
-{panel type="jargon-buster"
+{panel type="jargon-buster"}
 
 # Deciphering, Decrypting, Attacking, Cracking, Hacking, Cryptanalysts, Hackers, and Crackers
 
