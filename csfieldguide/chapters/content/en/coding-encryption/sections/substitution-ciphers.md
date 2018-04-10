@@ -89,7 +89,7 @@ If instead we used a key of *8*, the conversion table would be as follows.
 
 {image file-path="img/chapters/caesar-cipher-table-3.png"}
 
-{panel type="jargon-buster}
+{panel type="jargon-buster"}
 
 # What is a key?
 

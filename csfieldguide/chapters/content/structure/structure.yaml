@@ -3,6 +3,8 @@ chapters:
     chapter-number: 1
   algorithms:
     chapter-number: 2
+  coding-introduction:
+    chapter-number: 6
   coding-compression:
     chapter-number: 7
   coding-encryption:
