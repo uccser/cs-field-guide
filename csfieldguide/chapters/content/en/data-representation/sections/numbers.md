@@ -283,7 +283,11 @@ For example, if you are 18, the binary notation is 10010, and you need 5 candles
 
 There's a [video on using binary notation for counting up to 1023 on your hands, as well as using it for birthday cakes](https://www.youtube.com/watch?v=GUqle9RE3Y8).
 
-{image file-path="img/chapters/binary-cake.png" alt="It's a lot smarter to use binary notation on candles for birthdays as you get older, as you don't need as many candles." caption="It's a lot smarter to use binary notation on candles for birthdays as you get older, as you don't need as many candles."}
+{image file-path="img/chapters/binary-cake.png" alt="It's a lot smarter to use binary notation on candles for birthdays as you get older, as you don't need as many candles." caption="true"}
+
+It's a lot smarter to use binary notation on candles for birthdays as you get older, as you don't need as many candles.
+
+{image end}
 
 {panel end}
 

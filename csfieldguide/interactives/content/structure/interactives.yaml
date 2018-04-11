@@ -1,4 +1,14 @@
 interactives:
+  - 2d-arrow-manipulations
+  - action-menu
+  - available-menu-items
+  - awful-calculator
+  - base-calculator
+  - big-number-calculator
+  - bin-packing
+  - binary-cards
+  - box-rotation
+  - box-translation
   - caesar-cipher
   - checksum-calculator
   - checksum-calculator-gtin-13

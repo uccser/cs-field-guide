@@ -1,6 +1,8 @@
 # Program Instructions
 
-{panel type="caution" expanded="True"}
+{panel type="caution" expanded="true"}
+
+# Caution
 
 Before reading this section, you should have an understanding of low level languages (see the section on [Machine Code in the Programming Languages]('chapters:chapter_section' 'programming-languages' 'machine-code-low-level-languages') chapter).
 

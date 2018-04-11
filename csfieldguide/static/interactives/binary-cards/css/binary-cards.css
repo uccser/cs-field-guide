@@ -1,0 +1,68 @@
+#interactive-binary-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  margin: -1rem;
+}
+@media (min-width: 815px) and (max-width: 1199px) {
+  #interactive-binary-cards-container {
+    width: 75%;
+  }
+}
+#interactive-binary-cards-container div.binary-card-container {
+  flex: 0 1 auto;
+  margin: 1rem;
+}
+#interactive-binary-cards-container div.binary-card {
+  width: 120px;
+  height: 180px;
+  position: relative;
+  transform-style: preserve-3d;
+  transform: perspective(25rem);
+  transition: transform 0.6s;
+  border: 1px solid #000000;
+  text-align: center;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+}
+#interactive-binary-cards-container div.binary-card canvas {
+  margin: 0;
+  padding: 0;
+}
+#interactive-binary-cards-container div.binary-card.flipped {
+  transform: rotateY(180deg);
+}
+#interactive-binary-cards-container div.binary-card-side {
+  backface-visibility: hidden;
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+#interactive-binary-cards-container div.binary-card-front {
+  z-index: 2;
+  background: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+#interactive-binary-cards-container div.small-text {
+  font-size: 1rem;
+}
+#interactive-binary-cards-container div.binary-card-back {
+  background: black;
+  transform: rotateY(180deg) perspective(25rem);
+}
+#interactive-binary-cards button {
+  border: 1px solid #888;
+  height: 2rem;
+  line-height: 2rem;
+}
+#interactive-binary-cards button#flip-to-black {
+  background: black;
+  color: white;
+}
+#interactive-binary-cards button#flip-to-white {
+  background: white;
+  color: black;
+}

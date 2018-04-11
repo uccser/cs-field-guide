@@ -1,3 +1,23 @@
+2d-arrow-manipulations:
+  name: 2d-arrow-manipulations (broken)
+action-menu:
+  name: action-menu (broken)
+available-menu-items:
+  name: available-menu-items (broken)
+awful-calculator:
+  name: awful-calculator (broken)
+base-calculator:
+  name: base-calculator (broken)
+big-number-calculator:
+  name: big-number-calculator (broken)
+bin-packing:
+  name: bin-packing (broken)
+binary-cards:
+  name: binary-cards (broken)
+box-rotation:
+  name: box-rotation (broken)
+box-translation:
+  name: box-translation (broken)
 caesar-cipher:
   name: Caesar Cipher (broken)
 checksum-calculator:
