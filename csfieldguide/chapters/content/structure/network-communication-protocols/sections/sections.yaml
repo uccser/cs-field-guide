@@ -6,3 +6,12 @@ what-is-a-protocol:
 
 application-level-protocols:
   section-number: 3
+
+transport-layer-protocols:
+  section-number: 4
+
+the-whole-story:
+  section-number: 5
+
+further-reading:
+  section-number: 6
