@@ -13,6 +13,8 @@ chapters:
     chapter-number: 8
   artificial-intelligence:
     chapter-number: 10
+  computer-vision:
+    chapter-number: 13
   formal-languages:
     chapter-number: 14
   network-communication-protocols:
