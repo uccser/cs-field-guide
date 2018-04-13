@@ -10,7 +10,7 @@ We also have an interactive which emulates the physical binary cards here:
 {interactive name="binary-cards" type="whole-page" text="Binary Cards"}
 
 In the chapter we have decided to approach this section by starting with number systems.
-While this may appear “scary” because of the math, most students should be quite familiar with it as it is first introduced very early in primary school in the form of recognising that numbers are made up of the “ones”, “tens”, “hundreds”, etc, and is further built on until eventually in high school they learn about the exponent notation, i.e. \( 541 = 5 \times 10^2 + 4 \times 10^1 + 1 \times 10^0 \).
+While this may appear "scary" because of the math, most students should be quite familiar with it as it is first introduced very early in primary school in the form of recognising that numbers are made up of the "ones", "tens", "hundreds", etc, and is further built on until eventually in high school they learn about the exponent notation, i.e. \( 541 = 5 \times 10^2 + 4 \times 10^1 + 1 \times 10^0 \).
 As explained in this section, binary numbers are a base 2 number system, rather than the base 10 number system we are all familiar with.
 The idea of number systems provides a good stepping stone into binary numbers
 
@@ -32,14 +32,14 @@ It's worth revising quickly, because binary numbers use the same ideas as decima
 
 In decimal, the value of each digit in a number depends on its **place** in the number.
 For example, in $123, the 3 represents $3, whereas the 1 represents $100.
-Each place value in a number is worth 10 times more than the place value to its right, i.e. there are the “ones”, the “tens”, the “hundreds”, the “thousands” the “ten thousands”, the “hundred thousands”, the “millions”, and so on.
+Each place value in a number is worth 10 times more than the place value to its right, i.e. there are the "ones", the "tens", the "hundreds", the "thousands" the "ten thousands", the "hundred thousands", the "millions", and so on.
 Also, there are 10 different **digits** (0,1,2,3,4,5,6,7,8,9) that can be at each of those place values.
 
 If you were only able to use one digit to represent a number, then the largest number would be 9.
 After that, you need a second digit, which goes to the left, giving you the next ten numbers (10, 11, 12... 19).
 It's because we have 10 digits that each one is worth 10 times as much as the one to its right.
 
-You may have encountered different ways of expressing numbers using “expanded form”.
+You may have encountered different ways of expressing numbers using "expanded form".
 For example, if you want to write the number 90328 in expanded form you might have written it as:
 
 \( 90328 = 90000 + 300 + 20 + 8 \)
@@ -175,7 +175,7 @@ Since the 5-bit binary numbers cover the range from 0 to 31, there are 32 number
 
 {panel end}
 
-You have probably noticed from the interactive that when set to 1, the leftmost bit (the “most significant bit”) adds 32 to the total, the next adds 16, and then the rest add 8, 4, 2, and 1 respectively.
+You have probably noticed from the interactive that when set to 1, the leftmost bit (the "most significant bit") adds 32 to the total, the next adds 16, and then the rest add 8, 4, 2, and 1 respectively.
 When set to 0, a bit does not add anything to the total.
 So the idea is to make numbers by adding some or all of 32, 16, 8, 4, 2, and 1 together, and each of those numbers can only be included once.
 
@@ -452,7 +452,7 @@ We will look at two possible approaches: Adding a simple sign bit, much like we 
 ### Using a simple sign bit
 
 On a computer we don’t have minus signs for numbers (it doesn't work very well to use the text based one when representing a number because you can't do arithmetic on characters), but we can do it by allocating one extra bit, called a *sign* bit, to represent the minus sign.
-Just like with decimal numbers, we put the negative indicator on the left of the number --- when the sign bit is set to “0”, that means the number is positive and when the sign bit is set to “1”, the number is negative (just as if there were a minus sign in front of it).
+Just like with decimal numbers, we put the negative indicator on the left of the number --- when the sign bit is set to "0", that means the number is positive and when the sign bit is set to "1", the number is negative (just as if there were a minus sign in front of it).
 
 For example, if we wanted to represent the number **41** using 7 bits along with an additional bit that is the sign bit (to give a total of 8 bits), we would represent it by **00101001**.
 The first bit is a 0, meaning the number is positive, then the remaining 7 bits give **41**, meaning the number is **+41**.

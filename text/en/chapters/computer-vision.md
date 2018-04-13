@@ -28,13 +28,13 @@ If you can’t read the Chinese characters, there are apps available for smartph
 
 {image filename="no-smoking-sign-translated.png" alt="Visual computing: translating a sign"}
 
-Having a small portable device that can "see" and translate characters makes a big difference for travellers. Note that the translation given is only for the second part of the phrase (the last two characters). The first part says “please don’t”, so it could be misleading if you think it’s translating the whole phrase!
+Having a small portable device that can "see" and translate characters makes a big difference for travellers. Note that the translation given is only for the second part of the phrase (the last two characters). The first part says "please don’t", so it could be misleading if you think it’s translating the whole phrase!
 
 Recognising of Chinese characters may not work every time perfectly, though. Here is a warning sign:
 
 {image filename="steep-sign-translated.jpg" alt="Visual computing: translating a sign"}
 
-My phone has been able to translate the “careful” and “steep” characters, but it hasn’t recognised the last character in the line. Why do you think that might be?
+My phone has been able to translate the "careful" and "steep" characters, but it hasn’t recognised the last character in the line. Why do you think that might be?
 
 {panel type="teacher-note" summary="The importance of image segmentation"}
 
@@ -48,11 +48,11 @@ Giving users more information through computer vision is only one part of the st
 
 .. https://en.wikipedia.org/wiki/Google_driverless_car
 
-.. I think for this topic, it could be important to mention the links into math, and also provide links to more advanced stuff, as there will be some high school students who are very confident with math, and could investigate this topic quite possibly to the level that more advanced university students would (and there are probably some that already have!). Graphics seems to be popular with the “geekiest” and “smartest” students.
+.. I think for this topic, it could be important to mention the links into math, and also provide links to more advanced stuff, as there will be some high school students who are very confident with math, and could investigate this topic quite possibly to the level that more advanced university students would (and there are probably some that already have!). Graphics seems to be popular with the "geekiest" and "smartest" students.
 
 .. Of course students who aren’t so confident in math should still be given stuff they can understand as well.
 
-.. For the students who’re not so math-heavy, I wonder if it’s worth pointing out links into cognitive science (bio/psych), too. The human visual system and a computer vision system may have similar “hardware”, but they don’t interpret images in the same way. Some of the things that we find easy to do (like recognising people’s facial expressions) are challenging for a computer, and some things that we find challenging (like seeing through some optical illusions; e.g. checkerboard illusion) are easy for a computer.
+.. For the students who’re not so math-heavy, I wonder if it’s worth pointing out links into cognitive science (bio/psych), too. The human visual system and a computer vision system may have similar "hardware", but they don’t interpret images in the same way. Some of the things that we find easy to do (like recognising people’s facial expressions) are challenging for a computer, and some things that we find challenging (like seeing through some optical illusions; e.g. checkerboard illusion) are easy for a computer.
 
 {comment end}
 
@@ -76,7 +76,7 @@ Digital cameras and human eyes fulfill largely the same function: images come in
 
 {panel type="teacher-note" summary="Digital camera sensors"}
 
-There are a number of different types of digital camera sensor, but for the purposes of this chapter we will be focusing on the [CMOS](https://en.wikipedia.org/wiki/CMOS_sensor”) sensors which are in most consumer electronics. An alternative kind of sensor is the [Charge-Coupled Device (CCD)](https://en.wikipedia.org/wiki/Charge-coupled_device), which is more commonly used for specialist applications such as astronomy.
+There are a number of different types of digital camera sensor, but for the purposes of this chapter we will be focusing on the [CMOS](https://en.wikipedia.org/wiki/CMOS_sensor") sensors which are in most consumer electronics. An alternative kind of sensor is the [Charge-Coupled Device (CCD)](https://en.wikipedia.org/wiki/Charge-coupled_device), which is more commonly used for specialist applications such as astronomy.
 
 {panel end}
 
@@ -109,7 +109,7 @@ The relevant Wikipedia entry is [Image noise](https://en.wikipedia.org/wiki/Imag
 
 {panel end}
 
-Since a camera image captures the levels of red, green and blue light separately for each pixel, a computer vision system can save a lot of processing time in some operations by combining all three channels into a single “grayscale” image, which just represents light intensities for each pixel.
+Since a camera image captures the levels of red, green and blue light separately for each pixel, a computer vision system can save a lot of processing time in some operations by combining all three channels into a single "grayscale" image, which just represents light intensities for each pixel.
 
 {comment}
 

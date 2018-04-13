@@ -35,7 +35,7 @@ By the end of this chapter, you should understand the basic idea of error contro
 
 ## The Parity Magic Trick
 
-If you have never seen the parity magic trick before, check out the video in the “What’s the Big Picture?” section above. This section assumes that you know what is meant by the parity magic trick, but now we'll explain how it actually works!
+If you have never seen the parity magic trick before, check out the video in the "What’s the Big Picture?" section above. This section assumes that you know what is meant by the parity magic trick, but now we'll explain how it actually works!
 
 {image filename="parity-trick-cartoon.jpg" alt="The parity magic trick"}
 
@@ -142,7 +142,7 @@ This is very closely related to the parity bit that we looked at above, where th
 With a GTIN-13 code, we want to be able to detect if one of the digits might have been entered incorrectly.
 
 The following interactive checks GTIN-13 barcodes. Enter the first 12 digits of a barcode number into the interactive, and it will tell you that the last digit should be!
-You could start by using the barcode number “9 300675 036009”.
+You could start by using the barcode number "9 300675 036009".
 
 {interactive name="checksum-calculator-gtin-13" type="in-page"}
 
@@ -304,7 +304,7 @@ Let's look at some smaller examples with 5 digits (4 normal digits and a check d
 
 If we need a check digit for 8954, we would calculate (8x1)+(9x3)+(5x1)+(4x3)=52, and in order to bring this up to 60, we need to add 8. This makes the full number 89548.
 
-The first thing we should observe is that only the ones column (last digit) of each number added have any impact on the check digit. 8+27+5+12=52, and 8+7+5+2=22 (only looking at the last digit of each number we are adding). Both these end in a 2, and therefore need 8 to bring them up to the nearest multiple of 10. You might be able to see why this is if you consider that the “2” and “1” were cut from the tens column, they are equal to 10+20=30, a multiple of 10. Subtracting them only affects the tens column and beyond. This is always the case, and therefore we can simplify the problem by only adding the ones column of each number to the sum. (This can also be used as a shortcut to calculate the checksum in your head).
+The first thing we should observe is that only the ones column (last digit) of each number added have any impact on the check digit. 8+27+5+12=52, and 8+7+5+2=22 (only looking at the last digit of each number we are adding). Both these end in a 2, and therefore need 8 to bring them up to the nearest multiple of 10. You might be able to see why this is if you consider that the "2" and "1" were cut from the tens column, they are equal to 10+20=30, a multiple of 10. Subtracting them only affects the tens column and beyond. This is always the case, and therefore we can simplify the problem by only adding the ones column of each number to the sum. (This can also be used as a shortcut to calculate the checksum in your head).
 
 *Protection against single digit errors*
 
@@ -342,7 +342,7 @@ But are there any cases where the totals will have the same values in their ones
 
 Remember that the first column is how much will be contributed to the total for digits being multiplied by 1, and the second column is for those being multiplied by 3. Because adjacent digits are each multiplied by a different amount (one by 3 and the other by 1), the numbers diagonal to each other in the chosen pair will be added.
 
-If for example the first 2 digits in a number are “28”, then we will add 2+4=6 to the sum. If they are then reversed, we will add 8+6=14, which is equivalent to 4 as again, the “10” part does not affect the sum. 8+6 and 2+4 are the diagonals of the pair!
+If for example the first 2 digits in a number are "28", then we will add 2+4=6 to the sum. If they are then reversed, we will add 8+6=14, which is equivalent to 4 as again, the "10" part does not affect the sum. 8+6 and 2+4 are the diagonals of the pair!
 
 - *8* -> **4**
 - **2** -> *6*
@@ -351,25 +351,25 @@ So the question now is, can you see any pairs where the diagonals would add up t
 
 *Protection against twin errors*
 
-A twin error is where a digit that is repeated twice in a number is changed to a different digit that is repeated twice. For example, if we have “22” in the number, somebody might somehow change it to “88”.
+A twin error is where a digit that is repeated twice in a number is changed to a different digit that is repeated twice. For example, if we have "22" in the number, somebody might somehow change it to "88".
 
 When two numbers are side by side, one is multiplied by 3 and the other by 1. So the amount contributed to the total is the sum of the number’s row in the above table.
-For example, 2 has the row “2->6”. This means that 2+6=8 will be contributed to the sum as a result of these two digits.
+For example, 2 has the row "2->6". This means that 2+6=8 will be contributed to the sum as a result of these two digits.
 
 If any rows add up to the same number, this could be a problem. Where the sum was over 10, the tens column has been removed.
 
-- 1 -> 3 adds to “4”
-- 2 -> 6 adds to “8”
-- 3 -> 9 adds to “2”
-- 4 -> 2 adds to “6”
-- 5 -> 5 adds to “0”
-- 6 -> 8 adds to “4”
-- 7 -> 1 adds to “8”
-- 8 -> 4 adds to “2”
-- 9 -> 7 adds to “6”
-- 0 -> 0 adds to “0”
+- 1 -> 3 adds to "4"
+- 2 -> 6 adds to "8"
+- 3 -> 9 adds to "2"
+- 4 -> 2 adds to "6"
+- 5 -> 5 adds to "0"
+- 6 -> 8 adds to "4"
+- 7 -> 1 adds to "8"
+- 8 -> 4 adds to "2"
+- 9 -> 7 adds to "6"
+- 0 -> 0 adds to "0"
 
-Some of the rows add up to the same number! Because both 4 and 9 add up to 6, the error will not be detected if “44” changes to “99” in a number!
+Some of the rows add up to the same number! Because both 4 and 9 add up to 6, the error will not be detected if "44" changes to "99" in a number!
 
 Rows that do not add will be detected. From the example above, if 22 changes to 88, this will be detected because 22’s total is 8, and 88’s total is 2.
 

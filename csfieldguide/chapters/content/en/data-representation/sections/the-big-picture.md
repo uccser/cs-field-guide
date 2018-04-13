@@ -59,20 +59,20 @@ For example, 22 dots is "white, black, white, white, black".
 Or you could decode "black, black, white, white, white" to the number 7.
 This is the basis of data representation - anything that can have two different states can represent anything on a digital device.
 
-When we write what is stored in a computer on paper, we normally use “0” for one of the states, and “1” for the other state.
+When we write what is stored in a computer on paper, we normally use "0" for one of the states, and "1" for the other state.
 For example, a piece of computer memory could have the following voltages:
 
 ```
 low low high low high high high high low high low low
 ```
 
-We could allocate **“0”** to **“low”**, and **“1”** to **“high”** and write this sequence down as:
+We could allocate **"0"** to **"low"**, and **"1"** to **"high"** and write this sequence down as:
 
 ```
 0 0 1 0 1 1 1 1 0 1 0 0
 ```
 
-While this notation is used extensively, and you may often hear the data being referred to as being “0’s and 1’s”, it is important to remember that a computer does *not* store 0’s and 1’s; it has no way of doing this.
+While this notation is used extensively, and you may often hear the data being referred to as being "0’s and 1’s", it is important to remember that a computer does *not* store 0’s and 1’s; it has no way of doing this.
 They are just using physical mechanisms such as high and low voltage, north or south polarity, and light or dark materials.
 
 {panel type="jargon-buster"}

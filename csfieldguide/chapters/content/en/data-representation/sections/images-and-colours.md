@@ -185,7 +185,7 @@ The main point about knowing this representation is to understand the trade-off 
 If you haven't already, read the section on [Hexadecimal](chapters/data-representation.html#shorthand-for-binary-numbers---hexadecimal), otherwise this section might not make sense!
 
 When writing HTML code, you often need to specify colours for text, backgrounds, and so on.
-One way of doing this is to specify the colour name, for example “red”, “blue”, “purple”, or “gold”.
+One way of doing this is to specify the colour name, for example "red", "blue", "purple", or "gold".
 For some purposes, this is okay.
 
 However, the use of names limits the number of colours you can represent and the shade might not be exactly the one you wanted.

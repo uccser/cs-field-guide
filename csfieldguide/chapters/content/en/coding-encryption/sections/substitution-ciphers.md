@@ -55,10 +55,10 @@ I'LL BE WEARING A RED ARMBAND.
 Some of the techniques that students might have used to decipher it include:
 
 - Looking for interesting letter patterns.
-  For example, the word “S’VV” in the ciphertext.
+  For example, the word "S’VV" in the ciphertext.
   There aren’t that many contractions (words shortened with an apostrophe) in the English language, much less ones that have the last 2 letters the same.
 - Looking at one letter words.
-  Generally they’ll be “A” or “I”.
+  Generally they’ll be "A" or "I".
 - As they figure out which letters in the ciphertext correspond to which letters in the plaintext, they should have been making a list of what they’d figured out, and looking at other words in the ciphertext using those same letters.
 - Looking for letters in the ciphertext that seem to appear a lot; these are likely to correspond to common letters in the english alphabet.
 - Looking at letters that DIDN’T appear (perhaps they correspond to letters like Q and Z).
@@ -281,7 +281,7 @@ Understanding various common attacks on ciphers is important when looking at sop
 ### Frequency Analysis Attacks
 
 Frequency analysis means looking at how many times each letter appears in the encrypted message, and using this information to crack the code.
-A letter that appears many times in a message is far more likely to be “T” than “Z”, for example.
+A letter that appears many times in a message is far more likely to be "T" than "Z", for example.
 
 The following interactive will help you analyze a piece of text by counting up the letter frequencies.
 You can paste in some text to see which are the most common (and least common) characters.
@@ -479,7 +479,7 @@ It may initially sound impossible to achieve this, although there are several cl
 
 While Caesar cipher has a key specifying a rotation, a more general substitution cipher could randomly scramble the entire alphabet.
 This requires a key consisting of a sequence of 26 letters or numbers, specifying which letter maps onto each other one.
-For example, the first part of the key could be “D, Z, E”, which would mean D: A, Z: B, E:C.
+For example, the first part of the key could be "D, Z, E", which would mean D: A, Z: B, E:C.
 The key would have to have another 23 letters in order to specify the rest of the mapping.
 
 This increases the number of possible keys, and thus reduces the risk of a brute force attack.

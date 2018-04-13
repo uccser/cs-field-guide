@@ -67,7 +67,7 @@ You can read more about the differences [here](https://en.wikipedia.org/wiki/Int
 
 So what does a TCP segment look like?
 
-{image filename="packet-structure-diagram.png" alt="Showing the structure of a TCP packet"}
+{image file-path="img/chapters/packet-structure-diagram.png" alt="Showing the structure of a TCP packet"}
 
 As you can see, a packet is divided into four main parts, addresses (source, destination), numbers (sequence number, ACK number if it’s an acknowledgement), flags (urgent, checksum) in the header, then the actual data.
 At each level, a segment becomes the data for the next data unit, and that again gets its own header.

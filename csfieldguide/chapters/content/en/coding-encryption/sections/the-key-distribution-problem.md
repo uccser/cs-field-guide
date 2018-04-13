@@ -15,7 +15,7 @@ There are several other characters used to describe activities around encryption
 {panel end}
 
 If Alice is sending an encrypted message to Bob, this raises an interesting problem in encryption.
-The ciphertext itself can safely be sent across an “unsafe” network (one that Eve is listening on), but the key cannot.
+The ciphertext itself can safely be sent across an "unsafe" network (one that Eve is listening on), but the key cannot.
 How can Alice get the key to Bob? Remember the key is the thing that tells Bob how to convert the ciphertext back to plaintext.
 So Alice can’t include it in the encrypted message, because then Bob would be unable to access it.
 Alice can’t just include it as plaintext either, because then Eve will be able to get ahold of it and use it to decrypt any messages that come through using it.
@@ -151,11 +151,11 @@ If we could solve the second problem and find the multiples for a big number, we
 However, no one knows a fast way to do that.
 This is called a "trapdoor" function - it's easy to go into the trapdoor (multiply two numbers), but it's pretty much impossible to get back out (find the two factors).
 
-So why is it that despite these two problems being similar, one of them is “easy” and the other one is “hard”? Well, it comes down to the algorithms we have to solve each of the problems.
+So why is it that despite these two problems being similar, one of them is "easy" and the other one is "hard"? Well, it comes down to the algorithms we have to solve each of the problems.
 
 You have probably done long multiplication in school by making one line for each digit in the second number and then adding all the rows together.
 We can analyse the speed of this algorithm, much like we did in the algorithms chapter for sorting and searching.
-Assuming that each of the two numbers has the same number of digits, which we will call *n* (“Number of digits”), we need to write *n* rows.
+Assuming that each of the two numbers has the same number of digits, which we will call *n* ("Number of digits"), we need to write *n* rows.
 For each of those *n* rows, we will need to do around *n* multiplications.
 That gives us ``\( n \times n \)`` little multiplications.
 We need to add the *n* rows together at the end as well, but that doesn’t take long so lets ignore that part.

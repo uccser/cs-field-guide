@@ -118,7 +118,7 @@ In this chapter we'll be using similar crude characterisations because they are 
 
 If you've studied algorithms, you will have learnt that some sorting algorithms, such as mergesort and quicksort, are inherently faster than other algorithms, such as insertion sort, selection sort, or bubble sort. It’s obviously better to use the faster ones. The first two have a complexity of {math}nlog(n){math end} time (that is, the number of steps that they take is roughly proportional to {math}nlog(n){math end}), whereas the last three have complexity of {math}n^2{math end}. Generally the consequence of using the wrong sorting algorithm will be that a user has to wait many minutes (or perhaps hours) rather than a few seconds or minutes.
 
-Here we're going to consider another possible sorting algorithm, called *permutation sort*. Permutation sort says “Let’s list all the possible orderings (“permutations”) of the values to be sorted, and check each one to see if it is sorted, until the sorted order is found”.  This algorithm is straightforward to describe, but is it any good?
+Here we're going to consider another possible sorting algorithm, called *permutation sort*. Permutation sort says "Let’s list all the possible orderings ("permutations") of the values to be sorted, and check each one to see if it is sorted, until the sorted order is found".  This algorithm is straightforward to describe, but is it any good?
 
 {panel type="teacher-note" summary="Permutation sort isn't any use in practice!"}
 
@@ -129,7 +129,7 @@ Note that permutation sort is *not* a reasonable way to sort at all; it's just a
 {comment}
 
 .. xHRN You've used orderings most of the time below, but why not use permutations as long as it's defined, which i've sort of done in the next sentence? Or we can use both... i'm not sure which is the most common term!
-.. We discussed that and came to the conclusion that “orderings” was better.
+.. We discussed that and came to the conclusion that "orderings" was better.
 
 {comment end}
 
@@ -194,7 +194,7 @@ For the above questions, the number of permutations are:
 
 {panel end}
 
-If you didn’t find the pattern for the number of orderings, think about using factorials. For 3 words, there are {math}3!{math end} (“3 factorial”) orderings. For 5 words, there are {math}5!{math end} orderings. Check the jargon buster below if you don’t know what a “factorial” is, or if you have forgotten!
+If you didn’t find the pattern for the number of orderings, think about using factorials. For 3 words, there are {math}3!{math end} ("3 factorial") orderings. For 5 words, there are {math}5!{math end} orderings. Check the jargon buster below if you don’t know what a "factorial" is, or if you have forgotten!
 
 {panel type="jargon-buster" summary="Factorials"}
 
@@ -253,7 +253,7 @@ By now, you should be very aware of the point that is being made. Permutation so
 
 At this point, we need to now distinguish between algorithms that are essentially usable, and algorithms that will take billions of year to finish running, even with a small input such as 100 values.
 
-Computer Scientists call an algorithm “intractable” if it would take a completely unreasonable amount of time to run on reasonably sized inputs.  Permutation sort is a good example of an intractable algorithm.
+Computer Scientists call an algorithm "intractable" if it would take a completely unreasonable amount of time to run on reasonably sized inputs.  Permutation sort is a good example of an intractable algorithm.
 The term "intractable" is used a bit more formally in computer science; it's explained in the next section.
 
 But the *problem* of sorting items into order is not intractable - even though the Permutation sort algorithm is intractable,  there are lots of other efficient and not-so-efficient algorithms that you could use to solve a sorting problem in a reasonable amount of time:  quick sort, merge sort, selection sort, even bubble sort!  However, there are some problems in which the ONLY known algorithm is one of these intractable ones. Problems in this category are known as *intractable problems*.

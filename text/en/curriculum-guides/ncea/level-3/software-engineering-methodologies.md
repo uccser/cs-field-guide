@@ -8,7 +8,7 @@ In order to fully cover the standard, you will also need to have done a project 
 
 For this project, students will need to interview somebody from the software engineering industry about what software methodologies (Agile and Waterfall) their company uses. It would be best to pick a company that uses Agile (which is now very common). They will also need a couple of examples of projects they have done themselves: one where they used an Agile approach, and one where they used a Waterfall approach. The projects could either be ones they do this year, or ones they have done in the past.
 
-The teacher should arrange for the class to visit a local software company where there is a software engineer they can interview, or for a software engineer to visit the class. The students should prepare “interview” questions before the visit, to ask the software engineer in order to get the information they need to complete their report.
+The teacher should arrange for the class to visit a local software company where there is a software engineer they can interview, or for a software engineer to visit the class. The students should prepare "interview" questions before the visit, to ask the software engineer in order to get the information they need to complete their report.
 
 The student's Waterfall project to use as an example need not be in computing; in other technology classes, such as hard materials, students might have used a waterfall process where they had to do analysis/requirements gathering, then design, and then implementation (building) in that order, without being able to easily go back to the previous step. Some students naturally carry this process over to digital technologies, and they may have even used it in 1.45/1.46 and 2.45/2.46.
 
@@ -31,14 +31,14 @@ In New Zealand, a convenient way to find software engineers to come to a class f
 
 ## Overview
 
-Note that a plural means “at least two” in NZQA documents. Because this is one of the two areas of computer science that the student must cover, most of the plurals effectively become singular for this project, which is half their overall report. This project will give them at least one algorithm/technique and practical application, and the other project they do will give them another of each.
+Note that a plural means "at least two" in NZQA documents. Because this is one of the two areas of computer science that the student must cover, most of the plurals effectively become singular for this project, which is half their overall report. This project will give them at least one algorithm/technique and practical application, and the other project they do will give them another of each.
 
-- **Achieved: [A1]** “describing key problems that are addressed in selected areas of computer science”
-- **Achieved: [A2]** “describing examples of practical applications of selected areas to demonstrate the use of key algorithms and/or techniques from these areas“
-- **Merit: [M1]** “explaining how key algorithms or techniques are applied in selected areas”
-- **Merit: [M2]** “explaining examples of practical applications of selected areas to demonstrate the use of key algorithms and/or techniques from these areas”
-- **Excellence: [E1]** “discussing examples of practical applications of selected areas to demonstrate the use of key algorithms and/or techniques from these areas”
-- **Excellence: [E2]** “evaluating the effectiveness of algorithms, techniques, or applications from selected areas”
+- **Achieved: [A1]** "describing key problems that are addressed in selected areas of computer science"
+- **Achieved: [A2]** "describing examples of practical applications of selected areas to demonstrate the use of key algorithms and/or techniques from these areas"
+- **Merit: [M1]** "explaining how key algorithms or techniques are applied in selected areas"
+- **Merit: [M2]** "explaining examples of practical applications of selected areas to demonstrate the use of key algorithms and/or techniques from these areas"
+- **Excellence: [E1]** "discussing examples of practical applications of selected areas to demonstrate the use of key algorithms and/or techniques from these areas"
+- **Excellence: [E2]** "evaluating the effectiveness of algorithms, techniques, or applications from selected areas"
 
 The terminology in the 3.44 standard can be challenging to understand because it applies to six different areas. The following list describes how the terminology of the standard maps onto this project.
 
@@ -63,7 +63,7 @@ Ideally you should read through the entire Software Engineering chapter, as it i
 
 ## Project
 
-This project is based on the “Software Processes” project in the CS Field Guide. Your teacher will arrange for a software engineer to visit your class or for your class to visit a local software company. In this visit, you will interview a software engineer to find out about the software development practices their company uses and how this impacts their work, in particular Agile processes. This guide assumes an agile process is used by the company interviewed, because this is generally used in large and innovative software projects - the projects that are the most challenging to bring to success. Before the interview, you need to come up with a list of interview questions which will help you to get the information that you need to complete this report.
+This project is based on the "Software Processes" project in the CS Field Guide. Your teacher will arrange for a software engineer to visit your class or for your class to visit a local software company. In this visit, you will interview a software engineer to find out about the software development practices their company uses and how this impacts their work, in particular Agile processes. This guide assumes an agile process is used by the company interviewed, because this is generally used in large and innovative software projects - the projects that are the most challenging to bring to success. Before the interview, you need to come up with a list of interview questions which will help you to get the information that you need to complete this report.
 
 In addition, you should also have your own experience using Agile processes (and Waterfall processes). You might have even used a form of Agile without realising it! Being able to discuss these experiences and how they were impacted by the user of Waterfall and Agile will be valuable for your report. Some ideas are: Working on a large program or website, you might have designed, implemented, and tested small parts of the functionality at a time, as opposed to trying to design your entire project, then implement it, and then test it.
 
@@ -80,7 +80,7 @@ Follow the page limit recommendations, as these will help you to ensure you have
 This should ideally be no more than ½ a page long.
 
 The kinds of things you should include are:
-What is the key problem you are discussing in your report? *Start the first sentence of your report with “A key problem in software engineering is…”.*. Also make sure you include some of the risk factors for projects failing (e.g. new ideas, size, characteristics of the engineers working on it…) This will ensure the marker can easily tick off bullet point A1. (1 paragraph is enough)
+What is the key problem you are discussing in your report? *Start the first sentence of your report with "A key problem in software engineering is…".*. Also make sure you include some of the risk factors for projects failing (e.g. new ideas, size, characteristics of the engineers working on it…) This will ensure the marker can easily tick off bullet point A1. (1 paragraph is enough)
 
 What is some motivation for being interested in the key problem? e.g, what interesting software disasters have you read about? What are the consequences of not paying attention to it? (1 paragraph, or possibly 2 short paragraphs should be enough)
 What company did you visit (or that visited you), and what kind of software do they make? What methodology do they use? (just 1 short paragraph is enough)
@@ -100,7 +100,7 @@ We decided to put A2 in the heading despite the limit relevance to help prevent 
 
 This should ideally be around ½ to 1 pages long.
 
-The point of this section is to define what the Waterfall process and Agile processes are, and give some specific examples of how Agile methodologies are actually implemented in practice, that is, what specific practices mean that the overall methodology the software engineer you interviewed is using Agile? And what practices did you use in your own project(s) that made them Agile? You don’t need to go into too much depth here, you just need to give several examples of practices, and make sure you have explained them, so that it is clear to the marker what they mean. (For example, just saying “X company does development in sprints” is not enough. You need to explain what a sprint actually is). You should also include 1 or 2 examples from one of your own Waterfall projects (e.g. the order in which you did the phases in it).
+The point of this section is to define what the Waterfall process and Agile processes are, and give some specific examples of how Agile methodologies are actually implemented in practice, that is, what specific practices mean that the overall methodology the software engineer you interviewed is using Agile? And what practices did you use in your own project(s) that made them Agile? You don’t need to go into too much depth here, you just need to give several examples of practices, and make sure you have explained them, so that it is clear to the marker what they mean. (For example, just saying "X company does development in sprints" is not enough. You need to explain what a sprint actually is). You should also include 1 or 2 examples from one of your own Waterfall projects (e.g. the order in which you did the phases in it).
 
 You might want to do the following:
 - Explain what the Waterfall process is, and the key steps in it.
@@ -108,7 +108,7 @@ You might want to do the following:
 - Give a list of examples of ways in which the Agile and Waterfall methods are put into practice. Each example should be something you did in one of your projects, or from what the software engineer you interviewed told you. State what the practice is, which of your example projects it is from, and explain what it means (especially where jargon is involved). Don’t go into depth about the implications, you should do this in the next section. This information for this section could safely be presented as bullet points, *as long as the bullet points are each 2 to 3 full sentences.*
 
 {panel type="additional-information" summary="An example for this section"}
-These points could be in the form of something like “xxxx company has stand up meetings every  morning. These go for xxxx minutes, and are so that everybody in the team can catch up with what each other is doing, and xxxx”. The key idea is that they are short, but long enough for the student to briefly explain, and they are personalised based on the situation they have heard about.
+These points could be in the form of something like "xxxx company has stand up meetings every  morning. These go for xxxx minutes, and are so that everybody in the team can catch up with what each other is doing, and xxxx". The key idea is that they are short, but long enough for the student to briefly explain, and they are personalised based on the situation they have heard about.
 {panel end}
 
 ### Explaining and discussing examples of projects using Agile Processes or the Waterfall Process, and the implications (Achieved/ Merit/ Excellence) [A2, M2, E1]
@@ -137,8 +137,8 @@ This should ideally be around ½ to 1 page long. Remember to only include your m
 - Make sure you are focussing on the software methodologies of Agile processes and the Waterfall process. If you have an entire paragraph that has nothing to do with Agile processes or the Waterfall process, then it is probably not relevant to the project you have chosen for the standard.
 - Be sure that all your explanations are centered around examples (i.e. the interview with an engineer or your own projects). Remember that you are supposed to be discussing those examples in order to demonstrate techniques, i.e. agile and waterfall.
 - Be careful when using bullet points and pros vs cons lists.
- - Generally, single sentence/ statement bullet points don’t work well for merit/ excellence, because you need to have explained and justified the point you have made. Simply stating facts is only “describing”. For example, when evaluating the processes, you may be tempted to have a bunch of bullet points such as “Does not work well for innovative software projects”. This statement isn’t going to help you at all - it will look like you just copied this fact from the field guide! You need to justify it, and explain why the Waterfall process does not work well for innovative software projects. Once you have done this, you will have several sentences or a paragraph.
- - One exception is for an introduction or conclusion. You might say “In summary, the key points are” and then follow with a list of bullet points that summarise your key points.
+ - Generally, single sentence/ statement bullet points don’t work well for merit/ excellence, because you need to have explained and justified the point you have made. Simply stating facts is only "describing". For example, when evaluating the processes, you may be tempted to have a bunch of bullet points such as "Does not work well for innovative software projects". This statement isn’t going to help you at all - it will look like you just copied this fact from the field guide! You need to justify it, and explain why the Waterfall process does not work well for innovative software projects. Once you have done this, you will have several sentences or a paragraph.
+ - One exception is for an introduction or conclusion. You might say "In summary, the key points are" and then follow with a list of bullet points that summarise your key points.
 
 ## Staying within the page limit
 

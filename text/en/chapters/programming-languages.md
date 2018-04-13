@@ -56,7 +56,7 @@ Try changing the program so that it says your name instead of *Student*. When yo
 
 Hopefully you figured out how to make the program print your name. You can also change the asterisks (\*) to other symbols.  What happens if you do remove one of the double quotes or one of the parentheses? Try it!
 
-If you change a critical symbol in the program you will probably find that the Python interpreter gives an error message. In the online Python interpreter linked to above, it says “ParseError: bad input on line 1”, although different interpreters will express the error in different ways. If you have trouble fixing the error again, just copy the program back into Python from above.
+If you change a critical symbol in the program you will probably find that the Python interpreter gives an error message. In the online Python interpreter linked to above, it says "ParseError: bad input on line 1", although different interpreters will express the error in different ways. If you have trouble fixing the error again, just copy the program back into Python from above.
 
 {comment}
 
@@ -85,7 +85,7 @@ Try make the following changes to the program.
 - Make it print multiples of 5 instead of 3. *Hint:* You need to change more than just the first line, you will need to make a change on the third line as well.
 - Make it print the first 10 multiples instead of the first 5. Make sure it printed 10 multiples, and not 9 or 11!
 
-You can also loop over a list of data. Try running the program below. It will generate a series of “spam” messages, one addressed to each person in the recipients list!
+You can also loop over a list of data. Try running the program below. It will generate a series of "spam" messages, one addressed to each person in the recipients list!
 
 Note that the # symbol tells the computer that it should ignore the line, as it is a comment for the programmer.
 
@@ -112,7 +112,7 @@ Try changing the recipients or the letter. Look carefully at all the symbols tha
 The detailed requirements of a programming language about exactly which characters need to be used and where, is called its *syntax*. In the example above, the syntax for the list of names requires square brackets around the list, inverted commas around the names, and a comma between each one. If you make a mistake, such as leaving out one of the square brackets, the system will have a *syntax error*, and won't be able to run the program. Every symbol counts, and one small error in a program can stop it running, or make it do the wrong thing.
 {panel end}
 
-Programs can also use *variables* to store the results of calculations in, receive user input, and make decisions (called *conditionals*, such as *if* statements). Try running this program. Enter a number of miles to convert when asked. Don’t put units on the number you enter; for example just put “12”.
+Programs can also use *variables* to store the results of calculations in, receive user input, and make decisions (called *conditionals*, such as *if* statements). Try running this program. Enter a number of miles to convert when asked. Don’t put units on the number you enter; for example just put "12".
 
 ```
 print("This program will convert miles to kilometers")
@@ -136,7 +136,7 @@ Programs can do many more things, such as having a graphical user interface (lik
 
 When you ran the programs, it might have seemed quite magical that the computer was able to instantly give you the output. Behind the scenes however, the computer was running your example programs through another program in order to convert them into a form that it could make sense of and then run.
 
-Firstly, you might be wondering why we need languages such as Python, and why we can’t give computers instructions in English. If we typed into the computer “Okay computer, print me the first 5 multiples of 3”, there's no reason that it would be able to understand. For starters, it would not know what a “multiple” is. And it would not even know how to go about this task. Computers cannot be told what every word means, and they cannot know how to accomplish every possible task. Understanding human language is a very difficult task for a computer, as you will find out in the Artificial Intelligence chapter. Unlike humans who have an understanding of the world, and see meaning, computers are only able to follow the precise instructions you give them. Therefore, we need languages that are constrained and unambiguous that the computer “understands” instructions in. These can be used to give the computer instructions, like those in the previous section.
+Firstly, you might be wondering why we need languages such as Python, and why we can’t give computers instructions in English. If we typed into the computer "Okay computer, print me the first 5 multiples of 3", there's no reason that it would be able to understand. For starters, it would not know what a "multiple" is. And it would not even know how to go about this task. Computers cannot be told what every word means, and they cannot know how to accomplish every possible task. Understanding human language is a very difficult task for a computer, as you will find out in the Artificial Intelligence chapter. Unlike humans who have an understanding of the world, and see meaning, computers are only able to follow the precise instructions you give them. Therefore, we need languages that are constrained and unambiguous that the computer "understands" instructions in. These can be used to give the computer instructions, like those in the previous section.
 
 It isn’t this simple though, a computer cannot run instructions given directly in these languages. At the lowest level, a computer has to use physical hardware to run the instructions. Arithmetic such as addition, subtraction, multiplication, and division, or simple comparisons such as less than, greater than, or equal to are done on numbers represented in binary by putting electricity through physical computer chips containing transistors. The output is also a number represented in binary. Building a fast and cheap circuit to do simple arithmetic such as this isn't that hard, but the kind of instructions that people want to give computers (like "print the following sentence", or "repeat the following 100 times") are much harder to build circuitry for.
 
@@ -196,7 +196,7 @@ All computers have a machine code language (commonly referred to as an instructi
 
 The instructions are quite different to the ones you will have seen before in high level languages. For example, the following program is written in a machine language called MIPS; which is used on some embedded computer systems. We will use MIPS in examples throughout this chapter.
 
-It starts by adding 2 numbers (that have been put in registers $t0 and $t1) and printing out the result. It then prints “Hello World!” Don’t worry, we aren’t about to make you learn how to actually program in this language! And if you don’t really understand the program, that’s also fine because many software engineers wouldn’t either! (We are showing it to you to help you to appreciate high level languages!)
+It starts by adding 2 numbers (that have been put in registers $t0 and $t1) and printing out the result. It then prints "Hello World!" Don’t worry, we aren’t about to make you learn how to actually program in this language! And if you don’t really understand the program, that’s also fine because many software engineers wouldn’t either! (We are showing it to you to help you to appreciate high level languages!)
 
 ```
 .data
@@ -247,7 +247,7 @@ You can run this program using a MIPS emulator using this interactive:
 
 {interactive name="mips-assembler" type="whole-page" text="MIPS Assembler" file-type="php"}
 
-Copy and paste the output in the “Assembler Output” box into the box in this simulator interactive:
+Copy and paste the output in the "Assembler Output" box into the box in this simulator interactive:
 
 {interactive name="mips-simulator" type="whole-page" text="MIPS Simulator" file-type="php"}
 
@@ -266,7 +266,7 @@ One thing you might have noticed while reading over the possible instructions is
 
 {comment end}
 
-The jumping to a line, and jumping to a line if a condition is met can be used to make loops! A very simple program we could write that requires a loop is one that counts down from five and then says “Go!!!!” once it gets down to one. In Python we can easily write this program in three lines.
+The jumping to a line, and jumping to a line if a condition is met can be used to make loops! A very simple program we could write that requires a loop is one that counts down from five and then says "Go!!!!" once it gets down to one. In Python we can easily write this program in three lines.
 
 ```
 # Start at 5, count down by 1 each time, and stop when we get to 0
@@ -324,7 +324,7 @@ start_loop:
 
 # This is the end loop label that we jumped to when the loop is false
 end_loop:
-  # These three lines print the “GO!!!!” string
+  # These three lines print the "GO!!!!" string
   li $v0, 4
   la $a0, go_str
   syscall
@@ -337,9 +337,9 @@ Can you change the Python program so that it counts down from 10? What about so 
 
 You probably found the Python program not too difficult to modify. See if you can make these same changes to the MIPS program.
 
-If that was too easy for you, can you make both programs print out “GO!!!!” twice instead of once? (you don’t have to use a loop for that). And if THAT was too easy, what about making each program print out “GO!!!!” 10 times? Because repeating a line in a program 10 times without a loop would be terrible programming practice, you’d need to use a loop for this task.
+If that was too easy for you, can you make both programs print out "GO!!!!" twice instead of once? (you don’t have to use a loop for that). And if THAT was too easy, what about making each program print out "GO!!!!" 10 times? Because repeating a line in a program 10 times without a loop would be terrible programming practice, you’d need to use a loop for this task.
 
-More than likely, you’re rather confused at this point and unable to modify the MIPS program with all these suggested changes. And if you do have an additional loop in your MIPS program correctly printing “GO!!!” 10 times, then you are well on your way to being a good programmer!
+More than likely, you’re rather confused at this point and unable to modify the MIPS program with all these suggested changes. And if you do have an additional loop in your MIPS program correctly printing "GO!!!" 10 times, then you are well on your way to being a good programmer!
 
 So, what was the point of all this? These low level instructions may seem tedious and a bit silly, but the computer is able to directly run them on hardware due to their simplicity. A programmer can write a program in this language if they know the language, and the computer would be able to run it directly without doing any further processing. As you have probably realised though, it is extremely time consuming to have to program in this way. Moving stuff in and out of registers, implementing loops using jump and branch statements, and printing strings and integers using a three line pattern that you’d probably never have guessed was for printing had we not told you leaves even more opportunities for bugs in the program. Not to mention, the resulting programs are extremely difficult to read and understand.
 
@@ -391,7 +391,7 @@ Cameron 19 15 12 9 3
 
 She realises she needs to know the average (assuming 5 quizzes) that each student scored, and with many other things to do does not want to spend much time on this task. Using python, she can very quickly generate the data she needs in less than 10 lines of code.
 
-Note that understanding the details of this code is irrelevant to this chapter, particularly if you aren’t yet a programmer. Just read the comments (the things that start with a “#”) if you don’t understand, so that you can get a vague idea of how the problem was approached.
+Note that understanding the details of this code is irrelevant to this chapter, particularly if you aren’t yet a programmer. Just read the comments (the things that start with a "#") if you don’t understand, so that you can get a vague idea of how the problem was approached.
 
 ```python3
 # Open the raw score file for reading
@@ -415,7 +415,7 @@ raw_scores_file.close()
 processed_scores_file.close()
 ```
 
-This will generate a file that contains each student’s name followed by the result of adding their scores and dividing the sum by 5. You can try the code if you have python installed on your computer (it won’t work on the online interpreter, because it needs access to a file system). Just put the raw data into a file called “scores.txt” in the same format it was displayed above. As long as it is in the same directory as the source code file you make for the code, it will work.
+This will generate a file that contains each student’s name followed by the result of adding their scores and dividing the sum by 5. You can try the code if you have python installed on your computer (it won’t work on the online interpreter, because it needs access to a file system). Just put the raw data into a file called "scores.txt" in the same format it was displayed above. As long as it is in the same directory as the source code file you make for the code, it will work.
 
 This problem could of course be solved in any language, but some languages make it far simpler than others. Standard software engineering languages such as Java, which we talk about shortly, do not offer such straight forward file processing. Java requires the programmer to specify what to do if opening the file fails in order to prevent the program from crashing. Python does not require the programmer to do this, although does have the option to handle file opening failing should the programmer wish to. Both these approaches have advantages in different situations. For the teacher writing a quick script to process the quiz results, it does not matter if the program crashes so it is ideal to not waste time writing code to deal with it. For a large software system that many people use, crashes are inconvenient and a security risk. Forcing all programmers working on that system to handle this potential crash correctly could prevent a lot of trouble later on, which is where Java’s approach helps.
 
@@ -480,7 +480,7 @@ public class Averager {
 }
 ```
 
-While the code is longer, it ensures that the program doesn’t crash if something goes wrong. It says to *try* opening and reading the file, and if an error occurs, then it should *catch* that error and print out an error message to tell the user. The alternative (such as in Python) would be to just crash the program, preventing anything else from being able to run it. Regardless of whether or not an error occurs, the "I am finished!" line will be printed, because the error was safely “caught”. Python is able to do error handling like this, but it is up to the programmer to do it. Java will not even compile the code if this wasn’t done! This prevents programmers from forgetting or just being lazy.
+While the code is longer, it ensures that the program doesn’t crash if something goes wrong. It says to *try* opening and reading the file, and if an error occurs, then it should *catch* that error and print out an error message to tell the user. The alternative (such as in Python) would be to just crash the program, preventing anything else from being able to run it. Regardless of whether or not an error occurs, the "I am finished!" line will be printed, because the error was safely "caught". Python is able to do error handling like this, but it is up to the programmer to do it. Java will not even compile the code if this wasn’t done! This prevents programmers from forgetting or just being lazy.
 
 {comment}
 

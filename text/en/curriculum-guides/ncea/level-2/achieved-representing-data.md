@@ -10,7 +10,7 @@ In order to fully cover the standard, you will also need to have done projects c
 
 The topic of Data Representation has the following achieved bullet point in achievement standard 2.44, which this guide covers.
 
-**Achieved**: “describing ways in which different types of data can be represented using bits”
+**Achieved**: "describing ways in which different types of data can be represented using bits"
 
 As with all externally assessed reports, you should base your explanations around personalised examples.
 

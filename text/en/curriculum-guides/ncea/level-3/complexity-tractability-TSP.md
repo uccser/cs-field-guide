@@ -12,17 +12,17 @@ In order to fully cover the standard, you will also need to have done a project 
 
 Each project needs to satisfy all bullet points in the standard, which are given below.
 
-Note that a plural means “at least 2” in NZQA documents.
+Note that a plural means "at least 2" in NZQA documents.
 Because this is one of the two areas of computer science that the student must cover, most of the plurals effectively become singular for this project,
 which will make up half of the overall report.
 This project will give at least one algorithm/technique and practical application, and the other project will give another of each.
 
-- **Achieved: [A1]** “describing key problems that are addressed in selected areas of computer science”
-- **Achieved: [A2]** “describing examples of practical applications of selected areas to demonstrate the use of key algorithms and/or techniques from these areas“
-- **Merit: [M1]** “explaining how key algorithms or techniques are applied in selected areas”
-- **Merit: [M2]** “explaining examples of practical applications of selected areas to demonstrate the use of key algorithms and/or techniques from these areas”
-- **Excellence: [E1]** “discussing examples of practical applications of selected areas to demonstrate the use of key algorithms and/or techniques from these areas”
-- **Excellence: [E2]** “evaluating the effectiveness of algorithms, techniques, or applications from selected areas”
+- **Achieved: [A1]** "describing key problems that are addressed in selected areas of computer science"
+- **Achieved: [A2]** "describing examples of practical applications of selected areas to demonstrate the use of key algorithms and/or techniques from these areas"
+- **Merit: [M1]** "explaining how key algorithms or techniques are applied in selected areas"
+- **Merit: [M2]** "explaining examples of practical applications of selected areas to demonstrate the use of key algorithms and/or techniques from these areas"
+- **Excellence: [E1]** "discussing examples of practical applications of selected areas to demonstrate the use of key algorithms and/or techniques from these areas"
+- **Excellence: [E2]** "evaluating the effectiveness of algorithms, techniques, or applications from selected areas"
 
 The terminology in the 3.44 standard can be challenging to understand because it applies to six different areas. The following list describes how the terminology of the standard maps onto this project.
 
@@ -32,10 +32,10 @@ The terminology in the 3.44 standard can be challenging to understand because it
 - *Practical Application:* Solving the Cray Pot Problem (or another problem based on the Travelling Salesperson Problem)
 
 {panel type="jargon-buster" summary="What is meant by 'Heuristics'?"}
-Note that the term heuristics means “rules of thumb”, and that this should not be confused with the heuristics covered in Human Computer Interaction.
+Note that the term heuristics means "rules of thumb", and that this should not be confused with the heuristics covered in Human Computer Interaction.
 
 In HCI, they are also rules of thumb (for making interfaces usable).
-The heuristics in this context are “rules of thumb” for solving the algorithmic problems encountered in complexity and tractability; a heuristic isn't guaranteed to give the best possible solution, but usually will give a fairly good result.
+The heuristics in this context are "rules of thumb" for solving the algorithmic problems encountered in complexity and tractability; a heuristic isn't guaranteed to give the best possible solution, but usually will give a fairly good result.
 {panel end}
 
 In summary, to satisfy the standard you might do the following:
@@ -71,7 +71,7 @@ The cray fisher has started wondering what the shortest route to take to check a
 
 In order to generate a random map of craypots that can be used as your own unique personalised example, get a pile of coins (or counters) with however many craypots you need, and scatter them onto an A4 piece of paper. If any land on top of each other, place them beside one another so that they are touching but not overlapping. One by one, remove the coins, making a dot on the paper in the centre of where each coin was. Number each of the dots. Each dot represents one craypot that the cray fisher has to check. You should label a point in the top left corner or the paper as being the boat dock, where the cray fisher stores the boat.
 
-In this project, you will need to make two maps, a “small” map with 7 or 8 craypots and a “large” map, with 15 to 25 craypots.
+In this project, you will need to make two maps, a "small" map with 7 or 8 craypots and a "large" map, with 15 to 25 craypots.
 
 ## Writing your report
 
@@ -80,19 +80,19 @@ In this project, you will need to make two maps, a “small” map with 7 or 8 c
 
 This should not take more than 1 paragraph, or ⅓ of a page. It is essential to do a good job of this part, even if what you are writing seems obvious.
 
-Briefly introduce the Cray Pot Problem. You should be able to explain how the Craypot Problem is equivalent to the Travelling Salesman Problem. Briefly describe how you determined this, and what the equivalent of a town and road is in the Craypot Problem. Explain  why computer scientists are so interested in the Travelling Salesman Problem. Include this introduction at the start of the complexity/ tractability section of your report. We strongly recommend the following sentence being at the start or end of the introduction “The key problem I am looking at is [a few words describing the problem]”, so that it is really clear to the marker.
+Briefly introduce the Cray Pot Problem. You should be able to explain how the Craypot Problem is equivalent to the Travelling Salesman Problem. Briefly describe how you determined this, and what the equivalent of a town and road is in the Craypot Problem. Explain  why computer scientists are so interested in the Travelling Salesman Problem. Include this introduction at the start of the complexity/ tractability section of your report. We strongly recommend the following sentence being at the start or end of the introduction "The key problem I am looking at is [a few words describing the problem]", so that it is really clear to the marker.
 
 ### Showing and explaining a brute force approach and then a heuristic approach (Achieved/ Merit/ Excellence)
 
 {panel type="additional-information" summary="Ensuring you cover the achieved and merit criteria sufficiently"}
 Showing how the brute force algorithm can be applied to the Cray Pot Problem + Explaining why it is not helpful to the crayfisherman + Showing how a greedy heuristic algorithm can be applied to the Cray Pot problem + Explaining what kind of solution the greedy heuristic algorithm has found, and why this is more helpful to the cray fisher (A2/M1/M2).
 
-Note that the difference between achieved and merit will be in the quality of the explanations (i.e whether or not the marker considers them to be “describing” or “explaining”). Generating the personalised examples is necessary for achieved, because the marker needs to be able to see that the student has done their own work.
+Note that the difference between achieved and merit will be in the quality of the explanations (i.e whether or not the marker considers them to be "describing" or "explaining"). Generating the personalised examples is necessary for achieved, because the marker needs to be able to see that the student has done their own work.
 
 It is important that a report discusses both algorithms (brute force and greedy heuristic), because doing the brute force algorithm is necessary to show that it is unhelpful in practice, and then students need to explore approaches that can be used in practice, such as the greedy heuristic algorithm. This allows them to give a solid explanation of TSP based problems and how computer scientists deal with them.
 {panel end}
 
-Generate a map with 7 or 8 craypots using the random map generation method described above. This is your “small” map. Then make a map with somewhere between 15 and 25 craypots. This is your “large” map. Make a copy of each of your maps, as you will need them again. Read the “hints for success” at the bottom of this guide before making the maps, because it has some advice on making the maps so that they are legible and minimise the usage of precious space in your report.
+Generate a map with 7 or 8 craypots using the random map generation method described above. This is your "small" map. Then make a map with somewhere between 15 and 25 craypots. This is your "large" map. Make a copy of each of your maps, as you will need them again. Read the "hints for success" at the bottom of this guide before making the maps, because it has some advice on making the maps so that they are legible and minimise the usage of precious space in your report.
 
 Using your intuition, find the shortest path between the cray pots in your small map. Do the same with your large map. Don’t spend more than 5 minutes on the large map - you don’t need to include a solution to the large map in your report. It is extremely unlikely you’ll find the optimum for the large map (Recognising the challenges in the problem is far more important than finding a solution). Number the order in which you visit the cray pots on your map.
 
@@ -113,7 +113,7 @@ You should now have 4 maps (small + brute force algorithm, large + brute force a
 ### Discussing real world examples of the traveling salesman problem and evaluating the effectiveness of the algorithms on the real world problems (Excellence)
 
 In order to gain Excellence in the standard, you will need to go beyond just applying and explaining algorithms used on the Cray Pots Problem (and TSP). The reports of students who gain excellence in this standard generally have explored the algorithms and their implications in depth and/ or done their own research into real world applications of TSP. You should ensure you have discussed the practical applications and the algorithms, and have evaluated the algorithms in terms of the practical applications (i.e. are the algorithms any good in practice?) You might choose to do this by following some or all of the following suggestions (Focussing on two is a good number). Remember that you should only use 5 pages on complexity/tractability in total, so your discussion and evaluation for excellence should take up no more than about 2 pages.
-- Analyse the greedy heuristic algorithm (e.g. cases where it finds a really bad solution, and cases where it finds the optimal solution), and explore how effective it would be in practice. One way you could do this is to do a search in Google maps for something like supermarkets in a city (ideally you’ll want at least 20 to 30 to appear), and then ensuring the the roads are visible on the map, take a screenshot of it. Trace a greedy heuristic algorithm path onto it, and then evaluate how effective it was. You will probably find that some parts of the path make sense, although in other parts it is inefficient because a destination was “skipped” when others that were somewhat near it were visited, and the shortest path heuristic pulled the path away from that destination. What kinds of heuristics would you use to get a better solution? (e.g. could you somehow break the TSP into a bunch of clusters, in which you visit all in the cluster before moving onto the next cluster?)
+- Analyse the greedy heuristic algorithm (e.g. cases where it finds a really bad solution, and cases where it finds the optimal solution), and explore how effective it would be in practice. One way you could do this is to do a search in Google maps for something like supermarkets in a city (ideally you’ll want at least 20 to 30 to appear), and then ensuring the the roads are visible on the map, take a screenshot of it. Trace a greedy heuristic algorithm path onto it, and then evaluate how effective it was. You will probably find that some parts of the path make sense, although in other parts it is inefficient because a destination was "skipped" when others that were somewhat near it were visited, and the shortest path heuristic pulled the path away from that destination. What kinds of heuristics would you use to get a better solution? (e.g. could you somehow break the TSP into a bunch of clusters, in which you visit all in the cluster before moving onto the next cluster?)
 You might want to include a second map showing your other heuristic ideas. The maps should take up around ½ a page each. Make sure to discuss your conclusions.
 - Exploring and discussing why companies that carry out tasks such as delivering goods (e.g. a soft drink company sending people around to restock their many vending machines or a courier service delivering parcels to various addresses) are willing to invest so much money in finding better solutions to their own travelling salesman problems (and the closely related problems that arise when additional constraints such as speed limits and road blocks are added).
 - Investigating and discussing real world examples of the Travelling Salesman Problem e.g. a soft drink company sending people around to restock their many vending machines or a courier service delivering parcels to various addresses, or someone dropping off invitations to a group of friends.  

@@ -62,8 +62,8 @@ The CS4FN site discusses [a related approach which is a little simpler, but not 
 
 # ZL or LZ compression?
 
-The method we have described here is named “Ziv-Lempel” compression after Jacob Ziv and Abraham Lempel, the two computer scientists who invented it in the 1970s.
-Unfortunately someone mixed up the order of their names when they wrote an article about it, and called it “LZ” compression instead of “ZL” compression.
-So many people copied the mistake that Ziv and Lempel’s method is now usually called “LZ compression”!
+The method we have described here is named "Ziv-Lempel" compression after Jacob Ziv and Abraham Lempel, the two computer scientists who invented it in the 1970s.
+Unfortunately someone mixed up the order of their names when they wrote an article about it, and called it "LZ" compression instead of "ZL" compression.
+So many people copied the mistake that Ziv and Lempel’s method is now usually called "LZ compression"!
 
 {panel end}

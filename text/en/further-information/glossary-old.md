@@ -22,11 +22,11 @@ Gaining access to or decrypting a file that is using encryption, without having 
 
 ## Binary Number System
 
-The base 2 number system, i.e. numbers only made up of the digits “0” and “1”. All numbers that can be represented in the decimal number system can be uniquely represented in the binary number system.
+The base 2 number system, i.e. numbers only made up of the digits "0" and "1". All numbers that can be represented in the decimal number system can be uniquely represented in the binary number system.
 
 ## Bit
 
-Bit short for “binary digit” - a digit that is either 0 or 1.
+Bit short for "binary digit" - a digit that is either 0 or 1.
 
 ## Brute force attack
 
@@ -73,7 +73,7 @@ Compression making a file smaller by removing redundant information (typically u
 
 ## Decimal Number System
 
-The standard base 10 number system that is used in everyday math, using the digits “0”, “1”, “2”, “3”, “4”, “5”, “6”, “7”, “8”, and “9”.
+The standard base 10 number system that is used in everyday math, using the digits "0", "1", "2", "3", "4", "5", "6", "7", "8", and "9".
 
 ## Decrypt
 ## Decryption
@@ -91,7 +91,7 @@ Encryption key the password or secret code that will unlock an encrypted file.
 
 Error correction
 
-Correcting an error that has been detected in some data. This can be demonstrated in the Parity trick, where a person is able to flip the changed bit back over so it is correct again (after they have “detected” which bit was incorrect). Not all error control schemes are able to correct errors; some are only able to detect them.
+Correcting an error that has been detected in some data. This can be demonstrated in the Parity trick, where a person is able to flip the changed bit back over so it is correct again (after they have "detected" which bit was incorrect). Not all error control schemes are able to correct errors; some are only able to detect them.
 
 ## Error detection
 
@@ -107,7 +107,7 @@ Responding to or acknowledging a user action. Users find the devices hard to use
 
 ## Frequency Analysis Attack
 
-An attack on substitution ciphers that takes advantage of the fact that some letters are generally more common than others in a piece of text (e.g. in English, the letter “e” is usually the most common letter) by looking at which letters appear the most in the cipher text and guessing that they must be the substitutions for the most common letters.
+An attack on substitution ciphers that takes advantage of the fact that some letters are generally more common than others in a piece of text (e.g. in English, the letter "e" is usually the most common letter) by looking at which letters appear the most in the cipher text and guessing that they must be the substitutions for the most common letters.
 
 ## GIF
 
@@ -115,7 +115,7 @@ A lossless image compression system typically used for small images with few col
 
 ## Gigabyte
 
-About 1000 megabytes (1,000,000 kilobytes and 1,000,000,000 bytes). This is 8,000 million individual bits (i.e. 0’s and 1’s). [Like a kilobyte, there are other definitions, such as 1024x1024x1024 bytes, but usually this level of accuracy isn’t important]. Commonly referred to as a “GB”.
+About 1000 megabytes (1,000,000 kilobytes and 1,000,000,000 bytes). This is 8,000 million individual bits (i.e. 0’s and 1’s). [Like a kilobyte, there are other definitions, such as 1024x1024x1024 bytes, but usually this level of accuracy isn’t important]. Commonly referred to as a "GB".
 
 ## Graphics
 
@@ -131,11 +131,11 @@ A heuristic is rule or guideline, usually devised from experience. The term is u
 
 ## Hexadecimal
 
-The base 16 number system. Uses the digits “0”, “1”, “2”, “3”, “4”, “5”, “6”, “7”, “8”, “9”, “A”, “B”, “C”, “D”, “E”, and “F”. All numbers that can be represented in decimal can be uniquely represented in hexadecimal (just like binary). It is most often used as a shorthand notation for binary, by assigning 1 hexadecimal digit to each 4 bit pattern (the assigning is done in numeric order).
+The base 16 number system. Uses the digits "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", and "F". All numbers that can be represented in decimal can be uniquely represented in hexadecimal (just like binary). It is most often used as a shorthand notation for binary, by assigning 1 hexadecimal digit to each 4 bit pattern (the assigning is done in numeric order).
 
 ## Hexadecimal colour codes
 
-A representation for colours that tells the computer how much red, blue, and green light to display in a pixel (to make the desired colour). Uses 1 byte for each of these 3 primary colours, which is 3 bytes (24 bits) in total. These 24 bits are often written as 6 hexadecimal digits to make them easier for humans to read, which is why they are called “Hexadecimal colour codes”. They are commonly encountered when specificying colours in HTML for web pages.
+A representation for colours that tells the computer how much red, blue, and green light to display in a pixel (to make the desired colour). Uses 1 byte for each of these 3 primary colours, which is 3 bytes (24 bits) in total. These 24 bits are often written as 6 hexadecimal digits to make them easier for humans to read, which is why they are called "Hexadecimal colour codes". They are commonly encountered when specificying colours in HTML for web pages.
 
 ## High level language
 
@@ -171,11 +171,11 @@ It is an item of data that is being searched for or sorted, and therefore will b
 
 ## Key (in cryptography)
 
-The password or secret value that is used to encrypt and decrypt an encrypted file (without having to use an “attack”). Some widely used methods have different keys for encryption and decryption.
+The password or secret value that is used to encrypt and decrypt an encrypted file (without having to use an "attack"). Some widely used methods have different keys for encryption and decryption.
 
 ## Kilobyte
 
-About 1000 bytes. This is 8,000 individual bits (i.e. 0’s and 1’s). [We say “about” 1000 bytes because the term is ambiguous and it is often taken as 1024 bytes; however, rounding it to 1000 is close enough for most calculations]. Commonly referred to as a “KB”.
+About 1000 bytes. This is 8,000 individual bits (i.e. 0’s and 1’s). [We say "about" 1000 bytes because the term is ambiguous and it is often taken as 1024 bytes; however, rounding it to 1000 is close enough for most calculations]. Commonly referred to as a "KB".
 
 ## Known plain-text Attack
 
@@ -207,7 +207,7 @@ The native language for instructions for a computer, not very easy for humans to
 
 ## Megabyte
 
-About 1000 kilobytes (1,000,000 bytes). This is 8 million individual bits (i.e. 0’s and 1’s). [Like a kilobyte, there are other definitions, such as 1024x1024 bytes, but usually this level of accuracy isn’t important]. Commonly referred to as a “MB”.
+About 1000 kilobytes (1,000,000 bytes). This is 8 million individual bits (i.e. 0’s and 1’s). [Like a kilobyte, there are other definitions, such as 1024x1024 bytes, but usually this level of accuracy isn’t important]. Commonly referred to as a "MB".
 
 ## MP3
 
@@ -267,11 +267,11 @@ Sort puts keys (numbers, names or other values) in order from smallest to larges
 
 ## Substitution Cipher
 
-A type of cipher that works simply by replacing each letter or combination of letters in a plain text with a certain other letter or combination of letters to make up the cipher text. The result of this is that each unique letter combination of letters in the plain text (e.g. “t”) is represented by the same unique letter combination of letters in the cipher text (e.g. “y”) Caesar Cipher is a simple example of a substitution cipher. Substitution ciphers are vulnerable to Frequency Analysis Attacks, so are not used in practice.
+A type of cipher that works simply by replacing each letter or combination of letters in a plain text with a certain other letter or combination of letters to make up the cipher text. The result of this is that each unique letter combination of letters in the plain text (e.g. "t") is represented by the same unique letter combination of letters in the cipher text (e.g. "y") Caesar Cipher is a simple example of a substitution cipher. Substitution ciphers are vulnerable to Frequency Analysis Attacks, so are not used in practice.
 
 ## Syntactically correct
 
-A string is syntactically correct if it matches the specifications for a formal language. For example, the string “()(())” is correct for a grammar that gives the rules for balanced parentheses. In a computer program, a syntax error is when a character occurs in the input which isn’t allowed, and the program is therefore not syntactically correct.
+A string is syntactically correct if it matches the specifications for a formal language. For example, the string "()(())" is correct for a grammar that gives the rules for balanced parentheses. In a computer program, a syntax error is when a character occurs in the input which isn’t allowed, and the program is therefore not syntactically correct.
 
 ## Syntax
 
@@ -279,11 +279,11 @@ Syntax rules about what text can appear in a programming language, used by a com
 
 ## Syntax diagram
 
-Also known as railway (or railroad) diagrams, these are a graphical representation of a grammar using arrows (the “train tracks”) to show the options for each component of a language.
+Also known as railway (or railroad) diagrams, these are a graphical representation of a grammar using arrows (the "train tracks") to show the options for each component of a language.
 
 ## Task
 
-Something a user might do with a piece of software or electronic device to achieve a goal. In the case of a cellphone this might be “send a text message” or in the case of a microwave it might be “heat up yesterday’s leftovers”. Interfaces are best evaluated when considering how they help a user to perform a task.
+Something a user might do with a piece of software or electronic device to achieve a goal. In the case of a cellphone this might be "send a text message" or in the case of a microwave it might be "heat up yesterday’s leftovers". Interfaces are best evaluated when considering how they help a user to perform a task.
 
 ## Time complexity
 

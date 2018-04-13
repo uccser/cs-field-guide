@@ -143,7 +143,7 @@ The task is [described in detail in CS Unplugged human interface design activity
 {panel type="teacher-note" summary="Some of the key learning objectives of this chapter"}
 Key ideas that students should be picking up include:
 
--  The “system” that has to work well is the computer and the human *together*.
+-  The "system" that has to work well is the computer and the human *together*.
 -  Many people get frustrated with digital devices. Sometimes they will put up with it because it’s the only option, but in other cases devices and software with good interfaces sell much better or can be priced higher because they help the user get their job done.
 -  The worst person to evaluate an interface is the person who designed it. They know exactly how it should work; but if someone else tries it you’ll find out how it looks to a typical user (for this reason the projects here aren't about having a student write their own program and evaluate its interface – that would be evidence that they don’t understand HCI evaluation!)
 -  An interface is used to do a task, so it makes the most sense to identify the tasks that a particular interface is for, and then consider how difficult those tasks are using that interface. The common mistake is to focus on features of an interface, but in the real world the question is whether or not those features can be used to do a task from beginning to end.
