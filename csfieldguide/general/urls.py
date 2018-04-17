@@ -13,34 +13,28 @@ urlpatterns = [
     ),
     # e.g. /teacher/login/
     url(
-        r"^teacher/login$",
+        r"^teacher/login/$",
         views.set_teacher_mode,
         {"mode": True},
         name="teacher_mode_login"
     ),
     # e.g. /teacher/logout/
     url(
-        r"^teacher/logout$",
+        r"^teacher/logout/$",
         views.set_teacher_mode,
         {"mode": False},
         name="teacher_mode_logout"
     ),
-    # e.g. /about
+    # e.g. /about/
     url(
-        r"^about$",
-        views.GeneralAboutView.as_view(),
-        name="about"
+        r"^(?P<page_slug>[-\w]+)/$",
+        views.GeneralPageView.as_view(),
+        name="page"
     ),
-    # e.g. /contributors
+    # e.g. /curriculum-guides/ncea/
     url(
-        r"^contributors$",
-        views.GeneralContributorsView.as_view(),
-        name="contributors"
+        r"^(?P<page_slug>[-\w]+)/(?P<subpage_slug>[-\w]+)/$",
+        views.GeneralSubpageView.as_view(),
+        name="subpage"
     ),
-    # e.g. /releases
-    url(
-        r"^releases$",
-        views.GeneralReleasesView.as_view(),
-        name="releases"
-    )
 ]

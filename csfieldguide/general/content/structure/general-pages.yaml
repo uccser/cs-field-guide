@@ -1,0 +1,27 @@
+about:
+  number: 1
+  template: general/about.html
+
+curriculum-guides:
+  number: 2
+  template: general/curriculum-guides/index.html
+  subpages:
+    apcsp:
+      template: general/curriculum-guides/apcsp.html
+    ncea:
+      template: general/curriculum-guides/ncea.html
+
+glossary:
+  number: 3
+  template: general/glossary.html
+
+interactives:
+  number: 4
+  template: general/interactives.html
+
+contributors:
+  number: 5
+  template: general/contributors.html
+
+# 'Releases' page should redirect to documentation.
+# 'Included Files' page should redirect to LICENSE.

@@ -1,0 +1,20 @@
+about:
+  name: About
+
+curriculum-guides:
+  name: Curriculum Guides
+
+apcsp:
+  name: AP-CSP Curriculum Guides
+
+ncea:
+  name: NCEA Assessment Guides
+
+glossary:
+  name: Glossary
+
+interactives:
+  name: Interactives
+
+contributors:
+  name: Contributors
