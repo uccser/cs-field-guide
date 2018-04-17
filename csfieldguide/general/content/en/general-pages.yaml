@@ -10,11 +10,5 @@ apcsp:
 ncea:
   name: NCEA Assessment Guides
 
-glossary:
-  name: Glossary
-
-interactives:
-  name: Interactives
-
 contributors:
   name: Contributors

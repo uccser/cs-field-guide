@@ -25,15 +25,15 @@ urlpatterns = [
         {"mode": False},
         name="teacher_mode_logout"
     ),
-    # e.g. /about/
+    # e.g. /appendices/about/
     url(
-        r"^(?P<page_slug>[-\w]+)/$",
+        r"^appendices/(?P<page_slug>[-\w]+)/$",
         views.GeneralPageView.as_view(),
         name="page"
     ),
-    # e.g. /curriculum-guides/ncea/
+    # e.g. /appendices/curriculum-guides/ncea/
     url(
-        r"^(?P<page_slug>[-\w]+)/(?P<subpage_slug>[-\w]+)/$",
+        r"^appendices/(?P<page_slug>[-\w]+)/(?P<subpage_slug>[-\w]+)/$",
         views.GeneralSubpageView.as_view(),
         name="subpage"
     ),

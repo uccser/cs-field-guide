@@ -9,9 +9,10 @@ from django.conf.urls import include, url
 from django.conf.urls.i18n import i18n_patterns
 
 urlpatterns = i18n_patterns(
-    url(r"", include("general.urls", namespace="general")),
     url(r"^interactives/", include("interactives.urls", namespace="interactives")),
     url(r"^chapters/", include("chapters.urls", namespace="chapters")),
+    # Listed last as it has a catch all URL path
+    url(r"", include("general.urls", namespace="general")),
 )
 
 if settings.DEBUG:  # pragma: no cover
