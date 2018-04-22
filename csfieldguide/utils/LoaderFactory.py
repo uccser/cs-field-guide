@@ -1,6 +1,6 @@
 """Factory for creating loader objects."""
 
-from general.management.commands._GeneralPagesLoader import GeneralPagesLoader
+from appendices.management.commands._AppendicesLoader import AppendicesLoader
 from chapters.management.commands._ChaptersLoader import ChaptersLoader
 from chapters.management.commands._ChapterSectionsLoader import ChapterSectionsLoader
 from chapters.management.commands._GlossaryTermsLoader import GlossaryTermsLoader
@@ -10,9 +10,9 @@ from interactives.management.commands._InteractivesLoader import InteractivesLoa
 class LoaderFactory:
     """Factory for creating loader objects."""
 
-    def create_general_pages_loader(self, **kwargs):
-        """Create general pages loader."""
-        return GeneralPagesLoader(self, **kwargs)
+    def create_appendices_loader(self, **kwargs):
+        """Create appendices pages loader."""
+        return AppendicesLoader(self, **kwargs)
 
     def create_chapter_loader(self, **kwargs):
         """Create chapter loader."""

@@ -1,4 +1,4 @@
-"""Models for the general application."""
+"""Models for the appendices application."""
 
 from django.db import models
 from interactives.models import Interactive
@@ -6,7 +6,7 @@ from django.core.exceptions import ValidationError
 from utils.TranslatableModel import TranslatableModel
 
 
-class GeneralPage(TranslatableModel):
+class Appendix(TranslatableModel):
     """Model for page in database."""
 
     #  Auto-incrementing 'id' field is automatically set by Django
@@ -16,7 +16,7 @@ class GeneralPage(TranslatableModel):
     template = models.CharField(max_length=100)
 
     def __str__(self):
-        """Text representation of GeneralPage object.
+        """Text representation of Appendix object.
 
         Returns:
             Name of page (str).
@@ -29,7 +29,7 @@ class GeneralPage(TranslatableModel):
         ordering = ["number"]
 
 
-class GeneralSubpage(TranslatableModel):
+class Subappendix(TranslatableModel):
     """Model for each subpage in a page in database."""
 
     #  Auto-incrementing 'id' field is automatically set by Django
@@ -37,13 +37,13 @@ class GeneralSubpage(TranslatableModel):
     name = models.CharField(max_length=100, default="")
     template = models.CharField(max_length=100)
     parent_page = models.ForeignKey(
-        GeneralPage,
+        Appendix,
         null=False,
         related_name="subpages"
     )
 
     def __str__(self):
-        """Text representation of Subpage object.
+        """Text representation of SubAppendix object.
 
         Returns:
             Name of subpage (str).

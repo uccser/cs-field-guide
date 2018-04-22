@@ -47,8 +47,9 @@ THIRD_PARTY_APPS = [
 # Apps specific for this project go here.
 LOCAL_APPS = [
     "general.apps.GeneralConfig",
-    "interactives.apps.InteractivesConfig",
     "chapters.apps.ChaptersConfig",
+    "appendices.apps.AppendicesConfig",
+    "interactives.apps.InteractivesConfig",
 ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -246,7 +247,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # OTHER SETTINGS
 # ------------------------------------------------------------------------------
-GENERAL_PAGES_CONTENT_BASE_PATH = os.path.join(str(ROOT_DIR.path("general")), "content")
+APPENDICES_CONTENT_BASE_PATH = os.path.join(str(ROOT_DIR.path("appendices")), "content")
 CHAPTERS_CONTENT_BASE_PATH = os.path.join(str(ROOT_DIR.path("chapters")), "content")
 INTERACTIVES_CONTENT_BASE_PATH = os.path.join(str(ROOT_DIR.path("interactives")), "content")
 INTERACTIVES_BASE_TEMPLATES_PATH = os.path.join("interactives", "base")

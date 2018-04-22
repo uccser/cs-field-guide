@@ -4,14 +4,14 @@ Utilised by django-modeltranslation. See http://django-modeltranslation.readthed
 """
 
 from modeltranslation.translator import translator, TranslationOptions
-from general.models import (
-    GeneralPage,
-    GeneralSubpage,
+from appendices.models import (
+    Appendix,
+    Subappendix,
 )
 
 
-class GeneralPageTranslationOptions(TranslationOptions):
-    """Translation options for GeneralPage model."""
+class AppendixTranslationOptions(TranslationOptions):
+    """Translation options for Appendix model."""
 
     fields = ("name")
     fallback_undefined = {
@@ -19,7 +19,7 @@ class GeneralPageTranslationOptions(TranslationOptions):
     }
 
 
-class GeneralSubpageTranslationOptions(TranslationOptions):
+class SubappendixTranslationOptions(TranslationOptions):
     """Translation options for Subpage model."""
 
     fields = ("name")
@@ -28,5 +28,5 @@ class GeneralSubpageTranslationOptions(TranslationOptions):
     }
 
 
-# translator.register(GeneralPage, GeneralPageTranslationOptions)
-# translator.register(GeneralSubpage, GeneralSubpageTranslationOptions)
+# translator.register(Appendix, AppendixTranslationOptions)
+# translator.register(Subappendix, SubappendixTranslationOptions)

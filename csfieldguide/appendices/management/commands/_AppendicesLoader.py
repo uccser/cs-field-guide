@@ -1,19 +1,19 @@
-"""Custom loader for loading general pages."""
+"""Custom loader for loading appendices."""
 
 from django.db import transaction
 from utils.TranslatableModelLoader import TranslatableModelLoader
 from utils.errors.MissingRequiredFieldError import MissingRequiredFieldError
 from utils.errors.InvalidYAMLValueError import InvalidYAMLValueError
-from general.models import GeneralPage
+from appendices.models import Appendix
 from django.template.loader import get_template
 from django.template import TemplateDoesNotExist
 
 
-class GeneralPagesLoader(TranslatableModelLoader):
-    """Custom loader for loading general pages."""
+class AppendicesLoader(TranslatableModelLoader):
+    """Custom loader for loading appendices pages."""
 
     def __init__(self, factory, **kwargs):
-        """Create the loader for loading GeneralPages.
+        """Create the loader for loading appendices.
 
         Args:
             factory (LoaderFactory): Object for creating other loaders.
@@ -23,21 +23,21 @@ class GeneralPagesLoader(TranslatableModelLoader):
 
     @transaction.atomic
     def load(self):
-        """Load general pages.
+        """Load appendices pages.
 
         Raise:
             MissingRequiredFieldError: when no object can be found with the matching
                 attribute.
         """
-        general_pages = self.load_yaml_file(self.structure_file_path)
-        general_pages_translations = self.get_yaml_translations(
+        appendices = self.load_yaml_file(self.structure_file_path)
+        appendices_translations = self.get_yaml_translations(
             self.structure_filename,
             required_fields=["name"],
-            required_slugs=general_pages.keys()
+            required_slugs=appendices.keys()
         )
         used_numbers = set()
 
-        for (slug, page_data) in general_pages.items():
+        for (slug, page_data) in appendices.items():
             try:
                 template = page_data["template"]
                 number = page_data["number"]
@@ -48,7 +48,7 @@ class GeneralPagesLoader(TranslatableModelLoader):
                         "template",
                         "number",
                     ],
-                    "General page"
+                    "Appendix"
                 )
 
             # Check template is valid
@@ -77,15 +77,15 @@ class GeneralPagesLoader(TranslatableModelLoader):
             used_numbers.add(number)
 
             translations = self.get_blank_translation_dictionary()
-            translations.update(general_pages_translations.get(slug, dict()))
+            translations.update(appendices_translations.get(slug, dict()))
 
-            general_page = GeneralPage(
+            appendix = Appendix(
                 slug=slug,
                 template=template,
                 number=number,
             )
-            self.populate_translations(general_page, translations)
-            self.mark_translation_availability(general_page, required_fields=["name"])
-            general_page.save()
-            self.log("Added general page: {}".format(general_pages_translations[slug]["en"]["name"]))
-        self.log("All general pages loaded!\n")
+            self.populate_translations(appendix, translations)
+            self.mark_translation_availability(appendix, required_fields=["name"])
+            appendix.save()
+            self.log("Added appendix: {}".format(appendices_translations[slug]["en"]["name"]))
+        self.log("All appendices loaded!\n")
