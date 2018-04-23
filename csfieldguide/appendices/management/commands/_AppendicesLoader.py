@@ -37,10 +37,9 @@ class AppendicesLoader(TranslatableModelLoader):
         )
         used_numbers = set()
 
-        for (slug, page_data) in appendices.items():
+        for (slug, appendix_data) in appendices.items():
             try:
-                template = page_data["template"]
-                number = page_data["number"]
+                number = appendix_data["number"]
             except (TypeError, KeyError):
                 raise MissingRequiredFieldError(
                     self.structure_file_path,
@@ -50,16 +49,6 @@ class AppendicesLoader(TranslatableModelLoader):
                     ],
                     "Appendix"
                 )
-
-            # Check template is valid
-            # try:
-            #     get_template(template)
-            # except TemplateDoesNotExist:
-            #     raise InvalidYAMLValueError(
-            #         self.structure_file_path,
-            #         "template",
-            #         "A valid template file path"
-            #     )
 
             # Check number is integer and unique
             if not isinstance(number, int):
@@ -76,6 +65,8 @@ class AppendicesLoader(TranslatableModelLoader):
                 )
             used_numbers.add(number)
 
+            template = self.check_template(appendix_data, "Appendix")
+
             translations = self.get_blank_translation_dictionary()
             translations.update(appendices_translations.get(slug, dict()))
 
@@ -88,4 +79,53 @@ class AppendicesLoader(TranslatableModelLoader):
             self.mark_translation_availability(appendix, required_fields=["name"])
             appendix.save()
             self.log("Added appendix: {}".format(appendices_translations[slug]["en"]["name"]))
+
+            subappendices = appendix_data.get("subappendices", dict())
+
+            for subappendix_slug, subappendix_data in subappendices.items():
+                subappendix_template = self.check_template(subappendix_data, "Subappendix")
+                subappendix = Subappendix(
+                    slug=subappendix_slug,
+                    template=subappendix_template,
+                )
+                self.populate_translations(subappendix, translations)
+                self.mark_translation_availability(subappendix, required_fields=["name"])
+                subappendix.save()
+                self.log("Added subappendix: {}".format(appendices_translations[subappendix_slug]["en"]["name"]))
+
         self.log("All appendices loaded!\n")
+
+
+    def check_template(self, page_data, type):
+        """Check template in page_data is valid.
+
+        Args:
+            page_data (dict): Dictionary of page data.
+            type (str): Name of type of page.
+
+        Returns:
+            A valid template as string.
+
+        Raises:
+            MissingRequiredFieldError: If template value not given.
+            InvalidYAMLValueError: If invalid template path given.
+        """
+        try:
+            template = page_data["template"]
+        except (TypeError, KeyError):
+            raise MissingRequiredFieldError(
+                self.structure_file_path,
+                [
+                    "template",
+                ],
+                type
+            )
+        try:
+            get_template(template)
+        except TemplateDoesNotExist:
+            raise InvalidYAMLValueError(
+                self.structure_file_path,
+                "template ({})".format(template),
+                "A valid template file path"
+            )
+        return template

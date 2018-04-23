@@ -5,7 +5,7 @@ about:
 curriculum-guides:
   number: 2
   template: appendices/curriculum-guides/index.html
-  subpages:
+  subappendices:
     apcsp:
       template: appendices/curriculum-guides/apcsp.html
     ncea:
