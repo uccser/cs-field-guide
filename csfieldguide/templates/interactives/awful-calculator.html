@@ -1,0 +1,97 @@
+{% extends interactive_mode_template %}
+
+{% load static %}
+
+{% block html %}
+  <div class="row justify-content-center" id="interactive-awful-calculator">
+    <!-- Good Calculator -->
+    <div class="col col-12 col-md-5 calculator" id="calculator-good">
+      <!-- Row 1 -->
+      <div class="d-flex">
+          <div id="good-calculator-output" class="calculator-input"></div>
+          <button type="button" class="btn">C</button>
+      </div>
+
+      <!-- Row 2 -->
+      <div class="d-flex">
+          <button type="button" class="btn">7</button>
+          <button type="button" class="btn">8</button>
+          <button type="button" class="btn">9</button>
+          <button type="button" class="btn">&divide;</button>
+      </div>
+
+      <!-- Row 3 -->
+      <div class="d-flex">
+          <button type="button" class="btn">4</button>
+          <button type="button" class="btn">5</button>
+          <button type="button" class="btn">6</button>
+          <button type="button" class="btn">&times;</button>
+      </div>
+
+      <!-- Row 4 -->
+      <div class="d-flex">
+          <button type="button" class="btn">1</button>
+          <button type="button" class="btn">2</button>
+          <button type="button" class="btn">3</button>
+          <button type="button" class="btn">+</button>
+      </div>
+
+      <!-- Row 5 -->
+      <div class="d-flex">
+          <button type="button" class="btn">.</button>
+          <button type="button" class="btn">0</button>
+          <button type="button" class="btn">=</button>
+          <button type="button" class="btn">-</button>
+      </div>
+    </div>
+
+    <!-- Awful Calculator -->
+    <div class="col col-12 col-md-5 calculator" id="calculator-awful">
+      <!-- Row 1 -->
+      <div class="d-flex">
+          <div id="awful-calculator-output" class="calculator-input"></div>
+          <button type="button" class="btn">-</button>
+      </div>
+
+      <!-- Row 2 -->
+      <div class="d-flex">
+          <button type="button" class="btn">7</button>
+          <button type="button" class="btn">8</button>
+          <button type="button" class="btn">9</button>
+          <button type="button" class="btn">&divide;</button>
+      </div>
+
+      <!-- Row 3 -->
+      <div class="d-flex">
+          <button type="button" class="btn">4</button>
+          <button type="button" class="btn">5</button>
+          <button type="button" class="btn">6</button>
+          <button type="button" class="btn">&times;</button>
+      </div>
+
+      <!-- Row 4 -->
+      <div class="d-flex">
+          <button type="button" class="btn">1</button>
+          <button type="button" class="btn">2</button>
+          <button type="button" class="btn">3</button>
+          <button type="button" class="btn">+</button>
+      </div>
+
+      <!-- Row 5 -->
+      <div class="d-flex">
+          <button type="button" class="btn">.</button>
+          <button type="button" class="btn">0</button>
+          <button type="button" class="btn">=</button>
+          <button type="button" class="btn">C</button>
+      </div>
+    </div>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/awful-calculator/css/awful-calculator.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/awful-calculator/js/awful-calculator.js' %}"></script>
+{% endblock js %}

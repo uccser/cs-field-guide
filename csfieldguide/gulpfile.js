@@ -11,6 +11,7 @@ var runSequence = require('run-sequence')
 var notify = require('gulp-notify');
 var buffer = require('vinyl-buffer');
 var argv = require('yargs').argv;
+var rename = require("gulp-rename");
 
 // sass
 var sass = require('gulp-sass');
@@ -78,7 +79,7 @@ var tasks = {
   // Copy interactive files
   // --------------------------
   interactives: function() {
-    return gulp.src('static/interactives/**/*')
+    return gulp.src(['static/interactives/**/*', '!static/interactives/**/*.scss'])
       .pipe(gulp.dest('build/interactives'));
   },
   // --------------------------
@@ -147,7 +148,39 @@ var tasks = {
       // give it a file and save
       .pipe(gulp.dest('build/css'));
   },
-
+  // --------------------------
+  // SASS (libsass) for interactives
+  // TODO: Remove duplication of logic in this file
+  // --------------------------
+  interactives_sass: function() {
+    return gulp.src('static/interactives/**/scss/*.scss')
+      // sourcemaps + sass + error handling
+      .pipe(gulpif(!production, sourcemaps.init()))
+      .pipe(sass({
+        sourceComments: !production,
+        outputStyle: production ? 'compressed' : 'nested'
+      }))
+      .on('error', handleError('SASS'))
+      // generate .maps
+      .pipe(gulpif(!production, sourcemaps.write({
+        'includeContent': false,
+        'sourceRoot': '.'
+      })))
+      // autoprefixer
+      .pipe(gulpif(!production, sourcemaps.init({
+        'loadMaps': true
+      })))
+      .pipe(postcss([autoprefixer({browsers: ['last 2 versions']}), postcssFlexbugFixes]))
+      // we don't serve the source files
+      // so include scss content inside the sourcemaps
+      .pipe(sourcemaps.write({
+        'includeContent': true
+      }))
+      .pipe(rename(function (path) {
+        path.dirname = path.dirname.replace("/scss", "/css");
+      }))
+      .pipe(gulp.dest('build/interactives'));
+  },
   // --------------------------
   // linting
   // --------------------------
@@ -173,6 +206,7 @@ var req = [];
 // // individual tasks
 gulp.task('images', req, tasks.images);
 gulp.task('interactives', req, tasks.interactives);
+gulp.task('interactives_sass', req, tasks.interactives_sass);
 gulp.task('files', req, tasks.files);
 gulp.task('svg', req, tasks.svg);
 gulp.task('font', req, tasks.font);
@@ -183,5 +217,5 @@ gulp.task('lint:js', tasks.lintjs);
 
 // // build task
 gulp.task('build', function(callback) {
-  runSequence('clean', ['images', 'svg', 'css', 'js', 'sass', 'interactives', 'font', 'files'], callback);
+  runSequence('clean', ['images', 'svg', 'css', 'js', 'sass', 'interactives', 'interactives_sass', 'font', 'files'], callback);
 });

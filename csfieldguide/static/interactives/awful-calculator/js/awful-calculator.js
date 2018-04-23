@@ -12,16 +12,16 @@ $(document).ready(function () {
     AwfulCalculator.operators = ['+', '-', '\u00D7', '\u00F7'];
     AwfulCalculator.decimal_added = false;
 
-    $("#interactive-calculator-good button").click(function(){
+    $("#calculator-good button").click(function(){
         var button_value = this.innerHTML.trim();
-        output_element = document.getElementById("interactive-good-calculator-output");
+        output_element = document.getElementById("good-calculator-output");
         processInput(button_value, output_element);
     });
 
 
-    $("#interactive-calculator-awful button").click(function(){
+    $("#calculator-awful button").click(function(){
         var button_value = this.innerHTML.trim();
-        output_element = document.getElementById("interactive-awful-calculator-output");
+        output_element = document.getElementById("awful-calculator-output");
         var delayTime = (Math.random() * (2 - 0.1) + 0.1)*1000;
         setTimeout(function() {
             processInput(button_value, output_element);

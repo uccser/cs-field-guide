@@ -10,8 +10,10 @@
 {% block body_container %}
   <h1 class="text-center">{{ interactive.name }}</h1>
 
-  {% block html %}
-  {% endblock html %}
+  <div class="container-fluid">
+    {% block html %}
+    {% endblock html %}
+  </div>
 
   {% block css %}
   {% endblock css %}
