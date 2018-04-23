@@ -5,11 +5,10 @@
 {% endblock title %}
 
 {% block page_heading %}
-  <h1 id="about" class="section-heading anchor-link">About</h1>
+  <h1>About</h1>
 {% endblock page_heading %}
 
 {% block content %}
-
   <p>
     The Computer Science Field Guide is an online resource for teaching Computer Science to students.
     This guide was initially developed as an online interactive textbook to support the new achievement standards in Computer Science that were being rolled out in New Zealand (2011-2013), and is now being adapted for use all over the world.
@@ -18,26 +17,20 @@
   </p>
 
   <p>
-  	This project is open source and <a href="https://github.com/uccser/cs-field-guide">available on GitHub</a>, using a documentation generator built specifically for this guide, and is maintained by a small team of developers.
+    This project is open source and <a href="https://github.com/uccser/cs-field-guide">available on GitHub</a>, and is maintained by a small team of developers.
   </p>
 
   <p>
-  	{version-specific-content version="student"}
-	{conditional-content context="guide" variable="teacher_version_present"}
-	If you are a teacher (or involved in education), you can join the [CSFG teachers group](https://groups.google.com/forum/?fromgroups#!forum/csfg-teachers) to receive updates and also [access the teacher's version of the guide here](teacher/index.html).
-	{conditional-content end}
-	{version-specific-content end}
+    If you are a teacher (or involved in education), you can join the <a href="https://groups.google.com/forum/?fromgroups#!forum/csfg-teachers">CSFG teachers group</a> to receive updates.
+    You can access the teacher's version on the guide by using the link in the page footer.
   </p>
-
 
   <h2>Press Contact Details</h2>
 
   <h4>Tim Bell</h4>
   <p>
     Project Lead
-  	<br>
-  	<a href="mailto:tim.bell@canterbury.ac.nz">tim.bell@canterbury.ac.nz</a>
+    <br>
+    <a href="mailto:tim.bell@canterbury.ac.nz">tim.bell@canterbury.ac.nz</a>
   </p>
-
-
 {% endblock content %}
