@@ -35,10 +35,10 @@ class Subappendix(TranslatableModel):
     slug = models.SlugField(unique=True)
     name = models.CharField(max_length=100, default="")
     template = models.CharField(max_length=100)
-    parent_page = models.ForeignKey(
+    appendix = models.ForeignKey(
         Appendix,
         null=False,
-        related_name="subpages"
+        related_name="subappendices"
     )
 
     def __str__(self):

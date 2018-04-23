@@ -4,7 +4,7 @@ from django.db import transaction
 from utils.TranslatableModelLoader import TranslatableModelLoader
 from utils.errors.MissingRequiredFieldError import MissingRequiredFieldError
 from utils.errors.InvalidYAMLValueError import InvalidYAMLValueError
-from appendices.models import Appendix
+from appendices.models import Appendix, Subappendix
 from django.template.loader import get_template
 from django.template import TemplateDoesNotExist
 
@@ -58,13 +58,12 @@ class AppendicesLoader(TranslatableModelLoader):
                 subappendix = Subappendix(
                     slug=subappendix_slug,
                     template=subappendix_template,
+                    appendix=appendix,
                 )
                 self.populate_translations(subappendix, translations)
                 self.mark_translation_availability(subappendix, required_fields=["name"])
                 subappendix.save()
-                self.log("Added subappendix: {}".format(appendices_translations[subappendix_slug]["en"]["name"]))
-
-        self.log("All appendices loaded!\n")
+                self.log("Added subappendix: {}".format(appendices_translations[subappendix_slug]["en"]["name"]), 1)
 
 
     def check_template(self, page_data, type):

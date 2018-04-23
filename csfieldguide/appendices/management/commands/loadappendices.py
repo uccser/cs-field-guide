@@ -26,4 +26,5 @@ class Command(BaseCommand):
         )
 
         loader.load()
+        loader.log("All appendices loaded!")
         loader.log("")
