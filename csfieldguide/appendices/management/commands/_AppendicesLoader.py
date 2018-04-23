@@ -35,36 +35,8 @@ class AppendicesLoader(TranslatableModelLoader):
             required_fields=["name"],
             required_slugs=appendices.keys()
         )
-        used_numbers = set()
 
         for (slug, appendix_data) in appendices.items():
-            try:
-                number = appendix_data["number"]
-            except (TypeError, KeyError):
-                raise MissingRequiredFieldError(
-                    self.structure_file_path,
-                    [
-                        "template",
-                        "number",
-                    ],
-                    "Appendix"
-                )
-
-            # Check number is integer and unique
-            if not isinstance(number, int):
-                raise InvalidYAMLValueError(
-                    self.structure_file_path,
-                    "number",
-                    "An integer"
-                )
-            if number in used_numbers:
-                raise InvalidYAMLValueError(
-                    self.structure_file_path,
-                    "number",
-                    "An unique number"
-                )
-            used_numbers.add(number)
-
             template = self.check_template(appendix_data, "Appendix")
 
             translations = self.get_blank_translation_dictionary()
@@ -73,7 +45,6 @@ class AppendicesLoader(TranslatableModelLoader):
             appendix = Appendix(
                 slug=slug,
                 template=template,
-                number=number,
             )
             self.populate_translations(appendix, translations)
             self.mark_translation_availability(appendix, required_fields=["name"])

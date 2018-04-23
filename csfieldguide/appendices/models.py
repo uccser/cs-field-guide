@@ -12,7 +12,6 @@ class Appendix(TranslatableModel):
     #  Auto-incrementing 'id' field is automatically set by Django
     slug = models.SlugField(unique=True)
     name = models.CharField(max_length=100, default="")
-    number = models.SmallIntegerField(unique=True)
     template = models.CharField(max_length=100)
 
     def __str__(self):
@@ -24,9 +23,9 @@ class Appendix(TranslatableModel):
         return self.name
 
     class Meta:
-        """Set consistent ordering of pages."""
+        """Set consistent ordering of appendices."""
 
-        ordering = ["number"]
+        ordering = ["name"]
 
 
 class Subappendix(TranslatableModel):
@@ -51,6 +50,6 @@ class Subappendix(TranslatableModel):
         return "{} - {}".format(self.parent_page.name, self.name)
 
     class Meta:
-        """Set consistent ordering of subpages."""
+        """Set consistent ordering of subappendices."""
 
         ordering = ["name"]
