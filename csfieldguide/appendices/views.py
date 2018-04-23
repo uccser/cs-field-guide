@@ -1,29 +1,16 @@
 """Views for the appendices application."""
 
-from django.views.generic import ListView, DetailView
+from django.views.generic import TemplateView, DetailView
 from appendices.models import (
     Appendix,
     Subappendix,
 )
 
 
-class AppendicesList(ListView):
+class AppendicesList(TemplateView):
     """View for the list of appendices."""
 
     template_name = "appendices/index.html"
-    context_object_name = "topics"
-
-    def get_queryset(self):
-        """Get queryset of all topics.
-        Returns:
-            Queryset of Topic objects ordered by name.
-        """
-        return Topic.objects.order_by("name").prefetch_related(
-            "unit_plans",
-            "lessons",
-            "curriculum_integrations",
-            "programming_challenges",
-        )
 
 
 class AppendixView(DetailView):

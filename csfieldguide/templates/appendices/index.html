@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block title %}
+  Appendices
+{% endblock title %}
+
+{% block page_heading %}
+  <h1>Appendices</h1>
+{% endblock page_heading %}
+
+{% block content %}
+  <ul>
+    <li>
+      <a href="{% url 'appendices:appendix' 'about' %}">
+        {% trans "About" %}
+      </a>
+    </li>
+    <li>
+      <!-- TODO: Set URL -->
+      <a href="#">
+        {% trans "Changelog" %}
+      </a>
+    </li>
+    <li>
+      <a href="{% url 'appendices:appendix' 'contributors' %}">
+        {% trans "Contributors" %}
+      </a>
+    </li>
+    <li>
+      <a href="{% url 'appendices:appendix' 'curriculum-guides' %}">
+        {% trans "Curriculum Guides" %}
+      </a>
+    </li>
+    <li>
+      <a href="{% url 'chapters:glossary' %}">
+        {% trans "Glossary" %}
+      </a>
+    </li>
+    <li>
+      <a href="{% url 'interactives:index' %}">
+        {% trans "Interactives" %}
+      </a>
+    </li>
+  </ul>
+{% endblock content %}
