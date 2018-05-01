@@ -6,10 +6,10 @@
 {% block html %}
   <div id="interactive-action-menu" class="text-center">
     <div class="dropdown">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="actionMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Menu
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="interactive-action-menu-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        {% trans "Menu" %}
       </button>
-      <div class="dropdown-menu" aria-labelledby="actionMenuButton">
+      <div class="dropdown-menu" aria-labelledby="interactive-action-menu-button">
         <a class="dropdown-item" data-feedback="{% trans 'Pizza ordered!' %}">
           {% trans "Order a pizza" %}
         </a>

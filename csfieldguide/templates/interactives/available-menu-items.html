@@ -1,0 +1,26 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div id="interactive-available-menu-items" class="dropdown text-center">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="interactive-available-menu-items-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      {% trans "Available Menu Items" %}
+    </button>
+    <div class="dropdown-menu" aria-labelledby="interactive-available-menu-items-button">
+      <a class="dropdown-item" onclick="alert('{% trans "Error: Answers unavailable!" %}');">
+        {% trans "Download answers" %}
+      </a>
+      <a class="dropdown-item" onclick="alert('{% trans "Error: YouTube unavailable!" %}');">
+        {% trans "Watch YouTube videos" %}
+      </a>
+      <a class="dropdown-item" onclick="alert('{% trans "Error: Facebook unavailable!" %}');">
+        {% trans "Open Facebook" %}
+      </a>
+      <a class="dropdown-item" onclick="alert('{% trans "Error: Games unavailable!" %}');">
+        {% trans "Play games" %}
+      </a>
+    </div>
+  </div>
+{% endblock html %}

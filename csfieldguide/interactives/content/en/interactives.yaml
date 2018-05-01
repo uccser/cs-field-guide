@@ -3,7 +3,7 @@
 action-menu:
   name: Action Menu
 available-menu-items:
-  name: available-menu-items (broken)
+  name: Available Menu Items
 awful-calculator:
   name: Awful Calculator
 base-calculator:
