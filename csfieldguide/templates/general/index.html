@@ -8,7 +8,7 @@
 {% endblock custom_title %}
 
 {% block body_container %}
-  <div class="jumbotron jumbotron-fluid">
+  <div class="jumbotron jumbotron-fluid{% if teacher_mode %} teacher-mode{% endif %}">
     <div class="container text-center">
       <div class="row align-items-center">
         <div class="col-6 mx-auto col-md-4 order-md-2">
