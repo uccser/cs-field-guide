@@ -7,7 +7,7 @@ available-menu-items:
 awful-calculator:
   name: Awful Calculator
 base-calculator:
-  name: base-calculator (broken)
+  name: Base Calculator
 big-number-calculator:
   name: big-number-calculator (broken)
 bin-packing:

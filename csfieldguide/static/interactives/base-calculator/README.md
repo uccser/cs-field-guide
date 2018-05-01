@@ -22,7 +22,3 @@ The interactive can be configured by the following parameters:
 - `?digits=4&offset=-2` - Shows the 4 digits of base 2 (binary), starting with the second digit and showing the next four (the 0.5 and 0.25 places).
 
 To use these parameters, the interactive must be used in either `whole-page` or `iframe` mode.
-
-## Required files
-
-- This interactive uses MaterializeCSS, Modernizer, and jQuery (all loaded from base-files folder).
