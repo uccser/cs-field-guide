@@ -9,7 +9,7 @@ Pillow==5.0.0
 django-inline-svg==0.1.1
 
 # Markdown
-verto==0.7.3
+verto==0.7.4
 python-markdown-math==0.3
 
 # YAML Loading
