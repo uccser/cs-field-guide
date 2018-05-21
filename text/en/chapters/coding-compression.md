@@ -254,8 +254,8 @@ The purpose of Huffman coding is to take a set of "symbols" (which could be char
 It's normally presented as a way of compressing textual documents, and while it can do that reasonably well, it works much better in combination with Ziv-Lempel coding (see below).
 
 But let's start with a very simple textual example.
-This example language uses only 4 different characters, and yet is incredibly important to us: it's the language used to represent DNA, which is made up of sequences of four characters A, C, G and T).
-For example, the 4.6 million characters representing an E.coli DNA sequence happens to start with:
+This example language uses only 4 different characters, and yet is incredibly important to us: it's the language used to represent DNA, which is made up of sequences of four characters A, C, G and T.
+For example, the 4.6 million characters representing an *E.coli* DNA sequence happens to start with:
 
 ```
 agcttttcattct
@@ -353,7 +353,7 @@ digraph G {
 }
 {comment end}
 
-To decode something using this structure (e.g. the code 0100110011110001011001 above), start at the top, and choose a branch based each successive bit in the coded file. The first bit is a 0, so we follow the left branch, then the 1 branch, then the 0 branch, which leads us to the letter a.
+To decode something using this structure (e.g. the code 0100110011110001011001 above), start at the top, and choose a branch based each successive bit in the coded file. The first bit is a 0, so we follow the left branch, then the 1 branch, then the 0 branch, which leads us to the letter "a".
 After each letter is decoded, we start again at the top.
 The next few bits are 011..., and following these labels from the start takes us to "g", and so on.
 The tree makes it very easy to decode any input, and there's never any confusion about which branch to follow, and therefore which letter to decode each time.
