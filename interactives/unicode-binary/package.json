@@ -10,7 +10,7 @@
         "jquery-text-input": "Jamesernator/jquery-text-input"
     },
     "devDependencies": {
-        "coffee-script": "latest",
+        "coffeescript": "latest",
         "coffeeify": "latest",
         "browserify": "latest"
     },

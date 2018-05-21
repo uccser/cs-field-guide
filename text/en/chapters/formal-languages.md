@@ -4,10 +4,6 @@
 
 ## What's the big picture?
 
-{comment}
-.. index:: Syntax error
-{comment end}
-
 If you've ever written a text-based program or typed a formula in a spreadsheet,
 chances are that at some stage the system has told you there's an error and won't even attempt to follow your instructions.
 
@@ -117,7 +113,13 @@ It may be a bit young for some students, but if you can sell it to them, it's a 
 
 {panel end}
 
-Here's a map of a commuter train system for the town of Trainsylvania. The trouble is, it doesn't show where the the trains go --- all you know is that there are two trains from each station, the A-train and the B-train. The inhabitants of Trainsylvania don't seem to mind this --- it's quite fun choosing trains at each station, and after a while you usually find yourself arriving where you intended.
+{panel type="video" summary="Introductory videos on finite state automata"}
+
+We have a [short video series on finite state automata available here](https://www.youtube.com/playlist?list=PL6A42PgbxHNQA4p1SdZYv2a9ByWIBB2KJ).
+
+{panel end}
+
+Here's a map of a commuter train system for the town of Trainsylvania. The trouble is, it doesn't show where the trains go --- all you know is that there are two trains from each station, the A-train and the B-train. The inhabitants of Trainsylvania don't seem to mind this --- it's quite fun choosing trains at each station, and after a while you usually find yourself arriving where you intended.
 
 {image filename="trainsylvania-blank.png" alt="An incomplete train map" caption="Click image to enlarge"}
 
@@ -749,6 +751,12 @@ Follow-up discussion can review whether some descriptions were longer than they 
 
 {panel end}
 
+{panel type="video" summary="Introductory videos on regular expressions"}
+
+We have a [short video series on regular expressions available here](https://www.youtube.com/playlist?list=PL6A42PgbxHNQ5U_GHkTfR_CooeAXnZDcA).
+
+{panel end}
+
 We've already had a taste of
 {glossary-link term="Regular expression" reference-text="introduction"}regular expressions{glossary-link end}
 in the [getting started](chapters/formal-languages.html#getting-started) section. They are just a simple way to search for things in the input, or to specify what kind of input will be accepted as legitimate.
@@ -1297,7 +1305,6 @@ Grammars have been used for music notation:
 {panel end}
 
 ## The whole story!
-
 
 {panel type="teacher-note" summary="Advanced material"}
 In this section we provide some pointers to advanced material on formal languages, which are beyond the scope of this chapter.

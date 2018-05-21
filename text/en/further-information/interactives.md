@@ -81,3 +81,4 @@ Also try searching your browser version and operating system in Google.
 - [Unicode Binary](interactives/unicode-binary/index.html)
 - [Unicode Character](interactives/unicode-chars/index.html)
 - [Unicode Length](interactives/unicode-length/index.html)
+- [Viola-Jones Face Detection](interactives/viola-jones-face-detector/index.html)

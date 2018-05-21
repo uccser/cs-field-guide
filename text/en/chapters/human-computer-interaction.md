@@ -302,7 +302,7 @@ The first step is to choose a typical task that someone might do with the interf
 
 The goal of the cognitive walkthrough is to identify if the user can see what to do at each step, and especially to notice if there is anything that is confusing or ambiguous (like which button to press next), and to find out if they're confident that the right thing happened.
 
-An experienced HCI evaluator would do this on their own, imagining what a user would do at each step, but it's may be easier for you to do this with someone else using the interface, because that lets you see the interface through someone else's eyes.
+An experienced HCI evaluator would do this on their own, imagining what a user would do at each step, but it may be easier for you to do this with someone else using the interface, because that lets you see the interface through someone else's eyes.
 So we recommend asking a friend to go through a task for you.
 
 The task only needs to have about 3 or 4 steps (e.g. button presses), as you'll be asking three questions at each step and taking notes on their responses, so it could take a while.
@@ -383,7 +383,7 @@ The language, colours and notation in an interface should match the user's world
 The buttons have the colours switched, the colour for cancel is green (commonly used for go) and the colour for confirm is red (commonly used for stop or warning).
 {panel end}
 
-The following interface is from a bank system for paying another person. Suppose you get an email asking someone to pay you $1699.50 dollars for a used car; try entering "$1699.50" into the box.
+The following interface is from a bank system for paying another person. Suppose you get an email asking someone to pay you $1699.50 for a used car; try entering "$1699.50" into the box.
 
 {interactive name="payment-interface" type="in-page"}
 
@@ -507,7 +507,7 @@ A related approach is offering recent selections near the top of a list of optio
 Software can contain many features, and if they are all visible at the same time (for example, on a toolbar), this can be overwhelming, especially for a new user.
 
 TV remote controls often provide a great example of a complicated interface.
-One reason that the have so many buttons is that it can help to make the device look impressive in the shop, but once you get it home, many of the buttons become redundant or confusing.
+One reason that they have so many buttons is that it can help to make the device look impressive in the shop, but once you get it home, many of the buttons become redundant or confusing.
 {image filename="remote-complex.jpg" alt="A complex remote control." wrap="left"}
 The remote control shown here has several buttons that could potentially do the same thing: "Direct Navigator", "Guide", "Function Menu", "Status" and "Option" all give access to different functions, but it's hard to predict which is which.
 This remote has about 55 buttons altogether!

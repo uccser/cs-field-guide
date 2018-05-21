@@ -17,6 +17,38 @@ Given a version number MAJOR.MINOR.HOTFIX:
 
 We have listed major changes for each release below.
 
+## 2.12.1
+
+**Release date:** 7th March 2018
+
+**Downloads:** [Source downloads are available on GitHub](https://github.com/uccser/cs-field-guide/releases/tag/2.12.1)
+
+**Changelog:**
+
+- Update Artificial Intelligence chapter to use shorter introduction video.
+- Update Unicode Binary interactive to display UTF mode.
+- Bugfixes for Sorting/Searching Boxes interactives.
+- Grammar/spelling fixes for HCI chapter.
+- Correct quote by Mike Fellows in Introduction chapter.
+
+## 2.12.0
+
+**Release date:** 13th February 2018
+
+**Downloads:** [Source downloads are available on GitHub](https://github.com/uccser/cs-field-guide/releases/tag/2.12.0)
+
+**Changelog:**
+
+- Add Huffman coding section to compression chapter with Huffman Tree generator interactive.
+- Add Viola-Jones face detection interactive.
+- Add 2018 NCEA curriculum guides.
+- Update Pixel Viewer interactive with threshold, blur, and edge detection modes for computer vision chapter. [#32](https://github.com/uccser/cs-field-guide/issues/32) [#388](https://github.com/uccser/cs-field-guide/pull/388)
+- Fix bug in Base Calculator interactive where computed value displayed incorrectly. [#558](https://github.com/uccser/cs-field-guide/pull/558)
+- Update Microsoft logo. [#527](https://github.com/uccser/cs-field-guide/issues/527)
+- Add videos to Formal Languages chapter [#518](https://github.com/uccser/cs-field-guide/issues/518)
+- Fix capitalisation of title of complexity and tractability chapter. [#513](https://github.com/uccser/cs-field-guide/issues/513)
+- Migrate Mathjax to new CDN. [#482](https://github.com/uccser/cs-field-guide/issues/482)
+
 ## 2.11.0
 
 **Release date:** 18th October 2017

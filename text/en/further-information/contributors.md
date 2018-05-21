@@ -102,6 +102,8 @@ This project is the result of contributions from a large community of Computer S
 - [microlith57](https://github.com/microlith57)
 - [isabelle49](https://github.com/isabelle49) (Isabelle Taylor)
 - [k-yle](https://github.com/k-yle) (Kyle H)
+- Andrew Bell
+- [anzeljg](https://github.com/anzeljg) (Gregor Anželj)
 
 **Note:** If there is an error in the list, please contact [Jack Morgan](mailto:jack.morgan@canterbury.ac.nz)
 
