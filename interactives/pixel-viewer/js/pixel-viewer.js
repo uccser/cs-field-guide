@@ -80,7 +80,7 @@ $( document ).ready(function() {
   if (picturePicker){
    createPicturePicker();
   }
-  if (getUrlParameter('pixel-fill')){
+  if (getUrlParameter('no-pixel-fill')){
     $('#pixel-viewer-interactive-show-pixel-fill').prop('checked', false);
     $( "#pixel-viewer-interactive-loader" ).hide();
     $( ".pixel-viewer-interactive-zoom-button" ).css('visibility', 'visible');
@@ -987,7 +987,7 @@ var reflow = function() {
 };
 
 // Set zoom to see numbers if no colour fill
-if (getUrlParameter('pixel-fill')) {
+if (getUrlParameter('no-pixel-fill')) {
   this.scroller.zoomTo(1.5);
 }
 
