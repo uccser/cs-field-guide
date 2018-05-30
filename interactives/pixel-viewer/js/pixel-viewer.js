@@ -27,13 +27,36 @@ this.custom_kernels = Array(); // Custom kernels input by the user
 this.gridSize = 0; // Global to keep track of size of grid chosen
 this.isGreyscale = false; // Global to keep track of whether greyscale is on
 
-this.images = ["coloured-roof-small.png","roof.jpg"] // Names of images to be included in picture picker
+// Names of images to be included in picture picker
+this.images = [
+  "coloured-roof-small.png",
+  "roof.jpg",
+  "alley.jpg",
+  "arnold.jpg",
+  "bike.jpg",
+  "boards.jpg",
+  "dark_clock.jpg",
+  "dark.jpg",
+  "fence.jpg",
+  "knight.png",
+  "roof.jpg",
+  "tuba.jpg",
+  "words_zoom.png",
+  "words.png",
+]
 
 this.tiling = new Tiling;
 this.piccache = Array();
 
 $( document ).ready(function() {
   init_cache(300, MAX_HEIGHT);
+  if (getUrlParameter('image')){
+    $('#pixel-viewer-interactive-original-image').attr('src', './img/' + getUrlParameter('image'))
+    load_resize_image('./img/' + getUrlParameter('image'), false)
+  } else {
+    $('#pixel-viewer-interactive-original-image').attr('src', './img/coloured-roof-small.png')
+    load_resize_image('./img/coloured-roof-small.png', false)
+  }
   if (getUrlParameter('mode') == 'threshold') {
     mode = 'threshold';
   } else if (getUrlParameter('mode') == 'thresholdgreyscale') {
