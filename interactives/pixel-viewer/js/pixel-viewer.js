@@ -47,6 +47,10 @@ $( document ).ready(function() {
       // Whether or not to allow student to pick from set pictures
       picturePicker = true;
     }
+    if (getUrlParameter('hide-menu') === undefined){
+      $('#pixel-viewer-interactive-menu-toggle').css('visibility', 'visible');
+      $('#pixel-viewer-interactive-settings').css('visibility', 'visible');
+    }
    setUpMode();
    if (picturePicker){
      createPicturePicker();

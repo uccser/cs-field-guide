@@ -19,6 +19,7 @@ The interactive has the following parameters to configure the interactive:
   - `edgedetection` - Adds controls for investigating edge detection.
 
 - `picturepicker` (optional) - Displays a set of pictures available for using.
+- `hide-menu` (optional) - Hides the menu.
 
 ## Required files
 
