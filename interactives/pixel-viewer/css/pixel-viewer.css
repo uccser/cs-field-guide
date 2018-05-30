@@ -46,7 +46,7 @@
 }
 #pixel-viewer-interactive-original-image {
   z-index: 2;
-  display: block;
+  display: none;
   overflow: hidden;
   position: absolute;
   user-drag: none;

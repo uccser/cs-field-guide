@@ -33,41 +33,50 @@ this.tiling = new Tiling;
 this.piccache = Array();
 
 $( document ).ready(function() {
-    init_cache(300, MAX_HEIGHT);
-    if (getUrlParameter('mode') == 'threshold') {
-      mode = 'threshold';
-    } else if (getUrlParameter('mode') == 'thresholdgreyscale') {
-      mode = 'thresholdgreyscale';
-    } else if (getUrlParameter('mode') == 'blur') {
-      mode = 'blur';
-    } else if (getUrlParameter('mode') == 'edgedetection') {
-      mode = 'edgedetection';
-    }
-    if (getUrlParameter('picturepicker')){
-      // Whether or not to allow student to pick from set pictures
-      picturePicker = true;
-    }
-    if (getUrlParameter('hide-menu') === undefined){
-      $('#pixel-viewer-interactive-menu-toggle').css('visibility', 'visible');
-      $('#pixel-viewer-interactive-settings').css('visibility', 'visible');
-    }
-   setUpMode();
-   if (picturePicker){
-     createPicturePicker();
-   }
-  $( "#pixel-viewer-interactive-original-image" ).delay(1000).animate({width: contentWidth*0.8,
-     height: contentHeight*0.8,
-     overflow: "hidden",
-     top:"0",
-     left:"0",
-     margin: 0},
-     4000,
-     function() {
-      // Animation complete
-      $( "#pixel-viewer-interactive-loader" ).hide();
-      $( ".pixel-viewer-interactive-zoom-button" ).css({opacity: 0, visibility: "visible"}).animate({opacity: 1}, 'slow');
-  });
-  $( "#pixel-viewer-interactive-original-image" ).fadeOut( 2000 );
+  init_cache(300, MAX_HEIGHT);
+  if (getUrlParameter('mode') == 'threshold') {
+    mode = 'threshold';
+  } else if (getUrlParameter('mode') == 'thresholdgreyscale') {
+    mode = 'thresholdgreyscale';
+  } else if (getUrlParameter('mode') == 'blur') {
+    mode = 'blur';
+  } else if (getUrlParameter('mode') == 'edgedetection') {
+    mode = 'edgedetection';
+  }
+  if (getUrlParameter('picturepicker')){
+    // Whether or not to allow student to pick from set pictures
+    picturePicker = true;
+  }
+  if (getUrlParameter('hide-menu')) {
+    $('#pixel-viewer-interactive-menu-toggle').remove();
+  } else {
+    $('#pixel-viewer-interactive-menu-toggle').css('visibility', 'visible');
+    $('#pixel-viewer-interactive-settings').css('visibility', 'visible');
+  }
+  setUpMode();
+  if (picturePicker){
+   createPicturePicker();
+  }
+  if (getUrlParameter('pixel-fill')){
+    $('#pixel-viewer-interactive-show-pixel-fill').prop('checked', false);
+    $( "#pixel-viewer-interactive-loader" ).hide();
+    $( ".pixel-viewer-interactive-zoom-button" ).css('visibility', 'visible');
+  } else {
+    $( "#pixel-viewer-interactive-original-image" ).show();
+    $( "#pixel-viewer-interactive-original-image" ).delay(1000).animate({width: contentWidth*0.8,
+       height: contentHeight*0.8,
+       overflow: "hidden",
+       top:"0",
+       left:"0",
+       margin: 0},
+       4000,
+       function() {
+        // Animation complete
+        $( "#pixel-viewer-interactive-loader" ).hide();
+        $( ".pixel-viewer-interactive-zoom-button" ).css({opacity: 0, visibility: "visible"}).animate({opacity: 1}, 'slow');
+    });
+    $( "#pixel-viewer-interactive-original-image" ).fadeOut( 2000 );
+  }
   reflow();
 });
 
@@ -953,6 +962,11 @@ var reflow = function() {
     content.height = canvasHeight;
     scroller.setDimensions(canvasWidth, canvasHeight, contentWidth, contentHeight);
 };
+
+// Set zoom to see numbers if no colour fill
+if (getUrlParameter('pixel-fill')) {
+  this.scroller.zoomTo(1.5);
+}
 
 window.addEventListener("resize", reflow, false);
 
