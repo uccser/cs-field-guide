@@ -202,7 +202,7 @@ The character **$** in UTF-32 would be:
 00000000 00000000 00000000 00100100
 ```
 
-And the character **犬** in UTF-32 would be:
+And the character **犬** (dog in Chinese) in UTF-32 would be:
 
 ```
 00000000 00000000 01110010 10101100
@@ -283,7 +283,7 @@ The character **ǿ** in UTF-8 would be:
 11000111 10111111
 ```
 
-And the character **犬** in UTF-8 would be:
+And the character **犬** (dog in Chinese) in UTF-8 would be:
 
 ```
 11100111 10001010 10101100

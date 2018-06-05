@@ -18,7 +18,10 @@ The interactive has the following parameters to configure the interactive:
   - `blur` - Adds controls for investigating blurring with images.
   - `edgedetection` - Adds controls for investigating edge detection.
 
+- `image` (optional) - Filename of image to use (for example `arnold.jpg`).
 - `picturepicker` (optional) - Displays a set of pictures available for using.
+- `hide-menu` (optional) - Hides the menu.
+- `no-pixel-fill` (optional) - Displays pixels without background fill from start (also doesn't show initial image with transition).
 
 ## Required files
 

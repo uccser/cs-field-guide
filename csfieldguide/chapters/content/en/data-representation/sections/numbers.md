@@ -435,7 +435,7 @@ You want to ensure that the largest possible number will fit within the number o
 
 1. `b` (actually, 3 bits is enough as it gives 8 values, but amounts that fit evenly into 8-bit bytes are easier to work with)
 2. `c` (32 bits is slightly too small, so you will need 64 bits)
-3. `c` (This is a challenging question, but one a database designer would have to think about. There's about 94,000 km of roads in New Zealand, so if the average length of a road was 1km, there would be too many roads for 16 bits. Either way, 32 bits would be a safe bet.)
+3. `b` (This is a challenging question, but one a database designer would have to think about. There's about 94,000 km of roads in New Zealand, so if the average length of a road was 1km, there would be too many roads for 16 bits. Either way, 32 bits would be a safe bet.)
 4. `d` (Even 64 bits is not enough, but 128 bits is plenty! Remember that 128 bits isn't twice the range of 64 bits.)
 
 {panel end}

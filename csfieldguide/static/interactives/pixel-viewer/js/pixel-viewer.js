@@ -27,43 +27,79 @@ this.custom_kernels = Array(); // Custom kernels input by the user
 this.gridSize = 0; // Global to keep track of size of grid chosen
 this.isGreyscale = false; // Global to keep track of whether greyscale is on
 
-this.images = ["coloured-roof-small.png","roof.jpg"] // Names of images to be included in picture picker
+// Names of images to be included in picture picker
+this.images = [
+  "coloured-roof-small.png",
+  "roof.jpg",
+  "alley.jpg",
+  "arnold.jpg",
+  "bike.jpg",
+  "boards.jpg",
+  "dark_clock.jpg",
+  "dark.jpg",
+  "fence.jpg",
+  "knight.png",
+  "roof.jpg",
+  "tuba.jpg",
+  "words_zoom.png",
+  "words.png",
+]
 
 this.tiling = new Tiling;
 this.piccache = Array();
 
 $( document ).ready(function() {
-    init_cache(300, MAX_HEIGHT);
-    if (getUrlParameter('mode') == 'threshold') {
-      mode = 'threshold';
-    } else if (getUrlParameter('mode') == 'thresholdgreyscale') {
-      mode = 'thresholdgreyscale';
-    } else if (getUrlParameter('mode') == 'blur') {
-      mode = 'blur';
-    } else if (getUrlParameter('mode') == 'edgedetection') {
-      mode = 'edgedetection';
-    }
-    if (getUrlParameter('picturepicker')){
-      // Whether or not to allow student to pick from set pictures
-      picturePicker = true;
-    }
-   setUpMode();
-   if (picturePicker){
-     createPicturePicker();
-   }
-  $( "#pixel-viewer-interactive-original-image" ).delay(1000).animate({width: contentWidth*0.8,
-     height: contentHeight*0.8,
-     overflow: "hidden",
-     top:"0",
-     left:"0",
-     margin: 0},
-     4000,
-     function() {
-      // Animation complete
-      $( "#pixel-viewer-interactive-loader" ).hide();
-      $( ".pixel-viewer-interactive-zoom-button" ).css({opacity: 0, visibility: "visible"}).animate({opacity: 1}, 'slow');
-  });
-  $( "#pixel-viewer-interactive-original-image" ).fadeOut( 2000 );
+  init_cache(300, MAX_HEIGHT);
+  if (getUrlParameter('image')){
+    $('#pixel-viewer-interactive-original-image').attr('src', './img/' + getUrlParameter('image'))
+    load_resize_image('./img/' + getUrlParameter('image'), false)
+  } else {
+    $('#pixel-viewer-interactive-original-image').attr('src', './img/coloured-roof-small.png')
+    load_resize_image('./img/coloured-roof-small.png', false)
+  }
+  if (getUrlParameter('mode') == 'threshold') {
+    mode = 'threshold';
+  } else if (getUrlParameter('mode') == 'thresholdgreyscale') {
+    mode = 'thresholdgreyscale';
+  } else if (getUrlParameter('mode') == 'blur') {
+    mode = 'blur';
+  } else if (getUrlParameter('mode') == 'edgedetection') {
+    mode = 'edgedetection';
+  }
+  if (getUrlParameter('picturepicker')){
+    // Whether or not to allow student to pick from set pictures
+    picturePicker = true;
+  }
+  if (getUrlParameter('hide-menu')) {
+    $('#pixel-viewer-interactive-menu-toggle').remove();
+  } else {
+    $('#pixel-viewer-interactive-menu-toggle').css('visibility', 'visible');
+    $('#pixel-viewer-interactive-settings').css('visibility', 'visible');
+  }
+  setUpMode();
+  if (picturePicker){
+   createPicturePicker();
+  }
+  if (getUrlParameter('no-pixel-fill')){
+    $('#pixel-viewer-interactive-show-pixel-fill').prop('checked', false);
+    $( "#pixel-viewer-interactive-loader" ).hide();
+    $( ".pixel-viewer-interactive-zoom-button" ).css('visibility', 'visible');
+  } else {
+    $( "#pixel-viewer-interactive-original-image" ).show();
+    $( "#pixel-viewer-interactive-original-image" ).delay(1000).animate({width: contentWidth*0.8,
+       height: contentHeight*0.8,
+       overflow: "hidden",
+       top:"0",
+       left:"0",
+       margin: 0},
+       4000,
+       function() {
+        // Animation complete
+        $( "#pixel-viewer-interactive-loader" ).hide();
+        $( ".pixel-viewer-interactive-zoom-button" ).css({opacity: 0, visibility: "visible"}).animate({opacity: 1}, 'slow');
+    });
+    $( "#pixel-viewer-interactive-original-image" ).fadeOut( 2000 );
+  }
   reflow();
 });
 
@@ -949,6 +985,11 @@ var reflow = function() {
     content.height = canvasHeight;
     scroller.setDimensions(canvasWidth, canvasHeight, contentWidth, contentHeight);
 };
+
+// Set zoom to see numbers if no colour fill
+if (getUrlParameter('no-pixel-fill')) {
+  this.scroller.zoomTo(1.5);
+}
 
 window.addEventListener("resize", reflow, false);
 
