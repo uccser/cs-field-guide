@@ -17,17 +17,23 @@
       <div id="pixel-viewer-interactive" class="interactive">
       <!-- ### Start of required HTML for inline interactives ### -->
         <div id="pixel-viewer-interactive-container">
-          <img id="pixel-viewer-interactive-original-image" src="./img/coloured-roof-small.png" />
+          <img id="pixel-viewer-interactive-original-image" />
           <div id="pixel-viewer-interactive-loader"></div>
           <canvas id="pixel-viewer-interactive-content"></canvas>
         </div>
-        <div class="row full-width" data-equalizer>
-          <button id="pixel-viewer-interactive-menu-toggle" class="small-6 large-4 columns button pixel-viewer-interactive-button" data-equalizer-watch>Toggle Menu</button>
-          <button id="pixel-viewer-interactive-zoom-in" class="small-3 large-4 columns button pixel-viewer-interactive-button pixel-viewer-interactive-zoom-button" data-equalizer-watch>Zoom In</button>
-          <button id="pixel-viewer-interactive-zoom-out" class="small-3 large-4 columns button pixel-viewer-interactive-button pixel-viewer-interactive-zoom-button" data-equalizer-watch>Zoom Out</button>
+        <div id="pixel-viewer-interactive-buttons" class="full-width">
+          <button id="pixel-viewer-interactive-menu-toggle" class="button pixel-viewer-interactive-button invisible">
+            Toggle Menu
+          </button>
+          <button id="pixel-viewer-interactive-zoom-in" class="button pixel-viewer-interactive-button pixel-viewer-interactive-zoom-button">
+            Zoom In
+          </button>
+          <button id="pixel-viewer-interactive-zoom-out" class="button pixel-viewer-interactive-button pixel-viewer-interactive-zoom-button">
+            Zoom Out
+          </button>
         </div>
         <div class="row full-width">
-          <div id="pixel-viewer-interactive-settings" class="small-6 large-4 columns end">
+          <div id="pixel-viewer-interactive-settings" class="small-9 medium-6 large-4 columns end invisible">
             <h3 id="name-of-interactive">Pixel Value Interactive</h3>
             <p>This interactive allows you to see the pixels of an image, and details about those pixels. <strong>Zoom in</strong> to see details about individual pixels.</p>
 
