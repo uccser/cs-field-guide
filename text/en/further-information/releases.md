@@ -17,6 +17,17 @@ Given a version number MAJOR.MINOR.HOTFIX:
 
 We have listed major changes for each release below.
 
+## 2.12.2
+
+**Release date:** 5th June 2018
+
+**Downloads:** [Source downloads are available on GitHub](https://github.com/uccser/cs-field-guide/releases/tag/2.12.2)
+
+**Changelog:**
+
+- Add optional parameters to Pixel Viewer interactive to specific starting image, hide pixel fill, and hide menu. [#630](https://github.com/uccser/cs-field-guide/pull/630)
+- Grammar/spelling fixes for Data Representation and Compression Coding chapters. [#626](https://github.com/uccser/cs-field-guide/pull/626)
+
 ## 2.12.1
 
 **Release date:** 7th March 2018

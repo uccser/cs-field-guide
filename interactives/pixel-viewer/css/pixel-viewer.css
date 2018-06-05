@@ -33,9 +33,8 @@
   z-index: 9;
   position: absolute;
   background-color: #F1F1F1;
-  border-bottom: 3px solid #005470;
-  border-right: 3px solid #005470;
-  height: 80%;
+  border: 3px solid #005470;
+  height: 90%;
   overflow-y: auto;
 }
 #pixel-viewer-interactive-loader {
@@ -47,7 +46,7 @@
 }
 #pixel-viewer-interactive-original-image {
   z-index: 2;
-  display: block;
+  display: none;
   overflow: hidden;
   position: absolute;
   user-drag: none;
@@ -79,4 +78,12 @@
 .img-pick:hover{
    border-color:#AAA;
    border:1px solid;
+}
+#pixel-viewer-interactive-buttons {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: stretch;
+}
+#pixel-viewer-interactive-buttons button {
+  flex: 1;
 }
