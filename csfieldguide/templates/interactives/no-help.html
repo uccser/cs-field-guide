@@ -1,18 +1,13 @@
 {% extends interactive_mode_template %}
 
+{% load i18n %}
 {% load static %}
 
 {% block html %}
-    <div class="row interactive center-align">
-        <div class="col s12">
-            <a role="button" class="btn btn-primary btn-lg" id="interactive-no-help">Click me for help</a>
-        </div>
+    <div class="mb-3">
+        <button class="btn btn-success btn-lg" id="interactive-no-help">{% trans "Click me for help" %}</button>
     </div>
 {% endblock html %}
-
-{% block css %}
-  <link rel="stylesheet" href="{% static 'interactives/no-help/css/no-help.css' %}">
-{% endblock css %}
 
 {% block js %}
   <script type="text/javascript" src="{% static 'interactives/no-help/js/no-help.js' %}"></script>
