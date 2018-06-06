@@ -1,0 +1,15 @@
+{% extends interactive_mode_template %}
+
+{% load static %}
+
+{% block html %}
+  <div class="mx-auto mb-3" style="width: 510px;">
+      <h3>Do you wish to close this window?</h3>
+      <button type="button" id="close-window-yes-button" class="btn btn-success btn-lg">Yes</button>
+      <button type="button" id="close-window-no-button" class="btn btn-secondary btn-lg" disabled>No</button>
+  </div>
+{% endblock html %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/close-window/js/close-window.js' %}"></script>
+{% endblock js %}
