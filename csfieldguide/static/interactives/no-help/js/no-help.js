@@ -1,3 +1,3 @@
 $("#interactive-no-help").click(function(){
-    alert("Error: No help available!")
+    alert(close_window_i18n["alert"])
 });
