@@ -71,7 +71,7 @@ ncea-guide-selector:
 nfa-guesser:
   name: nfa-guesser (broken)
 no-help:
-  name: no-help (broken)
+  name: No Help
 number-generator:
   name: number-generator (broken)
 packet-attack:
