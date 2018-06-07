@@ -25,7 +25,7 @@ checksum-calculator:
 checksum-calculator-gtin-13:
   name: checksum-calculator-gtin-13 (broken)
 close-window:
-  name: close-window (broken)
+  name: Close Window
 cmy-mixer:
   name: cmy-mixer (broken)
 colour-matcher:
