@@ -91,7 +91,7 @@ regular-expression-filter:
 regular-expression-search:
   name: regular-expression-search (broken)
 rgb-mixer:
-  name: rgb-mixer (broken)
+  name: RGB Mixer
 rsa-jsencrypt:
   name: rsa-jsencrypt (broken)
 rsa-key-generator:
