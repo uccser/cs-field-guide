@@ -41,7 +41,7 @@ deceiver:
 delay-analyser:
   name: delay-analyser (broken)
 delayed-checkbox:
-  name: delayed-checkbox (broken)
+  name: Delayed Checkbox
 frequency-analysis:
   name: frequency-analysis (broken)
 fsa-box:
