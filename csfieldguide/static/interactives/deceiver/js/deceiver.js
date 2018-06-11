@@ -4,7 +4,7 @@ $(document).ready(function(){
 
     $(".interactive-deceiver-button").click(function() {
         var clickedButton = ($(this).html().trim());
-        if (clickedButton == "Odd") {
+        if (clickedButton == deceiver_il8n["odd"]) {
             if (Deceiver.number % 2 == 1) {
                 questionCorrect();
                 checkButtons();
@@ -32,7 +32,7 @@ function questionCorrect() {
     var $feedback = $("#interactive-deceiver-feedback");
     $feedback.addClass('interactive-deceiver-correct');
     $feedback.removeClass('interactive-deceiver-wrong');
-    $feedback.stop(true, true).fadeIn(0).html("CORRECT").fadeOut(1000);
+    $feedback.stop(true, true).fadeIn(0).html(deceiver_il8n["correct"]).fadeOut(1000);
     Deceiver.score++;
 }
 
@@ -40,7 +40,7 @@ function questionIncorrect() {
     var $feedback = $("#interactive-deceiver-feedback");
     $feedback.addClass('interactive-deceiver-wrong');
     $feedback.removeClass('interactive-deceiver-correct');
-    $feedback.stop(true, true).fadeIn(0).html("WRONG").fadeOut(3000);
+    $feedback.stop(true, true).fadeIn(0).html(deceiver_il8n["wrong"]).fadeOut(3000);
     endGame();
 }
 
@@ -49,7 +49,7 @@ function setupQuestionGame() {
     Deceiver.maxCount = 3;
     Deceiver.secs = 15;
     Deceiver.score = 0;
-    $("#interactive-deceiver-question").html("Answer as many questions as you can");
+    $("#interactive-deceiver-heading").html(deceiver_il8n["heading"]);
     $("#interactive-deceiver-start-panel").show();
     $("#interactive-deceiver-game-buttons").hide();
     resetButtonCounter();
@@ -57,7 +57,7 @@ function setupQuestionGame() {
 
 function newQuestion() {
     Deceiver.number = Math.floor((Math.random()*100)+1);
-    $("#interactive-deceiver-question").html(Deceiver.number);
+    $("#interactive-deceiver-heading").html(Deceiver.number);
 }
 
 function checkButtons() {
@@ -95,7 +95,7 @@ function decrementTimer() {
 
 function endGame() {
     clearTimeout(Deceiver.timer);
-    $("#interactive-deceiver-timer").html("Score: " + Deceiver.score);
+    $("#interactive-deceiver-timer").html(deceiver_il8n["score"] + Deceiver.score);
     setupQuestionGame();
 }
 
@@ -103,6 +103,6 @@ function startGame() {
     $("#interactive-deceiver-start-panel").hide();
     $("#interactive-deceiver-game-buttons").show();
     newQuestion();
-    $("#interactive-deceiver-timer").html('<span id="interactive-deceiver-seconds">15</span> seconds left');
+    $("#interactive-deceiver-timer").html('<span id="interactive-deceiver-seconds">15</span>' + deceiver_il8n["seconds"]);
     decrementTimer();
 }
