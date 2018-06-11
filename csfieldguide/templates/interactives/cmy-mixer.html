@@ -1,0 +1,38 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+    <div id="interactive-cmy-mixer" class="mb-3">
+      <h3>{% trans "CMY Colour Mixer - Used by Printers" %}</h3>
+      <div id="interactive-cmy-mixer-container">
+        <div id="interactive-cmy-mixer-result"></div>
+          <div id="interactive-cmy-mixer-sliders">
+            <div>
+              <div>{% trans '<strong>Cyan</strong> - Currently set to <span id="interactive-cmy-mixer-cyan-value">127</span>' %}</div>
+              <div class="interactive-cmy-mixer-slider"></div>
+            </div>
+            <div>
+              <div>{% trans '<strong>Magenta</strong> - Currently set to <span id="interactive-cmy-mixer-magenta-value">127</span>' %}</div>
+              <div class="interactive-cmy-mixer-slider"></div>
+            </div>
+            <div>
+              <div>{% trans '<strong>Yellow</strong> - Currently set to <span id="interactive-cmy-mixer-yellow-value">127</span>' %}</div>
+              <div class="interactive-cmy-mixer-slider"></div>
+            </div>
+          </div>
+      </div>
+    </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/cmy-mixer/css/cmy-mixer.css' %}">
+  <link rel="stylesheet" href="{% static 'css/third-party/nouislider.min.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'js/third-party/wNumb.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/third-party/nouislider.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'interactives/cmy-mixer/js/cmy-mixer.js' %}"></script>
+{% endblock js %}
