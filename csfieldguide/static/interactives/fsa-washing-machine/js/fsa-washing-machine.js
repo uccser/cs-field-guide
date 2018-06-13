@@ -24,7 +24,6 @@ $(document).ready(function() {
 
 function changeFSAWashingMachineState() {
     previous_state = fsa_washing_machine_config["current_state"];
-    // get the destination of current state and set it as the new state.
     fsa_washing_machine_config["current_state"] = fsa_washing_machine_config[previous_state];
     updateFSAWashingMachineInterface(fsa_washing_machine_config["current_state"]);
 }
