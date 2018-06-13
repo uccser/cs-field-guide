@@ -16,6 +16,7 @@ install:
 # Creates the CSFG with print and teacher versions
 script:
   - python generateguide.py -t
+  - utils/broken_link_checker/broken_link_checker.sh
 
 # Stop email notifications but post to Slack channel
 notifications:

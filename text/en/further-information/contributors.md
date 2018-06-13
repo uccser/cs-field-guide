@@ -89,12 +89,12 @@ This project is the result of contributions from a large community of Computer S
 ## Community Contributors
 
 - [ArloL](https://github.com/ArloL) (Arlo Louis O'Keeffe)
-- [ner0x652](https://github.com/ner0x652) (Cornel Punga)
+- ner0x652 (Cornel Punga)
 - [alanhogan](https://github.com/alanhogan) (Alan Hogan)
 - [StevenMaude](https://github.com/StevenMaude) (Steven Maude)
 - [rdpse](https://github.com/rdpse) (Rúben Enes)
 - [oughter](https://github.com/oughter)
-- [digitalDojoNZ](https://github.com/digitalDojoNZ)
+- digitalDojoNZ
 - [pvskarthikeya](https://github.com/pvskarthikeya) (Karthikeya Pammi)
 - [Goldob](https://github.com/Goldob) (Adam Gotlib)
 - [Jamie Dawson](https://github.com/JamieDawson)

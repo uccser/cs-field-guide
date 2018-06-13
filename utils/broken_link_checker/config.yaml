@@ -1,0 +1,21 @@
+exclude_directories:
+  - .git/
+  - docs/build/
+  - output/
+
+skip_urls:
+  # Broken links that should not be changed as within license file
+  - https://github.com/FezVrasta/bootstrap-material-design/blob/master/fonts/LICENSE.txt
+  # Intentional broken links
+  - https://www.google.com/teapot
+  - https://google.com/nope.html
+  # The following URLs have the end bracket escaped in order to render
+  # correctly in the current Markdown parser. Once Verto is used, and the
+  # links do not require escape characters, these should be removed.
+  - https://en.wikipedia.org/wiki/Donald_Murray_(inventor\)
+  - https://en.wikipedia.org/wiki/Fred_Wilson_(financier\)
+  - https://en.wikipedia.org/wiki/Battleship_(puzzle\)
+  - https://en.wikipedia.org/wiki/Parity_(mathematics\)
+  - https://en.wikipedia.org/wiki/Abstraction_(computer_science\)
+  - https://en.wikipedia.org/wiki/Scrum_(development\)
+  - https://en.wikipedia.org/wiki/Gadsby_(novel\)

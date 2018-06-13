@@ -653,7 +653,7 @@ you could do a similar project to the previous one using a graphics programming 
 or a widely used graphics system such as
 [OpenGL](https://en.wikipedia.org/wiki/OpenGL).
 There is an interactive tutorial on OpenGL called
-[JPOT](http://www.cs.uwm.edu/%7Egrafix2/).
+[JPOT](https://web.archive.org/web/20170211081716/http://www.cs.uwm.edu/~grafix2/).
 
 Note that these project can be very time consuming because these are powerful systems,
 and there is quite a bit of detail to get right even for a simple operation.
@@ -1035,8 +1035,6 @@ Other topics to be added:
 .. Ray tracing
 .. =====================================================
 
-.. Define and render a scene using provided ray-tracing software e.g. POV-Ray
-.. (http://library.thinkquest.org/3285/)
 .. Javascript Ray Tracer
 .. (http://blog.vjeux.com/2012/javascript/javascript-ray-tracer.html)
 .. Here you can even setup your own scene and render it to an image.
@@ -1096,10 +1094,10 @@ An [animation of a Möbius strip](https://www.youtube.com/watch?v=ZN4TxmWK0bE) t
 
 ### Useful Links
 
-- [https://en.wikipedia.org/wiki/Computer_graphics](https://en.wikipedia.org/wiki/Computer_graphics)
-- [https://en.wikipedia.org/wiki/Transformation_matrix](https://en.wikipedia.org/wiki/Transformation_matrix)
-- [https://en.wikipedia.org/wiki/Bresenham’s_line_algorithm](https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm)
-- [https://en.wikipedia.org/wiki/Ray_trace](https://en.wikipedia.org/wiki/Ray_trace)
+- [Wikipedia.org - Computer graphics](https://en.wikipedia.org/wiki/Computer_graphics)
+- [Wikipedia.org - Transformation matrix](https://en.wikipedia.org/wiki/Transformation_matrix)
+- [Wikipedia.org - Bresenham’s line algorithm](https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm)
+- [Wikipedia.org - Ray trace](https://en.wikipedia.org/wiki/Ray_trace)
 - [http://www.cosc.canterbury.ac.nz/mukundan/cogr/applcogr.html](http://www.cosc.canterbury.ac.nz/mukundan/cogr/applcogr.html)
 - [http://www.cosc.canterbury.ac.nz/mukundan/covn/applcovn.html](http://www.cosc.canterbury.ac.nz/mukundan/covn/applcovn.html)
 - [http://www.povray.org/resources/links/3D_Tutorials/POV-Ray_Tutorials/](http://www.povray.org/resources/links/3D_Tutorials/POV-Ray_Tutorials/)
