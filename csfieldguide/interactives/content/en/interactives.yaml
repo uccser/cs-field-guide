@@ -81,7 +81,7 @@ packet-attack-level-creator:
 parity:
   name: parity (broken)
 payment-interface:
-  name: payment-interface (broken)
+  name: Payment Interface
 pixel-viewer:
   name: pixel-viewer (broken)
 python-interpreter:
