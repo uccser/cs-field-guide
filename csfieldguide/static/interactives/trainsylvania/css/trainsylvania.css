@@ -1,14 +1,17 @@
 #interactive-trainsylvania {
   overflow: hidden;
 }
+
 #interactive-trainsylvania-image-link {
   display: none;
 }
+
 #interactive-trainsylvania-image-div {
   min-height: 6rem;
   position: relative;
   margin-bottom: 2em;
 }
+
 img.interactive-trainsylvania-image {
   display: none;
   position: absolute;
@@ -20,6 +23,7 @@ img.interactive-trainsylvania-image {
   bottom: 0;
   max-height: 120px;
 }
+
 #interactive-trainsylvania-train-success {
   display: none;
 }
