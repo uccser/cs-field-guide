@@ -1,5 +1,6 @@
 #interactive-fsa-washing-machine-images {
   position: relative;
+  pointer-events: none !important;
 }
 #interactive-fsa-washing-machine-images img {
   width: 20em;
