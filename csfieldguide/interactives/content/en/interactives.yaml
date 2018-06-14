@@ -117,7 +117,7 @@ trig-function-calculator:
 unicode-binary:
   name: unicode-binary (broken)
 unicode-chars:
-  name: unicode-chars (broken)
+  name: Unicode Characters
 unicode-length:
   name: unicode-length (broken)
 viola-jones-face-detector:
