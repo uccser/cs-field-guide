@@ -1,0 +1,30 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div id="interactive-unicode-chars" class="mb-3">
+    <h4>{% trans "Unicode Characters" %}</h4>
+    <div class="d-flex justify-content-around">
+      <div class="d-flex flex-column">
+        <label for="interactive-unicode-chars-decimal" class="active">{% trans "Decimal" %}</label>
+        <input type="text" id="interactive-unicode-chars-decimal" placeholder="{% trans 'Enter a decimal number' %}" title="Decimal" class="validate form-control" pattern="\d+">
+      </div>
+      <div class="d-flex flex-column">
+        <label for="interactive-unicode-chars-char" class="active">{% trans "Character" %}</label>
+        <input type="text" id="interactive-unicode-chars-char" placeholder="{% trans 'Unicode Character' %}" title="Character" class="validate form-control" maxlength="1">
+      </div>
+    </div>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/unicode-chars/css/unicode-chars.css' %}">
+{% endblock css %}
+
+{% block js %}
+    <!-- fromcodepoint.js required for compatibility -->
+    <script type="text/javascript" src="{% static 'js/third-party/fromcodepoint.js' %}"></script>
+    <script type="text/javascript" src="{% static 'interactives/unicode-chars/js/unicode-chars.js' %}"></script>
+{% endblock js %}
