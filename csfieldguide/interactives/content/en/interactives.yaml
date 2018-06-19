@@ -119,6 +119,6 @@ unicode-binary:
 unicode-chars:
   name: unicode-chars (broken)
 unicode-length:
-  name: unicode-length (broken)
+  name: Unicode Length
 viola-jones-face-detector:
   name: viola-jones-face-detector (broken)
