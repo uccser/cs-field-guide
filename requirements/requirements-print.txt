@@ -1,4 +1,4 @@
-packaging==16.8
+packaging==17.1
 appdirs==1.4.3
 html5lib==1.0b9
 six==1.10.0
