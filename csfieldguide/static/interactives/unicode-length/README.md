@@ -6,7 +6,7 @@ This interactive displays the length (in bits) of text encoded using different e
 
 ## Usage
 
-To use this within the Field Guide it should be used within an interactive iframe wrapper (e.g. `{interactive name="unicode-length" type="iframe"}`).
+To use this within the Field Guide it should be used within an interactive iframe wrapper (e.g. `{interactive slug="unicode-length" type="iframe"}`).
 
 ## Authors
 

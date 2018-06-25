@@ -111,7 +111,7 @@ Of course, there may be ways to reduce the amount of work required - for example
 Try experimenting with the following interactive for Caesar Cipher.
 You will probably want to refer back to it later while working through the remainder of the sections on Caesar Cipher.
 
-{interactive name="caesar-cipher" type="iframe"}
+{interactive slug="caesar-cipher" type="iframe"}
 
 ### Decryption with Caesar Cipher
 
@@ -286,7 +286,7 @@ A letter that appears many times in a message is far more likely to be "T" than 
 The following interactive will help you analyze a piece of text by counting up the letter frequencies.
 You can paste in some text to see which are the most common (and least common) characters.
 
-{interactive name="frequency-analysis" type="in-page"}
+{interactive slug="frequency-analysis" type="in-page"}
 
 The following text has been coded using a Caesar cipher.
 To try to make sense of it, paste it into the statistical analyser above.
@@ -326,7 +326,7 @@ It is therefore a reasonable guess that "J" in the ciphertext represents "E" in 
 Because "J" is 5 letters ahead of "E" in the alphabet, we can guess that the key is 5.
 If you put the ciphertext into the above interactive and set a key of 5, you will find that this is indeed the correct key.
 
-{interactive name="caesar-cipher" type="iframe"}
+{interactive slug="caesar-cipher" type="iframe"}
 
 {panel type="spoiler"}
 

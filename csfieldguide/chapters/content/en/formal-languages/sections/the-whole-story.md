@@ -21,7 +21,7 @@ There are all sorts of variants that we didn't mention, including the Mealy and 
 Believe it or not, all these variations are essentially equivalent, and you can convert from one to the other.
 They are used in a wide range of practical situations to design systems for processing input.
 
-{interactive name="nfa-guesser" type="in-page"}
+{interactive slug="nfa-guesser" type="in-page"}
 
 However, there are also more complex models of computation such as the push-down automaton (PDA) which is able to follow the rules of context-free grammars, and the most general model of computation which is called a Turing machine.
 These models are increasingly complicated and abstract, and structures like the Turing machine aren't used as physical devices (except for fun), but instead as a tool for reasoning about the limits on what can be computed.

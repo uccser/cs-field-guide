@@ -7,7 +7,7 @@
 If you are doing a warm up exercise with the class, the [CS Unplugged binary numbers lesson](https://csunplugged.org/en/topics/binary-numbers/unit-plan/how-binary-digits-work/) provides scaffolding and can be used to teach concepts around binary numbers using only counting or simple addition.
 We also have an interactive which emulates the physical binary cards here:
 
-{interactive name="binary-cards" type="whole-page" text="Binary Cards"}
+{interactive slug="binary-cards" type="whole-page" text="Binary Cards"}
 
 In the chapter we have decided to approach this section by starting with number systems.
 While this may appear "scary" because of the math, most students should be quite familiar with it as it is first introduced very early in primary school in the form of recognising that numbers are made up of the "ones", "tens", "hundreds", etc, and is further built on until eventually in high school they learn about the exponent notation, i.e. \( 541 = 5 \times 10^2 + 4 \times 10^1 + 1 \times 10^0 \).
@@ -110,7 +110,7 @@ The term "denary" seems to be used mainly in the UK; in the US, Australia and NZ
 The interactive below illustrates how this binary number system represents numbers.
 Have a play around with it to see what patterns you can see.
 
-{interactive name="base-calculator" type="whole-page" text="Binary Number Calculator"}
+{interactive slug="base-calculator" type="whole-page" text="Binary Number Calculator"}
 
 **To ensure you are understanding correctly how to use the interactive, verify that when you enter the binary number 101101 it shows that the decimal representation is 45, that when you enter 100000 it shows that the decimal representation is 32, and when you enter 001010 it shows the decimal representation is 10.**
 

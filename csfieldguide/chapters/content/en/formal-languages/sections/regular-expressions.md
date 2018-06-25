@@ -79,7 +79,7 @@ For machines, a computer program can convert any regular expression to an FSA, a
 The simplest kind of matching is just entering some text to match.
 Open the interactive below and type the text "cat" into the box labeled "Regular expression":
 
-{interactive name="regular-expression-search" type="whole-page" text="Regular Expression Search - Exercise 1" parameters="text=The fat cat sat on the mat.%0AThe vindication was catastrophic.%0AThe bilocation of the cataract required certification.%0AThe 42 buffalo baffled them with a pfffffffft sound.%0APennsylvania 6-5000.%0AAssorted exhalations: pfft pffft pft.%0AWas that a match or was it not?"}
+{interactive slug="regular-expression-search" type="whole-page" text="Regular Expression Search - Exercise 1" parameters="text=The fat cat sat on the mat.%0AThe vindication was catastrophic.%0AThe bilocation of the cataract required certification.%0AThe 42 buffalo baffled them with a pfffffffft sound.%0APennsylvania 6-5000.%0AAssorted exhalations: pfft pffft pft.%0AWas that a match or was it not?"}
 
 {panel type="teacher-note"}
 
@@ -171,7 +171,7 @@ It's "regular" because it can be used to define sets of strings from a very simp
 
 Click here for another challenge: you should try to write a short regular expression to match the first two words, but not the last three:
 
-{interactive name="regular-expression-search" type="whole-page" text="Regular Expression Search - Exercise 2" parameters="text=meeeeeeeow%0Ameoooooooooooow%0A%0Awoof%0Amew%0Acluck"}
+{interactive slug="regular-expression-search" type="whole-page" text="Regular Expression Search - Exercise 2" parameters="text=meeeeeeeow%0Ameoooooooooooow%0A%0Awoof%0Amew%0Acluck"}
 
 {panel type="teacher-note"}
 
@@ -184,7 +184,7 @@ Click here for another challenge: you should try to write a short regular expres
 Of course, regular expressions are mainly used for more serious purposes.
 Click on the following interactive to get some new text to search:
 
-{interactive name="regular-expression-search" type="whole-page" text="Regular Expression Search - Exercise 3" parameters="text=Contact me at spam@mymail.com or on 555-1234%0AFFE962%0ADetails: fred@cheapmail.org.nz (03) 987-6543%0ALooking forward to 21 Oct 2015%0AGood old 5 Nov 1955%0ABack in 2 Sep 1885 is the earliest date%0AABC123%0ALet's buy another 2 Mac 9012 systems @ $2000 each."}
+{interactive slug="regular-expression-search" type="whole-page" text="Regular Expression Search - Exercise 3" parameters="text=Contact me at spam@mymail.com or on 555-1234%0AFFE962%0ADetails: fred@cheapmail.org.nz (03) 987-6543%0ALooking forward to 21 Oct 2015%0AGood old 5 Nov 1955%0ABack in 2 Sep 1885 is the earliest date%0AABC123%0ALet's buy another 2 Mac 9012 systems @ $2000 each."}
 
 The following regular expression will find common New Zealand number plates in the sample text, but can you find a shorter version using the {n} notation?
 

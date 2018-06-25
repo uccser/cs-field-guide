@@ -61,7 +61,7 @@ The hashes themselves are not useful to the attacker.
 The following interactive allows you to hash words, such as passwords (but please don't put your real password into it, as you should never enter your password on random sites).
 If you were to enter a well chosen password (e.g. a random string of numbers and letters), and it was of sufficient length, you could safely put the hash on a public website, and nobody would be able to determine what your actual password was.
 
-{interactive name="sha2" type="in-page"}
+{interactive slug="sha2" type="in-page"}
 
 For example, the following database table shows four users of a fictional system, and the hashes of their passwords.
 You could determine their passwords by putting various possibilities through SHA-256 and checking whether or not the output is equivalent to any of the passwords in the database.

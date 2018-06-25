@@ -7,4 +7,4 @@
 
 We also have a Viola-Jones Face Detection interactive available, supporting text will be added at a later date.
 
-{interactive name="viola-jones-face-detector" type="whole-page" text="Viola-Jones Face Detection"}
+{interactive slug="viola-jones-face-detector" type="whole-page" text="Viola-Jones Face Detection"}
