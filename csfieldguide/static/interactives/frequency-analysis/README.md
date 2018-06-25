@@ -6,7 +6,7 @@ This interactive displays a bar chart of counts of specific characters within a 
 
 ## Usage
 
-To use this within the Field Guide it should be used within an iframe tag (e.g. `{interactive name="frequency-analysis" type="iframe"}`).
+To use this within the Field Guide it should be used within an iframe tag (e.g. `{interactive slug="frequency-analysis" type="iframe"}`).
 
 ## Development
 

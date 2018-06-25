@@ -8,14 +8,14 @@ The following interactive shows a cube with symbols on each face.
 You can move it around using what's called a *transform*, which simply adjusts where it is placed in space.
 Try typing in 3D coordinates into this interactive to find each code.
 
-{interactive name="box-translation" type="whole-page" text="Box Translation interactive"}
+{interactive slug="box-translation" type="whole-page" text="Box Translation interactive"}
 
 You've just applied 3D *translation transforms* to the cube.
 Translation just means moving it in the three dimensions up and down, forward and back, and sideways.
 
 Now try the following challenge, which requires you to rotate the box to find the codes.
 
-{interactive name="box-rotation" type="whole-page" text="Box Rotation interactive"}
+{interactive slug="box-rotation" type="whole-page" text="Box Rotation interactive"}
 
 There are several transformations that are used in computer graphics, but the most common ones are translation (moving the object), rotation (spinning it) and scaling (changing its size).
 They come up often in graphics because they are applied not only to objects, but to things like the positions of the camera and lighting sources.
@@ -43,7 +43,7 @@ A negative *x* value means that it's to the *left* of the centre instead of the 
 
 {panel end}
 
-{interactive name="2d-arrow-manipulations" type="whole-page" text="Changing Point Locations" parameters="config=coord-translate"}
+{interactive slug="2d-arrow-manipulations" type="whole-page" text="Changing Point Locations" parameters="config=coord-translate"}
 
 {panel type="teacher-note"}
 
@@ -59,7 +59,7 @@ This kind of transform is used in graphics to specify where an object should be 
 
 The next challenge involves changing the size of the image.
 
-{interactive name="2d-arrow-manipulations" type="whole-page" text="Scaling" parameters="config=coord-scale"}
+{interactive slug="2d-arrow-manipulations" type="whole-page" text="Scaling" parameters="config=coord-scale"}
 
 {panel type="teacher-note"}
 
@@ -77,11 +77,11 @@ This transformation is called *scaling*, and although it can obviously be used t
 In the following interactive, try to get the blue arrow to match up with the red one.
 It will require a mixture of scaling and translation.
 
-{interactive name="2d-arrow-manipulations" type="whole-page" text="Scaling and Translating" parameters="config=coord-scale-translate"}
+{interactive slug="2d-arrow-manipulations" type="whole-page" text="Scaling and Translating" parameters="config=coord-scale-translate"}
 
 Next, see what happens if you swap the *x* and *y* value for each coordinate.
 
-{interactive name="2d-arrow-manipulations" type="whole-page" text="Swapping Coordinates" parameters="config=coord-swap"}
+{interactive slug="2d-arrow-manipulations" type="whole-page" text="Swapping Coordinates" parameters="config=coord-swap"}
 
 This is a simple *rotation* transformation, also useful for positioning objects in a scene,
 but also for specifying things like camera angles.
@@ -128,7 +128,7 @@ where the top left value just means multiply all the x values by 2, and the bott
 
 You can try it out in the following interactive:
 
-{interactive name="2d-arrow-manipulations" type="whole-page" text="2D Scaling" parameters="config=matrix-scale"}
+{interactive slug="2d-arrow-manipulations" type="whole-page" text="2D Scaling" parameters="config=matrix-scale"}
 
 At this stage you may want to have the interactive open in a separate window so that you can read the text below and work on the interactive at the same time.
 
@@ -313,7 +313,7 @@ This is called a *rotation*.
 In general, to rotate an image by a given angle you need to use the sine (abbreviated sin) and cosine (abbreviated cos) functions from trigonometry.
 You can use the interactive below to calculate values for the sin and cos functions.
 
-{interactive name="trig-function-calculator" type="whole-page" text="Trig Function Calculator"}
+{interactive slug="trig-function-calculator" type="whole-page" text="Trig Function Calculator"}
 
 To rotate the image anticlockwise by \( \theta \) degrees, you'll need the following values in the matrix, which rely on trig functions:
 
@@ -335,7 +335,7 @@ The [Khan Academy](https://www.khanacademy.org/math/trigonometry/trigonometry-ri
 
 Note that the following interactives involving rotation transformations expect accuracy of 2 decimal places.
 
-{interactive name="2d-arrow-manipulations" type="whole-page" text="Matrix Rotation" parameters="config=matrix-rotate"}
+{interactive slug="2d-arrow-manipulations" type="whole-page" text="Matrix Rotation" parameters="config=matrix-rotate"}
 
 {panel type="teacher-note"}
 
@@ -375,7 +375,7 @@ A bit simpler than the one for rotation!
 A translation can't be specified by this kind of matrix, so in the interactives we've provided an extra place to specify an *x* and *y* value to translate the input.
 Try it out in the following interactive.
 
-{interactive name="2d-arrow-manipulations" type="whole-page" text="Translation Challenge" parameters="config=matrix-translate"}
+{interactive slug="2d-arrow-manipulations" type="whole-page" text="Translation Challenge" parameters="config=matrix-translate"}
 
 {panel type="teacher-note"}
 
@@ -387,7 +387,7 @@ Translate x is 9 and y is -7 (9 to the right and 7 down).
 
 The next interactive needs you to combine translation with scaling.
 
-{interactive name="2d-arrow-manipulations" type="whole-page" text="Scaling and Translation Challenge" parameters="config=matrix-scale-translate"}
+{interactive slug="2d-arrow-manipulations" type="whole-page" text="Scaling and Translation Challenge" parameters="config=matrix-scale-translate"}
 
 {panel type="teacher-note"}
 
@@ -401,7 +401,7 @@ Translate x is 9 and y is -6.
 The order in which translation and scaling happen makes a difference.
 Try the following challenge!
 
-{interactive name="2d-arrow-manipulations" type="whole-page" text="Translation before Scaling" parameters="config=matrix-scale-translate-2"}
+{interactive slug="2d-arrow-manipulations" type="whole-page" text="Translation before Scaling" parameters="config=matrix-scale-translate-2"}
 
 {panel type="teacher-note"}
 
@@ -416,7 +416,7 @@ In the above interactive, you'll have noticed that scaling is affected by how fa
 If you want to scale around a fixed point in the object (so it expands where it is), then an easy way is to translate it back to the centre (also called the *origin*), scale it, and then translate it back to where it was.
  The following interactive allows you to move the arrow, then scale it, and move it back.
 
-{interactive name="2d-arrow-manipulations" type="whole-page" text="Using Translation to Simplify Scaling" parameters="config=matrix-scale-translate-3"}
+{interactive slug="2d-arrow-manipulations" type="whole-page" text="Using Translation to Simplify Scaling" parameters="config=matrix-scale-translate-3"}
 
 {panel type="teacher-note"}
 
@@ -432,7 +432,7 @@ The second translation needs to be 12,12 to get the arrow back to the starting p
 The same problem comes up with rotation.
 The following interactive allows you to use a translation first to make the scaling more predicable.
 
-{interactive name="2d-arrow-manipulations" type="whole-page" text="Using Translation to Simplify Rotation" parameters="config=matrix-rotate-translate"}
+{interactive slug="2d-arrow-manipulations" type="whole-page" text="Using Translation to Simplify Rotation" parameters="config=matrix-rotate-translate"}
 
 {panel type="teacher-note"}
 
@@ -446,7 +446,7 @@ The second translation needs to be 5,12 to get the arrow back to the starting po
 
 Now that you've had a bit of practice with translation, scaling and rotation, try out these two challenges that combine all three:
 
-{interactive name="2d-arrow-manipulations" type="whole-page" text="Combining Translation, Scaling and Rotation" parameters="config=matrix-rotate-scale-translate"}
+{interactive slug="2d-arrow-manipulations" type="whole-page" text="Combining Translation, Scaling and Rotation" parameters="config=matrix-rotate-scale-translate"}
 
 {panel type="teacher-note"}
 
@@ -458,7 +458,7 @@ The translation vector is 8,4.
 
 {panel end}
 
-{interactive name="2d-arrow-manipulations" type="whole-page" text="Multiple Transformation Challenge" parameters="config=matrix-rotate-scale-translate-2"}
+{interactive slug="2d-arrow-manipulations" type="whole-page" text="Multiple Transformation Challenge" parameters="config=matrix-rotate-scale-translate-2"}
 
 {panel type="teacher-note"}
 
@@ -527,7 +527,7 @@ The two matrices to multiply work out like this:
 You can put the matrix we just calculated into the following interactive to see if it does indeed scale by 2 and rotate 45 degrees.
 Also try making up your own combination of transforms to see if they give the result you expect.
 
-{interactive name="2d-arrow-manipulations" type="whole-page" text="Check a Single Matrix" parameters="config=matrix-single"}
+{interactive slug="2d-arrow-manipulations" type="whole-page" text="Check a Single Matrix" parameters="config=matrix-single"}
 
 In computer graphics systems there can be many transformations combined, and this is done by multiplying them all together (two at a time) to produce one matrix that does all the transforms in one go.
 That transform might then be applied to millions of points, so the time taken to do the matrix multiplication at the start will pay off well.

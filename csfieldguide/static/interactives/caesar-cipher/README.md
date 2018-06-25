@@ -4,7 +4,7 @@ This interactive encrypts and decrypts using the Caesar Cipher.
 
 ## Usage
 
-To use this within the Field Guide it should be use an interactive tag (e.g. `{interactive name="caesar-cipher" type="iframe"}`).
+To use this within the Field Guide it should be use an interactive tag (e.g. `{interactive slug="caesar-cipher" type="iframe"}`).
 
 ## Development
 

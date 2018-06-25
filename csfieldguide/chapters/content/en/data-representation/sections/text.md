@@ -169,7 +169,7 @@ The Unicode encoding scheme tells us how each number (which corresponds to a Uni
 The following interactive will allow you to explore the Unicode character set.
 Enter a number in the box on the left to see what Unicode character corresponds to it, or enter a character on the right to see what its Unicode number is (you could paste one in from a foreign language web page to see what happens with non-English characters).
 
-{interactive name="unicode-chars" type="in-page"}
+{interactive slug="unicode-chars" type="in-page"}
 
 The most widely used Unicode encoding schemes are called UTF-8, UTF-16, and UTF-32;
 you may have seen these names in email headers or describing a text file.
@@ -212,7 +212,7 @@ The following interactive will allow you to convert a Unicode character to its U
 The Unicode character's number is also displayed.
 The bits are simply the binary number form of the character number.
 
-{interactive name="unicode-binary" type="iframe" parameters="mode=utf32"}
+{interactive slug="unicode-binary" type="iframe" parameters="mode=utf32"}
 
 {panel type="project"}
 
@@ -292,7 +292,7 @@ And the character **犬** (dog in Chinese) in UTF-8 would be:
 The following interactive will allow you to convert a Unicode character to its UTF-8 representation.
 The Unicode character's number is also displayed.
 
-{interactive name="unicode-binary" type="iframe" parameters="mode=utf8"}
+{interactive slug="unicode-binary" type="iframe" parameters="mode=utf8"}
 
 ### How does UTF-8 work?
 
@@ -334,7 +334,7 @@ However, the following interactive will allow you to represent text with UTF-16.
 Try putting some text that is in English and some text that is in Japanese into it.
 Compare the representations to what you get with UTF-8.
 
-{interactive name="unicode-binary" type="iframe" parameters="mode=utf16"}
+{interactive slug="unicode-binary" type="iframe" parameters="mode=utf16"}
 
 ## Comparison of text representations
 
@@ -363,7 +363,7 @@ The following interactive will allow you to find out the length of pieces of tex
 Find some samples of English text and Asian text (forums or a translation site are a good place to look), and see how long your various samples are when encoded with each of the three representations.
 Copy paste or type text into the box.
 
-{interactive name="unicode-length" type="in-page"}
+{interactive slug="unicode-length" type="in-page"}
 
 As a general rule, UTF-8 is better for English text, and UTF-16 is better for Asian text.
 UTF-32 always requires 32 bits for each character, so is unpopular in practice.

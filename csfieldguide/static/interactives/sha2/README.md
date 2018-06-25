@@ -6,7 +6,7 @@ This interactive creates a digest using SHA2.
 
 ## Usage
 
-To use this within the Field Guide it should be used in an interactive tag (e.g. `{interactive name="sha2" type="iframe"}`).
+To use this within the Field Guide it should be used in an interactive tag (e.g. `{interactive slug="sha2" type="iframe"}`).
 
 ## Development
 

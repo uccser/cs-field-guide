@@ -7,6 +7,7 @@
 import time
 from random import randint
 
+
 def binary_search(array, item):
     # Performs a Binary search and returns the number
     # of comparisons made
@@ -33,6 +34,7 @@ def binary_search(array, item):
 
     return 0
 
+
 def linear_search(array, item):
     # Performs a Binary search and returns the number
     # of comparisons made
@@ -51,8 +53,9 @@ def linear_search(array, item):
 
     return count
 
+
 def test_binary(n):
-    sample_list = range(n) # create n keys in order
+    sample_list = range(n)  # create n keys in order
     item = randint(0, n)
 
     print("\nBinary Searching for", item, "in a list of", n, "items")
@@ -63,10 +66,10 @@ def test_binary(n):
 
     print("For binary search of", n, "items,", comparisons_made, "comparisons of keys were used")
     print("Time taken: ", (end - start) * 1000, " miliseconds elapsed")
-    
-    
+
+
 def test_linear(n):
-    sample_list = range(n) # create n keys in order
+    sample_list = range(n)  # create n keys in order
     item = randint(0, n)
 
     print("\nLinear Searching for", item, "in a list of", n, "items")
@@ -77,15 +80,13 @@ def test_linear(n):
 
     print("For linear search of", n, "items,", comparisons_made, "comparisons of keys were used")
     print("Time taken: ", (end - start) * 1000, " miliseconds elapsed")
-    
-    
-    
-# this is an example of how to run an experiment
-# for thorough results, experiments should be run for a larger range of values
+
+
+# This is an example of how to run an experiment
+# For thorough results, experiments should be run for a larger range of values
 # and should experiments should be repeated multiple times
 for number_of_keys in [10, 20, 50, 100, 1000]:
     for repeat_of_experiment in range(5):
         test_linear(number_of_keys)
     for repeat_of_experiment in range(5):
         test_binary(number_of_keys)
-

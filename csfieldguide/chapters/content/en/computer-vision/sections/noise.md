@@ -64,7 +64,7 @@ It works a lot like the mean filter above, but is statistically weighted accordi
 
 Open the noise reduction filtering interactive below and experiment with the settings.
 
-{interactive name="pixel-viewer" type="whole-page" text="Noise Reduction interactive" parameters="mode=blur&picturepicker"}
+{interactive slug="pixel-viewer" type="whole-page" text="Noise Reduction interactive" parameters="mode=blur&picturepicker"}
 
 Mathematically, this process is applying a special kind of matrix called a *convolution kernel* to the value of each pixel in the source image, averaging it with the values of other pixels nearby and copying that average to each pixel in the new image.
 In the case of the Gaussian blur, the average is weighted, so that the values of nearby pixels are given more importance than ones that are far away.

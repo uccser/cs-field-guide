@@ -1,8 +1,6 @@
 """Models for the appendices application."""
 
 from django.db import models
-from interactives.models import Interactive
-from django.core.exceptions import ValidationError
 from utils.TranslatableModel import TranslatableModel
 
 

@@ -1,6 +1,6 @@
 """Views for the general application."""
 
-from django.views.generic import TemplateView, DetailView
+from django.views.generic import TemplateView
 from django.shortcuts import redirect
 
 

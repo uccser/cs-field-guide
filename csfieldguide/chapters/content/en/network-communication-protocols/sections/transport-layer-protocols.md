@@ -80,7 +80,7 @@ Like in TCP, the game supports packet ordering, checksums (shields), Acks and Na
 
 {panel end}
 
-{interactive name="packet-attack" type="whole-page" text="Packet Attack interactive"}
+{interactive slug="packet-attack" type="whole-page" text="Packet Attack interactive"}
 
 {panel type="curiosity"}
 

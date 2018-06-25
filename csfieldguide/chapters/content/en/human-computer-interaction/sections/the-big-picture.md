@@ -33,7 +33,7 @@ If you ask people if they have ever been frustrated using a computer system, you
 
 Try out the following interactive task, and get some friends to try it:
 
-{interactive name="deceiver" type="in-page"}
+{interactive slug="deceiver" type="in-page"}
 
 Did anyone get a wrong answer to the question even though they thought they got it right?
 You may have noticed that the "Even" and "Odd" buttons sometimes swap.

@@ -13,7 +13,7 @@ All the colours on a printed document were made by mixing these primary colours.
 Both these kinds of mixing are called "subtractive mixing", because they start with a white canvas or paper, and "subtract" colour from it.
 The interactive below allows you to experiment with CMY incase you are not familiar with it, or if you just like mixing colours.
 
-{interactive name="cmy-mixer" type="in-page"}
+{interactive slug="cmy-mixer" type="in-page"}
 
 Computer screens and related devices also rely on mixing three colours, except they need a different set of primary colours because they are *additive*, starting with a black screen and adding colour to it.
 For additive colour on computers, the colours red, green and blue (RGB) are used.
@@ -21,7 +21,7 @@ Each pixel on a screen is typically made up of three tiny "lights"; one red, one
 By increasing and decreasing the amount of light coming out of each of these three, all the different colours can be made.
 The following interactive allows you to play around with RGB.
 
-{interactive name="rgb-mixer" type="in-page"}
+{interactive slug="rgb-mixer" type="in-page"}
 
 See what colours you can make with the **RGB** interactive.
 Can you make black, white, shades of grey, yellow, orange, and purple?
@@ -94,7 +94,7 @@ Each pixel is a solid colour square, and the computer needs to store the colour 
 If you zoom in far enough, the interactive will show you the red-green-blue values for each pixel.
 You can pick a pixel and put the values on the slider above - it should come out as the same colour as the pixel.
 
-{interactive name="pixel-viewer" type="whole-page" text="Pixel Viewer interactive"}
+{interactive slug="pixel-viewer" type="whole-page" text="Pixel Viewer interactive"}
 
 {panel type="curiosity"}
 
@@ -220,7 +220,7 @@ For example, `#000000` has zero for red, green and blue, so setting a higher val
 You can use this HTML page to experiment with hexadecimal colours.
 Just enter a colour in the space below:
 
-{interactive name="hex-background-colour" type="in-page"}
+{interactive slug="hex-background-colour" type="in-page"}
 
 {panel end}
 
@@ -236,7 +236,7 @@ The following interactive gets you to try and match a specific colour using 24 b
 It should be possible to get a perfect match using 24 bit colour.
 But what about 8 bits?
 
-{interactive name="colour-matcher" type="whole-page" text="Colour Matcher"}
+{interactive slug="colour-matcher" type="whole-page" text="Colour Matcher"}
 
 The above system used 3 bits to specify the amount of red (8 possible values), 3 bits to specify the amount of green (again 8 possible values), and 2 bits to specify the amount of blue (4 possible values).
 This gives a total of 8 bits (hence the name), which can be used to make 256 different bit patterns, and thus can represent 256 different colours.
@@ -277,7 +277,7 @@ In which is it not?
 In which would you actually care about the colours in the image?
 In which situations is colour actually not necessary (i.e. when are we fine with two colours)?
 
-{interactive name="image-bit-comparer" type="whole-page" text="Image Bit Comparer"}
+{interactive slug="image-bit-comparer" type="whole-page" text="Image Bit Comparer"}
 
 {panel type="additional-information"}
 
@@ -297,7 +297,7 @@ For images that will need to be downloaded on 3G devices where internet is expen
 Have an experiement with the following interactive, to see what impact different numbers of bits for each colour has.
 Do you think 8 bit colour was right in having 2 bits for blue, or should it have been green or red that got only 2 bits?
 
-{interactive name="image-bit-comparer" type="whole-page" text="Image Bit Comparer - Change Bits mode" parameters="change-bits=true"}
+{interactive slug="image-bit-comparer" type="whole-page" text="Image Bit Comparer - Change Bits mode" parameters="change-bits=true"}
 
 {panel type="curiosity"}
 

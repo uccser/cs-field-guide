@@ -3,7 +3,7 @@
 To give you a taste of what can be done, let's try searching for words that fit particular patterns.
 Suppose you're looking for words that contain the name "tim", type the word "tim" (or a few letters from your name), then press the "Filter words" button to find all words containing "tim".
 
-{interactive name="regular-expression-filter" type="in-page"}
+{interactive slug="regular-expression-filter" type="in-page"}
 
 That's a pretty simple search (though the results may have surprised you!).
 But now we introduce the *wildcard* code, which in this case is "." ---  this is a widely used convention in formal languages.

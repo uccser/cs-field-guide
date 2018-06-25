@@ -20,4 +20,4 @@ This means the largest items are packed first.
 
 Try out these algorithms or your own ideas using this interactive:
 
-{interactive name="bin-packing" type="whole-page" text="Bin Packing Interactive"}
+{interactive slug="bin-packing" type="whole-page" text="Bin Packing Interactive"}

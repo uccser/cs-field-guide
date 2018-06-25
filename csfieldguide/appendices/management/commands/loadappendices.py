@@ -1,6 +1,5 @@
 """Module for the custom Django loadappendices command."""
 
-import os.path
 from django.core.management.base import BaseCommand
 from django.conf import settings
 from utils.LoaderFactory import LoaderFactory
