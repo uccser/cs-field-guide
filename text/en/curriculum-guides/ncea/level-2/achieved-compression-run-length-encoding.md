@@ -12,7 +12,7 @@ In order to fully cover the standard, you will also need to have done projects c
 
 Encoding has the following *achieved* bullet points in achievement standard 2.44 which this guide covers.
 
-**Achieved**: “describing the concept of encoding information using compression coding, error control coding, and encryption; and typical uses of encoded information”
+**Achieved**: "describing the concept of encoding information using compression coding, error control coding, and encryption; and typical uses of encoded information"
 
 As with all externally assessed reports, you should base your explanations around personalised examples.
 

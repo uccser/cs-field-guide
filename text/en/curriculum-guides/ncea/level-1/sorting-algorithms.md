@@ -16,19 +16,19 @@ The topic of *Algorithms* has the following bullet points in achievement standar
 
 ### Comparing algorithms, programs, and informal instructions
 
-**Achieved**: “describing the key characteristics, and roles of algorithms, programs and informal instructions”
+**Achieved**: "describing the key characteristics, and roles of algorithms, programs and informal instructions"
 
-**Merit**: “explaining how algorithms are distinct from related concepts such as programs and informal instructions”
+**Merit**: "explaining how algorithms are distinct from related concepts such as programs and informal instructions"
 
-**Excellence**: “comparing and contrasting the concepts of algorithms, programs, and informal instructions”
+**Excellence**: "comparing and contrasting the concepts of algorithms, programs, and informal instructions"
 
 ### Determining the cost of algorithms and understanding various kinds of steps in algorithms
 
-**Achieved**: “describing an algorithm for a task, showing understanding of the kinds of steps that can be in an algorithm, and determining the cost of an algorithm for a problem of a particular size”
+**Achieved**: "describing an algorithm for a task, showing understanding of the kinds of steps that can be in an algorithm, and determining the cost of an algorithm for a problem of a particular size"
 
-**Merit**: “showing understanding of the way steps in an algorithm for a task can be combined in sequential, conditional, and iterative structures and determining the cost of an iterative algorithm for a problem of size *n*”
+**Merit**: "showing understanding of the way steps in an algorithm for a task can be combined in sequential, conditional, and iterative structures and determining the cost of an iterative algorithm for a problem of size *n*"
 
-**Excellence**: “determining and comparing the costs of two different iterative algorithms for the same problem of size *n*”
+**Excellence**: "determining and comparing the costs of two different iterative algorithms for the same problem of size *n*"
 
 As with all externally assessed Digital Technology reports, you should base your explanations around personalised examples.
 
@@ -136,14 +136,14 @@ Look at your graph. Does the rate of increase for the two algorithms seem to be 
 **Achieved/ Merit/ Excellence**
 
 {panel type="teacher-note" summary="Parts of the standard covered"}
-"comparing and contrasting the concepts of algorithms, programs, and informal instructions” (along with the achieved/ merit criteria)
+"comparing and contrasting the concepts of algorithms, programs, and informal instructions" (along with the achieved/ merit criteria)
 
 Note that the term "informal instructions" isn't a well defined term outside of this NCEA standard, so it will be hard to find descriptions of it. However, it is explained in the field guide.
 {panel end}
 
 We recommend doing this part after you have done programming languages.
 
-All three levels (A/M/E) are subsumed by the E requirement, so you should try to do that i.e. “comparing and contrasting the concepts of algorithms, programs, and informal instructions”. You should refer to examples you used in your report or include additional examples (e.g. a program used as an example in the programming languages topic, or an algorithm describing the sorting process, etc). If you are confused, have another look at the field guide. You should only need to write a few sentences to address this requirement.
+All three levels (A/M/E) are subsumed by the E requirement, so you should try to do that i.e. "comparing and contrasting the concepts of algorithms, programs, and informal instructions". You should refer to examples you used in your report or include additional examples (e.g. a program used as an example in the programming languages topic, or an algorithm describing the sorting process, etc). If you are confused, have another look at the field guide. You should only need to write a few sentences to address this requirement.
 
 ## Hints for success
 
@@ -159,7 +159,7 @@ Some students showed a detailed example of how a sorting algorithm sorted a smal
 Don’t include material unnecessary for the standard in the report. More unnecessary material contained in the report makes it harder for the marker to find the content that is relevant, and there are no additional marks for unnecessary content!
 {panel end}
 
-- Don’t confuse “algorithm cost” with the “algorithm length”. The number of lines in the algorithm or program normally unrelated to the cost. Cost is the time the algorithm actually takes to run, or the number of comparisons that have to be made. You can find more information in the Field Guide if you are not sure.
+- Don’t confuse "algorithm cost" with the "algorithm length". The number of lines in the algorithm or program normally unrelated to the cost. Cost is the time the algorithm actually takes to run, or the number of comparisons that have to be made. You can find more information in the Field Guide if you are not sure.
 - While we recommend using the balance scales interactive (or real balance scales), if you do instead decide to include a pen and paper trace, don’t give yourself more than 5 or 6 values to sort, and use an efficient layout that ensures the entire trace takes no more than about half a page.
 - Resize screenshots/ photos so that they are large enough to see what is on them, but not taking up unnecessary space.
 - Be sure to label the axis of your graph clearly so that the marker knows what your graph shows.

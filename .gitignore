@@ -1,36 +1,3 @@
-# Ignore everything within output folder except README.md
-output/*
-!output/README.md
-
-# Ignore everything within cache folder
-cache/*
-
-# Ignore Python module cache files
-generator/__pycache__/*
-*.pyc
-
-# OS generated files
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
-*.Rhistory
-
-# Vim files
-*.swo
-*.swp
-
-# PyCharm IDE files
-.idea
-
-
-# Ignore app.yaml file that contains passwords, secret keys, etc
-app*.yaml
-!app-sample.yaml
-
 # Byte-compiled / optimized / DLL files
 *__pycache__/
 *.py[cod]
@@ -78,6 +45,7 @@ nosetests.xml
 coverage.xml
 *,cover
 .hypothesis/
+csunplugged/tests/output/
 
 # Translations
 *.mo
@@ -127,6 +95,10 @@ ENV/
 # Installed node modules
 node_modules/
 
+# vim files
+*.swp
+*.swo
+
 # Custom git settings
 .gitconfig
 
@@ -135,3 +107,9 @@ temp/
 
 # Collected static files folder
 staticfiles/
+
+# Search index
+whoosh_index/
+
+# OSX system files
+.DS_Store

@@ -362,11 +362,11 @@ using LaTeX syntax.
 
 .. code-block:: none
 
-  This is inline math: $ 2 + 2 = 4 $
+  This is inline math: ``\( 2 + 2 = 4 \)``
 
   This is block math:
 
-  $$ \begin{bmatrix} s & 0 \\ 0 & s \\ \end{bmatrix} $$
+  ``\[ \begin{bmatrix} s & 0 \\ 0 & s \\ \end{bmatrix} \]``
 
 Math equations are rendered in MathJax using the LaTeX syntax.
 

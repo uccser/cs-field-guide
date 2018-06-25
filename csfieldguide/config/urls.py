@@ -12,6 +12,7 @@ urlpatterns = i18n_patterns(
     url(r"", include("general.urls", namespace="general")),
     url(r"^interactives/", include("interactives.urls", namespace="interactives")),
     url(r"^chapters/", include("chapters.urls", namespace="chapters")),
+    url(r"^appendices/", include("appendices.urls", namespace="appendices")),
 )
 
 if settings.DEBUG:  # pragma: no cover

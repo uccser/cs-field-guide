@@ -8,13 +8,13 @@ import re
 import os.path
 from os import listdir
 from verto import Verto
-from verto.errors.StyleError import StyleError
+from verto.errors.Error import Error as VertoError
 from django.conf import settings
 from django.utils.translation import to_locale
 from utils.check_required_files import check_converter_required_files
 from utils.check_glossary_links import check_converter_glossary_links
 from utils.errors.CouldNotFindMarkdownFileError import CouldNotFindMarkdownFileError
-from utils.errors.MarkdownStyleError import MarkdownStyleError
+from utils.errors.VertoConversionError import VertoConversionError
 from utils.errors.EmptyMarkdownFileError import EmptyMarkdownFileError
 from utils.errors.EmptyYAMLFileError import EmptyYAMLFileError
 from utils.errors.InvalidYAMLFileError import InvalidYAMLFileError
@@ -135,8 +135,8 @@ class BaseLoader():
         result = None
         try:
             result = self.converter.convert(content)
-        except StyleError as e:
-            raise MarkdownStyleError(md_file_path, e) from e
+        except VertoError as e:
+            raise VertoConversionError(md_file_path, e) from e
 
         if heading_required:
             if result.title is None:

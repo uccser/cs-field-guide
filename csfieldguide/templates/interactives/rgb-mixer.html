@@ -1,0 +1,38 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+    <div id="interactive-rgb-mixer" class="mb-3">
+      <h3>{% trans "RGB Colour Mixer - Used by Screens" %}</h3>
+      <div id="interactive-rgb-mixer-container">
+        <div id="interactive-rgb-mixer-result"></div>
+            <div id="interactive-rgb-mixer-sliders">
+              <div>
+                <div>{% trans '<strong>Red</strong> - Currently set to <span id="interactive-rgb-mixer-red-value">127</span>' %}</div>
+                <div class="interactive-rgb-mixer-slider"></div>
+              </div>
+              <div>
+                <div>{% trans '<strong>Green</strong> - Currently set to <span id="interactive-rgb-mixer-green-value">127</span>' %}</div>
+                <div class="interactive-rgb-mixer-slider"></div>
+              </div>
+              <div>
+                <div>{% trans '<strong>Blue</strong> - Currently set to <span id="interactive-rgb-mixer-blue-value">127</span>' %}</div>
+                <div class="interactive-rgb-mixer-slider"></div>
+              </div>
+        </div>
+      </div>
+    </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/rgb-mixer/css/rgb-mixer.css' %}">
+  <link rel="stylesheet" href="{% static 'css//third-party/nouislider.min.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'js/third-party/wNumb.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/third-party/nouislider.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'interactives/rgb-mixer/js/rgb-mixer.js' %}"></script>
+{% endblock js %}
