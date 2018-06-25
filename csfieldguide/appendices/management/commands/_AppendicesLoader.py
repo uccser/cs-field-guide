@@ -65,7 +65,6 @@ class AppendicesLoader(TranslatableModelLoader):
                 subappendix.save()
                 self.log("Added subappendix: {}".format(appendices_translations[subappendix_slug]["en"]["name"]), 1)
 
-
     def check_template(self, page_data, type):
         """Check template in page_data is valid.
 

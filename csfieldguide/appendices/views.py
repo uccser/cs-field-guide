@@ -1,6 +1,7 @@
 """Views for the appendices application."""
 
 from django.views.generic import TemplateView, DetailView
+from django.shortcuts import get_object_or_404
 from appendices.models import (
     Appendix,
     Subappendix,
