@@ -13,20 +13,14 @@ from appendices.models import (
 class AppendixTranslationOptions(TranslationOptions):
     """Translation options for Appendix model."""
 
-    fields = ("name")
-    fallback_undefined = {
-        "name": None,
-    }
+    fields = ("name",)
 
 
 class SubappendixTranslationOptions(TranslationOptions):
-    """Translation options for Subpage model."""
+    """Translation options for Subappendix model."""
 
-    fields = ("name")
-    fallback_undefined = {
-        "name": None,
-    }
+    fields = ("name",)
 
 
-# translator.register(Appendix, AppendixTranslationOptions)
-# translator.register(Subappendix, SubappendixTranslationOptions)
+translator.register(Appendix, AppendixTranslationOptions)
+translator.register(Subappendix, SubappendixTranslationOptions)
