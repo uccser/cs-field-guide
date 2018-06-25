@@ -12,11 +12,11 @@ In order to fully cover the standard, you will also need to have done projects c
 
 Human Computer Interaction has the following bullet points in achievement standard 1.44, which this guide covers.
 
-**Achieved**: “describing the role of a user interface and factors that contribute to its usability”
+**Achieved**: "describing the role of a user interface and factors that contribute to its usability"
 
-**Merit**: “explaining how different factors of a user interface contribute to its usability”
+**Merit**: "explaining how different factors of a user interface contribute to its usability"
 
-**Excellence**: “discussing how different factors of a user interface contribute to its usability by comparing and contrasting related interfaces”
+**Excellence**: "discussing how different factors of a user interface contribute to its usability by comparing and contrasting related interfaces"
 
 As with all externally assessed reports, you should base your explanations around personalised examples, so that the marker can be confident that your report is your own work.
 
@@ -98,7 +98,7 @@ Getting students to think of tasks instead of features is key to them writing a 
 Once you have chosen an interface, you need to think of one or two common tasks that are carried out with your chosen interface. The tasks should be specific. Some tasks (depending on the interfaces you chose) could be:
 
 - Setting an alarm that will ring at 4:25am tomorrow to catch an early flight (or for a more sophisticated interface, at 7:25am on Monday, Tuesday, Wednesday, and Friday i.e. all weekdays except Thursday, which perhaps you have to get up at 6:30 AM to make it to a really early meeting).
-- Sending a text to a friend that says “What are you doing at 3pm today? Want to go for coffee? :-)” (Symbols are good to include in the message, as these can be challenging to find on some interfaces).
+- Sending a text to a friend that says "What are you doing at 3pm today? Want to go for coffee? :-)" (Symbols are good to include in the message, as these can be challenging to find on some interfaces).
 - Changing a phone background to a photo you found online.
 - Heating some food or water in a microwave for 1 minute, 20 seconds.
 - Booking the cheapest flight that will arrive before 11 AM in Auckland from Christchurch, on the next Saturday (stop once you get to the part that asks for payment details!).

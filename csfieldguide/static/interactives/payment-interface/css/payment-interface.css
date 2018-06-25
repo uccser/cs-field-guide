@@ -1,0 +1,38 @@
+#interactive-payment-interface-message {
+  font-weight: bold;
+}
+
+label {
+  color: black;
+}
+
+#interactive-payment-interface input:focus {
+  border-bottom: 1px solid #444;
+  box-shadow: 0 1px 0 0 #444;
+}
+
+#interactive-payment-interface-message.success {
+  color: green;
+}
+
+#interactive-payment-interface-message.error {
+  color: red;
+}
+
+input {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #9e9e9e;
+    border-radius: 0;
+    outline: none;
+    height: 3rem;
+    width: 300px;
+    font-size: 1rem;
+    margin: 0 0 15px 0;
+    padding: 0;
+    box-shadow: none;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    transition: all .3s
+}

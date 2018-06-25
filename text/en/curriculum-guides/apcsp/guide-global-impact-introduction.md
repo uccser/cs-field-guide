@@ -35,7 +35,7 @@ EXCLUSION STATEMENT (for EK 7.1.1C): Detailed knowledge of any social media site
 
 ### LO 7.1.2 Explain how people participate in a problem-solving process that scales.
 - EK 7.1.2A Distributed solutions must scale to solve some problems.
-- EK 7.1.2B Science has been impacted by using scale and “citizen science” to solve scienti c problems using home computers in scientific research.
+- EK 7.1.2B Science has been impacted by using scale and "citizen science" to solve scienti c problems using home computers in scientific research.
 - EK 7.1.2C Human computation harnesses contributions from many humans to solve problems related to digital data and the Web.
 - EK 7.1.2D Human capabilities are enhanced by digitally enabled collaboration.
 - EK 7.1.2E Some online services use the contributions of many people to bene t both individuals and society.
@@ -76,7 +76,7 @@ and aggregate levels.
 - EK 7.4.1A The innovation and impact of social media and online access varies in different countries and in different socioeconomic groups.
 - EK 7.4.1B Mobile, wireless, and networked computing have an impact on innovation throughout the world.
 - EK 7.4.1C The global distribution of computing resources raises issues of equity, access, and power.
-- EK 7.4.1D Groups and individuals are affected by the “digital divide”—differing access to computing and the Internet based on socioeconomic or geographic characteristics.
+- EK 7.4.1D Groups and individuals are affected by the "digital divide"—differing access to computing and the Internet based on socioeconomic or geographic characteristics.
 - EK 7.4.1E Networks and infrastructure are supported by both commercial and governmental initiatives.
 
 ### LO 7.5.1 Access, manage, and attribute information using effective strategies.

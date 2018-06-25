@@ -1,0 +1,30 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+    <div id="interactive-payment-interface" class="mb-3">
+        <div>
+            <label for="interactive-payment-interface-input"> <h3>{% trans "Payment Amount" %}</h3></label>
+            <div>
+              <input type="text" id="interactive-payment-interface-input" placeholder="{% trans 'How much do you want to pay?' %}"/>
+            </div>
+        </div>
+        <div id="interactive-payment-interface-message"></div>
+    </div>
+{% endblock html %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'interactives/payment-interface/css/payment-interface.css' %}">
+{% endblock css %}
+
+{% block js %}
+    <script type="text/javascript">
+        var payment_interface_il8n = {
+            "valid": "{% trans 'Valid amount.' %}",
+            "invalid": "{% trans 'Invalid amount. Decimals are allowed up to two places.' %}",
+        }
+    </script>
+    <script type="text/javascript" src="{% static 'interactives/payment-interface/js/payment-interface.js' %}"></script>
+{% endblock js %}

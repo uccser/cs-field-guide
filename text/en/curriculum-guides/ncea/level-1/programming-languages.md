@@ -12,11 +12,11 @@ In order to fully cover the standard, you will also need to have done projects c
 
 Programming Languages has the following bullet points in achievement standard 1.44, which this guide covers. Note that merit is split into two bullet points.
 
-**Achieved**: “describing the role and characteristics of programming languages, including the different roles and characteristics of high level languages and low level (or machine) languages, and the function of a compiler”
+**Achieved**: "describing the role and characteristics of programming languages, including the different roles and characteristics of high level languages and low level (or machine) languages, and the function of a compiler"
 
-**Merit**: “explaining how the characteristics of programming languages, including the different characteristics of high level and low level (or machine) languages, are important for their roles” and “explaining the need for programs to translate between high and low level languages”
+**Merit**: "explaining how the characteristics of programming languages, including the different characteristics of high level and low level (or machine) languages, are important for their roles" and "explaining the need for programs to translate between high and low level languages"
 
-**Excellence**: “comparing and contrasting high level and low level (or machine) languages, and explaining different ways in which programs in a high level programming language are translated into a machine language
+**Excellence**: "comparing and contrasting high level and low level (or machine) languages, and explaining different ways in which programs in a high level programming language are translated into a machine language
 
 {panel type="teacher-note" summary="Definition of translation"}
 Note that *translation* refers to compilers, interpreters, and a combination of the two.

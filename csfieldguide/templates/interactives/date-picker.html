@@ -1,0 +1,70 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div id="interactive-date-picker">
+    <h5>{% trans "Pick a date" %}</h5>
+    <select name="dropdown" id="interactive-date-picker-day" size=1 class="custom-select">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10</option>
+      <option value="11">11</option>
+      <option value="12">12</option>
+      <option value="13">13</option>
+      <option value="14">14</option>
+      <option value="15">15</option>
+      <option value="16">16</option>
+      <option value="17">17</option>
+      <option value="18">18</option>
+      <option value="19">19</option>
+      <option value="20">20</option>
+      <option value="21">21</option>
+      <option value="22">22</option>
+      <option value="23">23</option>
+      <option value="24">24</option>
+      <option value="25">25</option>
+      <option value="26">26</option>
+      <option value="27">27</option>
+      <option value="28">28</option>
+      <option value="29">29</option>
+      <option value="30">30</option>
+      <option value="31">31</option>
+    </select>​
+    <select id="interactive-date-picker-month" size=1 class="custom-select">
+      <option value="1">{% trans "January" %}</option>
+      <option value="2">{% trans "February" %}</option>
+      <option value="3">{% trans "March" %}</option>
+      <option value="4">{% trans "April" %}</option>
+      <option value="5">{% trans "May" %}</option>
+      <option value="6">{% trans "June" %}</option>
+      <option value="7">{% trans "July" %}</option>
+      <option value="8">{% trans "August" %}</option>
+      <option value="9">{% trans "September" %}</option>
+      <option value="10">{% trans "October" %}</option>
+      <option value="11">{% trans "November" %}</option>
+      <option value="12">{% trans "December" %}</option>
+    </select>​
+    <select id="interactive-date-picker-year" size=1 class="custom-select">
+    </select>
+    <div id="interactive-date-picker-feedback" class="invisible">
+      {% trans "Do you realise that's not a real date?" %}
+    </div>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/date-picker/css/date-picker.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script src="{% static 'interactives/date-picker/js/date-picker.js' %}"></script>
+{% endblock js %}

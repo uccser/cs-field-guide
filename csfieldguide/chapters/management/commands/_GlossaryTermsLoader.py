@@ -22,7 +22,7 @@ class GlossaryTermsLoader(TranslatableModelLoader):
                 glossary_slug = filename[:-len(self.FILE_EXTENSION)]
                 glossary_slugs.add(glossary_slug)
 
-        for glossary_slug in glossary_slugs:
+        for glossary_slug in sorted(glossary_slugs):
             term_translations = self.get_blank_translation_dictionary()
 
             content_filename = "{}.md".format(glossary_slug)
@@ -41,4 +41,4 @@ class GlossaryTermsLoader(TranslatableModelLoader):
 
             self.log("Added glossary term: {}".format(glossary_term.__str__()))
 
-        self.log("All glossary terms loaded!\n")
+        self.log("{} glossary terms loaded!\n".format(len(glossary_slugs)))

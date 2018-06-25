@@ -11,5 +11,6 @@ class Command(management.base.BaseCommand):
     def handle(self, *args, **options):
         """Automatically called when the updatedata command is given."""
         management.call_command("flush", interactive=False)
+        management.call_command("loadappendices")
         management.call_command("loadinteractives")
         management.call_command("loadchapters")
