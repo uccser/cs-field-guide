@@ -5,16 +5,22 @@
 
 {% block html %}
   <div id="interactive-hex-background-colour">
-    <h3>{% trans "RGB Backround Colour Changer" %}</h3>
-
-    <div id="interactive-hex-background-colour-container">
-        #<input type="text" maxlength="6" id="interactive-hex-background-colour-input" value="FFFFFF" onfocus="this.value=''" />
-        <button class="btn btn-primary m-1" id="interactive-hex-background-colour-submit-btn" onclick="changeColour()">
-          {% trans "Change" %}
-        </button>
-        <button class="btn btn-primary m-1" id="interactive-hex-background-colour-reset-btn" onclick="resetColour()">
-          {% trans "Reset" %}
-        </button>
+    <h3 id="interactive-hex-background-colour-heading">{% trans "RGB Backround Colour Changer" %}</h3>
+    <div id="interactive-hex-background-colour-container" class="my-2">
+      <div class="input-group">
+        <div id="interactive-hex-background-colour-prefix" class="input-group-prepend">
+          <label class="input-group-text" for="interactive-hex-background-colour-input">#</label>
+        </div>
+        <input type="text" maxlength="6" class="form-control" id="interactive-hex-background-colour-input" value="FFFFFF" onfocus="this.value=''">
+        <div class="input-group-append">
+          <button class="btn btn-outline-dark" id="interactive-hex-background-colour-submit-btn" onclick="changeColour()">
+            {% trans "Change" %}
+          </button>
+          <button class="btn btn-outline-dark" id="interactive-hex-background-colour-reset-btn" onclick="resetColour()">
+            {% trans "Reset" %}
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 {% endblock html %}

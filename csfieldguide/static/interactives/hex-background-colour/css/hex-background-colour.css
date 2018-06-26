@@ -1,8 +1,13 @@
 
-#interactive-hex-background-colour-container input[type=text] {
-  width: 60px;
+#interactive-hex-background-colour-container {
+  width: 60%;
 }
 
-#interactive-hex-background-colour-container a {
-    display: inline-block;
+#interactive-hex-background-colour-input:focus {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+#interactive-hex-background-colour-heading {
+    text-align: left;
 }
