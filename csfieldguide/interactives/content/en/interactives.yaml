@@ -51,7 +51,7 @@ fsa-light:
 fsa-washing-machine:
   name: FSA Washing Machine
 hex-background-colour:
-  name: hex-background-colour (broken)
+  name: Hex Background Colour
 high-score-boxes:
   name: High Score Boxes (broken)
 huffman-tree:

@@ -1,0 +1,33 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div id="interactive-hex-background-colour">
+    <h3>{% trans "RGB Backround Colour Changer" %}</h3>
+
+    <div id="interactive-hex-background-colour-container">
+        #<input type="text" maxlength="6" id="interactive-hex-background-colour-input" value="FFFFFF" onfocus="this.value=''" />
+        <button class="btn btn-primary m-1" id="interactive-hex-background-colour-submit-btn" onclick="changeColour()">
+          {% trans "Change" %}
+        </button>
+        <button class="btn btn-primary m-1" id="interactive-hex-background-colour-reset-btn" onclick="resetColour()">
+          {% trans "Reset" %}
+        </button>
+    </div>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/hex-background-colour/css/hex-background-colour.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript">
+    var hex_background_colour_il8n = {
+      "invalid": "{% trans 'invalid!' %}",
+    }
+  </script>
+  <script type="text/javascript" src="{% static 'interactives/hex-background-colour/js/hex-background-colour.js' %}"></script>
+{% endblock js %}
