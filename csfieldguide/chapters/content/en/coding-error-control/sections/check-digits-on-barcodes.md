@@ -32,7 +32,7 @@ The following interactive checks GTIN-13 barcodes.
 Enter the first 12 digits of a barcode number into the interactive, and it will tell you that the last digit should be!
 You could start by using the barcode number "9 300675 036009".
 
-{interactive name="checksum-calculator-gtin-13" type="in-page"}
+{interactive slug="checksum-calculator-gtin-13" type="in-page"}
 
 {panel type="teacher-note"}
 
@@ -196,7 +196,7 @@ Then get the remainder when divided by 10.
 To work out the checksum, you should calculate the digit needed to make this number up to 10 (for example, if the remainder is 8, the check digit is 2).
 If the remainder is 0, then the check digit is also 0.
 
-{interactive name="checksum-calculator" type="in-page"}
+{interactive slug="checksum-calculator" type="in-page"}
 
 {comment Insert GTIN-13 diagram here}
 
@@ -377,13 +377,13 @@ This means that you can do this project without having to ask people for their p
 Although the numbers from this interactive are random, their check digits are calculated using the appropriate method, so you can use them as examples for your project.
 Actually, not all of them will be correct, so one of your challenges is to figure out which are ok!
 
-{interactive name="number-generator" type="in-page"}
+{interactive slug="number-generator" type="in-page"}
 
 Your project is to choose a checksum other than the 13-digit barcodes, and research how it is calculated (they all use slightly different multipliers).
 You should demonstrate how they work (using the following interactive if you want), and find out which of the numbers generated are incorrect.
 
 ISBN-10 is particularly effective, and you could also look into why that is.
 
-{interactive name="checksum-calculator" type="iframe"}
+{interactive slug="checksum-calculator" type="iframe"}
 
 {panel end}

@@ -161,7 +161,7 @@ Huffman trees aren't built manually - in fact, a Huffman trees are built every t
 You can generate your own Huffman Trees using the interactive below.
 Try some different texts, such as one with only two different characters; one where all the characters are equally likely; and one where one character is way more likely than the others.
 
-{interactive name="huffman-tree" type="whole-page" text="Huffman Tree generator"}
+{interactive slug="huffman-tree" type="whole-page" text="Huffman Tree generator"}
 
 {panel type="video"}
 

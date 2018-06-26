@@ -100,14 +100,14 @@ Firstly, you will need to generate a pair of keys using the key generator intera
 You should *keep the private key secret*, and *publicly announce the public key* so that your friends can send you messages (e.g. put it on the whiteboard, or email it to some friends).
 Make sure you save your keys somewhere so you don’t forget them – a text file would be best.
 
-{interactive name="rsa-key-generator" type="in-page"}
+{interactive slug="rsa-key-generator" type="in-page"}
 
 ### Encrypting messages with the public key
 
 This next interactive is the encrypter, and it is used to encrypt messages with your **public key**.
 Your friends should use this to encrypt messages for you.
 
-{interactive name="rsa-no-padding" type="iframe"}
+{interactive slug="rsa-no-padding" type="iframe"}
 
 To ensure you understand, try encrypting a short message with your **public key**.
 In the next section, there is an interactive that you can then use to decrypt the message with your private key.
@@ -118,7 +118,7 @@ Finally, this interactive is the decrypter.
 It is used to decrypt messages that were encrypted with your public key.
 In order to decrypt the messages, you will need your **private key**.
 
-{interactive name="rsa-no-padding" type="iframe" parameters="mode=decrypt"}
+{interactive slug="rsa-no-padding" type="iframe" parameters="mode=decrypt"}
 
 Despite even your enemies knowing your public key (as you publicly announced it), they cannot use it to decrypt your messages which were encrypted using the public key.
 You are the only one who can decrypt messages, as that requires the private key which hopefully you are the only one who has access to.

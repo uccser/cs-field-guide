@@ -11,12 +11,12 @@ Once we have done this, we can apply a threshold to the image to decide whether 
 The following interactive allows you to do this to an image you upload.
 Try using different thresholds on different images and observing the results.
 
-{interactive name="pixel-viewer" type="whole-page" text="Greyscale Thresholding interactive" parameters="mode=thresholdgreyscale"}
+{interactive slug="pixel-viewer" type="whole-page" text="Greyscale Thresholding interactive" parameters="mode=thresholdgreyscale"}
 
 The next interactive lets you do the same thing, but on the original colour image.
 You can set up more complicated statements as your threshold, such as "Red > 127 AND Green < 127 OR Blue > 63".
 Does applying these complex thresholds gives you more flexibility in finding specific regions of colour?
 
-{interactive name="pixel-viewer" type="whole-page" text="Colour Thresholding interactive" parameters="mode=threshold"}
+{interactive slug="pixel-viewer" type="whole-page" text="Colour Thresholding interactive" parameters="mode=threshold"}
 
 Thresholding on its own isn't a very powerful tool, but it can be very useful when combined with other techniques as we shall see later.

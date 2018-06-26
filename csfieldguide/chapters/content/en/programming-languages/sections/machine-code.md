@@ -87,11 +87,11 @@ jr $ra
 
 You can run this program using a MIPS emulator using this interactive:
 
-{interactive name="mips-assembler" type="whole-page" text="MIPS Assembler" file-type="php"}
+{interactive slug="mips-assembler" type="whole-page" text="MIPS Assembler" file-type="php"}
 
 Copy and paste the output in the "Assembler Output" box into the box in this simulator interactive:
 
-{interactive name="mips-simulator" type="whole-page" text="MIPS Simulator" file-type="php"}
+{interactive slug="mips-simulator" type="whole-page" text="MIPS Simulator" file-type="php"}
 
 Once you have got the program working, try changing the values that are added.
 The comments tell you where these numbers that can be changed are.

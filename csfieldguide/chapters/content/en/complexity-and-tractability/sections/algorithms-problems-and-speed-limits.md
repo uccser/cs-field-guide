@@ -144,7 +144,7 @@ A lot of calculators have a factorial button ("!").
 You can even type \( 15! \) into a Google search and get the answer.
 However, for dealing with very large numbers, the field guide has a simple calculator that can work with huge numbers; it is in the text below, or you can open it here:
 
-{interactive name="big-number-calculator" type="whole-page" text="Big Number Calculator"}
+{interactive slug="big-number-calculator" type="whole-page" text="Big Number Calculator"}
 
 For the above questions, the number of permutations are:
 
@@ -179,7 +179,7 @@ Ensuring you understand how a factorial is calculated is essential for understan
 For factorials of larger numbers, most desktop calculators won't work so well; for example, 100! has 158 digits.
 You can use the calculator below to work with huge numbers (especially when using factorials and exponents).
 
-{interactive name="big-number-calculator" type="whole-page" text="Big Number Calculator"}
+{interactive slug="big-number-calculator" type="whole-page" text="Big Number Calculator"}
 
 Try calculating 100! using this calculator --- that's the number of different routes that a travelling salesman might take to visit 100 places (not counting the starting place).
 With this calculator you can copy and paste the result back into the input if you want to do further calculations on the number.

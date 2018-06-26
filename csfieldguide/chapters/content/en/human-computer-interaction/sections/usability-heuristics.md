@@ -57,7 +57,7 @@ If you want to test these ideas, try having a conversation with someone where yo
 
 And if you haven't tried it already, have a go at the following interactive.
 
-{interactive name="delay-analyser" type="whole-page" text="Delay Analyser interactive"}
+{interactive slug="delay-analyser" type="whole-page" text="Delay Analyser interactive"}
 
 Getting computers to respond quickly often depends on the algorithms used (covered in the chapter on algorithms), and can also depend on the design of a program (such as whether it stores data on disk or waits for a network response before continuing).
 It is particularly noticeable on small devices like smartphones, which have limited computing power, and might take a second or two to open an app or respond to some input.
@@ -71,7 +71,7 @@ Follow real-world conventions, making information appear in a natural and logica
 The language, colours and notation in an interface should match the user's world, and while this seems obvious and sensible, it's often something that is overlooked.
 Take for example the following two buttons – can you see what is confusing about them?
 
-{interactive name="confused-buttons" type="in-page"}
+{interactive slug="confused-buttons" type="in-page"}
 
 {panel type="teacher-note"}
 
@@ -84,7 +84,7 @@ The buttons have the colours switched, the colour for cancel is green (commonly 
 The following interface is from a bank system for paying another person.
 Suppose you get an email asking someone to pay you $1699.50 for a used car; try entering "$1699.50" into the box.
 
-{interactive name="payment-interface" type="in-page"}
+{interactive slug="payment-interface" type="in-page"}
 
 The notation "$1699.50" is a common way to express a dollar amount, but this system forces you to follow its own conventions (probably to make things easier for the programmer who wrote the system).
 
@@ -116,7 +116,7 @@ If "redo" is also available, they can flick back and forth, deciding which is be
 
 Here's an example of a button that doesn't provide user control; if you press it, you'll lose this whole page and have to find your way back (we warned you!)
 
-{interactive name="close-window" type="in-page"}
+{interactive slug="close-window" type="in-page"}
 
 {panel type="teacher-note"}
 
@@ -169,7 +169,7 @@ A good program would also inform the user why an item is not available (for exam
 
 Below is a date picker; can you see what errors can be produced with it?
 
-{interactive name="date-picker" type="in-page"}
+{interactive slug="date-picker" type="in-page"}
 
 {panel type="spoiler"}
 
@@ -188,7 +188,7 @@ A related problem with dates is when a user needs to pick a start and end date (
 
 Here's a menu system that offers several choices:
 
-{interactive name="available-menu-items" type="in-page"}
+{interactive slug="available-menu-items" type="in-page"}
 
 Any time a dialogue box comes up that says you weren't allowed to do a certain action, it's frustrating because the system has failed to prevent an error.
 Of course, it may be difficult to do that because the error can depend on so many user choices, but it is ideal that the system doesn't offer something that it can't do.
@@ -327,7 +327,7 @@ Even though it is better if the system can be used without documentation, it may
 Any such information should be easy to search, focused on the user's task, list concrete steps to be carried out, and not be too large.
 The following interactive illustrates a situation you might have run into before!
 
-{interactive name="no-help" type="in-page"}
+{interactive slug="no-help" type="in-page"}
 
 Often help is an afterthought, and tends to be feature-centred (e.g. a catalogue of menu items), rather than task-centred (the series of actions needed to complete typical tasks, which is more useful for the user).
 When a user needs help, they typically have a task to complete (such as upload photos from a camera), and good documentation should explain how to do common tasks, rather than explain each feature (such as "Setting the camera to USB mode").

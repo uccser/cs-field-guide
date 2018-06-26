@@ -38,7 +38,7 @@ If you want a template to draw on, you can print one using the button below.
 
 {button-link link="files/trainsylvania-blank.pdf" file="yes" text="Trainsylvania template"}
 
-{interactive name="trainsylvania" type="in-page"}
+{interactive slug="trainsylvania" type="in-page"}
 
 {panel type="teacher-note"}
 
@@ -59,7 +59,7 @@ Click image to enlarge
 Did you find a sequence of trains to get from City Mall to Suburbopolis? You can test it by typing the sequence of trains in the following interactive.
 For example, if you took the A-train, then the B-train, then an A-train, type in ABA.
 
-{interactive name="trainsylvania-planner" type="in-page"}
+{interactive slug="trainsylvania-planner" type="in-page"}
 
 Can you find a sequence that takes you from City Mall to Suburbopolis?
 Can you find another sequence, perhaps a longer one?
@@ -166,7 +166,7 @@ Some of the FSAs used in practice have just a few states like these, but even sm
 Here's an interactive that follows the rules of the FSA above.
 You can use it to test different inputs.
 
-{interactive name="fsa-box" type="iframe" parameters="config=example-1"}
+{interactive slug="fsa-box" type="iframe" parameters="config=example-1"}
 
 Here's another FSA, which looks similar to the last one but behaves quite differently.
 You can test it in the interactive below.
@@ -196,7 +196,7 @@ So in the above examples, the accepted strings are "aaa", "abb", "bababab", the 
 
 {panel end}
 
-{interactive name="fsa-box" type="iframe" parameters="config=example-2"}
+{interactive slug="fsa-box" type="iframe" parameters="config=example-2"}
 
 To keep things precise, we'll define four further technical terms.
 One is the
@@ -227,7 +227,7 @@ If you want, you could switch from fast to slow spin by pressing the spin button
 Or 2 times would do.
 Or 2 million times (try it if you're not convinced).
 
-{interactive name="fsa-washing-machine" type="in-page"}
+{interactive slug="fsa-washing-machine" type="in-page"}
 
 The following diagram summarizes the terminology we have introduced.
 Notice that this FSA has two accepting states.
@@ -257,7 +257,7 @@ For example, here's a simple finite state automaton with just one input (button 
 The reset button isn't part of the FSA; it’s just a way of letting you return to the starting state.
 See if you can figure out which patterns of input will turn the light on:
 
-{interactive name="fsa-light" type="iframe" parameters="config=example-1"}
+{interactive slug="fsa-light" type="iframe" parameters="config=example-1"}
 
 {panel type="teacher-note"}
 

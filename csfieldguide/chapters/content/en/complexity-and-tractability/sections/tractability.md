@@ -164,6 +164,6 @@ You're going to have to be more than patient if you want Moore's law to help out
 
 Remember that if you need to do calculations of huge numbers, there's a calculator here that you can use:
 
-{interactive name="big-number-calculator" type="whole-page" text="Big Number Calculator"}
+{interactive slug="big-number-calculator" type="whole-page" text="Big Number Calculator"}
 
 {comment Add exercise: password cracking. a brief section on 2\ :sup:`n` operations to crack passwords :sup:`n` example: trying all values in an n-bit password. interactive that attempts all 2\ :sup:`n` values to find a random one}

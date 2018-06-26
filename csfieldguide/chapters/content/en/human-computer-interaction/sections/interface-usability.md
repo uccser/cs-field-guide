@@ -81,7 +81,7 @@ However, if you perceive that there is a small delay before the image comes up, 
 Just make a quick, gut-level decision the first time you click each cell - don't overthink it.
 The delay may be very short, but only make the cell green if you are fairly sure you noticed a delay.
 
-{interactive name="delay-analyser" type="whole-page" text="Delay Analyser interactive"}
+{interactive slug="delay-analyser" type="whole-page" text="Delay Analyser interactive"}
 
 Once you have clicked on all the cells, click on "View statistics" to see how long the delays were compared with your perception.
 100 ms (100 milliseconds) is one tenth of a second; for most people this is where they are likely to start perceiving a delay;
@@ -92,7 +92,7 @@ The point of this is that any interface element (such as a button or checkbox) t
 In the case of a checkbox, this may lead to it staying off (from the two clicks), making the user think that it's not working.
 Try clicking the following checkbox just enough times to make it show as selected.
 
-{interactive name="delayed-checkbox" type="in-page"}
+{interactive slug="delayed-checkbox" type="in-page"}
 
 So, as you evaluate interfaces, bear in mind that even very small delays can make a system hard to use.
 
@@ -161,7 +161,7 @@ For example, in a word processor, printing a page as it is displayed should be e
 In fact, sometimes more effort should be *required* if the command has a serious consequence, such as deleting a file, wiping a device, or closing an account.
 In such cases artificial tasks may be added, such as asking "Are you sure?", or to get an extreme setting on a device (like setting a voltage for a power supply) might require pressing an "up" button many times, rather than letting the user type in an extra couple of zeroes.
 
-{interactive name="action-menu" type="in-page"}
+{interactive slug="action-menu" type="in-page"}
 
 ## In summary
 

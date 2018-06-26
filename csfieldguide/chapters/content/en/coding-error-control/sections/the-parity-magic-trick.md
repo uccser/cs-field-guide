@@ -31,7 +31,7 @@ The interactive will guide you through these instructions.
 If you are completely stuck identifying the flipped card, a hint follows the interactive, although you should try and figure it out for yourself first.
 Make sure you add the extra cards correctly; the computer won’t tell you if you get them wrong, and you probably won’t be able to identify the flipped card if the extra cards aren't chosen correctly.
 
-{interactive name="parity" type="whole-page" text="Parity Trick interactive"}
+{interactive slug="parity" type="whole-page" text="Parity Trick interactive"}
 
 Remember how you made it so that each column had an even number of black cards?
 When a card is flipped, this results in the row and column that the card was in having an odd number of black cards.

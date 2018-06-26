@@ -59,7 +59,7 @@ A Python interpreter is able to read your program, and process it.
 Below is a Python interpreter that you can use to run your own programs.
 If you have a Python interpreter installed on your computer (ask your teacher if you are following this book for a class and are confused) and know how to start it and run programs in it, you can use that.
 
-{interactive name="python-interpreter" type="in-page"}
+{interactive slug="python-interpreter" type="in-page"}
 
 Try changing the program so that it says your name instead of *Student*.
 When you think you have it right, try running the program again to see.

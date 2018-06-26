@@ -19,7 +19,7 @@ If we multiply the values of pixels on one side of each point on the image by a 
 This technique is called finding the *image gradient*.
 The following interactive allows you to do that, then apply a threshold to the result so that you can begin to spot likely edges in a picture.
 
-{interactive name="pixel-viewer" type="whole-page" text="Edge Detection interactive" parameters="mode=edgedetection&picturepicker"}
+{interactive slug="pixel-viewer" type="whole-page" text="Edge Detection interactive" parameters="mode=edgedetection&picturepicker"}
 
 There are a few commonly used convolutional kernels that people have come up with for finding edges.
 After you've had a go at coming up with some of your own, have a look at the [Prewitt operator](https://en.wikipedia.org/wiki/Prewitt_operator), the [Roberts cross](https://en.wikipedia.org/wiki/Roberts_cross) and [Sobel operator](https://en.wikipedia.org/wiki/Sobel_operator) on wikipedia.
