@@ -13,7 +13,7 @@ verto==0.7.4
 python-markdown-math==0.5
 
 # YAML Loading
-PyYAML==3.12
+PyYAML==4.1
 
 # I18n
 django-modeltranslation==0.12.2
