@@ -9,9 +9,11 @@ $(document).ready(function () {
   ColourMatcher.representations = [24, 8];
   ColourMatcher.goal_panels = $('.interactive-colour-matcher-goal');
   ColourMatcher.help_stage = 0;
-  ColourMatcher.help_text = [['Help me set 24 bit red', 'red'],
-                             ['Help me set 24 bit green', 'green'],
-                             ['All help given', 'disabled']]
+  ColourMatcher.help_text = [
+                              [colour_matcher_il8n["red-help"], 'danger'],
+                              [colour_matcher_il8n["green-help"], 'success'],
+                              [colour_matcher_il8n["help-given"], 'secondary'],
+                            ];
   ColourMatcher.display_hexidecimal = false;
 
   // Display hexidecimal values
@@ -114,10 +116,11 @@ $(document).ready(function () {
       // Set new text for help button
       $('#interactive-colour-matcher-help').text(ColourMatcher.help_text[ColourMatcher.help_stage][0]);
       // Update help button colour
-      $('#interactive-colour-matcher-help').attr('class', 'btn ' + ColourMatcher.help_text[ColourMatcher.help_stage][1]);
+      $('#interactive-colour-matcher-help').attr('class', 'btn btn-' + ColourMatcher.help_text[ColourMatcher.help_stage][1]);
     }
-    if (ColourMatcher.help_stage == 3) {
-      $("#interactive-colour-matcher-help").addClass('disabled');
+
+    if (ColourMatcher.help_stage == 2) {
+      $("#interactive-colour-matcher-help").prop('disabled', true);
     }
     update24BitPanel();
   });
@@ -146,11 +149,11 @@ function reset() {
   update24BitPanel();
   set8BitPanel();
   update8BitPanel();
-  $("#interactive-colour-matcher-help").removeClass('disabled');
+  $("#interactive-colour-matcher-help").prop('disabled', false);
   // Reset help stages
   ColourMatcher.help_stage = 0;
   $('#interactive-colour-matcher-help').text(ColourMatcher.help_text[ColourMatcher.help_stage][0])
-  $('#interactive-colour-matcher-help').attr('class', 'btn ' + ColourMatcher.help_text[ColourMatcher.help_stage][1]);
+  $('#interactive-colour-matcher-help').attr('class', 'btn btn-' + ColourMatcher.help_text[ColourMatcher.help_stage][1]);
   for (var i = 0; i < ColourMatcher.bit_24.sliders.length; i++) {
     ColourMatcher.bit_24.sliders[i].removeAttribute('disabled');
   }
