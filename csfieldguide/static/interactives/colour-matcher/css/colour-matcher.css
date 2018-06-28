@@ -117,3 +117,10 @@ div.interactive-colour-matcher-slider {
 div.interactive-colour-matcher-slider[disabled=true] {
   opacity: 0.5;
 }
+
+#interactive-colour-matcher p,
+#interactive-colour-matcher h5,
+#interactive-colour-matcher h4,
+.interactive-colour-matcher-heading {
+  text-align: left;
+}
