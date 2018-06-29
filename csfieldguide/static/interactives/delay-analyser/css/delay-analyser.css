@@ -54,4 +54,15 @@
 }
 #reset {
   margin: 40px;
+  /* override foundation.min.css button colour */
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+h2, li {
+  text-align: left;
+}
+#toggle-view {
+  /* override foundation.css button colour */
+  background-color: #28a745;
+  border-color: #28a745;
 }
