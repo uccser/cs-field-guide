@@ -23,7 +23,7 @@ caesar-cipher:
 checksum-calculator:
   name: checksum-calculator (broken)
 checksum-calculator-gtin-13:
-  name: checksum-calculator-gtin-13 (broken)
+  name: Checksum Calculator GTIN-13
 close-window:
   name: Close Window
 cmy-mixer:

@@ -17,10 +17,10 @@ $(document).ready(function () {
         if (number.match(/^\d{12}$/)) {
             NumberCheckerGTIN13.feedback.removeClass('invalid');
             var checksum = calculateCheckSumDigit(number);
-            NumberCheckerGTIN13.feedback.text('Checksum digit is ' + checksum);
+            NumberCheckerGTIN13.feedback.text(checksum_calculator_il8n['checksum'] + checksum);
         } else {
             NumberCheckerGTIN13.feedback.addClass('invalid');
-            NumberCheckerGTIN13.feedback.text('Your input must only contain 12 numbers');
+            NumberCheckerGTIN13.feedback.text(checksum_calculator_il8n['input-error']);
         }
     });
 
