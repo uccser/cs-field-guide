@@ -1,0 +1,52 @@
+{% extends "columns.html" %}
+
+{% load i18n %}
+{% load render_html_field %}
+
+{% block title %}
+  {{ chapter_section.chapter.name }}
+{% endblock title %}
+
+{% block page_heading %}
+<small>{{ chapter_section.chapter.name }}</small><br>{{ chapter_section.name }}
+{% endblock page_heading %}
+
+{% block left_column_content %}
+  {% render_html_field chapter_section.content %}
+
+  <div>
+    {% if previous_section %}
+      <a href="{% url 'chapters:chapter_section' chapter.slug previous_section.0.slug %}" class="btn left">
+        Previous: {{ previous_section.0.name }}
+      </a>
+    {% endif %}
+    {% if next_section %}
+      <a id="section-next-btn" href="{% url 'chapters:chapter_section' chapter.slug next_section.0.slug %}" class="btn right">
+        Next: {{ next_section.0.name }}
+      </a>
+    {% endif %}
+  </div>
+{% endblock left_column_content %}
+
+{% block right_column_content %}
+  {% if chapter_section.translation_available %}
+    <div id="sticky-sidebar" class="sticky d-print-none">
+      <h2 class="mt-2">{% trans "Table of contents" %}</h2>
+      <ul class="nav nav-pills flex-column" id="scrollspy-table-of-contents">
+        {% for section in chapter.chapter_sections.all %}
+          <li class="nav-item">
+            <a class="nav-link{% if section.slug == chapter_section.slug %} active{% endif %}" href="{% url 'chapters:chapter_section' chapter.slug section.slug %}">
+              {{ section.name }}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+{% endblock right_column_content %}
+
+{% block scripts %}
+  {% if chapter_section.translation_available %}
+    {% include "generic/import-stick-state-js.html" %}
+  {% endif %}
+{% endblock scripts %}

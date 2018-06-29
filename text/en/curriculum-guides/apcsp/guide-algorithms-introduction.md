@@ -56,12 +56,12 @@ of this course and the AP Exam.
 EXCLUSION STATEMENT (for EK 4.2.2B):
 Specific heuristic solutions are beyond the scope of this course and the AP Exam.
 {panel}
-- **EK 4.2.2C Some optimization problems such as “find the best” or “find the smallest” cannot be solved in a reasonable time but approximations to the optimal solution can.**
+- **EK 4.2.2C Some optimization problems such as "find the best" or "find the smallest" cannot be solved in a reasonable time but approximations to the optimal solution can.**
 - **EK 4.2.2D Some problems cannot be solved using any algorithm.**
 
 ### LO 4.2.3 Explain the existence of undecidable problems in computer science.
 - **EK 4.2.3A An undecidable problem may have instances that have an algorithmic solution, but there is no algorithmic solution that solves all instances of the problem.**
-- EK 4.2.3B A decidable problem is one in which an algorithm can be constructed to answer “yes” or “no” for all inputs (e.g., “is the number even?”).
+- EK 4.2.3B A decidable problem is one in which an algorithm can be constructed to answer "yes" or "no" for all inputs (e.g., "is the number even?").
 - EK 4.2.3C An undecidable problem is one in which no algorithm can be constructed that always leads to a correct yes-or-no answer.
 {panel type="teacher-note" summary="Exclusion EK 4.2.3C"}
 EXCLUSION STATEMENT (for EK 4.2.3C): Determining whether a given problem is undecidable is beyond the scope of this course and the AP Exam.

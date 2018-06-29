@@ -1,0 +1,22 @@
+# Wheel 0.25+ needed to install certain packages on CPython 3.5+
+# like Pillow and psycopg2
+# See http://bitly.com/wheel-building-fails-CPython-35
+# Verified bug on Python 3.5.1
+wheel==0.31.1
+
+# Images
+Pillow==5.1.0
+django-inline-svg==0.1.1
+
+# Markdown
+verto==0.7.4
+python-markdown-math==0.5
+
+# YAML Loading
+PyYAML==3.12
+
+# I18n
+django-modeltranslation==0.12.2
+uniseg==0.7.1
+python-bidi==0.4.0
+django-bidi-utils==1.0

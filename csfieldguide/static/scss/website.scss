@@ -1,0 +1,151 @@
+@import "third-party/bootstrap/functions";
+@import "third-party/bootstrap/variables";
+@import "third-party/bootstrap/mixins";
+@import "core-variables";
+@import "bootstrap-overrides";
+@import "third-party/bootstrap/root";
+@import "third-party/bootstrap/print";
+@import "third-party/bootstrap/reboot";
+@import "third-party/bootstrap/type";
+@import "third-party/bootstrap/images";
+@import "third-party/bootstrap/code";
+@import "third-party/bootstrap/grid";
+@import "third-party/bootstrap/tables";
+@import "third-party/bootstrap/forms";
+@import "third-party/bootstrap/buttons";
+@import "third-party/bootstrap/transitions";
+@import "third-party/bootstrap/dropdown";
+@import "third-party/bootstrap/button-group";
+@import "third-party/bootstrap/input-group";
+@import "third-party/bootstrap/custom-forms";
+@import "third-party/bootstrap/nav";
+@import "third-party/bootstrap/navbar";
+@import "third-party/bootstrap/card";
+@import "third-party/bootstrap/breadcrumb";
+@import "third-party/bootstrap/pagination";
+@import "third-party/bootstrap/badge";
+@import "third-party/bootstrap/jumbotron";
+@import "third-party/bootstrap/alert";
+@import "third-party/bootstrap/progress";
+@import "third-party/bootstrap/media";
+@import "third-party/bootstrap/list-group";
+@import "third-party/bootstrap/close";
+@import "third-party/bootstrap/modal";
+@import "third-party/bootstrap/tooltip";
+@import "third-party/bootstrap/popover";
+@import "third-party/bootstrap/carousel";
+@import "third-party/bootstrap/utilities";
+@import "third-party/pygments-colorful";
+@import "third-party/sticky-state";
+@import "third-party/directional";
+@import "third-party/featherlight";
+@import "panels";
+@import "navbar";
+@import "footer";
+@import "homepage";
+@import "teacher-mode";
+@import "link-item";
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans');
+
+body {
+  padding-top: $navbar-height;
+  position: relative;
+  background-color: $gray-100;
+}
+
+#page-header {
+  background-color: $csfg-light;
+  color: $white;
+  h1 {
+    margin: 0;
+    small {
+      color: mix($csfg-light, $white, 60%);
+    }
+  }
+}
+
+#sticky-sidebar {
+  top: $navbar-height + $navbar-padding-bottom;
+}
+
+.no-text-decoration {
+  text-decoration: none !important;
+}
+
+.shadow {
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.12);
+}
+
+.chapter-icon path {
+  fill: $csfg-light !important;
+}
+
+.btn {
+  cursor: pointer;
+}
+
+ol, ul {
+    margin-bottom: 1rem !important;
+}
+
+.large-text {
+  font-size: 3rem;
+}
+
+.no-text-decoration {
+  text-decoration: none !important;
+}
+
+.list-unstyled-i18n {
+  padding-#{$left}: 0;
+  padding-#{$right}: auto;
+}
+
+.navbar-nav-i18n {
+  margin-#{$right}: auto !important;
+  margin-#{$left}: 0 !important;
+}
+
+.img-container {
+  img {
+    @include img-fluid;
+  }
+  margin-bottom: $spacer * 0.5;
+  @include media-breakpoint-up(md) {
+    margin-top: $spacer * 0.5;
+    &.img-wrap-left {
+      @include float-left;
+      margin-right: $spacer * 0.5;
+    }
+    &.img-wrap-right {
+      @include float-right;
+      margin-left: $spacer * 0.5;
+    }
+    &.img-wrap-left,
+    &.img-wrap-right {
+      max-width: 50%;
+    }
+  }
+  @include media-breakpoint-down(sm) {
+    &.img-wrap-left,
+    &.img-wrap-right {
+      text-align: center;
+    }
+  }
+  &:not(.img-wrap-left),
+  &:not(.img-wrap-right) {
+    display: block;
+    text-align: center;
+  }
+}
+
+h1, h2, h3, h4, h5, h6, details {
+  clear: both;
+}
+
+// Fix for displaying images correcting in Internet Explorer
+// See: https://github.com/twbs/bootstrap/issues/25242
+.figure {
+  display: block !important;
+}

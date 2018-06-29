@@ -13,19 +13,19 @@ Students who chose this project for 3.44 will need to have the following skills 
 
 ## Overview
 
-Note that a plural means “at least 2” in NZQA documents”. Note that because this is one of the two areas of computer science that the student must cover, most of the plurals effectively become singular for this project, which is half their overall report. This project will give them at least one algorithm/technique and practical application, and the other project they do will give them another of each.
+Note that a plural means "at least 2" in NZQA documents". Note that because this is one of the two areas of computer science that the student must cover, most of the plurals effectively become singular for this project, which is half their overall report. This project will give them at least one algorithm/technique and practical application, and the other project they do will give them another of each.
 
-- **Achieved [A1]:** “describing key problems that are addressed in selected areas of computer science”
-- **Achieved [A2]:** “describing examples of practical applications of selected areas to demonstrate the use of key algorithms and/or techniques from these areas“
-- **Merit [M1]:** “explaining how key algorithms or techniques are applied in selected areas”
-- **Merit [M2]:** “explaining examples of practical applications of selected areas to demonstrate the use of key algorithms and/or techniques from these areas”
-- **Excellence [E1]:** “discussing examples of practical applications of selected areas to demonstrate the use of key algorithms and/or techniques from these areas”
-- **Excellence [E2]:** “evaluating the effectiveness of algorithms, techniques, or applications from selected areas”
+- **Achieved [A1]:** "describing key problems that are addressed in selected areas of computer science"
+- **Achieved [A2]:** "describing examples of practical applications of selected areas to demonstrate the use of key algorithms and/or techniques from these areas"
+- **Merit [M1]:** "explaining how key algorithms or techniques are applied in selected areas"
+- **Merit [M2]:** "explaining examples of practical applications of selected areas to demonstrate the use of key algorithms and/or techniques from these areas"
+- **Excellence [E1]:** "discussing examples of practical applications of selected areas to demonstrate the use of key algorithms and/or techniques from these areas"
+- **Excellence [E2]:** "evaluating the effectiveness of algorithms, techniques, or applications from selected areas"
 
 The terminology in the 3.44 standard can be challenging to understand because it applies to six different areas. The following list describes how the terminology of the standard maps onto this project.
 
 - **Selected Area:** Formal Languages
-- **Key Problem:** Checking whether or not web form input is “valid”
+- **Key Problem:** Checking whether or not web form input is "valid"
 - **Algorithms/ Techniques:** Regular Expressions, Finite State Automata, RE -> FSA conversion algorithm.
 - **Practical Application:** Checking various fields in inputs forms
 
@@ -54,9 +54,9 @@ This guide is broken into two parts.
 
 ### Introduction (Achieved/ Merit/ Excellence) [A1 + background for the rest of the report]
 
-This should not take more than 1 paragraph, or around ⅓ of a page. It is essential to do a good job of this part, even if what you are writing seems obvious. Start your report for this project by introducing the key problem, and why it is important to be able to check inputs in a web form (e.g. being able to tell the user straight away that the input is invalid, ensuring invalid data doesn’t end up in a database and cause problems later). *Start the first sentence of your report with “A key problem in computer science is…”.* Explain why regular expressions are a popular technique used to address the problem.
+This should not take more than 1 paragraph, or around ⅓ of a page. It is essential to do a good job of this part, even if what you are writing seems obvious. Start your report for this project by introducing the key problem, and why it is important to be able to check inputs in a web form (e.g. being able to tell the user straight away that the input is invalid, ensuring invalid data doesn’t end up in a database and cause problems later). *Start the first sentence of your report with "A key problem in computer science is…".* Explain why regular expressions are a popular technique used to address the problem.
 
-Additionally, write something like “The types of input I investigated regular expressions for were” followed by a comma separated list. List (without details) the applications that your report looks at (e.g. email addresses, dates, credit card numbers, mathematical expressions, etc). You might need to write this part after you have written the rest of your report. This summary of what you have investigated will assist the marker.
+Additionally, write something like "The types of input I investigated regular expressions for were" followed by a comma separated list. List (without details) the applications that your report looks at (e.g. email addresses, dates, credit card numbers, mathematical expressions, etc). You might need to write this part after you have written the rest of your report. This summary of what you have investigated will assist the marker.
 
 ### Checking whether or not an email address is valid (Achieved/ Merit/ Excellence)
 
@@ -65,10 +65,10 @@ Additionally, write something like “The types of input I investigated regular 
 {panel end}
 
 A common type of input to check is an email address. Write a regular expression to check for a valid email address. You can make the following assumptions about email addresses, although note that real email addresses are a bit more complicated!
-- An email address contains two parts: the “local part” and the “domain part”, separated with a @. They are in the form of “local part”@”domain part”.
-- The local part can be made up of any alphanumeric characters (i.e. all the upper and lower cases letters of the alphabet, and the 10 digits), “+” or “.” . There cannot be multiple “.” in a row.
-- The domain part can be made up of any  alphanumeric characters (i.e. all the upper and lower cases letters of the alphabet, and the 10 digits), and “.”.
-- The local part and domain part cannot start or end with a “+”, or “.”.
+- An email address contains two parts: the "local part" and the "domain part", separated with a @. They are in the form of "local part"@"domain part".
+- The local part can be made up of any alphanumeric characters (i.e. all the upper and lower cases letters of the alphabet, and the 10 digits), "+" or "." . There cannot be multiple "." in a row.
+- The domain part can be made up of any  alphanumeric characters (i.e. all the upper and lower cases letters of the alphabet, and the 10 digits), and ".".
+- The local part and domain part cannot start or end with a "+", or ".".
 
 Once you think you have your regular expression correct, convert it into a finite state automata (you can either do this by hand, or by using one of the tools linked to in the field guide). Make sure the states of your finite state automata are numbered (or have some kind of unique ID) as this will help you with your later explanations. You will be including the regular expression and the finite state automata in your report. The regular expression won’t take up much space, although you should ensure that the finite state automata does not take up more than half a page (and less if it is still legible when shrunk down further).
 
@@ -81,8 +81,8 @@ Don’t include this part in your report now, you will include some of them in t
 - An email address that starts with a @.
 - An email address with multiple @’s.
 - An email address that ends in a @.
-- An email address that starts with a “.”
-- An email address that starts with a “+”.
+- An email address that starts with a "."
+- An email address that starts with a "+".
 
 {panel type="additional-information" summary="Ensuring the work is personalised"}
 It is important that students come up with their own examples to test with. This personalises the student’s work. All up, the traces and working should take around 1 to ½ pages. There are several ways of approaching it. The student can either refer to their regular expression or their finite state automata in the explanation (the latter is probably easier, especially if the states have been numbered), and they may use clearly labelled diagrams as part of their explanation (e.g. a drawn on finite state automata). Any diagrams must be clear and legible.
@@ -96,7 +96,7 @@ As much as they are loved by computer scientists, regular expressions aren’t a
 
 For excellence, you will investigate other types of inputs in order to identify what kinds of problems regular expressions are good for, which they could be used for but should not be, and which there is no regular expression for.
 
-In most assessment guides, you are provided with a set of links and questions for excellence. For this one, most online resources you find will be full of strange mathematical symbols, and won’t be helpful for you writing your report. So instead, we provide you with several interesting problems which involve a type of input. These can be found at the end of the document in the section “Regular Expression Problems for Excellence”.  Before you start writing the excellence part of your report, you should explore each of the problems by trying to write a regular expression for them (some parts of them are easier than the email address one), and thinking about why they are either efficient, inefficient, or impossible to solve with a regular expression. Your writing for excellence will be based on your own understanding and thoughts about the problems. Focus on justifying and discussing your thoughts rather than worrying about whether or not you have "correct" answers.
+In most assessment guides, you are provided with a set of links and questions for excellence. For this one, most online resources you find will be full of strange mathematical symbols, and won’t be helpful for you writing your report. So instead, we provide you with several interesting problems which involve a type of input. These can be found at the end of the document in the section "Regular Expression Problems for Excellence".  Before you start writing the excellence part of your report, you should explore each of the problems by trying to write a regular expression for them (some parts of them are easier than the email address one), and thinking about why they are either efficient, inefficient, or impossible to solve with a regular expression. Your writing for excellence will be based on your own understanding and thoughts about the problems. Focus on justifying and discussing your thoughts rather than worrying about whether or not you have "correct" answers.
 
 Make a table which summarises the problems you have looked at (there are around 9 of them including the sub problems - a list is included below to help you), and specifies which are possible to solve with regular expressions, which are not, and which should be solved with regular expressions, and which should not. For those which are possible to solve with regular expressions, and are simple enough that they will fit onto one line, include the regular expression in your table. For the ones that are possible but the regular expression is very long, describe in a sentence or two what it would look like, or what kind of thing it would have to do. The table will probably take up around ¾ a page. It provides a summary of the investigations, and gives something to refer to in the discussion/ evaluation.
 
@@ -109,7 +109,7 @@ The problems in the table may include: (Remember to refer to the section at the 
 - Checking if a credit card number is valid (check digit)
 - Checking if a simple mathematical equation with numbers and simple operators (+, -, \*, /) is valid.
 - Checking if a mathematical equation with parentheses is valid.
-- Checking if a string of parentheses is “balanced”.
+- Checking if a string of parentheses is "balanced".
 
 Your written discussion will cover the excellence criteria and should ideally be around 1 to 2 pages long. The key will be to write concisely.
 You will then write a discussion/ evaluation on your findings, which addresses the following key points. The problems in the above table should be referred to.
@@ -120,7 +120,7 @@ You will then write a discussion/ evaluation on your findings, which addresses t
 
 ## Hints for Success
 
-- Stay focussed on the key problems this assessment guide addresses. There are many cool applications of formal languages, although to satisfy the standard you need to focus on a narrow scope and go “deep” rather than “wide”.
+- Stay focussed on the key problems this assessment guide addresses. There are many cool applications of formal languages, although to satisfy the standard you need to focus on a narrow scope and go "deep" rather than "wide".
 - Remember that you can use bold and italics, particularly in explanations which involve tracing inputs, in order to make your explanations easier to read.
 - Remember that including inappropriate words and material in your assessed report can land you in some serious trouble. In particular, think carefully about the example email addresses you choose to use.
 - Don’t trace examples through the problems in the excellence section. You have already shown that you know how regular expressions process inputs when you did the achieved/ merit.
@@ -175,11 +175,11 @@ For example: 123*/32-23 is not valid.
 
 Try writing a regular expression that can check these inputs. Check it with a few example to ensure it is correct (you should not include the testing in your report, although you should make sure the regular expression that will be going in your report is correct.Testing is important!). This should not be too difficult if you were able to do the email address one without difficulty.
 
-Now, add one extra rule in: Parentheses are allowed, as long as they are “balanced”. i.e. there must be the same number of opening ones as closing ones, and if you scan across it from left to right, the current count of closing parenthesis should never be higher than the current count of opening parenthesis, and at the end, the two counts should be the same. There is no limit to the number of parenthesis allowed.
+Now, add one extra rule in: Parentheses are allowed, as long as they are "balanced". i.e. there must be the same number of opening ones as closing ones, and if you scan across it from left to right, the current count of closing parenthesis should never be higher than the current count of opening parenthesis, and at the end, the two counts should be the same. There is no limit to the number of parenthesis allowed.
 
 To save you from going crazy, we’ll tell you now that it is impossible. Unlike the other problems so far which were all solvable with regular expressions, even if it was terribly inefficient to write one solution, this one is impossible.The problem is trying to check that the parentheses are balanced. Try and make sense of why it is impossible to use regular expressions to solve this, and what happens when you attempt to do so.
 
-To investigate it, forget about the digits and mathematical operators, and only consider the parentheses, using the “balanced” rules above. For example, it should accept strings like:
+To investigate it, forget about the digits and mathematical operators, and only consider the parentheses, using the "balanced" rules above. For example, it should accept strings like:
 - ()
 - (())
 - (()())

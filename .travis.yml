@@ -1,26 +1,30 @@
+sudo: required
+services:
+  - docker
 language: python
-
 python:
-  - "3.4"
-  - "3.5"
-  - "3.5-dev" # 3.5 development branch
-
+  - '3.6'
 before_install:
-  - pip install --upgrade pip setuptools
-
-# Install dependencies for both screen and print versions
+  # See https://github.com/travis-ci/travis-ci/issues/7940
+  - sudo rm -f /etc/boto.cfg
 install:
-  - pip install -r requirements.txt
-  - pip install -r requirements-print.txt
-
-# Creates the CSFG with print and teacher versions
-script:
-  - python generateguide.py -t
-
-# Stop email notifications but post to Slack channel
+  - sudo docker --version
+  - sudo docker-compose --version
+jobs:
+  include:
+    - stage: test
+      script: ./csfg ci load_content
+    - script: ./csfg ci test_general
+    - script: ./csfg ci test_management
+    - script: ./csfg ci test_backwards
+      if: type = pull_request
+    - script: ./csfg ci style
+    - script: ./csfg ci docs
 notifications:
   email: false
   slack:
     rooms: deptfunstuff:abJKvzApk5SKtcEyAgtswXAv
     on_success: change
     on_failure: change
+stages:
+  - name: test

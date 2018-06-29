@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}
+  {{ interactive.name }}
+{% endblock title %}
+
+{% block body %}
+  <div class="interactive text-center">
+    {% block html %}
+    {% endblock html %}
+  </div>
+
+  {% block css %}
+  {% endblock css %}
+
+  {% block js %}
+  {% endblock js %}
+{% endblock body %}

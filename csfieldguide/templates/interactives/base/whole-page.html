@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load static %}
+
+{% block title %}
+  {{ interactive.name }}
+{% endblock title %}
+
+{% block body_container %}
+  <div class="interactive text-center container-fluid">
+    <h1>{{ interactive.name }}</h1>
+
+    <div class="text-center">
+      {% block html %}
+      {% endblock html %}
+    </div>
+  </div>
+
+  {% block css %}
+  {% endblock css %}
+
+  {% block js %}
+  {% endblock js %}
+{% endblock body_container %}

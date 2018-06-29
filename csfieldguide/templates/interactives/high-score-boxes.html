@@ -1,0 +1,42 @@
+{% extends mode_template %}
+
+{% load static %}
+
+{% block html %}
+  <div id="interactive-high-score-boxes">
+    <p>Clicking a box will reveal its number; your task is to find the highest number and enter it below. </p>
+    <div id="boxes-container"></div>
+    <strong>Highest number:</strong>
+    <input type="number" id="interactive-high-score-boxes-input" placeholder="Enter answer here...">
+    <button id="submit-button" class="btn">Submit</button>
+    <p id="completion-message"></p>
+    <button id="restart-button" class="btn red">Restart</button>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/high-score-boxes/css/style.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript">
+    var colourful_box_images = [
+      "{% static 'interactives/high-score-boxes/img/square1-200px-rounded.png' %}",
+      "{% static 'interactives/high-score-boxes/img/square2-200px-rounded.png' %}",
+      "{% static 'interactives/high-score-boxes/img/square3-200px-rounded.png' %}",
+      "{% static 'interactives/high-score-boxes/img/square4-200px-rounded.png' %}",
+      "{% static 'interactives/high-score-boxes/img/square5-200px-rounded.png' %}",
+      "{% static 'interactives/high-score-boxes/img/square6-200px-rounded.png' %}",
+      "{% static 'interactives/high-score-boxes/img/square7-200px-rounded.png' %}",
+      "{% static 'interactives/high-score-boxes/img/square8-200px-rounded.png' %}",
+      "{% static 'interactives/high-score-boxes/img/square9-200px-rounded.png' %}",
+      "{% static 'interactives/high-score-boxes/img/square10-200px-rounded.png' %}",
+      "{% static 'interactives/high-score-boxes/img/square11-200px-rounded.png' %}",
+      "{% static 'interactives/high-score-boxes/img/square12-200px-rounded.png' %}",
+      "{% static 'interactives/high-score-boxes/img/square13-200px-rounded.png' %}",
+      "{% static 'interactives/high-score-boxes/img/square14-200px-rounded.png' %}",
+      "{% static 'interactives/high-score-boxes/img/square15-200px-rounded.png' %}",
+    ]
+  </script>
+  <script type="text/javascript" src="{% static 'interactives/high-score-boxes/js/script.js' %}"></script>
+{% endblock js %}

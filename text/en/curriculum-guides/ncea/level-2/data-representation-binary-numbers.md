@@ -18,15 +18,15 @@ In order to fully cover the standard, you will also need to have done one more p
 
 The topic of representing data using bits has the following bullet points in achievement standard 2.44, which this guide covers. Note that there is no excellence criteria for this topic. This assessment guide only covers one of the two types of data required for achieved.
 
-**Achieved**: “describing ways in which different types of data can be represented using bits”
+**Achieved**: "describing ways in which different types of data can be represented using bits"
 
 {teacher}
 
-The plural means that students need to cover at least two different types of data (and there's no need to cover more than two types of data) can be represented using bits”
+The plural means that students need to cover at least two different types of data (and there's no need to cover more than two types of data) can be represented using bits"
 
 {teacher end}
 
-**Merit**: “comparing and contrasting different ways in which different types of data can be represented using bits and discussing the implications”
+**Merit**: "comparing and contrasting different ways in which different types of data can be represented using bits and discussing the implications"
 
 As with all externally assessed reports, you should base your explanations around personalised examples.
 
@@ -73,7 +73,7 @@ Briefly describe how a number is converted to binary.
 
 This doesn't need to be more than a few sentences. Students just need to show that they at least somewhat understand what is going on, beyond just putting a number into a converter and copy pasting the output! A few sentences is fine.
 
-This covers “describing ways in which different types of data can be represented using bits”
+This covers "describing ways in which different types of data can be represented using bits"
 
 {teacher end}
 

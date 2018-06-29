@@ -1,0 +1,12 @@
+the CS Field Guide uses third-party libraries or other resources that may
+be distributed under licenses different than the CS Field Guide license.
+
+A summary of all third-party licenses are listed below, with a full copy of
+each license available within the 'third-party-licenses' directory.
+
+If a particular source file of a library is included with the repository, it
+should contain a copyright notice at the top of the file.
+
+In the event that we accidentally failed to list a required license,
+please bring it to our attention through the issue tracker here:
+https://github.com/uccser/cs-field-guide/issues/new

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load static %}
+{% load svg %}
+
+{% block title %}
+  {% trans "Chapters" %}
+{% endblock title %}
+
+{% block page_heading %}
+  Chapters
+{% endblock page_heading %}
+
+{% block content %}
+
+  <p>{% trans "The following chapters cover key topics within Computer Science." %}</p>
+
+  {% if chapters %}
+    <div class="row justify-content-between">
+      {% for chapter in chapters %}
+        <div class="col-12 col-md-6 col-lg-4 mb-4">
+          <a class="link-item{% if not chapter.translation_available %} unavailable{% endif %}" href="{% url 'chapters:chapter' chapter.slug %}">
+            <span class="icon chapter-icon">{% svg chapter.icon %}</span>
+            <h2>{{ chapter.name }}</h2>
+            {% if not chapter.translation_available %}
+              {% include "generic/not-available-badge.html" %}
+            {% endif %}
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>No chapters are available.</p>
+  {% endif %}
+{% endblock content %}

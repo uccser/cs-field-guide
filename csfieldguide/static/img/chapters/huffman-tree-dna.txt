@@ -1,0 +1,14 @@
+Dot notation for image, created with viz-js.com
+
+digraph G {
+  graph [ranksep=0,bgcolor=transparent];
+  node [shape=Mrecord];
+  3 [label=""];
+  6 [label=""];
+  3 -> a [label=0];
+  3 -> g [label=1];
+  6 -> 3 [label=1];
+  6 -> c [label=0];
+  start -> t [label=1];
+  start -> 6 [label=0];
+}
