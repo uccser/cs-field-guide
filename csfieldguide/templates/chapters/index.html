@@ -17,19 +17,22 @@
   <p>{% trans "The following chapters cover key topics within Computer Science." %}</p>
 
   {% if chapters %}
-    <div class="row justify-content-between">
-      {% for chapter in chapters %}
-        <div class="col-12 col-md-6 col-lg-4 mb-4">
-          <a class="link-item{% if not chapter.translation_available %} unavailable{% endif %}" href="{% url 'chapters:chapter' chapter.slug %}">
-            <span class="icon chapter-icon">{% svg chapter.icon %}</span>
-            <h2>{{ chapter.name }}</h2>
+    {% for chapter in chapters %}
+      <div class="toc-item">
+        <a {% if not chapter.translation_available %}class="unavailable"{% endif %} href="{% url 'chapters:chapter' chapter.slug %}">
+          <span class="csfg-svg">{% svg chapter.icon %}</span>
+          <div class="media-body">
+            <h2 class="h3 mt-0">
+              <span class="text-muted">{{ chapter.number }}.</span>
+              {{ chapter.name }}
+            </h2>
             {% if not chapter.translation_available %}
               {% include "generic/not-available-badge.html" %}
             {% endif %}
-          </a>
-        </div>
-      {% endfor %}
-    </div>
+          </div>
+        </a>
+      </div>
+    {% endfor %}
   {% else %}
     <p>No chapters are available.</p>
   {% endif %}

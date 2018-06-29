@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "columns.html" %}
 
 {% load static %}
 {% load render_html_field %}
@@ -8,22 +8,24 @@
 {% endblock title %}
 
 {% block page_heading %}
-  {{ chapter.name }}
+  <span class="text-muted">{{ chapter.number }}.</span> {{ chapter.name }}
 {% endblock page_heading %}
 
-{% block content %}
-
+{% block left_column_content %}
   {% render_html_field chapter.introduction %}
+{% endblock left_column_content %}
 
-  <h2>Sections in this chapter:</h2>
-  <ol>
-    {% for section in chapter_sections %}
-      <li>
-        <a href="{% url 'chapters:chapter_section' chapter.slug section.slug %}">
-          {{ section.name }}
-        </a>
-      </li>
-    {% endfor %}
-  </ol>
-
-{% endblock content %}
+{% block right_column_content %}
+  <h4>Chapter contents</h4>
+  <div id="sticky-sidebar" class="sticky d-print-none">
+    <ul class="nav nav-pills flex-column" id="scrollspy-table-of-contents">
+      {% for section in chapter.chapter_sections.all %}
+        <li class="nav-item">
+          <a class="nav-link{% if section.slug == chapter_section.slug %} active{% endif %}" href="{% url 'chapters:chapter_section' chapter.slug section.slug %}">
+            {{ section.name }}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock right_column_content %}

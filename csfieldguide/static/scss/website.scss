@@ -77,8 +77,29 @@ body {
   box-shadow: 0 2px 5px 0 rgba(0,0,0,0.12);
 }
 
-.chapter-icon path {
-  fill: $csfg-light !important;
+.toc-item {
+  border-bottom: 1px solid $csfg-light;
+  padding-bottom: 1rem;
+  margin: 1.2rem 0;
+  a {
+    display: inline-flex;
+    align-items: center;
+    @extend .no-text-decoration;
+    .csfg-svg {
+      svg {
+        height: 4rem;
+        width: 4rem;
+        transition: 0.1s;
+        margin-right: 1rem;
+      }
+      path {
+        fill: $csfg !important;
+      }
+    }
+  }
+  a:hover .csfg-svg svg {
+    transform: scale(1.1);
+  }
 }
 
 .btn {
@@ -91,10 +112,6 @@ ol, ul {
 
 .large-text {
   font-size: 3rem;
-}
-
-.no-text-decoration {
-  text-decoration: none !important;
 }
 
 .list-unstyled-i18n {
