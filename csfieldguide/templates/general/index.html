@@ -15,19 +15,19 @@
           <img id="homepage-logo" src="{% static 'img/logos/guide-logo-light.png' %}">
         </div>
         <div class="col-md-8 order-md-1 text-center text-md-left pr-md-5">
-          <h1 class="mb-3 bd-text-purple-bright">
+          <h1 class="mb-3">
             {% blocktrans trimmed %}
             Computer Science<br>Field Guide
             {% endblocktrans %}
           </h1>
-          <p class="lead">
+          <p class="lead text-light">
             {% blocktrans trimmed %}
             An online interactive resource for high school students learning about computer science.
             {% endblocktrans %}
           </p>
           <div class="d-flex flex-column flex-md-row lead mb-3">
-            <button id="csfg-trailer" class="btn btn-lg btn-outline-light mb-3 mb-md-0 mr-md-3">Watch the trailer</button>
-            <a href="{% url 'chapters:index' %}" class="btn btn-lg btn-outline-light">View the chapters</a>
+            <button id="csfg-trailer" class="btn btn-lg btn-outline-light mb-3 mb-md-0 mr-md-3">{% trans "Watch the trailer" %}</button>
+            <a href="{% url 'chapters:index' %}" class="btn btn-lg btn-outline-light">{% trans "View the chapters" %}</a>
           </div>
         </div>
       </div>
@@ -35,9 +35,47 @@
   </div>
 
   <div class="container">
-    <p>A teacher's guide is available, read the <a href="{% url 'appendices:appendix' 'about' %}">About section</a> for more details to access this.</p>
+    <div class="row">
+      <div class="col-md-7">
+        <h2>{% trans "Interactive" %}</h2>
+        <p class="lead">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+      </div>
+      <div class="col-md-5">
+        Image here
+      </div>
 
-    <p>This guide features interactive activities within some of the chapters. These should work with any modern browser updated in the last year, but we are continually expanding the compatibility of these. This guide is open source and <a href="https://github.com/uccser/cs-field-guide">available on GitHub</a>.</p>
+      <div class="col-md-7">
+        <h2>{% trans "Open Source" %}</h2>
+        <p class="lead">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+      </div>
+      <div class="col-md-5">
+        Image here
+      </div>
+
+      <div class="col-md-7">
+        <h2>{% trans "Teachers Guide" %}</h2>
+        <p class="lead">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+      </div>
+      <div class="col-md-5">
+        Image here
+      </div>
+
+      <div class="col-md-7">
+        <h2>{% trans "Curriculum Guides" %}</h2>
+        <p class="lead">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+      </div>
+      <div class="col-md-5">
+        Image here
+      </div>
+    </div>
   </div>
 {% endblock body_container %}
 
