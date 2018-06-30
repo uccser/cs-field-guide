@@ -19,6 +19,9 @@ done
 
 >&2 echo "Postgres is up - continuing..."
 
+echo "Compiling message files"
+/docker_venv/bin/python3 ./manage.py compilemessages
+
 # Start gunicorn service
 echo "Starting gunicorn"
 /docker_venv/bin/gunicorn -c ./gunicorn.conf.py -b :$PORT config.wsgi --reload

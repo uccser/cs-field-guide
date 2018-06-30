@@ -29,11 +29,11 @@ close-window:
 cmy-mixer:
   name: CMY Mixer
 colour-matcher:
-  name: colour-matcher (broken)
+  name: Colour Matcher
 compression-comparer:
   name: compression-comparer (broken)
 confused-buttons:
-  name: confused-buttons (broken)
+  name: Confused Buttons
 date-picker:
   name: Date Picker
 deceiver:
@@ -51,7 +51,7 @@ fsa-light:
 fsa-washing-machine:
   name: FSA Washing Machine
 hex-background-colour:
-  name: hex-background-colour (broken)
+  name: Hex Background Colour
 high-score-boxes:
   name: High Score Boxes (broken)
 huffman-tree:
