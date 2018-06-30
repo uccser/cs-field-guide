@@ -20,6 +20,28 @@ jobs:
       if: type = pull_request
     - script: ./csfg ci style
     - script: ./csfg ci docs
+    - stage: develop deploy
+      script: skip
+      deploy:
+        - provider: script
+          script: bash ./infrastructure/dev-deploy/deploy-app.sh
+          skip_cleanup: true
+          on:
+            branch: develop
+    - script: skip
+      deploy:
+        - provider: script
+          script: bash ./infrastructure/dev-deploy/deploy-static-files.sh
+          skip_cleanup: true
+          on:
+            branch: develop
+    - script: skip
+      deploy:
+        - provider: script
+          script: bash ./infrastructure/dev-deploy/update-database.sh
+          skip_cleanup: true
+          on:
+            branch: develop
 notifications:
   email: false
   slack:

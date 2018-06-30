@@ -1,0 +1,25 @@
+runtime: custom
+env: flex
+
+beta_settings:
+    cloud_sql_instances: ${GOOGLE_CLOUD_SQL_CONNECTION_NAME}
+
+env_variables:
+  INCLUDE_INCONTEXT_L10N: ${INCLUDE_INCONTEXT_L10N}
+  DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY}
+  GOOGLE_CLOUD_SQL_DATABASE_USERNAME: ${GOOGLE_CLOUD_SQL_DATABASE_USERNAME}
+  GOOGLE_CLOUD_SQL_DATABASE_PASSWORD: ${GOOGLE_CLOUD_SQL_DATABASE_PASSWORD}
+  GOOGLE_CLOUD_SQL_CONNECTION_NAME: ${GOOGLE_CLOUD_SQL_CONNECTION_NAME}
+  GOOGLE_CLOUD_STORAGE_BUCKET_NAME: cs-field-guide-dev.appspot.com
+
+resources:
+  cpu: 1
+  memory_gb: 3.75
+
+health_check:
+  enable_health_check: True
+  check_interval_sec: 5
+  timeout_sec: 4
+
+manual_scaling:
+  instances: 1
