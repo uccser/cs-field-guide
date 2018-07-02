@@ -12,6 +12,15 @@ django-inline-svg==0.1.1
 verto==0.7.4
 python-markdown-math==0.5
 
+# Search
+django-haystack==2.8.0
+Whoosh==2.7.4
+django-widget-tweaks==1.4.1
+
+# XML Parsing
+lxml==4.2.0
+cssselect==1.0.3
+
 # YAML Loading
 PyYAML==3.12
 
