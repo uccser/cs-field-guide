@@ -21,7 +21,7 @@ box-translation:
 caesar-cipher:
   name: Caesar Cipher (broken)
 checksum-calculator:
-  name: checksum-calculator (broken)
+  name: Checksum Calculator
 checksum-calculator-gtin-13:
   name: Checksum Calculator GTIN-13
 close-window:
