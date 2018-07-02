@@ -56,4 +56,40 @@
 #interactive-parity-grid-size,
 label {
   font-size: 1.5rem !important;
-}#interactive-parity-footer {  padding-top: 2rem;  color: grey;}#interactive-parity-footer > p {  font-size: 0.8rem;}.btn-expand {  width: 100%;  padding: 0 0.5rem;}select {  border: 1px solid #929292;}#interactive-parity-grid-container{  position: relative;}#interactive-parity-grid-confusation {  display: none;  position: absolute;  left: 0;  top: 0;  right: 0;  bottom: 0;  background-color: rgba(0, 0, 0, 0.5);  border-radius: 8px;  align-items: center;  justify-content: center;}#interactive-parity-grid-confusation-text {  text-align: center;  flex: none;  color: white;  font-size: 2rem;}
+}
+#interactive-parity-footer {
+  padding-top: 2rem;
+  color: grey;
+}
+#interactive-parity-footer > p {
+  font-size: 0.8rem;
+}
+select {
+  border: 1px solid #929292;
+}
+#interactive-parity-grid-container{
+  position: relative;
+}
+#interactive-parity-grid-confusation {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+  align-items: center;
+  justify-content: center;
+}
+#interactive-parity-grid-confusation-text {
+  text-align: center;
+  flex: none;
+  color: white;
+  font-size: 2rem;
+}
+.interactive-parity-controls p,
+.interactive-parity-text,
+#interactive-parity h4 {
+  text-align: left;
+}
