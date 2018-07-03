@@ -6,6 +6,7 @@ from search.forms import all_items
 from chapters.models import (
     Chapter,
     ChapterSection,
+)
 from appendices.models import (
     Appendix,
     Subappendix,

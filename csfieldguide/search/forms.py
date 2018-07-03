@@ -1,16 +1,10 @@
 """Module for custom search form."""
-from django import forms
+
 from haystack.forms import ModelSearchForm
 
 
 class CustomSearchForm(ModelSearchForm):
     """Class for custom search form."""
-
-    curriculum_areas = forms.ModelMultipleChoiceField(
-        queryset=CurriculumArea.objects.all(),
-        required=False,
-        widget=None,
-    )
 
     def search(self):
         """Search index based off query.
