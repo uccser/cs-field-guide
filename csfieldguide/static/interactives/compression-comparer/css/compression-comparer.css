@@ -53,3 +53,13 @@
   line-height:50px;
   font-size:30px;
 }
+.interactive-compression-comparer-clearfix {
+  clear: both;
+  margin-top: 1rem;
+}
+.interactive-compression-comparer-left {
+  float: left !important;
+}
+.interactive-compression-comparer-right {
+  float: right !important;
+}
