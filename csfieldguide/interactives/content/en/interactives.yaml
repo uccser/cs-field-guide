@@ -31,7 +31,7 @@ cmy-mixer:
 colour-matcher:
   name: Colour Matcher
 compression-comparer:
-  name: compression-comparer (broken)
+  name: Compression Comparer
 confused-buttons:
   name: Confused Buttons
 date-picker:
