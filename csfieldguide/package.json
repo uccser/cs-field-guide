@@ -1,6 +1,6 @@
 {
   "name": "cs-field-guide-assets",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": "gulpfile.js",
   "private": true,
   "dependencies": {
