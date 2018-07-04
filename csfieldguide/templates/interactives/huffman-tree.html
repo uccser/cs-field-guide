@@ -1,0 +1,28 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-10">
+        <h3>{% trans "Huffman Tree Generator" %}</h3>
+        <p>{% trans "Enter text below to create a Huffman Tree. The following characters will be used to create the tree: letters, numbers, full stop, comma, single quote. All other characters are ignored." %}</p>
+
+        <textarea placeholder="Enter some text to create Huffman Tree" id="text-input" class="form-control mb-2"></textarea>
+        <button id="generate-tree" class="btn btn-primary btn-lg disabled">{% trans "Loading generator..." %}</button>
+        <div id="output"></div>
+      </div>
+    </div>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/huffman-tree/css/huffman-tree.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/huffman-tree/js/huffman-tree.js' %}"></script>
+  <script type="text/javascript" src="{% static 'interactives/huffman-tree/js/third-party/viz-lite.js' %}"></script>
+{% endblock js %}
