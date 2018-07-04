@@ -1,3 +1,7 @@
 textarea {
   min-height: 10em;
 }
+
+p {
+    text-align: left;
+}

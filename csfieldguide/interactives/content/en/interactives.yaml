@@ -55,7 +55,7 @@ hex-background-colour:
 high-score-boxes:
   name: High Score Boxes (broken)
 huffman-tree:
-  name: huffman-tree (broken)
+  name: Huffman Tree
 image-bit-comparer:
   name: image-bit-comparer (broken)
 jpeg-compression:
