@@ -13,7 +13,7 @@ big-number-calculator:
 bin-packing:
   name: bin-packing (broken)
 binary-cards:
-  name: binary-cards (broken)
+  name: Binary Cards
 box-rotation:
   name: box-rotation (broken)
 box-translation:

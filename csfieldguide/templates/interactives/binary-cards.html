@@ -1,0 +1,39 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div class="container">
+    <div class="row">
+      <div class="col s12">
+        <div id="interactive-binary-cards">
+          <h3>{% trans "Binary Cards" %}</h3>
+
+          <div id='interactive-binary-cards-container'></div>
+          <h5 id="dot-decimal-count"></h5>
+
+          <p>
+            {% trans "Flip all card sides to:" %}
+            <button id="flip-to-black" class="btn">{% trans "Black" %}</button>
+            <button id="flip-to-white" class="btn">{% trans "White" %}</button>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/binary-cards/css/binary-cards.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript">
+    var binary_cards_il8n = {
+      "1-dot-visible": "{% trans '1 dot is visible' %}",
+      "dots-visible": "{% trans ' dots are visible' %}",
+    };
+  </script>
+  <script type="text/javascript" src="{% static 'interactives/binary-cards/js/binary-cards.js' %}"></script>
+{% endblock js %}
