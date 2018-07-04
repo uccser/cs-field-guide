@@ -27,15 +27,16 @@
               {% trans "Search" %}
             </label>
             <div class="col-sm-10">
+              {% trans "Search" as placeholder_text %}
               {% if form.is_bound and form.q.errors %}
-                {% render_field form.q class="form-control form-control-lg is-invalid" aria-describedby="form-query-text-help" placeholder="{% trans "What are you searching for?" %}" %}
+                {% render_field form.q class="form-control form-control-lg is-invalid" aria-describedby="form-query-text-help" placeholder=placeholder_text %}
                 {% for error in field.errors %}
                   <div class="invalid-feedback">
                     {{ error }}
                   </div>
                 {% endfor %}
               {% else %}
-                {% render_field form.q class="form-control form-control-lg" aria-describedby="form-query-text-help" placeholder="{% trans "What are you searching for?" %}" %}
+                {% render_field form.q class="form-control form-control-lg" aria-describedby="form-query-text-help" placeholder=placeholder_text %}
               {% endif %}
             </div>
           </div>
