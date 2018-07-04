@@ -5,18 +5,18 @@
 
 {% block html %}
   <div class="container">
-    <div class="row">
-      <div class="col s12">
+    <div class="row justify-content-center">
+      <div class="col-10">
         <div id="interactive-binary-cards">
           <h3>{% trans "Binary Cards" %}</h3>
 
-          <div id='interactive-binary-cards-container'></div>
+          <div id="interactive-binary-cards-container" class="m-2"></div>
           <h5 id="dot-decimal-count"></h5>
 
           <p>
             {% trans "Flip all card sides to:" %}
-            <button id="flip-to-black" class="btn">{% trans "Black" %}</button>
-            <button id="flip-to-white" class="btn">{% trans "White" %}</button>
+            <button id="flip-to-black" class="btn btn-dark">{% trans "Black" %}</button>
+            <button id="flip-to-white" class="btn btn-light">{% trans "White" %}</button>
           </p>
         </div>
       </div>

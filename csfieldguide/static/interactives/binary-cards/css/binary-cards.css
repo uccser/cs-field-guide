@@ -55,8 +55,6 @@
 }
 #interactive-binary-cards button {
   border: 1px solid #888;
-  height: 2rem;
-  line-height: 2rem;
 }
 #interactive-binary-cards button#flip-to-black {
   background: black;
