@@ -1,6 +1,5 @@
 """Module for custom search form."""
 
-from django import forms
 from haystack.forms import ModelSearchForm
 
 

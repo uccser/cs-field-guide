@@ -1,7 +1,6 @@
 """Module for custom search view."""
 
 from haystack.generic_views import SearchView
-from haystack.query import EmptySearchQuerySet
 from search.forms import CustomSearchForm
 
 

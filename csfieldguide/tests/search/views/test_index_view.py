@@ -1,12 +1,11 @@
 from os.path import join, dirname
-from django.conf import settings
-from django.test import override_settings
 from http import HTTPStatus
 from os import makedirs
 from shutil import rmtree
 from django.urls import reverse
 from django.conf import settings
 from django.core import management
+from django.test import override_settings
 from tests.BaseTestWithDB import BaseTestWithDB
 from tests.chapters.ChaptersTestDataGenerator import ChaptersTestDataGenerator
 from tests.appendices.AppendicesTestDataGenerator import AppendicesTestDataGenerator
@@ -139,11 +138,16 @@ class IndexViewTest(BaseTestWithDB):
         self.chapters_test_data.create_chapter_section(chapter, 1)
         management.call_command("rebuild_index", "--noinput")
         url = reverse("search:index")
-        get_parameters = [("q", "")]
+        get_parameters = [
+            ("q", ""),
+            ("models", "chapters.chapter"),
+            ("models", "chapters.chaptersection"),
+            ("models", "appendices.appendix"),
+            ("models", "appendices.subappendix"),
+        ]
         url += query_string(get_parameters)
         response = self.client.get(url)
         result_objects = response.context["object_list"]
-        print(result_objects)
         self.assertEqual(result_objects[0].model_name, "chapter")
         self.assertEqual(result_objects[1].model_name, "chaptersection")
         self.assertEqual(result_objects[2].model_name, "appendix")
@@ -163,70 +167,40 @@ class IndexViewTest(BaseTestWithDB):
         result_objects = response.context["object_list"]
         self.assertEqual(len(result_objects), 1)
         self.assertEqual(result_objects[0].model_name, "chapter")
-    #
-    # def test_search_view_model_filter_multiple(self):
-    #     topic = self.chapters_test_data.create_topic(1)
-    #     self.chapters_test_data.create_topic(2)
-    #     unit_plan = self.chapters_test_data.create_unit_plan(topic, 1)
-    #     age_group = self.chapters_test_data.create_age_group(5, 7)
-    #     self.chapters_test_data.create_lesson(
-    #         topic,
-    #         unit_plan,
-    #         1,
-    #         age_group
-    #     )
-    #     management.call_command("rebuild_index", "--noinput")
-    #     url = reverse("search:index")
-    #     get_parameters = [
-    #         ("models", "topics.topic"),
-    #         ("models", "topics.unitplan"),
-    #     ]
-    #     url += query_string(get_parameters)
-    #     response = self.client.get(url)
-    #     result_objects = response.context["object_list"]
-    #     self.assertEqual(len(result_objects), 3)
-    #     self.assertEqual(result_objects[0].model_name, "topic")
-    #     self.assertEqual(result_objects[1].model_name, "topic")
-    #     self.assertEqual(result_objects[2].model_name, "unitplan")
-    #
-    # def test_search_view_model_filter_multiple_with_query(self):
-    #     topic = self.chapters_test_data.create_topic(1)
-    #     self.chapters_test_data.create_topic(2)
-    #     unit_plan = self.chapters_test_data.create_unit_plan(topic, 1)
-    #     age_group = self.chapters_test_data.create_age_group(5, 7)
-    #     self.chapters_test_data.create_lesson(
-    #         topic,
-    #         unit_plan,
-    #         1,
-    #         age_group
-    #     )
-    #     management.call_command("rebuild_index", "--noinput")
-    #     url = reverse("search:index")
-    #     get_parameters = [
-    #         ("q", "Unit Plan 1"),
-    #         ("models", "topics.topic"),
-    #         ("models", "topics.unitplan"),
-    #     ]
-    #     url += query_string(get_parameters)
-    #     response = self.client.get(url)
-    #     result_objects = response.context["object_list"]
-    #     self.assertEqual(len(result_objects), 1)
-    #     self.assertEqual(result_objects[0].model_name, "unitplan")
-    #
-    # def test_search_view_curriculum_areas_filter_1(self):
-    #     topic = self.chapters_test_data.create_topic(1)
-    #     area_1 = self.chapters_test_data.create_curriculum_area(1)
-    #     self.chapters_test_data.create_integration(topic, 1, curriculum_areas=[area_1])
-    #     area_2 = self.chapters_test_data.create_curriculum_area(2)
-    #     self.chapters_test_data.create_integration(topic, 2, curriculum_areas=[area_1, area_2])
-    #     self.chapters_test_data.create_integration(topic, 3)
-    #     self.chapters_test_data.create_integration(topic, 4)
-    #     management.call_command("rebuild_index", "--noinput")
-    #     url = reverse("search:index")
-    #     get_parameters = [
-    #         ("curriculum_areas", area_1.pk),
-    #     ]
-    #     url += query_string(get_parameters)
-    #     response = self.client.get(url)
-    #     result_objects = response.context["object_list"]
-    #     self.assertEqual(len(result_objects), 2)
+
+    def test_search_view_model_filter_multiple(self):
+        appendix = self.appendices_test_data.create_appendix(1, "appendix-1.html")
+        self.appendices_test_data.create_subappendix(appendix, 1, "appendix-1.html")
+        chapter = self.chapters_test_data.create_chapter(1)
+        self.chapters_test_data.create_chapter_section(chapter, 1)
+        management.call_command("rebuild_index", "--noinput")
+        url = reverse("search:index")
+        get_parameters = [
+            ("q", ""),
+            ("models", "chapters.chapter"),
+            ("models", "chapters.chaptersection"),
+        ]
+        url += query_string(get_parameters)
+        response = self.client.get(url)
+        result_objects = response.context["object_list"]
+        self.assertEqual(len(result_objects), 2)
+        self.assertEqual(result_objects[0].model_name, "chapter")
+        self.assertEqual(result_objects[1].model_name, "chaptersection")
+
+    def test_search_view_model_filter_multiple_with_query(self):
+        appendix = self.appendices_test_data.create_appendix(1, "appendix-1.html")
+        self.appendices_test_data.create_subappendix(appendix, 1, "appendix-1.html")
+        chapter = self.chapters_test_data.create_chapter(1)
+        self.chapters_test_data.create_chapter_section(chapter, 1)
+        management.call_command("rebuild_index", "--noinput")
+        url = reverse("search:index")
+        get_parameters = [
+            ("q", "Chapter"),
+            ("models", "chapters.chapter"),
+            ("models", "appendices.appendix"),
+        ]
+        url += query_string(get_parameters)
+        response = self.client.get(url)
+        result_objects = response.context["object_list"]
+        self.assertEqual(len(result_objects), 1)
+        self.assertEqual(result_objects[0].model_name, "chapter")
