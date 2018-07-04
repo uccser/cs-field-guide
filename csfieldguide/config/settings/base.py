@@ -52,6 +52,7 @@ LOCAL_APPS = [
     "chapters.apps.ChaptersConfig",
     "appendices.apps.AppendicesConfig",
     "interactives.apps.InteractivesConfig",
+    "search.apps.SearchConfig",
 ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
