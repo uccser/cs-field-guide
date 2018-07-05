@@ -64,3 +64,6 @@
   background: white;
   color: black;
 }
+h3, h5, p {
+  text-align: left;
+}
