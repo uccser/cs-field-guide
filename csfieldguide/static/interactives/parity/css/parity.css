@@ -40,7 +40,7 @@
   border-color: #2196F3;
 }
 .correct-bit {
-  border-color: #4CAF50;
+  border-color: #4CAF50 !important;
 }
 #interactive-parity-feedback {
   margin: 0;

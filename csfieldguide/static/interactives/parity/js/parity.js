@@ -61,14 +61,11 @@ $(document).ready(function(){
       setupMode()
     // Else if detect stage in detect mode
     } else {
-      // Remove green success highlight around bit if correct bit found
-      if (Parity.flipping == 'none') {
-        var $bit = Parity.grid.children().eq(Parity.flipped_row).children().eq(Parity.flipped_col);
-        $bit.removeClass('correct-bit');
-      }
       clearGrid();
       setupMode();
     }
+    // Remove green success highlight around bit if correct bit found
+    $('#interactive-parity-grid .parity-card').removeClass('correct-bit');
     Parity.feedback.removeClass('error');
     Parity.feedback.text("");
   });
@@ -90,7 +87,6 @@ $(document).ready(function(){
       Parity.feedback.text(parity_il8n["set-incorrectly"]);
     } else if (Parity.current_mode == 'detect' && Parity.flipping == 'all') {
       if ($bit.data("row") == Parity.flipped_row && $bit.data("col") == Parity.flipped_col) {
-        $bit.removeClass("parity-bit");
         $bit.addClass("correct-bit");
         Parity.feedback.removeClass('error');
         Parity.feedback.text(parity_il8n["correct"]);
