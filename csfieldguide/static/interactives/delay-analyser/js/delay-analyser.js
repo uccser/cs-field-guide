@@ -18,7 +18,7 @@ $(document).ready(function() {
 
   $('#toggle-view').on('click', function(){
     $('#statistics-div').toggle();
-    $('#delay-grid-div').toggle();
+    $('#delay-grid').toggle();
     if ($('#statistics-div').is(":visible")) {
       calculateStatistics();
       $('#toggle-view').html(delay_analyser_il8n['grid']);
@@ -93,7 +93,7 @@ function calculateStatistics() {
 
 function setup_delay_grid() {
   $('#statistics-div').hide();
-  $('#delay-grid-div').show();
+  $('#delay-grid').show();
   var delay_values = [];
   for (repeat = 0; repeat < total_delays_for_each; repeat++) {
     delay_values = delay_values.concat(delay_types);
