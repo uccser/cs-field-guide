@@ -18,7 +18,7 @@ Whoosh==2.7.4
 django-widget-tweaks==1.4.1
 
 # XML Parsing
-lxml==4.2.0
+lxml==4.2.3
 cssselect==1.0.3
 
 # YAML Loading
