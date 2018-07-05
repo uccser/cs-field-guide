@@ -1,0 +1,28 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div id="interactive-fsa-box" class="interactive center-align" data-iframe-height>
+
+    <div id="interactive-fsa-box-state-text">
+      {% trans 'Current state: <span id="interactive-fsa-box-current-state-text"></span>' %}
+    </div>
+
+    <div id="interactive-fsa-box-current-state"></div>
+
+    <div id="interactive-fsa-box-buttons"></div>
+
+    <button id="interactive-fsa-box-reset" class="btn btn-danger">{% trans "Reset to start state" %}</button>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/fsa-box/css/fsa-box.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/fsa-box/js/fsa-box.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/third-party/iframeResizer.contentWindow.min.js' %}"></script>
+{% endblock js %}
