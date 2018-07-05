@@ -24,6 +24,8 @@ class Appendix(TranslatableModel):
         """Set consistent ordering of appendices."""
 
         ordering = ["name"]
+        verbose_name = "Appendix"
+        verbose_name_plural = "Appendices"
 
 
 class Subappendix(TranslatableModel):
@@ -51,3 +53,5 @@ class Subappendix(TranslatableModel):
         """Set consistent ordering of subappendices."""
 
         ordering = ["name"]
+        verbose_name = "Sub-appendix"
+        verbose_name_plural = "Sub-appendices"

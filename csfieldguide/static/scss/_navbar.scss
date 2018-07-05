@@ -13,3 +13,33 @@
     text-decoration: underline;
   }
 }
+
+// This removes the navbar button from the document flow,
+// allowing the logo to display perfectly center.
+.navbar > .container {
+  position: relative;
+  justify-content: center;
+  > .navbar-toggler {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+
+#search-navbar {
+  input,
+  button {
+    line-height: 1.4 !important;
+    padding-left: 0.4rem !important;
+    padding-right: 0.4rem !important;
+  }
+  .icon {
+    display: block;
+    margin: auto;
+    width: 1em;
+    height: 1em;
+    stroke-width: 0;
+    stroke: #fff;
+    fill: #fff;
+  }
+}

@@ -99,6 +99,7 @@ cmd_update() {
 
   echo ""
   dev_updatedata
+  dev_rebuild_index
 
   echo ""
   dev_collect_static
@@ -194,6 +195,13 @@ dev_static_prod() {
   docker-compose exec nginx gulp build --production
 }
 defhelp -dev static_prod 'Build production static files.'
+
+# Run Django command rebuild_index
+dev_rebuild_index() {
+  echo "Rebuilding search index..."
+  docker-compose exec django /docker_venv/bin/python3 ./manage.py rebuild_index --noinput
+}
+defhelp -dev rebuild_index "Run Django rebuild_index command."
 
 # Run style checks
 dev_style() {
