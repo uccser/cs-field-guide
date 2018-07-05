@@ -39,7 +39,7 @@ date-picker:
 deceiver:
   name: Deceiver
 delay-analyser:
-  name: delay-analyser (broken)
+  name: Delay Analyser
 delayed-checkbox:
   name: Delayed Checkbox
 frequency-analysis:
