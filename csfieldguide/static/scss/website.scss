@@ -65,6 +65,10 @@ body {
   }
 }
 
+#content-container {
+  padding-top: $navbar-padding-bottom;
+}
+
 #sticky-sidebar {
   top: $navbar-height + $navbar-padding-bottom;
 }

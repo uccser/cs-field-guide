@@ -39,6 +39,8 @@ DJANGO_APPS = [
 ]
 
 THIRD_PARTY_APPS = [
+    "haystack",
+    "widget_tweaks",
     "modeltranslation",
     "bidiutils",
     "svg",
@@ -50,6 +52,7 @@ LOCAL_APPS = [
     "chapters.apps.ChaptersConfig",
     "appendices.apps.AppendicesConfig",
     "interactives.apps.InteractivesConfig",
+    "search.apps.SearchConfig",
 ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -186,6 +189,7 @@ TEMPLATES = [
                 "render_html_field": "config.templatetags.render_html_field",
                 "render_interactive_in_page": "config.templatetags.render_interactive_in_page",
                 "translate_url": "config.templatetags.translate_url",
+                "query_replace": "config.templatetags.query_replace",
             },
         },
     },
@@ -244,6 +248,17 @@ AUTH_PASSWORD_VALIDATORS = [
         "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
+
+# SEARCH CONFIGURATION
+# ------------------------------------------------------------------------------
+# See: http://django-haystack.readthedocs.io/en/v2.6.0/settings.html
+HAYSTACK_CONNECTIONS = {
+    "default": {
+        "ENGINE": "haystack.backends.whoosh_backend.WhooshEngine",
+        "PATH": str(ROOT_DIR.path("whoosh_index")),
+    },
+}
+HAYSTACK_SEARCH_RESULTS_PER_PAGE = 10
 
 # OTHER SETTINGS
 # ------------------------------------------------------------------------------
