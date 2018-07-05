@@ -54,6 +54,8 @@ class Chapter(TranslatableModel):
         """Set consistent ordering of chapters."""
 
         ordering = ["number"]
+        verbose_name = "Chapter"
+        verbose_name_plural = "Chapters"
 
 
 class ChapterSection(TranslatableModel):
@@ -100,3 +102,5 @@ class ChapterSection(TranslatableModel):
         """Set consistent ordering of chapter sections."""
 
         ordering = ["number"]
+        verbose_name = "Chapter section"
+        verbose_name_plural = "Chapter sections"

@@ -7,13 +7,20 @@ The `urlpatterns` list routes URLs to views. For more information please see:
 from django.conf import settings
 from django.conf.urls import include, url
 from django.conf.urls.i18n import i18n_patterns
+from config.views import health_check
+
 
 urlpatterns = i18n_patterns(
     url(r"", include("general.urls", namespace="general")),
     url(r"^interactives/", include("interactives.urls", namespace="interactives")),
     url(r"^chapters/", include("chapters.urls", namespace="chapters")),
     url(r"^appendices/", include("appendices.urls", namespace="appendices")),
+    url(r"^search/", include("search.urls", namespace="search")),
 )
+
+urlpatterns += [
+    url(r"^_ah/health", health_check),
+]
 
 if settings.DEBUG:  # pragma: no cover
     import debug_toolbar
