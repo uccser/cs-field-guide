@@ -8,13 +8,9 @@
 {% endblock title %}
 
 {% block body_container %}
-  <div class="interactive text-center container-fluid">
-    <h1>{{ interactive.name }}</h1>
-
-    <div class="text-center">
-      {% block html %}
-      {% endblock html %}
-    </div>
+  <div class="interactive container-fluid">
+    {% block html %}
+    {% endblock html %}
   </div>
 
   {% block css %}
