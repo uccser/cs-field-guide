@@ -3,9 +3,11 @@
     {{ "{% render_interactive_in_page '" }}{{ slug }}{{ "' %}" }}
   </div>
 {% elif type == 'iframe' -%}
-  <iframe src="{{ "{% url 'interactives:iframe_interactive' '" }}{{ slug }}{{ "' %}" }}{% if parameters %}?{{ parameters }}{% endif %}" class="interactive-iframe-resize" frameborder="0" scrolling="no">
-  <p>Your browser does not support iframes.</p>
-  </iframe>
+  <div class="embed-responsive embed-responsive-16by9">
+    <iframe src="{{ "{% url 'interactives:iframe_interactive' '" }}{{ name }}{{ "' %}" }}{% if parameters %}?{{ parameters }}{% endif %}" class="interactive-iframe-resize embed-responsive-item" frameborder="0" scrolling="no">
+    <p>Your browser does not support iframes.</p>
+    </iframe>
+  </div>
 {% elif type == 'whole-page' -%}
   <div class="row">
     <div class="col s12 m8 offset-m2 center-align">
