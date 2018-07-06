@@ -1,8 +1,4 @@
-// var fsa_light_config;
-
 $(document).ready(function() {
-  // var config_name = getUrlParameter('config') || 'example-1';
-  // loadConfig(config_name);
 
   setupInterface();
   updateInterface();
@@ -21,30 +17,13 @@ $(document).ready(function() {
   });
 });
 
-// function loadConfig(config_name) {
-//   var config_path = 'config/' + config_name + '.json'
-//   $.ajax({
-//     dataType: "json",
-//     url: config_path,
-//     success: function(config_data) {
-//       fsa_light_config = config_data;
-//       setupInterface();
-//       updateInterface();
-//     },
-//     error: function() {
-//       alert('Config file not found!');
-//     },
-//     timeout: 3000
-//   })
-// }
-
 
 function setupInterface() {
   var button_container = $('#interactive-fsa-light-buttons');
   var available_buttons = fsa_light_config['available_buttons'];
   for (var i = 0; i < available_buttons.length; i++) {
     var button = document.createElement('button');
-    button.className = 'btn btn-primary';
+    button.className = 'btn btn-primary btn-lg';
     button.innerHTML = available_buttons[i];
     button_container.append(button);
   }

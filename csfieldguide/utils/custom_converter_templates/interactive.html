@@ -3,8 +3,8 @@
     {{ "{% render_interactive_in_page '" }}{{ slug }}{{ "' %}" }}
   </div>
 {% elif type == 'iframe' -%}
-  <div class="embed-responsive embed-responsive-16by9">
-    <iframe src="{{ "{% url 'interactives:iframe_interactive' '" }}{{ name }}{{ "' %}" }}{% if parameters %}?{{ parameters }}{% endif %}" class="interactive-iframe-resize embed-responsive-item" frameborder="0" scrolling="no">
+  <div class="embed-responsive embed-responsive-4by3">
+    <iframe src="{{ "{% url 'interactives:iframe_interactive' '" }}{{ slug }}{{ "' %}" }}{% if parameters %}?{{ parameters }}{% endif %}" class="interactive-iframe-resize embed-responsive-item" frameborder="0" scrolling="no">
     <p>Your browser does not support iframes.</p>
     </iframe>
   </div>
