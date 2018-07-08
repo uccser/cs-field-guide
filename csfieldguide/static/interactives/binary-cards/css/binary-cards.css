@@ -55,8 +55,6 @@
 }
 #interactive-binary-cards button {
   border: 1px solid #888;
-  height: 2rem;
-  line-height: 2rem;
 }
 #interactive-binary-cards button#flip-to-black {
   background: black;
@@ -65,4 +63,7 @@
 #interactive-binary-cards button#flip-to-white {
   background: white;
   color: black;
+}
+h3, h5, p {
+  text-align: left;
 }
