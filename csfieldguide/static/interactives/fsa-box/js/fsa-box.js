@@ -1,8 +1,6 @@
-var fsa_box_config;
-
 $(document).ready(function() {
-  var config_name = getUrlParameter('config') || 'example-1';
-  loadConfig(config_name);
+  setupInterface();
+  updateInterface();
 
   // When state button is clicked
   $('#interactive-fsa-box-buttons').on('click', '.btn', function(event) {
@@ -18,30 +16,13 @@ $(document).ready(function() {
   });
 });
 
-function loadConfig(config_name) {
-  var config_path = 'config/' + config_name + '.json'
-  $.ajax({
-    dataType: "json",
-    url: config_path,
-    success: function(config_data) {
-      fsa_box_config = config_data;
-      setupInterface();
-      updateInterface();
-    },
-    error: function() {
-      alert('Config file not found!');
-    },
-    timeout: 3000
-  })
-}
-
 
 function setupInterface() {
   var button_container = $('#interactive-fsa-box-buttons');
   var available_buttons = fsa_box_config['available_buttons'];
   for (var i = 0; i < available_buttons.length; i++) {
-    var button = document.createElement('a');
-    button.className = 'btn waves-effect waves-light blue';
+    var button = document.createElement('button');
+    button.className = 'btn btn-primary m-1';
     button.innerHTML = available_buttons[i];
     button_container.append(button);
   }

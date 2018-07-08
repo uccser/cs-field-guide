@@ -4,7 +4,7 @@
 {% load static %}
 
 {% block html %}
-  <div id="interactive-fsa-box" class="interactive center-align" data-iframe-height>
+  <div id="interactive-fsa-box" data-iframe-height>
 
     <div id="interactive-fsa-box-state-text">
       {% trans 'Current state: <span id="interactive-fsa-box-current-state-text"></span>' %}
@@ -14,7 +14,7 @@
 
     <div id="interactive-fsa-box-buttons"></div>
 
-    <button id="interactive-fsa-box-reset" class="btn btn-danger">{% trans "Reset to start state" %}</button>
+    <button id="interactive-fsa-box-reset" class="btn btn-danger mt-2">{% trans "Reset to start state" %}</button>
   </div>
 {% endblock html %}
 
@@ -23,6 +23,53 @@
 {% endblock css %}
 
 {% block js %}
+  {% if request.GET.config == 'example-2' %}
+    <script type="text/javascript">
+      var fsa_box_config = {
+        "available_buttons": ["a", "b"],
+        "initial_state": "1",
+        "states": {
+          "1": {
+            "box": "Not accepted",
+            "destinations": {
+              "a": "2",
+              "b": "1"
+            }
+          },
+          "2": {
+            "box": "Accepted",
+            "destinations": {
+              "a": "1",
+              "b": "2"
+            }
+          }
+        }
+      };
+    </script>
+  {% else %}
+    <script type="text/javascript">
+      var fsa_box_config = {
+        "available_buttons": ["a", "b"],
+        "initial_state": "1",
+        "states": {
+          "1": {
+            "box": "Not accepted",
+            "destinations": {
+              "a": "2",
+              "b": "1"
+            }
+          },
+          "2": {
+            "box": "Accepted",
+            "destinations": {
+              "a": "2",
+              "b": "1"
+            }
+          }
+        }
+      };
+    </script>
+  {% endif %}
   <script type="text/javascript" src="{% static 'interactives/fsa-box/js/fsa-box.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/third-party/iframeResizer.contentWindow.min.js' %}"></script>
 {% endblock js %}
