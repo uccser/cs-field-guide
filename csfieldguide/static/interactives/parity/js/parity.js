@@ -27,10 +27,10 @@ $(document).ready(function(){
     // Display status
     if (parity_status) {
       Parity.feedback.removeClass('error');
-      Parity.feedback.text('Correct: Every row and column has even parity (of white squares)');
+      Parity.feedback.text(parity_il8n["parity-correct"]);
     } else {
       Parity.feedback.addClass('error');
-      Parity.feedback.text('Incorrect: Not every row and column has even parity (of white squares)');
+      Parity.feedback.text(parity_il8n["parity-incorrect"]);
     }
   });
 
@@ -61,14 +61,11 @@ $(document).ready(function(){
       setupMode()
     // Else if detect stage in detect mode
     } else {
-      // Remove green success highlight around bit if correct bit found
-      if (Parity.flipping == 'none') {
-        var $bit = Parity.grid.children().eq(Parity.flipped_row).children().eq(Parity.flipped_col);
-        $bit.removeClass('correct-bit');
-      }
       clearGrid();
       setupMode();
     }
+    // Remove green success highlight around bit if correct bit found
+    $('#interactive-parity-grid .parity-card').removeClass('correct-bit');
     Parity.feedback.removeClass('error');
     Parity.feedback.text("");
   });
@@ -87,17 +84,16 @@ $(document).ready(function(){
     $bit = $(this);
     if (Parity.valid_parity_bits == false) {
       Parity.feedback.addClass('error');
-      Parity.feedback.text("Your parity bits weren't set correctly, try starting again.");
+      Parity.feedback.text(parity_il8n["set-incorrectly"]);
     } else if (Parity.current_mode == 'detect' && Parity.flipping == 'all') {
       if ($bit.data("row") == Parity.flipped_row && $bit.data("col") == Parity.flipped_col) {
-        $bit.removeClass("parity-bit");
         $bit.addClass("correct-bit");
         Parity.feedback.removeClass('error');
-        Parity.feedback.text("Correct! You spotted the flipped bit!");
+        Parity.feedback.text(parity_il8n["correct"]);
         Parity.flipping = 'none';
       } else {
         Parity.feedback.addClass('error');
-        Parity.feedback.text("That's not the flipped bit!");
+        Parity.feedback.text(parity_il8n["incorrect"]);
       }
     } else if (Parity.flipping == 'all' || (Parity.flipping == 'parity' && $bit.hasClass('parity-bit'))) {
       // We toggle bit manually rather than call updateGrid() to stay O(1)
@@ -140,7 +136,7 @@ function setupMode() {
   $('.interactive-parity-controls').hide()
 
   if (Parity.current_mode == 'sandbox') {
-     header.text('Sandbox Mode');
+     header.text(parity_il8n["sandbox"]);
      $('.interactive-parity-sandbox-controls').show();
      $('.interactive-parity-size-controls').show();
      $('.interactive-parity-check-controls').show();
@@ -148,7 +144,7 @@ function setupMode() {
      setRandomBits();
      updateGrid();
   } else if (Parity.current_mode == 'set') {
-    header.text('Setting Parity');
+    header.text(parity_il8n["set-parity"]);
     Parity.flipping = 'parity';
     $('.interactive-parity-size-controls').show();
     if (Parity.mode == 'trick') {
@@ -160,7 +156,7 @@ function setupMode() {
     setRandomBits();
     updateGrid();
   } else if (Parity.current_mode == 'detect') {
-    header.text('Detect the Error');
+    header.text(parity_il8n["detect"]);
     Parity.flipping = 'all';
     $('.interactive-parity-detect-controls').show();
     $('.interactive-parity-reset-controls').show();
@@ -273,7 +269,7 @@ function setupGrid(){
 
   if (Parity.grid_size > 21 || Parity.grid_size < 1 || isNaN(Parity.grid_size)) {
     // Error message
-    alert('Please enter a value between 1 and 20');
+    alert(parity_il8n["range-error"]);
     // Reset grid
     $('##interactive-parity-grid-size').val(6);
   } else {

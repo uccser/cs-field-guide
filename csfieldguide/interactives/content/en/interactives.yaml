@@ -79,7 +79,7 @@ packet-attack:
 packet-attack-level-creator:
   name: packet-attack-level-creator (broken)
 parity:
-  name: parity (broken)
+  name: Parity
 payment-interface:
   name: Payment Interface
 pixel-viewer:
