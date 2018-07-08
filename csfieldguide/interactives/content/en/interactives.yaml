@@ -9,7 +9,7 @@ awful-calculator:
 base-calculator:
   name: Base Calculator
 big-number-calculator:
-  name: big-number-calculator (broken)
+  name: Big Number Calculator
 bin-packing:
   name: bin-packing (broken)
 binary-cards:
