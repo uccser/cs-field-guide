@@ -7,7 +7,10 @@
 {% endblock title %}
 
 {% block body %}
-  <div class="interactive text-center">
+  <style>
+    body { padding-top: 0 !important; }
+  </style>
+  <div class="interactive">
     {% block html %}
     {% endblock html %}
   </div>
@@ -17,4 +20,7 @@
 
   {% block js %}
   {% endblock js %}
+
+  {% include "generic/core-js.html" %}
+  <script src="{% static 'js/third-party/iframeResizer.contentWindow.min.js' %}"></script>
 {% endblock body %}

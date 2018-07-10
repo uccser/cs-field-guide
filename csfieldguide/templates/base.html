@@ -267,38 +267,35 @@
           </div>
         </div>
       </div>
-    {% endblock body %}
-
-    <!-- jQuery first, then Tether, then Bootstrap JS. -->
-    <script>
-      glossary_url = "{% url 'chapters:glossary_json' %}";
-    </script>
-    <script src="{% static 'js/third-party/popper.min.js' %}"></script>
-    <script src="{% static 'js/third-party/bootstrap.min.js' %}"></script>
-    <script src="{% static 'js/website.js' %}"></script>
-    <script src="{% static 'js/third-party/details-element-polyfill.js' %}"></script>
-    <script src="{% static 'js/third-party/featherlight.min.js' %}"></script>
-    <script type='text/javascript'>
-      iFrameResize({heightCalculationMethod:'taggedElement'}, 'iframe.interactive-iframe-resize');
-    </script>
-    <script src="https://www.youtube.com/player_api"></script>
-    <script type="text/javascript" async
-      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
-    </script>
-    {% block scripts %}
-    {% endblock scripts %}
-
-    {% if DEPLOYED %}
-      <!-- Google Analytics -->
+      {% include "generic/core-js.html" %}
       <script>
-        (function(i,s,o,g,r,a,m){i["GoogleAnalyticsObject"]=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,"script","//www.google-analytics.com/analytics.js","ga");
-
-        ga("create", "UA-49289263-2", "auto");
-        ga("send", "pageview");
+        glossary_url = "{% url 'chapters:glossary_json' %}";
       </script>
-    {% endif %}
+      <script src="{% static 'js/website.js' %}"></script>
+      <script src="{% static 'js/third-party/featherlight.min.js' %}"></script>
+      <script src="{% static 'js/third-party/iframeResizer.min.js' %}"></script>
+      <script type='text/javascript'>
+        iFrameResize({}, 'iframe.iframe-resize');
+      </script>
+      <script src="https://www.youtube.com/player_api"></script>
+      <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+      </script>
+      {% block scripts %}
+      {% endblock scripts %}
+
+      {% if DEPLOYED %}
+        <!-- Google Analytics -->
+        <script>
+          (function(i,s,o,g,r,a,m){i["GoogleAnalyticsObject"]=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,"script","//www.google-analytics.com/analytics.js","ga");
+
+          ga("create", "UA-49289263-2", "auto");
+          ga("send", "pageview");
+        </script>
+      {% endif %}
+    {% endblock body %}
   </body>
 </html>
