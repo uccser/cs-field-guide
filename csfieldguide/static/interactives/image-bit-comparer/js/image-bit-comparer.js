@@ -181,7 +181,7 @@ function setupMode() {
       for (var i = 0; i < ImageBitComparer.colour_labels.length; i++) {
         var $control_container = $('<div></div>');;
         $control_container.append('<label>' + ImageBitComparer.colour_labels[i] + ':</label>');
-        var $select = $('<select class="browser-default"></select>');
+        var $select = $('<select class="browser-default form-control"></select>');
         for (var bit = 8; bit >= 0; bit--) {
           $select.append('<option value="' + bit + '">' + bit + '</option>');
         }
@@ -204,6 +204,16 @@ function setupMode() {
           var source_image_data = initialCanvasData();
           // Update canvases from base image
           drawCanvas($canvas, source_image_data);
+
+          var number_of_bits = bit_values.reduce(function(a, b) {return a + b;});
+          if (number_of_bits == 1) {
+            var subtitle_text = number_of_bits + image_bit_comparer_il8n["bit"];
+          } else {
+            var subtitle_text = number_of_bits + image_bit_comparer_il8n["bits"];
+          }
+
+          var $subtitle = $select.parents().eq(2).children('p');
+          $subtitle.text(subtitle_text);
         });
       }
 
