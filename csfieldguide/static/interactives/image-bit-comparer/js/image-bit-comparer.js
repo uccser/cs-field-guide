@@ -9,18 +9,18 @@ ImageBitComparer.BASE_HEIGHT = 300;
 ImageBitComparer.scale_factor = 1;
 
 ImageBitComparer.INITAL_IMAGES = [
-                                  ['IMG_5035.jpg', 'Sunflower'],
-                                  ['IMG_5264.jpg', 'Roof of Temple'],
-                                  ['IMG_2223.jpg', 'Lake in New Zealand'],
-                                  ['faces.jpg', 'Faces'],
-                                  ['IMG_8354.jpg', 'Flower'],
-                                  ['IMG_6698.jpg', 'Flower in snow'],
-                                  ['IMG_8061.jpg', 'Duckling'],
-                                  ['wedding-vehicle.jpg', 'Car'],
-                                  ['IMG_2521.jpg', 'Lightning'],
-                                  ['IMG_7448.jpg', 'Balloons'],
-                                  ['black-and-white.jpg', 'Black and White Photograph'],
-                                  ['IMG_0775.jpg', 'Books']
+                                  [image_bit_comparer_il8n_images["sunflower"], 'Sunflower'],
+                                  [image_bit_comparer_il8n_images["temple-roof"], 'Roof of Temple'],
+                                  [image_bit_comparer_il8n_images["nz-lake"], 'Lake in New Zealand'],
+                                  [image_bit_comparer_il8n_images["faces"], 'Faces'],
+                                  [image_bit_comparer_il8n_images["flower"], 'Flower'],
+                                  [image_bit_comparer_il8n_images["snow-flower"], 'Flower in snow'],
+                                  [image_bit_comparer_il8n_images["duckling"], 'Duckling'],
+                                  [image_bit_comparer_il8n_images["car"], 'Car'],
+                                  [image_bit_comparer_il8n_images["lightning"], 'Lightning'],
+                                  [image_bit_comparer_il8n_images["balloons"], 'Balloons'],
+                                  [image_bit_comparer_il8n_images["black-and-white"], 'Black and White Photograph'],
+                                  [image_bit_comparer_il8n_images["books"], 'Books']
                                 ];
 
 ImageBitComparer.colour_labels = ['Red', 'Green', 'Blue'];
@@ -88,7 +88,7 @@ $(document).ready(function(){
 function populateSelectOptions() {
   var $select = $('#interactive-image-bit-comparer-selected-image');
   for (var i = 0; i < ImageBitComparer.INITAL_IMAGES.length; i++) {
-    var file = 'img/' + ImageBitComparer.INITAL_IMAGES[i][0];
+    var file = ImageBitComparer.INITAL_IMAGES[i][0];
     var text = ImageBitComparer.INITAL_IMAGES[i][1];
     $select.append($('<option>').text(text).data('file', file));
   }
