@@ -2,6 +2,7 @@
 
 {% load i18n %}
 {% load static %}
+{% load get_item %}
 
 {% block html %}
   <div id="interactive-fsa-box" data-iframe-height>
@@ -23,9 +24,11 @@
 {% endblock css %}
 
 {% block js %}
-  {% if request.GET.config == 'example-2' %}
-    <script type="text/javascript">
-      var fsa_box_config = {
+  {% get_item request.GET "config" "example-1" as config %}
+
+  <script type="text/javascript">
+    var fsa_box_config = {
+      {% if config == 'example-2' %}
         "available_buttons": ["a", "b"],
         "initial_state": "1",
         "states": {
@@ -44,11 +47,7 @@
             }
           }
         }
-      };
-    </script>
-  {% else %}
-    <script type="text/javascript">
-      var fsa_box_config = {
+      {% else %}
         "available_buttons": ["a", "b"],
         "initial_state": "1",
         "states": {
@@ -67,9 +66,9 @@
             }
           }
         }
-      };
-    </script>
-  {% endif %}
+      {% endif %}
+    };
+  </script>
   <script type="text/javascript" src="{% static 'interactives/fsa-box/js/fsa-box.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/third-party/iframeResizer.contentWindow.min.js' %}"></script>
 {% endblock js %}
