@@ -129,6 +129,18 @@ function loadUserImage(filename, file) {
 };
 
 
+function getSubtitleText(bit_values) {
+  var number_of_bits = bit_values.reduce(function(a, b) {return a + b;});
+  if (number_of_bits == 1) {
+    var subtitle_text = number_of_bits + image_bit_comparer_il8n["bit"];
+  } else {
+    var subtitle_text = number_of_bits + image_bit_comparer_il8n["bits"];
+  }
+
+  return subtitle_text;
+};
+
+
 // Setup interface for current mode
 function setupMode() {
   var $canvas_parent_container = $('#interactive-image-bit-comparer-canvas-parent-container');
@@ -140,12 +152,7 @@ function setupMode() {
       var $canvas_container = $('<div class="interactive-image-bit-comparer-canvas-container shadow p-3 mb-5 bg-white rounded">');
 
       var bit_values = ImageBitComparer.comparison_bits[bit_values_index];
-      var number_of_bits = bit_values.reduce(function(a, b) {return a + b;});
-      if (number_of_bits == 1) {
-        var subtitle_text = number_of_bits + image_bit_comparer_il8n["bit"];
-      } else {
-        var subtitle_text = number_of_bits + image_bit_comparer_il8n["bits"];
-      }
+      var subtitle_text = getSubtitleText(bit_values);
 
       $canvas_container.append('<p class="interactive-image-bit-comparer-canvas-subtitle">' + subtitle_text + '</p>');
       var $canvas = $('<canvas class="interactive-image-bit-comparer-canvas"></canvas>');
@@ -163,12 +170,7 @@ function setupMode() {
       var $canvas_container = $('<div class="interactive-image-bit-comparer-canvas-container shadow p-3 mb-5 bg-white rounded">');
 
       var bit_values = ImageBitComparer.change_bits[bit_values_index];
-      var number_of_bits = bit_values.reduce(function(a, b) {return a + b;});
-      if (number_of_bits == 1) {
-        var subtitle_text = number_of_bits + image_bit_comparer_il8n["bit"];
-      } else {
-        var subtitle_text = number_of_bits + image_bit_comparer_il8n["bits"];
-      }
+      var subtitle_text = getSubtitleText(bit_values);
 
       $canvas_container.append('<p class="interactive-image-bit-comparer-canvas-subtitle">' + subtitle_text + '</p>');
       var $canvas = $('<canvas class="interactive-image-bit-comparer-canvas"></canvas>');
@@ -205,13 +207,7 @@ function setupMode() {
           // Update canvases from base image
           drawCanvas($canvas, source_image_data);
 
-          var number_of_bits = bit_values.reduce(function(a, b) {return a + b;});
-          if (number_of_bits == 1) {
-            var subtitle_text = number_of_bits + image_bit_comparer_il8n["bit"];
-          } else {
-            var subtitle_text = number_of_bits + image_bit_comparer_il8n["bits"];
-          }
-
+          var subtitle_text = getSubtitleText(bit_values);
           var $subtitle = $select.parents().eq(2).children('p');
           $subtitle.text(subtitle_text);
         });
