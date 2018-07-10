@@ -136,7 +136,6 @@ function getSubtitleText(bit_values) {
   } else {
     var subtitle_text = number_of_bits + image_bit_comparer_il8n["bits"];
   }
-
   return subtitle_text;
 };
 
@@ -181,7 +180,7 @@ function setupMode() {
 
       var $controls_container = $('<div class="interactive-image-bit-comparer-controls-container"></div>');
       for (var i = 0; i < ImageBitComparer.colour_labels.length; i++) {
-        var $control_container = $('<div></div>');;
+        var $control_container = $('<div></div>');
         $control_container.append('<label>' + ImageBitComparer.colour_labels[i] + ':</label>');
         var $select = $('<select class="browser-default form-control"></select>');
         for (var bit = 8; bit >= 0; bit--) {
@@ -207,9 +206,9 @@ function setupMode() {
           // Update canvases from base image
           drawCanvas($canvas, source_image_data);
 
+          // Update subtitle text to show new number of bits used
           var subtitle_text = getSubtitleText(bit_values);
-          var $subtitle = $select.parents().eq(2).children('p');
-          $subtitle.text(subtitle_text);
+          $select.parents().eq(2).children('p').text(subtitle_text);
         });
       }
 
