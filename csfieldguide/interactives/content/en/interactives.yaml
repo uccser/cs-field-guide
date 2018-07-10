@@ -105,7 +105,7 @@ searching-algorithms:
 sha2:
   name: sha2 (broken)
 sorting-algorithm-comparison:
-  name: Sorting Algorithm Comparison (broken)
+  name: Sorting Algorithm Comparison
 sorting-algorithms:
   name: sorting-algorithms (broken)
 trainsylvania:
