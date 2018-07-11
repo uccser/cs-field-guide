@@ -57,7 +57,7 @@ high-score-boxes:
 huffman-tree:
   name: Huffman Tree
 image-bit-comparer:
-  name: image-bit-comparer (broken)
+  name: Image Bit Comparer
 jpeg-compression:
   name: jpeg-compression (broken)
 MD5-hash:
