@@ -7,15 +7,15 @@
 {% block html %}
   <div id="interactive-fsa-box" data-iframe-height>
 
-    <div id="interactive-fsa-box-state-text">
+    <div id="interactive-fsa-box-state-text" class="text-center">
       {% trans 'Current state: <span id="interactive-fsa-box-current-state-text"></span>' %}
     </div>
 
     <div id="interactive-fsa-box-current-state"></div>
 
-    <div id="interactive-fsa-box-buttons"></div>
+    <div id="interactive-fsa-box-buttons" class="text-center"></div>
 
-    <div>
+    <div class="text-center">
       <button id="interactive-fsa-box-reset" class="btn btn-danger mt-2">{% trans "Reset to start state" %}</button>
     </div>
   </div>
