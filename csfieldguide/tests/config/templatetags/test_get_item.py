@@ -4,6 +4,7 @@ from tests.BaseTest import BaseTest
 
 class GetItemTest(BaseTest):
 
+
     def render_template(self, string, context=None):
         context = context or {}
         context = template.Context(context)
