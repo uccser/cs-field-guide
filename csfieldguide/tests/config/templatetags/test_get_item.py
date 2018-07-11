@@ -2,8 +2,8 @@ from django import template
 from django.http.request import HttpRequest, QueryDict
 from tests.BaseTest import BaseTest
 
-class GetItemTest(BaseTest):
 
+class GetItemTest(BaseTest):
 
     def render_template(self, string, context=None):
         context = context or {}
