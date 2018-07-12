@@ -45,7 +45,7 @@ delayed-checkbox:
 frequency-analysis:
   name: frequency-analysis (broken)
 fsa-box:
-  name: fsa-box (broken)
+  name: FSA Box
 fsa-light:
   name: fsa-light (broken)
 fsa-washing-machine:

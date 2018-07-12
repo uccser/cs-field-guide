@@ -186,6 +186,7 @@ TEMPLATES = [
                 "bidiutils.context_processors.bidi",
             ],
             "libraries": {
+                "get_item": "config.templatetags.get_item",
                 "render_html_field": "config.templatetags.render_html_field",
                 "render_interactive_in_page": "config.templatetags.render_interactive_in_page",
                 "translate_url": "config.templatetags.translate_url",
