@@ -95,7 +95,7 @@ rgb-mixer:
 rsa-jsencrypt:
   name: rsa-jsencrypt (broken)
 rsa-key-generator:
-  name: rsa-key-generator (broken)
+  name: RSA Key Generator
 rsa-no-padding:
   name: rsa-no-padding (broken)
 run-length-encoding:

@@ -1,0 +1,67 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+	<div class="container">
+    <div class="row" id="interactive-rsa-key-generator">
+      <div class="col s12">
+        <h3>{% trans "RSA Key Generator" %}</h3>
+
+        <div class="row">
+          <div class="col s12">
+            <h5>{% trans "Key Size" %}</h5>
+          </div>
+          <div class="col s7">
+            <select id="interactive-rsa-key-generator-key-size" class="browser-default">
+              <option value="256">{% trans "256 bits" %}</option>
+              <option value="512" selected>{% trans "512 bits" %}</option>
+              <option value="1024">{% trans "1024 bits" %}</option>
+              <option value="2048">{% trans "2048 bits" %}</option>
+              <option value="4096">{% trans "4096 bits" %}</option>
+            </select>
+          </div>
+          <div class="col s5">
+            <button id="interactive-rsa-key-generator-generate" class="btn">{% trans "Generate Keys" %}</button>
+          </div>
+          <div class="col s12">
+            <p><em><strong>{% trans "Warning:</strong> Keys larger than 512 bits may take longer than a second to create." %}</em></p>
+          </div>
+
+
+          <div class="col s12">
+            <h5>{% trans "Public Key" %}</h5>
+          </div>
+          <div class="col s12 m7">
+            <textarea id="interactive-rsa-key-generator-public-key" rows="5" readonly></textarea>
+          </div>
+          <div class="col s12 m5">
+            <button id="interactive-rsa-key-generator-copy-public" class="btn interactive-rsa-key-generator-button" disabled="true">{% trans "Copy Public Key" %}</button>
+          </div>
+
+          <div class="col s12">
+            <h5>{% trans "Private Key" %}</h5>
+          </div>
+          <div class="col s12 m7">
+            <textarea id="interactive-rsa-key-generator-private-key" rows="8" readonly></textarea>
+          </div>
+          <div class="col s12 m5">
+            <button id="interactive-rsa-key-generator-copy-private" class="btn interactive-rsa-key-generator-button" disabled="true">
+            	{% trans "Copy Private Key" %}
+           	</button>
+          </div>
+        </div>
+      </div>
+      <script type="text/javascript" src="../base-files/js/third-party/jsencrypt.js"></script>
+    </div>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/rsa-key-generator/css/rsa-key-generator.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/rsa-key-generator/js/rsa-key-generator.js' %}"></script>
+{% endblock js %}
