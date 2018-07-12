@@ -7,18 +7,20 @@
   <div class="container">
     <div id="interactive-fsa-light" data-iframe-height>
 
-      <div id="interactive-fsa-light-state-text">
+      <div id="interactive-fsa-light-state-text" class="text-center">
         {% trans 'Current state: <span id="interactive-fsa-light-current-state-text"></span>' %}
       </div>
 
-      <div id="interactive-fsa-light-images">
+      <div id="interactive-fsa-light-images" class="text-center">
         <img id="interactive-fsa-light-bulb-off" src="{% static 'interactives/fsa-light/img/lightbulb-off.png' %}">
         <img id="interactive-fsa-light-bulb-on" src="{% static 'interactives/fsa-light/img/lightbulb.png' %}">
       </div>
 
-      <div id="interactive-fsa-light-buttons"></div>
+      <div id="interactive-fsa-light-buttons" class="text-center"></div>
 
-      <button id="interactive-fsa-light-reset" class="btn btn-danger">{% trans "Reset to start state" %}</button>
+      <div class="text-center">
+        <button id="interactive-fsa-light-reset" class="btn btn-danger">{% trans "Reset to start state" %}</button>
+      </div>
     </div>
   </div>
 {% endblock html %}
