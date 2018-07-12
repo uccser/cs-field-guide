@@ -171,9 +171,9 @@ function updateDotCount() {
 
     var dotText = $('#dot-decimal-count');
     if (dotCount == 1) {
-        dotText.html('1 dot is visible');
+        dotText.html(binary_cards_il8n["1-dot-visible"]);
     } else {
-        dotText.html(dotCount + ' dots are visible');
+        dotText.html(dotCount + binary_cards_il8n["dots-visible"]);
     }
 };
 
