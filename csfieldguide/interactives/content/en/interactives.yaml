@@ -47,7 +47,7 @@ frequency-analysis:
 fsa-box:
   name: FSA Box
 fsa-light:
-  name: fsa-light (broken)
+  name: FSA Light
 fsa-washing-machine:
   name: FSA Washing Machine
 hex-background-colour:
