@@ -18,7 +18,8 @@ $(document).ready(function(){
       try {
         var successful = document.execCommand('copy');
         if (successful) {
-          Materialize.toast('Public key copied', 2000);
+          // Materialize.toast('Public key copied', 2000);
+          $('#interactive-rsa-key-generator-copy-public').popover({content: 'Public key copied', delay: { 'show': 0, 'hide': 500 }});
         } else {
           Materialize.toast('Oops, unable to copy. Please copy manually.', 2000);
         }
