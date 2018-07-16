@@ -1,16 +1,12 @@
 {
     "name": "CSFG-frequency-anaylsis-interactive",
-    "version": "0.0.1",
-    "author": "James \"The Jamesernator\" Browning",
+    "version": "1.0.0",
+    "author": "UCCSER",
     "description": "This is a simple frequency analysis chart",
     "dependencies": {
-        "chart.js": "latest",
-        "es5-shim": "latest",
-        "es6-shim": "latest"
+        "chart.js": "2.7.2"
     },
     "devDependencies": {
-        "coffee-script": "latest",
-        "coffeeify": "latest",
         "browserify": "latest"
     },
     "scripts": {
