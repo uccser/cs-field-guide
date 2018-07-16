@@ -9,18 +9,22 @@ var gulpif = require('gulp-if');
 var exec = require('child_process').exec;
 var runSequence = require('run-sequence')
 var notify = require('gulp-notify');
+var log = require('gulplog');
 var buffer = require('vinyl-buffer');
 var argv = require('yargs').argv;
 var rename = require("gulp-rename");
+var sourcemaps = require('gulp-sourcemaps');
 
 // sass
 var sass = require('gulp-sass');
 var postcss = require('gulp-postcss');
 var postcssFlexbugFixes = require('postcss-flexbugs-fixes');
 var autoprefixer = require('autoprefixer');
-var sourcemaps = require('gulp-sourcemaps');
 
-// linting
+// js
+var tap = require('gulp-tap');
+var uglify = require('gulp-uglify');
+var browserify = require('browserify');
 var jshint = require('gulp-jshint');
 var stylish = require('jshint-stylish');
 
@@ -104,13 +108,6 @@ var tasks = {
       .pipe(gulp.dest('build/css'));
   },
   // --------------------------
-  // JS
-  // --------------------------
-  js: function() {
-    return gulp.src('static/js/**/*.js')
-      .pipe(gulp.dest('build/js'));
-  },
-  // --------------------------
   // SASS (libsass)
   // --------------------------
   sass: function() {
@@ -175,18 +172,24 @@ var tasks = {
       .pipe(gulp.dest('build/interactives'));
   },
   // --------------------------
-  // linting
+  // JavaScript
+  // Based off https://github.com/gulpjs/gulp/blob/master/docs/recipes/
+  // Recipe: browserify-multiple-destination.md
   // --------------------------
-  lintjs: function() {
-    return gulp.src([
-        'gulpfile.js',
-        'static/js/index.js',
-        'static/js/**/*.js'
-      ]).pipe(jshint())
+  js: function() {
+    return gulp.src('static/js/**/*.js', {read: false})
+      .pipe(jshint())
       .pipe(jshint.reporter(stylish))
-      .on('error', function() {
-        beep();
-      });
+      .on('error', function() { beep(); })
+      .pipe(tap(function (file) {
+        log.info('bundling ' + file.path);
+        file.contents = browserify(file.path, {debug: true}).bundle();
+      }))
+      .pipe(buffer())
+      .pipe(sourcemaps.init({loadMaps: true}))
+      .pipe(uglify())
+      .pipe(sourcemaps.write('./'))
+      .pipe(gulp.dest('build/js'));
   },
 };
 
@@ -205,7 +208,6 @@ gulp.task('svg', req, tasks.svg);
 gulp.task('js', req, tasks.js);
 gulp.task('css', req, tasks.css);
 gulp.task('sass', req, tasks.sass);
-gulp.task('lint:js', tasks.lintjs);
 
 // // build task
 gulp.task('build', function(callback) {

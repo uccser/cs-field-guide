@@ -10,5 +10,4 @@ RUN apt-get update \
 
 ADD csfieldguide/package.json /app/
 RUN npm install
-ADD ./csfieldguide/ /app/
 ADD infrastructure/nginx/nginx.conf /etc/nginx/nginx.conf
