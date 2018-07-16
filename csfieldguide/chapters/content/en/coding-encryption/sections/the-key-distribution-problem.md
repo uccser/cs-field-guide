@@ -100,7 +100,6 @@ Firstly, you will need to generate a pair of keys using the key generator intera
 You should *keep the private key secret*, and *publicly announce the public key* so that your friends can send you messages (e.g. put it on the whiteboard, or email it to some friends).
 Make sure you save your keys somewhere so you don’t forget them – a text file would be best.
 
-{interactive slug="rsa-key-generator" type="in-page"}
 
 ### Encrypting messages with the public key
 
