@@ -4,7 +4,7 @@
 {% load static %}
 
 {% block html %}
-  <div class="container mb-3">
+  <div class="container my-3">
     <div class="row" id="interactive-rsa-key-generator">
       <div class="col s12">
         <h3>{% trans "RSA Key Generator" %}</h3>
@@ -44,10 +44,10 @@
           <div class="col-7">
             <textarea id="interactive-rsa-key-generator-public-key" class="form-control" rows="5" readonly></textarea>
           </div>
-          <div class="col-3">
-            <button id="interactive-rsa-key-generator-copy-public" class="btn btn-primary interactive-rsa-key-generator-button" disabled="true">
+          <div class="col-5">
+            <a tabindex="0" class="btn btn-primary interactive-rsa-key-generator-button disabled" role="button" data-toggle="popover" data-trigger="focus" id="interactive-rsa-key-generator-copy-public" aria-disabled="true">
             	{% trans "Copy Public Key" %}
-            </button>
+            </a>
           </div>
         </div>
 
@@ -61,10 +61,10 @@
           <div class="col-7">
             <textarea id="interactive-rsa-key-generator-private-key" class="form-control" rows="8" readonly></textarea>
           </div>
-          <div class="col-3">
-            <button id="interactive-rsa-key-generator-copy-private" class="btn btn-primary interactive-rsa-key-generator-button" disabled="true">
+          <div class="col-5">
+            <a tabindex="0" class="btn btn-primary interactive-rsa-key-generator-button disabled" role="button" data-toggle="popover" data-trigger="focus"  id="interactive-rsa-key-generator-copy-private" aria-disabled="true">
             	{% trans "Copy Private Key" %}
-           	</button>
+           	</a>
           </div>
         </div>
 

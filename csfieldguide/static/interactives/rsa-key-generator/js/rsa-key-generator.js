@@ -10,36 +10,43 @@ $(document).ready(function(){
       $('#interactive-rsa-key-generator-private-key').val(removeHeaders(crypt.getPrivateKey()));
 
       // Enable copy buttons for use
-      $('.interactive-rsa-key-generator-button').prop("disabled", false);
+      $('.interactive-rsa-key-generator-button').removeClass("disabled");
+
+      $('[data-toggle="popover"]').popover();
     });
 
     $("#interactive-rsa-key-generator-copy-public").click(function() {
       $('#interactive-rsa-key-generator-public-key').select();
+      var popover_message = '';
       try {
         var successful = document.execCommand('copy');
         if (successful) {
-          // Materialize.toast('Public key copied', 2000);
-          $('#interactive-rsa-key-generator-copy-public').popover({content: 'Public key copied', delay: { 'show': 0, 'hide': 500 }});
+          popover_message = 'Public key copied';
         } else {
-          Materialize.toast('Oops, unable to copy. Please copy manually.', 2000);
+          popover_message = 'Oops, unable to copy. Please copy manually.';
         }
       } catch (err) {
-        Materialize.toast('Oops, unable to copy', 2000);
+        popover_message = 'Oops, unable to copy';
       }
+
+      $('#interactive-rsa-key-generator-copy-public').attr('data-content', popover_message);
     });
 
     $("#interactive-rsa-key-generator-copy-private").click(function() {
       $('#interactive-rsa-key-generator-private-key').select();
+      var popover_message = '';
       try {
         var successful = document.execCommand('copy');
         if (successful) {
-          Materialize.toast('Private key copied', 2000);
+          popover_message = 'Private key copied';
         } else {
-          Materialize.toast('Oops, unable to copy. Please copy manually.', 2000);
+          popover_message = 'Oops, unable to copy. Please copy manually.';
         }
       } catch (err) {
-        Materialize.toast('Oops, unable to copy', 2000);
+        popover_message = 'Oops, unable to copy';
       }
+
+      $('#interactive-rsa-key-generator-copy-private').attr('data-content', popover_message);
     });
 });
 
