@@ -2,37 +2,39 @@
 // gulp build --production : for a minified production build
 
 'use strict';
-var gulp = require('gulp');
-var gutil = require('gulp-util');
-var del = require('del');
-var gulpif = require('gulp-if');
-var exec = require('child_process').exec;
-var runSequence = require('run-sequence')
-var notify = require('gulp-notify');
-var log = require('gulplog');
-var buffer = require('vinyl-buffer');
-var argv = require('yargs').argv;
-var rename = require("gulp-rename");
-var sourcemaps = require('gulp-sourcemaps');
+const gulp = require('gulp');
+const gutil = require('gulp-util');
+const del = require('del');
+const gulpif = require('gulp-if');
+const exec = require('child_process').exec;
+const runSequence = require('run-sequence')
+const notify = require('gulp-notify');
+const log = require('gulplog');
+const buffer = require('vinyl-buffer');
+const argv = require('yargs').argv;
+const rename = require("gulp-rename");
+const sourcemaps = require('gulp-sourcemaps');
+const errorHandler = require('gulp-error-handle');
 
 // sass
-var sass = require('gulp-sass');
-var postcss = require('gulp-postcss');
-var postcssFlexbugFixes = require('postcss-flexbugs-fixes');
-var autoprefixer = require('autoprefixer');
+const sass = require('gulp-sass');
+const postcss = require('gulp-postcss');
+const postcssFlexbugFixes = require('postcss-flexbugs-fixes');
+const autoprefixer = require('autoprefixer');
 
 // js
-var tap = require('gulp-tap');
-var uglify = require('gulp-uglify');
-var browserify = require('browserify');
-var jshint = require('gulp-jshint');
-var stylish = require('jshint-stylish');
+const tap = require('gulp-tap');
+const babel = require('gulp-babel');
+const uglify = require('gulp-uglify');
+const browserify = require('browserify');
+const jshint = require('gulp-jshint');
+const stylish = require('jshint-stylish');
 
 // gulp build --production
-var production = !!argv.production;
+const production = !!argv.production;
 // determine if we're doing a build
 // and if so, bypass the livereload
-var build = argv._.length ? argv._[0] === 'build' : true;
+const build = argv._.length ? argv._[0] === 'build' : true;
 
 // ----------------------------
 // Error notification methods
@@ -62,6 +64,14 @@ var handleError = function(task) {
   };
 };
 
+function catchError(error) {
+    gutil.log(
+      gutil.colors.bgRed('Error:'),
+      gutil.colors.red(error)
+    );
+    this.emit('end');
+}
+
 // --------------------------
 // CUSTOM TASK METHODS
 // --------------------------
@@ -83,7 +93,11 @@ var tasks = {
   // Copy interactive files
   // --------------------------
   interactives: function() {
-    return gulp.src(['static/interactives/**/*', '!static/interactives/**/*.scss'])
+    return gulp.src([
+        'static/interactives/**/*',
+        '!static/interactives/**/*.scss',
+        '!static/interactives/**/*.js'
+      ])
       .pipe(gulp.dest('build/interactives'));
   },
   // --------------------------
@@ -112,6 +126,7 @@ var tasks = {
   // --------------------------
   sass: function() {
     return gulp.src('static/scss/*.scss')
+      .pipe(errorHandler(catchError))
       // sourcemaps + sass + error handling
       .pipe(gulpif(!production, sourcemaps.init()))
       .pipe(sass({
@@ -144,6 +159,7 @@ var tasks = {
   // --------------------------
   interactives_sass: function() {
     return gulp.src('static/interactives/**/scss/*.scss')
+      .pipe(errorHandler(catchError))
       // sourcemaps + sass + error handling
       .pipe(gulpif(!production, sourcemaps.init()))
       .pipe(sass({
@@ -177,19 +193,22 @@ var tasks = {
   // Recipe: browserify-multiple-destination.md
   // --------------------------
   js: function() {
-    return gulp.src('static/js/**/*.js', {read: false})
-      .pipe(jshint())
-      .pipe(jshint.reporter(stylish))
-      .on('error', function() { beep(); })
+    return gulp.src('static/**/*.js', {read: false})
+      .pipe(errorHandler(catchError))
+      // .pipe(jshint())
+      // .pipe(jshint.reporter(stylish))
       .pipe(tap(function (file) {
-        log.info('bundling ' + file.path);
-        file.contents = browserify(file.path, {debug: true}).bundle();
+        file.contents = browserify(file.path, {debug: true}).bundle().on('error', catchError);
       }))
       .pipe(buffer())
+      .pipe(errorHandler(catchError))
       .pipe(sourcemaps.init({loadMaps: true}))
+      .pipe(babel({
+        presets: ['env']
+      }))
       .pipe(uglify())
       .pipe(sourcemaps.write('./'))
-      .pipe(gulp.dest('build/js'));
+      .pipe(gulp.dest('build'));
   },
 };
 
@@ -211,5 +230,5 @@ gulp.task('sass', req, tasks.sass);
 
 // // build task
 gulp.task('build', function(callback) {
-  runSequence('clean', ['images', 'svg', 'css', 'js', 'sass', 'interactives', 'interactives_sass', 'files'], callback);
+  runSequence('clean', ['images', 'svg', 'css', 'sass', 'interactives', 'interactives_sass', 'files'], 'js', callback);
 });

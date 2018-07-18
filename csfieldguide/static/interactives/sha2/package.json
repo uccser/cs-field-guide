@@ -1,17 +1,8 @@
 {
-    "name": "CSFG-Network-Interactive",
-    "version": "0.0.1",
-    "author": "James \"The Jamesernator\" Browning",
-    "description": "This is a network simulation interactive for use in the Computer Science Field Guide",
+    "name": "csfg-interactive-sha2",
+    "version": "1.0.0",
+    "author": "UCCSER",
     "dependencies": {
         "crypto-js": "latest"
-    },
-    "devDependencies": {
-        "coffee-script": "latest",
-        "coffeeify": "latest",
-        "browserify": "latest"
-    },
-    "scripts": {
-        "build": "browserify -t coffeeify coffee/main.coffee > js/main.js"
     }
 }

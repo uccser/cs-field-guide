@@ -1,15 +1,9 @@
 {
-    "name": "CSFG-frequency-anaylsis-interactive",
+    "name": "csfg-interactive-frequency-anaylsis",
     "version": "1.0.0",
     "author": "UCCSER",
     "description": "This is a simple frequency analysis chart",
     "dependencies": {
         "chart.js": "2.7.2"
-    },
-    "devDependencies": {
-        "browserify": "latest"
-    },
-    "scripts": {
-        "build": "browserify -t coffeeify coffee/main.coffee > js/main.js"
     }
 }
