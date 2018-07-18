@@ -99,7 +99,7 @@ rsa-key-generator:
 rsa-no-padding:
   name: rsa-no-padding (broken)
 run-length-encoding:
-  name: run-length-encoding (broken)
+  name: Run Length Encoding
 searching-algorithms:
   name: searching-algorithms (broken)
 sha2:
