@@ -51,8 +51,8 @@
             <textarea id="encoding-text" class="form-control">
             </textarea>
             <div id="encoding-text-feedback" class="text-center error"></div>
-            <button id="invert" class="button radius expand">{% trans "Invert" %}</button>
-            <button id="clear-all" class="button radius expand">{% trans "Clear all black pixels" %}</button>
+            <button id="invert" class="btn btn-dark expand">{% trans "Invert" %}</button>
+            <button id="clear-all" class="btn btn-danger expand">{% trans "Clear all black pixels" %}</button>
           </div>
           <div id="footer" class="col-sm-12 text-center">
             <p>{% trans "Created by Hannah Taylor - Adapted by Jack Morgan" %}</p>
@@ -68,5 +68,12 @@
 {% endblock css %}
 
 {% block js %}
+  <script type="text/javascript">
+    var run_length_encoding_il8n = {
+      "range-error": "{% trans 'Please enter a value between 0 and 100' %}",
+      "row-error": "{% trans 'Your numbers add up to a different number than the grid requires!' %}",
+      "line-error": "{% trans 'You have a different number of lines than lines in the grid!' %}"
+    };
+  </script>
   <script type="text/javascript" src="{% static 'interactives/run-length-encoding/js/run-length-encoding.js' %}"></script>
 {% endblock js %}
