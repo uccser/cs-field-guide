@@ -1,3 +1,5 @@
+require('multiple-select');
+
 $(document).ready(function() {
   $('#models-filter').multipleSelect({
     selectAll: false,

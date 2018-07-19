@@ -9,6 +9,7 @@
     "featherlight": "1.7.13",
     "popper.js": "1.14.3",
     "jquery": "3.3.1",
+    "multiple-select": "1.2.1",
     "csfg-interactive-caesar-cipher": "file:./static/interactives/caesar-cipher/",
     "csfg-interactive-frequency-anaylsis": "file:./static/interactives/frequency-analysis/",
     "csfg-interactive-sha2": "file:./static/interactives/sha2/",
