@@ -227,7 +227,7 @@ function trainNumberGenerator(count) {
 //generates random date for passport checksums
 function generateDate() {
 
-    var start_date = new Date(1900, 01, 01);
+    var start_date = new Date(1900, 1, 1);
 
     date = new Date(start_date.getTime() + Math.random() * (Date.now() - start_date.getTime()));
     var year = date.getYear();

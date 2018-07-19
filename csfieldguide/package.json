@@ -9,10 +9,10 @@
     "featherlight": "1.7.13",
     "popper.js": "1.14.3",
     "jquery": "3.3.1",
-    "interactive-caesar-cipher": "file:./static/interactives/caesar-cipher/",
-    "interactive-frequency-anaylsis": "file:./static/interactives/frequency-analysis/",
-    "interactive-sha2": "file:./static/interactives/sha2/",
-    "interactive-unicode-binary": "file:./static/interactives/unicode-binary/"
+    "csfg-interactive-caesar-cipher": "file:./static/interactives/caesar-cipher/",
+    "csfg-interactive-frequency-anaylsis": "file:./static/interactives/frequency-analysis/",
+    "csfg-interactive-sha2": "file:./static/interactives/sha2/",
+    "csfg-interactive-unicode-binary": "file:./static/interactives/unicode-binary/"
   },
   "devDependencies": {
     "autoprefixer": "8.6.4",

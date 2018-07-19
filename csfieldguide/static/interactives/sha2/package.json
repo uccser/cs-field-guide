@@ -1,7 +1,7 @@
 {
     "name": "csfg-interactive-sha2",
     "version": "1.0.0",
-    "author": "UCCSER",
+    "private": true,
     "dependencies": {
         "crypto-js": "latest"
     }

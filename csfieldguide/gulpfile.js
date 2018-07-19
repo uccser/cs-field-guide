@@ -195,8 +195,6 @@ var tasks = {
   js: function() {
     return gulp.src('static/**/*.js', {read: false})
       .pipe(errorHandler(catchError))
-      // .pipe(jshint())
-      // .pipe(jshint.reporter(stylish))
       .pipe(tap(function (file) {
         file.contents = browserify(file.path, {debug: true}).bundle().on('error', catchError);
       }))
@@ -204,7 +202,7 @@ var tasks = {
       .pipe(errorHandler(catchError))
       .pipe(sourcemaps.init({loadMaps: true}))
       .pipe(babel({
-        presets: ['env']
+        presets: ['env'],
       }))
       .pipe(uglify())
       .pipe(sourcemaps.write('./'))

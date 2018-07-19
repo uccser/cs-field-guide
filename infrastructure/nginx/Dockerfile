@@ -9,6 +9,9 @@ RUN apt-get update \
        git \
     && rm -rf /var/lib/apt/lists/*
 
-ADD csfieldguide/ /app/
+COPY ./csfieldguide/ /app/
 RUN npm install
+RUN npm install -g recursive-install
+RUN npm-recursive-install --rootDir=static/interactives/
+RUN npm ls
 ADD infrastructure/nginx/nginx.conf /etc/nginx/nginx.conf
