@@ -9,10 +9,6 @@
     "featherlight": "1.7.13",
     "popper.js": "1.14.3",
     "jquery": "3.3.1",
-    "csfg-interactive-caesar-cipher": "file:./static/interactives/caesar-cipher/",
-    "csfg-interactive-frequency-anaylsis": "file:./static/interactives/frequency-analysis/",
-    "csfg-interactive-sha2": "file:./static/interactives/sha2/",
-    "csfg-interactive-unicode-binary": "file:./static/interactives/unicode-binary/"
   },
   "devDependencies": {
     "autoprefixer": "8.6.4",
@@ -22,10 +18,11 @@
     "child_process": "1.0.2",
     "del": "3.0.0",
     "gulp": "3.9.1",
+    "gulplog": "1.0.0",
     "gulp-babel": "7.0.1",
+    "gulp-filter": "5.1.0",
     "gulp-if": "2.0.2",
     "gulp-jshint": "2.1.0",
-    "gulplog": "1.0.0",
     "gulp-error-handle": "1.0.1",
     "gulp-notify": "3.2.0",
     "gulp-postcss": "7.0.1",

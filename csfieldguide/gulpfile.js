@@ -2,10 +2,21 @@
 // gulp build --production : for a minified production build
 
 'use strict';
+
+const js_files_skip_optimisation = [
+  '**',
+  '!static/interactives/huffman-tree/**/*.js',
+  '!static/interactives/packet-attack/**/*.js',
+  '!static/interactives/searching-algorithms/**/*.js',
+  '!static/interactives/sorting-algorithms/**/*.js',
+];
+
+// general
 const gulp = require('gulp');
 const gutil = require('gulp-util');
 const del = require('del');
 const gulpif = require('gulp-if');
+const filter = require('gulp-filter');
 const exec = require('child_process').exec;
 const runSequence = require('run-sequence')
 const notify = require('gulp-notify');
@@ -189,23 +200,22 @@ var tasks = {
   },
   // --------------------------
   // JavaScript
-  // Based off https://github.com/gulpjs/gulp/blob/master/docs/recipes/
-  // Recipe: browserify-multiple-destination.md
   // --------------------------
   js: function() {
-    return gulp.src('static/**/*.js', {read: false})
+    const f = filter(js_files_skip_optimisation, {restore: true});
+    return gulp.src('static/**/*.js')
+      .pipe(f)
       .pipe(errorHandler(catchError))
       .pipe(tap(function (file) {
         file.contents = browserify(file.path, {debug: true}).bundle().on('error', catchError);
       }))
       .pipe(buffer())
       .pipe(errorHandler(catchError))
-      .pipe(sourcemaps.init({loadMaps: true}))
-      .pipe(babel({
-        presets: ['env'],
-      }))
-      .pipe(uglify())
-      .pipe(sourcemaps.write('./'))
+      .pipe(gulpif(production, sourcemaps.init({ loadMaps: true })))
+      .pipe(gulpif(production, babel({ presets: ['env'] })))
+      .pipe(gulpif(production, uglify()))
+      .pipe(gulpif(production, sourcemaps.write('./')))
+      .pipe(f.restore)
       .pipe(gulp.dest('build'));
   },
 };
