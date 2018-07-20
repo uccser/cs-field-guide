@@ -5,26 +5,22 @@
 
 {% block html %}
 	<div class="container">
-  	<div class="row">
-    	<div class="col-12">
-		    <div class="row" id="interactive-rsa-no-padding" data-iframe-height>
-		      <div class="col-12">
-		        <h3>{% trans 'RSA <span id="interactive-rsa-no-padding-mode">Encrypter</span>' %}</h3>
+    <div class="row" id="interactive-rsa-no-padding" data-iframe-height>
+      <div class="col-12">
+        <h3>{% trans 'RSA <span id="interactive-rsa-no-padding-mode">Encrypter</span>' %}</h3>
 
-		        <h5>{% trans 'Key' %}</h5>
-		        <textarea id="interactive-rsa-no-padding-key" class="form-control mb-3" rows="5"></textarea>
+        <h5>{% trans 'Key' %}</h5>
+        <textarea id="interactive-rsa-no-padding-key" class="form-control mb-3" rows="5"></textarea>
 
-		        <h5>{% trans '<span id="interactive-rsa-no-padding-input-type">Plain</span> Text' %}</h5>
-		        <textarea id="interactive-rsa-no-padding-input-text" class="form-control mb-1" rows="5"></textarea>
+        <h5>{% trans '<span id="interactive-rsa-no-padding-input-type">Plain</span> Text' %}</h5>
+        <textarea id="interactive-rsa-no-padding-input-text" class="form-control mb-1" rows="5"></textarea>
 
-		        <button id="interactive-rsa-no-padding-process" class="btn btn-primary mb-3">{% trans 'Encrypt' %}</button>
+        <button id="interactive-rsa-no-padding-process" class="btn btn-primary mb-3">{% trans 'Encrypt' %}</button>
 
-		        <h5><span id="interactive-rsa-no-padding-output-type">{% trans 'Cipher</span> Text' %}</h5>
-		        <textarea id="interactive-rsa-no-padding-output-text" class="form-control mb-3" rows="5"></textarea>
-		      </div>
-		    </div>
-    	</div>
-  	</div>
+        <h5><span id="interactive-rsa-no-padding-output-type">{% trans 'Cipher</span> Text' %}</h5>
+        <textarea id="interactive-rsa-no-padding-output-text" class="form-control mb-3" rows="5"></textarea>
+      </div>
+    </div>
   </div>
 {% endblock html %}
 
