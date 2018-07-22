@@ -136,7 +136,7 @@ var tasks = {
   // SASS (libsass)
   // --------------------------
   sass: function() {
-    return gulp.src('static/scss/*.scss')
+    return gulp.src('static/**/*.scss')
       .pipe(errorHandler(catchError))
       // sourcemaps + sass + error handling
       .pipe(gulpif(!production, sourcemaps.init()))
@@ -155,55 +155,20 @@ var tasks = {
         'loadMaps': true
       })))
       .pipe(postcss([autoprefixer({browsers: ['last 2 versions']}), postcssFlexbugFixes]))
-      // we don't serve the source files
-      // so include scss content inside the sourcemaps
-      .pipe(sourcemaps.write({
-        'includeContent': true
-      }))
-      // write sourcemaps to a specific directory
-      // give it a file and save
-      .pipe(gulp.dest('build/css'));
-  },
-  // --------------------------
-  // SASS (libsass) for interactives
-  // TODO: Remove duplication of logic in this file
-  // --------------------------
-  interactives_sass: function() {
-    return gulp.src('static/interactives/**/scss/*.scss')
-      .pipe(errorHandler(catchError))
-      // sourcemaps + sass + error handling
-      .pipe(gulpif(!production, sourcemaps.init()))
-      .pipe(sass({
-        sourceComments: !production,
-        outputStyle: production ? 'compressed' : 'nested'
-      }))
-      .on('error', handleError('SASS'))
-      // generate .maps
-      .pipe(gulpif(!production, sourcemaps.write({
-        'includeContent': false,
-        'sourceRoot': '.'
-      })))
-      // autoprefixer
-      .pipe(gulpif(!production, sourcemaps.init({
-        'loadMaps': true
-      })))
-      .pipe(postcss([autoprefixer({browsers: ['last 2 versions']}), postcssFlexbugFixes]))
-      // we don't serve the source files
-      // so include scss content inside the sourcemaps
       .pipe(sourcemaps.write({
         'includeContent': true
       }))
       .pipe(rename(function (path) {
         path.dirname = path.dirname.replace("/scss", "/css");
       }))
-      .pipe(gulp.dest('build/interactives'));
+      .pipe(gulp.dest('build/'));
   },
   // --------------------------
   // JavaScript
   // --------------------------
   js: function() {
     const f = filter(js_files_skip_optimisation, {restore: true});
-    return gulp.src('static/**/*.js')
+    return gulp.src(['static/**/*.js', '!static/js/modules/**/*.js'])
       .pipe(f)
       .pipe(errorHandler(catchError))
       .pipe(tap(function (file) {
@@ -229,7 +194,6 @@ var req = [];
 // // individual tasks
 gulp.task('images', req, tasks.images);
 gulp.task('interactives', req, tasks.interactives);
-gulp.task('interactives_sass', req, tasks.interactives_sass);
 gulp.task('files', req, tasks.files);
 gulp.task('svg', req, tasks.svg);
 gulp.task('js', req, tasks.js);
@@ -238,5 +202,5 @@ gulp.task('sass', req, tasks.sass);
 
 // // build task
 gulp.task('build', function(callback) {
-  runSequence('clean', ['images', 'svg', 'css', 'sass', 'interactives', 'interactives_sass', 'files'], 'js', callback);
+  runSequence('clean', ['images', 'svg', 'css', 'sass', 'interactives', 'files', 'js'], callback);
 });
