@@ -2,6 +2,7 @@ $ = jQuery = require('jquery');
 require('bootstrap');
 require('details-element-polyfill');
 require('featherlight');
+require('sticky-state');
 
 $(document).ready(function(){
   // Display glossary-modal

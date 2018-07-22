@@ -1,1 +1,0 @@
-require('sticky-state');
