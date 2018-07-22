@@ -11,9 +11,12 @@
     "jquery": "3.3.1",
     "multiple-select": "1.2.1",
     "sticky-state": "2.4.1",
-    "csfg-fsa": "file:./static/js/modules/fsa/",
+    "csfg-module-fsa": "file:./static/js/modules/fsa/",
     "csfg-interactive-caesar-cipher": "file:./static/interactives/caesar-cipher/",
+    "csfg-interactive-cmy-mixer": "file:./static/interactives/cmy-mixer/",
+    "csfg-interactive-colour-matcher": "file:./static/interactives/colour-matcher/",
     "csfg-interactive-frequency-anaylsis": "file:./static/interactives/frequency-analysis/",
+    "csfg-interactive-rgb-mixer": "file:./static/interactives/rgb-mixer/",
     "csfg-interactive-sha2": "file:./static/interactives/sha2/",
     "csfg-interactive-unicode-binary": "file:./static/interactives/unicode-binary/"
   },

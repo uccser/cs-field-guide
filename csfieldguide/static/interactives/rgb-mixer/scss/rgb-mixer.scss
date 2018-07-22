@@ -1,3 +1,5 @@
+@import "node_modules/nouislider/distribute/nouislider";
+
 #interactive-rgb-mixer .noUi-pips {
   padding-top: 5px;
 }
@@ -27,13 +29,13 @@
 }
 
 /* CMY colours */
-#interactive-rgb-mixer-sliders > div:nth-child(1) > div.interactive-rgb-mixer-slider {
+#interactive-rgb-mixer-sliders > div:nth-child(1) .noUi-connect {
 	background: red;
 }
-#interactive-rgb-mixer-sliders > div:nth-child(2) > div.interactive-rgb-mixer-slider {
+#interactive-rgb-mixer-sliders > div:nth-child(2) .noUi-connect {
 	background: lime;
 }
-#interactive-rgb-mixer-sliders > div:nth-child(3) > div.interactive-rgb-mixer-slider {
+#interactive-rgb-mixer-sliders > div:nth-child(3) .noUi-connect {
 	background: blue;
 }
 

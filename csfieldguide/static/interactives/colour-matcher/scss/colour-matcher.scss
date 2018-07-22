@@ -1,3 +1,5 @@
+@import "node_modules/nouislider/distribute/nouislider";
+
 /* Distance between bottom of slider and pips */
 #interactive-colour-matcher .noUi-pips {
   padding: 0px;
@@ -97,13 +99,13 @@
   min-height: 4rem;
 }
 /* RGB colours */
-div.interactive-colour-matcher-sliders > div:nth-child(1) > div.interactive-colour-matcher-slider {
+div.interactive-colour-matcher-sliders > div:nth-child(1) .noUi-connect {
 	background: red;
 }
-div.interactive-colour-matcher-sliders > div:nth-child(2) > div.interactive-colour-matcher-slider {
+div.interactive-colour-matcher-sliders > div:nth-child(2) .noUi-connect {
 	background: lime;
 }
-div.interactive-colour-matcher-sliders > div:nth-child(3) > div.interactive-colour-matcher-slider {
+div.interactive-colour-matcher-sliders > div:nth-child(3) .noUi-connect {
 	background: blue;
 }
 /* Fade sliders if disabled */

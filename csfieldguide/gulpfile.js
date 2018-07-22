@@ -159,7 +159,7 @@ var tasks = {
         'includeContent': true
       }))
       .pipe(rename(function (path) {
-        path.dirname = path.dirname.replace("/scss", "/css");
+        path.dirname = path.dirname.replace("scss", "css");
       }))
       .pipe(gulp.dest('build/'));
   },

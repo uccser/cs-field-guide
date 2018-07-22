@@ -1,5 +1,5 @@
 {
-  "name": "csfg-fsa",
+  "name": "csfg-module-fsa",
   "version": "1.0.0",
     "author": "UCCSER",
     "description": "This is a generic runner for Finite State Automatons",
