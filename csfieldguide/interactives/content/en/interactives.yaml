@@ -60,8 +60,8 @@ image-bit-comparer:
   name: Image Bit Comparer
 jpeg-compression:
   name: jpeg-compression (broken)
-MD5-hash:
-  name: MD5-hash (broken)
+md5-hash:
+  name: md5-hash (broken)
 mips-assembler:
   name: mips-assembler (broken)
 mips-simulator:
