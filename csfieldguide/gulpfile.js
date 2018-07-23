@@ -4,7 +4,9 @@
 'use strict';
 
 const js_files_skip_optimisation = [
+  // Optimise all files
   '**',
+  // But skip the following files
   '!static/interactives/huffman-tree/**/*.js',
   '!static/interactives/packet-attack/**/*.js',
   '!static/interactives/searching-algorithms/**/*.js',
