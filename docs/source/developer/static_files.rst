@@ -18,3 +18,5 @@ If you wish to not apply optimisation steps (`Browserify <http://browserify.org/
 
 Any files within the ``csfieldguide/static/js/modules/`` directory are skipped by the Gulpfile and not processed by themselves.
 Module files can be required by other JavaScript files to be included.
+
+If NPM modules are added, modified, or deleted, the Docker images will need to be rebuilt using ``./csfg dev build``.
