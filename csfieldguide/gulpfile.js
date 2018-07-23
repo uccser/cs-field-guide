@@ -176,9 +176,9 @@ var tasks = {
       }))
       .pipe(buffer())
       .pipe(errorHandler(catchError))
-      .pipe(gulpif(production, sourcemaps.init({ loadMaps: true })))
+      .pipe(gulpif(production, sourcemaps.init({loadMaps: true})))
       .pipe(gulpif(production, babel({ presets: ['env'] })))
-      .pipe(gulpif(production, uglify()))
+      .pipe(gulpif(production, uglify({keep_fnames: true})))
       .pipe(gulpif(production, sourcemaps.write('./')))
       .pipe(f.restore)
       .pipe(gulp.dest('build'));
