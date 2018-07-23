@@ -1,7 +1,7 @@
 Static Files
 ##############################################################################
 
-The static files (images, CSS, JavaScript, etc) used within the website go through the following p
+The static files (images, CSS, JavaScript, etc) used within the website go through the following steps:
 
 1. Files are stored within the ``static`` directory.
 2. Files are processed with a Gulpfile into the ``build`` directory with ``./csfg dev static`` or ``./csfg dev static_prod``.
