@@ -3,9 +3,9 @@
 -r test.txt
 
 # Documentation
-sphinx==1.7.5
+sphinx==1.7.6
 sphinx-rtd-theme==0.4.0
 
 # Debugging Tools
 django-debug-toolbar==1.9.1
-django-extensions==2.0.7
+django-extensions==2.1.0

@@ -97,9 +97,9 @@ rsa-jsencrypt:
 rsa-key-generator:
   name: rsa-key-generator (broken)
 rsa-no-padding:
-  name: rsa-no-padding (broken)
+  name: RSA No Padding
 run-length-encoding:
-  name: run-length-encoding (broken)
+  name: Run Length Encoding
 searching-algorithms:
   name: searching-algorithms (broken)
 sha2:
