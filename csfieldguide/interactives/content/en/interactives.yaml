@@ -85,7 +85,7 @@ payment-interface:
 pixel-viewer:
   name: pixel-viewer (broken)
 python-interpreter:
-  name: python-interpreter (broken)
+  name: Python Interpreter
 regular-expression-filter:
   name: regular-expression-filter (broken)
 regular-expression-search:
