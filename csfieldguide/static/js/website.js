@@ -3,6 +3,7 @@ require('bootstrap');
 require('details-element-polyfill');
 require('featherlight');
 require('sticky-state');
+const iFrameResize = require('iframe-resizer/src/iframeResizer.js');
 
 $(document).ready(function(){
   // Display glossary-modal
@@ -13,6 +14,8 @@ $(document).ready(function(){
 
   // Pause YouTube videos playing within a closed details elements
   $("body").on("click", "details[open]", details_element_closed);
+
+  iFrameResize({}, 'iframe.iframe-resize');
 });
 
 function open_glossary_definition() {

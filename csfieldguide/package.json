@@ -11,14 +11,17 @@
     "jquery": "3.3.1",
     "multiple-select": "1.2.1",
     "sticky-state": "2.4.1",
+    "iframe-resizer": "3.6.1",
     "csfg-module-fsa": "file:./static/js/modules/fsa/",
+    "csfg-interactive-big-number-calculator": "file:./static/interactives/big-number-calculator/",
     "csfg-interactive-caesar-cipher": "file:./static/interactives/caesar-cipher/",
     "csfg-interactive-cmy-mixer": "file:./static/interactives/cmy-mixer/",
     "csfg-interactive-colour-matcher": "file:./static/interactives/colour-matcher/",
     "csfg-interactive-frequency-anaylsis": "file:./static/interactives/frequency-analysis/",
     "csfg-interactive-rgb-mixer": "file:./static/interactives/rgb-mixer/",
     "csfg-interactive-sha2": "file:./static/interactives/sha2/",
-    "csfg-interactive-unicode-binary": "file:./static/interactives/unicode-binary/"
+    "csfg-interactive-unicode-binary": "file:./static/interactives/unicode-binary/",
+    "csfg-interactive-unicode-chars": "file:./static/interactives/unicode-chars/"
   },
   "devDependencies": {
     "autoprefixer": "8.6.4",

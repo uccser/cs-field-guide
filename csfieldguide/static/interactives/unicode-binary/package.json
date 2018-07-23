@@ -3,9 +3,9 @@
     "version": "1.0.0",
     "private": true,
     "dependencies": {
-        "urijs": "latest",
-        "underscore.string": "latest",
-        "string.fromcodepoint": "latest",
+        "urijs": "1.19.1",
+        "underscore.string": "3.3.4",
+        "string.fromcodepoint": "0.2.1",
         "jquery-text-input": "Jamesernator/jquery-text-input"
     }
 }
