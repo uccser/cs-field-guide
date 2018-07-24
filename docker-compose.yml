@@ -28,8 +28,11 @@ services:
       dockerfile: ./infrastructure/nginx/Dockerfile
     volumes:
       - ./csfieldguide/:/app/
-      - /app/node_modules
+      - node_modules:/app/node_modules
     depends_on:
       - django
     ports:
       - "81:80"
+
+volumes:
+  node_modules:
