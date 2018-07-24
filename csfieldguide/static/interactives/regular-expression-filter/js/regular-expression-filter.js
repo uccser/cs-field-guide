@@ -59,20 +59,9 @@ function readWords() {
   var base_url = document.getElementById('interactive-regular-expression-filter-link').href;
   var request = new XMLHttpRequest();
   request.addEventListener('load', fileLoaded);
-  request.addEventListener('progress', updateLoadingProgress);
   request.addEventListener('error', function() { alert(reg_exp_filter_il8n["error"])});
   request.open('get', words_file_location);
   request.send();
-};
-
-
-// Updates the file loading bar
-function updateLoadingProgress(request) {
-  if (request.lengthComputable) {
-    // Calculates percent complete (as a whole number e.g. 80%)
-    var completed = (request.loaded / request.total) * 100;
-    document.getElementById('interactive-regular-expression-filter-loading-progress-bar').val = completed;
-  }
 };
 
 
