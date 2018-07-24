@@ -1,8 +1,8 @@
 {
-    "name": "csfg-interactive-sha2",
+    "name": "csfg-interactive-md5-hash",
     "version": "1.0.0",
     "private": true,
     "dependencies": {
-        "crypto-js": "latest"
+        "crypto-js": "3.1.9-1"
     }
 }

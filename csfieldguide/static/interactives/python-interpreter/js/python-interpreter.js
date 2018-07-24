@@ -1,3 +1,5 @@
+const Sk = require("skulpt");
+
 $(document).ready(function () {
     $("#interactive-python-interpreter-run").click(function(){
         var program = document.getElementById("interactive-python-interpreter-code").value;

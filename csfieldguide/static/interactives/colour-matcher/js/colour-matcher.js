@@ -2,6 +2,9 @@
 // but rather as a proof of concept.
 // This JS will be rewritten in a future update.
 
+const noUiSlider = require('nouislider');
+const wNumb = require('wnumb');
+
 ColourMatcher = {};
 
 $(document).ready(function () {
