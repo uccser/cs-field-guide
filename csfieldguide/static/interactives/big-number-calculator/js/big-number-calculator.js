@@ -1,5 +1,7 @@
 "use strict";
 
+const Big = require('big.js');
+
 $(document).ready(function () {
     $('#interactive-big-number-calculator button').on('click', function(){
         var button_type = $(this).attr('id').split('-').pop();

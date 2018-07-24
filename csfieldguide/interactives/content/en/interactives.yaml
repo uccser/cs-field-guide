@@ -60,8 +60,8 @@ image-bit-comparer:
   name: Image Bit Comparer
 jpeg-compression:
   name: jpeg-compression (broken)
-MD5-hash:
-  name: MD5-hash (broken)
+md5-hash:
+  name: md5-hash (broken)
 mips-assembler:
   name: mips-assembler (broken)
 mips-simulator:
@@ -85,7 +85,7 @@ payment-interface:
 pixel-viewer:
   name: pixel-viewer (broken)
 python-interpreter:
-  name: python-interpreter (broken)
+  name: Python Interpreter
 regular-expression-filter:
   name: Regular Expression Filter
 regular-expression-search:
@@ -97,7 +97,7 @@ rsa-jsencrypt:
 rsa-key-generator:
   name: rsa-key-generator (broken)
 rsa-no-padding:
-  name: rsa-no-padding (broken)
+  name: RSA No Padding
 run-length-encoding:
   name: Run Length Encoding
 searching-algorithms:
