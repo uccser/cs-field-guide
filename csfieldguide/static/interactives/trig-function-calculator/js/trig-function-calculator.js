@@ -1,4 +1,3 @@
-
 function calculate() {
     var xValue = document.getElementById('x').value;
     // convert to radians
