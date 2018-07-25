@@ -20,3 +20,7 @@ function calculate() {
         document.getElementById('cos-result').innerText = cosResult;
     }
 }
+
+$("#calculate").click(function() {
+  calculate();
+});

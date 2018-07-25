@@ -10,13 +10,11 @@
       {% trans "Calculate the sine and cosine values of an angle given in degrees. (Calculations give up to 9 decimal places)." %}
     </p>
 
-    <div class="row">
-      <div class="col-5" id="input">
-        <div class="form-inline">
-          <h2 class="mt-1 mr-1">{% trans "X Value:" %}</h2>
-          <input id="x" class="form-control mr-1">
-          <button id="calculate" class="btn btn-primary" onclick="calculate()">{% trans "Calculate" %}</button>
-        </div>
+    <div id="input">
+      <div class="form-inline d-flex justify-content-center">
+        <h2 class="mt-1 mr-1">{% trans "X Value:" %}</h2>
+        <input id="x" class="form-control mr-1">
+        <button id="calculate" class="btn btn-primary">{% trans "Calculate" %}</button>
       </div>
     </div>
 
@@ -24,16 +22,14 @@
       <p>{% trans "Invalid input!" %}</p>
     </div>
 
-    <div class="row">
-      <div id="output" class="col-5">
-        <h2>{% trans "Result:" %}</h2>
-        <div id="result">
-          <div id="sin-output">
-            <p>sin(X) = </p><p id="sin-result"></p>
-          </div>
-          <div id="cos-output">
-            <p>cos(X) = </p><p id="cos-result"></p>
-          </div>
+    <div id="output" class="text-center">
+      <h2>{% trans "Result:" %}</h2>
+      <div id="result">
+        <div id="sin-output">
+          <p>sin(X) = </p><p id="sin-result"></p>
+        </div>
+        <div id="cos-output">
+          <p>cos(X) = </p><p id="cos-result"></p>
         </div>
       </div>
     </div>
