@@ -30,7 +30,7 @@ interactives:
   - huffman-tree
   - image-bit-comparer
   - jpeg-compression
-  - MD5-hash
+  - md5-hash
   - mips-assembler
   - mips-simulator
   - ncea-guide-selector

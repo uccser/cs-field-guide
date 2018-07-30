@@ -1,5 +1,8 @@
 // Adapted from http://refreshless.com/nouislider/examples/#section-colorpicker
 
+const noUiSlider = require('nouislider');
+const wNumb = require('wnumb');
+
 RGB_Mixer = {};
 
 $(document).ready(function () {
