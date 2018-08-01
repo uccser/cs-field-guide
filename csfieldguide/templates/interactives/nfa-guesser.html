@@ -8,7 +8,7 @@
     <h3>Practice traversing a NFA</h3>
     <p>Traverse the NFA map below with the input sequence and select all the resulting states.</p>
 
-    <object id="interactive-nfa-guesser-image" data="{% static 'interactives/nfa-guesser/img/nfa.svg" type="image/svg+xml"></object>
+    <object id="interactive-nfa-guesser-image" data="{% static 'interactives/nfa-guesser/img/nfa.svg' %}" type="image/svg+xml"></object>
 
     <div id="interactive-nfa-guesser-input-sequence">
       {% trans 'Input sequence: <span id="interactive-nfa-guesser-input-sequence-value"></span>' %}
@@ -25,8 +25,6 @@
     <p>
       <button id="interactive-nfa-guesser-new-sequence" class="btn btn-success">{% trans "Generate new input sequence" %}</button>
     </p>
-
-    <!-- <script src="../base-files/js/fsa/fsa.js"></script> -->
   </div>
 {% endblock html %}
 

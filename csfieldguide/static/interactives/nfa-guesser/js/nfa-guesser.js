@@ -1,4 +1,4 @@
-require('./../../../js/modules/fsa/fsa.js');
+const FSA = require('./../../../js/modules/fsa/fsa.js');
 
 var nfa_guesser = {};
 nfa_guesser.result = [];
