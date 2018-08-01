@@ -103,7 +103,7 @@ run-length-encoding:
 searching-algorithms:
   name: searching-algorithms (broken)
 sha2:
-  name: sha2 (broken)
+  name: SHA2
 sorting-algorithm-comparison:
   name: Sorting Algorithm Comparison
 sorting-algorithms:
