@@ -113,12 +113,6 @@ defhelp update 'Run Django migrate and updatedata commands and build static file
 dev_build() {
   echo "Building Docker images..."
   docker-compose build
-  echo
-  echo "Deleting untagged images..."
-  untagged_images=($(docker images --no-trunc | grep '<none>' | awk '{print $3}'))
-  if [[ ${#untagged_images[@]} -gt 0 ]]; then
-      docker rmi "${untagged_images[@]}"
-  fi
 }
 defhelp -dev build 'Build or rebuild Docker images.'
 

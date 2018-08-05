@@ -95,6 +95,10 @@ ENV/
 # Installed node modules
 node_modules/
 
+# Ignore package-lock.json file as it's created within Dockerfile so outdates easily
+# TODO: Store this within repository and ensure it remains up to date
+package-lock.json
+
 # vim files
 *.swp
 *.swo

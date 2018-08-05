@@ -18,5 +18,5 @@ COPY requirements /requirements
 RUN /docker_venv/bin/pip3 install -r /requirements/local.txt
 
 RUN mkdir /cs-field-guide/
-RUN mkdir /cs-field-guide/csfielguide/
+RUN mkdir /cs-field-guide/csfieldguide/
 WORKDIR /cs-field-guide/csfieldguide/
