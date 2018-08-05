@@ -1,8 +1,8 @@
-broken_link_checker:
-  exclude_directories:
+broken-link-checker:
+  exclude-directories:
     - .git/
     - docs/build/
-  skip_urls:
+  skip-urls:
     # Intentional broken links
     - https://www.google.com/teapot
     - https://google.com/nope.html
