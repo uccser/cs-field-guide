@@ -18,9 +18,10 @@
     "csfg-interactive-cmy-mixer": "file:./static/interactives/cmy-mixer/",
     "csfg-interactive-colour-matcher": "file:./static/interactives/colour-matcher/",
     "csfg-interactive-frequency-anaylsis": "file:./static/interactives/frequency-analysis/",
-    "csfg-interactive-md5-hash": "file:./static/interactives/md5-hash/",
+    "csfg-interactive-md5-hash": "file:./static/interactives/MD5-hash/",
     "csfg-interactive-python-interpreter": "file:./static/interactives/python-interpreter/",
     "csfg-interactive-rgb-mixer": "file:./static/interactives/rgb-mixer/",
+    "csfg-interactive-rsa-jsencrypt": "file:./static/interactives/rsa-jsencrypt/",
     "csfg-interactive-sha2": "file:./static/interactives/sha2/",
     "csfg-interactive-unicode-binary": "file:./static/interactives/unicode-binary/",
     "csfg-interactive-unicode-chars": "file:./static/interactives/unicode-chars/"
