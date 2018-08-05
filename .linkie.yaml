@@ -1,8 +1,0 @@
-exclude_directories:
-  - .git/
-  - docs/build/
-
-skip_urls:
-  # Intentional broken links
-  - https://www.google.com/teapot
-  - https://google.com/nope.html
