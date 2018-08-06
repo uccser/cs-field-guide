@@ -1,3 +1,5 @@
+require('jsencrypt');
+
 $(document).ready(function(){
     $("#interactive-rsa-key-generator-generate").click(function() {
       // Get key size
@@ -12,7 +14,7 @@ $(document).ready(function(){
       // Enable copy buttons for use
       $('.interactive-rsa-key-generator-button').removeClass("disabled");
 
-      $('[data-toggle="popover"]').popover();
+      $('[data-toggle="tooltip"]').tooltip();
     });
 
     $("#interactive-rsa-key-generator-copy-public").click(function() {
@@ -21,15 +23,13 @@ $(document).ready(function(){
       try {
         var successful = document.execCommand('copy');
         if (successful) {
-          popover_message = 'Public key copied';
+          $('#interactive-rsa-key-generator-copy-public').trigger('copied', 'Public key copied');
         } else {
-          popover_message = 'Oops, unable to copy. Please copy manually.';
+          $('#interactive-rsa-key-generator-copy-public').trigger('copied', 'Oops, unable to copy. Please copy manually.');
         }
       } catch (err) {
-        popover_message = 'Oops, unable to copy';
+        $('#interactive-rsa-key-generator-copy-public').trigger('copied', 'Oops, unable to copy. Please copy manually.');
       }
-
-      $('#interactive-rsa-key-generator-copy-public').attr('data-content', popover_message);
     });
 
     $("#interactive-rsa-key-generator-copy-private").click(function() {
@@ -38,15 +38,21 @@ $(document).ready(function(){
       try {
         var successful = document.execCommand('copy');
         if (successful) {
-          popover_message = 'Private key copied';
+          $('#interactive-rsa-key-generator-copy-private').trigger('copied', 'Private key copied');
         } else {
-          popover_message = 'Oops, unable to copy. Please copy manually.';
+          $('#interactive-rsa-key-generator-copy-private').trigger('copied', 'Oops, unable to copy. Please copy manually.');
         }
       } catch (err) {
-        popover_message = 'Oops, unable to copy';
+        $('#interactive-rsa-key-generator-copy-private').trigger('copied', 'Oops, unable to copy. Please copy manually.');
       }
+    });
 
-      $('#interactive-rsa-key-generator-copy-private').attr('data-content', popover_message);
+    $('[data-toggle="tooltip"]').on('copied', function(event, message) {
+      $(this).attr('title', message)
+          .tooltip('_fixTitle')
+          .tooltip('show')
+          .attr('title', "Copy to Clipboard")
+          .tooltip('_fixTitle');
     });
 });
 

@@ -45,9 +45,9 @@
             <textarea id="interactive-rsa-key-generator-public-key" class="form-control" rows="5" readonly></textarea>
           </div>
           <div class="col-5">
-            <a tabindex="0" class="btn btn-primary interactive-rsa-key-generator-button disabled" role="button" data-toggle="popover" data-trigger="focus" id="interactive-rsa-key-generator-copy-public" aria-disabled="true">
+            <button class="btn btn-primary interactive-rsa-key-generator-button disabled" type="button" data-toggle="tooltip" data-placement="bottom" id="interactive-rsa-key-generator-copy-public" title="Copy to Clipboard">
             	{% trans "Copy Public Key" %}
-            </a>
+            </button>
           </div>
         </div>
 
@@ -62,9 +62,9 @@
             <textarea id="interactive-rsa-key-generator-private-key" class="form-control" rows="8" readonly></textarea>
           </div>
           <div class="col-5">
-            <a tabindex="0" class="btn btn-primary interactive-rsa-key-generator-button disabled" role="button" data-toggle="popover" data-trigger="focus"  id="interactive-rsa-key-generator-copy-private" aria-disabled="true">
+            <button class="btn btn-primary interactive-rsa-key-generator-button disabled" type="button" data-toggle="tooltip" data-placement="bottom"  id="interactive-rsa-key-generator-copy-private" title="Copy to Clipboard">
             	{% trans "Copy Private Key" %}
-           	</a>
+           	</button>
           </div>
         </div>
 
@@ -79,5 +79,4 @@
 
 {% block js %}
   <script type="text/javascript" src="{% static 'interactives/rsa-key-generator/js/rsa-key-generator.js' %}"></script>
-  <script type="text/javascript" src="{% static 'js/third-party/jsencrypt.js' %}"></script>
 {% endblock js %}
