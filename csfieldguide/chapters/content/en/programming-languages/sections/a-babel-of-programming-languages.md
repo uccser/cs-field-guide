@@ -89,11 +89,11 @@ If you are interested in trying Scratch, [you can try it out online here](http:/
 This is an example of a simple program in Scratch that is similar to the programs we have above for Python and Java.
 It asks the user for numbers until they say "stop" and then finds the average of the numbers given.
 
-{image file-path="img/chapters/scratch-example-program.png"}
+{image file-path="img/chapters/scratch-example-program.png" alt="This image shows a scratch program that asks the user to enter numbers until they type stop and then computes the average of the numbers given."}
 
 And this is the output that will be displayed when the green flag is clicked:
 
-{image file-path="img/chapters/scratch-example-program-output.png"}
+{image file-path="img/chapters/scratch-example-program-output.png" alt="This image shows the output of the above scratch program when the user enters two numbers that sum up to forty. The output is twenty."}
 
 Scratch can be used for simple calculations, creating games and animations.
 However it doesn't have all the capabilities of other languages.
