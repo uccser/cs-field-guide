@@ -191,7 +191,7 @@ The tree for "abcddcbaaabbccddcbdaabcd" is likely to be this shape:
 
 whereas the tree for "aabbabcabcaaabdbacbbdcdd" has a shorter code for "b"
 
-{image file-path="img/chapters/huffman-tree-abcd-non-uniform.png alt="This shows the Huffman tree for the above sequence. This tree does not have a uniform shape."}
+{image file-path="img/chapters/huffman-tree-abcd-non-uniform.png" alt="This shows the Huffman tree for the above sequence. This tree does not have a uniform shape."}
 
 The first one will use two bits for each character; since there are 24 characters in total, it will use 48 bits in total to represent all of the characters.
 
