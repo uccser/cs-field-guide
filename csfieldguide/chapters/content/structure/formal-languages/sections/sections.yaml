@@ -1,20 +1,17 @@
-the-big-picture:
+getting-started:
   section-number: 1
 
-getting-started:
+finite-state-automata:
   section-number: 2
 
-finite-state-automata:
+regular-expressions:
   section-number: 3
 
-regular-expressions:
+grammars-and-parsing:
   section-number: 4
 
-grammars-and-parsing:
+the-whole-story:
   section-number: 5
 
-the-whole-story:
-  section-number: 6
-
 further-reading:
-  section-number: 7
+  section-number: 6
