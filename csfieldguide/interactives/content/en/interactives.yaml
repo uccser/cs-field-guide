@@ -19,7 +19,7 @@ box-rotation:
 box-translation:
   name: box-translation (broken)
 caesar-cipher:
-  name: Caesar Cipher (broken)
+  name: Caesar Cipher
 checksum-calculator:
   name: checksum-calculator (broken)
 checksum-calculator-gtin-13:
@@ -103,7 +103,7 @@ run-length-encoding:
 searching-algorithms:
   name: searching-algorithms (broken)
 sha2:
-  name: sha2 (broken)
+  name: SHA2
 sorting-algorithm-comparison:
   name: Sorting Algorithm Comparison
 sorting-algorithms:
@@ -113,7 +113,7 @@ trainsylvania:
 trainsylvania-planner:
   name: Trainsylvania Planner
 trig-function-calculator:
-  name: trig-function-calculator (broken)
+  name: Trig Function Calculator
 unicode-binary:
   name: unicode-binary (broken)
 unicode-chars:
