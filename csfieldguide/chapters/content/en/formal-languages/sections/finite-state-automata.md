@@ -337,7 +337,7 @@ But things can get out of hand.
 What if there are more letters in the alphabet?
 We'd need something like this:
 
-{image file-path="img/chapters/finite-state-automata-trap-added-extreme-example.png" alt-"FSA with missing transitions"}
+{image file-path="img/chapters/finite-state-automata-trap-added-extreme-example.png" alt="FSA with missing transitions"}
 
 So, instead, we just say that any unspecified transition causes the input to be rejected (that is, it behaves as though it goes into a trap state).
 In other words, it's fine to use the simple version above, with just two transitions.

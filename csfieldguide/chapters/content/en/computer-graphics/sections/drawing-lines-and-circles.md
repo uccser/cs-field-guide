@@ -9,7 +9,7 @@ If the system only stored the pixels for the letter shape, then zooming in would
 {comment to add sometime, Jargonbuster: pixel (somewhere in the chapter) - also mention pel and bitmap, and origins of the terms.
 see www.foveon.com/files/ABriefHistoryofPixel2.pdf}
 
-{image file-path="img/chapters/vector-letter-with-outline.png" caption="true"}
+{image file-path="img/chapters/vector-letter-with-outline.png" caption="true" alt="The points used to create the letter g."}
 
 The points used to create the letter 'g' in Google's logo"
 
@@ -17,7 +17,7 @@ The points used to create the letter 'g' in Google's logo"
 
 In 3D graphics shapes are often stored using lines and curves that mark out the edges of tiny flat surfaces (usually triangles), each of which is so small that you can't see them unless you zoom right in.
 
-{image file-path="img/chapters/dolphin-triangle-mesh.png"}
+{image file-path="img/chapters/dolphin-triangle-mesh.png" alt="3D image of a dolphin constructed out of triangles."}
 
 {comment Public domain image: https://en.wikipedia.org/wiki/Triangle_mesh#/media/File:Dolphin_triangle_mesh.png}
 
