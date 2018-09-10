@@ -161,21 +161,21 @@ function processInput() {
 
 			//after checking how many times each box has been revealed...
 			if (box_revealed_no_times) {
-				$feedback.html(('Correct! But you missed a box... You got lucky this time!'));
+				$feedback.html((high_score_boxes_il8n['lucky']));
 			} else if (box_revealed_more_than_once) {
-				$feedback.html(("Correct! But you could've been more efficient..."));
+				$feedback.html((high_score_boxes_il8n['inefficient']));
 			} else {
-				$feedback.html(("Correct! You've found how to complete this challenge the most efficient way!\nYour time was "
-					+ HighScoreBoxes.secondsTaken + ' seconds.'));
+				$feedback.html((high_score_boxes_il8n['correct']
+					+ HighScoreBoxes.secondsTaken + high_score_boxes_il8n['seconds']));
 			}
             $('#restart-button').show();
 		} else {
-			$feedback.html('Incorrect!');
+			$feedback.html(high_score_boxes_il8n['incorrect']);
 			$('#restart-button').show();
 		}
 	} else {
         // Submitted value is not a number
-        $feedback.html(('Inputted value must be a whole number'));
+        $feedback.html((high_score_boxes_il8n['not-a-number']));
     }
 }
 
