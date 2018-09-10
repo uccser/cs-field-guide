@@ -19,7 +19,7 @@ box-rotation:
 box-translation:
   name: box-translation (broken)
 caesar-cipher:
-  name: Caesar Cipher (broken)
+  name: Caesar Cipher
 checksum-calculator:
   name: checksum-calculator (broken)
 checksum-calculator-gtin-13:
