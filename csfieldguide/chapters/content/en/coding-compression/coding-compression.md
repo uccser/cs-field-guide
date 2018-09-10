@@ -1,7 +1,5 @@
 # Coding - Compression
 
-Placeholder content.
-
 # What's the big picture?
 
 Data compression reduces the amount of space needed to store files.

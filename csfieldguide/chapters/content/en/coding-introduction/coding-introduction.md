@@ -1,7 +1,5 @@
 # Coding - Introduction
 
-Placeholder content.
-
 # What's the big picture?
 
 The word "code" has lots of meanings in computer science.

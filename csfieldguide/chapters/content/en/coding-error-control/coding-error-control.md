@@ -1,7 +1,5 @@
 # Coding - Error Control
 
-Placeholder content.
-
 # What's the big picture?
 
 {panel type="teacher-note"}

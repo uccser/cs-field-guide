@@ -1,7 +1,5 @@
 # Programming Languages
 
-Placeholder content
-
 # What's the big picture?
 
 Programming, sometimes referred to as coding, is a nuts and bolts activity for computer science.

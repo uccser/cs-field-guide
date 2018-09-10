@@ -1,7 +1,5 @@
 # Coding - Encryption
 
-Placeholder content.
-
 # What's the big picture?
 
 Encryption is used to keep data secret.
