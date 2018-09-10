@@ -103,7 +103,7 @@ g: 011
 t: 1
 ```
 
-{image file-path="img/chapters/huffman-tree-dna.png"}
+{image file-path="img/chapters/huffman-tree-dna.png" alt="This image shows a Huffman tree that has four leaf nodes, where each leaf node corresponds to a different letter in the sequence of DNA."}
 
 To decode something using this structure (e.g. the code 0100110011110001011001 above), start at the top, and choose a branch based each successive bit in the coded file. The first bit is a 0, so we follow the left branch, then the 1 branch, then the 0 branch, which leads us to the letter "a".
 After each letter is decoded, we start again at the top.
@@ -142,15 +142,15 @@ We build the tree from the bottom by finding the two characters that have the sm
 These are made to be a branch at the bottom of the tree, and at the top of the branch we write the sum of their two values (2+1, which is 3).
 The branches are labelled with a 0 and 1 respectively (it doesn't matter which way around you do it).
 
-{image file-path="img/chapters/huffman-tree-dna-building-1.png"}
+{image file-path="img/chapters/huffman-tree-dna-building-1.png" alt="This image shows the Huffman tree for the description above."}
 
 We then forget about the counts for the two characters just combined, but we use the combined total to repeat the same step: the counts to choose from are 3 (for the combined total), 3 (for "c"), and 7 (for "t"), so we combine the two smallest values (3 and 3) to make a new branch:
 
-{image file-path="img/chapters/huffman-tree-dna-building-2.png"}
+{image file-path="img/chapters/huffman-tree-dna-building-2.png" alt="This image builds upon the previous Huffman tree as per description above."}
 
 This leaves just two counts to consider (6 and 7), so these are combined to form the final tree:
 
-{image file-path="img/chapters/huffman-tree-dna-building-3.png"}
+{image file-path="img/chapters/huffman-tree-dna-building-3.png" alt="This image shows the final Huffman tree for the description above."}
 
 You can then read off the codes for each character by following the 0 and 1 labels from top to bottom, or you could use the tree directly for coding.
 
@@ -187,11 +187,11 @@ As an experiment, try calculating a Huffman code for the four letters a, b, c an
 
 The tree for "abcddcbaaabbccddcbdaabcd" is likely to be this shape:
 
-{image file-path="img/chapters/huffman-tree-abcd-uniform.png"}
+{image file-path="img/chapters/huffman-tree-abcd-uniform.png" alt="This shows the Huffman tree for the above sequence. The tree has a uniform shape."}
 
 whereas the tree for "aabbabcabcaaabdbacbbdcdd" has a shorter code for "b"
 
-{image file-path="img/chapters/huffman-tree-abcd-non-uniform.png"}
+{image file-path="img/chapters/huffman-tree-abcd-non-uniform.png" alt="This shows the Huffman tree for the above sequence. This tree does not have a uniform shape."}
 
 The first one will use two bits for each character; since there are 24 characters in total, it will use 48 bits in total to represent all of the characters.
 
@@ -218,6 +218,6 @@ You can work out the average number of bits used to record each dice roll, since
 
 Another thing to note from this is that there are some arbitary choices in how the tree was made (e.g. the 4 value might have been given 2 bits and the 6 value might have been given 3 bits), but the average number of bits will be the same.
 
-{image file-path="img/chapters/huffman-tree-dice.png"}
+{image file-path="img/chapters/huffman-tree-dice.png" alt="This image shows the Huffman tree for the description above."}
 
 {panel end}
