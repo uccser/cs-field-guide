@@ -5,8 +5,8 @@
 
 {% block html %}
   <div id="interactive-nfa-guesser" class="text-center">
-    <h3>Practice traversing a NFA</h3>
-    <p>Traverse the NFA map below with the input sequence and select all the resulting states.</p>
+    <h3>{% trans "Practice traversing a NFA" %}</h3>
+    <p>{% trans "Traverse the NFA map below with the input sequence and select all the resulting states." %}</p>
 
     <object id="interactive-nfa-guesser-image" data="{% static 'interactives/nfa-guesser/img/nfa.svg' %}" type="image/svg+xml"></object>
 
