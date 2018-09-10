@@ -1,23 +1,20 @@
-the-big-picture:
+analysis:
   section-number: 1
 
-analysis:
+design:
   section-number: 2
 
-design:
+testing:
   section-number: 3
 
-testing:
+software-processes:
   section-number: 4
 
-software-processes:
+agile-software-development:
   section-number: 5
 
-agile-software-development:
+the-whole-story:
   section-number: 6
 
-the-whole-story:
-  section-number: 7
-
 further-reading:
-  section-number: 8
+  section-number: 7
