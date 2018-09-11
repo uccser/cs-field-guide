@@ -69,7 +69,7 @@ mips-simulator:
 ncea-guide-selector:
   name: ncea-guide-selector (broken)
 nfa-guesser:
-  name: nfa-guesser (broken)
+  name: NFA Guesser
 no-help:
   name: No Help
 number-generator:
