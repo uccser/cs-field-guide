@@ -1,4 +1,4 @@
-require('./../../../js/modules/fsa/fsa.js');
+const FSA = require('./../../../js/modules/fsa/fsa.js');
 
 var nfa_guesser = {};
 nfa_guesser.result = [];
@@ -64,10 +64,10 @@ function checkAnswer() {
     });
     var result_element = document.getElementById('interactive-nfa-guesser-result');
     if (checked_states.equals(nfa_guesser.result)) {
-        result_element.innerHTML = 'Correct'
+        result_element.innerHTML = nfa_guesser_il8n["correct"]
         result_element.classList = 'valid'
     } else {
-        result_element.innerHTML = 'Incorrect'
+        result_element.innerHTML = nfa_guesser_il8n["incorrect"]
         result_element.classList = ''
     }
 }

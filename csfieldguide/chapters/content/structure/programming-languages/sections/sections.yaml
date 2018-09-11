@@ -1,17 +1,14 @@
-the-big-picture:
+machine-code:
   section-number: 1
 
-machine-code:
+a-babel-of-programming-languages:
   section-number: 2
 
-a-babel-of-programming-languages:
+how-does-the-computer-process-your-program:
   section-number: 3
 
-how-does-the-computer-process-your-program:
+the-whole-story:
   section-number: 4
 
-the-whole-story:
-  section-number: 5
-
 further-reading:
-  section-number: 6
+  section-number: 5
