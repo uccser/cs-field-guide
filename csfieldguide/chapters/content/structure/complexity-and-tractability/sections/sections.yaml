@@ -1,14 +1,11 @@
-the-big-picture:
+algorithms-problems-and-speed-limits:
   section-number: 1
 
-algorithms-problems-and-speed-limits:
+tractability:
   section-number: 2
 
-tractability:
+the-travelling-salesman-problem:
   section-number: 3
 
-the-travelling-salesman-problem:
-  section-number: 4
-
 bin-packing-problem:
-  section-number: 5
+  section-number: 4
