@@ -1,0 +1,4 @@
+interactive:
+  languages:
+    en: interactives/template.html
+    xyz: interactives/template.html

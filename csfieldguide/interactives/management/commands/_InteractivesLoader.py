@@ -40,6 +40,8 @@ class InteractivesLoader(TranslatableModelLoader):
                         error_text,
                     )
                 else:
+                    if not translations.get(language_code):
+                        translations[language_code] = dict()
                     translations[language_code]["template"] = template_path
 
             interactive = Interactive(

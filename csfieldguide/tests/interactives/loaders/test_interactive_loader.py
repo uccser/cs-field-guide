@@ -4,6 +4,7 @@ from tests.interactives.InteractivesTestDataGenerator import InteractivesTestDat
 from interactives.management.commands._InteractivesLoader import InteractivesLoader
 from interactives.models import Interactive
 from utils.errors.MissingRequiredFieldError import MissingRequiredFieldError
+from utils.errors.InvalidYAMLValueError import InvalidYAMLValueError
 
 
 class InteractivesLoaderTest(BaseTestWithDB):
@@ -26,6 +27,46 @@ class InteractivesLoaderTest(BaseTestWithDB):
             ["<Interactive: Interactive Untranslated>"]
         )
 
+    def test_interactives_interactives_loader_multiple_languages(self):
+        interactive_loader = InteractivesLoader(
+            base_path=self.BASE_PATH,
+            content_path="",
+            structure_filename="multiple-languages.yaml"
+        )
+        interactive_loader.load()
+        self.assertQuerysetEqual(
+            Interactive.objects.all(),
+            ["<Interactive: Interactive Multiple Languages>"]
+        )
+        interactive = Interactive.objects.get(slug="interactive-multiple-languages")
+        self.assertEqual(
+            "Interactive Multiple Languages",
+            interactive.name
+        )
+        self.assertEqual(
+            "interactives/template-en.html",
+            interactive.template
+        )
+        with translation.override("de"):
+            self.assertEqual(
+                "Interactive Multiple Languages in German",
+                interactive.name
+            )
+            self.assertEqual(
+                "interactives/template-de.html",
+                interactive.template
+            )
+        with translation.override("fr"):
+            self.assertEqual(
+                "Interactive Multiple Languages",  # Fallback to English
+                interactive.name
+            )
+            self.assertEqual(
+                "interactives/template-fr.html",
+                interactive.template
+            )
+        self.assertSetEqual(set(["en", "de"]), set(interactive.languages))
+
     def test_interactives_interactives_missing_name(self):
         interactive_loader = InteractivesLoader(
             base_path=self.BASE_PATH,
@@ -34,6 +75,34 @@ class InteractivesLoaderTest(BaseTestWithDB):
         )
         self.assertRaises(
             MissingRequiredFieldError,
+            interactive_loader.load
+        )
+
+    def test_interactives_interactives_missing_languages(self):
+        interactive_loader = InteractivesLoader(
+            base_path=self.BASE_PATH,
+            content_path="",
+            structure_filename="missing-languages.yaml"
+        )
+        interactive_loader.load()
+        interactive = Interactive.objects.get(slug="interactive-missing-languages")
+        self.assertEqual(
+            "Interactive Missing Languages",
+            interactive.name
+        )
+        self.assertEqual(
+            "",
+            interactive.template
+        )
+
+    def test_interactives_interactives_invalid_language(self):
+        interactive_loader = InteractivesLoader(
+            base_path=self.BASE_PATH,
+            content_path="",
+            structure_filename="invalid-language.yaml"
+        )
+        self.assertRaises(
+            InvalidYAMLValueError,
             interactive_loader.load
         )
 
