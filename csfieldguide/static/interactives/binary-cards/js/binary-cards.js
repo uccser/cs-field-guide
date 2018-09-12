@@ -170,11 +170,7 @@ function updateDotCount() {
     });
 
     var dotText = $('#dot-decimal-count');
-    if (dotCount == 1) {
-        dotText.html(binary_cards_il8n["1-dot-visible"]);
-    } else {
-        dotText.html(dotCount + binary_cards_il8n["dots-visible"]);
-    }
+    dotText.html(ngettext("%(dotCount) dot is visible", "%(dotCount) dots are visible", dotCount));
 };
 
 
