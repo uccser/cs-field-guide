@@ -1,0 +1,23 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div id="searching-algorithms-interactive" class="row mt-3">
+    <div class="col-12 text-center">
+      <h1 id="heading">{% trans "Searching Algorithms" %}</h1>
+    </div>
+    <div>
+      <p>Searching Algorithms</p>
+    </div> 
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/searching-algorithms/css/searching-algorithms.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/searching-algorithms/js/searching-algorithms.js' %}"></script>
+{% endblock js %}

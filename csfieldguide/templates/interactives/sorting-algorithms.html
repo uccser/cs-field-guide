@@ -1,0 +1,23 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div id="sorting-algorithms-interactive" class="row mt-3">
+    <div class="col-12 text-center">
+      <h1 id="heading">{% trans "Sorting Algorithms" %}</h1>
+    </div>
+    <div>
+      <p>Sorting Algorithms</p>
+    </div> 
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/sorting-algorithms/css/sorting-algorithms.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/sorting-algorithms/js/sorting-algorithms.js' %}"></script>
+{% endblock js %}

@@ -30,7 +30,11 @@ Once you think they are in order click 'Test order'.
 
 If the interactive does not run properly on your computer you can use a set of physical balance scales instead; just make sure you can only tell if one box is heavier than the other, not their exact weight (so not digital scales that show the exact weight).
 
-{comment interactive name="sorting-algorithms" type="whole-page" text="Scales interactive"}
+{interactive slug="sorting-algorithms" type="whole-page" text="true"}
+
+Scales Interactive
+
+{interactive end}
 
 {comment link back to the unplugged activity}
 
