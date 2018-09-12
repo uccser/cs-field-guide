@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-11 23:29+0000\n"
+"POT-Creation-Date: 2018-09-12 03:01+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,33 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: static/interactives/big-number-calculator/js/big-number-calculator.js:22
+#: static/interactives/big-number-calculator/js/big-number-calculator.js:43
+msgid ""
+"The result of this calculation will be massive! We won't try calculating "
+"this number as it's so big!"
+msgstr ""
+
+#: static/interactives/big-number-calculator/js/big-number-calculator.js:47
+msgid "Error! Your X value is not a valid number."
+msgstr ""
+
+#: static/interactives/big-number-calculator/js/big-number-calculator.js:49
+msgid "Error! Your Y value is not a valid number."
+msgstr ""
+
+#: static/interactives/big-number-calculator/js/big-number-calculator.js:71
+msgid ""
+"The result of this factorial will be massive, over 5000 digits long! We "
+"won't try calculating this number as it's so big!"
+msgstr ""
+
+#: static/interactives/binary-cards/js/binary-cards.js:173
+msgid "1 dot is visible"
+msgid_plural "%(dot_count)s dots are visible"
+msgstr[0] ""
+msgstr[1] ""
 
 #: static/interactives/no-help/js/no-help.js:3
 msgid "Error: No help available!"

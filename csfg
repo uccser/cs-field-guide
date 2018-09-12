@@ -100,6 +100,7 @@ cmd_update() {
   echo ""
   dev_updatedata
   dev_rebuild_index
+  dev_compilemessages
 
   echo ""
   dev_collect_static
@@ -129,6 +130,7 @@ dev_compilemessages() {
   echo "Compiling message files..."
   docker-compose exec django /docker_venv/bin/python3 ./manage.py compilemessages
   docker-compose exec django /docker_venv/bin/python3 ./manage.py compilejsi18n
+  echo "Note: You will need to run the 'collect_static' command now to copy compiled JS files to the correct directory."
 }
 defhelp -dev compilemessages 'Run Django compilemessages command.'
 

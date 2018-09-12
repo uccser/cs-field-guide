@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-11 23:29+0000\n"
+"POT-Creation-Date: 2018-09-12 03:01+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: config/settings/base.py:121
+#: config/settings/base.py:120
 msgid "Translation mode"
 msgstr ""
 
-#: config/settings/base.py:127
+#: config/settings/base.py:126
 msgid "Translation mode (Bi-directional)"
 msgstr ""
 
@@ -41,14 +41,14 @@ msgstr ""
 msgid "Home page"
 msgstr ""
 
-#: templates/404.html:24 templates/base.html:52 templates/base.html:57
-#: templates/base.html:202 templates/search/search.html:9
+#: templates/404.html:24 templates/base.html:54 templates/base.html:59
+#: templates/base.html:204 templates/search/search.html:9
 #: templates/search/search.html:27 templates/search/search.html:30
 #: templates/search/search.html:63
 msgid "Search"
 msgstr ""
 
-#: templates/appendices/index.html:17 templates/base.html:162
+#: templates/appendices/index.html:17 templates/base.html:164
 msgid "About"
 msgstr ""
 
@@ -64,75 +64,75 @@ msgstr ""
 msgid "Curriculum Guides"
 msgstr ""
 
-#: templates/appendices/index.html:38 templates/base.html:207
+#: templates/appendices/index.html:38 templates/base.html:209
 msgid "Glossary"
 msgstr ""
 
-#: templates/appendices/index.html:43 templates/base.html:172
+#: templates/appendices/index.html:43 templates/base.html:174
 #: templates/interactives/index.html:7
 msgid "Interactives"
 msgstr ""
 
-#: templates/base.html:15 templates/general/index.html:7
+#: templates/base.html:16 templates/general/index.html:7
 msgid "Computer Science Field Guide"
 msgstr ""
 
-#: templates/base.html:18
+#: templates/base.html:19
 msgid ""
 "An online interactive resource for high school students learning about "
 "computer science"
 msgstr ""
 
-#: templates/base.html:44 templates/base.html:167
+#: templates/base.html:46 templates/base.html:169
 #: templates/chapters/index.html:8
 msgid "Chapters"
 msgstr ""
 
-#: templates/base.html:47
+#: templates/base.html:49
 msgid "Appendices"
 msgstr ""
 
-#: templates/base.html:139
+#: templates/base.html:141
 msgid ""
 "Looking for something for primary schools? Check out <a href=\"http://www."
 "csunplugged.org/\">CS Unplugged</a>."
 msgstr ""
 
-#: templates/base.html:151
+#: templates/base.html:153
 msgid ""
 "The Computer Science Field Guide is an online interactive resource for high "
 "school students learning about computer science."
 msgstr ""
 
-#: templates/base.html:158
+#: templates/base.html:160
 msgid "Useful Links"
 msgstr ""
 
-#: templates/base.html:178
+#: templates/base.html:180
 msgid "Community"
 msgstr ""
 
-#: templates/base.html:182
+#: templates/base.html:184
 msgid "Twitter"
 msgstr ""
 
-#: templates/base.html:187
+#: templates/base.html:189
 msgid "YouTube"
 msgstr ""
 
-#: templates/base.html:192
+#: templates/base.html:194
 msgid "GitHub"
 msgstr ""
 
-#: templates/base.html:198
+#: templates/base.html:200
 msgid "Help"
 msgstr ""
 
-#: templates/base.html:212
+#: templates/base.html:214
 msgid "Feedback"
 msgstr ""
 
-#: templates/base.html:234
+#: templates/base.html:236
 msgid ""
 "The Computer Science Field Guide material is open source on <a href="
 "\"https://github.com/uccser/cs-field-guide\">GitHub</a>, and this website's "
@@ -144,12 +144,12 @@ msgid ""
 "\">University of Canterbury</a>, New Zealand."
 msgstr ""
 
-#: templates/base.html:257
+#: templates/base.html:259
 #, python-format
 msgid "This definition is not available in %(language)s, sorry!"
 msgstr ""
 
-#: templates/base.html:264 templates/general/index.html:50
+#: templates/base.html:266 templates/general/index.html:50
 msgid "Close"
 msgstr ""
 
@@ -306,23 +306,6 @@ msgstr ""
 msgid "Result:"
 msgstr ""
 
-#: templates/interactives/big-number-calculator.html:53
-msgid "The result of this calculation will be massive! We won\\"
-msgstr ""
-
-#: templates/interactives/big-number-calculator.html:54
-msgid "Error! Your X value is not a valid number."
-msgstr ""
-
-#: templates/interactives/big-number-calculator.html:55
-msgid "Error! Your Y value is not a valid number."
-msgstr ""
-
-#: templates/interactives/big-number-calculator.html:56
-msgid ""
-"The result of this factorial will be massive, over 5000 digits long! We won\\"
-msgstr ""
-
 #: templates/interactives/binary-cards.html:10
 msgid "Binary Cards"
 msgstr ""
@@ -339,19 +322,12 @@ msgstr ""
 msgid "White"
 msgstr ""
 
-#: templates/interactives/binary-cards.html:32
-msgid "1 dot is visible"
-msgstr ""
-
-#: templates/interactives/binary-cards.html:33
-msgid " dots are visible"
-msgstr ""
-
 #: templates/interactives/caesar-cipher.html:9
 msgid "Plaintext"
 msgstr ""
 
 #: templates/interactives/caesar-cipher.html:11
+#: templates/interactives/rsa-jsencrypt.html:20
 #: templates/interactives/rsa-no-padding.html:18
 msgid "Encrypt"
 msgstr ""
@@ -365,6 +341,7 @@ msgid "Ciphertext"
 msgstr ""
 
 #: templates/interactives/caesar-cipher.html:20
+#: templates/interactives/rsa-jsencrypt.html:43
 #: templates/interactives/rsa-no-padding.html:36
 msgid "Decrypt"
 msgstr ""
@@ -740,6 +717,52 @@ msgstr ""
 msgid "invalid!"
 msgstr ""
 
+#: templates/interactives/high-score-boxes.html:9
+msgid "High Score Boxes"
+msgstr ""
+
+#: templates/interactives/high-score-boxes.html:10
+msgid ""
+"Clicking a box will reveal its number; your task is to find the highest "
+"number and enter it below."
+msgstr ""
+
+#: templates/interactives/high-score-boxes.html:13
+msgid "Highest number:"
+msgstr ""
+
+#: templates/interactives/high-score-boxes.html:19
+msgid "Submit"
+msgstr ""
+
+#: templates/interactives/high-score-boxes.html:25
+msgid "Restart"
+msgstr ""
+
+#: templates/interactives/high-score-boxes.html:56
+msgid "Correct! But you missed a box... You got lucky this time!"
+msgstr ""
+
+#: templates/interactives/high-score-boxes.html:57
+msgid "Correct! But you could\\"
+msgstr ""
+
+#: templates/interactives/high-score-boxes.html:58
+msgid "Correct! You\\"
+msgstr ""
+
+#: templates/interactives/high-score-boxes.html:59
+msgid " seconds."
+msgstr ""
+
+#: templates/interactives/high-score-boxes.html:60
+msgid "Incorrect!"
+msgstr ""
+
+#: templates/interactives/high-score-boxes.html:61
+msgid "Inputted value must be a whole number"
+msgstr ""
+
 #: templates/interactives/huffman-tree.html:10
 msgid "Huffman Tree Generator"
 msgstr ""
@@ -938,12 +961,55 @@ msgid ""
 "blue-value\">127</span>"
 msgstr ""
 
-#: templates/interactives/rsa-no-padding.html:10
-msgid "RSA <span id=\"interactive-rsa-no-padding-mode\">Encrypter</span>"
+#: templates/interactives/rsa-jsencrypt.html:12
+msgid "RSA <span id=\"interactive-rsa-jsencrypt-mode\">Encrypter</span>"
 msgstr ""
 
+#: templates/interactives/rsa-jsencrypt.html:14
 #: templates/interactives/rsa-no-padding.html:12
 msgid "Key"
+msgstr ""
+
+#: templates/interactives/rsa-jsencrypt.html:17
+msgid "<span id=\"interactive-rsa-jsencrypt-input-type\">Plain</span> Text"
+msgstr ""
+
+#: templates/interactives/rsa-jsencrypt.html:22
+msgid "<span id=\"interactive-rsa-jsencrypt-output-type\">Cipher</span> Text"
+msgstr ""
+
+#: templates/interactives/rsa-jsencrypt.html:25
+msgid ""
+"This interactive uses the <code><a href=\"http://travistidwell.com/jsencrypt/"
+"#\">jsencrypt</a></code> library."
+msgstr ""
+
+#: templates/interactives/rsa-jsencrypt.html:40
+#: templates/interactives/rsa-no-padding.html:34
+msgid "Error in encryption!"
+msgstr ""
+
+#: templates/interactives/rsa-jsencrypt.html:41
+msgid "Error in decryption!"
+msgstr ""
+
+#: templates/interactives/rsa-jsencrypt.html:42
+#: templates/interactives/rsa-no-padding.html:35
+msgid "Decrypter"
+msgstr ""
+
+#: templates/interactives/rsa-jsencrypt.html:44
+#: templates/interactives/rsa-no-padding.html:37
+msgid "Cipher"
+msgstr ""
+
+#: templates/interactives/rsa-jsencrypt.html:45
+#: templates/interactives/rsa-no-padding.html:38
+msgid "Plain"
+msgstr ""
+
+#: templates/interactives/rsa-no-padding.html:10
+msgid "RSA <span id=\"interactive-rsa-no-padding-mode\">Encrypter</span>"
 msgstr ""
 
 #: templates/interactives/rsa-no-padding.html:15
@@ -952,22 +1018,6 @@ msgstr ""
 
 #: templates/interactives/rsa-no-padding.html:20
 msgid "Cipher</span> Text"
-msgstr ""
-
-#: templates/interactives/rsa-no-padding.html:34
-msgid "Error in encryption!"
-msgstr ""
-
-#: templates/interactives/rsa-no-padding.html:35
-msgid "Decrypter"
-msgstr ""
-
-#: templates/interactives/rsa-no-padding.html:37
-msgid "Cipher"
-msgstr ""
-
-#: templates/interactives/rsa-no-padding.html:38
-msgid "Plain"
 msgstr ""
 
 #: templates/interactives/run-length-encoding.html:12
