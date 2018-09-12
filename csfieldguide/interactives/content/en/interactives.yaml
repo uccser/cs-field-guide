@@ -93,7 +93,7 @@ regular-expression-search:
 rgb-mixer:
   name: RGB Mixer
 rsa-jsencrypt:
-  name: rsa-jsencrypt (broken)
+  name: RSA jsencrypt
 rsa-key-generator:
   name: rsa-key-generator (broken)
 rsa-no-padding:
