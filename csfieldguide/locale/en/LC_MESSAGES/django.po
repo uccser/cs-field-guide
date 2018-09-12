@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-21 09:43+0000\n"
+"POT-Creation-Date: 2018-09-11 23:29+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: config/settings/base.py:119
+#: config/settings/base.py:121
 msgid "Translation mode"
 msgstr ""
 
-#: config/settings/base.py:125
+#: config/settings/base.py:127
 msgid "Translation mode (Bi-directional)"
 msgstr ""
 
@@ -265,6 +265,7 @@ msgid "Big Number Calculator"
 msgstr ""
 
 #: templates/interactives/big-number-calculator.html:15
+#: templates/interactives/trig-function-calculator.html:15
 msgid "X Value:"
 msgstr ""
 
@@ -301,6 +302,7 @@ msgid "Clear"
 msgstr ""
 
 #: templates/interactives/big-number-calculator.html:36
+#: templates/interactives/trig-function-calculator.html:26
 msgid "Result:"
 msgstr ""
 
@@ -343,6 +345,28 @@ msgstr ""
 
 #: templates/interactives/binary-cards.html:33
 msgid " dots are visible"
+msgstr ""
+
+#: templates/interactives/caesar-cipher.html:9
+msgid "Plaintext"
+msgstr ""
+
+#: templates/interactives/caesar-cipher.html:11
+#: templates/interactives/rsa-no-padding.html:18
+msgid "Encrypt"
+msgstr ""
+
+#: templates/interactives/caesar-cipher.html:14
+msgid "Rotation Amount"
+msgstr ""
+
+#: templates/interactives/caesar-cipher.html:18
+msgid "Ciphertext"
+msgstr ""
+
+#: templates/interactives/caesar-cipher.html:20
+#: templates/interactives/rsa-no-padding.html:36
+msgid "Decrypt"
 msgstr ""
 
 #: templates/interactives/close-window.html:8
@@ -784,12 +808,40 @@ msgid ""
 "browser or the online version."
 msgstr ""
 
-#: templates/interactives/no-help.html:8
-msgid "Click me for help"
+#: templates/interactives/nfa-guesser.html:8
+msgid "Practice traversing a NFA"
 msgstr ""
 
-#: templates/interactives/no-help.html:15
-msgid "Error: No help available!"
+#: templates/interactives/nfa-guesser.html:9
+msgid ""
+"Traverse the NFA map below with the input sequence and select all the "
+"resulting states."
+msgstr ""
+
+#: templates/interactives/nfa-guesser.html:14
+msgid ""
+"Input sequence: <span id=\"interactive-nfa-guesser-input-sequence-value\"></"
+"span>"
+msgstr ""
+
+#: templates/interactives/nfa-guesser.html:20
+msgid "Check answer"
+msgstr ""
+
+#: templates/interactives/nfa-guesser.html:26
+msgid "Generate new input sequence"
+msgstr ""
+
+#: templates/interactives/nfa-guesser.html:38
+msgid "Correct"
+msgstr ""
+
+#: templates/interactives/nfa-guesser.html:39
+msgid "Incorrect"
+msgstr ""
+
+#: templates/interactives/no-help.html:8
+msgid "Click me for help"
 msgstr ""
 
 #: templates/interactives/number-generator.html:12
@@ -898,10 +950,6 @@ msgstr ""
 msgid "<span id=\"interactive-rsa-no-padding-input-type\">Plain</span> Text"
 msgstr ""
 
-#: templates/interactives/rsa-no-padding.html:18
-msgid "Encrypt"
-msgstr ""
-
 #: templates/interactives/rsa-no-padding.html:20
 msgid "Cipher</span> Text"
 msgstr ""
@@ -912,10 +960,6 @@ msgstr ""
 
 #: templates/interactives/rsa-no-padding.html:35
 msgid "Decrypter"
-msgstr ""
-
-#: templates/interactives/rsa-no-padding.html:36
-msgid "Decrypt"
 msgstr ""
 
 #: templates/interactives/rsa-no-padding.html:37
@@ -964,6 +1008,22 @@ msgstr ""
 
 #: templates/interactives/run-length-encoding.html:75
 msgid "You have a different number of lines than lines in the grid!"
+msgstr ""
+
+#: templates/interactives/sha2.html:7
+msgid "SHA2 Hashing"
+msgstr ""
+
+#: templates/interactives/sha2.html:10
+msgid "Text to convert"
+msgstr ""
+
+#: templates/interactives/sha2.html:13
+msgid "Hash"
+msgstr ""
+
+#: templates/interactives/sha2.html:16
+msgid "Hashed message will be shown here"
 msgstr ""
 
 #: templates/interactives/sorting-algorithm-comparison.html:10
@@ -1022,6 +1082,24 @@ msgstr ""
 
 #: templates/interactives/trainsylvania.html:22
 msgid "Start over"
+msgstr ""
+
+#: templates/interactives/trig-function-calculator.html:8
+msgid "Trig Function Calculator"
+msgstr ""
+
+#: templates/interactives/trig-function-calculator.html:10
+msgid ""
+"Calculate the sine and cosine values of an angle given in degrees. "
+"(Calculations give up to 9 decimal places)."
+msgstr ""
+
+#: templates/interactives/trig-function-calculator.html:17
+msgid "Calculate"
+msgstr ""
+
+#: templates/interactives/trig-function-calculator.html:22
+msgid "Invalid input!"
 msgstr ""
 
 #: templates/interactives/unicode-chars.html:8

@@ -128,6 +128,7 @@ defhelp -dev collect_static "Collecting static files."
 dev_compilemessages() {
   echo "Compiling message files..."
   docker-compose exec django /docker_venv/bin/python3 ./manage.py compilemessages
+  docker-compose exec django /docker_venv/bin/python3 ./manage.py compilejsi18n
 }
 defhelp -dev compilemessages 'Run Django compilemessages command.'
 
@@ -146,6 +147,7 @@ defhelp -dev docs 'Generate documentation.'
 dev_makemessages() {
   echo "Creating message files..."
   docker-compose exec django /docker_venv/bin/python3 ./manage.py makemessages -l en
+  docker-compose exec django /docker_venv/bin/python3 ./manage.py makemessages --ignore=build/* -d djangojs
 }
 defhelp -dev makemessages 'Run Django makemessages command.'
 

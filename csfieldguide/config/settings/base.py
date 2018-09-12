@@ -44,6 +44,7 @@ THIRD_PARTY_APPS = [
     "modeltranslation",
     "bidiutils",
     "svg",
+    "statici18n",
 ]
 
 # Apps specific for this project go here.
