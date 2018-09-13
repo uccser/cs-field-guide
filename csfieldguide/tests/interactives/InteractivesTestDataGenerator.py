@@ -18,7 +18,8 @@ class InteractivesTestDataGenerator:
         interactive = Interactive(
             slug="interactive-{}".format(number),
             name="Interactive {}".format(number),
-            template="interactive-{}.html".format(number)
+            template="interactive-{}.html".format(number),
+            languages=["en"],
         )
         interactive.save()
         return interactive

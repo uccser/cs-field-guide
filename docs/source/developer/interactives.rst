@@ -49,16 +49,23 @@ Interactive Configuration Files
 
 - **Required Fields:**
 
-  - ``interactives:`` A list of interactives, where each item is a slug for an interacive.
+  - ``interactives:`` A dictionary of all interactive data, where each key is a slug for an interacive.
 
 A complete interactive structure file may look like the following:
 
 .. code-block:: yaml
 
-  interactives:
-    - sorting-algorithm-comparison
-    - high-score-boxes
-    - caesar-cipher
+    sorting-algorithm-comparison:
+      languages:
+        en: interactives/sorting-algorithm-comparison.html
+        de: interactives/sorting-algorithm-comparison.html
+    high-score-boxes:
+      languages:
+        en: interactives/high-score-boxes.html
+        de: interactives/high-score-boxes-de.html
+    caesar-cipher:
+      languages:
+        en: interactives/caesar-cipher.html
 
 Every interactive must also have a YAML file within each locale containing the names of the interactives, in the language for that particular locale.
 
@@ -120,7 +127,7 @@ Every interactive will follow a very similar file structure as given below:
       │       └── third-party/
       └── templates/
           └── interactives/
-              └── <interactive-slug>.html
+              └── <interactive-template>.html
 
 .. note::
 
@@ -145,7 +152,9 @@ Items of interest from this diagram:
   Unless specified when included in the chapter ``md`` file, the file needs to be named as ``thumbnail.png``.
   The image should be at least 900px wide, and of moderate quality (small size is more important than quality).
 
-- ``templates/interactives/<interactive-slug>.html`` - This is the HTML template for the interactive and it's name must match the slug of the interactive.
+- ``templates/interactives/<interactive-interactive>.html`` - This is the HTML template for the interactive for a specific locale, as defined in the interactive configuration file.
+  Locale may or may not share a template for an interactive, allowing different versions of an interactive to be available (`see GitHub for more information <https://github.com/uccser/cs-field-guide/pull/710>`_).
+  A template can also be omitted for a locale to disable the interactive for the locale.
 
   The HTML file should have the following contents:
 
