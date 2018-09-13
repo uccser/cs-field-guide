@@ -8,7 +8,6 @@ from django.conf import settings
 from django.conf.urls import include, url
 from django.conf.urls.i18n import i18n_patterns
 from config.views import health_check
-from django.views.i18n import JavaScriptCatalog
 
 
 urlpatterns = i18n_patterns(
@@ -17,7 +16,6 @@ urlpatterns = i18n_patterns(
     url(r"^chapters/", include("chapters.urls", namespace="chapters")),
     url(r"^appendices/", include("appendices.urls", namespace="appendices")),
     url(r"^search/", include("search.urls", namespace="search")),
-    url(r"^jsi18n/$", JavaScriptCatalog.as_view(), name="javascript-catalog"),
 )
 
 urlpatterns += [
