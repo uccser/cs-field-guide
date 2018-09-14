@@ -4,20 +4,68 @@
 {% load static %}
 
 {% block html %}
+
+
+
   <div id="sorting-algorithms-interactive" class="row mt-3">
     <div class="col-12 text-center">
       <h1 id="heading">{% trans "Sorting Algorithms" %}</h1>
     </div>
-    <div>
-      <p>Sorting Algorithms</p>
+    <div id="content" class="container">
+      <div class="sorting-algorithms-interactive-container flex-container">
+        <div class="sorting-algorithms-interactive-item flex-item">
+            <div id="box-1" class="flex-item-content">
+              <img src="{% static 'img/interactives/colourful-box-images/square1-256px.png' %}">
+            </div>
+        </div>
+        <div class="sorting-algorithms-interactive-item flex-item">
+            <div id="box-2" class="flex-item-content">
+              <img src="{% static 'img/interactives/colourful-box-images/square2-256px.png' %}">
+            </div>
+        </div>
+        <div class="sorting-algorithms-interactive-item flex-item">
+            <div id="box-3" class="flex-item-content">
+              <img src="{% static 'img/interactives/colourful-box-images/square3-256px.png' %}">
+            </div>
+        </div>
+        <div class="sorting-algorithms-interactive-item flex-item">
+            <div id="box-4" class="flex-item-content">
+              <img src="{% static 'img/interactives/colourful-box-images/square4-256px.png' %}">
+            </div>
+        </div>
+        <div class="sorting-algorithms-interactive-item flex-item">
+            <div id="box-5" class="flex-item-content">
+              <img src="{% static 'img/interactives/colourful-box-images/square5-256px.png' %}">
+            </div>
+        </div>
+        <div class="sorting-algorithms-interactive-item flex-item">
+            <div id="box-6" class="flex-item-content">
+              <img src="{% static 'img/interactives/colourful-box-images/square6-256px.png' %}">
+            </div>
+        </div>
+        <div class="sorting-algorithms-interactive-item flex-item">
+            <div id="box-7" class="flex-item-content">
+              <img src="{% static 'img/interactives/colourful-box-images/square7-256px.png' %}">
+            </div>
+        </div>
+        <div class="sorting-algorithms-interactive-item flex-item">
+            <div id="box-8" class="flex-item-content">
+              <img src="{% static 'img/interactives/colourful-box-images/square8-256px.png' %}">
+            </div>
+        </div>
+      </div>
+        
     </div> 
+
   </div>
 {% endblock html %}
 
 {% block css %}
   <link rel="stylesheet" href="{% static 'interactives/sorting-algorithms/css/sorting-algorithms.css' %}">
+  <link rel="stylesheet" href="{% static 'interactives/sorting-algorithms/css/dragula.min.css' %}">
 {% endblock css %}
 
 {% block js %}
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.2/dragula.min.js'></script>
   <script type="text/javascript" src="{% static 'interactives/sorting-algorithms/js/sorting-algorithms.js' %}"></script>
 {% endblock js %}

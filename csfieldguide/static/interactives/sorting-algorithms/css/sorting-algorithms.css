@@ -1,1 +1,65 @@
+/*.box {
+	min-height: 50px;
+	min-width: 50px;
+	border: 1px solid #000;
+}
 
+*/
+#sorting-algorithms-interactive #content .container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 25px;
+  border: 2px red solid;
+}
+/*.column {
+  flex-basis: calc(50% - 15px);
+}*/
+#sorting-algorithms-interactive .flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+#sorting-algorithms-interactive .flex-item {
+  position: relative;
+  flex-basis: calc((100vw - 200px) / 6);
+  height: calc((100vw - 200px) / 6);
+  background: white;
+  border: 1px solid red;
+  overflow: hidden;
+}
+#sorting-algorithms-interactive .flex-item-content {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#sorting-algorithms-interactive .flex-item:last-child .flex-item-content {
+  color: green;
+}
+
+/*.column .other {
+  padding: 15px;
+  border: 1px solid black;
+  padding-bottom: 35px; 
+}*/
+
+/*@media (max-width: 768px) {
+  .flex-item {
+    flex-basis: calc((100vw - 200px) / 3);
+    height: calc((100vw - 200px) / 3);
+  }  
+  .flex-item:nth-child(n+4)  {
+    margin-top: 12px;
+  }  
+}
+@media (max-width: 480px) {
+  .flex-item {
+    flex-basis: calc((100vw - 200px) / 2);
+    height: calc((100vw - 200px) / 2);
+  }  
+  .flex-item:nth-child(n+3)  {
+    margin-top: 15px;
+  }  
+}
+*/
