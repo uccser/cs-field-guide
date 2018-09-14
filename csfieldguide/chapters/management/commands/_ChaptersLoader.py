@@ -62,8 +62,8 @@ class ChaptersLoader(TranslatableModelLoader):
             chapter_icon = chapter_icon[4:-4]
 
         video = chapter_structure.get("video", None)
-        if "vimeo" not in video:
-            raise InvlaidURL("Video must be a Vimeo video.")
+        if video not None and "vimeo" not in video:
+            raise ValueError("Video must be a Vimeo video.")
 
         # Create chapter object and save to the db
         chapter = Chapter(
