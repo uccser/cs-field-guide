@@ -5,6 +5,7 @@ from django.http import Http404
 from django.template.loader import render_to_string
 from django.shortcuts import get_object_or_404
 from django.conf import settings
+from django.utils.translation import get_language
 from interactives.models import Interactive
 
 ALLOWED_MODES = (

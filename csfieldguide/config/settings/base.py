@@ -101,9 +101,11 @@ INCONTEXT_L10N_PSEUDOLANGUAGES = (
     INCONTEXT_L10N_PSEUDOLANGUAGE_BIDI
 )
 
-LANGUAGES = (
+DEFAULT_LANGUAGES = (
     ("en", "English"),
 )
+# Keep original values of languages for resource generation
+LANGUAGES = DEFAULT_LANGUAGES
 
 if env.bool("INCLUDE_INCONTEXT_L10N", False):
     EXTRA_LANGUAGES = [
@@ -263,6 +265,7 @@ HAYSTACK_SEARCH_RESULTS_PER_PAGE = 10
 
 # OTHER SETTINGS
 # ------------------------------------------------------------------------------
+DJANGO_PRODUCTION = env.bool("DJANGO_PRODUCTION")
 APPENDICES_CONTENT_BASE_PATH = os.path.join(str(ROOT_DIR.path("appendices")), "content")
 CHAPTERS_CONTENT_BASE_PATH = os.path.join(str(ROOT_DIR.path("chapters")), "content")
 INTERACTIVES_CONTENT_BASE_PATH = os.path.join(str(ROOT_DIR.path("interactives")), "content")
