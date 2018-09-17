@@ -61,8 +61,8 @@ class ChaptersLoader(TranslatableModelLoader):
             # Remove directory and extension as svg templatetag automatically adds these
             chapter_icon = chapter_icon[4:-4]
 
-        video = chapter_structure.get("video", None)
-        if video is not None and "vimeo" not in video:
+        video = chapter_structure.get("video", "")
+        if video != "" and "vimeo" not in video:
             raise ValueError("Video must be a Vimeo video.")
 
         # Create chapter object and save to the db
