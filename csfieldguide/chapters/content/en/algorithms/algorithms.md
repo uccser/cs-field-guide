@@ -2,8 +2,6 @@
 
 {comment explain different views of algorithm (programming context) and Algorithm (that have interesting complexity); use https://www.youtube.com/watch?v=6hfOvs8pY1k for the former?}
 
-<!-- {video url="https://www.youtube.com/embed/FOwCCvHEfY0"} -->
-
 # What's the big picture?
 
 Every computer device you have ever used, from your school computers to your calculator, has been using algorithms to tell it how to do whatever it was doing.
