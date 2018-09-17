@@ -1,7 +1,8 @@
 """Views for the interactives application."""
 
 from django.views import generic
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
+from django.urls import reverse
 from interactives.models import Interactive
 from chapters.models import Chapter
 from config.templatetags.render_interactive_in_page import render_interactive_html
@@ -56,3 +57,22 @@ def interactive_iframe_view(request, interactive_slug):
         HTTP response of rendered interactive.
     """
     return HttpResponse(render_interactive_html(interactive_slug, "iframe", request))
+
+
+def thumbnail_json(request, **kwargs):
+    """Provide JSON data for creating thumbnails.
+
+    Args:
+        request: The HTTP request.
+
+    Returns:
+        JSON response is sent containing data for thumbnails.
+    """
+    thumbnails = dict()
+    for interactive in Interactive.objects.all():
+        url = reverse("interactives:iframe_interactive", args=[interactive.slug])
+        thumbnails[interactive.slug] = url
+    data = {
+        "thumbnails": thumbnails,
+    }
+    return JsonResponse(data)

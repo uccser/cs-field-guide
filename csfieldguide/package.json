@@ -51,6 +51,7 @@
     "jshint": "2.9.5",
     "jshint-stylish": "2.2.1",
     "node-gyp": "3.6.2",
+    "puppeteer": "1.8.0",
     "postcss-flexbugs-fixes": "3.3.1",
     "run-sequence": "2.2.1",
     "vinyl-buffer": "1.0.1",

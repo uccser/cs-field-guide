@@ -1,11 +1,24 @@
 """URL routing for the interactives application."""
 
 from django.conf.urls import url
+from django.conf import settings
 
 from . import views
 
 app_name = "interactives"
-urlpatterns = [
+urlpatterns = []
+
+# Define URL pattern before whole page interactive URL
+if settings.DEBUG:  # pragma: no cover
+    urlpatterns += [
+        # eg: /interactives/thumbnail-json/
+        url(
+            r"^thumbnail-json/$",
+            views.thumbnail_json
+        )
+    ]
+
+urlpatterns += [
     # eg: /interactives/
     url(
         r"^$",
