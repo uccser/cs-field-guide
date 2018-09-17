@@ -59,12 +59,5 @@
 {% endblock css %}
 
 {% block js %}
-  <script type="text/javascript">
-    var delay_analyser_il8n = {
-      "grid": "{% trans 'View grid' %}",
-      "stats": "{% trans 'View statistics' %}",
-      "incomplete": "{% trans 'You still have tiles to reveal!' %}",
-    };
-  </script>
   <script type="text/javascript" src="{% static 'interactives/delay-analyser/js/delay-analyser.js' %}"></script>
 {% endblock js %}
