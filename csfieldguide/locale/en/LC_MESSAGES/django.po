@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-12 03:01+0000\n"
+"POT-Creation-Date: 2018-09-18 22:08+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,6 +23,10 @@ msgstr ""
 
 #: config/settings/base.py:126
 msgid "Translation mode (Bi-directional)"
+msgstr ""
+
+#: interactives/models.py:11
+msgid "Interactive"
 msgstr ""
 
 #: templates/404.html:6 templates/404.html:13
@@ -178,6 +182,17 @@ msgstr ""
 #: templates/generic/not-available-badge.html:4
 #, python-format
 msgid "Not available in %(language)s"
+msgstr ""
+
+#: templates/generic/not-available-warning.html:6
+#, python-format
+msgid ""
+"<h4>Sorry! This item is not yet available in %(language)s.</h4> <p>This item "
+"is available in the following languages:</p>"
+msgstr ""
+
+#: templates/generic/not-available-warning.html:36
+msgid "Return to homepage "
 msgstr ""
 
 #: templates/interactives/action-menu.html:10
@@ -341,8 +356,6 @@ msgid "Ciphertext"
 msgstr ""
 
 #: templates/interactives/caesar-cipher.html:20
-#: templates/interactives/rsa-jsencrypt.html:43
-#: templates/interactives/rsa-no-padding.html:36
 msgid "Decrypt"
 msgstr ""
 
@@ -356,14 +369,6 @@ msgstr ""
 
 #: templates/interactives/close-window.html:10
 msgid "No"
-msgstr ""
-
-#: templates/interactives/close-window.html:17
-msgid "Why did you do that?!"
-msgstr ""
-
-#: templates/interactives/close-window.html:18
-msgid "Refresh the page"
 msgstr ""
 
 #: templates/interactives/cmy-mixer.html:8
@@ -479,18 +484,6 @@ msgstr ""
 msgid "Try another colour"
 msgstr ""
 
-#: templates/interactives/colour-matcher.html:126
-msgid "Help me set 24 bit red"
-msgstr ""
-
-#: templates/interactives/colour-matcher.html:127
-msgid "Help me set 24 bit green"
-msgstr ""
-
-#: templates/interactives/colour-matcher.html:128
-msgid "All help given"
-msgstr ""
-
 #: templates/interactives/compression-comparer.html:12
 msgid "Move the slider to compare the two images"
 msgstr ""
@@ -576,29 +569,11 @@ msgid "Even"
 msgstr ""
 
 #: templates/interactives/deceiver.html:17
-#: templates/interactives/deceiver.html:41
 msgid "Odd"
 msgstr ""
 
 #: templates/interactives/deceiver.html:24
-#: templates/interactives/deceiver.html:40
 msgid " seconds left"
-msgstr ""
-
-#: templates/interactives/deceiver.html:36
-msgid "CORRECT"
-msgstr ""
-
-#: templates/interactives/deceiver.html:37
-msgid "WRONG"
-msgstr ""
-
-#: templates/interactives/deceiver.html:38
-msgid "Answer as many questions as you can"
-msgstr ""
-
-#: templates/interactives/deceiver.html:39
-msgid "Score: "
 msgstr ""
 
 #: templates/interactives/delay-analyser.html:9
@@ -638,7 +613,6 @@ msgid "View the statistics page to see experiment results."
 msgstr ""
 
 #: templates/interactives/delay-analyser.html:22
-#: templates/interactives/delay-analyser.html:65
 msgid "View statistics"
 msgstr ""
 
@@ -656,14 +630,6 @@ msgstr ""
 
 #: templates/interactives/delay-analyser.html:50
 msgid "Created by Rhem Munro - Adapted by Jack Morgan"
-msgstr ""
-
-#: templates/interactives/delay-analyser.html:64
-msgid "View grid"
-msgstr ""
-
-#: templates/interactives/delay-analyser.html:66
-msgid "You still have tiles to reveal!"
 msgstr ""
 
 #: templates/interactives/delayed-checkbox.html:8
@@ -713,10 +679,6 @@ msgstr ""
 msgid "Reset"
 msgstr ""
 
-#: templates/interactives/hex-background-colour.html:35
-msgid "invalid!"
-msgstr ""
-
 #: templates/interactives/high-score-boxes.html:9
 msgid "High Score Boxes"
 msgstr ""
@@ -737,30 +699,6 @@ msgstr ""
 
 #: templates/interactives/high-score-boxes.html:25
 msgid "Restart"
-msgstr ""
-
-#: templates/interactives/high-score-boxes.html:56
-msgid "Correct! But you missed a box... You got lucky this time!"
-msgstr ""
-
-#: templates/interactives/high-score-boxes.html:57
-msgid "Correct! But you could\\"
-msgstr ""
-
-#: templates/interactives/high-score-boxes.html:58
-msgid "Correct! You\\"
-msgstr ""
-
-#: templates/interactives/high-score-boxes.html:59
-msgid " seconds."
-msgstr ""
-
-#: templates/interactives/high-score-boxes.html:60
-msgid "Incorrect!"
-msgstr ""
-
-#: templates/interactives/high-score-boxes.html:61
-msgid "Inputted value must be a whole number"
 msgstr ""
 
 #: templates/interactives/huffman-tree.html:10
@@ -812,25 +750,6 @@ msgstr ""
 msgid "Large (may take longer to load)"
 msgstr ""
 
-#: templates/interactives/image-bit-comparer.html:52
-msgid "The dropped file is not an image! File provided was "
-msgstr ""
-
-#: templates/interactives/image-bit-comparer.html:53
-msgid " bit"
-msgstr ""
-
-#: templates/interactives/image-bit-comparer.html:54
-#: templates/interactives/unicode-length.html:32
-msgid " bits"
-msgstr ""
-
-#: templates/interactives/image-bit-comparer.html:55
-msgid ""
-"Starting image cannot be loaded when viewing file locally. Try another "
-"browser or the online version."
-msgstr ""
-
 #: templates/interactives/nfa-guesser.html:8
 msgid "Practice traversing a NFA"
 msgstr ""
@@ -853,14 +772,6 @@ msgstr ""
 
 #: templates/interactives/nfa-guesser.html:26
 msgid "Generate new input sequence"
-msgstr ""
-
-#: templates/interactives/nfa-guesser.html:38
-msgid "Correct"
-msgstr ""
-
-#: templates/interactives/nfa-guesser.html:39
-msgid "Incorrect"
 msgstr ""
 
 #: templates/interactives/no-help.html:8
@@ -915,14 +826,6 @@ msgstr ""
 msgid "How much do you want to pay?"
 msgstr ""
 
-#: templates/interactives/payment-interface.html:25
-msgid "Valid amount."
-msgstr ""
-
-#: templates/interactives/payment-interface.html:26
-msgid "Invalid amount. Decimals are allowed up to two places."
-msgstr ""
-
 #: templates/interactives/python-interpreter.html:12
 msgid "Program"
 msgstr ""
@@ -933,10 +836,6 @@ msgstr ""
 
 #: templates/interactives/python-interpreter.html:17
 msgid "Output"
-msgstr ""
-
-#: templates/interactives/python-interpreter.html:33
-msgid "Welcome to computer programming, Student"
 msgstr ""
 
 #: templates/interactives/rgb-mixer.html:8
@@ -984,30 +883,6 @@ msgid ""
 "#\">jsencrypt</a></code> library."
 msgstr ""
 
-#: templates/interactives/rsa-jsencrypt.html:40
-#: templates/interactives/rsa-no-padding.html:34
-msgid "Error in encryption!"
-msgstr ""
-
-#: templates/interactives/rsa-jsencrypt.html:41
-msgid "Error in decryption!"
-msgstr ""
-
-#: templates/interactives/rsa-jsencrypt.html:42
-#: templates/interactives/rsa-no-padding.html:35
-msgid "Decrypter"
-msgstr ""
-
-#: templates/interactives/rsa-jsencrypt.html:44
-#: templates/interactives/rsa-no-padding.html:37
-msgid "Cipher"
-msgstr ""
-
-#: templates/interactives/rsa-jsencrypt.html:45
-#: templates/interactives/rsa-no-padding.html:38
-msgid "Plain"
-msgstr ""
-
 #: templates/interactives/rsa-no-padding.html:10
 msgid "RSA <span id=\"interactive-rsa-no-padding-mode\">Encrypter</span>"
 msgstr ""
@@ -1046,18 +921,6 @@ msgstr ""
 
 #: templates/interactives/run-length-encoding.html:58
 msgid "Created by Hannah Taylor - Adapted by Jack Morgan"
-msgstr ""
-
-#: templates/interactives/run-length-encoding.html:73
-msgid "Please enter a value between 0 and 100"
-msgstr ""
-
-#: templates/interactives/run-length-encoding.html:74
-msgid "Your numbers add up to a different number than the grid requires!"
-msgstr ""
-
-#: templates/interactives/run-length-encoding.html:75
-msgid "You have a different number of lines than lines in the grid!"
 msgstr ""
 
 #: templates/interactives/sha2.html:7
