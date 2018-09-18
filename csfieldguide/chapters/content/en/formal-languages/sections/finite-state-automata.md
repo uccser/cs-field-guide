@@ -491,7 +491,7 @@ so we recommend using Exorciser if it's available.
 If you use JFLAP we recommend that you become familiar with it first so that you can guide students through it: the interface has many distracting features and can be a little quirky, and fiddling around without taking time to learn how to use it will be a frustrating experience.
 Fortunately there's a good tutorial about using JFLAP [here](http://www.jflap.org/tutorial/), and some material from Duke University about FSAs based around JFLAP [here](http://www.cs.duke.edu/csed/pltl/exercises/lessons/29/finiteautomata.zip) (ZIP file).
 
-If you have trouble using Exorciser or JFLAP, there's also an FSA example in the "Java Applets Centre" at [http://www.cosc.canterbury.ac.nz/mukundan/thco/DFA.html](http://www.cosc.canterbury.ac.nz/mukundan/thco/DFA.html).
+If you have trouble using Exorciser or JFLAP, there's also an FSA example in the "Java Applets Centre" at [http://www.cosc.canterbury.ac.nz/mukundan/thco/DFA.html](https://web.archive.org/web/20170328182143/http://www.cosc.canterbury.ac.nz/mukundan/thco/DFA.html).
 
 {panel end}
 
@@ -674,7 +674,7 @@ Students can interact with the activity, without accessing source code, through:
 If you use [Scratch](http://scratch.mit.edu/), the following program is promising, but it doesn't have an activity or guide, and Level 3 students may have progressed beyond Scratch.
 It implements the Finite State Automata CS Unplugged activity in Scratch, and can be downloaded as part of a [zip file](http://code.google.com/p/scratch-unplugged/downloads/detail?name=scratch-unplugged-1-0.zip&can=2&q=) of a full set of Unplugged activities.
 The [ReadMe.txt](http://code.google.com/p/scratch-unplugged/downloads/detail?name=readme.txt&can=2&q=) file has some documentation.
-It was developed by [Mordechai (Moti) Ben-Ari](http://stwww.weizmann.ac.il/g-cs/benari/) from the [Weizmann Institute of Science, Israel](http://www.weizmann.ac.il/).
+It was developed by [Mordechai (Moti) Ben-Ari](http://www.weizmann.ac.il/sci-tea/benari/home) from the [Weizmann Institute of Science, Israel](http://www.weizmann.ac.il/).
 
 If you need to make diagrams of FSAs, the JFLAP program can be used, or there's a program called graphviz which has many options for drawing this kind of diagram: [http://www.graphviz.org/](http://www.graphviz.org/)
 
