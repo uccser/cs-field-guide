@@ -1,6 +1,6 @@
 # Agile software development
 
-*Agile* software development has become popular over the last 10 years; two of the most famous agile processes are called [XP](https://en.wikipedia.org/wiki/Extreme_programming) and [Scrum](https://en.wikipedia.org/wiki/Scrum_(development\)).
+*Agile* software development has become popular over the last 10 years; two of the most famous agile processes are called [XP](https://en.wikipedia.org/wiki/Extreme_programming) and [Scrum](https://en.wikipedia.org/wiki/Scrum_(development).
 Agile software development is all about being extremely flexible and adaptive to change.
 Most other software processes try to manage and control changes to requirements during the process; agile processes accept and expect change.
 The following xkcd comic illustrates part of the apparent dilemma that agile processes aim to address.

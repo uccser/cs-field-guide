@@ -149,7 +149,7 @@ These solve the problem of being unable to represent non-English characters.
 # What came before ASCII?
 
 There are several other codes that were popular before ASCII, including the [Baudot code](https://en.wikipedia.org/wiki/Baudot_code) and [EBCDIC](https://en.wikipedia.org/wiki/EBCDIC).
-A widely used variant of the Baudot code was the "Murray code", named after New Zealand born inventor [Donald Murray](https://en.wikipedia.org/wiki/Donald_Murray_(inventor\)).
+A widely used variant of the Baudot code was the "Murray code", named after New Zealand born inventor [Donald Murray](https://en.wikipedia.org/wiki/Donald_Murray_(inventor).
 One of Murray's significant improvements was to introduce the idea of "control characters", such as the carriage return (new line).
 The "control" key still exists on modern keyboards.
 
