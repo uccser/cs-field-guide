@@ -227,7 +227,10 @@ function loadImage() {
   var source_canvas_context = source_canvas.getContext('2d');
 
   var image = new Image();
-  image.addEventListener('error', function (e){e.preventDefault(); alert(gettext('Starting image cannot be loaded when viewing file locally. Try another browser or the online version.');},false);
+  image.addEventListener('error', function (e) {
+    e.preventDefault();
+    alert(gettext('Starting image cannot be loaded when viewing file locally. Try another browser or the online version.'));
+  }, false);
   image.onload = function() {
       $selected_image.data('data', image);
       source_canvas_context.drawImage(image, 0, 0, source_canvas.width, source_canvas.height);
