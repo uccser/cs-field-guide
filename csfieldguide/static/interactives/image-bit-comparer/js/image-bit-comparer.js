@@ -133,8 +133,8 @@ function loadUserImage(filename, file) {
 
 function getSubtitleText(bit_values) {
   var number_of_bits = bit_values.reduce(function(a, b) {return a + b;});
-  var fmts = ngettext('1 bit', '%(number_of_bits)s bits', number_of_bits);
-  var subtitle_text = interpolate(fmts, {"number_of_bits": number_of_bits}, true);
+  var format = ngettext('1 bit', '%(number_of_bits)s bits', number_of_bits);
+  var subtitle_text = interpolate(format, {"number_of_bits": number_of_bits}, true);
   return subtitle_text
 };
 

@@ -170,9 +170,9 @@ function updateDotCount() {
     });
 
     var dotText = $('#dot-decimal-count');
-    var fmts = ngettext('1 dot is visible', '%(dot_count)s dots are visible', dotCount);
-    var s = interpolate(fmts, {"dot_count": dotCount}, true);
-    dotText.html(s);
+    var format = ngettext('1 dot is visible', '%(dot_count)s dots are visible', dotCount);
+    var dotCountText = interpolate(format, {"dot_count": dotCount}, true);
+    dotText.html(dotCountText);
 };
 
 
