@@ -95,7 +95,9 @@ function decrementTimer() {
 
 function endGame() {
     clearTimeout(Deceiver.timer);
-    $("#interactive-deceiver-timer").html(gettext('Score: ' + Deceiver.score));
+    format = gettext('Score: %(score)s');
+    score_text = interpolate(format, {"score": Deceiver.score}, true);
+    $("#interactive-deceiver-timer").html(score_text);
     setupQuestionGame();
 }
 
