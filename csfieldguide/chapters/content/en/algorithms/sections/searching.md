@@ -42,11 +42,11 @@ Let's see if you can collect all the pets without running out of lives...
 
 Now that you have played through the whole game (and hopefully found all of the lost pets!) you may have noticed that even though you had less lives in the second part of the game, and lots of presents to search through, you were still able to find the pet. Why was this possible?
 
-## Linear Search
+## Linear search
 
 Since the boxes in the first game were in a random order there really wasn't any strategy you could have used to find the pet, except simply keep opening presents one by one until you found the pet.
-This is essentially the *Linear Search* algorithm (sometimes called a sequential search).
-In plain English, Linear Search algorithm is as follows:
+This is essentially the *linear search* algorithm (sometimes called a sequential search).
+In plain English, linear search algorithm is as follows:
 - Check if the first item in a list is the item you are searching for, if it is the one you are looking for, you are done.
 - If it isn't the item you are searching for move on and check the next item.
 - Continue checking items until you find the one you are searching for.
@@ -56,17 +56,17 @@ For a list of 10 items this means on average you would only have to look at 5 it
 
 {panel type="curiosity"}
 
-# How is Bozo search different from Linear search?
+# How is bozo search different from linear search?
 
-If you watched the video at the beginning of the chapter you might be thinking that what you did in the present searching game sounds more like Bozo Search than Linear Search, but actually Bozo Search is even sillier than this!
-If you were doing a Bozo Search then after unwrapping a present and finding a monster inside, you would wrap the present back up and try another one at random!
+If you watched the video at the beginning of the chapter you might be thinking that what you did in the present searching game sounds more like bozo search than linear search, but actually bozo search is even sillier than this!
+If you were doing a bozo search then after unwrapping a present and finding a monster inside, you would wrap the present back up and try another one at random!
 This means you might end up checking the same present again and again and again and you might never find the pet, even with a small number of presents!
 
 {panel end}
 
 ## Binary search
 
-A much better algorithm to use is called Binary Search. In the second part of the present searching game the boxes were in order, which meant you were able to be more clever when you were searching for the pet, and you might have been using a Binary Search without realising!
+A much better algorithm to use is called binary search. In the second part of the present searching game the boxes were in order, which meant you were able to be more clever when you were searching for the pet, and you might have been using a binary search without realising!
 
 {panel type="teacher-note"}
 
@@ -89,27 +89,27 @@ The catch? They need to be in sorted order, but sorting things into order is eas
 
 {panel end}
 
-If you used a Binary Search on each of the levels then you would have always had enough lives to find the pet!
-Informally, the Binary Search algorithm is as follows:
+If you used a binary search on each of the levels then you would have always had enough lives to find the pet!
+Informally, the binary search algorithm is as follows:
 - Look at the item in the centre of the list and compare it to what you are searching for
 - If it is what you are looking for then you are done.
 - If it is larger than the item you are looking for then you can ignore all the items in the list which are larger than that item (if the list is from smallest to largest this means you can ignore all the items to the right of the centre item).
 - If it is smaller then you can ignore all the items in the list which are smaller than that centre item.
 - Now repeat the algorithm on the remaining half of the list, checking the middle of the list and choosing one of the halves, until you find the item you are searching for.
 
-Binary Search is a very powerful algorithm.
-If you had 1000 presents to search through it would take you at most 10 checks for Binary search to find something and Linear search would take at most 1000 checks, but if you doubled the number of presents to search through how would this change the number of checks made by Binary Search and Linear search?
+Binary search is a very powerful algorithm.
+If you had 1000 presents to search through it would take you at most 10 checks for binary search to find something and linear search would take at most 1000 checks, but if you doubled the number of presents to search through how would this change the number of checks made by binary search and linear search?
 
 {panel type="spoiler"}
 
 # How does doubling the number of boxes affect the number of checks required?
 
-The answer to the above question is that the maximum number of checks for Linear Search would double, but the maximum number for Binary Search would only increase by one.
+The answer to the above question is that the maximum number of checks for linear search would double, but the maximum number for binary search would only increase by one.
 
 {panel end}
 
 It is important to remember that you can only perform a Binary Search if the items you are searching through are sorted into order.
-This makes the sorting algorithms we will look at next even more important because without sorting algorithms we wouldn't be able to use Binary Search to quickly look through data!
+This makes the sorting algorithms we will look at next even more important because without sorting algorithms we wouldn't be able to use binary search to quickly look through data!
 
 {panel type="project"}
 
