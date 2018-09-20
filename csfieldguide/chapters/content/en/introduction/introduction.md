@@ -44,7 +44,7 @@ Here's some advice from Fred Wilson, who has invested in many high profile tech 
 
 First and foremost, we believe that speed is more than a feature. Speed is the most important feature. If your application is slow, people won't use it. I see this more with mainstream users than I do with power users. I think that power users sometimes have a bit of sympathetic eye to the challenges of building really fast web apps, and maybe they're willing to live with it, but when I look at my wife and kids, they're my mainstream view of the world. If something is slow, they're just gone. ... speed is more than a feature. It's a requirement.
 
-- [Fred Wilson](https://en.wikipedia.org/wiki/Fred_Wilson_(financier)
+- [Fred Wilson](https://en.wikipedia.org/wiki/Fred_Wilson_(financier))
 
 {blockquote end}
 
