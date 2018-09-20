@@ -79,9 +79,9 @@ awful-calculator:
 # hex-background-colour:
 #   languages:
 #     en: interactives/hex-background-colour.html
-# high-score-boxes:
-#   languages:
-#     en: interactives/high-score-boxes.html
+high-score-boxes:
+  languages:
+    en: interactives/high-score-boxes.html
 # huffman-tree:
 #   languages:
 #     en: interactives/huffman-tree.html
@@ -157,9 +157,9 @@ awful-calculator:
 # sha2:
 #   languages:
 #     en: interactives/sha2.html
-# sorting-algorithm-comparison:
-#   languages:
-#     en: interactives/sorting-algorithm-comparison.html
+sorting-algorithm-comparison:
+  languages:
+    en: interactives/sorting-algorithm-comparison.html
 # sorting-algorithms:
 #   languages:
 #     en: interactives/sorting-algorithms.html

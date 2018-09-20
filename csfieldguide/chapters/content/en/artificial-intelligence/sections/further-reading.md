@@ -3,7 +3,7 @@
 - [Artificial Intelligence Strong and Weak - I Programmer](http://www.i-programmer.info/babbages-bag/297-artificial-intelligence.html)
 - [The Paradox of Artificial Intelligence - I Programmer](http://www.i-programmer.info/programming/artificial-intelligence/2437-the-paradox-of-artificial-intelligence.html)
 
-## Useful Links
+## Useful links
 
 - [CS Unplugged - Programming Languages - Harold the Robot](http://csunplugged.org/harold-the-robot-2/)- related to why AI is so tricky
 - [CS Unplugged - The Turing Test - Conversations with Computers](http://csunplugged.org/the-turing-test/)

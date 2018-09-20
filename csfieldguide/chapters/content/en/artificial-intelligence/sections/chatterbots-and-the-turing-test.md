@@ -1,4 +1,4 @@
-# Chatterbots and The Turing Test
+# Chatterbots and the Turing test
 
 {image file-path="img/chapters/computer-studying-turing-test.png" alt="The computer is reading a book titled 'Talk like a human'"}
 
@@ -11,11 +11,11 @@ You may come across chatterbots online for serious uses (such as giving help on 
 Sometimes it's hard to tell if you're getting an automated response.
 We'll start off by looking at some very simple chatterbots that are only designed as an experiment rather than to offer serious advice.
 
-## A Therapy Session with Eliza the Chatterbot
+## A therapy session with Eliza the chatterbot
 
 {panel type="teacher-note"}
 
-# Chatterbots in the classroom"}
+# Chatterbots in the classroom
 
 If this material is being used in the classroom, and time is limited, ensure students don’t spend too long talking to each chatterbot.
 15 minutes maximum for each of Eliza, Alice, and Cleverbot (45 minutes total), and an extra 15 - 45 minutes (depending on time constraints) for students to search for other chatterbots will be sufficient for students to learn about the different chatterbots.
@@ -28,7 +28,7 @@ Eliza attempts to sound like a Rogerian Psychotherapist, and sounds most intelli
 
 {panel type="caution"}
 
-# Chatbots and personal information!"}
+# Chatbots and personal information!
 
 Eliza is a system that was intended to get people thinking about AI, and you should *not* use it for your own therapeutic usage.
 You should never enter personal information into a computer that you wouldn’t want anybody else reading, as you can never be certain that the web site isn’t going to store the information or pass it on to someone.
@@ -80,7 +80,7 @@ How many can you find? In addition, how does Eliza respond when you do the follo
 - If you say the same thing you said earlier in the conversation, does Eliza always respond in the same way? (When you say it immediately after, she probably won’t, as she’ll comment on the fact that you repeated yourself the second time!)
 - What happens when you talk about things that are unrelated to what would be said in a therapy session, i.e. you try to have a general conversation with Eliza (remember that Eliza works in a restricted domain, i.e. she assumes she is a therapist).
 
-## Alice the Chatterbot
+## Alice the chatterbot
 
 We saw above that Eliza is a chatterbot who works with a restricted domain (trying to take the role of a therapist), and tried to sound intelligent by giving very general responses.
 As you probably found out though, this quickly reveals that Eliza really isn’t intelligent at all, and will just repeat the same things over and over again.
@@ -88,7 +88,7 @@ In addition, you probably also noticed that Eliza frequently doesn’t make a lo
 
 Try having a conversation with another chatterbot --- Alice.
 Note that she knows you as "judge".
-You might work out why she calls you this once you have read the sections on the Turing Test below!
+You might work out why she calls you this once you have read the sections on the Turing test below!
 
 [Click here for the Alice chatterbot at pandorabots.com](http://www.pandorabots.com/pandora/talk?botid=f5d922d97e345aa1)
 
@@ -180,7 +180,7 @@ Check out the short film ["Do You Love Me"](https://www.youtube.com/watch?v=QkNA
 
 {panel end}
 
-## Even more Chatterbots!
+## Even more chatterbots!
 
 There are even more chatterbots you can talk to.
 Try looking at the [list on wikipedia](https://en.wikipedia.org/wiki/List_of_chatterbots), or doing a google search for chatterbots.
@@ -191,13 +191,13 @@ If you have a device that runs Apple iOS (for example an iPhone), have a look at
 Siri is an example of a chatterbot that has the job of *helping* a human, unlike most chatterbots which simply have the purpose of web entertainment.
 It also has voice recognition, so you can talk to it rather than just typing to it.
 
-## The Turing Test
+## The Turing test
 
 {panel type="teacher-note"}
 
-# TED video introducing the Turing Test
+# TED video introducing the Turing test
 
-There is a TED video that gives an overview of the Turing Test [on YouTube](https://www.youtube.com/watch?v=3wLqsRLvV-c).
+There is a TED video that gives an overview of the Turing test [on YouTube](https://www.youtube.com/watch?v=3wLqsRLvV-c).
 
 {panel end}
 
@@ -225,16 +225,16 @@ At the end of the conversations, the interrogator has to say which was the compu
 If they can’t reliably tell, then the computer is said to have passed the test.
 
 This test proposed by Turing eventually became very famous and got the name "The Turing Test".
-One of the motivations for writing chatterbots is to try and make one that passes the Turing Test.
-Unfortunately, making a chatterbot that successfully passes the Turing Test hasn't yet been achieved, and whether or not it is even possible is still an open question in computer science, along with many other questions in artificial intelligence that you will encounter later in this chapter.
+One of the motivations for writing chatterbots is to try and make one that passes the Turing test.
+Unfortunately, making a chatterbot that successfully passes the Turing test hasn't yet been achieved, and whether or not it is even possible is still an open question in computer science, along with many other questions in artificial intelligence that you will encounter later in this chapter.
 
-Other forms of the Turing Test exist as well.
+Other forms of the Turing test exist as well.
 Action games sometimes have computer controlled characters that fight your own character, in place of a second human controlled character.
-A variation of the Turing Test can be used to determine whether or not the computer controlled player seems to have human intelligence by getting an interrogator to play against both the computer character and the human character, and to see whether or not they can tell them apart.
+A variation of the Turing test can be used to determine whether or not the computer controlled player seems to have human intelligence by getting an interrogator to play against both the computer character and the human character, and to see whether or not they can tell them apart.
 
-In fact, many parts of human intelligence could be tested using a variation of the Turing Test.
-If you wanted a computer chess player that seemed like a human as opposed to a computer (as some people might prefer to be playing against a human rather than a computer), you could use a Turing Test for this as well!
-What other possible Turing Tests can you think of?
+In fact, many parts of human intelligence could be tested using a variation of the Turing test.
+If you wanted a computer chess player that seemed like a human as opposed to a computer (as some people might prefer to be playing against a human rather than a computer), you could use a Turing test for this as well!
+What other possible Turing tests can you think of?
 
 {panel type="curiosity"}
 
@@ -251,26 +251,26 @@ At the end the interrogator had to say which was the male and which was the fema
 
 # Run your own Turing test on a chatterbot
 
-This section will involve you actually carrying out the Turing Test.
+This section will involve you actually carrying out the Turing test.
 Read this entire section carefully (and the previous section if you haven’t done so already) before you start, and make sure you understand it all before starting.
 
 In science classes, such as biology, physics, and chemistry, carrying out experiments is commonly done.
 If you have taken classes like these, you will probably know that if an experiment isn’t carried out properly (e.g. in chemistry some students are tempted to put in more of a chemical than the instructions say to, or when timing is important this is easy to get wrong), then the results will not necessarily be the ones you are after and your experiment is essentially meaningless and pointless.
 You also have to be careful that other factors don’t affect the results. e.g. controlling temperature and moisture in biology experiments that involve growing micro-organisms.
 
-Carrying out the Turing Test is carrying out an experiment, just like carrying out experiments in chemistry classes.
-And just like the chemistry experiments, carrying out the Turing Test requires being careful to follow instructions correctly, and controlling factors that could potentially affect the results but aren’t part of what is being tested.
+Carrying out the Turing test is carrying out an experiment, just like carrying out experiments in chemistry classes.
+And just like the chemistry experiments, carrying out the Turing test requires being careful to follow instructions correctly, and controlling factors that could potentially affect the results but aren’t part of what is being tested.
 You should keep this in mind while you are carrying out this project.
 
 For example, most chatterbots communicate in a text form rather than verbal.
 Communicating in a verbal form involves not only choosing intelligent sounding things to say, but also involves having a convincing voice and pronouncing words correctly.
 Tone of voice or accent could potentially make it very obvious to the interrogator which conversation was with the human and which was the computer, without them even having to consider what was actually said in the conversation.
-This is not what the Turing Test is supposed to be testing! Therefore, the Turing Test will have both the computer and the human communicating in a written form.
+This is not what the Turing test is supposed to be testing! Therefore, the Turing test will have both the computer and the human communicating in a written form.
 
 As another example, speed of response could have an impact.
 The computer is likely to be able to reply instantly, whereas the human will need time to think and then write their reply.
 To prevent the interrogator from making their decision based on the speed instead of the content, the speed of response needs to be controlled as well.
-The way of carrying out the Turing Test described below tries to control these additional factors.
+The way of carrying out the Turing test described below tries to control these additional factors.
 
 Choose a chatterbot from the list on Wikipedia (see the above chatterbots section), or possibly use Alice or Cleverbot (Eliza isn’t recommended for this).
 You will be taking the role of the interrogator, but will need another person to act as the "human".
@@ -310,7 +310,7 @@ Your classmate should tell you whether or not you were correct.
 
 These are some questions you can consider after you have finished carrying out the 
 
-Turing Test:
+Turing test:
 
 - How were you able to tell which was the chatterbot and which was your classmate?
 - Were there any questions you asked that were "unfair" --- that depended on knowledge your classmate might have but no-one (computer or person) from another place could possibly have?
