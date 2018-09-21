@@ -48,13 +48,5 @@
 {% endblock css %}
 
 {% block js %}
-  <script type="text/javascript">
-    var big_number_calc_il8n = {
-      "big": "{% trans 'The result of this calculation will be massive! We won\'t try calculating this number as it\'s so big!' %}",
-      "x-error": "{% trans 'Error! Your X value is not a valid number.' %}",
-      "y-error": "{% trans 'Error! Your Y value is not a valid number.' %}",
-      "big-factorial": "{% trans 'The result of this factorial will be massive, over 5000 digits long! We won\'t try calculating this number as it\'s so big!' %}",
-    };
-  </script>
   <script type="text/javascript" src="{% static 'interactives/big-number-calculator/js/big-number-calculator.js' %}"></script>
 {% endblock js %}

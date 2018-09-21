@@ -22,7 +22,7 @@ $(document).ready(function () {
     var program = document.getElementById("interactive-python-interpreter-code");
     program.value = 'print("**********************************************")\n'
     program.value += 'print("**********************************************")\n'
-    program.value += 'print("** ' + py_interpreter_il8n["welcome"] + ' **")\n'
+    program.value += 'print("** ' + gettext('Welcome to computer programming, Student') + ' **")\n'
     program.value += 'print("**********************************************")\n'
     program.value += 'print("**********************************************")\n'
 });
