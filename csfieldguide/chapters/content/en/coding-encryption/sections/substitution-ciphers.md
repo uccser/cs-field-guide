@@ -14,7 +14,7 @@ Once students understand the basic concepts in Caesar cipher, they can move on t
 
 {panel end}
 
-## Getting Started with Caesar cipher
+## Getting started with Caesar cipher
 
 In this section, we will be looking at a simple substitution cipher called Caesar cipher.
 Caesar cipher is over 2000 years old, invented by a guy called Julius Caesar.

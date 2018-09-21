@@ -1,8 +1,8 @@
-# Regular Expressions
+# Regular expressions
 
 {panel type="teacher-note"}
 
-# Regular Expressions
+# Regular expressions
 
 Regular expressions (regex for short) are closely related to FSAs, as we shall see.
 Much of the terminology that is needed was already covered in the previous section: we'll be using {glossary-link term="alphabet"}alphabets{glossary-link end} to put together a

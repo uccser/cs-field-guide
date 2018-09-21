@@ -183,7 +183,7 @@ If you found this stuff interesting, do read about Complexity and Tractability w
 
 {panel type="curiosity"}
 
-# Encrypting with the private key instead of the public key --- Digital Signatures!
+# Encrypting with the private key instead of the public key --- Digital signatures!
 
 In order to encrypt a message, the public key is used.
 In order to decrypt it, the corresponding private key must be used.

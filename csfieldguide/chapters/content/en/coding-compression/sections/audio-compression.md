@@ -4,9 +4,9 @@ One of the most widely used methods for compressing music is MP3, which is actua
 
 {panel type="curiosity"}
 
-# The naming of mp3
+# The naming of MP3
 
-The name "mp3" isn't very self explanatory because the "mp" stands for "moving picture", and the 3 is from version 1, but mp3 files are used for music!
+The name "MP3" isn't very self explanatory because the "MP" stands for "moving picture", and the 3 is from version 1, but MP3 files are used for music!
 
 The full name of the standard that it comes from is MPEG, and the missing "EG" stands for "experts group", which was a consortium of companies and researchers that got together to agree on a standard so that people could easily play the same videos on different brands of equipment (so, for example, you could play the same DVD on any brand of DVD player).
 The very first version of their standards (called MPEG-1) had three methods of storing the sound track (layer 1, 2 and 3).
