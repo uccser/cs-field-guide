@@ -1,4 +1,4 @@
-# Transport Layer Protocols - TCP and UDP
+# Transport layer protocols - TCP and UDP
 
 So far we have talked about HTTP and IRC.
 These protocols are at a level that make sure you do not need to worry about how your data is being transported.
@@ -54,7 +54,7 @@ Like in TCP, the game supports packet ordering, checksums (shields), Acks and Na
 
 {panel type="teacher-note"}
 
-# Packet Attack spoilers
+# Packet attack spoilers
 
 **Level Overview**
 

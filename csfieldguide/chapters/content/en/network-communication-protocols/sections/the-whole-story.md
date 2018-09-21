@@ -1,4 +1,4 @@
-# The Whole Story
+# The whole story!
 
 Let’s say I want to write an online music player.
 Okay, so I write the code for someone to press play on a website and the song plays.
@@ -42,7 +42,7 @@ At the other end, it’s unwrapped again from an ethernet *frame*, back to a IP 
 
 {panel type="curiosity"}
 
-# What is a Packet?
+# What is a packet?
 
 The name packet is a generic term for a unit of data.
 In the application layer units of data are called *data* or *requests*, in the transport layer, *datagram* or *segments*, in the Network/IP layer, *packet* and in the physical layer, a *frame*.

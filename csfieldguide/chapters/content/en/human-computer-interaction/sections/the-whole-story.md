@@ -30,7 +30,7 @@ There are  many more laws, observations and guidelines about designing interface
 - A classic book relating to usability is "The psychology of everyday things" (later re-titled "The design of everyday things") by Don Norman.
 It's about everyday objects like doors and phones, and it was written a while ago, but it contains lots of thought provoking and often humorous examples.
 
-### Useful Links
+### Useful links
 
 - [The ten usability heuristics on Nielsen's website](http://www.nngroup.com/articles/ten-usability-heuristics/), and a [collection of articles about usability heuristics](http://www.nngroup.com/topic/heuristic-evaluation/)
 
