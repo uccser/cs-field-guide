@@ -246,7 +246,7 @@ sy \\
 
 {panel type="extra-for-experts"}
 
-# Matrix Multiplication Challenge
+# Matrix multiplication challenge
 
 Pick 2 or 3 more points on the arrow (include some with negative x and y values) and try to do the matrix multiplication for scaling each factor above (2, 3 and 0.2).
 You'll know if you got the correct answer because it should match the scaled arrow in the interactive!

@@ -1,4 +1,4 @@
-# Coding - Error Control
+# Coding - Error control
 
 # What's the big picture?
 

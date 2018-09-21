@@ -15,7 +15,7 @@ In this section we will be initially looking at one of the most commonly used ba
 You don’t have to understand *why* the calculations work so well (this is advanced math, and isn’t important for understanding the overall ideas), and while it is good for you to know what the calculation is, it is not essential.
 So if math is challenging and worrying for you, don’t panic too much because what we are looking at in this section isn’t near as difficult as it might initially appear!
 
-## Check digits On product barcodes
+## Check digits on product barcodes
 
 Most products you can buy at the shop have a barcode on them with a 13 digit "global trade item number" (referred to as GTIN-13).
 The first 12 digits are the actual identification number for the product, the 13th is the check digit calculated from the other 12.

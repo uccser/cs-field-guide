@@ -1,4 +1,4 @@
-# The Parity Magic Trick
+# The parity magic trick
 
 If you have never seen the parity magic trick before, check out the video in the "What’s the Big Picture?" section above.
 This section assumes that you know what is meant by the parity magic trick, but now we'll explain how it actually works!

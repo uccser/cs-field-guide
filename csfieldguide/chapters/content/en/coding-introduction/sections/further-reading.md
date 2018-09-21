@@ -2,7 +2,7 @@
 
 James Gleick's book [The Information: A History, a Theory, a Flood](http://www.amazon.com/The-Information-History-Theory-Flood/dp/1400096235) provides an interesting view of the history of several areas relating to coding.
 
-## Useful Links
+## Useful links
 
 - A good collection of resources related to all three kinds of coding is available in the [Bletchley Park Codes Resources](http://www.cimt.org.uk/resources/codes/)
 - [Entropy and information theory](https://en.wikipedia.org/wiki/Entropy_(information_theory)

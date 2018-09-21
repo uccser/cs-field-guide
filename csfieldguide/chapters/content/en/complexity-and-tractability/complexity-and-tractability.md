@@ -1,4 +1,4 @@
-# Complexity and Tractability
+# Complexity and tractability
 
 {panel type="teacher-note"}
 
