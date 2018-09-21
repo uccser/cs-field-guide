@@ -12,7 +12,15 @@
 {% endblock page_heading %}
 
 {% block content %}
-
+  {% if chapter.video %}
+    <div class="row mb-3">
+      <div class="col-sm-12 col-md-10 offset-md-1 text-center">
+        <div class="embed-responsive embed-responsive-16by9">
+          <iframe src="{{ chapter.video }}" class="embed-responsive-item" frameborder="0" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  {% endif %}
   {% render_html_field chapter.introduction %}
 
   <h2>Sections in this chapter:</h2>

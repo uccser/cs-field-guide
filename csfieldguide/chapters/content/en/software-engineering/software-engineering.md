@@ -14,8 +14,6 @@ In this chapter we've tried to capture what really happens in industry, and sugg
 
 {panel end}
 
-{video url="https://www.youtube.com/embed/ZNMbEbz2dys?rel=0"}
-
 # What's the big picture?
 
 Software failures happen all the time.
