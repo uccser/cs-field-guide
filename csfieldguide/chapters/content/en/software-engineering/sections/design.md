@@ -88,7 +88,7 @@ Facebook can be broken down into a three tier system, comprising of the presenta
 
 {panel type="curiosity"}
 
-# Reuse - Kangaroos and Helicopters
+# Reuse - kangaroos and helicopters
 
 Since building software is so difficult and time-consuming, a popular idea has been to reuse existing software.
 Not surprisingly, we call this *software reuse*.

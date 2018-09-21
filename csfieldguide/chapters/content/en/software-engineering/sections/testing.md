@@ -1,4 +1,4 @@
-# Testing: Did we Build the Right Thing and Does it Work?
+# Testing: Did we build the right thing and does it work?
 
 {comment some apps for testing to go below; the above applet at http://fac-staff.seattleu.edu/quinnm/web/education/JavaApplets/applets/SoftwareTesting.html may give some ideas}
 
@@ -20,7 +20,7 @@ If the output is incorrect, we have found a bug.
 
 {panel type="curiosity"}
 
-# Bugs and Moths
+# Bugs and moths
 
 {image file-path="img/chapters/harvard-mark-ii.jpg" alt="The Mark II at Harvard" caption="true"}
 
@@ -111,7 +111,7 @@ It’s therefore of course possible to get positive feedback from one stakeholde
 
 {panel type="project"}
 
-# Acceptance Testing
+# Acceptance testing
 
 For this project, choose a small program such as a Windows desktop app or an Apple dashboard widget.
 Pick something that you find particularly interesting or useful (such as a timer, dictionary or calculator).

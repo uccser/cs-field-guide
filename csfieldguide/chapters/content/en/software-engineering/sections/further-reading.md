@@ -1,6 +1,6 @@
 # Further reading
 
-## Useful Links
+## Useful links
 
 - [Wikipedia - Software engineering](https://en.wikipedia.org/wiki/Software_engineering)
 - [CS4FN - Software engineering](http://www.cs4fn.org/fundamentals/softwareeng.php)

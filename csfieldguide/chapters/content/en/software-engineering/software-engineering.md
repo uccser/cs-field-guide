@@ -77,7 +77,7 @@ In a digital system, the human is the most important part!
 
 {panel type="curiosity"}
 
-# Moore's Law
+# Moore's law
 
 In 1965, Gordon Moore noticed that the number of transistors on integrated circuits was doubling about every 2 years.
 This means that computers’ processing power was doubling roughly every 2 years (sometimes this is quoted as 18 months due to the combination of the numbers *and* speed increasing).

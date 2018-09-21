@@ -162,7 +162,7 @@ Alternatively, you could use Lego but cards are definitely more challenging and 
 
 {panel type="project"}
 
-# A Navigation Language
+# A navigation language
 
 In this activity, you will develop a language for navigating around your school.
 Imagine that you need to describe to your friend how to get to a particular classroom.
@@ -197,7 +197,7 @@ What would you do differently next time around?
 
 {panel type="project"}
 
-# Block Building (Precise Communication)
+# Block building (precise communication)
 
 Communicating clearly with other software engineers and customers is essential for software engineers.
 In this activity, you get to practice communicating as precisely as possible!
