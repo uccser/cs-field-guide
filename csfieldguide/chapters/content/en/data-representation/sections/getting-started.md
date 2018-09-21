@@ -1,4 +1,4 @@
-# Getting Started
+# Getting started
 
 To begin with, we'll look at Braille.
 Braille is not actually a way that computers represent data, but is a great introduction to the topic.
