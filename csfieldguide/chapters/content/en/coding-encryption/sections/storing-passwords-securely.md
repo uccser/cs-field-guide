@@ -1,4 +1,4 @@
-# Storing Passwords Securely
+# Storing passwords securely
 
 A really interesting puzzle in encryption is storing passwords in a way that even if the database with the passwords gets leaked, the passwords are not in a usable form.
 Such a system has many seemingly conflicting requirements.

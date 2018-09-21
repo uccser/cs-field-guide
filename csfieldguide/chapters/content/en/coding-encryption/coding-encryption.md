@@ -34,7 +34,7 @@ Understanding how encryption works and what is possible can help to make informe
 
 {panel type="jargon-buster"}
 
-# Deciphering, Decrypting, Attacking, Cracking, Hacking, Cryptanalysts, Hackers, and Crackers
+# Deciphering, decrypting, attacking, cracking, hacking, cryptanalysts, hackers, and crackers
 
 There are various words that can be used to refer to trying to get the plaintext from a ciphertext, including decipher, decrypt, crack, and cryptanalysis.
 Often the process of trying to break cryptography is referred to as an "attack".
