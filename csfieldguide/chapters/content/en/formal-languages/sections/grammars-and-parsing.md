@@ -6,7 +6,7 @@
 
 Currently the section is only introductory.
 
-There's an introduction to this topic (which dwells more on English grammar) at: [http://ozark.hendrix.edu/~burch/cs/150/reading/grammar/index.html](http://ozark.hendrix.edu/~burch/cs/150/reading/grammar/index.html). This could be used for class discussion.
+There's an introduction to this topic (which dwells more on English grammar) at: [http://ozark.hendrix.edu/~burch/cs/150/reading/grammar/index.html](http://www.cburch.com/cs/150/reading/grammar/index.html). This could be used for class discussion.
 
 As preparation for reading this chapter, you could do the "planet ABBA" activity with the students as a class, as it will get them familiar with the notation.
 
