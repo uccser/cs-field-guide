@@ -46,8 +46,15 @@ function displayWords() {
 
 // Updates the word count
 function updateWordCount() {
-  var text = reg_exp_filter_il8n["showing"] + RegularExpressionFilter.displayed + 
-            reg_exp_filter_il8n["out-of"] + RegularExpressionFilter.words.length + reg_exp_filter_il8n["words"]
+  format = gettext('Showing %(displayed)s out of %(total)s lower case words');
+  var text = interpolate(
+    format, 
+    {
+      "displayed": RegularExpressionFilter.displayed, 
+      "total": RegularExpressionFilter.words.length
+    }, 
+    true
+  );
   document.getElementById('interactive-regular-expression-filter-feedback').innerHTML = text;
 };
 
@@ -59,7 +66,7 @@ function readWords() {
   var base_url = document.getElementById('interactive-regular-expression-filter-link').href;
   var request = new XMLHttpRequest();
   request.addEventListener('load', fileLoaded);
-  request.addEventListener('error', function() { alert(reg_exp_filter_il8n["error"])});
+  request.addEventListener('error', function() { alert('This interactive must be viewed online to load cross origin text file. Sorry for the inconvenience.')});
   request.open('get', words_file_location);
   request.send();
 };

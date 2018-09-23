@@ -45,12 +45,6 @@
 {% block js %}
   <script type="text/javascript">
     var words_file_location = "{% static 'interactives/regular-expression-filter/en-words.txt' %}";
-    var reg_exp_filter_il8n = {
-      "showing": "{% trans 'Showing ' %}",
-      "out-of": "{% trans ' out of ' %}",
-      "words": "{% trans ' lower case words' %}",
-      "error": "{% trans 'This interactive must be viewed online to load cross origin text file. Sorry for the inconvenience.' %}"
-    };
   </script>
   <script type="text/javascript" src="{% static 'interactives/regular-expression-filter/js/regular-expression-filter.js' %}"></script>
 {% endblock js %}
