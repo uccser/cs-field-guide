@@ -2,18 +2,38 @@ console.log('sorting algorithms');
 
 $(function() {
     var drake = dragula([
-        document.getElementById('box-1'),
-        document.getElementById('box-2'),
-        document.getElementById('box-3'),
-        document.getElementById('box-4'),
-        document.getElementById('box-5'),
-        document.getElementById('box-6'),
-        document.getElementById('box-7'),
-        document.getElementById('box-8')
+        document.getElementById('box-a'),
+        document.getElementById('box-b'),
+        document.getElementById('box-c'),
+        document.getElementById('box-d'),
+        document.getElementById('box-e'),
+        document.getElementById('box-f'),
+        document.getElementById('box-g'),
+        document.getElementById('box-h'),
+        document.getElementById('box-i'),
+        document.getElementById('box-j'),
+        document.getElementById('box-k'),
+        document.getElementById('box-l'),
+        document.getElementById('box-m'),
+        document.getElementById('box-n'),
+        document.getElementById('box-o'),
+        document.getElementById('box-p'),
+        document.getElementById('box-q'),
+        document.getElementById('box-r'),
+        document.getElementById('box-s'),
+        document.getElementById('box-t'),
+        document.getElementById('box-u'),
+        document.getElementById('box-v'),
+        document.getElementById('box-w'),
+        document.getElementById('box-x'),
+        document.getElementById('box-y'),
+        document.getElementById('box-z')
     ]);
 
     drake.on('drop', (target, source) => {
-        if (source.children.length == 2) { // means an element has been dropped in this div
+        console.log(target);
+        console.log(source);
+        if (source.children.length == 2) { // means an element has been dropped in this div 
             swap(target, source);
         }
     });

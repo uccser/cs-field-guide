@@ -17,6 +17,10 @@
   flex-basis: calc(50% - 15px);
 }*/
 
+#sorting-algorithms-interactive-item-unsorted-row-2 {
+  display: none !important;
+}
+
 #sorting-algorithms-interactive .flex-container {
   display: flex;
   flex-wrap: wrap;
@@ -31,6 +35,13 @@
   border: 1px solid red;
   overflow: hidden;
   margin: 0px;
+}
+
+.sorting-algorithms-interactive-scale {
+  height: 100px;
+  width: 100px;
+  overflow: hidden;
+  border: 1px solid red;
 }
 
 .sorting-algorithms-interactive-item.flex-item-content {
