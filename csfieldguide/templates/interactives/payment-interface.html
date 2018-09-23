@@ -20,11 +20,5 @@
 {% endblock css %}
 
 {% block js %}
-    <script type="text/javascript">
-        var payment_interface_il8n = {
-            "valid": "{% trans 'Valid amount.' %}",
-            "invalid": "{% trans 'Invalid amount. Decimals are allowed up to two places.' %}",
-        }
-    </script>
     <script type="text/javascript" src="{% static 'interactives/payment-interface/js/payment-interface.js' %}"></script>
 {% endblock js %}

@@ -100,6 +100,7 @@ cmd_update() {
   echo ""
   dev_updatedata
   dev_rebuild_index
+  dev_compilemessages
 
   echo ""
   dev_collect_static
@@ -113,12 +114,6 @@ defhelp update 'Run Django migrate and updatedata commands and build static file
 dev_build() {
   echo "Building Docker images..."
   docker-compose build
-  echo
-  echo "Deleting untagged images..."
-  untagged_images=($(docker images --no-trunc | grep '<none>' | awk '{print $3}'))
-  if [[ ${#untagged_images[@]} -gt 0 ]]; then
-      docker rmi "${untagged_images[@]}"
-  fi
 }
 defhelp -dev build 'Build or rebuild Docker images.'
 
@@ -134,6 +129,8 @@ defhelp -dev collect_static "Collecting static files."
 dev_compilemessages() {
   echo "Compiling message files..."
   docker-compose exec django /docker_venv/bin/python3 ./manage.py compilemessages
+  docker-compose exec django /docker_venv/bin/python3 ./manage.py compilejsi18n
+  echo "Note: You will need to run the 'collect_static' command now to copy compiled JS files to the correct directory."
 }
 defhelp -dev compilemessages 'Run Django compilemessages command.'
 
@@ -152,6 +149,7 @@ defhelp -dev docs 'Generate documentation.'
 dev_makemessages() {
   echo "Creating message files..."
   docker-compose exec django /docker_venv/bin/python3 ./manage.py makemessages -l en
+  docker-compose exec django /docker_venv/bin/python3 ./manage.py makemessages --ignore=build/* -d djangojs
 }
 defhelp -dev makemessages 'Run Django makemessages command.'
 

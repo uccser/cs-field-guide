@@ -1,20 +1,17 @@
-the-big-picture:
+substitution-ciphers:
   section-number: 1
 
-substitution-ciphers:
+cryptosystems-used-in-practice:
   section-number: 2
 
-cryptosystems-used-in-practice:
+the-key-distribution-problem:
   section-number: 3
 
-the-key-distribution-problem:
+storing-passwords-securely:
   section-number: 4
 
-storing-passwords-securely:
+the-whole-story:
   section-number: 5
 
-the-whole-story:
-  section-number: 6
-
 further-reading:
-  section-number: 7
+  section-number: 6

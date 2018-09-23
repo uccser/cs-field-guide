@@ -66,7 +66,7 @@ If you were to enter a well chosen password (e.g. a random string of numbers and
 For example, the following database table shows four users of a fictional system, and the hashes of their passwords.
 You could determine their passwords by putting various possibilities through SHA-256 and checking whether or not the output is equivalent to any of the passwords in the database.
 
-{image file-path="img/chapters/hash-passwords-table.png"}
+{image file-path="img/chapters/hash-passwords-table.png" alt="A table of four passwords and their corresponding hashes."}
 
 It might initially sound like we have the perfect system.
 But unfortunately, there is still a big problem.

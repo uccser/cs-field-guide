@@ -1,2 +1,3 @@
-interactives:
-  - interactive-translated
+interactive-translated:
+  languages:
+    en: interactives/template.html

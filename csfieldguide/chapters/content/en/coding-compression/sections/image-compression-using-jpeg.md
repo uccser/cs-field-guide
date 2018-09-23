@@ -20,18 +20,18 @@ Furthermore, with JPEG, you can choose the tradeoff between quality and file siz
 Reducing the number of bits (the colour depth) is sufficiently crude that we don't really regard it as a compression method, but just a low quality representation.
 Image compression methods like JPEG, GIF and PNG are designed to take advantage of the patterns in an image to get a good reduction in file size without losing more quality than necessary.
 
-{image file-path="img/chapters/compression-comparison.png"}
+{image file-path="img/chapters/compression-comparison.png" alt="This image compares three images, two of which are good quality with no perceived difference. The third image is very poor quality."}
 
 {comment xtcb low priority: these are all jpgs of the originals; consider replacing them with actual originals (as long as the browser can render them all). ..ajb these images seem to appear in the wrong order to what is described for me… The middle one and left one should be swapped around?}
 
 For example, the following image shows a zoomed in view of the pixels that are part of the detail around an eye from the above (high quality) image.
 
-{image file-path="img/chapters/zoomed-eye.png"}
+{image file-path="img/chapters/zoomed-eye.png" alt="Zoomed in view of pixels."}
 
 Notice that the colours in adjacent pixels are often very similar, even in this part of the picture that has a lot of detail.
 For example, the pixels shown in the red box below just change gradually from very dark to very light.
 
-{image file-path="img/chapters/zoomed-eye-highlighted.png"}
+{image file-path="img/chapters/zoomed-eye-highlighted.png" alt="This image has a red box around five pixels that gradually change from very dark to very light in colour."}
 
 Run-length encoding wouldn't work in this situation.
 You could use a variation that specifies a pixel's colour, and then says how many of the following pixels are the same colour, but although most adjacent pixels are nearly the same, the chances of them being identical are very low, and there would be almost no runs of identical colours.
@@ -102,7 +102,7 @@ This is exactly what is going on in JPEG if you compress a black and white image
 The "colour" of pixels as you go across the image will either be 0 (black) or full intensity (white), but JPEG will approximate it with a small number of cosine waves (which have basically the same properties as sine waves.)
 This gives the "overshoot" that you see in the image above; in a JPEG image, this comes out as bright and dark patches surrounding the sudden change of colour, like here:
 
-{image file-path="img/chapters/jpeg-word-zoomed.jpg"}
+{image file-path="img/chapters/jpeg-word-zoomed.jpg" alt="This image zooms in on the bright and dark pixels surrounding the sudden change of colour."}
 
 You can experiment with different combinations of sine waves to get different shapes.
 You may need to have more than four to get good approximations to a shape that you want; that's exactly the tradeoff that JPEG is making.
@@ -115,7 +115,7 @@ There are some suggestions for parameters on the second sheet of the spreadsheet
 Each 8 by 8 block of pixels in a JPEG image can be created by adding together different amounts of up to 64 patterns based on cosine waves.
 The waves can be represented visually as patterns of white and black pixels, as shown in the image below.
 
-{image file-path="img/chapters/jpeg-discrete-cosine-transform.png"}
+{image file-path="img/chapters/jpeg-discrete-cosine-transform.png" alt="An 8x8 grid of black and white pixel patterns."}
 
 These particular waves are known as "basis functions" because any 8 by 8 block of pixels can be created by combining them.
 The basis function in the top left is the average colour of the 8 by 8 block.
@@ -169,15 +169,15 @@ The figure below shows an image before and after it has had quantisation applied
 
 Before Quantisation:
 
-{image file-path="img/chapters/before.png"}
+{image file-path="img/chapters/before.png" alt="Before quantisation."}
 
-{image file-path="img/chapters/beforedct.png"}
+{image file-path="img/chapters/beforedct.png" alt="Quantisation table before."}
 
 After Quantisation:
 
-{image file-path="img/chapters/after.png"}
+{image file-path="img/chapters/after.png" alt="After quantisation."}
 
-{image file-path="img/chapters/afterdct.png"}
+{image file-path="img/chapters/afterdct.png" alt="Quantisation table after."}
 
 Notice how the images look very similar, even though the second one has many zero coefficients. The differences we can see will be barely visible when the image is viewed at its original size.
 
@@ -189,7 +189,7 @@ We still have 64 numbers even with the many zeros, so how do we save space when 
 You will notice that the zeros are bunched towards the bottom right. This means if we list the coefficients in a zig-zag, starting from the top left corner, we will end up with many zeros in a row.
 Instead of writing 20 zeros we can store the fact that there are 20 zeros using a method of run-length encoding very similar to the one discussed earlier in this chapter.
 
-{image file-path="img/chapters/direction.png"}
+{image file-path="img/chapters/direction.png" alt="Shows the order in which the coefficients are listed."}
 
 And finally, the numbers that we are left with are converted to bits using Huffman coding, so that more common values take less space and vice versa.
 
@@ -200,11 +200,11 @@ An important issue arises because JPEG represents images as smoothly varying col
 In that case, lots of values need to be stored so that lots of cosine waves can be added together to make the sudden change in colour, or else the edge of the image become fuzzy.
 You can think of it as the cosine waves overshooting on the sudden changes, producing artifacts like the ones in the following image where the edges are messy.
 
-{image file-path="img/chapters/jpeg-word.jpg"}
+{image file-path="img/chapters/jpeg-word.jpg" alt="The word JPEG has fuzzy edges."}
 
 The original had sharp edges, but this zoomed in view of the JPEG version of it show that not only are the edges gradual, but some darker pixels occur further into the white space, looking a bit like shadows or echoes.
 
-{image file-path="img/chapters/jpeg-word-zoomed.jpg"}
+{image file-path="img/chapters/jpeg-word-zoomed.jpg" alt="Zoomed in view of the fuzzy edges."}
 
 For this reason, JPEG is used for photos and natural images, but other techniques (such as GIF and PNG, which we will look at in another section) work better for artificial images like this one.
 

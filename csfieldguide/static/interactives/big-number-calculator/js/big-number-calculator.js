@@ -19,7 +19,7 @@ $(document).ready(function () {
             }
             else if (button_type == 'multiply') {
                 if (x.toString().length > 5000 || y.toString().length > 5000) {
-                    updateResult(big_number_calc_il8n["big"], false);
+                    updateResult(gettext("The result of this calculation will be massive! We won't try calculating this number as it's so big!"), false);
                 } else {
                     updateResult(x.times(y).toFixed(), true);
                 }
@@ -40,13 +40,13 @@ $(document).ready(function () {
                         throw false;
                     }
                 } catch (exception) {
-                    updateResult(big_number_calc_il8n["big"], false);
+                    updateResult(gettext("The result of this calculation will be massive! We won't try calculating this number as it's so big!"), false);
                 }
             }
         } else if (x === undefined) {
-            updateResult(big_number_calc_il8n["x-error"], false);
+            updateResult(gettext("Error! Your X value is not a valid number."), false);
         } else if (y === undefined) {
-            updateResult(big_number_calc_il8n["y-error"], false);
+            updateResult(gettext("Error! Your Y value is not a valid number."), false);
         }
 
     });
@@ -68,7 +68,7 @@ function factorial(value) {
         }
         updateResult(total.toFixed(), true);
     } else {
-        updateResult(big_number_calc_il8n["big-factorial"], false);
+        updateResult(gettext("The result of this factorial will be massive, over 5000 digits long! We won't try calculating this number as it's so big!"), false);
     }
 };
 

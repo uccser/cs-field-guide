@@ -9,16 +9,16 @@ Pillow==5.2.0
 django-inline-svg==0.1.1
 
 # Markdown
-verto==0.7.4
+verto==0.9.0
 python-markdown-math==0.5
 
 # Search
 django-haystack==2.8.1
 Whoosh==2.7.4
-django-widget-tweaks==1.4.2
+django-widget-tweaks==1.4.3
 
 # XML Parsing
-lxml==4.2.3
+lxml==4.2.4
 cssselect==1.0.3
 
 # YAML Loading
@@ -29,3 +29,4 @@ django-modeltranslation==0.12.2
 uniseg==0.7.1
 python-bidi==0.4.0
 django-bidi-utils==1.0
+django-statici18n==1.8.2

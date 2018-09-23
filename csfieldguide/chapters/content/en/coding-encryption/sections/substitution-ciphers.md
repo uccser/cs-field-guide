@@ -67,7 +67,7 @@ If students are stuck, you might need to give them a few hints.
 
 The table they should have gotten should look like this.
 
-{image file-path="img/chapters/caesar-cipher-table-2.png"}
+{image file-path="img/chapters/caesar-cipher-table-2.png" alt="A table of the English alphabet showing the ciphertext of each letter."}
 
 The learning objective for this activity was for students to think like cryptanalysts and to see why Caesar Cipher is not useful in practice.
 
@@ -82,12 +82,12 @@ Here's the table for the letter correspondences, where the letter "K" translates
 It is okay if your conversion table mapped the opposite way, i.e. "A" to "K" rather than "K" to "A".
 If you were unable to break the Caesar Cipher in the previous section, go back to it now and decode it using the table.
 
-{image file-path="img/chapters/caesar-cipher-table-2.png"}
+{image file-path="img/chapters/caesar-cipher-table-2.png" alt="A table of the English alphabet showing the ciphertext of each letter."}
 
 For this example, we say the key is *10* because keys in Caesar Cipher are a number between 1 and 25 (think carefully about why we wouldn't want a key of 26!), which specify how far the alphabet should be rotated.
 If instead we used a key of *8*, the conversion table would be as follows.
 
-{image file-path="img/chapters/caesar-cipher-table-3.png"}
+{image file-path="img/chapters/caesar-cipher-table-3.png" alt="A table of the English alphabet showing the ciphertext of each letter."}
 
 {panel type="jargon-buster"}
 
@@ -407,7 +407,7 @@ ZEBRAS ZACH, ZAVIER, AND ZANE ZOOMED THROUGH THE ZOO
 # The letter E isn't always the most common letter...
 
 Although in almost all English texts the letter E is the most common letter, it isn't always.
-For example, the [1939 novel *Gadsby* by Ernest Vincent Wright](https://en.wikipedia.org/wiki/Gadsby_(novel\)) doesn't contain a single letter E (this is called a lipogram).
+For example, the [1939 novel *Gadsby* by Ernest Vincent Wright](https://en.wikipedia.org/wiki/Gadsby_(novel)) doesn't contain a single letter E (this is called a lipogram).
 Furthermore, the text you're attacking may not be English.
 During World War 1 and 2, the US military had many Native American [Code talkers](https://en.wikipedia.org/wiki/Code_talker) translate messages into their own language, which provided a strong layer of security at the time.
 

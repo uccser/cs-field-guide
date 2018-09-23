@@ -1,11 +1,19 @@
 $(document).ready(function () {
   $("#interactive-unicode-length-button").on('click', function() {
     var text = $("#interactive-unicode-length-text").val();
-    $("#interactive-unicode-length-utf8").html(utf8BitsUsed(text) + unicode_length_il8n["bits"]);
-    $("#interactive-unicode-length-utf16").html(utf16BitsUsed(text) + unicode_length_il8n["bits"]);
-    $("#interactive-unicode-length-utf32").html(text.length * 32 + unicode_length_il8n["bits"]);
+    numUTF8BitsUsed = utf8BitsUsed(text);
+    numUTF16BitsUsed = utf16BitsUsed(text);
+    $("#interactive-unicode-length-utf8").html(getUnicodeLengthText(numUTF8BitsUsed));
+    $("#interactive-unicode-length-utf16").html(getUnicodeLengthText(numUTF16BitsUsed));
+    $("#interactive-unicode-length-utf32").html(getUnicodeLengthText(text.length * 32));
   });
 });
+
+function getUnicodeLengthText(numBitsUsed) {
+    format = gettext("%(num_bits_used)s bits");
+    unicode_length_text = interpolate(format, {"num_bits_used": numBitsUsed}, true);
+    return unicode_length_text;
+}
 
 function utf16BitsUsed(str) {
     var total_bits = 0;

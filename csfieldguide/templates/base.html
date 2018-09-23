@@ -1,5 +1,6 @@
 {% load i18n %}
 {% load static %}
+{% load statici18n %}
 {% load render_html_field %}
 {% load translate_url %}
 
@@ -24,6 +25,7 @@
       <link rel="stylesheet" href="{% static 'css/website.css' %}">
     {% endif %}
     <script src="{% static 'js/website.js' %}"></script>
+    <script type="text/javascript" src="{% statici18n LANGUAGE_CODE %}"></script>
     {% block css %}
     {% endblock css %}
     <link rel="shortcut icon" href="{% static 'img/guide-favicon.png' %}">

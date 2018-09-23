@@ -1,6 +1,6 @@
 # Further reading
 
-Some of the material in this chapter was inspired by [http://www.ccs3.lanl.gov/mega-math/workbk/machine/malearn.html](https://web.archive.org/web/20130102053644/http://www.ccs3.lanl.gov/mega-math/workbk/machine/malearn.html)
+Some of the material in this chapter was inspired by [http://www.ccs3.lanl.gov/mega-math/workbk/machine/malearn.html](https://web.archive.org/web/20130217081815/http://www.ccs3.lanl.gov/mega-math/workbk/machine/malearn.html)
 
 There's a good article on finite state machines at
 [http://www.i-programmer.info/babbages-bag/223-finite-state-machines.html](http://www.i-programmer.info/babbages-bag/223-finite-state-machines.html)

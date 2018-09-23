@@ -19,9 +19,14 @@
       <ul>
         {% for interactive in chapter.interactives.all %}
           <li>
-            <a href="{% url 'interactives:interactive' interactive.slug %}">
+            {% if interactive.translation_available %}
+              <a href="{% url 'interactives:interactive' interactive.slug %}">
+                {{ interactive.name }}
+              </a>
+            {% else %}
               {{ interactive.name }}
-            </a>
+              {% include "generic/not-available-badge.html" %}
+            {% endif %}
           </li>
         {% endfor %}
       </ul>

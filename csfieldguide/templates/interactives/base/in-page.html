@@ -1,10 +1,16 @@
-<div class="interactive text-center">
-  {% block html %}
-  {% endblock html %}
-</div>
+{% if not interactive.translation_available %}
+  {% with model=interactive %}
+    {% include 'generic/not-available-warning.html' %}
+  {% endwith %}
+{% else %}
+  <div class="interactive text-center">
+    {% block html %}
+    {% endblock html %}
+  </div>
 
-{% block css %}
-{% endblock css %}
+  {% block css %}
+  {% endblock css %}
 
-{% block js %}
-{% endblock js %}
+  {% block js %}
+  {% endblock js %}
+{% endif %}
