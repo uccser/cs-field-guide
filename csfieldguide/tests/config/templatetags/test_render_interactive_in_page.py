@@ -27,7 +27,10 @@ class RenderInteractiveInPageTest(BaseTestWithDB):
         rendered = self.render_template(
             "{% load render_interactive_in_page %}\n{% render_interactive_in_page 'interactive-1' %}",
         )
-        self.assertIn("Interactive 1", rendered)
+        self.assertInHTML(
+            "<div class='interactive text-center mb-3'><p>Interactive 1</p></div>",
+            rendered
+        )
 
     def test_render_interactive_in_page_zero_parameters(self):
         self.assertRaises(
