@@ -26,11 +26,11 @@ Computers deal with such huge amounts of data that we need fast algorithms to he
 
 Lets investigate searching with a game...
 
-{interactive slug="searching-algorithms" type="whole-page" text="true" parameters="max=2"}
+{comment interactive slug="searching-algorithms" type="whole-page" text="true" parameters="max=2"}
 
 Searching Boxes - Part 1
 
-{interactive end}
+{comment interactive end}
 
 You may have noticed that the numbers on the monsters and pets in the game were in a random order, which meant that finding the pet was basically luck!
 You might have found it on your first try, or if you were less lucky you might have had to look inside almost all the presents before you found it.

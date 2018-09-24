@@ -160,9 +160,9 @@ awful-calculator:
 # sorting-algorithm-comparison:
 #   languages:
 #     en: interactives/sorting-algorithm-comparison.html
-# sorting-algorithms:
-#   languages:
-#     en: interactives/sorting-algorithms.html
+sorting-algorithms:
+  languages:
+    en: interactives/sorting-algorithms.html
 # trainsylvania:
 #   languages:
 #     en: interactives/trainsylvania.html
