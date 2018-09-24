@@ -1,5 +1,13 @@
 console.log('sorting algorithms');
 
+window.onload = function() {
+    var images_to_sort = document.getElementsByClassName('to-sort');
+    for (var i = 0; i < images_to_sort.length; i++) {
+        var image = images_to_sort[i];
+        image.dataset.weight = Math.floor(Math.random() * Math.floor(100));
+    }
+}
+
 $(function() {
     var drake = dragula([
         document.getElementById('box-a'),
@@ -60,4 +68,34 @@ function swap(target, source) {
     var tmp_id = target.id;
     target.id = source.id;
     source.id = tmp_id;
+}
+
+
+function checkOrder() {
+    var ordered_boxes = document.getElementsByClassName('ordered-box');
+    var weights = []
+    for (var i = 0; i < ordered_boxes.length; i++) {
+        weights.push(ordered_boxes[i].children[0].dataset.weight);
+    }
+
+    var previous_weight = weights[0];
+    var sorted = true
+    for (var i = 0; i < weights.length; i++) {
+        var weight = weights[i];
+        if (weight < previous_weight) {
+            sorted = false
+        }
+        previous_weight = weight;
+    }
+    
+    if (sorted) {
+        console.log('correct');
+        document.getElementById('check-order-result-text-correct').style.display = 'block';
+        document.getElementById('check-order-result-text-incorrect').style.display = 'none';
+    } else {
+        console.log('incorrect')
+        document.getElementById('check-order-result-text-correct').style.display = 'none';
+        document.getElementById('check-order-result-text-incorrect').style.display = 'block';
+    }
+    console.log('check order')
 }

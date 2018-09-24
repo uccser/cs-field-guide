@@ -74,6 +74,10 @@
   margin: 0px;
 }
 
+#check-order-result-text-correct,
+#check-order-result-text-incorrect {
+  display: none;
+}
 
 /*.column .other {
   padding: 15px;
