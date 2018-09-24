@@ -7,20 +7,25 @@
 {% endblock title %}
 
 {% block body %}
-  <style>
-    body { padding-top: 0 !important; }
-  </style>
-  <div class="interactive">
-    {% block html %}
-    {% endblock html %}
-  </div>
+  {% if not interactive.translation_available %}
+    {% with model=interactive %}
+      {% include 'generic/not-available-warning.html' %}
+    {% endwith %}
+  {% else %}
+    <style>
+      body { padding-top: 0 !important; }
+    </style>
+    <div class="interactive">
+      {% block html %}
+      {% endblock html %}
+    </div>
 
-  {% block css %}
-  {% endblock css %}
+    {% block css %}
+    {% endblock css %}
 
-  {% block js %}
-  {% endblock js %}
+    {% block js %}
+    {% endblock js %}
 
-  <script src="{% static 'js/website.js' %}"></script>
-  <script src="{% static 'js/third-party/iframeResizer.contentWindow.min.js' %}"></script>
+    <script src="{% static 'js/third-party/iframeResizer.contentWindow.min.js' %}"></script>
+  {% endif %}
 {% endblock body %}

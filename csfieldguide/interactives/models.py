@@ -1,11 +1,14 @@
 """Models for the interactives application."""
 
 from django.db import models
+from django.utils.translation import ugettext_lazy as _
 from utils.TranslatableModel import TranslatableModel
 
 
 class Interactive(TranslatableModel):
     """Model for interactive in database."""
+
+    MODEL_NAME = _("Interactive")
 
     #  Auto-incrementing 'id' field is automatically set by Django
     slug = models.SlugField(unique=True)

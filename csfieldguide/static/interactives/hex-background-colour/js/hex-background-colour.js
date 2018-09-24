@@ -15,7 +15,7 @@ function changeColour() {
     if ( valid_codes.test(new_colour) ) {
         document.body.style.background = '#' + new_colour;
     } else {
-        document.getElementById('interactive-hex-background-colour-input').value = hex_background_colour_il8n["invalid"];
+        document.getElementById('interactive-hex-background-colour-input').value = gettext('invalid!');
     }
 
 }

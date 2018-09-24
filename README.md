@@ -48,4 +48,4 @@ and display this content, is licensed under the
 
 ## Contact
 
-This repository is currently primarily managed by [Jack Morgan](http://jackmorgannz.github.io/), with [Hayley van Waas](http://hayleyavw.com/) and [Tim Bell](mailto:tim.bell@canterbury.ac.nz) as backup administrators.
+You can contact us at [csse-education-research@canterbury.ac.nz](mailto:csse-education-research@canterbury.ac.nz).

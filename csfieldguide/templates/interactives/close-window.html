@@ -12,11 +12,5 @@
 {% endblock html %}
 
 {% block js %}
-  <script type="text/javascript">
-    var close_window_i18n = {
-        "feedback": "{% trans 'Why did you do that?!' %}",
-        "refresh": "{% trans 'Refresh the page' %}",
-    };
-  </script>
   <script type="text/javascript" src="{% static 'interactives/close-window/js/close-window.js' %}"></script>
 {% endblock js %}

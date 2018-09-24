@@ -3,8 +3,8 @@
 -r test.txt
 
 # Documentation
-sphinx==1.7.9
+sphinx==1.8.0
 sphinx-rtd-theme==0.4.1
 
 # Debugging Tools
-django-debug-toolbar==1.10
+django-debug-toolbar==1.10.1

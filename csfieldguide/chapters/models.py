@@ -41,6 +41,7 @@ class Chapter(TranslatableModel):
         Interactive,
         related_name="chapter",
     )
+    video = models.URLField(blank=True)
 
     def __str__(self):
         """Text representation of Chapter object.
