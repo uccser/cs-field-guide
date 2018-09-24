@@ -1,7 +1,5 @@
 # Formal Languages
 
-{video url="https://www.youtube.com/embed/VnMGOSDkEx4"}
-
 # What's the big picture?
 
 If you've ever written a text-based program or typed a formula in a spreadsheet,

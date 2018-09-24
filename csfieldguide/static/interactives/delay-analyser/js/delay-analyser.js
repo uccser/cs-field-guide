@@ -21,18 +21,18 @@ $(document).ready(function() {
     $('#delay-grid').toggle();
     if ($('#statistics-div').is(":visible")) {
       calculateStatistics();
-      $('#toggle-view').html(delay_analyser_il8n['grid']);
+      $('#toggle-view').html(gettext('View grid'));
     } else {
-      $('#toggle-view').html(delay_analyser_il8n['stats']);
+      $('#toggle-view').html(gettext('View statistics'));
     }
   });
 
   $('#reset').on('click', function(){
     setup_delay_grid();
     if ($('#statistics-div').is(":visible")) {
-      $('#toggle-view').html(delay_analyser_il8n['grid']);
+      $('#toggle-view').html(gettext('View grid'));
     } else {
-      $('#toggle-view').html(delay_analyser_il8n['stats']);
+      $('#toggle-view').html(gettext('View statistics'));
     }
   });
 
@@ -73,7 +73,7 @@ function calculateStatistics() {
   }
 
   if (delays_perceived.length != gridSize * gridSize) {
-    $('#statistics-feedback').html(delay_analyser_il8n['incomplete']);
+    $('#statistics-feedback').html(gettext('You still have tiles to reveal!'));
     $('#statistics-feedback').show();
   } else {
     $('#statistics-feedback').html("");

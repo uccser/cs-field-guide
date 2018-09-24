@@ -22,16 +22,10 @@
   </div>
 {% endblock html %}
 
-{% block css %}
+{% block css %
   <link rel="stylesheet" href="{% static 'interactives/binary-cards/css/binary-cards.css' %}">
 {% endblock css %}
 
 {% block js %}
-  <script type="text/javascript">
-    var binary_cards_il8n = {
-      "1-dot-visible": "{% trans '1 dot is visible' %}",
-      "dots-visible": "{% trans ' dots are visible' %}",
-    };
-  </script>
   <script type="text/javascript" src="{% static 'interactives/binary-cards/js/binary-cards.js' %}"></script>
 {% endblock js %}

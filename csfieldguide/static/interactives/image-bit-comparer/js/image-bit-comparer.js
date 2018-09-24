@@ -9,18 +9,18 @@ ImageBitComparer.BASE_HEIGHT = 300;
 ImageBitComparer.scale_factor = 1;
 
 ImageBitComparer.INITAL_IMAGES = [
-                                  [image_bit_comparer_il8n_images["sunflower"], 'Sunflower'],
-                                  [image_bit_comparer_il8n_images["temple-roof"], 'Roof of Temple'],
-                                  [image_bit_comparer_il8n_images["nz-lake"], 'Lake in New Zealand'],
-                                  [image_bit_comparer_il8n_images["faces"], 'Faces'],
-                                  [image_bit_comparer_il8n_images["flower"], 'Flower'],
-                                  [image_bit_comparer_il8n_images["snow-flower"], 'Flower in snow'],
-                                  [image_bit_comparer_il8n_images["duckling"], 'Duckling'],
-                                  [image_bit_comparer_il8n_images["car"], 'Car'],
-                                  [image_bit_comparer_il8n_images["lightning"], 'Lightning'],
-                                  [image_bit_comparer_il8n_images["balloons"], 'Balloons'],
-                                  [image_bit_comparer_il8n_images["black-and-white"], 'Black and White Photograph'],
-                                  [image_bit_comparer_il8n_images["books"], 'Books']
+                                  [image_bit_comparer_images["sunflower"], 'Sunflower'],
+                                  [image_bit_comparer_images["temple-roof"], 'Roof of Temple'],
+                                  [image_bit_comparer_images["nz-lake"], 'Lake in New Zealand'],
+                                  [image_bit_comparer_images["faces"], 'Faces'],
+                                  [image_bit_comparer_images["flower"], 'Flower'],
+                                  [image_bit_comparer_images["snow-flower"], 'Flower in snow'],
+                                  [image_bit_comparer_images["duckling"], 'Duckling'],
+                                  [image_bit_comparer_images["car"], 'Car'],
+                                  [image_bit_comparer_images["lightning"], 'Lightning'],
+                                  [image_bit_comparer_images["balloons"], 'Balloons'],
+                                  [image_bit_comparer_images["black-and-white"], 'Black and White Photograph'],
+                                  [image_bit_comparer_images["books"], 'Books']
                                 ];
 
 ImageBitComparer.colour_labels = ['Red', 'Green', 'Blue'];
@@ -99,7 +99,9 @@ function populateSelectOptions() {
 function loadDroppedImage(file){
     //	Prevent any non-image file type from being read.
     if(!file.type.match(/image.*/)){
-        alert(image_bit_comparer_il8n["not-image"] + file.type);
+        var format = gettext('The dropped file is not an image! File provided was %(file_type)s');
+        var alertText = interpolate(format, {"file_type": file_.type}, true);
+        alert(alertText);
     } else {
       var reader = new FileReader();
       reader.onload = function (data) {
@@ -131,12 +133,9 @@ function loadUserImage(filename, file) {
 
 function getSubtitleText(bit_values) {
   var number_of_bits = bit_values.reduce(function(a, b) {return a + b;});
-  if (number_of_bits == 1) {
-    var subtitle_text = number_of_bits + image_bit_comparer_il8n["bit"];
-  } else {
-    var subtitle_text = number_of_bits + image_bit_comparer_il8n["bits"];
-  }
-  return subtitle_text;
+  var format = ngettext('1 bit', '%(number_of_bits)s bits', number_of_bits);
+  var subtitle_text = interpolate(format, {"number_of_bits": number_of_bits}, true);
+  return subtitle_text
 };
 
 
@@ -228,7 +227,10 @@ function loadImage() {
   var source_canvas_context = source_canvas.getContext('2d');
 
   var image = new Image();
-  image.addEventListener('error', function (e){e.preventDefault(); alert(image_bit_comparer_il8n["load-error"]);},false);
+  image.addEventListener('error', function (e) {
+    e.preventDefault();
+    alert(gettext('Starting image cannot be loaded when viewing file locally. Try another browser or the online version.'));
+  }, false);
   image.onload = function() {
       $selected_image.data('data', image);
       source_canvas_context.drawImage(image, 0, 0, source_canvas.width, source_canvas.height);
