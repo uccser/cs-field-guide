@@ -47,10 +47,7 @@ class RenderHTMLFieldTest(BaseTestWithDB):
             "{% load render_html_field %}\n{% render_html_field chapter.introduction %}",
             context
         )
-        self.assertHTMLEqual(
-            rendered,
-            "<div class='interactive text-center'><p>Interactive 1</p></div>"
-        )
+        self.assertIn("Interactive 1", rendered)
 
     def test_render_html_field_empty(self):
         chapter = self.test_data.create_chapter(1)
