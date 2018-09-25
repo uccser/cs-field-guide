@@ -94,7 +94,6 @@ cmd_update() {
   echo ""
   dev_updatedata
   dev_rebuild_index
-  dev_compilemessages
 
   echo ""
   dev_collect_static
@@ -107,9 +106,6 @@ defhelp update 'Run Django migrate and updatedata commands and build static file
 # Update and collect static files
 dev_update_static() {
   dev_static
-
-  echo ""
-  dev_compilemessages
 
   echo ""
   dev_collect_static
@@ -138,7 +134,6 @@ dev_compilemessages() {
   echo "Compiling message files..."
   docker-compose exec django /docker_venv/bin/python3 ./manage.py compilemessages
   docker-compose exec django /docker_venv/bin/python3 ./manage.py compilejsi18n
-  echo "Note: You will need to run the 'collect_static' command now to copy compiled JS files to the correct directory."
 }
 defhelp -dev compilemessages 'Run Django compilemessages command.'
 
@@ -192,6 +187,7 @@ defhelp -dev shell "Open shell to Django folder."
 dev_static() {
   echo "Building static files..."
   docker-compose exec nginx gulp build
+  dev_compilemessages
 }
 defhelp -dev static 'Build static files.'
 
