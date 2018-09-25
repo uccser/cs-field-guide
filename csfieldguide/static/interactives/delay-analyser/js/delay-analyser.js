@@ -1,7 +1,7 @@
 // Delays stored in milliseconds
-this.delay_types = [0, 25, 50, 75, 100, 150, 200, 350, 600];
-this.gridSize = 6; // Multiples of three required
-this.total_delays_for_each = (gridSize * gridSize) / delay_types.length;
+var delay_types = [0, 25, 50, 75, 100, 150, 200, 350, 600];
+var gridSize = 6; // Multiples of three required
+var total_delays_for_each = (gridSize * gridSize) / delay_types.length;
 
 $(document).ready(function() {
   // Toggle pixel on pixel click
