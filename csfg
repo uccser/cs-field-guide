@@ -75,12 +75,6 @@ defhelp start 'Start development environment.'
 cmd_end() {
   echo "Stopping systems... (takes roughly 10 to 20 seconds)"
   docker-compose down
-  echo
-  echo "Deleting system volumes..."
-  volumes=($(docker volume ls -qf dangling=true ))
-  for volume in "${volumes[@]}"; do
-      docker volume rm "${volume}"
-  done
 }
 defhelp end 'Stop development environment.'
 
@@ -90,7 +84,7 @@ cmd_restart() {
 }
 defhelp restart 'Stop and then restart development environment.'
 
-# Run Django migrate and updatedata commands
+# Completely update system
 cmd_update() {
   dev_static
 
@@ -109,6 +103,20 @@ cmd_update() {
   echo "Open your preferred web browser to the URL 'localhost:81'"
 }
 defhelp update 'Run Django migrate and updatedata commands and build static files.'
+
+# Update and collect static files
+dev_update_static() {
+  dev_static
+
+  echo ""
+  dev_compilemessages
+
+  echo ""
+  dev_collect_static
+  echo ""
+  echo -e "\n${GREEN}Static files are updated!${NC}"
+}
+defhelp -dev update_static 'Update and collect static files.'
 
 # Build Docker images
 dev_build() {
@@ -254,14 +262,6 @@ defhelp -dev updatedata 'Run updatedata command.'
 cmd_clean() {
   echo "If the following commands return an argument not found error,"
   echo "this is because there is nothing to delete for clean up."
-
-  echo
-  echo "Deleting unused volumes..."
-
-  unused_volumes=($(docker volume ls -qf dangling=true))
-  for vol in "${unused_volumes[@]}"; do
-      docker volume rm "${vol}"
-  done
 
   echo
   echo "Deleting exited containers..."
