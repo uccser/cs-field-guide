@@ -140,6 +140,12 @@ A much better sorting algorithm is {glossary-link term="quicksort"}Quicksort{glo
 
 {comment interactive name="sorting-algorithms" type="whole-page" text="Quicksort interactive" parameters="method=quick" thumbnail="thumbnail-quick.png"}
 
+{interactive slug="sorting-algorithms" type="whole-page" text="true" parameters="method=quick"}
+
+Quicksort Interactive
+
+{interactive end}
+
 This algorithm is a little more complicated, but is very powerful.
 To do this algorithm with the sorting interactive, start by randomly choosing a box and placing it on the scales.
 Now compare every other box to the one you selected; heavier boxes should be put on the right of the second row and lighter boxes are put on the left.

@@ -10,6 +10,12 @@ window.onload = function() {
         // generate random weight between 1 and 100 (inclusive)
         image.dataset.weight = Math.floor(Math.random() * Math.floor(100)) + 1;
     }
+    var url_string = window.location.href;
+    var url = new URL(url_string);
+    var method = url.searchParams.get("method");
+    if (method == null) {
+        document.getElementById('sorting-algorithms-interactive-item-unsorted-row-2').style.display = 'none';
+    }
 }
 
 $(function() {
@@ -43,8 +49,6 @@ $(function() {
     ]);
 
     drake.on('drop', (target, source) => {
-        console.log(target);
-        console.log(source);
         if (source.children.length == 2) { // means an element has been dropped in this div 
             swap(target, source);
         }
@@ -110,7 +114,6 @@ function countComparisons() {
         last_left_image = left_image;
         last_right_image = right_image;
     }
-
 }
 
 function checkOrder() {
@@ -129,15 +132,12 @@ function checkOrder() {
         }
         previous_weight = weight;
     }
-    
+
     if (sorted) {
-        console.log('correct');
         document.getElementById('check-order-result-text-correct').style.display = 'block';
         document.getElementById('check-order-result-text-incorrect').style.display = 'none';
     } else {
-        console.log('incorrect')
         document.getElementById('check-order-result-text-correct').style.display = 'none';
         document.getElementById('check-order-result-text-incorrect').style.display = 'block';
     }
-    console.log('check order')
 }

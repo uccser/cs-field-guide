@@ -17,9 +17,9 @@
   flex-basis: calc(50% - 15px);
 }*/
 
-#sorting-algorithms-interactive-item-unsorted-row-2 {
+/*#sorting-algorithms-interactive-item-unsorted-row-2 {
   display: none !important;
-}
+}*/
 
 #sorting-algorithms-interactive .flex-container {
   display: flex;
