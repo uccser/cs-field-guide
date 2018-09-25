@@ -4,7 +4,8 @@ window.onload = function() {
     var images_to_sort = document.getElementsByClassName('to-sort');
     for (var i = 0; i < images_to_sort.length; i++) {
         var image = images_to_sort[i];
-        image.dataset.weight = Math.floor(Math.random() * Math.floor(100));
+        // generate random weight between 1 and 100 (inclusive)
+        image.dataset.weight = Math.floor(Math.random() * Math.floor(100)) + 1;
     }
 }
 
@@ -44,6 +45,7 @@ $(function() {
         if (source.children.length == 2) { // means an element has been dropped in this div 
             swap(target, source);
         }
+        compareWeights();
     });
 });
 
@@ -70,6 +72,28 @@ function swap(target, source) {
     source.id = tmp_id;
 }
 
+function compareWeights() {
+    var left_weight_div = document.getElementsByClassName('left-weight')[0];
+    var right_weight_div = document.getElementsByClassName('right-weight')[0];
+    var left_weight = left_weight_div.children[0].dataset.weight;
+    var right_weight = right_weight_div.children[0].dataset.weight;
+
+    // check if both are placeholder images
+    if (left_weight == 0 && right_weight == 0) {
+        left_weight_div.parentElement.style.borderColor = 'red';
+        right_weight_div.parentElement.style.borderColor = 'red'; 
+    }
+
+    // set heavier weight to have blue outline
+    // (nothing changes for when they have the same weight)
+    if (left_weight > right_weight) { // left is heavier
+        left_weight_div.parentElement.style.borderColor = 'blue';
+        right_weight_div.parentElement.style.borderColor = 'red';
+    } else if (right_weight > left_weight) { // right is heavier
+        left_weight_div.parentElement.style.borderColor = 'red'
+        right_weight_div.parentElement.style.borderColor = 'blue'
+    }
+}
 
 function checkOrder() {
     var ordered_boxes = document.getElementsByClassName('ordered-box');

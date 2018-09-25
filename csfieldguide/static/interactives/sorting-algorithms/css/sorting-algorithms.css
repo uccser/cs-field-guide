@@ -32,7 +32,7 @@
   flex-basis: calc((90vw - 200px) / 8);
   height: calc((90vw - 200px) / 8);
   background: white;
-  border: 1px solid red;
+  border: 2px solid red;
   overflow: hidden;
   margin: 0px;
 }
@@ -41,7 +41,7 @@
   height: 100px;
   width: 100px;
   overflow: hidden;
-  border: 1px solid red;
+  border: 2px solid red;
 }
 
 .sorting-algorithms-interactive-item.flex-item-content {
