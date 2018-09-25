@@ -79,6 +79,11 @@
   display: none;
 }
 
+#comparison-counter-prefix, #comparison-counter-number {
+  display: inline-block;
+}
+
+
 /*.column .other {
   padding: 15px;
   border: 1px solid black;

@@ -161,10 +161,12 @@
       </div>
 
       <div id="sorting-algorithms-interactive-item">
-        <h3 id="check-order-result-text-incorrect">The boxes are not in order!</h3>
-        <h3 id="check-order-result-text-correct">The boxes are in order!</h3>
-        <button type="button" onclick="checkOrder()" id="check-sorted-button">Check Order</button>
-        <h3 id="comparison-counter">Number of Comparisons: 0</h3>
+        <h3 id="check-order-result-text-incorrect">{% trans "The boxes are not in order!" %}</h3>
+        <h3 id="check-order-result-text-correct">{% trans "The boxes are in order!" %}</h3>
+        <button type="button" onclick="checkOrder()" id="check-sorted-button">{% trans "Check Order" %}</button>
+        <div id="comparision-counter">
+          <h3 id="comparison-counter-prefix">{% trans "Number Of Comparisons:" %}</h3><h3 id="comparison-counter-number">0</h3>
+        </div>
       </div>
       
     </div> 

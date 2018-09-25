@@ -110,7 +110,7 @@ function countComparisons() {
     right_image = document.getElementsByClassName('right-weight')[0].children[0];
     if ((left_image != last_left_image) || (right_image != last_right_image)) {
         comparisons += 1
-        document.getElementById('comparison-counter').innerHTML = 'Number Of Comparisons: ' + comparisons.toString()
+        document.getElementById('comparison-counter-number').innerText = comparisons;
         last_left_image = left_image;
         last_right_image = right_image;
     }
