@@ -64,10 +64,10 @@ function checkAnswer() {
     });
     var result_element = document.getElementById('interactive-nfa-guesser-result');
     if (checked_states.equals(nfa_guesser.result)) {
-        result_element.innerHTML = nfa_guesser_il8n["correct"]
+        result_element.innerHTML = gettext('Correct');
         result_element.classList = 'valid'
     } else {
-        result_element.innerHTML = nfa_guesser_il8n["incorrect"]
+        result_element.innerHTML = gettext('Incorrect');
         result_element.classList = ''
     }
 }

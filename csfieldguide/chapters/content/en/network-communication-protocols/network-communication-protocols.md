@@ -1,7 +1,5 @@
 # Network Communication Protocols
 
-{video url="https://www.youtube.com/embed/Hwqmu6pvr6g"}
-
 # What's the big picture?
 
 Think about the last time someone sent you mail via the post.

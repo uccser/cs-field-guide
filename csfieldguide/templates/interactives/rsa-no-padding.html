@@ -29,15 +29,6 @@
 {% endblock css %}
 
 {% block js %}
-	<script type="text/javascript">
-		var rsa_no_padding_il8n = {
-			"error": "{% trans 'Error in encryption!' %}",
-			"decrypter": "{% trans 'Decrypter' %}",
-			"decrypt": "{% trans 'Decrypt' %}",
-			"cipher": "{% trans 'Cipher' %}",
-			"plain": "{% trans 'Plain' %}"
-		}
-	</script>
   <script type="text/javascript" src="{% static 'interactives/rsa-no-padding/js/rsa-jsencrypt-no-padding.js' %}"></script>
   <script type="text/javascript" src="{% static 'interactives/rsa-no-padding/js/third-party/jsencrypt-no-padding.js' %}"></script>
 {% endblock js %}

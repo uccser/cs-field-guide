@@ -1,7 +1,5 @@
 # Computer Vision
 
-{video url="https://www.youtube.com/embed/bE2u5trQAHM"}
-
 # What's the big picture?
 
 When computers were first developed, the only way they could interact with the outside world was through the input that people wired or typed into them.

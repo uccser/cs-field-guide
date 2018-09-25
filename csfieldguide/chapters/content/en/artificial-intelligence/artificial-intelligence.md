@@ -1,7 +1,5 @@
 # Artificial Intelligence
 
-{video url="https://www.youtube.com/watch?v=EDfovEqDY2o"}
-
 # What's the big picture?
 
 Artificial intelligence conjures up all sorts of images --- perhaps you think of friendly systems that can talk to you and solve tough problems; or maniac robots that are bent on world domination?

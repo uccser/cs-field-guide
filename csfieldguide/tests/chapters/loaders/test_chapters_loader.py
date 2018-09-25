@@ -146,3 +146,34 @@ class ChaptersLoaderTest(BaseTestWithDB):
             KeyNotFoundError,
             chapter_loader.load
         )
+
+    def test_chapters_chapter_loader_valid_video_url(self):
+        test_slug = "valid-video-url"
+        factory = mock.Mock()
+        chapter_loader = ChaptersLoader(
+            factory,
+            chapter_number=1,
+            content_path=test_slug,
+            base_path=self.base_path,
+            structure_filename="{}.yaml".format(test_slug)
+        )
+        chapter_loader.load()
+        self.assertEqual(
+            Chapter.objects.get(slug=test_slug).video,
+            "https://player.vimeo.com/video/58336187"
+        )
+
+    def test_chapters_chapter_loader_invalid_video_url(self):
+        test_slug = "invalid-video-url"
+        factory = mock.Mock()
+        chapter_loader = ChaptersLoader(
+            factory,
+            chapter_number=1,
+            content_path=test_slug,
+            base_path=self.base_path,
+            structure_filename="{}.yaml".format(test_slug)
+        )
+        self.assertRaises(
+            ValueError,
+            chapter_loader.load
+        )

@@ -1,6 +1,6 @@
 # Testing: Did we build the right thing and does it work?
 
-{comment some apps for testing to go below; the above applet at http://fac-staff.seattleu.edu/quinnm/web/education/JavaApplets/applets/SoftwareTesting.html may give some ideas}
+{comment some apps for testing to go below}
 
 We’ve decided what our software should do (analysis) and designed its internal structure (design), and the system has been programmed according to the design.
 Now, of course, we have to test it to make sure it works correctly.
