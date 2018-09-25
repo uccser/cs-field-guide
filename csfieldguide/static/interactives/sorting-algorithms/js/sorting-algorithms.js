@@ -1,4 +1,7 @@
-console.log('sorting algorithms');
+// globals
+var comparisons = 0;
+var last_left_image;
+var last_right_image;
 
 window.onload = function() {
     var images_to_sort = document.getElementsByClassName('to-sort');
@@ -82,17 +85,32 @@ function compareWeights() {
     if (left_weight == 0 && right_weight == 0) {
         left_weight_div.parentElement.style.borderColor = 'red';
         right_weight_div.parentElement.style.borderColor = 'red'; 
+    } else {
+        // set heavier weight to have blue outline
+        // (nothing changes for when they have the same weight)
+        if (left_weight > right_weight) { // left is heavier
+            left_weight_div.parentElement.style.borderColor = 'blue';
+            right_weight_div.parentElement.style.borderColor = 'red';
+        } else if (right_weight > left_weight) { // right is heavier
+            left_weight_div.parentElement.style.borderColor = 'red'
+            right_weight_div.parentElement.style.borderColor = 'blue'
+        }
+        if (left_weight != 0 && right_weight != 0) {
+            countComparisons();
+        }
+    }
+}
+
+function countComparisons() {
+    left_image = document.getElementsByClassName('left-weight')[0].children[0];
+    right_image = document.getElementsByClassName('right-weight')[0].children[0];
+    if ((left_image != last_left_image) || (right_image != last_right_image)) {
+        comparisons += 1
+        document.getElementById('comparison-counter').innerHTML = 'Number Of Comparisons: ' + comparisons.toString()
+        last_left_image = left_image;
+        last_right_image = right_image;
     }
 
-    // set heavier weight to have blue outline
-    // (nothing changes for when they have the same weight)
-    if (left_weight > right_weight) { // left is heavier
-        left_weight_div.parentElement.style.borderColor = 'blue';
-        right_weight_div.parentElement.style.borderColor = 'red';
-    } else if (right_weight > left_weight) { // right is heavier
-        left_weight_div.parentElement.style.borderColor = 'red'
-        right_weight_div.parentElement.style.borderColor = 'blue'
-    }
 }
 
 function checkOrder() {
