@@ -28,8 +28,8 @@ class RenderInteractiveInPageTest(BaseTestWithDB):
             "{% load render_interactive_in_page %}\n{% render_interactive_in_page 'interactive-1' %}",
         )
         self.assertHTMLEqual(
-            rendered,
-            "<div class='interactive text-center'><p>Interactive 1</p></div>"
+            "<div class='interactive text-center mb-3'><p>Interactive 1</p></div>",
+            rendered
         )
 
     def test_render_interactive_in_page_zero_parameters(self):

@@ -112,6 +112,9 @@ awful-calculator:
 # number-generator:
 #   languages:
 #     en: interactives/number-generator.html
+# off-by-one:
+#   languages:
+#     en: interactives/off-by-one.html
 # packet-attack:
 #   languages:
 #     en: interactives/packet-attack.html
