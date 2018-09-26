@@ -74,6 +74,8 @@ no-help:
   name: No Help
 number-generator:
   name: Number Generator
+off-by-one:
+  name: Off By One
 packet-attack:
   name: packet-attack (broken)
 packet-attack-level-creator:
