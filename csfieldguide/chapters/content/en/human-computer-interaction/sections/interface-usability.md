@@ -152,7 +152,7 @@ A similar issue occurs on keyboards; for example, control-W might close just one
 Of course, this can be fixed by either checking if the user quits, or by having all the windows saved so that the user just needs to open the browser again to get their work back.
 This can also occur in web forms, where there is a reset button next to the submit button, and the off-by-one error causes the user to lose all the data they just entered.
 
-{image file-path="img/chapters/reset-submit.png" alt="A risky interface."}
+{interactive slug="off-by-one" type="in-page"}
 
 ## Deliberately making tasks more challenging
 
