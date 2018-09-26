@@ -152,7 +152,7 @@ A similar issue occurs on keyboards; for example, control-W might close just one
 Of course, this can be fixed by either checking if the user quits, or by having all the windows saved so that the user just needs to open the browser again to get their work back.
 This can also occur in web forms, where there is a reset button next to the submit button, and the off-by-one error causes the user to lose all the data they just entered.
 
-{image file-path="img/chapters/reset-submit.png" alt="A risky interface."}
+{interactive slug="off-by-one" type="in-page"}
 
 ## Deliberately making tasks more challenging
 
@@ -239,7 +239,7 @@ Before they take any action, ask: "*Do you know what to try to do at this step?*
 Then have them look at the interface, and ask: "*Can you see how to do it?*"
 Then have them take the action they suggested, and ask: "*Are you able to tell that you did the right thing?*"
 
-If their decisions go off track, you can reset the interface, and start over, explaining what to do for the step they took wrong if necessary (but noting that this wasn't obvious to them --- it will be a point to consider for improving the interface.)
+If their decisions go off track, you can reset the interface, and start over, explaining what to do for the step they took wrong if necessary (but noting that this wasn't obvious to them — it will be a point to consider for improving the interface.)
 
 Once the first action has been completed, repeat this with the next action required (it might be pressing a button or adjusting a control).
 Once again, ask the three questions above in the process.
