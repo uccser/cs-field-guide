@@ -37,7 +37,7 @@ Real systems don't represent the data exactly as we've discussed here, but the i
 # Compression methods can expand files
 
 In the worst case (with alternating black and white pixels) the run length encoding method will result in a file that's larger than the original!
-As noted above, *every* lossless compression method that makes at least one file smaller must also have some files that it makes larger --- it's not
+As noted above, *every* lossless compression method that makes at least one file smaller must also have some files that it makes larger — it's not
 mathematically possible to have a method that always makes files smaller unless the method is lossy.
 As a trivial example, suppose someone claims to have a compression method that will convert any 3-bit file into a 2-bit file.
 How many different 3-bit files are there? (There are 8.) How many different 2-bit files are there? (There are 4.) Can you see the problem? We've got 8 possible files that we might want to compress, but only 4 ways to represent them.
@@ -45,7 +45,7 @@ So some of them will have identical representations, and can't be decoded exactl
 
 Over the years there have been several frauds based on claims of a lossless compression method that will compress every file that it is given.
 This can only be true if the method is lossy (loses information); all lossless methods must expand some files.
-It would be nice if all files could be compressed without loss; you could compress a huge file, then apply compression to the compressed file, and make it smaller again, repeating this until it was only one byte --- or one bit!
+It would be nice if all files could be compressed without loss; you could compress a huge file, then apply compression to the compressed file, and make it smaller again, repeating this until it was only one byte — or one bit!
 Unfortunately, this isn't possible.
 
 {panel end}

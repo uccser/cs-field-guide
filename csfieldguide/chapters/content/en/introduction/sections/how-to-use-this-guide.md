@@ -3,7 +3,7 @@
 This guide is intended to support a variety of curricula, and teacher guides will become available for using it in different contexts.
 For students, we've designed most chapters so that they can stand alone; the few that build on previous chapters explain at the outset what preparation you need (the most useful general preparation is the chapter on data representation, because everything on a computer is stored using binary numbers and so they have an important role in many areas of computer science.)
 
-Each chapter begins with a section about the "big picture" --- why the topic is useful for understanding and designing computer systems, and what can be achieved using the main ideas in the chapter.
+Each chapter begins with a section about the "big picture" — why the topic is useful for understanding and designing computer systems, and what can be achieved using the main ideas in the chapter.
 You'll then be introduced to key ideas and applications of the topic through examples, and wherever possible we'll have interactive activities that enable you to work with the ideas first hand.
 Sometimes these will be simplified versions of the full sized problems that computer scientists need to deal with -- our intention is for you to actually interact with the ideas, not just read about them. Make sure you give them a go!
 
