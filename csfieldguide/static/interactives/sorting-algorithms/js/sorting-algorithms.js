@@ -95,15 +95,27 @@ function compareWeights() {
         if (left_weight > right_weight) { // left is heavier
             left_weight_div.parentElement.style.borderColor = 'blue';
             right_weight_div.parentElement.style.borderColor = 'red';
+            rotateIndicator('left');
         } else if (right_weight > left_weight) { // right is heavier
-            left_weight_div.parentElement.style.borderColor = 'red'
-            right_weight_div.parentElement.style.borderColor = 'blue'
+            left_weight_div.parentElement.style.borderColor = 'red';
+            right_weight_div.parentElement.style.borderColor = 'blue';
+            rotateIndicator('right');
         }
         if (left_weight != 0 && right_weight != 0) {
             countComparisons();
         }
     }
 }
+
+function rotateIndicator(direction) {
+    indicator = document.getElementById('scale');
+    indicator.style.webkitTransform = 'rotate(90deg)'; 
+    indicator.style.mozTransform    = 'rotate(90deg)'; 
+    indicator.style.msTransform     = 'rotate(90deg)'; 
+    indicator.style.oTransform      = 'rotate(90deg)'; 
+    indicator.style.transform       = 'rotate(90deg)';
+}
+
 
 function countComparisons() {
     left_image = document.getElementsByClassName('left-weight')[0].children[0];
