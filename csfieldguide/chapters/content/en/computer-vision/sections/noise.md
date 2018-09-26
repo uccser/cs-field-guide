@@ -29,7 +29,7 @@ Since a camera image captures the levels of red, green and blue light separately
 
 This helps to reduce the level of noise in the image.
 Can you tell why, and about how much less noise there might be?
-(As an experiment, you could take a photo in low light --- can you see small patches on it caused by noise? Now use photo editing software to change it to black and white --- does that reduce the effect of the noise?)
+(As an experiment, you could take a photo in low light — can you see small patches on it caused by noise? Now use photo editing software to change it to black and white — does that reduce the effect of the noise?)
 
 {panel type="teacher-note"}
 

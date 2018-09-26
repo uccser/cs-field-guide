@@ -2,7 +2,7 @@
 
 An example of an intractable problem is the Travelling Salesman Problem (TSP).
 The TSP involves a bunch of locations (cities, houses, airports,....) where you can travel between any possible pair of locations.
-The goal is to find the shortest route that will go through all the locations once --- this is what the interactive at the start of this chapter does.
+The goal is to find the shortest route that will go through all the locations once — this is what the interactive at the start of this chapter does.
 
 Researchers have spent a lot of time trying to find efficient solutions to the Travelling Salesman Problem, yet have been unable to find a *tractable* algorithm for solving it.
 As you learnt in the previous section, *intractable* algorithms are very slow, to the point of being impossible to use.
@@ -11,8 +11,8 @@ As the only solutions to TSP are intractable, TSP is known as an *intractable pr
 It hasn’t actually been *proven* that there is no tractable solution to TSP, although many of the world’s top computer scientists have worked on this problem for the last 40 years, trying to find a solution but without success.
 What they have managed to do is find thousands of other problems that are also intractable, and more importantly, if a solution is found for any one of these problems, we know how to convert it to a solution for any of the others (these are called NP-complete problems).
 They all stand and fall together, including the TSP problem.
-So it's not just being lazy if you give up on finding an optimal TSP algorithm --- people have tried for decades and not found a tractable algorithm.
-Of course, this is also a strong motivator to try to find one --- if you do, you will have solved thousands of other problems at the same time!
+So it's not just being lazy if you give up on finding an optimal TSP algorithm — people have tried for decades and not found a tractable algorithm.
+Of course, this is also a strong motivator to try to find one — if you do, you will have solved thousands of other problems at the same time!
 This is a great thing for a researcher to do, but if you have a program to get finished by the end of the month, it's not a good bet to work on it.
 
 Current algorithms for finding the optimal TSP solution aren't a lot better than simply trying out all possible paths through the map (as in the interactive at the start of this chapter).
@@ -20,7 +20,7 @@ The number of possible paths gets out of hand; it's an intractable approach.
 In the project below you'll be estimating how long it would take.
 
 While TSP was originally identified as being the problem that sales people face when driving to several different locations and wanting to visit them in the order that leads to the shortest route (less petrol usage), the same problem applies to many other situations as well.
-Courier and delivery companies have variants of this problem --- often with extra constraints such as limits on how long a driver can work for, or allowing for left hand turns being faster than right-hand ones (in NZ at least!)
+Courier and delivery companies have variants of this problem — often with extra constraints such as limits on how long a driver can work for, or allowing for left hand turns being faster than right-hand ones (in NZ at least!)
 
 {panel type="teacher-note"}
 
@@ -31,14 +31,14 @@ This includes games and information about the current largest solved problem (wh
 
 {panel end}
 
-{comment Put in a paragraph or two about the greedy heuristic as a practical way to solve the problem (but point out that it's not the best heuristic, give some % bounds to give an idea of the accuracy --- according to https://en.wikipedia.org/wiki/Travelling_salesman_problem#Heuristic_and_approximation_algorithms the greedy algorithm averages 25% worse than optimal; there are more complex algorithms that typically come within about 3% of optimal.}
+{comment Put in a paragraph or two about the greedy heuristic as a practical way to solve the problem (but point out that it's not the best heuristic, give some % bounds to give an idea of the accuracy — according to https://en.wikipedia.org/wiki/Travelling_salesman_problem#Heuristic_and_approximation_algorithms the greedy algorithm averages 25% worse than optimal; there are more complex algorithms that typically come within about 3% of optimal.}
 
 Since these problems are important for real companies, it is not reasonable to simply give up and say there is no solution.
-Instead, when confronted with an intractable problem, computer scientists look for algorithms that produce approximate solutions --- solutions that are not perfectly correct or optimal, but are hopefully close enough to be useful.
+Instead, when confronted with an intractable problem, computer scientists look for algorithms that produce approximate solutions — solutions that are not perfectly correct or optimal, but are hopefully close enough to be useful.
 By relaxing the requirement that the solution has to be perfectly correct, it is often possible to come up with tractable algorithms that will find good enough solutions in a reasonable time.
 This kind of algorithm is called a *heuristic* - it uses rules of thumb to suggest good choices and build up a solution made of pretty good choices.
 
-A simple heuristic that often works OK is a *greedy* heuristic algorithm --- an algorithm that just takes what looks like the best choice at each step.
+A simple heuristic that often works OK is a *greedy* heuristic algorithm — an algorithm that just takes what looks like the best choice at each step.
 For example, for the TSP, a greedy heuristic algorithm might repeatedly take the route to the next closest city.
 This won’t always be the best choice, but it is very fast, and experience shows that it is typically no more than 25% worse than the optimal.
 There are more sophisticated ways of designing approximate algorithms that can do better than this (some can get within 3% of optimal for the TSP), but they take longer to run.
@@ -143,7 +143,7 @@ The best way of doing this is to show a route that is similar to, but shorter th
 The shorter solution you find doesn’t have to be the optimal solution, it just has to be shorter than the one identified by the approximate algorithm (Talk to your teacher if you can’t find a shorter route and they will advise on whether or not you should generate a new map).
 You will need to show a map that has a greedy route and a shorter route marked on it.
 Explain the technique you used to show there was a shorter solution.
-Remember that it doesn’t matter how much shorter the new solution you identify is, just as long as it is at least slightly shorter than the approximate solution --- you are just showing that the approximate solution couldn’t possibly be the optimal solution by showing that there is a shorter solution than the approximate solution.
+Remember that it doesn’t matter how much shorter the new solution you identify is, just as long as it is at least slightly shorter than the approximate solution — you are just showing that the approximate solution couldn’t possibly be the optimal solution by showing that there is a shorter solution than the approximate solution.
 
 Even though the greedy algorithm only generates an approximate solution, as opposed to the optimal solution, explain why is it more suitable for the cray fisher than generating an optimal solution would be?
 

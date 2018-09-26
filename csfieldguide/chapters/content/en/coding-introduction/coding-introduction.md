@@ -8,7 +8,7 @@ Even binary representation of information is sometimes referred to as a code.
 However, in this chapter (and the next three chapters),
 the sense of coding that will be used is about clever representations of information that address a practical issue, such as encrypting the data to keep it secret.
 
-In the previous chapter we looked at using binary representations to store all kinds of data --- numbers, text, images and more.
+In the previous chapter we looked at using binary representations to store all kinds of data — numbers, text, images and more.
 But often simple binary representations don't work so well.
 Sometimes they take up too much space, sometimes small errors in the data can cause big problems, and sometimes we worry that someone else could easily read our messages.
 Most of the the time all three of these things are a problem!

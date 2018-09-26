@@ -239,7 +239,7 @@ Before they take any action, ask: "*Do you know what to try to do at this step?*
 Then have them look at the interface, and ask: "*Can you see how to do it?*"
 Then have them take the action they suggested, and ask: "*Are you able to tell that you did the right thing?*"
 
-If their decisions go off track, you can reset the interface, and start over, explaining what to do for the step they took wrong if necessary (but noting that this wasn't obvious to them --- it will be a point to consider for improving the interface.)
+If their decisions go off track, you can reset the interface, and start over, explaining what to do for the step they took wrong if necessary (but noting that this wasn't obvious to them — it will be a point to consider for improving the interface.)
 
 Once the first action has been completed, repeat this with the next action required (it might be pressing a button or adjusting a control).
 Once again, ask the three questions above in the process.

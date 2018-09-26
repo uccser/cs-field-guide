@@ -16,8 +16,8 @@ With unusual grammar Yoda from Star Wars speaks.
 Yet still understand him, people can.
 The flexibility of the rules of English grammar mean that you can usually be understood if you don't get it quite right, but it also means that the rules get very complicated and difficult to apply.
 
-Grammars in formal languages are much more predictable than grammars in human languages --- that's why they're called *formal* languages!
-When you're doing English, grammar can be a tricky topic because not only are there are so many rules, but there are also so many exceptions --- for example, you need an apostrophe if you write "the computer's USB port", but you have to leave it out if you say "its USB port".
+Grammars in formal languages are much more predictable than grammars in human languages — that's why they're called *formal* languages!
+When you're doing English, grammar can be a tricky topic because not only are there are so many rules, but there are also so many exceptions — for example, you need an apostrophe if you write "the computer's USB port", but you have to leave it out if you say "its USB port".
 
 {glossary-link term="grammar" reference-text="Formal languages"}Grammars{glossary-link end} in computer science are mainly used to specify programming languages and file formats, and compilers make a fuss even if you leave out just one bracket or comma!
 But at least they're predictable.

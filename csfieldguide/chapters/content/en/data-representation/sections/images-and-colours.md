@@ -156,10 +156,10 @@ You should get:
 
 Putting these values together gives 100100010011001001111011, which is the bit representation for the colour above.
 
-There are **no spaces** between the three numbers, as this is a pattern of bits rather than actually being three binary numbers, and computers don’t have any such concept of a space between bit patterns anyway --- everything must be a 0 or a 1.
+There are **no spaces** between the three numbers, as this is a pattern of bits rather than actually being three binary numbers, and computers don’t have any such concept of a space between bit patterns anyway — everything must be a 0 or a 1.
 You could write it with spaces to make it easier to read, and to represent the idea that they are likely to be stored in 3 8-bit bytes, but inside the computer memory there is just a sequence of high and low voltages, so even writing 0 and 1 is an arbitrary notation.
 
-Also, all leading and trailing 0’s on each part are kept --- without them, it would be representing a shorter number.
+Also, all leading and trailing 0’s on each part are kept — without them, it would be representing a shorter number.
 If there were 256 different possible values for each primary colour, then the final representation **must** be 24 bits long.
 
 {panel type="curiosity"}
@@ -174,7 +174,7 @@ So for a monochromatic image, we can simply use a representation which is a sing
 
 {panel end}
 
-The computer won’t ever convert the number into decimal, as it works with the binary directly --- most of the process that takes the bits and makes the right pixels appear is typically done by a graphics card or a printer.
+The computer won’t ever convert the number into decimal, as it works with the binary directly — most of the process that takes the bits and makes the right pixels appear is typically done by a graphics card or a printer.
 We just started with decimal, because it is easier for humans to understand.
 The main point about knowing this representation is to understand the trade-off that is being made between the accuracy of colour (which should ideally be beyond human perception) and the amount of storage (bits) needed (which should be as little as possible).
 

@@ -221,7 +221,7 @@ This is the number of characters required to represent the image with the new re
 
 Assuming you got the new image representation correct, and counted correctly, you should have found there are 121 characters in the new image (double check if your number differs).
 This means that the new representation only requires around 54% as many characters to represent (calculated using 121/225).
-This is a significant reduction in the amount of space required to store the image --- it's about half the size.
+This is a significant reduction in the amount of space required to store the image — it's about half the size.
 The new representation is a *compressed* form of the old one.
 
 {panel type="curiosity"}
