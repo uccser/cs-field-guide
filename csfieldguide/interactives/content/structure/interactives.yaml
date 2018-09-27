@@ -4,6 +4,9 @@
 # action-menu:
 #   languages:
 #     en: interactives/action-menu.html
+# alarm-timer:
+#   languages:
+#     en: interactives/alarm-timer.html
 # available-menu-items:
 #   languages:
 #     en: interactives/available-menu-items.html
