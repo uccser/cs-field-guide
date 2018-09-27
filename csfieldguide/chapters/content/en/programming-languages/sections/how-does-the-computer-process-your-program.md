@@ -1,6 +1,6 @@
 # How does the computer process your program?
 
-A programming language such as Python or Java is implemented using a program itself --- the thing that takes your Python program and runs it is a program that someone has written!
+A programming language such as Python or Java is implemented using a program itself — the thing that takes your Python program and runs it is a program that someone has written!
 
 Since the computer hardware can only run programs in a low level language (machine code), the programming system has to make it possible for your Python instructions to be executed using only machine language.
 There are two broad ways to do this: interpreting and compiling.

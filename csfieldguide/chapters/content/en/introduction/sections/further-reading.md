@@ -15,7 +15,7 @@ The AQA Computing A2 book(s), by Sylvia Langfield and Kevin Bond, give a more de
 
 There are also some excellent general web sites about Computer Science, many of which we've referenced in other chapters:
 
-- [Computer Science For Fun](http://www.cs4fn.org) --- a very readable collection of short articles about practical applications of topics in computer science
+- [Computer Science For Fun](http://www.cs4fn.org) — a very readable collection of short articles about practical applications of topics in computer science
 - [Babbage's bag](http://www.i-programmer.info/babbages-bag/) is an excellent collection of technical articles on many topics in computing.
 - [CS Bytes](http://www.nsf.gov/cise/csbytes/) has up-to-date articles about applications of computer science.
 - [Thriving in our digital world](http://www.cs.utexas.edu/~engage/) has some excellent information and  interactive material on topics from computer science.
