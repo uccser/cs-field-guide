@@ -36,7 +36,7 @@ Students who have never programmed should also work through the material in this
 If you already know a little about programming, feel free to skip over this section.
 Otherwise, it will give you a quick overview so that the remainder of the chapter makes sense.
 
-An example of the simplest kind of program is as follows --- it has five instructions (one on each line) that are followed one after the other.
+An example of the simplest kind of program is as follows — it has five instructions (one on each line) that are followed one after the other.
 
 ```
 print("**********************************************")

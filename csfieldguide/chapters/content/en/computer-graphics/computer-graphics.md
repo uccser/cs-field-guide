@@ -11,7 +11,7 @@ The names of dozens of computer scientists now regularly appear in the credits f
 
 {comment consider showing e.g. animated files Lion King - Shrek - Toy Story - Avatar sequence of improvements}
 
-Movie and gaming companies can't always just use existing software to make the next great thing --- they need computer scientists to come up with better graphics techniques to make something that's never been seen before.
+Movie and gaming companies can't always just use existing software to make the next great thing — they need computer scientists to come up with better graphics techniques to make something that's never been seen before.
 The creative possibilities are endless!
 
 Computer graphics are used in a wide variety of situations: games and animated movies are common examples, but graphics techniques are also used to visualise large amounts of data (such as all cellphone calls being made in one day or friend connections in a social network), to display and animate graphical user interfaces, to create virtual reality and augmented reality worlds, and much more.
