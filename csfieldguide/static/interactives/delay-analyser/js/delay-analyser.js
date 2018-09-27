@@ -1,16 +1,15 @@
-// Delays stored in milliseconds
-this.delay_types = [0, 25, 50, 75, 100, 150, 200, 350, 600];
-this.gridSize = 6; // Multiples of three required
-this.total_delays_for_each = (gridSize * gridSize) / delay_types.length;
-
 $(document).ready(function() {
+  var delayTypes = [0, 25, 50, 75, 100, 150, 200, 350, 600]; // Delays stored in milliseconds
+  var gridSize = 6; // Multiples of three required
+  var totalDelaysForEach = (gridSize * gridSize) / delayTypes.length;
+
   // Toggle pixel on pixel click
   $('#delay-grid').on('click', '.tile', function() {
     var $tile = $(this);
     var delay = $tile.data('delay');
     if ($tile.hasClass('black')) {
       $tile.data('delay-start', performance.now());
-      setTimeout(function() {reveal_tile($tile)}, delay);
+      setTimeout(function() {revealTile($tile)}, delay);
     } else {
       $tile.toggleClass('delayed');
     }
@@ -20,7 +19,7 @@ $(document).ready(function() {
     $('#statistics-div').toggle();
     $('#delay-grid').toggle();
     if ($('#statistics-div').is(":visible")) {
-      calculateStatistics();
+      calculateStatistics(gridSize);
       $('#toggle-view').html(gettext('View grid'));
     } else {
       $('#toggle-view').html(gettext('View statistics'));
@@ -28,7 +27,7 @@ $(document).ready(function() {
   });
 
   $('#reset').on('click', function(){
-    setup_delay_grid();
+    setupDelayGrid(delayTypes, totalDelaysForEach, gridSize);
     if ($('#statistics-div').is(":visible")) {
       $('#toggle-view').html(gettext('View grid'));
     } else {
@@ -37,16 +36,16 @@ $(document).ready(function() {
   });
 
   // Create the grid on load
-  setup_delay_grid();
+  setupDelayGrid(delayTypes, totalDelaysForEach, gridSize);
 });
 
-function reveal_tile(element) {
+function revealTile(element) {
   element.removeClass('black');
   element.data('delay', Math.round(performance.now() - element.data('delay-start')));
 }
 
-function calculateStatistics() {
-  var delays_perceived = [];
+function calculateStatistics(gridSize) {
+  var delaysPerceived = [];
   var $grid = $('#delay-grid');
   // For each row
   $grid.children().each(function( row_index, row ) {
@@ -57,22 +56,22 @@ function calculateStatistics() {
       if (!$tile.hasClass('black')) {
         var delay = $tile.data('delay');
         if ($tile.hasClass('delayed')) {
-          delays_perceived.push([delay, 'perceived']);
+          delaysPerceived.push([delay, 'perceived']);
         } else {
-          delays_perceived.push([delay, 'not perceived']);
+          delaysPerceived.push([delay, 'not perceived']);
         }
       }
     });
   });
-  delays_perceived.sort(function(a,b){return a[0] > b[0] ? 1 : (a[0] < b[0] ? -1 : 0);})
+  delaysPerceived.sort(function(a,b){return a[0] > b[0] ? 1 : (a[0] < b[0] ? -1 : 0);})
 
-  if (delays_perceived.length == 0) {
+  if (delaysPerceived.length == 0) {
       $('#statistics-table').hide();
   } else {
       $('#statistics-table').show();
   }
 
-  if (delays_perceived.length != gridSize * gridSize) {
+  if (delaysPerceived.length != gridSize * gridSize) {
     $('#statistics-feedback').html(gettext('You still have tiles to reveal!'));
     $('#statistics-feedback').show();
   } else {
@@ -82,23 +81,23 @@ function calculateStatistics() {
 
   var $table = $('#statistics-table-values');
   $table.empty();
-  for (i = 0; i < delays_perceived.length; i++) {
-    if (delays_perceived[i][1] == 'not perceived') {
-      $table.append('<tr><td>' + delays_perceived[i][0] + ' ms</td><td><br /></td></tr>');
+  for (i = 0; i < delaysPerceived.length; i++) {
+    if (delaysPerceived[i][1] == 'not perceived') {
+      $table.append('<tr><td>' + delaysPerceived[i][0] + ' ms</td><td><br /></td></tr>');
     } else {
-      $table.append('<tr><td><br /></td><td>' + delays_perceived[i][0] + ' ms</td></tr>');
+      $table.append('<tr><td><br /></td><td>' + delaysPerceived[i][0] + ' ms</td></tr>');
     }
   }
 }
 
-function setup_delay_grid() {
+function setupDelayGrid(delayTypes, totalDelaysForEach, gridSize) {
   $('#statistics-div').hide();
   $('#delay-grid').show();
-  var delay_values = [];
-  for (repeat = 0; repeat < total_delays_for_each; repeat++) {
-    delay_values = delay_values.concat(delay_types);
+  var delayValues = [];
+  for (repeat = 0; repeat < totalDelaysForEach; repeat++) {
+    delayValues = delayValues.concat(delayTypes);
   }
-  delay_values = shuffle(delay_values);
+  delayValues = shuffle(delayValues);
 
   // Create tile divs
   var grid = $('#delay-grid');
@@ -108,7 +107,7 @@ function setup_delay_grid() {
       grid.append(gridRow);
       for(col = 0; col < gridSize; col++) {
           var $element = $('<div class="flex-item tile black"></div>');
-          var delay = delay_values.pop();
+          var delay = delayValues.pop();
           delay += Math.floor((Math.random() * (delay * 0.5)));
           $element.data('delay', delay);
           gridRow.append($element);
