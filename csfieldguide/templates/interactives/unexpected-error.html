@@ -1,0 +1,20 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+	<div class="container">
+		<div class="row justify-content-center">
+		  <div class="card">
+		  	<div class="card-header text-left">
+		  		{% trans "Audio Player" %}
+		  	</div>
+		  	<div class="card-body text-left">
+			    <p class="card-text text-primary">{% trans "An error occurred while troubleshooting:" %}</p>
+			    <p class="card-text"><small>{% trans "An unexpected error has occurred. The troubleshooting wizard can't continue." %}</small></p>
+			  </div>
+		  </div>
+		</div>
+	</div>
+{% endblock html %}
