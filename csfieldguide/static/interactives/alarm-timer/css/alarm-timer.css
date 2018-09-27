@@ -1,0 +1,10 @@
+#alarm-timer-background {
+	background-color: #898888;
+	text-align: left;
+	padding: 5px 10px;
+}
+
+.alarm-timer-text {
+	color: white;
+	margin-bottom: 0px;
+}
