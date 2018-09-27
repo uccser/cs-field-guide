@@ -1,0 +1,15 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+	<div class="container">
+		<div class="row">
+		  <div class="col-8" style="background-color: #898888; text-align: left; padding: 5px 10px;">
+		    <p style="color: white; margin-bottom: 0px;">{% trans "Alarm set for 12 hours and 57 minutes from now." %}</p>
+		    <p style="color: white; margin-bottom: 0px;">{% trans "Alarm already set for 09:00." %}</p>
+		  </div>
+		</div>
+	</div>
+{% endblock html %}

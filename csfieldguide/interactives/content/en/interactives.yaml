@@ -2,6 +2,8 @@
   name: 2d-arrow-manipulations (broken)
 action-menu:
   name: Action Menu
+alarm-timer:
+  name: Alarm Timer
 available-menu-items:
   name: Available Menu Items
 awful-calculator:
