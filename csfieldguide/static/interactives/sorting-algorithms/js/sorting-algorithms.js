@@ -88,7 +88,8 @@ function compareWeights() {
     // check if both are placeholder images
     if (left_weight == 0 && right_weight == 0) {
         left_weight_div.parentElement.style.borderColor = 'red';
-        right_weight_div.parentElement.style.borderColor = 'red'; 
+        right_weight_div.parentElement.style.borderColor = 'red';
+        rotateIndicator('middle');
     } else {
         // set heavier weight to have blue outline
         // (nothing changes for when they have the same weight)
@@ -109,11 +110,25 @@ function compareWeights() {
 
 function rotateIndicator(direction) {
     indicator = document.getElementById('scale');
-    indicator.style.webkitTransform = 'rotate(90deg)'; 
-    indicator.style.mozTransform    = 'rotate(90deg)'; 
-    indicator.style.msTransform     = 'rotate(90deg)'; 
-    indicator.style.oTransform      = 'rotate(90deg)'; 
-    indicator.style.transform       = 'rotate(90deg)';
+    if (direction == 'left') {
+        indicator.style.webkitTransform = 'rotate(-90deg)'; 
+        indicator.style.mozTransform    = 'rotate(-90deg)'; 
+        indicator.style.msTransform     = 'rotate(-90deg)'; 
+        indicator.style.oTransform      = 'rotate(-90deg)'; 
+        indicator.style.transform       = 'rotate(-90deg)';
+    } else if (direction == 'middle') {
+        indicator.style.webkitTransform = 'rotate(0deg)'; 
+        indicator.style.mozTransform    = 'rotate(0deg)'; 
+        indicator.style.msTransform     = 'rotate(0deg)'; 
+        indicator.style.oTransform      = 'rotate(0deg)'; 
+        indicator.style.transform       = 'rotate(0deg)';
+    } else { //right
+        indicator.style.webkitTransform = 'rotate(90deg)'; 
+        indicator.style.mozTransform    = 'rotate(90deg)'; 
+        indicator.style.msTransform     = 'rotate(90deg)'; 
+        indicator.style.oTransform      = 'rotate(90deg)'; 
+        indicator.style.transform       = 'rotate(90deg)';
+    }
 }
 
 

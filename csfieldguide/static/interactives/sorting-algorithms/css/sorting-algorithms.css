@@ -1,40 +1,21 @@
-/*.box {
-	min-height: 50px;
-	min-width: 50px;
-	border: 1px solid #000;
-}
-*/
-
-#sorting-algorithms-interactive #content .container {
+.sorting-algorithms-interactive-container {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  padding: 25px;
-  border: 2px red solid;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
-/*.column {
-  flex-basis: calc(50% - 15px);
-}*/
-
-/*#sorting-algorithms-interactive-item-unsorted-row-2 {
-  display: none !important;
-}*/
-
-#sorting-algorithms-interactive .flex-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+.item-box-content {
+  width: ;
 }
 
-.sorting-algorithms-interactive-item.flex-item {
-  position: relative;
-  flex-basis: calc((90vw - 200px) / 8);
-  height: calc((90vw - 200px) / 8);
-  background: white;
-  border: 2px solid red;
-  overflow: hidden;
-  margin: 0px;
+.sorting-algorithms-interactive-item {
+  width: 12%;
+}
+
+.item-box-content img,
+.ordered-box-content img {
+  height: auto;
+  width: 95%;
 }
 
 .sorting-algorithms-interactive-scale {
@@ -44,12 +25,7 @@
   border: 2px solid red;
 }
 
-.sorting-algorithms-interactive-item.flex-item-content {
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+
 
 .sorting-algorithms-interactive-item img {
   height: 100%;
@@ -61,7 +37,7 @@
   border-left: 50px solid transparent;
   border-right: 50px solid transparent;
   border-bottom: 100px solid red;
-  transition-delay: 1s
+  transition-duration: 1s
 }
 
 .sorting-algorithms-interactive-scale #left-scale,
@@ -83,30 +59,3 @@
 #comparison-counter-prefix, #comparison-counter-number {
   display: inline-block;
 }
-
-
-/*.column .other {
-  padding: 15px;
-  border: 1px solid black;
-  padding-bottom: 35px; 
-}*/
-
-/*@media (max-width: 768px) {
-  .flex-item {
-    flex-basis: calc((100vw - 200px) / 3);
-    height: calc((100vw - 200px) / 3);
-  }  
-  .flex-item:nth-child(n+4)  {
-    margin-top: 12px;
-  }  
-}
-@media (max-width: 480px) {
-  .flex-item {
-    flex-basis: calc((100vw - 200px) / 2);
-    height: calc((100vw - 200px) / 2);
-  }  
-  .flex-item:nth-child(n+3)  {
-    margin-top: 15px;
-  }  
-}
-*/
