@@ -52,6 +52,9 @@ awful-calculator:
 # confused-buttons:
 #   languages:
 #     en: interactives/confused-buttons.html
+confusing-error:
+  languages:
+    en: interactives/confusing-error.html
 # date-picker:
 #   languages:
 #     en: interactives/date-picker.html

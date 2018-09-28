@@ -34,6 +34,8 @@ compression-comparer:
   name: Compression Comparer
 confused-buttons:
   name: Confused Buttons
+confusing-error:
+  name: Confusing Error
 date-picker:
   name: Date Picker
 deceiver:
