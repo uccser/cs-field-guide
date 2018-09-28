@@ -1,7 +1,5 @@
 # Network Communication Protocols
 
-# What's the big picture?
-
 Think about the last time someone sent you mail via the post.
 They probably wrote some content on some paper, put it in an envelope, wrote an address and put it in a postbox.
 From there, the letter probably went into a sorting center, got sorted, and was put in a bag.

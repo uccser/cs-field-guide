@@ -319,7 +319,7 @@ In a country that uses 12-hour time, a user might mistake this for 9pm, and the 
 
 However, the interface provides an opportunity to notice it because the display indicates how long it will be until the alarm will go off, making it easier to recognize the error of selecting the wrong time (or day).
 
-{image file-path="img/chapters/android-alarm-message.png" alt="Android alarm clock message showing how long until the alarm will trigger."}
+{interactive slug="alarm-timer" type="in-page"}
 
 ## Help and documentation
 

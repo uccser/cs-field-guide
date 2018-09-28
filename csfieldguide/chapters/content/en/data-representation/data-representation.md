@@ -9,8 +9,6 @@ If students struggle to do this by hand, a lot can be done using spreadsheets.
 
 {panel end}
 
-# What's the big picture?
-
 Computers are machines that do stuff with information.
 They let you view, listen, create, and edit information in documents, images, videos, sound, spreadsheets and databases.
 They let you play games in simulated worlds that don’t really exist except as information inside the computer’s memory and displayed on the screen.
