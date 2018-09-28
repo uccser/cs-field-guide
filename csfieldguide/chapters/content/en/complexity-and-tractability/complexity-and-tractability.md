@@ -10,8 +10,6 @@ The video [The Power of Exponentials, Big and Small](http://blossoms.mit.edu/vid
 
 {panel end}
 
-# What's the big picture?
-
 {comment consider using this somewhere: David Harel earlier in the year about algorithms, and he made the point that getting students to plot running times on a log-log graph can be useful because polynomial time algorithms form a straight line, but exponential don't.}
 
 Are there problems that are too hard even for computers?

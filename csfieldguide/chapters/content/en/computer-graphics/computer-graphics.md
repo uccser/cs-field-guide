@@ -1,7 +1,5 @@
 # Computer Graphics
 
-# What's the big picture?
-
 Computer graphics will be familiar from games, films and images, and there is amazing software available to create images, but how does the software work?
 The role of a computer scientist is not just to *use* graphics systems, but to *create* them, and especially invent new techniques.
 
