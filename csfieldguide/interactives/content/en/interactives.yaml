@@ -116,6 +116,8 @@ trainsylvania-planner:
   name: Trainsylvania Planner
 trig-function-calculator:
   name: Trig Function Calculator
+unexpected-error:
+  name: Unexpected Error
 unicode-binary:
   name: unicode-binary (broken)
 unicode-chars:
