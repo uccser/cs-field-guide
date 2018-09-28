@@ -199,11 +199,25 @@ class BaseLoader():
         """
         templates = dict()
         template_path = settings.CUSTOM_VERTO_TEMPLATES
+        templates.update(self.read_template_files(template_path))
+        if hasattr(self, "extra_converter_templates_directory"):
+            directory = self.extra_converter_templates_directory
+            template_path = os.path.join(template_path, directory)
+            templates.update(self.read_template_files(template_path))
+        return templates
+
+    def read_template_files(self, template_path):
+        """Read custom HTML templates from specified path.
+
+        Returns:
+            templates: dictionary of html templates
+        """
+        templates = dict()
         for file in listdir(template_path):
             template_file = re.search(r"(.*?).html$", file)
             if template_file:
                 template_name = template_file.groups()[0]
-                templates[template_name] = open(template_path + file).read()
+                templates[template_name] = open(os.path.join(template_path, file)).read()
         return templates
 
     @abc.abstractmethod
