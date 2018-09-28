@@ -306,7 +306,7 @@ There is some extra information not shown below such as "Path: Unknown" and "Err
 Searching for the error code can lead to suggested solutions, but it also leads to scam software that claims to fix the problem.
 By not giving useful error recovery information, the system has put the user at the mercy of the advice available online!
 
-{image file-path="img/chapters/error-vague.png" alt="Vague error message: An unexpected error has occurred."}
+{interactive slug="unexpected-error" type="in-page"}
 
 A variant of unhelpful error messages is one that gives two alternatives, such as "File may not exist, or it may already be in use".
 A better message would save the user having to figure out which of these is the problem.

@@ -178,6 +178,9 @@ awful-calculator:
 # trig-function-calculator:
 #   languages:
 #     en: interactives/trig-function-calculator.html
+# unexpected-error:
+#   languages:
+#     en: interactives/unexpected-error.html
 # unicode-binary:
 #   languages:
 #     en: interactives/unicode-binary.html
