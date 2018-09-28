@@ -1,7 +1,5 @@
 # Coding - Introduction
 
-# What's the big picture?
-
 The word "code" has lots of meanings in computer science.
 It's often used to talk about programming, and a program can be referred to as "source code".
 Even binary representation of information is sometimes referred to as a code.
