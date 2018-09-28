@@ -1,7 +1,5 @@
 # Formal Languages
 
-# What's the big picture?
-
 If you've ever written a text-based program or typed a formula in a spreadsheet,
 chances are that at some stage the system has told you there's an error and won't even attempt to follow your instructions.
 
