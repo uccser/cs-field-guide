@@ -9,7 +9,7 @@ Pillow==5.2.0
 django-inline-svg==0.1.1
 
 # Markdown
-verto==0.9.3
+verto==0.10.0
 python-markdown-math==0.5
 
 # Search
