@@ -19,7 +19,7 @@ There are various sets of heuristics that people have proposed for evaluating in
 If you encounter a usability problem in an interface, it is almost certainly breaking one of these heuristics, and possibly a few of them.
 It's not easy to design a system that doesn't break any of the heuristics, and sometimes you wouldn't want to follow them strictly – that's why they are called heuristics, and not rules.
 
-{image file-path="img/chapters/time-capsule.png" alt="Confusing at multiple levels." alignment="right"}
+{interactive slug="confusing-error" type="in-page"}
 
 Often a confusing feature in an interface design will break multiple heuristics.
 For example, the following error message (it is for real) doesn't help users recover from errors (the real error is a network setting, but it is explained as causing a flashing light!), and the "Skip", "Cancel" and "Ignore" buttons don't speak the user's language (match between the system and the real world).
