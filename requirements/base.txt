@@ -2,10 +2,10 @@
 # like Pillow and psycopg2
 # See http://bitly.com/wheel-building-fails-CPython-35
 # Verified bug on Python 3.5.1
-wheel==0.31.1
+wheel==0.32.0
 
 # Images
-Pillow==5.2.0
+Pillow==5.3.0
 django-inline-svg==0.1.1
 
 # Markdown
