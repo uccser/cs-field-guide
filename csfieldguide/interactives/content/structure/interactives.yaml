@@ -1,15 +1,15 @@
 # 2d-arrow-manipulations:
 #   languages:
 #     en: interactives/2d-arrow-manipulations.html
-# action-menu:
-#   languages:
-#     en: interactives/action-menu.html
+action-menu:
+  languages:
+    en: interactives/action-menu.html
 alarm-timer:
   languages:
     en: interactives/alarm-timer.html
-# available-menu-items:
-#   languages:
-#     en: interactives/available-menu-items.html
+available-menu-items:
+  languages:
+    en: interactives/available-menu-items.html
 awful-calculator:
   languages:
     en: interactives/awful-calculator.html
@@ -43,9 +43,9 @@ binary-mode-calculator:
 # checksum-calculator-gtin-13:
 #   languages:
 #     en: interactives/checksum-calculator-gtin-13.html
-# close-window:
-#   languages:
-#     en: interactives/close-window.html
+close-window:
+  languages:
+    en: interactives/close-window.html
 # cmy-mixer:
 #   languages:
 #     en: interactives/cmy-mixer.html
@@ -55,24 +55,24 @@ binary-mode-calculator:
 # compression-comparer:
 #   languages:
 #     en: interactives/compression-comparer.html
-# confused-buttons:
-#   languages:
-#     en: interactives/confused-buttons.html
+confused-buttons:
+  languages:
+    en: interactives/confused-buttons.html
 confusing-error:
   languages:
     en: interactives/confusing-error.html
-# date-picker:
-#   languages:
-#     en: interactives/date-picker.html
-# deceiver:
-#   languages:
-#     en: interactives/deceiver.html
-# delay-analyser:
-#   languages:
-#     en: interactives/delay-analyser.html
-# delayed-checkbox:
-#   languages:
-#     en: interactives/delayed-checkbox.html
+date-picker:
+  languages:
+    en: interactives/date-picker.html
+deceiver:
+  languages:
+    en: interactives/deceiver.html
+delay-analyser:
+  languages:
+    en: interactives/delay-analyser.html
+delayed-checkbox:
+  languages:
+    en: interactives/delayed-checkbox.html
 # frequency-analysis:
 #   languages:
 #     en: interactives/frequency-analysis.html
@@ -118,15 +118,15 @@ menu-keystrokes:
 # nfa-guesser:
 #   languages:
 #     en: interactives/nfa-guesser.html
-# no-help:
-#   languages:
-#     en: interactives/no-help.html
+no-help:
+  languages:
+    en: interactives/no-help.html
 # number-generator:
 #   languages:
 #     en: interactives/number-generator.html
-# off-by-one:
-#   languages:
-#     en: interactives/off-by-one.html
+off-by-one:
+  languages:
+    en: interactives/off-by-one.html
 # packet-attack:
 #   languages:
 #     en: interactives/packet-attack.html
@@ -136,9 +136,9 @@ menu-keystrokes:
 # parity:
 #   languages:
 #     en: interactives/parity.html
-# payment-interface:
-#   languages:
-#     en: interactives/payment-interface.html
+payment-interface:
+  languages:
+    en: interactives/payment-interface.html
 # pixel-viewer:
 #   languages:
 #     en: interactives/pixel-viewer.html
@@ -187,9 +187,9 @@ menu-keystrokes:
 # trig-function-calculator:
 #   languages:
 #     en: interactives/trig-function-calculator.html
-# unexpected-error:
-#   languages:
-#     en: interactives/unexpected-error.html
+unexpected-error:
+  languages:
+    en: interactives/unexpected-error.html
 # unicode-binary:
 #   languages:
 #     en: interactives/unicode-binary.html
