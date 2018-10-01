@@ -25,6 +25,9 @@ awful-calculator:
 # binary-cards:
 #   languages:
 #     en: interactives/binary-cards.html
+binary-mode-calculator:
+  languages:
+    en: interactives/binary-mode-calculator.html
 # box-rotation:
 #   languages:
 #     en: interactives/box-rotation.html

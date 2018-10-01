@@ -16,6 +16,8 @@ bin-packing:
   name: bin-packing (broken)
 binary-cards:
   name: Binary Cards
+binary-mode-calculator:
+  name: Binary Mode Calculator
 box-rotation:
   name: box-rotation (broken)
 box-translation:
