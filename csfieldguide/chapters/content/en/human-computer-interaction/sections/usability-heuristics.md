@@ -212,7 +212,7 @@ And here's another example, this time with a computer science slant: the followi
 The trouble is that in this mode you can still type in decimal digits, which gives an error when you do the calculation.
 A user could easily not notice that it's in binary mode, and the error message isn't particularly helpful!
 
-{image file-path="img/chapters/binary-calculator-screenshot.png" alt="A calculator in binary mode that still allows you to type in digits other than 0 and 1, but complains later."}
+{interactive slug="binary-mode-calculator" type="in-page"}
 
 ## Recognition rather than recall
 
