@@ -247,7 +247,7 @@ An important area of research in HCI is working out how to make shortcuts easy t
 You don't want them to get in the way for beginners, but you don't want frequent users to be unaware of them either.
 A simple way of doing this is having keystroke equivalents in a menu (an accelerator); the menu displayed here shows that shift-command-O will open a new project, so the user can learn this sequence if they are using the command frequently.
 
-{image file-path="img/chapters/menu-keystroke-equivalent.png" alt="Menu with keystroke equivalents." alignment="left"}
+{interactive slug="menu-keystrokes" type="in-page"}
 
 A flexible system would allow the user to add a keystroke equivalent for the "Close Pane" command themselves, if that turned out to be used frequently.
 Other systems might offer suggestions to the user if they notice an action being done frequently.
