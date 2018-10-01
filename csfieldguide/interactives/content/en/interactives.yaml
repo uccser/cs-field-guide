@@ -68,6 +68,8 @@ jpeg-compression:
   name: jpeg-compression (broken)
 md5-hash:
   name: md5-hash (broken)
+menu-keystrokes:
+  name: Menu Keystrokes
 mips-assembler:
   name: mips-assembler (broken)
 mips-simulator:

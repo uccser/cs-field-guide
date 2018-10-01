@@ -103,6 +103,9 @@ confusing-error:
 # md5-hash:
 #   languages:
 #     en: interactives/md5-hash.html
+menu-keystrokes:
+  languages:
+    en: interactives/menu-keystrokes.html
 # mips-assembler:
 #   languages:
 #     en: interactives/mips-assembler.html
