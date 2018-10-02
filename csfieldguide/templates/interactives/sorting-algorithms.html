@@ -101,16 +101,19 @@
 
 
       <div id="sorting-algorithms-interactive-item-scale-row" class="sorting-algorithms-interactive-container">
-        <div class="sorting-algorithms-interactive-scale">
+        <div id="left-scale" class="sorting-algorithms-interactive-scale">
             <div id="box-q" class="left-weight-content">
               <img id="box-q-img" class="placeholder-image" data-weight="0" src="{% static 'interactives/sorting-algorithms/img/white-placeholder.png' %}">
             </div>
         </div>
-        <div class="sorting-algorithms-interactive-scale">
+        <div id="scale-div" class="sorting-algorithms-interactive-scale">
             <div id="scale" class="item-box-content">
             </div>
+            <div id="scale-text">
+              <p>{% trans "Points to heaviest." %}</p>
+            </div>
         </div>
-        <div class="sorting-algorithms-interactive-scale">
+        <div id="right-scale" class="sorting-algorithms-interactive-scale">
             <div id="box-r" class="right-weight-content">
               <img id="box-r-img" class="placeholder-image" data-weight="0" src="{% static 'interactives/sorting-algorithms/img/white-placeholder.png' %}">
             </div>
@@ -160,12 +163,21 @@
         </div>
       </div>
 
-      <div id="sorting-algorithms-interactive-item">
+      <div id="sorting-algorithms-order-reminder">
+        <div class="sorting-algorithms-order-reminder-text">
+          <p>{% trans "Lightest" %}</p>
+        </div>
+        <div class="sorting-algorithms-order-reminder-text">
+          <p>{% trans "Heaviest" %}</p>
+        </div>
+      </div>
+
+      <div id="sorting-algorithms-result">
         <h3 id="check-order-result-text-incorrect">{% trans "The boxes are not in order!" %}</h3>
         <h3 id="check-order-result-text-correct">{% trans "The boxes are in order!" %}</h3>
         <button type="button" onclick="checkOrder()" id="check-sorted-button">{% trans "Check Order" %}</button>
         <div id="comparision-counter">
-          <h3 id="comparison-counter-prefix">{% trans "Number Of Comparisons:" %}</h3><h3 id="comparison-counter-number">0</h3>
+          <p id="comparison-counter-prefix">{% trans "Number Of Comparisons:" %}</p><p id="comparison-counter-number">0</p>
         </div>
       </div>
       
@@ -176,7 +188,7 @@
 
 {% block css %}
   <link rel="stylesheet" href="{% static 'interactives/sorting-algorithms/css/sorting-algorithms.css' %}">
-  <link rel="stylesheet" href="{% static 'interactives/sorting-algorithms/css/dragula.min.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.2/dragula.min.css">
 {% endblock css %}
 
 {% block js %}

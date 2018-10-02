@@ -2,53 +2,71 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  margin: 10px 0;
 }
 
-.item-box-content {
-  width: ;
+.item-box-content,
+.ordered-box-content,
+.left-weight-content,
+.right-weight-content {
+  display: flex;
+  justify-content: center;
 }
 
-.sorting-algorithms-interactive-item {
+.sorting-algorithms-interactive-item,
+.sorting-algorithms-interactive-scale {
   width: 12%;
 }
 
+#left-scale,
+#right-scale,
+.sorting-algorithms-interactive-item {
+  border: 2px dashed #000;
+}
+
 .item-box-content img,
-.ordered-box-content img {
-  height: auto;
-  width: 95%;
+.ordered-box-content img,
+.left-weight-content img,
+.right-weight-content img {
+  height: 100%;
+  width: 100%;
+  padding: 2px;
+  overflow: hidden;
+}
+
+.sorting-algorithms-interactive-scale-row {
+  height: 150px;
 }
 
 .sorting-algorithms-interactive-scale {
-  height: 100px;
-  width: 100px;
+  margin: auto;
+  height: 100%;
   overflow: hidden;
-  border: 2px solid red;
 }
 
-
-
-.sorting-algorithms-interactive-item img {
+#scale-div {
   height: 100%;
+  width: 150px;
+  text-align: center;
 }
 
 #scale {
+  margin: 0 auto;
   width: 0;
   height: 0;
   border-left: 50px solid transparent;
   border-right: 50px solid transparent;
-  border-bottom: 100px solid red;
+  border-bottom: 100px solid #000;
   transition-duration: 1s
 }
 
-.sorting-algorithms-interactive-scale #left-scale,
-.sorting-algorithms-interactive-scale #right-scale,  {
-  position: relative;
-  flex-basis: calc((90vw - 200px) / 3);
-  height: calc((90vw - 200px) / 3);
-  background: white;
-  border: 1px solid red;
-  overflow: hidden;
-  margin: 0px;
+#scale-text p {
+  margin: auto;
+}
+
+#sorting-algorithms-order-reminder {
+  display: flex;
+  justify-content: space-between;
 }
 
 #check-order-result-text-correct,
@@ -56,6 +74,32 @@
   display: none;
 }
 
-#comparison-counter-prefix, #comparison-counter-number {
+#comparison-counter-prefix,
+#comparison-counter-number {
   display: inline-block;
+}
+
+#comparison-counter-number {
+  margin-left: 5px;
+}
+
+#sorting-algorithms-result {
+  text-align: center;
+}
+
+button {
+  flex: 0 1 auto;
+  text-align: center;
+  padding: 0.3rem;
+  margin-bottom: 1rem;
+  color: #fff !important;
+  background-color: #3f51b5;
+  border-radius: 4px;
+  font-size: 1rem;
+  line-height: 115%;
+  -webkit-transition: .1s ease-out;
+  -moz-transition: .1s ease-out;
+  -o-transition: .1s ease-out;
+  -ms-transition: .1s ease-out;
+  transition: .1s ease-out;
 }

@@ -13,7 +13,7 @@ window.onload = function() {
     var url_string = window.location.href;
     var url = new URL(url_string);
     var method = url.searchParams.get("method");
-    if (method == null) {
+    if (method != 'quick') {
         document.getElementById('sorting-algorithms-interactive-item-unsorted-row-2').style.display = 'none';
     }
 }
@@ -80,26 +80,18 @@ function swap(target, source) {
 }
 
 function compareWeights() {
-    var left_weight_div = document.getElementsByClassName('left-weight')[0];
-    var right_weight_div = document.getElementsByClassName('right-weight')[0];
+    var left_weight_div = document.getElementsByClassName('left-weight-content')[0];
+    var right_weight_div = document.getElementsByClassName('right-weight-content')[0];
     var left_weight = left_weight_div.children[0].dataset.weight;
     var right_weight = right_weight_div.children[0].dataset.weight;
 
     // check if both are placeholder images
     if (left_weight == 0 && right_weight == 0) {
-        left_weight_div.parentElement.style.borderColor = 'red';
-        right_weight_div.parentElement.style.borderColor = 'red';
         rotateIndicator('middle');
     } else {
-        // set heavier weight to have blue outline
-        // (nothing changes for when they have the same weight)
         if (left_weight > right_weight) { // left is heavier
-            left_weight_div.parentElement.style.borderColor = 'blue';
-            right_weight_div.parentElement.style.borderColor = 'red';
             rotateIndicator('left');
         } else if (right_weight > left_weight) { // right is heavier
-            left_weight_div.parentElement.style.borderColor = 'red';
-            right_weight_div.parentElement.style.borderColor = 'blue';
             rotateIndicator('right');
         }
         if (left_weight != 0 && right_weight != 0) {
@@ -133,8 +125,8 @@ function rotateIndicator(direction) {
 
 
 function countComparisons() {
-    left_image = document.getElementsByClassName('left-weight')[0].children[0];
-    right_image = document.getElementsByClassName('right-weight')[0].children[0];
+    left_image = document.getElementsByClassName('left-weight-content')[0].children[0];
+    right_image = document.getElementsByClassName('right-weight-content')[0].children[0];
     if ((left_image != last_left_image) || (right_image != last_right_image)) {
         comparisons += 1
         document.getElementById('comparison-counter-number').innerText = comparisons;
@@ -144,21 +136,29 @@ function countComparisons() {
 }
 
 function checkOrder() {
-    var ordered_boxes = document.getElementsByClassName('ordered-box');
+    var ordered_boxes = document.getElementsByClassName('ordered-box-content');
+    var sorted = true;
     var weights = []
     for (var i = 0; i < ordered_boxes.length; i++) {
         weights.push(ordered_boxes[i].children[0].dataset.weight);
     }
 
-    var previous_weight = weights[0];
-    var sorted = true
-    for (var i = 0; i < weights.length; i++) {
-        var weight = weights[i];
-        if (weight < previous_weight) {
-            sorted = false
+    console.log(weights.length);
+    if (weights.length < 8) {
+        sorted = false;
+    } else {
+        console.log(weights);
+        var previous_weight = weights[0];
+        for (var i = 0; i < weights.length; i++) {
+            var weight = weights[i];
+            console.log(weight, previous_weight);
+            if (weight < previous_weight) {
+                sorted = false
+            }
+            previous_weight = weight;
         }
-        previous_weight = weight;
     }
+    console.log(sorted);
 
     if (sorted) {
         document.getElementById('check-order-result-text-correct').style.display = 'block';
