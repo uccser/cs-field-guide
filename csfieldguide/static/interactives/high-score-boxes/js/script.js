@@ -166,7 +166,7 @@ function processInput() {
 				$feedback.html(gettext("Correct! But you could've been more efficient..."));
 			} else {
 				format = gettext("Correct! You've found how to complete this challenge the most efficient way!\nYour time was %(seconds_taken)s seconds.");
-				feedback_text = interpolate(format, {"time_taken": HighScoreBoxes.secondsTaken}, true);
+				feedback_text = interpolate(format, {"seconds_taken": HighScoreBoxes.secondsTaken}, true);
 				$feedback.html(feedback_text);
 			}
             $('#restart-button').show();
