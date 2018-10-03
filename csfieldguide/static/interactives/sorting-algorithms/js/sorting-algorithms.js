@@ -19,35 +19,12 @@ window.onload = function() {
 }
 
 $(function() {
-    var drake = dragula([
-        document.getElementById('box-a'),
-        document.getElementById('box-b'),
-        document.getElementById('box-c'),
-        document.getElementById('box-d'),
-        document.getElementById('box-e'),
-        document.getElementById('box-f'),
-        document.getElementById('box-g'),
-        document.getElementById('box-h'),
-        document.getElementById('box-i'),
-        document.getElementById('box-j'),
-        document.getElementById('box-k'),
-        document.getElementById('box-l'),
-        document.getElementById('box-m'),
-        document.getElementById('box-n'),
-        document.getElementById('box-o'),
-        document.getElementById('box-p'),
-        document.getElementById('box-q'),
-        document.getElementById('box-r'),
-        document.getElementById('box-s'),
-        document.getElementById('box-t'),
-        document.getElementById('box-u'),
-        document.getElementById('box-v'),
-        document.getElementById('box-w'),
-        document.getElementById('box-x'),
-        document.getElementById('box-y'),
-        document.getElementById('box-z')
-    ]);
-
+    var image_list = [];
+    var alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('');
+    for (var i = 0; i < alphabet.length; i++) {
+        image_list.push(document.getElementById('box-' + alphabet[i]));
+    }
+    var drake = dragula(image_list);
     drake.on('drop', (target, source) => {
         if (source.children.length == 2) { // means an element has been dropped in this div 
             swap(target, source);
@@ -140,26 +117,23 @@ function checkOrder() {
     var sorted = true;
     var weights = []
     for (var i = 0; i < ordered_boxes.length; i++) {
-        weights.push(ordered_boxes[i].children[0].dataset.weight);
+        var weight = ordered_boxes[i].children[0].dataset.weight
+        if (weight > 0) {
+            weights.push(weight);
+        }
     }
-
-    console.log(weights.length);
     if (weights.length < 8) {
         sorted = false;
     } else {
-        console.log(weights);
         var previous_weight = weights[0];
         for (var i = 0; i < weights.length; i++) {
             var weight = weights[i];
-            console.log(weight, previous_weight);
-            if (weight < previous_weight) {
+            if (parseInt(weight) < parseInt(previous_weight)) {
                 sorted = false
             }
             previous_weight = weight;
         }
     }
-    console.log(sorted);
-
     if (sorted) {
         document.getElementById('check-order-result-text-correct').style.display = 'block';
         document.getElementById('check-order-result-text-incorrect').style.display = 'none';
