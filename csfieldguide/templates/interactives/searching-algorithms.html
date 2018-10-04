@@ -5,18 +5,56 @@
 
 {% block html %}
   <div class="container">
-    <div class="row text-center" id="interactive-searching-algorithm">
+    <div class="row text-center" id="interactive-searching-algorithms">
       <div class="col-12">
         <p>{% trans "Searching Algorithms" %}</p>
       </div>
+
+	  <div id="interactive-searching-algorithms-rules">
+	  	<div class="interactive-searching-algorithm-rule-line">
+		  	<p>{% trans "Number of boxes" %}:</p><p id="interactive-searching-algorithms-num-boxes"></p>
+		</div>
+	  	<div class="interactive-searching-algorithm-rule-line">
+		  	<p>{% trans "The number to find is" %}:</p><p id="interactive-searching-algorithms-target">100</p>
+		</div>
+	  	<div class="interactive-searching-algorithm-rule-line">
+		  	<p>{% trans "The order of the boxes is" %}:</p><p id="interactive-searching-algorithms-order"></p>
+		</div>
+	  	<div class="interactive-searching-algorithm-rule-line">
+		  	<p>{% trans "Number of guesses" %}:</p><p id="interactive-searching-algorithms-num-guesses"></p>
+		</div>
+	  </div>
+
+      <div id="interactive-searching-algorithms-boxes">
+      </div>
+
     </div>
   </div>
 {% endblock html %}
 
 {% block css %}
-  <link rel="stylesheet" href="{% static 'interactives/searching-algorithm/css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'interactives/searching-algorithms/css/searching-algorithms.css' %}">
 {% endblock css %}
 
 {% block js %}
-  <script src="{% static 'interactives/searching-algorithm/js/script.js' %}"></script>
+  <script type="text/javascript">
+    var colourful_box_images = [
+      "{% static 'interactives/high-score-boxes/img/square1-200px-rounded.png' %}",
+      "{% static 'interactives/high-score-boxes/img/square2-200px-rounded.png' %}",
+      "{% static 'interactives/high-score-boxes/img/square3-200px-rounded.png' %}",
+      "{% static 'interactives/high-score-boxes/img/square4-200px-rounded.png' %}",
+      "{% static 'interactives/high-score-boxes/img/square5-200px-rounded.png' %}",
+      "{% static 'interactives/high-score-boxes/img/square6-200px-rounded.png' %}",
+      "{% static 'interactives/high-score-boxes/img/square7-200px-rounded.png' %}",
+      "{% static 'interactives/high-score-boxes/img/square8-200px-rounded.png' %}",
+      "{% static 'interactives/high-score-boxes/img/square9-200px-rounded.png' %}",
+      "{% static 'interactives/high-score-boxes/img/square10-200px-rounded.png' %}",
+      "{% static 'interactives/high-score-boxes/img/square11-200px-rounded.png' %}",
+      "{% static 'interactives/high-score-boxes/img/square12-200px-rounded.png' %}",
+      "{% static 'interactives/high-score-boxes/img/square13-200px-rounded.png' %}",
+      "{% static 'interactives/high-score-boxes/img/square14-200px-rounded.png' %}",
+      "{% static 'interactives/high-score-boxes/img/square15-200px-rounded.png' %}",
+    ];
+  </script>
+  <script src="{% static 'interactives/searching-algorithms/js/searching-algorithms.js' %}"></script>
 {% endblock js %}
