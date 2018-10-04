@@ -1,0 +1,22 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div class="container">
+    <div class="row text-center" id="interactive-searching-algorithm">
+      <div class="col-12">
+        <p>{% trans "Searching Algorithms" %}</p>
+      </div>
+    </div>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/searching-algorithm/css/style.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script src="{% static 'interactives/searching-algorithm/js/script.js' %}"></script>
+{% endblock js %}

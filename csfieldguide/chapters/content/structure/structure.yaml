@@ -1,8 +1,8 @@
 chapters:
   introduction:
     chapter-number: 1
-  # algorithms:
-  #   chapter-number: 2
+  algorithms:
+    chapter-number: 2
   # programming-languages:
   #   chapter-number: 3
   human-computer-interaction:
