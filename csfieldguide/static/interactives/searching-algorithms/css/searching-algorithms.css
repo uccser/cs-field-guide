@@ -1,3 +1,39 @@
 #interactive-searching-algorithms-rules .interactive-searching-algorithm-rule-line p {
 	display: inline-block;
+	margin: 3px 6px;
+}
+
+#interactive-searching-algorithms-boxes {
+	display: flex;
+	overflow: scroll;
+}
+
+#interactive-searching-algorithms-boxes img {
+	height: 100px;
+	margin: 5px;
+	position: relative;
+	z-index: 2;
+	margin-bottom: 0px;
+}
+
+.interactive-searching-algorithms-box-weight {
+	position: relative;
+	display: block;
+	z-index: 1;
+	top: -60px;
+	margin-bottom: 0px;
+}
+
+.interactive-searching-algorithms-box-number {
+	margin-top: -20px;
+}
+
+p.interactive-searching-algorithms-box-weight.show {
+	z-index: 3 !important;
+	transition: 2s;
+}
+
+#interactive-searching-algorithms-boxes img .fade {
+	opacity: 0.5;
+	transition: 2s;
 }
