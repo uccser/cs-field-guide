@@ -1,8 +1,10 @@
+var num_guesses;
+
 window.onload = function() {
 	var url_string = window.location.href;
     var url = new URL(url_string);
     var num_boxes = url.searchParams.get('num-boxes'); // get num boxes parameter
-    var num_guesses = url.searchParams.get('num-guesses'); // get num guesses parameter
+    num_guesses = url.searchParams.get('num-guesses'); // get num guesses parameter
     var sorted = url.searchParams.get('sorted'); // get sorted/not sorted parameter
 
     if (sorted == 'true') {
@@ -12,12 +14,12 @@ window.onload = function() {
     }
 
     // fill in the rules
-    var target = Math.floor(Math.random() * Math.floor(999)) + 1;
+    // var target = Math.floor(Math.random() * Math.floor(999)) + 1;
 	document.getElementById('interactive-searching-algorithms-num-boxes').innerText = num_boxes;
-	document.getElementById('interactive-searching-algorithms-target').innerText = target;
 	document.getElementById('interactive-searching-algorithms-num-guesses').innerText = num_guesses;
 	document.getElementById('interactive-searching-algorithms-order').innerText = sorted
 
+	var target = Math.floor(Math.random() * Math.floor(num_boxes));
 	// create box elements and assign random weights
 	var box_div = document.getElementById('interactive-searching-algorithms-boxes');
 	for (var i = 0; i < num_boxes; i++) {
@@ -38,23 +40,30 @@ window.onload = function() {
 		var img_element = document.createElement('img');
 		img_element.setAttribute('src', src_string);
 		img_element.setAttribute('data-weight', weight);
-		// img_element.onclick = fadeBox(event);
-
 		img_element.addEventListener("click", fadeBox);
 		
 		img_div.appendChild(img_element);
 		img_div.appendChild(img_weight);
 		img_div.appendChild(img_number);
 		box_div.appendChild(img_div);
+
+		if (i == target) {
+			target = weight;
+		}
 	}
+
+	document.getElementById('interactive-searching-algorithms-target').innerText = target;
 }
 
 function fadeBox(event) {
-	console.log(event);
 	var clicked_img = event.srcElement;
 	var img_weight = clicked_img.nextElementSibling;
-	 // fade the box and show the number
-	 clicked_img.classList.add('fade');
-	 img_weight.classList.add('show');
-	// img_weight.classList.add('show');
+	clicked_img.classList.add('fade');
+	img_weight.classList.add('show');
+	decreaseGuessCount();
+}
+
+function decreaseGuessCount() {
+	num_guesses -= 1;
+	document.getElementById('interactive-searching-algorithms-num-guesses').innerText = num_guesses;
 }
