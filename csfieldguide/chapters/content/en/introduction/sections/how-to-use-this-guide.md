@@ -1,7 +1,6 @@
 # How to use this guide
 
-This guide is intended to support a variety of curricula, and teacher guides will become available for using it in different contexts.
-For students, we've designed most chapters so that they can stand alone; the few that build on previous chapters explain at the outset what preparation you need (the most useful general preparation is the chapter on data representation, because everything on a computer is stored using binary numbers and so they have an important role in many areas of computer science.)
+We've designed most chapters so that they can stand alone; the few that build on previous chapters explain at the outset what preparation you need (the most useful general preparation is the chapter on data representation, because everything on a computer is stored using binary numbers and so they have an important role in many areas of computer science).
 
 Each chapter begins with a section about the "big picture" — why the topic is useful for understanding and designing computer systems, and what can be achieved using the main ideas in the chapter.
 You'll then be introduced to key ideas and applications of the topic through examples, and wherever possible we'll have interactive activities that enable you to work with the ideas first hand.
@@ -10,5 +9,10 @@ Sometimes these will be simplified versions of the full sized problems that comp
 We finish each chapter by talking about the "whole story," giving hints about parts of the topic that we omitted because we didn't want to make the chapter too overwhelming.
 There will be pointers for further reading, but be warned that some of it might be quite deep, and require advanced math or programming skills.
 
-If you are doing this for formal study, you'll end up having to do some sort of assessment.
-The curriculum guides provide ideas for projects and activities that could be used for this.
+{panel type="teacher-note"}
+
+# Curricula support
+
+This guide is intended to support a variety of international curricula; [click here to view a list of available curricula guides]('appendices:appendix' 'curriculum-guides').
+
+{panel end}
