@@ -1,7 +1,5 @@
 # Coding - Compression
 
-# What's the big picture?
-
 Data compression reduces the amount of space needed to store files.
 If you can halve the size of a file, you can store twice as many files for the same cost, or you can download the files twice as fast (and at half the cost if you're paying for the download).
 Even though disks are getting bigger and high bandwidth is becoming common, it's nice to get even more value by working with smaller, compressed files.

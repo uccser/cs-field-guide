@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-18 22:08+0000\n"
+"POT-Creation-Date: 2018-09-29 03:15+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -157,7 +157,7 @@ msgstr ""
 msgid "Close"
 msgstr ""
 
-#: templates/chapters/chapter_section.html:34
+#: templates/chapters/chapter_section.html:40
 msgid "Table of contents"
 msgstr ""
 
@@ -229,6 +229,14 @@ msgstr ""
 
 #: templates/interactives/action-menu.html:23
 msgid "Boil Water"
+msgstr ""
+
+#: templates/interactives/alarm-timer.html:10
+msgid "Alarm set for 12 hours and 57 minutes from now."
+msgstr ""
+
+#: templates/interactives/alarm-timer.html:11
+msgid "Alarm already set for 09:00."
 msgstr ""
 
 #: templates/interactives/available-menu-items.html:9
@@ -818,6 +826,14 @@ msgstr ""
 msgid "Codes are generated with no dashes/spaces/etc"
 msgstr ""
 
+#: templates/interactives/off-by-one.html:8 templates/search/search.html:60
+msgid "Clear form"
+msgstr ""
+
+#: templates/interactives/off-by-one.html:9
+msgid "Submit now"
+msgstr ""
+
 #: templates/interactives/payment-interface.html:9
 msgid "Payment Amount"
 msgstr ""
@@ -1015,6 +1031,19 @@ msgstr ""
 msgid "Invalid input!"
 msgstr ""
 
+#: templates/interactives/unexpected-error.html:11
+msgid "Audio Player"
+msgstr ""
+
+#: templates/interactives/unexpected-error.html:14
+msgid "An error occurred while troubleshooting:"
+msgstr ""
+
+#: templates/interactives/unexpected-error.html:15
+msgid ""
+"An unexpected error has occurred. The troubleshooting wizard can't continue."
+msgstr ""
+
 #: templates/interactives/unicode-chars.html:8
 msgid "Unicode Characters"
 msgstr ""
@@ -1065,10 +1094,6 @@ msgstr ""
 
 #: templates/search/search.html:46
 msgid "Filter by type"
-msgstr ""
-
-#: templates/search/search.html:60
-msgid "Clear form"
 msgstr ""
 
 #: templates/search/search.html:68

@@ -5,8 +5,8 @@ chapters:
     chapter-number: 2
   # programming-languages:
   #   chapter-number: 3
-  # human-computer-interaction:
-  #   chapter-number: 4
+  human-computer-interaction:
+    chapter-number: 4
   # data-representation:
   #   chapter-number: 5
   # coding-introduction:

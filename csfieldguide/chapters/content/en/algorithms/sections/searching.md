@@ -50,7 +50,7 @@ Now that you have played through the whole game (and hopefully found all of the 
 
 Since the boxes in the first game were in a random order there really wasn't any strategy you could have used to find the pet, except simply keep opening presents one by one until you found the pet.
 This is essentially the *Linear Search* algorithm (sometimes called a sequential search).
-In plain English, Linear Search algorithm is as follows:
+In simpler terms, Linear Search algorithm is as follows:
 - Check if the first item in a list is the item you are searching for, if it is the one you are looking for, you are done.
 - If it isn't the item you are searching for move on and check the next item.
 - Continue checking items until you find the one you are searching for.
