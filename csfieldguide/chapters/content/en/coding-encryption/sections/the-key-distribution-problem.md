@@ -183,14 +183,14 @@ If you found this stuff interesting, do read about Complexity and Tractability w
 
 {panel type="curiosity"}
 
-# Encrypting with the private key instead of the public key --- Digital signatures!
+# Encrypting with the private key instead of the public key — Digital Signatures!
 
 In order to encrypt a message, the public key is used.
 In order to decrypt it, the corresponding private key must be used.
 But what would happen if the message was encrypted using the *private* key?
 Could you then decrypt it with the public key?
 
-Initially this might sound like a pointless thing to do --- why would you encrypt a message that can be decrypted using a key that everybody in the world can access!?!
+Initially this might sound like a pointless thing to do — why would you encrypt a message that can be decrypted using a key that everybody in the world can access!?!
 It turns out that indeed, encrypting a message with the private key and then decrypting it with the public key works, and it has a very useful application.
 
 The only person who is able to *encrypt* the message using the *private* key is the person who owns the private key.

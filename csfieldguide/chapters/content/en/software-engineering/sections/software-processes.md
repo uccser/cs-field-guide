@@ -75,7 +75,7 @@ We can play around with the prototype, show it to customers and see what works a
 Then, we do the whole thing again.
 We refine our requirements and do some more design, programming and testing to make our prototype better (another iteration).
 Over time, the prototype grows into the final system, getting closer and closer to what we want.
-Methodologies based on this idea are often referred to as *agile* --- they can easily adapt as changes become apparent.
+Methodologies based on this idea are often referred to as *agile* — they can easily adapt as changes become apparent.
 
 {image file-path="img/chapters/iterative-software-development-diagram.png" alt="The iterative software development cycle starts with feedback from showing the prototype to the customer with analysis, the back to design, implementation and testing, and then starting again with analysis."}
 
@@ -142,7 +142,7 @@ Now, take your design back and improve it, using what you just learnt about buil
 You can experiment with cards as you go, and keep changing the design as you learn about what works and what doesn't (this is an agile approach, which we are going to be looking at further shortly).
 Keep iterating (developing ideas) until you get something that works.
 
-Which of these two approaches worked best --- designing everything first, or doing it in the agile way?
+Which of these two approaches worked best — designing everything first, or doing it in the agile way?
 
 {panel end}
 

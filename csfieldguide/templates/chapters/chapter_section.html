@@ -8,7 +8,13 @@
 {% endblock title %}
 
 {% block page_heading %}
-<small>{{ chapter_section.chapter.name }}</small><br>{{ chapter_section.name }}
+  <small>
+    <a href="{% url 'chapters:chapter' chapter.slug %}" class="text-white-50">
+      {{ chapter_section.chapter.name }}
+    </a>
+  </small>
+  <br>
+  <span class="text-white-50">{{ chapter.number }}.{{ chapter_section.number }}.</span> {{ chapter_section.name }}
 {% endblock page_heading %}
 
 {% block left_column_content %}

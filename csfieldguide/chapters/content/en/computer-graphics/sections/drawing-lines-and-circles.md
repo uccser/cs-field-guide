@@ -25,7 +25,7 @@ The lines and circles that specify an object are usually given using numbers (fo
 From this a graphics program must calculate which pixels on the screen should be coloured in to represent the line or circle, or it may just need to work out where the line is without drawing it.
 
 For example, here's a grid of pixels with 5 lines shown magnified.
-The vertical line would have been specified as going from pixel (2,9) to (2,16) --- that is, starting 2 across and 9 up, and finishing 2 across and 16 up.
+The vertical line would have been specified as going from pixel (2,9) to (2,16) — that is, starting 2 across and 9 up, and finishing 2 across and 16 up.
 Of course, this is only a small part of a screen, as normally they are more like 1000 by 1000 pixels or more; even a smartphone can be hundreds of pixels high and wide.
 
 {image file-path="img/chapters/grid-20x20-example.png" alt="An example of 5 lines drawn on a grid of pixels"}
@@ -273,7 +273,7 @@ This method only has to compare an integer with 0 and do one addition for each p
 
 {panel end}
 
-You could write a program or design a spreadsheet to do these calculations for you --- that's what graphics programmers have to do.
+You could write a program or design a spreadsheet to do these calculations for you — that's what graphics programmers have to do.
 
 ## Circles
 
@@ -366,7 +366,7 @@ By the way, this kind of algorithm can be adapted to draw ellipses, but it has t
 
 Computers need to draw lines, circles and ellipses for a wide variety of tasks, from game graphics to lines in an architect's drawing, and even a tiny circle for the dot on the top of the letter 'i' in a word processor.
 By combining line and circle drawing with techniques like 'filling' and 'antialiasing', computers can draw smooth, clear images that are resolution independent.
-When an image on a computer is described as an outline with fill colours it is called vector graphics --- these can be re-drawn at any resolution.
+When an image on a computer is described as an outline with fill colours it is called vector graphics — these can be re-drawn at any resolution.
 This means that with a vector image, zooming in to the image will not cause the pixelation seen when zooming in to bitmap graphics, which only store the pixels and therefore make the pixels larger when you zoom in.
 However, with vector graphics the pixels are recalculated every time the image is redrawn, and that's why it's important to use a fast algorithm like the one above to draw the images.
 

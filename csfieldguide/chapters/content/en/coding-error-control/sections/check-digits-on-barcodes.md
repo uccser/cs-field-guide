@@ -2,7 +2,7 @@
 
 You probably wouldn’t be very happy if you bought a book online by entering the ISBN (International Standard Book Number), and the wrong book was sent to you, or if a few days after you ordered it, you got an email saying that the credit card number you entered was not yours, but was instead one that was one digit different and another credit card holder had complained about a false charge.
 Or if you went to the shop to buy a can of drink and the scanner read it as being a more expensive product.
-Sometimes, the scanner won’t even read the barcode at all, and the checkout operator has to manually enter the number into the computer --- but if they don't enter it exactly as it is on the barcode you could end up being charged for the wrong product.
+Sometimes, the scanner won’t even read the barcode at all, and the checkout operator has to manually enter the number into the computer — but if they don't enter it exactly as it is on the barcode you could end up being charged for the wrong product.
 These are all examples of situations that error control coding can help prevent.
 
 Barcode numbers, credit card numbers, bank account numbers, ISBNs, national health and social security numbers, shipping labels (serial shipping container codes, or SSCC) and tax numbers all have error control coding in them to help reduce the chance of errors.
@@ -54,7 +54,7 @@ If only one digit is changed, the check digit will always be incorrect, and the 
 {panel end}
 
 Have a look for another product that has a barcode on it, such as a food item from your lunch, or a stationery item.
-Note that some barcodes are a little different --- make sure the barcodes that you are using have 13 digits (although you might like to go and find out how the check digit works on some of the other ones).
+Note that some barcodes are a little different — make sure the barcodes that you are using have 13 digits (although you might like to go and find out how the check digit works on some of the other ones).
 Can the interactive is always determine whether or not you typed the barcode correctly?
 
 One of the following product numbers has one incorrect digit.
@@ -81,7 +81,7 @@ You could try swapping barcode numbers with a classmate, but before giving them 
 Can they determine that they've been given an erroneous barcode?
 
 If one of the digits is incorrect, this calculation for the check digit will produce a different value to the checksum, and signals an error.
-So single digit errors will *always* be detected, but what if two digits change --- will that always detect the error?
+So single digit errors will *always* be detected, but what if two digits change — will that always detect the error?
 
 {panel type="teacher-note"}
 

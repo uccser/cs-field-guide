@@ -19,7 +19,7 @@ There are various sets of heuristics that people have proposed for evaluating in
 If you encounter a usability problem in an interface, it is almost certainly breaking one of these heuristics, and possibly a few of them.
 It's not easy to design a system that doesn't break any of the heuristics, and sometimes you wouldn't want to follow them strictly – that's why they are called heuristics, and not rules.
 
-{image file-path="img/chapters/time-capsule.png" alt="Confusing at multiple levels." alignment="right"}
+{interactive slug="confusing-error" type="in-page"}
 
 Often a confusing feature in an interface design will break multiple heuristics.
 For example, the following error message (it is for real) doesn't help users recover from errors (the real error is a network setting, but it is explained as causing a flashing light!), and the "Skip", "Cancel" and "Ignore" buttons don't speak the user's language (match between the system and the real world).
@@ -212,7 +212,7 @@ And here's another example, this time with a computer science slant: the followi
 The trouble is that in this mode you can still type in decimal digits, which gives an error when you do the calculation.
 A user could easily not notice that it's in binary mode, and the error message isn't particularly helpful!
 
-{image file-path="img/chapters/binary-calculator-screenshot.png" alt="A calculator in binary mode that still allows you to type in digits other than 0 and 1, but complains later."}
+{interactive slug="binary-mode-calculator" type="in-page"}
 
 ## Recognition rather than recall
 
@@ -247,7 +247,7 @@ An important area of research in HCI is working out how to make shortcuts easy t
 You don't want them to get in the way for beginners, but you don't want frequent users to be unaware of them either.
 A simple way of doing this is having keystroke equivalents in a menu (an accelerator); the menu displayed here shows that shift-command-O will open a new project, so the user can learn this sequence if they are using the command frequently.
 
-{image file-path="img/chapters/menu-keystroke-equivalent.png" alt="Menu with keystroke equivalents." alignment="left"}
+{interactive slug="menu-keystrokes" type="in-page"}
 
 A flexible system would allow the user to add a keystroke equivalent for the "Close Pane" command themselves, if that turned out to be used frequently.
 Other systems might offer suggestions to the user if they notice an action being done frequently.
@@ -306,7 +306,7 @@ There is some extra information not shown below such as "Path: Unknown" and "Err
 Searching for the error code can lead to suggested solutions, but it also leads to scam software that claims to fix the problem.
 By not giving useful error recovery information, the system has put the user at the mercy of the advice available online!
 
-{image file-path="img/chapters/error-vague.png" alt="Vague error message: An unexpected error has occurred."}
+{interactive slug="unexpected-error" type="in-page"}
 
 A variant of unhelpful error messages is one that gives two alternatives, such as "File may not exist, or it may already be in use".
 A better message would save the user having to figure out which of these is the problem.
@@ -319,7 +319,7 @@ In a country that uses 12-hour time, a user might mistake this for 9pm, and the 
 
 However, the interface provides an opportunity to notice it because the display indicates how long it will be until the alarm will go off, making it easier to recognize the error of selecting the wrong time (or day).
 
-{image file-path="img/chapters/android-alarm-message.png" alt="Android alarm clock message showing how long until the alarm will trigger."}
+{interactive slug="alarm-timer" type="in-page"}
 
 ## Help and documentation
 

@@ -15,7 +15,7 @@ When working through the material in this section, a good way to draw braille on
 
 More than 200 years ago a 15-year-old French boy invented a system for representing text using combinations of flat and raised dots on paper so that they could be read by touch.
 The system became very popular with people who had visual impairment as it provided a relatively fast and reliable way to "read" text without seeing it.
-Louis Braille's system is an early example of a "binary" representation of data --- there are only two symbols (raised and flat), and yet combinations of them can be used to represent reference books and works of literature.
+Louis Braille's system is an early example of a "binary" representation of data — there are only two symbols (raised and flat), and yet combinations of them can be used to represent reference books and works of literature.
 Each character in braille is represented with a cell of 6 dots.
 Each dot can either be raised or not raised.
 Different numbers and letters can be made by using different patterns of raised and not raised dots.

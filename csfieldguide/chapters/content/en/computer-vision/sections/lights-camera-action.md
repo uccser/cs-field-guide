@@ -24,7 +24,7 @@ The retina has a blind spot (a place where all the nerves bundle together to sen
 Light intensity and colour are picked up by RGB sensor elements on a silicon chip, but they aren’t as good at capturing a wide range of light levels as our eyes are.
 Typically, a modern digital camera can automatically tune its exposure to either bright or dark scenes, but it might lose some detail (e.g. when it is tuned for dark exposure, any bright objects might just look like white blobs).
 
-It is important to understand that neither a human eye nor a digital camera  --- even a very expensive one --- can perfectly capture all of the information in the scene in front of it.
+It is important to understand that neither a human eye nor a digital camera  — even a very expensive one — can perfectly capture all of the information in the scene in front of it.
 Electronic engineers and computer scientists are constantly doing research to improve the quality of the images they capture, and the speed at which they can record and process them.
 
 {panel type="curiosity"}

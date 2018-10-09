@@ -11,7 +11,7 @@ We'll need the concept of the empty string ({math}{\epsilon}{math end} or {math}
 So the previous section on FSAs needs to be covered before embarking on regular expressions.
 
 It may be that students have used regular expressions already, because they are built into many programming languages and are often used when writing script programs.
-We'll be looking briefly at such applications --- and they’re very relevant --- but in formal languages we're also interested in the limits of what can be represented, and how to convert a regex to an FSA.
+We'll be looking briefly at such applications — and they’re very relevant — but in formal languages we're also interested in the limits of what can be represented, and how to convert a regex to an FSA.
 So there should be something here to get students thinking, even if they’re expert at programming with "regexes".
 
 {panel end}
@@ -105,7 +105,7 @@ How about "cat.s" or "cat..n"?
 What do you get if you search for " ... " (three dots with a space before and after)?
 
 Now try searching for "ic.".
-The "." matches any letter, so if you really wanted a full stop, you need to write it like this "ic\\." --- use this search to find "ic" at the end of a sentence.
+The "." matches any letter, so if you really wanted a full stop, you need to write it like this "ic\\." — use this search to find "ic" at the end of a sentence.
 
 Another special symbol is "\\d", which matches any digit.
 Try matching 2, 3 or 4 digits in a row (for example, two digits in a row is "\\d\\d").
@@ -238,7 +238,7 @@ Regular expressions are useful!
 The particular form of regular expression that we've been using is for the Ruby programming language (a popular language for web site development), although it's very similar to regular expressions used in other languages including Java, JavaScript, PHP, Python, and Microsoft's .NET Framework.
 Even some spreadsheets have regular expression matching facilities.
 
-But regular expressions have their limits --- for example, you won't be able to create one that can match palindromes (words and phrases that are the same backwards as forwards, such as "kayak", "rotator" and "hannah"), and you can't use one to detect strings that consist of *n* repeats of the letter "a" followed by *n* repeats of the letter "b".
+But regular expressions have their limits — for example, you won't be able to create one that can match palindromes (words and phrases that are the same backwards as forwards, such as "kayak", "rotator" and "hannah"), and you can't use one to detect strings that consist of *n* repeats of the letter "a" followed by *n* repeats of the letter "b".
 For those sort of patterns you need a more powerful system called a grammar (see the [section on Grammars](chapters/formal-languages.html#grammars-and-parsing)).
 But nevertheless, regular expressions are very useful for a lot of common pattern matching requirements.
 
@@ -253,12 +253,12 @@ For example, consider the following regex, which matches strings that begin with
 (aa)+(bb)+
 ```
 
-Now look at how the following FSA works on these strings --- you could try "aabb", "aaaabb", "aaaaaabbbb", and also see what happens for strings like "aaabb", "aa", "aabbb", and so on.
+Now look at how the following FSA works on these strings — you could try "aabb", "aaaabb", "aaaaaabbbb", and also see what happens for strings like "aaabb", "aa", "aabbb", and so on.
 
 {image file-path="img/chapters/finite-state-automata-aabb-trap.png" alt="an FSA for (aa)+(bb)+"}
 
 You may have noticed that q2 is a "trap state".
-We can achieve the same effect with the following FSA, where all the transitions to the trap state have been removed --- the FSA can reject the input as soon as a non-existent transition is needed.
+We can achieve the same effect with the following FSA, where all the transitions to the trap state have been removed — the FSA can reject the input as soon as a non-existent transition is needed.
 
 {image file-path="img/chapters/finite-state-automata-aabb.png" alt="an FSA for (aa)+(bb)+"}
 
@@ -266,7 +266,7 @@ Like an FSA, each regular expression represents a {glossary-link term="language"
 In the example above, the shortest string in the language is "aabb", then there's "aaaabb" and "aabbbb", and of course an infinite number more.
 There's also an infinite number of strings that *aren't* in this language, like "a", "aaa", "aaaaaa" and so on.
 
-In the above example, the FSA is a really easy way to check for the regular expression --- you can write a very fast and small program to implement it (in fact, it's a good exercise: you typically have an array or list with an entry for each state, and each entry tells you which state to go to next on each character, plus whether or not it's a final state.
+In the above example, the FSA is a really easy way to check for the regular expression — you can write a very fast and small program to implement it (in fact, it's a good exercise: you typically have an array or list with an entry for each state, and each entry tells you which state to go to next on each character, plus whether or not it's a final state.
 At each step the program just looks up which state to go to next.)
 
 Fortunately, *every* regular expression can be converted to an FSA.
@@ -332,9 +332,9 @@ Use this section if you're using Exorciser; we recommend Exorciser for this proj
 
 Exorciser is very simple.
 In fact, unless you change the default settings, it can only convert regular expressions using two characters: "a" and "b".
-But even that's enough (in fact, in theory any input can be represented with two characters --- that's what binary numbers are about!)
+But even that's enough (in fact, in theory any input can be represented with two characters — that's what binary numbers are about!)
 
-On the plus side, Exorciser has the empty string symbol available --- if you type "e" it will be converted to {math}\epsilon{math end}.
+On the plus side, Exorciser has the empty string symbol available — if you type "e" it will be converted to {math}\epsilon{math end}.
 So, for example, "(a| {math}\epsilon{math end})" means an optional "a" in the input.
 
 To do this project using Exorciser, go to the start ("home") window, and select the second link, "Regular Expression to Finite Automata Conversion".
@@ -346,7 +346,7 @@ As a warmup, try:
 aabb
 ```
 
-then click on "solve exercise" (this is a shortcut --- the software is intended for students to create their own FSA, but that's beyond what we're doing in this chapter).
+then click on "solve exercise" (this is a shortcut — the software is intended for students to create their own FSA, but that's beyond what we're doing in this chapter).
 
 You should get a very simple FSA!
 
@@ -367,7 +367,7 @@ Your project report should show the regular expressions, explain what kind of st
 **Converting with JFLAP**
 
 If you're using [JFLAP](http://www.jflap.org) for your project, you can have almost any character as input.
-The main exceptions are "\*", "+" (confusingly, the "+" is used instead of "|" for alternatives), and "!" (which is the empty string --- in the preferences you can choose if it is shown as {math}\lambda{math end} or {math}\epsilon{math end}).
+The main exceptions are "\*", "+" (confusingly, the "+" is used instead of "|" for alternatives), and "!" (which is the empty string — in the preferences you can choose if it is shown as {math}\lambda{math end} or {math}\epsilon{math end}).
 
 So the main operators available in JFLAP are:
 
@@ -377,7 +377,7 @@ So the main operators available in JFLAP are:
 
 The JFLAP software can work with all sorts of formal languages, so you'll need to ignore a lot of the options that it offers! This section will guide you through exactly what to do.
 
-There are some details about the format that JFLAP uses for regular expressions in their [tutorial](http://www.jflap.org/tutorial/regular/index.html) --- just read the "Definition" and "Creating a regular expression" sections.
+There are some details about the format that JFLAP uses for regular expressions in their [tutorial](http://www.jflap.org/tutorial/regular/index.html) — just read the "Definition" and "Creating a regular expression" sections.
 
 As a warmup, we'll convert this regex to an FSA:
 
@@ -401,7 +401,7 @@ To convert the NFA to a DFA, press the "Export" button, then from the "Convert" 
 {image file-path="img/chapters/jflap-ab-star-a-dfa-screenshot.png" alt="After conversion to a DFA"}
 
 We're nearly there.
-If it's hard to read the FSA, you can move states around by choosing the arrow tool (on the left of the tool bar --- if the states won't move when you grab them, so make sure you click on the arrow icon before trying to move them).
+If it's hard to read the FSA, you can move states around by choosing the arrow tool (on the left of the tool bar — if the states won't move when you grab them, so make sure you click on the arrow icon before trying to move them).
 The states may have some extraneous labels underneath them; you can hide those by selecting the arrow tool, right-click on the white part of the window and un-check "Display State Labels".
 
 {image file-path="img/chapters/jflap-ab-star-a-dfa-tidy-screenshot.png" alt="After tidying up the DFA"}
@@ -442,7 +442,7 @@ Here are some more ideas that you could use to investigate regular expressions:
  - words that are made up *only* of the letters in your name
  - words that contain all the vowels in reverse order
  - words that you can make using only the notes on a piano (i.e the letters A to G and a to g)
- - words that are exceptions to the rule "i before e except after c" --- make sure you find words like "forfeit" as well as "science".
+ - words that are exceptions to the rule "i before e except after c" — make sure you find words like "forfeit" as well as "science".
 - Microsoft Word’s *Find* command uses regular expressions if you select the "Use wildcards" option.
   For more details see [Graham Mayor](http://word.mvps.org/AboutMVPs/graham_mayor.htm)'s [Finding and Replacing Characters using Wildcards](http://word.mvps.org/FAQs/General/UsingWildcards.htm).
 - Explore regular expressions in spreadsheets.
@@ -472,7 +472,7 @@ Other sites for experimenting with regular expressions include:
 
 - [http://regexpal.com/](http://regexpal.com/) (matches while typing)
 - [http://www.regexplanet.com/advanced/javascript/index.html](http://www.regexplanet.com/advanced/javascript/index.html) (has variations of regexes for multiple programming languages)
-- [http://www.txt2re.com/](http://www.txt2re.com/) --- you type in a sample text and it tries to suggest a regex!
+- [http://www.txt2re.com/](http://www.txt2re.com/) — you type in a sample text and it tries to suggest a regex!
 - [http://www.regextester.com/](http://www.regextester.com/)
 - [http://www.pyweek.org/e/RegExExpress/](http://www.pyweek.org/e/RegExExpress/)
 - [https://regexhero.net/  (may have a fee)](https://regexhero.net/)

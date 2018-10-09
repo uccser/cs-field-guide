@@ -1,7 +1,5 @@
 # Programming Languages
 
-# What's the big picture?
-
 Programming, sometimes referred to as coding, is a nuts and bolts activity for computer science.
 While this book won't teach you how to program (we've given some links to sites that can do this in the introduction), we are going to look at what a programming language is, and how computer scientists breath life into a language.
 From a programmer's point of view, they type some instructions, and the computer follows them.
@@ -36,7 +34,7 @@ Students who have never programmed should also work through the material in this
 If you already know a little about programming, feel free to skip over this section.
 Otherwise, it will give you a quick overview so that the remainder of the chapter makes sense.
 
-An example of the simplest kind of program is as follows --- it has five instructions (one on each line) that are followed one after the other.
+An example of the simplest kind of program is as follows — it has five instructions (one on each line) that are followed one after the other.
 
 ```
 print("**********************************************")

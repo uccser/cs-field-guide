@@ -1,5 +1,7 @@
 translation:
-  django-message-file: "csfieldguide/locale/en/LC_MESSAGES/django.po"
+  django-message-file:
+      - "csfieldguide/locale/en/LC_MESSAGES/django.po"
+      - "csfieldguide/locale/en/LC_MESSAGES/djangojs.po"
   commands:
     start:
       - ["./csfg", "dev", "build"]

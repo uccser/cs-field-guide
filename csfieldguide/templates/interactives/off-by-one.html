@@ -1,0 +1,11 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div class="d-flex justify-content-center uninteractive">
+    <button class="btn btn-primary m-1">{% trans "Clear form" %}</button>
+    <button class="btn btn-primary m-1">{% trans "Submit now" %}</button>
+  </div>
+{% endblock html %}

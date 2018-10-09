@@ -12,6 +12,8 @@ from chapters.models import Chapter
 class ChaptersLoader(TranslatableModelLoader):
     """Custom loader for loading chapters."""
 
+    extra_converter_templates_directory = "chapter"
+
     def __init__(self, factory, chapter_number, **kwargs):
         """Create the loader for loading a Chapter.
 

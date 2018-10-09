@@ -14,8 +14,6 @@ In this chapter we've tried to capture what really happens in industry, and sugg
 
 {panel end}
 
-# What's the big picture?
-
 Software failures happen all the time.
 Sometimes it’s a little bug that makes a program difficult to use; other times an error might crash your entire computer.
 Some software failures are more spectacular than others.

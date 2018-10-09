@@ -32,7 +32,7 @@ Eliza attempts to sound like a Rogerian Psychotherapist, and sounds most intelli
 
 Eliza is a system that was intended to get people thinking about AI, and you should *not* use it for your own therapeutic usage.
 You should never enter personal information into a computer that you wouldn’t want anybody else reading, as you can never be certain that the web site isn’t going to store the information or pass it on to someone.
-So you don’t want to be telling Eliza the kinds of things a person would say in a therapy session --- just make stuff up when talking to Eliza!
+So you don’t want to be telling Eliza the kinds of things a person would say in a therapy session — just make stuff up when talking to Eliza!
 For the same reason, do *not* tell any chatterbot other personal information such as your full name, date of birth, or address.
 
 {panel end}
@@ -86,7 +86,7 @@ We saw above that Eliza is a chatterbot who works with a restricted domain (tryi
 As you probably found out though, this quickly reveals that Eliza really isn’t intelligent at all, and will just repeat the same things over and over again.
 In addition, you probably also noticed that Eliza frequently doesn’t make a lot of sense, and comes up with sentences that make no sense to a human.
 
-Try having a conversation with another chatterbot --- Alice.
+Try having a conversation with another chatterbot — Alice.
 Note that she knows you as "judge".
 You might work out why she calls you this once you have read the sections on the Turing test below!
 
@@ -313,7 +313,7 @@ These are some questions you can consider after you have finished carrying out t
 Turing test:
 
 - How were you able to tell which was the chatterbot and which was your classmate?
-- Were there any questions you asked that were "unfair" --- that depended on knowledge your classmate might have but no-one (computer or person) from another place could possibly have?
+- Were there any questions you asked that were "unfair" — that depended on knowledge your classmate might have but no-one (computer or person) from another place could possibly have?
 - Which gave it away more: the content of the answers, or the way in which the content was expressed?
 
 {panel end}
