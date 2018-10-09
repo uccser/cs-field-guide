@@ -195,6 +195,7 @@ defhelp -dev static 'Build static files.'
 dev_static_prod() {
   echo "Building production static files..."
   docker-compose exec nginx gulp build --production
+  dev_compilemessages
 }
 defhelp -dev static_prod 'Build production static files.'
 
