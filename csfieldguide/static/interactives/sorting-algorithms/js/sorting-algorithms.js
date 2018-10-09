@@ -1,4 +1,4 @@
-const Dragula = require('dragula');
+const dragula = require('./../../../../node_modules/dragula/dragula');
 
 // globals
 var comparisons = 0;
@@ -32,6 +32,9 @@ $(function() {
             swap(target, source);
         }
         compareWeights();
+    });
+    $('#check-sorted-button').on('click', function () {
+        checkOrder();
     });
 });
 
