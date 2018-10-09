@@ -182,3 +182,7 @@ blockquote {
 .text-mono {
   font-family: monospace;
 }
+
+.uninteractive {
+  pointer-events: none;
+}
