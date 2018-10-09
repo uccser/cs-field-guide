@@ -179,7 +179,6 @@ var tasks = {
       .pipe(buffer())
       .pipe(errorHandler(catchError))
       .pipe(gulpif(production, sourcemaps.init({loadMaps: true})))
-      .pipe(gulpif(production, babel({ presets: ['env'] })))
       .pipe(gulpif(production, terser({keep_fnames: true})))
       .pipe(gulpif(production, sourcemaps.write('./')))
       .pipe(f.restore)
