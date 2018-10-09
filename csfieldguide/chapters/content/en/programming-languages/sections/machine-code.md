@@ -1,4 +1,4 @@
-# Machine code (Low level languages)
+# Machine code (low level languages)
 
 {panel type="teacher-note"}
 
