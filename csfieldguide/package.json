@@ -23,6 +23,7 @@
     "csfg-interactive-rgb-mixer": "file:./static/interactives/rgb-mixer/",
     "csfg-interactive-rsa-jsencrypt": "file:./static/interactives/rsa-jsencrypt/",
     "csfg-interactive-sha2": "file:./static/interactives/sha2/",
+    "csfg-interactive-sorting-algorithms": "file:./static/interactives/sorting-algorithms/",
     "csfg-interactive-unicode-binary": "file:./static/interactives/unicode-binary/",
     "csfg-interactive-unicode-chars": "file:./static/interactives/unicode-chars/"
   },
@@ -33,6 +34,7 @@
     "browserify": "~16.2.2",
     "child_process": "1.0.2",
     "del": "3.0.0",
+    "dragula": "3.7.2",
     "gulp": "3.9.1",
     "gulplog": "1.0.0",
     "gulp-babel": "7.0.1",

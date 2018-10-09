@@ -1,3 +1,5 @@
+const Dragula = require('dragula');
+
 // globals
 var comparisons = 0;
 var last_left_image;
