@@ -1,6 +1,7 @@
 var num_guesses;
 
-window.onload = function() {
+window.addEventListener("DOMContentLoaded", function() {
+	console.log('here');
 	var url_string = window.location.href;
     var url = new URL(url_string);
     var num_boxes = url.searchParams.get('num-boxes'); // get num boxes parameter
@@ -53,7 +54,7 @@ window.onload = function() {
 	}
 
 	document.getElementById('interactive-searching-algorithms-target').innerText = target;
-}
+});
 
 function fadeBox(event) {
 	var clicked_img = event.srcElement;

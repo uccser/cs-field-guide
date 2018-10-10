@@ -9,7 +9,6 @@ const js_files_skip_optimisation = [
   // But skip the following files
   '!static/interactives/huffman-tree/**/*.js',
   '!static/interactives/packet-attack/**/*.js',
-  '!static/interactives/searching-algorithms/**/*.js',
   '!static/interactives/sorting-algorithms/**/*.js',
 ];
 
