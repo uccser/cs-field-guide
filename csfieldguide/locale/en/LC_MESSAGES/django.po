@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-29 03:15+0000\n"
+"POT-Creation-Date: 2018-10-10 22:43+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -145,15 +145,16 @@ msgid ""
 "a>. The Computer Science Field Guide is a project by the <a href=\"http://"
 "www.cosc.canterbury.ac.nz/research/RG/CSE/\">Computer Science Education "
 "Research Group</a> at the <a href=\"http://www.canterbury.ac.nz/"
-"\">University of Canterbury</a>, New Zealand."
+"\">University of Canterbury</a>, New Zealand. Icons provided generously by "
+"<a href=\"https://icons8.com/\">icons8</a>."
 msgstr ""
 
-#: templates/base.html:259
+#: templates/base.html:260
 #, python-format
 msgid "This definition is not available in %(language)s, sorry!"
 msgstr ""
 
-#: templates/base.html:266 templates/general/index.html:50
+#: templates/base.html:267 templates/general/index.html:50
 msgid "Close"
 msgstr ""
 
@@ -280,6 +281,7 @@ msgid "Base"
 msgstr ""
 
 #: templates/interactives/base-calculator.html:8
+#: templates/interactives/binary-mode-calculator.html:10
 msgid "Calculator"
 msgstr ""
 
@@ -343,6 +345,18 @@ msgstr ""
 
 #: templates/interactives/binary-cards.html:18
 msgid "White"
+msgstr ""
+
+#: templates/interactives/binary-mode-calculator.html:19
+msgid "Malformed expression"
+msgstr ""
+
+#: templates/interactives/binary-mode-calculator.html:25
+msgid "Mode: "
+msgstr ""
+
+#: templates/interactives/binary-mode-calculator.html:28
+msgid "Binary"
 msgstr ""
 
 #: templates/interactives/caesar-cipher.html:9
@@ -509,7 +523,28 @@ msgid "Confirm"
 msgstr ""
 
 #: templates/interactives/confused-buttons.html:9
+#: templates/interactives/confusing-error.html:16
 msgid "Cancel"
+msgstr ""
+
+#: templates/interactives/confusing-error.html:11
+msgid ""
+"This configuration will cause your backup device's status light to blink "
+"amber. Are you sure you want to continue?"
+msgstr ""
+
+#: templates/interactives/confusing-error.html:13
+msgid ""
+"Click Ignore to prevent your backup device's status light from blinking "
+"amber for this problem."
+msgstr ""
+
+#: templates/interactives/confusing-error.html:15
+msgid "Skip"
+msgstr ""
+
+#: templates/interactives/confusing-error.html:17
+msgid "Ignore"
 msgstr ""
 
 #: templates/interactives/date-picker.html:8
@@ -756,6 +791,26 @@ msgstr ""
 
 #: templates/interactives/image-bit-comparer.html:30
 msgid "Large (may take longer to load)"
+msgstr ""
+
+#: templates/interactives/menu-keystrokes.html:14
+msgid "New File"
+msgstr ""
+
+#: templates/interactives/menu-keystrokes.html:20
+msgid "Open..."
+msgstr ""
+
+#: templates/interactives/menu-keystrokes.html:26
+msgid "Save"
+msgstr ""
+
+#: templates/interactives/menu-keystrokes.html:32
+msgid "Close Tab"
+msgstr ""
+
+#: templates/interactives/menu-keystrokes.html:38
+msgid "Close Pane"
 msgstr ""
 
 #: templates/interactives/nfa-guesser.html:8
