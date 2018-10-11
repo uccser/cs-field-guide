@@ -10,22 +10,31 @@
         <h1>{% trans "Searching Algorithms" %}</h1>
       </div>
 
-	  <div id="interactive-searching-algorithms-rules">
-	  	<div class="interactive-searching-algorithm-rule-line">
-		  	<p>{% trans "Number of boxes" %}:</p><p id="interactive-searching-algorithms-num-boxes"></p>
-		</div>
-	  	<div class="interactive-searching-algorithm-rule-line">
-		  	<p>{% trans "The number to find is" %}:</p><p id="interactive-searching-algorithms-target">100</p>
-		</div>
-	  	<div class="interactive-searching-algorithm-rule-line">
-		  	<p>{% trans "The order of the boxes is" %}:</p><p id="interactive-searching-algorithms-order"></p>
-		</div>
-	  	<div class="interactive-searching-algorithm-rule-line">
-		  	<p>{% trans "Number of guesses" %}:</p><p id="interactive-searching-algorithms-num-guesses"></p>
-		</div>
-	  </div>
+  	  <div id="interactive-searching-algorithms-content">
 
-      <div id="interactive-searching-algorithms-boxes">
+        <div id="interactive-searching-algorithms-rules">
+          <div id="interactive-searching-algorithms-default-rules">
+      	  	<div class="interactive-searching-algorithm-rule-line">
+      		  	<p>{% trans "Number of boxes" %}:</p><p id="interactive-searching-algorithms-num-boxes"></p>
+      		  </div>
+      	  	<div class="interactive-searching-algorithm-rule-line">
+      		  	<p>{% trans "The number to find is" %}:</p><p id="interactive-searching-algorithms-target">100</p>
+      		  </div>
+      	  	<div class="interactive-searching-algorithm-rule-line">
+      		  	<p>{% trans "The order of the boxes is" %}:</p><p id="interactive-searching-algorithms-order"></p>
+      		  </div>
+      	  	<div class="interactive-searching-algorithm-rule-line">
+      		  	<p>{% trans "Number of guesses" %}:</p><p id="interactive-searching-algorithms-num-guesses"></p>
+      		  </div>
+          </div>
+          <div id="interactive-searching-algorithms-no-guesses" class="hide-message">
+            <p>{% trans "You ran out of guesses!" %}</p>
+          </div>
+    	  </div>
+        
+        <div id="interactive-searching-algorithms-boxes">
+        </div>
+
       </div>
 
     </div>

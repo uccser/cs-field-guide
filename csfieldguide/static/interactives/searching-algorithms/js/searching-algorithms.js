@@ -15,7 +15,6 @@ window.addEventListener("DOMContentLoaded", function() {
     }
 
     // fill in the rules
-    // var target = Math.floor(Math.random() * Math.floor(999)) + 1;
 	document.getElementById('interactive-searching-algorithms-num-boxes').innerText = num_boxes;
 	document.getElementById('interactive-searching-algorithms-num-guesses').innerText = num_guesses;
 	document.getElementById('interactive-searching-algorithms-order').innerText = sorted
@@ -66,5 +65,12 @@ function fadeBox(event) {
 
 function decreaseGuessCount() {
 	num_guesses -= 1;
-	document.getElementById('interactive-searching-algorithms-num-guesses').innerText = num_guesses;
+	if (num_guesses == 0) { // if no more guesses then hide the rules and display no guesses left message
+		var default_rules = document.getElementById('interactive-searching-algorithms-default-rules');
+		var no_guesses_left_message = document.getElementById('interactive-searching-algorithms-no-guesses');
+		default_rules.classList.add('hide-message');
+		no_guesses_left_message.classList.add('show-message');
+	} else {
+		document.getElementById('interactive-searching-algorithms-num-guesses').innerText = num_guesses;
+	}
 }

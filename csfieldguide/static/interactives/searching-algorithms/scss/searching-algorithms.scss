@@ -33,7 +33,15 @@ p.interactive-searching-algorithms-box-weight.show {
 	transition: 2s;
 }
 
-#interactive-searching-algorithms-boxes img .fade {
+#interactive-searching-algorithms-boxes img.fade {
 	opacity: 0.5;
 	transition: 2s;
+}
+
+.hide-message {
+	display: none;
+}
+
+.show-message {
+	display: block;
 }
