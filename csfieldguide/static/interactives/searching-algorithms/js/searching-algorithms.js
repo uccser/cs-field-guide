@@ -1,12 +1,15 @@
+var starting_num_guesses;
 var num_guesses;
+var target;
 
 window.addEventListener("DOMContentLoaded", function() {
 	console.log('here');
 	var url_string = window.location.href;
     var url = new URL(url_string);
     var num_boxes = url.searchParams.get('num-boxes'); // get num boxes parameter
-    num_guesses = url.searchParams.get('num-guesses'); // get num guesses parameter
     var sorted = url.searchParams.get('sorted'); // get sorted/not sorted parameter
+    starting_num_guesses = url.searchParams.get('num-guesses'); // get num guesses parameter
+    num_guesses = starting_num_guesses;
 
     if (sorted == 'true') {
     	sorted = gettext('Sorted');
@@ -19,7 +22,7 @@ window.addEventListener("DOMContentLoaded", function() {
 	document.getElementById('interactive-searching-algorithms-num-guesses').innerText = num_guesses;
 	document.getElementById('interactive-searching-algorithms-order').innerText = sorted
 
-	var target = Math.floor(Math.random() * Math.floor(num_boxes));
+	target = Math.floor(Math.random() * Math.floor(num_boxes));
 	// create box elements and assign random weights
 	var box_div = document.getElementById('interactive-searching-algorithms-boxes');
 	for (var i = 0; i < num_boxes; i++) {
@@ -61,6 +64,18 @@ function fadeBox(event) {
 	clicked_img.classList.add('fade');
 	img_weight.classList.add('show');
 	decreaseGuessCount();
+	if (target == img_weight.innerText) {
+		console.log('win!');
+		// hide rules
+		document.getElementById('interactive-searching-algorithms-default-rules').classList.add('hide-message');
+		// show winning message
+		var num_guesses_used = starting_num_guesses - num_guesses;
+		document.getElementById('interactive-searching-algorithms-found').classList.remove('hide-message');
+		document.getElementById('interactive-searching-algorithms-found').classList.add('show-message');
+		document.getElementById('interactive-searching-algorithms-num-guesses-used').innerText = num_guesses_used;
+		// fill in number of guesses used
+	}
+	
 }
 
 function decreaseGuessCount() {

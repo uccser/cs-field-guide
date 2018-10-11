@@ -1,4 +1,5 @@
-#interactive-searching-algorithms-rules .interactive-searching-algorithm-rule-line p {
+#interactive-searching-algorithms-rules .interactive-searching-algorithm-rule-line p,
+#interactive-searching-algorithms-found #interactive-searching-algorithms-num-guesses-used-message p {
 	display: inline-block;
 	margin: 3px 6px;
 }
@@ -30,12 +31,12 @@
 
 p.interactive-searching-algorithms-box-weight.show {
 	z-index: 3 !important;
-	transition: 2s;
+	transition: 1s;
 }
 
 #interactive-searching-algorithms-boxes img.fade {
 	opacity: 0.5;
-	transition: 2s;
+	transition: 1s;
 }
 
 .hide-message {
