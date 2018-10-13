@@ -1,15 +1,19 @@
 var starting_num_guesses;
 var num_guesses;
 var target;
+var complete = false;
+var start_level;
+var end_level;
+var current_level;
+var num_boxes;
+var sorted;
 
 window.addEventListener("DOMContentLoaded", function() {
-	console.log('here');
 	var url_string = window.location.href;
-    var url = new URL(url_string);
-    var num_boxes = url.searchParams.get('num-boxes'); // get num boxes parameter
-    var sorted = url.searchParams.get('sorted'); // get sorted/not sorted parameter
-    starting_num_guesses = url.searchParams.get('num-guesses'); // get num guesses parameter
-    num_guesses = starting_num_guesses;
+    // var url = new URL(url_string);
+	setInterfaceParameters(url_string);
+	console.log(num_boxes);
+	console.log(sorted);
 
     if (sorted == 'true') {
     	sorted = gettext('Sorted');
@@ -58,6 +62,21 @@ window.addEventListener("DOMContentLoaded", function() {
 	document.getElementById('interactive-searching-algorithms-target').innerText = target;
 });
 
+function setInterfaceParameters(url_string) {
+	// console.log(url);
+	var url = new URL(url_string);
+	num_boxes = url.searchParams.get('num-boxes'); // get num boxes parameter
+    sorted = url.searchParams.get('sorted'); // get sorted/not sorted parameter
+    starting_num_guesses = url.searchParams.get('num-guesses'); // get num guesses parameter
+    num_guesses = starting_num_guesses;
+    start_level = url.searchParams.get('start-level');
+    current_level = url.searchParams.get('end-level');
+    current_level = start_level;
+
+	console.log(sorted);
+    console.log(num_boxes);
+}
+
 function fadeBox(event) {
 	var clicked_img = event.srcElement;
 	var img_weight = clicked_img.nextElementSibling;
@@ -66,6 +85,10 @@ function fadeBox(event) {
 	decreaseGuessCount();
 	if (target == img_weight.innerText) {
 		console.log('win!');
+		complete = true;
+		// if current level < end level
+		// http://localhost:81/en/interactives/searching-algorithms/?num-boxes=7&num-guesses=6&order=random&level=1
+		// build query string and call function to get new parameters
 		// hide rules
 		document.getElementById('interactive-searching-algorithms-default-rules').classList.add('hide-message');
 		// show winning message
@@ -73,7 +96,6 @@ function fadeBox(event) {
 		document.getElementById('interactive-searching-algorithms-found').classList.remove('hide-message');
 		document.getElementById('interactive-searching-algorithms-found').classList.add('show-message');
 		document.getElementById('interactive-searching-algorithms-num-guesses-used').innerText = num_guesses_used;
-		// fill in number of guesses used
 	}
 	
 }
