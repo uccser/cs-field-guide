@@ -34,6 +34,14 @@
   width: 100%;
   padding: 2px;
   overflow: hidden;
+  display: none;
+}
+
+.item-box-content img:last-child,
+.ordered-box-content img:last-child,
+.left-weight-content img:last-child,
+.right-weight-content img:last-child {
+  display: block;
 }
 
 .sorting-algorithms-interactive-scale-row {
