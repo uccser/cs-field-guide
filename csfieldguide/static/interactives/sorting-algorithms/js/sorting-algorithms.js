@@ -85,23 +85,17 @@ function compareWeights() {
 function rotateIndicator(direction) {
     indicator = document.getElementById('scale');
     if (direction == 'left') {
-        indicator.style.webkitTransform = 'rotate(-90deg)'; 
-        indicator.style.mozTransform    = 'rotate(-90deg)'; 
-        indicator.style.msTransform     = 'rotate(-90deg)'; 
-        indicator.style.oTransform      = 'rotate(-90deg)'; 
-        indicator.style.transform       = 'rotate(-90deg)';
+        indicator.classList.remove('middle');
+        indicator.classList.remove('rotate-right');
+        indicator.classList.add('rotate-left');
     } else if (direction == 'middle') {
-        indicator.style.webkitTransform = 'rotate(0deg)'; 
-        indicator.style.mozTransform    = 'rotate(0deg)'; 
-        indicator.style.msTransform     = 'rotate(0deg)'; 
-        indicator.style.oTransform      = 'rotate(0deg)'; 
-        indicator.style.transform       = 'rotate(0deg)';
+        indicator.classList.remove('rotate-left');
+        indicator.classList.remove('rotate-right');
+        indicator.classList.add('middle');
     } else { //right
-        indicator.style.webkitTransform = 'rotate(90deg)'; 
-        indicator.style.mozTransform    = 'rotate(90deg)'; 
-        indicator.style.msTransform     = 'rotate(90deg)'; 
-        indicator.style.oTransform      = 'rotate(90deg)'; 
-        indicator.style.transform       = 'rotate(90deg)';
+        indicator.classList.remove('middle');
+        indicator.classList.remove('rotate-left');
+        indicator.classList.add('rotate-right');
     }
 }
 

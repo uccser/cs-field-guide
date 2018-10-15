@@ -96,3 +96,15 @@
 #sorting-algorithms-result {
   text-align: center;
 }
+
+.rotate-left {
+  transform: rotate(-90deg);
+}
+
+.middle {
+  transform: rotate(0deg);
+}
+
+.rotate-right {
+  transform: rotate(90deg);
+}
