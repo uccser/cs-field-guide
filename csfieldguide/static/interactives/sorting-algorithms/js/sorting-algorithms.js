@@ -7,10 +7,11 @@ var last_right_image;
 
 window.onload = function() {
     var images_to_sort = document.getElementsByClassName('to-sort');
+    const data_weights = [1, 2, 3, 4, 5, 6, 7, 8];
+    var shuffled_weights = shuffle(data_weights);
     for (var i = 0; i < images_to_sort.length; i++) {
         var image = images_to_sort[i];
-        // generate random weight between 1 and 100 (inclusive)
-        image.dataset.weight = Math.floor(Math.random() * Math.floor(100)) + 1;
+        image.dataset.weight = shuffled_weights[i];
     }
     var url_string = window.location.href;
     var url = new URL(url_string);
@@ -18,6 +19,25 @@ window.onload = function() {
     if (method != 'quick') {
         document.getElementById('sorting-algorithms-interactive-item-unsorted-row-2').style.display = 'none';
     }
+}
+
+// shuffle function adapted from https://bost.ocks.org/mike/shuffle
+function shuffle(array) {
+    var element_index = array.length;
+    var random_index;
+    var current_element;
+
+    while (element_index) {
+        // Pick a remaining element
+        random_index = Math.floor(Math.random() * element_index--);
+
+        // And swap it with the current element
+        current_element = array[element_index];
+        array[element_index] = array[random_index ];
+        array[random_index ] = current_element;
+    }
+
+    return array;
 }
 
 $(function() {

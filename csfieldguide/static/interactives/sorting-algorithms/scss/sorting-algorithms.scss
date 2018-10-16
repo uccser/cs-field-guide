@@ -49,34 +49,32 @@
 }
 
 .sorting-algorithms-interactive-scale {
-  margin: auto;
-  height: 100%;
   overflow: hidden;
 }
 
 #scale-div {
   height: 100%;
-  width: 150px;
   text-align: center;
 }
 
 #scale {
-  margin: 0 auto;
-  width: 0;
-  height: 0;
-  border-left: 50px solid transparent;
-  border-right: 50px solid transparent;
-  border-bottom: 100px solid #000;
-  transition-duration: 1s
+  transition-duration: 1s;
+  height: 111.59px;
+  width: 111.59px;
 }
 
 #scale-text p {
   margin: auto;
+  text-align: center;
 }
 
 #sorting-algorithms-order-reminder {
   display: flex;
   justify-content: space-between;
+}
+
+.sorting-algorithms-order-reminder-text {
+  font-weight: bold;
 }
 
 #check-order-result-text-correct,
@@ -98,13 +96,13 @@
 }
 
 .rotate-left {
-  transform: rotate(-90deg);
-}
-
-.middle {
   transform: rotate(0deg);
 }
 
-.rotate-right {
+.middle {
   transform: rotate(90deg);
+}
+
+.rotate-right {
+  transform: rotate(180deg);
 }

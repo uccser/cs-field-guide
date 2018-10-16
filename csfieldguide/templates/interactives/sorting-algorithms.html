@@ -104,17 +104,18 @@
             </div>
         </div>
         <div id="scale-div" class="sorting-algorithms-interactive-scale">
-            <div id="scale" class="item-box-content">
-            </div>
-            <div id="scale-text">
-              <p>{% trans "Points to heaviest." %}</p>
-            </div>
+            <img id="scale" class="item-box-content middle" src="{% static 'interactives/sorting-algorithms/img/scalebar-sheet0.png' %}">
         </div>
+
         <div id="right-scale" class="sorting-algorithms-interactive-scale">
             <div id="box-r" class="right-weight-content">
               <img id="box-r-img" class="placeholder-image" data-weight="0" src="{% static 'interactives/sorting-algorithms/img/white-placeholder.png' %}">
             </div>
         </div>
+      </div>
+
+      <div id="scale-text">
+          <p>{% trans "Points to heaviest." %}</p>
       </div>
 
       <div id="sorting-algorithms-interactive-item-sorted-row" class="sorting-algorithms-interactive-container">
