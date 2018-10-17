@@ -52,10 +52,14 @@ $(function() {
         if (source.children.length == 2) { // means an element has been dropped in this div
             swap(target, source);
         } else if (source.children.length == 1) {
-            source_div_id = source.id.slice(0, 5);
-            console.log(target);
+            var source_div_id = source.id.slice(0, 5);
+            var target_div_id = target.id.slice(0, 5);
+            var target = document.getElementById(target_div_id);
+            console.log(source.children[0]);
             console.log(source_div_id);
-            source.appendChild(target);
+            console.log(target_div_id);
+            var source = document.getElementById(source_div_id);
+            target.appendChild(source.children[0]);
             var tmp_id = target.id;
             target.id = source.id;
             source.id = tmp_id;
