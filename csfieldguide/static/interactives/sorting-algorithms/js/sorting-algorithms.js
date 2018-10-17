@@ -48,8 +48,17 @@ $(function() {
     }
     var drake = dragula(image_list);
     drake.on('drop', (target, source) => {
-        if (source.children.length == 2) { // means an element has been dropped in this div 
+        console.log(source.children.length);
+        if (source.children.length == 2) { // means an element has been dropped in this div
             swap(target, source);
+        } else if (source.children.length == 1) {
+            source_div_id = source.id.slice(0, 5);
+            console.log(target);
+            console.log(source_div_id);
+            source.appendChild(target);
+            var tmp_id = target.id;
+            target.id = source.id;
+            source.id = tmp_id;
         }
         compareWeights();
     });
@@ -84,8 +93,9 @@ function swap(target, source) {
 function compareWeights() {
     var left_weight_div = document.getElementsByClassName('left-weight-content')[0];
     var right_weight_div = document.getElementsByClassName('right-weight-content')[0];
-    var left_weight = left_weight_div.children[0].dataset.weight;
-    var right_weight = right_weight_div.children[0].dataset.weight;
+    console.log(left_weight_div);
+    var left_weight = getDataWeight(left_weight_div);
+    var right_weight = getDataWeight(right_weight_div);
 
     // check if both are placeholder images
     if (left_weight == 0 && right_weight == 0) {
@@ -136,7 +146,8 @@ function checkOrder() {
     var sorted = true;
     var weights = []
     for (var i = 0; i < ordered_boxes.length; i++) {
-        var weight = ordered_boxes[i].children[0].dataset.weight
+        element = ordered_boxes[i];
+        var weight = getDataWeight(element);
         if (weight > 0) {
             weights.push(weight);
         }
@@ -160,4 +171,14 @@ function checkOrder() {
         document.getElementById('check-order-result-text-correct').style.display = 'none';
         document.getElementById('check-order-result-text-incorrect').style.display = 'block';
     }
+}
+
+function getDataWeight(element) {
+    var data_weight = 0;
+    // If the box is not empty
+    if (element.hasChildNodes()) {
+        data_weight = element.children[0].dataset.weight;
+    }
+
+    return data_weight;
 }

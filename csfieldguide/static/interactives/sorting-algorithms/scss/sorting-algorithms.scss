@@ -1,4 +1,7 @@
 @import "node_modules/dragula/dist/dragula";
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/mixins";
 
 .sorting-algorithms-interactive-container {
   display: flex;
@@ -17,7 +20,29 @@
 
 .sorting-algorithms-interactive-item,
 .sorting-algorithms-interactive-scale {
-  width: 12%;
+  background-color: white;
+}
+
+.sorting-algorithms-interactive-item,
+.sorting-algorithms-interactive-scale,
+#scale-div {
+  margin: 0.2em;
+  $box-size: 8vw;
+  width: $box-size;
+  height: $box-size;
+  max-width: $box-size;
+  @include media-breakpoint-up(lg) {
+    $box-size: 6vw;
+    width: $box-size;
+    height: $box-size;
+    max-width: $box-size;
+  }
+  @include media-breakpoint-up(xl) {
+    $box-size: 4vw;
+    width: $box-size;
+    height: $box-size;
+    max-width: $box-size;
+  }
 }
 
 #left-scale,
@@ -52,16 +77,16 @@
   overflow: hidden;
 }
 
-#scale-div {
-  height: 100%;
-  text-align: center;
-}
+// #scale-div {
+//   height: 100%;
+//   text-align: center;
+// }
 
 #scale {
   transition-duration: 1s;
   // height & width needs to be changed so is responsive
-  height: 111.59px;
-  width: 111.59px;
+  // height: 111.59px;
+  // width: 111.59px;
 }
 
 #scale-text p {
@@ -76,6 +101,10 @@
 
 .sorting-algorithms-order-reminder-text {
   font-weight: bold;
+}
+
+.sorting-algorithms-interactive-scale > div {
+  height: 100%;
 }
 
 #check-order-result-text-correct,
