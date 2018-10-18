@@ -102,9 +102,13 @@ INCONTEXT_L10N_PSEUDOLANGUAGES = (
     INCONTEXT_L10N_PSEUDOLANGUAGE_BIDI
 )
 
-LANGUAGES = (
+DEFAULT_LANGUAGES = (
     ("en", "English"),
+    ("de", "Deutsche"),
 )
+
+# Keep original values of languages for resource generation
+LANGUAGES = DEFAULT_LANGUAGES
 
 if env.bool("INCLUDE_INCONTEXT_L10N", False):
     EXTRA_LANGUAGES = [

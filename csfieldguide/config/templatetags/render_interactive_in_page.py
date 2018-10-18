@@ -6,8 +6,8 @@ from utils.render_interactive_html import render_interactive_html
 register = template.Library()
 
 
-@register.simple_tag
-def render_interactive_in_page(interactive_slug):
+@register.simple_tag(takes_context=True)
+def render_interactive_in_page(context, interactive_slug):
     """Render the interactive HTML.
 
     Args:
@@ -16,4 +16,4 @@ def render_interactive_in_page(interactive_slug):
     Returns:
         Rendered string of HTML.
     """
-    return render_interactive_html(interactive_slug, "in-page")
+    return render_interactive_html(interactive_slug, "in-page", context.get("request"))

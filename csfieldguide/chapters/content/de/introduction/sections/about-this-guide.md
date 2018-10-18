@@ -1,0 +1,7 @@
+# Infos zum Leitfaden
+
+Dieser Leitfaden kann kostenlos kopiert, weitergegeben und sogar abgeändert werden. Er kann auch als PDF-Datei heruntergeladen werden (allerdings ist die Online-Version praktischer, da damit die Videos angesehen und die interaktiven Aktivitäten ausgeführt werden können). Das Quellenmaterial (alle Textmaterialien, Abbildungen, Videos und interaktiven Programme) sind über den „GitHub“-Link in der Fußzeile dieser Seite verfügbar.
+
+Der Leitfaden ist unter eine [Creative Commons Attribution-ShareAlike Lizenz](http://creativecommons.org/licenses/by-sa/4.0/) lizenziert und darf daher gerne kopiert und abgeändert werden. Wir bitten jedoch darum, etwaige Abänderungen öffentlich zugänglich zu machen und diesen Leitfaden durch Verlinkung mit unserer Website zu würdigen. Sie können den Leitfaden (oder etwaige Ableitungen davon) weitergeben, zum Unterrichten verwenden oder für gewerbliche Zwecke nutzen.
+
+Der Computer Science Field Guide wurde von der [Computer Science Education Research Group der University of Canterbury](http://www.cosc.canterbury.ac.nz/research/RG/CSE/) entwickelt und wird von diversen großzügigen Gruppen finanziert. Eine Liste der Unterstützer ist über der Fußzeile dieser Seite aufgeführt. Selbstverständlich freuen wir uns sehr über Spenden, um die weitere Ausarbeitung dieses Leitfadens zu fördern.

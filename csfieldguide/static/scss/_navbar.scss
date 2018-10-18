@@ -33,13 +33,46 @@
     padding-left: 0.4rem !important;
     padding-right: 0.4rem !important;
   }
-  .icon {
-    display: block;
-    margin: auto;
-    width: 1em;
-    height: 1em;
-    stroke-width: 0;
-    stroke: #fff;
-    fill: #fff;
+}
+
+#navbarLanguageSelector {
+  padding: 4px 7.25px;
+  font-size: 1.25rem;
+  line-height: 1;
+  background-color: transparent;
+  border: 1px solid $white;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+@include media-breakpoint-up("md") {
+  #navbarLanguageSelector {
+    border-color: transparent;
   }
+  #navbarLanguageSelector:hover,
+  #navbarLanguageSelector:focus {
+    border-color: $white;
+  }
+}
+#navbarLanguageDropdown.dropdown-menu-right {
+  right: 0;
+  left: auto;
+}
+
+.icon {
+  display: block;
+  margin: auto;
+  stroke-width: 0;
+  stroke: $white;
+  fill: $white;
+}
+.icon-language {
+  height: 1.5em;
+}
+.icon-search {
+  width: 1em;
+  height: 1em;
+}
+button:hover .icon-search {
+  stroke: $red;
+  fill: $red;
 }
