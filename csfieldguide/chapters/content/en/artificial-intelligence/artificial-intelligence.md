@@ -1,7 +1,5 @@
 # Artificial Intelligence
 
-# What's the big picture?
-
 Artificial Intelligence conjures up all sorts of images — perhaps you think of friendly systems that can talk to you and solve tough problems; or maniac robots that are bent on world domination?
 There's the promise of driverless cars that are safer than human drivers, and the worry of  medical advice systems that hold people's lives in their virtual hands.
 The field of Artificial Intelligence is a part of computer science that has a lot of promise and also raises a lot of concerns.

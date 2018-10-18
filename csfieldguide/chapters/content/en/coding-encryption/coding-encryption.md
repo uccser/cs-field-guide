@@ -1,7 +1,5 @@
 # Coding - Encryption
 
-# What's the big picture?
-
 Encryption is used to keep data secret.
 In its simplest form, a file or data transmission is garbled so that only authorised people with a secret "key" can unlock the original text.
 If you're using digital devices then you'll be using systems based on encryption all the time: when you use online banking, when you access data through wifi, when you pay for something with a credit card (either by swiping, inserting or tapping), in fact, nearly every activity will involve layers of encryption.

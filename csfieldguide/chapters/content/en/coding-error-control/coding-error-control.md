@@ -1,7 +1,5 @@
 # Coding - Error Control
 
-# What's the big picture?
-
 {panel type="teacher-note"}
 
 # Using the parity trick in a classroom

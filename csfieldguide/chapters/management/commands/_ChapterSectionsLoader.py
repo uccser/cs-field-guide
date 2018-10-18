@@ -11,6 +11,8 @@ from utils.check_required_files import check_interactives
 class ChapterSectionsLoader(TranslatableModelLoader):
     """Custom loader for loading chapter sections."""
 
+    extra_converter_templates_directory = "chapter-section"
+
     def __init__(self, factory, chapter, **kwargs):
         """Create the loader for loading chapter sections.
 

@@ -12,8 +12,6 @@ The best way to provide feedback is through the "Feedback" link at the bottom of
 
 {panel end}
 
-# What's the big picture?
-
 Why is it that people have a love-hate relationship with computers?
 Why are some people so fanatical about particular types of computers, while others have been so angry at digital devices that they have been physically violent with them?
 And what does this have to do with computer science?

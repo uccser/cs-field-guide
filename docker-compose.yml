@@ -18,7 +18,7 @@ services:
       - USE_DOCKER=yes
       - DATABASE_URL=postgres://postgres@postgres:5434/postgres
       - DJANGO_SETTINGS_MODULE=config.settings.local
-      - INCLUDE_INCONTEXT_L10N=True
+      - INCLUDE_INCONTEXT_L10N=False
     depends_on:
       - postgres
 
@@ -28,11 +28,9 @@ services:
       dockerfile: ./infrastructure/nginx/Dockerfile
     volumes:
       - ./csfieldguide/:/app/
-      - node_modules:/app/node_modules
+      - /app/node_modules
     depends_on:
       - django
     ports:
       - "81:80"
 
-volumes:
-  node_modules:
