@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-10 22:43+0000\n"
+"POT-Creation-Date: 2018-10-18 07:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: config/settings/base.py:120
+#: config/settings/base.py:124
 msgid "Translation mode"
 msgstr ""
 
-#: config/settings/base.py:126
+#: config/settings/base.py:130
 msgid "Translation mode (Bi-directional)"
 msgstr ""
 
@@ -45,14 +45,12 @@ msgstr ""
 msgid "Home page"
 msgstr ""
 
-#: templates/404.html:24 templates/base.html:54 templates/base.html:59
-#: templates/base.html:204 templates/search/search.html:9
-#: templates/search/search.html:27 templates/search/search.html:30
-#: templates/search/search.html:63
+#: templates/404.html:26 templates/base.html:79 templates/base.html:84
+#: templates/base.html:214
 msgid "Search"
 msgstr ""
 
-#: templates/appendices/index.html:17 templates/base.html:164
+#: templates/appendices/index.html:17 templates/base.html:172
 msgid "About"
 msgstr ""
 
@@ -68,11 +66,11 @@ msgstr ""
 msgid "Curriculum Guides"
 msgstr ""
 
-#: templates/appendices/index.html:38 templates/base.html:209
+#: templates/appendices/index.html:38 templates/base.html:220
 msgid "Glossary"
 msgstr ""
 
-#: templates/appendices/index.html:43 templates/base.html:174
+#: templates/appendices/index.html:43 templates/base.html:182
 #: templates/interactives/index.html:7
 msgid "Interactives"
 msgstr ""
@@ -87,56 +85,60 @@ msgid ""
 "computer science"
 msgstr ""
 
-#: templates/base.html:46 templates/base.html:169
+#: templates/base.html:48
+msgid "Language"
+msgstr ""
+
+#: templates/base.html:69 templates/base.html:177
 #: templates/chapters/index.html:8
 msgid "Chapters"
 msgstr ""
 
-#: templates/base.html:49
+#: templates/base.html:72
 msgid "Appendices"
 msgstr ""
 
-#: templates/base.html:141
+#: templates/base.html:149
 msgid ""
 "Looking for something for primary schools? Check out <a href=\"http://www."
 "csunplugged.org/\">CS Unplugged</a>."
 msgstr ""
 
-#: templates/base.html:153
+#: templates/base.html:161
 msgid ""
 "The Computer Science Field Guide is an online interactive resource for high "
 "school students learning about computer science."
 msgstr ""
 
-#: templates/base.html:160
+#: templates/base.html:168
 msgid "Useful Links"
 msgstr ""
 
-#: templates/base.html:180
+#: templates/base.html:188
 msgid "Community"
 msgstr ""
 
-#: templates/base.html:184
+#: templates/base.html:192
 msgid "Twitter"
 msgstr ""
 
-#: templates/base.html:189
+#: templates/base.html:197
 msgid "YouTube"
 msgstr ""
 
-#: templates/base.html:194
+#: templates/base.html:202
 msgid "GitHub"
 msgstr ""
 
-#: templates/base.html:200
+#: templates/base.html:208
 msgid "Help"
 msgstr ""
 
-#: templates/base.html:214
+#: templates/base.html:225
 msgid "Feedback"
 msgstr ""
 
-#: templates/base.html:236
+#: templates/base.html:260
 msgid ""
 "The Computer Science Field Guide material is open source on <a href="
 "\"https://github.com/uccser/cs-field-guide\">GitHub</a>, and this website's "
@@ -149,12 +151,12 @@ msgid ""
 "<a href=\"https://icons8.com/\">icons8</a>."
 msgstr ""
 
-#: templates/base.html:260
+#: templates/base.html:284
 #, python-format
 msgid "This definition is not available in %(language)s, sorry!"
 msgstr ""
 
-#: templates/base.html:267 templates/general/index.html:50
+#: templates/base.html:291
 msgid "Close"
 msgstr ""
 
@@ -176,8 +178,8 @@ msgid ""
 "computer science."
 msgstr ""
 
-#: templates/general/index.html:49
-msgid "Computer Science Field Guide Trailer"
+#: templates/general/index.html:29
+msgid "View the chapters"
 msgstr ""
 
 #: templates/generic/not-available-badge.html:4
@@ -881,7 +883,7 @@ msgstr ""
 msgid "Codes are generated with no dashes/spaces/etc"
 msgstr ""
 
-#: templates/interactives/off-by-one.html:8 templates/search/search.html:60
+#: templates/interactives/off-by-one.html:8
 msgid "Clear form"
 msgstr ""
 
@@ -1145,28 +1147,4 @@ msgstr ""
 
 #: templates/interactives/unicode-length.html:19
 msgid "UTF-32:</b> <span id=\"interactive-unicode-length-utf32\">0 bits"
-msgstr ""
-
-#: templates/search/search.html:46
-msgid "Filter by type"
-msgstr ""
-
-#: templates/search/search.html:68
-msgid "Results"
-msgstr ""
-
-#: templates/search/search.html:101
-msgid "Previous page"
-msgstr ""
-
-#: templates/search/search.html:106
-msgid "Next page"
-msgstr ""
-
-#: templates/search/search.html:111
-msgid "Jump to page:"
-msgstr ""
-
-#: templates/search/search.html:122
-msgid "No results found."
 msgstr ""
