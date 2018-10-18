@@ -18,14 +18,17 @@
   justify-content: center;
 }
 
-.sorting-algorithms-interactive-item,
-.sorting-algorithms-interactive-scale {
+.sorting-algorithms-interactive-item {
   background-color: white;
+  .scale {
+    overflow: hidden;
+    div {
+      height: 100%;
+    }
+  }
 }
 
-.sorting-algorithms-interactive-item,
-.sorting-algorithms-interactive-scale,
-#scale-div {
+.sorting-algorithms-interactive-item {
   margin: 0.2em;
   $box-size: 8vw;
   width: $box-size;
@@ -45,8 +48,6 @@
   }
 }
 
-#left-scale,
-#right-scale,
 .sorting-algorithms-interactive-item {
   border: 2px dashed #000;
 }
@@ -73,20 +74,8 @@
   height: 150px;
 }
 
-.sorting-algorithms-interactive-scale {
-  overflow: hidden;
-}
-
-// #scale-div {
-//   height: 100%;
-//   text-align: center;
-// }
-
 #scale {
   transition-duration: 1s;
-  // height & width needs to be changed so is responsive
-  // height: 111.59px;
-  // width: 111.59px;
 }
 
 #scale-text p {
@@ -101,10 +90,6 @@
 
 .sorting-algorithms-order-reminder-text {
   font-weight: bold;
-}
-
-.sorting-algorithms-interactive-scale > div {
-  height: 100%;
 }
 
 #check-order-result-text-correct,
