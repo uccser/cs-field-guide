@@ -7,7 +7,8 @@ var last_right_image;
 
 window.onload = function() {
     var images_to_sort = document.getElementsByClassName('to-sort');
-    const data_weights = [1, 2, 3, 4, 5, 6, 7, 8];
+    const data_weights = [1, 2, 3, 4, 5, 6, 7, 8]; // weights of the images, used for comparisons
+    // shuffle the weights and assign them to each image
     var shuffled_weights = shuffle(data_weights);
     for (var i = 0; i < images_to_sort.length; i++) {
         var image = images_to_sort[i];
@@ -41,28 +42,12 @@ function shuffle(array) {
 }
 
 $(function() {
-    var image_list = [];
-    var alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('');
-    for (var i = 0; i < alphabet.length; i++) {
-        image_list.push(document.getElementById('box-' + alphabet[i]));
-    }
+    var image_list = $('.sorting-algorithms-interactive-item').toArray();
     var drake = dragula(image_list);
-    drake.on('drop', (target, source) => {
-        console.log(source.children.length);
-        if (source.children.length == 2) { // means an element has been dropped in this div
-            swap(target, source);
-        } else if (source.children.length == 1) {
-            var source_div_id = source.id.slice(0, 5);
-            var target_div_id = target.id.slice(0, 5);
-            var target = document.getElementById(target_div_id);
-            console.log(source.children[0]);
-            console.log(source_div_id);
-            console.log(target_div_id);
-            var source = document.getElementById(source_div_id);
-            target.appendChild(source.children[0]);
-            var tmp_id = target.id;
-            target.id = source.id;
-            source.id = tmp_id;
+    drake.on('drop', (image, target_container, source_container) => {
+        // If an image is dragged on top of another image..
+        if (target_container.children.length == 2) {
+            swap(image, target_container, source_container);
         }
         compareWeights();
     });
@@ -71,37 +56,21 @@ $(function() {
     });
 });
 
-function swap(target, source) {
-    // get id of moved image
-    var moved_img_id = target.id;
-    
-    // get the div that the moved image came from
-    var target_div_id = moved_img_id.slice(0, 5);
-    var target = document.getElementById(target_div_id);
-    
-    // figure out which image needs to be moved
-    var img_to_move;
-    if (source.children[0].id != moved_img_id) {
-        img_to_move = source.children[0];
-    } else if (source.children[1].id != moved_img_id) {
-        img_to_move = source.children[1];
-    }
-
-    target.appendChild(img_to_move);
-
-    var tmp_id = target.id;
-    target.id = source.id;
-    source.id = tmp_id;
+function swap(image, target_container, source_container) {
+    // save the original image in target_container to a temp var
+    temp = target_container.children[0];
+    // image is original image in source_container. Swap the images.
+    target_container.appendChild(image);
+    source_container.appendChild(temp);
 }
 
 function compareWeights() {
     var left_weight_div = document.getElementsByClassName('left-weight-content')[0];
     var right_weight_div = document.getElementsByClassName('right-weight-content')[0];
-    console.log(left_weight_div);
     var left_weight = getDataWeight(left_weight_div);
     var right_weight = getDataWeight(right_weight_div);
 
-    // check if both are placeholder images
+    // check if left and right are empty
     if (left_weight == 0 && right_weight == 0) {
         rotateIndicator('middle');
     } else {
@@ -117,6 +86,7 @@ function compareWeights() {
 }
 
 function rotateIndicator(direction) {
+    // point to the heaviest box
     indicator = document.getElementById('scale');
     if (direction == 'left') {
         indicator.classList.remove('middle');
