@@ -34,6 +34,10 @@ img.sorting-boxes {
   &:last-child {
     display: block;
   }
+  cursor: grab;
+  &.gu-mirror {
+    cursor: grabbing;
+  }
 }
 
 #scale {
