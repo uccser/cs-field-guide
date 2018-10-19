@@ -6,8 +6,8 @@ var last_left_image;
 var last_right_image;
 
 window.onload = function() {
-    var images_to_sort = document.getElementsByClassName('to-sort');
-    const data_weights = [1, 2, 3, 4, 5, 6, 7, 8]; // weights of the images, used for comparisons
+    var images_to_sort = document.getElementsByClassName('sorting-boxes');
+    const data_weights = [0, 1, 2, 3, 4, 5, 6, 7]; // weights of the images, used for comparisons
     // shuffle the weights and assign them to each image
     var shuffled_weights = shuffle(data_weights);
     for (var i = 0; i < images_to_sort.length; i++) {
@@ -17,8 +17,8 @@ window.onload = function() {
     var url_string = window.location.href;
     var url = new URL(url_string);
     var method = url.searchParams.get("method");
-    if (method != 'quick') {
-        document.getElementById('sorting-algorithms-interactive-item-unsorted-row-2').style.display = 'none';
+    if (method == 'quick') {
+        document.getElementById('sorting-algorithms-interactive-item-unsorted-row-2').style.display = 'flex';
     }
 }
 
@@ -42,7 +42,7 @@ function shuffle(array) {
 }
 
 $(function() {
-    var image_list = $('.sorting-algorithms-interactive-item').toArray();
+    var image_list = $('.dashed-box').toArray();
     var drake = dragula(image_list);
     drake.on('drop', (image, target_container, source_container) => {
         // If an image is dragged on top of another image..
@@ -65,14 +65,14 @@ function swap(image, target_container, source_container) {
 }
 
 function compareWeights() {
-    var left_weight_div = document.getElementsByClassName('left-weight-content')[0];
-    var right_weight_div = document.getElementsByClassName('right-weight-content')[0];
+    var left_weight_div = document.getElementById('left-weight-content');
+    var right_weight_div = document.getElementById('right-weight-content');
     var left_weight = getDataWeight(left_weight_div);
     var right_weight = getDataWeight(right_weight_div);
 
     // check if left and right are empty
     if (left_weight == 0 && right_weight == 0) {
-        rotateIndicator('middle');
+        rotateIndicator('up');
     } else {
         if (left_weight > right_weight) { // left is heavier
             rotateIndicator('left');
@@ -85,57 +85,48 @@ function compareWeights() {
     }
 }
 
+
 function rotateIndicator(direction) {
     // point to the heaviest box
     indicator = document.getElementById('scale');
     if (direction == 'left') {
-        indicator.classList.remove('middle');
-        indicator.classList.remove('rotate-right');
-        indicator.classList.add('rotate-left');
-    } else if (direction == 'middle') {
-        indicator.classList.remove('rotate-left');
-        indicator.classList.remove('rotate-right');
-        indicator.classList.add('middle');
+        indicator.classList.remove('point-up');
+        indicator.classList.remove('point-right');
+        indicator.classList.add('point-left');
+    } else if (direction == 'up') {
+        indicator.classList.remove('point-left');
+        indicator.classList.remove('point-right');
+        indicator.classList.add('point-up');
     } else { //right
-        indicator.classList.remove('middle');
-        indicator.classList.remove('rotate-left');
-        indicator.classList.add('rotate-right');
+        indicator.classList.remove('point-up');
+        indicator.classList.remove('point-left');
+        indicator.classList.add('point-right');
     }
 }
 
 
 function countComparisons() {
-    left_image = document.getElementsByClassName('left-weight-content')[0].children[0];
-    right_image = document.getElementsByClassName('right-weight-content')[0].children[0];
+    left_image = document.getElementById('left-weight-content').children[0];
+    right_image = document.getElementById('right-weight-content').children[0];
     if ((left_image != last_left_image) || (right_image != last_right_image)) {
         comparisons += 1
-        document.getElementById('comparison-counter-number').innerText = comparisons;
+        fmts = gettext('Number Of Comparisons: %(comparisons)s');
+        s = interpolate(fmts, {comparisons: comparisons}, true);
+        document.getElementById('comparison-counter-text').innerText = s;
         last_left_image = left_image;
         last_right_image = right_image;
     }
 }
 
+
 function checkOrder() {
-    var ordered_boxes = document.getElementsByClassName('ordered-box-content');
+    var ordered_boxes = document.getElementById('sorting-algorithms-interactive-item-sorted-row').children;
     var sorted = true;
-    var weights = []
     for (var i = 0; i < ordered_boxes.length; i++) {
         element = ordered_boxes[i];
         var weight = getDataWeight(element);
-        if (weight > 0) {
-            weights.push(weight);
-        }
-    }
-    if (weights.length < 8) {
-        sorted = false;
-    } else {
-        var previous_weight = weights[0];
-        for (var i = 0; i < weights.length; i++) {
-            var weight = weights[i];
-            if (parseInt(weight) < parseInt(previous_weight)) {
-                sorted = false
-            }
-            previous_weight = weight;
+        if (weight != i) {
+            sorted = false;
         }
     }
     if (sorted) {
@@ -147,12 +138,12 @@ function checkOrder() {
     }
 }
 
+
 function getDataWeight(element) {
     var data_weight = 0;
     // If the box is not empty
     if (element.hasChildNodes()) {
         data_weight = element.children[0].dataset.weight;
     }
-
     return data_weight;
 }

@@ -3,93 +3,42 @@
 @import "node_modules/bootstrap/scss/variables";
 @import "node_modules/bootstrap/scss/mixins";
 
-.sorting-algorithms-interactive-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  margin: 10px 0;
-}
-
-.item-box-content,
-.ordered-box-content,
-.left-weight-content,
-.right-weight-content {
-  display: flex;
-  justify-content: center;
-}
-
-.sorting-algorithms-interactive-item {
+.dashed-box {
+  
   background-color: white;
-  .scale {
-    overflow: hidden;
-    div {
-      height: 100%;
+  border: 2px dashed #222;
+}
+
+.square {
+  margin: 0.2em;
+  $box-size: 30px;
+  width: $box-size;
+  height: $box-size;
+  max-width: $box-size;
+  @each $size, $width in $container-max-widths {
+    @include media-breakpoint-only($size) {
+      $box-size: $width / 10;
+      width: $box-size;
+      height: $box-size;
+      max-width: $box-size;
     }
   }
 }
 
-.sorting-algorithms-interactive-item {
-  margin: 0.2em;
-  $box-size: 8vw;
-  width: $box-size;
-  height: $box-size;
-  max-width: $box-size;
-  @include media-breakpoint-up(lg) {
-    $box-size: 6vw;
-    width: $box-size;
-    height: $box-size;
-    max-width: $box-size;
-  }
-  @include media-breakpoint-up(xl) {
-    $box-size: 4vw;
-    width: $box-size;
-    height: $box-size;
-    max-width: $box-size;
-  }
-}
-
-.sorting-algorithms-interactive-item {
-  border: 2px dashed #000;
-}
-
-.item-box-content img,
-.ordered-box-content img,
-.left-weight-content img,
-.right-weight-content img {
+img.sorting-boxes {
+  touch-action: none;
   height: 100%;
   width: 100%;
   padding: 2px;
   overflow: hidden;
   display: none;
-}
-
-.item-box-content img:last-child,
-.ordered-box-content img:last-child,
-.left-weight-content img:last-child,
-.right-weight-content img:last-child {
-  display: block;
-}
-
-.sorting-algorithms-interactive-scale-row {
-  height: 150px;
+  &:last-child {
+    display: block;
+  }
 }
 
 #scale {
-  transition-duration: 1s;
-}
-
-#scale-text p {
-  margin: auto;
-  text-align: center;
-}
-
-#sorting-algorithms-order-reminder {
-  display: flex;
-  justify-content: space-between;
-}
-
-.sorting-algorithms-order-reminder-text {
-  font-weight: bold;
+  transition: transform 1s;
 }
 
 #check-order-result-text-correct,
@@ -97,27 +46,14 @@
   display: none;
 }
 
-#comparison-counter-prefix,
-#comparison-counter-number {
-  display: inline-block;
-}
-
-#comparison-counter-number {
-  margin-left: 5px;
-}
-
-#sorting-algorithms-result {
-  text-align: center;
-}
-
-.rotate-left {
+.point-left {
   transform: rotate(0deg);
 }
 
-.middle {
+.point-up {
   transform: rotate(90deg);
 }
 
-.rotate-right {
+.point-right {
   transform: rotate(180deg);
 }
