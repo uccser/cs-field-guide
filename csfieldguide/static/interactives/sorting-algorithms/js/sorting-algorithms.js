@@ -4,6 +4,7 @@ const dragula = require('./../../../../node_modules/dragula/dragula');
 var comparisons = 0;
 var last_left_image;
 var last_right_image;
+var empty_weight = -1;
 
 window.onload = function() {
     var images_to_sort = document.getElementsByClassName('sorting-boxes');
@@ -77,7 +78,7 @@ function compareWeights() {
     var right_weight = getDataWeight(right_weight_div);
 
     // check if left and right are empty
-    if (left_weight == 0 && right_weight == 0) {
+    if (left_weight == empty_weight && right_weight == empty_weight) {
         rotateIndicator('up');
     } else {
         if (left_weight > right_weight) { // left is heavier
@@ -85,7 +86,7 @@ function compareWeights() {
         } else if (right_weight > left_weight) { // right is heavier
             rotateIndicator('right');
         }
-        if (left_weight != 0 && right_weight != 0) {
+        if (left_weight != empty_weight && right_weight != empty_weight) {
             countComparisons();
         }
     }
@@ -171,7 +172,7 @@ function toggleSecondRow() {
 
 
 function getDataWeight(element) {
-    var data_weight = -1;
+    var data_weight = empty_weight;
     // If the box is not empty
     if (element.hasChildNodes()) {
         data_weight = element.children[0].dataset.weight;
