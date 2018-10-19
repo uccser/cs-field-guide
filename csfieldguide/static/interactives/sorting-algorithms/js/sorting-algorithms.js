@@ -49,6 +49,7 @@ $(function() {
         if (target_container.children.length == 2) {
             swap(image, target_container, source_container);
         }
+        document.getElementById('check-order-result-text-feedback').innerHTML = "<br>";
         compareWeights();
     });
     $('#check-sorted-button').on('click', function () {
@@ -130,11 +131,11 @@ function checkOrder() {
         }
     }
     if (sorted) {
-        document.getElementById('check-order-result-text-correct').style.display = 'block';
-        document.getElementById('check-order-result-text-incorrect').style.display = 'none';
+        s = gettext('The boxes are in order!');
+        document.getElementById('check-order-result-text-feedback').innerText = s;
     } else {
-        document.getElementById('check-order-result-text-correct').style.display = 'none';
-        document.getElementById('check-order-result-text-incorrect').style.display = 'block';
+        s = gettext('The boxes are not in order!');
+        document.getElementById('check-order-result-text-feedback').innerText = s;
     }
 }
 
