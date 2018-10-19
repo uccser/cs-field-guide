@@ -34,7 +34,6 @@
     "browserify": "~16.2.2",
     "child_process": "1.0.2",
     "del": "3.0.0",
-    "dragula": "3.7.2",
     "gulp": "3.9.1",
     "gulplog": "1.0.0",
     "gulp-babel": "7.0.1",
