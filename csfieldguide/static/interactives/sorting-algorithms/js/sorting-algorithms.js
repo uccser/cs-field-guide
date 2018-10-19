@@ -17,8 +17,10 @@ window.onload = function() {
     var url_string = window.location.href;
     var url = new URL(url_string);
     var method = url.searchParams.get("method");
+    var button = document.getElementById("toggle-second-row");
+    button.innerText = gettext('Show second row of boxes');
     if (method == 'quick') {
-        document.getElementById('sorting-algorithms-interactive-item-unsorted-row-2').style.display = 'flex';
+        toggleSecondRow();
     }
 }
 
@@ -54,6 +56,9 @@ $(function() {
     });
     $('#check-sorted-button').on('click', function () {
         checkOrder();
+    });
+    $('#toggle-second-row').on('click', function () {
+        toggleSecondRow();
     });
 });
 
@@ -143,6 +148,25 @@ function checkOrder() {
             document.getElementById('check-order-result-text-feedback').innerText = s;
         }
     }
+}
+
+
+function toggleSecondRow() {
+    var row = document.getElementById('sorting-algorithms-interactive-item-unsorted-row-2');
+    var button = document.getElementById('toggle-second-row');
+    row.classList.toggle('d-flex');
+    if (row.classList.contains('d-flex')) {
+        s = gettext('Hide second row of boxes');
+    } else {
+        s = gettext('Show second row of boxes');
+        var images_to_move = row.getElementsByTagName('img');
+        var empty_boxes = $('#sorting-algorithms-interactive-item-unsorted-row-1 > div:not(:has(*))').toArray();
+        while (images_to_move.length > 0) {
+            empty_boxes[0].appendChild(images_to_move[0]);
+            empty_boxes.shift();
+        }
+    }
+    button.innerText = s;
 }
 
 

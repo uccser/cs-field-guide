@@ -4,12 +4,12 @@
 {% load static %}
 
 {% block html %}
-  <div id="sorting-algorithms-interactive" class="row mt-3">
-    <div class="col-12 text-center">
-      <h1 id="heading">{% trans "Sorting Algorithms" %}</h1>
-    </div>
-    <div id="content" class="container">
-      <div id="sorting-algorithms-interactive-item-unsorted-row-1" class="d-flex justify-content-between mb-3">
+<div id="sorting-algorithms-interactive" class="row mt-3">
+  <div class="col-12 text-center">
+    <h1 id="heading">{% trans "Sorting Algorithms" %}</h1>
+  </div>
+  <div id="content" class="container">
+    <div id="sorting-algorithms-interactive-item-unsorted-row-1" class="d-flex justify-content-between mb-3">
         <div class="dashed-box square">
           <img class="sorting-boxes" data-weight="" src="{% static 'img/interactives/colourful-box-images/square1-256px.png' %}">
         </div>
@@ -54,7 +54,6 @@
         <div class="dashed-box square"></div>
       </div>
 
-
       <div class="d-flex justify-content-center">
         <div id="left-weight-content" class="dashed-box square"></div>
         <img id="scale" class="item-box-content point-up square" src="{% static 'interactives/sorting-algorithms/img/scalebar-sheet0.png' %}">
@@ -91,6 +90,7 @@
         </p>
         <button class="btn btn-primary mb-3" type="button" id="check-sorted-button">{% trans "Check Order" %}</button>
         <p id="comparison-counter-text"></p>
+        <button class="btn btn-secondary btn-sm" type="button" id="toggle-second-row"></button>
       </div>
     </div>
   </div>
