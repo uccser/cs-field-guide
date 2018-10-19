@@ -121,27 +121,33 @@ function countComparisons() {
 
 
 function checkOrder() {
-    var ordered_boxes = document.getElementById('sorting-algorithms-interactive-item-sorted-row').children;
-    var sorted = true;
-    for (var i = 0; i < ordered_boxes.length; i++) {
-        element = ordered_boxes[i];
-        var weight = getDataWeight(element);
-        if (weight != i) {
-            sorted = false;
-        }
-    }
-    if (sorted) {
-        s = gettext('The boxes are in order!');
+    var ordered_boxes_row = document.getElementById('sorting-algorithms-interactive-item-sorted-row');
+    if (ordered_boxes_row.getElementsByTagName("img").length != 8) {
+        s = gettext('You need to sort all the boxes before checking!');
         document.getElementById('check-order-result-text-feedback').innerText = s;
     } else {
-        s = gettext('The boxes are not in order!');
-        document.getElementById('check-order-result-text-feedback').innerText = s;
+        var ordered_boxes = ordered_boxes_row.children;
+        var sorted = true;
+        for (var i = 0; i < ordered_boxes.length; i++) {
+            element = ordered_boxes[i];
+            var weight = getDataWeight(element);
+            if (weight != i) {
+                sorted = false;
+            }
+        }
+        if (sorted) {
+            s = gettext('The boxes are in order!');
+            document.getElementById('check-order-result-text-feedback').innerText = s;
+        } else {
+            s = gettext('The boxes are not in order!');
+            document.getElementById('check-order-result-text-feedback').innerText = s;
+        }
     }
 }
 
 
 function getDataWeight(element) {
-    var data_weight = 0;
+    var data_weight = -1;
     // If the box is not empty
     if (element.hasChildNodes()) {
         data_weight = element.children[0].dataset.weight;
