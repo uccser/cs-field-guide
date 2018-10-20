@@ -35,7 +35,6 @@ window.addEventListener("DOMContentLoaded", function() {
 	document.getElementById('interactive-searching-algorithms-next-level').addEventListener("click", nextLevel);
 	document.getElementById('interactive-searching-algorithms-restart-level').addEventListener("click", restartLevel);
 	document.getElementById('interactive-searching-algorithms-restart-start-level').addEventListener("click", goToStartLevel);
-
 	var url_string = window.location.href;
 	setInterfaceParameters(url_string);
 	setUpInterface();
@@ -61,7 +60,6 @@ function setInterfaceParameters(url_string) {
 
 
 function setUpInterface() {
-	console.log(sorted);
 	// fill in the rules
 	document.getElementById('interactive-searching-algorithms-num-boxes').innerText = num_boxes;
 	document.getElementById('interactive-searching-algorithms-num-guesses').innerText = num_guesses;
@@ -92,9 +90,17 @@ function setUpInterface() {
 		box_div.removeChild(box_div.firstChild);
 	}
 
+	var weight_list = []
 	for (var i = 0; i < num_boxes; i++) {
+		weight_list.push(Math.floor(Math.random() * Math.floor(999)) + 1);
+	}
+	if (sorted == "Sorted") {
+		weight_list.sort();
+	}
+
+	for (var i = 0; i < num_boxes; i++) {
+		var weight = weight_list[i];
 		var random_square_number = Math.floor(Math.random() * Math.floor(15));
-		var weight = Math.floor(Math.random() * Math.floor(999)) + 1;
 		var src_string = colourful_box_images[random_square_number];
 		
 		var img_div = document.createElement('div');
@@ -167,7 +173,6 @@ function fadeBox(event) {
 function disableBoxes() {
 	var box_divs = document.getElementById('interactive-searching-algorithms-boxes').children;
 	for (var i = 0; i < box_divs.length; i++) {
-		console.log(box_divs[i].children[0]);
 		box_divs[i].children[0].removeEventListener("click", fadeBox);
 	}
 }
@@ -184,7 +189,6 @@ function nextLevel() {
 
 function restartLevel() {
 	found = false;
-	console.log('restart level');
 	setNextLevelParameters(current_level);
 	setUpInterface();
 }
