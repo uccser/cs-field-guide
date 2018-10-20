@@ -6,6 +6,7 @@ var end_level;
 var current_level;
 var num_boxes;
 var sorted;
+var found = false;
 
 var preset_levels = {
 	1: {
@@ -60,6 +61,7 @@ function setInterfaceParameters(url_string) {
 
 
 function setUpInterface() {
+	console.log(sorted);
 	// fill in the rules
 	document.getElementById('interactive-searching-algorithms-num-boxes').innerText = num_boxes;
 	document.getElementById('interactive-searching-algorithms-num-guesses').innerText = num_guesses;
@@ -71,6 +73,12 @@ function setUpInterface() {
 		found_text.classList.remove('show-message');
 		found_text.classList.add('hide-message');
 	}
+	var no_guesses = document.getElementById('interactive-searching-algorithms-no-guesses');
+	if (no_guesses.classList.contains('show-message')) {
+		no_guesses.classList.remove('show-message');
+		no_guesses.classList.add('hide-message');
+	}
+
 
 	var rules_div = document.getElementById('interactive-searching-algorithms-default-rules');
 	rules_div.classList.remove('hide-message');
@@ -128,12 +136,15 @@ function setNextLevelParameters(level) {
 
 
 function fadeBox(event) {
-	var clicked_img = event.srcElement;
-	var img_weight = clicked_img.nextElementSibling;
-	clicked_img.classList.add('fade');
-	img_weight.classList.add('show');
+	var clicked_box = event.srcElement;
+	clicked_box.classList.add('fade'); // fade clicked box
+	
+	var box_weight = clicked_box.nextElementSibling;
+	box_weight.classList.add('show'); // show weight of clicked box
+
 	decreaseGuessCount();
-	if (target == img_weight.innerText) {
+	if (target == box_weight.innerText) {
+		found = true;
 		// hide rules
 		document.getElementById('interactive-searching-algorithms-default-rules').classList.remove('show-message');
 		document.getElementById('interactive-searching-algorithms-default-rules').classList.add('hide-message');
@@ -142,6 +153,8 @@ function fadeBox(event) {
 		document.getElementById('interactive-searching-algorithms-found').classList.remove('hide-message');
 		document.getElementById('interactive-searching-algorithms-found').classList.add('show-message');
 		document.getElementById('interactive-searching-algorithms-num-guesses-used').innerText = num_guesses_used;
+		// disable boxes
+		disableBoxes();
 		// show next button
 		if (current_level < end_level) {
 			document.getElementById('interactive-searching-algorithms-next-level').classList.remove('hide-message');
@@ -151,8 +164,17 @@ function fadeBox(event) {
 	}
 }
 
+function disableBoxes() {
+	var box_divs = document.getElementById('interactive-searching-algorithms-boxes').children;
+	for (var i = 0; i < box_divs.length; i++) {
+		console.log(box_divs[i].children[0]);
+		box_divs[i].children[0].removeEventListener("click", fadeBox);
+	}
+}
+
 
 function nextLevel() {
+	found = false;
 	current_level = parseInt(current_level) + 1;
 	setNextLevelParameters(current_level);
 	// set up the interface again with the new parameters
@@ -161,6 +183,7 @@ function nextLevel() {
 
 
 function restartLevel() {
+	found = false;
 	console.log('restart level');
 	setNextLevelParameters(current_level);
 	setUpInterface();
@@ -168,6 +191,7 @@ function restartLevel() {
 
 
 function goToStartLevel() {
+	found = false;
 	current_level = start_level;
 	setNextLevelParameters(current_level);
 	setUpInterface();
@@ -176,12 +200,12 @@ function goToStartLevel() {
 
 function decreaseGuessCount() {
 	num_guesses -= 1;
-	if (num_guesses == 0) { // if no more guesses then hide the rules and display no guesses left message
+	if (num_guesses == 0 && found == false) { // if no more guesses then hide the rules and display no guesses left message
 		var default_rules = document.getElementById('interactive-searching-algorithms-default-rules');
 		default_rules.classList.add('hide-message');
 		default_rules.classList.remove('show-message');
-		var no_guesses_left_message = document.getElementById('interactive-searching-algorithms-no-guesses');
-		no_guesses_left_message.classList.add('show-message');
+		document.getElementById('interactive-searching-algorithms-no-guesses').classList.add('show-message');
+		disableBoxes();
 	} else {
 		document.getElementById('interactive-searching-algorithms-num-guesses').innerText = num_guesses;
 	}
