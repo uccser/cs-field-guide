@@ -32,6 +32,9 @@ var preset_levels = {
 
 window.addEventListener("DOMContentLoaded", function() {
 	document.getElementById('interactive-searching-algorithms-next-level').addEventListener("click", nextLevel);
+	document.getElementById('interactive-searching-algorithms-restart-level').addEventListener("click", restartLevel);
+	document.getElementById('interactive-searching-algorithms-restart-start-level').addEventListener("click", goToStartLevel);
+
 	var url_string = window.location.href;
 	setInterfaceParameters(url_string);
 	setUpInterface();
@@ -76,6 +79,11 @@ function setUpInterface() {
 	target = Math.floor(Math.random() * Math.floor(num_boxes));
 	// create box elements and assign random weights
 	var box_div = document.getElementById('interactive-searching-algorithms-boxes');
+	// remove any existing boxes
+	while (box_div.firstChild) {
+		box_div.removeChild(box_div.firstChild);
+	}
+
 	for (var i = 0; i < num_boxes; i++) {
 		var random_square_number = Math.floor(Math.random() * Math.floor(15));
 		var weight = Math.floor(Math.random() * Math.floor(999)) + 1;
@@ -110,14 +118,12 @@ function setUpInterface() {
 }
 
 
-function setNextLevelParameters() {
+function setNextLevelParameters(level) {
 	// set the parameters for the next level
-	var level = parseInt(current_level) + 1;
 	num_boxes = preset_levels[level]['num-boxes']; // get num boxes parameter
     sorted = preset_levels[level]['sorted']; // get sorted/not sorted parameter
     starting_num_guesses = preset_levels[level]['num-guesses']; // get num guesses parameter
     num_guesses = starting_num_guesses;
-    current_level = level;
 }
 
 
@@ -143,18 +149,27 @@ function fadeBox(event) {
 			
 		}
 	}
-	
 }
 
 
 function nextLevel() {
-	setNextLevelParameters();
-	// remove the existing boxes
-	var box_div = document.getElementById('interactive-searching-algorithms-boxes');
-	while (box_div.firstChild) {
-		box_div.removeChild(box_div.firstChild);
-	}
+	current_level = parseInt(current_level) + 1;
+	setNextLevelParameters(current_level);
 	// set up the interface again with the new parameters
+	setUpInterface();
+}
+
+
+function restartLevel() {
+	console.log('restart level');
+	setNextLevelParameters(current_level);
+	setUpInterface();
+}
+
+
+function goToStartLevel() {
+	current_level = start_level;
+	setNextLevelParameters(current_level);
 	setUpInterface();
 }
 
