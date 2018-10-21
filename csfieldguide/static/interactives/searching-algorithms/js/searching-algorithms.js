@@ -33,7 +33,7 @@ var preset_levels = {
 
 window.addEventListener("DOMContentLoaded", function() {
 	document.getElementById('interactive-searching-algorithms-next-level').addEventListener("click", nextLevel);
-	document.getElementById('interactive-searching-algorithms-restart-level').addEventListener("click", restartLevel);
+	document.getElementById('interactive-searching-algorithms-restart-level').addEventListener("click", loadLevel);
 	document.getElementById('interactive-searching-algorithms-restart-start-level').addEventListener("click", goToStartLevel);
 	var url_string = window.location.href;
 	setInterfaceParameters(url_string);
@@ -43,12 +43,20 @@ window.addEventListener("DOMContentLoaded", function() {
 
 function setInterfaceParameters(url_string) {
 	var url = new URL(url_string);
-	num_boxes = url.searchParams.get('num-boxes'); // get num boxes parameter
-    sorted = url.searchParams.get('sorted'); // get sorted/not sorted parameter
-    starting_num_guesses = url.searchParams.get('num-guesses'); // get num guesses parameter
-    num_guesses = starting_num_guesses;
-    start_level = url.searchParams.get('start-level');
+
+	start_level = url.searchParams.get('start-level');
     end_level = url.searchParams.get('end-level');
+
+    // if start level and end level given, set the level parameters
+    if (start_level != null && end_level != null) {
+    	setNextLevelParameters(start_level);
+    } else { // else use the settings from the url parameters
+	    num_boxes = url.searchParams.get('num-boxes'); // get num boxes parameter
+	    sorted = url.searchParams.get('sorted'); // get sorted/not sorted parameter
+	    starting_num_guesses = url.searchParams.get('num-guesses'); // get num guesses parameter
+	    num_guesses = starting_num_guesses;
+    }
+    
     current_level = start_level;
 
     if (sorted == 'true') {
@@ -56,6 +64,15 @@ function setInterfaceParameters(url_string) {
     } else if (sorted == 'false') {
     	sorted = gettext('Random');
     }
+}
+
+
+function setNextLevelParameters(level) {
+	// set the parameters for the next level
+	num_boxes = preset_levels[level]['num-boxes']; // get num boxes parameter
+    sorted = preset_levels[level]['sorted']; // get sorted/not sorted parameter
+    starting_num_guesses = preset_levels[level]['num-guesses']; // get num guesses parameter
+    num_guesses = starting_num_guesses;
 }
 
 
@@ -76,7 +93,9 @@ function setUpInterface() {
 		no_guesses.classList.remove('show-message');
 		no_guesses.classList.add('hide-message');
 	}
-
+	var next_level_button = document.getElementById('interactive-searching-algorithms-next-level');
+	next_level_button.classList.remove('show-message');
+	next_level_button.classList.add('hide-message');
 
 	var rules_div = document.getElementById('interactive-searching-algorithms-default-rules');
 	rules_div.classList.remove('hide-message');
@@ -132,15 +151,6 @@ function setUpInterface() {
 }
 
 
-function setNextLevelParameters(level) {
-	// set the parameters for the next level
-	num_boxes = preset_levels[level]['num-boxes']; // get num boxes parameter
-    sorted = preset_levels[level]['sorted']; // get sorted/not sorted parameter
-    starting_num_guesses = preset_levels[level]['num-guesses']; // get num guesses parameter
-    num_guesses = starting_num_guesses;
-}
-
-
 function fadeBox(event) {
 	var clicked_box = event.srcElement;
 	clicked_box.classList.add('fade'); // fade clicked box
@@ -162,10 +172,11 @@ function fadeBox(event) {
 		// disable boxes
 		disableBoxes();
 		// show next button
+		console.log(current_level);
+		console.log(end_level);
 		if (current_level < end_level) {
 			document.getElementById('interactive-searching-algorithms-next-level').classList.remove('hide-message');
 			document.getElementById('interactive-searching-algorithms-next-level').classList.add('show-message');
-			
 		}
 	}
 }
@@ -178,27 +189,21 @@ function disableBoxes() {
 }
 
 
-function nextLevel() {
+function loadLevel(level) {
 	found = false;
-	current_level = parseInt(current_level) + 1;
 	setNextLevelParameters(current_level);
-	// set up the interface again with the new parameters
 	setUpInterface();
 }
 
-
-function restartLevel() {
-	found = false;
-	setNextLevelParameters(current_level);
-	setUpInterface();
+function nextLevel() {
+	current_level = parseInt(current_level) + 1;
+	loadLevel();
 }
 
 
 function goToStartLevel() {
-	found = false;
 	current_level = start_level;
-	setNextLevelParameters(current_level);
-	setUpInterface();
+	loadLevel();
 }
 
 
