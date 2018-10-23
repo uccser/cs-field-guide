@@ -30,6 +30,9 @@
         <a href="{% url 'chapters:chapter_section' chapter.slug section.slug %}">
           {{ section.name }}
         </a>
+        {% if not chapter_section.translation_available %}
+          {% include "generic/not-available-badge.html" %}
+        {% endif %}
       </li>
     {% endfor %}
   </ol>
