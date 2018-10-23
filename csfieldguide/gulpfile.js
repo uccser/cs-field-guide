@@ -37,7 +37,7 @@ const autoprefixer = require('autoprefixer');
 // js
 const tap = require('gulp-tap');
 const babel = require('gulp-babel');
-const uglify = require('gulp-uglify');
+const terser = require('gulp-terser');
 const browserify = require('browserify');
 const jshint = require('gulp-jshint');
 const stylish = require('jshint-stylish');
@@ -178,8 +178,7 @@ var tasks = {
       .pipe(buffer())
       .pipe(errorHandler(catchError))
       .pipe(gulpif(production, sourcemaps.init({loadMaps: true})))
-      .pipe(gulpif(production, babel({ presets: ['env'] })))
-      .pipe(gulpif(production, uglify({keep_fnames: true})))
+      .pipe(gulpif(production, terser({keep_fnames: true})))
       .pipe(gulpif(production, sourcemaps.write('./')))
       .pipe(f.restore)
       .pipe(gulp.dest('build'));
