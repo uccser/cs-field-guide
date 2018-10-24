@@ -33,7 +33,7 @@
   <ul class="list-unstyled">
     {% for section in chapter_sections %}
       <li>
-        {{ chapter.number }}.{{ section.number }}
+        {{ chapter.number }}.{{ section.number }}.
         <a href="{% url 'chapters:chapter_section' chapter.slug section.slug %}" class="ml-1{% if not section.translation_available %} text-muted{% endif %}">
           {{ section.name }}
         </a>
