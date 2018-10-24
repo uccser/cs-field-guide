@@ -45,18 +45,23 @@ function setInterfaceParameters(url_string) {
 	var url = new URL(url_string);
 
 	start_level = url.searchParams.get('start-level');
-    end_level = url.searchParams.get('end-level');
+	end_level = url.searchParams.get('end-level');
+
+	num_boxes = url.searchParams.get('num-boxes'); // get num boxes parameter
+	sorted = url.searchParams.get('sorted'); // get sorted/not sorted parameter
+	starting_num_guesses = url.searchParams.get('num-guesses'); // get num guesses parameter
 
     // if start level and end level given, set the level parameters
     if (start_level != null && end_level != null) {
     	setNextLevelParameters(start_level);
-    } else { // else use the settings from the url parameters
-	    num_boxes = url.searchParams.get('num-boxes'); // get num boxes parameter
-	    sorted = url.searchParams.get('sorted'); // get sorted/not sorted parameter
-	    starting_num_guesses = url.searchParams.get('num-guesses'); // get num guesses parameter
+    } else if (num_boxes != null && sorted != null && starting_num_guesses != null) { // else use the settings from the url parameters
 	    num_guesses = starting_num_guesses;
-    }
-    
+    } else {
+		start_level = 1;
+		end_level = 4;
+		setNextLevelParameters(start_level);
+	}
+
     current_level = start_level;
 
     if (sorted == 'true') {
@@ -121,7 +126,7 @@ function setUpInterface() {
 		var weight = weight_list[i];
 		var random_square_number = Math.floor(Math.random() * Math.floor(15));
 		var src_string = colourful_box_images[random_square_number];
-		
+
 		var img_div = document.createElement('div');
 
 		var img_weight = document.createElement('p');
@@ -136,7 +141,7 @@ function setUpInterface() {
 		img_element.setAttribute('src', src_string);
 		img_element.setAttribute('data-weight', weight);
 		img_element.addEventListener("click", fadeBox);
-		
+
 		img_div.appendChild(img_element);
 		img_div.appendChild(img_weight);
 		img_div.appendChild(img_number);
@@ -154,7 +159,7 @@ function setUpInterface() {
 function fadeBox(event) {
 	var clicked_box = event.srcElement;
 	clicked_box.classList.add('fade'); // fade clicked box
-	
+
 	var box_weight = clicked_box.nextElementSibling;
 	box_weight.classList.add('show'); // show weight of clicked box
 
