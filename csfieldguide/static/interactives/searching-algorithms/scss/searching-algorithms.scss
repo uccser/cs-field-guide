@@ -4,9 +4,16 @@
 	margin: 3px 6px;
 }
 
+#interactive-searching-algorithms-boxes-container {
+	overflow: auto;
+}
+
 #interactive-searching-algorithms-boxes {
 	display: flex;
-	overflow: auto;
+
+	div {
+		margin: auto;
+	}
 }
 
 #interactive-searching-algorithms-boxes img {
