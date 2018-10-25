@@ -47,19 +47,19 @@ function setInterfaceParameters(url_string) {
 	start_level = url.searchParams.get('start-level');
 	end_level = url.searchParams.get('end-level');
 
-	num_boxes = url.searchParams.get('num-boxes'); // get num boxes parameter
-	sorted = url.searchParams.get('sorted'); // get sorted/not sorted parameter
-	starting_num_guesses = url.searchParams.get('num-guesses'); // get num guesses parameter
+	num_boxes = url.searchParams.get('num-boxes');
+	sorted = url.searchParams.get('sorted');
+	starting_num_guesses = url.searchParams.get('num-guesses');
 
     // if start level and end level given, set the level parameters
     if (start_level != null && end_level != null) {
-    	setNextLevelParameters(start_level);
-    } else if (num_boxes != null && sorted != null && starting_num_guesses != null) { // else use the settings from the url parameters
+    	setLevelParameters(start_level);
+    } else if (num_boxes != null && sorted != null && starting_num_guesses != null) { // use the settings from the url parameters
 	    num_guesses = starting_num_guesses;
-    } else {
+    } else { // no parameters given
 		start_level = 1;
 		end_level = 4;
-		setNextLevelParameters(start_level);
+		setLevelParameters(start_level);
 	}
 
     current_level = start_level;
@@ -72,12 +72,16 @@ function setInterfaceParameters(url_string) {
 }
 
 
-function setNextLevelParameters(level) {
-	// set the parameters for the next level
-	num_boxes = preset_levels[level]['num-boxes']; // get num boxes parameter
-    sorted = preset_levels[level]['sorted']; // get sorted/not sorted parameter
-    starting_num_guesses = preset_levels[level]['num-guesses']; // get num guesses parameter
-    num_guesses = starting_num_guesses;
+function setLevelParameters(level) {
+	// If using preset levels
+	if (level) {
+		num_boxes = preset_levels[level]['num-boxes'];
+		sorted = preset_levels[level]['sorted'];
+		starting_num_guesses = preset_levels[level]['num-guesses'];
+		num_guesses = starting_num_guesses;
+	} else {
+		num_guesses = starting_num_guesses;
+	}
 }
 
 
@@ -87,6 +91,11 @@ function setUpInterface() {
 	document.getElementById('interactive-searching-algorithms-num-guesses').innerText = num_guesses;
 	document.getElementById('interactive-searching-algorithms-order').innerText = sorted;
 	document.getElementById('interactive-searching-algorithms-num-guesses-used').innerText = 0;
+
+	var restart_start_level = document.getElementById('interactive-searching-algorithms-restart-start-level');
+	if (start_level == null || current_level == start_level) {
+		restart_start_level.classList.add('hide-message');
+	}
 
 	var found_text = document.getElementById('interactive-searching-algorithms-found');
 	if (found_text.classList.contains('show-message')) {
@@ -158,7 +167,8 @@ function setUpInterface() {
 
 function fadeBox(event) {
 	var clicked_box = event.srcElement;
-	clicked_box.classList.add('fade'); // fade clicked box
+	clicked_box.removeEventListener("click", fadeBox);
+	clicked_box.classList.add('fade');
 
 	var box_weight = clicked_box.nextElementSibling;
 	box_weight.classList.add('show'); // show weight of clicked box
@@ -169,16 +179,15 @@ function fadeBox(event) {
 		// hide rules
 		document.getElementById('interactive-searching-algorithms-default-rules').classList.remove('show-message');
 		document.getElementById('interactive-searching-algorithms-default-rules').classList.add('hide-message');
+
 		// show winning message
 		var num_guesses_used = starting_num_guesses - num_guesses;
 		document.getElementById('interactive-searching-algorithms-found').classList.remove('hide-message');
 		document.getElementById('interactive-searching-algorithms-found').classList.add('show-message');
 		document.getElementById('interactive-searching-algorithms-num-guesses-used').innerText = num_guesses_used;
-		// disable boxes
 		disableBoxes();
+
 		// show next button
-		console.log(current_level);
-		console.log(end_level);
 		if (current_level < end_level) {
 			document.getElementById('interactive-searching-algorithms-next-level').classList.remove('hide-message');
 			document.getElementById('interactive-searching-algorithms-next-level').classList.add('show-message');
@@ -196,7 +205,7 @@ function disableBoxes() {
 
 function loadLevel(level) {
 	found = false;
-	setNextLevelParameters(current_level);
+	setLevelParameters(current_level);
 	setUpInterface();
 }
 
