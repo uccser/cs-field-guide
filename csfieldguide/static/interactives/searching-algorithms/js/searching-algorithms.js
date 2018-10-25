@@ -107,9 +107,9 @@ function setUpInterface() {
 		no_guesses.classList.remove('show-message');
 		no_guesses.classList.add('hide-message');
 	}
-	var next_level_button = document.getElementById('interactive-searching-algorithms-next-level');
-	next_level_button.classList.remove('show-message');
-	next_level_button.classList.add('hide-message');
+	var next_level_div = document.getElementById('interactive-searching-algorithms-next-level-container');
+	next_level_div.classList.remove('show-message');
+	next_level_div.classList.add('hide-message');
 
 	var rules_div = document.getElementById('interactive-searching-algorithms-default-rules');
 	rules_div.classList.remove('hide-message');
@@ -189,8 +189,8 @@ function fadeBox(event) {
 
 		// show next button
 		if (current_level < end_level) {
-			document.getElementById('interactive-searching-algorithms-next-level').classList.remove('hide-message');
-			document.getElementById('interactive-searching-algorithms-next-level').classList.add('show-message');
+			document.getElementById('interactive-searching-algorithms-next-level-container').classList.remove('hide-message');
+			document.getElementById('interactive-searching-algorithms-next-level-container').classList.add('show-message');
 		}
 	}
 }
