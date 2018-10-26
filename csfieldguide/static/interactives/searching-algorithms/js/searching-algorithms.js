@@ -32,9 +32,9 @@ var preset_levels = {
 }
 
 window.addEventListener("DOMContentLoaded", function() {
-	document.getElementById('interactive-searching-algorithms-next-level').addEventListener("click", nextLevel);
-	document.getElementById('interactive-searching-algorithms-restart-level').addEventListener("click", loadLevel);
-	document.getElementById('interactive-searching-algorithms-restart-start-level').addEventListener("click", goToStartLevel);
+	document.getElementById('next-level').addEventListener("click", nextLevel);
+	document.getElementById('restart-level').addEventListener("click", loadLevel);
+	document.getElementById('restart-start-level').addEventListener("click", goToStartLevel);
 	var url_string = window.location.href;
 	setInterfaceParameters(url_string);
 	setUpInterface();
@@ -87,37 +87,37 @@ function setLevelParameters(level) {
 
 function setUpInterface() {
 	// fill in the rules
-	document.getElementById('interactive-searching-algorithms-num-boxes').innerText = num_boxes;
-	document.getElementById('interactive-searching-algorithms-num-guesses').innerText = num_guesses;
-	document.getElementById('interactive-searching-algorithms-order').innerText = sorted;
-	document.getElementById('interactive-searching-algorithms-num-guesses-used').innerText = 0;
+	document.getElementById('num-boxes').innerText = num_boxes;
+	document.getElementById('num-guesses').innerText = num_guesses;
+	document.getElementById('order').innerText = sorted;
+	document.getElementById('num-guesses-used').innerText = 0;
 
-	var restart_start_level = document.getElementById('interactive-searching-algorithms-restart-start-level');
+	var restart_start_level = document.getElementById('restart-start-level');
 	if (start_level == null || current_level == start_level) {
 		restart_start_level.classList.add('hide-message');
 	}
 
-	var found_text = document.getElementById('interactive-searching-algorithms-found');
+	var found_text = document.getElementById('found');
 	if (found_text.classList.contains('show-message')) {
 		found_text.classList.remove('show-message');
 		found_text.classList.add('hide-message');
 	}
-	var no_guesses = document.getElementById('interactive-searching-algorithms-no-guesses');
+	var no_guesses = document.getElementById('no-guesses');
 	if (no_guesses.classList.contains('show-message')) {
 		no_guesses.classList.remove('show-message');
 		no_guesses.classList.add('hide-message');
 	}
-	var next_level_div = document.getElementById('interactive-searching-algorithms-next-level-container');
+	var next_level_div = document.getElementById('next-level-container');
 	next_level_div.classList.remove('show-message');
 	next_level_div.classList.add('hide-message');
 
-	var rules_div = document.getElementById('interactive-searching-algorithms-default-rules');
+	var rules_div = document.getElementById('default-rules');
 	rules_div.classList.remove('hide-message');
 	rules_div.classList.add('show-message');
 
 	target = Math.floor(Math.random() * Math.floor(num_boxes));
 	// create box elements and assign random weights
-	var box_div = document.getElementById('interactive-searching-algorithms-boxes');
+	var box_div = document.getElementById('boxes');
 	// remove any existing boxes
 	while (box_div.firstChild) {
 		box_div.removeChild(box_div.firstChild);
@@ -139,11 +139,11 @@ function setUpInterface() {
 		var img_div = document.createElement('div');
 
 		var img_weight = document.createElement('p');
-		img_weight.classList.add('interactive-searching-algorithms-box-weight');
+		img_weight.classList.add('box-weight');
 		img_weight.innerText = weight;
 
 		var img_number = document.createElement('p');
-		img_number.classList.add('interactive-searching-algorithms-box-number');
+		img_number.classList.add('box-number');
 		img_number.innerText = gettext('Box') + ' ' + (i+1);
 
 		var img_element = document.createElement('img');
@@ -161,7 +161,7 @@ function setUpInterface() {
 		}
 	}
 
-	document.getElementById('interactive-searching-algorithms-target').innerText = target;
+	document.getElementById('target').innerText = target;
 }
 
 
@@ -177,26 +177,26 @@ function fadeBox(event) {
 	if (target == box_weight.innerText) {
 		found = true;
 		// hide rules
-		document.getElementById('interactive-searching-algorithms-default-rules').classList.remove('show-message');
-		document.getElementById('interactive-searching-algorithms-default-rules').classList.add('hide-message');
+		document.getElementById('default-rules').classList.remove('show-message');
+		document.getElementById('default-rules').classList.add('hide-message');
 
 		// show winning message
 		var num_guesses_used = starting_num_guesses - num_guesses;
-		document.getElementById('interactive-searching-algorithms-found').classList.remove('hide-message');
-		document.getElementById('interactive-searching-algorithms-found').classList.add('show-message');
-		document.getElementById('interactive-searching-algorithms-num-guesses-used').innerText = num_guesses_used;
+		document.getElementById('found').classList.remove('hide-message');
+		document.getElementById('found').classList.add('show-message');
+		document.getElementById('num-guesses-used').innerText = num_guesses_used;
 		disableBoxes();
 
 		// show next button
 		if (current_level < end_level) {
-			document.getElementById('interactive-searching-algorithms-next-level-container').classList.remove('hide-message');
-			document.getElementById('interactive-searching-algorithms-next-level-container').classList.add('show-message');
+			document.getElementById('next-level-container').classList.remove('hide-message');
+			document.getElementById('next-level-container').classList.add('show-message');
 		}
 	}
 }
 
 function disableBoxes() {
-	var box_divs = document.getElementById('interactive-searching-algorithms-boxes').children;
+	var box_divs = document.getElementById('boxes').children;
 	for (var i = 0; i < box_divs.length; i++) {
 		box_divs[i].children[0].removeEventListener("click", fadeBox);
 	}
@@ -224,12 +224,12 @@ function goToStartLevel() {
 function decreaseGuessCount() {
 	num_guesses -= 1;
 	if (num_guesses == 0 && found == false) { // if no more guesses then hide the rules and display no guesses left message
-		var default_rules = document.getElementById('interactive-searching-algorithms-default-rules');
+		var default_rules = document.getElementById('default-rules');
 		default_rules.classList.add('hide-message');
 		default_rules.classList.remove('show-message');
-		document.getElementById('interactive-searching-algorithms-no-guesses').classList.add('show-message');
+		document.getElementById('no-guesses').classList.add('show-message');
 		disableBoxes();
 	} else {
-		document.getElementById('interactive-searching-algorithms-num-guesses').innerText = num_guesses;
+		document.getElementById('num-guesses').innerText = num_guesses;
 	}
 }

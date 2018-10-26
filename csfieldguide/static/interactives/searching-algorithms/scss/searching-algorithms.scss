@@ -1,14 +1,14 @@
-#interactive-searching-algorithms-rules .interactive-searching-algorithm-rule-line p,
-#interactive-searching-algorithms-found #interactive-searching-algorithms-num-guesses-used-message p {
+#rules .rule-line p,
+#found #num-guesses-used-message p {
 	display: inline-block;
 	margin: 3px 6px;
 }
 
-#interactive-searching-algorithms-boxes-container {
+#boxes-container {
 	overflow: auto;
 }
 
-#interactive-searching-algorithms-boxes {
+#boxes {
 	display: flex;
 
 	div {
@@ -16,7 +16,7 @@
 	}
 }
 
-#interactive-searching-algorithms-boxes img {
+#boxes img {
 	height: 100px;
 	margin: 5px;
 	position: relative;
@@ -24,7 +24,7 @@
 	margin-bottom: 0px;
 }
 
-.interactive-searching-algorithms-box-weight {
+.box-weight {
 	position: relative;
 	display: block;
 	z-index: 1;
@@ -32,16 +32,16 @@
 	margin-bottom: 0px;
 }
 
-.interactive-searching-algorithms-box-number {
+.box-number {
 	margin-top: -20px;
 }
 
-p.interactive-searching-algorithms-box-weight.show {
+p.box-weight.show {
 	z-index: 3 !important;
 	transition: 1s;
 }
 
-#interactive-searching-algorithms-boxes img.fade {
+#boxes img.fade {
 	opacity: 0.4;
 	transition: 1s;
 }

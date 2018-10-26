@@ -8,47 +8,47 @@
     <div class="row text-center" id="interactive-searching-algorithms">
       <div class="col-12">
 
-        <div id="interactive-searching-algorithms-rules">
-          <div id="interactive-searching-algorithms-default-rules">
-            <div class="interactive-searching-algorithm-rule-line">
-              <p>{% trans "Number of boxes" %}:</p><p id="interactive-searching-algorithms-num-boxes"></p>
+        <div id="rules">
+          <div id="default-rules">
+            <div class="rule-line">
+              <p>{% trans "Number of boxes: <span id='num-boxes'></span>" %}</p>
             </div>
-            <div class="interactive-searching-algorithm-rule-line">
-              <p>{% trans "The number to find is" %}:</p><p id="interactive-searching-algorithms-target">100</p>
+            <div class="rule-line">
+              <p>{% trans "The number to find is: <span id='target'>100</span>" %}</p>
             </div>
-            <div class="interactive-searching-algorithm-rule-line">
-              <p>{% trans "The order of the boxes is" %}:</p><p id="interactive-searching-algorithms-order"></p>
+            <div class="rule-line">
+              <p>{% trans "The order of the boxes is: <span id='order'></span>" %}</p>
             </div>
-            <div class="interactive-searching-algorithm-rule-line">
-              <p>{% trans "Number of guesses" %}:</p><p id="interactive-searching-algorithms-num-guesses"></p>
+            <div class="rule-line">
+              <p>{% trans "Number of guesses: <span id='num-guesses'></span>" %}</p>
             </div>
           </div>
-          <div id="interactive-searching-algorithms-no-guesses" class="hide-message">
+          <div id="no-guesses" class="hide-message">
             <p>{% trans "You ran out of guesses!" %}</p>
           </div>
-          <div id="interactive-searching-algorithms-found" class="hide-message">
+          <div id="found" class="hide-message">
             <p>{% trans "You found it!" %}</p>
-            <div id="interactive-searching-algorithms-num-guesses-used-message">
-              <p>{% trans "Number of guesses used" %}: </p><p id="interactive-searching-algorithms-num-guesses-used"></p>
+            <div id="num-guesses-used-message">
+              <p>{% trans "Number of guesses used: <span id='num-guesses-used'></span>" %}</p>
             </div>
           </div>
         </div>
       </div>
 
-      <div id="interactive-searching-algorithms-boxes-container" class="col-12">
-        <div id="interactive-searching-algorithms-boxes" class="my-2">
+      <div id="boxes-container" class="col-12">
+        <div id="boxes" class="my-2">
         </div>
       </div>
 
       <div class="col-12 text-center mt-2">
-        <div id="interactive-searching-algorithms-next-level-container" class="hide-message">
-          <button id="interactive-searching-algorithms-next-level" class="btn btn-primary my-2">{% trans "Next Level" %}</button>
+        <div id="next-level-container" class="hide-message">
+          <button id="next-level" class="btn btn-primary my-2">{% trans "Next Level" %}</button>
         </div>
         <div>
-          <button id="interactive-searching-algorithms-restart-level" class="btn btn-primary mb-2">{% trans "Restart Level" %}</button>
+          <button id="restart-level" class="btn btn-primary mb-2">{% trans "Restart Level" %}</button>
         </div>
         <div>
-          <button id="interactive-searching-algorithms-restart-start-level" class="btn btn-primary">{% trans "Restart From First Level" %}</button>
+          <button id="restart-start-level" class="btn btn-primary">{% trans "Restart From First Level" %}</button>
         </div>
       </div>
 
