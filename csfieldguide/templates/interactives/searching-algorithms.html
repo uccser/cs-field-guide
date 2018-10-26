@@ -26,12 +26,6 @@
           <div id="no-guesses" class="hide-message">
             <p>{% trans "You ran out of guesses!" %}</p>
           </div>
-          <div id="found" class="hide-message">
-            <p>{% trans "You found it!" %}</p>
-            <div id="num-guesses-used-message">
-              <p>{% trans "Number of guesses used: <span id='num-guesses-used'></span>" %}</p>
-            </div>
-          </div>
         </div>
       </div>
 
@@ -41,6 +35,12 @@
       </div>
 
       <div class="col-12 text-center mt-2">
+        <div id="found" class="hide-message">
+          <p>{% trans "You found it!" %}</p>
+          <div id="num-guesses-used-message">
+            <p id="num-guesses-used"><br></p>
+          </div>
+        </div>
         <div id="next-level-container" class="hide-message">
           <button id="next-level" class="btn btn-primary my-2">{% trans "Next Level" %}</button>
         </div>

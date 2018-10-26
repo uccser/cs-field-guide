@@ -90,7 +90,7 @@ function setUpInterface() {
 	document.getElementById('num-boxes').innerText = num_boxes;
 	document.getElementById('num-guesses').innerText = num_guesses;
 	document.getElementById('order').innerText = sorted;
-	document.getElementById('num-guesses-used').innerText = 0;
+	document.getElementById('num-guesses-used').innerHTML = gettext("Number of guesses used: 0"); // do we want to use a substitution for 0 for the translators??
 
 	var restart_start_level = document.getElementById('restart-start-level');
 	if (start_level == null || current_level == start_level) {
@@ -110,10 +110,6 @@ function setUpInterface() {
 	var next_level_div = document.getElementById('next-level-container');
 	next_level_div.classList.remove('show-message');
 	next_level_div.classList.add('hide-message');
-
-	var rules_div = document.getElementById('default-rules');
-	rules_div.classList.remove('hide-message');
-	rules_div.classList.add('show-message');
 
 	target = Math.floor(Math.random() * Math.floor(num_boxes));
 	// create box elements and assign random weights
@@ -176,16 +172,16 @@ function fadeBox(event) {
 	decreaseGuessCount();
 	if (target == box_weight.innerText) {
 		found = true;
-		// hide rules
-		document.getElementById('default-rules').classList.remove('show-message');
-		document.getElementById('default-rules').classList.add('hide-message');
 
 		// show winning message
 		var num_guesses_used = starting_num_guesses - num_guesses;
+		format = gettext('Number of guesses used: %(num_guesses)s');
+		num_guesses_used_text = interpolate(format, {'num_guesses': num_guesses_used}, true);
+		document.getElementById('num-guesses-used').innerText = num_guesses_used_text;
+		disableBoxes();
+
 		document.getElementById('found').classList.remove('hide-message');
 		document.getElementById('found').classList.add('show-message');
-		document.getElementById('num-guesses-used').innerText = num_guesses_used;
-		disableBoxes();
 
 		// show next button
 		if (current_level < end_level) {
@@ -223,10 +219,7 @@ function goToStartLevel() {
 
 function decreaseGuessCount() {
 	num_guesses -= 1;
-	if (num_guesses == 0 && found == false) { // if no more guesses then hide the rules and display no guesses left message
-		var default_rules = document.getElementById('default-rules');
-		default_rules.classList.add('hide-message');
-		default_rules.classList.remove('show-message');
+	if (num_guesses == 0 && found == false) { // display no guesses left message
 		document.getElementById('no-guesses').classList.add('show-message');
 		disableBoxes();
 	} else {

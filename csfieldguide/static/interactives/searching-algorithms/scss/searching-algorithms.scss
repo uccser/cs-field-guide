@@ -4,6 +4,10 @@
 	margin: 3px 6px;
 }
 
+#num-guesses-used, #found {
+	min-height: 1rem;
+}
+
 #boxes-container {
 	overflow: auto;
 }
