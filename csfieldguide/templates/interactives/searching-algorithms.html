@@ -11,16 +11,13 @@
         <div id="rules">
           <div id="default-rules">
             <div class="rule-line">
-              <p>{% trans "Number of boxes: <span id='num-boxes'></span>" %}</p>
+              <p>{% trans "Out of <span id='num-boxes'></span> boxes, the number to find is <span id='target'>100</span>" %}</p>
             </div>
             <div class="rule-line">
-              <p>{% trans "The number to find is: <span id='target'>100</span>" %}</p>
+              <p>{% trans "The boxes are in a <span id='order'></span>" %} order</p>
             </div>
             <div class="rule-line">
-              <p>{% trans "The order of the boxes is: <span id='order'></span>" %}</p>
-            </div>
-            <div class="rule-line">
-              <p>{% trans "Number of guesses: <span id='num-guesses'></span>" %}</p>
+              <p>{% trans "You have <span id='num-guesses'></span>" %} guesses to find it</p>
             </div>
           </div>
           <div id="no-guesses" class="hide-message">

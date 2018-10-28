@@ -11,22 +11,22 @@ var found = false;
 var preset_levels = {
 	1: {
 		"num-boxes": 5,
-		"sorted": "Random",
+		"sorted": "random",
 		"num-guesses": 6
 	},
 	2: {
 		"num-boxes": 9,
-		"sorted": "Random",
+		"sorted": "random",
 		"num-guesses": 10
 	},
 	3: {
 		"num-boxes": 9,
-		"sorted": "Sorted",
+		"sorted": "sorted",
 		"num-guesses": 5
 	},
 	4: {
 		"num-boxes": 25,
-		"sorted": "Sorted",
+		"sorted": "sorted",
 		"num-guesses": 5
 	}
 }
@@ -64,9 +64,9 @@ function setInterfaceParameters(url_string) {
 
     current_level = start_level;
     if (sorted == 'true') {
-    	sorted = gettext('Sorted');
+    	sorted = gettext('sorted');
     } else if (sorted == 'false') {
-    	sorted = gettext('Random');
+    	sorted = gettext('random');
     }
 }
 
@@ -123,7 +123,7 @@ function setUpInterface() {
 		weight_list.push(Math.floor(Math.random() * Math.floor(999)) + 1);
 	}
 
-	if (sorted == "Sorted") {
+	if (sorted == "sorted") {
 		weight_list.sort(sortNumber);
 	}
 
