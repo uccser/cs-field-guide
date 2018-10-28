@@ -32,13 +32,15 @@
 	position: relative;
 	display: block;
 	z-index: 1;
-	top: -60px;
+	top: -67px;
 	margin-bottom: 0px;
 	font-weight: bold;
+	font-size: 1.5rem;
 }
 
 .box-number {
 	margin-top: -20px;
+	font-weight: bold;
 }
 
 p.box-weight.show {
@@ -57,4 +59,8 @@ p.box-weight.show {
 
 .show-message {
 	display: block;
+}
+
+#num-guesses {
+	font-weight: bold;
 }

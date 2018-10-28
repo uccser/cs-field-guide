@@ -140,7 +140,7 @@ function setUpInterface() {
 
 		var img_number = document.createElement('p');
 		img_number.classList.add('box-number');
-		img_number.innerText = gettext('Box') + ' ' + (i+1);
+		img_number.innerHTML = (i+1); // gettext('Box') + '<br>' +
 
 		var img_element = document.createElement('img');
 		img_element.setAttribute('src', src_string);
