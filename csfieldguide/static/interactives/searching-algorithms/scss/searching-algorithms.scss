@@ -34,6 +34,7 @@
 	z-index: 1;
 	top: -60px;
 	margin-bottom: 0px;
+	font-weight: bold;
 }
 
 .box-number {
@@ -47,7 +48,7 @@ p.box-weight.show {
 
 #boxes img.fade {
 	opacity: 0.4;
-	transition: 1s;
+	transition: 0.5s;
 }
 
 .hide-message {
