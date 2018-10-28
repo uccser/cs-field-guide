@@ -63,7 +63,6 @@ function setInterfaceParameters(url_string) {
 	}
 
     current_level = start_level;
-
     if (sorted == 'true') {
     	sorted = gettext('Sorted');
     } else if (sorted == 'false') {
@@ -123,8 +122,9 @@ function setUpInterface() {
 	for (var i = 0; i < num_boxes; i++) {
 		weight_list.push(Math.floor(Math.random() * Math.floor(999)) + 1);
 	}
+
 	if (sorted == "Sorted") {
-		weight_list.sort();
+		weight_list.sort(sortNumber);
 	}
 
 	for (var i = 0; i < num_boxes; i++) {
@@ -225,4 +225,8 @@ function decreaseGuessCount() {
 	} else {
 		document.getElementById('num-guesses').innerText = num_guesses;
 	}
+}
+
+function sortNumber(a, b) {
+	return a - b;
 }
