@@ -186,3 +186,19 @@ class ChapterSectionsLoaderTest(BaseTestWithDB):
             KeyNotFoundError,
             chapter_section_loader.load
         )
+
+    def test_chapters_chapter_section_loader_non_sequential_section_number(self):
+        test_slug = "non-sequential-section-numbers"
+        chapter = self.test_data.create_chapter("1")
+        factory = mock.Mock()
+        chapter_section_loader = ChapterSectionsLoader(
+            factory,
+            chapter,
+            base_path=self.base_path,
+            content_path=test_slug,
+            structure_filename="{}.yaml".format(test_slug),
+        )
+        self.assertRaises(
+            InvalidYAMLValueError,
+            chapter_section_loader.load
+        )
