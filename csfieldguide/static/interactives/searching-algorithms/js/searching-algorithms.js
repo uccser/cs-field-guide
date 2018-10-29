@@ -8,6 +8,7 @@ var current_level;
 var num_boxes;
 var sorted;
 var found = false;
+var levels_set_from_params = false;
 
 var preset_levels = {
 	1: {
@@ -52,11 +53,12 @@ function setInterfaceParameters(url_string) {
 	sorted = url.searchParams.get('sorted');
 	starting_num_guesses = url.searchParams.get('num-guesses');
 
-    // if start level and end level given, set the level parameters
-    if (start_level != null && end_level != null) {
+    // if start level and end level given and are valid, set the level parameters
+    if (start_level in preset_levels && end_level in preset_levels) {
     	setLevelParameters(start_level);
     } else if (num_boxes != null && sorted != null && starting_num_guesses != null) { // use the settings from the url parameters
-	    num_guesses = starting_num_guesses;
+		num_guesses = starting_num_guesses;
+		levels_set_from_params = true;
     } else { // no parameters given
 		start_level = 1;
 		end_level = 4;
@@ -93,26 +95,26 @@ function setUpInterface() {
 	var format = ngettext('You have <span id="num-guesses">1</span> guess to find it.', 'You have <span id="num-guesses">%(num_guesses)s</span> guesses to find it.', num_guesses);
 	var num_guesses_text = interpolate(format, {"num_guesses": num_guesses}, true);
 	document.getElementById('num-guesses-text').innerHTML = num_guesses_text;
+	elementVisible(document.getElementById('num-guesses-text'), true);
 
 
-	var restart_start_level = document.getElementById('restart-start-level');
+	var restart_start_level = document.getElementById('restart-start-level-container');
 	if (start_level == null || current_level == start_level) {
-		restart_start_level.classList.add('hide-message');
+		elementVisible(restart_start_level, false);
+	} else {
+		elementVisible(restart_start_level, true);
 	}
 
 	var found_text = document.getElementById('found');
 	if (found_text.classList.contains('show-message')) {
-		found_text.classList.remove('show-message');
-		found_text.classList.add('hide-message');
+		elementVisible(found_text, false);
 	}
 	var no_guesses = document.getElementById('no-guesses');
 	if (no_guesses.classList.contains('show-message')) {
-		no_guesses.classList.remove('show-message');
-		no_guesses.classList.add('hide-message');
+		elementVisible(no_guesses, false);
 	}
 	var next_level_div = document.getElementById('next-level-container');
-	next_level_div.classList.remove('show-message');
-	next_level_div.classList.add('hide-message');
+	elementVisible(next_level_div, false);
 
 	target_position = Math.floor(Math.random() * Math.floor(num_boxes));
 	// create box elements and assign random weights
@@ -133,10 +135,20 @@ function setUpInterface() {
 	createBoxes(box_div, weight_list, target_position);
 }
 
+function elementVisible(element, show_element) {
+	if (show_element) {
+		element.classList.remove('hide-message');
+		element.classList.add('show-message');
+	} else {
+		element.classList.remove('show-message');
+		element.classList.add('hide-message');
+	}
+}
+
 function getWeightList(num_boxes) {
 	range = Math.floor(Math.random() * 899) + 100; // returns random integer between 100 and 899
 	start_range = Math.floor(Math.random() * (999 - range)); // returns random integer between 1 and 999 - range
-	end_range = start_range + 100;
+	end_range = start_range + 100; // this will be the array of numbers we will shuffle and pick from
 
 	array = customRange(start_range, end_range);
 	shuffledArray = shuffle(array);
@@ -195,6 +207,8 @@ function fadeBox(event) {
 	decreaseGuessCount();
 	if (box_weight.innerText == target_weight) {
 		found = true;
+		elementVisible(document.getElementById('num-guesses-text'), false);
+		elementVisible(document.getElementById('no-guesses'), false);
 
 		// show winning message
 		var num_guesses_used = starting_num_guesses - num_guesses;
@@ -202,14 +216,11 @@ function fadeBox(event) {
 		num_guesses_used_text = interpolate(format, {'num_guesses': num_guesses_used}, true);
 		document.getElementById('num-guesses-used').innerText = num_guesses_used_text;
 		disableBoxes();
-
-		document.getElementById('found').classList.remove('hide-message');
-		document.getElementById('found').classList.add('show-message');
+		elementVisible(document.getElementById('found'), true);
 
 		// show next button
-		if (current_level < end_level) {
-			document.getElementById('next-level-container').classList.remove('hide-message');
-			document.getElementById('next-level-container').classList.add('show-message');
+		if (current_level < end_level && !levels_set_from_params) {
+			elementVisible(document.getElementById('next-level-container'), true);
 		}
 	}
 }
@@ -220,7 +231,6 @@ function disableBoxes() {
 		box_divs[i].children[0].removeEventListener("click", fadeBox);
 	}
 }
-
 
 function loadLevel(level) {
 	found = false;
@@ -239,15 +249,19 @@ function goToStartLevel() {
 	loadLevel();
 }
 
-
 function decreaseGuessCount() {
 	num_guesses -= 1;
-	var format = ngettext('You have <span id="num-guesses">1</span> guess to find it.', 'You have <span id="num-guesses">%(num_guesses)s</span> guesses to find it.', num_guesses);
-	var num_guesses_text = interpolate(format, {"num_guesses": num_guesses}, true);
-	document.getElementById('num-guesses-text').innerHTML = num_guesses_text;
+	var num_guesses_text = document.getElementById('num-guesses-text');
 	if (num_guesses == 0 && found == false) {
-		document.getElementById('no-guesses').classList.add('show-message');
+		elementVisible(document.getElementById('no-guesses'), true);
+		elementVisible(num_guesses_text, false);
 		disableBoxes();
+	} else {
+		var format = ngettext('You have <span id="num-guesses">1</span> guess to find it.',
+							'You have <span id="num-guesses">%(num_guesses)s</span> guesses to find it.',
+							num_guesses);
+		var text = interpolate(format, {"num_guesses": num_guesses}, true);
+		num_guesses_text.innerHTML = text;
 	}
 }
 

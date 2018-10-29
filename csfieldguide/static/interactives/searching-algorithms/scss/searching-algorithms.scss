@@ -57,11 +57,11 @@ p.box-weight.show {
 }
 
 .hide-message {
-	display: none;
+	display: none !important;
 }
 
 .show-message {
-	display: block;
+	display: block !important;
 }
 
 #num-guesses {
