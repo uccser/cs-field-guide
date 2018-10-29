@@ -1,6 +1,7 @@
 var starting_num_guesses;
 var num_guesses;
-var target;
+var target_position;
+var target_weight;
 var start_level;
 var end_level;
 var current_level;
@@ -110,7 +111,7 @@ function setUpInterface() {
 	next_level_div.classList.remove('show-message');
 	next_level_div.classList.add('hide-message');
 
-	target = Math.floor(Math.random() * Math.floor(num_boxes));
+	target_position = Math.floor(Math.random() * Math.floor(num_boxes));
 	// create box elements and assign random weights
 	var box_div = document.getElementById('boxes');
 	// remove any existing boxes
@@ -118,15 +119,36 @@ function setUpInterface() {
 		box_div.removeChild(box_div.firstChild);
 	}
 
-	var weight_list = []
 	for (var i = 0; i < num_boxes; i++) {
-		weight_list.push(Math.floor(Math.random() * Math.floor(999)) + 1);
+		var weight_list = getWeightList(num_boxes);
 	}
 
 	if (sorted == "sorted") {
 		weight_list.sort(sortNumber);
 	}
 
+	createBoxes(box_div, weight_list, target_position);
+}
+
+function getWeightList(num_boxes) {
+	range = Math.floor(Math.random() * 899) + 100; // returns random integer between 100 and 899
+	start_range = Math.floor(Math.random() * (999 - range)); // returns random integer between 1 and 999 - range
+	end_range = start_range + 100;
+
+	array = customRange(start_range, end_range);
+	shuffledArray = shuffle(array);
+	return shuffledArray.slice(0, num_boxes);
+}
+
+function customRange(start, end) {
+	var num_array = [];
+	for (var i = start; i <= end; i++) {
+		num_array.push(i);
+	}
+	return num_array;
+}
+
+function createBoxes(box_div, weight_list, target_position) {
 	for (var i = 0; i < num_boxes; i++) {
 		var weight = weight_list[i];
 		var random_square_number = Math.floor(Math.random() * Math.floor(15));
@@ -140,7 +162,7 @@ function setUpInterface() {
 
 		var img_number = document.createElement('p');
 		img_number.classList.add('box-number');
-		img_number.innerHTML = (i+1); // gettext('Box') + '<br>' +
+		img_number.innerHTML = gettext('Box') + '<br><span>' + (i+1) + '</span>';
 
 		var img_element = document.createElement('img');
 		img_element.setAttribute('src', src_string);
@@ -152,14 +174,12 @@ function setUpInterface() {
 		img_div.appendChild(img_number);
 		box_div.appendChild(img_div);
 
-		if (i == target) {
-			target = weight;
+		if (i == target_position) {
+			target_weight = weight;
 		}
 	}
-
-	document.getElementById('target').innerText = target;
+	document.getElementById('target').innerText = target_weight;
 }
-
 
 function fadeBox(event) {
 	var clicked_box = event.srcElement;
@@ -170,7 +190,7 @@ function fadeBox(event) {
 	box_weight.classList.add('show'); // show weight of clicked box
 
 	decreaseGuessCount();
-	if (target == box_weight.innerText) {
+	if (box_weight.innerText == target_weight) {
 		found = true;
 
 		// show winning message
@@ -229,4 +249,22 @@ function decreaseGuessCount() {
 
 function sortNumber(a, b) {
 	return a - b;
+}
+
+function shuffle(array) {
+	var element_index = array.length;
+	var random_index;
+	var current_element
+
+	while (element_index) {
+		// Pick a remaining element
+		random_index = Math.floor(Math.random() * element_index--);
+
+		// And swap it with the current element
+		current_element = array[element_index];
+		array[element_index] = array[random_index];
+		array[random_index] = current_element;
+	}
+
+	return array;
 }
