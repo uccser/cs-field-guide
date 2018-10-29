@@ -88,9 +88,12 @@ function setLevelParameters(level) {
 function setUpInterface() {
 	// fill in the rules
 	document.getElementById('num-boxes').innerText = num_boxes;
-	document.getElementById('num-guesses').innerText = num_guesses;
 	document.getElementById('order').innerText = sorted;
 	document.getElementById('num-guesses-used').innerHTML = gettext("Number of guesses used: 0"); // do we want to use a substitution for 0 for the translators??
+	var format = ngettext('You have <span id="num-guesses">1</span> guess to find it.', 'You have <span id="num-guesses">%(num_guesses)s</span> guesses to find it.', num_guesses);
+	var num_guesses_text = interpolate(format, {"num_guesses": num_guesses}, true);
+	document.getElementById('num-guesses-text').innerHTML = num_guesses_text;
+
 
 	var restart_start_level = document.getElementById('restart-start-level');
 	if (start_level == null || current_level == start_level) {
@@ -239,11 +242,12 @@ function goToStartLevel() {
 
 function decreaseGuessCount() {
 	num_guesses -= 1;
-	if (num_guesses == 0 && found == false) { // display no guesses left message
+	var format = ngettext('You have <span id="num-guesses">1</span> guess to find it.', 'You have <span id="num-guesses">%(num_guesses)s</span> guesses to find it.', num_guesses);
+	var num_guesses_text = interpolate(format, {"num_guesses": num_guesses}, true);
+	document.getElementById('num-guesses-text').innerHTML = num_guesses_text;
+	if (num_guesses == 0 && found == false) {
 		document.getElementById('no-guesses').classList.add('show-message');
 		disableBoxes();
-	} else {
-		document.getElementById('num-guesses').innerText = num_guesses;
 	}
 }
 
@@ -251,6 +255,7 @@ function sortNumber(a, b) {
 	return a - b;
 }
 
+// shuffle function adapted from https://bost.ocks.org/mike/shuffle
 function shuffle(array) {
 	var element_index = array.length;
 	var random_index;
