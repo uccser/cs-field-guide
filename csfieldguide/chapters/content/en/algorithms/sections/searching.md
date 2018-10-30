@@ -26,11 +26,11 @@ Computers deal with such huge amounts of data that we need fast algorithms to he
 
 Lets investigate searching with a game...
 
-{comment interactive slug="searching-algorithms" type="whole-page" text="true" parameters="max=2"}
+{interactive slug="searching-algorithms" type="whole-page" text="true" parameters="max=2"}
 
 Searching Boxes - Part 1
 
-{comment interactive end}
+{interactive end}
 
 You may have noticed that the numbers on the monsters and pets in the game were in a random order, which meant that finding the pet was basically luck!
 You might have found it on your first try, or if you were less lucky you might have had to look inside almost all the presents before you found it.
@@ -42,7 +42,11 @@ You have less lives, which makes things a bit more challenging, but this time th
 The monsters, or maybe the pet, with the smallest number is in the present on the far left, and the one with the largest number is in the present on the far right.
 Let's see if you can collect all the pets without running out of lives...
 
-{comment interactive name="searching-algorithms" type="whole-page" text="Searching Boxes - Part 2" parameters="level=3" thumbnail="thumbnail2.png"}
+{interactive slug="searching-algorithms" type="whole-page" text="true" parameters="level=3" thumbnail="thumbnail2.png"}
+
+Searching Boxes - Part 2
+
+{interactive end}
 
 Now that you have played through the whole game (and hopefully found all of the lost pets!) you may have noticed that even though you had less lives in the second part of the game, and lots of presents to search through, you were still able to find the pet. Why was this possible?
 
