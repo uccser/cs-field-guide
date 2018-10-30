@@ -10,6 +10,7 @@ const js_files_skip_optimisation = [
   '!static/interactives/huffman-tree/**/*.js',
   '!static/interactives/packet-attack/**/*.js',
   '!static/interactives/searching-algorithms/**/*.js',
+  '!static/interactives/sorting-algorithms/**/*.js',
 ];
 
 // general

@@ -111,7 +111,7 @@ rsa-no-padding:
 run-length-encoding:
   name: Run Length Encoding
 searching-algorithms:
-  name: searching-algorithms (broken)
+  name: Searching Algorithms
 sha2:
   name: SHA2
 sorting-algorithm-comparison:

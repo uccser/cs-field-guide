@@ -166,9 +166,9 @@ payment-interface:
 # run-length-encoding:
 #   languages:
 #     en: interactives/run-length-encoding.html
-# searching-algorithms:
-#   languages:
-#     en: interactives/searching-algorithms.html
+searching-algorithms:
+  languages:
+    en: interactives/searching-algorithms.html
 # sha2:
 #   languages:
 #     en: interactives/sha2.html
