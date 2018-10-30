@@ -26,7 +26,7 @@ Computers deal with such huge amounts of data that we need fast algorithms to he
 
 Lets investigate searching with a game...
 
-{interactive slug="searching-algorithms" type="whole-page" text="true" parameters="max=2"}
+{interactive slug="searching-algorithms" type="whole-page" text="true" parameters="start=1&end=2"}
 
 Searching Boxes - Part 1
 
@@ -42,7 +42,7 @@ You have less lives, which makes things a bit more challenging, but this time th
 The monsters, or maybe the pet, with the smallest number is in the present on the far left, and the one with the largest number is in the present on the far right.
 Let's see if you can collect all the pets without running out of lives...
 
-{interactive slug="searching-algorithms" type="whole-page" text="true" parameters="level=3" thumbnail="thumbnail2.png"}
+{interactive slug="searching-algorithms" type="whole-page" text="true" parameters="start=3"}
 
 Searching Boxes - Part 2
 
