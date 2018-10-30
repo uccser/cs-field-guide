@@ -162,11 +162,11 @@ function elementVisible(element, show_element) {
 }
 
 function getWeightList(num_boxes) {
-	range = Math.floor(Math.random() * 799) + 200; // returns random integer between 200 and 799
+	range = Math.floor(Math.random() * 699) + 300; // returns random integer between 300 and 699
 	start_range = Math.floor(Math.random() * (999 - range)); // returns random integer between 1 and 999 - range
-	// adding 200 so when there is  a large number of boxes (49) the box weights have enough variation
+	// adding 300 so when there is  a large number of boxes (49) the box weights have enough variation
 	// (e.g won't appear close to sequential order)
-	end_range = start_range + 200; // this will be the array of numbers we will shuffle and pick from
+	end_range = start_range + 300; // this will be the array of numbers we will shuffle and pick from
 
 	array = customRange(start_range, end_range);
 	shuffledArray = shuffle(array);
