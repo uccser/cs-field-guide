@@ -75,7 +75,6 @@ function setInterfaceParameters(url_string) {
 		num_guesses = starting_num_guesses;
 		levels_set_from_params = true;
 	} else { // no parameters given
-		console.log('hello')
 		start_level = min_level;
 		end_level = max_level;
 		setLevelParameters(start_level);
@@ -237,8 +236,6 @@ function fadeBox(event) {
 		elementVisible(document.getElementById('found'), true);
 
 		// show next button
-		console.log(current_level);
-		console.log(end_level);
 		if (current_level < end_level && !levels_set_from_params) {
 			elementVisible(document.getElementById('next-level-container'), true);
 		}
