@@ -8,22 +8,41 @@
 {% endblock title %}
 
 {% block page_heading %}
-  {{ chapter.name }}
+  <span class="text-white-50">{{ chapter.number }}.</span> {{ chapter.name }}
 {% endblock page_heading %}
 
 {% block content %}
-
-  {% render_html_field chapter.introduction %}
+  {% if chapter.translation_available %}
+    {% if chapter.video %}
+      <div class="row mb-3">
+        <div class="col-sm-12 col-md-10 offset-md-1 text-center">
+          <div class="embed-responsive embed-responsive-16by9">
+            <iframe src="{{ chapter.video }}" class="embed-responsive-item" frameborder="0" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+    {% render_html_field chapter.introduction %}
+  {% else %}
+    {% with model=chapter %}
+      {% include "generic/not-available-warning.html" %}
+    {% endwith %}
+  {% endif %}
 
   <h2>Sections in this chapter:</h2>
-  <ol>
+  <ul class="list-unstyled">
     {% for section in chapter_sections %}
       <li>
-        <a href="{% url 'chapters:chapter_section' chapter.slug section.slug %}">
+        {{ chapter.number }}.{{ section.number }}.
+        <a href="{% url 'chapters:chapter_section' chapter.slug section.slug %}" class="ml-1{% if not section.translation_available %} text-muted{% endif %}">
           {{ section.name }}
         </a>
+        {% if not section.translation_available %}
+          {% include "generic/not-available-badge.html" %}
+        {% endif %}
       </li>
     {% endfor %}
-  </ol>
+  </ul>
+
 
 {% endblock content %}

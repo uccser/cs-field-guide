@@ -121,12 +121,5 @@
 {% endblock css %}
 
 {% block js %}
-  <script type="text/javascript">
-    var colour_matcher_il8n = {
-      "red-help": "{% trans 'Help me set 24 bit red' %}",
-      "green-help": "{% trans 'Help me set 24 bit green' %}",
-      "help-given": "{% trans 'All help given' %}",
-    }
-  </script>
   <script type="text/javascript" src="{% static 'interactives/colour-matcher/js/colour-matcher.js' %}"></script>
 {% endblock js %}

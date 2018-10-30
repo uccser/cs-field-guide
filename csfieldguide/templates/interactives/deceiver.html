@@ -31,15 +31,5 @@
 {% endblock css %}
 
 {% block js %}
-    <script type="text/javascript">
-        var deceiver_il8n = {
-            "correct": "{% trans 'CORRECT' %}",
-            "wrong": "{% trans 'WRONG' %}",
-            "heading": "{% trans 'Answer as many questions as you can' %}",
-            "score": "{% trans 'Score: ' %}",
-            "seconds": "{% trans ' seconds left' %}",
-            "odd": "{% trans 'Odd' %}",
-        }
-    </script>
     <script type="text/javascript" src="{% static 'interactives/deceiver/js/deceiver.js' %}"></script>
 {% endblock js %}

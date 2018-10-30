@@ -2,15 +2,15 @@
 # like Pillow and psycopg2
 # See http://bitly.com/wheel-building-fails-CPython-35
 # Verified bug on Python 3.5.1
-wheel==0.31.1
+wheel==0.32.1
 
 # Images
-Pillow==5.2.0
+Pillow==5.3.0
 django-inline-svg==0.1.1
 selenium==3.14.0
 
 # Markdown
-verto==0.8.0
+verto==0.10.0
 python-markdown-math==0.5
 
 # Search
@@ -19,7 +19,7 @@ Whoosh==2.7.4
 django-widget-tweaks==1.4.3
 
 # XML Parsing
-lxml==4.2.4
+lxml==4.2.5
 cssselect==1.0.3
 
 # YAML Loading
@@ -30,3 +30,4 @@ django-modeltranslation==0.12.2
 uniseg==0.7.1
 python-bidi==0.4.0
 django-bidi-utils==1.0
+django-statici18n==1.8.2

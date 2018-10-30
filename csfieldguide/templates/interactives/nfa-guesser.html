@@ -33,11 +33,5 @@
 {% endblock css %}
 
 {% block js %}
-  <script type="text/javascript">
-    var nfa_guesser_il8n = {
-      "correct": "{% trans 'Correct' %}",
-      "incorrect": "{% trans 'Incorrect' %}"
-    };
-  </script>
   <script type="text/javascript" src="{% static 'interactives/nfa-guesser/js/nfa-guesser.js' %}"></script>
 {% endblock js %}

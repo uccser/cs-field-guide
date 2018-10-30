@@ -407,7 +407,7 @@ ZEBRAS ZACH, ZAVIER, AND ZANE ZOOMED THROUGH THE ZOO
 # The letter E isn't always the most common letter...
 
 Although in almost all English texts the letter E is the most common letter, it isn't always.
-For example, the [1939 novel *Gadsby* by Ernest Vincent Wright](https://en.wikipedia.org/wiki/Gadsby_(novel\)) doesn't contain a single letter E (this is called a lipogram).
+For example, the [1939 novel *Gadsby* by Ernest Vincent Wright](https://en.wikipedia.org/wiki/Gadsby_(novel)) doesn't contain a single letter E (this is called a lipogram).
 Furthermore, the text you're attacking may not be English.
 During World War 1 and 2, the US military had many Native American [Code talkers](https://en.wikipedia.org/wiki/Code_talker) translate messages into their own language, which provided a strong layer of security at the time.
 
@@ -549,8 +549,8 @@ As we saw above, no modern computer system could try out all possible 128 bit ke
 
 In computer science, problems that take an exponential amount of time to solve are generally regarded as not being
 {glossary-link term="tractable" reference-text="encryption"}tractable{glossary-link end}
---- that is, you can't get any traction on them; it's as if you're spinning your wheels.
-Working out which problems are tractable and which are intractable is a major area of research in computer science --- many other problems that we care about appear to be intractable, much to our frustration.
+— that is, you can't get any traction on them; it's as if you're spinning your wheels.
+Working out which problems are tractable and which are intractable is a major area of research in computer science — many other problems that we care about appear to be intractable, much to our frustration.
 The area of encryption is one of the few situations where we're pleased that an algorithm is intractible!
 
 This guide has a [whole chapter about tractability]('chapters:chapter' 'complexity-tractability'), where you can explore these issues further.

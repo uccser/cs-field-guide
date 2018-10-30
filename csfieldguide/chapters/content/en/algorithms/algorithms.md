@@ -2,10 +2,6 @@
 
 {comment explain different views of algorithm (programming context) and Algorithm (that have interesting complexity); use https://www.youtube.com/watch?v=6hfOvs8pY1k for the former?}
 
-{video url="https://www.youtube.com/embed/FOwCCvHEfY0"}
-
-# What's the big picture?
-
 Every computer device you have ever used, from your school computers to your calculator, has been using algorithms to tell it how to do whatever it was doing.
 Algorithms are a very important topic in Computer Science because they help software developers create efficient and error free programs.
 The most important thing to remember about algorithms is that there can be many different algorithms for the same problem, but some are much better than others!
@@ -64,7 +60,7 @@ for each of the other scores in the table,
 display the currently noted score
 ```
 
-Algorithms are more precise than informal instructions and do not require any insight to follow; they are still not precise enough for a computer to follow in the form they are written, but are precise enough for a human to know exactly what you mean, so they can then work out how to implement your algorithm, either doing it themselves, or writing a computer program to do it.
+Algorithms are more precise than informal instructions and do not require any insight to follow. Informal instructions are still not precise enough for a computer to follow in the form they are written, but are precise enough for a human so they can then work out how to implement your algorithm, either doing it themselves, or writing a computer program to do it.
 The other important thing with this level of precision is that we can often make a good estimate of how fast it will be.
 For the high score problem above, if the score table gets twice as big, the algorithm will take about twice as long.
 If the table could be very big (perhaps we're tracking millions of games and serving up the high score many times each second), that might already be enough to tell us that we need a better algorithm to track high scores regardless of which language it's going to be programmed in; or if the table only ever has 10 scores in it, then we know that the program is only going to do a few dozen operations, and is bound to be really fast even on a slow computer.

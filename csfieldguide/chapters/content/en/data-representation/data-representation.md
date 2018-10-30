@@ -9,8 +9,6 @@ If students struggle to do this by hand, a lot can be done using spreadsheets.
 
 {panel end}
 
-# What's the big picture?
-
 Computers are machines that do stuff with information.
 They let you view, listen, create, and edit information in documents, images, videos, sound, spreadsheets and databases.
 They let you play games in simulated worlds that don’t really exist except as information inside the computer’s memory and displayed on the screen.
@@ -92,7 +90,7 @@ They are just using physical mechanisms such as high and low voltage, north or s
 
 The use of the two digits 0 and 1 is so common that some of the best known computer jargon is used for them.
 Since there are only two digits, the system is called binary.
-The short word for a "binary digit" is made by taking the first two letters and the last letter --- a *bit* is just a digit that can have two values.
+The short word for a "binary digit" is made by taking the first two letters and the last letter — a *bit* is just a digit that can have two values.
 
 {panel end}
 

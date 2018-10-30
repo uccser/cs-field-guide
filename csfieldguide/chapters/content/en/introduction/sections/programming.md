@@ -8,4 +8,4 @@ There are a number of free online systems and books that you can use to teach yo
 A list of options for all ages learning to program is available at [www.code.org](https://code.org/educate/allhourofcode), where there is also a popular video of some well-known high-fliers in computing that is good to show classes.
 
 Programming is just one of the skills you'll need to be a computer scientist.
-In this book you'll be exercising many other skills --- maths, psychology, and communication are important ones.
+In this book you'll be exercising many other skills — maths, psychology, and communication are important ones.

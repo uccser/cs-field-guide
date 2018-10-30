@@ -8,20 +8,32 @@
 {% endblock title %}
 
 {% block page_heading %}
-<small>{{ chapter_section.chapter.name }}</small><br>{{ chapter_section.name }}
+  <small>
+    <a href="{% url 'chapters:chapter' chapter.slug %}" class="text-white-50">
+      {{ chapter_section.chapter.name }}
+    </a>
+  </small>
+  <br>
+  <span class="text-white-50">{{ chapter.number }}.{{ chapter_section.number }}.</span> {{ chapter_section.name }}
 {% endblock page_heading %}
 
 {% block left_column_content %}
-  {% render_html_field chapter_section.content %}
+  {% if chapter_section.translation_available %}
+    {% render_html_field chapter_section.content %}
+  {% else %}
+    {% with model=chapter_section %}
+      {% include "generic/not-available-warning.html" %}
+    {% endwith %}
+  {% endif %}
 
   <div>
     {% if previous_section %}
-      <a href="{% url 'chapters:chapter_section' chapter.slug previous_section.0.slug %}" class="btn left">
+      <a href="{% url 'chapters:chapter_section' chapter.slug previous_section.0.slug %}" class="btn left {% if not chapter_section.translation_available %} text-muted{% endif %}">
         Previous: {{ previous_section.0.name }}
       </a>
     {% endif %}
     {% if next_section %}
-      <a id="section-next-btn" href="{% url 'chapters:chapter_section' chapter.slug next_section.0.slug %}" class="btn right">
+      <a id="section-next-btn" href="{% url 'chapters:chapter_section' chapter.slug next_section.0.slug %}" class="btn right {% if not chapter_section.translation_available %} text-muted{% endif %}">
         Next: {{ next_section.0.name }}
       </a>
     {% endif %}
