@@ -106,7 +106,6 @@ function setUpInterface() {
 	// fill in the rules
 	document.getElementById('num-boxes').innerText = num_boxes;
 	document.getElementById('order').innerText = sorted;
-	document.getElementById('num-guesses-used').innerHTML = gettext("Number of guesses used: 0"); // do we want to use a substitution for 0 for the translators??
 	var format = ngettext('You have <span id="num-guesses">1</span> guess to find it.', 'You have <span id="num-guesses">%(num_guesses)s</span> guesses to find it.', num_guesses);
 	var num_guesses_text = interpolate(format, {"num_guesses": num_guesses}, true);
 	document.getElementById('num-guesses-text').innerHTML = num_guesses_text;
