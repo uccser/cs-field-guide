@@ -10,28 +10,33 @@ var sorted;
 var found = false;
 var levels_set_from_params = false;
 
-var preset_levels = {
-	1: {
+var preset_levels = [
+	{
 		"num-boxes": 5,
 		"sorted": "random",
 		"num-guesses": 6
 	},
-	2: {
+	{
 		"num-boxes": 9,
 		"sorted": "random",
 		"num-guesses": 10
 	},
-	3: {
+	{
 		"num-boxes": 9,
 		"sorted": "sorted",
 		"num-guesses": 5
 	},
-	4: {
+	{
 		"num-boxes": 25,
 		"sorted": "sorted",
 		"num-guesses": 5
-	}
-}
+	},
+	{
+		"num-boxes": 49,
+		"sorted": "sorted",
+		"num-guesses": 6
+	},
+];
 
 window.addEventListener("DOMContentLoaded", function() {
 	document.getElementById('next-level').addEventListener("click", nextLevel);
@@ -44,6 +49,8 @@ window.addEventListener("DOMContentLoaded", function() {
 
 
 function setInterfaceParameters(url_string) {
+	var min_level = 0;
+	var max_level = preset_levels.length - 1; // because levels start at 0
 	var url = new URL(url_string);
 
 	start_level = url.searchParams.get('start-level');
@@ -53,15 +60,24 @@ function setInterfaceParameters(url_string) {
 	sorted = url.searchParams.get('sorted');
 	starting_num_guesses = url.searchParams.get('num-guesses');
 
-    // if start level and end level given and are valid, set the level parameters
-    if (start_level in preset_levels && end_level in preset_levels) {
+	// if start level and end level given and are valid, set the level parameters
+	if (start_level < min_level) {
+		console.log('Start level paramater cannot be less than 0. Reverting to default.');
+		start_level = min_level;
+	}
+	if (end_level > max_level) {
+		console.log('Start level paramater cannot be greater than {}. Reverting to default.'.format(max_level));
+		end_level = max_level;
+	}
+    if (start_level != null && end_level != null) {
     	setLevelParameters(start_level);
     } else if (num_boxes != null && sorted != null && starting_num_guesses != null) { // use the settings from the url parameters
 		num_guesses = starting_num_guesses;
 		levels_set_from_params = true;
-    } else { // no parameters given
-		start_level = 1;
-		end_level = 4;
+	} else { // no parameters given
+		console.log('hello')
+		start_level = min_level;
+		end_level = max_level;
 		setLevelParameters(start_level);
 	}
 
@@ -76,7 +92,7 @@ function setInterfaceParameters(url_string) {
 
 function setLevelParameters(level) {
 	// If using preset levels
-	if (level) {
+	if (level != null) {
 		num_boxes = preset_levels[level]['num-boxes'];
 		sorted = preset_levels[level]['sorted'];
 		starting_num_guesses = preset_levels[level]['num-guesses'];
@@ -146,9 +162,11 @@ function elementVisible(element, show_element) {
 }
 
 function getWeightList(num_boxes) {
-	range = Math.floor(Math.random() * 899) + 100; // returns random integer between 100 and 899
+	range = Math.floor(Math.random() * 799) + 200; // returns random integer between 200 and 799
 	start_range = Math.floor(Math.random() * (999 - range)); // returns random integer between 1 and 999 - range
-	end_range = start_range + 100; // this will be the array of numbers we will shuffle and pick from
+	// adding 200 so when there is  a large number of boxes (49) the box weights have enough variation
+	// (e.g won't appear close to sequential order)
+	end_range = start_range + 200; // this will be the array of numbers we will shuffle and pick from
 
 	array = customRange(start_range, end_range);
 	shuffledArray = shuffle(array);
@@ -219,6 +237,8 @@ function fadeBox(event) {
 		elementVisible(document.getElementById('found'), true);
 
 		// show next button
+		console.log(current_level);
+		console.log(end_level);
 		if (current_level < end_level && !levels_set_from_params) {
 			elementVisible(document.getElementById('next-level-container'), true);
 		}
@@ -232,7 +252,7 @@ function disableBoxes() {
 	}
 }
 
-function loadLevel(level) {
+function loadLevel() {
 	found = false;
 	setLevelParameters(current_level);
 	setUpInterface();
