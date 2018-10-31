@@ -1,4 +1,4 @@
-{% load static %}{% load render_interactive_link %}
+{% load static %}
 
 <a href="{% url 'interactives:interactive' interactive.slug %}" class="link-item no-text-decoration d-block h-100 py-2 text-center{% if not interactive.translation_available %} unavailable{% endif %}">
   {% with 'img/interactives/thumbnails/'|add:interactive.slug|add:'.png' as image_src %}
