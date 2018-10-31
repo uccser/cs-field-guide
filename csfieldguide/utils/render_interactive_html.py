@@ -12,6 +12,7 @@ ALLOWED_MODES = (
     "in-page",
     "whole-page",
     "iframe",
+    "centered"
 )
 
 

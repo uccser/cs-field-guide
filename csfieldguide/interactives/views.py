@@ -59,6 +59,19 @@ def interactive_iframe_view(request, interactive_slug):
     return HttpResponse(render_interactive_html(interactive_slug, "iframe", request))
 
 
+def interactive_centered_view(request, interactive_slug):
+    """View for a interactive in centered mode.
+
+    Args:
+        request (Request): Object of request.
+        interactive_slug (str): Slug of interactive.
+
+    Returns:
+        HTTP response of rendered interactive.
+    """
+    return HttpResponse(render_interactive_html(interactive_slug, "centered", request))
+
+
 def thumbnail_json(request, **kwargs):
     """Provide JSON data for creating thumbnails.
 
@@ -70,7 +83,7 @@ def thumbnail_json(request, **kwargs):
     """
     thumbnails = dict()
     for interactive in Interactive.objects.all():
-        url = reverse("interactives:iframe_interactive", args=[interactive.slug])
+        url = reverse("interactives:centered_interactive", args=[interactive.slug])
         thumbnails[interactive.slug] = url
     data = {
         "thumbnails": thumbnails,

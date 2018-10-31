@@ -31,6 +31,11 @@ urlpatterns += [
         views.interactive_iframe_view,
         name="iframe_interactive"
     ),
+    url(
+        r"^centered/(?P<interactive_slug>[-\w]+)/$",
+        views.interactive_centered_view,
+        name="centered_interactive"
+    ),
     # eg: /interactives/sorting-algorithms/
     url(
         r"^(?P<interactive_slug>[-\w]+)/$",

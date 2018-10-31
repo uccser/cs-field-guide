@@ -27,7 +27,7 @@ defhelp() {
     local command="${2?}"
     local text="${3?}"
     local help_str
-    help_str="$(printf '   %-18s %s' "$command" "$text")"
+    help_str="$(printf '   %-29s %s' "$command" "$text")"
     dev_cmd_helps+=("$help_str")
   else
     local command="${1?}"
@@ -93,6 +93,7 @@ cmd_update() {
 
   echo ""
   dev_updatedata
+  dev_make_interactive_screenshots
   dev_rebuild_index
 
   echo ""
@@ -155,6 +156,13 @@ dev_makemessages() {
   docker-compose exec django /docker_venv/bin/python3 ./manage.py makemessages --ignore=build/* -d djangojs
 }
 defhelp -dev makemessages 'Run Django makemessages command.'
+
+# Run Node make_interactive_screenshots command
+dev_make_interactive_screenshots() {
+  echo "Creating interactive thumbnails..."
+  docker-compose exec nginx node make-interactive-screenshots.js
+}
+defhelp -dev make_interactive_screenshots 'Run Node make-interactive-screenshots.js script.'
 
 # Run Django makemigrations command
 dev_makemigrations() {

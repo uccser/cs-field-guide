@@ -66,5 +66,5 @@ def save_thumbnail(interactive):
         String of static path to thumbnail.
     """
     file_path = get_thumbnail_static_path_for_interactive(interactive)
-    html = render_interactive_html(interactive.slug, "iframe")
+    html = render_interactive_html(interactive.slug, "centered")
     # Create and save image
