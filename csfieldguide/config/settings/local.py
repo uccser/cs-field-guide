@@ -62,7 +62,7 @@ def show_django_debug_toolbar(request):
     Args:
         request: The request object.
     """
-    return not "hide-debug-toolbar" in request.GET
+    return "hide-debug-toolbar" not in request.GET
 
 
 DEBUG_TOOLBAR_CONFIG = {

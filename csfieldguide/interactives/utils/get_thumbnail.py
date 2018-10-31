@@ -1,9 +1,7 @@
 """Functions for getting a thumbnail for an interactive."""
 
 from os.path import join
-from django.conf import settings
 from django.utils.translation import get_language
-from utils.render_interactive_html import render_interactive_html
 
 
 def get_thumbnail_filename(interactive_slug):
@@ -24,17 +22,11 @@ def get_thumbnail_base():
     Returns:
         String of thumbnail base.
     """
-    if settings.DJANGO_PRODUCTION:
-        interactive_language = get_language()
-        if interactive_language in settings.INCONTEXT_L10N_PSEUDOLANGUAGES:
-            interactive_language = "en"
-    else:
-        interactive_language = "en"
     interactive_thumbnail_base = join(
-        settings.STATIC_URL,
+        "build",
         "img/interactives/",
         "thumbnails",
-        interactive_language,
+        get_language(),
         ""
     )
     return interactive_thumbnail_base
@@ -54,17 +46,3 @@ def get_thumbnail_static_path_for_interactive(interactive):
         get_thumbnail_filename(interactive.slug)
     )
     return thumbnail
-
-
-def save_thumbnail(interactive):
-    """Save thumbnail of interactive.
-
-    Args:
-        interactive (Interactive): Interactive to get thumbnail for.
-
-    Returns:
-        String of static path to thumbnail.
-    """
-    file_path = get_thumbnail_static_path_for_interactive(interactive)
-    html = render_interactive_html(interactive.slug, "centered")
-    # Create and save image

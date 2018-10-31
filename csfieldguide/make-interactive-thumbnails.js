@@ -1,5 +1,6 @@
 const request = require('request');
 const fs = require('fs');
+const path = require('path');
 const puppeteer = require('puppeteer');
 const VIEWPORT = {
     width: 480,
@@ -7,7 +8,6 @@ const VIEWPORT = {
     deviceScaleFactor: 1
 };
 const SCREENSHOT_BASE_PATH = './build/img/interactives/thumbnails/';
-const SCREENSHOT_EXTENSION = '.png';
 const BASE_URL = 'http://localhost:80';  // This is the internal port of 80, not the external port mapping of 81
 const INTERACTIVE_PAGE_PARAMS = '?hide-debug-toolbar';
 
@@ -16,16 +16,21 @@ if (!fs.existsSync(SCREENSHOT_BASE_PATH)){
 }
 
 
-function generateThumbnails(data) {
-  var thumbnail_data = JSON.parse(data)['thumbnails'];
+function generateThumbnails(json_data) {
+  var data = JSON.parse(json_data);
   puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] }).then(async browser => {
     const page = await browser.newPage();
     page.setViewport(VIEWPORT)
-    for (var thumbnail_slug in thumbnail_data) {
-      console.log('Creating screenshot for interactive: ' + thumbnail_slug);
-      var url = BASE_URL + thumbnail_data[thumbnail_slug] + INTERACTIVE_PAGE_PARAMS;
-      var dest = SCREENSHOT_BASE_PATH + thumbnail_slug + SCREENSHOT_EXTENSION;
+    for (var i = 0; i < data.length; i++) {
+      var slug = data[i][0],
+        language = data[i][1],
+        url = BASE_URL + data[i][2] + INTERACTIVE_PAGE_PARAMS,
+        dest = data[i][3];
+      console.log('Creating screenshot for interactive ' + slug + ' in language ' + language);
       await page.goto(url);
+      if (!fs.existsSync(path.dirname(dest))) {
+        fs.mkdirSync(path.dirname(dest));
+      }
       await page.screenshot({ path: dest, omitBackground: true });
     }
     await browser.close();

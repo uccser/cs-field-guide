@@ -3,9 +3,12 @@
 from django.views import generic
 from django.http import HttpResponse, JsonResponse
 from django.urls import reverse
+from django.conf import settings
+from django.utils import translation
 from interactives.models import Interactive
 from chapters.models import Chapter
 from config.templatetags.render_interactive_in_page import render_interactive_html
+from interactives.utils.get_thumbnail import get_thumbnail_static_path_for_interactive
 
 
 class IndexView(generic.ListView):
@@ -81,11 +84,24 @@ def thumbnail_json(request, **kwargs):
     Returns:
         JSON response is sent containing data for thumbnails.
     """
-    thumbnails = dict()
-    for interactive in Interactive.objects.all():
-        url = reverse("interactives:centered_interactive", args=[interactive.slug])
-        thumbnails[interactive.slug] = url
-    data = {
-        "thumbnails": thumbnails,
-    }
-    return JsonResponse(data)
+    data = list()
+
+    if request.GET.get("all_languages", False):
+        languages = settings.DEFAULT_LANGUAGES
+    else:
+        languages = [("en", "")]
+
+    languages = settings.DEFAULT_LANGUAGES
+    for language_code, _ in languages:
+        with translation.override(language_code):
+            for interactive in Interactive.objects.all():
+                url = reverse("interactives:centered_interactive", args=[interactive.slug])
+                data.append(
+                    [
+                        interactive.slug,
+                        language_code,
+                        url,
+                        get_thumbnail_static_path_for_interactive(interactive),
+                    ]
+                )
+    return JsonResponse(data, safe=False)
