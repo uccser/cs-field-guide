@@ -1,54 +1,42 @@
-const http = require('http');
+const request = require('request');
 const fs = require('fs');
 const puppeteer = require('puppeteer');
 const VIEWPORT = {
-    width: 1024,
-    height: 576,
-    deviceScaleFactor: 0.2
+    width: 800,
+    height: 600,
+    deviceScaleFactor: 1
 };
 const SCREENSHOT_BASE_PATH = './build/img/interactives/thumbnails/';
 const SCREENSHOT_EXTENSION = '.png';
-const BASE_URL = 'http://localhost:80';
+const BASE_URL = 'http://localhost:80';  // This is the internal port of 80, not the external port mapping of 81
 
 if (!fs.existsSync(SCREENSHOT_BASE_PATH)){
     fs.mkdirSync(SCREENSHOT_BASE_PATH);
 }
 
 
-async function getScreenshot(url, dest) {
-  const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
-  const page = await browser.newPage();
-  page.setViewport(VIEWPORT)
-  await page.goto(url);
-  await page.screenshot({path: dest});
-  await browser.close();
-}
-
-
 function generateThumbnails(data) {
-  console.log(data);
-  var json = {
-    'thumbnails': {
-        'awful-calculator': '/en/interactives/iframe/awful-calculator/'
+  var thumbnail_data = JSON.parse(data)["thumbnails"];
+  puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] }).then(async browser => {
+    const page = await browser.newPage();
+    page.setViewport(VIEWPORT)
+    for (var thumbnail_slug in thumbnail_data) {
+      console.log('Getting screenshot for ' + thumbnail_slug);
+      var url = BASE_URL + thumbnail_data[thumbnail_slug];
+      var dest = SCREENSHOT_BASE_PATH + thumbnail_slug + SCREENSHOT_EXTENSION;
+      await page.goto(url);
+      await page.screenshot({ path: dest });
+      console.log('Finished screenshot for ' + thumbnail_slug);
     }
-  };
-  var thumbnail_data = json["thumbnails"];
-  for (var thumbnail_slug in thumbnail_data) {
-    console.log('Getting screenshot for ' + thumbnail_slug);
-    var url = BASE_URL + thumbnail_data[thumbnail_slug];
-    var dest = SCREENSHOT_BASE_PATH + thumbnail_slug + SCREENSHOT_EXTENSION;
-    getScreenshot(url, dest);
-  }
+    await browser.close();
+  });
 }
 
 
-generateThumbnails({});
-
-// $.ajax({
-//   type: "GET",
-//   url: BASE_URL + '/interactives/thumbnail-json/',
-//   async: true,
-//   cache: true,
-//   dataType: "json",
-//   success: generateThumbnails,
-// });
+request(
+  BASE_URL + '/interactives/thumbnail-json/',
+  function (error, response, body) {
+    generateThumbnails(body);
+  },
+  json=true
+);
