@@ -491,8 +491,6 @@ so we recommend using Exorciser if it's available.
 If you use JFLAP we recommend that you become familiar with it first so that you can guide students through it: the interface has many distracting features and can be a little quirky, and fiddling around without taking time to learn how to use it will be a frustrating experience.
 Fortunately there's a good tutorial about using JFLAP [here](http://www.jflap.org/tutorial/), and some material from Duke University about FSAs based around JFLAP [here](http://www.cs.duke.edu/csed/pltl/exercises/lessons/29/finiteautomata.zip) (ZIP file).
 
-If you have trouble using Exorciser or JFLAP, there's also an FSA example in the "Java Applets Centre" at [http://www.cosc.canterbury.ac.nz/mukundan/thco/DFA.html](https://web.archive.org/web/20170328182143/http://www.cosc.canterbury.ac.nz/mukundan/thco/DFA.html).
-
 {panel end}
 
 Another widely used system for experimenting with FSAs is a program called JFLAP (download it from http://jflap.org).
