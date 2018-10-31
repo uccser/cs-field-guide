@@ -2,9 +2,9 @@ const request = require('request');
 const fs = require('fs');
 const puppeteer = require('puppeteer');
 const VIEWPORT = {
-    width: 640,
-    height: 480,
-    deviceScaleFactor: 0.4
+    width: 480,
+    height: 320,
+    deviceScaleFactor: 1
 };
 const SCREENSHOT_BASE_PATH = './build/img/interactives/thumbnails/';
 const SCREENSHOT_EXTENSION = '.png';
@@ -26,7 +26,7 @@ function generateThumbnails(data) {
       var url = BASE_URL + thumbnail_data[thumbnail_slug] + INTERACTIVE_PAGE_PARAMS;
       var dest = SCREENSHOT_BASE_PATH + thumbnail_slug + SCREENSHOT_EXTENSION;
       await page.goto(url);
-      await page.screenshot({ path: dest });
+      await page.screenshot({ path: dest, omitBackground: true });
     }
     await browser.close();
   });

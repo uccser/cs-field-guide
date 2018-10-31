@@ -1,0 +1,13 @@
+{% load static %}{% load render_interactive_link %}
+
+<a href="{% url 'interactives:interactive' interactive.slug %}" class="link-item no-text-decoration d-block h-100 py-2 text-center{% if not interactive.translation_available %} unavailable{% endif %}">
+  {% with 'img/interactives/thumbnails/'|add:interactive.slug|add:'.png' as image_src %}
+  <img class="border-thin" src="{% static image_src %}" alt="Thumbnail of {{ interactive.name }} interactive">
+  {% endwith %}
+  <p class="mb-0 mt-2">
+    <strong>{{ interactive.name }}</strong>
+    {% if not interactive.translation_available %}
+      {% include "generic/not-available-badge.html" %}
+    {% endif %}
+  </p>
+</a>

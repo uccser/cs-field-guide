@@ -196,6 +196,7 @@ TEMPLATES = [
                 "get_item": "config.templatetags.get_item",
                 "render_html_field": "config.templatetags.render_html_field",
                 "render_interactive_in_page": "config.templatetags.render_interactive_in_page",
+                "render_interactive_link": "config.templatetags.render_interactive_link",
                 "translate_url": "config.templatetags.translate_url",
                 "query_replace": "config.templatetags.query_replace",
             },

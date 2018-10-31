@@ -13,7 +13,10 @@
     {% endwith %}
   {% else %}
     <style>
-      body { padding-top: 0 !important; }
+      body {
+        padding-top: 0 !important;
+        background-color: transparent !important;
+      }
     </style>
     <div class="interactive d-flex align-items-center justify-content-center" style="height: 100vh;">
       {% block html %}
