@@ -111,7 +111,6 @@ function setUpInterface() {
 	document.getElementById('num-guesses-text').innerHTML = num_guesses_text;
 	elementVisible(document.getElementById('num-guesses-text'), true);
 
-
 	var restart_start_level = document.getElementById('restart-start-level-container');
 	if (start_level == null || current_level == start_level) {
 		elementVisible(restart_start_level, false);
@@ -160,11 +159,9 @@ function elementVisible(element, show_element) {
 }
 
 function getWeightList(num_boxes) {
-	range = Math.floor(Math.random() * 699) + 300; // returns random integer between 300 and 699
+	range = Math.floor(Math.random() * 899) + 100; // returns random integer between 100 and 899
 	start_range = Math.floor(Math.random() * (999 - range)); // returns random integer between 1 and 999 - range
-	// adding 300 so when there is  a large number of boxes (49) the box weights have enough variation
-	// (e.g won't appear close to sequential order)
-	end_range = start_range + 300; // this will be the array of numbers we will shuffle and pick from
+	end_range = start_range + range; // this will be the array of numbers we will shuffle and pick from
 
 	array = customRange(start_range, end_range);
 	shuffledArray = shuffle(array);
@@ -273,9 +270,7 @@ function decreaseGuessCount() {
 		elementVisible(num_guesses_text, false);
 		disableBoxes();
 	} else {
-		var format = ngettext('You have <span id="num-guesses">1</span> guess to find it.',
-							'You have <span id="num-guesses">%(num_guesses)s</span> guesses to find it.',
-							num_guesses);
+		var format = ngettext('You have <span id="num-guesses">1</span> guess to find it.', 'You have <span id="num-guesses">%(num_guesses)s</span> guesses to find it.', num_guesses);
 		var text = interpolate(format, {"num_guesses": num_guesses}, true);
 		num_guesses_text.innerHTML = text;
 	}

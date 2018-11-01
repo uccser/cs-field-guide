@@ -138,8 +138,6 @@ Remember computers often have to search through HUGE amounts of data, so even if
 
 A much better sorting algorithm is {glossary-link term="quicksort"}Quicksort{glossary-link end}! (the name is a bit of a giveaway)
 
-{comment interactive name="sorting-algorithms" type="whole-page" text="Quicksort interactive" parameters="method=quick" thumbnail="thumbnail-quick.png"}
-
 {interactive slug="sorting-algorithms" type="whole-page" text="true" parameters="method=quick"}
 
 Quicksort Interactive
