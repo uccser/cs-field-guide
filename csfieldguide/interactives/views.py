@@ -91,10 +91,9 @@ def thumbnail_json(request, **kwargs):
     else:
         languages = [("en", "")]
 
-    languages = settings.DEFAULT_LANGUAGES
-    for language_code, _ in languages:
+    for language_code, _ in sorted(languages):
         with translation.override(language_code):
-            for interactive in Interactive.objects.all():
+            for interactive in Interactive.objects.order_by("slug"):
                 url = reverse("interactives:centered_interactive", args=[interactive.slug])
                 data.append(
                     [

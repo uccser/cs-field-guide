@@ -6,19 +6,14 @@ from django.conf import settings
 from . import views
 
 app_name = "interactives"
-urlpatterns = []
 
-# Define URL pattern before whole page interactive URL
-if settings.DEBUG:  # pragma: no cover
-    urlpatterns += [
-        # eg: /interactives/thumbnail-json/
-        url(
-            r"^thumbnail-json/$",
-            views.thumbnail_json
-        )
-    ]
 
-urlpatterns += [
+urlpatterns = [
+    url(
+        r"^thumbnail-json/",
+        views.thumbnail_json,
+        name="thumbnail-json"
+    ),
     # eg: /interactives/
     url(
         r"^$",
