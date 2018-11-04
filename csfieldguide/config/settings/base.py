@@ -109,9 +109,6 @@ DEFAULT_LANGUAGES = (
 # Keep original values of languages for resource generation
 LANGUAGES = DEFAULT_LANGUAGES
 
-# Keep original values of languages for resource generation
-LANGUAGES = DEFAULT_LANGUAGES
-
 if env.bool("INCLUDE_INCONTEXT_L10N", False):
     EXTRA_LANGUAGES = [
         (INCONTEXT_L10N_PSEUDOLANGUAGE, "Translation mode"),
