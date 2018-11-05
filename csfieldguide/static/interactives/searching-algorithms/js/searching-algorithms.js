@@ -10,28 +10,33 @@ var sorted;
 var found = false;
 var levels_set_from_params = false;
 
-var preset_levels = {
-	1: {
+var preset_levels = [
+	{
 		"num-boxes": 5,
 		"sorted": "random",
 		"num-guesses": 6
 	},
-	2: {
+	{
 		"num-boxes": 9,
 		"sorted": "random",
 		"num-guesses": 10
 	},
-	3: {
+	{
 		"num-boxes": 9,
 		"sorted": "sorted",
 		"num-guesses": 5
 	},
-	4: {
+	{
 		"num-boxes": 25,
 		"sorted": "sorted",
 		"num-guesses": 5
-	}
-}
+	},
+	{
+		"num-boxes": 49,
+		"sorted": "sorted",
+		"num-guesses": 6
+	},
+];
 
 window.addEventListener("DOMContentLoaded", function() {
 	document.getElementById('next-level').addEventListener("click", nextLevel);
@@ -44,6 +49,8 @@ window.addEventListener("DOMContentLoaded", function() {
 
 
 function setInterfaceParameters(url_string) {
+	var min_level = 0;
+	var max_level = preset_levels.length - 1; // because levels start at 0
 	var url = new URL(url_string);
 
 	start_level = url.searchParams.get('start-level');
@@ -53,15 +60,23 @@ function setInterfaceParameters(url_string) {
 	sorted = url.searchParams.get('sorted');
 	starting_num_guesses = url.searchParams.get('num-guesses');
 
-    // if start level and end level given and are valid, set the level parameters
-    if (start_level in preset_levels && end_level in preset_levels) {
+	// if start level and end level given and are valid, set the level parameters
+	if (start_level < min_level) {
+		console.log('Start level paramater cannot be less than 0. Reverting to default.');
+		start_level = min_level;
+	}
+	if (end_level > max_level) {
+		console.log('Start level paramater invalid. Reverting to default.');
+		end_level = max_level;
+	}
+    if (start_level != null && end_level != null) {
     	setLevelParameters(start_level);
     } else if (num_boxes != null && sorted != null && starting_num_guesses != null) { // use the settings from the url parameters
 		num_guesses = starting_num_guesses;
 		levels_set_from_params = true;
-    } else { // no parameters given
-		start_level = 1;
-		end_level = 4;
+	} else { // no parameters given
+		start_level = min_level;
+		end_level = max_level;
 		setLevelParameters(start_level);
 	}
 
@@ -76,7 +91,7 @@ function setInterfaceParameters(url_string) {
 
 function setLevelParameters(level) {
 	// If using preset levels
-	if (level) {
+	if (level != null) {
 		num_boxes = preset_levels[level]['num-boxes'];
 		sorted = preset_levels[level]['sorted'];
 		starting_num_guesses = preset_levels[level]['num-guesses'];
@@ -91,12 +106,10 @@ function setUpInterface() {
 	// fill in the rules
 	document.getElementById('num-boxes').innerText = num_boxes;
 	document.getElementById('order').innerText = sorted;
-	document.getElementById('num-guesses-used').innerHTML = gettext("Number of guesses used: 0"); // do we want to use a substitution for 0 for the translators??
 	var format = ngettext('You have <span id="num-guesses">1</span> guess to find it.', 'You have <span id="num-guesses">%(num_guesses)s</span> guesses to find it.', num_guesses);
 	var num_guesses_text = interpolate(format, {"num_guesses": num_guesses}, true);
 	document.getElementById('num-guesses-text').innerHTML = num_guesses_text;
 	elementVisible(document.getElementById('num-guesses-text'), true);
-
 
 	var restart_start_level = document.getElementById('restart-start-level-container');
 	if (start_level == null || current_level == start_level) {
@@ -148,7 +161,7 @@ function elementVisible(element, show_element) {
 function getWeightList(num_boxes) {
 	range = Math.floor(Math.random() * 899) + 100; // returns random integer between 100 and 899
 	start_range = Math.floor(Math.random() * (999 - range)); // returns random integer between 1 and 999 - range
-	end_range = start_range + 100; // this will be the array of numbers we will shuffle and pick from
+	end_range = start_range + range; // this will be the array of numbers we will shuffle and pick from
 
 	array = customRange(start_range, end_range);
 	shuffledArray = shuffle(array);
@@ -232,7 +245,7 @@ function disableBoxes() {
 	}
 }
 
-function loadLevel(level) {
+function loadLevel() {
 	found = false;
 	setLevelParameters(current_level);
 	setUpInterface();
@@ -257,9 +270,7 @@ function decreaseGuessCount() {
 		elementVisible(num_guesses_text, false);
 		disableBoxes();
 	} else {
-		var format = ngettext('You have <span id="num-guesses">1</span> guess to find it.',
-							'You have <span id="num-guesses">%(num_guesses)s</span> guesses to find it.',
-							num_guesses);
+		var format = ngettext('You have <span id="num-guesses">1</span> guess to find it.', 'You have <span id="num-guesses">%(num_guesses)s</span> guesses to find it.', num_guesses);
 		var text = interpolate(format, {"num_guesses": num_guesses}, true);
 		num_guesses_text.innerHTML = text;
 	}

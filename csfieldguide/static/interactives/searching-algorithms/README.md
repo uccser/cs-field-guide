@@ -1,4 +1,4 @@
 # Searching Algorithms Interactive
 
 **Original Author:** Jack Morgan
-**Remade By:** Hayley van Waas
+**Remade By:** Hayley van Waas and Courtney Bracefield
