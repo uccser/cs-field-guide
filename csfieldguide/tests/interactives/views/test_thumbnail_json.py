@@ -1,11 +1,7 @@
 from http import HTTPStatus
 from django.urls import reverse
-from django.conf import settings
-from django.test import override_settings
 from tests.BaseTestWithDB import BaseTestWithDB
 from tests.interactives.InteractivesTestDataGenerator import InteractivesTestDataGenerator
-import config.urls
-from django.conf.urls import url
 
 
 class ThumbnailJSONViewTest(BaseTestWithDB):

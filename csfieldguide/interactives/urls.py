@@ -1,7 +1,6 @@
 """URL routing for the interactives application."""
 
 from django.conf.urls import url
-from django.conf import settings
 
 from . import views
 
