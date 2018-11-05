@@ -710,7 +710,6 @@ Discuss how the single matrix derived from all the others is more efficient, usi
 # WebGL and OpenGL
 
 If you're confident with programming and want to explore graphics at a more practical level, you could do a similar project to the previous one using a graphics programming system such as [WebGL](https://en.wikipedia.org/wiki/WebGL) (which is the system used in the demonstrations above), or a widely used graphics system such as [OpenGL](https://en.wikipedia.org/wiki/OpenGL).
-There is an interactive tutorial on OpenGL called [JPOT](http://www.cs.uwm.edu/%7Egrafix2/).
 
 Note that these project can be very time consuming because these are powerful systems,
 and there is quite a bit of detail to get right even for a simple operation.
