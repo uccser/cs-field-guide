@@ -24,7 +24,8 @@ def get_thumbnail_base():
     """
     interactive_thumbnail_base = join(
         "build",
-        "img/interactives/",
+        "img",
+        "interactives",
         "thumbnails",
         get_language(),
         ""
