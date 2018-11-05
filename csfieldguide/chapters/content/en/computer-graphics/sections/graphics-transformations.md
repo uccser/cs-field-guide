@@ -3,7 +3,7 @@
 A computer graphics image is just the result of a whole lot of mathematical calculations.
 In fact, every pixel you see in an image has usually had many calculations made to work out what colour it should be, and there are often millions of pixels in a typical image.
 
-Let's start with some simple but common calculations that are needed for in graphics programming.
+Let's start with some simple but common calculations that are needed in graphics programming.
 The following interactive shows a cube with symbols on each face.
 You can move it around using what's called a *transform*, which simply adjusts where it is placed in space.
 Try typing in 3D coordinates into this interactive to find each code.
