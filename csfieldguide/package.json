@@ -22,7 +22,8 @@
     "csfg-interactive-rgb-mixer": "file:./static/interactives/rgb-mixer/",
     "csfg-interactive-rsa-jsencrypt": "file:./static/interactives/rsa-jsencrypt/",
     "csfg-interactive-sha2": "file:./static/interactives/sha2/",
-    "csfg-interactive-unicode-chars": "file:./static/interactives/unicode-chars/"
+    "csfg-interactive-unicode-chars": "file:./static/interactives/unicode-chars/",
+    "csfg-interactive-sorting-algorithms": "file:./static/interactives/sorting-algorithms/"
   },
   "devDependencies": {
     "autoprefixer": "9.3.1",
