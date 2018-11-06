@@ -124,7 +124,7 @@ The basis functions become more complex towards the bottom right, and are theref
 How often would an image have every pixel a different color, as in the bottom right basis function?
 To investigate how the 64 basis functions can be combined to form any pattern in 8 by 8 block of pixels - try out this puzzle!
 
-{interactive slug="jpeg-compression" type="whole-page" parameters="puzzle=true" text="JPEG puzzle interactive"}
+{comment interactive slug="jpeg-compression" type="whole-page" parameters="puzzle=true" text="JPEG puzzle interactive"}
 
 So 64 pixels (in an 8 by 8 block) can be represented by 64 coefficients that tell us how much of each basis function to use.
 But how does this help us save space and compress the image?
@@ -183,7 +183,7 @@ Notice how the images look very similar, even though the second one has many zer
 
 Try this out yourself:
 
-{interactive slug="jpeg-compression" type="whole-page" text="JPEG interactive"}
+{comment interactive slug="jpeg-compression" type="whole-page" text="JPEG interactive"}
 
 We still have 64 numbers even with the many zeros, so how do we save space when storing the zeros?
 You will notice that the zeros are bunched towards the bottom right. This means if we list the coefficients in a zig-zag, starting from the top left corner, we will end up with many zeros in a row.

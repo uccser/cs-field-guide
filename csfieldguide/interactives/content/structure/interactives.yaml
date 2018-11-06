@@ -202,3 +202,6 @@ unexpected-error:
 # viola-jones-face-detector:
 #   languages:
 #     en: interactives/viola-jones-face-detector.html
+ziv-lempel-coding:
+  languages:
+    en: interactives/ziv-lempel-coding.html

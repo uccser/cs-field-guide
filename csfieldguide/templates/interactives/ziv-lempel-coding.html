@@ -1,0 +1,28 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div class="container">
+    <div class="row">
+      <div class="col s12 l6 offset-l3">
+        <div id="interactive-ziv-lempel-coding">
+          <h3>{% trans "Ziv-Lempel Coding" %}</h3>
+
+          <div class="row">  
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/ziv-lempel-coding/css/ziv-lempel-coding.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/ziv-lempel-coding/js/ziv-lempel-coding.js' %}"></script>
+{% endblock js %}
