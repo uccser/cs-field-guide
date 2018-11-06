@@ -1,0 +1,7 @@
+# Acerca de esta guía
+
+Puedes copiar, compartir e incluso modificar esta guía con total libertad y de forma gratuita. También se puede descargar como archivo PDF (aunque es mucho mejor visualizarla en línea, ya que así puedes ver los vídeos y usar las actividades interactivas). El material original (todo el texto sin formato, las imágenes, los vídeos y programas interactivos) se encuentra disponible a través del enlace de "GitHub" situado en el pie de página.
+
+Esta guía cuenta con una licencia [Creative Commons Reconocimiento-CompartirIgual](http://creativecommons.org/licenses/by-sa/4.0/), lo que significa que si lo deseas puedes hacer copias y modificarlas. Si haces alguna mejora, por favor, compártela y da las gracias a esta guía poniendo un enlace a nuestro sitio web. Puedes distribuir la guía (o cualquier derivado), usarla para dar clases o con fines comerciales.
+
+La Computer Science Field Guide ha sido desarrollada por el [Computer Science Education Research Group de la Universidad de Canterbury ](http://www.cosc.canterbury.ac.nz/research/RG/CSE/) y ha sido financiada por varios grupos generosos. En esta página hay disponible una lista de colaboradores encima del pie de página. Por supuesto, agradecemos donaciones que nos ayuden a realizar trabajo adicional en la guía.
