@@ -5,7 +5,14 @@ from django.conf.urls import url
 from . import views
 
 app_name = "interactives"
+
+
 urlpatterns = [
+    url(
+        r"^thumbnail-json/",
+        views.thumbnail_json,
+        name="thumbnail-json"
+    ),
     # eg: /interactives/
     url(
         r"^$",
@@ -17,6 +24,11 @@ urlpatterns = [
         r"^iframe/(?P<interactive_slug>[-\w]+)/$",
         views.interactive_iframe_view,
         name="iframe_interactive"
+    ),
+    url(
+        r"^centered/(?P<interactive_slug>[-\w]+)/$",
+        views.interactive_centered_view,
+        name="centered_interactive"
     ),
     # eg: /interactives/sorting-algorithms/
     url(
