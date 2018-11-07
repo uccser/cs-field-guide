@@ -202,7 +202,7 @@ This can be broken up into groups of 4 bits: `1001` `0001` `0011` `0010` `0111` 
 
 And now, each of these groups of 4 bits will need to be represented with a **hexadecimal** digit.
 
-- 1001 -> 5
+- 1001 -> 9
 - 0001 -> 1
 - 0011 -> 3
 - 0010 -> 2
@@ -294,7 +294,7 @@ In other cases, the 16-bit images are almost as good as 24-bit images unless you
 They also use two-thirds (16/24) of the space that they would with 24-bit colour.
 For images that will need to be downloaded on 3G devices where internet is expensive, this is worth thinking about carefully.
 
-Have an experiement with the following interactive, to see what impact different numbers of bits for each colour has.
+Have an experiment with the following interactive, to see what impact different numbers of bits for each colour has.
 Do you think 8 bit colour was right in having 2 bits for blue, or should it have been green or red that got only 2 bits?
 
 {interactive slug="image-bit-comparer" type="whole-page" text="Image Bit Comparer - Change Bits mode" parameters="change-bits=true"}
