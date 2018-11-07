@@ -81,6 +81,7 @@ LANGUAGES = (
     ("de", "German"),
     ("fr", "French"),
 )
+DEFAULT_LANGUAGES = LANGUAGES
 
 # Search index location for testing
 SEARCH_INDEX_PATH = "temp/tests/search/"

@@ -16,20 +16,13 @@
   {% for chapter in chapters %}
     <h3>{{ chapter.name }}</h3>
     {% if chapter.interactives.all %}
-      <ul>
+      <div class="row">
         {% for interactive in chapter.interactives.all %}
-          <li>
-            {% if interactive.translation_available %}
-              <a href="{% url 'interactives:interactive' interactive.slug %}">
-                {{ interactive.name }}
-              </a>
-            {% else %}
-              {{ interactive.name }}
-              {% include "generic/not-available-badge.html" %}
-            {% endif %}
-          </li>
+        <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
+          {% include "interactives/utils/interactive-link.html" %}
+        </div>
         {% endfor %}
-      </ul>
+      </div>
     {% else %}
       <p>No interactives are available for {{ chapter.name }}.</p>
     {% endif %}
@@ -37,15 +30,13 @@
 
   <h2>List of interactives alphabetically</h2>
   {% if interactives %}
-    <ul>
+    <div class="row">
       {% for interactive in interactives %}
-        <li>
-          <a href="{% url 'interactives:interactive' interactive.slug %}">
-            {{ interactive.name }}
-          </a>
-        </li>
+        <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
+          {% include "interactives/utils/interactive-link.html" %}
+        </div>
       {% endfor %}
-    </ul>
+    </div>
   {% else %}
     <p>No interactives are available.</p>
   {% endif %}
