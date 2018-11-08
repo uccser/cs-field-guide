@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: cs-field-guide\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-09-18 22:08+0000\n"
-"PO-Revision-Date: 2018-11-06 14:03\n"
+"PO-Revision-Date: 2018-11-08 14:02\n"
 "Last-Translator: uccser-admin <csse-education-research@canterbury.ac.nz>\n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -99,7 +99,7 @@ msgstr "¡Todavía te quedan recuadros que revelar!"
 
 #: static/interactives/hex-background-colour/js/hex-background-colour.js:18
 msgid "invalid!"
-msgstr "¡no válido!"
+msgstr "inválido"
 
 #: static/interactives/high-score-boxes/js/script.js:164
 msgid "Correct! But you missed a box... You got lucky this time!"
