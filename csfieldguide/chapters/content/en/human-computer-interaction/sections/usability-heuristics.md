@@ -82,7 +82,7 @@ The buttons have the colours switched, the colour for cancel is green (commonly 
 {panel end}
 
 The following interface is from a bank system for paying another person.
-Suppose you get an email asking someone to pay you $1699.50 for a used car; try entering "$1699.50" into the box.
+Suppose you send an email asking someone to pay you $1699.50 for a used car; try entering "$1699.50" into the box.
 
 {interactive slug="payment-interface" type="in-page"}
 
