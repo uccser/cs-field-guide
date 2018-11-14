@@ -643,7 +643,7 @@ if (strlen($_POST['memInput'])) {
           ?>
         </div>
       </div>
-      <div class="footer center-align">This MIPS simulator was created by <a href="https://github.com/alanhogan/miphps-mips-simulator">Alan J. Hogan</a> and is available under <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div>
+      <div class="footer center-align">This MIPS simulator was created by <a href="https://github.com/alanhogan/miphps-mips-simulator" target="_blank">Alan J. Hogan</a> and is available under <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a></div>
 
       <style>
       /* Load style from CSS file */

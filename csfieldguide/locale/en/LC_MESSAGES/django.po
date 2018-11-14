@@ -141,14 +141,14 @@ msgstr ""
 #: templates/base.html:260
 msgid ""
 "The Computer Science Field Guide material is open source on <a href="
-"\"https://github.com/uccser/cs-field-guide\">GitHub</a>, and this website's "
+"\"https://github.com/uccser/cs-field-guide\" target="_blank">GitHub</a>, and this website's "
 "content is shared under a <a href=\"https://creativecommons.org/licenses/by-"
-"sa/4.0/\">Creative Commons Attribution-ShareAlike 4.0 International license</"
+"sa/4.0/\" target="_blank">Creative Commons Attribution-ShareAlike 4.0 International license</"
 "a>. The Computer Science Field Guide is a project by the <a href=\"http://"
 "www.cosc.canterbury.ac.nz/research/RG/CSE/\">Computer Science Education "
 "Research Group</a> at the <a href=\"http://www.canterbury.ac.nz/"
-"\">University of Canterbury</a>, New Zealand. Icons provided generously by "
-"<a href=\"https://icons8.com/\">icons8</a>."
+"\" target="_blank">University of Canterbury</a>, New Zealand. Icons provided generously by "
+"<a href=\"https://icons8.com/\"> target="_blank"icons8</a>."
 msgstr ""
 
 #: templates/base.html:284

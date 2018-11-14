@@ -1989,7 +1989,7 @@ JSX.extend = function(subc, superc, overrides) {
  * @author Kenji Urushima kenji.urushima@gmail.com
  * @version 1.0.2 (2013-May-30)
  * @since 2.1
- * @license <a href="http://kjur.github.io/jsrsasign/license/">MIT License</a>
+ * @license <a href="http://kjur.github.io/jsrsasign/license/" target="_blank">MIT License</a>
  */
 
 /**
