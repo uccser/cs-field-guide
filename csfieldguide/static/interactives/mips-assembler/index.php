@@ -676,7 +676,7 @@ jr $ra'))); ?></textarea>
       ?>
     </div>
   </div>
-  <div class="footer center-align">This MIPS assembler was created by <a href="https://github.com/alanhogan/online-mips-assembler">Alan J. Hogan</a> and is available under <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div>
+  <div class="footer center-align">This MIPS assembler was created by <a href="https://github.com/alanhogan/online-mips-assembler" target="_blank">Alan J. Hogan</a> and is available under <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a></div>
 
   <style>
   /* Load style from CSS file */
