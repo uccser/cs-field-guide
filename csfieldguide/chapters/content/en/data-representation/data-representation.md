@@ -58,7 +58,7 @@ This is an important pattern in data representation on computers.
 The number 22 requires the cards to be "white, black, white, white, black",
 11 is "black, white, black, white, white",
 29 is "white, white, white, black, white", and
-19 is "white, black, black, black, white".
+19 is "white, black, black, white, white".
 
 {panel end}
 
