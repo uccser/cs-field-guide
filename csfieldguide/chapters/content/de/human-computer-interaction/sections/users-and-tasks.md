@@ -1,83 +1,83 @@
-# Users and tasks
+# Benutzer und Aufgaben
 
-A very important consideration when designing or evaluating an interface is who the users are likely to be. For example, the typical age of a user can be significant: very young children may have difficulty reading some words and prefer images and animations, while someone in a commercial setting who uses an interface frequently will want it to be very fast to use, perhaps using keyboard shortcuts only.
+Ein äußerst wichtiger Aspekt bei der Gestaltung oder Evaluierung einer Schnittstelle sind die letztendlichen Benutzer der Schnittstelle. Beispielsweise kann das typische Alter von Benutzern erheblich sein: sehr junge Kinder haben eventuell Schwierigkeiten beim Lesen einiger Wörter und mögen Bilder oder Animationen bevorzugen, während Personen in einem beruflichen Umfeld, die eine Schnittstelle häufig benutzen, auf schnelle Handhabung, eventuell nur mittels Tastaturkürzeln, Wert legen.
 
-Think about the kinds of considerations you would have to make for the following user groups.
+Welche Art von Überlegungen müssten beispielsweise für die folgenden Benutzergruppen angestellt werden:
 
-- Senior citizens
-- Gamers
-- Casual users
-- Foreign visitors
+- Senioren
+- Gamer
+- Gelegenheitsbenutzer
+- Ausländische Besucher
 
 {panel type="spoiler"}
 
-# Some possible answers: Don't open until you've thought about it!
+# Einige mögliche Antworten – Erst nach dem Überlegen öffnen!
 
-- Senior citizens: use large print, have few features to learn, don't rely so much on memory, allow for poor eyesight and less agile physically (e.g. large buttons help), don't assume previous experience with computers
-- Gamers: use previous experience with typical game interfaces, expecting challenges, probably running on a high end machine
-- Casual users: interface needs to be very easy to learn, perhaps based on widely used systems, needs clear guidance
-- Foreign visitors: use simple language and meaningful images/icons
+- Senioren: große Schrift verwenden, wenig Funktionen einplanen, die erlernt werden müssen, nicht so sehr auf das Erinnerungsvermögen bauen, mögliche Sehschwächen und körperliche Einschränkungen berücksichtigen (z. B. große Tasten sind hilfreich), nicht von früherer Erfahrung mit Computern ausgehen
+- Gamer: setzen vorhandene Erfahrungen mit typischen Spieloberflächen ein, erwarten Herausforderungen, verwenden wahrscheinlich einen High-End-Computer
+- Gelegenheitsbenutzer: die Benutzeroberfläche muss sehr einfach zu erlernen sein, eventuell auf weitläufig verwendeten Systemen basierend, benötigen klare Anleitungen
+- Ausländische Besucher: einfache Sprache und aussagefähige Bilder/Symbole verwenden
 
 {panel end}
 
-The interface is the only part of a program that the user sees (that's the definition of an interface!), so if the interface doesn't work for them, then the program doesn't work.
+Schnittstellen sind der einzige für Benutzer sichtbare Teil eines Programms (das ist die Definition einer Schnittstelle!). Wenn also Benutzer mit einer Schnittstelle nicht zurechtkommen, sind sie auch mit dem Programm nicht zufrieden.
 
-Another important thing to do when designing and evaluating an interface is to think about what tasks it is being used for. Advertisements for digital devices often hide the complexity of a task, and simply point out the features available for doing the task. For example, suppose a smartphone is advertised as having a high resolution camera. The real task that someone might want to do is to take a photo of something they've just spotted, and send it to a friend. If you look at what happens in reality, the smartphone might be in their pocket or bag, and if they see something cool going past, they need to get it out, perhaps unlock it, open the camera app, adjust the lighting and other settings, press a button (is it easy to find when you're holding the camera up?), select the photo, choose a sharing option, select a friend to share it with (does the system help with that?), send it (what happens if you're out of reception range?), and then put the phone away. If any one of these steps is slow or hard to remember, the whole experience can be frustrating, and it's possible the photo opportunity will be missed, or for some other reason the friend won't receive the photo.
+Ein weiterer wichtiger Aspekt bei der Gestaltung und Evaluierung einer Schnittstelle sind die Aufgaben, für die sie verwendet wird. Werbung für digitale Geräte verschleiert häufig die Komplexität einer Aufgabe und hebt lediglich die zur Ausführung der Aufgabe verfügbaren Funktionen hervor. Nehmen wir beispielsweise an, für ein Smartphone wird damit geworben, dass es über eine hochauflösende Kamera verfügt. Die eigentliche Aufgabe, die ein Benutzer damit ausführen möchte, ist ein Foto von irgendetwas aufzunehmen und es an Freunde zu senden. Sehen wir uns nun einmal an, was in Wirklichkeit passiert: Das Smartphone befindet sich in der Tasche des Benutzers. Fällt dem Benutzer nun etwas Tolles ins Auge, muss er das Smartphone zunächst aus der Tasche holen, möglicherweise entsperren, die Kamera-App öffnen, die Beleuchtung und sonstige Einstellungen anpassen, eine Taste drücken (ist diese beim Hochhalten der Kamera einfach aufzufinden?), das Foto und eine Freigabeoption auswählen, den oder die Empfänger festlegen (hilft das System dabei?), das Foto senden (was passiert, wenn sich der Benutzer außerhalb des Empfangsbereichs befindet?) und dann die Kamera wieder wegstecken. Ist auch nur einer dieser Schritte mühsam oder schwierig zu merken, kann das gesamte Erlebnis frustrierend sein. Möglicherweise entgeht dem Benutzer auch die Fotogelegenheit oder die ausgewählten Freunde erhalten das Foto aus irgendeinem anderen Grund nicht.
 
-It's important to think through all the parts of a task when discussing an interface, as it's the small steps in a task that make all the difference between using the interface in a real situation, compared with a demonstration of some features of the device.
+Beim Beurteilen einer Benutzerschnittstelle sollten unbedingt alle Abschnitte einer Aufgabe durchdacht werden, da es die Teilschritte einer Aufgabe sind, die den entscheidenden Unterschied machen zwischen dem Gebrauch einer Schnittstelle in einer tatsächlichen Situation und der Vorführung von Funktionen des Geräts.
 
 {panel type="challenge"}
 
-# Thinking about the context of tasks
+# Den Kontext von Aufgaben bedenken
 
-It's very important to think about the whole context when describing a task. As an exercise, can you provide an example of a real task, including context, for a real person for each of the following:
+Beim Beschreiben einer Aufgabe ist es sehr wichtig, den gesamten Kontext zu bedenken. Beschreiben wir zur Übung einmal die tatsächliche Aufgabe, einschließlich Kontext, eines Benutzers für jedes der folgenden Beispiele:
 
-- Set an alarm clock
-- Show a slide (Powerpoint) presentation
+- Einen Wecker stellen
+- Eine Dia- (PowerPoint-) Präsentation vorführen
 
-Discuss your answers with a classmate or a friend. This should help you to evaluate your own answer, and consider other possible examples.
+Die Antworten sollten mit Klassenkameraden oder Freunden durchgesprochen werden. Dies hilft dabei, die eigenen Antworten zu bewerten und andere mögliche Beispiele zu berücksichtigen.
 
 {panel end}
 
 {panel type="teacher-note"}
 
-# Possible answers for above challenge
+# Mögliche Antworten zur obigen Aufgabe
 
-The educational goal for students is to see the big gulf between the naive design view of "set an alarm clock" as being a sufficient task description versus a specific scenario that gives the task much more meaning. It can take some effort for students to break down a task into its critical steps; if they have done the task before they have probably become adept at it and have forgotten any initial challenges, and if they haven't done the task, they may assume that it's easy. Some of the ideas that you could prompt for are:
+Schüler sollen hieraus lernen, den erheblichen Unterschied zwischen der naiven Designsichtweise, dass „Einen Wecker stellen“ eine ausreichende Beschreibung der Aufgabe wäre, und dem konkreten Szenario, das der Aufgabe viel mehr Bedeutungsinhalt verleiht, zu erkennen. Unter Umständen haben Schüler etwas Mühe, eine Aufgabe in ihre wichtigen Schritte aufzuschlüsseln. Wenn sie die betreffende Aufgabe schon einmal ausgeführt haben, sind sie wahrscheinlich bereits damit vertraut und haben die anfänglichen Schwierigkeiten vergessen, und wenn sie die Aufgabe noch nie ausgeführt haben, sehen sie diese eventuell als einfach an. Ein paar Überlegungen, die angeregt werden könnten:
 
-- Set an alarm clock: the task is often done late at night, and if a mistake is made the user may miss an important appointment or flight in the morning, so it's already challenging. Depending on the clock (it might be on a smartphone, or a physical clock), the user needs to set the alarm time (including getting the am/pm part right), switch on the sound for the alarm (perhaps making sure that the device isn't muted), and make sure it has sufficient power to last until the morning. All this is being done while tired, and a mistake could be costly!
-- Show a slide (Powerpoint) presentation: this task is often done in front of an audience, and there may be limited time e.g. if the room isn't available until a few minutes before the presentation. The computer may need to be connected to a projector (a whole interface challenge in itself), the software put into presentation mode with the right image ready to start, the user needs to be able to move to the next slide, and recover from pressing a wrong key. To add to the challenges, a projector usually takes a while to warm up, and it can be hard to tell what's happening during that time.
+- Einen Wecker stellen: Diese Aufgabe wird oft spätabends ausgeführt und kann bei Fehlern dazu führen, dass Benutzer unter Umständen einen wichtigen Termin oder Flug am nächsten Morgen verpassen, was ohnehin bereits eine Herausforderung darstellt. Je nach Uhr (dies kann eine physische Uhr oder auf einem Smartphone sein) muss der Benutzer die Weckzeit einstellen (und dabei ggf. am/pm korrekt beachten), den Weckton einschalten (und eventuell sicherstellen, dass das Gerät nicht auf stumm geschaltet ist) und dafür sorgen, dass genügend Batterieleistung vorhanden ist, die bis zum nächsten Morgen ausreicht. All dies wird in müdem Zustand ausgeführt, und ein Fehler kann unter Umständen kostspielig sein!
+- Eine Dia- (PowerPoint-) Präsentation vorführen: Diese Aufgabe wird meist vor einem Publikum ausgeführt und ist unter Umständen mit zeitlichen Herausforderungen verbunden, wenn z. B. der Raum erst wenige Minuten vor der Präsentation zur Verfügung steht. Der Computer muss mit einem Projektor verbunden werden (eine Schnittstellenherausforderung an sich), die Software muss mit startbereitem ersten Bild in Präsentationsmodus versetzt werden, und der Benutzer muss in der Lage sein, zur nächsten Folie zu wechseln und sich vom Drücken einer falschen Taste zu erholen. Erschwerend kommt noch hinzu, dass ein Projektor normalerweise etwas Zeit zum Aufwärmen braucht, und es ist schwer zu sagen, was unterdessen passiert.
 
 {panel end}
 
 {panel type="curiosity"}
 
-# Dumb users or dumb interfaces?
+# Dumme Benutzer oder dumme Schnittflächen?
 
-Computer systems often make people feel dumb - in fact, there are lots of "dummies" books available, such as "iPad for dummies" or "The Complete Idiot's Guide to Microsoft Windows 10". These books sell millions of copies, yet chances are the people who buy them are actually quite intelligent — it's just that the interfaces can make people so frustrated that they feel like a dummy. The truth is that if an interface makes lots of people feel like an idiot, chances are the real problem is with the interface and not the user. In the past there has been a culture where the balance of power was with the programmers who designed a system, and they could afford to blame the users for any problems. However, now users have a large choice of systems, and there are competitors ready to offer a better interface, so if a programmer continually blame your users for problems, chances are it's the programmer who is the complete idiot! If you hear people using derogatory terms such as luser, [PEBKAC](http://ars.userfriendly.org/cartoons/?id=19980506), or ID-10T error (Idiot error), they may be humorous, but they usually show a disregard for the importance of getting an interface right, and are a sign that the system is badly designed.
-
-{panel end}
-
-{panel type="project"}
-
-# Sending an email from multiple devices
-
-For this project, try sending an email from both a computer and a mobile phone. Take note of all the steps required from when you start using the device until the email is sent.
-
-You will probably notice quite a few differences between the two interfaces.
-
-Keep your notes for later, as you can further analyse them once you have read through more of this chapter.
+Computersysteme geben Benutzern oft das Gefühl, an Intelligenzmangel zu leiden – in der Tat sind zahlreiche „Dummies“-Bücher erhältlich, wie beispielsweise „iPad für Dummies“ oder „The Complete Idiot's Guide to Microsoft Windows 10“. Von diesen Büchern werden Millionen an Exemplaren verkauft, in der Regel werden sie jedoch von Menschen gekauft, die sogar sehr intelligent sind – es ist nur so, dass Benutzerschnittflächen so frustrierend sein können, dass sie sich dumm vorkommen. Wenn jedoch eine Benutzerschnittfläche vielen Menschen das Gefühl gibt, dumm zu sein, liegt das tatsächliche Problem aller Wahrscheinlichkeit nach an der Schnittstelle und nicht am Benutzer. In der anfänglichen Computerkultur lag die Macht in den Händen der Programmierer, die ein System entwickelten, und es sich daher erlauben konnten, Benutzern die Schuld an Problemen zuzuschieben. Inzwischen steht Benutzern eine große Auswahl an Systemen zur Verfügung und es gibt Konkurrenten, die bessere Benutzerschnittstellen bieten. Wenn also ein Programmierer fortwährend Benutzern die Schuld für Probleme zuschiebt, ist es gut möglich, dass der Programmierer hier der Idiot ist! Abwertende Bemerkungen wie Luser, [PEBKAC](http://ars.userfriendly.org/cartoons/?id=19980506) oder ID-10T Fehler (Idiotenfehler) mögen sich witzig anhören, zeigen jedoch für gewöhnlich eine Geringschätzung der Wichtigkeit, eine Schnittstelle zweckmäßig auszuarbeiten, und sind ein Zeichen dafür, dass ein System schlecht gestaltet ist.
 
 {panel end}
 
 {panel type="project"}
 
-# Designing stovetops and door handles
+# E-Mails von verschiedenen Geräten senden
 
-{image file-path="img/chapters/poor-door-design-cartoon.jpg" alt="User conflict opening a door." position="right"}
+Für dieses Projekt versuchen wir, eine E-Mail sowohl von einem Computer als auch von einem Mobiltelefon aus zu senden. Dabei sollten alle erforderlichen Schritte des gesamten Prozesses ab dem Zeitpunkt, zu dem mit der Nutzung des Geräts begonnen wird, bis hin zum Absenden der E-Mail notiert werden.
 
-For this project, you will design the top of a cooking stove, or the handles on a door. This isn't a computer system, but will help demonstrate some of the issues that come up. The main task is to sketch three different configurations for the stovetop which includes the arrangement of the 4 elements and the 4 control knobs.
+Vermutlich werden etliche Unterschiede zwischen den beiden Schnittstellen zu bemerken sein.
 
-The task is [described in detail in CS Unplugged human interface design activity](http://csunplugged.org/human-interface-design).
+Die Notizen können nach weiterem Lesen dieses Kapitels später noch weitergehend analysiert werden.
+
+{panel end}
+
+{panel type="project"}
+
+# Herdplatten und Türgriffe gestalten
+
+{image file-path="img/chapters/poor-door-design-cartoon.jpg" alt="Benutzerkonflikt beim Öffnen einer Tür." position="right"}
+
+Für dieses Projekt versuchen wir, die Oberfläche eines Herds oder die Griffe einer Tür zu entwerfen. Das ist zwar kein Computersystem, hilft jedoch dabei, einige der dabei auftretenden Probleme zu veranschaulichen. Die Hauptaufgabe besteht darin, drei verschiedene Konfigurationen für die Herdplatte, einschließlich der Anordnung der vier Heizelemente und der vier Bedienungsschalter, zu zeichnen.
+
+Die Aufgabe ist in der [CS Unplugged Aktivität Benutzeroberflächendesign](http://csunplugged.org/human-interface-design) ausführlich beschrieben.
 
 {panel end}

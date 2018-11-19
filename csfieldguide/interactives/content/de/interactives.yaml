@@ -1,0 +1,95 @@
+---
+action-menu:
+  name: Aktionsmenü
+alarm-timer:
+  name: Wecktimer
+available-menu-items:
+  name: Verfügbare Menüpunkte
+awful-calculator:
+  name: Schrecklicher Rechner
+base-calculator:
+  name: Binärzahlenrechner
+big-number-calculator:
+  name: Rechner für große Zahlen
+binary-cards:
+  name: Binärkarten
+binary-mode-calculator:
+  name: Binärmodusrechner
+caesar-cipher:
+  name: Caesar-Verschlüsselung
+close-window:
+  name: Fenster schließen
+cmy-mixer:
+  name: CMY-Mischer
+colour-matcher:
+  name: Farbabstimmung
+compression-comparer:
+  name: Kompressionsvergleich
+confused-buttons:
+  name: Konfuse Schaltflächen
+confusing-error:
+  name: Verwirrender Fehler
+date-picker:
+  name: Datumswähler
+deceiver:
+  name: Täuscher
+delay-analyser:
+  name: Verzögerungsanalysator
+delayed-checkbox:
+  name: Zögerliches Kästchen
+fsa-box:
+  name: FSA Box
+fsa-light:
+  name: FSA Licht
+fsa-washing-machine:
+  name: FSA Waschmaschine
+hex-background-colour:
+  name: Hex-Hintergrundfarbe
+high-score-boxes:
+  name: Höchstzahlkästchen
+huffman-tree:
+  name: Huffman-Baum
+image-bit-comparer:
+  name: Bildbits-Vergleich
+menu-keystrokes:
+  name: Menütastenkombinationen
+nfa-guesser:
+  name: NEA-Rater
+no-help:
+  name: Keine Hilfe
+number-generator:
+  name: Zahlengenerator
+off-by-one:
+  name: Off-by-one
+payment-interface:
+  name: Zahlungsschnittstelle
+python-interpreter:
+  name: Phyton-Interpreter
+rgb-mixer:
+  name: RGB-Mischer
+rsa-jsencrypt:
+  name: RSA jsencrypt
+rsa-no-padding:
+  name: RSA Kein Padding
+run-length-encoding:
+  name: Lauflängenkodierung
+searching-algorithms:
+  name: Suchalgorithmen
+sha2:
+  name: SHA2
+sorting-algorithm-comparison:
+  name: Sortieralgorithmusvergleich
+sorting-algorithms:
+  name: Sortieralgorithmen
+trainsylvania:
+  name: Zugmania
+trainsylvania-planner:
+  name: Zugmania-Planer
+trig-function-calculator:
+  name: Trigonometrierechner
+unexpected-error:
+  name: Unerwarteter Fehler
+unicode-chars:
+  name: Unicode-Zeichen
+unicode-length:
+  name: Unicode-Länge

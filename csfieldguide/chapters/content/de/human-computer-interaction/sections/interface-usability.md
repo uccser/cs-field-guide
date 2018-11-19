@@ -117,7 +117,7 @@ Das Projekt wird noch interessanter, wenn die Testperson nicht vollständig mit 
 
 Als Aufgabe bieten sich Dinge wie die Zeit auf einer Uhr einzustellen, eine kürzlich gewählte Nummer auf einem unbekannten Smartphone zu finden oder eine Fernsehsendung zur Aufnahme auszuwählen.
 
-Um die Evaluierung durchzuführen, sollte der Testperson das Gerät übergeben, die Aufgabe erläutert und sie darum gebeten werden, ihre Gedanken bei den einzelnen Schritten laut auszusprechen. Wenn die Testperson mit der Methode nicht vertraut ist, können während des Ablaufs Fragen gestellt werden, wie bespielsweise:
+Um die Evaluierung durchzuführen, sollten Sie der Testperson das Gerät übergeben, die Aufgabe erläutern und sie darum bitten, ihre Gedanken bei den einzelnen Schritten laut auszusprechen. Wenn die Testperson mit der Methode nicht vertraut ist, können während des Ablaufs Fragen gestellt werden, wie beispielsweise:
 
 - Was wirst du jetzt tun? Warum?
 - Warum hast du diese Schaltfläche ausgewählt?
@@ -126,7 +126,7 @@ Um die Evaluierung durchzuführen, sollte der Testperson das Gerät übergeben, 
 - Kannst du erkennen, was schiefgelaufen ist?
 - Was hältst du davon?
 
-Wenn die Testperson den Bogen des „laut denken“ heraus hat, sollten Sie sich einfach stillschweigend Notizen davon machen, was gesagt wird.
+Wenn die Testperson den Bogen des „laut denken“ heraus hat, machen Sie sich einfach stillschweigend Notizen davon, was gesagt wird.
 
 Es ist äußert wichtig, die Testperson nicht zu kritisieren oder einzuschüchtern! Wenn die Testperson einen Fehler macht, versuchen Sie herauszufinden, wie die Benutzerschnittstelle zu einer falschen Aktion geführt hat, anstatt der Testperson die Schuld dafür zu geben. Alle von der Testperson gemachten Fehler bieten wertvolle Informationen für Ihr Projekt! Wenn alles fehlerlos verläuft, wird es nicht sonderlich aufschlussreich sein.
 

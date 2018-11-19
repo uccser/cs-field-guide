@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: cs-field-guide\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-18 07:40+0000\n"
-"PO-Revision-Date: 2018-11-17 14:07\n"
+"PO-Revision-Date: 2018-11-19 14:09\n"
 "Last-Translator: uccser-admin <csse-education-research@canterbury.ac.nz>\n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -26,7 +26,7 @@ msgstr "Übersetzungsmodus (bidirektional)"
 
 #: interactives/models.py:11
 msgid "Interactive"
-msgstr ""
+msgstr "Interaktiv"
 
 #: templates/404.html:6 templates/404.html:13
 msgid "Page not found"
@@ -260,12 +260,12 @@ msgstr "Spiele spielen"
 
 #: templates/interactives/base-calculator.html:8
 msgid "Base"
-msgstr ""
+msgstr "Basis"
 
 #: templates/interactives/base-calculator.html:8
 #: templates/interactives/binary-mode-calculator.html:10
 msgid "Calculator"
-msgstr ""
+msgstr "Rechner"
 
 #: templates/interactives/big-number-calculator.html:11
 msgid "Big Number Calculator"
@@ -956,7 +956,7 @@ msgstr "Animationen von David Martin, <a href=\"http://www.sorting-algorithms.co
 
 #: templates/interactives/trainsylvania-planner.html:8
 msgid "Trainsylvania Planner"
-msgstr ""
+msgstr "Zugmania-Planer"
 
 #: templates/interactives/trainsylvania-planner.html:9
 msgid "If you take the trains:"
@@ -964,7 +964,7 @@ msgstr "Wenn du folgende Züge nimmst:"
 
 #: templates/interactives/trainsylvania-planner.html:10
 msgid "Enter sequence of A\\"
-msgstr ""
+msgstr "Hier eine Folge der Buchstaben A und B eingeben"
 
 #: templates/interactives/trainsylvania.html:9
 msgid "Find your way to <strong>Suburbopolis Station!</strong>"
