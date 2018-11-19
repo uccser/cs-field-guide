@@ -52,6 +52,9 @@ close-window:
 # colour-matcher:
 #   languages:
 #     en: interactives/colour-matcher.html
+complicated-remote:
+  languages:
+    en: interactives/complicated-remote.html
 # compression-comparer:
 #   languages:
 #     en: interactives/compression-comparer.html

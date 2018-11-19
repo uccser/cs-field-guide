@@ -34,6 +34,8 @@ cmy-mixer:
   name: CMY Mixer
 colour-matcher:
   name: Colour Matcher
+complicated-remote:
+  name: Complicated Remote
 compression-comparer:
   name: Compression Comparer
 confused-buttons:
