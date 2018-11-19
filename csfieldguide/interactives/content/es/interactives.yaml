@@ -1,6 +1,4 @@
 ---
-2d-arrow-manipulations:
-  name: manipulaciones-2ª-flecha (roto)
 action-menu:
   name: Menú de acciones
 alarm-timer:
@@ -13,22 +11,12 @@ base-calculator:
   name: Calculadora de base
 big-number-calculator:
   name: Calculadora de números grandes
-bin-packing:
-  name: empaquetado-papelera (roto)
 binary-cards:
   name: Cartas binarias
 binary-mode-calculator:
   name: Calculadora de modo binario
-box-rotation:
-  name: rotación-caja (roto)
-box-translation:
-  name: traslación-caja (roto)
 caesar-cipher:
   name: Cifrado César
-checksum-calculator:
-  name: calculadora-suma-comprobación (roto)
-checksum-calculator-gtin-13:
-  name: calculadora-suma-comprobación -gtin-13 (roto)
 close-window:
   name: Cerrar ventana
 cmy-mixer:
@@ -49,8 +37,6 @@ delay-analyser:
   name: Analizador de retardo
 delayed-checkbox:
   name: Casilla retardada
-frequency-analysis:
-  name: análisis-frecuencia (roto)
 fsa-box:
   name: Caja AF
 fsa-light:
@@ -65,18 +51,8 @@ huffman-tree:
   name: Árbol de Huffman
 image-bit-comparer:
   name: Comparador de bits de imágenes
-jpeg-compression:
-  name: compresión-jpeg (roto)
-md5-hash:
-  name: hash-md5 (roto)
 menu-keystrokes:
   name: Pulsaciones de teclas de menú
-mips-assembler:
-  name: ensamblador-mips (roto)
-mips-simulator:
-  name: simulador-mips (roto)
-ncea-guide-selector:
-  name: selector-guía-ncea (roto)
 nfa-guesser:
   name: Reconocimiento de AFND
 no-help:
@@ -85,28 +61,14 @@ number-generator:
   name: Generador de números
 off-by-one:
   name: Por un paso
-packet-attack:
-  name: ataque-paquete (roto)
-packet-attack-level-creator:
-  name: creador-nivel-ataque-paquete (roto)
-parity:
-  name: paridad (roto)
 payment-interface:
   name: Interfaz de pago
-pixel-viewer:
-  name: visor-píxel (roto)
 python-interpreter:
   name: Intérprete de Python
-regular-expression-filter:
-  name: filtro-expresión-regular (roto)
-regular-expression-search:
-  name: búsqueda-expresión-regular (roto)
 rgb-mixer:
   name: Mezclador RGB
 rsa-jsencrypt:
   name: jsencrypt RSA
-rsa-key-generator:
-  name: generador-clave-rsa (roto)
 rsa-no-padding:
   name: RSA sin relleno
 run-length-encoding:
@@ -127,11 +89,7 @@ trig-function-calculator:
   name: Calculadora de funciones trigonométricas
 unexpected-error:
   name: Error inesperado
-unicode-binary:
-  name: binario-unicode (roto)
 unicode-chars:
   name: Caracteres Unicode
 unicode-length:
   name: Longitud de unicode
-viola-jones-face-detector:
-  name: detector-rostro-viola-jones (roto)
