@@ -265,7 +265,7 @@ One reason that they have so many buttons is that it can help to make the device
 
 {interactive slug="complicated-remote" type="in-page"}
 
-The remote control shown here has several buttons that could potentially do the same thing: "Direct Navigator", "Guide", "Menu", "Status" and "Option" all give access to different functions, but it's hard to predict which is which.
+The remote control shown here has several buttons that could potentially do the same thing: "Guide", "Status", "Menu", "Option" and "Direct Navigator" all give access to different functions, but it's hard to predict which is which.
 This remote has 22 buttons altogether!
 
 {image file-path="img/chapters/remote-simple.jpg" alt="A simple remote control." alignment="left"}
