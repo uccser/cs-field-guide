@@ -26,7 +26,7 @@ Let's work out how many different patterns can be made using the 6 dots in a Bra
 If braille used only 2 dots, there would be 4 patterns.
 And with 3 dots there would be 8 patterns.
 
-{image file-path="img/chapters/two-and-three-dot-combinations-diagram.png" alt="Combinations of both two and three dots"}
+{interactive slug="dot-combinations" type="in-page"}
 
 You may have noticed that there are twice as many patterns with 3 dots as there are with 2 dots.
 It turns out that every time you add an extra dot, that gives twice as many patterns, so with 4 dots there are 16 patterns, 5 dots has 32 patterns, and 6 dots has 64 patterns.

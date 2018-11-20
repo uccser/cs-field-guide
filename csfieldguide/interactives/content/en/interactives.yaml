@@ -48,6 +48,8 @@ delay-analyser:
   name: Delay Analyser
 delayed-checkbox:
   name: Delayed Checkbox
+dot-combinations:
+  name: Dot Combinations
 frequency-analysis:
   name: frequency-analysis (broken)
 fsa-box:

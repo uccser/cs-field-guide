@@ -73,6 +73,9 @@ delay-analyser:
 delayed-checkbox:
   languages:
     en: interactives/delayed-checkbox.html
+dot-combinations:
+  languages:
+    en: interactives/dot-combinations.html
 # frequency-analysis:
 #   languages:
 #     en: interactives/frequency-analysis.html
