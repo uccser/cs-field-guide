@@ -49,6 +49,8 @@
     "gulp-util": "3.0.8",
     "jshint": "2.9.6",
     "jshint-stylish": "2.2.1",
+    "puppeteer": "1.9.0",
+    "request": "2.88.0",
     "node-gyp": "3.8.0",
     "postcss-flexbugs-fixes": "4.1.0",
     "run-sequence": "2.2.1",

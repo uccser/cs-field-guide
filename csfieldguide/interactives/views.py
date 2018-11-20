@@ -1,10 +1,14 @@
 """Views for the interactives application."""
 
 from django.views import generic
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
+from django.urls import reverse
+from django.conf import settings
+from django.utils import translation
 from interactives.models import Interactive
 from chapters.models import Chapter
 from config.templatetags.render_interactive_in_page import render_interactive_html
+from interactives.utils.get_thumbnail import get_thumbnail_static_path_for_interactive
 
 
 class IndexView(generic.ListView):
@@ -56,3 +60,47 @@ def interactive_iframe_view(request, interactive_slug):
         HTTP response of rendered interactive.
     """
     return HttpResponse(render_interactive_html(interactive_slug, "iframe", request))
+
+
+def interactive_centered_view(request, interactive_slug):
+    """View for a interactive in centered mode.
+
+    Args:
+        request (Request): Object of request.
+        interactive_slug (str): Slug of interactive.
+
+    Returns:
+        HTTP response of rendered interactive.
+    """
+    return HttpResponse(render_interactive_html(interactive_slug, "centered", request))
+
+
+def thumbnail_json(request, **kwargs):
+    """Provide JSON data for creating thumbnails.
+
+    Args:
+        request: The HTTP request.
+
+    Returns:
+        JSON response is sent containing data for thumbnails.
+    """
+    data = list()
+
+    if request.GET.get("all_languages", False):
+        languages = settings.DEFAULT_LANGUAGES
+    else:
+        languages = [("en", "")]
+
+    for language_code, _ in sorted(languages):
+        with translation.override(language_code):
+            for interactive in Interactive.objects.order_by("slug"):
+                url = reverse("interactives:centered_interactive", args=[interactive.slug])
+                data.append(
+                    [
+                        interactive.slug,
+                        language_code,
+                        url,
+                        get_thumbnail_static_path_for_interactive(interactive),
+                    ]
+                )
+    return JsonResponse(data, safe=False)

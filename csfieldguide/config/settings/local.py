@@ -62,7 +62,7 @@ def show_django_debug_toolbar(request):
     Args:
         request: The request object.
     """
-    return True
+    return "hide-debug-toolbar" not in request.GET
 
 
 DEBUG_TOOLBAR_CONFIG = {
@@ -81,3 +81,4 @@ TEST_RUNNER = "django.test.runner.DiscoverRunner"
 
 # Your local stuff: Below this line define 3rd party library settings
 # ----------------------------------------------------------------------------
+# ALLOWED_HOSTS = ["*"]

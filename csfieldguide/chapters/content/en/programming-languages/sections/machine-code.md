@@ -38,7 +38,7 @@ We will use MIPS in examples throughout this chapter.
 It starts by adding 2 numbers (that have been put in registers $t0 and $t1) and printing out the result.
 It then prints "Hello World!" Don’t worry, we aren’t about to make you learn how to actually program in this language!
 And if you don’t really understand the program, that’s also fine because many software engineers wouldn’t either!
-(We are showing it to you to help you to appreciate high level languages!)
+(We are showing it to you to help you to appreciate the purpose of both low and high level languages!)
 
 ```
 .data
