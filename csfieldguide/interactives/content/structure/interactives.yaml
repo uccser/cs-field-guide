@@ -154,6 +154,9 @@ payment-interface:
 remote-complicated:
   languages:
     en: interactives/remote-complicated.html
+remote-simple:
+  languages:
+    en: interactives/remote-simple.html
 # rgb-mixer:
 #   languages:
 #     en: interactives/rgb-mixer.html
