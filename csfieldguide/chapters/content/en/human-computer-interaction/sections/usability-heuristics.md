@@ -274,7 +274,7 @@ In contrast, this remote has very few buttons, and is a good example of a minima
 There's only one "Menu" to choose, so it's fairly obvious what to do to select the controls needed.
 Of course, the simple remote relies on displaying menus on the screen, and these have the potential to make things more complicated.
 
-{image file-path="img/chapters/remote-adapted.jpg" alt="An adapted remote control." alignment="left"}
+{interactive slug="remote-modified" type="in-page"}
 
 The third remote control shows a solution for simplifying it to save the user from having to read extensive manual information.
 It's a bit drastic, but it might save the user from getting into modes that they can't get out of!

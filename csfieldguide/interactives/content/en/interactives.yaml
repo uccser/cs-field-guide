@@ -102,6 +102,8 @@ regular-expression-search:
   name: regular-expression-search (broken)
 remote-complicated:
   name: Complicated Remote
+remote-modified:
+  name: Modified Remote
 remote-simple:
   name: Simple Remote
 rgb-mixer:
