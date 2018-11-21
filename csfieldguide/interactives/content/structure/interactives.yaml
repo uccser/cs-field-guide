@@ -52,9 +52,6 @@ close-window:
 # colour-matcher:
 #   languages:
 #     en: interactives/colour-matcher.html
-complicated-remote:
-  languages:
-    en: interactives/complicated-remote.html
 # compression-comparer:
 #   languages:
 #     en: interactives/compression-comparer.html
@@ -154,6 +151,9 @@ payment-interface:
 # regular-expression-search:
 #   languages:
 #     en: interactives/regular-expression-search.html
+remote-complicated:
+  languages:
+    en: interactives/remote-complicated.html
 # rgb-mixer:
 #   languages:
 #     en: interactives/rgb-mixer.html

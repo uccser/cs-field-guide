@@ -34,8 +34,6 @@ cmy-mixer:
   name: CMY Mixer
 colour-matcher:
   name: Colour Matcher
-complicated-remote:
-  name: Complicated Remote
 compression-comparer:
   name: Compression Comparer
 confused-buttons:
@@ -102,6 +100,8 @@ regular-expression-filter:
   name: regular-expression-filter (broken)
 regular-expression-search:
   name: regular-expression-search (broken)
+remote-complicated:
+  name: Complicated Remote
 rgb-mixer:
   name: RGB Mixer
 rsa-jsencrypt:

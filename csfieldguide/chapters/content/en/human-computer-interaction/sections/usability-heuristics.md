@@ -263,7 +263,7 @@ Software can contain many features, and if they are all visible at the same time
 TV remote controls often provide a great example of a complicated interface.
 One reason that they have so many buttons is that it can help to make the device look impressive in the shop, but once you get it home, many of the buttons become redundant or confusing.
 
-{interactive slug="complicated-remote" type="in-page"}
+{interactive slug="remote-complicated" type="in-page"}
 
 The remote control shown here has several buttons that could potentially do the same thing: "Guide", "Status", "Menu", "Option" and "Direct Navigator" all give access to different functions, but it's hard to predict which is which.
 This remote has 22 buttons altogether!
