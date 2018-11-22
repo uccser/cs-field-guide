@@ -1,5 +1,4 @@
-window.onload = function() {
-	var string = `
+/* var string = `
 I am Sam, 
 Sam I am.
 That Sam-I-am! That Sam-I-am!
@@ -7,48 +6,52 @@ I do not like that Sam-I-am!
 Do you like green eggs and ham?
 I do not like them, Sam-I-am.
 I do not like green eggs and ham.
-	`;
-	console.log(string);
-	console.log(string.replace(/\n/g, ""));
-	// create a character dictionary
-	// for each character in the string
-		// update the latest location of that character in the dictionary
-		// next string = charcter + next character
-		// if next string not in dictionary
-			// add next string to dictionary
-		// else
-			// add next character
-			// repeat as long as next character not in dictionary
+  `;
+  */
+window.onload = function() {
 
-	/*
-	for each character in the text
-		string = character
-		addToDict(string)
+    var message = 'i am sam sam i am that sam-i-am that sam-i-am';
+    // var message = `iamsamsamiamthatsam-i-amthatsam-i-am`;
 
-	function addToDict:
-		if string not in dictionary
-			add that string to the dictionary
-		else
-			string = string + next character
-	*/
+    // message = message.replace(/[\r\n]+/g, '');
+    message = message.split('');
+    console.log(message);
 
-	var positions = {}
-	var c = string[0];
-	var index = 0;
-	while (index < string.length) {
-		index += 1;
 
-	}
+    var positions = {};
+    var max_match_length = 5;
+    var min_match_length = 3;
+
+    var start_message = message.splice(0, max_match_length);
+    console.log(start_message);
+    console.log(message);
+
+    // REPEAT
+    var longest_match_position;
+    for (var i = 0; i < positions.length; i++) {
+        console.log(positions[i]);
+        console.log(i);
+    //     if i == positions.lengt
+        // check if start_string in dictionary
+            // record spot in dictionary and how many characters in dict string
+            // if longer than last match, replace the last match
+    }
+    // if match found is greater than or equal to min match length
+        // add the offset and length to encoded output
+    // else 
+        // add the first unencoded symbol to the encoded output
+
+    // shift a copy of the symbols written to the encoded output from the
+    //    unencoded string to the dictionary
+
+    // read in num of characters (same length as substring found)
+
+    // END REPEAT when whole string is encoded
 }
 
 
 
-var string = `i am sam sam i am that sam-i-am that sam-i-am`;
-// var string = `iamsamsamiamthatsam-i-amthatsam-i-am`;
-
-string = string.replace(/[\r\n]+/g, '');
-string = string.split('');
-console.log(string);
+/*
 
 // var positions = {};
 positions = []
