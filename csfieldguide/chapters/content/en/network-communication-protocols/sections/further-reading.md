@@ -3,7 +3,6 @@
 - The [two generals problem](https://en.wikipedia.org/wiki/Two_Generals%27_Problem) is a famous problem in protocols to talk about what happens when you can’t be sure about communication success.
 - What happens if you were to send packets tied to birds? [IP over Avian Carriers](https://en.wikipedia.org/wiki/IP_over_Avian_Carriers)
 - Protocols are found in the strangest of places: [Engine Order Telegraph](https://en.wikipedia.org/wiki/Engine_order_telegraph)
-- Coursera course on [Internet History, Technology, and Security](https://www.coursera.org/learn/insidetheinternet)
 
 ## Videos
 

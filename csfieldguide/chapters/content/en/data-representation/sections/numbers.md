@@ -528,7 +528,7 @@ There's an alternative representation called *Two's Complement*, which avoids ha
 ***Representing positive numbers with Two's Complement***
 
 Representing positive numbers is the same as the method you have already learnt.
-Using **8 bits**,the leftmost bit is a zero and the other 7 bits are the usual binary representation of the number; for example, **1** would be **00000001**, and 65 would be **00110010**.
+Using **8 bits**,the leftmost bit is a zero and the other 7 bits are the usual binary representation of the number; for example, **1** would be **00000001**, and **50** would be **00110010**.
 
 ***Representing negative numbers with Two's Complement***
 

@@ -667,7 +667,6 @@ The game is available [here](http://pleasingfungus.com/#Manufactoria) and [here]
 
 If you use the Java-based graphical educational system [Greenfoot](http://www.greenfoot.org/door) as a programming environment, the [treasure hunt finite state automata exercise](http://greenroom.greenfoot.org/resources/5) is based on the Treasure Island FSA activity from CS Unplugged.
 Teachers can register at the [Greenroom](http://greenroom.greenfoot.org/door) resources area to download the software.
-Students can interact with the activity, without accessing source code, through: http://www.greenfoot.org/scenarios/1678 .
 
 If you use [Scratch](http://scratch.mit.edu/), the following program is promising, but it doesn't have an activity or guide, and Level 3 students may have progressed beyond Scratch.
 It implements the Finite State Automata CS Unplugged activity in Scratch, and can be downloaded as part of a [zip file](http://code.google.com/p/scratch-unplugged/downloads/detail?name=scratch-unplugged-1-0.zip&can=2&q=) of a full set of Unplugged activities.
