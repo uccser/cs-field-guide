@@ -8,69 +8,38 @@
     <div id="remote-modified-container" class="p-2">
       <!-- Row 1 -->
       <div class="d-flex justify-content-between">
-        <button type="button" class="btn btn-sm btn-danger">{% trans "POWER" %}</button>
-        <button type="button" class="btn btn-sm btn-secondary">{% trans "INPUT" %}</button>
+        <button type="button" class="btn btn-sm btn-danger">&#x23FB</button>
+        <button type="button" class="btn btn-sm btn-blank"></button>
       </div>
 
       <!-- Row 2 -->
-      <div class="d-flex justify-content-center my-2">
-        <button type="button" class="btn btn-secondary">1</button>
-        <button type="button" class="btn mx-2 btn-secondary">2</button>
-        <button type="button" class="btn btn-secondary">3</button>
+      <div id="modified-upper-blank" class="my-2">
       </div>
-      
+
       <!-- Row 3 -->
-      <div class="d-flex justify-content-center my-2">
-        <button type="button" class="btn btn-secondary">4</button>
-        <button type="button" class="btn mx-2 btn-secondary">5</button>
-        <button type="button" class="btn btn-secondary">6</button>
+      <div class="d-flex justify-content-between my-2">
+        <div>
+          <div>
+            <button type="button" class="btn btn-sm btn-secondary">^</button>
+          </div>
+          <div class="mx-3">{% trans "CH" %}</div>
+          <div>
+            <button type="button" class="btn btn-sm btn-secondary">v</button>
+          </div>
+        </div>
+        <div>
+          <div>
+            <button type="button" class="btn btn-sm btn-secondary">^</button>
+          </div>
+          <div class="mx-3">{% trans "VOL" %}</div>
+          <div>
+            <button type="button" class="btn btn-sm btn-secondary">v</button>
+          </div>
+        </div>
       </div>
 
       <!-- Row 4 -->
-      <div class="d-flex justify-content-center my-2">
-        <button type="button" class="btn btn-secondary">7</button>
-        <button type="button" class="btn mx-2 btn-secondary">8</button>
-        <button type="button" class="btn btn-secondary">9</button>
-      </div>
-
-      <!-- Row 5 -->
-      <div class="d-flex justify-content-center my-2">
-        <button type="button" class="btn mx-2 btn-secondary">0</button>
-      </div>
-
-      <!-- Row 6 -->
-      <div class="d-flex justify-content-between my-2">
-        <button type="button" class="btn btn-sm btn-dark-blue">{% trans "GUIDE" %}</button>
-        <button type="button" class="btn btn-sm btn-dark-blue">{% trans "STATUS" %}</button>
-      </div>
-
-      <!-- Row 7 -->
-      <div class="d-flex justify-content-center">
-        <button type="button" class="btn btn-sm btn-secondary">^</button>
-      </div>
-
-      <!-- Row 8 -->
-      <div class="d-flex justify-content-center my-2">
-        <button type="button" class="btn btn-sm btn-secondary">&lt</button>
-        <button type="button" class="btn btn-sm mx-2 btn-secondary">{% trans "MENU" %}</button>
-        <button type="button" class="btn btn-sm btn-secondary">&gt</button>
-      </div>
-
-      <!-- Row 9 -->
-      <div class="d-flex justify-content-center my-2">
-        <button type="button" class="btn btn-sm btn-secondary">v</button>
-      </div>
-
-      <!-- Row 10 -->
-      <div class="d-flex justify-content-between my-2">
-        <button type="button" class="btn btn-sm btn-dark-blue">{% trans "OPTION" %}</button>
-        <button type="button" class="btn btn-sm btn-dark-blue">{% trans "EXIT" %}</button>
-      </div>
-
-      <!-- Row 11 -->
-      <div class="d-flex justify-content-center my-2">
-        <button type="button" class="btn btn-sm btn-dark-blue">{% trans "DIRECT NAVIGATOR" %}</button>
-      </div>
+      <div id="modified-lower-blank" class="my-2"></div>
     </div>
   </div>
 {% endblock html %}

@@ -2,10 +2,28 @@
   border: 2px solid;
   background-color: #303030;
   border-radius: 10px;
+  color: #fff;
+}
+
+#modified-upper-blank {
+  height: 190px;
+  width: 147px;
+  background-color: #303030;
+}
+
+#modified-lower-blank {
+  height: 76px;
+  background-color: #303030;
 }
 
 .btn-dark-blue {
   color: #fff;
   background-color: #0066cc;
   border-color: #0066cc;
+}
+
+.btn-blank {
+  color: #303030;
+  background-color: #303030;
+  border-color: #303030;
 }
