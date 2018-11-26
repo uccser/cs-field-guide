@@ -1,4 +1,3 @@
-
 function calculate() {
     var xValue = document.getElementById('x').value;
     // convert to radians
@@ -21,3 +20,7 @@ function calculate() {
         document.getElementById('cos-result').innerText = cosResult;
     }
 }
+
+$("#calculate").click(function() {
+  calculate();
+});

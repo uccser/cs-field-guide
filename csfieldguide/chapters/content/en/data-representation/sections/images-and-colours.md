@@ -156,10 +156,10 @@ You should get:
 
 Putting these values together gives 100100010011001001111011, which is the bit representation for the colour above.
 
-There are **no spaces** between the three numbers, as this is a pattern of bits rather than actually being three binary numbers, and computers don’t have any such concept of a space between bit patterns anyway --- everything must be a 0 or a 1.
+There are **no spaces** between the three numbers, as this is a pattern of bits rather than actually being three binary numbers, and computers don’t have any such concept of a space between bit patterns anyway — everything must be a 0 or a 1.
 You could write it with spaces to make it easier to read, and to represent the idea that they are likely to be stored in 3 8-bit bytes, but inside the computer memory there is just a sequence of high and low voltages, so even writing 0 and 1 is an arbitrary notation.
 
-Also, all leading and trailing 0’s on each part are kept --- without them, it would be representing a shorter number.
+Also, all leading and trailing 0’s on each part are kept — without them, it would be representing a shorter number.
 If there were 256 different possible values for each primary colour, then the final representation **must** be 24 bits long.
 
 {panel type="curiosity"}
@@ -174,7 +174,7 @@ So for a monochromatic image, we can simply use a representation which is a sing
 
 {panel end}
 
-The computer won’t ever convert the number into decimal, as it works with the binary directly --- most of the process that takes the bits and makes the right pixels appear is typically done by a graphics card or a printer.
+The computer won’t ever convert the number into decimal, as it works with the binary directly — most of the process that takes the bits and makes the right pixels appear is typically done by a graphics card or a printer.
 We just started with decimal, because it is easier for humans to understand.
 The main point about knowing this representation is to understand the trade-off that is being made between the accuracy of colour (which should ideally be beyond human perception) and the amount of storage (bits) needed (which should be as little as possible).
 
@@ -202,7 +202,7 @@ This can be broken up into groups of 4 bits: `1001` `0001` `0011` `0010` `0111` 
 
 And now, each of these groups of 4 bits will need to be represented with a **hexadecimal** digit.
 
-- 1001 -> 5
+- 1001 -> 9
 - 0001 -> 1
 - 0011 -> 3
 - 0010 -> 2
@@ -211,7 +211,7 @@ And now, each of these groups of 4 bits will need to be represented with a **hex
 
 Which gives `#51327B`.
 
-Understanding how these hexadecimal colour codes are derived also allows you to change them slightly without having to refer back the colour table, when the colour isn’t exactly the one you want.
+Understanding how these hexadecimal colour codes are derived also allows you to change them slightly without having to refer back to the colour table, when the colour isn’t exactly the one you want.
 Remember that in the 24 bit color code, the first 8 bits specify the amount of red (so this is the first 2 digits of the hexadecimal code), the next 8 bits specify the amount of green (the next 2 digits of the hexadecimal code), and the last 8 bits specify the amount of blue (the last 2 digits of the hexadecimal code).
 To increase the amount of any one of these colours, you can change the appropriate hexadecimal letters.
 
@@ -294,7 +294,7 @@ In other cases, the 16-bit images are almost as good as 24-bit images unless you
 They also use two-thirds (16/24) of the space that they would with 24-bit colour.
 For images that will need to be downloaded on 3G devices where internet is expensive, this is worth thinking about carefully.
 
-Have an experiement with the following interactive, to see what impact different numbers of bits for each colour has.
+Have an experiment with the following interactive, to see what impact different numbers of bits for each colour has.
 Do you think 8 bit colour was right in having 2 bits for blue, or should it have been green or red that got only 2 bits?
 
 {interactive slug="image-bit-comparer" type="whole-page" text="Image Bit Comparer - Change Bits mode" parameters="change-bits=true"}

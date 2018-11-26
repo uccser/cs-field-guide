@@ -3,7 +3,7 @@
 A computer graphics image is just the result of a whole lot of mathematical calculations.
 In fact, every pixel you see in an image has usually had many calculations made to work out what colour it should be, and there are often millions of pixels in a typical image.
 
-Let's start with some simple but common calculations that are needed for in graphics programming.
+Let's start with some simple but common calculations that are needed in graphics programming.
 The following interactive shows a cube with symbols on each face.
 You can move it around using what's called a *transform*, which simply adjusts where it is placed in space.
 Try typing in 3D coordinates into this interactive to find each code.
@@ -54,7 +54,7 @@ Subtracting three translates the arrow down and to the left.
 
 {panel end}
 
-The transform you did in the above interactive is called a *translation* --- it translates the arrow around the grid.
+The transform you did in the above interactive is called a *translation* — it translates the arrow around the grid.
 This kind of transform is used in graphics to specify where an object should be placed in a scene, but it has many other uses, such as making an animated object move along a path, or specifying the position of the imaginary camera (viewpoint).
 
 The next challenge involves changing the size of the image.
@@ -607,7 +607,7 @@ In the above examples, when you have several matrices being applied to every poi
 The following interactive can do those calculations for you.
 
 For example, in the following interactive, type in the matrix for doubling the size of an object (put the number 2 instead of 1 on the main diagonal values), then add another matrix that triples the size of the image (3 on the main diagonal).
-The interactive shows a matrix on the right that combines the two --- does it look right?
+The interactive shows a matrix on the right that combines the two — does it look right?
 
 {button-link link="http://www.csfieldguide.org.nz/releases/1.9.9/_static/widgets/CG/CG-matrix-simplifier/CG-matrix-simplifier.html?info=Multiple%20transforms" text="Click for interactive: matrix simplifier"}
 
@@ -624,7 +624,7 @@ The interactive gives a full derivation of the calculations being done on each x
 
 The interactive also allows you to combine in translations (just three numbers, for x, y and z).
 Try combining a scaling followed by a translation.
-What if you add a rotation --- does the order matter?
+What if you add a rotation — does the order matter?
 
 {panel type="curiosity"}
 
@@ -710,7 +710,6 @@ Discuss how the single matrix derived from all the others is more efficient, usi
 # WebGL and OpenGL
 
 If you're confident with programming and want to explore graphics at a more practical level, you could do a similar project to the previous one using a graphics programming system such as [WebGL](https://en.wikipedia.org/wiki/WebGL) (which is the system used in the demonstrations above), or a widely used graphics system such as [OpenGL](https://en.wikipedia.org/wiki/OpenGL).
-There is an interactive tutorial on OpenGL called [JPOT](http://www.cs.uwm.edu/%7Egrafix2/).
 
 Note that these project can be very time consuming because these are powerful systems,
 and there is quite a bit of detail to get right even for a simple operation.

@@ -1,14 +1,11 @@
-the-big-picture:
+users-and-tasks:
   section-number: 1
 
-users-and-tasks:
+interface-usability:
   section-number: 2
 
-interface-usability:
+usability-heuristics:
   section-number: 3
 
-usability-heuristics:
-  section-number: 4
-
 the-whole-story:
-  section-number: 5
+  section-number: 4

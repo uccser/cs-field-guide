@@ -26,7 +26,11 @@ Computers deal with such huge amounts of data that we need fast algorithms to he
 
 Lets investigate searching with a game...
 
-{comment interactive name="searching-algorithms" type="whole-page" text="Searching Boxes - Part 1" parameters="max=2"}
+{interactive slug="searching-algorithms" type="whole-page" text="true" parameters="start=1&end=2"}
+
+Searching Boxes - Part 1
+
+{interactive end}
 
 You may have noticed that the numbers on the monsters and pets in the game were in a random order, which meant that finding the pet was basically luck!
 You might have found it on your first try, or if you were less lucky you might have had to look inside almost all the presents before you found it.
@@ -38,7 +42,11 @@ You have less lives, which makes things a bit more challenging, but this time th
 The monsters, or maybe the pet, with the smallest number is in the present on the far left, and the one with the largest number is in the present on the far right.
 Let's see if you can collect all the pets without running out of lives...
 
-{comment interactive name="searching-algorithms" type="whole-page" text="Searching Boxes - Part 2" parameters="level=3" thumbnail="thumbnail2.png"}
+{interactive slug="searching-algorithms" type="whole-page" text="true" parameters="start=3"}
+
+Searching Boxes - Part 2
+
+{interactive end}
 
 Now that you have played through the whole game (and hopefully found all of the lost pets!) you may have noticed that even though you had less lives in the second part of the game, and lots of presents to search through, you were still able to find the pet. Why was this possible?
 
@@ -46,7 +54,7 @@ Now that you have played through the whole game (and hopefully found all of the 
 
 Since the boxes in the first game were in a random order there really wasn't any strategy you could have used to find the pet, except simply keep opening presents one by one until you found the pet.
 This is essentially the *Linear Search* algorithm (sometimes called a sequential search).
-In plain English, Linear Search algorithm is as follows:
+In simpler terms, Linear Search algorithm is as follows:
 - Check if the first item in a list is the item you are searching for, if it is the one you are looking for, you are done.
 - If it isn't the item you are searching for move on and check the next item.
 - Continue checking items until you find the one you are searching for.

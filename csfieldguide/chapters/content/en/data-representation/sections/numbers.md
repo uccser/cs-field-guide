@@ -101,7 +101,7 @@ Because there are only 2 digits, this means that each digit is **2** times the v
 
 # The Denary number system
 
-The base 10 (decimal) system is sometimes called denary, which is more consistent with the the name binary for the base 2 system.
+The base 10 (decimal) system is sometimes called denary, which is more consistent with the name binary for the base 2 system.
 The word "denary" also refers to the Roman denarius coin, which was worth ten asses (an "as" was a copper or bronze coin).
 The term "denary" seems to be used mainly in the UK; in the US, Australia and NZ the term "decimal" is more common.
 
@@ -250,7 +250,7 @@ The answers are (spaces are added to make the answers easier to read, but are no
 {panel end}
 
 An important concept with binary numbers is the range of values that can be represented using a given number of bits.
-When we have 8 bits the binary numbers start to get useful --- they can represent values from 0 to 255, so it is enough to store someone's age, the day of the month, and so on.
+When we have 8 bits the binary numbers start to get useful — they can represent values from 0 to 255, so it is enough to store someone's age, the day of the month, and so on.
 
 {panel type="jargon-buster"}
 
@@ -274,11 +274,11 @@ This is because these are full numbers of bytes (a byte is 8 bits), and makes it
 
 Candles on birthday cakes use the base 1 numbering system, where each place is worth 1 more than the one to its right.
 For example, the number 3 is 111, and 10 is 1111111111.
-This can cause problems as you get older --- if you've ever seen a cake with 100 candles on it, you'll be aware that it's a serious fire hazard.
+This can cause problems as you get older — if you've ever seen a cake with 100 candles on it, you'll be aware that it's a serious fire hazard.
 
 {image file-path="img/chapters/binary-cakes.png" alt="The image shows two people with birthday cakes, however a cake with 100 candles on it turns into a big fireball!"}
 
-Luckily it's possible to use binary notation for birthday candles --- each candle is either lit or not lit.
+Luckily it's possible to use binary notation for birthday candles — each candle is either lit or not lit.
 For example, if you are 18, the binary notation is 10010, and you need 5 candles (with only two of them lit).
 
 There's a [video on using binary notation for counting up to 1023 on your hands, as well as using it for birthday cakes](https://www.youtube.com/watch?v=GUqle9RE3Y8).
@@ -296,7 +296,7 @@ It's a lot smarter to use binary notation on candles for birthdays as you get ol
 Most of the time binary numbers are stored electronically, and we don't need to worry about making sense of them.
 But sometimes it's useful to be able to write down and share numbers, such as the unique identifier assigned to each digital device (MAC address), or the colours specified in an HTML page.
 
-Writing out long binary numbers is tedious --- for example, suppose you need to copy down the 16-bit number 0101001110010001.
+Writing out long binary numbers is tedious — for example, suppose you need to copy down the 16-bit number 0101001110010001.
 A widely used shortcut is to break the number up into 4-bit groups (in this case, 0101 0011 1001 0001), and then write down the digit that each group represents (giving 5391).
 There's just one small problem: each group of 4 bits can go up to 1111, which is 15, and the digits only go up to 9.
 
@@ -346,7 +346,7 @@ These can be entered either through a spreadsheet program or database program, t
 Some of the things that we might think of as numbers, such as the telephone number (03) 555-1234, aren't actually stored as numbers, as they contain important characters (like dashes and spaces) as well as the leading 0 which would be lost if it was stored as a number (the above number would come out as 35551234, which isn't quite right).
 These are stored as **text**, which is discussed in the next section.
 
-On the other hand, things that don't look like a number (such as "30 January 2014") are often stored using a value that is converted to a format that is meaningful to the reader (try typing two dates into Excel, and then subtract one from the other --- the result is a useful number).
+On the other hand, things that don't look like a number (such as "30 January 2014") are often stored using a value that is converted to a format that is meaningful to the reader (try typing two dates into Excel, and then subtract one from the other — the result is a useful number).
 In the underlying representation, a number is used.
 Program code is used to translate the underlying representation into a meaningful date on the user interface.
 
@@ -355,7 +355,7 @@ Program code is used to translate the underlying representation into a meaningfu
 # More on date representation
 
 The difference between two dates in Excel is the number of days between them; the date itself (as in many systems) is stored as the amount of time elapsed since a fixed date (such as 1 January 1900).
-You can test this by typing a date like "1 January 1850" --- chances are that it won't be formatted as a normal date.
+You can test this by typing a date like "1 January 1850" — chances are that it won't be formatted as a normal date.
 Likewise, a date sufficiently in the future may behave strangely due to the limited number of bits available to store the date.
 
 {panel end}
@@ -452,7 +452,7 @@ We will look at two possible approaches: Adding a simple sign bit, much like we 
 ### Using a simple sign bit
 
 On a computer we don’t have minus signs for numbers (it doesn't work very well to use the text based one when representing a number because you can't do arithmetic on characters), but we can do it by allocating one extra bit, called a *sign* bit, to represent the minus sign.
-Just like with decimal numbers, we put the negative indicator on the left of the number --- when the sign bit is set to "0", that means the number is positive and when the sign bit is set to "1", the number is negative (just as if there were a minus sign in front of it).
+Just like with decimal numbers, we put the negative indicator on the left of the number — when the sign bit is set to "0", that means the number is positive and when the sign bit is set to "1", the number is negative (just as if there were a minus sign in front of it).
 
 For example, if we wanted to represent the number **41** using 7 bits along with an additional bit that is the sign bit (to give a total of 8 bits), we would represent it by **00101001**.
 The first bit is a 0, meaning the number is positive, then the remaining 7 bits give **41**, meaning the number is **+41**.
@@ -528,7 +528,7 @@ There's an alternative representation called *Two's Complement*, which avoids ha
 ***Representing positive numbers with Two's Complement***
 
 Representing positive numbers is the same as the method you have already learnt.
-Using **8 bits**,the leftmost bit is a zero and the other 7 bits are the usual binary representation of the number; for example, **1** would be **00000001**, and 65 would be **00110010**.
+Using **8 bits**,the leftmost bit is a zero and the other 7 bits are the usual binary representation of the number; for example, **1** would be **00000001**, and **50** would be **00110010**.
 
 ***Representing negative numbers with Two's Complement***
 

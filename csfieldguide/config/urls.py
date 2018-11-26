@@ -15,11 +15,11 @@ urlpatterns = i18n_patterns(
     url(r"^interactives/", include("interactives.urls", namespace="interactives")),
     url(r"^chapters/", include("chapters.urls", namespace="chapters")),
     url(r"^appendices/", include("appendices.urls", namespace="appendices")),
-    url(r"^search/", include("search.urls", namespace="search")),
 )
 
 urlpatterns += [
     url(r"^_ah/health", health_check),
+    url(r"^en/search/", include("search.urls", namespace="search")),
 ]
 
 if settings.DEBUG:  # pragma: no cover

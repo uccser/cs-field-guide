@@ -44,6 +44,7 @@ THIRD_PARTY_APPS = [
     "modeltranslation",
     "bidiutils",
     "svg",
+    "statici18n",
 ]
 
 # Apps specific for this project go here.
@@ -101,9 +102,12 @@ INCONTEXT_L10N_PSEUDOLANGUAGES = (
     INCONTEXT_L10N_PSEUDOLANGUAGE_BIDI
 )
 
-LANGUAGES = (
+DEFAULT_LANGUAGES = (
     ("en", "English"),
+    ("de", "Deutsche"),
 )
+# Keep original values of languages for resource generation
+LANGUAGES = DEFAULT_LANGUAGES
 
 if env.bool("INCLUDE_INCONTEXT_L10N", False):
     EXTRA_LANGUAGES = [
@@ -189,6 +193,7 @@ TEMPLATES = [
                 "get_item": "config.templatetags.get_item",
                 "render_html_field": "config.templatetags.render_html_field",
                 "render_interactive_in_page": "config.templatetags.render_interactive_in_page",
+                "render_interactive_link": "config.templatetags.render_interactive_link",
                 "translate_url": "config.templatetags.translate_url",
                 "query_replace": "config.templatetags.query_replace",
             },
@@ -263,9 +268,12 @@ HAYSTACK_SEARCH_RESULTS_PER_PAGE = 10
 
 # OTHER SETTINGS
 # ------------------------------------------------------------------------------
+DJANGO_PRODUCTION = env.bool("DJANGO_PRODUCTION")
 APPENDICES_CONTENT_BASE_PATH = os.path.join(str(ROOT_DIR.path("appendices")), "content")
 CHAPTERS_CONTENT_BASE_PATH = os.path.join(str(ROOT_DIR.path("chapters")), "content")
 INTERACTIVES_CONTENT_BASE_PATH = os.path.join(str(ROOT_DIR.path("interactives")), "content")
 INTERACTIVES_BASE_TEMPLATES_PATH = os.path.join("interactives", "base")
+INTERACTIVES_LINK_TEMPLATE = "interactives/utils/interactive-link.html"
 MODELTRANSLATION_CUSTOM_FIELDS = ("JSONField",)
 CUSTOM_VERTO_TEMPLATES = os.path.join(str(ROOT_DIR.path("utils")), "custom_converter_templates", "")
+STATICI18N_ROOT = BUILD_ROOT

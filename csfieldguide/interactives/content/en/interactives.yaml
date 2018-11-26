@@ -2,6 +2,8 @@
   name: 2d-arrow-manipulations (broken)
 action-menu:
   name: Action Menu
+alarm-timer:
+  name: Alarm Timer
 available-menu-items:
   name: Available Menu Items
 awful-calculator:
@@ -14,12 +16,14 @@ bin-packing:
   name: bin-packing (broken)
 binary-cards:
   name: Binary Cards
+binary-mode-calculator:
+  name: Binary Mode Calculator
 box-rotation:
   name: box-rotation (broken)
 box-translation:
   name: box-translation (broken)
 caesar-cipher:
-  name: Caesar Cipher (broken)
+  name: Caesar Cipher
 checksum-calculator:
   name: checksum-calculator (broken)
 checksum-calculator-gtin-13:
@@ -34,6 +38,8 @@ compression-comparer:
   name: Compression Comparer
 confused-buttons:
   name: Confused Buttons
+confusing-error:
+  name: Confusing Error
 date-picker:
   name: Date Picker
 deceiver:
@@ -53,7 +59,7 @@ fsa-washing-machine:
 hex-background-colour:
   name: Hex Background Colour
 high-score-boxes:
-  name: High Score Boxes (broken)
+  name: High Score Boxes
 huffman-tree:
   name: Huffman Tree
 image-bit-comparer:
@@ -62,6 +68,8 @@ jpeg-compression:
   name: jpeg-compression (broken)
 md5-hash:
   name: md5-hash (broken)
+menu-keystrokes:
+  name: Menu Keystrokes
 mips-assembler:
   name: mips-assembler (broken)
 mips-simulator:
@@ -69,11 +77,13 @@ mips-simulator:
 ncea-guide-selector:
   name: ncea-guide-selector (broken)
 nfa-guesser:
-  name: nfa-guesser (broken)
+  name: NFA Guesser
 no-help:
   name: No Help
 number-generator:
   name: Number Generator
+off-by-one:
+  name: Off By One
 packet-attack:
   name: packet-attack (broken)
 packet-attack-level-creator:
@@ -93,7 +103,7 @@ regular-expression-search:
 rgb-mixer:
   name: RGB Mixer
 rsa-jsencrypt:
-  name: rsa-jsencrypt (broken)
+  name: RSA jsencrypt
 rsa-key-generator:
   name: RSA Key Generator
 rsa-no-padding:
@@ -101,19 +111,21 @@ rsa-no-padding:
 run-length-encoding:
   name: Run Length Encoding
 searching-algorithms:
-  name: searching-algorithms (broken)
+  name: Searching Algorithms
 sha2:
-  name: sha2 (broken)
+  name: SHA2
 sorting-algorithm-comparison:
   name: Sorting Algorithm Comparison
 sorting-algorithms:
-  name: sorting-algorithms (broken)
+  name: Sorting Algorithms
 trainsylvania:
   name: Trainsylvania
 trainsylvania-planner:
   name: Trainsylvania Planner
 trig-function-calculator:
-  name: trig-function-calculator (broken)
+  name: Trig Function Calculator
+unexpected-error:
+  name: Unexpected Error
 unicode-binary:
   name: unicode-binary (broken)
 unicode-chars:

@@ -1,14 +1,11 @@
-the-big-picture:
+the-parity-magic-trick:
   section-number: 1
 
-the-parity-magic-trick:
+check-digits-on-barcodes:
   section-number: 2
 
-check-digits-on-barcodes:
+the-whole-story:
   section-number: 3
 
-the-whole-story:
-  section-number: 4
-
 further-reading:
-  section-number: 5
+  section-number: 4

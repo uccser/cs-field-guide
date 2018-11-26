@@ -14,13 +14,20 @@ jobs:
   include:
     - stage: test
       script: ./csfg ci load_content
+      name: "Load content"
     - script: ./csfg ci test_general
+      name: "Run general tests"
     - script: ./csfg ci test_management
+      name: "Run management tests"
     - script: ./csfg ci test_backwards
+      name: "Run test suite backwards"
       if: type = pull_request
     - script: ./csfg ci style
+      name: "Run style checker"
     - script: ./csfg ci docs
+      name: "Build documentation"
     - stage: develop deploy
+      name: "Deploy app to Google App Engine"
       script: skip
       deploy:
         - provider: script
@@ -29,6 +36,7 @@ jobs:
           on:
             branch: develop
     - script: skip
+      name: "Copy static files to Google Storage Bucket"
       deploy:
         - provider: script
           script: bash ./infrastructure/dev-deploy/deploy-static-files.sh
@@ -36,6 +44,7 @@ jobs:
           on:
             branch: develop
     - script: skip
+      name: "Update Google Cloud Platform database"
       deploy:
         - provider: script
           script: bash ./infrastructure/dev-deploy/update-database.sh
@@ -50,3 +59,5 @@ notifications:
     on_failure: change
 stages:
   - name: test
+  - name: develop deploy
+    if: branch = develop

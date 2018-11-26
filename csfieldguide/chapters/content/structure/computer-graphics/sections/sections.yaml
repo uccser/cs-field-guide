@@ -1,14 +1,11 @@
-the-big-picture:
+graphics-transformations:
   section-number: 1
 
-graphics-transformations:
+drawing-lines-and-circles:
   section-number: 2
 
-drawing-lines-and-circles:
+the-whole-story:
   section-number: 3
 
-the-whole-story:
-  section-number: 4
-
 further-reading:
-  section-number: 5
+  section-number: 4

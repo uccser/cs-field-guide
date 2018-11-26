@@ -1,63 +1,204 @@
-interactives:
-  - 2d-arrow-manipulations
-  - action-menu
-  - available-menu-items
-  - awful-calculator
-  - base-calculator
-  - big-number-calculator
-  - bin-packing
-  - binary-cards
-  - box-rotation
-  - box-translation
-  - caesar-cipher
-  - checksum-calculator
-  - checksum-calculator-gtin-13
-  - close-window
-  - cmy-mixer
-  - colour-matcher
-  - compression-comparer
-  - confused-buttons
-  - date-picker
-  - deceiver
-  - delay-analyser
-  - delayed-checkbox
-  - frequency-analysis
-  - fsa-box
-  - fsa-light
-  - fsa-washing-machine
-  - hex-background-colour
-  - high-score-boxes
-  - huffman-tree
-  - image-bit-comparer
-  - jpeg-compression
-  - md5-hash
-  - mips-assembler
-  - mips-simulator
-  - ncea-guide-selector
-  - nfa-guesser
-  - no-help
-  - number-generator
-  - packet-attack
-  - packet-attack-level-creator
-  - parity
-  - payment-interface
-  - pixel-viewer
-  - python-interpreter
-  - regular-expression-filter
-  - regular-expression-search
-  - rgb-mixer
-  - rsa-jsencrypt
-  - rsa-key-generator
-  - rsa-no-padding
-  - run-length-encoding
-  - searching-algorithms
-  - sha2
-  - sorting-algorithm-comparison
-  - sorting-algorithms
-  - trainsylvania
-  - trainsylvania-planner
-  - trig-function-calculator
-  - unicode-binary
-  - unicode-chars
-  - unicode-length
-  - viola-jones-face-detector
+# 2d-arrow-manipulations:
+#   languages:
+#     en: interactives/2d-arrow-manipulations.html
+action-menu:
+  languages:
+    en: interactives/action-menu.html
+alarm-timer:
+  languages:
+    en: interactives/alarm-timer.html
+available-menu-items:
+  languages:
+    en: interactives/available-menu-items.html
+awful-calculator:
+  languages:
+    en: interactives/awful-calculator.html
+# base-calculator:
+#   languages:
+#     en: interactives/base-calculator.html
+# big-number-calculator:
+#   languages:
+#     en: interactives/big-number-calculator.html
+# bin-packing:
+#   languages:
+#     en: interactives/bin-packing.html
+# binary-cards:
+#   languages:
+#     en: interactives/binary-cards.html
+binary-mode-calculator:
+  languages:
+    en: interactives/binary-mode-calculator.html
+# box-rotation:
+#   languages:
+#     en: interactives/box-rotation.html
+# box-translation:
+#   languages:
+#     en: interactives/box-translation.html
+# caesar-cipher:
+#   languages:
+#     en: interactives/caesar-cipher.html
+# checksum-calculator:
+#   languages:
+#     en: interactives/checksum-calculator.html
+# checksum-calculator-gtin-13:
+#   languages:
+#     en: interactives/checksum-calculator-gtin-13.html
+close-window:
+  languages:
+    en: interactives/close-window.html
+# cmy-mixer:
+#   languages:
+#     en: interactives/cmy-mixer.html
+# colour-matcher:
+#   languages:
+#     en: interactives/colour-matcher.html
+# compression-comparer:
+#   languages:
+#     en: interactives/compression-comparer.html
+confused-buttons:
+  languages:
+    en: interactives/confused-buttons.html
+confusing-error:
+  languages:
+    en: interactives/confusing-error.html
+date-picker:
+  languages:
+    en: interactives/date-picker.html
+deceiver:
+  languages:
+    en: interactives/deceiver.html
+delay-analyser:
+  languages:
+    en: interactives/delay-analyser.html
+delayed-checkbox:
+  languages:
+    en: interactives/delayed-checkbox.html
+# frequency-analysis:
+#   languages:
+#     en: interactives/frequency-analysis.html
+# fsa-box:
+#   languages:
+#     en: interactives/fsa-box.html
+# fsa-light:
+#   languages:
+#     en: interactives/fsa-light.html
+# fsa-washing-machine:
+#   languages:
+#     en: interactives/fsa-washing-machine.html
+# hex-background-colour:
+#   languages:
+#     en: interactives/hex-background-colour.html
+high-score-boxes:
+  languages:
+    en: interactives/high-score-boxes.html
+# huffman-tree:
+#   languages:
+#     en: interactives/huffman-tree.html
+# image-bit-comparer:
+#   languages:
+#     en: interactives/image-bit-comparer.html
+# jpeg-compression:
+#   languages:
+#     en: interactives/jpeg-compression.html
+# md5-hash:
+#   languages:
+#     en: interactives/md5-hash.html
+menu-keystrokes:
+  languages:
+    en: interactives/menu-keystrokes.html
+# mips-assembler:
+#   languages:
+#     en: interactives/mips-assembler.html
+# mips-simulator:
+#   languages:
+#     en: interactives/mips-simulator.html
+# ncea-guide-selector:
+#   languages:
+#     en: interactives/ncea-guide-selector.html
+# nfa-guesser:
+#   languages:
+#     en: interactives/nfa-guesser.html
+no-help:
+  languages:
+    en: interactives/no-help.html
+# number-generator:
+#   languages:
+#     en: interactives/number-generator.html
+off-by-one:
+  languages:
+    en: interactives/off-by-one.html
+# packet-attack:
+#   languages:
+#     en: interactives/packet-attack.html
+# packet-attack-level-creator:
+#   languages:
+#     en: interactives/packet-attack-level-creator.html
+# parity:
+#   languages:
+#     en: interactives/parity.html
+payment-interface:
+  languages:
+    en: interactives/payment-interface.html
+# pixel-viewer:
+#   languages:
+#     en: interactives/pixel-viewer.html
+# python-interpreter:
+#   languages:
+#     en: interactives/python-interpreter.html
+# regular-expression-filter:
+#   languages:
+#     en: interactives/regular-expression-filter.html
+# regular-expression-search:
+#   languages:
+#     en: interactives/regular-expression-search.html
+# rgb-mixer:
+#   languages:
+#     en: interactives/rgb-mixer.html
+# rsa-jsencrypt:
+#   languages:
+#     en: interactives/rsa-jsencrypt.html
+# rsa-key-generator:
+#   languages:
+#     en: interactives/rsa-key-generator.html
+# rsa-no-padding:
+#   languages:
+#     en: interactives/rsa-no-padding.html
+# run-length-encoding:
+#   languages:
+#     en: interactives/run-length-encoding.html
+searching-algorithms:
+  languages:
+    en: interactives/searching-algorithms.html
+# sha2:
+#   languages:
+#     en: interactives/sha2.html
+sorting-algorithm-comparison:
+  languages:
+    en: interactives/sorting-algorithm-comparison.html
+sorting-algorithms:
+  languages:
+    en: interactives/sorting-algorithms.html
+# trainsylvania:
+#   languages:
+#     en: interactives/trainsylvania.html
+# trainsylvania-planner:
+#   languages:
+#     en: interactives/trainsylvania-planner.html
+# trig-function-calculator:
+#   languages:
+#     en: interactives/trig-function-calculator.html
+unexpected-error:
+  languages:
+    en: interactives/unexpected-error.html
+# unicode-binary:
+#   languages:
+#     en: interactives/unicode-binary.html
+# unicode-chars:
+#   languages:
+#     en: interactives/unicode-chars.html
+# unicode-length:
+#   languages:
+#     en: interactives/unicode-length.html
+# viola-jones-face-detector:
+#   languages:
+#     en: interactives/viola-jones-face-detector.html

@@ -68,12 +68,5 @@
 {% endblock css %}
 
 {% block js %}
-  <script type="text/javascript">
-    var run_length_encoding_il8n = {
-      "range-error": "{% trans 'Please enter a value between 0 and 100' %}",
-      "row-error": "{% trans 'Your numbers add up to a different number than the grid requires!' %}",
-      "line-error": "{% trans 'You have a different number of lines than lines in the grid!' %}"
-    };
-  </script>
   <script type="text/javascript" src="{% static 'interactives/run-length-encoding/js/run-length-encoding.js' %}"></script>
 {% endblock js %}

@@ -27,7 +27,7 @@ It's better if you can estimate the number of steps it needs to make, and then e
 If you're reading about complexity, you may come across some terminology like "Big Oh" notation and "asymptotic complexity", where an algorithm that takes about \( n^2 \) steps is referred to as \( O(n^2) \).
 We won't get into these in this chapter, but here's a little information in case you come across the terms in other reading.
 "Big Oh" notation is a precise way to talk about complexity, and is used with "asymptotic complexity", which simply means how an algorithm performs for large values of *n*.
-The "asymptotic" part means as *n* gets really large --- when this happens, you are less worried about small details of the running time.
+The "asymptotic" part means as *n* gets really large — when this happens, you are less worried about small details of the running time.
 If an algorithm is going to take seven days to complete, it's not that interesting to find out that it's actually 7 days, 1 hour, 3 minutes and 4.33 seconds, and it's not worth wasting time to work it out precisely.
 
 We won't use precise notation for asymptotic complexity (which says which parts of speed calculations you can safely ignore), but we will make rough estimates of the number of operations that an algorithm will go through.
@@ -40,7 +40,7 @@ Does that sounds like a good algorithm?
 For a start, you'd probably want to know what sort of computer it was running on - if it's a supercomputer then  that's not so good; if it's a tiny low-power device like a smartphone then maybe it's ok.
 
 Also, a single data point doesn't tell you how well the system will work with larger problems.
-If the selection sort algorithm above was given 10 thousand items to sort, it would probably take about 50 minutes (3000 seconds) --- that's 100 times as long to process 10 times as much input.
+If the selection sort algorithm above was given 10 thousand items to sort, it would probably take about 50 minutes (3000 seconds) — that's 100 times as long to process 10 times as much input.
 
 These data points for a particular computer are useful for getting an idea of the performance (that is, complexity) of the algorithm, but they don't give a clear picture.
 It turns out that we can work out exactly how many steps the selection sort algorithm will take for *n* items: it will require about \( \frac{n(n-1)}{2} \) operations, or in expanded form,\( \frac{n^2}{2} - \frac{n}{2} \) operations.
@@ -51,7 +51,7 @@ Putting in a value of 1 thousand for *n* tells us that it will use 1,000,000/2 -
 
 Notice that the second part (1000/2) makes little difference to the calculation.
 If we just use the \( \frac{n^2}{2} \) part of the formula, the estimate will be out by 0.1%, and quite frankly, the user won't notice if it takes 20 seconds or 19.98 seconds.
-That's the point of asymptotic complexity --- we only need to focus on the most significant part of the formula, which contains \( n^2 \).
+That's the point of asymptotic complexity — we only need to focus on the most significant part of the formula, which contains \( n^2 \).
 
 Also, since measuring the number of steps is independent of the computer it will run on, it doesn't really matter if it's described as \( \frac{n^2}{2} \) or \( n^2 \).
 The amount of time it takes will be proportional to both of these formulas, so we might as well simplify it to \( n^2 \).
@@ -125,7 +125,7 @@ The process you have just completed is using permutation sort to sort the words.
 
 Now add another word.
 How many possible orderings will there be with 5 words?
-What about with only 2 and 3 words --- how many orderings are there for those?
+What about with only 2 and 3 words — how many orderings are there for those?
 If you gave up on writing out all the orderings with 5 words, can you now figure out how many there might be?
 Can you find a pattern?
 How many do you think there might be for 10 words?
@@ -181,7 +181,7 @@ You can use the calculator below to work with huge numbers (especially when usin
 
 {interactive slug="big-number-calculator" type="whole-page" text="Big Number Calculator"}
 
-Try calculating 100! using this calculator --- that's the number of different routes that a travelling salesman might take to visit 100 places (not counting the starting place).
+Try calculating 100! using this calculator — that's the number of different routes that a travelling salesman might take to visit 100 places (not counting the starting place).
 With this calculator you can copy and paste the result back into the input if you want to do further calculations on the number.
 If you are doing these calculations for a report, you should also copy each step of the calculation into your report to show how you got the result.
 
@@ -261,8 +261,8 @@ For 6 disks it only needs 63 moves, but for 50 disks this would be 1,125,899,906
 We usually characterise a problem like this as having a complexity of \( 2^n \), as subtracting one to get a precise value makes almost no difference, and the shorter expression is simpler to communicate to others.
 
 The Towers of Hanoi is one problem where we know for sure that it will take exponential time.
-There are many intractable problems where this isn't the case --- we don't have tractable solutions for them, but we don't know for sure if they don't exist.
-Plus this isn't a real problem --- it's just a game (although there is a backup system based on it).
+There are many intractable problems where this isn't the case — we don't have tractable solutions for them, but we don't know for sure if they don't exist.
+Plus this isn't a real problem — it's just a game (although there is a backup system based on it).
 But it is a nice example of an exponential time algorithm, where adding one disk will double the number of steps required to produce a solution.
 
 {panel end}
