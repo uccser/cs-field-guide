@@ -138,7 +138,7 @@ If one algorithm is very fast to complete but produces incorrect results some of
 Correctness is also important when using an algorithm as the building block for another algorithm.
 Here is an algorithm for assigning animals as pets to people on a waitlist:
 
-1. Search for the person who is earliest on the the waitlist
+1. Search for the person who is earliest on the waitlist
 2. Assign the person who is earliest on the waitlist with their preferred animal as a pet
 3. Repeat 1-2 until no people remain on the waitlist
 

@@ -9,7 +9,7 @@ the sense of coding that will be used is about clever representations of informa
 In the previous chapter we looked at using binary representations to store all kinds of data — numbers, text, images and more.
 But often simple binary representations don't work so well.
 Sometimes they take up too much space, sometimes small errors in the data can cause big problems, and sometimes we worry that someone else could easily read our messages.
-Most of the the time all three of these things are a problem!
+Most of the time all three of these things are a problem!
 The codes that we will look at here overcome all of these problems, and are widely used for storing and transmitting important information.
 
 The three main reasons that we use more complex representations of binary data are:
