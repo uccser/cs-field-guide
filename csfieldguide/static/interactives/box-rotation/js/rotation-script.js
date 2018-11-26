@@ -2,7 +2,7 @@ scale = 1;
 
 function moveBox() {
     /* triggered when the user hits the "enter" (or "return") key
-     * rotates the cube to match the the values inputted by the user
+     * rotates the cube to match the values inputted by the user
      */
 
     emptyCheck();
