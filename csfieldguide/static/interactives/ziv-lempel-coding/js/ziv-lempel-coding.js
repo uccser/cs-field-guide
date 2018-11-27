@@ -4,44 +4,46 @@ var num_characters = 1;
 // set the min and max match length
 var min_match_length = 2;
 var max_match_length = 5;
+var encoded_message = [];
 
 window.onload = function() {
 
     // var message = 'i am sam sam i am that sam-i-am that sam-i-am';
     var message = 'i am sam sam i am';
-
-    var encoded_message = [];
+    
     // message = message.replace(/[\r\n]+/g, '');
     message = message.split('');
 
-    // initialise sliding window
-    sliding_window = message.splice(0, 6);
+    // initialise sliding window and initial encoded message
+    sliding_window = message.slice(0, 6);
+    encoded_message = message.slice(0, 6);
+
+    message.splice(0, 6);
 
     // read in string to length of max match
     string_to_match = message.splice(0, max_match_length);
-    
-    repeat();
-    
-    // prepare the next string to check
-    characters_to_add = message.splice(0, num_characters);
-    for (var i = 0; i < num_characters; i++) {
-        string_to_match.push(characters_to_add[i]);
-    }
 
     while (true) {
         if (string_to_match.length > 0) {
-            repeat()
+            repeat();
+            // prepare the next string to check
+            characters_to_add = message.splice(0, num_characters);
+            if (characters_to_add.length > 0) {
+                for (var i = 0; i < num_characters; i++) {
+                    string_to_match.push(characters_to_add[i]);
+                }
+            }
         } else {
             break;
         }
     }
+    console.log(encoded_message);
 }
 
 function repeat() { // TODO rename
 
     // STEP 3 search for longest matching string in sliding window
-    var start_match_offset;
-    var length_of_match = 0;
+    var match_offset;
     var longest_match_offset;
     var longest_match_length = 0;
     var current_length_of_match = 0;
@@ -52,12 +54,12 @@ function repeat() { // TODO rename
 
         if (sw_character == string_to_match[0]) {
             // record the current position as the start of the match in the sw
-            start_match_offset = i;
+            match_offset = i;
             current_length_of_match = 1;
             
             for (var j = 1; j < string_to_match.length; j++) {
                 // work out what the next characters are    
-                var next_sw_character_index = start_match_offset + 1;
+                var next_sw_character_index = match_offset + 1;
                 var next_sw_character = sliding_window[next_sw_character_index];
                 var next_search_character = string_to_match[j];
                 
@@ -66,31 +68,35 @@ function repeat() { // TODO rename
                     current_length_of_match += 1;
                 } else {
                     break;
-                }
+                } // TODO add check to make sure not greater than longest match length
             }
             
             // work out if best match so far
-            if (current_length_of_match > length_of_match) {
+            if (current_length_of_match > longest_match_length) {
                 longest_match_length = current_length_of_match;
-                longest_match_offset = start_match_offset;
+                longest_match_offset = match_offset;
             }
         }
     }
 
     // STEP 4 write result to output
     if (longest_match_length >= min_match_length) {
+    
         num_characters = longest_match_length;
-        // output encoding
-        // TODO unsure what to add to sliding window
         var matched_characters = string_to_match.splice(0, longest_match_length);
         for (var i = 0; i < longest_match_length; i++) {
             sliding_window.push(matched_characters[i]);
         }
-        console.log(longest_match_offset, longest_match_length);
+        var reference = '(' + longest_match_offset + ', ' + longest_match_length + ')';
+        encoded_message.push(reference);
+        // console.log(encoded_message);
+        // console.log(sliding_window);
+    
     } else {
-        // output first unencoded symbol
+        num_characters = 1;
         unencoded_symbol = string_to_match.splice(0, 1);
-        console.log(unencoded_symbol);
+        encoded_message.push(unencoded_symbol);
+    
     }
 
 }
