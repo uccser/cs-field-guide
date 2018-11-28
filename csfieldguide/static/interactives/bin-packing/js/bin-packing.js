@@ -109,9 +109,10 @@ $(function() {
             return el !== "";
         });
         emptyGame();
-        if (arr.some(isNaN) || arr.some(v => v <= 0)) {
+        // Check that all entered values are integers between 1 and 100 inclusive
+        if (arr.some(isNaN) || arr.some(v => v < 1 || v > 100 || !Number.isInteger(Number(v)))) {
             var $h5 = $("<h5>");
-            $h5.append('Something went wrong! Please ensure you entered a comma separated list of integers greater than zero.');
+            $h5.append('Something went wrong! Please ensure you entered a comma separated list of integers between 1 and 100.');
             $("#items_area").append($h5);
         } else {
             setupGame(arr);
