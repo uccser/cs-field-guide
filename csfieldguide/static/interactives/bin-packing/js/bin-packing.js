@@ -167,10 +167,11 @@ $(function() {
 
         drawItemList();
         drawAndGenerateBins();
-        dragItems();
+        //dragItems();
     }
 
     setupGame(getUrlParameters());
+    dragItems();
 
     // Handles the dragging of the items into the bin.
     function dragItems() {
