@@ -1,0 +1,47 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div class="container">
+    <div id="modal1" class="modal">
+      <div class="modal-content">
+        <p>{% trans "Enter the comma separated item sizes. The sizes should be between 1 and 100." %}</p>
+            <input type="text" id="sizes"/>
+            <label for="sizes">{% trans "e.g 12,57,100,10,1,23" %}</label>
+      </div>
+      <div class="modal-footer">
+        <button class="modal-action modal-close btn btn-primary" id="done">{% trans "Done" %}</button>
+      </div>
+    </div>
+    <div class="row interactive center-align">
+      <div class="col s12 m8">
+        <h2>{% trans "Let's pack some bins!" %}</h2>
+        <p>{% trans "The goal is to pack the items on the left into the smallest number of bins possible." %}</p>
+      </div>
+      <div class="col s12 m4 buttons left-align">
+        <button class="btn btn-primary" id="new">{% trans "New Game" %}</button>
+        <input type="checkbox" class="filled-in grey darken-3" id="filled-in-box" />
+        <label for="filled-in-box" id="advanced">{% trans "Set item sizes (Advanced)" %}</label>
+      </div>
+    </div>
+    <div class="row interactive center-align">
+      <div class="col s12 m12 l6" id="items_area">
+      </div>
+      <div class="col s12 m12 l6" id="bins_area">
+        <button class="btn btn-primary" id="add-bin">{% trans "Add Bin" %}</button>
+        <button class="btn btn-primary" id="reset">{% trans "Unpack all" %}</button>
+      </div>
+    </div>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/bin-packing/css/bin-packing.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/bin-packing/js/bin-packing.js' %}"></script>
+  <script type="text/javascript" src="{% static 'interactives/js/interact.min.js' %}"></script>
+{% endblock js %}

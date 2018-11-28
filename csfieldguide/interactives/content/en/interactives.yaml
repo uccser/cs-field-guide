@@ -13,7 +13,7 @@ base-calculator:
 big-number-calculator:
   name: Big Number Calculator
 bin-packing:
-  name: bin-packing (broken)
+  name: Bin Packing
 binary-cards:
   name: Binary Cards
 binary-mode-calculator:
