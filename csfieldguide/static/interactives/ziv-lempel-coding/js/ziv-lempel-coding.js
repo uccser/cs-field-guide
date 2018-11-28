@@ -8,8 +8,9 @@ var encoded_message = [];
 
 window.onload = function() {
 
-    var message = 'i am sam sam i am that sam-i-am that sam-i-am';
+    // var message = 'i am sam sam i am that sam-i-am that sam-i-am';
     // var message = 'i am sam sam i am';
+    var message = 'I am Sam, Sam I am. That Sam-I-am! That Sam-I-am! I do not like that Sam-I-am!  Do you like green eggs and ham? I do not like them, Sam-I-am. I do not like green eggs and ham.';
 
     // message = message.replace(/[\r\n]+/g, '');
     message = message.split('');
@@ -33,8 +34,6 @@ window.onload = function() {
             var longest_match_length = 0;
             var current_length_of_match = 0;
 
-            console.log(string_to_match);
-
             for (var i = 0; i < sliding_window.length; i++) {
                 // get next character in sliding window
                 sw_character = sliding_window[i];
@@ -50,8 +49,6 @@ window.onload = function() {
                         next_sw_character_index = next_sw_character_index + 1;
                         var next_sw_character = sliding_window[next_sw_character_index];
                         var next_search_character = string_to_match[j];
-
-                        console.log(next_sw_character, next_search_character);
 
                         // if the next characters match, increase the length of the match
                         if (next_sw_character == next_search_character) {
@@ -80,8 +77,9 @@ window.onload = function() {
                 encoded_message.push(reference);
             } else {
                 num_characters = 1;
-                unencoded_symbol = string_to_match.splice(0, 1);
-                encoded_message.push(unencoded_symbol[0]);
+                unencoded_symbol = string_to_match.splice(0, 1)[0];
+                encoded_message.push(unencoded_symbol);
+                sliding_window.push(unencoded_symbol);
             }
 
             // prepare the next string to check
@@ -98,8 +96,6 @@ window.onload = function() {
         } else {
             break;
         }
-
-        console.log('/n');
     }
 
     console.log(encoded_message);
