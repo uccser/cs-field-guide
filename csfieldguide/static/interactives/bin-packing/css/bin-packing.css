@@ -90,11 +90,3 @@
 	width: 100%;
 	max-width: 200px;
 }
-
-[type="checkbox"]+label {
-	font-size: 0.75rem;
-	width: 100%;
-}
-
-
-

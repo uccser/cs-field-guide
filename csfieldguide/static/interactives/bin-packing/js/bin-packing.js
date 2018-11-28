@@ -108,7 +108,7 @@ $(function() {
         var arr = itemSizes.filter(function(el) {
             return el !== "";
         });
-        emptyGame();
+        emptyGameArea();
         // Check that all entered values are integers between 1 and 100 inclusive
         if (arr.some(isNaN) || arr.some(v => v < 1 || v > 100 || !Number.isInteger(Number(v)))) {
             var $h5 = $("<h5>");
@@ -158,7 +158,7 @@ $(function() {
     }
 
     // Resets the game area to set up a new game.
-    function emptyGame() {
+    function emptyGameArea() {
         item_list.resetItems();
         bin_list.resetItems();
         $("#items_area").children().remove();
@@ -167,7 +167,7 @@ $(function() {
 
     // Starts a new game. Resets everything and uses the item sizes provided if applicable.
     function setupGame(itemSizes) {
-        emptyGame();
+        emptyGameArea();
         if (itemSizes.length == 0) {
             generateItems(4, 12);
         } else {
