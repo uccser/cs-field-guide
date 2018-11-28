@@ -220,8 +220,8 @@ $(function() {
                     packed(itemTarget.id, binTarget.id, item, bin);
                 } else {
                     itemTarget.style.webkitTransform = itemTarget.style.transform = 'translate(0px, 0px)';
-                    itemTarget.setAttribute('data-x', x0);
-                    itemTarget.setAttribute('data-y', y0);
+                    itemTarget.setAttribute('data-x', 0);
+                    itemTarget.setAttribute('data-y', 0);
                 }
             },
 
