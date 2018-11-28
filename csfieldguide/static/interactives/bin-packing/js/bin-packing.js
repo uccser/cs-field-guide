@@ -78,7 +78,6 @@ $(function() {
     // Creates a new empty bin.
     $("#add-bin").click(function() {
         drawAndGenerateNewBin(bin_list.getItems().length)
-        dragItems();
     });
 
     // Unpacks all the items from the bins.
@@ -109,7 +108,14 @@ $(function() {
         var arr = itemSizes.filter(function(el) {
             return el !== "";
         });
-        setupGame(arr);
+        emptyGame();
+        if (arr.some(isNaN) || arr.some(v => v <= 0)) {
+            var $h5 = $("<h5>");
+            $h5.append('Something went wrong! Please ensure you entered a comma separated list of integers greater than zero.');
+            $("#items_area").append($h5);
+        } else {
+            setupGame(arr);
+        }
     });
 
     // Generates a number of items of random sizes. The number of items generated will between min and max.
@@ -150,12 +156,17 @@ $(function() {
         bin_list.addItem(new Bin(id));
     }
 
-    // Starts a new game. Resets everything and uses the item sizes provided if applicable.
-    function setupGame(itemSizes) {
+    // Resets the game area to set up a new game.
+    function emptyGame() {
         item_list.resetItems();
         bin_list.resetItems();
         $("#items_area").children().remove();
         $("#bins_area").children("div").remove();
+    }
+
+    // Starts a new game. Resets everything and uses the item sizes provided if applicable.
+    function setupGame(itemSizes) {
+        emptyGame();
         if (itemSizes.length == 0) {
             generateItems(4, 12);
         } else {
@@ -167,7 +178,6 @@ $(function() {
 
         drawItemList();
         drawAndGenerateBins();
-        //dragItems();
     }
 
     setupGame(getUrlParameters());
