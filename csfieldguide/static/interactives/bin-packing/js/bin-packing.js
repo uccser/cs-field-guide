@@ -1,6 +1,6 @@
 'use strict';
 
-//const Interact = require('interactjs');
+const Interact = require('interactjs');
 
 $(function() {
 
@@ -180,7 +180,7 @@ $(function() {
     // Handles the dragging of the items into the bin.
     function dragItems() {
         // target elements with the "draggable" class
-        interact('.draggable')
+        Interact('.draggable')
             .draggable({
                 // enable inertial throwing
                 inertia: false,
@@ -201,7 +201,7 @@ $(function() {
                 }
             });
 
-        interact('.bin').dropzone({
+        Interact('.bin').dropzone({
             overlap: 0.5,
             accept: '.draggable',
 
