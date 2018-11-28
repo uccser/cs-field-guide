@@ -5,16 +5,26 @@
 
 {% block html %}
   <div class="container">
-    <div id="modal1" class="modal">
-      <div class="modal-content">
-        <p>{% trans "Enter the comma separated item sizes. The sizes should be between 1 and 100." %}</p>
-            <input type="text" id="sizes"/>
+    <!-- Modal -->
+    <div class="modal fade" id="modal1" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-dialog-centered" id="modal-label" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <p>{% trans "Enter the comma separated item sizes. The sizes should be between 1 and 100." %}</p>
+          </div>
+          <div class="modal-body">
+            <input id="sizes" type="text"/>
             <label for="sizes">{% trans "e.g 12,57,100,10,1,23" %}</label>
-      </div>
-      <div class="modal-footer">
-        <button class="modal-action modal-close btn btn-primary" id="done">{% trans "Done" %}</button>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-primary" id="done" data-dismiss="modal">{% trans "Done" %}</button>
+            <button class="btn btn-secondary" data-dismiss="modal">{% trans "Cancel" %}</button>
+          </div>
+        </div>
       </div>
     </div>
+
+    <!-- Upper Row -->
     <div class="row interactive center-align">
       <div class="col s12 m8">
         <h2>{% trans "Let's pack some bins!" %}</h2>
@@ -22,16 +32,17 @@
       </div>
       <div class="col s12 m4 buttons left-align">
         <button class="btn btn-primary" id="new">{% trans "New Game" %}</button>
-        <input type="checkbox" class="filled-in grey darken-3" id="filled-in-box" />
-        <label for="filled-in-box" id="advanced">{% trans "Set item sizes (Advanced)" %}</label>
+        <button class="btn btn-secondary" id="advanced" data-toggle="modal" data-target="#modal1">{% trans "Set Item Sizes (Advanced)" %}</button>
       </div>
     </div>
+
+    <!-- Lower Row -->
     <div class="row interactive center-align">
       <div class="col s12 m12 l6" id="items_area">
       </div>
       <div class="col s12 m12 l6" id="bins_area">
         <button class="btn btn-primary" id="add-bin">{% trans "Add Bin" %}</button>
-        <button class="btn btn-primary" id="reset">{% trans "Unpack all" %}</button>
+        <button class="btn btn-primary" id="reset">{% trans "Unpack All" %}</button>
       </div>
     </div>
   </div>

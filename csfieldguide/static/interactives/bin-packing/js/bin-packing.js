@@ -98,14 +98,9 @@ $(function() {
         };
     });
 
-    // Starts a new game, first checking if the set item sizes checkbox is checked.
+    // Starts a new game.
     $("#new").click(function() {
-        var checked = $("#filled-in-box").is(':checked');
-        if (checked) {
-            $('#modal1').openModal();
-        } else {
-            setupGame(getUrlParameters());
-        }
+        setupGame(getUrlParameters());
     })
 
     // Starts a new game with the item sizes specified by the user.
