@@ -5,6 +5,7 @@ var num_characters = 1;
 var min_match_length = 2;
 var max_match_length = 5;
 var encoded_message = []; // TODO doesn't need to be global
+var newline_positions = [];
 
 
 function compress() {
@@ -16,18 +17,25 @@ function compress() {
 function drawEncodedMessage(encoded_message) {
     var compressed_text_div = document.getElementById('interactive-lzss-compressed-text');
 
+
+    // keep track of the index
+    var index = 0;
+    console.log(newline_positions);
+
     // create a child div for first line
     var lineDiv = document.createElement('div');
     lineDiv.classList.add('interactive-lzss-encoded-line');
 
     for (var i = 0; i < encoded_message.length; i++) {
+        // console.log(index);
         var string = encoded_message[i];
-        console.log(string, string.length);
         
         if (string.length == 1) { // i.e. just a single character
-            string = string.replace(/[\r\n]+/g, null);
-            if (string == 'null') {
-                console.log(string);
+
+            // string = string.replace(/[\r\n]+/g, null);
+            // if (string == 'null') {
+            console.log(index, newline_positions.indexOf(index));
+            if (newline_positions.indexOf(index) != -1) { // should be newline character
                 compressed_text_div.append(lineDiv);
                 
                 // TODO this is repeated code
@@ -35,27 +43,39 @@ function drawEncodedMessage(encoded_message) {
                 lineDiv.classList.add('interactive-lzss-encoded-line');
                 continue;
             }
+
             // add child div for character to line
             var characterDiv = document.createElement('div');
             characterDiv.classList.add('interactive-lzss-encoded-character');
             characterDiv.innerHTML = encoded_message[i];
             lineDiv.append(characterDiv);
 
+            index += 1;
         } else { // a reference
             // console.log('pass');
             var characterDiv = document.createElement('div');
             characterDiv.classList.add('interactive-lzss-encoded-character');
             characterDiv.innerHTML = '(' + string + ')';
             lineDiv.append(characterDiv);
+
+            index += string[1];
         }
     }
     compressed_text_div.append(lineDiv);
 }
 
 function compressText(message) {
-    
-    // message = message.replace(/[\r\n]+/g, '');
+
     message = message.split('');
+
+    // remove newline characters and store their positions in the original message
+    for (var i = message.length-1; i >= 0; i--) {
+        message[i] = message[i].replace(/[\r\n]+/g, null);
+        if (message[i] == 'null') {
+            message.splice(i, 1);
+            newline_positions.push(i);
+        }
+    }
 
     // initialise sliding window and initial encoded message
     sliding_window = message.slice(0, 6);
@@ -69,7 +89,6 @@ function compressText(message) {
     while (true) {
         if (string_to_match.length > 0) {
 
-            // repeat();
             // STEP 3 search for longest matching string in sliding window
             var match_offset;
             var longest_match_offset;
