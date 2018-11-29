@@ -5,37 +5,26 @@ var num_characters = 1;
 var min_match_length = 2;
 var max_match_length = 5;
 var encoded_message = []; // TODO doesn't need to be global
-var newline_positions = [];
 
 
 function compress() {
     var message = document.getElementById('message-to-decode').value;
     compressText(message);
-    drawEncodedMessage(encoded_message)
+    drawEncodedMessage(encoded_message);
 }
 
 function drawEncodedMessage(encoded_message) {
     var compressed_text_div = document.getElementById('interactive-lzss-compressed-text');
-
-
-    // keep track of the index
-    var index = 0;
-    console.log(newline_positions);
 
     // create a child div for first line
     var lineDiv = document.createElement('div');
     lineDiv.classList.add('interactive-lzss-encoded-line');
 
     for (var i = 0; i < encoded_message.length; i++) {
-        // console.log(index);
         var string = encoded_message[i];
         
         if (string.length == 1) { // i.e. just a single character
-
-            // string = string.replace(/[\r\n]+/g, null);
-            // if (string == 'null') {
-            console.log(index, newline_positions.indexOf(index));
-            if (newline_positions.indexOf(index) != -1) { // should be newline character
+            if (string == 'null') {
                 compressed_text_div.append(lineDiv);
                 
                 // TODO this is repeated code
@@ -43,38 +32,29 @@ function drawEncodedMessage(encoded_message) {
                 lineDiv.classList.add('interactive-lzss-encoded-line');
                 continue;
             }
-
             // add child div for character to line
             var characterDiv = document.createElement('div');
             characterDiv.classList.add('interactive-lzss-encoded-character');
             characterDiv.innerHTML = encoded_message[i];
             lineDiv.append(characterDiv);
 
-            index += 1;
         } else { // a reference
             // console.log('pass');
             var characterDiv = document.createElement('div');
             characterDiv.classList.add('interactive-lzss-encoded-character');
             characterDiv.innerHTML = '(' + string + ')';
             lineDiv.append(characterDiv);
-
-            index += string[1];
         }
     }
     compressed_text_div.append(lineDiv);
 }
 
 function compressText(message) {
-
+    // message = message.replace(/[\r\n]+/g, '');
     message = message.split('');
 
-    // remove newline characters and store their positions in the original message
-    for (var i = message.length-1; i >= 0; i--) {
+    for (var i = 0; i < message.length; i++) {
         message[i] = message[i].replace(/[\r\n]+/g, null);
-        if (message[i] == 'null') {
-            message.splice(i, 1);
-            newline_positions.push(i);
-        }
     }
 
     // initialise sliding window and initial encoded message
@@ -99,6 +79,16 @@ function compressText(message) {
                 // get next character in sliding window
                 sw_character = sliding_window[i];
 
+                // TODO REPEATED CODE
+                if (string_to_match[0] == 'null') {
+                    newline_character = string_to_match.slice(0, 1);
+                    sliding_window.push(newline_character);
+                    string_to_match.push(message.splice(0,1));
+                    encoded_message.push(newline_character);
+                    string_to_match.splice(0,1);
+                }
+                ///
+
                 if (sw_character == string_to_match[0]) {
                     // record the current position as the start of the match in the sw
                     match_offset = i;
@@ -111,12 +101,16 @@ function compressText(message) {
                         var next_sw_character = sliding_window[next_sw_character_index];
                         var next_search_character = string_to_match[j];
 
+                        if (string_to_match[j] == 'null') {
+                            break
+                        }
+
                         // if the next characters match, increase the length of the match
                         if (next_sw_character == next_search_character) {
                             current_length_of_match += 1;
                         } else {
                             break;
-                        } // TODO add check to make sure not greater than longest match length
+                        }
                     }
 
                     // work out if best match so far
@@ -135,8 +129,6 @@ function compressText(message) {
                     sliding_window.push(matched_characters[i]);
                 }
                 encoded_message.push([longest_match_offset, longest_match_length]);
-                // var reference = '(' + longest_match_offset + ', ' + longest_match_length + ')';
-                // encoded_message.push(reference);
             } else {
                 num_characters = 1;
                 unencoded_symbol = string_to_match.splice(0, 1)[0];
