@@ -11,37 +11,32 @@
           <h3>{% trans "Ziv-Lempel Coding" %}</h3>
 
           <div class="row">  
-            <div id="interactive-lzss">
+    <div id="interactive-lzss">
 
-              <div id="interactive-lzss-left-box">
-                <div id="interactive-lzss-input-text">
-                  <textarea id="message-to-decode">
+      <div id="interactive-lzss-left-box">
+        <div id="interactive-lzss-input-text">
+          <textarea id="message-to-decode">
 I am Sam, Sam I am.
 That Sam-I-am! That Sam-I-am!
 I do not like that Sam-I-am!
 Do you like green eggs and ham?
 I do not like them, Sam-I-am.
 I do not like green eggs and ham.
-                  </textarea>
-                </div>
-                <div id="interactive-lzss-compress-button">
-                  <button type="button" onclick="compress()">
-                      Compress &rarr;
-                  </button>
-                </div>
-              </div>
-
-              <div id="interactive-lzss-right-box">
-                <div id="interactive-lzss-compressed-text">
-                </div>
-              </div>
-
-            </div>
-          </div>
+          </textarea>
+        </div>
+        <div id="interactive-lzss-compress-button">
+          <button type="button" onclick="compress()">
+              Compress &rarr;
+          </button>
         </div>
       </div>
+
+      <div id="interactive-lzss-right-box">
+        <div id="interactive-lzss-compressed-text">
+        </div>
+      </div>
+
     </div>
-  </div>
 {% endblock html %}
 
 {% block css %}

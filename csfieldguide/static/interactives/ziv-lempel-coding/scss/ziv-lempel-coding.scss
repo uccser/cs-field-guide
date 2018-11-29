@@ -52,6 +52,13 @@ h1 {
 		#interactive-lzss-compressed-text {
 			background-color: #FFF;
 			height: 200px;
+			.interactive-lzss-encoded-line {
+				display: block;
+			}
+			.interactive-lzss-encoded-character {
+				display: inline-block;
+				min-width: 10px;
+			}
 		}
 	}
 	

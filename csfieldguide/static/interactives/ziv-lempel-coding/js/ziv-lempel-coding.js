@@ -4,23 +4,56 @@ var num_characters = 1;
 // set the min and max match length
 var min_match_length = 2;
 var max_match_length = 5;
-var encoded_message = [];
+var encoded_message = []; // TODO doesn't need to be global
 
 
 function compress() {
     var message = document.getElementById('message-to-decode').value;
     compressText(message);
+    drawEncodedMessage(encoded_message)
+}
 
+function drawEncodedMessage(encoded_message) {
     var compressed_text_div = document.getElementById('interactive-lzss-compressed-text');
-    compressed_text_div.innerHTML = encoded_message.join('');
+
+    // create a child div for first line
+    var lineDiv = document.createElement('div');
+    lineDiv.classList.add('interactive-lzss-encoded-line');
+
+    for (var i = 0; i < encoded_message.length; i++) {
+        var string = encoded_message[i];
+        console.log(string, string.length);
+        
+        if (string.length == 1) { // i.e. just a single character
+            string = string.replace(/[\r\n]+/g, null);
+            if (string == 'null') {
+                console.log(string);
+                compressed_text_div.append(lineDiv);
+                
+                // TODO this is repeated code
+                var lineDiv = document.createElement('div');
+                lineDiv.classList.add('interactive-lzss-encoded-line');
+                continue;
+            }
+            // add child div for character to line
+            var characterDiv = document.createElement('div');
+            characterDiv.classList.add('interactive-lzss-encoded-character');
+            characterDiv.innerHTML = encoded_message[i];
+            lineDiv.append(characterDiv);
+
+        } else { // a reference
+            // console.log('pass');
+            var characterDiv = document.createElement('div');
+            characterDiv.classList.add('interactive-lzss-encoded-character');
+            characterDiv.innerHTML = '(' + string + ')';
+            lineDiv.append(characterDiv);
+        }
+    }
+    compressed_text_div.append(lineDiv);
 }
 
 function compressText(message) {
-
-    // var message = 'i am sam sam i am that sam-i-am that sam-i-am';
-    // var message = 'i am sam sam i am';
-    // var message = 'I am Sam, Sam I am. That Sam-I-am! That Sam-I-am! I do not like that Sam-I-am! Do you like green eggs and ham? I do not like them, Sam-I-am. I do not like green eggs and ham.';
-
+    
     // message = message.replace(/[\r\n]+/g, '');
     message = message.split('');
 
@@ -82,8 +115,9 @@ function compressText(message) {
                 for (var i = 0; i < longest_match_length; i++) {
                     sliding_window.push(matched_characters[i]);
                 }
-                var reference = '(' + longest_match_offset + ', ' + longest_match_length + ')';
-                encoded_message.push(reference);
+                encoded_message.push([longest_match_offset, longest_match_length]);
+                // var reference = '(' + longest_match_offset + ', ' + longest_match_length + ')';
+                // encoded_message.push(reference);
             } else {
                 num_characters = 1;
                 unencoded_symbol = string_to_match.splice(0, 1)[0];
@@ -106,32 +140,4 @@ function compressText(message) {
             break;
         }
     }
-
-    console.log(encoded_message);
 }
-
-    // for each sw_character in sliding window
-        // if sw_character == first character in string
-            // start_match_index = index of sw_character
-            // end_match_index = index of sw_character
-            // length_of_match = 1
-            // for search_character in string
-                // next_sw_character_index = starting_match_index + 1
-                // if next_sw_character == search_character:
-                    // increment end index
-                    // increment length of match
-                // else
-                    // break
-            // if length is longer than last match, record as longest match
-
-    // STEP 4
-    // if match found that is greater than or equal to the min allowable match length
-        // write encoded flag, the offset and length to output
-    // else:
-        // write unencoded flag, and first unencoded symbol to encoded output
-
-    // shift a copy of the symbols written to the encoded output from the unencoded string to the sw
-
-    // read in a number of symbols from the unencoded input equal to the number of symbols written in step 4
-
-    // repeat from step 3 until entire input has been encoded
