@@ -54,10 +54,16 @@ h1 {
 			height: 200px;
 			.interactive-lzss-encoded-line {
 				display: block;
+				min-height: 25px;
 			}
-			.interactive-lzss-encoded-character {
+			.interactive-lzss-encoded-character,
+			.interactive-lzss-placeholder-box {
 				display: inline-block;
 				min-width: 10px;
+			}
+			.interactive-lzss-reference {
+				border: 1px solid #000;
+				display: inline-block;
 			}
 		}
 	}

@@ -13,44 +13,54 @@ function compress() {
     drawEncodedMessage(encoded_message);
 }
 
+function newLineDiv() {
+    var line_div = document.createElement('div');
+    line_div.classList.add('interactive-lzss-encoded-line');
+    return line_div;
+}
+
 function drawEncodedMessage(encoded_message) {
+    console.log('here');
     var compressed_text_div = document.getElementById('interactive-lzss-compressed-text');
 
-    // create a child div for first line
-    var lineDiv = document.createElement('div');
-    lineDiv.classList.add('interactive-lzss-encoded-line');
+    // create new div for first line of the message
+    var line_div = newLineDiv();
 
     for (var i = 0; i < encoded_message.length; i++) {
+        console.log("catss");
         var string = encoded_message[i];
-        
         if (string.length == 1) { // i.e. just a single character
             if (string == 'null') {
-                compressed_text_div.append(lineDiv);
-                
-                // TODO this is repeated code
-                var lineDiv = document.createElement('div');
-                lineDiv.classList.add('interactive-lzss-encoded-line');
+                // indicates a new line charactor so appead the div to the parent
+                compressed_text_div.append(line_div);
+                // make a new div for the next line
+                var line_div = newLineDiv();
                 continue;
             }
             // add child div for character to line
-            var characterDiv = document.createElement('div');
-            characterDiv.classList.add('interactive-lzss-encoded-character');
-            characterDiv.innerHTML = encoded_message[i];
-            lineDiv.append(characterDiv);
-
+            var character_div = document.createElement('div');
+            character_div.classList.add('interactive-lzss-encoded-character');
+            character_div.innerHTML = encoded_message[i];
+            line_div.append(character_div);
         } else { // a reference
-            // console.log('pass');
-            var characterDiv = document.createElement('div');
-            characterDiv.classList.add('interactive-lzss-encoded-character');
-            characterDiv.innerHTML = '(' + string + ')';
-            lineDiv.append(characterDiv);
+            var num_encoded_characters = parseInt(string[1]);
+            var fragment = document.createDocumentFragment();
+            for (var j = 0; j < num_encoded_characters; j++) {
+                console.log(j);
+                var placeholder_div = document.createElement('div');
+                placeholder_div.classList.add('interactive-lzss-placeholder-box');
+                fragment.appendChild(placeholder_div);
+            }
+            var reference_div = document.createElement('div');
+            reference_div.classList.add('interactive-lzss-reference');
+            reference_div.appendChild(fragment);
+            line_div.append(reference_div);
         }
     }
-    compressed_text_div.append(lineDiv);
+    compressed_text_div.append(line_div);
 }
 
 function compressText(message) {
-    // message = message.replace(/[\r\n]+/g, '');
     message = message.split('');
 
     for (var i = 0; i < message.length; i++) {
@@ -79,7 +89,6 @@ function compressText(message) {
                 // get next character in sliding window
                 sw_character = sliding_window[i];
 
-                // TODO REPEATED CODE
                 if (string_to_match[0] == 'null') {
                     newline_character = string_to_match.slice(0, 1);
                     sliding_window.push(newline_character);
@@ -87,7 +96,6 @@ function compressText(message) {
                     encoded_message.push(newline_character);
                     string_to_match.splice(0,1);
                 }
-                ///
 
                 if (sw_character == string_to_match[0]) {
                     // record the current position as the start of the match in the sw
