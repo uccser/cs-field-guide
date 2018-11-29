@@ -6,11 +6,20 @@ var min_match_length = 2;
 var max_match_length = 5;
 var encoded_message = [];
 
-window.onload = function() {
+
+function compress() {
+    var message = document.getElementById('message-to-decode').value;
+    compressText(message);
+
+    var compressed_text_div = document.getElementById('interactive-lzss-compressed-text');
+    compressed_text_div.innerHTML = encoded_message.join('');
+}
+
+function compressText(message) {
 
     // var message = 'i am sam sam i am that sam-i-am that sam-i-am';
     // var message = 'i am sam sam i am';
-    var message = 'I am Sam, Sam I am. That Sam-I-am! That Sam-I-am! I do not like that Sam-I-am!  Do you like green eggs and ham? I do not like them, Sam-I-am. I do not like green eggs and ham.';
+    // var message = 'I am Sam, Sam I am. That Sam-I-am! That Sam-I-am! I do not like that Sam-I-am! Do you like green eggs and ham? I do not like them, Sam-I-am. I do not like green eggs and ham.';
 
     // message = message.replace(/[\r\n]+/g, '');
     message = message.split('');
@@ -100,7 +109,6 @@ window.onload = function() {
 
     console.log(encoded_message);
 }
-
 
     // for each sw_character in sliding window
         // if sw_character == first character in string
