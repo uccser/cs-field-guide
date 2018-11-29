@@ -108,12 +108,12 @@ $(function() {
         var arr = itemSizes.filter(function(el) {
             return el !== "";
         });
-        emptyGameArea();
         // Check that all entered values are integers between 1 and 100 inclusive
         if (arr.some(isNaN) || arr.some(v => v < 1 || v > 100 || !Number.isInteger(Number(v)))) {
-            var $h5 = $("<h5>");
-            $h5.append('Something went wrong! Please ensure you entered a comma separated list of integers between 1 and 100.');
-            $("#items_area").append($h5);
+            emptyGameArea();
+            var $h6 = $("<h6>");
+            $h6.append(gettext('Something went wrong! Please ensure you entered a comma separated list of integers between 1 and 100.').fontcolor("red"));
+            $("#items_area").append($h6);
         } else {
             setupGame(arr);
         }
@@ -265,8 +265,12 @@ $(function() {
         bin.add(item.size);
         item.packed = true;
         if (allPacked()) {
+            var binCount = getNonEmptyBins();
+            var format = gettext('Congratulations, you packed the items in ');
+            format += ngettext('1 bin!', '%(bin_count)s bins!', binCount);
+            var binCountText = interpolate(format, {"bin_count": binCount}, true);
             var $h5 = $("<h5>");
-            $h5.append('Congratulations you packed the items in ' + getNonEmptyBins() + ' bins!');
+            $h5.append(binCountText);
             $("#items_area").append($h5);
         }
     }

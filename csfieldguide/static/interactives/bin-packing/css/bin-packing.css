@@ -9,6 +9,7 @@
 	font-size: 12px;
 	line-height: 30px;
 	height: 30px;
+
 }
 .fill {
 	border-right: 1px white solid;
@@ -53,14 +54,13 @@
 }
 
 .fill {
-	background-color: #008fc5;
+	background-color: #007bff;
 	display: inline-block;
-	float: left;
 	height: 40px;
 }
 
 .item {
-	background-color: #008fc5;
+	background-color: #007bff;
 	display: inline-block;
 	height: 40px;
 	margin-right: 10px;
