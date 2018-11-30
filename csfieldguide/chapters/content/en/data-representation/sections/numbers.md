@@ -101,7 +101,7 @@ Because there are only 2 digits, this means that each digit is **2** times the v
 
 # The Denary number system
 
-The base 10 (decimal) system is sometimes called denary, which is more consistent with the the name binary for the base 2 system.
+The base 10 (decimal) system is sometimes called denary, which is more consistent with the name binary for the base 2 system.
 The word "denary" also refers to the Roman denarius coin, which was worth ten asses (an "as" was a copper or bronze coin).
 The term "denary" seems to be used mainly in the UK; in the US, Australia and NZ the term "decimal" is more common.
 

@@ -53,7 +53,7 @@ It is probably best to do A1/M1/E1 after the programming languages section has b
 
 **Achieved**
 
-Ensure you have tried both of the box searching interactives which are in the the part of the field guide which you read. For one of them you had to use linear search, and for the other you had to use binary search.
+Ensure you have tried both of the box searching interactives which are in the part of the field guide which you read. For one of them you had to use linear search, and for the other you had to use binary search.
 
 {panel type="teacher-note" summary="Parts of the standard covered"}
 This covers:
