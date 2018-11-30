@@ -59,3 +59,4 @@ CodeMirror.defineMode("regex", function() {
   });
   
   CodeMirror.defineMIME("text/x-regex", "regex");
+  

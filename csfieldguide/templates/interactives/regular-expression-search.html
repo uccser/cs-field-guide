@@ -5,13 +5,11 @@
 
 {% block html %}
   <div class="mb-3 interactive" id="interactive-regular-expression-search">
+    <!-- Content -->
     <div>
-      <h1>{% trans "Regular Expression Search" %}</h3>
-
-      <h5>{% trans "Regular Expression" %}</h5>
+      <h3>{% trans "Regular Expression Search" %}</h3>
       <p id="interactive-regular-expression-search-regex">{% trans "Enter a regular expression below to highlight words in the box." %}</p>
 
-      <h5>{% trans "Text to Search" %}</h5>
       <p>{% trans "You can edit the text below to use your own text to search." %}</p>
 
       <textarea id="interactive-regular-expression-search-text">{% blocktrans %}
