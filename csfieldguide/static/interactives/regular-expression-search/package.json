@@ -1,0 +1,8 @@
+{
+    "name": "csfg-interactive-regular-expression-search",
+    "version": "1.0.0",
+    "private": true,
+    "dependencies": {
+        "codemirror": "5.42.0"
+    }
+}

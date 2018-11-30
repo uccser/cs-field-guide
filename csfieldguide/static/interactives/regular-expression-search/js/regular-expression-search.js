@@ -1,6 +1,8 @@
 // Regular expression search using CodeMirrors
 // Author: Jack Morgan
 
+const CodeMirror = require('codemirror');
+
 RegularExpressionSearch = {};
 
 $(document).ready(function () {
