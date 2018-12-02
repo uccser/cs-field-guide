@@ -41,6 +41,7 @@ class Chapter(TranslatableModel):
         Interactive,
         related_name="chapter",
     )
+    video = models.URLField(blank=True)
 
     def __str__(self):
         """Text representation of Chapter object.
@@ -54,6 +55,8 @@ class Chapter(TranslatableModel):
         """Set consistent ordering of chapters."""
 
         ordering = ["number"]
+        verbose_name = "Chapter"
+        verbose_name_plural = "Chapters"
 
 
 class ChapterSection(TranslatableModel):
@@ -100,3 +103,5 @@ class ChapterSection(TranslatableModel):
         """Set consistent ordering of chapter sections."""
 
         ordering = ["number"]
+        verbose_name = "Chapter section"
+        verbose_name_plural = "Chapter sections"

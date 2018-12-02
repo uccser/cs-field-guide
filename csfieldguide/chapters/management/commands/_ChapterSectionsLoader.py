@@ -11,6 +11,8 @@ from utils.check_required_files import check_interactives
 class ChapterSectionsLoader(TranslatableModelLoader):
     """Custom loader for loading chapter sections."""
 
+    extra_converter_templates_directory = "chapter-section"
+
     def __init__(self, factory, chapter, **kwargs):
         """Create the loader for loading chapter sections.
 
@@ -31,6 +33,7 @@ class ChapterSectionsLoader(TranslatableModelLoader):
                 field.
         """
         chapter_sections_structure = self.load_yaml_file(self.structure_file_path)
+        section_numbers = []
 
         for (section_slug, section_structure) in chapter_sections_structure.items():
 
@@ -54,6 +57,8 @@ class ChapterSectionsLoader(TranslatableModelLoader):
                     "section-number - value '{}' is invalid".format(section_number),
                     "section-number must be an integer value."
                 )
+
+            section_numbers.append(section_number)
 
             chapter_section_translations = self.get_blank_translation_dictionary()
 
@@ -81,3 +86,12 @@ class ChapterSectionsLoader(TranslatableModelLoader):
                 self.structure_file_path,
                 self.chapter,
             )
+
+        # assumes first section number is always 1
+        for counter, section_number in enumerate(section_numbers, 1):
+            if section_number != counter:
+                raise InvalidYAMLValueError(
+                    self.structure_file_path,
+                    "section-number - value '{}' is invalid".format(section_number),
+                    "section-numbers must be in sequential order. The next expected number was '{}'.".format(counter)
+                )

@@ -67,7 +67,7 @@ If students are stuck, you might need to give them a few hints.
 
 The table they should have gotten should look like this.
 
-{image file-path="img/chapters/caesar-cipher-table-2.png"}
+{image file-path="img/chapters/caesar-cipher-table-2.png" alt="A table of the English alphabet showing the ciphertext of each letter."}
 
 The learning objective for this activity was for students to think like cryptanalysts and to see why Caesar Cipher is not useful in practice.
 
@@ -82,12 +82,12 @@ Here's the table for the letter correspondences, where the letter "K" translates
 It is okay if your conversion table mapped the opposite way, i.e. "A" to "K" rather than "K" to "A".
 If you were unable to break the Caesar Cipher in the previous section, go back to it now and decode it using the table.
 
-{image file-path="img/chapters/caesar-cipher-table-2.png"}
+{image file-path="img/chapters/caesar-cipher-table-2.png" alt="A table of the English alphabet showing the ciphertext of each letter."}
 
 For this example, we say the key is *10* because keys in Caesar Cipher are a number between 1 and 25 (think carefully about why we wouldn't want a key of 26!), which specify how far the alphabet should be rotated.
 If instead we used a key of *8*, the conversion table would be as follows.
 
-{image file-path="img/chapters/caesar-cipher-table-3.png"}
+{image file-path="img/chapters/caesar-cipher-table-3.png" alt="A table of the English alphabet showing the ciphertext of each letter."}
 
 {panel type="jargon-buster"}
 
@@ -188,7 +188,7 @@ HOW ARE YOU
 
 We would start by working that the letter that is 7 places ahead of "H" is "O", 7 places ahead of "O" is "V", and 7 places ahead of "W" is "D".
 This means that the first word of the plaintext encrypts to "OVD" in the ciphertext.
-Going through the the entire plaintext in this way, we can eventually get the ciphertext of:
+Going through the entire plaintext in this way, we can eventually get the ciphertext of:
 
 ```
 OVD HYL FVB
@@ -407,7 +407,7 @@ ZEBRAS ZACH, ZAVIER, AND ZANE ZOOMED THROUGH THE ZOO
 # The letter E isn't always the most common letter...
 
 Although in almost all English texts the letter E is the most common letter, it isn't always.
-For example, the [1939 novel *Gadsby* by Ernest Vincent Wright](https://en.wikipedia.org/wiki/Gadsby_(novel\)) doesn't contain a single letter E (this is called a lipogram).
+For example, the [1939 novel *Gadsby* by Ernest Vincent Wright](https://en.wikipedia.org/wiki/Gadsby_(novel)) doesn't contain a single letter E (this is called a lipogram).
 Furthermore, the text you're attacking may not be English.
 During World War 1 and 2, the US military had many Native American [Code talkers](https://en.wikipedia.org/wiki/Code_talker) translate messages into their own language, which provided a strong layer of security at the time.
 
@@ -514,7 +514,7 @@ EIJUDJQJYEKI
 
 {panel type="teacher-note"}
 
-# Answer for the the above question
+# Answer for the above question
 
 The word is "ostentatious", and has been coded by shifting 16 letters to the right (or 10 to the left).
 
@@ -549,8 +549,8 @@ As we saw above, no modern computer system could try out all possible 128 bit ke
 
 In computer science, problems that take an exponential amount of time to solve are generally regarded as not being
 {glossary-link term="tractable" reference-text="encryption"}tractable{glossary-link end}
---- that is, you can't get any traction on them; it's as if you're spinning your wheels.
-Working out which problems are tractable and which are intractable is a major area of research in computer science --- many other problems that we care about appear to be intractable, much to our frustration.
+— that is, you can't get any traction on them; it's as if you're spinning your wheels.
+Working out which problems are tractable and which are intractable is a major area of research in computer science — many other problems that we care about appear to be intractable, much to our frustration.
 The area of encryption is one of the few situations where we're pleased that an algorithm is intractible!
 
 This guide has a [whole chapter about tractability]('chapters:chapter' 'complexity-tractability'), where you can explore these issues further.

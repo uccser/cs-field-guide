@@ -25,7 +25,7 @@ tractability and formal languages, have more room for expressing information in 
 
 These skills are also important for software engineers, for very similar reasons. It isn’t just about programming!
 
-In New Zealand, a convenient way to find software engineers to come to a class for an interview is through the ICT-Connect programme (http://www.ictconnect.org.nz/) or FutureInTech (their "ambassador" program: http://schools.futureintech.org.nz/forschools.cfm).
+In New Zealand, a convenient way to find software engineers to come to a class for an interview is through the ICT-Connect programme (http://www.ictconnect.org.nz/) or FutureInTech (their "ambassador" program: https://web.archive.org/web/20180322145026/http://schools.futureintech.org.nz/forschools.cfm).
 {panel end}
 
 

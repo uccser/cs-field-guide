@@ -1,3 +1,5 @@
+require('jsencrypt');
+
 var RSAEncrypt = {};
 
 $(document).ready(function(){
@@ -17,7 +19,7 @@ $(document).ready(function(){
         if (encrypted) {
           $('#interactive-rsa-jsencrypt-output-text').val(encrypted);
         } else {
-          $('#interactive-rsa-jsencrypt-output-text').val('Error in encryption!');
+          $('#interactive-rsa-jsencrypt-output-text').val(gettext('Error in encryption!'));
         }
       } else {
         crypt.setPrivateKey($('#interactive-rsa-jsencrypt-key').val());
@@ -25,17 +27,17 @@ $(document).ready(function(){
         if (decrypted) {
           $('#interactive-rsa-jsencrypt-output-text').val(decrypted);
         } else {
-          $('#interactive-rsa-jsencrypt-output-text').val('Error in decryption!');
+          $('#interactive-rsa-jsencrypt-output-text').val(gettext('Error in decryption!'));
         }
       }
     });
 });
 
 function setDecryptionText() {
-  $('#interactive-rsa-jsencrypt-mode').text('Decrypter');
-  $('#interactive-rsa-jsencrypt-process').text('Decrypt');
-  $('#interactive-rsa-jsencrypt-input-type').text('Cipher');
-  $('#interactive-rsa-jsencrypt-output-type').text('Plain');
+  $('#interactive-rsa-jsencrypt-mode').text(gettext('Decrypter'));
+  $('#interactive-rsa-jsencrypt-process').text(gettext('Decrypt'));
+  $('#interactive-rsa-jsencrypt-input-type').text(gettext('Cipher'));
+  $('#interactive-rsa-jsencrypt-output-type').text(gettext('Plain'));
 };
 
 // From jquerybyexample.net/2012/06/get-url-parameters-using-jquery.html

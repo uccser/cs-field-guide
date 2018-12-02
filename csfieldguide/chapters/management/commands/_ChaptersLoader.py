@@ -12,6 +12,8 @@ from chapters.models import Chapter
 class ChaptersLoader(TranslatableModelLoader):
     """Custom loader for loading chapters."""
 
+    extra_converter_templates_directory = "chapter"
+
     def __init__(self, factory, chapter_number, **kwargs):
         """Create the loader for loading a Chapter.
 
@@ -61,11 +63,16 @@ class ChaptersLoader(TranslatableModelLoader):
             # Remove directory and extension as svg templatetag automatically adds these
             chapter_icon = chapter_icon[4:-4]
 
+        video = chapter_structure.get("video", "")
+        if video != "" and "vimeo" not in video:
+            raise ValueError("Video must be a Vimeo video.")
+
         # Create chapter object and save to the db
         chapter = Chapter(
             slug=self.chapter_slug,
             number=self.chapter_number,
-            icon=chapter_icon
+            icon=chapter_icon,
+            video=video
         )
 
         self.populate_translations(chapter, chapter_translations)

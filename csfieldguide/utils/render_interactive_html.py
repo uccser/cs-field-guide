@@ -1,6 +1,7 @@
 """Module for the rendering HTML for an interactive."""
 
 from os.path import join
+from django.http import Http404
 from django.template.loader import render_to_string
 from django.shortcuts import get_object_or_404
 from django.conf import settings
@@ -10,6 +11,7 @@ ALLOWED_MODES = (
     "in-page",
     "whole-page",
     "iframe",
+    "centered"
 )
 
 
@@ -35,6 +37,5 @@ def render_interactive_html(interactive_slug, mode, request=None):
             "interactive_mode_template": mode_template,
         }
     else:
-        # Flesh out this error checking
-        raise Exception("Interactive must be one of the following modes...")
+        raise Http404("Interactive mode must be one of ('{}')".format("', '".join(ALLOWED_MODES)))
     return render_to_string(interactive.template, context, request=request)

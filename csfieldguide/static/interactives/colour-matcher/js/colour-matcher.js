@@ -2,6 +2,9 @@
 // but rather as a proof of concept.
 // This JS will be rewritten in a future update.
 
+const noUiSlider = require('nouislider');
+const wNumb = require('wnumb');
+
 ColourMatcher = {};
 
 $(document).ready(function () {
@@ -10,9 +13,9 @@ $(document).ready(function () {
   ColourMatcher.goal_panels = $('.interactive-colour-matcher-goal');
   ColourMatcher.help_stage = 0;
   ColourMatcher.help_text = [
-                              [colour_matcher_il8n["red-help"], 'danger'],
-                              [colour_matcher_il8n["green-help"], 'success'],
-                              [colour_matcher_il8n["help-given"], 'secondary'],
+                              [gettext('Help me set 24 bit red'), 'danger'],
+                              [gettext('Help me set 24 bit green'), 'success'],
+                              [gettext('All help given'), 'secondary'],
                             ];
   ColourMatcher.display_hexidecimal = false;
 

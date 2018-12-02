@@ -35,23 +35,13 @@
   height:auto;
 }
 .flex-item:before {
-  content:'';
-  float:left;
-  padding-top:100%;
-}
-#footer {
-  padding-top: 2rem;
-  color: grey;
-}
-#footer > p {
-  font-size: 0.8rem;
+  content: '';
+  float: left;
+  padding-top: 100%;
 }
 #delay-analyser-interactive #statistics-feedback {
   margin-top: 1.25rem;
   font-size: 1.5rem;
   color: red;
   font-weight: bold;
-}
-#reset {
-  margin: 40px;
 }

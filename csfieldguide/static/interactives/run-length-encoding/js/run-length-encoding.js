@@ -41,7 +41,7 @@ function setup_grid(){
 
   if ($gridSize > 21 || $gridSize < 1 || isNaN($gridSize)) {
     // Error message
-    alert('Please enter a value between 0 and 100');
+    alert(gettext('Please enter a value between 0 and 100'));
     // Reset grid
     $('#grid-size').val(5);
     setup_grid()
@@ -99,14 +99,14 @@ function updateEncodingGrid() {
     }
     // Wrong total for row
     if (row_total != $gridSize) {
-      $encodingFeedback.text('Your numbers add up to a different number than the grid requires!');
+      $encodingFeedback.text(gettext('Your numbers add up to a different number than the grid requires!'));
       is_valid_data = false;
     }
   }
 
   // If wrong number of lines
   if (encodingData.length != $gridSize) {
-    $encodingFeedback.text('You have a different number of lines than lines in the grid!');
+    $encodingFeedback.text(gettext('You have a different number of lines than lines in the grid!'));
     is_valid_data = false;
   }
 

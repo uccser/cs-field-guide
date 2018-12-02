@@ -1,6 +1,6 @@
 # This Dockerfile is based off the Google App Engine Python runtime image
 # https://github.com/GoogleCloudPlatform/python-runtime
-FROM uccser/django:1.11.7
+FROM uccser/django:1.11.16
 
 # Add metadata to Docker image
 LABEL maintainer="csse-education-research@canterbury.ac.nz"
@@ -18,9 +18,5 @@ COPY requirements /requirements
 RUN /docker_venv/bin/pip3 install -r /requirements/local.txt
 
 RUN mkdir /cs-field-guide/
-RUN mkdir /cs-field-guide/csfielguide/
+RUN mkdir /cs-field-guide/csfieldguide/
 WORKDIR /cs-field-guide/csfieldguide/
-
-# Copy and install fonts
-COPY csfieldguide/static/font/ /usr/share/fonts/
-RUN fc-cache -fv

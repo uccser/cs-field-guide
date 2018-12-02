@@ -1,5 +1,7 @@
 "use strict";
 
+const Big = require('big.js');
+
 $(document).ready(function () {
     $('#interactive-big-number-calculator button').on('click', function(){
         var button_type = $(this).attr('id').split('-').pop();
@@ -17,7 +19,7 @@ $(document).ready(function () {
             }
             else if (button_type == 'multiply') {
                 if (x.toString().length > 5000 || y.toString().length > 5000) {
-                    updateResult("The result of this calculation will be massive! We won't try calculating this number as it's so big!", false);
+                    updateResult(gettext("The result of this calculation will be massive! We won't try calculating this number as it's so big!"), false);
                 } else {
                     updateResult(x.times(y).toFixed(), true);
                 }
@@ -38,13 +40,13 @@ $(document).ready(function () {
                         throw false;
                     }
                 } catch (exception) {
-                    updateResult("The result of this calculation will be massive! We won't try calculating this number as it's so big!", false);
+                    updateResult(gettext("The result of this calculation will be massive! We won't try calculating this number as it's so big!"), false);
                 }
             }
         } else if (x === undefined) {
-            updateResult('Error! Your X value is not a valid number.', false);
+            updateResult(gettext("Error! Your X value is not a valid number."), false);
         } else if (y === undefined) {
-            updateResult('Error! Your Y value is not a valid number.', false);
+            updateResult(gettext("Error! Your Y value is not a valid number."), false);
         }
 
     });
@@ -66,7 +68,7 @@ function factorial(value) {
         }
         updateResult(total.toFixed(), true);
     } else {
-        updateResult("The result of this factorial will be massive, over 5000 digits long! We won't try calculating this number as it's so big!", false);
+        updateResult(gettext("The result of this factorial will be massive, over 5000 digits long! We won't try calculating this number as it's so big!"), false);
     }
 };
 

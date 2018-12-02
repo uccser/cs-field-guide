@@ -1,6 +1,6 @@
 # This Dockerfile is based off the Google App Engine Python runtime image
 # https://github.com/GoogleCloudPlatform/python-runtime
-FROM uccser/django:1.11.11
+FROM uccser/django:1.11.16
 
 # Add metadata to Docker image
 LABEL maintainer="csse-education-research@canterbury.ac.nz"

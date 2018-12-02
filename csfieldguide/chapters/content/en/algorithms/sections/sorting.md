@@ -4,7 +4,7 @@
 
 # Why are we also covering sorting?
 
-Our main points have already been made --- what an algorithm is, how to estimate its cost, and that the cost isn't always proportional to the amount of data.
+Our main points have already been made — what an algorithm is, how to estimate its cost, and that the cost isn't always proportional to the amount of data.
 However, it's good to reinforce this with some different algorithms.
 Sorting algorithms are useful to study because they illustrate many of the key issues that come up in algorithms, and there are some good contrasts, particularly between quicksort (which is fast and is widely used) and selection or insertion sort (which become very slow as the number of items sorted increases).
 
@@ -30,7 +30,11 @@ Once you think they are in order click 'Test order'.
 
 If the interactive does not run properly on your computer you can use a set of physical balance scales instead; just make sure you can only tell if one box is heavier than the other, not their exact weight (so not digital scales that show the exact weight).
 
-{comment interactive name="sorting-algorithms" type="whole-page" text="Scales interactive"}
+{interactive slug="sorting-algorithms" type="whole-page" text="true"}
+
+Scales Interactive
+
+{interactive end}
 
 {comment link back to the unplugged activity}
 
@@ -134,7 +138,11 @@ Remember computers often have to search through HUGE amounts of data, so even if
 
 A much better sorting algorithm is {glossary-link term="quicksort"}Quicksort{glossary-link end}! (the name is a bit of a giveaway)
 
-{comment interactive name="sorting-algorithms" type="whole-page" text="Quicksort interactive" parameters="method=quick" thumbnail="thumbnail-quick.png"}
+{interactive slug="sorting-algorithms" type="whole-page" text="true" parameters="method=quick"}
+
+Quicksort Interactive
+
+{interactive end}
 
 This algorithm is a little more complicated, but is very powerful.
 To do this algorithm with the sorting interactive, start by randomly choosing a box and placing it on the scales.

@@ -1,17 +1,14 @@
-the-big-picture:
+searching:
   section-number: 1
 
-searching:
+sorting:
   section-number: 2
 
-sorting:
+what-makes-an-algorithm:
   section-number: 3
 
-what-makes-an-algorithm:
+the-whole-story:
   section-number: 4
 
-the-whole-story:
-  section-number: 5
-
 further-reading:
-  section-number: 6
+  section-number: 5

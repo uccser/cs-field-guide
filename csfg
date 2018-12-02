@@ -27,13 +27,13 @@ defhelp() {
     local command="${2?}"
     local text="${3?}"
     local help_str
-    help_str="$(printf '   %-18s %s' "$command" "$text")"
+    help_str="$(printf '   %-28s %s' "$command" "$text")"
     dev_cmd_helps+=("$help_str")
   else
     local command="${1?}"
     local text="${2?}"
     local help_str
-    help_str="$(printf '   %-18s %s' "$command" "$text")"
+    help_str="$(printf '   %-28s %s' "$command" "$text")"
     cmd_helps+=("$help_str")
   fi
 }
@@ -75,12 +75,6 @@ defhelp start 'Start development environment.'
 cmd_end() {
   echo "Stopping systems... (takes roughly 10 to 20 seconds)"
   docker-compose down
-  echo
-  echo "Deleting system volumes..."
-  volumes=($(docker volume ls -qf dangling=true ))
-  for volume in "${volumes[@]}"; do
-      docker volume rm "${volume}"
-  done
 }
 defhelp end 'Stop development environment.'
 
@@ -90,7 +84,7 @@ cmd_restart() {
 }
 defhelp restart 'Stop and then restart development environment.'
 
-# Run Django migrate and updatedata commands
+# Completely update system
 cmd_update() {
   dev_static
 
@@ -99,6 +93,8 @@ cmd_update() {
 
   echo ""
   dev_updatedata
+  dev_make_interactive_thumbnails
+  dev_rebuild_index
 
   echo ""
   dev_collect_static
@@ -108,16 +104,21 @@ cmd_update() {
 }
 defhelp update 'Run Django migrate and updatedata commands and build static files.'
 
+# Update and collect static files
+dev_update_static() {
+  dev_static
+
+  echo ""
+  dev_collect_static
+  echo ""
+  echo -e "\n${GREEN}Static files are updated!${NC}"
+}
+defhelp -dev update_static 'Update and collect static files.'
+
 # Build Docker images
 dev_build() {
   echo "Building Docker images..."
   docker-compose build
-  echo
-  echo "Deleting untagged images..."
-  untagged_images=($(docker images --no-trunc | grep '<none>' | awk '{print $3}'))
-  if [[ ${#untagged_images[@]} -gt 0 ]]; then
-      docker rmi "${untagged_images[@]}"
-  fi
 }
 defhelp -dev build 'Build or rebuild Docker images.'
 
@@ -133,6 +134,7 @@ defhelp -dev collect_static "Collecting static files."
 dev_compilemessages() {
   echo "Compiling message files..."
   docker-compose exec django /docker_venv/bin/python3 ./manage.py compilemessages
+  docker-compose exec django /docker_venv/bin/python3 ./manage.py compilejsi18n
 }
 defhelp -dev compilemessages 'Run Django compilemessages command.'
 
@@ -151,8 +153,16 @@ defhelp -dev docs 'Generate documentation.'
 dev_makemessages() {
   echo "Creating message files..."
   docker-compose exec django /docker_venv/bin/python3 ./manage.py makemessages -l en
+  docker-compose exec django /docker_venv/bin/python3 ./manage.py makemessages --ignore=build/* -d djangojs
 }
 defhelp -dev makemessages 'Run Django makemessages command.'
+
+# Run Node make_interactive_thumbnails command
+dev_make_interactive_thumbnails() {
+  echo "Creating interactive thumbnails..."
+  docker-compose exec nginx node make-interactive-thumbnails.js
+}
+defhelp -dev make_interactive_thumbnails 'Run Node make-interactive-thumbnails.js script.'
 
 # Run Django makemigrations command
 dev_makemigrations() {
@@ -185,6 +195,7 @@ defhelp -dev shell "Open shell to Django folder."
 dev_static() {
   echo "Building static files..."
   docker-compose exec nginx gulp build
+  dev_compilemessages
 }
 defhelp -dev static 'Build static files.'
 
@@ -192,8 +203,16 @@ defhelp -dev static 'Build static files.'
 dev_static_prod() {
   echo "Building production static files..."
   docker-compose exec nginx gulp build --production
+  dev_compilemessages
 }
 defhelp -dev static_prod 'Build production static files.'
+
+# Run Django command rebuild_index
+dev_rebuild_index() {
+  echo "Rebuilding search index..."
+  docker-compose exec django /docker_venv/bin/python3 ./manage.py rebuild_index --noinput
+}
+defhelp -dev rebuild_index "Run Django rebuild_index command."
 
 # Run style checks
 dev_style() {
@@ -248,14 +267,6 @@ defhelp -dev updatedata 'Run updatedata command.'
 cmd_clean() {
   echo "If the following commands return an argument not found error,"
   echo "this is because there is nothing to delete for clean up."
-
-  echo
-  echo "Deleting unused volumes..."
-
-  unused_volumes=($(docker volume ls -qf dangling=true))
-  for vol in "${unused_volumes[@]}"; do
-      docker volume rm "${vol}"
-  done
 
   echo
   echo "Deleting exited containers..."

@@ -1,23 +1,20 @@
-the-big-picture:
+lights-camera-action:
   section-number: 1
 
-lights-camera-action:
+noise:
   section-number: 2
 
-noise:
+thresholding:
   section-number: 3
 
-thresholding:
+face-recognition:
   section-number: 4
 
-face-recognition:
+edge-detection:
   section-number: 5
 
-edge-detection:
+the-whole-story:
   section-number: 6
 
-the-whole-story:
-  section-number: 7
-
 further-reading:
-  section-number: 8
+  section-number: 7

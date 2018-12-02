@@ -2,33 +2,50 @@
 // gulp build --production : for a minified production build
 
 'use strict';
-var gulp = require('gulp');
-var gutil = require('gulp-util');
-var del = require('del');
-var gulpif = require('gulp-if');
-var exec = require('child_process').exec;
-var runSequence = require('run-sequence')
-var notify = require('gulp-notify');
-var buffer = require('vinyl-buffer');
-var argv = require('yargs').argv;
-var rename = require("gulp-rename");
+
+const js_files_skip_optimisation = [
+  // Optimise all files
+  '**',
+  // But skip the following files
+  '!static/interactives/huffman-tree/**/*.js',
+  '!static/interactives/packet-attack/**/*.js',
+];
+
+// general
+const gulp = require('gulp');
+const gutil = require('gulp-util');
+const del = require('del');
+const gulpif = require('gulp-if');
+const filter = require('gulp-filter');
+const exec = require('child_process').exec;
+const runSequence = require('run-sequence')
+const notify = require('gulp-notify');
+const log = require('gulplog');
+const buffer = require('vinyl-buffer');
+const argv = require('yargs').argv;
+const rename = require("gulp-rename");
+const sourcemaps = require('gulp-sourcemaps');
+const errorHandler = require('gulp-error-handle');
 
 // sass
-var sass = require('gulp-sass');
-var postcss = require('gulp-postcss');
-var postcssFlexbugFixes = require('postcss-flexbugs-fixes');
-var autoprefixer = require('autoprefixer');
-var sourcemaps = require('gulp-sourcemaps');
+const sass = require('gulp-sass');
+const postcss = require('gulp-postcss');
+const postcssFlexbugFixes = require('postcss-flexbugs-fixes');
+const autoprefixer = require('autoprefixer');
 
-// linting
-var jshint = require('gulp-jshint');
-var stylish = require('jshint-stylish');
+// js
+const tap = require('gulp-tap');
+const babel = require('gulp-babel');
+const terser = require('gulp-terser');
+const browserify = require('browserify');
+const jshint = require('gulp-jshint');
+const stylish = require('jshint-stylish');
 
 // gulp build --production
-var production = !!argv.production;
+const production = !!argv.production;
 // determine if we're doing a build
 // and if so, bypass the livereload
-var build = argv._.length ? argv._[0] === 'build' : true;
+const build = argv._.length ? argv._[0] === 'build' : true;
 
 // ----------------------------
 // Error notification methods
@@ -58,6 +75,14 @@ var handleError = function(task) {
   };
 };
 
+function catchError(error) {
+    gutil.log(
+      gutil.colors.bgRed('Error:'),
+      gutil.colors.red(error)
+    );
+    this.emit('end');
+}
+
 // --------------------------
 // CUSTOM TASK METHODS
 // --------------------------
@@ -79,7 +104,11 @@ var tasks = {
   // Copy interactive files
   // --------------------------
   interactives: function() {
-    return gulp.src(['static/interactives/**/*', '!static/interactives/**/*.scss'])
+    return gulp.src([
+        'static/interactives/**/*',
+        '!static/interactives/**/*.scss',
+        '!static/interactives/**/*.js'
+      ])
       .pipe(gulp.dest('build/interactives'));
   },
   // --------------------------
@@ -96,13 +125,6 @@ var tasks = {
     return gulp.src('static/svg/**/*')
       .pipe(gulp.dest('build/svg'));
   },
-    // --------------------------
-  // Copy font files
-  // --------------------------
-  font: function() {
-    return gulp.src('static/font/**/*')
-      .pipe(gulp.dest('build/font'));
-  },
   // --------------------------
   // CSS
   // --------------------------
@@ -111,17 +133,11 @@ var tasks = {
       .pipe(gulp.dest('build/css'));
   },
   // --------------------------
-  // JS
-  // --------------------------
-  js: function() {
-    return gulp.src('static/js/**/*.js')
-      .pipe(gulp.dest('build/js'));
-  },
-  // --------------------------
   // SASS (libsass)
   // --------------------------
   sass: function() {
-    return gulp.src('static/scss/*.scss')
+    return gulp.src('static/**/*.scss')
+      .pipe(errorHandler(catchError))
       // sourcemaps + sass + error handling
       .pipe(gulpif(!production, sourcemaps.init()))
       .pipe(sass({
@@ -139,61 +155,32 @@ var tasks = {
         'loadMaps': true
       })))
       .pipe(postcss([autoprefixer({browsers: ['last 2 versions']}), postcssFlexbugFixes]))
-      // we don't serve the source files
-      // so include scss content inside the sourcemaps
-      .pipe(sourcemaps.write({
-        'includeContent': true
-      }))
-      // write sourcemaps to a specific directory
-      // give it a file and save
-      .pipe(gulp.dest('build/css'));
-  },
-  // --------------------------
-  // SASS (libsass) for interactives
-  // TODO: Remove duplication of logic in this file
-  // --------------------------
-  interactives_sass: function() {
-    return gulp.src('static/interactives/**/scss/*.scss')
-      // sourcemaps + sass + error handling
-      .pipe(gulpif(!production, sourcemaps.init()))
-      .pipe(sass({
-        sourceComments: !production,
-        outputStyle: production ? 'compressed' : 'nested'
-      }))
-      .on('error', handleError('SASS'))
-      // generate .maps
-      .pipe(gulpif(!production, sourcemaps.write({
-        'includeContent': false,
-        'sourceRoot': '.'
-      })))
-      // autoprefixer
-      .pipe(gulpif(!production, sourcemaps.init({
-        'loadMaps': true
-      })))
-      .pipe(postcss([autoprefixer({browsers: ['last 2 versions']}), postcssFlexbugFixes]))
-      // we don't serve the source files
-      // so include scss content inside the sourcemaps
       .pipe(sourcemaps.write({
         'includeContent': true
       }))
       .pipe(rename(function (path) {
-        path.dirname = path.dirname.replace("/scss", "/css");
+        path.dirname = path.dirname.replace("scss", "css");
       }))
-      .pipe(gulp.dest('build/interactives'));
+      .pipe(gulp.dest('build/'));
   },
   // --------------------------
-  // linting
+  // JavaScript
   // --------------------------
-  lintjs: function() {
-    return gulp.src([
-        'gulpfile.js',
-        'static/js/index.js',
-        'static/js/**/*.js'
-      ]).pipe(jshint())
-      .pipe(jshint.reporter(stylish))
-      .on('error', function() {
-        beep();
-      });
+  js: function() {
+    const f = filter(js_files_skip_optimisation, {restore: true});
+    return gulp.src(['static/**/*.js', '!static/js/modules/**/*.js'])
+      .pipe(f)
+      .pipe(errorHandler(catchError))
+      .pipe(tap(function (file) {
+        file.contents = browserify(file.path, {debug: true}).bundle().on('error', catchError);
+      }))
+      .pipe(buffer())
+      .pipe(errorHandler(catchError))
+      .pipe(gulpif(production, sourcemaps.init({loadMaps: true})))
+      .pipe(gulpif(production, terser({keep_fnames: true})))
+      .pipe(gulpif(production, sourcemaps.write('./')))
+      .pipe(f.restore)
+      .pipe(gulp.dest('build'));
   },
 };
 
@@ -206,16 +193,13 @@ var req = [];
 // // individual tasks
 gulp.task('images', req, tasks.images);
 gulp.task('interactives', req, tasks.interactives);
-gulp.task('interactives_sass', req, tasks.interactives_sass);
 gulp.task('files', req, tasks.files);
 gulp.task('svg', req, tasks.svg);
-gulp.task('font', req, tasks.font);
 gulp.task('js', req, tasks.js);
 gulp.task('css', req, tasks.css);
 gulp.task('sass', req, tasks.sass);
-gulp.task('lint:js', tasks.lintjs);
 
 // // build task
 gulp.task('build', function(callback) {
-  runSequence('clean', ['images', 'svg', 'css', 'js', 'sass', 'interactives', 'interactives_sass', 'font', 'files'], callback);
+  runSequence('clean', ['images', 'svg', 'css', 'sass', 'interactives', 'files', 'js'], callback);
 });

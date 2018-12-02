@@ -17,7 +17,7 @@ $(document).ready(function(){
         if (encrypted) {
           $('#interactive-rsa-no-padding-output-text').val(encrypted);
         } else {
-          $('#interactive-rsa-no-padding-output-text').val('Error in encryption!');
+          $('#interactive-rsa-no-padding-output-text').val(gettext('Error in encryption!'));
         }
       } else {
         crypt.setPrivateKey($('#interactive-rsa-no-padding-key').val());
@@ -25,17 +25,17 @@ $(document).ready(function(){
         if (decrypted) {
           $('#interactive-rsa-no-padding-output-text').val(decrypted);
         } else {
-          $('#interactive-rsa-no-padding-output-text').val('Error in decryption!');
+          $('#interactive-rsa-no-padding-output-text').val(gettext('Error in decryption!'));
         }
       }
     });
 });
 
 function setDecryptionText() {
-  $('#interactive-rsa-no-padding-mode').text('Decrypter');
-  $('#interactive-rsa-no-padding-process').text('Decrypt');
-  $('#interactive-rsa-no-padding-input-type').text('Cipher');
-  $('#interactive-rsa-no-padding-output-type').text('Plain');
+  $('#interactive-rsa-no-padding-mode').text(gettext('Decrypter'));
+  $('#interactive-rsa-no-padding-process').text(gettext('Decrypt'));
+  $('#interactive-rsa-no-padding-input-type').text(gettext('Cipher'));
+  $('#interactive-rsa-no-padding-output-type').text(gettext('Plain'));
 };
 
 // From jquerybyexample.net/2012/06/get-url-parameters-using-jquery.html

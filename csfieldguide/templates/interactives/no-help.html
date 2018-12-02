@@ -10,10 +10,5 @@
 {% endblock html %}
 
 {% block js %}
-  <script type="text/javascript">
-     var close_window_i18n = {
-         "alert": "{% trans 'Error: No help available!' %}",
-     };
-  </script>
   <script type="text/javascript" src="{% static 'interactives/no-help/js/no-help.js' %}"></script>
 {% endblock js %}

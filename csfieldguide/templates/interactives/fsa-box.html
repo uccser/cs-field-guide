@@ -1,0 +1,76 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+{% load get_item %}
+
+{% block html %}
+  <div id="interactive-fsa-box" data-iframe-height>
+
+    <div id="interactive-fsa-box-state-text" class="text-center">
+      {% trans 'Current state: <span id="interactive-fsa-box-current-state-text"></span>' %}
+    </div>
+
+    <div id="interactive-fsa-box-current-state"></div>
+
+    <div id="interactive-fsa-box-buttons" class="text-center"></div>
+
+    <div class="text-center">
+      <button id="interactive-fsa-box-reset" class="btn btn-danger mt-2">{% trans "Reset to start state" %}</button>
+    </div>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/fsa-box/css/fsa-box.css' %}">
+{% endblock css %}
+
+{% block js %}
+  {% get_item request.GET "config" "example-1" as config %}
+
+  <script type="text/javascript">
+    var fsa_box_config = {
+      {% if config == 'example-2' %}
+        "available_buttons": ["a", "b"],
+        "initial_state": "1",
+        "states": {
+          "1": {
+            "box": "Not accepted",
+            "destinations": {
+              "a": "2",
+              "b": "1"
+            }
+          },
+          "2": {
+            "box": "Accepted",
+            "destinations": {
+              "a": "1",
+              "b": "2"
+            }
+          }
+        }
+      {% else %}
+        "available_buttons": ["a", "b"],
+        "initial_state": "1",
+        "states": {
+          "1": {
+            "box": "Not accepted",
+            "destinations": {
+              "a": "2",
+              "b": "1"
+            }
+          },
+          "2": {
+            "box": "Accepted",
+            "destinations": {
+              "a": "2",
+              "b": "1"
+            }
+          }
+        }
+      {% endif %}
+    };
+  </script>
+  <script type="text/javascript" src="{% static 'interactives/fsa-box/js/fsa-box.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/third-party/iframeResizer.contentWindow.min.js' %}"></script>
+{% endblock js %}

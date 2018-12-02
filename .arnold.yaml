@@ -1,0 +1,49 @@
+translation:
+  django-message-file:
+      - "csfieldguide/locale/en/LC_MESSAGES/django.po"
+      - "csfieldguide/locale/en/LC_MESSAGES/djangojs.po"
+  commands:
+    start:
+      - ["./csfg", "dev", "build"]
+      - ["./csfg", "start"]
+      - ["./csfg", "update"]
+    end:
+      - ["./csfg", "end"]
+    makemessages:
+      - ["./csfg", "dev", "makemessages"]
+  branches:
+    # Branch for upload of source content to Crowdin
+    translation-source: develop
+    # Branch that new translations will be merged into
+    translation-target: develop
+    # Branch that updated English message PO files will be merged into
+    update-messages-target: develop
+    # Branch that new metadata for in context localisation will be merged into
+    in-context-target: develop
+    # Code for in-context localisation pseudo language on Crowdin
+    in-context-pseudo-language-crowdin: en-UD
+    # Code for in-context localisation pseudo language on website
+    in-context-pseudo-language-website: xx_LR
+  source-directories:
+    - csfieldguide/locale/{language}/LC_MESSAGES/
+    - csfieldguide/appendices/content/{language}/
+    - csfieldguide/chapters/content/{language}/
+    - csfieldguide/interactives/content/{language}/
+  file-types:
+    - .md
+    - .yaml
+    - .po
+  language-mapping-overrides:
+    # Crowdin to Django
+    zh-CN: zh_Hans
+    zh-TW: zh_Hant
+    en-UD: xx_LR # Pseudo language
+
+broken-link-checker:
+  exclude-directories:
+    - .git/
+    - docs/build/
+  skip-urls:
+    # Intentional broken links
+    - https://www.google.com/teapot
+    - https://google.com/nope.html

@@ -19,7 +19,7 @@
 #interactive-fsa-light-bulb-on.hide-bulb {
   opacity: 0;
 }
-#interactive-fsa-light a.btn {
+#interactive-fsa-light button.btn {
   text-transform: none;
   margin: 0.5em;
 }

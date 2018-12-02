@@ -1,0 +1,11 @@
+<blockquote class="blockquote text-muted{% if alignment == 'left' %} text-left{% elif alignment =='center' %} text-center{% elif alignment =='right' %} text-right{% endif %}"
+{%- if source %} cite="{{ source }}"{% endif %}>
+{% autoescape false -%}
+{{ content }}
+{%- endautoescape -%}
+{% if footer or source %}
+<footer class="blockquote-footer">
+{{ footer }} {% if source %}(<a href="{{ source }}">{{ '{% trans "Source" %}'}}</a>){% endif %}
+</footer>
+{% endif %}
+</blockquote>

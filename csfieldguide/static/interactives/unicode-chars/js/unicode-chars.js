@@ -1,3 +1,5 @@
+require('string.fromcodepoint');
+
 var $decimal = $("#interactive-unicode-chars-decimal");
 var $char = $("#interactive-unicode-chars-char");
 

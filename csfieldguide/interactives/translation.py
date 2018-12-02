@@ -7,7 +7,7 @@ from interactives.models import Interactive
 class InteractiveTranslationOptions(TranslationOptions):
     """Translation options for Interactive model."""
 
-    fields = ("name",)
+    fields = ("name", "template")
 
 
 translator.register(Interactive, InteractiveTranslationOptions)

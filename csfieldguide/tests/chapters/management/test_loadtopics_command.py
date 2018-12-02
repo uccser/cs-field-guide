@@ -6,6 +6,7 @@ from tests.BaseTestWithDB import BaseTestWithDB
 from django.core import management
 from django.test import tag, override_settings
 from utils.errors.MissingRequiredFieldError import MissingRequiredFieldError
+from utils.errors.InvalidYAMLValueError import InvalidYAMLValueError
 
 CHAPTERS_PATH = "tests/chapters/management/assets/"
 
@@ -113,6 +114,42 @@ class LoadChaptersCommandTest(BaseTestWithDB):
     def test_loadchapters_chapters_empty(self, chapter_loader, glossary_loader):
         self.assertRaises(
             MissingRequiredFieldError,
+            management.call_command,
+            "loadchapters"
+        )
+
+    @mock.patch(
+        "chapters.management.commands._GlossaryTermsLoader.GlossaryTermsLoader.load",
+        return_value=True
+    )
+    @mock.patch(
+        "chapters.management.commands._ChaptersLoader.ChaptersLoader.load",
+        return_value=True
+    )
+    @override_settings(
+        CHAPTERS_CONTENT_BASE_PATH=os.path.join(CHAPTERS_PATH, "chapters-number-missing")
+    )
+    def test_loadchapters_chapters_number_missing(self, chapter_loader, glossary_loader):
+        self.assertRaises(
+            MissingRequiredFieldError,
+            management.call_command,
+            "loadchapters"
+        )
+
+    @mock.patch(
+        "chapters.management.commands._GlossaryTermsLoader.GlossaryTermsLoader.load",
+        return_value=True
+    )
+    @mock.patch(
+        "chapters.management.commands._ChaptersLoader.ChaptersLoader.load",
+        return_value=True
+    )
+    @override_settings(
+        CHAPTERS_CONTENT_BASE_PATH=os.path.join(CHAPTERS_PATH, "chapters-number-invalid")
+    )
+    def test_loadchapters_chapters_number_invalid(self, chapter_loader, glossary_loader):
+        self.assertRaises(
+            InvalidYAMLValueError,
             management.call_command,
             "loadchapters"
         )

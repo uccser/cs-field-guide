@@ -1,17 +1,14 @@
-the-big-picture:
+beyond-speed:
   section-number: 1
 
-beyond-speed:
+programming:
   section-number: 2
 
-programming:
+how-to-use-this-guide:
   section-number: 3
 
-how-to-use-this-guide:
+about-this-guide:
   section-number: 4
 
-about-this-guide:
-  section-number: 5
-
 further-reading:
-  section-number: 6
+  section-number: 5

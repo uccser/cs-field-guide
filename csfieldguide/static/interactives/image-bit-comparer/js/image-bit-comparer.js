@@ -9,18 +9,18 @@ ImageBitComparer.BASE_HEIGHT = 300;
 ImageBitComparer.scale_factor = 1;
 
 ImageBitComparer.INITAL_IMAGES = [
-                                  ['IMG_5035.jpg', 'Sunflower'],
-                                  ['IMG_5264.jpg', 'Roof of Temple'],
-                                  ['IMG_2223.jpg', 'Lake in New Zealand'],
-                                  ['faces.jpg', 'Faces'],
-                                  ['IMG_8354.jpg', 'Flower'],
-                                  ['IMG_6698.jpg', 'Flower in snow'],
-                                  ['IMG_8061.jpg', 'Duckling'],
-                                  ['wedding-vehicle.jpg', 'Car'],
-                                  ['IMG_2521.jpg', 'Lightning'],
-                                  ['IMG_7448.jpg', 'Balloons'],
-                                  ['black-and-white.jpg', 'Black and White Photograph'],
-                                  ['IMG_0775.jpg', 'Books']
+                                  [image_bit_comparer_images["sunflower"], 'Sunflower'],
+                                  [image_bit_comparer_images["temple-roof"], 'Roof of Temple'],
+                                  [image_bit_comparer_images["nz-lake"], 'Lake in New Zealand'],
+                                  [image_bit_comparer_images["faces"], 'Faces'],
+                                  [image_bit_comparer_images["flower"], 'Flower'],
+                                  [image_bit_comparer_images["snow-flower"], 'Flower in snow'],
+                                  [image_bit_comparer_images["duckling"], 'Duckling'],
+                                  [image_bit_comparer_images["car"], 'Car'],
+                                  [image_bit_comparer_images["lightning"], 'Lightning'],
+                                  [image_bit_comparer_images["balloons"], 'Balloons'],
+                                  [image_bit_comparer_images["black-and-white"], 'Black and White Photograph'],
+                                  [image_bit_comparer_images["books"], 'Books']
                                 ];
 
 ImageBitComparer.colour_labels = ['Red', 'Green', 'Blue'];
@@ -88,7 +88,7 @@ $(document).ready(function(){
 function populateSelectOptions() {
   var $select = $('#interactive-image-bit-comparer-selected-image');
   for (var i = 0; i < ImageBitComparer.INITAL_IMAGES.length; i++) {
-    var file = 'img/' + ImageBitComparer.INITAL_IMAGES[i][0];
+    var file = ImageBitComparer.INITAL_IMAGES[i][0];
     var text = ImageBitComparer.INITAL_IMAGES[i][1];
     $select.append($('<option>').text(text).data('file', file));
   }
@@ -99,7 +99,9 @@ function populateSelectOptions() {
 function loadDroppedImage(file){
     //	Prevent any non-image file type from being read.
     if(!file.type.match(/image.*/)){
-        alert("The dropped file is not an image! File provided was " + file.type);
+        var format = gettext('The dropped file is not an image! File provided was %(file_type)s');
+        var alertText = interpolate(format, {"file_type": file_.type}, true);
+        alert(alertText);
     } else {
       var reader = new FileReader();
       reader.onload = function (data) {
@@ -129,6 +131,14 @@ function loadUserImage(filename, file) {
 };
 
 
+function getSubtitleText(bit_values) {
+  var number_of_bits = bit_values.reduce(function(a, b) {return a + b;});
+  var format = ngettext('1 bit', '%(number_of_bits)s bits', number_of_bits);
+  var subtitle_text = interpolate(format, {"number_of_bits": number_of_bits}, true);
+  return subtitle_text
+};
+
+
 // Setup interface for current mode
 function setupMode() {
   var $canvas_parent_container = $('#interactive-image-bit-comparer-canvas-parent-container');
@@ -137,15 +147,10 @@ function setupMode() {
   // If running in comparison mode
   if (ImageBitComparer.mode == 'comparison') {
     for (bit_values_index = 0; bit_values_index < ImageBitComparer.comparison_bits.length; bit_values_index++) {
-      var $canvas_container = $('<div class="interactive-image-bit-comparer-canvas-container z-depth-1">');
+      var $canvas_container = $('<div class="interactive-image-bit-comparer-canvas-container shadow p-3 mb-5 bg-white rounded">');
 
       var bit_values = ImageBitComparer.comparison_bits[bit_values_index];
-      var number_of_bits = bit_values.reduce(function(a, b) {return a + b;});
-      if (number_of_bits == 1) {
-        var subtitle_text = number_of_bits + ' bit';
-      } else {
-        var subtitle_text = number_of_bits + ' bits';
-      }
+      var subtitle_text = getSubtitleText(bit_values);
 
       $canvas_container.append('<p class="interactive-image-bit-comparer-canvas-subtitle">' + subtitle_text + '</p>');
       var $canvas = $('<canvas class="interactive-image-bit-comparer-canvas"></canvas>');
@@ -160,15 +165,10 @@ function setupMode() {
   // If running in changing bits mode
   } else if (ImageBitComparer.mode == 'change-bits') {
     for (bit_values_index = 0; bit_values_index < ImageBitComparer.change_bits.length; bit_values_index++) {
-      var $canvas_container = $('<div class="interactive-image-bit-comparer-canvas-container z-depth-1">');
+      var $canvas_container = $('<div class="interactive-image-bit-comparer-canvas-container shadow p-3 mb-5 bg-white rounded">');
 
       var bit_values = ImageBitComparer.change_bits[bit_values_index];
-      var number_of_bits = bit_values.reduce(function(a, b) {return a + b;});
-      if (number_of_bits == 1) {
-        var subtitle_text = number_of_bits + ' bit';
-      } else {
-        var subtitle_text = number_of_bits + ' bits';
-      }
+      var subtitle_text = getSubtitleText(bit_values);
 
       $canvas_container.append('<p class="interactive-image-bit-comparer-canvas-subtitle">' + subtitle_text + '</p>');
       var $canvas = $('<canvas class="interactive-image-bit-comparer-canvas"></canvas>');
@@ -179,9 +179,9 @@ function setupMode() {
 
       var $controls_container = $('<div class="interactive-image-bit-comparer-controls-container"></div>');
       for (var i = 0; i < ImageBitComparer.colour_labels.length; i++) {
-        var $control_container = $('<div></div>');;
+        var $control_container = $('<div></div>');
         $control_container.append('<label>' + ImageBitComparer.colour_labels[i] + ':</label>');
-        var $select = $('<select class="browser-default"></select>');
+        var $select = $('<select class="browser-default form-control"></select>');
         for (var bit = 8; bit >= 0; bit--) {
           $select.append('<option value="' + bit + '">' + bit + '</option>');
         }
@@ -204,6 +204,10 @@ function setupMode() {
           var source_image_data = initialCanvasData();
           // Update canvases from base image
           drawCanvas($canvas, source_image_data);
+
+          // Update subtitle text to show new number of bits used
+          var subtitle_text = getSubtitleText(bit_values);
+          $select.parents().eq(2).children('p').text(subtitle_text);
         });
       }
 
@@ -223,7 +227,10 @@ function loadImage() {
   var source_canvas_context = source_canvas.getContext('2d');
 
   var image = new Image();
-  image.addEventListener('error', function (e){e.preventDefault(); alert("Starting image cannot be loaded when viewing file locally. Try another browser or the online version.");},false);
+  image.addEventListener('error', function (e) {
+    e.preventDefault();
+    alert(gettext('Starting image cannot be loaded when viewing file locally. Try another browser or the online version.'));
+  }, false);
   image.onload = function() {
       $selected_image.data('data', image);
       source_canvas_context.drawImage(image, 0, 0, source_canvas.width, source_canvas.height);

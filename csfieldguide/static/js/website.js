@@ -1,3 +1,10 @@
+$ = jQuery = require('jquery');
+require('bootstrap');
+require('details-element-polyfill');
+require('featherlight');
+require('sticky-state');
+const iFrameResize = require('iframe-resizer/src/iframeResizer.js');
+
 $(document).ready(function(){
   // Display glossary-modal
   $("#content-container, #glossary-modal").on("click", ".glossary-term", open_glossary_definition);
@@ -8,13 +15,7 @@ $(document).ready(function(){
   // Pause YouTube videos playing within a closed details elements
   $("body").on("click", "details[open]", details_element_closed);
 
-  // Display an invitation to developers to contribute to this project
-  console.log('%cAre you a developer?', 'font: bold 1.5em "Open Sans", sans-serif;')
-  console.log('%cThe Computer Science Field Guide is open source here:', 'font: 1.2em "Open Sans", sans-serif;')
-  console.log('%chttps://github.com/uccser/cs-field-guide', 'font: 1.2em "Open Sans", sans-serif;')
-  console.log('%cWe would love your help to make this guide the best it can be!', 'font: 1.2em "Open Sans", sans-serif;')
-  console.log('%cThanks,', 'font: 1.2em "Open Sans", sans-serif;')
-  console.log('%cThe CSFG team :)', 'font: 1.2em "Open Sans", sans-serif;')
+  iFrameResize({}, 'iframe.iframe-resize');
 });
 
 function open_glossary_definition() {
