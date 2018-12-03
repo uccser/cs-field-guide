@@ -59,7 +59,7 @@ h1 {
 				min-height: 25px;
 			}
 			.interactive-lzss-encoded-character,
-			.interactive-lzss-placeholder-box {
+			input.interactive-lzss-placeholder-box {
 				display: inline-block;
 				min-width: 10px;
 				min-height: 1rem;
@@ -70,8 +70,8 @@ h1 {
 				display: flex;
 				flex-wrap: wrap;
 				margin: 2px;
-				.interactive-lzss-placeholder-box {
-					min-height: 1rem;
+				input.interactive-lzss-placeholder-box {
+					width: 1rem;
 				}
 			}
 		}

@@ -5,6 +5,8 @@ var num_characters = 1;
 var min_match_length = 2;
 var max_match_length = 5;
 var encoded_message = []; // TODO doesn't need to be global
+var start_index;
+var end_index;
 
 
 function compress() {
@@ -28,7 +30,9 @@ function drawEncodedMessage(encoded_message) {
     var index = 0;
     for (var i = 0; i < encoded_message.length; i++) {
         var string = encoded_message[i];
+        
         if (string.length == 1) { // i.e. just a single character
+        
             if (string == 'null') {
                 // indicates a new line charactor so appead the div to the parent
                 compressed_text_div.append(line_div);
@@ -40,34 +44,36 @@ function drawEncodedMessage(encoded_message) {
             var character_div = document.createElement('div');
             character_div.classList.add('interactive-lzss-encoded-character');
             character_div.innerHTML = encoded_message[i];
-            //TODO add data-index to character
             character_div.setAttribute('data-index', index);
             line_div.append(character_div);
             index += 1;
+        
         } else { // a reference
+        
             var num_encoded_characters = parseInt(string[1]);
             var fragment = document.createDocumentFragment();
-            for (var j = 0; j < num_encoded_characters; j++) {
-                var placeholder_div = document.createElement('div');
-                placeholder_div.classList.add('interactive-lzss-placeholder-box');
-                placeholder_div.setAttribute('data-index', index);
-                fragment.appendChild(placeholder_div);
+            
+            for (var j = 0; j <= num_encoded_characters; j++) {
+                var placeholder_input = document.createElement('input'); 
+                placeholder_input.classList.add('interactive-lzss-placeholder-box');
+                placeholder_input.setAttribute('data-index', index);
+                fragment.appendChild(placeholder_input);
                 index += 1;
+        
             }
+
             var reference_div = document.createElement('div');
             reference_div.classList.add('interactive-lzss-reference');
-            
-            // TODO add reference coordinates to reference div
-            var start_index = parseInt(string[0]);
-            reference_div.setAttribute('data-start-index', start_index);
-            reference_div.setAttribute('data-end-index', start_index+num_encoded_characters);
 
-           
+            var start_reference_index = parseInt(string[0]);
+            reference_div.setAttribute('data-start-index', start_reference_index);
+            reference_div.setAttribute('data-end-index', start_reference_index+num_encoded_characters);
+
             reference_div.appendChild(fragment);
-            reference_div.addEventListener("mousemove", function (event) {
+            reference_div.addEventListener("mousemove", function(event) {
                 highlightReference(event);
             });
-            reference_div.addEventListener("mouseleave", function (event) {
+            reference_div.addEventListener("mouseleave", function(event) {
                 unhighlightReference(event);
             });
             
@@ -77,20 +83,26 @@ function drawEncodedMessage(encoded_message) {
     compressed_text_div.append(line_div);
 }
 
-function highlightReference(event) {
+function getIndexes(event) {
+    /* Helper function to get start and end index data values for
+     * div hovered over.
+     */
     var selected_reference = event.target;
-    var start_index = selected_reference.dataset.startIndex;
-    var end_index = selected_reference.dataset.endIndex;
+    start_index = selected_reference.dataset.startIndex;
+    end_index = selected_reference.dataset.endIndex;
+}
+
+function highlightReference(event) {
+    getIndexes(event);
     for (var i = start_index; i <= end_index; i++) {
         var character_div = document.querySelectorAll('[data-index="' + i.toString() + '"]')[0];
+        console.log(character_div);
         character_div.classList.add('highlight');
     }
 }
 
 function unhighlightReference(event) {
-    var selected_reference = event.target;
-    var start_index = selected_reference.dataset.startIndex;
-    var end_index = selected_reference.dataset.endIndex;
+    getIndexes(event);
     for (var i = start_index; i <= end_index; i++) {
         var character_div = document.querySelectorAll('[data-index="' + i.toString() + '"]')[0];
         character_div.classList.remove('highlight');
