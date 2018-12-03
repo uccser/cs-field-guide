@@ -56,7 +56,6 @@ $(document).ready(function () {
        $feedback.text("");
        var remainder = $total % $mod;
        $("#interactive-checksum-calculator-remainder").val(remainder);
-       //$("#interactive-checksum-calculator-remainder-label").addClass('active');
        $result_elements.show()
      }
    });
