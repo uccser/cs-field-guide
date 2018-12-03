@@ -16,11 +16,13 @@ $(document).ready(function () {
         // Check number only contains 12 digits
         if (number.match(/^\d{12}$/)) {
             NumberCheckerGTIN13.feedback.removeClass('invalid');
-            var checksum = calculateCheckSumDigit(number);
-            NumberCheckerGTIN13.feedback.text(checksum_calculator_il8n['checksum'] + checksum);
+            var checksum = {'checksum': calculateCheckSumDigit(number)};
+            var format = gettext("Checksum digit is %(checksum)s");
+            var feedback_string = interpolate(format, checksum, true);
+            NumberCheckerGTIN13.feedback.text(feedback_string);
         } else {
             NumberCheckerGTIN13.feedback.addClass('invalid');
-            NumberCheckerGTIN13.feedback.text(checksum_calculator_il8n['input-error']);
+            NumberCheckerGTIN13.feedback.text(gettext("Your input must only contain 12 numbers"));
         }
     });
 
