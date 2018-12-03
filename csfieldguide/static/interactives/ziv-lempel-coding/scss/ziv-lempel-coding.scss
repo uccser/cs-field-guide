@@ -51,19 +51,28 @@ h1 {
 	#interactive-lzss-right-box {
 		#interactive-lzss-compressed-text {
 			background-color: #FFF;
-			height: 200px;
+			// height: 200px;
 			.interactive-lzss-encoded-line {
-				display: block;
+				display: flex;
+				align-items: center;
+				flex-wrap: wrap;
 				min-height: 25px;
 			}
 			.interactive-lzss-encoded-character,
 			.interactive-lzss-placeholder-box {
 				display: inline-block;
 				min-width: 10px;
+				min-height: 1rem;
+				margin: 2px 0;
 			}
 			.interactive-lzss-reference {
 				border: 1px solid #000;
-				display: inline-block;
+				display: flex;
+				flex-wrap: wrap;
+				margin: 2px;
+				.interactive-lzss-placeholder-box {
+					min-height: 1rem;
+				}
 			}
 		}
 	}
@@ -74,4 +83,8 @@ h1 {
 		border-radius: 2px !important;
 		box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12)
 	}
+}
+
+.highlight {
+	background-color: hotpink;
 }

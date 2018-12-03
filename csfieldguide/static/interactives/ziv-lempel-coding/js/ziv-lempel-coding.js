@@ -20,14 +20,13 @@ function newLineDiv() {
 }
 
 function drawEncodedMessage(encoded_message) {
-    console.log('here');
     var compressed_text_div = document.getElementById('interactive-lzss-compressed-text');
 
     // create new div for first line of the message
     var line_div = newLineDiv();
 
+    var index = 0;
     for (var i = 0; i < encoded_message.length; i++) {
-        console.log("catss");
         var string = encoded_message[i];
         if (string.length == 1) { // i.e. just a single character
             if (string == 'null') {
@@ -41,23 +40,61 @@ function drawEncodedMessage(encoded_message) {
             var character_div = document.createElement('div');
             character_div.classList.add('interactive-lzss-encoded-character');
             character_div.innerHTML = encoded_message[i];
+            //TODO add data-index to character
+            character_div.setAttribute('data-index', index);
             line_div.append(character_div);
+            index += 1;
         } else { // a reference
             var num_encoded_characters = parseInt(string[1]);
             var fragment = document.createDocumentFragment();
             for (var j = 0; j < num_encoded_characters; j++) {
-                console.log(j);
                 var placeholder_div = document.createElement('div');
                 placeholder_div.classList.add('interactive-lzss-placeholder-box');
+                placeholder_div.setAttribute('data-index', index);
                 fragment.appendChild(placeholder_div);
+                index += 1;
             }
             var reference_div = document.createElement('div');
             reference_div.classList.add('interactive-lzss-reference');
+            
+            // TODO add reference coordinates to reference div
+            var start_index = parseInt(string[0]);
+            reference_div.setAttribute('data-start-index', start_index);
+            reference_div.setAttribute('data-end-index', start_index+num_encoded_characters);
+
+           
             reference_div.appendChild(fragment);
+            reference_div.addEventListener("mousemove", function (event) {
+                highlightReference(event);
+            });
+            reference_div.addEventListener("mouseleave", function (event) {
+                unhighlightReference(event);
+            });
+            
             line_div.append(reference_div);
         }
     }
     compressed_text_div.append(line_div);
+}
+
+function highlightReference(event) {
+    var selected_reference = event.target;
+    var start_index = selected_reference.dataset.startIndex;
+    var end_index = selected_reference.dataset.endIndex;
+    for (var i = start_index; i <= end_index; i++) {
+        var character_div = document.querySelectorAll('[data-index="' + i.toString() + '"]')[0];
+        character_div.classList.add('highlight');
+    }
+}
+
+function unhighlightReference(event) {
+    var selected_reference = event.target;
+    var start_index = selected_reference.dataset.startIndex;
+    var end_index = selected_reference.dataset.endIndex;
+    for (var i = start_index; i <= end_index; i++) {
+        var character_div = document.querySelectorAll('[data-index="' + i.toString() + '"]')[0];
+        character_div.classList.remove('highlight');
+    }
 }
 
 function compressText(message) {
