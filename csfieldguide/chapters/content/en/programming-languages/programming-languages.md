@@ -47,11 +47,11 @@ print("**********************************************")
 This program is written in a language called Python, and when the program runs, it will print the following text to the screen
 
 ```
-************************************************
-************************************************
-*** Welcome to computer programming, Student ***
-************************************************
-************************************************
+**********************************************
+**********************************************
+** Welcome to computer programming, Student **
+**********************************************
+**********************************************
 ```
 
 In order to run a Python program, we need something called a Python interpreter.
