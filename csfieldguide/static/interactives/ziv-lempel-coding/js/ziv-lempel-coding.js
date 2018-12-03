@@ -53,13 +53,22 @@ function drawEncodedMessage(encoded_message) {
             var num_encoded_characters = parseInt(string[1]);
             var fragment = document.createDocumentFragment();
             
-            for (var j = 0; j <= num_encoded_characters; j++) {
+            for (var j = 0; j < num_encoded_characters; j++) {
                 var placeholder_input = document.createElement('input'); 
                 placeholder_input.classList.add('interactive-lzss-placeholder-box');
                 placeholder_input.setAttribute('data-index', index);
+                placeholder_input.maxLength = 1;
+                placeholder_input.addEventListener('mousemove', function(event) {
+                    highlightReference(event);
+                });
+                placeholder_input.addEventListener('mouseleave', function(event) {
+                    unhighlightReference(event);
+                });
+                placeholder_input.addEventListener('keyup', function(event) {
+                    autoTab(event);
+                });
                 fragment.appendChild(placeholder_input);
                 index += 1;
-        
             }
 
             var reference_div = document.createElement('div');
@@ -70,10 +79,10 @@ function drawEncodedMessage(encoded_message) {
             reference_div.setAttribute('data-end-index', start_reference_index+num_encoded_characters);
 
             reference_div.appendChild(fragment);
-            reference_div.addEventListener("mousemove", function(event) {
+            reference_div.addEventListener('mousemove', function(event) {
                 highlightReference(event);
             });
-            reference_div.addEventListener("mouseleave", function(event) {
+            reference_div.addEventListener('mouseleave', function(event) {
                 unhighlightReference(event);
             });
             
@@ -83,29 +92,51 @@ function drawEncodedMessage(encoded_message) {
     compressed_text_div.append(line_div);
 }
 
-function getIndexes(event) {
+function getIndexes(selected_reference) {
     /* Helper function to get start and end index data values for
      * div hovered over.
      */
-    var selected_reference = event.target;
     start_index = selected_reference.dataset.startIndex;
     end_index = selected_reference.dataset.endIndex;
 }
 
 function highlightReference(event) {
-    getIndexes(event);
-    for (var i = start_index; i <= end_index; i++) {
+    var selected_reference = event.target;
+    if (event.target.classList[0] == 'interactive-lzss-placeholder-box') {
+        selected_reference = event.srcElement.parentElement;
+    }
+    getIndexes(selected_reference);
+    for (var i = start_index; i < end_index; i++) {
         var character_div = document.querySelectorAll('[data-index="' + i.toString() + '"]')[0];
-        console.log(character_div);
         character_div.classList.add('highlight');
     }
+    selected_reference.classList.add('selected');
 }
 
 function unhighlightReference(event) {
-    getIndexes(event);
+    var selected_reference = event.target;
+    getIndexes(selected_reference);
     for (var i = start_index; i <= end_index; i++) {
         var character_div = document.querySelectorAll('[data-index="' + i.toString() + '"]')[0];
         character_div.classList.remove('highlight');
+    }
+    selected_reference.classList.remove('selected');
+}
+
+function autoTab(event) {
+    var placholder_element = event.srcElement;
+    if (placholder_element.value.length == placholder_element.maxLength) {
+        var placeholder_index = parseInt(placholder_element.dataset.index);
+        var element;
+        var input_elements = document.getElementsByTagName('input');
+        for (var i = 0; i < input_elements.length; i++) {
+            element = input_elements[i];
+            var index = parseInt(element.dataset.index);
+            if (index > placeholder_index) {
+                break;
+            }
+        }
+        element.focus();
     }
 }
 

@@ -51,7 +51,6 @@ h1 {
 	#interactive-lzss-right-box {
 		#interactive-lzss-compressed-text {
 			background-color: #FFF;
-			// height: 200px;
 			.interactive-lzss-encoded-line {
 				display: flex;
 				align-items: center;
@@ -63,13 +62,12 @@ h1 {
 				display: inline-block;
 				min-width: 10px;
 				min-height: 1rem;
-				margin: 2px 0;
 			}
 			.interactive-lzss-reference {
-				border: 1px solid #000;
 				display: flex;
 				flex-wrap: wrap;
 				margin: 2px;
+				padding: 2px;
 				input.interactive-lzss-placeholder-box {
 					width: 1rem;
 				}
@@ -86,5 +84,9 @@ h1 {
 }
 
 .highlight {
-	background-color: hotpink;
+	background-color: hotpink !important;
+}
+
+.selected {
+	background-color: green;
 }
