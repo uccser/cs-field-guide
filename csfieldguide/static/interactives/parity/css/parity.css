@@ -53,10 +53,6 @@
 #interactive-parity-feedback.error {
   color: red;
 }
-#interactive-parity-grid-size,
-label {
-  font-size: 1.5rem !important;
-}
 #interactive-parity-footer {
   padding-top: 2rem;
   color: grey;

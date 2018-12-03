@@ -9,11 +9,11 @@
       <div class="col-10">
 
         <div id="interactive-parity" class="row">
-          <div class="col s12">
+          <div class="col-sm-12">
             <h1>{% trans "Parity Trick" %}</h1>
             <h4 id="interactive-parity-mode"></h4>
             <div class="row">
-              <div class="col s12 m4">
+              <div class="col-sm-12 col-md-4">
                 <p class="interactive-parity-text">{% trans "The grid is considered valid if each row and column has an even number of white squares." %}</p>
                 <div class="interactive-parity-controls interactive-parity-trick-controls">
                   <p>
@@ -31,9 +31,9 @@
                     <button id="interactive-parity-check" class="btn btn-danger btn-lg">{% trans "Check parity" %}</button>
                   </p>
                 </div>
-                <div class="interactive-parity-controls interactive-parity-size-controls m-2">
+                <div class="interactive-parity-controls interactive-parity-size-controls form-group">
                   <label>{% trans "Grid Size:" %}</label>
-                  <select id="interactive-parity-grid-size" class="browser-default">
+                  <select id="interactive-parity-grid-size" class="form-control">
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="4">4</option>
@@ -68,7 +68,7 @@
                 </div>
                 <p id="interactive-parity-feedback"></p>
               </div>
-              <div class="col s12 m8">
+              <div class="col-sm-12 col-md-8">
                 <div id="interactive-parity-grid-container">
                   <div id="interactive-parity-grid"></div>
                   <div id="interactive-parity-grid-confusation">
@@ -96,18 +96,5 @@
 {% endblock css %}
 
 {% block js %}
-  <script type="text/javascript">
-    var parity_il8n = {
-      "parity-correct": "{% trans 'Correct: Every row and column has even parity (of white squares)' %}",
-      "parity-incorrect": "{% trans 'Incorrect: Not every row and column has even parity (of white squares)' %}",
-      "set-incorrectly": "{% trans 'Your parity bits weren\'t set correctly, try starting again.' %}",
-      "correct": "{% trans 'Correct! You spotted the flipped bit!' %}",
-      "incorrect": "{% trans 'That\'s not the flipped bit!' %}",
-      "sandbox": "{% trans 'Sandbox Mode' %}",
-      "set-parity": "{% trans 'Setting Parity' %}",
-      "detect": "{% trans 'Detect the Error' %}",
-      "range-error": "{% trans 'Please enter a value between 1 and 20' %}",
-    };
-  </script>
   <script type="text/javascript" src="{% static 'interactives/parity/js/parity.js' %}"></script>
 {% endblock js %}
