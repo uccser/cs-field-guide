@@ -75,6 +75,7 @@ function drawEncodedMessage(encoded_message) {
             reference_div.classList.add('interactive-lzss-reference');
 
             var start_reference_index = parseInt(string[0]);
+
             reference_div.setAttribute('data-start-index', start_reference_index);
             reference_div.setAttribute('data-end-index', start_reference_index+num_encoded_characters);
 
@@ -96,8 +97,8 @@ function getIndexes(selected_reference) {
     /* Helper function to get start and end index data values for
      * div hovered over.
      */
-    start_index = selected_reference.dataset.startIndex;
-    end_index = selected_reference.dataset.endIndex;
+    start_index = parseInt(selected_reference.dataset.startIndex);
+    end_index = parseInt(selected_reference.dataset.endIndex);
 }
 
 function highlightReference(event) {

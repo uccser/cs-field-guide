@@ -1,10 +1,18 @@
-html {
-	// background-color: hotpink;
+html{
 	font-family: "Roboto",sans-serif;
+}
+
+body {
+	margin: 0px;
 }
 
 h1 {
 	text-align: center;
+}
+
+input {
+	text-align: center;
+	font: 1rem "Courier New", monospace;
 }
 
 
@@ -16,13 +24,13 @@ h1 {
 	
 	#interactive-lzss-left-box,
 	#interactive-lzss-right-box {
-		width: 45%;
+		width: 100%;
 		margin: 10px;
 	}
 
 	#interactive-lzss-left-box #interactive-lzss-input-text textarea {
 		border: none;
-		min-width: 100%;
+		min-width: 45%;
 		max-width: 100%;
 		min-height: 120px;
 	}
@@ -30,7 +38,7 @@ h1 {
 	#interactive-lzss-left-box #interactive-lzss-input-text textarea,
 	#interactive-lzss-right-box #interactive-lzss-compressed-text {
 		width: 100%;
-		font: 16px "Courier New", monospace;
+		font: 1rem "Courier New", monospace;
 		padding: 3px;
 		border: 1px solid #BFB9B7;
 	}
@@ -51,6 +59,7 @@ h1 {
 	#interactive-lzss-right-box {
 		#interactive-lzss-compressed-text {
 			background-color: #FFF;
+			font-weight: bold;
 			.interactive-lzss-encoded-line {
 				display: flex;
 				align-items: center;
@@ -61,7 +70,9 @@ h1 {
 			input.interactive-lzss-placeholder-box {
 				display: inline-block;
 				min-width: 10px;
-				min-height: 1rem;
+				min-height: 1.2rem;
+				// background-color: red;
+				margin: 1px;
 			}
 			.interactive-lzss-reference {
 				display: flex;
@@ -84,9 +95,11 @@ h1 {
 }
 
 .highlight {
-	background-color: hotpink !important;
+	outline: 2px solid #85c1dd;
+    outline-offset: 0.5px;
 }
 
 .selected {
-	background-color: green;
+	outline: 2px solid #aedd85;
+    outline-offset: 0.5px;
 }
