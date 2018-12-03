@@ -205,7 +205,7 @@ There's a lot more about binary in the [data representation](chapters/data-repre
 
 {panel end}
 
-{commentput in jargon buster on transistors somewhere (or in representations chapter) need to think about whether to put it here or in data representation. It's mainly something to break up the text, but the topic might be distracting here}
+{comment put in jargon buster on transistors somewhere (or in representations chapter) need to think about whether to put it here or in data representation. It's mainly something to break up the text, but the topic might be distracting here}
 
 So instead of building computers that can understand these high level instructions that you find in languages like Python (or Java, Basic, JavaScript, C and so on), we build computers that can follow a very limited set of instructions, and then we write programs that convert the instructions in the standard languages people write programs in into the simple instructions that the circuitry can directly carry out.
 The language of these simple instructions is a low level programming language often referred to as machine code.
