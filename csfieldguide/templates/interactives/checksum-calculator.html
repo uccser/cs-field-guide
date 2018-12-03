@@ -69,13 +69,5 @@
 {% endblock css %}
 
 {% block js %}
-  <script type="text/javascript">
-    checksum_calculator_il8n = {
-      "empty": "{% trans 'Boxes must not be empty!' %}",
-      "numbers": "{% trans 'You have more numbers than multipliers! Check your checksum digit isn\'t included.' %}",
-      "multipliers": "{% trans 'You have more multipliers than numbers!' %}",
-      "zero": "{% trans 'Numbers must not be 0!' %}",
-    };
-  </script>
   <script type="text/javascript" src="{% static 'interactives/checksum-calculator/js/checksum-calculator.js' %}"></script>
 {% endblock js %}
