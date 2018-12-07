@@ -11,9 +11,12 @@ var end_index;
 
 function compress() {
     var message = document.getElementById('message-to-decode').value;
+    // clear any existed encoded message
+    document.getElementById('interactive-lzss-compressed-text').innerHTML = '';
     compressText(message);
     drawEncodedMessage(encoded_message);
 }
+
 
 function newLineDiv() {
     var line_div = document.createElement('div');

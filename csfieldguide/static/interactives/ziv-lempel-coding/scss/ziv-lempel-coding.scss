@@ -32,7 +32,6 @@ input {
 		border: none;
 		min-width: 45%;
 		max-width: 100%;
-		min-height: 120px;
 	}
 	
 	#interactive-lzss-left-box #interactive-lzss-input-text textarea,
@@ -41,6 +40,7 @@ input {
 		font: 1rem "Courier New", monospace;
 		padding: 3px;
 		border: 1px solid #BFB9B7;
+		min-height: 120px;
 	}
 
 	#interactive-lzss-left-box {
@@ -81,6 +81,7 @@ input {
 				padding: 2px;
 				input.interactive-lzss-placeholder-box {
 					width: 1rem;
+					border: 1px solid #BFB9B7;
 				}
 			}
 		}
