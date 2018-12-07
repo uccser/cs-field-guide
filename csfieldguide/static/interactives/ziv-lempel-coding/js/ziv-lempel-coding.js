@@ -38,6 +38,7 @@ function drawEncodedMessage(encoded_message) {
                 compressed_text_div.append(line_div);
                 // make a new div for the next line
                 var line_div = newLineDiv();
+                index += 1;
                 continue;
             }
             // add child div for character to line
@@ -75,9 +76,10 @@ function drawEncodedMessage(encoded_message) {
             reference_div.classList.add('interactive-lzss-reference');
 
             var start_reference_index = parseInt(string[0]);
+            var end_reference_index = start_reference_index + num_encoded_characters;
 
             reference_div.setAttribute('data-start-index', start_reference_index);
-            reference_div.setAttribute('data-end-index', start_reference_index+num_encoded_characters);
+            reference_div.setAttribute('data-end-index', end_reference_index);
 
             reference_div.appendChild(fragment);
             reference_div.addEventListener('mousemove', function(event) {
@@ -88,6 +90,7 @@ function drawEncodedMessage(encoded_message) {
             });
             
             line_div.append(reference_div);
+            // index += 1;
         }
     }
     compressed_text_div.append(line_div);
@@ -170,12 +173,15 @@ function compressText(message) {
                 // get next character in sliding window
                 sw_character = sliding_window[i];
 
-                if (string_to_match[0] == 'null') {
+                if (string_to_match[0] == 'null') { // meaning is newline character
+                    // add newline character to sliding window and remove from message
                     newline_character = string_to_match.slice(0, 1);
                     sliding_window.push(newline_character);
-                    string_to_match.push(message.splice(0,1));
+                    string_to_match.splice(0, 1);
+                    // put next chracter on string to match
+                    string_to_match.push(message.splice(0, 1)[0]);
+                    // add newline to output
                     encoded_message.push(newline_character);
-                    string_to_match.splice(0,1);
                 }
 
                 if (sw_character == string_to_match[0]) {
@@ -190,7 +196,7 @@ function compressText(message) {
                         var next_sw_character = sliding_window[next_sw_character_index];
                         var next_search_character = string_to_match[j];
 
-                        if (string_to_match[j] == 'null') {
+                        if (next_search_character == 'null') {
                             break
                         }
 
@@ -214,8 +220,8 @@ function compressText(message) {
             if (longest_match_length >= min_match_length) {
                 num_characters = longest_match_length;
                 var matched_characters = string_to_match.splice(0, longest_match_length);
-                for (var i = 0; i < longest_match_length; i++) {
-                    sliding_window.push(matched_characters[i]);
+                for (var k = 0; k < matched_characters.length; k++) {
+                    sliding_window.push(matched_characters[k]);
                 }
                 encoded_message.push([longest_match_offset, longest_match_length]);
             } else {
@@ -228,10 +234,10 @@ function compressText(message) {
             // prepare the next string to check
             characters_to_add = message.splice(0, num_characters);
             if (characters_to_add.length > 0) {
-                for (var i = 0; i < num_characters; i++) {
-                    next_character_to_add = characters_to_add[i];
+                for (var l = 0; l < num_characters; l++) {
+                    next_character_to_add = characters_to_add[l];
                     if (next_character_to_add != undefined) {
-                        string_to_match.push(characters_to_add[i]);
+                        string_to_match.push(characters_to_add[l]);
                     }
                 }
             }
