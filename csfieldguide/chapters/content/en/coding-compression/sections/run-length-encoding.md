@@ -238,7 +238,7 @@ The bit patterns used are usually based on a technique called Huffman coding, bu
 ## Where is Run Length Encoding used in practice?
 
 The main place that black and white scanned images are used now is on fax machines, which use this approach to compression.
-One reason that it works so well with scanned pages the number of consecutive white pixels is huge.
+One reason that it works so well with scanned pages is that the number of consecutive white pixels is huge.
 In fact, there will be entire scanned lines that are nothing but white pixels.
 A typical fax page is 200 pixels across or more, so replacing 200 bits with one number is a big saving.
 The number itself can take a few bits to represent, and in some places on the scanned page only a few consecutive pixels are replaced with a number, but overall the saving is significant.
