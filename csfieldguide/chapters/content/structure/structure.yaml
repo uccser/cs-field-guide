@@ -9,8 +9,8 @@ chapters:
     chapter-number: 4
   # data-representation:
   #   chapter-number: 5
-  # coding-introduction:
-  #   chapter-number: 6
+  coding-introduction:
+    chapter-number: 6
   coding-compression:
     chapter-number: 7
   # coding-encryption:
