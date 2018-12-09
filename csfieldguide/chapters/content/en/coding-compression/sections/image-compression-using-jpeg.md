@@ -69,7 +69,7 @@ Variations of this plot can be used to approximate the value of pixels, going fr
 If you add in a higher frequency cosine wave, you can produce interesting shapes.
 In theory, any pattern of pixels can be created by adding together different cosine waves!
 
-The following graph shows the values of {math}\sin(x){math end} and {math}\cos(x){math end} for {math}x{math end} ranging from 0 to 180 degrees.
+The following graph shows the values of \(\sin(x)\) and \(\cos(x)\) for \(x\) ranging from 0 to 180 degrees.
 
 {image file-path="img/chapters/cosine-graph.png" alt="A graph showing cos(x) and sin(x) curves"}
 
