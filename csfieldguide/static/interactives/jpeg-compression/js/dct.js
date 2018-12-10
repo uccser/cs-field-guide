@@ -1,3 +1,7 @@
+const Interact = require('interactjs');
+require('jquery.stepper');
+require('dct');
+
 'use strict';
 $(function () {
     document.onselectstart = function () {
@@ -457,7 +461,7 @@ $(function () {
     // Handles the dragging of the square around the big image.
     function dragSmallSquare() {
         // target elements with the "draggable" class
-        interact('.draggable')
+        Interact('.draggable')
             .draggable({
                 // enable inertial throwing
                 inertia: false,
@@ -469,7 +473,7 @@ $(function () {
                 },
                 snap: {
                     targets: [
-                        interact.createSnapGrid({x: 8, y: 8})
+                        Interact.createSnapGrid({x: 8, y: 8})
                     ],
                     range: Infinity,
                     relativePoints: [{x: 0, y: 0}]
