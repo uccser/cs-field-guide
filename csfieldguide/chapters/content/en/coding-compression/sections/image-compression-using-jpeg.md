@@ -197,7 +197,7 @@ All those things happen every time you take a photo and save it as a JPEG file, 
 When you display the image, the software needs to reverse the process, adding all the basis functions together for each block - and there will be hundereds of thousands of blocks for each image.
 
 An important issue arises because JPEG represents images as smoothly varying colours: what happens if the colours change suddenly?
-In that case, lots of values need to be stored so that lots of cosine waves can be added together to make the sudden change in colour, or else the edge of the image become fuzzy.
+In that case, lots of values need to be stored so that lots of cosine waves can be added together to make the sudden change in colour, or else the edges of the image become fuzzy.
 You can think of it as the cosine waves overshooting on the sudden changes, producing artifacts like the ones in the following image where the edges are messy.
 
 {image file-path="img/chapters/jpeg-word.jpg" alt="The word JPEG has fuzzy edges."}
