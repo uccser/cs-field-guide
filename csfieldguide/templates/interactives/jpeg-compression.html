@@ -62,10 +62,13 @@
 {% endblock html %}
 
 {% block css %}
-  <link type="text/javascript" src="{% static 'interactives/jpeg-compression/css/jpeg-compression.css' %}"></link>
+  <link rel="stylesheet" href="{% static 'interactives/jpeg-compression/css/jpeg-compression.css' %}">
 {% endblock css %}
 
 {% block js %}
+  <script type="text/javascript">
+    var base_path = "{{ STATIC_URL }}";
+  </script>
   <script type="text/javascript" src="{% static 'interactives/jpeg-compression/js/dct.js' %}"></script>
   <script type="text/javascript" src="{% static '/js/interact.min.js' %}"></script>
   <script type="text/javascript" src="{% static '/js/jquery.stepper.js' %}"></script>
