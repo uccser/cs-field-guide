@@ -4,7 +4,7 @@
 {% load static %}
 
 {% block html %}
-<div class="container">
+<div class="container p-3">
   <div class="row left-align" id="images">
     <div class="col-sm-12 col-md-12 col-lg-4" id="big-image">
       <h6>Drag the square around the image:</h6>
@@ -19,7 +19,7 @@
       <p>Error: <span id="mse">0</span></p>
       <p id="level-specific">Level 1 - the image can be made using just 1 basis function.</p>
       <p>Press the help button to have 1 basis function set to the correct value for you.</p>
-      <a class="btn btn-primary" id="helpButton">Help Me</a>
+      <button class="btn btn-primary" id="helpButton">Help Me</button>
     </div>
     <div class="col-sm-6 col-md-4 col-lg-3" id="before">
       <h6>Original Image Pixels</h6>
@@ -42,13 +42,13 @@
     <div class="col-sm-12 col-md-12 col-lg-12" id="help">
       <div id="puzzle-next-level">
         <h5>That's correct!</h5>
-        <a class="btn btn-primary" id="nextLevelButton">Next Level</a>
+        <button class="btn btn-primary" id="nextLevelButton">Next Level</button>
       </div>
     </div>
     <div class="col-sm-12 col-md-12 col-lg-12" id="right-of-dct">
-      <a class="btn btn-primary" id="quantisationButton">Apply Quantisation</a>
-      <a class="btn btn-primary" id="zeroButton">Zero All</a>
-      <a class="btn btn-primary" id="resetButton">Reset to Original</a>
+      <button class="btn btn-primary" id="quantisationButton">Apply Quantisation</button>
+      <button class="btn btn-primary" id="zeroButton">Zero All</button>
+      <button class="btn btn-primary" id="resetButton">Reset to Original</button>
     </div>
     <div class="col-sm-12">
       <div id="jpeg-compression">

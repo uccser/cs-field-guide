@@ -1,6 +1,6 @@
 .stepper {
   position: relative;
-  width: 100%;
+  width: 64px;
   height: 30px;
   cursor: col-resize;
 }
@@ -117,7 +117,7 @@ img {
 }
 
 #dct-table td {
-  padding: 2px;
+  padding-right: 60px;
 }
 
 .switch {
@@ -158,5 +158,4 @@ img {
 
 #dctData {
   min-width: 35px;
-  max-width: 100px;
 }
