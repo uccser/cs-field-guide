@@ -7,52 +7,52 @@
 <div class="container p-3">
   <div class="row left-align" id="images">
     <div class="col-sm-12 col-md-12 col-lg-4" id="big-image">
-      <h6>Drag the square around the image:</h6>
+      <h6>{% trans "Drag the square around the image:" %}</h6>
       <canvas id="before-image-canvas" width="360" height="240"></canvas>
       <canvas style="display:none" id="placeholder-canvas" width="8" height="8"></canvas>
       <div class="draggable" id="little-drag-square"></div>
     </div>
     <div class="col-sm-12 col-md-12 col-lg-4" id="puzzle-stuff">
-      <h5>Instructions</h5>
-      <p>Adjust the numbers below the basis functions to make the image on the right.</p>
-      <p>The error value below shows how different the two images are. The goal is to make it equal zero.</p>
-      <p>Error: <span id="mse">0</span></p>
-      <p id="level-specific">Level 1 - the image can be made using just 1 basis function.</p>
-      <p>Press the help button to have 1 basis function set to the correct value for you.</p>
-      <button class="btn btn-success" id="helpButton">Help Me</button>
+      <h5>{% trans "Instructions" %}</h5>
+      <p>{% trans "Adjust the numbers below the basis functions to make the image on the right." %}</p>
+      <p>{% trans "The error value below shows how different the two images are. The goal is to make it equal zero." %}</p>
+      <p>{% trans 'Error: <span id="mse">0</span>' %}</p>
+      <p id="level-specific">{% trans "Level 1 - the image can be made using just 1 basis function." %}</p>
+      <p>{% trans "Press the help button to have 1 basis function set to the correct value for you." %}</p>
+      <button class="btn btn-success" id="helpButton">{% trans "Help Me" %}</button>
     </div>
     <div class="col-sm-6 col-md-4 col-lg-3" id="before">
-      <h6>Original Image Pixels</h6>
+      <h6>{% trans "Original Image Pixels" %}</h6>
       <canvas id="before-8-by-8" width="240" height="240"></canvas>
       <table id="before-labels-8-by-8" width="240" height="240"></table>
       <div class="switch" id="toggleNumberBefore">
-        <label>Display numbers:
+        <label>{% trans "Display numbers:" %}
           <input type="checkbox" checked><span class="lever"></span></label>
       </div>
     </div>
     <div class="col-sm-6 col-md-4 col-lg-3" id="after">
-      <h6>Processed Image Pixels</h6>
+      <h6>{% trans "Processed Image Pixels" %}</h6>
       <canvas id="after-8-by-8" width="240" height="240"></canvas>
       <table id="after-labels-8-by-8" width="240" height="240"></table>
       <div class="switch" id="toggleDifference">
-        <label>Difference Values:
+        <label>{% trans "Difference Values:" %}
           <input type="checkbox"><span class="lever"></span></label>
       </div>
     </div>
     <div class="col-sm-12 col-md-12 col-lg-12" id="help">
       <div id="puzzle-next-level">
-        <h5>That's correct!</h5>
-        <button class="btn btn-primary" id="nextLevelButton">Next Level</button>
+        <h5>{% trans "That's correct!" %}</h5>
+        <button class="btn btn-primary" id="nextLevelButton">{% trans "Next Level" %}</button>
       </div>
     </div>
     <div class="col-sm-12 col-md-12 col-lg-12" id="right-of-dct">
-      <button class="btn btn-primary" id="quantisationButton">Apply Quantisation</button>
-      <button class="btn btn-primary" id="zeroButton">Zero All</button>
-      <button class="btn btn-primary" id="resetButton">Reset to Original</button>
+      <button class="btn btn-primary" id="quantisationButton">{% trans "Apply Quantisation" %}</button>
+      <button class="btn btn-primary" id="zeroButton">{% trans "Zero All" %}</button>
+      <button class="btn btn-primary" id="resetButton">{% trans "Reset to Original" %}</button>
     </div>
     <div class="col-sm-12">
       <div id="jpeg-compression">
-        <h5>Basis functions</h5>
+        <h5>{% trans "Basis functions" %}</h5>
         <table id="dct-table">
         </table>
       </div>
