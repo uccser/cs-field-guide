@@ -1,4 +1,4 @@
-# Substitution Ciphers
+# Substitution ciphers
 
 {panel type="teacher-note"}
 
@@ -14,7 +14,7 @@ Once students understand the basic concepts in Caesar cipher, they can move on t
 
 {panel end}
 
-## Getting Started with Caesar cipher
+## Getting started with Caesar cipher
 
 In this section, we will be looking at a simple substitution cipher called Caesar cipher.
 Caesar cipher is over 2000 years old, invented by a guy called Julius Caesar.
@@ -163,7 +163,7 @@ THIS IS A TRICK QUESTION
 
 {panel type="teacher-note"}
 
-# Answers for Decrypting Caesar cipher
+# Answers for decrypting Caesar cipher
 
 For the first challenge, the answer is:
 
@@ -218,7 +218,7 @@ USING A KEY OF TWENTY SIX IN CAESAR CIPHER IS NOT A GOOD IDEA
 
 {panel type="teacher-note"}
 
-# Answers for Encrypting with Caesar cipher
+# Answers for encrypting with Caesar cipher
 
 For the first challenge, the answer is:
 
@@ -244,7 +244,7 @@ Many strong encryption methods try to make the encryption and decryption process
 
 {panel end}
 
-## Problems with Substitution Ciphers
+## Problems with substitution ciphers
 
 {panel type="jargon-buster"}
 
@@ -278,7 +278,7 @@ As we saw above, Caesar cipher is not semantically secure.
 There are many other ways of cracking Caeser cipher which we will look at in this section.
 Understanding various common attacks on ciphers is important when looking at sophisticated cryptosystems which are used in practice.
 
-### Frequency Analysis Attacks
+### Frequency analysis attacks
 
 Frequency analysis means looking at how many times each letter appears in the encrypted message, and using this information to crack the code.
 A letter that appears many times in a message is far more likely to be "T" than "Z", for example.
@@ -353,7 +353,7 @@ Wikipedia has a [list of letter frequencies](https://en.wikipedia.org/wiki/Lette
 
 {panel type="challenge"}
 
-# Frequency Analysis
+# Frequency analysis
 
 Put the ciphertext into the above frequency analyser, guess what the key is (using the method explained above), and then try using that key with the ciphertext in the interactive above.
 Try to guess the key with as few guesses as you can!
@@ -380,7 +380,7 @@ BGDTCU BCEJ, BCXKGT, CPF BCPG BQQOGF VJTQWIJ VJG BQQ
 
 {panel type="teacher-note"}
 
-# Answers for Frequency Analysis
+# Answers for frequency analysis
 
 For the first challenge, the most common letter is "E", with a key of 15:
 
@@ -415,7 +415,7 @@ During World War 1 and 2, the US military had many Native American [Code talkers
 
 {panel type="curiosity"}
 
-# The Vigenere Cipher
+# The Vigenere cipher
 
 A slightly stronger cipher than the Caesar cipher is the [Vigenere cipher](https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher), which is created by using multiple Caesar ciphers, where there is a key phrase (e.g. "acb"), and each letter in the key gives the offset (in the example this would be 1, 3, 2).
 These offsets are repeated to give the offset for encoding each character in the plaintext.
@@ -432,7 +432,7 @@ The Vigenere cipher is known as a *polyalphabetic substitution cipher*, since it
 
 {panel end}
 
-### Known Plain Text Attacks
+### Known plaintext attacks
 
 Another kind of attack is the *known plaintext* attack, where you know part or all of the solution.
 For example, if you know that I start all my messages with "HI THERE", you can easily determine the key for the following message.
@@ -501,7 +501,7 @@ For this reason, we need better ciphers in practice, which we will look at short
 
 {panel end}
 
-### Brute force Attacks
+### Brute force attacks
 
 Another approach to cracking a ciphertext is a *brute force attack*, which involves trying out all possible keys, and seeing if any of them produce intelligible text.
 This is easy for a Caesar cipher because there are only 25 possible keys.

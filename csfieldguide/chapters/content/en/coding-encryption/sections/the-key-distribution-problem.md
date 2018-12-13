@@ -1,4 +1,4 @@
-# The Key Distribution Problem
+# The key distribution problem
 
 {panel type="curiosity"}
 
