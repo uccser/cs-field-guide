@@ -4,20 +4,20 @@
 
 # Starting with a very insecure cipher!
 
-This section provides an introduction to the idea of encryption, using a very simple substitution cipher called the Caesar Cipher.
-While the Caesar Cipher is no longer used in practice, it is still very useful as a teaching tool for illustrating the basic ideas and terminology in encryption.
-The Caesar Cipher is very easily broken, even without the help of a computer, but it is for this reason that it is a good introduction to the processes around ciphers.
+This section provides an introduction to the idea of encryption, using a very simple substitution cipher called the Caesar cipher.
+While the Caesar cipher is no longer used in practice, it is still very useful as a teaching tool for illustrating the basic ideas and terminology in encryption.
+The Caesar cipher is very easily broken, even without the help of a computer, but it is for this reason that it is a good introduction to the processes around ciphers.
 The only reason it worked in the time of Julius Caesar was that it relied on a low level of literacy amongst those you might expect to come across it, and they would assume it was a foreign language rather than try to attack it.
 A 21st century high school student should have all the literacy and mathematical tools needed to break this code.
 
-Once students understand the basic concepts in Caesar Cipher, they can move on to understanding the sophisticated ciphers used in practice.
+Once students understand the basic concepts in Caesar cipher, they can move on to understanding the sophisticated ciphers used in practice.
 
 {panel end}
 
-## Getting Started with Caesar Cipher
+## Getting Started with Caesar cipher
 
-In this section, we will be looking at a simple substitution cipher called Caesar Cipher.
-Caesar Cipher is over 2000 years old, invented by a guy called Julius Caesar.
+In this section, we will be looking at a simple substitution cipher called Caesar cipher.
+Caesar cipher is over 2000 years old, invented by a guy called Julius Caesar.
 Before we go any further, have a go at cracking this simple code.
 If you're stuck, try working in a small group with friends and classmates so that you can discuss ideas.
 A whiteboard or pen and paper would be helpful for doing this exercise.
@@ -35,7 +35,7 @@ Once you have figured out what the text says, make a table with the letters of t
 You should notice an interesting pattern.
 
 Given how easily broken this cipher is, you probably don't want your bank details encrypted with it.
-In practice, far stronger ciphers are used, although for now we are going to look a little bit further at Caesar Cipher, because it is a great introduction to the many ideas in encryption.
+In practice, far stronger ciphers are used, although for now we are going to look a little bit further at Caesar cipher, because it is a great introduction to the many ideas in encryption.
 
 {panel type="teacher-note"}
 
@@ -69,22 +69,22 @@ The table they should have gotten should look like this.
 
 {image file-path="img/chapters/caesar-cipher-table-2.png" alt="A table of the English alphabet showing the ciphertext of each letter."}
 
-The learning objective for this activity was for students to think like cryptanalysts and to see why Caesar Cipher is not useful in practice.
+The learning objective for this activity was for students to think like cryptanalysts and to see why Caesar cipher is not useful in practice.
 
 {panel end}
 
-## How does the Caesar Cipher work?
+## How does the Caesar cipher work?
 
-When you looked at the Caesar Cipher in the previous section and (hopefully) broke it and figured out what it said, you probably noticed that there was a pattern in how letters from the original message corresponded to letters in the decoded one.
+When you looked at the Caesar cipher in the previous section and (hopefully) broke it and figured out what it said, you probably noticed that there was a pattern in how letters from the original message corresponded to letters in the decoded one.
 Each letter in the original message decoded to the letter that was 10 places before it in the alphabet.
 The conversion table you drew should have highlighted this.
 Here's the table for the letter correspondences, where the letter "K" translates to an "A".
 It is okay if your conversion table mapped the opposite way, i.e. "A" to "K" rather than "K" to "A".
-If you were unable to break the Caesar Cipher in the previous section, go back to it now and decode it using the table.
+If you were unable to break the Caesar cipher in the previous section, go back to it now and decode it using the table.
 
 {image file-path="img/chapters/caesar-cipher-table-2.png" alt="A table of the English alphabet showing the ciphertext of each letter."}
 
-For this example, we say the key is *10* because keys in Caesar Cipher are a number between 1 and 25 (think carefully about why we wouldn't want a key of 26!), which specify how far the alphabet should be rotated.
+For this example, we say the key is *10* because keys in Caesar cipher are a number between 1 and 25 (think carefully about why we wouldn't want a key of 26!), which specify how far the alphabet should be rotated.
 If instead we used a key of *8*, the conversion table would be as follows.
 
 {image file-path="img/chapters/caesar-cipher-table-3.png" alt="A table of the English alphabet showing the ciphertext of each letter."}
@@ -93,11 +93,11 @@ If instead we used a key of *8*, the conversion table would be as follows.
 
 # What is a key?
 
-In a Caesar Cipher, the key represents how many places the alphabet should be rotated.
+In a Caesar cipher, the key represents how many places the alphabet should be rotated.
 In the examples above, we used keys of "8" and "10".
 More generally though, a key is simply a value that is required to do the math for the encryption and decryption.
-While Caesar Cipher only has 25 possible keys, real encryption systems have an incomprehensibly large number of possible keys, and preferably use keys which contains hundreds or even thousands of binary digits.
-Having a huge number of different possible keys is important, because it would take a computer less than a second to try all 25 Caesar Cipher keys.
+While Caesar cipher only has 25 possible keys, real encryption systems have an incomprehensibly large number of possible keys, and preferably use keys which contains hundreds or even thousands of binary digits.
+Having a huge number of different possible keys is important, because it would take a computer less than a second to try all 25 Caesar cipher keys.
 
 In the physical world, a combination lock is completely analagous to a cipher (in fact, you could send a secret message in a box locked with a combination lock).
 We'll assume that the only way to open the box is to work out the combination number.
@@ -108,18 +108,18 @@ Of course, there may be ways to reduce the amount of work required - for example
 
 {panel end}
 
-Try experimenting with the following interactive for Caesar Cipher.
-You will probably want to refer back to it later while working through the remainder of the sections on Caesar Cipher.
+Try experimenting with the following interactive for Caesar cipher.
+You will probably want to refer back to it later while working through the remainder of the sections on Caesar cipher.
 
 {interactive slug="caesar-cipher" type="iframe"}
 
-### Decryption with Caesar Cipher
+### Decryption with Caesar cipher
 
 Before we looked at how to *crack* Casear cipher – getting the plaintext from the ciphertext without being told the key beforehand.
-It is even easier to *decrypt* Caesar Cipher when we **do** have the key.
+It is even easier to *decrypt* Caesar cipher when we **do** have the key.
 In practice, a good encryption system ensures that the plaintext cannot be obtained from the ciphertext without the key, i.e. it can be *decrypted* but not *cracked*.
 
-As an example of *decrypting* with Caesar Cipher, assume that we have the following ciphertext, and that the key is 6.
+As an example of *decrypting* with Caesar cipher, assume that we have the following ciphertext, and that the key is 6.
 
 ```
 ZNK WAOIQ HXUCT LUD PASVY UBKX ZNK RGFE JUM
@@ -140,11 +140,11 @@ You should ensure you understand how to encrypt messages yourself though!
 
 {panel type="challenge"}
 
-# Decrypting a Caesar Cipher
+# Decrypting a Caesar cipher
 
 **Challenge 1**
 
-Decrypt the following message using Caesar Cipher.
+Decrypt the following message using Caesar cipher.
 The key is 4.
 
 ```
@@ -163,7 +163,7 @@ THIS IS A TRICK QUESTION
 
 {panel type="teacher-note"}
 
-# Answers for Decrypting Caesar Cipher
+# Answers for Decrypting Caesar cipher
 
 For the first challenge, the answer is:
 
@@ -176,7 +176,7 @@ Because that is a full rotation, the ciphertext and plaintext are equivalent.
 
 {panel end}
 
-### Encryption with Caesar Cipher
+### Encryption with Caesar cipher
 
 Encryption is equally straightforward.
 Instead of rotating backwards (subtracting) like we did for decrypting, we rotate forwards (add) the key to each letter in the plaintext.
@@ -196,11 +196,11 @@ OVD HYL FVB
 
 {panel type="challenge"}
 
-# Encrypting with Caesar Cipher
+# Encrypting with Caesar cipher
 
 **Challenge 1**
 
-Encrypt the following message using Caesar Cipher and a key of 20:
+Encrypt the following message using Caesar cipher and a key of 20:
 
 ```
 JUST ANOTHER RANDOM MESSAGE TO ENCRYPT
@@ -218,7 +218,7 @@ USING A KEY OF TWENTY SIX IN CAESAR CIPHER IS NOT A GOOD IDEA
 
 {panel type="teacher-note"}
 
-# Answers for Encrypting with Caesar Cipher
+# Answers for Encrypting with Caesar cipher
 
 For the first challenge, the answer is:
 
@@ -235,7 +235,7 @@ Using a key of 26 makes the plaintext and the ciphertext the same – the equiva
 
 {panel type="curiosity"}
 
-# ROT13 Caesar Cipher
+# ROT13 Caesar cipher
 
 The Caesar cipher with a key of 13 is the same as an approach called [ROT13 (rotate 13 characters)](https://en.wikipedia.org/wiki/Rot_13), which is sometimes used to obscure things like the punchline of a joke, a spoiler for a story, the answer to a question, or text that might be offensive.
 It is easy to decode (and there are plenty of automatic systems for doing so), but the user has to deliberately ask to see the deciphered version.
@@ -261,7 +261,7 @@ However, substitution ciphers are easy to attack because a statistical attack is
 {panel end}
 
 So far, we have considered one way of cracking Caesar cipher: using patterns in the text.
-By looking for patterns such as one letter words, other short words, double letter patterns, apostrophe positions, and knowing rules such as all words must contain at least one of a, e, i, o, u, or y (excluding some acronyms and words written in txt language of course), cracking Caesar Cipher by looking for patterns is easy.
+By looking for patterns such as one letter words, other short words, double letter patterns, apostrophe positions, and knowing rules such as all words must contain at least one of a, e, i, o, u, or y (excluding some acronyms and words written in txt language of course), cracking Caesar cipher by looking for patterns is easy.
 Any good cryptosystem should not be able to be analysed in this way, i.e. it should be *semantically secure*.
 
 {panel type="jargon-buster"}
@@ -271,7 +271,7 @@ Any good cryptosystem should not be able to be analysed in this way, i.e. it sho
 Semantically secure means that there is no known efficient algorithm that can use the ciphertext to get any information about the plaintext, other than the length of the message.
 It is very important that cryptosystems used in practice are semantically secure.
 
-As we saw above, Caesar Cipher is not semantically secure.
+As we saw above, Caesar cipher is not semantically secure.
 
 {panel end}
 
@@ -424,7 +424,7 @@ By having multiple Caesar ciphers, common letters such as E will no longer stand
 The following website shows the effect on the distribution: [The Black Chamber - Vigenere Strength](http://www.simonsingh.net/The_Black_Chamber/vigenere_strength.html)
 
 However, while this makes the Vigenere cipher more challenging to crack than the Caeser cipher, ways have been found to crack it quickly.
-In fact, once you know the key length, it just breaks down to cracking several Caesar ciphers (which as you have seen is straightforward, and you can even use frequency analysis on the individual Caesar Ciphers!).
+In fact, once you know the key length, it just breaks down to cracking several Caesar ciphers (which as you have seen is straightforward, and you can even use frequency analysis on the individual Caesar ciphers!).
 Several statistical methods have been devised for working out the key length.
 
 Attacking the Vigenere cipher by trying every possible key is hard because there are a lot more possible keys than for the Caesar cipher, but a statistical attack can work quite quickly.
