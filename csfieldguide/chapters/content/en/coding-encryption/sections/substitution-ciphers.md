@@ -538,7 +538,7 @@ Cryptography relies a lot on low probabilities of success.
 The calculator below can handle really big numbers.
 You can double check our calculations above if you want! Also, work out what would happen if the key size was double (i.e. 256 bits), or if a 1024 or 2048 bit key (common these days) was used.
 
-{comment Need to put big numbers calculator here}
+{interactive slug="big-number-calculator" type="in-page"}
 
 {panel type="curiosity"}
 
