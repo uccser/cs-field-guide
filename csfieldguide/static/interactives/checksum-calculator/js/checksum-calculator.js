@@ -14,13 +14,13 @@ $(document).ready(function () {
      var $multiplier_text = $("#interactive-checksum-calculator-multiplier-input").val();
 
      if ($number_text.length == 0 || $multiplier_text.length == 0) {
-       $feedback.text('Boxes must not be empty!');
+       $feedback.text(gettext("Boxes must not be empty!"));
        $controls.hide()
      } else if ($number_text.length > $multiplier_text.length) {
-       $feedback.text("You have more numbers than multipliers! Check your checksum digit isn't included.");
+       $feedback.text(gettext("You have more numbers than multipliers! Check your checksum digit isn't included."));
        $controls.hide()
      } else if ($multiplier_text.length > $number_text.length) {
-       $feedback.text("You have more multipliers than numbers!");
+       $feedback.text(gettext("You have more multipliers than numbers!"));
        $controls.hide()
      } else {
        $feedback.text("");
@@ -47,16 +47,15 @@ $(document).ready(function () {
      var $mod = $("#interactive-checksum-calculator-modulo-input").val();
      var $result_elements = $("#interactive-checksum-calculator-result");
      if ($total.length == 0 || $mod.length == 0) {
-       $feedback.text('Boxes must not be empty!');
+       $feedback.text(gettext('Boxes must not be empty!'));
        $result_elements.hide()
      } else if ($total == 0 || $mod == 0) {
-       $feedback.text('Numbers must not be 0!');
+       $feedback.text(gettext("Numbers must not be 0!"));
        $result_elements.hide()
      } else {
        $feedback.text("");
        var remainder = $total % $mod;
        $("#interactive-checksum-calculator-remainder").val(remainder);
-       $("#interactive-checksum-calculator-remainder-label").addClass('active');
        $result_elements.show()
      }
    });
