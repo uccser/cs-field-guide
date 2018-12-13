@@ -286,7 +286,7 @@ A letter that appears many times in a message is far more likely to be "T" than 
 The following interactive will help you analyze a piece of text by counting up the letter frequencies.
 You can paste in some text to see which are the most common (and least common) characters.
 
-{interactive slug="frequency-analysis" type="in-page"}
+
 
 The following text has been coded using a Caesar cipher.
 To try to make sense of it, paste it into the statistical analyser above.
