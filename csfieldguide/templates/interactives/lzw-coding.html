@@ -1,0 +1,23 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+<div id="interactive-lzw-coding" class="row mt-3">
+  <div class="col-12 text-center">
+    <h1 id="heading">{% trans "LZW Coding" %}</h1>
+  </div>
+  <div id="content" class="container">
+
+
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/lzw-coding/css/lzw-coding.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/lzw-coding/js/lzw-coding.js' %}"></script>
+{% endblock js %}
