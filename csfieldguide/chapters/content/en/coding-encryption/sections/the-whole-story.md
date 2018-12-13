@@ -5,7 +5,7 @@ The early examples in this chapter use very weak encryption methods that were ch
 There are many aspects to computer security beyond encryption.
 For example, access control (such as password systems and security on smart cards) is crucial to keeping a system secure.
 Another major problem is writing secure software that doesn't leave ways for a user to get access to information that they shouldn't (such as typing a database command into a website query and have the system accidentally run it, or overflowing the buffer with a long input, which could accidentally replace parts of the program).
-Also, systems need to be protected from "denial of service" (DOS) attacks, where they get so overloaded with requests (e.g. to view a web site) that the server can't cope, and legitimate users get very slow response from the system, or it might even fail completely.
+Also, systems need to be protected from "denial of service" (DOS) attacks, where they get so overloaded with requests (e.g. to view a website) that the server can't cope, and legitimate users get very slow response from the system, or it might even fail completely.
 
 For other kinds of attacks relating to computer security, see the [Wikipedia entry on Hackers](https://en.wikipedia.org/wiki/Hacker_(computer_security)).
 
