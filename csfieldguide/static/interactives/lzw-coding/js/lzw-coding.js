@@ -1,7 +1,6 @@
 var string_to_encode = "IAMSAMSAMIAM";
-
 var codes = [];
-var w = "";
+var current_sequence = "";
 var output = [];
 
 // set up initial dictionary
@@ -12,21 +11,18 @@ for (var i = 0; i < string_to_encode.length; i++) {
 	}
 }
 
-console.log(codes);
-
 // encode the string
 for (var i = 0; i <= string_to_encode.length; i++) {
-	var k = string_to_encode[i];
-	var wk = w + k;
-	if (codes.indexOf(wk) != -1) { // already in dictionary
-		w = wk; // add to the string and try again
+	var current_character = string_to_encode[i];
+	var next_sequence = current_sequence + current_character;
+	if (codes.indexOf(next_sequence) != -1) { // already in dictionary
+		current_sequence = next_sequence; // add to the string and try again
 	} else {
-		console.log(wk);
-		if (k != undefined) {
-			codes.push(wk);
+		if (current_character != undefined) {
+			codes.push(next_sequence);
 		}
-		output.push(codes.indexOf(w));
-		w = k;
+		output.push(codes.indexOf(current_sequence));
+		current_sequence = current_character;
 	}
 }
 
