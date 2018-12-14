@@ -87,6 +87,12 @@ For this section on public key systems, we will use RSA as an example.
 
 ### Generating the encryption and decryption keys
 
+Firstly, you will need to generate a pair of keys using the key generator interactive.
+You should *keep the private key secret*, and *publicly announce the public key* so that your friends can send you messages (e.g. put it on the whiteboard, or email it to some friends).
+Make sure you save your keys somewhere so you don’t forget them – a text file would be best.
+
+{interactive slug="rsa-key-generator" type="in-page"}
+
 {panel type="teacher-note"}
 
 # Ideas for RSA fun in the classroom
@@ -95,12 +101,6 @@ One thing you might like to do is to ask each student to generate their key pair
 Then when the students would like to send an encrypted message to one of their classmates, they can look up the person's public key in the spreadsheet.
 
 {panel end}
-
-Firstly, you will need to generate a pair of keys using the key generator interactive.
-You should *keep the private key secret*, and *publicly announce the public key* so that your friends can send you messages (e.g. put it on the whiteboard, or email it to some friends).
-Make sure you save your keys somewhere so you don’t forget them – a text file would be best.
-
-
 
 ### Encrypting messages with the public key
 
