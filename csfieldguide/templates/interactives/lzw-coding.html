@@ -10,7 +10,28 @@
   </div>
   <div id="content" class="container">
 
+		<div id="interactive-lzw-coding">
 
+			<div id="interactive-lzw-coding-left">
+				<p>Message to compress:</p>
+				<textarea id="interactive-lzw-coding-input">
+IAMSAMSAMIAM
+				</textarea>
+				<button type="button" onclick="compress()">
+	            	Compress &rarr;
+	          	</button>
+	          	<div id="interactive-lzw-coding-output">
+	          		<p>Compressed message:</p>
+	          	</div>
+			</div>
+
+			<div id="interactive-lzw-coding-right">
+				<p>Generated Dictionary:</p>
+				<div id="interactive-lzw-coding-dictionary">
+				</div>
+			</div>
+
+		</div>
   </div>
 {% endblock html %}
 

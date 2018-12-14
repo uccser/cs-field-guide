@@ -1,1 +1,63 @@
+html{
+	font-family: "Roboto",sans-serif;
+}
 
+body {
+	margin: 0px;
+}
+
+h1 {
+	text-align: center;
+}
+
+input {
+	text-align: center;
+	font: 1rem "Courier New", monospace;
+}
+
+#interactive-lzw-coding {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	margin: 5px;
+	#interactive-lzw-coding-left,
+	#interactive-lzw-coding-right {
+		width: 100%;
+		margin: 10px;
+	}
+	#interactive-lzw-coding-left {
+		flex-basis: 180%;
+		textarea {
+			border: none;
+			min-width: 100%;
+			max-width: 100%;
+			width: 100%;
+			font: 1rem "Courier New", monospace;
+			padding: 3px;
+			border: 1px solid #BFB9B7;
+			min-height: 120px;
+		}
+		button {
+			color: #FFF;
+			background-color: #FF7043;
+			text-align: center;
+			transition: .2s ease-out;
+			padding: 0.5rem;
+			border: none;
+		}
+		#interactive-lzw-coding-output {
+			min-height: 100px;
+			background-color: hotpink;
+		}
+	}
+	#interactive-lzw-coding-right {
+		#interactive-lzw-coding-dictionary {
+			min-height: 200px;
+			background-color: hotpink;
+		}
+	}
+	textarea, button {
+		border-radius: 2px !important;
+		box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12)
+	}
+}
