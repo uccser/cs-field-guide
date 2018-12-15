@@ -73,9 +73,9 @@ delay-analyser:
 delayed-checkbox:
   languages:
     en: interactives/delayed-checkbox.html
-# frequency-analysis:
-#   languages:
-#     en: interactives/frequency-analysis.html
+frequency-analysis:
+  languages:
+    en: interactives/frequency-analysis.html
 # fsa-box:
 #   languages:
 #     en: interactives/fsa-box.html
