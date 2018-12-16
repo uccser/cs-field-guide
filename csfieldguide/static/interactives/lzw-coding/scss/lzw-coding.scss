@@ -1,4 +1,4 @@
-html{
+html {
 	font-family: "Roboto",sans-serif;
 }
 
@@ -8,11 +8,6 @@ body {
 
 h1 {
 	text-align: center;
-}
-
-input {
-	text-align: center;
-	font: 1rem "Courier New", monospace;
 }
 
 #interactive-lzw-coding {
@@ -47,10 +42,18 @@ input {
 		}
 		#interactive-lzw-coding-encoded-text {
 			min-height: 100px;
-			input.interactive-lzw-placeholder-box {
-				width: 1rem;
-				border: 1px solid #BFB9B7;
+			.interactive-lzw-code {
 				margin: 1px;
+				display: inline-block;
+				p {
+					margin: auto;
+					text-align: center;
+				}
+				input.interactive-lzw-placeholder-box {
+					width: 1rem;
+					border: 1px solid #BFB9B7;
+					margin: 1px;
+				}
 			}
 		}
 	}
@@ -58,8 +61,14 @@ input {
 		#interactive-lzw-coding-dictionary {
 			min-height: 200px;
 			.interactive-lzw-dictionary-entry {
+				border: 1px solid #000;
+				margin: 2px 0;
 				p {
 					display: inline-block;
+					margin: 3px;
+				}
+				.interactive-lzw-dictionary-code {
+					width: 2rem;
 				}
 			}
 		}
@@ -69,6 +78,7 @@ input {
 	#interactive-lzw-coding-dictionary {
 		border: 1px solid #BFB9B7;
 		padding: 5px;
+		font-family: "Courier New", monospace !important;
 	}
 	textarea,
 	button,
@@ -77,4 +87,14 @@ input {
 		border-radius: 2px !important;
 		box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12)
 	}
+}
+
+.highlight {
+	outline: 2px solid #85c1dd;
+    outline-offset: 0.5px;
+}
+
+.selected {
+	outline: 2px solid #aedd85;
+    outline-offset: 0.5px;
 }

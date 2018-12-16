@@ -52,6 +52,7 @@ function outputEncodedMessage() {
 
 		var code_div = document.createElement('div');
 		code_div.classList.add('interactive-lzw-code');
+		code_div.setAttribute('data-reference-index', code);
 		
 		for (var j = 0; j < code_length; j++) {
 			var placeholder_input = document.createElement('input');
@@ -59,11 +60,40 @@ function outputEncodedMessage() {
 			code_div.appendChild(placeholder_input);
 		}
 
+		var code_index_div = document.createElement('p');
+		code_index_div.innerHTML = code;
+		code_div.appendChild(code_index_div);
+
+		code_div.addEventListener('mousemove', function(event) {
+            changeHighlight(event, true);
+        });
+        code_div.addEventListener('mouseleave', function(event) {
+            changeHighlight(event, false);
+        });
+
 		code_section_fragment.appendChild(code_div);
 		encoded_message_fragment.appendChild(code_section_fragment);
 	}
 	encoded_message_div.appendChild(encoded_message_fragment);
 }
+
+
+function changeHighlight(event, highlight) {	
+    var selected_reference = event.target;
+    if (event.target.nodeName == 'P' || event.target.nodeName == 'INPUT') {
+        selected_reference = event.srcElement.parentElement;
+    }
+    var code_index = parseInt(selected_reference.dataset.referenceIndex);
+    var code_div = document.querySelectorAll('[data-index="' + code_index.toString() + '"]')[0];
+    if (highlight == true) {
+	    code_div.classList.add('highlight');
+	    selected_reference.classList.add('selected');
+	} else {
+		code_div.classList.remove('highlight');
+   		selected_reference.classList.remove('selected');
+	}
+}
+
 
 // display the dictionary built by LZW
 function outputDictionary() {
@@ -72,6 +102,8 @@ function outputDictionary() {
 	for (var i = 0; i < codes.length; i++) {
 		var dictionary_code = document.createElement('div');
 		dictionary_code.classList.add('interactive-lzw-dictionary-entry');
+		//
+		dictionary_code.setAttribute('data-index', i);
 		// create code element
 		var code_element = document.createElement('p');
 		code_element.innerHTML = i;
