@@ -15,8 +15,8 @@ chapters:
   #   chapter-number: 7
   # coding-encryption:
   #   chapter-number: 8
-  # coding-error-control:
-  #   chapter-number: 9
+  coding-error-control:
+    chapter-number: 9
   # artificial-intelligence:
   #   chapter-number: 10
   # complexity-and-tractability:
