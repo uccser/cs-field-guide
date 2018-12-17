@@ -46,6 +46,7 @@ function outputEncodedMessage() {
 	var encoded_message_fragment = document.createDocumentFragment();
 	
 	// for each code
+	var character_position = 0;
 	for (var i = 0; i < output.length; i++) {
 		var code_section_div = document.createElement('div');
 		code_section_div.classList.add('interactive-lzw-code-section');
@@ -61,7 +62,13 @@ function outputEncodedMessage() {
 		for (var j = 0; j < code_length; j++) {
 			var placeholder_input = document.createElement('input');
 			placeholder_input.classList.add('interactive-lzw-placeholder-box');
+			placeholder_input.maxLength = 1;
+		    placeholder_input.setAttribute('data-character-position', character_position);
+			placeholder_input.addEventListener('keyup', function(event) {
+	            autoTab(event);
+	        });
 			code_div.appendChild(placeholder_input);
+			character_position += 1;
 		}
 
 		var code_index_div = document.createElement('p');
@@ -127,4 +134,21 @@ function outputDictionary() {
 		fragment.append(dictionary_entry);
 	}
 	dictionary_div.appendChild(fragment);
+}
+
+function autoTab(event) {
+    var placeholder_element = event.srcElement;
+    if (placeholder_element.value.length == placeholder_element.maxLength) {
+        var placeholder_index = parseInt(placeholder_element.dataset.characterPosition);
+        var element;
+        var input_elements = document.getElementsByTagName('input');
+        for (var i = 0; i < input_elements.length; i++) {
+            element = input_elements[i];
+            var index = parseInt(element.dataset.characterPosition);
+            if (index > placeholder_index) {
+                break;
+            }
+        }
+        element.focus();
+    }
 }
