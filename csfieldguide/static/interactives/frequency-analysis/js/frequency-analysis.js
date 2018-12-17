@@ -76,9 +76,10 @@ const drawChart = function(ctx, frequencies) {
         labels,
         datasets: [
             {
-                label: "Character Frequency",
+                label: gettext("Character Frequency"),
                 data: freqData,
-                barWidth: 20
+                barWidth: 20,
+                backgroundColor: "#007bff",
             }
         ]
     };
