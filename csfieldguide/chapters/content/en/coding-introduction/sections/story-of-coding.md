@@ -1,6 +1,6 @@
 # The story of coding
 
-{image file-path="img/chapters/shannon-juggling.png" alt="Cartoon of Claude Shannon juggling and riding a unicycle."}
+{image file-path="img/chapters/shannon-juggling.png" alt="Cartoon of Claude Shannon juggling and riding a unicycle." alignment="left"}
 
 {comment image from http://csunplugged.org/information-theory/}
 
