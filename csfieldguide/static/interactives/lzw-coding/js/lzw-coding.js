@@ -2,6 +2,8 @@ var output = [];
 var codes = [];
 
 function compress() {
+	output = [];
+	codes = [];
 	compressText();
 	outputEncodedMessage();
 	outputDictionary();
@@ -9,6 +11,7 @@ function compress() {
 
 function compressText() {
 	// var string_to_encode = 'IAMSAMSAMIAM';
+
 	var string_to_encode = document.getElementById('interactive-lzw-coding-input').value;
 	var current_sequence = "";
 
@@ -39,6 +42,7 @@ function compressText() {
 // display the encoded message
 function outputEncodedMessage() {
 	var encoded_message_div = document.getElementById('interactive-lzw-coding-encoded-text');
+	encoded_message_div.innerHTML = '';
 	var encoded_message_fragment = document.createDocumentFragment();
 	
 	// for each code
@@ -98,24 +102,29 @@ function changeHighlight(event, highlight) {
 // display the dictionary built by LZW
 function outputDictionary() {
 	var dictionary_div = document.getElementById('interactive-lzw-coding-dictionary');
+	dictionary_div.innerHTML = '';
 	var fragment = document.createDocumentFragment();
+	
 	for (var i = 0; i < codes.length; i++) {
-		var dictionary_code = document.createElement('div');
-		dictionary_code.classList.add('interactive-lzw-dictionary-entry');
-		//
-		dictionary_code.setAttribute('data-index', i);
+		// create dictionary entry element
+		var dictionary_entry = document.createElement('div');
+		dictionary_entry.classList.add('interactive-lzw-dictionary-entry');
+		dictionary_entry.setAttribute('data-index', i);
+		
 		// create code element
 		var code_element = document.createElement('p');
 		code_element.innerHTML = i;
 		code_element.classList.add('interactive-lzw-dictionary-code');
+		
 		// create value element
 		var value_element = document.createElement('p');
 		value_element.innerHTML = codes[i];
 		value_element.classList.add('interactive-lzw-dictionary-value');
+		
 		// add code and value to parent div
-		dictionary_code.appendChild(code_element);
-		dictionary_code.appendChild(value_element);
-		fragment.append(dictionary_code);
+		dictionary_entry.appendChild(code_element);
+		dictionary_entry.appendChild(value_element);
+		fragment.append(dictionary_entry);
 	}
 	dictionary_div.appendChild(fragment);
 }
