@@ -83,11 +83,14 @@ const drawChart = function(ctx, frequencies) {
         ]
     };
 
-    return chart = new Chart(ctx).Bar(data, {
-        scaleFontSize: 16,
-        responsive: true
-    }
-    );
+    return chart = new Chart(ctx, {
+        type: 'bar',
+        data: data,
+        options: {
+            scaleFontSize: 16,
+            responsive: true
+        }
+    });
 };
 
 const ctx = $(ChartID)[0].getContext('2d');
