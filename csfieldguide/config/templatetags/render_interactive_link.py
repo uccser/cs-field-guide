@@ -5,23 +5,27 @@ from django.conf import settings
 from django.template.loader import render_to_string
 from django.shortcuts import get_object_or_404
 from interactives.models import Interactive
-
+from django.utils.translation import activate, get_language
 register = template.Library()
 
 
 @register.simple_tag(takes_context=True)
-def render_interactive_link(context, interactive_slug):
+def render_interactive_link(context, interactive):
     """Render link button to interactive in whole-page mode.
 
     Args:
-        interactive_slug (str): Slug of interactive.
+        interactive (str or Interactive): Slug of interactive or interactive object.
 
     Returns:
         Rendered string of HTML.
     """
-    interactive = get_object_or_404(
-        Interactive,
-        slug=interactive_slug
-    )
-    context = {"interactive": interactive}
+    if isinstance(interactive, str):
+        interactive = get_object_or_404(
+            Interactive,
+            slug=interactive
+        )
+    context = {
+        "interactive": interactive,
+        "interactive_thumbnail": "img/interactives/thumbnails/{}/{}.png".format(get_language(), interactive.slug),
+    }
     return render_to_string(settings.INTERACTIVES_LINK_TEMPLATE, context, request=context.get("request"))
