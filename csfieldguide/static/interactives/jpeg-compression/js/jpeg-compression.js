@@ -1,5 +1,5 @@
 const Interact = require('interactjs');
-require('./../../../js/jquery.stepper');
+require('./../../../js/third-party/jquery.stepper');
 const dct = require('dct');
 
 'use strict';
@@ -328,7 +328,7 @@ $(function () {
         puzzle.giveHelp();
         Puzzle.checkForMatch();
     });
-    
+
     $('img').on('dragstart', function(event) { event.preventDefault(); });
 
     function showMSE(mse) {
