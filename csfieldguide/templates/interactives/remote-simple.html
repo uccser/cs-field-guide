@@ -5,28 +5,19 @@
 
 {% block html %}
   <div class="d-flex justify-content-center mb-3 uninteractive">
-    <div id="remote-simple-container" class="p-2">
+    <div id="remote-simple-container" class="m-2">
       <!-- Row 1 -->
-      <div class="d-flex justify-content-between my-2">
+      <div class="d-flex justify-content-between m-2">
         <button type="button" class="btn btn-sm btn-dark-blue">{% trans "MENU" %}</button>
         <button type="button" class="btn btn-sm btn-danger">O</button>
       </div>
 
       <!-- Row 2 -->
-      <div class="d-flex justify-content-center my-2">
-        <button type="button" class="btn btn-sm btn-secondary">^</button>
-      </div>
-
-      <!-- Row 3 -->
-      <div class="d-flex justify-content-center my-2">
-        <button type="button" class="btn btn-sm btn-secondary">&lt</button>
-        <button type="button" class="btn btn-sm mx-2 btn-secondary">{% trans "OK" %}</button>
-        <button type="button" class="btn btn-sm btn-secondary">&gt</button>
-      </div>
-
-      <!-- Row 4 -->
-      <div class="d-flex justify-content-center my-2">
-        <button type="button" class="btn btn-sm btn-secondary">v</button>
+      <div class="d-flex justify-content-center m-3">
+        <div id="outer-circle">
+          <div id="inner-circle">
+          </div>
+        </div>
       </div>
     </div>
   </div>

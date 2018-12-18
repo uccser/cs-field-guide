@@ -9,3 +9,20 @@
   background-color: #0066cc;
   border-color: #0066cc;
 }
+
+#outer-circle {
+  width: 5rem;
+  height: 5rem;
+  background: #d0d0d0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#inner-circle {
+  width: 2rem;
+  height: 2rem;
+  background: #a1a1a1;
+  border-radius: 50%;
+}
