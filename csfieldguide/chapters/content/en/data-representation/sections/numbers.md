@@ -665,12 +665,12 @@ In practice, numbers within the following ranges can be represented.
 You can work these out because the range of 8-bit values if they are stored using unsigned numbers will be from 00000000 to 11111111 (i.e. 0 to 255 in decimal), while the signed two's complement range is from 10000000 (the lowest number, -128 in decimal) to 01111111 (the highest number, 127 in decimal).
 This might seem a bit weird, but it works out really well because normal binary addition can be used if you use this representation even if you're adding a negative number.
 
-| Number | Unsigned Range | Two's Complement Range |
+| **Number** | **Unsigned Range** | **Two's Complement Range** |
 |--------|----------------|------------------------|
 | 8 bit | 0 to 255 | -128 to 127 |
 | 16 bit | 0 to 65,535 | -32,768 to 32,767 |
 | 32 bit | 0 to 4,294,967,295 | −2,147,483,648 to 2,147,483,647 |
-| 64 bit | 0 to 18,446,744,073,709,551,615 | −9,223,372,036,854,775,808 to 9,223,372,036,854,775,807  |
+| 64 bit &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; | 0 to 18,446,744,073,709,551,615 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; | −9,223,372,036,854,775,808 to 9,223,372,036,854,775,807  |
 
 ### Adding negative binary numbers
 
