@@ -39,9 +39,9 @@ Where possible, we prefer to deal with  full bytes (8 bits) on a computer, this 
 
 Here is a table that shows the patterns of bits that ASCII uses for each of the characters.
 
-| Binary  | Char  | Binary  | Char | Binary  | Char  |
+| Binary  | Char  | Binary  | Char &nbsp; &nbsp; | Binary  | Char  |
 |---------|-------|---------|------|---------|-------|
-| 0100000 | Space | 1000000 | @    | 1100000 | `     |
+| 0100000 &nbsp; &nbsp; | Space &nbsp; &nbsp; | 1000000 &nbsp; &nbsp; | @    | 1100000 &nbsp; &nbsp; | `     |
 | 0100001 | !     | 1000001 | A    | 1100001 | a     |
 | 0100010 | "     | 1000010 | B    | 1100010 | b     |
 | 0100011 | #     | 1000011 | C    | 1100011 | c     |
@@ -73,6 +73,8 @@ Here is a table that shows the patterns of bits that ASCII uses for each of the 
 | 0111101 | =     | 1011101 | ]    | 1111101 | }     |
 | 0111110 | >     | 1011110 | ^    | 1111110 | ~     |
 | 0111111 | ?     | 1011111 | _    | 1111111 | Delete |
+
+<br>
 
 For example, the letter c (lower-case) in the table has the pattern "01100011" (the 0 at the front is just extra padding to make it up to 8 bits).
 The letter o has the pattern "01101111".
