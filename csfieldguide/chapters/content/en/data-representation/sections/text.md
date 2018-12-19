@@ -392,6 +392,8 @@ Start by reading the explanation below to ensure you understand what we mean by 
 
 {video url="https://www.youtube.com/watch?v=L-v4Awj_p7g"}
 
+<br>
+
 If you *only* wanted to represent the 26 letters of the alphabet, and weren’t worried about upper-case or lower-case, you could get away with using just 5 bits, which allows for up to 32 different patterns.
 
 You might have exchanged notes which used 1 for "a", 2 for "b", 3 for "c", all the way up to 26 for "z".
