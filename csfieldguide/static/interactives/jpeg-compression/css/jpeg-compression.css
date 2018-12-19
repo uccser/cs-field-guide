@@ -1,6 +1,12 @@
+/* File is based off modified style.css licensed uner MIT */
+/* jquery.stepper.js */
+/* https://github.com/ncou/jquery.stepper.basic/blob/master/style.css */
+/* ------------------------------------------------------ */
+/* Author: NCOU */
+
 .stepper {
   position: relative;
-  width: 100%;
+  width: 64px;
   height: 30px;
   cursor: col-resize;
 }
@@ -117,7 +123,7 @@ img {
 }
 
 #dct-table td {
-  padding: 2px;
+  padding-right: 60px;
 }
 
 .switch {
@@ -136,7 +142,6 @@ img {
 
 
 #puzzle-stuff {
-  margin-left: 10px;
   line-height: 1;
   min-width: 370px;
 }
@@ -146,17 +151,15 @@ img {
 }
 
 #helpButton {
-  width: 80%;
   min-width: 97.75px;
   padding: 0 1rem;
 }
 
 #right-of-dct,
 #help {
-  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 #dctData {
   min-width: 35px;
-  max-width: 100px;
 }
