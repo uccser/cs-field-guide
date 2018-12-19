@@ -67,7 +67,7 @@ huffman-tree:
 image-bit-comparer:
   name: Image Bit Comparer
 jpeg-compression:
-  name: jpeg-compression (broken)
+  name: JPEG Compression
 md5-hash:
   name: md5-hash (broken)
 menu-keystrokes:
