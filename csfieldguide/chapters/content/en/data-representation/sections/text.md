@@ -344,12 +344,14 @@ We have looked at ASCII, UTF-32, UTF-8, and UTF-16.
 
 The following table summarises what we have said so far about each representation.
 
-Representation | Variable or Fixed | Bits per Character | Real world Usage
+Representation &nbsp; &nbsp; &nbsp; | Variable or Fixed &nbsp; &nbsp; &nbsp; | Bits per Character &nbsp; &nbsp; &nbsp; | Real world Usage
 --- | --- | --- | ---
 *ASCII* | Fixed Length | 8 bits | No longer widely used
 *UTF-8* | Variable Length | 8, 16, 24, or 32 bits | Very widely used
 *UTF-16* | Variable Length | 16 or 32 bits | Widely used
 *UTF-32* | Fixed Length | 32 bits | Rarely used
+
+<br>
 
 In order to compare and evaluate them, we need to decide what it means for a representation to be "good".
 Two useful criteria are:
