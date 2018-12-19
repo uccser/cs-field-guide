@@ -5,7 +5,6 @@
     "dependencies": {
         "urijs": "1.19.1",
         "underscore.string": "3.3.5",
-        "string.fromcodepoint": "0.2.1",
-        "jquery-text-input": "Jamesernator/jquery-text-input"
+        "string.fromcodepoint": "0.2.1"
     }
 }

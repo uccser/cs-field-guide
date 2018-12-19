@@ -24,6 +24,7 @@
     "csfg-interactive-rsa-jsencrypt": "file:./static/interactives/rsa-jsencrypt/",
     "csfg-interactive-sha2": "file:./static/interactives/sha2/",
     "csfg-interactive-sorting-algorithms": "file:./static/interactives/sorting-algorithms/",
+    "csfg-interactive-unicode-binary": "file:./static/interactives/unicode-binary/",
     "csfg-interactive-unicode-chars": "file:./static/interactives/unicode-chars/"
   },
   "devDependencies": {
