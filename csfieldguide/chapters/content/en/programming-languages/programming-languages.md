@@ -1,7 +1,7 @@
 # Programming Languages
 
 Programming, sometimes referred to as coding, is a nuts and bolts activity for computer science.
-While this book won't teach you how to program (we've given some links to sites that can do this in the introduction), we are going to look at what a programming language is, and how computer scientists breath life into a language.
+While this book won't teach you how to program (we've given some links to sites that can do this in the introduction), we are going to look at what a programming language is, and how computer scientists breathe life into a language.
 From a programmer's point of view, they type some instructions, and the computer follows them.
 But how does the computer know what to do? Bear in mind that you might be using one of the many languages such as Python, Java, Scratch, Basic or C#,  yet computers only have the hardware to follow instructions in one particular language, which is usually a very simple "machine code" that is hard for humans to read and write.
 And if you invent a new programming language, how do you tell the computer how to use it?
@@ -47,11 +47,11 @@ print("**********************************************")
 This program is written in a language called Python, and when the program runs, it will print the following text to the screen
 
 ```
-************************************************
-************************************************
-*** Welcome to computer programming, Student ***
-************************************************
-************************************************
+**********************************************
+**********************************************
+** Welcome to computer programming, Student **
+**********************************************
+**********************************************
 ```
 
 In order to run a Python program, we need something called a Python interpreter.
@@ -163,8 +163,8 @@ else:
   print(number_of_kilometers)
 ```
 
-The first line is a *print* statement (which you should be very familiar with by now!) The second line asks the user for a number of miles which is converted from input text (called a string) to an integer, the third line uses an *if* statement to check if the number entered was less than 0, so that it can print an error if it is.
-Otherwise if the number was ok, the program jumps into the *else* section (the error is not printed because the *if* was not true), calculates the number of kilometers (there are 0.6214 kilometers in a mile), stores it into a *variable* called number_of_kilometers for later reference, and then the last line prints it out.
+The first line is a *print* statement (which you should be very familiar with by now!). The second line asks the user for a number of miles which is converted from input text (called a string) to an integer, the third line uses an *if* statement to check if the number entered was less than 0, so that it can print an error if it is.
+Otherwise if the number was okay, the program jumps into the *else* section (the error is not printed because the *if* was not true), calculates the number of kilometers (there are 0.6214 kilometers in a mile), stores it into a *variable* called number_of_kilometers for later reference, and then the last line prints it out.
 Again, we don’t have quotes around number_of_kilometers in the last line as we want to print the value out that is stored in the number_of_kilometers variable.
 If this doesn’t make sense, don’t worry.
 You aren’t expected to know how to program for this chapter, this introduction is only intended for you to have some idea of what a program is and the things it can do.
@@ -205,9 +205,9 @@ There's a lot more about binary in the [data representation](chapters/data-repre
 
 {panel end}
 
-{commentput in jargon buster on transistors somewhere (or in representations chapter) need to think about whether to put it here or in data representation. It's mainly something to break up the text, but the topic might be distracting here}
+{comment put in jargon buster on transistors somewhere (or in representations chapter) need to think about whether to put it here or in data representation. It's mainly something to break up the text, but the topic might be distracting here}
 
-So instead of building computers that can understand these high level instructions that you find in languages like Python (or Java, Basic, JavaScript, C and so on), we build computers that can follow a very limited set of instructions, and then we write programs that convert the instructions in the standard languages people write programs in into the simple instructions that the circuitry can directly carry out.
+So instead of building computers that can understand these high level instructions that you find in languages like Python (or Java, Basic, JavaScript, C and so on), we build computers that can follow a very limited set of instructions, and then we write programs that convert the instructions in the standard languages people write programs in to the simple instructions that the circuitry can directly carry out.
 The language of these simple instructions is a low level programming language often referred to as machine code.
 
 The conversion from a high level to a low level language can involve *compiling*, which replaces the high level instructions with machine code instructions that can then be run, or it can be done by *interpreting*, where each instruction is converted and followed one by one, as the program is run.

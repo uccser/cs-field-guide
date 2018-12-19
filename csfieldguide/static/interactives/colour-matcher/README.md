@@ -4,7 +4,7 @@
 
 This interactive is created for users to learn the difference between 24 bit and 8 bit colour.
 The user can perfectly match the goal colour using 24 bit values, however it's harder to match using 8 bit values.
-The the goal colour is picked to be impossible to match perfectly with 8 bit values.
+The goal colour is picked to be impossible to match perfectly with 8 bit values.
 
 ## Usage
 

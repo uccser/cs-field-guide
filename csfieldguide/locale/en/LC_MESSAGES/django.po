@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-18 07:40+0000\n"
+"POT-Creation-Date: 2018-11-06 19:45+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -160,7 +160,7 @@ msgstr ""
 msgid "Close"
 msgstr ""
 
-#: templates/chapters/chapter_section.html:40
+#: templates/chapters/chapter_section.html:46
 msgid "Table of contents"
 msgstr ""
 
@@ -996,6 +996,40 @@ msgstr ""
 msgid "Created by Hannah Taylor - Adapted by Jack Morgan"
 msgstr ""
 
+#: templates/interactives/searching-algorithms.html:10
+msgid "Searching Algorithms"
+msgstr ""
+
+#: templates/interactives/searching-algorithms.html:17
+msgid ""
+"The boxes are in a <span id='order'></span> order. Out of <span id='num-"
+"boxes'></span> boxes, the number to find is <span id='target'>100</span>."
+msgstr ""
+
+#: templates/interactives/searching-algorithms.html:20
+msgid "You have <span id='num-guesses'></span> guesses to find it."
+msgstr ""
+
+#: templates/interactives/searching-algorithms.html:24
+msgid "You ran out of guesses!"
+msgstr ""
+
+#: templates/interactives/searching-algorithms.html:36
+msgid "You found it!"
+msgstr ""
+
+#: templates/interactives/searching-algorithms.html:42
+msgid "Next Level"
+msgstr ""
+
+#: templates/interactives/searching-algorithms.html:45
+msgid "Restart Level"
+msgstr ""
+
+#: templates/interactives/searching-algorithms.html:48
+msgid "Restart From First Level"
+msgstr ""
+
 #: templates/interactives/sha2.html:7
 msgid "SHA2 Hashing"
 msgstr ""
@@ -1028,6 +1062,26 @@ msgstr ""
 msgid ""
 "Animations provided by David Martin from <a href=\"http://www.sorting-"
 "algorithms.com/\">www.sorting-algorithms.com"
+msgstr ""
+
+#: templates/interactives/sorting-algorithms.html:9
+msgid "Sorting Algorithms"
+msgstr ""
+
+#: templates/interactives/sorting-algorithms.html:64
+msgid "Points to heaviest box"
+msgstr ""
+
+#: templates/interactives/sorting-algorithms.html:80
+msgid "Lightest box"
+msgstr ""
+
+#: templates/interactives/sorting-algorithms.html:83
+msgid "Heaviest box"
+msgstr ""
+
+#: templates/interactives/sorting-algorithms.html:91
+msgid "Check Order"
 msgstr ""
 
 #: templates/interactives/trainsylvania-planner.html:8

@@ -69,7 +69,7 @@ Variations of this plot can be used to approximate the value of pixels, going fr
 If you add in a higher frequency cosine wave, you can produce interesting shapes.
 In theory, any pattern of pixels can be created by adding together different cosine waves!
 
-The following graph shows the values of {math}\sin(x){math end} and {math}\cos(x){math end} for {math}x{math end} ranging from 0 to 180 degrees.
+The following graph shows the values of \(\sin(x)\) and \(\cos(x)\) for \(x\) ranging from 0 to 180 degrees.
 
 {image file-path="img/chapters/cosine-graph.png" alt="A graph showing cos(x) and sin(x) curves"}
 
@@ -85,7 +85,7 @@ Converting a waveform for a block of pixels or sample of music into a sum of sim
 You can experiment with adding sine waves together to generate other shapes using the
 [spreadsheet provided](files/Adding-Sine-Waves.xls).
 In this spreadsheet, the yellow region on the first sheet allows you to choose which sine waves to add.
-Try setting the 4 sine waves to frequencies that are 3, 9, 15, and 21 times the fundamental frequency respectively (the "fundamental" is the lowest frequency.)
+Try setting the 4 sine waves to frequencies that are 3, 9, 15, and 21 times the fundamental frequency respectively (the "fundamental" is the lowest frequency).
 Now set the "amplitude" (equivalent to volume level) of the four to 0.5, 0.25, 0.125 and 0.0625 respectively (each is half of the previous one).
 This should produce the following four sine waves:
 
@@ -197,7 +197,7 @@ All those things happen every time you take a photo and save it as a JPEG file, 
 When you display the image, the software needs to reverse the process, adding all the basis functions together for each block - and there will be hundereds of thousands of blocks for each image.
 
 An important issue arises because JPEG represents images as smoothly varying colours: what happens if the colours change suddenly?
-In that case, lots of values need to be stored so that lots of cosine waves can be added together to make the sudden change in colour, or else the edge of the image become fuzzy.
+In that case, lots of values need to be stored so that lots of cosine waves can be added together to make the sudden change in colour, or else the edges of the image become fuzzy.
 You can think of it as the cosine waves overshooting on the sudden changes, producing artifacts like the ones in the following image where the edges are messy.
 
 {image file-path="img/chapters/jpeg-word.jpg" alt="The word JPEG has fuzzy edges."}

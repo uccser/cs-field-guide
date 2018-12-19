@@ -25,9 +25,9 @@ box-translation:
 caesar-cipher:
   name: Caesar Cipher
 checksum-calculator:
-  name: checksum-calculator (broken)
+  name: Checksum Calculator
 checksum-calculator-gtin-13:
-  name: checksum-calculator-gtin-13 (broken)
+  name: Checksum Calculator GTIN-13
 close-window:
   name: Close Window
 cmy-mixer:
@@ -65,7 +65,7 @@ huffman-tree:
 image-bit-comparer:
   name: Image Bit Comparer
 jpeg-compression:
-  name: jpeg-compression (broken)
+  name: JPEG Compression
 md5-hash:
   name: md5-hash (broken)
 menu-keystrokes:
@@ -89,7 +89,7 @@ packet-attack:
 packet-attack-level-creator:
   name: packet-attack-level-creator (broken)
 parity:
-  name: parity (broken)
+  name: Parity
 payment-interface:
   name: Payment Interface
 pixel-viewer:

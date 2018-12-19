@@ -52,9 +52,9 @@ close-window:
 # colour-matcher:
 #   languages:
 #     en: interactives/colour-matcher.html
-# compression-comparer:
-#   languages:
-#     en: interactives/compression-comparer.html
+compression-comparer:
+  languages:
+    en: interactives/compression-comparer.html
 confused-buttons:
   languages:
     en: interactives/confused-buttons.html
@@ -91,15 +91,15 @@ delayed-checkbox:
 high-score-boxes:
   languages:
     en: interactives/high-score-boxes.html
-# huffman-tree:
-#   languages:
-#     en: interactives/huffman-tree.html
-# image-bit-comparer:
-#   languages:
-#     en: interactives/image-bit-comparer.html
-# jpeg-compression:
-#   languages:
-#     en: interactives/jpeg-compression.html
+huffman-tree:
+  languages:
+    en: interactives/huffman-tree.html
+image-bit-comparer:
+  languages:
+    en: interactives/image-bit-comparer.html
+jpeg-compression:
+  languages:
+    en: interactives/jpeg-compression.html
 # md5-hash:
 #   languages:
 #     en: interactives/md5-hash.html
@@ -163,9 +163,9 @@ payment-interface:
 # rsa-no-padding:
 #   languages:
 #     en: interactives/rsa-no-padding.html
-# run-length-encoding:
-#   languages:
-#     en: interactives/run-length-encoding.html
+run-length-encoding:
+  languages:
+    en: interactives/run-length-encoding.html
 searching-algorithms:
   languages:
     en: interactives/searching-algorithms.html
