@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cs-field-guide\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-18 07:40+0000\n"
-"PO-Revision-Date: 2018-11-06 14:03\n"
+"POT-Creation-Date: 2018-11-06 19:45+0000\n"
+"PO-Revision-Date: 2018-12-19 14:03\n"
 "Last-Translator: uccser-admin <csse-education-research@canterbury.ac.nz>\n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -144,7 +144,7 @@ msgstr "¡Lamentablemente esta definición no está disponible en %(language)s!"
 msgid "Close"
 msgstr "Cerrar"
 
-#: templates/chapters/chapter_section.html:40
+#: templates/chapters/chapter_section.html:46
 msgid "Table of contents"
 msgstr "Índice"
 
@@ -922,6 +922,38 @@ msgstr "Borrar todos los píxeles negros"
 msgid "Created by Hannah Taylor - Adapted by Jack Morgan"
 msgstr "Creado por Hannah Taylor - Adaptado por Jack Morgan"
 
+#: templates/interactives/searching-algorithms.html:10
+msgid "Searching Algorithms"
+msgstr "Algoritmos de búsqueda"
+
+#: templates/interactives/searching-algorithms.html:17
+msgid "The boxes are in a <span id='order'></span> order. Out of <span id='num-boxes'></span> boxes, the number to find is <span id='target'>100</span>."
+msgstr ""
+
+#: templates/interactives/searching-algorithms.html:20
+msgid "You have <span id='num-guesses'></span> guesses to find it."
+msgstr ""
+
+#: templates/interactives/searching-algorithms.html:24
+msgid "You ran out of guesses!"
+msgstr ""
+
+#: templates/interactives/searching-algorithms.html:36
+msgid "You found it!"
+msgstr ""
+
+#: templates/interactives/searching-algorithms.html:42
+msgid "Next Level"
+msgstr ""
+
+#: templates/interactives/searching-algorithms.html:45
+msgid "Restart Level"
+msgstr ""
+
+#: templates/interactives/searching-algorithms.html:48
+msgid "Restart From First Level"
+msgstr ""
+
 #: templates/interactives/sha2.html:7
 msgid "SHA2 Hashing"
 msgstr "Hashing SHA2"
@@ -953,6 +985,26 @@ msgstr "Ordenamiento rápido"
 #: templates/interactives/sorting-algorithm-comparison.html:21
 msgid "Animations provided by David Martin from <a href=\"http://www.sorting-algorithms.com/\">www.sorting-algorithms.com"
 msgstr "Animaciones proporcionadas por David Martin de <a href=\"http://www.sorting-algorithms.com/\">www.sorting-algorithms.com"
+
+#: templates/interactives/sorting-algorithms.html:9
+msgid "Sorting Algorithms"
+msgstr "Algoritmos de ordenamiento"
+
+#: templates/interactives/sorting-algorithms.html:64
+msgid "Points to heaviest box"
+msgstr ""
+
+#: templates/interactives/sorting-algorithms.html:80
+msgid "Lightest box"
+msgstr ""
+
+#: templates/interactives/sorting-algorithms.html:83
+msgid "Heaviest box"
+msgstr ""
+
+#: templates/interactives/sorting-algorithms.html:91
+msgid "Check Order"
+msgstr ""
 
 #: templates/interactives/trainsylvania-planner.html:8
 msgid "Trainsylvania Planner"
