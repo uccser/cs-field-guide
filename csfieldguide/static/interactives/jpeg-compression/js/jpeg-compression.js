@@ -1,5 +1,12 @@
+const Interact = require('interactjs');
+require('./../../../js/third-party/jquery.stepper');
+const dct = require('dct');
+
 'use strict';
 $(function () {
+
+    // Get dummy image src, split on rightmost slash, is base path
+
     document.onselectstart = function () {
         return false;
     };
@@ -321,7 +328,7 @@ $(function () {
         puzzle.giveHelp();
         Puzzle.checkForMatch();
     });
-    
+
     $('img').on('dragstart', function(event) { event.preventDefault(); });
 
     function showMSE(mse) {
@@ -371,7 +378,7 @@ $(function () {
         for (var i = 1; i <= 8; i++) {
             var row = $("<tr></tr>");
             for (var j = 1; j <= 8; j++) {
-                var rowData = $("<td id='dctData'></td>").append('<img src="./img/basis_functions/DCTr' + i + 'c' + j + '.png">');
+                var rowData = $("<td id='dctData'></td>").append('<img src="' + base_path + 'interactives/jpeg-compression/img/basis_functions/DCTr' + i + 'c' + j + '.png">');
                 rowData.append('<div class="stepper" id="stepper-' + (i - 1) + (j - 1) + "\"><div class=\"stepper-progress\"></div><input type=\"text\" class=\"stepper-number\" id=\"stepper-number-" + (i - 1) + (j - 1) + '"></div>');
                 row.append(rowData);
             }
@@ -457,7 +464,7 @@ $(function () {
     // Handles the dragging of the square around the big image.
     function dragSmallSquare() {
         // target elements with the "draggable" class
-        interact('.draggable')
+        Interact('.draggable')
             .draggable({
                 // enable inertial throwing
                 inertia: false,
@@ -469,7 +476,7 @@ $(function () {
                 },
                 snap: {
                     targets: [
-                        interact.createSnapGrid({x: 8, y: 8})
+                        Interact.createSnapGrid({x: 8, y: 8})
                     ],
                     range: Infinity,
                     relativePoints: [{x: 0, y: 0}]
@@ -593,7 +600,7 @@ $(function () {
     // Load image and then replace it with the greyscale version of itself.
     function createBigImage() {
         var img = new Image();
-        img.src = "./img/IMG_5035.jpg";
+        img.src = base_path + "interactives/jpeg-compression/img/IMG_5035.jpg";
         img.onload = function () {
             bigCanvasContext.drawImage(img, 0, 0, 360, 240);
 

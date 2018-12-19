@@ -6,7 +6,7 @@ The most widely used general purpose compression algorithms (such as ZIP, gzip, 
 We'll look at this with a text file as an example.
 The main idea of Ziv-Lempel coding is that sequences of characters are often repeated in files (for example, the sequence of characters "image " appears often in this chapter), and so instead of storing the repeated occurrence, you just replace it with a reference to where it last occurred.
 As long as the reference is smaller than the phrase being replaced, you'll save space.
-Typically this systems based on this approach can be used to reduce text files to as little as a quarter of their original size, which is almost as good as any method known for compressing text.
+Typically the systems based on this approach can be used to reduce text files to as little as a quarter of their original size, which is almost as good as any method known for compressing text.
 
 The following interactive allows you to explore this idea.
 The empty boxes have been replaced with a reference to the text occurring earlier.

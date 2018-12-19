@@ -7,7 +7,7 @@
 The material in this chapter relates to "digital devices".
 While it definitely applies to conventional computers, it also applies to all sorts of other gadgets, such as alarm clocks, air conditioning units, microwave ovens, stopwatches, electronic instruments, point of sale units, parking meters and burglar alarms.
 In fact, most of the student exercises will be a lot easier to do on a device with few features, because this makes it possible for all the likely tasks and sequences to be considered.
-Evaluating something like "Microsoft Windows" or "iPads" is far too wide a scope, as there are so many subsystems, each of which would make a good project on its own (how menus work, how to find files, how to open a program, perhaps even just how to switch it on!)
+Evaluating something like "Microsoft Windows" or "iPads" is far too wide a scope, as there are so many subsystems, each of which would make a good project on its own (how menus work, how to find files, how to open a program, perhaps even just how to switch it on!).
 
 {panel end}
 

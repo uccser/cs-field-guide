@@ -94,13 +94,11 @@ function letterCounts(text) {
   var letter_counts = new Map();
   for (var i=0; i < text.length; i++) {
     var letter = text[i];
-    if (letter.match(/[a-zA-Z0-9\ \.\,\']/)) {
-      var current_value = letter_counts.get(letter);
-      if (current_value === undefined) {
-        letter_counts.set(letter, 1);
-      } else {
-        letter_counts.set(letter, current_value + 1);
-      }
+    var current_value = letter_counts.get(letter);
+    if (current_value === undefined) {
+      letter_counts.set(letter, 1);
+    } else {
+      letter_counts.set(letter, current_value + 1);
     }
   }
   return letter_counts;

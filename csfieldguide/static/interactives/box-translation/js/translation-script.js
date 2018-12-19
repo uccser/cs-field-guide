@@ -2,7 +2,7 @@ scale = 10;
 
 function moveBox() {
     /* triggered when the user hits the "enter" (or "return") key
-     * updates the cube's position to match the the coordinates inputted by the user
+     * updates the cube's position to match the coordinates inputted by the user
      */
 
     emptyCheck();
