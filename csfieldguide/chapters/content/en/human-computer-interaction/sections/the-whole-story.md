@@ -9,7 +9,7 @@ It's no wonder that good software can be expensive – there are many people and
 There are many other ideas from psychology, physiology, sociology and even anthropology that HCI experts must draw on.
 Things that come into play include:
 
-- [Mental models](https://en.wikipedia.org/wiki/Mental_model), about how someone believes a system works compared with how it actually works (these are almost never the same e.g. double clicking on an icon that only needs to be single clicked)/
+- [Mental models](https://en.wikipedia.org/wiki/Mental_model), about how someone believes a system works compared with how it actually works (these are almost never the same e.g. double clicking on an icon that only needs to be single clicked).
 - [Fitts's law](https://en.wikipedia.org/wiki/Fitts%27s_law), about how long it takes to point to objects on a screen (such as clicking on a small button).
 - The [Hick-Hyman law](https://en.wikipedia.org/wiki/Hick%27s_law), about how long it takes to make a decision between multiple choices (such as from a menu).
 - [Miller's law](https://en.wikipedia.org/wiki/The_Magical_Number_Seven,_Plus_or_Minus_Two) about the number of items a person can think about at once.
@@ -23,7 +23,7 @@ There are  many more laws, observations and guidelines about designing interface
 
 ## Further reading
 
-- The book "Designing with the mind in mind" by Jeff Johnson provides excellent background reading for many of the issues discussed in this chapter
+- The book "Designing with the mind in mind" by Jeff Johnson provides excellent background reading for many of the issues discussed in this chapter.
 
 - The [cs4fn website has a lot of articles and activities on Human Computer Interaction](http://www.cs4fn.org/fundamentals/hci.php), such as [problems around reporting interface problems](http://www.cs4fn.org/chi-med/reportingincidents.php), [cultural issues in interface design](http://www.cs4fn.org/usability/tzeltal.php), and [The importance of Sushi](http://www.cs4fn.org/usability/importanceofsushi.php).
 

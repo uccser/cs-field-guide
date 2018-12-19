@@ -34,10 +34,10 @@ $(document).ready(function(){
 });
 
 function setDecryptionText() {
-  $('#interactive-rsa-jsencrypt-mode').text(gettext('Decrypter'));
+  $('#interactive-rsa-jsencrypt-mode').text(gettext('RSA Decrypter'));
   $('#interactive-rsa-jsencrypt-process').text(gettext('Decrypt'));
-  $('#interactive-rsa-jsencrypt-input-type').text(gettext('Cipher'));
-  $('#interactive-rsa-jsencrypt-output-type').text(gettext('Plain'));
+  $('#interactive-rsa-jsencrypt-input-type').text(gettext('Cipher Text'));
+  $('#interactive-rsa-jsencrypt-output-type').text(gettext('Plain Text'));
 };
 
 // From jquerybyexample.net/2012/06/get-url-parameters-using-jquery.html
