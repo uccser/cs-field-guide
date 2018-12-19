@@ -4,15 +4,19 @@
 action-menu:
   languages:
     en: interactives/action-menu.html
+    de: interactives/action-menu.html
 alarm-timer:
   languages:
     en: interactives/alarm-timer.html
+    de: interactives/alarm-timer.html
 available-menu-items:
   languages:
     en: interactives/available-menu-items.html
+    de: interactives/available-menu-items.html
 awful-calculator:
   languages:
     en: interactives/awful-calculator.html
+    de: interactives/awful-calculator.html
 # base-calculator:
 #   languages:
 #     en: interactives/base-calculator.html
@@ -28,6 +32,7 @@ awful-calculator:
 binary-mode-calculator:
   languages:
     en: interactives/binary-mode-calculator.html
+    de: interactives/binary-mode-calculator.html
 # box-rotation:
 #   languages:
 #     en: interactives/box-rotation.html
@@ -46,6 +51,7 @@ binary-mode-calculator:
 close-window:
   languages:
     en: interactives/close-window.html
+    de: interactives/close-window.html
 # cmy-mixer:
 #   languages:
 #     en: interactives/cmy-mixer.html
@@ -55,24 +61,31 @@ close-window:
 compression-comparer:
   languages:
     en: interactives/compression-comparer.html
+    de: interactives/compression-comparer.html
 confused-buttons:
   languages:
     en: interactives/confused-buttons.html
+    de: interactives/confused-buttons.html
 confusing-error:
   languages:
     en: interactives/confusing-error.html
+    de: interactives/confusing-error.html
 date-picker:
   languages:
     en: interactives/date-picker.html
+    de: interactives/date-picker.html
 deceiver:
   languages:
     en: interactives/deceiver.html
+    de: interactives/deceiver.html
 delay-analyser:
   languages:
     en: interactives/delay-analyser.html
+    de: interactives/delay-analyser.html
 delayed-checkbox:
   languages:
     en: interactives/delayed-checkbox.html
+    de: interactives/delayed-checkbox.html
 # frequency-analysis:
 #   languages:
 #     en: interactives/frequency-analysis.html
@@ -106,6 +119,7 @@ jpeg-compression:
 menu-keystrokes:
   languages:
     en: interactives/menu-keystrokes.html
+    de: interactives/menu-keystrokes.html
 # mips-assembler:
 #   languages:
 #     en: interactives/mips-assembler.html
@@ -121,12 +135,14 @@ menu-keystrokes:
 no-help:
   languages:
     en: interactives/no-help.html
+    de: interactives/no-help.html
 # number-generator:
 #   languages:
 #     en: interactives/number-generator.html
 off-by-one:
   languages:
     en: interactives/off-by-one.html
+    de: interactives/off-by-one.html
 # packet-attack:
 #   languages:
 #     en: interactives/packet-attack.html
@@ -139,6 +155,7 @@ off-by-one:
 payment-interface:
   languages:
     en: interactives/payment-interface.html
+    de: interactives/payment-interface.html
 # pixel-viewer:
 #   languages:
 #     en: interactives/pixel-viewer.html
@@ -190,6 +207,7 @@ sorting-algorithms:
 unexpected-error:
   languages:
     en: interactives/unexpected-error.html
+    de: interactives/unexpected-error.html
 # unicode-binary:
 #   languages:
 #     en: interactives/unicode-binary.html
