@@ -131,7 +131,7 @@ These are the answers.
 
 Note that the text "358" is treated as 3 characters in ASCII, which may be confusing, as the text "358" is different to the number 358! You may have encountered this distinction in a spreadsheet e.g. if a cell starts with an inverted comma in Excel, it is treated as text rather than a number.
 One place this comes up is with phone numbers; if you type 027555555 into a spreadsheet as a number, it will come up as 27555555, but as text the 0 can be displayed.
-In fact, phone numbers aren't really just numbers because a leading zero can be important, as they can contain other characters -- for example, +64 3 555 1234 extn. 1234.
+In fact, phone numbers aren't really just numbers because a leading zero can be important, as they can contain other characters &ndash; for example, +64 3 555 1234 extn. 1234.
 
 {panel end}
 
@@ -164,7 +164,7 @@ To solve this problem, we use a standard called **Unicode**.
 Unicode is a **character set** with around 120,000 different characters, in many different languages, current and historic.
 Each character has a unique number assigned to it, making it easy to identify.
 
-Unicode itself is not a representation -- it is a character set.
+Unicode itself is not a representation &ndash; it is a character set.
 In order to represent Unicode characters as bits, a Unicode **encoding scheme** is used.
 The Unicode encoding scheme tells us how each number (which corresponds to a Unicode character) should be represented with a pattern of bits.
 
@@ -189,7 +189,7 @@ The remainder of the text representation section will look at some of these Unic
 
 UTF-32 is a **fixed length** Unicode encoding scheme.
 The representation for each character is simply its number converted to a 32 bit binary number.
-Leading zeroes are used if there are not enough bits (just like how you can represent 254 as a 4 digit decimal number -- 0254).
+Leading zeroes are used if there are not enough bits (just like how you can represent 254 as a 4 digit decimal number &ndash; 0254).
 32 bits is a nice round number on a computer, often referred to as a word (which is a bit confusing, since we can use UTF-32 characters to represent English words!)
 
 For example, the character **H** in UTF-32 would be:
@@ -229,9 +229,9 @@ The bits are simply the binary number form of the character number.
 
 ASCII actually took the same approach.
 Each ASCII character has a number between 0 and 255, and the representation for the character the number converted to an 8 bit binary number.
-ASCII is also a fixed length encoding scheme -- every character in ASCII is represented using 8 bits.
+ASCII is also a fixed length encoding scheme &ndash; every character in ASCII is represented using 8 bits.
 
-In practice, UTF-32 is rarely used -- you can see that it's pretty wasteful of space.
+In practice, UTF-32 is rarely used &ndash; you can see that it's pretty wasteful of space.
 UTF-8 and UTF-16 are both variable length encoding schemes, and very widely used.
 We will look at them next.
 
@@ -242,10 +242,10 @@ We will look at them next.
 1. What is the largest number that can be represented with 32 bits?
    (In both decimal and binary).
 
-2. The largest number in Unicode that has a character assigned to it is not actually the largest possible 32 bit number -- it is 00000000 00010000 11111111 11111111.
+2. The largest number in Unicode that has a character assigned to it is not actually the largest possible 32 bit number &ndash; it is 00000000 00010000 11111111 11111111.
    What is this number in decimal?
 
-3. Most numbers that can be made using 32 bits do not have a Unicode character attached to them -- there is a lot of wasted space.
+3. Most numbers that can be made using 32 bits do not have a Unicode character attached to them &ndash; there is a lot of wasted space.
    There are good reasons for this, but if you had a shorter number that could represent any character, what is the minimum number of bits you would need, given that there are currently around 120,000 Unicode characters?
 
 {panel end}
@@ -255,7 +255,7 @@ We will look at them next.
 # Answers to above challenge
 
 1. The largest number that can be represented using 32 bits is 4,294,967,295 (around 4.3 billion).
-   You might have seen this number before -- it is the largest unsigned integer that a 32 bit computer can easily represent in programming languages such as C.
+   You might have seen this number before &ndash; it is the largest unsigned integer that a 32 bit computer can easily represent in programming languages such as C.
 
 2. The decimal number for the largest character is 1,114,111.
 
@@ -321,9 +321,9 @@ So how does UTF-8 actually work? Use the following process to do what the intera
 For example, if you wanted to find out the representation for **貓** (cat in Chinese), the steps you would take would be as follows.
 
 1. Determine that the Unicode number for **貓** is **35987**.
-2. Convert **35987** to binary -- giving **10001100 10010011**.
+2. Convert **35987** to binary &ndash; giving **10001100 10010011**.
 3. Count that there are **16** bits, and therefore the third pattern **1110xxxx 10xxxxxx 10xxxxx** should be used.
-4. Substitute the bits into the pattern to replace the x's -- **11101000 10110010 10010011**.
+4. Substitute the bits into the pattern to replace the x's &ndash; **11101000 10110010 10010011**.
 
 Therefore, the representation for **貓** is **11101000 10110010 10010011** using UTF-8.
 
