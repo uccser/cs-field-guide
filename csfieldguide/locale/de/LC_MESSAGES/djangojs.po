@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cs-field-guide\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-18 22:08+0000\n"
-"PO-Revision-Date: 2018-11-17 14:07\n"
+"POT-Creation-Date: 2018-11-06 19:45+0000\n"
+"PO-Revision-Date: 2018-12-19 14:11\n"
 "Last-Translator: uccser-admin <csse-education-research@canterbury.ac.nz>\n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -83,17 +83,17 @@ msgstr "Punkte: %(score)s"
 msgid "<span id=\"interactive-deceiver-seconds\">15</span> seconds left"
 msgstr "Noch <span id=\"interactive-deceiver-seconds\">15</span> Sekunden"
 
-#: static/interactives/delay-analyser/js/delay-analyser.js:24
-#: static/interactives/delay-analyser/js/delay-analyser.js:33
+#: static/interactives/delay-analyser/js/delay-analyser.js:23
+#: static/interactives/delay-analyser/js/delay-analyser.js:32
 msgid "View grid"
 msgstr "Gitterfeld anzeigen"
 
-#: static/interactives/delay-analyser/js/delay-analyser.js:26
-#: static/interactives/delay-analyser/js/delay-analyser.js:35
+#: static/interactives/delay-analyser/js/delay-analyser.js:25
+#: static/interactives/delay-analyser/js/delay-analyser.js:34
 msgid "View statistics"
 msgstr "Statistiken anzeigen"
 
-#: static/interactives/delay-analyser/js/delay-analyser.js:76
+#: static/interactives/delay-analyser/js/delay-analyser.js:75
 msgid "You still have tiles to reveal!"
 msgstr "Es sind noch Kacheln aufzudecken!"
 
@@ -201,6 +201,54 @@ msgstr "Deine Zahlen ergeben nicht die Zahl, die das Gitter erfordert!"
 #: static/interactives/run-length-encoding/js/run-length-encoding.js:109
 msgid "You have a different number of lines than lines in the grid!"
 msgstr "Die Anzahl deiner Zeilen entspricht nicht den Zeilen im Gitter!"
+
+#: static/interactives/searching-algorithms/js/searching-algorithms.js:85
+msgid "sorted"
+msgstr ""
+
+#: static/interactives/searching-algorithms/js/searching-algorithms.js:87
+msgid "random"
+msgstr ""
+
+#: static/interactives/searching-algorithms/js/searching-algorithms.js:109
+#: static/interactives/searching-algorithms/js/searching-algorithms.js:273
+msgid "You have <span id=\"num-guesses\">1</span> guess to find it."
+msgid_plural "You have <span id=\"num-guesses\">%(num_guesses)s</span> guesses to find it."
+msgstr[0] ""
+msgstr[1] ""
+
+#: static/interactives/searching-algorithms/js/searching-algorithms.js:193
+msgid "Box"
+msgstr ""
+
+#: static/interactives/searching-algorithms/js/searching-algorithms.js:228
+msgid "Number of guesses used: %(num_guesses)s"
+msgstr ""
+
+#: static/interactives/sorting-algorithms/js/sorting-algorithms.js:22
+#: static/interactives/sorting-algorithms/js/sorting-algorithms.js:162
+msgid "Show second row of boxes"
+msgstr ""
+
+#: static/interactives/sorting-algorithms/js/sorting-algorithms.js:120
+msgid "Number Of Comparisons: %(comparisons)s"
+msgstr ""
+
+#: static/interactives/sorting-algorithms/js/sorting-algorithms.js:132
+msgid "You need to sort all the boxes before checking!"
+msgstr ""
+
+#: static/interactives/sorting-algorithms/js/sorting-algorithms.js:145
+msgid "The boxes are in order!"
+msgstr ""
+
+#: static/interactives/sorting-algorithms/js/sorting-algorithms.js:148
+msgid "The boxes are not in order!"
+msgstr ""
+
+#: static/interactives/sorting-algorithms/js/sorting-algorithms.js:160
+msgid "Hide second row of boxes"
+msgstr ""
 
 #: static/interactives/unicode-length/js/unicode-length.js:13
 msgid "%(num_bits_used)s bits"
