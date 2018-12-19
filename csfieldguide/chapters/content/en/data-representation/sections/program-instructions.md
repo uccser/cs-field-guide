@@ -26,9 +26,11 @@ If we were using a 32-bit operating system we might encode the above instruction
 
 | Operation |    Op1   |    Op2   |   Op3    |
 |-----------|----------|----------|----------|
-| 00001000  | 00000000 | 00000000 | 00001010 |
+| 00001000 &nbsp; &nbsp; &nbsp; | 00000000 &nbsp; &nbsp; &nbsp; | 00000000 &nbsp; &nbsp; &nbsp; | 00001010 &nbsp; &nbsp; &nbsp; |
 | 00001000  | 00000001 | 00000000 | 00010100 |
 | 00001010  | 10000000 | 00000000 | 00000001 |
+
+<br>
 
 Our operation will always be determined by the bits in the first 8-bits of the 32-bit instruction.
 In this example machine code, 00001000 means li and 00001010 means add.
