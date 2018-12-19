@@ -254,7 +254,7 @@ This is one of the big tradeoffs in data representation: do you allocate less sp
 
 The number of bits used to represent the colours of pixels in a particular image is sometimes referred to as its "colour depth" or "bit depth".
 For example, an image or display with a colour depth of 8-bits has a choice of 256 colours for each pixel.
-There is [more information about this in Wikipedia](https://en.wikipedia.org/wiki/Color_depth).
+There is [more information about this on Wikipedia](https://en.wikipedia.org/wiki/Color_depth).
 Drastically reducing the bit depth of an image can make it look very strange; sometimes this is used as a special effect called "posterisation" (ie. making it look like a poster that has been printed with just a few colours).
 
 {panel end}
