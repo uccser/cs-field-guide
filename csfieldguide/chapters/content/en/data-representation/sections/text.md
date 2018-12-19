@@ -8,7 +8,7 @@ In this section, we will look at some common ones and then look at the pros and 
 We saw earlier that 64 unique patterns can be made using 6 dots in Braille.
 A dot corresponds to a bit, because both dots and bits have 2 different possible values.
 
-Count how many different characters -- upper-case letters, lower-case letters, numbers, and symbols -- that you could type into a text editor using your keyboard.
+Count how many different characters &ndash; upper-case letters, lower-case letters, numbers, and symbols &ndash; that you could type into a text editor using your keyboard.
 (Don’t forget to count both of the symbols that share the number keys, and the symbols to the side that are for punctuation!)
 
 {panel type="jargon-buster"}
