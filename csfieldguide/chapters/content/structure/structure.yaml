@@ -11,8 +11,8 @@ chapters:
   #   chapter-number: 5
   coding-introduction:
     chapter-number: 6
-  # coding-compression:
-  #   chapter-number: 7
+  coding-compression:
+    chapter-number: 7
   # coding-encryption:
   #   chapter-number: 8
   # coding-error-control:

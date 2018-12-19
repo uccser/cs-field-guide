@@ -84,6 +84,13 @@ cmd_restart() {
 }
 defhelp restart 'Stop and then restart development environment.'
 
+cmd_restart_build() {
+  cmd_end
+  dev_build
+  cmd_start
+}
+defhelp restart_build 'Stop, build, and then restart development environment.'
+
 # Completely update system
 cmd_update() {
   dev_static
