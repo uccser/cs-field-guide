@@ -43,8 +43,8 @@ function chooseAlgorithm(code_type, count){
         ISBN10Generator(count);
     } else if (code_type == "GTIN-13") {
         GTIN13Generator(count);
-    } else if (code_type == "IRD-number") {
-        IRDGenerator(count);
+    } else if (code_type == "tax-number") {
+        TaxIDGenerator(count);
     } else if (code_type == "credit-card") {
         creditCardGenerator(count);
     } else if (code_type == "trains") {
@@ -269,15 +269,15 @@ function passportDateGenerator(count) {
 }
 
 //generate the first 8 numbers
-function IRDGenerator(count) {
+function TaxIDGenerator(count) {
     generateRandomDigits(8);
-    IRDCheckDigit(primary_weights, count, 0);
+    TaxIDCheckDigit(primary_weights, count, 0);
 }
 
 
-//calculates the check digit for an IRD number
+//calculates the check digit for a Tax ID number
 //NOTE: there is a (very) small probability that this function is repeated infinitely
-function IRDCheckDigit(weights, count, repeat_count) {
+function TaxIDCheckDigit(weights, count, repeat_count) {
 
     sum = 0;
     sum = calculateSumWithWeights(weights);
@@ -290,10 +290,10 @@ function IRDCheckDigit(weights, count, repeat_count) {
             number += check_digit.toString();
         } else {
             if (repeat_count == 0) {
-                IRDCheckDigit(secondary_weights, count, repeat_count+1);
+                TaxIDCheckDigit(secondary_weights, count, repeat_count+1);
             } else {
                 number = "";
-                IRDGenerator(count);
+                TaxIDGenerator(count);
             }
         }
     }

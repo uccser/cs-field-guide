@@ -5,7 +5,7 @@
 
 {% block html %}
   <div id="interactive-hex-background-colour" class="container">
-    <h3 id="interactive-hex-background-colour-heading">{% trans "RGB Backround Colour Changer" %}</h3>
+    <h3 id="interactive-hex-background-colour-heading">{% trans "RGB Background Colour Changer" %}</h3>
     <div id="interactive-hex-background-colour-container" class="row my-2">
       <div class="input-group col-6">
         <div id="interactive-hex-background-colour-prefix" class="input-group-prepend">
@@ -14,10 +14,10 @@
         <input type="text" maxlength="6" class="form-control" id="interactive-hex-background-colour-input" value="FFFFFF" onfocus="this.value=''">
       </div>
       <div>
-        <button class="btn btn-primary" id="interactive-hex-background-colour-submit-btn" onclick="changeColour()">
+        <button class="btn btn-primary" id="interactive-hex-background-colour-submit-btn">
           {% trans "Change" %}
         </button>
-        <button class="btn btn-primary" id="interactive-hex-background-colour-reset-btn" onclick="resetColour()">
+        <button class="btn btn-primary" id="interactive-hex-background-colour-reset-btn">
           {% trans "Reset" %}
         </button>
       </div>

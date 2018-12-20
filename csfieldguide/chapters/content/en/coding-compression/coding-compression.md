@@ -9,7 +9,7 @@ Common forms of compression that are currently in use include JPEG (used for pho
 For example, the JPEG method reduces photos to a tenth or smaller of their original size, which means that a camera can store 10 times as many photos, and images on the web can be downloaded 10 times faster.
 
 So what's the catch? Well, there can be an issue with the quality of the data – for example, a highly compressed JPEG image doesn't look as sharp as an image that hasn't been compressed.
-Also, it takes processing time to compress and decompress the data.In most cases, the tradeoff is worth it, but not always.
+Also, it takes processing time to compress and decompress the data. In most cases, the tradeoff is worth it, but not always.
 
 {interactive slug="compression-comparer" type="in-page"}
 

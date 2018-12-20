@@ -11,12 +11,12 @@ chapters:
   #   chapter-number: 5
   coding-introduction:
     chapter-number: 6
-  # coding-compression:
-  #   chapter-number: 7
+  coding-compression:
+    chapter-number: 7
   coding-encryption:
     chapter-number: 8
-  # coding-error-control:
-  #   chapter-number: 9
+  coding-error-control:
+    chapter-number: 9
   # artificial-intelligence:
   #   chapter-number: 10
   # complexity-and-tractability:
