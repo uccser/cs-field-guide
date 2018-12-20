@@ -29,7 +29,6 @@ class RenderInteractiveLinkTest(BaseTestWithDB):
         rendered = self.render_template(
             "{% load render_interactive_link %}\n{% render_interactive_link 'interactive-1' %}",
         )
-        print(settings.TEMPLATES)
         self.assertHTMLEqual(
             "<button>Interactive 1</button>",
             rendered

@@ -19,7 +19,7 @@ def render_interactive_link(context, interactive):
     Returns:
         Rendered string of HTML.
     """
-    if isinstance(interactive, str):
+    if not isinstance(interactive, Interactive):
         interactive = get_object_or_404(
             Interactive,
             slug=interactive
