@@ -82,7 +82,7 @@ The buttons have the colours switched, the colour for cancel is green (commonly 
 {panel end}
 
 The following interface is from a bank system for paying another person.
-Suppose you get an email asking someone to pay you $1699.50 for a used car; try entering "$1699.50" into the box.
+Suppose you send an email asking someone to pay you $1699.50 for a used car; try entering "$1699.50" into the box.
 
 {interactive slug="payment-interface" type="in-page"}
 
@@ -202,7 +202,7 @@ What techniques have you seen used in ATM software to prevent this kind of error
 # ATM error prevention
 
 Some ATMs make it impossible to enter an incorrect amount by only offering fixed amounts for withdrawal, and/or having buttons such as +$20 and -$20.
-Searching the web for images of "ATM enter amount" might produce some reminders of various ways interfaces deal with this problem (or cause it!)
+Searching the web for images of "ATM enter amount" might produce some reminders of various ways interfaces deal with this problem (or cause it!).
 Entering an amount for a *deposit* is different of course, because it could be any amount, so that is likely to use a different interface,
 which helps with error prevention, but now reduces consistency!
 
