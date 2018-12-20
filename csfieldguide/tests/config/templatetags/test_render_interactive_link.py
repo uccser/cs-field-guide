@@ -47,7 +47,31 @@ class RenderInteractiveLinkTest(BaseTestWithDB):
             "{% load render_interactive_link %}\n{% render_interactive_link param1 param2 %}"
         )
 
-    def test_render_interactive_link_invalid_parameter(self):
+    def test_render_interactive_link_with_interactive_parameter(self):
+        chapter = self.test_data.create_chapter(1)
+        interactive = self.interactive_test_data.create_interactive(3)
+        context = {"interactive": interactive}
+        rendered = self.render_template(
+            "{% load render_interactive_link %}\n{% render_interactive_link interactive %}",
+            context,
+        )
+        self.assertHTMLEqual(
+            "<button>Interactive 3</button>",
+            rendered
+        )
+
+    def test_render_interactive_link_with_string_parameter(self):
+        chapter = self.test_data.create_chapter(1)
+        self.interactive_test_data.create_interactive(2)
+        rendered = self.render_template(
+            "{% load render_interactive_link %}\n{% render_interactive_link 'interactive-2' %}",
+        )
+        self.assertHTMLEqual(
+            "<button>Interactive 2</button>",
+            rendered
+        )
+
+    def test_render_interactive_link_with_invalid_parameter(self):
         chapter = self.test_data.create_chapter(1)
         section_chapter = self.test_data.create_chapter_section(chapter, 1)
         context = {"section_chapter": section_chapter}
