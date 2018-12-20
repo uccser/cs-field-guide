@@ -63,10 +63,10 @@ function drawEncodedMessage(encoded_message) {
                 placeholder_input.setAttribute('data-index', index);
                 placeholder_input.maxLength = 1;
                 placeholder_input.addEventListener('mousemove', function(event) {
-                    highlightReference(event);
+                    changeHighlight(event, true);
                 });
                 placeholder_input.addEventListener('mouseleave', function(event) {
-                    unhighlightReference(event);
+                    changeHighlight(event, false);
                 });
                 placeholder_input.addEventListener('keyup', function(event) {
                     autoTab(event);
@@ -86,14 +86,13 @@ function drawEncodedMessage(encoded_message) {
 
             reference_div.appendChild(fragment);
             reference_div.addEventListener('mousemove', function(event) {
-                highlightReference(event);
+                changeHighlight(event, true);
             });
             reference_div.addEventListener('mouseleave', function(event) {
-                unhighlightReference(event);
+                changeHighlight(event, false);
             });
             
             line_div.append(reference_div);
-            // index += 1;
         }
     }
     compressed_text_div.append(line_div);
@@ -107,7 +106,8 @@ function getIndexes(selected_reference) {
     end_index = parseInt(selected_reference.dataset.endIndex);
 }
 
-function highlightReference(event) {
+
+function changeHighlight(event, highlight) {
     var selected_reference = event.target;
     if (event.target.classList[0] == 'interactive-lzss-placeholder-box') {
         selected_reference = event.srcElement.parentElement;
@@ -115,25 +115,24 @@ function highlightReference(event) {
     getIndexes(selected_reference);
     for (var i = start_index; i < end_index; i++) {
         var character_div = document.querySelectorAll('[data-index="' + i.toString() + '"]')[0];
-        character_div.classList.add('highlight');
+        if (highlight == true) {
+            character_div.classList.add('highlight');
+        } else {
+            character_div.classList.remove('highlight');
+        }
     }
-    selected_reference.classList.add('selected');
-}
-
-function unhighlightReference(event) {
-    var selected_reference = event.target;
-    getIndexes(selected_reference);
-    for (var i = start_index; i <= end_index; i++) {
-        var character_div = document.querySelectorAll('[data-index="' + i.toString() + '"]')[0];
-        character_div.classList.remove('highlight');
+    if (highlight == true) {
+        selected_reference.classList.add('selected');
+    } else {
+        selected_reference.classList.remove('selected');
     }
-    selected_reference.classList.remove('selected');
 }
 
 function autoTab(event) {
-    var placholder_element = event.srcElement;
-    if (placholder_element.value.length == placholder_element.maxLength) {
-        var placeholder_index = parseInt(placholder_element.dataset.index);
+    var placeholder_element = event.srcElement;
+
+    if (placeholder_element.value.length == placeholder_element.maxLength) {
+        var placeholder_index = parseInt(placeholder_element.dataset.index);
         var element;
         var input_elements = document.getElementsByTagName('input');
         for (var i = 0; i < input_elements.length; i++) {
