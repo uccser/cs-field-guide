@@ -1,5 +1,4 @@
 from django import template
-from django.conf import settings
 from django.test import override_settings
 from django.http.response import Http404
 from tests.BaseTestWithDB import BaseTestWithDB

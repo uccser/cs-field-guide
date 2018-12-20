@@ -5,7 +5,7 @@ from django.conf import settings
 from django.template.loader import render_to_string
 from django.shortcuts import get_object_or_404
 from interactives.models import Interactive
-from django.utils.translation import activate, get_language
+from django.utils.translation import get_language
 register = template.Library()
 
 
