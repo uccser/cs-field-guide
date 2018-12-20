@@ -15,16 +15,12 @@
     <button id="interactive-frequency-analysis-button" class="interactive-frequency-analysis btn btn-primary btn-lg">{% trans "Analyse!" %}</button>
   </div>
 </div>
-<div id="chart" class="row justify-content-center">
+<div id="chart" class="row justify-content-center d-none">
   <div class="col-sm-12 col-md-8 offset-md-2">
     <canvas id="interactive-frequency-analysis-chart-display"></canvas>
   </div>
 </div>
 {% endblock html %}
-
-{% block css %}
-  <link rel="stylesheet" href="{% static 'interactives/frequency-analysis/css/frequency-analysis.css' %}">
-{% endblock css %}
 
 {% block js %}
   <script type="text/javascript" src="{% static 'interactives/frequency-analysis/js/frequency-analysis.js' %}"></script>
