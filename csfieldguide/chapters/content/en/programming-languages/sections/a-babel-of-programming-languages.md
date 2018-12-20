@@ -8,15 +8,15 @@ For a much larger list you can [check Wikipedia here](https://en.wikipedia.org/w
 
 ## Python
 
-Python is a widely used language, that has also become very popular as a teaching language.
+Python is a widely used language that has also become very popular as a teaching language.
 Many people learn Python as their first programming language.
-In the introduction, we looked at some examples of Python programs, for those who have never programmed before.
+In the introduction, we looked at some examples of Python programs for those who have never programmed before.
 
 Originally though, Python was intended to be a scripting language.
 Scripting languages have syntax that makes them quick to write programs for file processing in, and for doing repetitive tasks on a computer.
 
 As an example of a situation where Python is very useful, imagine your teacher has given 5 quizzes throughout the year, and recorded the results for each student in a file such as this (It could include more than 6 students), where each student’s name is followed by their scores.
-Some students didn’t bother going to class for all the quizzes, so have less than 5 results recorded.
+Some students didn’t bother going to class for all the quizzes, so have fewer than 5 results recorded.
 
 ```
 Karen 12 12 14 18 17
@@ -27,7 +27,7 @@ Amalia 20 20 19 15 18
 Cameron 19 15 12 9 3
 ```
 
-She realises she needs to know the average (assuming 5 quizzes) that each student scored, and with many other things to do does not want to spend much time on this task.
+Your teacher realises she needs to know the average (assuming 5 quizzes) that each student scored, and with many other things to do she does not want to spend much time on this task.
 Using python, she can very quickly generate the data she needs in less than 10 lines of code.
 
 Note that understanding the details of this code is irrelevant to this chapter, particularly if you aren’t yet a programmer.
@@ -162,19 +162,19 @@ Python is sometimes used for making large software systems, although is generall
 - Similar language: Actionscript (Flash)
 
 Note that this section will be completed in a future version of the field guide.
-For now, you should refer to wikipedia page for more information.
+For now, you should refer to Wikipedia for more information.
 
 ## C
 
 - Low level language with the syntax of a high level language
-- Used commonly for programming operating systems, and embedded systems
+- Used commonly for programming operating systems and embedded systems
 - Programs written in C tend to be very fast (because it is designed in a way that makes it easy to compile it optimally into machine code)
 - Bug prone due to the low level details.
   Best not used in situations where it is unnecessary
 - Related languages: C++ (somewhat)
 
 Note that this section will be completed in a future version of the field guide.
-For now, you should refer to wikipedia page for more information.
+For now, you should refer to Wikipedia for more information.
 
 ## Matlab
 
@@ -183,7 +183,7 @@ For now, you should refer to wikipedia page for more information.
 - Related languages: Mathematica, Maple
 
 Note that this section will be completed in a future version of the field guide.
-For now, you should refer to wikipedia page for more information.
+For now, you should refer to Wikipedia for more information.
 
 ## Esoteric Programming Languages
 

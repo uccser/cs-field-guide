@@ -5,3 +5,7 @@ textarea {
 p {
     text-align: left;
 }
+
+#output text {
+  font-family: "Noto Sans", sans-serif;
+}

@@ -1,9 +1,9 @@
-# The Parity Magic Trick
+# The parity magic trick
 
 If you have never seen the parity magic trick before, check out the video in the "What’s the Big Picture?" section above.
 This section assumes that you know what is meant by the parity magic trick, but now we'll explain how it actually works!
 
-{image file-path="img/chapters/parity-trick-cartoon.jpg" alt="The parity magic trick"}
+{image file-path="img/chapters/parity-trick-cartoon.jpg" alt="The parity magic trick" alignment="left"}
 
 A magician asks an observer to lay out a square grid of two-sided cards, and the magician then says they are going to make it a bit harder, and add an extra row and column to the square.
 The magician then faces the other way while the observer flips over one card.
@@ -72,7 +72,7 @@ You can find details and lots of ideas relating to the trick [here](https://www.
 2. Take all the remaining cards, and then say that actually, 5 by 5 is too easy so you are going to make it 6 by 6.
   Instead of adding the new row and column randomly though, you are adding them in the way you did in the interactive (even parity).
   Do this as fast as you can without making errors (it can look very casual if you practise this, even though the cards are being carefully selected).
-3. Tell your friend that you are going to face the other way, and you want them to flip over one card while you are not looking.Check that they've flipped exactly one card.
+3. Tell your friend that you are going to face the other way, and you want them to flip over one card while you are not looking. Check that they've flipped exactly one card.
 4. Turn around again once they have flipped a card, look through the rows and columns, identifying a row and then a column that has an odd number of black cards in it.
   The flipped card will be the one at the intersection of that row and column.
   Flip that card back over.
