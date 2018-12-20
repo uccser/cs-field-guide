@@ -41,8 +41,14 @@ function compressText() {
 				current_sequence = next_sequence; // add to the string and try again
 			} else {
 				if (current_character != undefined) {
+					// check if null in list
+					var newline_index = next_sequence.indexOf('null');
+					if (newline_index != -1) {
+						next_sequence = next_sequence.slice(0, newline_index);
+					}
 					codes.push(next_sequence);
 				}
+				
 				output.push(codes.indexOf(current_sequence));
 				current_sequence = current_character;
 			}
