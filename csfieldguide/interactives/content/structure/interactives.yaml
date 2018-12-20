@@ -42,12 +42,12 @@ binary-mode-calculator:
 # caesar-cipher:
 #   languages:
 #     en: interactives/caesar-cipher.html
-# checksum-calculator:
-#   languages:
-#     en: interactives/checksum-calculator.html
-# checksum-calculator-gtin-13:
-#   languages:
-#     en: interactives/checksum-calculator-gtin-13.html
+checksum-calculator:
+  languages:
+    en: interactives/checksum-calculator.html
+checksum-calculator-gtin-13:
+  languages:
+    en: interactives/checksum-calculator-gtin-13.html
 close-window:
   languages:
     en: interactives/close-window.html
@@ -136,9 +136,9 @@ no-help:
   languages:
     en: interactives/no-help.html
     de: interactives/no-help.html
-# number-generator:
-#   languages:
-#     en: interactives/number-generator.html
+number-generator:
+  languages:
+    en: interactives/number-generator.html
 off-by-one:
   languages:
     en: interactives/off-by-one.html
@@ -149,9 +149,9 @@ off-by-one:
 # packet-attack-level-creator:
 #   languages:
 #     en: interactives/packet-attack-level-creator.html
-# parity:
-#   languages:
-#     en: interactives/parity.html
+parity:
+  languages:
+    en: interactives/parity.html
 payment-interface:
   languages:
     en: interactives/payment-interface.html
