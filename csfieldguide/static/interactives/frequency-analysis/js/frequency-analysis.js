@@ -92,7 +92,7 @@ $("#interactive-frequency-analysis-button").click(function() {
     if (chart != null) {
         chart.destroy();
     }
-
+    $("#chart").show();
     const alphabeticFrequencies = getFrequencies();
     return drawChart(ctx, alphabeticFrequencies);
 });
