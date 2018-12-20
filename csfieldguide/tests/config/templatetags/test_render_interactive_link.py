@@ -48,7 +48,6 @@ class RenderInteractiveLinkTest(BaseTestWithDB):
         )
 
     def test_render_interactive_link_with_interactive_parameter(self):
-        chapter = self.test_data.create_chapter(1)
         interactive = self.interactive_test_data.create_interactive(3)
         context = {"interactive": interactive}
         rendered = self.render_template(
@@ -61,7 +60,6 @@ class RenderInteractiveLinkTest(BaseTestWithDB):
         )
 
     def test_render_interactive_link_with_string_parameter(self):
-        chapter = self.test_data.create_chapter(1)
         self.interactive_test_data.create_interactive(2)
         rendered = self.render_template(
             "{% load render_interactive_link %}\n{% render_interactive_link 'interactive-2' %}",
