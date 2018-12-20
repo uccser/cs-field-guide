@@ -9,31 +9,45 @@ function compress() {
 	outputDictionary();
 }
 
+// LZW algorithm
 function compressText() {
-	// var string_to_encode = 'IAMSAMSAMIAM';
-
 	var string_to_encode = document.getElementById('interactive-lzw-coding-input').value;
+
+	// replace new line characters
+	string_to_encode = string_to_encode.split('');
+    for (var i = 0; i < string_to_encode.length; i++) {
+        string_to_encode[i] = string_to_encode[i].replace(/[\r\n]+/g, null);
+    }
+	
 	var current_sequence = "";
 
 	// set up initial dictionary
 	for (var i = 0; i < string_to_encode.length; i++) {
 		var character = string_to_encode[i];
-		if (codes.indexOf(character) == -1) {
-			codes.push(character);
+		if (character != 'null') {
+			if (codes.indexOf(character) == -1) {
+				codes.push(character);
+			}
 		}
 	}
 
 	// encode the string
 	for (var i = 0; i <= string_to_encode.length; i++) {
 		var current_character = string_to_encode[i];
-		var next_sequence = current_sequence + current_character;
-		if (codes.indexOf(next_sequence) != -1) { // already in dictionary
-			current_sequence = next_sequence; // add to the string and try again
-		} else {
-			if (current_character != undefined) {
-				codes.push(next_sequence);
+
+		if (current_sequence != 'null') { // is not new line character
+			var next_sequence = current_sequence + current_character;
+			if (codes.indexOf(next_sequence) != -1) { // already in dictionary
+				current_sequence = next_sequence; // add to the string and try again
+			} else {
+				if (current_character != undefined) {
+					codes.push(next_sequence);
+				}
+				output.push(codes.indexOf(current_sequence));
+				current_sequence = current_character;
 			}
-			output.push(codes.indexOf(current_sequence));
+		} else { // is new line character
+			output.push('null');
 			current_sequence = current_character;
 		}
 	}
@@ -45,6 +59,10 @@ function outputEncodedMessage() {
 	encoded_message_div.innerHTML = '';
 	var encoded_message_fragment = document.createDocumentFragment();
 	
+	// start by creating div for first line
+	var line_div = document.createElement('div');
+	line_div.classList.add('interactive-lzss-encoded-line');
+
 	// for each code
 	var character_position = 0;
 	for (var i = 0; i < output.length; i++) {
@@ -53,38 +71,47 @@ function outputEncodedMessage() {
 		var code_section_fragment = document.createDocumentFragment();
 
 		var code = output[i];
-		var code_length = codes[code].length;
 
-		var code_div = document.createElement('div');
-		code_div.classList.add('interactive-lzw-code');
-		code_div.setAttribute('data-reference-index', code);
-		
-		for (var j = 0; j < code_length; j++) {
-			var placeholder_input = document.createElement('input');
-			placeholder_input.classList.add('interactive-lzw-placeholder-box');
-			placeholder_input.maxLength = 1;
-		    placeholder_input.setAttribute('data-character-position', character_position);
-			placeholder_input.addEventListener('keyup', function(event) {
-	            autoTab(event);
+		if (code == 'null') { // new line character
+			encoded_message_fragment.appendChild(line_div);
+			line_div = document.createElement('div');
+    		line_div.classList.add('interactive-lzw-encoded-line');
+		} else {
+			var code_length = codes[code].length;
+
+			var code_div = document.createElement('div');
+			code_div.classList.add('interactive-lzw-code');
+			code_div.setAttribute('data-reference-index', code);
+			
+			for (var j = 0; j < code_length; j++) {
+				var placeholder_input = document.createElement('input');
+				placeholder_input.classList.add('interactive-lzw-placeholder-box');
+				placeholder_input.maxLength = 1;
+			    placeholder_input.setAttribute('data-character-position', character_position);
+				placeholder_input.addEventListener('keyup', function(event) {
+		            autoTab(event);
+		        });
+				code_div.appendChild(placeholder_input);
+				character_position += 1;
+			}
+
+			var code_index_div = document.createElement('p');
+			code_index_div.innerHTML = code;
+			code_div.appendChild(code_index_div);
+
+			code_div.addEventListener('mousemove', function(event) {
+	            changeHighlight(event, true);
 	        });
-			code_div.appendChild(placeholder_input);
-			character_position += 1;
+	        code_div.addEventListener('mouseleave', function(event) {
+	            changeHighlight(event, false);
+	        });
+
+	        line_div.appendChild(code_div);
+			// code_section_fragment.appendChild(code_div);
+			// encoded_message_fragment.appendChild(code_section_fragment);
 		}
-
-		var code_index_div = document.createElement('p');
-		code_index_div.innerHTML = code;
-		code_div.appendChild(code_index_div);
-
-		code_div.addEventListener('mousemove', function(event) {
-            changeHighlight(event, true);
-        });
-        code_div.addEventListener('mouseleave', function(event) {
-            changeHighlight(event, false);
-        });
-
-		code_section_fragment.appendChild(code_div);
-		encoded_message_fragment.appendChild(code_section_fragment);
 	}
+	encoded_message_fragment.appendChild(line_div);
 	encoded_message_div.appendChild(encoded_message_fragment);
 }
 
@@ -138,6 +165,7 @@ function outputDictionary() {
 
 function autoTab(event) {
     var placeholder_element = event.srcElement;
+
     if (placeholder_element.value.length == placeholder_element.maxLength) {
         var placeholder_index = parseInt(placeholder_element.dataset.characterPosition);
         var element;
