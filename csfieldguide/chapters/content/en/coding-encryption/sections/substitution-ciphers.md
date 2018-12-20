@@ -188,7 +188,7 @@ HOW ARE YOU
 
 We would start by working that the letter that is 7 places ahead of "H" is "O", 7 places ahead of "O" is "V", and 7 places ahead of "W" is "D".
 This means that the first word of the plaintext encrypts to "OVD" in the ciphertext.
-Going through the the entire plaintext in this way, we can eventually get the ciphertext of:
+Going through the entire plaintext in this way, we can eventually get the ciphertext of:
 
 ```
 OVD HYL FVB
@@ -514,7 +514,7 @@ EIJUDJQJYEKI
 
 {panel type="teacher-note"}
 
-# Answer for the the above question
+# Answer for the above question
 
 The word is "ostentatious", and has been coded by shifting 16 letters to the right (or 10 to the left).
 

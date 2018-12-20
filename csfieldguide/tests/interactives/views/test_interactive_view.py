@@ -52,3 +52,21 @@ class InteractivesViewTest(BaseTestWithDB):
         url = reverse("interactives:iframe_interactive", kwargs=kwargs)
         response = self.client.get(url)
         self.assertEqual(HTTPStatus.NOT_FOUND, response.status_code)
+
+    def test_interactive_view_centered_with_valid_slug(self):
+        self.test_data.create_interactive(1)
+        kwargs = {
+            "interactive_slug": "interactive-1"
+        }
+        url = reverse("interactives:centered_interactive", kwargs=kwargs)
+        response = self.client.get(url)
+        self.assertEqual(HTTPStatus.OK, response.status_code)
+        self.assertTemplateUsed(response, "base/centered.html")
+
+    def test_interactive_view_centered_with_invalid_slug(self):
+        kwargs = {
+            "interactive_slug": "interactive-invalid"
+        }
+        url = reverse("interactives:centered_interactive", kwargs=kwargs)
+        response = self.client.get(url)
+        self.assertEqual(HTTPStatus.NOT_FOUND, response.status_code)

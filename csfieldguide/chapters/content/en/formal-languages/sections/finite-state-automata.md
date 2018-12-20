@@ -491,8 +491,6 @@ so we recommend using Exorciser if it's available.
 If you use JFLAP we recommend that you become familiar with it first so that you can guide students through it: the interface has many distracting features and can be a little quirky, and fiddling around without taking time to learn how to use it will be a frustrating experience.
 Fortunately there's a good tutorial about using JFLAP [here](http://www.jflap.org/tutorial/), and some material from Duke University about FSAs based around JFLAP [here](http://www.cs.duke.edu/csed/pltl/exercises/lessons/29/finiteautomata.zip) (ZIP file).
 
-If you have trouble using Exorciser or JFLAP, there's also an FSA example in the "Java Applets Centre" at [http://www.cosc.canterbury.ac.nz/mukundan/thco/DFA.html](https://web.archive.org/web/20170328182143/http://www.cosc.canterbury.ac.nz/mukundan/thco/DFA.html).
-
 {panel end}
 
 Another widely used system for experimenting with FSAs is a program called JFLAP (download it from http://jflap.org).
@@ -669,7 +667,6 @@ The game is available [here](http://pleasingfungus.com/#Manufactoria) and [here]
 
 If you use the Java-based graphical educational system [Greenfoot](http://www.greenfoot.org/door) as a programming environment, the [treasure hunt finite state automata exercise](http://greenroom.greenfoot.org/resources/5) is based on the Treasure Island FSA activity from CS Unplugged.
 Teachers can register at the [Greenroom](http://greenroom.greenfoot.org/door) resources area to download the software.
-Students can interact with the activity, without accessing source code, through: http://www.greenfoot.org/scenarios/1678 .
 
 If you use [Scratch](http://scratch.mit.edu/), the following program is promising, but it doesn't have an activity or guide, and Level 3 students may have progressed beyond Scratch.
 It implements the Finite State Automata CS Unplugged activity in Scratch, and can be downloaded as part of a [zip file](http://code.google.com/p/scratch-unplugged/downloads/detail?name=scratch-unplugged-1-0.zip&can=2&q=) of a full set of Unplugged activities.

@@ -101,7 +101,7 @@ Because there are only 2 digits, this means that each digit is **2** times the v
 
 # The Denary number system
 
-The base 10 (decimal) system is sometimes called denary, which is more consistent with the the name binary for the base 2 system.
+The base 10 (decimal) system is sometimes called denary, which is more consistent with the name binary for the base 2 system.
 The word "denary" also refers to the Roman denarius coin, which was worth ten asses (an "as" was a copper or bronze coin).
 The term "denary" seems to be used mainly in the UK; in the US, Australia and NZ the term "decimal" is more common.
 
@@ -528,7 +528,7 @@ There's an alternative representation called *Two's Complement*, which avoids ha
 ***Representing positive numbers with Two's Complement***
 
 Representing positive numbers is the same as the method you have already learnt.
-Using **8 bits**,the leftmost bit is a zero and the other 7 bits are the usual binary representation of the number; for example, **1** would be **00000001**, and 65 would be **00110010**.
+Using **8 bits**,the leftmost bit is a zero and the other 7 bits are the usual binary representation of the number; for example, **1** would be **00000001**, and **50** would be **00110010**.
 
 ***Representing negative numbers with Two's Complement***
 

@@ -1,0 +1,81 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div class="container">
+    <div class="row text-center" id="interactive-searching-algorithms">
+      <div class="col-12 text-center">
+        <h1 id="heading">{% trans "Searching Algorithms" %}</h1>
+      </div>
+      <div class="col-12">
+
+        <div id="rules">
+          <div id="default-rules">
+            <div class="rule-line">
+              <p>{% trans "The boxes are in a <span id='order'></span> order. Out of <span id='num-boxes'></span> boxes, the number to find is <span id='target'>100</span>." %}</p>
+            </div>
+            <div class="rule-line">
+              <p id="num-guesses-text">{% trans "You have <span id='num-guesses'></span> guesses to find it." %}</p>
+            </div>
+          </div>
+          <div id="no-guesses" class="hide-message">
+            <p>{% trans "You ran out of guesses!" %}</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="boxes-container" class="col-12">
+        <div id="boxes" class="my-2">
+        </div>
+      </div>
+
+      <div class="col-12 text-center mt-2">
+        <div id="found" class="hide-message">
+          <p>{% trans "You found it!" %}</p>
+          <div id="num-guesses-used-message">
+            <p id="num-guesses-used"><br></p>
+          </div>
+        </div>
+        <div id="next-level-container" class="hide-message">
+          <button id="next-level" class="btn btn-primary my-2">{% trans "Next Level" %}</button>
+        </div>
+        <div>
+          <button id="restart-level" class="btn btn-primary mb-2">{% trans "Restart Level" %}</button>
+        </div>
+        <div id="restart-start-level-container">
+          <button id="restart-start-level" class="btn btn-primary">{% trans "Restart From First Level" %}</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/searching-algorithms/css/searching-algorithms.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript">
+    var colourful_box_images = [
+      "{% static 'interactives/high-score-boxes/img/square1-200px-rounded.png' %}",
+      "{% static 'interactives/high-score-boxes/img/square2-200px-rounded.png' %}",
+      "{% static 'interactives/high-score-boxes/img/square3-200px-rounded.png' %}",
+      "{% static 'interactives/high-score-boxes/img/square4-200px-rounded.png' %}",
+      "{% static 'interactives/high-score-boxes/img/square5-200px-rounded.png' %}",
+      "{% static 'interactives/high-score-boxes/img/square6-200px-rounded.png' %}",
+      "{% static 'interactives/high-score-boxes/img/square7-200px-rounded.png' %}",
+      "{% static 'interactives/high-score-boxes/img/square8-200px-rounded.png' %}",
+      "{% static 'interactives/high-score-boxes/img/square9-200px-rounded.png' %}",
+      "{% static 'interactives/high-score-boxes/img/square10-200px-rounded.png' %}",
+      "{% static 'interactives/high-score-boxes/img/square11-200px-rounded.png' %}",
+      "{% static 'interactives/high-score-boxes/img/square12-200px-rounded.png' %}",
+      "{% static 'interactives/high-score-boxes/img/square13-200px-rounded.png' %}",
+      "{% static 'interactives/high-score-boxes/img/square14-200px-rounded.png' %}",
+      "{% static 'interactives/high-score-boxes/img/square15-200px-rounded.png' %}",
+    ];
+  </script>
+  <script type="text/javascript" src="{% static 'interactives/searching-algorithms/js/searching-algorithms.js' %}"></script>
+{% endblock js %}

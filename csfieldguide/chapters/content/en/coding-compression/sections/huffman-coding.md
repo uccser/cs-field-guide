@@ -7,7 +7,7 @@ On average, this is better than using the same length code for every symbol.
 But working out the optimal code for each symbol is harder than it might seem - in fact, no-one could work out an algorithm to compute the best code until a student called David Huffman did it in 1951, and his achievement was impressive enough that he was allowed to pass his course without sitting the final exam.
 
 The technique of Huffman coding is the final stage in many compression methods, including JPEG, MP3, and zip.
-The purpose of Huffman coding is to take a set of "symbols" (which could be characters in text, run lengths in RLE, pointer values in an Ziv-Lempel system, or parameters in lossy systems), and provide the optimal bit patterns with which they can be represented.
+The purpose of Huffman coding is to take a set of "symbols" (which could be characters in text, run lengths in RLE, pointer values in a Ziv-Lempel system, or parameters in lossy systems), and provide the optimal bit patterns with which they can be represented.
 It's normally presented as a way of compressing textual documents, and while it can do that reasonably well, it works much better in combination with Ziv-Lempel coding (see below).
 
 But let's start with a very simple textual example.

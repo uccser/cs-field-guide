@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}
+  {{ interactive.name }}
+{% endblock title %}
+
+{% block body %}
+  {% if not interactive.translation_available %}
+    {% with model=interactive %}
+      {% include 'generic/not-available-warning.html' %}
+    {% endwith %}
+  {% else %}
+    <style>
+      body {
+        padding-top: 0 !important;
+        background-color: transparent !important;
+      }
+    </style>
+    <div class="interactive d-flex align-items-center justify-content-center" style="height: 100vh;">
+      {% block html %}
+      {% endblock html %}
+    </div>
+
+    {% block css %}
+    {% endblock css %}
+
+    {% block js %}
+    {% endblock js %}
+  {% endif %}
+{% endblock body %}
