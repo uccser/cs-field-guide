@@ -101,7 +101,6 @@ $("#interactive-frequency-analysis-button").click(function() {
     return drawChart(ctx, alphabeticFrequencies);
 });
 
-
 $(document).ready(function() {
     const frequencies = getFrequencies();
     return drawChart(ctx, frequencies);
