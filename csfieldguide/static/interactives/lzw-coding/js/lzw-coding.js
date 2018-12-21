@@ -138,14 +138,9 @@ function changeHighlight(event, highlight) {
 	}
 }
 
-
-// display the dictionary built by LZW
-function outputDictionary() {
-	var dictionary_div = document.getElementById('interactive-lzw-coding-dictionary');
-	dictionary_div.innerHTML = '';
+function makeDictionaryEntryElements(start_index, end_index, element) {
 	var fragment = document.createDocumentFragment();
-	
-	for (var i = 0; i < codes.length; i++) {
+	for (var i = start_index; i < end_index; i++) {
 		// create dictionary entry element
 		var dictionary_entry = document.createElement('div');
 		dictionary_entry.classList.add('interactive-lzw-dictionary-entry');
@@ -166,7 +161,21 @@ function outputDictionary() {
 		dictionary_entry.appendChild(value_element);
 		fragment.append(dictionary_entry);
 	}
-	dictionary_div.appendChild(fragment);
+	element.appendChild(fragment);
+};
+
+
+// display the dictionary built by LZW 
+function outputDictionary() {
+	var col1_dictionary_div = document.getElementById('interactive-lzw-coding-dictionary-col-1');
+	var col2_dictionary_div = document.getElementById('interactive-lzw-coding-dictionary-col-2');
+	col1_dictionary_div.innerHTML = '';
+	col2_dictionary_div.innerHTML = '';
+	
+	var middle_index = codes.length/2;
+	makeDictionaryEntryElements(0, middle_index, col1_dictionary_div);
+	makeDictionaryEntryElements(middle_index, codes.length, col2_dictionary_div);
+
 }
 
 function autoTab(event) {
