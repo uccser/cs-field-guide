@@ -80,9 +80,13 @@ const drawChart = function(ctx, frequencies) {
             scales: {
                 yAxes: [{
                     ticks: {
-                        beginAtZero: true
+                        beginAtZero: true,
+                        maxTicksLimit: 11
                     }
                 }]
+            },
+            legend : {
+                display: false
             }
         }
     });
