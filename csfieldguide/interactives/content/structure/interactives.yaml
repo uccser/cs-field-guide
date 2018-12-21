@@ -165,9 +165,9 @@ payment-interface:
 # regular-expression-filter:
 #   languages:
 #     en: interactives/regular-expression-filter.html
-# regular-expression-search:
-#   languages:
-#     en: interactives/regular-expression-search.html
+regular-expression-search:
+  languages:
+    en: interactives/regular-expression-search.html
 # rgb-mixer:
 #   languages:
 #     en: interactives/rgb-mixer.html

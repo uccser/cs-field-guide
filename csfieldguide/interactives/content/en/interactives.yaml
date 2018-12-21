@@ -99,7 +99,7 @@ python-interpreter:
 regular-expression-filter:
   name: regular-expression-filter (broken)
 regular-expression-search:
-  name: regular-expression-search (broken)
+  name: Regular Expresion Search
 rgb-mixer:
   name: RGB Mixer
 rsa-jsencrypt:
