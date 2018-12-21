@@ -54,7 +54,7 @@ const $decryptButton = $("#interactive-caesar-decrypt");
 const $plaintext = $("#interactive-caesar-plaintext");
 const $ciphertext = $("#interactive-caesar-ciphertext");
 
-$plaintext.on('textInput', () =>
+$plaintext.on('input', () =>
     /* Ensure plaintext is always uppercase */
     $plaintext.val($plaintext.val().toUpperCase())
 );
