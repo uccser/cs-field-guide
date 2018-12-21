@@ -6,8 +6,6 @@ const Chart = require('chart.js');
 const TextID = "#interactive-frequency-analysis-input";
 const ChartID = "#interactive-frequency-analysis-chart-display";
 
-const ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
 const characterFrequencies = function(string) {
     /* Given a string this gives a map of frequencies */
     const freqs = new Map();
@@ -26,15 +24,13 @@ const getFrequencies = function() {
     /* This gets the frequencies from the text entry and returns a map
         of frequencies
     */
-    const text = $(TextID).val().toUpperCase();
+    const text = $(TextID).val().toUpperCase().replace(/\s/g, "");
 
     const allCharFrequencies = characterFrequencies(text);
 
     const alphabeticFrequencies = (() => {
         const result = [];
-        for (let char of Array.from(ALPHABET)) {
-            var left;
-            const freq = (left = allCharFrequencies.get(char)) != null ? left : 0;
+        for (const [char, freq] of allCharFrequencies.entries()) {
             result.push([char, freq]);
         }
         return result;
@@ -80,7 +76,14 @@ const drawChart = function(ctx, frequencies) {
         data: data,
         options: {
             scaleFontSize: 16,
-            responsive: true
+            responsive: true,
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
         }
     });
 };
