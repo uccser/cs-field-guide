@@ -92,7 +92,8 @@ $("#interactive-frequency-analysis-button").click(function() {
     if (chart != null) {
         chart.destroy();
     }
-    $("#chart").show();
+    $("#chart").removeClass('d-none');
+    $("#chart").addClass('d-block');
     const alphabeticFrequencies = getFrequencies();
     return drawChart(ctx, alphabeticFrequencies);
 });
