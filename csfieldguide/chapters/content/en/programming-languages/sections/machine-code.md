@@ -87,6 +87,9 @@ jr $ra
 
 You can run this program using a MIPS emulator using this interactive:
 
+{button-link link="http://www.csfieldguide.org.nz/releases/2.12.2/_static/widgets/COMPRESSION/LWZ/public_html/index.html" text="View MIPS Assembler interactive"}
+
+
 {interactive slug="mips-assembler" type="whole-page" text="MIPS Assembler" file-type="php"}
 
 Copy and paste the output in the "Assembler Output" box into the box in this simulator interactive:
