@@ -1,12 +1,12 @@
-# Storing Passwords Securely
+# Storing passwords securely
 
 A really interesting puzzle in encryption is storing passwords in a way that even if the database with the passwords gets leaked, the passwords are not in a usable form.
 Such a system has many seemingly conflicting requirements.
 
 - When a user logs in, it must be possible to check that they have entered the correct password.
 - Even if the database is leaked, and the attacker has huge amounts of computing power...
-  - The database should not give away obvious information, such as password lengths, users who chose the same passwords, letter frequencies of the passwords, or patterns in the passwords.
-  - At the very least, users should have several days/ weeks to be able to change their password before the attacker cracks it.
+    - The database should not give away obvious information, such as password lengths, users who chose the same passwords, letter frequencies of the passwords, or patterns in the passwords.
+    - At the very least, users should have several days/weeks to be able to change their password before the attacker cracks it.
   Ideally, it should not be possible for them to ever recover the passwords.
 - There should be no way of recovering a forgotten password.
   If the user forgets their password, it must be reset.
@@ -42,7 +42,7 @@ The remainder of this chapter will focus on SHA-256.
 
 # What is meant by brute force?
 
-In the Caesar Cipher section, we talked briefly about brute force attacks.
+In the Caesar cipher section, we talked briefly about brute force attacks.
 Brute force attack in that context meant trying every possible key until the correct one was found.
 
 More generally, brute force is trying every possibility until a solution is found.
@@ -71,7 +71,7 @@ You could determine their passwords by putting various possibilities through SHA
 It might initially sound like we have the perfect system.
 But unfortunately, there is still a big problem.
 You can find *rainbow tables* online, which are precomputed lists of common passwords with what value they hash to.
-It isn't too difficult to generate rainbow tables containing all passwords up to a certain size in fact (this is one reason why using long passwords is strongly recommended!).
+It isn't too difficult to generate rainbow tables containing all passwords up to a certain size (this is one reason why using long passwords is strongly recommended!).
 This problem can be avoided by choosing a password that isn't a common word or combination of words.
 
 Hashing is a good start, but we need to further improve our system so that if two users choose the same password, their hash is not the same, while still ensuring that it is possible to check whether or not a user has entered the correct password.
