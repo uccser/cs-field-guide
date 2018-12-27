@@ -7,13 +7,16 @@
   padding: 0 3px;
   margin: 0.5rem 0;
 }
+
 #interactive-regular-expression-search .CodeMirror .cm-highlight {
   background-color: lightgreen;
 }
+
 #interactive-regular-expression-search table td,
 #interactive-regular-expression-search table th {
   padding: 0.5rem;
 }
+
 #interactive-regular-expression-search table td:nth-child(1) {
   font-family: monospace;
 }
