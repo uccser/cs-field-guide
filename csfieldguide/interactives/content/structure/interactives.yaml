@@ -184,6 +184,15 @@ payment-interface:
 regular-expression-search:
   languages:
     en: interactives/regular-expression-search.html
+remote-complicated:
+  languages:
+    en: interactives/remote-complicated.html
+remote-modified:
+  languages:
+    en: interactives/remote-modified.html
+remote-simple:
+  languages:
+    en: interactives/remote-simple.html
 # rgb-mixer:
 #   languages:
 #     en: interactives/rgb-mixer.html

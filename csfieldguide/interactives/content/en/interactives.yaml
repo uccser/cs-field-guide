@@ -100,6 +100,12 @@ regular-expression-filter:
   name: Regular Expression Filter
 regular-expression-search:
   name: Regular Expresion Search
+remote-complicated:
+  name: Complicated Remote
+remote-modified:
+  name: Modified Remote
+remote-simple:
+  name: Simple Remote
 rgb-mixer:
   name: RGB Mixer
 rsa-jsencrypt:
