@@ -23,9 +23,9 @@ awful-calculator:
 big-number-calculator:
   languages:
     en: interactives/big-number-calculator.html
-# bin-packing:
-#   languages:
-#     en: interactives/bin-packing.html
+bin-packing:
+  languages:
+    en: interactives/bin-packing.html
 # binary-cards:
 #   languages:
 #     en: interactives/binary-cards.html
