@@ -30,7 +30,7 @@ There are lots of [articles in cs4fn on cryptography](http://www.cs4fn.org/secur
 
 The book "Hacking Secret Ciphers with Python: A beginner's guide to cryptography and computer programming with Python" (by Al Sweigart) goes over some simple ciphers including ones mentioned in this chapter, and how they can be programmed (and attacked) using Python programs.
 
-## Useful Links
+## Useful links
 
 - [How Stuff Works entry on Encryption](http://www.howstuffworks.com/encryption.htm)
 - [Cryptool](http://www.cryptool.org/) is a free system for trying out classical and modern encryption methods. Some are beyond the scope of this chapter, but many will be useful for running demonstrations and experiments in cryptography.

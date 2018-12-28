@@ -27,10 +27,10 @@ $(document).ready(function(){
     // Display status
     if (parity_status) {
       Parity.feedback.removeClass('error');
-      Parity.feedback.text(gettext("Correct: Every row and column has even parity (of white squares)"));
+      Parity.feedback.text(gettext("Correct: Every row and column has even parity (of black squares)"));
     } else {
       Parity.feedback.addClass('error');
-      Parity.feedback.text(gettext("Incorrect: Not every row and column has even parity (of white squares)"));
+      Parity.feedback.text(gettext("Incorrect: Not every row and column has even parity (of black squares)"));
     }
   });
 
@@ -300,15 +300,15 @@ function checkParity() {
 
   column_counts = new Array(Parity.grid_values.length).fill(0);
   for (var row = 0; row < Parity.grid_values.length; row++) {
-    var white_bit_count = 0;
+    var black_bit_count = 0;
     for (var col = 0; col < Parity.grid_values.length; col++) {
       // If white (true) add to counts
-      if (Parity.grid_values[row][col]) {
-        white_bit_count++;
+      if (Parity.grid_values[row][col] == 0) {
+        black_bit_count++;
         column_counts[col]++;
       }
     }
-    if (white_bit_count % 2 == 1) {
+    if (black_bit_count % 2 == 1) {
       parity_status = false;
     }
   }
@@ -329,16 +329,16 @@ function setParityBits() {
 
   column_counts = new Array(Parity.grid_values.length).fill(0);
   for (var row = 0; row < Parity.grid_values.length-1; row++) {
-    var white_bit_count = 0;
+    var black_bit_count = 0;
     for (var col = 0; col < Parity.grid_values.length-1; col++) {
-      // If white (true) add to counts
-      if (Parity.grid_values[row][col]) {
-        white_bit_count++;
+      // If black add to counts
+      if (Parity.grid_values[row][col] == 0) {
+        black_bit_count++;
         column_counts[col]++;
       }
     }
     // Last bit in row
-    if (white_bit_count % 2 == 0) {
+    if (black_bit_count % 2 == 0) {
       Parity.grid_values[row][Parity.grid_values.length-1] = false;
     } else {
       column_counts[Parity.grid_values.length-1]++;

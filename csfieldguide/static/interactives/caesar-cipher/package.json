@@ -4,7 +4,6 @@
     "private": true,
     "dependencies": {
         "es5-shim": "latest",
-        "es6-shim": "latest",
-        "jquery-text-input": "Jamesernator/jquery-text-input"
+        "es6-shim": "latest"
     }
 }

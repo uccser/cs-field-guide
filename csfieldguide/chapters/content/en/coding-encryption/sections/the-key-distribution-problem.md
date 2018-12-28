@@ -1,4 +1,4 @@
-# The Key Distribution Problem
+# The key distribution problem
 
 {panel type="curiosity"}
 
@@ -87,6 +87,12 @@ For this section on public key systems, we will use RSA as an example.
 
 ### Generating the encryption and decryption keys
 
+Firstly, you will need to generate a pair of keys using the key generator interactive.
+You should *keep the private key secret*, and *publicly announce the public key* so that your friends can send you messages (e.g. put it on the whiteboard, or email it to some friends).
+Make sure you save your keys somewhere so you don’t forget them – a text file would be best.
+
+{interactive slug="rsa-key-generator" type="in-page"}
+
 {panel type="teacher-note"}
 
 # Ideas for RSA fun in the classroom
@@ -95,12 +101,6 @@ One thing you might like to do is to ask each student to generate their key pair
 Then when the students would like to send an encrypted message to one of their classmates, they can look up the person's public key in the spreadsheet.
 
 {panel end}
-
-Firstly, you will need to generate a pair of keys using the key generator interactive.
-You should *keep the private key secret*, and *publicly announce the public key* so that your friends can send you messages (e.g. put it on the whiteboard, or email it to some friends).
-Make sure you save your keys somewhere so you don’t forget them – a text file would be best.
-
-{interactive slug="rsa-key-generator" type="in-page"}
 
 ### Encrypting messages with the public key
 
@@ -155,13 +155,13 @@ So why is it that despite these two problems being similar, one of them is "easy
 
 You have probably done long multiplication in school by making one line for each digit in the second number and then adding all the rows together.
 We can analyse the speed of this algorithm, much like we did in the algorithms chapter for sorting and searching.
-Assuming that each of the two numbers has the same number of digits, which we will call *n* ("Number of digits"), we need to write *n* rows.
-For each of those *n* rows, we will need to do around *n* multiplications.
-That gives us ``\( n \times n \)`` little multiplications.
-We need to add the *n* rows together at the end as well, but that doesn’t take long so lets ignore that part.
+Assuming that each of the two numbers has the same number of digits, which we will call \(n\) ("Number of digits"), we need to write \(n\) rows.
+For each of those \(n\) rows, we will need to do around \(n\) multiplications.
+That gives us \(n \times n\) little multiplications.
+We need to add the \(n\) rows together at the end as well, but that doesn’t take long so lets ignore that part.
 We have determined that the number of small multiplications needed to multiply two big numbers is approximately the square of the number of digits.
 So for two numbers with 1000 digits, that’s 1,000,000 little multiplication operations.
-A computer can do that in less than a second! If you know about Big-O notation, this is an ``\( O(n^2) \)`` algorithm, where *n* is the number of digits.
+A computer can do that in less than a second! If you know about Big-O notation, this is an \( O(n^2) \) algorithm, where \(n\) is the number of digits.
 Note that some slightly better algorithms have been designed, but this estimate is good enough for our purposes.
 
 For the second problem, we’d need an algorithm that could find the two numbers that were multiplied together.
@@ -173,17 +173,17 @@ So it isn’t a straightforward long division problem at all!
 It turns out that there is no known fast algorithm to solve the problem.
 One way is to just try dividing by every number that is less than the number (well, we only need to go up to the square root, but that doesn’t help much!) There are still billions of billions of billions of numbers we need to check.
 Even a computer that could check 1 billion possibilities a second isn’t going to help us much with this!
-If you know about Big-O notation, this is an ``\( O(10^n) \)`` algorithm, where n is the number of digits -- even small numbers of digits are just too much to deal with!
+If you know about Big-O notation, this is an \( O(10^n) \) algorithm, where n is the number of digits -- even small numbers of digits are just too much to deal with!
 There are slightly better solutions, but none of them shave off enough time to actually be useful for problems of the size of the one above!
 
 The chapter on [complexity and tractability]('chapters:chapter' 'complexity-tractability') looks at more computer science problems that are surprisingly challenging to solve.
-If you found this stuff interesting, do read about Complexity and Tractability when you are finished here!
+If you found this stuff interesting, do read about complexity and tractability when you are finished here!
 
 {panel end}
 
 {panel type="curiosity"}
 
-# Encrypting with the private key instead of the public key — Digital Signatures!
+# Encrypting with the private key instead of the public key — digital signatures!
 
 In order to encrypt a message, the public key is used.
 In order to decrypt it, the corresponding private key must be used.
