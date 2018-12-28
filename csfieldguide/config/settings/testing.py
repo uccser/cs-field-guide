@@ -76,6 +76,7 @@ INSTALLED_APPS += [  # noqa: F405
 # Override production value of LANGUAGES - this is what django-modeltranslation
 # will use when adding translated fields to the models on startup, which is
 # necessary to test i18n backend functionality.
+ORIGINAL_DEFAULT_LANGUAGES = DEFAULT_LANGUAGES
 LANGUAGES = (
     ("en", "English"),
     ("de", "German"),
