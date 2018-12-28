@@ -97,7 +97,7 @@ pixel-viewer:
 python-interpreter:
   name: Python Interpreter
 regular-expression-filter:
-  name: regular-expression-filter (broken)
+  name: Regular Expression Filter
 regular-expression-search:
   name: Regular Expresion Search
 rgb-mixer:
