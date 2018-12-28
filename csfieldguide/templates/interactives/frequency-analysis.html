@@ -1,0 +1,26 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+<h4 class="text-center">{% trans "Frequency Analysis" %}</h4>
+<div class="row justify-content-center mb-2">
+  <div class="col-sm-12 col-md-8">
+    <textarea placeholder="{% trans 'Enter some text' %}" class="interactive-frequency-analysis form-control" rows="5" id="interactive-frequency-analysis-input"></textarea>
+  </div>
+  <div class="col-sm-12 text-center">
+    <button id="interactive-frequency-analysis-button" class="interactive-frequency-analysis btn btn-primary btn-lg my-2">{% trans "Analyse!" %}</button>
+  </div>
+  <div id="chart" class="d-none col-sm-12 col-md-8 text-center">
+    <canvas id="interactive-frequency-analysis-chart-display"></canvas>
+    <small>
+      {% trans "Click a bar to see the exact number of occurences. All characters with 0 occurences are not shown." %}
+    </small>
+  </div>
+</div>
+{% endblock html %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/frequency-analysis/js/frequency-analysis.js' %}"></script>
+{% endblock js %}

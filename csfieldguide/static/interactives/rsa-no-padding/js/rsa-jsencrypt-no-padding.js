@@ -1,3 +1,5 @@
+require('jsencrypt');
+
 var RSAEncrypt = {};
 
 $(document).ready(function(){
