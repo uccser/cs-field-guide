@@ -1,0 +1,49 @@
+#remote-simple-container {
+  transform: scale(0.8);
+  background-color: #303030;
+  border-radius: 10px;
+  .btn-danger {
+    line-height: 1;
+  }
+}
+
+.btn-dark-blue {
+  color: #fff;
+  background-color: #0066cc;
+  border-color: #0066cc;
+}
+
+#outer-circle {
+  width: 5rem;
+  height: 5rem;
+  background: #d0d0d0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+#inner-circle {
+  width: 2rem;
+  height: 2rem;
+  background: #a1a1a1;
+  border-radius: 50%;
+}
+
+.arrow {
+  position: absolute;
+  color: #303030;
+  &-up {
+    top: 0;
+  }
+  &-right {
+    right: 5px;
+  }
+  &-left {
+    left: 5px;
+  }
+  &-down {
+    bottom: 0;
+  }
+}

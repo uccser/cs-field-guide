@@ -13,7 +13,7 @@ base-calculator:
 big-number-calculator:
   name: Big Number Calculator
 bin-packing:
-  name: bin-packing (broken)
+  name: Bin Packing
 binary-cards:
   name: Binary Cards
 binary-mode-calculator:
@@ -49,7 +49,7 @@ delay-analyser:
 delayed-checkbox:
   name: Delayed Checkbox
 frequency-analysis:
-  name: frequency-analysis (broken)
+  name: Frequency Analysis
 fsa-box:
   name: FSA Box
 fsa-light:
@@ -93,15 +93,21 @@ pixel-viewer:
 python-interpreter:
   name: Python Interpreter
 regular-expression-filter:
-  name: regular-expression-filter (broken)
+  name: Regular Expression Filter
 regular-expression-search:
   name: Regular Expresion Search
+remote-complicated:
+  name: Complicated Remote
+remote-modified:
+  name: Modified Remote
+remote-simple:
+  name: Simple Remote
 rgb-mixer:
   name: RGB Mixer
 rsa-jsencrypt:
   name: RSA jsencrypt
 rsa-key-generator:
-  name: rsa-key-generator (broken)
+  name: RSA Key Generator
 rsa-no-padding:
   name: RSA No Padding
 run-length-encoding:

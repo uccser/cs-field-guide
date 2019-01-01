@@ -2,6 +2,7 @@
 
 {% load i18n %}
 {% load static %}
+{% load render_interactive_link %}
 
 {% block title %}
   {% trans "Interactives" %}
@@ -19,7 +20,7 @@
       <div class="row">
         {% for interactive in chapter.interactives.all %}
         <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
-          {% include "interactives/utils/interactive-link.html" %}
+          {% render_interactive_link interactive.slug %}
         </div>
         {% endfor %}
       </div>
@@ -33,7 +34,7 @@
     <div class="row">
       {% for interactive in interactives %}
         <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
-          {% include "interactives/utils/interactive-link.html" %}
+          {% render_interactive_link interactive.slug %}
         </div>
       {% endfor %}
     </div>
