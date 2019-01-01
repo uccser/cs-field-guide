@@ -87,11 +87,11 @@ jr $ra
 
 You can run this program using a MIPS emulator using this interactive:
 
-{button-link link="http://www.csfieldguide.org.nz/releases/2.11.0/en/interactives/mips-assembler/index.php" text="View MIPS Assembler interactive"}
+{button-link link="http://www.csfieldguide.org.nz/releases/2.11.0/en/interactives/mips-assembler/index.php" text="View MIPS assembler interactive"}
 
 Copy and paste the output in the "Assembler Output" box into the box in this simulator interactive:
 
-{button-link link="http://www.csfieldguide.org.nz/releases/2.11.0/en/interactives/mips-simulator/index.php" text="View MIPS Simulator interactive"}
+{button-link link="http://www.csfieldguide.org.nz/releases/2.11.0/en/interactives/mips-simulator/index.php" text="View MIPS simulator interactive"}
 
 Once you have got the program working, try changing the values that are added.
 The comments tell you where these numbers that can be changed are.

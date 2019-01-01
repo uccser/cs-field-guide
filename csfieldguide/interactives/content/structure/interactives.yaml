@@ -20,12 +20,12 @@ awful-calculator:
 # base-calculator:
 #   languages:
 #     en: interactives/base-calculator.html
-# big-number-calculator:
-#   languages:
-#     en: interactives/big-number-calculator.html
-# bin-packing:
-#   languages:
-#     en: interactives/bin-packing.html
+big-number-calculator:
+  languages:
+    en: interactives/big-number-calculator.html
+bin-packing:
+  languages:
+    en: interactives/bin-packing.html
 # binary-cards:
 #   languages:
 #     en: interactives/binary-cards.html
@@ -39,9 +39,9 @@ binary-mode-calculator:
 # box-translation:
 #   languages:
 #     en: interactives/box-translation.html
-# caesar-cipher:
-#   languages:
-#     en: interactives/caesar-cipher.html
+caesar-cipher:
+  languages:
+    en: interactives/caesar-cipher.html
 checksum-calculator:
   languages:
     en: interactives/checksum-calculator.html
@@ -86,9 +86,9 @@ delayed-checkbox:
   languages:
     en: interactives/delayed-checkbox.html
     de: interactives/delayed-checkbox.html
-# frequency-analysis:
-#   languages:
-#     en: interactives/frequency-analysis.html
+frequency-analysis:
+  languages:
+    en: interactives/frequency-analysis.html
 # fsa-box:
 #   languages:
 #     en: interactives/fsa-box.html
@@ -120,12 +120,6 @@ menu-keystrokes:
   languages:
     en: interactives/menu-keystrokes.html
     de: interactives/menu-keystrokes.html
-# mips-assembler:
-#   languages:
-#     en: interactives/mips-assembler.html
-# mips-simulator:
-#   languages:
-#     en: interactives/mips-simulator.html
 # ncea-guide-selector:
 #   languages:
 #     en: interactives/ncea-guide-selector.html
@@ -171,24 +165,24 @@ regular-expression-search:
 # rgb-mixer:
 #   languages:
 #     en: interactives/rgb-mixer.html
-# rsa-jsencrypt:
-#   languages:
-#     en: interactives/rsa-jsencrypt.html
-# rsa-key-generator:
-#   languages:
-#     en: interactives/rsa-key-generator.html
-# rsa-no-padding:
-#   languages:
-#     en: interactives/rsa-no-padding.html
+rsa-jsencrypt:
+  languages:
+    en: interactives/rsa-jsencrypt.html
+rsa-key-generator:
+  languages:
+    en: interactives/rsa-key-generator.html
+rsa-no-padding:
+  languages:
+    en: interactives/rsa-no-padding.html
 run-length-encoding:
   languages:
     en: interactives/run-length-encoding.html
 searching-algorithms:
   languages:
     en: interactives/searching-algorithms.html
-# sha2:
-#   languages:
-#     en: interactives/sha2.html
+sha2:
+  languages:
+    en: interactives/sha2.html
 sorting-algorithm-comparison:
   languages:
     en: interactives/sorting-algorithm-comparison.html
