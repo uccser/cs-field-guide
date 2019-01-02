@@ -186,15 +186,15 @@ Los programas pueden contener muchas funciones y que todas sean visibles al mism
 
 Los mandos a distancia de las teles suelen ser un gran ejemplo de interfaces complicadas. Una de las razones por las que tienen tantos botones es porque así el dispositivo parece más impresionante en la tienda, pero una vez que lo llevamos a casa nos damos cuenta de que muchos de los botones son innecesarios o crean confusión.
 
-{image file-path="img/chapters/remote-complex.jpg" alt="Un mando a distancia complejo." alightment="left"}
+{interactive slug="remote-complicated" type="in-page"}
 
 El mando a distancia mostrado aquí tiene varios botones que, en principio, podrían hacer lo mismo: "Direct Navigator", "Guide", "Function Menu", "Status" y "Option", todos permiten acceder a diferentes funciones, pero es difícil predecir cuál es cuál. ¡Este mando tiene 55 botones en total!
 
-{image file-path="img/chapters/remote-simple.jpg" alt="Un mando a distancia simple." alignment="left"}
+{interactive slug="remote-simple" type="in-page"}
 
 En cambio, el mando a distancia de Apple tiene muy pocos botones y es un buen ejemplo de una interfaz minimalista. Solo hay un "Menú" para elegir, por lo que está bastante claro lo que hay que hacer para seleccionar los controles necesarios. Obviamente, el mando a distancia simple depende de los menús mostrados en la pantalla y estos tienen el potencial de hacer las cosas más complicadas.
 
-{image file-path="img/chapters/remote-adapted.jpg" alt="Un mando a distancia adaptado." alignment="left"}
+{interactive slug="remote-modified" type="in-page"}
 
 El tercer mando a distancia muestra una solución para simplificarlo y evitar que el usuario tenga que leer un extenso manual informativo. Es un poco drástico, ¡pero puede evitar que el usuario acceda a modos de los que no puede salir! Algunas personas cuentan que han quitado teclas de teléfonos móviles o han pegado botones en su sitio para que el usuario no pueda poner el dispositivo en un estado en el que no debería. Algunos mandos intentan ofrecer lo mejor de ambos mundos y cuentan con una pequeña tapa que se puede abrir para mostrar más funciones.
 
