@@ -1,0 +1,95 @@
+---
+action-menu:
+  name: Menú de acciones
+alarm-timer:
+  name: Temporizador de alarma
+available-menu-items:
+  name: Elementos del menú disponibles
+awful-calculator:
+  name: Calculadora terrible
+base-calculator:
+  name: Calculadora de base
+big-number-calculator:
+  name: Calculadora de números grandes
+binary-cards:
+  name: Cartas binarias
+binary-mode-calculator:
+  name: Calculadora de modo binario
+caesar-cipher:
+  name: Cifrado César
+close-window:
+  name: Cerrar ventana
+cmy-mixer:
+  name: Mezclador CMY
+colour-matcher:
+  name: Comparador de colores
+compression-comparer:
+  name: Comparador de compresión
+confused-buttons:
+  name: Botones confusos
+confusing-error:
+  name: Error confuso
+date-picker:
+  name: Selector de fecha
+deceiver:
+  name: Impostor
+delay-analyser:
+  name: Analizador de retardo
+delayed-checkbox:
+  name: Casilla retardada
+fsa-box:
+  name: Caja AF
+fsa-light:
+  name: Luz AF
+fsa-washing-machine:
+  name: Lavadora AF
+hex-background-colour:
+  name: Color de fondo hex
+high-score-boxes:
+  name: Cajas de números altos
+huffman-tree:
+  name: Árbol de Huffman
+image-bit-comparer:
+  name: Comparador de bits de imágenes
+menu-keystrokes:
+  name: Pulsaciones de teclas de menú
+nfa-guesser:
+  name: Reconocimiento de AFND
+no-help:
+  name: No hay ayuda
+number-generator:
+  name: Generador de números
+off-by-one:
+  name: Por un paso
+payment-interface:
+  name: Interfaz de pago
+python-interpreter:
+  name: Intérprete de Python
+rgb-mixer:
+  name: Mezclador RGB
+rsa-jsencrypt:
+  name: jsencrypt RSA
+rsa-no-padding:
+  name: RSA sin relleno
+run-length-encoding:
+  name: Run length encoding
+searching-algorithms:
+  name: Algoritmos de búsqueda
+sha2:
+  name: SHA2
+sorting-algorithm-comparison:
+  name: Comparación de algoritmos de ordenamiento
+sorting-algorithms:
+  name: Algoritmos de ordenamiento
+trainsylvania:
+  name: Trensilvania
+trainsylvania-planner:
+  name: Planificador de Trensilvania
+trig-function-calculator:
+  name: Calculadora de funciones trigonométricas
+unexpected-error:
+  name: Error inesperado
+unicode-chars:
+  name: Caracteres Unicode
+unicode-length:
+  name: Longitud de unicode

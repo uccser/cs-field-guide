@@ -105,6 +105,7 @@ INCONTEXT_L10N_PSEUDOLANGUAGES = (
 DEFAULT_LANGUAGES = (
     ("en", "English"),
     ("de", "Deutsche"),
+    ("es", "Español"),
 )
 # Keep original values of languages for resource generation
 LANGUAGES = DEFAULT_LANGUAGES

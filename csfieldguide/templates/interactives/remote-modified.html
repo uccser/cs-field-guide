@@ -1,0 +1,40 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div class="d-flex justify-content-center mb-3 uninteractive">
+    <div id="remote-modified-container" class="p-2">
+      <!-- Row 1 -->
+      <button type="button" class="btn btn-sm btn-danger">
+        <img src="{% static 'img/third-party/icons8-shutdown-26.png' %}" class="icon-1">
+      </button>
+
+      <!-- Row 2 -->
+      <div id="modified-upper-blank"></div>
+
+      <!-- Row 3 -->
+      <div class="d-flex justify-content-around my-2">
+        <div class="d-flex flex-column align-items-center">
+          <button type="button" class="btn btn-sm btn-secondary">⬆</button>
+          <div>{% trans "CH" %}</div>
+          <button type="button" class="btn btn-sm btn-secondary">⬇</button>
+        </div>
+
+        <div class="d-flex flex-column align-items-center">
+          <button type="button" class="btn btn-sm btn-secondary">⬆</button>
+          <div>{% trans "VOL" %}</div>
+          <button type="button" class="btn btn-sm btn-secondary">⬇</button>
+        </div>
+      </div>
+
+      <!-- Row 4 -->
+      <div id="modified-lower-blank"></div>
+    </div>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/remote-modified/css/remote-modified.css' %}">
+{% endblock css %}
