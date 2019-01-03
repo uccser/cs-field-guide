@@ -186,3 +186,14 @@ blockquote {
 .uninteractive {
   pointer-events: none;
 }
+
+// Rules to set table elements to automatically have Bootstrap table styling.
+// These rules may interfere with tables in interactives, so need to check this when adding tables.
+#content-container table {
+  @extend .table;
+  @extend .table-sm;
+  @extend .table-hover;
+  thead {
+    @extend .thead-light;
+  }
+}
