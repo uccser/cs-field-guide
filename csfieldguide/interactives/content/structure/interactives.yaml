@@ -44,6 +44,9 @@ binary-mode-calculator:
 # box-translation:
 #   languages:
 #     en: interactives/box-translation.html
+braille-alphabet:
+  languages:
+    en: interactives/braille-alphabet.html
 caesar-cipher:
   languages:
     en: interactives/caesar-cipher.html

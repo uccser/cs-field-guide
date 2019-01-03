@@ -22,6 +22,8 @@ box-rotation:
   name: box-rotation (broken)
 box-translation:
   name: box-translation (broken)
+braille-alphabet:
+  name: Braille Alphabet
 caesar-cipher:
   name: Caesar Cipher
 checksum-calculator:

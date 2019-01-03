@@ -20,7 +20,7 @@ Each character in braille is represented with a cell of 6 dots.
 Each dot can either be raised or not raised.
 Different numbers and letters can be made by using different patterns of raised and not raised dots.
 
-{image file-path="img/chapters/braille-alphabet-diagram.jpg" alt="The braille alphabet"}
+{interactive slug="braille-alphabet" type="in-page"}
 
 Let's work out how many different patterns can be made using the 6 dots in a Braille character.
 If braille used only 2 dots, there would be 4 patterns.
