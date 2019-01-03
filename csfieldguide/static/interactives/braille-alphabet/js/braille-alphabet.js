@@ -45,7 +45,7 @@ const braille_character_data = [
     },
     {
         character: 'l',
-        dots: [1, 3, 4]
+        dots: [1, 2, 3]
     },
     {
         character: 'm',
@@ -132,14 +132,6 @@ const braille_character_data = [
     {
         character: gettext('Exclamation point'),
         dots: [2, 3, 5]
-    },
-    {
-        character: gettext('Opening quote'),
-        dots: [2, 3, 6]
-    },
-    {
-        character: gettext('Closing quote'),
-        dots: [3, 5, 6]
     }
 ];
 const max_dots = 6;
