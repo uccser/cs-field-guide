@@ -97,10 +97,7 @@ delayed-checkbox:
   languages:
     en: interactives/delayed-checkbox.html
     de: interactives/delayed-checkbox.html
-<<<<<<< HEAD
-=======
     es: interactives/delayed-checkbox.html
->>>>>>> develop
 frequency-analysis:
   languages:
     en: interactives/frequency-analysis.html
