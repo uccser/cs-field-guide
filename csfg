@@ -112,7 +112,7 @@ cmd_update() {
 defhelp update 'Run Django migrate and updatedata commands and build static files.'
 
 # Update and collect static files
-update_static() {
+cmd_update_static() {
   static
 
   echo ""
@@ -123,14 +123,14 @@ update_static() {
 defhelp -dev update_static 'Update and collect static files.'
 
 # Build Docker images
-build() {
+cmd_build() {
   echo "Building Docker images..."
   docker-compose build
 }
 defhelp -dev build 'Build or rebuild Docker images.'
 
 # Collecting static files
-collect_static() {
+cmd_collect_static() {
   echo
   echo "Collecting static files..."
   docker-compose exec django /docker_venv/bin/python3 ./manage.py collectstatic --no-input --clear
@@ -138,7 +138,7 @@ collect_static() {
 defhelp -dev collect_static "Collecting static files."
 
 # Run Django compilemessages command
-compilemessages() {
+cmd_compilemessages() {
   echo "Compiling message files..."
   docker-compose exec django /docker_venv/bin/python3 ./manage.py compilemessages
   docker-compose exec django /docker_venv/bin/python3 ./manage.py compilejsi18n
@@ -146,7 +146,7 @@ compilemessages() {
 defhelp -dev compilemessages 'Run Django compilemessages command.'
 
 # Generates the documentation (with warnings as errors)
-docs() {
+cmd_docs() {
   echo "Removing any existing documentation..."
   docker-compose exec django rm -rf /cs-field-guide/docs/build/
   docker-compose exec django mkdir /cs-field-guide/docs/build/
@@ -157,7 +157,7 @@ docs() {
 defhelp -dev docs 'Generate documentation.'
 
 # Run Django makemessages command
-makemessages() {
+cmd_makemessages() {
   echo "Creating message files..."
   docker-compose exec django /docker_venv/bin/python3 ./manage.py makemessages -l en
   docker-compose exec django /docker_venv/bin/python3 ./manage.py makemessages --ignore=build/* -d djangojs
@@ -165,41 +165,41 @@ makemessages() {
 defhelp -dev makemessages 'Run Django makemessages command.'
 
 # Run Node make_interactive_thumbnails command
-make_interactive_thumbnails() {
+cmd_make_interactive_thumbnails() {
   echo "Creating interactive thumbnails..."
   docker-compose exec nginx node make-interactive-thumbnails.js
 }
 defhelp -dev make_interactive_thumbnails 'Run Node make-interactive-thumbnails.js script.'
 
 # Run Django makemigrations command
-makemigrations() {
+cmd_makemigrations() {
   echo "Creating database migrations..."
   docker-compose exec django /docker_venv/bin/python3 ./manage.py makemigrations --no-input
 }
 defhelp -dev makemigrations 'Run Django makemigrations command.'
 
 # Run Django migrate command
-migrate() {
+cmd_migrate() {
   echo "Applying database migrations..."
   docker-compose exec django /docker_venv/bin/python3 ./manage.py migrate
 }
 defhelp -dev migrate 'Run Django migrate command.'
 
 # Reboot Django Docker container
-reboot_django() {
+cmd_reboot_django() {
   echo "Rebooting Django Docker container..."
   docker-compose restart django
 }
 defhelp -dev reboot_django 'Reboot Django Docker container.'
 
 # Run shell
-shell() {
+cmd_shell() {
   docker-compose exec django bash
 }
 defhelp -dev shell "Open shell to Django folder."
 
 # Build static files
-static() {
+cmd_static() {
   echo "Building static files..."
   docker-compose exec nginx gulp build
   compilemessages
@@ -207,7 +207,7 @@ static() {
 defhelp -dev static 'Build static files.'
 
 # Build production static files
-static_prod() {
+cmd_static_prod() {
   echo "Building production static files..."
   docker-compose exec nginx gulp build --production
   compilemessages
@@ -215,14 +215,14 @@ static_prod() {
 defhelp -dev static_prod 'Build production static files.'
 
 # Run Django command rebuild_index
-rebuild_index() {
+cmd_rebuild_index() {
   echo "Rebuilding search index..."
   docker-compose exec django /docker_venv/bin/python3 ./manage.py rebuild_index --noinput
 }
 defhelp -dev rebuild_index "Run Django rebuild_index command."
 
 # Run style checks
-style() {
+cmd_style() {
   echo "Running PEP8 style checker..."
   docker-compose exec django /docker_venv/bin/flake8
   pep8_status=$?
@@ -235,21 +235,21 @@ style() {
 defhelp -dev style 'Run style checks.'
 
 # Run test suite
-test_suite() {
+cmd_test_suite() {
   echo "Running test suite..."
   docker-compose exec django /docker_venv/bin/coverage run --rcfile=/cs-field-guide/.coveragerc ./manage.py test --settings=config.settings.testing --pattern "test_*.py" -v 3 --nomigrations
 }
 defhelp -dev test_suite 'Run test suite with code coverage.'
 
 # Run specific test suite
-test_specific() {
+cmd_test_specific() {
   echo "Running specific test suite..."
   docker-compose exec django /docker_venv/bin/python3 ./manage.py test --settings=config.settings.testing "${1}" -v 3 --nomigrations
 }
 defhelp -dev test_specific 'Run specific test suite. Pass in parameter of Python test module.'
 
 # Display test coverage table
-test_coverage() {
+cmd_test_coverage() {
   echo "Displaying test suite coverage..."
   docker-compose exec django /docker_venv/bin/coverage xml -i
   docker-compose exec django /docker_venv/bin/coverage report -m --skip-covered
@@ -257,14 +257,14 @@ test_coverage() {
 defhelp -dev test_coverage 'Display code coverage report.'
 
 # Run test suite backwards for CI testing
-test_backwards() {
+cmd_test_backwards() {
   echo "Running test suite backwards..."
   docker-compose exec django /docker_venv/bin/python3 ./manage.py test --settings=config.settings.testing --pattern "test_*.py" --reverse -v 0 --nomigrations
 }
 defhelp -dev test_backwards 'Run test suite backwards.'
 
 # Run Django updatedata command
-updatedata() {
+cmd_updatedata() {
   echo "Loading content..."
   docker-compose exec django /docker_venv/bin/python3 ./manage.py updatedata
 }
@@ -370,12 +370,12 @@ cmd_dev() {
   local cmd="$1"
   shift
   if [ -z "$cmd" ]; then
-    echo -e "${RED}ERROR: dev command requires one parameter!${NC}"
+    echo -e "${RED}ERROR: command requires one parameter!${NC}"
     cmd_help
     return 1
   fi
-  if silent type "dev_$cmd"; then
-    "dev_$cmd" "$@"
+  if silent type "$cmd"; then
+    "$cmd" "$@"
     exit $?
   else
     echo -e "${RED}ERROR: Unknown command!${NC}"
