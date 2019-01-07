@@ -71,25 +71,25 @@ defhelp restart 'Stop and then restart development environment.'
 
 cmd_restart_build() {
   cmd_end
-  build
+  cmd_build
   cmd_start
 }
 defhelp restart_build 'Stop, build, and then restart development environment.'
 
 # Completely update system
 cmd_update() {
-  static
+  cmd_static
 
   echo ""
-  migrate
+  cmd_migrate
 
   echo ""
-  updatedata
-  make_interactive_thumbnails
-  rebuild_index
+  cmd_updatedata
+  cmd_make_interactive_thumbnails
+  cmd_rebuild_index
 
   echo ""
-  collect_static
+  cmd_collect_static
   echo ""
   echo -e "\n${GREEN}Content is loaded!${NC}"
   echo "Open your preferred web browser to the URL 'localhost:81'"
@@ -98,10 +98,10 @@ defhelp update 'Run Django migrate and updatedata commands and build static file
 
 # Update and collect static files
 cmd_update_static() {
-  static
+  cmd_static
 
   echo ""
-  collect_static
+  cmd_collect_static
   echo ""
   echo -e "\n${GREEN}Static files are updated!${NC}"
 }
@@ -187,7 +187,7 @@ defhelp shell "Open shell to Django folder."
 cmd_static() {
   echo "Building static files..."
   docker-compose exec nginx gulp build
-  compilemessages
+  cmd_compilemessages
 }
 defhelp static 'Build static files.'
 
@@ -195,7 +195,7 @@ defhelp static 'Build static files.'
 cmd_static_prod() {
   echo "Building production static files..."
   docker-compose exec nginx gulp build --production
-  compilemessages
+  cmd_compilemessages
 }
 defhelp static_prod 'Build production static files.'
 
@@ -289,39 +289,39 @@ cmd_logs() {
 defhelp logs 'View logs.'
 
 ci_test_general() {
-  static
-  collect_static
+  cmd_static
+  cmd_collect_static
   docker-compose exec django /docker_venv/bin/coverage run --rcfile=/cs-field-guide/.coveragerc ./manage.py test --settings=config.settings.testing --pattern "test_*.py" -v 3 --nomigrations --exclude-tag=management
   test_status=$?
-  test_coverage
+  cmd_test_coverage
   coverage_status=$?
   bash <(curl -s https://codecov.io/bash)
   ! (( $test_status || $coverage_status ))
 }
 
 ci_test_management() {
-  static
-  collect_static
+  cmd_static
+  cmd_collect_static
   docker-compose exec django /docker_venv/bin/coverage run --rcfile=/cs-field-guide/.coveragerc ./manage.py test --settings=config.settings.testing --pattern "test_*.py" -v 3 --nomigrations --tag=management
   test_status=$?
-  test_coverage
+  cmd_test_coverage
   coverage_status=$?
   bash <(curl -s https://codecov.io/bash)
   ! (( $test_status || $coverage_status ))
 }
 
 ci_style() {
-  style
+  cmd_style
 }
 
 ci_test_backwards() {
-  static
-  collect_static
-  test_backwards
+  cmd_static
+  cmd_collect_static
+  cmd_test_backwards
 }
 
 ci_docs() {
-  docs
+  cmd_docs
 }
 
 ci_load_content() {
@@ -359,8 +359,8 @@ cmd_dev() {
     cmd_help
     return 1
   fi
-  if silent type "$cmd"; then
-    "$cmd" "$@"
+  if silent type "cmd_$cmd"; then
+    "cmd_$cmd" "$@"
     exit $?
   else
     echo -e "${RED}ERROR: Unknown command!${NC}"
