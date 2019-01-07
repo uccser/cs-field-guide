@@ -7,7 +7,7 @@
   {{ interactive.name }}
 {% endblock title %}
 
-{% block body_container %}
+{% block body_content %}
   {% if not interactive.translation_available %}
     {% with model=interactive %}
       {% include 'generic/not-available-warning.html' %}
@@ -24,4 +24,4 @@
     {% block js %}
     {% endblock js %}
   {% endif %}
-{% endblock body_container %}
+{% endblock body_content %}
