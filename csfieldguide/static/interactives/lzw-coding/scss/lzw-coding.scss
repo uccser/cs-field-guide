@@ -53,6 +53,7 @@ h1 {
 					width: 1rem;
 					border: 1px solid #BFB9B7;
 					margin: 1px;
+					font-family: "Courier New", monospace !important;
 				}
 			}
 		}
@@ -60,8 +61,16 @@ h1 {
 	#interactive-lzw-coding-right {
 		#interactive-lzw-coding-dictionary {
 			min-height: 200px;
+			max-height: 900px;
+			overflow: scroll;
+			display: flex;
+			.interactive-lzw-coding-dictionary-column {
+				width: 50%;
+				// border: 1px solid #000;
+				margin: 2px;
+			}
 			.interactive-lzw-dictionary-entry {
-				border: 1px solid #000;
+				// border: 1px solid #000;
 				margin: 2px 0;
 				p {
 					display: inline-block;

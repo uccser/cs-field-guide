@@ -122,6 +122,7 @@ function outputEncodedMessage() {
 }
 
 
+// highlights the corresponding dictionary entry
 function changeHighlight(event, highlight) {	
     var selected_reference = event.target;
     if (event.target.nodeName == 'P' || event.target.nodeName == 'INPUT') {
@@ -138,6 +139,7 @@ function changeHighlight(event, highlight) {
 	}
 }
 
+// add each of the dictionary entries to the page
 function makeDictionaryEntryElements(start_index, end_index, element) {
 	var fragment = document.createDocumentFragment();
 	for (var i = start_index; i < end_index; i++) {
@@ -153,7 +155,7 @@ function makeDictionaryEntryElements(start_index, end_index, element) {
 		
 		// create value element
 		var value_element = document.createElement('p');
-		value_element.innerHTML = codes[i];
+		value_element.innerHTML = codes[i].replace(/\s+/g, '_');
 		value_element.classList.add('interactive-lzw-dictionary-value');
 		
 		// add code and value to parent div
@@ -173,11 +175,13 @@ function outputDictionary() {
 	col2_dictionary_div.innerHTML = '';
 	
 	var middle_index = codes.length/2;
+	middle_index = Math.round(middle_index);
 	makeDictionaryEntryElements(0, middle_index, col1_dictionary_div);
 	makeDictionaryEntryElements(middle_index, codes.length, col2_dictionary_div);
 
 }
 
+// autotabs to next input box when decoding
 function autoTab(event) {
     var placeholder_element = event.srcElement;
 
