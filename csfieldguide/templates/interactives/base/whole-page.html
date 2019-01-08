@@ -13,10 +13,8 @@
       {% include 'generic/not-available-warning.html' %}
     {% endwith %}
   {% else %}
-    <div class="interactive w-100">
-      {% block html %}
-      {% endblock html %}
-    </div>
+    {% block html %}
+    {% endblock html %}
 
     {% block css %}
     {% endblock css %}
