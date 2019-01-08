@@ -14,6 +14,10 @@
   }
 }
 
+.jumbotron.sub-heading {
+  background-color: #ff7043;
+}
+
 #trailer-modal {
   .modal-body {
     padding: $spacer;
@@ -22,4 +26,17 @@
     height: auto;
     min-height: 100%;
   }
+}
+
+.orange {
+  color: #ff7043;
+  border-color: #ff7043;
+}
+.orange:hover {
+  background-color: #ff7043;
+  color: $gray-lighter;
+}
+
+.homepage-section-heading {
+  color: #3f51b5;
 }
