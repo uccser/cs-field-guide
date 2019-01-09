@@ -43,7 +43,10 @@
   <div class="container">
     <div class="mb-5 col-md-8">
       <h4 class="homepage-section-heading">{% trans "Chapters" %}</h4>
-      <p>Chapters description.</p>
+      <div class="d-flex flex-row justify-content-between">
+        <p class="mr-5">Chapters description.</p>
+        <img src="{% static 'img/chapters/homepage-chapter-icon.png' %}">
+      </div>
       <a href="{% url 'chapters:index' %}" class="btn btn-outline orange" role="button">{% trans "View chapters" %}</a>
     </div>
 
