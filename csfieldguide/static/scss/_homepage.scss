@@ -40,3 +40,15 @@
 .homepage-section-heading {
   color: #3f51b5;
 }
+
+.homepage-section-item {
+  background-color: #fff;
+  box-shadow: 0px 2px 5px 0px #adb5bd;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+}
+
+.homepage-section-item.section-item-blue {
+  border: 0px;
+  border-top: 7px solid #3f51b5;
+}
