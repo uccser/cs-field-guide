@@ -10,8 +10,12 @@
     font-size: 3.5rem;
   }
   p {
-    color: $gray-lighter;
+    color: #fff;
   }
+}
+
+.jumbotron.sub-heading {
+  background-color: #ff7043;
 }
 
 #trailer-modal {
@@ -22,4 +26,17 @@
     height: auto;
     min-height: 100%;
   }
+}
+
+.orange {
+  color: #ff7043;
+  border-color: #ff7043;
+}
+.orange:hover {
+  background-color: #ff7043;
+  color: $gray-lighter;
+}
+
+.homepage-section-heading {
+  color: #3f51b5;
 }
