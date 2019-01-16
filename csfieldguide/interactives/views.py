@@ -5,6 +5,7 @@ from django.http import HttpResponse, JsonResponse
 from django.urls import reverse
 from django.conf import settings
 from django.utils import translation
+from django.db.models import Prefetch
 from interactives.models import Interactive
 from chapters.models import Chapter
 from config.templatetags.render_interactive_in_page import render_interactive_html
@@ -23,7 +24,7 @@ class IndexView(generic.ListView):
         Returns:
             Queryset of Interactive objects.
         """
-        return Interactive.objects.all()
+        return Interactive.objects.only('slug').all()
 
     def get_context_data(self, **kwargs):
         """Provide the context data for the interactives view.
@@ -32,7 +33,7 @@ class IndexView(generic.ListView):
             Dictionary of context data.
         """
         context = super(IndexView, self).get_context_data(**kwargs)
-        context["chapters"] = Chapter.objects.all().prefetch_related("interactives")
+        context["chapters"] = Chapter.objects.prefetch_related(Prefetch('interactives', queryset=Interactive.objects.only('slug').all())).all()
         return context
 
 
