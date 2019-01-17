@@ -434,7 +434,7 @@ function encodingJ(opcode) {
         default:
             returnVal = TYPE_UNSUPPORTED;
     }
-    return returnVal;nextInstr
+    return returnVal;
 }
 
 // Returns the integer encoding of the given register
