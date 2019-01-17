@@ -89,10 +89,16 @@ function assemble() {
     for (x=0; x < mipsCode.length; x++) {
         line = mipsCode[x].trim();
         if (line.startsWith(".")) {
-            // Ignore the line entirely
-            if (showBlank) {
-                instructions.push([TYPE_UNASSIGNED, (line + "\n")]);
+            // Ignore the line
+            if (showInstr) {
+                line = "; <" + TXTINPUT + ":" + input + "> " + line + "\n";
+            } else {
+                line += "\n"
             }
+            if (showBlank) {
+                instructions.push([TYPE_UNASSIGNED, line]);
+            }
+            input++;
         } else if (line.startsWith("#") || line == "") {
             // Interpret as a comment or blank line
             if (showBlank) {
