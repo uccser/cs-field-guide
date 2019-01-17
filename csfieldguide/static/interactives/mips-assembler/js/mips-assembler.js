@@ -1,10 +1,6 @@
 /* Incomplete MIPS I Assembler based on the work of Alan Hogan
  * https://github.com/alanhogan/online-mips-assembler
  * Licensed under CC BY-NC-SA 4.0
- * 
- * TODO:
- *      Strings
- *      BEQ & BNE
  */
 
 //

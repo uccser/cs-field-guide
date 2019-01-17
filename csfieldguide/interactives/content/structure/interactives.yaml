@@ -133,9 +133,9 @@ menu-keystrokes:
     en: interactives/menu-keystrokes.html
     de: interactives/menu-keystrokes.html
     es: interactives/menu-keystrokes.html
-# mips-assembler:
-#   languages:
-#     en: interactives/mips-assembler.html
+mips-assembler:
+  languages:
+    en: interactives/mips-assembler.html
 # mips-simulator:
 #   languages:
 #     en: interactives/mips-simulator.html
