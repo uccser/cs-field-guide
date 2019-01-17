@@ -59,22 +59,14 @@ checksum-calculator-gtin-13:
 close-window:
   languages:
     en: interactives/close-window.html
-<<<<<<< HEAD
-=======
     de: interactives/close-window.html
     es: interactives/close-window.html
->>>>>>> 75556274bf21d67a8e39ceccedc4b62bada06042
 cmy-mixer:
   languages:
     en: interactives/cmy-mixer.html
 colour-matcher:
   languages:
     en: interactives/colour-matcher.html
-<<<<<<< HEAD
-    de: interactives/close-window.html
-    es: interactives/close-window.html
-=======
->>>>>>> 75556274bf21d67a8e39ceccedc4b62bada06042
 compression-comparer:
   languages:
     en: interactives/compression-comparer.html
@@ -107,19 +99,11 @@ delay-analyser:
 delayed-checkbox:
   languages:
     en: interactives/delayed-checkbox.html
-<<<<<<< HEAD
-dot-combinations:
-  languages:
-    en: interactives/dot-combinations.html
-    de: interactives/delayed-checkbox.html
-    es: interactives/delayed-checkbox.html
-=======
     de: interactives/delayed-checkbox.html
     es: interactives/delayed-checkbox.html
 dot-combinations:
   languages:
     en: interactives/dot-combinations.html
->>>>>>> 75556274bf21d67a8e39ceccedc4b62bada06042
 frequency-analysis:
   languages:
     en: interactives/frequency-analysis.html
