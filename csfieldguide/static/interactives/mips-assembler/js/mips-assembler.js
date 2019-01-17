@@ -745,35 +745,3 @@ function instructionType(opcode) {
             return TYPE_INVALID;
     }
 }
-
-/**
- * //--// INPUTS //--//
- * 
- * lines prefixed by '.' are ignored entirely and do not contribute to input numbers
- * the string defenition line is interpreted in DATA IN MEMORY section and also does not contribute to input numbers
- * blank lines and comments *do* contribute to input numbers but are ignored unless showBlank is true
- * the 'main:' line sets the function name and does contribute to input numbers
- * 
- * 
- * //--// OUTPUTS //--//
- * 
- * The first hex8 for instructions begin at 00400000 and go up by 4 *after* every *instruction* --- loop starts/endings and 'main:' don't contribute but the increased hex is allocated to them
- * i.e instruction address beginning
- * The first hex8 for data in memory begin at 00c00000 and go up by 4 *after* every set of 4 characters
- * i.e. memory address beginning
- * If a string has a multiple of 4 characters (i.e. the last set of 4 is completely full) another 4 is allocated as blank as a separator
- * 
- * The second hex8s don't appear to follow a clear pattern, but are consistent between assemblies of the same code
- * 
- * <input:x> begins at <input:0> at the first comment, first blank line, first instruction, or the 'main:' line
- * 
- * hex8: <fuction name> ; <input:x> function name:
- * hex8: hex8 ; <input:x> instruction
- * hex8: <start/end loop> ; <input:x> start/end_loop
- * ; <input:x> blank line or comment
- * ; UNRECOGNISED INSTRUCTION ; <input:x> instruction
- * ;
- * ; DATA IN MEMORY
- * ; string name
- * hex8: hex8 ; val4-
- */
