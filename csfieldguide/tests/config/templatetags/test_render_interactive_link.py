@@ -76,7 +76,8 @@ class RenderInteractiveLinkTest(BaseTestWithDB):
     def test_render_interactive_link_with_question_mark(self):
         self.interactive_test_data.create_interactive(2)
         rendered = self.render_template(
-            "{% load render_interactive_link %}\n{% render_interactive_link 'interactive-2' parameters='?parameter' %}",
+            "{% load render_interactive_link %}\n \
+            {% render_interactive_link 'interactive-2' parameters='?para' %}",
         )
         self.assertHTMLEqual(
             "<button>Interactive 2</button>",
