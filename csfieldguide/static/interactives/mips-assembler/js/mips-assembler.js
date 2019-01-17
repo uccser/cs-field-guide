@@ -1,4 +1,4 @@
-/* Incomplete MIPS I Assembler based on the work of Alan Hogan
+/* Partial MIPS I Assembler based on the work of Alan Hogan
  * https://github.com/alanhogan/online-mips-assembler
  * Licensed under CC BY-NC-SA 4.0
  */
@@ -125,7 +125,7 @@ function assemble() {
             if (showInstr) {
                 nextInstr = hexOfInt(instructionAddr, 8) + ": <" + name + "> ; <" + TXTINPUT + ":" + input + "> " + name + ":\n";
             } else {
-                nextInstr = line + ">\n";
+                nextInstr = line + "\n";
             }
             if (showBlank) {
                 instructions.push([TYPE_UNASSIGNED, nextInstr, input, instructionAddr, line]);
@@ -141,28 +141,28 @@ function assemble() {
             instructionAddr += 4;
         } else {
             // Interpret as a basic instruction
-            words = line.split(" ");
+            keywords = line.split(" ");
             
-            if (words[0] == "li" && words.length == 3) {
+            if (keywords[0] == "li" && keywords.length == 3) {
                 // li shouldn't be supported but is with template (li $xy, z == addiu $xy, $0, z)
-                words[0] = "addiu";
-                words.push(words[2]);
-                words[2] = "$0,";
+                keywords[0] = "addiu";
+                keywords.push(keywords[2]);
+                keywords[2] = "$0,";
             }
 
-            if (words[0] == "la" && words.length == 3) {
+            if (keywords[0] == "la" && keywords.length == 3) {
                 // la shouldn't be supported but is when split into three instructions
-                // la $xy, datavarname ==   addiu $xy, $zero, [high 16 bits of dataaddr]
-                //                          sll $xy, $xy, 16
-                //                          addiu $xy, $xy, [low 16 bits of dataaddr]
+                // la $xy, datavarname == addiu $xy, $zero, [high 16 bits of dataaddr]
+                //                        sll $xy, $xy, 16
+                //                        addiu $xy, $xy, [low 16 bits of dataaddr]
 
-                targetIndex = storedTextNames.indexOf(words[2]);
+                targetIndex = storedTextNames.indexOf(keywords[2]);
                 var tempTextAddr = storedTextAddr[targetIndex];
 
                 var hi = (0xFFFF0000 & tempTextAddr) >> 16;
                 var lo = 0x0000FFFF & tempTextAddr;
 
-                instrArgs = buildInstructionI(["addiu", words[1], "$zero,", hi]);
+                instrArgs = buildInstructionI(["addiu", keywords[1], "$zero,", hi]);
                 instrArgs.push(input);
                 instrArgs.push(instructionAddr);
                 instrArgs.push(line);
@@ -171,7 +171,7 @@ function assemble() {
                 input++;
                 instructionAddr += 4;
 
-                instrArgs = buildInstructionR(["sll", words[1], words[1], 16]);
+                instrArgs = buildInstructionR(["sll", keywords[1], keywords[1], 16]);
                 instrArgs.push(input);
                 instrArgs.push(instructionAddr);
                 instrArgs.push(line);
@@ -180,28 +180,28 @@ function assemble() {
                 input++;
                 instructionAddr += 4;
 
-                words[0] = "addiu";
-                words[2] = words[1];
-                words.push(lo);
+                keywords[0] = "addiu";
+                keywords[2] = keywords[1];
+                keywords.push(lo);
             }
 
-            if (words[0] == "move" && words.length == 3) {
+            if (keywords[0] == "move" && keywords.length == 3) {
                 // move shouldn't be supported but is with template (move $ab, $cd == add $ab, $0, $cd)
-                words[0] = "add";
-                words.push(words[2]);
-                words[2] = "$0,";
+                keywords[0] = "add";
+                keywords.push(keywords[2]);
+                keywords[2] = "$0,";
             }
 
-            instrType = instructionType(words[0]);
+            instrType = instructionType(keywords[0]);
             switch(instrType) {
                 case TYPE_R:
-                    instrArgs = buildInstructionR(words);
+                    instrArgs = buildInstructionR(keywords);
                     break;
                 case TYPE_I:
-                    instrArgs = buildInstructionI(words);
+                    instrArgs = buildInstructionI(keywords);
                     break;
                 case TYPE_J:
-                    instrArgs = buildInstructionJ(words);
+                    instrArgs = buildInstructionJ(keywords);
                     break;
                 case TYPE_INVALID:
                 default:
@@ -461,9 +461,9 @@ function register(reg) {
             var regNum;
             if (regArr.length > 2) {
                 return -1; // No support for registers > 9
-            } else {
-                regNum = parseInt(regArr[1]);
             }
+            regNum = parseInt(regArr[1]);
+
             switch(regChar) {
                 case("v"):
                     returnVal = regNum + 2; break;
@@ -472,13 +472,13 @@ function register(reg) {
                 case("t"):
                     if (regNum < 8) {
                         returnVal = regNum + 8;
+                    } else {
+                        returnVal = regNum + 16;
                     } break;
                 case("s"):
                     returnVal = regNum + 16; break;
                 case("k"):
                     returnVal = regNum + 26; break;
-                case("t"):
-                    returnVal = regNum + 16; break;
                 default:
                     returnVal = -1;
             }
@@ -489,7 +489,7 @@ function register(reg) {
 // Returns a list of:
 // 1) a TYPE_ code, depending on the success of the operation, TYPE_R if valid
 // 2-7) each argument in order for a valid Type-R instruction, or the operation name if invalid
-// Input is a list of strings, each being a section of instruction to be interpreted
+// Input is a list of strings, each being a keyword of the instruction to be interpreted
 function buildInstructionR(args) {
     var returnList;
     var opcode = args[0];
@@ -518,16 +518,16 @@ function buildInstructionR(args) {
 
     // Get the operand arguments and build the hex
     if (opcode == "jr") {
-        // The Jump Register instruction is special in that its arguments are zero
-        // opcode, destreg
+        // The Jump Register instruction is special in that its two operand arguments are zero
+        // jr $destreg
         if (args.length != 2) {
             return [TYPE_INVALID, args[0]];
         }
         returnList = [TYPE_R, 0, dest, 0, 0, 0, opEncoding];
     } else if (opcode == "sll") {
         // The only supported Shift instruction is required for the la pseudo instruction
-        // and requires 4 slightly different instructions
-        // opcode, destreg, operand1, shift
+        // and requires 4 slightly different arguments
+        // sll $destreg, $operand1, shift
         if (args.length != 4) {
             return [TYPE_INVALID, args[0]];
         }
@@ -544,7 +544,7 @@ function buildInstructionR(args) {
         }
     } else {
         // Remaining supported instructions have exactly 4 arguments
-        // opcode, destreg, operand1, operand2
+        // opcode $destreg, $operand1, $operand2
         if (args.length != 4) {
             return [TYPE_INVALID, args[0]];
         }
@@ -570,7 +570,7 @@ function buildInstructionR(args) {
 // Returns a list of:
 // 1) a TYPE_ code, depending on the success of the operation, TYPE_I if valid
 // 2-5) each argument in order for a valid Type-I instruction, or the operation name if invalid
-// Input is a list of strings, each being a section of instruction to be interpreted
+// Input is a list of strings, each being a keyword of the instruction to be interpreted
 function buildInstructionI(args) {
     var returnList;
     var opcode = args[0];
@@ -600,7 +600,7 @@ function buildInstructionI(args) {
     // Get the operand arguments and build the hex
     if (opcode == "beq" || opcode == "bne") {
         // The supported branch instructions work slightly differently
-        // opcode, operand1, operand2, destaddr
+        // opcode $operand1, $operand2, desttag
         // As such the current value of dest is actually an operand
         operands[0] = dest;
         if (args[2].startsWith("$") && last(args[2].split("")) == ",") {
@@ -617,7 +617,7 @@ function buildInstructionI(args) {
         returnList = [TYPE_I, opEncoding, operands[0], operands[1], args[3]];
     } else {
         // Remaining instructions follow the template:
-        // opcode, destreg, operand1, immediate
+        // opcode $destreg, $operand1, immediate
         if (args[2].startsWith("$") && last(args[2].split("")) == ",") {
             operands[0] = register(args[2].substr(1, args[2].length - 2));
         } else {
@@ -637,7 +637,7 @@ function buildInstructionI(args) {
 // Returns a list of:
 // 1) a TYPE_ code, depending on the success of the operation, TYPE_J if valid
 // 2-3) each argument in order for a valid Type-J instruction, or the operation name if invalid
-// Input is a list of strings, each being a section of instruction to be interpreted
+// Input is a list of strings, each being a keyword of the instruction to be interpreted
 function buildInstructionJ(args) {
     var returnList;
     var opcode = args[0];
@@ -650,7 +650,7 @@ function buildInstructionJ(args) {
     }
 
     // Supported instructions have only 2 arguments
-    // opcode, destaddr
+    // opcode $destaddr
     if (args.length != 2) {
         return [TYPE_INVALID, args[0]];
     }
