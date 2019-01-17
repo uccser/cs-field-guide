@@ -24,7 +24,7 @@ class IndexView(generic.ListView):
         Returns:
             Queryset of Interactive objects.
         """
-        return Interactive.objects.only('slug').all()
+        return Interactive.objects.all()
 
     def get_context_data(self, **kwargs):
         """Provide the context data for the interactives view.
@@ -33,7 +33,7 @@ class IndexView(generic.ListView):
             Dictionary of context data.
         """
         context = super(IndexView, self).get_context_data(**kwargs)
-        context["chapters"] = Chapter.objects.prefetch_related(Prefetch('interactives', queryset=Interactive.objects.only('slug').all())).all()
+        context["chapters"] = Chapter.objects.all().prefetch_related(Prefetch('interactives', queryset=Interactive.objects.all().only('slug')))
         return context
 
 
