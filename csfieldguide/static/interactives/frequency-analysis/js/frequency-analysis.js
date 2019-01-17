@@ -1,12 +1,3 @@
-/*
- * decaffeinate suggestions:
- * DS101: Remove unnecessary use of Array.from
- * DS102: Remove unnecessary code created because of implicit returns
- * DS104: Avoid inline assignments
- * DS205: Consider reworking code to avoid use of IIFEs
- * DS207: Consider shorter variations of null checks
- * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
- */
 "use strict";
 require('es5-shim');
 require('es6-shim');
@@ -14,8 +5,6 @@ const Chart = require('chart.js');
 
 const TextID = "#interactive-frequency-analysis-input";
 const ChartID = "#interactive-frequency-analysis-chart-display";
-
-const ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 const characterFrequencies = function(string) {
     /* Given a string this gives a map of frequencies */
@@ -35,15 +24,13 @@ const getFrequencies = function() {
     /* This gets the frequencies from the text entry and returns a map
         of frequencies
     */
-    const text = $(TextID).val().toUpperCase();
+    const text = $(TextID).val().toUpperCase().replace(/\s/g, "");
 
     const allCharFrequencies = characterFrequencies(text);
 
     const alphabeticFrequencies = (() => {
         const result = [];
-        for (let char of Array.from(ALPHABET)) {
-            var left;
-            const freq = (left = allCharFrequencies.get(char)) != null ? left : 0;
+        for (const [char, freq] of allCharFrequencies.entries()) {
             result.push([char, freq]);
         }
         return result;
@@ -76,18 +63,33 @@ const drawChart = function(ctx, frequencies) {
         labels,
         datasets: [
             {
-                label: "Character Frequency",
+                label: gettext("Character Frequency"),
                 data: freqData,
-                barWidth: 20
+                barWidth: 20,
+                backgroundColor: "#007bff",
             }
         ]
     };
 
-    return chart = new Chart(ctx).Bar(data, {
-        scaleFontSize: 16,
-        responsive: true
-    }
-    );
+    return chart = new Chart(ctx, {
+        type: 'bar',
+        data: data,
+        options: {
+            scaleFontSize: 16,
+            responsive: true,
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        maxTicksLimit: 11
+                    }
+                }]
+            },
+            legend : {
+                display: false
+            }
+        }
+    });
 };
 
 const ctx = $(ChartID)[0].getContext('2d');
@@ -97,11 +99,11 @@ $("#interactive-frequency-analysis-button").click(function() {
     if (chart != null) {
         chart.destroy();
     }
-
+    $("#chart").removeClass('d-none');
+    $("#chart").addClass('d-block');
     const alphabeticFrequencies = getFrequencies();
     return drawChart(ctx, alphabeticFrequencies);
 });
-
 
 $(document).ready(function() {
     const frequencies = getFrequencies();

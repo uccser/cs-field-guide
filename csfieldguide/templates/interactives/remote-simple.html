@@ -1,0 +1,34 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div class="d-flex justify-content-center mb-3 uninteractive">
+    <div id="remote-simple-container" class="m-2">
+      <!-- Row 1 -->
+      <div class="d-flex justify-content-between m-2">
+        <button type="button" class="btn btn-sm btn-dark-blue">{% trans "MENU" %}</button>
+        <button type="button" class="btn btn-sm btn-danger">
+          <img src="{% static 'img/third-party/icons8-shutdown-26.png' %}" class="icon-1">
+        </button>
+      </div>
+
+      <!-- Row 2 -->
+      <div class="d-flex justify-content-center m-3">
+        <div id="outer-circle">
+          <div id="inner-circle">
+          </div>
+          <div class="arrow arrow-up">⬆</div>
+          <div class="arrow arrow-down">⬇</div>
+          <div class="arrow arrow-left">⬅</div>
+          <div class="arrow arrow-right">➡</div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/remote-simple/css/remote-simple.css' %}">
+{% endblock css %}
