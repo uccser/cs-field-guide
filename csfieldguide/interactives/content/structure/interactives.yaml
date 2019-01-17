@@ -44,6 +44,9 @@ binary-mode-calculator:
 # box-translation:
 #   languages:
 #     en: interactives/box-translation.html
+braille-alphabet:
+  languages:
+    en: interactives/braille-alphabet.html
 caesar-cipher:
   languages:
     en: interactives/caesar-cipher.html
@@ -56,14 +59,22 @@ checksum-calculator-gtin-13:
 close-window:
   languages:
     en: interactives/close-window.html
+<<<<<<< HEAD
+=======
+    de: interactives/close-window.html
+    es: interactives/close-window.html
+>>>>>>> 75556274bf21d67a8e39ceccedc4b62bada06042
 cmy-mixer:
   languages:
     en: interactives/cmy-mixer.html
 colour-matcher:
   languages:
     en: interactives/colour-matcher.html
+<<<<<<< HEAD
     de: interactives/close-window.html
     es: interactives/close-window.html
+=======
+>>>>>>> 75556274bf21d67a8e39ceccedc4b62bada06042
 compression-comparer:
   languages:
     en: interactives/compression-comparer.html
@@ -96,11 +107,19 @@ delay-analyser:
 delayed-checkbox:
   languages:
     en: interactives/delayed-checkbox.html
+<<<<<<< HEAD
 dot-combinations:
   languages:
     en: interactives/dot-combinations.html
     de: interactives/delayed-checkbox.html
     es: interactives/delayed-checkbox.html
+=======
+    de: interactives/delayed-checkbox.html
+    es: interactives/delayed-checkbox.html
+dot-combinations:
+  languages:
+    en: interactives/dot-combinations.html
+>>>>>>> 75556274bf21d67a8e39ceccedc4b62bada06042
 frequency-analysis:
   languages:
     en: interactives/frequency-analysis.html
@@ -173,11 +192,11 @@ parity:
 payment-interface:
   languages:
     en: interactives/payment-interface.html
+    de: interactives/payment-interface.html
+    es: interactives/payment-interface.html
 pixel-viewer:
   languages:
     en: interactives/pixel-viewer.html
-    de: interactives/payment-interface.html
-    es: interactives/payment-interface.html
 # python-interpreter:
 #   languages:
 #     en: interactives/python-interpreter.html
@@ -235,6 +254,8 @@ sorting-algorithms:
 unexpected-error:
   languages:
     en: interactives/unexpected-error.html
+    de: interactives/unexpected-error.html
+    es: interactives/unexpected-error.html
 unicode-binary:
   languages:
     en: interactives/unicode-binary.html
@@ -244,7 +265,6 @@ unicode-chars:
 unicode-length:
   languages:
     en: interactives/unicode-length.html
-    de: interactives/unexpected-error.html
-    es: interactives/unexpected-error.html
+# viola-jones-face-detector:
 #   languages:
 #     en: interactives/viola-jones-face-detector.html

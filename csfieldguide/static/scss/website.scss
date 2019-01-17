@@ -49,9 +49,23 @@
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans');
 
 body {
-  padding-top: $navbar-height;
-  position: relative;
   background-color: $gray-100;
+}
+
+#body-flex-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  > nav {
+    flex-shrink: 0;
+    z-index: 50;
+  }
+
+  > #body-content {
+    overflow: auto;
+    flex-grow: 1;
+  }
 }
 
 #page-header {
@@ -63,14 +77,6 @@ body {
       color: mix($csfg-light, $white, 60%);
     }
   }
-}
-
-#content-container {
-  padding-top: $navbar-padding-bottom;
-}
-
-#sticky-sidebar {
-  top: $navbar-height + $navbar-padding-bottom;
 }
 
 .no-text-decoration {
@@ -185,4 +191,15 @@ blockquote {
 
 .uninteractive {
   pointer-events: none;
+}
+
+// Rules to set table elements to automatically have Bootstrap table styling.
+// These rules may interfere with tables in interactives, so need to check this when adding tables.
+#content-container table {
+  @extend .table;
+  @extend .table-sm;
+  @extend .table-hover;
+  thead {
+    @extend .thead-light;
+  }
 }

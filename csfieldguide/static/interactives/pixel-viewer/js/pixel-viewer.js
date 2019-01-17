@@ -48,15 +48,20 @@ this.images = [
 this.tiling = new Tiling;
 this.piccache = Array();
 
+const image_base_path = base_static_path + 'interactives/pixel-viewer/img/';
+
 $( document ).ready(function() {
   init_cache(300, MAX_HEIGHT);
+
   if (getUrlParameter('image')){
-    $('#pixel-viewer-interactive-original-image').attr('src', './img/' + getUrlParameter('image'))
-    load_resize_image('./img/' + getUrlParameter('image'), false)
+    var image_filename = getUrlParameter('image');
   } else {
-    $('#pixel-viewer-interactive-original-image').attr('src', './img/coloured-roof-small.png')
-    load_resize_image('./img/coloured-roof-small.png', false)
+    var image_filename = 'coloured-roof-small.png';
   }
+  var image_filepath = image_base_path + image_filename;
+  $('#pixel-viewer-interactive-original-image').attr('src', image_filepath);
+  load_resize_image(image_filepath, false);
+
   if (getUrlParameter('mode') == 'threshold') {
     mode = 'threshold';
   } else if (getUrlParameter('mode') == 'thresholdgreyscale') {
@@ -72,9 +77,6 @@ $( document ).ready(function() {
   }
   if (getUrlParameter('hide-menu')) {
     $('#pixel-viewer-interactive-menu-toggle').remove();
-  } else {
-    $('#pixel-viewer-interactive-menu-toggle').css('visibility', 'visible');
-    $('#pixel-viewer-interactive-settings').css('visibility', 'visible');
   }
   setUpMode();
   if (picturePicker){
@@ -83,7 +85,7 @@ $( document ).ready(function() {
   if (getUrlParameter('no-pixel-fill')){
     $('#pixel-viewer-interactive-show-pixel-fill').prop('checked', false);
     $( "#pixel-viewer-interactive-loader" ).hide();
-    $( ".pixel-viewer-interactive-zoom-button" ).css('visibility', 'visible');
+    $( "#pixel-viewer-interactive-buttons" ).css({opacity: 1});
   } else {
     $( "#pixel-viewer-interactive-original-image" ).show();
     $( "#pixel-viewer-interactive-original-image" ).delay(1000).animate({width: contentWidth*0.8,
@@ -96,7 +98,7 @@ $( document ).ready(function() {
        function() {
         // Animation complete
         $( "#pixel-viewer-interactive-loader" ).hide();
-        $( ".pixel-viewer-interactive-zoom-button" ).css({opacity: 0, visibility: "visible"}).animate({opacity: 1}, 'slow');
+        $( "#pixel-viewer-interactive-buttons" ).css({opacity: 0, visibility: "visible"}).animate({opacity: 1}, 'slow');
     });
     $( "#pixel-viewer-interactive-original-image" ).fadeOut( 2000 );
   }
@@ -149,7 +151,7 @@ function setUpMode(){
 
 function addDescription(title, description){
   // Add title and description to page
-  $("#name-of-interactive").html(title + ' <span class="alert round label">Beta</span>');
+  $("#interactive-subtitle").text('Beta');
   $("#pixel-viewer-extra-feature-description").html(description);
 }
 
@@ -781,7 +783,7 @@ function createPicturePicker(){
   main_div = $("#picture-picker");
   main_div.append($("<p></p>").text("Or choose from the following supplied images:"));
   for (var i = 0; i < images.length; i++){
-    var img_url = './img/' + images[i]
+    var img_url = image_base_path + images[i]
     main_div.append(
       $("<img>")
       .attr('src', img_url)
@@ -819,7 +821,7 @@ function loadImageDialog(input) {
 }
 
 $( "#pixel-viewer-interactive-menu-toggle" ).click(function() {
-    $( "#pixel-viewer-interactive-settings" ).slideToggle( "slow" );
+    $( "#pixel-viewer-interactive-settings" ).toggleClass('menu-offscreen');
 });
 
 $('#pixel-viewer-interactive-show-pixel-fill').change(function() {
@@ -893,7 +895,6 @@ var source_canvas_context = source_canvas.getContext('2d');
 
 var source_image = new Image();
 source_image.crossOrigin = '';
-source_image.addEventListener('error', function (e){e.preventDefault(); alert("Starting image cannot be loaded in Chrome offline mode. Try another browser or the online version.");},false);
 
 source_image.onload = function() {
     source_canvas_context.drawImage(source_image, 0, 0);
@@ -901,8 +902,6 @@ source_image.onload = function() {
     //Trigger canvas draw after image load
     scroller.scrollTo(0,0);
 }
-
-source_image.src = './img/coloured-roof-small.png';
 
 // Canvas renderer
 var render = function(left, top, zoom) {
@@ -1003,7 +1002,7 @@ document.querySelector("#pixel-viewer-interactive-zoom-out").addEventListener("c
 
 if ('ontouchstart' in window) {
 
-    container.addEventListener("touchstart", function(e) {
+    content.addEventListener("touchstart", function(e) {
         // Don't react if initial down happens on a form element
         if (e.touches[0] && e.touches[0].target && e.touches[0].target.tagName.match(/input|textarea|select/i)) {
             return;
@@ -1029,7 +1028,7 @@ if ('ontouchstart' in window) {
 
     var mousedown = false;
 
-    container.addEventListener("mousedown", function(e) {
+    content.addEventListener("mousedown", function(e) {
         if (e.target.tagName.match(/input|textarea|select/i)) {
             return;
         }
@@ -1065,7 +1064,7 @@ if ('ontouchstart' in window) {
         mousedown = false;
     }, false);
 
-    container.addEventListener(navigator.userAgent.indexOf("Firefox") > -1 ? "DOMMouseScroll" :  "mousewheel", function(e) {
+    content.addEventListener(navigator.userAgent.indexOf("Firefox") > -1 ? "DOMMouseScroll" :  "mousewheel", function(e) {
         scroller.doMouseZoom(e.detail ? (e.detail * -120) : e.wheelDelta, e.timeStamp, e.pageX, e.pageY);
     }, false);
 

@@ -277,7 +277,7 @@ In which is it not?
 In which would you actually care about the colours in the image?
 In which situations is colour actually not necessary (i.e. when are we fine with two colours)?
 
-{interactive slug="image-bit-comparer" type="whole-page" text="Image Bit Comparer"}
+{interactive slug="image-bit-comparer" type="whole-page"}
 
 {panel type="additional-information"}
 
