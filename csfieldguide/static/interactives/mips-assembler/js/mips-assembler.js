@@ -90,32 +90,33 @@ function assemble() {
                 nextInstr = line + "\n"
             }
             if (showBlank) {
-                instructions.push([TYPE_UNASSIGNED, nextInstr]);
+                instructions.push([TYPE_UNASSIGNED, nextInstr, input, instructionAddr, line]);
             }
         } else if (line.startsWith("#") || line == "") {
             // Interpret as a comment or blank line
-            if (showBlank) {
-                if (showInstr) {
-                    nextInstr = "; <" + TXTINPUT + ":" + input + "> " + line + "\n";
-                } else {
-                    nextInstr = line + "\n";
-                }
+            if (showInstr) {
+                nextInstr = "; <" + TXTINPUT + ":" + input + "> " + line + "\n";
+            } else {
+                nextInstr = line + "\n";
             }
-            instructions.push([TYPE_UNASSIGNED, nextInstr, input, instructionAddr, line]);
+            if (showBlank) {
+                instructions.push([TYPE_UNASSIGNED, nextInstr, input, instructionAddr, line]);
+            }
+            
         } else if (line.includes(" .asciiz ")) {
             // Interpret as a string to be stored
             var substr = line.match(/.asciiz "(.*)"/);
             storedText.push(splitEvery(4, substr[1]));
             storedTextNames.push(line.substr(0, line.indexOf(":")));
             storedTextAddr.push(last(storedTextAddr) + last(storedText).length * 4);
-            if (showBlank) {
-                if (showInstr) {
-                    nextInstr = "; <" + TXTINPUT + ":" + input + "> " + line + "\n";
-                } else {
-                    nextInstr = line + "\n";
-                }
+            if (showInstr) {
+                nextInstr = "; <" + TXTINPUT + ":" + input + "> " + line + "\n";
+            } else {
+                nextInstr = line + "\n";
             }
-            instructions.push([TYPE_UNASSIGNED, nextInstr]);
+            if (showBlank) {
+                instructions.push([TYPE_UNASSIGNED, nextInstr, input, instructionAddr, line]);
+            }
         } else if (last(line.split("")) == ":") {
             // Interpret as a pointer name; e.g. function name or loop point
             var name = line.substr(0, line.length - 1);
@@ -123,10 +124,12 @@ function assemble() {
             funcAddr.push(instructionAddr);
             if (showInstr) {
                 nextInstr = hexOfInt(instructionAddr, 8) + ": <" + name + "> ; <" + TXTINPUT + ":" + input + "> " + name + ":\n";
-            } else if (showBlank) {
-                nextInstr = "<" + name + ">\n";
+            } else {
+                nextInstr = line + ">\n";
             }
-            instructions.push([TYPE_UNASSIGNED, nextInstr, input, instructionAddr, line]);
+            if (showBlank) {
+                instructions.push([TYPE_UNASSIGNED, nextInstr, input, instructionAddr, line]);
+            }
         } else if (line == "syscall") {
             // Interpret as a syscall
             if (showInstr) {
