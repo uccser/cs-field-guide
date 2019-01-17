@@ -3,8 +3,6 @@
  * Licensed under CC BY-NC-SA 4.0
  */
 
-//
-
 // Types of instructions
 const TYPE_UNSUPPORTED = -2;
 const TYPE_INVALID = -1;
@@ -87,14 +85,13 @@ function assemble() {
         if (line.startsWith(".")) {
             // Ignore the line
             if (showInstr) {
-                line = "; <" + TXTINPUT + ":" + input + "> " + line + "\n";
+                nextInstr = "; <" + TXTINPUT + ":" + input + "> " + line + "\n";
             } else {
-                line += "\n"
+                nextInstr = line + "\n"
             }
             if (showBlank) {
-                instructions.push([TYPE_UNASSIGNED, line]);
+                instructions.push([TYPE_UNASSIGNED, nextInstr]);
             }
-            input++;
         } else if (line.startsWith("#") || line == "") {
             // Interpret as a comment or blank line
             if (showBlank) {
@@ -105,18 +102,20 @@ function assemble() {
                 }
             }
             instructions.push([TYPE_UNASSIGNED, nextInstr, input, instructionAddr, line]);
-            input++;
-            nextInstr = "";
         } else if (line.includes(" .asciiz ")) {
             // Interpret as a string to be stored
             var substr = line.match(/.asciiz "(.*)"/);
             storedText.push(splitEvery(4, substr[1]));
             storedTextNames.push(line.substr(0, line.indexOf(":")));
             storedTextAddr.push(last(storedTextAddr) + last(storedText).length * 4);
-
             if (showBlank) {
-                instructions.push([TYPE_UNASSIGNED, (line + "\n")]);
+                if (showInstr) {
+                    nextInstr = "; <" + TXTINPUT + ":" + input + "> " + line + "\n";
+                } else {
+                    nextInstr = line + "\n";
+                }
             }
+            instructions.push([TYPE_UNASSIGNED, nextInstr]);
         } else if (last(line.split("")) == ":") {
             // Interpret as a pointer name; e.g. function name or loop point
             var name = line.substr(0, line.length - 1);
@@ -128,8 +127,6 @@ function assemble() {
                 nextInstr = "<" + name + ">\n";
             }
             instructions.push([TYPE_UNASSIGNED, nextInstr, input, instructionAddr, line]);
-            input++;
-            nextInstr = "";
         } else if (line == "syscall") {
             // Interpret as a syscall
             if (showInstr) {
@@ -138,9 +135,7 @@ function assemble() {
                 nextInstr = "0000000c\n";
             }
             instructions.push([TYPE_UNASSIGNED, nextInstr, input, instructionAddr, line]);
-            input++;
             instructionAddr += 4;
-            nextInstr = "";
         } else {
             // Interpret as a basic instruction
             words = line.split(" ");
@@ -218,8 +213,9 @@ function assemble() {
             if (instrArgs[0] in [TYPE_R, TYPE_I, TYPE_J]) {
                 instructionAddr += 4;
             }
-            input++;
         }
+        input++;
+        nextInstr = "";
     }
 
     // Assemble the instructions
