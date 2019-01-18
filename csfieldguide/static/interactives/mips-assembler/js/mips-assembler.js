@@ -4,6 +4,7 @@
  */
 
 // Types of instructions
+const TYPE_BADREGISTER = -3;
 const TYPE_UNSUPPORTED = -2;
 const TYPE_INVALID = -1;
 const TYPE_UNASSIGNED = 0;
@@ -264,6 +265,9 @@ function assemble() {
             case (TYPE_UNSUPPORTED):
                 printText += "; " + gettext("UNSUPPORTED OPERATION") + ": " + instrArgs[1] + " ; <" + TXTINPUT + ":" + input + "> " + orig + "\n";
                 break;
+            case (TYPE_BADREGISTER):
+                printText += "; " + gettext("INVALID REGISTER") + ": " + instrArgs[1] + " ; <" + TXTINPUT + ":" + input + "> " + orig + "\n";
+                break;
             case (TYPE_INVALID):
             default:
                 printText += "; " + gettext("UNRECOGNISED INSTRUCTION") + " ; <" + TXTINPUT + ":" + input + "> " + orig + "\n";
@@ -466,19 +470,40 @@ function register(reg) {
 
             switch(regChar) {
                 case("v"):
-                    returnVal = regNum + 2; break;
+                    // must be v0 or v1
+                    if (regNum <= 1) {
+                        returnVal = regNum + 2;
+                    } else {
+                        returnVal = -1;
+                    } break;
                 case("a"):
-                    returnVal = regNum + 4; break;
+                    // must be a0-a3
+                    if (regNum <= 3) {
+                        returnVal = regNum + 4;
+                    } else {
+                        returnVal = -1;
+                    } break;
                 case("t"):
+                    // must be t0-t9
                     if (regNum < 8) {
                         returnVal = regNum + 8;
                     } else {
                         returnVal = regNum + 16;
                     } break;
                 case("s"):
-                    returnVal = regNum + 16; break;
+                    // must be s0-s7
+                    if (regNum < 8) {
+                        returnVal = regNum + 16;
+                    } else {
+                        returnVal = -1;
+                    } break;
                 case("k"):
-                    returnVal = regNum + 26; break;
+                    // must be k0 or k1
+                    if (regNum <= 1) {
+                        returnVal = regNum + 26;
+                    } else {
+                        returnVal = -1;
+                    } break;
                 default:
                     returnVal = -1;
             }
@@ -493,6 +518,7 @@ function register(reg) {
 function buildInstructionR(args) {
     var returnList;
     var opcode = args[0];
+    var tempReg;
     var dest;
     var operands = [0, 0];
     var opEncoding = encodingR(opcode);
@@ -504,16 +530,17 @@ function buildInstructionR(args) {
     // Get the destination register
     if (args.length >= 2 && args[1].startsWith("$")) {
         if (last(args[1].split("")) == ",") {
-            dest = register(args[1].substr(1, args[1].length - 2));
+            tempReg = args[1].substr(1, args[1].length - 2);
         } else {
-            dest = register(args[1].substr(1));
+            tempReg = args[1].substr(1);
         }
+        dest = register(tempReg);
     } else {
         return [TYPE_INVALID, args[0]];
     }
 
     if (dest < 0) {
-        return [TYPE_INVALID, args[0]];
+        return [TYPE_BADREGISTER, tempReg];
     }
 
     // Get the operand arguments and build the hex
@@ -531,11 +558,17 @@ function buildInstructionR(args) {
         if (args.length != 4) {
             return [TYPE_INVALID, args[0]];
         }
+
         if (args[2].startsWith("$") && last(args[2].split("")) == ",") {
-            operands[0] = register(args[2].substr(1, args[2].length - 2));
+            tempReg = args[2].substr(1, args[2].length - 2);
         } else {
             return [TYPE_INVALID, args[0]];
         }
+        operands[0] = register(tempReg);
+        if (operands[0] < 0) {
+            return(TYPE_BADREGISTER, tempReg);
+        }
+
         var shift = parseInt(args[3]);
         if (shift > 0) {
             returnList = [TYPE_R, 0, 0, operands[0], dest, shift, opEncoding];
@@ -550,18 +583,25 @@ function buildInstructionR(args) {
         }
 
         if (args[2].startsWith("$") && last(args[2].split("")) == ",") {
-            operands[0] = register(args[2].substr(1, args[2].length - 2));
+            tempReg = args[2].substr(1, args[2].length - 2);
         } else {
             return f[TYPE_INVALID, args[0]];
         }
+        operands[0] = register(tempReg);
+        if (operands[0] < 0) {
+            return [TYPE_BADREGISTER, tempReg];
+        }
+
         if (args[3].startsWith("$")) {
-            operands[1] = register(args[3].substr(1));
+            tempReg = args[3].substr(1);
         } else {
             return [TYPE_INVALID, args[0]];
         }
-        if (operands[0] < 0 || operands[1] < 0) {
-            return [TYPE_INVALID, args[0] ];
+        operands[1] = register(tempReg);
+        if (operands[1] < 0) {
+            return [TYPE_BADREGISTER, tempReg];
         }
+
         returnList = [TYPE_R, 0, operands[0], operands[1], dest, 0, opEncoding];
     }
     return returnList;
@@ -574,6 +614,7 @@ function buildInstructionR(args) {
 function buildInstructionI(args) {
     var returnList;
     var opcode = args[0];
+    var tempReg;
     var dest;
     var operands = [0, 0];
     var opEncoding = encodingI(opcode);
@@ -586,15 +627,16 @@ function buildInstructionI(args) {
     // Get the destination argument
     if (args.length == 4 && args[1].startsWith("$")) {
         if (last(args[1].split("")) == ",") {
-            dest = register(args[1].substr(1, args[1].length - 2));
+            tempReg = args[1].substr(1, args[1].length - 2);
         } else {
-            dest = register(args[1].substr(1));
+            tempReg = args[1].substr(1)
         }
+        dest = register(tempReg);
     } else {
         return [TYPE_INVALID, args[0]];
     }
     if (dest < 0) {
-        return [TYPE_INVALID, args[0]];
+        return [TYPE_BADREGISTER, tempReg];
     }
 
     // Get the operand arguments and build the hex
@@ -604,12 +646,13 @@ function buildInstructionI(args) {
         // As such the current value of dest is actually an operand
         operands[0] = dest;
         if (args[2].startsWith("$") && last(args[2].split("")) == ",") {
-            operands[1] = register(args[2].substr(1, args[2].length - 2));
+            tempReg = args[2].substr(1, args[2].length - 2);
         } else {
             return [TYPE_INVALID, args[0]];
         }
+        operands[1] = register(tempReg);
         if (operands[1] < 0) {
-            return [TYPE_INVALID, args[0]];
+            return [TYPE_BADREGISTER, tempreg];
         }
 
         // beq and bne both reference destinations that haven't yet been parsed
@@ -619,13 +662,17 @@ function buildInstructionI(args) {
         // Remaining instructions follow the template:
         // opcode $destreg, $operand1, immediate
         if (args[2].startsWith("$") && last(args[2].split("")) == ",") {
-            operands[0] = register(args[2].substr(1, args[2].length - 2));
+            tempreg = args[2].substr(1, args[2].length - 2);
         } else {
             return [TYPE_INVALID, args[0]];
         }
+        operands[0] = register(tempreg);
+        if (operands[0] < 0) {
+            return [TYPE_BADREGISTER, tempReg];
+        }
 
         operands[1] = parseInt(args[3]);
-        if (operands[0] < 0 || isNaN(operands[1])) {
+        if (isNaN(operands[1])) {
             return [TYPE_INVALID, args[0]];
         }
 
@@ -650,7 +697,7 @@ function buildInstructionJ(args) {
     }
 
     // Supported instructions have only 2 arguments
-    // opcode $destaddr
+    // opcode destaddr
     if (args.length != 2) {
         return [TYPE_INVALID, args[0]];
     }
