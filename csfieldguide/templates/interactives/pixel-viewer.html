@@ -25,8 +25,8 @@
                     {% trans "Pixel Value Interactive" %}
                     <span id="interactive-subtitle" class="badge badge-danger"></span>
                 </h3>
-                <p>{% trans "This interactive allows you to see the pixels of an image, and details about those pixels. <strong>Zoom
-                        in</strong> to see details about individual pixels." %}</p>
+                <p>{% blocktrans %}This interactive allows you to see the pixels of an image, and details about those pixels. <strong>Zoom
+                        in</strong> to see details about individual pixels.{% endblocktrans %}</p>
 
                 <p id="pixel-viewer-extra-feature-description"></p>
 
@@ -45,8 +45,8 @@
                 <hr>
 
                 <h5>{% trans "Upload your own image" %}</h5>
-                <p>{% trans "Either drag and drop an image onto this page, or click the button below to load your own image into
-                    the interactive. The image will be resized for performance." %}</p>
+                <p>{% blocktrans %}Either drag and drop an image onto this page, or click the button below to load your own image into
+                    the interactive. The image will be resized for performance.{% endblocktrans %}</p>
 
                 <input type="file" class="form-control" name="image" onchange="loadImageDialog(this)" accept="image/*" />
                 <canvas id="pixel-viewer-interactive-source-canvas"></canvas>
@@ -57,8 +57,8 @@
 
                 <div id="picture-picker"></div>
 
-                <p>{% trans "You can save an image of this interactive by right clicking on the zoomed image and clicking "Save
-                    image as..." (Chrome/Firefox)." %}</p>
+                <p>{% blocktrans %}You can save an image of this interactive by right clicking on the zoomed image and clicking "Save
+                    image as..." (Chrome/Firefox).{% endblocktrans %}</p>
 
 
                 <hr>

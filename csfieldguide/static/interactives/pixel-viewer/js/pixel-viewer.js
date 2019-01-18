@@ -151,7 +151,7 @@ function setUpMode(){
 
 function addDescription(title, description){
   // Add title and description to page
-  $("#interactive-subtitle").text('Beta');
+  $("#interactive-subtitle").gettext('Beta');
   $("#pixel-viewer-extra-feature-description").html(description);
 }
 
@@ -169,7 +169,7 @@ function EdgeDetector(parent_element){
   // Create selector for number of grids to apply
   this.main_div.append(
     $(document.createElement("label"))
-    .text("Number of grids")
+    .gettext("Number of grids")
     .append(
       $(document.createElement("select"))
       .attr("id", "num-grids")
@@ -193,20 +193,20 @@ function EdgeDetector(parent_element){
   // Create buttons for applying filters
   this.main_div
     .append(
-      $(document.createElement("button")).text("Apply grids")
+      $(document.createElement("button")).gettext("Apply grids")
       .click(edgeDetect)
   );
   this.main_div
     .append(
-    $(document.createElement("button")).text("Restore Image")
+    $(document.createElement("button")).gettext("Restore Image")
     .click(removeFilters)
   );
 
-  this.main_div.append($("<p></p>").text(
+  this.main_div.append($("<p></p>").gettext(
     "Try adding a threshold to the picture once the transformation has taken place to highlight the edges you find."));
 
   this.main_div.append(thresholdSelect(127))
-  .append($(document.createElement("button")).text("Apply grids and Threshold").click(applyGreyThreshold))
+  .append($(document.createElement("button")).gettext("Apply grids and Threshold").click(applyGreyThreshold))
 }
 
 
@@ -223,7 +223,7 @@ function Blur(parent_element){
 
   this.main_div.append(
     $(document.createElement("label"))
-    .text("Type of blur")
+    .gettext("Type of blur")
     .append(
       $(document.createElement("select"))
       .attr("id", "blur-type")
@@ -244,31 +244,30 @@ function Blur(parent_element){
   );
   createGrid();
   this.main_div.append(
-    $(document.createElement("button")).text("Apply blur")
+    $(document.createElement("button")).gettext("Apply blur")
     .click(applyBlur));
 
   this.main_div
     .append(
-    $(document.createElement("button")).text("Remove blur")
+    $(document.createElement("button")).gettext("Remove blur")
     .click(removeFilters)
   );
   // Add a description about noise, then give opportunity for students to introduce noise.
-  this.main_div.append($(document.createElement("p")).text("Sometimes images have noise, and applying a blur can be a helpful way to preprocess\
+  this.main_div.append($(document.createElement("p")).gettext("Sometimes images have noise, and applying a blur can be a helpful way to preprocess\
   an image that contains noise before using other Computer Vision algorithms. Use this to add some \"salt and pepper\" noise to the image and then\
   observe what happens when you apply the blurs to a noisy image. Perhaps you have a noisy image that you could upload yourself?"))
-  .append($("<label></label>").text("Amount of noise to add (%): ")
+  .append($("<label></label>").gettext("Amount of noise to add (%): ")
     .append($(document.createElement("input"))
       .attr({"type": "number", "value": 10, "id" : "noise_selector", "class" : "percent_selector int_selector pos_int_selector"})
       .on("input", truncateValues)
       .on("blur", sanitiseValues))
     ).append(
-    $(document.createElement("button")).text("Add noise")
+    $(document.createElement("button")).gettext("Add noise")
     .click(addNoise)
   ).append(
-    $(document.createElement("button")).text("Remove noise")
+    $(document.createElement("button")).gettext("Remove noise")
     .click(removeSalt)
   );
-  // this.main_div.append($("<p></p>").text("Can you use the custom grid to find edges? What would happen if you used negative values for some weights?"))
 }
 
 function Thresholder(parent_element){
@@ -277,7 +276,7 @@ function Thresholder(parent_element){
   this.main_div.attr("id", "pixel-viewer-thresholder").appendTo($(parent_element));
   vals = ["R", "G", "B"];
   for (val in vals){
-    this.main_div.append($("<label></label>").text(vals[val])
+    this.main_div.append($("<label></label>").gettext(vals[val])
     .append($("<select></select>")
       .attr("id", vals[val] + "_lt_or_gt")
       .append($("<option value='<'>\<</option>"))
@@ -294,8 +293,8 @@ function Thresholder(parent_element){
       .append($("<option value='&&'>AND</option>")));
     }
   }
-  this.main_div.append($(document.createElement("button")).text("Apply Threshold").click(applyThreshold));
-  this.main_div.append($(document.createElement("button")).text("Remove Threshold").click(removeFilters));
+  this.main_div.append($(document.createElement("button")).gettext("Apply Threshold").click(applyThreshold));
+  this.main_div.append($(document.createElement("button")).gettext("Remove Threshold").click(removeFilters));
 }
 
 
@@ -304,14 +303,14 @@ function GreyscaleThresholder(parent_element){
   this.main_div = $("<div></div>");
   this.main_div.attr("id", "pixel-viewer-thresholder").appendTo($(parent_element));
   this.main_div.append(thresholdSelect(127)
-  .append($(document.createElement("button")).text("Apply Threshold").click(applyGreyThreshold))
-  .append($(document.createElement("button")).text("Remove Threshold").click(removeFilters)));
+  .append($(document.createElement("button")).gettext("Apply Threshold").click(applyGreyThreshold))
+  .append($(document.createElement("button")).gettext("Remove Threshold").click(removeFilters)));
 }
 
 function greyScaleToggler(){
   // return a select object for toggling greyscale on or off
   return $(document.createElement("label"))
-    .text("Greyscale or rgb")
+    .gettext("Greyscale or rgb")
     .append(
       $(document.createElement("select"))
       .attr("id", "greyscale-or-rgb")
@@ -324,7 +323,7 @@ function greyScaleToggler(){
 function gridSizeChooser(callback){
   // return a select option for choosing how big a convolutional kernel to be applied should be
   return $(document.createElement("label"))
-    .text("Grid size")
+    .gettext("Grid size")
     .append(
       $(document.createElement("select"))
       .attr("id", "grid-size")
@@ -338,7 +337,7 @@ function gridSizeChooser(callback){
 
 function thresholdSelect(default_val = 0){
   // Returns a select object for deciding a numeric threshold. Uses default_val as default value
-  return $("<label></label>").text("Threshold: ")
+  return $("<label></label>").gettext("Threshold: ")
     .append($(document.createElement("input"))
       .attr({"type": "number", "value": default_val, "id" : "threshold_selector", "class" : "color_selector int_selector pos_int_selector"})
       .on("input", truncateValues)
@@ -442,7 +441,7 @@ function createGrids(){
     gridsDiv.append(constructGrid(i));
   }
   $("#grids-div").append(
-    $(document.createElement("label")).text("Use absolute value of result: ").append(
+    $(document.createElement("label")).gettext("Use absolute value of result: ").append(
       $(document.createElement("input")).attr({"id":"use_abs_val","type":"checkbox"})));
 }
 
@@ -454,7 +453,7 @@ function createGrid(){
   }
   $("#blur-grid").append(constructGrid());
   $("#blur-grid").append(
-    $(document.createElement("label")).text("Use absolute value of result: ").append(
+    $(document.createElement("label")).gettext("Use absolute value of result: ").append(
       $(document.createElement("input")).attr({"id":"use_abs_val","type":"checkbox"})));
 }
 
@@ -781,7 +780,7 @@ function refreshImage(){
 function createPicturePicker(){
   // Create picker for default pictures
   main_div = $("#picture-picker");
-  main_div.append($("<p></p>").text("Or choose from the following supplied images:"));
+  main_div.append($("<p></p>").gettext("Or choose from the following supplied images:"));
   for (var i = 0; i < images.length; i++){
     var img_url = image_base_path + images[i]
     main_div.append(
@@ -869,7 +868,7 @@ function load_resize_image(src, user_upload=true){
         ctx.drawImage(image, 0, 0, image.width, image.height);
         scroller.scrollTo(0,0);
         if(user_upload){
-          var text = "Your image has been resized for this interactive to " + image.width + " pixels wide and " + image.height + " pixels high."
+          var text = gettext("Your image has been resized for this interactive to " + image.width + " pixels wide and " + image.height + " pixels high.");
           canvas.style.display = "inline-block";
         }
         else {
