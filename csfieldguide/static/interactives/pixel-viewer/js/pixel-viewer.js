@@ -108,29 +108,29 @@ $( document ).ready(function() {
 function setUpMode(){
   // Sets up widgets and descriptions appropriate to mode
   if (mode == 'threshold'){
-    addDescription("Colour Threshold Interactive",
+    addDescription(gettext("Colour Threshold Interactive",
     "Create an expression to threshold the image. Any pixels that match the\
      expression you come up with will be turned white, and everything else will become black. What happens \
      when you threshold on different values or for different colours? Can you use this technique to identify \
-     regions of similar colour in the image?");
+     regions of similar colour in the image?"));
     new Thresholder($('#pixel-viewer-image-manipulator'));
   }
   if (mode == 'thresholdgreyscale'){
-    addDescription("Threshold Interactive", "The image has been converted to greyscale by taking the average of the red, blue and green values for\
+    addDescription(gettext("Threshold Interactive", "The image has been converted to greyscale by taking the average of the red, blue and green values for\
       each pixel. Choose a threshold between 0 and 255 and transform this picture into black and white to \
-      identify regions and edges.");
+      identify regions and edges."));
     filter = greyscaler;
     isGreyscale = true;
     new GreyscaleThresholder($('#pixel-viewer-image-manipulator'));
   }
   if (mode == 'blur'){
-    addDescription("Picture Blurring Interactive", "Experiment with using different blurs to try process the noise. The mean blur will take the mean values of the pixels surrounding,\
+    addDescription(gettext("Picture Blurring Interactive", "Experiment with using different blurs to try process the noise. The mean blur will take the mean values of the pixels surrounding,\
       the median will take the median value, the gaussian blurs according to a gaussian distribution, and the custom blur allows you to give weights to different surrounding pixels.\
       How do the different types of blur effect the image? What happens when you change values in the custom grid? Experiment with both greyscale and rgb images.  \
       What would happen if every value in the grid was 0 except one? How come? \
       <br><br>\
        If you find that the scroll and zoom are slow with a blur applied, try removing the blur, zooming or scrolling and \
-      then reapplying the blur.");
+      then reapplying the blur."));
     images = ["coloured-roof-small.png", "dark.jpg", "dark_clock.jpg"]
     new Blur($('#pixel-viewer-image-manipulator'));
   }
@@ -138,13 +138,13 @@ function setUpMode(){
     images = ["coloured-roof-small.png", "alley.jpg", "bike.jpg", "boards.jpg",
   "fence.jpg", "roof.jpg", "tuba.jpg","words.png",
   "words_zoom.png", "knight.png"]
-    addDescription("Edge Detection Interactive", "Find an edge in the graph and zoom right in. What information could a computer use from the values of the pixels surrounding the edge to find it?\
+    addDescription(gettext("Edge Detection Interactive", "Find an edge in the graph and zoom right in. What information could a computer use from the values of the pixels surrounding the edge to find it?\
     <br><br>\
     We have supplied you with some grids to apply to the image to transorm it. The numbers in the grids are multiplied against the values of the pixels that surround each point. What numbers\
     can you use in these boxes to discover edges? \
     <br><br>\
     Below the grids is a thresholder which you can apply to the result. What results can you get if you combine these two filters to the image? There is an option\
-    for outputting the absolute value of the result of the multiplication grid. What does checking and unchecking this box change about the result? What happens if you apply multiple grids?");
+    for outputting the absolute value of the result of the multiplication grid. What does checking and unchecking this box change about the result? What happens if you apply multiple grids?"));
     new EdgeDetector($('#pixel-viewer-image-manipulator'));
   }
 }
