@@ -211,8 +211,8 @@ function last(array) {
 }
 
 // Returns the string of an integer as a zero-extended n-character hex value
-// If the hex is less than n bytes, zeros will be appended to the front
-// If the hex is greater than n bytes, a larger than n-character string will be returned
+// If the hex is less than n/2 bytes, zeros will be appended to the front
+// If the hex is greater than n/2 bytes, a larger than n-character string will be returned
 // E.g: hexOfInt(20, 4) = "0014", hexOfint(20, 1) = "14"
 function hexOfInt(num, n) {
     var returnString = num.toString(16);
@@ -906,7 +906,7 @@ function interpretString(addr) {
     return returnText;
 }
 
-// Splits the given 8 byte hex into 4 digits, each representing an ascii character
+// Splits the given 4 byte hex into 4 digits, each representing an ascii character
 function disect(hex) {
     return [
             (0xFF000000 & hex) >> 24,
