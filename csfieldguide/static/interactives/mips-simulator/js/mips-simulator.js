@@ -455,7 +455,7 @@ function execute_sll (args, addr) {
     }
     var ans = REGISTERS[op] << shift;
     if (SHOWREG) {
-        PRINTTEXT += TAB + "sll:  $" + REG_NAMES[op] + " [" + hexOfInt(REGISTERS[op], 8) + "] << [imm] " + shift + " = " + hexOfInt(ans, 8) + "\n";
+        PRINTTEXT += TAB + "sll:  $" + REG_NAMES[op] + " [" + hexOfInt(REGISTERS[op], 8) + "] << " + shift + " = " + hexOfInt(ans, 8) + "\n";
     }
     REGISTERS[dest] = ans;
     return addr + 4;
@@ -570,25 +570,97 @@ function execute_subu (args, addr) {
 // Executes an and instruction on the given arguments
 // Returns the address of the next instruction to execute, given and is stored at the given address
 function execute_and (args, addr) {
-
+    // and $dest, $op1, $op2
+        
+    var dest = args[1];
+    var op1 = args[2];
+    var op2 = args[3];
+    if (REGISTERS[op1] === null || isNaN(REGISTERS[op1])) {
+        PRINTTEXT += TXT_NOREAD + ": $" + REG_NAMES[op1] + "\n";
+        return -1;
+    }
+    if (REGISTERS[op2] === null || isNaN(REGISTERS[op2])) {
+        PRINTTEXT += TXT_NOREAD + ": $" + REG_NAMES[op2] + "\n";
+        return -1;
+    }
+    var ans = REGISTERS[op1] & REGISTERS[op2];
+    if (SHOWREG) {
+        PRINTTEXT += TAB + "and:  $" + REG_NAMES[op1] + " [" + hexOfInt(REGISTERS[op1], 8) + "] AND $" + REG_NAMES[op2] + " [" + hexOfInt(REGISTERS[op2], 8) + "] = " + hexOfInt(ans, 8) + "\n";
+    }
+    REGISTERS[dest] = ans;
+    return addr + 4
 }
 
 // Executes an or instruction on the given arguments
 // Returns the address of the next instruction to execute, given or is stored at the given address
 function execute_or (args, addr) {
-
+    // or $dest, $op1, $op2
+        
+    var dest = args[1];
+    var op1 = args[2];
+    var op2 = args[3];
+    if (REGISTERS[op1] === null || isNaN(REGISTERS[op1])) {
+        PRINTTEXT += TXT_NOREAD + ": $" + REG_NAMES[op1] + "\n";
+        return -1;
+    }
+    if (REGISTERS[op2] === null || isNaN(REGISTERS[op2])) {
+        PRINTTEXT += TXT_NOREAD + ": $" + REG_NAMES[op2] + "\n";
+        return -1;
+    }
+    var ans = REGISTERS[op1] | REGISTERS[op2];
+    if (SHOWREG) {
+        PRINTTEXT += TAB + "or:   $" + REG_NAMES[op1] + " [" + hexOfInt(REGISTERS[op1], 8) + "] OR $" + REG_NAMES[op2] + " [" + hexOfInt(REGISTERS[op2], 8) + "] = " + hexOfInt(ans, 8) + "\n";
+    }
+    REGISTERS[dest] = ans;
+    return addr + 4
 }
 
 // Executes a xor instruction on the given arguments
 // Returns the address of the next instruction to execute, given xor is stored at the given address
 function execute_xor (args, addr) {
-
+    // xor $dest, $op1, $op2
+        
+    var dest = args[1];
+    var op1 = args[2];
+    var op2 = args[3];
+    if (REGISTERS[op1] === null || isNaN(REGISTERS[op1])) {
+        PRINTTEXT += TXT_NOREAD + ": $" + REG_NAMES[op1] + "\n";
+        return -1;
+    }
+    if (REGISTERS[op2] === null || isNaN(REGISTERS[op2])) {
+        PRINTTEXT += TXT_NOREAD + ": $" + REG_NAMES[op2] + "\n";
+        return -1;
+    }
+    var ans = REGISTERS[op1] ^ REGISTERS[op2];
+    if (SHOWREG) {
+        PRINTTEXT += TAB + "xor:  $" + REG_NAMES[op1] + " [" + hexOfInt(REGISTERS[op1], 8) + "] XOR $" + REG_NAMES[op2] + " [" + hexOfInt(REGISTERS[op2], 8) + "] = " + hexOfInt(ans, 8) + "\n";
+    }
+    REGISTERS[dest] = ans;
+    return addr + 4
 }
 
 // Executes a nor instruction on the given arguments
 // Returns the address of the next instruction to execute, given nor is stored at the given address
 function execute_nor (args, addr) {
-
+    // nor $dest, $op1, $op2
+        
+    var dest = args[1];
+    var op1 = args[2];
+    var op2 = args[3];
+    if (REGISTERS[op1] === null || isNaN(REGISTERS[op1])) {
+        PRINTTEXT += TXT_NOREAD + ": $" + REG_NAMES[op1] + "\n";
+        return -1;
+    }
+    if (REGISTERS[op2] === null || isNaN(REGISTERS[op2])) {
+        PRINTTEXT += TXT_NOREAD + ": $" + REG_NAMES[op2] + "\n";
+        return -1;
+    }
+    var ans = ~(REGISTERS[op1] | REGISTERS[op2]);
+    if (SHOWREG) {
+        PRINTTEXT += TAB + "nor:  $" + REG_NAMES[op1] + " [" + hexOfInt(REGISTERS[op1], 8) + "] NOR $" + REG_NAMES[op2] + " [" + hexOfInt(REGISTERS[op2], 8) + "] = " + hexOfInt(ans, 8) + "\n";
+    }
+    REGISTERS[dest] = ans;
+    return addr + 4
 }
 
 // Executes a beq instruction on the given arguments
@@ -669,7 +741,7 @@ function execute_addi (args, addr) {
     }
     var ans = REGISTERS[op] + imm;
     if (SHOWREG) {
-        PRINTTEXT += TAB + "addi: $" + REG_NAMES[op] + " [" + hexOfInt(REGISTERS[op], 8) + "] + [imm] " + imm + " = " + hexOfInt(ans, 8) + "\n";
+        PRINTTEXT += TAB + "addi: $" + REG_NAMES[op] + " [" + hexOfInt(REGISTERS[op], 8) + "] + " + imm + " = " + hexOfInt(ans, 8) + "\n";
     }
     REGISTERS[dest] = ans;
     return addr + 4;
@@ -690,7 +762,7 @@ function execute_addiu (args, addr) {
     }
     var ans = REGISTERS[op] + imm;
     if (SHOWREG) {
-        PRINTTEXT += TAB + "addi: $" + REG_NAMES[op] + " [" + hexOfInt(REGISTERS[op], 8) + "] + [imm] " + imm + " = " + hexOfInt(ans, 8) + "\n";
+        PRINTTEXT += TAB + "addiu: $" + REG_NAMES[op] + " [" + hexOfInt(REGISTERS[op], 8) + "] + " + imm + " = " + hexOfInt(ans, 8) + "\n";
     }
     REGISTERS[dest] = ans;
     return addr + 4;
@@ -699,19 +771,73 @@ function execute_addiu (args, addr) {
 // Executes an andi instruction on the given arguments
 // Returns the address of the next instruction to execute, given andi is stored at the given address
 function execute_andi (args, addr) {
+    // andi $dest, $operand, imm
 
+    var dest = args[1];
+    var op = args[2];
+    var imm = args[3];
+    if (REGISTERS[op] === null || isNaN(REGISTERS[op])) {
+        PRINTTEXT += TXT_NOREAD + ": $" + REG_NAMES[op] + "\n";
+        return -1;
+    }
+    if (imm > MAX_16) {
+        // F-extend the number, so that it is correctly interpreted as a negative value
+        imm = (0xFFFF0000 | imm);
+    }
+    var ans = REGISTERS[op] & imm;
+    if (SHOWREG) {
+        PRINTTEXT += TAB + "andi: $" + REG_NAMES[op] + " [" + hexOfInt(REGISTERS[op], 8) + "] AND " + imm + " = " + hexOfInt(ans, 8) + "\n";
+    }
+    REGISTERS[dest] = ans;
+    return addr + 4;
 }
 
 // Executes an ori instruction on the given arguments
 // Returns the address of the next instruction to execute, given ori is stored at the given address
 function execute_ori (args, addr) {
+    // ori $dest, $operand, imm
 
+    var dest = args[1];
+    var op = args[2];
+    var imm = args[3];
+    if (REGISTERS[op] === null || isNaN(REGISTERS[op])) {
+        PRINTTEXT += TXT_NOREAD + ": $" + REG_NAMES[op] + "\n";
+        return -1;
+    }
+    if (imm > MAX_16) {
+        // F-extend the number, so that it is correctly interpreted as a negative value
+        imm = (0xFFFF0000 | imm);
+    }
+    var ans = REGISTERS[op] | imm;
+    if (SHOWREG) {
+        PRINTTEXT += TAB + "ori:  $" + REG_NAMES[op] + " [" + hexOfInt(REGISTERS[op], 8) + "] OR " + imm + " = " + hexOfInt(ans, 8) + "\n";
+    }
+    REGISTERS[dest] = ans;
+    return addr + 4;
 }
 
 // Executes a xori instruction on the given arguments
 // Returns the address of the next instruction to execute, given xori is stored at the given address
 function execute_xori (args, addr) {
+    // xori $dest, $operand, imm
 
+    var dest = args[1];
+    var op = args[2];
+    var imm = args[3];
+    if (REGISTERS[op] === null || isNaN(REGISTERS[op])) {
+        PRINTTEXT += TXT_NOREAD + ": $" + REG_NAMES[op] + "\n";
+        return -1;
+    }
+    if (imm > MAX_16) {
+        // F-extend the number, so that it is correctly interpreted as a negative value
+        imm = (0xFFFF0000 | imm);
+    }
+    var ans = REGISTERS[op] ^ imm;
+    if (SHOWREG) {
+        PRINTTEXT += TAB + "xori: $" + REG_NAMES[op] + " [" + hexOfInt(REGISTERS[op], 8) + "] XOR " + imm + " = " + hexOfInt(ans, 8) + "\n";
+    }
+    REGISTERS[dest] = ans;
+    return addr + 4;
 }
 
 // Executes a j instruction on the given arguments
