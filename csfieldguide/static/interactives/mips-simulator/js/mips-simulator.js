@@ -455,7 +455,7 @@ function execute_sll (args, addr) {
     }
     var ans = REGISTERS[op] << shift;
     if (SHOWREG) {
-        PRINTTEXT += TAB + "sll:  $" + REG_NAMES[op] + " [" + hexOfInt(REGISTERS[op], 8) + "] << " + shift + " = " + hexOfInt(ans, 8) + "\n";
+        PRINTTEXT += TAB + "sll:   $" + REG_NAMES[op] + " [" + hexOfInt(REGISTERS[op], 8) + "] << " + shift + " = " + hexOfInt(ans, 8) + "\n";
     }
     REGISTERS[dest] = ans;
     return addr + 4;
@@ -466,7 +466,7 @@ function execute_sll (args, addr) {
 function execute_jr (args, addr) {
     // jr $reg
     if (SHOWREG) {
-        PRINTTEXT += TAB + "jr:   $" + REG_NAMES[args[1]] + "\n";
+        PRINTTEXT += TAB + "jr:    $" + REG_NAMES[args[1]] + "\n";
     }
     return addr + 4;
 }
@@ -489,7 +489,7 @@ function execute_add (args, addr) {
     }
     var ans = REGISTERS[op1] + REGISTERS[op2];
     if (SHOWREG) {
-        PRINTTEXT += TAB + "add:  $" + REG_NAMES[op1] + " [" + hexOfInt(REGISTERS[op1], 8) + "] + $" + REG_NAMES[op2] + " [" + hexOfInt(REGISTERS[op2], 8) + "] = " + hexOfInt(ans, 8) + "\n";
+        PRINTTEXT += TAB + "add:   $" + REG_NAMES[op1] + " [" + hexOfInt(REGISTERS[op1], 8) + "] + $" + REG_NAMES[op2] + " [" + hexOfInt(REGISTERS[op2], 8) + "] = " + hexOfInt(ans, 8) + "\n";
     }
     REGISTERS[dest] = ans;
     return addr + 4
@@ -513,7 +513,7 @@ function execute_addu (args, addr) {
     }
     var ans = REGISTERS[op1] + REGISTERS[op2];
     if (SHOWREG) {
-        PRINTTEXT += TAB + "addu: $" + REG_NAMES[op1] + " [" + hexOfInt(REGISTERS[op1], 8) + "] + $" + REG_NAMES[op2] + " [" + hexOfInt(REGISTERS[op2], 8) + "] = " + hexOfInt(ans, 8) + "\n";
+        PRINTTEXT += TAB + "addu:  $" + REG_NAMES[op1] + " [" + hexOfInt(REGISTERS[op1], 8) + "] + $" + REG_NAMES[op2] + " [" + hexOfInt(REGISTERS[op2], 8) + "] = " + hexOfInt(ans, 8) + "\n";
     }
     REGISTERS[dest] = ans;
     return addr + 4
@@ -537,7 +537,7 @@ function execute_sub (args, addr) {
     }
     var ans = REGISTERS[op1] - REGISTERS[op2];
     if (SHOWREG) {
-        PRINTTEXT += TAB + "sub:  $" + REG_NAMES[op1] + " [" + hexOfInt(REGISTERS[op1], 8) + "] - $" + REG_NAMES[op2] + " [" + hexOfInt(REGISTERS[op2], 8) + "] = " + hexOfInt(ans, 8) + "\n";
+        PRINTTEXT += TAB + "sub:   $" + REG_NAMES[op1] + " [" + hexOfInt(REGISTERS[op1], 8) + "] - $" + REG_NAMES[op2] + " [" + hexOfInt(REGISTERS[op2], 8) + "] = " + hexOfInt(ans, 8) + "\n";
     }
     REGISTERS[dest] = ans;
     return addr + 4
@@ -561,7 +561,7 @@ function execute_subu (args, addr) {
     }
     var ans = REGISTERS[op1] - REGISTERS[op2];
     if (SHOWREG) {
-        PRINTTEXT += TAB + "subu: $" + REG_NAMES[op1] + " [" + hexOfInt(REGISTERS[op1], 8) + "] - $" + REG_NAMES[op2] + " [" + hexOfInt(REGISTERS[op2], 8) + "] = " + hexOfInt(ans, 8) + "\n";
+        PRINTTEXT += TAB + "subu:  $" + REG_NAMES[op1] + " [" + hexOfInt(REGISTERS[op1], 8) + "] - $" + REG_NAMES[op2] + " [" + hexOfInt(REGISTERS[op2], 8) + "] = " + hexOfInt(ans, 8) + "\n";
     }
     REGISTERS[dest] = ans;
     return addr + 4
@@ -585,7 +585,7 @@ function execute_and (args, addr) {
     }
     var ans = REGISTERS[op1] & REGISTERS[op2];
     if (SHOWREG) {
-        PRINTTEXT += TAB + "and:  $" + REG_NAMES[op1] + " [" + hexOfInt(REGISTERS[op1], 8) + "] AND $" + REG_NAMES[op2] + " [" + hexOfInt(REGISTERS[op2], 8) + "] = " + hexOfInt(ans, 8) + "\n";
+        PRINTTEXT += TAB + "and:   $" + REG_NAMES[op1] + " [" + hexOfInt(REGISTERS[op1], 8) + "] AND $" + REG_NAMES[op2] + " [" + hexOfInt(REGISTERS[op2], 8) + "] = " + hexOfInt(ans, 8) + "\n";
     }
     REGISTERS[dest] = ans;
     return addr + 4
@@ -609,7 +609,7 @@ function execute_or (args, addr) {
     }
     var ans = REGISTERS[op1] | REGISTERS[op2];
     if (SHOWREG) {
-        PRINTTEXT += TAB + "or:   $" + REG_NAMES[op1] + " [" + hexOfInt(REGISTERS[op1], 8) + "] OR $" + REG_NAMES[op2] + " [" + hexOfInt(REGISTERS[op2], 8) + "] = " + hexOfInt(ans, 8) + "\n";
+        PRINTTEXT += TAB + "or:    $" + REG_NAMES[op1] + " [" + hexOfInt(REGISTERS[op1], 8) + "] OR $" + REG_NAMES[op2] + " [" + hexOfInt(REGISTERS[op2], 8) + "] = " + hexOfInt(ans, 8) + "\n";
     }
     REGISTERS[dest] = ans;
     return addr + 4
@@ -633,7 +633,7 @@ function execute_xor (args, addr) {
     }
     var ans = REGISTERS[op1] ^ REGISTERS[op2];
     if (SHOWREG) {
-        PRINTTEXT += TAB + "xor:  $" + REG_NAMES[op1] + " [" + hexOfInt(REGISTERS[op1], 8) + "] XOR $" + REG_NAMES[op2] + " [" + hexOfInt(REGISTERS[op2], 8) + "] = " + hexOfInt(ans, 8) + "\n";
+        PRINTTEXT += TAB + "xor:   $" + REG_NAMES[op1] + " [" + hexOfInt(REGISTERS[op1], 8) + "] XOR $" + REG_NAMES[op2] + " [" + hexOfInt(REGISTERS[op2], 8) + "] = " + hexOfInt(ans, 8) + "\n";
     }
     REGISTERS[dest] = ans;
     return addr + 4
@@ -657,7 +657,7 @@ function execute_nor (args, addr) {
     }
     var ans = ~(REGISTERS[op1] | REGISTERS[op2]);
     if (SHOWREG) {
-        PRINTTEXT += TAB + "nor:  $" + REG_NAMES[op1] + " [" + hexOfInt(REGISTERS[op1], 8) + "] NOR $" + REG_NAMES[op2] + " [" + hexOfInt(REGISTERS[op2], 8) + "] = " + hexOfInt(ans, 8) + "\n";
+        PRINTTEXT += TAB + "nor:   $" + REG_NAMES[op1] + " [" + hexOfInt(REGISTERS[op1], 8) + "] NOR $" + REG_NAMES[op2] + " [" + hexOfInt(REGISTERS[op2], 8) + "] = " + hexOfInt(ans, 8) + "\n";
     }
     REGISTERS[dest] = ans;
     return addr + 4
@@ -682,12 +682,12 @@ function execute_beq (args, addr) {
     
     if (REGISTERS[op1] == REGISTERS[op2]) {
         if (SHOWREG) {
-            PRINTTEXT += TAB + "beq:  $" + REG_NAMES[op1] + " [" + hexOfInt(REGISTERS[op1], 8) + "] == $" + REG_NAMES[op2] + " [" + hexOfInt(REGISTERS[op2], 8) + "]\n";
+            PRINTTEXT += TAB + "beq:   $" + REG_NAMES[op1] + " [" + hexOfInt(REGISTERS[op1], 8) + "] == $" + REG_NAMES[op2] + " [" + hexOfInt(REGISTERS[op2], 8) + "]\n";
         }
         return addr + ((skips + 1) * 4);
     } else {
         if (SHOWREG) {
-            PRINTTEXT += TAB + "beq:  $" + REG_NAMES[op1] + " [" + hexOfInt(REGISTERS[op1], 8) + "] != $" + REG_NAMES[op2] + " [" + hexOfInt(REGISTERS[op2], 8) + "]\n"
+            PRINTTEXT += TAB + "beq:   $" + REG_NAMES[op1] + " [" + hexOfInt(REGISTERS[op1], 8) + "] != $" + REG_NAMES[op2] + " [" + hexOfInt(REGISTERS[op2], 8) + "]\n"
         }
         return addr + 4;
     }
@@ -712,12 +712,12 @@ function execute_bne (args, addr) {
 
     if (REGISTERS[op1] == REGISTERS[op2]) {
         if (SHOWREG) {
-            PRINTTEXT += TAB + "bne:  $" + REG_NAMES[op1] + " [" + hexOfInt(REGISTERS[op1], 8) + "] == $" + REG_NAMES[op2] + " [" + hexOfInt(REGISTERS[op2], 8) + "]\n";
+            PRINTTEXT += TAB + "bne:   $" + REG_NAMES[op1] + " [" + hexOfInt(REGISTERS[op1], 8) + "] == $" + REG_NAMES[op2] + " [" + hexOfInt(REGISTERS[op2], 8) + "]\n";
         }
         return addr + 4;
     } else {
         if (SHOWREG) {
-            PRINTTEXT += TAB + "bne:  $" + REG_NAMES[op1] + " [" + hexOfInt(REGISTERS[op1], 8) + "] != $" + REG_NAMES[op2] + " [" + hexOfInt(REGISTERS[op2], 8) + "]\n"
+            PRINTTEXT += TAB + "bne:   $" + REG_NAMES[op1] + " [" + hexOfInt(REGISTERS[op1], 8) + "] != $" + REG_NAMES[op2] + " [" + hexOfInt(REGISTERS[op2], 8) + "]\n"
         }
         return addr + ((skips + 1) * 4);
     }
@@ -741,7 +741,7 @@ function execute_addi (args, addr) {
     }
     var ans = REGISTERS[op] + imm;
     if (SHOWREG) {
-        PRINTTEXT += TAB + "addi: $" + REG_NAMES[op] + " [" + hexOfInt(REGISTERS[op], 8) + "] + " + imm + " = " + hexOfInt(ans, 8) + "\n";
+        PRINTTEXT += TAB + "addi:  $" + REG_NAMES[op] + " [" + hexOfInt(REGISTERS[op], 8) + "] + " + imm + " = " + hexOfInt(ans, 8) + "\n";
     }
     REGISTERS[dest] = ans;
     return addr + 4;
@@ -786,7 +786,7 @@ function execute_andi (args, addr) {
     }
     var ans = REGISTERS[op] & imm;
     if (SHOWREG) {
-        PRINTTEXT += TAB + "andi: $" + REG_NAMES[op] + " [" + hexOfInt(REGISTERS[op], 8) + "] AND " + imm + " = " + hexOfInt(ans, 8) + "\n";
+        PRINTTEXT += TAB + "andi:  $" + REG_NAMES[op] + " [" + hexOfInt(REGISTERS[op], 8) + "] AND " + imm + " = " + hexOfInt(ans, 8) + "\n";
     }
     REGISTERS[dest] = ans;
     return addr + 4;
@@ -810,7 +810,7 @@ function execute_ori (args, addr) {
     }
     var ans = REGISTERS[op] | imm;
     if (SHOWREG) {
-        PRINTTEXT += TAB + "ori:  $" + REG_NAMES[op] + " [" + hexOfInt(REGISTERS[op], 8) + "] OR " + imm + " = " + hexOfInt(ans, 8) + "\n";
+        PRINTTEXT += TAB + "ori:   $" + REG_NAMES[op] + " [" + hexOfInt(REGISTERS[op], 8) + "] OR " + imm + " = " + hexOfInt(ans, 8) + "\n";
     }
     REGISTERS[dest] = ans;
     return addr + 4;
@@ -834,7 +834,7 @@ function execute_xori (args, addr) {
     }
     var ans = REGISTERS[op] ^ imm;
     if (SHOWREG) {
-        PRINTTEXT += TAB + "xori: $" + REG_NAMES[op] + " [" + hexOfInt(REGISTERS[op], 8) + "] XOR " + imm + " = " + hexOfInt(ans, 8) + "\n";
+        PRINTTEXT += TAB + "xori:  $" + REG_NAMES[op] + " [" + hexOfInt(REGISTERS[op], 8) + "] XOR " + imm + " = " + hexOfInt(ans, 8) + "\n";
     }
     REGISTERS[dest] = ans;
     return addr + 4;
@@ -845,7 +845,7 @@ function execute_xori (args, addr) {
 function execute_j (args) {
     // j targetAddr
     if (SHOWREG) {
-        PRINTTEXT += TAB + "j:    " + hexOfInt(args[1], 8) + "\n";
+        PRINTTEXT += TAB + "j:     " + hexOfInt(args[1], 8) + "\n";
     }
     return args[1];
 }
