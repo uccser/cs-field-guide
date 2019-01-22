@@ -444,7 +444,7 @@ function operation(type, opcode) {
 // Executes an sll instruction on the given arguments
 // Returns the address of the next instruction to execute, given sll is stored at the given address
 function execute_sll (args, addr) {
-    // sll dest, op1, shift
+    // sll $dest, $op1, shift
     
     var dest = args[1];
     var op = args[2];
@@ -464,14 +464,17 @@ function execute_sll (args, addr) {
 // Executes a jr instruction on the given arguments
 // Returns the address of the next instruction to execute, given jr is stored at the given address
 function execute_jr (args, addr) {
-
+    // jr $reg
+    if (SHOWREG) {
+        PRINTTEXT += TAB + "jr:   $" + REG_NAMES[args[1]] + "\n";
+    }
     return addr + 4;
 }
 
 // Executes an add instruction on the given arguments
 // Returns the address of the next instruction to execute, given add is stored at the given address
 function execute_add (args, addr) {
-    // add dest, opconsole.log(args);1, op2
+    // add $dest, $op1, $op2
     
     var dest = args[1];
     var op1 = args[2];
@@ -495,19 +498,73 @@ function execute_add (args, addr) {
 // Executes an addu instruction on the given arguments
 // Returns the address of the next instruction to execute, given addu is stored at the given address
 function execute_addu (args, addr) {
-
+    // addu $dest, $op1, $op2
+        
+    var dest = args[1];
+    var op1 = args[2];
+    var op2 = args[3];
+    if (REGISTERS[op1] === null || isNaN(REGISTERS[op1])) {
+        PRINTTEXT += TXT_NOREAD + ": $" + REG_NAMES[op1] + "\n";
+        return -1;
+    }
+    if (REGISTERS[op2] === null || isNaN(REGISTERS[op2])) {
+        PRINTTEXT += TXT_NOREAD + ": $" + REG_NAMES[op2] + "\n";
+        return -1;
+    }
+    var ans = REGISTERS[op1] + REGISTERS[op2];
+    if (SHOWREG) {
+        PRINTTEXT += TAB + "addu: $" + REG_NAMES[op1] + " [" + hexOfInt(REGISTERS[op1], 8) + "] + $" + REG_NAMES[op2] + " [" + hexOfInt(REGISTERS[op2], 8) + "] = " + hexOfInt(ans, 8) + "\n";
+    }
+    REGISTERS[dest] = ans;
+    return addr + 4
 }
 
 // Executes a sub instruction on the given arguments
 // Returns the address of the next instruction to execute, given sub is stored at the given address
 function execute_sub (args, addr) {
-
+    // sub $dest, $op1, $op2
+    
+    var dest = args[1];
+    var op1 = args[2];
+    var op2 = args[3];
+    if (REGISTERS[op1] === null || isNaN(REGISTERS[op1])) {
+        PRINTTEXT += TXT_NOREAD + ": $" + REG_NAMES[op1] + "\n";
+        return -1;
+    }
+    if (REGISTERS[op2] === null || isNaN(REGISTERS[op2])) {
+        PRINTTEXT += TXT_NOREAD + ": $" + REG_NAMES[op2] + "\n";
+        return -1;
+    }
+    var ans = REGISTERS[op1] - REGISTERS[op2];
+    if (SHOWREG) {
+        PRINTTEXT += TAB + "sub:  $" + REG_NAMES[op1] + " [" + hexOfInt(REGISTERS[op1], 8) + "] - $" + REG_NAMES[op2] + " [" + hexOfInt(REGISTERS[op2], 8) + "] = " + hexOfInt(ans, 8) + "\n";
+    }
+    REGISTERS[dest] = ans;
+    return addr + 4
 }
 
 // Executes a subu instruction on the given arguments
 // Returns the address of the next instruction to execute, given subu is stored at the given address
 function execute_subu (args, addr) {
-
+    // subu $dest, $op1, $op2
+    
+    var dest = args[1];
+    var op1 = args[2];
+    var op2 = args[3];
+    if (REGISTERS[op1] === null || isNaN(REGISTERS[op1])) {
+        PRINTTEXT += TXT_NOREAD + ": $" + REG_NAMES[op1] + "\n";
+        return -1;
+    }
+    if (REGISTERS[op2] === null || isNaN(REGISTERS[op2])) {
+        PRINTTEXT += TXT_NOREAD + ": $" + REG_NAMES[op2] + "\n";
+        return -1;
+    }
+    var ans = REGISTERS[op1] - REGISTERS[op2];
+    if (SHOWREG) {
+        PRINTTEXT += TAB + "subu: $" + REG_NAMES[op1] + " [" + hexOfInt(REGISTERS[op1], 8) + "] - $" + REG_NAMES[op2] + " [" + hexOfInt(REGISTERS[op2], 8) + "] = " + hexOfInt(ans, 8) + "\n";
+    }
+    REGISTERS[dest] = ans;
+    return addr + 4
 }
 
 // Executes an and instruction on the given arguments
@@ -537,7 +594,7 @@ function execute_nor (args, addr) {
 // Executes a beq instruction on the given arguments
 // Returns the address of the next instruction to execute, given beq is stored at the given address
 function execute_beq (args, addr) {
-    // beq $op1, $op2, [num instructions skipped]
+    // beq $op1, $op2, [num instructions to skip]
     
     var op1 = args[1];
     var op2 = args[2];
@@ -567,13 +624,37 @@ function execute_beq (args, addr) {
 // Executes a bne instruction on the given arguments
 // Returns the address of the next instruction to execute, given bne is stored at the given address
 function execute_bne (args, addr) {
+    // bne $op1, $op2, [num instructions to skip]
+        
+    var op1 = args[1];
+    var op2 = args[2];
+    var skips = args[3];
+    if (REGISTERS[op1] === null || isNaN(REGISTERS[op1])) {
+        PRINTTEXT += TXT_NOREAD + ": $" + REG_NAMES[op1] + "\n";
+        return -1;
+    }
+    if (REGISTERS[op2] === null || isNaN(REGISTERS[op2])) {
+        PRINTTEXT += TXT_NOREAD + ": $" + REG_NAMES[op2] + "\n";
+        return -1;
+    }
 
+    if (REGISTERS[op1] == REGISTERS[op2]) {
+        if (SHOWREG) {
+            PRINTTEXT += TAB + "bne:  $" + REG_NAMES[op1] + " [" + hexOfInt(REGISTERS[op1], 8) + "] == $" + REG_NAMES[op2] + " [" + hexOfInt(REGISTERS[op2], 8) + "]\n";
+        }
+        return addr + 4;
+    } else {
+        if (SHOWREG) {
+            PRINTTEXT += TAB + "bne:  $" + REG_NAMES[op1] + " [" + hexOfInt(REGISTERS[op1], 8) + "] != $" + REG_NAMES[op2] + " [" + hexOfInt(REGISTERS[op2], 8) + "]\n"
+        }
+        return addr + ((skips + 1) * 4);
+    }
 }
 
 // Executes an addi instruction on the given arguments
 // Returns the address of the next instruction to execute, given addi is stored at the given address
 function execute_addi (args, addr) {
-    // addi dest, operand, imm
+    // addi $dest, $operand, imm
 
     var dest = args[1];
     var op = args[2];
@@ -598,7 +679,7 @@ function execute_addi (args, addr) {
 // Executes an addiu instruction on the given arguments
 // Returns the address of the next instruction to execute, given addiu is stored at the given address
 function execute_addiu (args, addr) {
-    // addiu dest, operand, imm
+    // addiu $dest, $operand, imm
 
     var dest = args[1];
     var op = args[2];
@@ -637,6 +718,9 @@ function execute_xori (args, addr) {
 // Returns the address of the next instruction to execute
 function execute_j (args) {
     // j targetAddr
+    if (SHOWREG) {
+        PRINTTEXT += TAB + "j:    " + hexOfInt(args[1], 8) + "\n";
+    }
     return args[1];
 }
 
