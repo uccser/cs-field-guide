@@ -372,7 +372,11 @@ function hexJ(opcode, addr) {
 // E.g: hexOfInt(20, 4) = "0014", hexOfint(20, 1) = "14"
 function hexOfInt(num, n) {
     var returnString = num.toString(16);
-    return "0".repeat(n - returnString.length) + returnString;
+    if (returnString.length < n) {
+        return "0".repeat(n - returnString.length) + returnString;
+    } else {
+        return returnString;
+    }
 }
 
 // Returns the base 10 encoding of the given Type R operation code

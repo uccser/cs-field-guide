@@ -1,0 +1,120 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div class="mb-3 interactive">
+    <!-- Title Block -->
+    <div id="interactive-mips-simulator" class="row justify-content-center">
+      <h1>{% trans 'MIPS Simulator' %}</h1>
+    </div>
+
+    <!-- Content Headings -->
+    <div class="row justify-content-center">
+      <div class="col">
+        <h3>{% trans 'Assembled MIPS Input' %}</h3>
+        <p>
+          {% trans 'Enter the assembled MIPS code from the MIPS Assembler interactive to run it.<br>Enter only the assembled hexadecimal values, no other assembler output.<br><strong>Note:</strong> Only a subset of MIPS is implemented, negative values are rarely supported.' %}
+        </p>
+      </div>
+      <div class="col">
+        <h3>{% trans 'Program Output' %}</h3>
+      </div>
+    </div>
+
+    <!-- Simulator -->
+    <div class="row justify-content-center">
+      <!-- Input Column -->
+      <div class="col">
+        <!-- Code Block -->
+        <div class="row">
+          <textarea id="assembled-input" class="code">
+            2408001e
+            24090014
+            01092020
+            24020001
+            0000000c
+            240400c0
+            00042400
+            24840000
+            24020004
+            0000000c
+            24020000
+            03e00008
+            0a48656c
+            6c6f2057
+            6f726c64
+            210a0000
+          </textarea>
+        </div>
+
+        <!-- Options Block -->
+        <div class="row justify-content-between">
+          <div class="col btn-group btn-group-toggle" data-toggle="buttons">
+            <label id="show-context-label" class="btn btn-outline-secondary">
+              <input id="show-context" type="checkbox" autocomplete="off">{% trans 'Show context' %}
+            </label>
+            <label id="show-registers-label" class="btn btn-outline-secondary">
+              <input id="show-registers" type="checkbox" autocomplete="off">{% trans 'Show register use' %}
+            </label>
+          </div>
+          <div class="col">
+            <button id="reset-adv" type="button" class="btn btn-outline-danger">{% trans 'Load advanced example' %}</button>
+            <button id="reset-basic" type="button" class="btn btn-outline-danger">{% trans 'Load basic example' %}</button>
+          </div>
+          <div class="col">
+            <button id="run-mips" type="button" class="btn btn-success">{% trans 'Run Program!' %}</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Output Column -->
+      <div class="col">
+        <!-- Initially a storage of the advanced example program, it is immediately cleared -->
+        <textarea id="program-output" class="code">
+            24080005
+            24090000
+            1109000a
+            00082020
+            24020001
+            0000000c
+            24020004
+            240400c0
+            00042400
+            24840008
+            0000000c
+            2108ffff
+            08400008
+            24020004
+            240400c0
+            00042400
+            24840000
+            0000000c
+            24020000
+            03e00008
+            474f2121
+            2121210a
+            00000000
+            0a000000
+        </textarea>
+      </div>
+
+    </div>
+
+    <!-- Contributions -->
+    <div class="row justify-content-center">
+      <p>
+      {% trans 'This simplified Javascript sandbox is based on the work of <a href="https://github.com/alanhogan/miphps-mips-simulator" target="_blank">Alan J. Hogan</a>.' %}
+      </p>
+    </div>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/mips-simulator/css/mips-simulator.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/mips-simulator/js/mips-simulator.js' %}"></script>
+{% endblock js %}

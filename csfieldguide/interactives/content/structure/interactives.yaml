@@ -136,9 +136,9 @@ menu-keystrokes:
 mips-assembler:
   languages:
     en: interactives/mips-assembler.html
-# mips-simulator:
-#   languages:
-#     en: interactives/mips-simulator.html
+mips-simulator:
+  languages:
+    en: interactives/mips-simulator.html
 # ncea-guide-selector:
 #   languages:
 #     en: interactives/ncea-guide-selector.html
