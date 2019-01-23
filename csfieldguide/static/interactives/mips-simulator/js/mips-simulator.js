@@ -35,6 +35,7 @@ const TXT_NOSUPPORT = gettext("Unsupported value in register");
 const TXT_INT = gettext("Print an integer");
 const TXT_TXT = gettext("Print a string");
 const TXT_LOAD = gettext("Loading");
+const TXT_STORE = gettext("stored in");
 const TAB = "    ";
 
 var PRINTTEXT;
@@ -45,6 +46,7 @@ var SHOWREG;
 $(document).ready(function() {
     var basicProgram = $('#assembled-input').val();
     var advancedProgram = $('#program-output').val();
+    var offerExamples = Number(getUrlParameter('offer-examples')) || 0;
     $('#program-output').val('');
     
     $('#run-mips').on('click', function () {
@@ -60,6 +62,12 @@ $(document).ready(function() {
         $('#assembled-input').val(advancedProgram);
         $('#program-output').val('');
     });
+
+    if (!offerExamples) {
+        $('#assembled-input').val('');
+        $('#reset-basic').hide();
+        $('#reset-adv').hide();
+    }
 });
 
 // Interprets and runs each line of assembled MIPS code
@@ -455,7 +463,7 @@ function execute_sll (args, addr) {
     }
     var ans = REGISTERS[op] << shift;
     if (SHOWREG) {
-        PRINTTEXT += TAB + "sll:   $" + REG_NAMES[op] + " [" + hexOfInt(REGISTERS[op], 8) + "] << " + shift + " = " + hexOfInt(ans, 8) + "\n";
+        PRINTTEXT += TAB + "sll:   $" + REG_NAMES[op] + " [" + hexOfInt(REGISTERS[op], 8) + "] << " + shift + " = " + hexOfInt(ans, 8) + " " + TXT_STORE + " $" + REG_NAMES[dest] + "\n";
     }
     REGISTERS[dest] = ans;
     return addr + 4;
@@ -489,7 +497,7 @@ function execute_add (args, addr) {
     }
     var ans = REGISTERS[op1] + REGISTERS[op2];
     if (SHOWREG) {
-        PRINTTEXT += TAB + "add:   $" + REG_NAMES[op1] + " [" + hexOfInt(REGISTERS[op1], 8) + "] + $" + REG_NAMES[op2] + " [" + hexOfInt(REGISTERS[op2], 8) + "] = " + hexOfInt(ans, 8) + "\n";
+        PRINTTEXT += TAB + "add:   $" + REG_NAMES[op1] + " [" + hexOfInt(REGISTERS[op1], 8) + "] + $" + REG_NAMES[op2] + " [" + hexOfInt(REGISTERS[op2], 8) + "] = " + hexOfInt(ans, 8) + " " + TXT_STORE + " $" + REG_NAMES[dest] + "\n";
     }
     REGISTERS[dest] = ans;
     return addr + 4
@@ -513,7 +521,7 @@ function execute_addu (args, addr) {
     }
     var ans = REGISTERS[op1] + REGISTERS[op2];
     if (SHOWREG) {
-        PRINTTEXT += TAB + "addu:  $" + REG_NAMES[op1] + " [" + hexOfInt(REGISTERS[op1], 8) + "] + $" + REG_NAMES[op2] + " [" + hexOfInt(REGISTERS[op2], 8) + "] = " + hexOfInt(ans, 8) + "\n";
+        PRINTTEXT += TAB + "addu:  $" + REG_NAMES[op1] + " [" + hexOfInt(REGISTERS[op1], 8) + "] + $" + REG_NAMES[op2] + " [" + hexOfInt(REGISTERS[op2], 8) + "] = " + hexOfInt(ans, 8) + " " + TXT_STORE + " $" + REG_NAMES[dest] + "\n";
     }
     REGISTERS[dest] = ans;
     return addr + 4
@@ -537,7 +545,7 @@ function execute_sub (args, addr) {
     }
     var ans = REGISTERS[op1] - REGISTERS[op2];
     if (SHOWREG) {
-        PRINTTEXT += TAB + "sub:   $" + REG_NAMES[op1] + " [" + hexOfInt(REGISTERS[op1], 8) + "] - $" + REG_NAMES[op2] + " [" + hexOfInt(REGISTERS[op2], 8) + "] = " + hexOfInt(ans, 8) + "\n";
+        PRINTTEXT += TAB + "sub:   $" + REG_NAMES[op1] + " [" + hexOfInt(REGISTERS[op1], 8) + "] - $" + REG_NAMES[op2] + " [" + hexOfInt(REGISTERS[op2], 8) + "] = " + hexOfInt(ans, 8) + " " + TXT_STORE + " $" + REG_NAMES[dest] + "\n";
     }
     REGISTERS[dest] = ans;
     return addr + 4
@@ -561,7 +569,7 @@ function execute_subu (args, addr) {
     }
     var ans = REGISTERS[op1] - REGISTERS[op2];
     if (SHOWREG) {
-        PRINTTEXT += TAB + "subu:  $" + REG_NAMES[op1] + " [" + hexOfInt(REGISTERS[op1], 8) + "] - $" + REG_NAMES[op2] + " [" + hexOfInt(REGISTERS[op2], 8) + "] = " + hexOfInt(ans, 8) + "\n";
+        PRINTTEXT += TAB + "subu:  $" + REG_NAMES[op1] + " [" + hexOfInt(REGISTERS[op1], 8) + "] - $" + REG_NAMES[op2] + " [" + hexOfInt(REGISTERS[op2], 8) + "] = " + hexOfInt(ans, 8) + " " + TXT_STORE + " $" + REG_NAMES[dest] + "\n";
     }
     REGISTERS[dest] = ans;
     return addr + 4
@@ -585,7 +593,7 @@ function execute_and (args, addr) {
     }
     var ans = REGISTERS[op1] & REGISTERS[op2];
     if (SHOWREG) {
-        PRINTTEXT += TAB + "and:   $" + REG_NAMES[op1] + " [" + hexOfInt(REGISTERS[op1], 8) + "] AND $" + REG_NAMES[op2] + " [" + hexOfInt(REGISTERS[op2], 8) + "] = " + hexOfInt(ans, 8) + "\n";
+        PRINTTEXT += TAB + "and:   $" + REG_NAMES[op1] + " [" + hexOfInt(REGISTERS[op1], 8) + "] AND $" + REG_NAMES[op2] + " [" + hexOfInt(REGISTERS[op2], 8) + "] = " + hexOfInt(ans, 8) + " " + TXT_STORE + " $" + REG_NAMES[dest] + "\n";
     }
     REGISTERS[dest] = ans;
     return addr + 4
@@ -609,7 +617,7 @@ function execute_or (args, addr) {
     }
     var ans = REGISTERS[op1] | REGISTERS[op2];
     if (SHOWREG) {
-        PRINTTEXT += TAB + "or:    $" + REG_NAMES[op1] + " [" + hexOfInt(REGISTERS[op1], 8) + "] OR $" + REG_NAMES[op2] + " [" + hexOfInt(REGISTERS[op2], 8) + "] = " + hexOfInt(ans, 8) + "\n";
+        PRINTTEXT += TAB + "or:    $" + REG_NAMES[op1] + " [" + hexOfInt(REGISTERS[op1], 8) + "] OR $" + REG_NAMES[op2] + " [" + hexOfInt(REGISTERS[op2], 8) + "] = " + hexOfInt(ans, 8) + " " + TXT_STORE + " $" + REG_NAMES[dest] + "\n";
     }
     REGISTERS[dest] = ans;
     return addr + 4
@@ -633,7 +641,7 @@ function execute_xor (args, addr) {
     }
     var ans = REGISTERS[op1] ^ REGISTERS[op2];
     if (SHOWREG) {
-        PRINTTEXT += TAB + "xor:   $" + REG_NAMES[op1] + " [" + hexOfInt(REGISTERS[op1], 8) + "] XOR $" + REG_NAMES[op2] + " [" + hexOfInt(REGISTERS[op2], 8) + "] = " + hexOfInt(ans, 8) + "\n";
+        PRINTTEXT += TAB + "xor:   $" + REG_NAMES[op1] + " [" + hexOfInt(REGISTERS[op1], 8) + "] XOR $" + REG_NAMES[op2] + " [" + hexOfInt(REGISTERS[op2], 8) + "] = " + hexOfInt(ans, 8) + " " + TXT_STORE + " $" + REG_NAMES[dest] + "\n";
     }
     REGISTERS[dest] = ans;
     return addr + 4
@@ -657,7 +665,7 @@ function execute_nor (args, addr) {
     }
     var ans = ~(REGISTERS[op1] | REGISTERS[op2]);
     if (SHOWREG) {
-        PRINTTEXT += TAB + "nor:   $" + REG_NAMES[op1] + " [" + hexOfInt(REGISTERS[op1], 8) + "] NOR $" + REG_NAMES[op2] + " [" + hexOfInt(REGISTERS[op2], 8) + "] = " + hexOfInt(ans, 8) + "\n";
+        PRINTTEXT += TAB + "nor:   $" + REG_NAMES[op1] + " [" + hexOfInt(REGISTERS[op1], 8) + "] NOR $" + REG_NAMES[op2] + " [" + hexOfInt(REGISTERS[op2], 8) + "] = " + hexOfInt(ans, 8) + " " + TXT_STORE + " $" + REG_NAMES[dest] + "\n";
     }
     REGISTERS[dest] = ans;
     return addr + 4
@@ -741,7 +749,7 @@ function execute_addi (args, addr) {
     }
     var ans = REGISTERS[op] + imm;
     if (SHOWREG) {
-        PRINTTEXT += TAB + "addi:  $" + REG_NAMES[op] + " [" + hexOfInt(REGISTERS[op], 8) + "] + " + imm + " = " + hexOfInt(ans, 8) + "\n";
+        PRINTTEXT += TAB + "addi:  $" + REG_NAMES[op] + " [" + hexOfInt(REGISTERS[op], 8) + "] + " + imm + " = " + hexOfInt(ans, 8) + " " + TXT_STORE + " $" + REG_NAMES[dest] + "\n";
     }
     REGISTERS[dest] = ans;
     return addr + 4;
@@ -762,7 +770,7 @@ function execute_addiu (args, addr) {
     }
     var ans = REGISTERS[op] + imm;
     if (SHOWREG) {
-        PRINTTEXT += TAB + "addiu: $" + REG_NAMES[op] + " [" + hexOfInt(REGISTERS[op], 8) + "] + " + imm + " = " + hexOfInt(ans, 8) + "\n";
+        PRINTTEXT += TAB + "addiu: $" + REG_NAMES[op] + " [" + hexOfInt(REGISTERS[op], 8) + "] + " + imm + " = " + hexOfInt(ans, 8) + " " + TXT_STORE + " $" + REG_NAMES[dest] + "\n";
     }
     REGISTERS[dest] = ans;
     return addr + 4;
@@ -786,7 +794,7 @@ function execute_andi (args, addr) {
     }
     var ans = REGISTERS[op] & imm;
     if (SHOWREG) {
-        PRINTTEXT += TAB + "andi:  $" + REG_NAMES[op] + " [" + hexOfInt(REGISTERS[op], 8) + "] AND " + imm + " = " + hexOfInt(ans, 8) + "\n";
+        PRINTTEXT += TAB + "andi:  $" + REG_NAMES[op] + " [" + hexOfInt(REGISTERS[op], 8) + "] AND " + imm + " = " + hexOfInt(ans, 8) + " " + TXT_STORE + " $" + REG_NAMES[dest] + "\n";
     }
     REGISTERS[dest] = ans;
     return addr + 4;
@@ -810,7 +818,7 @@ function execute_ori (args, addr) {
     }
     var ans = REGISTERS[op] | imm;
     if (SHOWREG) {
-        PRINTTEXT += TAB + "ori:   $" + REG_NAMES[op] + " [" + hexOfInt(REGISTERS[op], 8) + "] OR " + imm + " = " + hexOfInt(ans, 8) + "\n";
+        PRINTTEXT += TAB + "ori:   $" + REG_NAMES[op] + " [" + hexOfInt(REGISTERS[op], 8) + "] OR " + imm + " = " + hexOfInt(ans, 8) + " " + TXT_STORE + " $" + REG_NAMES[dest] + "\n";
     }
     REGISTERS[dest] = ans;
     return addr + 4;
@@ -834,7 +842,7 @@ function execute_xori (args, addr) {
     }
     var ans = REGISTERS[op] ^ imm;
     if (SHOWREG) {
-        PRINTTEXT += TAB + "xori:  $" + REG_NAMES[op] + " [" + hexOfInt(REGISTERS[op], 8) + "] XOR " + imm + " = " + hexOfInt(ans, 8) + "\n";
+        PRINTTEXT += TAB + "xori:  $" + REG_NAMES[op] + " [" + hexOfInt(REGISTERS[op], 8) + "] XOR " + imm + " = " + hexOfInt(ans, 8) + " " + TXT_STORE + " $" + REG_NAMES[dest] + "\n";
     }
     REGISTERS[dest] = ans;
     return addr + 4;
@@ -914,4 +922,20 @@ function disect(hex) {
             (0x0000FF00 & hex) >> 8,
             (0x000000FF & hex)
             ]
+}
+
+// From jquerybyexample.net/2012/06/get-url-parameters-using-jquery.html
+function getUrlParameter(sParam) {
+    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+        sURLVariables = sPageURL.split("&"),
+        sParameterName,
+        i;
+    
+    for (i=0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split("=");
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : sParameterName[1];
+        }
+    }
 }

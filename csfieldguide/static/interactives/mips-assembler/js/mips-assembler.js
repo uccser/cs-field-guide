@@ -15,6 +15,12 @@ const TYPE_J = 3;
 // other constants
 const INSTRUCTION_START = 0x00400000;
 const DATA_START = 0x00c00000;
+const COLOUR_ADDR = "lightgreen";
+const COLOUR_INSTR = "orange";
+const COLOUR_STR = "lightblue";
+const COLOUR_LABEL = "violet";
+const COLOUR_INPUT = "tan";
+const COLOUR_BAD = "red";
 
 const TXTINPUT = gettext('input');
 
@@ -25,8 +31,8 @@ var funcAddr = [];
 // Stores a backup of the default code and registers button handler functions
 $(document).ready(function() {
     var basicProgram = $('#mips-input').val();
-    var advancedProgram = $('#assembler-output').val();
-    $('#assembler-output').val('');
+    var advancedProgram = $('#assembler-output').html();
+    $('#assembler-output').html('');
 
     $('#submit-mips').on('click', function () {
         assemble();
@@ -86,9 +92,9 @@ function assemble() {
         if (line.startsWith(".")) {
             // Ignore the line
             if (showInstr) {
-                nextInstr = "; <" + TXTINPUT + ":" + input + "> " + line + "\n";
+                nextInstr = "; |" + colour(TXTINPUT + ":" + input, COLOUR_INPUT) + "| " + line + "<br>";
             } else {
-                nextInstr = line + "\n"
+                nextInstr = line + "<br>"
             }
             if (showBlank) {
                 instructions.push([TYPE_UNASSIGNED, nextInstr, input, instructionAddr, line]);
@@ -96,9 +102,9 @@ function assemble() {
         } else if (line.startsWith("#") || line == "") {
             // Interpret as a comment or blank line
             if (showInstr) {
-                nextInstr = "; <" + TXTINPUT + ":" + input + "> " + line + "\n";
+                nextInstr = "; |" + colour(TXTINPUT + ":" + input, COLOUR_INPUT) + "| " + line + "<br>";
             } else {
-                nextInstr = line + "\n";
+                nextInstr = line + "<br>";
             }
             if (showBlank) {
                 instructions.push([TYPE_UNASSIGNED, nextInstr, input, instructionAddr, line]);
@@ -111,9 +117,9 @@ function assemble() {
             storedTextNames.push(line.substr(0, line.indexOf(":")));
             storedTextAddr.push(last(storedTextAddr) + last(storedText).length * 4);
             if (showInstr) {
-                nextInstr = "; <" + TXTINPUT + ":" + input + "> " + line + "\n";
+                nextInstr = "; |" + colour(TXTINPUT + ":" + input, COLOUR_INPUT) + "| " + line + "<br>";
             } else {
-                nextInstr = line + "\n";
+                nextInstr = line + "<br>";
             }
             if (showBlank) {
                 instructions.push([TYPE_UNASSIGNED, nextInstr, input, instructionAddr, line]);
@@ -124,19 +130,19 @@ function assemble() {
             funcName.push(name);
             funcAddr.push(instructionAddr);
             if (showInstr) {
-                nextInstr = hexOfInt(instructionAddr, 8) + ": <" + name + "> ; <" + TXTINPUT + ":" + input + "> " + name + ":\n";
+                nextInstr = colour(hexOfInt(instructionAddr, 8), COLOUR_ADDR) + ": " + colour(name, COLOUR_LABEL) + " ; |" + colour(TXTINPUT + ":" + input, COLOUR_INPUT) + "| " + colour(name, COLOUR_LABEL) + ":<br>";
             } else {
-                nextInstr = line + "\n";
+                nextInstr = colour(name, COLOUR_LABEL) + ":<br>";
             }
-            if (showBlank) {
+            if (showBlank || showInstr) {
                 instructions.push([TYPE_UNASSIGNED, nextInstr, input, instructionAddr, line]);
             }
         } else if (line == "syscall") {
             // Interpret as a syscall
             if (showInstr) {
-                nextInstr = hexOfInt(instructionAddr, 8) + ": 0000000c ; <" + TXTINPUT + ":" + input + "> syscall\n";
+                nextInstr = colour(hexOfInt(instructionAddr, 8), COLOUR_ADDR) + ": " + colour("0000000c", COLOUR_INSTR) + " ; |" + colour(TXTINPUT + ":" + input, COLOUR_INPUT) + "| " + colour("syscall", COLOUR_INSTR) + "<br>";
             } else {
-                nextInstr = "0000000c\n";
+                nextInstr = colour("0000000c", COLOUR_INSTR) + "<br>";
             }
             instructions.push([TYPE_UNASSIGNED, nextInstr, input, instructionAddr, line]);
             instructionAddr += 4;
@@ -145,14 +151,15 @@ function assemble() {
             keywords = line.split(" ");
             
             if (keywords[0] == "li" && keywords.length == 3) {
-                // li shouldn't be supported but is with template (li $xy, z == addiu $xy, $0, z)
+                // li is supported with template (li $xy, z == addiu $xy, $zero, z)
                 keywords[0] = "addiu";
                 keywords.push(keywords[2]);
-                keywords[2] = "$0,";
+                keywords[2] = "$zero,";
+                line = "addiu " + keywords[1] + " " + keywords[2] + " " + keywords[3];
             }
 
             if (keywords[0] == "la" && keywords.length == 3) {
-                // la shouldn't be supported but is when split into three instructions
+                // la is supported when split into three instructions
                 // la $xy, datavarname == addiu $xy, $zero, [high 16 bits of dataaddr]
                 //                        sll $xy, $xy, 16
                 //                        addiu $xy, $xy, [low 16 bits of dataaddr]
@@ -166,7 +173,7 @@ function assemble() {
                 instrArgs = buildInstructionI(["addiu", keywords[1], "$zero,", hi]);
                 instrArgs.push(input);
                 instrArgs.push(instructionAddr);
-                instrArgs.push(line);
+                instrArgs.push("addiu " + keywords[1] + " $zero, " + storedTextNames[targetIndex] + "[hi]");
                 instructions.push(instrArgs);
 
                 input++;
@@ -175,7 +182,7 @@ function assemble() {
                 instrArgs = buildInstructionR(["sll", keywords[1], keywords[1], 16]);
                 instrArgs.push(input);
                 instrArgs.push(instructionAddr);
-                instrArgs.push(line);
+                instrArgs.push("sll " + keywords[1] + " " + keywords[1] + " 16");
                 instructions.push(instrArgs);
 
                 input++;
@@ -184,13 +191,15 @@ function assemble() {
                 keywords[0] = "addiu";
                 keywords[2] = keywords[1];
                 keywords.push(lo);
+                line = "addiu " + keywords[1] + " " + keywords[2] + " " + storedTextNames[targetIndex] + "[lo]";
             }
 
             if (keywords[0] == "move" && keywords.length == 3) {
-                // move shouldn't be supported but is with template (move $ab, $cd == add $ab, $0, $cd)
+                // move is supported with template (move $ab, $cd == add $ab, $zero, $cd)
                 keywords[0] = "add";
                 keywords.push(keywords[2]);
-                keywords[2] = "$0,";
+                keywords[2] = "$zero,";
+                line = "add " + keywords[1] + " " + keywords[2] + " " + keywords[3];
             }
 
             instrType = instructionType(keywords[0]);
@@ -235,9 +244,9 @@ function assemble() {
             case (TYPE_R):
                 instrHex = hexR(instrArgs[1], instrArgs[2], instrArgs[3], instrArgs[4], instrArgs[5], instrArgs[6]);
                 if (showInstr) {
-                    printText += hexOfInt(addr, 8) + ": " + hexOfInt(instrHex, 8) + " ; <" + TXTINPUT + ":" + input + "> " + orig + "\n";
+                    printText += colour(hexOfInt(addr, 8), COLOUR_ADDR) + ": " + colour(hexOfInt(instrHex, 8), COLOUR_INSTR) + " ; |" + colour(TXTINPUT + ":" + input, COLOUR_INPUT) + "| " + colour(orig, COLOUR_INSTR) + "<br>";
                 } else {
-                    printText += hexOfInt(instrHex, 8) + "\n";
+                    printText += colour(hexOfInt(instrHex, 8), COLOUR_INSTR) + "<br>";
                 }
                 break;
             case (TYPE_I):
@@ -249,28 +258,28 @@ function assemble() {
                 }
                 instrHex = hexI(instrArgs[1], instrArgs[2], instrArgs[3], instrArgs[4]);
                 if (showInstr) {
-                    printText += hexOfInt(addr, 8) + ": " + hexOfInt(instrHex, 8) + " ; <" + TXTINPUT + ":" + input + "> " + orig + "\n";
+                    printText += colour(hexOfInt(addr, 8), COLOUR_ADDR) + ": " + colour(hexOfInt(instrHex, 8), COLOUR_INSTR) + " ; |" + colour(TXTINPUT + ":" + input, COLOUR_INPUT) + "| " + colour(orig, COLOUR_INSTR) + "<br>";
                 } else {
-                    printText += hexOfInt(instrHex, 8) + "\n";
+                    printText += colour(hexOfInt(instrHex, 8), COLOUR_INSTR) + "<br>";
                 }
                 break;
             case (TYPE_J):
                 instrHex = hexJ(instrArgs[1], instrArgs[2]);
                 if (showInstr) {
-                    printText += hexOfInt(addr, 8) + ": " + hexOfInt(instrHex, 8) + " ; <" + TXTINPUT + ":" + input + "> " + orig + "\n";
+                    printText += colour(hexOfInt(addr, 8), COLOUR_ADDR) + ": " + colour(hexOfInt(instrHex, 8), COLOUR_INSTR) + " ; |" + colour(TXTINPUT + ":" + input, COLOUR_INPUT) + "| " + colour(orig, COLOUR_INSTR) + "<br>";
                 } else {
-                    printText += hexOfInt(instrHex, 8) + "\n";
+                    printText += colour(hexOfInt(instrHex, 8), COLOUR_INSTR) + "<br>";
                 }
                 break;
             case (TYPE_UNSUPPORTED):
-                printText += "; " + gettext("UNSUPPORTED OPERATION") + ": " + instrArgs[1] + " ; <" + TXTINPUT + ":" + input + "> " + orig + "\n";
+                printText += "; " + colour(gettext("UNSUPPORTED OPERATION"), COLOUR_BAD) + ": " + instrArgs[1] + " ; |" + colour(TXTINPUT + ":" + input, COLOUR_INPUT) + "| " + colour(orig, COLOUR_INSTR) + "<br>";
                 break;
             case (TYPE_BADREGISTER):
-                printText += "; " + gettext("INVALID REGISTER") + ": " + instrArgs[1] + " ; <" + TXTINPUT + ":" + input + "> " + orig + "\n";
+                printText += "; " + colour(gettext("INVALID REGISTER"), COLOUR_BAD) + ": " + instrArgs[1] + " ; |" + colour(TXTINPUT + ":" + input, COLOUR_INPUT) + "| " + colour(orig, COLOUR_INSTR) + "<br>";
                 break;
             case (TYPE_INVALID):
             default:
-                printText += "; " + gettext("UNRECOGNISED INSTRUCTION") + " ; <" + TXTINPUT + ":" + input + "> " + orig + "\n";
+                printText += "; " + colour(gettext("UNRECOGNISED INSTRUCTION"), COLOUR_BAD) + " ; |" + colour(TXTINPUT + ":" + input, COLOUR_INPUT) + "| " + colour(orig, COLOUR_INSTR) + "<br>";
                 break;
         }
     }
@@ -278,19 +287,19 @@ function assemble() {
     // Assemble the data stored in memory
     if (storedText.length > 0) {
         if (showInstr || showBlank) {
-            printText += ";\n; "+ gettext("DATA IN MEMORY") + "\n";
+            printText += ";<br>; "+ gettext("DATA IN MEMORY") + "<br>";
         }
         for (i=0; i < storedText.length; i++) {
             if (showInstr || showBlank) {
-                printText += "; " + storedTextNames[i] + "\n";
+                printText += "; " + storedTextNames[i] + "<br>";
             }
             subtext = storedText[i];
             for (j=0; j < subtext[0].length; j++) {
                 hexString = subtext[1][j];
                 if (showInstr) {
-                    nextInstr = hexOfInt(dataAddr, 8) + ": " + hexString + " ; " + subtext[0][j] + "\n";
+                    nextInstr = colour(hexOfInt(dataAddr, 8), COLOUR_ADDR) + ": " + colour(hexString, COLOUR_STR) + " ; " + colour(subtext[0][j], COLOUR_STR) + "<br>";
                 } else {
-                    nextInstr = hexString + "\n";
+                    nextInstr = colour(hexString, COLOUR_STR) + "<br>";
                 }
                 dataAddr += 4;
                 printText += nextInstr;
@@ -299,7 +308,7 @@ function assemble() {
         }
     }
 
-    $('#assembler-output').val(printText);
+    $('#assembler-output').html(printText);
 }
 
 // Returns the last element of the given array
@@ -312,6 +321,13 @@ function last(array) {
 // This equates to the python expression array[-n]
 function nthLast(array, n) {
     return array[array.length - n];
+}
+
+// Returns the given string wrapped appropriately to display in the given colour
+function colour(text, colour) {
+    return '<span style="color:' + colour + '">' + text + '</span>';
+    //return text.fontcolor(colour);
+    //return text;
 }
 
 // Returns a list of two lists

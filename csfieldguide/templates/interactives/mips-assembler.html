@@ -15,7 +15,7 @@
       <div class="col">
         <h3>{% trans 'MIPS Input' %}</h3>
         <p>
-          {% trans 'Enter MIPS code below to see the assembler output.<br><strong>Note:</strong> Only a subset of MIPS is implemented. Comments start with #.' %}
+          {% trans 'Enter MIPS code below to see the assembler output.<br><strong>Note:</strong> Only a subset of MIPS is implemented. See all supported instructions <a href="https://github.com/alanhogan/online-mips-assembler" target="_blank">here</a>.<br>Comments start with #.' %}
         </p>
       </div>
       <div class="col">
@@ -82,7 +82,7 @@
               <input id="show-blank" type="checkbox" autocomplete="off">{% trans 'Show context' %}
             </label>
             <label id="show-instructions-label" class="btn btn-outline-secondary">
-              <input id="show-instructions" type="checkbox" autocomplete="off">{% trans 'Show corresponding instructions<br>and memory use' %}
+              <input id="show-instructions" type="checkbox" autocomplete="off">{% trans 'Show corresponding instructions<br>and memory locations' %}
             </label>
           </div>
           <div class="col">
@@ -98,7 +98,7 @@
       <!-- Output Column -->
       <div class="col">
         <!-- Initially a storage of the advanced example program, it is immediately cleared -->
-        <textarea id="assembler-output" class="code">
+        <div id="assembler-output" class="code h-100">
             {% trans '# Define the data strings' %}
             .data
             go_str:   .asciiz "{% trans 'GO!!!!!' %}\n"
@@ -145,7 +145,7 @@
               {% trans '# And these two lines make the program exit nicely' %}
               li $v0, 0
               jr $ra
-        </textarea>
+        </div>
       </div>
 
     </div>
