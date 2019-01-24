@@ -22,11 +22,13 @@ const COLOUR_LABEL = "violet";
 const COLOUR_INPUT = "tan";
 const COLOUR_BAD = "red";
 
+// Text constants
 const TXTINPUT = gettext('input');
 
 // Required global variables
-var funcName = [];
-var funcAddr = [];
+var LABELS = [];
+var LABELADDRS = [];
+var SHOWCOLOUR;
 
 // Stores a backup of the default code and registers button handler functions
 $(document).ready(function() {
@@ -40,12 +42,12 @@ $(document).ready(function() {
 
     $('#reset-basic').on('click', function () {
         $('#mips-input').val(basicProgram);
-        $('#assembler-output').val('');
+        $('#assembler-output').html('');
     });
 
     $('#reset-adv').on('click', function () {
         $('#mips-input').val(advancedProgram);
-        $('#assembler-output').val('');
+        $('#assembler-output').html('');
     });
 });
 
@@ -54,18 +56,21 @@ $(document).ready(function() {
 function resetButtons() {
     $('#show-blank').prop('checked', false);
     $('#show-instructions').prop('checked', false);
+    $('#show-colours').prop('checked', false);
     $('#show-blank-label').removeClass('active');
     $('#show-instructions-label').removeClass('active');
+    $('#show-colours-label').removeClass('active');
 }
 
 // Assembles the code from the mips input box and prints it to the assembler output box
 function assemble() {
-    funcName = [];
-    funcAddr = [];
+    LABELS = [];
+    LABELADDRS = [];
     var targetIndex;
 
     var showBlank = $('#show-blank').is(':checked');
     var showInstr = $('#show-instructions').is(':checked');
+    SHOWCOLOUR = $('#show-colours').is(':checked');
 
     var printText = "";
     var nextInstr = "";
@@ -113,13 +118,14 @@ function assemble() {
         } else if (line.includes(" .asciiz ")) {
             // Interpret as a string to be stored
             var substr = line.match(/.asciiz "(.*)"/);
+            var colonIndex =  line.indexOf(":");
             storedText.push(splitEvery(4, substr[1]));
-            storedTextNames.push(line.substr(0, line.indexOf(":")));
+            storedTextNames.push(line.substr(0, colonIndex));
             storedTextAddr.push(last(storedTextAddr) + last(storedText).length * 4);
             if (showInstr) {
-                nextInstr = "; |" + colour(TXTINPUT + ":" + input, COLOUR_INPUT) + "| " + line + "<br>";
+                nextInstr = "; |" + colour(TXTINPUT + ":" + input, COLOUR_INPUT) + "| " + colour(last(storedTextNames), COLOUR_LABEL) + line.substr(colonIndex) + "<br>";
             } else {
-                nextInstr = line + "<br>";
+                nextInstr = colour(last(storedTextNames), COLOUR_LABEL) + line.substr(colonIndex) + "<br>";
             }
             if (showBlank) {
                 instructions.push([TYPE_UNASSIGNED, nextInstr, input, instructionAddr, line]);
@@ -127,8 +133,8 @@ function assemble() {
         } else if (last(line.split("")) == ":") {
             // Interpret as a pointer name; e.g. function name or loop point
             var name = line.substr(0, line.length - 1);
-            funcName.push(name);
-            funcAddr.push(instructionAddr);
+            LABELS.push(name);
+            LABELADDRS.push(instructionAddr);
             if (showInstr) {
                 nextInstr = colour(hexOfInt(instructionAddr, 8), COLOUR_ADDR) + ": " + colour(name, COLOUR_LABEL) + " ; |" + colour(TXTINPUT + ":" + input, COLOUR_INPUT) + "| " + colour(name, COLOUR_LABEL) + ":<br>";
             } else {
@@ -253,8 +259,8 @@ function assemble() {
                 if (typeof(instrArgs[4]) == "string") {
                     // Argument is a label that needs addressing
                     // change to the number of instructions between this and the label
-                    targetIndex = funcName.indexOf(instrArgs[4]);
-                    instrArgs[4] = (funcAddr[targetIndex] - addr) / 4;
+                    targetIndex = LABELS.indexOf(instrArgs[4]);
+                    instrArgs[4] = (LABELADDRS[targetIndex] - addr) / 4;
                 }
                 instrHex = hexI(instrArgs[1], instrArgs[2], instrArgs[3], instrArgs[4]);
                 if (showInstr) {
@@ -291,7 +297,7 @@ function assemble() {
         }
         for (i=0; i < storedText.length; i++) {
             if (showInstr || showBlank) {
-                printText += "; " + storedTextNames[i] + "<br>";
+                printText += "; " + colour(storedTextNames[i], COLOUR_LABEL) + "<br>";
             }
             subtext = storedText[i];
             for (j=0; j < subtext[0].length; j++) {
@@ -324,10 +330,13 @@ function nthLast(array, n) {
 }
 
 // Returns the given string wrapped appropriately to display in the given colour
+// If the global SHOWCOLOUR is false, returns the given string uncoloured
 function colour(text, colour) {
-    return '<span style="color:' + colour + '">' + text + '</span>';
-    //return text.fontcolor(colour);
-    //return text;
+    if (SHOWCOLOUR) {
+        return '<span style="color:' + colour + '">' + text + '</span>';
+    } else {
+        return text;
+    }
 }
 
 // Returns a list of two lists
@@ -721,11 +730,11 @@ function buildInstructionJ(args) {
     if (args.length != 2) {
         return [TYPE_INVALID, args[0]];
     }
-    targetIndex = funcName.indexOf(args[1])
+    targetIndex = LABELS.indexOf(args[1])
     if (targetIndex < 0) {
         return [TYPE_INVALID, args[0]];
     }
-    dest = funcAddr[targetIndex];
+    dest = LABELADDRS[targetIndex];
     returnList = [TYPE_J, opEncoding, dest];
     return returnList;
 }

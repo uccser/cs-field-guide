@@ -14,8 +14,14 @@
     <div class="row justify-content-center">
       <div class="col">
         <h3>{% trans 'MIPS Input' %}</h3>
+        {% url 'interactives:interactive' 'mips-simulator' as simulator_link %}
         <p>
-          {% trans 'Enter MIPS code below to see the assembler output.<br><strong>Note:</strong> Only a subset of MIPS is implemented. See all supported instructions <a href="https://github.com/alanhogan/online-mips-assembler" target="_blank">here</a>.<br>Comments start with #.' %}
+          {% blocktrans %}
+          Enter MIPS code below to see the assembler output.<br>
+          Then copy the plain output to the <a href="{{simulator_link}}" target="_blank">MIPS Simulator</a> interactive to run it.<br>
+          <strong>Note:</strong> Only a subset of MIPS is implemented. A table of supported instructions will be available soon.<br>
+          Comments start with #.
+          {% endblocktrans %}
         </p>
       </div>
       <div class="col">
@@ -83,6 +89,9 @@
             </label>
             <label id="show-instructions-label" class="btn btn-outline-secondary">
               <input id="show-instructions" type="checkbox" autocomplete="off">{% trans 'Show corresponding instructions<br>and memory locations' %}
+            </label>
+            <label id="show-colours-label" class="btn btn-outline-secondary">
+              <input id="show-colours" type="checkbox" autocomplete="off">{% trans 'Show colours' %}
             </label>
           </div>
           <div class="col">

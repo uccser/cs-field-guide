@@ -14,8 +14,13 @@
     <div class="row justify-content-center">
       <div class="col">
         <h3>{% trans 'Assembled MIPS Input' %}</h3>
+        {% url 'interactives:interactive' 'mips-assembler' as assembler_link %}
         <p>
-          {% trans 'Enter the assembled MIPS code from the MIPS Assembler interactive to run it.<br>Enter only the assembled hexadecimal values, no other assembler output.<br><strong>Note:</strong> Only a subset of MIPS is implemented, negative values are rarely supported.' %}
+          {% blocktrans %}
+            Enter the assembled MIPS code from the <a href="{{ assembler_link }}" target="_blank">MIPS Assembler</a> interactive to run it.<br>
+            Enter only the assembled hexadecimal values, no other assembler output.<br>
+            <strong>Note:</strong> Only a subset of MIPS is implemented, negative values are rarely supported.
+          {% endblocktrans %}
         </p>
       </div>
       <div class="col">
@@ -58,6 +63,9 @@
             <label id="show-registers-label" class="btn btn-outline-secondary">
               <input id="show-registers" type="checkbox" autocomplete="off">{% trans 'Show register trace' %}
             </label>
+            <label id="show-colours-label" class="btn btn-outline-secondary">
+              <input id="show-colours" type="checkbox" autocomplete="off">{% trans 'Show colours' %}
+            </label>
           </div>
           <div class="col">
             <button id="reset-adv" type="button" class="btn btn-outline-danger">{% trans 'Load advanced example' %}</button>
@@ -72,7 +80,7 @@
       <!-- Output Column -->
       <div class="col">
         <!-- Initially a storage of the advanced example program, it is immediately cleared -->
-        <textarea id="program-output" class="code">
+        <div id="program-output" class="code h-100">
             24080005
             24090000
             1109000a
@@ -97,7 +105,7 @@
             2121210a
             00000000
             0a000000
-        </textarea>
+        </div>
       </div>
 
     </div>

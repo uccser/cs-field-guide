@@ -12,17 +12,25 @@ const TYPE_I = 2;
 const TYPE_J = 3;
 const TYPE_SYSCALL = 4;
 
-// other constants
+// Other constants
 const INSTRUCTION_START = 0x00400000;
 const DATA_START = 0x00c00000;
 const MAX_EXECUTIONS = 10000;
 const MAX_16 = 32767; // Max value of a signed 16 bit integer, for signed ALU ops
+const COLOUR_ADDR = "lightgreen";
+const COLOUR_INSTR = "orange";
+const COLOUR_OUT = "lightblue";
+const COLOUR_REG = "violet";
+const COLOUR_INPUT = "tan";
+const COLOUR_BAD = "red";
+const COLOUR_ANS = "yellow";
 
 // Register 0 is hardwired to 0. All registers are named as per convention
 var REGISTERS = [0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,];
 const REG_NAMES = ["zero","at","v0","v1","a0","a1","a2","a3","t0","t1","t2","t3","t4","t5","t6","t7","s0","s1","s2","s3","s4","s5","s6","s7","t8","t9","k0","k1","gp","sp","fp","ra"];
 var DATA;
 
+// Text constants
 const TXT_INVALID = gettext("INVALID HEX VALUE");
 const TXT_END = gettext("* Program execution complete *");
 const TXT_BADEND = gettext("* Program execution halted early *");
@@ -32,22 +40,27 @@ const TXT_INFINITE = gettext("Program executed 10000 instructions, it probably e
 const TXT_INSTRUCTION = gettext("instruction");
 const TXT_NOREAD = gettext("Cannot read from empty register");
 const TXT_NOSUPPORT = gettext("Unsupported value in register");
+const TXT_UNSUPPORTED_HEX = gettext("Unsupported instruction in hex");
+const TXT_INVALID_HEX = gettext("Invalid instruction hex");
 const TXT_INT = gettext("Print an integer");
 const TXT_TXT = gettext("Print a string");
 const TXT_LOAD = gettext("Loading");
 const TXT_STORE = gettext("stored in");
-const TAB = "    ";
+const TXT_BRANCH = gettext("Branching");
+const TXT_NO_BRANCH = gettext("Not Branching");
 
+// Other globals
 var PRINTTEXT;
 var SHOWCONTEXT;
 var SHOWREG;
+var SHOWCOLOUR;
 
 // Stores a backup of the default code and registers button handler functions
 $(document).ready(function() {
     var basicProgram = $('#assembled-input').val();
-    var advancedProgram = $('#program-output').val();
+    var advancedProgram = $('#program-output').html();
+    $('#program-output').html('');
     var offerExamples = Number(getUrlParameter('offer-examples')) || 0;
-    $('#program-output').val('');
     
     $('#run-mips').on('click', function () {
         run();
@@ -55,12 +68,12 @@ $(document).ready(function() {
 
     $('#reset-basic').on('click', function () {
         $('#assembled-input').val(basicProgram);
-        $('#program-output').val('');
+        $('#program-output').html('');
     });
 
     $('#reset-adv').on('click', function () {
         $('#assembled-input').val(advancedProgram);
-        $('#program-output').val('');
+        $('#program-output').html('');
     });
 
     if (!offerExamples) {
@@ -74,6 +87,7 @@ $(document).ready(function() {
 function run() {
     SHOWCONTEXT = $('#show-context').is(':checked');
     SHOWREG = $('#show-registers').is(':checked');
+    SHOWCOLOUR = $('#show-colours').is(':checked');
     PRINTTEXT = "";
 
     instructionAddr = INSTRUCTION_START;
@@ -106,7 +120,7 @@ function run() {
             lineHex = parseInt(("0x" + line));
             if (isNaN(lineHex)) {
                 // Stop processing on an invalid character string
-                PRINTTEXT += "; " + TXT_INVALID + " ; <" + TXT_INPUT + ":" + input + "> " + line + "\n";
+                PRINTTEXT += colour("; " + TXT_INVALID + " ; |" + TXT_INPUT + ":" + input + "| " + line, COLOUR_BAD) + "<br>";
                 present(PRINTTEXT, false);
                 return;
             }
@@ -130,7 +144,7 @@ function run() {
 
     if (parseInstr) {
         // End instruction was not parsed
-        PRINTTEXT += "\n" + TXT_NOEND + ": jr $ra\n";
+        PRINTTEXT += "<br>" + colour(TXT_NOEND + ": " + "jr $ra", COLOUR_BAD) + "<br>";
         present(PRINTTEXT, false);
         return;
     }
@@ -152,7 +166,7 @@ function run() {
 
         if (instrHex == 0x0000000c) {
             if (SHOWCONTEXT) {
-                PRINTTEXT += TXT_LOAD + " " + hexOfInt(instrAddr, 8) + " : " + hexOfInt(instrHex, 8) + "; <" + TXT_INSTRUCTION + ":" + instructionNum + "> syscall\n";
+                PRINTTEXT += TXT_LOAD + " " + colour(hexOfInt(instrAddr, 8), COLOUR_ADDR) + " : " + colour(hexOfInt(instrHex, 8), COLOUR_INSTR) + "; <" + TXT_INSTRUCTION + ":" + instructionNum + "> " + colour("syscall", COLOUR_INSTR) + "<br>";
             }
             instrType = TYPE_SYSCALL;
         } else {
@@ -164,26 +178,22 @@ function run() {
             if (instrHex == 0x03e00008) {
                 quit = true;
                 if (SHOWCONTEXT) {
-                    PRINTTEXT += TXT_LOAD + " " + hexOfInt(instrAddr, 8) + " : " + hexOfInt(instrHex, 8) + "; <" + TXT_INSTRUCTION + ":" + instructionNum + "> jr $ra\n";
+                    PRINTTEXT += TXT_LOAD + " " + colour(hexOfInt(instrAddr, 8), COLOUR_ADDR) + " : " + colour(hexOfInt(instrHex, 8), COLOUR_INSTR) + "; <" + TXT_INSTRUCTION + ":" + instructionNum + "> " + colour("jr $ra", COLOUR_INSTR) + "<br>";
                 }
             } else {
-
-                //temp block
                 if (instrDecoded == TYPE_UNSUPPORTED) {
-                    PRINTTEXT += "Unsupported instruction in hex: " + hexOfInt(instrHex, 8) + "\n"; //temp
+                    PRINTTEXT += colour(TXT_UNSUPPORTED_HEX + ": " + hexOfInt(instrHex, 8), COLOUR_BAD) + "<br>";
                 } else if (instrDecoded == TYPE_INVALID) {
-                    PRINTTEXT += "Invalid instruction hex: " + hexOfInt(instrHex, 8) + "\n"; //temp
+                    PRINTTEXT += colour(TXT_INVALID_HEX + ": " + hexOfInt(instrHex, 8), COLOUR_BAD) + "<br>";
                 }
-                //end temp block
 
                 if (SHOWCONTEXT) {
-                    PRINTTEXT += TXT_LOAD + " " + hexOfInt(instrAddr, 8) + " : " + hexOfInt(instrHex, 8) + "; <" + TXT_INSTRUCTION + ":" + instructionNum + "> " + instrDecoded + "\n";
+                    PRINTTEXT += TXT_LOAD + " " + colour(hexOfInt(instrAddr, 8), COLOUR_ADDR) + " : " + colour(hexOfInt(instrHex, 8), COLOUR_INSTR) + "; <" + TXT_INSTRUCTION + ":" + instructionNum + "> " + colour(instrDecoded, COLOUR_INSTR) + "<br>";
                 }
             }
         }
 
         instrAddr = execute(instrType, instrExecs, instrAddr);
-        //instrAddr += 4;
         if (instrAddr < 0) {
             isSuccess = false;
             quit = true;
@@ -192,7 +202,7 @@ function run() {
     }
 
     if (instructionNum >= MAX_EXECUTIONS) {
-        PRINTTEXT += "\n" + TXT_INFINITE + "\n";
+        PRINTTEXT += "<br>" + colour(TXT_INFINITE, COLOUR_BAD) + "<br>";
         present(PRINTTEXT, false);
         return;
     }
@@ -205,17 +215,27 @@ function run() {
 // along with a message depending on the value of isSuccess
 function present(text, isSuccess) {
     if (isSuccess) {
-        text += "\n" + TXT_END;
+        text += "<br>" + TXT_END;
     } else {
-        text += "\n" + TXT_BADEND;
+        text += "<br>" + colour(TXT_BADEND, COLOUR_BAD);
     }
-    $("#program-output").val(text);
+    $("#program-output").html(text);
 }
 
 // Returns the last element of the given array
 // This equates to the python expression array[-1]
 function last(array) {
     return array[array.length - 1];
+}
+
+// Returns the given string wrapped appropriately to display in the given colour
+// If the global SHOWCOLOUR is false, returns the given string uncoloured
+function colour(text, colour) {
+    if (SHOWCOLOUR) {
+        return '<span style="color:' + colour + '">' + text + '</span>';
+    } else {
+        return text;
+    }
 }
 
 // Returns the string of an integer as a zero-extended n-character hex value
@@ -458,12 +478,12 @@ function execute_sll (args, addr) {
     var op = args[2];
     var shift = args[3];
     if (REGISTERS[op] === null || isNaN(REGISTERS[op])) {
-        PRINTTEXT += TXT_NOREAD + ": $" + REG_NAMES[op] + "\n";
+        PRINTTEXT += colour(TXT_NOREAD + ": $" + REG_NAMES[op], COLOUR_BAD) + "<br>";
         return -1;
     }
     var ans = REGISTERS[op] << shift;
     if (SHOWREG) {
-        PRINTTEXT += TAB + "sll:   $" + REG_NAMES[op] + " [" + hexOfInt(REGISTERS[op], 8) + "] << " + shift + " = " + hexOfInt(ans, 8) + " " + TXT_STORE + " $" + REG_NAMES[dest] + "\n";
+        PRINTTEXT += colour("sll", COLOUR_INSTR) + ": " + colour("$" + REG_NAMES[op], COLOUR_INSTR) + " " + colour("[" + hexOfInt(REGISTERS[op], 8) + "]", COLOUR_REG) + " " + colour("<< " + shift + " =", COLOUR_INSTR) + " " + colour(hexOfInt(ans, 8), COLOUR_ANS) + " " + TXT_STORE + " " + colour("$" + REG_NAMES[dest], COLOUR_INSTR) + "<br>";
     }
     REGISTERS[dest] = ans;
     return addr + 4;
@@ -474,7 +494,7 @@ function execute_sll (args, addr) {
 function execute_jr (args, addr) {
     // jr $reg
     if (SHOWREG) {
-        PRINTTEXT += TAB + "jr:    $" + REG_NAMES[args[1]] + "\n";
+        PRINTTEXT += colour("jr", COLOUR_INSTR) + ": " + colour("$" + REG_NAMES[args[1]], COLOUR_INSTR) + "<br>";
     }
     return addr + 4;
 }
@@ -488,16 +508,16 @@ function execute_add (args, addr) {
     var op1 = args[2];
     var op2 = args[3];
     if (REGISTERS[op1] === null || isNaN(REGISTERS[op1])) {
-        PRINTTEXT += TXT_NOREAD + ": $" + REG_NAMES[op1] + "\n";
+        PRINTTEXT += colour(TXT_NOREAD + ": $" + REG_NAMES[op1], COLOUR_BAD) + "<br>";
         return -1;
     }
     if (REGISTERS[op2] === null || isNaN(REGISTERS[op2])) {
-        PRINTTEXT += TXT_NOREAD + ": $" + REG_NAMES[op2] + "\n";
+        PRINTTEXT += colour(TXT_NOREAD + ": $" + REG_NAMES[op2], COLOUR_BAD) + "<br>";
         return -1;
     }
     var ans = REGISTERS[op1] + REGISTERS[op2];
     if (SHOWREG) {
-        PRINTTEXT += TAB + "add:   $" + REG_NAMES[op1] + " [" + hexOfInt(REGISTERS[op1], 8) + "] + $" + REG_NAMES[op2] + " [" + hexOfInt(REGISTERS[op2], 8) + "] = " + hexOfInt(ans, 8) + " " + TXT_STORE + " $" + REG_NAMES[dest] + "\n";
+        PRINTTEXT += colour("add", COLOUR_INSTR) + ": " + colour("$" + REG_NAMES[op1], COLOUR_INSTR) + " " + colour("[" + hexOfInt(REGISTERS[op1], 8) + "]", COLOUR_REG) + " " + colour("+ $" + REG_NAMES[op2], COLOUR_INSTR) + " " + colour("[" + hexOfInt(REGISTERS[op2], 8) + "]", COLOUR_REG) + " " + colour("=", COLOUR_INSTR) + " " + colour(hexOfInt(ans, 8), COLOUR_ANS) + " " + TXT_STORE + " " + colour("$" + REG_NAMES[dest], COLOUR_INSTR) + "<br>";
     }
     REGISTERS[dest] = ans;
     return addr + 4
@@ -512,16 +532,16 @@ function execute_addu (args, addr) {
     var op1 = args[2];
     var op2 = args[3];
     if (REGISTERS[op1] === null || isNaN(REGISTERS[op1])) {
-        PRINTTEXT += TXT_NOREAD + ": $" + REG_NAMES[op1] + "\n";
+        PRINTTEXT += colour(TXT_NOREAD + ": $" + REG_NAMES[op1], COLOUR_BAD) + "<br>";
         return -1;
     }
     if (REGISTERS[op2] === null || isNaN(REGISTERS[op2])) {
-        PRINTTEXT += TXT_NOREAD + ": $" + REG_NAMES[op2] + "\n";
+        PRINTTEXT += colour(TXT_NOREAD + ": $" + REG_NAMES[op2], COLOUR_BAD) + "<br>";
         return -1;
     }
     var ans = REGISTERS[op1] + REGISTERS[op2];
     if (SHOWREG) {
-        PRINTTEXT += TAB + "addu:  $" + REG_NAMES[op1] + " [" + hexOfInt(REGISTERS[op1], 8) + "] + $" + REG_NAMES[op2] + " [" + hexOfInt(REGISTERS[op2], 8) + "] = " + hexOfInt(ans, 8) + " " + TXT_STORE + " $" + REG_NAMES[dest] + "\n";
+        PRINTTEXT += colour("addu", COLOUR_INSTR) + ": " + colour("$" + REG_NAMES[op1], COLOUR_INSTR) + " " + colour("[" + hexOfInt(REGISTERS[op1], 8) + "]", COLOUR_REG) + " " + colour("+ $" + REG_NAMES[op2], COLOUR_INSTR) + " " + colour("[" + hexOfInt(REGISTERS[op2], 8) + "]", COLOUR_REG) + " " + colour("=", COLOUR_INSTR) + " " + colour(hexOfInt(ans, 8), COLOUR_ANS) + " " + TXT_STORE + " " + colour("$" + REG_NAMES[dest], COLOUR_INSTR) + "<br>";
     }
     REGISTERS[dest] = ans;
     return addr + 4
@@ -536,16 +556,16 @@ function execute_sub (args, addr) {
     var op1 = args[2];
     var op2 = args[3];
     if (REGISTERS[op1] === null || isNaN(REGISTERS[op1])) {
-        PRINTTEXT += TXT_NOREAD + ": $" + REG_NAMES[op1] + "\n";
+        PRINTTEXT += colour(TXT_NOREAD + ": $" + REG_NAMES[op1], COLOUR_BAD) + "<br>";
         return -1;
     }
     if (REGISTERS[op2] === null || isNaN(REGISTERS[op2])) {
-        PRINTTEXT += TXT_NOREAD + ": $" + REG_NAMES[op2] + "\n";
+        PRINTTEXT += colour(TXT_NOREAD + ": $" + REG_NAMES[op2], COLOUR_BAD) + "<br>";
         return -1;
     }
     var ans = REGISTERS[op1] - REGISTERS[op2];
     if (SHOWREG) {
-        PRINTTEXT += TAB + "sub:   $" + REG_NAMES[op1] + " [" + hexOfInt(REGISTERS[op1], 8) + "] - $" + REG_NAMES[op2] + " [" + hexOfInt(REGISTERS[op2], 8) + "] = " + hexOfInt(ans, 8) + " " + TXT_STORE + " $" + REG_NAMES[dest] + "\n";
+        PRINTTEXT += colour("sub", COLOUR_INSTR) + ": " + colour("$" + REG_NAMES[op1], COLOUR_INSTR) + " " + colour("[" + hexOfInt(REGISTERS[op1], 8) + "]", COLOUR_REG) + " " + colour("- $" + REG_NAMES[op2], COLOUR_INSTR) + " " + colour("[" + hexOfInt(REGISTERS[op2], 8) + "]", COLOUR_REG) + " " + colour("=", COLOUR_INSTR) + " " + colour(hexOfInt(ans, 8), COLOUR_ANS) + " " + TXT_STORE + " " + colour("$" + REG_NAMES[dest], COLOUR_INSTR) + "<br>";
     }
     REGISTERS[dest] = ans;
     return addr + 4
@@ -560,16 +580,16 @@ function execute_subu (args, addr) {
     var op1 = args[2];
     var op2 = args[3];
     if (REGISTERS[op1] === null || isNaN(REGISTERS[op1])) {
-        PRINTTEXT += TXT_NOREAD + ": $" + REG_NAMES[op1] + "\n";
+        PRINTTEXT += colour(TXT_NOREAD + ": $" + REG_NAMES[op1], COLOUR_BAD) + "<br>";
         return -1;
     }
     if (REGISTERS[op2] === null || isNaN(REGISTERS[op2])) {
-        PRINTTEXT += TXT_NOREAD + ": $" + REG_NAMES[op2] + "\n";
+        PRINTTEXT += colour(TXT_NOREAD + ": $" + REG_NAMES[op2], COLOUR_BAD) + "<br>";
         return -1;
     }
     var ans = REGISTERS[op1] - REGISTERS[op2];
     if (SHOWREG) {
-        PRINTTEXT += TAB + "subu:  $" + REG_NAMES[op1] + " [" + hexOfInt(REGISTERS[op1], 8) + "] - $" + REG_NAMES[op2] + " [" + hexOfInt(REGISTERS[op2], 8) + "] = " + hexOfInt(ans, 8) + " " + TXT_STORE + " $" + REG_NAMES[dest] + "\n";
+        PRINTTEXT += colour("subu", COLOUR_INSTR) + ": " + colour("$" + REG_NAMES[op1], COLOUR_INSTR) + " " + colour("[" + hexOfInt(REGISTERS[op1], 8) + "]", COLOUR_REG) + " " + colour("- $" + REG_NAMES[op2], COLOUR_INSTR) + " " + colour("[" + hexOfInt(REGISTERS[op2], 8) + "]", COLOUR_REG) + " " + colour("=", COLOUR_INSTR) + " " + colour(hexOfInt(ans, 8), COLOUR_ANS) + " " + TXT_STORE + " " + colour("$" + REG_NAMES[dest], COLOUR_INSTR) + "<br>";
     }
     REGISTERS[dest] = ans;
     return addr + 4
@@ -584,16 +604,16 @@ function execute_and (args, addr) {
     var op1 = args[2];
     var op2 = args[3];
     if (REGISTERS[op1] === null || isNaN(REGISTERS[op1])) {
-        PRINTTEXT += TXT_NOREAD + ": $" + REG_NAMES[op1] + "\n";
+        PRINTTEXT += colour(TXT_NOREAD + ": $" + REG_NAMES[op1], COLOUR_BAD) + "<br>";
         return -1;
     }
     if (REGISTERS[op2] === null || isNaN(REGISTERS[op2])) {
-        PRINTTEXT += TXT_NOREAD + ": $" + REG_NAMES[op2] + "\n";
+        PRINTTEXT += colour(TXT_NOREAD + ": $" + REG_NAMES[op2], COLOUR_BAD) + "<br>";
         return -1;
     }
     var ans = REGISTERS[op1] & REGISTERS[op2];
     if (SHOWREG) {
-        PRINTTEXT += TAB + "and:   $" + REG_NAMES[op1] + " [" + hexOfInt(REGISTERS[op1], 8) + "] AND $" + REG_NAMES[op2] + " [" + hexOfInt(REGISTERS[op2], 8) + "] = " + hexOfInt(ans, 8) + " " + TXT_STORE + " $" + REG_NAMES[dest] + "\n";
+        PRINTTEXT += colour("and", COLOUR_INSTR) + ": " + colour("$" + REG_NAMES[op1], COLOUR_INSTR) + " " + colour("[" + hexOfInt(REGISTERS[op1], 8) + "]", COLOUR_REG) + " " + colour("AND $" + REG_NAMES[op2], COLOUR_INSTR) + " " + colour("[" + hexOfInt(REGISTERS[op2], 8) + "]", COLOUR_REG) + " " + colour("=", COLOUR_INSTR) + " " + colour(hexOfInt(ans, 8), COLOUR_ANS) + " " + TXT_STORE + " " + colour("$" + REG_NAMES[dest], COLOUR_INSTR) + "<br>";
     }
     REGISTERS[dest] = ans;
     return addr + 4
@@ -608,16 +628,16 @@ function execute_or (args, addr) {
     var op1 = args[2];
     var op2 = args[3];
     if (REGISTERS[op1] === null || isNaN(REGISTERS[op1])) {
-        PRINTTEXT += TXT_NOREAD + ": $" + REG_NAMES[op1] + "\n";
+        PRINTTEXT += colour(TXT_NOREAD + ": $" + REG_NAMES[op1], COLOUR_BAD) + "<br>";
         return -1;
     }
     if (REGISTERS[op2] === null || isNaN(REGISTERS[op2])) {
-        PRINTTEXT += TXT_NOREAD + ": $" + REG_NAMES[op2] + "\n";
+        PRINTTEXT += colour(TXT_NOREAD + ": $" + REG_NAMES[op2], COLOUR_BAD) + "<br>";
         return -1;
     }
     var ans = REGISTERS[op1] | REGISTERS[op2];
     if (SHOWREG) {
-        PRINTTEXT += TAB + "or:    $" + REG_NAMES[op1] + " [" + hexOfInt(REGISTERS[op1], 8) + "] OR $" + REG_NAMES[op2] + " [" + hexOfInt(REGISTERS[op2], 8) + "] = " + hexOfInt(ans, 8) + " " + TXT_STORE + " $" + REG_NAMES[dest] + "\n";
+        PRINTTEXT += colour("or", COLOUR_INSTR) + ": " + colour("$" + REG_NAMES[op1], COLOUR_INSTR) + " " + colour("[" + hexOfInt(REGISTERS[op1], 8) + "]", COLOUR_REG) + " " + colour("OR $" + REG_NAMES[op2], COLOUR_INSTR) + " " + colour("[" + hexOfInt(REGISTERS[op2], 8) + "]", COLOUR_REG) + " " + colour("=", COLOUR_INSTR) + " " + colour(hexOfInt(ans, 8), COLOUR_ANS) + " " + TXT_STORE + " " + colour("$" + REG_NAMES[dest], COLOUR_INSTR) + "<br>";
     }
     REGISTERS[dest] = ans;
     return addr + 4
@@ -632,16 +652,16 @@ function execute_xor (args, addr) {
     var op1 = args[2];
     var op2 = args[3];
     if (REGISTERS[op1] === null || isNaN(REGISTERS[op1])) {
-        PRINTTEXT += TXT_NOREAD + ": $" + REG_NAMES[op1] + "\n";
+        PRINTTEXT += colour(TXT_NOREAD + ": $" + REG_NAMES[op1], COLOUR_BAD) + "<br>";
         return -1;
     }
     if (REGISTERS[op2] === null || isNaN(REGISTERS[op2])) {
-        PRINTTEXT += TXT_NOREAD + ": $" + REG_NAMES[op2] + "\n";
+        PRINTTEXT += colour(TXT_NOREAD + ": $" + REG_NAMES[op2], COLOUR_BAD) + "<br>";
         return -1;
     }
     var ans = REGISTERS[op1] ^ REGISTERS[op2];
     if (SHOWREG) {
-        PRINTTEXT += TAB + "xor:   $" + REG_NAMES[op1] + " [" + hexOfInt(REGISTERS[op1], 8) + "] XOR $" + REG_NAMES[op2] + " [" + hexOfInt(REGISTERS[op2], 8) + "] = " + hexOfInt(ans, 8) + " " + TXT_STORE + " $" + REG_NAMES[dest] + "\n";
+        PRINTTEXT += colour("xor", COLOUR_INSTR) + ": " + colour("$" + REG_NAMES[op1], COLOUR_INSTR) + " " + colour("[" + hexOfInt(REGISTERS[op1], 8) + "]", COLOUR_REG) + " " + colour("XOR $" + REG_NAMES[op2], COLOUR_INSTR) + " " + colour("[" + hexOfInt(REGISTERS[op2], 8) + "]", COLOUR_REG) + " " + colour("=", COLOUR_INSTR) + " " + colour(hexOfInt(ans, 8), COLOUR_ANS) + " " + TXT_STORE + " " + colour("$" + REG_NAMES[dest], COLOUR_INSTR) + "<br>";
     }
     REGISTERS[dest] = ans;
     return addr + 4
@@ -656,16 +676,16 @@ function execute_nor (args, addr) {
     var op1 = args[2];
     var op2 = args[3];
     if (REGISTERS[op1] === null || isNaN(REGISTERS[op1])) {
-        PRINTTEXT += TXT_NOREAD + ": $" + REG_NAMES[op1] + "\n";
+        PRINTTEXT += colour(TXT_NOREAD + ": $" + REG_NAMES[op1], COLOUR_BAD) + "<br>";
         return -1;
     }
     if (REGISTERS[op2] === null || isNaN(REGISTERS[op2])) {
-        PRINTTEXT += TXT_NOREAD + ": $" + REG_NAMES[op2] + "\n";
+        PRINTTEXT += colour(TXT_NOREAD + ": $" + REG_NAMES[op2], COLOUR_BAD) + "<br>";
         return -1;
     }
     var ans = ~(REGISTERS[op1] | REGISTERS[op2]);
     if (SHOWREG) {
-        PRINTTEXT += TAB + "nor:   $" + REG_NAMES[op1] + " [" + hexOfInt(REGISTERS[op1], 8) + "] NOR $" + REG_NAMES[op2] + " [" + hexOfInt(REGISTERS[op2], 8) + "] = " + hexOfInt(ans, 8) + " " + TXT_STORE + " $" + REG_NAMES[dest] + "\n";
+        PRINTTEXT += colour("nor", COLOUR_INSTR) + ": " + colour("$" + REG_NAMES[op1], COLOUR_INSTR) + " " + colour("[" + hexOfInt(REGISTERS[op1], 8) + "]", COLOUR_REG) + " " + colour("NOR $" + REG_NAMES[op2], COLOUR_INSTR) + " " + colour("[" + hexOfInt(REGISTERS[op2], 8) + "]", COLOUR_REG) + " " + colour("=", COLOUR_INSTR) + " " + colour(hexOfInt(ans, 8), COLOUR_ANS) + " " + TXT_STORE + " " + colour("$" + REG_NAMES[dest], COLOUR_INSTR) + "<br>";
     }
     REGISTERS[dest] = ans;
     return addr + 4
@@ -680,22 +700,22 @@ function execute_beq (args, addr) {
     var op2 = args[2];
     var skips = args[3];
     if (REGISTERS[op1] === null || isNaN(REGISTERS[op1])) {
-        PRINTTEXT += TXT_NOREAD + ": $" + REG_NAMES[op1] + "\n";
+        PRINTTEXT += colour(TXT_NOREAD + ": $" + REG_NAMES[op1], COLOUR_BAD) + "<br>";
         return -1;
     }
     if (REGISTERS[op2] === null || isNaN(REGISTERS[op2])) {
-        PRINTTEXT += TXT_NOREAD + ": $" + REG_NAMES[op2] + "\n";
+        PRINTTEXT += colour(TXT_NOREAD + ": $" + REG_NAMES[op2], COLOUR_BAD) + "<br>";
         return -1;
     }
     
     if (REGISTERS[op1] == REGISTERS[op2]) {
         if (SHOWREG) {
-            PRINTTEXT += TAB + "beq:   $" + REG_NAMES[op1] + " [" + hexOfInt(REGISTERS[op1], 8) + "] == $" + REG_NAMES[op2] + " [" + hexOfInt(REGISTERS[op2], 8) + "]\n";
+            PRINTTEXT += colour("beq", COLOUR_INSTR) + ": " + colour("$" + REG_NAMES[op1], COLOUR_INSTR) + " " + colour("[" + hexOfInt(REGISTERS[op1], 8) + "]", COLOUR_REG) + " " + colour("== $" + REG_NAMES[op2], COLOUR_INSTR) + " " + colour("[" + hexOfInt(REGISTERS[op2], 8) + "]", COLOUR_REG) + " : " + colour(TXT_BRANCH, COLOUR_ANS) + "<br>";
         }
         return addr + ((skips + 1) * 4);
     } else {
         if (SHOWREG) {
-            PRINTTEXT += TAB + "beq:   $" + REG_NAMES[op1] + " [" + hexOfInt(REGISTERS[op1], 8) + "] != $" + REG_NAMES[op2] + " [" + hexOfInt(REGISTERS[op2], 8) + "]\n"
+            PRINTTEXT += colour("beq", COLOUR_INSTR) + ": " + colour("$" + REG_NAMES[op1], COLOUR_INSTR) + " " + colour("[" + hexOfInt(REGISTERS[op1], 8) + "]", COLOUR_REG) + " " + colour("!= $" + REG_NAMES[op2], COLOUR_INSTR) + " " + colour("[" + hexOfInt(REGISTERS[op2], 8) + "]", COLOUR_REG) + " : " + colour(TXT_NO_BRANCH, COLOUR_ANS) + "<br>";
         }
         return addr + 4;
     }
@@ -710,24 +730,24 @@ function execute_bne (args, addr) {
     var op2 = args[2];
     var skips = args[3];
     if (REGISTERS[op1] === null || isNaN(REGISTERS[op1])) {
-        PRINTTEXT += TXT_NOREAD + ": $" + REG_NAMES[op1] + "\n";
+        PRINTTEXT += colour(TXT_NOREAD + ": $" + REG_NAMES[op1], COLOUR_BAD) + "<br>";
         return -1;
     }
     if (REGISTERS[op2] === null || isNaN(REGISTERS[op2])) {
-        PRINTTEXT += TXT_NOREAD + ": $" + REG_NAMES[op2] + "\n";
+        PRINTTEXT += colour(TXT_NOREAD + ": $" + REG_NAMES[op2], COLOUR_BAD) + "<br>";
         return -1;
     }
-
-    if (REGISTERS[op1] == REGISTERS[op2]) {
+    
+    if (REGISTERS[op1] != REGISTERS[op2]) {
         if (SHOWREG) {
-            PRINTTEXT += TAB + "bne:   $" + REG_NAMES[op1] + " [" + hexOfInt(REGISTERS[op1], 8) + "] == $" + REG_NAMES[op2] + " [" + hexOfInt(REGISTERS[op2], 8) + "]\n";
-        }
-        return addr + 4;
-    } else {
-        if (SHOWREG) {
-            PRINTTEXT += TAB + "bne:   $" + REG_NAMES[op1] + " [" + hexOfInt(REGISTERS[op1], 8) + "] != $" + REG_NAMES[op2] + " [" + hexOfInt(REGISTERS[op2], 8) + "]\n"
+            PRINTTEXT += colour("bne", COLOUR_INSTR) + ": " + colour("$" + REG_NAMES[op1], COLOUR_INSTR) + " " + colour("[" + hexOfInt(REGISTERS[op1], 8) + "]", COLOUR_REG) + " " + colour("!= $" + REG_NAMES[op2], COLOUR_INSTR) + " " + colour("[" + hexOfInt(REGISTERS[op2], 8) + "]", COLOUR_REG) + " : " + colour(TXT_BRANCH, COLOUR_ANS) + "<br>";
         }
         return addr + ((skips + 1) * 4);
+    } else {
+        if (SHOWREG) {
+            PRINTTEXT += colour("bne", COLOUR_INSTR) + ": " + colour("$" + REG_NAMES[op1], COLOUR_INSTR) + " " + colour("[" + hexOfInt(REGISTERS[op1], 8) + "]", COLOUR_REG) + " " + colour("== $" + REG_NAMES[op2], COLOUR_INSTR) + " " + colour("[" + hexOfInt(REGISTERS[op2], 8) + "]", COLOUR_REG) + " : " + colour(TXT_NO_BRANCH, COLOUR_ANS) + "<br>";
+        }
+        return addr + 4;
     }
 }
 
@@ -740,7 +760,7 @@ function execute_addi (args, addr) {
     var op = args[2];
     var imm = args[3];
     if (REGISTERS[op] === null || isNaN(REGISTERS[op])) {
-        PRINTTEXT += TXT_NOREAD + ": $" + REG_NAMES[op] + "\n";
+        PRINTTEXT += colour(TXT_NOREAD + ": $" + REG_NAMES[op], COLOUR_BAD) + "<br>";
         return -1;
     }
     if (imm > MAX_16) {
@@ -749,11 +769,10 @@ function execute_addi (args, addr) {
     }
     var ans = REGISTERS[op] + imm;
     if (SHOWREG) {
-        PRINTTEXT += TAB + "addi:  $" + REG_NAMES[op] + " [" + hexOfInt(REGISTERS[op], 8) + "] + " + imm + " = " + hexOfInt(ans, 8) + " " + TXT_STORE + " $" + REG_NAMES[dest] + "\n";
+        PRINTTEXT += colour("addi", COLOUR_INSTR) + ": " + colour("$" + REG_NAMES[op], COLOUR_INSTR) + " " + colour("[" + hexOfInt(REGISTERS[op], 8) + "]", COLOUR_REG) + " " + colour("+ " + imm + " =", COLOUR_INSTR) + " " + colour(hexOfInt(ans, 8), COLOUR_ANS) + " " + TXT_STORE + " " + colour("$" + REG_NAMES[dest], COLOUR_INSTR) + "<br>";
     }
     REGISTERS[dest] = ans;
     return addr + 4;
-
 }
 
 // Executes an addiu instruction on the given arguments
@@ -765,12 +784,12 @@ function execute_addiu (args, addr) {
     var op = args[2];
     var imm = args[3];
     if (REGISTERS[op] === null || isNaN(REGISTERS[op])) {
-        PRINTTEXT += TXT_NOREAD + ": $" + REG_NAMES[op] + "\n";
+        PRINTTEXT += colour(TXT_NOREAD + ": $" + REG_NAMES[op], COLOUR_BAD) + "<br>";
         return -1;
     }
     var ans = REGISTERS[op] + imm;
     if (SHOWREG) {
-        PRINTTEXT += TAB + "addiu: $" + REG_NAMES[op] + " [" + hexOfInt(REGISTERS[op], 8) + "] + " + imm + " = " + hexOfInt(ans, 8) + " " + TXT_STORE + " $" + REG_NAMES[dest] + "\n";
+        PRINTTEXT += colour("addiu", COLOUR_INSTR) + ": " + colour("$" + REG_NAMES[op], COLOUR_INSTR) + " " + colour("[" + hexOfInt(REGISTERS[op], 8) + "]", COLOUR_REG) + " " + colour("+ " + imm + " =", COLOUR_INSTR) + " " + colour(hexOfInt(ans, 8), COLOUR_ANS) + " " + TXT_STORE + " " + colour("$" + REG_NAMES[dest], COLOUR_INSTR) + "<br>";
     }
     REGISTERS[dest] = ans;
     return addr + 4;
@@ -785,16 +804,12 @@ function execute_andi (args, addr) {
     var op = args[2];
     var imm = args[3];
     if (REGISTERS[op] === null || isNaN(REGISTERS[op])) {
-        PRINTTEXT += TXT_NOREAD + ": $" + REG_NAMES[op] + "\n";
+        PRINTTEXT += colour(TXT_NOREAD + ": $" + REG_NAMES[op], COLOUR_BAD) + "<br>";
         return -1;
-    }
-    if (imm > MAX_16) {
-        // F-extend the number, so that it is correctly interpreted as a negative value
-        imm = (0xFFFF0000 | imm);
     }
     var ans = REGISTERS[op] & imm;
     if (SHOWREG) {
-        PRINTTEXT += TAB + "andi:  $" + REG_NAMES[op] + " [" + hexOfInt(REGISTERS[op], 8) + "] AND " + imm + " = " + hexOfInt(ans, 8) + " " + TXT_STORE + " $" + REG_NAMES[dest] + "\n";
+        PRINTTEXT += colour("andi", COLOUR_INSTR) + ": " + colour("$" + REG_NAMES[op], COLOUR_INSTR) + " " + colour("[" + hexOfInt(REGISTERS[op], 8) + "]", COLOUR_REG) + " " + colour("AND " + imm + " =", COLOUR_INSTR) + " " + colour(hexOfInt(ans, 8), COLOUR_ANS) + " " + TXT_STORE + " " + colour("$" + REG_NAMES[dest], COLOUR_INSTR) + "<br>";
     }
     REGISTERS[dest] = ans;
     return addr + 4;
@@ -809,16 +824,12 @@ function execute_ori (args, addr) {
     var op = args[2];
     var imm = args[3];
     if (REGISTERS[op] === null || isNaN(REGISTERS[op])) {
-        PRINTTEXT += TXT_NOREAD + ": $" + REG_NAMES[op] + "\n";
+        PRINTTEXT += colour(TXT_NOREAD + ": $" + REG_NAMES[op], COLOUR_BAD) + "<br>";
         return -1;
-    }
-    if (imm > MAX_16) {
-        // F-extend the number, so that it is correctly interpreted as a negative value
-        imm = (0xFFFF0000 | imm);
     }
     var ans = REGISTERS[op] | imm;
     if (SHOWREG) {
-        PRINTTEXT += TAB + "ori:   $" + REG_NAMES[op] + " [" + hexOfInt(REGISTERS[op], 8) + "] OR " + imm + " = " + hexOfInt(ans, 8) + " " + TXT_STORE + " $" + REG_NAMES[dest] + "\n";
+        PRINTTEXT += colour("ori", COLOUR_INSTR) + ": " + colour("$" + REG_NAMES[op], COLOUR_INSTR) + " " + colour("[" + hexOfInt(REGISTERS[op], 8) + "]", COLOUR_REG) + " " + colour("OR " + imm + " =", COLOUR_INSTR) + " " + colour(hexOfInt(ans, 8), COLOUR_ANS) + " " + TXT_STORE + " " + colour("$" + REG_NAMES[dest], COLOUR_INSTR) + "<br>";
     }
     REGISTERS[dest] = ans;
     return addr + 4;
@@ -833,16 +844,12 @@ function execute_xori (args, addr) {
     var op = args[2];
     var imm = args[3];
     if (REGISTERS[op] === null || isNaN(REGISTERS[op])) {
-        PRINTTEXT += TXT_NOREAD + ": $" + REG_NAMES[op] + "\n";
+        PRINTTEXT += colour(TXT_NOREAD + ": $" + REG_NAMES[op], COLOUR_BAD) + "<br>";
         return -1;
-    }
-    if (imm > MAX_16) {
-        // F-extend the number, so that it is correctly interpreted as a negative value
-        imm = (0xFFFF0000 | imm);
     }
     var ans = REGISTERS[op] ^ imm;
     if (SHOWREG) {
-        PRINTTEXT += TAB + "xori:  $" + REG_NAMES[op] + " [" + hexOfInt(REGISTERS[op], 8) + "] XOR " + imm + " = " + hexOfInt(ans, 8) + " " + TXT_STORE + " $" + REG_NAMES[dest] + "\n";
+        PRINTTEXT += colour("xori", COLOUR_INSTR) + ": " + colour("$" + REG_NAMES[op], COLOUR_INSTR) + " " + colour("[" + hexOfInt(REGISTERS[op], 8) + "]", COLOUR_REG) + " " + colour("XOR " + imm + " =", COLOUR_INSTR) + " " + colour(hexOfInt(ans, 8), COLOUR_ANS) + " " + TXT_STORE + " " + colour("$" + REG_NAMES[dest], COLOUR_INSTR) + "<br>";
     }
     REGISTERS[dest] = ans;
     return addr + 4;
@@ -853,7 +860,7 @@ function execute_xori (args, addr) {
 function execute_j (args) {
     // j targetAddr
     if (SHOWREG) {
-        PRINTTEXT += TAB + "j:     " + hexOfInt(args[1], 8) + "\n";
+        PRINTTEXT += colour("j", COLOUR_INSTR) + ": " + colour(hexOfInt(args[1], 8), COLOUR_ADDR) + "<br>";
     }
     return args[1];
 }
@@ -866,27 +873,27 @@ function execute_syscall (addr) {
     var a = REG_NAMES.indexOf("a0");
     var v = REG_NAMES.indexOf("v0");
     if (REGISTERS[a] === null || isNaN(REGISTERS[a])) {
-        PRINTTEXT += TXT_NOREAD + ": $a0 \n";
+        PRINTTEXT += colour(TXT_NOREAD + ": $a0", COLOUR_BAD) + " <br>";
         return -1;
     }
     if (REGISTERS[v] === null || isNaN(REGISTERS[v])) {
-        PRINTTEXT += TXT_NOREAD + ": $v0 \n";
+        PRINTTEXT += colour(TXT_NOREAD + ": $v0", COLOUR_BAD) + " <br>";
         return -1;
     }
     if (REGISTERS[v] == 1) {
         // Print an integer
         if (SHOWREG) {
-            PRINTTEXT += TAB + TXT_INT + ": $a0\n";
+            PRINTTEXT += colour(TXT_INT, COLOUR_INSTR) + ": " + colour("$a0", COLOUR_INSTR) + "<br>";
         }
-        PRINTTEXT += REGISTERS[a] + "\n";
+        PRINTTEXT += colour(REGISTERS[a], COLOUR_OUT) + "<br>";
     } else if (REGISTERS[v] == 4) {
         // Print a string
         if (SHOWREG) {
-            PRINTTEXT += TAB + TXT_TXT + ": $a0\n";
+            PRINTTEXT += colour(TXT_TXT, COLOUR_INSTR) + ": " + colour("$a0", COLOUR_INSTR) + "<br>";
         }
-        PRINTTEXT += interpretString(REGISTERS[a]) + "\n";
+        PRINTTEXT += colour(interpretString(REGISTERS[a]), COLOUR_OUT) + "<br>";
     } else {
-        PRINTTEXT += TXT_NOSUPPORT + ": $v0\n";
+        PRINTTEXT += colour(TXT_NOSUPPORT + ": $v0", COLOUR_BAD) + "<br>";
     }
     REGISTERS[a] = null;
     REGISTERS[v] = null;
@@ -899,8 +906,15 @@ function interpretString(addr) {
     var lineHex = nextData[1];
     var chars = disect(lineHex);
     var i = 0;
+    var char;
     while (chars[i] != 0) {
-        returnText += String.fromCharCode(chars[i]);
+        char = String.fromCharCode(chars[i]);
+        if (char == "\n") {
+            // Switch to HTML <br> tag for display in Prog Output box
+            returnText += "<br>"
+        } else {
+            returnText += char;
+        }
         i++;
         if (i >= 4) {
             i = 0;
