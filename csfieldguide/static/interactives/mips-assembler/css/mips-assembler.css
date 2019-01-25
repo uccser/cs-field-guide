@@ -17,3 +17,6 @@ textarea.code{
 .btn-expand {
   width: 100%;
 }
+.scroll {
+  overflow-y: scroll;
+}

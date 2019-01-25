@@ -46,7 +46,7 @@
             main:
             {% blocktrans %}# Do the addition
             # For this, we first need to put the values
-            # to add into registers  ($t0 and $t1)
+            # to add into registers ($t0 and $t1)
             # You can change the 30 below to another value{% endblocktrans %}
             li $t0, 30
             # {% trans 'You can change the 20 below to another value' %}
@@ -65,7 +65,10 @@
             syscall
             
             {% blocktrans %}# Now we want to print Hello World
-            # So we load the (address of the) string into $a0{% endblocktrans %}
+            # So we load the (address of the) string into $a0.
+            # The address of the string is too big to be stored
+            # by one instruction, so we first load the upper half,
+            # shift it across, then load the lower half{% endblocktrans %}
             la $a0, str
             
             # {% trans 'And put a 4 in $v0 to mean print a string' %}
@@ -107,7 +110,7 @@
       <!-- Output Column -->
       <div class="col">
         <!-- Initially a storage of the advanced example program, it is immediately cleared -->
-        <div id="assembler-output" class="code h-100">
+        <div id="assembler-output" class="code scroll h-100">
             {% trans '# Define the data strings' %}
             .data
             go_str:   .asciiz "{% trans 'GO!!!!!' %}\n"
@@ -127,7 +130,7 @@
             start_loop:
               {% blocktrans %}# This says that if the values in $t0 and $t1 are the same,
               # it should jump down to the end_loop label. This is the
-              # main loop condition.{% endblocktrans %}
+              # main loop condition{% endblocktrans %}
               beq $t0, $t1, end_loop
               {% blocktrans %}# These three lines prepare for and print the current int
               # It must be moved into $a0 for the printing{% endblocktrans %}
@@ -135,7 +138,7 @@
               li $v0, 1
               syscall
               {% blocktrans %}# These three lines print a new line character so that
-              # each number is on a new line. They will be assembled as five lines{% endblocktrans %}
+              # each number is on a new line{% endblocktrans %}
               li $v0, 4
               la $a0, new_line
               syscall
@@ -144,10 +147,10 @@
               {% trans '# Jump back up to the start_loop label' %}
               j start_loop
             
-            {% trans '# This is the end loop label that we jumped to when the loop is false' %}
+            {% blocktrans %}# This is the end loop label that we jump to
+            # when the loop condition becomes true{% endblocktrans %}
             end_loop:
-              {% blocktrans %}# These three lines print the “GO!!!!” string.
-              # They will also be assembled as five lines{% endblocktrans %}
+              {% trans '# These three lines print the “GO!!!!” string.' %}
               li $v0, 4
               la $a0, go_str
               syscall

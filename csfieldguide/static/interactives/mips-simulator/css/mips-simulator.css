@@ -20,3 +20,6 @@ textarea.code#mips_keyInput {
 .btn-expand {
   width: 100%;
 }
+.scroll {
+  overflow-y: scroll;
+}

@@ -19,14 +19,14 @@ const MAX_EXECUTIONS = 10000;
 const MAX_16 = 32767; // Max value of a signed 16 bit integer, for signed ALU ops
 const COLOUR_ADDR = "lightgreen";
 const COLOUR_INSTR = "orange";
-const COLOUR_OUT = "lightblue";
-const COLOUR_REG = "violet";
 const COLOUR_INPUT = "tan";
 const COLOUR_BAD = "red";
 const COLOUR_ANS = "yellow";
+const COLOUR_OUT = "lightblue";
+const COLOUR_REG = "violet";
 
-// Register 0 is hardwired to 0. All registers are named as per convention
-var REGISTERS = [0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,];
+// All registers are named as per convention
+var REGISTERS;
 const REG_NAMES = ["zero","at","v0","v1","a0","a1","a2","a3","t0","t1","t2","t3","t4","t5","t6","t7","s0","s1","s2","s3","s4","s5","s6","s7","t8","t9","k0","k1","gp","sp","fp","ra"];
 var DATA;
 
@@ -48,6 +48,7 @@ const TXT_LOAD = gettext("Loading");
 const TXT_STORE = gettext("stored in");
 const TXT_BRANCH = gettext("Branching");
 const TXT_NO_BRANCH = gettext("Not Branching");
+const TXT_PANIC = gettext("You've triggered the failsafe error control in this interactive, which means the programmer who made it didn't prepare for the specific error in your program. Sorry about that. Double check everything and try again.");
 
 // Other globals
 var PRINTTEXT;
@@ -63,7 +64,11 @@ $(document).ready(function() {
     var offerExamples = Number(getUrlParameter('offer-examples')) || 0;
     
     $('#run-mips').on('click', function () {
-        run();
+        try {
+            run();
+        } catch(err) {
+            present(TXT_PANIC, false);
+        }
     });
 
     $('#reset-basic').on('click', function () {
@@ -89,6 +94,7 @@ function run() {
     SHOWREG = $('#show-registers').is(':checked');
     SHOWCOLOUR = $('#show-colours').is(':checked');
     PRINTTEXT = "";
+    REGISTERS  = [0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,];
 
     instructionAddr = INSTRUCTION_START;
     dataAddr = DATA_START;
