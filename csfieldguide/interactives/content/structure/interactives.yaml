@@ -1,248 +1,319 @@
 # 2d-arrow-manipulations:
 #   languages:
 #     en: interactives/2d-arrow-manipulations.html
+#   interactive: true
 action-menu:
   languages:
     en: interactives/action-menu.html
     de: interactives/action-menu.html
     es: interactives/action-menu.html
+  interactive: true
 alarm-timer:
   languages:
     en: interactives/alarm-timer.html
     de: interactives/alarm-timer.html
     es: interactives/alarm-timer.html
+  interactive: false
 available-menu-items:
   languages:
     en: interactives/available-menu-items.html
     de: interactives/available-menu-items.html
     es: interactives/available-menu-items.html
+  interactive: true
 awful-calculator:
   languages:
     en: interactives/awful-calculator.html
     de: interactives/awful-calculator.html
     es: interactives/awful-calculator.html
+  interactive: true
 # base-calculator:
 #   languages:
 #     en: interactives/base-calculator.html
+#   interactive: true
 big-number-calculator:
   languages:
     en: interactives/big-number-calculator.html
+  interactive: true
 bin-packing:
   languages:
     en: interactives/bin-packing.html
+  interactive: true
 # binary-cards:
 #   languages:
 #     en: interactives/binary-cards.html
+#   interactive: true
 binary-mode-calculator:
   languages:
     en: interactives/binary-mode-calculator.html
     de: interactives/binary-mode-calculator.html
     es: interactives/binary-mode-calculator.html
+  interactive: true
 # box-rotation:
 #   languages:
 #     en: interactives/box-rotation.html
+#   interactive: true
 # box-translation:
 #   languages:
 #     en: interactives/box-translation.html
+#   interactive: true
 caesar-cipher:
   languages:
     en: interactives/caesar-cipher.html
+  interactive: true
 checksum-calculator:
   languages:
     en: interactives/checksum-calculator.html
+  interactive: true
 checksum-calculator-gtin-13:
   languages:
     en: interactives/checksum-calculator-gtin-13.html
+  interactive: true
 close-window:
   languages:
     en: interactives/close-window.html
     de: interactives/close-window.html
     es: interactives/close-window.html
+  interactive: true
 # cmy-mixer:
 #   languages:
 #     en: interactives/cmy-mixer.html
+#   interactive: true
 # colour-matcher:
 #   languages:
 #     en: interactives/colour-matcher.html
+#   interactive: true
 compression-comparer:
   languages:
     en: interactives/compression-comparer.html
     de: interactives/compression-comparer.html
+  interactive: true
 confused-buttons:
   languages:
     en: interactives/confused-buttons.html
     de: interactives/confused-buttons.html
     es: interactives/confused-buttons.html
+  interactive: false
 confusing-error:
   languages:
     en: interactives/confusing-error.html
     de: interactives/confusing-error.html
     es: interactives/confusing-error.html
+  interactive: false
 date-picker:
   languages:
     en: interactives/date-picker.html
     de: interactives/date-picker.html
     es: interactives/date-picker.html
+  interactive: false
 deceiver:
   languages:
     en: interactives/deceiver.html
     de: interactives/deceiver.html
     es: interactives/deceiver.html
+  interactive: true
 delay-analyser:
   languages:
     en: interactives/delay-analyser.html
     de: interactives/delay-analyser.html
     es: interactives/delay-analyser.html
+  interactive: true
 delayed-checkbox:
   languages:
     en: interactives/delayed-checkbox.html
     de: interactives/delayed-checkbox.html
     es: interactives/delayed-checkbox.html
+  interactive: true
 frequency-analysis:
   languages:
     en: interactives/frequency-analysis.html
+  interactive: true
 # fsa-box:
 #   languages:
 #     en: interactives/fsa-box.html
+#   interactive: true
 # fsa-light:
 #   languages:
 #     en: interactives/fsa-light.html
+#   interactive: true
 # fsa-washing-machine:
 #   languages:
 #     en: interactives/fsa-washing-machine.html
+#   interactive: true
 # hex-background-colour:
 #   languages:
 #     en: interactives/hex-background-colour.html
+#   interactive: true
 high-score-boxes:
   languages:
     en: interactives/high-score-boxes.html
+  interactive: true
 huffman-tree:
   languages:
     en: interactives/huffman-tree.html
+  interactive: true
 image-bit-comparer:
   languages:
     en: interactives/image-bit-comparer.html
+  interactive: true
 jpeg-compression:
   languages:
     en: interactives/jpeg-compression.html
+  interactive: true
 # md5-hash:
 #   languages:
 #     en: interactives/md5-hash.html
+#   interactive: true
 menu-keystrokes:
   languages:
     en: interactives/menu-keystrokes.html
     de: interactives/menu-keystrokes.html
     es: interactives/menu-keystrokes.html
+  interactive: false
 # mips-assembler:
 #   languages:
 #     en: interactives/mips-assembler.html
+#   interactive: true
 # mips-simulator:
 #   languages:
 #     en: interactives/mips-simulator.html
+#   interactive: true
 # ncea-guide-selector:
 #   languages:
 #     en: interactives/ncea-guide-selector.html
+#   interactive: false
 # nfa-guesser:
 #   languages:
 #     en: interactives/nfa-guesser.html
+#   interactive: true
 no-help:
   languages:
     en: interactives/no-help.html
     de: interactives/no-help.html
     es: interactives/no-help.html
+  interactive: true
 number-generator:
   languages:
     en: interactives/number-generator.html
+  interactive: true
 off-by-one:
   languages:
     en: interactives/off-by-one.html
     de: interactives/off-by-one.html
     es: interactives/off-by-one.html
+  interactive: false
 # packet-attack:
 #   languages:
 #     en: interactives/packet-attack.html
+#   interactive: true
 # packet-attack-level-creator:
 #   languages:
 #     en: interactives/packet-attack-level-creator.html
+#   interactive: true
 parity:
   languages:
     en: interactives/parity.html
+  interactive: true
 payment-interface:
   languages:
     en: interactives/payment-interface.html
     de: interactives/payment-interface.html
     es: interactives/payment-interface.html
+  interactive: true
 # pixel-viewer:
 #   languages:
 #     en: interactives/pixel-viewer.html
+#   interactive: true
 # python-interpreter:
 #   languages:
 #     en: interactives/python-interpreter.html
+#   interactive: true
 # regular-expression-filter:
 #   languages:
 #     en: interactives/regular-expression-filter.html
+#   interactive: true
 regular-expression-search:
   languages:
     en: interactives/regular-expression-search.html
+  interactive: true
 remote-complicated:
   languages:
     en: interactives/remote-complicated.html
+  interactive: false
 remote-modified:
   languages:
     en: interactives/remote-modified.html
+  interactive: false
 remote-simple:
   languages:
     en: interactives/remote-simple.html
+  interactive: false
 # rgb-mixer:
 #   languages:
 #     en: interactives/rgb-mixer.html
+#   interactive: true
 rsa-jsencrypt:
   languages:
     en: interactives/rsa-jsencrypt.html
+  interactive: true
 rsa-key-generator:
   languages:
     en: interactives/rsa-key-generator.html
+  interactive: true
 rsa-no-padding:
   languages:
     en: interactives/rsa-no-padding.html
+  interactive: true
 run-length-encoding:
   languages:
     en: interactives/run-length-encoding.html
+  interactive: true
 searching-algorithms:
   languages:
     en: interactives/searching-algorithms.html
+  interactive: true
 sha2:
   languages:
     en: interactives/sha2.html
+  interactive: true
 sorting-algorithm-comparison:
   languages:
     en: interactives/sorting-algorithm-comparison.html
+  interactive: true
 sorting-algorithms:
   languages:
     en: interactives/sorting-algorithms.html
+  interactive: true
 # trainsylvania:
 #   languages:
 #     en: interactives/trainsylvania.html
+#   interactive: true
 # trainsylvania-planner:
 #   languages:
 #     en: interactives/trainsylvania-planner.html
+#   interactive: true
 # trig-function-calculator:
 #   languages:
 #     en: interactives/trig-function-calculator.html
+#   interactive: true
 unexpected-error:
   languages:
     en: interactives/unexpected-error.html
     de: interactives/unexpected-error.html
     es: interactives/unexpected-error.html
+  interactive: false
 # unicode-binary:
 #   languages:
 #     en: interactives/unicode-binary.html
+#   interactive: true
 # unicode-chars:
 #   languages:
 #     en: interactives/unicode-chars.html
+#   interactive: true
 # unicode-length:
 #   languages:
 #     en: interactives/unicode-length.html
+#   interactive: true
 # viola-jones-face-detector:
 #   languages:
 #     en: interactives/viola-jones-face-detector.html
+#   interactive: true
