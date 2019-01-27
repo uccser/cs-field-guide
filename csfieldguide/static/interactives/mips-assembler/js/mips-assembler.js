@@ -32,8 +32,8 @@ const TXT_PANIC = gettext("You've triggered the failsafe error control in this i
 
 
 // Required global variables
-var LABELS = [];
-var LABELADDRS = [];
+var LABELS;
+var LABELADDRS;
 var SHOWCOLOUR;
 
 // Stores a backup of the default code and registers button handler functions

@@ -15,7 +15,7 @@ const TYPE_SYSCALL = 4;
 // Other constants
 const INSTRUCTION_START = 0x00400000;
 const DATA_START = 0x00c00000;
-const MAX_EXECUTIONS = 10000;
+const MAX_EXECUTIONS = 1000;
 const MAX_16 = 32767; // Max value of a signed 16 bit integer, for signed ALU ops
 const COLOUR_ADDR = "lightgreen";
 const COLOUR_INSTR = "orange";
@@ -36,7 +36,7 @@ const TXT_END = gettext("* Program execution complete *");
 const TXT_BADEND = gettext("* Program execution halted early *");
 const TXT_INPUT = gettext("input");
 const TXT_NOEND = gettext("Parsing completed without finding the quit instruction");
-const TXT_INFINITE = gettext("Program executed 10000 instructions, it probably entered an infinite loop!");
+const TXT_INFINITE = gettext("Program executed 1000 instructions, it probably entered an infinite loop!");
 const TXT_INSTRUCTION = gettext("instruction");
 const TXT_NOREAD = gettext("Cannot read from empty register");
 const TXT_NOSUPPORT = gettext("Unsupported value in register");
@@ -61,7 +61,7 @@ $(document).ready(function() {
     var basicProgram = $('#assembled-input').val();
     var advancedProgram = $('#program-output').html();
     $('#program-output').html('');
-    var offerExamples = Number(getUrlParameter('offer-examples')) || 0;
+    var offerExamples = getUrlParameter('offer-examples');
     
     $('#run-mips').on('click', function () {
         try {
@@ -208,7 +208,7 @@ function run() {
     }
 
     if (instructionNum >= MAX_EXECUTIONS) {
-        PRINTTEXT += "<br>" + colour(TXT_INFINITE, COLOUR_BAD) + "<br>";
+        PRINTTEXT = colour(TXT_INFINITE, COLOUR_BAD) + "<br><br>" + PRINTTEXT + "<br>" + colour(TXT_INFINITE, COLOUR_BAD) + "<br>";
         present(PRINTTEXT, false);
         return;
     }
