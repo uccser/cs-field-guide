@@ -172,7 +172,7 @@ function run() {
 
         if (instrHex == 0x0000000c) {
             if (SHOWCONTEXT) {
-                PRINTTEXT += TXT_LOAD + " " + colour(hexOfInt(instrAddr, 8), COLOUR_ADDR) + " : " + colour(hexOfInt(instrHex, 8), COLOUR_INSTR) + "; <" + TXT_INSTRUCTION + ":" + instructionNum + "> " + colour("syscall", COLOUR_INSTR) + "<br>";
+                PRINTTEXT += TXT_LOAD + " " + colour(hexOfInt(instrAddr, 8), COLOUR_ADDR) + " : " + colour(hexOfInt(instrHex, 8), COLOUR_INSTR) + "; |" + colour(TXT_INSTRUCTION + ":" + instructionNum, COLOUR_INPUT) + "| " + colour("syscall", COLOUR_INSTR) + "<br>";
             }
             instrType = TYPE_SYSCALL;
         } else {
@@ -184,7 +184,7 @@ function run() {
             if (instrHex == 0x03e00008) {
                 quit = true;
                 if (SHOWCONTEXT) {
-                    PRINTTEXT += TXT_LOAD + " " + colour(hexOfInt(instrAddr, 8), COLOUR_ADDR) + " : " + colour(hexOfInt(instrHex, 8), COLOUR_INSTR) + "; <" + TXT_INSTRUCTION + ":" + instructionNum + "> " + colour("jr $ra", COLOUR_INSTR) + "<br>";
+                    PRINTTEXT += TXT_LOAD + " " + colour(hexOfInt(instrAddr, 8), COLOUR_ADDR) + " : " + colour(hexOfInt(instrHex, 8), COLOUR_INSTR) + "; |" + colour(TXT_INSTRUCTION + ":" + instructionNum, COLOUR_INPUT) + "| " + colour("jr $ra", COLOUR_INSTR) + "<br>";
                 }
             } else {
                 if (instrDecoded == TYPE_UNSUPPORTED) {
@@ -194,7 +194,7 @@ function run() {
                 }
 
                 if (SHOWCONTEXT) {
-                    PRINTTEXT += TXT_LOAD + " " + colour(hexOfInt(instrAddr, 8), COLOUR_ADDR) + " : " + colour(hexOfInt(instrHex, 8), COLOUR_INSTR) + "; <" + TXT_INSTRUCTION + ":" + instructionNum + "> " + colour(instrDecoded, COLOUR_INSTR) + "<br>";
+                    PRINTTEXT += TXT_LOAD + " " + colour(hexOfInt(instrAddr, 8), COLOUR_ADDR) + " : " + colour(hexOfInt(instrHex, 8), COLOUR_INSTR) + "; |" + colour(TXT_INSTRUCTION + ":" + instructionNum, COLOUR_INPUT) + "| " + colour(instrDecoded, COLOUR_INSTR) + "<br>";
                 }
             }
         }
