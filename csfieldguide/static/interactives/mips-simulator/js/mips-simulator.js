@@ -21,8 +21,8 @@ const COLOUR_ADDR = "#9FBF8A";
 const COLOUR_INSTR = "#ECCC87";
 const COLOUR_INPUT = "#8BA1B4";
 const COLOUR_BAD = "#C15D5A";
-const COLOUR_ANS = "#B9C2CE";
-const COLOUR_OUT = "#A5674F";
+const COLOUR_ANS = "#CE9178";
+const COLOUR_OUT = "#FFF";
 const COLOUR_REG = "#B58DAE";
 
 // All registers are named as per convention

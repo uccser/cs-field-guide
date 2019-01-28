@@ -21,6 +21,7 @@ const COLOUR_INPUT = "#8BA1B4";
 const COLOUR_BAD = "#C15D5A";
 const COLOUR_STR = "#B9C2CE";
 const COLOUR_LABEL = "#B58DAE";
+const COLOUR_COMMENT = "#CE9178";
 
 // Text constants
 const TXT_INPUT = gettext("input");
@@ -117,9 +118,9 @@ function assemble() {
         } else if (line.startsWith("#") || line == "") {
             // Interpret as a comment or blank line
             if (showInstr) {
-                nextInstr = "; |" + colour(TXT_INPUT + ":" + input, COLOUR_INPUT) + "| " + line + "<br>";
+                nextInstr = "; |" + colour(TXT_INPUT + ":" + input, COLOUR_INPUT) + "| " + colour(line, COLOUR_COMMENT) + "<br>";
             } else {
-                nextInstr = line + "<br>";
+                nextInstr = colour(line, COLOUR_COMMENT) + "<br>";
             }
             if (showBlank) {
                 instructions.push([TYPE_UNASSIGNED, nextInstr, input, instructionAddr, line]);
