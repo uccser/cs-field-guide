@@ -153,7 +153,7 @@ function assemble() {
             if (showBlank || showInstr) {
                 instructions.push([TYPE_UNASSIGNED, nextInstr, input, instructionAddr, line]);
             }
-        } else if (line == "syscall") {
+        } else if (line == "syscall" || line == "SYSCALL") {
             // Interpret as a syscall
             if (showInstr) {
                 nextInstr = colour(hexOfInt(instructionAddr, 8), COLOUR_ADDR) + ": " + colour("0000000c", COLOUR_INSTR) + " ; |" + colour(TXT_INPUT + ":" + input, COLOUR_INPUT) + "| " + colour("syscall", COLOUR_INSTR) + "<br>";
@@ -165,6 +165,7 @@ function assemble() {
         } else {
             // Interpret as a basic instruction
             keywords = line.split(" ");
+            keywords[0] == keywords[0].toLowerCase();
             
             if (keywords[0] == "li" && keywords.length == 3) {
                 // li is supported with template (li $xy, z == addiu $xy, $zero, z)

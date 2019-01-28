@@ -32,8 +32,8 @@ var DATA;
 
 // Text constants
 const TXT_INVALID = gettext("INVALID HEX VALUE");
-const TXT_END = gettext("* Program execution complete *");
-const TXT_BADEND = gettext("* Program execution halted early *");
+const TXT_END = "* " + gettext("Program execution complete") + " *";
+const TXT_BADEND = "* " + gettext("Program execution halted early") + " *";
 const TXT_INPUT = gettext("input");
 const TXT_NOEND = gettext("Parsing completed without finding the quit instruction");
 const TXT_INFINITE = gettext("Program executed 1000 instructions, it probably entered an infinite loop!");

@@ -19,10 +19,16 @@
           {% blocktrans %}
           Enter MIPS code below to see the assembler output.<br>
           Then copy the plain output to the <a href="{{simulator_link}}" target="_blank">MIPS Simulator</a> interactive to run it.<br>
-          <strong>Note:</strong> Only a subset of MIPS is implemented. A table of supported instructions will be available soon.<br>
-          Comments start with #.
+          <strong>Note:</strong> Only a subset of MIPS is implemented. Comments start with #.<br>
           {% endblocktrans %}
         </p>
+        <details id="details">
+          <summary>{% trans 'Supported Instructions' %}</summary>
+          {% trans 'The following instructions are supported by both MIPS interactives' %}:<br>
+          <code>SLL</code>, <code>JR</code>, <code>ADD</code>, <code>ADDU</code>, <code>SUB</code>, <code>SUBU</code>, <code>AND</code>, <code>OR</code>, <code>XOR</code>, <code>NOR</code>, <code>BEQ</code>, <code>BNE</code>, <code>ADDI</code>, <code>ADDIU</code>, <code>ANDI</code>, <code>ORI</code>, <code>XORI</code>, <code>J</code> <br>
+          {% blocktrans %}The <code>LA</code>, <code>LI</code> and <code>MOVE</code> instructions are also supported when translated to appropriate instructions from the list.{% endblocktrans %}<br>
+          {% trans 'See all MIPS instructions on <a href="https://en.wikipedia.org/wiki/MIPS_architecture" target = "_blank">Wikipedia</a>.' %}
+        </details>
       </div>
       <div class="col">
         <h3>{% trans 'Assembler Output' %}</h3>
@@ -38,7 +44,7 @@
           <textarea id="mips-input" class="code">
             .data
             str:  .asciiz "\n{% trans 'Hello World!' %}\n"
-            # {% trans 'You can change what is between the  quotes if you like' %}
+            # {% trans 'You can change what is between the quotes if you like' %}
             
             .text
             .globl main

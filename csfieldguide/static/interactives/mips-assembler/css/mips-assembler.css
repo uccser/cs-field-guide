@@ -21,3 +21,15 @@ textarea.code {
 .scroll {
   overflow-y: scroll;
 }
+details {
+  border: 1px solid;
+  border-radius: 5px;
+  padding: .5em;
+}
+summary {
+  font-weight: bold;
+  padding: .5em;
+}
+details[open] {
+  padding: .5em;
+}
