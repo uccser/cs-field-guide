@@ -17,13 +17,13 @@ const INSTRUCTION_START = 0x00400000;
 const DATA_START = 0x00c00000;
 const MAX_EXECUTIONS = 1000;
 const MAX_16 = 32767; // Max value of a signed 16 bit integer, for signed ALU ops
-const COLOUR_ADDR = "lightgreen";
-const COLOUR_INSTR = "orange";
-const COLOUR_INPUT = "tan";
-const COLOUR_BAD = "red";
-const COLOUR_ANS = "yellow";
-const COLOUR_OUT = "lightblue";
-const COLOUR_REG = "violet";
+const COLOUR_ADDR = "#9FBF8A";
+const COLOUR_INSTR = "#8BA1B4";
+const COLOUR_INPUT = "#ECCC87";
+const COLOUR_BAD = "#C15D5A";
+const COLOUR_ANS = "#B9C2CE";
+const COLOUR_OUT = "#A5674F";
+const COLOUR_REG = "#B58DAE";
 
 // All registers are named as per convention
 var REGISTERS;

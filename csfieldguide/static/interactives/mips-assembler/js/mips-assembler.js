@@ -15,12 +15,12 @@ const TYPE_J = 3;
 // other constants
 const INSTRUCTION_START = 0x00400000;
 const DATA_START = 0x00c00000;
-const COLOUR_ADDR = "lightgreen";
-const COLOUR_INSTR = "orange";
-const COLOUR_INPUT = "tan";
-const COLOUR_BAD = "red";
-const COLOUR_STR = "lightblue";
-const COLOUR_LABEL = "violet";
+const COLOUR_ADDR = "#9FBF8A";
+const COLOUR_INSTR = "#8BA1B4";
+const COLOUR_INPUT = "#ECCC87";
+const COLOUR_BAD = "#C15D5A";
+const COLOUR_STR = "#B9C2CE";
+const COLOUR_LABEL = "#B58DAE";
 
 // Text constants
 const TXT_INPUT = gettext("input");
