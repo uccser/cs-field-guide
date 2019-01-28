@@ -8,14 +8,14 @@ In this section, we will look at some common ones and then look at the pros and 
 We saw earlier that 64 unique patterns can be made using 6 dots in Braille.
 A dot corresponds to a bit, because both dots and bits have 2 different possible values.
 
-Count how many different characters &ndash; upper-case letters, lower-case letters, numbers, and symbols &ndash; that you could type into a text editor using your keyboard.
+Count how many different characters &ndash; upper case letters, lower case letters, numbers, and symbols &ndash; that you could type into a text editor using your keyboard.
 (Don’t forget to count both of the symbols that share the number keys, and the symbols to the side that are for punctuation!)
 
 {panel type="jargon-buster"}
 
 # Characters
 
-The collective name for upper-case letters, lower-case letters, numbers, and symbols is *characters* e.g. a, D, 1, h, 6, \*, ], and ~ are all characters.
+The collective name for upper case letters, lower case letters, numbers, and symbols is *characters* e.g. a, D, 1, h, 6, \*, ], and ~ are all characters.
 Importantly, a space is also a character.
 
 {panel end}
@@ -76,7 +76,7 @@ Here is a table that shows the patterns of bits that ASCII uses for each of the 
 
 <br>
 
-For example, the letter c (lower-case) in the table has the pattern "01100011" (the 0 at the front is just extra padding to make it up to 8 bits).
+For example, the letter c (lower case) in the table has the pattern "01100011" (the 0 at the front is just extra padding to make it up to 8 bits).
 The letter o has the pattern "01101111".
 You could write a word out using this code, and if you give it to someone else, they should be able to decode it exactly.
 
@@ -89,7 +89,7 @@ Exchanging short messages in code will force students to use the table, and they
 {panel end}
 
 Computers can represent pieces of text with sequences of these patterns, much like Braille does.
-For example, the word "computers" (all lower-case) would be 01100011 01101111 01101101 01110000 01110101 01110100 01100101 01110010 01110011.
+For example, the word "computers" (all lower case) would be 01100011 01101111 01101101 01110000 01110101 01110100 01100101 01110010 01110011.
 This is because "c" is "01100011", "o" is "01101111", and so on.
 Have a look at the ASCII table above to check that we are right!
 
@@ -111,7 +111,7 @@ Nowadays ASCII has been supplanted by a code called "UTF-8", which happens to be
 Have a go at the following ASCII exercises:
 
 - How would you represent "science" in ASCII?
-- How would you represent "Wellington" in ASCII? (note that it starts with an upper-case "W")
+- How would you represent "Wellington" in ASCII? (note that it starts with an upper case "W")
 - How would you represent "358" in ASCII (it is three characters, even though it looks like a number)
 - How would you represent "Hello, how are you?" (look for the comma, question mark, and space characters in ASCII table)
 
@@ -315,7 +315,7 @@ Step 4 will explain how to use the pattern.
 21 or fewer bits: 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx
 ```
 
-**Step 4.** Replace the x's in the pattern with the bits of the binary number you converted in 2.
+**Step 4.** Replace the x's in the pattern with the bits of the binary number you converted in step 2.
 If there are more x's than bits, replace extra left-most x's with 0's.
 
 For example, if you wanted to find out the representation for **貓** (cat in Chinese), the steps you would take would be as follows.
@@ -397,7 +397,7 @@ Start by reading the explanation below to ensure you understand what we mean by 
 
 <br>
 
-If you *only* wanted to represent the 26 letters of the alphabet, and weren’t worried about upper-case or lower-case, you could get away with using just 5 bits, which allows for up to 32 different patterns.
+If you *only* wanted to represent the 26 letters of the alphabet, and weren’t worried about upper case or lower case, you could get away with using just 5 bits, which allows for up to 32 different patterns.
 
 You might have exchanged notes which used 1 for "a", 2 for "b", 3 for "c", all the way up to 26 for "z".
 We can convert those numbers into 5 digit binary numbers.

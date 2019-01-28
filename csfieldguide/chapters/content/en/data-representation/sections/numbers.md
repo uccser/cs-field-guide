@@ -576,7 +576,7 @@ The right-most 0 is shown in bold; it changes to 1, and the three 1's to its rig
 
 If you get a number with no zeroes in it (e.g. 1111111), you can put one on the left (01111111), then apply the rule, which in this case gives 10000000.
 
-It may help some students to consider what the equivalent rule is in decimal for adding 1 &ndash; how do you add one to 284394? to 38999? 9999799?
+It may help some students to consider what the equivalent rule is in decimal for adding 1 &ndash; how do you add one to 284394? To 38999? 9999799?
 
 {panel end}
 

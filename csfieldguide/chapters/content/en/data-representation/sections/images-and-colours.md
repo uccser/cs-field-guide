@@ -56,7 +56,7 @@ For more information about RGB displays, see [RGB on Wikipedia](https://en.wikip
 
 ## Describing a colour with numbers
 
-Because a colour is simply made up of amounts of the primary colours &ndash; red, green and blue &ndash; three numbers can be used to specify how much of each of these primary colours is needed to make the overall colour.
+Because a colour is simply made up of amounts of the primary colours (red, green and blue), three numbers can be used to specify how much of each of these primary colours is needed to make the overall colour.
 
 {panel type="jargon-buster"}
 
