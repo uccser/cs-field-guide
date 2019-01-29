@@ -137,7 +137,7 @@ trig-function-calculator:
 unexpected-error:
   name: Unexpected Error
 unicode-binary:
-  name: unicode-binary (broken)
+  name: Unicode Binary
 unicode-chars:
   name: Unicode Characters
 unicode-length:
