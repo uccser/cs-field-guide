@@ -5,7 +5,7 @@
 # Working with big numbers
 
 The following section relies on students using the built-in interactive to experiment with the calculations on the huge numbers that come up with the intractable problems.
-This may be best run as a class activity where students are guided through calculating the stupendously big numbers that come up, and they should be encouraged to appreciate how impractical the amount of time taken by a program would be — for example, a program that takes a million years to find a solution won't be of any interest to the person who started it running, and even if a computer turned up that is 1000 times as fast, it would still take 1000 years to complete.
+This may be best run as a class activity where students are guided through calculating the stupendously big numbers that come up, and they should be encouraged to appreciate how impractical the amount of time taken by a program would be &ndash; for example, a program that takes a million years to find a solution won't be of any interest to the person who started it running, and even if a computer turned up that is 1000 times as fast, it would still take 1000 years to complete.
 Some of the times that turn up below are so long that they are beyond our ability to imagine, and are best illustrated by seeing how futile the times are even with 1000, a million or even a billion times the computing power.
 
 An earlier version of this chapter provided the following spreadsheet for doing these calculations; we've retained the link here for the meantime, but the new online interactive can cope a lot better with the large numbers in the calculations.
@@ -16,7 +16,7 @@ If you are interested, you can [download the spreadsheet here](files/tractable-s
 There's a very simple rule that computer scientists use to decide if an algorithm is tractable or not, based on the complexity (estimated number of steps) of the algorithm.
 Essentially, if the algorithm takes an exponential amount of time or worse for an input of size *n*, it is labelled as intractable.
 This simple rule is a bit crude, but it's widely used and provides useful guidance.
-(Note that a factorial amount of time, *n!*, is intractable because it's bigger than an exponential function.)
+(Note that a factorial amount of time, *n!*, is intractable because it's bigger than an exponential function).
 
 To see what this means, let's consider how long various algorithms might take to run.
 The following interactive will do the calculations for you to estimate how long an algorithm might take to run.
@@ -52,7 +52,7 @@ It's still completely impractical!
 
 Another way to solve problems faster is to have multiple processors work on different solutions at the same time.
 If you were to buy 1,000 processors (e.g. 1,000 computers, or 250 4-core computers) and have each one test out different routes, then the solution could be found 1,000 times faster.
-Try changing the number of processors to 1,000, and see how long that would take (you may need to change the units back — is it seconds? hours? days?)
+Try changing the number of processors to 1,000, and see how long that would take (you may need to change the units back &ndash; is it seconds? hours? days?)
 
 {panel type="teacher-note"}
 
@@ -80,10 +80,10 @@ The main point is that even if you get a massively fast bank of computers that c
 {panel end}
 
 Now, consider an algorithm that has a complexity of \( n^2 \) (there are lots that take roughly this number of steps, including selection sort which was mentioned earlier).
-Type in a value of 1,000,000 for *n*  to see how long it might take to sort a million items on a single processor (keep the number of steps per second at 1,000,000,000,000, but set the number of processors to just 1) — it should show that it will only take about 1 second on our hypothetical very fast machine.
-Now put in 10 million for *n* — although it's sorting a list 10 times as big, it takes more than 10 times as long, and will now take a matter of minutes rather than seconds.
-At what value of *n* does the amount of time become out of the question — that is, how large would the problem need to be for it to take years to finish?
-Is anyone ever likely to be sorting this many values — for example, what if for some reason you were sorting the name of every person in the world, or every base in the human genome?
+Type in a value of 1,000,000 for *n*  to see how long it might take to sort a million items on a single processor (keep the number of steps per second at 1,000,000,000,000, but set the number of processors to just 1) &ndash; it should show that it will only take about 1 second on our hypothetical very fast machine.
+Now put in 10 million for *n* &ndash; although it's sorting a list 10 times as big, it takes more than 10 times as long, and will now take a matter of minutes rather than seconds.
+At what value of *n* does the amount of time become out of the question &ndash; that is, how large would the problem need to be for it to take years to finish?
+Is anyone ever likely to be sorting this many values &ndash; for example, what if for some reason you were sorting the name of every person in the world, or every base in the human genome?
 
 {panel type="teacher-note"}
 
@@ -93,7 +93,7 @@ The \( n^2 \) algorithm with 10 million items takes 100 seconds above (each time
 
 When n is a thousand million, it takes nearly 12 days, at which point you might consider it to be out of the question.
 At n=10,000,000,000 it takes about 3.18 years, which is likely to be longer than a computer could run for continuously.
-But that's a pretty big number of items to process — for example, it's big enough to cope with the population of the whole world.
+But that's a pretty big number of items to process &ndash; for example, it's big enough to cope with the population of the whole world.
 And there's room for improvement by using a reasonable number of multiple processors.
 
 {panel end}
@@ -136,13 +136,13 @@ The lesson is that the algorithm will be so slow that even massive improvements 
 
 {panel end}
 
-Trying out these figures you will likely have encountered the barrier between "tractable" and "intractable" problems.
+By trying out these figures you will likely have encountered the barrier between "tractable" and "intractable" problems.
 Algorithms that take \( n^2 \), \( n^3 \) or even \( n^4 \) time to solve a problem (such as sorting a list) aren't amazing, but at least with a fast enough computer and for the size of inputs we might reasonably encounter, we have a chance of running them within a human lifetime, and these are regarded as *tractable* .
 However, for algorithms that take \( 2^n \), \( 3^n \) or more steps, the amount of time taken can end up as billions of years even for fairly small problems, and using computers that are thousand times faster still doesn't help to solve much bigger problems.
 Such problems are regarded as *intractable* .
 Mathematically, the boundary between tractable and intractable is between a polynomial number of steps (polynomials are formulas made up of \( n^2 \), \( n^3 \), \( n^4 \) and so on), and an exponential number of steps (\( 2^n \), \( 3^n \), \( 4^n \), and so on).
 
-The two formulas \( n^2 \) and \( 2^n \) look very similar, but they are really massively different, and can mean a difference between a few seconds and many millennia for the program to finish.
+The two formulas \( n^2 \) and \( 2^n \) look very similar, but they are massively different, and can mean a difference between a few seconds and many millennia for the program to finish.
 The whole point of this chapter is to develop an awareness that there are many problems that we have tractable algorithms for, but there are also many that we haven't found any tractable algorithms for.
 It's very important to know about these, since it will be futile to try to write programs that are intractable, unless you are only going to be processing very small problems.
 
@@ -151,7 +151,7 @@ Note that algorithms that take a factorial amount of time (\( n! \), or \( 1 \ti
 Essentially any algorithm that tries out all combinations of the input will inevitably be intractable because the number of combinations is likely to be exponential or factorial.
 Thus an important point is that it's usually not going to work to design a system that just tries out all possible solutions to see which is the best.
 
-Although we've provided \( n^6 \) as an example of a tractable time, nearly all algorithms you're likely to encounter will be \( n^3 \) and better, or  \( 2^n \) and worse — only very specialised ones fall in the gap between those.
+Although we've provided \( n^6 \) as an example of a tractable time, nearly all algorithms you're likely to encounter will be \( n^3 \) and better, or  \( 2^n \) and worse &ndash; only very specialised ones fall in the gap between those.
 So there's a big gulf between tractable and intractable problems, and trying to grapple with it is one of the biggest problems in computer science!
 
 What about Moore's law, which says that computing power is increasing exponentially?
@@ -160,7 +160,7 @@ Unfortunately this argument is wrong; intractable problems are also exponential,
 For example, if computing speed is doubling every 18 months (an optimistic view of Moore's law), and we have an intractable problem that takes \( 2^n \) operations to solve (many take longer than this), then in 18 months we will be able to solve a problem that's just one item bigger.
 For example, if you can solve an exponential time problem for 50 items (50 countries on a map to colour, 50 cities for a salesman to tour, or 50 rings on a Towers of Hanoi problem) in 24 hours, then in 18 months you can expect to buy a computer that could solve it for 51 items at best!
 And in 20 years you're likely to be able to get a computer that could solve for 55 items in one day.
-You're going to have to be more than patient if you want Moore's law to help out here — you have to be prepared to wait for decades for a small improvement!
+You're going to have to be more than patient if you want Moore's law to help out here &ndash; you have to be prepared to wait for decades for a small improvement!
 
 Remember that if you need to do calculations of huge numbers, there's a calculator here that you can use:
 
