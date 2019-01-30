@@ -1,21 +1,18 @@
-.div-circle-black {
+.div-circle {
   display: inline-block;
   width: 25px;
   height: 25px;
-  color: black;
-  background-color: black;
   border: 1px solid;
   border-color: black;
   border-radius: 50%;
 }
 
-.div-circle-white {
-  display: inline-block;
-  width: 25px;
-  height: 25px;
+.div-circle.black {
+  color: black;
+  background-color: black;
+}
+
+.div-circle.white {
   color: white;
   background-color: white;
-  border: 1px solid;
-  border-color: black;
-  border-radius: 50%;
 }
