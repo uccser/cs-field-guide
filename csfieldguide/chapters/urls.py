@@ -1,8 +1,10 @@
 """URL routing for the chapters application."""
 
 from django.conf.urls import url
+from django.views.generic.base import RedirectView
 
 from . import views
+from .views import IndexRedirectView
 
 app_name = "chapters"
 urlpatterns = [
@@ -35,5 +37,10 @@ urlpatterns = [
         r"^(?P<chapter_slug>[-\w]+)/(?P<chapter_section_slug>[-\w]+)/$",
         views.ChapterSectionView.as_view(),
         name="chapter_section"
+    ),
+    # redirect /chapters/index.html to /chapters/
+    url(
+        r"^index.html$",
+        IndexRedirectView.as_view(),
     ),
 ]
