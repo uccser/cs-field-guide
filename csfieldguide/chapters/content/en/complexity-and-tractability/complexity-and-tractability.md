@@ -14,7 +14,7 @@ The video [The Power of Exponentials, Big and Small](http://blossoms.mit.edu/vid
 
 Are there problems that are too hard even for computers?
 It turns out that there are.
-In the chapter on artificial intelligence we'll see that just having a conversation &ndash; chatting &ndash; is something computers can't do well, not because they can't speak but rather because they can't understand or think of sensible things to say.
+In the chapter on Artificial Intelligence we'll see that just having a conversation &ndash; chatting &ndash; is something computers can't do well, not because they can't speak but rather because they can't understand or think of sensible things to say.
 However, that’s not the kind of hard problem we’re talking about here &ndash; it's not that computers couldn’t have conversations, more that we don't know just how we do it ourselves and so we can't tell the computer what to do.
 
 In this chapter we're going to look at problems where it's easy to tell the computer what to do &ndash; by writing a program &ndash; but the computer *can’t* do what we want because it takes far too long: millions of centuries, perhaps.
