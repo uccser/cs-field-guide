@@ -143,9 +143,8 @@ def glossary_json(request, **kwargs):
     else:
         raise Http404("Term parameter not specified.")
 
+
 class IndexRedirectView(RedirectView):
 
     permanent = True
-    pattern_name = "index"
-
     url = "/chapters"
