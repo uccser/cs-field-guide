@@ -110,7 +110,7 @@ $decimal.on('input', function() {
     try {
         const char = String.fromCodePoint(number);
     } catch (err) {
-        $char.val("Decimal value of range");
+        $char.val("Decimal value out of range");
         $binary.val('');
         return;
     }
