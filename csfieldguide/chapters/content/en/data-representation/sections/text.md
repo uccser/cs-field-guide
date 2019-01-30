@@ -315,7 +315,7 @@ Step 4 will explain how to use the pattern.
 21 or fewer bits: 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx
 ```
 
-**Step 4.** Replace the x's in the pattern with the bits of the binary number you converted in step 2.
+**Step 4.** Replace the x's in the pattern with the bits of the binary number you converted in Step 2.
 If there are more x's than bits, replace extra left-most x's with 0's.
 
 For example, if you wanted to find out the representation for **貓** (cat in Chinese), the steps you would take would be as follows.
