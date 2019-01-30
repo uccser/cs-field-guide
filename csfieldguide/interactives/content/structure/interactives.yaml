@@ -27,6 +27,9 @@ awful-calculator:
 big-number-calculator:
   languages:
     en: interactives/big-number-calculator.html
+big-time-calculator:
+  languages:
+    en: interactives/big-time-calculator.html
 bin-packing:
   languages:
     en: interactives/bin-packing.html

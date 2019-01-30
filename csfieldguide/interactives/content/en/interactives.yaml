@@ -12,6 +12,8 @@ base-calculator:
   name: Base Calculator
 big-number-calculator:
   name: Big Number Calculator
+big-time-calculator:
+  name: Big Time Calculator
 bin-packing:
   name: Bin Packing
 binary-cards:
