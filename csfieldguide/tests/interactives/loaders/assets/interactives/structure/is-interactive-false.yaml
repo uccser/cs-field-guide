@@ -1,4 +1,4 @@
-interactive-translated:
+is-interactive-false:
   languages:
     en: interactives/template.html
-  is_interactive: true
+  is_interactive: false

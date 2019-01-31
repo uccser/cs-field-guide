@@ -3,3 +3,4 @@ interactive-multiple-languages:
     en: interactives/template-en.html
     de: interactives/template-de.html
     fr: interactives/template-fr.html
+  is_interactive: true
