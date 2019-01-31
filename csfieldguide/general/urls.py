@@ -2,7 +2,7 @@
 
 from django.conf.urls import url
 from . import views
-
+from django.views.generic.base import RedirectView
 
 urlpatterns = [
     # e.g. csfieldguide.org.nz/
@@ -24,5 +24,9 @@ urlpatterns = [
         views.set_teacher_mode,
         {"mode": False},
         name="teacher_mode_logout"
+    ),
+    url(
+        r"^further-information/glossary.html$",
+        RedirectView.as_view(permanent=True, pattern_name="chapters:glossary"),
     ),
 ]
