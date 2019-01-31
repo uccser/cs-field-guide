@@ -7,8 +7,8 @@ chapters:
   #   chapter-number: 3
   human-computer-interaction:
     chapter-number: 4
-  # data-representation:
-  #   chapter-number: 5
+  data-representation:
+    chapter-number: 5
   coding-introduction:
     chapter-number: 6
   coding-compression:

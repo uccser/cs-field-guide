@@ -1,0 +1,18 @@
+.div-circle {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  border: 1px solid;
+  border-color: black;
+  border-radius: 50%;
+}
+
+.div-circle.black {
+  color: black;
+  background-color: black;
+}
+
+.div-circle.white {
+  color: white;
+  background-color: white;
+}

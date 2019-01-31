@@ -21,18 +21,18 @@ awful-calculator:
     en: interactives/awful-calculator.html
     de: interactives/awful-calculator.html
     es: interactives/awful-calculator.html
-# base-calculator:
-#   languages:
-#     en: interactives/base-calculator.html
+base-calculator:
+  languages:
+    en: interactives/base-calculator.html
 big-number-calculator:
   languages:
     en: interactives/big-number-calculator.html
 bin-packing:
   languages:
     en: interactives/bin-packing.html
-# binary-cards:
-#   languages:
-#     en: interactives/binary-cards.html
+binary-cards:
+  languages:
+    en: interactives/binary-cards.html
 binary-mode-calculator:
   languages:
     en: interactives/binary-mode-calculator.html
@@ -44,6 +44,9 @@ binary-mode-calculator:
 # box-translation:
 #   languages:
 #     en: interactives/box-translation.html
+braille-alphabet:
+  languages:
+    en: interactives/braille-alphabet.html
 caesar-cipher:
   languages:
     en: interactives/caesar-cipher.html
@@ -58,12 +61,12 @@ close-window:
     en: interactives/close-window.html
     de: interactives/close-window.html
     es: interactives/close-window.html
-# cmy-mixer:
-#   languages:
-#     en: interactives/cmy-mixer.html
-# colour-matcher:
-#   languages:
-#     en: interactives/colour-matcher.html
+cmy-mixer:
+  languages:
+    en: interactives/cmy-mixer.html
+colour-matcher:
+  languages:
+    en: interactives/colour-matcher.html
 compression-comparer:
   languages:
     en: interactives/compression-comparer.html
@@ -98,6 +101,9 @@ delayed-checkbox:
     en: interactives/delayed-checkbox.html
     de: interactives/delayed-checkbox.html
     es: interactives/delayed-checkbox.html
+dot-combinations:
+  languages:
+    en: interactives/dot-combinations.html
 frequency-analysis:
   languages:
     en: interactives/frequency-analysis.html
@@ -110,9 +116,9 @@ frequency-analysis:
 # fsa-washing-machine:
 #   languages:
 #     en: interactives/fsa-washing-machine.html
-# hex-background-colour:
-#   languages:
-#     en: interactives/hex-background-colour.html
+hex-background-colour:
+  languages:
+    en: interactives/hex-background-colour.html
 high-score-boxes:
   languages:
     en: interactives/high-score-boxes.html
@@ -172,9 +178,9 @@ payment-interface:
     en: interactives/payment-interface.html
     de: interactives/payment-interface.html
     es: interactives/payment-interface.html
-# pixel-viewer:
-#   languages:
-#     en: interactives/pixel-viewer.html
+pixel-viewer:
+  languages:
+    en: interactives/pixel-viewer.html
 # python-interpreter:
 #   languages:
 #     en: interactives/python-interpreter.html
@@ -193,9 +199,9 @@ remote-modified:
 remote-simple:
   languages:
     en: interactives/remote-simple.html
-# rgb-mixer:
-#   languages:
-#     en: interactives/rgb-mixer.html
+rgb-mixer:
+  languages:
+    en: interactives/rgb-mixer.html
 rsa-jsencrypt:
   languages:
     en: interactives/rsa-jsencrypt.html
@@ -234,15 +240,15 @@ unexpected-error:
     en: interactives/unexpected-error.html
     de: interactives/unexpected-error.html
     es: interactives/unexpected-error.html
-# unicode-binary:
-#   languages:
-#     en: interactives/unicode-binary.html
-# unicode-chars:
-#   languages:
-#     en: interactives/unicode-chars.html
-# unicode-length:
-#   languages:
-#     en: interactives/unicode-length.html
+unicode-binary:
+  languages:
+    en: interactives/unicode-binary.html
+unicode-chars:
+  languages:
+    en: interactives/unicode-chars.html
+unicode-length:
+  languages:
+    en: interactives/unicode-length.html
 # viola-jones-face-detector:
 #   languages:
 #     en: interactives/viola-jones-face-detector.html
