@@ -31,6 +31,10 @@ urlpatterns = [
         RedirectView.as_view(permanent=True, pattern_name="chapters:glossary"),
     ),
     url(
+        r"^further-information/interactives.html$",
+        RedirectView.as_view(permanent=True, pattern_name="interactives:index"),
+    ),
+    url(
         r"^further-information/(?P<appendix_slug>[-\w]+).html$",
         RedirectView.as_view(permanent=True, pattern_name="appendices:appendix"),
     ),
