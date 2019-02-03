@@ -3,6 +3,7 @@
 from django.conf.urls import url
 from . import views
 from django.views.generic.base import RedirectView
+from appendices.views import AppendixView
 
 urlpatterns = [
     # e.g. csfieldguide.org.nz/
@@ -28,5 +29,9 @@ urlpatterns = [
     url(
         r"^further-information/glossary.html$",
         RedirectView.as_view(permanent=True, pattern_name="chapters:glossary"),
+    ),
+    url(
+        r"^further-information/(?P<appendix_slug>[-\w]+).html$",
+        views.AppendixView.as_view(),
     ),
 ]
