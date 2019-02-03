@@ -5,7 +5,8 @@ This page lists updates to the Computer Science Field Guide. All notable changes
 
 .. note ::
 
-  We base our numbering system from the guidelines at `Semantic Versioning 2.0.0`_, however since our project started before it was migrated to GitHub, the first open source release is being labeled as `2.0.0`.
+  We base our numbering system from the guidelines at `Semantic Versioning 2.0.0 <http://semver.org/spec/v2.0.0.html>`__
+- Grammar/spelling fixes for Data Representation and Compression Coding chapters. `#626 <https://github.com/uccser/cs-field-guide/pull/626>`__, however since our project started before it was migrated to GitHub, the first open source release is being labeled as `2.0.0`.
 
   Given a version number MAJOR.MINOR.HOTFIX:
 
@@ -23,7 +24,7 @@ We have listed major changes for each release below.
 ==============================================================================
 
 - **Release date:** 5th June 2018
-- **Downloads:** `Source downloads are available on GitHub`_
+- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/2.12.2>`__
 
 **Changelog:**
 
@@ -34,7 +35,7 @@ We have listed major changes for each release below.
 ==============================================================================
 
 - **Release date:** 7th March 2018
-- **Downloads:** `Source downloads are available on GitHub`_
+- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/2.12.1>`__
 
 **Changelog:**
 
@@ -48,7 +49,7 @@ We have listed major changes for each release below.
 ==============================================================================
 
 - **Release date:** 13th February 2018
-- **Downloads:** `Source downloads are available on GitHub`_
+- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/2.12.0>`__
 
 **Changelog:**
 
@@ -66,7 +67,7 @@ We have listed major changes for each release below.
 ==============================================================================
 
 - **Release date:** 18th October 2017
-- **Downloads:** `Source downloads are available on GitHub`
+- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/2.11.0>`__
 
 **Changelog:**
 
@@ -83,7 +84,7 @@ We have listed major changes for each release below.
 ==============================================================================
 
 - **Release date:** 3rd September 2017
-- **Downloads:** `Source downloads are available on GitHub`
+- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/2.10.1>`__
 
 **Changelog:**
 
@@ -95,7 +96,7 @@ We have listed major changes for each release below.
 ==============================================================================
 
 - **Release date:** 2nd September 2017
-- **Downloads:** `Source downloads are available on GitHub`
+- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/2.10.0>`__
 
 **Notable changes:**
 
@@ -126,7 +127,7 @@ This to make the numbering consistent with our other projects (CS Unplugged and 
 ==============================================================================
 
 - **Release date:** 20th February 2017
-- **Downloads:** `Source downloads are available on GitHub`
+- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/v2.9.1>`__
 
 **Notable changes:**
 
@@ -139,7 +140,7 @@ This release fixes a bug in the Computer Graphics chapter where some links to th
 ==============================================================================
 
 - **Release date:** 27th January 2017
-- **Downloads:** `Source downloads are available on GitHub`
+- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/v2.9.0>`__
 
 **Notable changes:**
 
@@ -158,7 +159,7 @@ This release adds an introductory video for the Complexity and Tractability chap
 ==============================================================================
 
 - **Release date:** 21st October 2016
-- **Downloads:** `Source downloads are available on GitHub`
+- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/v2.8.1>`__
 
 **Changelog:**
 - Update introduction chapter. `#231 <https://github.com/uccser/cs-field-guide/issues/231>`__
@@ -169,7 +170,7 @@ This release adds an introductory video for the Complexity and Tractability chap
 ==============================================================================
 
 - **Release date:** 19th October 2016
-- **Downloads:** `Source downloads are available on GitHub`
+- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/v2.8.0>`__
 
 **Notable changes:**
 
@@ -195,7 +196,7 @@ This release adds an introductory video for the Human Computer Interaction chapt
 ==============================================================================
 
 - **Release date:** 5th September 2016
-- **Downloads:** `Source downloads are available on GitHub`
+- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/v2.7.1>`__
 
 **Notable changes:**
 - Fixed broken link in footer to contributors page.
@@ -206,7 +207,7 @@ A full list of changes in this version is `available on GitHub <https://github.c
 ==============================================================================
 
 - **Release date:** 23rd August 2016
-- **Downloads:** `Source downloads are available on GitHub`
+- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/v2.7.0>`__
 
 **Notable changes:**
 - **New video:** Formal Languages now has an introductory video.
@@ -223,7 +224,7 @@ A full list of changes in this version is `available on GitHub <https://github.c
 ==============================================================================
 
 - **Release date:** 14th July 2016
-- **Downloads:** `Source downloads are available on GitHub`
+- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/v2.6.1>`__
 
 **Notable changes:**
 - Fixed issue on Human Computer Interaction chapter where duplicate library was causing several UI elements to not behave correctly.
@@ -232,7 +233,7 @@ A full list of changes in this version is `available on GitHub <https://github.c
 ==============================================================================
 
 - **Release date:** 16th June 2016
-- **Downloads:** `Source downloads are available on GitHub`
+- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/v2.6.0>`__
 
 **Notable changes:**
 - **New feature:** PDF output - A downloadable PDF of both student and teacher versions is now available from the homepage. The PDF also functions well as an ebook, with functional links to headings, glossary entries, interactives, and online resources.
@@ -254,7 +255,7 @@ A full list of changes in this version is `available on GitHub <https://github.c
 ==============================================================================
 
 - **Release date:** 13th May 2016
-- **Downloads:** `Source downloads are available on GitHub`
+- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/v2.5.0>`__
 
 **Notable changes:**
 - The Data Representation chapter has been rewritten and reorganised to be easier to follow, and three NCEA assessment guides have been written for students aiming for merit/excellence:
@@ -280,7 +281,7 @@ A full list of changes in this version is `available on GitHub <https://github.c
 ==============================================================================
 
 - **Release date:** 29th April 2016
-- **Downloads:** `Source downloads are available on GitHub`
+- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/v2.4.1>`__
 
 **Notable changes:**
 - Fixed version numbering system to allow hotfix changes
@@ -291,7 +292,7 @@ A full list of changes in this version is `available on GitHub <https://github.c
 ==============================================================================
 
 - **Release date:** 29th April 2016
-- **Downloads:** `Source downloads are available on GitHub`
+- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/v2.4>`__
 
 **Notable changes:**
 - Large number of typo, grammar, link, and math syntax fixes and also content corrections by contributors.
@@ -310,7 +311,7 @@ A full list of changes in this version is `available on GitHub <https://github.c
 ==============================================================================
 
 - **Release date:** 10th March 2016
-- **Downloads:** `Source downloads are available on GitHub`
+- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/v2.3>`__
 
 **Notable changes:**
 - Readability improvements to text within many chapters (grammer issues/typos) and to the Python scripts within the Algorithms chapter.
@@ -326,7 +327,7 @@ A full list of changes in this version is `available on GitHub <https://github.c
 ==============================================================================
 
 - **Release date:** 19th February 2016
-- **Downloads:** `Source downloads are available on GitHub`
+- **Downloads:** `Source downloads are available on GitHub  <https://github.com/uccser/cs-field-guide/releases/tag/v2.2>`__
 
 **Notable changes:**
 - New interactive: Parity trick with separate modes for `practicing setting parity <interactives/parity/index.html?mode=set>`__, `practicing detecting parity <interactives/parity/index.html?mode=detect>`__, and `the whole trick <interactives/parity/index.html>`__. Also has a `sandbox mode <interactives/parity/index.html?mode=sandbox>`__.
@@ -341,7 +342,7 @@ A full list of changes in this version is `available on GitHub <https://github.c
 ==============================================================================
 
 - **Release date:** 12th February 2016
-- **Downloads:** `Source downloads are available on GitHub`
+- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/v2.1>`__
 
 **Notable changes:**
 - Fixed many broken links and typos from 2.0.0
@@ -355,7 +356,7 @@ A full list of changes in this version is `available on GitHub <https://github.c
 ==============================================================================
 
 - **Release date:** 5th February 2016
-- **Downloads:** `Source downloads are available on GitHub`
+- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/v2.0>`__
 
 **Notable changes:**
 - First open source release
@@ -374,7 +375,7 @@ For any interactives that are missing, links are in place to the older interacti
 ==============================================================================
 
 - **Release date:** 29th January 2016
-- **Downloads:** `Source downloads are available on GitHub`
+- **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/compare/d8a69d50575cac8c4e2686ee4d9af7c22b7131a7...v2.0-alpha.3>`__
 
 2.0-alpha.2
 ==============================================================================
