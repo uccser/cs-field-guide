@@ -5,8 +5,7 @@ This page lists updates to the Computer Science Field Guide. All notable changes
 
 .. note ::
 
-  We base our numbering system from the guidelines at `Semantic Versioning 2.0.0 <http://semver.org/spec/v2.0.0.html>`__
-- Grammar/spelling fixes for Data Representation and Compression Coding chapters. `#626 <https://github.com/uccser/cs-field-guide/pull/626>`__, however since our project started before it was migrated to GitHub, the first open source release is being labeled as `2.0.0`.
+  We base our numbering system from the guidelines at `Semantic Versioning 2.0.0 <http://semver.org/spec/v2.0.0.html>`__, however since our project started before it was migrated to GitHub, the first open source release is being labeled as `2.0.0`.
 
   Given a version number MAJOR.MINOR.HOTFIX:
 
@@ -134,6 +133,7 @@ This to make the numbering consistent with our other projects (CS Unplugged and 
 This release fixes a bug in the Computer Graphics chapter where some links to the 2D Arrow Manipulation interactives were broken due to an incorrect regex.
 
 **Changelog:**
+
 - `Adam Gotlib <https://github.com/Goldob>`__ `#404 <https://github.com/uccser/cs-field-guide/pull/404>`__
 
 2.9.0
@@ -147,6 +147,7 @@ This release fixes a bug in the Computer Graphics chapter where some links to th
 This release adds an introductory video for the Complexity and Tractability chapter, updated text for Graphics Transformations section of the Computer Graphics chapter, as well as updated versions of the 2D Arrow Manipulation and FSA interactives.
 
 **Changelog:**
+
 - Add introductory video to Complexity and Tractability chapter.
 - Rewrite Graphics Transformations section of Computer Graphics chapter. `#402 <https://github.com/uccser/cs-field-guide/issues/402>`__
 - Rewrite 2D Arrow Manipulation interactives. `#372 <https://github.com/uccser/cs-field-guide/issues/372>`__ `#373 <https://github.com/uccser/cs-field-guide/issues/373>`__
@@ -162,6 +163,7 @@ This release adds an introductory video for the Complexity and Tractability chap
 - **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/v2.8.1>`__
 
 **Changelog:**
+
 - Update introduction chapter. `#231 <https://github.com/uccser/cs-field-guide/issues/231>`__
 - Add notice of changes to AP-CSP curriculum in Fall 2016 release.
 - Skip parsing `#` characters at start of Markdown links.
@@ -177,10 +179,11 @@ This release adds an introductory video for the Complexity and Tractability chap
 This release adds an introductory video for the Human Computer Interaction chapter, plus a draft of guides for mapping the Computer Science Field Guide to the AP CSP curriculum.
 
 **Changelog:**
+
 - Add introductory video to Human Computer Interaction chapter.
-- Add draft of guides for the AP CSP curriculum. [#316 <https://github.com/uccser/cs-field-guide/pull/316>`__
-- Update and fix issues in high-score-boxes interactive. [#390 <https://github.com/uccser/cs-field-guide/pull/390>`__ [#391 <https://github.com/uccser/cs-field-guide/issues/391>`__ [#393 <https://github.com/uccser/cs-field-guide/issues/393>`__
-- Add subtraction command to mips-simulator interactive. The interactive can now handle subtraction down to zero. [#382 <https://github.com/uccser/cs-field-guide/issues/382>`__
+- Add draft of guides for the AP CSP curriculum. `#316 <https://github.com/uccser/cs-field-guide/pull/316>`__
+- Update and fix issues in high-score-boxes interactive. `#390 <https://github.com/uccser/cs-field-guide/pull/390>`__ `#391 <https://github.com/uccser/cs-field-guide/issues/391>`__ `#393 <https://github.com/uccser/cs-field-guide/issues/393>`__
+- Add subtraction command to mips-simulator interactive. The interactive can now handle subtraction down to zero. `#382 <https://github.com/uccser/cs-field-guide/issues/382>`__
 - Update sponsor information in footer.
 - Improve the visibilty of warning panels. `#389 <https://github.com/uccser/cs-field-guide/issues/389>`__
 - Fix positioning of table of contents sidebar. `#387 <https://github.com/uccser/cs-field-guide/issues/387>`__
@@ -199,6 +202,7 @@ This release adds an introductory video for the Human Computer Interaction chapt
 - **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/v2.7.1>`__
 
 **Notable changes:**
+
 - Fixed broken link in footer to contributors page.
 
 A full list of changes in this version is `available on GitHub <https://github.com/uccser/cs-field-guide/compare/v2.7.0...v2.7.1>`__
@@ -210,6 +214,7 @@ A full list of changes in this version is `available on GitHub <https://github.c
 - **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/v2.7.0>`__
 
 **Notable changes:**
+
 - **New video:** Formal Languages now has an introductory video.
 - **New interactive:** The [hexadecimal background colour interactive interactives/hex-background-colour/index.html) allows a user to change the background colour of the page.
 - **New curriculum guide:** A guide for NCEA `Artificial Intelligence: Turing Test <https://docs.google.com/document/d/1TnP0sCW33Yhy4wQITDre1sirB0IonesCfdbO0WqJjow>`__ has been added.
@@ -227,6 +232,7 @@ A full list of changes in this version is `available on GitHub <https://github.c
 - **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/v2.6.1>`__
 
 **Notable changes:**
+
 - Fixed issue on Human Computer Interaction chapter where duplicate library was causing several UI elements to not behave correctly.
 
 2.6.0
@@ -236,6 +242,7 @@ A full list of changes in this version is `available on GitHub <https://github.c
 - **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/v2.6.0>`__
 
 **Notable changes:**
+
 - **New feature:** PDF output - A downloadable PDF of both student and teacher versions is now available from the homepage. The PDF also functions well as an ebook, with functional links to headings, glossary entries, interactives, and online resources.
 - **New feature:** Printer friendly webpages - When printing a page of the CSFG through a browser, the page displays in a printer friendly manner by hiding navigational panels, opening all panels, and providing extra links to online resources.
 - **New interactive:** The `binary cards interactive <interactives/binary-cards/index.html>`__ emulates the Binary Cards CS Unplugged activity, used to teach binary numbers.
@@ -258,20 +265,23 @@ A full list of changes in this version is `available on GitHub <https://github.c
 - **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/v2.5.0>`__
 
 **Notable changes:**
+
 - The Data Representation chapter has been rewritten and reorganised to be easier to follow, and three NCEA assessment guides have been written for students aiming for merit/excellence:
-  - `Numbers (Two's Complement) <curriculum-guides/ncea/level-2/excellence-data-representation-numbers.html>`__ 
-  - `Text (Unicode) <curriculum-guides/ncea/level-2/excellence-data-representation-text.html>`__ 
-  - `Colours (Various bit depths) <curriculum-guides/ncea/level-2/excellence-data-representation-colour.html>`__ 
+- `Numbers (Two's Complement) <curriculum-guides/ncea/level-2/excellence-data-representation-numbers.html>`__ 
+- `Text (Unicode) <curriculum-guides/ncea/level-2/excellence-data-representation-text.html>`__ 
+- `Colours (Various bit depths) <curriculum-guides/ncea/level-2/excellence-data-representation-colour.html>`__ 
 
-  The chapter and assessment guides have been rewritten to take account of new feedback from the marking process and our own observations of student work.
+The chapter and assessment guides have been rewritten to take account of new feedback from the marking process and our own observations of student work.
 
-  As part of the rewrite of the Data Representation chapter, the following interactives were developed:
-  - New interactive: The `unicode binary <interactive interactives/unicode-binary/index.html>`__  displays the binary for a given character (or character by decimal number) dynamically with different encodings.
-  - New interactive: The `unicode character <interactive interactives/unicode-chars/index.html>`__  displays the character for a given decimal value.
-  - New interactive: The `unicode length <interactive interactives/unicode-length/index.html>`__  displays the length (in bits) of text encoded using different encodings.
-  - Updated interactive: The `colour matcher <interactive interactives/colour-matcher/index.html>`__  has been redesigned to display values in binary, plus allow students to see and edit the bit values. The interface has also been restructured for readability and ease of use.
+As part of the rewrite of the Data Representation chapter, the following interactives were developed:
 
-  The old version of the Data Representation chapter can be `found here <http://csfieldguide.org.nz/releases/2.4.1/en/chapters/data-representation.html>`__
+- New interactive: The `unicode binary <interactive interactives/unicode-binary/index.html>`__  displays the binary for a given character (or character by decimal number) dynamically with different encodings.
+- New interactive: The `unicode character <interactive interactives/unicode-chars/index.html>`__  displays the character for a given decimal value.
+- New interactive: The `unicode length <interactive interactives/unicode-length/index.html>`__  displays the length (in bits) of text encoded using different encodings.
+- Updated interactive: The `colour matcher <interactive interactives/colour-matcher/index.html>`__  has been redesigned to display values in binary, plus allow students to see and edit the bit values. The interface has also been restructured for readability and ease of use.
+
+The old version of the Data Representation chapter can be `found here <http://csfieldguide.org.nz/releases/2.4.1/en/chapters/data-representation.html>`__
+
 - Website improvements: A new image previewer was implemented, along with bugfixes to iFrame and panel rendering.
 - Generation improvements: The Markdown parser has been replaced due to existing parsing issues. The new parser also gives us a large performance boost. A text box tag has also been added to highlight important text.
 
@@ -284,6 +294,7 @@ A full list of changes in this version is `available on GitHub <https://github.c
 - **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/v2.4.1>`__
 
 **Notable changes:**
+
 - Fixed version numbering system to allow hotfix changes
 
 A full list of changes in this version is `available on GitHub <https://github.com/uccser/cs-field-guide/compare/v2.4...v2.4.1>`__
@@ -295,6 +306,7 @@ A full list of changes in this version is `available on GitHub <https://github.c
 - **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/v2.4>`__
 
 **Notable changes:**
+
 - Large number of typo, grammar, link, and math syntax fixes and also content corrections by contributors.
 - New interactive: Added `GTIN-13 checksum calculator interactive <interactives/checksum-calculator-gtin-13/index.html>`__ for calculating the last digit for a GTIN-13 barcode.
 - Updated interactive: The `regular expression search interactive <interactives/regular-expression-search/index.html>`__ has been updated and added to the repository.
@@ -314,6 +326,7 @@ A full list of changes in this version is `available on GitHub <https://github.c
 - **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/v2.3>`__
 
 **Notable changes:**
+
 - Readability improvements to text within many chapters (grammer issues/typos) and to the Python scripts within the Algorithms chapter.
 - Updated interactive: The RSA `encryption <interactives/rsa-no-padding/index.html>`__ and `decryption <interactives/rsa-no-padding/index.html?mode=decrypt>`__ interactives within Encryption have been updated and added to the repository.
 - Updated interactive: The `searching algorithms interactive <interactives/searching-algorithms/index.html>`__ within Algorithms have been updated and added to the repository.
@@ -330,6 +343,7 @@ A full list of changes in this version is `available on GitHub <https://github.c
 - **Downloads:** `Source downloads are available on GitHub  <https://github.com/uccser/cs-field-guide/releases/tag/v2.2>`__
 
 **Notable changes:**
+
 - New interactive: Parity trick with separate modes for `practicing setting parity <interactives/parity/index.html?mode=set>`__, `practicing detecting parity <interactives/parity/index.html?mode=detect>`__, and `the whole trick <interactives/parity/index.html>`__. Also has a `sandbox mode <interactives/parity/index.html?mode=sandbox>`__.
 - Updated interactives: Two colour mixers, one for `RGB <interactives/rgb-mixer/index.html>`__ and one for `CMY <interactives/cmy-mixer/index.html>`__ have been added.
 - Updated interactive: A `colour matcher interactive <interactives/colour-matcher/index.html>`__ has been added for matching a colour in both 24 bit and 8 bit.
@@ -345,6 +359,7 @@ A full list of changes in this version is `available on GitHub <https://github.c
 - **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/v2.1>`__
 
 **Notable changes:**
+
 - Fixed many broken links and typos from 2.0.0
 - Added calculator interactives to Introduction
 - Added RSA key generator to Encryption
@@ -359,6 +374,7 @@ A full list of changes in this version is `available on GitHub <https://github.c
 - **Downloads:** `Source downloads are available on GitHub <https://github.com/uccser/cs-field-guide/releases/tag/v2.0>`__
 
 **Notable changes:**
+
 - First open source release
 - Produces both student and teacher versions
 - Produces landing page for selecting language
@@ -367,6 +383,7 @@ A full list of changes in this version is `available on GitHub <https://github.c
 A full list of changes in this version is `available on GitHub <https://github.com/uccser/cs-field-guide/compare/v2.0-alpha.3...v2.0>`__
 
 **Comments:**
+
 The first major step in releasing a open source version of the Computer Science Field Guide.
 While some content (most notably interactives) have yet to be added to the new system, we are releasing this update for New Zealand teachers to use at the beginning of their academic year.
 For any interactives that are missing, links are in place to the older interactives.
@@ -396,6 +413,7 @@ Released at CS4HS 2015.
 - **Release date:** 3rd February 2015
 
 **Comments:**
+
 The last version of the CSFG before the open source version was adopted.
 
 `This release is archived for viewing here <http://www.csfieldguide.org.nz/releases/1.9.9/>`__
