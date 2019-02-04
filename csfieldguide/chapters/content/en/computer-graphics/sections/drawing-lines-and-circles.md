@@ -1,13 +1,12 @@
 # Drawing lines and circles
 
-A fundamental operation is computer graphics is to draw lines and circles.
+A fundamental operation in computer graphics is to draw lines and circles.
 For example, these are used as the components of scalable fonts and vector graphics;
 the letter "g" is specified as a series of lines and curves,
 so that when you zoom in on it the computer can redraw it at whatever resolution is needed.
 If the system only stored the pixels for the letter shape, then zooming in would result in a low quality image.
 
-{comment to add sometime, Jargonbuster: pixel (somewhere in the chapter) - also mention pel and bitmap, and origins of the terms.
-see www.foveon.com/files/ABriefHistoryofPixel2.pdf}
+{comment to add sometime, Jargonbuster: pixel (somewhere in the chapter) - also mention pel and bitmap, and origins of the terms. see www.foveon.com/files/ABriefHistoryofPixel2.pdf}
 
 {image file-path="img/chapters/vector-letter-with-outline.png" caption="true" alt="The points used to create the letter g."}
 
@@ -25,7 +24,7 @@ The lines and circles that specify an object are usually given using numbers (fo
 From this a graphics program must calculate which pixels on the screen should be coloured in to represent the line or circle, or it may just need to work out where the line is without drawing it.
 
 For example, here's a grid of pixels with 5 lines shown magnified.
-The vertical line would have been specified as going from pixel (2,9) to (2,16) — that is, starting 2 across and 9 up, and finishing 2 across and 16 up.
+The vertical line would have been specified as going from pixel (2, 9) to (2, 16) — that is, starting 2 across and 9 up, and finishing 2 across and 16 up.
 Of course, this is only a small part of a screen, as normally they are more like 1000 by 1000 pixels or more; even a smartphone can be hundreds of pixels high and wide.
 
 {image file-path="img/chapters/grid-20x20-example.png" alt="An example of 5 lines drawn on a grid of pixels"}
@@ -46,8 +45,8 @@ you could print a supply of these for them, or use graph paper.
 
 To draw a line, a computer must work out which pixels need to be filled so that the line looks straight.
 You can try this by colouring in squares on a grid, such as the one below (they are many times bigger than the pixels on a normal printer or screen).
-We'll identify the pixels on the grid using two values, (*x*,*y*), where *x* is the distance across from the left, and *y* is the distance up from the bottom.
-The bottom left pixel below is (0,0), and the top right one is (19,19).
+We'll identify the pixels on the grid using two values, (*x*, *y*), where *x* is the distance across from the left, and *y* is the distance up from the bottom.
+The bottom left pixel below is (0, 0), and the top right one is (19, 19).
 
 On the following grid, try to draw these straight lines by filling in pixels in the grid:
 
@@ -89,7 +88,7 @@ which is \( m \),
 and where the line crosses the *y* axis, which is \( c \).
 In other words, when you are *x* pixels across the screen with your line, the pixel to colour in would be (\( x \), \( mx + c \)).
 
-For example, choosing \( m=2 \) and \( c=3 \) means that the line would go through the points (0,3), (1,5), (2,7), (3,9) and so on.
+For example, choosing \( m=2 \) and \( c=3 \) means that the line would go through the points (0, 3), (1, 5), (2, 7), (3, 9) and so on.
 This line goes up 2 pixels for every one across \( m=2 \), and crosses the y axis 3 pixels up (\( c=3 \)).
 
 You should experiment with drawing graphs for various values of \( m \) and \( c \) (for example, start with \( c=0 \), and try these three lines: \( m=1 \), \( m=0.5 \) and\( m=0 \)) by putting in the values.
@@ -99,7 +98,7 @@ What angle are these lines at?
 
 # Solution
 
-A slope of 0 is a horizontal line, using \( m=1 \) will be at 45 degrees, because you go up 1 pixel for each one that you go across.
+A slope of 0 is a horizontal line. Using \( m=1 \) will be at 45 degrees, because you go up 1 pixel for each one that you go across.
 A slope of a half (\( m=0.5 \)) is just under 27 degrees.
 There's a [demonstration here](http://www.mathopenref.com/coordslope.html) of slopes, which has an option for showing the angle (which might be more familiar to students.)
 
@@ -113,8 +112,8 @@ What are \( (x_1, y_1) \) and \( (x_2, y_2) \) for the points A and B on the gri
 # Solution
 
 The calculations for a line from A to B above are as follows.
-The two points are A = (3,4) and B = (16,9).
-This means that \( x_1 = 3, y_1 = 4, x_2=16 \) and \( y_2 = 9 \).
+The two points are A = (3, 4) and B = (16, 9).
+This means that \( x_1 = 3, y_1 = 4, x_2 = 16 \) and \( y_2 = 9 \).
 
 {panel end}
 
@@ -257,7 +256,7 @@ To make this algorithm more general, so that it can be used to draw any line, so
 {image file-path="img/chapters/grid-20x20-blank.png" alt="Grid for drawing line"}
 
 In the grid above, choose two points of your own that are unique to you.
-Don't choose points that will give horizontal, vertical or diagonal lines!
+Don't just choose points that will give horizontal or vertical lines!
 
 Now use Bresenham's algorithm to draw the line.
 Check that it gives the same points as you would have chosen using a ruler, or using the formula \( y = mx+b \).
@@ -375,8 +374,8 @@ Outline fonts are one of the most common uses for vector graphics as they allow 
 Computer scientists have found fast algorithms for drawing other shapes too, which means that the image appears quickly, and graphics can display quickly on relatively slow hardware - for example, a smartphone needs to do these calculations all the time to display images, and reducing the amount of calculations can extend its battery life, as well as make it appear faster.
 
 As usual, things aren't quite as simple as shown here.
-For example, consider a horizontal line that goes from (0,0) to (10,0), which has 11 pixels.
-Now compare it with a 45 degree line that goes from (0,0) to (10,10).
+For example, consider a horizontal line that goes from (0, 0) to (10, 0), which has 11 pixels.
+Now compare it with a 45 degree line that goes from (0, 0) to (10, 10).
 It still has 11 pixels, but the line is longer (about 41% longer to be precise).
 This means that the line would appear thinner or fainter on a screen, and extra work needs to be done (mainly anti-aliasing) to make the line look ok.
 We've only just begun to explore how techniques in graphics are needed to quickly render high quality images.

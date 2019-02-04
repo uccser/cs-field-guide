@@ -1,17 +1,18 @@
 # Graphics transformations
 
 A computer graphics image is just the result of a whole lot of mathematical calculations.
-In fact, every pixel you see in an image has usually had many calculations made to work out what colour it should be, and there are often millions of pixels in a typical image.
+In fact, every pixel you see in an image has usually had many calculations made to work out what colour it should be, and there are millions of pixels in a typical image.
 
 Let's start with some simple but common calculations that are needed in graphics programming.
 The following interactive shows a cube with symbols on each face.
 You can move it around using what's called a *transform*, which simply adjusts where it is placed in space.
-Try typing in 3D coordinates into this interactive to find each code.
+The camera will always focus on the cube; so for example, to see the back of the cube, move it to the other side of the camera.
+Try typing 3D coordinates into this interactive to find each symbol.
 
 {interactive slug="box-translation" type="whole-page" text="Box Translation interactive"}
 
 You've just applied 3D *translation transforms* to the cube.
-Translation just means moving it in the three dimensions up and down, forward and back, and sideways.
+Translation just means moving it in the three dimensions up and down, forward and back, and left and right.
 
 Now try the following challenge, which requires you to rotate the box to find the codes.
 
@@ -25,21 +26,21 @@ We'll start by making the changes manually, one point at a time, but we'll move 
 We'll start by looking at how these work in two dimensions - it's a bit easier to think about than three dimensions.
 
 The following interactive shows an arrow, and on the left you can see a list of the points that correspond to its 7 corners (usually referred to as *cartesian coordinates*).
-The arrow is on a grid, where the centre point is the "zero" point.
-Points are specified using two numbers, *x* and *y*, usually written as (*x*,*y*).
-The *x* value is how far the point is to the right of the centre and the *y* value is how far above the centre it is.
-For example, the first point in the list is the tip at (0,4), which means it's 0 units to the right of the centre (i.e.
-at the centre), and 4 units above it.
-Which point does the last pair (3,1) correspond to?
+The arrow is on a grid, where the center point is the "zero" point.
+Points are specified using two numbers, *x* and *y*, usually written as (*x*, *y*).
+The *x* value is how far the point is to the right of the center and the *y* value is how far above the center it is.
+For example, the first point in the list is the tip at (0, 4), which means it's 0 units to the right of the center (i.e.
+at the center), and 4 units above it.
+Which point does the last pair (3, 1) correspond to?
 What does it mean if a coordinate has a negative *x* value?
 
 {panel type="teacher-note"}
 
 # Solutions to questions
 
-(3,1) is the right-most corner of the arrow.
-A negative *x* value means that it's to the *left* of the centre instead of the right.
-(A negative *y* value is below the centre).
+(3, 1) is the right-most corner of the arrow.
+A negative *x* value means that it's to the *left* of the center instead of the right.
+(A negative *y* value is below the center).
 
 {panel end}
 
@@ -83,7 +84,7 @@ Next, see what happens if you swap the *x* and *y* value for each coordinate.
 
 {interactive slug="2d-arrow-manipulations" type="whole-page" text="Swapping Coordinates" parameters="config=coord-swap"}
 
-This is a simple *rotation* transformation, also useful for positioning objects in a scene,
+This is a simple *rotation* transformation, useful for positioning objects in a scene,
 but also for specifying things like camera angles.
 
 Typing all these coordinates by hand is inefficent.
@@ -134,10 +135,10 @@ At this stage you may want to have the interactive open in a separate window so 
 
 Let's take a closer look at what is happening here.
 As we mentioned earlier, each point on our arrow can be represented by two values (x and y).
-The rightmost point, on the arrow in the interactive above, we say is at point (3,1) in our coordinate space.
+The rightmost point, on the arrow in the interactive above, we say is at point (3, 1) in our coordinate space.
 
 When we are applying a scaling transformation we are actually doing a type of "matrix multiplication."
-For example, let's scale point (3,1) by a factor of 2 as we did in the previous interactive:
+For example, let's scale point (3, 1) by a factor of 2 as we did in the previous interactive:
 
 \[
 \begin{bmatrix}
@@ -156,7 +157,7 @@ For example, let's scale point (3,1) by a factor of 2 as we did in the previous 
 \end{bmatrix}
 \]
 
-This gives us a new position of (6,2) for the rightmost point, which matches the previous interactive after applying the scaling matrix!
+This gives us a new position of (6, 2) for the rightmost point, which matches the previous interactive after applying the scaling matrix!
 This same matrix multiplication is applied to each of the seven points on the arrow.
 
 Now try changing the matrix to
@@ -168,7 +169,7 @@ Now try changing the matrix to
 \end{bmatrix}
 \]
 
-For the rightmost point (starting at (3,1)), the matrix muliplication for scaling by a factor of 3 is:
+For the rightmost point (starting at (3, 1)), the matrix muliplication for scaling by a factor of 3 is:
 
 \[
 \begin{bmatrix}
@@ -196,7 +197,7 @@ Now let's try scaling with a number less than one:
 \end{bmatrix}
 \]
 
-For the rightmost point (starting at (3,1)), the matrix muliplication for scaling by a factor of 0.2 is:
+For the rightmost point (starting at (3, 1)), the matrix muliplication for scaling by a factor of 0.2 is:
 
 \[
 \begin{bmatrix}
@@ -412,8 +413,8 @@ However, the translation will be doubled as well since it comes before the matri
 
 {panel end}
 
-In the above interactive, you'll have noticed that scaling is affected by how far the object is from the centre.
-If you want to scale around a fixed point in the object (so it expands where it is), then an easy way is to translate it back to the centre (also called the *origin*), scale it, and then translate it back to where it was.
+In the above interactive, you'll have noticed that scaling is affected by how far the object is from the center.
+If you want to scale around a fixed point in the object (so it expands where it is), then an easy way is to translate it back to the center (also called the *origin*), scale it, and then translate it back to where it was.
  The following interactive allows you to move the arrow, then scale it, and move it back.
 
 {interactive slug="2d-arrow-manipulations" type="whole-page" text="Using Translation to Simplify Scaling" parameters="config=matrix-scale-translate-3"}
@@ -561,7 +562,7 @@ Use it to get used to translating in the three dimensions (don't worry about usi
 {button-link link="http://www.csfieldguide.org.nz/releases/1.9.9/_static/widgets/CG/CG-mini-editor/main%20(cutdown).html?info=%0ATranslation%20requires%203%20values,%20which%20are%20added%20to%20the%20*x*,%20*y*%20and%20*z*%20coordinates%20of%20each%20point%20in%20an%20object.%3Cp%3EIn%20the%20following%20interactive,%20try%20moving%20the%20teapot%20left%20and%20right%20(%20%3Cem%3Ex%3C/em%3E%20),%20up%20and%20down%20(%20%3Cem%3Ey%3C/em%3E%20),%20and%20in%20and%20out%20of%20the%20screen%20(%20%3Cem%3Ez%3C/em%3E%20)%20by%20adding%20a%20%E2%80%9Cvector%E2%80%9D%20to%20the%20operations.%20Then%20try%20combining%20all%20three.%3C/p%3E%0A" text="Click for interactive: 3D translation"}
 
 Rotation is trickier because you can now rotate in different directions.
-In 2D rotations were around the centre (origin) of the grid, but in 3D rotations are around a line (either the horizontal x-axis, the vertical y-axis, or the z-axis, which goes into the screen!)
+In 2D rotations were around the center (origin) of the grid, but in 3D rotations are around a line (either the horizontal x-axis, the vertical y-axis, or the z-axis, which goes into the screen!)
 
 The 2D rotation we used earlier can be applied to 3 dimensions using this matrix:
 
