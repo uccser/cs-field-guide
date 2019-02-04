@@ -2,6 +2,7 @@
 
 from django.conf.urls import url
 from . import views
+from django.shortcuts import redirect
 from django.views.generic.base import RedirectView
 
 
@@ -33,6 +34,11 @@ urlpatterns = [
     url(
         r"^further-information/interactives.html$",
         RedirectView.as_view(permanent=True, pattern_name="interactives:index"),
+    ),
+    url(
+        r"^further-information/releases.html$",
+        views.redirect_changelog,
+        name="redirect_changelog"
     ),
     url(
         r"^further-information/(?P<appendix_slug>[-\w]+).html$",
