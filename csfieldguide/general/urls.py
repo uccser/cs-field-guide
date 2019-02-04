@@ -44,4 +44,15 @@ urlpatterns = [
         r"^further-information/(?P<appendix_slug>[-\w]+).html$",
         RedirectView.as_view(permanent=True, pattern_name="appendices:appendix"),
     ),
+    # e.g redirect /curriculum-guides/ncea/index.html to /appendices/curriculum-guides/
+    # TODO: Once the ncea and apcsp html templates are done change BOTH of the below 
+    # redirects to use the subappendix in the regex and in the pattern_name.
+    url(
+        r"^(?P<appendix_slug>[-\w]+)/ncea/index.html$",
+        RedirectView.as_view(permanent=True, pattern_name="appendices:appendix"),
+    ),
+    url(
+        r"^(?P<appendix_slug>[-\w]+)/apcsp/index.html$",
+        RedirectView.as_view(permanent=True, pattern_name="appendices:appendix"),
+    ),
 ]
