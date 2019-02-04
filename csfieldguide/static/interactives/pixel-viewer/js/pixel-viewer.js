@@ -48,15 +48,20 @@ this.images = [
 this.tiling = new Tiling;
 this.piccache = Array();
 
+const image_base_path = base_static_path + 'interactives/pixel-viewer/img/';
+
 $( document ).ready(function() {
   init_cache(300, MAX_HEIGHT);
+
   if (getUrlParameter('image')){
-    $('#pixel-viewer-interactive-original-image').attr('src', './img/' + getUrlParameter('image'))
-    load_resize_image('./img/' + getUrlParameter('image'), false)
+    var image_filename = getUrlParameter('image');
   } else {
-    $('#pixel-viewer-interactive-original-image').attr('src', './img/coloured-roof-small.png')
-    load_resize_image('./img/coloured-roof-small.png', false)
+    var image_filename = 'coloured-roof-small.png';
   }
+  var image_filepath = image_base_path + image_filename;
+  $('#pixel-viewer-interactive-original-image').attr('src', image_filepath);
+  load_resize_image(image_filepath, false);
+
   if (getUrlParameter('mode') == 'threshold') {
     mode = 'threshold';
   } else if (getUrlParameter('mode') == 'thresholdgreyscale') {
@@ -72,9 +77,6 @@ $( document ).ready(function() {
   }
   if (getUrlParameter('hide-menu')) {
     $('#pixel-viewer-interactive-menu-toggle').remove();
-  } else {
-    $('#pixel-viewer-interactive-menu-toggle').css('visibility', 'visible');
-    $('#pixel-viewer-interactive-settings').css('visibility', 'visible');
   }
   setUpMode();
   if (picturePicker){
@@ -83,7 +85,7 @@ $( document ).ready(function() {
   if (getUrlParameter('no-pixel-fill')){
     $('#pixel-viewer-interactive-show-pixel-fill').prop('checked', false);
     $( "#pixel-viewer-interactive-loader" ).hide();
-    $( ".pixel-viewer-interactive-zoom-button" ).css('visibility', 'visible');
+    $( "#pixel-viewer-interactive-buttons" ).css({opacity: 1});
   } else {
     $( "#pixel-viewer-interactive-original-image" ).show();
     $( "#pixel-viewer-interactive-original-image" ).delay(1000).animate({width: contentWidth*0.8,
@@ -96,7 +98,7 @@ $( document ).ready(function() {
        function() {
         // Animation complete
         $( "#pixel-viewer-interactive-loader" ).hide();
-        $( ".pixel-viewer-interactive-zoom-button" ).css({opacity: 0, visibility: "visible"}).animate({opacity: 1}, 'slow');
+        $( "#pixel-viewer-interactive-buttons" ).css({opacity: 0, visibility: "visible"}).animate({opacity: 1}, 'slow');
     });
     $( "#pixel-viewer-interactive-original-image" ).fadeOut( 2000 );
   }
@@ -106,29 +108,29 @@ $( document ).ready(function() {
 function setUpMode(){
   // Sets up widgets and descriptions appropriate to mode
   if (mode == 'threshold'){
-    addDescription("Colour Threshold Interactive",
+    addDescription(gettext("Colour Threshold Interactive",
     "Create an expression to threshold the image. Any pixels that match the\
      expression you come up with will be turned white, and everything else will become black. What happens \
      when you threshold on different values or for different colours? Can you use this technique to identify \
-     regions of similar colour in the image?");
+     regions of similar colour in the image?"));
     new Thresholder($('#pixel-viewer-image-manipulator'));
   }
   if (mode == 'thresholdgreyscale'){
-    addDescription("Threshold Interactive", "The image has been converted to greyscale by taking the average of the red, blue and green values for\
+    addDescription(gettext("Threshold Interactive", "The image has been converted to greyscale by taking the average of the red, blue and green values for\
       each pixel. Choose a threshold between 0 and 255 and transform this picture into black and white to \
-      identify regions and edges.");
+      identify regions and edges."));
     filter = greyscaler;
     isGreyscale = true;
     new GreyscaleThresholder($('#pixel-viewer-image-manipulator'));
   }
   if (mode == 'blur'){
-    addDescription("Picture Blurring Interactive", "Experiment with using different blurs to try process the noise. The mean blur will take the mean values of the pixels surrounding,\
+    addDescription(gettext("Picture Blurring Interactive", "Experiment with using different blurs to try process the noise. The mean blur will take the mean values of the pixels surrounding,\
       the median will take the median value, the gaussian blurs according to a gaussian distribution, and the custom blur allows you to give weights to different surrounding pixels.\
       How do the different types of blur effect the image? What happens when you change values in the custom grid? Experiment with both greyscale and rgb images.  \
       What would happen if every value in the grid was 0 except one? How come? \
       <br><br>\
        If you find that the scroll and zoom are slow with a blur applied, try removing the blur, zooming or scrolling and \
-      then reapplying the blur.");
+      then reapplying the blur."));
     images = ["coloured-roof-small.png", "dark.jpg", "dark_clock.jpg"]
     new Blur($('#pixel-viewer-image-manipulator'));
   }
@@ -136,20 +138,20 @@ function setUpMode(){
     images = ["coloured-roof-small.png", "alley.jpg", "bike.jpg", "boards.jpg",
   "fence.jpg", "roof.jpg", "tuba.jpg","words.png",
   "words_zoom.png", "knight.png"]
-    addDescription("Edge Detection Interactive", "Find an edge in the graph and zoom right in. What information could a computer use from the values of the pixels surrounding the edge to find it?\
+    addDescription(gettext("Edge Detection Interactive", "Find an edge in the graph and zoom right in. What information could a computer use from the values of the pixels surrounding the edge to find it?\
     <br><br>\
     We have supplied you with some grids to apply to the image to transorm it. The numbers in the grids are multiplied against the values of the pixels that surround each point. What numbers\
     can you use in these boxes to discover edges? \
     <br><br>\
     Below the grids is a thresholder which you can apply to the result. What results can you get if you combine these two filters to the image? There is an option\
-    for outputting the absolute value of the result of the multiplication grid. What does checking and unchecking this box change about the result? What happens if you apply multiple grids?");
+    for outputting the absolute value of the result of the multiplication grid. What does checking and unchecking this box change about the result? What happens if you apply multiple grids?"));
     new EdgeDetector($('#pixel-viewer-image-manipulator'));
   }
 }
 
 function addDescription(title, description){
   // Add title and description to page
-  $("#name-of-interactive").html(title + ' <span class="alert round label">Beta</span>');
+  $("#interactive-subtitle").gettext('Beta');
   $("#pixel-viewer-extra-feature-description").html(description);
 }
 
@@ -167,7 +169,7 @@ function EdgeDetector(parent_element){
   // Create selector for number of grids to apply
   this.main_div.append(
     $(document.createElement("label"))
-    .text("Number of grids")
+    .gettext("Number of grids")
     .append(
       $(document.createElement("select"))
       .attr("id", "num-grids")
@@ -191,20 +193,20 @@ function EdgeDetector(parent_element){
   // Create buttons for applying filters
   this.main_div
     .append(
-      $(document.createElement("button")).text("Apply grids")
+      $(document.createElement("button")).gettext("Apply grids")
       .click(edgeDetect)
   );
   this.main_div
     .append(
-    $(document.createElement("button")).text("Restore Image")
+    $(document.createElement("button")).gettext("Restore Image")
     .click(removeFilters)
   );
 
-  this.main_div.append($("<p></p>").text(
+  this.main_div.append($("<p></p>").gettext(
     "Try adding a threshold to the picture once the transformation has taken place to highlight the edges you find."));
 
   this.main_div.append(thresholdSelect(127))
-  .append($(document.createElement("button")).text("Apply grids and Threshold").click(applyGreyThreshold))
+  .append($(document.createElement("button")).gettext("Apply grids and Threshold").click(applyGreyThreshold))
 }
 
 
@@ -221,7 +223,7 @@ function Blur(parent_element){
 
   this.main_div.append(
     $(document.createElement("label"))
-    .text("Type of blur")
+    .gettext("Type of blur")
     .append(
       $(document.createElement("select"))
       .attr("id", "blur-type")
@@ -242,31 +244,30 @@ function Blur(parent_element){
   );
   createGrid();
   this.main_div.append(
-    $(document.createElement("button")).text("Apply blur")
+    $(document.createElement("button")).gettext("Apply blur")
     .click(applyBlur));
 
   this.main_div
     .append(
-    $(document.createElement("button")).text("Remove blur")
+    $(document.createElement("button")).gettext("Remove blur")
     .click(removeFilters)
   );
   // Add a description about noise, then give opportunity for students to introduce noise.
-  this.main_div.append($(document.createElement("p")).text("Sometimes images have noise, and applying a blur can be a helpful way to preprocess\
+  this.main_div.append($(document.createElement("p")).gettext("Sometimes images have noise, and applying a blur can be a helpful way to preprocess\
   an image that contains noise before using other Computer Vision algorithms. Use this to add some \"salt and pepper\" noise to the image and then\
   observe what happens when you apply the blurs to a noisy image. Perhaps you have a noisy image that you could upload yourself?"))
-  .append($("<label></label>").text("Amount of noise to add (%): ")
+  .append($("<label></label>").gettext("Amount of noise to add (%): ")
     .append($(document.createElement("input"))
       .attr({"type": "number", "value": 10, "id" : "noise_selector", "class" : "percent_selector int_selector pos_int_selector"})
       .on("input", truncateValues)
       .on("blur", sanitiseValues))
     ).append(
-    $(document.createElement("button")).text("Add noise")
+    $(document.createElement("button")).gettext("Add noise")
     .click(addNoise)
   ).append(
-    $(document.createElement("button")).text("Remove noise")
+    $(document.createElement("button")).gettext("Remove noise")
     .click(removeSalt)
   );
-  // this.main_div.append($("<p></p>").text("Can you use the custom grid to find edges? What would happen if you used negative values for some weights?"))
 }
 
 function Thresholder(parent_element){
@@ -275,7 +276,7 @@ function Thresholder(parent_element){
   this.main_div.attr("id", "pixel-viewer-thresholder").appendTo($(parent_element));
   vals = ["R", "G", "B"];
   for (val in vals){
-    this.main_div.append($("<label></label>").text(vals[val])
+    this.main_div.append($("<label></label>").gettext(vals[val])
     .append($("<select></select>")
       .attr("id", vals[val] + "_lt_or_gt")
       .append($("<option value='<'>\<</option>"))
@@ -292,8 +293,8 @@ function Thresholder(parent_element){
       .append($("<option value='&&'>AND</option>")));
     }
   }
-  this.main_div.append($(document.createElement("button")).text("Apply Threshold").click(applyThreshold));
-  this.main_div.append($(document.createElement("button")).text("Remove Threshold").click(removeFilters));
+  this.main_div.append($(document.createElement("button")).gettext("Apply Threshold").click(applyThreshold));
+  this.main_div.append($(document.createElement("button")).gettext("Remove Threshold").click(removeFilters));
 }
 
 
@@ -302,14 +303,14 @@ function GreyscaleThresholder(parent_element){
   this.main_div = $("<div></div>");
   this.main_div.attr("id", "pixel-viewer-thresholder").appendTo($(parent_element));
   this.main_div.append(thresholdSelect(127)
-  .append($(document.createElement("button")).text("Apply Threshold").click(applyGreyThreshold))
-  .append($(document.createElement("button")).text("Remove Threshold").click(removeFilters)));
+  .append($(document.createElement("button")).gettext("Apply Threshold").click(applyGreyThreshold))
+  .append($(document.createElement("button")).gettext("Remove Threshold").click(removeFilters)));
 }
 
 function greyScaleToggler(){
   // return a select object for toggling greyscale on or off
   return $(document.createElement("label"))
-    .text("Greyscale or rgb")
+    .gettext("Greyscale or rgb")
     .append(
       $(document.createElement("select"))
       .attr("id", "greyscale-or-rgb")
@@ -322,7 +323,7 @@ function greyScaleToggler(){
 function gridSizeChooser(callback){
   // return a select option for choosing how big a convolutional kernel to be applied should be
   return $(document.createElement("label"))
-    .text("Grid size")
+    .gettext("Grid size")
     .append(
       $(document.createElement("select"))
       .attr("id", "grid-size")
@@ -336,7 +337,7 @@ function gridSizeChooser(callback){
 
 function thresholdSelect(default_val = 0){
   // Returns a select object for deciding a numeric threshold. Uses default_val as default value
-  return $("<label></label>").text("Threshold: ")
+  return $("<label></label>").gettext("Threshold: ")
     .append($(document.createElement("input"))
       .attr({"type": "number", "value": default_val, "id" : "threshold_selector", "class" : "color_selector int_selector pos_int_selector"})
       .on("input", truncateValues)
@@ -440,7 +441,7 @@ function createGrids(){
     gridsDiv.append(constructGrid(i));
   }
   $("#grids-div").append(
-    $(document.createElement("label")).text("Use absolute value of result: ").append(
+    $(document.createElement("label")).gettext("Use absolute value of result: ").append(
       $(document.createElement("input")).attr({"id":"use_abs_val","type":"checkbox"})));
 }
 
@@ -452,7 +453,7 @@ function createGrid(){
   }
   $("#blur-grid").append(constructGrid());
   $("#blur-grid").append(
-    $(document.createElement("label")).text("Use absolute value of result: ").append(
+    $(document.createElement("label")).gettext("Use absolute value of result: ").append(
       $(document.createElement("input")).attr({"id":"use_abs_val","type":"checkbox"})));
 }
 
@@ -779,9 +780,9 @@ function refreshImage(){
 function createPicturePicker(){
   // Create picker for default pictures
   main_div = $("#picture-picker");
-  main_div.append($("<p></p>").text("Or choose from the following supplied images:"));
+  main_div.append($("<p></p>").gettext("Or choose from the following supplied images:"));
   for (var i = 0; i < images.length; i++){
-    var img_url = './img/' + images[i]
+    var img_url = image_base_path + images[i]
     main_div.append(
       $("<img>")
       .attr('src', img_url)
@@ -819,7 +820,7 @@ function loadImageDialog(input) {
 }
 
 $( "#pixel-viewer-interactive-menu-toggle" ).click(function() {
-    $( "#pixel-viewer-interactive-settings" ).slideToggle( "slow" );
+    $( "#pixel-viewer-interactive-settings" ).toggleClass('menu-offscreen');
 });
 
 $('#pixel-viewer-interactive-show-pixel-fill').change(function() {
@@ -867,7 +868,7 @@ function load_resize_image(src, user_upload=true){
         ctx.drawImage(image, 0, 0, image.width, image.height);
         scroller.scrollTo(0,0);
         if(user_upload){
-          var text = "Your image has been resized for this interactive to " + image.width + " pixels wide and " + image.height + " pixels high."
+          var text = gettext("Your image has been resized for this interactive to " + image.width + " pixels wide and " + image.height + " pixels high.");
           canvas.style.display = "inline-block";
         }
         else {
@@ -893,7 +894,6 @@ var source_canvas_context = source_canvas.getContext('2d');
 
 var source_image = new Image();
 source_image.crossOrigin = '';
-source_image.addEventListener('error', function (e){e.preventDefault(); alert("Starting image cannot be loaded in Chrome offline mode. Try another browser or the online version.");},false);
 
 source_image.onload = function() {
     source_canvas_context.drawImage(source_image, 0, 0);
@@ -901,8 +901,6 @@ source_image.onload = function() {
     //Trigger canvas draw after image load
     scroller.scrollTo(0,0);
 }
-
-source_image.src = './img/coloured-roof-small.png';
 
 // Canvas renderer
 var render = function(left, top, zoom) {
@@ -1003,7 +1001,7 @@ document.querySelector("#pixel-viewer-interactive-zoom-out").addEventListener("c
 
 if ('ontouchstart' in window) {
 
-    container.addEventListener("touchstart", function(e) {
+    content.addEventListener("touchstart", function(e) {
         // Don't react if initial down happens on a form element
         if (e.touches[0] && e.touches[0].target && e.touches[0].target.tagName.match(/input|textarea|select/i)) {
             return;
@@ -1029,7 +1027,7 @@ if ('ontouchstart' in window) {
 
     var mousedown = false;
 
-    container.addEventListener("mousedown", function(e) {
+    content.addEventListener("mousedown", function(e) {
         if (e.target.tagName.match(/input|textarea|select/i)) {
             return;
         }
@@ -1065,7 +1063,7 @@ if ('ontouchstart' in window) {
         mousedown = false;
     }, false);
 
-    container.addEventListener(navigator.userAgent.indexOf("Firefox") > -1 ? "DOMMouseScroll" :  "mousewheel", function(e) {
+    content.addEventListener(navigator.userAgent.indexOf("Firefox") > -1 ? "DOMMouseScroll" :  "mousewheel", function(e) {
         scroller.doMouseZoom(e.detail ? (e.detail * -120) : e.wheelDelta, e.timeStamp, e.pageX, e.pageY);
     }, false);
 
