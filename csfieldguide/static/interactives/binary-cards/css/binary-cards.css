@@ -67,3 +67,6 @@
 h3, h5, p {
   text-align: left;
 }
+.binary-card {
+  backface-visibility: hidden;
+}
