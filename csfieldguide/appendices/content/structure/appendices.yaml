@@ -12,6 +12,9 @@ curriculum-guides:
 contributors:
   template: appendices/contributors.html
 
+sitemap:
+  template: appendices/sitemap.html
+
 # 'Releases' page should redirect to documentation.
 # 'Included Files' page should redirect to LICENSE.
 # 'Glossary' page is within 'topics' application
