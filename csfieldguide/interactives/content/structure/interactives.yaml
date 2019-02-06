@@ -227,6 +227,10 @@ payment-interface:
     de: interactives/payment-interface.html
     es: interactives/payment-interface.html
   is_interactive: true
+pixel-grid:
+  languages:
+    en: interactives/pixel-grid.html
+  is_interactive: true
 pixel-viewer:
   languages:
     en: interactives/pixel-viewer.html

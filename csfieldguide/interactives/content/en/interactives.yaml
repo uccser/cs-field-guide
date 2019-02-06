@@ -96,6 +96,8 @@ parity:
   name: Parity
 payment-interface:
   name: Payment Interface
+pixel-grid:
+  name: Pixel Grid (WIP)
 pixel-viewer:
   name: Pixel Viewer
 python-interpreter:
