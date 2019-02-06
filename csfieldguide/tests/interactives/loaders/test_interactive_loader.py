@@ -119,3 +119,29 @@ class InteractivesLoaderTest(BaseTestWithDB):
         self.assertEqual("Interactive English", interactive.name)
         with translation.override("de"):
             self.assertEqual("Interactive German", interactive.name)
+
+    def test_interactives_is_interactive_true(self):
+        interactive_loader = InteractivesLoader(
+            base_path=self.BASE_PATH,
+            content_path="",
+            structure_filename="basic-config.yaml"
+        )
+        interactive_loader.load()
+        interactive = Interactive.objects.get(slug="interactive-untranslated")
+        self.assertEqual(
+            True,
+            interactive.is_interactive
+        )
+
+    def test_interactives_is_interactive_false(self):
+        interactive_loader = InteractivesLoader(
+            base_path=self.BASE_PATH,
+            content_path="",
+            structure_filename="is-interactive-false.yaml"
+        )
+        interactive_loader.load()
+        interactive = Interactive.objects.get(slug="is-interactive-false")
+        self.assertEqual(
+            False,
+            interactive.is_interactive
+        )

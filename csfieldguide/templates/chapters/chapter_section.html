@@ -28,12 +28,12 @@
 
   <div>
     {% if previous_section %}
-      <a href="{% url 'chapters:chapter_section' chapter.slug previous_section.0.slug %}" class="btn left {% if not chapter_section.translation_available %} text-muted{% endif %}">
+      <a href="{% url 'chapters:chapter_section' chapter.slug previous_section.0.slug %}" class="btn btn-primary float-left mb-2 {% if not chapter_section.translation_available %} text-muted{% endif %}">
         Previous: {{ previous_section.0.name }}
       </a>
     {% endif %}
     {% if next_section %}
-      <a id="section-next-btn" href="{% url 'chapters:chapter_section' chapter.slug next_section.0.slug %}" class="btn right {% if not chapter_section.translation_available %} text-muted{% endif %}">
+      <a id="section-next-btn" href="{% url 'chapters:chapter_section' chapter.slug next_section.0.slug %}" class="btn btn-primary float-right {% if not chapter_section.translation_available %} text-muted{% endif %}">
         Next: {{ next_section.0.name }}
       </a>
     {% endif %}
