@@ -25,7 +25,9 @@ From this a graphics program must calculate which pixels on the screen should be
 
 For example, here's a grid of pixels with 5 lines shown magnified.
 The vertical line would have been specified as going from pixel (2, 9) to (2, 16) — that is, starting 2 across and 9 up, and finishing 2 across and 16 up.
-Of course, this is only a small part of a screen, as normally they are more like 1000 by 1000 pixels or more; even a smartphone can be hundreds of pixels high and wide.
+Of course, this is only a small part of a screen, as normally they are more like 1000 by 1000 pixels or more; even a smartphone is hundreds of pixels high and wide.
+
+{interactive slug="pixel-grid" type="iframe" parameters="eg=true&edit=false"}
 
 {image file-path="img/chapters/grid-20x20-example.png" alt="An example of 5 lines drawn on a grid of pixels"}
 
@@ -54,7 +56,7 @@ On the following grid, try to draw these straight lines by filling in pixels in 
 - from  (18, 2) to (18, 14)
 - from  (1, 5)  to (8, 12)
 
-{image file-path="img/chapters/grid-20x20-blank.png" alt="Grid for drawing line from A to B"}
+{interactive slug="pixel-grid" type="iframe"}
 
 {comment The grids in this section could be interactive, click on each pixel, and get it to check if the line is correct}
 
@@ -72,7 +74,7 @@ Drawing a horizontal, vertical or diagonal line like the ones above is easy; it'
 
 Without using a ruler, can you draw a straight line from A to B on the following grid by colouring in pixels?
 
-{image file-path="img/chapters/grid-20x20-diagonal-question.png" alt="Grid for drawing line from A to B"}
+{interactive slug="pixel-grid" type="iframe" parameters="Ax=3&Ay=4&Bx=16&By=9"}
 
 Once you have finished drawing your line, try checking it with a ruler.
 Place the ruler so that it goes from the centre of A to the centre of B.
@@ -161,7 +163,7 @@ For the next question, this can be put into a spreadsheet to give the values for
 Now draw the same line as in the previous section (between A and B) using the formula \( y = mx + c \) to calculate \( y \) for each value of \( x \) from \( x_1 \) to \( x_2 \) (you will need to round \( y \) to the nearest integer to work out which pixel to colour in).
 If the formulas have been applied correctly, the \( y \) value should range from  \( y_1 \) to \( y_2 \).
 
-{image file-path="img/chapters/grid-20x20-diagonal-question.png" alt="Grid for drawing line from A to B"}
+{interactive slug="pixel-grid" type="iframe" parameters="Ax=3&Ay=4&Bx=16&By=9"}
 
 {panel type="teacher-note"}
 
@@ -213,7 +215,7 @@ To draw the line, fill the starting pixel, and then for every position along the
 
 Without using a ruler, use Bresenham's Line Algorithm to draw a straight line from A to B:
 
-{image file-path="img/chapters/grid-20x20-diagonal-question.png" alt="Grid for drawing line from A to B"}
+{interactive slug="pixel-grid" type="iframe" parameters="Ax=3&Ay=4&Bx=16&By=9"}
 
 Once you have completed the line, check it with a ruler.
 How does it compare to the previous attempts?
@@ -253,7 +255,7 @@ To make this algorithm more general, so that it can be used to draw any line, so
   When calculating A, B, and the initial P, use X where you previously would have used Y, and vice versa.
   When drawing pixels, instead of going across every column in the X axis, go through every row in the Y axis, drawing one pixel per row.
 
-{image file-path="img/chapters/grid-20x20-blank.png" alt="Grid for drawing line"}
+{interactive slug="pixel-grid" type="iframe"}
 
 In the grid above, choose two points of your own that are unique to you.
 Don't just choose points that will give horizontal or vertical lines!
@@ -282,7 +284,7 @@ An algorithm similar to Bresenham's line drawing algorithm, called the Midpoint 
 A circle is defined by a centre point, and a radius.
 Points on a circle are all the radius distance from the centre of the circle.
 
-{image file-path="img/chapters/grid-20x20-circle-question.png" alt="Grid for drawing a circle"}
+{interactive slug="pixel-grid" type="iframe" parameters="Cx=9&Cy=9&Rx=16&Ry=9"}
 
 Try to draw a circle by hand by filling in pixels (without using a ruler or compass).
 Note how difficult it is to make the circle look round.
@@ -312,7 +314,7 @@ Repeat the following rules in order until \( Y \) becomes greater than \( X \):
 Follow the rules to draw a circle on the grid, using (\( c_{x} \), \( c_{y} \))  as the centre of the circle, and \( R \) the radius.
 Notice that it will only draw the start of the circle and then it stops because \( Y \) is greater than \( X \)!
 
-{image file-path="img/chapters/grid-20x20-circle-question.png" alt="Grid for drawing a circle"}
+{interactive slug="pixel-grid" type="iframe" parameters="Cx=9&Cy=9&Rx=16&Ry=9"}
 
 {panel type="teacher-note"}
 

@@ -1,18 +1,29 @@
 //require('./../../../js/url-parameters.js');
 
-const DEFAULT_SIZE = [20, 20] // Columns, Rows
+const DEFAULT_HEIGHT = 20;
+const DEFAULT_WIDTH = 20;
 const EXAMPLE_PATTERN = [
     ['', [2, 9]], ['', [2, 10]], ['', [2, 11]], ['', [2, 12]], ['', [2, 13]], ['', [2, 14]], ['', [2, 15]], ['', [2, 16]],
     ['', [5, 8]], ['', [6, 9]], ['', [6, 10]], ['', [7, 11]], ['', [7, 12]], ['', [8, 13]], ['', [8, 14]],
     ['', [7, 7]], ['', [8, 8]], ['', [9, 9]], ['', [10, 10]], ['', [11, 11]], ['', [12, 12]],
     ['', [8, 5]], ['', [9, 6]], ['', [10, 6]], ['', [11, 7]], ['', [12, 7]], ['', [13, 8]], ['', [14, 8]],
     ['', [9, 2]], ['', [10, 2]], ['', [11, 2]], ['', [12, 2]], ['', [13, 2]], ['', [14, 2]], ['', [15, 2]], ['', [16, 2]]
-]
+];
 
 $( document ).ready(function() {
-    var gridSize = DEFAULT_SIZE;
-    var active = [];
-    var showExample = true; //for now
+    var gridSize = [
+        getUrlParameter("h") || DEFAULT_HEIGHT,
+        getUrlParameter("w") || DEFAULT_WIDTH
+    ];
+    var active = [
+        ["A", [getUrlParameter("Ax") || null, getUrlParameter("Ay") || null]],
+        ["B", [getUrlParameter("Bx") || null, getUrlParameter("By") || null]],
+        ["C", [getUrlParameter("Cx") || null, getUrlParameter("Cy") || null]],
+        ["D", [getUrlParameter("Dx") || null, getUrlParameter("Dy") || null]],
+        ["R", [getUrlParameter("Rx") || null, getUrlParameter("Ry") || null]]
+    ];
+    var showExample = getUrlParameter("eg");
+    var isEditable = getUrlParameter("edit");
 
     if (showExample) {
         // Show the initial 5 lines example
@@ -21,14 +32,14 @@ $( document ).ready(function() {
 
     }
 
-    buildGrid(gridSize, active);
+    buildGrid(gridSize, active, isEditable);
 });
 
-// Builds an HTML grid of size[0] by size[1] inactive squares.
+// Builds an HTML grid of size[0] by size[1] inactive squares for display.
 // Adds an extra column and row to display index numbers.
-// Additionally, for any [character, location] pair in vars, the square at the
-// given location will be set to active and have the character displayed on it.
-// Finally, the created HTML text is written to the appropriate location.
+// If editable is false, clicking squares will not activate them.
+// Additionally: for any [character, location] pair in vars, the square at the
+// given location is set to active and to display the given character.
 function buildGrid(size, vars) {
     var cols = size[0];
     var rows = size[1];
@@ -67,7 +78,25 @@ function buildGrid(size, vars) {
     for (j=0; j < cols; j++) {
         printText += '  <button type="button" class="btn div-square">' + j + '</button>\n';
     }
+    printText += '</div>\n'
 
     // Display the grid
     $('#pixel-grid').html(printText);
+}
+
+// Created by Virendra
+// www.jquerybyexample.net/2012/06/get-url-parameters-using-jquery.html
+function getUrlParameter(sParam) {
+    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+        sURLVariables = sPageURL.split("&"),
+        sParameterName,
+        i;
+
+    for (i=0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split("=");
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : sParameterName[1];
+        }
+    }
 }
