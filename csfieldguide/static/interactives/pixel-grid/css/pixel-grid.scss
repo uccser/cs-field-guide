@@ -1,0 +1,22 @@
+.interactive.pixel-grid {
+    margin: 20px;
+}
+
+.div-square {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    border: 1px solid;
+    border-color: black;
+    border-radius: 0px;
+}
+
+.div-square {
+    color: black;
+    background-color: white;
+}
+
+.div-square.active {
+    color: white;
+    background-color: black;
+}
