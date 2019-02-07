@@ -1,14 +1,32 @@
 //require('./../../../js/url-parameters.js');
 
 const DEFAULT_SIZE = [20, 20] // Columns, Rows
+const EXAMPLE_PATTERN = [
+    ['', [2, 9]], ['', [2, 10]], ['', [2, 11]], ['', [2, 12]], ['', [2, 13]], ['', [2, 14]], ['', [2, 15]], ['', [2, 16]],
+    ['', [5, 8]], ['', [6, 9]], ['', [6, 10]], ['', [7, 11]], ['', [7, 12]], ['', [8, 13]], ['', [8, 14]],
+    ['', [7, 7]], ['', [8, 8]], ['', [9, 9]], ['', [10, 10]], ['', [11, 11]], ['', [12, 12]],
+    ['', [8, 5]], ['', [9, 6]], ['', [10, 6]], ['', [11, 7]], ['', [12, 7]], ['', [13, 8]], ['', [14, 8]],
+    ['', [9, 2]], ['', [10, 2]], ['', [11, 2]], ['', [12, 2]], ['', [13, 2]], ['', [14, 2]], ['', [15, 2]], ['', [16, 2]]
+]
 
 $( document ).ready(function() {
-    buildGrid(DEFAULT_SIZE, [['x', [2, 5]], ['A', [15, 7]]]);
+    var gridSize = DEFAULT_SIZE;
+    var active = [];
+    var showExample = true; //for now
+
+    if (showExample) {
+        // Show the initial 5 lines example
+        active = EXAMPLE_PATTERN;
+    } else {
+
+    }
+
+    buildGrid(gridSize, active);
 });
 
 // Builds an HTML grid of size[0] by size[1] inactive squares.
 // Adds an extra column and row to display index numbers.
-// Additionally, for any [character, location] pairs in vars, the square at the
+// Additionally, for any [character, location] pair in vars, the square at the
 // given location will be set to active and have the character displayed on it.
 // Finally, the created HTML text is written to the appropriate location.
 function buildGrid(size, vars) {
