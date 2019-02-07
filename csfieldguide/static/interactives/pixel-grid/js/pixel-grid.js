@@ -40,7 +40,7 @@ $( document ).ready(function() {
 // If editable is false, clicking squares will not activate them.
 // Additionally: for any [character, location] pair in vars, the square at the
 // given location is set to active and to display the given character.
-function buildGrid(size, vars) {
+function buildGrid(size, vars, editable) {
     var cols = size[0];
     var rows = size[1];
     var activeChars = [];
