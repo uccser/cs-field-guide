@@ -27,9 +27,7 @@ For example, here's a grid of pixels with 5 lines shown magnified.
 The vertical line would have been specified as going from pixel (2, 9) to (2, 16) — that is, starting 2 across and 9 up, and finishing 2 across and 16 up.
 Of course, this is only a small part of a screen, as normally they are more like 1000 by 1000 pixels or more; even a smartphone screen is hundreds of pixels high and wide.
 
-{interactive slug="pixel-grid" type="iframe" parameters="eg=basic&noedit=true"}
-
-{image file-path="img/chapters/grid-20x20-example.png" alt="An example of 5 lines drawn on a grid of pixels"}
+{interactive slug="pixel-grid" type="iframe" parameters="eg=basic&noedit"}
 
 These are things that are easy to do with pencil and paper using a ruler and compass, but on a computer the calculations need to be done for every pixel, and if you use the wrong method then it will take too long and the image will be displayed slowly or a live animation will appear jerky.
 In this section we will look into some very simple but clever algorithms that enable a computer to do these calculations very quickly.
@@ -50,7 +48,7 @@ You can try this by colouring in squares on a grid, such as the one below (they 
 We'll identify the pixels on the grid using two values, (*x*, *y*), where *x* is the distance across from the left, and *y* is the distance up from the bottom.
 The bottom left pixel below is (0, 0), and the top right one is (19, 19).
 
-On the following grid, try to draw these straight lines by filling in pixels in the grid:
+Try to draw these straight lines by clicking on pixels in the following grid:
 
 - from  (2, 17) to (10, 17)
 - from  (18, 2) to (18, 14)
@@ -66,11 +64,11 @@ On the following grid, try to draw these straight lines by filling in pixels in 
 
 The above three lines are easy to draw as they are horizontal, vertical and diagonal.
 
-{image file-path="img/chapters/grid-20x20-answer-1.png" alt="Answer for previous question on grid"}
+{interactive slug="pixel-grid" type="iframe" parameters="eg=s3l&noedit"}
 
 {panel end}
 
-Drawing a horizontal, vertical or diagonal line like the ones above is easy; it's the ones at different angles that require some calculation.
+Drawing a horizontal, vertical or 45 degree line like the ones above is easy; it's the ones at different angles that require some calculation.
 
 Without using a ruler, can you draw a straight line from A to B on the following grid by colouring in pixels?
 
@@ -171,7 +169,7 @@ If the formulas have been applied correctly, the \( y \) value should range from
 
 The following image shows which pixels would be coloured in (rounding the coordinates above to the nearest integer).
 
-{image file-path="img/chapters/grid-20x20-diagonal-answer.png" alt="Grid for drawing line from A to B"}
+{interactive slug="pixel-grid" type="iframe" parameters="eg=sog&noedit"}
 
 {panel end}
 
