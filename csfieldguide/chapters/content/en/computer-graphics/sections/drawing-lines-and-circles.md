@@ -25,9 +25,9 @@ From this a graphics program must calculate which pixels on the screen should be
 
 For example, here's a grid of pixels with 5 lines shown magnified.
 The vertical line would have been specified as going from pixel (2, 9) to (2, 16) — that is, starting 2 across and 9 up, and finishing 2 across and 16 up.
-Of course, this is only a small part of a screen, as normally they are more like 1000 by 1000 pixels or more; even a smartphone is hundreds of pixels high and wide.
+Of course, this is only a small part of a screen, as normally they are more like 1000 by 1000 pixels or more; even a smartphone screen is hundreds of pixels high and wide.
 
-{interactive slug="pixel-grid" type="iframe" parameters="eg=true&edit=false"}
+{interactive slug="pixel-grid" type="iframe" parameters="eg=basic&noedit=true"}
 
 {image file-path="img/chapters/grid-20x20-example.png" alt="An example of 5 lines drawn on a grid of pixels"}
 

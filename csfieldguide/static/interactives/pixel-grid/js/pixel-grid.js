@@ -2,12 +2,22 @@
 
 const DEFAULT_HEIGHT = 20;
 const DEFAULT_WIDTH = 20;
-const EXAMPLE_PATTERN = [
+const PATTERN_EXAMPLE = [
     ['', [2, 9]], ['', [2, 10]], ['', [2, 11]], ['', [2, 12]], ['', [2, 13]], ['', [2, 14]], ['', [2, 15]], ['', [2, 16]],
     ['', [5, 8]], ['', [6, 9]], ['', [6, 10]], ['', [7, 11]], ['', [7, 12]], ['', [8, 13]], ['', [8, 14]],
     ['', [7, 7]], ['', [8, 8]], ['', [9, 9]], ['', [10, 10]], ['', [11, 11]], ['', [12, 12]],
     ['', [8, 5]], ['', [9, 6]], ['', [10, 6]], ['', [11, 7]], ['', [12, 7]], ['', [13, 8]], ['', [14, 8]],
     ['', [9, 2]], ['', [10, 2]], ['', [11, 2]], ['', [12, 2]], ['', [13, 2]], ['', [14, 2]], ['', [15, 2]], ['', [16, 2]]
+];
+const PATTERN_3_LINES = [
+    ['', [2, 17]], ['', [3, 17]], ['', [4, 17]], ['', [5, 17]], ['', [6, 17]], ['', [7, 17]], ['', [8, 17]], ['', [9, 17]], ['', [10, 17]],
+    ['', [1, 5]], ['', [2, 6]], ['', [3, 7]], ['', [4, 8]], ['', [5, 9]], ['', [6, 10]], ['', [7, 11]], ['', [8, 12]],
+    ['', [18, 2]], ['', [18, 3]], ['', [18, 4]], ['', [18, 5]], ['', [18, 6]], ['', [18, 7]],
+    ['', [18, 8]], ['', [18, 9]], ['', [18, 10]], ['', [18, 11]], ['', [18, 12]], ['', [18, 13]], ['', [18, 14]]
+];
+const PATTERN_OFF_DIAG = [
+    ['A', [3, 4]], ['', [4, 4]], ['', [5, 5]], ['', [6, 5]], ['', [7, 6]], ['', [8, 6]], ['', [9, 6]],
+    ['', [10, 7]], ['', [11, 7]], ['', [12, 7]], ['', [13, 8]], ['', [14, 8]], ['', [15, 9]], ['B', [16, 9]]
 ];
 
 $( document ).ready(function() {
@@ -22,17 +32,22 @@ $( document ).ready(function() {
         ["D", [getUrlParameter("Dx") || null, getUrlParameter("Dy") || null]],
         ["R", [getUrlParameter("Rx") || null, getUrlParameter("Ry") || null]]
     ];
-    var showExample = getUrlParameter("eg");
-    var isEditable = getUrlParameter("edit");
+    var showExample = getUrlParameter("eg") || null;
+    var denyEdit = getUrlParameter("noedit");
 
-    if (showExample) {
-        // Show the initial 5 lines example
-        active = EXAMPLE_PATTERN;
-    } else {
-
+    switch (showExample) {
+        case("basic"):
+            // Initial 5 lines example
+            active = PATTERN_EXAMPLE; break;
+        case("s3l"):
+            // Solution 3 Lines
+            active = PATTERN_3_LINES; break;
+        case("sog"):
+            // Solution Off Diagonal
+            active = PATTERN_OFF_DIAG; break;
     }
 
-    buildGrid(gridSize, active, isEditable);
+    buildGrid(gridSize, active, !denyEdit);
 });
 
 // Builds an HTML grid of size[0] by size[1] inactive squares for display.
@@ -58,7 +73,11 @@ function buildGrid(size, vars, editable) {
 
     // Create the grid
     for (i=rows-1; i >= 0; i--) {
-        printText += '<div class="row btn-group-toggle" data-toggle="buttons">\n'
+        if (editable) {
+            printText += '<div class="row btn-group-toggle" data-toggle="buttons">\n'
+        } else {
+            printText += '<div class="row">\n'
+        }
         printText += '  <button type="button" class="btn div-square">' + i + '</button>\n';
         for (j=0; j < cols; j++) {
             foundNode = activeCharLocs.findIndex(function(y) {return y[0] == j && y[1] == i});
