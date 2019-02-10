@@ -54,7 +54,7 @@ window.onload = function(event) {
     var url = window.location.search.replace('?', '');
     var configFileRegex = /config=((matrix|coord)-(\w*|-)*)/g;
     var configFile = configFileRegex.exec(url)[1];
-    var filename = 'config/' + configFile + '.json';
+    var filename = './../../../interactives/2d-arrow-manipulations/config/' + configFile + '.json';
 
     // load the json file and assemble the interface
     get(filename).then(function(response) {
