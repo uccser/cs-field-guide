@@ -23,26 +23,26 @@
     {% endfor %}
     <li>
       <a href="{% url 'appendices:appendices' %}">Appendices</a>
-        <ul>
-          <li>
-            <a href="{% url 'appendices:about' %}">About</a>
-          </li>
-          <li>
-            <a href="https://cs-field-guide.readthedocs.io/en/latest/changelog.html">Changelog</a>
-          </li>
-          <li>
-            <a href="{% url 'appendices:contributors' %}">Contributors</a>
-          </li>
-          <li>
-            <a href="{% url 'appendices:curriculum-guides' %}">Curriculum Guides</a>
-          </li>
-          <li>
-            <a href="{% url 'chapters:glossary' %}">Glossary</a>
-          </li>
-          <li>
-            <a href="{% url 'interactives:index' %}">Interactives</a>
-          </li>
-        </ul>
+      <ul>
+        <li>
+          <a href="{% url 'appendices:about' %}">About</a>
+        </li>
+        <li>
+          <a href="https://cs-field-guide.readthedocs.io/en/latest/changelog.html">Changelog</a>
+        </li>
+        <li>
+          <a href="{% url 'appendices:contributors' %}">Contributors</a>
+        </li>
+        <li>
+          <a href="{% url 'appendices:curriculum-guides' %}">Curriculum Guides</a>
+        </li>
+        <li>
+          <a href="{% url 'chapters:glossary' %}">Glossary</a>
+        </li>
+        <li>
+          <a href="{% url 'interactives:index' %}">Interactives</a>
+        </li>
+      </ul>
     </li>
   </ul>
 {% endblock content %}
