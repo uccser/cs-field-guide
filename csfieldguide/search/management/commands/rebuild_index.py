@@ -7,10 +7,10 @@ from chapters.models import (
     Chapter,
     ChapterSection,
 )
-from appendices.models import (
-    Appendix,
-    Subappendix,
-)
+# from appendices.models import (
+#     Appendix,
+#     Subappendix,
+# )
 
 
 class Command(rebuild_index.Command):
@@ -22,8 +22,6 @@ class Command(rebuild_index.Command):
         """Automatically called when the rebuild_index command is given."""
         total_objects = Chapter.objects.count()
         total_objects += ChapterSection.objects.count()
-        total_objects += Appendix.objects.count()
-        total_objects += Subappendix.objects.count()
         super(Command, self).handle(*args, **options)
         total_results = len(all_items(SearchQuerySet()))
         if total_objects == total_results:
