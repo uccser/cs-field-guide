@@ -17,6 +17,7 @@ if (!fs.existsSync(SCREENSHOT_BASE_PATH)){
 
 
 function generateThumbnails(json_data) {
+  print(json_data);
   var data = JSON.parse(json_data);
   puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] }).then(async browser => {
     const page = await browser.newPage();
