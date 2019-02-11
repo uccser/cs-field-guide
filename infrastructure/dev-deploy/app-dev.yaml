@@ -23,3 +23,8 @@ health_check:
 
 manual_scaling:
   instances: 1
+
+handlers:
+  url: cs-field-guide-dev.appspot.com/.*
+  http_headers:
+    X-Frame-Options: SAMEORIGIN
