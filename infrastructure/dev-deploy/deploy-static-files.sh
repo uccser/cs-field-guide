@@ -8,9 +8,7 @@ source ./infrastructure/dev-deploy/load-dev-deploy-config-envs.sh
 # Generate production static files
 rm -r build/
 rm -r staticfiles/
-./csfg static_prod
-./csfg make_interactive_thumbnails
-./csfg collect_static
+./csfg update_prod
 
 # Install Google Cloud SDK
 ./infrastructure/install_google_cloud_sdk.sh
