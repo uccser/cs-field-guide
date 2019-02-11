@@ -111,6 +111,7 @@ cmd_update_prod() {
   echo ""
   cmd_collect_static
 }
+defhelp update_prod 'Run Django migrate and updatedata commands and build static files for production deployment.'
 
 # Update and collect static files
 cmd_update_static() {
