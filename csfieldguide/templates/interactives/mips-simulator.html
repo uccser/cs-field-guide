@@ -35,22 +35,6 @@
         <!-- Code Block -->
         <div class="row">
           <textarea id="assembled-input" class="code">
-            2408001e
-            24090014
-            01092020
-            24020001
-            0000000c
-            240400c0
-            00042400
-            24840000
-            24020004
-            0000000c
-            24020000
-            03e00008
-            0a48656c
-            6c6f2057
-            6f726c64
-            210a0000
           </textarea>
         </div>
 
@@ -79,32 +63,7 @@
 
       <!-- Output Column -->
       <div class="col">
-        <!-- Initially a storage of the advanced example program, it is immediately cleared -->
-        <div id="program-output" class="code scroll h-100">
-            24080005
-            24090000
-            1109000a
-            00082020
-            24020001
-            0000000c
-            24020004
-            240400c0
-            00042400
-            24840008
-            0000000c
-            2108ffff
-            08400008
-            24020004
-            240400c0
-            00042400
-            24840000
-            0000000c
-            24020000
-            03e00008
-            474f2121
-            2121210a
-            00000000
-            0a000000
+        <div id="program-output" class="code scroll h-100"> 
         </div>
       </div>
 
@@ -116,6 +75,52 @@
       {% trans 'This simplified Javascript sandbox is based on the work of <a href="https://github.com/alanhogan/miphps-mips-simulator" target="_blank">Alan J. Hogan</a>.' %}
       </p>
     </div>
+  </div>
+
+  <!-- Hidden Text: Basic Example Code -->
+  <div id="basic-example" style="display: none;">2408001e
+24090014
+01092020
+24020001
+0000000c
+240400c0
+00042400
+24840000
+24020004
+0000000c
+24020000
+03e00008
+0a48656c
+6c6f2057
+6f726c64
+210a0000
+  </div>
+
+  <!-- Hidden Text: Advanced Example Code -->
+  <div id="advanced-example" style="display: none;">24080005
+24090000
+1109000a
+00082020
+24020001
+0000000c
+24020004
+240400c0
+00042400
+24840008
+0000000c
+2108ffff
+08400008
+24020004
+240400c0
+00042400
+24840000
+0000000c
+24020000
+03e00008
+474f2121
+2121210a
+00000000
+0a000000
   </div>
 {% endblock html %}
 

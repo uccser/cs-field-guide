@@ -58,8 +58,9 @@ var SHOWCOLOUR;
 
 // Stores a backup of the default code and registers button handler functions
 $(document).ready(function() {
-    var basicProgram = $('#assembled-input').val();
-    var advancedProgram = $('#program-output').html();
+    var basicProgram = $('#basic-example').html();
+    var advancedProgram = $('#advanced-example').html();
+    $('#assembled-input').val(basicProgram);
     $('#program-output').html('');
     var offerExamples = getUrlParameter('offer-examples');
     

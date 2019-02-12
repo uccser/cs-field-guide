@@ -39,8 +39,9 @@ var SHOWCOLOUR;
 
 // Stores a backup of the default code and registers button handler functions
 $(document).ready(function() {
-    var basicProgram = $('#mips-input').val();
-    var advancedProgram = $('#assembler-output').html();
+    var basicProgram = $('#basic-example').html();
+    var advancedProgram = $('#advanced-example').html();
+    $('#mips-input').val(basicProgram);
     $('#assembler-output').html('');
 
     $('#submit-mips').on('click', function () {
