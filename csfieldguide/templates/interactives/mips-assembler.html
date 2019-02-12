@@ -28,34 +28,12 @@
     <!-- Assembler -->
     <div class="row justify-content-center">
       <!-- Input Column -->
-      <div class="col">
+      <div class="col mb-2">
         <h3>{% trans 'MIPS Input' %}</h3>
         <!-- Code Block -->
         <div class="row">
           <textarea id="mips-input" class="code">
           </textarea>
-        </div>
-
-        <!-- Options Block -->
-        <div class="row justify-content-between">
-          <div class="col btn-group btn-group-toggle" data-toggle="buttons">
-            <label id="show-blank-label" class="btn btn-outline-secondary">
-              <input id="show-blank" type="checkbox" autocomplete="off">{% trans 'Show context' %}
-            </label>
-            <label id="show-instructions-label" class="btn btn-outline-secondary">
-              <input id="show-instructions" type="checkbox" autocomplete="off">{% trans 'Show corresponding instructions<br>and memory locations' %}
-            </label>
-            <label id="show-colours-label" class="btn btn-outline-secondary">
-              <input id="show-colours" type="checkbox" autocomplete="off">{% trans 'Show colours' %}
-            </label>
-          </div>
-          <div class="col">
-            <button id="reset-adv" type="button" class="btn btn-outline-danger">{% trans 'Load advanced example' %}</button>
-            <button id="reset-basic" type="button" class="btn btn-outline-danger">{% trans 'Load basic example' %}</button>
-          </div>
-          <div class="col">
-            <button id="submit-mips" type="button" class="btn btn-success">{% trans 'Assemble!' %}</button>
-          </div>
         </div>
       </div>
 
@@ -65,7 +43,28 @@
         <div id="assembler-output" class="code scroll h-100">
         </div>
       </div>
+    </div>
 
+    <!-- Options Block -->
+    <div class="row justify-content-center">
+      <div class="col btn-group btn-group-toggle" data-toggle="buttons">
+        <label id="show-blank-label" class="btn btn-outline-secondary">
+          <input id="show-blank" type="checkbox" autocomplete="off">{% trans 'Show context' %}
+        </label>
+        <label id="show-instructions-label" class="btn btn-outline-secondary">
+          <input id="show-instructions" type="checkbox" autocomplete="off">{% trans 'Show corresponding instructions<br>and memory locations' %}
+        </label>
+        <label id="show-colours-label" class="btn btn-outline-secondary">
+          <input id="show-colours" type="checkbox" autocomplete="off">{% trans 'Show colours' %}
+        </label>
+      </div>
+      <div class="col">
+        <button id="reset-adv" type="button" class="btn btn-outline-danger">{% trans 'Load advanced example' %}</button>
+        <button id="reset-basic" type="button" class="btn btn-outline-danger">{% trans 'Load basic example' %}</button>
+      </div>
+      <div class="col">
+        <button id="submit-mips" type="button" class="btn btn-success">{% trans 'Assemble!' %}</button>
+      </div>
     </div>
 
     <!-- Contributions -->
