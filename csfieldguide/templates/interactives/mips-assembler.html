@@ -25,20 +25,11 @@
       {% trans 'See all MIPS instructions on <a href="https://en.wikipedia.org/wiki/MIPS_architecture" target="_blank">Wikipedia</a>.' %}
     </details>
 
-    <!-- Content Headings -->
-    <div class="row justify-content-center">
-      <div class="col">
-        <h3>{% trans 'MIPS Input' %}</h3>
-      </div>
-      <div class="col">
-        <h3>{% trans 'Assembler Output' %}</h3>
-      </div>
-    </div>
-
     <!-- Assembler -->
     <div class="row justify-content-center">
       <!-- Input Column -->
       <div class="col">
+        <h3>{% trans 'MIPS Input' %}</h3>
         <!-- Code Block -->
         <div class="row">
           <textarea id="mips-input" class="code">
@@ -70,6 +61,7 @@
 
       <!-- Output Column -->
       <div class="col">
+        <h3>{% trans 'Assembler Output' %}</h3>
         <div id="assembler-output" class="code scroll h-100">
         </div>
       </div>

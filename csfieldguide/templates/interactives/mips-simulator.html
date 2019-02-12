@@ -9,6 +9,8 @@
     <div id="interactive-mips-simulator" class="row justify-content-center">
       <h1>{% trans 'MIPS Simulator' %}</h1>
     </div>
+
+    {% url 'interactives:interactive' 'mips-assembler' as assembler_link %}
     <p>
       {% blocktrans %}
         Enter the assembled MIPS code from the <a href="{{ assembler_link }}" target="_blank">MIPS Assembler</a> interactive to run it.<br>
@@ -17,21 +19,11 @@
       {% endblocktrans %}
     </p>
 
-    <!-- Content Headings -->
-    <div class="row justify-content-center">
-      <div class="col">
-        <h3>{% trans 'Assembled MIPS Input' %}</h3>
-        {% url 'interactives:interactive' 'mips-assembler' as assembler_link %}
-      </div>
-      <div class="col">
-        <h3>{% trans 'Program Output' %}</h3>
-      </div>
-    </div>
-
     <!-- Simulator -->
     <div class="row justify-content-center">
       <!-- Input Column -->
       <div class="col">
+        <h3>{% trans 'Assembled MIPS Input' %}</h3>
         <!-- Code Block -->
         <div class="row">
           <textarea id="assembled-input" class="code">
@@ -63,6 +55,7 @@
 
       <!-- Output Column -->
       <div class="col">
+        <h3>{% trans 'Program Output' %}</h3>
         <div id="program-output" class="code scroll h-100"> 
         </div>
       </div>
