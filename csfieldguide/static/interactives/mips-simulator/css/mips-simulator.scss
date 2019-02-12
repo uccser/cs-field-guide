@@ -1,3 +1,22 @@
+.padded {
+  padding-left: 10rem;
+  padding-right: 10rem;
+}
+
+@media screen and (max-width: 1500px) {
+  .padded {
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
+}
+
+@media screen and (max-width: 1300px) {
+  .padded {
+    padding-left: 20px;
+    padding-right: 10px;
+  }
+}
+
 .code {
   font-family: monospace;
   font-weight: normal;

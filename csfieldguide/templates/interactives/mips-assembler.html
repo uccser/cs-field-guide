@@ -4,31 +4,31 @@
 {% load static %}
 
 {% block html %}
-  <div class="mb-3 interactive">
+  <div class="mb-3 container-fluid padded">
     <!-- Title Block -->
     <div id="interactive-mips-assembler" class="row justify-content-center">
       <h1>{% trans 'MIPS Assembler' %}</h1>
     </div>
+    {% url 'interactives:interactive' 'mips-simulator' as simulator_link %}
+    <p>
+      {% blocktrans %}
+      Enter MIPS code below to see the assembler output.<br>
+      Then copy the plain output to the <a href="{{simulator_link}}" target="_blank">MIPS Simulator</a> interactive to run it.<br>
+      <strong>Note:</strong> Only a subset of MIPS is implemented. Comments start with #.<br>
+      {% endblocktrans %}
+    </p>
+    <details id="details">
+      <summary>{% trans 'Supported Instructions' %}</summary>
+      {% trans 'The following instructions are supported by both MIPS interactives' %}:<br>
+      <code>sll</code>, <code>jr</code>, <code>add</code>, <code>addu</code>, <code>sub</code>, <code>subu</code>, <code>and</code>, <code>or</code>, <code>xor</code>, <code>nor</code>, <code>beq</code>, <code>bne</code>, <code>addi</code>, <code>addiu</code>, <code>andi</code>, <code>ori</code>, <code>xori</code>, <code>j</code> <br>
+      {% blocktrans %}The <code>la</code>, <code>li</code> and <code>move</code> instructions are also supported when translated to appropriate instructions from the list.{% endblocktrans %}<br>
+      {% trans 'See all MIPS instructions on <a href="https://en.wikipedia.org/wiki/MIPS_architecture" target="_blank">Wikipedia</a>.' %}
+    </details>
 
     <!-- Content Headings -->
     <div class="row justify-content-center">
       <div class="col">
         <h3>{% trans 'MIPS Input' %}</h3>
-        {% url 'interactives:interactive' 'mips-simulator' as simulator_link %}
-        <p>
-          {% blocktrans %}
-          Enter MIPS code below to see the assembler output.<br>
-          Then copy the plain output to the <a href="{{simulator_link}}" target="_blank">MIPS Simulator</a> interactive to run it.<br>
-          <strong>Note:</strong> Only a subset of MIPS is implemented. Comments start with #.<br>
-          {% endblocktrans %}
-        </p>
-        <details id="details">
-          <summary>{% trans 'Supported Instructions' %}</summary>
-          {% trans 'The following instructions are supported by both MIPS interactives' %}:<br>
-          <code>sll</code>, <code>jr</code>, <code>add</code>, <code>addu</code>, <code>sub</code>, <code>subu</code>, <code>and</code>, <code>or</code>, <code>xor</code>, <code>nor</code>, <code>beq</code>, <code>bne</code>, <code>addi</code>, <code>addiu</code>, <code>andi</code>, <code>ori</code>, <code>xori</code>, <code>j</code> <br>
-          {% blocktrans %}The <code>la</code>, <code>li</code> and <code>move</code> instructions are also supported when translated to appropriate instructions from the list.{% endblocktrans %}<br>
-          {% trans 'See all MIPS instructions on <a href="https://en.wikipedia.org/wiki/MIPS_architecture" target="_blank">Wikipedia</a>.' %}
-        </details>
       </div>
       <div class="col">
         <h3>{% trans 'Assembler Output' %}</h3>

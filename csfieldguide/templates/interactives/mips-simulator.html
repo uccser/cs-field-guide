@@ -4,24 +4,24 @@
 {% load static %}
 
 {% block html %}
-  <div class="mb-3 interactive">
+  <div class="mb-3 container-fluid padded">
     <!-- Title Block -->
     <div id="interactive-mips-simulator" class="row justify-content-center">
       <h1>{% trans 'MIPS Simulator' %}</h1>
     </div>
+    <p>
+      {% blocktrans %}
+        Enter the assembled MIPS code from the <a href="{{ assembler_link }}" target="_blank">MIPS Assembler</a> interactive to run it.<br>
+        Enter only the assembled hexadecimal values, no other assembler output.<br>
+        <strong>Note:</strong> Only a subset of MIPS is implemented, negative values are rarely supported.
+      {% endblocktrans %}
+    </p>
 
     <!-- Content Headings -->
     <div class="row justify-content-center">
       <div class="col">
         <h3>{% trans 'Assembled MIPS Input' %}</h3>
         {% url 'interactives:interactive' 'mips-assembler' as assembler_link %}
-        <p>
-          {% blocktrans %}
-            Enter the assembled MIPS code from the <a href="{{ assembler_link }}" target="_blank">MIPS Assembler</a> interactive to run it.<br>
-            Enter only the assembled hexadecimal values, no other assembler output.<br>
-            <strong>Note:</strong> Only a subset of MIPS is implemented, negative values are rarely supported.
-          {% endblocktrans %}
-        </p>
       </div>
       <div class="col">
         <h3>{% trans 'Program Output' %}</h3>
