@@ -1,3 +1,6 @@
+var coordinates = require('./coordinates.js');
+var matrix =  require('./matrix.js');
+
 /* Global variable is a dictionary of variables relating to size and position of grid and arrow */
 var interfaceSettings = {
     POLYGON:         null,
@@ -50,24 +53,8 @@ function Point(x, y) {
 window.onload = function(event) {
     setUpInterface();
 
-    // gets name of config file according to url parameter
-    var url = window.location.search.replace('?', '');
-    var configFileRegex = /config=((matrix|coord)-(\w*|-)*)/g;
-    var configFile = configFileRegex.exec(url)[1];
-    var filename = './../../../interactives/2d-arrow-manipulations/config/' + configFile + '.json';
-
-    // load the json file and assemble the interface
-    get(filename).then(function(response) {
-        var config = JSON.parse(response);
-        saveConfig(filename, config);
-        loadModules(config);
-        setUpInitialDynamicArrowPosition();
-        setUpInitialTargetArrowPosition();
-        drawArrow();
-        drawTargetArrow();
-    }, function(error) {
-      console.error("Failed!", error);
-    });
+    var configFile = getUrlParameter('config') || "coord-translate";
+    assembleInterface(configFile);
 }
 
 /* Rebuilds grid and arrows on window resize */
@@ -128,7 +115,6 @@ function get(url) {
 
 /* Saves information from config file that is used later */
 function saveConfig(filename, config) {
-
     configSettings.FILE = filename;
     configSettings.TARGET_POSITION_STRING = config['target'];
     configSettings.TYPE = config['type'];
@@ -226,6 +212,22 @@ function setUpInterface() {
     drawBackground();
 }
 
+/* Assembles the interface based on the given config */
+function assembleInterface(configFile) {
+    var filename = './config/' + configFile + '.json';
+    // load the json file and assemble the interface
+    get(filename).then(function(response) {
+        var config = JSON.parse(response);
+        saveConfig(filename, config);
+        loadModules(config);
+        setUpInitialDynamicArrowPosition();
+        setUpInitialTargetArrowPosition();
+        drawArrow();
+        drawTargetArrow();
+    }, function(error) {
+     console.error("Failed!", error);
+    });
+}
 
 /*
  * Draws the grid background by building css string
@@ -248,7 +250,7 @@ function setUpInitialDynamicArrowPosition() {
     // takes a copy of arrowShape list because otherwise pointers get in the way with updating the arrow
     configSettings.START_POSITION = arrowShape.slice(0);
     currentState.currentPosition = arrowShape.slice(0);
-    updateInputBoxes(configSettings.START_POSITION);
+    coordinates.updateInputBoxes(configSettings.START_POSITION, interfaceSettings);
 
 }
 
@@ -259,6 +261,7 @@ function setUpInitialTargetArrowPosition() {
 
 /* Translates string of coordinates into list of points with x and y attributes that fit in the svg coordinate space */
 function generateArrowShape(pointString) {
+    alert(pointString);
     var xPos = 0;
     var yPos = 1;
     var arrow = [];
@@ -346,5 +349,22 @@ function checkForMatch() {
         interfaceSettings.POLYGON.style.fill = '#4CAF50';
     } else {
         interfaceSettings.POLYGON.style.fill = '#FF9800';//'#008000';
+    }
+}
+
+// Created by Virendra
+// www.jquerybyexample.net/2012/06/get-url-parameters-using-jquery.html
+function getUrlParameter(sParam) {
+    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+        sURLVariables = sPageURL.split("&"),
+        sParameterName,
+        i;
+
+    for (i=0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split("=");
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : sParameterName[1];
+        }
     }
 }
