@@ -77,7 +77,6 @@ cmd_restart_build() {
 defhelp restart_build 'Stop, build, and then restart development environment.'
 
 # Completely update system
-## When making changes to this, ensure cmd_update_prod is updated accordingly ##
 cmd_update() {
   cmd_static
 
@@ -96,22 +95,6 @@ cmd_update() {
   echo "Open your preferred web browser to the URL 'localhost:81'"
 }
 defhelp update 'Run Django migrate and updatedata commands and build static files.'
-
-# Update the system for production deployment
-cmd_update_prod() {
-  cmd_static_prod
-
-  echo ""
-  cmd_migrate
-
-  echo ""
-  cmd_updatedata
-  cmd_make_interactive_thumbnails
-
-  echo ""
-  cmd_collect_static
-}
-defhelp update_prod 'Run Django migrate and updatedata commands and build static files for production deployment.'
 
 # Update and collect static files
 cmd_update_static() {
