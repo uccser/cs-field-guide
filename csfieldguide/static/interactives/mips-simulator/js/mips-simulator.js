@@ -896,7 +896,7 @@ function execute_syscall (addr) {
     } else if (REGISTERS[v] == 4) {
         // Print a string
         if (SHOWREG) {
-            PRINTTEXT += colour(TXT_TXT, COLOUR_INSTR) + ": " + colour("$a0", COLOUR_INSTR) + "<br>";
+            PRINTTEXT += colour(TXT_TXT, COLOUR_INSTR) + ": " + colour("$a0", COLOUR_INSTR) + " " + TXT_STORE + " " + colour(hexOfInt(REGISTERS[a], 8), COLOUR_ADDR) + "<br>";
         }
         PRINTTEXT += colour(interpretString(REGISTERS[a]), COLOUR_OUT) + "<br>";
     } else {
