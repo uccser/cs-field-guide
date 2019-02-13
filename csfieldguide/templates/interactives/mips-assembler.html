@@ -47,22 +47,22 @@
 
     <!-- Options Block -->
     <div class="row justify-content-center">
-      <div class="col-6 btn-group btn-group-toggle" data-toggle="buttons">
+      <div class="col-lg-6 btn-group btn-group-toggle" data-toggle="buttons">
         <label id="show-blank-label" class="btn btn-outline-secondary">
-          <input id="show-blank" type="checkbox" autocomplete="off">{% trans 'Show context' %}
+          <input id="show-blank" type="checkbox" autocomplete="off">{% trans 'Show<br>context' %}
         </label>
         <label id="show-instructions-label" class="btn btn-outline-secondary">
           <input id="show-instructions" type="checkbox" autocomplete="off">{% trans 'Show corresponding instructions<br>and memory locations' %}
         </label>
         <label id="show-colours-label" class="btn btn-outline-secondary">
-          <input id="show-colours" type="checkbox" autocomplete="off">{% trans 'Show colours' %}
+          <input id="show-colours" type="checkbox" autocomplete="off">{% trans 'Show<br>colours' %}
         </label>
       </div>
-      <div class="col-4">
+      <div class="col-lg-4">
         <button id="reset-adv" type="button" class="btn btn-outline-danger">{% trans 'Load advanced example' %}</button>
         <button id="reset-basic" type="button" class="btn btn-outline-danger">{% trans 'Load basic example' %}</button>
       </div>
-      <div class="col-2">
+      <div class="col-lg-2">
         <button id="submit-mips" type="button" class="btn btn-success">{% trans 'Assemble!' %}</button>
       </div>
     </div>
