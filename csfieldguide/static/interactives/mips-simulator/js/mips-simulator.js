@@ -70,7 +70,7 @@ $(document).ready(function() {
         try {
             run();
         } catch(err) {
-            present(err + PRINTTEXT, false);
+            present(TXT_PANIC + "<br><br>" + PRINTTEXT, false);
         }
     });
 
