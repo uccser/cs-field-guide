@@ -162,7 +162,6 @@ class IndexViewTest(BaseTestWithDB):
     def test_search_view_model_filter_multiple_with_query(self):
         chapter = self.chapters_test_data.create_chapter(1)
         self.chapters_test_data.create_chapter_section(chapter, 1)
-        chapter_2 = self.chapters_test_data.create_chapter(2)
         management.call_command("rebuild_index", "--noinput")
         url = reverse("search:index")
         get_parameters = [
