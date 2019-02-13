@@ -29,6 +29,14 @@
   max-height: 480px;
   min-height: 100px;
 }
+
+@media screen and (min-width: 768px) {
+  // 768px is defined as 'medium' by bootstrap regarding grids
+  .code {
+    min-height: 480px;
+  }
+}
+
 textarea.code {
   height: 30rem;
 }
