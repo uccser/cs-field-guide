@@ -4,7 +4,6 @@ from os.path import join, dirname
 from os import makedirs
 from shutil import rmtree
 from django.conf import settings
-from django.test import override_settings
 from django.core import management
 from django.test import tag
 from django.template.exceptions import TemplateSyntaxError
