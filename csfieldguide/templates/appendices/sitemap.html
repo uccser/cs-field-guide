@@ -24,6 +24,13 @@
       <li>
         <a href="{% url 'chapters:chapter' chapter.slug %}">{{ chapter.name }}</a>
       </li>
+      <ul>
+        {% for section in chapter.chapter_sections.all %}
+          <li>
+            <a href="{% url 'chapters:chapter_section' chapter.slug section.slug %}">{{ section.name }}</a>
+          </li>
+        {% endfor %}
+      </ul>
     {% endfor %}
     </ul>
     <li>
