@@ -1,7 +1,6 @@
 """Views for the appendices application."""
 
 from django.views.generic import TemplateView
-from django.shortcuts import get_object_or_404
 
 
 class AppendicesList(TemplateView):
@@ -44,4 +43,3 @@ class SitemapView(TemplateView):
     """View for the about page."""
 
     template_name = "appendices/sitemap.html"
-

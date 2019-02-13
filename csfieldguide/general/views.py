@@ -2,7 +2,6 @@
 
 from django.views.generic import TemplateView
 from django.shortcuts import redirect
-from django.views.generic.base import RedirectView
 
 
 class GeneralIndexView(TemplateView):

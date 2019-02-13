@@ -2,7 +2,6 @@
 
 from django.conf.urls import url
 from . import views
-from django.shortcuts import redirect
 from django.views.generic.base import RedirectView
 
 
@@ -45,8 +44,8 @@ urlpatterns = [
         RedirectView.as_view(permanent=True, pattern_name="appendices:appendix"),
     ),
     # e.g redirect /curriculum-guides/ncea/index.html to /appendices/curriculum-guides/
-    # TODO: Once the ncea and apcsp html templates are done change BOTH of the below 
-    # redirects to use (?P<subappendix_slug>[-\w]+) in the regex instead of 'ncea' or 
+    # TODO: Once the ncea and apcsp html templates are done change BOTH of the below
+    # redirects to use (?P<subappendix_slug>[-\w]+) in the regex instead of 'ncea' or
     # 'apcsp' and change the pattern_name.
     # TODO: Remove '.*?' from BOTH regex expressions if we create more templates inside
     # of /ncea/ or /apcsp/
