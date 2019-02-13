@@ -46,19 +46,22 @@
     </div>
 
     <!-- Options Block -->
-    <div class="row justify-content-center mb-2">
-      <div class="col-lg-6 btn-group btn-group-toggle" data-toggle="buttons">
-        <label id="show-blank-label" class="btn btn-outline-secondary">
-          <input id="show-blank" type="checkbox" autocomplete="off">{% trans 'Show<br>context' %}
-        </label>
-        <label id="show-instructions-label" class="btn btn-outline-secondary">
-          <input id="show-instructions" type="checkbox" autocomplete="off">{% trans 'Show corresponding instructions<br>and memory locations' %}
-        </label>
-        <label id="show-colours-label" class="btn btn-outline-secondary">
-          <input id="show-colours" type="checkbox" autocomplete="off">{% trans 'Show<br>colours' %}
-        </label>
+    <div class="row justify-content-left">
+      <div class="col-lg-2">
+        <div class="form-group form-check">
+          <input id="show-blank" type="checkbox" class="form-check-input">
+          <label class="form-check-label" for="show-blank">{% trans 'Show context' %}</label>
+        </div>
+        <div class="form-group form-check">
+          <input id="show-instructions" type="checkbox" class="form-check-input">
+          <label class="form-check-label" for="show-instructions">{% trans 'Show details' %}</label>
+        </div>
+        <div class="form-group form-check">
+          <input id="show-colours" type="checkbox" class="form-check-input">
+          <label class="form-check-label" for="show-colours">{% trans 'Show colours' %}</label>
+        </div>
       </div>
-      <div class="col-lg-4">
+      <div class="col-lg-5">
         <button id="reset-adv" type="button" class="btn btn-outline-danger">{% trans 'Load advanced example' %}</button>
         <button id="reset-basic" type="button" class="btn btn-outline-danger">{% trans 'Load basic example' %}</button>
       </div>

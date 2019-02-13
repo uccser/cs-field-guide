@@ -63,17 +63,6 @@ $(document).ready(function() {
     });
 });
 
-// Sets all checkbuttons to be unchecked and inactive
-// No longer used
-function resetButtons() {
-    $('#show-blank').prop('checked', false);
-    $('#show-instructions').prop('checked', false);
-    $('#show-colours').prop('checked', false);
-    $('#show-blank-label').removeClass('active');
-    $('#show-instructions-label').removeClass('active');
-    $('#show-colours-label').removeClass('active');
-}
-
 // Assembles the code from the mips input box and prints it to the assembler output box
 function assemble() {
     LABELS = [];

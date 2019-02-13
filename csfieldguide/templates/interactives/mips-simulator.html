@@ -40,17 +40,20 @@
     </div>
 
     <!-- Options Block -->
-    <div class="row justify-content-center">
-      <div class="col-lg-5 btn-group btn-group-toggle" data-toggle="buttons">
-        <label id="show-context-label" class="btn btn-outline-secondary">
-          <input id="show-context" type="checkbox" autocomplete="off">{% trans 'Show context' %}
-        </label>
-        <label id="show-registers-label" class="btn btn-outline-secondary">
-          <input id="show-registers" type="checkbox" autocomplete="off">{% trans 'Show register trace' %}
-        </label>
-        <label id="show-colours-label" class="btn btn-outline-secondary">
-          <input id="show-colours" type="checkbox" autocomplete="off">{% trans 'Show colours' %}
-        </label>
+    <div class="row justify-content-left">
+      <div class="col-lg-2">
+        <div class="form-group form-check">
+          <input id="show-context" type="checkbox" class="form-check-input">
+          <label class="form-check-label" for="show-context">{% trans 'Show context' %}</label>
+        </div>
+        <div class="form-group form-check">
+          <input id="show-registers" type="checkbox" class="form-check-input">
+          <label class="form-check-label" for="show-registers">{% trans 'Show register trace' %}</label>
+        </div>
+        <div class="form-group form-check">
+          <input id="show-colours" type="checkbox" class="form-check-input">
+          <label class="form-check-label" for="show-colours">{% trans 'Show colours' %}</label>
+        </div>
       </div>
       <div class="col-lg-5">
         <button id="reset-adv" type="button" class="btn btn-outline-danger">{% trans 'Load advanced example' %}</button>
