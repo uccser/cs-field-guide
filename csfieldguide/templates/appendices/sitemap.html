@@ -16,11 +16,16 @@
     <li>
       <a href="{% url 'general:index' %}">{% trans "Computer Science Field Guide" %}</a>
     </li>
+    <li>
+      <a href="{% url 'chapters:index' %}">{% trans "Chapters" %}</a>
+    </li>
+    <ul>
     {% for chapter in chapters %}
       <li>
         <a href="{% url 'chapters:chapter' chapter.slug %}">{{ chapter.name }}</a>
       </li>
-      {% endfor %}
+    {% endfor %}
+    </ul>
     <li>
       <a href="{% url 'appendices:appendices' %}">{% trans "Appendices" %}</a>
       <ul>
