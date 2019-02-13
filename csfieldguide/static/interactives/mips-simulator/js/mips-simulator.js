@@ -70,7 +70,7 @@ $(document).ready(function() {
         try {
             run();
         } catch(err) {
-            present(TXT_PANIC + "<br><br>" + PRINTTEXT, false);
+            present(colour(TXT_PANIC, COLOUR_BAD) + "<br><br>" + PRINTTEXT, false);
         }
     });
 
@@ -192,8 +192,12 @@ function run() {
             } else {
                 if (instrDecoded == TYPE_UNSUPPORTED) {
                     PRINTTEXT += colour(TXT_UNSUPPORTED_HEX + ": " + hexOfInt(instrHex, 8), COLOUR_BAD) + "<br>";
+                    present(PRINTTEXT, false);
+                    return;
                 } else if (instrDecoded == TYPE_INVALID) {
                     PRINTTEXT += colour(TXT_INVALID_HEX + ": " + hexOfInt(instrHex, 8), COLOUR_BAD) + "<br>";
+                    present(PRINTTEXT, false);
+                    return;
                 }
 
                 if (SHOWCONTEXT) {
@@ -261,12 +265,14 @@ function hexOfInt(num, n) {
 }
 
 // Executes the given instruction, or does nothing if it can't be interpreted
-// Returns the address of the next instruction to execute
+// Returns the address of the next instruction to execute, or -1 if an error occurs
 function execute(type, args, addr) {
     var nextAddr;
     var opcode;
     if (type == TYPE_SYSCALL) {
-        execute_syscall();
+        if (execute_syscall() < 0) {
+            return -1;
+        }
         nextAddr = addr + 4;
     } else {
         opcode = args[0];
@@ -881,7 +887,7 @@ function execute_j (args) {
 }
 
 // Executes a syscall instruction on $a0 and $v0
-// Returns nothing
+// Returns nothing unless there's an error
 function execute_syscall (addr) {
     // syscall
 
@@ -909,6 +915,7 @@ function execute_syscall (addr) {
         PRINTTEXT += colour(interpretString(REGISTERS[a]), COLOUR_OUT) + "<br>";
     } else {
         PRINTTEXT += colour(TXT_NOSUPPORT + ": $v0", COLOUR_BAD) + "<br>";
+        return -1;
     }
     REGISTERS[a] = null;
     REGISTERS[v] = null;
