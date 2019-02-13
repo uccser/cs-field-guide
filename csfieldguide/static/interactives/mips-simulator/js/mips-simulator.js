@@ -46,6 +46,8 @@ const TXT_INT = gettext("Print an integer");
 const TXT_TXT = gettext("Print a string");
 const TXT_LOAD = gettext("Loading");
 const TXT_STORE = gettext("stored in");
+const TXT_POINTS = gettext("points to");
+const TXT_NOTHING = gettext("nothing");
 const TXT_BRANCH = gettext("Branching");
 const TXT_NO_BRANCH = gettext("Not Branching");
 const TXT_PANIC = gettext("You've triggered the failsafe error control in this interactive, which means the programmer who made it didn't prepare for the specific error in your program. Sorry about that. Double check everything and try again.");
@@ -68,7 +70,7 @@ $(document).ready(function() {
         try {
             run();
         } catch(err) {
-            present(TXT_PANIC, false);
+            present(err + PRINTTEXT, false);
         }
     });
 
@@ -162,7 +164,7 @@ function run() {
     var instrType;
     var instrDecoded;
     var instrExecs;
-    instrAddr = INSTRUCTION_START;
+    var instrAddr = INSTRUCTION_START;
     var instructionNum = 0;
     var isSuccess = true;
     while (!quit && instructionNum < MAX_EXECUTIONS) {
@@ -497,13 +499,19 @@ function execute_sll (args, addr) {
 }
 
 // Executes a jr instruction on the given arguments
-// Returns the address of the next instruction to execute, given jr is stored at the given address
+// Returns the address of the next instruction to execute, i.e. the value of the given register
 function execute_jr (args, addr) {
     // jr $reg
+    var addr = args[1];
     if (SHOWREG) {
-        PRINTTEXT += colour("jr", COLOUR_INSTR) + ": " + colour("$" + REG_NAMES[args[1]], COLOUR_INSTR) + "<br>";
+        if (REGISTERS[addr] === null || isNaN(REGISTERS[addr])) {
+            PRINTTEXT += colour("jr", COLOUR_INSTR) + ": " + colour("$" + REG_NAMES[addr], COLOUR_INSTR) + " " + TXT_POINTS + " " + colour(TXT_NOTHING, COLOUR_ADDR) + "<br>";
+            return addr + 4;
+        } else {
+            PRINTTEXT += colour("jr", COLOUR_INSTR) + ": " + colour("$" + REG_NAMES[addr], COLOUR_INSTR) + " " + TXT_POINTS + " " + colour(hexOfInt(REGISTERS[addr], 8), COLOUR_ADDR) + "<br>";
+        }
     }
-    return addr + 4;
+    return REGISTERS[addr];
 }
 
 // Executes an add instruction on the given arguments
@@ -896,7 +904,7 @@ function execute_syscall (addr) {
     } else if (REGISTERS[v] == 4) {
         // Print a string
         if (SHOWREG) {
-            PRINTTEXT += colour(TXT_TXT, COLOUR_INSTR) + ": " + colour("$a0", COLOUR_INSTR) + " " + TXT_STORE + " " + colour(hexOfInt(REGISTERS[a], 8), COLOUR_ADDR) + "<br>";
+            PRINTTEXT += colour(TXT_TXT, COLOUR_INSTR) + ": " + colour("$a0", COLOUR_INSTR) + " " + TXT_POINTS + " " + colour(hexOfInt(REGISTERS[a], 8), COLOUR_ADDR) + "<br>";
         }
         PRINTTEXT += colour(interpretString(REGISTERS[a]), COLOUR_OUT) + "<br>";
     } else {
