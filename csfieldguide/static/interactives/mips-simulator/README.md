@@ -4,6 +4,7 @@
 **Interactive Creator:** Alasdair Smith
 
 This interactive allows users to simulate assembled MIPS code and see the output.
+Adding `?offer-examples` to the URL reverals buttons that can be pressed to load the assembled code from the Assembler interactive.
 
 ## MIPS Simulator License
 
