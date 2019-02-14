@@ -68,6 +68,7 @@ $(document).ready(function() {
         resetMatrices();
     });
     registerNodeHighlights();
+    registerOnBlurEvents();
 });
 
 /* Rebuilds grid and arrows on window resize */
@@ -332,11 +333,15 @@ function instantUpdateToggle() {
 }
 
 
-function checkForValidInput(inputBox) {
-    if (isNaN(inputBox.value) || inputBox.value == '') { // does not contain a valid number
-        inputBox.className += 'invalid';
+function checkForValidInput(id) {
+    var value = $(id).val();
+    if (isNaN(value) || value == '') { // does not contain a valid number
+        $(id).addClass('invalid');
+        return false;
     } else {
-        inputBox.className = '';
+        $(id).removeClass('invalid');
+        $(id).addClass('');
+        return true;
     }
 }
 
@@ -379,6 +384,58 @@ function getUrlParameter(sParam) {
             return sParameterName[1] === undefined ? true : sParameterName[1];
         }
     }
+}
+
+/* Registers the events related to when the user deselects a specific text field */
+function registerOnBlurEvents() {
+    $('#p0-input-x').on('blur', function () {
+        coordTab('c0', 'x');
+    });
+    $('#p0-input-y').on('blur', function () {
+        coordTab('c0', 'y');
+    });
+    $('#p1-input-x').on('blur', function () {
+        coordTab('c1', 'x');
+    });
+    $('#p1-input-y').on('blur', function () {
+        coordTab('c1', 'y');
+    });
+    $('#p2-input-x').on('blur', function () {
+        coordTab('c2', 'x');
+    });
+    $('#p2-input-y').on('blur', function () {
+        coordTab('c2', 'y');
+    });
+    $('#p3-input-x').on('blur', function () {
+        coordTab('c3', 'x');
+    });
+    $('#p3-input-y').on('blur', function () {
+        coordTab('c3', 'y');
+    });
+    $('#p4-input-x').on('blur', function () {
+        coordTab('c4', 'x');
+    });
+    $('#p4-input-y').on('blur', function () {
+        coordTab('c4', 'y');
+    });
+    $('#p5-input-x').on('blur', function () {
+        coordTab('c5', 'x');
+    });
+    $('#p5-input-y').on('blur', function () {
+        coordTab('c5', 'y');
+    });
+    $('#p6-input-x').on('blur', function () {
+        coordTab('c6', 'x');
+    });
+    $('#p6-input-y').on('blur', function () {
+        coordTab('c6', 'y');
+    });
+    $('#p7-input-x').on('blur', function () {
+        coordTab('c7', 'x');
+    });
+    $('#p7-input-y').on('blur', function () {
+        coordTab('c7', 'y');
+    });
 }
 
 /* Registers the node highlighting radio buttons */
@@ -446,12 +503,12 @@ function updateInputBoxes (points) {
 }
 
 
-function coordTab(inputBox) {
-    checkForValidInput(inputBox);
+function coordTab(node, x_or_y) {
+    var id = '#p' + node.split('')[1] + '-input-' + x_or_y;
+    checkForValidInput(id);
     if (instantUpdateToggle() == true) {
         getNewCoordinates();
     }
-    removeHighlight(inputBox);
 }
 
 
