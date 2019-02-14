@@ -26,5 +26,5 @@ def set_teacher_mode(request, mode):
 
 
 def redirect_changelog(request):
-    """ redirects csfieldguide.org.nz/further-information/releases.html to the changelog docs. """
+    """Redirects csfieldguide.org.nz/further-information/releases.html to the changelog docs."""
     return redirect("https://cs-field-guide.readthedocs.io/en/latest/changelog.html")
