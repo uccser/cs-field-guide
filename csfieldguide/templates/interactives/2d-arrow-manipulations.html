@@ -5,7 +5,7 @@
 
 {% block html %}
   <div class="row mb-3 pixel-grid">
-    <div class="col" role="group" id="pixel-grid">
+    <div class="col" role="group" id="interactive-2d-arrow-manipulations"> <!--use-->
       <title>2D Arrow Manipulations</title>
       <div id="container">
         <div id="warning">
@@ -34,34 +34,41 @@
       
         <div id="modules">
           <div id="coordinates">
-            <div id="heading"><p>x</p><p>y</p></div>
+            <div id="heading"><p>x</p><p>y</p><p>highlight</p></div>
             <div node-id="c0">
-              <input id="p0-input-x" onfocus="highlight(this)" onblur="coordTab(this)"/>
-              <input id="p0-input-y" onfocus="highlight(this)" onblur="coordTab(this)"/>
+              <input id="p0-input-x" onblur="coordTab(this)"/>
+              <input id="p0-input-y" onblur="coordTab(this)"/>
+              <input type="radio" name="highlight-radios" id="c0-check">
             </div>
             <div node-id="c1">
-              <input id="p1-input-x" onfocus="highlight(this)" onblur="coordTab(this)"/>
-              <input id="p1-input-y" onfocus="highlight(this)" onblur="coordTab(this)"/>
+              <input id="p1-input-x" onblur="coordTab(this)"/>
+              <input id="p1-input-y" onblur="coordTab(this)"/>
+              <input type="radio" name="highlight-radios" id="c1-check">
             </div>
             <div node-id="c2">
-              <input id="p2-input-x" onfocus="highlight(this)" onblur="coordTab(this)"/>
-              <input id="p2-input-y" onfocus="highlight(this)" onblur="coordTab(this)"/>
+              <input id="p2-input-x" onblur="coordTab(this)"/>
+              <input id="p2-input-y" onblur="coordTab(this)"/>
+              <input type="radio" name="highlight-radios" id="c2-check">
             </div>
             <div node-id="c3">
-              <input id="p3-input-x" onfocus="highlight(this)" onblur="coordTab(this)"/>
-              <input id="p3-input-y" onfocus="highlight(this)" onblur="coordTab(this)"/>
+              <input id="p3-input-x" onblur="coordTab(this)"/>
+              <input id="p3-input-y" onblur="coordTab(this)"/>
+              <input type="radio" name="highlight-radios" id="c3-check">
             </div>
             <div node-id="c4">
-              <input id="p4-input-x" onfocus="highlight(this)" onblur="coordTab(this)"/>
-              <input id="p4-input-y" onfocus="highlight(this)" onblur="coordTab(this)"/>
+              <input id="p4-input-x" onblur="coordTab(this)"/>
+              <input id="p4-input-y" onblur="coordTab(this)"/>
+              <input type="radio" name="highlight-radios" id="c4-check">
             </div>
             <div node-id="c5">
-              <input id="p5-input-x" onfocus="highlight(this)" onblur="coordTab(this)"/>
-              <input id="p5-input-y" onfocus="highlight(this)" onblur="coordTab(this)"/>
+              <input id="p5-input-x" onblur="coordTab(this)"/>
+              <input id="p5-input-y" onblur="coordTab(this)"/>
+              <input type="radio" name="highlight-radios" id="c5-check">
             </div>
             <div node-id="c6">
-              <input id="p6-input-x" onfocus="highlight(this)" onblur="coordTab(this)"/>
-              <input id="p6-input-y" onfocus="highlight(this)" onblur="coordTab(this)"/>
+              <input id="p6-input-x" onblur="coordTab(this)"/>
+              <input id="p6-input-y" onblur="coordTab(this)"/>
+              <input type="radio" name="highlight-radios" id="c6-check">
             </div>
           </div>
       
@@ -124,15 +131,15 @@
           </div>
       
           <div id="coord-buttons">
-            <button onclick="getNewCoordinates()">Update</button>
-            <button onclick="reset()">Reset</button>
+            <button id="get-new-coordinates-button">Update</button>
+            <button id="reset-coordinates-button">Reset</button>
           </div>
       
           <div id="matrix-buttons">
-            <button onclick="matrixOperations()">Update</button>
-            <button onclick="resetMatrices()">Reset</button>
+            <button id="matrix-operations-button">Update</button>
+            <button id="reset-matrices-button ">Reset</button>
           </div>
-          <label id="instant-update-label"><input type="checkbox" id="instant-update-check" checked onclick="instantUpdateToggle(this)"/>Instant Update</label>
+          <label id="instant-update-label"><input type="checkbox" id="instant-update-check" checked/>Instant Update</label>
         </div>
       </div>
     </div>

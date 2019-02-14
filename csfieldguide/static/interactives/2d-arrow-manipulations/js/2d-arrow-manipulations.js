@@ -1,6 +1,3 @@
-//const STATIC_URL = "https://storage.googleapis.com/" + env("GOOGLE_CLOUD_STORAGE_BUCKET_NAME") + "/static/";
-//var base_path = "{{ STATIC_URL }}";
-
 /* Global variable is a dictionary of variables relating to size and position of grid and arrow */
 var interfaceSettings = {
     POLYGON:         null,
@@ -49,13 +46,29 @@ function Point(x, y) {
 
 ////////////////////////////////////////////////////////////
 
-/* On load get config and build the grid and both arrows */
-window.onload = function(event) {
+/* On load; get config, build the grid and both arrows, then register button
+ * handler functions
+ */
+$(document).ready(function() {
     setUpInterface();
 
     var configFile = getUrlParameter('config') || "coord-translate";
     assembleInterface(configFile);
-}
+
+    $('#get-new-coordinates-button').on('click', function () {
+        getNewCoordinates();
+    });
+    $('#reset-coordinates-button').on('click', function () {
+        reset();
+    });
+    $('#matrix-operations-button').on('click', function () {
+        matrixOperations();
+    });
+    $('#reset-matrices-button').on('click', function () {
+        resetMatrices();
+    });
+    registerNodeHighlights();
+});
 
 /* Rebuilds grid and arrows on window resize */
 window.onresize = function(event) {
@@ -70,7 +83,7 @@ window.onresize = function(event) {
     }
 }
 
-/* on reset button click draw the dynamic arrow in it's start position */
+/* on reset button click, draw the dynamic arrow in it's start position */
 function reset() { 
     setUpInitialDynamicArrowPosition();
     drawArrow();
@@ -229,9 +242,7 @@ function assembleInterface(configFile) {
     });
 }
 
-/*
- * Draws the grid background by building css string
- */
+/* Draws the grid background by building css string */
 function drawBackground() {
     var backgroundSizeFormat = interfaceSettings.xIntercept + 'px ' + interfaceSettings.yIntercept + 'px, ' +
         interfaceSettings.xIntercept + 'px ' + interfaceSettings.yIntercept + 'px, '
@@ -312,13 +323,12 @@ function drawArrow() {
     checkForMatch();
 }
 
-
-function instantUpdateToggle(checkbox) {
-    if (checkbox.checked == true) {
-        currentState.instantUpdate = true;
-    } else {
-        currentState.instantUpdate = false;
-    }
+/* Sets the boolean for instantUpdate based on the appropriate checkbox.
+ * Returns the boolean
+ */
+function instantUpdateToggle() {
+    currentState.instantUpdate = $('#instant-update-check').is(':checked');
+    return currentState.instantUpdate;
 }
 
 
@@ -351,6 +361,9 @@ function checkForMatch() {
     }
 }
 
+// ########################################################################## //
+/* Supporting functions */
+
 // Created by Virendra
 // www.jquerybyexample.net/2012/06/get-url-parameters-using-jquery.html
 function getUrlParameter(sParam) {
@@ -368,14 +381,58 @@ function getUrlParameter(sParam) {
     }
 }
 
+/* Registers the node highlighting radio buttons */
+function registerNodeHighlights() {
+    $('#c0-check').on('click', function () {
+        setHighlight('c0');
+    });
+    $('#c1-check').on('click', function () {
+        setHighlight('c1');
+    });
+    $('#c2-check').on('click', function () {
+        setHighlight('c2');
+    });
+    $('#c3-check').on('click', function () {
+        setHighlight('c3');
+    });
+    $('#c4-check').on('click', function () {
+        setHighlight('c4');
+    });
+    $('#c5-check').on('click', function () {
+        setHighlight('c5');
+    });
+    $('#c6-check').on('click', function () {
+        setHighlight('c6');
+    });
+}
+
+/* Sets the given node to be the only one highlighted */
+function setHighlight(node) {
+    var id = '#' + node + '-check';
+    clearHighlights(id);
+    highlight(node);
+}
+
+/* Clears all highlighted nodes except the one with the id given */
+function clearHighlights(id) {
+    var nextId;
+    for (i=0; i<7; i++) { // there are 7 vertices in an arrow
+        nextId = '#c' + i + '-check';
+        if (nextId != id) {
+            $(nextId).removeClass('active');
+            removeHighlight('c' + i);
+        }
+    }
+}
+
 // ########################################################################## //
 /* Functions relating to coordinates
-   Created by Hayley Van Waas
-*/
+ * Created by Hayley Van Waas
+ */
 
 /* Put the corresponding coordinate into each of the input boxes
-* Offsets the real value of the coordinate to give impression that centre of grid is position (0,0)
-* */
+ * Offsets the real value of the coordinate to give impression that centre of grid is position (0,0)
+ */
 function updateInputBoxes (points) {
     var inputId = '';
 
@@ -391,7 +448,7 @@ function updateInputBoxes (points) {
 
 function coordTab(inputBox) {
     checkForValidInput(inputBox);
-    if (currentState.instantUpdate == true) {
+    if (instantUpdateToggle() == true) {
         getNewCoordinates();
     }
     removeHighlight(inputBox);
@@ -399,8 +456,8 @@ function coordTab(inputBox) {
 
 
 /* Gets new coordinates from *all* input boxes
-* Triggered when use clicks "update" button
-*/
+ * Triggered when user clicks "update" button
+ */
 function getNewCoordinates() {
     var inputId = '';
 
@@ -420,26 +477,26 @@ function getNewCoordinates() {
 
 
 /* Highlights a point on the arrow
-* Input: id of input row hovered over by mouse
-* */
-function highlight(element) {
-    circle = document.getElementById(element.parentNode.getAttribute("node-id"));
+ * Input: id of input row hovered over by mouse
+ */
+function highlight(node) {
+    circle = document.getElementById(node);
     circle.style.fill = '#FF7043';
 }
 
 
 /* Resets colour of point on the arrow
-* Input: id of input row hovered over by mouse
-* */
-function removeHighlight(element) {
-    circle = document.getElementById(element.parentNode.getAttribute("node-id"));
+ * Input: id of input row hovered over by mouse
+ */
+function removeHighlight(node) {
+    circle = document.getElementById(node);
     circle.style.fill = '#000';
 }
 
 // ########################################################################## //
 /* Functions relating to matrices
-   Created by Hayley Van Waas
-*/
+ * Created by Hayley Van Waas
+ */
 
 function matrixTab(matrixInputBox) {
     checkForValidInput(matrixInputBox);
@@ -451,14 +508,13 @@ function matrixTab(matrixInputBox) {
     }
     matrixInputBox.value = num;
 
-    if (currentState.instantUpdate == true) {
+    if (instantUpdateToggle() == true) {
         matrixOperations();
     }
 }
 
 
-/* Sets up order of matrix operations and moves the arrow to new position
-*/
+/* Sets up order of matrix operations and moves the arrow to new position */
 function matrixOperations(test) {
     var matrixElements = document.getElementById('matrices').children;
     var productMatrix = [];
@@ -485,8 +541,7 @@ function matrixOperations(test) {
 }
 
 
-/* Scale the arrow according to the user's inputted matrix
-*/
+/* Scale the arrow according to the user's inputted matrix */
 function scale(id, productMatrix) {
     currentState.scaleMatrix[0] = parseFloat(document.getElementById('matrix-' + id + '-scale-row-0-col-0').value);
     currentState.scaleMatrix[1] = parseFloat(document.getElementById('matrix-' + id + '-scale-row-0-col-1').value);
@@ -508,8 +563,7 @@ function scale(id, productMatrix) {
 }
 
 
-/* Translate the arrow according to the user's inputted matrix
-*/
+/* Translate the arrow according to the user's inputted matrix */
 function translate(id, productMatrix) {
     currentState.translateMatrix[0] = parseFloat(document.getElementById('matrix-' + id + '-translate-row-0-col-0').value) * interfaceSettings.squareSize;
     currentState.translateMatrix[1] = parseFloat(document.getElementById('matrix-' + id + '-translate-row-1-col-0').value) * interfaceSettings.squareSize;
@@ -527,8 +581,7 @@ function translate(id, productMatrix) {
 }
 
 
-/* Move the arrow back to the start position and set the matrices to the default values
-*/
+/* Move the arrow back to the start position and set the matrices to the default values */
 function resetMatrices() {
     // place the arrow back in the start position
     reset();
