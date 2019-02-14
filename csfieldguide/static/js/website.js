@@ -3,7 +3,7 @@ require('bootstrap');
 require('details-element-polyfill');
 require('featherlight');
 require('sticky-state');
-const iFrameResize = require('iframe-resizer/src/iframeResizer.js');
+const iFrameResize = require('iframe-resizer/js/iframeResizer.js');
 
 $(document).ready(function(){
   // Display glossary-modal

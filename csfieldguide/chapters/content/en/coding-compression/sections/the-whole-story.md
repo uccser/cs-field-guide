@@ -19,7 +19,7 @@ The Ziv-Lempel method shown is a variation of the so-called "LZ77" method.
 Many of the more popular lossless compression methods are based on this, although there are many variations, and one called "LZW" has also been used a lot.
 Another high-compression general-purpose compression method is bzip, based on a very clever method called the Burrows-Wheeler Transform.
 
-Questions like "what is the most compression that can be achieved" are addressed by the field of [information theory](https://en.wikipedia.org/wiki/Information_theory).
+Questions like "what is the most compression that can be achieved?" are addressed by the field of [information theory](https://en.wikipedia.org/wiki/Information_theory).
 There is an [activity on information theory on the CS Unplugged site](http://csunplugged.org/information-theory), and there is a [fun activity that illustrates information theory](http://www.math.ucsd.edu/~crypto/java/ENTROPY/).
 Based on this theory, it seems that English text can't be compressed to less than about 12% of its original size at the very best.
 Images, sound and video can get much better compression because they can use lossy compression, and don't have to reproduce the original data exactly.

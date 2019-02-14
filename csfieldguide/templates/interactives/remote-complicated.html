@@ -1,0 +1,99 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div class="d-flex justify-content-center mb-3 uninteractive">
+    <div id="remote-complicated-container" class="p-2">
+      <!-- Row 1 -->
+      <div class="d-flex justify-content-between">
+        <button type="button" class="btn btn-sm btn-danger">
+          <img src="{% static 'img/third-party/icons8-shutdown-26.png' %}" class="icon-1">
+        </button>
+        <button type="button" class="btn btn-sm btn-secondary">
+          {% trans "INPUT" %}
+        </button>
+      </div>
+
+      <!-- Row 2 -->
+      <div class="d-flex justify-content-center my-2">
+        <button type="button" class="btn btn-sm btn-secondary">1</button>
+        <button type="button" class="btn btn-sm mx-2 btn-secondary">2</button>
+        <button type="button" class="btn btn-sm btn-secondary">3</button>
+      </div>
+
+      <!-- Row 3 -->
+      <div class="d-flex justify-content-center my-2">
+        <button type="button" class="btn btn-sm btn-secondary">4</button>
+        <button type="button" class="btn btn-sm mx-2 btn-secondary">5</button>
+        <button type="button" class="btn btn-sm btn-secondary">6</button>
+      </div>
+
+      <!-- Row 4 -->
+      <div class="d-flex justify-content-center my-2">
+        <button type="button" class="btn btn-sm btn-secondary">7</button>
+        <button type="button" class="btn btn-sm mx-2 btn-secondary">8</button>
+        <button type="button" class="btn btn-sm btn-secondary">9</button>
+      </div>
+
+      <!-- Row 5 -->
+      <div class="d-flex justify-content-center my-2">
+        <button type="button" class="btn btn-sm btn-secondary">0</button>
+      </div>
+
+      <!-- Row 6 -->
+      <div class="d-flex justify-content-between my-2">
+        <button type="button" class="btn btn-sm btn-dark-blue">{% trans "GUIDE" %}</button>
+        <button type="button" class="btn btn-sm btn-dark-blue">{% trans "STATUS" %}</button>
+      </div>
+
+      <!-- Row 7 -->
+      <div class="d-flex justify-content-around my-2">
+        <div class="d-flex flex-column align-items-center">
+          <button type="button" class="btn btn-sm btn-secondary">⬆</button>
+          <div>{% trans "CH" %}</div>
+          <button type="button" class="btn btn-sm btn-secondary">⬇</button>
+        </div>
+
+        <div class="d-flex flex-column align-items-center">
+          <button type="button" class="btn btn-sm btn-secondary">⬆</button>
+          <div>{% trans "VOL" %}</div>
+          <button type="button" class="btn btn-sm btn-secondary">⬇</button>
+        </div>
+      </div>
+
+      <!-- Row 8 -->
+      <div class="d-flex justify-content-center">
+        <button type="button" class="btn btn-sm btn-secondary">⬆</button>
+      </div>
+
+      <!-- Row 9 -->
+      <div class="d-flex justify-content-center my-2">
+        <button type="button" class="btn btn-sm btn-secondary">⬅</button>
+        <button type="button" class="btn btn-sm mx-2 btn-secondary">{% trans "MENU" %}</button>
+        <button type="button" class="btn btn-sm btn-secondary">➡</button>
+      </div>
+
+      <!-- Row 10 -->
+      <div class="d-flex justify-content-center my-2">
+        <button type="button" class="btn btn-sm btn-secondary">⬇</button>
+      </div>
+
+      <!-- Row 11 -->
+      <div class="d-flex justify-content-between my-2">
+        <button type="button" class="btn btn-sm btn-dark-blue">{% trans "OPTION" %}</button>
+        <button type="button" class="btn btn-sm btn-dark-blue">{% trans "EXIT" %}</button>
+      </div>
+
+      <!-- Row 12 -->
+      <div class="d-flex justify-content-center my-2">
+        <button type="button" class="btn btn-sm btn-dark-blue">{% trans "DIRECT NAVIGATOR" %}</button>
+      </div>
+    </div>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/remote-complicated/css/remote-complicated.css' %}">
+{% endblock css %}

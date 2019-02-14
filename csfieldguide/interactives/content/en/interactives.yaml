@@ -13,7 +13,7 @@ base-calculator:
 big-number-calculator:
   name: Big Number Calculator
 bin-packing:
-  name: bin-packing (broken)
+  name: Bin Packing
 binary-cards:
   name: Binary Cards
 binary-mode-calculator:
@@ -22,12 +22,14 @@ box-rotation:
   name: box-rotation (broken)
 box-translation:
   name: box-translation (broken)
+braille-alphabet:
+  name: Braille Alphabet
 caesar-cipher:
   name: Caesar Cipher
 checksum-calculator:
-  name: checksum-calculator (broken)
+  name: Checksum Calculator
 checksum-calculator-gtin-13:
-  name: checksum-calculator-gtin-13 (broken)
+  name: Checksum Calculator GTIN-13
 close-window:
   name: Close Window
 cmy-mixer:
@@ -48,8 +50,10 @@ delay-analyser:
   name: Delay Analyser
 delayed-checkbox:
   name: Delayed Checkbox
+dot-combinations:
+  name: Dot Combinations
 frequency-analysis:
-  name: frequency-analysis (broken)
+  name: Frequency Analysis
 fsa-box:
   name: FSA Box
 fsa-light:
@@ -65,7 +69,7 @@ huffman-tree:
 image-bit-comparer:
   name: Image Bit Comparer
 jpeg-compression:
-  name: jpeg-compression (broken)
+  name: JPEG Compression
 md5-hash:
   name: md5-hash (broken)
 menu-keystrokes:
@@ -89,23 +93,29 @@ packet-attack:
 packet-attack-level-creator:
   name: packet-attack-level-creator (broken)
 parity:
-  name: parity (broken)
+  name: Parity
 payment-interface:
   name: Payment Interface
 pixel-viewer:
-  name: pixel-viewer (broken)
+  name: Pixel Viewer
 python-interpreter:
   name: Python Interpreter
 regular-expression-filter:
-  name: regular-expression-filter (broken)
+  name: Regular Expression Filter
 regular-expression-search:
-  name: regular-expression-search (broken)
+  name: Regular Expresion Search
+remote-complicated:
+  name: Complicated Remote
+remote-modified:
+  name: Modified Remote
+remote-simple:
+  name: Simple Remote
 rgb-mixer:
   name: RGB Mixer
 rsa-jsencrypt:
   name: RSA jsencrypt
 rsa-key-generator:
-  name: rsa-key-generator (broken)
+  name: RSA Key Generator
 rsa-no-padding:
   name: RSA No Padding
 run-length-encoding:
@@ -127,7 +137,7 @@ trig-function-calculator:
 unexpected-error:
   name: Unexpected Error
 unicode-binary:
-  name: unicode-binary (broken)
+  name: Unicode Binary
 unicode-chars:
   name: Unicode Characters
 unicode-length:

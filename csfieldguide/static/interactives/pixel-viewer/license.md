@@ -25,16 +25,6 @@ Email: andy.belltree@gmail.com
 
 
 
-JQUERY
-----------------------------------------------------------------------------
-
-The interactive uses jQuery (available freely under the MIT license
-https://jquery.org/license/).
-
-----------------------------------------------------------------------------
-
-
-
 ZYNGA JavaScript Libraries - zynga.github.io/scroller/
 ----------------------------------------------------------------------------
 

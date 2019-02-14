@@ -2,6 +2,7 @@
 
 {% load i18n %}
 {% load static %}
+{% load render_interactive_link %}
 
 {% block title %}
   {% trans "Interactives" %}
@@ -18,9 +19,11 @@
     {% if chapter.interactives.all %}
       <div class="row">
         {% for interactive in chapter.interactives.all %}
-        <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
-          {% include "interactives/utils/interactive-link.html" %}
-        </div>
+          {% if interactive.is_interactive %}
+            <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
+            {% render_interactive_link interactive.slug %}
+            </div>
+          {% endif %}
         {% endfor %}
       </div>
     {% else %}
@@ -32,9 +35,11 @@
   {% if interactives %}
     <div class="row">
       {% for interactive in interactives %}
-        <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
-          {% include "interactives/utils/interactive-link.html" %}
-        </div>
+        {% if interactive.is_interactive %}
+          <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
+          {% render_interactive_link interactive.slug %}
+          </div>
+        {% endif %}
       {% endfor %}
     </div>
   {% else %}

@@ -1,0 +1,86 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div data-iframe-height>
+    <div class="row justify-content-center">
+      <h4 class="col-md-6 mt-2">{% trans "Check Digit Calculator" %}</h4>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="form-group col-sm-12 col-md-6">
+        <label for="interactive-checksum-calculator-number-input">{% trans "Enter number here" %}</label>
+        <input type="text" id="interactive-checksum-calculator-number-input" class="interactive-checksum-calculator-number-type form-control"></input>
+      </div>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="form-group col-sm-12 col-md-6">
+        <label for="interactive-checksum-calculator-multiplier-input">{% trans "Enter multiplers here" %}</label>
+        <input type="text" id="interactive-checksum-calculator-multiplier-input" class="interactive-checksum-calculator-number-type form-control"></input>
+      </div>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <button id="interactive-checksum-calculator-multiply" class="btn btn-primary mb-2">{% trans "Multiply" %}</button>
+      </div>
+    </div>
+
+    <p id="interactive-checksum-calculator-multiply-feedback" class="interactive-checksum-calculator-feedback text-center"></p>
+
+    <div id="interactive-checksum-calculator-calculation-controls">
+      
+      <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-6 left-align mb-2">
+          <label for="interactive-checksum-calculator-sums">{% trans "Products" %}</label>
+          <div id="interactive-checksum-calculator-sums"></div>
+        </div>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="form-group col-sm-12 col-md-6">
+          <label for="interactive-checksum-calculator-total-input">{% trans "Total for sums above" %}</label>
+          <input type="text" id="interactive-checksum-calculator-total-input" class="interactive-checksum-calculator-number-type form-control"></input>
+        </div>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="form-group col-sm-12 col-md-6">
+          <label for="interactive-checksum-calculator-modulo-input">{% trans "Remainder when divided by" %}</label>
+          <input type="text" id="interactive-checksum-calculator-modulo-input" class="interactive-checksum-calculator-number-type form-control"></input>
+        </div>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <button id="interactive-checksum-calculator-calculate" class="btn btn-primary mb-2">{% trans "Calculate" %}</button>
+        </div>
+      </div>
+      <p id="interactive-checksum-calculator-sum-feedback" class="interactive-checksum-calculator-feedback text-center"></p>
+    </div>
+
+    <div class="row justify-content-center">
+      <div id="interactive-checksum-calculator-result" class="form-group col-sm-12 col-md-6">
+        <label for="interactive-checksum-calculator-remainder">{% trans "Remainder" %}</label>
+        <input type="text" id="interactive-checksum-calculator-remainder" class="interactive-checksum-calculator-number-type form-control"></input>
+      </div>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <button id="interactive-checksum-calculator-reset" class="btn btn-danger btn-sm">{% trans "Reset" %}</button>
+      </div>
+    </div>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/checksum-calculator/css/checksum-calculator.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/checksum-calculator/js/checksum-calculator.js' %}"></script>
+{% endblock js %}

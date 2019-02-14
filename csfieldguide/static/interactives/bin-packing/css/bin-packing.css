@@ -4,13 +4,13 @@
 }
 
 .btn, .btn:hover {
-	background-color: #5f6669;
 	margin-top:10px;
 	padding: 0 0.75rem;
 	font-size: 12px;
 	line-height: 30px;
 	height: 30px;
 }
+
 .fill {
 	border-right: 1px white solid;
 }
@@ -54,14 +54,13 @@
 }
 
 .fill {
-	background-color: #008fc5;
+	background-color: #007bff;
 	display: inline-block;
-	float: left;
 	height: 40px;
 }
 
 .item {
-	background-color: #008fc5;
+	background-color: #007bff;
 	display: inline-block;
 	height: 40px;
 	margin-right: 10px;
@@ -91,11 +90,3 @@
 	width: 100%;
 	max-width: 200px;
 }
-
-[type="checkbox"]+label {
-	font-size: 0.75rem;
-	width: 100%;
-}
-
-
-

@@ -8,8 +8,8 @@
   {% trans "Computer Science Field Guide" %}
 {% endblock custom_title %}
 
-{% block body_container %}
-  <div class="jumbotron jumbotron-fluid{% if teacher_mode %} teacher-mode{% endif %}">
+{% block page_content %}
+  <div class="jumbotron jumbotron-fluid py-5">
     <div class="container text-center">
       <div class="row align-items-center">
         <div class="col-6 mx-auto col-md-4 order-md-2">
@@ -17,27 +17,84 @@
         </div>
         <div class="col-md-8 order-md-1 text-center text-md-left pr-md-5">
           <h1 class="mb-3 bd-text-purple-bright">
-            {% blocktrans trimmed %}
-              Computer Science<br>Field Guide
-            {% endblocktrans %}
+            Computer Science Field Guide
           </h1>
           <p class="lead">
-            {% blocktrans trimmed %}
-              An online interactive resource for high school students learning about computer science.
-            {% endblocktrans %}
+            An online interactive resource for high school students learning about computer science.
           </p>
-          <div class="d-flex flex-column flex-md-row lead mb-3">
-            <a href="{% url 'chapters:index' %}" class="btn btn-lg btn-outline-light">{% trans "View the chapters" %}</a>
-          </div>
+          <p>
+            <small>
+              <a class="text-white" href="http://cs-field-guide.readthedocs.io/en/latest/changelog.html">
+                Currently {{ VERSION_NUMBER }}
+              </a>
+            </small>
+          </p>
         </div>
       </div>
     </div>
   </div>
 
   <div class="container">
-    <!-- The following content is not translated yet as the homepage is to be redesigned -->
-    <p>A teacher's guide is available, read the <a href="{% url 'appendices:appendix' 'about' %}">About section</a> for more details to access this.</p>
+    <div class="row justify-content-center">
 
-    <p>This guide features interactive activities within some of the chapters. These should work with any modern browser updated in the last year, but we are continually expanding the compatibility of these. This guide is open source and <a href="https://github.com/uccser/cs-field-guide" target="_blank">available on GitHub</a>.</p>
+      <div class="col-12">
+        <div class="alert alert-warning mb-5" role="alert">
+          <h4 class="alert-heading">Welcome to the sneak peek preview!</h4>
+          <p class="mb-0">
+            This preview is still a work in progress, but allows you to view new translations, videos, and much more.
+            We will be adding all the existing website content to this new version, to release officially later in 2019.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-8 col-lg-6">
+        <div class="media mb-5">
+          <img class="align-self-start mr-3" src="{% static 'img/chapters/icons8-book-shelf-96.png' %}" alt="A stack of books">
+          <div class="media-body">
+            <h5 class="mt-0">{% trans "Chapters" %}</h5>
+            <p>
+              The Computer Science Field Guide has many chapters to inform you of the various areas of Computer Science.
+            </p>
+            <a href="{% url 'chapters:index' %}" class="btn btn-primary" role="button">{% trans "View chapters" %}</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-8 col-lg-6">
+        <div class="media mb-5">
+          <img class="align-self-start mr-3" src="{% static 'img/chapters/icons8-natural-user-interface-2-96.png' %}" alt="A finger tapping a point">
+          <div class="media-body">
+            <h5 class="mt-0">{% trans "Interactives" %}</h5>
+            <p>
+              We have many interactives throughout the website that teach many different computer science concepts.
+            </p>
+            <a href="{% url 'interactives:index' %}" class="btn btn-primary" role="button">{% trans "View interactives" %}</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-8 col-lg-6">
+        <div class="media mb-5">
+          <img class="align-self-start mr-3" src="{% static 'img/chapters/icons8-google-classroom-96.png' %}" alt="A stack of books">
+          <div class="media-body">
+            <h5 class="mt-0">{% trans "Teacher's guide" %}</h5>
+            <p>
+              If you are an educator, we recommend reading the teacher version for extra information on how to use this guide for teaching.
+            </p>
+            <a href="{% url 'general:teacher_mode_login' %}?next={{ request.path }}" class="btn btn-primary" role="button">{% trans "Switch to teacher mode" %}</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-8 col-lg-6">
+        <div class="media mb-5">
+          <img class="align-self-start mr-3" src="{% static 'img/chapters/icons8-source-code-96.png' %}" alt="A stack of books">
+          <div class="media-body">
+            <h5 class="mt-0">{% trans "Open source" %}</h5>
+            <p>
+              This project is completely open source and available on GitHub.
+            </p>
+            <a href="https://github.com/uccser/cs-field-guide" class="btn btn-primary" role="button">{% trans "View on GitHub" %}</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-{% endblock body_container %}
+{% endblock page_content %}
