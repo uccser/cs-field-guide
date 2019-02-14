@@ -1,5 +1,5 @@
-var coordinates = require('./coordinates.js');
-var matrix =  require('./matrix.js');
+//const STATIC_URL = "https://storage.googleapis.com/" + env("GOOGLE_CLOUD_STORAGE_BUCKET_NAME") + "/static/";
+//var base_path = "{{ STATIC_URL }}";
 
 /* Global variable is a dictionary of variables relating to size and position of grid and arrow */
 var interfaceSettings = {
@@ -187,8 +187,8 @@ function setUpInterface() {
     document.getElementById('x-label').style.marginTop = (containerHeight / 2) - 5 + 'px';
 
     // WTF dynamically sets topMargin because CSS doesn't want to CSS...
-    var topMargin = (windowHeight - containerHeight) / 2;
-    container.style.marginTop = topMargin + 'px';
+    //var topMargin = (windowHeight - containerHeight) / 2;
+    //container.style.marginTop = topMargin + 'px';
 
     interfaceSettings.POLYGON = polygon;
     interfaceSettings.TARGET_POLYGON = targetPolygon;
@@ -214,7 +214,7 @@ function setUpInterface() {
 
 /* Assembles the interface based on the given config */
 function assembleInterface(configFile) {
-    var filename = './config/' + configFile + '.json';
+    var filename = base_path + "interactives/2d-arrow-manipulations/config/" + configFile + ".json";
     // load the json file and assemble the interface
     get(filename).then(function(response) {
         var config = JSON.parse(response);
@@ -225,7 +225,7 @@ function assembleInterface(configFile) {
         drawArrow();
         drawTargetArrow();
     }, function(error) {
-     console.error("Failed!", error);
+        console.error("Failed!", error);
     });
 }
 
@@ -250,7 +250,7 @@ function setUpInitialDynamicArrowPosition() {
     // takes a copy of arrowShape list because otherwise pointers get in the way with updating the arrow
     configSettings.START_POSITION = arrowShape.slice(0);
     currentState.currentPosition = arrowShape.slice(0);
-    coordinates.updateInputBoxes(configSettings.START_POSITION, interfaceSettings);
+    updateInputBoxes(configSettings.START_POSITION);
 
 }
 
@@ -261,7 +261,6 @@ function setUpInitialTargetArrowPosition() {
 
 /* Translates string of coordinates into list of points with x and y attributes that fit in the svg coordinate space */
 function generateArrowShape(pointString) {
-    alert(pointString);
     var xPos = 0;
     var yPos = 1;
     var arrow = [];
@@ -367,4 +366,187 @@ function getUrlParameter(sParam) {
             return sParameterName[1] === undefined ? true : sParameterName[1];
         }
     }
+}
+
+// ########################################################################## //
+/* Functions relating to coordinates
+   Created by Hayley Van Waas
+*/
+
+/* Put the corresponding coordinate into each of the input boxes
+* Offsets the real value of the coordinate to give impression that centre of grid is position (0,0)
+* */
+function updateInputBoxes (points) {
+    var inputId = '';
+
+    // uses index to determine which input box to reference
+    for (var i = 0; i < 7; i++) { // 7 points on arrow
+        inputId = 'p' + i + '-input-x';
+        document.getElementById(inputId).value = (points[i].x - interfaceSettings.xIntercept) / interfaceSettings.squareSize;
+        inputId = 'p' + i + '-input-y';
+        document.getElementById(inputId).value = ((points[i].y - interfaceSettings.yIntercept) / interfaceSettings.squareSize) * -1;
+    }
+}
+
+
+function coordTab(inputBox) {
+    checkForValidInput(inputBox);
+    if (currentState.instantUpdate == true) {
+        getNewCoordinates();
+    }
+    removeHighlight(inputBox);
+}
+
+
+/* Gets new coordinates from *all* input boxes
+* Triggered when use clicks "update" button
+*/
+function getNewCoordinates() {
+    var inputId = '';
+
+    for (var i = 0; i < 7; i++) { // 7 points on arrow
+        var newPoint = new Point();
+
+        // Offsets the real value of the coordinate to give impression that centre of grid is position (0,0)
+        inputId = 'p' + i + '-input-x';
+        newPoint.x = (parseInt(document.getElementById(inputId).value) * interfaceSettings.squareSize) + interfaceSettings.xIntercept;
+        inputId = 'p' + i + '-input-y';
+        newPoint.y = (parseInt(document.getElementById(inputId).value) * -1 * interfaceSettings.squareSize) + interfaceSettings.yIntercept;
+
+        currentState.currentPosition[i] = newPoint;
+    }
+    drawArrow();
+}
+
+
+/* Highlights a point on the arrow
+* Input: id of input row hovered over by mouse
+* */
+function highlight(element) {
+    circle = document.getElementById(element.parentNode.getAttribute("node-id"));
+    circle.style.fill = '#FF7043';
+}
+
+
+/* Resets colour of point on the arrow
+* Input: id of input row hovered over by mouse
+* */
+function removeHighlight(element) {
+    circle = document.getElementById(element.parentNode.getAttribute("node-id"));
+    circle.style.fill = '#000';
+}
+
+// ########################################################################## //
+/* Functions relating to matrices
+   Created by Hayley Van Waas
+*/
+
+function matrixTab(matrixInputBox) {
+    checkForValidInput(matrixInputBox);
+
+    // round floats to two decimal places
+    var num = matrixInputBox.value;
+    if (num.indexOf('.') != -1) { //is a float
+        num = parseFloat(num).toFixed(2);
+    }
+    matrixInputBox.value = num;
+
+    if (currentState.instantUpdate == true) {
+        matrixOperations();
+    }
+}
+
+
+/* Sets up order of matrix operations and moves the arrow to new position
+*/
+function matrixOperations(test) {
+    var matrixElements = document.getElementById('matrices').children;
+    var productMatrix = [];
+    for (var i = 0; i < 7; i++) {
+        var newPoint = new Point();
+        newPoint.x = configSettings.START_POSITION[i].x + interfaceSettings.xIntercept - interfaceSettings.initialXIntercept;
+        newPoint.y = configSettings.START_POSITION[i].y + interfaceSettings.yIntercept - interfaceSettings.initialYIntercept;
+        productMatrix[i] = newPoint;
+    }
+
+    for (var i = 0; i < matrixElements.length; i++) {
+        var element = matrixElements[i];
+
+        if (element.style.display == 'block') {
+            if (element.id.indexOf('scale') != -1) {
+                productMatrix = scale(element.id.split('-')[1], productMatrix); // nasty hard coding
+            } else {
+                productMatrix = translate(element.id.split('-')[1], productMatrix);
+            }
+        }
+    }
+
+    drawArrow();
+}
+
+
+/* Scale the arrow according to the user's inputted matrix
+*/
+function scale(id, productMatrix) {
+    currentState.scaleMatrix[0] = parseFloat(document.getElementById('matrix-' + id + '-scale-row-0-col-0').value);
+    currentState.scaleMatrix[1] = parseFloat(document.getElementById('matrix-' + id + '-scale-row-0-col-1').value);
+    currentState.scaleMatrix[2] = parseFloat(document.getElementById('matrix-' + id + '-scale-row-1-col-0').value);
+    currentState.scaleMatrix[3] = parseFloat(document.getElementById('matrix-' + id + '-scale-row-1-col-1').value);
+
+    for (var i = 0; i < 7; i++) { // 7 points on arrow
+        var newPoint = new Point();
+        var currPoint = productMatrix[i];
+
+        newPoint.x = ((currPoint.x - interfaceSettings.xIntercept)/interfaceSettings.squareSize) * currentState.scaleMatrix[0] + ((currPoint.y - interfaceSettings.yIntercept)/interfaceSettings.squareSize) * currentState.scaleMatrix[1] * -1;
+        newPoint.y = ((currPoint.x - interfaceSettings.xIntercept)/interfaceSettings.squareSize) * currentState.scaleMatrix[2] + ((currPoint.y - interfaceSettings.yIntercept)/interfaceSettings.squareSize) * currentState.scaleMatrix[3] * -1;
+
+        newPoint.x = (newPoint.x * interfaceSettings.squareSize) + interfaceSettings.xIntercept;
+        newPoint.y = (newPoint.y * interfaceSettings.squareSize * -1) + interfaceSettings.yIntercept;
+        currentState.currentPosition[i] = newPoint;
+    }
+    return currentState.currentPosition;
+}
+
+
+/* Translate the arrow according to the user's inputted matrix
+*/
+function translate(id, productMatrix) {
+    currentState.translateMatrix[0] = parseFloat(document.getElementById('matrix-' + id + '-translate-row-0-col-0').value) * interfaceSettings.squareSize;
+    currentState.translateMatrix[1] = parseFloat(document.getElementById('matrix-' + id + '-translate-row-1-col-0').value) * interfaceSettings.squareSize;
+
+    for (var i = 0; i < 7; i++) { // 7 points on arrow
+        var newPoint = new Point();
+        var currPoint = productMatrix[i];
+
+        newPoint.x = currPoint.x + currentState.translateMatrix[0];// + interfaceSettings.xIntercept;
+        newPoint.y = currPoint.y - currentState.translateMatrix[1];// + interfaceSettings.yIntercept;
+
+        currentState.currentPosition[i] = newPoint;
+    }
+    return currentState.currentPosition;
+}
+
+
+/* Move the arrow back to the start position and set the matrices to the default values
+*/
+function resetMatrices() {
+    // place the arrow back in the start position
+    reset();
+
+    // reset to default values of matrices
+    document.getElementById('matrix-first-scale-row-0-col-0').value = 1;
+    document.getElementById('matrix-first-scale-row-0-col-1').value = 0;
+    document.getElementById('matrix-first-scale-row-1-col-0').value = 0;
+    document.getElementById('matrix-first-scale-row-1-col-1').value = 1;
+
+    document.getElementById('matrix-first-translate-row-0-col-0').value = 0;
+    document.getElementById('matrix-first-translate-row-1-col-0').value = 0;
+
+    document.getElementById('matrix-second-scale-row-0-col-0').value = 1;
+    document.getElementById('matrix-second-scale-row-0-col-1').value = 0;
+    document.getElementById('matrix-second-scale-row-1-col-0').value = 0;
+    document.getElementById('matrix-second-scale-row-1-col-1').value = 1;
+
+    document.getElementById('matrix-second-translate-row-0-col-0').value = 0;
+    document.getElementById('matrix-second-translate-row-1-col-0').value = 0;
 }

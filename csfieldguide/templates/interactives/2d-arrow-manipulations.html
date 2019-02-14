@@ -4,7 +4,7 @@
 {% load static %}
 
 {% block html %}
-  <div class="row mb-3 interactive pixel-grid">
+  <div class="row mb-3 pixel-grid">
     <div class="col" role="group" id="pixel-grid">
       <title>2D Arrow Manipulations</title>
       <div id="container">
@@ -144,5 +144,8 @@
 {% endblock css %}
 
 {% block js %}
+  <script type="text/javascript">
+    var base_path = "{{ STATIC_URL }}";
+  </script>
   <script type="text/javascript" src="{% static 'interactives/2d-arrow-manipulations/js/2d-arrow-manipulations.js' %}"></script>
 {% endblock js %}
