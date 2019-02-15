@@ -55,16 +55,16 @@ $(document).ready(function() {
     var configFile = getUrlParameter('config') || "coord-translate";
     assembleInterface(configFile);
 
-    $('#get-new-coordinates-button').on('click', function () {
+    $('#get-new-coordinates-button').on('click', function() {
         getNewCoordinates();
     });
-    $('#reset-coordinates-button').on('click', function () {
+    $('#reset-coordinates-button').on('click', function() {
         reset();
     });
-    $('#matrix-operations-button').on('click', function () {
+    $('#matrix-operations-button').on('click', function() {
         matrixOperations();
     });
-    $('#reset-matrices-button').on('click', function () {
+    $('#reset-matrices-button').on('click', function() {
         resetMatrices();
     });
     registerNodeHighlights();
@@ -436,6 +436,43 @@ function registerOnBlurEvents() {
     $('#p7-input-y').on('blur', function () {
         coordTab('c7', 'y');
     });
+
+    $('#matrix-first-scale-row-0-col-0').on('blur', function () {
+        matrixTab('#matrix-first-scale-row-0-col-0');
+    });
+    $('#matrix-first-scale-row-0-col-1').on('blur', function () {
+        matrixTab('#matrix-first-scale-row-0-col-1');
+    });
+    $('#matrix-first-scale-row-1-col-0').on('blur', function () {
+        matrixTab('#matrix-first-scale-row-1-col-0');
+    });
+    $('#matrix-first-scale-row-1-col-1').on('blur', function () {
+        matrixTab('#matrix-first-scale-row-1-col-1');
+    });
+    $('#matrix-first-translate-row-0-col-0').on('blur', function () {
+        matrixTab('#matrix-first-translate-row-0-col-0');
+    });
+    $('#matrix-first-translate-row-1-col-0').on('blur', function () {
+        matrixTab('#matrix-first-translate-row-1-col-0');
+    });
+    $('#matrix-second-scale-row-0-col-0').on('blur', function () {
+        matrixTab('#matrix-first-scale-row-0-col-0');
+    });
+    $('#matrix-second-scale-row-0-col-1').on('blur', function () {
+        matrixTab('#matrix-first-scale-row-0-col-1');
+    });
+    $('#matrix-second-scale-row-1-col-0').on('blur', function () {
+        matrixTab('#matrix-first-scale-row-1-col-0');
+    });
+    $('#matrix-second-scale-row-1-col-1').on('blur', function () {
+        matrixTab('#matrix-first-scale-row-1-col-1');
+    });
+    $('#matrix-second-translate-row-0-col-0').on('blur', function () {
+        matrixTab('#matrix-first-translate-row-0-col-0');
+    });
+    $('#matrix-second-translate-row-1-col-0').on('blur', function () {
+        matrixTab('#matrix-first-translate-row-1-col-0');
+    });
 }
 
 /* Registers the node highlighting radio buttons */
@@ -555,15 +592,15 @@ function removeHighlight(node) {
  * Created by Hayley Van Waas
  */
 
-function matrixTab(matrixInputBox) {
-    checkForValidInput(matrixInputBox);
+function matrixTab(id) {
+    checkForValidInput(id);
 
     // round floats to two decimal places
-    var num = matrixInputBox.value;
+    var num = $(id).val();
     if (num.indexOf('.') != -1) { //is a float
         num = parseFloat(num).toFixed(2);
     }
-    matrixInputBox.value = num;
+    $(id).val(num);
 
     if (instantUpdateToggle() == true) {
         matrixOperations();
@@ -644,19 +681,19 @@ function resetMatrices() {
     reset();
 
     // reset to default values of matrices
-    document.getElementById('matrix-first-scale-row-0-col-0').value = 1;
-    document.getElementById('matrix-first-scale-row-0-col-1').value = 0;
-    document.getElementById('matrix-first-scale-row-1-col-0').value = 0;
-    document.getElementById('matrix-first-scale-row-1-col-1').value = 1;
+    $('#matrix-first-scale-row-0-col-0').val(1);
+    $('#matrix-first-scale-row-0-col-1').val(0);
+    $('#matrix-first-scale-row-1-col-0').val(0);
+    $('#matrix-first-scale-row-1-col-1').val(1);
 
-    document.getElementById('matrix-first-translate-row-0-col-0').value = 0;
-    document.getElementById('matrix-first-translate-row-1-col-0').value = 0;
+    $('#matrix-first-translate-row-0-col-0').val(0);
+    $('#matrix-first-translate-row-1-col-0').val(0);
 
-    document.getElementById('matrix-second-scale-row-0-col-0').value = 1;
-    document.getElementById('matrix-second-scale-row-0-col-1').value = 0;
-    document.getElementById('matrix-second-scale-row-1-col-0').value = 0;
-    document.getElementById('matrix-second-scale-row-1-col-1').value = 1;
+    $('#matrix-second-scale-row-0-col-0').val(1);
+    $('#matrix-second-scale-row-0-col-1').val(0);
+    $('#matrix-second-scale-row-1-col-0').val(0);
+    $('#matrix-second-scale-row-1-col-1').val(1);
 
-    document.getElementById('matrix-second-translate-row-0-col-0').value = 0;
-    document.getElementById('matrix-second-translate-row-1-col-0').value = 0;
+    $('#matrix-second-translate-row-0-col-0').val(0);
+    $('#matrix-second-translate-row-1-col-0').val(0);
 }
