@@ -23,8 +23,3 @@ def set_teacher_mode(request, mode):
     """
     request.session["teacher-mode"] = mode
     return redirect(request.GET.get("next", "general:index"), permanent=False)
-
-
-def redirect_changelog(request):
-    """Redirects csfieldguide.org.nz/further-information/releases.html to the changelog docs."""
-    return redirect("https://cs-field-guide.readthedocs.io/en/latest/changelog.html")

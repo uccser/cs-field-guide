@@ -35,11 +35,6 @@ urlpatterns = [
         RedirectView.as_view(permanent=True, pattern_name="interactives:index"),
     ),
     url(
-        r"^further-information/releases.html$",
-        views.redirect_changelog,
-        name="redirect_changelog"
-    ),
-    url(
         r"^further-information/(?P<appendix_slug>[-\w]+).html$",
         RedirectView.as_view(permanent=True, pattern_name="appendices:appendix"),
     ),
