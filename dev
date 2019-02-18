@@ -1,0 +1,4 @@
+#!/bin/bash
+# Calls csfg script with same parameters.
+
+./csfg "$@"

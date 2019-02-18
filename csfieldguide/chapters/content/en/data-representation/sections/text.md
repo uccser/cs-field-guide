@@ -8,14 +8,14 @@ In this section, we will look at some common ones and then look at the pros and 
 We saw earlier that 64 unique patterns can be made using 6 dots in Braille.
 A dot corresponds to a bit, because both dots and bits have 2 different possible values.
 
-Count how many different characters -- upper-case letters, lower-case letters, numbers, and symbols -- that you could type into a text editor using your keyboard.
+Count how many different characters &ndash; upper case letters, lower case letters, numbers, and symbols &ndash; that you could type into a text editor using your keyboard.
 (Don’t forget to count both of the symbols that share the number keys, and the symbols to the side that are for punctuation!)
 
 {panel type="jargon-buster"}
 
 # Characters
 
-The collective name for upper-case letters, lower-case letters, numbers, and symbols is *characters* e.g. a, D, 1, h, 6, \*, ], and ~ are all characters.
+The collective name for upper case letters, lower case letters, numbers, and symbols is *characters* e.g. a, D, 1, h, 6, \*, ], and ~ are all characters.
 Importantly, a space is also a character.
 
 {panel end}
@@ -39,9 +39,9 @@ Where possible, we prefer to deal with  full bytes (8 bits) on a computer, this 
 
 Here is a table that shows the patterns of bits that ASCII uses for each of the characters.
 
-| Binary  | Char  | Binary  | Char | Binary  | Char  |
+| Binary  | Char  | Binary  | Char &nbsp; &nbsp; | Binary  | Char  |
 |---------|-------|---------|------|---------|-------|
-| 0100000 | Space | 1000000 | @    | 1100000 | `     |
+| 0100000 &nbsp; &nbsp; | Space &nbsp; &nbsp; | 1000000 &nbsp; &nbsp; | @    | 1100000 &nbsp; &nbsp; | `     |
 | 0100001 | !     | 1000001 | A    | 1100001 | a     |
 | 0100010 | "     | 1000010 | B    | 1100010 | b     |
 | 0100011 | #     | 1000011 | C    | 1100011 | c     |
@@ -74,7 +74,9 @@ Here is a table that shows the patterns of bits that ASCII uses for each of the 
 | 0111110 | >     | 1011110 | ^    | 1111110 | ~     |
 | 0111111 | ?     | 1011111 | _    | 1111111 | Delete |
 
-For example, the letter c (lower-case) in the table has the pattern "01100011" (the 0 at the front is just extra padding to make it up to 8 bits).
+<br>
+
+For example, the letter c (lower case) in the table has the pattern "01100011" (the 0 at the front is just extra padding to make it up to 8 bits).
 The letter o has the pattern "01101111".
 You could write a word out using this code, and if you give it to someone else, they should be able to decode it exactly.
 
@@ -87,7 +89,7 @@ Exchanging short messages in code will force students to use the table, and they
 {panel end}
 
 Computers can represent pieces of text with sequences of these patterns, much like Braille does.
-For example, the word "computers" (all lower-case) would be 01100011 01101111 01101101 01110000 01110101 01110100 01100101 01110010 01110011.
+For example, the word "computers" (all lower case) would be 01100011 01101111 01101101 01110000 01110101 01110100 01100101 01110010 01110011.
 This is because "c" is "01100011", "o" is "01101111", and so on.
 Have a look at the ASCII table above to check that we are right!
 
@@ -109,7 +111,7 @@ Nowadays ASCII has been supplanted by a code called "UTF-8", which happens to be
 Have a go at the following ASCII exercises:
 
 - How would you represent "science" in ASCII?
-- How would you represent "Wellington" in ASCII? (note that it starts with an upper-case "W")
+- How would you represent "Wellington" in ASCII? (note that it starts with an upper case "W")
 - How would you represent "358" in ASCII (it is three characters, even though it looks like a number)
 - How would you represent "Hello, how are you?" (look for the comma, question mark, and space characters in ASCII table)
 
@@ -129,7 +131,7 @@ These are the answers.
 
 Note that the text "358" is treated as 3 characters in ASCII, which may be confusing, as the text "358" is different to the number 358! You may have encountered this distinction in a spreadsheet e.g. if a cell starts with an inverted comma in Excel, it is treated as text rather than a number.
 One place this comes up is with phone numbers; if you type 027555555 into a spreadsheet as a number, it will come up as 27555555, but as text the 0 can be displayed.
-In fact, phone numbers aren't really just numbers because a leading zero can be important, as they can contain other characters -- for example, +64 3 555 1234 extn. 1234.
+In fact, phone numbers aren't really just numbers because a leading zero can be important, as they can contain other characters &ndash; for example, +64 3 555 1234 extn. 1234.
 
 {panel end}
 
@@ -162,7 +164,7 @@ To solve this problem, we use a standard called **Unicode**.
 Unicode is a **character set** with around 120,000 different characters, in many different languages, current and historic.
 Each character has a unique number assigned to it, making it easy to identify.
 
-Unicode itself is not a representation -- it is a character set.
+Unicode itself is not a representation &ndash; it is a character set.
 In order to represent Unicode characters as bits, a Unicode **encoding scheme** is used.
 The Unicode encoding scheme tells us how each number (which corresponds to a Unicode character) should be represented with a pattern of bits.
 
@@ -187,7 +189,7 @@ The remainder of the text representation section will look at some of these Unic
 
 UTF-32 is a **fixed length** Unicode encoding scheme.
 The representation for each character is simply its number converted to a 32 bit binary number.
-Leading zeroes are used if there are not enough bits (just like how you can represent 254 as a 4 digit decimal number -- 0254).
+Leading zeroes are used if there are not enough bits (just like how you can represent 254 as a 4 digit decimal number &ndash; 0254).
 32 bits is a nice round number on a computer, often referred to as a word (which is a bit confusing, since we can use UTF-32 characters to represent English words!)
 
 For example, the character **H** in UTF-32 would be:
@@ -227,9 +229,9 @@ The bits are simply the binary number form of the character number.
 
 ASCII actually took the same approach.
 Each ASCII character has a number between 0 and 255, and the representation for the character the number converted to an 8 bit binary number.
-ASCII is also a fixed length encoding scheme -- every character in ASCII is represented using 8 bits.
+ASCII is also a fixed length encoding scheme &ndash; every character in ASCII is represented using 8 bits.
 
-In practice, UTF-32 is rarely used -- you can see that it's pretty wasteful of space.
+In practice, UTF-32 is rarely used &ndash; you can see that it's pretty wasteful of space.
 UTF-8 and UTF-16 are both variable length encoding schemes, and very widely used.
 We will look at them next.
 
@@ -240,10 +242,10 @@ We will look at them next.
 1. What is the largest number that can be represented with 32 bits?
    (In both decimal and binary).
 
-2. The largest number in Unicode that has a character assigned to it is not actually the largest possible 32 bit number -- it is 00000000 00010000 11111111 11111111.
+2. The largest number in Unicode that has a character assigned to it is not actually the largest possible 32 bit number &ndash; it is 00000000 00010000 11111111 11111111.
    What is this number in decimal?
 
-3. Most numbers that can be made using 32 bits do not have a Unicode character attached to them -- there is a lot of wasted space.
+3. Most numbers that can be made using 32 bits do not have a Unicode character attached to them &ndash; there is a lot of wasted space.
    There are good reasons for this, but if you had a shorter number that could represent any character, what is the minimum number of bits you would need, given that there are currently around 120,000 Unicode characters?
 
 {panel end}
@@ -253,7 +255,7 @@ We will look at them next.
 # Answers to above challenge
 
 1. The largest number that can be represented using 32 bits is 4,294,967,295 (around 4.3 billion).
-   You might have seen this number before -- it is the largest unsigned integer that a 32 bit computer can easily represent in programming languages such as C.
+   You might have seen this number before &ndash; it is the largest unsigned integer that a 32 bit computer can easily represent in programming languages such as C.
 
 2. The decimal number for the largest character is 1,114,111.
 
@@ -298,30 +300,33 @@ The Unicode character's number is also displayed.
 
 So how does UTF-8 actually work? Use the following process to do what the interactive is doing and convert characters to UTF-8 yourself.
 
-1. Lookup the Unicode number of your character.
+**Step 1.** Lookup the Unicode number of your character.
 
-2. Convert the Unicode number to a binary number, using as **few** bits as necessary.
-   Look back to the section on binary numbers if you cannot remember how to convert a number to binary.
+**Step 2.** Convert the Unicode number to a binary number, using as **few** bits as necessary.
+Look back to the section on binary numbers if you cannot remember how to convert a number to binary.
 
-3. Count how many bits are in the binary number, and choose the correct pattern to use, based on how many bits there were.
-   Step 4 will explain how to use the pattern.
+**Step 3.** Count how many bits are in the binary number, and choose the correct pattern to use, based on how many bits there were.
+Step 4 will explain how to use the pattern.
 
-   ```
-   7  or fewer bits: 0xxxxxxx
-   11 or fewer bits: 110xxxxx 10xxxxxx
-   16 or fewer bits: 1110xxxx 10xxxxxx 10xxxxxx
-   21 or fewer bits: 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx
-   ```
+```
+7  or fewer bits: 0xxxxxxx
+11 or fewer bits: 110xxxxx 10xxxxxx
+16 or fewer bits: 1110xxxx 10xxxxxx 10xxxxxx
+21 or fewer bits: 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx
+```
 
-4. Replace the x's in the pattern with the bits of the binary number you converted in 2.
-   If there are more x's than bits, replace extra left-most x's with 0's.
+**Step 4.** Replace the x's in the pattern with the bits of the binary number you converted in Step 2.
+If there are more x's than bits, replace extra left-most x's with 0's.
 
 For example, if you wanted to find out the representation for **貓** (cat in Chinese), the steps you would take would be as follows.
 
-1. Determine that the Unicode number for **貓** is **35987**.
-2. Convert **35987** to binary -- giving **10001100 10010011**.
-3. Count that there are **16** bits, and therefore the third pattern **1110xxxx 10xxxxxx 10xxxxx** should be used.
-4. Substitute the bits into the pattern to replace the x's -- **11101000 10110010 10010011**.
+**Step 1.** Determine that the Unicode number for **貓** is **35987**.
+
+**Step 2.** Convert **35987** to binary &ndash; giving **10001100 10010011**.
+
+**Step 3.** Count that there are **16** bits, and therefore the third pattern **1110xxxx 10xxxxxx 10xxxxx** should be used.
+
+**Step 4.** Substitute the bits into the pattern to replace the x's &ndash; **11101000 10110010 10010011**.
 
 Therefore, the representation for **貓** is **11101000 10110010 10010011** using UTF-8.
 
@@ -342,12 +347,14 @@ We have looked at ASCII, UTF-32, UTF-8, and UTF-16.
 
 The following table summarises what we have said so far about each representation.
 
-Representation | Variable or Fixed | Bits per Character | Real world Usage
+Representation &nbsp; &nbsp; &nbsp; | Variable or Fixed &nbsp; &nbsp; &nbsp; | Bits per Character &nbsp; &nbsp; &nbsp; | Real world Usage
 --- | --- | --- | ---
 *ASCII* | Fixed Length | 8 bits | No longer widely used
 *UTF-8* | Variable Length | 8, 16, 24, or 32 bits | Very widely used
 *UTF-16* | Variable Length | 16 or 32 bits | Widely used
 *UTF-32* | Fixed Length | 32 bits | Rarely used
+
+<br>
 
 In order to compare and evaluate them, we need to decide what it means for a representation to be "good".
 Two useful criteria are:
@@ -388,7 +395,9 @@ Start by reading the explanation below to ensure you understand what we mean by 
 
 {video url="https://www.youtube.com/watch?v=L-v4Awj_p7g"}
 
-If you *only* wanted to represent the 26 letters of the alphabet, and weren’t worried about upper-case or lower-case, you could get away with using just 5 bits, which allows for up to 32 different patterns.
+<br>
+
+If you *only* wanted to represent the 26 letters of the alphabet, and weren’t worried about upper case or lower case, you could get away with using just 5 bits, which allows for up to 32 different patterns.
 
 You might have exchanged notes which used 1 for "a", 2 for "b", 3 for "c", all the way up to 26 for "z".
 We can convert those numbers into 5 digit binary numbers.

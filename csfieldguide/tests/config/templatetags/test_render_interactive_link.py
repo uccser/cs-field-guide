@@ -40,13 +40,6 @@ class RenderInteractiveLinkTest(BaseTestWithDB):
             "{% load render_interactive_link %}\n{% render_interactive_link %}"
         )
 
-    def test_render_interactive_link_two_parameters(self):
-        self.assertRaises(
-            template.TemplateSyntaxError,
-            self.render_template,
-            "{% load render_interactive_link %}\n{% render_interactive_link param1 param2 %}"
-        )
-
     def test_render_interactive_link_with_interactive_parameter(self):
         interactive = self.interactive_test_data.create_interactive(3)
         context = {"interactive": interactive}
@@ -78,4 +71,15 @@ class RenderInteractiveLinkTest(BaseTestWithDB):
             self.render_template,
             "{% load render_interactive_link %}\n{% render_interactive_link section_chapter.chapter %}",
             context
+        )
+
+    def test_render_interactive_link_with_question_mark(self):
+        self.interactive_test_data.create_interactive(2)
+        rendered = self.render_template(
+            "{% load render_interactive_link %}\n \
+            {% render_interactive_link 'interactive-2' parameters='?parameter' %}",
+        )
+        self.assertHTMLEqual(
+            "<button>Interactive 2</button>",
+            rendered
         )

@@ -48,6 +48,11 @@ $(document).ready(function(){
     loadImage();
   });
 
+  // When user chooses own image to load
+  $('#image-input').change(function() {
+    loadImageDialog(this);
+  });
+
   // When user changes image size
   $('#interactive-image-bit-comparer-image-size').change(function() {
     ImageBitComparer.scale_factor = $("#interactive-image-bit-comparer-image-size").val();

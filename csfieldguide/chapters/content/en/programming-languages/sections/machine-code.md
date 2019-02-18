@@ -43,7 +43,7 @@ And if you don’t really understand the program, that’s also fine because man
 ```
 .data
 str:  .asciiz "\nHello World!\n"
-# You can change what is between the  quotes if you like
+# You can change what is between the quotes if you like
 
 .text
 .globl main
@@ -51,7 +51,7 @@ str:  .asciiz "\nHello World!\n"
 main:
 # Do the addition
 # For this, we first need to put the values
-# to add into registers  ($t0 and $t1)
+# to add into registers ($t0 and $t1)
 # You can change the 30 below to another value
 li $t0, 30
 # You can change the 20 below to another value
@@ -87,11 +87,11 @@ jr $ra
 
 You can run this program using a MIPS emulator using this interactive:
 
-{interactive slug="mips-assembler" type="whole-page" text="MIPS Assembler" file-type="php"}
+{interactive slug="mips-assembler" type="whole-page" text="MIPS Assembler"}
 
 Copy and paste the output in the "Assembler Output" box into the box in this simulator interactive:
 
-{interactive slug="mips-simulator" type="whole-page" text="MIPS Simulator" file-type="php"}
+{interactive slug="mips-simulator" type="whole-page" text="MIPS Simulator"}
 
 Once you have got the program working, try changing the values that are added.
 The comments tell you where these numbers that can be changed are.
@@ -152,7 +152,7 @@ main:
 start_loop:
   # This says that if the values in $t0 and $t1 are the same,
   # it should jump down to the end_loop label. This is the
-  # main loop condition.
+  # main loop condition
   beq $t0, $t1, end_loop
   # These three lines prepare for and print the current int
   # It must be moved into $a0 for the printing

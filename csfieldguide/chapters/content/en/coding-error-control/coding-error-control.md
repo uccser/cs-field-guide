@@ -10,16 +10,6 @@ Details are in the [Card flip magic section](http://csunplugged.org/error-detect
 
 {panel end}
 
-{video url="https://www.youtube.com/embed/OXz64qCjZ6k?rel=0"}
-
-The parity magic trick (in the video above) enables the magician to detect which card out of dozens has been flipped over while they weren't looking.
-The magic in the trick is actually computer science, using the same kind of technique that computers use to detect and correct errors in data.
-We will talk about how it works in the next section.
-
-The same thing is happening to data stored on computers — while you (or the computer) is looking away, some of it might accidentally change because of a minor fault.
-When the computer reads the data, you don't want it to just use the incorrect values.
-At the least you want it to detect that something has gone wrong, and ideally it should do what the magician did, and put it right.
-
 This chapter is about guarding against errors in data in its many different forms — data stored on a harddrive, on a CD, on a floppy disk, on a solid state drive (such as that inside a cellphone, camera, or MP3 player), data currently in RAM (particularly on servers where the data correctness is critical), data going between the RAM and hard drive or between an external hard drive and the internal hard drive, data currently being processed in the processor or data going over a wired or wireless network such as from your computer to a server on the other side of the world.
 It even includes data such as the barcodes printed on products or the number on your credit card.
 

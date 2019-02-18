@@ -56,7 +56,7 @@ For more information about RGB displays, see [RGB on Wikipedia](https://en.wikip
 
 ## Describing a colour with numbers
 
-Because a colour is simply made up of amounts of the primary colours -- red, green and blue -- three numbers can be used to specify how much of each of these primary colours is needed to make the overall colour.
+Because a colour is simply made up of amounts of the primary colours (red, green and blue), three numbers can be used to specify how much of each of these primary colours is needed to make the overall colour.
 
 {panel type="jargon-buster"}
 
@@ -76,7 +76,7 @@ Those numbers tell the computer how fully to turn on each of the primary colour 
 If red was set to 0, that means the red "light" is completely off.
 If the red "light" was set to 255, that would mean the "light" was fully on.
 
-With 256 possible values for each of the three primary colours (don't forget to count 0!), that gives 256 x 256 x 256 = 16,777,216 possible colours -- more than the human eye can detect!
+With 256 possible values for each of the three primary colours (don't forget to count 0!), that gives 256 x 256 x 256 = 16,777,216 possible colours &ndash; more than the human eye can detect!
 
 {panel type="challenge"}
 
@@ -115,8 +115,8 @@ With 256 different possible values for the amount of each primary colour, this m
 
 \( 2^8 = 2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2 = 256 \)
 
-The smallest number that can be represented using 8 bits is 00000000 -- which is 0.
-And the largest number that can be represented using 8 bits is 11111111 -- which is 255.
+The smallest number that can be represented using 8 bits is 00000000 &ndash; which is 0.
+And the largest number that can be represented using 8 bits is 11111111 &ndash; which is 255.
 
 Because there are three primary colours, each of which will need 8 bits to represent each of its 256 different possible values, we need **24 bits in total** to represent a colour.
 
@@ -254,7 +254,7 @@ This is one of the big tradeoffs in data representation: do you allocate less sp
 
 The number of bits used to represent the colours of pixels in a particular image is sometimes referred to as its "colour depth" or "bit depth".
 For example, an image or display with a colour depth of 8-bits has a choice of 256 colours for each pixel.
-There is [more information about this in Wikipedia](https://en.wikipedia.org/wiki/Color_depth).
+There is [more information about this on Wikipedia](https://en.wikipedia.org/wiki/Color_depth).
 Drastically reducing the bit depth of an image can make it look very strange; sometimes this is used as a special effect called "posterisation" (ie. making it look like a poster that has been printed with just a few colours).
 
 {panel end}
@@ -277,7 +277,7 @@ In which is it not?
 In which would you actually care about the colours in the image?
 In which situations is colour actually not necessary (i.e. when are we fine with two colours)?
 
-{interactive slug="image-bit-comparer" type="whole-page" text="Image Bit Comparer"}
+{interactive slug="image-bit-comparer" type="whole-page"}
 
 {panel type="additional-information"}
 

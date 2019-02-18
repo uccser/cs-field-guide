@@ -17,7 +17,7 @@
   <p>{% trans "The following chapters cover key topics within Computer Science." %}</p>
 
   {% if chapters %}
-    <div class="row justify-content-between">
+    <div class="row justify-content-start">
       {% for chapter in chapters %}
         <div class="col-12 col-md-6 col-lg-4 mb-4">
           <a class="link-item{% if not chapter.translation_available %} unavailable{% endif %}" href="{% url 'chapters:chapter' chapter.slug %}">
@@ -30,6 +30,9 @@
         </div>
       {% endfor %}
     </div>
+    <p class="lead text-center my-5">
+      More chapters coming soon...
+    </p>
   {% else %}
     <p>No chapters are available.</p>
   {% endif %}
