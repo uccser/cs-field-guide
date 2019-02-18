@@ -7,6 +7,10 @@ body, html, svg {
   font-size: 14px;
 }
 
+div#arrow-manipulation {
+  min-height: 96vh;
+}
+
 div#warning {
   display: none;
   padding: 10px;
@@ -28,6 +32,12 @@ div#warning label {
   }
 }
 
+@media (max-height: 600px) {
+  div#warning {
+    display: block;
+  }
+}
+
 label#y-label, label#x-label {
   font-size: 25px;
   color: white;
@@ -35,7 +45,10 @@ label#y-label, label#x-label {
 
 label#x-label {
   float: right;
-  margin-right: 10px;
+}
+
+label#y-label {
+  margin-left: 1.5rem;
 }
 
 h1 {

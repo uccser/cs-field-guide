@@ -315,9 +315,8 @@ function setUpInterface() {
     container.style.width = containerWidth + 'px';
     container.style.height = containerHeight + 'px';
 
-    // place y and x labels to edge of grid
-    document.getElementById('y-label').style.marginLeft = (containerWidth / 2) + 5 + 'px';
-    document.getElementById('x-label').style.marginTop = (containerHeight / 2) - 5 + 'px';
+    // Position x label, the y label is done automatically
+    document.getElementById('x-label').style.marginTop = (containerHeight / 2) - 50 + 'px';
 
     // WTF dynamically sets topMargin because CSS doesn't want to CSS...
     //var topMargin = (windowHeight - containerHeight) / 2;
@@ -542,16 +541,16 @@ function getNewCoordinates() {
 
 
 /* Highlights a point on the arrow
- * Input: id of input row hovered over by mouse
+ * Input: id of selected point
  */
 function highlight(node) {
     circle = document.getElementById(node);
-    circle.style.fill = '#FF7043';
+    circle.style.fill = '#FF1493';
 }
 
 
 /* Resets colour of point on the arrow
- * Input: id of input row hovered over by mouse
+ * Input: id of selected point
  */
 function removeHighlight(node) {
     circle = document.getElementById(node);

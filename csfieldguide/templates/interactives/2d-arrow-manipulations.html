@@ -4,12 +4,12 @@
 {% load static %}
 
 {% block html %}
-  <div class="row mb-3 pixel-grid">
+  <div class="row mb-3">
     <div class="col" role="group">
-      <title>2D Arrow Manipulations</title>
+      <title>{% trans '2D Arrow Manipulations' %}</title>
       <div id="container">
         <div id="warning">
-          <label>This interactive is designed for screens larger than 600px wide.</label>
+          <label>{% trans 'This interactive is designed for screens larger than 600x600px.' %}</label>
         </div>
       
         <svg width="100%" height="100%">
@@ -23,123 +23,133 @@
           <circle id="c5" cx="0" cy="0" r="3"/>
           <circle id="c6" cx="0" cy="0" r="3"/>
         </svg>
-      
-        <label id="y-label">y</label>
-        <label id="x-label">x</label>
-      
-        <div id="instructions">
-          <h1 id="title"></h1>
-          <p id="task"></p>
-        </div>
-      
-        <div id="modules">
-          <div id="coordinates">
-            <div id="heading"><p>x</p><p>y</p><p>highlight</p></div>
-            <div node-id="c0">
-              <input id="p0-input-x"/>
-              <input id="p0-input-y"/>
-              <input type="radio" name="highlight-radios" id="c0-check">
+        
+        <div id="arrow-manipulation" class="container-fluid">
+          <div class="row justify-content-center">
+            <label id="y-label">y</label>
+          </div>
+        
+          <div class="row">
+            <div class="col">
+              <div id="instructions">
+                <h1 id="title"></h1>
+                <p id="task"></p>
+              </div>
+          
+              <div id="modules">
+                <div id="coordinates">
+                  <div id="heading"><p>x</p><p>y</p><p>{% trans 'highlight' %}</p></div>
+                  <div node-id="c0">
+                    <input id="p0-input-x"/>
+                    <input id="p0-input-y"/>
+                    <input type="radio" name="highlight-radios" id="c0-check">
+                  </div>
+                  <div node-id="c1">
+                    <input id="p1-input-x"/>
+                    <input id="p1-input-y"/>
+                    <input type="radio" name="highlight-radios" id="c1-check">
+                  </div>
+                  <div node-id="c2">
+                    <input id="p2-input-x"/>
+                    <input id="p2-input-y"/>
+                    <input type="radio" name="highlight-radios" id="c2-check">
+                  </div>
+                  <div node-id="c3">
+                    <input id="p3-input-x"/>
+                    <input id="p3-input-y"/>
+                    <input type="radio" name="highlight-radios" id="c3-check">
+                  </div>
+                  <div node-id="c4">
+                    <input id="p4-input-x"/>
+                    <input id="p4-input-y"/>
+                    <input type="radio" name="highlight-radios" id="c4-check">
+                  </div>
+                  <div node-id="c5">
+                    <input id="p5-input-x"/>
+                    <input id="p5-input-y"/>
+                    <input type="radio" name="highlight-radios" id="c5-check">
+                  </div>
+                  <div node-id="c6">
+                    <input id="p6-input-x"/>
+                    <input id="p6-input-y"/>
+                    <input type="radio" name="highlight-radios" id="c6-check">
+                  </div>
+                </div>
+            
+                <div id="matrices">
+                  <div id="matrix-first-scale">
+                    <h2>{% trans 'Multiplication Matrix' %}</h2>
+            
+                    <!-- default value is identity matrix -->
+                    <div class="matrix-row">
+                      <input id="matrix-first-scale-row-0-col-0" value="1"/>
+                      <input id="matrix-first-scale-row-0-col-1" value="0"/>
+                    </div>
+            
+                    <div class="matrix-row">
+                      <input id="matrix-first-scale-row-1-col-0" value="0"/>
+                      <input id="matrix-first-scale-row-1-col-1" value="1"/>
+                    </div>
+                  </div>
+            
+                  <div id="matrix-first-translate">
+                    <h2>{% trans 'Translation Matrix' %}</h2>
+            
+                    <!-- default value is identity matrix -->
+                    <div class="matrix-row">
+                      <input id="matrix-first-translate-row-0-col-0" value="0"/>
+                    </div>
+            
+                    <div class="matrix-row">
+                      <input id="matrix-first-translate-row-1-col-0" value="0"/>
+                    </div>
+                  </div>
+            
+                  <div id="matrix-second-scale">
+                    <h2>{% trans 'Multiplication Matrix' %}</h2>
+            
+                    <!-- default value is identity matrix -->
+                    <div class="matrix-row">
+                      <input id="matrix-second-scale-row-0-col-0" value="1"/>
+                      <input id="matrix-second-scale-row-0-col-1" value="0"/>
+                    </div>
+            
+                    <div class="matrix-row">
+                      <input id="matrix-second-scale-row-1-col-0" value="0"/>
+                      <input id="matrix-second-scale-row-1-col-1" value="1"/>
+                    </div>
+                  </div>
+            
+                  <div id="matrix-second-translate">
+                    <h2>{% trans 'Translation Matrix' %}</h2>
+            
+                    <!-- default value is identity matrix -->
+                    <div class="matrix-row">
+                      <input id="matrix-second-translate-row-0-col-0" value="0"/>
+                    </div>
+            
+                    <div class="matrix-row">
+                      <input id="matrix-second-translate-row-1-col-0" value="0"/>
+                    </div>
+                  </div>
+                </div>
+            
+                <div id="coord-buttons">
+                  <button id="get-new-coordinates-button">{% trans 'Update' %}</button>
+                  <button id="reset-coordinates-button">{% trans 'Reset' %}</button>
+                </div>
+            
+                <div id="matrix-buttons">
+                  <button id="matrix-operations-button">{% trans 'Update' %}</button>
+                  <button id="reset-matrices-button">{% trans 'Reset' %}</button>
+                </div>
+                <label id="instant-update-label"><input type="checkbox" id="instant-update-check" checked/>{% trans 'Instant Update' %}</label>
+              </div>
             </div>
-            <div node-id="c1">
-              <input id="p1-input-x"/>
-              <input id="p1-input-y"/>
-              <input type="radio" name="highlight-radios" id="c1-check">
-            </div>
-            <div node-id="c2">
-              <input id="p2-input-x"/>
-              <input id="p2-input-y"/>
-              <input type="radio" name="highlight-radios" id="c2-check">
-            </div>
-            <div node-id="c3">
-              <input id="p3-input-x"/>
-              <input id="p3-input-y"/>
-              <input type="radio" name="highlight-radios" id="c3-check">
-            </div>
-            <div node-id="c4">
-              <input id="p4-input-x"/>
-              <input id="p4-input-y"/>
-              <input type="radio" name="highlight-radios" id="c4-check">
-            </div>
-            <div node-id="c5">
-              <input id="p5-input-x"/>
-              <input id="p5-input-y"/>
-              <input type="radio" name="highlight-radios" id="c5-check">
-            </div>
-            <div node-id="c6">
-              <input id="p6-input-x"/>
-              <input id="p6-input-y"/>
-              <input type="radio" name="highlight-radios" id="c6-check">
+            <div class="col">
+              <label id="x-label">x</label>
             </div>
           </div>
-      
-          <div id="matrices">
-            <div id="matrix-first-scale">
-              <h2>Multiplication Matrix</h2>
-      
-              <!-- default value is identity matrix -->
-              <div class="matrix-row">
-                <input id="matrix-first-scale-row-0-col-0" value="1"/>
-                <input id="matrix-first-scale-row-0-col-1" value="0"/>
-              </div>
-      
-              <div class="matrix-row">
-                <input id="matrix-first-scale-row-1-col-0" value="0"/>
-                <input id="matrix-first-scale-row-1-col-1" value="1"/>
-              </div>
-            </div>
-      
-            <div id="matrix-first-translate">
-              <h2>Translation Matrix</h2>
-      
-              <!-- default value is identity matrix -->
-              <div class="matrix-row">
-                <input id="matrix-first-translate-row-0-col-0" value="0"/>
-              </div>
-      
-              <div class="matrix-row">
-                <input id="matrix-first-translate-row-1-col-0" value="0"/>
-              </div>
-            </div>
-      
-            <div id="matrix-second-scale">
-              <h2>Multiplication Matrix</h2>
-      
-              <!-- default value is identity matrix -->
-              <div class="matrix-row">
-                <input id="matrix-second-scale-row-0-col-0" value="1"/>
-                <input id="matrix-second-scale-row-0-col-1" value="0"/>
-              </div>
-      
-              <div class="matrix-row">
-                <input id="matrix-second-scale-row-1-col-0" value="0"/>
-                <input id="matrix-second-scale-row-1-col-1" value="1"/>
-              </div>
-            </div>
-      
-            <div id="matrix-second-translate">
-              <h2>Translation Matrix</h2>
-      
-              <!-- default value is identity matrix -->
-              <div class="matrix-row">
-                <input id="matrix-second-translate-row-0-col-0" value="0"/>
-              </div>
-      
-              <div class="matrix-row">
-                <input id="matrix-second-translate-row-1-col-0" value="0"/>
-              </div>
-            </div>
-          </div>
-      
-          <div id="coord-buttons">
-            <button id="get-new-coordinates-button">Update</button>
-            <button id="reset-coordinates-button">Reset</button>
-          </div>
-      
-          <div id="matrix-buttons">
-            <button id="matrix-operations-button">Update</button>
-            <button id="reset-matrices-button">Reset</button>
-          </div>
-          <label id="instant-update-label"><input type="checkbox" id="instant-update-check" checked/>Instant Update</label>
         </div>
       </div>
     </div>
