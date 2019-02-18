@@ -44,7 +44,9 @@ function Point(x, y) {
     this.y = y;
 }
 
-////////////////////////////////////////////////////////////
+
+// ########################################################################## //
+/* Functions related to setting up the interface */
 
 /* On load; get config, build the grid and both arrows, then register button
  * handler functions
@@ -70,6 +72,123 @@ $(document).ready(function() {
     registerNodeHighlights();
     registerOnBlurEvents();
 });
+
+
+/* Registers the events related to when the user deselects a specific text field */
+function registerOnBlurEvents() {
+    $('#p0-input-x').on('blur', function () {
+        coordTab('c0', 'x');
+    });
+    $('#p0-input-y').on('blur', function () {
+        coordTab('c0', 'y');
+    });
+    $('#p1-input-x').on('blur', function () {
+        coordTab('c1', 'x');
+    });
+    $('#p1-input-y').on('blur', function () {
+        coordTab('c1', 'y');
+    });
+    $('#p2-input-x').on('blur', function () {
+        coordTab('c2', 'x');
+    });
+    $('#p2-input-y').on('blur', function () {
+        coordTab('c2', 'y');
+    });
+    $('#p3-input-x').on('blur', function () {
+        coordTab('c3', 'x');
+    });
+    $('#p3-input-y').on('blur', function () {
+        coordTab('c3', 'y');
+    });
+    $('#p4-input-x').on('blur', function () {
+        coordTab('c4', 'x');
+    });
+    $('#p4-input-y').on('blur', function () {
+        coordTab('c4', 'y');
+    });
+    $('#p5-input-x').on('blur', function () {
+        coordTab('c5', 'x');
+    });
+    $('#p5-input-y').on('blur', function () {
+        coordTab('c5', 'y');
+    });
+    $('#p6-input-x').on('blur', function () {
+        coordTab('c6', 'x');
+    });
+    $('#p6-input-y').on('blur', function () {
+        coordTab('c6', 'y');
+    });
+    $('#p7-input-x').on('blur', function () {
+        coordTab('c7', 'x');
+    });
+    $('#p7-input-y').on('blur', function () {
+        coordTab('c7', 'y');
+    });
+
+    $('#matrix-first-scale-row-0-col-0').on('blur', function () {
+        matrixTab('#matrix-first-scale-row-0-col-0');
+    });
+    $('#matrix-first-scale-row-0-col-1').on('blur', function () {
+        matrixTab('#matrix-first-scale-row-0-col-1');
+    });
+    $('#matrix-first-scale-row-1-col-0').on('blur', function () {
+        matrixTab('#matrix-first-scale-row-1-col-0');
+    });
+    $('#matrix-first-scale-row-1-col-1').on('blur', function () {
+        matrixTab('#matrix-first-scale-row-1-col-1');
+    });
+    $('#matrix-first-translate-row-0-col-0').on('blur', function () {
+        matrixTab('#matrix-first-translate-row-0-col-0');
+    });
+    $('#matrix-first-translate-row-1-col-0').on('blur', function () {
+        matrixTab('#matrix-first-translate-row-1-col-0');
+    });
+    $('#matrix-second-scale-row-0-col-0').on('blur', function () {
+        matrixTab('#matrix-first-scale-row-0-col-0');
+    });
+    $('#matrix-second-scale-row-0-col-1').on('blur', function () {
+        matrixTab('#matrix-first-scale-row-0-col-1');
+    });
+    $('#matrix-second-scale-row-1-col-0').on('blur', function () {
+        matrixTab('#matrix-first-scale-row-1-col-0');
+    });
+    $('#matrix-second-scale-row-1-col-1').on('blur', function () {
+        matrixTab('#matrix-first-scale-row-1-col-1');
+    });
+    $('#matrix-second-translate-row-0-col-0').on('blur', function () {
+        matrixTab('#matrix-first-translate-row-0-col-0');
+    });
+    $('#matrix-second-translate-row-1-col-0').on('blur', function () {
+        matrixTab('#matrix-first-translate-row-1-col-0');
+    });
+}
+
+
+/* Registers the node highlighting radio buttons for coordinate manipulations */
+function registerNodeHighlights() {
+    $('#c0-check').on('click', function () {
+        setHighlight('c0');
+    });
+    $('#c1-check').on('click', function () {
+        setHighlight('c1');
+    });
+    $('#c2-check').on('click', function () {
+        setHighlight('c2');
+    });
+    $('#c3-check').on('click', function () {
+        setHighlight('c3');
+    });
+    $('#c4-check').on('click', function () {
+        setHighlight('c4');
+    });
+    $('#c5-check').on('click', function () {
+        setHighlight('c5');
+    });
+    $('#c6-check').on('click', function () {
+        setHighlight('c6');
+    });
+}
+
 
 /* Rebuilds grid and arrows on window resize */
 window.onresize = function(event) {
@@ -226,6 +345,7 @@ function setUpInterface() {
     drawBackground();
 }
 
+
 /* Assembles the interface based on the given config */
 function assembleInterface(configFile) {
     var filename = base_path + "interactives/2d-arrow-manipulations/config/" + configFile + ".json";
@@ -255,6 +375,9 @@ function drawBackground() {
 }
 
 
+// ########################################################################## //
+/* Functions related to manipulating the arrows */
+
 /* Creates and draws both the user's and target arrow */
 function setUpInitialDynamicArrowPosition() {
     // create the user's arrow
@@ -263,8 +386,8 @@ function setUpInitialDynamicArrowPosition() {
     configSettings.START_POSITION = arrowShape.slice(0);
     currentState.currentPosition = arrowShape.slice(0);
     updateInputBoxes(configSettings.START_POSITION);
-
 }
+
 
 function setUpInitialTargetArrowPosition() {
     configSettings.TARGET_POSITION = generateArrowShape(configSettings.TARGET_POSITION_STRING);
@@ -293,6 +416,7 @@ function generateArrowShape(pointString) {
     }
     return arrow;
 }
+
 
 /* Draws arrow shape */
 function drawTargetArrow() {
@@ -323,6 +447,7 @@ function drawArrow() {
     }
     checkForMatch();
 }
+
 
 /* Sets the boolean for instantUpdate based on the appropriate checkbox.
  * Returns the boolean
@@ -366,163 +491,9 @@ function checkForMatch() {
     }
 }
 
-// ########################################################################## //
-/* Supporting functions */
-
-// Created by Virendra
-// www.jquerybyexample.net/2012/06/get-url-parameters-using-jquery.html
-function getUrlParameter(sParam) {
-    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
-        sURLVariables = sPageURL.split("&"),
-        sParameterName,
-        i;
-
-    for (i=0; i < sURLVariables.length; i++) {
-        sParameterName = sURLVariables[i].split("=");
-
-        if (sParameterName[0] === sParam) {
-            return sParameterName[1] === undefined ? true : sParameterName[1];
-        }
-    }
-}
-
-/* Registers the events related to when the user deselects a specific text field */
-function registerOnBlurEvents() {
-    $('#p0-input-x').on('blur', function () {
-        coordTab('c0', 'x');
-    });
-    $('#p0-input-y').on('blur', function () {
-        coordTab('c0', 'y');
-    });
-    $('#p1-input-x').on('blur', function () {
-        coordTab('c1', 'x');
-    });
-    $('#p1-input-y').on('blur', function () {
-        coordTab('c1', 'y');
-    });
-    $('#p2-input-x').on('blur', function () {
-        coordTab('c2', 'x');
-    });
-    $('#p2-input-y').on('blur', function () {
-        coordTab('c2', 'y');
-    });
-    $('#p3-input-x').on('blur', function () {
-        coordTab('c3', 'x');
-    });
-    $('#p3-input-y').on('blur', function () {
-        coordTab('c3', 'y');
-    });
-    $('#p4-input-x').on('blur', function () {
-        coordTab('c4', 'x');
-    });
-    $('#p4-input-y').on('blur', function () {
-        coordTab('c4', 'y');
-    });
-    $('#p5-input-x').on('blur', function () {
-        coordTab('c5', 'x');
-    });
-    $('#p5-input-y').on('blur', function () {
-        coordTab('c5', 'y');
-    });
-    $('#p6-input-x').on('blur', function () {
-        coordTab('c6', 'x');
-    });
-    $('#p6-input-y').on('blur', function () {
-        coordTab('c6', 'y');
-    });
-    $('#p7-input-x').on('blur', function () {
-        coordTab('c7', 'x');
-    });
-    $('#p7-input-y').on('blur', function () {
-        coordTab('c7', 'y');
-    });
-
-    $('#matrix-first-scale-row-0-col-0').on('blur', function () {
-        matrixTab('#matrix-first-scale-row-0-col-0');
-    });
-    $('#matrix-first-scale-row-0-col-1').on('blur', function () {
-        matrixTab('#matrix-first-scale-row-0-col-1');
-    });
-    $('#matrix-first-scale-row-1-col-0').on('blur', function () {
-        matrixTab('#matrix-first-scale-row-1-col-0');
-    });
-    $('#matrix-first-scale-row-1-col-1').on('blur', function () {
-        matrixTab('#matrix-first-scale-row-1-col-1');
-    });
-    $('#matrix-first-translate-row-0-col-0').on('blur', function () {
-        matrixTab('#matrix-first-translate-row-0-col-0');
-    });
-    $('#matrix-first-translate-row-1-col-0').on('blur', function () {
-        matrixTab('#matrix-first-translate-row-1-col-0');
-    });
-    $('#matrix-second-scale-row-0-col-0').on('blur', function () {
-        matrixTab('#matrix-first-scale-row-0-col-0');
-    });
-    $('#matrix-second-scale-row-0-col-1').on('blur', function () {
-        matrixTab('#matrix-first-scale-row-0-col-1');
-    });
-    $('#matrix-second-scale-row-1-col-0').on('blur', function () {
-        matrixTab('#matrix-first-scale-row-1-col-0');
-    });
-    $('#matrix-second-scale-row-1-col-1').on('blur', function () {
-        matrixTab('#matrix-first-scale-row-1-col-1');
-    });
-    $('#matrix-second-translate-row-0-col-0').on('blur', function () {
-        matrixTab('#matrix-first-translate-row-0-col-0');
-    });
-    $('#matrix-second-translate-row-1-col-0').on('blur', function () {
-        matrixTab('#matrix-first-translate-row-1-col-0');
-    });
-}
-
-/* Registers the node highlighting radio buttons */
-function registerNodeHighlights() {
-    $('#c0-check').on('click', function () {
-        setHighlight('c0');
-    });
-    $('#c1-check').on('click', function () {
-        setHighlight('c1');
-    });
-    $('#c2-check').on('click', function () {
-        setHighlight('c2');
-    });
-    $('#c3-check').on('click', function () {
-        setHighlight('c3');
-    });
-    $('#c4-check').on('click', function () {
-        setHighlight('c4');
-    });
-    $('#c5-check').on('click', function () {
-        setHighlight('c5');
-    });
-    $('#c6-check').on('click', function () {
-        setHighlight('c6');
-    });
-}
-
-/* Sets the given node to be the only one highlighted */
-function setHighlight(node) {
-    var id = '#' + node + '-check';
-    clearHighlights(id);
-    highlight(node);
-}
-
-/* Clears all highlighted nodes except the one with the id given */
-function clearHighlights(id) {
-    var nextId;
-    for (i=0; i<7; i++) { // there are 7 vertices in an arrow
-        nextId = '#c' + i + '-check';
-        if (nextId != id) {
-            $(nextId).removeClass('active');
-            removeHighlight('c' + i);
-        }
-    }
-}
 
 // ########################################################################## //
-/* Functions relating to coordinates
- * Created by Hayley Van Waas
- */
+/* Functions relating to manipulation by coordinates */
 
 /* Put the corresponding coordinate into each of the input boxes
  * Offsets the real value of the coordinate to give impression that centre of grid is position (0,0)
@@ -587,10 +558,30 @@ function removeHighlight(node) {
     circle.style.fill = '#000';
 }
 
+
+/* Sets the given node to be the only one highlighted */
+function setHighlight(node) {
+    var id = '#' + node + '-check';
+    clearHighlights(id);
+    highlight(node);
+}
+
+
+/* Clears all highlighted nodes except the one with the id given */
+function clearHighlights(id) {
+    var nextId;
+    for (i=0; i<7; i++) { // there are 7 vertices in an arrow
+        nextId = '#c' + i + '-check';
+        if (nextId != id) {
+            $(nextId).removeClass('active');
+            removeHighlight('c' + i);
+        }
+    }
+}
+
+
 // ########################################################################## //
-/* Functions relating to matrices
- * Created by Hayley Van Waas
- */
+/* Functions relating to manipulation by matrices */
 
 function matrixTab(id) {
     checkForValidInput(id);
@@ -696,4 +687,26 @@ function resetMatrices() {
 
     $('#matrix-second-translate-row-0-col-0').val(0);
     $('#matrix-second-translate-row-1-col-0').val(0);
+}
+
+
+// ########################################################################## //
+/* Functions by a third party */
+
+/* Created by Virendra
+ * www.jquerybyexample.net/2012/06/get-url-parameters-using-jquery.html
+ */
+function getUrlParameter(sParam) {
+    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+        sURLVariables = sPageURL.split("&"),
+        sParameterName,
+        i;
+
+    for (i=0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split("=");
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : sParameterName[1];
+        }
+    }
 }
