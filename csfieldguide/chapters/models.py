@@ -60,6 +60,7 @@ class Chapter(TranslatableModel):
         verbose_name_plural = "Chapters"
     
     def get_absolute_url(self):
+        """Gets absolute URL of Chapter object"""
         return reverse('chapters:chapter', args=[self.slug])
 
 
