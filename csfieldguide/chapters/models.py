@@ -110,3 +110,7 @@ class ChapterSection(TranslatableModel):
         ordering = ["number"]
         verbose_name = "Chapter section"
         verbose_name_plural = "Chapter sections"
+
+    def get_absolute_url(self):
+        """Gets absolute URL of ChapterSection object"""
+        return reverse('chapters:chapter_section', kwargs={'chapter_slug': self.chapter.slug, 'chapter_section_slug': self.slug})
