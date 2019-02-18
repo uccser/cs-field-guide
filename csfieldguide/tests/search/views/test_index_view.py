@@ -172,5 +172,5 @@ class IndexViewTest(BaseTestWithDB):
         url += query_string(get_parameters)
         response = self.client.get(url)
         result_objects = response.context["object_list"]
-        self.assertEqual(len(result_objects), 2)
+        self.assertEqual(len(result_objects), 1)
         self.assertEqual(result_objects[0].model_name, "chapter")

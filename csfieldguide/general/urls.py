@@ -35,26 +35,18 @@ urlpatterns = [
         RedirectView.as_view(permanent=True, pattern_name="interactives:index"),
     ),
     url(
-        r"^further-information/releases.html$",
-        views.redirect_changelog,
-        name="redirect_changelog"
-    ),
-    url(
-        r"^further-information/(?P<appendix_slug>[-\w]+).html$",
-        RedirectView.as_view(permanent=True, pattern_name="appendices:appendix"),
+        r"^further-information/contributors.html$",
+        RedirectView.as_view(permanent=True, pattern_name="appendices:contributors"),
     ),
     # e.g redirect /curriculum-guides/ncea/index.html to /appendices/curriculum-guides/
-    # TODO: Once the ncea and apcsp html templates are done change BOTH of the below
-    # redirects to use (?P<subappendix_slug>[-\w]+) in the regex instead of 'ncea' or
-    # 'apcsp' and change the pattern_name.
     # TODO: Remove '.*?' from BOTH regex expressions if we create more templates inside
     # of /ncea/ or /apcsp/
     url(
-        r"^(?P<appendix_slug>[-\w]+)/ncea/.*?$",
-        RedirectView.as_view(permanent=True, pattern_name="appendices:appendix"),
+        r"^curriculum-guides/ncea/.*?$",
+        RedirectView.as_view(permanent=True, pattern_name="appendices:ncea"),
     ),
     url(
-        r"^(?P<appendix_slug>[-\w]+)/apcsp/.*?$",
-        RedirectView.as_view(permanent=True, pattern_name="appendices:appendix"),
+        r"^curriculum-guides/apcsp/.*?$",
+        RedirectView.as_view(permanent=True, pattern_name="appendices:apcsp"),
     ),
 ]

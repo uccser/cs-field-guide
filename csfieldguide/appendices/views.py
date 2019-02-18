@@ -3,6 +3,7 @@
 from django.views.generic import TemplateView
 from chapters.models import Chapter
 
+
 class AppendicesList(TemplateView):
     """View for the list of appendices."""
 

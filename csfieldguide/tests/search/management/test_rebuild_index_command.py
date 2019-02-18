@@ -6,7 +6,6 @@ from shutil import rmtree
 from django.conf import settings
 from django.core import management
 from django.test import tag
-from django.template.exceptions import TemplateSyntaxError
 from tests.BaseTestWithDB import BaseTestWithDB
 from tests.chapters.ChaptersTestDataGenerator import ChaptersTestDataGenerator
 

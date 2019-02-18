@@ -24,6 +24,5 @@ class Command(BaseCommand):
             base_path=base_path
         )
 
-        # loader.load()
         loader.log("All appendices loaded!")
         loader.log("")
