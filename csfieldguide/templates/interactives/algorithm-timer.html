@@ -12,7 +12,7 @@
   </div>
 
   <!-- radio buttons for algorithm complexity -->
-  <div class="row">
+  <div class="row mb-2">
     <div class="col-sm-12 col-lg-6">
       <div class="d-inline-block mr-2">
         {% trans "Algorithm complexity:" %}
@@ -56,7 +56,28 @@
     </div>
   </div>
 
-  
+  <!-- input boxes -->
+  <form>
+    <div class="form-group row">
+      <label for="n-items" class="col-sm-3 col-form-label">Number of items (n) :</label>
+      <div class="col-sm-2 mt-1">
+        <input class="form-control form-control-sm" id="n-items">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="speed" class="col-sm-3 col-form-label">Operations per second :</label>
+      <div class="col-sm-2 mt-1">
+        <input class="form-control form-control-sm" id="speed">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="processors" class="col-sm-3 col-form-label">Processors :</label>
+      <div class="col-sm-2 mt-1">
+        <input class="form-control form-control-sm" id="processors">
+      </div>
+    </div>
+  </form>
+
 
 </div>
 {% endblock html %}
