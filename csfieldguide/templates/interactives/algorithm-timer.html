@@ -11,40 +11,43 @@
     </div>
   </div>
 
+  <!-- radio buttons for algorithm complexity -->
   <div class="row">
     <div class="col-sm-12 col-lg-6">
-      {% trans "Algorithm complexity:" %}
-      <div class="form-check">
+      <div class="d-inline-block mr-2">
+        {% trans "Algorithm complexity:" %}
+      </div>
+      <div class="form-check form-check-inline">
         <input class="form-check-input" type="radio" name="complexity" id="n-2" checked>
         <label class="form-check-label" for="n-2">
           {% trans "n&sup2;" %}
         </label>
       </div>
-      <div class="form-check">
+      <div class="form-check form-check-inline">
         <input class="form-check-input" type="radio" name="complexity" id="n-3">
         <label class="form-check-label" for="n-3">
           {% trans "n&sup3;" %}
         </label>
       </div>
-      <div class="form-check">
+      <div class="form-check form-check-inline">
         <input class="form-check-input" type="radio" name="complexity" id="n-4">
         <label class="form-check-label" for="n-4">
           {% trans "n<sup>4</sup>" %}
         </label>
       </div>
-      <div class="form-check">
+      <div class="form-check form-check-inline">
         <input class="form-check-input" type="radio" name="complexity" id="n-6">
         <label class="form-check-label" for="n-6">
           {% trans "n<sup>6</sup>" %}
         </label>
       </div>
-      <div class="form-check">
+      <div class="form-check form-check-inline">
         <input class="form-check-input" type="radio" name="complexity" id="2-n">
         <label class="form-check-label" for="2-n">
           {% trans "2<sup>n</sup>" %}
         </label>
       </div>
-      <div class="form-check">
+      <div class="form-check form-check-inline">
         <input class="form-check-input" type="radio" name="complexity" id="n-factorial">
         <label class="form-check-label" for="n-factorial">
           {% trans "n!" %}
@@ -52,6 +55,8 @@
       </div>
     </div>
   </div>
+
+  
 
 </div>
 {% endblock html %}
