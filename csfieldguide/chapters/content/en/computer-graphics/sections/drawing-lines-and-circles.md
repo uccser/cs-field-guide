@@ -169,7 +169,7 @@ If the formulas have been applied correctly, the \( y \) value should range from
 
 The following image shows which pixels would be coloured in (rounding the coordinates above to the nearest integer).
 
-{interactive slug="pixel-grid" type="iframe" parameters="eg=sog&noedit"}
+{interactive slug="pixel-grid" type="iframe" parameters="eg=sod&noedit"}
 
 {panel end}
 

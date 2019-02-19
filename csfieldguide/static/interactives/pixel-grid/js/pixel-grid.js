@@ -42,7 +42,7 @@ $( document ).ready(function() {
         case("s3l"):
             // Solution 3 Lines
             active = PATTERN_3_LINES; break;
-        case("sog"):
+        case("sod"):
             // Solution Off Diagonal
             active = PATTERN_OFF_DIAG; break;
     }
