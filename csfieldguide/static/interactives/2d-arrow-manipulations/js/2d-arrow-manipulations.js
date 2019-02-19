@@ -460,11 +460,11 @@ function instantUpdateToggle() {
 function checkForValidInput(id) {
     var value = $(id).val();
     if (isNaN(value) || value == '') { // does not contain a valid number
-        $(id).addClass('invalid');
+        document.getElementById(id).classList.add('invalid');
         return false;
     } else {
-        $(id).removeClass('invalid');
-        $(id).addClass('');
+        $document.getElementById(id).classList.remove('invalid');
+        document.getElementById(id).classList.add('');
         return true;
     }
 }
@@ -560,7 +560,7 @@ function removeHighlight(node) {
 
 /* Sets the given node to be the only one highlighted */
 function setHighlight(node) {
-    var id = '#' + node + '-check';
+    var id = node + '-check';
     clearHighlights(id);
     highlight(node);
 }
@@ -570,9 +570,9 @@ function setHighlight(node) {
 function clearHighlights(id) {
     var nextId;
     for (i=0; i<7; i++) { // there are 7 vertices in an arrow
-        nextId = '#c' + i + '-check';
+        nextId = 'c' + i + '-check';
         if (nextId != id) {
-            $(nextId).removeClass('active');
+            document.getElementById(nextId).classList.remove('active');
             removeHighlight('c' + i);
         }
     }
