@@ -1,4 +1,4 @@
-var urlParameters = require('./../../../js/url-parameters.js')
+var urlParameters = require('../../../js/third-party/url-parameters.js')
 "use strict";
 
 $(document).ready(function () {
