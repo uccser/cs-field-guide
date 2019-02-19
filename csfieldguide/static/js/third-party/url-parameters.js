@@ -1,6 +1,6 @@
 module.exports = {
     // Created by Virendra
-    // www.jquerybyexample.net/2012/06/get-url-parameters-using-jquery.html
+    // http://www.jquerybyexample.net/2012/06/get-url-parameters-using-jquery.html
     getUrlParameter: function(sParam) {
         var sPageURL = decodeURIComponent(window.location.search.substring(1)),
             sURLVariables = sPageURL.split("&"),
