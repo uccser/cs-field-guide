@@ -4,6 +4,8 @@ action-menu:
   name: Action Menu
 alarm-timer:
   name: Alarm Timer
+algorithm-timer:
+  name: Algorithm Timer
 available-menu-items:
   name: Available Menu Items
 awful-calculator:
