@@ -245,12 +245,6 @@ function registerOnBlurEvents() {
     $('#p6-input-y').on('blur', function() {
         coordTab('c6', 'y');
     });
-    $('#p7-input-x').on('blur', function() {
-        coordTab('c7', 'x');
-    });
-    $('#p7-input-y').on('blur', function() {
-        coordTab('c7', 'y');
-    });
 
     $('#matrix-first-scale-row-0-col-0').on('blur', function() {
         matrixTab('#matrix-first-scale-row-0-col-0');
@@ -568,20 +562,19 @@ function drawArrow() {
 /* Sets the boolean for instantUpdate based on the appropriate checkbox.
  * Returns the boolean
  */
-function instantUpdateToggle() {
+function instantUpdateCheck() {
     currentState.instantUpdate = $('#instant-update-check').is(':checked');
     return currentState.instantUpdate;
 }
 
 
 function checkForValidInput(id) {
-    var value = $(id).val();
+    var value = document.getElementById(id).value;
     if (isNaN(value) || value == '') { // does not contain a valid number
         document.getElementById(id).classList.add('invalid');
         return false;
     } else {
         document.getElementById(id).classList.remove('invalid');
-        document.getElementById(id).classList.add('');
         return true;
     }
 }
@@ -628,9 +621,9 @@ function updateInputBoxes (points) {
 
 
 function coordTab(node, x_or_y) {
-    var id = '#p' + node.split('')[1] + '-input-' + x_or_y;
+    var id = 'p' + node.split('')[1] + '-input-' + x_or_y;
     checkForValidInput(id);
-    if (instantUpdateToggle() == true) {
+    if (instantUpdateCheck()) {
         getNewCoordinates();
     }
 }
@@ -709,7 +702,7 @@ function matrixTab(id) {
     }
     $(id).val(num);
 
-    if (instantUpdateToggle() == true) {
+    if (instantUpdateCheck()) {
         matrixOperations();
     }
 }
