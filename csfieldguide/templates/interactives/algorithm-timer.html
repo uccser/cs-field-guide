@@ -59,19 +59,19 @@
   <!-- input boxes -->
   <form>
     <div class="form-group row">
-      <label for="n-items" class="col-sm-3 col-form-label">{% trans "Number of items (n) :" %}</label>
+      <label for="n-items" class="col-sm-3 col-form-label">{% trans "Number of items (n):" %}</label>
       <div class="col-sm-2 mt-1">
         <input class="form-control form-control-sm" id="n-items">
       </div>
     </div>
     <div class="form-group row">
-      <label for="speed" class="col-sm-3 col-form-label">{% trans "Operations per second :" %}</label>
+      <label for="speed" class="col-sm-3 col-form-label">{% trans "Operations per second:" %}</label>
       <div class="col-sm-2 mt-1">
         <input class="form-control form-control-sm" id="speed">
       </div>
     </div>
     <div class="form-group row">
-      <label for="processors" class="col-sm-3 col-form-label">{% trans "Processors :" %}</label>
+      <label for="processors" class="col-sm-3 col-form-label">{% trans "Processors:" %}</label>
       <div class="col-sm-2 mt-1">
         <input class="form-control form-control-sm" id="processors">
       </div>
@@ -80,10 +80,70 @@
 
   <!-- output -->
   <div>
-    {% trans "<span id='complexity-chosen'>n&sup2;</span> operations would take :" %}
+    {% trans "<span id='complexity-chosen'>n&sup2;</span> operations would take:" %}
   </div>
   <div class="col-sm-5 pl-0">
     <textarea class="form-control"></textarea>
+  </div>
+
+  <!-- radio buttons for time -->
+  <div class="row mb-2">
+    <div class="col-sm-12 col-lg-6 form-control-sm ml-2">
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="time" id="nanoseconds" checked>
+        <label class="form-check-label" for="nanoseconds">
+          {% trans "Nanoseconds" %}
+        </label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="time" id="microseconds">
+        <label class="form-check-label" for="microseconds">
+          {% trans "Microseconds" %}
+        </label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="time" id="milliseconds">
+        <label class="form-check-label" for="milliseconds">
+          {% trans "Milliseconds" %}
+        </label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="time" id="seconds">
+        <label class="form-check-label" for="seconds">
+          {% trans "Seconds" %}
+        </label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="time" id="minutes">
+        <label class="form-check-label" for="minutes">
+          {% trans "Minutes" %}
+        </label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="time" id="hours">
+        <label class="form-check-label" for="hours">
+          {% trans "Hours" %}
+        </label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="time" id="days">
+        <label class="form-check-label" for="days">
+          {% trans "Days" %}
+        </label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="time" id="years">
+        <label class="form-check-label" for="years">
+          {% trans "Years" %}
+        </label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="time" id="centuries">
+        <label class="form-check-label" for="centuries">
+          {% trans "Centuries" %}
+        </label>
+      </div>
+    </div>
   </div>
 </div>
 
