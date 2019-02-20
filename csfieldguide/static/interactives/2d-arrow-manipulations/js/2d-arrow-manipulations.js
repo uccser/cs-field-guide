@@ -171,8 +171,18 @@ function Point(x, y) {
 $(document).ready(function() {
     setUpInterface();
 
-    var config = getUrlParameter('config') || "coord-translate";
-    assembleInterface(config);
+    var showIndex = getUrlParameter('showIndex');
+
+    var config = getUrlParameter('config') || null;
+    if (showIndex || config == null) {
+        document.getElementById('config-dropdown').classList.remove('no-show');
+    }
+
+    if (config != null) {
+        assembleInterface(config);
+    } else {
+        assembleInterface("coord-translate");
+    }
 
     $('#get-new-coordinates-button').on('click', function() {
         getNewCoordinates();
@@ -193,89 +203,89 @@ $(document).ready(function() {
 
 /* Registers the events related to when the user deselects a specific text field */
 function registerOnBlurEvents() {
-    $('#p0-input-x').on('blur', function () {
+    $('#p0-input-x').on('blur', function() {
         coordTab('c0', 'x');
     });
-    $('#p0-input-y').on('blur', function () {
+    $('#p0-input-y').on('blur', function() {
         coordTab('c0', 'y');
     });
-    $('#p1-input-x').on('blur', function () {
+    $('#p1-input-x').on('blur', function() {
         coordTab('c1', 'x');
     });
-    $('#p1-input-y').on('blur', function () {
+    $('#p1-input-y').on('blur', function() {
         coordTab('c1', 'y');
     });
-    $('#p2-input-x').on('blur', function () {
+    $('#p2-input-x').on('blur', function() {
         coordTab('c2', 'x');
     });
-    $('#p2-input-y').on('blur', function () {
+    $('#p2-input-y').on('blur', function() {
         coordTab('c2', 'y');
     });
-    $('#p3-input-x').on('blur', function () {
+    $('#p3-input-x').on('blur', function() {
         coordTab('c3', 'x');
     });
-    $('#p3-input-y').on('blur', function () {
+    $('#p3-input-y').on('blur', function() {
         coordTab('c3', 'y');
     });
-    $('#p4-input-x').on('blur', function () {
+    $('#p4-input-x').on('blur', function() {
         coordTab('c4', 'x');
     });
-    $('#p4-input-y').on('blur', function () {
+    $('#p4-input-y').on('blur', function() {
         coordTab('c4', 'y');
     });
-    $('#p5-input-x').on('blur', function () {
+    $('#p5-input-x').on('blur', function() {
         coordTab('c5', 'x');
     });
-    $('#p5-input-y').on('blur', function () {
+    $('#p5-input-y').on('blur', function() {
         coordTab('c5', 'y');
     });
-    $('#p6-input-x').on('blur', function () {
+    $('#p6-input-x').on('blur', function() {
         coordTab('c6', 'x');
     });
-    $('#p6-input-y').on('blur', function () {
+    $('#p6-input-y').on('blur', function() {
         coordTab('c6', 'y');
     });
-    $('#p7-input-x').on('blur', function () {
+    $('#p7-input-x').on('blur', function() {
         coordTab('c7', 'x');
     });
-    $('#p7-input-y').on('blur', function () {
+    $('#p7-input-y').on('blur', function() {
         coordTab('c7', 'y');
     });
 
-    $('#matrix-first-scale-row-0-col-0').on('blur', function () {
+    $('#matrix-first-scale-row-0-col-0').on('blur', function() {
         matrixTab('#matrix-first-scale-row-0-col-0');
     });
-    $('#matrix-first-scale-row-0-col-1').on('blur', function () {
+    $('#matrix-first-scale-row-0-col-1').on('blur', function() {
         matrixTab('#matrix-first-scale-row-0-col-1');
     });
-    $('#matrix-first-scale-row-1-col-0').on('blur', function () {
+    $('#matrix-first-scale-row-1-col-0').on('blur', function() {
         matrixTab('#matrix-first-scale-row-1-col-0');
     });
-    $('#matrix-first-scale-row-1-col-1').on('blur', function () {
+    $('#matrix-first-scale-row-1-col-1').on('blur', function() {
         matrixTab('#matrix-first-scale-row-1-col-1');
     });
-    $('#matrix-first-translate-row-0-col-0').on('blur', function () {
+    $('#matrix-first-translate-row-0-col-0').on('blur', function() {
         matrixTab('#matrix-first-translate-row-0-col-0');
     });
-    $('#matrix-first-translate-row-1-col-0').on('blur', function () {
+    $('#matrix-first-translate-row-1-col-0').on('blur', function() {
         matrixTab('#matrix-first-translate-row-1-col-0');
     });
-    $('#matrix-second-scale-row-0-col-0').on('blur', function () {
+    $('#matrix-second-scale-row-0-col-0').on('blur', function() {
         matrixTab('#matrix-first-scale-row-0-col-0');
     });
-    $('#matrix-second-scale-row-0-col-1').on('blur', function () {
+    $('#matrix-second-scale-row-0-col-1').on('blur', function() {
         matrixTab('#matrix-first-scale-row-0-col-1');
     });
-    $('#matrix-second-scale-row-1-col-0').on('blur', function () {
+    $('#matrix-second-scale-row-1-col-0').on('blur', function() {
         matrixTab('#matrix-first-scale-row-1-col-0');
     });
-    $('#matrix-second-scale-row-1-col-1').on('blur', function () {
+    $('#matrix-second-scale-row-1-col-1').on('blur', function() {
         matrixTab('#matrix-first-scale-row-1-col-1');
     });
-    $('#matrix-second-translate-row-0-col-0').on('blur', function () {
+    $('#matrix-second-translate-row-0-col-0').on('blur', function() {
         matrixTab('#matrix-first-translate-row-0-col-0');
     });
-    $('#matrix-second-translate-row-1-col-0').on('blur', function () {
+    $('#matrix-second-translate-row-1-col-0').on('blur', function() {
         matrixTab('#matrix-first-translate-row-1-col-0');
     });
 }
@@ -283,25 +293,25 @@ function registerOnBlurEvents() {
 
 /* Registers the node highlighting radio buttons for coordinate manipulations */
 function registerNodeHighlights() {
-    $('#c0-check').on('click', function () {
+    $('#c0-check').on('click', function() {
         setHighlight('c0');
     });
-    $('#c1-check').on('click', function () {
+    $('#c1-check').on('click', function() {
         setHighlight('c1');
     });
-    $('#c2-check').on('click', function () {
+    $('#c2-check').on('click', function() {
         setHighlight('c2');
     });
-    $('#c3-check').on('click', function () {
+    $('#c3-check').on('click', function() {
         setHighlight('c3');
     });
-    $('#c4-check').on('click', function () {
+    $('#c4-check').on('click', function() {
         setHighlight('c4');
     });
-    $('#c5-check').on('click', function () {
+    $('#c5-check').on('click', function() {
         setHighlight('c5');
     });
-    $('#c6-check').on('click', function () {
+    $('#c6-check').on('click', function() {
         setHighlight('c6');
     });
 }
@@ -458,7 +468,8 @@ function assembleInterface(config) {
         case("matrix-translate"):
             config = matrix_translate; break;
         default:
-            config = coord_translate; break;
+            config = coord_translate;
+            document.getElementById('config-dropdown').classList.remove('no-show'); break;
     }
     saveConfig(config);
     loadModules(config);
@@ -569,7 +580,7 @@ function checkForValidInput(id) {
         document.getElementById(id).classList.add('invalid');
         return false;
     } else {
-        $document.getElementById(id).classList.remove('invalid');
+        document.getElementById(id).classList.remove('invalid');
         document.getElementById(id).classList.add('');
         return true;
     }

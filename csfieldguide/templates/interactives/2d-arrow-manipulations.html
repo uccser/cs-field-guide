@@ -34,6 +34,41 @@
               <div id="instructions">
                 <h1 id="title"></h1>
                 <p id="task"></p>
+                <div class="dropdown no-show" id="config-dropdown">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="config-changer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {% trans 'Select a configuration' %}
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="config-changer">
+                    <a class="dropdown-item" id=coord-translate href="{% url 'interactives:interactive' '2d-arrow-manipulations' %}?config=coord-translate&showIndex">
+                      {% trans 'Coordinates: Translation' %}</a>
+                    <a class="dropdown-item" id=coord-scale href="{% url 'interactives:interactive' '2d-arrow-manipulations' %}?config=coord-scale&showIndex">
+                      {% trans 'Coordinates: Scaling' %}</a>
+                    <a class="dropdown-item" id=coord-scale-translate href="{% url 'interactives:interactive' '2d-arrow-manipulations' %}?config=coord-scale-translate&showIndex">
+                      {% trans 'Coordinates: Scaling and Translation' %}</a>
+                    <a class="dropdown-item" id=coord-swap href="{% url 'interactives:interactive' '2d-arrow-manipulations' %}?config=coord-swap&showIndex">
+                      {% trans 'Coordinates: Swapping Coordinates' %}</a>
+                    <a class="dropdown-item" id=matrix-scale href="{% url 'interactives:interactive' '2d-arrow-manipulations' %}?config=matrix-scale&showIndex">
+                      {% trans 'Matrix: Scaling' %}</a>
+                    <a class="dropdown-item" id=matrix-rotate href="{% url 'interactives:interactive' '2d-arrow-manipulations' %}?config=matrix-rotate&showIndex">
+                      {% trans 'Matrix: Rotation' %}</a>
+                    <a class="dropdown-item" id=matrix-translate href="{% url 'interactives:interactive' '2d-arrow-manipulations' %}?config=matrix-translate&showIndex">
+                      {% trans 'Matrix: Translation' %}</a>
+                    <a class="dropdown-item" id=matrix-scale-translate href="{% url 'interactives:interactive' '2d-arrow-manipulations' %}?config=matrix-scale-translate&showIndex">
+                      {% trans 'Matrix: Scaling and Translation I' %}</a>
+                    <a class="dropdown-item" id=matrix-scale-translate-2 href="{% url 'interactives:interactive' '2d-arrow-manipulations' %}?config=matrix-scale-translate-2&showIndex">
+                      {% trans 'Matrix: Scaling and Translation II' %}</a>
+                    <a class="dropdown-item" id=matrix-scale-translate-3 href="{% url 'interactives:interactive' '2d-arrow-manipulations' %}?config=matrix-scale-translate-3&showIndex">
+                      {% trans 'Matrix: Scaling and Translation III' %}</a>
+                    <a class="dropdown-item" id=matrix-rotate-translate href="{% url 'interactives:interactive' '2d-arrow-manipulations' %}?config=matrix-rotate-translate&showIndex">
+                      {% trans 'Matrix: Rotation and Translation' %}</a>
+                    <a class="dropdown-item" id=matrix-rotate-scale-translate href="{% url 'interactives:interactive' '2d-arrow-manipulations' %}?config=matrix-rotate-scale-translate&showIndex">
+                      {% trans 'Matrix: Multiple Transformation Challenge I' %}</a>
+                    <a class="dropdown-item" id=matrix-rotate-scale-translate-2 href="{% url 'interactives:interactive' '2d-arrow-manipulations' %}?config=matrix-rotate-scale-translate-2&showIndex">
+                      {% trans 'Matrix: Multiple Transformation Challenge II' %}</a>
+                    <a class="dropdown-item" id=matrix-single href="{% url 'interactives:interactive' '2d-arrow-manipulations' %}?config=matrix-single&showIndex">
+                      {% trans 'Matrix: One Matrix' %}</a>
+                  </div>
+                </div>
               </div>
           
               <div id="modules">
