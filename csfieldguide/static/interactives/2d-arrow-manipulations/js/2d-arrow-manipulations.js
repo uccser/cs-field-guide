@@ -11,7 +11,7 @@ var coord_scale = {
 var coord_scale_translate = {
     "type":     "coordinates",
     "title":    gettext("Combining Scaling and Translation Challenge"),
-    "task":     gettext("Try to get the opaque arrow to match up with the translucent one.<br>Hint: you may like to use expressions like 2*(2+1) or fractions like 1/5"),
+    "task":     gettext("Try to get the opaque arrow to match up with the translucent one.<br>Hint: you may like to use expressions like 2*(2+1) or fractions like 1/5."),
     "target":   "5 12 -1 6 3 6 3 -4 7 -4 7 6 11 6"
 }
 
@@ -32,7 +32,7 @@ var coord_translate = {
 var matrix_rotate = {
     "type":     "matrix",
     "title":    gettext("Matrix Rotation"),
-    "task":     gettext("Rotate and translate the arrow to the target position. You can use the Trig Function Calculator interactive to calculate exact angles, the target arrow has accuracy of 2 decimal places"),
+    "task":     gettext("Rotate and translate the arrow to the target position. You can use the Trig Function Calculator interactive to calculate exact angles, the target arrow has accuracy of 2 decimal places."),
     "target":   "7.84 6.84 3.58 6.84 5 5.42 1.45 1.87 2.87 0.45 6.42 4 7.84 2.58",
     "modules": ["first-scale", "first-translate"]
 }
@@ -65,7 +65,7 @@ var matrix_rotate_translate = {
 var matrix_scale = {
     "type":     "matrix",
     "title":    gettext("2D Scaling"),
-    "task":     gettext("Try replacing the 1s with 2s in the multiplication matrix"),
+    "task":     gettext("Try replacing the 1s with 2s in the multiplication matrix."),
     "target":   "0 8 -6 2 -2 2 -2 -8 2 -8 2 2 6 2",
     "modules": ["first-scale"]
 }
@@ -89,7 +89,7 @@ var matrix_scale_translate_2 = {
 var matrix_scale_translate_3 = {
     "type":     "matrix",
     "title":    gettext("Using Translation to Simplify Scaling"),
-    "task":     gettext("This time the tip of the arrow is at (12, 12), so you should translate it to the origin, scale it, then transform it back."),
+    "task":     gettext("This time the tip of the arrow is at<br>(12, 12), so you should translate it to the origin, scale it, then translate it back."),
     "start":    "12 12 15 9 13 9 13 4 11 4 11 9 9 9",
     "target":   "12 12 18 6 14 6 14 -4 10 -4 10 6 6 6",
     "modules": ["first-translate", "first-scale", "second-translate"]
