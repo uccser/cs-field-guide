@@ -5,14 +5,14 @@
 
 {% block html %}
 <div class="container">
-  <div class="row">
+  <div class="row justify-content-center">
     <div class="col-sm-12 col-lg-6 offset-lg-3">
       <h3>{% trans "Algorithm Timer" %}</h3>
     </div>
   </div>
 
   <!-- radio buttons for algorithm complexity -->
-  <div class="row mb-2">
+  <div class="row mb-2 justify-content-center">
     <div class="col-sm-12 col-lg-6">
       <div class="d-inline-block mr-2">
         {% trans "Algorithm complexity:" %}
@@ -57,56 +57,68 @@
   </div>
 
   <!-- radio buttons for what form the result should be in -->
-  <div class="mb-3">
-    <div class="d-inline-block mr-2">
-      {% trans "Results:" %}
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="result-form" id="long-form" checked>
-      <label class="form-check-label" for="long-form">
-        {% trans "Long form" %}
-      </label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="result-form" id="scientific">
-      <label class="form-check-label" for="scientific">
-        {% trans "Scientific" %}
-      </label>
+  <div class="row justify-content-center mb-3">
+    <div class="col-sm-12 col-lg-6">
+      <div class="d-inline-block mr-2">
+        {% trans "Results:" %}
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="result-form" id="long-form" checked>
+        <label class="form-check-label" for="long-form">
+          {% trans "Long form" %}
+        </label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="result-form" id="scientific">
+        <label class="form-check-label" for="scientific">
+          {% trans "Scientific" %}
+        </label>
+      </div>
     </div>
   </div>
 
   <!-- input boxes -->
   <form>
-    <div class="form-group row">
-      <label for="n-items" class="col-sm-3 col-form-label">{% trans "Number of items (n):" %}</label>
-      <div class="col-sm-2 mt-1">
-        <input class="form-control form-control-sm" id="n-items">
-      </div>
-    </div>
-    <div class="form-group row">
-      <label for="speed" class="col-sm-3 col-form-label">{% trans "Operations per second:" %}</label>
-      <div class="col-sm-2 mt-1">
-        <input class="form-control form-control-sm" id="speed">
-      </div>
-    </div>
-    <div class="form-group row mb-4">
-      <label for="processors" class="col-sm-3 col-form-label">{% trans "Processors:" %}</label>
-      <div class="col-sm-2 mt-1">
-        <input class="form-control form-control-sm" id="processors">
-      </div>
+    <div class="row justify-content-center">
+      <div class="col-sm-12 col-lg-6">
+
+        <div class="form-group row">
+          <label for="n-items" class="col-sm-6 col-form-label">{% trans "Number of items (n):" %}</label>
+          <div class="col-sm-4 mt-1">
+            <input class="form-control form-control-sm" id="n-items">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="speed" class="col-sm-6 col-form-label">{% trans "Operations per second:" %}</label>
+          <div class="col-sm-4 mt-1">
+            <input class="form-control form-control-sm" id="speed">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="processors" class="col-sm-6 col-form-label">{% trans "Processors:" %}</label>
+          <div class="col-sm-4 mt-1">
+            <input class="form-control form-control-sm" id="processors">
+          </div>
+        </div>
+
+      </div>  
     </div>
   </form>
 
   <!-- output -->
-  <div class="mb-1">
-    {% trans "<span id='complexity-chosen'>n&sup2;</span> operations would take:" %}
-  </div>
-  <div class="col-sm-5 pl-0">
-    <textarea class="form-control"></textarea>
+  <div class="row justify-content-center">
+    <div class="col-sm-12 col-lg-6">
+      <div class="mb-1">
+        {% trans "<span id='complexity-chosen'>n&sup2;</span> operations would take:" %}
+      </div>
+      <div class="pl-0">
+        <textarea class="form-control"></textarea>
+      </div>
+    </div>
   </div>
 
   <!-- radio buttons for time -->
-  <div class="row mb-2">
+  <div class="row justify-content-center mb-2">
     <div class="col-sm-12 col-lg-6 form-control-sm ml-2">
       <div class="form-check form-check-inline">
         <input class="form-check-input" type="radio" name="time" id="nanoseconds" checked>
