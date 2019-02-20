@@ -32,7 +32,7 @@ var coord_translate = {
 var matrix_rotate = {
     "type":     "matrix",
     "title":    gettext("Matrix Rotation"),
-    "task":     gettext("Rotate and translate the arrow to the new position. You can use the Trig Function Calculator interactive to calculate exact angles, the target arrow has accuracy of 2 decimal places"),
+    "task":     gettext("Rotate and translate the arrow to the target position. You can use the Trig Function Calculator interactive to calculate exact angles, the target arrow has accuracy of 2 decimal places"),
     "target":   "7.84 6.84 3.58 6.84 5 5.42 1.45 1.87 2.87 0.45 6.42 4 7.84 2.58",
     "modules": ["first-scale", "first-translate"]
 }
@@ -325,43 +325,6 @@ function reset() {
     setUpInitialDynamicArrowPosition();
     drawArrow();
 }
-
-////////////////////////////////////////////////////////////
-
-// JSON magic
-
-function get(url) {
-  // Return a new promise.
-  return new Promise(function(resolve, reject) {
-    // Do the usual XHR stuff
-    var req = new XMLHttpRequest();
-    req.open('GET', url);
-
-    req.onload = function() {
-      // This is called even on 404 etc
-      // so check the status
-      if (req.status == 200) {
-        // Resolve the promise with the response text
-        resolve(req.response);
-      }
-      else {
-        // Otherwise reject with the status text
-        // which will hopefully be a meaningful error
-        reject(Error(req.statusText));
-      }
-    };
-
-    // Handle network errors
-    req.onerror = function() {
-      reject(Error("Network Error"));
-    };
-
-    // Make the request
-    req.send();
-  });
-}
-
-////////////////////////////////////////////////////////////
 
 /* Saves information from config that is used later */
 function saveConfig(config) {
