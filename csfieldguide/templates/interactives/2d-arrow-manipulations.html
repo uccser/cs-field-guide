@@ -4,15 +4,15 @@
 {% load static %}
 
 {% block html %}
-  <div class="row mb-3">
-    <div class="col" role="group">
+  <div class="row mb-3 arrow-manipulations">
+    <div class="col no-margins" role="group">
       <title>{% trans '2D Arrow Manipulations' %}</title>
       <div id="container">
         <div id="warning">
           <label>{% trans 'This interactive is designed for screens larger than 600x600px.' %}</label>
         </div>
       
-        <svg width="100%" height="100%">
+        <svg class="svg-background" width="100%" height="100%">
           <polygon id="target-polygon" points="0,0 0,0 0,0 0,0 0,0 0,0 0,0"/>
           <polygon id="dynamic-polygon" points="0,0 0,0 0,0 0,0 0,0 0,0 0,0"/>
           <circle id="c0" cx="0" cy="0" r="3"/>
@@ -75,39 +75,39 @@
                 <div id="coordinates">
                   <div id="heading"><p>x</p><p>y</p><p>{% trans 'highlight' %}</p></div>
                   <div node-id="c0">
-                    <input id="p0-input-x"/>
-                    <input id="p0-input-y"/>
-                    <input type="radio" name="highlight-radios" id="c0-check">
+                    <input class="input-box" id="p0-input-x"/>
+                    <input class="input-box" id="p0-input-y"/>
+                    <input class="input-box" type="radio" name="highlight-radios" id="c0-check">
                   </div>
                   <div node-id="c1">
-                    <input id="p1-input-x"/>
-                    <input id="p1-input-y"/>
-                    <input type="radio" name="highlight-radios" id="c1-check">
+                    <input class="input-box" id="p1-input-x"/>
+                    <input class="input-box" id="p1-input-y"/>
+                    <input class="input-box" type="radio" name="highlight-radios" id="c1-check">
                   </div>
                   <div node-id="c2">
-                    <input id="p2-input-x"/>
-                    <input id="p2-input-y"/>
-                    <input type="radio" name="highlight-radios" id="c2-check">
+                    <input class="input-box" id="p2-input-x"/>
+                    <input class="input-box" id="p2-input-y"/>
+                    <input class="input-box" type="radio" name="highlight-radios" id="c2-check">
                   </div>
                   <div node-id="c3">
-                    <input id="p3-input-x"/>
-                    <input id="p3-input-y"/>
-                    <input type="radio" name="highlight-radios" id="c3-check">
+                    <input class="input-box" id="p3-input-x"/>
+                    <input class="input-box" id="p3-input-y"/>
+                    <input class="input-box" type="radio" name="highlight-radios" id="c3-check">
                   </div>
                   <div node-id="c4">
-                    <input id="p4-input-x"/>
-                    <input id="p4-input-y"/>
-                    <input type="radio" name="highlight-radios" id="c4-check">
+                    <input class="input-box" id="p4-input-x"/>
+                    <input class="input-box" id="p4-input-y"/>
+                    <input class="input-box" type="radio" name="highlight-radios" id="c4-check">
                   </div>
                   <div node-id="c5">
-                    <input id="p5-input-x"/>
-                    <input id="p5-input-y"/>
-                    <input type="radio" name="highlight-radios" id="c5-check">
+                    <input class="input-box" id="p5-input-x"/>
+                    <input class="input-box" id="p5-input-y"/>
+                    <input class="input-box" type="radio" name="highlight-radios" id="c5-check">
                   </div>
                   <div node-id="c6">
-                    <input id="p6-input-x"/>
-                    <input id="p6-input-y"/>
-                    <input type="radio" name="highlight-radios" id="c6-check">
+                    <input class="input-box" id="p6-input-x"/>
+                    <input class="input-box" id="p6-input-y"/>
+                    <input class="input-box" type="radio" name="highlight-radios" id="c6-check">
                   </div>
                 </div>
             
@@ -117,13 +117,13 @@
             
                     <!-- default value is identity matrix -->
                     <div class="matrix-row">
-                      <input id="matrix-first-scale-row-0-col-0" value="1"/>
-                      <input id="matrix-first-scale-row-0-col-1" value="0"/>
+                      <input class="input-box" id="matrix-first-scale-row-0-col-0" value="1"/>
+                      <input class="input-box" id="matrix-first-scale-row-0-col-1" value="0"/>
                     </div>
             
                     <div class="matrix-row">
-                      <input id="matrix-first-scale-row-1-col-0" value="0"/>
-                      <input id="matrix-first-scale-row-1-col-1" value="1"/>
+                      <input class="input-box" id="matrix-first-scale-row-1-col-0" value="0"/>
+                      <input class="input-box" id="matrix-first-scale-row-1-col-1" value="1"/>
                     </div>
                   </div>
             
@@ -132,11 +132,11 @@
             
                     <!-- default value is identity matrix -->
                     <div class="matrix-row">
-                      <input id="matrix-first-translate-row-0-col-0" value="0"/>
+                      <input class="input-box" id="matrix-first-translate-row-0-col-0" value="0"/>
                     </div>
             
                     <div class="matrix-row">
-                      <input id="matrix-first-translate-row-1-col-0" value="0"/>
+                      <input class="input-box" id="matrix-first-translate-row-1-col-0" value="0"/>
                     </div>
                   </div>
             
@@ -145,13 +145,13 @@
             
                     <!-- default value is identity matrix -->
                     <div class="matrix-row">
-                      <input id="matrix-second-scale-row-0-col-0" value="1"/>
-                      <input id="matrix-second-scale-row-0-col-1" value="0"/>
+                      <input class="input-box" id="matrix-second-scale-row-0-col-0" value="1"/>
+                      <input class="input-box" id="matrix-second-scale-row-0-col-1" value="0"/>
                     </div>
             
                     <div class="matrix-row">
-                      <input id="matrix-second-scale-row-1-col-0" value="0"/>
-                      <input id="matrix-second-scale-row-1-col-1" value="1"/>
+                      <input class="input-box" id="matrix-second-scale-row-1-col-0" value="0"/>
+                      <input class="input-box" id="matrix-second-scale-row-1-col-1" value="1"/>
                     </div>
                   </div>
             
@@ -160,11 +160,11 @@
             
                     <!-- default value is identity matrix -->
                     <div class="matrix-row">
-                      <input id="matrix-second-translate-row-0-col-0" value="0"/>
+                      <input class="input-box" id="matrix-second-translate-row-0-col-0" value="0"/>
                     </div>
             
                     <div class="matrix-row">
-                      <input id="matrix-second-translate-row-1-col-0" value="0"/>
+                      <input class="input-box" id="matrix-second-translate-row-1-col-0" value="0"/>
                     </div>
                   </div>
                 </div>
@@ -178,7 +178,7 @@
                   <button id="matrix-operations-button">{% trans 'Update' %}</button>
                   <button id="reset-matrices-button">{% trans 'Reset' %}</button>
                 </div>
-                <label id="instant-update-label"><input type="checkbox" id="instant-update-check" checked/>{% trans 'Instant Update' %}</label>
+                <label id="instant-update-label"><input class="input-box" type="checkbox" id="instant-update-check" checked/>{% trans 'Instant Update' %}</label>
               </div>
             </div>
             <div class="col">
