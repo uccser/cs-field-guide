@@ -17,7 +17,7 @@ The location of relevant files for this interactive in the shared folders are gi
     └── js/
         ├── translation-rotation-interactives/*
         └── third-party/
-            ├── tween.js
+            ├── tweenjs/*
             └── threejs/*
 
 ## Licenses
