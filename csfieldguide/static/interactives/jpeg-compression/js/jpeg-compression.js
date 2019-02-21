@@ -1,4 +1,5 @@
 const Interact = require('interactjs');
+var urlParameters = require('../../../js/third-party/url-parameters.js');
 require('./../../../js/third-party/jquery.stepper');
 const dct = require('dct');
 
@@ -12,7 +13,7 @@ $(function () {
     };
 
     var puzzleSetting = {
-        PUZZLE: getUrlParameter('puzzle') || false
+        PUZZLE: urlParameters.getUrlParameter('puzzle') || false
     };
 
     class CloseUp8By8 {
@@ -621,22 +622,4 @@ $(function () {
             dragMoved(0, 0, bigCanvasContext);
         };
     }
-
-    // From jquerybyexample.net/2012/06/get-url-parameters-using-jquery.html
-    function getUrlParameter(sParam) {
-        var sPageURL = decodeURIComponent(window.location.search.substring(1)),
-            sURLVariables = sPageURL.split('&'),
-            sParameterName,
-            i;
-
-        for (i = 0; i < sURLVariables.length; i++) {
-            sParameterName = sURLVariables[i].split('=');
-
-            if (sParameterName[0] === sParam) {
-                return sParameterName[1] === undefined ? true : sParameterName[1];
-            }
-        }
-    }
-
-
 });

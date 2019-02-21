@@ -3,6 +3,8 @@
  * Licensed under CC BY-NC-SA 4.0
  */
 
+var urlParameters = require('../../../js/third-party/url-parameters.js');
+
 // Types of instructions
 const TYPE_UNSUPPORTED = -2;
 const TYPE_INVALID = -1;
@@ -64,7 +66,7 @@ $(document).ready(function() {
     var advancedProgram = $('#advanced-example').html();
     $('#assembled-input').val(basicProgram);
     $('#program-output').html('');
-    var offerExamples = getUrlParameter('offer-examples');
+    var offerExamples = urlParameters.getUrlParameter('offer-examples');
     
     $('#run-mips').on('click', function () {
         try {
@@ -958,20 +960,4 @@ function disect(hex) {
             (0x0000FF00 & hex) >> 8,
             (0x000000FF & hex)
             ]
-}
-
-// From jquerybyexample.net/2012/06/get-url-parameters-using-jquery.html
-function getUrlParameter(sParam) {
-    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
-        sURLVariables = sPageURL.split("&"),
-        sParameterName,
-        i;
-    
-    for (i=0; i < sURLVariables.length; i++) {
-        sParameterName = sURLVariables[i].split("=");
-
-        if (sParameterName[0] === sParam) {
-            return sParameterName[1] === undefined ? true : sParameterName[1];
-        }
-    }
 }

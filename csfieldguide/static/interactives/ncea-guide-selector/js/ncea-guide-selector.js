@@ -1,3 +1,4 @@
+var urlParameters = require('../../../js/third-party/url-parameters.js');
 var ncea_encoding_selector;
 
 $(document).ready(function() {
@@ -27,7 +28,7 @@ $(document).ready(function() {
     clearSelections();
   });
 
-  var config_name = getUrlParameter('config');
+  var config_name = urlParameters.getUrlParameter('config');
   if (config_name) {
     var config_path = 'config/' + config_name + '.json'
     $.ajax({
@@ -290,21 +291,4 @@ function meetsCriteria(criteria_values, count_values, value_to_pass) {
     }
   }
   return status;
-}
-
-
-// From jquerybyexample.net/2012/06/get-url-parameters-using-jquery.html
-function getUrlParameter(sParam) {
-    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
-        sURLVariables = sPageURL.split('&'),
-        sParameterName,
-        i;
-
-    for (i = 0; i < sURLVariables.length; i++) {
-        sParameterName = sURLVariables[i].split('=');
-
-        if (sParameterName[0] === sParam) {
-            return sParameterName[1] === undefined ? true : sParameterName[1];
-        }
-    }
 }
