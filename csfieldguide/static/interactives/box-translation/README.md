@@ -2,7 +2,7 @@
 
 **Author:** Hayley van Waas
 
-This interactive shows the translation of an object in 3D space.
+This interactive allows the translation of an object in 3D space for users to identify which side is coloured.
 
 ## Required files
 

@@ -1,3 +1,5 @@
+var urlParameters = require('../../../js/third-party/url-parameters.js');
+
 // ########################################################################## //
 /* Configs (in alphabetical order) */
 
@@ -171,9 +173,9 @@ function Point(x, y) {
 $(document).ready(function() {
     setUpInterface();
 
-    var showIndex = getUrlParameter('showIndex');
+    var showIndex = urlParameters.getUrlParameter('showIndex');
 
-    var config = getUrlParameter('config') || null;
+    var config = urlParameters.getUrlParameter('config') || null;
     if (showIndex || config == null) {
         document.getElementById('config-dropdown').classList.remove('no-show');
     }
@@ -796,26 +798,4 @@ function resetMatrices() {
 
     $('#matrix-second-translate-row-0-col-0').val(0);
     $('#matrix-second-translate-row-1-col-0').val(0);
-}
-
-
-// ########################################################################## //
-/* Functions by a third party */
-
-/* Created by Virendra
- * www.jquerybyexample.net/2012/06/get-url-parameters-using-jquery.html
- */
-function getUrlParameter(sParam) {
-    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
-        sURLVariables = sPageURL.split("&"),
-        sParameterName,
-        i;
-
-    for (i=0; i < sURLVariables.length; i++) {
-        sParameterName = sURLVariables[i].split("=");
-
-        if (sParameterName[0] === sParam) {
-            return sParameterName[1] === undefined ? true : sParameterName[1];
-        }
-    }
 }

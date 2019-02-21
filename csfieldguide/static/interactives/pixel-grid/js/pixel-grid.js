@@ -1,4 +1,4 @@
-//require('./../../../js/url-parameters.js');
+var urlParameters = require('../../../js/third-party/url-parameters.js');
 
 const DEFAULT_HEIGHT = 20;
 const DEFAULT_WIDTH = 20;
@@ -22,18 +22,18 @@ const PATTERN_OFF_DIAG = [
 
 $( document ).ready(function() {
     var gridSize = [
-        getUrlParameter("h") || DEFAULT_HEIGHT,
-        getUrlParameter("w") || DEFAULT_WIDTH
+        urlParameters.getUrlParameter("h") || DEFAULT_HEIGHT,
+        urlParameters.getUrlParameter("w") || DEFAULT_WIDTH
     ];
     var active = [
-        ["A", [getUrlParameter("Ax") || null, getUrlParameter("Ay") || null]],
-        ["B", [getUrlParameter("Bx") || null, getUrlParameter("By") || null]],
-        ["C", [getUrlParameter("Cx") || null, getUrlParameter("Cy") || null]],
-        ["D", [getUrlParameter("Dx") || null, getUrlParameter("Dy") || null]],
-        ["R", [getUrlParameter("Rx") || null, getUrlParameter("Ry") || null]]
+        ["A", [urlParameters.getUrlParameter("Ax") || null, urlParameters.getUrlParameter("Ay") || null]],
+        ["B", [urlParameters.getUrlParameter("Bx") || null, urlParameters.getUrlParameter("By") || null]],
+        ["C", [urlParameters.getUrlParameter("Cx") || null, urlParameters.getUrlParameter("Cy") || null]],
+        ["D", [urlParameters.getUrlParameter("Dx") || null, urlParameters.getUrlParameter("Dy") || null]],
+        ["R", [urlParameters.getUrlParameter("Rx") || null, urlParameters.getUrlParameter("Ry") || null]]
     ];
-    var showExample = getUrlParameter("eg") || null;
-    var denyEdit = getUrlParameter("noedit");
+    var showExample = urlParameters.getUrlParameter("eg") || null;
+    var denyEdit = urlParameters.getUrlParameter("noedit");
 
     switch (showExample) {
         case("basic"):
@@ -101,21 +101,4 @@ function buildGrid(size, vars, editable) {
 
     // Display the grid
     $('#pixel-grid').html(printText);
-}
-
-// Created by Virendra
-// www.jquerybyexample.net/2012/06/get-url-parameters-using-jquery.html
-function getUrlParameter(sParam) {
-    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
-        sURLVariables = sPageURL.split("&"),
-        sParameterName,
-        i;
-
-    for (i=0; i < sURLVariables.length; i++) {
-        sParameterName = sURLVariables[i].split("=");
-
-        if (sParameterName[0] === sParam) {
-            return sParameterName[1] === undefined ? true : sParameterName[1];
-        }
-    }
 }
