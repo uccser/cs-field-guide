@@ -60,6 +60,8 @@ function calculateTimeTaken(complexity, resultForm, n, speed, processors, timeUn
 }
 
 
+// below function from 
+// https://stackoverflow.com/questions/3959211/what-is-the-fastest-factorial-function-in-javascript
 factorial = [];
 function getFactorial(n) {
   if (n == 0 || n == 1) {
