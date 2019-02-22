@@ -71,8 +71,9 @@ var Detector = {
 };
 
 // browserify support
+// Altered by Alasdair Smith
 if ( typeof module === 'object' ) {
 
-	module.exports = Detector;
+	module.exports.Detector = Detector;
 
 }

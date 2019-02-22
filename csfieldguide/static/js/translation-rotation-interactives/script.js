@@ -1,8 +1,14 @@
 /**
  * Common source code for the box translation and rotation interactives
  * 
- * Author: Jack Morgan and Hayley Van Waas
+ * @author Jack Morgan
+ * @author Hayley Van Waas
  */
+
+var THREE = require('three');
+var detector = require('../third-party/threejs/Detector.js');
+var transformer = require('../../interactives/box-translation/js/box-translation.js');
+//var TWEEN = require('tweenjs');
 
 var imgPath = '../base-files/img/translation-rotation-interactives-images/';
 var boxImgPath = '../base-files/img/colourful-box-images/';
@@ -33,7 +39,7 @@ animate();
 function init() {
 
     // check that the browser is webgl compatible
-    if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
+    if ( ! detector.Detector.webgl ) detector.Detector.addGetWebGLMessage();
 
     // create a camera object
     camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 1000000 );
@@ -293,7 +299,7 @@ function updateCoords(axis, change) {
         document.getElementById( 'desk-z-coordinate' ).value = z_pos;
     }
 
-    moveBox();
+    transformer.moveBox(x_pos, y_pos, z_pos);
 
 }
 
@@ -461,7 +467,7 @@ function end() {
     x_pos = 0;
     y_pos = -10;
     z_pos = 0;
-    moveBox();
+    transformer.moveBox(x_pos, y_pos, z_pos);
 
     // move camera (zoom in)
     var target = { x: 0, y: 0, z: 350 };
@@ -531,7 +537,7 @@ function clearCode() {
     document.getElementById( 'mob-y-coordinate' ).value = y_pos;
     document.getElementById( 'mob-z-coordinate' ).value = z_pos;
 
-    moveBox();
+    transformer.moveBox(x_pos, y_pos, z_pos);
 
     selectedSymbolId = code[1];
 
@@ -572,57 +578,4 @@ function symbolClick(id) {
         }
     }
 
-}
-
-
-/**
- * check that a value was given for the cube's position
- * if not, set it to 0 and update the entry boxes for the user
- */
-function emptyCheck() {
-
-    if ( isNaN( x_pos ) ) {
-        x_pos = 0;
-        document.getElementById( 'desk-x-coordinate' ).value = x_pos;
-        document.getElementById( 'mob-x-coordinate' ).value = x_pos;
-    } else if ( isNaN( y_pos ) ) {
-        y_pos = 0;
-        document.getElementById( 'desk-y-coordinate' ).value = y_pos;
-        document.getElementById( 'mob-y-coordinate' ).value = y_pos;
-    } else if ( isNaN( z_pos) ){
-        z_pos = 0;
-        document.getElementById( 'desk-z-coordinate' ).value = z_pos;
-        document.getElementById( 'mob-z-coordinate' ).value = z_pos;
-    }
-
-}
-
-
-/**
- * triggered when user clicks "Restart" button after correctly guessing code
- */
-function reset() {
-
-    // hide restart button
-    document.getElementById( 'restart-button' ).style.display = 'none';
-    document.getElementById( 'user-input' ).style.display = 'block';
-
-    // hide the teapot
-    scene.remove( hiddenObject );
-
-    clearCode();
-
-    // rebuilds the cube
-    //   - the sides of the cube have to be randomly selected again and set to be visible again
-    //     therefore it is easier to just rebuild the cube than edit every side
-    scene.remove( cube );
-    buildCube();
-
-    // move camera (zoom out)
-    var target = { x: 0, y: 0, z: 500 };
-    new TWEEN.Tween( camera.position )
-        .to( target )
-        .easing ( TWEEN.Easing.Elastic.Out )
-        .onUpdate( render )
-        .start();
 }
