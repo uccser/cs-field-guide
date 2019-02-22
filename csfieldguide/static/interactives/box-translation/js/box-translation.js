@@ -1,12 +1,11 @@
 var commonFunctions = require('../../../js/translation-rotation-interactives/common-functions.js');
-//var TWEEN = require('tweenjs');
-var THREE = require('three');
+var TWEEN = require('@tweenjs/tween.js');
 
 scale = 10;
 
 module.exports = {
 
-    moveBox: function(x_pos, y_pos, z_pos) {
+    moveBox: function(x_pos, y_pos, z_pos, cube, render) {
         /* triggered when the user hits the "enter" (or "return") key
         * updates the cube's position to match the coordinates inputted by the user
         */

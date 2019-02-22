@@ -299,7 +299,7 @@ function updateCoords(axis, change) {
         document.getElementById( 'desk-z-coordinate' ).value = z_pos;
     }
 
-    transformer.moveBox(x_pos, y_pos, z_pos);
+    transformer.moveBox(x_pos, y_pos, z_pos, cube, render);
 
 }
 
@@ -467,7 +467,7 @@ function end() {
     x_pos = 0;
     y_pos = -10;
     z_pos = 0;
-    transformer.moveBox(x_pos, y_pos, z_pos);
+    transformer.moveBox(x_pos, y_pos, z_pos, cube, render);
 
     // move camera (zoom in)
     var target = { x: 0, y: 0, z: 350 };
@@ -537,7 +537,7 @@ function clearCode() {
     document.getElementById( 'mob-y-coordinate' ).value = y_pos;
     document.getElementById( 'mob-z-coordinate' ).value = z_pos;
 
-    transformer.moveBox(x_pos, y_pos, z_pos);
+    transformer.moveBox(x_pos, y_pos, z_pos, cube, render);
 
     selectedSymbolId = code[1];
 
