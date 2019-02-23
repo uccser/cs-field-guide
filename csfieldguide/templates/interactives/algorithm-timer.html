@@ -109,10 +109,12 @@
   <div class="row justify-content-center">
     <div class="col-sm-12 col-lg-6">
       <div class="mb-1">
-        {% trans "<span id='complexity-chosen'>n&sup2;</span> operations would take:" %}
+        {% blocktrans %}
+        <span id='complexity-chosen'>n&sup2;</span> operations would take: 
+        {% endblocktrans %}
       </div>
       <div class="pl-0">
-        <textarea class="form-control"></textarea>
+        <textarea id="output" class="form-control"></textarea>
       </div>
     </div>
   </div>
@@ -180,10 +182,6 @@
 
 {% endblock html %}
 
-{% block css %}
-
-{% endblock css %}
-
 {% block js %}
-
+  <script type="text/javascript" src="{% static 'interactives/algorithm-timer/js/algorithm-timer.js' %}"></script>
 {% endblock js %}
