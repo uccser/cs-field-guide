@@ -7,6 +7,18 @@ const COMPLEXITY_TEXT = {
   'factorial': 'n!',
 };
 
+const TIME_SCALERS = {
+  'nanoseconds': 1000000000,
+  'microseconds': 1000000,
+  'millieseconds': 1000,
+  'seconds': 1,
+  'minutes': 60,
+  'hours': 3600,
+  'days': 86400,
+  'years': 31557600,
+  'centuries': 3155760000,
+};
+
 
 $(document).ready(function() {
   var complexity = $('input[name=complexity]:checked').prop('id');
@@ -30,7 +42,8 @@ $(document).ready(function() {
     $('#output').val(result);
   });
   $('#n-items').on('input', function() {
-    n = $('#n-items]').val();
+    // TODO: Put limit of 1-1000 on input
+    n = $('#n-items').val();
     result = calculateTimeTaken(complexity, resultForm, n, speed, processors, timeUnits);
     $('#output').val(result);
   });
@@ -72,6 +85,17 @@ function calculateTimeTaken(complexity, resultForm, n, speed, processors, timeUn
     steps = getFactorial(n);
   }
   timeTaken = steps / (parseInt(speed) * parseInt(processors));
+
+  if (timeUnits == 'seconds' || timeUnits == 'milliseconds' || 
+    timeUnits == 'microseconds'|| timeUnits == 'nanoseconds') {
+      timeUnits = timeUnits * TIME_SCALERS[timeUnits];
+  } else {
+    timeUnits = timeUnits / TIME_SCALERS[timeUnits];
+  }
+
+  if (resultForm == 'scientific') {
+    timeTaken = timeTaken.toExponential();
+  }
   // TODO: if NaN return blank
   return timeTaken.toString();
 }
