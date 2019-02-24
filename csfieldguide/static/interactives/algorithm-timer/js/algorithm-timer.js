@@ -95,10 +95,12 @@ function calculateTimeTaken(complexity, resultForm, n, speed, processors, timeUn
   }
 
   if (resultForm == 'scientific') {
-    timeTaken = timeTaken.toExponential();
+    timeTaken = timeTaken.toExponential(2);
+  } else {
+    timeTaken = timeTaken.toFixed(2);
   }
   // TODO: if NaN return blank
-  return timeTaken.toString();
+  return timeTaken;
 }
 
 
