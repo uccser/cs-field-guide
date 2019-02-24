@@ -55,22 +55,17 @@ function init() {
 
     ////////////////////////////// background //////////////////////////////
 
-    var textureLoader = new THREE.TextureLoader();
+    var textureLoader = new THREE.CubeTextureLoader();
+    textureLoader.setPath( imgPath );
     // loads the 6 background pictures (px = positive x, nx = negative x, etc)
-    var materials = [
-        new THREE.MeshBasicMaterial( { map: textureLoader.load( imgPath + 'px.jpg' ) } ), // right
-        new THREE.MeshBasicMaterial( { map: textureLoader.load( imgPath + 'nx.jpg' ) } ), // left
-        new THREE.MeshBasicMaterial( { map: textureLoader.load( imgPath + 'py.jpg' ) } ), // top
-        new THREE.MeshBasicMaterial( { map: textureLoader.load( imgPath + 'ny.jpg' ) } ), // bottom
-        new THREE.MeshBasicMaterial( { map: textureLoader.load( imgPath + 'pz.jpg' ) } ), // back
-        new THREE.MeshBasicMaterial( { map: textureLoader.load( imgPath + 'nz.jpg' ) } )  // front
-    ];
-    // creates a mesh, covered with the background pictures
-    // mesh is in shape of a cube, which camera/smaller cube is inside
-    skyboxMesh = new THREE.Mesh( new THREE.BoxGeometry( 10000, 10000, 10000, 7, 7, 7 ), materials );
-    skyboxMesh.scale.x = - 1; // stretches out background
+    var textureCube = textureLoader.load( [
+        'px.jpg', 'nx.jpg',
+        'py.jpg', 'ny.jpg',
+        'pz.jpg', 'nz.jpg'
+    ] );
+    skyboxMesh = new THREE.MeshBasicMaterial( { color: 0xffffff, envMap: textureCube } );
     // adds the skybox to the scene
-    scene.add( skyboxMesh );
+    scene.background = skyboxMesh;
 
 
     //////////////////////////////////// box /////////////////////////////////////
@@ -137,7 +132,7 @@ function init() {
         document.getElementById( 'mobile-coord' ).style.display = 'inline';
     }
 
-    clearCode();
+    //clearCode();
 
 
 }
@@ -174,25 +169,27 @@ function buildCube() {
 
 
     // loads all the symbols for the box
+    var symbolLoader = new THREE.TextureLoader();
+    symbolLoader.setPath(boxImgPath);
     var materials = [
         new THREE.MeshBasicMaterial({
-           map: new THREE.TextureLoader().load( boxImgPath + 'square' + right_side + '-256px-grayscale.png' )
+           map: symbolLoader.load( 'square' + right_side + '-256px-grayscale.png' )
         }),
         new THREE.MeshBasicMaterial({
             // non grey scale becuase this is the first symbol the user needs to find
-           map: new THREE.TextureLoader().load( boxImgPath + 'square' + left_side + '-256px.png' )
+           map: symbolLoader.load( 'square' + left_side + '-256px.png' )
         }),
         new THREE.MeshBasicMaterial({
-           map: new THREE.TextureLoader().load( boxImgPath + 'square' + top_side + '-256px-grayscale.png' ) // top, non-coded side
+           map: symbolLoader.load( 'square' + top_side + '-256px-grayscale.png' ) // top, non-coded side
         }),
         new THREE.MeshBasicMaterial({
-           map: new THREE.TextureLoader().load( boxImgPath + 'square' + bottom_side + '-256px-grayscale.png' )
+           map: symbolLoader.load( 'square' + bottom_side + '-256px-grayscale.png' )
         }),
         new THREE.MeshBasicMaterial({
-           map: new THREE.TextureLoader().load( boxImgPath + 'square' + front_side + '-256px-grayscale.png' ) // front, non-coded side
+           map: symbolLoader.load( 'square' + front_side + '-256px-grayscale.png' ) // front, non-coded side
         }),
         new THREE.MeshBasicMaterial({
-           map: new THREE.TextureLoader().load( boxImgPath + 'square' + back_side + '-256px-grayscale.png' ) // back, non-coded side
+           map: symbolLoader.load( 'square' + back_side + '-256px-grayscale.png' ) // back, non-coded side
         })
     ];
 
