@@ -43,18 +43,20 @@ $(document).ready(function() {
     $('#output').val(result);
   });
   $('#n-items').on('input', function() {
-    // TODO: Put limit of 1-1000 on input
     n = $('#n-items').val();
+    validation(n, speed, processors);
     result = calculateTimeTaken(complexity, resultForm, n, speed, processors, timeUnits);
     $('#output').val(result);
   });
   $('#speed').on('input', function() {
     speed = $('#speed').val();
+    validation(n, speed, processors);
     result = calculateTimeTaken(complexity, resultForm, n, speed, processors, timeUnits);
     $('#output').val(result);
   });
   $('#processors').on('input', function() {
     processors = $('#processors').val();
+    validation(n, speed, processors);
     result = calculateTimeTaken(complexity, resultForm, n, speed, processors, timeUnits);
     $('#output').val(result);
   });
@@ -100,7 +102,7 @@ function calculateTimeTaken(complexity, resultForm, n, speed, processors, timeUn
     timeTaken = timeTaken.toFixed(2);
   }
 
-  if (timeTaken.isNaN()) {
+  if (isNaN(timeTaken)) {
     return '';
   }
   return timeTaken;
@@ -118,4 +120,30 @@ function getFactorial(n) {
     return factorial[n];
   }
   return factorial[n] = getFactorial(n-1) * n;
+}
+
+function validation(n, speed, processors) {
+  // validation for number of items
+  nItemsErrorMsg = $('#n-items-input-error');
+  if (n < 1 || n > 1000 || isNaN(n)) {
+    nItemsErrorMsg.removeClass('d-none');
+  } else if ((1 <= n <= 1000) && !nItemsErrorMsg.hasClass('d-none')) {
+    nItemsErrorMsg.addClass('d-none');
+  }
+
+  // validation for speed
+  speedErrorMsg = $('#speed-input-error');
+  if (speed < 1 || isNaN(speed)) {
+    speedErrorMsg.removeClass('d-none');
+  } else if (speed > 0 && !speedErrorMsg.hasClass('d-none')) {
+    speedErrorMsg.addClass('d-none');
+  }
+
+  // validation for processors
+  processorsErrorMsg = $('#processors-input-error');
+  if (processors < 1 || isNaN(processors)) {
+    processorsErrorMsg.removeClass('d-none');
+  } else if (processors > 0 && !processorsErrorMsg.hasClass('d-none')) {
+    processorsErrorMsg.addClass('d-none');
+  }
 }
