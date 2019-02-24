@@ -6,12 +6,15 @@
  */
 
 var THREE = require('three');
+//require('three/examples/js/renderers/Projector.js');
 var detector = require('../third-party/threejs/Detector.js');
-var transformer = require('../../interactives/box-translation/js/box-translation.js');
-//var TWEEN = require('tweenjs');
+//var transformer = require('../../interactives/box-translation/js/box-translation.js');
+var projector = require('../third-party/threejs/Projector.js');
+var modularFunctions = require('./modular-functions.js');
+var TWEEN = require('@tweenjs/tween.js');
 
-var imgPath = '../base-files/img/translation-rotation-interactives-images/';
-var boxImgPath = '../base-files/img/colourful-box-images/';
+//var imgPath = '../../../img/interactives/translation-rotation-interactives-images/';
+//var boxImgPath = '../../../img/interactives/colourful-box-images/';
 var container = document.getElementById( 'container' );
 var camera, scene, renderer;
 var cube, hiddenObject;
@@ -64,7 +67,7 @@ function init() {
     ];
     // creates a mesh, covered with the background pictures
     // mesh is in shape of a cube, which camera/smaller cube is inside
-    skyboxMesh = new THREE.Mesh( new THREE.BoxGeometry( 10000, 10000, 10000, 7, 7, 7 ), new THREE.MultiMaterial( materials ) );
+    skyboxMesh = new THREE.Mesh( new THREE.BoxGeometry( 10000, 10000, 10000, 7, 7, 7 ), materials );
     skyboxMesh.scale.x = - 1; // stretches out background
     // adds the skybox to the scene
     scene.add( skyboxMesh );
@@ -94,7 +97,10 @@ function init() {
         return container;
     }
 
-    hiddenObject = createObject( '../base-files/js/translation-rotation-interactives/teapot.json' ); // any json object should work
+    //hiddenObject = createObject( basePath + 'js/translation-rotation-interactives/teapot.json' ); // any json object should work
+    //PLACEHOLDER//
+    hiddenObject = new THREE.Mesh(new THREE.BoxGeometry( 1, 1, 1 ), new THREE.MeshBasicMaterial( { color: 0x00ff00 } ))
+    //ENDPLACEHOLDER//
     hiddenObject.scale.set( 50, 50, 50);
     hiddenObject.position.set( 0, -100, 0 );
     // does not add the hiddenObject to the scene until later (when the user "unlocks" the box)
@@ -191,7 +197,7 @@ function buildCube() {
     ];
 
     // put the loaded materials onto the cube object
-    cube = new THREE.Mesh( geometry, new THREE.MeshFaceMaterial( materials ) );
+    cube = new THREE.Mesh( geometry, materials );
 
     // add the cube to the scene
     scene.add( cube );
@@ -299,7 +305,7 @@ function updateCoords(axis, change) {
         document.getElementById( 'desk-z-coordinate' ).value = z_pos;
     }
 
-    transformer.moveBox(x_pos, y_pos, z_pos, cube, render);
+    moveBox();
 
 }
 
@@ -357,11 +363,11 @@ function updateSide( side, currentImg, coloured) {
     if ( coloured == false ) {
         format = '-grayscale';
     }
-    cube.material.materials[side].map = new THREE.TextureLoader().load(
+    cube.material[side].map = new THREE.TextureLoader().load(// was cube.material.materials
             boxImgPath + 'square' + currentImg + '-256px' + format + '.png',
             undefined,
             function() {
-                cube.material.materials[side].map.needsUpdate = true;
+                cube.material[side].map.needsUpdate = true;
                 // TODO potential memory leak since not removing old image. check this.
             }
     );
@@ -467,7 +473,7 @@ function end() {
     x_pos = 0;
     y_pos = -10;
     z_pos = 0;
-    transformer.moveBox(x_pos, y_pos, z_pos, cube, render);
+    moveBox();
 
     // move camera (zoom in)
     var target = { x: 0, y: 0, z: 350 };
@@ -537,7 +543,7 @@ function clearCode() {
     document.getElementById( 'mob-y-coordinate' ).value = y_pos;
     document.getElementById( 'mob-z-coordinate' ).value = z_pos;
 
-    transformer.moveBox(x_pos, y_pos, z_pos, cube, render);
+    moveBox();
 
     selectedSymbolId = code[1];
 
@@ -577,5 +583,29 @@ function symbolClick(id) {
             document.getElementById(i).src = boxImgPath + 'square' + i + '-256px-grayscale.png';
         }
     }
+
+}
+
+function moveBox() {
+    /* triggered when the user hits the "enter" (or "return") key
+    * updates the cube's position to match the coordinates inputted by the user
+    */
+
+    modularFunctions.emptyCheck(x_pos, y_pos, z_pos);
+
+    // use the coordinates to set a new target for the box
+    var target = {
+        x: x_pos * scale,
+        y: y_pos * scale,
+        z: z_pos * scale
+    };
+
+    // move the box on the next animation loop
+    TWEEN.removeAll();
+    new TWEEN.Tween( cube.position )
+        .to( target, 1000 )
+        .easing( TWEEN.Easing.Back.InOut )
+        .onUpdate( render )
+        .start();
 
 }

@@ -1,8 +1,12 @@
 /**
+ * By inspection, appears to be specifically from:
+ * https://github.com/mrdoob/three.js/blob/master/examples/js/renderers/Projector.js
+ * ----------------------------------------------------------------------------
  * @author mrdoob / http://mrdoob.com/
  * @author supereggbert / http://www.paulbrunt.co.uk/
  * @author julianwa / https://github.com/julianwa
  */
+var THREE = require('three');
 
 THREE.RenderableObject = function () {
 

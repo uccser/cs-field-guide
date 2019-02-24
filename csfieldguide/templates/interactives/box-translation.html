@@ -59,5 +59,10 @@
 {% endblock css %}
 
 {% block js %}
+  <script type="text/javascript">
+    basePath = "{{ STATIC_URL }}";
+    imgPath = basePath + "img/interactives/translation-rotation-interactives-images/";
+    boxImgPath = basePath + "img/interactives/colourful-box-images/";
+  </script>
   <script type="text/javascript" src="{% static 'js/translation-rotation-interactives/script.js' %}"></script>
 {% endblock js %}

@@ -1,4 +1,7 @@
 /**
+ * By inspection, appears to be specifically a previous version of:
+ * https://github.com/mrdoob/three.js/blob/master/examples/js/loaders/OBJLoader.js
+ * ----------------------------------------------------------------------------
  * @author mrdoob / http://mrdoob.com/
  */
 

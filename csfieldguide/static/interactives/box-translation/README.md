@@ -15,10 +15,8 @@ The location of relevant files for this interactive in the shared folders are gi
     │   ├── colourful-box-images/*
     │   └── translation-rotation-interactives-images/*
     └── js/
-        ├── translation-rotation-interactives/*
-        └── third-party/
-            ├── tweenjs/*
-            └── threejs/*
+        ├── third-party/threejs/*
+        └── translation-rotation-interactives/*
 
 ## Licenses
 The third-party libraries Three.js and tween.js are used in these interactives, their corresponding licence files are included in the base-files/third-party/ folder.
