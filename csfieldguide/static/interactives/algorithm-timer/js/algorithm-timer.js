@@ -27,44 +27,45 @@ $(document).ready(function() {
   var speed = $('#speed').val();
   var processors = $('#processors').val();
   var timeUnits = $('input[name=time]:checked').prop('id');
-  var result = calculateTimeTaken(complexity, resultForm, n, speed, processors, timeUnits);
-  $('#output').val(result);
+  updateData()
 
   $('input[name=complexity]').click(function() {
     complexity = $('input[name=complexity]:checked').prop('id');
-    result = calculateTimeTaken(complexity, resultForm, n, speed, processors, timeUnits);
     chosenComplexityText = COMPLEXITY_TEXT[complexity];
     $('#complexity-chosen').html(chosenComplexityText);
-    $('#output').val(result);
+    updateData()
   });
   $('input[name=result-form]').click(function() {
     resultForm = $('input[name=result-form]:checked').prop('id');
-    result = calculateTimeTaken(complexity, resultForm, n, speed, processors, timeUnits);
-    $('#output').val(result);
+    updateData()
   });
   $('#n-items').on('input', function() {
     n = $('#n-items').val();
-    validation(n, speed, processors);
-    result = calculateTimeTaken(complexity, resultForm, n, speed, processors, timeUnits);
-    $('#output').val(result);
+    if (inputIsValid(n, speed, processors) == true) {
+      updateData()
+    }
   });
   $('#speed').on('input', function() {
     speed = $('#speed').val();
-    validation(n, speed, processors);
-    result = calculateTimeTaken(complexity, resultForm, n, speed, processors, timeUnits);
-    $('#output').val(result);
+    if (inputIsValid(n, speed, processors) == true) {
+      updateData()
+    }
   });
   $('#processors').on('input', function() {
     processors = $('#processors').val();
-    validation(n, speed, processors);
-    result = calculateTimeTaken(complexity, resultForm, n, speed, processors, timeUnits);
-    $('#output').val(result);
+    if (inputIsValid(n, speed, processors) == true) {
+      updateData()
+    }
   });
   $('input[name=time]').click(function() {
     timeUnits = $('input[name=time]:checked').prop('id');
-    result = calculateTimeTaken(complexity, resultForm, n, speed, processors, timeUnits);
-    $('#output').val(result);
+    updateData()
   });
+
+  function updateData() {
+    var result = calculateTimeTaken(complexity, resultForm, n, speed, processors, timeUnits);
+    $('#output').val(result);
+  }
 });
 
 
@@ -122,28 +123,47 @@ function getFactorial(n) {
   return factorial[n] = getFactorial(n-1) * n;
 }
 
-function validation(n, speed, processors) {
+
+function inputIsValid(n, speed, processors) {
+  isValid = true;
   // validation for number of items
+  nItems = $('#n-items');
   nItemsErrorMsg = $('#n-items-input-error');
   if (n < 1 || n > 1000 || isNaN(n)) {
+    nItems.addClass('is-invalid');
     nItemsErrorMsg.removeClass('d-none');
+    isValid = false;
+    $('#output').val('');
   } else if ((1 <= n <= 1000) && !nItemsErrorMsg.hasClass('d-none')) {
+    nItems.removeClass('is-invalid');
     nItemsErrorMsg.addClass('d-none');
   }
 
   // validation for speed
+  speedInput = $('#speed');
   speedErrorMsg = $('#speed-input-error');
   if (speed < 1 || isNaN(speed)) {
+    speedInput.addClass('is-invalid');
     speedErrorMsg.removeClass('d-none');
+    isValid = false;
+    $('#output').val('');
   } else if (speed > 0 && !speedErrorMsg.hasClass('d-none')) {
+    speedInput.removeClass('is-invalid');
     speedErrorMsg.addClass('d-none');
   }
 
   // validation for processors
+  processorsInput = $('#processors');
   processorsErrorMsg = $('#processors-input-error');
   if (processors < 1 || isNaN(processors)) {
+    processorsInput.addClass('is-invalid');
     processorsErrorMsg.removeClass('d-none');
+    isValid = false;
+    $('#output').val('');
   } else if (processors > 0 && !processorsErrorMsg.hasClass('d-none')) {
+    processorsInput.removeClass('is-invalid');
     processorsErrorMsg.addClass('d-none');
   }
+
+  return isValid;
 }

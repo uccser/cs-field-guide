@@ -84,25 +84,25 @@
 
         <div class="form-group row">
           <label for="n-items" class="col-sm-6 col-form-label">{% trans "Number of items (n):" %}</label>
-          <div class="col-sm-4 mt-1">
+          <div class="col-sm-6 mt-1">
             <input class="form-control form-control-sm" id="n-items" value=10>
+            <div id="n-items-input-error" class="invalid-feedback d-none">{% trans "Please enter an integer between 1-1000" %}</div>
           </div>
         </div>
-        <p id="n-items-input-error" class="d-none">{% trans "Please enter an integer between 1-1000" %}</p>
         <div class="form-group row">
           <label for="speed" class="col-sm-6 col-form-label">{% trans "Operations per second:" %}</label>
-          <div class="col-sm-4 mt-1">
+          <div class="col-sm-6 mt-1">
             <input class="form-control form-control-sm" id="speed" value=1>
+            <div id="speed-input-error" class='invalid-feedback d-none'>{% trans "Please enter a positive integer." %}</div>
           </div>
         </div>
-        <p id="speed-input-error" class='d-none'>{% trans "Please enter a valid positive integer." %}</p>
         <div class="form-group row">
           <label for="processors" class="col-sm-6 col-form-label">{% trans "Processors:" %}</label>
-          <div class="col-sm-4 mt-1">
+          <div class="col-sm-6 mt-1">
             <input class="form-control form-control-sm" id="processors" value=1>
+            <div id="processors-input-error" class='invalid-feedback d-none'>{% trans "Please enter a positive integer." %}</div>
           </div>
         </div>
-        <p id="processors-input-error" class='d-none'>{% trans "Please enter a valid positive integer." %}</p>
 
       </div>  
     </div>
