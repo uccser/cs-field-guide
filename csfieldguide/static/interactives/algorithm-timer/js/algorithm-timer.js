@@ -64,15 +64,17 @@ $(document).ready(function() {
 
   function updateData() {
     var result = calculateTimeTaken(complexity, resultForm, n, speed, processors, timeUnits);
-    $('#output').val(result);
+    $('#output').val(result + ' ' + timeUnits);
   }
 });
 
 
 function calculateTimeTaken(complexity, resultForm, n, speed, processors, timeUnits) {
-  n = parseInt(n);
-  speed = parseInt(speed);
-  processors = parseInt(processors);
+  n = Math.round(n);
+  // can only have whole integers for number of items
+  $('#n-items').val(n);
+  speed = Number(speed);
+  processors = Number(processors);
   var steps;
   
   if (complexity == 'squared') {
@@ -88,7 +90,7 @@ function calculateTimeTaken(complexity, resultForm, n, speed, processors, timeUn
   } else if (complexity == 'factorial') {
     steps = getFactorial(n);
   }
-  timeTaken = steps / (parseInt(speed) * parseInt(processors));
+  timeTaken = steps / (speed * processors);
 
   if (timeUnits == 'seconds' || timeUnits == 'milliseconds' || 
     timeUnits == 'microseconds'|| timeUnits == 'nanoseconds') {
