@@ -10,7 +10,7 @@ const COMPLEXITY_TEXT = {
 const TIME_SCALERS = {
   'nanoseconds': 1000000000,
   'microseconds': 1000000,
-  'millieseconds': 1000,
+  'milliseconds': 1000,
   'seconds': 1,
   'minutes': 60,
   'hours': 3600,
@@ -28,6 +28,7 @@ $(document).ready(function() {
   var processors = $('#processors').val();
   var timeUnits = $('input[name=time]:checked').prop('id');
   var result = calculateTimeTaken(complexity, resultForm, n, speed, processors, timeUnits);
+  $('#output').val(result);
 
   $('input[name=complexity]').click(function() {
     complexity = $('input[name=complexity]:checked').prop('id');
@@ -88,9 +89,9 @@ function calculateTimeTaken(complexity, resultForm, n, speed, processors, timeUn
 
   if (timeUnits == 'seconds' || timeUnits == 'milliseconds' || 
     timeUnits == 'microseconds'|| timeUnits == 'nanoseconds') {
-      timeUnits = timeUnits * TIME_SCALERS[timeUnits];
+      timeTaken = timeTaken * TIME_SCALERS[timeUnits];
   } else {
-    timeUnits = timeUnits / TIME_SCALERS[timeUnits];
+    timeTaken = timeTaken / TIME_SCALERS[timeUnits];
   }
 
   if (resultForm == 'scientific') {
