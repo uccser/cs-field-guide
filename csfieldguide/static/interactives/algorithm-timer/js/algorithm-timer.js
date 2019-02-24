@@ -99,7 +99,10 @@ function calculateTimeTaken(complexity, resultForm, n, speed, processors, timeUn
   } else {
     timeTaken = timeTaken.toFixed(2);
   }
-  // TODO: if NaN return blank
+
+  if (timeTaken.isNaN()) {
+    return '';
+  }
   return timeTaken;
 }
 
