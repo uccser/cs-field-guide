@@ -6,24 +6,23 @@
 {% block html %}
   <div class="row mb-3">
     <div id="container" class="box-translation">
-      <button id="restart-button">Restart</button>
+      <button id="restart-button">{% trans 'Restart' %}</button>
       <div id="user-input" class="layout">
         <div id="coordinates">
+          <p>{% trans 'The key to unlocking this box is in three coloured symbols. Find out which by moving the box around.' %}</p>
           <div id="desktop-coord">
-            <p>Type in different values of x, y and z and push Enter/Return to make the box move so you can see all the different sides.</p>
             <label>x = <input type="text" id="desk-x-coordinate" autofocus/></label>
             <label>y = <input type="text" id="desk-y-coordinate"></label>
             <label>z = <input type="text" id="desk-z-coordinate"></label>
           </div>
           <div id="mobile-coord">
-            <p>Use the buttons to change the values of x, y and z to make the box move so you can see all the different sides.</p>
             <div id="mob-x">x = <button id="mob-x-n">-</button><input readonly type="text" id="mob-x-coordinate"/><button id="mob-x-p">+</button></div>
             <div id="mob-y">y = <button id="mob-y-n">-</button><input readonly type="text" id="mob-y-coordinate"/><button id="mob-y-p">+</button></div>
             <div id="mob-z">z = <button id="mob-z-n">-</button><input readonly type="text" id="mob-z-coordinate"/><button id="mob-z-p">+</button></div>
           </div>
         </div>
         <div id="code">
-          <p id="question">Which of the symbols is coloured on the box?</p>
+          <p id="question">{% trans 'Which of the symbols is coloured on the box?' %}</p>
           <div id="symbol-grid" class="col">
             <div class="row">
               <img id="1" src="{% static 'img/interactives/colourful-box-images/square1-256px-grayscale.png' %}">
@@ -37,15 +36,15 @@
               <img id="7" src="{% static 'img/interactives/colourful-box-images/square7-256px-grayscale.png' %}">
               <img id="8" src="{% static 'img/interactives/colourful-box-images/square8-256px-grayscale.png' %}">
             </div>
-            <button id="submit-symbol">Submit</button>
+            <button id="submit-symbol">{% trans 'Submit' %}</button>
           </div>
           <div id="code-template" class="col">
             <img id="first-symbol" src="{% static 'img/interactives/translation-rotation-interactives-images/question-1.png' %}">
             <img id="second-symbol" src="{% static 'img/interactives/translation-rotation-interactives-images/question-2.png' %}">
             <img id="third-symbol" src="{% static 'img/interactives/translation-rotation-interactives-images/question-3.png' %}">
             <div id="end-buttons" class="row">
-              <button id="clear-code">Restart</button>
-              <button id="submit-code">Check Code</button>
+              <button id="clear-code">{% trans 'Restart' %}</button>
+              <button id="submit-code">{% trans 'Check Key' %}</button>
             </div>
           </div>
         </div>
