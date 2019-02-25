@@ -8,7 +8,6 @@
 
 var THREE = require('three');
 var detector = require('../third-party/threejs/Detector.js');
-var modularFunctions = require('./modular-functions.js');
 var TWEEN = require('@tweenjs/tween.js');
 
 var container = document.getElementById( 'container' );
@@ -26,6 +25,7 @@ var z_pos;
 var rotateObject = false;
 var difference = 10;
 var scale = 10;
+var isTranslationInter = true;
 
 init();
 onWindowResize();
@@ -35,6 +35,9 @@ animate();
  * Creates all the required objects for the scene
  */
 function init() {
+
+    // Is this the translation or rotation interactive?
+    isTranslationInter =  container.classList.contains('box-translation');
 
     // check that the browser is webgl compatible
     if ( ! detector.Detector.webgl ) detector.Detector.addGetWebGLMessage();
@@ -83,10 +86,7 @@ function init() {
         return container;
     }
 
-    //hiddenObject = createObject( basePath + 'js/translation-rotation-interactives/teapot.json' ); // any json object should work
-    //PLACEHOLDER//
-    hiddenObject = new THREE.Mesh(new THREE.BoxGeometry( 1, 1, 1 ), new THREE.MeshBasicMaterial( { color: 0x00ff00 } ))
-    //ENDPLACEHOLDER//
+    hiddenObject = createObject( basePath + 'js/translation-rotation-interactives/teapot.json' ); // any json object should work
     hiddenObject.scale.set( 50, 50, 50);
     hiddenObject.position.set( 0, -100, 0 );
     // does not add the hiddenObject to the scene until later (when the user "unlocks" the box)
@@ -129,7 +129,7 @@ function init() {
 }
 
 
-/*
+/**
  * creates cube geometry and adds it to the scene
  */
 function buildCube() {
@@ -248,7 +248,7 @@ function render() {
  * triggered when the user changes the coordinates of the box
  * change the x/y/z coordinate and move the box
  * Input:
-     - axis is a string, either 'x', 'y' or 'z'\
+     - axis is a string, either 'x', 'y' or 'z'
      - change is a string, either '-' or '+'
      - axis and change come from the mobile version of the page (input buttons)
  */
@@ -336,7 +336,7 @@ function submitSymbol() {
 }
 
 
-/*
+/**
  * changes the picture on the given side of the box
  * Input:
      - side: numbered side of the cube to change
@@ -348,7 +348,7 @@ function updateSide( side, currentImg, coloured) {
     if ( coloured == false ) {
         format = '-grayscale';
     }
-    cube.material[side].map = new THREE.TextureLoader().load(// was cube.material.materials
+    cube.material[side].map = new THREE.TextureLoader().load(
             boxImgPath + 'square' + currentImg + '-256px' + format + '.png',
             undefined,
             function() {
@@ -416,7 +416,6 @@ function incorrect() {
                 new TWEEN.Tween( cube.position )
                     .to( target )
                     .easing ( TWEEN.Easing.Elastic.Out )
-                    //.onUpdate( render )
                     .start();
                 TWEEN.update();
 
@@ -465,7 +464,6 @@ function end() {
     new TWEEN.Tween( camera.position )
         .to( target, 2000 )
         .easing ( TWEEN.Easing.Elastic.Out )
-        //.onUpdate( render )
         .start();
 
 
@@ -550,7 +548,7 @@ function clearCode() {
 }
 
 
-/*
+/**
  * When a symbol is clicked, add it to the first empty spot
  * (where "spot" refers to the boxes with question marks in them)
  * and update the dictionary mapping the three sides to the selected symbols
@@ -571,26 +569,99 @@ function symbolClick(id) {
 
 }
 
+/**
+ * triggered when the user hits the "enter" (or "return") key
+ * updates the cube's position to match the coordinates inputted by the user
+ */
 function moveBox() {
-    /* triggered when the user hits the "enter" (or "return") key
-    * updates the cube's position to match the coordinates inputted by the user
-    */
 
-    modularFunctions.emptyCheck(x_pos, y_pos, z_pos);
+    emptyCheck(x_pos, y_pos, z_pos);
 
-    // use the coordinates to set a new target for the box
-    var target = {
-        x: x_pos * scale,
-        y: y_pos * scale,
-        z: z_pos * scale
-    };
+    if (isTranslationInter) {
+        // use the coordinates to set a new target for the box
+        var target = {
+            x: x_pos * scale,
+            y: y_pos * scale,
+            z: z_pos * scale
+        };
+    } else {
+        //TODO
+    }
 
     // move the box on the next animation loop
     TWEEN.removeAll();
     new TWEEN.Tween( cube.position )
         .to( target, 1000 )
         .easing( TWEEN.Easing.Back.Out )
-        //.onUpdate( render )
         .start();
 
+}
+
+/**
+ * triggered when user types input
+ */
+function limiter( pos ) {
+    if (isTranslationInter) {
+        if ( pos < -360 ) {
+            return -360;
+        } else if ( pos > 360 ) {
+            return 360;
+        }
+        return pos;
+    } else {
+        //TODO
+    }
+
+}
+
+/**
+ * check that a value was given for the cube's position
+ * if not, set it to 0 and update the entry boxes for the user
+ */
+function emptyCheck(x_pos, y_pos, z_pos) {
+
+    if ( isNaN( x_pos ) ) {
+        x_pos = 0;
+        document.getElementById( 'desk-x-coordinate' ).value = x_pos;
+        document.getElementById( 'mob-x-coordinate' ).value = x_pos;
+    } else if ( isNaN( y_pos ) ) {
+        y_pos = 0;
+        document.getElementById( 'desk-y-coordinate' ).value = y_pos;
+        document.getElementById( 'mob-y-coordinate' ).value = y_pos;
+    } else if ( isNaN( z_pos) ){
+        z_pos = 0;
+        document.getElementById( 'desk-z-coordinate' ).value = z_pos;
+        document.getElementById( 'mob-z-coordinate' ).value = z_pos;
+    }
+
+}
+
+
+/**
+ * triggered when user clicks "Restart" button after correctly guessing code
+ */
+function reset() {
+
+    // hide restart button
+    document.getElementById( 'restart-button' ).style.display = 'none';
+    document.getElementById( 'user-input' ).style.display = 'block';
+
+    // hide the teapot
+    scene.remove( hiddenObject );
+
+    clearCode();
+
+    // rebuilds the cube
+    //   - the sides of the cube have to be randomly selected again and set to be visible again
+    //     therefore it is easier to just rebuild the cube than edit every side
+    scene.remove( cube );
+    buildCube();
+
+    // move camera (zoom out)
+    var target = { x: 0, y: 0, z: 500 };
+    new TWEEN.Tween( camera.position )
+        .to( target )
+        .easing ( TWEEN.Easing.Elastic.Out )
+        .onUpdate( render )
+        .start();
 }
