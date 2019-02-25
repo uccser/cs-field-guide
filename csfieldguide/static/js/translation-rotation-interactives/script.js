@@ -29,8 +29,7 @@ var y_pos;
 var z_pos;
 var rotateObject = false;
 var difference = 10;
-var scale;
-
+var scale = 10;
 
 init();
 onWindowResize();
@@ -132,7 +131,7 @@ function init() {
         document.getElementById( 'mobile-coord' ).style.display = 'inline';
     }
 
-    //clearCode();
+    clearCode();
 
 
 }
@@ -233,9 +232,13 @@ function onWindowResize() {
 function animate() {
 
     requestAnimationFrame(animate);
+    TWEEN.update();
 
     // makes the camera follow the box around the scene
     camera.lookAt(cube.position);
+    //TEMP//
+    cube.rotation.y += 0.01;
+    //ENDTEMP//
 
     if ( rotateObject ) {
         //hiddenObject.rotation.x += 0.005;
@@ -244,15 +247,11 @@ function animate() {
 
     render();
 
-    TWEEN.update();
-
 }
 
 
 function render() {
-
     renderer.render( scene, camera );
-
 }
 
 
@@ -428,7 +427,7 @@ function incorrect() {
                 new TWEEN.Tween( cube.position )
                     .to( target )
                     .easing ( TWEEN.Easing.Elastic.Out )
-                    .onUpdate( render )
+                    //.onUpdate( render )
                     .start();
                 TWEEN.update();
 
@@ -475,9 +474,9 @@ function end() {
     // move camera (zoom in)
     var target = { x: 0, y: 0, z: 350 };
     new TWEEN.Tween( camera.position )
-        .to( target )
+        .to( target, 2000 )
         .easing ( TWEEN.Easing.Elastic.Out )
-        .onUpdate( render )
+        //.onUpdate( render )
         .start();
 
 
@@ -601,8 +600,8 @@ function moveBox() {
     TWEEN.removeAll();
     new TWEEN.Tween( cube.position )
         .to( target, 1000 )
-        .easing( TWEEN.Easing.Back.InOut )
-        .onUpdate( render )
+        .easing( TWEEN.Easing.Back.Out )
+        //.onUpdate( render )
         .start();
 
 }
