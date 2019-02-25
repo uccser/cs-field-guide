@@ -19,7 +19,7 @@ binary-cards:
 binary-mode-calculator:
   name: Binary Mode Calculator
 box-rotation:
-  name: box-rotation (broken)
+  name: Box Rotation
 box-translation:
   name: Box Translation
 braille-alphabet:

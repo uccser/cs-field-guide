@@ -572,21 +572,38 @@ function moveBox() {
             y: y_pos * scale,
             z: z_pos * scale
         };
+
+        // move the box on the next animation loop
+        TWEEN.removeAll();
+        new TWEEN.Tween( cube.position )
+            .to( target, 1000 )
+            .easing( TWEEN.Easing.Back.Out )
+            .start();
     } else {
-        //TODO
+        // sets target rotations
+        // values are converted to radians (divide by 360 and multiply by 2 Pi)
+        var target = {
+            x: ( x_pos/180 ) * Math.PI,
+            y: ( y_pos/180 ) * Math.PI,
+            z: ( z_pos/180 ) * Math.PI
+        };
+
+        // rotate the box on the next animation loop
+        TWEEN.removeAll();
+        new TWEEN.Tween( cube.rotation )
+            .to( target, 2000 )
+            .easing ( TWEEN.Easing.Elastic.Out )
+            .onUpdate( render )
+            .start();
     }
 
-    // move the box on the next animation loop
-    TWEEN.removeAll();
-    new TWEEN.Tween( cube.position )
-        .to( target, 1000 )
-        .easing( TWEEN.Easing.Back.Out )
-        .start();
+    
 
 }
 
 /**
  * triggered when user types input
+ * Ensures user input stays within reasonable bounds
  */
 function limiter( pos ) {
     if (isTranslationInter) {
@@ -597,7 +614,11 @@ function limiter( pos ) {
         }
         return pos;
     } else {
-        //TODO
+        // Ensure value is in the range [0, 360]
+        if (pos < 0) {
+            return (360 - (Math.abs(pos) % 360));
+        }
+        return pos % 360;
     }
 
 }
@@ -720,5 +741,15 @@ function initHandlers() {
     });
     $('#submit-code').on('click', function() {
         submitCode();
+    });
+
+    $('#desk-x-coordinate').on('blur', function() {
+        updateCoords('x');
+    });
+    $('#desk-y-coordinate').on('blur', function() {
+        updateCoords('y');
+    });
+    $('#desk-z-coordinate').on('blur', function() {
+        updateCoords('z');
     });
 }

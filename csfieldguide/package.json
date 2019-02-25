@@ -15,6 +15,7 @@
     "csfg-module-fsa": "file:./static/js/modules/fsa/",
     "csfg-interactive-big-number-calculator": "file:./static/interactives/big-number-calculator/",
     "csfg-interactive-bin-packing": "file:./static/interactives/bin-packing/",
+    "csfg-interactive-box-rotation": "file:./static/interactives/box-rotation/",
     "csfg-interactive-box-translation": "file:./static/interactives/box-translation/",
     "csfg-interactive-caesar-cipher": "file:./static/interactives/caesar-cipher/",
     "csfg-interactive-cmy-mixer": "file:./static/interactives/cmy-mixer/",

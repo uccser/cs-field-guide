@@ -5,11 +5,12 @@
 
 {% block html %}
   <div class="row mb-3">
-    <div id="container" class="box-translation">
+    <div id="container" class="box-rotation">
       <button id="restart-button">{% trans 'Restart' %}</button>
       <div id="user-input" class="layout">
         <div id="coordinates">
-          <p>{% trans 'The key to unlocking this box is in three coloured symbols. Find out which by moving the box around.' %}</p>
+          <!-- Note that the plural of 'axis' is 'axes' -->
+          <p>{% trans 'The key to unlocking this box is in three coloured symbols. Find out which by rotating the box about its axes.' %}</p>
           <div id="desktop-coord">
             <label>x = <input type="text" id="desk-x-coordinate" autofocus/></label>
             <label>y = <input type="text" id="desk-y-coordinate"></label>
