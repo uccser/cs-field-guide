@@ -2,19 +2,15 @@
  * Common source code for the box translation and rotation interactives
  * 
  * @author Jack Morgan
+ * @author Alasdair Smith
  * @author Hayley Van Waas
  */
 
 var THREE = require('three');
-//require('three/examples/js/renderers/Projector.js');
 var detector = require('../third-party/threejs/Detector.js');
-//var transformer = require('../../interactives/box-translation/js/box-translation.js');
-var projector = require('../third-party/threejs/Projector.js');
 var modularFunctions = require('./modular-functions.js');
 var TWEEN = require('@tweenjs/tween.js');
 
-//var imgPath = '../../../img/interactives/translation-rotation-interactives-images/';
-//var boxImgPath = '../../../img/interactives/colourful-box-images/';
 var container = document.getElementById( 'container' );
 var camera, scene, renderer;
 var cube, hiddenObject;
@@ -52,20 +48,16 @@ function init() {
     // create a new scene
     scene = new THREE.Scene();
 
-    ////////////////////////////// background //////////////////////////////
+    ///////////////////////////////// background //////////////////////////////
 
     var textureLoader = new THREE.CubeTextureLoader();
     textureLoader.setPath( imgPath );
     // loads the 6 background pictures (px = positive x, nx = negative x, etc)
-    var textureCube = textureLoader.load( [
+    scene.background = textureLoader.load( [
         'px.jpg', 'nx.jpg',
         'py.jpg', 'ny.jpg',
         'pz.jpg', 'nz.jpg'
     ] );
-    skyboxMesh = new THREE.MeshBasicMaterial( { color: 0xffffff, envMap: textureCube } );
-    // adds the skybox to the scene
-    scene.background = skyboxMesh;
-
 
     //////////////////////////////////// box /////////////////////////////////////
 
@@ -236,9 +228,6 @@ function animate() {
 
     // makes the camera follow the box around the scene
     camera.lookAt(cube.position);
-    //TEMP//
-    cube.rotation.y += 0.01;
-    //ENDTEMP//
 
     if ( rotateObject ) {
         //hiddenObject.rotation.x += 0.005;
