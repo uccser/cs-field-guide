@@ -32,6 +32,7 @@ button {
 label, #mob-x, #mob-y, #mob-z {
     font-family: "Cambria",Georgia,serif;
     font-style: italic;
+    font-size: 15px;
 }
 
 
@@ -67,8 +68,7 @@ label, #mob-x, #mob-y, #mob-z {
 
 .desktop-layout {
     position: absolute;
-    top: 0px;
-    right: 0px;
+    right: 15px;
     width: 200px;
 }
 
