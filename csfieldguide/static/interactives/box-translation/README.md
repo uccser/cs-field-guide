@@ -26,5 +26,5 @@ In addition, this interactive also requires two third-party libraries:
 - three
 
 ## Licenses
-The third-party libraries three and tween.js are used in these interactives, their corresponding licence files are included in the ##TODO FIGURE OUT LICENCE FILES##
-The json object file was obtained as part of the Three.js library, and its use is covered under the same licence.
+The third-party libraries three and tween.js are used in these interactives, their corresponding license files are included in the ##TODO FIGURE OUT LICENSE FILES##
+The json object file was obtained as part of the Three.js library, and its use is covered under the same license.
