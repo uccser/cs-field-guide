@@ -117,13 +117,6 @@ function init() {
     document.getElementById( 'mob-y-coordinate' ).value = y_pos;
     document.getElementById( 'mob-z-coordinate' ).value = z_pos;
 
-    // uses regex to check if the user is on mobile
-    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-        // if mobile then switches input to buttons rather than text entry
-        document.getElementById( 'desktop-coord' ).style.display = 'none';
-        document.getElementById( 'mobile-coord' ).style.display = 'inline';
-    }
-
     clearCode();
 
 
@@ -201,12 +194,6 @@ function onWindowResize() {
 
     var screenWidth = window.innerWidth;
     var screenHeight = window.innerHeight;
-
-    // check for small screen
-    if ( screenWidth < 650 ) {
-        // sets to mobile layout
-        document.getElementById( 'user-input' ).className = 'mob-layout';
-    }
 
     windowHalfX = screenWidth / 2;
     windowHalfY = screenHeight / 2;

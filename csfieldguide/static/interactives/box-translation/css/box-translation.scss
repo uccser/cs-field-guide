@@ -66,14 +66,12 @@ label, #mob-x, #mob-y, #mob-z {
 }
 
 
-.desktop-layout {
-    position: absolute;
-    right: 15px;
-    width: 200px;
+#mobile-coord {
+    display: none;
 }
 
 
-#mobile-coord {
+#desktop-coord {
     display: none;
 }
 
@@ -82,25 +80,6 @@ label, #mob-x, #mob-y, #mob-z {
     display: inline-block;
     font-size: 15px;
     margin: 2px;
-}
-
-
-.mob-layout {
-    font-size: 12px;
-    position: absolute;
-    bottom: 0px;
-    width: 100%;
-}
-
-
-.mob-layout button {
-    font-size: 14px;
-}
-
-
-.mob-layout #symbol-grid {
-    width: 50%;
-    float: left;
 }
 
 
@@ -125,7 +104,39 @@ label, #mob-x, #mob-y, #mob-z {
 }
 
 
-.mob-layout #code-template {
-    width: 50%;
-    float: right;
+.layout {
+    position: absolute;
+    right: 15px;
+    width: 200px;
+}
+
+
+@media (max-width: 768px) {
+    .layout {
+        font-size: 12px;
+        bottom: 100px;
+        width: 100%;
+        left: 0px;
+    }
+    #mobile-coord {
+        display: block;
+    }
+    .layout #code-template {
+        width: 50%;
+        float: right;
+    }
+    .layout #symbol-grid {
+        width: 50%;
+        float: left;
+    }
+    .layout button {
+        font-size: 14px;
+    }
+}
+
+
+@media (min-width: 768px) {
+    #desktop-coord {
+        display: block;
+    }
 }
