@@ -6,14 +6,14 @@
 {% block html %}
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col-sm-12 col-lg-6 offset-lg-3">
-      <h3>{% trans "Algorithm Timer" %}</h3>
+    <div class="col-sm-12 col-lg-8">
+      <h3 class="text-center my-3">{% trans "Algorithm Timer" %}</h3>
     </div>
   </div>
 
   <!-- radio buttons for algorithm complexity -->
   <div class="row mb-2 justify-content-center">
-    <div class="col-sm-12 col-lg-6">
+    <div class="col-sm-12 col-lg-8">
       <div class="d-inline-block mr-2">
         {% trans "Algorithm complexity:" %}
       </div>
@@ -58,7 +58,7 @@
 
   <!-- radio buttons for what form the result should be in -->
   <div class="row justify-content-center mb-3">
-    <div class="col-sm-12 col-lg-6">
+    <div class="col-sm-12 col-lg-8">
       <div class="d-inline-block mr-2">
         {% trans "Results:" %}
       </div>
@@ -80,7 +80,7 @@
   <!-- input boxes -->
   <form>
     <div class="row justify-content-center">
-      <div class="col-sm-12 col-lg-6">
+      <div class="col-sm-12 col-lg-8">
 
         <div class="form-group row">
           <label for="n-items" class="col-sm-6 col-form-label">{% trans "Number of items (n):" %}</label>
@@ -110,21 +110,21 @@
 
   <!-- output -->
   <div class="row justify-content-center">
-    <div class="col-sm-12 col-lg-6">
+    <div class="col-sm-12 col-lg-8">
       <div class="mb-1">
         {% blocktrans %}
         <span id='complexity-chosen'>n&sup2;</span> operations would take: 
         {% endblocktrans %}
       </div>
-      <div class="pl-0">
-        <textarea id="output" class="form-control"></textarea>
+      <div class="form-group pl-0">
+        <textarea id="output" class="form-control" rows="10" readonly></textarea>
       </div>
     </div>
   </div>
 
   <!-- radio buttons for time -->
   <div class="row justify-content-center mb-2">
-    <div class="col-sm-12 col-lg-6 form-control-sm ml-2">
+    <div class="col-sm-12 col-lg-8 form-control-sm ml-2">
       <div class="form-check form-check-inline">
         <input class="form-check-input" type="radio" name="time" id="nanoseconds">
         <label class="form-check-label" for="nanoseconds">

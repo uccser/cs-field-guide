@@ -23,6 +23,9 @@ const TIME_SCALERS = {
 
 
 $(document).ready(function() {
+  // configure math.js to work with enough precision to do our calculations
+  Mathjs.config({precision: 2000});
+
   var complexity = $('input[name=complexity]:checked').prop('id');
   var resultForm = $('input[name=result-form]:checked').prop('id');
   var n = $('#n-items').val();
@@ -72,42 +75,42 @@ $(document).ready(function() {
 
 
 function calculateTimeTaken(complexity, resultForm, n, speed, processors, timeUnits) {
-  Mathjs.config({precision: 2000});
-  n = Math.round(n);
   // can only have whole integers for number of items
+  n = Mathjs.bignumber(Math.round(n));
   $('#n-items').val(n);
-  speed = Number(speed);
-  processors = Number(processors);
+  speed = Mathjs.bignumber(speed);
+  processors = Mathjs.bignumber(processors);
   var steps;
   
   if (complexity == 'squared') {
-    steps = Math.pow(n, 2);
+    steps = Mathjs.bignumber(Math.pow(n, 2));
   } else if (complexity == 'cubed') {
-    steps = Math.pow(n, 3);
+    steps = Mathjs.bignumber(Math.pow(n, 3));
   } else if (complexity == 'fourth-power') {
-    steps = Math.pow(n, 4);
+    steps = Mathjs.bignumber(Math.pow(n, 4));
   } else if (complexity == 'sixth-power') {
-    steps = Math.pow(n, 6);
+    steps = Mathjs.bignumber(Math.pow(n, 6));
   } else if (complexity == 'exponential') {
-    steps = Math.pow(2, n);
+    steps = Mathjs.bignumber(Math.pow(2, n));
   } else if (complexity == 'factorial') {
-    n = Mathjs.bignumber(n);
     steps = Mathjs.factorial(n);
-    console.log(Mathjs.format(steps, {notation: 'fixed'}));
   }
-  timeTaken = steps / (speed * processors);
 
+  var denominator = Mathjs.multiply(speed, processors);
+  timeTaken = Mathjs.divide(steps, denominator);
+
+  var timeScale = Mathjs.bignumber(TIME_SCALERS[timeUnits])
   if (timeUnits == 'seconds' || timeUnits == 'milliseconds' || 
     timeUnits == 'microseconds'|| timeUnits == 'nanoseconds') {
-      timeTaken = timeTaken * TIME_SCALERS[timeUnits];
+      timeTaken = Mathjs.multiply(timeTaken, timeScale);
   } else {
-    timeTaken = timeTaken / TIME_SCALERS[timeUnits];
+    timeTaken = Mathjs.divide(timeTaken, timeScale);
   }
 
   if (resultForm == 'scientific') {
-    timeTaken = timeTaken.toExponential(2);
+    timeTaken = Mathjs.format(Mathjs.bignumber(timeTaken), {notation: 'exponential'});
   } else {
-    timeTaken = timeTaken.toFixed(2);
+    timeTaken = Mathjs.format(Mathjs.bignumber(timeTaken), {notation: 'fixed'});
   }
 
   if (isNaN(timeTaken)) {
@@ -115,20 +118,6 @@ function calculateTimeTaken(complexity, resultForm, n, speed, processors, timeUn
   }
   return timeTaken;
 }
-
-
-// below function from 
-// https://stackoverflow.com/questions/3959211/what-is-the-fastest-factorial-function-in-javascript
-// factorial = [];
-// function getFactorial(n) {
-//   if (n == 0 || n == 1) {
-//     return 1;
-//   }
-//   if (factorial[n] > 0) {
-//     return Big(factorial[n]);
-//   }
-//   return factorial[n] = Big(getFactorial(n-1)) * big(n);
-// }
 
 
 function inputIsValid(n, speed, processors) {
