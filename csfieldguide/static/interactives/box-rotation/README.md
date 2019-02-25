@@ -2,24 +2,29 @@
 
 **Author:** Hayley van Waas
 
-This interactive shows how to rotate an object in 3D space.
+This interactive allows the rotation of an object in 3D space for users to identify which side is coloured.
 
 ## Required files
 
-This interactive shares a large amount of source code with the Box Translation interactive, for this reason most source files are in the base-files folder. When editing this interactive, please check that changes do not alter the behaviour of the Box Translation interactive.
+This interactive shares a large amount of source code with the Box Translation interactive, for this reason most source files are in shared folders. When editing this interactive, please check that changes do not adversely affect the behaviour of the Box Translation interactive.
 
-The location of relevant files for this interactive in the base-files folder are given here:
+The location of relevant files for this interactive in the shared folders are given here:
 
-    base_files/
-    ├── img/translation-rotation-interactives-images/*
-    ├── css/
-    │   └── translation-rotation-interactives-style.css
-    └── js/
-        ├── translation-rotation-interactives/*
-        └── third-party/
-        	├── tween.js
-        	└── threejs/*
+    static/
+    ├── img/interactives/
+    │   ├── colourful-box-images/*
+    │   └── translation-rotation-interactives-images/*
+    ├── js/
+    │   ├── third-party/threejs/Detector.js
+    │   └── translation-rotation-interactives/*
+    └── scss/
+        └── translation-rotation-interactives/*
+
+In addition, this interactive also requires two third-party libraries:
+
+- tween.js
+- three
 
 ## Licenses
-The third-party libraries Three.js and tween.js are used in these interactives, their corresponding licence files are included in the base-files/third-party/ folder.
+The third-party libraries three and tween.js are used in these interactives, their corresponding licence files are included in the ##TODO FIGURE OUT LICENCE FILES##
 The json object file was obtained as part of the Three.js library, and its use is covered under the same licence.

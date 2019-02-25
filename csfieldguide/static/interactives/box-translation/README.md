@@ -14,10 +14,17 @@ The location of relevant files for this interactive in the shared folders are gi
     ├── img/interactives/
     │   ├── colourful-box-images/*
     │   └── translation-rotation-interactives-images/*
-    └── js/
-        ├── third-party/threejs/*
+    ├── js/
+    │   ├── third-party/threejs/Detector.js
+    │   └── translation-rotation-interactives/*
+    └── scss/
         └── translation-rotation-interactives/*
 
+In addition, this interactive also requires two third-party libraries:
+
+- tween.js
+- three
+
 ## Licenses
-The third-party libraries Three.js and tween.js are used in these interactives, their corresponding licence files are included in the base-files/third-party/ folder.
+The third-party libraries three and tween.js are used in these interactives, their corresponding licence files are included in the ##TODO FIGURE OUT LICENCE FILES##
 The json object file was obtained as part of the Three.js library, and its use is covered under the same licence.
