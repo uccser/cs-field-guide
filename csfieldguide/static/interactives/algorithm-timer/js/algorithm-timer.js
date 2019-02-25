@@ -23,9 +23,6 @@ const TIME_SCALERS = {
 
 
 $(document).ready(function() {
-  // configure math.js to work with enough precision to do our calculations
-  Mathjs.config({precision: 2000});
-
   var complexity = $('input[name=complexity]:checked').prop('id');
   var resultForm = $('input[name=result-form]:checked').prop('id');
   var n = $('#n-items').val();
@@ -108,9 +105,9 @@ function calculateTimeTaken(complexity, resultForm, n, speed, processors, timeUn
   }
 
   if (resultForm == 'scientific') {
-    timeTaken = Mathjs.format(Mathjs.bignumber(timeTaken), {notation: 'exponential'});
+    timeTaken = Mathjs.format(Mathjs.bignumber(timeTaken), {notation: 'exponential', precision: 3});
   } else {
-    timeTaken = Mathjs.format(Mathjs.bignumber(timeTaken), {notation: 'fixed'});
+    timeTaken = Mathjs.format(Mathjs.bignumber(timeTaken), {notation: 'fixed', precision: 2});
   }
 
   if (isNaN(timeTaken)) {
