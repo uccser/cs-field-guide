@@ -37,7 +37,6 @@ It may be more meaningful to students it this is converted to some geological ti
 
 {panel end}
 
-{button-link link="http://www.csfieldguide.org.nz/releases/1.9.9/_static/widgets/tract-scaling-v2.html" text="View big time calculator"}
 
 So far the calculation assumes that the computer would only do 1 operation per second; try changing to a million (1,000,000) operations per second, which is more realistic, and see how long that would take.
 
