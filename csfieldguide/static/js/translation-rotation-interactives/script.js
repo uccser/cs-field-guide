@@ -456,8 +456,8 @@ function end() {
 
 
     // gradually fades cube
-    for ( face in cube.material.materials ) {
-        cube.material.materials[face].transparent = true;
+    for ( face in cube.material ) {
+        cube.material[face].transparent = true;
     }
 
 

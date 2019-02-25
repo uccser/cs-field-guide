@@ -21,7 +21,7 @@ binary-mode-calculator:
 box-rotation:
   name: box-rotation (broken)
 box-translation:
-  name: box-translation (broken)
+  name: Box Translation
 braille-alphabet:
   name: Braille Alphabet
 caesar-cipher:
