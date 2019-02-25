@@ -13,6 +13,7 @@
     "sticky-state": "2.4.1",
     "iframe-resizer": "3.6.3",
     "csfg-module-fsa": "file:./static/js/modules/fsa/",
+    "csfg-interactive-algorithm-timer": "file:./static/interactives/algorithm-timer/",
     "csfg-interactive-big-number-calculator": "file:./static/interactives/big-number-calculator/",
     "csfg-interactive-bin-packing": "file:./static/interactives/bin-packing/",
     "csfg-interactive-caesar-cipher": "file:./static/interactives/caesar-cipher/",

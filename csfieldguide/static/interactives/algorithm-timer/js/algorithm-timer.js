@@ -1,3 +1,5 @@
+const Mathjs = require('mathjs');
+
 const COMPLEXITY_TEXT = {
   'squared': 'n&sup2;',
   'cubed': 'n&sup3;',
@@ -70,6 +72,7 @@ $(document).ready(function() {
 
 
 function calculateTimeTaken(complexity, resultForm, n, speed, processors, timeUnits) {
+  Mathjs.config({precision: 2000});
   n = Math.round(n);
   // can only have whole integers for number of items
   $('#n-items').val(n);
@@ -88,7 +91,9 @@ function calculateTimeTaken(complexity, resultForm, n, speed, processors, timeUn
   } else if (complexity == 'exponential') {
     steps = Math.pow(2, n);
   } else if (complexity == 'factorial') {
-    steps = getFactorial(n);
+    n = Mathjs.bignumber(n);
+    steps = Mathjs.factorial(n);
+    console.log(Mathjs.format(steps, {notation: 'fixed'}));
   }
   timeTaken = steps / (speed * processors);
 
@@ -114,20 +119,21 @@ function calculateTimeTaken(complexity, resultForm, n, speed, processors, timeUn
 
 // below function from 
 // https://stackoverflow.com/questions/3959211/what-is-the-fastest-factorial-function-in-javascript
-factorial = [];
-function getFactorial(n) {
-  if (n == 0 || n == 1) {
-    return 1;
-  }
-  if (factorial[n] > 0) {
-    return factorial[n];
-  }
-  return factorial[n] = getFactorial(n-1) * n;
-}
+// factorial = [];
+// function getFactorial(n) {
+//   if (n == 0 || n == 1) {
+//     return 1;
+//   }
+//   if (factorial[n] > 0) {
+//     return Big(factorial[n]);
+//   }
+//   return factorial[n] = Big(getFactorial(n-1)) * big(n);
+// }
 
 
 function inputIsValid(n, speed, processors) {
   isValid = true;
+
   // validation for number of items
   nItems = $('#n-items');
   nItemsErrorMsg = $('#n-items-input-error');
