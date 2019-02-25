@@ -24,7 +24,7 @@
         </div>
         <div id="code">
           <p id="question">Which of the symbols is coloured on the box?</p>
-          <div id="symbol-grid">
+          <div id="symbol-grid" class="col">
             <div class="row">
               <img id="1" src="{% static 'img/interactives/colourful-box-images/square1-256px-grayscale.png' %}">
               <img id="2" src="{% static 'img/interactives/colourful-box-images/square2-256px-grayscale.png' %}">
@@ -39,11 +39,11 @@
             </div>
             <button id="submit-symbol">Submit</button>
           </div>
-          <div id="code-template">
+          <div id="code-template" class="col">
             <img id="first-symbol" src="{% static 'img/interactives/translation-rotation-interactives-images/question-1.png' %}">
             <img id="second-symbol" src="{% static 'img/interactives/translation-rotation-interactives-images/question-2.png' %}">
             <img id="third-symbol" src="{% static 'img/interactives/translation-rotation-interactives-images/question-3.png' %}">
-            <div id="end-buttons">
+            <div id="end-buttons" class="row">
               <button id="clear-code">Restart</button>
               <button id="submit-code">Check Code</button>
             </div>

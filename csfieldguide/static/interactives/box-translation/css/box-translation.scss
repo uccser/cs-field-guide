@@ -56,7 +56,7 @@ label, #mob-x, #mob-y, #mob-z {
 
 
 #coordinates input {
-    width: 30px;
+    width: 3rem;
     display: inline-block;
     border: none;
     border-radius: 2px;
@@ -114,7 +114,7 @@ label, #mob-x, #mob-y, #mob-z {
 @media (max-width: 768px) {
     .layout {
         font-size: 12px;
-        bottom: 100px;
+        bottom: 0px;
         width: 100%;
         left: 0px;
     }
