@@ -13,9 +13,6 @@ var TWEEN = require('@tweenjs/tween.js');
 var container = document.getElementById( 'container' );
 var camera, scene, renderer;
 var cube, hiddenObject;
-var targetRotation = 0;
-var windowHalfX = window.innerWidth / 2;
-var windowHalfY = window.innerHeight / 2;
 var code = { 1: null, 2: null, 3: null };
 var boxSymbols = {}
 var selectedSymbolId;
