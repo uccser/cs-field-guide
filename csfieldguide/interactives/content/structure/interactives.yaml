@@ -75,6 +75,10 @@ checksum-calculator-gtin-13:
   languages:
     en: interactives/checksum-calculator-gtin-13.html
   is_interactive: true
+city-trip-interactive:
+  languages:
+    en: interactives/city-trip.html
+  is_interactive: true
 close-window:
   languages:
     en: interactives/close-window.html

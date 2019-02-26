@@ -32,6 +32,8 @@ checksum-calculator:
   name: Checksum Calculator
 checksum-calculator-gtin-13:
   name: Checksum Calculator GTIN-13
+city-trip:
+  City Trip
 close-window:
   name: Close Window
 cmy-mixer:
