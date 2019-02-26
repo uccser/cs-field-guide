@@ -1,11 +1,12 @@
+var urlParameters = require('../../../js/third-party/url-parameters.js')
 "use strict";
 
 $(document).ready(function () {
     // Settings for interactive
     var binaryValueSettings = {
-        BASE: Number(getUrlParameter('base')) || 2,
-        DIGITS: Number(getUrlParameter('digits')) || 8,
-        OFFSET: Number(getUrlParameter('offset')) || 0
+        BASE: Number(urlParameters.getUrlParameter('base')) || 2,
+        DIGITS: Number(urlParameters.getUrlParameter('digits')) || 8,
+        OFFSET: Number(urlParameters.getUrlParameter('offset')) || 0
     }
 
     $('#interactive-binary-cards').on('click', '.binary-card', function(event) {
@@ -36,7 +37,7 @@ function createCards(settings) {
     var cardContainer = $('#interactive-binary-cards-container');
 
     var value = Math.pow(settings.BASE, settings.DIGITS + settings.OFFSET - 1);
-    var starting_sides = getUrlParameter('start') || "";
+    var starting_sides = urlParameters.getUrlParameter('start') || "";
 
     // Iterate through card values
     for (var digit = 0; digit < settings.DIGITS; digit++) {
@@ -173,21 +174,4 @@ function updateDotCount() {
     var format = ngettext('1 dot is visible', '%(dot_count)s dots are visible', dotCount);
     var dotCountText = interpolate(format, {"dot_count": dotCount}, true);
     dotText.html(dotCountText);
-};
-
-
-// From jquerybyexample.net/2012/06/get-url-parameters-using-jquery.html
-function getUrlParameter(sParam) {
-    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
-        sURLVariables = sPageURL.split('&'),
-        sParameterName,
-        i;
-
-    for (i = 0; i < sURLVariables.length; i++) {
-        sParameterName = sURLVariables[i].split('=');
-
-        if (sParameterName[0] === sParam) {
-            return sParameterName[1] === undefined ? true : sParameterName[1];
-        }
-    }
 };
