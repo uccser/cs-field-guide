@@ -75,9 +75,9 @@ md5-hash:
 menu-keystrokes:
   name: Menu Keystrokes
 mips-assembler:
-  name: mips-assembler (broken)
+  name: MIPS Assembler
 mips-simulator:
-  name: mips-simulator (broken)
+  name: MIPS Simulator
 ncea-guide-selector:
   name: ncea-guide-selector (broken)
 nfa-guesser:

@@ -11,16 +11,34 @@ urlpatterns = [
         views.AppendicesList.as_view(),
         name="appendices"
     ),
-    # e.g. /appendices/curriculum-guides/
     url(
-        r"^(?P<appendix_slug>[-\w]+)/$",
-        views.AppendixView.as_view(),
-        name="appendix"
+        r"^about/$",
+        views.AboutView.as_view(),
+        name="about"
     ),
-    # e.g. /appendices/curriculum-guides/ncea/
     url(
-        r"^(?P<appendix_slug>[-\w]+)/(?P<subappendix_slug>[-\w]+)/$",
-        views.SubappendixView.as_view(),
-        name="subappendix"
+        r"^curriculum-guides/$",
+        views.CurriculumGuidesView.as_view(),
+        name="curriculum-guides"
+    ),
+    url(
+        r"^curriculum-guides/ncea/$",
+        views.NceaView.as_view(),
+        name="ncea"
+    ),
+    url(
+        r"^curriculum-guides/apcsp/$",
+        views.ApcspView.as_view(),
+        name="apcsp"
+    ),
+    url(
+        r"^contributors/$",
+        views.ContributorsView.as_view(),
+        name="contributors"
+    ),
+    url(
+        r"^sitemap/$",
+        views.SitemapView.as_view(),
+        name="sitemap"
     ),
 ]

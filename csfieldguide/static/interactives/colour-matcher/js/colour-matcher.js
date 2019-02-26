@@ -1,6 +1,7 @@
 // The JS is not currently written for efficiency
 // but rather as a proof of concept.
 // This JS will be rewritten in a future update.
+var urlParameters = require('../../../js/third-party/url-parameters.js');
 
 const noUiSlider = require('nouislider');
 const wNumb = require('wnumb');
@@ -20,7 +21,7 @@ $(document).ready(function () {
   ColourMatcher.display_hexidecimal = false;
 
   // Display hexidecimal values
-  if (getUrlParameter('hexidecimal') == 'true') {
+  if (urlParameters.getUrlParameter('hexidecimal') == 'true') {
     ColourMatcher.display_hexidecimal = true;
     $('#interactive-colour-matcher .hexidecimal').show();
   }
@@ -300,21 +301,4 @@ function getValuesFromRepresentation(slider_id_num, start, finish) {
     total_binary += $(bits[i]).html();
   }
   return parseInt(total_binary, 2);
-};
-
-
-// From jquerybyexample.net/2012/06/get-url-parameters-using-jquery.html
-function getUrlParameter(sParam) {
-    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
-        sURLVariables = sPageURL.split('&'),
-        sParameterName,
-        i;
-
-    for (i = 0; i < sURLVariables.length; i++) {
-        sParameterName = sURLVariables[i].split('=');
-
-        if (sParameterName[0] === sParam) {
-            return sParameterName[1] === undefined ? true : sParameterName[1];
-        }
-    }
 };
