@@ -33,7 +33,7 @@ checksum-calculator:
 checksum-calculator-gtin-13:
   name: Checksum Calculator GTIN-13
 city-trip:
-  City Trip
+  name: City Trip
 close-window:
   name: Close Window
 cmy-mixer:

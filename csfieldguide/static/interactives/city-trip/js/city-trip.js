@@ -1,9 +1,9 @@
 $(document).ready(function() {
   var slider = $('#num-cities');
   var output = $("#slider-text");
-  output.innerHTML = slider.value;
+  output.html(slider.val());
   
-  slider.oninput = function() {
-    output.innerHTML = this.value;
-  } 
+  slider.on('input', function() {
+    output.html(slider.val());
+  });
 });
