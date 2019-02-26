@@ -22,6 +22,33 @@
       </div>
     </div>
 
+    <div class="row mb-2">
+      <div class="col-sm-12 col-lg-8">
+        <p>{% trans "Estimated time left to run:" %}</p>
+        <p class="mb-1"><span id="num-years">0</span>{% trans " years" %}</p>
+        <p class="mb-1"><span id="num-months">0</span>{% trans " months" %}</p>
+        <p class="mb-1"><span id="num-days">0</span>{% trans " days" %}</p>
+        <p class="mb-1"><span id="num-hours">0</span>{% trans " hours" %}</p>
+        <p class="mb-1"><span id="num-minutes">0</span>{% trans " minutes" %}</p>
+        <p class="mb-1"><span id="num-seconds">0</span>{% trans " seconds" %}</p>
+      </div>
+    </div>
+
+    <div class="row mb-2">
+      <div class="col-sm-12 col-lg-8">
+        <p class="mb-1">{% trans "Trial route: " %}<span id='trial-route'>0</span></p>
+        <p class="mb-1">{% trans "Distance: <span id='trial-distance'>0</span> km" %}</p>
+        <p class="mb-1">{% trans "Best route so far: " %}<span id='best-route-so-far'>0</span></p>
+        <p class="mb-1">{% trans "Distance: <span id='best-route-distance'>0</span> km" %}</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12 col-lg-8">
+        <p>{% trans "Status: <span id='status'>ready to go!</span>" %}</p>
+      </div>
+    </div>
+
   </div>
 
 {% endblock html %}
