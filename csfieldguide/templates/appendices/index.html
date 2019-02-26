@@ -13,23 +13,22 @@
 {% block content %}
   <ul>
     <li>
-      <a href="{% url 'appendices:appendix' 'about' %}">
+      <a href="{% url 'appendices:about' %}">
         {% trans "About" %}
       </a>
     </li>
     <li>
-      <!-- TODO: Set URL -->
-      <a href="#">
+      <a href="https://cs-field-guide.readthedocs.io/en/latest/changelog.html">
         {% trans "Changelog" %}
       </a>
     </li>
     <li>
-      <a href="{% url 'appendices:appendix' 'contributors' %}">
+      <a href="{% url 'appendices:contributors' %}">
         {% trans "Contributors" %}
       </a>
     </li>
     <li>
-      <a href="{% url 'appendices:appendix' 'curriculum-guides' %}">
+      <a href="{% url 'appendices:curriculum-guides' %}">
         {% trans "Curriculum Guides" %}
       </a>
     </li>
@@ -41,6 +40,11 @@
     <li>
       <a href="{% url 'interactives:index' %}">
         {% trans "Interactives" %}
+      </a>
+    </li>
+    <li>
+      <a href="{% url 'appendices:sitemap' %}">
+        {% trans "Sitemap" %}
       </a>
     </li>
   </ul>
