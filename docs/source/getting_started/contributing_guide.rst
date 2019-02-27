@@ -221,7 +221,7 @@ Licencing
 ------------------------------------------------------------------------------
 
 Any third-party libraries or packages used within this project should be listed
-within the ``LICECE-THIRD-PARTY`` file, with a full copy of the
+within the ``LICENCE-THIRD-PARTY`` file, with a full copy of the
 licence available within the ``third-party-licences`` directory.
 
 Final Comments
