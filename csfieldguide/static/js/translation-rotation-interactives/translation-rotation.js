@@ -375,13 +375,17 @@ function incorrect() {
 
     var target;
     var count = 0;
-    //var x_pos = 20;
     var timer = 0;
     var shift = 20;
-
-    x_pos *= scale;
-    y_pos *= scale;
-    z_pos *= scale;
+    if (isTranslationInter) {
+        x_pos *= scale;
+        y_pos *= scale;
+        z_pos *= scale;
+    } else {
+        x_pos = 0;
+        y_pos = 0;
+        z_pos = 0;
+    }
     var start_pos = x_pos;
     x_pos += shift;
 
