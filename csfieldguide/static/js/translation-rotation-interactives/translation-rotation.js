@@ -12,7 +12,7 @@ var TWEEN = require('@tweenjs/tween.js');
 
 var container = document.getElementById( 'container' );
 var camera, scene, renderer;
-var cube, hiddenObject;
+var cube;
 var code = { 1: null, 2: null, 3: null };
 var boxSymbols = {}
 var selectedSymbolId;
@@ -63,34 +63,6 @@ function init() {
     //////////////////////////////////// box /////////////////////////////////////
 
     buildCube();
-
-    /////////////////////////////// hiddenObject ////////////////////////////////
-
-    var ambient = new THREE.AmbientLight( 0x444444 );
-    scene.add( ambient );
-
-    var directionalLight = new THREE.DirectionalLight( 0xffeedd );
-    directionalLight.position.set( 0, 0, 1 ).normalize();
-    scene.add( directionalLight );
-
-
-    var loader = new THREE.ObjectLoader();
-    // wrapped in function so we can access the object later
-    function createObject( objectFile ) {
-        var container = new THREE.Object3D();
-        loader.load( objectFile, function ( object ) {
-            container.add( object );
-        });
-        return container;
-    }
-
-    hiddenObject = createObject( basePath + 'js/translation-rotation-interactives/teapot.json' ); // any json object should work
-    hiddenObject.scale.set( 50, 50, 50);
-    hiddenObject.position.set( 0, -100, 0 );
-    // does not add the hiddenObject to the scene until later (when the user "unlocks" the box)
-
-    /////////////////////////////////////////////////////////////////////
-
 
     renderer = new THREE.WebGLRenderer();
     renderer.setClearColor( 0xf0f0f0 );
@@ -215,8 +187,8 @@ function animate() {
     camera.lookAt(cube.position);
 
     if ( rotateObject ) {
-        //hiddenObject.rotation.x += 0.005;
-        hiddenObject.rotation.y += 0.01;
+        cube.rotation.x += 0.005;
+        cube.rotation.y += 0.01;
     }
 
     render();
@@ -425,7 +397,7 @@ function incorrect() {
 
 
 /**
- * hides the cube and show the object inside when the user enters the correct code
+ * Shows the cube in full colour when the user enters the correct code
  */
 function end() {
 
@@ -455,43 +427,9 @@ function end() {
         .easing ( TWEEN.Easing.Elastic.Out )
         .start();
 
-
-    // gradually fades cube
-    for ( face in cube.material ) {
-        cube.material[face].transparent = true;
-    }
-
-
-    var timer = 0;
-    var opacity = 1;
-    adjustOpacity( opacity );
-
+    // Start rotating the object
     rotateObject = true;
 
-    window.setTimeout( function () {
-        scene.add( hiddenObject );
-        function run() {
-            if ( opacity <= 0 ) {
-                clearInterval( timer );
-            } else {
-                opacity = opacity - 0.05;
-                adjustOpacity( opacity );
-                timer = setTimeout( run, 75 );
-            }
-        }
-        timer = setTimeout( run, 75 );
-    }, 1500 );
-
-}
-
-
-/**
- * sets each side of the cube to a given opacity
- */
-function adjustOpacity( opacity ) {
-    for (face in cube.material.materials) {
-        cube.material.materials[face].opacity = opacity;
-    }
 }
 
 
@@ -559,8 +497,8 @@ function symbolClick(id) {
 }
 
 /**
- * triggered when the user hits the "enter" (or "return") key
- * updates the cube's position to match the coordinates inputted by the user
+ * triggered when the user clicks outside an input box
+ * updates the cube's position to match the coordinates set by the user
  */
 function moveBox() {
 
@@ -656,8 +594,8 @@ function reset() {
     document.getElementById( 'restart-button' ).style.display = 'none';
     document.getElementById( 'user-input' ).style.display = 'block';
 
-    // hide the teapot
-    scene.remove( hiddenObject );
+    // Stop rotating the cube
+    rotateObject = false;
 
     clearCode();
 
