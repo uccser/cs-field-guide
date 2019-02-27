@@ -33,17 +33,38 @@ function generatePermutations(Arr) {
     }
   }
   generate(A.length, A);
+  // permutations = removeReverseDuplicates(permutations);
   return permutations;
 }
 
 
-function generateCityRoutes(cities) {
-  var perms = generatePermutations(cities.slice(1));
-  for (var i = 0; i < perms.length; i++) {
-    perms[i].unshift(cities[0]);
-    perms[i].push(cities[0]);
+function removeReverseDuplicates(perms) {
+  var permsWithoutReverse = [];
+  var pathToTest;
+
+  for (var j = 0; j < perms.length; j++) {
+    pathToTest = perms[j];
+    isReverseDuplicate = testForDuplicate(pathToTest, permsWithoutReverse);
+
+    if (!isReverseDuplicate) {
+      permsWithoutReverse.push(pathToTest.toString());
+    }
   }
-  return perms;
+
+  return permsWithoutReverse;
 }
 
-console.log(generatePermutations([1,2,3]));
+
+function testForDuplicate(path, pathsArray) {
+  reversePath = path.slice().reverse();
+  console.log(reversePath);
+  reversePathString = reversePath.toString();
+
+  return pathsArray.indexOf(reversePathString) !== -1;
+}
+
+
+p = generatePermutations([1,2,3]);
+console.log(p);
+
+console.log(removeReverseDuplicates(p));
