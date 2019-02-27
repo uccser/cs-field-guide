@@ -10,3 +10,30 @@ should contain a copyright notice at the top of the file.
 In the event that we accidentally failed to list a required license,
 please bring it to our attention through the issue tracker here:
 https://github.com/uccser/cs-field-guide/issues/new
+
+==============================================================================
+Detector.js
+------------------------------------------------------------------------------
+https://threejs.org/
+Copyright 2010-2019 three.js Authors
+Licensed under MIT License.
+third-party-licenses/threejs.txt
+==============================================================================
+
+==============================================================================
+Three.js
+------------------------------------------------------------------------------
+https://github.com/mrdoob/three.js/
+Copyright 2010-2019 three.js Authors
+Licensed under MIT License.
+third-party-licenses/threejs.txt
+==============================================================================
+
+==============================================================================
+Tween.js
+------------------------------------------------------------------------------
+https://github.com/tweenjs/tween.js/
+Copyright 2010-2012 Tween.js Authors
+Licensed under MIT License.
+third-party-licenses/tweenjs.txt
+==============================================================================
