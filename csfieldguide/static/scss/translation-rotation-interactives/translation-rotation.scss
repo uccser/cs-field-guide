@@ -29,6 +29,13 @@ label {
     padding: 5px;
 }
 
+.little-button {
+    width: 32px;
+    height: 32px;
+    margin: 0px;
+    margin-bottom: 1px;
+}
+
 label, #mob-x, #mob-y, #mob-z {
     font-family: "Cambria",Georgia,serif;
     font-style: italic;
@@ -61,7 +68,7 @@ label, #mob-x, #mob-y, #mob-z {
     border: none;
     border-radius: 2px;
     box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16);
-    height: 15px;
+    height: 30px;
     padding: 2px;
 }
 
@@ -129,7 +136,7 @@ label, #mob-x, #mob-y, #mob-z {
         width: 50%;
         float: left;
     }
-    .layout button {
+    .button-manip {
         font-size: 14px;
     }
 }
@@ -138,5 +145,8 @@ label, #mob-x, #mob-y, #mob-z {
 @media (min-width: 768px) {
     #desktop-coord {
         display: block;
+    }
+    #coordinates input {
+        height: 20px;
     }
 }
