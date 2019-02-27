@@ -3,7 +3,7 @@ img {
 }
 
 
-body {
+.interactive-body {
     font-family: "Roboto",sans-serif;
     font-size: 17px;
     background-color: #f0f0f0;
@@ -19,7 +19,7 @@ label {
 }
 
 
-button {
+.button-manip {
     color: #fff;
     background-color: #ff7043;
     border: none;
@@ -106,7 +106,7 @@ label, #mob-x, #mob-y, #mob-z {
 
 .layout {
     position: absolute;
-    right: 15px;
+    right: 0px;
     width: 200px;
 }
 

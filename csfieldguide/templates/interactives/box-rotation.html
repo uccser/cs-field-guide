@@ -4,9 +4,9 @@
 {% load static %}
 
 {% block html %}
-  <div class="row mb-3">
+  <div class="row mb-3 interactive-body">
     <div id="container" class="box-rotation">
-      <button id="restart-button">{% trans 'Restart' %}</button>
+      <button id="restart-button" class="button-manip">{% trans 'Restart' %}</button>
       <div id="user-input" class="layout">
         <div id="coordinates">
           <!-- Note that the plural of 'axis' is 'axes' -->
@@ -17,9 +17,9 @@
             <label>z = <input type="text" id="desk-z-coordinate"></label>
           </div>
           <div id="mobile-coord">
-            <div id="mob-x">x = <button id="mob-x-n">-</button><input readonly type="text" id="mob-x-coordinate"/><button id="mob-x-p">+</button></div>
-            <div id="mob-y">y = <button id="mob-y-n">-</button><input readonly type="text" id="mob-y-coordinate"/><button id="mob-y-p">+</button></div>
-            <div id="mob-z">z = <button id="mob-z-n">-</button><input readonly type="text" id="mob-z-coordinate"/><button id="mob-z-p">+</button></div>
+            <div id="mob-x">x = <button id="mob-x-n" class="button-manip">-</button><input readonly type="text" id="mob-x-coordinate"/><button id="mob-x-p" class="button-manip">+</button></div>
+            <div id="mob-y">y = <button id="mob-y-n" class="button-manip">-</button><input readonly type="text" id="mob-y-coordinate"/><button id="mob-y-p" class="button-manip">+</button></div>
+            <div id="mob-z">z = <button id="mob-z-n" class="button-manip">-</button><input readonly type="text" id="mob-z-coordinate"/><button id="mob-z-p" class="button-manip">+</button></div>
           </div>
         </div>
         <div id="code">
@@ -37,15 +37,15 @@
               <img id="7" src="{% static 'img/interactives/colourful-box-images/square7-256px-grayscale.png' %}">
               <img id="8" src="{% static 'img/interactives/colourful-box-images/square8-256px-grayscale.png' %}">
             </div>
-            <button id="submit-symbol">{% trans 'Submit' %}</button>
+            <button id="submit-symbol" class="button-manip">{% trans 'Submit' %}</button>
           </div>
           <div id="code-template" class="col">
             <img id="first-symbol" src="{% static 'img/interactives/translation-rotation-interactives-images/question-1.png' %}">
             <img id="second-symbol" src="{% static 'img/interactives/translation-rotation-interactives-images/question-2.png' %}">
             <img id="third-symbol" src="{% static 'img/interactives/translation-rotation-interactives-images/question-3.png' %}">
             <div id="end-buttons" class="row">
-              <button id="clear-code">{% trans 'Restart' %}</button>
-              <button id="submit-code">{% trans 'Check Key' %}</button>
+              <button id="clear-code" class="button-manip">{% trans 'Restart' %}</button>
+              <button id="submit-code" class="button-manip">{% trans 'Check Key' %}</button>
             </div>
           </div>
         </div>
