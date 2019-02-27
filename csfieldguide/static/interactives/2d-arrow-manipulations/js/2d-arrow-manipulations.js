@@ -249,40 +249,40 @@ function registerOnBlurEvents() {
     });
 
     $('#matrix-first-scale-row-0-col-0').on('blur', function() {
-        matrixTab('#matrix-first-scale-row-0-col-0');
+        matrixTab('matrix-first-scale-row-0-col-0');
     });
     $('#matrix-first-scale-row-0-col-1').on('blur', function() {
-        matrixTab('#matrix-first-scale-row-0-col-1');
+        matrixTab('matrix-first-scale-row-0-col-1');
     });
     $('#matrix-first-scale-row-1-col-0').on('blur', function() {
-        matrixTab('#matrix-first-scale-row-1-col-0');
+        matrixTab('matrix-first-scale-row-1-col-0');
     });
     $('#matrix-first-scale-row-1-col-1').on('blur', function() {
-        matrixTab('#matrix-first-scale-row-1-col-1');
+        matrixTab('matrix-first-scale-row-1-col-1');
     });
     $('#matrix-first-translate-row-0-col-0').on('blur', function() {
-        matrixTab('#matrix-first-translate-row-0-col-0');
+        matrixTab('matrix-first-translate-row-0-col-0');
     });
     $('#matrix-first-translate-row-1-col-0').on('blur', function() {
-        matrixTab('#matrix-first-translate-row-1-col-0');
+        matrixTab('matrix-first-translate-row-1-col-0');
     });
     $('#matrix-second-scale-row-0-col-0').on('blur', function() {
-        matrixTab('#matrix-first-scale-row-0-col-0');
+        matrixTab('matrix-second-scale-row-0-col-0');
     });
     $('#matrix-second-scale-row-0-col-1').on('blur', function() {
-        matrixTab('#matrix-first-scale-row-0-col-1');
+        matrixTab('matrix-second-scale-row-0-col-1');
     });
     $('#matrix-second-scale-row-1-col-0').on('blur', function() {
-        matrixTab('#matrix-first-scale-row-1-col-0');
+        matrixTab('matrix-second-scale-row-1-col-0');
     });
     $('#matrix-second-scale-row-1-col-1').on('blur', function() {
-        matrixTab('#matrix-first-scale-row-1-col-1');
+        matrixTab('matrix-second-scale-row-1-col-1');
     });
     $('#matrix-second-translate-row-0-col-0').on('blur', function() {
-        matrixTab('#matrix-first-translate-row-0-col-0');
+        matrixTab('matrix-second-translate-row-0-col-0');
     });
     $('#matrix-second-translate-row-1-col-0').on('blur', function() {
-        matrixTab('#matrix-first-translate-row-1-col-0');
+        matrixTab('matrix-second-translate-row-1-col-0');
     });
 }
 
@@ -698,11 +698,11 @@ function matrixTab(id) {
     checkForValidInput(id);
 
     // round floats to two decimal places
-    var num = $(id).val();
+    var num = $('#' + id).val();
     if (num.indexOf('.') != -1) { //is a float
         num = parseFloat(num).toFixed(2);
     }
-    $(id).val(num);
+    $('#' + id).val(num);
 
     if (instantUpdateCheck()) {
         matrixOperations();
