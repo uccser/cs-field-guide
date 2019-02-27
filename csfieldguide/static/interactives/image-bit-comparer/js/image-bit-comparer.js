@@ -1,6 +1,8 @@
 // Image Bit Comparer Interactive JS
 // Author: Jack Morgan
 
+var urlParameters = require('../../../js/third-party/url-parameters.js');
+
 var ImageBitComparer = {};
 
 // Setup sizing
@@ -59,7 +61,7 @@ $(document).ready(function(){
     loadImage();
   });
 
-  if (getUrlParameter('change-bits') == 'true') {
+  if (urlParameters.getUrlParameter('change-bits') == 'true') {
     ImageBitComparer.mode = 'change-bits';
   } else {
     ImageBitComparer.mode = 'comparison';
@@ -293,21 +295,4 @@ function drawCanvases() {
   $('#interactive-image-bit-comparer-canvas-parent-container canvas').each(function () {
     drawCanvas($(this), source_image_data)
   });
-};
-
-
-// From jquerybyexample.net/2012/06/get-url-parameters-using-jquery.html
-function getUrlParameter(sParam) {
-    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
-        sURLVariables = sPageURL.split('&'),
-        sParameterName,
-        i;
-
-    for (i = 0; i < sURLVariables.length; i++) {
-        sParameterName = sURLVariables[i].split('=');
-
-        if (sParameterName[0] === sParam) {
-            return sParameterName[1] === undefined ? true : sParameterName[1];
-        }
-    }
 };
