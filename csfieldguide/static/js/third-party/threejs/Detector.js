@@ -1,4 +1,10 @@
 /**
+ * Copyright 2010-2019 three.js Authors
+ * licensed under MIT licence.
+ * third-party-licences/threejs.txt
+ * By inspection, this is specifically from:
+ * https://github.com/alteredq/three.js/blob/master/examples/js/Detector.js
+ * ---------------------------------------------
  * @author alteredq / http://alteredqualia.com/
  * @author mr.doob / http://mrdoob.com/
  */
