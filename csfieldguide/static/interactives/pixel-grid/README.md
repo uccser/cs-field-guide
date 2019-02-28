@@ -7,7 +7,7 @@ Users can click on any square on the grid to flip its colour between black and w
 Optional URL parameters can be used to: specify the grid size, disallow flipping,
 and either; display one of 3 preset examples or set up to 5 coordinates in advance.
 
-## Parameters
+## URL Parameters
 
 - `Xx=N&Xy=M`: Set the coordinate `(N, M)` as flipped by default, and to display the given character. `X` can be any one of `[A, B, C, D, R]`. If two characters share coordinates, the leftmost character from the list will be displayed. This is overwritten if `eg` is set.
 - `eg=[basic|s3l|sod]`: Set to display one of three example grids. Overwrites any `Xx&Xy` parameters.

@@ -326,7 +326,7 @@ window.onresize = function(event) {
     }
 }
 
-/* on reset button click, draw the dynamic arrow in it's start position */
+/* on reset button click, draw the dynamic arrow in its start position */
 function reset() { 
     setUpInitialDynamicArrowPosition();
     drawArrow();
@@ -402,10 +402,6 @@ function setUpInterface() {
 
     // Position x label, the y label is done automatically
     document.getElementById('x-label').style.marginTop = (containerHeight / 2) - 50 + 'px';
-
-    // WTF dynamically sets topMargin because CSS doesn't want to CSS...
-    //var topMargin = (windowHeight - containerHeight) / 2;
-    //container.style.marginTop = topMargin + 'px';
 
     interfaceSettings.POLYGON = polygon;
     interfaceSettings.TARGET_POLYGON = targetPolygon;
@@ -483,14 +479,14 @@ function drawBackground() {
         + interfaceSettings.squareSize + 'px ' + interfaceSettings.squareSize + 'px';
 
     // Apply the background styling to the container element
-    container.style.backgroundSize = backgroundSizeFormat; // WTF why did this not have to get container though interfaceSettings.CONTAINER??
+    container.style.backgroundSize = backgroundSizeFormat;
 }
 
 
 // ########################################################################## //
 /* Functions related to manipulating the arrows */
 
-/* Creates and draws both the user's and target arrow */
+/* Creates and draws the dynamic arrow */
 function setUpInitialDynamicArrowPosition() {
     // create the user's arrow
     var arrowShape = generateArrowShape(configSettings.START_POSITION_STRING);
@@ -501,6 +497,7 @@ function setUpInitialDynamicArrowPosition() {
 }
 
 
+/* Creates and draws the target arrow */
 function setUpInitialTargetArrowPosition() {
     configSettings.TARGET_POSITION = generateArrowShape(configSettings.TARGET_POSITION_STRING);
 }
@@ -515,7 +512,6 @@ function generateArrowShape(pointString) {
 
     for (var i = 0; i < 7; i++) { // 7 points on an arrow, each with x and y value
 
-        //point = interfaceSettings.POLYGON.points.getItem(i);
         var point = new Point();
         point.x = (points[xPos] * interfaceSettings.squareSize) + interfaceSettings.xIntercept;
         // have to multiply by -1 becuase y axis is reversed in the svg coordinate space
@@ -570,6 +566,9 @@ function instantUpdateCheck() {
 }
 
 
+/* Returns true if the input with the given id is valid
+ * false otherwise
+ */
 function checkForValidInput(id) {
     var value = document.getElementById(id).value;
     if (isNaN(value) || value == '') { // does not contain a valid number
@@ -622,6 +621,9 @@ function updateInputBoxes (points) {
 }
 
 
+/* Updates the input box based on its validity
+ * Updates the dynamic arrow if instant update is checked
+ */
 function coordTab(node, x_or_y) {
     var id = 'p' + node.split('')[1] + '-input-' + x_or_y;
     checkForValidInput(id);
@@ -694,6 +696,9 @@ function clearHighlights(id) {
 // ########################################################################## //
 /* Functions relating to manipulation by matrices */
 
+/* Updates the input box based on its validity
+ * Updates the dynamic arrow if instant update is checked
+ */
 function matrixTab(id) {
     checkForValidInput(id);
 

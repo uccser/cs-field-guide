@@ -1,5 +1,5 @@
 /**
- * Copyright 2010-2019 three.js Authors
+ * Copyright 2010-2011 three.js Authors
  * licensed under MIT licence.
  * third-party-licences/threejs.txt
  * By inspection, this is specifically from:

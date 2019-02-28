@@ -10,7 +10,7 @@ var THREE = require('three');
 var detector = require('../third-party/threejs/Detector.js');
 var TWEEN = require('@tweenjs/tween.js');
 
-var container = document.getElementById( 'container' );
+var container = document.getElementById('container');
 var camera, scene, renderer;
 var cube;
 var code = { 1: null, 2: null, 3: null };
@@ -24,10 +24,12 @@ var difference = 10;
 var scale = 10;
 var isTranslationInter = true;
 
-init();
-initHandlers();
-onWindowResize();
-animate();
+$(document).ready(function() {
+    init();
+    initHandlers();
+    onWindowResize();
+    animate();
+});
 
 /**
  * Creates all the required objects for the scene
@@ -35,13 +37,13 @@ animate();
 function init() {
 
     // Is this the translation or rotation interactive?
-    isTranslationInter =  container.classList.contains('box-translation');
+    isTranslationInter = container.classList.contains('box-translation');
 
     // check that the browser is webgl compatible
-    if ( ! detector.Detector.webgl ) detector.Detector.addGetWebGLMessage();
+    if (! detector.Detector.webgl) detector.Detector.addGetWebGLMessage();
 
     // create a camera object
-    camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 1000000 );
+    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 1000000);
     camera.position.x = 0;
     camera.position.y = 0;
     camera.position.z = 500; // this sets it back from the cube object (to be created in this function)
@@ -52,25 +54,25 @@ function init() {
     ///////////////////////////////// background //////////////////////////////
 
     var textureLoader = new THREE.CubeTextureLoader();
-    textureLoader.setPath( imgPath );
+    textureLoader.setPath(imgPath);
     // loads the 6 background pictures (px = positive x, nx = negative x, etc)
-    scene.background = textureLoader.load( [
+    scene.background = textureLoader.load([
         'px.jpg', 'nx.jpg',
         'py.jpg', 'ny.jpg',
         'pz.jpg', 'nz.jpg'
-    ] );
+    ]);
 
     //////////////////////////////////// box /////////////////////////////////////
 
     buildCube();
 
     renderer = new THREE.WebGLRenderer();
-    renderer.setClearColor( 0xf0f0f0 );
-    renderer.setPixelRatio( window.devicePixelRatio );
-    renderer.setSize( window.innerWidth, window.innerHeight );
-    container.appendChild( renderer.domElement );
+    renderer.setClearColor(0xf0f0f0);
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    container.appendChild(renderer.domElement);
 
-    window.addEventListener( 'resize', onWindowResize, false );
+    window.addEventListener('resize', onWindowResize, false);
 
     // records the current cube position
     x_pos = cube.position.x;
@@ -79,12 +81,12 @@ function init() {
 
 
     // sets the initial values of the x/y/z-coordinate text input boxes
-    document.getElementById( 'desk-x-coordinate' ).value = x_pos;
-    document.getElementById( 'desk-y-coordinate' ).value = y_pos;
-    document.getElementById( 'desk-z-coordinate' ).value = z_pos;
-    document.getElementById( 'mob-x-coordinate' ).value = x_pos;
-    document.getElementById( 'mob-y-coordinate' ).value = y_pos;
-    document.getElementById( 'mob-z-coordinate' ).value = z_pos;
+    document.getElementById('desk-x-coordinate').value = x_pos;
+    document.getElementById('desk-y-coordinate').value = y_pos;
+    document.getElementById('desk-z-coordinate').value = z_pos;
+    document.getElementById('mob-x-coordinate').value = x_pos;
+    document.getElementById('mob-y-coordinate').value = y_pos;
+    document.getElementById('mob-z-coordinate').value = z_pos;
 
     clearCode();
 
@@ -98,7 +100,7 @@ function init() {
 function buildCube() {
 
     // creates a box with sides of length 200
-    var geometry = new THREE.BoxGeometry( 200, 200, 200 );
+    var geometry = new THREE.BoxGeometry(200, 200, 200);
 
     // list of possible box symbols
     // numbers correspond to file names, e.g. "square1.png"
@@ -127,31 +129,31 @@ function buildCube() {
     symbolLoader.setPath(boxImgPath);
     var materials = [
         new THREE.MeshBasicMaterial({
-           map: symbolLoader.load( 'square' + right_side + '-256px-grayscale.png' )
+           map: symbolLoader.load('square' + right_side + '-256px-grayscale.png')
         }),
         new THREE.MeshBasicMaterial({
             // non grey scale becuase this is the first symbol the user needs to find
-           map: symbolLoader.load( 'square' + left_side + '-256px.png' )
+           map: symbolLoader.load('square' + left_side + '-256px.png')
         }),
         new THREE.MeshBasicMaterial({
-           map: symbolLoader.load( 'square' + top_side + '-256px-grayscale.png' ) // top, non-coded side
+           map: symbolLoader.load('square' + top_side + '-256px-grayscale.png') // top, non-coded side
         }),
         new THREE.MeshBasicMaterial({
-           map: symbolLoader.load( 'square' + bottom_side + '-256px-grayscale.png' )
+           map: symbolLoader.load('square' + bottom_side + '-256px-grayscale.png')
         }),
         new THREE.MeshBasicMaterial({
-           map: symbolLoader.load( 'square' + front_side + '-256px-grayscale.png' ) // front, non-coded side
+           map: symbolLoader.load('square' + front_side + '-256px-grayscale.png') // front, non-coded side
         }),
         new THREE.MeshBasicMaterial({
-           map: symbolLoader.load( 'square' + back_side + '-256px-grayscale.png' ) // back, non-coded side
+           map: symbolLoader.load('square' + back_side + '-256px-grayscale.png') // back, non-coded side
         })
     ];
 
     // put the loaded materials onto the cube object
-    cube = new THREE.Mesh( geometry, materials );
+    cube = new THREE.Mesh(geometry, materials);
 
     // add the cube to the scene
-    scene.add( cube );
+    scene.add(cube);
 
 }
 
@@ -170,7 +172,7 @@ function onWindowResize() {
     camera.aspect = screenWidth / screenHeight;
     camera.updateProjectionMatrix();
 
-    renderer.setSize( screenWidth, screenHeight );
+    renderer.setSize(screenWidth, screenHeight);
 
 }
 
@@ -186,7 +188,7 @@ function animate() {
     // makes the camera follow the box around the scene
     camera.lookAt(cube.position);
 
-    if ( rotateObject ) {
+    if (rotateObject) {
         cube.rotation.x += 0.005;
         cube.rotation.y += 0.01;
     }
@@ -196,8 +198,11 @@ function animate() {
 }
 
 
+/**
+ * Display the given scene with the given camera
+ */
 function render() {
-    renderer.render( scene, camera );
+    renderer.render(scene, camera);
 }
 
 
@@ -211,40 +216,40 @@ function render() {
  */
 function updateCoords(axis, change) {
 
-    if ( axis == 'x' ) {
-        if ( change == '-' ) {
-            x_pos = ( x_pos - difference );
-        } else if ( change == '+' ) {
-            x_pos = ( x_pos + difference );
+    if (axis == 'x') {
+        if (change == '-') {
+            x_pos = (x_pos - difference);
+        } else if (change == '+') {
+            x_pos = (x_pos + difference);
         } else { // else the parameters were not given and it must be input box from desktop browser
             // using 0 makes the value be set relative to start position, rather than previous position
-            x_pos = ( 0 + parseInt(document.getElementById( 'desk-x-coordinate' ).value) );
+            x_pos = (0 + parseInt(document.getElementById('desk-x-coordinate').value));
         }
-        x_pos = limiter( x_pos );
-        document.getElementById( 'mob-x-coordinate' ).value = x_pos;
-        document.getElementById( 'desk-x-coordinate' ).value = x_pos;
-    } else if ( axis == 'y' ) {
-        if ( change == '-' ) {
-            y_pos = ( y_pos - difference );
-        } else if ( change == '+' ) {
-            y_pos = ( y_pos + difference );
+        x_pos = limiter(x_pos);
+        document.getElementById('mob-x-coordinate').value = x_pos;
+        document.getElementById('desk-x-coordinate').value = x_pos;
+    } else if (axis == 'y') {
+        if (change == '-') {
+            y_pos = (y_pos - difference);
+        } else if (change == '+') {
+            y_pos = (y_pos + difference);
         } else {
-            y_pos = ( 0 + parseInt(document.getElementById( 'desk-y-coordinate' ).value) );
+            y_pos = (0 + parseInt(document.getElementById('desk-y-coordinate').value));
         }
-        y_pos = limiter( y_pos );
-        document.getElementById( 'mob-y-coordinate' ).value = y_pos;
-        document.getElementById( 'desk-y-coordinate' ).value = y_pos;
+        y_pos = limiter(y_pos);
+        document.getElementById('mob-y-coordinate').value = y_pos;
+        document.getElementById('desk-y-coordinate').value = y_pos;
     } else {
-        if ( change == '-' ) {
-            z_pos = ( z_pos - difference );
-        } else if ( change == '+' ) {
-            z_pos = ( z_pos + difference );
+        if (change == '-') {
+            z_pos = (z_pos - difference);
+        } else if (change == '+') {
+            z_pos = (z_pos + difference);
         } else {
-            z_pos = ( 0 + parseInt(document.getElementById( 'desk-z-coordinate' ).value) );
+            z_pos = (0 + parseInt(document.getElementById('desk-z-coordinate').value));
         }
-        z_pos = limiter( z_pos );
-        document.getElementById( 'mob-z-coordinate' ).value = z_pos;
-        document.getElementById( 'desk-z-coordinate' ).value = z_pos;
+        z_pos = limiter(z_pos);
+        document.getElementById('mob-z-coordinate').value = z_pos;
+        document.getElementById('desk-z-coordinate').value = z_pos;
     }
 
     moveBox();
@@ -260,7 +265,7 @@ function updateCoords(axis, change) {
 function submitSymbol() {
 
     // checks that the user has selected a symbol
-    if ( selectedSymbolId == undefined ) {
+    if (selectedSymbolId == undefined) {
         return;
     }
 
@@ -268,23 +273,23 @@ function submitSymbol() {
 
     var img_src = boxImgPath + 'square' + selectedSymbolId + '-256px.png';
 
-    if ( code[1] == null ) {
+    if (code[1] == null) {
         code[1] = selectedSymbolId;
-        document.getElementById( 'first-symbol' ).src = img_src;
+        document.getElementById('first-symbol').src = img_src;
         // replace left with grayscale
-        updateSide( 1,  boxSymbols['left_side'], false );
+        updateSide(1,  boxSymbols['left_side'], false);
         // replace bottom with colour
-        updateSide( 3,  boxSymbols['bottom_side'], true );
-    } else if ( code[2] == null ) {
+        updateSide(3,  boxSymbols['bottom_side'], true);
+    } else if (code[2] == null) {
         code[2] = selectedSymbolId;
-        document.getElementById( 'second-symbol' ).src = img_src;
+        document.getElementById('second-symbol').src = img_src;
         // replace bottom with grayscale
-        updateSide( 3,  boxSymbols['bottom_side'], false );
+        updateSide(3,  boxSymbols['bottom_side'], false);
         // replace right with colour
-        updateSide( 0,  boxSymbols['right_side'], true );
-    } else if ( code[3] == null ) {
+        updateSide(0,  boxSymbols['right_side'], true);
+    } else if (code[3] == null) {
         code[3] = selectedSymbolId;
-        document.getElementById( 'third-symbol' ).src = img_src;
+        document.getElementById('third-symbol').src = img_src;
     }
 
     selectedSymbolId = undefined;
@@ -300,9 +305,9 @@ function submitSymbol() {
      - currentImg: integer (given as string) corresponding to number used in file names
      - coloured: boolean value indicating whether to use grayscale or coloured image
  */
-function updateSide( side, currentImg, coloured) {
+function updateSide(side, currentImg, coloured) {
     var format = '';
-    if ( coloured == false ) {
+    if (coloured == false) {
         format = '-grayscale';
     }
     cube.material[side].map = new THREE.TextureLoader().load(
@@ -312,7 +317,7 @@ function updateSide( side, currentImg, coloured) {
                 cube.material[side].map.needsUpdate = true;
                 // TODO potential memory leak since not removing old image. check this.
             }
-    );
+   );
 }
 
 
@@ -323,9 +328,9 @@ function updateSide( side, currentImg, coloured) {
 function submitCode() {
 
 
-    if ( code[1] == boxSymbols['left_side'] ) {
-        if ( code[2] == boxSymbols['bottom_side'] ) {
-            if ( code[3] == boxSymbols['right_side'] ) {
+    if (code[1] == boxSymbols['left_side']) {
+        if (code[2] == boxSymbols['bottom_side']) {
+            if (code[3] == boxSymbols['right_side']) {
                 end();
                 return;
             }
@@ -361,37 +366,37 @@ function incorrect() {
     var start_pos = x_pos;
     x_pos += shift;
 
-    window.setTimeout( function () {
+    window.setTimeout(function () {
         function run() {
-            if ( count == 10 ) {
-                clearInterval( timer );
+            if (count == 10) {
+                clearInterval(timer);
                 // clear the code for the user to start over
                 clearCode();
             } else {
-                if ( count == 9 ) {
+                if (count == 9) {
                     x_pos = start_pos;
                 }
                 target = { x: x_pos, y: y_pos, z: z_pos };
                 // move the box on the next animation loop
                 TWEEN.removeAll();
-                new TWEEN.Tween( cube.position )
-                    .to( target )
-                    .easing ( TWEEN.Easing.Elastic.Out )
+                new TWEEN.Tween(cube.position)
+                    .to(target)
+                    .easing (TWEEN.Easing.Elastic.Out)
                     .start();
                 TWEEN.update();
 
-                if ( x_pos == start_pos + shift ) {
+                if (x_pos == start_pos + shift) {
                     x_pos = start_pos - shift;
                 } else {
                     x_pos = start_pos + shift;
                 }
 
                 count += 1;
-                timer = setTimeout( run, 50 );
+                timer = setTimeout(run, 50);
             }
         }
-        timer = setTimeout( run, 50 );
-    }, 50 );
+        timer = setTimeout(run, 50);
+    }, 50);
 
 }
 
@@ -402,17 +407,17 @@ function incorrect() {
 function end() {
 
     // hide the user input div to give more screen space
-    document.getElementById( 'user-input' ).style.display = 'none';
+    document.getElementById('user-input').style.display = 'none';
 
-    document.getElementById( 'restart-button' ).style.display = 'block';
+    document.getElementById('restart-button').style.display = 'block';
 
     // colour every side of the cube
-    updateSide( 0,  boxSymbols['right_side'], true );
-    updateSide( 1,  boxSymbols['left_side'], true );
-    updateSide( 2,  boxSymbols['top_side'], true );
-    updateSide( 3,  boxSymbols['bottom_side'], true );
-    updateSide( 4,  boxSymbols['front_side'], true );
-    updateSide( 5,  boxSymbols['back_side'], true );
+    updateSide(0,  boxSymbols['right_side'], true);
+    updateSide(1,  boxSymbols['left_side'], true);
+    updateSide(2,  boxSymbols['top_side'], true);
+    updateSide(3,  boxSymbols['bottom_side'], true);
+    updateSide(4,  boxSymbols['front_side'], true);
+    updateSide(5,  boxSymbols['back_side'], true);
 
     // move box back to central position
     x_pos = 0;
@@ -422,9 +427,9 @@ function end() {
 
     // move camera (zoom in)
     var target = { x: 0, y: 0, z: 350 };
-    new TWEEN.Tween( camera.position )
-        .to( target, 2000 )
-        .easing ( TWEEN.Easing.Elastic.Out )
+    new TWEEN.Tween(camera.position)
+        .to(target, 2000)
+        .easing (TWEEN.Easing.Elastic.Out)
         .start();
 
     // Start rotating the object
@@ -435,41 +440,39 @@ function end() {
 
 /**
  * triggered when the user clicks the "clear" button or the wrong code is submitted
- * set the selected codes to question marks and clear the dictionary
+ * un-set the selected codes and clear the dictionary
  */
 function clearCode() {
-
-    // TODO make the box move THEN change coloured side
 
     // reset to start position
     x_pos = 0;
     y_pos = 0;
     z_pos = 0;
 
-    document.getElementById( 'desk-x-coordinate' ).value = x_pos;
-    document.getElementById( 'desk-y-coordinate' ).value = y_pos;
-    document.getElementById( 'desk-z-coordinate' ).value = z_pos;
-    document.getElementById( 'mob-x-coordinate' ).value = x_pos;
-    document.getElementById( 'mob-y-coordinate' ).value = y_pos;
-    document.getElementById( 'mob-z-coordinate' ).value = z_pos;
+    document.getElementById('desk-x-coordinate').value = x_pos;
+    document.getElementById('desk-y-coordinate').value = y_pos;
+    document.getElementById('desk-z-coordinate').value = z_pos;
+    document.getElementById('mob-x-coordinate').value = x_pos;
+    document.getElementById('mob-y-coordinate').value = y_pos;
+    document.getElementById('mob-z-coordinate').value = z_pos;
 
     moveBox();
 
     selectedSymbolId = code[1];
 
-    document.getElementById( 'first-symbol' ).src = imgPath + 'question-1.png';
-    document.getElementById( 'second-symbol' ).src =  imgPath + 'question-2.png';
-    document.getElementById( 'third-symbol' ).src =  imgPath + 'question-3.png';
+    document.getElementById('first-symbol').src = imgPath + 'question-1.png';
+    document.getElementById('second-symbol').src =  imgPath + 'question-2.png';
+    document.getElementById('third-symbol').src =  imgPath + 'question-3.png';
     code[1] = null;
     code[2] = null;
     code[3] = null;
 
     // replace left with colour
-    updateSide( 1,  boxSymbols['left_side'], true );
+    updateSide(1,  boxSymbols['left_side'], true);
     // replace bottom with grayscale
-    updateSide( 3,  boxSymbols['bottom_side'], false );
-    // replace right with colour
-    updateSide( 0,  boxSymbols['right_side'], false );
+    updateSide(3,  boxSymbols['bottom_side'], false);
+    // replace right with grayscale
+    updateSide(0,  boxSymbols['right_side'], false);
 
 
 }
@@ -514,29 +517,27 @@ function moveBox() {
 
         // move the box on the next animation loop
         TWEEN.removeAll();
-        new TWEEN.Tween( cube.position )
-            .to( target, 1000 )
-            .easing( TWEEN.Easing.Back.Out )
+        new TWEEN.Tween(cube.position)
+            .to(target, 1000)
+            .easing(TWEEN.Easing.Back.Out)
             .start();
     } else {
         // sets target rotations
-        // values are converted to radians (divide by 360 and multiply by 2 Pi)
+        // values are converted to radians (divide by 180 and multiply by Pi)
         var target = {
-            x: ( x_pos/180 ) * Math.PI,
-            y: ( y_pos/180 ) * Math.PI,
-            z: ( z_pos/180 ) * Math.PI
+            x: (x_pos/180) * Math.PI,
+            y: (y_pos/180) * Math.PI,
+            z: (z_pos/180) * Math.PI
         };
 
         // rotate the box on the next animation loop
         TWEEN.removeAll();
-        new TWEEN.Tween( cube.rotation )
-            .to( target, 2000 )
-            .easing ( TWEEN.Easing.Elastic.Out )
-            .onUpdate( render )
+        new TWEEN.Tween(cube.rotation)
+            .to(target, 2000)
+            .easing (TWEEN.Easing.Elastic.Out)
+            .onUpdate(render)
             .start();
     }
-
-    
 
 }
 
@@ -544,11 +545,11 @@ function moveBox() {
  * triggered when user types input
  * Ensures user input stays within reasonable bounds
  */
-function limiter( pos ) {
+function limiter(pos) {
     if (isTranslationInter) {
-        if ( pos < -360 ) {
+        if (pos < -360) {
             return -360;
-        } else if ( pos > 360 ) {
+        } else if (pos > 360) {
             return 360;
         }
         return pos;
@@ -568,18 +569,18 @@ function limiter( pos ) {
  */
 function emptyCheck(x_pos, y_pos, z_pos) {
 
-    if ( isNaN( x_pos ) ) {
+    if (isNaN(x_pos)) {
         x_pos = 0;
-        document.getElementById( 'desk-x-coordinate' ).value = x_pos;
-        document.getElementById( 'mob-x-coordinate' ).value = x_pos;
-    } else if ( isNaN( y_pos ) ) {
+        document.getElementById('desk-x-coordinate').value = x_pos;
+        document.getElementById('mob-x-coordinate').value = x_pos;
+    } else if (isNaN(y_pos)) {
         y_pos = 0;
-        document.getElementById( 'desk-y-coordinate' ).value = y_pos;
-        document.getElementById( 'mob-y-coordinate' ).value = y_pos;
-    } else if ( isNaN( z_pos) ){
+        document.getElementById('desk-y-coordinate').value = y_pos;
+        document.getElementById('mob-y-coordinate').value = y_pos;
+    } else if (isNaN(z_pos)){
         z_pos = 0;
-        document.getElementById( 'desk-z-coordinate' ).value = z_pos;
-        document.getElementById( 'mob-z-coordinate' ).value = z_pos;
+        document.getElementById('desk-z-coordinate').value = z_pos;
+        document.getElementById('mob-z-coordinate').value = z_pos;
     }
 
 }
@@ -591,8 +592,8 @@ function emptyCheck(x_pos, y_pos, z_pos) {
 function reset() {
 
     // hide restart button
-    document.getElementById( 'restart-button' ).style.display = 'none';
-    document.getElementById( 'user-input' ).style.display = 'block';
+    document.getElementById('restart-button').style.display = 'none';
+    document.getElementById('user-input').style.display = 'block';
 
     // Stop rotating the cube
     rotateObject = false;
@@ -602,15 +603,15 @@ function reset() {
     // rebuilds the cube
     //   - the sides of the cube have to be randomly selected again and set to be visible again
     //     therefore it is easier to just rebuild the cube than edit every side
-    scene.remove( cube );
+    scene.remove(cube);
     buildCube();
 
     // move camera (zoom out)
     var target = { x: 0, y: 0, z: 500 };
-    new TWEEN.Tween( camera.position )
-        .to( target )
-        .easing ( TWEEN.Easing.Elastic.Out )
-        .onUpdate( render )
+    new TWEEN.Tween(camera.position)
+        .to(target)
+        .easing (TWEEN.Easing.Elastic.Out)
+        .onUpdate(render)
         .start();
 }
 

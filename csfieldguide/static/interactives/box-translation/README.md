@@ -27,4 +27,4 @@ In addition, this interactive also requires two third-party libraries:
 
 ## Licenses
 The third-party libraries `three.js` and `tween.js` are used in these interactives, their corresponding license files are included in the `third-party-licences` directory.
-The `teapot.json` object file was obtained as part of the `three.js` library, and its use is covered under the same license.
+The `Detector.js` file was obtained as part of the `three.js` library, and its use is covered under the same license.

@@ -12,10 +12,19 @@ please bring it to our attention through the issue tracker here:
 https://github.com/uccser/cs-field-guide/issues/new
 
 ==============================================================================
+css3patterns
+------------------------------------------------------------------------------
+https://github.com/LeaVerou/css3patterns
+Copyright 2011 Lea Verou
+licensed under MIT licence.
+third-party-licences/css3patterns.txt
+==============================================================================
+
+==============================================================================
 Detector.js
 ------------------------------------------------------------------------------
-https://github.com/mrdoob/three.js/ (Since removed)
-Copyright 2010-2019 three.js Authors
+https://github.com/alteredq/three.js/blob/master/examples/js/Detector.js
+Copyright 2010-2011 three.js Authors
 licensed under MIT licence.
 third-party-licences/threejs.txt
 ==============================================================================

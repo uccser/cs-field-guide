@@ -1,3 +1,8 @@
+/**
+ * Pixel Grid Interactive
+ * @author Alasdair Smith
+ */
+
 var urlParameters = require('../../../js/third-party/url-parameters.js');
 
 const DEFAULT_HEIGHT = 20;
@@ -50,11 +55,13 @@ $( document ).ready(function() {
     buildGrid(gridSize, active, !denyEdit);
 });
 
-// Builds an HTML grid of size[0] by size[1] inactive squares for display.
-// Adds an extra column and row to display index numbers.
-// If editable is false, clicking squares will not activate them.
-// Additionally: for any [character, location] pair in vars, the square at the
-// given location is set to active and to display the given character.
+/**
+ * Builds an HTML grid of size[0] by size[1] inactive squares for display.
+ * Adds an extra column and row to display index numbers.
+ * If editable is false, clicking squares will not activate them.
+ * Additionally: for any [character, location] pair in vars, the square at the
+ * given location is set to active and to display the given character.
+ */
 function buildGrid(size, vars, editable) {
     var cols = size[0];
     var rows = size[1];
