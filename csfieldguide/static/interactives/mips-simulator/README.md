@@ -1,7 +1,6 @@
 # MIPS Simulator Interactive
 
-**MIPS Simulator Creator:** Alan Hogan
-**Interactive Creator:** Alasdair Smith
+**Author:** Alasdair Smith
 
 This interactive allows users to simulate assembled MIPS code and see the output.
 Adding `?offer-examples` to the URL reverals buttons that can be pressed to load the assembled code from the Assembler interactive.
@@ -12,4 +11,4 @@ The [MIPS Simulator](https://github.com/alanhogan/miphps-mips-simulator) by [Ala
 
 ## Required Files
 
-- This interactive uses jQuery and MaterializeCSS (loaded from base-files folder).
+- This interactive uses jQuery and Bootstrap.
