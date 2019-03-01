@@ -1,16 +1,22 @@
 $(document).ready(function() {
   var slider = $('#num-cities');
   var output = $("#slider-text");
-  output.html(slider.val());
+  numberOfCities = slider.val();
+  output.html(numberOfCities);
   
   slider.on('input', function() {
-    output.html(slider.val());
+    numberOfCities = slider.val();
+    output.html(numberOfCities);
+  });
+
+  $('#generate-map').click(function() {
+    generateMap(Number(numberOfCities));
   });
 });
 
 
 
-// below functions taken from 
+// below function taken from 
 // www.reddit.com/r/javascript/comments/5k270h/all_possible_routes_traveling_salesman_problem_in/
 function generatePermutations(Arr) {
   var permutations = [];
@@ -33,7 +39,6 @@ function generatePermutations(Arr) {
     }
   }
   generate(A.length, A);
-  // permutations = removeReverseDuplicates(permutations);
   return permutations;
 }
 
@@ -57,14 +62,23 @@ function removeReverseDuplicates(perms) {
 
 function testForDuplicate(path, pathsArray) {
   reversePath = path.slice().reverse();
-  console.log(reversePath);
   reversePathString = reversePath.toString();
 
   return pathsArray.indexOf(reversePathString) !== -1;
 }
 
 
-p = generatePermutations([1,2,3]);
-console.log(p);
+function generateMap(numCities) {
+  console.log(numCities);
+  pingu = [...Array(numCities).keys()];
+  console.log(pingu);
+  p = generatePermutations(pingu);
+  console.log(p);
+  noDups = removeReverseDuplicates(p);
+  console.log(noDups);
+}
 
-console.log(removeReverseDuplicates(p));
+// p = generatePermutations([1,2,3]);
+// console.log(p);
+
+// console.log(removeReverseDuplicates(p));
