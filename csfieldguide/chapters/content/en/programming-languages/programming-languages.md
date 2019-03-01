@@ -1,9 +1,10 @@
 # Programming Languages
 
-Programming, sometimes referred to as coding, is a nuts and bolts activity for computer science.
+Programming, sometimes referred to as coding, is a nuts and bolts activity for computer scientists.
 While this book won't teach you how to program (we've given some links to sites that can do this in the introduction), we are going to look at what a programming language is, and how computer scientists breathe life into a language.
 From a programmer's point of view, they type some instructions, and the computer follows them.
-But how does the computer know what to do? Bear in mind that you might be using one of the many languages such as Python, Java, Scratch, Basic or C#,  yet computers only have the hardware to follow instructions in one particular language, which is usually a very simple "machine code" that is hard for humans to read and write.
+But how does the computer know what to do?
+Bear in mind that you might be using one of the many languages such as Python, Java, Scratch, Basic or C#,  yet computers only have the hardware to follow instructions in one language: a very simple "machine code" that is difficult for humans to read and write.
 And if you invent a new programming language, how do you tell the computer how to use it?
 
 In this chapter we'll look at what happens when you write and run a program, and how this affects the way that you distribute the program for others to use.
@@ -64,19 +65,19 @@ If you have a Python interpreter installed on your computer (ask your teacher if
 Try changing the program so that it says your name instead of *Student*.
 When you think you have it right, try running the program again to see.
 Make sure you don’t remove the double quotes or the parentheses (round brackets) in the program by mistake.
-What happens if you spelt "programming" wrong? Does the computer correct it? If you are completely stuck, ask your teacher for help before going any further.
+What happens if you spelled "programming" wrong? Does the computer correct it? If you are completely stuck, ask your teacher for help before going any further.
 
 Hopefully you figured out how to make the program print your name.
 You can also change the asterisks (\*) to other symbols.
  What happens if you do remove one of the double quotes or one of the parentheses? Try it!
 
 If you change a critical symbol in the program you will probably find that the Python interpreter gives an error message.
-In the online Python interpreter linked to above, it says "ParseError: bad input on line 1", although different interpreters will express the error in different ways.
+In the Python interpreter interactive above, it says "ParseError: bad input on line 1", although different interpreters will express the error in different ways.
 If you have trouble fixing the error again, just copy the program back into Python from above.
 
-{comment jargon statement (vs. command)}
+{comment jargon note on statement (vs command)}
 
-Programming languages can do much more than print out text though.
+Programming languages can do much more than print out text.
 The following program is able to print out multiples of a number.
 Try running the program.
 
@@ -91,7 +92,7 @@ The following Python code is written for version 3 Python, but will also work wi
 ```python3
 print("I am going to print the first 5 multiples of 3")
 for i in range(5):
-  print(i*3)
+  print(i * 3)
 ```
 
 The first line is a print statement, like those you saw earlier, which just tells the system to put the message on the screen.
@@ -101,7 +102,7 @@ So, the first time i is 0, then 1, then 2, then 3, and finally 4.
 It may seem weird that it goes from 0 to 4 rather than 1 to 5, but programmers tend to like counting from 0 as it makes some things work out a bit simpler.
 The third line says to print the current value of i multiplied by 3 (because we want multiples of 3).
 Note that there is *not* double quotes around the last print statement, as they are only used when we want to print out a something literally as text.
-If we did put them in, this program would print the text "i*3" out 5 times instead of the value we want!
+If we did put them in, this program would print the text "i * 3" out 5 times instead of the value we want!
 
 Try make the following changes to the program.
 
@@ -121,15 +122,15 @@ Note that the # symbol tells the computer that it should ignore the line, as it 
 spam_recipients = ["Heidi", "Tim", "Pondy", "Jack", "Caitlin", "Sam", "David"]
 # Go through each recipient
 for recipient in spam_recipients:
-# Write out the letter for the current recipient
-  print("Dear " + recipient + ", \n")
-  print("You have been successful in the random draw for all  people ")
-  print("who have walked over a specific piece of ground located 2 meters ")
-  print("from the engineering road entrance to Canterbury University.\n")
-  print("For being successful in this draw you, " + recipient + ", win ")
+  # Write out the letter for the current recipient
+  print("Dear " + recipient + ",\n")
+  print("You have been successful in the random draw for all people")
+  print("who have walked over a specific piece of ground located 2 meters")
+  print("from the Engineering Road entrance to Canterbury University.\n")
+  print("For being successful in this draw you, " + recipient + ", win")
   print("a prize of 10 million kilograms of chocolate!!!\n")
-  print("And " + recipient + " if you phone us within the next 10 minutes ")
-  print("you will get a bonus 5 million kilograms of chocolate!!! \n")
+  print("And " + recipient + ", if you phone us within the next 10 minutes")
+  print("you will get a bonus 5 million kilograms of chocolate!!!\n")
   print("\n\n\n") # Put some new lines between the messages
 ```
 
@@ -141,7 +142,7 @@ Look carefully at all the symbols that were used to include the recipient's name
 # Syntax
 
 The detailed requirements of a programming language about exactly which characters need to be used and where, is called its *syntax*.
-In the example above, the syntax for the list of names requires square brackets around the list, inverted commas around the names, and a comma between each one.
+In the example above, the syntax for the list of names requires square brackets around the list, quotation marks or inverted commas around the names, and a comma between each one.
 If you make a mistake, such as leaving out one of the square brackets, the system will have a *syntax error*, and won't be able to run the program.
 Every symbol counts, and one small error in a program can stop it running, or make it do the wrong thing.
 
@@ -170,7 +171,7 @@ If this doesn’t make sense, don’t worry.
 You aren’t expected to know how to program for this chapter, this introduction is only intended for you to have some idea of what a program is and the things it can do.
 
 If you are keen, you could modify this program to calculate something else, such as pounds to kilograms or Fahrenheit to Celsius.
-It may be best to use an installed Python interpreter on your computer rather than the web version, as the web version can give very unhelpful error messages when your program has a mistake in it (although all interpreters give terrible error messages at least sometimes!)
+It may be best to use an installed Python interpreter on your computer rather than the web version, as the web version can give very unhelpful error messages when your program has a mistake in it (although all interpreters give terrible error messages at least sometimes!).
 
 Programs can do many more things, such as having a graphical user interface (like most computer programs you will be familiar with), being able to print graphics onto a screen, or being able to write to and read from files on the computer in order to save information between each time you run the program.
 
@@ -201,7 +202,7 @@ Building a fast and cheap circuit to do simple arithmetic such as this isn't tha
 
 The electronics in computers uses circuitry that mainly just works with two values (represented as high and low voltages) to make it reliable and fast.
 This system is called *binary*, and is often written on paper using zeroes and ones.
-There's a lot more about binary in the [data representation](chapters/data-representation.html) chapter, and it's worth having a quick look at the first section of that now if you haven't come across binary before.
+There's a lot more about binary in the [data representation]('chapters:chapter' 'data-representation') chapter, and it's worth having a quick look at the first section of that now if you haven't come across binary before.
 
 {panel end}
 

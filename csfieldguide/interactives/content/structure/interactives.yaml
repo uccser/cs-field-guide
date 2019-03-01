@@ -230,10 +230,10 @@ pixel-viewer:
   languages:
     en: interactives/pixel-viewer.html
   is_interactive: true
-# python-interpreter:
-#   languages:
-#     en: interactives/python-interpreter.html
-#   is_interactive: true
+python-interpreter:
+  languages:
+    en: interactives/python-interpreter.html
+  is_interactive: true
 # regular-expression-filter:
 #   languages:
 #     en: interactives/regular-expression-filter.html

@@ -3,8 +3,8 @@ chapters:
     chapter-number: 1
   algorithms:
     chapter-number: 2
-  # programming-languages:
-  #   chapter-number: 3
+  programming-languages:
+    chapter-number: 3
   human-computer-interaction:
     chapter-number: 4
   data-representation:
