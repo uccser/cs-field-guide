@@ -49,6 +49,7 @@ const TXT_TXT = gettext("Print a string");
 const TXT_LOAD = gettext("Loading");
 const TXT_STORE = gettext("stored in");
 const TXT_POINTS = gettext("points to");
+const TXT_JUMP = gettext("Jump to");
 const TXT_NOTHING = gettext("nothing");
 const TXT_BRANCH = gettext("Branching");
 const TXT_NO_BRANCH = gettext("Not Branching");
@@ -170,14 +171,15 @@ function run() {
     var instructionNum = 0;
     var isSuccess = true;
     while (!quit && instructionNum < MAX_EXECUTIONS) {
-        instructionSet = instructions[(instrAddr - INSTRUCTION_START) / 4];
+        instrIndex = (instrAddr - INSTRUCTION_START) / 4;
+        instructionSet = instructions[instrIndex];
         instrHex = instructionSet[1];
         input = instructionSet[2];
         instrExecs = null;
 
         if (instrHex == 0x0000000c) {
             if (SHOWCONTEXT) {
-                PRINTTEXT += TXT_LOAD + " " + colour(hexOfInt(instrAddr, 8), COLOUR_ADDR) + " : " + colour(hexOfInt(instrHex, 8), COLOUR_INSTR) + "; |" + colour(TXT_INSTRUCTION + ":" + instructionNum, COLOUR_INPUT) + "| " + colour("syscall", COLOUR_INSTR) + "<br>";
+                PRINTTEXT += TXT_LOAD + " " + colour(hexOfInt(instrAddr, 8), COLOUR_ADDR) + " : " + colour(hexOfInt(instrHex, 8), COLOUR_INSTR) + "; |" + colour(TXT_INSTRUCTION + ":" + instrIndex, COLOUR_INPUT) + "| " + colour("syscall", COLOUR_INSTR) + "<br>";
             }
             instrType = TYPE_SYSCALL;
         } else {
@@ -189,7 +191,7 @@ function run() {
             if (instrHex == 0x03e00008) {
                 quit = true;
                 if (SHOWCONTEXT) {
-                    PRINTTEXT += TXT_LOAD + " " + colour(hexOfInt(instrAddr, 8), COLOUR_ADDR) + " : " + colour(hexOfInt(instrHex, 8), COLOUR_INSTR) + "; |" + colour(TXT_INSTRUCTION + ":" + instructionNum, COLOUR_INPUT) + "| " + colour("jr $ra", COLOUR_INSTR) + "<br>";
+                    PRINTTEXT += TXT_LOAD + " " + colour(hexOfInt(instrAddr, 8), COLOUR_ADDR) + " : " + colour(hexOfInt(instrHex, 8), COLOUR_INSTR) + "; |" + colour(TXT_INSTRUCTION + ":" + instrIndex, COLOUR_INPUT) + "| " + colour("jr $ra", COLOUR_INSTR) + "<br>";
                 }
             } else {
                 if (instrDecoded == TYPE_UNSUPPORTED) {
@@ -203,7 +205,7 @@ function run() {
                 }
 
                 if (SHOWCONTEXT) {
-                    PRINTTEXT += TXT_LOAD + " " + colour(hexOfInt(instrAddr, 8), COLOUR_ADDR) + " : " + colour(hexOfInt(instrHex, 8), COLOUR_INSTR) + "; |" + colour(TXT_INSTRUCTION + ":" + instructionNum, COLOUR_INPUT) + "| " + colour(instrDecoded, COLOUR_INSTR) + "<br>";
+                    PRINTTEXT += TXT_LOAD + " " + colour(hexOfInt(instrAddr, 8), COLOUR_ADDR) + " : " + colour(hexOfInt(instrHex, 8), COLOUR_INSTR) + "; |" + colour(TXT_INSTRUCTION + ":" + instrIndex, COLOUR_INPUT) + "| " + colour(instrDecoded, COLOUR_INSTR) + "<br>";
                 }
             }
         }
@@ -883,7 +885,7 @@ function execute_xori (args, addr) {
 function execute_j (args) {
     // j targetAddr
     if (SHOWREG) {
-        PRINTTEXT += colour("j", COLOUR_INSTR) + ": " + colour(hexOfInt(args[1], 8), COLOUR_ADDR) + "<br>";
+        PRINTTEXT += colour("j", COLOUR_INSTR) + ": " + TXT_JUMP + " " + colour(hexOfInt(args[1], 8), COLOUR_ADDR) + "<br>";
     }
     return args[1];
 }
