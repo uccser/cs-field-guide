@@ -19,11 +19,11 @@ $(document).ready(function () {
     programBox.value = '';
     var printText = '';
 
-    printText += 'print("**********************************************")\n'
-    printText += 'print("**********************************************")\n'
-    printText += 'print("** ' + WELCOME_TXT + ' **")\n'
-    printText += 'print("**********************************************")\n'
-    printText += 'print("**********************************************")\n'
+    printText += 'print("**********************************************")\n';
+    printText += 'print("**********************************************")\n';
+    printText += 'print("** ' + WELCOME_TXT + ' **")\n';
+    printText += 'print("**********************************************")\n';
+    printText += 'print("**********************************************")\n';
                   
     programBox.value = printText;
 });
