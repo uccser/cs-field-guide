@@ -1,7 +1,9 @@
-const Sk = require("skulpt");
+var Sk = require("skulpt");
+
+const WELCOME_TXT = gettext('Welcome to computer programming, student');
 
 $(document).ready(function () {
-    $("#interactive-python-interpreter-run").click(function(){
+    $("#interactive-python-interpreter-run").click(function() {
         var program = document.getElementById("interactive-python-interpreter-code").value;
         var output = document.getElementById("interactive-python-interpreter-output");
         output.innerHTML = '';
@@ -13,16 +15,21 @@ $(document).ready(function () {
         }
     });
 
-    function skuplt_out(text) {
-        var output = document.getElementById("interactive-python-interpreter-output");
-        text = text.replace(/</g, '&lt;');
-        output.innerHTML = output.innerHTML + text;
-    }
+    var programBox = document.getElementById("interactive-python-interpreter-code");
+    programBox.value = '';
+    var printText = '';
 
-    var program = document.getElementById("interactive-python-interpreter-code");
-    program.value = 'print("**********************************************")\n'
-    program.value += 'print("**********************************************")\n'
-    program.value += 'print("** ' + gettext('Welcome to computer programming, Student') + ' **")\n'
-    program.value += 'print("**********************************************")\n'
-    program.value += 'print("**********************************************")\n'
+    printText += 'print("**********************************************")\n'
+    printText += 'print("**********************************************")\n'
+    printText += 'print("** ' + WELCOME_TXT + ' **")\n'
+    printText += 'print("**********************************************")\n'
+    printText += 'print("**********************************************")\n'
+                  
+    programBox.value = printText;
 });
+
+function skuplt_out(text) {
+    var output = document.getElementById("interactive-python-interpreter-output");
+    text = text.replace(/</g, '&lt;');
+    output.innerHTML = output.innerHTML + text;
+}
