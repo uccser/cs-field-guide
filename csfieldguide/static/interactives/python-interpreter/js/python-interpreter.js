@@ -1,3 +1,5 @@
+// Based on the example:
+// https://github.com/skulpt/skulpt/blob/master/example/calling_from_js.html
 var Sk = require("skulpt");
 
 const WELCOME_TXT = gettext('Welcome to computer programming, student');
