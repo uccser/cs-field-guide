@@ -11,7 +11,13 @@ $(document).ready(function() {
         data: { id: 'b' }
       },
       {
+        data: { id: 'c' }
+      },
+      {
         data: { id: 'ab', source: 'a', target: 'b' }
+      },
+      {
+        data: { id: 'bc', source: 'b', target: 'c' }
       }
     ],
     style: [
@@ -39,6 +45,10 @@ $(document).ready(function() {
     }
   });
 
+  var layout = cy.layout({
+    name: 'random'
+  });
+
   var gContainer = $('#cy');
   cy.mount(gContainer);
   var slider = $('#num-cities');
@@ -51,14 +61,16 @@ $(document).ready(function() {
     output.html(numberOfCities);
   });
 
-  $('#generate-map').click(function() {
-    numCitiesArray = [...Array(numberOfCities).keys()];
-    paths = generatePermutations(numCitiesArray);
+  $('#start').click(function() {
+    // numCitiesArray = [...Array(numberOfCities).keys()];
+    // paths = generatePermutations(numCitiesArray);
     // pathsWithoutReversePaths = removeReversePaths(paths);
-    console.log(paths);
-  })
+    // console.log(paths);
+  });
 
-  $('#start').click()
+  $('#generate-map').click(function () {
+    layout.run()
+  });
 });
 
 
