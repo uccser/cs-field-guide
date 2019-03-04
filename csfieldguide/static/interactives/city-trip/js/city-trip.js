@@ -1,17 +1,31 @@
+const Cytoscape = require('cytoscape');
+
 $(document).ready(function() {
   var slider = $('#num-cities');
   var output = $("#slider-text");
-  output.html(slider.val());
+  var numberOfCities = Number(slider.val());
+  output.html(numberOfCities);
   
   slider.on('input', function() {
-    output.html(slider.val());
+    numberOfCities = Number(slider.val());
+    output.html(numberOfCities);
   });
+
+  $('#generate-map').click(function() {
+    numCitiesArray = [...Array(numberOfCities).keys()];
+    paths = generatePermutations(numCitiesArray);
+    // pathsWithoutReversePaths = removeReversePaths(paths);
+    console.log(paths);
+  })
+
+  $('#start').click()
 });
 
 
 
 // below functions taken from 
 // www.reddit.com/r/javascript/comments/5k270h/all_possible_routes_traveling_salesman_problem_in/
+// Generates all possible paths between cities
 function generatePermutations(Arr) {
   var permutations = [];
   var A = Arr.slice();
@@ -25,6 +39,10 @@ function generatePermutations(Arr) {
   function generate(n, A) {
     if (n == 1) {
       permutations.push(A.slice());
+      // have to update visually as each permutation created so user sees something (takes forever to compute for large numbers)
+      // generate graph visualisation of path
+      // calculate distance
+      // check if shorter, update variable if so
     } else {
       for (var i = 0; i <= n-1; i++) {
         generate(n-1, A);
@@ -33,38 +51,30 @@ function generatePermutations(Arr) {
     }
   }
   generate(A.length, A);
-  // permutations = removeReverseDuplicates(permutations);
   return permutations;
 }
 
 
-function removeReverseDuplicates(perms) {
-  var permsWithoutReverse = [];
+function removeReversePaths(perms) {
+  var pathsWithoutReverse = [];
   var pathToTest;
 
   for (var j = 0; j < perms.length; j++) {
     pathToTest = perms[j];
-    isReverseDuplicate = testForDuplicate(pathToTest, permsWithoutReverse);
+    isReversePath = testForReversePath(pathToTest, pathsWithoutReverse);
 
-    if (!isReverseDuplicate) {
-      permsWithoutReverse.push(pathToTest.toString());
+    if (!isReversePath) {
+      pathsWithoutReverse.push(pathToTest.toString());
     }
   }
 
-  return permsWithoutReverse;
+  return pathsWithoutReverse;
 }
 
 
-function testForDuplicate(path, pathsArray) {
+function testForReversePath(path, pathsArray) {
   reversePath = path.slice().reverse();
-  console.log(reversePath);
   reversePathString = reversePath.toString();
 
   return pathsArray.indexOf(reversePathString) !== -1;
 }
-
-
-p = generatePermutations([1,2,3]);
-console.log(p);
-
-console.log(removeReverseDuplicates(p));
