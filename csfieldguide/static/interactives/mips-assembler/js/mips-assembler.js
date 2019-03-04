@@ -63,7 +63,9 @@ $(document).ready(function() {
     });
 });
 
-// Assembles the code from the mips input box and prints it to the assembler output box
+/**
+ * Assembles the code from the mips input box and prints it to the assembler output box
+ */
 function assemble() {
     LABELS = [];
     LABELADDRS = [];
@@ -319,20 +321,25 @@ function assemble() {
     $('#assembler-output').html(printText);
 }
 
-// Returns the last element of the given array
-// This equates to the python expression array[-1]
+/**
+ * Returns the last element of the given array
+ * This equates to the python expression array[-1]
+ */
 function last(array) {
     return array[array.length - 1];
 }
 
-// Returns the nth to last element of the given array
-// This equates to the python expression array[-n]
+/**
+ * Returns the nth to last element of the given array
+ * This equates to the python expression array[-n]
+ */
 function nthLast(array, n) {
     return array[array.length - n];
 }
 
-// Returns the given string wrapped appropriately to display in the given colour
-// If the global SHOWCOLOUR is false, returns the given string uncoloured
+/**Returns the given string wrapped appropriately to display in the given colour
+ * If the global SHOWCOLOUR is false, returns the given string uncoloured
+ */ 
 function colour(text, colour) {
     if (SHOWCOLOUR) {
         return '<span style="color:' + colour + '">' + text + '</span>';
@@ -341,10 +348,12 @@ function colour(text, colour) {
     }
 }
 
-// Returns a list of two lists
-// 1) a list of strings: the given text split every num characters
-// 2) a list of strings: the previous list but each item is the hexadecimal value of each character in the string appended together
-// \n is read as a single character even when input as two charaters
+/**
+ * Returns a list of two lists
+ * 1) a list of strings: the given text split every num characters
+ * 2) a list of strings: the previous list but each item is the hexadecimal value of each character in the string appended together
+ * \n is read as a single character even when input as two charaters
+ */
 function splitEvery(num, text) {
     var returnLines = [];
     var returnHexes = [];
@@ -378,25 +387,33 @@ function splitEvery(num, text) {
     return [returnLines, returnHexes];
 }
 
-// Returns a Type R hex of the given instruction, given the hex code of each individual part
+/**
+ * Returns a Type R hex of the given instruction, given the hex code of each individual part
+ */
 function hexR(opcode, rs, rt, rd, shamt, func) {
     return (opcode << 26 | rs << 21 | rt << 16 | rd << 11 | shamt << 6 | func);
 }
 
-// Returns a Type I hex of the given instruction, given the hex code of each individual part
+/**
+ * Returns a Type I hex of the given instruction, given the hex code of each individual part
+ */
 function hexI(opcode, rs, rd, imm) {
     return (opcode << 26 | rs << 21 | rd << 16 | (0xFFFF & imm));
 }
 
-// Returns a Type J hex of the given instruction, given the hex code of each individual part
+/**
+ * Returns a Type J hex of the given instruction, given the hex code of each individual part
+ */
 function hexJ(opcode, addr) {
     return (opcode << 26 | addr);
 }
 
-// Returns the string of an integer as a zero-extended n-character hex value
-// If the hex is less than n/2 bytes, zeros will be appended to the front
-// If the hex is greater than n/2 bytes, a larger than n-character string will be returned
-// E.g: hexOfInt(20, 4) = "0014", hexOfint(20, 1) = "14"
+/**
+ * Returns the string of an integer as a zero-extended n-character hex value
+ * If the hex is less than n/2 bytes, zeros will be appended to the front
+ * If the hex is greater than n/2 bytes, a larger than n-character string will be returned
+ * E.g: hexOfInt(20, 4) = "0014", hexOfint(20, 1) = "14"
+ */
 function hexOfInt(num, n) {
     var returnString = num.toString(16);
     if (returnString.length < n) {
@@ -406,7 +423,9 @@ function hexOfInt(num, n) {
     }
 }
 
-// Returns the base 10 encoding of the given Type R operation code
+/**
+ * Returns the base 10 encoding of the given Type R operation code
+ */
 function encodingR(opcode) {
     var returnVal;
     switch(opcode) {
@@ -436,7 +455,9 @@ function encodingR(opcode) {
     return returnVal;
 }
 
-// Returns the base 10 encoding of the given Type I operation code
+/**
+ * Returns the base 10 encoding of the given Type I operation code
+ */
 function encodingI(opcode) {
     var returnVal;
     switch(opcode) {
@@ -460,7 +481,9 @@ function encodingI(opcode) {
     return returnVal;
 }
 
-// Returns the base 10 encoding of the given Type J operation code
+/**
+ * Returns the base 10 encoding of the given Type J operation code
+ */
 function encodingJ(opcode) {
     var returnVal;
     switch(opcode) {
@@ -473,7 +496,9 @@ function encodingJ(opcode) {
     return returnVal;
 }
 
-// Returns the integer encoding of the given register
+/**
+ * Returns the integer encoding of the given register
+ */
 function register(reg) {
     var returnVal;
     switch(reg) {
@@ -542,10 +567,12 @@ function register(reg) {
     return returnVal;
 }
 
-// Returns a list of:
-// 1) a TYPE_ code, depending on the success of the operation, TYPE_R if valid
-// 2-7) each argument in order for a valid Type-R instruction, or the operation name if invalid
-// Input is a list of strings, each being a keyword of the instruction to be interpreted
+/**
+ * Returns a list of:
+ * 1) a TYPE_ code, depending on the success of the operation, TYPE_R if valid
+ * 2-7) each argument in order for a valid Type-R instruction, or the operation name if invalid
+ * Input is a list of strings, each being a keyword of the instruction to be interpreted
+ */
 function buildInstructionR(args) {
     var returnList;
     var opcode = args[0];
@@ -638,10 +665,12 @@ function buildInstructionR(args) {
     return returnList;
 }
 
-// Returns a list of:
-// 1) a TYPE_ code, depending on the success of the operation, TYPE_I if valid
-// 2-5) each argument in order for a valid Type-I instruction, or the operation name if invalid
-// Input is a list of strings, each being a keyword of the instruction to be interpreted
+/**
+ * Returns a list of:
+ * 1) a TYPE_ code, depending on the success of the operation, TYPE_I if valid
+ * 2-5) each argument in order for a valid Type-I instruction, or the operation name if invalid
+ * Input is a list of strings, each being a keyword of the instruction to be interpreted
+ */
 function buildInstructionI(args) {
     var returnList;
     var opcode = args[0];
@@ -712,10 +741,12 @@ function buildInstructionI(args) {
     return returnList;
 }
 
-// Returns a list of:
-// 1) a TYPE_ code, depending on the success of the operation, TYPE_J if valid
-// 2-3) each argument in order for a valid Type-J instruction, or the operation name if invalid
-// Input is a list of strings, each being a keyword of the instruction to be interpreted
+/**
+ * Returns a list of:
+ * 1) a TYPE_ code, depending on the success of the operation, TYPE_J if valid
+ * 2-3) each argument in order for a valid Type-J instruction, or the operation name if invalid
+ * Input is a list of strings, each being a keyword of the instruction to be interpreted
+ */
 function buildInstructionJ(args) {
     var returnList;
     var opcode = args[0];
@@ -741,8 +772,10 @@ function buildInstructionJ(args) {
     return returnList;
 }
 
-// Returns the type of instruction based on the given opcode
-// Most MIPS I instructions are recognised but only a few are supported
+/**
+ * Returns the type of instruction based on the given opcode
+ * Most MIPS I instructions are recognised but only a few are supported
+ */
 function instructionType(opcode) {
     switch(opcode) {
         // Type R Shifts
