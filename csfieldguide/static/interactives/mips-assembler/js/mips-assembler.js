@@ -36,6 +36,7 @@ const TXT_PANIC = gettext("You've triggered the failsafe error control in this i
 var LABELS;
 var LABELADDRS;
 var SHOWCOLOUR;
+var BINARY;
 
 // Stores a backup of the default code and registers button handler functions
 $(document).ready(function() {
@@ -45,11 +46,11 @@ $(document).ready(function() {
     $('#assembler-output').html('');
 
     $('#submit-mips').on('click', function () {
-        try {
+        //try {
             assemble();
-        } catch(err) {
-            present(TXT_PANIC, false);
-        }
+        //} catch(err) {
+        //    present(TXT_PANIC, false);
+        //}
     });
 
     $('#reset-basic').on('click', function () {
@@ -74,6 +75,7 @@ function assemble() {
     var showBlank = $('#show-blank').is(':checked');
     var showInstr = $('#show-instructions').is(':checked');
     SHOWCOLOUR = $('#show-colours').is(':checked');
+    BINARY = $('#show-binary').is(':checked');
 
     var printText = "";
     var nextInstr = "";
@@ -139,7 +141,7 @@ function assemble() {
             LABELS.push(name);
             LABELADDRS.push(instructionAddr);
             if (showInstr) {
-                nextInstr = colour(hexOfInt(instructionAddr, 8), COLOUR_ADDR) + ": " + colour(name, COLOUR_LABEL) + " ; |" + colour(TXT_INPUT + ":" + input, COLOUR_INPUT) + "| " + colour(name, COLOUR_LABEL) + ":<br>";
+                nextInstr = colour(rawVal(instructionAddr), COLOUR_ADDR) + ": " + colour(name, COLOUR_LABEL) + " ; |" + colour(TXT_INPUT + ":" + input, COLOUR_INPUT) + "| " + colour(name, COLOUR_LABEL) + ":<br>";
             } else {
                 nextInstr = colour(name, COLOUR_LABEL) + ":<br>";
             }
@@ -149,9 +151,9 @@ function assemble() {
         } else if (line == "syscall" || line == "SYSCALL") {
             // Interpret as a syscall
             if (showInstr) {
-                nextInstr = colour(hexOfInt(instructionAddr, 8), COLOUR_ADDR) + ": " + colour("0000000c", COLOUR_INSTR) + " ; |" + colour(TXT_INPUT + ":" + input, COLOUR_INPUT) + "| " + colour("syscall", COLOUR_INSTR) + "<br>";
+                nextInstr = colour(rawVal(instructionAddr), COLOUR_ADDR) + ": " + colour(rawVal(12), COLOUR_INSTR) + " ; |" + colour(TXT_INPUT + ":" + input, COLOUR_INPUT) + "| " + colour("syscall", COLOUR_INSTR) + "<br>";
             } else {
-                nextInstr = colour("0000000c", COLOUR_INSTR) + "<br>";
+                nextInstr = colour(rawVal(12), COLOUR_INSTR) + "<br>";
             }
             instructions.push([TYPE_UNASSIGNED, nextInstr, input, instructionAddr, line]);
             instructionAddr += 4;
@@ -254,9 +256,9 @@ function assemble() {
             case (TYPE_R):
                 instrHex = hexR(instrArgs[1], instrArgs[2], instrArgs[3], instrArgs[4], instrArgs[5], instrArgs[6]);
                 if (showInstr) {
-                    printText += colour(hexOfInt(addr, 8), COLOUR_ADDR) + ": " + colour(hexOfInt(instrHex, 8), COLOUR_INSTR) + " ; |" + colour(TXT_INPUT + ":" + input, COLOUR_INPUT) + "| " + colour(orig, COLOUR_INSTR) + "<br>";
+                    printText += colour(rawVal(addr), COLOUR_ADDR) + ": " + colour(rawVal(instrHex), COLOUR_INSTR) + " ; |" + colour(TXT_INPUT + ":" + input, COLOUR_INPUT) + "| " + colour(orig, COLOUR_INSTR) + "<br>";
                 } else {
-                    printText += colour(hexOfInt(instrHex, 8), COLOUR_INSTR) + "<br>";
+                    printText += colour(rawVal(instrHex), COLOUR_INSTR) + "<br>";
                 }
                 break;
             case (TYPE_I):
@@ -268,17 +270,17 @@ function assemble() {
                 }
                 instrHex = hexI(instrArgs[1], instrArgs[2], instrArgs[3], instrArgs[4]);
                 if (showInstr) {
-                    printText += colour(hexOfInt(addr, 8), COLOUR_ADDR) + ": " + colour(hexOfInt(instrHex, 8), COLOUR_INSTR) + " ; |" + colour(TXT_INPUT + ":" + input, COLOUR_INPUT) + "| " + colour(orig, COLOUR_INSTR) + "<br>";
+                    printText += colour(rawVal(addr), COLOUR_ADDR) + ": " + colour(rawVal(instrHex), COLOUR_INSTR) + " ; |" + colour(TXT_INPUT + ":" + input, COLOUR_INPUT) + "| " + colour(orig, COLOUR_INSTR) + "<br>";
                 } else {
-                    printText += colour(hexOfInt(instrHex, 8), COLOUR_INSTR) + "<br>";
+                    printText += colour(rawVal(instrHex), COLOUR_INSTR) + "<br>";
                 }
                 break;
             case (TYPE_J):
                 instrHex = hexJ(instrArgs[1], instrArgs[2]);
                 if (showInstr) {
-                    printText += colour(hexOfInt(addr, 8), COLOUR_ADDR) + ": " + colour(hexOfInt(instrHex, 8), COLOUR_INSTR) + " ; |" + colour(TXT_INPUT + ":" + input, COLOUR_INPUT) + "| " + colour(orig, COLOUR_INSTR) + "<br>";
+                    printText += colour(rawVal(addr), COLOUR_ADDR) + ": " + colour(rawVal(instrHex), COLOUR_INSTR) + " ; |" + colour(TXT_INPUT + ":" + input, COLOUR_INPUT) + "| " + colour(orig, COLOUR_INSTR) + "<br>";
                 } else {
-                    printText += colour(hexOfInt(instrHex, 8), COLOUR_INSTR) + "<br>";
+                    printText += colour(rawVal(instrHex), COLOUR_INSTR) + "<br>";
                 }
                 break;
             case (TYPE_UNSUPPORTED):
@@ -305,9 +307,13 @@ function assemble() {
             }
             subtext = storedText[i];
             for (j=0; j < subtext[0].length; j++) {
-                hexString = subtext[1][j];
+                if (BINARY) {
+                    hexString = binOfStr(subtext[0][j], 32);
+                } else {
+                    hexString = subtext[1][j];
+                }
                 if (showInstr) {
-                    nextInstr = colour(hexOfInt(dataAddr, 8), COLOUR_ADDR) + ": " + colour(hexString, COLOUR_STR) + " ; " + colour(subtext[0][j], COLOUR_STR) + "<br>";
+                    nextInstr = colour(rawVal(dataAddr), COLOUR_ADDR) + ": " + colour(hexString, COLOUR_STR) + " ; " + colour(subtext[0][j], COLOUR_STR) + "<br>";
                 } else {
                     nextInstr = colour(hexString, COLOUR_STR) + "<br>";
                 }
@@ -318,7 +324,18 @@ function assemble() {
         }
     }
 
-    $('#assembler-output').html(printText);
+    present(printText, true);
+}
+
+/**
+ * Writes the given text to the Program Output textarea,
+ * along with a message depending on the value of isSuccess
+ */
+function present(text, isSuccess) {
+    if (!isSuccess) {
+        text = colour(text, COLOUR_BAD);
+    }
+    $("#assembler-output").html(text);
 }
 
 /**
@@ -406,6 +423,60 @@ function hexI(opcode, rs, rd, imm) {
  */
 function hexJ(opcode, addr) {
     return (opcode << 26 | addr);
+}
+
+/**
+ * If the global value BINARY is false, returns a string of the given number as a 32-bit hexadecimal
+ * If the number is larger than 32 bits, a larger number will be returned (see: hexOfInt)
+ * 
+ * If BINARY is true, returns a string of the given number as a 32-bit binary value
+ * If the number is larger than 32 bits, a larger number will be returned (see: binOfInt)
+ */
+function rawVal(num) {
+    if (BINARY) {
+        return binOfInt(num, 32);
+    } else {
+        return hexOfInt(num, 8);
+    }
+}
+
+/**
+ * Returns the string of an integer as a zero-extended n-character binary value
+ * If the binary is less than n bits, zeros will be appended to the front
+ * If the binary is greater than n bits, a larger than n-character string will be returned
+ * E.g: binOfInt(2, 4) = "0010", binOfint(20, 4) = "00010100"
+ */
+function binOfInt(num, n) {
+    var returnString = num.toString(2);
+    if (returnString.length < n) {
+        return "0".repeat(n - returnString.length) + returnString;
+    } else {
+        return returnString;
+    }
+}
+
+/**
+ * Returns the string of another string as a zero-extended n-character binary value
+ * If the binary is less than n bits, zeros will be appended to the front
+ * If the binary is greater than n bits, a larger than n-character string will be returned
+ * /n is interpreted as a single character
+ */
+function binOfStr(text, n) {
+    var returnString = "";
+    var chars = text.split("");
+    for (i=0; i < chars.length; i++) {
+        if (chars[i] == "\\" && chars[i+1] == "n") {
+            returnString += binOfInt(0x0A, 8);
+            i++;
+        } else {
+            returnString += binOfInt(chars[i].charCodeAt(0), 8);
+        }
+    }
+    if (returnString.length < n) {
+        return "0".repeat(n - returnString.length) + returnString;
+    } else {
+        return returnString;
+    }
 }
 
 /**
