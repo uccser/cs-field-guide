@@ -1,6 +1,46 @@
-const Cytoscape = require('cytoscape');
+const cytoscape = require('cytoscape');
 
 $(document).ready(function() {
+  var cy = cytoscape({
+    container: $('#cy'),
+    elements: [
+      {
+        data: { id: 'a' }
+      },
+      {
+        data: { id: 'b' }
+      },
+      {
+        data: { id: 'ab', source: 'a', target: 'b' }
+      }
+    ],
+    style: [
+      {
+        selector: 'node',
+        style: {
+          'background-color': '#666',
+          'label': 'data(id)'
+        }
+      },
+
+      {
+        selector: 'edge',
+        style: {
+          'width': 3,
+          'line-color': '#ccc',
+          'target-arrow-color': '#ccc',
+          'target-arrow-shape': 'triangle'
+        }
+      }
+    ],
+    layout: {
+      name: 'grid',
+      rows: 1
+    }
+  });
+
+  var gContainer = $('#cy');
+  cy.mount(gContainer);
   var slider = $('#num-cities');
   var output = $("#slider-text");
   var numberOfCities = Number(slider.val());
