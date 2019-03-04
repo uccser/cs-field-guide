@@ -9,6 +9,7 @@ $(document).ready(function () {
         var program = document.getElementById("interactive-python-interpreter-code").value;
         var output = document.getElementById("interactive-python-interpreter-output");
         output.innerHTML = '';
+        Sk.python3 = true;
         Sk.configure({output:skuplt_out});
         try {
             Sk.importMainWithBody("<stdin>", false, program);
