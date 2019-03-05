@@ -36,7 +36,7 @@ const TXT_PANIC = gettext("You've triggered the failsafe error control in this i
 var LABELS;
 var LABELADDRS;
 var SHOWCOLOUR;
-var BINARY;
+var SHOWBINARY;
 
 // Stores a backup of the default code and registers button handler functions
 $(document).ready(function() {
@@ -46,11 +46,11 @@ $(document).ready(function() {
     $('#assembler-output').html('');
 
     $('#submit-mips').on('click', function () {
-        //try {
+        try {
             assemble();
-        //} catch(err) {
-        //    present(TXT_PANIC, false);
-        //}
+        } catch(err) {
+            present(TXT_PANIC, false);
+        }
     });
 
     $('#reset-basic').on('click', function () {
@@ -75,7 +75,7 @@ function assemble() {
     var showBlank = $('#show-blank').is(':checked');
     var showInstr = $('#show-instructions').is(':checked');
     SHOWCOLOUR = $('#show-colours').is(':checked');
-    BINARY = $('#show-binary').is(':checked');
+    SHOWBINARY = $('#show-binary').is(':checked');
 
     var printText = "";
     var nextInstr = "";
@@ -307,7 +307,7 @@ function assemble() {
             }
             subtext = storedText[i];
             for (j=0; j < subtext[0].length; j++) {
-                if (BINARY) {
+                if (SHOWBINARY) {
                     hexString = binOfStr(subtext[0][j], 32);
                 } else {
                     hexString = subtext[1][j];
@@ -426,14 +426,14 @@ function hexJ(opcode, addr) {
 }
 
 /**
- * If the global value BINARY is false, returns a string of the given number as a 32-bit hexadecimal
+ * If the global value SHOWBINARY is false, returns a string of the given number as a 32-bit hexadecimal
  * If the number is larger than 32 bits, a larger number will be returned (see: hexOfInt)
  * 
- * If BINARY is true, returns a string of the given number as a 32-bit binary value
+ * If SHOWBINARY is true, returns a string of the given number as a 32-bit binary value
  * If the number is larger than 32 bits, a larger number will be returned (see: binOfInt)
  */
 function rawVal(num) {
-    if (BINARY) {
+    if (SHOWBINARY) {
         return binOfInt(num, 32);
     } else {
         return hexOfInt(num, 8);
