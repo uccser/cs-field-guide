@@ -3,7 +3,7 @@
 **Author:** Alasdair Smith
 
 This interactive allows users to simulate assembled MIPS code and see the output.
-Adding `?offer-examples` to the URL reverals buttons that can be pressed to load the assembled code from the Assembler interactive.
+Adding `?offer-examples` to the URL reveals buttons that can be pressed that load assembled example code.
 
 ## MIPS Simulator License
 
