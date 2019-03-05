@@ -1,25 +1,17 @@
 const cytoscape = require('cytoscape');
 
 $(document).ready(function() {
+
+  var slider = $('#num-cities');
+  var output = $("#slider-text");
+  var numberOfCities = Number(slider.val());
+  var nodes = Array.from(Array(numberOfCities), (x, index) => index + 1);
+  var elementsData = generateNodesAndEdgesData(nodes);
+  output.html(numberOfCities);
+  
   var cy = cytoscape({
     container: $('#cy'),
-    elements: [
-      {
-        data: { id: 'a' }
-      },
-      {
-        data: { id: 'b' }
-      },
-      {
-        data: { id: 'c' }
-      },
-      {
-        data: { id: 'ab', source: 'a', target: 'b' }
-      },
-      {
-        data: { id: 'bc', source: 'b', target: 'c' }
-      }
-    ],
+    elements: elementsData,
     style: [
       {
         selector: 'node',
@@ -51,15 +43,17 @@ $(document).ready(function() {
 
   var gContainer = $('#cy');
   cy.mount(gContainer);
-  var slider = $('#num-cities');
-  var output = $("#slider-text");
-  var numberOfCities = Number(slider.val());
-  output.html(numberOfCities);
-  
+
   slider.on('input', function() {
-    numberOfCities = Number(slider.val());
+    newNumberOfCities = Number(slider.val());
+    // nodes = Array.from(Array(numberOfCities), (x, index) => index + 1);
+    // elementsData = generateNodesAndEdgesData(nodes);
+    alterGraph(cy, layout, numberOfCities, newNumberOfCities)
+    numberOfCities = newNumberOfCities;
+    console.log(cy.elements());
     output.html(numberOfCities);
   });
+
 
   $('#start').click(function() {
     // numCitiesArray = [...Array(numberOfCities).keys()];
@@ -73,6 +67,50 @@ $(document).ready(function() {
   });
 });
 
+
+function generateNodesAndEdgesData(nodes) {
+  var mapData = [];
+  // generate nodes (cities) for city map
+  for (var c = 0; c < nodes.length; c++) {
+    nodeData = {
+      data: { id: nodes[c].toString() }
+    };
+    mapData.push(nodeData);
+  }
+  // generate edges (roads) between nodes (cities)
+  for (var e = 0; e < nodes.length - 1; e++) {
+    sourceNode = nodes[e].toString();
+    targetNode = nodes[e+1].toString();
+    edgeId = 'e' + sourceNode + targetNode;
+    edgeData = {
+      data: { id: edgeId, source: sourceNode, target: targetNode}
+    }
+    mapData.push(edgeData);
+  }
+
+  return mapData;
+}
+
+
+function alterGraph(cy, layout, oldNumCities, newNumCities) {
+  // what happens if difference is 0?
+  // need to resize after nodes added
+  var difference = Math.abs(newNumCities - oldNumCities);
+  if (oldNumCities < newNumCities) {
+    for (var n = 1; n < difference + 1; n++) {
+      newNode = {
+        data: { id: (oldNumCities + n).toString() }
+      };
+      cy.add(newNode);
+    }
+  } else if (oldNumCities > newNumCities) {
+    for (var n = 0; n < difference; n++) {
+      nodeToRemove = cy.$('#' + (oldNumCities - n).toString());
+      cy.remove( nodeToRemove );
+    }
+  }
+  layout.run();
+}
 
 
 // below functions taken from 
