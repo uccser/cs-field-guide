@@ -97,7 +97,7 @@ function assemble() {
     var mipsCode = mipsText.split(/\r|\n/);
 
     // Parse the code
-    for (x=0; x < mipsCode.length; x++) {
+    for (var x=0; x < mipsCode.length; x++) {
         line = mipsCode[x].trim();
         if (line.startsWith(".")) {
             // Ignore the line
@@ -244,7 +244,7 @@ function assemble() {
     }
 
     // Assemble the instructions
-    for (z=0; z < instructions.length; z++) {
+    for (var z=0; z < instructions.length; z++) {
         instrArgs = instructions[z];
         var input = nthLast(instrArgs, 3);
         var addr = nthLast(instrArgs, 2);
@@ -301,12 +301,12 @@ function assemble() {
         if (showInstr || showBlank) {
             printText += ";<br>; "+ TXT_DATA + "<br>";
         }
-        for (i=0; i < storedText.length; i++) {
+        for (var n=0; n < storedText.length; n++) {
             if (showInstr || showBlank) {
-                printText += "; " + colour(storedTextNames[i], COLOUR_LABEL) + "<br>";
+                printText += "; " + colour(storedTextNames[n], COLOUR_LABEL) + "<br>";
             }
-            subtext = storedText[i];
-            for (j=0; j < subtext[0].length; j++) {
+            subtext = storedText[n];
+            for (var j=0; j < subtext[0].length; j++) {
                 if (SHOWBINARY) {
                     hexString = binOfStr(subtext[0][j], 32);
                 } else {
@@ -379,7 +379,7 @@ function splitEvery(num, text) {
     var chars = text.split("");
     var numchars = 0;
     var nextHex;
-    for (i=0; i < chars.length; i++) {
+    for (var i=0; i < chars.length; i++) {
         if (chars[i] == "\\" && chars[i+1] == "n") {
             subtext += chars[i] + chars[i+1];
             subhex += "0a";
@@ -464,7 +464,7 @@ function binOfInt(num, n) {
 function binOfStr(text, n) {
     var returnString = "";
     var chars = text.split("");
-    for (i=0; i < chars.length; i++) {
+    for (var i=0; i < chars.length; i++) {
         if (chars[i] == "\\" && chars[i+1] == "n") {
             returnString += binOfInt(0x0A, 8);
             i++;

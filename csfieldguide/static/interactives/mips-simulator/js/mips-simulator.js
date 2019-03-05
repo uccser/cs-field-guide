@@ -122,7 +122,7 @@ function run() {
     // Parse the code
     lines = mipsText.split(/\r|\n/);
 
-    for (i=0; i < lines.length; i++) {
+    for (var i=0; i < lines.length; i++) {
         line = lines[i].trim();
 
         // Interpret initial lines as instructions
