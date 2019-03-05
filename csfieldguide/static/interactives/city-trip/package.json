@@ -3,6 +3,7 @@
     "version": "1.0.0",
     "private": true,
     "dependencies": {
-        "cytoscape": "3.4.2"
+        "cytoscape": "3.4.2",
+        "cytoscape-no-overlap": "1.0.1"
     }
 }

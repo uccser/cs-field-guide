@@ -1,4 +1,6 @@
 const cytoscape = require('cytoscape');
+const noOverlap = require('cytoscape-no-overlap')
+cytoscape.use(noOverlap);
 
 $(document).ready(function() {
 
@@ -32,14 +34,15 @@ $(document).ready(function() {
       }
     ],
     layout: {
-      name: 'grid',
-      rows: 1
+      name: 'random'
     }
   });
 
   var layout = cy.layout({
     name: 'random'
   });
+
+  cy.nodes().noOverlap({ padding: 5 });
 
   var gContainer = $('#cy');
   cy.mount(gContainer);
@@ -50,7 +53,6 @@ $(document).ready(function() {
     // elementsData = generateNodesAndEdgesData(nodes);
     alterGraph(cy, layout, numberOfCities, newNumberOfCities)
     numberOfCities = newNumberOfCities;
-    console.log(cy.elements());
     output.html(numberOfCities);
   });
 
@@ -63,7 +65,7 @@ $(document).ready(function() {
   });
 
   $('#generate-map').click(function () {
-    layout.run()
+    layout.run();
   });
 });
 
@@ -97,6 +99,7 @@ function alterGraph(cy, layout, oldNumCities, newNumCities) {
   // need to resize after nodes added
   var difference = Math.abs(newNumCities - oldNumCities);
   if (oldNumCities < newNumCities) {
+    cy.nodes().lock();
     var previousNodeID = oldNumCities.toString();
     for (var n = 1; n < difference + 1; n++) {
       currentNodeID = (oldNumCities + n).toString();
@@ -117,6 +120,7 @@ function alterGraph(cy, layout, oldNumCities, newNumCities) {
     }
   }
   layout.run();
+  cy.nodes().unlock();
 }
 
 
