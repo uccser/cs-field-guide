@@ -81,9 +81,9 @@ function generateNodesAndEdgesData(nodes) {
   for (var e = 0; e < nodes.length - 1; e++) {
     sourceNode = nodes[e].toString();
     targetNode = nodes[e+1].toString();
-    edgeId = 'e' + sourceNode + targetNode;
+    edgeID = 'e' + sourceNode + targetNode;
     edgeData = {
-      data: { id: edgeId, source: sourceNode, target: targetNode}
+      data: { id: edgeID, source: sourceNode, target: targetNode}
     }
     mapData.push(edgeData);
   }
@@ -97,11 +97,18 @@ function alterGraph(cy, layout, oldNumCities, newNumCities) {
   // need to resize after nodes added
   var difference = Math.abs(newNumCities - oldNumCities);
   if (oldNumCities < newNumCities) {
+    var previousNodeID = oldNumCities.toString();
     for (var n = 1; n < difference + 1; n++) {
+      currentNodeID = (oldNumCities + n).toString();
       newNode = {
-        data: { id: (oldNumCities + n).toString() }
+        data: { id: currentNodeID }
       };
       cy.add(newNode);
+      edgeID = 'e' + previousNodeID + currentNodeID;
+      newEdge = {
+        data: { id: edgeID, source: previousNodeID, target: currentNodeID }
+      };
+      cy.add(newEdge);
     }
   } else if (oldNumCities > newNumCities) {
     for (var n = 0; n < difference; n++) {
