@@ -7,7 +7,7 @@
 Regular expressions (regex for short) are closely related to FSAs, as we shall see.
 Much of the terminology that is needed was already covered in the previous section: we'll be using {glossary-link term="alphabet"}alphabets{glossary-link end} to put together a
 {glossary-link term="string"}string{glossary-link end} of letters, and the set of all strings that can be accepted by a particular FSA is called its {glossary-link term="language"}language{glossary-link end}.
-We'll need the concept of the empty string ({math}{\epsilon}{math end} or {math}{\lambda}{math end}), and eventually {glossary-link term="finite-state-automaton"}finite state automata{glossary-link end}.
+We'll need the concept of the empty string (\( \epsilon \) or \( \lambda \)), and eventually {glossary-link term="finite-state-automaton"}finite state automata{glossary-link end}.
 So the previous section on FSAs needs to be covered before embarking on regular expressions.
 
 It may be that students have used regular expressions already, because they are built into many programming languages and are often used when writing script programs.
@@ -79,7 +79,11 @@ For machines, a computer program can convert any regular expression to an FSA, a
 The simplest kind of matching is just entering some text to match.
 Open the interactive below and type the text "cat" into the box labeled "Regular expression":
 
-{interactive slug="regular-expression-search" type="whole-page" text="Regular Expression Search - Exercise 1" parameters="text=The fat cat sat on the mat.%0AThe vindication was catastrophic.%0AThe bilocation of the cataract required certification.%0AThe 42 buffalo baffled them with a pfffffffft sound.%0APennsylvania 6-5000.%0AAssorted exhalations: pfft pffft pft.%0AWas that a match or was it not?"}
+{interactive slug="regular-expression-search" type="whole-page" text="true" parameters="text=The fat cat sat on the mat.%0AThe vindication was catastrophic.%0AThe bilocation of the cataract required certification.%0AThe 42 buffalo baffled them with a pfffffffft sound.%0APennsylvania 6-5000.%0AAssorted exhalations: pfft pffft pft.%0AWas that a match or was it not?"}
+
+Regular Expression Search - Exercise 1
+
+{interactive end}
 
 {panel type="teacher-note"}
 
@@ -171,7 +175,11 @@ It's "regular" because it can be used to define sets of strings from a very simp
 
 Click here for another challenge: you should try to write a short regular expression to match the first two words, but not the last three:
 
-{interactive slug="regular-expression-search" type="whole-page" text="Regular Expression Search - Exercise 2" parameters="text=meeeeeeeow%0Ameoooooooooooow%0A%0Awoof%0Amew%0Acluck"}
+{interactive slug="regular-expression-search" type="whole-page" text="true" parameters="text=meeeeeeeow%0Ameoooooooooooow%0A%0Awoof%0Amew%0Acluck"}
+
+Regular Expression Search - Exercise 2
+
+{interactive end}
 
 {panel type="teacher-note"}
 
@@ -184,7 +192,11 @@ Click here for another challenge: you should try to write a short regular expres
 Of course, regular expressions are mainly used for more serious purposes.
 Click on the following interactive to get some new text to search:
 
-{interactive slug="regular-expression-search" type="whole-page" text="Regular Expression Search - Exercise 3" parameters="text=Contact"}
+{interactive slug="regular-expression-search" type="whole-page" text="true" parameters="text=Contact"}
+
+Regular Expression Search - Exercise 3
+
+{interactive end}
 
 {comment this used to hold the parameter text: "Contact me at spam@mymail.com or on 555-1234%0AFFE962%0ADetails: fred@cheapmail.org.nz (03) 987-6543%0ALooking forward to 21 Oct 2015%0AGood old 5 Nov 1955%0ABack in 2 Sep 1885 is the earliest date%0AABC123%0ALet's buy another 2 Mac 9012 systems @ $2000 each." It's been removed temporarily to allow the page to load. But if you are reading this I forgot to fix it so plz let me know}
 
@@ -336,8 +348,8 @@ Exorciser is very simple.
 In fact, unless you change the default settings, it can only convert regular expressions using two characters: "a" and "b".
 But even that's enough (in fact, in theory any input can be represented with two characters — that's what binary numbers are about!)
 
-On the plus side, Exorciser has the empty string symbol available — if you type "e" it will be converted to {math}\epsilon{math end}.
-So, for example, "(a| {math}\epsilon{math end})" means an optional "a" in the input.
+On the plus side, Exorciser has the empty string symbol available — if you type "e" it will be converted to \(\epsilon\).
+So, for example, "(a| \(\epsilon\))" means an optional "a" in the input.
 
 To do this project using Exorciser, go to the start ("home") window, and select the second link, "Regular Expression to Finite Automata Conversion".
 Now type your regular expression into the text entry box that starts with "R =".
@@ -369,7 +381,7 @@ Your project report should show the regular expressions, explain what kind of st
 **Converting with JFLAP**
 
 If you're using [JFLAP](http://www.jflap.org) for your project, you can have almost any character as input.
-The main exceptions are "\*", "+" (confusingly, the "+" is used instead of "|" for alternatives), and "!" (which is the empty string — in the preferences you can choose if it is shown as {math}\lambda{math end} or {math}\epsilon{math end}).
+The main exceptions are "\*", "+" (confusingly, the "+" is used instead of "|" for alternatives), and "!" (which is the empty string — in the preferences you can choose if it is shown as \(\lambda\) or \(\epsilon\)).
 
 So the main operators available in JFLAP are:
 
