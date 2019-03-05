@@ -66,7 +66,7 @@ var SHOWCOLOUR;
 $(document).ready(function() {
     var basicProgram = $('#basic-example').html();
     var advancedProgram = $('#advanced-example').html();
-    $('#assembled-input').val(basicProgram);
+    $('#assembled-input').val('');
     $('#program-output').html('');
     var offerExamples = urlParameters.getUrlParameter('offer-examples');
     
@@ -88,10 +88,10 @@ $(document).ready(function() {
         $('#program-output').html('');
     });
 
-    if (!offerExamples) {
-        $('#assembled-input').val('');
-        $('#reset-basic').hide();
-        $('#reset-adv').hide();
+    if (offerExamples) {
+        $('#assembled-input').val(basicProgram);
+        $('#reset-basic').removeClass('hidden');
+        $('#reset-adv').removeClass('hidden');
     }
 });
 
