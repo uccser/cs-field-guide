@@ -107,6 +107,7 @@ function alterGraph(cy, layout, oldNumCities, newNumCities) {
         data: { id: currentNodeID }
       };
       cy.add(newNode);
+      cy.nodes().noOverlap({ padding: 5 });
       edgeID = 'e' + previousNodeID + currentNodeID;
       newEdge = {
         data: { id: edgeID, source: previousNodeID, target: currentNodeID }
