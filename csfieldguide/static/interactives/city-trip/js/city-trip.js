@@ -97,9 +97,9 @@ function generateNodesAndEdgesData(nodes) {
 function alterGraph(cy, layout, oldNumCities, newNumCities) {
   // what happens if difference is 0?
   // need to resize after nodes added
+  cy.nodes().lock();
   var difference = Math.abs(newNumCities - oldNumCities);
   if (oldNumCities < newNumCities) {
-    cy.nodes().lock();
     var previousNodeID = oldNumCities.toString();
     for (var n = 1; n < difference + 1; n++) {
       currentNodeID = (oldNumCities + n).toString();
