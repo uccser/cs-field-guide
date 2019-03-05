@@ -3,19 +3,19 @@
 If you've ever written a text-based program or typed a formula in a spreadsheet,
 chances are that at some stage the system has told you there's an error and won't even attempt to follow your instructions.
 
-{image file-path="img/chapters/python-syntax-error.png" alt="A syntax error in the code x = (a+b) \*c+d) as the code is missing an open bracket"}
+{image file-path="img/chapters/python-syntax-error.png" alt="A syntax error in the code x = (a+b) * c+d) as the code is missing an open bracket"}
 
 These "syntax errors" are annoying messages that programmers become excruciatingly familiar with... it means that they didn't follow the rules somehow, even if it's just a tiny mistake.
 For example, suppose you intended to write:
 
 ```
-x = (a+b)*(c+d)
+x = (a+b) * (c+d)
 ```
 
 but you accidentally left out one of the brackets:
 
 ```
-x = (a+b)*c+d)
+x = (a+b) * c+d)
 ```
 
 When you try to compile or run the program, the computer will tell you that there's an error.

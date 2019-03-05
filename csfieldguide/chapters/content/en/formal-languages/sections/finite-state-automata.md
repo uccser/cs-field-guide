@@ -24,11 +24,7 @@ Here's a map of a commuter train system for the town of Trainsylvania.
 The trouble is, it doesn't show where the trains go — all you know is that there are two trains from each station, the A-train and the B-train.
 The inhabitants of Trainsylvania don't seem to mind this — it's quite fun choosing trains at each station, and after a while you usually find yourself arriving where you intended.
 
-{image file-path="img/chapters/trainsylvania-blank.png" alt="An incomplete train map" caption="true"}
-
-Click image to enlarge
-
-{image end}
+{image file-path="img/chapters/trainsylvania-blank.png" alt="An incomplete train map"}
 
 You can travel around Trainsylvania yourself using the following interactive.
 You're starting at the City Mall station, and you need to find your way to Suburbopolis.
