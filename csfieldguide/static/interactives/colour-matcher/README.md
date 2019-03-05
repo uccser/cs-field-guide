@@ -8,7 +8,7 @@ The goal colour is picked to be impossible to match perfectly with 8 bit values.
 
 ## Usage
 
-The interactive shows binary representation as default, but it can also display hexidecimal by adding the following URL parameter: `?hexidecimal=true`.
+The interactive shows binary representation as default, but it can also display hexadecimal by adding the following URL parameter: `?hexadecimal=true`.
 
 ## Required files
 
