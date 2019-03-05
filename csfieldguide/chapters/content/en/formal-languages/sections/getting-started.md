@@ -14,7 +14,7 @@ So now you can do a search like
 tim.b
 ```
 
-and you will get any words that have both "tim" and "b" with a single character — any character — in between.
+and you will get any words that have "tim" followed by "b" with a single character — any character — in between.
 Are there any words that match "tim..b"? "tim...b"?
 You can specify any number of occurrences of a symbol by putting a '\*' after it (again a widely used convention), so:
 

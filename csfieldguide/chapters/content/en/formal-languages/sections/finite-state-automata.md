@@ -448,8 +448,8 @@ Get some practice doing this yourself! Here are instructions for two different p
 
 ### Exorciser
 
-This section shows how to use some educational software called "Exorciser".
-(The next section introduces an alternative called JFLAP which is a bit harder to use) Exorciser has facilities for doing advanced exercises in formal languages; but here we'll use just the simplest ones.
+This section shows how to use some educational software called "Exorciser" (The next section introduces an alternative called JFLAP which is a bit harder to use).
+Exorciser has facilities for doing advanced exercises in formal languages; but here we'll use just the simplest ones.
 
 Exorciser can be downloaded [here](http://www.swisseduc.ch/compscience/exorciser/index.html).
 
@@ -493,7 +493,7 @@ Fortunately there's a good tutorial about using JFLAP [here](http://www.jflap.or
 
 {panel end}
 
-Another widely used system for experimenting with FSAs is a program called JFLAP (download it from http://jflap.org).
+Another widely used system for experimenting with FSAs is a program called JFLAP (download it [here](http://jflap.org).
 You can use it as an alternative for Exorciser if necesary.
 You'll need to follow instructions carefully as it has many more features than you'll need, and it can be hard to get back to where you started.
 
