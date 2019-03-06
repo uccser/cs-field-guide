@@ -5,8 +5,12 @@
 
 {% block html %}
   <div class="container mb-3 uninteractive">
-    <p>>>> x = (a+b) * c+d)</p>
-    <p>{% trans 'SyntaxError: invalid syntax' %}</p>
+    <div class="text row justify-content-center">
+      <div class="col-md-6 col-sm-12">
+        >>> x = (a+b) * c+d<span class="highlight">)</span><br>
+        <span class="error">{% trans 'SyntaxError: invalid syntax' %}</span>
+      </div>
+    </div>
   </div>
 {% endblock html %}
 
