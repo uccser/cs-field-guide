@@ -70,7 +70,7 @@ $(document).ready(function() {
   });
 
   $('#generate-map').click(function () {
-    layout.run();
+    refreshLayout(cy, layout);
   });
 });
 
@@ -117,13 +117,8 @@ function alterGraph(cy, layout, oldNumCities, newNumCities) {
         data: { id: edgeID, source: previousNodeID, target: currentNodeID }
       };
       cy.add(newEdge);
-      layout.stop();
-      layout = cy.elements().makeLayout({
-        name: "random",
-        avoidOverlap: true
-      });
-      layout.run();
-      cy.nodes().noOverlap({ padding: 3 });
+      refreshLayout(cy, layout);
+      cy.nodes().noOverlap({ padding: 5 });
       cy.nodes().lock();
     }
   } else if (oldNumCities > newNumCities) {
@@ -133,8 +128,17 @@ function alterGraph(cy, layout, oldNumCities, newNumCities) {
       cy.remove( nodeToRemove );
     }
   }
-  // layout.run();
   cy.nodes().unlock();
+}
+
+
+function refreshLayout(cy, layout) {
+  layout.stop();
+  layout = cy.elements().makeLayout({
+    name: "random",
+    avoidOverlap: true
+  });
+  layout.run();
 }
 
 
