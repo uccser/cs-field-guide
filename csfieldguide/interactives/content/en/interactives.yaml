@@ -134,6 +134,8 @@ trainsylvania:
   name: Trainsylvania
 trainsylvania-planner:
   name: Trainsylvania Planner
+trainsylvania-blank:
+  name: Blank Trainsylvania
 trig-function-calculator:
   name: Trig Function Calculator
 unexpected-error:

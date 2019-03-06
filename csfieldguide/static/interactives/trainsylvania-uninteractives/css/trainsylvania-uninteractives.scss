@@ -1,0 +1,104 @@
+.trainsylvania {
+    font-size: 0.8rem;
+    padding-bottom: 20px;
+}
+
+.spaced {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.station {
+    max-height: 60px;
+}
+
+.suburb {
+    transform: translate(30px, 10px);
+}
+
+.north {
+    transform: translate(-70px, -20px);
+}
+
+.west {
+    transform: translate(-20px, -10px);
+}
+
+.central {
+    transform: translate(-10px, 30px);
+}
+
+.midway {
+    transform: translate(0, 50px);
+}
+
+.east {
+    transform: translate(0, -50px);
+}
+
+.city {
+    transform: translate(-50px, 0);
+}
+
+.south {
+    transform: translate(-50px, 25px);
+}
+
+@media (max-width: 768px) {
+    // Defined as Medium Devices in Bootstrap
+    .trainsylvania {
+        font-size: 0.6rem;
+    }
+
+    .station {
+        max-height: 50px;
+    }
+}
+
+@media (max-width: 576px) {
+    // Defined as Small Devices in Bootstrap
+    .trainsylvania {
+        font-size: 0.5rem;
+    }
+
+    .spaced {
+        padding-top: 25px;
+        padding-bottom: 25px;
+    }
+
+    .station {
+        max-height: 40px;
+    }
+
+    .suburb {
+        transform: translate(15px, 5px);
+    }
+    
+    .north {
+        transform: translate(-35px, -10px);
+    }
+    
+    .west {
+        transform: translate(-10px, -50px);
+    }
+    
+    .central {
+        transform: translate(-5px, 15px);
+    }
+    
+    .midway {
+        transform: translate(0, 25px);
+    }
+    
+    .east {
+        transform: translate(0, -25px);
+    }
+    
+    .city {
+        transform: translate(-25px, 0);
+    }
+    
+    .south {
+        transform: translate(-25px, 13px);
+    }
+}
