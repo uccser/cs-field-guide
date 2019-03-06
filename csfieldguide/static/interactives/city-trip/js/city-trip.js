@@ -1,9 +1,7 @@
 const cytoscape = require('cytoscape');
 const noOverlap = require('cytoscape-no-overlap');
-const cola = require('cytoscape-cola');
 
 cytoscape.use(noOverlap);
-cytoscape.use(cola);
 
 $(document).ready(function() {
 
