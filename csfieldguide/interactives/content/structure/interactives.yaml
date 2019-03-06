@@ -234,6 +234,10 @@ pixel-viewer:
 #   languages:
 #     en: interactives/python-interpreter.html
 #   is_interactive: true
+python-syntax-error:
+  languages:
+    en: interactives/python-syntax-error.html
+  is_interactive: false
 regular-expression-filter:
   languages:
     en: interactives/regular-expression-filter.html
