@@ -1,6 +1,9 @@
 const cytoscape = require('cytoscape');
-const noOverlap = require('cytoscape-no-overlap')
+const noOverlap = require('cytoscape-no-overlap');
+const cola = require('cytoscape-cola');
+
 cytoscape.use(noOverlap);
+cytoscape.use(cola);
 
 $(document).ready(function() {
 
@@ -10,7 +13,7 @@ $(document).ready(function() {
   var nodes = Array.from(Array(numberOfCities), (x, index) => index + 1);
   var elementsData = generateNodesAndEdgesData(nodes);
   output.html(numberOfCities);
-  
+
   var cy = cytoscape({
     container: $('#cy'),
     elements: elementsData,
@@ -34,12 +37,14 @@ $(document).ready(function() {
       }
     ],
     layout: {
-      name: 'random'
+      name: "random",
+      avoidOverlap: true
     }
   });
 
   var layout = cy.layout({
-    name: 'random'
+    name: "random",
+    avoidOverlap: true
   });
 
   cy.nodes().noOverlap({ padding: 5 });
@@ -51,7 +56,7 @@ $(document).ready(function() {
     newNumberOfCities = Number(slider.val());
     // nodes = Array.from(Array(numberOfCities), (x, index) => index + 1);
     // elementsData = generateNodesAndEdgesData(nodes);
-    alterGraph(cy, layout, numberOfCities, newNumberOfCities)
+    alterGraph(cy, layout, numberOfCities, newNumberOfCities);
     numberOfCities = newNumberOfCities;
     output.html(numberOfCities);
   });
@@ -107,20 +112,28 @@ function alterGraph(cy, layout, oldNumCities, newNumCities) {
         data: { id: currentNodeID }
       };
       cy.add(newNode);
-      cy.nodes().noOverlap({ padding: 5 });
       edgeID = 'e' + previousNodeID + currentNodeID;
       newEdge = {
         data: { id: edgeID, source: previousNodeID, target: currentNodeID }
       };
       cy.add(newEdge);
+      layout.stop();
+      layout = cy.elements().makeLayout({
+        name: "random",
+        avoidOverlap: true
+      });
+      layout.run();
+      cy.nodes().noOverlap({ padding: 3 });
+      cy.nodes().lock();
     }
   } else if (oldNumCities > newNumCities) {
+    cy.nodes().unlock();
     for (var n = 0; n < difference; n++) {
       nodeToRemove = cy.$('#' + (oldNumCities - n).toString());
       cy.remove( nodeToRemove );
     }
   }
-  layout.run();
+  // layout.run();
   cy.nodes().unlock();
 }
 

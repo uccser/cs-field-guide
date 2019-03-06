@@ -4,6 +4,7 @@
     "private": true,
     "dependencies": {
         "cytoscape": "3.4.2",
-        "cytoscape-no-overlap": "1.0.1"
+        "cytoscape-no-overlap": "1.0.1",
+        "cytoscape-cola": "2.3.0"
     }
 }
