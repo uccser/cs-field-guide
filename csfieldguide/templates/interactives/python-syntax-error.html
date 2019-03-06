@@ -4,8 +4,12 @@
 {% load static %}
 
 {% block html %}
+  <div class="container mb-3 uninteractive">
+    <p>>>> x = (a+b) * c+d)</p>
+    <p>{% trans 'SyntaxError: invalid syntax' %}</p>
+  </div>
 {% endblock html %}
 
 {% block css %}
-  <link rel="stylesheet" href="{% static 'interactives/python-interpreter/css/python-interpreter.css' %}">
+  <link rel="stylesheet" href="{% static 'interactives/python-syntax-error/css/python-syntax-error.css' %}">
 {% endblock css %}
