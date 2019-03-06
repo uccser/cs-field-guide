@@ -489,7 +489,7 @@ Fortunately there's a good tutorial about using JFLAP [here](http://www.jflap.or
 
 {panel end}
 
-Another widely used system for experimenting with FSAs is a program called JFLAP (download it [here](http://jflap.org).
+Another widely used system for experimenting with FSAs is a program called JFLAP (download it [here](http://jflap.org)).
 You can use it as an alternative for Exorciser if necesary.
 You'll need to follow instructions carefully as it has many more features than you'll need, and it can be hard to get back to where you started.
 
