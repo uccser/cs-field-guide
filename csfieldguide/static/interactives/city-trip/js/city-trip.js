@@ -1,3 +1,6 @@
+// TODO: Make it a closed loop graph
+// TODO: Some nodes are still half overlapping
+
 const cytoscape = require('cytoscape');
 const noOverlap = require('cytoscape-no-overlap');
 
@@ -52,9 +55,12 @@ $(document).ready(function() {
 
   slider.on('input', function() {
     newNumberOfCities = Number(slider.val());
-    // nodes = Array.from(Array(numberOfCities), (x, index) => index + 1);
     // elementsData = generateNodesAndEdgesData(nodes);
-    alterGraph(cy, layout, numberOfCities, newNumberOfCities);
+    nodes = Array.from(Array(newNumberOfCities), (x, index) => index + 1);
+    addOrRemoveNodes(cy, layout, numberOfCities, newNumberOfCities);
+    pths = generatePermutations(nodes);
+    pwr = removeReversePaths(pths);
+    yo = testPaths(cy, pwr, numberOfCities, newNumberOfCities);
     numberOfCities = newNumberOfCities;
     output.html(numberOfCities);
   });
@@ -97,7 +103,7 @@ function generateNodesAndEdgesData(nodes) {
 }
 
 
-function alterGraph(cy, layout, oldNumCities, newNumCities) {
+function addOrRemoveNodes(cy, layout, oldNumCities, newNumCities) {
   // what happens if difference is 0?
   // need to resize after nodes added
   cy.nodes().lock();
@@ -117,6 +123,7 @@ function alterGraph(cy, layout, oldNumCities, newNumCities) {
       cy.add(newEdge);
       refreshLayout(cy, layout);
       cy.nodes().noOverlap({ padding: 5 });
+      previousNodeID = currentNodeID;
       cy.nodes().lock();
     }
   } else if (oldNumCities > newNumCities) {
@@ -194,4 +201,65 @@ function testForReversePath(path, pathsArray) {
   reversePathString = reversePath.toString();
 
   return pathsArray.indexOf(reversePathString) !== -1;
+}
+
+
+
+function testPaths(cy, paths, oldNumCities, newNumCities) {
+  oldEdgeConfig = new Set();
+  newEdgeConfig = new Set();
+  for (s = 0; s < oldNumCities; s++) {
+    edgeIdee = cy.elements('edge')[s].data('id');
+    // Edge IDs are saved like 'e12' so strip 'e'
+    edgeIdeeStr = edgeIdee.substring(1);
+    oldEdgeConfig.add(edgeIdeeStr);
+  }
+
+  for (t = 0; t < newNumCities - 1; t++) {
+    path = paths[t].split(',');
+    newEdgeID = path[t] + path[t+1];
+    newEdgeConfig.add(newEdgeID);
+  }
+  console.log(oldEdgeConfig);
+  console.log(newEdgeConfig);
+  edgesToRemove = setDifference(oldEdgeConfig, newEdgeConfig);
+  console.log(edgesToRemove);
+  edgesToAdd = setDifference(newEdgeConfig, oldEdgeConfig);
+  console.log(edgesToAdd);
+  // TODO: Make remove edge and add edge functions outside of this function
+  edgesToKeep = setDifference(oldEdgeConfig, edgesToRemove);
+  var edgesToKeepStr = '';
+  edgesToKeepArr = Array.from(edgesToKeep);
+  for (var v = 0; v < edgesToKeepArr.length - 1; v++) {
+    edgesToKeepStr += '#e' + edgesToKeepArr[v] + ', ';
+  }
+  edgesToKeepStr += '#e' + edgesToKeepArr[v];
+  console.log(cy.edges());
+  console.log(cy.edges().difference(edgesToKeepStr));
+  cy.remove(cy.edges().difference(edgesToKeepStr));
+  console.log(cy.edges());
+  // edgesToRemove.forEach(removeEdge);
+  // function removeEdge(value) {
+  //   edgesToRemoveStr + '#e' + value + ', '
+    // toRemove = $('#e' + value);
+    // console.log(cy.elements('edge'));
+    // cy.remove(toRemove);
+  // }
+
+  edgesToAdd.forEach(addEdge);
+  function addEdge(value) {
+    edgeID = 'e' + value;
+    newEdge = {
+      data: { id: edgeID, source: value[0], target: value[1] }
+    };
+    cy.add(newEdge);
+  }
+}
+
+
+// Calulate a\b 
+// e.g if a = {1,2,3,4} and b = {5,4,3,2} this function would return {1}
+function setDifference(a, b) {
+  aMinusB = new Set([...a].filter(x => !b.has(x)));
+  return aMinusB;
 }
