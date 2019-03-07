@@ -1,5 +1,6 @@
 // TODO: Make it a closed loop graph
 // TODO: Some nodes are still half overlapping
+// TODO: Rename all of the stupid variables I impulsively named
 
 const cytoscape = require('cytoscape');
 const noOverlap = require('cytoscape-no-overlap');
@@ -204,7 +205,9 @@ function testForReversePath(path, pathsArray) {
 }
 
 
-
+// Below function needs modifying
+// Shouldn't need to compare old nodes to new nodes as the nodes are static
+// when comparing paths
 function testPaths(cy, paths, oldNumCities, newNumCities) {
   oldEdgeConfig = new Set();
   newEdgeConfig = new Set();
@@ -234,17 +237,7 @@ function testPaths(cy, paths, oldNumCities, newNumCities) {
     edgesToKeepStr += '#e' + edgesToKeepArr[v] + ', ';
   }
   edgesToKeepStr += '#e' + edgesToKeepArr[v];
-  console.log(cy.edges());
-  console.log(cy.edges().difference(edgesToKeepStr));
   cy.remove(cy.edges().difference(edgesToKeepStr));
-  console.log(cy.edges());
-  // edgesToRemove.forEach(removeEdge);
-  // function removeEdge(value) {
-  //   edgesToRemoveStr + '#e' + value + ', '
-    // toRemove = $('#e' + value);
-    // console.log(cy.elements('edge'));
-    // cy.remove(toRemove);
-  // }
 
   edgesToAdd.forEach(addEdge);
   function addEdge(value) {
