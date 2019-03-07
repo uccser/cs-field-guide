@@ -3,16 +3,16 @@
 var Planner = {};
 
 Planner.stations = {
-  'central'   : 'Central Station',
-  'city'      : 'City Mall Station',
-  'east'      : 'East Station',
-  'railington': 'Railington Station',
-  'midway'    : 'Midway Station',
-  'north'     : 'North Station',
-  'south'     : 'South Station',
-  'suburb'    : 'Suburbopolis Station',
-  'west'      : 'West Station'
-};
+    'central' : gettext('Central Station'),
+    'city'    : gettext('City Mall Station'),
+    'east'    : gettext('East Station'),
+    'railington'   : gettext('Railington Station'),
+    'midway'  : gettext('Midway Station'),
+    'north'   : gettext('North Station'),
+    'south'   : gettext('South Station'),
+    'suburb'  : gettext('Suburbopolis Station'),
+    'west'    : gettext('West Station')
+  };
 Planner.station_destinations = {
   'central'   : {'A': 'city'    ,'B': 'midway'},
   'city'      : {'A': 'west'    ,'B': 'south'},
@@ -42,7 +42,7 @@ function updatePlannerResult() {
 
 function travelOnTrain(current_station, trains_to_ride, trip_number) {
     if (trains_to_ride == '') {
-        return 'You will end up in <strong>' + Planner.stations[current_station] + '</strong>.';
+        return gettext('You will end up at') + ' <strong>' + Planner.stations[current_station] + '</strong>.';
     } else {
         var train_to_ride = trains_to_ride[0];
         if (train_to_ride in Planner.station_destinations[current_station]) {
@@ -50,7 +50,7 @@ function travelOnTrain(current_station, trains_to_ride, trip_number) {
             return travelOnTrain(current_station, trains_to_ride.substring(1), trip_number + 1);
         } else {
             $('#interactive-trainsylvania-planner-result').addClass('error');
-            return Planner.stations[current_station] + " has no '" + train_to_ride + "' train for ride number " + trip_number;
+            return Planner.stations[current_station] + " " + gettext('has no') + " '" + train_to_ride + "' " + gettext('train for ride number') + " " + trip_number;
         }
     }
 };
