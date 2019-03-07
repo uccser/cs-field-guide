@@ -46,11 +46,7 @@ You should let students devise their own notation for this.
 They will soon learn (possibly the hard way) that they should record all routes with an arrow (since trains don't necessarily return by the same route), and label their arrows with A or B.
 The full map for the activity is below, but don't spoil the students' fun by providing it — at least, not yet.
 
-{image file-path="img/chapters/trainsylvania-complete.png" alt="Solution to the train map" caption="true"}
-
-Click image to enlarge
-
-{image end}
+{image file-path="img/chapters/trainsylvania-complete.png" alt="Solution to the train map"}
 
 {panel end}
 
@@ -205,7 +201,7 @@ but for an FSA that is processing text typed into a computer, the alphabet will 
 
 The connections between states are called {glossary-link term="transition" reference-text="Formal languages"}transitions{glossary-link end}, since they are about changing state.
 The sequence of characters that we input into the FSA is often called a
-{glossary-link term="string" reference-text="Formal languages"}string{glossary-link end},
+{glossary-link term="string" reference-text="Formal languages"}string{glossary-link end}
 (it's just a string of letters), and the set of all strings that can be accepted by a particular FSA is called its {glossary-link term="language" reference-text="Formal languages"}language{glossary-link end}.
 For the FSA in the last example, its *language* includes the *strings* "a", "aaa", "bab", "ababab", and lots more, because these are accepted by it.
 However, it does not include the strings "bb" or "aa".
