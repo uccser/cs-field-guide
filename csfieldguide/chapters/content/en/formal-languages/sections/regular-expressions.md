@@ -7,7 +7,7 @@
 Regular expressions (regex for short) are closely related to FSAs, as we shall see.
 Much of the terminology that is needed was already covered in the previous section: we'll be using {glossary-link term="alphabet"}alphabets{glossary-link end} to put together a
 {glossary-link term="string"}string{glossary-link end} of letters, and the set of all strings that can be accepted by a particular FSA is called its {glossary-link term="language"}language{glossary-link end}.
-We'll need the concept of the empty string ({math}{\epsilon}{math end} or {math}{\lambda}{math end}), and eventually {glossary-link term="finite-state-automaton"}finite state automata{glossary-link end}.
+We'll need the concept of the empty string (\( \epsilon \) or \( \lambda \)), and eventually {glossary-link term="finite-state-automaton"}finite state automata{glossary-link end}.
 So the previous section on FSAs needs to be covered before embarking on regular expressions.
 
 It may be that students have used regular expressions already, because they are built into many programming languages and are often used when writing script programs.
@@ -184,7 +184,7 @@ Click here for another challenge: you should try to write a short regular expres
 Of course, regular expressions are mainly used for more serious purposes.
 Click on the following interactive to get some new text to search:
 
-{interactive slug="regular-expression-search" type="whole-page" text="Regular Expression Search - Exercise 3" parameters="text=Contact me at spam@mymail.com or on 555-1234%0AFFE962%0ADetails: fred@cheapmail.org.nz (03) 987-6543%0ALooking forward to 21 Oct 2015%0AGood old 5 Nov 1955%0ABack in 2 Sep 1885 is the earliest date%0AABC123%0ALet's buy another 2 Mac 9012 systems @ $2000 each."}
+{comment interactive slug="regular-expression-search" type="whole-page" text="Regular Expression Search - Exercise 3" parameters="text=Contact me at spam@mymail.com or on 555-1234%0AFFE962%0ADetails: fred@cheapmail.org.nz (03) 987-6543%0ALooking forward to 21 Oct 2015%0AGood old 5 Nov 1955%0ABack in 2 Sep 1885 is the earliest date%0AABC123%0ALet's buy another 2 Mac 9012 systems @ $2000 each."}
 
 The following regular expression will find common New Zealand number plates in the sample text, but can you find a shorter version using the {n} notation?
 
@@ -239,7 +239,7 @@ The particular form of regular expression that we've been using is for the Ruby 
 Even some spreadsheets have regular expression matching facilities.
 
 But regular expressions have their limits — for example, you won't be able to create one that can match palindromes (words and phrases that are the same backwards as forwards, such as "kayak", "rotator" and "hannah"), and you can't use one to detect strings that consist of *n* repeats of the letter "a" followed by *n* repeats of the letter "b".
-For those sort of patterns you need a more powerful system called a grammar (see the [section on Grammars](chapters/formal-languages.html#grammars-and-parsing)).
+For those sort of patterns you need a more powerful system called a grammar (see the [section on Grammars]('chapters:chapter_section' 'formal-languages' 'grammars-and-parsing')).
 But nevertheless, regular expressions are very useful for a lot of common pattern matching requirements.
 
 {comment curiosity: idea comes from Kleene (add some personal information, dates)}
@@ -323,7 +323,7 @@ In fact, the only ones available are:
 - `(aa|bb)*` Parentheses group commands together; in this case it gives a mixture of pairs of "a"s and pairs of "b"s.
 
 Having only these three notations isn't too much of a problem, as you can get all the other notations using them.
-For example, "a+" is the same as "aa*", and "\\d" is "0|1|2|3|4|5|67|8|9".
+For example, "a+" is the same as "aa*", and "\\d" is "0|1|2|3|4|5|6|7|8|9".
 It's a bit more tedious, but we'll mainly use exercises that only use a few characters.
 
 **Converting with Exorciser**
@@ -334,8 +334,8 @@ Exorciser is very simple.
 In fact, unless you change the default settings, it can only convert regular expressions using two characters: "a" and "b".
 But even that's enough (in fact, in theory any input can be represented with two characters — that's what binary numbers are about!)
 
-On the plus side, Exorciser has the empty string symbol available — if you type "e" it will be converted to {math}\epsilon{math end}.
-So, for example, "(a| {math}\epsilon{math end})" means an optional "a" in the input.
+On the plus side, Exorciser has the empty string symbol available — if you type "e" it will be converted to \( \epsilon \).
+So, for example, "(a| \( \epsilon \)" means an optional "a" in the input.
 
 To do this project using Exorciser, go to the start ("home") window, and select the second link, "Regular Expression to Finite Automata Conversion".
 Now type your regular expression into the text entry box that starts with "R =".
@@ -367,7 +367,7 @@ Your project report should show the regular expressions, explain what kind of st
 **Converting with JFLAP**
 
 If you're using [JFLAP](http://www.jflap.org) for your project, you can have almost any character as input.
-The main exceptions are "\*", "+" (confusingly, the "+" is used instead of "|" for alternatives), and "!" (which is the empty string — in the preferences you can choose if it is shown as {math}\lambda{math end} or {math}\epsilon{math end}).
+The main exceptions are "\*", "+" (confusingly, the "+" is used instead of "|" for alternatives), and "!" (which is the empty string — in the preferences you can choose if it is shown as \( \lambda \) or \( \epsilon \)).
 
 So the main operators available in JFLAP are:
 
@@ -433,16 +433,16 @@ Your project report should show the regular expressions, explain what kind of st
 Here are some more ideas that you could use to investigate regular expressions:
 
 - On the [regexdict site](http://www.visca.com/regexdict/), read the instructions on the kinds of {glossary-link term="pattern-matching" reference-text="Formal languages"}pattern matching{glossary-link end} it can do, and write regular expressions for finding words such as:
+    - words that contain "aa"
+    - all words with 3 letters
+    - all words with 8 letters
+    - all words with more than 8 letters
+    - words that include the letters of your name
+    - words that are made up *only* of the letters in your name
+    - words that contain all the vowels in reverse order
+    - words that you can make using only the notes on a piano (i.e the letters A to G and a to g)
+    - words that are exceptions to the rule "i before e except after c" — make sure you find words like "forfeit" as well as "science".
 
- - words that contain "aa"
- - all words with 3 letters
- - all words with 8 letters
- - all words with more than 8 letters
- - words that include the letters of your name
- - words that are made up *only* of the letters in your name
- - words that contain all the vowels in reverse order
- - words that you can make using only the notes on a piano (i.e the letters A to G and a to g)
- - words that are exceptions to the rule "i before e except after c" — make sure you find words like "forfeit" as well as "science".
 - Microsoft Word’s *Find* command uses regular expressions if you select the "Use wildcards" option.
   For more details see [Graham Mayor](http://word.mvps.org/AboutMVPs/graham_mayor.htm)'s [Finding and Replacing Characters using Wildcards](http://word.mvps.org/FAQs/General/UsingWildcards.htm).
 - Explore regular expressions in spreadsheets.

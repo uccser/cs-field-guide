@@ -15,7 +15,7 @@ Formal languages come up in various areas of computer science, and provide inval
 They are essential for writing compilers, and so are activated every time someone writes a program! They are also associated with automata theory and questions relating to computability, and are used to some extent in natural language processing, where computers try to make sense of human languages.
 
 Technically the kind of finite state automata (FSA) that we used in the
-[Finite state automata]('chapters:chapter_section' 'formal-languages' 'regular-expressions-and-fsas') section is a kind known as a *Deterministic Finite Automata* (DFA), because the decision about which transition to take is unambiguous at each step.
+[Finite state automata]('chapters:chapter_section' 'formal-languages' 'finite-state-automata') section is a kind known as a *Deterministic Finite Automata* (DFA), because the decision about which transition to take is unambiguous at each step.
 Sometimes it's referred to as a *Finite State Acceptor* because it accepts and rejects input depending on whether it gets to the final state.
 There are all sorts of variants that we didn't mention, including the Mealy and Moore machines (which produce an output for each each transition taken or state reached), the nested state machine (where each state can be an FSA itself), the non-deterministic finite automata (which can have the same label on more than one transition out of a state), and the lambda-NFA (which can include transitions on the empty string, \( \lambda \)).
 Believe it or not, all these variations are essentially equivalent, and you can convert from one to the other.

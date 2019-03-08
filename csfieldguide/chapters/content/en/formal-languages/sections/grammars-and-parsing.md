@@ -38,9 +38,9 @@ Note: the remainder of this section is yet to be developed.
 
 - Find a grammar for a programming language, and show how a sample program would be parsed using the grammar.
 
-- Use examples to show the parse tree (or tree) for a correct and incorrect program fragment, or to show a sequence of grammar productions to construct a correct program fragment
+- Use examples to show the parse tree (or tree) for a correct and incorrect program fragment, or to show a sequence of grammar productions to construct a correct program fragment.
 
-- Explore the grammar for balanced parentheses S -> SS, S -> (S), S -> ( )
+- Explore the grammar for balanced parentheses: S -> SS, S -> (S), S -> ( )
 
 - Find a grammar for a simple arithmetic expression in a programming language, and show the parse tree for sample expressions (such as (a+b)\*(c-d) ).
 
