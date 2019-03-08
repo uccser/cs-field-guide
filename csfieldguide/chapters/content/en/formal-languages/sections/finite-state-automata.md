@@ -63,7 +63,7 @@ The full map for the activity is below, but don't spoil the students' fun by pro
 {panel end}
 
 Did you find a sequence of trains to get from City Mall to Suburbopolis? You can test it by typing the sequence of trains in the following interactive.
-For example, if you took the A-train, then the B-train, then an A-train, type in ABA.
+For example, if you took the A-train, then the B-train, then the A-train, type in ABA.
 
 {interactive slug="trainsylvania-planner" type="in-page"}
 
@@ -209,7 +209,7 @@ One is the
 {glossary-link term="alphabet" reference-text="Formal languages"}alphabet{glossary-link end},
 which is just a list of all possible inputs that might happen.
 In the last couple of examples the alphabet has consisted of the two letters "a" and "b",
-but for an FSA that is processing text typed into a computer, the alphabet will have to include every letter on the keyboard.
+but for an FSA that is processing text typed into a computer, the alphabet will have to include every symbol on the keyboard.
 
 The connections between states are called {glossary-link term="transition" reference-text="Formal languages"}transitions{glossary-link end}, since they are about changing state.
 The sequence of characters that we input into the FSA is often called a
