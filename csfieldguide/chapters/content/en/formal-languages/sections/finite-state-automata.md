@@ -48,18 +48,6 @@ The full map for the activity is below, but don't spoil the students' fun by pro
 
 {image file-path="img/chapters/trainsylvania-complete.png" alt="Solution to the train map"}
 
-| Station    | Train A    | Train B    |
-| ---------- | ---------- | ---------- |
-| Central    | City Mall  | Midway     |
-| City Mall  | West       | South      |
-| East       | West       | Railington |
-| Midway     | North      | Railington |
-| North      | Central    | Suburbopolis |
-| Railington | City Mall  | East       |
-| South      | City Mall  | Railington |
-| Suburbopolis | West     | Central    |
-| West       | East       | Central    |
-
 {panel end}
 
 Did you find a sequence of trains to get from City Mall to Suburbopolis? You can test it by typing the sequence of trains in the following interactive.
