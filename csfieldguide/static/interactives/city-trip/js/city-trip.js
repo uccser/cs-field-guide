@@ -4,6 +4,7 @@
 
 const cytoscape = require('cytoscape');
 const noOverlap = require('cytoscape-no-overlap');
+const itertools = require('itertools');
 
 cytoscape.use(noOverlap);
 
@@ -148,63 +149,6 @@ function refreshLayout(cy, layout) {
 }
 
 
-// below functions taken from 
-// www.reddit.com/r/javascript/comments/5k270h/all_possible_routes_traveling_salesman_problem_in/
-// Generates all possible paths between cities
-function generatePermutations(Arr) {
-  var permutations = [];
-  var A = Arr.slice();
-
-  function swap(a, b) {
-    var tmp = A[a];
-    A[a] = A[b];
-    A[b] = tmp;
-  }
-
-  function generate(n, A) {
-    if (n == 1) {
-      permutations.push(A.slice());
-      // have to update visually as each permutation created so user sees something (takes forever to compute for large numbers)
-      // generate graph visualisation of path
-      // calculate distance
-      // check if shorter, update variable if so
-    } else {
-      for (var i = 0; i <= n-1; i++) {
-        generate(n-1, A);
-        swap(n % 2 == 0 ? i : 0, n-1);
-      }
-    }
-  }
-  generate(A.length, A);
-  return permutations;
-}
-
-
-function removeReversePaths(perms) {
-  var pathsWithoutReverse = [];
-  var pathToTest;
-
-  for (var j = 0; j < perms.length; j++) {
-    pathToTest = perms[j];
-    isReversePath = testForReversePath(pathToTest, pathsWithoutReverse);
-
-    if (!isReversePath) {
-      pathsWithoutReverse.push(pathToTest.toString());
-    }
-  }
-
-  return pathsWithoutReverse;
-}
-
-
-function testForReversePath(path, pathsArray) {
-  reversePath = path.slice().reverse();
-  reversePathString = reversePath.toString();
-
-  return pathsArray.indexOf(reversePathString) !== -1;
-}
-
-
 // Below function needs modifying
 // Shouldn't need to compare old nodes to new nodes as the nodes are static
 // when comparing paths
@@ -256,3 +200,24 @@ function setDifference(a, b) {
   aMinusB = new Set([...a].filter(x => !b.has(x)));
   return aMinusB;
 }
+
+a = [1,2,3,4];
+result = permutationsWithoutInverse(a);
+console.log(result);
+
+function permutationsWithoutInverse(cities) {
+  var len = cities.length;
+  var paths = [...itertools.permutations(cities)];
+  console.log(paths);
+  var pathsWithoutInverse = [];
+  for (var z = 0; z < paths.length; z++) {
+    path = paths[z];
+    console.log(path[0]);
+    console.log(path[len-1]);
+    if (path[0] <= path[len-1]) {
+      pathsWithoutInverse.push(path);
+    }
+  }
+  return pathsWithoutInverse;
+}
+
