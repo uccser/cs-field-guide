@@ -438,17 +438,19 @@ The same applies to state 2:
 Now every state has a transition for every input symbol, so the FSA is finished.
 You should now try some examples to check that an even number of "b"s always brings it to state 1.
 
-Get some practice doing this yourself! Here are instructions for two different programs that allow you to enter and test FSAs.
+Get some practice doing this yourself! If you prefer, here are instructions for two different programs that allow you to enter and test FSAs.
 
-### Exorciser
+{panel type="project"}
 
-This section shows how to use some educational software called "Exorciser" (The next section introduces an alternative called JFLAP which is a bit harder to use).
+# Exorciser
+
+This panel shows how to use some educational software called "Exorciser" (The next panel introduces an alternative called JFLAP which is a bit harder to use).
 Exorciser has facilities for doing advanced exercises in formal languages; but here we'll use just the simplest ones.
 
 Exorciser can be downloaded [here](http://www.swisseduc.ch/compscience/exorciser/index.html).
 
 When you run it, select "Constructing Finite Automata" (the first menu item); click the "Beginners" link when you want a new exercise.
-The challenge in each FSA exercise is the part after the | in the braces (i.e., curly brackets).
+The challenge in each FSA exercise is the part after the | in the braces (i.e. curly brackets).
 For example, in the diagram below you are being asked to draw an FSA that accepts an input string w if "w has length at least 3".
 You should draw and test your answer, although initially you may find it helpful to just click on "Solve exercise" to get a solution, and then follow strings around the solution to see how it works.
 That’s what we did to make the diagram below.
@@ -471,7 +473,7 @@ The section after next gives some examples to try.
 If you're doing this for a report, keep copies of the automata and tests that you do.
 Right-click on the image for a "Save As" option, or else take screenshots of the images.
 
-### JFLAP
+{panel end}
 
 {panel type="teacher-note"}
 
@@ -486,6 +488,10 @@ If you use JFLAP we recommend that you become familiar with it first so that you
 Fortunately there's a good tutorial about using JFLAP [here](http://www.jflap.org/tutorial/), and some material from Duke University about FSAs based around JFLAP [here](http://www.cs.duke.edu/csed/pltl/exercises/lessons/29/finiteautomata.zip) (ZIP file).
 
 {panel end}
+
+{panel type="project"}
+
+# JFLAP
 
 Another widely used system for experimenting with FSAs is a program called JFLAP (download it [here](http://jflap.org)).
 You can use it as an alternative for Exorciser if necesary.
@@ -531,9 +537,11 @@ You can even do tests with the empty string by leaving a blank line in the table
 There are some FSA examples in the next section.
 If you're doing this for a report, keep copies of the automata and tests that you do (JFLAP's "File" menu has a "Save Image As..." option for taking snapshots of your work; alternatively you can save an FSA that you've created in a file to open later).
 
+{panel end}
+
 ### Examples to try
 
-Using Exorciser or JFLAP, construct an FSA that takes inputs made of the letters "a" and "b", and accepts the input if it meets one of the following requirements.
+By hand, or using Exorciser or JFLAP, construct an FSA that takes inputs made of the letters "a" and "b", and accepts the input if it meets one of the following requirements.
 You should build a separate FSA for each of these challenges.
 
 - strings that start with the letter "a" (e.g. "aa", "abaaa", and "abbbb").
