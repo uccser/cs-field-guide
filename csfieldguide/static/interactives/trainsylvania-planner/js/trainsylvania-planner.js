@@ -3,16 +3,16 @@
 var Planner = {};
 
 Planner.stations = {
-    'central' : gettext('Central Station'),
-    'city'    : gettext('City Mall Station'),
-    'east'    : gettext('East Station'),
-    'railington'   : gettext('Railington Station'),
-    'midway'  : gettext('Midway Station'),
-    'north'   : gettext('North Station'),
-    'south'   : gettext('South Station'),
-    'suburb'  : gettext('Suburbopolis Station'),
-    'west'    : gettext('West Station')
-  };
+  'central' : gettext('Central Station'),
+  'city'    : gettext('City Mall Station'),
+  'east'    : gettext('East Station'),
+  'railington'   : gettext('Railington Station'),
+  'midway'  : gettext('Midway Station'),
+  'north'   : gettext('North Station'),
+  'south'   : gettext('South Station'),
+  'suburb'  : gettext('Suburbopolis Station'),
+  'west'    : gettext('West Station')
+};
 Planner.station_destinations = {
   'central'   : {'A': 'city'    ,'B': 'midway'},
   'city'      : {'A': 'west'    ,'B': 'south'},
