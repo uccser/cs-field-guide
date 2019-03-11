@@ -152,6 +152,8 @@ function refreshLayout(cy, layout) {
 // Below function needs modifying
 // Shouldn't need to compare old nodes to new nodes as the nodes are static
 // when comparing paths
+// below function should change visual of edges
+// will have to calculate initial config data separately 
 function testPaths(cy, paths, oldNumCities, newNumCities) {
   oldEdgeConfig = new Set();
   newEdgeConfig = new Set();
@@ -191,6 +193,8 @@ function testPaths(cy, paths, oldNumCities, newNumCities) {
     };
     cy.add(newEdge);
   }
+
+  // calculate distance here
 }
 
 
@@ -201,23 +205,38 @@ function setDifference(a, b) {
   return aMinusB;
 }
 
-a = [1,2,3,4];
+a = [1,2,3];
 result = permutationsWithoutInverse(a);
 console.log(result);
 
 function permutationsWithoutInverse(cities) {
   var len = cities.length;
   var paths = [...itertools.permutations(cities)];
-  console.log(paths);
   var pathsWithoutInverse = [];
   for (var z = 0; z < paths.length; z++) {
     path = paths[z];
-    console.log(path[0]);
-    console.log(path[len-1]);
     if (path[0] <= path[len-1]) {
       pathsWithoutInverse.push(path);
     }
   }
   return pathsWithoutInverse;
+}
+
+
+// pass in 2 nodes and use (x,y) coords to calc distance
+function distanceBetweenCities(cy, cityOneID, cityTwoID) {
+  // uses pythagoras
+  var cityOneX = cy.$(cityOneID).position('x');
+  var cityOneY = cy.$(cityOneID).position('y');
+
+  var cityTwoX = cy.$(cityTwoID).position('x');
+  var cityTwoY = cy.$(cityTwoID).position('y');
+
+  var a = Math.abs(cityOneX - cityTwoX);
+  var b = Math.abs(cityOneY - cityTwoY);
+
+  var c = Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2));
+
+  return c;
 }
 
