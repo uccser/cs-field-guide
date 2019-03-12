@@ -642,9 +642,9 @@ You can make up your own version for different denominations of coins and requir
 
 {panel type="teacher-note"}
 
-# Solutions
+# Solution
 
-Solutions for these will be provided in a later version of this guide.
+{image file-path="img/chapters/fsa-solution-coins.png" alt="solution to 30c in coins problem"}
 
 {panel end}
 
