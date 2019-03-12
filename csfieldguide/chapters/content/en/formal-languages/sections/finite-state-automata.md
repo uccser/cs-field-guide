@@ -227,7 +227,9 @@ The following diagram summarizes the terminology we have introduced.
 Notice that this FSA has two accepting states.
 You can have as many as you want, but only one start state.
 
-{image file-path="img/chapters/finite-state-automata-train-example-terminology.png" alt="FSA terminology explained"}
+{interactive slug="fsa-terminology" type="in-page"}
+
+{comment image file-path="img/chapters/finite-state-automata-train-example-terminology.png" alt="FSA terminology explained"}
 
 For this FSA, the strings "aa" and "aabba" would be accepted, and "aaa" and "ar" wouldn't.
 By the way, notice that we often put inverted commas around strings to make it clear where they start and stop.

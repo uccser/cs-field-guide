@@ -58,6 +58,8 @@ fsa-box:
   name: FSA Box
 fsa-light:
   name: FSA Light
+fsa-terminology:
+  name: FSA Terminology
 fsa-washing-machine:
   name: FSA Washing Machine
 hex-background-colour:
