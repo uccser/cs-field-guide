@@ -608,7 +608,6 @@ Here are some more sequences of characters that you can construct FSAs to detect
 The input alphabet is more than just "a" and "b", but you don't need to put in a transition for every possible character in every state, because an FSA can automatically reject an input if it uses a character that you haven't given a transition for.
 Try doing two or three of these:
 
-- the names for international standard paper sizes (A1 to A10, B1 to B10, and so on)
 - a valid three-letter month name (Jan, Feb, Mar, etc.)
 - a valid month number (1, 2, ... 12)
 - a valid weekday name (Monday, Tuesday, ...)
@@ -619,7 +618,7 @@ Try doing two or three of these:
 
 Try to find common elements between accepted strings.
 For example: in English, days of the week all end in "day".
-However, be wary of students over simplifying their FSAs to take advantage of this, as it could lead to invalid input being accepted.
+However, be wary of students oversimplifying their FSAs to take advantage of this, as it could lead to invalid input being accepted.
 
 {panel end}
 
@@ -629,7 +628,7 @@ However, be wary of students over simplifying their FSAs to take advantage of th
 
 These solutions were created here: [http://www.madebyevan.com/fsm/](http://www.madebyevan.com/fsm/).
 They are the most concise solutions, but others are possible.
-Currently solutions are only available in English where relevant.
+Currently solutions are only available for English input where relevant.
 
 - a valid three-letter month name
 
