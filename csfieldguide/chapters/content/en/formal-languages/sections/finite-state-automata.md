@@ -229,8 +229,6 @@ You can have as many as you want, but only one start state.
 
 {interactive slug="fsa-terminology" type="in-page"}
 
-{comment image file-path="img/chapters/finite-state-automata-train-example-terminology.png" alt="FSA terminology explained"}
-
 For this FSA, the strings "aa" and "aabba" would be accepted, and "aaa" and "ar" wouldn't.
 By the way, notice that we often put inverted commas around strings to make it clear where they start and stop.
 Of course, the inverted commas aren't part of the strings.
@@ -553,9 +551,7 @@ You should build a separate FSA for each of these challenges.
 - strings where the number of "a"s in the input is a multiple of three (e.g. "aabaaaa", "bababab").
 - strings where every time an "a" appears in the input, it is followed by a "b" (e.g. "abb", "bbababbbabab", "bab").
 - strings that end with "ab"
-- strings that start with "ab" and end with "ba", and only have "b" in the middle (e.g. "abba", "abbbbba")
-
-{comment provide answers/hints for teachers}
+- strings that start with "ab" and end with "ba", and only have "b" in the middle (e.g. "abba", "abbbbba", but *not* "aba")
 
 {comment at some stage we might offer a rigorous checker for this? or minimise their solution and see if the same as a minimum of the solution}
 
@@ -570,6 +566,45 @@ Students will need to think of examples that exercise different parts of the FSA
 
 {panel end}
 
+{panel type="teacher-note"}
+
+# Solutions
+
+- strings that start with the letter "a".
+
+{image file-path="img/chapters/fsa-solution-startswith-a.png" alt="solution to strings that start with the letter a"}
+
+- strings that end with the letter "a".
+
+{image file-path="img/chapters/fsa-solution-endswith-a.png" alt="solution to strings that end with the letter a"}
+
+- strings that have an even number of the letter "a".
+
+{image file-path="img/chapters/fsa-solution-even-a.png" alt="solution to strings that have an even number of the letter a"}
+
+- strings that have an odd number of the letter "a".
+
+{image file-path="img/chapters/fsa-solution-odd-a.png" alt="solution to strings that have an odd number of the letter a"}
+
+- strings where the number of "a"s in the input is a multiple of three.
+
+{image file-path="img/chapters/fsa-solution-a-multipleof-3.png" alt="solution to strings where the number of as in the input is a multiple of three"}
+
+- strings where every time an "a" appears in the input, it is followed by a "b".
+
+{image file-path="img/chapters/fsa-solution-b-alwaysfollows-a.png" alt="solution to strings where every time an a appears in the input, it is followed by a b"}
+
+- strings that end with "ab".
+
+{image file-path="img/chapters/fsa-solution-endswith-ab.png" alt="solution to strings that end with ab"}
+
+- strings that start with "ab" and end with "ba", and only have "b" in the middle.
+Students need to be careful that they don't have more than one "b" transition out of each state.
+
+{image file-path="img/chapters/fsa-solution-ab-bstar-ba.png" alt="solution to strings that start with ab and end with ba, and only have b in the middle"}
+
+{panel end}
+
 Here are some more sequences of characters that you can construct FSAs to detect.
 The input alphabet is more than just "a" and "b", but you don't need to put in a transition for every possible character in every state, because an FSA can automatically reject an input if it uses a character that you haven't given a transition for.
 Try doing two or three of these:
@@ -581,13 +616,21 @@ Try doing two or three of these:
 
 {panel type="teacher-note"}
 
+# Hint
+
+Try to find common elements between accepted strings.
+For example: in English, days of the week all end in "day".
+However, be wary of students over simplifying their FSAs to take advantage of this, as it could lead to incorrectly accepted strings.
+
+{panel end}
+
+{panel type="teacher-note"}
+
 # Solutions
 
 Solutions for these will be provided in a later version of this guide.
 
 {panel end}
-
-{comment provide answers/hints for teachers — e.g. have "day" as common at end}
 
 A classic example of an FSA is an old-school vending machine that only takes a few kinds of coins.
 Suppose you have a machine that only takes 5 and 10 cent pieces, and you need to insert 30 cents to get it to work.
