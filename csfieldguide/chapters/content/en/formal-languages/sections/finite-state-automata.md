@@ -620,7 +620,7 @@ Try doing two or three of these:
 
 Try to find common elements between accepted strings.
 For example: in English, days of the week all end in "day".
-However, be wary of students over simplifying their FSAs to take advantage of this, as it could lead to incorrectly accepted strings.
+However, be wary of students over simplifying their FSAs to take advantage of this, as it could lead to invalid input being accepted.
 
 {panel end}
 
