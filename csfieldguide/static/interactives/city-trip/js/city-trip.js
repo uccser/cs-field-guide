@@ -14,8 +14,8 @@ $(document).ready(function() {
   var slider = $('#num-cities');
   var output = $("#slider-text");
   var numberOfCities = Number(slider.val());
-  var nodes = Array.from(Array(numberOfCities), (x, index) => index + 1);
-  var elementsData = generateNodesAndEdgesData(nodes);
+  var cities = Array.from(Array(numberOfCities), (x, index) => index + 1);
+  var elementsData = generateNodesAndEdgesData(cities);
   output.html(numberOfCities);
 
   var cy = cytoscape({
@@ -57,22 +57,22 @@ $(document).ready(function() {
   cy.mount(gContainer);
 
   var initialPathDistance = pathDistance(cy.edges());
-  $('#best-route-so-far').html(nodes.toString());
+  $('#best-route-so-far').html(cities.toString());
   $('#best-route-distance').html(initialPathDistance);
 
   slider.on('input', function() {
     newNumberOfCities = Number(slider.val());
-    nodes = Array.from(Array(newNumberOfCities), (x, index) => index + 1);
+    cities = Array.from(Array(newNumberOfCities), (x, index) => index + 1);
     addOrRemoveNodes(cy, layout, numberOfCities, newNumberOfCities);
     numberOfCities = newNumberOfCities;
     output.html(numberOfCities);
     initialPathDistance = pathDistance(cy.edges());
-    $('#best-route-so-far').html(nodes.toString());
+    $('#best-route-so-far').html(cities.toString());
     $('#best-route-distance').html(initialPathDistance);
   });
 
   $('#start').click(function() {
-    permutationsWithoutInverse(cy, nodes, initialPathDistance);
+    permutationsWithoutInverse(cy, cities, initialPathDistance);
   });
 
   $('#generate-map').click(function () {
