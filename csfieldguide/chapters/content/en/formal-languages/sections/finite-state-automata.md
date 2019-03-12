@@ -358,7 +358,6 @@ But we're straying into the area of Human-Computer Interaction! This isn't surpr
 As we shall see in the next section, one of the most valuable uses of the FSA in computer science is for checking input to computers, whether it's a value typed into a dialogue box, a program given to a compiler, or some search text to be found in a large document.
 There are also data compression methods that use FSAs to capture patterns in the data being compressed, and variants of FSA are used to simulate large computer systems to see how best to configure it before spending money on actually building it.
 
-
 {panel type="curiosity"}
 
 # The largest FSA in the world
@@ -384,7 +383,7 @@ Only, because it's called the "web," exploring is called "crawling" — like spi
 
 # Choosing between Exorciser and JFLAP
 
-This section uses free teaching software that makes it easy for students to create and experiment with FSAs.
+This section introduces free teaching software that makes it easy for students to create and experiment with FSAs.
 This software will also be useful for the next section on regular expressions, so it’s worth becoming familiar with.
 You can choose between using "Exorciser" or "JFLAP" (see later).
 The Exorciser system from [SwissEduc](http://www.swisseduc.ch/compscience/) is cleaner and simpler, but JFLAP includes some features that are useful for the sections on regular expressions and grammars.
@@ -628,7 +627,21 @@ However, be wary of students over simplifying their FSAs to take advantage of th
 
 # Solutions
 
-Solutions for these will be provided in a later version of this guide.
+These solutions were created here: [http://www.madebyevan.com/fsm/](http://www.madebyevan.com/fsm/).
+They are the most concise solutions, but others are possible.
+Currently solutions are only available in English where relevant.
+
+- a valid three-letter month name
+
+{image file-path="img/chapters/fsa-solution-month-3chars.png" alt="solution to a valid three-letter month name"}
+
+- a valid month number
+
+{image file-path="img/chapters/fsa-solution-month-num.png" alt="solution to a valid month number"}
+
+- a valid weekday name
+
+{image file-path="img/chapters/fsa-solution-weekdays.png" alt="solution to a valid weekday name"}
 
 {panel end}
 
@@ -644,7 +657,9 @@ You can make up your own version for different denominations of coins and requir
 
 # Solution
 
-{image file-path="img/chapters/fsa-solution-coins.png" alt="solution to 30c in coins problem"}
+In this solution, each state represents the amount of money that has been inserted, starting at 0 cents and working up to 30 cents or more.
+
+{image file-path="img/chapters/fsa-solution-coins.png" alt="solution to the 30c in coins problem"}
 
 {panel end}
 
