@@ -1,9 +1,11 @@
 // TODO: Make it a closed loop graph
 // TODO: Some nodes are still half overlapping
 // TODO: Rename all of the stupid variables I impulsively named
+// TODO: Add comments
 
 const cytoscape = require('cytoscape');
 const noOverlap = require('cytoscape-no-overlap');
+const itertools = require('itertools');
 
 cytoscape.use(noOverlap);
 
@@ -54,24 +56,23 @@ $(document).ready(function() {
   var gContainer = $('#cy');
   cy.mount(gContainer);
 
+  var initialPathDistance = pathDistance(cy.edges());
+  $('#best-route-so-far').html(nodes.toString());
+  $('#best-route-distance').html(initialPathDistance);
+
   slider.on('input', function() {
     newNumberOfCities = Number(slider.val());
-    // elementsData = generateNodesAndEdgesData(nodes);
     nodes = Array.from(Array(newNumberOfCities), (x, index) => index + 1);
     addOrRemoveNodes(cy, layout, numberOfCities, newNumberOfCities);
-    pths = generatePermutations(nodes);
-    pwr = removeReversePaths(pths);
-    yo = testPaths(cy, pwr, numberOfCities, newNumberOfCities);
     numberOfCities = newNumberOfCities;
     output.html(numberOfCities);
+    initialPathDistance = pathDistance(cy.edges());
+    $('#best-route-so-far').html(nodes.toString());
+    $('#best-route-distance').html(initialPathDistance);
   });
 
-
   $('#start').click(function() {
-    // numCitiesArray = [...Array(numberOfCities).keys()];
-    // paths = generatePermutations(numCitiesArray);
-    // pathsWithoutReversePaths = removeReversePaths(paths);
-    // console.log(paths);
+    permutationsWithoutInverse(cy, nodes, initialPathDistance);
   });
 
   $('#generate-map').click(function () {
@@ -104,8 +105,8 @@ function generateNodesAndEdgesData(nodes) {
 }
 
 
+// Adds or removes nodes when user alters number of nodes via slider input
 function addOrRemoveNodes(cy, layout, oldNumCities, newNumCities) {
-  // what happens if difference is 0?
   // need to resize after nodes added
   cy.nodes().lock();
   var difference = Math.abs(newNumCities - oldNumCities);
@@ -138,6 +139,7 @@ function addOrRemoveNodes(cy, layout, oldNumCities, newNumCities) {
 }
 
 
+// Make sure the layout is still random after new nodes have been added
 function refreshLayout(cy, layout) {
   layout.stop();
   layout = cy.elements().makeLayout({
@@ -148,96 +150,56 @@ function refreshLayout(cy, layout) {
 }
 
 
-// below function taken from 
-// www.reddit.com/r/javascript/comments/5k270h/all_possible_routes_traveling_salesman_problem_in/
-// Generates all possible paths between cities
-function generatePermutations(Arr) {
-  var permutations = [];
-  var A = Arr.slice();
-
-  function swap(a, b) {
-    var tmp = A[a];
-    A[a] = A[b];
-    A[b] = tmp;
-  }
-
-  function generate(n, A) {
-    if (n == 1) {
-      permutations.push(A.slice());
-      // have to update visually as each permutation created so user sees something (takes forever to compute for large numbers)
-      // generate graph visualisation of path
-      // calculate distance
-      // check if shorter, update variable if so
-    } else {
-      for (var i = 0; i <= n-1; i++) {
-        generate(n-1, A);
-        swap(n % 2 == 0 ? i : 0, n-1);
-      }
-    }
-  }
-  generate(A.length, A);
-  return permutations;
-}
-
-
-function removeReversePaths(perms) {
-  var pathsWithoutReverse = [];
-  var pathToTest;
-
-  for (var j = 0; j < perms.length; j++) {
-    pathToTest = perms[j];
-    isReversePath = testForReversePath(pathToTest, pathsWithoutReverse);
-
-    if (!isReversePath) {
-      pathsWithoutReverse.push(pathToTest.toString());
-    }
-  }
-
-  return pathsWithoutReverse;
-}
-
-
-function testForReversePath(path, pathsArray) {
-  reversePath = path.slice().reverse();
-  reversePathString = reversePath.toString();
-
-  return pathsArray.indexOf(reversePathString) !== -1;
-}
-
-
-// Below function needs modifying
-// Shouldn't need to compare old nodes to new nodes as the nodes are static
-// when comparing paths
-function testPaths(cy, paths, oldNumCities, newNumCities) {
-  oldEdgeConfig = new Set();
-  newEdgeConfig = new Set();
-  for (s = 0; s < oldNumCities; s++) {
-    edgeIdee = cy.elements('edge')[s].data('id');
+// Draw the new path and calculate it's distance
+// Updates frontend text if new best route found
+// Returns distance of the new path and if it is the best route so far or not
+function testNewPath(cy, oldPath, newPath, bestRouteDistance) {
+  $('#trial-route').html(newPath.toString());
+  // Number of nodes (cities) remains the same between paths
+  var numCities = oldPath.length;
+  var oldEdgeConfig = new Set();
+  var newEdgeConfig = new Set();
+  for (var i = 0; i < numCities - 1; i++) {
+    var edgeID = cy.elements('edge')[i].data('id');
     // Edge IDs are saved like 'e12' so strip 'e'
-    edgeIdeeStr = edgeIdee.substring(1);
-    oldEdgeConfig.add(edgeIdeeStr);
+    var edgeIDStr = edgeID.substring(1);
+    oldEdgeConfig.add(edgeIDStr);
   }
 
-  for (t = 0; t < newNumCities - 1; t++) {
-    path = paths[t].split(',');
-    newEdgeID = path[t] + path[t+1];
+  for (var j = 0; j < numCities - 1; j++) {
+    var newEdgeID = newPath[j].toString() + newPath[j+1].toString();
     newEdgeConfig.add(newEdgeID);
   }
-  console.log(oldEdgeConfig);
-  console.log(newEdgeConfig);
-  edgesToRemove = setDifference(oldEdgeConfig, newEdgeConfig);
-  console.log(edgesToRemove);
-  edgesToAdd = setDifference(newEdgeConfig, oldEdgeConfig);
-  console.log(edgesToAdd);
-  // TODO: Make remove edge and add edge functions outside of this function
-  edgesToKeep = setDifference(oldEdgeConfig, edgesToRemove);
-  var edgesToKeepStr = '';
-  edgesToKeepArr = Array.from(edgesToKeep);
-  for (var v = 0; v < edgesToKeepArr.length - 1; v++) {
-    edgesToKeepStr += '#e' + edgesToKeepArr[v] + ', ';
+
+  var edgesToRemove = setDifference(oldEdgeConfig, newEdgeConfig);
+  var edgesToAdd = setDifference(newEdgeConfig, oldEdgeConfig);
+  var edgesToKeep = setDifference(oldEdgeConfig, edgesToRemove);
+  // Draw the next path
+  changePaths(cy, edgesToKeep, edgesToAdd);
+
+  var totalDistance = pathDistance(cy.edges());
+  $('#trial-distance').html(totalDistance);
+  // Check if we have found a new best route
+  if (totalDistance < bestRouteDistance) {
+    $('#best-route-so-far').html(newPath.toString());
+    $('#best-route-distance').html(totalDistance);
+    return {distance: totalDistance, isBestRoute: true};
+  } else {
+    return {distance: totalDistance, isBestRoute: false};
   }
-  edgesToKeepStr += '#e' + edgesToKeepArr[v];
-  cy.remove(cy.edges().difference(edgesToKeepStr));
+}
+
+
+// Draws the path
+function changePaths(cy, edgesToKeep, edgesToAdd) {
+  var edgesToKeepStr = '';
+  // Make array because sets are not iterable
+  var edgesToKeepArr = Array.from(edgesToKeep);
+  for (var i = 0; i < edgesToKeepArr.length - 1; i++) {
+    edgesToKeepStr += '#e' + edgesToKeepArr[i] + ', ';
+  }
+  edgesToKeepStr += '#e' + edgesToKeepArr[i];
+  cy.remove(cy.edges().difference(edgesToKeepStr)); 
 
   edgesToAdd.forEach(addEdge);
   function addEdge(value) {
@@ -251,8 +213,64 @@ function testPaths(cy, paths, oldNumCities, newNumCities) {
 
 
 // Calulate a\b 
-// e.g if a = {1,2,3,4} and b = {5,4,3,2} this function would return {1}
+// E.g if a = {1,2,3,4} and b = {5,4,3,2} this function would return {1}
 function setDifference(a, b) {
-  aMinusB = new Set([...a].filter(x => !b.has(x)));
+  var aMinusB = new Set([...a].filter(x => !b.has(x)));
   return aMinusB;
+}
+
+
+// Calculates permutations without inverse permutations
+// E.g if [1,2,3] exists in the array then [3,2,1] will not be added (they are essentially the same path)
+async function permutationsWithoutInverse(cy, cities, bestRouteDistance) {
+  var len = cities.length;
+  var paths = [...itertools.permutations(cities)];
+  var pathsWithoutInverse = [];
+  // Push the path already shown to the user (initial path)
+  pathsWithoutInverse.push(cities);
+  var previousPath = cities;
+  for (var i = 1; i < paths.length; i++) {
+    path = paths[i];
+    if (path[0] <= path[len-1]) {
+      pathsWithoutInverse.push(path);
+      // Draw graph here
+      pathData = testNewPath(cy, previousPath, path, bestRouteDistance); 
+      await sleep(200);
+      if (pathData.isBestRoute) {
+        bestRouteDistance = pathData.distance;
+      }
+      previousPath = path;
+    }
+  }
+}
+
+
+// Pass in 2 positions and use (x,y) coords to calc distance
+// Uses pythagoras
+function distanceBetweenCities(edgeStartPos, edgeEndPos) {
+  var a = Math.abs(edgeStartPos.x - edgeEndPos.x);
+  var b = Math.abs(edgeStartPos.y - edgeEndPos.y);
+
+  var c = Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2));
+
+  return c;
+}
+
+
+// Gets total distance of the path
+function pathDistance(edges) {
+  var distance = 0;
+  for (var i = 0; i < edges.length; i++) {
+    var edge = edges[i];
+    distance += distanceBetweenCities(edge.sourceEndpoint(), edge.targetEndpoint());
+  }
+
+  return Math.round(distance);
+}
+
+
+// JavaScript sleep function taken from 
+// https://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
