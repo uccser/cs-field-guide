@@ -25,7 +25,7 @@ $(document).ready(function() {
       {
         selector: 'node',
         style: {
-          'background-color': '#666',
+          'background-color': '#007bff',
           'label': 'data(id)'
         }
       },
@@ -34,11 +34,9 @@ $(document).ready(function() {
         selector: 'edge',
         style: {
           'width': 3,
-          'line-color': '#ccc',
-          'target-arrow-color': '#ccc',
-          'target-arrow-shape': 'triangle'
+          'line-color': '#99ccff'
         }
-      }
+      },
     ],
     layout: {
       name: "random",
@@ -57,11 +55,28 @@ $(document).ready(function() {
   cy.mount(gContainer);
 
   var cy2 = cytoscape({
-    container: $('#cy2')
+    container: $('#cy2'),
+    style: [
+      {
+        selector: 'node',
+        style: {
+          'background-color': '#28a745',
+          'label': 'data(id)'
+        }
+      },
+    
+      {
+        selector: 'edge',
+        style: {
+          'line-color': '#99cc99'
+        }
+      }
+    ]
   });
   cy2.mount($('#cy2'));
   cy2.add(cy.elements().clone());
-  console.log(cy2);
+  // cy2.nodes().classes('best-route');
+  // cy2.edges().classes('best-route');
 
   var initialPathDistance = pathDistance(cy.edges());
   $('#best-route-so-far').html(cities.toString());
