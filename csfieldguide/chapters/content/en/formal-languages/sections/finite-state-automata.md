@@ -552,14 +552,14 @@ You should build a separate FSA for each of these challenges.
 
 {comment at some stage we might offer a rigorous checker for this? or minimise their solution and see if the same as a minimum of the solution}
 
-For the FSA(s) that you construct, check that they accept valid input, but also make sure they reject invalid input.
+For the FSAs that you construct, check that they accept valid input, but also make sure they reject invalid input.
 
-{panel type="teacher-note"}
+{panel type="curiosity"}
 
 # Hint
 
-Checking that invalid input fails is important — otherwise a student could make an FSA that accepts any input, and it will pass on all tests.
-Students will need to think of examples that exercise different parts of the FSA to show that it doesn't give false positive or false negative results.
+Checking that invalid input is rejected is important — otherwise a you could make an FSA that accepts any input, and it will pass on all tests.
+Think of examples that exercise different parts of the FSA to show that it doesn't give false positive or false negative results.
 
 {panel end}
 
@@ -610,13 +610,13 @@ Try doing two or three of these:
 - a valid month number (1, 2, ... 12)
 - a valid weekday name (Monday, Tuesday, ...)
 
-{panel type="teacher-note"}
+{panel type="curiosity"}
 
 # Hint
 
 Try to find common elements between accepted strings.
 For example: in English, days of the week all end in "day".
-However, be wary of students oversimplifying their FSAs to take advantage of this, as it could lead to invalid input being accepted.
+However, be wary of oversimplifying your FSAs to take advantage of this, as it could lead to invalid input being accepted.
 
 {panel end}
 
@@ -648,6 +648,15 @@ For example, TTT would be putting in 3 ten cent coins, which would be accepted.
 TFFT would also be accepted, but TFFF wouldn't.
 Can you design an FSA that accepts the input when 30 cents or more is put into the machine?
 You can make up your own version for different denominations of coins and required total.
+
+{panel type="curiosity"}
+
+# Hint
+
+What it means to be in each state is important.
+Try giving meaningful labels to your states, instead of just 1,2,3 or A,B,C.
+
+{panel end}
 
 {panel type="teacher-note"}
 
