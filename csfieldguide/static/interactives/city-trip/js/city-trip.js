@@ -56,6 +56,13 @@ $(document).ready(function() {
   var gContainer = $('#cy');
   cy.mount(gContainer);
 
+  var cy2 = cytoscape({
+    container: $('#cy2')
+  });
+  cy2.mount($('#cy2'));
+  cy2.add(cy.elements().clone());
+  console.log(cy2);
+
   var initialPathDistance = pathDistance(cy.edges());
   $('#best-route-so-far').html(nodes.toString());
   $('#best-route-distance').html(initialPathDistance);
