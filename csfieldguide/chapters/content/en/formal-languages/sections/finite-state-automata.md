@@ -624,8 +624,7 @@ However, be wary of students oversimplifying their FSAs to take advantage of thi
 
 # Solutions
 
-These solutions were created here: [http://www.madebyevan.com/fsm/](http://www.madebyevan.com/fsm/).
-They are the most concise solutions, but others are possible.
+These are the most concise solutions, but others are possible.
 Currently solutions are only available for English input where relevant.
 
 - a valid three-letter month name
