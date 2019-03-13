@@ -29,7 +29,7 @@ It uses the handout below (or you can make up your own simple FSAs).
 {button-link link="files/reverse-pictionary-worksheet.pdf" file="yes" text="Reverse Pictionary Worksheet"}
 
 Split the class into two groups, A and B.
-Hand out one copy of FSM-A to each pair of students in group A and FSM-B to pairs in group B.
+Hand out one copy of FSM-A to each pair of students in group A, and FSM-B to pairs in group B.
 Each pair also requires a language sheet.
 They will only be writing in the top half of the sheet.
 Students now need to describe all the acceptable inputs for the given FSA (using whatever notation they can come up with, or regular expressions if they have already encountered them).
@@ -49,7 +49,7 @@ Sheets from group A are distributed to group B, and vice versa.
 The pairs now read the "language" description and fill in the bottom half of the language sheet with four strings that the FSM will accept and four that it will not accept.
 Here the students are acting as "programmers", trying to get the computer on the other side to perform a certain task.
 
-The language sheets are then collected in again, and those from group A distributed to group B and group B’s to group A.
+The language sheets are then collected in again, and those from group A are distributed to group B and group B’s to group A.
 There is no need for pairs to get their original sheet back.
 The pairs are now "computers" and need to check that the input provided at the bottom of the language sheet conforms to the FSA.
 If one of the strings is accepted or rejected incorrectly, groups will need to work out where the error came from.
@@ -77,7 +77,7 @@ Regular expressions are usually easier for humans to read.
 For machines, a computer program can convert any regular expression to an FSA, and then the computer can follow very simple rules to check the input.
 
 The simplest kind of matching is just entering some text to match.
-Open the interactive below and type the text "cat" into the box labeled "Regular expression":
+Open the interactive below and type "cat" into the box:
 
 {interactive slug="regular-expression-search" type="whole-page" text="Regular Expression Search - Exercise 1" parameters="text=The fat cat sat on the mat.%0AThe vindication was catastrophic.%0AThe bilocation of the cataract required certification.%0AThe 42 buffalo baffled them with a pfffffffft sound.%0APennsylvania 6-5000.%0AAssorted exhalations: pfft pffft pft.%0AWas that a match or was it not?"}
 
@@ -110,7 +110,7 @@ The "." matches any letter, so if you really wanted a full stop, you need to wri
 Another special symbol is "\\d", which matches any digit.
 Try matching 2, 3 or 4 digits in a row (for example, two digits in a row is "\\d\\d").
 
-To choose from a small set of characters, try "[ua]ff".
+To choose from a small set of characters, try "[up]ff".
 Either of the characters in the square brackets will match.
 Try writing a regular expression that will match "fat", "sat" and "mat", but not "cat".
 
@@ -122,7 +122,7 @@ A suitable expression is [fsm]at
 
 {panel end}
 
-A shortcut for "[mnopqrs]" is "[m-s]"; try "[m-s]at" and "[4-6]".
+A shortcut for "[mnopqrs]" is "[m-s]"; try "[f-s]at" and "[4-6]".
 
 Another useful shortcut is being able to match repeated letters.
 There are four common rules:
@@ -401,7 +401,7 @@ To convert the NFA to a DFA, press the "Export" button, then from the "Convert" 
 {image file-path="img/chapters/jflap-ab-star-a-dfa-screenshot.png" alt="After conversion to a DFA"}
 
 We're nearly there.
-If it's hard to read the FSA, you can move states around by choosing the arrow tool (on the left of the tool bar — if the states won't move when you grab them, so make sure you click on the arrow icon before trying to move them).
+If it's hard to read the FSA, you can move states around with the arrow tool (on the left of the tool bar).
 The states may have some extraneous labels underneath them; you can hide those by selecting the arrow tool, right-click on the white part of the window and un-check "Display State Labels".
 
 {image file-path="img/chapters/jflap-ab-star-a-dfa-tidy-screenshot.png" alt="After tidying up the DFA"}
