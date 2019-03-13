@@ -15,6 +15,7 @@ The interactive has several optional parameters:
 The interactive opens by default with a blank regular expression, practice text (used for first example in textbook), with the quick reference closed.
 
 ## Third Party Libraries
+
 - [CodeMirror](https://codemirror.net/)
 - [CodeMirror Regex Highlighting](https://gist.github.com/douglasduteil/5089187) - Based off the work of [douglasduteil](https://github.com/douglasduteil)
 
