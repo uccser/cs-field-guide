@@ -26,8 +26,6 @@ The inhabitants of Trainsylvania don't seem to mind this — it's quite fun choo
 
 {interactive slug="trainsylvania-blank" type="in-page"}
 
-{comment image file-path="img/chapters/trainsylvania-blank.png" alt="An incomplete train map"}
-
 You can travel around Trainsylvania yourself using the following interactive.
 You're starting at the City Mall station, and you need to find your way to Suburbopolis.
 At each station you can choose either the A-train or the B-train — press the button to find out where it will take you.
@@ -229,7 +227,7 @@ You can have as many as you want, but only one start state.
 
 {interactive slug="fsa-terminology" type="in-page"}
 
-For this FSA, the strings "aa" and "aabba" would be accepted, and "aaa" and "ar" wouldn't.
+For this FSA, the strings "aa" and "aabba" would be accepted, but "aaa" and "ar" wouldn't.
 By the way, notice that we often put inverted commas around strings to make it clear where they start and stop.
 Of course, the inverted commas aren't part of the strings.
 Notice that "r" always goes back to state 1 — if it ever occurs in the input then it's like a reset.
@@ -661,8 +659,6 @@ In this solution, each state represents the amount of money that has been insert
 {image file-path="img/chapters/fsa-solution-coins.png" alt="solution to the 30c in coins problem"}
 
 {panel end}
-
-{comment provide answers}
 
 If you've worked with binary numbers, see if you can figure out what this FSA does.
 Try each binary number as input: 0, 1, 10, 11, 100, 101, 110, etc.
