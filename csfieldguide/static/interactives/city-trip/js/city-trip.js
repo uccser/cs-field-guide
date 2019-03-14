@@ -80,19 +80,17 @@ $(document).ready(function() {
   cy2.add(cy.elements().clone());
   cy.fit();
   cy2.fit();
-  cy.panningEnabled(false);
-  cy2.panningEnabled(false);
+  cy.userPanningEnabled(false);
+  cy2.userPanningEnabled(false);
 
   cy.automove({
     nodesMatching: cy.nodes(),
-    reposition: 'viewport',
-    when: 'matching'
+    reposition: 'viewport'
   });
 
   cy2.automove({
     nodesMatching: cy.nodes(),
-    reposition: 'viewport',
-    when: 'matching'
+    reposition: 'viewport'
   });
 
   var initialPathDistance = pathDistance(cy.edges());
