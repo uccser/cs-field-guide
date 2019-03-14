@@ -37,7 +37,7 @@ $(document).ready(function() {
         selector: 'edge',
         style: {
           'width': 3,
-          'line-color': '#99ccff'
+          'line-color': '#99cc99' //'#99ccff'
         }
       },
     ],
@@ -57,41 +57,41 @@ $(document).ready(function() {
   var gContainer = $('#cy');
   cy.mount(gContainer);
 
-  var cy2 = cytoscape({
-    container: $('#cy2'),
-    style: [
-      {
-        selector: 'node',
-        style: {
-          'background-color': '#28a745',
-          'label': 'data(id)'
-        }
-      },
+  // var cy2 = cytoscape({
+  //   container: $('#cy2'),
+  //   style: [
+  //     {
+  //       selector: 'node',
+  //       style: {
+  //         'background-color': '#28a745',
+  //         'label': 'data(id)'
+  //       }
+  //     },
     
-      {
-        selector: 'edge',
-        style: {
-          'line-color': '#99cc99'
-        }
-      }
-    ]
-  });
-  cy2.mount($('#cy2'));
-  cy2.add(cy.elements().clone());
+  //     {
+  //       selector: 'edge',
+  //       style: {
+  //         'line-color': '#99cc99'
+  //       }
+  //     }
+  //   ]
+  // });
+  // cy2.mount($('#cy2'));
+  // cy2.add(cy.elements().clone());
   cy.fit();
-  cy2.fit();
+  // cy2.fit();
   cy.userPanningEnabled(false);
-  cy2.userPanningEnabled(false);
+  // cy2.userPanningEnabled(false);
 
   cy.automove({
     nodesMatching: cy.nodes(),
     reposition: 'viewport'
   });
 
-  cy2.automove({
-    nodesMatching: cy.nodes(),
-    reposition: 'viewport'
-  });
+  // cy2.automove({
+  //   nodesMatching: cy.nodes(),
+  //   reposition: 'viewport'
+  // });
 
   var initialPathDistance = pathDistance(cy.edges());
   $('#best-route-so-far').html(cities.toString());
@@ -144,7 +144,6 @@ function generateNodesAndEdgesData(nodes) {
 
 // Adds or removes nodes when user alters number of nodes via slider input
 function addOrRemoveNodes(cy, layout, oldNumCities, newNumCities) {
-  // need to resize after nodes added
   cy.nodes().lock();
   var difference = Math.abs(newNumCities - oldNumCities);
   if (oldNumCities < newNumCities) {
