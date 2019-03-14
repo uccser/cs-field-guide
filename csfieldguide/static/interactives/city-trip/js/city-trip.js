@@ -75,8 +75,10 @@ $(document).ready(function() {
   });
   cy2.mount($('#cy2'));
   cy2.add(cy.elements().clone());
-  // cy2.nodes().classes('best-route');
-  // cy2.edges().classes('best-route');
+  cy.fit();
+  cy2.fit();
+  cy.panningEnabled(false);
+  cy2.panningEnabled(false);
 
   var initialPathDistance = pathDistance(cy.edges());
   $('#best-route-so-far').html(cities.toString());
