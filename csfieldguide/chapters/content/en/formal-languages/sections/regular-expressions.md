@@ -231,7 +231,7 @@ Here are two fairly simple solutions for email addresses, but more refined ones 
 
 {panel end}
 
-{image file-path="img/chapters/xkcd-regular-expressions.png" hover-text="Wait, forgot to escape a space.  Wheeeeee[taptaptap]eeeeee." alt="A xkcd cartoon comment on regular expressions" source="https://xkcd.com/208/"}
+{image file-path="img/chapters/xkcd-regular-expressions.png" hover-text="Wait, forgot to escape a space. Wheeeeee[taptaptap]eeeeee." alt="An xkcd cartoon comment on regular expressions" source="https://xkcd.com/208/"}
 
 Regular expressions are useful!
 
@@ -273,7 +273,7 @@ Fortunately, *every* regular expression can be converted to an FSA.
 We won't look at the process here, but both Exorciser and JFLAP can do it for you anyway (see the activities below).
 
 Converting a regex to an FSA is also built into most programming languages.
-Programmers usually use regular expressions by calling functions or methods that are passed the regex and the string to be searched.
+Programmers usually use regular expressions by calling functions or methods, into which the regex and the string to be searched are passed.
 Behind the scenes, the regular expression is converted to a finite state automaton, and then the job of checking your regular expression is very easy.
 
 {panel type="project"}
@@ -284,7 +284,7 @@ Here are some ideas for regular expressions for you to try to create.
 You can check them using the [Regular Expression Searcher]('interactives:interactive' 'regular-expression-search'?reference=true) as we did earlier, but you'll need to make up your own text to check your regular expression.
 When testing your expressions, make sure that they not only accept correct strings, but reject ones that don't match, even if there's just one character missing.
 
-You may find it easier to have one test match string per line in "Your test string".
+You may find it easier to have one test match string per line in the test area.
 You can force your regular expression to match a whole line by putting "^" (start of line) before the regular expression, and "$" (end of line) after it.
 For example, "^a+$" only matches lines that have nothing but "a"s on them.
 
@@ -296,7 +296,7 @@ Here are some challenges to try to create regular expressions for:
 - a 24-hour clock time (e.g. 23:00) or a 12-hour time (e.g. 11:55 pm)
 - a bank account or credit card number
 - a credit card expiry date (must have 4 digits e.g 01/15)
-- a password that must contain at least 2 digits
+- a password that must contain at least 2 digits (don't test it against your own!)
 - a date
 - a phone number (choose your format e.g. mobile only, national numbers, or international)
 - a dollar amount typed into a banking website, which should accept various formats like "$21.43", "$21", "21.43", and "$5,000", but not "21$", "21.5", "5,0000.00", and "300$".
@@ -335,7 +335,7 @@ In fact, unless you change the default settings, it can only convert regular exp
 But even that's enough (in fact, in theory any input can be represented with two characters — that's what binary numbers are about!)
 
 On the plus side, Exorciser has the empty string symbol available — if you type "e" it will be converted to \( \epsilon \).
-So, for example, "(a| \( \epsilon \)" means an optional "a" in the input.
+So, for example, "(a| \( \epsilon \)" acts as "a?" (an optional "a" in the input).
 
 To do this project using Exorciser, go to the start ("home") window, and select the second link, "Regular Expression to Finite Automata Conversion".
 Now type your regular expression into the text entry box that starts with "R =".
