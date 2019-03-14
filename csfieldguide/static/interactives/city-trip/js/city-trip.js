@@ -2,12 +2,15 @@
 // TODO: Some nodes are still half overlapping
 // TODO: Rename all of the stupid variables I impulsively named
 // TODO: Add comments
+// TODO: Lock nodes on best route graph
 
 const cytoscape = require('cytoscape');
 const noOverlap = require('cytoscape-no-overlap');
+const automove = require('cytoscape-automove');
 const itertools = require('itertools');
 
 cytoscape.use(noOverlap);
+cytoscape.use(automove);
 
 $(document).ready(function() {
 
@@ -79,6 +82,18 @@ $(document).ready(function() {
   cy2.fit();
   cy.panningEnabled(false);
   cy2.panningEnabled(false);
+
+  cy.automove({
+    nodesMatching: cy.nodes(),
+    reposition: 'viewport',
+    when: 'matching'
+  });
+
+  cy2.automove({
+    nodesMatching: cy.nodes(),
+    reposition: 'viewport',
+    when: 'matching'
+  });
 
   var initialPathDistance = pathDistance(cy.edges());
   $('#best-route-so-far').html(cities.toString());
