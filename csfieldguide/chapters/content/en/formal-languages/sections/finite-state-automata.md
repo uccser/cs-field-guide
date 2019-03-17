@@ -63,7 +63,7 @@ It's for a different city, and the stations only have numbers, not names (but yo
 
 {image file-path="img/chapters/finite-state-automata-train-example.png" alt="A simpler train map"}
 
-Suppose you're starting at station 1, and need to get to station 3 (it has a double circle to show that's where you're headed.)
+Suppose you're starting at station 1, and need to get to station 3 (it has a double circle to show that's where you're headed).
 
 - What's the shortest way to get from station 1 to station 3?
 - Where do you end up if you start at station 1 and take the trains ABAA?
