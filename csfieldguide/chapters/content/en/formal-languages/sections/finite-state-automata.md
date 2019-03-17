@@ -344,13 +344,13 @@ Anything that has a few buttons on it and gets into different states when you pr
 With such gadgets, FSAs can be used by designers to plan what will happen for every input in every situation, but they can also be used to analyse the interface of a device.
 If the FSA that describes a device is really complicated, it's a warning that the interface is likely to be hard to understand.
 For example, here's an FSA for a microwave oven, though a lot of details have been omitted for clarity.
-It reveals that, for example, you can't get from power2 to power1 without going through timer1.
+It reveals that, for example, you can't get from Low Power to High Power without going through the Timer.
 Restrictions like this will be very frustrating for a user.
-For example, if they try to set power1 it won't work until they've set timer1 first.
+The user has to set a timer for Low Power, then set it to High Power and set another timer for that.
 Once you know this sequence it's easy, but the designer should think about whether it's necessary to force the user into that sort of sequence.
 These sorts of issues become clear when you look at the FSA.
-But we're straying into the area of Human-Computer Interaction!
-This isn't surprising because most areas of computer science end up relating to each other — but this isn't a major application of FSAs.
+But we're straying into the area of [Human Computer Interaction]('chapters:chapter' 'human-computer-interaction')!
+This isn't surprising because most areas of computer science end up relating to each other.
 
 {image file-path="img/chapters/finite-state-automata-microwave-example.png" alt="FSA for a microwave oven"}
 
