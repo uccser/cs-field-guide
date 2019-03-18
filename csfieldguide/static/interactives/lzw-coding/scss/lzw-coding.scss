@@ -1,109 +1,133 @@
 html {
-	font-family: "Roboto",sans-serif;
+    font-family: "Roboto",sans-serif;
 }
 
 body {
-	margin: 0px;
+    margin: 0px;
 }
 
 h1 {
-	text-align: center;
+    text-align: center;
 }
 
 #interactive-lzw-coding {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	margin: 5px;
-	#interactive-lzw-coding-left,
-	#interactive-lzw-coding-right {
-		width: 100%;
-		margin: 10px;
-	}
-	#interactive-lzw-coding-left {
-		flex-basis: 180%;
-		textarea {
-			border: none;
-			min-width: 100%;
-			max-width: 100%;
-			width: 100%;
-			font: 1rem "Courier New", monospace;
-			padding: 3px;
-			border: 1px solid #BFB9B7;
-			min-height: 120px;
-		}
-		button {
-			color: #FFF;
-			background-color: #FF7043;
-			text-align: center;
-			transition: .2s ease-out;
-			padding: 0.5rem;
-			border: none;
-		}
-		#interactive-lzw-coding-encoded-text {
-			min-height: 100px;
-			.interactive-lzw-code {
-				margin: 1px;
-				display: inline-block;
-				p {
-					margin: auto;
-					text-align: center;
-				}
-				input.interactive-lzw-placeholder-box {
-					width: 1rem;
-					border: 1px solid #BFB9B7;
-					margin: 1px;
-					font-family: "Courier New", monospace !important;
-				}
-			}
-		}
-	}
-	#interactive-lzw-coding-right {
-		#interactive-lzw-coding-dictionary {
-			min-height: 200px;
-			max-height: 900px;
-			overflow: scroll;
-			display: flex;
-			.interactive-lzw-coding-dictionary-column {
-				width: 50%;
-				// border: 1px solid #000;
-				margin: 2px;
-			}
-			.interactive-lzw-dictionary-entry {
-				// border: 1px solid #000;
-				margin: 2px 0;
-				p {
-					display: inline-block;
-					margin: 3px;
-				}
-				.interactive-lzw-dictionary-code {
-					width: 2rem;
-				}
-			}
-		}
-	}
-	textarea,
-	#interactive-lzw-coding-encoded-text,
-	#interactive-lzw-coding-dictionary {
-		border: 1px solid #BFB9B7;
-		padding: 5px;
-		font-family: "Courier New", monospace !important;
-	}
-	textarea,
-	button,
-	#interactive-lzw-coding-encoded-text,
-	#interactive-lzw-coding-dictionary {
-		border-radius: 2px !important;
-		box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12)
-	}
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 5px;
+    height: 100vh;
+    #interactive-lzw-coding-left,
+    #interactive-lzw-coding-right {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin: 10px;
+    }
+    #interactive-lzw-coding-left {
+        .interactive-lzw-coding-to-compress-block {
+            display: block;
+        }
+        flex-basis: 140%;
+        textarea {
+            border: none;
+            min-width: 100%;
+            max-width: 100%;
+            width: 100%;
+            font: 1rem "Courier New", monospace;
+            padding: 3px;
+            border: 1px solid #BFB9B7;
+            height: 5em;
+        }
+        button {
+            color: #FFF;
+            background-color: #FF7043;
+            text-align: center;
+            transition: .2s ease-out;
+            padding: 0.5rem;
+            border: none;
+        }
+        #interactive-lzw-coding-encoded-text {
+            flex-grow: 1;
+            overflow: scroll;
+            .interactive-lzw-code {
+                margin: 1px;
+                display: inline-block;
+                p {
+                    margin: auto;
+                    text-align: center;
+                }
+                input.interactive-lzw-placeholder-box {
+                    width: 1rem;
+                    border: 1px solid #BFB9B7;
+                    margin: 1px;
+                    font: 1rem "Courier New", monospace !important;
+                    text-align: center;
+                }
+            }
+        }
+    }
+    #interactive-lzw-coding-right {
+        overflow: hidden;
+        position: relative;
+        #interactive-lzw-coding-dictionary {
+            flex-grow: 1;
+            overflow: scroll;
+            scroll-behavior: smooth;
+            display: flex;
+            .interactive-lzw-coding-dictionary-column {
+                width: 50%;
+                margin: 2px;
+            }
+            .interactive-lzw-dictionary-entry {
+                margin: 2px 0;
+                p {
+                    display: inline-block;
+                    margin: 3px;
+                }
+                .interactive-lzw-dictionary-code {
+                    width: 2rem;
+                }
+            }
+        }
+    }
+    textarea,
+    #interactive-lzw-coding-encoded-text,
+    #interactive-lzw-coding-dictionary {
+        border: 1px solid #BFB9B7;
+        padding: 5px;
+        font-family: "Courier New", monospace !important;
+    }
+    textarea,
+    button,
+    #interactive-lzw-coding-encoded-text,
+    #interactive-lzw-coding-dictionary {
+        border-radius: 2px !important;
+        box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12)
+    }
 }
 
 .highlight {
-	outline: 2px solid #85c1dd;
+    outline: 3px solid #85c1dd;
     outline-offset: 0.5px;
+    font-weight: bold;
 }
 
 .selected {
-	outline: 2px solid #aedd85;
+    outline: 2px solid #85c1dd;
     outline-offset: 0.5px;
+}
+
+@media (max-width: 425px) {
+    #interactive-lzw-coding {
+        flex-wrap: wrap;
+        p {
+            margin: 1px;
+        }
+        #interactive-lzw-coding-encoded-text {
+            height: 30vh;
+        }
+        #interactive-lzw-coding-dictionary {
+            height: 20vh;
+        }
+    }
 }

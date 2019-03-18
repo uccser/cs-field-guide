@@ -12,30 +12,36 @@
 
 		<div id="interactive-lzw-coding">
 
-			<div id="interactive-lzw-coding-left">
-				<p>Message to compress:</p>
-				<textarea id="interactive-lzw-coding-input">
-I am Sam, Sam I am.
-That Sam-I-am! That Sam-I-am!
-I do not like that Sam-I-am!
-Do you like green eggs and ham?
-I do not like them, Sam-I-am.
-I do not like green eggs and ham.</textarea>
-				<button type="button" onclick="compress()">
-	            	Compress &rarr;
-	          	</button>
-	          	<div id="interactive-lzw-coding-output">
-	          		<p>Compressed message:</p>
-	          		<div id="interactive-lzw-coding-encoded-text">
-					</div>
-	          	</div>
-			</div>
+            <div id="interactive-lzw-coding-left">
+                <div class="interactive-lzw-coding-to-compress-block" id="interactive-lzw-coding-to-compress">
+                    <p>Message to compress:</p>
+                    <textarea id="interactive-lzw-coding-input">
+Pease porridge hot, pease porridge cold,
+Pease porridge in the pot, nine days old;
+Some like it hot, some like it cold,
+Some like it in the pot, nine days old.</textarea>
+                    <button type="button" onclick="compress()">
+                        Compress &rarr;
+                    </button>
+                </div>
+                <!-- <div class="interactive-lzw-coding-to-compress-block" id="interactive-lzw-coding-output"> -->
+                    <p>Compressed message:</p>
+                    <div id="interactive-lzw-coding-encoded-text">
+                    </div>
+                <!-- </div> -->
+            </div>
 
-			<div id="interactive-lzw-coding-right">
-				<p>Generated Dictionary:</p>
-				<div id="interactive-lzw-coding-dictionary">
-				</div>
-			</div>
+            <div id="interactive-lzw-coding-right">
+                <p>Generated Dictionary:</p>
+                <div id="interactive-lzw-coding-dictionary">
+                    <div id="interactive-lzw-coding-dictionary-col-1" class="interactive-lzw-coding-dictionary-column">
+                    </div>
+                    <div id="interactive-lzw-coding-dictionary-col-2" class="interactive-lzw-coding-dictionary-column">
+                    </div>
+                    <div id="interactive-lzw-coding-dictionary-col-3" class="interactive-lzw-coding-dictionary-column">
+                    </div>
+                </div>
+            </div>
 
 		</div>
   </div>
