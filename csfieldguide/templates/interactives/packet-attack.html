@@ -1,0 +1,37 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div class="mb-3 interactive container">
+    <title>Packet Attack</title>
+    <div class="row interactive">
+      <div class="small-12 columns">
+        <div id="interactive-packet-attack"></div>
+      </div>
+      <!--
+      <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+      <script src="./libs/lodash.compat.min.js"></script>
+      <script src="./libs/phaser.min.js"></script>
+      <script src="./libs/moment.js"></script>
+      <script src="./libs/moment-duration-format.js"></script>
+      <script src="./js/information.js"></script>
+      <script src="./js/level.js"></script>
+      <script src="./js/levelbuilder.js"></script>
+      <script src="./js/packetattack.js"></script>
+      </div>
+    <script src="../base-files/js/third-party/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+    </script>-->
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/packet-attack/css/packet-attack.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/packet-attack/js/packet-attack.js' %}"></script>
+{% endblock js %}
