@@ -16,7 +16,8 @@ And it is.
 
 Internet protocols exist in layers.
 We have four such layers in the computer science internet model.
-The top two levels are discussed above in detail, the bottom two we won’t focus on.The first layer is the Application Layer, followed by the Transport, Internet and Link layers.
+The top two levels were discussed before in detail, the bottom two we won’t focus on.
+The first layer is the Application layer, followed by the Transport, Internet and Link layers.
 
 At each layer, data is made up of the previous layers’ whole unit of data, and then *headers* are added and passed down.
 At the bottom layer, the Link layer, a *footer* is added also.
@@ -59,8 +60,9 @@ That’s taken care of by the post company, which then uses a system to sort the
 
 # The OSI model vs the TCP/IP model
 
-The OSI internet model is different from the TCP/IP model of the internet that Computer Scientists use to approach protocol design.
-OSI is considered and probably mentioned in the networking standards but the guide will use the computer science approach because it is simpler, however the main idea of layers of abstraction is more important to get across.
+The OSI model of the internet is different from the TCP/IP model that Computer Scientists use to approach protocol design.
+OSI is considered and probably mentioned in the networking standards but this guide will use the computer science approach because it is simple.
+The main idea of layers of abstraction is more important.
 You can read more about the differences [here](https://en.wikipedia.org/wiki/Internet_protocol_suite#Comparison_of_TCP.2FIP_and_OSI_layering).
 
 {panel end}
@@ -69,10 +71,10 @@ So what does a TCP segment look like?
 
 {image file-path="img/chapters/packet-structure-diagram.png" alt="Showing the structure of a TCP packet"}
 
-As you can see, a packet is divided into four main parts, addresses (source, destination), numbers (sequence number, ACK number if it’s an acknowledgement), flags (urgent, checksum) in the header, then the actual data.
-At each level, a segment becomes the data for the next data unit, and that again gets its own header.
+A packet is divided into four main parts: addresses (source, destination); numbers (sequence number, ACK number if it’s an acknowledgement); flags (urgent, checksum) in the header; and the actual data.
+At each level, the *data* is the entirety of the previous level segment, which includes its own header and data.
 
-TCP and UDP packets have a number with how big they are.
+TCP and UDP packets have a number saying how big they are.
 This number means that the packet can actually be as big as you like.
 Can you think of any advantages of having small packets.
 How about big ones.

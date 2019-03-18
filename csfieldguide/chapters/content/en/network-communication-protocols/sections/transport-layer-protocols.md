@@ -1,4 +1,4 @@
-# Transport Layer Protocols - TCP and UDP
+# Transport layer protocols - TCP, UDP
 
 So far we have talked about HTTP and IRC.
 These protocols are at a level that make sure you do not need to worry about how your data is being transported.
@@ -8,23 +8,37 @@ These protocols take different approaches to ensure data is delivered in an effe
 
 ## TCP
 
-TCP (The Transmission Control Protocol) is one of the most important protocols on the internet.
+TCP (Transmission Control Protocol) is one of the most important protocols on the internet.
 It breaks large messages up into *packets*.
 What is a packet?
-A packet is a segment of data that when combined with other packets, make up a total message (something like a HTTP request, an email, an IRC message or a file like a picture or song being downloaded).
+A packet is a segment of data that, when combined with other packets, make up a total message (something like a HTTP request, an email, an IRC message or a file like a picture or song being downloaded).
 For the rest of the section, we’ll look at how these are used to load an image from a website.
 
-So computer A looks the file and takes it, breaks it into packets.
-It then sends the packets over the internet and computer B reassembles them and gives them back to you as the image, [which is demonstrated in this video](https://www.youtube.com/watch?v=ewrBalT_eBM).
+In short, the website looks at the image and breaks it into packets.
+It then sends the packets over the internet to your computer.
+Your computer then reassembles the packets to give back to you as the image.
+This is [demonstrated in this video](https://www.youtube.com/watch?v=ewrBalT_eBM).
 
 By now you’re probably wondering why we bother splitting up packets… wouldn’t it be easier to send the file as a whole? Well, it solves congestion.
-Imagine you’re in a bus, in rush hour and you have to be home by 5.
-The road is jammed and there’s no way you and your friends are getting home on time.
-So you decide to get out of the bus and go your own separate ways.
+Imagine you're returning a book you borrowed from your mate on the other side of the railway, and just before you get to the crossing a great long train begins lumbering through it.
+Unfortunately, someone just requested the entirety of Google's codebase to be written down and shipped to them, and it'll be three full days before the crossing is next free.
+It would be far better to have the train split every few wagons, so smaller goods, like the book, can still cross the crossing in reasonable time.
 Web pages are like this too.
-They are too big to travel together so they are split up and sent in tiny pieces and then reassembled at the other end.
+They are too big to be sent without delaying others.
+So each page is split up and sent in tiny pieces, then at the other end they are reassembled for delivery.
 
-So why don’t the packets all just go from computer A to computer B just fine?
+{panel type="curiosity"}
+
+# Three days?!
+
+At 86 terabytes of code, Google's database is one of the largest in the world.
+To write that all down and store it in 40ft shipping containers, each 1m apart, would create a train as long as the distance from Barcelona to Moscow!
+
+{comment This was calculated with other assumptions: 500 sheets of paper is 5.2cm wide; 3000 bytes fit on an A4 sheet; and the volume of a shipping container is 77m3. At an average of 45kph it would take 2.95 days to traverse the 3,185km distance}
+
+{panel end}
+
+So the packets all just fly from computer A to computer B with no problems?
 Ha!
 That’d be nice.
 Unfortunately it’s not that simple.
@@ -35,7 +49,7 @@ These problems are:
 - Packet delay (packets arrive out of order)
 - Packet corruption (the packet gets changed on the way)
 
-So, if we didn’t try fix these, the image wouldn’t load, bits would be missing, corrupted or computer B might not even recognise what it is!
+If we didn’t try fix these, the image wouldn’t load, bits would be missing, corrupted, or computer B might not even recognise what it is!
 
 {image file-path="img/chapters/corrupted-image.jpg" alt="Corrupted Image"}
 
@@ -105,7 +119,7 @@ What did the levels do to solve the issues of packet loss, delay (reordering) an
 Why do packets experience delays, loss and corruption?
 This is because as packets are sent over a network, they go through various *nodes*.
 These nodes are effectively different routers or computers.
-One route might experience more interference than another (causing packet loss), one might be faster or shorter than another (causing order to be lost).
+One route might experience more interference than another (causing packet loss), one might be faster or shorter than another (causing order to be changed).
 Corruption can happen at any time through electronic interference.
 
 {panel end}
@@ -144,7 +158,7 @@ But does a computer send it again if it doesn’t hear back? Yes.
 It’s called a timeout and it’s the final line of defense in TCP.
 If a computer doesn’t get an ACK or a NACK back, after a certain time it will just resend the packet.
 It’s a bit like when you’re tuning out in class, and the teacher keeps repeating your name until you answer.
-Maybe that’s been you… woops.
+Maybe that’s been you… whoops.
 Sometimes, an ACK might get lost, so the packet is resent after a timeout, but that’s OK, as TCP can recognise duplicates and ignore them.
 
 So that’s TCP.
@@ -166,4 +180,4 @@ Files, messages, emails, web pages and other text based items use TCP, but thing
 Maybe you’ve had a call on Skype that has been poor quality.
 Maybe the video flickers or the sound drops for a split second.
 That’s packets being lost.
-However, you of course get the overall picture and the conversation you’re having is successful.
+However, you still get the overall picture and the conversation you’re having is successful.
