@@ -30,12 +30,11 @@ h1 {
         flex-basis: 140%;
         textarea {
             border: none;
-            max-width: 98%;
             width: 100%;
             font: 1rem "Courier New", monospace;
-            padding: 3px;
             border: 1px solid #BFB9B7;
             height: 5em;
+            box-sizing: border-box;
         }
         button {
             color: #FFF;
