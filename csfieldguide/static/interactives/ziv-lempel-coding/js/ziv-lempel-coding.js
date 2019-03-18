@@ -91,6 +91,12 @@ function drawEncodedMessage(encoded_message) {
             reference_div.addEventListener('mouseleave', function(event) {
                 changeHighlight(event, false);
             });
+            reference_div.addEventListener('focus', function(event) {
+                changeHighlight(event, true);
+            });
+            reference_div.addEventListener('focusout', function(event) {
+                changeHighlight(event, false);
+            });
             
             line_div.append(reference_div);
         }
@@ -108,10 +114,20 @@ function getIndexes(selected_reference) {
 
 
 function changeHighlight(event, highlight) {
-    var selected_reference = event.target;
-    if (event.target.classList[0] == 'interactive-lzss-placeholder-box') {
-        selected_reference = event.srcElement.parentElement;
+
+    var selected_reference;
+    if (event.nodeName == 'INPUT') { // event was changing focus to next input box
+        selected_reference = event.parentElement;
+    } else {
+        selected_reference = event.target;
+        if (event.target.nodeName == 'P' || event.target.nodeName == 'INPUT') {
+            selected_reference = event.srcElement.parentElement;
+        }
     }
+    // var selected_reference = event.target;
+    // if (event.target.classList[0] == 'interactive-lzss-placeholder-box') {
+    //     selected_reference = event.srcElement.parentElement;
+    // }
     getIndexes(selected_reference);
     for (var i = start_index; i < end_index; i++) {
         var character_div = document.querySelectorAll('[data-index="' + i.toString() + '"]')[0];
@@ -143,6 +159,8 @@ function autoTab(event) {
             }
         }
         element.focus();
+        changeHighlight(event, false);
+        changeHighlight(element, true);
     }
 }
 

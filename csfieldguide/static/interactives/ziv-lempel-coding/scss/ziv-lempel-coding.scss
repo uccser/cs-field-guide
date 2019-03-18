@@ -30,8 +30,7 @@ input {
 
 	#interactive-lzss-left-box #interactive-lzss-input-text textarea {
 		border: none;
-		min-width: 45%;
-		max-width: 100%;
+		box-sizing: border-box;
 	}
 	
 	#interactive-lzss-left-box #interactive-lzss-input-text textarea,
@@ -45,14 +44,13 @@ input {
 
 	#interactive-lzss-left-box {
 		button {
-			float: right;
+			width: 100%;
 			color: #FFF;
 			background-color: #FF7043;
 			text-align: center;
 			transition: .2s ease-out;
 			padding: 0.5rem;
 			border: none;
-			margin-right: -6px;
 		}
 	}
 
@@ -60,6 +58,7 @@ input {
 		#interactive-lzss-compressed-text {
 			background-color: #FFF;
 			font-weight: bold;
+			box-sizing: border-box;
 			.interactive-lzss-encoded-line {
 				display: flex;
 				align-items: center;
@@ -71,7 +70,6 @@ input {
 				display: inline-block;
 				min-width: 10px;
 				min-height: 1.2rem;
-				// background-color: red;
 				margin: 1px;
 			}
 			.interactive-lzss-reference {
@@ -103,4 +101,17 @@ input {
 .selected {
 	outline: 2px solid #aedd85;
     outline-offset: 0.5px;
+}
+
+@media (max-width: 425px) {
+	#interactive-lzss {
+		flex-direction: column;
+		#interactive-lzss-left-box,
+		#interactive-lzss-right-box {
+			width: unset;
+			p {
+				margin: 2px;
+			}
+		}
+	}
 }
