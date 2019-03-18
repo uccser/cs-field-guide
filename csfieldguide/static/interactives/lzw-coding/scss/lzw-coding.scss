@@ -30,8 +30,7 @@ h1 {
         flex-basis: 140%;
         textarea {
             border: none;
-            min-width: 100%;
-            max-width: 100%;
+            max-width: 98%;
             width: 100%;
             font: 1rem "Courier New", monospace;
             padding: 3px;
@@ -45,6 +44,7 @@ h1 {
             transition: .2s ease-out;
             padding: 0.5rem;
             border: none;
+            width: 100%;
         }
         #interactive-lzw-coding-encoded-text {
             flex-grow: 1;
@@ -107,13 +107,13 @@ h1 {
 }
 
 .highlight {
-    outline: 3px solid #85c1dd;
+    outline: 3px solid #FF7043;
     outline-offset: 0.5px;
     font-weight: bold;
 }
 
 .selected {
-    outline: 2px solid #85c1dd;
+    outline: 2px solid #FF7043;
     outline-offset: 0.5px;
 }
 
@@ -121,10 +121,18 @@ h1 {
     #interactive-lzw-coding {
         flex-wrap: wrap;
         p {
-            margin: 1px;
+            margin: 2px;
         }
-        #interactive-lzw-coding-encoded-text {
-            height: 30vh;
+        #interactive-lzw-coding-left {
+            .interactive-lzw-coding-to-compress-block {
+                margin-bottom: 20px;
+                button {
+                    width: 100%;
+                }
+            }
+            #interactive-lzw-coding-encoded-text {
+                height: 30vh;
+            }
         }
         #interactive-lzw-coding-dictionary {
             height: 20vh;
