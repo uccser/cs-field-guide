@@ -208,14 +208,14 @@ off-by-one:
     de: interactives/off-by-one.html
     es: interactives/off-by-one.html
   is_interactive: false
-# packet-attack:
-#   languages:
-#     en: interactives/packet-attack.html
-#   is_interactive: true
-# packet-attack-level-creator:
-#   languages:
-#     en: interactives/packet-attack-level-creator.html
-#   is_interactive: true
+packet-attack:
+  languages:
+    en: interactives/packet-attack.html
+  is_interactive: true
+packet-attack-level-creator:
+  languages:
+    en: interactives/packet-attack-level-creator.html
+  is_interactive: true
 parity:
   languages:
     en: interactives/parity.html
