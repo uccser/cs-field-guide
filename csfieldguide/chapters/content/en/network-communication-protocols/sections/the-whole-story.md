@@ -35,6 +35,8 @@ Headers come before the data and footers afterwards.
 
 {panel end}
 
+{interactive slug="udp-layers" type="in-page"}
+
 {image file-path="img/chapters/udp-encapsulation.png" alt="UDP Encapsulation" source="https://commons.wikimedia.org/wiki/File:UDP_encapsulation.svg"}
 
 You can think of these protocols as a game of pass the parcel.

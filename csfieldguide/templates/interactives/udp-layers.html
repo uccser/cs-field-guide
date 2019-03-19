@@ -1,0 +1,82 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div class="row mb-3 uninteractive">
+    <h3 class="col-12 text-center">{% trans 'UDP Packet Layers' %}</h3>
+    <div class="col-4">
+      <div class="row">
+        {% trans 'Application' %}
+      </div>
+      <div class="row">
+        {% trans 'Transport' %}
+      </div>
+      <div class="row">
+        {% trans 'Internet' %}
+      </div>
+      <div class="row">
+        {% trans 'Link' %}
+      </div>
+    </div>
+
+    <div class="col-8">
+      <div class="row">
+        <!-- Application Layer -->
+        <div class="col-6">
+          
+        </div>
+        <div class="col-2">
+          {% trans 'Data' %}
+        </div>
+      </div>
+      <div class="row">
+        <!-- Transport Layer -->
+        <div class="col-4">
+          
+        </div>
+        <div class="col-2">
+          {% trans 'UDP<br>header' %}
+        </div>
+        <div class="col-2">
+          {% trans 'UDP<br>data' %}
+        </div>
+      </div>
+      <div class="row">
+        <!-- Internet Layer -->
+        <div class="col-2">
+
+        </div>
+        <div class="col-2">
+          {% trans 'IP<br>header' %}
+        </div>
+        <div class="col-4">
+          {% trans 'IP Data' %}
+        </div>
+      </div>
+      <div class="row">
+        <!-- Link Layer -->
+        <div class="col-2">
+          {% trans 'Frame<br>header' %}
+        </div>
+        <div class="col-6">
+          {% trans 'Frame Data' %}
+        </div>
+        <div class="col-2">
+          {% trans 'Frame<br>footer' %}
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 text-center">
+      {% blocktrans %}
+      Based on <a href="https://commons.wikimedia.org/wiki/File:UDP_encapsulation.svg" target="_blank">this image</a>.
+      {% endblocktrans %}
+    </div>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/udp-layers/css/udp-layers.css' %}">
+{% endblock css %}

@@ -162,6 +162,10 @@ image-bit-comparer:
   languages:
     en: interactives/image-bit-comparer.html
   is_interactive: true
+udp-layers:
+  languages:
+    en: interactives/udp-layers.html
+  is_interactive: false
 jpeg-compression:
   languages:
     en: interactives/jpeg-compression.html

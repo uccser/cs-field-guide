@@ -68,6 +68,8 @@ huffman-tree:
   name: Huffman Tree
 image-bit-comparer:
   name: Image Bit Comparer
+udp-layers:
+  name: UDP Layers
 jpeg-compression:
   name: JPEG Compression
 md5-hash:
