@@ -1,5 +1,43 @@
 var output = [];
 var codes = [];
+const SHORT_MESSAGE = `Pease porridge hot, pease porridge cold,
+Pease porridge in the pot, nine days old;
+Some like it hot, some like it cold,
+Some like it in the pot, nine days old.`;
+const LONG_MESSAGE = `Twinkle, twinkle, little star,
+How I wonder what you are!
+Up above the world so high,
+Like a diamond in the sky.
+When this blazing sun is gone,
+When he nothing shines upon,
+Then you show your little light,
+Twinkle, twinkle, through the night.
+Then the traveller in the dark
+Thanks you for your tiny spark;
+He could not see where to go,
+If you did not twinkle so.
+In the dark blue sky you keep,
+And often through my curtains peep,
+For you never shut your eye
+Till the sun is in the sky.
+As your bright and tiny spark
+Lights the traveller in the dark,
+Though I know not what you are,
+Twinkle, twinkle, little star.
+`;
+
+// set default text
+window.onload = function() {
+    var url_string = window.location.href;
+    var url = new URL(url_string);
+    var message_length = url.searchParams.get('message-length');
+    var message_div = document.getElementById('interactive-lzw-coding-input');
+    if (message_length == 'short') {
+        message_div.value = SHORT_MESSAGE;
+    } else if (message_length == 'long') {
+        message_div.value = LONG_MESSAGE;
+    }
+}
 
 function compress() {
     output = [];
@@ -19,7 +57,7 @@ function compressText() {
         string_to_encode[i] = string_to_encode[i].replace(/[\r\n]+/g, null);
     }
     
-    var current_sequence = "";
+    var current_sequence = '';
 
     // set up initial dictionary
     for (var i = 0; i < string_to_encode.length; i++) {
