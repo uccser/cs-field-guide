@@ -5,18 +5,18 @@
 
 {% block html %}
   <div class="row mb-3 uninteractive">
-    <h3 class="col-12 text-center">{% trans 'UDP Packet Layers' %}</h3>
+    <h1 class="col-12 text-center">{% trans 'UDP Packet Layers' %}</h1>
     <div class="col-4">
-      <div class="row">
+      <div class="row udp-text">
         {% trans 'Application' %}
       </div>
-      <div class="row">
+      <div class="row udp-text">
         {% trans 'Transport' %}
       </div>
-      <div class="row">
+      <div class="row udp-text">
         {% trans 'Internet' %}
       </div>
-      <div class="row">
+      <div class="row udp-text">
         {% trans 'Link' %}
       </div>
     </div>
@@ -24,54 +24,68 @@
     <div class="col-8">
       <div class="row">
         <!-- Application Layer -->
-        <div class="col-6">
-          
-        </div>
-        <div class="col-2">
+        <div class="col-6"></div>
+        <div class="col-2 square no-bottom app-data">
           {% trans 'Data' %}
         </div>
       </div>
       <div class="row">
+        <div class="col-6"></div>
+        <div class="col-2 square short no-bottom"></div>
+      </div>
+      <div class="row">
         <!-- Transport Layer -->
-        <div class="col-4">
-          
-        </div>
-        <div class="col-2">
+        <div class="col-4"></div>
+        <div class="col-2 square no-bottom no-right trans-data">
           {% trans 'UDP<br>header' %}
         </div>
-        <div class="col-2">
+        <div class="col-2 square no-bottom app-data">
           {% trans 'UDP<br>data' %}
         </div>
       </div>
       <div class="row">
+        <div class="col-4"></div>
+        <div class="col-2 square short no-bottom no-right"></div>
+        <div class="col-2 square short no-left no-bottom"></div>
+      </div>
+      <div class="row">
         <!-- Internet Layer -->
-        <div class="col-2">
-
-        </div>
-        <div class="col-2">
+        <div class="col-2"></div>
+        <div class="col-2 square no-bottom no-right ip-data">
           {% trans 'IP<br>header' %}
         </div>
-        <div class="col-4">
+        <div class="col-2 square no-bottom no-right trans-data">
           {% trans 'IP Data' %}
         </div>
+        <div class="col-2 square no-left no-bottom app-data"></div>
+      </div>
+      <div class="row">
+        <div class="col-2"></div>
+        <div class="col-2 square short no-bottom no-right"></div>
+        <div class="col-2 square short no-left no-bottom no-right"></div>
+        <div class="col-2 square short no-left no-bottom"></div>
       </div>
       <div class="row">
         <!-- Link Layer -->
-        <div class="col-2">
+        <div class="col-2 square no-right link-data">
           {% trans 'Frame<br>header' %}
         </div>
-        <div class="col-6">
+        <div class="col-2 square no-right ip-data"></div>
+        <div class="col-2 square no-left no-right trans-data">
           {% trans 'Frame Data' %}
         </div>
-        <div class="col-2">
+        <div class="col-2 square no-left app-data"></div>
+        <div class="col-2 square no-left link-data">
           {% trans 'Frame<br>footer' %}
         </div>
       </div>
     </div>
 
-    <div class="col-12 text-center">
+    <div class="col-12 text-center licence-text">
       {% blocktrans %}
-      Based on <a href="https://commons.wikimedia.org/wiki/File:UDP_encapsulation.svg" target="_blank">this image</a>.
+      Recreated from <a href="https://commons.wikimedia.org/wiki/File:UDP_encapsulation.svg" target="_blank">this image by Cburnett</a><br>
+      Licenced under the <a href="https://en.wikipedia.org/wiki/Creative_Commons" target="_blank">Creative Commons</a>
+      <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.en" target="_blank">Attribution-Share Alike 3.0 Unported</a> licence
       {% endblocktrans %}
     </div>
   </div>

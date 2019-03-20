@@ -1,0 +1,53 @@
+.square {
+    height: 80px;
+    width: 80px;
+    text-align: center;
+    vertical-align: middle;
+    border: 2px solid;
+    white-space: nowrap;
+    overflow-x: hidden;
+}
+
+.square.short {
+    max-height: 15px;
+}
+
+.square.no-left {
+    border-left: none;
+}
+
+.square.no-bottom {
+    border-bottom: none;
+}
+
+.square.no-right {
+    border-right: none;
+}
+
+.app-data {
+    background-color: #d7f8cc;
+}
+
+.trans-data {
+    background-color: #ffccff;
+}
+
+.ip-data {
+    background-color: #ccccff;
+}
+
+.link-data {
+    background-color: #97d6d3;
+}
+
+.udp-text {
+    font-size: 30px;
+    height: 80px;
+    line-height: 80px;
+    vertical-align: middle;
+    margin-bottom: 15px;
+}
+
+.licence-text {
+    font-size: 10pt;
+}
