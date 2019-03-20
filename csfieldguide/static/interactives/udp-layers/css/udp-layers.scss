@@ -1,10 +1,14 @@
+$box-size: 80px;
+$box-divider: 15px;
+$inner-padding: 5px;
+
 .udp-text {
     font-size: 22pt;
-    height: 80px;
-    line-height: 80px;
+    height: $box-size;
+    line-height: $box-size;
     text-align: center;
     vertical-align: middle;
-    margin-bottom: 15px;
+    margin-bottom: $box-divider;
 }
 
 .data-text {
@@ -20,25 +24,25 @@
 }
 
 .data-text.frame {
-    top: -55px;
-    left: 60px;
+    top: calc( -1 * #{$box-size} );
+    left: $box-size;
 }
 
 .data-text.packet {
-    top: -150px;
-    left: 10px;
+    top: calc( -2 * #{$box-size} - #{$box-divider});
+    left: calc( -1 * #{$box-size} );
 }
 
 .square {
-    height: 80px;
-    width: 80px;
+    height: $box-size;
+    width: $box-size;
     text-align: center;
     border: 2px solid;
-    padding: 5px;
+    padding: $inner-padding;
 }
 
 .square.center-vertical {
-    line-height: 70px;
+    line-height: calc( #{$box-size} - 2 * #{$inner-padding} );
     vertical-align: middle;
 }
 
@@ -51,7 +55,7 @@
 }
 
 .square.short {
-    max-height: 15px;
+    max-height: $box-divider;
 }
 
 .square.no-left {
@@ -64,6 +68,10 @@
 
 .square.no-right {
     border-right: none;
+}
+
+.square.no-border {
+    border: none;
 }
 
 .app-data {
@@ -88,11 +96,15 @@
 
 // Large
 @media screen and (max-width: 1200px) {
+    $box-size: 60px;
+    $margin-bottom: 10px;
+    $inner-padding: 2px;
+
     .udp-text {
         font-size: 20pt;
-        height: 60px;
-        line-height: 60px;
-        margin-bottom: 10px;
+        height: $box-size;
+        line-height: $box-size;
+        margin-bottom: $box-divider;
     }
 
     .data-text {
@@ -100,36 +112,38 @@
     }
 
     .data-text.frame {
-        top: -45px;
-        left: 45px;
+        top: calc( -1 * #{$box-size} );
+        left: $box-size;
     }
     
     .data-text.packet {
-        top: -115px;
-        left: 10px;
+        top: calc( -2 * #{$box-size} - #{$box-divider});
+        left: calc( -1 * #{$box-size} );
     }
 
     .square {
-        height: 60px;
-        width: 60px;
-        padding: 2px;
+        height: $box-size;
+        width: $box-size;
+        padding: $inner-padding;
     }
-
+    
     .square.center-vertical {
-        line-height: 56px;
+        line-height: calc( #{$box-size} - 2 * #{$inner-padding} );
     }
 
     .square.short {
-        max-height: 10px;
+        max-height: $box-divider;
     }
 }
 
 // Medium
 @media screen and (max-width: 992px) {
+    $box-size: 50px;
+
     .udp-text {
         font-size: 18pt;
-        height: 50px;
-        line-height: 50px;
+        height: $box-size;
+        line-height: $box-size;
     }
 
     .data-text {
@@ -141,22 +155,22 @@
     }
 
     .data-text.frame {
-        top: -35px;
-        left: 25px;
+        top: calc( -1 * #{$box-size} );
+        left: $box-size;
     }
     
     .data-text.packet {
-        top: -95px;
-        left: 0px;
+        top: calc( -2 * #{$box-size} - #{$box-divider});
+        left: calc( -1 * #{$box-size} );
     }
 
     .square {
-        height: 50px;
-        width: 50px;
+        height: $box-size;
+        width: $box-size;
     }
-
+    
     .square.center-vertical {
-        line-height: 46px;
+        line-height: calc( #{$box-size} - 2 * #{$inner-padding} );
     }
 }
 
@@ -166,14 +180,6 @@
         font-size: 22pt;
     }
 
-    .data-text.frame {
-        left: 35px;
-    }
-    
-    .data-text.packet {
-        left: 10px;
-    }
-
     .square {
         border: 1px solid;
     }
@@ -181,11 +187,15 @@
 
 // Extra small
 @media screen and (max-width: 576px) {
+    $box-size: 35px;
+    $box-divider: 5px;
+    $inner-padding: 1px;
+
     .udp-text {
         font-size: 12pt;
-        height: 35px;
-        line-height: 35px;
-        margin-bottom: 5px;
+        height: $box-size;
+        line-height: $box-size;
+        margin-bottom: $box-divider;
     }
 
     .data-text {
@@ -197,26 +207,26 @@
     }
 
     .data-text.frame {
-        top: -25px;
-        left: 20px;
+        top: calc( -1 * #{$box-size} );
+        left: $box-size;
     }
     
     .data-text.packet {
-        top: -65px;
-        left: 0px;
+        top: calc( -2 * #{$box-size} - #{$box-divider});
+        left: calc( -1 * #{$box-size} );
     }
 
     .square {
-        height: 35px;
-        width: 35px;
-        padding: 1px;
+        height: $box-size;
+        width: $box-size;
+        padding: $inner-padding;
     }
-
+    
     .square.center-vertical {
-        line-height: 33px;
+        line-height: calc( #{$box-size} - 2 * #{$inner-padding} );
     }
 
     .square.short {
-        max-height: 5px;
+        max-height: $box-divider;
     }
 }
