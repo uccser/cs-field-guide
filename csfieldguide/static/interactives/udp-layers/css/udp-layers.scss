@@ -29,7 +29,7 @@ $inner-padding: 5px;
 }
 
 .data-text.packet {
-    top: calc( -2 * #{$box-size} - #{$box-divider});
+    top: calc( -2 * #{$box-size} - #{$box-divider} );
     left: calc( -1 * #{$box-size} );
 }
 
@@ -90,8 +90,10 @@ $inner-padding: 5px;
     background-color: #97d6d3;
 }
 
-/* The grid is very sensitive to change
- * so recalculate positions for each Bootstrap-defined size
+/* 
+ * The grid is very sensitive to change
+ * so recalculate positions for each Bootstrap-defined size.
+ * Unfortunately it doesn't work to just change the variables
  */
 
 // Large
@@ -117,7 +119,7 @@ $inner-padding: 5px;
     }
     
     .data-text.packet {
-        top: calc( -2 * #{$box-size} - #{$box-divider});
+        top: calc( -2 * #{$box-size} - #{$box-divider} );
         left: calc( -1 * #{$box-size} );
     }
 
@@ -160,7 +162,7 @@ $inner-padding: 5px;
     }
     
     .data-text.packet {
-        top: calc( -2 * #{$box-size} - #{$box-divider});
+        top: calc( -2 * #{$box-size} - #{$box-divider} );
         left: calc( -1 * #{$box-size} );
     }
 
@@ -174,7 +176,7 @@ $inner-padding: 5px;
     }
 }
 
-// Small (The chapter layout changes at this point)
+// Small (The surrounding layout changes at this point)
 @media screen and (max-width: 768px) {
     .heading {
         font-size: 22pt;
@@ -212,7 +214,7 @@ $inner-padding: 5px;
     }
     
     .data-text.packet {
-        top: calc( -2 * #{$box-size} - #{$box-divider});
+        top: calc( -2 * #{$box-size} - #{$box-divider} );
         left: calc( -1 * #{$box-size} );
     }
 
