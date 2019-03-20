@@ -5,7 +5,7 @@
 
 {% block html %}
   <div class="row mb-3 uninteractive">
-    <h1 class="col-12 text-center">{% trans 'UDP Packet Layers' %}</h1>
+    <h1 class="col-12 text-center heading">{% trans 'UDP Packet Layers' %}</h1>
     <div class="col-4">
       <div class="row udp-text">
         {% trans 'Application' %}
@@ -25,7 +25,7 @@
       <div class="row">
         <!-- Application Layer -->
         <div class="col-6"></div>
-        <div class="col-2 square no-bottom app-data">
+        <div class="col-2 square no-bottom app-data center-vertical data-text">
           {% trans 'Data' %}
         </div>
       </div>
@@ -36,10 +36,10 @@
       <div class="row">
         <!-- Transport Layer -->
         <div class="col-4"></div>
-        <div class="col-2 square no-bottom no-right trans-data">
+        <div class="col-2 square no-bottom no-right trans-data data-text">
           {% trans 'UDP<br>header' %}
         </div>
-        <div class="col-2 square no-bottom app-data">
+        <div class="col-2 square no-bottom app-data data-text">
           {% trans 'UDP<br>data' %}
         </div>
       </div>
@@ -51,13 +51,11 @@
       <div class="row">
         <!-- Internet Layer -->
         <div class="col-2"></div>
-        <div class="col-2 square no-bottom no-right ip-data">
-          {% trans 'IP<br>header' %}
+        <div class="col-2 square no-bottom no-right ip-data data-text">
+          {% trans 'Packet<br>header' %}
         </div>
-        <div class="col-2 square no-bottom no-right trans-data">
-          {% trans 'IP Data' %}
-        </div>
-        <div class="col-2 square no-left no-bottom app-data"></div>
+        <div class="col-2 square no-bottom no-right trans-data center-vertical align-right"></div>
+        <div class="col-2 square no-left no-bottom app-data center-vertical align-left"></div>
       </div>
       <div class="row">
         <div class="col-2"></div>
@@ -67,16 +65,26 @@
       </div>
       <div class="row">
         <!-- Link Layer -->
-        <div class="col-2 square no-right link-data">
+        <div class="col-2 square no-right link-data data-text">
           {% trans 'Frame<br>header' %}
         </div>
         <div class="col-2 square no-right ip-data"></div>
-        <div class="col-2 square no-left no-right trans-data">
-          {% trans 'Frame Data' %}
-        </div>
+        <div class="col-2 square no-left no-right trans-data center-vertical"></div>
         <div class="col-2 square no-left app-data"></div>
-        <div class="col-2 square no-left link-data">
+        <div class="col-2 square no-left link-data data-text">
           {% trans 'Frame<br>footer' %}
+        </div>
+      </div>
+
+      <div class="row">
+        <!-- Some text crosses multiple divs, so write it out of the way,
+          then shift it to where its needed in css -->
+        <div class="col-2"></div>
+        <div class="col-2 frame data-text">
+          {% trans 'Frame data' %}
+        </div>
+        <div class="col-2 packet data-text">
+          {% trans 'Packet data' %}
         </div>
       </div>
     </div>

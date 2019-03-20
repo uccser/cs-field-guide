@@ -1,11 +1,53 @@
+.udp-text {
+    font-size: 22pt;
+    height: 80px;
+    line-height: 80px;
+    text-align: center;
+    vertical-align: middle;
+    margin-bottom: 15px;
+}
+
+.data-text {
+    position: relative;
+    background: none;
+    white-space: nowrap;
+    overflow: visible;
+    font-size: 16pt;
+}
+
+.licence-text {
+    font-size: 10pt;
+}
+
+.data-text.frame {
+    top: -55px;
+    left: 60px;
+}
+
+.data-text.packet {
+    top: -150px;
+    left: 10px;
+}
+
 .square {
     height: 80px;
     width: 80px;
     text-align: center;
-    vertical-align: middle;
     border: 2px solid;
-    white-space: nowrap;
-    overflow-x: hidden;
+    padding: 5px;
+}
+
+.square.center-vertical {
+    line-height: 70px;
+    vertical-align: middle;
+}
+
+.square.align-left {
+    text-align: left;
+}
+
+.square.align-right {
+    text-align: right;
 }
 
 .square.short {
@@ -40,14 +82,141 @@
     background-color: #97d6d3;
 }
 
-.udp-text {
-    font-size: 30px;
-    height: 80px;
-    line-height: 80px;
-    vertical-align: middle;
-    margin-bottom: 15px;
+/* The grid is very sensitive to change
+ * so recalculate positions for each Bootstrap-defined size
+ */
+
+// Large
+@media screen and (max-width: 1200px) {
+    .udp-text {
+        font-size: 20pt;
+        height: 60px;
+        line-height: 60px;
+        margin-bottom: 10px;
+    }
+
+    .data-text {
+        font-size: 13pt;
+    }
+
+    .data-text.frame {
+        top: -45px;
+        left: 45px;
+    }
+    
+    .data-text.packet {
+        top: -115px;
+        left: 10px;
+    }
+
+    .square {
+        height: 60px;
+        width: 60px;
+        padding: 2px;
+    }
+
+    .square.center-vertical {
+        line-height: 56px;
+    }
+
+    .square.short {
+        max-height: 10px;
+    }
 }
 
-.licence-text {
-    font-size: 10pt;
+// Medium
+@media screen and (max-width: 992px) {
+    .udp-text {
+        font-size: 18pt;
+        height: 50px;
+        line-height: 50px;
+    }
+
+    .data-text {
+        font-size: 11pt;
+    }
+
+    .licence-text {
+        font-size: 8pt;
+    }
+
+    .data-text.frame {
+        top: -35px;
+        left: 25px;
+    }
+    
+    .data-text.packet {
+        top: -95px;
+        left: 0px;
+    }
+
+    .square {
+        height: 50px;
+        width: 50px;
+    }
+
+    .square.center-vertical {
+        line-height: 46px;
+    }
+}
+
+// Small (The chapter layout changes at this point)
+@media screen and (max-width: 768px) {
+    .heading {
+        font-size: 22pt;
+    }
+
+    .data-text.frame {
+        left: 35px;
+    }
+    
+    .data-text.packet {
+        left: 10px;
+    }
+
+    .square {
+        border: 1px solid;
+    }
+}
+
+// Extra small
+@media screen and (max-width: 576px) {
+    .udp-text {
+        font-size: 12pt;
+        height: 35px;
+        line-height: 35px;
+        margin-bottom: 5px;
+    }
+
+    .data-text {
+        font-size: 8pt;
+    }
+
+    .licence-text {
+        font-size: 6pt;
+    }
+
+    .data-text.frame {
+        top: -25px;
+        left: 20px;
+    }
+    
+    .data-text.packet {
+        top: -65px;
+        left: 0px;
+    }
+
+    .square {
+        height: 35px;
+        width: 35px;
+        padding: 1px;
+    }
+
+    .square.center-vertical {
+        line-height: 33px;
+    }
+
+    .square.short {
+        max-height: 5px;
+    }
 }
