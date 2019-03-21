@@ -1,24 +1,37 @@
-var codes = [
-	// 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i',
-	// 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r',
-	// 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
-	// 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H' ,'I',
-	// 'J', 'K', 'L' ,'M', 'N', 'O', 'P', 'Q', 'R',
-	// 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
-	'P', 'e', 's', 'e', 'p', 'o'
-];
-
+var codes = ['P', 'e', 's', 'e', 'p', 'o'];
 
 
 window.onload = function() {
-	readInputMessage();
-	populateDictionary();
-	highlightCodedCharacters();
+    readInputMessage();
+    populateDictionary();
+    highlightCodedCharacters();
 }
 
 
 // transfer the inputted message into individual element for each character
 function readInputMessage() {
+    var message = document.getElementById('interactive-compression-dictionary-input').value.split('');
+    var fragment = document.createDocumentFragment();
+
+    var line_div = document.createElement('div');
+    line_div.classList.add('interactive-compression-dictionary-output-line');
+    
+    for (var i = 0; i < message.length; i++) {
+        var character = message[i];
+        if (character.indexOf('\n') != -1) { // is a new line character
+            // append the line div and create a new one
+            fragment.appendChild(line_div);
+            var line_div = document.createElement('div');
+            line_div.classList.add('interactive-compression-dictionary-output-line');
+        } else {
+            var character_element = document.createElement('p');
+            character_element.innerHTML = message[i];
+            character_element.classList.add('interactive-compression-dictionary-message-character');
+            line_div.append(character_element);
+        }
+    }
+    fragment.appendChild(line_div);
+    document.getElementById('interactive-compression-dictionary-output').appendChild(fragment);
 
 }
 
