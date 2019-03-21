@@ -1,0 +1,71 @@
+html {
+    font-family: "Roboto",sans-serif;
+}
+
+body {
+    margin: 0px;
+}
+
+h1 {
+    text-align: center;
+}
+
+#interactive-compression-dictionary {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 5px;
+    height: 100vh;
+    #interactive-compression-dictionary-left,
+    #interactive-compression-dictionary-right {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin: 10px;
+    }
+    #interactive-compression-dictionary-left {
+        .interactive-compression-dictionary-to-compress-block {
+            textarea {
+                border: none;
+                width: 100%;
+                font: 1rem "Courier New", monospace;
+                border: 1px solid #BFB9B7;
+                min-height: 20em;
+                box-sizing: border-box;
+            }
+        }
+    }
+    #interactive-compression-dictionary-right {
+        overflow: hidden;
+        position: relative;
+        #interactive-compression-dictionary-user-dictionary {
+            display: flex;
+            overflow: scroll;
+            .interactive-compression-dictionary-user-dictionary-column {
+                width: 50%;
+                margin: 2px;
+            }
+            .interactive-compression-dictionary-user-dictionary-entry {
+                margin: 2px 0;
+                p {
+                    display: inline-block;
+                    margin: 3px;
+                }
+                .interactive-compression-dictionary-user-dictionary-code {
+                    width: 2rem;
+                }
+            }
+        }
+    }
+    textarea,
+    #interactive-compression-dictionary-user-dictionary {
+        border: 1px solid #BFB9B7;
+        padding: 5px;
+        font-family: "Courier New", monospace !important;
+    }
+    textarea,
+    #interactive-compression-dictionary-user-dictionary {
+        border-radius: 2px !important;
+        box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12)
+    }
+}

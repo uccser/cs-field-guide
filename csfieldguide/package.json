@@ -18,6 +18,7 @@
     "csfg-interactive-caesar-cipher": "file:./static/interactives/caesar-cipher/",
     "csfg-interactive-cmy-mixer": "file:./static/interactives/cmy-mixer/",
     "csfg-interactive-colour-matcher": "file:./static/interactives/colour-matcher/",
+    "csfg-interactive-compression-dictionary": "file:./static/interactives/compression-dictionary",
     "csfg-interactive-frequency-anaylsis": "file:./static/interactives/frequency-analysis/",
     "csfg-interactive-jpeg-compression": "file:./static/interactives/jpeg-compression/",
     "csfg-interactive-md5-hash": "file:./static/interactives/md5-hash/",

@@ -1,0 +1,48 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div class="container">
+    <div class="row">
+      <div class="col s12">
+
+        <div id="interactive-compression-dictionary">
+
+            <div id="interactive-compression-dictionary-left">
+              <div class="interactive-compression-dictionary-to-compress-block" id="interactive-compression-dictionary-to-compress">
+                  <p>Message to compress:</p>
+                  <textarea id="interactive-compression-dictionary-input">
+Pease porridge hot, pease porridge cold,
+Pease porridge in the pot, nine days old;
+Some like it hot, some like it cold,
+Some like it in the pot, nine days old.</textarea>
+                  <div id="interactive-compression-dictionary-output">
+                  </div>
+              </div>
+            </div>
+
+            <div id="interactive-compression-dictionary-right">
+              <p>Generated Dictionary:</p>
+              <div id="interactive-compression-dictionary-user-dictionary">
+                  <div class="interactive-compression-dictionary-user-dictionary-column">
+                  </div>
+              </div>
+            </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/compression-dictionary/css/compression-dictionary.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/compression-dictionary/js/compression-dictionary.js' %}"></script>
+{% endblock js %}
