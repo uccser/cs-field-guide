@@ -4,28 +4,28 @@
 {% load static %}
 
 {% block html %}
-  <div class="row mb-3 uninteractive bordered">
+  <div class="row mb-3 mx-1 uninteractive bordered">
 
     <!-- Header -->
-    <div class="col-6">
+    <div class="col-7">
       <div class="row">
 
         <!-- Addresses -->
         <div class="col-4">
-          <div class="row size-half bordered bottom-bordered">
+          <div class="row size-half text bordered bottom-bordered">
             {% trans 'Address<br>to' %}
           </div>
-          <div class="row size-half">
+          <div class="row size-half text">
             {% trans 'Address<br>from' %}
           </div>
         </div>
 
         <!-- Numbers -->
         <div class="col-4 bordered left-bordered">
-          <div class="row size-half bordered bottom-bordered">
+          <div class="row size-half text bordered bottom-bordered">
             {% trans 'ACK<br>number<br>(if ack)' %}
           </div>
-          <div class="row size-half">
+          <div class="row size-half text">
             {% trans 'Packet<br>number' %}
           </div>
         </div>
@@ -34,22 +34,22 @@
         <div class="col-4 bordered left-bordered">
             <div class="row size-five-sixths bordered bottom-bordered">
               <div class="col">
-                <div class="row size-one-sixth center-text">
+                <div class="row size-one-sixth bordered bottom-bordered grey-border">
                 </div>
-                <div class="row size-one-sixth center-text">
+                <div class="row size-one-sixth text center-text bordered bottom-bordered grey-border">
                   {% trans 'Flags' %}
                 </div>
-                <div class="row size-one-sixth center-text">
+                <div class="row size-one-sixth text center-text bordered bottom-bordered grey-border">
                   {% trans 'and' %}
                 </div>
-                <div class="row size-one-sixth center-text">
+                <div class="row size-one-sixth text center-text bordered bottom-bordered grey-border">
                   {% trans 'options' %}
                 </div>
-                <div class="row size-one-sixth center-text">
+                <div class="row size-one-sixth bordered bottom-bordered">
                 </div>
               </div>
             </div>
-            <div class="row size-one-sixth center-text">
+            <div class="row size-one-sixth text center-text">
               {% trans 'Checksum' %}
             </div>
         </div>
@@ -57,7 +57,7 @@
     </div>
 
     <!-- Data -->
-    <div class="col-6 big-text center-text bordered left-bordered">
+    <div class="col-5 text big-text center-text bordered left-bordered">
       {% trans 'Data' %}
     </div>
   </div>
