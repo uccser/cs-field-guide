@@ -71,7 +71,13 @@ So what does a TCP segment look like?
 
 {interactive slug="tcp-segment" type="in-page"}
 
-A packet is divided into four main parts: addresses (source, destination); numbers (sequence number, ACK number if it’s an acknowledgement); flags (urgent, checksum) in the header; and the actual data.
+A packet is divided into four main parts:
+
+- Two 16 bit addresses (source, destination)
+- Two 32 bit numbers (sequence number, ACK number if it’s an acknowledgement)
+- Between 64 and 384 bits worth of flags and options
+- And the actual data
+
 At each level, the *data* is the entirety of the previous level segment, which includes its own header and data.
 
 TCP and UDP packets have a number saying how big they are.
