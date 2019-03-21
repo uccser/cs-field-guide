@@ -145,3 +145,8 @@ function Information(game, type, levelData) {
       information.anchor.setTo(0.5, 0);
     }
 }
+
+module.exports = {
+    Information
+};
+

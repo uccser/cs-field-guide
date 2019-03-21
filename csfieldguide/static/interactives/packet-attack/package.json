@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "private": true,
     "dependencies": {
-        "phaser-ce": "2.12.0",
+        "phaser": "3.16.2",
         "moment": "2.24.0",
         "moment-duration-format": "2.2.2",
         "lodash-compat": "3.10.2"

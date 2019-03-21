@@ -1,3 +1,7 @@
+
+var urlParameters = require('../../../js/third-party/url-parameters.js');
+require('phaser');
+
 (function () {
 
 		var game = new Phaser.Game(800, 600, Phaser.AUTO, 'interactive-packet-attack', {create: create});

@@ -66,3 +66,7 @@ function Level(game, levelNumber){
 		return this;
 	}
 }
+
+module.exports = {
+    Level
+};

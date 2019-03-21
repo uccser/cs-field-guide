@@ -1,14 +1,18 @@
 /**
  * 
  */
+require('phaser');
 var urlParameters = require('../../../js/third-party/url-parameters.js');
+var GAME = require('./game.js');
 
-/*require('../../../interactives/packet-attack/js/packetattack')
-var PHASER = require('phaser-ce');
-var MOMENT = require('moment');
-var MOMENT_DURATION_FORMAT = require('moment-duration-format');
-var LODASH_COMPAT = require('lodash-compat');*/
+var config = {
+    type: Phaser.AUTO,
+    width: 800,
+    height: 600,
+    parent: 'interactive-packet-attack',
+    scene: GAME.GameScene
+}
 
 $(document).ready(function() {
-    alert(urlParameters.getUrlParameter("hello"));
+    var game = new Phaser.Game(config);
 });

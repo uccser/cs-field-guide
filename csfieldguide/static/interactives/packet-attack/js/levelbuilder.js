@@ -549,3 +549,7 @@ function LevelBuilder(levelData) {
 		}
 	}
 }
+
+module.exports = {
+    LevelBuilder
+};
