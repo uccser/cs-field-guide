@@ -130,6 +130,8 @@ sorting-algorithm-comparison:
   name: Sorting Algorithm Comparison
 sorting-algorithms:
   name: Sorting Algorithms
+tcp-segment:
+  name: TCP Segment
 trainsylvania:
   name: Trainsylvania
 trainsylvania-planner:

@@ -294,6 +294,10 @@ sorting-algorithms:
   languages:
     en: interactives/sorting-algorithms.html
   is_interactive: true
+tcp-segment:
+  languages:
+    en: interactives/tcp-segment.html
+  is_interactive: false
 # trainsylvania:
 #   languages:
 #     en: interactives/trainsylvania.html
