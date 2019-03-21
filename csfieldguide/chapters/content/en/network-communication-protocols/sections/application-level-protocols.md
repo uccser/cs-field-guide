@@ -35,7 +35,7 @@ Think of when you’re at a shop:
 
 > You: "Can I have a can of soda please?"
 >
-> Shop Keeper: "Sure, here’s a can of soda"
+> Shop Keeper: "Sure, here’s a can of soda."
 
 {image file-path="img/chapters/asking-for-a-soda-cartoon.png" alt="Asking for a soda"}
 
@@ -61,7 +61,7 @@ Going back to the shop analogy, consider the same example, this time with more r
 
 > You: "Can I have a can of soda please?" \*You hand the shop keeper $5\*
 >
-> Shop Keeper: "Sure, here’s a can of soda" \*Hands you soda and your change\*
+> Shop Keeper: "Sure, here’s a can of soda." \*Also hands you your change\*
 
 {image file-path="img/chapters/asking-for-a-soda-cartoon-with-cash.png" alt="Paying for a soda with cash"}
 
@@ -75,7 +75,7 @@ It’s like this:
 
 > You: "Can I see your can of soda please?"
 >
-> Shop Keeper: "Sure, here’s the can of soda you’d get" \*Hands you a photo of a can of soda\*
+> Shop Keeper: "Sure, here’s the can of soda you’d get." \*Hands you a photo of a can of soda\*
 
 What’s neat about HTTP is that it allows you to also modify the contents of the server.
 Say you’re now also a representative for the soda company, and you’d like to re-stock some shelves.
@@ -87,21 +87,21 @@ A URI is a unique code or number for a resource.
 Confused?
 Let’s go back to the shop:
 
-> Sales Rep: "I’d like to replace this dented can of soda with barcode number 123-111-221 with this one, that isn’t dented"
+> Sales Rep: "I’d like to replace this dented can of soda with barcode number 123-111-221 with this one, that isn’t dented."
 >
-> Shop Keeper: "Sure, that has now been replaced"
+> Shop Keeper: "Sure, that has now been replaced."
 
 A PUT request adds a new resource to a server, however, if the resource already exists with that URI, it is modified with the new one.
 
-> Sales Rep: "Here, have 10 more cans of lemonade for this shelf"
+> Sales Rep: "Here, have 10 more cans of lemonade for this shelf."
 >
-> Shop Keeper: "Thanks, I’ve now put them on the shelf"
+> Shop Keeper: "Thanks, I’ve now put them on the shelf."
 
 A DELETE request does what you’d think, it deletes a resource.
 
 > Sales Rep: "We are no longer selling ‘Lemonade with Extra Vegetables’, no one likes it! Please remove them!"
 >
-> Shop Keeper: "Okay, they are gone".
+> Shop Keeper: "Okay, they are gone."
 
 Some other request types (*HTTP methods*) exist too, but they are less used; these are TRACE, OPTIONS, CONNECT and PATCH.
 You can [find out more about these](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol) on your own if you're interested.
@@ -115,10 +115,11 @@ There’s even a nice 418: Teapot error on Google: [https://www.google.com/teapo
 So what’s actually happening? Well, let’s find out.
 Open a new tab in your browser and open the homepage of the [CS Field Guide](http://www.csfieldguide.org.nz).
 If you’re in a Chrome or Safari browser, press `Ctrl + Shift + I` in Windows or `Command + Option + I` on a Mac to bring up the web inspector.
+(You can do this with other modern browsers also, you just might need to search around for equivalent steps).
 Select the Network tab (you might need to expand the list of tabs to see it).
 Refresh the page.
 What you’re seeing now is a list of of HTTP requests your browser is making to the server to load the page you're currently viewing.
-Near the top you’ll see a request to `index.html`.
+Near the top you’ll see a request to an `html` file.
 Click that and you’ll see details of the Headers, Preview, Response, Cookies and Timing.
 Ignore those last two for now.
 
@@ -126,23 +127,23 @@ Let’s look at the first few lines of the headers:
 
 ```
 Remote Address: 132.181.2.122:3128
-Request URL: http://www.csfieldguide.org.nz/en/index.html
+Request URL: http://www.csfieldguide.org.nz/en/
 Request Method: GET
 Status Code: 200 OK
 ```
 
-The *Remote Address* is the address of the server of the page is hosted on.
+The *Remote Address* is the address of the server the page is hosted on.
 The *Request URL* is the original URL that you requested.
 The request method should be familiar from above.
 It is a GET type request, saying "can I have the web page please?" and the response is the HTML.
-Don’t believe me?
+Don’t believe it?
 Click the *Response* tab.
 Finally, the *Status Code* is a code that the page can respond with.
 
 Let’s look at the *Request Headers* now, click ‘view source’ to see the original request.
 
 ```
-GET /index.html HTTP/1.1
+GET /en/ HTTP/1.1
 Host: www.csfieldguide.org.nz
 Connection: keep-alive
 Cache-Control: max-age=0
@@ -153,6 +154,7 @@ Accept-Language: en-US,en;q=0.8
 ```
 
 As you can see, a request message consists of the following:
+
 - A request line in the form of *method*  *URI*  *protocol*/*version*.
 - Request Headers (Accept, User-Agent, Accept-Language etc).
 - An empty line.
@@ -173,6 +175,7 @@ Content-Encoding: gzip
 ```
 
 As you can see, a response message consists of the following:
+
 - Status Line, 200 OK means everything went well.
 - Response Headers (Content-Length, Content-Type etc).
 - An empty line.
@@ -180,6 +183,7 @@ As you can see, a response message consists of the following:
 
 Go ahead and try this same process on a few other pages too.
 For example, try these sites:
+
 - A very busy website in terms of content, such as *facebook.com*
 - A chapter that [doesn’t exist on Google](https://google.com/nope.html)
 - Your favourite website
@@ -217,14 +221,14 @@ IRC also supports one-to-one communication via *private messages*.
 It is also capable of file and data transfer too.
 
 The neat thing about IRC is that users can use commands to interact with the server, client or other users.
-For example /DIE will tell the server to shutdown (although it will only work if you are the administrator!) /ADMIN will tell you who the administrator is.
+For example /DIE will tell the server to shutdown (although it will only work if you are the administrator!), and /ADMIN will tell you who the administrator is.
 
 Whilst IRC may be new to you, the concept of a group conversation online or a *chat room* may not be.
 There really isn’t any difference.
 Groups exist in the forms of *channels*.
 A server hosts many channels, and you can choose which one to join.
 
-Channels usually form around a particular topic, such as Python,  Music, TV show fans, Gaming or Hacking.
+Channels usually form around a particular topic, such as Python, Music, TV show fans, Gaming or Hacking.
 Convention dictates that channel names start with one or two # symbols, such as #python or ##TheBigBangTheory.
 *Conventions* are different to protocols in that they aren’t actually enforced by the protocol, but people choose to use it that way.
 
