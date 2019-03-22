@@ -9,8 +9,9 @@ var config = {
     type: Phaser.AUTO,
     width: 800,
     height: 600,
+    backgroundColor: '#AAAAAA',
     parent: 'interactive-packet-attack',
-    scene: GAME.GameScene
+    scene: [GAME.UIScene, GAME.GameScene]
 }
 
 $(document).ready(function() {
