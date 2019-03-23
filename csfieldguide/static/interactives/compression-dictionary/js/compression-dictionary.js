@@ -1,10 +1,32 @@
 var codes = ['P', 'e', 's', 'e', 'p', 'o'];
+var message_characters = [];
 
 
 window.onload = function() {
     readInputMessage();
     populateDictionary();
     highlightCodedCharacters();
+}
+
+
+// highlight the characters that have a corresponding code in the dictionary
+function highlightCodedCharacters() {
+    // version for only single characters in dictionary
+
+    // for each entry in the dictionary
+    for (var i = 0; i < codes.length; i++) {
+        for (var j = 0; j < message_characters.length; j++) {
+            // console.log(codes[i], message_characters[j]);
+            var code = codes[i];
+            var character = message_characters[j];
+            if (code == character) {
+                var code_div = document.querySelectorAll('[data-index="' + j.toString() + '"]')[0];
+                code_div.classList.add('highlight');
+            }
+        //  // if character == entry
+        //      // highlight the character
+        }
+    }
 }
 
 
@@ -18,6 +40,7 @@ function readInputMessage() {
     
     for (var i = 0; i < message.length; i++) {
         var character = message[i];
+        message_characters.push(character);
         if (character.indexOf('\n') != -1) { // is a new line character
             // append the line div and create a new one
             fragment.appendChild(line_div);
@@ -27,6 +50,7 @@ function readInputMessage() {
             var character_element = document.createElement('p');
             character_element.innerHTML = message[i];
             character_element.classList.add('interactive-compression-dictionary-message-character');
+            character_element.setAttribute('data-index', i);
             line_div.append(character_element);
         }
     }
@@ -60,11 +84,4 @@ function populateDictionary() {
         fragment.append(dictionary_entry);
     }
     document.getElementsByClassName('interactive-compression-dictionary-user-dictionary-column')[0].appendChild(fragment);
-    highlightCodedCharacters();
 };
-
-
-// highlight the characters that have a corresponding code in the dictionary
-function highlightCodedCharacters() {
-
-}

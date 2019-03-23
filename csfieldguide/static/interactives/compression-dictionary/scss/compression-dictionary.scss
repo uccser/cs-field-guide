@@ -37,10 +37,13 @@ h1 {
                 box-sizing: border-box;
             }
             #interactive-compression-dictionary-output {
-                p.interactive-compression-dictionary-message-character {
-                    display: inline-block;
-                    min-width: 10px;
-                    margin: 0px;
+                .interactive-compression-dictionary-output-line {
+                    height: 2em;
+                    p.interactive-compression-dictionary-message-character {
+                        display: inline-block;
+                        min-width: 10px;
+                        margin: 1px;
+                    }
                 }
             }
         }
@@ -76,4 +79,11 @@ h1 {
         padding: 5px;
         font-family: "Courier New", monospace !important;
     }
+}
+
+
+.highlight {
+    // outline: 3px solid #FF7043;
+    background-color: #aedd85; //85c1dd;
+    outline-offset: 0.5px;
 }
