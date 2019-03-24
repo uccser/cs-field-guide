@@ -1,67 +1,66 @@
 require('phaser');
 
-var GameScene = new Phaser.Class({
-    
-    Extends: Phaser.Scene,
+/**
+ * Gameplay
+ */
+class GameScene extends Phaser.Scene {
 
-    initialise:
-    
-    function GameScene(config) {
-        Phaser.Scene.call(this, { key: 'GameScene' });
-    },
+    constructor(config) {
+        super(config);
+    }
 
-    preload: function() {
-        console.log('Loading base images');
+    preload() {
+        console.log('Loading base images...');
         this.load.image('bg', base + 'interactives/packet-attack/assets/background.png');
-        this.load.image('stun', 'assets/leftButton.png');
-        this.load.image('zap', 'assets/middleButton.png');
-        this.load.image('confuse', 'assets/rightButton.png');
-            this.load.spritesheet('packet', 'assets/bluePacketSprites.png', 100, 100, 8);
-            this.load.spritesheet('ack', 'assets/greenPacketSprites.png', 100, 100, 8);
-            this.load.spritesheet('nack', 'assets/redPacketSprites.png', 100, 100, 8);
-            this.load.spritesheet('shield', 'assets/shieldedBluePacketSprites.png', 100, 100, 8);
-        this.load.image('pipes', 'assets/pipes.png');
-        this.load.image('pause', 'assets/leftGreenButton.png');
-        this.load.image('play', 'assets/rightGreenButton.png');
-        console.log('Done');
-    },
+        this.load.image('stun', base + 'interactives/packet-attack/assets/leftButton.png');
+        this.load.image('zap', base + 'interactives/packet-attack/assets/middleButton.png');
+        this.load.image('confuse', base + 'interactives/packet-attack/assets/rightButton.png');
 
-    create: function() {
-        console.log('Adding base images');
+        this.load.spritesheet('packet', base + 'interactives/packet-attack/assets/bluePacketSprites.png', { frameWidth: 100, frameHeight: 100, endFrame: 8 });
+        this.load.spritesheet('ack', base + 'interactives/packet-attack/assets/greenPacketSprites.png', { frameWidth: 100, frameHeight: 100, endFrame: 8 });
+        this.load.spritesheet('nack', base + 'interactives/packet-attack/assets/redPacketSprites.png', { frameWidth: 100, frameHeight: 100, endFrame: 8 });
+        this.load.spritesheet('shield', base + 'interactives/packet-attack/assets/shieldedBluePacketSprites.png', { frameWidth: 100, frameHeight: 100, endFrame: 8 });
+        
+        this.load.image('pipes', base + 'interactives/packet-attack/assets/pipes.png');
+        this.load.image('pause', base + 'interactives/packet-attack/assets/leftGreenButton.png');
+        this.load.image('play', base + 'interactives/packet-attack/assets/rightGreenButton.png');
+        console.log('Done');
+    }
+
+    create() {
+        console.log('Adding base images...');
         this.add.image(400, 300, 'bg');
 
-		// this.add.button(125, 490, 'stun');
+		var stun = this.add.image(215, 520, 'stun').setInteractive();
+		var zap = this.add.image(400, 520, 'zap').setInteractive();
+		var confuse = this.add.image(590, 520, 'confuse').setInteractive();
+        var pause = this.add.image(600, 450, 'pause').setInteractive();
 
-		// this.add.button(320, 490, 'zap');
-
-		// this.add.button(500, 490, 'confuse');
-
-		// this.add.button(570, 430, 'pause');
+        this.add.image(400, 300, 'pipes');
         console.log('Done');
-    },
+    }
 
-    shutdown: function ()
+    shutdown()
     {
         this.input.mouse.shutdown();
     }
-});
+}
 
-var UIScene = new Phaser.Class({
+/**
+ * Game UI
+ */
+class UIScene extends Phaser.Scene {
 
-    Extends: Phaser.Scene,
+    constructor(config) {
+        super(config);
+    }
 
-    initialise:
-
-    function UIScene(config) {
-        Phaser.Scene.call(this, { key: 'UIScene', active: true });
+    create() {
+        this.add.text(10, 10, 'Score: 0', { font: '48px Arial', fill: '#000000' })
 
         this.score = 0;
-    },
-
-    create: function() {
-        this.add.text(10, 10, 'Score: 0', { font: '48px Arial', fill: '#000000' })
     }
-});
+}
 
 module.exports = {
     GameScene,

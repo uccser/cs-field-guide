@@ -11,9 +11,10 @@ var config = {
     height: 600,
     backgroundColor: '#AAAAAA',
     parent: 'interactive-packet-attack',
-    scene: [GAME.GameScene]
 }
 
 $(document).ready(function() {
     var game = new Phaser.Game(config);
+    game.scene.add('gameScreen', GAME.GameScene, true, { x: 400, y: 300 });
+    game.scene.add('gameUI', GAME.UIScene, true, { x: 400, y: 300 });
 });
