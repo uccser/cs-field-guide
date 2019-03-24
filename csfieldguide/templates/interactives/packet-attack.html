@@ -33,5 +33,8 @@
 {% endblock css %}
 
 {% block js %}
+  <script type="text/javascript">
+    var base = "{{ STATIC_URL }}";
+  </script>
   <script type="text/javascript" src="{% static 'interactives/packet-attack/js/packet-attack.js' %}"></script>
 {% endblock js %}

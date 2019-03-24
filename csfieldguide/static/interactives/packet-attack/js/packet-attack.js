@@ -11,7 +11,7 @@ var config = {
     height: 600,
     backgroundColor: '#AAAAAA',
     parent: 'interactive-packet-attack',
-    scene: [GAME.UIScene, GAME.GameScene]
+    scene: [GAME.GameScene]
 }
 
 $(document).ready(function() {
