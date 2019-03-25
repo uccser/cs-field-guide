@@ -2,7 +2,6 @@
 // TODO: Some nodes are still half overlapping
 // TODO: Rename all of the stupid variables I impulsively named
 // TODO: Add comments
-// TODO: Lock nodes on best route graph
 
 const cytoscape = require('cytoscape');
 const noOverlap = require('cytoscape-no-overlap');
@@ -106,6 +105,7 @@ $(document).ready(function() {
     // quit execution of path finding
   });
 
+  // Generate a new graph layout and make sure the best route graph matches
   $('#generate-map').click(function () {
     cy.nodes().grabify();
     cy2.remove(cy2.elements());
@@ -117,6 +117,7 @@ $(document).ready(function() {
     updateRouteStats();
   });
 
+  // Updates the trial route and best route info along with their corresponding distances
   function updateRouteStats() {
     $('#trial-route').html(cities.toString());
     $('#trial-distance').html(initialPathDistance);
@@ -124,6 +125,7 @@ $(document).ready(function() {
     $('#best-route-distance').html(initialPathDistance);
   };
 
+  // Updates best route graph to match the initial graph when a user drags a node on the initial graph
   cy.nodes().on('dragfreeon', function(evt) {
     cy2.remove(cy2.elements());
     cy2.add(cy.elements().clone());
@@ -170,35 +172,45 @@ function generateNodesAndEdgesData(nodes) {
 
 // Adds or removes nodes when user alters number of nodes via slider input
 function addOrRemoveNodes(cy, cy2, layout, oldNumCities, newNumCities) {
+  // Lock existing nodes so their layout doesn't change once refreshLayout is called
   cy.nodes().lock();
   var difference = Math.abs(newNumCities - oldNumCities);
   if (oldNumCities < newNumCities) {
+    // Add nodes
     var previousNodeID = oldNumCities.toString();
     for (var n = 1; n < difference + 1; n++) {
+      // Create node
       currentNodeID = (oldNumCities + n).toString();
       newNode = {
         data: { id: currentNodeID },
         classes: 'nodesToAdd'
       };
       cy.add(newNode);
+
+      // Create edge
       edgeID = 'e' + previousNodeID + currentNodeID;
       newEdge = {
         data: { id: edgeID, source: previousNodeID, target: currentNodeID },
         classes: 'edgesToAdd'
       };
       cy.add(newEdge);
+
+      // Make sure layout is still random and nodes can't overlap when dragged
       refreshLayout(cy, layout);
       cy.nodes().noOverlap({ padding: 5 });
       previousNodeID = currentNodeID;
       cy.nodes().lock();
     }
+    // Update best route graph to match
     cy2.add(cy.$('.nodesToAdd').clone());
     cy2.add(cy.$('.edgesToAdd').clone());
     setGraphOptions(cy2);
     cy2.nodes().ungrabify();
   } else if (oldNumCities > newNumCities) {
+    // Remove nodes
     cy.nodes().unlock();
     for (var n = 0; n < difference; n++) {
+      // Remove nodes and update best route graph to match
       nodeToRemove = cy.$('#' + (oldNumCities - n).toString());
       cy.remove( nodeToRemove );
       nodeToRemoveCy2 = cy2.$('#' + (oldNumCities - n).toString());
