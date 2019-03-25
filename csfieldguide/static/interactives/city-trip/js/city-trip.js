@@ -122,7 +122,14 @@ $(document).ready(function() {
     $('#trial-distance').html(initialPathDistance);
     $('#best-route-so-far').html(cities.toString());
     $('#best-route-distance').html(initialPathDistance);
-  }
+  };
+
+  cy.nodes().on('dragfreeon', function(evt) {
+    cy2.remove(cy2.elements());
+    cy2.add(cy.elements().clone());
+    initialPathDistance = pathDistance(cy.edges());
+    updateRouteStats();
+  })
 });
 
 
@@ -314,6 +321,7 @@ async function permutationsWithoutInverse(cy, cy2, cities, bestRouteDistance) {
       previousPath = path;
     }
   }
+  cy.nodes().grabify();
 }
 
 
