@@ -127,6 +127,7 @@ $(document).ready(function() {
   cy.nodes().on('dragfreeon', function(evt) {
     cy2.remove(cy2.elements());
     cy2.add(cy.elements().clone());
+    cy2.nodes().ungrabify();
     initialPathDistance = pathDistance(cy.edges());
     updateRouteStats();
   })
