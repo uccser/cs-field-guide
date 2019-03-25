@@ -126,7 +126,8 @@ $(document).ready(function() {
   };
 
   // Updates best route graph to match the initial graph when a user drags a node on the initial graph
-  cy.nodes().on('dragfreeon', function(evt) {
+  // Might need to look at how to improve this instead of wiping and cloning a new graph...
+  cy.on('dragfreeon', 'nodes', function(evt) {
     cy2.remove(cy2.elements());
     cy2.add(cy.elements().clone());
     cy2.nodes().ungrabify();
