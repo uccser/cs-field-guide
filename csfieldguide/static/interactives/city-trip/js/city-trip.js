@@ -10,6 +10,7 @@ const itertools = require('itertools');
 
 cytoscape.use(noOverlap);
 cytoscape.use(automove);
+var stopPathFinding = false;
 
 $(document).ready(function() {
 
@@ -98,12 +99,14 @@ $(document).ready(function() {
 
   $('#start').click(function() {
     cy.nodes().ungrabify();
+    stopPathFinding = false;
     permutationsWithoutInverse(cy, cy2, cities, initialPathDistance);
   });
 
   $('#stop').click(function() {
     cy.nodes().grabify();
     // quit execution of path finding
+    stopPathFinding = true;
   });
 
   // Generate a new graph layout and make sure the best route graph matches
@@ -213,10 +216,24 @@ function addOrRemoveNodes(cy, cy2, layout, oldNumCities, newNumCities) {
     cy.nodes().unlock();
     for (var n = 0; n < difference; n++) {
       // Remove nodes and update best route graph to match
-      nodeToRemove = cy.$('#' + (oldNumCities - n).toString());
-      cy.remove( nodeToRemove );
-      nodeToRemoveCy2 = cy2.$('#' + (oldNumCities - n).toString());
-      cy2.remove( nodeToRemoveCy2 );
+
+      if (stopPathFinding) {
+        // if removing nodes after clicking 'stop' have to reset graph because some edges between nodes don't exist.
+        // (will be part way through path finding)
+        cy.remove(cy.elements());
+        var cities = Array.from(Array(newNumCities), (x, index) => index + 1);
+        cy.add(generateNodesAndEdgesData(cities));
+        refreshLayout(cy, layout);
+        cy.nodes().noOverlap({ padding: 5 });
+        cy2.remove(cy2.elements());
+        cy2.add(cy.elements().clone());
+        cy2.nodes().ungrabify();
+      } else {
+        nodeToRemove = cy.$('#' + (oldNumCities - n).toString());
+        cy.remove( nodeToRemove );
+        nodeToRemoveCy2 = cy2.$('#' + (oldNumCities - n).toString());
+        cy2.remove( nodeToRemoveCy2 );
+      }
       setGraphOptions(cy2);
     }
   }
@@ -325,6 +342,9 @@ async function permutationsWithoutInverse(cy, cy2, cities, bestRouteDistance) {
   pathsWithoutInverse.push(cities);
   var previousPath = cities;
   for (var i = 1; i < paths.length; i++) {
+    if (stopPathFinding) {
+      break;
+    }
     path = paths[i];
     if (path[0] <= path[len-1]) {
       pathsWithoutInverse.push(path);
