@@ -232,7 +232,7 @@ function testNewPath(cy, cy2, oldPath, newPath, bestRouteDistance) {
   // Check if we have found a new best route
   if (totalDistance < bestRouteDistance) {
     previousBestRoute = $('#best-route-so-far').html().split(',');
-    findEdgeDifferences(cy2, previousBestRoute, newEdgeConfig);
+    findEdgeDifferences(cy2, previousBestRoute, newEdgeConfig, numCities);
     $('#best-route-so-far').html(newPath.toString());
     $('#best-route-distance').html(totalDistance);
     return {distance: totalDistance, isBestRoute: true};
