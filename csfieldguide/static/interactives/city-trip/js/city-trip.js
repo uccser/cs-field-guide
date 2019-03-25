@@ -80,11 +80,13 @@ $(document).ready(function() {
   cy2.add(cy.elements().clone());
   setGraphOptions(cy);
   setGraphOptions(cy2);
+  cy2.nodes().ungrabify();
 
   var initialPathDistance = pathDistance(cy.edges());
   updateRouteStats();
 
   slider.on('input', function() {
+    cy.nodes().grabify();
     newNumberOfCities = Number(slider.val());
     cities = Array.from(Array(newNumberOfCities), (x, index) => index + 1);
     addOrRemoveNodes(cy, cy2, layout, numberOfCities, newNumberOfCities);
@@ -95,14 +97,22 @@ $(document).ready(function() {
   });
 
   $('#start').click(function() {
+    cy.nodes().ungrabify();
     permutationsWithoutInverse(cy, cy2, cities, initialPathDistance);
   });
 
+  $('#stop').click(function() {
+    cy.nodes().grabify();
+    // quit execution of path finding
+  });
+
   $('#generate-map').click(function () {
+    cy.nodes().grabify();
     cy2.remove(cy2.elements());
     refreshLayout(cy, layout);
     cy2.add(cy.elements().clone());
     setGraphOptions(cy2);
+    cy2.nodes().ungrabify();
     initialPathDistance = pathDistance(cy.edges());
     updateRouteStats();
   });
@@ -177,6 +187,7 @@ function addOrRemoveNodes(cy, cy2, layout, oldNumCities, newNumCities) {
     cy2.add(cy.$('.nodesToAdd').clone());
     cy2.add(cy.$('.edgesToAdd').clone());
     setGraphOptions(cy2);
+    cy2.nodes().ungrabify();
   } else if (oldNumCities > newNumCities) {
     cy.nodes().unlock();
     for (var n = 0; n < difference; n++) {
