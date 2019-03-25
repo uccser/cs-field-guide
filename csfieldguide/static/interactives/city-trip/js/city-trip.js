@@ -89,6 +89,7 @@ $(document).ready(function() {
     newNumberOfCities = Number(slider.val());
     cities = Array.from(Array(newNumberOfCities), (x, index) => index + 1);
     addOrRemoveNodes(cy, cy2, layout, numberOfCities, newNumberOfCities);
+    setGraphOptions(cy); // potentially improve?
     numberOfCities = newNumberOfCities;
     output.html(numberOfCities);
     initialPathDistance = pathDistance(cy.edges());
