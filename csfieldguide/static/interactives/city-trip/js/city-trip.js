@@ -82,10 +82,7 @@ $(document).ready(function() {
   setGraphOptions(cy2);
 
   var initialPathDistance = pathDistance(cy.edges());
-  $('#trial-route').html(cities.toString());
-  $('#trial-distance').html(initialPathDistance);
-  $('#best-route-so-far').html(cities.toString());
-  $('#best-route-distance').html(initialPathDistance);
+  updateRouteStats();
 
   slider.on('input', function() {
     newNumberOfCities = Number(slider.val());
@@ -94,10 +91,7 @@ $(document).ready(function() {
     numberOfCities = newNumberOfCities;
     output.html(numberOfCities);
     initialPathDistance = pathDistance(cy.edges());
-    $('#trial-route').html(cities.toString());
-    $('#trial-distance').html(initialPathDistance);
-    $('#best-route-so-far').html(cities.toString());
-    $('#best-route-distance').html(initialPathDistance);
+    updateRouteStats();
   });
 
   $('#start').click(function() {
@@ -110,10 +104,15 @@ $(document).ready(function() {
     cy2.add(cy.elements().clone());
     setGraphOptions(cy2);
     initialPathDistance = pathDistance(cy.edges());
+    updateRouteStats();
+  });
+
+  function updateRouteStats() {
     $('#trial-route').html(cities.toString());
     $('#trial-distance').html(initialPathDistance);
+    $('#best-route-so-far').html(cities.toString());
     $('#best-route-distance').html(initialPathDistance);
-  });
+  }
 });
 
 
