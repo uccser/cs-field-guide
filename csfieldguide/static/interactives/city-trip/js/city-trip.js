@@ -217,6 +217,7 @@ function addOrRemoveNodes(cy, cy2, layout, oldNumCities, newNumCities) {
       cy.remove( nodeToRemove );
       nodeToRemoveCy2 = cy2.$('#' + (oldNumCities - n).toString());
       cy2.remove( nodeToRemoveCy2 );
+      setGraphOptions(cy2);
     }
   }
   cy.nodes().unlock();
