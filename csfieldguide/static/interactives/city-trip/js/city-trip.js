@@ -82,6 +82,8 @@ $(document).ready(function() {
   setGraphOptions(cy2);
 
   var initialPathDistance = pathDistance(cy.edges());
+  $('#trial-route').html(cities.toString());
+  $('#trial-distance').html(initialPathDistance);
   $('#best-route-so-far').html(cities.toString());
   $('#best-route-distance').html(initialPathDistance);
 
@@ -92,6 +94,8 @@ $(document).ready(function() {
     numberOfCities = newNumberOfCities;
     output.html(numberOfCities);
     initialPathDistance = pathDistance(cy.edges());
+    $('#trial-route').html(cities.toString());
+    $('#trial-distance').html(initialPathDistance);
     $('#best-route-so-far').html(cities.toString());
     $('#best-route-distance').html(initialPathDistance);
   });
@@ -105,6 +109,10 @@ $(document).ready(function() {
     refreshLayout(cy, layout);
     cy2.add(cy.elements().clone());
     setGraphOptions(cy2);
+    initialPathDistance = pathDistance(cy.edges());
+    $('#trial-route').html(cities.toString());
+    $('#trial-distance').html(initialPathDistance);
+    $('#best-route-distance').html(initialPathDistance);
   });
 });
 
