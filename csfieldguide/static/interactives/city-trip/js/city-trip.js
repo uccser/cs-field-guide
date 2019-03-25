@@ -37,7 +37,7 @@ $(document).ready(function() {
         selector: 'edge',
         style: {
           'width': 3,
-          'line-color': '#99cc99' //'#99ccff'
+          'line-color': '#99ccff'
         }
       },
     ],
@@ -57,41 +57,29 @@ $(document).ready(function() {
   var gContainer = $('#cy');
   cy.mount(gContainer);
 
-  // var cy2 = cytoscape({
-  //   container: $('#cy2'),
-  //   style: [
-  //     {
-  //       selector: 'node',
-  //       style: {
-  //         'background-color': '#28a745',
-  //         'label': 'data(id)'
-  //       }
-  //     },
+  var cy2 = cytoscape({
+    container: $('#cy2'),
+    style: [
+      {
+        selector: 'node',
+        style: {
+          'background-color': '#28a745',
+          'label': 'data(id)'
+        }
+      },
     
-  //     {
-  //       selector: 'edge',
-  //       style: {
-  //         'line-color': '#99cc99'
-  //       }
-  //     }
-  //   ]
-  // });
-  // cy2.mount($('#cy2'));
-  // cy2.add(cy.elements().clone());
-  cy.fit();
-  // cy2.fit();
-  cy.userPanningEnabled(false);
-  // cy2.userPanningEnabled(false);
-
-  cy.automove({
-    nodesMatching: cy.nodes(),
-    reposition: 'viewport'
+      {
+        selector: 'edge',
+        style: {
+          'line-color': '#99cc99'
+        }
+      }
+    ]
   });
-
-  // cy2.automove({
-  //   nodesMatching: cy.nodes(),
-  //   reposition: 'viewport'
-  // });
+  cy2.mount($('#cy2'));
+  cy2.add(cy.elements().clone());
+  setGraphOptions(cy);
+  setGraphOptions(cy2);
 
   var initialPathDistance = pathDistance(cy.edges());
   $('#best-route-so-far').html(cities.toString());
@@ -100,7 +88,7 @@ $(document).ready(function() {
   slider.on('input', function() {
     newNumberOfCities = Number(slider.val());
     cities = Array.from(Array(newNumberOfCities), (x, index) => index + 1);
-    addOrRemoveNodes(cy, layout, numberOfCities, newNumberOfCities);
+    addOrRemoveNodes(cy, cy2, layout, numberOfCities, newNumberOfCities);
     numberOfCities = newNumberOfCities;
     output.html(numberOfCities);
     initialPathDistance = pathDistance(cy.edges());
@@ -109,13 +97,26 @@ $(document).ready(function() {
   });
 
   $('#start').click(function() {
-    permutationsWithoutInverse(cy, cities, initialPathDistance);
+    permutationsWithoutInverse(cy, cy2, cities, initialPathDistance);
   });
 
   $('#generate-map').click(function () {
+    cy2.remove(cy2.elements());
     refreshLayout(cy, layout);
+    cy2.add(cy.elements().clone());
+    setGraphOptions(cy2);
   });
 });
+
+
+function setGraphOptions(cyGraph) {
+  cyGraph.fit();
+  cyGraph.userPanningEnabled(false);
+  cyGraph.automove({
+    nodesMatching: cyGraph.nodes(),
+    reposition: 'viewport'
+  });
+}
 
 
 function generateNodesAndEdgesData(nodes) {
@@ -143,7 +144,7 @@ function generateNodesAndEdgesData(nodes) {
 
 
 // Adds or removes nodes when user alters number of nodes via slider input
-function addOrRemoveNodes(cy, layout, oldNumCities, newNumCities) {
+function addOrRemoveNodes(cy, cy2, layout, oldNumCities, newNumCities) {
   cy.nodes().lock();
   var difference = Math.abs(newNumCities - oldNumCities);
   if (oldNumCities < newNumCities) {
@@ -151,12 +152,14 @@ function addOrRemoveNodes(cy, layout, oldNumCities, newNumCities) {
     for (var n = 1; n < difference + 1; n++) {
       currentNodeID = (oldNumCities + n).toString();
       newNode = {
-        data: { id: currentNodeID }
+        data: { id: currentNodeID },
+        classes: 'nodesToAdd'
       };
       cy.add(newNode);
       edgeID = 'e' + previousNodeID + currentNodeID;
       newEdge = {
-        data: { id: edgeID, source: previousNodeID, target: currentNodeID }
+        data: { id: edgeID, source: previousNodeID, target: currentNodeID },
+        classes: 'edgesToAdd'
       };
       cy.add(newEdge);
       refreshLayout(cy, layout);
@@ -164,11 +167,16 @@ function addOrRemoveNodes(cy, layout, oldNumCities, newNumCities) {
       previousNodeID = currentNodeID;
       cy.nodes().lock();
     }
+    cy2.add(cy.$('.nodesToAdd').clone());
+    cy2.add(cy.$('.edgesToAdd').clone());
+    setGraphOptions(cy2);
   } else if (oldNumCities > newNumCities) {
     cy.nodes().unlock();
     for (var n = 0; n < difference; n++) {
       nodeToRemove = cy.$('#' + (oldNumCities - n).toString());
       cy.remove( nodeToRemove );
+      nodeToRemoveCy2 = cy2.$('#' + (oldNumCities - n).toString());
+      cy2.remove( nodeToRemoveCy2 );
     }
   }
   cy.nodes().unlock();
@@ -189,40 +197,50 @@ function refreshLayout(cy, layout) {
 // Draw the new path and calculate it's distance
 // Updates frontend text if new best route found
 // Returns distance of the new path and if it is the best route so far or not
-function testNewPath(cy, oldPath, newPath, bestRouteDistance) {
+function testNewPath(cy, cy2, oldPath, newPath, bestRouteDistance) {
   $('#trial-route').html(newPath.toString());
   // Number of nodes (cities) remains the same between paths
   var numCities = oldPath.length;
-  var oldEdgeConfig = new Set();
   var newEdgeConfig = new Set();
-  for (var i = 0; i < numCities - 1; i++) {
-    var edgeID = cy.elements('edge')[i].data('id');
-    // Edge IDs are saved like 'e12' so strip 'e'
-    var edgeIDStr = edgeID.substring(1);
-    oldEdgeConfig.add(edgeIDStr);
-  }
-
   for (var j = 0; j < numCities - 1; j++) {
     var newEdgeID = newPath[j].toString() + newPath[j+1].toString();
     newEdgeConfig.add(newEdgeID);
   }
 
-  var edgesToRemove = setDifference(oldEdgeConfig, newEdgeConfig);
-  var edgesToAdd = setDifference(newEdgeConfig, oldEdgeConfig);
-  var edgesToKeep = setDifference(oldEdgeConfig, edgesToRemove);
-  // Draw the next path
-  changePaths(cy, edgesToKeep, edgesToAdd);
+  findEdgeDifferences(cy, oldPath, newEdgeConfig, numCities);
 
   var totalDistance = pathDistance(cy.edges());
   $('#trial-distance').html(totalDistance);
   // Check if we have found a new best route
   if (totalDistance < bestRouteDistance) {
+    previousBestRoute = $('#best-route-so-far').html().split(',');
+    findEdgeDifferences(cy2, previousBestRoute, newEdgeConfig);
     $('#best-route-so-far').html(newPath.toString());
     $('#best-route-distance').html(totalDistance);
     return {distance: totalDistance, isBestRoute: true};
   } else {
     return {distance: totalDistance, isBestRoute: false};
   }
+}
+
+
+// Finds the edge differences between two paths and draws the new path by calling changePaths
+function findEdgeDifferences(cyGraph, oldPath, newEdgeConfig, numCities) {
+  // Number of nodes (cities) remains the same between paths;
+  var oldEdgeConfig = new Set();
+  for (var i = 0; i < numCities - 1; i++) {
+    var edgeID = cyGraph.elements('edge')[i].data('id');
+    // Edge IDs are saved like 'e12' so strip 'e'
+    var edgeIDStr = edgeID.substring(1);
+    oldEdgeConfig.add(edgeIDStr);
+  }
+
+  var edgesToRemove = setDifference(oldEdgeConfig, newEdgeConfig);
+  var edgesToAdd = setDifference(newEdgeConfig, oldEdgeConfig);
+  var edgesToKeep = setDifference(oldEdgeConfig, edgesToRemove);
+
+  // Draw the next path
+  changePaths(cyGraph, edgesToKeep, edgesToAdd);
 }
 
 
@@ -258,7 +276,7 @@ function setDifference(a, b) {
 
 // Calculates permutations without inverse permutations
 // E.g if [1,2,3] exists in the array then [3,2,1] will not be added (they are essentially the same path)
-async function permutationsWithoutInverse(cy, cities, bestRouteDistance) {
+async function permutationsWithoutInverse(cy, cy2, cities, bestRouteDistance) {
   var len = cities.length;
   var paths = [...itertools.permutations(cities)];
   var pathsWithoutInverse = [];
@@ -270,7 +288,7 @@ async function permutationsWithoutInverse(cy, cities, bestRouteDistance) {
     if (path[0] <= path[len-1]) {
       pathsWithoutInverse.push(path);
       // Draw graph here
-      pathData = testNewPath(cy, previousPath, path, bestRouteDistance); 
+      pathData = testNewPath(cy, cy2, previousPath, path, bestRouteDistance); 
       await sleep(200);
       if (pathData.isBestRoute) {
         bestRouteDistance = pathData.distance;
