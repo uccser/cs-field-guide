@@ -1,7 +1,7 @@
-function Level(game, levelNumber){
+function Level(levelNumber){
 
 	//Defaults
-	this.numberOfPackets = 10;
+	this.message = "LONDON";
 	
 	//Packet abilities - ALL n packets will have the same abilities. 
 	this.packetsHaveShields = false; 
@@ -17,12 +17,11 @@ function Level(game, levelNumber){
 	this.zaps = 1;
 	this.confuses = 1;
 
-	this.game = game;
 	this.levelNumber = levelNumber;
 
 	// Setters - Additional checks can be added. 
-	this.setNumberOfPackets = function(numberOfPackets){
-		this.numberOfPackets = numberOfPackets;
+	this.setMsg = function(text){
+		this.message = text;
 		return this; //Setters return this, so the settings can be chained.
 	}
 
