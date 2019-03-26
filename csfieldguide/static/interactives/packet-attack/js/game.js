@@ -14,46 +14,43 @@ class GameScene extends Phaser.Scene {
     preload() {
         console.log('Loading base images...');
         this.load.image('bg', base + 'interactives/packet-attack/assets/background.png');
-        this.load.image('stun', base + 'interactives/packet-attack/assets/leftButton.png');
-        this.load.image('zap', base + 'interactives/packet-attack/assets/middleButton.png');
-        this.load.image('confuse', base + 'interactives/packet-attack/assets/rightButton.png');
 
         this.load.spritesheet('packet', base + 'interactives/packet-attack/assets/bluePacketSprites.png', { frameWidth: 100, frameHeight: 100, endFrame: 8 });
         this.load.spritesheet('ack', base + 'interactives/packet-attack/assets/greenPacketSprites.png', { frameWidth: 100, frameHeight: 100, endFrame: 8 });
         this.load.spritesheet('nack', base + 'interactives/packet-attack/assets/redPacketSprites.png', { frameWidth: 100, frameHeight: 100, endFrame: 8 });
         this.load.spritesheet('shield', base + 'interactives/packet-attack/assets/shieldedBluePacketSprites.png', { frameWidth: 100, frameHeight: 100, endFrame: 8 });
-
-        this.load.image('pipes', base + 'interactives/packet-attack/assets/pipes.png');
-        this.load.image('pause', base + 'interactives/packet-attack/assets/leftGreenButton.png');
-        this.load.image('play', base + 'interactives/packet-attack/assets/rightGreenButton.png');
         console.log('Done');
     }
 
     create() {
         console.log('Adding base images...');
         this.add.image(400, 300, 'bg');
-
-		var stun = this.add.image(215, 520, 'stun').setInteractive();
-		var zap = this.add.image(400, 520, 'zap').setInteractive();
-		var confuse = this.add.image(590, 520, 'confuse').setInteractive();
-        var pause = this.add.image(600, 450, 'pause').setInteractive();
-
-        this.add.image(400, 300, 'pipes');
+        
         console.log('Done');
+    }
+
+    recreate() {
+
+    }
+
+    registryUpdate(parent, key, data) {
+        console.log('registry changed');
+        if (this.handlers[key]) {
+            this.handlers[key](this, data);
+        }
     }
 
     /**
      * Resets the game with the given level
      */
     setLevel(levelNumber) {
-        this.clear();
         this.levelNum = levelNumber;
         this.level = CONFIG.LEVELS[this.levelNum];
-        this.create();
+        this.recreate();
     }
 
     /**
-     * Brings this and the UI to the front so, that it and not the info panel is rendered
+     * Brings this and the UI to the front, so that it and not the info panel is rendered
      */
     bringForward() {
         this.scene.bringToTop();
@@ -76,6 +73,13 @@ class GameScene extends Phaser.Scene {
     clear() {
         
     }
+
+    /**
+     * Play the game
+     */
+    play() {
+
+    }
 }
 
 /**
@@ -90,18 +94,35 @@ class UIScene extends Phaser.Scene {
     init() {
         console.log('init');
         this.handlers = {
-            'level': this.setLevel
+            'level': this.setLevel,
         }
 
-        this.score = 0;
-        this.levelNum;
-        this.levelText;
-
         this.registry.events.on('changedata', this.registryUpdate, this);
+
+        this.paused = false;
+    }
+
+    preload() {
+        this.load.image('pause', base + 'interactives/packet-attack/assets/leftGreenButton.png');
+        this.load.image('play', base + 'interactives/packet-attack/assets/rightGreenButton.png');
+        this.load.image('stun', base + 'interactives/packet-attack/assets/leftButton.png');
+        this.load.image('zap', base + 'interactives/packet-attack/assets/middleButton.png');
+        this.load.image('confuse', base + 'interactives/packet-attack/assets/rightButton.png');
+
+        this.load.image('pipes', base + 'interactives/packet-attack/assets/pipes.png');
     }
 
     create() {
         console.log('creating UI');
+
+        this.playpause = this.add.sprite(600, 450, 'pause').setInteractive();
+        this.playpause.on('pointerdown', this.togglePause);
+
+		var stun = this.add.image(215, 520, 'stun').setInteractive();
+		var zap = this.add.image(400, 520, 'zap').setInteractive();
+        var confuse = this.add.image(590, 520, 'confuse').setInteractive();
+
+        this.pipes = this.add.image(400, 300, 'pipes');
 
         var config = {
             font: '40px Open Sans',
@@ -113,14 +134,13 @@ class UIScene extends Phaser.Scene {
 
         config.font = '25px';
         this.levelText = this.add.text(400, 50, '', config);
-        this.levelText.setOrigin(0.5, 0);  // Center the text
+        this.levelText.setOrigin(0.5, 0);
         this.sendText = this.add.text(20, 10, '', config);
         this.receivedText = this.add.text(780, 10, 'Received:', config);
-        this.receivedText.setOrigin(1, 0); // Align the text to the far right
+        this.receivedText.setOrigin(1, 0); // Position the text by its top right corner
 
 
 
-        //this.gameScene = this.scene.get('GameScene');
 
         this.registry.set('score', this.score);
     }
@@ -138,6 +158,20 @@ class UIScene extends Phaser.Scene {
         scene.levelMessage = CONFIG.LEVELS[level].message;
         scene.sendText.setText('Sending:\n' + scene.levelMessage);
         console.log('UI: set level to ' + level);
+    }
+
+    togglePause() {
+        if (this.scene.paused) {
+            this.scene.scene.resume('GameScene');
+            this.scene.playpause.setTexture('pause');
+            this.scene.paused = false;
+            console.log('resumed');
+        } else {
+            this.scene.scene.pause('GameScene');
+            this.scene.playpause.setTexture('play');
+            this.scene.paused = true;
+            console.log('paused');
+        }
     }
 }
 

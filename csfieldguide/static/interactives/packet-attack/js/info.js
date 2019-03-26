@@ -54,6 +54,7 @@ class Information extends Phaser.Scene {
             console.log('setting level to 1');
         } else {
             this.scene.sendBackward();
+            this.scene.gameScene.play();
         }
     }
 
@@ -108,7 +109,7 @@ class Information extends Phaser.Scene {
             text = "Welcome to Packet Attack. In this game, your job is to attack the packet creatures and stop messages being delivered. You pass a level if the received message is any different from the one sent. While a creature is in the danger zone (indicated by the yellow and grey area) you may attack by clicking the command buttons. Good luck!"
             break;
           case InfoPaneType.END:
-              text = "This level is actually impossible to beat.\nThe system can handle anything you throw at it!\nThank you for playing.\nTotal Score: " + this.game.score.toString();
+              text = "This level is actually impossible to beat.\nThe system can handle anything you throw at it!\nThank you for playing.\nTotal Score: " + this.registry.get('score');
               //this.button.visible = false;
               //this.game.score = 0; //Reset score.
               break;
