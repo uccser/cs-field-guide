@@ -5,6 +5,7 @@
 // TODO: Add distance scale to frontend
 // TODO: Show execution time
 // issue: nodes can lie on edges ( visual issue )
+// issue: green graph not staying within viewport when user drags blue nodes to edge
 
 const cytoscape = require('cytoscape');
 const noOverlap = require('cytoscape-no-overlap');
@@ -17,8 +18,7 @@ var stopPathFinding = false;
 
 $(document).ready(function() {
 
-  var status = $("#status");
-  updateStatus("Ready to go!", 'status-ready');
+  updateStatus("ready to go!", 'status-ready');
   var slider = $('#num-cities');
   var output = $("#slider-text");
   var numberOfCities = Number(slider.val());
@@ -102,13 +102,13 @@ $(document).ready(function() {
     output.html(numberOfCities);
     pathDistance = getPathDistance(cy.edges());
     updateRouteStats();
-    updateStatus("Ready to go!", 'status-ready');
+    updateStatus("ready to go!", 'status-ready');
   });
 
   $('#start').click(function() {
     cy.nodes().ungrabify();
     stopPathFinding = false;
-    updateStatus("Running", 'status-running');
+    updateStatus("running", 'status-running');
     permutationsWithoutInverse(cy, cy2, cities, pathDistance);
   });
 
@@ -116,7 +116,7 @@ $(document).ready(function() {
     cy.nodes().grabify();
     // quit execution of path finding
     stopPathFinding = true;
-    updateStatus("Stopped", 'status-stopped');
+    updateStatus("stopped", 'status-stopped');
   });
 
   // Generate a new graph layout and make sure the best route graph matches
@@ -129,7 +129,7 @@ $(document).ready(function() {
     cy2.nodes().ungrabify();
     pathDistance = getPathDistance(cy.edges());
     updateRouteStats();
-    updateStatus("Ready to go!", 'status-ready');
+    updateStatus("ready to go!", 'status-ready');
   });
 
   // Updates the trial route and best route info along with their corresponding distances
@@ -138,12 +138,6 @@ $(document).ready(function() {
     $('#trial-distance').html(pathDistance);
     $('#best-route-so-far').html(cities.toString());
     $('#best-route-distance').html(pathDistance);
-  };
-
-  function updateStatus(statusText, currentClass) {
-    status.html(statusText);
-    status.removeClass();
-    status.addClass(currentClass);
   };
 
   // Updates best route graph to match the initial graph when a user drags a node on the initial graph
@@ -156,6 +150,14 @@ $(document).ready(function() {
     updateRouteStats();
   });
 });
+
+
+function updateStatus(statusText, currentClass) {
+  var status = $("#status");
+  status.html(statusText);
+  status.removeClass();
+  status.addClass(currentClass);
+};
 
 
 function setGraphOptions(cyGraph) {
@@ -388,6 +390,7 @@ async function permutationsWithoutInverse(cy, cy2, cities, bestRouteDistance) {
       previousPath = path;
     }
   }
+  updateStatus("complete!", 'status-complete');
   cy.nodes().grabify();
 }
 

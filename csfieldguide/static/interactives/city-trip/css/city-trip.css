@@ -61,5 +61,9 @@
 }
 
 .status-running {
+  color: #ff7043;
+}
+
+.status-complete {
   color: #28a745;
 }
