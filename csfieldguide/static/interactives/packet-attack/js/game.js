@@ -7,11 +7,8 @@ var CONFIG = require('./config.js');
  */
 class GameScene extends Phaser.Scene {
 
-    constructor(config) {
+    constructor() {
         super({ key: 'GameScene'});
-        
-        this.levelNum = config.level;
-        this.level = CONFIG.LEVELS[this.levelNum];
     }
 
     preload() {
@@ -60,8 +57,7 @@ class GameScene extends Phaser.Scene {
      */
     bringForward() {
         this.scene.bringToTop();
-        let ui = this.scene.get('UIScene');
-        ui.bringForward();
+        this.scene.bringToTop('UIScene');
     }
 
     /**
@@ -87,24 +83,42 @@ class GameScene extends Phaser.Scene {
  */
 class UIScene extends Phaser.Scene {
 
-    constructor(config) {
+    constructor() {
         super({ key: 'UIScene' });
+    }
 
-        this.levelNum = config.level;
-        this.level = CONFIG.LEVELS[this.levelNum];
+    init() {
+        console.log('init');
+        this.handlers = {
+            'level': this.setLevel
+        }
 
         this.score = 0;
+        this.levelNum;
+        this.levelText;
+
+        this.registry.events.on('changedata', this.registryUpdate, this);
     }
 
     create() {
-        this.add.text(10, 10, 'Score: 0', { font: '48px Arial', fill: '#000000' })
-        this.gameScene = this.scene.get('GameScene');
+        console.log('creating UI');
+        this.levelText = this.add.text(10, 10, 'Level: ', { font: '48px Arial', fill: '#000000' })
+        //this.gameScene = this.scene.get('GameScene');
 
         this.registry.set('score', this.score);
     }
 
-    bringForward() {
-        this.scene.bringToTop();
+    registryUpdate(parent, key, data) {
+        console.log('registry changed');
+        if (this.handlers[key]) {
+            this.handlers[key](this, data);
+        }
+    }
+
+    setLevel(scene, level) {
+        scene.levelNum = level;
+        scene.levelText.setText('Level: ' + scene.levelNum);
+        console.log('UI: set level to ' + level);
     }
 }
 
