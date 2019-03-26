@@ -31,7 +31,9 @@ $(document).ready(function() {
         selector: 'node',
         style: {
           'background-color': '#007bff',
-          'label': 'data(id)'
+          'label': 'data(id)',
+          'text-valign': 'center',
+          'color': '#fff'
         }
       },
 
@@ -65,7 +67,9 @@ $(document).ready(function() {
         selector: 'node',
         style: {
           'background-color': '#28a745',
-          'label': 'data(id)'
+          'label': 'data(id)',
+          'text-valign': 'center',
+          'color': '#fff'
         }
       },
     
