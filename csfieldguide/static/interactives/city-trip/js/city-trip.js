@@ -4,6 +4,7 @@
 // TODO: Add comments
 // TODO: Add distance scale to frontend
 // TODO: Show execution time
+// issue: nodes can lie on edges ( visual issue )
 
 const cytoscape = require('cytoscape');
 const noOverlap = require('cytoscape-no-overlap');
@@ -18,6 +19,7 @@ $(document).ready(function() {
 
   var slider = $('#num-cities');
   var output = $("#slider-text");
+  var status = $("#status");
   var numberOfCities = Number(slider.val());
   var cities = Array.from(Array(numberOfCities), (x, index) => index + 1);
   var elementsData = generateNodesAndEdgesData(cities);
@@ -99,11 +101,13 @@ $(document).ready(function() {
     output.html(numberOfCities);
     pathDistance = getPathDistance(cy.edges());
     updateRouteStats();
+    status.html("Ready to go!");
   });
 
   $('#start').click(function() {
     cy.nodes().ungrabify();
     stopPathFinding = false;
+    status.html("Running");
     permutationsWithoutInverse(cy, cy2, cities, pathDistance);
   });
 
@@ -111,6 +115,7 @@ $(document).ready(function() {
     cy.nodes().grabify();
     // quit execution of path finding
     stopPathFinding = true;
+    status.html("Stopped");
   });
 
   // Generate a new graph layout and make sure the best route graph matches
@@ -123,6 +128,7 @@ $(document).ready(function() {
     cy2.nodes().ungrabify();
     pathDistance = getPathDistance(cy.edges());
     updateRouteStats();
+    status.html("Ready to go!");
   });
 
   // Updates the trial route and best route info along with their corresponding distances
