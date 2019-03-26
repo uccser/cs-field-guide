@@ -5,7 +5,6 @@
 // TODO: Add distance scale to frontend
 // TODO: Show execution time
 // issue: nodes can lie on edges ( visual issue )
-// issue: green graph not staying within viewport when user drags blue nodes to edge
 
 const cytoscape = require('cytoscape');
 const noOverlap = require('cytoscape-no-overlap');
