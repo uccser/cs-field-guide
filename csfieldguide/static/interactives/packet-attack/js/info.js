@@ -70,9 +70,8 @@ class Information extends Phaser.Scene {
      * Sets the info screen to display the given pane type
      */
     setPaneType(pane) {
-        this.removeText();
         this.paneType = pane;
-        this.createText();
+        this.updateText();
     }
 
     /**
@@ -104,7 +103,7 @@ class Information extends Phaser.Scene {
                                                                              + (this.level.packetsHaveNumbers ? "The creatures have numbers \n" : "")
                                                                              + (this.level.acksNacksEnabled ? "The right pipe sends creatures back with results, green is good, red is bad\n" : "")
                                                                              + (this.level.timeoutsEnabled ? "Resending of unconfirmed creatures \n" : "")
-                                                                             + (this.level.levelNumber == 1 ? "There are no defenses, have fun!" : "");
+                                                                             + (this.level.levelNumber == 1 ? "There are no defenses!" : "");
             break;
           case InfoPaneType.START:
             text = "Welcome to Packet Attack. In this game, your job is to attack the packet creatures and stop messages being delivered. You pass a level if the received message is any different from the one sent. When a creature enters the danger zone (indicated by the yellow and grey area) you may attack by clicking the command buttons. Good luck!"
@@ -119,11 +118,10 @@ class Information extends Phaser.Scene {
     }
 
     /**
-     * TODO
-     * Removes all text from the Scene
+     * Updates the description text as required
      */
-    removeText() {
-
+    updateText() {
+        this.information.setText(this.generateFeedback());
     }
 
     createText() {
@@ -145,8 +143,8 @@ class Information extends Phaser.Scene {
         var subTitleText = this.add.text(400, 50, "Information", config);
         subTitleText.setOrigin(0.5, 0);
   
-        var information = this.add.text(400, 100, this.generateFeedback(), config);
-        information.setOrigin(0.5, 0);
+        this.information = this.add.text(400, 100, this.generateFeedback(), config);
+        this.information.setOrigin(0.5, 0);
     }
 }
 
