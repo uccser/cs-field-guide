@@ -8,15 +8,13 @@ var LEVELS = [
     new LEVEL.Level(1)
                     .setMsg(SENDTEXT[0]),
     new LEVEL.Level(2)
-                    .setMsg(SENDTEXT), //Multiple Packets
+                    .setMsg(SENDTEXT), // Multiple Packets
     new LEVEL.Level(3)
                     .setMsg(SENDTEXT)
-                    .setPacketsHaveShields(true)
-                    .setConfuses(0), //Zap wont work since sheilds are enabled
+                    .setPacketsHaveShields(true), // Kill/Zap wont work since sheilds are enabled
     new LEVEL.Level(4)
                     .setMsg(SENDTEXT)
-                    .setPacketsHaveNumbers(true)
-                    .setConfuses(0), //Stunning wont work since packets are ordered
+                    .setPacketsHaveNumbers(true), // Delay/Stun wont work since packets are ordered
     new LEVEL.Level(5)
                     .setMsg(SENDTEXT)
                     .setPacketsHaveNumbers(true)

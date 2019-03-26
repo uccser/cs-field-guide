@@ -29,7 +29,7 @@ class GameScene extends Phaser.Scene {
         console.log('Done');
     }
 
-    recreate() {
+    recreate () {
 
     }
 
@@ -44,17 +44,8 @@ class GameScene extends Phaser.Scene {
      * Resets the game with the given level
      */
     setLevel(levelNumber) {
-        this.levelNum = levelNumber;
-        this.level = CONFIG.LEVELS[this.levelNum];
+        this.level = CONFIG.LEVELS[levelNumber];
         this.recreate();
-    }
-
-    /**
-     * Brings this and the UI to the front, so that it and not the info panel is rendered
-     */
-    bringForward() {
-        this.scene.bringToTop();
-        this.scene.bringToTop('UIScene');
     }
 
     /**
@@ -108,21 +99,20 @@ class UIScene extends Phaser.Scene {
         this.load.image('stun', base + 'interactives/packet-attack/assets/leftButton.png');
         this.load.image('zap', base + 'interactives/packet-attack/assets/middleButton.png');
         this.load.image('confuse', base + 'interactives/packet-attack/assets/rightButton.png');
-
         this.load.image('pipes', base + 'interactives/packet-attack/assets/pipes.png');
     }
 
     create() {
         console.log('creating UI');
 
-        this.playpause = this.add.sprite(600, 450, 'pause').setInteractive();
+        this.playpause = this.add.sprite(600, 450, 'pause').setInteractive({ useHandCursor: true });
         this.playpause.on('pointerdown', this.togglePause);
 
-		var stun = this.add.image(215, 520, 'stun').setInteractive();
-		var zap = this.add.image(400, 520, 'zap').setInteractive();
-        var confuse = this.add.image(590, 520, 'confuse').setInteractive();
+		var stun = this.add.image(215, 520, 'stun').setInteractive({ useHandCursor: true });
+		var zap = this.add.image(400, 520, 'zap').setInteractive({ useHandCursor: true });
+        var confuse = this.add.image(590, 520, 'confuse').setInteractive({ useHandCursor: true });
 
-        this.pipes = this.add.image(400, 300, 'pipes');
+        this.pipes = this.add.image(400, 300, 'pipes'); // Image needed above the packets
 
         var config = {
             font: '40px Open Sans',

@@ -37,7 +37,7 @@ class Information extends Phaser.Scene {
         this.gameScene = this.scene.get('GameScene');
 
         this.add.image(400, 300, 'blurred-bg');
-        this.button = this.add.image(400, 500, 'startButton').setInteractive();
+        this.button = this.add.image(400, 500, 'startButton').setInteractive({ useHandCursor: true });
         this.createText();
 
         this.button.on('pointerdown', this.startLevel);
@@ -106,7 +106,7 @@ class Information extends Phaser.Scene {
                     + (this.level.levelNumber == 1 ? "There are no defenses!" : "");
             break;
           case InfoPaneType.START:
-            text = "Welcome to Packet Attack. In this game, your job is to attack the packet creatures and stop messages being delivered. You pass a level if the received message is any different from the one sent. While a creature is in the danger zone (indicated by the yellow and grey area) you may attack by clicking the command buttons. Good luck!"
+            text = "Welcome to Packet Attack. In this game, your job is to attack the packet creatures and stop messages being delivered.\nYou pass a level if the received message is any different from the one sent.\nWhile a creature is in the danger zone (indicated by the yellow and grey area) you may attack by clicking the command buttons.\nGood luck!"
             break;
           case InfoPaneType.END:
               text = "This level is actually impossible to beat.\nThe system can handle anything you throw at it!\nThank you for playing.\nTotal Score: " + this.registry.get('score');
