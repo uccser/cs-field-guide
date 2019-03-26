@@ -17,9 +17,10 @@ var stopPathFinding = false;
 
 $(document).ready(function() {
 
+  var status = $("#status");
+  updateStatus("Ready to go!", 'status-ready');
   var slider = $('#num-cities');
   var output = $("#slider-text");
-  var status = $("#status");
   var numberOfCities = Number(slider.val());
   var cities = Array.from(Array(numberOfCities), (x, index) => index + 1);
   var elementsData = generateNodesAndEdgesData(cities);
@@ -101,13 +102,13 @@ $(document).ready(function() {
     output.html(numberOfCities);
     pathDistance = getPathDistance(cy.edges());
     updateRouteStats();
-    status.html("Ready to go!");
+    updateStatus("Ready to go!", 'status-ready');
   });
 
   $('#start').click(function() {
     cy.nodes().ungrabify();
     stopPathFinding = false;
-    status.html("Running");
+    updateStatus("Running", 'status-running');
     permutationsWithoutInverse(cy, cy2, cities, pathDistance);
   });
 
@@ -115,7 +116,7 @@ $(document).ready(function() {
     cy.nodes().grabify();
     // quit execution of path finding
     stopPathFinding = true;
-    status.html("Stopped");
+    updateStatus("Stopped", 'status-stopped');
   });
 
   // Generate a new graph layout and make sure the best route graph matches
@@ -128,7 +129,7 @@ $(document).ready(function() {
     cy2.nodes().ungrabify();
     pathDistance = getPathDistance(cy.edges());
     updateRouteStats();
-    status.html("Ready to go!");
+    updateStatus("Ready to go!", 'status-ready');
   });
 
   // Updates the trial route and best route info along with their corresponding distances
@@ -139,6 +140,12 @@ $(document).ready(function() {
     $('#best-route-distance').html(pathDistance);
   };
 
+  function updateStatus(statusText, currentClass) {
+    status.html(statusText);
+    status.removeClass();
+    status.addClass(currentClass);
+  };
+
   // Updates best route graph to match the initial graph when a user drags a node on the initial graph
   // Might need to look at how to improve this instead of wiping and cloning a new graph...
   cy.on('dragfreeon', 'nodes', function(evt) {
@@ -147,7 +154,7 @@ $(document).ready(function() {
     cy2.nodes().ungrabify();
     pathDistance = getPathDistance(cy.edges());
     updateRouteStats();
-  })
+  });
 });
 
 

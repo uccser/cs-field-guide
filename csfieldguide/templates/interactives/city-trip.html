@@ -23,10 +23,13 @@
     </div>
 
     <div class="row mb-2">
-      <div class="col-sm-12 col-lg-8">
+      <div class="col-sm-12 col-lg-3">
         <button id="generate-map" class="btn btn-primary btn-sm">{% trans "Generate map" %}</button>
         <button id="start" class="btn btn-success btn-sm">{% trans "Start" %}</button>
         <button id="stop" class="btn btn-danger btn-sm">{% trans "Stop" %}</button>
+      </div>
+      <div class="col-sm-12 col-lg-4 mt-1">
+        <p>{% trans "Status: <span id='status'>Ready to go!</span>" %}</p>
       </div>
     </div>
 
@@ -62,11 +65,11 @@
       </div>
     </div>
 
-    <div class="row">
+    <!-- <div class="row">
       <div class="col-sm-12 col-lg-8">
         <p>{% trans "Status: <span id='status'>Ready to go!</span>" %}</p>
       </div>
-    </div>
+    </div> -->
   </div>
 
 {% endblock html %}

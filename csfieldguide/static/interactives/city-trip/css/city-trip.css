@@ -52,3 +52,14 @@
   display: block;
 }
 
+.status-ready {
+  color: #007bff;
+}
+
+.status-stopped {
+  color: #dc3545;
+}
+
+.status-running {
+  color: #28a745;
+}
