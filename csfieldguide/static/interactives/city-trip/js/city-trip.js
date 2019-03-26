@@ -2,6 +2,8 @@
 // TODO: Some nodes are still half overlapping
 // TODO: Rename all of the stupid variables I impulsively named
 // TODO: Add comments
+// TODO: Add distance scale to frontend
+// TODO: Show execution time
 
 const cytoscape = require('cytoscape');
 const noOverlap = require('cytoscape-no-overlap');
@@ -53,9 +55,8 @@ $(document).ready(function() {
   });
 
   cy.nodes().noOverlap({ padding: 5 });
-
-  var gContainer = $('#cy');
-  cy.mount(gContainer);
+  setGraphOptions(cy);
+  cy.mount($('#cy'));
 
   var cy2 = cytoscape({
     container: $('#cy2'),
@@ -78,11 +79,10 @@ $(document).ready(function() {
   });
   cy2.mount($('#cy2'));
   cy2.add(cy.elements().clone());
-  setGraphOptions(cy);
   setGraphOptions(cy2);
   cy2.nodes().ungrabify();
 
-  var initialPathDistance = pathDistance(cy.edges());
+  var pathDistance = getPathDistance(cy.edges());
   updateRouteStats();
 
   slider.on('input', function() {
@@ -93,14 +93,14 @@ $(document).ready(function() {
     setGraphOptions(cy); // potentially improve?
     numberOfCities = newNumberOfCities;
     output.html(numberOfCities);
-    initialPathDistance = pathDistance(cy.edges());
+    pathDistance = getPathDistance(cy.edges());
     updateRouteStats();
   });
 
   $('#start').click(function() {
     cy.nodes().ungrabify();
     stopPathFinding = false;
-    permutationsWithoutInverse(cy, cy2, cities, initialPathDistance);
+    permutationsWithoutInverse(cy, cy2, cities, pathDistance);
   });
 
   $('#stop').click(function() {
@@ -117,16 +117,16 @@ $(document).ready(function() {
     cy2.add(cy.elements().clone());
     setGraphOptions(cy2);
     cy2.nodes().ungrabify();
-    initialPathDistance = pathDistance(cy.edges());
+    pathDistance = getPathDistance(cy.edges());
     updateRouteStats();
   });
 
   // Updates the trial route and best route info along with their corresponding distances
   function updateRouteStats() {
     $('#trial-route').html(cities.toString());
-    $('#trial-distance').html(initialPathDistance);
+    $('#trial-distance').html(pathDistance);
     $('#best-route-so-far').html(cities.toString());
-    $('#best-route-distance').html(initialPathDistance);
+    $('#best-route-distance').html(pathDistance);
   };
 
   // Updates best route graph to match the initial graph when a user drags a node on the initial graph
@@ -135,7 +135,7 @@ $(document).ready(function() {
     cy2.remove(cy2.elements());
     cy2.add(cy.elements().clone());
     cy2.nodes().ungrabify();
-    initialPathDistance = pathDistance(cy.edges());
+    pathDistance = getPathDistance(cy.edges());
     updateRouteStats();
   })
 });
@@ -182,30 +182,11 @@ function addOrRemoveNodes(cy, cy2, layout, oldNumCities, newNumCities) {
   var difference = Math.abs(newNumCities - oldNumCities);
   if (oldNumCities < newNumCities) {
     // Add nodes
-    var previousNodeID = oldNumCities.toString();
-    for (var n = 1; n < difference + 1; n++) {
-      // Create node
-      currentNodeID = (oldNumCities + n).toString();
-      newNode = {
-        data: { id: currentNodeID },
-        classes: 'nodesToAdd'
-      };
-      cy.add(newNode);
-
-      // Create edge
-      edgeID = 'e' + previousNodeID + currentNodeID;
-      newEdge = {
-        data: { id: edgeID, source: previousNodeID, target: currentNodeID },
-        classes: 'edgesToAdd'
-      };
-      cy.add(newEdge);
-
-      // Make sure layout is still random and nodes can't overlap when dragged
-      refreshLayout(cy, layout);
-      cy.nodes().noOverlap({ padding: 5 });
-      previousNodeID = currentNodeID;
-      cy.nodes().lock();
-    }
+    addNodes(cy, oldNumCities, difference);
+    // Make sure layout is still random and nodes can't overlap when dragged
+    refreshLayout(cy, layout);
+    previousNodeID = currentNodeID;
+    cy.nodes().lock();
     // Update best route graph to match
     cy2.add(cy.$('.nodesToAdd').clone());
     cy2.add(cy.$('.edgesToAdd').clone());
@@ -216,28 +197,60 @@ function addOrRemoveNodes(cy, cy2, layout, oldNumCities, newNumCities) {
     cy.nodes().unlock();
     for (var n = 0; n < difference; n++) {
       // Remove nodes and update best route graph to match
-
-      if (stopPathFinding) {
-        // if removing nodes after clicking 'stop' have to reset graph because some edges between nodes don't exist.
-        // (will be part way through path finding)
-        cy.remove(cy.elements());
-        var cities = Array.from(Array(newNumCities), (x, index) => index + 1);
-        cy.add(generateNodesAndEdgesData(cities));
-        refreshLayout(cy, layout);
-        cy.nodes().noOverlap({ padding: 5 });
-        cy2.remove(cy2.elements());
-        cy2.add(cy.elements().clone());
-        cy2.nodes().ungrabify();
-      } else {
-        nodeToRemove = cy.$('#' + (oldNumCities - n).toString());
-        cy.remove( nodeToRemove );
-        nodeToRemoveCy2 = cy2.$('#' + (oldNumCities - n).toString());
-        cy2.remove( nodeToRemoveCy2 );
-      }
+      removeNodes(cy, cy2, layout, newNumCities, oldNumCities, n);
       setGraphOptions(cy2);
     }
   }
   cy.nodes().unlock();
+}
+
+
+function addNodes(cy, oldNumCities, difference) {
+  var previousNodeID = oldNumCities.toString();
+  for (var n = 1; n < difference + 1; n++) {
+    // Create node
+    currentNodeID = (oldNumCities + n).toString();
+    newNode = {
+      data: { id: currentNodeID },
+      classes: 'nodesToAdd'
+    };
+    cy.add(newNode);
+
+    // Create edge
+    edgeID = 'e' + previousNodeID + currentNodeID;
+    newEdge = {
+      data: { id: edgeID, source: previousNodeID, target: currentNodeID },
+      classes: 'edgesToAdd'
+    };
+    cy.add(newEdge);
+  }
+}
+
+
+function removeNodes(cy, cy2, layout, newNumCities, oldNumCities, n) {
+  if (stopPathFinding) {
+    // If removing nodes after clicking 'stop' have to reset graph because some edges between nodes don't exist.
+    // (will be part way through path finding)
+    cy.remove(cy.elements());
+    // Create blue graph
+    var cities = Array.from(Array(newNumCities), (x, index) => index + 1);
+    cy.add(generateNodesAndEdgesData(cities));
+    refreshLayout(cy, layout);
+    // Copy blue graph to over to best route graph
+    cy2.remove(cy2.elements());
+    cy2.add(cy.elements().clone());
+    cy2.nodes().ungrabify();
+    // Only need to redraw entire graph on first removal of node after clicking 'stop'
+    stopPathFinding = false;
+  } else {
+    // Here we know that path finding has not begun, so we know upon removing nodes that the right edges exist.
+    // Can simply remove the last node one by one
+    nodeToRemove = cy.$('#' + (oldNumCities - n).toString());
+    cy.remove( nodeToRemove );
+    // Update best route graph to match
+    nodeToRemoveCy2 = cy2.$('#' + (oldNumCities - n).toString());
+    cy2.remove( nodeToRemoveCy2 );
+  }
 }
 
 
@@ -249,6 +262,7 @@ function refreshLayout(cy, layout) {
     avoidOverlap: true
   });
   layout.run();
+  cy.nodes().noOverlap({ padding: 5 });
 }
 
 
@@ -267,7 +281,7 @@ function testNewPath(cy, cy2, oldPath, newPath, bestRouteDistance) {
 
   findEdgeDifferences(cy, oldPath, newEdgeConfig, numCities);
 
-  var totalDistance = pathDistance(cy.edges());
+  var totalDistance = getPathDistance(cy.edges());
   $('#trial-distance').html(totalDistance);
   // Check if we have found a new best route
   if (totalDistance < bestRouteDistance) {
@@ -374,7 +388,7 @@ function distanceBetweenCities(edgeStartPos, edgeEndPos) {
 
 
 // Gets total distance of the path
-function pathDistance(edges) {
+function getPathDistance(edges) {
   var distance = 0;
   for (var i = 0; i < edges.length; i++) {
     var edge = edges[i];
