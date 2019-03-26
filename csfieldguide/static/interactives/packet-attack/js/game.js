@@ -102,7 +102,24 @@ class UIScene extends Phaser.Scene {
 
     create() {
         console.log('creating UI');
-        this.levelText = this.add.text(10, 10, 'Level: ', { font: '48px Arial', fill: '#000000' })
+
+        var config = {
+            font: '40px Open Sans',
+            fill: '#000000',
+            align: 'center',
+        }
+        this.titleText = this.add.text(400, 0, "Packet Attack", config);
+        this.titleText.setOrigin(0.5, 0);
+
+        config.font = '25px';
+        this.levelText = this.add.text(400, 50, '', config);
+        this.levelText.setOrigin(0.5, 0);  // Center the text
+        this.sendText = this.add.text(20, 10, '', config);
+        this.receivedText = this.add.text(780, 10, 'Received:', config);
+        this.receivedText.setOrigin(1, 0); // Align the text to the far right
+
+
+
         //this.gameScene = this.scene.get('GameScene');
 
         this.registry.set('score', this.score);
@@ -118,6 +135,8 @@ class UIScene extends Phaser.Scene {
     setLevel(scene, level) {
         scene.levelNum = level;
         scene.levelText.setText('Level: ' + scene.levelNum);
+        scene.levelMessage = CONFIG.LEVELS[level].message;
+        scene.sendText.setText('Sending:\n' + scene.levelMessage);
         console.log('UI: set level to ' + level);
     }
 }

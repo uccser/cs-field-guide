@@ -22,10 +22,6 @@ var config = {
 
 $(document).ready(function() {
     var game = new Phaser.Game(config);
-    console.log('hello');
     game.scene.add('UIScene', uiScene, true);
-    console.log('hi');
-    console.log('hello');
     game.scene.add('Information', infoScene, true);
-    console.log('hi');
 });

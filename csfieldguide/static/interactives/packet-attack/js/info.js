@@ -40,13 +40,13 @@ class Information extends Phaser.Scene {
         this.button = this.add.image(400, 500, 'startButton').setInteractive();
         this.createText();
 
-        this.button.on('pointerdown', this.nextLevel);
+        this.button.on('pointerdown', this.startLevel);
     }
 
     /**
      * 
      */
-    nextLevel() {
+    startLevel() {
         if (this.scene.paneType == InfoPaneType.START) {
             this.scene.setLevel(1);
             this.scene.level = CONFIG.LEVELS[1];
@@ -59,8 +59,6 @@ class Information extends Phaser.Scene {
 
     /**
      * Sends the info panel to the back, so that the game and not it is rendered
-     * 
-     * The double .scene is required as it's called from a button click event
      */
     sendBackward() {
         this.scene.sendToBack();
@@ -87,29 +85,30 @@ class Information extends Phaser.Scene {
         var text = "";
         switch(this.paneType){
           case InfoPaneType.FAIL:
-            text = "Sorry! \n You let the message get through. \n Try again. \n         ";
+            text = "You let the message get through!\nTry again.\n         ";
             break;
           case InfoPaneType.PROCEED:
             if (this.urlmode) {
-              text = "Awesome! \n You stopped the messages being delivered. \n Click 'Start' to repeat this custom level!";
+              text = "Awesome!\nYou stopped the messages being delivered.\nClick 'Start' to repeat this custom level.";
             } else {
-              text = "Awesome! \n You stopped the messages being delivered. \n Click 'Start' to move to the next level!";
+              text = "Awesome!\nYou stopped the messages being delivered.\nClick 'Start' to move to the next level.";
             }
             break;
           case InfoPaneType.BEFORE_LEVEL:
-            text = "Welcome to Level " + this.level.levelNumber + "! \n" + "In this level:  \n"
-                                                                             + (this.level.numberOfPackets > 1 ? "The left pipe is using many creatures to communicate \n" : "")
-                                                                             + (this.level.packetsHaveShields ? "The creatures have shields \n" : "")
-                                                                             + (this.level.packetsHaveNumbers ? "The creatures have numbers \n" : "")
-                                                                             + (this.level.acksNacksEnabled ? "The right pipe sends creatures back with results, green is good, red is bad\n" : "")
-                                                                             + (this.level.timeoutsEnabled ? "Resending of unconfirmed creatures \n" : "")
-                                                                             + (this.level.levelNumber == 1 ? "There are no defenses!" : "");
+            text = "Welcome to Level " + this.level.levelNumber + "!\n"
+                    + "In this level:\n"
+                    + (this.level.numberOfPackets > 1 ? "The left pipe is using many creatures to communicate\n" : "")
+                    + (this.level.packetsHaveShields ? "The creatures have shields\n" : "")
+                    + (this.level.packetsHaveNumbers ? "The creatures have numbers\n" : "")
+                    + (this.level.acksNacksEnabled ? "The right pipe sends creatures back with results, green is good, red is bad\n" : "")
+                    + (this.level.timeoutsEnabled ? "If the left pipe doesn't get a response, it will resend a creature\n" : "")
+                    + (this.level.levelNumber == 1 ? "There are no defenses!" : "");
             break;
           case InfoPaneType.START:
-            text = "Welcome to Packet Attack. In this game, your job is to attack the packet creatures and stop messages being delivered. You pass a level if the received message is any different from the one sent. When a creature enters the danger zone (indicated by the yellow and grey area) you may attack by clicking the command buttons. Good luck!"
+            text = "Welcome to Packet Attack. In this game, your job is to attack the packet creatures and stop messages being delivered. You pass a level if the received message is any different from the one sent. While a creature is in the danger zone (indicated by the yellow and grey area) you may attack by clicking the command buttons. Good luck!"
             break;
           case InfoPaneType.END:
-              text = "This level is actually impossible to beat. \n The system can handle anything you throw at it! \n Thank you for playing.\n Total Score: " + this.game.score.toString();
+              text = "This level is actually impossible to beat.\nThe system can handle anything you throw at it!\nThank you for playing.\nTotal Score: " + this.game.score.toString();
               //this.button.visible = false;
               //this.game.score = 0; //Reset score.
               break;
