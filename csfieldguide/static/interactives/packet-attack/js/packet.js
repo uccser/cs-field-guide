@@ -27,10 +27,8 @@ class Packet extends Phaser.GameObjects.Container {
         this.type = config.packetType;
         this.char = config.char;
         this.hasShield = config.hasShield;
-        this.isAlive = true;
-        this.isZapped = false;
-        this.wasStunned = false;
         this.animation = config.animation;
+        this.backupAnimation = config.backupAnimation;
         this.delayed = false;
 
 
@@ -77,8 +75,15 @@ class Packet extends Phaser.GameObjects.Container {
     }
 
     corrupt() {
-        this.char = '?';
-        this.text.setText(this.char);
+        if (this.hasShield) {
+            this.hasShield = false;
+            this.sprite.anims.stop();
+            this.sprite.anims.remove(this.animation);
+            this.sprite.play(this.backupAnimation);
+        } else {
+            this.char = '?';
+            this.text.setText(this.char);
+        }
     }
 
     delay() {

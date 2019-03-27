@@ -56,6 +56,27 @@ class GameScene extends Phaser.Scene {
     create() {
         console.log('Adding base images...');
         this.add.image(400, 300, 'bg');
+
+        var animationConfig = {
+            key: 'packetBaseAnim',
+            frames: this.anims.generateFrameNumbers('packet', { start: 0, end: 7 }),
+            frameRate: 20,
+            repeat: -1
+        }
+        this.anims.create(animationConfig);
+
+        animationConfig.key = 'packetShieldAnim';
+        animationConfig.frames = this.anims.generateFrameNumbers('shield', { start: 0, end: 7 });
+        this.anims.create(animationConfig);
+
+        animationConfig.key = 'packetAckAnim';
+        animationConfig.frames = this.anims.generateFrameNumbers('ack', { start: 0, end: 7 });
+        this.anims.create(animationConfig);
+
+        animationConfig.key = 'packetNackAnim';
+        animationConfig.frames = this.anims.generateFrameNumbers('nack', { start: 0, end: 7 });
+        this.anims.create(animationConfig);
+
         
         console.log('Done');
     }
@@ -64,14 +85,6 @@ class GameScene extends Phaser.Scene {
         this.receivedMessage = '';
         this.sendChars = this.level.message.split('');
         this.receivedPackets = [];
-
-        var packetAnimConfig = {
-            key: 'packetAnim',
-            frames: this.anims.generateFrameNumbers('packet', { start: 0, end: 7 }),
-            frameRate: 20,
-            repeat: -1
-        }
-        this.anims.create(packetAnimConfig);
 
         for (var i=0; i < this.sendChars.length; i++) {
             var key = 'packet: ' + i;
@@ -85,7 +98,9 @@ class GameScene extends Phaser.Scene {
                 x: 0,
                 y: 220,
                 char: this.sendChars[i],
-                animation: 'packetAnim'
+                hasShield: this.level.packetsHaveShields,
+                animation: this.level.packetsHaveShields ? 'packetShieldAnim' : 'packetBaseAnim',
+                backupAnimation: 'packetBaseAnim'
             }
 
             var packet = new PACKET.Packet(packetConfig);
