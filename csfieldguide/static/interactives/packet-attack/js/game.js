@@ -40,7 +40,6 @@ class GameScene extends Phaser.Scene {
         this.registry.set('delay', false);
         this.registry.set('kill', false);
         this.registry.set('corrupt', false);
-        this.registry.set('delayedPackets', 0);
     }
 
     preload() {
@@ -90,7 +89,7 @@ class GameScene extends Phaser.Scene {
             }
 
             var packet = new PACKET.Packet(packetConfig);
-            packet.runTween(packet.number * 1500);
+            packet.runTween(packet.number * 2000);
             this.registry.set('newActivePacket', packet);
         }
     }

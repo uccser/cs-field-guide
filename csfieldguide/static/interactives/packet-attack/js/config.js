@@ -11,7 +11,7 @@ var LEVELS = [
                     .setMsg(SENDTEXT), // Multiple Packets
     new LEVEL.Level(3)
                     .setMsg(SENDTEXT)
-                    .setPacketsHaveShields(true), // Kill/Zap wont work since sheilds are enabled
+                    .setPacketsHaveShields(true), // Confuse/Corrupt wont work since shields are enabled
     new LEVEL.Level(4)
                     .setMsg(SENDTEXT)
                     .setPacketsHaveNumbers(true), // Delay/Stun wont work since packets are ordered

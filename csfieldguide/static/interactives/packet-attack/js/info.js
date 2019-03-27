@@ -47,7 +47,10 @@ class Information extends Phaser.Scene {
      * 
      */
     startLevel() {
-        if (this.scene.paneType == InfoPaneType.START) {
+        if (this.scene.paneType == InfoPaneType.FAIL && this.scene.level.levelNumber >= CONFIG.FINALLEVEL) {
+            this.scene.setPaneType(InfoPaneType.END);
+            this.scene.button.destroy();
+        } else if (this.scene.paneType == InfoPaneType.START) {
             this.scene.setLevel(1);
             this.scene.level = CONFIG.LEVELS[1];
             this.scene.setPaneType(InfoPaneType.BEFORE_LEVEL);
@@ -113,11 +116,12 @@ class Information extends Phaser.Scene {
           case InfoPaneType.BEFORE_LEVEL:
             text = "Welcome to Level " + this.level.levelNumber + "!\n"
                     + "In this level:\n"
-                    + (this.level.numberOfPackets > 1 ? "The left pipe is using many creatures to communicate\n" : "")
-                    + (this.level.packetsHaveShields ? "The creatures have shields\n" : "")
+                    + (this.level.message.length > 1 ? "The left pipe is using many creatures to communicate\n" : "")
+                    + (this.level.packetsHaveShields ? "The creatures have shields to protect from corruption\n" : "")
                     + (this.level.packetsHaveNumbers ? "The creatures have numbers\n" : "")
                     + (this.level.acksNacksEnabled ? "The right pipe sends creatures back with results, green is good, red is bad\n" : "")
                     + (this.level.timeoutsEnabled ? "If the left pipe doesn't get a response, it will resend a creature\n" : "")
+                    + (this.level.stuns > 1 ? "You are given multiple delays to work with, but you can't delay the same packet twice" : "")
                     + (this.level.levelNumber == 1 ? "There are no defenses!" : "");
             break;
           case InfoPaneType.START:

@@ -82,9 +82,6 @@ class Packet extends Phaser.GameObjects.Container {
     }
 
     delay() {
-        if (this.delayed) {
-            return;
-        }
         this.tween.stop();
 
         var newTweenConfig = {
@@ -99,15 +96,15 @@ class Packet extends Phaser.GameObjects.Container {
     }
 
     delayCompleteHandler(tween, targets) {
-        // Also sets a delay so that it sets off after the last packet
+        // Also sets a delay so that it sets off between packets
         // Here 'packet.scene' refers to the GameScene the packet belongs to
         var packet = targets[0];
-        var numDelayedPackets = packet.scene.registry.get('delayedPackets');
-        var delay = 1000 * (packet.scene.level.message.length - packet.number - 1)
-                    + 1000 * numDelayedPackets;
+        var delay = 2500;
+        if (packet.delayed) {
+            delay -= 500;
+        }
         packet.runTween(delay);
         packet.delayed = true;
-        packet.scene.registry.set('delayedPackets', numDelayedPackets + 1);
     }
 
     kill() {
