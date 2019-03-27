@@ -1,6 +1,7 @@
 require('phaser');
 
 var CONFIG = require('./config.js');
+var PACKET = require('./packet.js');
 
 /**
  * Gameplay
@@ -9,6 +10,29 @@ class GameScene extends Phaser.Scene {
 
     constructor() {
         super({ key: 'GameScene'});
+    }
+
+    init() {
+        this.receivedMessage;
+        this.sendPackets;
+        this.receivedPackets;
+        this.level;
+        this.activePackets = [];
+
+        this.handlers = {
+            'level': this.setLevel,
+            'newActivePacket': this.packetSent,
+            'newInactivePacket': this.packetReceived,
+            'newDestroyedPacket': this.packetDestroyed
+        }
+
+        this.registry.events.on('changedata', this.registryUpdate, this);
+
+        this.registry.set('newInactivePacket', null);
+        this.registry.set('newActivePacket', null);
+        this.registry.set('newDestroyedPacket', null);
+        this.registry.set('receivedMessage', '');
+        this.registry.set('score', 0);
     }
 
     preload() {
@@ -29,8 +53,37 @@ class GameScene extends Phaser.Scene {
         console.log('Done');
     }
 
-    recreate () {
+    recreate() {
+        this.receivedMessage = '';
+        this.sendPackets = this.level.message.split('');
+        this.receivedPackets = [];
 
+        var packetAnimConfig = {
+            key: 'packetAnim',
+            frames: this.anims.generateFrameNumbers('packet', { start: 0, end: 7 }),
+            frameRate: 20,
+            repeat: -1
+        }
+        this.anims.create(packetAnimConfig);
+
+        for (var i=0; i < this.sendPackets.length; i++) {
+            var key = 'packet: ' + i;
+            console.log('adding packet ' + key);
+
+            var packetConfig = {
+                key: key,
+                type: PACKET.PacketTypes.packet,
+                number: i,
+                scene: this,
+                x: 0,
+                y: 220,
+                char: this.sendPackets[i],
+                animation: 'packetAnim'
+            }
+
+            var packet = new PACKET.Packet(packetConfig);
+            packet.runTween();
+        }
     }
 
     registryUpdate(parent, key, data) {
@@ -43,9 +96,38 @@ class GameScene extends Phaser.Scene {
     /**
      * Resets the game with the given level
      */
-    setLevel(levelNumber) {
-        this.level = CONFIG.LEVELS[levelNumber];
-        this.recreate();
+    setLevel(scene, levelNumber) {
+        scene.level = CONFIG.LEVELS[levelNumber];
+    }
+
+    packetSent(scene, packet) {
+        scene.activePackets.push(packet);
+        console.log(packet.key + " sent");
+    }
+
+    /**
+     * Packets are added and removed almost always in a FIFO queue
+     * so perhaps this could be better optimised
+     */
+    packetReceived(scene, packet) {
+        var index = scene.activePackets.indexOf(packet)
+        if (index < 0 ) {
+            console.log(packet.key + " failed removal");
+        } else {
+            scene.activePackets.splice(index, 1);
+            scene.receivedPackets.push(packet);
+            scene.updateReceivedMessage();
+            console.log(packet.key + " received successfully");
+        }
+    }
+
+    updateReceivedMessage() {
+        var message = "";
+        for (var i=0; i < this.receivedPackets.length; i++) {
+            message += this.receivedPackets[i].char;
+        }
+        this.receivedMessage = message;
+        this.registry.set('receivedMessage', message);
     }
 
     /**
@@ -62,14 +144,17 @@ class GameScene extends Phaser.Scene {
      * Removes all elements from the Scene
      */
     clear() {
-        
+        for (var i=0; i < this.receivedPackets.length; i++) {
+            this.receivedPackets[i].destroy();
+        }
     }
 
     /**
      * Play the game
      */
     play() {
-
+        this.recreate();
+        
     }
 }
 
@@ -86,6 +171,7 @@ class UIScene extends Phaser.Scene {
         console.log('init');
         this.handlers = {
             'level': this.setLevel,
+            'receivedMessage': this.updateReceivedMessage
         }
 
         this.registry.events.on('changedata', this.registryUpdate, this);
@@ -128,11 +214,6 @@ class UIScene extends Phaser.Scene {
         this.sendText = this.add.text(20, 10, '', config);
         this.receivedText = this.add.text(780, 10, 'Received:', config);
         this.receivedText.setOrigin(1, 0); // Position the text by its top right corner
-
-
-
-
-        this.registry.set('score', this.score);
     }
 
     registryUpdate(parent, key, data) {
@@ -148,6 +229,10 @@ class UIScene extends Phaser.Scene {
         scene.levelMessage = CONFIG.LEVELS[level].message;
         scene.sendText.setText('Sending:\n' + scene.levelMessage);
         console.log('UI: set level to ' + level);
+    }
+
+    updateReceivedMessage(scene, message) {
+        scene.receivedText.setText('Received:\n' + message);
     }
 
     togglePause() {
