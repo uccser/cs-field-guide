@@ -2,6 +2,7 @@ require('phaser');
 
 var CONFIG = require('./config.js');
 var PACKET = require('./packet.js');
+var INFO = require('./info.js');
 
 /**
  * Gameplay
@@ -24,9 +25,9 @@ class GameScene extends Phaser.Scene {
             'newActivePacket': this.packetSent,
             'newInactivePacket': this.packetReceived,
             'newDestroyedPacket': this.packetDestroyed,
-            'stun': this.stun,
-            'zap': this.zap,
-            'confuse': this.confuse
+            'delay': this.delay,
+            'kill': this.kill,
+            'corrupt': this.corrupt
         }
 
         this.registry.events.on('changedata', this.registryUpdate, this);
@@ -36,9 +37,10 @@ class GameScene extends Phaser.Scene {
         this.registry.set('newDestroyedPacket', null);
         this.registry.set('receivedMessage', '');
         this.registry.set('score', 0);
-        this.registry.set('stun', false);
-        this.registry.set('zap', false);
-        this.registry.set('confuse', false);
+        this.registry.set('delay', false);
+        this.registry.set('kill', false);
+        this.registry.set('corrupt', false);
+        this.registry.set('delayedPackets', 0);
     }
 
     preload() {
@@ -78,7 +80,7 @@ class GameScene extends Phaser.Scene {
 
             var packetConfig = {
                 key: key,
-                type: PACKET.PacketTypes.packet,
+                type: PACKET.PacketTypes.SENT,
                 number: i,
                 scene: this,
                 x: 0,
@@ -89,6 +91,7 @@ class GameScene extends Phaser.Scene {
 
             var packet = new PACKET.Packet(packetConfig);
             packet.runTween(packet.number * 1500);
+            this.registry.set('newActivePacket', packet);
         }
     }
 
@@ -125,6 +128,7 @@ class GameScene extends Phaser.Scene {
             scene.updateReceivedMessage();
             console.log(packet.key + " received successfully");
         }
+        scene.runEndCheck();
     }
 
     packetDestroyed(scene, packet) {
@@ -135,6 +139,7 @@ class GameScene extends Phaser.Scene {
             scene.activePackets.splice(index, 1);
             console.log(packet.key + " destroyed successfully");
         }
+        scene.runEndCheck();
     }
 
     updateReceivedMessage() {
@@ -146,7 +151,7 @@ class GameScene extends Phaser.Scene {
         this.registry.set('receivedMessage', message);
     }
 
-    stun(scene, doStun) {
+    delay(scene, doStun) {
         var packet;
         if (doStun) {
             for (var i=0; i < scene.activePackets.length; i++) {
@@ -159,7 +164,7 @@ class GameScene extends Phaser.Scene {
         }
     }
 
-    zap(scene, doZap) {
+    kill(scene, doZap) {
         var packet;
         if (doZap) {
             for (var i=0; i < scene.activePackets.length; i++) {
@@ -172,7 +177,7 @@ class GameScene extends Phaser.Scene {
         }
     }
 
-    confuse(scene, doConfuse) {
+    corrupt(scene, doConfuse) {
         var packet;
         if (doConfuse) {
             for (var i=0; i < scene.activePackets.length; i++) {
@@ -183,6 +188,28 @@ class GameScene extends Phaser.Scene {
                 }
             }
         }
+    }
+
+    /**
+     * Checks for further active packets and TODO inprogress timers
+     * Ends the level if there is none
+     */
+    runEndCheck() {
+        if (this.activePackets.length <= 0) {
+            this.endLevel();
+        }
+    }
+
+    endLevel() {
+        var info = this.scene.get('Information');
+        if (this.receivedMessage != this.level.message) {
+            info.setPaneType(INFO.InfoPaneType.PROCEED);
+        } else {
+            info.setPaneType(INFO.InfoPaneType.FAIL);
+        }
+        this.scene.get('UIScene').stopButtons();
+        this.clear();
+        info.resumeInfo();
     }
 
     /**
@@ -206,6 +233,8 @@ class GameScene extends Phaser.Scene {
         this.receivedPackets = [];
 
         this.sendChars = [];
+        this.receivedMessage = '';
+        this.registry.set('receivedMessage', '');
     }
 
     clearPacketArray(array) {
@@ -218,8 +247,8 @@ class GameScene extends Phaser.Scene {
      * Play the game
      */
     play() {
+        this.scene.get('UIScene').startButtons();
         this.recreate();
-        
     }
 }
 
@@ -247,32 +276,32 @@ class UIScene extends Phaser.Scene {
     preload() {
         this.load.image('pause', base + 'interactives/packet-attack/assets/leftGreenButton.png');
         this.load.image('play', base + 'interactives/packet-attack/assets/rightGreenButton.png');
-        this.load.image('stun', base + 'interactives/packet-attack/assets/leftButton.png');
-        this.load.image('confuse', base + 'interactives/packet-attack/assets/middleButton.png');
-        this.load.image('zap', base + 'interactives/packet-attack/assets/rightButton.png');
+        this.load.image('delay', base + 'interactives/packet-attack/assets/leftButton.png');
+        this.load.image('corrupt', base + 'interactives/packet-attack/assets/middleButton.png');
+        this.load.image('kill', base + 'interactives/packet-attack/assets/rightButton.png');
         this.load.image('pipes', base + 'interactives/packet-attack/assets/pipes.png');
     }
 
     create() {
         console.log('creating UI');
 
-        this.playpause = this.add.sprite(600, 450, 'pause').setInteractive({ useHandCursor: true });
+        this.playpause = this.add.sprite(600, 450, 'pause');
         this.playpause.on('pointerdown', this.togglePause);
 
-        var stun = this.add.image(215, 520, 'stun').setInteractive({ useHandCursor: true });
-        stun.on('pointerdown', this.alertStun);
-        stun.on('pointerout', this.unAlertStun);
-        stun.on('pointerup', this.unAlertStun);
+        this.delay = this.add.image(215, 520, 'delay');
+        this.delay.on('pointerdown', this.alertDelay);
+        this.delay.on('pointerout', this.unAlertDelay);
+        this.delay.on('pointerup', this.unAlertDelay);
 
-		var confuse = this.add.image(400, 520, 'confuse').setInteractive({ useHandCursor: true });
-        confuse.on('pointerdown', this.alertConfuse);
-        confuse.on('pointerout', this.unAlertConfuse);
-        confuse.on('pointerup', this.unAlertConfuse);
+		this.corrupt = this.add.image(400, 520, 'corrupt');
+        this.corrupt.on('pointerdown', this.alertCorrupt);
+        this.corrupt.on('pointerout', this.unAlertCorrupt);
+        this.corrupt.on('pointerup', this.unAlertCorrupt);
 
-        var zap = this.add.image(590, 520, 'zap').setInteractive({ useHandCursor: true });
-        zap.on('pointerdown', this.alertZap);
-        zap.on('pointerout', this.unAlertZap);
-        zap.on('pointerup', this.unAlertZap);
+        this.kill = this.add.image(590, 520, 'kill');
+        this.kill.on('pointerdown', this.alertKill);
+        this.kill.on('pointerout', this.unAlertKill);
+        this.kill.on('pointerup', this.unAlertKill);
 
         this.pipes = this.add.image(400, 300, 'pipes'); // Image needed above the packets
 
@@ -311,28 +340,28 @@ class UIScene extends Phaser.Scene {
         scene.receivedText.setText('Received:\n' + message);
     }
 
-    alertStun() {
-        this.scene.registry.set('stun', true);
+    alertDelay() {
+        this.scene.registry.set('delay', true);
     }
 
-    unAlertStun() {
-        this.scene.registry.set('stun', false);
+    unAlertDelay() {
+        this.scene.registry.set('delay', false);
     }
 
-    alertZap() {
-        this.scene.registry.set('zap', true);
+    alertKill() {
+        this.scene.registry.set('kill', true);
     }
 
-    unAlertZap() {
-        this.scene.registry.set('zap', false);
+    unAlertKill() {
+        this.scene.registry.set('kill', false);
     }
 
-    alertConfuse() {
-        this.scene.registry.set('confuse', true);
+    alertCorrupt() {
+        this.scene.registry.set('corrupt', true);
     }
 
-    unAlertConfuse() {
-        this.scene.registry.set('confuse', false);
+    unAlertCorrupt() {
+        this.scene.registry.set('corrupt', false);
     }
 
     togglePause() {
@@ -347,6 +376,20 @@ class UIScene extends Phaser.Scene {
             this.scene.paused = true;
             console.log('paused');
         }
+    }
+
+    stopButtons() {
+        this.playpause.disableInteractive();
+        this.delay.disableInteractive();
+        this.corrupt.disableInteractive();
+        this.kill.disableInteractive();
+    }
+
+    startButtons() {
+        this.playpause.setInteractive({ useHandCursor: true });
+        this.delay.setInteractive({ useHandCursor: true });
+        this.corrupt.setInteractive({ useHandCursor: true });
+        this.kill.setInteractive({ useHandCursor: true });
     }
 }
 

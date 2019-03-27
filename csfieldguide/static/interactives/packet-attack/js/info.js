@@ -52,11 +52,25 @@ class Information extends Phaser.Scene {
             this.scene.level = CONFIG.LEVELS[1];
             this.scene.setPaneType(InfoPaneType.BEFORE_LEVEL);
             console.log('setting level to 1');
+        } else if (this.scene.paneType == InfoPaneType.PROCEED) {
+            this.scene.setLevel(this.scene.level.levelNumber + 1);
+            this.scene.level = CONFIG.LEVELS[this.scene.level.levelNumber + 1];
+            this.scene.setPaneType(InfoPaneType.BEFORE_LEVEL);
+            console.log('setting level to ' + this.scene.level.levelNumber);
         } else {
             this.scene.button.disableInteractive();
             this.scene.sendBackward();
             this.scene.gameScene.play();
         }
+    }
+
+    resumeInfo() {
+        this.bringForward();
+        this.button.setInteractive({ useHandCursor: true });
+    }
+
+    bringForward() {
+        this.scene.bringToTop();
     }
 
     /**
@@ -91,9 +105,9 @@ class Information extends Phaser.Scene {
             break;
           case InfoPaneType.PROCEED:
             if (this.urlmode) {
-              text = "Awesome!\nYou stopped the messages being delivered.\nClick 'Start' to repeat this custom level.";
+              text = "Awesome!\nYou stopped the message being delivered.\nClick 'Start' to repeat this custom level.";
             } else {
-              text = "Awesome!\nYou stopped the messages being delivered.\nClick 'Start' to move to the next level.";
+              text = "Awesome!\nYou stopped the message being delivered.\nClick 'Start' to move to the next level.";
             }
             break;
           case InfoPaneType.BEFORE_LEVEL:

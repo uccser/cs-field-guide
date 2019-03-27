@@ -5,15 +5,15 @@ const maxDanger = 450;
 
 // keep to one digit or things will break as they're interpreted as strings with length 1
 var PacketStatuses = {
-    started: 1,
-    finished: 2,
-    destroyed: 3
+    STARTED: 1,
+    FINISHED: 2,
+    DESTROYED: 3
 }
 
 var PacketTypes = {
-    packet: 1,
-    ack: 2,
-    nack: 3
+    SENT: 1,
+    ACK: 2,
+    NACK: 3
 }
 
 class Packet extends Phaser.GameObjects.Container {
@@ -31,6 +31,7 @@ class Packet extends Phaser.GameObjects.Container {
         this.isZapped = false;
         this.wasStunned = false;
         this.animation = config.animation;
+        this.delayed = false;
 
 
         var textConfig = {
@@ -53,8 +54,8 @@ class Packet extends Phaser.GameObjects.Container {
     }
 
     /**
-     * The delay is set this way because we don't want a major delay on packets
-     * delayed by the user but we do want one on each packet so they set off in sequence
+     * The delay is set this way because we want one on each packet so they set off in sequence,
+     * but a different one on packets that are delayed
      */
     runTween(givenDelay) {
         var tweenConfig = {
@@ -68,7 +69,6 @@ class Packet extends Phaser.GameObjects.Container {
         }
 
         this.tween = this.scene.tweens.add(tweenConfig);
-        this.scene.registry.set('newActivePacket', this);
     }
 
     onCompleteHandler(tween, targets) {
@@ -82,6 +82,9 @@ class Packet extends Phaser.GameObjects.Container {
     }
 
     delay() {
+        if (this.delayed) {
+            return;
+        }
         this.tween.stop();
 
         var newTweenConfig = {
@@ -96,7 +99,15 @@ class Packet extends Phaser.GameObjects.Container {
     }
 
     delayCompleteHandler(tween, targets) {
-        targets[0].runTween(0);
+        // Also sets a delay so that it sets off after the last packet
+        // Here 'packet.scene' refers to the GameScene the packet belongs to
+        var packet = targets[0];
+        var numDelayedPackets = packet.scene.registry.get('delayedPackets');
+        var delay = 1000 * (packet.scene.level.message.length - packet.number - 1)
+                    + 1000 * numDelayedPackets;
+        packet.runTween(delay);
+        packet.delayed = true;
+        packet.scene.registry.set('delayedPackets', numDelayedPackets + 1);
     }
 
     kill() {
