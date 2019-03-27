@@ -23,7 +23,10 @@ class GameScene extends Phaser.Scene {
             'level': this.setLevel,
             'newActivePacket': this.packetSent,
             'newInactivePacket': this.packetReceived,
-            'newDestroyedPacket': this.packetDestroyed
+            'newDestroyedPacket': this.packetDestroyed,
+            'stun': this.stun,
+            'zap': this.zap,
+            'confuse': this.confuse
         }
 
         this.registry.events.on('changedata', this.registryUpdate, this);
@@ -33,6 +36,9 @@ class GameScene extends Phaser.Scene {
         this.registry.set('newDestroyedPacket', null);
         this.registry.set('receivedMessage', '');
         this.registry.set('score', 0);
+        this.registry.set('stun', false);
+        this.registry.set('zap', false);
+        this.registry.set('confuse', false);
     }
 
     preload() {
@@ -82,7 +88,7 @@ class GameScene extends Phaser.Scene {
             }
 
             var packet = new PACKET.Packet(packetConfig);
-            packet.runTween();
+            packet.runTween(packet);
         }
     }
 
@@ -128,6 +134,45 @@ class GameScene extends Phaser.Scene {
         }
         this.receivedMessage = message;
         this.registry.set('receivedMessage', message);
+    }
+
+    stun(scene, doStun) {
+        var packet;
+        if (doStun) {
+            for (var i=0; i < scene.activePackets.length; i++) {
+                if (scene.activePackets[i].checkInDanger()) {
+                    packet = scene.activePackets[i];
+                    packet.delay();
+                    break;
+                }
+            }
+        }
+    }
+
+    zap(scene, doZap) {
+        var packet;
+        if (doZap) {
+            for (var i=0; i < scene.activePackets.length; i++) {
+                if (scene.activePackets[i].checkInDanger()) {
+                    packet = scene.activePackets[i];
+                    packet.kill();
+                    break;
+                }
+            }
+        }
+    }
+
+    confuse(scene, doConfuse) {
+        var packet;
+        if (doConfuse) {
+            for (var i=0; i < scene.activePackets.length; i++) {
+                if (scene.activePackets[i].checkInDanger()) {
+                    packet = scene.activePackets[i];
+                    packet.corrupt();
+                    break;
+                }
+            }
+        }
     }
 
     /**
@@ -183,8 +228,8 @@ class UIScene extends Phaser.Scene {
         this.load.image('pause', base + 'interactives/packet-attack/assets/leftGreenButton.png');
         this.load.image('play', base + 'interactives/packet-attack/assets/rightGreenButton.png');
         this.load.image('stun', base + 'interactives/packet-attack/assets/leftButton.png');
-        this.load.image('zap', base + 'interactives/packet-attack/assets/middleButton.png');
-        this.load.image('confuse', base + 'interactives/packet-attack/assets/rightButton.png');
+        this.load.image('confuse', base + 'interactives/packet-attack/assets/middleButton.png');
+        this.load.image('zap', base + 'interactives/packet-attack/assets/rightButton.png');
         this.load.image('pipes', base + 'interactives/packet-attack/assets/pipes.png');
     }
 
@@ -194,9 +239,20 @@ class UIScene extends Phaser.Scene {
         this.playpause = this.add.sprite(600, 450, 'pause').setInteractive({ useHandCursor: true });
         this.playpause.on('pointerdown', this.togglePause);
 
-		var stun = this.add.image(215, 520, 'stun').setInteractive({ useHandCursor: true });
-		var zap = this.add.image(400, 520, 'zap').setInteractive({ useHandCursor: true });
-        var confuse = this.add.image(590, 520, 'confuse').setInteractive({ useHandCursor: true });
+        var stun = this.add.image(215, 520, 'stun').setInteractive({ useHandCursor: true });
+        stun.on('pointerdown', this.alertStun);
+        stun.on('pointerout', this.unAlertStun);
+        stun.on('pointerup', this.unAlertStun);
+
+		var confuse = this.add.image(400, 520, 'confuse').setInteractive({ useHandCursor: true });
+        confuse.on('pointerdown', this.alertConfuse);
+        confuse.on('pointerout', this.unAlertConfuse);
+        confuse.on('pointerup', this.unAlertConfuse);
+
+        var zap = this.add.image(590, 520, 'zap').setInteractive({ useHandCursor: true });
+        zap.on('pointerdown', this.alertZap);
+        zap.on('pointerout', this.unAlertZap);
+        zap.on('pointerup', this.unAlertZap);
 
         this.pipes = this.add.image(400, 300, 'pipes'); // Image needed above the packets
 
@@ -233,6 +289,30 @@ class UIScene extends Phaser.Scene {
 
     updateReceivedMessage(scene, message) {
         scene.receivedText.setText('Received:\n' + message);
+    }
+
+    alertStun() {
+        this.scene.registry.set('stun', true);
+    }
+
+    unAlertStun() {
+        this.scene.registry.set('stun', false);
+    }
+
+    alertZap() {
+        this.scene.registry.set('zap', true);
+    }
+
+    unAlertZap() {
+        this.scene.registry.set('zap', false);
+    }
+
+    alertConfuse() {
+        this.scene.registry.set('confuse', true);
+    }
+
+    unAlertConfuse() {
+        this.scene.registry.set('confuse', false);
     }
 
     togglePause() {

@@ -49,22 +49,22 @@ class Packet extends Phaser.GameObjects.Container {
     }
 
     checkInDanger() {
-        return (this.x > minDanger && this.y < maxDanger);
+        return (this.x > minDanger && this.x < maxDanger);
     }
 
-    runTween() {
+    runTween(packet) {
         var tweenConfig = {
-            targets: this,
+            targets: packet,
             x: 800,
             ease: 'linear',
             duration: 8000,
-            delay: this.number * 1500,
+            delay: packet.number * 1500,
             repeat: 0,
-            onComplete: this.onCompleteHandler
+            onComplete: packet.onCompleteHandler
         }
 
-        this.tween = this.scene.tweens.add(tweenConfig);
-        this.scene.registry.set('newActivePacket', this);
+        packet.tween = packet.scene.tweens.add(tweenConfig);
+        packet.scene.registry.set('newActivePacket', packet);
     }
 
     onCompleteHandler(tween, targets) {
@@ -73,8 +73,8 @@ class Packet extends Phaser.GameObjects.Container {
     }
 
     corrupt() {
-        this.char = null;
-        this.text.setText('?');
+        this.char = '?';
+        this.text.setText(this.char);
     }
 
     delay() {
@@ -83,14 +83,14 @@ class Packet extends Phaser.GameObjects.Container {
         var xDiff = -1 * this.x;
 
         var newTweenConfig = {
-            target: this,
+            targets: this,
             x: xDiff,
             ease: 'linear',
             duration: 500,
         }
 
         this.scene.tweens.add(newTweenConfig);
-        setTimeout(this.runTween, 750);
+        setTimeout(this.runTween(this), 750);
     }
 
     kill() {
