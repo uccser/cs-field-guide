@@ -14,7 +14,7 @@ class GameScene extends Phaser.Scene {
 
     init() {
         this.receivedMessage;
-        this.sendPackets;
+        this.sendChars;
         this.receivedPackets;
         this.level;
         this.activePackets = [];
@@ -61,7 +61,7 @@ class GameScene extends Phaser.Scene {
 
     recreate() {
         this.receivedMessage = '';
-        this.sendPackets = this.level.message.split('');
+        this.sendChars = this.level.message.split('');
         this.receivedPackets = [];
 
         var packetAnimConfig = {
@@ -72,7 +72,7 @@ class GameScene extends Phaser.Scene {
         }
         this.anims.create(packetAnimConfig);
 
-        for (var i=0; i < this.sendPackets.length; i++) {
+        for (var i=0; i < this.sendChars.length; i++) {
             var key = 'packet: ' + i;
             console.log('adding packet ' + key);
 
@@ -83,7 +83,7 @@ class GameScene extends Phaser.Scene {
                 scene: this,
                 x: 0,
                 y: 220,
-                char: this.sendPackets[i],
+                char: this.sendChars[i],
                 animation: 'packetAnim'
             }
 
@@ -124,6 +124,16 @@ class GameScene extends Phaser.Scene {
             scene.receivedPackets.push(packet);
             scene.updateReceivedMessage();
             console.log(packet.key + " received successfully");
+        }
+    }
+
+    packetDestroyed(scene, packet) {
+        var index = scene.activePackets.indexOf(packet)
+        if (index < 0 ) {
+            console.log(packet.key + " failed removal");
+        } else {
+            scene.activePackets.splice(index, 1);
+            console.log(packet.key + " destroyed successfully");
         }
     }
 
@@ -189,8 +199,18 @@ class GameScene extends Phaser.Scene {
      * Removes all elements from the Scene
      */
     clear() {
-        for (var i=0; i < this.receivedPackets.length; i++) {
-            this.receivedPackets[i].destroy();
+        this.clearPacketArray(this.activePackets);
+        this.activePackets = [];
+
+        this.clearPacketArray(this.receivedPackets);
+        this.receivedPackets = [];
+
+        this.sendChars = [];
+    }
+
+    clearPacketArray(array) {
+        for (var i=0; i < array.length; i++) {
+            array[i].destroy();
         }
     }
 

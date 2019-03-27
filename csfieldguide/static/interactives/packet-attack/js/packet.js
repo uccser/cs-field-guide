@@ -100,7 +100,9 @@ class Packet extends Phaser.GameObjects.Container {
     }
 
     kill() {
-
+        this.tween.stop();
+        this.scene.registry.set('newDestroyedPacket', this);
+        this.destroy();
     }
 }
 
