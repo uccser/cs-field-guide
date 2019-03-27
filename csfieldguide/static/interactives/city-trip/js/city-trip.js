@@ -174,7 +174,7 @@ function generateNodesAndEdgesData(nodes) {
   // generate nodes (cities) for city map
   for (var c = 0; c < nodes.length; c++) {
     nodeData = {
-      data: { id: nodes[c].toString() }
+      data: { id: nodes[c].toString(), weight: 3 }
     };
     mapData.push(nodeData);
   }
@@ -229,7 +229,7 @@ function addNodes(cy, oldNumCities, difference) {
     // Create node
     currentNodeID = (oldNumCities + n).toString();
     newNode = {
-      data: { id: currentNodeID },
+      data: { id: currentNodeID, weight: 3},
       classes: 'nodesToAdd'
     };
     cy.add(newNode);
@@ -382,7 +382,7 @@ async function permutationsWithoutInverse(cy, cy2, cities, bestRouteDistance) {
       pathsWithoutInverse.push(path);
       // Draw graph here
       pathData = testNewPath(cy, cy2, previousPath, path, bestRouteDistance); 
-      await sleep(200);
+      await sleep(20);
       if (pathData.isBestRoute) {
         bestRouteDistance = pathData.distance;
       }
@@ -411,7 +411,10 @@ function getPathDistance(edges) {
   var distance = 0;
   for (var i = 0; i < edges.length; i++) {
     var edge = edges[i];
-    distance += distanceBetweenCities(edge.sourceEndpoint(), edge.targetEndpoint());
+    var sourceNode = edge.source();
+    var targetNode = edge.target();
+    console.log(sourceNode.width());
+    distance += distanceBetweenCities(sourceNode.position(), targetNode.position());
   }
 
   return Math.round(distance);

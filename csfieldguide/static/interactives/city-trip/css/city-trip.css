@@ -57,6 +57,35 @@
   display: block;
 }
 
+.graph:after {
+  content: ' ';
+  display: block; position: relative;
+  border: 1px solid #c6c8ca;
+}
+
+.tick {
+  border-left: 2px solid #c6c8ca;
+  height: 10px;
+  position: absolute;
+}
+
+.tick:nth-child(1)  { left: 15px;  }
+.tick:nth-child(2)  { left: 115px;  }
+.tick:nth-child(3)  { left: 215px; }
+.tick:nth-child(4)  { left: 315px; }
+.tick:nth-child(5)  { left: 415px; }
+.tick:nth-child(6)  { left: 515px; }
+
+.tick > span {
+  position: relative;
+  width: 10px; left: -10px; top: 18px;
+  font: 0.75em Arial, Helvetica, sans-serif;
+}
+
+.tick.zero > span {
+  margin-left: 5px;
+}
+
 .status-ready {
   color: #007bff;
 }
