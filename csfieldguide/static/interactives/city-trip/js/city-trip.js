@@ -148,6 +148,9 @@ $(document).ready(function() {
     pathDistance = getPathDistance(cy.edges());
     updateRouteStats();
   });
+
+  console.log(cy.elements().boundingBox().h);
+  console.log(cy.elements().renderedBoundingBox().w);
 });
 
 
