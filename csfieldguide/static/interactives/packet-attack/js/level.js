@@ -13,30 +13,30 @@ function Level(levelNumber) {
 	this.canAttackAcksNacks = false;
 
 	//User attacks on the packets
-	this.stuns = 1;
-	this.zaps = 1;
-	this.confuses = 1;
+	this.delays = 1;
+	this.kills = 1;
+	this.corrupts = 1;
 
 	this.levelNumber = levelNumber;
 
 	// Setters - Additional checks can be added. 
 	this.setMsg = function(text) {
 		this.message = text;
-		return this; //Setters return this, so the settings can be chained.
+		return this; // Setters return this so that the settings can be chained.
 	}
 
-	this.setStuns = function(stuns) { // i.e. delays
-		this.stuns = stuns;
+	this.setDelays = function(delays) { // i.e. delays
+		this.delays = delays;
 		return this;
 	}
 
-	this.setZaps = function(zaps) { // i.e. kills
-		this.zaps = zaps;
+	this.setKills = function(kills) { // i.e. kills
+		this.kills = kills;
 		return this;
 	}
 
-	this.setConfuses = function(confuses) { // i.e. corrupts
-		this.confuses = confuses;
+	this.setCorrupts = function(corrupts) { // i.e. corrupts
+		this.corrupts = corrupts;
 		return this;
 	}
 
@@ -57,7 +57,7 @@ function Level(levelNumber) {
 
 	this.setTimeoutsEnabled = function(timeoutsEnabled) {
 		// This will create a neverending supply of packets if acks aren't enabled
-		// If you do want that, set ackNacksEnabled(false) after this
+		// If you do want that, set setAckNacksEnabled(false) after this
 		if (timeoutsEnabled) {
 			this.setAcksNacksEnabled(true);
 		}

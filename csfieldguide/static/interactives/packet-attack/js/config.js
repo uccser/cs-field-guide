@@ -24,16 +24,16 @@ var LEVELS = [
                     .setPacketsHaveNumbers(true)
                     .setAcksNacksEnabled(true)
                     //.setPacketsHaveShields(true)
-                    .setConfuses(2),
+                    .setCorrupts(2),
     new LEVEL.Level(7)
                     .setMsg(SENDTEXT)
                     .setPacketsHaveNumbers(true)
                     .setAcksNacksEnabled(true)
                     .setPacketsHaveShields(true)
-                    .setConfuses(2)
                     .setTimeoutsEnabled(true)
-                    .setStuns(2)
-                    .setZaps(2)
+                    .setCorrupts(2)
+                    .setDelays(2)
+                    .setKills(2)
 ]
 
 module.exports = {
