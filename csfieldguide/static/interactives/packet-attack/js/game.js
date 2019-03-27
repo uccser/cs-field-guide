@@ -88,7 +88,7 @@ class GameScene extends Phaser.Scene {
             }
 
             var packet = new PACKET.Packet(packetConfig);
-            packet.runTween(packet);
+            packet.runTween(packet.number * 1500);
         }
     }
 

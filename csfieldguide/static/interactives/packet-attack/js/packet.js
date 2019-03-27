@@ -3,8 +3,8 @@ require('phaser');
 const minDanger = 350;
 const maxDanger = 450;
 
+// keep to one digit or things will break as they're interpreted as strings with length 1
 var PacketStatuses = {
-    // keep to one digit or things will break as they're interpreted as strings with length 1
     started: 1,
     finished: 2,
     destroyed: 3
@@ -52,19 +52,23 @@ class Packet extends Phaser.GameObjects.Container {
         return (this.x > minDanger && this.x < maxDanger);
     }
 
-    runTween(packet) {
+    /**
+     * The delay is set this way because we don't want a major delay on packets
+     * delayed by the user but we do want one on each packet so they set off in sequence
+     */
+    runTween(givenDelay) {
         var tweenConfig = {
-            targets: packet,
+            targets: this,
             x: 800,
             ease: 'linear',
             duration: 8000,
-            delay: packet.number * 1500,
+            delay: givenDelay,
             repeat: 0,
-            onComplete: packet.onCompleteHandler
+            onComplete: this.onCompleteHandler
         }
 
-        packet.tween = packet.scene.tweens.add(tweenConfig);
-        packet.scene.registry.set('newActivePacket', packet);
+        this.tween = this.scene.tweens.add(tweenConfig);
+        this.scene.registry.set('newActivePacket', this);
     }
 
     onCompleteHandler(tween, targets) {
@@ -80,17 +84,19 @@ class Packet extends Phaser.GameObjects.Container {
     delay() {
         this.tween.stop();
 
-        var xDiff = -1 * this.x;
-
         var newTweenConfig = {
             targets: this,
-            x: xDiff,
+            x: 0,
             ease: 'linear',
             duration: 500,
+            onComplete: this.delayCompleteHandler
         }
 
-        this.scene.tweens.add(newTweenConfig);
-        setTimeout(this.runTween(this), 750);
+        this.tween = this.scene.tweens.add(newTweenConfig);
+    }
+
+    delayCompleteHandler(tween, targets) {
+        targets[0].runTween(0);
     }
 
     kill() {
