@@ -26,6 +26,7 @@ class Packet extends Phaser.GameObjects.Container {
         this.number = config.number;
         this.type = config.packetType;
         this.char = config.char;
+        this.isOrdered = config.isOrdered;
         this.hasShield = config.hasShield;
         this.animation = config.animation;
         this.backupAnimation = config.backupAnimation;
@@ -39,7 +40,13 @@ class Packet extends Phaser.GameObjects.Container {
         }
 
         this.sprite = this.scene.add.sprite(0, 0, this.key).play(this.animation);
-        this.text = this.scene.add.text(5, -5, this.char, textConfig);
+        var dispText;
+        if (this.isOrdered) {
+            dispText = this.number.toString() + ":" + this.char;
+        } else {
+            dispText = this.char;
+        }
+        this.text = this.scene.add.text(5, -5, dispText, textConfig);
         this.text.setOrigin(0.5, 0.5);
 
         this.add([this.sprite, this.text]);
@@ -82,7 +89,13 @@ class Packet extends Phaser.GameObjects.Container {
             this.sprite.play(this.backupAnimation);
         } else {
             this.char = '?';
-            this.text.setText(this.char);
+            var dispText;
+            if (this.isOrdered) {
+                dispText = this.number.toString() + ":" + this.char;
+            } else {
+                dispText = this.char;
+            }
+            this.text.setText(dispText);
         }
     }
 

@@ -98,6 +98,7 @@ class GameScene extends Phaser.Scene {
                 x: 0,
                 y: 220,
                 char: this.sendChars[i],
+                isOrdered: this.level.packetsHaveNumbers,
                 hasShield: this.level.packetsHaveShields,
                 animation: this.level.packetsHaveShields ? 'packetShieldAnim' : 'packetBaseAnim',
                 backupAnimation: 'packetBaseAnim'
@@ -157,10 +158,22 @@ class GameScene extends Phaser.Scene {
     }
 
     updateReceivedMessage() {
-        var message = "";
-        for (var i=0; i < this.receivedPackets.length; i++) {
-            message += this.receivedPackets[i].char;
+        var message = [];
+        if (this.level.packetsHaveNumbers) {
+            for (var j=0; j < this.level.message.length; j++) {
+                message.push('');
+            }
         }
+        var packet;
+        for (var i=0; i < this.receivedPackets.length; i++) {
+            packet = this.receivedPackets[i];
+            if (this.level.packetsHaveNumbers) {
+                message[packet.number] = packet.char;
+            } else {
+                message.push(packet.char);
+            }
+        }
+        message = message.join('');
         this.receivedMessage = message;
         this.registry.set('receivedMessage', message);
     }
