@@ -19,9 +19,13 @@ class GameScene extends Phaser.Scene {
         this.receivedPackets;
         this.level;
         this.activePackets = [];
-        this.unansweredPackets = [];
+        this.unansweredPacketNumbers = [];
         this.activeAcks = [];
         this.activeNacks = [];
+        this.receivedAcks = [];
+
+        this.timers = [];
+        this.allPackets = [];
 
         this.handlers = {
             'level': this.setLevel,
@@ -92,6 +96,7 @@ class GameScene extends Phaser.Scene {
         for (var i=0; i < this.sendChars.length; i++) {
             var key = 'packet: ' + i;
             console.log('adding packet ' + key);
+            var delay = 2000 * i;
 
             var packetConfig = {
                 key: key,
@@ -108,9 +113,12 @@ class GameScene extends Phaser.Scene {
             }
 
             var packet = new PACKET.Packet(packetConfig);
-            packet.runTween(packet.number * 2000);
+            packet.runTween(delay);
             this.registry.set('newActivePacket', packet);
-            this.unansweredPackets.push(packet);
+            var timer = this.time.delayedCall(delay + CONFIG.TIMEOUT, this.timerEnd, [packet], this);
+            this.unansweredPacketNumbers.push(packet.number);
+            this.allPackets.push(packet);
+            this.timers.push(timer);
         }
     }
 
@@ -122,10 +130,20 @@ class GameScene extends Phaser.Scene {
     }
 
     /**
-     * Resets the game with the given level
+     * Sets the scene with the given level
      */
     setLevel(scene, levelNumber) {
         scene.level = CONFIG.LEVELS[levelNumber];
+    }
+
+    timerEnd(packet) {
+
+        if (this.level.timeoutsEnabled && this.unansweredPacketNumbers.indexOf(packet.number) >= 0) {
+            console.log(packet.key + " missing!");
+            this.resendPacket(packet);
+        }
+
+        this.runEndCheck();
     }
 
     packetSent(scene, packet) {
@@ -143,6 +161,9 @@ class GameScene extends Phaser.Scene {
     }
 
     /**
+     * 
+     */
+    /*
      * Packets are added and removed almost always in a FIFO queue
      * so perhaps this could be better optimised
      */
@@ -156,8 +177,9 @@ class GameScene extends Phaser.Scene {
         } else if (packet.type == PACKET.PacketTypes.ACK) {
             index = scene.activeAcks.indexOf(packet);
             scene.activeAcks.splice(index, 1);
-            index = scene.unansweredPackets.indexOf(packet);
-            scene.unansweredPackets.splice(index, 1);
+            index = scene.unansweredPacketNumbers.indexOf(packet.number);
+            scene.unansweredPacketNumbers.splice(index, 1);
+            scene.receivedAcks.push(packet.number);
 
         } else if (packet.type == PACKET.PacketTypes.NACK) {
             index = scene.activeNacks.indexOf(packet);
@@ -240,6 +262,7 @@ class GameScene extends Phaser.Scene {
         var newPacket = new PACKET.Packet(packetConfig);
         newPacket.runTween(500, true);
         this.registry.set('newActivePacket', newPacket);
+        this.allPackets.push(newPacket);
     }
 
     sendAck(packet) {
@@ -258,6 +281,7 @@ class GameScene extends Phaser.Scene {
         var newPacket = new PACKET.Packet(packetConfig);
         newPacket.runTween(500, true);
         this.registry.set('newActivePacket', newPacket);
+        this.allPackets.push(newPacket);
     }
 
     resendPacket(packet) {
@@ -278,7 +302,10 @@ class GameScene extends Phaser.Scene {
 
         var newPacket = new PACKET.Packet(packetConfig);
         newPacket.runTween(0);
+        var timer = this.time.delayedCall(CONFIG.TIMEOUT, this.timerEnd, [newPacket], this);
         this.registry.set('newActivePacket', newPacket);
+        this.allPackets.push(newPacket);
+        this.timers.push(timer);
     }
 
     delay(scene, doDelay) {
@@ -327,15 +354,28 @@ class GameScene extends Phaser.Scene {
     }
 
     /**
-     * Checks for further active packets and TODO inprogress timers
+     * Checks for further active packets and inprogress timers
      * Ends the level if there is none
      */
     runEndCheck() {
         if (this.activePackets.length <= 0
             && this.activeAcks.length <= 0
-            && this.activeNacks.length <= 0) {
+            && this.activeNacks.length <= 0
+            && this.noActiveTimersCheck()) {
             this.endLevel();
         }
+    }
+
+    noActiveTimersCheck() {
+        if (!this.level.timeoutsEnabled) {
+            return true;
+        }
+        for (var i=0; i < this.timers.length; i++) {
+            if (this.timers[i].getElapsed() < CONFIG.TIMEOUT) {
+                return false;
+            }
+        }
+        return true;
     }
 
     endLevel() {
@@ -360,21 +400,30 @@ class GameScene extends Phaser.Scene {
     }
 
     /**
-     * TODO
-     * Removes all elements from the Scene
+     * Empties all elements from the Scene
      */
     clear() {
-        this.clearPacketArray(this.activePackets);
+        this.clearPacketArray(this.allPackets);
+        this.allPackets = [];
         this.activePackets = [];
+        this.unansweredPacketNumbers = [];
+        this.activeAcks = [];
+        this.activeNacks = [];
+        this.receivedAcks = [];
 
-        this.clearPacketArray(this.receivedPackets);
-        this.receivedPackets = [];
+        for (var i=0; i < this.timers.length; i++) {
+            this.timers[i].remove();
+        }
+        this.timers = [];
 
         this.sendChars = [];
         this.receivedMessage = '';
         this.registry.set('receivedMessage', '');
     }
 
+    /**
+     * Destroys any remaining packets to prevent memory leaks
+     */
     clearPacketArray(array) {
         for (var i=0; i < array.length; i++) {
             array[i].destroy();

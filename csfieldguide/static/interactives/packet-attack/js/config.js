@@ -1,6 +1,7 @@
 var LEVEL = require('./level.js');
 
 var SENDTEXT = gettext("HELLO");
+const TIMEOUT = 20000;
 
 // Level configs
 var LEVELS = [
@@ -42,5 +43,6 @@ var FINAL_LEVEL = LEVELS.length - 1;
 
 module.exports = {
     LEVELS,
-    FINAL_LEVEL
+    FINAL_LEVEL,
+    TIMEOUT
 };

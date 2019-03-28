@@ -3,7 +3,8 @@ require('phaser');
 const minDanger = 350;
 const maxDanger = 450;
 
-// keep to one digit or things will break as they're interpreted as strings with length 1
+// Keep to one digit or things will break
+// Statuses are interpreted as strings with length 1 for simplicity
 var PacketStatuses = {
     STARTED: 1,
     FINISHED: 2,
@@ -18,6 +19,7 @@ var PacketTypes = {
 
 class Packet extends Phaser.GameObjects.Container {
     constructor(config) {
+        // Here 'this.scene' refers to the GameScene the Packet belongs to
 
         super(config.scene, config.x, config.y);
 
@@ -30,7 +32,7 @@ class Packet extends Phaser.GameObjects.Container {
         this.hasShield = config.hasShield;
         this.animation = config.animation;
         this.backupAnimation = config.backupAnimation;
-        this.delayed = false;
+        this.delayed = 0;
         this.isCorrupt = false;
 
 
@@ -114,22 +116,44 @@ class Packet extends Phaser.GameObjects.Container {
         this.tween = this.scene.tweens.add(newTweenConfig);
     }
 
+    /**
+     * 
+     * 
+     * BUG:
+     * Packets X and X+3(n-1) will overlap if X is delayed n times and X+3(n-1) once
+     */
+    /*
+     * REASONING:
+     * Packets are released every two seconds, and reach the center of the danger
+     * zone after four seconds.
+     * If Packet X is delayed, it will resume its animation from the start
+     * after one second.
+     * This will put it one second ahead of packet X+3.
+     * If packet X is delayed a second time, it will resume its animation
+     * from the start after two seconds.
+     * The extra second is to prevent it overlapping packet X+5.
+     * This results in packet X taking the same space as packet X+3 would if it
+     * were also delayed.
+     * 
+     * The overlap will only occur after (a minimum of) three specific delays
+     * (packet X twice, then packet X+3) so for now it is safe not to worry about.
+     */
     delayCompleteHandler(tween, targets) {
         // Also sets a delay so that it sets off between packets
-        // Here 'packet.scene' refers to the GameScene the packet belongs to
         var packet = targets[0];
-        var delay = 2500;
-        if (packet.delayed) {
-            delay -= 500;
+        packet.delayed++;
+        var delay = 500;
+        if (packet.delayed > 1) {
+            // Prevent overlap with other non-delayed packets
+            delay += 1000;
         }
         packet.runTween(delay);
-        packet.delayed = true;
     }
 
     kill() {
         this.tween.stop();
         this.scene.registry.set('newDestroyedPacket', this);
-        this.destroy();
+        this.destroy(); // Destroys the container, not the variables assigned to the class
     }
 }
 
