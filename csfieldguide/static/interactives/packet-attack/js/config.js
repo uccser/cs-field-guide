@@ -1,6 +1,6 @@
 var LEVEL = require('./level.js');
 
-var SENDTEXT = gettext("HELLOTHERE");
+var SENDTEXT = gettext("HELLOWORLD");
 
 // Level configs
 var LEVELS = [

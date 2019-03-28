@@ -51,8 +51,7 @@ class Information extends Phaser.Scene {
             this.scene.setPaneType(InfoPaneType.END);
             this.scene.button.destroy();
         } else if (this.scene.paneType == InfoPaneType.START) {
-            this.scene.setLevel(1);
-            this.scene.level = CONFIG.LEVELS[1];
+            this.scene.setLevel(this.scene.level.levelNumber);
             this.scene.setPaneType(InfoPaneType.BEFORE_LEVEL);
             console.log('setting level to 1');
         } else if (this.scene.paneType == InfoPaneType.PROCEED) {
@@ -164,6 +163,10 @@ class Information extends Phaser.Scene {
   
         this.information = this.add.text(400, 100, this.generateFeedback(), config);
         this.information.setOrigin(0.5, 0);
+    }
+
+    setStartLevel(levelNum) {
+        this.level = CONFIG.LEVELS[levelNum];
     }
 }
 

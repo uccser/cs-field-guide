@@ -20,6 +20,13 @@ var config = {
 }
 
 $(document).ready(function() {
+    var skip = urlParameters.getUrlParameter('start');
+    if (skip) {
+        infoScene.setStartLevel(skip);
+    } else {
+        infoScene.setStartLevel(1);
+    }
+
     var game = new Phaser.Game(config);
     game.scene.add('UIScene', uiScene, true);
     game.scene.add('Information', infoScene, true);

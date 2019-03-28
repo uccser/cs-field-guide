@@ -19,6 +19,9 @@ class GameScene extends Phaser.Scene {
         this.receivedPackets;
         this.level;
         this.activePackets = [];
+        this.unansweredPackets = [];
+        this.activeAcks = [];
+        this.activeNacks = [];
 
         this.handlers = {
             'level': this.setLevel,
@@ -92,7 +95,7 @@ class GameScene extends Phaser.Scene {
 
             var packetConfig = {
                 key: key,
-                type: PACKET.PacketTypes.SENT,
+                packetType: PACKET.PacketTypes.SENT,
                 number: i,
                 scene: this,
                 x: 0,
@@ -107,6 +110,7 @@ class GameScene extends Phaser.Scene {
             var packet = new PACKET.Packet(packetConfig);
             packet.runTween(packet.number * 2000);
             this.registry.set('newActivePacket', packet);
+            this.unansweredPackets.push(packet);
         }
     }
 
@@ -125,7 +129,16 @@ class GameScene extends Phaser.Scene {
     }
 
     packetSent(scene, packet) {
-        scene.activePackets.push(packet);
+        if (packet.type == PACKET.PacketTypes.SENT) {
+            scene.activePackets.push(packet);
+        } else if (packet.type == PACKET.PacketTypes.ACK) {
+            scene.activeAcks.push(packet);
+        } else if (packet.type == PACKET.PacketTypes.NACK) {
+            scene.activeNacks.push(packet);
+        } else {
+            console.log('unrecognised packet sent');
+            return;
+        }
         console.log(packet.key + " sent");
     }
 
@@ -134,15 +147,28 @@ class GameScene extends Phaser.Scene {
      * so perhaps this could be better optimised
      */
     packetReceived(scene, packet) {
-        var index = scene.activePackets.indexOf(packet)
-        if (index < 0 ) {
-            console.log(packet.key + " failed removal");
-        } else {
+        var index;
+        if (packet.type == PACKET.PacketTypes.SENT) {
+            index = scene.activePackets.indexOf(packet);
             scene.activePackets.splice(index, 1);
-            scene.receivedPackets.push(packet);
-            scene.updateReceivedMessage();
-            console.log(packet.key + " received successfully");
+            scene.interpretNewPacket(packet);
+
+        } else if (packet.type == PACKET.PacketTypes.ACK) {
+            index = scene.activeAcks.indexOf(packet);
+            scene.activeAcks.splice(index, 1);
+            index = scene.unansweredPackets.indexOf(packet);
+            scene.unansweredPackets.splice(index, 1);
+
+        } else if (packet.type == PACKET.PacketTypes.NACK) {
+            index = scene.activeNacks.indexOf(packet);
+            scene.activeNacks.splice(index, 1);
+            scene.resendPacket(packet);
+            console.log('resending packet');
+
+        } else {
+            console.log('received packet of strange type');
         }
+        scene.updateReceivedMessage();
         scene.runEndCheck();
     }
 
@@ -168,9 +194,17 @@ class GameScene extends Phaser.Scene {
         for (var i=0; i < this.receivedPackets.length; i++) {
             packet = this.receivedPackets[i];
             if (this.level.packetsHaveNumbers) {
-                message[packet.number] = packet.char;
+                if (packet.isCorrupt) {
+                    message[packet.number] = '?';
+                } else {
+                    message[packet.number] = packet.char;
+                }
             } else {
-                message.push(packet.char);
+                if (packet.isCorrupt) {
+                    message.push('?');
+                } else {
+                    message.push(packet.char);
+                }
             }
         }
         message = message.join('');
@@ -178,40 +212,115 @@ class GameScene extends Phaser.Scene {
         this.registry.set('receivedMessage', message);
     }
 
-    delay(scene, doStun) {
+    interpretNewPacket(packet) {
+        if (this.level.acksNacksEnabled) {
+            if (packet.isCorrupt) {
+                this.sendNack(packet);
+                return;
+            } else {
+                this.sendAck(packet);
+            }
+        }
+        this.receivedPackets.push(packet);
+    }
+
+    sendNack(packet) {
+        var packetConfig = {
+            key: packet.key + "NACK",
+            packetType: PACKET.PacketTypes.NACK,
+            number: packet.number,
+            scene: this,
+            x: 800,
+            y: 310,
+            char: '?',
+            isOrdered: this.level.packetsHaveNumbers,
+            animation: 'packetNackAnim'
+        }
+
+        var newPacket = new PACKET.Packet(packetConfig);
+        newPacket.runTween(500, true);
+        this.registry.set('newActivePacket', newPacket);
+    }
+
+    sendAck(packet) {
+        var packetConfig = {
+            key: packet.key + "ACK",
+            packetType: PACKET.PacketTypes.ACK,
+            number: packet.number,
+            scene: this,
+            x: 800,
+            y: 310,
+            char: packet.char,
+            isOrdered: this.level.packetsHaveNumbers,
+            animation: 'packetAckAnim'
+        }
+
+        var newPacket = new PACKET.Packet(packetConfig);
+        newPacket.runTween(500, true);
+        this.registry.set('newActivePacket', newPacket);
+    }
+
+    resendPacket(packet) {
+        var char = this.level.message.split('')[packet.number];
+        var packetConfig = {
+            key: packet.key + "RESEND",
+            packetType: PACKET.PacketTypes.SENT,
+            number: packet.number,
+            scene: this,
+            x: 800,
+            y: 220,
+            char: char,
+            isOrdered: this.level.packetsHaveNumbers,
+            hasShield: this.level.packetsHaveShields,
+            animation: this.level.packetsHaveShields ? 'packetShieldAnim' : 'packetBaseAnim',
+            backupAnimation: 'packetBaseAnim'
+        }
+
+        var newPacket = new PACKET.Packet(packetConfig);
+        newPacket.runTween(0);
+        this.registry.set('newActivePacket', newPacket);
+    }
+
+    delay(scene, doDelay) {
         var packet;
-        if (doStun) {
+        if (doDelay) {
             for (var i=0; i < scene.activePackets.length; i++) {
-                if (scene.activePackets[i].checkInDanger()) {
-                    packet = scene.activePackets[i];
-                    packet.delay();
-                    break;
+                packet = scene.activePackets[i];
+                if (packet.checkInDanger()) {
+                    if (packet.type == PACKET.PacketTypes.SENT || scene.level.canAttackAcksNacks) {
+                        packet.delay();
+                        break;
+                    }
                 }
             }
         }
     }
 
-    kill(scene, doZap) {
+    kill(scene, doKill) {
         var packet;
-        if (doZap) {
+        if (doKill) {
             for (var i=0; i < scene.activePackets.length; i++) {
-                if (scene.activePackets[i].checkInDanger()) {
-                    packet = scene.activePackets[i];
-                    packet.kill();
-                    break;
+                packet = scene.activePackets[i];
+                if (packet.checkInDanger()) {
+                    if (packet.type == PACKET.PacketTypes.SENT || scene.level.canAttackAcksNacks) {
+                        packet.kill();
+                        break;
+                    }
                 }
             }
         }
     }
 
-    corrupt(scene, doConfuse) {
+    corrupt(scene, doCorrupt) {
         var packet;
-        if (doConfuse) {
+        if (doCorrupt) {
             for (var i=0; i < scene.activePackets.length; i++) {
-                if (scene.activePackets[i].checkInDanger()) {
-                    packet = scene.activePackets[i];
-                    packet.corrupt();
-                    break;
+                packet = scene.activePackets[i];
+                if (packet.checkInDanger()) {
+                    if (packet.type == PACKET.PacketTypes.SENT || scene.level.canAttackAcksNacks) {
+                        packet.corrupt();
+                        break;
+                    }
                 }
             }
         }
@@ -222,7 +331,9 @@ class GameScene extends Phaser.Scene {
      * Ends the level if there is none
      */
     runEndCheck() {
-        if (this.activePackets.length <= 0) {
+        if (this.activePackets.length <= 0
+            && this.activeAcks.length <= 0
+            && this.activeNacks.length <= 0) {
             this.endLevel();
         }
     }

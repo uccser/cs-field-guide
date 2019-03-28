@@ -31,6 +31,7 @@ class Packet extends Phaser.GameObjects.Container {
         this.animation = config.animation;
         this.backupAnimation = config.backupAnimation;
         this.delayed = false;
+        this.isCorrupt = false;
 
 
         var textConfig = {
@@ -46,7 +47,7 @@ class Packet extends Phaser.GameObjects.Container {
         } else {
             dispText = this.char;
         }
-        this.text = this.scene.add.text(5, -5, dispText, textConfig);
+        this.text = this.scene.add.text(2, -5, dispText, textConfig);
         this.text.setOrigin(0.5, 0.5);
 
         this.add([this.sprite, this.text]);
@@ -62,10 +63,10 @@ class Packet extends Phaser.GameObjects.Container {
      * The delay is set this way because we want one on each packet so they set off in sequence,
      * but a different one on packets that are delayed
      */
-    runTween(givenDelay) {
+    runTween(givenDelay, reverse) {
         var tweenConfig = {
             targets: this,
-            x: 800,
+            x: reverse ? 0 : 800,
             ease: 'linear',
             duration: 8000,
             delay: givenDelay,
@@ -88,12 +89,12 @@ class Packet extends Phaser.GameObjects.Container {
             this.sprite.anims.remove(this.animation);
             this.sprite.play(this.backupAnimation);
         } else {
-            this.char = '?';
+            this.isCorrupt = true;
             var dispText;
             if (this.isOrdered) {
-                dispText = this.number.toString() + ":" + this.char;
+                dispText = this.number.toString() + ':?';
             } else {
-                dispText = this.char;
+                dispText = '?';
             }
             this.text.setText(dispText);
         }
