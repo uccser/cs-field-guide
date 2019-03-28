@@ -47,9 +47,8 @@ class Information extends Phaser.Scene {
      * 
      */
     startLevel() {
-        if (this.scene.paneType == InfoPaneType.FAIL && this.scene.level.levelNumber >= CONFIG.FINALLEVEL) {
+        if (this.scene.paneType == InfoPaneType.FAIL && this.scene.level.levelNumber >= CONFIG.FINAL_LEVEL) {
             this.scene.setPaneType(InfoPaneType.END);
-            this.scene.button.destroy();
         } else if (this.scene.paneType == InfoPaneType.START) {
             this.scene.setLevel(this.scene.level.levelNumber);
             this.scene.setPaneType(InfoPaneType.BEFORE_LEVEL);
@@ -127,7 +126,7 @@ class Information extends Phaser.Scene {
             text = "Welcome to Packet Attack. In this game, your job is to attack the packet creatures and stop messages being delivered.\nYou pass a level if the received message is any different from the one sent.\nWhile a creature is in the danger zone (indicated by the yellow and grey area) you may attack by clicking the command buttons.\nGood luck!"
             break;
           case InfoPaneType.END:
-              text = "This level is actually impossible to beat.\nThe system can handle anything you throw at it!\nThank you for playing.\nTotal Score: " + this.registry.get('score');
+              text = "This level is actually impossible to beat\nThe system can handle anything you throw at it!\nThank you for playing\nTotal Score: " + this.registry.get('score') + "\n\n\n\nPress start if you want to try this level again";
               //this.button.visible = false;
               //this.game.score = 0; //Reset score.
               break;

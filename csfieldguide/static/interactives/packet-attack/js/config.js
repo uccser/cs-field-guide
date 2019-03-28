@@ -36,6 +36,9 @@ var LEVELS = [
                     .setKills(2)
 ]
 
+var FINAL_LEVEL = LEVELS.length - 1;
+
 module.exports = {
-    LEVELS
+    LEVELS,
+    FINAL_LEVEL
 };
