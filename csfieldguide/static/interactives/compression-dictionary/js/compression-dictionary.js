@@ -1,6 +1,13 @@
-var codes = ['P', 'e', 's', 'e', 'p', 'o'];
+// var codes = ['P', 'e', 's', 'e', 'p', 'o', 'Pease', 'x'];
+var codes = ['ease'];
 var message_characters = [];
 
+// var message_characters = [
+//  {
+//      Character: 'P',
+//      CodeIndex: 0
+//  }
+// ];
 
 window.onload = function() {
     readInputMessage();
@@ -14,17 +21,63 @@ window.onload = function() {
 function highlightCodedCharacters() {
     // version for only single characters in dictionary
 
-    // for each entry in the dictionary
+    // stable sort the codes by length
+    codes.sort(function (a, b) {
+        if (a.length === b.length)
+            return a.position - b.position;
+        if (b.length < a.length)
+            return -1;
+            return 1;
+    });
+
     for (var i = 0; i < codes.length; i++) {
+
+        var code = codes[i];
+        // var code_match = false;
+
         for (var j = 0; j < message_characters.length; j++) {
-            var code = codes[i];
-            var character = message_characters[j];
-            if (code == character) {
-                var code_div = document.querySelectorAll('[data-index="' + j.toString() + '"]')[0];
-                code_div.classList.add('highlight');
+
+            var code_match = false;
+            var next_message_character_index = j + 1;
+            
+            // if the first character of the code matches the current character in the message
+            if (code[0] == message_characters[j].Character) {
+                
+                // check the rest of the code matches the following characters
+                if (code.length > 1) {
+                    for (var k = 1; k < code.length; k++) {
+                        // get the next code and message characters
+                        var next_code_character = code[k];
+                        var next_message_character = message_characters[next_message_character_index].Character;
+                        // if they match, then iterate to the next characters
+                        if (next_code_character == next_message_character) {
+                            next_message_character_index += 1;
+                            // if they match and have reached the end of the code, then record that a match was found!
+                            if (next_message_character_index == code.length) {
+                                code_match = true;
+                            }
+                        } else {
+                            break;
+                        }
+                    }
+                } else { // if the code is one character long, then we know we have found a match
+                    code_match = true;
+                }
+
+            }
+
+            // before searching for the next occurance, mark the characters in the message with which code index
+            //     they correspond to
+            if (code_match) {
+                // l = whichever character we were up to
+                for (var l = j; l <= code.length; l++) {
+                    message_characters[l].CodeIndex = i;
+                }
             }
         }
     }
+    console.log(message_characters);
+
 }
 
 
@@ -38,7 +91,11 @@ function readInputMessage() {
     
     for (var i = 0; i < message.length; i++) {
         var character = message[i];
-        message_characters.push(character);
+        var new_message_character = {
+            Character: character,
+            CodeIndex: false
+        }
+        message_characters.push(new_message_character);
         if (character.indexOf('\n') != -1) { // is a new line character
             // append the line div and create a new one
             fragment.appendChild(line_div);
@@ -70,6 +127,8 @@ function updateDictionary() {
     var next_index = codes.length - 1;
     var new_dictionary_element = createDictionaryElement(next_index, new_entry_value);
     document.getElementById('interactive-compression-dictionary-user-dictionary-column-1').insertBefore(new_dictionary_element, entry_node);
+
+    highlightCodedCharacters();
 }
 
 
