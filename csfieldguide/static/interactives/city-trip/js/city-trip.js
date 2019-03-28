@@ -1,12 +1,10 @@
-// TODO: Make it a closed loop graph
 // TODO: Some nodes are still half overlapping
 // TODO: Rename all of the stupid variables I impulsively named
 // TODO: Add comments
 // TODO: Add distance scale to frontend
 // TODO: Show execution time
 // issue: nodes can lie on edges ( visual issue )
-var poo = new Date().getTime();
-console.log(poo);
+
 const cytoscape = require('cytoscape');
 const noOverlap = require('cytoscape-no-overlap');
 const automove = require('cytoscape-automove');
@@ -24,12 +22,11 @@ $(document).ready(function() {
   var output = $("#slider-text");
   var numberOfCities = Number(slider.val());
   var cities = Array.from(Array(numberOfCities), (x, index) => index + 1);
-  var elementsData = generateNodesAndEdgesData(cities);
   output.html(numberOfCities);
 
   var cy = cytoscape({
     container: $('#cy'),
-    elements: elementsData,
+    elements: initialiseGraph(cities),
     style: [
       {
         selector: 'node',
@@ -44,7 +41,6 @@ $(document).ready(function() {
       {
         selector: 'edge',
         style: {
-          'width': 3,
           'line-color': '#99ccff'
         }
       },
@@ -172,20 +168,20 @@ function setGraphOptions(cyGraph) {
 }
 
 
-function generateNodesAndEdgesData(nodes) {
-  var mapData = [];
+function initialiseGraph(nodes) {
+  var graphData = [];
   // generate nodes (cities) for city map
-  for (var c = 0; c < nodes.length; c++) {
+  for (node of nodes) {
     nodeData = {
-      data: { id: nodes[c].toString(), weight: 3 }
+      data: { id: node.toString() }
     };
-    mapData.push(nodeData);
+    graphData.push(nodeData);
   }
   // generate edges (roads) between nodes (cities)
   for (var e = 0; e < nodes.length; e++) {
     sourceNode = nodes[e].toString();
     if (e == nodes.length - 1) {
-      targetNode = nodes[0].toString();
+      targetNode = '1';
     } else {
       targetNode = nodes[e+1].toString();
     }
@@ -193,10 +189,28 @@ function generateNodesAndEdgesData(nodes) {
     edgeData = {
       data: { id: edgeID, source: sourceNode, target: targetNode}
     }
-    mapData.push(edgeData);
+    graphData.push(edgeData);
   }
 
-  return mapData;
+  return graphData;
+}
+
+
+function addEdge(cyGraph, sourceNodeId, targetNodeId) {
+  edgeID = 'e' + sourceNodeId + targetNodeId;
+  newEdge = {
+    data: { id: edgeID, source: sourceNodeId, target: targetNodeId },
+    classes: 'edgesToAdd'
+  };
+  cyGraph.add(newEdge);
+}
+
+function addNode(cyGraph, nodeId) {
+  newNode = {
+    data: { id: nodeId },
+    classes: 'nodesToAdd'
+  };
+  cyGraph.add(newNode);
 }
 
 
@@ -245,22 +259,11 @@ function addNodes(cy, cy2, oldNumCities, difference) {
     cy.add(newNode);
 
     // Create edge
-    edgeID = 'e' + previousNodeID + currentNodeID;
-    newEdge = {
-      data: { id: edgeID, source: previousNodeID, target: currentNodeID },
-      classes: 'edgesToAdd'
-    };
-    cy.add(newEdge);
+    addEdge(cy, previousNodeID, currentNodeID);
   }
   // Create edge that closes the loop
-  edgeID = 'e' + currentNodeID + '1';
-  newEdge = {
-    data: { id: edgeID, source: currentNodeID, target: '1' },
-    classes: 'edgesToAdd'
-  };
-  cy.add(newEdge);
+  addEdge(cy, currentNodeID, '1');
 }
-
 
 
 function removeNodes(cy, cy2, layout, newNumCities, oldNumCities, n) {
@@ -269,8 +272,8 @@ function removeNodes(cy, cy2, layout, newNumCities, oldNumCities, n) {
     // (will be part way through path finding)
     cy.remove(cy.elements());
     // Create blue graph
-    var cities = Array.from(Array(newNumCities), (x, index) => index + 1);
-    cy.add(generateNodesAndEdgesData(cities));
+    var nodes = Array.from(Array(newNumCities), (x, index) => index + 1);
+    cy.add(initialiseGraph(nodes));
     refreshLayout(cy, layout);
     // Copy blue graph to over to best route graph
     cy2.remove(cy2.elements());
@@ -287,20 +290,9 @@ function removeNodes(cy, cy2, layout, newNumCities, oldNumCities, n) {
     nodeToRemoveCy2 = cy2.$('#' + (oldNumCities - n).toString());
     cy2.remove( nodeToRemoveCy2 );
 
-    // add in edge that closes the loop
-    edgeID = 'e' + newNumCities + '1';
-    newEdge = {
-      data: { id: edgeID, source: newNumCities, target: '1' },
-      classes: 'edgesToAdd'
-    };
-    cy.add(newEdge);
-
-    edgeID = 'e' + newNumCities + '1';
-    newEdge = {
-      data: { id: edgeID, source: newNumCities, target: '1' },
-      classes: 'edgesToAdd'
-    };
-    cy2.add(newEdge);
+    // Add in edge that closes the loop
+    addEdge(cy, newNumCities, '1');
+    addEdge(cy2, newNumCities, '1');
   }
 }
 
@@ -348,7 +340,7 @@ function testNewPath(cy, cy2, oldPath, newPath, bestRouteDistance) {
 
 
 // Finds the edge differences between two paths and draws the new path by calling changePaths
-function findEdgeDifferences(cyGraph, oldPath, newEdgeConfig, numCities) {
+function findEdgeDifferences(cyGraph, newEdgeConfig, numCities) {
   // Number of nodes (cities) remains the same between paths;
   var oldEdgeConfig = new Set();
   for (var i = 0; i < numCities - 1; i++) {
@@ -370,21 +362,13 @@ function findEdgeDifferences(cyGraph, oldPath, newEdgeConfig, numCities) {
 // Draws the path
 function changePaths(cy, edgesToKeep, edgesToAdd) {
   var edgesToKeepStr = '';
-  // Make array because sets are not iterable
-  var edgesToKeepArr = Array.from(edgesToKeep);
-  for (var i = 0; i < edgesToKeepArr.length - 1; i++) {
-    edgesToKeepStr += '#e' + edgesToKeepArr[i] + ', ';
+  for (let edgeId of edgesToKeep) {
+    edgesToKeepStr += '#e' + edgeId + ', ';
   }
-  edgesToKeepStr += '#e' + edgesToKeepArr[i];
-  cy.remove(cy.edges().difference(edgesToKeepStr)); 
+  cy.remove(cy.edges().difference(edgesToKeepStr));
 
-  edgesToAdd.forEach(addEdge);
-  function addEdge(value) {
-    edgeID = 'e' + value;
-    newEdge = {
-      data: { id: edgeID, source: value[0], target: value[1] }
-    };
-    cy.add(newEdge);
+  for (let edgeId of edgesToAdd) {
+    addEdge(cy, edgeId[0], edgeId[1]);
   }
 }
 
