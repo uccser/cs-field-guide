@@ -182,9 +182,9 @@ function generateNodesAndEdgesData(nodes) {
     mapData.push(nodeData);
   }
   // generate edges (roads) between nodes (cities)
-  for (var e = 0; e <= nodes.length - 1; e++) {
+  for (var e = 0; e < nodes.length; e++) {
     sourceNode = nodes[e].toString();
-    if (e == nodes.length) {
+    if (e == nodes.length - 1) {
       targetNode = nodes[0].toString();
     } else {
       targetNode = nodes[e+1].toString();
@@ -207,7 +207,7 @@ function addOrRemoveNodes(cy, cy2, layout, oldNumCities, newNumCities) {
   var difference = Math.abs(newNumCities - oldNumCities);
   if (oldNumCities < newNumCities) {
     // Add nodes
-    addNodes(cy, oldNumCities, difference);
+    addNodes(cy, cy2, oldNumCities, difference);
     // Make sure layout is still random and nodes can't overlap when dragged
     refreshLayout(cy, layout);
     previousNodeID = currentNodeID;
@@ -230,9 +230,11 @@ function addOrRemoveNodes(cy, cy2, layout, oldNumCities, newNumCities) {
 }
 
 
-function addNodes(cy, oldNumCities, difference) {
+function addNodes(cy, cy2, oldNumCities, difference) {
   var previousNodeID = oldNumCities.toString();
   // Remove edge that closes the loop
+  cy.remove(cy.$('#e' + previousNodeID + '1'));
+  cy2.remove(cy2.$('#e' + previousNodeID + '1'));
   for (var n = 1; n <= difference; n++) {
     // Create node
     currentNodeID = (oldNumCities + n).toString();
@@ -286,6 +288,19 @@ function removeNodes(cy, cy2, layout, newNumCities, oldNumCities, n) {
     cy2.remove( nodeToRemoveCy2 );
 
     // add in edge that closes the loop
+    edgeID = 'e' + newNumCities + '1';
+    newEdge = {
+      data: { id: edgeID, source: newNumCities, target: '1' },
+      classes: 'edgesToAdd'
+    };
+    cy.add(newEdge);
+
+    edgeID = 'e' + newNumCities + '1';
+    newEdge = {
+      data: { id: edgeID, source: newNumCities, target: '1' },
+      classes: 'edgesToAdd'
+    };
+    cy2.add(newEdge);
   }
 }
 
