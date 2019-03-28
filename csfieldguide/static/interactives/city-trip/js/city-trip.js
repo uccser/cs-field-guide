@@ -5,11 +5,13 @@
 // TODO: Add distance scale to frontend
 // TODO: Show execution time
 // issue: nodes can lie on edges ( visual issue )
-
+var poo = new Date().getTime();
+console.log(poo);
 const cytoscape = require('cytoscape');
 const noOverlap = require('cytoscape-no-overlap');
 const automove = require('cytoscape-automove');
 const itertools = require('itertools');
+const Mathjs = require('mathjs');
 
 cytoscape.use(noOverlap);
 cytoscape.use(automove);
@@ -109,6 +111,7 @@ $(document).ready(function() {
     stopPathFinding = false;
     updateStatus("running", 'status-running');
     permutationsWithoutInverse(cy, cy2, cities, pathDistance);
+    calculateTimeTaken(numberOfCities);
   });
 
   $('#stop').click(function() {
@@ -148,9 +151,6 @@ $(document).ready(function() {
     pathDistance = getPathDistance(cy.edges());
     updateRouteStats();
   });
-
-  console.log(cy.elements().boundingBox().h);
-  console.log(cy.elements().renderedBoundingBox().w);
 });
 
 
@@ -182,9 +182,13 @@ function generateNodesAndEdgesData(nodes) {
     mapData.push(nodeData);
   }
   // generate edges (roads) between nodes (cities)
-  for (var e = 0; e < nodes.length - 1; e++) {
+  for (var e = 0; e <= nodes.length - 1; e++) {
     sourceNode = nodes[e].toString();
-    targetNode = nodes[e+1].toString();
+    if (e == nodes.length) {
+      targetNode = nodes[0].toString();
+    } else {
+      targetNode = nodes[e+1].toString();
+    }
     edgeID = 'e' + sourceNode + targetNode;
     edgeData = {
       data: { id: edgeID, source: sourceNode, target: targetNode}
@@ -228,7 +232,8 @@ function addOrRemoveNodes(cy, cy2, layout, oldNumCities, newNumCities) {
 
 function addNodes(cy, oldNumCities, difference) {
   var previousNodeID = oldNumCities.toString();
-  for (var n = 1; n < difference + 1; n++) {
+  // Remove edge that closes the loop
+  for (var n = 1; n <= difference; n++) {
     // Create node
     currentNodeID = (oldNumCities + n).toString();
     newNode = {
@@ -245,7 +250,15 @@ function addNodes(cy, oldNumCities, difference) {
     };
     cy.add(newEdge);
   }
+  // Create edge that closes the loop
+  edgeID = 'e' + currentNodeID + '1';
+  newEdge = {
+    data: { id: edgeID, source: currentNodeID, target: '1' },
+    classes: 'edgesToAdd'
+  };
+  cy.add(newEdge);
 }
+
 
 
 function removeNodes(cy, cy2, layout, newNumCities, oldNumCities, n) {
@@ -271,6 +284,8 @@ function removeNodes(cy, cy2, layout, newNumCities, oldNumCities, n) {
     // Update best route graph to match
     nodeToRemoveCy2 = cy2.$('#' + (oldNumCities - n).toString());
     cy2.remove( nodeToRemoveCy2 );
+
+    // add in edge that closes the loop
   }
 }
 
@@ -416,12 +431,52 @@ function getPathDistance(edges) {
     var edge = edges[i];
     var sourceNode = edge.source();
     var targetNode = edge.target();
-    console.log(sourceNode.width());
     distance += distanceBetweenCities(sourceNode.position(), targetNode.position());
   }
 
   return Math.round(distance);
 }
+
+
+function calculateTimeTaken(cities) {
+  // can only have whole integers for number of items
+  // console.log(cities);
+  // cities = Mathjs.bignumber(Math.round(cities));
+  // console.log(cities); 
+
+  numPaths = Mathjs.factorial(cities - 1) / 2;
+  seconds = Mathjs.divide(numPaths, 10);
+
+  var now = new Date();
+  completionTime = new Date(now.getTime() + (seconds * 1000) + (numPaths * 20));
+  // predictedCompletionTime.setSeconds(predictedCompletionTime.getTime().getSeconds() + seconds * 1000);
+  // console.log(predictedCompletionTime);
+  
+  var x = setInterval(function() {
+    var now = new Date().getTime();
+    
+    var runningTimeLeft = (completionTime.getTime() - now) / 1000;
+
+    if (runningTimeLeft < 0) {
+      clearInterval(x);
+    }
+
+    var years = Math.floor(runningTimeLeft / 31536000);
+    var days = Math.floor((runningTimeLeft % 31536000) / 86400);
+    var hours = Math.floor((runningTimeLeft % 86400) / 3600);
+    var minutes = Math.floor((runningTimeLeft % 3600) / 60);
+    var seconds = Math.floor(runningTimeLeft % 60);
+
+    $('#num-years').html(years);
+    $('#num-days').html(days);
+    $('#num-hours').html(hours);
+    $('#num-minutes').html(minutes);
+    $('#num-seconds').html(seconds);
+
+  }, 20);
+}
+
+
 
 
 // JavaScript sleep function taken from 
