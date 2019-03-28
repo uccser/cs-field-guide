@@ -66,6 +66,11 @@ function Level(levelNumber) {
 	}
 
 	this.setCanAttackAcksNacks = function(canAttackAcksNacks) {
+		// This will create a strange message on the start level screen if acks
+		// & nacks aren't enabled
+		if (canAttackAcksNacks) {
+			this.setAcksNacksEnabled(true);
+		}
 		this.canAttackAcksNacks = canAttackAcksNacks;
 		return this;
 	}

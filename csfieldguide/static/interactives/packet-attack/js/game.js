@@ -267,7 +267,7 @@ class GameScene extends Phaser.Scene {
             packetType: PACKET.PacketTypes.SENT,
             number: packet.number,
             scene: this,
-            x: 800,
+            x: 0,
             y: 220,
             char: char,
             isOrdered: this.level.packetsHaveNumbers,

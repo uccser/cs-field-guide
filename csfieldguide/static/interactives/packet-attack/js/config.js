@@ -1,6 +1,6 @@
 var LEVEL = require('./level.js');
 
-var SENDTEXT = gettext("HELLOWORLD");
+var SENDTEXT = gettext("HELLO");
 
 // Level configs
 var LEVELS = [
@@ -11,10 +11,12 @@ var LEVELS = [
                     .setMsg(SENDTEXT), // Multiple Packets
     new LEVEL.Level(3)
                     .setMsg(SENDTEXT)
-                    .setPacketsHaveShields(true), // Confuse/Corrupt wont work since shields are enabled
+                    .setPacketsHaveShields(true) // Confuse wont work since shields are enabled
+                    .setKills(0),
     new LEVEL.Level(4)
                     .setMsg(SENDTEXT)
-                    .setPacketsHaveNumbers(true), // Delay/Stun wont work since packets are ordered
+                    .setPacketsHaveNumbers(true) // Delay wont work since packets are ordered
+                    .setKills(0),
     new LEVEL.Level(5)
                     .setMsg(SENDTEXT)
                     .setPacketsHaveNumbers(true)
