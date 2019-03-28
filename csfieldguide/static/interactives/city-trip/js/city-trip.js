@@ -205,14 +205,6 @@ function addEdge(cyGraph, sourceNodeId, targetNodeId) {
   cyGraph.add(newEdge);
 }
 
-function addNode(cyGraph, nodeId) {
-  newNode = {
-    data: { id: nodeId },
-    classes: 'nodesToAdd'
-  };
-  cyGraph.add(newNode);
-}
-
 
 // Adds or removes nodes when user alters number of nodes via slider input
 function addOrRemoveNodes(cy, cy2, layout, oldNumCities, newNumCities) {
@@ -253,7 +245,7 @@ function addNodes(cy, cy2, oldNumCities, difference) {
     // Create node
     currentNodeID = (oldNumCities + n).toString();
     newNode = {
-      data: { id: currentNodeID, weight: 3},
+      data: { id: currentNodeID },
       classes: 'nodesToAdd'
     };
     cy.add(newNode);
