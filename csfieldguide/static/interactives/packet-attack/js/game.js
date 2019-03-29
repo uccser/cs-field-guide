@@ -18,14 +18,16 @@ class GameScene extends Phaser.Scene {
         this.sendChars;
         this.receivedPackets;
         this.level;
+        this.allPackets = [];
         this.activePackets = [];
         this.unansweredPacketNumbers = [];
         this.activeAcks = [];
         this.activeNacks = [];
         this.receivedAcks = [];
-
         this.timers = [];
-        this.allPackets = [];
+        this.remainingDelays;
+        this.remainingCorrupts;
+        this.remainingKills;
 
         this.handlers = {
             'level': this.setLevel,
@@ -47,6 +49,9 @@ class GameScene extends Phaser.Scene {
         this.registry.set('delay', false);
         this.registry.set('kill', false);
         this.registry.set('corrupt', false);
+        this.registry.set('remainingDelays', -1);
+        this.registry.set('remainingCorrupts', -1);
+        this.registry.set('remainingKills', -1);
     }
 
     preload() {
@@ -92,6 +97,13 @@ class GameScene extends Phaser.Scene {
         this.receivedMessage = '';
         this.sendChars = this.level.message.split('');
         this.receivedPackets = [];
+
+        this.remainingDelays = this.level.delays;
+        this.remainingCorrupts = this.level.corrupts;
+        this.remainingKills = this.level.kills;
+        this.registry.set('remainingDelays', this.remainingDelays);
+        this.registry.set('remainingCorrupts', this.remainingCorrupts);
+        this.registry.set('remainingKills', this.remainingKills);
 
         for (var i=0; i < this.sendChars.length; i++) {
             var key = 'packet: ' + i;
@@ -310,12 +322,14 @@ class GameScene extends Phaser.Scene {
 
     delay(scene, doDelay) {
         var packet;
-        if (doDelay) {
+        if (doDelay && scene.remainingDelays > 0) {
             for (var i=0; i < scene.activePackets.length; i++) {
                 packet = scene.activePackets[i];
                 if (packet.checkInDanger()) {
                     if (packet.type == PACKET.PacketTypes.SENT || scene.level.canAttackAcksNacks) {
                         packet.delay();
+                        scene.remainingDelays--;
+                        scene.registry.set('remainingDelays', scene.remainingDelays);
                         break;
                     }
                 }
@@ -325,12 +339,14 @@ class GameScene extends Phaser.Scene {
 
     kill(scene, doKill) {
         var packet;
-        if (doKill) {
+        if (doKill && scene.remainingKills > 0) {
             for (var i=0; i < scene.activePackets.length; i++) {
                 packet = scene.activePackets[i];
                 if (packet.checkInDanger()) {
                     if (packet.type == PACKET.PacketTypes.SENT || scene.level.canAttackAcksNacks) {
                         packet.kill();
+                        scene.remainingKills--;
+                        scene.registry.set('remainingKills', scene.remainingKills);
                         break;
                     }
                 }
@@ -340,12 +356,14 @@ class GameScene extends Phaser.Scene {
 
     corrupt(scene, doCorrupt) {
         var packet;
-        if (doCorrupt) {
+        if (doCorrupt && scene.remainingCorrupts > 0) {
             for (var i=0; i < scene.activePackets.length; i++) {
                 packet = scene.activePackets[i];
                 if (packet.checkInDanger()) {
                     if (packet.type == PACKET.PacketTypes.SENT || scene.level.canAttackAcksNacks) {
                         packet.corrupt();
+                        scene.remainingCorrupts--;
+                        scene.registry.set('remainingCorrupts', scene.remainingCorrupts);
                         break;
                     }
                 }
@@ -452,7 +470,10 @@ class UIScene extends Phaser.Scene {
         console.log('init');
         this.handlers = {
             'level': this.setLevel,
-            'receivedMessage': this.updateReceivedMessage
+            'receivedMessage': this.updateReceivedMessage,
+            'remainingDelays': this.updateDelays,
+            'remainingCorrupts': this.updateCorrupts,
+            'remainingKills': this.updateKills
         }
 
         this.registry.events.on('changedata', this.registryUpdate, this);
@@ -472,6 +493,12 @@ class UIScene extends Phaser.Scene {
     create() {
         console.log('creating UI');
 
+        var textConfig = {
+            font: '20px Open Sans',
+            fill: '#000000',
+            align: 'left'
+        }
+
         this.playpause = this.add.sprite(600, 450, 'pause');
         this.playpause.on('pointerdown', this.togglePause);
 
@@ -479,16 +506,22 @@ class UIScene extends Phaser.Scene {
         this.delay.on('pointerdown', this.alertDelay);
         this.delay.on('pointerout', this.unAlertDelay);
         this.delay.on('pointerup', this.unAlertDelay);
+        this.delayRemainder = this.add.text(215, 580, 'Uses:', textConfig);
+        this.delayRemainder.setOrigin(0.5, 0.5);
 
 		this.corrupt = this.add.image(400, 520, 'corrupt');
         this.corrupt.on('pointerdown', this.alertCorrupt);
         this.corrupt.on('pointerout', this.unAlertCorrupt);
         this.corrupt.on('pointerup', this.unAlertCorrupt);
+        this.corruptRemainder = this.add.text(400, 580, 'Uses:', textConfig);
+        this.corruptRemainder.setOrigin(0.5, 0.5);
 
         this.kill = this.add.image(590, 520, 'kill');
         this.kill.on('pointerdown', this.alertKill);
         this.kill.on('pointerout', this.unAlertKill);
         this.kill.on('pointerup', this.unAlertKill);
+        this.killRemainder = this.add.text(590, 580, 'Uses:', textConfig);
+        this.killRemainder.setOrigin(0.5, 0.5);
 
         this.pipes = this.add.image(400, 300, 'pipes'); // Image needed above the packets
 
@@ -525,6 +558,42 @@ class UIScene extends Phaser.Scene {
 
     updateReceivedMessage(scene, message) {
         scene.receivedText.setText('Received:\n' + message);
+    }
+
+    updateDelays(scene, number) {
+        scene.delayRemainder.setText('Uses: ' + number);
+
+        if (number <=0) {
+            scene.delay.alpha = 0.5;
+            scene.delay.disableInteractive();
+        } else {
+            scene.delay.alpha = 1;
+            scene.delay.setInteractive({ useHandCursor: true });
+        }
+    }
+
+    updateCorrupts(scene, number) {
+        scene.corruptRemainder.setText('Uses: ' + number);
+
+        if (number <=0) {
+            scene.corrupt.alpha = 0.5;
+            scene.corrupt.disableInteractive();
+        } else {
+            scene.corrupt.alpha = 1;
+            scene.corrupt.setInteractive({ useHandCursor: true });
+        }
+    }
+
+    updateKills(scene, number) {
+        scene.killRemainder.setText('Uses: ' + number);
+
+        if (number <=0) {
+            scene.kill.alpha = 0.5;
+            scene.kill.disableInteractive();
+        } else {
+            scene.kill.alpha = 1;
+            scene.kill.setInteractive({ useHandCursor: true });
+        }
     }
 
     alertDelay() {

@@ -119,7 +119,7 @@ class Packet extends Phaser.GameObjects.Container {
     /**
      * 
      * 
-     * BUG:
+     * NOTE:
      * Packets X and X+3(n-1) will overlap if X is delayed n times and X+3(n-1) once
      */
     /*
