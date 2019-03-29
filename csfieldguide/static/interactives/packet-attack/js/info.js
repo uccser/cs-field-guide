@@ -120,7 +120,6 @@ class Information extends Phaser.Scene {
                     + (this.level.acksNacksEnabled ? "The right pipe sends creatures back with results, green is good, red is bad\n" : "")
                     + (this.level.canAttackAcksNacks ? "but the responses are also vulnerable to your attack!" : "")
                     + (this.level.timeoutsEnabled ? "If the left pipe doesn't get a response, it will resend a creature\n" : "")
-                    + (this.level.stuns > 1 ? "You are given multiple delays to work with, but you can't delay the same packet twice" : "")
                     + (this.level.levelNumber == 1 ? "There are no defenses!" : "");
             break;
           case InfoPaneType.START:
