@@ -1,6 +1,5 @@
 var codes = ['P', 'e', 's', 'e', 'p', 'o', 'ease', 'x'];
 var message_characters = [];
-
 // var message_characters = [
 //  {
 //      Character: 'P',
@@ -15,13 +14,17 @@ window.onload = function() {
     highlightCodedCharacters();
 }
 
-
 // highlight the characters that have a corresponding code in the dictionary
 function highlightCodedCharacters() {
-    // version for only single characters in dictionary
+    
+    // clear the existing references
+    for (var i = 0; i < message_characters.length; i++) {
+        message_characters[i].CodeIndex = false;
+    }
 
     // stable sort the codes by length
-    codes.sort(function (a, b) {
+    var ordered_codes = codes.slice()
+    ordered_codes.sort(function (a, b) {
         if (a.length === b.length)
             return a.position - b.position;
         if (b.length < a.length)
@@ -29,8 +32,14 @@ function highlightCodedCharacters() {
             return 1;
     });
 
-    for (var i = 0; i < codes.length; i++) {
-        var code = codes[i];
+    console.log(codes);
+    console.log(ordered_codes);
+
+    // highlight the substrings of the message that occur in the dictionary
+    // uses the longest code first
+
+    for (var i = 0; i < ordered_codes.length; i++) {
+        var code = ordered_codes[i];
         for (var j = 0; j < message_characters.length - 1; j++) {
             var code_match = false;
             var next_message_character_index = j + 1;
@@ -65,16 +74,36 @@ function highlightCodedCharacters() {
                         code_match = true;
                 }
             }
-            // before searching for the next occurance, mark the characters in the message with which code index
-            //     they correspond to
+            // before searching for the next occurance, mark the characters in the message
+            //     with which code index they correspond to
             if (code_match == true) {
                 for (var l = 0; l < code.length; l++) {
-                    message_characters[l + j].CodeIndex = i;
+                    var character_index = l + j;
+                    message_characters[character_index].CodeIndex = codes.indexOf(code);
+                    // interface
+                    var character_element = document.querySelectorAll('[data-character-index="' + character_index.toString() + '"]')[0];
+                    character_element.classList.add('highlight');
                 }
             }
         }
     }
-    console.log(message_characters);
+}
+
+
+function highlightDictionaryEntry(event, highlight) {
+    // get message character element and index to get dictionary entry index
+    var message_character_element = event.srcElement;
+    var message_character_index = message_character_element.getAttribute('data-character-index');
+    var dictionary_entry_index = message_characters[message_character_index].CodeIndex;
+    // if there is a corresponding code in the dictionary then highlight it
+    if (dictionary_entry_index !== false) {
+        var dictionary_entry_element = document.querySelectorAll('[data-code-index="' + dictionary_entry_index.toString() + '"]')[0];
+        if (highlight === true) {
+            dictionary_entry_element.classList.add('highlight');
+        } else {
+            dictionary_entry_element.classList.remove('highlight');
+        }
+    }
 }
 
 
@@ -102,13 +131,18 @@ function readInputMessage() {
             var character_element = document.createElement('p');
             character_element.innerHTML = message[i];
             character_element.classList.add('interactive-compression-dictionary-message-character');
-            character_element.setAttribute('data-index', i);
-            line_div.append(character_element);
+            character_element.setAttribute('data-character-index', i);
+            character_element.addEventListener('mousemove', function(event) {
+                highlightDictionaryEntry(event, true);
+            });
+            character_element.addEventListener('mouseleave', function(event) {
+                highlightDictionaryEntry(event, false);
+            });
+        line_div.append(character_element);
         }
     }
     fragment.appendChild(line_div);
     document.getElementById('interactive-compression-dictionary-output').appendChild(fragment);
-
 }
 
 
@@ -136,7 +170,7 @@ function addInputRowToDictionary() {
     var dictionary_entry = document.createElement('div');
     dictionary_entry.classList.add('interactive-compression-dictionary-user-dictionary-entry');
     dictionary_entry.id = 'interactive-compression-dictionary-user-dictionary-entry-input';
-    dictionary_entry.setAttribute('data-index', i);
+    dictionary_entry.setAttribute('data-code-index', i);
     // create code element
     var code_element = document.createElement('p');
     code_element.innerHTML = i;
@@ -168,7 +202,7 @@ function createDictionaryElement(index, value) {
     // create dictionary entry element
     var dictionary_entry = document.createElement('div');
     dictionary_entry.classList.add('interactive-compression-dictionary-user-dictionary-entry');
-    dictionary_entry.setAttribute('data-index', index);
+    dictionary_entry.setAttribute('data-code-index', index);
     
     // create code element
     var code_element = document.createElement('p');
