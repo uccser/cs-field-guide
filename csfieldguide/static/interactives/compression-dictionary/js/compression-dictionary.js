@@ -15,7 +15,7 @@ window.onload = function() {
 }
 
 // highlight the characters that have a corresponding code in the dictionary
-function highlightCodedCharacters() {
+function highlightCodedCharacters() { // TODO refactor this function name
     
     // clear the existing references
     for (var i = 0; i < message_characters.length; i++) {
@@ -31,9 +31,6 @@ function highlightCodedCharacters() {
             return -1;
             return 1;
     });
-
-    console.log(codes);
-    console.log(ordered_codes);
 
     // highlight the substrings of the message that occur in the dictionary
     // uses the longest code first
@@ -102,6 +99,27 @@ function highlightDictionaryEntry(event, highlight) {
             dictionary_entry_element.classList.add('highlight');
         } else {
             dictionary_entry_element.classList.remove('highlight');
+        }
+    }
+}
+
+function highlightCharacters(event, highlight) {
+    var selected_dictionary_entry = event.srcElement;
+    if (event.nodeName == 'P') { // event was changing focus to next input box
+        selected_dictionary_entry = event.parentElement;
+    }
+    var dictionary_entry_index = selected_dictionary_entry.getAttribute('data-code-index');
+    for (var i = 0; i < message_characters.length; i++) {
+        var character = message_characters[i];
+        if (character.CodeIndex.toString() == dictionary_entry_index) {
+            var message_character_element = document.querySelectorAll('[data-character-index="' + i.toString() + '"]')[0];
+            if (message_character_element != undefined) {
+                if (highlight === true) {
+                    message_character_element.classList.add('border');
+                } else {
+                    message_character_element.classList.remove('border');
+                }
+            }
         }
     }
 }
@@ -217,6 +235,13 @@ function createDictionaryElement(index, value) {
     // add code and value to parent div
     dictionary_entry.appendChild(code_element);
     dictionary_entry.appendChild(value_element);
+
+    dictionary_entry.addEventListener('mousemove', function(event) {
+        highlightCharacters(event, true);
+    });
+    dictionary_entry.addEventListener('mouseleave', function(event) {
+        highlightCharacters(event, false);
+    });
 
     return dictionary_entry;
 }
