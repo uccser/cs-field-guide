@@ -1,5 +1,4 @@
-// var codes = ['P', 'e', 's', 'e', 'p', 'o', 'Pease', 'x'];
-var codes = ['ease'];
+var codes = ['P', 'e', 's', 'e', 'p', 'o', 'ease', 'x'];
 var message_characters = [];
 
 // var message_characters = [
@@ -31,29 +30,31 @@ function highlightCodedCharacters() {
     });
 
     for (var i = 0; i < codes.length; i++) {
-
         var code = codes[i];
-        // var code_match = false;
-
-        for (var j = 0; j < message_characters.length; j++) {
-
+        for (var j = 0; j < message_characters.length - 1; j++) {
             var code_match = false;
             var next_message_character_index = j + 1;
-            
+            // if the character has already been matched, the move on to the next
+            if (message_characters[j].CodeIndex !== false) {
+                continue;
+            }
             // if the first character of the code matches the current character in the message
             if (code[0] == message_characters[j].Character) {
-                
                 // check the rest of the code matches the following characters
                 if (code.length > 1) {
                     for (var k = 1; k < code.length; k++) {
                         // get the next code and message characters
                         var next_code_character = code[k];
-                        var next_message_character = message_characters[next_message_character_index].Character;
+                        var next_message_character = message_characters[next_message_character_index];
+                        // if a character in the message is already coded, move on
+                        if (next_message_character.CodeIndex != false) {
+                            break;
+                        }
                         // if they match, then iterate to the next characters
-                        if (next_code_character == next_message_character) {
+                        if (next_code_character == next_message_character.Character) {
                             next_message_character_index += 1;
                             // if they match and have reached the end of the code, then record that a match was found!
-                            if (next_message_character_index == code.length) {
+                            if ((next_message_character_index - j) == code.length) {
                                 code_match = true;
                             }
                         } else {
@@ -61,23 +62,19 @@ function highlightCodedCharacters() {
                         }
                     }
                 } else { // if the code is one character long, then we know we have found a match
-                    code_match = true;
+                        code_match = true;
                 }
-
             }
-
             // before searching for the next occurance, mark the characters in the message with which code index
             //     they correspond to
-            if (code_match) {
-                // l = whichever character we were up to
-                for (var l = j; l <= code.length; l++) {
-                    message_characters[l].CodeIndex = i;
+            if (code_match == true) {
+                for (var l = 0; l < code.length; l++) {
+                    message_characters[l + j].CodeIndex = i;
                 }
             }
         }
     }
     console.log(message_characters);
-
 }
 
 
