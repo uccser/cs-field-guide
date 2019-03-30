@@ -22,7 +22,7 @@ $(document).ready(function() {
   var output = $("#slider-text");
   var numberOfCities = Number(slider.val());
   var cities = Array.from(Array(numberOfCities), (x, index) => index + 1);
-  var startingCity = cities[Math.floor(Math.random()*cities.length)];
+  var startingCity = cities[Math.floor(Math.random()*(cities.length - 1))];
   intermediateCities = cities.filter(function(city) {
     return city !== startingCity;
   });
@@ -98,13 +98,13 @@ $(document).ready(function() {
     cy.nodes().grabify();
     newNumberOfCities = Number(slider.val());
     cities = Array.from(Array(newNumberOfCities), (x, index) => index + 1);
-    startingCity = cities[Math.floor(Math.random()*cities.length)];
+    //startingCity = cities[Math.floor(Math.random()*cities.length)];
     intermediateCities = cities.filter(function(city) {
       return city !== startingCity;
     });
     citiesLoop = addOriginCityToPath(startingCity, intermediateCities);
     console.log(cy.edges());
-    addOrRemoveNodes(cy, cy2, layout, numberOfCities, newNumberOfCities, citiesLoop[0].toString());
+    addOrRemoveNodes(cy, cy2, layout, numberOfCities, newNumberOfCities, startingCity.toString());
     setGraphOptions(cy); // potentially improve?
     numberOfCities = newNumberOfCities;
     output.html(numberOfCities);
@@ -465,7 +465,7 @@ async function permutationsWithoutInverse(cy, cy2, cities, bestRouteDistance, st
   var pathsWithoutInverse = [];
   // Push the path already shown to the user (initial path)
   pathsWithoutInverse.push(cities);
-  var previousPath = addOriginCityToPath(startingCity, cities);
+  //var previousPath = addOriginCityToPath(startingCity, cities);
   for (var i = 1; i < paths.length; i++) {
     if (stopPathFinding) {
       break;
@@ -476,12 +476,12 @@ async function permutationsWithoutInverse(cy, cy2, cities, bestRouteDistance, st
       pathsWithoutInverse.push(path);
       pathWithStartingCity = addOriginCityToPath(startingCity, path);
       // Draw graph here
-      pathData = testNewPath(cy, cy2, pathWithStartingCity, bestRouteDistance, startNode);
+      pathData = testNewPath(cy, cy2, pathWithStartingCity, bestRouteDistance, startingCity.toString());
       await sleep(20);
       if (pathData.isBestRoute) {
         bestRouteDistance = pathData.distance;
       }
-      previousPath = pathWithStartingCity;
+      //previousPath = pathWithStartingCity;
     }
   }
   updateStatus("complete!", 'status-complete');
