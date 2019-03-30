@@ -103,7 +103,8 @@ $(document).ready(function() {
       return city !== startingCity;
     });
     citiesLoop = addOriginCityToPath(startingCity, intermediateCities);
-    addOrRemoveNodes(cy, cy2, layout, numberOfCities, newNumberOfCities, citiesLoop);
+    console.log(cy.edges());
+    addOrRemoveNodes(cy, cy2, layout, numberOfCities, newNumberOfCities, citiesLoop[0].toString());
     setGraphOptions(cy); // potentially improve?
     numberOfCities = newNumberOfCities;
     output.html(numberOfCities);
@@ -188,6 +189,7 @@ function initialiseGraph(nodes, cityLoop) {
     graphData.push(nodeData);
   }
   // generate edges (roads) between nodes (cities)
+  console.log(cityLoop);
   for (var i = 0; i < cityLoop.length - 1; i++) {
     sourceNode = cityLoop[i].toString();
     targetNode = cityLoop[i+1].toString();
@@ -226,16 +228,22 @@ function addEdge(cyGraph, sourceNodeId, targetNodeId) {
 
 
 // Adds or removes nodes when user alters number of nodes via slider input
-function addOrRemoveNodes(cy, cy2, layout, oldNumCities, newNumCities, citiesLoop) {
+function addOrRemoveNodes(cy, cy2, layout, oldNumCities, newNumCities, startNode) {
   // Lock existing nodes so their layout doesn't change once refreshLayout is called
   cy.nodes().lock();
   var difference = Math.abs(newNumCities - oldNumCities);
   if (oldNumCities < newNumCities) {
+    // Remove edge that closes the loop
+    // console.log(cy.edges());
+    previousNodeID = oldNumCities.toString();
+    cy.remove(cy.$('#e' + previousNodeID + startNode));
+    console.log(cy.edges());
+    cy2.remove(cy2.$('#e' + previousNodeID + startNode));
     // Add nodes
-    addNodes(cy, cy2, oldNumCities, difference, citiesLoop);
+    addNodes(cy, oldNumCities, difference, startNode);
     // Make sure layout is still random and nodes can't overlap when dragged
     refreshLayout(cy, layout);
-    previousNodeID = currentNodeID;
+    //previousNodeID = currentNodeID;
     cy.nodes().lock();
     // Update best route graph to match
     cy2.add(cy.$('.nodesToAdd').clone());
@@ -247,7 +255,7 @@ function addOrRemoveNodes(cy, cy2, layout, oldNumCities, newNumCities, citiesLoo
     cy.nodes().unlock();
     for (var n = 0; n < difference; n++) {
       // Remove nodes and update best route graph to match
-      removeNodes(cy, cy2, layout, newNumCities, oldNumCities, n);
+      removeNodes(cy, cy2, layout, newNumCities, oldNumCities, n, startNode);
       setGraphOptions(cy2);
     }
   }
@@ -255,11 +263,8 @@ function addOrRemoveNodes(cy, cy2, layout, oldNumCities, newNumCities, citiesLoo
 }
 
 
-function addNodes(cy, cy2, oldNumCities, difference) {
+function addNodes(cy, oldNumCities, difference, startNode) {
   var previousNodeID = oldNumCities.toString();
-  // Remove edge that closes the loop
-  cy.remove(cy.$('#e' + previousNodeID + '1'));
-  cy2.remove(cy2.$('#e' + previousNodeID + '1'));
   for (var n = 1; n <= difference; n++) {
     // Create node
     currentNodeID = (oldNumCities + n).toString();
@@ -270,14 +275,16 @@ function addNodes(cy, cy2, oldNumCities, difference) {
     cy.add(newNode);
 
     // Create edge
+    console.log(previousNodeID);
+    console.log(currentNodeID);
     addEdge(cy, previousNodeID, currentNodeID);
   }
   // Create edge that closes the loop
-  addEdge(cy, currentNodeID, '1');
+  addEdge(cy, currentNodeID, startNode);
 }
 
 
-function removeNodes(cy, cy2, layout, newNumCities, oldNumCities, n) {
+function removeNodes(cy, cy2, layout, newNumCities, oldNumCities, n, startNode) {
   if (stopPathFinding) {
     // If removing nodes after clicking 'stop' have to reset graph because some edges between nodes don't exist.
     // (will be part way through path finding)
@@ -302,8 +309,8 @@ function removeNodes(cy, cy2, layout, newNumCities, oldNumCities, n) {
     cy2.remove( nodeToRemoveCy2 );
 
     // Add in edge that closes the loop
-    addEdge(cy, newNumCities, '1');
-    addEdge(cy2, newNumCities, '1');
+    addEdge(cy, newNumCities, startNode);
+    addEdge(cy2, newNumCities, startNode);
   }
 }
 
@@ -323,7 +330,7 @@ function refreshLayout(cy, layout) {
 // Draw the new path and calculate it's distance
 // Updates frontend text if new best route found
 // Returns distance of the new path and if it is the best route so far or not
-function testNewPath(cy, cy2, newPath, bestRouteDistance) {
+function testNewPath(cy, cy2, newPath, bestRouteDistance, startNode) {
   $('#trial-route').html(newPath.toString());
   // Number of nodes (cities) remains the same between paths
   // Minus one because we include the start node twice (it is also the end node)
@@ -335,7 +342,7 @@ function testNewPath(cy, cy2, newPath, bestRouteDistance) {
     newEdgeConfig.add(newEdgeID);
   }
 
-  findEdgeDifferences(cy, newEdgeConfig, numCities);
+  findEdgeDifferences(cy, newEdgeConfig, numCities, startNode);
 
   var totalDistance = getPathDistance(cy.edges());
   $('#trial-distance').html(totalDistance);
@@ -353,7 +360,11 @@ function testNewPath(cy, cy2, newPath, bestRouteDistance) {
 
 
 // Finds the edge differences between two paths and draws the new path by calling changePaths
-function findEdgeDifferences(cyGraph, newEdgeConfig, numCities) {
+function findEdgeDifferences(cyGraph, newEdgeConfig, numCities, startNode) {
+  console.log(numCities);
+  // Remove edge that closes the loop
+  var lastNodeID = numCities.toString();
+  cyGraph.remove(cyGraph.$('#e' + lastNodeID + startNode));
   // Number of nodes (cities) remains the same between paths;
   var oldEdgeConfig = new Set();
   for (var i = 0; i < numCities; i++) {
@@ -465,7 +476,7 @@ async function permutationsWithoutInverse(cy, cy2, cities, bestRouteDistance, st
       pathsWithoutInverse.push(path);
       pathWithStartingCity = addOriginCityToPath(startingCity, path);
       // Draw graph here
-      pathData = testNewPath(cy, cy2, pathWithStartingCity, bestRouteDistance);
+      pathData = testNewPath(cy, cy2, pathWithStartingCity, bestRouteDistance, startNode);
       await sleep(20);
       if (pathData.isBestRoute) {
         bestRouteDistance = pathData.distance;
