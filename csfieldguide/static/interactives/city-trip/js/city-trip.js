@@ -224,9 +224,6 @@ function addOrRemoveNodes(cy, cy2, layout, oldNumCities, newNumCities, startNode
   if (oldNumCities < newNumCities) {
     // Remove edge that closes the loop
     previousNodeID = oldNumCities.toString();
-    console.log(previousNodeID);
-    console.log(startNode);
-    console.log(cy.edges());
     cy.remove(cy.$('#e' + previousNodeID + startNode));
     cy2.remove(cy2.$('#e' + previousNodeID + startNode));
     // Add nodes
@@ -355,14 +352,12 @@ function testNewPath(cy, cy2, newPath, bestRouteDistance, startNode) {
 
 // Finds the edge differences between two paths and draws the new path by calling changePaths
 function findEdgeDifferences(cyGraph, newEdgeConfig, numCities, startNode) {
-  console.log(numCities);
   // Remove edge that closes the loop
   var lastNodeID = numCities.toString();
   cyGraph.remove(cyGraph.$('#e' + lastNodeID + startNode));
   // Number of nodes (cities) remains the same between paths;
   var oldEdgeConfig = new Set();
   for (var i = 0; i < numCities - 1; i++) {
-    console.log(i);
     var edgeID = cyGraph.elements('edge')[i].data('id');
     // Edge IDs are saved like 'e12' so strip 'e'
     var edgeIDStr = edgeID.substring(1);
@@ -404,36 +399,6 @@ function setDifference(a, b) {
 }
 
 
-// Calculates permutations without inverse permutations
-// E.g if [1,2,3] exists in the array then [3,2,1] will not be added (they are essentially the same path)
-// async function permutationsWithoutInverse(cy, cy2, cities, bestRouteDistance) {
-//   var len = cities.length;
-//   var paths = [...itertools.permutations(cities)];
-//   var pathsWithoutInverse = [];
-//   // Push the path already shown to the user (initial path)
-//   pathsWithoutInverse.push(cities);
-//   var previousPath = cities;
-//   for (var i = 1; i < paths.length; i++) {
-//     if (stopPathFinding) {
-//       break;
-//     }
-//     path = paths[i];
-//     if (path[0] <= path[len-1]) {
-//       pathsWithoutInverse.push(path);
-//       // Draw graph here
-//       pathData = testNewPath(cy, cy2, previousPath, path, bestRouteDistance); 
-//       await sleep(20);
-//       if (pathData.isBestRoute) {
-//         bestRouteDistance = pathData.distance;
-//       }
-//       previousPath = path;
-//     }
-//   }
-//   updateStatus("complete!", 'status-complete');
-//   cy.nodes().grabify();
-// }
-
-
 function addOriginCityToPath(originCity, cities) {
   // Add origin city to start of route
   temp = [originCity].concat(cities);
@@ -443,6 +408,8 @@ function addOriginCityToPath(originCity, cities) {
 
 
 async function permutationsWithoutInverse(cy, cy2, cities, bestRouteDistance, startingCity) {
+  yo = new Date().getTime();
+  console.log(yo);
   var len = cities.length;
   cities = cities.filter(function(city) {
     return city !== startingCity;
@@ -451,7 +418,6 @@ async function permutationsWithoutInverse(cy, cy2, cities, bestRouteDistance, st
   var pathsWithoutInverse = [];
   // Push the path already shown to the user (initial path)
   pathsWithoutInverse.push(cities);
-  //var previousPath = addOriginCityToPath(startingCity, cities);
   for (var i = 1; i < paths.length; i++) {
     if (stopPathFinding) {
       break;
@@ -463,13 +429,16 @@ async function permutationsWithoutInverse(cy, cy2, cities, bestRouteDistance, st
       pathWithStartingCity = addOriginCityToPath(startingCity, path);
       // Draw graph here
       pathData = testNewPath(cy, cy2, pathWithStartingCity, bestRouteDistance, startingCity.toString());
-      await sleep(20);
+      await sleep(100);
       if (pathData.isBestRoute) {
         bestRouteDistance = pathData.distance;
       }
-      //previousPath = pathWithStartingCity;
     }
   }
+  console.log(pathsWithoutInverse);
+  now = new Date().getTime();
+  console.log(now);
+  console.log(now - yo);
   updateStatus("complete!", 'status-complete');
   cy.nodes().grabify();
 }
@@ -502,28 +471,28 @@ function getPathDistance(edges) {
 
 
 function calculateTimeTaken(cities) {
-  numPaths = Mathjs.factorial(cities - 1) / 2;
+  factorialTemp = Mathjs.factorial(cities - 1);
+  numPaths = Mathjs.divide(factorialTemp, 2);
   seconds = Mathjs.divide(numPaths, 10);
+  console.log(seconds);
+  console.log(numPaths);
 
   var now = new Date();
-  completionTime = new Date(now.getTime() + (seconds * 1000) + (numPaths * 20));
-  // predictedCompletionTime.setSeconds(predictedCompletionTime.getTime().getSeconds() + seconds * 1000);
-  // console.log(predictedCompletionTime);
+  completionTime = new Date(now.getTime() + (seconds * 1000));
   
   var x = setInterval(function() {
-    var now = new Date().getTime();
-    
+    now = new Date().getTime();
     var runningTimeLeft = (completionTime.getTime() - now) / 1000;
 
-    if (runningTimeLeft < 0) {
+    if (runningTimeLeft <= 0) {
       clearInterval(x);
     }
 
-    var years = Math.floor(runningTimeLeft / 31536000);
-    var days = Math.floor((runningTimeLeft % 31536000) / 86400);
-    var hours = Math.floor((runningTimeLeft % 86400) / 3600);
-    var minutes = Math.floor((runningTimeLeft % 3600) / 60);
-    var seconds = Math.floor(runningTimeLeft % 60);
+    var years = Math.round(runningTimeLeft / 31536000);
+    var days = Math.round((runningTimeLeft % 31536000) / 86400);
+    var hours = Math.round((runningTimeLeft % 86400) / 3600);
+    var minutes = Math.round((runningTimeLeft % 3600) / 60);
+    var seconds = Math.abs((runningTimeLeft % 60).toFixed(2));
 
     $('#num-years').html(years);
     $('#num-days').html(days);
@@ -531,7 +500,7 @@ function calculateTimeTaken(cities) {
     $('#num-minutes').html(minutes);
     $('#num-seconds').html(seconds);
 
-  }, 20);
+  }, 10);
 }
 
 
