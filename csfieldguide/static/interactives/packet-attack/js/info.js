@@ -58,7 +58,6 @@ class Information extends Phaser.Scene {
                 this.scene.setLevel(this.scene.level.levelNumber + 1);
             }
             this.scene.setPaneType(InfoPaneType.BEFORE_LEVEL);
-            console.log('setting level to ' + this.scene.level.levelNumber);
         } else {
             this.scene.button.disableInteractive();
             this.scene.sendBackward();

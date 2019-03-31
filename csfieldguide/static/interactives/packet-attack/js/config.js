@@ -43,7 +43,7 @@ var FINAL_LEVEL = LEVELS.length - 1;
 
 /**
  * 
- * @param level should always be zero
+ * @param {0} level should always be zero
  */
 function setCustomLevel(level, config) {
     if (config.setMessage) {
@@ -54,7 +54,7 @@ function setCustomLevel(level, config) {
     LEVELS[level].setPacketsHaveNumbers(config.setPacketsHaveNumbers);
     LEVELS[level].setAcksNacksEnabled(config.setAcksNacksEnabled);
     LEVELS[level].setTimeoutsEnabled(config.setTimeoutsEnabled);
-    
+
     if (config.setDelays) {
         LEVELS[level].setDelays(config.setDelays);
     }

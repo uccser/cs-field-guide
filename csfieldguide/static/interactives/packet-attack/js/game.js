@@ -62,7 +62,6 @@ class GameScene extends Phaser.Scene {
         this.load.spritesheet('ack', base + 'interactives/packet-attack/assets/greenPacketSprites.png', { frameWidth: 100, frameHeight: 100, endFrame: 8 });
         this.load.spritesheet('nack', base + 'interactives/packet-attack/assets/redPacketSprites.png', { frameWidth: 100, frameHeight: 100, endFrame: 8 });
         this.load.spritesheet('shield', base + 'interactives/packet-attack/assets/shieldedBluePacketSprites.png', { frameWidth: 100, frameHeight: 100, endFrame: 8 });
-        console.log('Done');
     }
 
     create() {
@@ -88,9 +87,6 @@ class GameScene extends Phaser.Scene {
         animationConfig.key = 'packetNackAnim';
         animationConfig.frames = this.anims.generateFrameNumbers('nack', { start: 0, end: 7 });
         this.anims.create(animationConfig);
-
-        
-        console.log('Done');
     }
 
     recreate() {
@@ -135,7 +131,6 @@ class GameScene extends Phaser.Scene {
     }
 
     registryUpdate(parent, key, data) {
-        console.log('registry changed');
         if (this.handlers[key]) {
             this.handlers[key](this, data);
         }
@@ -542,7 +537,6 @@ class UIScene extends Phaser.Scene {
     }
 
     registryUpdate(parent, key, data) {
-        console.log('registry changed');
         if (this.handlers[key]) {
             this.handlers[key](this, data);
         }
