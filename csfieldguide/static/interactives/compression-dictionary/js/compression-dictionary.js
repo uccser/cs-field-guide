@@ -10,7 +10,6 @@ var message_characters = [];
 window.onload = function() {
     readInputMessage();
     populateDictionary();
-    addInputRowToDictionary();
     highlightCodedCharacters();
 }
 
@@ -166,41 +165,16 @@ function readInputMessage() {
 
 function updateDictionary() {
     // get the new value entered by the user
-    var new_entry_value = document.getElementById('interactive-compression-dictionary-user-dictionary-value-input').value;
+    var input_elemet = document.getElementById('interactive-compression-dictionary-user-dictionary-value-input');
+    var new_entry_value = input_elemet.value;
     codes.push(new_entry_value);
-    // increase the index of the entry node
-    var entry_node = document.getElementById('interactive-compression-dictionary-user-dictionary-entry-input');
-    entry_node.dataset.index = codes.length;
-    entry_node.firstChild.innerHTML = codes.length;
     // create a new element for the new dictionary entry
     var next_index = codes.length - 1;
     var new_dictionary_element = createDictionaryElement(next_index, new_entry_value);
-    document.getElementById('interactive-compression-dictionary-user-dictionary-column-1').insertBefore(new_dictionary_element, entry_node);
-
+    document.getElementById('interactive-compression-dictionary-user-dictionary-column-1').appendChild(new_dictionary_element);
+    // reset input box
+    input_elemet.value = '';
     highlightCodedCharacters();
-}
-
-
-function addInputRowToDictionary() {
-    var i = codes.length;
-
-    // create space for next entry
-    var dictionary_entry = document.createElement('div');
-    dictionary_entry.classList.add('interactive-compression-dictionary-user-dictionary-entry');
-    dictionary_entry.id = 'interactive-compression-dictionary-user-dictionary-entry-input';
-    dictionary_entry.setAttribute('data-code-index', i);
-    // create code element
-    var code_element = document.createElement('p');
-    code_element.innerHTML = i;
-    code_element.classList.add('interactive-compression-dictionary-user-dictionary-code');
-    // create value element
-    var value_element = document.createElement('input');
-    value_element.id = 'interactive-compression-dictionary-user-dictionary-value-input';
-    value_element.addEventListener("change", updateDictionary);
-    dictionary_entry.appendChild(code_element);
-    dictionary_entry.appendChild(value_element);
-
-    document.getElementById('interactive-compression-dictionary-user-dictionary-column-1').appendChild(dictionary_entry);
 }
 
 

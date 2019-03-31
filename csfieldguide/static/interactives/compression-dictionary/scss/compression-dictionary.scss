@@ -1,5 +1,7 @@
 $shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
 $border: 1px solid #BFB9B7;
+$green: #aedd85;
+$blue: #85c1dd;
 
 html {
     font-family: "Roboto",sans-serif;
@@ -51,6 +53,20 @@ h1 {
     #interactive-compression-dictionary-right {
         overflow: hidden;
         position: relative;
+        #interactive-compression-dictionary-user-dictionary-entry-input {
+            display: flex;
+            margin-bottom: 20px;
+            p {
+                margin-right: 10px;
+            }
+            input {
+                flex: 1;
+                padding: 4px;
+                border: 1px solid #BFB9B7;
+                margin: 1px;
+                font: 1rem "Courier New", monospace !important;
+            }
+        }
         #interactive-compression-dictionary-user-dictionary {
             display: flex;
             overflow: scroll;
@@ -69,6 +85,9 @@ h1 {
                     width: 2rem;
                 }
             }
+            .interactive-compression-dictionary-user-dictionary-entry:hover {
+                border: 2px solid $blue;
+            }
         }
     }
     #interactive-compression-dictionary-left textarea,
@@ -82,8 +101,17 @@ h1 {
 }
 
 
-.highlight {
-    // outline: 3px solid #FF7043;
-    background-color: #aedd85; //85c1dd;
+.interactive-compression-dictionary-message-character.highlight {
+    background-color: $green;
+    outline-offset: 0.5px;
+}
+
+.interactive-compression-dictionary-message-character.border {
+    background-color: $blue !important;
+}
+
+
+.interactive-compression-dictionary-user-dictionary-entry.highlight {
+    outline: 3px solid $blue;
     outline-offset: 0.5px;
 }
