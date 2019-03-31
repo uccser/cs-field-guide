@@ -19,6 +19,7 @@ class Information extends Phaser.Scene {
         super({ key: 'Information' });
 
         this.paneType = config.paneType;
+        this.urlMode = false;
     }
 
     preload() {
@@ -29,7 +30,6 @@ class Information extends Phaser.Scene {
 
     init() {
         this.registry.set('level', null);
-        this.registry.events.on('changedata', function() {console.log('registry')});
     }
 
     create() {
@@ -52,10 +52,11 @@ class Information extends Phaser.Scene {
         } else if (this.scene.paneType == InfoPaneType.START) {
             this.scene.setLevel(this.scene.level.levelNumber);
             this.scene.setPaneType(InfoPaneType.BEFORE_LEVEL);
-            console.log('setting level to 1');
+            console.log('setting start level');
         } else if (this.scene.paneType == InfoPaneType.PROCEED) {
-            this.scene.setLevel(this.scene.level.levelNumber + 1);
-            this.scene.level = CONFIG.LEVELS[this.scene.level.levelNumber + 1];
+            if (!this.scene.urlMode) {
+                this.scene.setLevel(this.scene.level.levelNumber + 1);
+            }
             this.scene.setPaneType(InfoPaneType.BEFORE_LEVEL);
             console.log('setting level to ' + this.scene.level.levelNumber);
         } else {
@@ -90,11 +91,25 @@ class Information extends Phaser.Scene {
     }
 
     /**
-     * Sets the info screen to display the given level
+     * Sets all screens to run the given level
      */
     setLevel(level) {
         this.registry.set('level', level);
         console.log('registry set to level ' + level);
+        this.level = CONFIG.LEVELS[level];
+    }
+
+    setStartLevel(level) {
+        this.level = CONFIG.LEVELS[level];
+    }
+
+    setUrlMode() {
+        this.urlMode = true;
+    }
+
+    setUrlMode() {
+        this.urlMode = true;
+        this.setStartLevel(0);
     }
 
     generateFeedback() {
@@ -105,22 +120,26 @@ class Information extends Phaser.Scene {
             text = "You let the message get through!\nTry again.\n         ";
             break;
           case InfoPaneType.PROCEED:
-            if (this.urlmode) {
+            if (this.urlMode) {
               text = "Awesome!\nYou stopped the message being delivered.\nClick 'Start' to repeat this custom level.";
             } else {
               text = "Awesome!\nYou stopped the message being delivered.\nClick 'Start' to move to the next level.";
             }
             break;
           case InfoPaneType.BEFORE_LEVEL:
-            text = "Welcome to Level " + this.level.levelNumber + "!\n"
-                    + "In this level:\n"
-                    + (this.level.message.length > 1 ? "The left pipe is using many creatures to communicate\n" : "")
-                    + (this.level.packetsHaveShields ? "The creatures have shields to protect from corruption\n" : "")
-                    + (this.level.packetsHaveNumbers ? "The creatures have numbers\n" : "")
-                    + (this.level.acksNacksEnabled ? "The right pipe sends creatures back with results, green is good, red is bad\n" : "")
-                    + (this.level.canAttackAcksNacks ? "but the responses are also vulnerable to your attack!" : "")
-                    + (this.level.timeoutsEnabled ? "If the left pipe doesn't get a response, it will resend a creature\n" : "")
-                    + (this.level.levelNumber == 1 ? "There are no defenses!" : "");
+            if (this.urlMode) {
+                text = "Welcome to this custom level!\n";
+            } else {
+                text = "Welcome to Level " + this.level.levelNumber + "!\n";
+            }
+            text += "In this level:\n"
+                + (this.level.message.length > 1 ? "The left pipe is using many creatures to communicate\n" : "")
+                + (this.level.packetsHaveShields ? "The creatures have shields to protect from corruption\n" : "")
+                + (this.level.packetsHaveNumbers ? "The creatures have numbers\n" : "")
+                + (this.level.acksNacksEnabled ? "The right pipe sends creatures back with results, green is good, red is bad\n" : "")
+                + (this.level.canAttackAcksNacks ? "but the responses are also vulnerable to your attack!" : "")
+                + (this.level.timeoutsEnabled ? "If the left pipe doesn't get a response, it will resend a creature\n" : "")
+                + (this.level.levelNumber == 1 ? "There are no defenses!" : "");
             break;
           case InfoPaneType.START:
             text = "Welcome to Packet Attack. In this game, your job is to attack the packet creatures and stop messages being delivered.\nYou pass a level if the received message is any different from the one sent.\nWhile a creature is in the danger zone (indicated by the yellow and grey area) you may attack by clicking the command buttons.\nGood luck!"
@@ -160,10 +179,6 @@ class Information extends Phaser.Scene {
   
         this.information = this.add.text(400, 100, this.generateFeedback(), config);
         this.information.setOrigin(0.5, 0);
-    }
-
-    setStartLevel(levelNum) {
-        this.level = CONFIG.LEVELS[levelNum];
     }
 }
 

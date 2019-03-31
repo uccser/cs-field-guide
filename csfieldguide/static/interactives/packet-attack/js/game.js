@@ -496,7 +496,7 @@ class UIScene extends Phaser.Scene {
         var textConfig = {
             font: '20px Open Sans',
             fill: '#000000',
-            align: 'left'
+            align: 'center'
         }
 
         this.playpause = this.add.sprite(600, 450, 'pause');

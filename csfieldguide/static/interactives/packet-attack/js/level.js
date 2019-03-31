@@ -25,17 +25,17 @@ function Level(levelNumber) {
 		return this; // Setters return this so that the settings can be chained.
 	}
 
-	this.setDelays = function(delays) { // i.e. delays
+	this.setDelays = function(delays) {
 		this.delays = delays;
 		return this;
 	}
 
-	this.setKills = function(kills) { // i.e. kills
+	this.setKills = function(kills) {
 		this.kills = kills;
 		return this;
 	}
 
-	this.setCorrupts = function(corrupts) { // i.e. corrupts
+	this.setCorrupts = function(corrupts) {
 		this.corrupts = corrupts;
 		return this;
 	}
