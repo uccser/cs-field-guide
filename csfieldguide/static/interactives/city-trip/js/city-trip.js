@@ -18,8 +18,10 @@ var stopPathFinding = false;
 $(document).ready(function() {
 
   updateStatus("ready to go!", 'status-ready');
-  var output = $("#slider-text");
+  var output = $("#num-cities");
   var numberOfCities = 3;
+  var maxCities = 27;
+  var minCities = 3;
   var cities = Array.from(Array(numberOfCities), (x, index) => index + 1);
   var startingCity = 1;
   intermediateCities = cities.filter(function(city) {
@@ -93,27 +95,7 @@ $(document).ready(function() {
   var pathDistance = getPathDistance(cy.edges());
   updateRouteStats();
 
-  // slider.on('input', function() {
-  //   cy.nodes().grabify();
-  //   newNumberOfCities = Number(slider.val());
-  //   if ($("#status").hasClass('status-complete')) {
-  //     // If completed path finding on previous graph, need to reset graph
-  //     resetGraph(cy, cy2, newNumberOfCities, layout);
-  //   } else {
-  //     cities = Array.from(Array(newNumberOfCities), (x, index) => index + 1);
-  //     intermediateCities = cities.filter(function(city) {
-  //       return city !== startingCity;
-  //     });
-  //     citiesLoop = addOriginCityToPath(startingCity, intermediateCities);
-  //     addOrRemoveNodes(cy, cy2, layout, numberOfCities, newNumberOfCities, startingCity.toString());
-  //   }
-  //   setGraphOptions(cy); // potentially improve?
-  //   numberOfCities = newNumberOfCities;
-  //   output.html(numberOfCities);
-  //   pathDistance = getPathDistance(cy.edges());
-  //   updateRouteStats();
-  //   updateStatus("ready to go!", 'status-ready');
-  // });
+
   $('#add-city').click(function() {
     cy.nodes().lock();
     cy.nodes().grabify();
@@ -128,6 +110,13 @@ $(document).ready(function() {
     cy2.nodes().ungrabify();
     cy.nodes().unlock();
     numberOfCities += 1;
+    output.html(numberOfCities);
+    if (numberOfCities == maxCities) {
+      $('#add-city').prop('disabled', true);
+    }
+    if (numberOfCities > minCities) {
+      $('#remove-city').prop('disabled', false);
+    }
   })
 
   $('#remove-city').click(function() {
@@ -136,6 +125,13 @@ $(document).ready(function() {
     setGraphOptions(cy);
     cy.nodes().unlock();
     numberOfCities -= 1;
+    output.html(numberOfCities);
+    if (numberOfCities == minCities) {
+      $('#remove-city').prop('disabled', true);
+    }
+    if (numberOfCities < maxCities) {
+      $('#add-city').prop('disabled', false);
+    }
   })
 
   $('#start').click(function() {
@@ -238,45 +234,11 @@ function addEdge(cyGraph, sourceNodeId, targetNodeId) {
 }
 
 
-// Adds or removes nodes when user alters number of nodes via slider input
-// function addOrRemoveNodes(cy, cy2, layout, oldNumCities, newNumCities, startNode) {
-//   // Lock existing nodes so their layout doesn't change once refreshLayout is called
-//   cy.nodes().lock();
-//   var difference = Math.abs(newNumCities - oldNumCities);
-//   if (oldNumCities < newNumCities) {
-//     // Remove edge that closes the loop
-//     previousNodeID = oldNumCities.toString();
-//     cy.remove(cy.$('#e' + previousNodeID + startNode));
-//     cy2.remove(cy2.$('#e' + previousNodeID + startNode));
-//     // Add nodes
-//     addNodes(cy, oldNumCities, difference, startNode);
-//     // Make sure layout is still random and nodes can't overlap when dragged
-//     refreshLayout(cy, layout);
-//     cy.nodes().lock();
-//     // Update best route graph to match
-//     cy2.add(cy.$('.nodesToAdd').clone());
-//     cy2.add(cy.$('.edgesToAdd').clone());
-//     setGraphOptions(cy2);
-//     cy2.nodes().ungrabify();
-//   } else if (oldNumCities > newNumCities) {
-//     // Remove nodes
-//     cy.nodes().unlock();
-//     for (var n = 0; n < difference; n++) {
-//       // Remove nodes and update best route graph to match
-//       removeNodes(cy, cy2, layout, newNumCities, oldNumCities, n, startNode);
-//       setGraphOptions(cy2);
-//     }
-//   }
-//   cy.nodes().unlock();
-// }
-
-
 function addNode(cy, cy2, oldNumCities, startNode) {
   var previousNodeID = oldNumCities.toString();
   // Remove edge that closes the loop
   cy.remove(cy.$('#e' + previousNodeID + startNode));
   cy2.remove(cy2.$('#e' + previousNodeID + startNode));
-// for (var n = 1; n <= difference; n++) {
   // Create node
   currentNodeID = (oldNumCities + 1).toString();
   newNode = {
@@ -285,8 +247,6 @@ function addNode(cy, cy2, oldNumCities, startNode) {
   };
   cy.add(newNode);
   addEdge(cy, previousNodeID, currentNodeID);
-  // previousNodeID = currentNodeID;
-  // }
   // Create edge that closes the loop
   addEdge(cy, currentNodeID, startNode);
 }
@@ -499,8 +459,6 @@ function calculateTimeTaken(cities) {
   factorialTemp = Mathjs.factorial(cities - 1);
   numPaths = Mathjs.divide(factorialTemp, 2);
   seconds = Mathjs.divide(numPaths, 10);
-  console.log(seconds);
-  console.log(numPaths);
 
   var now = new Date();
   completionTime = new Date(now.getTime() + (seconds * 1000));
@@ -527,8 +485,6 @@ function calculateTimeTaken(cities) {
 
   }, 10);
 }
-
-
 
 
 // JavaScript sleep function taken from 
