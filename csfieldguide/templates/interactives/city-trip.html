@@ -17,7 +17,9 @@
           <label class="form-check-label" for="num-cities">
             {% trans "Number of cities: <span id='slider-text'>3</span>" %}
           </label>
-          <input type="range" min="3" max="27" value="3" class="slider" id="num-cities">
+          <!-- <input type="range" min="3" max="27" value="3" class="slider" id="num-cities"> -->
+          <button id="add-city" class="btn btn-success btn-sm">{% trans "Add city" %}</button>
+          <button id="remove-city" class="btn btn-secondary btn-sm">{% trans "Remove city" %}</button>
         </div>
       </div>
     </div>

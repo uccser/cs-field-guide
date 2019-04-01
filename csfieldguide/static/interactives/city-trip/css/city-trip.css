@@ -12,6 +12,7 @@
   opacity: 0.7;
   -webkit-transition: .2s;
   transition: opacity .2s;
+  pointer-events: none;
 }
 
 .slider:hover {
@@ -26,6 +27,7 @@
   height: 25px; 
   background: #ff7043;
   cursor: pointer;
+  pointer-events: auto;
 }
 
 .slider::-moz-range-thumb {

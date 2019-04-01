@@ -18,11 +18,10 @@ var stopPathFinding = false;
 $(document).ready(function() {
 
   updateStatus("ready to go!", 'status-ready');
-  var slider = $('#num-cities');
   var output = $("#slider-text");
-  var numberOfCities = Number(slider.val());
+  var numberOfCities = 3;
   var cities = Array.from(Array(numberOfCities), (x, index) => index + 1);
-  var startingCity = 1; //cities[Math.floor(Math.random()*(cities.length - 1))];
+  var startingCity = 1;
   intermediateCities = cities.filter(function(city) {
     return city !== startingCity;
   });
@@ -94,27 +93,50 @@ $(document).ready(function() {
   var pathDistance = getPathDistance(cy.edges());
   updateRouteStats();
 
-  slider.on('input', function() {
+  // slider.on('input', function() {
+  //   cy.nodes().grabify();
+  //   newNumberOfCities = Number(slider.val());
+  //   if ($("#status").hasClass('status-complete')) {
+  //     // If completed path finding on previous graph, need to reset graph
+  //     resetGraph(cy, cy2, newNumberOfCities, layout);
+  //   } else {
+  //     cities = Array.from(Array(newNumberOfCities), (x, index) => index + 1);
+  //     intermediateCities = cities.filter(function(city) {
+  //       return city !== startingCity;
+  //     });
+  //     citiesLoop = addOriginCityToPath(startingCity, intermediateCities);
+  //     addOrRemoveNodes(cy, cy2, layout, numberOfCities, newNumberOfCities, startingCity.toString());
+  //   }
+  //   setGraphOptions(cy); // potentially improve?
+  //   numberOfCities = newNumberOfCities;
+  //   output.html(numberOfCities);
+  //   pathDistance = getPathDistance(cy.edges());
+  //   updateRouteStats();
+  //   updateStatus("ready to go!", 'status-ready');
+  // });
+  $('#add-city').click(function() {
+    cy.nodes().lock();
     cy.nodes().grabify();
-    newNumberOfCities = Number(slider.val());
-    if ($("#status").hasClass('status-complete')) {
-      // If completed path finding on previous graph, need to reset graph
-      resetGraph(cy, cy2, newNumberOfCities, layout);
-    } else {
-      cities = Array.from(Array(newNumberOfCities), (x, index) => index + 1);
-      intermediateCities = cities.filter(function(city) {
-        return city !== startingCity;
-      });
-      citiesLoop = addOriginCityToPath(startingCity, intermediateCities);
-      addOrRemoveNodes(cy, cy2, layout, numberOfCities, newNumberOfCities, startingCity.toString());
-    }
-    setGraphOptions(cy); // potentially improve?
-    numberOfCities = newNumberOfCities;
-    output.html(numberOfCities);
-    pathDistance = getPathDistance(cy.edges());
-    updateRouteStats();
-    updateStatus("ready to go!", 'status-ready');
-  });
+    addNode(cy, cy2, numberOfCities, startingCity);
+    // Make sure layout is still random and nodes can't overlap when dragged
+    refreshLayout(cy, layout);
+    cy.nodes().lock();
+    // Update best route graph to match
+    cy2.add(cy.$('.nodesToAdd').clone());
+    cy2.add(cy.$('.edgesToAdd').clone());
+    setGraphOptions(cy2);
+    cy2.nodes().ungrabify();
+    cy.nodes().unlock();
+    numberOfCities += 1;
+  })
+
+  $('#remove-city').click(function() {
+    cy.nodes().unlock();
+    removeNode(cy, cy2, layout, numberOfCities, startingCity);
+    setGraphOptions(cy);
+    cy.nodes().unlock();
+    numberOfCities -= 1;
+  })
 
   $('#start').click(function() {
     cy.nodes().ungrabify();
@@ -217,51 +239,54 @@ function addEdge(cyGraph, sourceNodeId, targetNodeId) {
 
 
 // Adds or removes nodes when user alters number of nodes via slider input
-function addOrRemoveNodes(cy, cy2, layout, oldNumCities, newNumCities, startNode) {
-  // Lock existing nodes so their layout doesn't change once refreshLayout is called
-  cy.nodes().lock();
-  var difference = Math.abs(newNumCities - oldNumCities);
-  if (oldNumCities < newNumCities) {
-    // Remove edge that closes the loop
-    previousNodeID = oldNumCities.toString();
-    cy.remove(cy.$('#e' + previousNodeID + startNode));
-    cy2.remove(cy2.$('#e' + previousNodeID + startNode));
-    // Add nodes
-    addNodes(cy, oldNumCities, difference, startNode);
-    // Make sure layout is still random and nodes can't overlap when dragged
-    refreshLayout(cy, layout);
-    cy.nodes().lock();
-    // Update best route graph to match
-    cy2.add(cy.$('.nodesToAdd').clone());
-    cy2.add(cy.$('.edgesToAdd').clone());
-    setGraphOptions(cy2);
-    cy2.nodes().ungrabify();
-  } else if (oldNumCities > newNumCities) {
-    // Remove nodes
-    cy.nodes().unlock();
-    for (var n = 0; n < difference; n++) {
-      // Remove nodes and update best route graph to match
-      removeNodes(cy, cy2, layout, newNumCities, oldNumCities, n, startNode);
-      setGraphOptions(cy2);
-    }
-  }
-  cy.nodes().unlock();
-}
+// function addOrRemoveNodes(cy, cy2, layout, oldNumCities, newNumCities, startNode) {
+//   // Lock existing nodes so their layout doesn't change once refreshLayout is called
+//   cy.nodes().lock();
+//   var difference = Math.abs(newNumCities - oldNumCities);
+//   if (oldNumCities < newNumCities) {
+//     // Remove edge that closes the loop
+//     previousNodeID = oldNumCities.toString();
+//     cy.remove(cy.$('#e' + previousNodeID + startNode));
+//     cy2.remove(cy2.$('#e' + previousNodeID + startNode));
+//     // Add nodes
+//     addNodes(cy, oldNumCities, difference, startNode);
+//     // Make sure layout is still random and nodes can't overlap when dragged
+//     refreshLayout(cy, layout);
+//     cy.nodes().lock();
+//     // Update best route graph to match
+//     cy2.add(cy.$('.nodesToAdd').clone());
+//     cy2.add(cy.$('.edgesToAdd').clone());
+//     setGraphOptions(cy2);
+//     cy2.nodes().ungrabify();
+//   } else if (oldNumCities > newNumCities) {
+//     // Remove nodes
+//     cy.nodes().unlock();
+//     for (var n = 0; n < difference; n++) {
+//       // Remove nodes and update best route graph to match
+//       removeNodes(cy, cy2, layout, newNumCities, oldNumCities, n, startNode);
+//       setGraphOptions(cy2);
+//     }
+//   }
+//   cy.nodes().unlock();
+// }
 
 
-function addNodes(cy, oldNumCities, difference, startNode) {
+function addNode(cy, cy2, oldNumCities, startNode) {
   var previousNodeID = oldNumCities.toString();
-  for (var n = 1; n <= difference; n++) {
-    // Create node
-    currentNodeID = (oldNumCities + n).toString();
-    newNode = {
-      data: { id: currentNodeID },
-      classes: 'nodesToAdd'
-    };
-    cy.add(newNode);
-
-    addEdge(cy, previousNodeID, currentNodeID);
-  }
+  // Remove edge that closes the loop
+  cy.remove(cy.$('#e' + previousNodeID + startNode));
+  cy2.remove(cy2.$('#e' + previousNodeID + startNode));
+// for (var n = 1; n <= difference; n++) {
+  // Create node
+  currentNodeID = (oldNumCities + 1).toString();
+  newNode = {
+    data: { id: currentNodeID },
+    classes: 'nodesToAdd'
+  };
+  cy.add(newNode);
+  addEdge(cy, previousNodeID, currentNodeID);
+  // previousNodeID = currentNodeID;
+  // }
   // Create edge that closes the loop
   addEdge(cy, currentNodeID, startNode);
 }
@@ -284,7 +309,8 @@ function resetGraph(cy, cy2, newNumCities, layout) {
 }
 
 
-function removeNodes(cy, cy2, layout, newNumCities, oldNumCities, n, startNode) {
+function removeNode(cy, cy2, layout, numberOfCities, startNode) {
+  var newNumCities = numberOfCities - 1;
   if (stopPathFinding) {
     // If removing nodes after clicking 'stop' have to reset graph because some edges between nodes don't exist.
     // (will be part way through path finding)
@@ -294,12 +320,11 @@ function removeNodes(cy, cy2, layout, newNumCities, oldNumCities, n, startNode) 
   } else {
     // Here we know that path finding has not begun, so we know upon removing nodes that the right edges exist.
     // Can simply remove the last node one by one
-    nodeToRemove = cy.$('#' + (oldNumCities - n).toString());
+    nodeToRemove = cy.$('#' + (numberOfCities).toString());
     cy.remove( nodeToRemove );
     // Update best route graph to match
-    nodeToRemoveCy2 = cy2.$('#' + (oldNumCities - n).toString());
+    nodeToRemoveCy2 = cy2.$('#' + (numberOfCities).toString());
     cy2.remove( nodeToRemoveCy2 );
-
     // Add in edge that closes the loop
     addEdge(cy, newNumCities, startNode);
     addEdge(cy2, newNumCities, startNode);
