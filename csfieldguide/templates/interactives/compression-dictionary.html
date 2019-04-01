@@ -24,7 +24,7 @@
                 your message, does your dictionary still compress all of the text?
             </p>
             
-            <div id="interactive-compression-dictionary-activity">
+                        <div id="interactive-compression-dictionary-activity">
                 <div id="interactive-compression-dictionary-left">
                     <h2 class="interactive-compression-dictionary-heading">Enter a message to compress:</h2>
                     <textarea id="interactive-compression-dictionary-input" placeholder="Pease porridge hot, pease porridge cold,
@@ -49,13 +49,23 @@ Some like it in the pot, nine days old."></textarea>
                         <div id="interactive-compression-user-dictionary-entry-input-row">
                             <p>New dictionary entry:</p>
                             <input id="interactive-compression-dictionary-user-dictionary-value-input" onchange="updateDictionary();" placeholder="enter text here">
+                            <button type="button" onclick="updateDictionary()">
+                                Add &rarr;
+                            </button>
                         </div>
-                        <div id="error-message" class="hide"><p class="error-message">&#9888;</p><p class="error-message">This code is already in the dictionary.</p></div>
+                        <div id="error-message" class="hide">
+                            <p class="error-message">&#9888;</p>
+                            <p id="interactive-compression-dictionary-error-text" class="error-message">
+                            </p>
+                        </div>
                     </div>
                     <div id="interactive-compression-dictionary-user-dictionary">
                         <div id="interactive-compression-dictionary-user-dictionary-column-1" class="interactive-compression-dictionary-user-dictionary-column">
                         </div>
                     </div>
+                    <button type="button" onclick="resetDictionary()">
+                        Reset Dictionary &rarr;
+                    </button>
                 </div>
             </div>
 

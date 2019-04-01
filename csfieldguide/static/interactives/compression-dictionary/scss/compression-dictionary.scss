@@ -28,6 +28,16 @@ h1 {
             flex-direction: column;
             width: 100%;
             margin: 10px;
+            button {
+                color: #FFF;
+                background-color: #FF7043;
+                text-align: center;
+                transition: .2s ease-out;
+                padding: 0.5rem;
+                border: none;
+                width: 100%;
+                box-shadow: $shadow;
+            }
         }
         #interactive-compression-dictionary-left {
             flex-basis: 140%;
@@ -40,16 +50,6 @@ h1 {
                 box-sizing: border-box;
                 box-shadow: $shadow;
                 margin-bottom: 10px;
-            }
-            button {
-                color: #FFF;
-                background-color: #FF7043;
-                text-align: center;
-                transition: .2s ease-out;
-                padding: 0.5rem;
-                border: none;
-                width: 100%;
-                box-shadow: $shadow;
             }
             p {
                 margin-top: 0px;
@@ -97,6 +97,9 @@ h1 {
                     }
                     input:focus.error {
                         outline: 1px solid red;
+                    }
+                    button {
+                        margin: 0 3px;
                     }
                 }
                 #error-message {

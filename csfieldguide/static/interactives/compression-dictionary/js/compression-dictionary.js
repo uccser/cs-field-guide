@@ -1,5 +1,3 @@
-// var DEFAULT_CODES = ['P', 'e', 'a', 's', 'p', 'o', 'ease', 'x'];
-// var codes = ['P', 'e', 'a', 's', 'p', 'o', 'ease', 'x'];
 var codes = [];
 var message_characters = [];
 // var message_characters = [
@@ -8,6 +6,8 @@ var message_characters = [];
 //      CodeIndex: 0
 //  }
 // ];
+
+// html x: &#9746;
 
 window.onload = function() {
     compress();
@@ -18,7 +18,6 @@ function compress() {
     document.getElementById('interactive-compression-dictionary-output').innerHTML = '';
     var dictionary_div = document.getElementById('interactive-compression-dictionary-user-dictionary');
     dictionary_div.innerHTML = '';
-    // codes = DEFAULT_CODES.slice();
     codes = [];
     message_characters = [];
     readInputMessage();
@@ -206,20 +205,35 @@ function updateDictionary() {
         document.getElementById('error-message').classList.add('hide');
         document.getElementById('error-message').classList.remove('show');
 
-        codes.push(new_entry_value);
-        // create a new element for the new dictionary entry
-        var next_index = codes.length - 1;
-        var new_dictionary_element = createDictionaryElement(next_index, new_entry_value);
-        document.getElementById('interactive-compression-dictionary-user-dictionary-column-1').appendChild(new_dictionary_element);
-        // reset input box
-        input_element.value = '';
-        highlightCodedCharacters();
+        if (new_entry_value == '') {
+            document.getElementById('interactive-compression-dictionary-error-text').innerHTML = 'Please enter some text.';
+            document.getElementById('error-message').classList.remove('hide');
+            document.getElementById('error-message').classList.add('show');
+        } else {
+            codes.push(new_entry_value);
+            // create a new element for the new dictionary entry
+            var next_index = codes.length - 1;
+            var new_dictionary_element = createDictionaryElement(next_index, new_entry_value);
+            document.getElementById('interactive-compression-dictionary-user-dictionary-column-1').appendChild(new_dictionary_element);
+            // reset input box
+            input_element.value = '';
+            highlightCodedCharacters();
+        }
     } else { // already in dictionary, so display an error
-        console.log('already in dictionary');
         input_element.classList.add('error');
+        document.getElementById('interactive-compression-dictionary-error-text').innerHTML = 'This code is already in the dictionary.';
         document.getElementById('error-message').classList.remove('hide');
         document.getElementById('error-message').classList.add('show');
     }
+}
+
+function resetDictionary() {
+    var new_dictionary_column = document.createElement('div');
+    new_dictionary_column.id = 'interactive-compression-dictionary-user-dictionary-column-1';
+    var dictionary_div = document.getElementById('interactive-compression-dictionary-user-dictionary');
+    dictionary_div.innerHTML = '';
+    dictionary_div.appendChild(new_dictionary_column);
+    codes = [];
 }
 
 
