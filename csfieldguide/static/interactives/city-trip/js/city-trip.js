@@ -111,6 +111,7 @@ $(document).ready(function() {
     cy.nodes().unlock();
     numberOfCities += 1;
     output.html(numberOfCities);
+    cities.push(numberOfCities);
     if (numberOfCities == maxCities) {
       $('#add-city').prop('disabled', true);
     }
@@ -121,6 +122,7 @@ $(document).ready(function() {
 
   $('#remove-city').click(function() {
     cy.nodes().unlock();
+    cities.pop();
     removeNode(cy, cy2, layout, numberOfCities, startingCity);
     setGraphOptions(cy);
     cy.nodes().unlock();
@@ -309,6 +311,7 @@ function refreshLayout(cy, layout) {
 // Returns distance of the new path and if it is the best route so far or not
 function testNewPath(cy, cy2, newPath, bestRouteDistance, startNode) {
   $('#trial-route').html(newPath.toString());
+  console.log(newPath);
   // Number of nodes (cities) remains the same between paths
   // Minus one because we include the start node twice (it is also the end node)
   var numCities = newPath.length - 1;
@@ -317,6 +320,7 @@ function testNewPath(cy, cy2, newPath, bestRouteDistance, startNode) {
     var newEdgeID = newPath[j].toString() + newPath[j+1].toString();
     newEdgeConfig.add(newEdgeID);
   }
+  console.log(newEdgeConfig);
 
   findEdgeDifferences(cy, newEdgeConfig, numCities, startNode);
 
@@ -393,9 +397,9 @@ function addOriginCityToPath(originCity, cities) {
 
 
 async function permutationsWithoutInverse(cy, cy2, cities, bestRouteDistance, startingCity) {
-  yo = new Date().getTime();
-  console.log(yo);
+  console.log(cy.edges());
   var len = cities.length;
+  console.log(cities);
   cities = cities.filter(function(city) {
     return city !== startingCity;
   });
@@ -421,9 +425,6 @@ async function permutationsWithoutInverse(cy, cy2, cities, bestRouteDistance, st
     }
   }
   console.log(pathsWithoutInverse);
-  now = new Date().getTime();
-  console.log(now);
-  console.log(now - yo);
   updateStatus("complete!", 'status-complete');
   cy.nodes().grabify();
 }
