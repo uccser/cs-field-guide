@@ -1,5 +1,6 @@
-var DEFAULT_CODES = ['P', 'e', 's', 'e', 'p', 'o', 'ease', 'x'];
-var codes = ['P', 'e', 's', 'e', 'p', 'o', 'ease', 'x'];
+// var DEFAULT_CODES = ['P', 'e', 'a', 's', 'p', 'o', 'ease', 'x'];
+// var codes = ['P', 'e', 'a', 's', 'p', 'o', 'ease', 'x'];
+var codes = [];
 var message_characters = [];
 // var message_characters = [
 //  {
@@ -17,7 +18,8 @@ function compress() {
     document.getElementById('interactive-compression-dictionary-output').innerHTML = '';
     var dictionary_div = document.getElementById('interactive-compression-dictionary-user-dictionary');
     dictionary_div.innerHTML = '';
-    codes = DEFAULT_CODES.slice();
+    // codes = DEFAULT_CODES.slice();
+    codes = [];
     message_characters = [];
     readInputMessage();
     populateDictionary();
@@ -137,7 +139,27 @@ function highlightCharacters(event, highlight) {
 
 // transfer the inputted message into individual element for each character
 function readInputMessage() {
-    var message = document.getElementById('interactive-compression-dictionary-input').value.split('');
+    var message_textarea = document.getElementById('interactive-compression-dictionary-input');
+    var message = message_textarea.value;
+    if (message.length == 0) {
+        message = message_textarea.placeholder;
+    }
+    message = message.split('');
+
+    // set example codes
+    for (var i = 0; i < message.length; i++) {
+        var character = message[i];
+        if (codes.indexOf(character) == -1) { // not already in codes
+            if (character == ' ') {
+                character = '_';
+            }
+            codes.push(character);
+        }
+        if (codes.length == 5) {
+            break;
+        }
+    }
+
     var fragment = document.createDocumentFragment();
 
     var line_div = document.createElement('div');

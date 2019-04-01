@@ -8,34 +8,53 @@
     <div class="row">
       <div class="col s12">
 
-        <div id="interactive-compression-dictionary">
+       <div id="interactive-compression-dictionary">
 
-            <div id="interactive-compression-dictionary-left">
-                <p>Message to compress:</p>
-                <textarea id="interactive-compression-dictionary-input">
-Pease porridge hot, pease porridge cold,
+            <p>
+                This interactive demonstrates the concept of using a dictionary to
+                compress text.
+            </p>
+            <p>
+                Using the input box below, enter a message. Then try and
+                build a dictionary that compresses every character in the message.
+            </p>
+            <p>
+                How efficient is your dictionary? Are you compressing one character per
+                dictionary entry, or many? What happens if you add additional text to
+                your message, does your dictionary still compress all of the text?
+            </p>
+            
+            <div id="interactive-compression-dictionary-activity">
+                <div id="interactive-compression-dictionary-left">
+                    <h2 class="interactive-compression-dictionary-heading">Enter a message to compress:</h2>
+                    <textarea id="interactive-compression-dictionary-input" placeholder="Pease porridge hot, pease porridge cold,
 Pease porridge in the pot, nine days old;
 Some like it hot, some like it cold,
-Some like it in the pot, nine days old.</textarea>
-                <button type="button" onclick="compress()">
-                    Compress &rarr;
-                </button>
-                <p>Coded Message:</p>
-                <div id="interactive-compression-dictionary-output">
-                </div>
-            </div>
-
-            <div id="interactive-compression-dictionary-right">
-                <p>Dictionary:</p>
-                <div id="interactive-compression-dictionary-user-dictionary-entry-input">
-                    <div id="interactive-compression-user-dictionary-entry-input-row">
-                        <p>Next code:</p>
-                        <input id="interactive-compression-dictionary-user-dictionary-value-input" onchange="updateDictionary();">
+Some like it in the pot, nine days old."></textarea>
+                    <button type="button" onclick="compress()">
+                        Compress &rarr;
+                    </button>
+                    <h2 class="interactive-compression-dictionary-heading">Compressed Message:</h2>
+                    <p>
+                        The highlighted characters represent the characters that are coded
+                        in your dictionary.
+                    </p>
+                    <div id="interactive-compression-dictionary-output">
                     </div>
-                    <div id="error-message" class="hide"><p class="error-message">&#9888;</p><p class="error-message">This code is already in the dictionary.</p></div>
                 </div>
-                <div id="interactive-compression-dictionary-user-dictionary">
-                    <div id="interactive-compression-dictionary-user-dictionary-column-1" class="interactive-compression-dictionary-user-dictionary-column">
+
+                <div id="interactive-compression-dictionary-right">
+                    <h2 class="interactive-compression-dictionary-heading">Dictionary:</h2>
+                    <div id="interactive-compression-dictionary-user-dictionary-entry-input">
+                        <div id="interactive-compression-user-dictionary-entry-input-row">
+                            <p>New dictionary entry:</p>
+                            <input id="interactive-compression-dictionary-user-dictionary-value-input" onchange="updateDictionary();" placeholder="enter text here">
+                        </div>
+                        <div id="error-message" class="hide"><p class="error-message">&#9888;</p><p class="error-message">This code is already in the dictionary.</p></div>
+                    </div>
+                    <div id="interactive-compression-dictionary-user-dictionary">
+                        <div id="interactive-compression-dictionary-user-dictionary-column-1" class="interactive-compression-dictionary-user-dictionary-column">
+                        </div>
                     </div>
                 </div>
             </div>
