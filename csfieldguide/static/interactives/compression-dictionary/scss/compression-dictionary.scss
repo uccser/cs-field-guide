@@ -122,26 +122,27 @@ h1 {
                 flex-grow: 1;
                 display: flex;
                 overflow: scroll;
+                min-width: 100%;
                 border-radius: 2px !important;
                 .interactive-compression-dictionary-user-dictionary-column {
-                    width: 50%;
+                    min-width: 175px;
                     margin: 2px;
-                }
-                .interactive-compression-dictionary-user-dictionary-entry {
-                    margin: 2px 0;
-                    &:hover {
-                        border: 2px solid $blue;
-                    }
-                    p {
-                        display: inline-block;
-                        margin: 3px;
-                    }
-                    &.highlight {
-                        outline: 3px solid $blue;
-                        outline-offset: 0.5px;
-                    }
-                    .interactive-compression-dictionary-user-dictionary-code {
-                        width: 2rem;
+                    .interactive-compression-dictionary-user-dictionary-entry {
+                        margin: 2px 0;
+                        &:hover {
+                            border: 2px solid $blue;
+                        }
+                        p {
+                            display: inline-block;
+                            margin: 3px;
+                        }
+                        &.highlight {
+                            outline: 3px solid $blue;
+                            outline-offset: 0.5px;
+                        }
+                        .interactive-compression-dictionary-user-dictionary-code {
+                            width: 2rem;
+                        }
                     }
                 }
             }
