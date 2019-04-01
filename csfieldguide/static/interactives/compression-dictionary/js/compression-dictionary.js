@@ -24,14 +24,14 @@ function compress() {
 }
 
 // highlight the characters that have a corresponding code in the dictionary
-function highlightCodedCharacters() { // TODO refactor this function name
+function highlightCodedCharacters() {
 
     // clear the existing references
     for (var i = 0; i < message_characters.length; i++) {
         message_characters[i].CodeIndex = false;
         var character_element = document.querySelectorAll('[data-character-index="' + i.toString() + '"]')[0];
         if (character_element !== undefined) {
-            character_element.classList.remove('highlight');
+            character_element.classList.remove('compressed');
         }
     }
 
@@ -92,7 +92,7 @@ function highlightCodedCharacters() { // TODO refactor this function name
                     message_characters[character_index].CodeIndex = codes.indexOf(code);
                     // interface
                     var character_element = document.querySelectorAll('[data-character-index="' + character_index.toString() + '"]')[0];
-                    character_element.classList.add('highlight');
+                    character_element.classList.add('compressed');
                 }
             }
         }
@@ -116,6 +116,7 @@ function highlightDictionaryEntry(event, highlight) {
     }
 }
 
+
 function highlightCharacters(event, highlight) {
     var selected_dictionary_entry = event.srcElement;
     if (event.nodeName == 'P') { // event was changing focus to next input box
@@ -128,9 +129,9 @@ function highlightCharacters(event, highlight) {
             var message_character_element = document.querySelectorAll('[data-character-index="' + i.toString() + '"]')[0];
             if (message_character_element != undefined) {
                 if (highlight === true) {
-                    message_character_element.classList.add('border');
+                    message_character_element.classList.add('highlight');
                 } else {
-                    message_character_element.classList.remove('border');
+                    message_character_element.classList.remove('highlight');
                 }
             }
         }
@@ -151,9 +152,6 @@ function readInputMessage() {
     for (var i = 0; i < message.length; i++) {
         var character = message[i];
         if (codes.indexOf(character) == -1) { // not already in codes
-            if (character == ' ') {
-                character = '_';
-            }
             codes.push(character);
         }
         if (codes.length == 5) {
@@ -213,10 +211,12 @@ function updateDictionary() {
 
             var dictionary_element = document.getElementById('interactive-compression-dictionary-user-dictionary');
             if (next_index%30 == 0) {
-                var last_column = dictionary_element.lastChild;
-                var next_column_index = parseInt(last_column.getAttribute('data-column-number')) + 1;
-                var new_column = createDictionaryColumnElement(next_column_index);
-                dictionary_element.appendChild(new_column);
+                if (next_index != 0) {
+                    var last_column = dictionary_element.lastChild;
+                    var next_column_index = parseInt(last_column.getAttribute('data-column-number')) + 1;
+                    var new_column = createDictionaryColumnElement(next_column_index);
+                    dictionary_element.appendChild(new_column);
+                }
             }
             var new_dictionary_element = createDictionaryElement(next_index, new_entry_value);
             dictionary_element.lastChild.appendChild(new_dictionary_element);
@@ -292,6 +292,9 @@ function createDictionaryElement(index, value) {
 
     // create value element
     var value_element = document.createElement('p');
+    if (value == ' ') { // replace space character with underscore so it can be seen
+        value = '_';
+    }
     value_element.innerHTML = value;
     value_element.classList.add('interactive-compression-dictionary-user-dictionary-value');
 
