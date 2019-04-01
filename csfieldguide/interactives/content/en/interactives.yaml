@@ -91,7 +91,7 @@ number-generator:
 off-by-one:
   name: Off By One
 packet-attack:
-  name: packet-attack (broken)
+  name: Packet Attack
 packet-attack-level-creator:
   name: packet-attack-level-creator (broken)
 parity:

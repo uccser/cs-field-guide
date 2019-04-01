@@ -144,7 +144,7 @@ class Information extends Phaser.Scene {
             text = "Welcome to Packet Attack. In this game, your job is to attack the packet creatures and stop messages being delivered.\nYou pass a level if the received message is any different from the one sent.\nWhile a creature is in the danger zone (indicated by the yellow and grey area) you may attack by clicking the command buttons.\nGood luck!"
             break;
           case InfoPaneType.END:
-              text = "This level is actually impossible to beat\nThe system can handle anything you throw at it!\nThank you for playing\n\n\n\n\nPress start if you want to try this level again";
+              text = "This level is actually impossible to beat\nThe system can handle anything you throw at it!\nThank you for playing!\n\n\n\n\nPress start if you want to try this level again";
               break;
         }
         return text;

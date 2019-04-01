@@ -28,6 +28,7 @@ class GameScene extends Phaser.Scene {
         this.remainingDelays;
         this.remainingCorrupts;
         this.remainingKills;
+        this.resentPackets = 0;
 
         this.handlers = {
             'level': this.setLevel,
@@ -243,7 +244,10 @@ class GameScene extends Phaser.Scene {
 
     interpretNewPacket(packet) {
         if (this.level.acksNacksEnabled) {
-            if (packet.isCorrupt) {
+            if (this.alreadyReceived(packet.number)) {
+                this.sendAck(packet);
+                return;
+            } else if (packet.isCorrupt) {
                 this.sendNack(packet);
                 return;
             } else {
@@ -251,6 +255,19 @@ class GameScene extends Phaser.Scene {
             }
         }
         this.receivedPackets.push(packet);
+    }
+
+    /**
+     * Returns true if a packet with the given number has already been received successfully.
+     * false otherwise
+     */
+    alreadyReceived(number) {
+        for (var i=0; i < this.receivedPackets.length; i++) {
+            if (this.receivedPackets[i].number == number) {
+                return true;
+            }
+        }
+        return false;
     }
 
     sendNack(packet) {
@@ -292,11 +309,15 @@ class GameScene extends Phaser.Scene {
     }
 
     resendPacket(packet) {
-        var char = this.level.message.split('')[packet.number];
+        // If packets don't have numbers this is just a resend of each character
+        // in sequence, TODO: Exclude characters that have been ACKed
+        var split = this.level.message.split('');
+        var char = this.level.packetsHaveNumbers ? split[packet.number] : split[this.resentPackets % split.length];
+
         var packetConfig = {
             key: packet.key + "RESEND",
             packetType: PACKET.PacketTypes.SENT,
-            number: packet.number,
+            number: this.level.packetsHaveNumbers ? packet.number: this.resentPackets++,
             scene: this,
             x: 0,
             y: 220,
@@ -430,6 +451,7 @@ class GameScene extends Phaser.Scene {
         this.timers = [];
 
         this.sendChars = [];
+        this.resentPackets = 0;
         this.receivedMessage = '';
         this.registry.set('receivedMessage', '');
     }

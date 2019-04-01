@@ -1,7 +1,7 @@
 var LEVEL = require('./level.js');
 
 var SENDTEXT = gettext("HELLO");
-const TIMEOUT = 20000;
+const TIMEOUT = 17000;
 
 // Level configs
 var LEVELS = [
@@ -52,8 +52,8 @@ function setCustomLevel(level, config) {
 
     LEVELS[level].setPacketsHaveShields(config.setPacketsHaveShields);
     LEVELS[level].setPacketsHaveNumbers(config.setPacketsHaveNumbers);
-    LEVELS[level].setAcksNacksEnabled(config.setAcksNacksEnabled);
     LEVELS[level].setTimeoutsEnabled(config.setTimeoutsEnabled);
+    LEVELS[level].setAcksNacksEnabled(config.setAcksNacksEnabled);
 
     if (config.setDelays) {
         LEVELS[level].setDelays(config.setDelays);
