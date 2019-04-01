@@ -59,6 +59,13 @@ h1 {
                     display: inline-block;
                     min-width: 10px;
                     margin: 1px;
+                    &.highlight {
+                        background-color: $green;
+                        outline-offset: 0.5px;
+                    }
+                    &.border {
+                        background-color: $blue !important;
+                    }
                 }
             }
         }
@@ -67,18 +74,41 @@ h1 {
         overflow: hidden;
         position: relative;
         #interactive-compression-dictionary-user-dictionary-entry-input {
-            display: flex;
-            margin-bottom: 20px;
-            p {
-                margin-right: 10px;
+            margin-bottom: 10px;
+            #interactive-compression-user-dictionary-entry-input-row {
+                display: flex;
+                p {
+                    margin-right: 10px;
+                }
+                input {
+                    flex: 1;
+                    padding: 4px;
+                    border: 1px solid #BFB9B7;
+                    margin: 1px;
+                    font: 1rem "Courier New", monospace !important;
+                    box-shadow: $shadow;
+                }
+                input.error {
+                    border-color: red !important;
+                }
+                input:focus.error {
+                    outline: 1px solid red;
+                }
             }
-            input {
-                flex: 1;
-                padding: 4px;
-                border: 1px solid #BFB9B7;
-                margin: 1px;
-                font: 1rem "Courier New", monospace !important;
-                box-shadow: $shadow;
+            #error-message {
+                display: block;
+                font-size: 0.8rem;
+                text-align: center;
+                color: red;
+                &.hide {
+                    display: none;
+                }
+                &.show {
+                    display: block;
+                }
+                .error-message {
+                    display: inline-block;
+                }
             }
         }
         #interactive-compression-dictionary-user-dictionary {
@@ -92,16 +122,20 @@ h1 {
             }
             .interactive-compression-dictionary-user-dictionary-entry {
                 margin: 2px 0;
+                &:hover {
+                    border: 2px solid $blue;
+                }
                 p {
                     display: inline-block;
                     margin: 3px;
                 }
+                &.highlight {
+                    outline: 3px solid $blue;
+                    outline-offset: 0.5px;
+                }
                 .interactive-compression-dictionary-user-dictionary-code {
                     width: 2rem;
                 }
-            }
-            .interactive-compression-dictionary-user-dictionary-entry:hover {
-                border: 2px solid $blue;
             }
         }
     }
@@ -112,20 +146,4 @@ h1 {
         padding: 5px;
         font-family: "Courier New", monospace !important;
     }
-}
-
-
-.interactive-compression-dictionary-message-character.highlight {
-    background-color: $green;
-    outline-offset: 0.5px;
-}
-
-.interactive-compression-dictionary-message-character.border {
-    background-color: $blue !important;
-}
-
-
-.interactive-compression-dictionary-user-dictionary-entry.highlight {
-    outline: 3px solid $blue;
-    outline-offset: 0.5px;
 }

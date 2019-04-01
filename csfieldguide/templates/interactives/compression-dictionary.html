@@ -28,8 +28,11 @@ Some like it in the pot, nine days old.</textarea>
             <div id="interactive-compression-dictionary-right">
                 <p>Dictionary:</p>
                 <div id="interactive-compression-dictionary-user-dictionary-entry-input">
-                    <p>Next code:</p>
-                    <input id="interactive-compression-dictionary-user-dictionary-value-input" onchange="updateDictionary();">
+                    <div id="interactive-compression-user-dictionary-entry-input-row">
+                        <p>Next code:</p>
+                        <input id="interactive-compression-dictionary-user-dictionary-value-input" onchange="updateDictionary();">
+                    </div>
+                    <div id="error-message" class="hide"><p class="error-message">&#9888;</p><p class="error-message">This code is already in the dictionary.</p></div>
                 </div>
                 <div id="interactive-compression-dictionary-user-dictionary">
                     <div id="interactive-compression-dictionary-user-dictionary-column-1" class="interactive-compression-dictionary-user-dictionary-column">
