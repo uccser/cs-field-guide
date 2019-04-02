@@ -181,14 +181,14 @@ class GameScene extends Phaser.Scene {
     timerEnd(packet) {
 
         if (this.level.timeoutsEnabled) {
-            if (this.unansweredPacketNumbers.indexOf(packet.number) >= 0) {
-                if (this.unsuccessfulPacketNumbers.indexOf(packet.number) >= 0) {
+            if (this.unsuccessfulPacketNumbers.indexOf(packet.number) >= 0) {
+                if (this.unansweredPacketNumbers.indexOf(packet.number) >= 0) {
                     // We want to resend a packet only if it was unanswered and unsuccessful
                     console.log(packet.key + " missing!");
                     this.resendPacket(packet);
                 }
                 // Reset the packet as unanswered
-                // We do this here because a corruptet packet is resent before the timer is up
+                // We do this here because a corrupted packet would be resent before its timer ends
                 this.unansweredPacketNumbers.push(packet.number);
             }
         }
