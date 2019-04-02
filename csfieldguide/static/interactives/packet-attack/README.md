@@ -49,7 +49,6 @@ The program *will* try and fail to index beyond the array if the last level is b
 - The question mark (`?`) is used to show that a packet has been corrupted. Therefore, *if ACKS and NACKS are not enabled*, a packet sent with the character `?` isn't affected by corruption.
 - Packets X and X+3(n-1) can potentially overlap perfectly if X is delayed n times and X+3(n-1) once. This is no less than 3 delays on two specific packets.
 - The program will try and fail to index beyond the array if the last level is beaten. However the last level is, by design, impossible to beat.
-- All text is in the default font, Open Sans (specified) is not defined
 
 ## Future plans
 
