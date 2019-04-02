@@ -1,11 +1,22 @@
+/**
+ * Packet Attack
+ * 
+ * Main Gameplay Classes
+ */
+
 require('phaser');
 
 var CONFIG = require('./config.js');
 var PACKET = require('./packet.js');
 var INFO = require('./info.js');
 
+const KEY_SEND = "SEND";
+const KEY_ACK = "ACK";
+const KEY_NACK = "NACK";
+
 /**
- * Gameplay
+ * Gameplay element.
+ * Handles all Packet processing, including creation, timers, ACKS & NACKS, resending, etc.
  */
 class GameScene extends Phaser.Scene {
 
@@ -13,6 +24,9 @@ class GameScene extends Phaser.Scene {
         super({ key: 'GameScene'});
     }
 
+    /**
+     * Initialises all required variables, handlers, and relevant global registry values
+     */
     init() {
         this.receivedMessage;
         this.sendChars;
@@ -55,6 +69,9 @@ class GameScene extends Phaser.Scene {
         this.registry.set('remainingKills', -1);
     }
 
+    /**
+     * Loads all required base images and sprites
+     */
     preload() {
         console.log('Loading base images...');
         this.load.image('bg', base + 'interactives/packet-attack/assets/background.png');
@@ -65,15 +82,18 @@ class GameScene extends Phaser.Scene {
         this.load.spritesheet('shield', base + 'interactives/packet-attack/assets/shieldedBluePacketSprites.png', { frameWidth: 100, frameHeight: 100, endFrame: 8 });
     }
 
+    /**
+     * Creates the GameScene, adds the preloaded background element and animations
+     */
     create() {
-        console.log('Adding base images...');
+        console.log('Adding base images and animations');
         this.add.image(400, 300, 'bg');
 
         var animationConfig = {
             key: 'packetBaseAnim',
             frames: this.anims.generateFrameNumbers('packet', { start: 0, end: 7 }),
             frameRate: 20,
-            repeat: -1
+            repeat: -1 //Do forever
         }
         this.anims.create(animationConfig);
 
@@ -90,6 +110,10 @@ class GameScene extends Phaser.Scene {
         this.anims.create(animationConfig);
     }
 
+    /**
+     * Adds secondary information to the Scene, including all packets for the initial message.
+     * This is be rerun at the start of each level
+     */
     recreate() {
         this.receivedMessage = '';
         this.sendChars = this.level.message.split('');
@@ -108,7 +132,7 @@ class GameScene extends Phaser.Scene {
             var delay = 2000 * i;
 
             var packetConfig = {
-                key: key,
+                key: key + KEY_SEND,
                 packetType: PACKET.PacketTypes.SENT,
                 number: i,
                 scene: this,
@@ -125,12 +149,16 @@ class GameScene extends Phaser.Scene {
             packet.runTween(delay);
             this.registry.set('newActivePacket', packet);
             var timer = this.time.delayedCall(delay + CONFIG.TIMEOUT, this.timerEnd, [packet], this);
-            this.unansweredPacketNumbers.push(packet.number);
+            this.unansweredPacketNumbers.push(packet);
             this.allPackets.push(packet);
             this.timers.push(timer);
         }
     }
 
+    /**
+     * Handler function for a registry update.
+     * If a handler is defined for the given key, apply the set handler for that key.
+     */
     registryUpdate(parent, key, data) {
         if (this.handlers[key]) {
             this.handlers[key](this, data);
@@ -144,9 +172,13 @@ class GameScene extends Phaser.Scene {
         scene.level = CONFIG.LEVELS[levelNumber];
     }
 
+    /**
+     * Handler function for the time up event for a specific Packet.
+     * If timeouts are enabled and the packet hasn't been answered, resend it
+     */
     timerEnd(packet) {
 
-        if (this.level.timeoutsEnabled && this.unansweredPacketNumbers.indexOf(packet.number) >= 0) {
+        if (this.level.timeoutsEnabled && this.uansweredPackets.indexOf(packet) >= 0) {
             console.log(packet.key + " missing!");
             this.resendPacket(packet);
         }
@@ -154,6 +186,10 @@ class GameScene extends Phaser.Scene {
         this.runEndCheck();
     }
 
+    /**
+     * Handler function for a 'newActivePacket' registry change.
+     * Adds it to one of the arrays of sent packets, depending on its type
+     */
     packetSent(scene, packet) {
         if (packet.type == PACKET.PacketTypes.SENT) {
             scene.activePackets.push(packet);
@@ -169,7 +205,8 @@ class GameScene extends Phaser.Scene {
     }
 
     /**
-     * 
+     * Handler function for a 'newInactivePacket' registry change.
+     * Deals with the received packet depending on its type and the level config
      */
     /*
      * Packets are added and removed almost always in a FIFO queue
@@ -192,6 +229,8 @@ class GameScene extends Phaser.Scene {
         } else if (packet.type == PACKET.PacketTypes.NACK) {
             index = scene.activeNacks.indexOf(packet);
             scene.activeNacks.splice(index, 1);
+            index = scene.unansweredPacketNumbers.indexOf(packet.number);
+            scene.unansweredPacketNumbers.splice(index, 1);
             scene.resendPacket(packet);
             console.log('resending packet');
 
@@ -202,6 +241,11 @@ class GameScene extends Phaser.Scene {
         scene.runEndCheck();
     }
 
+    /**
+     * Handler function for a 'newDestroyedPacket' registry change.
+     * Removes the packet from the appropriate array
+     * TODO: Deal with canAttackAcksNacks level config
+     */
     packetDestroyed(scene, packet) {
         var index = scene.activePackets.indexOf(packet)
         if (index < 0 ) {
@@ -213,6 +257,9 @@ class GameScene extends Phaser.Scene {
         scene.runEndCheck();
     }
 
+    /**
+     * Recreates the received message based on received packets and the level config
+     */
     updateReceivedMessage() {
         var message = [];
         if (this.level.packetsHaveNumbers) {
@@ -242,6 +289,10 @@ class GameScene extends Phaser.Scene {
         this.registry.set('receivedMessage', message);
     }
 
+    /**
+     * Interprets a new properly received packet.
+     * Sends an ACK or NACK if required, then adds it to the array of received Packets
+     */
     interpretNewPacket(packet) {
         if (this.level.acksNacksEnabled) {
             if (this.alreadyReceived(packet.number)) {
@@ -258,7 +309,7 @@ class GameScene extends Phaser.Scene {
     }
 
     /**
-     * Returns true if a packet with the given number has already been received successfully.
+     * Returns true if a Packet with the given number has already been received successfully.
      * false otherwise
      */
     alreadyReceived(number) {
@@ -270,9 +321,13 @@ class GameScene extends Phaser.Scene {
         return false;
     }
 
+    /**
+     * Sends a NACK-type Packet from the receiver to the sender.
+     * This is to say the received packet was corrupted
+     */
     sendNack(packet) {
         var packetConfig = {
-            key: packet.key + "NACK",
+            key: packet.key + KEY_NACK,
             packetType: PACKET.PacketTypes.NACK,
             number: packet.number,
             scene: this,
@@ -289,9 +344,13 @@ class GameScene extends Phaser.Scene {
         this.allPackets.push(newPacket);
     }
 
+    /**
+     * Sends an ACK-type Packet from the receiver to the sender.
+     * This is to say the received packet is valid
+     */
     sendAck(packet) {
         var packetConfig = {
-            key: packet.key + "ACK",
+            key: packet.key + KEY_ACK,
             packetType: PACKET.PacketTypes.ACK,
             number: packet.number,
             scene: this,
@@ -308,14 +367,17 @@ class GameScene extends Phaser.Scene {
         this.allPackets.push(newPacket);
     }
 
+    /**
+     * Resends a previously sent Packet from the sender to the receiver.
+     * If packets don't have numbers in the level config this is just a resend
+     * of each character in sequence, TODO: Exclude characters that have been ACKed
+     */
     resendPacket(packet) {
-        // If packets don't have numbers this is just a resend of each character
-        // in sequence, TODO: Exclude characters that have been ACKed
-        var split = this.level.message.split('');
+        var split = this.sendChars;
         var char = this.level.packetsHaveNumbers ? split[packet.number] : split[this.resentPackets % split.length];
 
         var packetConfig = {
-            key: packet.key + "RESEND",
+            key: packet.key + KEY_SEND,
             packetType: PACKET.PacketTypes.SENT,
             number: this.level.packetsHaveNumbers ? packet.number: this.resentPackets++,
             scene: this,
@@ -333,9 +395,16 @@ class GameScene extends Phaser.Scene {
         var timer = this.time.delayedCall(CONFIG.TIMEOUT, this.timerEnd, [newPacket], this);
         this.registry.set('newActivePacket', newPacket);
         this.allPackets.push(newPacket);
+        this.unansweredPacketNumbers.push(newPacket);
         this.timers.push(timer);
     }
 
+    /**
+     * Handler function for a 'delay' registry change.
+     * If doDelay is false or the user doesn't have enough delays to do, does nothing.
+     * Otherwise, finds the affected Packet and runs its delay method.
+     * TODO: Deal with canAttackAcksNacks level config
+     */
     delay(scene, doDelay) {
         var packet;
         if (doDelay && scene.remainingDelays > 0) {
@@ -346,13 +415,19 @@ class GameScene extends Phaser.Scene {
                         packet.delay();
                         scene.remainingDelays--;
                         scene.registry.set('remainingDelays', scene.remainingDelays);
-                        break;
+                        break; // Don't affect more than one Packet
                     }
                 }
             }
         }
     }
 
+    /**
+     * Handler function for a 'kill' registry change.
+     * If doKill is false or the user doesn't have enough kills to do, does nothing.
+     * Otherwise, finds the affected Packet and runs its kill method.
+     * TODO: Deal with canAttackAcksNacks level config
+     */
     kill(scene, doKill) {
         var packet;
         if (doKill && scene.remainingKills > 0) {
@@ -363,13 +438,19 @@ class GameScene extends Phaser.Scene {
                         packet.kill();
                         scene.remainingKills--;
                         scene.registry.set('remainingKills', scene.remainingKills);
-                        break;
+                        break; // Don't affect more than one Packet
                     }
                 }
             }
         }
     }
-
+    
+    /**
+     * Handler function for a 'corrupt' registry change.
+     * If doCorrupt is false or the user doesn't have enough corrupts to do, does nothing.
+     * Otherwise, finds the affected Packet and runs its corrupt method.
+     * TODO: Deal with canAttackAcksNacks level config
+     */
     corrupt(scene, doCorrupt) {
         var packet;
         if (doCorrupt && scene.remainingCorrupts > 0) {
@@ -380,7 +461,7 @@ class GameScene extends Phaser.Scene {
                         packet.corrupt();
                         scene.remainingCorrupts--;
                         scene.registry.set('remainingCorrupts', scene.remainingCorrupts);
-                        break;
+                        break; // Don't affect more than one Packet
                     }
                 }
             }
@@ -400,6 +481,10 @@ class GameScene extends Phaser.Scene {
         }
     }
 
+    /**
+     * Checks for remaining active timers.
+     * Returns true if there is none or timeouts are not enabled, false otherwise
+     */
     noActiveTimersCheck() {
         if (!this.level.timeoutsEnabled) {
             return true;
@@ -412,6 +497,9 @@ class GameScene extends Phaser.Scene {
         return true;
     }
 
+    /**
+     * Ends the current level: prevents further input and clears level-specific information from the Scene
+     */
     endLevel() {
         var info = this.scene.get('Information');
         if (this.receivedMessage != this.level.message) {
@@ -425,16 +513,7 @@ class GameScene extends Phaser.Scene {
     }
 
     /**
-     * TODO
-     * Safely ends the Scene
-     */
-    shutdown()
-    {
-        this.clear();
-    }
-
-    /**
-     * Empties all elements from the Scene
+     * Empties all elements and hidden variables from the Scene, ready for the next run
      */
     clear() {
         this.clearPacketArray(this.allPackets);
@@ -466,7 +545,7 @@ class GameScene extends Phaser.Scene {
     }
 
     /**
-     * Play the game
+     * Starts the game
      */
     play() {
         this.scene.get('UIScene').startButtons();
@@ -475,7 +554,8 @@ class GameScene extends Phaser.Scene {
 }
 
 /**
- * Game UI
+ * Game UI element.
+ * Handles all button handling and other UI related tasks.
  */
 class UIScene extends Phaser.Scene {
 
@@ -483,8 +563,10 @@ class UIScene extends Phaser.Scene {
         super({ key: 'UIScene' });
     }
 
+    /**
+     * Initialises all required variables and handlers
+     */
     init() {
-        console.log('init');
         this.handlers = {
             'level': this.setLevel,
             'receivedMessage': this.updateReceivedMessage,
@@ -498,7 +580,11 @@ class UIScene extends Phaser.Scene {
         this.paused = false;
     }
 
+    /**
+     * Loads all required base images
+     */
     preload() {
+        console.log('loading UI images');
         this.load.image('pause', base + 'interactives/packet-attack/assets/leftGreenButton.png');
         this.load.image('play', base + 'interactives/packet-attack/assets/rightGreenButton.png');
         this.load.image('delay', base + 'interactives/packet-attack/assets/leftButton.png');
@@ -507,6 +593,9 @@ class UIScene extends Phaser.Scene {
         this.load.image('pipes', base + 'interactives/packet-attack/assets/pipes.png');
     }
 
+    /**
+     * Builds the UI with all elements
+     */
     create() {
         console.log('creating UI');
 
@@ -550,7 +639,7 @@ class UIScene extends Phaser.Scene {
         this.titleText = this.add.text(400, 0, "Packet Attack", config);
         this.titleText.setOrigin(0.5, 0);
 
-        config.font = '25px';
+        config.font = '20px Open Sans';
         this.levelText = this.add.text(400, 50, '', config);
         this.levelText.setOrigin(0.5, 0);
         this.sendText = this.add.text(20, 10, '', config);
@@ -558,24 +647,40 @@ class UIScene extends Phaser.Scene {
         this.receivedText.setOrigin(1, 0); // Position the text by its top right corner
     }
 
+    /**
+     * Handler function for a registry update.
+     * If a handler is defined for the given key, apply the set handler for that key.
+     */
     registryUpdate(parent, key, data) {
         if (this.handlers[key]) {
             this.handlers[key](this, data);
         }
     }
 
+    /**
+     * Handler function for a 'level' registry update.
+     * Updates the UI to present the given level
+     */
     setLevel(scene, level) {
         scene.levelNum = level;
         scene.levelText.setText('Level: ' + scene.levelNum);
         scene.levelMessage = CONFIG.LEVELS[level].message;
         scene.sendText.setText('Sending:\n' + scene.levelMessage);
-        console.log('UI: set level to ' + level);
     }
 
+    /**
+     * Handler function for a 'receivedMessage' registry update.
+     * Updates the UI to present the given message
+     */
     updateReceivedMessage(scene, message) {
         scene.receivedText.setText('Received:\n' + message);
     }
 
+    /**
+     * Handler function for a 'remainingDelays' registry update.
+     * Updates the UI to present the number of remaining delays, and disables
+     * the delay button if appropriate
+     */
     updateDelays(scene, number) {
         scene.delayRemainder.setText('Uses: ' + number);
 
@@ -588,6 +693,11 @@ class UIScene extends Phaser.Scene {
         }
     }
 
+    /**
+     * Handler function for a 'remainingCorrupts' registry update.
+     * Updates the UI to present the number of remaining corrupts, and disables
+     * the corrupt button if appropriate
+     */
     updateCorrupts(scene, number) {
         scene.corruptRemainder.setText('Uses: ' + number);
 
@@ -600,6 +710,11 @@ class UIScene extends Phaser.Scene {
         }
     }
 
+    /**
+     * Handler function for a 'remainingKills' registry update.
+     * Updates the UI to present the number of remaining kills, and disables
+     * the kill button if appropriate
+     */
     updateKills(scene, number) {
         scene.killRemainder.setText('Uses: ' + number);
 
@@ -612,30 +727,52 @@ class UIScene extends Phaser.Scene {
         }
     }
 
+    /**
+     * Sets the registry to alert that a delay needs to be handled
+     */
     alertDelay() {
         this.scene.registry.set('delay', true);
     }
 
+    /**
+     * Resets the delay registry so that it can be run again
+     */
     unAlertDelay() {
         this.scene.registry.set('delay', false);
     }
 
-    alertKill() {
-        this.scene.registry.set('kill', true);
-    }
-
-    unAlertKill() {
-        this.scene.registry.set('kill', false);
-    }
-
+    /**
+     * Sets the registry to alert that a corrupt needs to be handled
+     */
     alertCorrupt() {
         this.scene.registry.set('corrupt', true);
     }
 
+    /**
+     * Resets the corrupt registry so that it can be run again
+     */
     unAlertCorrupt() {
         this.scene.registry.set('corrupt', false);
     }
 
+    /**
+     * Sets the registry to alert that a kill needs to be handled
+     */
+    alertKill() {
+        this.scene.registry.set('kill', true);
+    }
+
+    /**
+     * Resets the kill registry so that it can be run again
+     */
+    unAlertKill() {
+        this.scene.registry.set('kill', false);
+    }
+
+    /**
+     * Toggles the GameScene scene pause.
+     * This does not affect the UIScene, so buttons (like the resume button) can still be pressed
+     */
     togglePause() {
         if (this.scene.paused) {
             this.scene.scene.resume('GameScene');
@@ -650,6 +787,9 @@ class UIScene extends Phaser.Scene {
         }
     }
 
+    /**
+     * Renders all UI buttons unclickable
+     */
     stopButtons() {
         this.playpause.disableInteractive();
         this.delay.disableInteractive();
@@ -657,6 +797,9 @@ class UIScene extends Phaser.Scene {
         this.kill.disableInteractive();
     }
 
+    /**
+     * Renders all UI buttons clickable
+     */
     startButtons() {
         this.playpause.setInteractive({ useHandCursor: true });
         this.delay.setInteractive({ useHandCursor: true });

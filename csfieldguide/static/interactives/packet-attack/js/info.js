@@ -1,4 +1,10 @@
-require('phaser');
+/**
+ * Packet Attack
+ * 
+ * Game Information class
+ */
+
+ require('phaser');
 
 var CONFIG = require('./config.js');
 
@@ -23,7 +29,7 @@ class Information extends Phaser.Scene {
     }
 
     preload() {
-        console.log('preloading Info screen');
+        console.log('Loading base Info images');
         this.load.image('blurred-bg', base + 'interactives/packet-attack/assets/blurredBackground.png');
         this.load.image('startButton', base + 'interactives/packet-attack/assets/startButton.png');
     }
@@ -170,7 +176,7 @@ class Information extends Phaser.Scene {
         var titleText = this.add.text(400, 0, "Packet Attack", config);
         titleText.setOrigin(0.5, 0);
 
-        config.font = '30px';
+        config.font = '28px Open Sans';
   
   
         var subTitleText = this.add.text(400, 50, "Information", config);

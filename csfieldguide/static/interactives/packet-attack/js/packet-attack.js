@@ -1,5 +1,7 @@
 /**
+ * Packet Attack
  * 
+ * Creates and executes the game
  */
 require('phaser');
 var urlParameters = require('../../../js/third-party/url-parameters.js');
@@ -10,8 +12,6 @@ var CONFIG = require('./config.js');
 var gameScene = new GAME.GameScene();
 var uiScene = new GAME.UIScene();
 var infoScene = new INFO.Information({ paneType: INFO.InfoPaneType.START });
-
-var urlMode = false;
 
 var config = {
     type: Phaser.AUTO,
@@ -25,9 +25,8 @@ var config = {
 $(document).ready(function() {
     var skip = urlParameters.getUrlParameter('start');
     if (skip == 0 || skip == "custom") {
-        setupCustomLevel(0);
+        setupCustomLevel();
         infoScene.setUrlMode();
-        urlMode = true;
         infoScene.setStartLevel(0);
     } else if (skip) {
         infoScene.setStartLevel(skip);
@@ -35,13 +34,15 @@ $(document).ready(function() {
         infoScene.setStartLevel(1);
     }
 
-
     var game = new Phaser.Game(config);
     game.scene.add('UIScene', uiScene, true);
     game.scene.add('Information', infoScene, true);
 });
 
-function setupCustomLevel(number) {
+/**
+ * Overwrites values for the custom Level 0 based on URL parameters
+ */
+function setupCustomLevel() {
 
     var urlLevel = {
         setMessage: urlParameters.getUrlParameter("message"),
@@ -54,5 +55,5 @@ function setupCustomLevel(number) {
         setKills: parseInt(urlParameters.getUrlParameter("kills")),
     };
 
-    CONFIG.setCustomLevel(number, urlLevel);
+    CONFIG.setCustomLevel(0, urlLevel);
 }

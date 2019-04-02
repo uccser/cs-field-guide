@@ -1,4 +1,10 @@
-require('phaser');
+/**
+ * Packet Attack
+ * 
+ * Packet Class and relevant variables
+ */
+
+ require('phaser');
 
 const minDanger = 350;
 const maxDanger = 450;
@@ -17,7 +23,11 @@ var PacketTypes = {
     NACK: 3
 }
 
+/**
+ * The main game object of Packet Attack
+ */
 class Packet extends Phaser.GameObjects.Container {
+    
     constructor(config) {
         // Here 'this.scene' refers to the GameScene the Packet belongs to
 
@@ -34,7 +44,6 @@ class Packet extends Phaser.GameObjects.Container {
         this.backupAnimation = config.backupAnimation;
         this.delayed = 0;
         this.isCorrupt = false;
-
 
         var textConfig = {
             font: '30px Open Sans',
@@ -57,11 +66,18 @@ class Packet extends Phaser.GameObjects.Container {
         this.scene.add.existing(this);
     }
 
+    /**
+     * Returns true if the Packet is within the 'danger zone', false otherwise
+     */
     checkInDanger() {
         return (this.x > minDanger && this.x < maxDanger);
     }
 
     /**
+     * Sets off the Packet after the given delay.
+     * If reverse is false, the packet will 'exit' the left pipe and 'enter' the right.
+     * If reverse is true, the reverse will happen.
+     * 
      * The delay is set this way because we want one on each packet so they set off in sequence,
      * but a different one on packets that are delayed
      */
@@ -79,11 +95,18 @@ class Packet extends Phaser.GameObjects.Container {
         this.tween = this.scene.tweens.add(tweenConfig);
     }
 
+    /**
+     * Handler function for when a Packet successfully completes its tween
+     * Sets the registry to say a Packet has arrived
+     */
     onCompleteHandler(tween, targets) {
         console.log('handling');
         targets[0].scene.registry.set('newInactivePacket', targets[0]);
     }
 
+    /**
+     * Sets the Packet as corrupted - the receiver won't understand what it is sending
+     */
     corrupt() {
         if (this.hasShield) {
             this.hasShield = false;
@@ -102,6 +125,9 @@ class Packet extends Phaser.GameObjects.Container {
         }
     }
 
+    /**
+     * Sends the packet back to the start
+     */
     delay() {
         this.tween.stop();
 
@@ -117,9 +143,10 @@ class Packet extends Phaser.GameObjects.Container {
     }
 
     /**
+     * Handler for when the Packet finishes its tween back to the start.
+     * Sets it off again from the beginning, with a delay that prevents it overlapping other packets
      * 
-     * 
-     * NOTE:
+     * KNOWN ISSUE:
      * Packets X and X+3(n-1) will overlap if X is delayed n times and X+3(n-1) once
      */
     /*
@@ -150,6 +177,10 @@ class Packet extends Phaser.GameObjects.Container {
         packet.runTween(delay);
     }
 
+    /**
+     * Destroys the packet
+     * TODO: Add an animation for this
+     */
     kill() {
         this.tween.stop();
         this.scene.registry.set('newDestroyedPacket', this);

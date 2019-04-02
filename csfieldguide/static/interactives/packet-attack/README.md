@@ -2,27 +2,56 @@
 
 **Original Author:** Sam Jarman  
 **Modified By:** Jack Morgan
+**Modified By:** Alasdair Smith
 
-This interactive is created for illustrating network issues to the user, but delaying/corrupting/killing packets of data.
+This interactive is created for illustrating network issues to the user.
+The user delays/corrupts/kills packets of data to prevent messages being sent, working through levels with increasing amounts of data protection.
 
-This interactive currently does not work in Google Chrome when viewed locally (by opening `index.html`). Either view this interactive in a different browser when viewing offline, or view it online in Google Chrome.
+## Commands
 
-Currently this interactive can only be added to a page in external mode (using `interactive-external`) as the links to assets are broken in `in-page` mode.
+The user can press one of three command buttons to affect packets in the 'danger zone':
 
-## Required Files
+- `Delay` - Sends the packet back to the start, potentially affecting the order in which packets are received.
+- `Corrupt` - Destroys the character within the packet, so the receiver doesn't know what it was.
+- `kill` - Destroys the packet, so it is never received.
 
-- [jQuery](https://jquery.com/) (loaded from base-files folder)
-- [Phaser](https://github.com/photonstorm/phaser)
-- [Moment](http://momentjs.com/)
-- [Moment duration format](https://github.com/jsmreese/moment-duration-format)
-- [Lodash Compat](https://github.com/lodash/lodash-compat)
+There is also a green `Pause/Play` button which affects all timers, packets, etc. but not UI elements.
+
+## Configuration
+
+Each level and its configuration can be found in `packet-attack/js/config.js`.
+There are eight in total, with Level 0 reserved for a level created from URL parameter input.
+
+The last level in the array is, by design, impossible to beat.
+The program *will* try and fail to index beyond the array if the last level is beaten.
+
+## URL parameters
+
+- `start=level` (optional) - where `level` is:
+  - `0|custom` - Sets Packet Attack to run the customised Level 0 [*This is required for other URL parameters to take effect*].
+  - `[1-7]` (default: 1) - Sets Packet Attack to begin at the given level and progress normally.
+- `message=` (default: 'LONDON') - Sets the custom level to use the given message.
+- `shields=true|false` (default: false) - Sets all sent packets (excluding ACKS/NACKS) to have shields, which protect from a single corruption.
+- `numbers=true|false` (default: false) - Sets all packets (including ACKS/NACKS) to have numbers, which allows the preservation of order.
+- `acksnacks=true|false` (default: false) - Sets the receiver to reply to each received packet with an ACK or NACK, depending on the state of itself and the received packet.
+- `timeouts=true|false` (default: false) - Sets the sender to resend a packet if it doesn't receive an ACK or NACK within 17 seconds. This time limit ensures both destroyed and delayed packets are affected. If this is set to `true`, include `acksnacks=true` or the level will never end.
+- `delays=` (default: 1) - Sets the number of delays the user can apply to packets.
+- `corrupts=` (default: 1) - Sets the number of corrupts the user can apply to packets.
+- `kills=` (default: 1) - Sets the number of kills the user can apply to packets.
+
+## Required packages
+
+- [jQuery](https://jquery.com/)
+- [Phaser 3](https://github.com/photonstorm/phaser)
+
+## Known issues
+
+- The question mark (`?`) is used to show that a packet has been corrupted. Therefore, *if ACKS and NACKS are not enabled*, a packet sent with the character `?` isn't affected by corruption.
+- Packets X and X+3(n-1) can potentially overlap perfectly if X is delayed n times and X+3(n-1) once. This is no less than 3 delays on two specific packets.
+- The program will try and fail to index beyond the array if the last level is beaten. However the last level is, by design, impossible to beat.
+- All text is in the default font, Open Sans (specified) is not defined
 
 ## Future plans
 
-- There are still some references of birds and
-  flying from the original messenger birds
-  prototype. These should be updated.
-- Allow full screen in phaser, but HTML button
-  below interactive.
-- Adapt code to align with standard Phaser
-  function breakdown (preload/create/etc).
+- Allow full screen in phaser, but HTML button below interactive.
+- Create separate classes for the sending and receiving pipes, to improve readability.

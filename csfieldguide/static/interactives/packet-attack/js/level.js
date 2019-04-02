@@ -56,11 +56,7 @@ function Level(levelNumber) {
 	}
 
 	this.setTimeoutsEnabled = function(timeoutsEnabled) {
-		// This will create a neverending supply of packets if acks aren't enabled
-		// If you do want that, set setAckNacksEnabled(false) after this
-		if (timeoutsEnabled) {
-			this.setAcksNacksEnabled(true);
-		}
+		// NOTE: This will create a neverending supply of packets if acks aren't enabled
 		this.timeoutsEnabled = timeoutsEnabled;
 		return this;
 	}
