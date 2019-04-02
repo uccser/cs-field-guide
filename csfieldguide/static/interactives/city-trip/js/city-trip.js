@@ -506,9 +506,12 @@ function getPathDistance(edges) {
 
 
 function showTimeUnit(unit, value) {
-  unitElement = $('#num-' + unit);
+  unitPlural = unit + 's';
+  unitElement = $('#num-' + unitPlural);
   if (value > 0) {
-    unitElement.html(value + ' ' + unit + ' ');
+    var format = ngettext('1 ' + unit, '%(value)s ' + unitPlural + ' ', value);
+    var timeUnitText = interpolate(format, {"value": value}, true);
+    unitElement.html(timeUnitText);
     unitElement.removeClass('d-none');
   } else {
     unitElement.addClass('d-none');
@@ -524,18 +527,12 @@ function formatTime(runningTimeLeft) {
   var minutes = Math.round((runningTimeLeft % 3600) / 60);
   var seconds = Math.abs((runningTimeLeft % 60).toFixed(2));
 
-  showTimeUnit('years', years);
-  showTimeUnit('months', months);
-  showTimeUnit('days', days);
-  showTimeUnit('hours', hours);
-  showTimeUnit('minutes', minutes);
-  showTimeUnit('seconds', seconds);
-
-  // $('#num-months').html(months);
-  // $('#num-days').html(days);
-  // $('#num-hours').html(hours);
-  // $('#num-minutes').html(minutes);
-  // $('#num-seconds').html(seconds);
+  showTimeUnit('year', years);
+  showTimeUnit('month', months);
+  showTimeUnit('day', days);
+  showTimeUnit('hour', hours);
+  showTimeUnit('minute', minutes);
+  showTimeUnit('second', seconds);
 }
 
 
