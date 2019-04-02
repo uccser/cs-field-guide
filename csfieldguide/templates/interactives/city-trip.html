@@ -26,6 +26,7 @@
         <button id="generate-map" class="btn btn-primary btn-sm">{% trans "Generate map" %}</button>
         <button id="start" class="btn btn-success btn-sm">{% trans "Start" %}</button>
         <button id="stop" class="btn btn-danger btn-sm">{% trans "Stop" %}</button>
+        <button id="reset" class="d-none btn btn-info btn-sm">{% trans "Reset" %}</button>
       </div>
       <div class="col-sm-12 col-lg-3 mt-1">
         <span>{% trans "Status: <span id='status'>ready to go!</span>" %}</span>
@@ -72,7 +73,7 @@
       <div class="col-sm-12 col-lg-8">
         <p>{% trans "Estimated time left to run:" %}</p>
         <p class="mb-1"><span id="num-years">0</span>{% trans " years" %}</p>
-        <!-- <p class="mb-1"><span id="num-months">0</span>{% trans " months" %}</p> -->
+        <p class="mb-1"><span id="num-months">0</span>{% trans " months" %}</p>
         <p class="mb-1"><span id="num-days">0</span>{% trans " days" %}</p>
         <p class="mb-1"><span id="num-hours">0</span>{% trans " hours" %}</p>
         <p class="mb-1"><span id="num-minutes">0</span>{% trans " minutes" %}</p>
