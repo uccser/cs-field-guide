@@ -90,6 +90,9 @@ $(document).ready(function() {
   cy2.nodes().ungrabify();
 
   var pathDistance = getPathDistance(cy.edges());
+  runningTimeLeft = calculateRunningTime(numberOfCities);
+  console.log(runningTimeLeft);
+  formatTime(runningTimeLeft);
   updateRouteStats();
 
 
@@ -112,6 +115,8 @@ $(document).ready(function() {
     updateCitiesLoop();
     pathDistance = getPathDistance(cy.edges());
     updateRouteStats();
+    runningTimeLeft = calculateRunningTime(numberOfCities);
+    formatTime(runningTimeLeft);
     if (numberOfCities == maxCities) {
       $('#add-city').prop('disabled', true);
     }
@@ -133,6 +138,8 @@ $(document).ready(function() {
     updateCitiesLoop();
     pathDistance = getPathDistance(cy.edges());
     updateRouteStats()
+    runningTimeLeft = calculateRunningTime(numberOfCities);
+    formatTime(runningTimeLeft);
     if (numberOfCities == minCities) {
       $('#remove-city').prop('disabled', true);
     }
@@ -146,7 +153,9 @@ $(document).ready(function() {
     stopPathFinding = false;
     updateStatus("running", 'status-running');
     permutationsWithoutInverse(cy, cy2, cities, pathDistance, startingCity);
-    calculateTimeTaken(numberOfCities);
+    // start timer
+    runningTimeLeft = calculateRunningTime(numberOfCities);
+    startTimer(runningTimeLeft);
   });
 
 
@@ -168,6 +177,8 @@ $(document).ready(function() {
     $('#start').removeClass('d-none');
     $('#stop').removeClass('d-none');
     $('#reset').addClass('d-none');
+    runningTimeLeft = calculateRunningTime(numberOfCities);
+    formatTime(runningTimeLeft);
   });
 
   // Generate a new graph layout and make sure the best route graph matches
@@ -180,6 +191,10 @@ $(document).ready(function() {
     cy2.nodes().ungrabify();
     pathDistance = getPathDistance(cy.edges());
     updateRouteStats();
+    runningTimeLeft = calculateRunningTime(numberOfCities);
+    formatTime(runningTimeLeft);
+    $('#start').removeClass('d-none');
+    $('#stop').removeClass('d-none');
     updateStatus("ready to go!", 'status-ready');
   });
 
@@ -208,9 +223,6 @@ $(document).ready(function() {
     updateRouteStats();
   });
 });
-
-
-
 
 
 function updateStatus(statusText, currentClass) {
@@ -460,6 +472,8 @@ async function permutationsWithoutInverse(cy, cy2, cities, bestRouteDistance, st
   }
   if (i == paths.length) {
     updateStatus("complete!", 'status-complete');
+    $('#start').addClass('d-none');
+    $('#stop').addClass('d-none');
   }
   stopPathFinding = true;
   cy.nodes().grabify();
@@ -491,39 +505,51 @@ function getPathDistance(edges) {
 }
 
 
-function calculateTimeTaken(cities) {
+function formatTime(runningTimeLeft) {
+  var years = Math.round(runningTimeLeft / 31536000);
+  var months = Math.round((runningTimeLeft % 31536000) / 2628000);
+  var days = Math.round((runningTimeLeft % 2628000) / 86400);
+  var hours = Math.round((runningTimeLeft % 86400) / 3600);
+  var minutes = Math.round((runningTimeLeft % 3600) / 60);
+  var seconds = Math.abs((runningTimeLeft % 60).toFixed(2));
+
+  $('#num-years').html(years);
+  $('#num-months').html(months);
+  $('#num-days').html(days);
+  $('#num-hours').html(hours);
+  $('#num-minutes').html(minutes);
+  $('#num-seconds').html(seconds);
+}
+
+
+function calculateRunningTimeLeft(completionTime) {
+  now = new Date().getTime();
+  var runningTimeLeft = (completionTime.getTime() - now) / 1000;
+  return runningTimeLeft;
+}
+
+
+function startTimer(seconds) {
+  var now = new Date();
+  completionTime = new Date(now.getTime() + (seconds * 1000));
+  var x = setInterval(function() {
+    if (stopPathFinding == false) {
+      runningTimeLeft = calculateRunningTimeLeft(completionTime);
+      if (runningTimeLeft <= 0) {
+        clearInterval(x);
+      }
+      formatTime(runningTimeLeft);
+    }
+  }, 10);
+}
+
+
+function calculateRunningTime(cities) {
   factorialTemp = Mathjs.factorial(cities - 1);
   numPaths = Mathjs.divide(factorialTemp, 2);
   seconds = Mathjs.divide(numPaths, 10);
 
-  var now = new Date();
-  completionTime = new Date(now.getTime() + (seconds * 1000));
-  
-  var x = setInterval(function() {
-    if (stopPathFinding == false) {
-      now = new Date().getTime();
-      var runningTimeLeft = (completionTime.getTime() - now) / 1000;
-  
-      if (runningTimeLeft <= 0) {
-        clearInterval(x);
-      }
-  
-      var years = Math.round(runningTimeLeft / 31536000);
-      var months = Math.round((runningTimeLeft % 31536000) / 2628000);
-      var days = Math.round((runningTimeLeft % 2628000) / 86400);
-      var hours = Math.round((runningTimeLeft % 86400) / 3600);
-      var minutes = Math.round((runningTimeLeft % 3600) / 60);
-      var seconds = Math.abs((runningTimeLeft % 60).toFixed(2));
-  
-      $('#num-years').html(years);
-      $('#num-months').html(months);
-      $('#num-days').html(days);
-      $('#num-hours').html(hours);
-      $('#num-minutes').html(minutes);
-      $('#num-seconds').html(seconds);
-  
-    }
-  }, 10);
+  return seconds;
 }
 
 
