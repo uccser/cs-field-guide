@@ -99,6 +99,7 @@ $(document).ready(function() {
     cy.nodes().lock();
     cy.nodes().grabify();
     addNode(cy, cy2, layout, numberOfCities, startingCity);
+    setGraphOptions(cy);
     // Make sure layout is still random and nodes can't overlap when dragged
     refreshLayout(cy, layout);
     cy.nodes().unlock();
