@@ -8,7 +8,7 @@ require('phaser');
 
 var CONFIG = require('./config.js');
 var PACKET = require('./packet.js');
-var INFO = require('./info.js');
+var INFO = require('./information.js');
 
 const KEY_SEND = "SEND";
 const KEY_ACK = "ACK";

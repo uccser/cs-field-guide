@@ -6,7 +6,7 @@
 require('phaser');
 var urlParameters = require('../../../js/third-party/url-parameters.js');
 var GAME = require('./game.js');
-var INFO = require('./info.js');
+var INFO = require('./information.js');
 var CONFIG = require('./config.js');
 
 var gameScene = new GAME.GameScene();
