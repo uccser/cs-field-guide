@@ -1,9 +1,17 @@
-var LEVEL = require('./level.js');
+/**
+ * Packet Attack
+ * 
+ * Game configuration parameters
+ */
+
+ var LEVEL = require('./level.js');
 
 var SENDTEXT = gettext("HELLO");
-const TIMEOUT = 17000;
+const TIMEOUT = 17000; //ms
 
-// Level configs
+/**
+ * An array of Levels, each configured appropriately
+ */
 var LEVELS = [
     new LEVEL.Level(0), // A level of default values, used only in URL mode
     new LEVEL.Level(1)
@@ -42,7 +50,8 @@ var LEVELS = [
 var FINAL_LEVEL = LEVELS.length - 1;
 
 /**
- * 
+ * Sets the given level to use the parameters in the given config dictionary,
+ * instead of its defaults
  * @param {0} level should always be zero
  */
 function setCustomLevel(level, config) {

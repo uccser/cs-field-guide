@@ -17,7 +17,9 @@ var InfoPaneType = {
   }
 
 /**
- * Game Information
+ * Game Information.
+ * This is the scene that displays at the very beginning of the game,
+ * and before every level with a description of what's to come
  */
 class Information extends Phaser.Scene {
 
@@ -28,16 +30,25 @@ class Information extends Phaser.Scene {
         this.urlMode = false;
     }
 
+    /**
+     * Loads all required base images
+     */
     preload() {
         console.log('Loading base Info images');
         this.load.image('blurred-bg', base + 'interactives/packet-attack/assets/blurredBackground.png');
         this.load.image('startButton', base + 'interactives/packet-attack/assets/startButton.png');
     }
 
+    /**
+     * Initialises relevant registry values
+     */
     init() {
         this.registry.set('level', null);
     }
 
+    /**
+     * Loads the Information Scene on screen
+     */
     create() {
         console.log('creating Info screen');
         this.gameScene = this.scene.get('GameScene');
@@ -50,7 +61,32 @@ class Information extends Phaser.Scene {
     }
 
     /**
-     * 
+     * Initialises the text to be displayed in the Scene, including title, subtitle
+     * and description text
+     */
+    createText() {
+        var config = {
+            font: '40px Open Sans',
+            fill: '#000000',
+            wordWrap: { width: 790 },
+            align: 'center',
+        }
+  
+        var titleText = this.add.text(400, 0, "Packet Attack", config);
+        titleText.setOrigin(0.5, 0);
+
+        config.font = '28px Open Sans';
+  
+  
+        var subTitleText = this.add.text(400, 50, "Information", config);
+        subTitleText.setOrigin(0.5, 0);
+  
+        this.information = this.add.text(400, 100, this.generateFeedback(), config);
+        this.information.setOrigin(0.5, 0);
+    }
+
+    /**
+     * Prepares the canvas for the next game, as appropriate
      */
     startLevel() {
         if (this.scene.paneType == InfoPaneType.FAIL && this.scene.level.levelNumber >= CONFIG.FINAL_LEVEL) {
@@ -58,7 +94,6 @@ class Information extends Phaser.Scene {
         } else if (this.scene.paneType == InfoPaneType.START) {
             this.scene.setLevel(this.scene.level.levelNumber);
             this.scene.setPaneType(InfoPaneType.BEFORE_LEVEL);
-            console.log('setting start level');
         } else if (this.scene.paneType == InfoPaneType.PROCEED) {
             if (!this.scene.urlMode) {
                 this.scene.setLevel(this.scene.level.levelNumber + 1);
@@ -71,11 +106,17 @@ class Information extends Phaser.Scene {
         }
     }
 
+    /**
+     * Returns the Information scene to the front and allows interaction with its button
+     */
     resumeInfo() {
         this.bringForward();
         this.button.setInteractive({ useHandCursor: true });
     }
 
+    /**
+     * Brings the info panel to the front, so that it and not the game is rendered
+     */
     bringForward() {
         this.scene.bringToTop();
     }
@@ -96,29 +137,31 @@ class Information extends Phaser.Scene {
     }
 
     /**
-     * Sets all screens to run the given level
+     * Sets all scenes to run the given level
      */
     setLevel(level) {
         this.registry.set('level', level);
-        console.log('registry set to level ' + level);
         this.level = CONFIG.LEVELS[level];
     }
 
+    /**
+     * Sets the level to be used in the game, called when the game is first set up
+     */
     setStartLevel(level) {
         this.level = CONFIG.LEVELS[level];
     }
 
+    /**
+     * Sets the game to be running a custom URL-Parameter-defined level
+     */
     setUrlMode() {
         this.urlMode = true;
     }
 
-    setUrlMode() {
-        this.urlMode = true;
-        this.setStartLevel(0);
-    }
-
+    /**
+     * Generates feedback text to be displayed, depending on where the user is in the game
+     */
     generateFeedback() {
-
         var text = "";
         switch(this.paneType){
           case InfoPaneType.FAIL:
@@ -126,9 +169,9 @@ class Information extends Phaser.Scene {
             break;
           case InfoPaneType.PROCEED:
             if (this.urlMode) {
-              text = "Awesome!\nYou stopped the message being delivered.\nClick 'Start' to repeat this custom level.";
+              text = "Awesome!\nYou stopped the message being delivered.\nClick 'start' to repeat this custom level.";
             } else {
-              text = "Awesome!\nYou stopped the message being delivered.\nClick 'Start' to move to the next level.";
+              text = "Awesome!\nYou stopped the message being delivered.\nClick 'start' to move to the next level.";
             }
             break;
           case InfoPaneType.BEFORE_LEVEL:
@@ -150,7 +193,7 @@ class Information extends Phaser.Scene {
             text = "Welcome to Packet Attack. In this game, your job is to attack the packet creatures and stop messages being delivered.\nYou pass a level if the received message is any different from the one sent.\nWhile a creature is in the danger zone (indicated by the yellow and grey area) you may attack by clicking the command buttons.\nGood luck!"
             break;
           case InfoPaneType.END:
-              text = "This level is actually impossible to beat\nThe system can handle anything you throw at it!\nThank you for playing!\n\n\n\n\nPress start if you want to try this level again";
+              text = "This level is actually impossible to beat\nThe system can handle anything you throw at it!\nThank you for playing!\n\n\n\n\nClick 'start' if you want to try this level again";
               break;
         }
         return text;
@@ -161,29 +204,6 @@ class Information extends Phaser.Scene {
      */
     updateText() {
         this.information.setText(this.generateFeedback());
-    }
-
-    createText() {
-        //Set up text
-
-        var config = {
-            font: '40px Open Sans',
-            fill: '#000000',
-            wordWrap: { width: 790 },
-            align: 'center',
-        }
-  
-        var titleText = this.add.text(400, 0, "Packet Attack", config);
-        titleText.setOrigin(0.5, 0);
-
-        config.font = '28px Open Sans';
-  
-  
-        var subTitleText = this.add.text(400, 50, "Information", config);
-        subTitleText.setOrigin(0.5, 0);
-  
-        this.information = this.add.text(400, 100, this.generateFeedback(), config);
-        this.information.setOrigin(0.5, 0);
     }
 }
 
