@@ -99,15 +99,14 @@ $(document).ready(function() {
     cy.nodes().lock();
     cy.nodes().grabify();
     addNode(cy, cy2, layout, numberOfCities, startingCity);
-    setGraphOptions(cy);
     // Make sure layout is still random and nodes can't overlap when dragged
     refreshLayout(cy, layout);
+    setGraphOptions(cy);
     cy.nodes().unlock();
     // Update best route graph to match
     cy2.add(cy.$('.nodesToAdd').clone());
     cy2.add(cy.$('.edgesToAdd').clone());
     setGraphOptions(cy2);
-    refreshLayout(cy2, layout);
     cy2.nodes().ungrabify();
   
     numberOfCities += 1;
@@ -219,6 +218,7 @@ $(document).ready(function() {
   cy.on('dragfreeon', 'nodes', function(evt) {
     cy2.remove(cy2.elements());
     cy2.add(cy.elements().clone());
+    setGraphOptions(cy2)
     cy2.nodes().ungrabify();
     pathDistance = getPathDistance(cy.edges());
     updateRouteStats();
@@ -298,6 +298,8 @@ function addNode(cy, cy2, layout, oldNumCities, startNode) {
       classes: 'nodesToAdd'
     };
     cy.add(newNode);
+    console.log(cy.$('#' + currentNodeID).renderedWidth());
+    console.log(cy.$('#' + currentNodeID).width());
     addEdge(cy, previousNodeID, currentNodeID);
     // Create edge that closes the loop
     addEdge(cy, currentNodeID, startNode);
@@ -327,7 +329,7 @@ function removeNode(cy, cy2, layout, numberOfCities, startNode) {
   if (stopPathFinding) {
     // If removing nodes after clicking 'stop' have to reset graph because some edges between nodes don't exist.
     // (will be part way through path finding)
-    resetGraph(cy, cy2, newNumCities, layout)
+    resetGraph(cy, cy2, newNumCities, layout);
     // Only need to redraw entire graph on first removal of node after clicking 'stop'
     stopPathFinding = false;
   } else {
