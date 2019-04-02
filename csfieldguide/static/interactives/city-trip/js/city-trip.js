@@ -37,7 +37,9 @@ $(document).ready(function() {
           'background-color': '#007bff',
           'label': 'data(id)',
           'text-valign': 'center',
-          'color': '#fff'
+          'color': '#fff',
+          'height': 30,
+          'width': 30
         }
       },
 
@@ -50,13 +52,15 @@ $(document).ready(function() {
     ],
     layout: {
       name: "random",
-      avoidOverlap: true
+      avoidOverlap: true,
+      fit: false
     }
   });
 
   var layout = cy.layout({
     name: "random",
-    avoidOverlap: true
+    avoidOverlap: true,
+    fit: false
   });
 
   cy.nodes().noOverlap({ padding: 5 });
@@ -72,7 +76,9 @@ $(document).ready(function() {
           'background-color': '#28a745',
           'label': 'data(id)',
           'text-valign': 'center',
-          'color': '#fff'
+          'color': '#fff',
+          'height': 30,
+          'width': 30
         }
       },
     
@@ -235,7 +241,6 @@ function updateStatus(statusText, currentClass) {
 
 
 function setGraphOptions(cyGraph) {
-  cyGraph.fit();
   cyGraph.userPanningEnabled(false);
   cyGraph.automove({
     nodesMatching: cyGraph.nodes(),
@@ -298,8 +303,6 @@ function addNode(cy, cy2, layout, oldNumCities, startNode) {
       classes: 'nodesToAdd'
     };
     cy.add(newNode);
-    console.log(cy.$('#' + currentNodeID).renderedWidth());
-    console.log(cy.$('#' + currentNodeID).width());
     addEdge(cy, previousNodeID, currentNodeID);
     // Create edge that closes the loop
     addEdge(cy, currentNodeID, startNode);
@@ -352,7 +355,8 @@ function refreshLayout(cy, layout) {
   layout.stop();
   layout = cy.elements().makeLayout({
     name: "random",
-    avoidOverlap: true
+    avoidOverlap: true,
+    fit: false
   });
   layout.run();
   cy.nodes().noOverlap({ padding: 5 });
