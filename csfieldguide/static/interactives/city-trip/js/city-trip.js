@@ -107,6 +107,7 @@ $(document).ready(function() {
     cy2.add(cy.$('.nodesToAdd').clone());
     cy2.add(cy.$('.edgesToAdd').clone());
     setGraphOptions(cy2);
+    refreshLayout(cy2, layout);
     cy2.nodes().ungrabify();
   
     numberOfCities += 1;
