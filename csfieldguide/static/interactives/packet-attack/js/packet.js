@@ -4,7 +4,7 @@
  * Packet Class and relevant variables
  */
 
- require('phaser');
+require('phaser');
 
 const minDanger = 350;
 const maxDanger = 450;
@@ -24,7 +24,7 @@ var PacketTypes = {
 }
 
 /**
- * The main game object of Packet Attack
+ * The main GameObject of Packet Attack
  */
 class Packet extends Phaser.GameObjects.Container {
     

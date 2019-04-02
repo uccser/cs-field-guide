@@ -1,4 +1,10 @@
-function Level(levelNumber) {
+/**
+ * Packet Attack
+ * 
+ * Level class builder
+ */
+
+ function Level(levelNumber) {
 
 	//Defaults
 	this.message = "LONDON";

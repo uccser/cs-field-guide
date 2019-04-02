@@ -3,6 +3,7 @@
  * 
  * Creates and executes the game
  */
+
 require('phaser');
 var urlParameters = require('../../../js/third-party/url-parameters.js');
 var GAME = require('./game.js');
