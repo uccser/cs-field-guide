@@ -307,7 +307,7 @@ class GameScene extends Phaser.Scene {
      */
     interpretNewPacket(packet) {
         if (this.level.acksNacksEnabled) {
-            if (this.alreadyReceived(packet.number)) {
+            if (this.level.packetsHaveNumbers && this.alreadyReceived(packet.number)) {
                 this.sendAck(packet);
                 return;
             } else if (packet.isCorrupt) {

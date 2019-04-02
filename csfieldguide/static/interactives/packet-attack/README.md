@@ -2,7 +2,7 @@
 
 **Original Author:** Sam Jarman  
 **Modified By:** Jack Morgan
-**Modified By:** Alasdair Smith
+**Updated By:** Alasdair Smith
 
 This interactive is created for illustrating network issues to the user.
 The user delays/corrupts/kills packets of data to prevent messages being sent, working through levels with increasing amounts of data protection.
@@ -13,9 +13,9 @@ The user can press one of three command buttons to affect packets in the 'danger
 
 - `Delay` - Sends the packet back to the start, potentially affecting the order in which packets are received.
 - `Corrupt` - Destroys the character within the packet, so the receiver doesn't know what it was.
-- `kill` - Destroys the packet, so it is never received.
+- `Kill` - Destroys the packet, so it is never received.
 
-There is also a green `Pause/Play` button which affects all timers, packets, etc. but not UI elements.
+There is also a green `Pause/Play` button which affects all timers & packets, but not UI elements.
 
 ## Configuration
 
@@ -27,9 +27,9 @@ The program *will* try and fail to index beyond the array if the last level is b
 
 ## URL parameters
 
-- `start=level` (optional) - where `level` is:
+- `start=level` (default: 1) - where `level` is:
   - `0|custom` - Sets Packet Attack to run the customised Level 0 [*This is required for other URL parameters to take effect*].
-  - `[1-7]` (default: 1) - Sets Packet Attack to begin at the given level and progress normally.
+  - `[1-7]` - Sets Packet Attack to begin at the given level and progress normally.
 - `message=` (default: 'LONDON') - Sets the custom level to use the given message.
 - `shields=true|false` (default: false) - Sets all sent packets (excluding ACKS/NACKS) to have shields, which protect from a single corruption.
 - `numbers=true|false` (default: false) - Sets all packets (including ACKS/NACKS) to have numbers, which allows the preservation of order.
