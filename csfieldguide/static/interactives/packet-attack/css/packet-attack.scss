@@ -1,0 +1,23 @@
+.warning {
+    font-size: 12pt;
+    text-align: center;
+    padding: 20px;
+}
+
+@media screen and (min-width: 820px) and (min-height: 650px) {
+    .warning {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 820px) {
+    .game-canvas {
+        display: none;
+    }
+}
+
+@media screen and (max-height: 650px) {
+    .game-canvas {
+        display: none;
+    }
+}
