@@ -505,6 +505,17 @@ function getPathDistance(edges) {
 }
 
 
+function showTimeUnit(unit, value) {
+  unitElement = $('#num-' + unit);
+  if (value > 0) {
+    unitElement.html(value + ' ' + unit + ' ');
+    unitElement.removeClass('d-none');
+  } else {
+    unitElement.addClass('d-none');
+  }
+}
+
+
 function formatTime(runningTimeLeft) {
   var years = Math.round(runningTimeLeft / 31536000);
   var months = Math.round((runningTimeLeft % 31536000) / 2628000);
@@ -513,12 +524,18 @@ function formatTime(runningTimeLeft) {
   var minutes = Math.round((runningTimeLeft % 3600) / 60);
   var seconds = Math.abs((runningTimeLeft % 60).toFixed(2));
 
-  $('#num-years').html(years);
-  $('#num-months').html(months);
-  $('#num-days').html(days);
-  $('#num-hours').html(hours);
-  $('#num-minutes').html(minutes);
-  $('#num-seconds').html(seconds);
+  showTimeUnit('years', years);
+  showTimeUnit('months', months);
+  showTimeUnit('days', days);
+  showTimeUnit('hours', hours);
+  showTimeUnit('minutes', minutes);
+  showTimeUnit('seconds', seconds);
+
+  // $('#num-months').html(months);
+  // $('#num-days').html(days);
+  // $('#num-hours').html(hours);
+  // $('#num-minutes').html(minutes);
+  // $('#num-seconds').html(seconds);
 }
 
 
