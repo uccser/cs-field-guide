@@ -91,7 +91,6 @@ $(document).ready(function() {
 
   var pathDistance = getPathDistance(cy.edges());
   runningTimeLeft = calculateRunningTime(numberOfCities);
-  console.log(runningTimeLeft);
   formatTime(runningTimeLeft);
   updateRouteStats();
 
@@ -510,7 +509,7 @@ function showTimeUnit(unit, value) {
   unitElement = $('#num-' + unitPlural);
   if (value > 0) {
     var format = ngettext('1 ' + unit, '%(value)s ' + unitPlural + ' ', value);
-    var timeUnitText = interpolate(format, {"value": value}, true);
+    var timeUnitText = interpolate(format, {"value": value.toLocaleString()}, true);
     unitElement.html(timeUnitText);
     unitElement.removeClass('d-none');
   } else {
