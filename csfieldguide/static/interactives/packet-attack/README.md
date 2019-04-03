@@ -44,6 +44,14 @@ The program *will* try and fail to index beyond the array if the last level is b
 - [jQuery](https://jquery.com/)
 - [Phaser 3](https://github.com/photonstorm/phaser)
 
+Licences for these will eventually be listed in the licences file, with a full copy of each licence available in the `third-party-licences` directory.
+
+## Assets
+
+All image assets created for Packet Attack, including sprites and backgrounds, are found in the `packet-attack/assets/` directory.
+These were created by Jack Morgan and updated by Alasdair Smith, and are freely available under the MIT License.
+Email: jack.morgan@canterbury.ac.nz
+
 ## Known issues
 
 - The question mark (`?`) is used to show that a packet has been corrupted. Therefore, *if ACKS and NACKS are not enabled*, a packet sent with the character `?` isn't affected by corruption.
