@@ -235,13 +235,13 @@ class Information extends Phaser.Scene {
           text = TXT_WELCOME_TO_LEVEL + ' ' + this.level.levelNumber + '!\n';
         }
         text += TXT_IN_THIS_LEVEL + '\n'
-            + (this.level.message.length > 1 ? TXT_MULTIPACKET + '\n' : "")
-            + (this.level.packetsHaveShields ? TXT_SHIELDED + '\n' : "")
-            + (this.level.packetsHaveNumbers ? TXT_NUMBERED + '\n' : "")
-            + (this.level.acksNacksEnabled ? TXT_ACKSNACKS + '\n' : "")
-            + (this.level.canAttackAcksNacks ? TXT_ATTACK_ACKSNACKS + '\n' : "")
-            + (this.level.timeoutsEnabled ? TXT_TIMEOUTS + '\n' : "")
-            + (this.level.levelNumber == 1 ? TXT_NO_DEFENCE : "");
+            + (this.level.message.length > 1 ? TXT_MULTIPACKET + '\n' : '')
+            + (this.level.packetsHaveShields ? TXT_SHIELDED + '\n' : '')
+            + (this.level.packetsHaveNumbers ? TXT_NUMBERED + '\n' : '')
+            + (this.level.acksNacksEnabled ? TXT_ACKSNACKS + '\n' : '')
+            + (this.level.canAttackAcksNacks ? TXT_ATTACK_ACKSNACKS + '\n' : '')
+            + (this.level.timeoutsEnabled ? TXT_TIMEOUTS + '\n' : '')
+            + (this.level.levelNumber == 1 ? TXT_NO_DEFENCE : '');
         break;
       case InfoPaneType.START:
         text = TXT_INTRODUCTION;

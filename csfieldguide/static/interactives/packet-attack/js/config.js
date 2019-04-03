@@ -8,6 +8,7 @@ var LEVEL = require('./level.js');
 
 var TITLE = gettext("PACKET ATTACK");
 var SENDTEXT = gettext("HELLO");
+
 const TIMEOUT = 17000; //ms
 
 /**

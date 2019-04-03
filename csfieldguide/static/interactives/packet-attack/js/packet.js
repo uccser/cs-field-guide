@@ -54,7 +54,7 @@ class Packet extends Phaser.GameObjects.Container {
         this.sprite = this.scene.add.sprite(0, 0, this.key).play(this.animation);
         var dispText;
         if (this.isOrdered) {
-            dispText = this.number.toString() + ":" + this.char;
+            dispText = this.number.toString() + ':' + this.char;
         } else {
             dispText = this.char;
         }
