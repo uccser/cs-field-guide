@@ -33,11 +33,20 @@ var TXT_ATTACK_ACKSNACKS = gettext("but the responses are also vulnerable to you
 var TXT_TIMEOUTS = gettext("If the left pipe doesn't get a response, it will resend a creature");
 var TXT_NO_DEFENCE = gettext("There are no defenses!");
 
-var TXT_INTRODUCTION = gettext("Welcome to Packet Attack.")
-              + '\n' + gettext("In this game, your job is to attack the packet creatures and stop messages being delivered.")
-              + '\n' + gettext("You pass a level if the received message is any different from the one sent.")
-              + '\n' + gettext("While a creature is in the danger zone (indicated by the yellow and grey area) you may attack by clicking the command buttons.")
-              + '\n' + gettext("Good luck!");
+/**
+ * To allow custom fonts to be loaded, the Introduction screen has been moved
+ * outside the game itself.
+ * 
+ * The underlying code remains in case it is needed again in future.
+ * Just uncomment the part below and set the Information Scene to launch at
+ * InfoPaneType.START
+ */
+var TXT_INTRODUCTION = "";
+// var TXT_INTRODUCTION = gettext("Welcome to Packet Attack.")
+//               + '\n' + gettext("In this game, your job is to attack the packet creatures and stop messages being delivered.")
+//               + '\n' + gettext("You pass a level if the received message is any different from the one sent.")
+//               + '\n' + gettext("While a creature is in the danger zone (indicated by the yellow and grey area) you may attack by clicking the command buttons.")
+//               + '\n' + gettext("Good luck!");
 
 var TXT_IMPOSSIBLE = gettext("This level is actually impossible to beat")
             + '\n' + gettext("The system can handle anything you throw at it!")
@@ -67,6 +76,7 @@ class Information extends Phaser.Scene {
 
     this.paneType = config.paneType;
     this.urlMode = false;
+    this.level = null;
   }
 
   /**
@@ -91,6 +101,7 @@ class Information extends Phaser.Scene {
   create() {
     console.log('creating Info screen');
     this.gameScene = this.scene.get('GameScene');
+    this.registry.set('level', this.level.levelNumber);
 
     var buttonConfig = {
       scene: this,

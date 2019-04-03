@@ -12,7 +12,7 @@ var CONFIG = require('./config.js');
 
 var gameScene = new GAME.GameScene();
 var uiScene = new GAME.UIScene();
-var infoScene = new INFO.Information({ paneType: INFO.InfoPaneType.START });
+var infoScene = new INFO.Information({ paneType: INFO.InfoPaneType.BEFORE_LEVEL });
 
 var config = {
     type: Phaser.AUTO,
@@ -24,6 +24,20 @@ var config = {
 }
 
 $(document).ready(function() {
+    //The canvas doesn't wait for fonts to be loaded, so if we load the game immediately
+    //no text is displayed.
+    $('#start-button').on('click', function() {
+        $('#start-screen').hide();
+        run();
+    });
+});
+
+/**
+ * Builds and executes the game.
+ * No assets are loaded until the user presses start, but this is the simplest
+ * method of ensuring the game font is always loaded first
+ */
+function run() {
     var skip = urlParameters.getUrlParameter('start');
     if (skip == 0 || skip == "custom") {
         setupCustomLevel();
@@ -38,7 +52,7 @@ $(document).ready(function() {
     var game = new Phaser.Game(config);
     game.scene.add('UIScene', uiScene, true);
     game.scene.add('Information', infoScene, true);
-});
+}
 
 /**
  * Overwrites values for the custom Level 0 based on URL parameters
