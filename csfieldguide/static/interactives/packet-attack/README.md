@@ -23,7 +23,7 @@ Each level and its configuration can be found in `packet-attack/js/config.js`.
 There are eight in total, with Level 0 reserved for a level created from URL parameter input.
 
 The last level in the array is, by design, impossible to beat.
-The program *will* try and fail to index beyond the array if the last level is beaten.
+The program will return to level 1 if the last level is beaten.
 
 ## URL parameters
 
@@ -56,7 +56,6 @@ Email: jack.morgan@canterbury.ac.nz
 
 - The question mark (`?`) is used to show that a packet has been corrupted. Therefore, *if ACKS and NACKS are not enabled*, a packet sent with the character `?` isn't affected by corruption.
 - Packets X and X+3(n-1) can potentially overlap perfectly if X is delayed n times and X+3(n-1) once. This is no less than 3 delays on two specific packets.
-- The program will try and fail to index beyond the array if the last level is beaten. However the last level is, by design, impossible to beat.
 
 ## Future plans
 

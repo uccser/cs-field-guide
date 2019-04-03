@@ -245,11 +245,17 @@ class Information extends Phaser.Scene {
     this.urlMode = true;
   }
 
+  /**
+   * Displays the replay button, and allows it to be clicked
+   */
   showReplayButton() {
     this.replayButton.setAlpha(1);
     this.replayButton.setInteractive({ useHandCursor: true })
   }
 
+  /**
+   * Makes the replay button transparent, and disallows it to be clicked
+   */
   hideReplayButton() {
     this.replayButton.setAlpha(0);
     this.replayButton.disableInteractive();
