@@ -2,7 +2,7 @@
 
 **Original Author:** Sam Jarman  
 **Modified By:** Jack Morgan
-**Updated By:** Alasdair Smith
+**Modified By:** Alasdair Smith
 
 This interactive is created for illustrating network issues to the user.
 The user delays/corrupts/kills packets of data to prevent messages being sent, working through levels with increasing amounts of data protection.
@@ -23,13 +23,16 @@ Each level and its configuration can be found in `packet-attack/js/config.js`.
 There are eight in total, with Level 0 reserved for a level created from URL parameter input.
 
 The last level in the array is, by design, impossible to beat.
-The program will return to level 1 if the last level is beaten.
+The program will return to Level 1 if the last level is beaten.
 
 ## URL parameters
 
+*`start=0` or `start=custom` is required for other URL parameters to take effect.*
+
+All possible URL parameters are listed here:
+
 - `start=level` (default: 1) - where `level` is:
   - `0|custom` - Sets Packet Attack to run the customised Level 0.
-  [*This is required for other URL parameters to take effect*]
   - `[1-7]` - Sets Packet Attack to begin at the given level and progress normally.
 - `message=` (default: 'LONDON') - Sets the custom level to use the given message.
 - `shields=true|false` (default: false) - Sets all sent packets (excluding ACKS/NACKS) to have shields, which protect from a single corruption.
@@ -51,6 +54,7 @@ Licences for these will eventually be listed in the licences file, with a full c
 
 All image assets created for Packet Attack, including sprites and backgrounds, are found in the `packet-attack/assets/` directory.
 These were created by Jack Morgan and Alasdair Smith, and are freely available under the MIT Licence.
+
 Email: jack.morgan@canterbury.ac.nz
 
 ## Known issues
