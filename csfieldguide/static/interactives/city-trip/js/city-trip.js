@@ -572,7 +572,7 @@ function startTimer(seconds) {
   var x = setInterval(function() {
     if (stopPathFinding == false) {
       runningTimeLeft = calculateRunningTimeLeft(completionTime);
-      if (runningTimeLeft <= 0 || stopInterval) {
+      if (runningTimeLeft < 0 || stopInterval) {
         clearInterval(x);
         stopInterval = false;
       } else {
