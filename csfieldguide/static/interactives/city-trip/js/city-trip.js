@@ -123,6 +123,9 @@ $(document).ready(function() {
     updateRouteStats();
     runningTimeLeft = calculateRunningTime(numberOfCities);
     formatTime(runningTimeLeft);
+    $('#start').removeClass('d-none');
+    $('#stop').removeClass('d-none');
+    $('#reset').addClass('d-none');
     if (numberOfCities == maxCities) {
       $('#add-city').prop('disabled', true);
     }
@@ -146,6 +149,9 @@ $(document).ready(function() {
     updateRouteStats()
     runningTimeLeft = calculateRunningTime(numberOfCities);
     formatTime(runningTimeLeft);
+    $('#start').removeClass('d-none');
+    $('#stop').removeClass('d-none');
+    $('#reset').addClass('d-none');
     if (numberOfCities == minCities) {
       $('#remove-city').prop('disabled', true);
     }
@@ -183,6 +189,7 @@ $(document).ready(function() {
     $('#start').removeClass('d-none');
     $('#stop').removeClass('d-none');
     $('#reset').addClass('d-none');
+    updateStatus("ready to go!", 'status-ready');
     runningTimeLeft = calculateRunningTime(numberOfCities);
     formatTime(runningTimeLeft);
   });
@@ -527,11 +534,11 @@ function showTimeUnit(unit, value) {
 
 
 function formatTime(runningTimeLeft) {
-  var years = Math.round(runningTimeLeft / 31536000);
-  var months = Math.round((runningTimeLeft % 31536000) / 2628000);
-  var days = Math.round((runningTimeLeft % 2628000) / 86400);
-  var hours = Math.round((runningTimeLeft % 86400) / 3600);
-  var minutes = Math.round((runningTimeLeft % 3600) / 60);
+  var years = Math.floor(runningTimeLeft / 31536000);
+  var months = Math.floor((runningTimeLeft % 31536000) / 2628000);
+  var days = Math.floor((runningTimeLeft % 2628000) / 86400);
+  var hours = Math.floor((runningTimeLeft % 86400) / 3600);
+  var minutes = Math.floor((runningTimeLeft % 3600) / 60);
   var seconds = Math.abs((runningTimeLeft % 60).toFixed(2));
 
   showTimeUnit('year', years);
