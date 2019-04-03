@@ -53,7 +53,6 @@ class GameScene extends Phaser.Scene {
         this.allPackets = [];
         this.activePackets = [];
         this.unansweredPacketNumbers = [];
-        this.unsuccessfulPacketNumbers = [];
         this.activeAcks = [];
         this.activeNacks = [];
         this.receivedAcks = [];
@@ -177,7 +176,6 @@ class GameScene extends Phaser.Scene {
             this.registry.set('newActivePacket', packet);
             var timer = this.time.delayedCall(delay + CONFIG.TIMEOUT, this.timerEnd, [packet], this);
             this.unansweredPacketNumbers.push(packet.number);
-            this.unsuccessfulPacketNumbers.push(packet.number);
             this.allPackets.push(packet);
             this.timers.push(timer);
         }
@@ -207,15 +205,10 @@ class GameScene extends Phaser.Scene {
     timerEnd(packet) {
 
         if (this.level.timeoutsEnabled) {
-            if (this.unsuccessfulPacketNumbers.indexOf(packet.number) >= 0) {
-                if (this.unansweredPacketNumbers.indexOf(packet.number) >= 0) {
-                    // We want to resend a packet only if it was unanswered and unsuccessful
-                    console.log(packet.key + " missing!");
-                    this.resendPacket(packet);
-                }
-                // Reset the packet as unanswered
-                // We do this here because a corrupted packet would be resent before its timer ends
-                this.unansweredPacketNumbers.push(packet.number);
+            if (!packet.isCorrupt && this.unansweredPacketNumbers.indexOf(packet.number) >= 0) {
+                // Corrupted packets will have been NACKED and resent already by the time the timer ends
+                console.log(packet.key + " missing!");
+                this.resendPacket(packet);
             }
         }
 
@@ -260,15 +253,11 @@ class GameScene extends Phaser.Scene {
             scene.activeAcks.splice(index, 1);
             index = scene.unansweredPacketNumbers.indexOf(packet.number);
             scene.unansweredPacketNumbers.splice(index, 1);
-            index = scene.unsuccessfulPacketNumbers.indexOf(packet.number);
-            scene.unsuccessfulPacketNumbers.splice(index, 1);
             scene.receivedAcks.push(packet.number);
 
         } else if (packet.type == PACKET.PacketTypes.NACK) {
             index = scene.activeNacks.indexOf(packet);
             scene.activeNacks.splice(index, 1);
-            index = scene.unansweredPacketNumbers.indexOf(packet.number);
-            scene.unansweredPacketNumbers.splice(index, 1);
             scene.resendPacket(packet);
             console.log('resending packet');
 
@@ -425,7 +414,8 @@ class GameScene extends Phaser.Scene {
             isOrdered: this.level.packetsHaveNumbers,
             hasShield: this.level.packetsHaveShields,
             animation: this.level.packetsHaveShields ? 'packetShieldAnim' : 'packetBaseAnim',
-            backupAnimation: 'packetBaseAnim'
+            backupAnimation: 'packetBaseAnim',
+            killAnimation: 'packetDeathAnim'
         }
 
         var newPacket = new PACKET.Packet(packetConfig);
@@ -557,7 +547,6 @@ class GameScene extends Phaser.Scene {
         this.allPackets = [];
         this.activePackets = [];
         this.unansweredPacketNumbers = [];
-        this.unsuccessfulPacketNumbers = [];
         this.activeAcks = [];
         this.activeNacks = [];
         this.receivedAcks = [];
