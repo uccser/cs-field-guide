@@ -7,6 +7,7 @@
   width: 500px;
   height: 500px;
   display: block;
+  border-left: 2px solid #c6c8ca;
 }
 
 #graph-container {
@@ -23,11 +24,17 @@
   width: 500px;
   height: 500px;
   display: block;
+  border-left: 2px solid #c6c8ca;
+}
+
+.graph {
+  width: 500px;
 }
 
 .graph:after {
   content: ' ';
-  display: block; position: relative;
+  display: block; 
+  position: relative;
   border: 1px solid #c6c8ca;
 }
 

@@ -34,7 +34,7 @@
     </div>
 
     <div class="row my-3">
-      <div id="graph-container" class="col-sm-12 col-lg-6">
+      <div id="graph-container" class="vertical-line col-sm-12 col-lg-6">
         <div id="cy"></div>
         <div class="graph mb-3">
           <div class="tick zero"><span>0</span></div>
@@ -43,6 +43,10 @@
           <div class="tick"><span>300</span></div>
           <div class="tick"><span>400</span></div>
           <div class="tick"><span>500</span></div>
+        </div>
+        <div class="text-center mt-5">
+          <p class="mb-1">{% trans "Trial route: " %}<span id='trial-route'>0</span></p>
+          <p class="mb-1">{% trans "Distance: <span id='trial-distance'>0</span> km" %}</p>
         </div>
       </div>
       <div id="graph-container-2" class="col-sm-12 col-lg-6">
@@ -55,17 +59,10 @@
           <div class="tick"><span>400</span></div>
           <div class="tick"><span>500</span></div>
         </div>
-      </div>
-    </div>
-
-    <div class="row my-5">
-      <div class="col-sm-12 col-lg-6 text-center">
-        <p class="mb-1">{% trans "Trial route: " %}<span id='trial-route'>0</span></p>
-        <p class="mb-1">{% trans "Distance: <span id='trial-distance'>0</span> km" %}</p>
-      </div>
-      <div class="col-sm-12 col-lg-6 text-center">
-        <p class="mb-1">{% trans "Best route so far: " %}<span id='best-route-so-far'>0</span></p>
-        <p class="mb-1">{% trans "Distance: <span id='best-route-distance'>0</span> km" %}</p>
+        <div class="text-center mt-5">
+          <p class="mb-1">{% trans "Best route so far: " %}<span id='best-route-so-far'>0</span></p>
+          <p class="mb-1">{% trans "Distance: <span id='best-route-distance'>0</span> km" %}</p>
+        </div>
       </div>
     </div>
 
