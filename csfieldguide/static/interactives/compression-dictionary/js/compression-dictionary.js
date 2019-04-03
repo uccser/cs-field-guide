@@ -8,10 +8,6 @@ var message_characters = [];
 // ];
 
 window.onload = function() {
-    compress();
-}
-
-function compress() {
     // reset all information relating to the message and dictionary
     document.getElementById('interactive-compression-dictionary-output').innerHTML = '';
     var dictionary_div = document.getElementById('interactive-compression-dictionary-user-dictionary');
@@ -19,7 +15,17 @@ function compress() {
     codes = [];
     message_characters = [];
     readInputMessage();
+    setExampleCodes();
     buildExampleDictionary();
+    highlightCodedCharacters();
+}
+
+function compress() {
+    // reset all information relating to the message and dictionary
+    document.getElementById('interactive-compression-dictionary-output').innerHTML = '';
+    message_characters = [];
+    readInputMessage();
+    //setExampleCodes();
     highlightCodedCharacters();
 }
 
@@ -138,6 +144,18 @@ function highlightCharacters(event, highlight) {
     }
 }
 
+function setExampleCodes() {
+    for (var i = 0; i < message_characters.length; i++) {
+        var character = message_characters[i].Character;
+        if (codes.indexOf(character) == -1) { // not already in codes
+            codes.push(character);
+        }
+        if (codes.length == 5) {
+            break;
+        }
+    }
+}
+
 
 // transfer the inputted message into individual element for each character
 function readInputMessage() {
@@ -147,17 +165,6 @@ function readInputMessage() {
         message = message_textarea.placeholder;
     }
     message = message.split('');
-
-    // set example codes
-    for (var i = 0; i < message.length; i++) {
-        var character = message[i];
-        if (codes.indexOf(character) == -1) { // not already in codes
-            codes.push(character);
-        }
-        if (codes.length == 5) {
-            break;
-        }
-    }
 
     var fragment = document.createDocumentFragment();
 
