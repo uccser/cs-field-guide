@@ -52,7 +52,8 @@ var TXT_IMPOSSIBLE = gettext("This level is actually impossible to beat")
             + '\n' + gettext("The system can handle anything you throw at it!")
             + '\n' + gettext("Thank you for playing!")
             + '\n\n\n\n'
-            + '\n' + gettext("Click 'start' if you want to try this level again");
+            + '\n' + gettext("Click 'start' if you want to try this level again")
+            + '\n' + gettext("Or refresh the page if you want to start from the beginning");
 
 // End //
 
@@ -86,6 +87,7 @@ class Information extends Phaser.Scene {
     console.log('Loading base Info images');
     this.load.image('blurred-bg', base + 'interactives/packet-attack/assets/blurredBackground.png');
     this.load.image('startButton', base + 'interactives/packet-attack/assets/startButton.png');
+    this.load.image('replayButton', base + 'interactives/packet-attack/assets/replayButton.png');
   }
 
   /**
@@ -119,10 +121,12 @@ class Information extends Phaser.Scene {
 
     this.add.image(400, 300, 'blurred-bg');
     this.button = new BUTTON.PhaserButton(buttonConfig);
+    this.replayButton = this.add.image(100, 500, 'replayButton').setAlpha(0);
     this.button.setInteractive({ useHandCursor: true });
     this.createText();
 
     this.button.on('pointerdown', this.startLevel);
+    this.replayButton.on('pointerdown', this.replayLevel);
   }
 
   /**
@@ -154,6 +158,7 @@ class Information extends Phaser.Scene {
    * Prepares the canvas for the next game, as appropriate
    */
   startLevel() {
+    this.scene.hideReplayButton();
     if (this.scene.paneType == InfoPaneType.FAIL && this.scene.level.levelNumber >= CONFIG.FINAL_LEVEL) {
       this.scene.setPaneType(InfoPaneType.END);
     } else if (this.scene.paneType == InfoPaneType.START) {
@@ -161,7 +166,11 @@ class Information extends Phaser.Scene {
       this.scene.setPaneType(InfoPaneType.BEFORE_LEVEL);
     } else if (this.scene.paneType == InfoPaneType.PROCEED) {
       if (!this.scene.urlMode) {
-        this.scene.setLevel(this.scene.level.levelNumber + 1);
+        var nextLevel = this.scene.level.levelNumber + 1;
+        if (nextLevel > CONFIG.FINAL_LEVEL) {
+          nextLevel = 1;
+        }
+        this.scene.setLevel(nextLevel);
       }
       this.scene.setPaneType(InfoPaneType.BEFORE_LEVEL);
     } else {
@@ -172,10 +181,23 @@ class Information extends Phaser.Scene {
   }
 
   /**
+   * Prepares the canvas to replay the same level
+   */
+  replayLevel() {
+    this.scene.hideReplayButton();
+    this.scene.button.disableInteractive();
+    this.scene.sendBackward();
+    this.scene.gameScene.play();
+  }
+
+  /**
    * Returns the Information scene to the front and allows interaction with its button
    */
   resumeInfo() {
     this.bringForward();
+    if (this.paneType == InfoPaneType.PROCEED) {
+      this.showReplayButton();
+    }
     this.button.setInteractive({ useHandCursor: true });
   }
 
@@ -221,6 +243,16 @@ class Information extends Phaser.Scene {
    */
   setUrlMode() {
     this.urlMode = true;
+  }
+
+  showReplayButton() {
+    this.replayButton.setAlpha(1);
+    this.replayButton.setInteractive({ useHandCursor: true })
+  }
+
+  hideReplayButton() {
+    this.replayButton.setAlpha(0);
+    this.replayButton.disableInteractive();
   }
 
   /**
