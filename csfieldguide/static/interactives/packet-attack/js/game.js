@@ -9,10 +9,20 @@ require('phaser');
 var CONFIG = require('./config.js');
 var PACKET = require('./packet.js');
 var INFO = require('./information.js');
+var BUTTON = require('./phaserButton.js');
 
 const KEY_SEND = "SEND";
 const KEY_ACK = "ACK";
 const KEY_NACK = "NACK";
+
+// Internationalisation text //
+
+var TXT_COMMANDS = gettext("COMMANDS");
+var TXT_DELAY = gettext("DELAY");
+var TXT_CORRUPT = gettext("CORRUPT");
+var TXT_KILL = gettext("KILL");
+
+// End //
 
 /**
  * Gameplay element.
@@ -597,8 +607,8 @@ class UIScene extends Phaser.Scene {
      */
     preload() {
         console.log('loading UI images');
-        this.load.image('pause', base + 'interactives/packet-attack/assets/leftGreenButton.png');
-        this.load.image('play', base + 'interactives/packet-attack/assets/rightGreenButton.png');
+        this.load.image('pause', base + 'interactives/packet-attack/assets/pauseButton.png');
+        this.load.image('play', base + 'interactives/packet-attack/assets/playButton.png');
         this.load.image('delay', base + 'interactives/packet-attack/assets/leftButton.png');
         this.load.image('corrupt', base + 'interactives/packet-attack/assets/middleButton.png');
         this.load.image('kill', base + 'interactives/packet-attack/assets/rightButton.png');
@@ -612,29 +622,74 @@ class UIScene extends Phaser.Scene {
         console.log('creating UI');
 
         var textConfig = {
-            font: '20px Open Sans',
+            font: '40px Open Sans',
             fill: '#000000',
-            align: 'center'
+            align: 'center',
         }
+        this.titleText = this.add.text(400, 0, 'Packet Attack', textConfig);
+        this.titleText.setOrigin(0.5, 0);
+
+        textConfig.font = '36px Open Sans';
+        this.commandsText = this.add.text(400, 450, TXT_COMMANDS, textConfig)
+        this.commandsText.setOrigin(0.5, 0.5);
+
+        textConfig.font = '20px Open Sans';
+        this.levelText = this.add.text(400, 50, '', textConfig);
+        this.levelText.setOrigin(0.5, 0);
+        this.sendText = this.add.text(20, 10, '', textConfig);
+        this.receivedText = this.add.text(780, 10, 'Received:', textConfig);
+        this.receivedText.setOrigin(1, 0);
 
         this.playpause = this.add.sprite(600, 450, 'pause');
         this.playpause.on('pointerdown', this.togglePause);
 
-        this.delay = this.add.image(215, 520, 'delay');
+        var buttonTextConfig = {
+            font: '24px Open Sans',
+            fill: '#db3300',
+            align: 'center',
+        };
+        var delayButtonConfig = {
+            scene: this,
+            x: 215,
+            y: 520,
+            imageKey: 'delay',
+            buttonSize: [170, 63],
+            text: TXT_DELAY,
+            textConfig: buttonTextConfig 
+        }
+        this.delay = new BUTTON.PhaserButton(delayButtonConfig);
         this.delay.on('pointerdown', this.alertDelay);
         this.delay.on('pointerout', this.unAlertDelay);
         this.delay.on('pointerup', this.unAlertDelay);
         this.delayRemainder = this.add.text(215, 580, 'Uses:', textConfig);
         this.delayRemainder.setOrigin(0.5, 0.5);
 
-		this.corrupt = this.add.image(400, 520, 'corrupt');
+        var corruptButtonConfig = {
+            scene: this,
+            x: 400,
+            y: 520,
+            imageKey: 'corrupt',
+            buttonSize: [167, 68],
+            text: TXT_CORRUPT,
+            textConfig: buttonTextConfig 
+        }
+		this.corrupt = new BUTTON.PhaserButton(corruptButtonConfig);
         this.corrupt.on('pointerdown', this.alertCorrupt);
         this.corrupt.on('pointerout', this.unAlertCorrupt);
         this.corrupt.on('pointerup', this.unAlertCorrupt);
         this.corruptRemainder = this.add.text(400, 580, 'Uses:', textConfig);
         this.corruptRemainder.setOrigin(0.5, 0.5);
 
-        this.kill = this.add.image(590, 520, 'kill');
+        var killButtonConfig = {
+            scene: this,
+            x: 590,
+            y: 520,
+            imageKey: 'kill',
+            buttonSize: [179, 60],
+            text: TXT_KILL,
+            textConfig: buttonTextConfig 
+        }
+        this.kill = new BUTTON.PhaserButton(killButtonConfig);
         this.kill.on('pointerdown', this.alertKill);
         this.kill.on('pointerout', this.unAlertKill);
         this.kill.on('pointerup', this.unAlertKill);
@@ -642,21 +697,6 @@ class UIScene extends Phaser.Scene {
         this.killRemainder.setOrigin(0.5, 0.5);
 
         this.pipes = this.add.image(400, 300, 'pipes'); // Image needed above the packets
-
-        var config = {
-            font: '40px Open Sans',
-            fill: '#000000',
-            align: 'center',
-        }
-        this.titleText = this.add.text(400, 0, "Packet Attack", config);
-        this.titleText.setOrigin(0.5, 0);
-
-        config.font = '20px Open Sans';
-        this.levelText = this.add.text(400, 50, '', config);
-        this.levelText.setOrigin(0.5, 0);
-        this.sendText = this.add.text(20, 10, '', config);
-        this.receivedText = this.add.text(780, 10, 'Received:', config);
-        this.receivedText.setOrigin(1, 0); // Position the text by its top right corner
     }
 
     /**

@@ -1,9 +1,10 @@
-*Note: License files are valid on date of this file's creation, please check
+*Note: Licence files are valid on date of this file's creation, please check
 websites for libraries for up to date licenses.*
 
 Assets
 ----------------------------------------------------------------------------
-Original assets for Packet Attack were drawn by Jack Morgan and are freely
+Original assets for Packet Attack were created by Jack Morgan and Alasdair
+Smith and are freely
 available under the MIT license.
 Email: jack.morgan@canterbury.ac.nz
 ----------------------------------------------------------------------------

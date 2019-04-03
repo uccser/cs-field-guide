@@ -7,6 +7,13 @@
 require('phaser');
 
 var CONFIG = require('./config.js');
+var BUTTON = require('./phaserButton.js');
+
+// Internationalisation text //
+
+var TXT_START = gettext("START");
+
+// End //
 
 var InfoPaneType = {
     FAIL: 0,
@@ -53,8 +60,23 @@ class Information extends Phaser.Scene {
     console.log('creating Info screen');
     this.gameScene = this.scene.get('GameScene');
 
+    var buttonConfig = {
+      scene: this,
+      x: 400,
+      y: 500,
+      imageKey: 'startButton',
+      buttonSize: [203, 122],
+      text: TXT_START,
+      textConfig: {
+          font: '40px Open Sans',
+          fill: '#007f0d',
+          align: 'center',
+        }
+      }
+
     this.add.image(400, 300, 'blurred-bg');
-    this.button = this.add.image(400, 500, 'startButton').setInteractive({ useHandCursor: true });
+    this.button = new BUTTON.PhaserButton(buttonConfig);
+    this.button.setInteractive({ useHandCursor: true });
     this.createText();
 
     this.button.on('pointerdown', this.startLevel);
