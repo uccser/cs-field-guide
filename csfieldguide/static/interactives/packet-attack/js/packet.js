@@ -45,6 +45,7 @@ class Packet extends Phaser.GameObjects.Container {
         this.killAnimation = config.killAnimation;
         this.delayed = 0;
         this.isCorrupt = false;
+        this.killed = false;
 
         var textConfig = {
             font: '30px Open Sans',
@@ -182,6 +183,7 @@ class Packet extends Phaser.GameObjects.Container {
      * Destroys the Packet with an animation
      */
     kill() {
+        this.killed = true;
         this.tween.stop();
         this.sprite.anims.stop();
         this.text.setText('');

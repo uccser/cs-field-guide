@@ -447,7 +447,7 @@ class GameScene extends Phaser.Scene {
         if (doDelay && scene.remainingDelays > 0) {
             for (var i=0; i < scene.activePackets.length; i++) {
                 packet = scene.activePackets[i];
-                if (packet.checkInDanger()) {
+                if (packet.checkInDanger() && !packet.killed) {
                     if (packet.type == PACKET.PacketTypes.SENT || scene.level.canAttackAcksNacks) {
                         packet.delay();
                         scene.remainingDelays--;
@@ -470,7 +470,7 @@ class GameScene extends Phaser.Scene {
         if (doKill && scene.remainingKills > 0) {
             for (var i=0; i < scene.activePackets.length; i++) {
                 packet = scene.activePackets[i];
-                if (packet.checkInDanger()) {
+                if (packet.checkInDanger() && !packet.killed) {
                     if (packet.type == PACKET.PacketTypes.SENT || scene.level.canAttackAcksNacks) {
                         packet.kill();
                         scene.remainingKills--;
@@ -493,7 +493,7 @@ class GameScene extends Phaser.Scene {
         if (doCorrupt && scene.remainingCorrupts > 0) {
             for (var i=0; i < scene.activePackets.length; i++) {
                 packet = scene.activePackets[i];
-                if (packet.checkInDanger()) {
+                if (packet.checkInDanger() && !packet.killed && !packet.isCorrupt) {
                     if (packet.type == PACKET.PacketTypes.SENT || scene.level.canAttackAcksNacks) {
                         packet.corrupt();
                         scene.remainingCorrupts--;
