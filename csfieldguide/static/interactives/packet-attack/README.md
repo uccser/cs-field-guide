@@ -28,7 +28,8 @@ The program will return to level 1 if the last level is beaten.
 ## URL parameters
 
 - `start=level` (default: 1) - where `level` is:
-  - `0|custom` - Sets Packet Attack to run the customised Level 0 [*This is required for other URL parameters to take effect*].
+  - `0|custom` - Sets Packet Attack to run the customised Level 0.
+  [*This is required for other URL parameters to take effect*]
   - `[1-7]` - Sets Packet Attack to begin at the given level and progress normally.
 - `message=` (default: 'LONDON') - Sets the custom level to use the given message.
 - `shields=true|false` (default: false) - Sets all sent packets (excluding ACKS/NACKS) to have shields, which protect from a single corruption.
@@ -49,13 +50,13 @@ Licences for these will eventually be listed in the licences file, with a full c
 ## Assets
 
 All image assets created for Packet Attack, including sprites and backgrounds, are found in the `packet-attack/assets/` directory.
-These were created by Jack Morgan and updated by Alasdair Smith, and are freely available under the MIT License.
+These were created by Jack Morgan and Alasdair Smith, and are freely available under the MIT Licence.
 Email: jack.morgan@canterbury.ac.nz
 
 ## Known issues
 
-- The question mark (`?`) is used to show that a packet has been corrupted. Therefore, *if ACKS and NACKS are not enabled*, a packet sent with the character `?` isn't affected by corruption.
-- Packets X and X+3(n-1) can potentially overlap perfectly if X is delayed n times and X+3(n-1) once. This is no less than 3 delays on two specific packets.
+- The question mark (`?`) is used to show that a packet has been corrupted. Therefore, *if `ACKS` and `NACKS` are not enabled*, a packet sent with the character `?` itself isn't affected by corruption.
+- Packets `X` and `X+3(n-1)` can potentially overlap perfectly if `X` is delayed `n` times and `X+3(n-1)` once. This is no less than 3 delays on two specific packets.
 
 ## Future plans
 
