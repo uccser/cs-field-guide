@@ -14,6 +14,7 @@ const Mathjs = require('mathjs');
 cytoscape.use(noOverlap);
 cytoscape.use(automove);
 var stopPathFinding = false;
+var stopInterval = false;
 
 $(document).ready(function() {
 
@@ -122,10 +123,12 @@ $(document).ready(function() {
     pathDistance = getPathDistance(cy.edges());
     updateRouteStats();
     runningTimeLeft = calculateRunningTime(numberOfCities);
+    console.log(runningTimeLeft);
     formatTime(runningTimeLeft);
     $('#start').removeClass('d-none');
     $('#stop').removeClass('d-none');
     $('#reset').addClass('d-none');
+    updateStatus("ready to go!", 'status-ready');
     if (numberOfCities == maxCities) {
       $('#add-city').prop('disabled', true);
     }
@@ -136,6 +139,7 @@ $(document).ready(function() {
 
   $('#remove-city').click(function() {
     cy.nodes().unlock();
+    cy.nodes().grabify();
     removeNode(cy, cy2, layout, numberOfCities, startingCity);
     setGraphOptions(cy);
     pathDistance = getPathDistance(cy.edges());
@@ -152,6 +156,7 @@ $(document).ready(function() {
     $('#start').removeClass('d-none');
     $('#stop').removeClass('d-none');
     $('#reset').addClass('d-none');
+    updateStatus("ready to go!", 'status-ready');
     if (numberOfCities == minCities) {
       $('#remove-city').prop('disabled', true);
     }
@@ -172,7 +177,7 @@ $(document).ready(function() {
 
 
   $('#stop').click(function() {
-    cy.nodes().grabify();
+    cy.nodes().ungrabify();
     // quit execution of path finding
     stopPathFinding = true;
     updateStatus("stopped", 'status-stopped');
@@ -235,6 +240,9 @@ $(document).ready(function() {
     cy2.nodes().ungrabify();
     pathDistance = getPathDistance(cy.edges());
     updateRouteStats();
+    $('#start').removeClass('d-none');
+    $('#stop').removeClass('d-none');
+    $('#reset').addClass('d-none');
   });
 });
 
@@ -298,6 +306,7 @@ function addNode(cy, cy2, layout, oldNumCities, startNode) {
     resetGraph(cy, cy2, newNumCities, layout);
     // Only need to redraw entire graph on first removal of node after clicking 'stop'
     stopPathFinding = false;
+    stopInterval = true;
   } else {
     var previousNodeID = oldNumCities.toString();
     // Remove edge that closes the loop
@@ -342,6 +351,7 @@ function removeNode(cy, cy2, layout, numberOfCities, startNode) {
     resetGraph(cy, cy2, newNumCities, layout);
     // Only need to redraw entire graph on first removal of node after clicking 'stop'
     stopPathFinding = false;
+    stopInterval = true;
   } else {
     // Here we know that path finding has not begun, so we know upon removing nodes that the right edges exist.
     // Can simply remove the last node one by one
@@ -490,7 +500,6 @@ async function permutationsWithoutInverse(cy, cy2, cities, bestRouteDistance, st
     $('#stop').addClass('d-none');
   }
   stopPathFinding = true;
-  cy.nodes().grabify();
 }
 
 
@@ -563,10 +572,12 @@ function startTimer(seconds) {
   var x = setInterval(function() {
     if (stopPathFinding == false) {
       runningTimeLeft = calculateRunningTimeLeft(completionTime);
-      if (runningTimeLeft <= 0) {
+      if (runningTimeLeft <= 0 || stopInterval) {
         clearInterval(x);
+        stopInterval = false;
+      } else {
+        formatTime(runningTimeLeft);
       }
-      formatTime(runningTimeLeft);
     }
   }, 10);
 }
