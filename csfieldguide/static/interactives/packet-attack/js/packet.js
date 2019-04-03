@@ -42,6 +42,7 @@ class Packet extends Phaser.GameObjects.Container {
         this.hasShield = config.hasShield;
         this.animation = config.animation;
         this.backupAnimation = config.backupAnimation;
+        this.killAnimation = config.killAnimation;
         this.delayed = 0;
         this.isCorrupt = false;
 
@@ -178,13 +179,22 @@ class Packet extends Phaser.GameObjects.Container {
     }
 
     /**
-     * Destroys the packet
-     * TODO: Add an animation for this
+     * Destroys the Packet with an animation
      */
     kill() {
         this.tween.stop();
-        this.scene.registry.set('newDestroyedPacket', this);
-        this.destroy(); // Destroys the container, not the variables assigned to the class
+        this.sprite.anims.stop();
+        this.text.setText('');
+        this.sprite.play(this.killAnimation);
+        this.scene.time.delayedCall(2000, this.timerEnd, [this], this.scene);
+    }
+
+    /**
+     * Destroys the given Packet and alerts the registry as such
+     */
+    timerEnd(packet) {
+        packet.scene.registry.set('newDestroyedPacket', packet);
+        packet.destroy(); // Destroys the container, not the variables assigned to the class
     }
 }
 
