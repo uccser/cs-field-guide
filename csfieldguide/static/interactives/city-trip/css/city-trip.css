@@ -61,6 +61,29 @@
   margin-left: 5px;
 }
 
+.y-tick {
+  border-top: 2px solid #c6c8ca;
+  width: 10px;
+  position: absolute;
+}
+
+.y-tick:nth-child(1)  { top: 0px; left: 7px; }
+.y-tick:nth-child(2)  { top: 100px; left: 7px; }
+.y-tick:nth-child(3)  { top: 200px; left: 7px;}
+.y-tick:nth-child(4)  { top: 300px; left: 7px;}
+.y-tick:nth-child(5)  { top: 400px; left: 7px;}
+.y-tick:nth-child(6)  { top: 500px; left: 7px;}
+
+.y-tick > span {
+  position: relative;
+  width: 10px; top: -14px; right: 22px;
+  font: 0.75em Arial, Helvetica, sans-serif;
+}
+
+.y-tick.zero > span {
+  margin-top: 5px;
+}
+
 .status-ready {
   color: #007bff;
 }
