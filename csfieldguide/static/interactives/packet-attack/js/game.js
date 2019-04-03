@@ -22,6 +22,14 @@ var TXT_DELAY = gettext("DELAY");
 var TXT_CORRUPT = gettext("CORRUPT");
 var TXT_KILL = gettext("KILL");
 
+var TXT_USES = gettext("Uses:");
+
+var TXT_SENDING = gettext("Sending:");
+var TXT_RECEIVED = gettext("Received:");
+
+var TXT_TITLE = CONFIG.TITLE;
+var TXT_LEVEL = gettext("Level:");
+
 // End //
 
 /**
@@ -626,7 +634,7 @@ class UIScene extends Phaser.Scene {
             fill: '#000000',
             align: 'center',
         }
-        this.titleText = this.add.text(400, 0, 'Packet Attack', textConfig);
+        this.titleText = this.add.text(400, 0, TXT_TITLE, textConfig);
         this.titleText.setOrigin(0.5, 0);
 
         textConfig.font = '36px Open Sans';
@@ -634,10 +642,10 @@ class UIScene extends Phaser.Scene {
         this.commandsText.setOrigin(0.5, 0.5);
 
         textConfig.font = '20px Open Sans';
-        this.levelText = this.add.text(400, 50, '', textConfig);
+        this.levelText = this.add.text(400, 50, TXT_LEVEL, textConfig);
         this.levelText.setOrigin(0.5, 0);
-        this.sendText = this.add.text(20, 10, '', textConfig);
-        this.receivedText = this.add.text(780, 10, 'Received:', textConfig);
+        this.sendText = this.add.text(20, 10, TXT_SENDING, textConfig);
+        this.receivedText = this.add.text(780, 10, TXT_RECEIVED, textConfig);
         this.receivedText.setOrigin(1, 0);
 
         this.playpause = this.add.sprite(600, 450, 'pause');
@@ -648,6 +656,7 @@ class UIScene extends Phaser.Scene {
             fill: '#db3300',
             align: 'center',
         };
+
         var delayButtonConfig = {
             scene: this,
             x: 215,
@@ -661,7 +670,7 @@ class UIScene extends Phaser.Scene {
         this.delay.on('pointerdown', this.alertDelay);
         this.delay.on('pointerout', this.unAlertDelay);
         this.delay.on('pointerup', this.unAlertDelay);
-        this.delayRemainder = this.add.text(215, 580, 'Uses:', textConfig);
+        this.delayRemainder = this.add.text(215, 580, TXT_USES, textConfig);
         this.delayRemainder.setOrigin(0.5, 0.5);
 
         var corruptButtonConfig = {
@@ -677,7 +686,7 @@ class UIScene extends Phaser.Scene {
         this.corrupt.on('pointerdown', this.alertCorrupt);
         this.corrupt.on('pointerout', this.unAlertCorrupt);
         this.corrupt.on('pointerup', this.unAlertCorrupt);
-        this.corruptRemainder = this.add.text(400, 580, 'Uses:', textConfig);
+        this.corruptRemainder = this.add.text(400, 580, TXT_USES, textConfig);
         this.corruptRemainder.setOrigin(0.5, 0.5);
 
         var killButtonConfig = {
@@ -693,7 +702,7 @@ class UIScene extends Phaser.Scene {
         this.kill.on('pointerdown', this.alertKill);
         this.kill.on('pointerout', this.unAlertKill);
         this.kill.on('pointerup', this.unAlertKill);
-        this.killRemainder = this.add.text(590, 580, 'Uses:', textConfig);
+        this.killRemainder = this.add.text(590, 580, TXT_USES, textConfig);
         this.killRemainder.setOrigin(0.5, 0.5);
 
         this.pipes = this.add.image(400, 300, 'pipes'); // Image needed above the packets
@@ -715,9 +724,9 @@ class UIScene extends Phaser.Scene {
      */
     setLevel(scene, level) {
         scene.levelNum = level;
-        scene.levelText.setText('Level: ' + scene.levelNum);
+        scene.levelText.setText(TXT_LEVEL + ' ' + scene.levelNum);
         scene.levelMessage = CONFIG.LEVELS[level].message;
-        scene.sendText.setText('Sending:\n' + scene.levelMessage);
+        scene.sendText.setText(TXT_SENDING + '\n' + scene.levelMessage);
     }
 
     /**
@@ -725,7 +734,7 @@ class UIScene extends Phaser.Scene {
      * Updates the UI to present the given message
      */
     updateReceivedMessage(scene, message) {
-        scene.receivedText.setText('Received:\n' + message);
+        scene.receivedText.setText(TXT_RECEIVED + '\n' + message);
     }
 
     /**
@@ -734,7 +743,7 @@ class UIScene extends Phaser.Scene {
      * the delay button if appropriate
      */
     updateDelays(scene, number) {
-        scene.delayRemainder.setText('Uses: ' + number);
+        scene.delayRemainder.setText(TXT_USES + ' ' + number);
 
         if (number <=0) {
             scene.delay.alpha = 0.5;
@@ -751,7 +760,7 @@ class UIScene extends Phaser.Scene {
      * the corrupt button if appropriate
      */
     updateCorrupts(scene, number) {
-        scene.corruptRemainder.setText('Uses: ' + number);
+        scene.corruptRemainder.setText(TXT_USES + ' ' + number);
 
         if (number <=0) {
             scene.corrupt.alpha = 0.5;
@@ -768,7 +777,7 @@ class UIScene extends Phaser.Scene {
      * the kill button if appropriate
      */
     updateKills(scene, number) {
-        scene.killRemainder.setText('Uses: ' + number);
+        scene.killRemainder.setText(TXT_USES + ' ' + number);
 
         if (number <=0) {
             scene.kill.alpha = 0.5;

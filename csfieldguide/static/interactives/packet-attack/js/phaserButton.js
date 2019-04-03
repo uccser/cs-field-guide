@@ -1,7 +1,7 @@
 /**
  * Packet Attack
  * 
- * PhaserButton Class for Phaser 3 Buttons
+ * PhaserButton Class for an implementation of Buttons in Phaser 3
  */
 
 require('phaser');

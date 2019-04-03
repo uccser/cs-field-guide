@@ -13,6 +13,38 @@ var BUTTON = require('./phaserButton.js');
 
 var TXT_START = gettext("START");
 
+var TXT_TITLE = CONFIG.TITLE;
+var TXT_INFORMATION = gettext("Information");
+
+var TXT_FAIL = gettext("You let the message get through!") + '\n' + gettext("Try again.");
+
+var TXT_PASS = gettext("Awesome!") + '\n' + gettext("You stopped the message being delivered.");
+var TXT_REPEAT_CUSTOM = gettext("Click 'start' to repeat this custom level.")
+var TXT_NEXT_LEVEL = gettext("Click 'start' to move to the next level.");
+
+var TXT_WELCOME_TO_CUSTOM = gettext("Welcome to this custom level!");
+var TXT_WELCOME_TO_LEVEL = gettext("Welcome to level");
+var TXT_IN_THIS_LEVEL = gettext("In this level:");
+var TXT_MULTIPACKET = gettext("The left pipe is using many creatures to communicate");
+var TXT_SHIELDED = gettext("The creatures have shields to protect from corruption");
+var TXT_NUMBERED = gettext("The creatures have numbers");
+var TXT_ACKSNACKS = gettext("The right pipe sends creatures back with results, green is good, red is bad");
+var TXT_ATTACK_ACKSNACKS = gettext("but the responses are also vulnerable to your attack!");
+var TXT_TIMEOUTS = gettext("If the left pipe doesn't get a response, it will resend a creature");
+var TXT_NO_DEFENCE = gettext("There are no defenses!");
+
+var TXT_INTRODUCTION = gettext("Welcome to Packet Attack.")
+              + '\n' + gettext("In this game, your job is to attack the packet creatures and stop messages being delivered.")
+              + '\n' + gettext("You pass a level if the received message is any different from the one sent.")
+              + '\n' + gettext("While a creature is in the danger zone (indicated by the yellow and grey area) you may attack by clicking the command buttons.")
+              + '\n' + gettext("Good luck!");
+
+var TXT_IMPOSSIBLE = gettext("This level is actually impossible to beat")
+            + '\n' + gettext("The system can handle anything you throw at it!")
+            + '\n' + gettext("Thank you for playing!")
+            + '\n\n\n\n'
+            + '\n' + gettext("Click 'start' if you want to try this level again");
+
 // End //
 
 var InfoPaneType = {
@@ -94,13 +126,13 @@ class Information extends Phaser.Scene {
       align: 'center',
     }
 
-    var titleText = this.add.text(400, 0, "Packet Attack", config);
+    var titleText = this.add.text(400, 0, TXT_TITLE, config);
     titleText.setOrigin(0.5, 0);
 
     config.font = '28px Open Sans';
 
 
-    var subTitleText = this.add.text(400, 50, "Information", config);
+    var subTitleText = this.add.text(400, 50, TXT_INFORMATION, config);
     subTitleText.setOrigin(0.5, 0);
 
     this.information = this.add.text(400, 100, this.generateFeedback(), config);
@@ -187,35 +219,35 @@ class Information extends Phaser.Scene {
     var text = "";
     switch(this.paneType) {
       case InfoPaneType.FAIL:
-        text = "You let the message get through!\nTry again.\n         ";
+        text = TXT_FAIL;
         break;
       case InfoPaneType.PROCEED:
         if (this.urlMode) {
-          text = "Awesome!\nYou stopped the message being delivered.\nClick 'start' to repeat this custom level.";
+          text = TXT_PASS + '\n' + TXT_REPEAT_CUSTOM;
         } else {
-          text = "Awesome!\nYou stopped the message being delivered.\nClick 'start' to move to the next level.";
+          text = TXT_PASS + '\n' + TXT_NEXT_LEVEL;
         }
         break;
       case InfoPaneType.BEFORE_LEVEL:
         if (this.urlMode) {
-          text = "Welcome to this custom level!\n";
+          text = TXT_WELCOME_TO_CUSTOM + '\n';
         } else {
-          text = "Welcome to Level " + this.level.levelNumber + "!\n";
+          text = TXT_WELCOME_TO_LEVEL + ' ' + this.level.levelNumber + '!\n';
         }
-        text += "In this level:\n"
-            + (this.level.message.length > 1 ? "The left pipe is using many creatures to communicate\n" : "")
-            + (this.level.packetsHaveShields ? "The creatures have shields to protect from corruption\n" : "")
-            + (this.level.packetsHaveNumbers ? "The creatures have numbers\n" : "")
-            + (this.level.acksNacksEnabled ? "The right pipe sends creatures back with results, green is good, red is bad\n" : "")
-            + (this.level.canAttackAcksNacks ? "but the responses are also vulnerable to your attack!" : "")
-            + (this.level.timeoutsEnabled ? "If the left pipe doesn't get a response, it will resend a creature\n" : "")
-            + (this.level.levelNumber == 1 ? "There are no defenses!" : "");
+        text += TXT_IN_THIS_LEVEL + '\n'
+            + (this.level.message.length > 1 ? TXT_MULTIPACKET + '\n' : "")
+            + (this.level.packetsHaveShields ? TXT_SHIELDED + '\n' : "")
+            + (this.level.packetsHaveNumbers ? TXT_NUMBERED + '\n' : "")
+            + (this.level.acksNacksEnabled ? TXT_ACKSNACKS + '\n' : "")
+            + (this.level.canAttackAcksNacks ? TXT_ATTACK_ACKSNACKS + '\n' : "")
+            + (this.level.timeoutsEnabled ? TXT_TIMEOUTS + '\n' : "")
+            + (this.level.levelNumber == 1 ? TXT_NO_DEFENCE : "");
         break;
       case InfoPaneType.START:
-        text = "Welcome to Packet Attack. In this game, your job is to attack the packet creatures and stop messages being delivered.\nYou pass a level if the received message is any different from the one sent.\nWhile a creature is in the danger zone (indicated by the yellow and grey area) you may attack by clicking the command buttons.\nGood luck!"
+        text = TXT_INTRODUCTION;
         break;
       case InfoPaneType.END:
-        text = "This level is actually impossible to beat\nThe system can handle anything you throw at it!\nThank you for playing!\n\n\n\n\nClick 'start' if you want to try this level again";
+        text = TXT_IMPOSSIBLE;
         break;
     }
     return text;
