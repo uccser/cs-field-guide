@@ -54,6 +54,8 @@ function highlightCodedCharacters() {
     // highlight the substrings of the message that occur in the dictionary
     // uses the longest code first
 
+    var number_coded_characters = 0;
+
     for (var i = 0; i < ordered_codes.length; i++) {
         var code = ordered_codes[i];
         for (var j = 0; j < message_characters.length - 1; j++) {
@@ -94,6 +96,7 @@ function highlightCodedCharacters() {
             //     with which code index they correspond to
             if (code_match == true) {
                 for (var l = 0; l < code.length; l++) {
+                    number_coded_characters += 1;
                     var character_index = l + j;
                     message_characters[character_index].CodeIndex = codes.indexOf(code);
                     // interface
@@ -103,6 +106,15 @@ function highlightCodedCharacters() {
             }
         }
     }
+    calculateStatistics(number_coded_characters);
+}
+
+function calculateStatistics(number_coded_characters) {
+    var percentage_coded_element = document.getElementById('interactive-compression-dictionary-percentage-compressed');
+    percentage_coded_element.innerHTML = Math.round((number_coded_characters/message_characters.length) * 100);
+    var num_references_used = document.getElementById('interactive-compression-dictionary-references-used');
+    num_references_used.innerHTML = codes.length;
+
 }
 
 
@@ -164,6 +176,8 @@ function readInputMessage() {
     if (message.length == 0) {
         message = message_textarea.placeholder;
     }
+    message = message.trim();
+    message_textarea.value = message;
     message = message.split('');
 
     var fragment = document.createDocumentFragment();

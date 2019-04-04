@@ -23,7 +23,7 @@
                 dictionary entry, or many? What happens if you add additional text to
                 your message, does your dictionary still compress all of the text?
             </p>
-            
+
             <div id="interactive-compression-dictionary-activity">
                 <div id="interactive-compression-dictionary-left">
                     <h2 class="interactive-compression-dictionary-heading">Enter a message to compress:</h2>
@@ -39,6 +39,9 @@ Some like it in the pot, nine days old."></textarea>
                         The highlighted characters represent the characters that are coded
                         in your dictionary.
                     </p>
+                    <div id="interactive-compression-dictionary-stats">
+                      <p id="interactive-compression-dictionary-percentage-compressed"></p>% of text compressed using <p id="interactive-compression-dictionary-references-used"></p> references.
+                    </div>
                     <div id="interactive-compression-dictionary-output">
                     </div>
                 </div>
@@ -58,17 +61,17 @@ Some like it in the pot, nine days old."></textarea>
                             <p id="interactive-compression-dictionary-error-text" class="error-message">
                             </p>
                         </div>
+                        <button id="interactive-compression-dictionary-reset-button" type="button" onclick="resetDictionary()">
+                            Reset Dictionary &rarr;
+                        </button>
                     </div>
                     <div id="interactive-compression-dictionary-user-dictionary">
                         <div id="interactive-compression-dictionary-user-dictionary-column-1" class="interactive-compression-dictionary-user-dictionary-column">
                         </div>
                     </div>
-                    <button type="button" onclick="resetDictionary()">
-                        Reset Dictionary &rarr;
-                    </button>
                 </div>
             </div>
-
+        </div>
         </div>
 
     </div>

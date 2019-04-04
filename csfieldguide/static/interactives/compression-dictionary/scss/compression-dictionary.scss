@@ -53,7 +53,16 @@ h1 {
                 margin-bottom: 10px;
             }
             p {
-                margin-top: 0px;
+                margin-bottom: 0px;
+            }
+            #interactive-compression-dictionary-stats {
+                text-align: center;
+                font-weight: bold;
+                p {
+                    display: inline-block;
+                    margin-top: 0;
+                    margin-bottom: 5px;
+                }
             }
             #interactive-compression-dictionary-output {
                 flex-grow: 1;
@@ -83,6 +92,7 @@ h1 {
             overflow: hidden;
             position: relative;
             #interactive-compression-dictionary-user-dictionary-entry-input {
+                margin: 0 2px;
                 p {
                     margin-top: 0px;
                 }
@@ -103,7 +113,7 @@ h1 {
                         outline: 1px solid red;
                     }
                     button {
-                        margin: 0 3px;
+                        margin: 1px 0 1px 3px;
                     }
                 }
                 #error-message {
@@ -123,6 +133,9 @@ h1 {
                     .error-message {
                         display: inline-block;
                     }
+                }
+                #interactive-compression-dictionary-reset-button {
+                    margin-top: 4px;
                 }
             }
             #interactive-compression-dictionary-user-dictionary {
