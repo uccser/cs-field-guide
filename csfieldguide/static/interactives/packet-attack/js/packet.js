@@ -77,11 +77,8 @@ class Packet extends Phaser.GameObjects.Container {
 
     /**
      * Sets off the Packet after the given delay.
-     * If reverse is false, the packet will 'exit' the left pipe and 'enter' the right.
+     * The packet will 'exit' the left pipe and 'enter' the right.
      * If reverse is true, the reverse will happen.
-     * 
-     * The delay is set this way because we want one on each packet so they set off in sequence,
-     * but a different one on packets that are delayed
      */
     runTween(givenDelay, reverse) {
         var tweenConfig = {
@@ -107,7 +104,9 @@ class Packet extends Phaser.GameObjects.Container {
     }
 
     /**
-     * Sets the Packet as corrupted - the receiver won't understand what it is sending
+     * If the packet is shielded, removes the shield.
+     * Otherwise, sets the Packet as corrupted. 
+     * The receiver won't understand what it is
      */
     corrupt() {
         if (this.hasShield) {

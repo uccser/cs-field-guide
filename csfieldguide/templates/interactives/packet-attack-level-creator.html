@@ -1,0 +1,89 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div class="my-3 container-fluid">
+    <div class="col interactive packet-attack-creator">
+      <!-- Message row -->
+      <div class="row">
+        <div class="col-2 parameter">
+          {% trans 'Message:' %}
+        </div>
+        <div class="col-6 value">
+        </div>
+      </div>
+      <!-- Number of Delays -->
+      <div class="row">
+        <div class="col-2 parameter">
+          {% trans 'Delays:' %}
+        </div>
+        <div class="col-6 value">
+        </div>
+      </div>
+      <!-- Number of Corrupts -->
+      <div class="row">
+        <div class="col-2 parameter">
+          {% trans 'Corrupts:' %}
+        </div>
+        <div class="col-6 value">
+        </div>
+      </div>
+      <!-- Number of kills -->
+      <div class="row">
+        <div class="col-2 parameter">
+          {% trans 'Kills:' %}
+        </div>
+        <div class="col-6 value">
+        </div>
+      </div>
+      <!-- Shields -->
+      <div class="row">
+        <div class="col-2 parameter">
+          {% trans 'Shields:' %}
+        </div>
+        <div class="col-6 value">
+        </div>
+      </div>
+      <!-- Ordering -->
+      <div class="row">
+        <div class="col-2 parameter">
+          {% trans 'Numbers:' %}
+        </div>
+        <div class="col-6 value">
+        </div>
+      </div>
+      <!-- ACKS & NACKS -->
+      <div class="row">
+        <div class="col-2 parameter">
+          {% trans 'Replies:' %}
+        </div>
+        <div class="col-6 value">
+        </div>
+      </div>
+      <!-- Timeouts -->
+      <div class="row">
+        <div class="col-2 parameter">
+          {% trans 'Timeouts:' %}
+        </div>
+        <div class="col-6 value">
+        </div>
+      </div>
+      <!-- Submit -->
+      <div class="row">
+        <div class="col-12 justify-content-center">
+          <button type="button" class="btn btn-primary">{% trans 'CREATE' %}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/packet-attack-level-creator/css/packet-attack-level-creator.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/packet-attack-level-creator/js/packet-attack-level-creator.js' %}"></script>
+{% endblock js %}

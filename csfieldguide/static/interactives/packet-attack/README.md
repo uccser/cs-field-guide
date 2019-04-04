@@ -1,8 +1,7 @@
 # Packet Attack Interactive
 
 **Original Author:** Sam Jarman  
-**Modified By:** Jack Morgan
-**Modified By:** Alasdair Smith
+**Modified By:** Jack Morgan, Alasdair Smith
 
 This interactive is created for illustrating network issues to the user.
 The user delays/corrupts/kills packets of data to prevent messages being sent, working through levels with increasing amounts of data protection.
@@ -15,7 +14,7 @@ The user can press one of three command buttons to affect packets in the 'danger
 - `Corrupt` - Destroys the character within the packet, so the receiver doesn't know what it was.
 - `Kill` - Destroys the packet, so it is never received.
 
-There is also a green `Pause/Play` button which affects all timers & packets, but not UI elements.
+There is also a `Pause/Play` button which affects all timers & packets, but not UI elements.
 
 ## Configuration
 
@@ -27,7 +26,7 @@ The program will return to Level 1 if the last level is beaten.
 
 ## URL parameters
 
-*`start=0` or `start=custom` is required for other URL parameters to take effect.*
+*NOTE: `start=0` or `start=custom` is required for other URL parameters to take effect.*
 
 All possible URL parameters are listed here:
 
@@ -59,10 +58,11 @@ Email: jack.morgan@canterbury.ac.nz
 
 ## Known issues
 
-- The question mark (`?`) is used to show that a packet has been corrupted. Therefore, *if `ACKS` and `NACKS` are not enabled*, a packet sent with the character `?` itself isn't affected by corruption.
+- The question mark (`?`) is used to show that a packet has been corrupted. Therefore, *if `ACKS` and `NACKS` are not enabled*, a packet sent with the character `?` isn't affected by corruption.
 - Packets `X` and `X+3(n-1)` can potentially overlap perfectly if `X` is delayed `n` times and `X+3(n-1)` once. This is no less than 3 delays on two specific packets.
 
 ## Future plans
 
 - Allow full screen in phaser, but HTML button below interactive.
 - Create separate classes for the sending and receiving pipes, to improve readability.
+- Implement the canAttackAcksNacks functionality - this will require extra sprites and logic changes

@@ -1,9 +1,9 @@
 # Packet Attack Level Creator Interactive
 
 **Original Author:** Sam Jarman  
-**Modified By:** Jack Morgan
+**Modified By:** Jack Morgan, Alasdair Smith
 
-This interactive is created for creating custom levels for the Packet Attack interactive.
+This interactive is for creating custom levels for the Packet Attack interactive.
 
 ## Required Files
 

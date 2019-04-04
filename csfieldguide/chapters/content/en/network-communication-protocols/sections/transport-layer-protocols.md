@@ -76,20 +76,32 @@ Like in TCP, the game supports packet ordering, checksums (shields), Acks and Na
   One packet.
   Students can beat by using corrupt or kill.
 - *Level 2*: Multiple Packets.
-  10 packets.
-  Students can’t stop all packets, but can corrupt and kill and delay for points.
+  Multiple packets.
+  Students can’t stop all packets, but can corrupt and kill and delay.
 - *Level 3*: Shields enabled.
-  10 packets.
-  Students can beat by using kill, but corrupt won’t work.
+  Multiple Packets.
+  Shields prevent corruption.
+  Kill disabled.
+  Students can beat by using delay, but corrupt won’t work.
 - *Level 4*: Numbering enabled.
-  10 packets.
-  Students can beat by using kill, corrupt, but delay won’t work.
+  Multiple Packets.
+  Packets are numbered to preserve order.
+  Kill disabled.
+  Students can beat by using corrupt, but delay won’t work.
 - *Level 5*: Numbers and shields.
-  10 packets.
+  Multiple Packets.
+  Shields prevent corruption.
+  Packets are numbered to preserve order.
+  Students can only beat using kill.
 - *Level 6*: Numbers and acknowledgments.
-  Packets will be sent back and resent.
-- *Level 7*: Numbers, shields, timeouts and acknowledgments.
-  Packets will be sent back and resent.
+  Multiple Packets.
+  Packets will be acknowledged and resent if there are issues.
+  Students can only beat using kill.
+- *Level 7*: Everything.
+  Multiple Packets.
+  Shields prevent corruption.
+  Packets are numbered to preserve order.
+  Packets will be acknowledged and resent if there are issues.
   This level is not beatable.
 
 {panel end}
@@ -98,14 +110,16 @@ Like in TCP, the game supports packet ordering, checksums (shields), Acks and Na
 
 {panel type="curiosity"}
 
-# Creating your own levels in packet attack
+# Creating your own levels in Packet Attack
 
-You can also create your own levels in Packet Attack.
-We’ve put a level builder in the projects section below so that you can experiment with different reliabilities or combination of defenses.
+Here you can also create your own levels in Packet Attack.
+We’ve created a level builder so that you can experiment with different reliabilities or combinations of defenses.
 
-Adjust the trues, falses and numbers to set different abilities.
-Raising the numbers will effectively equate to a less reliable communication channel.
-Adding in more abilities (by setting shields etc to true) will make for a harder to level to beat.
+Adjust the parameters to set different abilities.
+Raising the number of times players can use their abilities will effectively equate to a less reliable communication channel.
+Adding in more abilities (by setting shields to true for example) will make the level harder to beat.
+
+{interactive slug="packet-attack-level-creator" type="in-page" text="Packet Attack Level Creator"}
 
 {panel end}
 
