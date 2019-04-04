@@ -195,7 +195,7 @@ class Information extends Phaser.Scene {
    */
   resumeInfo() {
     this.bringForward();
-    if (this.paneType == InfoPaneType.PROCEED) {
+    if (this.paneType == InfoPaneType.PROCEED && !this.urlMode) {
       this.showReplayButton();
     }
     this.button.setInteractive({ useHandCursor: true });

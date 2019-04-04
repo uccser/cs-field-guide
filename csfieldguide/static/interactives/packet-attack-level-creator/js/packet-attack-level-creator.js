@@ -16,6 +16,10 @@ $(document).ready(function() {
         var corrupts = parseInt($('#corrupts-input').val());
         var kills = parseInt($('#kills-input').val());
 
+        if (message.length > 20) {
+            alert(gettext('Your message cannot be longer than 20 characters'));
+            return;
+        }
         if (message.length > 0) {
             url += '&message=' + message;
         }
