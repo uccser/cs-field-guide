@@ -551,6 +551,8 @@ function getPathDistance(edges) {
     distance += distanceBetweenCities(sourceNode.position(), targetNode.position());
   }
 
+  distance = Mathjs.divide(distance, 100);
+
   return Math.round(distance);
 }
 

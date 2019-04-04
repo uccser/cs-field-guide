@@ -13,11 +13,13 @@
 #graph-container {
   width: 100%;
   height: 100%;
+  overflow-x: auto;
 }
 
 #graph-container-2 {
   width: 100%;
   height: 100%;
+  overflow-x: auto;
 }
 
 #cy2 {
@@ -44,21 +46,17 @@
   position: absolute;
 }
 
-.x-tick:nth-child(1)  { left: 15px;  }
-.x-tick:nth-child(2)  { left: 115px;  }
-.x-tick:nth-child(3)  { left: 215px; }
-.x-tick:nth-child(4)  { left: 315px; }
-.x-tick:nth-child(5)  { left: 415px; }
-.x-tick:nth-child(6)  { left: 515px; }
+.x-tick:nth-child(1)  { left: 48px;  }
+.x-tick:nth-child(2)  { left: 148px;  }
+.x-tick:nth-child(3)  { left: 248px; }
+.x-tick:nth-child(4)  { left: 348px; }
+.x-tick:nth-child(5)  { left: 448px; }
+.x-tick:nth-child(6)  { left: 548px; }
 
 .x-tick > span {
   position: relative;
-  width: 10px; left: -10px; top: 18px;
+  width: 10px; left: -4px; top: 18px;
   font: 0.75em Arial, Helvetica, sans-serif;
-}
-
-.x-tick.zero > span {
-  margin-left: 5px;
 }
 
 .y-tick {
@@ -67,16 +65,16 @@
   position: absolute;
 }
 
-.y-tick:nth-child(1)  { top: 0px; left: 7px; }
-.y-tick:nth-child(2)  { top: 100px; left: 7px; }
-.y-tick:nth-child(3)  { top: 200px; left: 7px;}
-.y-tick:nth-child(4)  { top: 300px; left: 7px;}
-.y-tick:nth-child(5)  { top: 400px; left: 7px;}
-.y-tick:nth-child(6)  { top: 500px; left: 7px;}
+.y-tick:nth-child(1)  { top: 8px; left: 40px; }
+.y-tick:nth-child(2)  { top: 108px; left: 40px; }
+.y-tick:nth-child(3)  { top: 208px; left: 40px;}
+.y-tick:nth-child(4)  { top: 308px; left: 40px;}
+.y-tick:nth-child(5)  { top: 408px; left: 40px;}
+.y-tick:nth-child(6)  { top: 508px; left: 40px;}
 
 .y-tick > span {
-  position: relative;
-  width: 10px; top: -14px; right: 22px;
+  position: absolute;
+  width: 10px; top: -8px; right: 12px;
   font: 0.75em Arial, Helvetica, sans-serif;
 }
 
