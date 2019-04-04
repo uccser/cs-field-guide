@@ -15,6 +15,7 @@ cytoscape.use(noOverlap);
 cytoscape.use(automove);
 var stopPathFinding = false;
 var stopInterval = false;
+var stoppedMidExecution = false;
 
 $(document).ready(function() {
 
@@ -123,10 +124,8 @@ $(document).ready(function() {
     pathDistance = getPathDistance(cy.edges());
     updateRouteStats();
     runningTimeLeft = calculateRunningTime(numberOfCities);
-    console.log(runningTimeLeft);
     formatTime(runningTimeLeft);
     $('#start').removeClass('d-none');
-    $('#stop').removeClass('d-none');
     $('#reset').addClass('d-none');
     updateStatus("ready to go!", 'status-ready');
     if (numberOfCities == maxCities) {
@@ -154,7 +153,6 @@ $(document).ready(function() {
     runningTimeLeft = calculateRunningTime(numberOfCities);
     formatTime(runningTimeLeft);
     $('#start').removeClass('d-none');
-    $('#stop').removeClass('d-none');
     $('#reset').addClass('d-none');
     updateStatus("ready to go!", 'status-ready');
     if (numberOfCities == minCities) {
@@ -168,8 +166,17 @@ $(document).ready(function() {
   $('#start').click(function() {
     cy.nodes().ungrabify();
     stopPathFinding = false;
+    $('#generate-map').addClass('d-none');
+    $('#start').addClass('d-none');
+    $('#add-city').addClass('d-none');
+    $('#remove-city').addClass('d-none');
+    $('#stop').removeClass('d-none');
     updateStatus("running", 'status-running');
-    permutationsWithoutInverse(cy, cy2, cities, pathDistance, startingCity);
+    var intCities = cities.filter(function(city) {
+      return city !== startingCity;
+    });
+    var k = intCities.length;
+    permutations(cy, cy2, intCities, pathDistance, startingCity, k);
     // start timer
     runningTimeLeft = calculateRunningTime(numberOfCities);
     startTimer(runningTimeLeft);
@@ -180,8 +187,10 @@ $(document).ready(function() {
     cy.nodes().ungrabify();
     // quit execution of path finding
     stopPathFinding = true;
+    stoppedMidExecution = true;
     updateStatus("stopped", 'status-stopped');
-    // make rest button
+    $('#add-city').addClass('d-none');
+    $('#remove-city').addClass('d-none');
     $('#generate-map').addClass('d-none');
     $('#start').addClass('d-none');
     $('#stop').addClass('d-none');
@@ -190,9 +199,11 @@ $(document).ready(function() {
 
   $('#reset').click(function() {
     resetGraph(cy, cy2, numberOfCities, layout);
+    $('#add-city').removeClass('d-none');
+    $('#remove-city').removeClass('d-none');
     $('#generate-map').removeClass('d-none');
     $('#start').removeClass('d-none');
-    $('#stop').removeClass('d-none');
+    //$('#stop').removeClass('d-none');
     $('#reset').addClass('d-none');
     updateStatus("ready to go!", 'status-ready');
     runningTimeLeft = calculateRunningTime(numberOfCities);
@@ -212,7 +223,6 @@ $(document).ready(function() {
     runningTimeLeft = calculateRunningTime(numberOfCities);
     formatTime(runningTimeLeft);
     $('#start').removeClass('d-none');
-    $('#stop').removeClass('d-none');
     updateStatus("ready to go!", 'status-ready');
   });
 
@@ -277,7 +287,7 @@ function initialiseGraph(nodes, cityLoop) {
   for (var i = 0; i < cityLoop.length - 1; i++) {
     sourceNode = cityLoop[i].toString();
     targetNode = cityLoop[i+1].toString();
-    edgeID = 'e' + sourceNode + targetNode;
+    edgeID = sourceNode + '-' + targetNode;
     edgeData = {
       data: { id: edgeID, source: sourceNode, target: targetNode}
     }
@@ -289,7 +299,7 @@ function initialiseGraph(nodes, cityLoop) {
 
 
 function addEdge(cyGraph, sourceNodeId, targetNodeId) {
-  edgeID = 'e' + sourceNodeId + targetNodeId;
+  edgeID = sourceNodeId + '-' + targetNodeId;
   newEdge = {
     data: { id: edgeID, source: sourceNodeId, target: targetNodeId },
     classes: 'edgesToAdd'
@@ -310,8 +320,8 @@ function addNode(cy, cy2, layout, oldNumCities, startNode) {
   } else {
     var previousNodeID = oldNumCities.toString();
     // Remove edge that closes the loop
-    cy.remove(cy.$('#e' + previousNodeID + startNode));
-    cy2.remove(cy2.$('#e' + previousNodeID + startNode));
+    cy.remove(cy.$('#' + previousNodeID + '-' + startNode));
+    cy2.remove(cy2.$('#' + previousNodeID + '-' + startNode));
     // Create node
     currentNodeID = (oldNumCities + 1).toString();
     newNode = {
@@ -336,6 +346,7 @@ function resetGraph(cy, cy2, newNumCities, layout) {
   var cityLoop = addOriginCityToPath(1, intermediateNodess);
   cy.add(initialiseGraph(nodes, cityLoop));
   refreshLayout(cy, layout);
+  setGraphOptions(cy);
   // Copy blue graph to over to best route graph
   cy2.remove(cy2.elements());
   cy2.add(cy.elements().clone());
@@ -390,7 +401,7 @@ function testNewPath(cy, cy2, newPath, bestRouteDistance, startNode) {
   var numCities = newPath.length - 1;
   var newEdgeConfig = new Set();
   for (var j = 0; j < numCities; j++) {
-    var newEdgeID = newPath[j].toString() + newPath[j+1].toString();
+    var newEdgeID = newPath[j].toString() + '-' + newPath[j+1].toString();
     newEdgeConfig.add(newEdgeID);
   }
 
@@ -415,21 +426,18 @@ function testNewPath(cy, cy2, newPath, bestRouteDistance, startNode) {
 function findEdgeDifferences(cyGraph, newEdgeConfig, numCities, startNode) {
   // Remove edge that closes the loop
   var lastNodeID = numCities.toString();
-  cyGraph.remove(cyGraph.$('#e' + lastNodeID + startNode));
+  cyGraph.remove(cyGraph.$('#' + lastNodeID + '-' + startNode));
   // Number of nodes (cities) remains the same between paths;
   var oldEdgeConfig = new Set();
   for (var i = 0; i < numCities - 1; i++) {
     var edgeID = cyGraph.elements('edge')[i].data('id');
-    // Edge IDs are saved like 'e12' so strip 'e'
-    var edgeIDStr = edgeID.substring(1);
-    oldEdgeConfig.add(edgeIDStr);
+    oldEdgeConfig.add(edgeID);
   }
 
   var edgesToRemove = setDifference(oldEdgeConfig, newEdgeConfig);
   var edgesToAdd = setDifference(newEdgeConfig, oldEdgeConfig);
   var edgesToKeep = setDifference(oldEdgeConfig, edgesToRemove);
-
-  // Draw the next path
+  // Draw the next path;
   changePaths(cyGraph, edgesToKeep, edgesToAdd);
 }
 
@@ -439,15 +447,18 @@ function changePaths(cy, edgesToKeep, edgesToAdd) {
   var edgesToKeepStr = '';
   var edgesToKeepArr = Array.from(edgesToKeep);
   for (var i = 0; i < edgesToKeepArr.length - 1; i++) {
-    edgesToKeepStr += '#e' + edgesToKeepArr[i] + ', ';
+    edgesToKeepStr += '#' + edgesToKeepArr[i] + ', ';
   }
   if (edgesToKeepArr.length > 0) {
-    edgesToKeepStr += '#e' + edgesToKeepArr[i];
+    edgesToKeepStr += '#' + edgesToKeepArr[i];
   }
   cy.remove(cy.edges().difference(edgesToKeepStr));
 
   for (let edgeId of edgesToAdd) {
-    addEdge(cy, edgeId[0], edgeId[1]);
+    edgeNodes = edgeId.split('-');
+    var sourceNode = edgeNodes[0];
+    var targetNode = edgeNodes[1];
+    addEdge(cy, sourceNode, targetNode);
   }
 }
 
@@ -468,23 +479,36 @@ function addOriginCityToPath(originCity, cities) {
 }
 
 
-async function permutationsWithoutInverse(cy, cy2, cities, bestRouteDistance, startingCity) {
-  var len = cities.length;
-  cities = cities.filter(function(city) {
-    return city !== startingCity;
-  });
-  var paths = [...itertools.permutations(cities)];
-  var pathsWithoutInverse = [];
-  // Push the path already shown to the user (initial path)
-  pathsWithoutInverse.push(cities);
-  for (var i = 1; i < paths.length; i++) {
+function swap(A, i, j) {
+  [A[i], A[j]] = [A[j], A[i]];
+  return A;
+}
+
+
+async function permutations(cy, cy2, intCities, bestRouteDistance, startingCity, k) {
+  c = new Array(k).fill(0);
+  pathWithStartingCity = addOriginCityToPath(startingCity, intCities);
+
+  // Draw graph here
+  pathData = testNewPath(cy, cy2, pathWithStartingCity, bestRouteDistance, startingCity.toString());
+  await sleep(100);
+  if (pathData.isBestRoute) {
+    bestRouteDistance = pathData.distance;
+  }
+  var i = 0;
+  while (i < k) {
     if (stopPathFinding == true) {
+      stoppedMidExecution = true;
       break;
-    } else {
-      path = paths[i];
-      if (path[0] <= path[len-3]) {
-        pathsWithoutInverse.push(path);
-        pathWithStartingCity = addOriginCityToPath(startingCity, path);
+    } 
+    if (c[i] < i) {
+      if (i % 2 == 0) {
+        swap(intCities, 0, i);
+      } else {
+        swap(intCities, c[i], i);
+      }
+      if (intCities[0] <= intCities[k-1]) {
+        pathWithStartingCity = addOriginCityToPath(startingCity, intCities);
         // Draw graph here
         pathData = testNewPath(cy, cy2, pathWithStartingCity, bestRouteDistance, startingCity.toString());
         await sleep(100);
@@ -492,11 +516,19 @@ async function permutationsWithoutInverse(cy, cy2, cities, bestRouteDistance, st
           bestRouteDistance = pathData.distance;
         }
       }
+      c[i] += 1;
+      i = 0;
+    } else {
+      c[i] = 0;
+      i += 1;
     }
   }
-  if (i == paths.length) {
+  if (stoppedMidExecution == false) {
     updateStatus("complete!", 'status-complete');
-    $('#start').addClass('d-none');
+    $('#start').removeClass('d-none');
+    $('#add-city').removeClass('d-none');
+    $('#remove-city').removeClass('d-none');
+    $('#generate-map').removeClass('d-none');
     $('#stop').addClass('d-none');
   }
   stopPathFinding = true;
