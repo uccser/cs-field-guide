@@ -23,6 +23,7 @@ By now you’re probably wondering why we bother splitting up packets… wouldn�
 Imagine you're returning a book you borrowed from your mate on the other side of the railway, and just before you get to the crossing a great long train begins lumbering through it.
 Unfortunately, someone just requested the entirety of Google's codebase to be written down and shipped to them, and it'll be three full days before the crossing is next free.
 It would be far better to have the train split every few wagons, so smaller goods, like the book, can still cross the crossing in reasonable time.
+The numerous trains could even be sent along different routes, to avoid hogging the one line.
 Web pages are like this too.
 They are too big to be sent without delaying others.
 So each page is split up and sent in tiny pieces, then at the other end they are reassembled for delivery.
@@ -32,9 +33,9 @@ So each page is split up and sent in tiny pieces, then at the other end they are
 # Three days?!
 
 At 86 terabytes of code, Google's database is one of the largest in the world.
-To write that all down and store it in 40ft shipping containers, each 1m apart, would create a train as long as the distance from Barcelona to Moscow!
+To write that all down and store it in 40ft shipping containers, would create a train as long as the distance from Barcelona to Moscow!
 
-{comment This was calculated with other assumptions: 500 sheets of paper is 5.2cm wide; 3000 bytes fit on an A4 sheet; and the volume of a shipping container is 77m3. At an average of 45kph it would take 2.95 days to traverse the 3,185km distance}
+{comment This was calculated with other assumptions: 500 sheets of paper is 5.2cm wide; 3000 bytes fit on an A4 sheet; the volume of a shipping container is 77m3; and containers are 1m apart to account for train wagon links. At an average of 45kph it would take 2.95 days to traverse the 3,185km distance}
 
 {panel end}
 
