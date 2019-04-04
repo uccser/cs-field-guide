@@ -205,10 +205,12 @@ class GameScene extends Phaser.Scene {
     timerEnd(packet) {
 
         if (this.level.timeoutsEnabled) {
-            if (!packet.isCorrupt && this.unansweredPacketNumbers.indexOf(packet.number) >= 0) {
-                // Corrupted packets will have been NACKED and resent already by the time the timer ends
-                console.log(packet.key + " missing!");
-                this.resendPacket(packet);
+            if (this.unansweredPacketNumbers.indexOf(packet.number) >= 0) {
+                if (!packet.isCorrupt || !this.level.acksNacksEnabled) {
+                    // Corrupted packets will have been NACKED and resent already by the time the timer ends
+                    console.log(packet.key + " missing!");
+                    this.resendPacket(packet);
+                }
             }
         }
 
@@ -299,7 +301,10 @@ class GameScene extends Phaser.Scene {
             packet = this.receivedPackets[i];
             if (this.level.packetsHaveNumbers) {
                 if (packet.isCorrupt) {
-                    message[packet.number] = '?';
+                    if (message[packet.number] == '') {
+                        // We don't want to overwrite good data
+                        message[packet.number] = '?';
+                    }
                 } else {
                     message[packet.number] = packet.char;
                 }

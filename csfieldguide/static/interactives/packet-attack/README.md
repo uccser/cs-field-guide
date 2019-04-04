@@ -34,8 +34,8 @@ All possible URL parameters are listed here:
   - `0|custom` - Sets Packet Attack to run the customised Level 0.
   - `[1-7]` - Sets Packet Attack to begin at the given level and progress normally.
 - `message=` (default: 'LONDON') - Sets the custom level to use the given message.
-- `shields=true|false` (default: false) - Sets all sent packets (excluding ACKS/NACKS) to have shields, which protect from a single corruption.
-- `numbers=true|false` (default: false) - Sets all packets (including ACKS/NACKS) to have numbers, which allows the preservation of order.
+- `shields=true|false` (default: false) - Sets all sent packets (excluding ACKs/NACKs) to have shields, which protect from a single corruption.
+- `numbers=true|false` (default: false) - Sets all packets (including ACKs/NACKs) to have numbers, which allows the preservation of order.
 - `acksnacks=true|false` (default: false) - Sets the receiver to reply to each received packet with an ACK or NACK, depending on the state of itself and the received packet.
 - `timeouts=true|false` (default: false) - Sets the sender to resend a packet if it doesn't receive an ACK or NACK within 17 seconds. This time limit ensures both destroyed and delayed packets are affected. If this is set to `true`, include `acksnacks=true` or the level will never end.
 - `delays=` (default: 1) - Sets the number of delays the user can apply to packets.
@@ -58,7 +58,7 @@ Email: jack.morgan@canterbury.ac.nz
 
 ## Known issues
 
-- The question mark (`?`) is used to show that a packet has been corrupted. Therefore, *if `ACKS` and `NACKS` are not enabled*, a packet sent with the character `?` isn't affected by corruption.
+- The question mark (`?`) is used to show that a packet has been corrupted. Therefore, *if ACKs and NACKs are not enabled*, a packet sent with the character `?` isn't affected by corruption.
 - Packets `X` and `X+3(n-1)` can potentially overlap perfectly if `X` is delayed `n` times and `X+3(n-1)` once. This is no less than 3 delays on two specific packets.
 
 ## Future plans
