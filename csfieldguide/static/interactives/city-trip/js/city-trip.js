@@ -191,6 +191,7 @@ $(document).ready(function() {
 
   $('#reset').click(function() {
     resetGraph(cy, cy2, numberOfCities, layout);
+    stoppedMidExecution = false;
     toggleButtons(true);
     updateStatus("ready to go!", 'status-ready');
     runningTimeLeft = calculateRunningTime(numberOfCities);
@@ -311,20 +312,27 @@ function addEdge(cyGraph, sourceNodeId, targetNodeId) {
 
 
 function addNode(cy, cy2, layout, oldNumCities, startNode) {
-  var previousNodeID = oldNumCities.toString();
-  // Remove edge that closes the loop
-  cy.remove(cy.$('#' + previousNodeID + '-' + startNode));
-  cy2.remove(cy2.$('#' + previousNodeID + '-' + startNode));
-  // Create node
-  currentNodeID = (oldNumCities + 1).toString();
-  newNode = {
-    data: { id: currentNodeID },
-    classes: 'nodesToAdd'
-  };
-  cy.add(newNode);
-  addEdge(cy, previousNodeID, currentNodeID);
-  // Create edge that closes the loop
-  addEdge(cy, currentNodeID, startNode);
+  if (stopPathFinding) {
+    // Once path finding has been interrupted we need to reset the graph because some edges between nodes don't exist
+    newNumCities = oldNumCities + 1;
+    resetGraph(cy, cy2, newNumCities, layout);
+    stopPathFinding = false;
+  } else {
+    var previousNodeID = oldNumCities.toString();
+    // Remove edge that closes the loop
+    cy.remove(cy.$('#' + previousNodeID + '-' + startNode));
+    cy2.remove(cy2.$('#' + previousNodeID + '-' + startNode));
+    // Create node
+    currentNodeID = (oldNumCities + 1).toString();
+    newNode = {
+      data: { id: currentNodeID },
+      classes: 'nodesToAdd'
+    };
+    cy.add(newNode);
+    addEdge(cy, previousNodeID, currentNodeID);
+    // Create edge that closes the loop
+    addEdge(cy, currentNodeID, startNode);
+  }
 }
 
 
@@ -348,14 +356,20 @@ function resetGraph(cy, cy2, newNumCities, layout) {
 
 function removeNode(cy, cy2, layout, numberOfCities, startNode) {
   var newNumCities = numberOfCities - 1;
-  nodeToRemove = cy.$('#' + (numberOfCities).toString());
-  cy.remove( nodeToRemove );
-  // Update best route graph to match
-  nodeToRemoveCy2 = cy2.$('#' + (numberOfCities).toString());
-  cy2.remove( nodeToRemoveCy2 );
-  // Add in edge that closes the loop
-  addEdge(cy, newNumCities, startNode);
-  addEdge(cy2, newNumCities, startNode);
+  // Once path finding has been interrupted we need to reset the graph because some edges between nodes don't exist
+  if (stopPathFinding) {
+    resetGraph(cy, cy2, newNumCities, layout);
+    stopPathFinding = false;
+  } else {
+    nodeToRemove = cy.$('#' + (numberOfCities).toString());
+    cy.remove( nodeToRemove );
+    // Update best route graph to match
+    nodeToRemoveCy2 = cy2.$('#' + (numberOfCities).toString());
+    cy2.remove( nodeToRemoveCy2 );
+    // Add in edge that closes the loop
+    addEdge(cy, newNumCities, startNode);
+    addEdge(cy2, newNumCities, startNode);
+  }
 }
 
 
