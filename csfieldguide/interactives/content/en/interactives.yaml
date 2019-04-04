@@ -93,7 +93,7 @@ off-by-one:
 packet-attack:
   name: Packet Attack
 packet-attack-level-creator:
-  name: packet-attack-level-creator (broken)
+  name: Packet Attack Level Creator
 parity:
   name: Parity
 payment-interface:
