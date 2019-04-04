@@ -545,7 +545,7 @@ function getPathDistance(edges) {
 function showTimeUnit(unit, value) {
   unitPlural = unit + 's';
   unitElement = $('#num-' + unitPlural);
-  if (value > 0) {
+  if (value > 0 || unit == 'second') {
     var format = ngettext('1 ' + unit, '%(value)s ' + unitPlural + ' ', value);
     var timeUnitText = interpolate(format, {"value": value.toLocaleString()}, true);
     unitElement.html(timeUnitText);
@@ -563,6 +563,10 @@ function formatTime(runningTimeLeft) {
   var hours = Math.floor((runningTimeLeft % 86400) / 3600);
   var minutes = Math.floor((runningTimeLeft % 3600) / 60);
   var seconds = Math.abs((runningTimeLeft % 60).toFixed(2));
+
+  if (seconds == 0.01) {
+    seconds = 0.00;
+  }
 
   showTimeUnit('year', years);
   showTimeUnit('month', months);
@@ -586,11 +590,10 @@ function startTimer(seconds) {
   var x = setInterval(function() {
     if (stopPathFinding == false) {
       runningTimeLeft = calculateRunningTimeLeft(completionTime);
+      formatTime(runningTimeLeft);
       if (runningTimeLeft < 0 || stopInterval) {
         clearInterval(x);
         stopInterval = false;
-      } else {
-        formatTime(runningTimeLeft);
       }
     }
   }, 10);
