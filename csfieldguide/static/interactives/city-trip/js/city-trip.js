@@ -13,7 +13,6 @@ const Mathjs = require('mathjs');
 cytoscape.use(noOverlap);
 cytoscape.use(automove);
 var stopPathFinding = false;
-var stopInterval = false;
 var stoppedMidExecution = false;
 
 $(document).ready(function() {
@@ -174,8 +173,8 @@ $(document).ready(function() {
     var k = intCities.length;
     permutations(cy, cy2, intCities, pathDistance, startingCity, k);
     // start timer
-    runningTimeLeft = calculateRunningTime(numberOfCities);
-    startTimer(runningTimeLeft);
+    completionTime = calculateRunningTime(cities.length);
+    startTimer(completionTime);
   });
 
 
@@ -562,11 +561,7 @@ function formatTime(runningTimeLeft) {
   var days = Math.floor((runningTimeLeft % 2628000) / 86400);
   var hours = Math.floor((runningTimeLeft % 86400) / 3600);
   var minutes = Math.floor((runningTimeLeft % 3600) / 60);
-  var seconds = Math.abs((runningTimeLeft % 60).toFixed(2));
-
-  if (seconds == 0.01) {
-    seconds = 0.00;
-  }
+  var seconds = (runningTimeLeft % 60).toFixed(1);
 
   showTimeUnit('year', years);
   showTimeUnit('month', months);
@@ -577,26 +572,15 @@ function formatTime(runningTimeLeft) {
 }
 
 
-function calculateRunningTimeLeft(completionTime) {
-  now = new Date().getTime();
-  var runningTimeLeft = (completionTime.getTime() - now) / 1000;
-  return runningTimeLeft;
-}
-
-
 function startTimer(seconds) {
-  var now = new Date();
-  completionTime = new Date(now.getTime() + (seconds * 1000));
   var x = setInterval(function() {
-    if (stopPathFinding == false) {
-      runningTimeLeft = calculateRunningTimeLeft(completionTime);
-      formatTime(runningTimeLeft);
-      if (runningTimeLeft < 0 || stopInterval) {
-        clearInterval(x);
-        stopInterval = false;
-      }
+    seconds = seconds - 0.1;
+    if (stopPathFinding || seconds < 0) {
+      clearInterval(x);
+    } else {
+      formatTime(seconds);
     }
-  }, 10);
+  }, 100);
 }
 
 
