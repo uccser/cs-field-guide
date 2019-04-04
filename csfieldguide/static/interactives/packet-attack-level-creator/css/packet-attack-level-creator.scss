@@ -19,6 +19,12 @@
   }
 }
 
+@media screen and (max-width: 576px) {
+  .packet-attack-creator {
+    max-width: 280px;
+  }
+}
+
 .parameter {
   text-align: right;
 }
