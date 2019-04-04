@@ -8,7 +8,6 @@
 const cytoscape = require('cytoscape');
 const noOverlap = require('cytoscape-no-overlap');
 const automove = require('cytoscape-automove');
-const itertools = require('itertools');
 const Mathjs = require('mathjs');
 
 cytoscape.use(noOverlap);
@@ -166,10 +165,7 @@ $(document).ready(function() {
   $('#start').click(function() {
     cy.nodes().ungrabify();
     stopPathFinding = false;
-    $('#generate-map').addClass('d-none');
-    $('#start').addClass('d-none');
-    $('#add-city').addClass('d-none');
-    $('#remove-city').addClass('d-none');
+    toggleButtons(false);
     $('#stop').removeClass('d-none');
     updateStatus("running", 'status-running');
     var intCities = cities.filter(function(city) {
@@ -189,22 +185,14 @@ $(document).ready(function() {
     stopPathFinding = true;
     stoppedMidExecution = true;
     updateStatus("stopped", 'status-stopped');
-    $('#add-city').addClass('d-none');
-    $('#remove-city').addClass('d-none');
-    $('#generate-map').addClass('d-none');
-    $('#start').addClass('d-none');
+    toggleButtons(false);
     $('#stop').addClass('d-none');
     $('#reset').removeClass('d-none');
   });
 
   $('#reset').click(function() {
     resetGraph(cy, cy2, numberOfCities, layout);
-    $('#add-city').removeClass('d-none');
-    $('#remove-city').removeClass('d-none');
-    $('#generate-map').removeClass('d-none');
-    $('#start').removeClass('d-none');
-    //$('#stop').removeClass('d-none');
-    $('#reset').addClass('d-none');
+    toggleButtons(true);
     updateStatus("ready to go!", 'status-ready');
     runningTimeLeft = calculateRunningTime(numberOfCities);
     formatTime(runningTimeLeft);
@@ -239,6 +227,21 @@ $(document).ready(function() {
       return city !== startingCity;
     });
     citiesLoop = addOriginCityToPath(startingCity, intermediateCities);
+  }
+
+  function toggleButtons(isResetDisplayed) {
+    if (isResetDisplayed) {
+      $('#add-city').removeClass('d-none');
+      $('#remove-city').removeClass('d-none');
+      $('#generate-map').removeClass('d-none');
+      $('#start').removeClass('d-none');
+      $('#reset').addClass('d-none');
+    } else {
+      $('#add-city').addClass('d-none');
+      $('#remove-city').addClass('d-none');
+      $('#generate-map').addClass('d-none');
+      $('#start').addClass('d-none');
+    }
   }
 
   // Updates best route graph to match the initial graph when a user drags a node on the initial graph
