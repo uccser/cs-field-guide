@@ -24,7 +24,7 @@ There are eight in total, with Level 0 reserved for a level created from URL par
 The last level in the array is, by design, impossible to beat.
 The program will return to Level 1 if the last level is beaten.
 
-## URL parameters
+## URL Parameters
 
 *NOTE: `start=0` or `start=custom` is required for other URL parameters to take effect.*
 
@@ -42,7 +42,7 @@ All possible URL parameters are listed here:
 - `corrupts=` (default: 1) - Sets the number of corrupts the user can apply to packets.
 - `kills=` (default: 1) - Sets the number of kills the user can apply to packets.
 
-## Required packages
+## Required Files
 
 - [jQuery](https://jquery.com/)
 - [Phaser 3](https://github.com/photonstorm/phaser)
@@ -56,12 +56,12 @@ These were created by Jack Morgan and Alasdair Smith, and are freely available u
 
 Email: jack.morgan@canterbury.ac.nz
 
-## Known issues
+## Known Issues
 
 - The question mark (`?`) is used to show that a packet has been corrupted. Therefore, *if ACKs and NACKs are not enabled*, a packet sent with the character `?` isn't affected by corruption.
 - Packets `X` and `X+3(n-1)` can potentially overlap perfectly if `X` is delayed `n` times and `X+3(n-1)` once. This is no less than 3 delays on two specific packets.
 
-## Future plans
+## Future Plans
 
 - Allow full screen in phaser, but HTML button below interactive.
 - Create separate classes for the sending and receiving pipes, to improve readability.

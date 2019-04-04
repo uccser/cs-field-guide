@@ -58,12 +58,12 @@ var TXT_IMPOSSIBLE = gettext("This level is actually impossible to beat")
 // End //
 
 var InfoPaneType = {
-    FAIL: 0,
-    PROCEED: 1,
-    BEFORE_LEVEL: 2,
-    START: 3,
-    END: 4
-  }
+  FAIL: 0,
+  PROCEED: 1,
+  BEFORE_LEVEL: 2,
+  START: 3,
+  END: 4
+}
 
 /**
  * Game Information.
@@ -191,7 +191,7 @@ class Information extends Phaser.Scene {
   }
 
   /**
-   * Returns the Information scene to the front and allows interaction with its button
+   * Returns the Information scene to the front and allows interaction with its button(s)
    */
   resumeInfo() {
     this.bringForward();

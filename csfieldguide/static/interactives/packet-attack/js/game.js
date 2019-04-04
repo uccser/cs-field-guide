@@ -34,7 +34,7 @@ var TXT_LEVEL = gettext("Level:");
 
 /**
  * Gameplay element.
- * Handles all Packet processing, including creation, timers, ACKS & NACKS, resending, etc.
+ * Handles all Packet processing, including creation, timers, ACKs & NACKs, resending, etc.
  */
 class GameScene extends Phaser.Scene {
 
@@ -137,7 +137,7 @@ class GameScene extends Phaser.Scene {
 
     /**
      * Adds secondary information to the Scene, including all packets for the initial message.
-     * This is be rerun at the start of each level
+     * This is to be rerun at the start of each level
      */
     recreate() {
         this.receivedMessage = '';
@@ -207,7 +207,7 @@ class GameScene extends Phaser.Scene {
         if (this.level.timeoutsEnabled) {
             if (this.unansweredPacketNumbers.indexOf(packet.number) >= 0) {
                 if (!packet.isCorrupt || !this.level.acksNacksEnabled) {
-                    // Corrupted packets will have been NACKED and resent already by the time the timer ends
+                    // Corrupted packets will have been NACKed and resent already by the time the timer ends
                     console.log(packet.key + " missing!");
                     this.resendPacket(packet);
                 }
@@ -684,7 +684,7 @@ class UIScene extends Phaser.Scene {
             text: TXT_CORRUPT,
             textConfig: buttonTextConfig 
         }
-		this.corrupt = new BUTTON.PhaserButton(corruptButtonConfig);
+        this.corrupt = new BUTTON.PhaserButton(corruptButtonConfig);
         this.corrupt.on('pointerdown', this.alertCorrupt);
         this.corrupt.on('pointerout', this.unAlertCorrupt);
         this.corrupt.on('pointerup', this.unAlertCorrupt);
