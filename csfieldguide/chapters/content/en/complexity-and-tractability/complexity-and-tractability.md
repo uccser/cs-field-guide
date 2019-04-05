@@ -44,7 +44,7 @@ The following interactive has a program that solves the problem for however many
 You can get a feel for what an intractable problem looks like by seeing how long the interactive takes to solve the problem for different size maps.
 Try generating a map with about 5 cities, and press "Start" to solve the problem.
 
-{button-link link="http://www.csfieldguide.org.nz/releases/1.9.9/_static/widgets/tract-tsp-basic-v2.html" text="View city trip interactive"}
+{interactive slug="city-trip" type="whole-page" text="City Trip"}
 
 Now try it for 10 cities (twice as many).
 Does it take twice as long?
