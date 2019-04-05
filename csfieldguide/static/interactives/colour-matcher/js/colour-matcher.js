@@ -1,6 +1,7 @@
 // The JS is not currently written for efficiency
 // but rather as a proof of concept.
 // This JS will be rewritten in a future update.
+var urlParameters = require('../../../js/third-party/url-parameters.js');
 
 const noUiSlider = require('nouislider');
 const wNumb = require('wnumb');
@@ -17,12 +18,12 @@ $(document).ready(function () {
                               [gettext('Help me set 24 bit green'), 'success'],
                               [gettext('All help given'), 'secondary'],
                             ];
-  ColourMatcher.display_hexidecimal = false;
+  ColourMatcher.display_hexadecimal = false;
 
-  // Display hexidecimal values
-  if (getUrlParameter('hexidecimal') == 'true') {
-    ColourMatcher.display_hexidecimal = true;
-    $('#interactive-colour-matcher .hexidecimal').show();
+  // Display hexadecimal values
+  if (urlParameters.getUrlParameter('hexadecimal') == 'true') {
+    ColourMatcher.display_hexadecimal = true;
+    $('#interactive-colour-matcher .hexadecimal').show();
   }
 
   // Setup 24 bit sliders
@@ -213,8 +214,8 @@ function update24BitPanel(){
     ColourMatcher.bit_24.value_labels[i].innerHTML = binary;
   }
   setBinaryRepresentation('interactive-colour-matcher-bit-representation-24', total_binary);
-  if (ColourMatcher.display_hexidecimal) {
-    setHexidecimalRepresentation('24', colours);
+  if (ColourMatcher.display_hexadecimal) {
+    setHexadecimalRepresentation('24', colours);
   }
 };
 
@@ -241,8 +242,8 @@ function update8BitPanel(){
     ColourMatcher.bit_8.value_labels[i].innerHTML = binary;
   }
   setBinaryRepresentation('interactive-colour-matcher-bit-representation-8', total_binary);
-  if (ColourMatcher.display_hexidecimal) {
-    setHexidecimalRepresentation('8', colours);
+  if (ColourMatcher.display_hexadecimal) {
+    setHexadecimalRepresentation('8', colours);
   }
 
   // Update 8 bit panel
@@ -267,14 +268,14 @@ function setBinaryRepresentation (representation_id, binary_string) {
 };
 
 
-// Set the hexidecimal representation from the given colours
-function setHexidecimalRepresentation(bit, colours) {
-  var hexidecimal = '';
+// Set the hexadecimal representation from the given colours
+function setHexadecimalRepresentation(bit, colours) {
+  var hexadecimal = '';
   for (var i = 0; i < colours.length; i++) {
     value = Number(colours[i]).toString(16);
-    hexidecimal += "00".substr(value.length) + value
+    hexadecimal += "00".substr(value.length) + value
   }
-  $('#interactive-colour-matcher-hexidecimal-representation-' + bit).html(hexidecimal.toUpperCase());
+  $('#interactive-colour-matcher-hexadecimal-representation-' + bit).html(hexadecimal.toUpperCase());
 }
 
 
@@ -300,21 +301,4 @@ function getValuesFromRepresentation(slider_id_num, start, finish) {
     total_binary += $(bits[i]).html();
   }
   return parseInt(total_binary, 2);
-};
-
-
-// From jquerybyexample.net/2012/06/get-url-parameters-using-jquery.html
-function getUrlParameter(sParam) {
-    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
-        sURLVariables = sPageURL.split('&'),
-        sParameterName,
-        i;
-
-    for (i = 0; i < sURLVariables.length; i++) {
-        sParameterName = sURLVariables[i].split('=');
-
-        if (sParameterName[0] === sParam) {
-            return sParameterName[1] === undefined ? true : sParameterName[1];
-        }
-    }
 };

@@ -1,15 +1,16 @@
+var urlParameters = require('../../../js/third-party/url-parameters.js');
 "use strict";
 
 $(document).ready(function () {
     // Settings for interactive
     var baseCalculatorSettings = {
-        BASE: Number(getUrlParameter('base')) || 2,
-        DIGITS: Number(getUrlParameter('digits')) || 6,
-        OFFSET: Number(getUrlParameter('offset')) || 0,
-        SHOW_POWER: !(getUrlParameter('show_power') == 'false'),
-        SHOW_MULTIPLICATION: !(getUrlParameter('show_multiplication') == 'false'),
-        SHOW_VALUE: !(getUrlParameter('show_value') == 'false'),
-        SHOW_TOTAL: !(getUrlParameter('show_total') == 'false')
+        BASE: Number(urlParameters.getUrlParameter('base')) || 2,
+        DIGITS: Number(urlParameters.getUrlParameter('digits')) || 6,
+        OFFSET: Number(urlParameters.getUrlParameter('offset')) || 0,
+        SHOW_POWER: !(urlParameters.getUrlParameter('show_power') == 'false'),
+        SHOW_MULTIPLICATION: !(urlParameters.getUrlParameter('show_multiplication') == 'false'),
+        SHOW_VALUE: !(urlParameters.getUrlParameter('show_value') == 'false'),
+        SHOW_TOTAL: !(urlParameters.getUrlParameter('show_total') == 'false')
     }
 
     createCalculatorInterface(baseCalculatorSettings);
@@ -186,21 +187,4 @@ function createCalculatorElement() {
     var element = document.createElement('div');
     element.className ='calculator-element';
     return element;
-};
-
-
-// From jquerybyexample.net/2012/06/get-url-parameters-using-jquery.html
-function getUrlParameter(sParam) {
-    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
-        sURLVariables = sPageURL.split('&'),
-        sParameterName,
-        i;
-
-    for (i = 0; i < sURLVariables.length; i++) {
-        sParameterName = sURLVariables[i].split('=');
-
-        if (sParameterName[0] === sParam) {
-            return sParameterName[1] === undefined ? true : sParameterName[1];
-        }
-    }
 };

@@ -2,6 +2,7 @@
 
 from django.conf.urls import url
 from . import views
+from django.views.generic.base import RedirectView
 
 
 urlpatterns = [
@@ -24,5 +25,28 @@ urlpatterns = [
         views.set_teacher_mode,
         {"mode": False},
         name="teacher_mode_logout"
+    ),
+    url(
+        r"^further-information/glossary.html$",
+        RedirectView.as_view(permanent=True, pattern_name="chapters:glossary"),
+    ),
+    url(
+        r"^further-information/interactives.html$",
+        RedirectView.as_view(permanent=True, pattern_name="interactives:index"),
+    ),
+    url(
+        r"^further-information/contributors.html$",
+        RedirectView.as_view(permanent=True, pattern_name="appendices:contributors"),
+    ),
+    # e.g redirect /curriculum-guides/ncea/index.html to /appendices/curriculum-guides/
+    # TODO: Remove '.*?' from BOTH regex expressions if we create more templates inside
+    # of /ncea/ or /apcsp/
+    url(
+        r"^curriculum-guides/ncea/.*?$",
+        RedirectView.as_view(permanent=True, pattern_name="appendices:ncea"),
+    ),
+    url(
+        r"^curriculum-guides/apcsp/.*?$",
+        RedirectView.as_view(permanent=True, pattern_name="appendices:apcsp"),
     ),
 ]
