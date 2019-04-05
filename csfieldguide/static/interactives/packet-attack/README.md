@@ -37,6 +37,7 @@ All possible URL parameters are listed here:
 - `shields=true|false` (default: false) - Sets all sent packets (excluding ACKs/NACKs) to have shields, which protect from a single corruption.
 - `numbers=true|false` (default: false) - Sets all packets (including ACKs/NACKs) to have numbers, which allows the preservation of order.
 - `acksnacks=true|false` (default: false) - Sets the receiver to reply to each received packet with an ACK or NACK, depending on the state of itself and the received packet.
+- `attackreplies=true|false` (default: false) - Sets all ACKs & NACKs to be vulnerable to attack.
 - `timeouts=true|false` (default: false) - Sets the sender to resend a packet if it doesn't receive an ACK or NACK within 17 seconds. This time limit ensures both destroyed and delayed packets are affected. If this is set to `true`, include `acksnacks=true` or the level will never end.
 - `delays=` (default: 1) - Sets the number of delays the user can apply to packets.
 - `corrupts=` (default: 1) - Sets the number of corrupts the user can apply to packets.
@@ -65,4 +66,3 @@ Email: jack.morgan@canterbury.ac.nz
 
 - Allow full screen in phaser, but HTML button below interactive.
 - Create separate classes for the sending and receiving pipes, to improve readability.
-- Implement the canAttackAcksNacks functionality - this will require extra sprites and logic changes

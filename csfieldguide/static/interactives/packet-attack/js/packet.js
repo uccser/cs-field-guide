@@ -23,6 +23,12 @@ var PacketTypes = {
     NACK: 3
 }
 
+var PacketCommands = {
+    DELAY: 1,
+    CORRUPT: 2,
+    KILL: 3
+}
+
 /**
  * The main GameObject of Packet Attack
  */
@@ -134,7 +140,7 @@ class Packet extends Phaser.GameObjects.Container {
 
         var newTweenConfig = {
             targets: this,
-            x: 0,
+            x: this.type == PacketTypes.SENT ? 0 : 800,
             ease: 'linear',
             duration: 500,
             onComplete: this.delayCompleteHandler
@@ -175,7 +181,7 @@ class Packet extends Phaser.GameObjects.Container {
             // Prevent overlap with other non-delayed packets
             delay += 1000;
         }
-        packet.runTween(delay);
+        packet.runTween(delay, (packet.type != PacketTypes.SENT));
     }
 
     /**
@@ -202,5 +208,6 @@ class Packet extends Phaser.GameObjects.Container {
 module.exports = {
     Packet,
     PacketTypes,
-    PacketStatuses
+    PacketStatuses,
+    PacketCommands
 };

@@ -273,15 +273,18 @@ class GameScene extends Phaser.Scene {
     /**
      * Handler function for a 'newDestroyedPacket' registry change.
      * Removes the packet from the appropriate array
-     * TODO: Deal with canAttackAcksNacks level config
      */
     packetDestroyed(scene, packet) {
-        var index = scene.activePackets.indexOf(packet)
-        if (index < 0 ) {
-            console.log(packet.key + " failed removal");
+        var index;
+        if (packet.type == PACKET.PacketTypes.ACK) {
+            index = scene.activeAcks.indexOf(packet)
+            scene.activeAcks.splice(index, 1);
+        } else if (packet.type == PACKET.PacketTypes.NACK) {
+            index = scene.activeNacks.indexOf(packet)
+            scene.activeNacks.splice(index, 1);
         } else {
+            index = scene.activePackets.indexOf(packet)
             scene.activePackets.splice(index, 1);
-            console.log(packet.key + " destroyed successfully");
         }
         scene.runEndCheck();
     }
@@ -435,43 +438,13 @@ class GameScene extends Phaser.Scene {
      * Handler function for a 'delay' registry change.
      * If doDelay is false or the user doesn't have enough delays to do, does nothing.
      * Otherwise, finds the affected Packet and runs its delay method.
-     * TODO: Deal with canAttackAcksNacks level config
+     * Will attack sent packets first. If none are applicable: will attack ACKs, then NACKs
      */
     delay(scene, doDelay) {
-        var packet;
         if (doDelay && scene.remainingDelays > 0) {
-            for (var i=0; i < scene.activePackets.length; i++) {
-                packet = scene.activePackets[i];
-                if (packet.checkInDanger() && !packet.killed) {
-                    if (packet.type == PACKET.PacketTypes.SENT || scene.level.canAttackAcksNacks) {
-                        packet.delay();
-                        scene.remainingDelays--;
-                        scene.registry.set('remainingDelays', scene.remainingDelays);
-                        break; // Don't affect more than one Packet
-                    }
-                }
-            }
-        }
-    }
-
-    /**
-     * Handler function for a 'kill' registry change.
-     * If doKill is false or the user doesn't have enough kills to do, does nothing.
-     * Otherwise, finds the affected Packet and runs its kill method.
-     * TODO: Deal with canAttackAcksNacks level config
-     */
-    kill(scene, doKill) {
-        var packet;
-        if (doKill && scene.remainingKills > 0) {
-            for (var i=0; i < scene.activePackets.length; i++) {
-                packet = scene.activePackets[i];
-                if (packet.checkInDanger() && !packet.killed) {
-                    if (packet.type == PACKET.PacketTypes.SENT || scene.level.canAttackAcksNacks) {
-                        packet.kill();
-                        scene.remainingKills--;
-                        scene.registry.set('remainingKills', scene.remainingKills);
-                        break; // Don't affect more than one Packet
-                    }
+            if (!scene.doCommand(PACKET.PacketCommands.DELAY, scene, scene.activePackets) && scene.level.canAttackAcksNacks) {
+                if (!scene.doCommand(PACKET.PacketCommands.DELAY, scene, scene.activeAcks)) {
+                    scene.doCommand(PACKET.PacketCommands.DELAY, scene, scene.activeNacks);
                 }
             }
         }
@@ -481,23 +454,61 @@ class GameScene extends Phaser.Scene {
      * Handler function for a 'corrupt' registry change.
      * If doCorrupt is false or the user doesn't have enough corrupts to do, does nothing.
      * Otherwise, finds the affected Packet and runs its corrupt method.
-     * TODO: Deal with canAttackAcksNacks level config
+     * Will attack sent packets first. If none are applicable: will attack ACKs, then NACKs
      */
     corrupt(scene, doCorrupt) {
-        var packet;
         if (doCorrupt && scene.remainingCorrupts > 0) {
-            for (var i=0; i < scene.activePackets.length; i++) {
-                packet = scene.activePackets[i];
-                if (packet.checkInDanger() && !packet.killed && !packet.isCorrupt) {
-                    if (packet.type == PACKET.PacketTypes.SENT || scene.level.canAttackAcksNacks) {
-                        packet.corrupt();
-                        scene.remainingCorrupts--;
-                        scene.registry.set('remainingCorrupts', scene.remainingCorrupts);
-                        break; // Don't affect more than one Packet
-                    }
+            if (!scene.doCommand(PACKET.PacketCommands.CORRUPT, scene, scene.activePackets) && scene.level.canAttackAcksNacks) {
+                if (!scene.doCommand(PACKET.PacketCommands.CORRUPT, scene, scene.activeAcks)) {
+                    scene.doCommand(PACKET.PacketCommands.CORRUPT, scene, scene.activeNacks);
                 }
             }
         }
+    }
+
+    /**
+     * Handler function for a 'kill' registry change.
+     * If doKill is false or the user doesn't have enough kills to do, does nothing.
+     * Otherwise, finds the affected Packet and runs its kill method.
+     * Will attack sent packets first. If none are applicable: will attack ACKs, then NACKs
+     */
+    kill(scene, doKill) {
+        if (doKill && scene.remainingKills > 0) {
+            if (!scene.doCommand(PACKET.PacketCommands.KILL, scene, scene.activePackets) && scene.level.canAttackAcksNacks) {
+                if (!scene.doCommand(PACKET.PacketCommands.KILL, scene, scene.activeAcks)) {
+                    scene.doCommand(PACKET.PacketCommands.KILL, scene, scene.activeNacks);
+                }
+            }
+        }
+    }
+
+    /**
+     * Executes the given command on the first packet in the list that is currently
+     * in the 'danger zone'.
+     * Returns true if an applicable packet was found, false otherwise
+     */
+    doCommand(command, scene, packetList) {
+        var packet;
+        for (var i=0; i < packetList.length; i++) {
+            packet = packetList[i];
+            if (packet.checkInDanger() && !packet.killed) {
+                if (command == PACKET.PacketCommands.DELAY) {
+                    packet.delay();
+                    scene.remainingDelays--;
+                    scene.registry.set('remainingDelays', scene.remainingDelays);
+                } else if (command == PACKET.PacketCommands.CORRUPT) {
+                    packet.corrupt();
+                    scene.remainingCorrupts--;
+                    scene.registry.set('remainingCorrupts', scene.remainingCorrupts);
+                } else {
+                    packet.kill();
+                    scene.remainingKills--;
+                    scene.registry.set('remainingKills', scene.remainingKills);
+                }
+                return true; // Don't affect more than one Packet
+            }
+        }
+        return false;
     }
 
     /**

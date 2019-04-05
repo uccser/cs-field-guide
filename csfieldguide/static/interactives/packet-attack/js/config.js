@@ -65,6 +65,7 @@ function setCustomLevel(level, config) {
     LEVELS[level].setPacketsHaveNumbers(config.setPacketsHaveNumbers);
     LEVELS[level].setTimeoutsEnabled(config.setTimeoutsEnabled);
     LEVELS[level].setAcksNacksEnabled(config.setAcksNacksEnabled);
+    LEVELS[level].setCanAttackAcksNacks(config.setCanAttackAcksNacks);
 
     if (config.setDelays) {
         LEVELS[level].setDelays(config.setDelays);

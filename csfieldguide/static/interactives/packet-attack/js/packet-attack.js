@@ -68,6 +68,7 @@ function setupCustomLevel() {
         setDelays: parseInt(urlParameters.getUrlParameter("delays")),
         setCorrupts: parseInt(urlParameters.getUrlParameter("corrupts")),
         setKills: parseInt(urlParameters.getUrlParameter("kills")),
+        setCanAttackAcksNacks: urlParameters.getUrlParameter("attackreplies") == "true"
     };
 
     CONFIG.setCustomLevel(0, urlLevel);
