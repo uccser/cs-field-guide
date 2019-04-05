@@ -1,10 +1,3 @@
-// TODO: Some nodes are still half overlapping
-// TODO: Rename all of the stupid variables I impulsively named
-// TODO: Add comments
-// TODO: Add distance scale to frontend
-// TODO: Show execution time
-// issue: nodes can lie on edges ( visual issue )
-
 const cytoscape = require('cytoscape');
 const noOverlap = require('cytoscape-no-overlap');
 const automove = require('cytoscape-automove');
@@ -13,7 +6,7 @@ const Mathjs = require('mathjs');
 cytoscape.use(noOverlap);
 cytoscape.use(automove);
 var stopPathFinding = false;
-var stoppedMidExecution = false;
+var stoppedMidExecution = false; // true if the stop button been clicked mid path finding.
 
 $(document).ready(function() {
 
@@ -100,7 +93,6 @@ $(document).ready(function() {
   formatTime(runningTimeLeft);
   updateRouteStats();
 
-
   $('#add-city').click(function() {
     cy.nodes().lock();
     cy.nodes().grabify();
@@ -167,11 +159,11 @@ $(document).ready(function() {
     toggleButtons(false);
     $('#stop').removeClass('d-none');
     updateStatus("running", 'status-running');
-    var intCities = cities.filter(function(city) {
+    var intermediateCities = cities.filter(function(city) {
       return city !== startingCity;
     });
-    var k = intCities.length;
-    permutations(cy, cy2, intCities, pathDistance, startingCity, k);
+    var k = intermediateCities.length;
+    permutations(cy, cy2, intermediateCities, pathDistance, startingCity, k);
     // start timer
     completionTime = calculateRunningTime(cities.length);
     startTimer(completionTime);
@@ -214,8 +206,21 @@ $(document).ready(function() {
     updateStatus("ready to go!", 'status-ready');
   });
 
-  // Updates the trial route and best route info along with their corresponding distances
+  // Updates best route graph to match the initial graph when a user drags a node on the initial graph
+  cy.on('dragfreeon', 'nodes', function(evt) {
+    cy2.remove(cy2.elements());
+    cy2.add(cy.elements().clone());
+    setGraphOptions(cy2)
+    cy2.nodes().ungrabify();
+    pathDistance = getPathDistance(cy.edges());
+    updateRouteStats();
+    $('#start').removeClass('d-none');
+    $('#stop').removeClass('d-none');
+    $('#reset').addClass('d-none');
+  });
+
   function updateRouteStats() {
+    /** Updates the trial route and best route info along with their corresponding distances. */
     $('#trial-route').html(citiesLoop.toString());
     $('#trial-distance').html(pathDistance);
     $('#best-route-so-far').html(citiesLoop.toString());
@@ -223,10 +228,13 @@ $(document).ready(function() {
   };
 
   function updateCitiesLoop() {
+    /** E.g if cities = [1,2,3] and startingCity is 1 then:
+     *  intermediateCities = [2,3] and citiesLoop = [1,2,3,1]
+     */
     intermediateCities = cities.filter(function(city) {
       return city !== startingCity;
     });
-    citiesLoop = addOriginCityToPath(startingCity, intermediateCities);
+    citiesLoop = addStartingCityToPath(startingCity, intermediateCities);
   }
 
   function toggleButtons(isResetDisplayed) {
@@ -243,24 +251,11 @@ $(document).ready(function() {
       $('#start').addClass('d-none');
     }
   }
-
-  // Updates best route graph to match the initial graph when a user drags a node on the initial graph
-  // Might need to look at how to improve this instead of wiping and cloning a new graph...
-  cy.on('dragfreeon', 'nodes', function(evt) {
-    cy2.remove(cy2.elements());
-    cy2.add(cy.elements().clone());
-    setGraphOptions(cy2)
-    cy2.nodes().ungrabify();
-    pathDistance = getPathDistance(cy.edges());
-    updateRouteStats();
-    $('#start').removeClass('d-none');
-    $('#stop').removeClass('d-none');
-    $('#reset').addClass('d-none');
-  });
 });
 
 
 function updateStatus(statusText, currentClass) {
+  /** Shows the current status of the algorithm. */
   var status = $("#status");
   status.html(statusText);
   status.removeClass();
@@ -269,6 +264,7 @@ function updateStatus(statusText, currentClass) {
 
 
 function setGraphOptions(cyGraph) {
+  /** User cannot pan the graph and keep graph within the viewport. */
   cyGraph.userPanningEnabled(false);
   cyGraph.automove({
     nodesMatching: cyGraph.nodes(),
@@ -278,6 +274,7 @@ function setGraphOptions(cyGraph) {
 
 
 function initialiseGraph(nodes, cityLoop) {
+  /** Create the nodes and edges for the graph, append them to an array and return. */
   var graphData = [];
   // generate nodes (cities) for city map
   for (node of nodes) {
@@ -302,6 +299,7 @@ function initialiseGraph(nodes, cityLoop) {
 
 
 function addEdge(cyGraph, sourceNodeId, targetNodeId) {
+  /** Add an edge to the graph. */
   edgeID = sourceNodeId + '-' + targetNodeId;
   newEdge = {
     data: { id: edgeID, source: sourceNodeId, target: targetNodeId },
@@ -312,6 +310,7 @@ function addEdge(cyGraph, sourceNodeId, targetNodeId) {
 
 
 function addNode(cy, cy2, layout, oldNumCities, startNode) {
+  /** Add a node to the graph */
   if (stopPathFinding) {
     // Once path finding has been interrupted we need to reset the graph because some edges between nodes don't exist
     newNumCities = oldNumCities + 1;
@@ -337,13 +336,14 @@ function addNode(cy, cy2, layout, oldNumCities, startNode) {
 
 
 function resetGraph(cy, cy2, newNumCities, layout) {
+  /** Clear the current graph and generate a new one. */
   cy.remove(cy.elements());
   // Create blue graph
   var nodes = Array.from(Array(newNumCities), (x, index) => index + 1);
   intermediateNodess = nodes.filter(function(node) {
     return node !== 1;
   });
-  var cityLoop = addOriginCityToPath(1, intermediateNodess);
+  var cityLoop = addStartingCityToPath(1, intermediateNodess);
   cy.add(initialiseGraph(nodes, cityLoop));
   refreshLayout(cy, layout);
   setGraphOptions(cy);
@@ -355,6 +355,7 @@ function resetGraph(cy, cy2, newNumCities, layout) {
 
 
 function removeNode(cy, cy2, layout, numberOfCities, startNode) {
+  /** Remove a node from the graph. */
   var newNumCities = numberOfCities - 1;
   // Once path finding has been interrupted we need to reset the graph because some edges between nodes don't exist
   if (stopPathFinding) {
@@ -373,8 +374,8 @@ function removeNode(cy, cy2, layout, numberOfCities, startNode) {
 }
 
 
-// Make sure the layout is still random after new nodes have been added
 function refreshLayout(cy, layout) {
+  /** Make sure the layout is still random after new nodes have been added. */
   layout.stop();
   layout = cy.elements().makeLayout({
     name: "random",
@@ -386,12 +387,11 @@ function refreshLayout(cy, layout) {
 }
 
 
-// Draw the new path and calculate it's distance
-// Updates frontend text if new best route found
-// Returns distance of the new path and if it is the best route so far or not
 function testNewPath(cy, cy2, newPath, bestRouteDistance, startNode) {
+  /** Draw the new path and calculate it's distance.
+   *  Updates frontend text if new best route found.
+   *  Returns distance of the new path and if it is the best route so far or not. */
   $('#trial-route').html(newPath.toString());
-  // Number of nodes (cities) remains the same between paths
   // Minus one because we include the start node twice (it is also the end node)
   var numCities = newPath.length - 1;
   var newEdgeConfig = new Set();
@@ -417,8 +417,8 @@ function testNewPath(cy, cy2, newPath, bestRouteDistance, startNode) {
 }
 
 
-// Finds the edge differences between two paths and draws the new path by calling changePaths
 function findEdgeDifferences(cyGraph, newEdgeConfig, numCities, startNode) {
+  /** Finds the edge differences between two paths and draws the new path by calling changePaths */
   // Remove edge that closes the loop
   var lastNodeID = numCities.toString();
   cyGraph.remove(cyGraph.$('#' + lastNodeID + '-' + startNode));
@@ -458,31 +458,40 @@ function changePaths(cy, edgesToKeep, edgesToAdd) {
 }
 
 
-// Calulate a\b 
-// E.g if a = {1,2,3,4} and b = {5,4,3,2} this function would return {1}
+
 function setDifference(a, b) {
+  /** Calulate a\b 
+   *  E.g if a = {1,2,3,4} and b = {5,4,3,2} this function would return {1} */
   var aMinusB = new Set([...a].filter(x => !b.has(x)));
   return aMinusB;
 }
 
 
-function addOriginCityToPath(originCity, cities) {
+function addStartingCityToPath(startingCity, cities) {
+  /** E.g if the startingCity is 1 and cities is [2,3] return [1,2,3,1] */
   // Add origin city to start of route
-  temp = [originCity].concat(cities);
+  temp = [startingCity].concat(cities);
   // Add origin city to end of route and return
-  return temp.concat(originCity);
+  return temp.concat(startingCity);
 }
 
 
 function swap(A, i, j) {
+  /** Swap elements at the ith and jth indexes with each other and return. */
   [A[i], A[j]] = [A[j], A[i]];
   return A;
 }
 
 
-async function permutations(cy, cy2, intCities, bestRouteDistance, startingCity, k) {
+async function permutations(cy, cy2, intermediateCities, bestRouteDistance, startingCity, k) {
+  /** Get all permutations of the intermediate cities one by one.
+   *  Show the path on the graph as each one if found.
+   *  Based upon the non-recursive version of Heap's algorithm. 
+   *  Non-recursive version used so we can draw the new path as soon as it is generated.
+   */
+  // c is an encoding of he stack state
   c = new Array(k).fill(0);
-  pathWithStartingCity = addOriginCityToPath(startingCity, intCities);
+  pathWithStartingCity = addStartingCityToPath(startingCity, intermediateCities);
 
   // Draw graph here
   pathData = testNewPath(cy, cy2, pathWithStartingCity, bestRouteDistance, startingCity.toString());
@@ -490,6 +499,7 @@ async function permutations(cy, cy2, intCities, bestRouteDistance, startingCity,
   if (pathData.isBestRoute) {
     bestRouteDistance = pathData.distance;
   }
+  // i acts similarly to the stack pointer
   var i = 0;
   while (i < k) {
     if (stopPathFinding == true) {
@@ -498,12 +508,12 @@ async function permutations(cy, cy2, intCities, bestRouteDistance, startingCity,
     } 
     if (c[i] < i) {
       if (i % 2 == 0) {
-        swap(intCities, 0, i);
+        swap(intermediateCities, 0, i);
       } else {
-        swap(intCities, c[i], i);
+        swap(intermediateCities, c[i], i);
       }
-      if (intCities[0] <= intCities[k-1]) {
-        pathWithStartingCity = addOriginCityToPath(startingCity, intCities);
+      if (intermediateCities[0] <= intermediateCities[k-1]) {
+        pathWithStartingCity = addStartingCityToPath(startingCity, intermediateCities);
         // Draw graph here
         pathData = testNewPath(cy, cy2, pathWithStartingCity, bestRouteDistance, startingCity.toString());
         await sleep(100);
@@ -511,14 +521,18 @@ async function permutations(cy, cy2, intCities, bestRouteDistance, startingCity,
           bestRouteDistance = pathData.distance;
         }
       }
+      // swap has occurred ending the for-loop. Simulate increment of the for-loop counter.
       c[i] += 1;
+      // simulate recursive call reaching the base case by bringing the pointer to the base case analog in the array
       i = 0;
     } else {
+      // Reset the state and simulate popping the stack by incrementing the pointer
       c[i] = 0;
       i += 1;
     }
   }
   if (stoppedMidExecution == false) {
+    // Making sure we have iterated over all paths before showing complete message
     updateStatus("complete!", 'status-complete');
     $('#start').removeClass('d-none');
     $('#add-city').removeClass('d-none');
@@ -530,9 +544,8 @@ async function permutations(cy, cy2, intCities, bestRouteDistance, startingCity,
 }
 
 
-// Pass in 2 positions and use (x,y) coords to calc distance
-// Uses pythagoras
 function distanceBetweenCities(edgeStartPos, edgeEndPos) {
+  /** Pass in 2 positions and use (x,y) coords to calc distance. */
   var a = Math.abs(edgeStartPos.x - edgeEndPos.x);
   var b = Math.abs(edgeStartPos.y - edgeEndPos.y);
   var c = Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2));
@@ -541,8 +554,8 @@ function distanceBetweenCities(edgeStartPos, edgeEndPos) {
 }
 
 
-// Gets total distance of the path
 function getPathDistance(edges) {
+  /** Returns total distance of the path. */
   var distance = 0;
   for (var i = 0; i < edges.length; i++) {
     var edge = edges[i];
@@ -558,6 +571,7 @@ function getPathDistance(edges) {
 
 
 function showTimeUnit(unit, value) {
+  /** Formats the time into years,months,days,hours,minutes,seconds string. */
   unitPlural = unit + 's';
   unitElement = $('#num-' + unitPlural);
   if (value > 0 || unit == 'second') {
@@ -572,6 +586,8 @@ function showTimeUnit(unit, value) {
 
 
 function formatTime(runningTimeLeft) {
+  /** Calculates how many years,months,days.. etc there are in runningTimeLeft.
+   *  runningTimeLeft is given in seconds. */
   var years = Math.floor(runningTimeLeft / 31536000);
   var months = Math.floor((runningTimeLeft % 31536000) / 2628000);
   var days = Math.floor((runningTimeLeft % 2628000) / 86400);
@@ -589,6 +605,7 @@ function formatTime(runningTimeLeft) {
 
 
 function startTimer(seconds) {
+  /** Updates the timer every second and stops the timer if time is up or path finding is stopped. */
   var x = setInterval(function() {
     seconds = seconds - 0.1;
     if (stopPathFinding || seconds < 0) {
@@ -601,6 +618,7 @@ function startTimer(seconds) {
 
 
 function calculateRunningTime(cities) {
+  /** Calculates how many seconds it will take for the algorithm to finish. */
   factorialTemp = Mathjs.factorial(cities - 1);
   numPaths = Mathjs.divide(factorialTemp, 2);
   seconds = Mathjs.divide(numPaths, 10);
