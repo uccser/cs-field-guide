@@ -42,7 +42,7 @@
 
 .x-tick {
   border-left: 2px solid #c6c8ca;
-  height: 10px;
+  height: 11px;
   position: absolute;
 }
 
@@ -56,6 +56,12 @@
 .x-tick > span {
   position: relative;
   width: 10px; left: -4px; top: 18px;
+  font: 0.75em Arial, Helvetica, sans-serif;
+}
+
+.axis-untis {
+  position: absolute;
+  left: 553px;
   font: 0.75em Arial, Helvetica, sans-serif;
 }
 
