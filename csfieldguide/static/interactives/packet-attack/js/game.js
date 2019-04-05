@@ -99,6 +99,8 @@ class GameScene extends Phaser.Scene {
         this.load.spritesheet('nack', base + 'interactives/packet-attack/assets/redPacketSprites.png', { frameWidth: 100, frameHeight: 100, endFrame: 8 });
         this.load.spritesheet('shield', base + 'interactives/packet-attack/assets/shieldedBluePacketSprites.png', { frameWidth: 100, frameHeight: 100, endFrame: 8 });
         this.load.spritesheet('packetDeath', base + 'interactives/packet-attack/assets/bluePacketExplosionSprites.png', { frameWidth: 100, frameHeight: 100, endFrame: 8 });
+        this.load.spritesheet('ackDeath', base + 'interactives/packet-attack/assets/greenPacketExplosionSprites.png', { frameWidth: 100, frameHeight: 100, endFrame: 8 });
+        this.load.spritesheet('nackDeath', base + 'interactives/packet-attack/assets/redPacketExplosionSprites.png', { frameWidth: 100, frameHeight: 100, endFrame: 8 });
     }
 
     /**
@@ -132,6 +134,14 @@ class GameScene extends Phaser.Scene {
         animationConfig.repeat = 0;
         animationConfig.hideOnComplete = true;
         animationConfig.frames = this.anims.generateFrameNumbers('packetDeath', { start: 0, end: 7 });
+        this.anims.create(animationConfig);
+
+        animationConfig.key = 'ackDeathAnim';
+        animationConfig.frames = this.anims.generateFrameNumbers('ackDeath', { start: 0, end: 7 });
+        this.anims.create(animationConfig);
+
+        animationConfig.key = 'nackDeathAnim';
+        animationConfig.frames = this.anims.generateFrameNumbers('nackDeath', { start: 0, end: 7 });
         this.anims.create(animationConfig);
     }
 
@@ -370,7 +380,8 @@ class GameScene extends Phaser.Scene {
             y: 310,
             char: '?',
             isOrdered: this.level.packetsHaveNumbers,
-            animation: 'packetNackAnim'
+            animation: 'packetNackAnim',
+            killAnimation: 'nackDeathAnim'
         }
 
         var newPacket = new PACKET.Packet(packetConfig);
@@ -393,7 +404,8 @@ class GameScene extends Phaser.Scene {
             y: 310,
             char: packet.char,
             isOrdered: this.level.packetsHaveNumbers,
-            animation: 'packetAckAnim'
+            animation: 'packetAckAnim',
+            killAnimation: 'ackDeathAnim'
         }
 
         var newPacket = new PACKET.Packet(packetConfig);
@@ -483,8 +495,8 @@ class GameScene extends Phaser.Scene {
     }
 
     /**
-     * Executes the given command on the first packet in the list that is currently
-     * in the 'danger zone'.
+     * Executes the given command on the first packet in the given packetList
+     * that is currently in the 'danger zone'.
      * Returns true if an applicable packet was found, false otherwise
      */
     doCommand(command, scene, packetList) {
@@ -505,7 +517,7 @@ class GameScene extends Phaser.Scene {
                     scene.remainingKills--;
                     scene.registry.set('remainingKills', scene.remainingKills);
                 }
-                return true; // Don't affect more than one Packet
+                return true; // Don't attack more than one Packet
             }
         }
         return false;

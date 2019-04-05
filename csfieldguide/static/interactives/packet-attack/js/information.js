@@ -29,7 +29,7 @@ var TXT_MULTIPACKET = gettext("The left pipe is using many creatures to communic
 var TXT_SHIELDED = gettext("The creatures have shields to protect from corruption");
 var TXT_NUMBERED = gettext("The creatures have numbers to protect packet order");
 var TXT_ACKSNACKS = gettext("The right pipe sends creatures back with results, green is good, red is bad");
-var TXT_ATTACK_ACKSNACKS = gettext("but the responses are also vulnerable to your attack!");
+var TXT_ATTACK_ACKSNACKS = gettext("But the responses are also vulnerable to your attack!");
 var TXT_TIMEOUTS = gettext("If the left pipe doesn't get a response, it will resend a creature");
 var TXT_NO_DEFENCE = gettext("There are no defenses!");
 
