@@ -450,7 +450,8 @@ class GameScene extends Phaser.Scene {
      * Handler function for a 'delay' registry change.
      * If doDelay is false or the user doesn't have enough delays to do, does nothing.
      * Otherwise, finds the affected Packet and runs its delay method.
-     * Will attack sent packets first. If none are applicable: will attack ACKs, then NACKs
+     * Will try to attack sent packets first.
+     * If none are applicable and the level config allows it: will then try to attack ACKs, then NACKs
      */
     delay(scene, doDelay) {
         if (doDelay && scene.remainingDelays > 0) {
