@@ -107,7 +107,7 @@ Like in TCP, the game supports packet ordering, checksums (shields), Acks and Na
 
 {panel end}
 
-{interactive slug="packet-attack" type="whole-page" text="Packet Attack interactive"}
+{interactive slug="packet-attack" type="whole-page" alt="Packet Attack interactive"}
 
 {panel type="curiosity"}
 
@@ -120,7 +120,7 @@ Adjust the parameters to set different abilities.
 Raising the number of times players can use their abilities will effectively equate to a less reliable communication channel.
 Adding in more abilities (by setting shields to true for example) will make the level harder to beat.
 
-{interactive slug="packet-attack-level-creator" type="in-page" text="Packet Attack Level Creator"}
+{interactive slug="packet-attack-level-creator" type="in-page" alt="Packet Attack Level Creator"}
 
 {panel end}
 
