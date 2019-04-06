@@ -20,7 +20,7 @@ However, knowledge of HTML, JavaScript or any other web design won’t be helpfu
 If your school’s IT department can't allow you access to these features, simply encourage the students to try this at home.
 It’s a perfectly safe activity.
 
-**Note:** Details in the Network tab only show up if the inspector is open before the page loads, you may need to refresh the current page to see everything.
+**Note:** Details in the Network tab only show up if it is open before the page loads, you may need to refresh the current page to see everything.
 
 {panel end}
 
@@ -135,7 +135,7 @@ Status Code: 200 OK
 The *Remote Address* is the address of the server the page is hosted on.
 The *Request URL* is the original URL that you requested.
 The request method should be familiar from above.
-It is a GET type request, saying "can I have the web page please?" and the response is the HTML.
+It is a GET type request, saying "can I have the web page please?" And the response is the HTML.
 Don’t believe it?
 Click the *Response* tab.
 Finally, the *Status Code* is a code that the page can respond with.
@@ -205,14 +205,15 @@ You can read more about him [here](https://en.wikipedia.org/wiki/Tim_Berners-Lee
 
 For this section we suggest you use the [freenode web client](http://webchat.freenode.net/).
 This allows you to set up your own channel and then your students can join it too.
-Now, with channels on this service, anyone can join them, so if your channel name is too obvious, you might get members of the public joining.
+With channels on this service, anyone can join them, so if your channel name is too obvious, you might get members of the public joining.
 It's best to break convention with channel names and use ###irc-myschool-thedate or something similar.
-Students can also download and install IRC clients, but this is complicated to configure, so it’s best to use the web version for now.
+Students can also download and install IRC clients, but this is complicated to configure, so it’s best to use the web version.
 Just tell them what channel to join.
 
 {panel end}
 
-Internet Relay Chat (IRC) is a system that lets you transfer messages in the form of text. It’s essentially a chat protocol.
+Internet Relay Chat (IRC) is a system that lets you transfer messages in the form of text.
+It’s essentially a chat protocol.
 The system uses a client-server model.
 Clients are chat programs installed on a user’s computer that connect to a central server.
 The clients communicate the message to the central server which in turn relays that to other clients.
