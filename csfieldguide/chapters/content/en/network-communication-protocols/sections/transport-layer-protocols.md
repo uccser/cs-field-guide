@@ -19,7 +19,8 @@ It then sends the packets over the internet to your computer.
 Your computer then reassembles the packets to give back to you as the image.
 This is [demonstrated in this video](https://www.youtube.com/watch?v=ewrBalT_eBM).
 
-By now you’re probably wondering why we bother splitting up packets… wouldn’t it be easier to send the file as a whole? Well, it solves congestion.
+By now you’re probably wondering why we bother splitting up packets… wouldn’t it be easier to send the file as a whole?
+Well, it solves congestion.
 Imagine you're returning a book you borrowed from your mate on the other side of the railway, and just before you get to the crossing a great long train begins lumbering through it.
 Unfortunately, someone just requested the entirety of Google's codebase to be written down and shipped to them, and it'll be three full days before the crossing is next free.
 It would be far better to have the train split every few wagons, so smaller goods, like the book, can still cross the crossing in reasonable time.
@@ -65,7 +66,7 @@ The yellow/gray zone is the unreliable channel, susceptible to unreliability.
 That unreliability is the user playing the game.
 Remember from the key problems of this topic on the transport level, we have delays, corruption and lost packets, these are the attacks; *delay*, *corrupt*, *kill*.
 Solutions come in the form of TCP mechanisms, they are slowly added level by level.
-Like in TCP, the game supports packet ordering, checksums (shields), Acks and Nacks (return creatures) and timeouts .
+Like in TCP, the game supports packet ordering, checksums (shields), Acks and Nacks (return creatures) and timeouts.
 
 {panel type="teacher-note"}
 
