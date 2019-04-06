@@ -118,14 +118,15 @@ We’ve created a level builder so that you can experiment with different reliab
 
 Adjust the parameters to set different abilities.
 Raising the number of times players can use their abilities will effectively equate to a less reliable communication channel.
-Adding in more abilities (by setting shields to true for example) will make the level harder to beat.
+Adding in more defences (by setting shields to true for example) will make the level harder to beat.
 
 {interactive slug="packet-attack-level-creator" type="in-page" alt="Packet Attack Level Creator"}
 
 {panel end}
 
 Let’s talk about what you saw in that game.
-What did the levels do to solve the issues of packet loss, delay (reordering) and corruption? TCP has several mechanisms for dealing with packet troubles.
+What did the levels do to solve the issues of packet loss, delay (reordering) and corruption?
+TCP has several mechanisms for dealing with packet troubles.
 
 {panel type="curiosity"}
 
@@ -141,13 +142,13 @@ Corruption can happen at any time through electronic interference.
 
 Firstly, TCP starts by doing what is known as a handshake.
 This basically means the two computers say to each other: "Hey, we’re going to use TCP for this image.
-Reconstruct it as you would".
+Reconstruct it as you would."
 
 Next is **Ordering**.
 Since a computer can’t look at data and order it like we can (like when we do a jigsaw puzzle or play Scrabble™) they need a way to "stitch" the packets back together.
-As we saw in *Packet Attack*, if you delayed a message that didn’t have ordering, the message may look like "HELOLWOLRD".
+As we saw in *Packet Attack*, if you delayed a message that didn’t have ordering, the message may arrive like "HELOL".
 So, TCP puts a number on each packet (called a sequence number) which signifies its order.
-With this, it can put them back together again.
+With this, it can put them back together despite the order in which packets arrive.
 It’s a bit like when you print out a few pages from a printer and you see "*Page 2 of 11*" on the bottom.
 Now, if packets do become out of order, TCP will wait for all of the packets to arrive and then put the message together.
 
@@ -163,13 +164,14 @@ Corrupt it again and it can’t.
 So how do packets get re-sent?
 TCP has a concept of *acknowledgement* and *negative acknowledgement* messages (ACK and NACK for short).
 You would have seen these in the higher levels of the game as the green (ACK) and red (NACK) creatures going back.
-Acks are sent to let the sender know when a packet arrives and it is usable.
+ACKs are sent to let the sender know when a packet arrives and it is usable.
 Nacks are sent back when a packet arrives and is damaged and needs resending.
 ACKs and and NACKs are useful because they provide a channel *in the opposite direction* for communication.
-If computer A receives a NACK, they can resend the message.
-If it receives an Ack, the computer can stop worrying about a resend.
+If computer A receives a NACK, it can resend the message.
+If it receives an ACK, the computer can stop worrying about a resend.
 
-But does a computer send it again if it doesn’t hear back? Yes.
+But does a computer send it again if it doesn’t hear back?
+Yes.
 It’s called a timeout and it’s the final line of defense in TCP.
 If a computer doesn’t get an ACK or a NACK back, after a certain time it will just resend the packet.
 It’s a bit like when you’re tuning out in class, and the teacher keeps repeating your name until you answer.
@@ -179,7 +181,9 @@ Sometimes, an ACK might get lost, so the packet is resent after a timeout, but t
 So that’s TCP.
 A protocol that puts accurate data transmission before efficiency and speed in a network.
 It uses timeouts, checksums, acks and nacks and many packets to deliver a message reliably.
-However, what if we don’t need all the packets? Can we get the overall picture faster? Read on…
+However, what if we don’t need all the packets?
+Can we get the overall picture faster?
+Read on…
 
 ## UDP
 
