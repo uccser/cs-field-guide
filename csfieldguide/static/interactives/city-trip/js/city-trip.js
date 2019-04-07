@@ -8,9 +8,14 @@ cytoscape.use(automove);
 var stopPathFinding = false;
 var stoppedMidExecution = false; // true if the stop button been clicked mid path finding.
 
+const STATUS_COMPLETE = gettext("complete!");
+const STATUS_READY = gettext("ready to go!");
+const STATUS_STOPPED = gettext("stopped");
+const STATUS_RUNNING = gettext("running");
+
 $(document).ready(function() {
 
-  updateStatus("ready to go!", 'status-ready');
+  updateStatus(STATUS_READY, 'status-ready');
   var output = $("#num-cities");
   var numberOfCities = 3;
   var maxCities = 27;
@@ -117,7 +122,7 @@ $(document).ready(function() {
     formatTime(runningTimeLeft);
     $('#start').removeClass('d-none');
     $('#reset').addClass('d-none');
-    updateStatus("ready to go!", 'status-ready');
+    updateStatus(STATUS_READY, 'status-ready');
     if (numberOfCities == maxCities) {
       $('#add-city').prop('disabled', true);
     }
@@ -144,7 +149,7 @@ $(document).ready(function() {
     formatTime(runningTimeLeft);
     $('#start').removeClass('d-none');
     $('#reset').addClass('d-none');
-    updateStatus("ready to go!", 'status-ready');
+    updateStatus(STATUS_READY, 'status-ready');
     if (numberOfCities == minCities) {
       $('#remove-city').prop('disabled', true);
     }
@@ -158,7 +163,7 @@ $(document).ready(function() {
     stopPathFinding = false;
     toggleButtons(false);
     $('#stop').removeClass('d-none');
-    updateStatus("running", 'status-running');
+    updateStatus(STATUS_RUNNING, 'status-running');
     var intermediateCities = cities.filter(function(city) {
       return city !== startingCity;
     });
@@ -175,7 +180,7 @@ $(document).ready(function() {
     // quit execution of path finding
     stopPathFinding = true;
     stoppedMidExecution = true;
-    updateStatus("stopped", 'status-stopped');
+    updateStatus(STATUS_STOPPED, 'status-stopped');
     toggleButtons(false);
     $('#stop').addClass('d-none');
     $('#reset').removeClass('d-none');
@@ -185,7 +190,7 @@ $(document).ready(function() {
     resetGraph(cy, cy2, numberOfCities, layout);
     stoppedMidExecution = false;
     toggleButtons(true);
-    updateStatus("ready to go!", 'status-ready');
+    updateStatus(STATUS_READY, 'status-ready');
     runningTimeLeft = calculateRunningTime(numberOfCities);
     formatTime(runningTimeLeft);
   });
@@ -203,7 +208,7 @@ $(document).ready(function() {
     runningTimeLeft = calculateRunningTime(numberOfCities);
     formatTime(runningTimeLeft);
     $('#start').removeClass('d-none');
-    updateStatus("ready to go!", 'status-ready');
+    updateStatus(STATUS_READY, 'status-ready');
   });
 
   // Updates best route graph to match the initial graph when a user drags a node on the initial graph
@@ -257,7 +262,7 @@ $(document).ready(function() {
 function updateStatus(statusText, currentClass) {
   /** Shows the current status of the algorithm. */
   var status = $("#status");
-  status.html(gettext(statusText));
+  status.html(statusText);
   status.removeClass();
   status.addClass(currentClass);
 };
@@ -533,7 +538,7 @@ async function permutations(cy, cy2, intermediateCities, bestRouteDistance, star
   }
   if (stoppedMidExecution == false) {
     // Making sure we have iterated over all paths before showing complete message
-    updateStatus("complete!", 'status-complete');
+    updateStatus(STATUS_COMPLETE, 'status-complete');
     $('#start').removeClass('d-none');
     $('#add-city').removeClass('d-none');
     $('#remove-city').removeClass('d-none');
