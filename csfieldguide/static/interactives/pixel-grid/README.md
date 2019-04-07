@@ -18,5 +18,5 @@ and either; display one of 3 preset examples or set up to 5 coordinates in advan
 ## Example Grids
 
 - `basic`: Creates 5 distinct straight lines: Vertical, at three different angles, and horizontal.
-- `s3l`: "Solution 3 Lines." Creates a vertical line, one at 45 degrees and one horizontal.
-- `sod`: "Solution Off Diagonal." Creates a single straight line between (3, 4) and (16, 9).
+- `s3l` ('Solution 3 Lines'): Creates a vertical line, one at 45 degrees and one horizontal.
+- `sod` ('Solution Off Diagonal'): Creates a single straight line between (3, 4) and (16, 9).

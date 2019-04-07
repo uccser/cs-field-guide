@@ -9,14 +9,14 @@ You can move it around using what's called a *transform*, which simply adjusts w
 The camera will always focus on the cube; so for example, to see the back of the cube, move it to the other side of the camera.
 Try typing 3D coordinates into this interactive to find each symbol.
 
-{interactive slug="box-translation" type="whole-page" text="Box Translation interactive"}
+{interactive slug="box-translation" type="whole-page" alt="Box Translation interactive"}
 
 You've just applied 3D *translation transforms* to the cube.
 Translation just means moving it in the three dimensions up and down, forward and back, and left and right.
 
 Now try the following challenge, which requires you to rotate the box to find the codes.
 
-{interactive slug="box-rotation" type="whole-page" text="Box Rotation interactive"}
+{interactive slug="box-rotation" type="whole-page" alt="Box Rotation interactive"}
 
 There are several transformations that are used in computer graphics, but the most common ones are translation (moving the object), rotation (spinning it) and scaling (changing its size).
 They come up often in graphics because they are applied not only to objects, but to things like the positions of the camera and lighting sources.
@@ -264,7 +264,6 @@ sy \\
 \end{bmatrix}
 \]
 
-
 {panel type="extra-for-experts"}
 
 # Matrix Multiplication Challenge
@@ -334,7 +333,7 @@ This is called a *rotation*.
 In general, to rotate an image by a given angle you need to use the sine (abbreviated sin) and cosine (abbreviated cos) functions from trigonometry.
 You can use the interactive below to calculate values for the sin and cos functions.
 
-{interactive slug="trig-function-calculator" type="whole-page" text="Trig Function Calculator"}
+{interactive slug="trig-function-calculator" type="whole-page" alt="Trig Function Calculator"}
 
 To rotate the image anticlockwise by \( \theta \) degrees, you'll need the following values in the matrix, which rely on trig functions:
 

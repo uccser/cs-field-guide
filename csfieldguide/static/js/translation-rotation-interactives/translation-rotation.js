@@ -1,9 +1,5 @@
 /**
  * Common source code for the box translation and rotation interactives
- * 
- * @author Jack Morgan
- * @author Alasdair Smith
- * @author Hayley Van Waas
  */
 
 var THREE = require('three');

@@ -6,7 +6,8 @@ the letter "g" is specified as a series of lines and curves,
 so that when you zoom in on it the computer can redraw it at whatever resolution is needed.
 If the system only stored the pixels for the letter shape, then zooming in would result in a low quality image.
 
-{comment to add sometime, Jargonbuster: pixel (somewhere in the chapter) - also mention pel and bitmap, and origins of the terms. see www.foveon.com/files/ABriefHistoryofPixel2.pdf}
+{comment to add sometime, Jargonbuster: pixel (somewhere in the chapter) - also mention pel and bitmap, and origins of the terms.
+see www.foveon.com/files/ABriefHistoryofPixel2.pdf}
 
 {image file-path="img/chapters/vector-letter-with-outline.png" caption="true" alt="The points used to create the letter g."}
 

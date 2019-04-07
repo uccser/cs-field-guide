@@ -20,7 +20,6 @@ Computer graphics are used in a wide variety of situations: games and animated m
 
 # Pixels
 
-
 A digital image on a screen or printer is physically made up of a grid of tiny squares called {glossary-link term="pixel" reference-text="definition"}pixels{glossary-link end}.
 They are usually too small to see easily (otherwise the image would look blocky).
 The resolution of a modern camera is usually measured in megapixels. One megapixel is a million pixels; for example, a 4k TV screen (3840 pixels across and 2160 down) has 8,294,400 pixels, or 8.3 megapixels!
@@ -35,4 +34,3 @@ This will give you an idea of the techniques that are used in graphics programmi
 
 For this chapter we are using a system called WebGL which can render 3D graphics in your browser.
 If your browser is up to date everything should be fine.
-If you have issues, or if the performance is poor, there is [information here about how to get it going]('appendices:appendix' 'interactives').

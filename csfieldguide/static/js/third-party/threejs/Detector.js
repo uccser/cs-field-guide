@@ -4,6 +4,8 @@
  * third-party-licences/threejs.txt
  * By inspection, this is specifically from:
  * https://github.com/alteredq/three.js/blob/master/examples/js/Detector.js
+ * 
+ * Browserify support modification by Alasdair Smith
  * ---------------------------------------------
  * @author alteredq / http://alteredqualia.com/
  * @author mr.doob / http://mrdoob.com/
@@ -77,7 +79,6 @@ var Detector = {
 };
 
 // browserify support
-// Altered by Alasdair Smith
 if ( typeof module === 'object' ) {
 
 	module.exports.Detector = Detector;
