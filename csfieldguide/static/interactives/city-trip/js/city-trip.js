@@ -257,7 +257,7 @@ $(document).ready(function() {
 function updateStatus(statusText, currentClass) {
   /** Shows the current status of the algorithm. */
   var status = $("#status");
-  status.html(statusText);
+  status.html(gettext(statusText));
   status.removeClass();
   status.addClass(currentClass);
 };
