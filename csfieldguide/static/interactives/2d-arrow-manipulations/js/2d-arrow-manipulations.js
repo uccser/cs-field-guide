@@ -26,7 +26,7 @@ var coord_swap = {
 
 var coord_translate = {
     "type":     "coordinates",
-    "title":    gettext("Changing Point Locations"),
+    "title":    gettext("Translating"),
     "task":     gettext("Try adding 2 to all the x points, and 3 to all the y points. What effect does this have on the original arrow? <br>What happens if you subtract 3 from each of the original coordinates?"),
     "target":   "2 7 -1 4 1 4 1 -1 3 -1 3 4 5 4"
 }
@@ -200,6 +200,7 @@ $(document).ready(function() {
     });
     registerNodeHighlights();
     registerOnBlurEvents();
+    registerEnterHandler();
 });
 
 
@@ -313,6 +314,74 @@ function registerNodeHighlights() {
 }
 
 
+/* Registers the handler function for when the user presses return */
+// Solution from https://stackoverflow.com/questions/979662/how-to-detect-pressing-enter-on-keyboard-using-jquery
+function registerEnterHandler() {
+    $(document).on('keypress', function(key) {
+        if(key.which == 13) {
+            // Enter was pressed
+            runEnterHandler();
+        }
+    });
+}
+
+
+/* If the currently active element is an input box, updates the arrow and activates the next input box */
+function runEnterHandler() {
+    var activeElement = document.activeElement;
+    var id = activeElement.id;
+    var nextElementId = '';
+    var elementVariable1;
+    var elementVariable2;
+    if (id.includes('-input-')) {
+        // Element is a coordinate input
+        // pN-input-V Where N is the node and V is x or y
+        elementVariable1 = parseInt(id.substring(1, 2));    // N
+        elementVariable2 = id.substring(9);                 // V
+
+        var nextNode = elementVariable2 == 'x' ? elementVariable1 + 0 : elementVariable1 + 1;
+        if (nextNode > 6) {
+            nextNode = 0;
+        }
+        var nextAxis = elementVariable2 == 'x' ? 'y' : 'x';
+        nextElementId = '#p' + nextNode + '-input-' + nextAxis;
+
+        coordTab('c' + elementVariable1, elementVariable2);
+        $(nextElementId).focus();
+
+    } else if (id.includes('-row-')) {
+        // Element is a matrix input
+        // matrix-NAME-TYPE-row-X-col-Y Where NAME, TYPE specify which matrix it is, and (X,Y) is the box's location within the matrix
+        if (id.includes('first')) {
+            elementVariable1 = ['first', (id.includes('scale') ? 'scale' : 'translate')];
+        } else {
+            elementVariable1 = ['second', (id.includes('scale') ? 'scale' : 'translate')]
+        }
+
+        var indexRow = id.indexOf('row-');
+        var indexCol = id.indexOf('col-');
+        elementVariable2 = [id.substring(indexRow + 4, indexRow + 5), id.substring(indexCol + 4, indexCol + 5)]
+
+        var nextBox = [parseInt(elementVariable2[0]), parseInt(elementVariable2[1])];
+        if (elementVariable1[1] == 'scale') {
+            // The matrix is 2x2
+            nextBox[0] = nextBox[1] == 0 ? nextBox[0] : nextBox[0] + 1;
+            if (nextBox[0] > 1) {
+                nextBox[0] = 0;
+            }
+            nextBox[1] = nextBox[1] == 0 ? 1 : 0;
+        } else {
+            // The matrix is 2x1
+            nextBox[0] = nextBox[0] == 0 ? 1 : 0;
+        }
+        nextElementId = '#matrix-' + elementVariable1[0] + '-' + elementVariable1[1] + '-row-' + nextBox[0] + '-col-' + nextBox[1];
+
+        matrixTab(id);
+        $(nextElementId).focus();
+    }
+}
+
+
 /* Rebuilds grid and arrows on window resize */
 window.onresize = function(event) {
     // recalculates size of grid and redraws arrow and target arrow
@@ -327,9 +396,13 @@ window.onresize = function(event) {
 }
 
 /* on reset button click, draw the dynamic arrow in its start position */
-function reset() { 
+function reset() {
     setUpInitialDynamicArrowPosition();
     drawArrow();
+    for (var i=0; i < 7; i++) {
+        checkForValidInput('p' + i + '-input-x');
+        checkForValidInput('p' + i + '-input-y');
+    }
 }
 
 /* Saves information from config that is used later */

@@ -46,7 +46,7 @@ A negative *x* value means that it's to the *left* of the center instead of the 
 
 {interactive slug="2d-arrow-manipulations" type="whole-page" text="true" parameters="config=coord-translate"}
 
-Changing Point Locations
+Translating
 
 {interactive end}
 
