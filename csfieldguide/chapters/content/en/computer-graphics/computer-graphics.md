@@ -9,7 +9,7 @@ The names of dozens of computer scientists now regularly appear in the credits f
 
 {comment consider showing e.g. animated files Lion King - Shrek - Toy Story - Avatar sequence of improvements}
 
-Movie and gaming companies can't always use existing software to make the next great thing — they need computer scientists to come up with better graphics techniques to make something that's never been seen before.
+Movie and gaming companies can't always use existing software to make the next great thing &ndash; they need computer scientists to come up with better graphics techniques to make something that's never been seen before.
 The creative possibilities are endless!
 
 Computer graphics are used in a wide variety of situations: games and animated movies are common examples, but graphics techniques are also used to visualise large amounts of data (such as all cellphone calls being made in one day or friend connections in a social network), to display and animate graphical user interfaces, to create virtual reality and augmented reality worlds, and much more.
@@ -25,7 +25,7 @@ They are usually too small to see easily (otherwise the image would look blocky)
 The resolution of a modern camera is usually measured in megapixels. One megapixel is a million pixels; for example, a 4k TV screen (3840 pixels across and 2160 down) has 8,294,400 pixels, or 8.3 megapixels!
 
 The pixel is fundamental to computer graphics. A lot of the work of a computer graphics programmer is in taking some abstract idea (such as objects in a scene), and working out what colour each pixel should be to trick the viewer into seeing that idea.
-A digital camera also does this - but it just senses the colour falling on each of its millions of sensors, and stores those so that the pixels can be displayed when needed.
+A digital camera also does this &ndash; but it just senses the colour falling on each of its millions of sensors, and stores those so that the pixels can be displayed when needed.
 
 {panel end}
 

@@ -23,7 +23,7 @@ They come up often in graphics because they are applied not only to objects, but
 
 In this section you can apply transformations to various images.
 We'll start by making the changes manually, one point at a time, but we'll move up to a quick shortcut method that uses a *matrix* to do the work for you.
-We'll start by looking at how these work in two dimensions - it's a bit easier to think about than three dimensions.
+We'll start by looking at how these work in two dimensions &ndash; it's a bit easier to think about than three dimensions.
 
 The following interactive shows an arrow, and on the left you can see a list of the points that correspond to its 7 corners (usually referred to as *cartesian coordinates*).
 The arrow is on a grid, where the center point is the "zero" point.
@@ -59,7 +59,7 @@ Subtracting three translates the arrow down and to the left.
 
 {panel end}
 
-The transform you did in the above interactive is called a *translation* — it translates the arrow around the grid.
+The transform you did in the above interactive is called a *translation* &ndash; it translates the arrow around the grid.
 This kind of transform is used in graphics to specify where an object should be placed in a scene, but it has many other uses, such as making an animated object move along a path, or specifying the position of the imaginary camera (viewpoint).
 
 The next challenge involves changing the size of the image.
@@ -119,13 +119,13 @@ This section introduces the use of matrices to do the transforms.
 It doesn't assume that they have encountered matrices before, but if students are completely new to matrix algebra and are also weak in algebra in general, the explanation in this chapter might be a little minimal for them, and extra help will be needed.
 There are good resources around that explain matrices, although they likely provide more detail than needed.
 The
-[Khan academy](https://www.khanacademy.org/math/precalculus/precalc-matrices) have videos and quizzes explaining matrices (we are particularly interested in multiplying a matrix by a vector, which is what is happening when a matrix transform is applied to a point  - the point is the vector).
+[Khan academy](https://www.khanacademy.org/math/precalculus/precalc-matrices) have videos and quizzes explaining matrices (we are particularly interested in multiplying a matrix by a vector, which is what is happening when a matrix transform is applied to a point &ndash; the point is the vector).
 
 Other explanations aimed at school students include:
 - [Math is Fun - Matrix multiplying](http://www.mathsisfun.com/algebra/matrix-multiplying.html)
 - [Math in Sight - Matrix vector multiplication](http://mathinsight.org/matrix_vector_multiplication)
 - [Math Planet - Transformation using matrices](http://www.mathplanet.com/education/geometry/transformations/transformation-using-matrices)
-- [Wikipedia entry on matrix transformation](https://en.wikipedia.org/wiki/Transformation_matrix) - which likely has too much extra detail for students in it
+- [Wikipedia entry on matrix transformation](https://en.wikipedia.org/wiki/Transformation_matrix) &ndash; which likely has too much extra detail for students in it
 
 {panel end}  
 
@@ -663,7 +663,7 @@ In the above examples, when you have several matrices being applied to every poi
 The following interactive can do those calculations for you.
 
 For example, in the following interactive, type in the matrix for doubling the size of an object (put the number 2 instead of 1 on the main diagonal values), then add another matrix that triples the size of the image (3 on the main diagonal).
-The interactive shows a matrix on the right that combines the two — does it look right?
+The interactive shows a matrix on the right that combines the two &ndash; does it look right?
 
 {button-link link="http://www.csfieldguide.org.nz/releases/1.9.9/_static/widgets/CG/CG-matrix-simplifier/CG-matrix-simplifier.html?info=Multiple%20transforms" text="Click for interactive: matrix simplifier"}
 
@@ -680,7 +680,7 @@ The interactive gives a full derivation of the calculations being done on each x
 
 The interactive also allows you to combine in translations (just three numbers, for x, y and z).
 Try combining a scaling followed by a translation.
-What if you add a rotation — does the order matter?
+What if you add a rotation &ndash; does the order matter?
 
 {panel type="curiosity"}
 

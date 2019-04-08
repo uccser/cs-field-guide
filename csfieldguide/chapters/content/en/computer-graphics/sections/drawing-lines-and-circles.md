@@ -25,7 +25,7 @@ The lines and circles that specify an object are usually given using numbers (fo
 From this a graphics program must calculate which pixels on the screen should be coloured in to represent the line or circle, or it may just need to work out where the line is without drawing it.
 
 For example, here's a grid of pixels with 5 lines shown magnified.
-The vertical line would have been specified as going from pixel (2, 9) to (2, 16) — that is, starting 2 across and 9 up, and finishing 2 across and 16 up.
+The vertical line would have been specified as going from pixel (2, 9) to (2, 16) &ndash; that is, starting 2 across and 9 up, and finishing 2 across and 16 up.
 Of course, this is only a small part of a screen, as normally they are more like 1000 by 1000 pixels or more; even a smartphone screen is hundreds of pixels high and wide.
 
 {interactive slug="pixel-grid" type="iframe" parameters="eg=basic&noedit"}
@@ -273,7 +273,7 @@ This method only has to compare an integer with 0 and do one addition for each p
 
 {panel end}
 
-You could write a program or design a spreadsheet to do these calculations for you — that's what graphics programmers have to do.
+You could write a program or design a spreadsheet to do these calculations for you &ndash; that's what graphics programmers have to do.
 
 ## Circles
 
@@ -358,7 +358,7 @@ An *octant* is one eighth of an area, and the 8 octants are marked off by 4 line
 To complete the circle, you need to reflect along the diagonal.
 The line of reflection should have a slope of 1 or -1, and should cross through the middle of the centre pixel of the circle.
 
-While using a line of reflection on the octant is easier for a human to understand, a computer can draw all of the reflected points at the same time it draws a point in the first octant because when it is drawing pixel with an offset of (x,y) from the centre of the circle, it can also draw the pixels with offsets (x,-y), (-x,y), (-x,-y), (y,x), (y,-x), (-y,x) and (-y,-x), which give all eight reflections of the original point!
+While using a line of reflection on the octant is easier for a human to understand, a computer can draw all of the reflected points at the same time it draws a point in the first octant because when it is drawing pixel with an offset of (x,y) from the centre of the circle, it can also draw the pixels with offsets (x, -y), (-x, y), (-x, -y), (y, x), (y, -x), (-y, x) and (-y, -x), which give all eight reflections of the original point!
 
 By the way, this kind of algorithm can be adapted to draw ellipses, but it has to draw a whole quadrant because you don't have octant symmetry in an ellipse.
 
@@ -366,13 +366,13 @@ By the way, this kind of algorithm can be adapted to draw ellipses, but it has t
 
 Computers need to draw lines, circles and ellipses for a wide variety of tasks, from game graphics to lines in an architect's drawing, and even a tiny circle for the dot on the top of the letter 'i' in a word processor.
 By combining line and circle drawing with techniques like 'filling' and 'antialiasing', computers can draw smooth, clear images that are resolution independent.
-When an image on a computer is described as an outline with fill colours it is called vector graphics — these can be re-drawn at any resolution.
+When an image on a computer is described as an outline with fill colours it is called vector graphics &ndash; these can be re-drawn at any resolution.
 This means that with a vector image, zooming in to the image will not cause the pixelation seen when zooming in to bitmap graphics, which only store the pixels and therefore make the pixels larger when you zoom in.
 However, with vector graphics the pixels are recalculated every time the image is redrawn, and that's why it's important to use a fast algorithm like the one above to draw the images.
 
 Outline fonts are one of the most common uses for vector graphics as they allow the text size to be increased to very large sizes, with no loss of quality to the letter shapes.
 
-Computer scientists have found fast algorithms for drawing other shapes too, which means that the image appears quickly, and graphics can display quickly on relatively slow hardware - for example, a smartphone needs to do these calculations all the time to display images, and reducing the amount of calculations can extend its battery life, as well as make it appear faster.
+Computer scientists have found fast algorithms for drawing other shapes too, which means that the image appears quickly, and graphics can display quickly on relatively slow hardware &ndash; for example, a smartphone needs to do these calculations all the time to display images, and reducing the amount of calculations can extend its battery life, as well as make it appear faster.
 
 As usual, things aren't quite as simple as shown here.
 For example, consider a horizontal line that goes from (0, 0) to (10, 0), which has 11 pixels.
