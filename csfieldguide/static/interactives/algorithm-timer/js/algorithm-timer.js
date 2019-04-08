@@ -14,11 +14,11 @@ const TIME_SCALERS = {
   'microseconds': 1000000,
   'milliseconds': 1000,
   'seconds': 1,
-  'minutes': 60,
-  'hours': 3600,
-  'days': 86400,
-  'years': 31557600,
-  'centuries': 3155760000,
+  'minutes': Mathjs.divide(1, 60),
+  'hours': Mathjs.divide(1, 3600),
+  'days': Mathjs.divide(1, 86400),
+  'years': Mathjs.divide(1, 31557600),
+  'centuries': Mathjs.divide(1, 3155760000),
 };
 
 
@@ -64,6 +64,8 @@ $(document).ready(function() {
     updateData()
   });
 
+  /** Get the time it will take for the algorithm to finish executing
+   *  and display it. */
   function updateData() {
     var result = calculateTimeTaken(complexity, resultForm, n, speed, processors, timeUnits);
     $('#output').val(result + ' ' + timeUnits);
@@ -71,6 +73,8 @@ $(document).ready(function() {
 });
 
 
+/** Calculates the time the algorithm will take to finish
+ *  executing in the selected time units */
 function calculateTimeTaken(complexity, resultForm, n, speed, processors, timeUnits) {
   // can only have whole integers for number of items
   n = Mathjs.bignumber(Math.round(n));
@@ -94,15 +98,10 @@ function calculateTimeTaken(complexity, resultForm, n, speed, processors, timeUn
   }
 
   var denominator = Mathjs.multiply(speed, processors);
-  timeTaken = Mathjs.divide(steps, denominator);
+  var timeTaken = Mathjs.divide(steps, denominator);
 
   var timeScale = Mathjs.bignumber(TIME_SCALERS[timeUnits])
-  if (timeUnits == 'seconds' || timeUnits == 'milliseconds' || 
-    timeUnits == 'microseconds'|| timeUnits == 'nanoseconds') {
-      timeTaken = Mathjs.multiply(timeTaken, timeScale);
-  } else {
-    timeTaken = Mathjs.divide(timeTaken, timeScale);
-  }
+  timeTaken = Mathjs.multiply(timeTaken, timeScale);
 
   if (resultForm == 'scientific') {
     timeTaken = Mathjs.format(Mathjs.bignumber(timeTaken), {notation: 'exponential', precision: 3});
@@ -117,6 +116,7 @@ function calculateTimeTaken(complexity, resultForm, n, speed, processors, timeUn
 }
 
 
+/** Checks if the user input is valid */
 function inputIsValid(n, speed, processors) {
   isValid = true;
 
