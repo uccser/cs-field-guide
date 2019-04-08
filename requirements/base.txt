@@ -30,4 +30,4 @@ django-modeltranslation==0.12.2
 uniseg==0.7.1
 python-bidi==0.4.0
 django-bidi-utils==1.0
-django-statici18n==1.8.2
+django-statici18n==1.8.3
