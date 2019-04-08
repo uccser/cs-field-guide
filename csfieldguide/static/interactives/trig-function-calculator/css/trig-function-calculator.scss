@@ -1,16 +1,20 @@
-body {
+#trig-function-calculator {
   font-family: "Roboto", sans-serif;
-  margin: auto;
   width: 50%;
 }
 
-h1 {
+.trig-title {
   text-align: center;
+  font-size: 35px;
 }
 
-h2 {
+.trig-subtitle {
   display: inline;
   font-size: 14px;
+}
+
+.trig-variable {
+  font-size: 25px;
 }
 
 p#info {
@@ -22,8 +26,8 @@ div#input {
   margin: auto;
   width: 50%;
 }
+
 div#input input {
-  width: 80px;
   font-family: monospace;
   display: inline;
 }
