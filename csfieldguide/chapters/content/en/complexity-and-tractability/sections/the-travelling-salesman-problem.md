@@ -31,7 +31,7 @@ This includes games and information about the current largest solved problem (wh
 
 {panel end}
 
-{comment Put in a paragraph or two about the greedy heuristic as a practical way to solve the problem (but point out that it's not the best heuristic, give some % bounds to give an idea of the accuracy &ndash; according to https://en.wikipedia.org/wiki/Travelling_salesman_problem#Heuristic_and_approximation_algorithms the greedy algorithm averages 25% worse than optimal; there are more complex algorithms that typically come within about 3% of optimal.}
+{comment Put in a paragraph or two about the greedy heuristic as a practical way to solve the problem but point out that it's not the best heuristic. Give some % bounds to give an idea of the accuracy - according to https://en.wikipedia.org/wiki/Travelling_salesman_problem#Heuristic_and_approximation_algorithms the greedy algorithm averages 25% worse than optimal; there are more complex algorithms that typically come within about 3% of optimal.}
 
 Since these problems are important for real companies, it is not reasonable to simply give up and say there is no solution.
 Instead, when confronted with an intractable problem, computer scientists look for algorithms that produce approximate solutions &ndash; solutions that are not perfectly correct or optimal, but are hopefully close enough to be useful.
@@ -100,7 +100,7 @@ Just like in that activity you listed all the possible ordering for the values i
 How many possible routes are there for the larger example you have generated?
 How is this related to permutation sort, and factorials?
 How long would it take to calculate the shortest route in your map, assuming the computer can check 1 billion (1,000,000,000) possible routes per second?
-(i.e. it can check one route per nanosecond). What can you conclude about the cost of this algorithm?
+What can you conclude about the cost of this algorithm?
 Would this be a good way for the cray fisher to decide which path to take?
 
 {comment I have considered getting them to pick a random number between 50 - 100, and to do the calculation for that as well, to increase personalisation. Although would this be too much work to expect of them to have to do this calculation twice? I really think it’d be best to do this though.}
@@ -140,7 +140,7 @@ Show a map where they would be different (you can choose where to place the cray
 
 For your larger map, show why you don’t have an optimal solution.
 The best way of doing this is to show a route that is similar to, but shorter than the approximate solution.
-The shorter solution you find doesn’t have to be the optimal solution, it just has to be shorter than the one identified by the approximate algorithm. (Talk to your teacher if you can’t find a shorter route and they will advise on whether or not you should generate a new map).
+The shorter solution you find doesn’t have to be the optimal solution, it just has to be shorter than the one identified by the approximate algorithm. Talk to your teacher if you can’t find a shorter route and they will advise on whether or not you should generate a new map.
 You will need to show a map that has a greedy route and a shorter route marked on it.
 Explain the technique you used to show there was a shorter solution.
 Remember that it doesn’t matter how much shorter the new solution you identify is, just as long as it is at least slightly shorter than the approximate solution &ndash; you are just showing that the approximate solution couldn’t possibly be the optimal solution by showing that there is a shorter solution than the approximate solution.

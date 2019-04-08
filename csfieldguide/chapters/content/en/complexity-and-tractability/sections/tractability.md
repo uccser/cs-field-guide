@@ -16,7 +16,7 @@ If you are interested, you can [download the spreadsheet here](files/tractable-s
 There's a very simple rule that computer scientists use to decide if an algorithm is tractable or not, based on the complexity (estimated number of steps) of the algorithm.
 Essentially, if the algorithm takes an exponential amount of time or worse for an input of size *n*, it is labelled as intractable.
 This simple rule is a bit crude, but it's widely used and provides useful guidance.
-(Note that a factorial amount of time, *n!*, is intractable because it's bigger than an exponential function).
+Note that a factorial amount of time, *n!*, is intractable because it's bigger than an exponential function.
 
 To see what this means, let's consider how long various algorithms might take to run.
 The following interactive will do the calculations for you to estimate how long an algorithm might take to run.
@@ -37,6 +37,7 @@ It may be more meaningful to students it this is converted to some geological ti
 
 {panel end}
 
+{interactive slug="algorithm-timer type="whole-page"}
 
 So far the calculation assumes that the computer would only do 1 operation per second; try changing to a million (1,000,000) operations per second, which is more realistic, and see how long that would take.
 
@@ -51,7 +52,7 @@ It's still completely impractical!
 
 Another way to solve problems faster is to have multiple processors work on different solutions at the same time.
 If you were to buy 1,000 processors (e.g. 1,000 computers, or 250 4-core computers) and have each one test out different routes, then the solution could be found 1,000 times faster.
-Try changing the number of processors to 1,000, and see how long that would take (you may need to change the units back &ndash; is it seconds? hours? days?)
+Try changing the number of processors to 1,000 and see how long that would take (you may need to change the units back). Is it seconds? Hours? Days?
 
 {panel type="teacher-note"}
 

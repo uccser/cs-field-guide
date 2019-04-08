@@ -14,7 +14,7 @@
     <div class="row mb-2 justify-content-left">
       <div class="col-sm-12 col-lg-2 mt-1">
         <label>
-          {% trans "Number of cities: <span id='num-cities'>3</span>" %}
+          {% trans "Number of cities:" %} <span id='num-cities'>3</span>
         </label> 
       </div>
     </div>
@@ -74,7 +74,7 @@
           <div class="axis-untis"><span>km</span></div>
         </div>
         <div class="text-center mt-5">
-          <p class="mb-1">{% trans "Best route so far: " %}<span id='best-route-so-far'>0</span></p>
+          <p class="mb-1">{% trans "Best route so far:" %} <span id='best-route-so-far'>0</span></p>
           <p class="mb-1">{% trans "Distance: <span id='best-route-distance'>0</span> km" %}</p>
         </div>
       </div>
@@ -82,8 +82,7 @@
 
     <div class="row mb-2">
       <div class="col-sm-12 col-lg-8">
-        {% blocktrans %}
-          <p>Estimated time left to run:
+          <p>{% trans "Estimated time left to run: " %}
             <span id="num-years" class="d-none">0</span>
             <span id="num-months" class="d-none">0</span>
             <span id="num-days" class="d-none">0</span>
@@ -91,7 +90,6 @@
             <span id="num-minutes" class="d-none">0</span>
             <span id="num-seconds" class="d-none">0</span>
           </p>
-        {% endblocktrans %}
       </div>
     </div>
   </div>
