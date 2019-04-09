@@ -7,60 +7,60 @@ var coord_scale = {
     "type":     "coordinates",
     "title":    gettext("Scaling"),
     "task":     gettext("Try multiplying the original coordinates by 2. What is the effect of this transform?<br>What would happen if you multiply each value by 10? How about 0.5? What if you only multiply the x values?"),
-    "target":   "0 8 -6 2 -2 2 -2 -8 2 -8 2 2 6 2"
+    "target":   "-4 6 -4 2 0 2 -4 -8 0 -8 4 2 4 6"
 }
 
 var coord_scale_translate = {
     "type":     "coordinates",
     "title":    gettext("Combining Scaling and Translation Challenge"),
-    "task":     gettext("Try to get the opaque arrow to match up with the translucent one.<br>Hint: you may like to use expressions like 2*(2+1) or fractions like 1/5."),
-    "target":   "5 12 -1 6 3 6 3 -4 7 -4 7 6 11 6"
+    "task":     gettext("Try to get the opaque shape to match up with the translucent one.<br>Hint: you may like to use expressions like 2*(2+1) or fractions like 1/5."),
+    "target":   "3 10 3 6 7 6 3 -4 7 -4 11 6 11 10"
 }
 
 var coord_swap = {
     "type":     "coordinates",
     "title":    gettext("Swapping Coordinates"),
     "task":     gettext("What happens if you swap the x and y value for each coordinate?"),
-    "target":   "4 0 1 -3 1 -1 -4 -1 -4 1 1 1 1 3"
+    "target":   "3 -2 1 -2 1 0 -4 -2 -4 0 1 2 3 2"
 }
 
 var coord_translate = {
     "type":     "coordinates",
     "title":    gettext("Translating"),
-    "task":     gettext("Try adding 2 to all the x points, and 3 to all the y points. What effect does this have on the original arrow? <br>What happens if you subtract 3 from each of the original coordinates?"),
-    "target":   "2 7 -1 4 1 4 1 -1 3 -1 3 4 5 4"
+    "task":     gettext("Try adding 2 to all the x points, and 3 to all the y points. What effect does this have on the original shape? <br>What happens if you subtract 3 from each of the original coordinates?"),
+    "target":   "0 6 0 4 2 4 0 -1 2 -1 4 4 4 6"
 }
 
 var matrix_rotate = {
     "type":     "matrix",
     "title":    gettext("Matrix Rotation"),
-    "task":     gettext("Rotate and translate the arrow to the target position. You can use the Trig Function Calculator interactive to calculate exact angles, the target arrow has accuracy of 2 decimal places."),
-    "target":   "7.84 6.84 3.58 6.84 5 5.42 1.45 1.87 2.87 0.45 6.42 4 7.84 2.58",
+    "task":     gettext("Rotate and translate the shape to the target position. You can use the Trig Function Calculator interactive to calculate exact values, use an accuracy of 2 decimal places."),
+    "target":   "-0.55 5.71 0.87 4.29 2.29 5.71 4.42 0.74 5.84 2.16 3.71 7.13 2.29 8.55",
     "modules": ["first-scale", "first-translate"]
 }
 
 var matrix_rotate_scale_translate = {
     "type":     "matrix",
     "title":    gettext("Combining Translation, Scaling and Rotation"),
-    "task":     gettext("Try moving the arrow to the target position by using the two multiplication matrices (one to scale and one to rotate) then translating."),
-    "target":   "12 4 9 10 9 6 4 6 4 2 9 2 9 -2",
+    "task":     gettext("Try moving the shape to the target position by using the two multiplication matrices (one to scale and one to rotate) then translating."),
+    "target":   "11 8 9 8 9 4 4 8 4 4 9 0 11 0",
     "modules": ["first-scale", "second-scale", "first-translate"]
 }
 
 var matrix_rotate_scale_translate_2 = {
     "type":     "matrix",
     "title":    gettext("Multiple Transformation Challenge"),
-    "task":     gettext("Try moving the arrow to the target position by using the two multiplication matrices (one to scale and one to rotate) then translating."),
-    "target":   "-9.68 -1.32 -9.68 -9.84 -6.84 -7 0.26 -14.1 3.1 -11.26 -4 -4.16 -1.16 -1.32",
+    "task":     gettext("Try moving the shape to the target position by using the two multiplication matrices (one to scale and one to rotate) then translating."),
+    "target":   "-11.1 -6.08 -8.26 -8.92 -5.42 -6.08 -1.16 -16.02 1.68 -13.18 -2.58 -3.24 -5.42 -0.4",
     "modules": ["first-scale", "second-scale", "first-translate"]
 }
 
 var matrix_rotate_translate = {
     "type":     "matrix",
     "title":    gettext("Using Translation to Simplify Rotation"),
-    "task":     gettext("To move the arrow to the new position, you'll have to translate the tip to the origin, apply the rotation, then translate it back."),
-    "start":    "5 12 2 9 4 9 4 4 6 4 6 9 8 9",
-    "target":   "5 12 5 7.74 6.42 9.16 9.97 5.61 11.39 7.03 7.84 10.58 9.26 12",
+    "task":     gettext("To move the shape to the new position, you'll have to translate the tip to the origin, apply the rotation, then translate it back."),
+    "start":    "5 12 5 10 7 10 5 5 7 5 9 10 9 12",
+    "target":   "5 12 6.42 10.58 7.84 12 9.97 7.03 11.39 8.45 9.26 13.42 7.84 14.84",
     "modules": ["first-translate", "first-scale", "second-translate"]
 }
 
@@ -68,32 +68,32 @@ var matrix_scale = {
     "type":     "matrix",
     "title":    gettext("2D Scaling"),
     "task":     gettext("Try replacing the 1s with 2s in the multiplication matrix."),
-    "target":   "0 8 -6 2 -2 2 -2 -8 2 -8 2 2 6 2",
+    "target":   "-4 6 -4 2 0 2 -4 -8 0 -8 4 2 4 6",
     "modules": ["first-scale"]
 }
 
 var matrix_scale_translate = {
     "type":     "matrix",
     "title":    gettext("Scaling and Translation Challenge"),
-    "task":     gettext("Use both scaling and translation to move the arrow to the target position."),
-    "target":   "9 2 3 -4 7 -4 7 -14 11 -14 11 -4 15 -4",
+    "task":     gettext("Use both scaling and translation to move the shape to the target position."),
+    "target":   "5 0 5 -4 9 -4 5 -14 9 -14 13 -4 13 0",
     "modules": ["first-scale", "first-translate"]
 }
 
 var matrix_scale_translate_2 = {
     "type":     "matrix",
     "title":    gettext("Translation before Scaling"),
-    "task":     gettext("This time, the order of translation and scaling has been swapped. Try to transform the arrow to the target position. The order in which operations happens makes a difference!"),
-    "target":   "9 2 3 -4 7 -4 7 -14 11 -14 11 -4 15 -4",
+    "task":     gettext("This time, the order of translation and scaling has been swapped. Try to transform the shape to the target position. The order in which operations happen makes a difference!"),
+    "target":   "5 0 5 -4 9 -4 5 -14 9 -14 13 -4 13 0",
     "modules": ["first-translate", "first-scale"]
 }
 
 var matrix_scale_translate_3 = {
     "type":     "matrix",
     "title":    gettext("Using Translation to Simplify Scaling"),
-    "task":     gettext("This time the tip of the arrow is at<br>(12, 12), so you should translate it to the origin, scale it, then translate it back."),
-    "start":    "12 12 15 9 13 9 13 4 11 4 11 9 9 9",
-    "target":   "12 12 18 6 14 6 14 -4 10 -4 10 6 6 6",
+    "task":     gettext("This time the top left tip of the shape is at<br>(12, 12), so you should translate it to the origin, scale it, then translate it back."),
+    "start":    "12 12 12 10 14 10 12 5 14 5 16 10 16 12",
+    "target":   "12 12 12 8 16 8 12 -2 16 -2 20 8 20 12",
     "modules": ["first-translate", "first-scale", "second-translate"]
 }
 
@@ -101,15 +101,15 @@ var matrix_single = {
     "type":     "matrix",
     "title":    gettext("Single Matrix"),
     "task":     gettext("Try putting in the final matrix here and see if it does scale by 2 and rotate by 45 degrees."),
-    "target":   "5.6 5.6 -2.8 5.6 0 2.8 -7 -4.2 -4.2 -7 2.8 0 5.6 -2.8",
+    "target":   "1.4 7 -1.4 4.2 1.4 1.4 -8.4 -2.8 -5.6 -5.6 4.2 -1.4 7 1.4",
     "modules": ["first-scale"]
 }
 
 var matrix_translate = {
     "type":     "matrix",
     "title":    gettext("Translation"),
-    "task":     gettext("Use the translation matrix to move the arrow to its target position."),
-    "target":   "9 -3 6 -6 8 -6 8 -11 10 -11 10 -6 12 -6",
+    "task":     gettext("Use the translation matrix to move the shape to its target position."),
+    "target":   "7 -4 7 -6 9 -6 7 -11 9 -11 11 -6 11 -4",
     "modules": ["first-translate"]
 }
 
@@ -139,7 +139,7 @@ var interfaceSettings = {
 /* Settings retrieved from config to be used this time */
 var configSettings = {
     FILE:            '',
-    START_POSITION_STRING: '0 4 -3 1 -1 1 -1 -4 1 -4 1 1 3 1',
+    START_POSITION_STRING: '-2 3 -2 1 0 1 -2 -4 0 -4 2 1 2 3',
     TARGET_POSITION_STRING: '',
     START_POSITION:  [],
     TARGET_POSITION: [],
