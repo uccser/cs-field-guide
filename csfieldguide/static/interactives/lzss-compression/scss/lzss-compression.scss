@@ -16,25 +16,25 @@ input {
 }
 
 
-#interactive-lzss {
+#interactive-lzss-compression {
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
 	margin: 5px;
 	
-	#interactive-lzss-left-box,
-	#interactive-lzss-right-box {
+	#interactive-lzss-compression-left-box,
+	#interactive-lzss-compression-right-box {
 		width: 100%;
 		margin: 10px;
 	}
 
-	#interactive-lzss-left-box #interactive-lzss-input-text textarea {
+	#interactive-lzss-compression-left-box #interactive-lzss-compression-input-text textarea {
 		border: none;
 		box-sizing: border-box;
 	}
 	
-	#interactive-lzss-left-box #interactive-lzss-input-text textarea,
-	#interactive-lzss-right-box #interactive-lzss-compressed-text {
+	#interactive-lzss-compression-left-box #interactive-lzss-compression-input-text textarea,
+	#interactive-lzss-compression-right-box #interactive-lzss-compression-compressed-text {
 		width: 100%;
 		font: 1rem "Courier New", monospace;
 		padding: 3px;
@@ -42,7 +42,7 @@ input {
 		min-height: 120px;
 	}
 
-	#interactive-lzss-left-box {
+	#interactive-lzss-compression-left-box {
 		button {
 			width: 100%;
 			color: #FFF;
@@ -54,30 +54,30 @@ input {
 		}
 	}
 
-	#interactive-lzss-right-box {
-		#interactive-lzss-compressed-text {
+	#interactive-lzss-compression-right-box {
+		#interactive-lzss-compression-compressed-text {
 			background-color: #FFF;
 			font-weight: bold;
 			box-sizing: border-box;
-			.interactive-lzss-encoded-line {
+			.interactive-lzss-compression-encoded-line {
 				display: flex;
 				align-items: center;
 				flex-wrap: wrap;
 				min-height: 25px;
 			}
-			.interactive-lzss-encoded-character,
-			input.interactive-lzss-placeholder-box {
+			.interactive-lzss-compression-encoded-character,
+			input.interactive-lzss-compression-placeholder-box {
 				display: inline-block;
 				min-width: 10px;
 				min-height: 1.2rem;
 				margin: 1px;
 			}
-			.interactive-lzss-reference {
+			.interactive-lzss-compression-reference {
 				display: flex;
 				flex-wrap: wrap;
 				margin: 2px;
 				padding: 2px;
-				input.interactive-lzss-placeholder-box {
+				input.interactive-lzss-compression-placeholder-box {
 					width: 1rem;
 					border: 1px solid #BFB9B7;
 				}
@@ -85,9 +85,9 @@ input {
 		}
 	}
 	
-	#interactive-lzss-left-box #interactive-lzss-input-text textarea,
-	#interactive-lzss-left-box button,
-	#interactive-lzss-right-box #interactive-lzss-compressed-text {
+	#interactive-lzss-compression-left-box #interactive-lzss-compression-input-text textarea,
+	#interactive-lzss-compression-left-box button,
+	#interactive-lzss-compression-right-box #interactive-lzss-compression-compressed-text {
 		border-radius: 2px !important;
 		box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12)
 	}
@@ -104,10 +104,10 @@ input {
 }
 
 @media (max-width: 425px) {
-	#interactive-lzss {
+	#interactive-lzss-compression {
 		flex-direction: column;
-		#interactive-lzss-left-box,
-		#interactive-lzss-right-box {
+		#interactive-lzss-compression-left-box,
+		#interactive-lzss-compression-right-box {
 			width: unset;
 			p {
 				margin: 2px;

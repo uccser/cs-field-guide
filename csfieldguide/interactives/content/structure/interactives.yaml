@@ -326,4 +326,4 @@ unicode-length:
 #   is_interactive: true
 lzss-compression:
   languages:
-    en: interactives/ziv-lempel-coding.html
+    en: interactives/lzss-compression.html
