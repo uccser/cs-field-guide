@@ -54,12 +54,12 @@ By the way, finding the *longest* path between two points (without going along a
 
 # The craypots problem
 
-This project is based around a scenario where there is a cray fisher who has around 18 craypots that have been laid out in open water.
+This project is based around a scenario where there is a crayfisher who has around 18 craypots that have been laid out in open water.
 Each day the fisher uses a boat to go between the craypots and check each one for crayfish.
 
 {comment Trying to get away from listing a range of numbers, as that may make it seem the problem is dynamic}
 
-The cray fisher has started wondering what the shortest route to take to check all the craypots would be, and has asked you for your help.
+The crayfisher has started wondering what the shortest route to take to check all the craypots would be, and has asked you for your help.
 Because every few weeks the craypots need to be moved around, the fisher would prefer a general way of solving the problem, rather than a solution to a single layout of craypots.
 Therefore, your investigations must consider more than one possible layout of craypots, and the layouts investigated should have the craypots placed *randomly* i.e. not in lines, patterns, or geometric shapes.
 
@@ -67,8 +67,8 @@ When asked to generate a random map of craypots, get a pile of coins (or counter
 If any land on top of each other, place them beside one another so that they are touching but not overlapping.
 One by one, remove the coins, making a dot on the paper in the centre of where each coin was.
 Number each of the dots.
-Each dot represents one craypot that the cray fisher has to check.
-You should label the top left corner or the paper as being the boat dock, where the cray fisher stores the boat.
+Each dot represents one craypot that the crayfisher has to check.
+You should label the top left corner or the paper as being the boat dock, where the crayfisher stores the boat.
 
 Generate a map with 7 or 8 craypots using the random map generation method described above.
 *Make an extra copy of this map, as you will need it again later.*
@@ -101,7 +101,7 @@ How many possible routes are there for the larger example you have generated?
 How is this related to permutation sort, and factorials?
 How long would it take to calculate the shortest route in your map, assuming the computer can check 1 billion (1,000,000,000) possible routes per second?
 What can you conclude about the cost of this algorithm?
-Would this be a good way for the cray fisher to decide which path to take?
+Would this be a good way for the crayfisher to decide which path to take?
 
 {comment I have considered getting them to pick a random number between 50 - 100, and to do the calculation for that as well, to increase personalisation. Although would this be too much work to expect of them to have to do this calculation twice? I really think it’d be best to do this though.}
 
@@ -116,12 +116,12 @@ What is the equivalent to a town in this scenario?
 What is the equivalent to a road?
 
 Since we know that this craypot problem is an example of the TSP, and that there is no known tractable algorithm for the TSP,  we know there is no tractable algorithm for the craypot problem either.
-Although there are slightly better algorithms than the one we used above, they are still intractable and with enough craypots, it would be impossible to work out a new route before the cray fisher has to move the pots again!
+Although there are slightly better algorithms than the one we used above, they are still intractable and with enough craypots, it would be impossible to work out a new route before the crayfisher has to move the pots again!
 
 {comment the following introduces the idea of a heuristic/approximate solution; should it be in a main section rather than buried in the project? Either mention it earlier, or split the project in two parts, with a section on heuristics between them.}
 
 Instead of wasting time on trying to invent a clever algorithm that no-one has been able to find, we need to rely on a algorithm that will generate an approximate solution.
-The cray fisher would be happy with an approximate solution that is say, 10% longer than the best possible route, but which the computer can find quickly.
+The crayfisher would be happy with an approximate solution that is say, 10% longer than the best possible route, but which the computer can find quickly.
 
 There are several ways of approaching this.
 Some are better than others in general, and some are better than others with certain layouts.
@@ -145,9 +145,9 @@ You will need to show a map that has a greedy route and a shorter route marked o
 Explain the technique you used to show there was a shorter solution.
 Remember that it doesn’t matter how much shorter the new solution you identify is, just as long as it is at least slightly shorter than the approximate solution &ndash; you are just showing that the approximate solution couldn’t possibly be the optimal solution by showing that there is a shorter solution than the approximate solution.
 
-Even though the greedy algorithm only generates an approximate solution, as opposed to the optimal solution, explain why is it more suitable for the cray fisher than generating an optimal solution would be?
+Even though the greedy algorithm only generates an approximate solution, as opposed to the optimal solution, explain why is it more suitable for the crayfisher than generating an optimal solution would be?
 
-Why would it be important to the cray fisher to find a short route between the craypots, as opposed to just visiting them in a random order?
+Why would it be important to the crayfisher to find a short route between the craypots, as opposed to just visiting them in a random order?
 Discuss other problems that are equivalent to TSP that real world companies encounter every day.
 Why is it important to these companies to find good solutions to TSP?
 Estimate how much money might a courier company be wasting over a year if their delivery routes were 10% worse than the optimal.
