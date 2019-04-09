@@ -727,6 +727,7 @@ function initHandlers() {
     $('#desk-z-coordinate').on('blur', function() {
         updateCoords('z', null);
     });
+    
     $(document).on('keypress', function(key) {
         if(key.which == 13) {
             // Enter was pressed

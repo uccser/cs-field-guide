@@ -198,10 +198,57 @@ $(document).ready(function() {
     $('#reset-matrices-button').on('click', function() {
         resetMatrices();
     });
-    registerNodeHighlights();
+    registerOnFocusEvents();
     registerOnBlurEvents();
     registerEnterHandler();
 });
+
+
+/* registers the events related to when elements are selected */
+function registerOnFocusEvents() {
+    $('#p0-input-x').focus(function() {
+        setHighlight('c0');
+    });
+    $('#p0-input-y').focus(function() {
+        setHighlight('c0');
+    });
+    $('#p1-input-x').focus(function() {
+        setHighlight('c1');
+    });
+    $('#p1-input-y').focus(function() {
+        setHighlight('c1');
+    });
+    $('#p2-input-x').focus(function() {
+        setHighlight('c2');
+    });
+    $('#p2-input-y').focus(function() {
+        setHighlight('c2');
+    });
+    $('#p3-input-x').focus(function() {
+        setHighlight('c3');
+    });
+    $('#p3-input-y').focus(function() {
+        setHighlight('c3');
+    });
+    $('#p4-input-x').focus(function() {
+        setHighlight('c4');
+    });
+    $('#p4-input-y').focus(function() {
+        setHighlight('c4');
+    });
+    $('#p5-input-x').focus(function() {
+        setHighlight('c5');
+    });
+    $('#p5-input-y').focus(function() {
+        setHighlight('c5');
+    });
+    $('#p6-input-x').focus(function() {
+        setHighlight('c6');
+    });
+    $('#p6-input-y').focus(function() {
+        setHighlight('c6');
+    });
+}
 
 
 /* Registers the events related to when the user deselects a specific text field */
@@ -284,32 +331,6 @@ function registerOnBlurEvents() {
     });
     $('#matrix-second-translate-row-1-col-0').on('blur', function() {
         matrixTab('matrix-second-translate-row-1-col-0');
-    });
-}
-
-
-/* Registers the node highlighting radio buttons for coordinate manipulations */
-function registerNodeHighlights() {
-    $('#c0-check').on('click', function() {
-        setHighlight('c0');
-    });
-    $('#c1-check').on('click', function() {
-        setHighlight('c1');
-    });
-    $('#c2-check').on('click', function() {
-        setHighlight('c2');
-    });
-    $('#c3-check').on('click', function() {
-        setHighlight('c3');
-    });
-    $('#c4-check').on('click', function() {
-        setHighlight('c4');
-    });
-    $('#c5-check').on('click', function() {
-        setHighlight('c5');
-    });
-    $('#c6-check').on('click', function() {
-        setHighlight('c6');
     });
 }
 
@@ -747,21 +768,15 @@ function removeHighlight(node) {
 
 /* Sets the given node to be the only one highlighted */
 function setHighlight(node) {
-    var id = node + '-check';
-    clearHighlights(id);
+    clearHighlights();
     highlight(node);
 }
 
 
-/* Clears all highlighted nodes except the one with the id given */
-function clearHighlights(id) {
-    var nextId;
+/* Clears all highlighted nodes */
+function clearHighlights() {
     for (i=0; i<7; i++) { // there are 7 vertices in an arrow
-        nextId = 'c' + i + '-check';
-        if (nextId != id) {
-            document.getElementById(nextId).classList.remove('active');
-            removeHighlight('c' + i);
-        }
+        removeHighlight('c' + i);
     }
 }
 
