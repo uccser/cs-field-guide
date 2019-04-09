@@ -219,7 +219,12 @@ function updateCoords(axis, change) {
             x_pos = (x_pos + difference);
         } else { // else the parameters were not given and it must be input box from desktop browser
             // using 0 makes the value be set relative to start position, rather than previous position
-            x_pos = (0 + parseInt(document.getElementById('desk-x-coordinate').value));
+            var value = parseInt(document.getElementById('desk-x-coordinate').value);
+            if (isNaN(value) || value == null) {
+                x_pos = 0;
+            } else {
+                x_pos = value;
+            }
         }
         x_pos = limiter(x_pos);
         document.getElementById('mob-x-coordinate').value = x_pos;
@@ -230,7 +235,12 @@ function updateCoords(axis, change) {
         } else if (change == '+') {
             y_pos = (y_pos + difference);
         } else {
-            y_pos = (0 + parseInt(document.getElementById('desk-y-coordinate').value));
+            var value = parseInt(document.getElementById('desk-y-coordinate').value);
+            if (isNaN(value) || value == null) {
+                y_pos = 0;
+            } else {
+                y_pos = value;
+            }
         }
         y_pos = limiter(y_pos);
         document.getElementById('mob-y-coordinate').value = y_pos;
@@ -241,7 +251,12 @@ function updateCoords(axis, change) {
         } else if (change == '+') {
             z_pos = (z_pos + difference);
         } else {
-            z_pos = (0 + parseInt(document.getElementById('desk-z-coordinate').value));
+            var value = parseInt(document.getElementById('desk-z-coordinate').value);
+            if (isNaN(value) || value == null) {
+                z_pos = 0;
+            } else {
+                z_pos = value;
+            }
         }
         z_pos = limiter(z_pos);
         document.getElementById('mob-z-coordinate').value = z_pos;
@@ -581,7 +596,6 @@ function emptyCheck(x_pos, y_pos, z_pos) {
 
 }
 
-
 /**
  * triggered when user clicks "Restart" button after correctly guessing code
  */
@@ -609,6 +623,31 @@ function reset() {
         .easing (TWEEN.Easing.Elastic.Out)
         .onUpdate(render)
         .start();
+}
+
+
+
+/**
+ * If an input box is focused, updates the box from the value in it and focuses on the next box
+ */
+function runEnterHandler() {
+    var activeElement = document.activeElement;
+    var id = activeElement.id;
+
+    switch(id) {
+        case('desk-x-coordinate'):
+            updateCoords('x', null);
+            $('#desk-y-coordinate').focus();
+            break;
+        case('desk-y-coordinate'):
+            updateCoords('y', null);
+            $('#desk-z-coordinate').focus();
+            break;
+        case('desk-z-coordinate'):
+            updateCoords('z', null);
+            $('#desk-x-coordinate').focus();
+            break;
+    }
 }
 
 /**
@@ -680,12 +719,18 @@ function initHandlers() {
     });
 
     $('#desk-x-coordinate').on('blur', function() {
-        updateCoords('x');
+        updateCoords('x', null);
     });
     $('#desk-y-coordinate').on('blur', function() {
-        updateCoords('y');
+        updateCoords('y', null);
     });
     $('#desk-z-coordinate').on('blur', function() {
-        updateCoords('z');
+        updateCoords('z', null);
+    });
+    $(document).on('keypress', function(key) {
+        if(key.which == 13) {
+            // Enter was pressed
+            runEnterHandler();
+        }
     });
 }
