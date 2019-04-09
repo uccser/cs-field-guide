@@ -10,21 +10,21 @@ h1 {
     text-align: center;
 }
 
-#interactive-lzw-coding {
+#interactive-lzw-compression {
     display: flex;
     flex-direction: row;
     justify-content: center;
     margin: 5px;
     height: 100vh;
-    #interactive-lzw-coding-left,
-    #interactive-lzw-coding-right {
+    #interactive-lzw-compression-left,
+    #interactive-lzw-compression-right {
         display: flex;
         flex-direction: column;
         width: 100%;
         margin: 10px;
     }
-    #interactive-lzw-coding-left {
-        .interactive-lzw-coding-to-compress-block {
+    #interactive-lzw-compression-left {
+        .interactive-lzw-compression-to-compress-block {
             display: block;
         }
         flex-basis: 140%;
@@ -45,7 +45,7 @@ h1 {
             border: none;
             width: 100%;
         }
-        #interactive-lzw-coding-encoded-text {
+        #interactive-lzw-compression-encoded-text {
             flex-grow: 1;
             overflow: scroll;
             .interactive-lzw-code {
@@ -65,15 +65,15 @@ h1 {
             }
         }
     }
-    #interactive-lzw-coding-right {
+    #interactive-lzw-compression-right {
         overflow: hidden;
         position: relative;
-        #interactive-lzw-coding-dictionary {
+        #interactive-lzw-compression-dictionary {
             flex-grow: 1;
             overflow: scroll;
             scroll-behavior: smooth;
             display: flex;
-            .interactive-lzw-coding-dictionary-column {
+            .interactive-lzw-compression-dictionary-column {
                 width: 50%;
                 margin: 2px;
             }
@@ -90,16 +90,16 @@ h1 {
         }
     }
     textarea,
-    #interactive-lzw-coding-encoded-text,
-    #interactive-lzw-coding-dictionary {
+    #interactive-lzw-compression-encoded-text,
+    #interactive-lzw-compression-dictionary {
         border: 1px solid #BFB9B7;
         padding: 5px;
         font-family: "Courier New", monospace !important;
     }
     textarea,
     button,
-    #interactive-lzw-coding-encoded-text,
-    #interactive-lzw-coding-dictionary {
+    #interactive-lzw-compression-encoded-text,
+    #interactive-lzw-compression-dictionary {
         border-radius: 2px !important;
         box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12)
     }
@@ -117,9 +117,9 @@ h1 {
 }
 
 @media (max-width: 835px) {
-    #interactive-lzw-coding {
-        #interactive-lzw-coding-right {
-            #interactive-lzw-coding-dictionary {
+    #interactive-lzw-compression {
+        #interactive-lzw-compression-right {
+            #interactive-lzw-compression-dictionary {
                 font-size: 0.9rem;
             }
         }
@@ -127,9 +127,9 @@ h1 {
 }
 
 @media (max-width: 800px) {
-    #interactive-lzw-coding {
-        #interactive-lzw-coding-right {
-            #interactive-lzw-coding-dictionary {
+    #interactive-lzw-compression {
+        #interactive-lzw-compression-right {
+            #interactive-lzw-compression-dictionary {
                 font-size: 0.8rem;
             }
         }
@@ -137,9 +137,9 @@ h1 {
 }
 
 @media (max-width: 760px) {
-    #interactive-lzw-coding {
-        #interactive-lzw-coding-right {
-            #interactive-lzw-coding-dictionary {
+    #interactive-lzw-compression {
+        #interactive-lzw-compression-right {
+            #interactive-lzw-compression-dictionary {
                 font-size: 0.7rem;
             }
         }
@@ -147,23 +147,23 @@ h1 {
 }
 
 @media (max-width: 425px) {
-    #interactive-lzw-coding {
+    #interactive-lzw-compression {
         flex-wrap: wrap;
         p {
             margin: 2px;
         }
-        #interactive-lzw-coding-left {
-            .interactive-lzw-coding-to-compress-block {
+        #interactive-lzw-compression-left {
+            .interactive-lzw-compression-to-compress-block {
                 margin-bottom: 20px;
                 button {
                     width: 100%;
                 }
             }
-            #interactive-lzw-coding-encoded-text {
+            #interactive-lzw-compression-encoded-text {
                 height: 30vh;
             }
         }
-        #interactive-lzw-coding-dictionary {
+        #interactive-lzw-compression-dictionary {
             height: 20vh;
             font-size: 1rem !important;
         }
@@ -171,9 +171,9 @@ h1 {
 }
 
 @media (max-width: 375px) {
-    #interactive-lzw-coding {
-        #interactive-lzw-coding-right {
-            #interactive-lzw-coding-dictionary {
+    #interactive-lzw-compression {
+        #interactive-lzw-compression-right {
+            #interactive-lzw-compression-dictionary {
                 font-size: 0.8rem !important;
             }
         }
