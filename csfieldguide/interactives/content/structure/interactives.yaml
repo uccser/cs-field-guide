@@ -1,6 +1,6 @@
-2d-arrow-manipulations:
+2d-shape-manipulations:
   languages:
-    en: interactives/2d-arrow-manipulations.html
+    en: interactives/2d-shape-manipulations.html
   is_interactive: true
 action-menu:
   languages:

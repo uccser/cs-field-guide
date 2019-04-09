@@ -117,7 +117,7 @@ var matrix_translate = {
 // ########################################################################## //
 /* Other Globals */
 
-/* Global variable is a dictionary of variables relating to size and position of grid and arrow */
+/* Global variable is a dictionary of variables relating to size and position of grid and shape */
 var interfaceSettings = {
     POLYGON:         null,
     TARGET_POLYGON:  null,
@@ -131,8 +131,8 @@ var interfaceSettings = {
     yNumSquares:     0,
     yIntercept:      0,
     initialYIntercept: 0,
-    arrowWidth:      0,
-    arrowHeight:     0,
+    shapeWidth:      0,
+    shapeHeight:     0,
     offset:          0
 };
 
@@ -149,7 +149,7 @@ var configSettings = {
     MODULES:         []
 };
 
-/* Setting related to current state of the arrow */
+/* Setting related to current state of the shape */
 var currentState = {
     instantUpdate:   true,
     currentPosition: [],
@@ -167,7 +167,7 @@ function Point(x, y) {
 // ########################################################################## //
 /* Functions related to setting up the interface */
 
-/* On load; get config, build the grid and both arrows, then register button
+/* On load; get config, build the grid and both shapes, then register button
  * handler functions
  */
 $(document).ready(function() {
@@ -347,7 +347,7 @@ function registerEnterHandler() {
 }
 
 
-/* If the currently active element is an input box, updates the arrow and activates the next input box */
+/* If the currently active element is an input box, updates the shape and activates the next input box */
 function runEnterHandler() {
     var activeElement = document.activeElement;
     var id = activeElement.id;
@@ -403,12 +403,12 @@ function runEnterHandler() {
 }
 
 
-/* Rebuilds grid and arrows on window resize */
+/* Rebuilds grid and shapes on window resize */
 window.onresize = function(event) {
-    // recalculates size of grid and redraws arrow and target arrow
+    // recalculates size of grid and redraws shape and target shape
     setUpInterface();
-    setUpInitialTargetArrowPosition();
-    drawTargetArrow();
+    setUpInitialTargetshapePosition();
+    drawTargetshape();
     if (configSettings.TYPE == 'matrix') {
         matrixOperations();
     } else {
@@ -416,10 +416,10 @@ window.onresize = function(event) {
     }
 }
 
-/* on reset button click, draw the dynamic arrow in its start position */
+/* on reset button click, draw the dynamic shape in its start position */
 function reset() {
-    setUpInitialDynamicArrowPosition();
-    drawArrow();
+    setUpInitialDynamicshapePosition();
+    drawshape();
     for (var i=0; i < 7; i++) {
         checkForValidInput('p' + i + '-input-x');
         checkForValidInput('p' + i + '-input-y');
@@ -472,11 +472,11 @@ function setUpInterface() {
 
     // arbitrary numbers that seem to work well
     var squareSize = 20;
-    var arrowWidth = 3;
-    var arrowHeight = 8;
+    var shapeWidth = 3;
+    var shapeHeight = 8;
 
-    // offset used to center arrow in grid
-    var offset = (arrowHeight / 2) * squareSize;
+    // offset used to center shape in grid
+    var offset = (shapeHeight / 2) * squareSize;
 
     // width settings
     var windowWidth = window.innerWidth;
@@ -507,8 +507,8 @@ function setUpInterface() {
     interfaceSettings.xIntercept = xIntercept;
     interfaceSettings.yNumSquares = yNumSquares;
     interfaceSettings.yIntercept = yIntercept;
-    interfaceSettings.arrowWidth = arrowWidth;
-    interfaceSettings.arrowHeight = arrowHeight;
+    interfaceSettings.shapeWidth = shapeWidth;
+    interfaceSettings.shapeHeight = shapeHeight;
     interfaceSettings.offset = offset;
 
     if (interfaceSettings.initialXIntercept == 0) {
@@ -559,10 +559,10 @@ function assembleInterface(config) {
     }
     saveConfig(config);
     loadModules(config);
-    setUpInitialDynamicArrowPosition();
-    setUpInitialTargetArrowPosition();
-    drawArrow();
-    drawTargetArrow();
+    setUpInitialDynamicshapePosition();
+    setUpInitialTargetshapePosition();
+    drawshape();
+    drawTargetshape();
 }
 
 /* Draws the grid background by building css string */
@@ -578,53 +578,53 @@ function drawBackground() {
 
 
 // ########################################################################## //
-/* Functions related to manipulating the arrows */
+/* Functions related to manipulating the shapes */
 
-/* Creates and draws the dynamic arrow */
-function setUpInitialDynamicArrowPosition() {
-    // create the user's arrow
-    var arrowShape = generateArrowShape(configSettings.START_POSITION_STRING);
-    // takes a copy of arrowShape list because otherwise pointers get in the way with updating the arrow
-    configSettings.START_POSITION = arrowShape.slice(0);
-    currentState.currentPosition = arrowShape.slice(0);
+/* Creates and draws the dynamic shape */
+function setUpInitialDynamicshapePosition() {
+    // create the user's shape
+    var shapeShape = generateshapeShape(configSettings.START_POSITION_STRING);
+    // takes a copy of shapeShape list because otherwise pointers get in the way with updating the shape
+    configSettings.START_POSITION = shapeShape.slice(0);
+    currentState.currentPosition = shapeShape.slice(0);
     updateInputBoxes(configSettings.START_POSITION);
 }
 
 
-/* Creates and draws the target arrow */
-function setUpInitialTargetArrowPosition() {
-    configSettings.TARGET_POSITION = generateArrowShape(configSettings.TARGET_POSITION_STRING);
+/* Creates and draws the target shape */
+function setUpInitialTargetshapePosition() {
+    configSettings.TARGET_POSITION = generateshapeShape(configSettings.TARGET_POSITION_STRING);
 }
 
 
 /* Translates string of coordinates into list of points with x and y attributes that fit in the svg coordinate space */
-function generateArrowShape(pointString) {
+function generateshapeShape(pointString) {
     var xPos = 0;
     var yPos = 1;
-    var arrow = [];
+    var shape = [];
     var points = pointString.split(' ');
 
-    for (var i = 0; i < 7; i++) { // 7 points on an arrow, each with x and y value
+    for (var i = 0; i < 7; i++) { // 7 points on an shape, each with x and y value
 
         var point = new Point();
         point.x = (points[xPos] * interfaceSettings.squareSize) + interfaceSettings.xIntercept;
         // have to multiply by -1 becuase y axis is reversed in the svg coordinate space
         point.y = (points[yPos] * interfaceSettings.squareSize * -1) + interfaceSettings.yIntercept;
 
-        arrow.push(point);
+        shape.push(point);
 
         xPos += 2;
         yPos += 2;
     }
-    return arrow;
+    return shape;
 }
 
 
-/* Draws arrow shape */
-function drawTargetArrow() {
+/* Draws shape shape */
+function drawTargetshape() {
     var point;
 
-    for (var i = 0; i < 7; i++) { // 7 points on an arrow, each with x and y value
+    for (var i = 0; i < 7; i++) { // 7 points on an shape, each with x and y value
 
         point = interfaceSettings.TARGET_POLYGON.points.getItem(i);
         point.x = configSettings.TARGET_POSITION[i].x;
@@ -633,12 +633,12 @@ function drawTargetArrow() {
 }
 
 
-/* Updates each coordinate in the arrow */
-function drawArrow() {
+/* Updates each coordinate in the shape */
+function drawshape() {
     var point;
     var circle;
 
-    for (var i = 0; i < 7; i++) { // 7 points on an arrow
+    for (var i = 0; i < 7; i++) { // 7 points on an shape
         point = interfaceSettings.POLYGON.points.getItem(i);
         point.x = currentState.currentPosition[i].x;
         point.y = currentState.currentPosition[i].y;
@@ -675,10 +675,10 @@ function checkForValidInput(id) {
 }
 
 
-/* checks if arrow position matches target position */
+/* checks if shape position matches target position */
 function checkForMatch() {
     var match = true;
-    for (var i = 0; i < 7; i++) { // 7 points on arrow
+    for (var i = 0; i < 7; i++) { // 7 points on shape
         if ((Math.round(currentState.currentPosition[i].x * 100) / 100) != (Math.round(configSettings.TARGET_POSITION[i].x * 100) / 100)) {
             match = false;
             break;
@@ -706,7 +706,7 @@ function updateInputBoxes (points) {
     var inputId = '';
 
     // uses index to determine which input box to reference
-    for (var i = 0; i < 7; i++) { // 7 points on arrow
+    for (var i = 0; i < 7; i++) { // 7 points on shape
         inputId = 'p' + i + '-input-x';
         document.getElementById(inputId).value = (points[i].x - interfaceSettings.xIntercept) / interfaceSettings.squareSize;
         inputId = 'p' + i + '-input-y';
@@ -716,7 +716,7 @@ function updateInputBoxes (points) {
 
 
 /* Updates the input box based on its validity
- * Updates the dynamic arrow if instant update is checked
+ * Updates the dynamic shape if instant update is checked
  */
 function coordTab(node, x_or_y) {
     var id = 'p' + node.split('')[1] + '-input-' + x_or_y;
@@ -733,7 +733,7 @@ function coordTab(node, x_or_y) {
 function getNewCoordinates() {
     var inputId = '';
 
-    for (var i = 0; i < 7; i++) { // 7 points on arrow
+    for (var i = 0; i < 7; i++) { // 7 points on shape
         var newPoint = new Point();
 
         // Offsets the real value of the coordinate to give impression that centre of grid is position (0,0)
@@ -744,11 +744,11 @@ function getNewCoordinates() {
 
         currentState.currentPosition[i] = newPoint;
     }
-    drawArrow();
+    drawshape();
 }
 
 
-/* Highlights a point on the arrow
+/* Highlights a point on the shape
  * Input: id of selected point
  */
 function highlight(node) {
@@ -757,7 +757,7 @@ function highlight(node) {
 }
 
 
-/* Resets colour of point on the arrow
+/* Resets colour of point on the shape
  * Input: id of selected point
  */
 function removeHighlight(node) {
@@ -775,7 +775,7 @@ function setHighlight(node) {
 
 /* Clears all highlighted nodes */
 function clearHighlights() {
-    for (i=0; i<7; i++) { // there are 7 vertices in an arrow
+    for (i=0; i<7; i++) { // there are 7 vertices in an shape
         removeHighlight('c' + i);
     }
 }
@@ -785,7 +785,7 @@ function clearHighlights() {
 /* Functions relating to manipulation by matrices */
 
 /* Updates the input box based on its validity
- * Updates the dynamic arrow if instant update is checked
+ * Updates the dynamic shape if instant update is checked
  */
 function matrixTab(id) {
     checkForValidInput(id);
@@ -803,7 +803,7 @@ function matrixTab(id) {
 }
 
 
-/* Sets up order of matrix operations and moves the arrow to new position */
+/* Sets up order of matrix operations and moves the shape to new position */
 function matrixOperations(test) {
     var matrixElements = document.getElementById('matrices').children;
     var productMatrix = [];
@@ -826,18 +826,18 @@ function matrixOperations(test) {
         }
     }
 
-    drawArrow();
+    drawshape();
 }
 
 
-/* Scale the arrow according to the user's inputted matrix */
+/* Scale the shape according to the user's inputted matrix */
 function scale(id, productMatrix) {
     currentState.scaleMatrix[0] = parseFloat(document.getElementById('matrix-' + id + '-scale-row-0-col-0').value);
     currentState.scaleMatrix[1] = parseFloat(document.getElementById('matrix-' + id + '-scale-row-0-col-1').value);
     currentState.scaleMatrix[2] = parseFloat(document.getElementById('matrix-' + id + '-scale-row-1-col-0').value);
     currentState.scaleMatrix[3] = parseFloat(document.getElementById('matrix-' + id + '-scale-row-1-col-1').value);
 
-    for (var i = 0; i < 7; i++) { // 7 points on arrow
+    for (var i = 0; i < 7; i++) { // 7 points on shape
         var newPoint = new Point();
         var currPoint = productMatrix[i];
 
@@ -852,12 +852,12 @@ function scale(id, productMatrix) {
 }
 
 
-/* Translate the arrow according to the user's inputted matrix */
+/* Translate the shape according to the user's inputted matrix */
 function translate(id, productMatrix) {
     currentState.translateMatrix[0] = parseFloat(document.getElementById('matrix-' + id + '-translate-row-0-col-0').value) * interfaceSettings.squareSize;
     currentState.translateMatrix[1] = parseFloat(document.getElementById('matrix-' + id + '-translate-row-1-col-0').value) * interfaceSettings.squareSize;
 
-    for (var i = 0; i < 7; i++) { // 7 points on arrow
+    for (var i = 0; i < 7; i++) { // 7 points on shape
         var newPoint = new Point();
         var currPoint = productMatrix[i];
 
@@ -870,9 +870,9 @@ function translate(id, productMatrix) {
 }
 
 
-/* Move the arrow back to the start position and set the matrices to the default values */
+/* Move the shape back to the start position and set the matrices to the default values */
 function resetMatrices() {
-    // place the arrow back in the start position
+    // place the shape back in the start position
     reset();
 
     // reset to default values of matrices

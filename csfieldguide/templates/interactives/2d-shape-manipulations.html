@@ -4,9 +4,9 @@
 {% load static %}
 
 {% block html %}
-  <div class="row mb-3 arrow-manipulations">
+  <div class="row mb-3 shape-manipulations">
     <div class="col no-margins" role="group">
-      <title>{% trans '2D Arrow Manipulations' %}</title>
+      <title>{% trans '2D Shape Manipulations' %}</title>
       <div id="container">
         <div id="warning">
           <label>{% trans 'This interactive is designed for screens larger than 600x600px.' %}</label>
@@ -24,7 +24,7 @@
           <circle id="c6" cx="0" cy="0" r="3"/>
         </svg>
         
-        <div id="arrow-manipulation" class="container-fluid">
+        <div id="shape-manipulation" class="container-fluid">
           <div class="row justify-content-center">
             <label id="y-label">y</label>
           </div>
@@ -39,33 +39,33 @@
                     {% trans 'Select a configuration' %}
                   </button>
                   <div class="dropdown-menu" aria-labelledby="config-changer">
-                    <a class="dropdown-item" id="coord-translate" href="{% url 'interactives:interactive' '2d-arrow-manipulations' %}?config=coord-translate&showIndex">
+                    <a class="dropdown-item" id="coord-translate" href="{% url 'interactives:interactive' '2d-shape-manipulations' %}?config=coord-translate&showIndex">
                       {% trans 'Coordinates: Translation' %}</a>
-                    <a class="dropdown-item" id="coord-scale" href="{% url 'interactives:interactive' '2d-arrow-manipulations' %}?config=coord-scale&showIndex">
+                    <a class="dropdown-item" id="coord-scale" href="{% url 'interactives:interactive' '2d-shape-manipulations' %}?config=coord-scale&showIndex">
                       {% trans 'Coordinates: Scaling' %}</a>
-                    <a class="dropdown-item" id="coord-scale-translate" href="{% url 'interactives:interactive' '2d-arrow-manipulations' %}?config=coord-scale-translate&showIndex">
+                    <a class="dropdown-item" id="coord-scale-translate" href="{% url 'interactives:interactive' '2d-shape-manipulations' %}?config=coord-scale-translate&showIndex">
                       {% trans 'Coordinates: Scaling and Translation' %}</a>
-                    <a class="dropdown-item" id="coord-swap" href="{% url 'interactives:interactive' '2d-arrow-manipulations' %}?config=coord-swap&showIndex">
+                    <a class="dropdown-item" id="coord-swap" href="{% url 'interactives:interactive' '2d-shape-manipulations' %}?config=coord-swap&showIndex">
                       {% trans 'Coordinates: Swapping Coordinates' %}</a>
-                    <a class="dropdown-item" id="matrix-scale" href="{% url 'interactives:interactive' '2d-arrow-manipulations' %}?config=matrix-scale&showIndex">
+                    <a class="dropdown-item" id="matrix-scale" href="{% url 'interactives:interactive' '2d-shape-manipulations' %}?config=matrix-scale&showIndex">
                       {% trans 'Matrix: Scaling' %}</a>
-                    <a class="dropdown-item" id="matrix-rotate" href="{% url 'interactives:interactive' '2d-arrow-manipulations' %}?config=matrix-rotate&showIndex">
+                    <a class="dropdown-item" id="matrix-rotate" href="{% url 'interactives:interactive' '2d-shape-manipulations' %}?config=matrix-rotate&showIndex">
                       {% trans 'Matrix: Rotation' %}</a>
-                    <a class="dropdown-item" id="matrix-translate" href="{% url 'interactives:interactive' '2d-arrow-manipulations' %}?config=matrix-translate&showIndex">
+                    <a class="dropdown-item" id="matrix-translate" href="{% url 'interactives:interactive' '2d-shape-manipulations' %}?config=matrix-translate&showIndex">
                       {% trans 'Matrix: Translation' %}</a>
-                    <a class="dropdown-item" id="matrix-scale-translate" href="{% url 'interactives:interactive' '2d-arrow-manipulations' %}?config=matrix-scale-translate&showIndex">
+                    <a class="dropdown-item" id="matrix-scale-translate" href="{% url 'interactives:interactive' '2d-shape-manipulations' %}?config=matrix-scale-translate&showIndex">
                       {% trans 'Matrix: Scaling and Translation I' %}</a>
-                    <a class="dropdown-item" id="matrix-scale-translate-2" href="{% url 'interactives:interactive' '2d-arrow-manipulations' %}?config=matrix-scale-translate-2&showIndex">
+                    <a class="dropdown-item" id="matrix-scale-translate-2" href="{% url 'interactives:interactive' '2d-shape-manipulations' %}?config=matrix-scale-translate-2&showIndex">
                       {% trans 'Matrix: Scaling and Translation II' %}</a>
-                    <a class="dropdown-item" id="matrix-scale-translate-3" href="{% url 'interactives:interactive' '2d-arrow-manipulations' %}?config=matrix-scale-translate-3&showIndex">
+                    <a class="dropdown-item" id="matrix-scale-translate-3" href="{% url 'interactives:interactive' '2d-shape-manipulations' %}?config=matrix-scale-translate-3&showIndex">
                       {% trans 'Matrix: Scaling and Translation III' %}</a>
-                    <a class="dropdown-item" id="matrix-rotate-translate" href="{% url 'interactives:interactive' '2d-arrow-manipulations' %}?config=matrix-rotate-translate&showIndex">
+                    <a class="dropdown-item" id="matrix-rotate-translate" href="{% url 'interactives:interactive' '2d-shape-manipulations' %}?config=matrix-rotate-translate&showIndex">
                       {% trans 'Matrix: Rotation and Translation' %}</a>
-                    <a class="dropdown-item" id="matrix-rotate-scale-translate" href="{% url 'interactives:interactive' '2d-arrow-manipulations' %}?config=matrix-rotate-scale-translate&showIndex">
+                    <a class="dropdown-item" id="matrix-rotate-scale-translate" href="{% url 'interactives:interactive' '2d-shape-manipulations' %}?config=matrix-rotate-scale-translate&showIndex">
                       {% trans 'Matrix: Multiple Transformation Challenge I' %}</a>
-                    <a class="dropdown-item" id="matrix-rotate-scale-translate-2" href="{% url 'interactives:interactive' '2d-arrow-manipulations' %}?config=matrix-rotate-scale-translate-2&showIndex">
+                    <a class="dropdown-item" id="matrix-rotate-scale-translate-2" href="{% url 'interactives:interactive' '2d-shape-manipulations' %}?config=matrix-rotate-scale-translate-2&showIndex">
                       {% trans 'Matrix: Multiple Transformation Challenge II' %}</a>
-                    <a class="dropdown-item" id="matrix-single" href="{% url 'interactives:interactive' '2d-arrow-manipulations' %}?config=matrix-single&showIndex">
+                    <a class="dropdown-item" id="matrix-single" href="{% url 'interactives:interactive' '2d-shape-manipulations' %}?config=matrix-single&showIndex">
                       {% trans 'Matrix: Single Matrix Challenge' %}</a>
                   </div>
                 </div>
@@ -185,9 +185,9 @@
 {% endblock html %}
 
 {% block css %}
-  <link rel="stylesheet" href="{% static 'interactives/2d-arrow-manipulations/css/2d-arrow-manipulations.css' %}">
+  <link rel="stylesheet" href="{% static 'interactives/2d-shape-manipulations/css/2d-shape-manipulations.css' %}">
 {% endblock css %}
 
 {% block js %}
-  <script type="text/javascript" src="{% static 'interactives/2d-arrow-manipulations/js/2d-arrow-manipulations.js' %}"></script>
+  <script type="text/javascript" src="{% static 'interactives/2d-shape-manipulations/js/2d-shape-manipulations.js' %}"></script>
 {% endblock js %}

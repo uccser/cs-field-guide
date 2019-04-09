@@ -1,10 +1,12 @@
 
-# 2D Arrow Manipulations
+# 2D Shape Manipulations
 
 **Created by:** Hayley van Waas
 **Modified by:** Alasdair Smith
 
-This is the base system for a series of interactive used to show how to translate, scale and rotate an arrow by using coordinates and/or matrices.
+Formerly 2d Arrow Manipulations
+
+This is the base system for a series of interactives used to show how to translate, scale and rotate a Seven shape by using coordinates and/or matrices.
 
 ## URL Parameters
 
