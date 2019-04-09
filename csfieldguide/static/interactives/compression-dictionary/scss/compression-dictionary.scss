@@ -1,0 +1,212 @@
+$shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+$border: 1px solid #BFB9B7;
+$green: #aedd85;
+$blue: #85c1dd;
+$orange: #FF7043;
+
+html {
+    font-family: "Roboto",sans-serif;
+}
+
+body {
+    margin: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+#interactive-compression-dictionary {
+    #interactive-compression-dictionary-activity {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin: 5px;
+        height: 100vh;
+        #interactive-compression-dictionary-left,
+        #interactive-compression-dictionary-right {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            margin: 10px;
+            button {
+                color: #FFF;
+                background-color: $orange;
+                text-align: center;
+                transition: .2s ease-out;
+                padding: 0.5rem;
+                border: none;
+                width: 100%;
+                box-shadow: $shadow;
+            }
+        }
+        #interactive-compression-dictionary-left {
+            flex-basis: 140%;
+            textarea {
+                border: none;
+                width: 100%;
+                font: 1rem "Courier New", monospace;
+                border: $border;
+                min-height: 5em;
+                box-sizing: border-box;
+                box-shadow: $shadow;
+                margin-bottom: 10px;
+            }
+            p {
+                margin-bottom: 0px;
+            }
+            #interactive-compression-dictionary-stats {
+                text-align: center;
+                font-weight: bold;
+                p {
+                    display: inline-block;
+                    margin-top: 0;
+                    margin-bottom: 5px;
+                }
+            }
+            #interactive-compression-dictionary-output {
+                flex-grow: 1;
+                overflow: scroll;
+                .interactive-compression-dictionary-output-line {
+                    display: flex;
+                    align-items: center;
+                    height: 2em;
+                    p.interactive-compression-dictionary-message-character {
+                        display: inline-block;
+                        min-width: 10px;
+                        min-height: 1rem;
+                        margin: 1px;
+                        &.compressed {
+                            background-color: $green;
+                            outline-offset: 0.5px;
+                        }
+                        &.highlight {
+                            color: #FFF;
+                            background-color: orange !important;
+                        }
+                    }
+                }
+            }
+        }
+        #interactive-compression-dictionary-right {
+            overflow: hidden;
+            position: relative;
+            #interactive-compression-dictionary-user-dictionary-entry-input {
+                margin: 0 2px;
+                p {
+                    margin-top: 0px;
+                }
+                #interactive-compression-user-dictionary-entry-input-row {
+                    display: flex;
+                    input {
+                        flex-basis: 300%;
+                        padding: 4px;
+                        border: 1px solid #BFB9B7;
+                        margin: 1px;
+                        font: 1rem "Courier New", monospace !important;
+                        box-shadow: $shadow;
+                    }
+                    input.error {
+                        border-color: red !important;
+                    }
+                    input:focus.error {
+                        outline: 1px solid red;
+                    }
+                    button {
+                        margin: 1px 0 1px 3px;
+                    }
+                }
+                #error-message {
+                    display: block;
+                    font-size: 0.8rem;
+                    text-align: center;
+                    color: red;
+                    p {
+                        margin: 0px;
+                    }
+                    &.hide {
+                        display: none;
+                    }
+                    &.show {
+                        display: block;
+                    }
+                    .error-message {
+                        display: inline-block;
+                    }
+                }
+                #interactive-compression-dictionary-reset-button {
+                    margin-top: 4px;
+                }
+            }
+            #interactive-compression-dictionary-user-dictionary {
+                flex-grow: 1;
+                margin-top: 20px;
+                display: flex;
+                overflow: scroll;
+                min-width: 100%;
+                border-radius: 2px !important;
+                .interactive-compression-dictionary-user-dictionary-column {
+                    min-width: 175px;
+                    margin: 2px;
+                    .interactive-compression-dictionary-user-dictionary-entry {
+                        margin: 2px 0;
+                        &:hover, &.highlight {
+                            border: 2px solid $orange;
+                            outline-offset: 0.5px;
+                        }
+                        p {
+                            display: inline-block;
+                            margin: 3px;
+                        }
+                        .interactive-compression-dictionary-user-dictionary-code {
+                            width: 2rem;
+                        }
+                    }
+                }
+            }
+        }
+        #interactive-compression-dictionary-left textarea,
+        #interactive-compression-dictionary-left #interactive-compression-dictionary-output,
+        #interactive-compression-dictionary-user-dictionary {
+            border: $border;
+            padding: 5px;
+            font-family: "Courier New", monospace !important;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    #interactive-compression-dictionary {
+        #interactive-compression-dictionary-left,
+        #interactive-compression-dictionary-left {
+            margin: 0px;
+        }
+        #interactive-compression-dictionary-left {
+            width: 50% !important;
+            flex-basis: 100% !important;
+        }
+    }
+}
+
+@media (max-width: 640px) {
+    #interactive-compression-dictionary {
+        .interactive-compression-dictionary-heading {
+            margin: 15px 0;
+        }
+        #interactive-compression-dictionary-activity {
+            flex-wrap: wrap;
+            #interactive-compression-dictionary-left {
+                p {
+                    margin-top: 0px;
+                }
+                #interactive-compression-dictionary-stats {
+                    order: 10;
+                    margin-top: 5px;
+                }
+            }
+            #interactive-compression-dictionary-right {
+                margin: 0px;
+            }
+        }
+    }
+}
