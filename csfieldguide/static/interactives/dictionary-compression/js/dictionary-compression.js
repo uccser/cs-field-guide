@@ -110,11 +110,10 @@ function highlightCodedCharacters() {
 }
 
 function calculateStatistics(number_coded_characters) {
-    var percentage_coded_element = document.getElementById('interactive-dictionary-compression-percentage-compressed');
-    percentage_coded_element.innerHTML = Math.round((number_coded_characters/message_characters.length) * 100);
-    var num_references_used = document.getElementById('interactive-dictionary-compression-references-used');
-    num_references_used.innerHTML = codes.length;
-
+    var percentage_coded = Math.round((number_coded_characters/message_characters.length) * 100);
+    var num_references_used = codes.length;
+    var stats = gettext('%(percentage_coded)% of text compressed using %(num_references_used) references.')
+    document.getElementById('interactive-dictionary-compression-stats').innerHTML = stats;
 }
 
 
@@ -224,7 +223,7 @@ function updateDictionary() {
         // remove error message if showing
         changeErrorMessage(false, '');
         if (new_entry_value == '') {
-            changeErrorMessage(true, 'Please enter some text');
+            changeErrorMessage(true, gettext('Please enter some text'));
         } else {
             codes.push(new_entry_value);
             // create a new element for the new dictionary entry
@@ -246,7 +245,7 @@ function updateDictionary() {
             highlightCodedCharacters();
         }
     } else { // already in dictionary, so display an error
-        changeErrorMessage(true, 'This code is already in the dictionary.');
+        changeErrorMessage(true, gettext('This code is already in the dictionary.'));
     }
 }
 

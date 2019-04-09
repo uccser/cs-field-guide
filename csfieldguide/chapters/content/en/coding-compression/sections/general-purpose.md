@@ -6,15 +6,7 @@ The main idea of Ziv-Lempel coding is that sequences of characters are often rep
 
 The interactive below illustrates this idea using a variation of the Ziv-Lempel approach called LZSS (Lempel–Ziv–Storer–Szymanski); you should open it in a separate window, and try it out while reading the description below.
 
-{comment}
-
 {interactive slug="lzss-compression" type="whole-page"}
-
-LZSS Compression
-
-{interactive end}
-
-{comment end}
 
 In LZSS, a reference to where some text occurred before is actually two numbers: the first says how many characters to count back to where the previous phrase starts, and the second says how long the referenced phrase is. Each reference typically takes the space of about one or two characters, so the system makes a saving as long as two characters are replaced. The options in the interactive above allow you to require the replaced length to be at least two characters, to avoid replacing a single character with a reference. Of course, all characters count, not just letters of the alphabet, so the system can also refer back to the white spaces between words. In fact, some of the most common sequences are things like a full stop followed by a space.
 
@@ -33,28 +25,29 @@ This approach also works very well for simple images, since sequences like "10 w
 
 What you just tried is essentially what happens with PNG images; the pixel values are compressed using a similar Ziv-Lempel algorithm, which works well if you have lots of consecutive pixels that are the same colour. But it works very poorly with photographs, where pixel patterns are very unlikely to be repeated exactly. For example, in the following row of pixels from a photo nearly all of them are the same colour, yet the number representing the colour value fluctuates slightly, so there aren't many repeated patterns that an LZ method would pick up:
 
-{image file-path="img/chapters/pixel-viewer-photo-values.png" alt="Row from pixel viewer interactive showing different colours in a photo." caption=true}
+{image file-path="img/chapters/pixel-viewer-photo-values.png" alt="Row from pixel viewer interactive showing different colours in a photo." caption="true"}
 
-Caption: this image from a photo was generated using the Pixel Viewer Interactive.
+This image from a photo was generated using the Pixel Viewer Interactive.
 
 {image end}
 
 In contrast, the following zoomed in image from a cartoon has a lot of repeated pixel colours:
 
-{image file-path="img/chapters/pixel-viewer-cartoon-values.png" alt="Row from pixel viewer interactive showing similar colours in a cartoon." caption=true}
+{image file-path="img/chapters/pixel-viewer-cartoon-values.png" alt="Row from pixel viewer interactive showing similar colours in a cartoon." caption="true"}
 
-Caption: this image from a cartoon was generated using the Pixel Viewer Interactive.
+This image from a cartoon was generated using the Pixel Viewer Interactive.
 
 {image end}
 
 {panel type="teacher-note"}
+
+# Teacher note
 
 Ask your students to use the Pixel Viewer Interactive to load a photo and a cartoon to see this for themselves.
 
 {panel end}
 
 In the next section we’ll take a look at a variation of “Ziv-Lempel coding” creatively called “Lempel-Ziv-Welch coding”, which is often referred  to as LZW to make things easier. LZW uses a dictionary-like structure based on key and value pairs - these are based on the metaphor of looking up a word (key) and its definition (value) in a dictionary, but in this case the key is a number, and the value is a phrase of text that it represents. The phrase might be as small as two characters, or could be a few words. The dictionary keeps track of phrases it has encountered and gradually adds new ones to the dictionary.
-
 
 Let's think about how to use a dictionary for compression. Here's a short dictionary with 4 entries, numbered from 0 to 3 (the last entry in the dictionary is a comma):
 
@@ -79,14 +72,11 @@ This dictionary is way too small for regular text. Suppose you were allowed to u
 
 You can try creating your own dictionary for some text in the following interactive - see how few dictionary entries you need to cover as much of the text as possible.
 
-
-{comment}
-
 {interactive slug="dictionary-compression" type="whole-page"}
 
-{comment end}
-
 {panel type="teacher-note"}
+
+# Teacher note
 
 Students might think of putting in common words like “the” and “of”. Or even better, the strings might include a space after them - “the “ and “of “. But to be sure of representing any text, they’ll also need to include letters of the alphabet, and other symbols. If given long strings of text, such as "as soon as", then large amounts of text can be replaced with one code, but the longer strings might not occur a lot. Choosing a dictionary is hard work!
 
@@ -201,13 +191,11 @@ Link to panel?
 
 We were encoding quite a short message, so the longest sequence in the dictionary is just three characters. The longer the message that we are encoding, the longer these sequences can get, therefore allowing us to potentially represent reasonably long substrings with just one code, therefore resulting in effective compression. You can see this for yourself in the LZW compression interactive below:
 
-{comment}
-
 {interactive slug="lzw-compression" parameters="message-length=long" type="whole-page"}
 
-{comment end}
-
 {panel type="challenge"}
+
+# Challenge
 
 This compression algorithm works best for text with plenty of repeated sequences. To see this for yourself, try encoding the following string using the LZW interactive:
 
@@ -327,7 +315,7 @@ And this is the dictionary that the decoder created:
 Notice that it is exactly the same dictionary as the encoder created - the dictionary has been reconstructed without having to send it to the decoder!
 
 
-{panel type="extra-for-experts" subtitle="true"}
+{panel type="extra-for-experts"}
 
 # Other languages
 
@@ -335,7 +323,7 @@ But what about different languages? Since the dictionary builds up based on the 
 
 {panel end}
 
-{panel type="extra-for-experts" subtitle="true"}
+{panel type="extra-for-experts"}
 
 # Representing the codes in fewer than 12 bits
 

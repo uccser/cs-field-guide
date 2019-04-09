@@ -14,25 +14,23 @@
 
             <div id="interactive-lzw-compression-left">
                 <div class="interactive-lzw-compression-to-compress-block" id="interactive-lzw-compression-to-compress">
-                    <p>Message to compress:</p>
+                    <p>{% trans "Message to compress" %}:</p>
                     <textarea id="interactive-lzw-compression-input">
-Pease porridge hot, pease porridge cold,
+{% trans "Pease porridge hot, pease porridge cold,
 Pease porridge in the pot, nine days old;
 Some like it hot, some like it cold,
-Some like it in the pot, nine days old.</textarea>
+Some like it in the pot, nine days old." %}</textarea>
                     <button type="button" onclick="compress()">
-                        Compress &rarr;
+                        {% trans "Compress" %} &rarr;
                     </button>
                 </div>
-                <!-- <div class="interactive-lzw-compression-to-compress-block" id="interactive-lzw-compression-output"> -->
-                    <p>Compressed message:</p>
-                    <div id="interactive-lzw-compression-encoded-text">
-                    </div>
-                <!-- </div> -->
+                <p>{% trans "Compressed message" %}:</p>
+                <div id="interactive-lzw-compression-encoded-text">
+                </div>
             </div>
 
             <div id="interactive-lzw-compression-right">
-                <p>Generated Dictionary:</p>
+                <p>{% trans "Generated Dictionary" %}:</p>
                 <div id="interactive-lzw-compression-dictionary">
                     <div id="interactive-lzw-compression-dictionary-col-1" class="interactive-lzw-compression-dictionary-column">
                     </div>

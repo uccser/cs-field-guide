@@ -11,49 +11,47 @@
         <div id="interactive-dictionary-compression">
 
             <p>
-                This interactive demonstrates the concept of using a dictionary to
-                compress text.
+                {% trans "This interactive demonstrates the concept of using a dictionary to
+                compress text." %}
             </p>
             <p>
-                Using the input box below, enter a message. Then try and
-                build a dictionary that compresses every character in the message.
+                {% trans "Using the input box below, enter a message. Then try and
+                build a dictionary that compresses every character in the message." %}
             </p>
             <p>
-                How efficient is your dictionary? Are you compressing one character per
+                {% trans "How efficient is your dictionary? Are you compressing one character per
                 dictionary entry, or many? What happens if you add additional text to
-                your message, does your dictionary still compress all of the text?
+                your message, does your dictionary still compress all of the text?" %}
             </p>
 
             <div id="interactive-dictionary-compression-activity">
                 <div id="interactive-dictionary-compression-left">
-                    <h2 class="interactive-dictionary-compression-heading">Enter a message to compress:</h2>
+                    <h2 class="interactive-dictionary-compression-heading">{% trans "Enter a message to compress" %}:</h2>
                     <textarea id="interactive-dictionary-compression-input" placeholder="Pease porridge hot, pease porridge cold,
 Pease porridge in the pot, nine days old;
 Some like it hot, some like it cold,
 Some like it in the pot, nine days old."></textarea>
                     <button type="button" onclick="compress()">
-                        Compress &rarr;
+                        {% trans "Compress" %} &rarr;
                     </button>
-                    <h2 class="interactive-dictionary-compression-heading">Compressed Message:</h2>
+                    <h2 class="interactive-dictionary-compression-heading">{% trans "Compressed Message" %}:</h2>
                     <p>
-                        The highlighted characters represent the characters that are coded
-                        in your dictionary.
+                        {% trans "The highlighted characters represent the characters that are coded in your dictionary." %}
                     </p>
                     <div id="interactive-dictionary-compression-stats">
-                      <p id="interactive-dictionary-compression-percentage-compressed"></p>% of text compressed using <p id="interactive-dictionary-compression-references-used"></p> references.
                     </div>
                     <div id="interactive-dictionary-compression-output">
                     </div>
                 </div>
 
                 <div id="interactive-dictionary-compression-right">
-                    <h2 class="interactive-dictionary-compression-heading">Dictionary:</h2>
+                    <h2 class="interactive-dictionary-compression-heading">{% trans "Dictionary" %}:</h2>
                     <div id="interactive-dictionary-compression-user-dictionary-entry-input">
-                        <p>New dictionary entry:</p>
+                        <p>{% trans "New dictionary entry" %}:</p>
                         <div id="interactive-compression-user-dictionary-entry-input-row">
                             <input id="interactive-dictionary-compression-user-dictionary-value-input" onchange="updateDictionary();" placeholder="enter text here">
                             <button type="button" onclick="updateDictionary">
-                                Add &rarr;
+                                {% trans "Add" %} &rarr;
                             </button>
                         </div>
                         <div id="error-message" class="hide">
@@ -62,7 +60,7 @@ Some like it in the pot, nine days old."></textarea>
                             </p>
                         </div>
                         <button id="interactive-dictionary-compression-reset-button" type="button" onclick="resetDictionary()">
-                            Reset Dictionary &rarr;
+                            {% trans "Reset Dictionary" %} &rarr;
                         </button>
                     </div>
                     <div id="interactive-dictionary-compression-user-dictionary">

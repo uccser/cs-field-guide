@@ -14,23 +14,23 @@
     <div id="interactive-lzss-compression">
 
       <div id="interactive-lzss-compression-left-box">
-        <p>Enter the message you want to encode here:</p>
+        <p>{% trans "Enter the message you want to encode here" %}:</p>
         <div id="interactive-lzss-compression-input-text">
           <textarea id="message-to-decode">
-Pease porridge hot, pease porridge cold,
+{% trans "Pease porridge hot, pease porridge cold,
 Pease porridge in the pot, nine days old;
 Some like it hot, some like it cold,
-Some like it in the pot, nine days old.</textarea>
+Some like it in the pot, nine days old." }</textarea>
         </div>
         <div id="interactive-lzss-compression-compress-button">
           <button type="button" onclick="compress()">
-              Compress &rarr;
+              {% trans "Compress" } &rarr;
           </button>
         </div>
       </div>
 
       <div id="interactive-lzss-compression-right-box">
-        <p>Encoded Message:</p>
+        <p>{% trans "Encoded Message" }:</p>
         <div id="interactive-lzss-compression-compressed-text">
         </div>
       </div>
