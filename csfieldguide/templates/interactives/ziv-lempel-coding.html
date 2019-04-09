@@ -1,0 +1,47 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div class="container">
+    <div class="row">
+      <div class="col s12 l6 offset-l3">
+        <div id="interactive-ziv-lempel-coding">
+          <h3>{% trans "Ziv-Lempel Coding" %}</h3>
+
+          <div class="row">  
+    <div id="interactive-lzss">
+
+      <div id="interactive-lzss-left-box">
+        <p>Enter the message you want to encode here:</p>
+        <div id="interactive-lzss-input-text">
+          <textarea id="message-to-decode">
+Pease porridge hot, pease porridge cold,
+Pease porridge in the pot, nine days old;
+Some like it hot, some like it cold,
+Some like it in the pot, nine days old.</textarea>
+        </div>
+        <div id="interactive-lzss-compress-button">
+          <button type="button" onclick="compress()">
+              Compress &rarr;
+          </button>
+        </div>
+      </div>
+
+      <div id="interactive-lzss-right-box">
+        <p>Encoded Message:</p>
+        <div id="interactive-lzss-compressed-text">
+        </div>
+      </div>
+
+    </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/ziv-lempel-coding/css/ziv-lempel-coding.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/ziv-lempel-coding/js/ziv-lempel-coding.js' %}"></script>
+{% endblock js %}

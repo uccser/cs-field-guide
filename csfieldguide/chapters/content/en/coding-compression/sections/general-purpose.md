@@ -10,6 +10,10 @@ The interactive below illustrates this idea using a variation of the Ziv-Lempel 
 
 {interactive slug="lzss-compression" type="whole-page"}
 
+LZSS Compression
+
+{interactive end}
+
 {comment end}
 
 In LZSS, a reference to where some text occurred before is actually two numbers: the first says how many characters to count back to where the previous phrase starts, and the second says how long the referenced phrase is. Each reference typically takes the space of about one or two characters, so the system makes a saving as long as two characters are replaced. The options in the interactive above allow you to require the replaced length to be at least two characters, to avoid replacing a single character with a reference. Of course, all characters count, not just letters of the alphabet, so the system can also refer back to the white spaces between words. In fact, some of the most common sequences are things like a full stop followed by a space.

@@ -324,3 +324,6 @@ unicode-length:
 #   languages:
 #     en: interactives/viola-jones-face-detector.html
 #   is_interactive: true
+lzss-compression:
+  languages:
+    en: interactives/ziv-lempel-coding.html
