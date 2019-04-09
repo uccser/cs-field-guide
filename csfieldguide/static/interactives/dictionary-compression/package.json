@@ -1,5 +1,5 @@
 {
-    "name": "csfg-interactive-compression-dictionary",
+    "name": "csfg-interactive-dictionary-compression",
     "version": "1.0.0",
     "private": true,
     "dependencies": {

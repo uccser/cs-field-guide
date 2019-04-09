@@ -9,8 +9,8 @@ var message_characters = [];
 
 window.onload = function() {
     // reset all information relating to the message and dictionary
-    document.getElementById('interactive-compression-dictionary-output').innerHTML = '';
-    var dictionary_div = document.getElementById('interactive-compression-dictionary-user-dictionary');
+    document.getElementById('interactive-dictionary-compression-output').innerHTML = '';
+    var dictionary_div = document.getElementById('interactive-dictionary-compression-user-dictionary');
     dictionary_div.innerHTML = '';
     codes = [];
     message_characters = [];
@@ -22,7 +22,7 @@ window.onload = function() {
 
 function compress() {
     // reset all information relating to the message and dictionary
-    document.getElementById('interactive-compression-dictionary-output').innerHTML = '';
+    document.getElementById('interactive-dictionary-compression-output').innerHTML = '';
     message_characters = [];
     readInputMessage();
     //setExampleCodes();
@@ -110,9 +110,9 @@ function highlightCodedCharacters() {
 }
 
 function calculateStatistics(number_coded_characters) {
-    var percentage_coded_element = document.getElementById('interactive-compression-dictionary-percentage-compressed');
+    var percentage_coded_element = document.getElementById('interactive-dictionary-compression-percentage-compressed');
     percentage_coded_element.innerHTML = Math.round((number_coded_characters/message_characters.length) * 100);
-    var num_references_used = document.getElementById('interactive-compression-dictionary-references-used');
+    var num_references_used = document.getElementById('interactive-dictionary-compression-references-used');
     num_references_used.innerHTML = codes.length;
 
 }
@@ -171,7 +171,7 @@ function setExampleCodes() {
 
 // transfer the inputted message into individual element for each character
 function readInputMessage() {
-    var message_textarea = document.getElementById('interactive-compression-dictionary-input');
+    var message_textarea = document.getElementById('interactive-dictionary-compression-input');
     var message = message_textarea.value;
     if (message.length == 0) {
         message = message_textarea.placeholder;
@@ -183,7 +183,7 @@ function readInputMessage() {
     var fragment = document.createDocumentFragment();
 
     var line_div = document.createElement('div');
-    line_div.classList.add('interactive-compression-dictionary-output-line');
+    line_div.classList.add('interactive-dictionary-compression-output-line');
 
     for (var i = 0; i < message.length; i++) {
         var character = message[i];
@@ -196,11 +196,11 @@ function readInputMessage() {
             // append the line div and create a new one
             fragment.appendChild(line_div);
             var line_div = document.createElement('div');
-            line_div.classList.add('interactive-compression-dictionary-output-line');
+            line_div.classList.add('interactive-dictionary-compression-output-line');
         } else {
             var character_element = document.createElement('p');
             character_element.innerHTML = message[i];
-            character_element.classList.add('interactive-compression-dictionary-message-character');
+            character_element.classList.add('interactive-dictionary-compression-message-character');
             character_element.setAttribute('data-character-index', i);
             character_element.addEventListener('mousemove', function(event) {
                 highlightDictionaryEntry(event, true);
@@ -212,13 +212,13 @@ function readInputMessage() {
         }
     }
     fragment.appendChild(line_div);
-    document.getElementById('interactive-compression-dictionary-output').appendChild(fragment);
+    document.getElementById('interactive-dictionary-compression-output').appendChild(fragment);
 }
 
 
 function updateDictionary() {
     // get the new value entered by the user
-    var input_element = document.getElementById('interactive-compression-dictionary-user-dictionary-value-input');
+    var input_element = document.getElementById('interactive-dictionary-compression-user-dictionary-value-input');
     var new_entry_value = input_element.value;
     if (codes.indexOf(new_entry_value) == -1) {
         // remove error message if showing
@@ -230,7 +230,7 @@ function updateDictionary() {
             // create a new element for the new dictionary entry
             var next_index = codes.length - 1;
 
-            var dictionary_element = document.getElementById('interactive-compression-dictionary-user-dictionary');
+            var dictionary_element = document.getElementById('interactive-dictionary-compression-user-dictionary');
             if (next_index%30 == 0) {
                 if (next_index != 0) {
                     var last_column = dictionary_element.lastChild;
@@ -251,12 +251,12 @@ function updateDictionary() {
 }
 
 function changeErrorMessage(show, message) {
-    var input_element = document.getElementById('interactive-compression-dictionary-user-dictionary-value-input');
+    var input_element = document.getElementById('interactive-dictionary-compression-user-dictionary-value-input');
     if (show === true) {
         input_element.classList.add('error');
         document.getElementById('error-message').classList.add('show');
         document.getElementById('error-message').classList.remove('remove');
-        document.getElementById('interactive-compression-dictionary-error-text').innerHTML = message;
+        document.getElementById('interactive-dictionary-compression-error-text').innerHTML = message;
     } else {
         input_element.classList.remove('error');
         document.getElementById('error-message').classList.add('hide');
@@ -268,17 +268,17 @@ function changeErrorMessage(show, message) {
 function createDictionaryColumnElement(index) {
     var column_element = document.createElement('div');
     column_element.setAttribute('data-column-number', index);
-    column_element.classList.add('interactive-compression-dictionary-user-dictionary-column');
+    column_element.classList.add('interactive-dictionary-compression-user-dictionary-column');
     return column_element;
 }
 
 
 function resetDictionary() {
     var new_dictionary_column = createDictionaryColumnElement(1);
-    var dictionary_div = document.getElementById('interactive-compression-dictionary-user-dictionary');
+    var dictionary_div = document.getElementById('interactive-dictionary-compression-user-dictionary');
     dictionary_div.innerHTML = '';
     dictionary_div.appendChild(new_dictionary_column);
-    document.getElementById('interactive-compression-dictionary-user-dictionary-value-input').value = '';
+    document.getElementById('interactive-dictionary-compression-user-dictionary-value-input').value = '';
     codes = [];
     highlightCodedCharacters();
     changeErrorMessage(false, '');
@@ -296,20 +296,20 @@ function buildExampleDictionary() {
     var new_dictionary_column = createDictionaryColumnElement(1);
     new_dictionary_column.appendChild(fragment);
 
-    document.getElementById('interactive-compression-dictionary-user-dictionary').appendChild(new_dictionary_column);
+    document.getElementById('interactive-dictionary-compression-user-dictionary').appendChild(new_dictionary_column);
 };
 
 
 function createDictionaryElement(index, value) {
     // create dictionary entry element
     var dictionary_entry = document.createElement('div');
-    dictionary_entry.classList.add('interactive-compression-dictionary-user-dictionary-entry');
+    dictionary_entry.classList.add('interactive-dictionary-compression-user-dictionary-entry');
     dictionary_entry.setAttribute('data-code-index', index);
 
     // create code element
     var code_element = document.createElement('p');
     code_element.innerHTML = index;
-    code_element.classList.add('interactive-compression-dictionary-user-dictionary-code');
+    code_element.classList.add('interactive-dictionary-compression-user-dictionary-code');
 
     // create value element
     var value_element = document.createElement('p');
@@ -317,7 +317,7 @@ function createDictionaryElement(index, value) {
         value = '_';
     }
     value_element.innerHTML = value;
-    value_element.classList.add('interactive-compression-dictionary-user-dictionary-value');
+    value_element.classList.add('interactive-dictionary-compression-user-dictionary-value');
 
     // add code and value to parent div
     dictionary_entry.appendChild(code_element);
