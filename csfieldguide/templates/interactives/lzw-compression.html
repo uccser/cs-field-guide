@@ -6,7 +6,7 @@
 {% block html %}
 <div id="interactive-lzw-compression" class="row mt-3">
   <div class="col-12 text-center">
-    <h1 id="heading">{% trans "LZW Coding" %}</h1>
+    <h1 id="heading">{% trans "LZW Compression" %}</h1>
   </div>
   <div id="content" class="container">
 
@@ -16,11 +16,11 @@
                 <div class="interactive-lzw-compression-to-compress-block" id="interactive-lzw-compression-to-compress">
                     <p>{% trans "Message to compress" %}:</p>
                     <textarea id="interactive-lzw-compression-input">
-{% trans "Pease porridge hot, pease porridge cold,
+Pease porridge hot, pease porridge cold,
 Pease porridge in the pot, nine days old;
 Some like it hot, some like it cold,
-Some like it in the pot, nine days old." %}</textarea>
-                    <button type="button" onclick="compress()">
+Some like it in the pot, nine days old.</textarea>
+                    <button id="interactive-lzw-compression-compress-button" type="button">
                         {% trans "Compress" %} &rarr;
                     </button>
                 </div>

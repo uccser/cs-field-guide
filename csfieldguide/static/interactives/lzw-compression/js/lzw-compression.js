@@ -28,6 +28,8 @@ Twinkle, twinkle, little star.
 
 // set default text
 window.onload = function() {
+    document.getElementById('interactive-lzw-compression-compress-button').addEventListener('click', compress, false);
+
     var url_string = window.location.href;
     var url = new URL(url_string);
     var message_length = url.searchParams.get('message-length');

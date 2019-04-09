@@ -8,6 +8,11 @@ var message_characters = [];
 // ];
 
 window.onload = function() {
+    // set up listeners for buttons
+    document.getElementById('interactive-dictionary-compression-compress-button').addEventListener('click', compress, false);
+    document.getElementById('interactive-dictionary-compression-add-entry-button').addEventListener('click', updateDictionary, false);
+    document.getElementById('interactive-dictionary-compression-reset-button').addEventListener('click', resetDictionary, false);
+    document.getElementById('interactive-dictionary-compression-user-dictionary-value-input').addEventListener('change', updateDictionary, false);
     // reset all information relating to the message and dictionary
     document.getElementById('interactive-dictionary-compression-output').innerHTML = '';
     var dictionary_div = document.getElementById('interactive-dictionary-compression-user-dictionary');
@@ -31,7 +36,6 @@ function compress() {
 
 // highlight the characters that have a corresponding code in the dictionary
 function highlightCodedCharacters() {
-
     // clear the existing references
     for (var i = 0; i < message_characters.length; i++) {
         message_characters[i].CodeIndex = false;
@@ -40,7 +44,6 @@ function highlightCodedCharacters() {
             character_element.classList.remove('compressed');
         }
     }
-
     // stable sort the codes by length
     var ordered_codes = codes.slice()
     ordered_codes.sort(function (a, b) {
@@ -50,12 +53,9 @@ function highlightCodedCharacters() {
             return -1;
             return 1;
     });
-
     // highlight the substrings of the message that occur in the dictionary
     // uses the longest code first
-
     var number_coded_characters = 0;
-
     for (var i = 0; i < ordered_codes.length; i++) {
         var code = ordered_codes[i];
         for (var j = 0; j < message_characters.length - 1; j++) {
@@ -178,12 +178,9 @@ function readInputMessage() {
     message = message.trim();
     message_textarea.value = message;
     message = message.split('');
-
     var fragment = document.createDocumentFragment();
-
     var line_div = document.createElement('div');
     line_div.classList.add('interactive-dictionary-compression-output-line');
-
     for (var i = 0; i < message.length; i++) {
         var character = message[i];
         var new_message_character = {
@@ -291,10 +288,8 @@ function buildExampleDictionary() {
         var new_dictionary_element = createDictionaryElement(i, codes[i]);
         fragment.append(new_dictionary_element);
     }
-
     var new_dictionary_column = createDictionaryColumnElement(1);
     new_dictionary_column.appendChild(fragment);
-
     document.getElementById('interactive-dictionary-compression-user-dictionary').appendChild(new_dictionary_column);
 };
 
@@ -304,12 +299,10 @@ function createDictionaryElement(index, value) {
     var dictionary_entry = document.createElement('div');
     dictionary_entry.classList.add('interactive-dictionary-compression-user-dictionary-entry');
     dictionary_entry.setAttribute('data-code-index', index);
-
     // create code element
     var code_element = document.createElement('p');
     code_element.innerHTML = index;
     code_element.classList.add('interactive-dictionary-compression-user-dictionary-code');
-
     // create value element
     var value_element = document.createElement('p');
     if (value == ' ') { // replace space character with underscore so it can be seen
@@ -317,17 +310,14 @@ function createDictionaryElement(index, value) {
     }
     value_element.innerHTML = value;
     value_element.classList.add('interactive-dictionary-compression-user-dictionary-value');
-
     // add code and value to parent div
     dictionary_entry.appendChild(code_element);
     dictionary_entry.appendChild(value_element);
-
     dictionary_entry.addEventListener('mousemove', function(event) {
         highlightCharacters(event, true);
     });
     dictionary_entry.addEventListener('mouseleave', function(event) {
         highlightCharacters(event, false);
     });
-
     return dictionary_entry;
 }

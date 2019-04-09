@@ -181,13 +181,7 @@ And this is the compressed message:
 000000000000 000000000001 000000000010 000000000011 000000000101 000000000111 000000000010 000000000100 000000000010
 ```
 
-The compressed version shown here uses only 9 LZW codes, but each is 12 bits each, so this version would used 108 bits, which is bigger than the original, although we'll see later on [link to "Extra for experts: fewer than 12 bits"] that there's an easy trick that can be used to reduce this to just 3 or 4 bits per code, so it would use no more than 4x9, or 36 bits, which is less than 40% of the original size.
-
-{comment}
-
-Link to panel?
-
-{comment end}
+The compressed version shown here uses only 9 LZW codes, but each is 12 bits each, so this version would used 108 bits, which is bigger than the original, although we'll see later on (check out the "Extra for experts: fewer than 12 bits" panel at the end of this section) that there's an easy trick that can be used to reduce this to just 3 or 4 bits per code, so it would use no more than 4x9, or 36 bits, which is less than 40% of the original size.
 
 We were encoding quite a short message, so the longest sequence in the dictionary is just three characters. The longer the message that we are encoding, the longer these sequences can get, therefore allowing us to potentially represent reasonably long substrings with just one code, therefore resulting in effective compression. You can see this for yourself in the LZW compression interactive below:
 
@@ -315,17 +309,21 @@ And this is the dictionary that the decoder created:
 Notice that it is exactly the same dictionary as the encoder created - the dictionary has been reconstructed without having to send it to the decoder!
 
 
-{panel type="extra-for-experts"}
+{panel type="extra-for-experts" subtitle="true"}
 
-# Other languages
+# Extra for Experts
+
+## Other languages
 
 But what about different languages? Since the dictionary builds up based on the characters it has seen, it will simply adapt to whatever language is being used, whether it is English, French, Chinese, or even a computer programming language. Each language will have its own common substrings, and these will end up in the dictionary.
 
 {panel end}
 
-{panel type="extra-for-experts"}
+{panel type="extra-for-experts" subtitle="true"}
 
-# Representing the codes in fewer than 12 bits
+# Extra for Experts
+
+## Representing the codes in fewer than 12 bits
 
 While the dictionary is being built initially it doesn’t make sense to use 12 bits to store so few entries. Instead, while there are fewer than 4 entries we could use 2 bits, when there are more than 4 but fewer than 8 entries we could used 3 bits, etc. Eventually the dictionary will fill all 4096 (12 bit) entries, then what do we do? There are different ways to deal with this: a simple system just keeps the dictionary the same from then on and hopes the nature of the text doesn’t change. Another option is to start over with a completely new dictionary. A compromise would be to monitor the amount of compression and reset the dictionary if it is getting worse.
 

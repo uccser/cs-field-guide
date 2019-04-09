@@ -9,6 +9,11 @@ var start_index;
 var end_index;
 
 
+window.onload = function() {
+    document.getElementById('interactive-lzss-compression-compress-button').addEventListener('click', compress, false);  
+}
+
+
 function compress() {
     var message = document.getElementById('message-to-decode').value;
     // clear any existed encoded message

@@ -9,33 +9,34 @@
       <div class="col s12 l6 offset-l3">
         <div id="interactive-ziv-lempel-coding">
           <h3>{% trans "LZSS Compression" %}</h3>
-
           <div class="row">  
-    <div id="interactive-lzss-compression">
-
-      <div id="interactive-lzss-compression-left-box">
-        <p>{% trans "Enter the message you want to encode here" %}:</p>
-        <div id="interactive-lzss-compression-input-text">
-          <textarea id="message-to-decode">
-{% trans "Pease porridge hot, pease porridge cold,
-Pease porridge in the pot, nine days old;
-Some like it hot, some like it cold,
-Some like it in the pot, nine days old." }</textarea>
-        </div>
-        <div id="interactive-lzss-compression-compress-button">
-          <button type="button" onclick="compress()">
-              {% trans "Compress" } &rarr;
-          </button>
+            <div id="interactive-lzss-compression">
+              <div id="interactive-lzss-compression-left-box">
+                <p>{% trans "Enter the message you want to encode here" %}:</p>
+                <div id="interactive-lzss-compression-input-text">
+                  <textarea id="message-to-decode">
+        Pease porridge hot, pease porridge cold,
+        Pease porridge in the pot, nine days old;
+        Some like it hot, some like it cold,
+        Some like it in the pot, nine days old.</textarea>
+                </div>
+                <div>
+                  <button id="interactive-lzss-compression-compress-button" type="button">
+                      {% trans "Compress" %} &rarr;
+                  </button>
+                </div>
+              </div>
+              <div id="interactive-lzss-compression-right-box">
+                <p>{% trans "Encoded Message" %}:</p>
+                <div id="interactive-lzss-compression-compressed-text">
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-
-      <div id="interactive-lzss-compression-right-box">
-        <p>{% trans "Encoded Message" }:</p>
-        <div id="interactive-lzss-compression-compressed-text">
-        </div>
-      </div>
-
     </div>
+  </div>
 {% endblock html %}
 
 {% block css %}
