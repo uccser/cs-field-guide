@@ -21,8 +21,8 @@ chapters:
   #   chapter-number: 10
   # complexity-and-tractability:
   #   chapter-number: 11
-  # computer-graphics:
-  #   chapter-number: 12
+  computer-graphics:
+    chapter-number: 12
   # computer-vision:
   #   chapter-number: 13
   # formal-languages:

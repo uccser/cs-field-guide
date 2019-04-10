@@ -1,0 +1,73 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div class="row mb-3 interactive-body">
+    <div id="container" class="box-translation">
+      <button id="restart-button" class="btn button-manip">{% trans 'Restart' %}</button>
+      <div id="user-input" class="layout">
+        <div id="coordinates">
+          <p>{% trans 'The key to unlocking this box is in three coloured symbols. Find out which by moving the box around.' %}</p>
+          <div id="desktop-coord">
+            <label>x = <input type="text" id="desk-x-coordinate" autofocus/></label>
+            <label>y = <input type="text" id="desk-y-coordinate"></label>
+            <label>z = <input type="text" id="desk-z-coordinate"></label>
+          </div>
+          <div id="mobile-coord">
+            <div id="mob-x">x = 
+              <button id="mob-x-n" class="btn button-manip little-button">&minus;</button><input readonly type="text" id="mob-x-coordinate"/><button id="mob-x-p" class="btn button-manip little-button">&plus;</button>
+            </div>
+            <div id="mob-y">y = 
+              <button id="mob-y-n" class="btn button-manip little-button">&minus;</button><input readonly type="text" id="mob-y-coordinate"/><button id="mob-y-p" class="btn button-manip little-button">&plus;</button>
+            </div>
+            <div id="mob-z">z = 
+              <button id="mob-z-n" class="btn button-manip little-button">&minus;</button><input readonly type="text" id="mob-z-coordinate"/><button id="mob-z-p" class="btn button-manip little-button">&plus;</button>
+            </div>
+          </div>
+        </div>
+        <div id="code">
+          <p id="question">{% trans 'Which of the symbols is coloured on the box?' %}</p>
+          <div class="col d-block">
+            <div class="row d-block">
+              <img id="1" src="{% static 'img/interactives/colourful-box-images/square1-256px-grayscale.png' %}">
+              <img id="2" src="{% static 'img/interactives/colourful-box-images/square2-256px-grayscale.png' %}">
+              <img id="3" src="{% static 'img/interactives/colourful-box-images/square3-256px-grayscale.png' %}">
+              <img id="4" src="{% static 'img/interactives/colourful-box-images/square4-256px-grayscale.png' %}">
+            </div>
+            <div class="row d-block">
+              <img id="5" src="{% static 'img/interactives/colourful-box-images/square5-256px-grayscale.png' %}">
+              <img id="6" src="{% static 'img/interactives/colourful-box-images/square6-256px-grayscale.png' %}">
+              <img id="7" src="{% static 'img/interactives/colourful-box-images/square7-256px-grayscale.png' %}">
+              <img id="8" src="{% static 'img/interactives/colourful-box-images/square8-256px-grayscale.png' %}">
+            </div>
+            <button id="submit-symbol" class="btn button-manip">{% trans 'Submit' %}</button>
+          </div>
+          <div id="code-template" class="col d-inline-block">
+            <img id="first-symbol" src="{% static 'img/interactives/translation-rotation-interactives-images/question-1.png' %}">
+            <img id="second-symbol" src="{% static 'img/interactives/translation-rotation-interactives-images/question-2.png' %}">
+            <img id="third-symbol" src="{% static 'img/interactives/translation-rotation-interactives-images/question-3.png' %}">
+            <div class="row d-block">
+              <button id="clear-code" class="btn button-manip">{% trans 'Restart' %}</button>
+              <button id="submit-code" class="btn button-manip">{% trans 'Check Key' %}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'css/translation-rotation-interactives/translation-rotation.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript">
+    basePath = "{{ STATIC_URL }}";
+    imgPath = basePath + "img/interactives/translation-rotation-interactives-images/";
+    boxImgPath = basePath + "img/interactives/colourful-box-images/";
+  </script>
+  <script type="text/javascript" src="{% static 'js/translation-rotation-interactives/translation-rotation.js' %}"></script>
+{% endblock js %}
