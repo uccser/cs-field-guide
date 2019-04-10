@@ -381,6 +381,7 @@ function runEnterHandler() {
 
         var indexRow = id.indexOf('row-');
         var indexCol = id.indexOf('col-');
+        // The 4 and 5 here is to get the character immediately after the substring 'row-'/'col-'
         elementVariable2 = [id.substring(indexRow + 4, indexRow + 5), id.substring(indexCol + 4, indexCol + 5)]
 
         var nextBox = [parseInt(elementVariable2[0]), parseInt(elementVariable2[1])];
