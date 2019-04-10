@@ -1,8 +1,0 @@
-{
-    "type": "matrix",
-    "title": "Using Translation to Simplify Rotation",
-    "task": "To move the arrow to the new position, you'll have to translate the tip to the origin, apply the rotation, then translate it back.",
-    "start": "5 12 2 9 4 9 4 4 6 4 6 9 8 9",
-    "target": "5 12 5 7.74 6.42 9.16 9.97 5.61 11.39 7.03 7.84 10.58 9.26 12",
-    "modules": ["first-translate", "first-scale", "second-translate"]
-}

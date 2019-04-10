@@ -1,89 +1,106 @@
 # Graphics transformations
 
 A computer graphics image is just the result of a whole lot of mathematical calculations.
-In fact, every pixel you see in an image has usually had many calculations made to work out what colour it should be, and there are often millions of pixels in a typical image.
+In fact, every pixel you see in an image has usually had many calculations made to work out what colour it should be, and there are millions of pixels in a typical image.
 
 Let's start with some simple but common calculations that are needed in graphics programming.
 The following interactive shows a cube with symbols on each face.
 You can move it around using what's called a *transform*, which simply adjusts where it is placed in space.
-Try typing in 3D coordinates into this interactive to find each code.
+The camera will always focus on the cube, so to see the back of the cube move it behind the camera.
+Try typing 3D coordinates into this interactive to find each symbol.
 
-{interactive slug="box-translation" type="whole-page" text="Box Translation interactive"}
+{interactive slug="box-translation" type="whole-page" alt="Box Translation interactive"}
 
 You've just applied 3D *translation transforms* to the cube.
-Translation just means moving it in the three dimensions up and down, forward and back, and sideways.
+Translation just means moving it in the three dimensions up and down, forward and back, and left and right.
 
 Now try the following challenge, which requires you to rotate the box to find the codes.
 
-{interactive slug="box-rotation" type="whole-page" text="Box Rotation interactive"}
+{interactive slug="box-rotation" type="whole-page" alt="Box Rotation interactive"}
 
 There are several transformations that are used in computer graphics, but the most common ones are translation (moving the object), rotation (spinning it) and scaling (changing its size).
 They come up often in graphics because they are applied not only to objects, but to things like the positions of the camera and lighting sources.
 
 In this section you can apply transformations to various images.
 We'll start by making the changes manually, one point at a time, but we'll move up to a quick shortcut method that uses a *matrix* to do the work for you.
-We'll start by looking at how these work in two dimensions - it's a bit easier to think about than three dimensions.
+We'll start by looking at how these work in two dimensions &ndash; it's a bit easier to think about than three dimensions.
 
-The following interactive shows an arrow, and on the left you can see a list of the points that correspond to its 7 corners (usually referred to as *cartesian coordinates*).
-The arrow is on a grid, where the centre point is the "zero" point.
-Points are specified using two numbers, *x* and *y*, usually written as (*x*,*y*).
-The *x* value is how far the point is to the right of the centre and the *y* value is how far above the centre it is.
-For example, the first point in the list is the tip at (0,4), which means it's 0 units to the right of the centre (i.e.
-at the centre), and 4 units above it.
-Which point does the last pair (3,1) correspond to?
+The following interactive shows a shape, and on the left you can see a list of the points that correspond to its 7 corners (usually referred to as *cartesian coordinates*).
+The shape is on a grid, where the center point is the "zero" point.
+Points are specified using two numbers, *x* and *y*, usually written as (*x*, *y*).
+The *x* value is how far the point is to the right of the center and the *y* value is how far above the center it is.
+For example, the first point in the list is the tip at (0, 4), which means it's 0 units to the right of the center (i.e.
+at the center), and 4 units above it.
+Which point does the last pair (3, 1) correspond to?
 What does it mean if a coordinate has a negative *x* value?
 
 {panel type="teacher-note"}
 
 # Solutions to questions
 
-(3,1) is the right-most corner of the arrow.
-A negative *x* value means that it's to the *left* of the centre instead of the right.
-(A negative *y* value is below the centre).
+(3, 1) is the right-most corner of the shape.
+A negative *x* value means that it's to the *left* of the center instead of the right.
+(A negative *y* value is below the center).
 
 {panel end}
 
-{interactive slug="2d-arrow-manipulations" type="whole-page" text="Changing Point Locations" parameters="config=coord-translate"}
+{interactive slug="2d-shape-manipulations" type="whole-page" text="true" parameters="config=coord-translate"}
+
+Translating
+
+{interactive end}
 
 {panel type="teacher-note"}
 
 # Solution
 
-The transform in this interactive *translates* the arrow 2 units to the right and 3 units up.
-Subtracting three translates the arrow down and to the left.
+The transform in this interactive *translates* the shape 2 units to the right and 3 units up.
+Subtracting three translates the shape down and to the left.
 
 {panel end}
 
-The transform you did in the above interactive is called a *translation* — it translates the arrow around the grid.
+The transform you did in the above interactive is called a *translation* &ndash; it translates the shape around the grid.
 This kind of transform is used in graphics to specify where an object should be placed in a scene, but it has many other uses, such as making an animated object move along a path, or specifying the position of the imaginary camera (viewpoint).
 
 The next challenge involves changing the size of the image.
 
-{interactive slug="2d-arrow-manipulations" type="whole-page" text="Scaling" parameters="config=coord-scale"}
+{interactive slug="2d-shape-manipulations" type="whole-page" text="true" parameters="config=coord-scale"}
+
+Scaling
+
+{interactive end}
 
 {panel type="teacher-note"}
 
 # Solution
 
-Multiplying by 2 makes the arrow twice as large in each dimension.
+Multiplying by 2 makes the shape twice as large in each dimension.
 Multiplying by 10 makes it 10 times as large.
-Multiplying by 0.5 makes the arrow half the size.
-Multiplying only the x values makes the arrow wider horizontally only.
+Multiplying by 0.5 makes the shape half the size.
+Multiplying only the x values makes the shape wider horizontally only.
 
 {panel end}
 
 This transformation is called *scaling*, and although it can obviously be used to control the size of an object, this can in turn be used to create a visual effect such as making the object appear closer or further away.
 
-In the following interactive, try to get the blue arrow to match up with the red one.
+In the following interactive, try to get the blue shape to match up with the red one.
 It will require a mixture of scaling and translation.
 
-{interactive slug="2d-arrow-manipulations" type="whole-page" text="Scaling and Translating" parameters="config=coord-scale-translate"}
+{interactive slug="2d-shape-manipulations" type="whole-page" text="true" parameters="config=coord-scale-translate"}
+
+Scaling and Translating
+
+{interactive end}
 
 Next, see what happens if you swap the *x* and *y* value for each coordinate.
 
-{interactive slug="2d-arrow-manipulations" type="whole-page" text="Swapping Coordinates" parameters="config=coord-swap"}
+{interactive slug="2d-shape-manipulations" type="whole-page" text="true" parameters="config=coord-swap"}
 
-This is a simple *rotation* transformation, also useful for positioning objects in a scene,
+Swapping Coordinates
+
+{interactive end}
+
+This is a simple *rotation* transformation, useful for positioning objects in a scene,
 but also for specifying things like camera angles.
 
 Typing all these coordinates by hand is inefficent.
@@ -102,13 +119,13 @@ This section introduces the use of matrices to do the transforms.
 It doesn't assume that they have encountered matrices before, but if students are completely new to matrix algebra and are also weak in algebra in general, the explanation in this chapter might be a little minimal for them, and extra help will be needed.
 There are good resources around that explain matrices, although they likely provide more detail than needed.
 The
-[Khan academy](https://www.khanacademy.org/math/precalculus/precalc-matrices) have videos and quizzes explaining matrices (we are particularly interested in multiplying a matrix by a vector, which is what is happening when a matrix transform is applied to a point  - the point is the vector).
+[Khan academy](https://www.khanacademy.org/math/precalculus/precalc-matrices) have videos and quizzes explaining matrices (we are particularly interested in multiplying a matrix by a vector, which is what is happening when a matrix transform is applied to a point &ndash; the point is the vector).
 
 Other explanations aimed at school students include:
 - [Math is Fun - Matrix multiplying](http://www.mathsisfun.com/algebra/matrix-multiplying.html)
 - [Math in Sight - Matrix vector multiplication](http://mathinsight.org/matrix_vector_multiplication)
 - [Math Planet - Transformation using matrices](http://www.mathplanet.com/education/geometry/transformations/transformation-using-matrices)
-- [Wikipedia entry on matrix transformation](https://en.wikipedia.org/wiki/Transformation_matrix) - which likely has too much extra detail for students in it
+- [Wikipedia entry on matrix transformation](https://en.wikipedia.org/wiki/Transformation_matrix) &ndash; which likely has too much extra detail for students in it
 
 {panel end}  
 
@@ -128,16 +145,20 @@ where the top left value just means multiply all the x values by 2, and the bott
 
 You can try it out in the following interactive:
 
-{interactive slug="2d-arrow-manipulations" type="whole-page" text="2D Scaling" parameters="config=matrix-scale"}
+{interactive slug="2d-shape-manipulations" type="whole-page" text="true" parameters="config=matrix-scale"}
+
+2D Scaling
+
+{interactive end}
 
 At this stage you may want to have the interactive open in a separate window so that you can read the text below and work on the interactive at the same time.
 
 Let's take a closer look at what is happening here.
-As we mentioned earlier, each point on our arrow can be represented by two values (x and y).
-The rightmost point, on the arrow in the interactive above, we say is at point (3,1) in our coordinate space.
+As we mentioned earlier, each point on our shape can be represented by two values (x and y).
+The rightmost point, on the shape in the interactive above, we say is at point (3, 1) in our coordinate space.
 
 When we are applying a scaling transformation we are actually doing a type of "matrix multiplication."
-For example, let's scale point (3,1) by a factor of 2 as we did in the previous interactive:
+For example, let's scale point (3, 1) by a factor of 2 as we did in the previous interactive:
 
 \[
 \begin{bmatrix}
@@ -156,8 +177,8 @@ For example, let's scale point (3,1) by a factor of 2 as we did in the previous 
 \end{bmatrix}
 \]
 
-This gives us a new position of (6,2) for the rightmost point, which matches the previous interactive after applying the scaling matrix!
-This same matrix multiplication is applied to each of the seven points on the arrow.
+This gives us a new position of (6, 2) for the rightmost point, which matches the previous interactive after applying the scaling matrix!
+This same matrix multiplication is applied to each of the seven points on the shape.
 
 Now try changing the matrix to
 
@@ -168,7 +189,7 @@ Now try changing the matrix to
 \end{bmatrix}
 \]
 
-For the rightmost point (starting at (3,1)), the matrix muliplication for scaling by a factor of 3 is:
+For the rightmost point (starting at (3, 1)), the matrix muliplication for scaling by a factor of 3 is:
 
 \[
 \begin{bmatrix}
@@ -196,7 +217,7 @@ Now let's try scaling with a number less than one:
 \end{bmatrix}
 \]
 
-For the rightmost point (starting at (3,1)), the matrix muliplication for scaling by a factor of 0.2 is:
+For the rightmost point (starting at (3, 1)), the matrix muliplication for scaling by a factor of 0.2 is:
 
 \[
 \begin{bmatrix}
@@ -219,7 +240,7 @@ For the rightmost point (starting at (3,1)), the matrix muliplication for scalin
 
 # Explanation
 
-These should create an arrow 3 times as big and 0.2 (i.e. scaled down to one fifth of the size) times as big respectively.
+These should create a shape 3 times as big and 0.2 (i.e. scaled down to one fifth of the size) times as big respectively.
 
 {panel end}
 
@@ -243,13 +264,12 @@ sy \\
 \end{bmatrix}
 \]
 
-
 {panel type="extra-for-experts"}
 
 # Matrix Multiplication Challenge
 
-Pick 2 or 3 more points on the arrow (include some with negative x and y values) and try to do the matrix multiplication for scaling each factor above (2, 3 and 0.2).
-You'll know if you got the correct answer because it should match the scaled arrow in the interactive!
+Pick 2 or 3 more points on the shape (include some with negative x and y values) and try to do the matrix multiplication for scaling each factor above (2, 3 and 0.2).
+You'll know if you got the correct answer because it should match the scaled shape in the interactive!
 
 {panel end}
 
@@ -293,7 +313,7 @@ Now try the following matrix:
 \end{bmatrix}
 \]
 
-This matrix should have rotated the arrow to the right.
+This matrix should have rotated the shape to the right.
 
 The new *x* value has none of the original *x*, but exactly the original *y* value, and vice versa.
 This swaps all the *x* and *y* coordinates, which is the same as rotating the object to the right.
@@ -313,7 +333,7 @@ This is called a *rotation*.
 In general, to rotate an image by a given angle you need to use the sine (abbreviated sin) and cosine (abbreviated cos) functions from trigonometry.
 You can use the interactive below to calculate values for the sin and cos functions.
 
-{interactive slug="trig-function-calculator" type="whole-page" text="Trig Function Calculator"}
+{interactive slug="trig-function-calculator" type="whole-page" alt="Trig Function Calculator"}
 
 To rotate the image anticlockwise by \( \theta \) degrees, you'll need the following values in the matrix, which rely on trig functions:
 
@@ -335,7 +355,11 @@ The [Khan Academy](https://www.khanacademy.org/math/trigonometry/trigonometry-ri
 
 Note that the following interactives involving rotation transformations expect accuracy of 2 decimal places.
 
-{interactive slug="2d-arrow-manipulations" type="whole-page" text="Matrix Rotation" parameters="config=matrix-rotate"}
+{interactive slug="2d-shape-manipulations" type="whole-page" text="true" parameters="config=matrix-rotate"}
+
+Matrix Rotation
+
+{interactive end}
 
 {panel type="teacher-note"}
 
@@ -375,7 +399,11 @@ A bit simpler than the one for rotation!
 A translation can't be specified by this kind of matrix, so in the interactives we've provided an extra place to specify an *x* and *y* value to translate the input.
 Try it out in the following interactive.
 
-{interactive slug="2d-arrow-manipulations" type="whole-page" text="Translation Challenge" parameters="config=matrix-translate"}
+{interactive slug="2d-shape-manipulations" type="whole-page" text="true" parameters="config=matrix-translate"}
+
+Translation Challenge
+
+{interactive end}
 
 {panel type="teacher-note"}
 
@@ -387,7 +415,11 @@ Translate x is 9 and y is -7 (9 to the right and 7 down).
 
 The next interactive needs you to combine translation with scaling.
 
-{interactive slug="2d-arrow-manipulations" type="whole-page" text="Scaling and Translation Challenge" parameters="config=matrix-scale-translate"}
+{interactive slug="2d-shape-manipulations" type="whole-page" text="true" parameters="config=matrix-scale-translate"}
+
+Scaling and Translation Challenge
+
+{interactive end}
 
 {panel type="teacher-note"}
 
@@ -401,7 +433,11 @@ Translate x is 9 and y is -6.
 The order in which translation and scaling happen makes a difference.
 Try the following challenge!
 
-{interactive slug="2d-arrow-manipulations" type="whole-page" text="Translation before Scaling" parameters="config=matrix-scale-translate-2"}
+{interactive slug="2d-shape-manipulations" type="whole-page" text="true" parameters="config=matrix-scale-translate-2"}
+
+Translation Before Scaling
+
+{interactive end}
 
 {panel type="teacher-note"}
 
@@ -412,41 +448,53 @@ However, the translation will be doubled as well since it comes before the matri
 
 {panel end}
 
-In the above interactive, you'll have noticed that scaling is affected by how far the object is from the centre.
-If you want to scale around a fixed point in the object (so it expands where it is), then an easy way is to translate it back to the centre (also called the *origin*), scale it, and then translate it back to where it was.
- The following interactive allows you to move the arrow, then scale it, and move it back.
+In the above interactive, you'll have noticed that scaling is affected by how far the object is from the center.
+If you want to scale around a fixed point in the object (so it expands where it is), then an easy way is to translate it back to the center (also called the *origin*), scale it, and then translate it back to where it was.
+ The following interactive allows you to move the shape, then scale it, and move it back.
 
-{interactive slug="2d-arrow-manipulations" type="whole-page" text="Using Translation to Simplify Scaling" parameters="config=matrix-scale-translate-3"}
+{interactive slug="2d-shape-manipulations" type="whole-page" text="true" parameters="config=matrix-scale-translate-3"}
+
+Using Translation to Simplify Scaling
+
+{interactive end}
 
 {panel type="teacher-note"}
 
 # Solution
 
 The first translation is x = -12 and y = -12.
-Now the arrow tip is at the origin, and the doubling will keep the tip where it is.
+Now the shape tip is at the origin, and the doubling will keep the tip where it is.
 The matrix should be \( \begin{bmatrix}  2 & 0 \\   0 & 2 \\   \end{bmatrix} \) as usual for doubling.
-The second translation needs to be 12,12 to get the arrow back to the starting point.
+The second translation needs to be 12,12 to get the shape back to the starting point.
 
 {panel end}
 
 The same problem comes up with rotation.
 The following interactive allows you to use a translation first to make the scaling more predicable.
 
-{interactive slug="2d-arrow-manipulations" type="whole-page" text="Using Translation to Simplify Rotation" parameters="config=matrix-rotate-translate"}
+{interactive slug="2d-shape-manipulations" type="whole-page" text="true" parameters="config=matrix-rotate-translate"}
+
+Using Translation to Simplify Rotation
+
+{interactive end}
 
 {panel type="teacher-note"}
 
 # Solution
 
-The first translation is -5,-12 to put the arrow tip at the origin.
+The first translation is -5,-12 to put the shape tip at the origin.
 Using x = 45 in the trig function calculator, the matrix should be \( \begin{bmatrix}  0.71 & -0.71 \\   0.71 & 0.71 \\   \end{bmatrix} \).
-The second translation needs to be 5,12 to get the arrow back to the starting point.
+The second translation needs to be 5,12 to get the shape back to the starting point.
 
 {panel end}
 
 Now that you've had a bit of practice with translation, scaling and rotation, try out these two challenges that combine all three:
 
-{interactive slug="2d-arrow-manipulations" type="whole-page" text="Combining Translation, Scaling and Rotation" parameters="config=matrix-rotate-scale-translate"}
+{interactive slug="2d-shape-manipulations" type="whole-page" text="true" parameters="config=matrix-rotate-scale-translate"}
+
+Combining Translation, Scaling and Rotation
+
+{interactive end}
 
 {panel type="teacher-note"}
 
@@ -458,7 +506,11 @@ The translation vector is 8,4.
 
 {panel end}
 
-{interactive slug="2d-arrow-manipulations" type="whole-page" text="Multiple Transformation Challenge" parameters="config=matrix-rotate-scale-translate-2"}
+{interactive slug="2d-shape-manipulations" type="whole-page" text="true" parameters="config=matrix-rotate-scale-translate-2"}
+
+Multiple Transformation Challenge
+
+{interactive end}
 
 {panel type="teacher-note"}
 
@@ -471,7 +523,7 @@ The translation vector is -4,-7.
 {panel end}
 
 These combined transformations are common, and they might seem like a lot of work because each matrix has to be applied to every point in an object.
-Our arrows only had 7 points, but complex images can have thousands or even millions of points in them.
+Our shapes only had 7 points, but complex images can have thousands or even millions of points in them.
 Fortunately we can combine all the matrix operations in advance to give just one operation to apply to each point.
 
 ## Combining transformations
@@ -527,7 +579,11 @@ The two matrices to multiply work out like this:
 You can put the matrix we just calculated into the following interactive to see if it does indeed scale by 2 and rotate 45 degrees.
 Also try making up your own combination of transforms to see if they give the result you expect.
 
-{interactive slug="2d-arrow-manipulations" type="whole-page" text="Check a Single Matrix" parameters="config=matrix-single"}
+{interactive slug="2d-shape-manipulations" type="whole-page" text="true" parameters="config=matrix-single"}
+
+Check a Single Matrix
+
+{interactive end}
 
 In computer graphics systems there can be many transformations combined, and this is done by multiplying them all together (two at a time) to produce one matrix that does all the transforms in one go.
 That transform might then be applied to millions of points, so the time taken to do the matrix multiplication at the start will pay off well.
@@ -561,7 +617,7 @@ Use it to get used to translating in the three dimensions (don't worry about usi
 {button-link link="http://www.csfieldguide.org.nz/releases/1.9.9/_static/widgets/CG/CG-mini-editor/main%20(cutdown).html?info=%0ATranslation%20requires%203%20values,%20which%20are%20added%20to%20the%20*x*,%20*y*%20and%20*z*%20coordinates%20of%20each%20point%20in%20an%20object.%3Cp%3EIn%20the%20following%20interactive,%20try%20moving%20the%20teapot%20left%20and%20right%20(%20%3Cem%3Ex%3C/em%3E%20),%20up%20and%20down%20(%20%3Cem%3Ey%3C/em%3E%20),%20and%20in%20and%20out%20of%20the%20screen%20(%20%3Cem%3Ez%3C/em%3E%20)%20by%20adding%20a%20%E2%80%9Cvector%E2%80%9D%20to%20the%20operations.%20Then%20try%20combining%20all%20three.%3C/p%3E%0A" text="Click for interactive: 3D translation"}
 
 Rotation is trickier because you can now rotate in different directions.
-In 2D rotations were around the centre (origin) of the grid, but in 3D rotations are around a line (either the horizontal x-axis, the vertical y-axis, or the z-axis, which goes into the screen!)
+In 2D rotations were around the center (origin) of the grid, but in 3D rotations are around a line (either the horizontal x-axis, the vertical y-axis, or the z-axis, which goes into the screen!)
 
 The 2D rotation we used earlier can be applied to 3 dimensions using this matrix:
 
@@ -607,7 +663,7 @@ In the above examples, when you have several matrices being applied to every poi
 The following interactive can do those calculations for you.
 
 For example, in the following interactive, type in the matrix for doubling the size of an object (put the number 2 instead of 1 on the main diagonal values), then add another matrix that triples the size of the image (3 on the main diagonal).
-The interactive shows a matrix on the right that combines the two — does it look right?
+The interactive shows a matrix on the right that combines the two &ndash; does it look right?
 
 {button-link link="http://www.csfieldguide.org.nz/releases/1.9.9/_static/widgets/CG/CG-matrix-simplifier/CG-matrix-simplifier.html?info=Multiple%20transforms" text="Click for interactive: matrix simplifier"}
 
@@ -624,7 +680,7 @@ The interactive gives a full derivation of the calculations being done on each x
 
 The interactive also allows you to combine in translations (just three numbers, for x, y and z).
 Try combining a scaling followed by a translation.
-What if you add a rotation — does the order matter?
+What if you add a rotation &ndash; does the order matter?
 
 {panel type="curiosity"}
 

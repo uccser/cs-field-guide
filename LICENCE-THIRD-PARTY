@@ -1,12 +1,60 @@
 The CS Field Guide uses third-party libraries or other resources that may
-be distributed under licenses different than the CS Field Guide license.
+be distributed under licences different than the CS Field Guide licence.
 
-A summary of all third-party licenses are listed below, with a full copy of
-each license available within the 'third-party-licenses' directory.
+A summary of all third-party licences are listed below, with a full copy of
+each licence available within the 'third-party-licences' directory.
 
 If a particular source file of a library is included with the repository, it
 should contain a copyright notice at the top of the file.
 
-In the event that we accidentally failed to list a required license,
+In the event that we accidentally failed to list a required licence,
 please bring it to our attention through the issue tracker here:
 https://github.com/uccser/cs-field-guide/issues/new
+
+==============================================================================
+atebits/Words
+------------------------------------------------------------------------------
+https://github.com/atebits/Words
+Started by Loren Brichter
+Creative Commons Zero v1.0 Universal Licence
+third-party-licences/atebitsWords.txt
+==============================================================================
+
+==============================================================================
+css3patterns
+------------------------------------------------------------------------------
+https://github.com/LeaVerou/css3patterns
+Copyright 2011 Lea Verou
+licensed under MIT licence.
+third-party-licences/css3patterns.txt
+==============================================================================
+
+==============================================================================
+Detector.js
+------------------------------------------------------------------------------
+Modified by Alasdair Smith from the original file created by alteredq and mrdoob:
+https://github.com/alteredq/three.js/blob/master/examples/js/Detector.js
+Forked from the Three.js library:
+https://github.com/mrdoob/three.js/
+Copyright 2010-2011 three.js Authors
+licensed under MIT licence.
+third-party-licences/Detectorjs.txt
+==============================================================================
+
+==============================================================================
+Three.js
+------------------------------------------------------------------------------
+https://github.com/mrdoob/three.js/
+Copyright 2010-2019 three.js Authors
+licensed under MIT licence.
+third-party-licences/threejs.txt
+==============================================================================
+
+==============================================================================
+Tween.js
+------------------------------------------------------------------------------
+https://github.com/tweenjs/tween.js/
+Copyright 2010-2012 Tween.js Authors
+licensed under MIT licence.
+third-party-licences/tweenjs.txt
+==============================================================================
