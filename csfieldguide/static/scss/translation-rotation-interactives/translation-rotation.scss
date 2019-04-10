@@ -12,6 +12,7 @@ img {
     text-align: center;
 }
 
+
 label {
     display: block;
     font-size: 20px;
@@ -29,12 +30,14 @@ label {
     padding: 5px;
 }
 
+
 .little-button {
     width: 32px;
     height: 32px;
     margin: 0px;
     margin-bottom: 1px;
 }
+
 
 label, #mob-x, #mob-y, #mob-z {
     font-family: "Cambria",Georgia,serif;
@@ -90,24 +93,9 @@ label, #mob-x, #mob-y, #mob-z {
 }
 
 
-#symbol-grid, .row {
-    display: block;
-}
-
-
 #code-template img {
     display: inline;
     background-color: #fff;
-}
-
-
-#code-template button {
-    display: inline-block;
-}
-
-
-#end-buttons {
-    display: block;
 }
 
 
@@ -118,7 +106,7 @@ label, #mob-x, #mob-y, #mob-z {
 }
 
 
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
     .layout {
         font-size: 12px;
         bottom: 0px;
@@ -142,7 +130,7 @@ label, #mob-x, #mob-y, #mob-z {
 }
 
 
-@media (min-width: 768px) {
+@media screen and (min-width: 768px) {
     #desktop-coord {
         display: block;
     }

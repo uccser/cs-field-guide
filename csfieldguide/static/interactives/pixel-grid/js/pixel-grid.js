@@ -68,7 +68,7 @@ function buildGrid(size, vars, editable) {
     var activeChars = [];
     var activeCharLocs = [];
     var foundNode;
-    var printText = '';
+    var printHTML = '';
 
     if (vars.length > 0) {
         // Deal with the pre-active nodes
@@ -81,31 +81,31 @@ function buildGrid(size, vars, editable) {
     // Create the grid
     for (i=rows-1; i >= 0; i--) {
         if (editable) {
-            printText += '<div class="row btn-group-toggle" data-toggle="buttons">\n'
+            printHTML += '<div class="row btn-group-toggle" data-toggle="buttons">\n'
         } else {
-            printText += '<div class="row">\n'
+            printHTML += '<div class="row">\n'
         }
-        printText += '  <button type="button" class="btn div-square">' + i + '</button>\n';
+        printHTML += '  <button type="button" class="btn div-square">' + i + '</button>\n';
         for (j=0; j < cols; j++) {
             foundNode = activeCharLocs.findIndex(function(y) {return y[0] == j && y[1] == i});
             if (foundNode >= 0) {
                 // Activate the square
-                printText += '  <button type="button" class="btn div-square active">' + activeChars[foundNode] + '</button>\n';
+                printHTML += '  <button type="button" class="btn div-square active">' + activeChars[foundNode] + '</button>\n';
             } else {
-                printText += '  <button type="button" class="btn div-square"></button>\n';
+                printHTML += '  <button type="button" class="btn div-square"></button>\n';
             }
         }
-        printText += '</div>\n';
+        printHTML += '</div>\n';
     }
 
     // Last row of column indexes
-    printText += '<div class="row btn-group-toggle" data-toggle="buttons">\n'
-    printText += '  <button type="button" class="btn div-square"></button>\n';
+    printHTML += '<div class="row btn-group-toggle" data-toggle="buttons">\n'
+    printHTML += '  <button type="button" class="btn div-square"></button>\n';
     for (j=0; j < cols; j++) {
-        printText += '  <button type="button" class="btn div-square">' + j + '</button>\n';
+        printHTML += '  <button type="button" class="btn div-square">' + j + '</button>\n';
     }
-    printText += '</div>\n'
+    printHTML += '</div>\n'
 
     // Display the grid
-    $('#pixel-grid').html(printText);
+    $('#pixel-grid').html(printHTML);
 }

@@ -30,14 +30,14 @@
         </div>
         <div id="code">
           <p id="question">{% trans 'Which of the symbols is coloured on the box?' %}</p>
-          <div id="symbol-grid" class="col">
-            <div class="row">
+          <div class="col d-block">
+            <div class="row d-block">
               <img id="1" src="{% static 'img/interactives/colourful-box-images/square1-256px-grayscale.png' %}">
               <img id="2" src="{% static 'img/interactives/colourful-box-images/square2-256px-grayscale.png' %}">
               <img id="3" src="{% static 'img/interactives/colourful-box-images/square3-256px-grayscale.png' %}">
               <img id="4" src="{% static 'img/interactives/colourful-box-images/square4-256px-grayscale.png' %}">
             </div>
-            <div class="row">
+            <div class="row d-block">
               <img id="5" src="{% static 'img/interactives/colourful-box-images/square5-256px-grayscale.png' %}">
               <img id="6" src="{% static 'img/interactives/colourful-box-images/square6-256px-grayscale.png' %}">
               <img id="7" src="{% static 'img/interactives/colourful-box-images/square7-256px-grayscale.png' %}">
@@ -45,11 +45,11 @@
             </div>
             <button id="submit-symbol" class="btn button-manip">{% trans 'Submit' %}</button>
           </div>
-          <div id="code-template" class="col">
+          <div id="code-template" class="col d-inline-block">
             <img id="first-symbol" src="{% static 'img/interactives/translation-rotation-interactives-images/question-1.png' %}">
             <img id="second-symbol" src="{% static 'img/interactives/translation-rotation-interactives-images/question-2.png' %}">
             <img id="third-symbol" src="{% static 'img/interactives/translation-rotation-interactives-images/question-3.png' %}">
-            <div id="end-buttons" class="row">
+            <div class="row d-block">
               <button id="clear-code" class="btn button-manip">{% trans 'Restart' %}</button>
               <button id="submit-code" class="btn button-manip">{% trans 'Check Key' %}</button>
             </div>

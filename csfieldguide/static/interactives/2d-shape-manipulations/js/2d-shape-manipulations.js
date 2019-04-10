@@ -177,7 +177,7 @@ $(document).ready(function() {
 
     var config = urlParameters.getUrlParameter('config') || null;
     if (showIndex || config == null) {
-        document.getElementById('config-dropdown').classList.remove('no-show');
+        document.getElementById('config-dropdown').classList.remove('d-none');
     }
 
     if (config != null) {
@@ -555,7 +555,7 @@ function assembleInterface(config) {
             config = matrix_translate; break;
         default:
             config = coord_translate;
-            document.getElementById('config-dropdown').classList.remove('no-show'); break;
+            document.getElementById('config-dropdown').classList.remove('d-none'); break;
     }
     saveConfig(config);
     loadModules(config);

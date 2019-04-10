@@ -6,7 +6,7 @@ In fact, every pixel you see in an image has usually had many calculations made 
 Let's start with some simple but common calculations that are needed in graphics programming.
 The following interactive shows a cube with symbols on each face.
 You can move it around using what's called a *transform*, which simply adjusts where it is placed in space.
-The camera will always focus on the cube; so for example, to see the back of the cube, move it to the other side of the camera.
+The camera will always focus on the cube, so to see the back of the cube move it behind the camera.
 Try typing 3D coordinates into this interactive to find each symbol.
 
 {interactive slug="box-translation" type="whole-page" alt="Box Translation interactive"}

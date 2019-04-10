@@ -6,8 +6,7 @@ the letter "g" is specified as a series of lines and curves,
 so that when you zoom in on it the computer can redraw it at whatever resolution is needed.
 If the system only stored the pixels for the letter shape, then zooming in would result in a low quality image.
 
-{comment to add sometime, Jargonbuster: pixel (somewhere in the chapter) - also mention pel and bitmap, and origins of the terms.
-see www.foveon.com/files/ABriefHistoryofPixel2.pdf}
+{comment to add sometime, Jargonbuster: pixel (somewhere in the chapter) - also mention pel and bitmap, and origins of the terms. see www.foveon.com/files/ABriefHistoryofPixel2.pdf}
 
 {image file-path="img/chapters/vector-letter-with-outline.png" caption="true" alt="The points used to create the letter g."}
 
@@ -92,7 +91,7 @@ In other words, when you are *x* pixels across the screen with your line, the pi
 For example, choosing \( m=2 \) and \( c=3 \) means that the line would go through the points (0, 3), (1, 5), (2, 7), (3, 9) and so on.
 This line goes up 2 pixels for every one across \( m=2 \), and crosses the y axis 3 pixels up (\( c=3 \)).
 
-You should experiment with drawing graphs for various values of \( m \) and \( c \) (for example, start with \( c=0 \), and try these three lines: \( m=1 \), \( m=0.5 \) and\( m=0 \)) by putting in the values.
+You should experiment with drawing graphs for various values of \( m \) and \( c \) (for example, start with \( c=0 \), and try these three lines: \( m=1 \), \( m=0.5 \) and \( m=0 \)) by putting in the values.
 What angle are these lines at?
 
 {panel type="teacher-note"}
