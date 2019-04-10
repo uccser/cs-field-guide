@@ -408,8 +408,8 @@ function runEnterHandler() {
 window.onresize = function(event) {
     // recalculates size of grid and redraws shape and target shape
     setUpInterface();
-    setUpInitialTargetshapePosition();
-    drawTargetshape();
+    setUpInitialTargetShapePosition();
+    drawTargetShape();
     if (configSettings.TYPE == 'matrix') {
         matrixOperations();
     } else {
@@ -419,8 +419,8 @@ window.onresize = function(event) {
 
 /* on reset button click, draw the dynamic shape in its start position */
 function reset() {
-    setUpInitialDynamicshapePosition();
-    drawshape();
+    setUpInitialDynamicShapePosition();
+    drawShape();
     for (var i=0; i < 7; i++) {
         checkForValidInput('p' + i + '-input-x');
         checkForValidInput('p' + i + '-input-y');
@@ -560,10 +560,10 @@ function assembleInterface(config) {
     }
     saveConfig(config);
     loadModules(config);
-    setUpInitialDynamicshapePosition();
-    setUpInitialTargetshapePosition();
-    drawshape();
-    drawTargetshape();
+    setUpInitialDynamicShapePosition();
+    setUpInitialTargetShapePosition();
+    drawShape();
+    drawTargetShape();
 }
 
 /* Draws the grid background by building css string */
@@ -582,9 +582,9 @@ function drawBackground() {
 /* Functions related to manipulating the shapes */
 
 /* Creates and draws the dynamic shape */
-function setUpInitialDynamicshapePosition() {
+function setUpInitialDynamicShapePosition() {
     // create the user's shape
-    var shapeShape = generateshapeShape(configSettings.START_POSITION_STRING);
+    var shapeShape = generateShapeShape(configSettings.START_POSITION_STRING);
     // takes a copy of shapeShape list because otherwise pointers get in the way with updating the shape
     configSettings.START_POSITION = shapeShape.slice(0);
     currentState.currentPosition = shapeShape.slice(0);
@@ -593,13 +593,13 @@ function setUpInitialDynamicshapePosition() {
 
 
 /* Creates and draws the target shape */
-function setUpInitialTargetshapePosition() {
-    configSettings.TARGET_POSITION = generateshapeShape(configSettings.TARGET_POSITION_STRING);
+function setUpInitialTargetShapePosition() {
+    configSettings.TARGET_POSITION = generateShapeShape(configSettings.TARGET_POSITION_STRING);
 }
 
 
 /* Translates string of coordinates into list of points with x and y attributes that fit in the svg coordinate space */
-function generateshapeShape(pointString) {
+function generateShapeShape(pointString) {
     var xPos = 0;
     var yPos = 1;
     var shape = [];
@@ -622,7 +622,7 @@ function generateshapeShape(pointString) {
 
 
 /* Draws shape shape */
-function drawTargetshape() {
+function drawTargetShape() {
     var point;
 
     for (var i = 0; i < 7; i++) { // 7 points on an shape, each with x and y value
@@ -635,7 +635,7 @@ function drawTargetshape() {
 
 
 /* Updates each coordinate in the shape */
-function drawshape() {
+function drawShape() {
     var point;
     var circle;
 
@@ -745,7 +745,7 @@ function getNewCoordinates() {
 
         currentState.currentPosition[i] = newPoint;
     }
-    drawshape();
+    drawShape();
 }
 
 
@@ -827,7 +827,7 @@ function matrixOperations(test) {
         }
     }
 
-    drawshape();
+    drawShape();
 }
 
 
