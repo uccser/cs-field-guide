@@ -99,7 +99,11 @@ function buildGrid(size, vars, editable) {
     }
 
     // Last row of column indexes
-    printHTML += '<div class="row btn-group-toggle" data-toggle="buttons">\n'
+    if (editable) {
+        printHTML += '<div class="row btn-group-toggle" data-toggle="buttons">\n'
+    } else {
+        printHTML += '<div class="row">\n'
+    }
     printHTML += '  <button type="button" class="btn div-square"></button>\n';
     for (j=0; j < cols; j++) {
         printHTML += '  <button type="button" class="btn div-square">' + j + '</button>\n';
