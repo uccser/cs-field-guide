@@ -50,7 +50,13 @@ function travelOnTrain(current_station, trains_to_ride, trip_number) {
             return travelOnTrain(current_station, trains_to_ride.substring(1), trip_number + 1);
         } else {
             $('#interactive-trainsylvania-planner-result').addClass('error');
-            return Planner.stations[current_station] + " " + gettext('has no') + " '" + train_to_ride + "' " + gettext('train for ride number') + " " + trip_number;
+            var d = {
+              station: Planner.stations[current_station],
+              train: train_to_ride,
+              trip: trip_number
+            }
+            var fmts = ngettext('%(station)s has no %(train)s train for ride number %(trip)s!')
+            return interpolate(fmts, d, true);
         }
     }
 };
