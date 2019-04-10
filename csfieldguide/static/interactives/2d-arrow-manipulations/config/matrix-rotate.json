@@ -1,7 +1,0 @@
-{
-    "type": "matrix",
-    "title": "Matrix Rotation",
-    "task": "Rotate and translate the arrow to the new position. You can use the Trig Function Calculator interactive to calculate exact angles, the target arrow has accuracy of 2 decimal places",
-    "target": "7.84 6.84 3.58 6.84 5 5.42 1.45 1.87 2.87 0.45 6.42 4 7.84 2.58",
-    "modules": ["first-scale", "first-translate"]
-}
