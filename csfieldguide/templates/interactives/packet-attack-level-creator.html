@@ -35,28 +35,28 @@
       <!-- Shields -->
       <div class="col-12 col-md-6 col-lg-3 form-group">
         <label class="button-label">{% trans 'Shields:' %}</label>
-        <button type="button" class="btn btn-success hidden" aria-describedby="shields-help" id="shields-true">{% trans 'TRUE' %}</button>
+        <button type="button" class="btn btn-success d-none" aria-describedby="shields-help" id="shields-true">{% trans 'TRUE' %}</button>
         <button type="button" class="btn btn-danger" aria-describedby="shields-help" id="shields-false">{% trans 'FALSE' %}</button>
         <small id="shields-help" class="form-text text-muted">{% trans 'Shields protect packets from corruption' %}</small>
       </div>
       <!-- Ordering -->
       <div class="col-12 col-md-6 col-lg-3 form-group">
         <label class="button-label">{% trans 'Numbers:' %}</label>
-        <button type="button" class="btn btn-success hidden" aria-describedby="numbers-help" id="numbers-true">{% trans 'TRUE' %}</button>
+        <button type="button" class="btn btn-success d-none" aria-describedby="numbers-help" id="numbers-true">{% trans 'TRUE' %}</button>
         <button type="button" class="btn btn-danger" aria-describedby="numbers-help" id="numbers-false">{% trans 'FALSE' %}</button>
         <small id="numbers-help" class="form-text text-muted">{% trans 'Numbers protect packet order' %}</small>
       </div>
       <!-- ACKS & NACKS -->
       <div class="col-12 col-md-6 col-lg-3 form-group">
         <label class="button-label">{% trans 'Replies:' %}</label>
-        <button type="button" class="btn btn-success hidden" aria-describedby="message-help" id="replies-true">{% trans 'TRUE' %}</button>
+        <button type="button" class="btn btn-success d-none" aria-describedby="message-help" id="replies-true">{% trans 'TRUE' %}</button>
         <button type="button" class="btn btn-danger" aria-describedby="message-help" id="replies-false">{% trans 'FALSE' %}</button>
         <small id="delays-help" class="form-text text-muted">{% trans 'Replies tell the sender about packet status\'' %}</small>
       </div>
       <!-- Timeouts -->
       <div class="col-12 col-md-6 col-lg-3 form-group">
         <label class="button-label">{% trans 'Timeouts:' %}</label>
-        <button type="button" class="btn btn-success hidden" aria-describedby="timeouts-help" id="timeouts-true">{% trans 'TRUE' %}</button>
+        <button type="button" class="btn btn-success d-none" aria-describedby="timeouts-help" id="timeouts-true">{% trans 'TRUE' %}</button>
         <button type="button" class="btn btn-danger" aria-describedby="timeouts-help" id="timeouts-false">{% trans 'FALSE' %}</button>
         <small id="timeouts-help" class="form-text text-muted">{% trans 'A packet will be resent if it doesn\'t get a reply in time' %}</small>
       </div>

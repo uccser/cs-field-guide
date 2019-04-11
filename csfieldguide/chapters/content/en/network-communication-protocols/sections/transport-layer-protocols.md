@@ -97,6 +97,7 @@ Like in TCP, the game supports packet ordering, checksums (shields), Acks and Na
   Students can only beat using kill.
 - *Level 6*: Numbers and acknowledgments.
   Multiple Packets.
+  Packets are numbered to preserve order.
   Packets will be acknowledged and resent if there are issues.
   Students can only beat using kill.
 - *Level 7*: Everything.
@@ -104,6 +105,7 @@ Like in TCP, the game supports packet ordering, checksums (shields), Acks and Na
   Shields prevent corruption.
   Packets are numbered to preserve order.
   Packets will be acknowledged and resent if there are issues.
+  Packets will be resent if they don't get acknowledged within a set time.
   This level is not beatable.
 
 {panel end}

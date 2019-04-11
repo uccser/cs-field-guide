@@ -43,50 +43,50 @@ $(document).ready(function() {
     });
 
     $('#shields-false').on('click', function() {
-        $('#shields-false').addClass('hidden');
+        $('#shields-false').addClass('d-none');
         SHIELDS = true;
-        $('#shields-true').removeClass('hidden');
+        $('#shields-true').removeClass('d-none');
     });
 
     $('#shields-true').on('click', function() {
-        $('#shields-true').addClass('hidden');
+        $('#shields-true').addClass('d-none');
         SHIELDS = false;
-        $('#shields-false').removeClass('hidden');
+        $('#shields-false').removeClass('d-none');
     });
 
     $('#numbers-false').on('click', function() {
-        $('#numbers-false').addClass('hidden');
+        $('#numbers-false').addClass('d-none');
         NUMBERS = true;
-        $('#numbers-true').removeClass('hidden');
+        $('#numbers-true').removeClass('d-none');
     });
 
     $('#numbers-true').on('click', function() {
-        $('#numbers-true').addClass('hidden');
+        $('#numbers-true').addClass('d-none');
         NUMBERS = false;
-        $('#numbers-false').removeClass('hidden');
+        $('#numbers-false').removeClass('d-none');
     });
 
     $('#replies-false').on('click', function() {
-        $('#replies-false').addClass('hidden');
+        $('#replies-false').addClass('d-none');
         REPLIES = true;
-        $('#replies-true').removeClass('hidden');
+        $('#replies-true').removeClass('d-none');
     });
 
     $('#replies-true').on('click', function() {
-        $('#replies-true').addClass('hidden');
+        $('#replies-true').addClass('d-none');
         REPLIES = false;
-        $('#replies-false').removeClass('hidden');
+        $('#replies-false').removeClass('d-none');
     });
 
     $('#timeouts-false').on('click', function() {
-        $('#timeouts-false').addClass('hidden');
+        $('#timeouts-false').addClass('d-none');
         TIMEOUTS = true;
-        $('#timeouts-true').removeClass('hidden');
+        $('#timeouts-true').removeClass('d-none');
     });
 
     $('#timeouts-true').on('click', function() {
-        $('#timeouts-true').addClass('hidden');
+        $('#timeouts-true').addClass('d-none');
         TIMEOUTS = false;
-        $('#timeouts-false').removeClass('hidden');
+        $('#timeouts-false').removeClass('d-none');
     });
 });
