@@ -21,6 +21,15 @@ third-party-licences/css3patterns.txt
 ==============================================================================
 
 ==============================================================================
+cytoscape.js
+------------------------------------------------------------------------------
+https://github.com/cytoscape/cytoscape.js
+Copyright 2016-2019 The Cytoscape Consortium.
+licensed under MIT licence.
+third-party-licences/cytoscapejs.txt
+==============================================================================
+
+==============================================================================
 Detector.js
 ------------------------------------------------------------------------------
 Modified by Alasdair Smith from the original file created by alteredq and mrdoob:
