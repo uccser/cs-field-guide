@@ -45,15 +45,18 @@ All possible URL parameters are listed here:
 
 ## Required Files
 
-- [jQuery](https://jquery.com/)
-- [Phaser 3](https://github.com/photonstorm/phaser)
+The interactive loads from a base website template which includes a JavaScript file containing jQuery, Bootstrap, and a few other utilities and polyfills.
+See `static/js/website.js` for a full list.
 
-Licences for these will eventually be listed in the licences file, with a full copy of each licence available in the `third-party-licences` directory.
+## Licences
+
+This interactive was created using [Phaser 3](https://www.phaser.io/phaser3).
+The licence for this is listed in the LICENCE-THIRD-PARTY file, with a full copy available in the `third-party-licences` directory.
 
 ## Assets
 
 All image assets created for Packet Attack, including sprites and backgrounds, are found in the `packet-attack/assets/` directory.
-These were created by Jack Morgan and Alasdair Smith, and are freely available under the MIT Licence.
+These were created by Jack Morgan and Alasdair Smith, and are freely available under the project's MIT Licence.
 
 Email: jack.morgan@canterbury.ac.nz
 
