@@ -1,6 +1,0 @@
-{
-    "type": "coordinates",
-    "title": "Scaling",
-    "task": "Try multiplying the original coordinates by 2. What is the effect of this transform?<br>What would happen if you multiply each value by 10? How about 0.5? What if you only multiply the x values?",
-    "target": "0 8 -6 2 -2 2 -2 -8 2 -8 2 2 6 2"
-}
