@@ -30,6 +30,24 @@ third-party-licences/autofixer.txt
 ==============================================================================
 
 ==============================================================================
+@babel/core
+------------------------------------------------------------------------------
+https://github.com/babel/babel/tree/master/packages/babel-core
+Copyright 2014-present Sebastian McKenzie and other contributors
+licensed under MIT licence.
+third-party-licences/babel.txt
+==============================================================================
+
+==============================================================================
+@babel/preset-env
+------------------------------------------------------------------------------
+https://github.com/babel/babel/tree/master/packages/babel-preset-env
+Copyright 2014-present Sebastian McKenzie and other contributors
+licensed under MIT licence.
+third-party-licences/babel.txt
+==============================================================================
+
+==============================================================================
 big.js
 ------------------------------------------------------------------------------
 https://github.com/MikeMcl/big.js
