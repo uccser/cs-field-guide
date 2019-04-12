@@ -397,9 +397,18 @@ third-party-licences/popperjs.txt
 Puppeteer
 ------------------------------------------------------------------------------
 https://github.com/GoogleChrome/puppeteer
-Copyright 2016 Federico Zivolo and contributors
+Copyright holder not stated
 licensed under Apache License 2.0.
 third-party-licences/puppeteer.txt
+==============================================================================
+
+==============================================================================
+Request
+------------------------------------------------------------------------------
+https://github.com/request/request
+Copyright holder not stated
+licensed under Apache License 2.0.
+third-party-licences/request.txt
 ==============================================================================
 
 ==============================================================================
