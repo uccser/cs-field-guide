@@ -27,7 +27,7 @@ def find_image_files(images, md_file_path):
         CouldNotFindImageError: when image file cannot be found.
     """
     for image in images:
-        if not finders.find(image):
+        if not image.startswith('interactives/') and not finders.find(image):
             raise CouldNotFindImageError(image, md_file_path)
 
 

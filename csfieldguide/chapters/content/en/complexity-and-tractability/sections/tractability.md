@@ -37,7 +37,7 @@ It may be more meaningful to students it this is converted to some geological ti
 
 {panel end}
 
-{interactive slug="algorithm-timer type="whole-page"}
+{interactive slug="algorithm-timer" type="whole-page"}
 
 So far the calculation assumes that the computer would only do 1 operation per second; try changing to a million (1,000,000) operations per second, which is more realistic, and see how long that would take.
 
