@@ -140,7 +140,8 @@ Show a map where they would be different (you can choose where to place the cray
 
 For your larger map, show why you don’t have an optimal solution.
 The best way of doing this is to show a route that is similar to, but shorter than the approximate solution.
-The shorter solution you find doesn’t have to be the optimal solution, it just has to be shorter than the one identified by the approximate algorithm. Talk to your teacher if you can’t find a shorter route and they will advise on whether or not you should generate a new map.
+The shorter solution you find doesn’t have to be the optimal solution, it just has to be shorter than the one identified by the approximate algorithm.
+Talk to your teacher if you can’t find a shorter route and they will advise on whether or not you should generate a new map.
 You will need to show a map that has a greedy route and a shorter route marked on it.
 Explain the technique you used to show there was a shorter solution.
 Remember that it doesn’t matter how much shorter the new solution you identify is, just as long as it is at least slightly shorter than the approximate solution &ndash; you are just showing that the approximate solution couldn’t possibly be the optimal solution by showing that there is a shorter solution than the approximate solution.
