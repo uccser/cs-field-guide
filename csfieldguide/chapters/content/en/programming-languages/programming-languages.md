@@ -85,7 +85,7 @@ Try running the program.
 
 # Python version
 
-The following Python code is written for version 3 Python, but will also work with version 2.
+The following Python code is written for Python version 3, but will also work with version 2.
 
 {panel end}
 

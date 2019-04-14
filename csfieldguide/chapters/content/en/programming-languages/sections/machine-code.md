@@ -1,8 +1,8 @@
-# Machine Code (low level languages)
+# Machine code (low level languages)
 
 {panel type="teacher-note"}
 
-# Not expecting students to write machine code!
+# We're not expecting students to write machine code!
 
 Students are NOT expected (or even encouraged) to be able to write their own program in these languages.
 The purpose of the examples and getting the students to modify them is to help them understand why programming directly in these languages is best avoided, and thus the reason for high level languages.
@@ -35,10 +35,12 @@ The instructions are quite different to the ones you will have seen before in hi
 For example, the following program is written in a machine language called MIPS; which is used on some embedded computer systems.
 We will use MIPS in examples throughout this chapter.
 
-It starts by adding 2 numbers (that have been put in registers $t0 and $t1) and printing out the result.
-It then prints `Hello World!`. Don’t worry, we aren’t about to make you learn how to actually program in this language!
+Don’t worry, we aren’t about to make you learn how to actually program in this language!
 And if you don’t understand the program, that’s also fine because many software engineers wouldn’t either!
-(We are showing it to you to help you appreciate the purpose of both low and high level languages!)
+We are showing it to you to help you appreciate the purpose of both low and high level languages.
+
+It starts by adding 2 numbers (that have been put in registers $t0 and $t1) and printing out the result.
+It then prints `Hello World!`.
 
 ```mips
 .data
@@ -89,7 +91,7 @@ You can run this program using a MIPS emulator like these interactives:
 
 {interactive slug="mips-assembler" type="whole-page"}
 
-Copy and paste the plain output in the "Assembler Output" box into the box in this simulator interactive:
+Copy the plain output in the "Assembler Output" box and paste it into the box in this simulator interactive:
 
 {interactive slug="mips-simulator" type="whole-page"}
 

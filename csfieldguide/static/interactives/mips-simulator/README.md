@@ -15,7 +15,7 @@ The Author *does not* claim that it is an accurate representation of MIPS.
 ## Licences
 
 This interactive is influenced by the [MIPhpS MIPS Simulator](https://github.com/alanhogan/miphps-mips-simulator) by [Alan Hogan](http://alanhogan.com/).
-It's licence is listed in LICENCE-THIRD-PARTY, with a full copy available in the `third-party-licences` directory.
+It's licence is listed in `LICENCE-THIRD-PARTY`, with a full copy available in the `third-party-licences` directory.
 
 ## Required files
 
