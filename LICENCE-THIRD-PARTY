@@ -33,6 +33,26 @@ third-party-licences/Detectorjs.txt
 ==============================================================================
 
 ==============================================================================
+MIPhpS MIPS Simulator
+------------------------------------------------------------------------------
+This program was used as influence, and is itself no longer used anywhere in the project
+https://github.com/alanhogan/miphps-mips-simulator
+Copyright 2008 Alan Hogan
+licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+third-party-licences/mips-simulator.txt
+==============================================================================
+
+==============================================================================
+Online MIPS Assembler
+------------------------------------------------------------------------------
+This program was used as influence, and is itself no longer used anywhere in the project
+https://github.com/alanhogan/online-mips-assembler
+Copyright 2008 Alan Hogan
+licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+third-party-licences/mips-assembler.txt
+==============================================================================
+
+==============================================================================
 Three.js
 ------------------------------------------------------------------------------
 https://github.com/mrdoob/three.js/
