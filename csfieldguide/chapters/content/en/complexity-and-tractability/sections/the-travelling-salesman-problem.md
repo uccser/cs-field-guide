@@ -20,7 +20,7 @@ The number of possible paths gets out of hand; it's an intractable approach.
 In the project below you'll be estimating how long it would take.
 
 While TSP was originally identified as being the problem that sales people face when driving to several different locations and wanting to visit them in the order that leads to the shortest route (less petrol usage), the same problem applies to many other situations as well.
-Courier and delivery companies have variants of this problem &ndash; often with extra constraints such as limits on how long a driver can work for, or allowing for left hand turns being faster than right-hand ones (in NZ at least!)
+Courier and delivery companies have variants of this problem &ndash; often with extra constraints such as limits on how long a driver can work for, or allowing for left hand turns being faster than right-hand ones (in New Zealand at least!).
 
 {panel type="teacher-note"}
 

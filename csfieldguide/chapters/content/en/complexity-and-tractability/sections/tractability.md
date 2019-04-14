@@ -52,7 +52,8 @@ It's still completely impractical!
 
 Another way to solve problems faster is to have multiple processors work on different solutions at the same time.
 If you were to buy 1,000 processors (e.g. 1,000 computers, or 250 4-core computers) and have each one test out different routes, then the solution could be found 1,000 times faster.
-Try changing the number of processors to 1,000 and see how long that would take (you may need to change the units back). Is it seconds? Hours? Days?
+Try changing the number of processors to 1,000 and see how long that would take (you may need to change the units back).
+Is it seconds? Hours? Days?
 
 {panel type="teacher-note"}
 
