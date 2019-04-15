@@ -615,7 +615,12 @@ function formatTime(runningTimeLeft) {
 function startTimer(seconds) {
   var x = setInterval(function() {
     seconds = seconds - 0.1;
-    if (stopPathFinding || seconds < 0) {
+    console.log(seconds);
+    if (stopPathFinding) {
+      clearInterval(x);
+    } else if (seconds < 0) {
+      seconds = 0;
+      formatTime(seconds);
       clearInterval(x);
     } else {
       formatTime(seconds);
