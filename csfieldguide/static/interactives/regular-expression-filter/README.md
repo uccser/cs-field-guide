@@ -8,5 +8,5 @@ NOTE: The words contained in en-words.txt are not translated because the interac
 
 ## Licences
 
-The list of words used is used from [atebits/Words](https://github.com/atebits/Words), its `CC0 1.0 Universal licence` is listed in the `LICENCE-THIRD-PARTY` file, with a full copy available in the `third-party-licences` directory.(https://github.com/atebits/Words/blob/master/LICENSE).
+The list of words used is used from [atebits/Words](https://github.com/atebits/Words), its `CC0 1.0 Universal licence` is listed in the `LICENCE-THIRD-PARTY` file, with a full copy available in the `third-party-licences` directory.
 Early versions of the interactive used a list from [Interociter bulletin board](https://web.archive.org/web/20180803153208/http://www-01.sil.org/linguistics/wordlists/english/), this is no longer used.

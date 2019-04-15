@@ -21,14 +21,14 @@ We have a [short video series on finite state automata available here](https://w
 {panel end}
 
 Here's a map of a commuter train system for the town of Trainsylvania.
-The trouble is, it doesn't show where the trains go — all you know is that there are two trains from each station, the A-train and the B-train.
-The inhabitants of Trainsylvania don't seem to mind this — it's quite fun choosing trains at each station, and after a while you usually find yourself arriving where you intended.
+The trouble is, it doesn't show where the trains go &ndash; all you know is that there are two trains from each station, the A-train and the B-train.
+The inhabitants of Trainsylvania don't seem to mind this &ndash; it's quite fun choosing trains at each station, and after a while you usually find yourself arriving where you intended.
 
 {interactive slug="trainsylvania-blank" type="in-page"}
 
 You can travel around Trainsylvania yourself using the following interactive.
 You're starting at the City Mall station, and you need to find your way to Suburbopolis.
-At each station you can choose either the A-train or the B-train — press the button to find out where it will take you.
+At each station you can choose either the A-train or the B-train &ndash; press the button to find out where it will take you.
 But, like the residents of Trainsylvania, you'll probably want to start drawing a map of the railway, because later you might be asked to find your way somewhere else.
 If you want a template to draw on, you can print one using the button below.
 
@@ -42,7 +42,7 @@ If you want a template to draw on, you can print one using the button below.
 
 You should let students devise their own notation for this.
 They will soon learn (possibly the hard way) that they should record all routes with an arrow (since trains don't necessarily return by the same route), and label their arrows with A or B.
-The full map for the activity is below, but don't spoil the students' fun by providing it — at least, not yet.
+The full map for the activity is below, but don't spoil the students' fun by providing it &ndash; at least, not yet.
 
 {image file-path="img/chapters/trainsylvania-complete.png" alt="Solution to the train map"}
 
@@ -109,7 +109,7 @@ You may have come across it when you dial a telephone number and get a message s
 Your key presses are inputs to a finite state automaton at the other end of the phone line.
 The dialogue can be quite simple, or very complex.
 Sometimes you are taken round in circles because there is a peculiar loop in the finite state automaton.
-If this occurs, it is an error in the design of the system — and it can be extremely frustrating for the caller!
+If this occurs, it is an error in the design of the system &ndash; and it can be extremely frustrating for the caller!
 
 Another example is the remote control for an air conditioning unit.
 It might have half a dozen main buttons, and pressing them changes the mode of operation (e.g. heating, cooling, automatic).
@@ -133,10 +133,10 @@ We’ll see more examples soon.
 
 One of the states has a double circle.
 By convention, this marks a "final" or "accepting" state, and if we end up there we've achieved some goal.
-There's also a "start" state — that's the one with an arrow coming from nowhere.
+There's also a "start" state &ndash; that's the one with an arrow coming from nowhere.
 Usually the idea is to find a sequence of inputs that gets you from the start state to a final state.
 In the example above, the shortest input to get to state 2 is "a", but you can also get there with "aa", or "aba", or "baaaaa".
-People say that these inputs are "accepted" because they get you from the start state to the final state — it doesn’t have to be the shortest route.
+People say that these inputs are "accepted" because they get you from the start state to the final state &ndash; it doesn’t have to be the shortest route.
 
 What state would you end up in if the input was the letter "a" repeated 100 times?
 
@@ -230,7 +230,7 @@ You can have as many as you want, but only one start state.
 For this FSA, the strings "aa" and "aabba" would be accepted, but "aaa" and "ar" wouldn't.
 By the way, notice that we often put inverted commas around strings to make it clear where they start and stop.
 Of course, the inverted commas aren't part of the strings.
-Notice that "r" always goes back to state 1 — if it ever occurs in the input then it's like a reset.
+Notice that "r" always goes back to state 1 &ndash; if it ever occurs in the input then it's like a reset.
 
 Sometimes you'll see an FSA referred to as a Finite State Machine, or FSM, and there are other closely related systems with similar names.
 We'll mention some later in the chapter.
@@ -244,7 +244,7 @@ The following website contains a comprehensive list of terminology relating to f
 {panel end}
 
 Now there's something we have to get out of the way before going further.
-If we're talking about which strings of inputs will get you into a particular state, and the system starts in that state, then the *empty string* — that is, a string without any letters at all — is one of the solutions!
+If we're talking about which strings of inputs will get you into a particular state, and the system starts in that state, then the *empty string* &ndash; that is, a string without any letters at all &ndash; is one of the solutions!
 For example, here's a simple finite state automaton with just one input (button a) that represents a strange kind of light switch.
 The reset button isn't part of the FSA; it’s just a way of letting you return to the starting state.
 See if you can figure out which patterns of input will turn the light on:
@@ -255,7 +255,7 @@ See if you can figure out which patterns of input will turn the light on:
 
 # Solution
 
-The light comes on with every third button press (which is intentionally confusing — students will probably expect every second press to work, but this is to get them thinking about what is happening here!) The sequences that will turn on the light are therefore "aaa", "aaaaaa" and so on — any number of presses that's a multiple of three.
+The light comes on with every third button press (which is intentionally confusing &ndash; students will probably expect every second press to work, but this is to get them thinking about what is happening here!) The sequences that will turn on the light are therefore "aaa", "aaaaaa" and so on &ndash; any number of presses that's a multiple of three.
 And, of course, zero presses.
 
 {panel end}
@@ -269,12 +269,12 @@ You'll come across \( \epsilon \) quite often with formal languages.
 
 It can be a bit confusing.
 For example, the language (that is, the list of all accepted inputs) of the FSA above includes "aaa", "aaaaaa", and \( \epsilon \).
-If you try telling someone that "nothing" will make the light come on that could be confusing — it might mean that you could never turn the light on — so it's handy being able to say that the *empty string* (or \( \epsilon \)) will turn the light on.
+If you try telling someone that "nothing" will make the light come on that could be confusing &ndash; it might mean that you could never turn the light on &ndash; so it's handy being able to say that the *empty string* (or \( \epsilon \)) will turn the light on.
 There are different kinds of "nothing", and we need to be precise about which one we mean!
 
 Here’s the FSA for the strange light switch.
 You can tell that \( \epsilon \) is part of the language because the start state is also a final state (in fact, it's the only final state).
-Actually, the switch isn't all that strange — data projectors often require two presses of the power button, to avoid accidentally turning them off.
+Actually, the switch isn't all that strange &ndash; data projectors often require two presses of the power button, to avoid accidentally turning them off.
 
 {image file-path="img/chapters/finite-state-automata-light-switch-example.png" alt="The finite state machine for a strange light switch"}
 
@@ -307,7 +307,7 @@ Or anything of 3 characters or more?
 
 As soon as you get the third character you end up in state 4, which is called a *trap state* because you can't get out.
 If this was the map for the commuter train system we had at the start of this section it would cause problems, because eventually everyone would end up in the trap state, and you'd have serious overcrowding.
-But it can be useful in other situations — especially if there's an error in the input, so no matter what else comes up, you don't want to go ahead.
+But it can be useful in other situations &ndash; especially if there's an error in the input, so no matter what else comes up, you don't want to go ahead.
 
 For the example above, the language of the FSA is any mixture of "a"s and "b"s, but only two characters at most.
 Don't forget that the empty string is also accepted.
@@ -372,7 +372,7 @@ With a trillion pages, its thickness would exceed the circumference of the earth
 But the web is just a finite-state automaton.
 And in order to produce an index for you to use, search engine companies like Google have to examine all the pages to see what words they contain.
 They explore the web by following all the links, just as you did in the train travelling exercise.
-Only, because it's called the "web," exploring is called "crawling" — like spiders do.
+Only, because it's called the "web," exploring is called "crawling" &ndash; like spiders do.
 
 {panel end}
 
@@ -498,7 +498,7 @@ You'll need to follow instructions carefully as it has many more features than y
 Here's how to build an FSA using JFLAP.
 As an example, we'll use the following FSA:
 
-{image file-path="img/chapters/jflap-create-state.png" alt="Building an FSA — example"}
+{image file-path="img/chapters/jflap-create-state.png" alt="Building an FSA &ndash; example"}
 
 {comment put some screen shots and ideally a video here to show how to use JFLAP.}
 
@@ -523,12 +523,12 @@ Then at the bottom of the window you can trace the string one character at a tim
 If you step right through the string and end up in a final (accepting) state, the panel will come up green.
 To return to the Editor window, go to the "File" menu and select "Dismiss Tab".
 
-{image file-path="img/chapters/jflap-create-accept.png" alt="Building an FSA - testing with input"}
+{image file-path="img/chapters/jflap-create-accept.png" alt="Building an FSA &ndash; testing with input"}
 
 You can run multiple tests in one go.
 From the "Input" menu choose "Multiple Run", and type your tests into the table, or load them from a text file.
 
-{image file-path="img/chapters/jflap-create-accept-multi.png" alt="Building an FSA — multiple run"}
+{image file-path="img/chapters/jflap-create-accept-multi.png" alt="Building an FSA &ndash; multiple run"}
 
 You can even do tests with the empty string by leaving a blank line in the table, which you can do by pressing the "Enter Lambda" button.
 
@@ -559,7 +559,7 @@ For the FSAs that you construct, check that they accept valid input, but also ma
 
 # Hint
 
-Checking that invalid input is rejected is important — otherwise a you could make an FSA that accepts any input, and it will pass on all tests.
+Checking that invalid input is rejected is important &ndash; otherwise a you could make an FSA that accepts any input, and it will pass on all tests.
 Think of examples that exercise different parts of the FSA to show that it doesn't give false positive or false negative results.
 
 {panel end}
@@ -696,7 +696,7 @@ You could choose a system, explain how it can be represented with an FSA, and sh
 Examples are:
 
 - Board games.
-  Simple board games are often just an FSA, where the next move is determined by some input (e.g. a number given by rolling dice), and the final state means that you have completed the game — so the first person to the final state wins.
+  Simple board games are often just an FSA, where the next move is determined by some input (e.g. a number given by rolling dice), and the final state means that you have completed the game &ndash; so the first person to the final state wins.
   Most games are too complex to draw a full FSA for, but a simple game like snakes and ladders could be used as an example.
   What are some sequences of dice throws that will get you to the end of the game? What are some sequences that don't?!
 - Simple devices with a few buttons often have states that you can identify.
