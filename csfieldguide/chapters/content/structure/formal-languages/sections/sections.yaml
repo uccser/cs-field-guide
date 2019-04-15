@@ -4,14 +4,14 @@ getting-started:
 finite-state-automata:
   section-number: 2
 
-# regular-expressions:
-#   section-number: 3
+regular-expressions:
+  section-number: 3
 
-# grammars-and-parsing:
-#   section-number: 4
+grammars-and-parsing:
+  section-number: 4
 
-# the-whole-story:
-#   section-number: 5
+the-whole-story:
+  section-number: 5
 
-# further-reading:
-#   section-number: 6
+further-reading:
+  section-number: 6
