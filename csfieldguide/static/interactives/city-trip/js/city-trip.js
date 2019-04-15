@@ -313,7 +313,6 @@ function addNode(cy, cy2, layout, oldNumCities, startNode) {
   newNumCities = oldNumCities + 1;
   if (stopPathFinding) {
     // Once path finding has been interrupted we need to reset the graph because some edges between nodes don't exist
-    console.log('hi');
     resetGraph(cy, cy2, newNumCities, layout);
     stopPathFinding = false;
   } else {
@@ -612,7 +611,7 @@ function formatTime(runningTimeLeft) {
 }
 
 
-/** Updates the timer every second and stops the timer if time is up or path finding is stopped. */
+/** Updates the timer every 0.1 seconds and stops the timer if time is up or path finding is stopped. */
 function startTimer(seconds) {
   var x = setInterval(function() {
     seconds = seconds - 0.1;
