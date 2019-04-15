@@ -102,15 +102,6 @@ $(document).ready(function() {
     cy.nodes().lock();
     cy.nodes().grabify();
     addNode(cy, cy2, layout, numberOfCities, startingCity);
-    // Make sure layout is still random and nodes can't overlap when dragged
-    refreshLayout(cy, layout);
-    setGraphOptions(cy);
-    cy.nodes().unlock();
-    // Update best route graph to match
-    cy2.add(cy.$('.nodesToAdd').clone());
-    cy2.add(cy.$('.edgesToAdd').clone());
-    setGraphOptions(cy2);
-    cy2.nodes().ungrabify();
   
     numberOfCities += 1;
     output.html(numberOfCities);
@@ -319,9 +310,10 @@ function addEdge(cyGraph, sourceNodeId, targetNodeId) {
 
 /** Add a node to the graph */
 function addNode(cy, cy2, layout, oldNumCities, startNode) {
+  newNumCities = oldNumCities + 1;
   if (stopPathFinding) {
     // Once path finding has been interrupted we need to reset the graph because some edges between nodes don't exist
-    newNumCities = oldNumCities + 1;
+    console.log('hi');
     resetGraph(cy, cy2, newNumCities, layout);
     stopPathFinding = false;
   } else {
@@ -330,15 +322,22 @@ function addNode(cy, cy2, layout, oldNumCities, startNode) {
     cy.remove(cy.$('#' + previousNodeID + '-' + startNode));
     cy2.remove(cy2.$('#' + previousNodeID + '-' + startNode));
     // Create node
-    currentNodeID = (oldNumCities + 1).toString();
+    currentNodeID = (newNumCities).toString();
     newNode = {
-      data: { id: currentNodeID },
-      classes: 'nodesToAdd'
+      data: { id: currentNodeID }
     };
     cy.add(newNode);
     addEdge(cy, previousNodeID, currentNodeID);
     // Create edge that closes the loop
     addEdge(cy, currentNodeID, startNode);
+    // Make sure layout is still random and nodes can't overlap when dragged
+    refreshLayout(cy, layout);
+    setGraphOptions(cy);
+    cy.nodes().unlock();
+    // Update best route graph to match
+    cy2.add(cy.elements().clone());
+    setGraphOptions(cy2);
+    cy2.nodes().ungrabify();
   }
 }
 
@@ -346,6 +345,7 @@ function addNode(cy, cy2, layout, oldNumCities, startNode) {
 /** Clear the current graph and generate a new one. */
 function resetGraph(cy, cy2, newNumCities, layout) {
   cy.remove(cy.elements());
+  cy2.remove(cy2.elements());
   // Create blue graph
   var nodes = Array.from(Array(newNumCities), (x, index) => index + 1);
   intermediateNodess = nodes.filter(function(node) {
@@ -356,7 +356,6 @@ function resetGraph(cy, cy2, newNumCities, layout) {
   refreshLayout(cy, layout);
   setGraphOptions(cy);
   // Copy blue graph to over to best route graph
-  cy2.remove(cy2.elements());
   cy2.add(cy.elements().clone());
   cy2.nodes().ungrabify();
 }
