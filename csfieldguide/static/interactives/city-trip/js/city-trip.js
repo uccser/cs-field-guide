@@ -596,9 +596,10 @@ function showTimeUnit(unit, value) {
 /** Calculates how many years,months,days.. etc there are in runningTimeLeft.
  *  runningTimeLeft is given in seconds. */
 function formatTime(runningTimeLeft) {
-  var years = Math.floor(runningTimeLeft / 31536000);
-  var months = Math.floor((runningTimeLeft % 31536000) / 2628000);
-  var days = Math.floor((runningTimeLeft % 2628000) / 86400);
+  // runningTimeLeft is in seconds
+  var years = Math.floor(runningTimeLeft / 31536000); // 31536000 seconds in a year
+  var months = Math.floor((runningTimeLeft % 31536000) / 2628000); // Take what time doesn't make up a whole year and work out how many months that equals
+  var days = Math.floor((runningTimeLeft % 2628000) / 86400); // Repeat for other time units...
   var hours = Math.floor((runningTimeLeft % 86400) / 3600);
   var minutes = Math.floor((runningTimeLeft % 3600) / 60);
   var seconds = (runningTimeLeft % 60).toFixed(1);
