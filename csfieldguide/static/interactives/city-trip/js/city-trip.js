@@ -227,9 +227,9 @@ $(document).ready(function() {
   /** Updates the trial route and best route info along with their corresponding distances. */
   function updateRouteStats() {
     $('#trial-route').html(citiesLoop.toString());
-    $('#trial-distance').html(pathDistance);
+    $('#trial-distance').html(pathDistance.toFixed(2));
     $('#best-route-so-far').html(citiesLoop.toString());
-    $('#best-route-distance').html(pathDistance);
+    $('#best-route-distance').html(pathDistance.toFixed(2));
   };
 
   /** E.g if cities = [1,2,3] and startingCity is 1 then:
@@ -411,13 +411,13 @@ function testNewPath(cy, cy2, newPath, bestRouteDistance, startNode) {
   findEdgeDifferences(cy, newEdgeConfig, numCities, startNode);
 
   var totalDistance = getPathDistance(cy.edges());
-  $('#trial-distance').html(totalDistance);
+  $('#trial-distance').html(totalDistance.toFixed(2));
   // Check if we have found a new best route
   if (totalDistance < bestRouteDistance) {
     previousBestRoute = $('#best-route-so-far').html().split(',');
     findEdgeDifferences(cy2, newEdgeConfig, numCities, numCities);
     $('#best-route-so-far').html(newPath.toString());
-    $('#best-route-distance').html(totalDistance);
+    $('#best-route-distance').html(totalDistance.toFixed(2));
     return {distance: totalDistance, isBestRoute: true};
   } else {
     return {distance: totalDistance, isBestRoute: false};
@@ -574,7 +574,7 @@ function getPathDistance(edges) {
 
   distance = Mathjs.divide(distance, 100);
 
-  return Math.round(distance);
+  return distance;
 }
 
 
