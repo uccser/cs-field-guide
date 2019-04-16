@@ -611,21 +611,22 @@ function formatTime(runningTimeLeft) {
 }
 
 
-/** Updates the timer every 0.1 seconds and stops the timer if time is up or path finding is stopped. */
+/** Updates the timer every 0.1 seconds and stops the timer if time is up or path finding is stopped.
+ *  Written with help from Alasdair Smith. */
 function startTimer(seconds) {
-  var x = setInterval(function() {
+  console.log(seconds);
+  if (stopPathFinding) {
+    return;
+ }
+  if (seconds < 0) {
+    seconds = 0;
+    formatTime(seconds);
+  } else {
     seconds = seconds - 0.1;
-    if (stopPathFinding) {
-      clearInterval(x);
-    } else if (seconds < 0) {
-      seconds = 0;
-      formatTime(seconds);
-      clearInterval(x);
-    } else {
-      formatTime(seconds);
-    }
-  }, 100);
-}
+    setTimeout(function() {startTimer(seconds)}, 100);
+    formatTime(seconds);
+  }
+ }
 
 
 /** Calculates how many seconds it will take for the algorithm to finish. */
