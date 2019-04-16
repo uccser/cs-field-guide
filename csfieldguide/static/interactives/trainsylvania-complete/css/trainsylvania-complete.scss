@@ -5,6 +5,7 @@
     font-size: 10pt;
     padding-bottom: 20px;
     line-height: 10pt;
+    text-align: center;
 }
 
 .t-c-spaced {
@@ -28,7 +29,7 @@ svg {
 }
 
 .arrow-label {
-    font-size: 8pt;
+    font-size: 9pt;
     font-weight: bold;
 }
 
@@ -62,4 +63,24 @@ svg {
 
 .t-c-south {
     transform: translate(-25px, 20px);
+}
+
+.too-small {
+    display: none;
+    font-size: 14pt;
+    text-align: center;
+}
+
+.solutionimg {
+    max-width: 450px;
+}
+
+@media screen and (max-width: 500px) {
+    .trainsylvania-complete {
+        display: none;
+    }
+
+    .too-small {
+        display: block;
+    }
 }

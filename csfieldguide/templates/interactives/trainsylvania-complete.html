@@ -4,9 +4,14 @@
 {% load static %}
 
 {% block html %}
-  <div class="container mb-3 uninteractive trainsylvania-complete">
+  <div class="row too-small">
+    <div class="col-12">{% trans 'Sorry, for screens less than 500px wide, the solution is only available in English.' %}</div>
+    <div class="col-12"><img class="solutionimg" src="{% static 'interactives/trainsylvania-complete/img/thumbnail.png' %}"></div>
+  </div>
+
+  <div class="container mt-3 uninteractive trainsylvania-complete">
     <!-- Top row: Suburbopolis and North Stations -->
-    <div class="row">
+    <div class="row justify-content-center">
       <div class="col-6 t-c-suburb">
         <div class="row-1"><img class="t-c-station" src="{% static 'interactives/trainsylvania/img/suburb.png' %}"></div>
         <div class="row-1">{% trans 'Suburbopolis<br>Station' %}</div>
@@ -82,15 +87,39 @@
 
       <!-- West A, B -->
       <path d="M75,150 L380,150" class="arrow"/>
-      <text x="100" y="165" class="arrow-label">A</text>
-      <path d="M390,135 L85,135" class="arrow"/>
-      <text x="370" y="130" class="arrow-label">B</text>
+      <text x="100" y="162" class="arrow-label">A</text>
+      <path d="M75,160 L130,175" class="arrow"/>
+      <text x="100" y="185" class="arrow-label">B</text>
 
       <!-- Central A, B -->
-      <path d="M75,150 L380,150" class="arrow"/>
-      <text x="100" y="165" class="arrow-label">A</text>
+      <path d="M140,190 L80,220" class="arrow"/>
+      <text x="120" y="210" class="arrow-label">A</text>
+      <path d="M200,180 L250,190" class="arrow"/>
+      <text x="205" y="195" class="arrow-label">B</text>
+
+      <!-- Midway A, B -->
+      <path d="M300,165 L310,120" class="arrow"/>
+      <text x="305" y="163" class="arrow-label">A</text>
+      <path d="M330,200 L370,240" class="arrow"/>
+      <text x="340" y="205" class="arrow-label">B</text>
+
+      <!-- East A, B -->
       <path d="M390,135 L85,135" class="arrow"/>
-      <text x="370" y="130" class="arrow-label">B</text>
+      <text x="370" y="130" class="arrow-label">A</text>
+      <path d="M420,190 L410,230" class="arrow"/>
+      <text x="405" y="205" class="arrow-label">B</text>
+
+      <!-- Suburbopolis A, B -->
+      <path d="M90,80 L50,110" class="arrow"/>
+      <text x="73" y="85" class="arrow-label">A</text>
+      <path d="M150,120 L150,160" class="arrow"/>
+      <text x="153" y="130" class="arrow-label">B</text>
+
+      <!-- North A, B -->
+      <path d="M300,90 L205,165" class="arrow"/>
+      <text x="275" y="100" class="arrow-label">A</text>
+      <path d="M300,60 L170,80" class="arrow"/>
+      <text x="280" y="60" class="arrow-label">B</text>
     </svg>
   </div>
 {% endblock html %}

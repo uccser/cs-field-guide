@@ -42,11 +42,13 @@ If you want a template to draw on, you can print one using the button below.
 
 You should let students devise their own notation for this.
 They will soon learn (possibly the hard way) that they should record all routes with an arrow (since trains don't necessarily return by the same route), and label their arrows with A or B.
-The full map for the activity is below, but don't spoil the students' fun by providing it &ndash; at least, not yet.
+The full map for the activity is here, but don't spoil the students' fun by providing it &ndash; at least, not yet.
 
-{image file-path="img/chapters/trainsylvania-complete.png" alt="Solution to the train map"}
+{interactive slug="trainsylvania-complete" text="true" type="whole-page"}
 
-{interactive slug="trainsylvania-complete" type="in-page"}
+Complete map of Trainsylvania
+
+{interactive end}
 
 {panel end}
 
