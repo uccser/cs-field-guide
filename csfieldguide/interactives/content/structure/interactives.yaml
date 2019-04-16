@@ -315,6 +315,10 @@ trainsylvania-blank:
   languages:
     en: interactives/trainsylvania-blank.html
   is_interactive: false
+trainsylvania-complete:
+  languages:
+    en: interactives/trainsylvania-complete.html
+  is_interactive: false
 trig-function-calculator:
   languages:
     en: interactives/trig-function-calculator.html

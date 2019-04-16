@@ -46,6 +46,8 @@ The full map for the activity is below, but don't spoil the students' fun by pro
 
 {image file-path="img/chapters/trainsylvania-complete.png" alt="Solution to the train map"}
 
+{interactive slug="trainsylvania-complete" type="in-page"}
+
 {panel end}
 
 Did you find a sequence of trains to get from City Mall to Suburbopolis? You can test it by typing the sequence of trains in the following interactive.
