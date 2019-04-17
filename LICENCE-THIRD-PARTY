@@ -142,12 +142,30 @@ third-party-licences/Detectorjs.txt
 ==============================================================================
 
 ==============================================================================
+django-haystack (AKA Haystack)
+------------------------------------------------------------------------------
+http://haystacksearch.org/
+Copyright 2009-2011 Daniel Lindsley
+licensed under BSD licence.
+No known licence file to include
+==============================================================================
+
+==============================================================================
 django-inline-svg
 ------------------------------------------------------------------------------
 https://github.com/mixxorz/django-inline-svg
 Copyright 2016 Mitchel Cabuloy
 licensed under MIT licence.
 third-party-licences/django-inline-svg.txt
+==============================================================================
+
+==============================================================================
+django-modeltranslation (AKA Modeltranslation)
+------------------------------------------------------------------------------
+https://github.com/deschler/django-modeltranslation
+Copyright 2009-2012 Peter Eschler, Dirk Eschler
+licensed under BSD licence.
+third-party-licences/django-modeltranslation.txt
 ==============================================================================
 
 ==============================================================================
@@ -328,15 +346,6 @@ https://github.com/gulpjs/gulp-util
 Copyright 2014 Fractal
 licensed under MIT licence.
 third-party-licences/gulp-util.txt
-==============================================================================
-
-==============================================================================
-Haystack (django-haystack)
-------------------------------------------------------------------------------
-http://haystacksearch.org/
-Copyright 2009-2011 Daniel Lindsley
-licensed under BSD licence.
-No known licence file to include
 ==============================================================================
 
 ==============================================================================
