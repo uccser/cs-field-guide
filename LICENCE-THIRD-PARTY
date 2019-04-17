@@ -178,6 +178,15 @@ third-party-licences/django-modeltranslation.txt
 ==============================================================================
 
 ==============================================================================
+django-statici18n
+------------------------------------------------------------------------------
+https://github.com/zyegfryed/django-statici18n
+Copyright 2012 Sebastien Fievet
+licensed under BSD licence.
+third-party-licences/django-statici18n.txt
+==============================================================================
+
+==============================================================================
 django-widget-tweaks
 ------------------------------------------------------------------------------
 https://github.com/jazzband/django-widget-tweaks
