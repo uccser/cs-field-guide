@@ -6,7 +6,8 @@ const Mathjs = require('mathjs');
 cytoscape.use(noOverlap);
 cytoscape.use(automove);
 var stopPathFinding = false;
-var stoppedMidExecution = false; // true if the stop button been clicked mid path finding.
+var bestRouteDistance;
+// var stoppedMidExecution = false; // true if the stop button been clicked mid path finding.
 
 const STATUS_COMPLETE = gettext("complete!");
 const STATUS_READY = gettext("ready to go!");
@@ -93,7 +94,8 @@ $(document).ready(function() {
   setGraphOptions(cy2);
   cy2.nodes().ungrabify();
 
-  var pathDistance = getPathDistance(cy.edges());
+  //var pathDistance = getPathDistance(cy.edges());
+  bestRouteDistance = getPathDistance(cy.edges()); // update global
   runningTimeLeft = calculateRunningTime(numberOfCities);
   formatTime(runningTimeLeft);
   updateRouteStats();
@@ -107,7 +109,7 @@ $(document).ready(function() {
     output.html(numberOfCities);
     cities.push(numberOfCities);
     updateCitiesLoop();
-    pathDistance = getPathDistance(cy.edges());
+    bestRouteDistance = getPathDistance(cy.edges());
     updateRouteStats();
     runningTimeLeft = calculateRunningTime(numberOfCities);
     formatTime(runningTimeLeft);
@@ -127,14 +129,14 @@ $(document).ready(function() {
     cy.nodes().grabify();
     removeNode(cy, cy2, layout, numberOfCities, startingCity);
     setGraphOptions(cy);
-    pathDistance = getPathDistance(cy.edges());
-    updateRouteStats();
+    // pathDistance = getPathDistance(cy.edges());
+    // updateRouteStats();
 
     numberOfCities -= 1;
     output.html(numberOfCities);
     cities.pop();
     updateCitiesLoop();
-    pathDistance = getPathDistance(cy.edges());
+    bestRouteDistance = getPathDistance(cy.edges());
     updateRouteStats()
     runningTimeLeft = calculateRunningTime(numberOfCities);
     formatTime(runningTimeLeft);
@@ -158,11 +160,13 @@ $(document).ready(function() {
     var intermediateCities = cities.filter(function(city) {
       return city !== startingCity;
     });
-    var k = intermediateCities.length;
-    permutations(cy, cy2, intermediateCities, pathDistance, startingCity, k);
+    // var k = intermediateCities.length;
+    seconds = calculateRunningTime(cities.length);
+    initialiseVariables(cy, cy2, intermediateCities, startingCity, seconds);
+    //permutations(cy, cy2, intermediateCities, pathDistance, startingCity, k);
     // start timer
-    completionTime = calculateRunningTime(cities.length);
-    startTimer(completionTime);
+    // completionTime = calculateRunningTime(cities.length);
+    // startTimer(completionTime);
   });
 
 
@@ -170,7 +174,7 @@ $(document).ready(function() {
     cy.nodes().ungrabify();
     // quit execution of path finding
     stopPathFinding = true;
-    stoppedMidExecution = true;
+    // stoppedMidExecution = true;
     updateStatus(STATUS_STOPPED, 'status-stopped');
     toggleButtons(false);
     $('#stop').addClass('d-none');
@@ -179,7 +183,7 @@ $(document).ready(function() {
 
   $('#reset').click(function() {
     resetGraph(cy, cy2, numberOfCities, layout);
-    stoppedMidExecution = false;
+    // stoppedMidExecution = false;
     toggleButtons(true);
     updateStatus(STATUS_READY, 'status-ready');
     runningTimeLeft = calculateRunningTime(numberOfCities);
@@ -194,7 +198,7 @@ $(document).ready(function() {
     cy2.add(cy.elements().clone());
     setGraphOptions(cy2);
     cy2.nodes().ungrabify();
-    pathDistance = getPathDistance(cy.edges());
+    bestRouteDistance = getPathDistance(cy.edges());
     updateRouteStats();
     runningTimeLeft = calculateRunningTime(numberOfCities);
     formatTime(runningTimeLeft);
@@ -208,7 +212,7 @@ $(document).ready(function() {
     cy2.add(cy.elements().clone());
     setGraphOptions(cy2)
     cy2.nodes().ungrabify();
-    pathDistance = getPathDistance(cy.edges());
+    bestRouteDistance = getPathDistance(cy.edges());
     updateRouteStats();
     $('#start').removeClass('d-none');
     $('#stop').removeClass('d-none');
@@ -218,9 +222,9 @@ $(document).ready(function() {
   /** Updates the trial route and best route info along with their corresponding distances. */
   function updateRouteStats() {
     $('#trial-route').html(citiesLoop.toString());
-    $('#trial-distance').html(pathDistance.toFixed(2));
+    $('#trial-distance').html(bestRouteDistance.toFixed(2));
     $('#best-route-so-far').html(citiesLoop.toString());
-    $('#best-route-distance').html(pathDistance.toFixed(2));
+    $('#best-route-distance').html(bestRouteDistance.toFixed(2));
   };
 
   /** E.g if cities = [1,2,3] and startingCity is 1 then:
@@ -394,9 +398,9 @@ function refreshLayout(cy, layout) {
 
 
 /** Draw the new path and calculate it's distance.
- *  Updates frontend text if new best route found.
+ *  Updates frontend text for trial routes and if new best route found.
  *  Returns distance of the new path and if it is the best route so far or not. */
-function testNewPath(cy, cy2, newPath, bestRouteDistance, startNode) {
+function testNewPath(cy, cy2, newPath, startNode) {
   $('#trial-route').html(newPath.toString());
   // Minus one because we include the start node twice (it is also the end node)
   var numCities = newPath.length - 1;
@@ -411,8 +415,11 @@ function testNewPath(cy, cy2, newPath, bestRouteDistance, startNode) {
   var totalDistance = getPathDistance(cy.edges());
   $('#trial-distance').html(totalDistance.toFixed(2));
   // Check if we have found a new best route
+  console.log(totalDistance);
+  console.log(bestRouteDistance);
   if (totalDistance < bestRouteDistance) {
     previousBestRoute = $('#best-route-so-far').html().split(',');
+    // show the best path on the best route graph
     findEdgeDifferences(cy2, newEdgeConfig, numCities, numCities);
     $('#best-route-so-far').html(newPath.toString());
     $('#best-route-distance').html(totalDistance.toFixed(2));
@@ -489,55 +496,41 @@ function swap(A, i, j) {
 }
 
 
-  /** Get all permutations of the intermediate cities one by one.
-   *  Show the path on the graph as each one if found.
-   *  Based upon the non-recursive version of Heap's algorithm. 
-   *  Non-recursive version used so we can draw the new path as soon as it is generated.
-   */
-async function permutations(cy, cy2, intermediateCities, bestRouteDistance, startingCity, k) {
-  // c is an encoding of he stack state
-  c = new Array(k).fill(0);
-  pathWithStartingCity = addStartingCityToPath(startingCity, intermediateCities);
+/** Get all permutations of the intermediate cities one by one.
+ *  Show the path on the graph as each one is found.
+ *  Based upon the non-recursive version of Heap's algorithm. 
+ *  Non-recursive version used so we can draw the new path as soon as it is generated.
+ */
 
-  // Draw graph here
-  pathData = testNewPath(cy, cy2, pathWithStartingCity, bestRouteDistance, startingCity.toString());
-  await sleep(100);
-  if (pathData.isBestRoute) {
-    bestRouteDistance = pathData.distance;
-  }
-  // i acts similarly to the stack pointer
-  var i = 0;
-  while (i < k) {
-    if (stopPathFinding == true) {
-      stoppedMidExecution = true;
-      break;
-    } 
-    if (c[i] < i) {
-      if (i % 2 == 0) {
-        swap(intermediateCities, 0, i);
-      } else {
-        swap(intermediateCities, c[i], i);
-      }
-      if (intermediateCities[0] <= intermediateCities[k-1]) {
-        pathWithStartingCity = addStartingCityToPath(startingCity, intermediateCities);
-        // Draw graph here
-        pathData = testNewPath(cy, cy2, pathWithStartingCity, bestRouteDistance, startingCity.toString());
-        await sleep(100);
-        if (pathData.isBestRoute) {
-          bestRouteDistance = pathData.distance;
-        }
-      }
-      // swap has occurred ending the for-loop. Simulate increment of the for-loop counter.
-      c[i] += 1;
-      // simulate recursive call reaching the base case by bringing the pointer to the base case analog in the array
-      i = 0;
+///// GLOBALS //////
+
+var k; // need to define this as INTcities.length and update where appropriate
+var i;
+// c is an encoding of he stack state
+var c;
+
+function initialiseVariables(cy, cy2, intermediateCities, startingCity, seconds) {
+  k = intermediateCities.length;
+  c = new Array(k).fill(0);
+  i = 0;
+  beginPathFinding(cy, cy2, intermediateCities, startingCity, seconds);
+}
+
+function beginPathFinding(cy, cy2, intermediateCities, startingCity, seconds) {
+  // if permutations to do
+  if (i < k) {
+    if (stopPathFinding == false) {
+      // start timer
+      timer = setTimeout(function() {beginPathFinding(cy, cy2, intermediateCities, startingCity, seconds);}, 100);
+      seconds = seconds - 0.1;
+      formatTime(seconds);
+      computeAndDisplayNextRoute(cy, cy2, intermediateCities, startingCity);
     } else {
-      // Reset the state and simulate popping the stack by incrementing the pointer
-      c[i] = 0;
-      i += 1;
+      clearTimeout(timer);
     }
   }
-  if (stoppedMidExecution == false) {
+  console.log(i);
+  if (i == k) {
     // Making sure we have iterated over all paths before showing complete message
     updateStatus(STATUS_COMPLETE, 'status-complete');
     $('#start').removeClass('d-none');
@@ -545,8 +538,43 @@ async function permutations(cy, cy2, intermediateCities, bestRouteDistance, star
     $('#remove-city').removeClass('d-none');
     $('#generate-map').removeClass('d-none');
     $('#stop').addClass('d-none');
+    clearTimeout(timer);
+    stopPathFinding = true;
   }
-  stopPathFinding = true;
+}
+
+
+function computeAndDisplayNextRoute(cy, cy2, intermediateCities, startingCity) {
+  if (c[i] < i) {
+    if (i % 2 == 0) {
+      swap(intermediateCities, 0, i);
+    } else {
+      swap(intermediateCities, c[i], i);
+    }
+    // show next perm
+    if (intermediateCities[0] <= intermediateCities[k-1]) {
+      renderGraph(cy, cy2, intermediateCities, startingCity);
+    }
+    // swap has occurred ending the for-loop. Simulate increment of the for-loop counter.
+    c[i] += 1;
+    // simulate recursive call reaching the base case by bringing the pointer to the base case analog in the array
+    i = 0;
+  } else {
+    // Reset the state and simulate popping the stack by incrementing the pointer
+    c[i] = 0;
+    i += 1;
+  }
+}
+
+
+function renderGraph(cy, cy2, intermediateCities, startingCity) {
+  pathWithStartingCity = addStartingCityToPath(startingCity, intermediateCities);
+
+  // Draw graph here
+  pathData = testNewPath(cy, cy2, pathWithStartingCity, startingCity.toString());
+  if (pathData.isBestRoute) {
+    bestRouteDistance = pathData.distance;
+  }
 }
 
 
@@ -595,6 +623,12 @@ function showTimeUnit(unit, value) {
  *  runningTimeLeft is given in seconds. */
 function formatTime(runningTimeLeft) {
   // runningTimeLeft is in seconds
+  if (stopPathFinding) {
+    return;
+  }
+  if (runningTimeLeft < 0) {
+    runningTimeLeft = 0;
+  }
   var years = Math.floor(runningTimeLeft / 31536000); // 31536000 seconds in a year
   var months = Math.floor((runningTimeLeft % 31536000) / 2628000); // Take what time doesn't make up a whole year and work out how many months that equals
   var days = Math.floor((runningTimeLeft % 2628000) / 86400); // Repeat for other time units...
@@ -613,20 +647,20 @@ function formatTime(runningTimeLeft) {
 
 /** Updates the timer every 0.1 seconds and stops the timer if time is up or path finding is stopped.
  *  Written with help from Alasdair Smith. */
-function startTimer(seconds) {
-  console.log(seconds);
-  if (stopPathFinding) {
-    return;
- }
-  if (seconds < 0) {
-    seconds = 0;
-    formatTime(seconds);
-  } else {
-    seconds = seconds - 0.1;
-    setTimeout(function() {startTimer(seconds)}, 100);
-    formatTime(seconds);
-  }
- }
+// function startTimer(seconds) {
+//   console.log(seconds);
+//   if (stopPathFinding) {
+//     return;
+//  }
+//   if (seconds < 0) {
+//     seconds = 0;
+//     formatTime(seconds);
+//   } else {
+//     seconds = seconds - 0.1;
+//     setTimeout(function() {startTimer(seconds)}, 100);
+//     formatTime(seconds);
+//   }
+//  }
 
 
 /** Calculates how many seconds it will take for the algorithm to finish. */
