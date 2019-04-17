@@ -84,6 +84,15 @@ third-party-licences/chartjs.txt
 ==============================================================================
 
 ==============================================================================
+Coverage.py
+------------------------------------------------------------------------------
+https://github.com/nedbat/coveragepy
+Copyright 2018 Chart.js Contributors
+licensed under Apache License 2.0.
+third-party-licences/coverage.txt
+==============================================================================
+
+==============================================================================
 crypto-js
 ------------------------------------------------------------------------------
 https://github.com/brix/crypto-js
@@ -488,10 +497,10 @@ third-party-licences/nouislider.txt
 Pillow
 ------------------------------------------------------------------------------
 https://github.com/python-pillow/Pillow
-Copyright © 2010-2019 by Alex Clark and contributors
+Copyright 2010-2019 Alex Clark and contributors
 Forked from the Python Imaging Library [PIL]:
-    Copyright © 1997-2011 by Secret Labs AB
-    Copyright © 1995-2011 by Fredrik Lundh
+    Copyright 1997-2011 Secret Labs AB
+    Copyright 1995-2011 Fredrik Lundh
 licensed under the PIL Software License.
 third-party-licences/pillow.txt
 ==============================================================================
