@@ -394,6 +394,18 @@ third-party-licences/nouislider.txt
 ==============================================================================
 
 ==============================================================================
+Pillow
+------------------------------------------------------------------------------
+https://github.com/python-pillow/Pillow
+Copyright © 2010-2019 by Alex Clark and contributors
+Forked from the Python Imaging Library [PIL]:
+    Copyright © 1997-2011 by Secret Labs AB
+    Copyright © 1995-2011 by Fredrik Lundh
+licensed under the PIL Software License.
+third-party-licences/pillow.txt
+==============================================================================
+
+==============================================================================
 Popper.js
 ------------------------------------------------------------------------------
 https://github.com/FezVrasta/popper.js
