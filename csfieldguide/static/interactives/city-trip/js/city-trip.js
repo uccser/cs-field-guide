@@ -2,6 +2,7 @@ const cytoscape = require('cytoscape');
 const noOverlap = require('cytoscape-no-overlap');
 const automove = require('cytoscape-automove');
 const Mathjs = require('mathjs');
+const ha = require('./heapsAlgorithm.js')
 
 cytoscape.use(noOverlap);
 cytoscape.use(automove);
@@ -513,24 +514,23 @@ function initialiseVariables(cy, cy2, intermediateCities, startingCity, seconds)
   k = intermediateCities.length;
   c = new Array(k).fill(0);
   i = 0;
+  ha.initHeapsAlgorithm(k, intermediateCities);
   beginPathFinding(cy, cy2, intermediateCities, startingCity, seconds);
 }
 
 function beginPathFinding(cy, cy2, intermediateCities, startingCity, seconds) {
   // if permutations to do
-  if (i < k) {
-    if (stopPathFinding == false) {
-      // start timer
-      timer = setTimeout(function() {beginPathFinding(cy, cy2, intermediateCities, startingCity, seconds);}, 100);
-      seconds = seconds - 0.1;
-      formatTime(seconds);
-      computeAndDisplayNextRoute(cy, cy2, intermediateCities, startingCity);
-    } else {
-      clearTimeout(timer);
-    }
+  if (stopPathFinding == false) {
+    // start timer
+    timer = setTimeout(function() {beginPathFinding(cy, cy2, intermediateCities, startingCity, seconds);}, 100);
+    seconds = seconds - 0.1;
+    formatTime(seconds);
+    computeAndDisplayNextRoute(cy, cy2, intermediateCities, startingCity);
+  } else {
+    clearTimeout(timer);
   }
   console.log(i);
-  if (i == k) {
+  if (stopPathFinding) {
     // Making sure we have iterated over all paths before showing complete message
     updateStatus(STATUS_COMPLETE, 'status-complete');
     $('#start').removeClass('d-none');
@@ -545,25 +545,31 @@ function beginPathFinding(cy, cy2, intermediateCities, startingCity, seconds) {
 
 
 function computeAndDisplayNextRoute(cy, cy2, intermediateCities, startingCity) {
-  if (c[i] < i) {
-    if (i % 2 == 0) {
-      swap(intermediateCities, 0, i);
-    } else {
-      swap(intermediateCities, c[i], i);
-    }
-    // show next perm
-    if (intermediateCities[0] <= intermediateCities[k-1]) {
-      renderGraph(cy, cy2, intermediateCities, startingCity);
-    }
-    // swap has occurred ending the for-loop. Simulate increment of the for-loop counter.
-    c[i] += 1;
-    // simulate recursive call reaching the base case by bringing the pointer to the base case analog in the array
-    i = 0;
+  intermediateCities = ha.getNextPermutation();
+  if (intermediateCities) {
+    renderGraph(cy, cy2, intermediateCities, startingCity);
   } else {
-    // Reset the state and simulate popping the stack by incrementing the pointer
-    c[i] = 0;
-    i += 1;
+    stopPathFinding = true;
   }
+  // if (c[i] < i) {
+  //   if (i % 2 == 0) {
+  //     swap(intermediateCities, 0, i);
+  //   } else {
+  //     swap(intermediateCities, c[i], i);
+  //   }
+  //   // show next perm
+  //   if (intermediateCities[0] <= intermediateCities[k-1]) {
+  //     renderGraph(cy, cy2, intermediateCities, startingCity);
+  //   }
+  //   // swap has occurred ending the for-loop. Simulate increment of the for-loop counter.
+  //   c[i] += 1;
+  //   // simulate recursive call reaching the base case by bringing the pointer to the base case analog in the array
+  //   i = 0;
+  // } else {
+  //   // Reset the state and simulate popping the stack by incrementing the pointer
+  //   c[i] = 0;
+  //   i += 1;
+  // }
 }
 
 
