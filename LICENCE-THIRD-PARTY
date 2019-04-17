@@ -151,6 +151,15 @@ third-party-licences/django-bidi-utils.txt
 ==============================================================================
 
 ==============================================================================
+Django Debug Toolbar
+------------------------------------------------------------------------------
+https://github.com/jazzband/django-debug-toolbar
+Copyright Rob Hudson and individual contributors
+licensed under BSD licence.
+third-party-licences/django-debug-toolbar.txt
+==============================================================================
+
+==============================================================================
 django-haystack (AKA Haystack)
 ------------------------------------------------------------------------------
 http://haystacksearch.org/
