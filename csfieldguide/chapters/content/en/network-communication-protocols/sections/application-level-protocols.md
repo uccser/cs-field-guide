@@ -1,4 +1,4 @@
-# Application layer protocols &ndash; HTTP, IRC
+# Application layer protocols - HTTP, IRC
 
 The URL for the home site of this book is http://www.csfieldguide.org.nz.
 Ask a few friends what the "http" stands for &ndash; they have probably seen it thousands of times... do they know what it is?
