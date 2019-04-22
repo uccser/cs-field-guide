@@ -24,12 +24,11 @@ function swap(A, i, j) {
 /**
  * Prepares for this implementation of Heap's Algorithm, with the given n and array A
  */
-function initHeapsAlgorithm(n, A) {
-    static_n = n;
+function initHeapsAlgorithm(A) {
+    static_n = A.length;
     static_A = A;
     static_c = new Array(A.length).fill(0);
     static_i = 0;
-    return A // The first permutation is itself
 }
 
 /**

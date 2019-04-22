@@ -129,9 +129,9 @@ $(document).ready(function() {
     removeNode(cy, cy2, layout, numberOfCities, startingCity);
     setGraphOptions(cy);
 
+    cities.pop();
     numberOfCities -= 1;
     output.html(numberOfCities);
-    cities.pop();
     updateCitiesLoop();
     updateRouteStats()
     runningTimeLeft = calculateRunningTime(numberOfCities);
@@ -157,7 +157,8 @@ $(document).ready(function() {
       return city !== startingCity;
     });
     seconds = calculateRunningTime(cities.length);
-    initialiseVariables(cy, cy2, intermediateCities, startingCity, seconds);
+    ha.initHeapsAlgorithm(intermediateCities);
+    beginPathFinding(cy, cy2, intermediateCities, startingCity, seconds);
   });
 
 
@@ -182,7 +183,7 @@ $(document).ready(function() {
     formatTime(runningTimeLeft);
   });
 
-  /** Generate a new graph layout and make sure the best route graph matches */
+  /** Generates a new graph layout and make sure the best route graph matches */
   $('#generate-map').click(function () {
     cy.nodes().grabify();
     cy2.remove(cy2.elements());
@@ -218,8 +219,7 @@ $(document).ready(function() {
   };
 
   /** E.g if cities = [1,2,3] and startingCity is 1 then:
-   *  intermediateCities = [2,3] and citiesLoop = [1,2,3,1]
-   */
+   *  intermediateCities = [2,3] and citiesLoop = [1,2,3,1] */
   function updateCitiesLoop() {
     intermediateCities = cities.filter(function(city) {
       return city !== startingCity;
@@ -228,8 +228,7 @@ $(document).ready(function() {
   }
 
   /** If the reset button has been clicked show the user the buttons that
-   *  can alter the graph. Otherwise hide the buttons that can alter the graph.
-   */
+   *  can alter the graph. Otherwise hide the buttons that can alter the graph. */
   function toggleButtons(resetHasBeenClicked) {
     if (resetHasBeenClicked) {
       $('#add-city').removeClass('d-none');
@@ -266,7 +265,7 @@ function setGraphOptions(cyGraph) {
 }
 
 
-/** Create the nodes and edges for the graph, append them to an array and return. */
+/** Creates the nodes and edges for the graph, appends them to an array and return. */
 function initialiseGraph(nodes, cityLoop) {
   var graphData = [];
   // generate nodes (cities) for city map
@@ -291,7 +290,7 @@ function initialiseGraph(nodes, cityLoop) {
 }
 
 
-/** Add an edge to the graph. */
+/** Adds an edge to the graph. */
 function addEdge(cyGraph, sourceNodeId, targetNodeId) {
   edgeID = sourceNodeId + '-' + targetNodeId;
   newEdge = {
@@ -302,7 +301,7 @@ function addEdge(cyGraph, sourceNodeId, targetNodeId) {
 }
 
 
-/** Add a node to the graph */
+/** Adds a node to the graph */
 function addNode(cy, cy2, layout, oldNumCities, startNode) {
   newNumCities = oldNumCities + 1;
   if (stopPathFinding) {
@@ -335,11 +334,11 @@ function addNode(cy, cy2, layout, oldNumCities, startNode) {
 }
 
 
-/** Clear the current graph and generate a new one. */
+/** Clears the current graph and generates a new one. */
 function resetGraph(cy, cy2, newNumCities, layout) {
   cy.remove(cy.elements());
   cy2.remove(cy2.elements());
-  // Create blue graph
+  // Create trial route graph
   var nodes = Array.from(Array(newNumCities), (x, index) => index + 1);
   intermediateNodess = nodes.filter(function(node) {
     return node !== 1;
@@ -348,13 +347,13 @@ function resetGraph(cy, cy2, newNumCities, layout) {
   cy.add(initialiseGraph(nodes, cityLoop));
   refreshLayout(cy, layout);
   setGraphOptions(cy);
-  // Copy blue graph to over to best route graph
+  // Copy trial route graph to over to best route graph
   cy2.add(cy.elements().clone());
   cy2.nodes().ungrabify();
 }
 
 
-/** Remove a node from the graph. */
+/** Removes a node from the graph. */
 function removeNode(cy, cy2, layout, numberOfCities, startNode) {
   var newNumCities = numberOfCities - 1;
   // Once path finding has been interrupted we need to reset the graph because some edges between nodes don't exist
@@ -374,7 +373,7 @@ function removeNode(cy, cy2, layout, numberOfCities, startNode) {
 }
 
 
-/** Make sure the layout is still random after new nodes have been added. */
+/** Makes sure the layout is still random after new nodes have been added. */
 function refreshLayout(cy, layout) {
   layout.stop();
   layout = cy.elements().makeLayout({
@@ -387,7 +386,8 @@ function refreshLayout(cy, layout) {
 }
 
 
-/** Draw the new path and calculate it's distance.
+/** Draws the new path (through findEdgeDifferences and changePaths functions),
+ *  and calculates it's distance.
  *  Updates frontend text for trial routes and if new best route found. */
 function testNewPath(cy, cy2, newPath, startNode) {
   $('#trial-route').html(newPath.toString());
@@ -474,20 +474,7 @@ function addStartingCityToPath(startingCity, cities) {
 }
 
 
-/** Get all permutations of the intermediate cities one by one.
- *  Show the path on the graph as each one is found.
- *  Based upon the non-recursive version of Heap's algorithm. 
- *  Non-recursive version used so we can draw the new path as soon as it is generated.
- */
-
-function initialiseVariables(cy, cy2, intermediateCities, startingCity, seconds) {
-  k = intermediateCities.length;
-  c = new Array(k).fill(0);
-  i = 0;
-  ha.initHeapsAlgorithm(k, intermediateCities);
-  beginPathFinding(cy, cy2, intermediateCities, startingCity, seconds);
-}
-
+ /** Start timer and begin finding permutations by calling methods in heapsAlgorithm.js. */
 function beginPathFinding(cy, cy2, intermediateCities, startingCity, seconds) {
   // if permutations to do
   if (stopPathFinding == false) {
@@ -507,26 +494,20 @@ function beginPathFinding(cy, cy2, intermediateCities, startingCity, seconds) {
     $('#remove-city').removeClass('d-none');
     $('#generate-map').removeClass('d-none');
     $('#stop').addClass('d-none');
-    clearTimeout(timer);
-    stopPathFinding = true;
   }
 }
 
 
+/** Get the next permutation from heapsAlgorithm.js and render the graph 
+ *  by calling testNewPath. */
 function computeAndDisplayNextRoute(cy, cy2, intermediateCities, startingCity) {
   intermediateCities = ha.getNextPermutation();
   if (intermediateCities) {
-    renderGraph(cy, cy2, intermediateCities, startingCity);
+    pathWithStartingCity = addStartingCityToPath(startingCity, intermediateCities);
+    testNewPath(cy, cy2, pathWithStartingCity, startingCity.toString()); // render graph
   } else {
     stopPathFinding = true;
   }
-}
-
-
-function renderGraph(cy, cy2, intermediateCities, startingCity) {
-  pathWithStartingCity = addStartingCityToPath(startingCity, intermediateCities);
-  // Draw graph
-  testNewPath(cy, cy2, pathWithStartingCity, startingCity.toString());
 }
 
 
@@ -549,7 +530,6 @@ function getPathDistance(edges) {
     var targetNode = edge.target();
     distance += distanceBetweenCities(sourceNode.position(), targetNode.position());
   }
-
   distance = Mathjs.divide(distance, 100);
 
   return distance;
@@ -560,6 +540,7 @@ function getPathDistance(edges) {
 function showTimeUnit(unit, value) {
   unitPlural = unit + 's';
   unitElement = $('#num-' + unitPlural);
+  // We still want to show 0 seconds as it is the smallest unit of time shown
   if (value > 0 || unit == 'second') {
     var format = ngettext('1 ' + unit, '%(value)s ' + unitPlural + ' ', value);
     var timeUnitText = interpolate(format, {"value": value.toLocaleString()}, true);
