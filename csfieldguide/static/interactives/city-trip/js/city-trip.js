@@ -128,8 +128,6 @@ $(document).ready(function() {
     cy.nodes().grabify();
     removeNode(cy, cy2, layout, numberOfCities, startingCity);
     setGraphOptions(cy);
-    // pathDistance = getPathDistance(cy.edges());
-    // updateRouteStats();
 
     numberOfCities -= 1;
     output.html(numberOfCities);
@@ -193,8 +191,6 @@ $(document).ready(function() {
     setGraphOptions(cy2);
     cy2.nodes().ungrabify();
     updateRouteStats();
-    runningTimeLeft = calculateRunningTime(numberOfCities);
-    formatTime(runningTimeLeft);
     $('#start').removeClass('d-none');
     updateStatus(STATUS_READY, 'status-ready');
   });
@@ -392,8 +388,7 @@ function refreshLayout(cy, layout) {
 
 
 /** Draw the new path and calculate it's distance.
- *  Updates frontend text for trial routes and if new best route found.
- *  Returns distance of the new path and if it is the best route so far or not. */
+ *  Updates frontend text for trial routes and if new best route found. */
 function testNewPath(cy, cy2, newPath, startNode) {
   $('#trial-route').html(newPath.toString());
   // Minus one because we include the start node twice (it is also the end node)
@@ -406,20 +401,16 @@ function testNewPath(cy, cy2, newPath, startNode) {
 
   findEdgeDifferences(cy, newEdgeConfig, numCities, startNode);
 
-  var totalDistance = getPathDistance(cy.edges());
-  $('#trial-distance').html(totalDistance.toFixed(2));
+  trialRouteDistance = getPathDistance(cy.edges());
+  $('#trial-distance').html(trialRouteDistance.toFixed(2));
   // Check if we have found a new best route
-  console.log(totalDistance);
-  console.log(bestRouteDistance);
-  if (totalDistance < bestRouteDistance) {
+  if (trialRouteDistance < bestRouteDistance) {
     previousBestRoute = $('#best-route-so-far').html().split(',');
     // show the best path on the best route graph
     findEdgeDifferences(cy2, newEdgeConfig, numCities, numCities);
     $('#best-route-so-far').html(newPath.toString());
-    $('#best-route-distance').html(totalDistance.toFixed(2));
-    return {distance: totalDistance, isBestRoute: true};
-  } else {
-    return {distance: totalDistance, isBestRoute: false};
+    $('#best-route-distance').html(trialRouteDistance.toFixed(2));
+    bestRouteDistance = trialRouteDistance;
   }
 }
 
@@ -534,12 +525,8 @@ function computeAndDisplayNextRoute(cy, cy2, intermediateCities, startingCity) {
 
 function renderGraph(cy, cy2, intermediateCities, startingCity) {
   pathWithStartingCity = addStartingCityToPath(startingCity, intermediateCities);
-
-  // Draw graph here
-  pathData = testNewPath(cy, cy2, pathWithStartingCity, startingCity.toString());
-  if (pathData.isBestRoute) {
-    bestRouteDistance = pathData.distance;
-  }
+  // Draw graph
+  testNewPath(cy, cy2, pathWithStartingCity, startingCity.toString());
 }
 
 
@@ -588,9 +575,6 @@ function showTimeUnit(unit, value) {
  *  runningTimeLeft is given in seconds. */
 function formatTime(runningTimeLeft) {
   // runningTimeLeft is in seconds
-  if (stopPathFinding) {
-    return;
-  }
   if (runningTimeLeft < 0) {
     runningTimeLeft = 0;
   }
