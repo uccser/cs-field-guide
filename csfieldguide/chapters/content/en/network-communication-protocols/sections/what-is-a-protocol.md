@@ -1,7 +1,7 @@
 # What is a protocol?
 
 ‘Protocol’ is a fancy word for simply saying "an agreed way to do something".
-You might have heard it in a cheesy cop show -- "no Jim, that’s against protocol!" -- or heard it used in a procedural sense, such as how to file a tax return or sit a driving test.
+You might have heard it in a cheesy cop show &ndash; "no Jim, that’s against protocol!" &ndash; or heard it used in a procedural sense, such as how to file a tax return or sit a driving test.
 We all use protocols, every day.
 Think of when you’re in class.
 The *protocol* for asking a question may be as follows:

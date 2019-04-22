@@ -1,4 +1,4 @@
-# Transport layer protocols - TCP, UDP
+# Transport layer protocols &ndash; TCP, UDP
 
 So far we have talked about HTTP and IRC.
 These protocols are at a level that make sure you do not need to worry about how your data is being transported.

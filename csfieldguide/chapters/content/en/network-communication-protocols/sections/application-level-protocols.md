@@ -1,7 +1,7 @@
-# Application layer protocols - HTTP, IRC
+# Application layer protocols &ndash; HTTP, IRC
 
 The URL for the home site of this book is http://www.csfieldguide.org.nz.
-Ask a few friends what the "http" stands for - they have probably seen it thousands of times... do they know what it is?
+Ask a few friends what the "http" stands for &ndash; they have probably seen it thousands of times... do they know what it is?
 This section covers high level protocols such as HTTP and IRC, what they can do and how you can use them (hint: you’re already using HTTP right now).
 
 ## HyperText Transfer Protocol (HTTP)
@@ -155,7 +155,7 @@ Accept-Language: en-US,en;q=0.8
 
 As you can see, a request message consists of the following:
 
-- A request line in the form of *method*  *URI*  *protocol*/*version*.
+- A request line in the form of *method*  *URI*  *protocol* / *version*.
 - Request Headers (Accept, User-Agent, Accept-Language etc).
 - An empty line.
 - An optional message body.
