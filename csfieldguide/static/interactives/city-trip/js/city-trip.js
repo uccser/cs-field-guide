@@ -16,6 +16,14 @@ const STATUS_READY = gettext("ready to go!");
 const STATUS_STOPPED = gettext("stopped");
 const STATUS_RUNNING = gettext("running");
 
+const TIME_UNITS = {
+  'year': 31536000,
+  'month': 2628000,
+  'day': 86400,
+  'hour': 3600,
+  'minute': 60
+};
+
 $(document).ready(function() {
 
   updateStatus(STATUS_READY, 'status-ready');
@@ -97,7 +105,7 @@ $(document).ready(function() {
   cy2.nodes().ungrabify();
 
   runningTimeLeft = calculateRunningTime(numberOfCities);
-  formatTime(runningTimeLeft);
+  displayInitialtime(runningTimeLeft);
   updateRouteStats();
 
   $('#add-city').click(function() {
@@ -111,7 +119,7 @@ $(document).ready(function() {
     updateCitiesLoop();
     updateRouteStats();
     runningTimeLeft = calculateRunningTime(numberOfCities);
-    formatTime(runningTimeLeft);
+    displayInitialtime(runningTimeLeft);
     $('#start').removeClass('d-none');
     $('#reset').addClass('d-none');
     updateStatus(STATUS_READY, 'status-ready');
@@ -135,7 +143,7 @@ $(document).ready(function() {
     updateCitiesLoop();
     updateRouteStats()
     runningTimeLeft = calculateRunningTime(numberOfCities);
-    formatTime(runningTimeLeft);
+    displayInitialtime(runningTimeLeft);
     $('#start').removeClass('d-none');
     $('#reset').addClass('d-none');
     updateStatus(STATUS_READY, 'status-ready');
@@ -180,7 +188,7 @@ $(document).ready(function() {
     updateStatus(STATUS_READY, 'status-ready');
     updateRouteStats();
     runningTimeLeft = calculateRunningTime(numberOfCities);
-    formatTime(runningTimeLeft);
+    displayInitialtime(runningTimeLeft);
   });
 
   /** Generates a new graph layout and make sure the best route graph matches */
@@ -191,6 +199,8 @@ $(document).ready(function() {
     cy2.add(cy.elements().clone());
     setGraphOptions(cy2);
     cy2.nodes().ungrabify();
+    runningTimeLeft = calculateRunningTime(numberOfCities);
+    displayInitialtime(runningTimeLeft);
     updateRouteStats();
     $('#start').removeClass('d-none');
     updateStatus(STATUS_READY, 'status-ready');
@@ -554,24 +564,65 @@ function showTimeUnit(unit, value) {
 
 /** Calculates how many years,months,days.. etc there are in runningTimeLeft.
  *  runningTimeLeft is given in seconds. */
+
+// globals for time
+var timer_vals = {
+  'year': 0,
+  'month': 0,
+  'day': 0,
+  'hour': 0,
+  'minute': 0,
+};
+
 function formatTime(runningTimeLeft) {
+  runningTimeLeft = Mathjs.bignumber(runningTimeLeft);
   // runningTimeLeft is in seconds
   if (runningTimeLeft < 0) {
     runningTimeLeft = 0;
-  }
-  var years = Math.floor(runningTimeLeft / 31536000); // 31536000 seconds in a year
-  var months = Math.floor((runningTimeLeft % 31536000) / 2628000); // Take what time doesn't make up a whole year and work out how many months that equals
-  var days = Math.floor((runningTimeLeft % 2628000) / 86400); // Repeat for other time units...
-  var hours = Math.floor((runningTimeLeft % 86400) / 3600);
-  var minutes = Math.floor((runningTimeLeft % 3600) / 60);
-  var seconds = (runningTimeLeft % 60).toFixed(1);
+    showTimeUnit('second', runningTimeLeft.toFixed(1));
+  } else {
+    var remainder = runningTimeLeft;
+    console.log(remainder);
+    if (timer_vals['month'] <= 0) {
+      remainder = calculateTimeUnits(remainder, TIME_UNITS['year'], 'year');
+      months = remainder;
+    }
+    if (timer_vals['day'] <= 0) {
+      remainder = calculateTimeUnits(remainder, TIME_UNITS['month'], 'month');
+      days = remainder;
+    }
+    if (timer_vals['hour'] <= 0) {
+      remainder = calculateTimeUnits(remainder, TIME_UNITS['day'], 'day');
+      hours = remainder;
+    }
+    if (timer_vals['minute'] <= 0) {
+      remainder = calculateTimeUnits(remainder, TIME_UNITS['hour'], 'hour');
+      minutes = remainder;
+    }
 
-  showTimeUnit('year', years);
-  showTimeUnit('month', months);
-  showTimeUnit('day', days);
-  showTimeUnit('hour', hours);
-  showTimeUnit('minute', minutes);
-  showTimeUnit('second', seconds);
+    remainder = calculateTimeUnits(remainder, TIME_UNITS['minute'], 'minute');
+    seconds = remainder;
+
+    showTimeUnit('second', remainder.toFixed(1));
+  }
+}
+
+
+function displayInitialtime(runTime) {
+  remainder = runTime;
+  for (var timeUnit in TIME_UNITS) {
+    remainder = calculateTimeUnits(remainder, TIME_UNITS[timeUnit], timeUnit);
+  }
+  showTimeUnit('second', remainder.toFixed(1));
+}
+
+
+function calculateTimeUnits(seconds, secondsInUnitOfTime, unit) {
+  var timeInGivenUnit = Math.floor(Mathjs.bignumber(Mathjs.divide(seconds, secondsInUnitOfTime)));
+  timer_vals[unit] = timeInGivenUnit;
+  showTimeUnit(unit, timeInGivenUnit);
+  var remainder = Mathjs.bignumber(Mathjs.mod(seconds, secondsInUnitOfTime));
+  return remainder;
 }
 
 
