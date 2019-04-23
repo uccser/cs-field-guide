@@ -189,10 +189,10 @@ mips-simulator:
 #   languages:
 #     en: interactives/ncea-guide-selector.html
 #   is_interactive: false
-# nfa-guesser:
-#   languages:
-#     en: interactives/nfa-guesser.html
-#   is_interactive: true
+nfa-guesser:
+  languages:
+    en: interactives/nfa-guesser.html
+  is_interactive: true
 no-help:
   languages:
     en: interactives/no-help.html
