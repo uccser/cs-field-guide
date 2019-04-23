@@ -39,7 +39,7 @@ Headers come before the data and footers afterwards.
 
 You can think of these protocols as a game of pass the parcel.
 When a message is sent in HTTP, it is wrapped in a TCP header, which is then wrapped in an IPv6 header, which is then wrapped in a Ethernet header and footer and sent over ethernet.
-At the other end, it’s unwrapped again from an ethernet *frame*, back to a IP *packet*, a TCP *datagram*, to a HTTP *request*.
+At the other end, it’s unwrapped again from an ethernet *frame*, back to a IP *packet*, a TCP *segment*, to a HTTP *request*.
 
 {panel type="curiosity"}
 
