@@ -64,6 +64,7 @@ Email: jack.morgan@canterbury.ac.nz
 
 - The question mark (`?`) is used to show that a packet has been corrupted. Therefore, *if ACKs and NACKs are not enabled*, a packet sent with the character `?` isn't affected by corruption.
 - Packets `X` and `X+3(n-1)` can potentially overlap perfectly if `X` is delayed `n` times and `X+3(n-1)` once. This is no less than 3 delays on two specific packets.
+- If `timeouts=true` but `acksnacks=false`, the game shouldn't ever end, but it often does after three repetitions.
 
 ## Future Plans
 
