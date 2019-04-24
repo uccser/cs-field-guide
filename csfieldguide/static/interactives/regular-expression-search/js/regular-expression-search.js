@@ -51,7 +51,7 @@ $(document).ready(function () {
     RegularExpressionSearch.search_text.setValue(decodeURI(starting_text));
   }
   if (reference == 'true') {
-    $('ul.panel div.collapsible-header').addClass('active');
+    $('#quick-reference').collapse('show');
   }
 
   // Highlight inital regular expression

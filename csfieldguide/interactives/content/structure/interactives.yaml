@@ -1,7 +1,7 @@
-# 2d-arrow-manipulations:
-#   languages:
-#     en: interactives/2d-arrow-manipulations.html
-#   is_interactive: true
+2d-shape-manipulations:
+  languages:
+    en: interactives/2d-shape-manipulations.html
+  is_interactive: true
 action-menu:
   languages:
     en: interactives/action-menu.html
@@ -48,13 +48,14 @@ binary-mode-calculator:
     de: interactives/binary-mode-calculator.html
     es: interactives/binary-mode-calculator.html
   is_interactive: true
-# box-rotation:
-#   languages:
-#     en: interactives/box-rotation.html
-#   is_interactive: true
-# box-translation:
-#   languages:
-#     en: interactives/box-translation.html
+box-rotation:
+  languages:
+    en: interactives/box-rotation.html
+  is_interactive: true
+box-translation:
+  languages:
+    en: interactives/box-translation.html
+  is_interactive: true
 braille-alphabet:
   languages:
     en: interactives/braille-alphabet.html
@@ -200,10 +201,10 @@ mips-simulator:
 #   languages:
 #     en: interactives/ncea-guide-selector.html
 #   is_interactive: false
-# nfa-guesser:
-#   languages:
-#     en: interactives/nfa-guesser.html
-#   is_interactive: true
+nfa-guesser:
+  languages:
+    en: interactives/nfa-guesser.html
+  is_interactive: true
 no-help:
   languages:
     en: interactives/no-help.html
@@ -237,6 +238,10 @@ payment-interface:
     en: interactives/payment-interface.html
     de: interactives/payment-interface.html
     es: interactives/payment-interface.html
+  is_interactive: true
+pixel-grid:
+  languages:
+    en: interactives/pixel-grid.html
   is_interactive: true
 pixel-viewer:
   languages:
@@ -310,10 +315,10 @@ sorting-algorithms:
 #   languages:
 #     en: interactives/trainsylvania-planner.html
 #   is_interactive: true
-# trig-function-calculator:
-#   languages:
-#     en: interactives/trig-function-calculator.html
-#   is_interactive: true
+trig-function-calculator:
+  languages:
+    en: interactives/trig-function-calculator.html
+  is_interactive: true
 unexpected-error:
   languages:
     en: interactives/unexpected-error.html
