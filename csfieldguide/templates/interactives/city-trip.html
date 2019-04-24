@@ -80,18 +80,14 @@
       </div>
     </div>
 
-    <div class="row mb-2">
-      <div class="col-sm-12 col-lg-8">
-          <p>{% trans "Estimated time left to run: " %}
-            <span id="num-years" class="d-none">0</span>
-            <span id="num-months" class="d-none">0</span>
-            <span id="num-days" class="d-none">0</span>
-            <span id="num-hours" class="d-none">0</span>
-            <span id="num-minutes" class="d-none">0</span>
-            <span id="num-seconds" class="d-none">0</span>
-          </p>
-      </div>
-    </div>
+    <p>{% trans "Estimated time left to run: " %}
+      <span id="num-years" class="d-none">0</span>
+      <span id="num-months" class="d-none">0</span>
+      <span id="num-days" class="d-none">0</span>
+      <span id="num-hours" class="d-none">0</span>
+      <span id="num-minutes" class="d-none">0</span>
+      <span id="num-seconds" class="d-none">0</span>
+    </p>
   </div>
 
 {% endblock html %}
@@ -101,5 +97,6 @@
 {% endblock css %}
 
 {% block js %}
+<script>var Mathjs;</script>
   <script type="text/javascript" src="{% static 'interactives/city-trip/js/city-trip.js' %}"></script>
 {% endblock js %}

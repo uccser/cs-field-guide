@@ -1,8 +1,12 @@
 const cytoscape = require('cytoscape');
 const noOverlap = require('cytoscape-no-overlap');
 const automove = require('cytoscape-automove');
-const Mathjs = require('mathjs');
-const ha = require('./heapsAlgorithm.js')
+Mathjs = require('mathjs');
+const ha = require('./heapsAlgorithm.js');
+
+Mathjs.config({
+  number: 'BigNumber'
+});
 
 cytoscape.use(noOverlap);
 cytoscape.use(automove);
@@ -105,7 +109,7 @@ $(document).ready(function() {
   cy2.nodes().ungrabify();
 
   runningTimeLeft = calculateRunningTime(numberOfCities);
-  displayInitialtime(runningTimeLeft);
+  formatTime(runningTimeLeft);
   updateRouteStats();
 
   $('#add-city').click(function() {
@@ -119,7 +123,7 @@ $(document).ready(function() {
     updateCitiesLoop();
     updateRouteStats();
     runningTimeLeft = calculateRunningTime(numberOfCities);
-    displayInitialtime(runningTimeLeft);
+    formatTime(runningTimeLeft);
     $('#start').removeClass('d-none');
     $('#reset').addClass('d-none');
     updateStatus(STATUS_READY, 'status-ready');
@@ -143,7 +147,7 @@ $(document).ready(function() {
     updateCitiesLoop();
     updateRouteStats()
     runningTimeLeft = calculateRunningTime(numberOfCities);
-    displayInitialtime(runningTimeLeft);
+    formatTime(runningTimeLeft);
     $('#start').removeClass('d-none');
     $('#reset').addClass('d-none');
     updateStatus(STATUS_READY, 'status-ready');
@@ -188,7 +192,7 @@ $(document).ready(function() {
     updateStatus(STATUS_READY, 'status-ready');
     updateRouteStats();
     runningTimeLeft = calculateRunningTime(numberOfCities);
-    displayInitialtime(runningTimeLeft);
+    formatTime(runningTimeLeft);
   });
 
   /** Generates a new graph layout and make sure the best route graph matches */
@@ -200,7 +204,7 @@ $(document).ready(function() {
     setGraphOptions(cy2);
     cy2.nodes().ungrabify();
     runningTimeLeft = calculateRunningTime(numberOfCities);
-    displayInitialtime(runningTimeLeft);
+    formatTime(runningTimeLeft);
     updateRouteStats();
     $('#start').removeClass('d-none');
     updateStatus(STATUS_READY, 'status-ready');
@@ -490,7 +494,8 @@ function beginPathFinding(cy, cy2, intermediateCities, startingCity, seconds) {
   if (stopPathFinding == false) {
     // start timer
     timer = setTimeout(function() {beginPathFinding(cy, cy2, intermediateCities, startingCity, seconds);}, 100);
-    seconds = seconds - 0.1;
+    seconds = Mathjs.chain(seconds).subtract(1).done();
+    console.log(seconds);
     formatTime(seconds);
     computeAndDisplayNextRoute(cy, cy2, intermediateCities, startingCity);
   } else {
@@ -548,6 +553,7 @@ function getPathDistance(edges) {
 
 /** Formats the time into years,months,days,hours,minutes,seconds string. */
 function showTimeUnit(unit, value) {
+  // value = Mathjs.eval('bignumber(' + value + ') / bignumber(10)');
   unitPlural = unit + 's';
   unitElement = $('#num-' + unitPlural);
   // We still want to show 0 seconds as it is the smallest unit of time shown
@@ -562,64 +568,20 @@ function showTimeUnit(unit, value) {
 }
 
 
-/** Calculates how many years,months,days.. etc there are in runningTimeLeft.
- *  runningTimeLeft is given in seconds. */
-
-// globals for time
-var timer_vals = {
-  'year': 0,
-  'month': 0,
-  'day': 0,
-  'hour': 0,
-  'minute': 0,
-};
-
-function formatTime(runningTimeLeft) {
-  runningTimeLeft = Mathjs.bignumber(runningTimeLeft);
-  // runningTimeLeft is in seconds
-  if (runningTimeLeft < 0) {
-    runningTimeLeft = 0;
-    showTimeUnit('second', runningTimeLeft.toFixed(1));
-  } else {
-    var remainder = runningTimeLeft;
-    console.log(remainder);
-    if (timer_vals['month'] <= 0) {
-      remainder = calculateTimeUnits(remainder, TIME_UNITS['year'], 'year');
-      months = remainder;
-    }
-    if (timer_vals['day'] <= 0) {
-      remainder = calculateTimeUnits(remainder, TIME_UNITS['month'], 'month');
-      days = remainder;
-    }
-    if (timer_vals['hour'] <= 0) {
-      remainder = calculateTimeUnits(remainder, TIME_UNITS['day'], 'day');
-      hours = remainder;
-    }
-    if (timer_vals['minute'] <= 0) {
-      remainder = calculateTimeUnits(remainder, TIME_UNITS['hour'], 'hour');
-      minutes = remainder;
-    }
-
-    remainder = calculateTimeUnits(remainder, TIME_UNITS['minute'], 'minute');
-    seconds = remainder;
-
-    showTimeUnit('second', remainder.toFixed(1));
-  }
-}
-
-
-function displayInitialtime(runTime) {
+function formatTime(runTime) {
   remainder = runTime;
   for (var timeUnit in TIME_UNITS) {
-    remainder = calculateTimeUnits(remainder, TIME_UNITS[timeUnit], timeUnit);
+    remainder = calculateTimeUnits(remainder, Mathjs.eval(TIME_UNITS[timeUnit] * 10), timeUnit);
   }
-  showTimeUnit('second', remainder.toFixed(1));
+  showTimeUnit('second',  Mathjs.eval('bignumber(' + remainder + ') / bignumber(10)').toFixed(1));
 }
 
 
 function calculateTimeUnits(seconds, secondsInUnitOfTime, unit) {
-  var timeInGivenUnit = Math.floor(Mathjs.bignumber(Mathjs.divide(seconds, secondsInUnitOfTime)));
-  timer_vals[unit] = timeInGivenUnit;
+  console.log(unit);
+  console.log(Mathjs.number(seconds));
+  var timeInGivenUnit = Math.floor(Mathjs.divide(seconds, secondsInUnitOfTime));
+  console.log(timeInGivenUnit);
   showTimeUnit(unit, timeInGivenUnit);
   var remainder = Mathjs.bignumber(Mathjs.mod(seconds, secondsInUnitOfTime));
   return remainder;
@@ -630,7 +592,7 @@ function calculateTimeUnits(seconds, secondsInUnitOfTime, unit) {
 function calculateRunningTime(cities) {
   factorialTemp = Mathjs.factorial(cities - 1);
   numPaths = Mathjs.divide(factorialTemp, 2);
-  seconds = Mathjs.divide(numPaths, 10);
+  // var seconds = Mathjs.eval('bignumber(' + numPaths + ') / bignumber(10)');
 
-  return seconds;
+  return Mathjs.bignumber(numPaths);
 }
