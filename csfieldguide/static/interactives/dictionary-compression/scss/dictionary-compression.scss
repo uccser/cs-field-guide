@@ -8,14 +8,6 @@ html {
     font-family: "Roboto",sans-serif;
 }
 
-body {
-    margin: 20px;
-}
-
-h1 {
-    text-align: center;
-}
-
 #interactive-dictionary-compression {
     #interactive-dictionary-compression-activity {
         display: flex;
@@ -29,28 +21,12 @@ h1 {
             flex-direction: column;
             width: 100%;
             margin: 10px;
-            button {
-                color: #FFF;
-                background-color: $orange;
-                text-align: center;
-                transition: .2s ease-out;
-                padding: 0.5rem;
-                border: none;
-                width: 100%;
-                box-shadow: $shadow;
-            }
         }
         #interactive-dictionary-compression-left {
             flex-basis: 140%;
             textarea {
-                border: none;
-                width: 100%;
+                margin-bottom: 4px;
                 font: 1rem "Courier New", monospace;
-                border: $border;
-                min-height: 5em;
-                box-sizing: border-box;
-                box-shadow: $shadow;
-                margin-bottom: 10px;
             }
             p {
                 margin-bottom: 0px;
@@ -69,8 +45,8 @@ h1 {
                 overflow: scroll;
                 .interactive-dictionary-compression-output-line {
                     display: flex;
+                    flex-wrap: wrap;
                     align-items: center;
-                    height: 2em;
                     p.interactive-dictionary-compression-message-character {
                         display: inline-block;
                         min-width: 10px;
@@ -100,11 +76,8 @@ h1 {
                     display: flex;
                     input {
                         flex-basis: 300%;
-                        padding: 4px;
-                        border: 1px solid #BFB9B7;
                         margin: 1px;
                         font: 1rem "Courier New", monospace !important;
-                        box-shadow: $shadow;
                     }
                     input.error {
                         border-color: red !important;
@@ -165,7 +138,6 @@ h1 {
                 }
             }
         }
-        #interactive-dictionary-compression-left textarea,
         #interactive-dictionary-compression-left #interactive-dictionary-compression-output,
         #interactive-dictionary-compression-user-dictionary {
             border: $border;
@@ -177,25 +149,14 @@ h1 {
 
 @media (max-width: 768px) {
     #interactive-dictionary-compression {
-        #interactive-dictionary-compression-left,
-        #interactive-dictionary-compression-left {
-            margin: 0px;
-        }
-        #interactive-dictionary-compression-left {
-            width: 50% !important;
-            flex-basis: 100% !important;
-        }
-    }
-}
-
-@media (max-width: 640px) {
-    #interactive-dictionary-compression {
         .interactive-dictionary-compression-heading {
             margin: 15px 0;
         }
         #interactive-dictionary-compression-activity {
             flex-wrap: wrap;
             #interactive-dictionary-compression-left {
+                width: 50% !important;
+                flex-basis: 100% !important;
                 p {
                     margin-top: 0px;
                 }

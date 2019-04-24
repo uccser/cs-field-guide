@@ -7,13 +7,20 @@ var max_match_length = 5;
 var encoded_message = [];
 var start_index;
 var end_index;
+var placeholder_message = gettext(`Pease porridge hot, pease porridge cold,
+Pease porridge in the pot, nine days old;
+Some like it hot, some like it cold,
+Some like it in the pot, nine days old.`);
 
 
+// Set placeholder message
 window.onload = function() {
+    var message_div = document.getElementById('message-to-decode');
+    message_div.value = placeholder_message;
     document.getElementById('interactive-lzss-compression-compress-button').addEventListener('click', compress, false);  
 }
 
-
+// Compress the message and display the encoded message
 function compress() {
     var message = document.getElementById('message-to-decode').value;
     // clear any existed encoded message
@@ -22,13 +29,14 @@ function compress() {
     drawEncodedMessage(encoded_message);
 }
 
-
+// Create a new div
 function newLineDiv() {
     var line_div = document.createElement('div');
     line_div.classList.add('interactive-lzss-compression-encoded-line');
     return line_div;
 }
 
+// Output the encoded message
 function drawEncodedMessage(encoded_message) {
     var compressed_text_div = document.getElementById('interactive-lzss-compression-compressed-text');
 
@@ -109,6 +117,7 @@ function drawEncodedMessage(encoded_message) {
     compressed_text_div.append(line_div);
 }
 
+// Get the start and end index of the given reference
 function getIndexes(selected_reference) {
     /* Helper function to get start and end index data values for
      * div hovered over.
@@ -117,7 +126,7 @@ function getIndexes(selected_reference) {
     end_index = parseInt(selected_reference.dataset.endIndex);
 }
 
-
+// Highlight the corresponding reference
 function changeHighlight(event, highlight) {
 
     var selected_reference;
@@ -129,10 +138,6 @@ function changeHighlight(event, highlight) {
             selected_reference = event.srcElement.parentElement;
         }
     }
-    // var selected_reference = event.target;
-    // if (event.target.classList[0] == 'interactive-lzss-compression-placeholder-box') {
-    //     selected_reference = event.srcElement.parentElement;
-    // }
     getIndexes(selected_reference);
     for (var i = start_index; i < end_index; i++) {
         var character_div = document.querySelectorAll('[data-index="' + i.toString() + '"]')[0];
@@ -149,6 +154,7 @@ function changeHighlight(event, highlight) {
     }
 }
 
+// Autotab to the next input box once the current box has a character in it
 function autoTab(event) {
     var placeholder_element = event.srcElement;
 
@@ -169,6 +175,7 @@ function autoTab(event) {
     }
 }
 
+// Runs the LZSS algorithm
 function compressText(message) {
     message = message.split('');
 

@@ -5,13 +5,8 @@
 
 {% block html %}
   <div class="container">
-    <div class="row">
-      <div class="col s12">
-
-        <h3>{% trans "Compression using a Dictionary" %}</h3>
-
         <div id="interactive-dictionary-compression">
-
+        <h3>{% trans "Compression using a Dictionary" %}</h3>
             <p>
                 {% trans "This interactive demonstrates the concept of using a dictionary to compress text." %}
             </p>
@@ -25,11 +20,8 @@
             <div id="interactive-dictionary-compression-activity">
                 <div id="interactive-dictionary-compression-left">
                     <h2 class="interactive-dictionary-compression-heading">{% trans "Enter a message to compress" %}:</h2>
-                    <textarea id="interactive-dictionary-compression-input" placeholder="Pease porridge hot, pease porridge cold,
-Pease porridge in the pot, nine days old;
-Some like it hot, some like it cold,
-Some like it in the pot, nine days old."></textarea>
-                    <button id="interactive-dictionary-compression-compress-button" type="button">
+                    <textarea class="form-control" rows="5" id="interactive-dictionary-compression-input"></textarea>
+                    <button id="interactive-dictionary-compression-compress-button" class="btn btn-primary btn-block" type="button">
                         {% trans "Compress" %} &rarr;
                     </button>
                     <h2 class="interactive-dictionary-compression-heading">{% trans "Compressed Message" %}:</h2>
@@ -47,8 +39,8 @@ Some like it in the pot, nine days old."></textarea>
                     <div id="interactive-dictionary-compression-user-dictionary-entry-input">
                         <p>{% trans "New dictionary entry" %}:</p>
                         <div id="interactive-compression-user-dictionary-entry-input-row">
-                            <input id="interactive-dictionary-compression-user-dictionary-value-input" placeholder="enter text here">
-                            <button id="interactive-dictionary-compression-add-entry-button" type="button">
+                            <input id="interactive-dictionary-compression-user-dictionary-value-input" class="form-control" placeholder="enter text here">
+                            <button id="interactive-dictionary-compression-add-entry-button" class="btn btn-primary" type="button">
                                 {% trans "Add" %} &rarr;
                             </button>
                         </div>
@@ -57,7 +49,7 @@ Some like it in the pot, nine days old."></textarea>
                             <p id="interactive-dictionary-compression-error-text" class="error-message">
                             </p>
                         </div>
-                        <button id="interactive-dictionary-compression-reset-button" type="button">
+                        <button id="interactive-dictionary-compression-reset-button" class="btn btn-danger btn-block" type="button">
                             {% trans "Reset Dictionary" %} &rarr;
                         </button>
                     </div>

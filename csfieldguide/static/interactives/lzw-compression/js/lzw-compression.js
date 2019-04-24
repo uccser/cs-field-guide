@@ -1,10 +1,10 @@
 var output = [];
 var codes = [];
-const SHORT_MESSAGE = `Pease porridge hot, pease porridge cold,
+const SHORT_MESSAGE = gettext(`Pease porridge hot, pease porridge cold,
 Pease porridge in the pot, nine days old;
 Some like it hot, some like it cold,
-Some like it in the pot, nine days old.`;
-const LONG_MESSAGE = `Twinkle, twinkle, little star,
+Some like it in the pot, nine days old.`);
+const LONG_MESSAGE = gettext(`Twinkle, twinkle, little star,
 How I wonder what you are!
 Up above the world so high,
 Like a diamond in the sky.
@@ -23,10 +23,9 @@ Till the sun is in the sky.
 As your bright and tiny spark
 Lights the traveller in the dark,
 Though I know not what you are,
-Twinkle, twinkle, little star.
-`;
+Twinkle, twinkle, little star.`);
 
-// set default text
+// Set the default message
 window.onload = function() {
     document.getElementById('interactive-lzw-compression-compress-button').addEventListener('click', compress, false);
 
@@ -41,6 +40,7 @@ window.onload = function() {
     }
 }
 
+// Generate the dictionary and compressed message output
 function compress() {
     output = [];
     codes = [];
@@ -49,7 +49,7 @@ function compress() {
     outputDictionary();
 }
 
-// LZW algorithm
+// Runs the LZW algorithm
 function compressText() {
     var string_to_encode = document.getElementById('interactive-lzw-compression-input').value;
 
@@ -99,7 +99,7 @@ function compressText() {
     }
 }
 
-// display the encoded message
+// Display the encoded message
 function outputEncodedMessage() {
     var encoded_message_div = document.getElementById('interactive-lzw-compression-encoded-text');
     encoded_message_div.innerHTML = '';
@@ -109,56 +109,58 @@ function outputEncodedMessage() {
     var line_div = document.createElement('div');
     line_div.classList.add('interactive-lzss-encoded-line');
 
-    // for each code
-    var character_position = 0;
-    for (var i = 0; i < output.length; i++) {
-        var code_section_div = document.createElement('div');
-        code_section_div.classList.add('interactive-lzw-code-section');
-        var code_section_fragment = document.createDocumentFragment();
+    if (output.length > 0 && output[0] != -1) {
+        // for each code
+        var character_position = 0;
+        for (var i = 0; i < output.length; i++) {
+            var code_section_div = document.createElement('div');
+            code_section_div.classList.add('interactive-lzw-code-section');
+            var code_section_fragment = document.createDocumentFragment();
 
-        var code = output[i];
+            var code = output[i];
 
-        if (code == 'null') { // new line character
-            encoded_message_fragment.appendChild(line_div);
-            line_div = document.createElement('div');
-            line_div.classList.add('interactive-lzw-encoded-line');
-        } else {
-            var code_length = codes[code].length;
+            if (code == 'null') { // new line character
+                encoded_message_fragment.appendChild(line_div);
+                line_div = document.createElement('div');
+                line_div.classList.add('interactive-lzw-encoded-line');
+            } else {
+                var code_length = codes[code].length;
 
-            var code_div = document.createElement('div');
-            code_div.classList.add('interactive-lzw-code');
-            code_div.setAttribute('data-reference-index', code);
-            
-            for (var j = 0; j < code_length; j++) {
-                var placeholder_input = document.createElement('input');
-                placeholder_input.classList.add('interactive-lzw-placeholder-box');
-                placeholder_input.maxLength = 1;
-                placeholder_input.setAttribute('data-character-position', character_position);
-                placeholder_input.addEventListener('keyup', function(event) {
-                    autoTab(event);
+                var code_div = document.createElement('div');
+                code_div.classList.add('interactive-lzw-code');
+                code_div.setAttribute('data-reference-index', code);
+                
+                for (var j = 0; j < code_length; j++) {
+                    var placeholder_input = document.createElement('input');
+                    placeholder_input.classList.add('interactive-lzw-placeholder-box');
+                    placeholder_input.maxLength = 1;
+                    placeholder_input.setAttribute('data-character-position', character_position);
+                    placeholder_input.addEventListener('keyup', function(event) {
+                        autoTab(event);
+                    });
+                    code_div.appendChild(placeholder_input);
+                    character_position += 1;
+                }
+
+                var code_index_div = document.createElement('p');
+                code_index_div.innerHTML = code;
+                code_div.appendChild(code_index_div);
+
+                code_div.addEventListener('mousemove', function(event) {
+                    changeHighlight(event, true);
                 });
-                code_div.appendChild(placeholder_input);
-                character_position += 1;
+                code_div.addEventListener('mouseleave', function(event) {
+                    changeHighlight(event, false);
+                });
+                code_div.addEventListener('focus', function(event) {
+                    changeHighlight(event, true);
+                });
+                code_div.addEventListener('focusout', function(event) {
+                    changeHighlight(event, false);
+                });
+
+                line_div.appendChild(code_div);
             }
-
-            var code_index_div = document.createElement('p');
-            code_index_div.innerHTML = code;
-            code_div.appendChild(code_index_div);
-
-            code_div.addEventListener('mousemove', function(event) {
-                changeHighlight(event, true);
-            });
-            code_div.addEventListener('mouseleave', function(event) {
-                changeHighlight(event, false);
-            });
-            code_div.addEventListener('focus', function(event) {
-                changeHighlight(event, true);
-            });
-            code_div.addEventListener('focusout', function(event) {
-                changeHighlight(event, false);
-            });
-
-            line_div.appendChild(code_div);
         }
     }
     encoded_message_fragment.appendChild(line_div);
@@ -166,7 +168,7 @@ function outputEncodedMessage() {
 }
 
 
-// highlights the corresponding dictionary entry
+// Highlights the corresponding dictionary entry when the user hovers over an encoded character
 function changeHighlight(event, highlight) {
     var selected_reference;
     if (event.nodeName == 'INPUT') { // event was changing focus to next input box
@@ -191,7 +193,7 @@ function changeHighlight(event, highlight) {
     }
 }
 
-// add each of the dictionary entries to the page
+// Add each of the dictionary entries to the page
 function makeDictionaryEntryElements(start_index, end_index, element) {
     var fragment = document.createDocumentFragment();
     for (var i = start_index; i < end_index; i++) {
@@ -219,7 +221,7 @@ function makeDictionaryEntryElements(start_index, end_index, element) {
 };
 
 
-// display the dictionary built by LZW, in 3 columns
+// Display the dictionary built by LZW in 3 columns
 function outputDictionary() {
     var col1_dictionary_div = document.getElementById('interactive-lzw-compression-dictionary-col-1');
     var col2_dictionary_div = document.getElementById('interactive-lzw-compression-dictionary-col-2');
@@ -236,7 +238,7 @@ function outputDictionary() {
     makeDictionaryEntryElements(second_split_index, codes.length, col3_dictionary_div);
 }
 
-// autotabs to next input box when decoding
+// Autotab to next input box when decoding
 function autoTab(event) {
     // get current input box
     var current_placeholder_element = event.srcElement;

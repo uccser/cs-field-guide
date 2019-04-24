@@ -6,13 +6,21 @@ var message_characters = [];
 //         CodeIndex: 0
 //     }
 // ];
+var placeholder_message = gettext(`
+Pease porridge hot, pease porridge cold,
+Pease porridge in the pot, nine days old;
+Some like it hot, some like it cold,
+Some like it in the pot, nine days old.`
+);
 
+// Set up example message and event listeners
 window.onload = function() {
+    var message_div = document.getElementById('interactive-dictionary-compression-input');
+    message_div.placeholder = placeholder_message;
     // set up listeners for buttons
     document.getElementById('interactive-dictionary-compression-compress-button').addEventListener('click', compress, false);
     document.getElementById('interactive-dictionary-compression-add-entry-button').addEventListener('click', updateDictionary, false);
     document.getElementById('interactive-dictionary-compression-reset-button').addEventListener('click', resetDictionary, false);
-    document.getElementById('interactive-dictionary-compression-user-dictionary-value-input').addEventListener('change', updateDictionary, false);
     // reset all information relating to the message and dictionary
     document.getElementById('interactive-dictionary-compression-output').innerHTML = '';
     var dictionary_div = document.getElementById('interactive-dictionary-compression-user-dictionary');
@@ -25,16 +33,16 @@ window.onload = function() {
     highlightCodedCharacters();
 }
 
+// Output the new message with the existing dictionary for compression
 function compress() {
     // reset all information relating to the message and dictionary
     document.getElementById('interactive-dictionary-compression-output').innerHTML = '';
     message_characters = [];
     readInputMessage();
-    //setExampleCodes();
     highlightCodedCharacters();
 }
 
-// highlight the characters that have a corresponding code in the dictionary
+// Highlight the characters that have a corresponding code in the dictionary
 function highlightCodedCharacters() {
     // clear the existing references
     for (var i = 0; i < message_characters.length; i++) {
@@ -47,11 +55,14 @@ function highlightCodedCharacters() {
     // stable sort the codes by length
     var ordered_codes = codes.slice()
     ordered_codes.sort(function (a, b) {
-        if (a.length === b.length)
+        if (a.length === b.length) {
             return a.position - b.position;
-        if (b.length < a.length)
+        }
+        if (b.length < a.length) {
             return -1;
+        } else {
             return 1;
+        }
     });
     // highlight the substrings of the message that occur in the dictionary
     // uses the longest code first
@@ -109,14 +120,21 @@ function highlightCodedCharacters() {
     calculateStatistics(number_coded_characters);
 }
 
+// Calculate percentage of message that is compressed
 function calculateStatistics(number_coded_characters) {
     var percentage_coded = Math.round((number_coded_characters/message_characters.length) * 100);
     var num_references_used = codes.length;
-    var stats = gettext('%(percentage_coded)% of text compressed using %(num_references_used) references.')
+
+    d = { 
+        'percent_coded': percentage_coded,
+        'num_refs_used': num_references_used
+    };
+    var format = ngettext('%(percent_coded)s% of text compressed using 1 reference.', '%(percent_coded)s% of text compressed using %(num_refs_used)s references.', d.num_refs_used);
+    stats = interpolate(format, d, true);
     document.getElementById('interactive-dictionary-compression-stats').innerHTML = stats;
 }
 
-
+// Highlight the corresponding code in the dictionary when user hovers over a compressed character in the outputted message
 function highlightDictionaryEntry(event, highlight) {
     // get message character element and index to get dictionary entry index
     var message_character_element = event.srcElement;
@@ -133,7 +151,7 @@ function highlightDictionaryEntry(event, highlight) {
     }
 }
 
-
+// Highlight the corresponding compressed characters in the outputted message when the user hovers over a code in the dictionary
 function highlightCharacters(event, highlight) {
     var selected_dictionary_entry = event.srcElement;
     if (event.nodeName == 'P') { // event was changing focus to next input box
@@ -155,20 +173,21 @@ function highlightCharacters(event, highlight) {
     }
 }
 
+// Create an example dictionary of 5 codes based on placeholder message
 function setExampleCodes() {
     for (var i = 0; i < message_characters.length; i++) {
         var character = message_characters[i].Character;
         if (codes.indexOf(character) == -1) { // not already in codes
             codes.push(character);
         }
-        if (codes.length == 5) {
+        if (codes.length == 5) { // 5 = arbitrary number of items to put in example dictionary
             break;
         }
     }
 }
 
 
-// transfer the inputted message into individual element for each character
+// Transfer the inputted message into individual element for each character
 function readInputMessage() {
     var message_textarea = document.getElementById('interactive-dictionary-compression-input');
     var message = message_textarea.value;
@@ -204,14 +223,14 @@ function readInputMessage() {
             character_element.addEventListener('mouseleave', function(event) {
                 highlightDictionaryEntry(event, false);
             });
-        line_div.append(character_element);
+            line_div.append(character_element);
         }
     }
     fragment.appendChild(line_div);
     document.getElementById('interactive-dictionary-compression-output').appendChild(fragment);
 }
 
-
+// Update the dictionary when the user enters a new code
 function updateDictionary() {
     // get the new value entered by the user
     var input_element = document.getElementById('interactive-dictionary-compression-user-dictionary-value-input');
@@ -246,6 +265,7 @@ function updateDictionary() {
     }
 }
 
+// Display an error message for incorrect user input for adding codes to the dictionary
 function changeErrorMessage(show, message) {
     var input_element = document.getElementById('interactive-dictionary-compression-user-dictionary-value-input');
     if (show === true) {
@@ -261,6 +281,7 @@ function changeErrorMessage(show, message) {
 
 }
 
+// Create a new column for codes in the dictionary
 function createDictionaryColumnElement(index) {
     var column_element = document.createElement('div');
     column_element.setAttribute('data-column-number', index);
@@ -268,7 +289,7 @@ function createDictionaryColumnElement(index) {
     return column_element;
 }
 
-
+// Clear the dictionary
 function resetDictionary() {
     var new_dictionary_column = createDictionaryColumnElement(1);
     var dictionary_div = document.getElementById('interactive-dictionary-compression-user-dictionary');
@@ -281,7 +302,7 @@ function resetDictionary() {
 }
 
 
-// populate the interface with the dictionary entries
+// Populate the interface with the dictionary entries
 function buildExampleDictionary() {
     var fragment = document.createDocumentFragment();
     for (var i = 0; i < codes.length; i++) {
@@ -293,7 +314,7 @@ function buildExampleDictionary() {
     document.getElementById('interactive-dictionary-compression-user-dictionary').appendChild(new_dictionary_column);
 };
 
-
+// Create a new element for a dictionary code
 function createDictionaryElement(index, value) {
     // create dictionary entry element
     var dictionary_entry = document.createElement('div');

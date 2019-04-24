@@ -4,23 +4,15 @@
 {% load static %}
 
 {% block html %}
-<div id="interactive-lzw-compression" class="row mt-3">
-  <div class="col-12 text-center">
-    <h1 id="heading">{% trans "LZW Compression" %}</h1>
-  </div>
-  <div id="content" class="container">
-
-		<div id="interactive-lzw-compression">
-
+<div id="container">
+    <div id="interactive-lzw-compression">
+        <h3 id="heading">{% trans "LZW Compression" %}</h3>
+        <div id="interactive-lzw-compression-wrapper">
             <div id="interactive-lzw-compression-left">
                 <div class="interactive-lzw-compression-to-compress-block" id="interactive-lzw-compression-to-compress">
                     <p>{% trans "Message to compress" %}:</p>
-                    <textarea id="interactive-lzw-compression-input">
-Pease porridge hot, pease porridge cold,
-Pease porridge in the pot, nine days old;
-Some like it hot, some like it cold,
-Some like it in the pot, nine days old.</textarea>
-                    <button id="interactive-lzw-compression-compress-button" type="button">
+                    <textarea class="form-control" rows="5" id="interactive-lzw-compression-input"></textarea>
+                    <button id="interactive-lzw-compression-compress-button" class="btn btn-primary btn-block" type="button">
                         {% trans "Compress" %} &rarr;
                     </button>
                 </div>
@@ -28,7 +20,6 @@ Some like it in the pot, nine days old.</textarea>
                 <div id="interactive-lzw-compression-encoded-text">
                 </div>
             </div>
-
             <div id="interactive-lzw-compression-right">
                 <p>{% trans "Generated Dictionary" %}:</p>
                 <div id="interactive-lzw-compression-dictionary">
@@ -40,9 +31,9 @@ Some like it in the pot, nine days old.</textarea>
                     </div>
                 </div>
             </div>
-
-		</div>
-  </div>
+        </div>
+    </div>
+</div>
 {% endblock html %}
 
 {% block css %}
