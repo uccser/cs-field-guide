@@ -155,7 +155,9 @@ Django
 ------------------------------------------------------------------------------
 https://github.com/django/django
 Copyright Django Software Foundation and individual contributors.
-licensed under the three-clause BSD license.
+    Includes code from the Python standard library
+    which is licenced under the Python licence
+licensed under the three-clause BSD licence.
 third-party-licences/django.txt
 ==============================================================================
 
