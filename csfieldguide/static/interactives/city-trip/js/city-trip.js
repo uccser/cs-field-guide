@@ -1,12 +1,8 @@
 const cytoscape = require('cytoscape');
 const noOverlap = require('cytoscape-no-overlap');
 const automove = require('cytoscape-automove');
-Mathjs = require('mathjs');
+const Mathjs = require('mathjs');
 const ha = require('./heapsAlgorithm.js');
-
-Mathjs.config({
-  number: 'BigNumber'
-});
 
 cytoscape.use(noOverlap);
 cytoscape.use(automove);
@@ -20,12 +16,15 @@ const STATUS_READY = gettext("ready to go!");
 const STATUS_STOPPED = gettext("stopped");
 const STATUS_RUNNING = gettext("running");
 
+// We multiply by 10 here so when we are using operations on these numbers
+// we avoid rounding errors.
 const TIME_UNITS = {
-  'year': 31536000,
-  'month': 2628000,
-  'day': 86400,
-  'hour': 3600,
-  'minute': 60
+  'year': (31536000 * 10),
+  'month': (2628000 * 10),
+  'day': (86400 * 10),
+  'hour': (3600 * 10),
+  'minute': (60 * 10),
+  'second': (1 * 10)
 };
 
 $(document).ready(function() {
@@ -108,7 +107,7 @@ $(document).ready(function() {
   setGraphOptions(cy2);
   cy2.nodes().ungrabify();
 
-  runningTimeLeft = calculateRunningTime(numberOfCities);
+  var runningTimeLeft = calculateRunningTime(numberOfCities);
   formatTime(runningTimeLeft);
   updateRouteStats();
 
@@ -284,17 +283,17 @@ function initialiseGraph(nodes, cityLoop) {
   var graphData = [];
   // generate nodes (cities) for city map
   for (node of nodes) {
-    nodeData = {
+    var nodeData = {
       data: { id: node.toString() }
     };
     graphData.push(nodeData);
   }
   // generate edges (roads) between nodes (cities)
   for (var i = 0; i < cityLoop.length - 1; i++) {
-    sourceNode = cityLoop[i].toString();
-    targetNode = cityLoop[i+1].toString();
-    edgeID = sourceNode + '-' + targetNode;
-    edgeData = {
+    var sourceNode = cityLoop[i].toString();
+    var targetNode = cityLoop[i+1].toString();
+    var edgeID = sourceNode + '-' + targetNode;
+    var edgeData = {
       data: { id: edgeID, source: sourceNode, target: targetNode}
     }
     graphData.push(edgeData);
@@ -306,8 +305,8 @@ function initialiseGraph(nodes, cityLoop) {
 
 /** Adds an edge to the graph. */
 function addEdge(cyGraph, sourceNodeId, targetNodeId) {
-  edgeID = sourceNodeId + '-' + targetNodeId;
-  newEdge = {
+  var edgeID = sourceNodeId + '-' + targetNodeId;
+  var newEdge = {
     data: { id: edgeID, source: sourceNodeId, target: targetNodeId },
     classes: 'edgesToAdd'
   };
@@ -317,7 +316,7 @@ function addEdge(cyGraph, sourceNodeId, targetNodeId) {
 
 /** Adds a node to the graph */
 function addNode(cy, cy2, layout, oldNumCities, startNode) {
-  newNumCities = oldNumCities + 1;
+  var newNumCities = oldNumCities + 1;
   if (stopPathFinding) {
     // Once path finding has been interrupted we need to reset the graph because some edges between nodes don't exist
     resetGraph(cy, cy2, newNumCities, layout);
@@ -328,8 +327,8 @@ function addNode(cy, cy2, layout, oldNumCities, startNode) {
     cy.remove(cy.$('#' + previousNodeID + '-' + startNode));
     cy2.remove(cy2.$('#' + previousNodeID + '-' + startNode));
     // Create node
-    currentNodeID = (newNumCities).toString();
-    newNode = {
+    var currentNodeID = (newNumCities).toString();
+    var newNode = {
       data: { id: currentNodeID }
     };
     cy.add(newNode);
@@ -354,7 +353,7 @@ function resetGraph(cy, cy2, newNumCities, layout) {
   cy2.remove(cy2.elements());
   // Create trial route graph
   var nodes = Array.from(Array(newNumCities), (x, index) => index + 1);
-  intermediateNodess = nodes.filter(function(node) {
+  var intermediateNodess = nodes.filter(function(node) {
     return node !== 1;
   });
   var cityLoop = addStartingCityToPath(1, intermediateNodess);
@@ -375,10 +374,10 @@ function removeNode(cy, cy2, layout, numberOfCities, startNode) {
     resetGraph(cy, cy2, newNumCities, layout);
     stopPathFinding = false;
   } else {
-    nodeToRemove = cy.$('#' + (numberOfCities).toString());
+    var nodeToRemove = cy.$('#' + (numberOfCities).toString());
     cy.remove( nodeToRemove );
     // Update best route graph to match
-    nodeToRemoveCy2 = cy2.$('#' + (numberOfCities).toString());
+    var nodeToRemoveCy2 = cy2.$('#' + (numberOfCities).toString());
     cy2.remove( nodeToRemoveCy2 );
     // Add in edge that closes the loop
     addEdge(cy, newNumCities, startNode);
@@ -419,7 +418,7 @@ function testNewPath(cy, cy2, newPath, startNode) {
   $('#trial-distance').html(trialRouteDistance.toFixed(2));
   // Check if we have found a new best route
   if (trialRouteDistance < bestRouteDistance) {
-    previousBestRoute = $('#best-route-so-far').html().split(',');
+    var previousBestRoute = $('#best-route-so-far').html().split(',');
     // show the best path on the best route graph
     findEdgeDifferences(cy2, newEdgeConfig, numCities, numCities);
     $('#best-route-so-far').html(newPath.toString());
@@ -482,7 +481,7 @@ function setDifference(a, b) {
 /** E.g if the startingCity is 1 and cities is [2,3] return [1,2,3,1] */
 function addStartingCityToPath(startingCity, cities) {
   // Add origin city to start of route
-  temp = [startingCity].concat(cities);
+  var temp = [startingCity].concat(cities);
   // Add origin city to end of route and return
   return temp.concat(startingCity);
 }
@@ -493,9 +492,8 @@ function beginPathFinding(cy, cy2, intermediateCities, startingCity, seconds) {
   // if permutations to do
   if (stopPathFinding == false) {
     // start timer
-    timer = setTimeout(function() {beginPathFinding(cy, cy2, intermediateCities, startingCity, seconds);}, 100);
+    var timer = setTimeout(function() {beginPathFinding(cy, cy2, intermediateCities, startingCity, seconds);}, 100);
     seconds = Mathjs.chain(seconds).subtract(1).done();
-    console.log(seconds);
     formatTime(seconds);
     computeAndDisplayNextRoute(cy, cy2, intermediateCities, startingCity);
   } else {
@@ -516,9 +514,9 @@ function beginPathFinding(cy, cy2, intermediateCities, startingCity, seconds) {
 /** Get the next permutation from heapsAlgorithm.js and render the graph 
  *  by calling testNewPath. */
 function computeAndDisplayNextRoute(cy, cy2, intermediateCities, startingCity) {
-  intermediateCities = ha.getNextPermutation();
+  var intermediateCities = ha.getNextPermutation();
   if (intermediateCities) {
-    pathWithStartingCity = addStartingCityToPath(startingCity, intermediateCities);
+    var pathWithStartingCity = addStartingCityToPath(startingCity, intermediateCities);
     testNewPath(cy, cy2, pathWithStartingCity, startingCity.toString()); // render graph
   } else {
     stopPathFinding = true;
@@ -553,12 +551,17 @@ function getPathDistance(edges) {
 
 /** Formats the time into years,months,days,hours,minutes,seconds string. */
 function showTimeUnit(unit, value) {
-  // value = Mathjs.eval('bignumber(' + value + ') / bignumber(10)');
-  unitPlural = unit + 's';
-  unitElement = $('#num-' + unitPlural);
+  var unitPlural = unit + 's';
+  var unitElement = $('#num-' + unitPlural);
+  var isSeconds = unit == 'second';
   // We still want to show 0 seconds as it is the smallest unit of time shown
-  if (value > 0 || unit == 'second') {
-    var format = ngettext('1 ' + unit, '%(value)s ' + unitPlural + ' ', value);
+  if (value > 0 || isSeconds) {
+    // If the unit is seconds we don't want to show a comma afterwards
+    if (isSeconds) {
+      var format = ngettext('1 ' + unit, '%(value)s ' + unitPlural, value);
+    } else {
+      var format = ngettext('1 ' + unit, '%(value)s ' + unitPlural + ', ', value);
+    }
     var timeUnitText = interpolate(format, {"value": value.toLocaleString()}, true);
     unitElement.html(timeUnitText);
     unitElement.removeClass('d-none');
@@ -568,31 +571,35 @@ function showTimeUnit(unit, value) {
 }
 
 
+/** Calculate how many years, months, days etc .. are in the runTime (given in seconds) */
 function formatTime(runTime) {
-  remainder = runTime;
+  var remainder = runTime;
   for (var timeUnit in TIME_UNITS) {
-    remainder = calculateTimeUnits(remainder, Mathjs.eval(TIME_UNITS[timeUnit] * 10), timeUnit);
+    remainder = calculateTimeUnits(remainder, TIME_UNITS[timeUnit], timeUnit);
   }
-  showTimeUnit('second',  Mathjs.eval('bignumber(' + remainder + ') / bignumber(10)').toFixed(1));
 }
 
 
+/** Calculate the time in the given unit */
 function calculateTimeUnits(seconds, secondsInUnitOfTime, unit) {
-  console.log(unit);
-  console.log(Mathjs.number(seconds));
-  var timeInGivenUnit = Math.floor(Mathjs.divide(seconds, secondsInUnitOfTime));
-  console.log(timeInGivenUnit);
-  showTimeUnit(unit, timeInGivenUnit);
-  var remainder = Mathjs.bignumber(Mathjs.mod(seconds, secondsInUnitOfTime));
-  return remainder;
+  var timeInGivenUnit = Mathjs.divide(seconds, secondsInUnitOfTime).toFixed(1);
+  if (unit == 'second') {
+    showTimeUnit(unit, timeInGivenUnit);
+  } else {
+    showTimeUnit(unit, Math.floor(timeInGivenUnit));
+    var remainder = Mathjs.bignumber(Mathjs.mod(seconds, secondsInUnitOfTime));
+    return remainder;
+  }
 }
 
 
 /** Calculates how many seconds it will take for the algorithm to finish. */
 function calculateRunningTime(cities) {
-  factorialTemp = Mathjs.factorial(cities - 1);
-  numPaths = Mathjs.divide(factorialTemp, 2);
-  // var seconds = Mathjs.eval('bignumber(' + numPaths + ') / bignumber(10)');
+  var factorialTemp = Mathjs.factorial(cities - 1);
+  var numPaths = Mathjs.divide(factorialTemp, 2);
+  // The number of seconds is numPaths / 10 but we are now multiplying by 10 to prevent
+  // rounding errors so return numPaths. This will be divided by 10 on line 581 when we
+  // divide seconds by secondsInUnitOfTime (both are multiplied by 10).
 
   return Mathjs.bignumber(numPaths);
 }
