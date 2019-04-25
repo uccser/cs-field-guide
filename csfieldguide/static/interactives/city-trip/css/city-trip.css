@@ -93,3 +93,30 @@
 .status-complete {
   color: #28a745;
 }
+
+#warning {
+  display: none;
+  padding: 10px;
+}
+
+#warning label {
+  padding: 10px;
+  text-align: center;
+  background-color: rgba(244, 67, 54, 0.51);
+  border: 2px solid #FF4336;
+  border-radius: 5px;
+  z-index: 1;
+  display: block;
+}
+
+@media (max-width: 800px) {
+  #warning {
+    display: block;
+  }
+}
+
+@media (max-height: 800px) {
+  #warning {
+    display: block;
+  }
+}
