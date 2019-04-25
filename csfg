@@ -84,6 +84,7 @@ cmd_update() {
   cmd_migrate
 
   cmd_updatedata
+  cmd_make_interactive_thumbnails
   cmd_rebuild_index
 
   echo ""
