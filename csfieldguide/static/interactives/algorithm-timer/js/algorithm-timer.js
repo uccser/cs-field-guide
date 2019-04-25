@@ -83,7 +83,11 @@ function calculateTimeTaken(complexity, resultForm, n, speed, processors, timeUn
   processors = Mathjs.bignumber(processors);
   var steps;
   
-  if (complexity == 'squared') {
+  if (complexity == 'log') {
+    steps = Mathjs.bignumber(Mathjs.log(n));
+  } else if (complexity == 'linear') {
+    steps = Mathjs.bignumber(n);
+  } else if (complexity == 'squared') {
     steps = Mathjs.bignumber(Math.pow(n, 2));
   } else if (complexity == 'cubed') {
     steps = Mathjs.bignumber(Math.pow(n, 3));
