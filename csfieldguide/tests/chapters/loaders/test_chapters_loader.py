@@ -118,7 +118,8 @@ class ChaptersLoaderTest(BaseTestWithDB):
             structure_filename="{}.yaml".format(test_slug)
         )
         chapter_loader.load()
-        self.assertTrue(find_image_files.called)
+        # To be added back in. See issue/919
+        # self.assertTrue(find_image_files.called)
         self.assertQuerysetEqual(
             Chapter.objects.all(),
             ["<Chapter: Interactives>"]
