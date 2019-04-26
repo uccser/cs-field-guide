@@ -43,19 +43,19 @@ $(document).ready(function() {
   });
   $('#n-items').on('input', function() {
     n = $('#n-items').val();
-    if (inputIsValid(n, speed, processors) == true) {
+    if (inputIsValid(n, speed, processors)) {
       updateData()
     }
   });
   $('#speed').on('input', function() {
     speed = $('#speed').val();
-    if (inputIsValid(n, speed, processors) == true) {
+    if (inputIsValid(n, speed, processors)) {
       updateData()
     }
   });
   $('#processors').on('input', function() {
     processors = $('#processors').val();
-    if (inputIsValid(n, speed, processors) == true) {
+    if (inputIsValid(n, speed, processors)) {
       updateData()
     }
   });

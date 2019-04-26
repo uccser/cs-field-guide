@@ -132,7 +132,7 @@ $(document).ready(function() {
     if (numberOfCities > minCities) {
       $('#remove-city').prop('disabled', false);
     }
-  })
+  });
 
   $('#remove-city').click(function() {
     cy.nodes().unlock();
@@ -156,7 +156,7 @@ $(document).ready(function() {
     if (numberOfCities < maxCities) {
       $('#add-city').prop('disabled', false);
     }
-  })
+  });
 
   $('#start').click(function() {
     cy.nodes().ungrabify();
@@ -169,7 +169,7 @@ $(document).ready(function() {
     });
     seconds = calculateRunningTime(cities.length);
     ha.initHeapsAlgorithm(intermediateCities);
-    beginPathFinding(cy, cy2, intermediateCities, startingCity, seconds);
+    getNextPath(cy, cy2, intermediateCities, startingCity, seconds);
   });
 
 
@@ -195,7 +195,7 @@ $(document).ready(function() {
   });
 
   /** Generates a new graph layout and make sure the best route graph matches */
-  $('#generate-map').click(function () {
+  $('#generate-map').click(function() {
     cy.nodes().grabify();
     cy2.remove(cy2.elements());
     refreshLayout(cy, layout);
@@ -231,7 +231,8 @@ $(document).ready(function() {
     $('#best-route-distance').html(bestRouteDistance.toFixed(2));
   };
 
-  /** E.g if cities = [1,2,3] and startingCity is 1 then:
+  /** Add the starting city/origin city to the start and end of the list.
+   *  E.g if cities = [1,2,3] and startingCity is 1 then:
    *  intermediateCities = [2,3] and citiesLoop = [1,2,3,1] */
   function updateCitiesLoop() {
     intermediateCities = cities.filter(function(city) {
@@ -268,7 +269,7 @@ function updateStatus(statusText, currentClass) {
 };
 
 
-/** User cannot pan the graph and keep graph within the viewport. */
+/** Prevents panning the graph and keeps the graph within the viewport. */
 function setGraphOptions(cyGraph) {
   cyGraph.userPanningEnabled(false);
   cyGraph.automove({
@@ -478,7 +479,8 @@ function setDifference(a, b) {
 }
 
 
-/** E.g if the startingCity is 1 and cities is [2,3] return [1,2,3,1] */
+/** Add the starting city/origin city to the start and end of the path.
+ *  E.g if the startingCity is 1 and cities is [2,3] return [1,2,3,1] */
 function addStartingCityToPath(startingCity, cities) {
   // Add origin city to start of route
   var temp = [startingCity].concat(cities);
@@ -488,11 +490,11 @@ function addStartingCityToPath(startingCity, cities) {
 
 
  /** Start timer and begin finding permutations by calling methods in heapsAlgorithm.js. */
-function beginPathFinding(cy, cy2, intermediateCities, startingCity, seconds) {
+function getNextPath(cy, cy2, intermediateCities, startingCity, seconds) {
   // if permutations to do
-  if (stopPathFinding == false) {
+  if (!stopPathFinding) {
     // start timer
-    var timer = setTimeout(function() {beginPathFinding(cy, cy2, intermediateCities, startingCity, seconds);}, 100);
+    var timer = setTimeout(function() {getNextPath(cy, cy2, intermediateCities, startingCity, seconds);}, 100);
     seconds = Mathjs.chain(seconds).subtract(1).done();
     formatTime(seconds);
     computeAndDisplayNextRoute(cy, cy2, intermediateCities, startingCity);
@@ -598,7 +600,7 @@ function calculateRunningTime(cities) {
   var factorialTemp = Mathjs.factorial(cities - 1);
   var numPaths = Mathjs.divide(factorialTemp, 2);
   // The number of seconds is numPaths / 10 but we are now multiplying by 10 to prevent
-  // rounding errors so return numPaths. This will be divided by 10 on line 581 when we
+  // rounding errors so return numPaths. This will be divided by 10 in calculateTimeUnits() when we
   // divide seconds by secondsInUnitOfTime (both are multiplied by 10).
 
   return Mathjs.bignumber(numPaths);
