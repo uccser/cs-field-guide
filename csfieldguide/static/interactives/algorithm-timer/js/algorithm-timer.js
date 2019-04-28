@@ -1,6 +1,9 @@
 const Mathjs = require('mathjs');
 
 const COMPLEXITY_TEXT = {
+  'log': 'log(n)',
+  'nlog': 'nlog(n)',
+  'linear': 'n',
   'squared': 'n&sup2;',
   'cubed': 'n&sup3;',
   'fourth-power': 'n<sup>4</sup>',
@@ -87,6 +90,8 @@ function calculateTimeTaken(complexity, resultForm, n, speed, processors, timeUn
     steps = Mathjs.bignumber(Mathjs.log(n));
   } else if (complexity == 'linear') {
     steps = Mathjs.bignumber(n);
+  } else if (complexity == 'nlog') {
+    steps = Mathjs.bignumber(n * Mathjs.log(n));
   } else if (complexity == 'squared') {
     steps = Mathjs.bignumber(Math.pow(n, 2));
   } else if (complexity == 'cubed') {
@@ -111,6 +116,11 @@ function calculateTimeTaken(complexity, resultForm, n, speed, processors, timeUn
     timeTaken = Mathjs.format(Mathjs.bignumber(timeTaken), {notation: 'exponential', precision: 3});
   } else {
     timeTaken = Mathjs.format(Mathjs.bignumber(timeTaken), {notation: 'fixed', precision: 2});
+  }
+
+  // If there are no significant decimal places don't show any decimal places
+  if (timeTaken % 1 == 0) {
+    timeTaken = Mathjs.format(Mathjs.bignumber(timeTaken), {notation: 'fixed', precision: 0});
   }
 
   if (isNaN(timeTaken)) {
