@@ -498,8 +498,6 @@ function getNextPath(cy, cy2, intermediateCities, startingCity, seconds) {
     seconds = Mathjs.chain(seconds).subtract(1).done();
     formatTime(seconds);
     computeAndDisplayNextRoute(cy, cy2, intermediateCities, startingCity);
-  } else {
-    clearTimeout(timer);
   }
   if (stopPathFinding && !stoppedMidExecution) {
     // Making sure we have iterated over all paths before showing complete message
