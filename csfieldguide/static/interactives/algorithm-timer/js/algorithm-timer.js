@@ -140,16 +140,16 @@ function calculateTimeTaken(complexity, resultForm, n, speed, processors, timeUn
     timeTaken = Mathjs.format(Mathjs.bignumber(timeTaken), {notation: 'exponential', precision: 3});
   } else {
     timeTaken = Mathjs.format(Mathjs.bignumber(timeTaken), {notation: 'fixed', precision: 2});
-  }
-
-  // If there are no significant decimal places don't show any decimal places
-  if (timeTaken % 1 == 0) {
-    timeTaken = Mathjs.format(Mathjs.bignumber(timeTaken), {notation: 'fixed', precision: 0});
+      // If there are no significant decimal places don't show any decimal places (non scientific mode only)
+    if (timeTaken % 1 == 0) {
+      timeTaken = Mathjs.format(Mathjs.bignumber(timeTaken), {notation: 'fixed', precision: 0});
+    }
   }
 
   if (isNaN(timeTaken)) {
     return '';
   }
+
   return timeTaken;
 }
 
