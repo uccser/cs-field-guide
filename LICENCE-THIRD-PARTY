@@ -194,7 +194,7 @@ django-haystack (AKA Haystack)
 http://haystacksearch.org/
 Copyright 2009-2011 Daniel Lindsley
 licensed under BSD licence.
-No known licence file to include
+third-party-licences/django-haystack.txt
 ==============================================================================
 
 ==============================================================================
@@ -760,7 +760,7 @@ Whoosh
 https://bitbucket.org/mchaput/whoosh/overview
 Copyright 2011 Matt Chaput
 licensed under BSD licence.
-third-party-licences/wheel.txt
+third-party-licences/whoosh.txt
 ==============================================================================
 
 ==============================================================================
