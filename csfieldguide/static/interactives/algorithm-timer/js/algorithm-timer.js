@@ -148,10 +148,6 @@ function calculateTimeTaken(complexity, resultForm, n, speed, processors, timeUn
     }
   }
 
-  if (isNaN(timeTaken)) {
-    return '';
-  }
-
   return timeTaken;
 }
 
