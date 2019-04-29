@@ -82,6 +82,8 @@ function calculateTimeTaken(complexity, resultForm, n, speed, processors, timeUn
   // can only have whole integers for number of items
   n = Mathjs.bignumber(Math.round(n));
   $('#n-items').val(n);
+  processors = Mathjs.bignumber(Math.round(processors));
+  $('#processors').val(processors);
   speed = Mathjs.bignumber(speed);
   processors = Mathjs.bignumber(processors);
   var steps;
@@ -150,7 +152,7 @@ function inputIsValid(n, speed, processors) {
   // validation for speed
   speedInput = $('#speed');
   speedErrorMsg = $('#speed-input-error');
-  if (speed < 1 || isNaN(speed)) {
+  if (speed <= 0 || isNaN(speed)) {
     speedInput.addClass('is-invalid');
     speedErrorMsg.removeClass('d-none');
     isValid = false;
