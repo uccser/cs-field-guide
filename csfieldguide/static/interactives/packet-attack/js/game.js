@@ -533,7 +533,14 @@ class GameScene extends Phaser.Scene {
             && this.activeAcks.length <= 0
             && this.activeNacks.length <= 0
             && this.noActiveTimersCheck()) {
-            this.endLevel();
+                if (this.level.acksNacksEnabled) {
+                    // Don't need a delay
+                    this.endLevel();
+                } else {
+                    // Need a delay to show the final result
+                    var scene = this;
+                    setTimeout(function() {scene.endLevel();}, 1000);
+                }
         }
     }
 

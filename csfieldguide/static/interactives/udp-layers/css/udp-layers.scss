@@ -60,32 +60,8 @@ $inner-padding: 5px;
     vertical-align: middle;
 }
 
-.square.align-left {
-    text-align: left;
-}
-
-.square.align-right {
-    text-align: right;
-}
-
 .square.short {
     max-height: $box-divider;
-}
-
-.square.no-left {
-    border-left: none;
-}
-
-.square.no-bottom {
-    border-bottom: none;
-}
-
-.square.no-right {
-    border-right: none;
-}
-
-.square.no-border {
-    border: none;
 }
 
 .app-data {

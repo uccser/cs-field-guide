@@ -10,19 +10,6 @@ var GAME = require('./game.js');
 var INFO = require('./information.js');
 var CONFIG = require('./config.js');
 
-var gameScene = new GAME.GameScene();
-var uiScene = new GAME.UIScene();
-var infoScene = new INFO.Information({ paneType: INFO.InfoPaneType.BEFORE_LEVEL });
-
-var config = {
-    type: Phaser.AUTO,
-    width: 800,
-    height: 600,
-    backgroundColor: '#AAAAAA',
-    parent: 'interactive-packet-attack',
-    scene: gameScene
-}
-
 $(document).ready(function() {
     //The canvas doesn't wait for fonts to be loaded, so if we load the game immediately
     //no text is displayed.
@@ -35,9 +22,22 @@ $(document).ready(function() {
 /**
  * Builds and executes the game.
  * No assets are loaded until the user presses start, but this is the simplest
- * method of ensuring the game font is always loaded first
+ * method of ensuring the game font is always loaded first and is therefore visible
  */
 function run() {
+    var gameScene = new GAME.GameScene();
+    var uiScene = new GAME.UIScene();
+    var infoScene = new INFO.Information({ paneType: INFO.InfoPaneType.BEFORE_LEVEL });
+    
+    var config = {
+        type: Phaser.AUTO,
+        width: 800,
+        height: 600,
+        backgroundColor: '#AAAAAA',
+        parent: 'interactive-packet-attack',
+        scene: gameScene
+    }
+
     var skip = urlParameters.getUrlParameter('start');
     if (skip == 0 || skip == "custom") {
         setupCustomLevel();
