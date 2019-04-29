@@ -1,4 +1,4 @@
-# Chatterbots and The Turing Test
+# Chatterbots and the Turing test
 
 {image file-path="img/chapters/computer-studying-turing-test.png" alt="The computer is reading a book titled 'Talk like a human'"}
 
@@ -11,7 +11,7 @@ You may come across chatterbots online for serious uses (such as giving help on 
 Sometimes it's hard to tell if you're getting an automated response.
 We'll start off by looking at some very simple chatterbots that are only designed as an experiment rather than to offer serious advice.
 
-## A Therapy Session with Eliza the Chatterbot
+## A therapy session with Eliza the chatterbot
 
 {panel type="teacher-note"}
 
@@ -180,7 +180,7 @@ Check out the short film ["Do You Love Me"](https://www.youtube.com/watch?v=QkNA
 
 {panel end}
 
-## Even more Chatterbots!
+## Even more chatterbots!
 
 There are even more chatterbots you can talk to.
 Try looking at the [list on wikipedia](https://en.wikipedia.org/wiki/List_of_chatterbots), or doing a google search for chatterbots.
@@ -191,11 +191,11 @@ If you have a device that runs Apple iOS (for example an iPhone), have a look at
 Siri is an example of a chatterbot that has the job of *helping* a human, unlike most chatterbots which simply have the purpose of web entertainment.
 It also has voice recognition, so you can talk to it rather than just typing to it.
 
-## The Turing Test
+## The Turing test
 
 {panel type="teacher-note"}
 
-# TED video introducing the Turing Test
+# TED video introducing the Turing test
 
 There is a TED video that gives an overview of the Turing Test [on YouTube](https://www.youtube.com/watch?v=3wLqsRLvV-c).
 
