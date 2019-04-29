@@ -68,10 +68,32 @@ $(document).ready(function() {
   });
 
   /** Get the time it will take for the algorithm to finish executing
-   *  and display it. */
+   *  and display it. Written this way for ease of translation */
   function updateData() {
     var result = calculateTimeTaken(complexity, resultForm, n, speed, processors, timeUnits);
-    $('#output').val(result + ' ' + timeUnits);
+    if (timeUnits == 'nanoseconds') {
+      var format = ngettext('1 nanosecond', '%s nanoseconds', result);
+    } else if (timeUnits == 'microseconds') {
+      var format = ngettext('1 microsecond', '%s microseconds', result);
+    } else if (timeUnits == 'milliseconds') {
+      var format = ngettext('1 millisecond', '%s milliseconds', result);
+    } else if (timeUnits == 'seconds') {
+      var format = ngettext('1 second', '%s seconds', result);
+    } else if (timeUnits == 'minutes') {
+      var format = ngettext('1 minute', '%s minutes', result);
+    } else if (timeUnits == 'hours') {
+      var format = ngettext('1 hour', '%s hours', result);
+    } else if (timeUnits == 'days') {
+      var format = ngettext('1 day', '%s days', result);
+    } else if (timeUnits == 'months') {
+      var format = ngettext('1 month', '%s months', result);
+    } else if (timeUnits == 'years') {
+      var format = ngettext('1 year', '%s years', result);
+    } else if (timeUnits == 'centuries') {
+      var format = ngettext('1 century', '%s centuries', result);
+    }
+    var output = interpolate(format, [result]);
+    $('#output').val(output);
   }
 });
 
@@ -89,11 +111,11 @@ function calculateTimeTaken(complexity, resultForm, n, speed, processors, timeUn
   var steps;
   
   if (complexity == 'log') {
-    steps = Mathjs.bignumber(Mathjs.log(n));
+    steps = Mathjs.bignumber(1 + Mathjs.log(n));
   } else if (complexity == 'linear') {
     steps = Mathjs.bignumber(n);
   } else if (complexity == 'nlog') {
-    steps = Mathjs.bignumber(n * Mathjs.log(n));
+    steps = Mathjs.bignumber(1 + (n * Mathjs.log(n)));
   } else if (complexity == 'squared') {
     steps = Mathjs.bignumber(Math.pow(n, 2));
   } else if (complexity == 'cubed') {
