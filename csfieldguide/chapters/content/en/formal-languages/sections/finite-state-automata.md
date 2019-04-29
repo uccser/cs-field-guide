@@ -543,7 +543,7 @@ If you're doing this for a report, keep copies of the automata and tests that yo
 
 ### Examples to try
 
-By hand, or using Exorciser or JFLAP, construct an FSA that takes inputs made of the letters "a" and "b", and accepts the input if it meets one of the following requirements.
+Using Exorciser or JFLAP (or just draw it by hand if you prefer), construct an FSA that takes inputs made of the letters "a" and "b", and accepts the input if it meets one of the following requirements.
 You should build a separate FSA for each of these challenges.
 
 - strings that start with the letter "a" (e.g. "aa", "abaaa", and "abbbb").
