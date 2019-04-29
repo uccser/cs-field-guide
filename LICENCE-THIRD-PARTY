@@ -191,7 +191,7 @@ third-party-licences/django-debug-toolbar.txt
 ==============================================================================
 django-haystack (AKA Haystack)
 ------------------------------------------------------------------------------
-http://haystacksearch.org/
+https://github.com/django-haystack/django-haystack
 Copyright 2009-2011 Daniel Lindsley
 licensed under BSD licence.
 third-party-licences/django-haystack.txt
