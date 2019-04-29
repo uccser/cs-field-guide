@@ -593,7 +593,8 @@ function calculateTimeUnits(seconds, secondsInUnitOfTime, unit) {
 }
 
 
-/** Calculates how many seconds it will take for the algorithm to finish. */
+/** Calculates how many seconds it will take for the algorithm to finish multiplied
+ *  by 10. Multiplied by 10 to prevent rounding errors. */
 function calculateRunningTime(cities) {
   var factorialTemp = Mathjs.factorial(cities - 1);
   var numPaths = Mathjs.divide(factorialTemp, 2);
