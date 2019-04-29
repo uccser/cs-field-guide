@@ -32,13 +32,15 @@ $(document).ready(function() {
   var speed = $('#speed').val();
   var processors = $('#processors').val();
   var timeUnits = $('input[name=time]:checked').prop('id');
-  updateData()
+  updateData();
 
   $('input[name=complexity]').click(function() {
     complexity = $('input[name=complexity]:checked').prop('id');
     chosenComplexityText = COMPLEXITY_TEXT[complexity];
     $('#complexity-chosen').html(chosenComplexityText);
-    updateData()
+    if (inputIsValid(n, speed, processors)) {
+      updateData();
+    }
   });
   $('input[name=result-form]').click(function() {
     resultForm = $('input[name=result-form]:checked').prop('id');
