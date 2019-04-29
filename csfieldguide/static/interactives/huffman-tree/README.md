@@ -6,5 +6,5 @@ This interactive is created to allow users to generate Huffman Trees, in the sam
 
 ## Required files
 
-- This interactive uses MaterializeCSS, Modernizer, and jQuery (all loaded from base-files folder).
-- `vis-lite.js` from https://github.com/mdaines/viz.js.
+- The interactive loads from a base website template which includes a JavaScript file containing jQuery, Bootstrap, and a few other utilities and polyfills. See `static/js/website.js` for a full list.
+- The interactive also requires `vis-lite.js` from https://github.com/mdaines/viz.js. Its licence file is listed in `LICENCE-THIRD-PARTY` and included in the `third-party-licences` directory.
