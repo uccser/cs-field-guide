@@ -44,29 +44,33 @@ $(document).ready(function() {
   });
   $('input[name=result-form]').click(function() {
     resultForm = $('input[name=result-form]:checked').prop('id');
-    updateData()
+    if (inputIsValid(n, speed, processors)) {
+      updateData();
+    }
   });
   $('#n-items').on('input', function() {
     n = $('#n-items').val();
     if (inputIsValid(n, speed, processors)) {
-      updateData()
+      updateData();
     }
   });
   $('#speed').on('input', function() {
     speed = $('#speed').val();
     if (inputIsValid(n, speed, processors)) {
-      updateData()
+      updateData();
     }
   });
   $('#processors').on('input', function() {
     processors = $('#processors').val();
     if (inputIsValid(n, speed, processors)) {
-      updateData()
+      updateData();
     }
   });
   $('input[name=time]').click(function() {
     timeUnits = $('input[name=time]:checked').prop('id');
-    updateData()
+    if (inputIsValid(n, speed, processors)) {
+      updateData();
+    }
   });
 
   /** Get the time it will take for the algorithm to finish executing
