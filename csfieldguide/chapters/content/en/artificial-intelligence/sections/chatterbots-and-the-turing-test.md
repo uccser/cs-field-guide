@@ -15,7 +15,7 @@ We'll start off by looking at some very simple chatterbots that are only designe
 
 {panel type="teacher-note"}
 
-# Chatterbots in the classroom"}
+# Chatterbots in the classroom
 
 If this material is being used in the classroom, and time is limited, ensure students don’t spend too long talking to each chatterbot.
 15 minutes maximum for each of Eliza, Alice, and Cleverbot (45 minutes total), and an extra 15-45 minutes (depending on time constraints) for students to search for other chatterbots will be sufficient for students to learn about the different chatterbots.
@@ -27,7 +27,7 @@ Eliza attempts to sound like a Rogerian Psychotherapist, and sounds most intelli
 
 {panel type="caution"}
 
-# Chatbots and personal information!"}
+# Chatbots and personal information!
 
 Eliza is a system that was intended to get people thinking about AI, and you should *not* use it for your own therapeutic usage.
 You should never enter personal information into a computer that you wouldn’t want anybody else reading, as you can never be certain that the website isn’t going to store the information or pass it on to someone.
@@ -116,7 +116,7 @@ The quality of these rules determines how intelligent the chatterbot will sound.
 While Alice is undoubtedly more intelligent sounding than Eliza, Alice still has her limitations.
 Sometimes she even admits to those limitations!
 
-**Judge**: What will happen in the year 2000?
+**Judge**: What will happen in the year 2000?  
 **Alice**: I cannot predict the future.  
 **Judge**: That is the past  
 **Alice**: Yes it is one of the past.  
