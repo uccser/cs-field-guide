@@ -174,7 +174,7 @@ This allows Cleverbot to build up an increasingly large database.
 {comment Perhaps we need to include a diagram that shows this learning process so that the students better at understanding diagrams than text have a chance of being able to understand it? It’s kinda recursive, and is a bit confusing!}
 
 An implication of learning from humans is that Cleverbot makes the assumption that the humans actually *are* intelligent, and will teach it to say intelligent things.
-If for example people told Cleverbot something like "School is boring!" in response to Cleverbot saying "hi", Cleverbot might learn that when a person says "hi" to it, it should say "School is boring!"
+If for example people told Cleverbot something like "School is boring" in response to Cleverbot saying "hi", Cleverbot might learn that when a person says "hi" to it, it should say "School is boring"!
 
 {panel type="curiosity"}
 
