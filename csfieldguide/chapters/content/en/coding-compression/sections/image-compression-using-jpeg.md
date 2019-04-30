@@ -124,7 +124,7 @@ The basis functions become more complex towards the bottom right, and are theref
 How often would an image have every pixel a different color, as in the bottom right basis function?
 To investigate how the 64 basis functions can be combined to form any pattern in 8 by 8 block of pixels - try out this puzzle!
 
-{comment interactive slug="jpeg-compression" type="whole-page" parameters="puzzle=true" text="JPEG puzzle interactive"}
+{interactive slug="jpeg-compression" type="whole-page" parameters="puzzle=true" text="JPEG puzzle interactive"}
 
 So 64 pixels (in an 8 by 8 block) can be represented by 64 coefficients that tell us how much of each basis function to use.
 But how does this help us save space and compress the image?
