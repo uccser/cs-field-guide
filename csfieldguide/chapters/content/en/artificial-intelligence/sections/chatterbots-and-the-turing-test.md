@@ -248,7 +248,7 @@ What other possible Turing tests can you think of?
 Alan Turing actually started by suggesting a simple party game requiring three players, where the first player was female, the second player was male, and the third player could be either male or female, and took the role of the "interrogator".
 The interrogator would be in a separate room to the other two players, and could only communicate with them by passing written notes (for example, by passing the notes under a door).
 The male had to try and convince the interrogator that he was actually female, and the female had to try and convince the interrogator that she *was* the female.
-At the end the interrogator had to say which was the male and which was the female, and if the interrogator guessed incorrectly, then the male "won".
+At the end the interrogator had to say which was the male and which was the female.
 
 {panel end}
 
