@@ -108,20 +108,24 @@ $(document).ready(function() {
  *  executing in the selected time units */
 function calculateTimeTaken(complexity, resultForm, n, speed, processors, timeUnits) {
   // can only have whole integers for number of items
-  n = Mathjs.bignumber(Math.round(n));
+  n = Math.round(n);
   $('#n-items').val(n);
   processors = Mathjs.bignumber(Math.round(processors));
   $('#processors').val(processors);
   speed = Mathjs.bignumber(speed);
-  processors = Mathjs.bignumber(processors);
   var steps;
   
   if (complexity == 'log') {
-    steps = Mathjs.bignumber(1 + Mathjs.log(n));
+    steps = Math.ceil(Mathjs.log(n, 2));
   } else if (complexity == 'linear') {
     steps = Mathjs.bignumber(n);
   } else if (complexity == 'nlog') {
-    steps = Mathjs.bignumber(1 + (n * Mathjs.log(n)));
+    // because log(1) == 0
+    if (n == 1) {
+      steps = 1;
+    } else {
+      steps = Math.ceil(n * Mathjs.log(n, 2));
+    }
   } else if (complexity == 'squared') {
     steps = Mathjs.bignumber(Math.pow(n, 2));
   } else if (complexity == 'cubed') {
