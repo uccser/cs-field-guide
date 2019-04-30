@@ -89,7 +89,7 @@ Try having a conversation with another chatterbot &ndash; **Alice**.
 Note that she knows you as *judge*.
 You might work out why she calls you this once you have read the sections on the Turing Test below!
 
-[Click here for the Alice chatterbot at pandorabots.com](http://www.pandorabots.com/pandora/talk?botid=f5d922d97e345aa1)
+**This bot is no longer available, apologies for the inconvenience**
 
 {image file-path="img/chapters/alice-chatbot-screenshot.png" alt="The Alice chatbot at pandorabots.com"}
 
