@@ -14,7 +14,3 @@ This interactive is not feature complete so will currently not handle all FSA po
 
 This interactive does not use configuration files (unlike `fsa-light` and 
 `fsa-box`) so can be run in any interactive mode.
-
-## Required files
-
-- This interactive uses MaterializeCSS, Modernizer, and jQuery (all loaded from base-files folder).

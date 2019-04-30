@@ -1,17 +1,17 @@
-# getting-started:
-#   section-number: 1
+getting-started:
+  section-number: 1
 
-# finite-state-automata:
-#   section-number: 2
+finite-state-automata:
+  section-number: 2
 
 regular-expressions:
-  section-number: 1 #3
+  section-number: 3
 
 grammars-and-parsing:
-  section-number: 2 #4
+  section-number: 4
 
 the-whole-story:
-  section-number: 3 #5
+  section-number: 5
 
 further-reading:
-  section-number: 4 #6
+  section-number: 6
