@@ -1,0 +1,58 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div class="container mb-3 uninteractive trainsylvania-blank">
+    <!-- Top row: Suburbopolis and North Stations -->
+    <div class="row">
+      <div class="col-6 t-b-suburb">
+        <div class="row-1"><img class="t-b-station" src="{% static 'interactives/trainsylvania/img/suburb.png' %}"></div>
+        <div class="row-1">{% trans 'Suburbopolis<br>Station' %}</div>
+      </div>
+      <div class="col-6 t-b-north">
+        <div class="row-1"><img class="t-b-station" src="{% static 'interactives/trainsylvania/img/north.png' %}"></div>
+        <div class="row-1">{% trans 'North<br>Station' %}</div>
+      </div>
+    </div>
+    <!-- Middle row: West, Central, Midway and East Stations -->
+    <div class="row t-b-spaced">
+      <div class="col-3 t-b-west">
+        <div class="row-1"><img class="t-b-station" src="{% static 'interactives/trainsylvania/img/west.png' %}"></div>
+        <div class="row-1">{% trans 'West<br>Station' %}</div>
+      </div>
+      <div class="col-3 t-b-central">
+        <div class="row-1"><img class="t-b-station" src="{% static 'interactives/trainsylvania/img/central.png' %}"></div>
+        <div class="row-1">{% trans 'Central<br>Station' %}</div>
+      </div>
+      <div class="col-3 t-b-midway">
+        <div class="row-1"><img class="t-b-station" src="{% static 'interactives/trainsylvania/img/midway.png' %}"></div>
+        <div class="row-1">{% trans 'Midway<br>Station' %}</div>
+      </div>
+      <div class="col-3 t-b-east">
+        <div class="row-1"><img class="t-b-station" src="{% static 'interactives/trainsylvania/img/east.png' %}"></div>
+        <div class="row-1">{% trans 'East<br>Station' %}</div>
+      </div>
+    </div>
+    <!-- Bottom row: City Mall, South and Railington Stations -->
+    <div class="row">
+      <div class="col-4 t-b-city">
+        <div class="row-1"><img class="t-b-station" src="{% static 'interactives/trainsylvania/img/city.png' %}"></div>
+        <div class="row-1">{% trans 'City Mall<br>Station' %}</div>
+      </div>
+      <div class="col-4 t-b-south">
+        <div class="row-1"><img class="t-b-station" src="{% static 'interactives/trainsylvania/img/south.png' %}"></div>
+        <div class="row-1">{% trans 'South<br>Station' %}</div>
+      </div>
+      <div class="col-4 t-b-railington">
+        <div class="row-1"><img class="t-b-station" src="{% static 'interactives/trainsylvania/img/railington.png' %}"></div>
+        <div class="row-1">{% trans 'Railington<br>Station' %}</div>
+      </div>
+    </div>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/trainsylvania-blank/css/trainsylvania-blank.css' %}">
+{% endblock css %}
