@@ -169,7 +169,7 @@ For example, when Cleverbot says "hi" to a person, it keeps track of all the dif
 A rule is made that says that if somebody says hi to you, then the things that people have commonly said in response to Cleverbot saying hi are appropriate things to say in response to "hi".
 In turn, when Cleverbot says something like "sup!" or "hello!", it will look at how humans respond to that in order to learn appropriate response for those.
 And then it will learn responses for those responses.
-This allows Cleverbot to built up an increasingly large database.
+This allows Cleverbot to build up an increasingly large database.
 
 {comment Perhaps we need to include a diagram that shows this learning process so that the students better at understanding diagrams than text have a chance of being able to understand it? It’s kinda recursive, and is a bit confusing!}
 
