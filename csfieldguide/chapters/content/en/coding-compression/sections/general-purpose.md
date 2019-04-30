@@ -57,8 +57,8 @@ Ask your students to use the Pixel Viewer Interactive to load a photo and a cart
 
 {panel end}
 
-In the next section we’ll take a look at a variation of “Ziv-Lempel coding” creatively called “Lempel-Ziv-Welch coding”, which is often referred  to as LZW to make things easier.
-LZW uses a dictionary-like structure based on key and value pairs - these are based on the metaphor of looking up a word (key) and its definition (value) in a dictionary, but in this case the key is a number, and the value is a phrase of text that it represents.
+In the next section we’ll take a look at a variation of “Ziv-Lempel coding” creatively called “Lempel-Ziv-Welch coding”, which is often referred to as LZW to make things easier.
+LZW uses a dictionary-like structure based on key and value pairs &ndash; these are based on the metaphor of looking up a word (key) and its definition (value) in a dictionary, but in this case the key is a number, and the value is a phrase of text that it represents.
 The phrase might be as small as two characters, or could be a few words.
 The dictionary keeps track of phrases it has encountered and gradually adds new ones to the dictionary.
 
@@ -88,7 +88,7 @@ Suppose you were allowed to use a dictionary of 4096 strings of characters inste
 Which strings of characters would you put in the dictionary to make sure it could represent any possible text?
 And how many bits are needed to give the index number in the dictionary?
 
-You can try creating your own dictionary for some text in the following interactive - see how few dictionary entries you need to cover as much of the text as possible.
+You can try creating your own dictionary for some text in the following interactive &ndash; see how few dictionary entries you need to cover as much of the text as possible.
 
 {interactive slug="dictionary-compression" type="whole-page"}
 
@@ -97,7 +97,7 @@ You can try creating your own dictionary for some text in the following interact
 # Teacher note
 
 Students might think of putting in common words like “the” and “of”.
-Or even better, the strings might include a space after them - “the “ and “of “. But to be sure of representing any text, they’ll also need to include letters of the alphabet, and other symbols.
+Or even better, the strings might include a space after them  “the “ and “of “. But to be sure of representing any text, they’ll also need to include letters of the alphabet, and other symbols.
 If given long strings of text, such as "as soon as", then large amounts of text can be replaced with one code, but the longer strings might not occur a lot.
 Choosing a dictionary is hard work!
 
@@ -117,13 +117,13 @@ Initially the LZW encoder begins with a dictionary that can store up to 4096 str
 Codes 0 to 255 represent single character sequences (the alphabet, punctuation, etc).
 The codes will need to be stored as binary numbers, therefore each code needs 12 bits to represent it in order to represent a total of 4096 entries (since 12 bits allows us to represent 4096 different values).
 
-As the message is being compressed, at each step the encoder adds a new string of characters to the dictionary (filling in dictionary spots 255 - 4095).
+As the message is being compressed, at each step the encoder adds a new string of characters to the dictionary (filling in dictionary spots 255 &ndash; 4095).
 Let’s use an example to step through how this happens.
 This is the message we are wanting to encode:
 
 `IAMSAMSAMIAM`
 
-In this case, this is our initial dictionary:
+In this case, this is our initial dictionary F(usually we would use 255 characters, as mentioned above, but let’s just keep things simple and only use the four characters in our string):
 
 | Code | Bits         | Character String |
 |------|--------------|------------------|
@@ -207,7 +207,7 @@ And this is the compressed message:
 000000000000 000000000001 000000000010 000000000011 000000000101 000000000111 000000000010 000000000100 000000000010
 ```
 
-The compressed version shown here uses only 9 LZW codes, but each is 12 bits each, so this version would use 108 bits, which is more than the original, although we'll see later on (check out the "Extra for experts: fewer than 12 bits" panel at the end of this section) that there's an easy trick that can be used to reduce this to just 3 or 4 bits per code, so it would use no more than 4x9, or 36 bits, which is less than 40% of the original size.
+The compressed version shown here uses only 9 LZW codes, but each is 12 bits each, so this version would use 108 bits. This is more than the original, although we'll see later on (check out the "Representing the codes in fewer than 12 bits" panel at the end of this section) that there's an easy trick that can be used to reduce this to just 3 or 4 bits per code, so it would use no more than 4 x 9 = 36 bits, which is less than 40% of the original size.
 
 We were encoding quite a short message, so the longest sequence in the dictionary is just three characters.
 The longer the message that we are encoding, the longer these sequences can get, therefore allowing us to potentially represent reasonably long substrings with just one code, resulting in effective compression.
@@ -237,7 +237,7 @@ Decoding a message from LZW is a little tricky, but makes an interesting puzzle.
 The main point is that anything that has been encoded can be decoded to exactly the same as it was before it was compressed, but here's an illustration of how it works in case you're curious about how it's even possible.
 Let’s now try to decode our encoded message.
 
-The decoder starts with the same initial dictionary of single characters as the encoder:
+The decoder starts with the same initial dictionary of single characters as the encoder (again, usually we would use 255 characters, but we’re keeping things simple and only using the four characters used in our string):
 
 | Code | Bits         | Character String |
 |------|--------------|------------------|
@@ -252,7 +252,8 @@ The encoded message is as follows (we've shown each 12-bit code as a decimal num
 0 1 2 3 5 7 2 4 2
 ```
 
-The initial dictionary has values for codes `0 - 3`, so what is the decoder meant to do when it gets to `4`? Well, at each step it makes an addition to the dictionary, just as the encoder did.
+The initial dictionary has values for codes `0 - 3`, so what is the decoder meant to do when it gets to `4`?
+Well, at each step it makes an addition to the dictionary, just as the encoder did.
 We’ll walk through this step by step:
 
 | Step | Code | Output | New Dictionary Entry Code | New Dictionary Sequence | Next Proposed Dictionary Sequence |
@@ -342,14 +343,15 @@ And this is the dictionary that the decoder created:
 | 10   | 000000001010 | MI       |
 | 11   | 000000001011 | IAM      |
 
-Notice that it is exactly the same dictionary as the encoder created - the dictionary has been reconstructed without having to send it to the decoder!
+Notice that it is exactly the same dictionary as the encoder created &ndash; the dictionary has been reconstructed without having to send it to the decoder!
 
 
 {panel type="extra-for-experts"}
 
 # Other languages
 
-But what about different languages? Since the dictionary builds up based on the characters it has seen, it will simply adapt to whatever language is being used, whether it is English, French, Chinese, or even a computer programming language.
+But what about different languages?
+Since the dictionary builds up based on the characters it has seen, it will simply adapt to whatever language is being used, whether it is English, French, Chinese, or even a computer programming language.
 Each language will have its own common substrings, and these will end up in the dictionary.
 
 {panel end}
@@ -360,7 +362,8 @@ Each language will have its own common substrings, and these will end up in the 
 
 While the dictionary is being built initially it doesn’t make sense to use 12 bits to store so few entries.
 Instead, while there are fewer than 4 entries we could use 2 bits, when there are more than 4 but fewer than 8 entries we could used 3 bits, etc.
-Eventually the dictionary will fill all 4096 (12 bit) entries, then what do we do? There are different ways to deal with this: a simple system just keeps the dictionary the same from then on and hopes the nature of the text doesn’t change.
+Eventually the dictionary will fill all 4096 (12 bit) entries, then what do we do?
+There are different ways to deal with this: a simple system just keeps the dictionary the same from then on and hopes the nature of the text doesn’t change.
 Another option is to start over with a completely new dictionary.
 A compromise would be to monitor the amount of compression and reset the dictionary if it is getting worse.
 
