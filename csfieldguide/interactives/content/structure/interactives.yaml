@@ -139,18 +139,22 @@ frequency-analysis:
   languages:
     en: interactives/frequency-analysis.html
   is_interactive: true
-# fsa-box:
-#   languages:
-#     en: interactives/fsa-box.html
-#   is_interactive: true
-# fsa-light:
-#   languages:
-#     en: interactives/fsa-light.html
-#   is_interactive: true
-# fsa-washing-machine:
-#   languages:
-#     en: interactives/fsa-washing-machine.html
-#   is_interactive: true
+fsa-box:
+  languages:
+    en: interactives/fsa-box.html
+  is_interactive: true
+fsa-light:
+  languages:
+    en: interactives/fsa-light.html
+  is_interactive: true
+fsa-terminology:
+  languages:
+    en: interactives/fsa-terminology.html
+  is_interactive: false
+fsa-washing-machine:
+  languages:
+    en: interactives/fsa-washing-machine.html
+  is_interactive: true
 hex-background-colour:
   languages:
     en: interactives/hex-background-colour.html
@@ -251,10 +255,14 @@ pixel-viewer:
 #   languages:
 #     en: interactives/python-interpreter.html
 #   is_interactive: true
-# regular-expression-filter:
-#   languages:
-#     en: interactives/regular-expression-filter.html
-#   is_interactive: true
+python-syntax-error:
+  languages:
+    en: interactives/python-syntax-error.html
+  is_interactive: false
+regular-expression-filter:
+  languages:
+    en: interactives/regular-expression-filter.html
+  is_interactive: true
 regular-expression-search:
   languages:
     en: interactives/regular-expression-search.html
@@ -307,14 +315,22 @@ sorting-algorithms:
   languages:
     en: interactives/sorting-algorithms.html
   is_interactive: true
-# trainsylvania:
-#   languages:
-#     en: interactives/trainsylvania.html
-#   is_interactive: true
-# trainsylvania-planner:
-#   languages:
-#     en: interactives/trainsylvania-planner.html
-#   is_interactive: true
+trainsylvania:
+  languages:
+    en: interactives/trainsylvania.html
+  is_interactive: true
+trainsylvania-planner:
+  languages:
+    en: interactives/trainsylvania-planner.html
+  is_interactive: true
+trainsylvania-blank:
+  languages:
+    en: interactives/trainsylvania-blank.html
+  is_interactive: false
+trainsylvania-complete:
+  languages:
+    en: interactives/trainsylvania-complete.html
+  is_interactive: false
 trig-function-calculator:
   languages:
     en: interactives/trig-function-calculator.html

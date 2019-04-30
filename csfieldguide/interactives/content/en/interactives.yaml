@@ -60,6 +60,8 @@ fsa-box:
   name: FSA Box
 fsa-light:
   name: FSA Light
+fsa-terminology:
+  name: FSA Terminology
 fsa-washing-machine:
   name: FSA Washing Machine
 hex-background-colour:
@@ -108,6 +110,8 @@ pixel-viewer:
   name: Pixel Viewer
 python-interpreter:
   name: Python Interpreter
+python-syntax-error:
+  name: Python Syntax Error
 regular-expression-filter:
   name: Regular Expression Filter
 regular-expression-search:
@@ -140,6 +144,10 @@ trainsylvania:
   name: Trainsylvania
 trainsylvania-planner:
   name: Trainsylvania Planner
+trainsylvania-blank:
+  name: Blank Trainsylvania
+trainsylvania-complete:
+  name: Complete Trainsylvania
 trig-function-calculator:
   name: Trig Function Calculator
 unexpected-error:
