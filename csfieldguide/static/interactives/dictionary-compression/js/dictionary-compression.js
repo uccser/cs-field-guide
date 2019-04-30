@@ -6,17 +6,15 @@ var message_characters = [];
 //         CodeIndex: 0
 //     }
 // ];
-var placeholder_message = gettext(`
-Pease porridge hot, pease porridge cold,
+var placeholder_message = gettext(`Pease porridge hot, pease porridge cold,
 Pease porridge in the pot, nine days old;
 Some like it hot, some like it cold,
-Some like it in the pot, nine days old.`
-);
+Some like it in the pot, nine days old.`);
 
 // Set up example message and event listeners
 window.onload = function() {
     var message_div = document.getElementById('dictionary-compression-input');
-    message_div.placeholder = placeholder_message;
+    message_div.value = placeholder_message;
     // set up listeners for buttons
     document.getElementById('dictionary-compression-compress-button').addEventListener('click', compress, false);
     document.getElementById('dictionary-compression-add-entry-button').addEventListener('click', updateDictionary, false);
