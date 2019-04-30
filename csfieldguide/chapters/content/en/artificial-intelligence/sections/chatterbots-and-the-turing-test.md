@@ -86,10 +86,8 @@ As you probably found out though, this quickly reveals that Eliza really isn’t
 In addition, you probably also noticed that Eliza frequently comes up with sentences that make no sense to a human.
 
 Try having a conversation with another chatterbot &ndash; **Alice**.
-Note that she knows you as *judge*.
-You might work out why she calls you this once you have read the sections on the Turing Test below!
 
-**This bot is no longer available, apologies for the inconvenience**
+[Click here for the Alice chatterbot at pandorabots.com](https://www.pandorabots.com/pandora/talk?botid=b8d616e35e36e881)
 
 {image file-path="img/chapters/alice-chatbot-screenshot.png" alt="The Alice chatbot at pandorabots.com"}
 
@@ -116,12 +114,12 @@ The quality of these rules determines how intelligent the chatterbot will sound.
 While Alice is undoubtedly more intelligent sounding than Eliza, Alice still has her limitations.
 Sometimes she even admits to those limitations!
 
-**Judge**: What will happen in the year 2000?  
-**Alice**: I cannot predict the future.  
-**Judge**: That is the past  
-**Alice**: Yes it is one of the past.  
-**Judge**: Then why did you say you can't predict the future?  
-**Alice**: It was a preprogrammed response completely determined by your statements.
+**Human:** What will happen in the year 2000?  
+**A.L.I.C.E:** I cannot predict the future.  
+**Human:** That is the past  
+**A.L.I.C.E:** Yes it is one of the past.  
+**Human:** Then why did you say you can't predict the future?  
+**A.L.I.C.E:** It was a preprogrammed response completely determined by your statements.
 
 It was a bit mean to trick her by saying *what will*.
 Her rules assume a human wouldn’t mislead her like that.
