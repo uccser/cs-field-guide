@@ -27,12 +27,12 @@ Twinkle, twinkle, little star.`);
 
 // Set the default message
 window.onload = function() {
-    document.getElementById('interactive-lzw-compression-compress-button').addEventListener('click', compress, false);
+    document.getElementById('lzw-compression-compress-button').addEventListener('click', compress, false);
 
     var url_string = window.location.href;
     var url = new URL(url_string);
     var message_length = url.searchParams.get('message-length');
-    var message_div = document.getElementById('interactive-lzw-compression-input');
+    var message_div = document.getElementById('lzw-compression-input');
     if (message_length == 'short') {
         message_div.value = SHORT_MESSAGE;
     } else if (message_length == 'long') {
@@ -51,7 +51,7 @@ function compress() {
 
 // Runs the LZW algorithm
 function compressText() {
-    var string_to_encode = document.getElementById('interactive-lzw-compression-input').value;
+    var string_to_encode = document.getElementById('lzw-compression-input').value;
 
     // replace new line characters
     string_to_encode = string_to_encode.split('');
@@ -101,20 +101,20 @@ function compressText() {
 
 // Display the encoded message
 function outputEncodedMessage() {
-    var encoded_message_div = document.getElementById('interactive-lzw-compression-encoded-text');
+    var encoded_message_div = document.getElementById('lzw-compression-encoded-text');
     encoded_message_div.innerHTML = '';
     var encoded_message_fragment = document.createDocumentFragment();
     
     // start by creating div for first line
     var line_div = document.createElement('div');
-    line_div.classList.add('interactive-lzss-encoded-line');
+    line_div.classList.add('lzss-encoded-line');
 
     if (output.length > 0 && output[0] != -1) {
         // for each code
         var character_position = 0;
         for (var i = 0; i < output.length; i++) {
             var code_section_div = document.createElement('div');
-            code_section_div.classList.add('interactive-lzw-code-section');
+            code_section_div.classList.add('lzw-code-section');
             var code_section_fragment = document.createDocumentFragment();
 
             var code = output[i];
@@ -122,17 +122,17 @@ function outputEncodedMessage() {
             if (code == 'null') { // new line character
                 encoded_message_fragment.appendChild(line_div);
                 line_div = document.createElement('div');
-                line_div.classList.add('interactive-lzw-encoded-line');
+                line_div.classList.add('lzw-encoded-line');
             } else {
                 var code_length = codes[code].length;
 
                 var code_div = document.createElement('div');
-                code_div.classList.add('interactive-lzw-code');
+                code_div.classList.add('lzw-code');
                 code_div.setAttribute('data-reference-index', code);
                 
                 for (var j = 0; j < code_length; j++) {
                     var placeholder_input = document.createElement('input');
-                    placeholder_input.classList.add('interactive-lzw-placeholder-box');
+                    placeholder_input.classList.add('lzw-placeholder-box');
                     placeholder_input.maxLength = 1;
                     placeholder_input.setAttribute('data-character-position', character_position);
                     placeholder_input.addEventListener('keyup', function(event) {
@@ -186,7 +186,7 @@ function changeHighlight(event, highlight) {
     if (highlight == true) {
         code_div.classList.add('highlight');
         selected_reference.classList.add('selected');
-        document.getElementById('interactive-lzw-compression-dictionary').scrollTop = code_div_top_position - 60;
+        document.getElementById('lzw-compression-dictionary').scrollTop = code_div_top_position - 60;
     } else {
         code_div.classList.remove('highlight');
         selected_reference.classList.remove('selected');
@@ -199,18 +199,18 @@ function makeDictionaryEntryElements(start_index, end_index, element) {
     for (var i = start_index; i < end_index; i++) {
         // create dictionary entry element
         var dictionary_entry = document.createElement('div');
-        dictionary_entry.classList.add('interactive-lzw-dictionary-entry');
+        dictionary_entry.classList.add('lzw-dictionary-entry');
         dictionary_entry.setAttribute('data-index', i);
         
         // create code element
         var code_element = document.createElement('p');
         code_element.innerHTML = i;
-        code_element.classList.add('interactive-lzw-dictionary-code');
+        code_element.classList.add('lzw-dictionary-code');
         
         // create value element
         var value_element = document.createElement('p');
         value_element.innerHTML = codes[i].replace(/\s+/g, '_');
-        value_element.classList.add('interactive-lzw-dictionary-value');
+        value_element.classList.add('lzw-dictionary-value');
         
         // add code and value to parent div
         dictionary_entry.appendChild(code_element);
@@ -223,9 +223,9 @@ function makeDictionaryEntryElements(start_index, end_index, element) {
 
 // Display the dictionary built by LZW in 3 columns
 function outputDictionary() {
-    var col1_dictionary_div = document.getElementById('interactive-lzw-compression-dictionary-col-1');
-    var col2_dictionary_div = document.getElementById('interactive-lzw-compression-dictionary-col-2');
-    var col3_dictionary_div = document.getElementById('interactive-lzw-compression-dictionary-col-3');
+    var col1_dictionary_div = document.getElementById('lzw-compression-dictionary-col-1');
+    var col2_dictionary_div = document.getElementById('lzw-compression-dictionary-col-2');
+    var col3_dictionary_div = document.getElementById('lzw-compression-dictionary-col-3');
     col1_dictionary_div.innerHTML = '';
     col2_dictionary_div.innerHTML = '';
     col3_dictionary_div.innerHTML = '';

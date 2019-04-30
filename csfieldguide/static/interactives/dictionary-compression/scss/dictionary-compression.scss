@@ -8,21 +8,21 @@ html {
     font-family: "Roboto",sans-serif;
 }
 
-#interactive-dictionary-compression {
-    #interactive-dictionary-compression-activity {
+#dictionary-compression {
+    #dictionary-compression-activity {
         display: flex;
         flex-direction: row;
         justify-content: center;
         margin: 5px;
         height: 100vh;
-        #interactive-dictionary-compression-left,
-        #interactive-dictionary-compression-right {
+        #dictionary-compression-left,
+        #dictionary-compression-right {
             display: flex;
             flex-direction: column;
             width: 100%;
             margin: 10px;
         }
-        #interactive-dictionary-compression-left {
+        #dictionary-compression-left {
             flex-basis: 140%;
             textarea {
                 margin-bottom: 4px;
@@ -31,7 +31,7 @@ html {
             p {
                 margin-bottom: 0px;
             }
-            #interactive-dictionary-compression-stats {
+            #dictionary-compression-stats {
                 text-align: center;
                 font-weight: bold;
                 p {
@@ -40,14 +40,14 @@ html {
                     margin-bottom: 5px;
                 }
             }
-            #interactive-dictionary-compression-output {
+            #dictionary-compression-output {
                 flex-grow: 1;
                 overflow: scroll;
-                .interactive-dictionary-compression-output-line {
+                .dictionary-compression-output-line {
                     display: flex;
                     flex-wrap: wrap;
                     align-items: center;
-                    p.interactive-dictionary-compression-message-character {
+                    p.dictionary-compression-message-character {
                         display: inline-block;
                         min-width: 10px;
                         min-height: 1rem;
@@ -64,15 +64,15 @@ html {
                 }
             }
         }
-        #interactive-dictionary-compression-right {
+        #dictionary-compression-right {
             overflow: hidden;
             position: relative;
-            #interactive-dictionary-compression-user-dictionary-entry-input {
+            #dictionary-compression-user-dictionary-entry-input {
                 margin: 0 2px;
                 p {
                     margin-top: 0px;
                 }
-                #interactive-compression-user-dictionary-entry-input-row {
+                #compression-user-dictionary-entry-input-row {
                     display: flex;
                     input {
                         flex-basis: 300%;
@@ -107,21 +107,21 @@ html {
                         display: inline-block;
                     }
                 }
-                #interactive-dictionary-compression-reset-button {
+                #dictionary-compression-reset-button {
                     margin-top: 4px;
                 }
             }
-            #interactive-dictionary-compression-user-dictionary {
+            #dictionary-compression-user-dictionary {
                 flex-grow: 1;
                 margin-top: 20px;
                 display: flex;
                 overflow: scroll;
                 min-width: 100%;
                 border-radius: 2px !important;
-                .interactive-dictionary-compression-user-dictionary-column {
+                .dictionary-compression-user-dictionary-column {
                     min-width: 175px;
                     margin: 2px;
-                    .interactive-dictionary-compression-user-dictionary-entry {
+                    .dictionary-compression-user-dictionary-entry {
                         margin: 2px 0;
                         &:hover, &.highlight {
                             border: 2px solid $orange;
@@ -131,15 +131,15 @@ html {
                             display: inline-block;
                             margin: 3px;
                         }
-                        .interactive-dictionary-compression-user-dictionary-code {
+                        .dictionary-compression-user-dictionary-code {
                             width: 2rem;
                         }
                     }
                 }
             }
         }
-        #interactive-dictionary-compression-left #interactive-dictionary-compression-output,
-        #interactive-dictionary-compression-user-dictionary {
+        #dictionary-compression-left #dictionary-compression-output,
+        #dictionary-compression-user-dictionary {
             border: $border;
             padding: 5px;
             font-family: "Courier New", monospace !important;
@@ -148,24 +148,24 @@ html {
 }
 
 @media (max-width: 768px) {
-    #interactive-dictionary-compression {
-        .interactive-dictionary-compression-heading {
+    #dictionary-compression {
+        .dictionary-compression-heading {
             margin: 15px 0;
         }
-        #interactive-dictionary-compression-activity {
+        #dictionary-compression-activity {
             flex-wrap: wrap;
-            #interactive-dictionary-compression-left {
+            #dictionary-compression-left {
                 width: 50% !important;
                 flex-basis: 100% !important;
                 p {
                     margin-top: 0px;
                 }
-                #interactive-dictionary-compression-stats {
+                #dictionary-compression-stats {
                     order: 10;
                     margin-top: 5px;
                 }
             }
-            #interactive-dictionary-compression-right {
+            #dictionary-compression-right {
                 margin: 0px;
             }
         }

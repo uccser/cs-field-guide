@@ -5,29 +5,29 @@
 
 {% block html %}
 <div id="container">
-    <div id="interactive-lzw-compression">
+    <div id="lzw-compression">
         <h3 id="heading">{% trans "LZW Compression" %}</h3>
-        <div id="interactive-lzw-compression-wrapper">
-            <div id="interactive-lzw-compression-left">
-                <div class="interactive-lzw-compression-to-compress-block" id="interactive-lzw-compression-to-compress">
+        <div id="lzw-compression-wrapper">
+            <div id="lzw-compression-left">
+                <div class="lzw-compression-to-compress-block" id="lzw-compression-to-compress">
                     <p>{% trans "Message to compress" %}:</p>
-                    <textarea class="form-control" rows="5" id="interactive-lzw-compression-input"></textarea>
-                    <button id="interactive-lzw-compression-compress-button" class="btn btn-primary btn-block" type="button">
+                    <textarea class="form-control" rows="5" id="lzw-compression-input"></textarea>
+                    <button id="lzw-compression-compress-button" class="btn btn-primary btn-block" type="button">
                         {% trans "Compress" %} &rarr;
                     </button>
                 </div>
                 <p>{% trans "Compressed message" %}:</p>
-                <div id="interactive-lzw-compression-encoded-text">
+                <div id="lzw-compression-encoded-text">
                 </div>
             </div>
-            <div id="interactive-lzw-compression-right">
+            <div id="lzw-compression-right">
                 <p>{% trans "Generated Dictionary" %}:</p>
-                <div id="interactive-lzw-compression-dictionary">
-                    <div id="interactive-lzw-compression-dictionary-col-1" class="interactive-lzw-compression-dictionary-column">
+                <div id="lzw-compression-dictionary">
+                    <div id="lzw-compression-dictionary-col-1" class="lzw-compression-dictionary-column">
                     </div>
-                    <div id="interactive-lzw-compression-dictionary-col-2" class="interactive-lzw-compression-dictionary-column">
+                    <div id="lzw-compression-dictionary-col-2" class="lzw-compression-dictionary-column">
                     </div>
-                    <div id="interactive-lzw-compression-dictionary-col-3" class="interactive-lzw-compression-dictionary-column">
+                    <div id="lzw-compression-dictionary-col-3" class="lzw-compression-dictionary-column">
                     </div>
                 </div>
             </div>

@@ -6,39 +6,39 @@ body {
     margin: 0px;
 }
 
-#interactive-lzw-compression {
-    #interactive-lzw-compression-wrapper {
+#lzw-compression {
+    #lzw-compression-wrapper {
         display: flex;
         flex-direction: row;
         justify-content: center;
         margin: 5px;
         height: 100vh;
-        #interactive-lzw-compression-left,
-        #interactive-lzw-compression-right {
+        #lzw-compression-left,
+        #lzw-compression-right {
             display: flex;
             flex-direction: column;
             width: 100%;
             margin: 10px;
         }
-        #interactive-lzw-compression-left {
-            .interactive-lzw-compression-to-compress-block {
+        #lzw-compression-left {
+            .lzw-compression-to-compress-block {
                 display: block;
             }
             flex-basis: 140%;
             textarea {
                 font: 1rem "Courier New", monospace;
             }
-            #interactive-lzw-compression-encoded-text {
+            #lzw-compression-encoded-text {
                 flex-grow: 1;
                 overflow: scroll;
-                .interactive-lzw-code {
+                .lzw-code {
                     margin: 1px;
                     display: inline-block;
                     p {
                         margin: auto;
                         text-align: center;
                     }
-                    input.interactive-lzw-placeholder-box {
+                    input.lzw-placeholder-box {
                         width: 1rem;
                         border: 1px solid #BFB9B7;
                         margin: 1px;
@@ -48,25 +48,25 @@ body {
                 }
             }
         }
-        #interactive-lzw-compression-right {
+        #lzw-compression-right {
             overflow: hidden;
             position: relative;
-            #interactive-lzw-compression-dictionary {
+            #lzw-compression-dictionary {
                 flex-grow: 1;
                 overflow: scroll;
                 scroll-behavior: smooth;
                 display: flex;
-                .interactive-lzw-compression-dictionary-column {
+                .lzw-compression-dictionary-column {
                     width: 50%;
                     margin: 2px;
                 }
-                .interactive-lzw-dictionary-entry {
+                .lzw-dictionary-entry {
                     margin: 2px 0;
                     p {
                         display: inline-block;
                         margin: 3px;
                     }
-                    .interactive-lzw-dictionary-code {
+                    .lzw-dictionary-code {
                         width: 2rem;
                     }
                 }
@@ -75,8 +75,8 @@ body {
         textarea {
             font-family: "Courier New", monospace !important;
         }
-        #interactive-lzw-compression-encoded-text,
-        #interactive-lzw-compression-dictionary {
+        #lzw-compression-encoded-text,
+        #lzw-compression-dictionary {
             font-family: "Courier New", monospace !important;
             border: 1px solid #BFB9B7;
             padding: 5px;
@@ -98,9 +98,9 @@ body {
 }
 
 @media (max-width: 835px) {
-    #interactive-lzw-compression {
-        #interactive-lzw-compression-right {
-            #interactive-lzw-compression-dictionary {
+    #lzw-compression {
+        #lzw-compression-right {
+            #lzw-compression-dictionary {
                 font-size: 0.9rem;
             }
         }
@@ -108,9 +108,9 @@ body {
 }
 
 @media (max-width: 800px) {
-    #interactive-lzw-compression {
-        #interactive-lzw-compression-right {
-            #interactive-lzw-compression-dictionary {
+    #lzw-compression {
+        #lzw-compression-right {
+            #lzw-compression-dictionary {
                 font-size: 0.8rem;
             }
         }
@@ -118,9 +118,9 @@ body {
 }
 
 @media (max-width: 760px) {
-    #interactive-lzw-compression {
-        #interactive-lzw-compression-right {
-            #interactive-lzw-compression-dictionary {
+    #lzw-compression {
+        #lzw-compression-right {
+            #lzw-compression-dictionary {
                 font-size: 0.7rem;
             }
         }
@@ -128,21 +128,21 @@ body {
 }
 
 @media (max-width: 600px) {
-    #interactive-lzw-compression {
-        #interactive-lzw-compression-wrapper {
+    #lzw-compression {
+        #lzw-compression-wrapper {
             flex-wrap: wrap;
             p {
                 margin: 2px;
             }
-            #interactive-lzw-compression-left {
-                .interactive-lzw-compression-to-compress-block {
+            #lzw-compression-left {
+                .lzw-compression-to-compress-block {
                     margin-bottom: 20px;
                 }
-                #interactive-lzw-compression-encoded-text {
+                #lzw-compression-encoded-text {
                     height: 30vh;
                 }
             }
-            #interactive-lzw-compression-dictionary {
+            #lzw-compression-dictionary {
                 height: 20vh;
                 font-size: 1rem !important;
             }
@@ -151,9 +151,9 @@ body {
 }
 
 @media (max-width: 375px) {
-    #interactive-lzw-compression {
-        #interactive-lzw-compression-right {
-            #interactive-lzw-compression-dictionary {
+    #lzw-compression {
+        #lzw-compression-right {
+            #lzw-compression-dictionary {
                 font-size: 0.8rem !important;
             }
         }

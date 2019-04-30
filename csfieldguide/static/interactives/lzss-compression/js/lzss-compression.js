@@ -17,14 +17,14 @@ Some like it in the pot, nine days old.`);
 window.onload = function() {
     var message_div = document.getElementById('message-to-decode');
     message_div.value = placeholder_message;
-    document.getElementById('interactive-lzss-compression-compress-button').addEventListener('click', compress, false);  
+    document.getElementById('lzss-compression-compress-button').addEventListener('click', compress, false);  
 }
 
 // Compress the message and display the encoded message
 function compress() {
     var message = document.getElementById('message-to-decode').value;
     // clear any existed encoded message
-    document.getElementById('interactive-lzss-compression-compressed-text').innerHTML = '';
+    document.getElementById('lzss-compression-compressed-text').innerHTML = '';
     compressText(message);
     drawEncodedMessage(encoded_message);
 }
@@ -32,13 +32,13 @@ function compress() {
 // Create a new div
 function newLineDiv() {
     var line_div = document.createElement('div');
-    line_div.classList.add('interactive-lzss-compression-encoded-line');
+    line_div.classList.add('lzss-compression-encoded-line');
     return line_div;
 }
 
 // Output the encoded message
 function drawEncodedMessage(encoded_message) {
-    var compressed_text_div = document.getElementById('interactive-lzss-compression-compressed-text');
+    var compressed_text_div = document.getElementById('lzss-compression-compressed-text');
 
     // create new div for first line of the message
     var line_div = newLineDiv();
@@ -59,7 +59,7 @@ function drawEncodedMessage(encoded_message) {
             }
             // add child div for character to line
             var character_div = document.createElement('div');
-            character_div.classList.add('interactive-lzss-compression-encoded-character');
+            character_div.classList.add('lzss-compression-encoded-character');
             character_div.innerHTML = encoded_message[i];
             character_div.setAttribute('data-index', index);
             line_div.append(character_div);
@@ -72,7 +72,7 @@ function drawEncodedMessage(encoded_message) {
             
             for (var j = 0; j < num_encoded_characters; j++) {
                 var placeholder_input = document.createElement('input'); 
-                placeholder_input.classList.add('interactive-lzss-compression-placeholder-box');
+                placeholder_input.classList.add('lzss-compression-placeholder-box');
                 placeholder_input.setAttribute('data-index', index);
                 placeholder_input.maxLength = 1;
                 placeholder_input.addEventListener('mousemove', function(event) {
@@ -89,7 +89,7 @@ function drawEncodedMessage(encoded_message) {
             }
 
             var reference_div = document.createElement('div');
-            reference_div.classList.add('interactive-lzss-compression-reference');
+            reference_div.classList.add('lzss-compression-reference');
 
             var start_reference_index = parseInt(string[0]);
             var end_reference_index = start_reference_index + num_encoded_characters;

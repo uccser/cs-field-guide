@@ -6,30 +6,30 @@ body {
     margin: 0px;
 }
 
-#interactive-lzss-compression {
+#lzss-compression {
     width: 100%;
     h3 {
         text-align: center;
     }
-    #interactive-lzss-compression-wrapper {
+    #lzss-compression-wrapper {
         display: flex;
         flex-direction: row;
         justify-content: center;
         
-        #interactive-lzss-compression-left-box,
-        #interactive-lzss-compression-right-box {
+        #lzss-compression-left-box,
+        #lzss-compression-right-box {
             width: 100%;
             margin: 10px;
         }
 
-        #interactive-lzss-compression-left-box {
+        #lzss-compression-left-box {
             button {
                 margin-top: 4px;
             }
         }
 
-        #interactive-lzss-compression-right-box {
-            #interactive-lzss-compression-compressed-text {
+        #lzss-compression-right-box {
+            #lzss-compression-compressed-text {
                 background-color: #FFF;
                 font-weight: bold;
                 box-sizing: border-box;
@@ -38,25 +38,25 @@ body {
                 padding: 3px;
                 border: 1px solid #BFB9B7;
                 min-height: 120px;
-                .interactive-lzss-compression-encoded-line {
+                .lzss-compression-encoded-line {
                     display: flex;
                     align-items: center;
                     flex-wrap: wrap;
                     min-height: 25px;
                 }
-                .interactive-lzss-compression-encoded-character,
-                input.interactive-lzss-compression-placeholder-box {
+                .lzss-compression-encoded-character,
+                input.lzss-compression-placeholder-box {
                     display: inline-block;
                     min-width: 10px;
                     min-height: 1.2rem;
                     margin: 1px;
                 }
-                .interactive-lzss-compression-reference {
+                .lzss-compression-reference {
                     display: flex;
                     flex-wrap: wrap;
                     margin: 2px;
                     padding: 2px;
-                    input.interactive-lzss-compression-placeholder-box {
+                    input.lzss-compression-placeholder-box {
                         width: 1rem;
                         border: 1px solid #BFB9B7;
                     }
@@ -64,7 +64,7 @@ body {
             }
         }
         
-        #interactive-lzss-compression-right-box #interactive-lzss-compression-compressed-text {
+        #lzss-compression-right-box #lzss-compression-compressed-text {
             border-radius: 2px !important;
             box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12)
         }
@@ -82,11 +82,11 @@ body {
 }
 
 @media (max-width: 768px) {
-    #interactive-lzss-compression {
-        #interactive-lzss-compression-wrapper {
+    #lzss-compression {
+        #lzss-compression-wrapper {
             flex-direction: column;
-            #interactive-lzss-compression-left-box,
-            #interactive-lzss-compression-right-box {
+            #lzss-compression-left-box,
+            #lzss-compression-right-box {
                 width: unset;
                 p {
                     margin: 2px;
