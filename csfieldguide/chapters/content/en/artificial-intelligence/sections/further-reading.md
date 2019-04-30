@@ -5,9 +5,9 @@
 
 ## Useful links
 
-- [CS Unplugged &ndash; Programming Languages &ndash; Harold the Robot](http://csunplugged.org/harold-the-robot-2/)- related to why AI is so tricky
+- [CS Unplugged &ndash; Programming Languages &ndash; Harold the Robot &ndash; related to why AI is so tricky](http://csunplugged.org/harold-the-robot-2/)
 - [CS Unplugged &ndash; The Turing Test &ndash; Conversations with Computers](http://csunplugged.org/the-turing-test/)
-- [Wikipedia- Outline of Artificial Intelligence](https://en.wikipedia.org/wiki/Outline_of_artificial_intelligence)
+- [Wikipedia &ndash; Outline of Artificial Intelligence](https://en.wikipedia.org/wiki/Outline_of_artificial_intelligence)
 - [Wikipedia &ndash; Turing Test](https://en.wikipedia.org/wiki/Turing_test)
 - [Wikipedia &ndash; Machine Learning](https://en.wikipedia.org/wiki/Machine_learning)
 - [CS 4 FUN &ndash; Meet the Chatterbots](http://www.cs4fn.org/ai/meetthechatterbots.php)
