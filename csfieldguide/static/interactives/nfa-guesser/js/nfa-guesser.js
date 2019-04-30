@@ -103,7 +103,7 @@ function calculateEndStates() {
 
 
 function updateInterface() {
-    $("div#interactive-nfa-guesser-state-checkboxes input:checked").removeAttr('checked');
+    $("div#interactive-nfa-guesser-state-checkboxes input:checked").prop('checked', false);
     document.getElementById('interactive-nfa-guesser-input-sequence-value').innerHTML = nfa_guesser.input;
     document.getElementById('interactive-nfa-guesser-result').innerHTML = '';
 }

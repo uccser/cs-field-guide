@@ -1,0 +1,104 @@
+.trainsylvania-blank {
+    font-size: 0.8rem;
+    padding-bottom: 20px;
+}
+
+.t-b-spaced {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.t-b-station {
+    max-height: 60px;
+}
+
+.t-b-suburb {
+    transform: translate(30px, 10px);
+}
+
+.t-b-north {
+    transform: translate(-70px, -20px);
+}
+
+.t-b-west {
+    transform: translate(-20px, -10px);
+}
+
+.t-b-central {
+    transform: translate(-10px, 30px);
+}
+
+.t-b-midway {
+    transform: translate(0, 50px);
+}
+
+.t-b-east {
+    transform: translate(0, -50px);
+}
+
+.t-b-city {
+    transform: translate(-50px, 0);
+}
+
+.t-b-south {
+    transform: translate(-50px, 25px);
+}
+
+@media (max-width: 768px) {
+    // Defined as Medium Devices in Bootstrap
+    .trainsylvania-blank {
+        font-size: 0.6rem;
+    }
+
+    .t-b-station {
+        max-height: 50px;
+    }
+}
+
+@media (max-width: 576px) {
+    // Defined as Small Devices in Bootstrap
+    .trainsylvania-blank {
+        font-size: 0.5rem;
+    }
+
+    .t-b-spaced {
+        padding-top: 25px;
+        padding-bottom: 25px;
+    }
+
+    .t-b-station {
+        max-height: 40px;
+    }
+
+    .t-b-suburb {
+        transform: translate(15px, 5px);
+    }
+    
+    .t-b-north {
+        transform: translate(-35px, -10px);
+    }
+    
+    .t-b-west {
+        transform: translate(-10px, -30px);
+    }
+    
+    .t-b-central {
+        transform: translate(-5px, 15px);
+    }
+    
+    .t-b-midway {
+        transform: translate(0, 25px);
+    }
+    
+    .t-b-east {
+        transform: translate(0, -25px);
+    }
+    
+    .t-b-city {
+        transform: translate(-25px, -10px);
+    }
+    
+    .t-b-south {
+        transform: translate(-25px, 20px);
+    }
+}
