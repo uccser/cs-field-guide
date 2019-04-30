@@ -29,7 +29,7 @@ chapters:
     chapter-number: 14
   # network-communication-protocols:
   #   chapter-number: 15
-  # software-engineering:
-  #   chapter-number: 16
+  software-engineering:
+    chapter-number: 16
 
 glossary-folder: glossary
