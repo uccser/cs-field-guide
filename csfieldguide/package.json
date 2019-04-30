@@ -39,7 +39,6 @@
     "@babel/core": "7.1.2",
     "@babel/preset-env": "7.1.0",
     "browserify": "~16.2.2",
-    "child_process": "1.0.2",
     "del": "3.0.0",
     "gulp": "3.9.1",
     "gulplog": "1.0.0",

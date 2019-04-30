@@ -18,7 +18,6 @@ const gutil = require('gulp-util');
 const del = require('del');
 const gulpif = require('gulp-if');
 const filter = require('gulp-filter');
-const exec = require('child_process').exec;
 const runSequence = require('run-sequence')
 const notify = require('gulp-notify');
 const log = require('gulplog');
@@ -51,22 +50,8 @@ const build = argv._.length ? argv._[0] === 'build' : true;
 // ----------------------------
 // Error notification methods
 // ----------------------------
-var beep = function() {
-  var os = require('os');
-  var file = 'gulp/error.wav';
-  if (os.platform() === 'linux') {
-    // linux
-    exec("aplay " + file);
-  } else {
-    // mac
-    console.log("afplay " + file);
-    exec("afplay " + file);
-  }
-};
 var handleError = function(task) {
   return function(err) {
-    beep();
-
       notify.onError({
         message: task + ' failed, check the logs..',
         sound: false
