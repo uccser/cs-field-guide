@@ -85,7 +85,7 @@ We saw above that Eliza is a chatterbot who works with a restricted domain (tryi
 As you probably found out though, this quickly reveals that Eliza really isn’t intelligent at all, and will just repeat the same things over and over again.
 In addition, you probably also noticed that Eliza frequently comes up with sentences that make no sense to a human.
 
-Try having a conversation with another chatterbot &ndash; **Alice**.
+Try having a conversation with another chatterbot &ndash; **A.L.I.C.E**.
 
 [Click here for the Alice chatterbot at pandorabots.com](https://www.pandorabots.com/pandora/talk?botid=b8d616e35e36e881)
 
@@ -100,7 +100,7 @@ If you want to know more, just ask Alice how she works, and she’ll tell you!
 
 Some possible rules that Alice might have are:
 
-- If "favourite colours" are mentioned, say your favourite colour is "green".
+- If "favourite colours" are mentioned, say your favourite colour is "transparent".
 - If family members are mentioned (e.g. "mum", "dad", or "brother") say something that is about family.
 
 To use the rules, the chatterbot analyses your last sentence (and possibly earlier sentences also) by matching the sentence against the patterns in its rules.
