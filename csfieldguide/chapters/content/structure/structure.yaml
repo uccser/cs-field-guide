@@ -17,8 +17,8 @@ chapters:
     chapter-number: 8
   coding-error-control:
     chapter-number: 9
-  # artificial-intelligence:
-  #   chapter-number: 10
+  artificial-intelligence:
+    chapter-number: 10
   complexity-and-tractability:
     chapter-number: 11
   computer-graphics:
