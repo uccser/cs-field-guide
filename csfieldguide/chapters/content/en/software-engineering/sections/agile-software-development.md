@@ -2,8 +2,7 @@
 
 *Agile* software development has become popular over the last 10 years; two of the most famous agile processes are called [XP](https://en.wikipedia.org/wiki/Extreme_programming) and [Scrum](https://en.wikipedia.org/wiki/Scrum_(development)).
 Agile software development is all about being extremely flexible and adaptive to change.
-Most other software processes try to manage and control changes to requirements during the process; agile processes accept and expect change.
-The following xkcd comic illustrates part of the apparent dilemma that agile processes aim to address.
+Most other software processes try to manage and control changes to requirements during the process.
 With Agile, we can develop software quickly, correctly, and be adaptive to change.
 
 {image file-path="img/chapters/xkcd-good-code.png" hover-text="You can either hang out in the Android Loop or the HURD loop." alt="A xkcd comic on good code" source="https://xkcd.com/844/"}
@@ -80,11 +79,11 @@ When you have a failing test, you can then write code to make the test pass.
 
 Software developers should not work more than 40 hours per week.
 If they do overtime one week they should not do more overtime the following week.
-This helps keep software developers happy, productive, creative and energetic, and makes sure they don’t get overworked.
+This helps keep software developers happy, productive, creative and energetic, and makes sure they don’t burn out.
 
 ## Customer involvement
 
-A customer representative should be part of the developing team (ideally spending full-time with the team), on hand to answer questions or give feedback at all times.
+A customer representative should be part of the developing team (ideally working full-time with the team), on hand to answer questions or give feedback.
 This is important to be able to quickly change the requirements or direction of the project.
 If you have to wait 2 weeks until you can get feedback from your customer, you will not be able to adapt to change very quickly!
 
@@ -123,7 +122,7 @@ This project will provide insight into a real software engineering process, but 
 It will be ideal if the person works in a medium to large size company, and they need to be part of a software engineering team (i.e. not a lone programmer).
 
 The project revolves around interviewing the person about the process they went through for some software development they did recently.
-They may be reluctant to talk about company processes, in which case it may help to assure them that you will keep their information confidential (your project should only be viewed by you and those involved in supervising and marking it; you should state its confidential nature clearly at the start so that it doesn't get published later).
+They may be reluctant to talk about company processes, in which case it may help to assure them that you will keep their information confidential (your project should only be viewed by you and those involved in supervising and marking it; you should state its confidential nature clearly at the start and ensure it doesn't get published later).
 
 You need to do substantial preparation for the interview.
 Find out about the kind of software that the company makes.
