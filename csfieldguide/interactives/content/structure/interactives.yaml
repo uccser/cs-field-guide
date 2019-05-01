@@ -341,7 +341,7 @@ unicode-length:
   languages:
     en: interactives/unicode-length.html
   is_interactive: true
-# viola-jones-face-detector:
-#   languages:
-#     en: interactives/viola-jones-face-detector.html
-#   is_interactive: true
+viola-jones-face-detector:
+  languages:
+    en: interactives/viola-jones-face-detector.html
+  is_interactive: true
