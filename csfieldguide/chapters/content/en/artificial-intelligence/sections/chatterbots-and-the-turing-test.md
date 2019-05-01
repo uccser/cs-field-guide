@@ -217,8 +217,6 @@ He thought about how intelligence could be defined (defining intelligence is sur
 This definition doesn’t cover all of intelligence, as it only considers what a person or a computer says and ignores other components of intelligence such as determining the best way to walk through a building (or maze) or deciding how to act in a specific situation (such as at a social event, when deciding what to do next at work, or when lost).
 However, communication is still a very significant component of human intelligence.
 
-{image file-path="img/chapters/Turing_Test_version_3.png" source="https://en.wikipedia.org/wiki/File:Turing_Test_version_3.png" alt="A basic Turing test diagram"}
-
 In order to test whether or not a computer program can communicate like a human, Turing proposed a test.
 In addition to the computer program, two humans are required to carry out the test.
 One of the humans act as an interrogator, and the other as a "human" to compare the computer program to.
@@ -228,6 +226,8 @@ The conversations are both carried out over something like an instant messaging 
 During the conversations, the human has to convince the interrogator that they are indeed the human, and the computer program has to convince the interrogator that IT is actually the human.
 At the end of the conversations, the interrogator has to say which was the computer and which was the human.
 If they can’t reliably tell, then the computer is said to have passed the test.
+
+{image file-path="img/chapters/Turing_Test_version_3.png" source="https://en.wikipedia.org/wiki/File:Turing_Test_version_3.png" alt="A basic Turing test diagram"}
 
 This test proposed by Turing eventually became very famous and got the name "The Turing test".
 One of the motivations for writing chatterbots is to try and make one that passes the Turing test.
