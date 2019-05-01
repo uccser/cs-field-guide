@@ -217,6 +217,8 @@ He thought about how intelligence could be defined (defining intelligence is sur
 This definition doesn’t cover all of intelligence, as it only considers what a person or a computer says and ignores other components of intelligence such as determining the best way to walk through a building (or maze) or deciding how to act in a specific situation (such as at a social event, when deciding what to do next at work, or when lost).
 However, communication is still a very significant component of human intelligence.
 
+{image file-path="img/chapters/Turing_Test_version_3.png" source="https://en.wikipedia.org/wiki/File:Turing_Test_version_3.png" alt="A basic Turing test diagram"}
+
 In order to test whether or not a computer program can communicate like a human, Turing proposed a test.
 In addition to the computer program, two humans are required to carry out the test.
 One of the humans act as an interrogator, and the other as a "human" to compare the computer program to.
