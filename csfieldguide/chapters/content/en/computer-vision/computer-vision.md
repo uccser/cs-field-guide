@@ -19,7 +19,7 @@ Having a small portable device that can "see" and translate characters makes a b
 Note that the translation given is only for the second part of the phrase (the last two characters).
 The first part says "please don’t", so it could be misleading if you think it’s translating the whole phrase!
 
-Recognising of Chinese characters may not work every time perfectly, though.
+Recognition of Chinese characters may not work perfectly every time, though.
 Here is a warning sign:
 
 {image file-path="img/chapters/steep-sign-translated.jpg" alt="Visual computing: translating a sign"}
@@ -39,6 +39,6 @@ This is a problem of *image segmentation*, which we will look at later.
 
 Giving users more information through computer vision is only one part of the story.
 Capturing information from the real world allows computers to assist us in other ways too.
-In some places, computer vision is already being used to help car drivers to avoid collisions on the road, warning them when other cars are too close or there are other hazards on the road ahead.
+In some places, computer vision is already being used to help car drivers to avoid collisions on the road; Warning them when other cars are too close or if there are other hazards on the road ahead.
 Combining computer vision with map software, people have now built cars that can drive to a destination without needing a human driver to steer them.
 A wheelchair guidance system can take advantage of vision to avoid bumping into doors, making it much easier to operate for someone with limited mobility.

@@ -11,7 +11,7 @@ Security systems such as customs at country borders use face recognition to iden
 It can also be useful for privacy — Google Maps streetview identifies faces and blurs them.
 Digital cameras can find faces in a scene and use them to adjust the focus and lighting.
 
-There is some information about [How facial recognition works](http://electronics.howstuffworks.com/gadgets/high-tech-gadgets/facial-recognition.htm) that you can read up as background, and some more information at [i-programmer.info](http://www.i-programmer.info/babbages-bag/1091-face-recognition.html).
+There is some information about [how facial recognition works](http://electronics.howstuffworks.com/gadgets/high-tech-gadgets/facial-recognition.htm) that you can read up as background, and some more information at [i-programmer.info](http://www.i-programmer.info/babbages-bag/1091-face-recognition.html).
 
 There are some relevant [articles on the cs4fn website](http://www.cs4fn.org/vision/) that also provide some general material on computer vision.
 
