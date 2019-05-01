@@ -31,7 +31,7 @@ Thankfully, no one was on board but the failure still caused about US$370m damag
 In extreme cases, software bugs can endanger lives.
 This happened in the 1980s, for example, when a [radiation therapy machine](https://en.wikipedia.org/wiki/Therac) caused the deaths of 3 patients by giving 100 times the intended dose of radiation.
 And in 1979, a US Army computer [almost started a nuclear war](https://nsarchive2.gwu.edu/nukevault/ebb371/), when it misinterpreted a simulation of the Soviet Union launching a missile as the real thing!
-(If you are interested in other software failures, [CS4FN](http://www.cs4fn.org/softwareengineering/backtodrawingboard.php) lists the most spectacular ones!)
+If you are interested in other software failures, [CS4FN](http://www.cs4fn.org/softwareengineering/backtodrawingboard.php) lists the most spectacular ones!
 
 Our society today is so reliant on software that we can’t even imagine life without it anymore.
 In many ways, software has made our lives easier: we write emails, chat with friends on Facebook, play computer games and search for information on Google.
@@ -75,7 +75,7 @@ In a digital system, the human is the most important part!
 
 {panel type="curiosity"}
 
-# Moore's Law
+# Moore's law
 
 In 1965, Gordon Moore noticed that the number of transistors on integrated circuits was doubling about every 2 years.
 This means that computers’ processing power was also doubling roughly every 2 years (sometimes this is quoted as 18 months due to the combination of the numbers *and* speed increasing).
