@@ -282,7 +282,7 @@ You will be taking the role of the interrogator, but will need another person to
 For this it is recommended you choose a person in your class who you don’t know very well.
 Do *not* choose your best friend in the class, because you will know their responses to questions too well, so will be able to identify them from the chatterbot based on their personality rather than the quality of the chatterbot.
 
-In addition to the chatterbot and your classmate to act as the human, you will need access to: a room with a computer with internet (this could just be the computer classroom); another room outside it (a hallway would be fine); pieces of paper; 2 pens; and a coin or a die.
+In addition to the chatterbot and your classmate to act as the human, you will need access to: a room with a computer with internet (this could just be the computer classroom); another room outside it (a hallway would be fine); pieces of paper; 2 pens; and a coin or die.
 
 The chatterbot should be loaded on the computer to be used, and your classmate should be in the same room with the computer.
 You should be outside that room.
