@@ -21,7 +21,7 @@ This is [demonstrated in this video](https://www.youtube.com/watch?v=ewrBalT_eBM
 
 By now you’re probably wondering why we bother splitting up packets… wouldn’t it be easier to send the file as a whole?
 Well, it solves congestion.
-Imagine you're on the train to Trainsylvania, and just before it sets off a great long train begins lumbering out of the station.
+Imagine you're on the passenger train to Trainsylvania, and just before it sets off a great long freight train begins lumbering out of the station.
 Unfortunately, Google is setting up a physical archive of its entire codebase, and it'll be three full days before the line to Trainsylvania is next free.
 It would be far better to have the freight train split every few wagons so smaller trains, like the one you're on, can still travel in reasonable time.
 The numerous trains could even be sent along different routes, to avoid hogging the one line.
@@ -33,7 +33,7 @@ So each page is split up and sent in tiny pieces, then at the other end they are
 
 # Three days?!
 
-At 86 terabytes of code, Google's database is one of the largest in the world.
+Estimated at 86 terabytes, Google's codebase is one of the largest in the world.
 To write that all down and store in 40ft shipping containers, would create a train as long as the distance from Barcelona to Moscow!
 
 {comment This was calculated with other assumptions: 500 sheets of paper is 5.2cm wide; 3000 bytes fit on an A4 sheet; the volume of a shipping container is 77m3; and containers are 1m apart to account for train wagon links. At an average of 45kph it would take 2.95 days to traverse the 3,185km distance}
