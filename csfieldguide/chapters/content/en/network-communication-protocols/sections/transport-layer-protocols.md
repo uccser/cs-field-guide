@@ -22,7 +22,7 @@ This is [demonstrated in this video](https://www.youtube.com/watch?v=ewrBalT_eBM
 By now you’re probably wondering why we bother splitting up packets… wouldn’t it be easier to send the file as a whole?
 Well, it solves congestion.
 Imagine you're on the passenger train to Trainsylvania, and just before it sets off a great long freight train begins lumbering out of the station.
-Unfortunately, Google is setting up a physical archive of its entire codebase, and it'll be three full days before the line to Trainsylvania is next free.
+Unfortunately, Google is setting up a physical archive of its Google Earth database, and it'll be a full day before the line to Trainsylvania is next free.
 It would be far better to have the freight train split every few wagons so smaller trains, like the one you're on, can still travel in reasonable time.
 The numerous trains could even be sent along different routes, to avoid hogging the one line.
 Web pages are like this too.
@@ -31,12 +31,12 @@ So each page is split up and sent in tiny pieces, then at the other end they are
 
 {panel type="curiosity"}
 
-# Three days?!
+# A full day?!
 
-Estimated at 86 terabytes, Google's codebase is one of the largest in the world.
-To write that all down and store in 40ft shipping containers, would create a train as long as the distance from Barcelona to Moscow!
+According to one [2016 estimate](https://www.gearthblog.com/blog/archives/2016/04/big-google-earth-database.html), Google Earth has a database of approximately 3000 Terabytes.
+To write that all down and store in 40ft shipping containers would create a train over a thousand kilometers long &ndash; as long as the distance from Auckland to Dunedin!
 
-{comment This was calculated with other assumptions: 500 sheets of paper is 5.2cm wide; 3000 bytes fit on an A4 sheet; the volume of a shipping container is 77m3; and containers are 1m apart to account for train wagon links. At an average of 45kph it would take 2.95 days to traverse the 3,185km distance}
+{comment This was calculated with other assumptions: 500 sheets of paper is 5.2cm wide; 3000 bytes fit on an A4 sheet; the volume of a shipping container is 77m3; and containers are 1m apart to account for train wagon links. At an average of 45kph it would take 24.8 hours to traverse the 1,118km distance}
 
 {panel end}
 
