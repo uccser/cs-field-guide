@@ -183,7 +183,7 @@ Notice how the images look very similar, even though the second one has many zer
 
 Try this out yourself:
 
-{comment interactive slug="jpeg-compression" type="whole-page" text="JPEG interactive"}
+{interactive slug="jpeg-compression" type="whole-page" text="JPEG interactive"}
 
 We still have 64 numbers even with the many zeros, so how do we save space when storing the zeros?
 You will notice that the zeros are bunched towards the bottom right. This means if we list the coefficients in a zig-zag, starting from the top left corner, we will end up with many zeros in a row.

@@ -74,7 +74,8 @@ Here's a short dictionary with 4 entries, numbered from 0 to 3 (the last entry i
 
 
 If you receive the code `0 1 2 3 2 0 1`, you could look up each number in the "dictionary", and translate it to `I AM SAM, SAM I AM`.
-Of course, data on a computer is represented as binary numbers; with 4 entries in the dictionary, you'd need 2 bits for each number, and the code would actually be `00 01 10 11 10 00 01` and the dictionary would look like this:
+Of course, data on a computer is represented as binary numbers; with 4 entries in the dictionary, you'd need 2 bits for each number.
+The code would actually be `00 01 10 11 10 00 01` and the dictionary would look like this:
 
 | Code (in binary) | Character String |
 |------------------|------------------|
@@ -117,13 +118,13 @@ Initially the LZW encoder begins with a dictionary that can store up to 4096 str
 Codes 0 to 255 represent single character sequences (the alphabet, punctuation, etc).
 The codes will need to be stored as binary numbers, therefore each code needs 12 bits to represent it in order to represent a total of 4096 entries (since 12 bits allows us to represent 4096 different values).
 
-As the message is being compressed, at each step the encoder adds a new string of characters to the dictionary (filling in dictionary spots 255 &ndash; 4095).
+As the message is being compressed, at each step the encoder adds a new string of characters to the dictionary (filling in dictionary spots 255 - 4095).
 Let’s use an example to step through how this happens.
 This is the message we are wanting to encode:
 
 `IAMSAMSAMIAM`
 
-In this case, this is our initial dictionary F(usually we would use 255 characters, as mentioned above, but let’s just keep things simple and only use the four characters in our string):
+In this case, this is our initial dictionary (usually we would use 255 characters, as mentioned above, but let’s just keep things simple and only use the four characters in our string):
 
 | Code | Bits         | Character String |
 |------|--------------|------------------|
@@ -191,7 +192,7 @@ And the string has been replaced with a series of codes, each corresponding to a
 `0 1 2 3 5 7 2 4 2`
 
 To see just how much compression we achieved, let’s take a look at the binary behind the characters.
-We'll assume that the characters are coded in 8 bits each (this is typical), based on UTF-8 coding (which is the same as ASCII for English characters).
+We'll assume that the characters are coded in 8 bits each (this is typical), based on UTF-8 coding (which is the same as ASCII for these characters).
 In binary, originally our message looked like this:
 
 ```
@@ -207,7 +208,8 @@ And this is the compressed message:
 000000000000 000000000001 000000000010 000000000011 000000000101 000000000111 000000000010 000000000100 000000000010
 ```
 
-The compressed version shown here uses only 9 LZW codes, but each is 12 bits each, so this version would use 108 bits. This is more than the original, although we'll see later on (check out the "Representing the codes in fewer than 12 bits" panel at the end of this section) that there's an easy trick that can be used to reduce this to just 3 or 4 bits per code, so it would use no more than 4 x 9 = 36 bits, which is less than 40% of the original size.
+The compressed version shown here uses only 9 LZW codes, but each is 12 bits each, so this version would use 108 bits.
+This is more than the original, although we'll see later on (check out the "Representing the codes in fewer than 12 bits" panel at the end of this section) that there's an easy trick that can be used to reduce this to just 3 or 4 bits per code, so it would use no more than 4 x 9 = 36 bits, which is less than 40% of the original size.
 
 We were encoding quite a short message, so the longest sequence in the dictionary is just three characters.
 The longer the message that we are encoding, the longer these sequences can get, therefore allowing us to potentially represent reasonably long substrings with just one code, resulting in effective compression.
