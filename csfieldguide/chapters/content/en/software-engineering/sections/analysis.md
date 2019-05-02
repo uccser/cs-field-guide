@@ -61,7 +61,7 @@ Imagine that a customer asks you to develop a scoring system for the (fictional)
 The customer tells you:
 
 "It’s really simple.
-You just need to record the foo-whacks, but not the bar-whacks unless the Flob is circulating".
+You just need to record the foo-whacks, but not the bar-whacks unless the Flob is circulating."
 
 After this description, you’re probably pretty confused because you don’t know anything about the sport of Whacky-Flob and don’t know the specific terms used (What on earth are foo-whacks???).
 To get started, you should attend a few games of Whacky-Flob and observe how the game and the scoring works.
@@ -84,7 +84,7 @@ They might say they want "software to improve their business" or to "make their 
 For that reason, it’s a good idea to build little prototypes while you’re developing your system and keep showing them to customers to get feedback from them.
 
 You’ll often find that customers have a specific process that they follow already and want the software to fit in with that.
-Once a project being done by university students for a library.
+Once, a project was being done by university students for a library.
 Their staff used to write down information about borrowed items three times on a paper form, cut up the form and send the pieces to different places as records.
 When the students interviewed them, they asked for a screen in the program where they could enter the information three times as well (even though in a computer system there really isn’t much point in that)!
 
