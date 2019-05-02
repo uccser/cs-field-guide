@@ -122,13 +122,18 @@ function highlightCodedCharacters() {
 function calculateStatistics(number_coded_characters) {
     var percentage_coded = Math.round((number_coded_characters/message_characters.length) * 100);
     var num_references_used = codes.length;
+    var stats;
 
-    d = { 
-        'percent_coded': percentage_coded,
-        'num_refs_used': num_references_used
-    };
-    var format = ngettext('%(percent_coded)s% of text compressed using 1 reference.', '%(percent_coded)s% of text compressed using %(num_refs_used)s references.', d.num_refs_used);
-    stats = interpolate(format, d, true);
+    if (isNaN(percentage_coded)) {
+        stats = 'No text to compress.';
+    } else {
+        d = { 
+            'percent_coded': percentage_coded,
+            'num_refs_used': num_references_used
+        };
+        var format = ngettext('%(percent_coded)s% of text compressed using 1 reference.', '%(percent_coded)s% of text compressed using %(num_refs_used)s references.', d.num_refs_used);
+        stats = interpolate(format, d, true);
+    }
     document.getElementById('dictionary-compression-stats').innerHTML = stats;
 }
 
