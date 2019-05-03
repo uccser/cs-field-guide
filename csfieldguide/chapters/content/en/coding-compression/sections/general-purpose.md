@@ -17,7 +17,7 @@ The options in the interactive above allow you to require the replaced length to
 Of course, all characters count, not just letters of the alphabet, so the system can also refer back to the spaces between words.
 In fact, some of the most common sequences are things like a full stop followed by a space.
 
-This approach also works very well for simple images, since sequences like "10 white pixels" in a row are likely to have occurred before.
+This approach also works very well for simple images, since sequences like "10 white pixels in a row" are likely to have occurred before.
 Here are some of the bits from the example image earlier in this chapter; you can paste them into the interactive above to see how many pointers are needed to represent it (in this example there's just one bit for each pixel because the image has only two colours, but in practice LZ methods are likely to code images with a bigger range of pixel colours, such as 8-bit pixels with 256 different colours).
 
 ```
@@ -292,7 +292,7 @@ Sequence  = I + the next character
 		  = IA
 ```
 
-`IA` is not already in the dictionary, so it is added and assign it to the code 4.
+`IA` is not already in the dictionary, so it is added and assigned to the code 4.
 The docoder’s dictionary now looks like this:
 
 | Code | Bits         | Sequence |
