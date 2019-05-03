@@ -134,6 +134,8 @@ sorting-algorithm-comparison:
   name: Sorting Algorithm Comparison
 sorting-algorithms:
   name: Sorting Algorithms
+system-layers:
+  name: System Layers
 trainsylvania:
   name: Trainsylvania
 trainsylvania-planner:

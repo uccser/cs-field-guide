@@ -52,6 +52,8 @@ The computer can be broken down into multiple layers, starting with the user, th
 
 {image end}
 
+{interactive slug="system-layers" type="in-page"}
+
 We call a system like this a *layered system*.
 You can have any number of layers you want but each layer can only communicate with the one directly below it.
 The operating system can directly access the hardware but a program running on the computer can't.
@@ -88,7 +90,7 @@ Facebook can be broken down into a three tier system, comprising of the presenta
 
 {panel type="curiosity"}
 
-# Reuse - kangaroos and helicopters
+# Reuse: kangaroos and helicopters
 
 Since building software is so difficult and time-consuming, a popular idea has been to reuse existing software.
 Not surprisingly, we call this *software reuse*.
@@ -119,7 +121,7 @@ In this project, we will look at how to design the software.
 Start by thinking about how the software you are trying to build can be broken up into smaller parts.
 Maybe there is a database or a user interface or a website?
 For example, imagine you are writing software to control a robot.
-The robot needs to use its sensors to follow a black line on the ground until it reach a target.
+The robot needs to use its sensors to follow a black line on the ground until it reaches a target.
 The software for your robot should have a part that interacts with the sensors to get information about what they "see".
 It should then pass this information to another part, which analyses the data and decides where to move next.
 Finally, you should have a part of the software which interacts with the robot’s wheels to make it move in a given direction.

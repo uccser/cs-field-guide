@@ -303,6 +303,10 @@ sorting-algorithms:
   languages:
     en: interactives/sorting-algorithms.html
   is_interactive: true
+system-layers:
+  languages:
+    en: interactives/system-layers.html
+  is_interactive: false
 trainsylvania:
   languages:
     en: interactives/trainsylvania.html
