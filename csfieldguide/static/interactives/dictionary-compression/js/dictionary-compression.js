@@ -81,6 +81,9 @@ function highlightCodedCharacters() {
                     for (var k = 1; k < code.length; k++) {
                         // get the next code and message characters
                         var next_code_character = code[k];
+                        if (next_message_character_index >= message_characters.length) {
+                            break;
+                        }
                         var next_message_character = message_characters[next_message_character_index];
                         // if a character in the message is already coded, move on
                         if (next_message_character.CodeIndex != false) {
