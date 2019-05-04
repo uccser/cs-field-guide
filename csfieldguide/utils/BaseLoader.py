@@ -99,7 +99,10 @@ class BaseLoader():
             "markdown.extensions.tables",
             mdx_math.MathExtension()
         ]
-        self.converter = Verto(html_templates=templates, extensions=extensions)
+        settings = {
+            "add_default_interactive_thumbnails_to_required_files": False,
+        }
+        self.converter = Verto(html_templates=templates, extensions=extensions, custom_settings=settings)
 
     def convert_md_file(self, md_file_path, config_file_path, heading_required=True, remove_title=True):
         """Return the Verto object for a given Markdown file.
