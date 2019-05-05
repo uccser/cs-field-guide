@@ -33,7 +33,7 @@ So each page is split up and sent in tiny pieces, then at the other end they are
 
 # A full day?!
 
-According to one [2016 estimate](https://www.gearthblog.com/blog/archives/2016/04/big-google-earth-database.html), Google Earth has approximately 3 petabytes (3000000Gb) of past and present image data on our world from above.
+According to one [2016 estimate](https://www.gearthblog.com/blog/archives/2016/04/big-google-earth-database.html), Google Earth has approximately 3 petabytes (3000000GB) of past and present image data on our world from above.
 To write that all down and store in 40ft shipping containers would create a train over a thousand kilometers long &ndash; as long as the distance from Auckland to Dunedin!
 
 {comment This was calculated with other assumptions: 500 sheets of paper is 5.2cm wide; 3000 bytes fit on an A4 sheet; the volume of a shipping container is 77m3; and containers are 1m apart to account for train wagon links. At an average of 45kph it would take 24.8 hours to traverse the 1,118km distance}
