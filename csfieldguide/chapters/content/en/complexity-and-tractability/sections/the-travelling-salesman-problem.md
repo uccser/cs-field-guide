@@ -2,7 +2,9 @@
 
 An example of an intractable problem is the Travelling Salesman Problem (TSP).
 The TSP involves a bunch of locations (cities, houses, airports,....) where you can travel between any possible pair of locations.
-The goal is to find the shortest route that will go through all the locations once &ndash; this is what the interactive at the start of this chapter does.
+The goal is to find the shortest route that will go through all the locations once &ndash; this is what the City Trip interactive below (and at the start of this chapter) does.
+
+{interactive slug="city-trip" type="whole-page"}
 
 Researchers have spent a lot of time trying to find efficient solutions to the travelling salesman problem, yet have been unable to find a *tractable* algorithm for solving it.
 As you learnt in the previous section, *intractable* algorithms are very slow, to the point of being impossible to use.
