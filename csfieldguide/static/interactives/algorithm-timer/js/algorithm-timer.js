@@ -180,7 +180,7 @@ function inputIsValid(n, speed, processors) {
   // validation for speed
   speedInput = $('#speed');
   speedErrorMsg = $('#speed-input-error');
-  if (speed <= 0 || speed > 10000000 || isNaN(speed)) {
+  if (speed <= 0 || speed > 1000000 || isNaN(speed)) {
     speedInput.addClass('is-invalid');
     speedErrorMsg.removeClass('d-none');
     isValid = false;
