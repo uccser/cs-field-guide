@@ -28,7 +28,11 @@ $(document).ready(function () {
         try {
           updateResult(x.div(y).toFixed(), true);
         } catch (exception) {
-          updateResult(exception, false);
+          if (y == 0) {
+            updateResult(gettext("You can't divide by zero!"), false);
+          } else {
+            updateResult(exception, false);
+          }
         }
       }
       else if (button_type == 'power') {
