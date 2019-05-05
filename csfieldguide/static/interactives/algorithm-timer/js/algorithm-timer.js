@@ -137,6 +137,7 @@ function calculateTimeTaken(complexity, resultForm, n, speed, processors, timeUn
   } else if (complexity == 'exponential') {
     steps = Mathjs.bignumber(Math.pow(2, n));
   } else if (complexity == 'factorial') {
+    n = Mathjs.bignumber(n);
     steps = Mathjs.factorial(n);
   }
 
