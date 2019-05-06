@@ -14,6 +14,10 @@ alarm-timer:
     de: interactives/alarm-timer.html
     es: interactives/alarm-timer.html
   is_interactive: false
+algorithm-timer:
+  languages:
+    en: interactives/algorithm-timer.html
+  is_interactive: true
 available-menu-items:
   languages:
     en: interactives/available-menu-items.html
@@ -71,6 +75,10 @@ checksum-calculator:
 checksum-calculator-gtin-13:
   languages:
     en: interactives/checksum-calculator-gtin-13.html
+  is_interactive: true
+city-trip:
+  languages:
+    en: interactives/city-trip.html
   is_interactive: true
 close-window:
   languages:
