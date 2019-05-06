@@ -1,11 +1,14 @@
+const interact = require("interactjs");
+const tracking = require("tracking");;
+
 // listen for HTML5 native drag and drop API dragstart event and ignore them.
 document.addEventListener('dragstart', function(event) {
   // use interact.js' matchesSelector polyfil to
   // check for match with your draggable target
   if (interact.matchesSelector(event.target, '.haar, .haar *')) {
-      // prevent and stop the event if it's on a draggable target
-      event.preventDefault();
-      event.stopPropagation();
+    // prevent and stop the event if it's on a draggable target
+    event.preventDefault();
+    event.stopPropagation();
   }
 });
 
@@ -17,6 +20,9 @@ $(document).ready(function () {
   var canvas = document.getElementById('canvas');
   context = canvas.getContext('2d');
   rect = canvas.getBoundingClientRect();
+
+  $('#find-faces').click(findFaces);
+  $('#clear-rectangles').click(clearRectangles);
 
   /**
    * This code allows the Haar feature to be dragged around the image,
