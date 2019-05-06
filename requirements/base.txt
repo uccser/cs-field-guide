@@ -10,7 +10,7 @@ django-inline-svg==0.1.1
 selenium==3.141.0
 
 # Markdown
-verto==0.10.0
+verto==0.11.0
 python-markdown-math==0.5
 
 # Search
