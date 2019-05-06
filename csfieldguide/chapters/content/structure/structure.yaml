@@ -19,8 +19,8 @@ chapters:
     chapter-number: 9
   artificial-intelligence:
     chapter-number: 10
-  # complexity-and-tractability:
-  #   chapter-number: 11
+  complexity-and-tractability:
+    chapter-number: 11
   computer-graphics:
     chapter-number: 12
   # computer-vision:
