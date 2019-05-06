@@ -39,9 +39,10 @@ def check_interactives(interactives, file_path, chapter=None):
         to the chapter.
 
         Args:
+            interactives (set): Set of slugs of interactives.
+            file_path (str): File path of file providing interactives.
+                             Used when displaying error message.
             chapter (Chapter): Chapter to add relationship to interactive too.
-            file_path (str): File path of file providing interactives. Used
-                             when displaying error message.
 
         Raises:
             KeyNotFoundError: If interactive cannot be found.
