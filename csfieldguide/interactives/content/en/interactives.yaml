@@ -4,6 +4,8 @@ action-menu:
   name: Action Menu
 alarm-timer:
   name: Alarm Timer
+algorithm-timer:
+  name: Algorithm Timer
 available-menu-items:
   name: Available Menu Items
 awful-calculator:
@@ -30,6 +32,8 @@ checksum-calculator:
   name: Checksum Calculator
 checksum-calculator-gtin-13:
   name: Checksum Calculator GTIN-13
+city-trip:
+  name: City Trip
 close-window:
   name: Close Window
 cmy-mixer:
