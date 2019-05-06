@@ -4,8 +4,11 @@
 {% load static %}
 
 {% block html %}
-<!-- Note that all images used are public domain or licenced under CC0.
-Website of the source for each image is included in its filename -->
+<!--
+  Note that all images used (including logos) are labelled as public domain or
+  licenced under CC0 as of the time they were obtained.
+  Website of the source for each image is included in its filename.
+-->
 <div class="container uninteractive">
   <div class="system-layers-title">
     {% trans 'Your computer as a layered system' %}
@@ -13,7 +16,7 @@ Website of the source for each image is included in its filename -->
   <!-- User -->
   <div class="row system-layer">
     <div class="col-8">
-      
+      <img class="system-image" src="{% static 'interactives/system-layers/img/pc_user-pdclipart.png' %}">
     </div>
     <div class="col-4 system-text">
       {% trans 'User' %}
@@ -22,7 +25,20 @@ Website of the source for each image is included in its filename -->
   <!-- Programs -->
   <div class="row system-layer border-top-0">
     <div class="col-8">
-        
+      <div class="row">
+        <div class="col-3">
+          <img class="system-image" src="{% static 'interactives/system-layers/img/gclogo-wikipedia.png' %}">
+        </div>
+        <div class="col-3">
+          <img class="system-image" src="{% static 'interactives/system-layers/img/mswordlogo-wikipedia.png' %}">
+        </div>
+        <div class="col-3">
+          <img class="system-image" src="{% static 'interactives/system-layers/img/safarilogo-wikipedia.png' %}">
+        </div>
+        <div class="col-3">
+          <img class="system-image" src="{% static 'interactives/system-layers/img/msedgelogo-wikipedia.png' %}">
+        </div>
+      </div>
     </div>
     <div class="col-4 system-text">
       {% trans 'Programs' %}

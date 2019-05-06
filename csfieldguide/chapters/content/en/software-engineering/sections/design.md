@@ -46,12 +46,6 @@ Finally, you’re the top layer of the system.
 You use the program but you will (hopefully) never have to interact with the more complicated parts of the operating system such as driver software, let alone the hardware.
 In this way, you can use the computer without ever having to worry about these things.
 
-{image file-path="img/chapters/computer-layers.png" alt="The computer can be broken down into multiple layers, starting with the user, then the programs, then the operating system, then finally the hardware." caption="true"}
-
-The computer can be broken down into multiple layers, starting with the user, then the programs, then the operating system, then finally the hardware.
-
-{image end}
-
 {interactive slug="system-layers" type="in-page"}
 
 We call a system like this a *layered system*.
