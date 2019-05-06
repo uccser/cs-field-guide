@@ -87,7 +87,7 @@ Not surprisingly, we call this *software reuse*.
 It’s a great idea in theory (why recreate something that already exists?) but turns out to be difficult to put into practice partly because existing software is also huge and complicated.
 Usually when you reuse software, you want only a small part of the existing software’s functionality, rather than everything.
 
-An interesting story that illustrates the problems with software reuse (although it is unfortunately not completely accurate, see [http://www.snopes.com/humor/nonsense/kangaroo.asp](http://www.snopes.com/humor/nonsense/kangaroo.asp)) is that of helicopters and kangaroos.
+An interesting story that illustrates the problems with software reuse (although it is unfortunately not completely accurate, see [this article](http://www.snopes.com/humor/nonsense/kangaroo.asp)) is that of helicopters and kangaroos.
 The Australian Air Force was developing a new helicopter simulator to train pilots.
 They wanted the simulator to be as realistic as possible and therefore decided to include herds of kangaroos in the simulation.
 To save time, they reused code from another simulator which included foot soldiers and simply changed the icons of the soldiers to kangaroos.
