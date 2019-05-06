@@ -76,11 +76,7 @@ Facebook’s logic layer, for example, will decide which posts to show on your "
 Finally, the presentation layer gets information from the logic layer which it displays.
 Usually, the presentation layer doesn’t do much processing on the information it gets but simply creates the HTML pages that you see.
 
-{image file-path="img/chapters/facebook-three-tier-system.png" alt="Facebook can be broken down into a three tier system, comprising of the presentation layer, then the logic layer, then finally the data layer." caption="true"}
-
-Facebook can be broken down into a three tier system, comprising of the presentation layer, then the logic layer, then finally the data layer.
-
-{image end}
+{interactive slug="three-tier-website" type="in-page"}
 
 {panel type="curiosity"}
 

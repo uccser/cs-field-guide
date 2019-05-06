@@ -307,6 +307,10 @@ system-layers:
   languages:
     en: interactives/system-layers.html
   is_interactive: false
+three-tier-website:
+  languages:
+    en: interactives/three-tier-website.html
+  is_interactive: false
 trainsylvania:
   languages:
     en: interactives/trainsylvania.html
