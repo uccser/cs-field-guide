@@ -83,6 +83,7 @@ cmd_update() {
   echo ""
   cmd_migrate
 
+  echo ""
   cmd_updatedata
   cmd_make_interactive_thumbnails
   cmd_rebuild_index
