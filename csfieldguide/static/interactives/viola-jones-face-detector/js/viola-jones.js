@@ -1,5 +1,5 @@
 const interact = require("interactjs");
-const trackingjs = require("tracking");;
+require("tracking");
 
 // listen for HTML5 native drag and drop API dragstart event and ignore them.
 document.addEventListener('dragstart', function(event) {
@@ -287,8 +287,8 @@ function loadResizeImage(src) {
 
     drawGrayscaleImage(img);
     var myData = context.getImageData(0, 0, canvas.width, canvas.height);
-    console.log(trackingjs);
-    trackingjs.tracking.Image.computeIntegralImage(myData.data, myData.width, myData.height, result);
+    console.log(tracking);
+    tracking.Image.computeIntegralImage(myData.data, myData.width, myData.height, result);
     clearRectangles();
   }
 }
@@ -323,9 +323,9 @@ function drawGrayscaleImage(img) {
  */
 function findFaces() {
   var img = document.getElementById('img');
-  var tracker = new trackingjs.tracking.ObjectTracker(['face']);
+  var tracker = new tracking.ObjectTracker(['face']);
   tracker.setStepSize(2);
-  trackerTask = trackingjs.tracking.track('#img', tracker);
+  trackerTask = tracking.track('#img', tracker);
   tracker.on('track', function(event) {
     event.data.forEach(function(rect) {
       var faceRect = document.createElement('div');
