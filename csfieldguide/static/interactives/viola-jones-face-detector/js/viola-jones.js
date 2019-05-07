@@ -23,7 +23,8 @@ $(document).ready(function () {
 
   $('#find-faces').click(findFaces);
   $('#clear-rectangles').click(clearRectangles);
-
+  $('#viola-jones-image-input').change(loadImageDialog);
+  
   /**
    * This code allows the Haar feature to be dragged around the image,
    * using interact.js.
@@ -249,9 +250,10 @@ function updateDisplay(whiteSquareIntensity, blackSquareIntensity, target) {
 
 
 /*
- * Function called when the load image button is clicker, displays file chooser.
+ * Function called when the load image button is clicked, displays file choosen.
  */
-function loadImageDialog(input) {
+function loadImageDialog() {
+  var input = this;
   if (input.files && input.files[0]) {
     var reader = new FileReader();
     reader.onload = function(e) {
@@ -260,6 +262,13 @@ function loadImageDialog(input) {
       loadResizeImage();
     }
     reader.readAsDataURL(input.files[0]);
+    $("label[for='viola-jones-image-input']").text(input.files[0].name);
+    // reset position and validaiton border of haar boxes
+    $('#haar1').css('transform', 'none').removeClass('valid');
+    $('#haar2').css('transform', 'none').removeClass('valid');
+    $('#haar3').css('transform', 'none').removeClass('valid');
+    $('#haar4').css('transform', 'none').removeClass('valid');
+    $('#haar5').css('transform', 'none').removeClass('valid');
   }
 }
 
@@ -267,7 +276,7 @@ function loadImageDialog(input) {
 /**
  * Resizes the image that is chosen to be loaded and makes it grayscale.
  */
-function loadResizeImage(src) {
+function loadResizeImage() {
   var sourceImage = document.getElementById('img');
   var MAX_WIDTH = 900;
   var img = new Image();
@@ -287,7 +296,6 @@ function loadResizeImage(src) {
 
     drawGrayscaleImage(img);
     var myData = context.getImageData(0, 0, canvas.width, canvas.height);
-    console.log(tracking);
     tracking.Image.computeIntegralImage(myData.data, myData.width, myData.height, result);
     clearRectangles();
   }
@@ -322,7 +330,6 @@ function drawGrayscaleImage(img) {
  * Runs the algorithm to find faces and draws a rectange around them.
  */
 function findFaces() {
-  var img = document.getElementById('img');
   var tracker = new tracking.ObjectTracker(['face']);
   tracker.setStepSize(2);
   trackerTask = tracking.track('#img', tracker);

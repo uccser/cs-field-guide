@@ -4,7 +4,7 @@ https://www.pexels.com/photo/group-of-people-in-dress-suits-776615/
 # Viola-Jones Face Detection Interactive
 
 **Original Author:** Isabelle Taylor
-**Modified By:** Jack Morgan
+**Modified By:** Jack Morgan, Courtney Bracefield
 
 This interactive is created to show HAAR functions on an image.
 
