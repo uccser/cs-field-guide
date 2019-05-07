@@ -135,6 +135,10 @@ delayed-checkbox:
     de: interactives/delayed-checkbox.html
     es: interactives/delayed-checkbox.html
   is_interactive: true
+dictionary-compression:
+  languages:
+    en: interactives/dictionary-compression.html
+  is_interactive: true
 dot-combinations:
   languages:
     en: interactives/dot-combinations.html
@@ -178,6 +182,14 @@ image-bit-comparer:
 jpeg-compression:
   languages:
     en: interactives/jpeg-compression.html
+  is_interactive: true
+lzss-compression:
+  languages:
+    en: interactives/lzss-compression.html
+  is_interactive: true
+lzw-compression:
+  languages:
+    en: interactives/lzw-compression.html
   is_interactive: true
 # md5-hash:
 #   languages:
