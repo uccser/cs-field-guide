@@ -54,6 +54,8 @@ delay-analyser:
   name: Delay Analyser
 delayed-checkbox:
   name: Delayed Checkbox
+dictionary-compression:
+  name: Dictionary Compression
 dot-combinations:
   name: Dot Combinations
 frequency-analysis:
@@ -78,6 +80,10 @@ udp-layers:
   name: UDP Layers
 jpeg-compression:
   name: JPEG Compression
+lzw-compression:
+  name: LZW Compression
+lzss-compression:
+  name: LZSS Compression
 md5-hash:
   name: md5-hash (broken)
 menu-keystrokes:
