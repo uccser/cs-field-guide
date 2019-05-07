@@ -45,6 +45,7 @@ $(document).ready(function () {
 
 
 function dragMove (event) {
+  feedback.innerHTML = "";
   var target = event.target,
     // keep the dragged position in the data-x/data-y attributes
     x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
@@ -269,6 +270,8 @@ function loadImageDialog() {
     $('#haar3').css('transform', 'none').removeClass('valid');
     $('#haar4').css('transform', 'none').removeClass('valid');
     $('#haar5').css('transform', 'none').removeClass('valid');
+    // remove well done message
+    feedback.innerHTML = "";
   }
 }
 
