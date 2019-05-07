@@ -179,6 +179,10 @@ image-bit-comparer:
   languages:
     en: interactives/image-bit-comparer.html
   is_interactive: true
+udp-layers:
+  languages:
+    en: interactives/udp-layers.html
+  is_interactive: false
 jpeg-compression:
   languages:
     en: interactives/jpeg-compression.html
@@ -233,14 +237,14 @@ off-by-one:
     de: interactives/off-by-one.html
     es: interactives/off-by-one.html
   is_interactive: false
-# packet-attack:
-#   languages:
-#     en: interactives/packet-attack.html
-#   is_interactive: true
-# packet-attack-level-creator:
-#   languages:
-#     en: interactives/packet-attack-level-creator.html
-#   is_interactive: true
+packet-attack:
+  languages:
+    en: interactives/packet-attack.html
+  is_interactive: true
+packet-attack-level-creator:
+  languages:
+    en: interactives/packet-attack-level-creator.html
+  is_interactive: true
 parity:
   languages:
     en: interactives/parity.html
@@ -323,6 +327,10 @@ sorting-algorithms:
   languages:
     en: interactives/sorting-algorithms.html
   is_interactive: true
+tcp-segment:
+  languages:
+    en: interactives/tcp-segment.html
+  is_interactive: false
 trainsylvania:
   languages:
     en: interactives/trainsylvania.html

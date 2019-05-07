@@ -1,0 +1,35 @@
+.warning {
+    font-size: 12pt;
+    text-align: center;
+    padding: 20px;
+}
+
+.start-screen {
+    text-align: center;
+}
+
+@media screen and (min-width: 820.1px) and (min-height: 650.1px) {
+    .warning {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 820px) {
+    .game-canvas {
+        display: none;
+    }
+
+    .start-screen {
+        display: none;
+    }
+}
+
+@media screen and (max-height: 650px) {
+    .game-canvas {
+        display: none;
+    }
+
+    .start-screen {
+        display: none;
+    }
+}

@@ -1,0 +1,159 @@
+$total-height: 300px; // Make a multiple of 6 for calculations
+
+.bordered {
+    border: 4px solid;
+}
+
+.bordered.grey-border {
+    border-color: #808080;
+    border-width: 2px;
+    border-style: dashed;
+}
+
+.bordered.left-bordered {
+    border-right: none;
+    border-top: none;
+    border-bottom: none;
+}
+
+.bordered.bottom-bordered {
+    border-right: none;
+    border-top: none;
+    border-left: none;
+}
+
+.size-half {
+    height: calc( #{$total-height} / 2 );
+    justify-content: center;
+    align-items: center;
+    background-color: #ececec;
+}
+
+.size-five-sixths {
+    height: calc( #{$total-height} * 5 / 6 );
+}
+
+.size-one-sixth {
+    height: calc( #{$total-height} / 6 );
+    justify-content: center;
+    background-color: #ececec;
+}
+
+.text {
+    font-size: 16pt;
+    text-align: center;
+}
+
+.text.center-text {
+    line-height: calc( #{$total-height} / 6 );
+    vertical-align: middle;
+}
+
+.text.big-text {
+    line-height: $total-height;
+    font-size: 64pt;
+}
+
+// Readjust size for bootstrap-defined screen sizes
+
+// large
+@media screen and (max-width: 1200px) {
+    $total-height: 240px; // Make a multiple of 6 for calculations
+
+    .size-half {
+        height: calc( #{$total-height} / 2 );
+    }
+    
+    .size-five-sixths {
+        height: calc( #{$total-height} * 5 / 6 );
+    }
+    
+    .size-one-sixth {
+        height: calc( #{$total-height} / 6 );
+    }
+
+    .text {
+        font-size: 14pt;
+    }
+
+    .text.center-text {
+        line-height: calc( #{$total-height} / 6 );
+    }
+
+    .text.big-text {
+        line-height: $total-height;
+        font-size: 60pt;
+    }
+}
+
+// medium
+@media screen and (max-width: 992px) {
+    $total-height: 208px; // Make a multiple of 6 for calculations
+
+    .size-half {
+        height: calc( #{$total-height} / 2 );
+    }
+    
+    .size-five-sixths {
+        height: calc( #{$total-height} * 5 / 6 );
+    }
+    
+    .size-one-sixth {
+        height: calc( #{$total-height} / 6 );
+    }
+
+    .text {
+        font-size: 12pt;
+    }
+
+    .text.center-text {
+        line-height: calc( #{$total-height} / 6 );
+    }
+
+    .text.big-text {
+        line-height: $total-height;
+        font-size: 48pt;
+    }
+}
+
+// small (the surrounding layout changes at this point)
+@media screen and (max-width: 768px) {
+
+    .bordered {
+        border-width: 2px;
+    }
+
+    .bordered.grey-border {
+        border-width: 1px;
+    }
+}
+
+// extra small
+@media screen and (max-width: 576px) {
+    $total-height: 162px; // Make a multiple of 6 for calculations
+
+    .size-half {
+        height: calc( #{$total-height} / 2 );
+    }
+    
+    .size-five-sixths {
+        height: calc( #{$total-height} * 5 / 6 );
+    }
+    
+    .size-one-sixth {
+        height: calc( #{$total-height} / 6 );
+    }
+
+    .text {
+        font-size: 10pt;
+    }
+
+    .text.center-text {
+        line-height: calc( #{$total-height} / 6 );
+    }
+
+    .text.big-text {
+        line-height: $total-height;
+        font-size: 36pt;
+    }
+}

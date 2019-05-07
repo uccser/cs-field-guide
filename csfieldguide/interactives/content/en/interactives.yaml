@@ -76,6 +76,8 @@ huffman-tree:
   name: Huffman Tree
 image-bit-comparer:
   name: Image Bit Comparer
+udp-layers:
+  name: UDP Layers
 jpeg-compression:
   name: JPEG Compression
 lzw-compression:
@@ -101,9 +103,9 @@ number-generator:
 off-by-one:
   name: Off By One
 packet-attack:
-  name: packet-attack (broken)
+  name: Packet Attack
 packet-attack-level-creator:
-  name: packet-attack-level-creator (broken)
+  name: Packet Attack Level Creator
 parity:
   name: Parity
 payment-interface:
@@ -144,6 +146,8 @@ sorting-algorithm-comparison:
   name: Sorting Algorithm Comparison
 sorting-algorithms:
   name: Sorting Algorithms
+tcp-segment:
+  name: TCP Segment
 trainsylvania:
   name: Trainsylvania
 trainsylvania-planner:
