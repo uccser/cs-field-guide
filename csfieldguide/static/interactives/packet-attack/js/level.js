@@ -1,7 +1,13 @@
-function Level(game, levelNumber){
+/**
+ * Packet Attack
+ * 
+ * Level class builder
+ */
+
+ function Level(levelNumber) {
 
 	//Defaults
-	this.numberOfPackets = 10;
+	this.message = "LONDON";
 	
 	//Packet abilities - ALL n packets will have the same abilities. 
 	this.packetsHaveShields = false; 
@@ -13,56 +19,65 @@ function Level(game, levelNumber){
 	this.canAttackAcksNacks = false;
 
 	//User attacks on the packets
-	this.stuns = 1;
-	this.zaps = 1;
-	this.confuses = 1;
+	this.delays = 1;
+	this.kills = 1;
+	this.corrupts = 1;
 
-	this.game = game;
 	this.levelNumber = levelNumber;
 
 	// Setters - Additional checks can be added. 
-	this.setNumberOfPackets = function(numberOfPackets){
-		this.numberOfPackets = numberOfPackets;
-		return this; //Setters return this, so the settings can be chained.
+	this.setMsg = function(text) {
+		this.message = text;
+		return this; // Setters return this so that the settings can be chained.
 	}
 
-	this.setStuns = function(stuns){
-		this.stuns = stuns;
+	this.setDelays = function(delays) {
+		this.delays = delays;
 		return this;
 	}
 
-	this.setZaps = function(zaps){
-		this.zaps = zaps;
+	this.setKills = function(kills) {
+		this.kills = kills;
 		return this;
 	}
 
-	this.setConfuses = function(confuses){
-		this.confuses = confuses;
+	this.setCorrupts = function(corrupts) {
+		this.corrupts = corrupts;
 		return this;
 	}
 
-	this.setPacketsHaveShields = function(packetsHaveShields){
+	this.setPacketsHaveShields = function(packetsHaveShields) {
 		this.packetsHaveShields = packetsHaveShields;
 		return this;
 	}
 
-	this.setPacketsHaveNumbers = function(packetsHaveNumbers){
+	this.setPacketsHaveNumbers = function(packetsHaveNumbers) {
 		this.packetsHaveNumbers = packetsHaveNumbers;
 		return this;
 	}
 
-	this.setAcksNacksEnabled = function(acksNacksEnabled){
+	this.setAcksNacksEnabled = function(acksNacksEnabled) {
 		this.acksNacksEnabled = acksNacksEnabled;
 		return this;
 	}
 
-	this.setTimeoutsEnabled = function(timeoutsEnabled){
+	this.setTimeoutsEnabled = function(timeoutsEnabled) {
+		// NOTE: This will create a neverending supply of packets if acks aren't enabled
 		this.timeoutsEnabled = timeoutsEnabled;
 		return this;
 	}
 
-	this.setCanAttackAcksNacks = function(canAttackAcksNacks){
+	this.setCanAttackAcksNacks = function(canAttackAcksNacks) {
+		// This will create a strange message on the start level screen if acks
+		// & nacks aren't enabled
+		if (canAttackAcksNacks) {
+			this.setAcksNacksEnabled(true);
+		}
 		this.canAttackAcksNacks = canAttackAcksNacks;
 		return this;
 	}
 }
+
+module.exports = {
+    Level
+};

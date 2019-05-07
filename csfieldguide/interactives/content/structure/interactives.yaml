@@ -14,6 +14,10 @@ alarm-timer:
     de: interactives/alarm-timer.html
     es: interactives/alarm-timer.html
   is_interactive: false
+algorithm-timer:
+  languages:
+    en: interactives/algorithm-timer.html
+  is_interactive: true
 available-menu-items:
   languages:
     en: interactives/available-menu-items.html
@@ -72,6 +76,10 @@ checksum-calculator-gtin-13:
   languages:
     en: interactives/checksum-calculator-gtin-13.html
   is_interactive: true
+city-trip:
+  languages:
+    en: interactives/city-trip.html
+  is_interactive: true
 close-window:
   languages:
     en: interactives/close-window.html
@@ -127,6 +135,10 @@ delayed-checkbox:
     de: interactives/delayed-checkbox.html
     es: interactives/delayed-checkbox.html
   is_interactive: true
+dictionary-compression:
+  languages:
+    en: interactives/dictionary-compression.html
+  is_interactive: true
 dot-combinations:
   languages:
     en: interactives/dot-combinations.html
@@ -167,9 +179,21 @@ image-bit-comparer:
   languages:
     en: interactives/image-bit-comparer.html
   is_interactive: true
+udp-layers:
+  languages:
+    en: interactives/udp-layers.html
+  is_interactive: false
 jpeg-compression:
   languages:
     en: interactives/jpeg-compression.html
+  is_interactive: true
+lzss-compression:
+  languages:
+    en: interactives/lzss-compression.html
+  is_interactive: true
+lzw-compression:
+  languages:
+    en: interactives/lzw-compression.html
   is_interactive: true
 # md5-hash:
 #   languages:
@@ -213,14 +237,14 @@ off-by-one:
     de: interactives/off-by-one.html
     es: interactives/off-by-one.html
   is_interactive: false
-# packet-attack:
-#   languages:
-#     en: interactives/packet-attack.html
-#   is_interactive: true
-# packet-attack-level-creator:
-#   languages:
-#     en: interactives/packet-attack-level-creator.html
-#   is_interactive: true
+packet-attack:
+  languages:
+    en: interactives/packet-attack.html
+  is_interactive: true
+packet-attack-level-creator:
+  languages:
+    en: interactives/packet-attack-level-creator.html
+  is_interactive: true
 parity:
   languages:
     en: interactives/parity.html
@@ -303,6 +327,10 @@ sorting-algorithms:
   languages:
     en: interactives/sorting-algorithms.html
   is_interactive: true
+tcp-segment:
+  languages:
+    en: interactives/tcp-segment.html
+  is_interactive: false
 trainsylvania:
   languages:
     en: interactives/trainsylvania.html

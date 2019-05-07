@@ -19,16 +19,16 @@ chapters:
     chapter-number: 9
   artificial-intelligence:
     chapter-number: 10
-  # complexity-and-tractability:
-  #   chapter-number: 11
+  complexity-and-tractability:
+    chapter-number: 11
   computer-graphics:
     chapter-number: 12
   # computer-vision:
   #   chapter-number: 13
   formal-languages:
     chapter-number: 14
-  # network-communication-protocols:
-  #   chapter-number: 15
+  network-communication-protocols:
+    chapter-number: 15
   # software-engineering:
   #   chapter-number: 16
 
