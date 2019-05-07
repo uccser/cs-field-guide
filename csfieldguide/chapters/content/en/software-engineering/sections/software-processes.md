@@ -1,6 +1,6 @@
 # Software processes
 
-So far in this chapter, you’ve learned about different phases of software development: analysis, design and testing.
+So far in this chapter we've covered different phases of software development: analysis, design and testing.
 But how do these phases fit together?
 At what time during the project do we do what activity?
 That’s the topic of *software processes*.
@@ -25,6 +25,8 @@ In reality, a little bit of backtracking is allowed to fix problems from previou
 If during the testing phase of the project you suddenly find a problem with the requirements you certainly can't go back and rewrite the requirements.
 
 {image file-path="img/chapters/waterfall-process-cartoon.png" alt="Waterfall Cartoon"}
+
+{interactive slug="waterfall-process" type="in-page"}
 
 An advantage of the waterfall process is that it’s very simple and easy to follow.
 At any point in the project, it’s very clear what stage of the project you are at.

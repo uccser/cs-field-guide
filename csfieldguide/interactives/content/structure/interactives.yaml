@@ -353,3 +353,7 @@ unicode-length:
 #   languages:
 #     en: interactives/viola-jones-face-detector.html
 #   is_interactive: true
+waterfall-process:
+  languages:
+    en: interactives/waterfall-process.html
+  is-interactive: false
