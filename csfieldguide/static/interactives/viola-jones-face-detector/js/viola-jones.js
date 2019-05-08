@@ -265,11 +265,11 @@ function loadImageDialog() {
     reader.readAsDataURL(input.files[0]);
     $("label[for='viola-jones-image-input']").text(input.files[0].name);
     // reset position and validaiton border of haar boxes
-    $('#haar1').css('transform', 'none').removeClass('valid');
-    $('#haar2').css('transform', 'none').removeClass('valid');
-    $('#haar3').css('transform', 'none').removeClass('valid');
-    $('#haar4').css('transform', 'none').removeClass('valid');
-    $('#haar5').css('transform', 'none').removeClass('valid');
+    // $('#haar1').css('transform', 'none').removeClass('valid');
+    // $('#haar2').css('transform', 'none').removeClass('valid');
+    // $('#haar3').css('transform', 'none').removeClass('valid');
+    // $('#haar4').css('transform', 'none').removeClass('valid');
+    // $('#haar5').css('transform', 'none').removeClass('valid');
     // remove well done message
     feedback.innerHTML = "";
   }
