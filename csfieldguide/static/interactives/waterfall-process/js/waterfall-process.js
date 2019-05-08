@@ -10,9 +10,11 @@ var analysisDiv;
 var designDiv;
 var implementationDiv;
 var testingDiv;
+
 var analysisToDesignArrow;
 var designToImplementationArrow;
 var implementationToTestingArrow;
+
 var designToAnalysisArrow;
 var implementationToDesignArrow;
 var testingToImplementationArrow;
@@ -46,13 +48,13 @@ function createArrow(arrow, from, to, isUp) {
 
   var line;
   if (!isUp) {
-    line = "M" + (fromLocation.left + from.width()) + "," + (fromLocation.top + from.height() / 2);
+    line = "M" + (fromLocation.left + from.width() + 2) + "," + (fromLocation.top + from.height() / 2); // +2 to align it properly
     line += " L" + (toLocation.left + to.width() / 2) + "," + (fromLocation.top + from.height() / 2);
     line += " L" + (toLocation.left + to.width() / 2) + "," + (toLocation.top - 12); // -12 to subtract the size of the arrow
   } else {
     line = "M" + (fromLocation.left) + "," + (fromLocation.top + from.height() / 2);
     line += " L" + (toLocation.left + to.width() / 2) + "," + (fromLocation.top + from.height() / 2);
-    line += " L" + (toLocation.left + to.width() / 2) + "," + (toLocation.top + to.height() + 12); // +12 to subtract the size of the arrow
+    line += " L" + (toLocation.left + to.width() / 2) + "," + (toLocation.top + to.height() + 14); // +14 to subtract the size of the arrow
   }
   arrow.attr('d', line);
 }

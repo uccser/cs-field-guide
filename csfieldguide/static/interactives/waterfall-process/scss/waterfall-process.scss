@@ -38,3 +38,45 @@
     left: 0px;
     top: 0px;
 }
+
+// This uninteractive is in an iframe, so bootstrap-defined screen sizes don't work
+@media screen and (max-width: 700px) {
+    .waterfall-process {
+        padding: 10px;
+    }
+
+    .waterfall-title {
+        font-size: 16pt;
+    }
+
+    .waterfall-box {
+        font-size: 10pt;
+        line-height: 50px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .waterfall-process {
+        padding: 5px;
+    }
+
+    .waterfall-title {
+        font-size: 12pt;
+    }
+
+    .waterfall-box {
+        font-size: 8pt;
+        line-height: 40px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .waterfall-process {
+        padding: 2px;
+    }
+
+    .waterfall-box {
+        font-size: 6pt;
+        line-height: 30px;
+    }
+}
