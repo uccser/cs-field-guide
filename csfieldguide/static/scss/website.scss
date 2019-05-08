@@ -203,3 +203,11 @@ blockquote {
     @extend .thead-light;
   }
 }
+
+.nav-link-colour {
+  color: $csfg-light;
+  
+  &:hover {
+    color: #253589;
+  }
+}
