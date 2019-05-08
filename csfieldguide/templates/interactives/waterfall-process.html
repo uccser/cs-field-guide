@@ -4,6 +4,9 @@
 {% load static %}
 
 {% block html %}
+  <div class="row justify-content-center waterfall-title">
+    {% trans 'The Waterfall process' %}
+  </div>
   <div class="container-fluid mb-3 waterfall-process">
     <div class="row">
       <div class="col-3">
@@ -23,7 +26,7 @@
     <div class="row">
       <div class="col-6"></div>
       <div class="col-3">
-        <div class="waterfall-box">
+        <div id="implementation"  class="waterfall-box">
           {% trans 'Implementation' %}
         </div>
       </div>
@@ -31,15 +34,29 @@
     <div class="row">
       <div class="col-9"></div>
       <div class="col-3">
-        <div class="waterfall-box">
+        <div id="testing"  class="waterfall-box">
           {% trans 'Testing' %}
         </div>
       </div>
     </div>
-    <svg class="waterfall-svg"><line class="down-arrow" id="analysis-design" stroke="black"/></svg>
-  </div>
-  <div class="row justify-content-center waterfall-title">
-    {% trans 'The Waterfall process' %}
+    <svg class="waterfall-svg">
+      <defs>
+        <marker id="down-arrowhead" markerWidth="10" markerHeight="13" refx="2" refy="6" orient="auto">
+          <path d="M2,1 L2,9 L8,6 L2,3 Z" style="fill: black;" />
+        </marker>
+        <marker id="up-arrowhead" markerWidth="10" markerHeight="13" refx="2" refy="6" orient="auto">
+          <path d="M2,1 L2,9 L8,6 L2,3 Z" style="fill: red;" />
+        </marker>
+      </defs>
+
+      <path class="down-arrow" id="analysis-design"/>
+      <path class="down-arrow" id="design-implementation"/>
+      <path class="down-arrow" id="implementation-testing"/>
+
+      <path stroke-dasharray="10,10" class="up-arrow" id="design-analysis"/>
+      <path stroke-dasharray="10,10" class="up-arrow" id="implementation-design"/>
+      <path stroke-dasharray="10,10" class="up-arrow" id="testing-implementation"/>
+    </svg>
   </div>
 {% endblock html %}
 

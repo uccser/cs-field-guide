@@ -11,8 +11,7 @@
 .waterfall-box {
     border: 1px solid;
     font-size: 12pt;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    line-height: 66px;
     text-align: center;
     background-color: #cfe2f3;
     position: relative;
@@ -20,6 +19,16 @@
 
 .down-arrow {
     stroke: black;
+    stroke-width: 2px;
+    fill: none;
+    marker-end: url(#down-arrowhead);
+}
+
+.up-arrow {
+    stroke: red;
+    stroke-width: 2px;
+    fill: none;
+    marker-end: url(#up-arrowhead);
 }
 
 .waterfall-svg {
