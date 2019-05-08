@@ -8,8 +8,6 @@ That’s the topic of *software processes*.
 The obvious answer would be to start with analysis to figure out what we want to build, then design the structure of the software, implement everything and finally test the software.
 This is the simplest software process, called the *waterfall process*.
 
-{image file-path="img/chapters/waterfall-process-diagram.png" alt="Waterfall Diagram"}
-
 {interactive slug="waterfall-process" type="iframe"}
 
 The waterfall process is borrowed from other kinds of engineering.
