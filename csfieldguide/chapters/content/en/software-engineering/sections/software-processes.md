@@ -10,6 +10,8 @@ This is the simplest software process, called the *waterfall process*.
 
 {image file-path="img/chapters/waterfall-process-diagram.png" alt="Waterfall Diagram"}
 
+{interactive slug="waterfall-process" type="iframe"}
+
 The waterfall process is borrowed from other kinds of engineering.
 If we want to build a bridge, we go through the same phases of analysis, design, implementation and testing:
 
@@ -25,8 +27,6 @@ In reality, a little bit of backtracking is allowed to fix problems from previou
 If during the testing phase of the project you suddenly find a problem with the requirements you certainly can't go back and rewrite the requirements.
 
 {image file-path="img/chapters/waterfall-process-cartoon.png" alt="Waterfall Cartoon"}
-
-{interactive slug="waterfall-process" type="in-page"}
 
 An advantage of the waterfall process is that it’s very simple and easy to follow.
 At any point in the project, it’s very clear what stage of the project you are at.

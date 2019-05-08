@@ -4,10 +4,49 @@
 {% load static %}
 
 {% block html %}
-  <div class="container mb-3 waterfall-process">
+  <div class="container-fluid mb-3 waterfall-process">
+    <div class="row">
+      <div class="col-3">
+        <div id="analysis" class="waterfall-box">
+          {% trans 'Analysis' %}
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-3"></div>
+      <div class="col-3">
+        <div id="design" class="waterfall-box">
+          {% trans 'Design' %}
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6"></div>
+      <div class="col-3">
+        <div class="waterfall-box">
+          {% trans 'Implementation' %}
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-9"></div>
+      <div class="col-3">
+        <div class="waterfall-box">
+          {% trans 'Testing' %}
+        </div>
+      </div>
+    </div>
+    <svg class="waterfall-svg"><line class="down-arrow" id="analysis-design" stroke="black"/></svg>
+  </div>
+  <div class="row justify-content-center waterfall-title">
+    {% trans 'The Waterfall process' %}
   </div>
 {% endblock html %}
 
 {% block css %}
   <link rel="stylesheet" href="{% static 'interactives/waterfall-process/css/waterfall-process.css' %}">
 {% endblock css %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/waterfall-process/js/waterfall-process.js' %}"></script>
+{% endblock js %}

@@ -356,4 +356,4 @@ unicode-length:
 waterfall-process:
   languages:
     en: interactives/waterfall-process.html
-  is-interactive: false
+  is_interactive: false
