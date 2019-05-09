@@ -76,13 +76,10 @@ huffman-tree:
   name: Huffman Tree
 image-bit-comparer:
   name: Image Bit Comparer
-<<<<<<< HEAD
 iterative-software-development:
   name: Iterative Software Development
-=======
 udp-layers:
   name: UDP Layers
->>>>>>> develop
 jpeg-compression:
   name: JPEG Compression
 lzw-compression:
@@ -151,15 +148,12 @@ sorting-algorithm-comparison:
   name: Sorting Algorithm Comparison
 sorting-algorithms:
   name: Sorting Algorithms
-<<<<<<< HEAD
 system-layers:
   name: System Layers
-three-tier-website:
-  name: Three-tier Website
-=======
 tcp-segment:
   name: TCP Segment
->>>>>>> develop
+three-tier-website:
+  name: Three-tier Website
 trainsylvania:
   name: Trainsylvania
 trainsylvania-planner:
