@@ -28,6 +28,8 @@ Thankfully, no one was on board but the failure still caused about US$370m damag
 
 {video url="https://www.youtube.com/embed/gp_D8r-2hwk?rel=0"}
 
+{image file-path="img/chapters/ariane-rocket-cartoon.png" alt="Ariane Cartoon"}
+
 In extreme cases, software bugs can endanger lives.
 This happened in the 1980s, for example, when a [radiation therapy machine](https://en.wikipedia.org/wiki/Therac) caused the deaths of 3 patients by giving 100 times the intended dose of radiation.
 And in 1979, a US Army computer [almost started a nuclear war](https://nsarchive2.gwu.edu/nukevault/ebb371/), when it misinterpreted a simulation of the Soviet Union launching a missile as the real thing!
