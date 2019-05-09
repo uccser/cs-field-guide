@@ -44,7 +44,7 @@ If the selection sort algorithm above was given 10 thousand items to sort, it wo
 
 These data points for a particular computer are useful for getting an idea of the performance (that is, complexity) of the algorithm, but they don't give a clear picture.
 It turns out that we can work out exactly how many steps the selection sort algorithm will take for *n* items: it will require about \( \frac{n(n-1)}{2} \) operations, or in expanded form,\( \frac{n^2}{2} - \frac{n}{2} \) operations.
-This formula applies regardless of the kind of computer its running on, and while it doesn't tell us the time that will be taken, it can help us to work out if it's going to be reasonable.
+This formula applies regardless of the kind of computer it's running on, and while it doesn't tell us the time that will be taken, it can help us to work out if it's going to be reasonable.
 
 From the above formula we can see why it gets bad for large values of *n* : the number of steps taken increases with the square of the size of the input.
 Putting in a value of 1 thousand for *n* tells us that it will use 1,000,000/2 - 1,000/2 steps, which is 499,500 steps.
@@ -62,7 +62,7 @@ In this chapter we'll be using similar crude characterisations because they are 
 
 If you've studied algorithms, you will have learnt that some sorting algorithms, such as mergesort and quicksort, are inherently faster than other algorithms, such as insertion sort, selection sort, or bubble sort.
 It’s obviously better to use the faster ones.
-The first two have a complexity of \( nlog(n) \) time (that is, the number of steps that they take is roughly proportional to \( nlog(n) \)), whereas the last three have complexity of \( n^2 \).
+The first two have a complexity of \( nlog(n) \) time (that is, the number of steps they take is roughly proportional to \( nlog(n) \)), whereas the last three have complexity of \( n^2 \).
 Generally the consequence of using the wrong sorting algorithm will be that a user has to wait many minutes (or perhaps hours) rather than a few seconds or minutes.
 
 Here we're going to consider another possible sorting algorithm, called *permutation sort*.
@@ -102,7 +102,7 @@ You can either do this yourself, or use an online permutation generator such as 
 
 {comment build the permutation generator into the page}
 
-For example if you’d picked red, blue, green, and yellow, the first few orderings could be:
+For example if you had picked red, blue, green, and yellow, the first few orderings could be:
 
 red, blue, green, yellow  
 red, blue, yellow, green  
@@ -186,7 +186,7 @@ With this calculator you can copy and paste the result back into the input if yo
 If you are doing these calculations for a report, you should also copy each step of the calculation into your report to show how you got the result.
 
 There are other big number calculators available online; for example, the [Big Integer Calculator](http://www.javascripter.net/math/calculators/100digitbigintcalculator.htm).
-Other big calculators are available online, or you could look for one to download for a desktop machine or smartphone.
+Or you could look for one to download for a desktop machine or smartphone.
 
 As a final exercise on permutation sort, calculate how long a computer would take to use permutation sort to sort 100 numbers.
 Remember that you can use the calculator that was linked to above.
@@ -239,7 +239,7 @@ Permutation sort on the other hand would be impossible to use!
 
 At this point, we need to now distinguish between algorithms that are essentially usable, and algorithms that will take billions of year to finish running, even with a small input such as 100 values.
 
-Computer Scientists call an algorithm "intractable" if it would take a completely unreasonable amount of time to run on reasonably sized inputs.
+Computer scientists call an algorithm "intractable" if it would take a completely unreasonable amount of time to run on reasonably sized inputs.
 Permutation sort is a good example of an intractable algorithm.
 The term "intractable" is used a bit more formally in computer science; it's explained in the next section.
 

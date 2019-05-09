@@ -1,0 +1,191 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-sm-12 col-lg-8">
+      <h3 class="text-center my-3">{% trans "Algorithm Timer" %}</h3>
+    </div>
+  </div>
+
+  <!-- radio buttons for algorithm complexity -->
+  <div class="row mb-2 justify-content-center">
+    <div class="col-sm-12 col-lg-8">
+      <div class="d-inline-block mr-2">
+        {% trans "Algorithm complexity:" %}
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="complexity" id="log" checked>
+        <label class="form-check-label" for="log">log(n)</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="complexity" id="linear">
+        <label class="form-check-label" for="linear">n</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="complexity" id="nlog" checked>
+        <label class="form-check-label" for="nlog">nlog(n)</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="complexity" id="squared" checked>
+        <label class="form-check-label" for="squared">n&sup2;</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="complexity" id="cubed">
+        <label class="form-check-label" for="cubed">n&sup3;</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="complexity" id="fourth-power">
+        <label class="form-check-label" for="fourth-power">n<sup>4</sup></label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="complexity" id="sixth-power">
+        <label class="form-check-label" for="sixth-power">n<sup>6</sup></label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="complexity" id="exponential">
+        <label class="form-check-label" for="exponential">2<sup>n</sup></label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="complexity" id="factorial">
+        <label class="form-check-label" for="factorial">n!</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- radio buttons for what form the result should be in -->
+  <div class="row justify-content-center mb-3">
+    <div class="col-sm-12 col-lg-8">
+      <div class="d-inline-block mr-2">
+        {% trans "Results:" %}
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="result-form" id="long-form" checked>
+        <label class="form-check-label" for="long-form">
+          {% trans "Long form" %}
+        </label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="result-form" id="scientific">
+        <label class="form-check-label" for="scientific">
+          {% trans "Scientific" %}
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- input boxes -->
+  <form>
+    <div class="row justify-content-center">
+      <div class="col-sm-12 col-lg-8">
+
+        <div class="form-group row">
+          <label for="n-items" class="col-sm-6 col-form-label">{% trans "Number of items (n):" %}</label>
+          <div class="col-sm-6 mt-1">
+            <input class="form-control form-control-sm" id="n-items" value=10>
+            <div id="n-items-input-error" class="invalid-feedback d-none">{% trans "Please enter an integer between 1 and 1000 inclusive." %}</div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="speed" class="col-sm-6 col-form-label">{% trans "Operations per second:" %}</label>
+          <div class="col-sm-6 mt-1">
+            <input class="form-control form-control-sm" id="speed" value=1>
+            <div id="speed-input-error" class='invalid-feedback d-none'>{% trans "Please enter a positive number no higher than 1000000." %}</div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="processors" class="col-sm-6 col-form-label">{% trans "Processors:" %}</label>
+          <div class="col-sm-6 mt-1">
+            <input class="form-control form-control-sm" id="processors" value=1>
+            <div id="processors-input-error" class='invalid-feedback d-none'>{% trans "Please enter an integer between 1 and 1000 inclusive." %}</div>
+          </div>
+        </div>
+
+      </div>  
+    </div>
+  </form>
+
+  <!-- output -->
+  <div class="row justify-content-center">
+    <div class="col-sm-12 col-lg-8">
+      <div class="mb-1">
+        {% blocktrans %}
+        <span id='complexity-chosen'>n&sup2;</span> operations would take: 
+        {% endblocktrans %}
+      </div>
+      <div class="form-group pl-0">
+        <textarea id="output" class="form-control" rows="10" readonly></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- radio buttons for time -->
+  <div class="row justify-content-center mb-2">
+    <div class="col-sm-12 col-lg-8 form-control-sm ml-2">
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="time" id="nanoseconds">
+        <label class="form-check-label" for="nanoseconds">
+          {% trans "Nanoseconds" %}
+        </label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="time" id="microseconds">
+        <label class="form-check-label" for="microseconds">
+          {% trans "Microseconds" %}
+        </label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="time" id="milliseconds">
+        <label class="form-check-label" for="milliseconds">
+          {% trans "Milliseconds" %}
+        </label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="time" id="seconds" checked>
+        <label class="form-check-label" for="seconds">
+          {% trans "Seconds" %}
+        </label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="time" id="minutes">
+        <label class="form-check-label" for="minutes">
+          {% trans "Minutes" %}
+        </label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="time" id="hours">
+        <label class="form-check-label" for="hours">
+          {% trans "Hours" %}
+        </label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="time" id="days">
+        <label class="form-check-label" for="days">
+          {% trans "Days" %}
+        </label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="time" id="years">
+        <label class="form-check-label" for="years">
+          {% trans "Years" %}
+        </label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="time" id="centuries">
+        <label class="form-check-label" for="centuries">
+          {% trans "Centuries" %}
+        </label>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock html %}
+
+{% block js %}
+  <script>var Mathjs;</script>
+  <script type="text/javascript" src="{% static 'interactives/algorithm-timer/js/algorithm-timer.js' %}"></script>
+{% endblock js %}
