@@ -33,8 +33,8 @@ $(document).ready(function() {
 
   window.onresize = function() {
     createArrow(analysisToDesignArrow, analysisDiv, designDiv, 1);
-    //createArrow(designToImplementationArrow, designDiv, implementationDiv, 2);
-    //createArrow(implementationToTestingArrow, implementationDiv, testingDiv, 3);
+    createArrow(designToImplementationArrow, designDiv, implementationDiv, 2);
+    createArrow(implementationToTestingArrow, implementationDiv, testingDiv, 3);
     createArrow(testingToAnalysisArrow, testingDiv, analysisDiv, 4);
 
     //createFeedbackArrow(feedbackArrow, feedbackDiv);
@@ -44,9 +44,9 @@ $(document).ready(function() {
 /**
  * 
  * Based on defining a 90 degree curve as a partial ellipse:
- * Start: (x1,y1)
- * Curve: (x2-x1,y2-y1) will make it have endpoints perpendicular to the boxes
- * End: (x2,y2)
+ * start: (x1,y1)
+ * curve: (x2-x1,y2-y1) will make it have endpoints perpendicular to the boxes
+ * end: (x2,y2)
  */
 function createArrow(arrow, from, to, rotation) {
   var fromLocation = from.offset();
@@ -59,12 +59,22 @@ function createArrow(arrow, from, to, rotation) {
   var endpointOffset = [0,0]; // To account for the arrowhead
   switch(rotation) {
     case(1):
-      endpointOffset = [0, -15];
+      endpointOffset = [0, -13];
       start = [(fromLocation.left + from.width()), (fromLocation.top + from.height() / 2)];
       end = [(toLocation.left + to.width() / 2 + endpointOffset[0]), (toLocation.top + endpointOffset[1])];
       break;
+    case(2):
+      endpointOffset = [13, 0];
+      start = [(fromLocation.left + from.width() / 2), (fromLocation.top + from.height())];
+      end = [(toLocation.left + to.width() + endpointOffset[0]), (toLocation.top + to.height() / 2 + endpointOffset[1])];
+      break;
+    case(3):
+      endpointOffset = [0, 13];
+      start = [(fromLocation.left), (fromLocation.top + from.height() / 2)];
+      end = [(toLocation.left + to.width() / 2 + endpointOffset[0]), (toLocation.top + to.height() + endpointOffset[1])];
+      break;
     case(4):
-      endpointOffset = [-15, 0];
+      endpointOffset = [-13, 0];
       start = [(fromLocation.left + from.width() / 2), (fromLocation.top)];
       end = [(toLocation.left + endpointOffset[0]), (toLocation.top + to.height() / 2 + endpointOffset[1])];
       break;
