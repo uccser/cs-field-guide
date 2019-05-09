@@ -81,8 +81,6 @@ We refine our requirements and do some more design, programming and testing to m
 Over time, the prototype grows into the final system, getting closer and closer to what we want.
 Methodologies based on this idea are often referred to as *agile* &ndash; they can easily adapt as changes become apparent.
 
-{image file-path="img/chapters/iterative-software-development-diagram.png" alt="The iterative software development cycle starts with feedback from showing the prototype to the customer with analysis, the back to design, implementation and testing, and then starting again with analysis."}
-
 {interactive slug="iterative-software-development" type="iframe"}
 
 The advantage with this approach is that if you make a mistake, you will find it soon (probably when you show the prototype to the customer the next time) and have the opportunity to fix it.

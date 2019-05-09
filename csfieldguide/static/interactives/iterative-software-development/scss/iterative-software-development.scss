@@ -18,11 +18,19 @@
 }
 
 .iterative-feedback-text {
-    color: #666666;
+    color: #000000;
     font-size: 10pt;
     text-align: center;
     position: relative;
     transform: translate(0px, -20px);
+}
+
+.long-feedback {
+    display: block;
+}
+
+.short-feedback {
+    display: none;
 }
 
 .arrow {
@@ -43,4 +51,51 @@
     position: absolute;
     left: 0px;
     top: 0px;
+}
+
+@media screen and (max-width: 600px) {
+    .iterative-software-development {
+        padding: 10px;
+    }
+
+    .iterative-software-title {
+        font-size: 16pt;
+    }
+
+    .iterative-software-box {
+        font-size: 10pt;
+        line-height: 50px;
+    }
+
+    .iterative-feedback-text {
+        font-size: 6pt;
+        transform: translate(0px, -10px);
+    }
+}
+
+@media screen and (max-width: 440px) {
+    .iterative-software-development {
+        padding: 5px;
+    }
+
+    .iterative-software-title {
+        font-size: 12pt;
+    }
+
+    .iterative-software-box {
+        font-size: 8pt;
+        line-height: 30px;
+    }
+
+    .iterative-feedback-text {
+        font-size: 6pt;
+    }
+
+    .long-feedback {
+        display: none;
+    }
+    
+    .short-feedback {
+        display: block;
+    }
 }

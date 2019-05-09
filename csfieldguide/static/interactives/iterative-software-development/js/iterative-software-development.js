@@ -37,7 +37,7 @@ $(document).ready(function() {
     createArrow(implementationToTestingArrow, implementationDiv, testingDiv, 3);
     createArrow(testingToAnalysisArrow, testingDiv, analysisDiv, 4);
 
-    //createFeedbackArrow(feedbackArrow, feedbackDiv);
+    createFeedbackArrow(feedbackArrow, feedbackDiv);
   }
 });
 
@@ -52,7 +52,6 @@ function createArrow(arrow, from, to, rotation) {
   var fromLocation = from.offset();
   var toLocation = to.offset();
 
-  var line = "M";
   var start = [0,0];
   var curve = [0,0];
   var end = [0,0];
@@ -82,14 +81,30 @@ function createArrow(arrow, from, to, rotation) {
       console.log("Strange value entered as rotation number: " + rotation);
   }
 
+  buildCurvedArrow(arrow, start, curve, end);
+}
+
+/**
+ * Creates an arrow from the div's height below the div, to the bottom
+ * right corner of the div.
+ * Curved to whatever looks appropriate
+ */
+function createFeedbackArrow(arrow, div) {
+  var divLocation = div.offset();
+
+  var start = [(divLocation.left + div.width() / 2), (divLocation.top + div.height() * 2)];
+  var curve = [20,20];
+  var end = [(divLocation.left + div.width()), (divLocation.top + div.height())];
+
+  buildCurvedArrow(arrow, start, curve, end);
+}
+
+function buildCurvedArrow(arrow, start, curve, end) {
+  var line = "M";
   curve = [end[0] - start[0], end[1] - start[1]];
   line += start[0] + "," + start[1] + " A" + curve[0] + "," + curve[1];
   line += " 0 0,1 "; // Rotation and boolean flags, constant
   line += end[0] + "," + end[1];
 
   arrow.attr('d', line);
-}
-
-function createFeedbackArrow() {
-
 }

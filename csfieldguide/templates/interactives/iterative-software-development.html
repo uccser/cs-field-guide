@@ -13,7 +13,13 @@
       <!-- p-3 is used to overwrite _grid-framework.scss values -->
       <div class="col-4 p-3">
         <div id="feedback-text" class="iterative-feedback-text">
-          {% trans 'Feedback from showing the<br>prototype to the customer' %}
+          <div class="long-feedback">
+            {% trans 'Feedback from showing the<br>prototype to the customer' %}
+          </div>
+          <!-- Text is shortened to allow larger font sizes (>4pt) on the smallest screens -->
+          <div class="short-feedback">
+            {% trans 'Feedback from<br>customer' %}
+          </div>
         </div>
       </div>
       <div class="col-4 p-3">
@@ -49,7 +55,7 @@
         <marker id="arrowhead" markerWidth="10" markerHeight="13" refx="2" refy="6" orient="auto">
           <path d="M2,1 L2,9 L8,6 L2,3 Z" style="fill: #000000;" />
         </marker>
-        <marker id="grey-arrowhead" markerWidth="10" markerHeight="13" refx="2" refy="6" orient="auto">
+        <marker id="grey-arrowhead" markerWidth="8" markerHeight="13" refx="2" refy="6" orient="auto">
           <path d="M2,1 L2,9 L8,6 L2,3 Z" style="fill: #666666;" />
         </marker>
       </defs>
