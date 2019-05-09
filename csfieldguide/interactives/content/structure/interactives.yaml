@@ -182,6 +182,7 @@ image-bit-comparer:
 iterative-software-development:
   languages:
     en: interactives/iterative-software-development.html
+  is_interactive: false
 udp-layers:
   languages:
     en: interactives/udp-layers.html
@@ -337,6 +338,7 @@ system-layers:
 three-tier-website:
   languages:
     en: interactives/three-tier-website.html
+  is_interactive: false
 tcp-segment:
   languages:
     en: interactives/tcp-segment.html
