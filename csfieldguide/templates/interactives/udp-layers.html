@@ -1,0 +1,99 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div class="row mb-3 mx-1 uninteractive">
+    <h1 class="col-12 text-center heading">{% trans 'UDP Packet Layers' %}</h1>
+    <div class="col-4">
+      <div class="row udp-text">
+        {% trans 'Application' %}
+      </div>
+      <div class="row udp-text">
+        {% trans 'Transport' %}
+      </div>
+      <div class="row udp-text">
+        {% trans 'Internet' %}
+      </div>
+      <div class="row udp-text">
+        {% trans 'Link' %}
+      </div>
+    </div>
+
+    <div class="col-8">
+      <div class="row">
+        <!-- Application Layer -->
+        <div class="col-6 square triple border-0 center-vertical data-text frame">
+          <!-- This text crosses multiple divs, so write it out of the way,
+          then shift it to where its needed in css -->
+          {% trans 'Frame data' %}
+        </div>
+        <div class="col-2 square border-bottom-0 app-data center-vertical data-text">
+          {% trans 'Data' %}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6 square triple short border-0"></div>
+        <div class="col-2 square short border-bottom-0"></div>
+      </div>
+      <div class="row">
+        <!-- Transport Layer -->
+        <div class="col-4 square double border-0 center-vertical data-text packet">
+          <!-- This text crosses multiple divs, so write it out of the way,
+            then shift it to where its needed in css -->
+          {% trans 'Packet data' %}
+        </div>
+        <div class="col-2 square border-bottom-0 border-right-0 trans-data data-text">
+          {% trans 'UDP<br>header' %}
+        </div>
+        <div class="col-2 square border-bottom-0 app-data data-text">
+          {% trans 'UDP<br>data' %}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-4 square double short border-0"></div>
+        <div class="col-2 square short border-bottom-0 border-right-0"></div>
+        <div class="col-2 square short border-left-0 border-bottom-0"></div>
+      </div>
+      <div class="row">
+        <!-- Internet Layer -->
+        <div class="col-2 square border-0"></div>
+        <div class="col-2 square border-bottom-0 border-right-0 ip-data data-text">
+          {% trans 'Packet<br>header' %}
+        </div>
+        <div class="col-2 square border-bottom-0 border-right-0 trans-data center-vertical text-right"></div>
+        <div class="col-2 square border-left-0 border-bottom-0 app-data center-vertical text-left"></div>
+      </div>
+      <div class="row">
+        <div class="col-2 square short border-0"></div>
+        <div class="col-2 square short border-bottom-0 border-right-0"></div>
+        <div class="col-2 square short border-left-0 border-bottom-0 border-right-0"></div>
+        <div class="col-2 square short border-left-0 border-bottom-0"></div>
+      </div>
+      <div class="row">
+        <!-- Link Layer -->
+        <div class="col-2 square border-right-0 link-data data-text">
+          {% trans 'Frame<br>header' %}
+        </div>
+        <div class="col-2 square border-right-0 ip-data"></div>
+        <div class="col-2 square border-left-0 border-right-0 trans-data center-vertical"></div>
+        <div class="col-2 square border-left-0 app-data"></div>
+        <div class="col-2 square border-left-0 link-data data-text">
+          {% trans 'Frame<br>footer' %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 text-center licence-text">
+    {% blocktrans %}
+    Recreated from <a href="https://commons.wikimedia.org/wiki/File:UDP_encapsulation.svg" target="_blank">this image by Cburnett</a><br>
+    Licenced under the <a href="https://en.wikipedia.org/wiki/Creative_Commons" target="_blank">Creative Commons</a> <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.en" target="_blank">Attribution-Share Alike 3.0 Unported</a> licence
+    {% endblocktrans %}
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/udp-layers/css/udp-layers.css' %}">
+{% endblock css %}

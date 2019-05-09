@@ -1,0 +1,8 @@
+{
+    "name": "csfg-interactive-algorithm-timer",
+    "version": "1.0.0",
+    "private": true,
+    "dependencies": {
+        "mathjs": "5.5.0"
+    }
+}

@@ -1,0 +1,104 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-sm-12 col-lg-8">
+        <h3 class="text-center my-3">{% trans "City Trip" %}</h3>
+      </div>
+    </div>
+    <div id="warning">
+      <label>{% trans "This interactive is designed for screens larger than 800x800px." %}</label>
+    </div>
+
+    <div class="row mb-2 justify-content-left">
+      <div class="col-sm-12 col-lg-2 mt-1">
+        <label>
+          {% trans "Number of cities:" %} <span id='num-cities'>3</span>
+        </label> 
+      </div>
+    </div>
+
+    <div class="row mb-2">
+      <div class="col-sm-12 col-lg-5">
+        <button id="add-city" class="btn btn-success btn-sm">{% trans "Add city" %}</button>
+        <button id="remove-city" class="btn btn-secondary btn-sm" disabled>{% trans "Remove city" %}</button>
+        <button id="generate-map" class="btn btn-primary btn-sm">{% trans "Generate map" %}</button>
+        <button id="start" class="btn btn-success btn-sm">{% trans "Start" %}</button>
+        <button id="stop" class="d-none btn btn-danger btn-sm">{% trans "Stop" %}</button>
+        <button id="reset" class="d-none btn btn-info btn-sm">{% trans "Reset" %}</button>
+      </div>
+      <div class="col-sm-12 col-lg-3 mt-1">
+        <span>{% trans "Status: <span id='status'>ready to go!</span>" %}</span>
+      </div>
+    </div>
+
+    <div class="row my-3 position-relative">
+      <div id="graph-container" class="graph-container col-sm-12 col-lg-6 d-inline-block mt-2 pt-2 pl-5">
+        <div class="y-tick"><span>5</span></div>
+        <div class="y-tick"><span>4</span></div>
+        <div class="y-tick"><span>3</span></div>
+        <div class="y-tick"><span>2</span></div>
+        <div class="y-tick"><span>1</span></div>
+        <div class="y-tick"><span>0</span></div>
+        <div id="cy"></div>
+        <div class="x-axis mb-3">
+          <div class="x-tick zero"><span>0</span></div>
+          <div class="x-tick"><span>1</span></div>
+          <div class="x-tick"><span>2</span></div>
+          <div class="x-tick"><span>3</span></div>
+          <div class="x-tick"><span>4</span></div>
+          <div class="x-tick"><span>5</span></div>
+          <div class="axis-untis"><span>km</span></div>
+        </div>
+        <div class="text-center mt-5">
+          <p class="mb-1">{% trans "Trial route:" %} <span id='trial-route'>0</span></p>
+          <p class="mb-1">{% trans "Distance: <span id='trial-distance'>0</span> km" %}</p>
+        </div>
+      </div>
+      <div id="graph-container-2" class="graph-container col-sm-12 col-lg-6 d-inline-block mt-2 pt-2 pl-5">
+        <div class="y-tick"><span>5</span></div>
+        <div class="y-tick"><span>4</span></div>
+        <div class="y-tick"><span>3</span></div>
+        <div class="y-tick"><span>2</span></div>
+        <div class="y-tick"><span>1</span></div>
+        <div class="y-tick"><span>0</span></div>
+        <div id="cy2"></div>
+        <div class="x-axis mb-3">
+          <div class="x-tick"><span>0</span></div>
+          <div class="x-tick"><span>1</span></div>
+          <div class="x-tick"><span>2</span></div>
+          <div class="x-tick"><span>3</span></div>
+          <div class="x-tick"><span>4</span></div>
+          <div class="x-tick"><span>5</span></div>
+          <div class="axis-untis"><span>km</span></div>
+        </div>
+        <div class="text-center mt-5">
+          <p class="mb-1">{% trans "Best route so far:" %} <span id='best-route-so-far'>0</span></p>
+          <p class="mb-1">{% trans "Distance: <span id='best-route-distance'>0</span> km" %}</p>
+        </div>
+      </div>
+    </div>
+
+    <p>{% trans "Estimated time left to run: " %}
+      <span id="num-years" class="d-none">0</span>
+      <span id="num-months" class="d-none">0</span>
+      <span id="num-days" class="d-none">0</span>
+      <span id="num-hours" class="d-none">0</span>
+      <span id="num-minutes" class="d-none">0</span>
+      <span id="num-seconds" class="d-none">0</span>
+    </p>
+  </div>
+
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/city-trip/css/city-trip.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/city-trip/js/city-trip.js' %}"></script>
+{% endblock js %}

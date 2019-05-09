@@ -1,7 +1,6 @@
 # MIPS Assembler Interactive
 
-**MIPS Assembler Creator:** Alan Hogan
-**Interactive Creator:** Alasdair Smith
+**Author:** Alasdair Smith
 
 This interactive allows users to enter MIPS code to see the assembler output.
 
@@ -11,4 +10,4 @@ The [MIPS Assembler](https://github.com/alanhogan/online-mips-assembler) by [Ala
 
 ## Required Files
 
-- This interactive uses jQuery and MaterializeCSS (loaded from base-files folder).
+- This interactive uses jQuery and Bootstrap.

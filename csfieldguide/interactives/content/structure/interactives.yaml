@@ -1,7 +1,7 @@
-# 2d-arrow-manipulations:
-#   languages:
-#     en: interactives/2d-arrow-manipulations.html
-#   is_interactive: true
+2d-shape-manipulations:
+  languages:
+    en: interactives/2d-shape-manipulations.html
+  is_interactive: true
 action-menu:
   languages:
     en: interactives/action-menu.html
@@ -14,6 +14,10 @@ alarm-timer:
     de: interactives/alarm-timer.html
     es: interactives/alarm-timer.html
   is_interactive: false
+algorithm-timer:
+  languages:
+    en: interactives/algorithm-timer.html
+  is_interactive: true
 available-menu-items:
   languages:
     en: interactives/available-menu-items.html
@@ -48,13 +52,14 @@ binary-mode-calculator:
     de: interactives/binary-mode-calculator.html
     es: interactives/binary-mode-calculator.html
   is_interactive: true
-# box-rotation:
-#   languages:
-#     en: interactives/box-rotation.html
-#   is_interactive: true
-# box-translation:
-#   languages:
-#     en: interactives/box-translation.html
+box-rotation:
+  languages:
+    en: interactives/box-rotation.html
+  is_interactive: true
+box-translation:
+  languages:
+    en: interactives/box-translation.html
+  is_interactive: true
 braille-alphabet:
   languages:
     en: interactives/braille-alphabet.html
@@ -70,6 +75,10 @@ checksum-calculator:
 checksum-calculator-gtin-13:
   languages:
     en: interactives/checksum-calculator-gtin-13.html
+  is_interactive: true
+city-trip:
+  languages:
+    en: interactives/city-trip.html
   is_interactive: true
 close-window:
   languages:
@@ -126,6 +135,10 @@ delayed-checkbox:
     de: interactives/delayed-checkbox.html
     es: interactives/delayed-checkbox.html
   is_interactive: true
+dictionary-compression:
+  languages:
+    en: interactives/dictionary-compression.html
+  is_interactive: true
 dot-combinations:
   languages:
     en: interactives/dot-combinations.html
@@ -134,18 +147,22 @@ frequency-analysis:
   languages:
     en: interactives/frequency-analysis.html
   is_interactive: true
-# fsa-box:
-#   languages:
-#     en: interactives/fsa-box.html
-#   is_interactive: true
-# fsa-light:
-#   languages:
-#     en: interactives/fsa-light.html
-#   is_interactive: true
-# fsa-washing-machine:
-#   languages:
-#     en: interactives/fsa-washing-machine.html
-#   is_interactive: true
+fsa-box:
+  languages:
+    en: interactives/fsa-box.html
+  is_interactive: true
+fsa-light:
+  languages:
+    en: interactives/fsa-light.html
+  is_interactive: true
+fsa-terminology:
+  languages:
+    en: interactives/fsa-terminology.html
+  is_interactive: false
+fsa-washing-machine:
+  languages:
+    en: interactives/fsa-washing-machine.html
+  is_interactive: true
 hex-background-colour:
   languages:
     en: interactives/hex-background-colour.html
@@ -162,9 +179,21 @@ image-bit-comparer:
   languages:
     en: interactives/image-bit-comparer.html
   is_interactive: true
+udp-layers:
+  languages:
+    en: interactives/udp-layers.html
+  is_interactive: false
 jpeg-compression:
   languages:
     en: interactives/jpeg-compression.html
+  is_interactive: true
+lzss-compression:
+  languages:
+    en: interactives/lzss-compression.html
+  is_interactive: true
+lzw-compression:
+  languages:
+    en: interactives/lzw-compression.html
   is_interactive: true
 # md5-hash:
 #   languages:
@@ -188,10 +217,10 @@ mips-simulator:
 #   languages:
 #     en: interactives/ncea-guide-selector.html
 #   is_interactive: false
-# nfa-guesser:
-#   languages:
-#     en: interactives/nfa-guesser.html
-#   is_interactive: true
+nfa-guesser:
+  languages:
+    en: interactives/nfa-guesser.html
+  is_interactive: true
 no-help:
   languages:
     en: interactives/no-help.html
@@ -208,14 +237,14 @@ off-by-one:
     de: interactives/off-by-one.html
     es: interactives/off-by-one.html
   is_interactive: false
-# packet-attack:
-#   languages:
-#     en: interactives/packet-attack.html
-#   is_interactive: true
-# packet-attack-level-creator:
-#   languages:
-#     en: interactives/packet-attack-level-creator.html
-#   is_interactive: true
+packet-attack:
+  languages:
+    en: interactives/packet-attack.html
+  is_interactive: true
+packet-attack-level-creator:
+  languages:
+    en: interactives/packet-attack-level-creator.html
+  is_interactive: true
 parity:
   languages:
     en: interactives/parity.html
@@ -226,6 +255,10 @@ payment-interface:
     de: interactives/payment-interface.html
     es: interactives/payment-interface.html
   is_interactive: true
+pixel-grid:
+  languages:
+    en: interactives/pixel-grid.html
+  is_interactive: true
 pixel-viewer:
   languages:
     en: interactives/pixel-viewer.html
@@ -234,10 +267,14 @@ pixel-viewer:
 #   languages:
 #     en: interactives/python-interpreter.html
 #   is_interactive: true
-# regular-expression-filter:
-#   languages:
-#     en: interactives/regular-expression-filter.html
-#   is_interactive: true
+python-syntax-error:
+  languages:
+    en: interactives/python-syntax-error.html
+  is_interactive: false
+regular-expression-filter:
+  languages:
+    en: interactives/regular-expression-filter.html
+  is_interactive: true
 regular-expression-search:
   languages:
     en: interactives/regular-expression-search.html
@@ -290,18 +327,30 @@ sorting-algorithms:
   languages:
     en: interactives/sorting-algorithms.html
   is_interactive: true
-# trainsylvania:
-#   languages:
-#     en: interactives/trainsylvania.html
-#   is_interactive: true
-# trainsylvania-planner:
-#   languages:
-#     en: interactives/trainsylvania-planner.html
-#   is_interactive: true
-# trig-function-calculator:
-#   languages:
-#     en: interactives/trig-function-calculator.html
-#   is_interactive: true
+tcp-segment:
+  languages:
+    en: interactives/tcp-segment.html
+  is_interactive: false
+trainsylvania:
+  languages:
+    en: interactives/trainsylvania.html
+  is_interactive: true
+trainsylvania-planner:
+  languages:
+    en: interactives/trainsylvania-planner.html
+  is_interactive: true
+trainsylvania-blank:
+  languages:
+    en: interactives/trainsylvania-blank.html
+  is_interactive: false
+trainsylvania-complete:
+  languages:
+    en: interactives/trainsylvania-complete.html
+  is_interactive: false
+trig-function-calculator:
+  languages:
+    en: interactives/trig-function-calculator.html
+  is_interactive: true
 unexpected-error:
   languages:
     en: interactives/unexpected-error.html

@@ -1,0 +1,45 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+<div class="container">
+    <div id="lzw-compression">
+        <h3 id="heading">{% trans "LZW Compression" %}</h3>
+        <div id="lzw-compression-wrapper">
+            <div id="lzw-compression-left">
+                <div class="lzw-compression-to-compress-block" id="lzw-compression-to-compress">
+                    <p>{% trans "Message to compress" %}:</p>
+                    <textarea class="form-control" rows="5" id="lzw-compression-input"></textarea>
+                    <button id="lzw-compression-compress-button" class="btn btn-primary btn-block" type="button">
+                        {% trans "Compress" %} &rarr;
+                    </button>
+                </div>
+                <p>{% trans "Compressed message" %}:</p>
+                <div id="lzw-compression-encoded-text">
+                </div>
+            </div>
+            <div id="lzw-compression-right">
+                <p>{% trans "Generated Dictionary" %}:</p>
+                <div id="lzw-compression-dictionary">
+                    <div id="lzw-compression-dictionary-col-1" class="lzw-compression-dictionary-column">
+                    </div>
+                    <div id="lzw-compression-dictionary-col-2" class="lzw-compression-dictionary-column">
+                    </div>
+                    <div id="lzw-compression-dictionary-col-3" class="lzw-compression-dictionary-column">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/lzw-compression/css/lzw-compression.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/lzw-compression/js/lzw-compression.js' %}"></script>
+{% endblock js %}

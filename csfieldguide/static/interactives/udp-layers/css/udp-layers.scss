@@ -1,0 +1,276 @@
+$box-size: 80px;
+$box-divider: 15px;
+$inner-padding: 5px;
+
+.udp-text {
+    font-size: 22pt;
+    height: $box-size;
+    line-height: $box-size;
+    text-align: center;
+    vertical-align: middle;
+    margin-bottom: $box-divider;
+}
+
+.data-text {
+    position: relative;
+    background: none;
+    text-align: center;
+    white-space: nowrap;
+    overflow: visible;
+    font-size: 16pt;
+}
+
+.licence-text {
+    font-size: 10pt;
+}
+
+.data-text.frame {
+    z-index: 1000;
+    top: calc( 3 * #{$box-size} + 3 * #{$box-divider} );
+    left: calc( #{$box-size} );
+}
+
+.data-text.packet {
+    z-index: 1000;
+    top: calc( #{$box-size} + #{$box-divider} );
+    left: calc( 2 * #{$box-size} );
+}
+
+.square {
+    height: $box-size;
+    width: $box-size;
+    max-width: $box-size;
+    text-align: center;
+    border: 2px solid;
+    padding: $inner-padding;
+}
+
+.square.double {
+    width: calc( 2 * #{$box-size} );
+    max-width: calc( 2 * #{$box-size} );
+}
+
+.square.triple {
+    width: calc( 3 * #{$box-size} );
+    max-width: calc( 3 * #{$box-size} );
+}
+
+.square.center-vertical {
+    line-height: calc( #{$box-size} - 2 * #{$inner-padding} );
+    vertical-align: middle;
+}
+
+.square.short {
+    max-height: $box-divider;
+}
+
+.app-data {
+    background-color: #d7f8cc;
+}
+
+.trans-data {
+    background-color: #ffccff;
+}
+
+.ip-data {
+    background-color: #ccccff;
+}
+
+.link-data {
+    background-color: #97d6d3;
+}
+
+/* 
+ * The grid is very sensitive to change
+ * so recalculate positions for each Bootstrap-defined size.
+ * Unfortunately it doesn't work to just change the variables
+ */
+
+// Large
+@media screen and (max-width: 1200px) {
+    $box-size: 60px;
+    $box-divider: 10px;
+    $inner-padding: 2px;
+
+    .udp-text {
+        font-size: 20pt;
+        height: $box-size;
+        line-height: $box-size;
+        margin-bottom: $box-divider;
+    }
+
+    .data-text {
+        font-size: 12pt;
+    }
+
+    .data-text.frame {
+        top: calc( 3 * #{$box-size} + 3 * #{$box-divider} );
+        left: calc( #{$box-size} );
+    }
+    
+    .data-text.packet {
+        top: calc( #{$box-size} + #{$box-divider} );
+        left: calc( 2 * #{$box-size} );
+    }
+
+    .square {
+        height: $box-size;
+        width: $box-size;
+        max-width: $box-size;
+        padding: $inner-padding;
+    }
+
+    .square.double {
+        width: calc( 2 * #{$box-size} );
+        max-width: calc( 2 * #{$box-size} );
+    }
+    
+    .square.triple {
+        width: calc( 3 * #{$box-size} );
+        max-width: calc( 3 * #{$box-size} );
+    }
+    
+    .square.center-vertical {
+        line-height: calc( #{$box-size} - 2 * #{$inner-padding} );
+    }
+
+    .square.short {
+        max-height: $box-divider;
+    }
+}
+
+// Medium
+@media screen and (max-width: 992px) {
+    $box-size: 50px;
+    $box-divider: 10px;  // No change
+    $inner-padding: 2px; // No change
+
+    .udp-text {
+        font-size: 18pt;
+        height: $box-size;
+        line-height: $box-size;
+    }
+
+    .data-text {
+        font-size: 10pt;
+    }
+
+    .licence-text {
+        font-size: 8pt;
+    }
+
+    .data-text.frame {
+        top: calc( 3 * #{$box-size} + 3 * #{$box-divider} );
+        left: calc( #{$box-size} );
+    }
+    
+    .data-text.packet {
+        top: calc( #{$box-size} + #{$box-divider} );
+        left: calc( 2 * #{$box-size} );
+    }
+
+    .square {
+        height: $box-size;
+        width: $box-size;
+        max-width: $box-size;
+    }
+
+    .square.double {
+        width: calc( 2 * #{$box-size} );
+        max-width: calc( 2 * #{$box-size} );
+    }
+    
+    .square.triple {
+        width: calc( 3 * #{$box-size} );
+        max-width: calc( 3 * #{$box-size} );
+    }
+    
+    .square.center-vertical {
+        line-height: calc( #{$box-size} - 2 * #{$inner-padding} );
+    }
+}
+
+// Small (The surrounding layout changes at this point)
+@media screen and (max-width: 768px) {
+    $box-size: 50px;     // No change
+    $box-divider: 5px;
+    $inner-padding: 2px; // No change
+
+    .heading {
+        font-size: 22pt;
+    }
+
+    .udp-text {
+        margin-bottom: $box-divider;
+    }
+
+    .data-text.frame {
+        top: calc( 3 * #{$box-size} + 3 * #{$box-divider} );
+        left: calc( #{$box-size} );
+    }
+    
+    .data-text.packet {
+        top: calc( #{$box-size} + #{$box-divider} );
+        left: calc( 2 * #{$box-size} );
+    }
+
+    .square {
+        border: 1px solid;
+    }
+
+    .square.short {
+        max-height: $box-divider;
+    }
+}
+
+// Extra small
+@media screen and (max-width: 576px) {
+    $box-size: 35px;
+    $box-divider: 5px; // No change
+    $inner-padding: 1px;
+
+    .udp-text {
+        font-size: 12pt;
+        height: $box-size;
+        line-height: $box-size;
+    }
+
+    .data-text {
+        font-size: 7pt;
+    }
+
+    .licence-text {
+        font-size: 6pt;
+    }
+
+    .data-text.frame {
+        top: calc( 3 * #{$box-size} + 3 * #{$box-divider} );
+        left: calc( #{$box-size} );
+    }
+    
+    .data-text.packet {
+        top: calc( #{$box-size} + #{$box-divider} );
+        left: calc( 2 * #{$box-size} );
+    }
+
+    .square {
+        height: $box-size;
+        width: $box-size;
+        max-width: $box-size;
+        padding: $inner-padding;
+    }
+
+    .square.double {
+        width: calc( 2 * #{$box-size} );
+        max-width: calc( 2 * #{$box-size} );
+    }
+    
+    .square.triple {
+        width: calc( 3 * #{$box-size} );
+        max-width: calc( 3 * #{$box-size} );
+    }
+    
+    .square.center-vertical {
+        line-height: calc( #{$box-size} - 2 * #{$inner-padding} );
+    }
+}
