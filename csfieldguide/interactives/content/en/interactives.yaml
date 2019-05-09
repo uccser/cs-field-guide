@@ -70,6 +70,8 @@ huffman-tree:
   name: Huffman Tree
 image-bit-comparer:
   name: Image Bit Comparer
+iterative-software-development:
+  name: Iterative Software Development
 jpeg-compression:
   name: JPEG Compression
 md5-hash:

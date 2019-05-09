@@ -1,0 +1,40 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <!-- NOTE: Uninteractive must be displayed in an iframe -->
+  <div class="row justify-content-center iterative-software-title">
+    {% trans 'Iterative Software Development' %}
+  </div>
+    <!-- SVG arrow definitions -->
+    <svg class="waterfall-svg">
+      <defs>
+        <marker id="arrowhead" markerWidth="10" markerHeight="13" refx="2" refy="6" orient="auto">
+          <path d="M2,1 L2,9 L8,6 L2,3 Z" style="fill: #000000;" />
+        </marker>
+      </defs>
+
+      <path class="down-arrow" id="analysis-design"/>
+      <path class="down-arrow" id="design-implementation"/>
+      <path class="down-arrow" id="implementation-testing"/>
+
+      <path stroke-dasharray="10,10" class="up-arrow" id="design-analysis"/>
+      <path stroke-dasharray="10,10" class="up-arrow" id="implementation-design"/>
+      <path stroke-dasharray="10,10" class="up-arrow" id="testing-implementation"/>
+
+      <path class="note-arrow" id="not-allowed-1"/>
+      <path class="note-arrow" id="not-allowed-2"/>
+      <path class="note-arrow" id="not-allowed-3"/>
+    </svg>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/iterative-software-development/css/iterative-software-development.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/iterative-software-development/js/iterative-software-development.js' %}"></script>
+{% endblock js %}

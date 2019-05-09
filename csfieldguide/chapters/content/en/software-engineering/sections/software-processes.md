@@ -83,6 +83,8 @@ Methodologies based on this idea are often referred to as *agile* &ndash; they c
 
 {image file-path="img/chapters/iterative-software-development-diagram.png" alt="The iterative software development cycle starts with feedback from showing the prototype to the customer with analysis, the back to design, implementation and testing, and then starting again with analysis."}
 
+{interactive slug="iterative-software-development" type="iframe"}
+
 The advantage with this approach is that if you make a mistake, you will find it soon (probably when you show the prototype to the customer the next time) and have the opportunity to fix it.
 The same is true if requirements change suddenly; you are flexible and can respond to changes quickly.
 You also get a lot of feedback from the customers as they slowly figure out what they need.
