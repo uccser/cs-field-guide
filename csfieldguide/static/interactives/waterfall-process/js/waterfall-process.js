@@ -55,6 +55,16 @@ $(document).ready(function() {
   }
 });
 
+/**
+ * Sets the svg coordinates for the given arrow to path from the 'from' div to the 'to' one.
+ * Arrow paths from the center left of 'from', horizontally to directly above the middle of 'to'
+ * then straight down to the top middle of 'to'.
+ * 'from' is assumed to be above and to the left of 'to'.
+ * 
+ * If 'isUp' is true, the arrow will instead path from the middle left of 'from' to the
+ * bottom center of 'to' in the same right-angle path.
+ * 'from' is assumed to be below and to the right of 'to'
+ */
 function createArrow(arrow, from, to, isUp) {
   var fromLocation = from.offset();
   var toLocation = to.offset();
@@ -72,6 +82,13 @@ function createArrow(arrow, from, to, isUp) {
   arrow.attr('d', line);
 }
 
+/**
+ * Sets the svg coordinates for the given arrow to path from the 'from' div
+ * (assumed to be the div with the not allowed message)
+ * in the direction of a created isUp arrow between 'toLower' and 'toUpper'.
+ * 'stage' is used to determine the start point of the arrow in relation to the
+ * top-right corner of the 'from' div, starting at 1 for the uppermost arrow
+ */
 function createNotAllowedArrow(arrow, from, toLower, toUpper, stage) {
   var fromLocation = from.offset();
   var toLowerLocation = toLower.offset();

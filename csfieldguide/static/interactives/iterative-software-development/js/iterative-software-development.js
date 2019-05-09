@@ -42,13 +42,16 @@ $(document).ready(function() {
 });
 
 /**
+ * Sets the svg for the given arrow so that it curves from the 'from' div to
+ * the 'to' div.
+ * rder specifies which arrow it is, of four, in clockwise order
  * 
  * Based on defining a 90 degree curve as a partial ellipse:
  * start: (x1,y1)
- * curve: (x2-x1,y2-y1) will make it have endpoints perpendicular to the boxes
+ * curve: (x2-x1,y2-y1) will make it have the line start and end perpendicular to the divs
  * end: (x2,y2)
  */
-function createArrow(arrow, from, to, rotation) {
+function createArrow(arrow, from, to, order) {
   var fromLocation = from.offset();
   var toLocation = to.offset();
 
@@ -56,7 +59,7 @@ function createArrow(arrow, from, to, rotation) {
   var curve = [0,0];
   var end = [0,0];
   var endpointOffset = [0,0]; // To account for the arrowhead
-  switch(rotation) {
+  switch(order) {
     case(1):
       endpointOffset = [0, -13];
       start = [(fromLocation.left + from.width()), (fromLocation.top + from.height() / 2)];
@@ -78,7 +81,7 @@ function createArrow(arrow, from, to, rotation) {
       end = [(toLocation.left + endpointOffset[0]), (toLocation.top + to.height() / 2 + endpointOffset[1])];
       break;
     default:
-      console.log("Strange value entered as rotation number: " + rotation);
+      console.log("Strange value entered as order number: " + order);
   }
 
   buildCurvedArrow(arrow, start, curve, end);

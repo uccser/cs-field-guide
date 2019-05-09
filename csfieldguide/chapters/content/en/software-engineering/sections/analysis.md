@@ -90,7 +90,7 @@ When the students interviewed them, they asked for a screen in the program where
 
 Customers are usually experts in their field and are therefore likely to leave out information that they think is obvious, but may not be obvious to you.
 Other times, they do not really understand what can and cannot be done with computers and may not mention something because they do not realise that it is possible to do with a computer.
-Again, it’s up to you to get this information from them and make sure that you find out you what you need to know.
+Again, it’s up to you to get this information from them and make sure that you find out what you need to know.
 
 {image file-path="img/chapters/xkcd-tasks.png" hover-text="In the 60s, Marvin Minsky assigned a couple of undergrads to spend the summer programming a computer to use a camera to identify objects in a scene. He figured they'd have the problem solved by the end of the summer. Half a century later, we're still working on it." alt="A xkcd comic on Computer Science tasks" source="https://xkcd.com/1425/"}
 
