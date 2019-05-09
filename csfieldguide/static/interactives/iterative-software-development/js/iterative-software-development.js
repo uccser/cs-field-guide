@@ -78,11 +78,13 @@ function createArrow(arrow, from, to, rotation) {
       start = [(fromLocation.left + from.width() / 2), (fromLocation.top)];
       end = [(toLocation.left + endpointOffset[0]), (toLocation.top + to.height() / 2 + endpointOffset[1])];
       break;
+    default:
+      console.log("Strange value entered as rotation number: " + rotation);
   }
 
   curve = [end[0] - start[0], end[1] - start[1]];
   line += start[0] + "," + start[1] + " A" + curve[0] + "," + curve[1];
-  line += " 0 0,1 "; // Boolean flags, constant
+  line += " 0 0,1 "; // Rotation and boolean flags, constant
   line += end[0] + "," + end[1];
 
   arrow.attr('d', line);

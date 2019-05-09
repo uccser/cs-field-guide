@@ -100,7 +100,7 @@ function createNotAllowedArrow(arrow, from, toLower, toUpper, stage) {
       offset = [-15, -10];
       break;
     default:
-      console.log("Strange value entered as stage number");
+      console.log("Strange value entered as stage number: " + stage);
   }
   // Aim at the turning point of the arrow
   line += " L" + (toUpperLocation.left + toUpper.width() / 2 + offset[0]) + "," + (toLowerLocation.top + toLower.height() / 2 + offset[1]);
