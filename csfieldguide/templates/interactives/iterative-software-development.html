@@ -8,25 +8,57 @@
   <div class="row justify-content-center iterative-software-title">
     {% trans 'Iterative Software Development' %}
   </div>
+  <div class="container-fluid mb-3 iterative-software-development">
+    <div class="row">
+      <!-- p-3 is used to overwrite _grid-framework.scss values -->
+      <div class="col-4 p-3">
+        <div id="feedback-text" class="iterative-feedback-text">
+          {% trans 'Feedback from showing the<br>prototype to the customer' %}
+        </div>
+      </div>
+      <div class="col-4 p-3">
+        <div id="analysis" class="iterative-software-box">
+          {% trans 'Analysis' %}
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4 p-3">
+        <div id="testing" class="iterative-software-box">
+          {% trans 'Testing' %}
+        </div>
+      </div>
+      <div class="col-4"></div>
+      <div class="col-4 p-3">
+        <div id="design" class="iterative-software-box">
+          {% trans 'Design' %}
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4"></div>
+      <div class="col-4 p-3">
+        <div id="implementation" class="iterative-software-box">
+          {% trans 'Implementation' %}
+        </div>
+      </div>
+    </div>
     <!-- SVG arrow definitions -->
-    <svg class="waterfall-svg">
+    <svg class="iterative-software-svg">
       <defs>
         <marker id="arrowhead" markerWidth="10" markerHeight="13" refx="2" refy="6" orient="auto">
           <path d="M2,1 L2,9 L8,6 L2,3 Z" style="fill: #000000;" />
         </marker>
+        <marker id="grey-arrowhead" markerWidth="10" markerHeight="13" refx="2" refy="6" orient="auto">
+          <path d="M2,1 L2,9 L8,6 L2,3 Z" style="fill: #666666;" />
+        </marker>
       </defs>
 
-      <path class="down-arrow" id="analysis-design"/>
-      <path class="down-arrow" id="design-implementation"/>
-      <path class="down-arrow" id="implementation-testing"/>
-
-      <path stroke-dasharray="10,10" class="up-arrow" id="design-analysis"/>
-      <path stroke-dasharray="10,10" class="up-arrow" id="implementation-design"/>
-      <path stroke-dasharray="10,10" class="up-arrow" id="testing-implementation"/>
-
-      <path class="note-arrow" id="not-allowed-1"/>
-      <path class="note-arrow" id="not-allowed-2"/>
-      <path class="note-arrow" id="not-allowed-3"/>
+      <path class="arrow" id="analysis-design"/>
+      <path class="arrow" id="design-implementation"/>
+      <path class="arrow" id="implementation-testing"/>
+      <path class="arrow" id="testing-analysis"/>
+      <path class="arrow grey" id="feedback"/>
     </svg>
   </div>
 {% endblock html %}
