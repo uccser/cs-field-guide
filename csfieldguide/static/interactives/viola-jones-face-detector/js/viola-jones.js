@@ -264,12 +264,28 @@ function loadImageDialog() {
     }
     reader.readAsDataURL(input.files[0]);
     $("label[for='viola-jones-image-input']").text(input.files[0].name);
-    // reset position and validaiton border of haar boxes
-    // $('#haar1').css('transform', 'none').removeClass('valid');
-    // $('#haar2').css('transform', 'none').removeClass('valid');
-    // $('#haar3').css('transform', 'none').removeClass('valid');
-    // $('#haar4').css('transform', 'none').removeClass('valid');
-    // $('#haar5').css('transform', 'none').removeClass('valid');
+    // reset position and validation border of haar boxes
+    var temp;
+    $('#haar1').css('transform', 'translate(0, 0)').removeClass('valid');
+    temp = $('#haar1').prop('outerHTML').replace(/data-x="\d+"/, 'data-x="0"').replace(/data-y="\d+"/, 'data-y="0"');
+    $('#haar1').prop('outerHTML', temp);
+
+    $('#haar2').css('transform', 'translate(0, 0)').removeClass('valid');
+    temp = $('#haar2').prop('outerHTML').replace(/data-x="\d+"/, 'data-x="0"').replace(/data-y="\d+"/, 'data-y="0"');
+    $('#haar2').prop('outerHTML', temp);
+
+    $('#haar3').css('transform', 'translate(0, 0)').removeClass('valid');
+    temp = $('#haar3').prop('outerHTML').replace(/data-x="\d+"/, 'data-x="0"').replace(/data-y="\d+"/, 'data-y="0"');
+    $('#haar3').prop('outerHTML', temp);
+
+    $('#haar4').css('transform', 'translate(0, 0)').removeClass('valid');
+    temp = $('#haar4').prop('outerHTML').replace(/data-x="\d+"/, 'data-x="0"').replace(/data-y="\d+"/, 'data-y="0"');
+    $('#haar4').prop('outerHTML', temp);
+
+    $('#haar5').css('transform', 'translate(0, 0)').removeClass('valid');
+    temp = $('#haar5').prop('outerHTML').replace(/data-x="\d+"/, 'data-x="0"').replace(/data-y="\d+"/, 'data-y="0"');
+    $('#haar5').prop('outerHTML', temp);
+
     // remove well done message
     feedback.innerHTML = "";
   }
