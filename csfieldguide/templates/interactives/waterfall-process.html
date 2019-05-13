@@ -18,16 +18,14 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-3 pr-1"></div>
-      <div class="col-3 p-1">
+      <div class="col-3 p-1 offset-3">
         <div id="design" class="waterfall-box">
           {% trans 'Design' %}
         </div>
       </div>
     </div>
     <div class="row">
-      <div class="col-6 pr-1"></div>
-      <div class="col-3 p-1">
+      <div class="col-3 p-1 offset-6">
         <div id="implementation"  class="waterfall-box">
           {% trans 'Implementation' %}
         </div>
@@ -39,8 +37,7 @@
           {% trans 'Usually not<br>allowed!' %}
         </div>
       </div>
-      <div class="col-6"></div>
-      <div class="col-3 pl-1 pt-1">
+      <div class="col-3 pl-1 offset-6 pt-1">
         <div id="testing"  class="waterfall-box">
           {% trans 'Testing' %}
         </div>
@@ -49,28 +46,28 @@
     <!-- SVG arrow definitions -->
     <svg class="waterfall-svg">
       <defs>
-        <marker id="down-arrowhead" markerWidth="10" markerHeight="13" refx="2" refy="6" orient="auto">
-          <path d="M2,1 L2,9 L8,6 L2,3 Z" style="fill: #000000;" />
+        <marker id="arrowhead" markerWidth="10" markerHeight="13" refx="2" refy="6" orient="auto">
+          <path class="arrowhead" d="M2,1 L2,9 L8,6 L2,3 Z"/>
         </marker>
         <marker id="up-arrowhead" markerWidth="10" markerHeight="13" refx="2" refy="6" orient="auto">
-          <path d="M2,1 L2,9 L8,6 L2,3 Z" style="fill: #ff0000;" />
+          <path class="arrowhead up" d="M2,1 L2,9 L8,6 L2,3 Z"/>
         </marker>
         <marker id="note-arrowhead" markerWidth="10" markerHeight="13" refx="2" refy="6" orient="auto">
-          <path d="M2,1 L2,9 L8,6 L2,3 Z" style="fill: #666666;" />
+          <path class="arrowhead note" d="M2,1 L2,9 L8,6 L2,3 Z"/>
         </marker>
       </defs>
 
-      <path class="down-arrow" id="analysis-design"/>
-      <path class="down-arrow" id="design-implementation"/>
-      <path class="down-arrow" id="implementation-testing"/>
+      <path class="arrow" id="analysis-design"/>
+      <path class="arrow" id="design-implementation"/>
+      <path class="arrow" id="implementation-testing"/>
 
-      <path stroke-dasharray="10,10" class="up-arrow" id="design-analysis"/>
-      <path stroke-dasharray="10,10" class="up-arrow" id="implementation-design"/>
-      <path stroke-dasharray="10,10" class="up-arrow" id="testing-implementation"/>
+      <path stroke-dasharray="10,10" class="arrow up" id="design-analysis"/>
+      <path stroke-dasharray="10,10" class="arrow up" id="implementation-design"/>
+      <path stroke-dasharray="10,10" class="arrow up" id="testing-implementation"/>
 
-      <path class="note-arrow" id="not-allowed-1"/>
-      <path class="note-arrow" id="not-allowed-2"/>
-      <path class="note-arrow" id="not-allowed-3"/>
+      <path class="arrow note" id="not-allowed-1"/>
+      <path class="arrow note" id="not-allowed-2"/>
+      <path class="arrow note" id="not-allowed-3"/>
     </svg>
   </div>
 {% endblock html %}

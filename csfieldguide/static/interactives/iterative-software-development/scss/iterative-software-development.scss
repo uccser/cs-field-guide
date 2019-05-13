@@ -40,9 +40,17 @@
     marker-end: url(#arrowhead);
 }
 
+.arrowhead {
+    fill: #000000;
+}
+
 .arrow.grey {
     stroke: #666666;
     marker-end: url(#grey-arrowhead);
+}
+
+.arrowhead.grey {
+    fill: #666666;
 }
 
 .iterative-software-svg {
