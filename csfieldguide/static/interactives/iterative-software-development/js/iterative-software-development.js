@@ -45,18 +45,12 @@ $(document).ready(function() {
  * Sets the svg for the given arrow so that it curves from the 'from' div to
  * the 'to' div.
  * order specifies which arrow it is, of four, in clockwise order
- * 
- * Based on defining a 90 degree curve as a partial ellipse:
- * start: (x1,y1)
- * curve: (x2-x1,y2-y1) will make it have the line start and end perpendicular to the divs
- * end: (x2,y2)
  */
 function createArrow(arrow, from, to, order) {
   var fromLocation = from.offset();
   var toLocation = to.offset();
 
   var start = [0,0];
-  var curve = [0,0];
   var end = [0,0];
   var endpointOffset = [0,0]; // To account for the arrowhead
   switch(order) {
@@ -84,25 +78,30 @@ function createArrow(arrow, from, to, order) {
       console.log("Strange value entered as order number: " + order);
   }
 
-  buildCurvedArrow(arrow, start, curve, end);
+  buildCurvedArrow(arrow, start, end);
 }
 
 /**
  * Creates an arrow from the div's height below the div, to the bottom
  * right corner of the div.
- * Curved to whatever looks appropriate
  */
 function createFeedbackArrow(arrow, div) {
   var divLocation = div.offset();
 
   var start = [(divLocation.left + div.width() / 2), (divLocation.top + div.height() * 2)];
-  var curve = [20,20];
   var end = [(divLocation.left + div.width()), (divLocation.top + div.height())];
 
-  buildCurvedArrow(arrow, start, curve, end);
+  buildCurvedArrow(arrow, start, end);
 }
 
-function buildCurvedArrow(arrow, start, curve, end) {
+/**
+ * Based on defining a 90 degree curve as a partial ellipse:
+ * start: (x1,y1)
+ * curve: (x2-x1,y2-y1) will make it have the line start and end perpendicular to the divs
+ * end: (x2,y2)
+ */
+function buildCurvedArrow(arrow, start, end) {
+  var curve = [0,0];
   var line = "M";
   curve = [end[0] - start[0], end[1] - start[1]];
   line += start[0] + "," + start[1] + " A" + curve[0] + "," + curve[1];
