@@ -329,7 +329,7 @@ function assemble() {
 
 /**
  * Writes the given text to the Program Output textarea,
- * along with a message depending on the value of isSuccess
+ * coloured red if not isSuccess
  */
 function present(text, isSuccess) {
     if (!isSuccess) {
@@ -354,7 +354,8 @@ function nthLast(array, n) {
     return array[array.length - n];
 }
 
-/**Returns the given string wrapped appropriately to display in the given colour
+/**
+ * Returns the given string wrapped appropriately to display in the given colour
  * If the global SHOWCOLOUR is false, returns the given string uncoloured
  */ 
 function colour(text, colour) {
@@ -444,7 +445,7 @@ function rawVal(num) {
  * Returns the string of an integer as a zero-extended n-character binary value
  * If the binary is less than n bits, zeros will be appended to the front
  * If the binary is greater than n bits, a larger than n-character string will be returned
- * E.g: binOfInt(2, 4) = "0010", binOfint(20, 4) = "00010100"
+ * E.g: binOfInt(2, 4) = "0010", binOfint(2, 1) = "10"
  */
 function binOfInt(num, n) {
     var returnString = num.toString(2);

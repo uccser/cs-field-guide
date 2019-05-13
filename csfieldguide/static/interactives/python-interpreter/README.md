@@ -4,9 +4,7 @@
 
 This interactive allows the user to run Python code within their browser using the [Skulpt](https://github.com/skulpt/skulpt) library.
 
-## Required Files
+## Licences
 
-The interactive uses:
-
-- Skulpt library
-- jQuery and MaterializeCSS
+The interactive uses the Skulpt library.
+Its licence is listed in `LICENCE-THIRD-PARTY` with a full copy available in the `third-party-licences` directory.
