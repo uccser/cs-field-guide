@@ -5,14 +5,16 @@
 
 {% block html %}
   <div id="interactive-unicode-chars" class="mb-3 container-fluid">
-    <h4 class="uc-title">{% trans "Unicode Characters" %}</h4>
-    <div class="d-flex justify-content-around">
-      <div class="d-flex flex-column">
+    <div class="row justify-content-center">
+      <div class="col-12">
+        <h4 class="text-center">{% trans "Unicode Characters" %}</h4>
+      </div>
+      <div class="col-lg-3 col-sm-6 px-2">
         <label for="interactive-unicode-chars-decimal" class="active">{% trans "Decimal" %}</label>
-        <input type="text" id="interactive-unicode-chars-decimal" placeholder="{% trans 'Enter a decimal number' %}" title="Decimal" class="validate form-control" pattern="\d+">
+        <input type="text" id="interactive-unicode-chars-decimal" placeholder="{% trans 'Enter an integer' %}" title="Decimal" class="validate form-control" pattern="\d+">
         <div id="interactive-unicode-chars-error" class="d-none">{% trans 'No corresponding character' %}</div>
       </div>
-      <div class="d-flex flex-column">
+      <div class="col-lg-3 col-sm-6 px-2">
         <label for="interactive-unicode-chars-char" class="active">{% trans "Character" %}</label>
         <input type="text" id="interactive-unicode-chars-char" placeholder="{% trans 'Enter a character' %}" title="Character" class="validate form-control" maxlength="1">
       </div>
@@ -25,5 +27,5 @@
 {% endblock css %}
 
 {% block js %}
-    <script type="text/javascript" src="{% static 'interactives/unicode-chars/js/unicode-chars.js' %}"></script>
+  <script type="text/javascript" src="{% static 'interactives/unicode-chars/js/unicode-chars.js' %}"></script>
 {% endblock js %}
