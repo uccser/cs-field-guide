@@ -27,9 +27,9 @@ chapters:
   #   chapter-number: 13
   formal-languages:
     chapter-number: 14
-  software-engineering:
-    chapter-number: 16
   network-communication-protocols:
     chapter-number: 15
+  software-engineering:
+    chapter-number: 16
 
 glossary-folder: glossary

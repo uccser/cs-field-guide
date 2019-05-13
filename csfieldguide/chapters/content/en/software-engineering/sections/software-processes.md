@@ -129,7 +129,7 @@ Each group should grab two chairs and put them about 30cm apart.
 The challenge is to build a bridge between the two chairs using only the deck of cards!
 
 Before you get to build an actual bridge, you need to think about how you are going to make a bridge out of cards.
-Discuss with you team members how you think this could work and write up a short description of your idea.
+Discuss with your team members how you think this could work and write up a short description of your idea.
 Include a diagram to make your description understandable for others.
 
 Now exchange your design with another group.
@@ -207,7 +207,7 @@ Communicating clearly with other software engineers and customers is essential f
 In this activity, you get to practice communicating as precisely as possible!
 
 Divide up into pairs, with one *creator* and one *builder* in each pair.
-Each person needs a set of at least 10 coloured building blocks (e.g. lego blocks).
+Each person needs a set of at least 10 coloured building blocks (e.g. Lego blocks).
 Make sure that each pair has a matching set of blocks or this activity won’t work!
 
 The two people in each pair should not be able to see each other but need to be able to hear each other to communicate.
@@ -219,7 +219,7 @@ When the creator has finished building, it’s the builder's turn.
 His or her aim is to build an exact replica of the creator's structure (but obviously without knowing what it looks like).
 The creator should describe exactly what they need to do with the blocks.
 For example, the creator could say "Put the small red block on the big blue block" or "Stand two long blue blocks up vertically with a one block spacing between them, and then balance a red block on top of them".
-But the creator should not describe the building as a whole ("Make a doorframe.").
+But the creator should not describe the building as a whole (i.e. don't say "make a doorframe.").
 
 When the builder thinks they are done, compare what you built!
 How precise was your communication?

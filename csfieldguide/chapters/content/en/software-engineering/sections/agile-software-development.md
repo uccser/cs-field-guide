@@ -35,7 +35,7 @@ As a result, pair-programming has actually been shown to be more efficient than 
 
 ## YAGNI
 
-YAGNI stands for "You ain’t gonna need it" and tells developers to keep things simple and only design and implement the things that you know you are really going to need.
+YAGNI stands for "You Ain’t Gonna Need It" and tells developers to keep things simple and only design and implement the things that you know you are really going to need.
 It can be tempting to think that in the future you might need feature x and so you may as well already create it now.
 But remember that requirements are likely to change so chances are that you won’t need it after all.
 

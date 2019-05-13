@@ -47,7 +47,7 @@ As it turns out, writing software is incredibly difficult.
 Software isn’t a physical product, so we can’t just look at it to see if it’s correct.
 On top of that, most of the software you use every day is huge and extremely complex.
 Windows Vista is rumoured to have around 50 million lines of code; MacOSX has 86 million.
-If we printed Vista out on paper, we would get a 88m high stack!
+If we printed Vista out on paper, we would get an 88m high stack!
 That’s as high as a 22 storey building or the Statue of Liberty in New York!
 If you wanted to read through Vista and try to understand how it works, you can expect to get through about 120 lines per hour, so it would take you 417,000 hours or 47 ½ years!
 (And that’s just to read through it, not write it.)

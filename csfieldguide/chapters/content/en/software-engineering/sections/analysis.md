@@ -63,7 +63,7 @@ The customer tells you:
 "It’s really simple.
 You just need to record the foo-whacks, but not the bar-whacks unless the Flob is circulating."
 
-After this description, you’re probably pretty confused because you don’t know anything about the sport of Whacky-Flob and don’t know the specific terms used (What on earth are foo-whacks???).
+After this description, you’re probably pretty confused because you don’t know anything about the sport of Whacky-Flob and don’t know the specific terms used (what on earth are foo-whacks???).
 To get started, you should attend a few games of Whacky-Flob and observe how the game and the scoring works.
 This way, you’ll be able to have a much better conversation with the customer since you have some knowledge about the problem domain.
 Incidentally, this is one of the cool things about being a software engineer: you get exposure to all kinds of different, exciting problem domains.
@@ -73,14 +73,14 @@ You should also never assume that a customer is familiar with technical terms th
 Something like "The metaclass subclass hierarchy was constrained to be parallel to the subclass hierarchy of the classes which are their instances" might make some sense to a software engineer, but a customer will just look at you very confused!
 One of the authors once took part in a customer interview where the stakeholder was asked if they want to use the system through a browser.
 Unfortunately, the customer had no idea what a browser was.
-Sometimes, customers may not want to admit that they have no idea what you’re talking about and just say "Yes" to whatever you suggest.
+Sometimes, customers may not want to admit that they have no idea what you’re talking about and just say "yes" to whatever you suggest.
 Remember, it’s up to you to make sure you and your customer understand each other and that you get useful responses from your customer during the interview!
 
 {image file-path="img/chapters/overwhelming-the-user-cartoon.png" alt="Overwhelming the user with questions cartoon"}
 
 Even if you manage to communicate with a customer, you might find that they don’t really know what they want the software to do or can’t express it.
-They might say they want "software to improve their business" or to "make their work more efficient" but that’s not very specific.
-(There’s a great cartoon of [Dilbert](http://dilbert.com/strips/comic/2006-01-29/) which illustrates this point!) When you show them the software you have built, they can usually tell you if that’s what they wanted or what they like and don’t like about it.
+They might say they want "software to improve their business" or to "make their work more efficient" but that’s not very specific (There’s a great cartoon of [Dilbert](http://dilbert.com/strips/comic/2006-01-29/) which illustrates this point!).
+When you show them the software you have built, they can usually tell you if that’s what they wanted or what they like and don’t like about it.
 For that reason, it’s a good idea to build little prototypes while you’re developing your system and keep showing them to customers to get feedback from them.
 
 You’ll often find that customers have a specific process that they follow already and want the software to fit in with that.

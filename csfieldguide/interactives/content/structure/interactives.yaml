@@ -335,13 +335,13 @@ system-layers:
   languages:
     en: interactives/system-layers.html
   is_interactive: false
-three-tier-website:
-  languages:
-    en: interactives/three-tier-website.html
-  is_interactive: false
 tcp-segment:
   languages:
     en: interactives/tcp-segment.html
+  is_interactive: false
+three-tier-website:
+  languages:
+    en: interactives/three-tier-website.html
   is_interactive: false
 trainsylvania:
   languages:

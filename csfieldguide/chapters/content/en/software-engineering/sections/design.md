@@ -62,7 +62,7 @@ In this way, the complexity of lower layers is completely hidden, or *abstracted
 Each layer represents a higher level of abstraction.
 
 So each layer hides some complexity, so that as we go up the layers things remain manageable.
-Another advantage of having layers is that we can change one layer without affecting the others, as long as we keep the layer’s interface the same of course.
+Another advantage of having layers is that we can change one layer without affecting the others &ndash; as long as we keep the layer’s interface the same of course.
 For example, your browser’s code might change but you might never notice as long as the browser still looks and works the same as before.
 Of course, if the browser stops working or new buttons appear suddenly you know that something has changed.
 
