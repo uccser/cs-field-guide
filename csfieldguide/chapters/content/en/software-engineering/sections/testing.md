@@ -87,7 +87,7 @@ We have only tested 7 different inputs, but these inputs will probably cover alm
 
 Of course, you might also want to try some invalid inputs, for example "hello" (a word) or "1,234" (a number with a comma in it) or "1.234" (a number with a decimal point).
 Often, test cases like these can get programs to behave in a very strange way or maybe even crash because the programmer hasn’t considered that the program might be given invalid inputs.
-Remember that human users especially can give you all sorts of weird inputs, for example if they misunderstand how the program should be used.
+Remember that human users in particular can give you all sorts of weird inputs, for example if they misunderstand how the program should be used.
 In case of an invalid input, you probably want the program to tell the user that the input is invalid; you definitely don’t want it to crash!
 
 Black-box testing is easy to do but not always enough because sometimes finding the different equivalence classes can be difficult if you don’t know the internal structure of the program.
