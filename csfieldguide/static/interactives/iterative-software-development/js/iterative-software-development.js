@@ -44,7 +44,7 @@ $(document).ready(function() {
 /**
  * Sets the svg for the given arrow so that it curves from the 'from' div to
  * the 'to' div.
- * rder specifies which arrow it is, of four, in clockwise order
+ * order specifies which arrow it is, of four, in clockwise order
  * 
  * Based on defining a 90 degree curve as a partial ellipse:
  * start: (x1,y1)
