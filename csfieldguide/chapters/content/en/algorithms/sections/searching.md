@@ -54,8 +54,6 @@ Now that you have played through the whole game (and hopefully found all of the 
 
 Since the boxes in the first game were in a random order there really wasn't any strategy you could have used to find the pet, except simply keep opening presents one by one until you found the pet.
 This is essentially the *linear search* algorithm (sometimes called a sequential search).
-In plain English, linear search algorithm is as follows:
-This is essentially the *linear search* algorithm (sometimes called a sequential search).
 In simpler terms, linear search algorithm is as follows:
 - Check if the first item in a list is the item you are searching for, if it is the one you are looking for, you are done.
 - If it isn't the item you are searching for move on and check the next item.
@@ -76,7 +74,8 @@ This means you might end up checking the same present again and again and again 
 
 ## Binary search
 
-A much better algorithm to use is called binary search. In the second part of the present searching game the boxes were in order, which meant you were able to be more clever when you were searching for the pet, and you might have been using a binary search without realising!
+A much better algorithm to use is called binary search.
+In the second part of the present searching game the boxes were in order, which meant you were able to be more clever when you were searching for the pet, and you might have been using a binary search without realising!
 
 {panel type="teacher-note"}
 
@@ -86,8 +85,10 @@ The binary search algorithm can be demonstrated with a phone book or dictionary:
 If you can spare the book, rip it in half at the chosen page, and ask the class which of the two halves contains the name (the ones before the middle, or the ones after).
 If you don't have replacement books available, you can still proceed by just holding up the chosen half, but it will be more memorable for students when they see the problem literally divided in half.
 Throw away the half that can't contain the name, pointing out that hundreds of pages have been eliminated by one decision.
-Repeat this on the remaining half, ripping that in half, then half again, and so on. On the board you can work out the number of pages left; for example, if there were 512 pages in the phone book, after the first rip there are 256, then 128, then 64, 32, 16, 89, 4, 2 and finally just one page.
-That's  9 pages that were examined to get down to the desired page. (Note that it's easiest to pick numbers that are powers of 2 i.e. 512, 1024, 2048, otherwise you have to deal with halving odd numbers, which works fine, but is a bit distracting).
+Repeat this on the remaining half, ripping that in half, then half again, and so on.
+On the board you can work out the number of pages left; for example, if there were 512 pages in the phone book, after the first rip there are 256, then 128, then 64, 32, 16, 89, 4, 2 and finally just one page.
+That's  9 pages that were examined to get down to the desired page.
+Note that it's easiest to pick numbers that are powers of 2 i.e. 512, 1024, 2048, otherwise you have to deal with halving odd numbers, which works fine, but is a bit distracting.
 
 The power of binary search becomes obvious when you ask how long it would take to search a book twice as large.
 The first rip on the larger book will reduce it to the original problem, so, for example, a book of 1024 pages requires 10 rips instead of the 9 used for 512 pages.
