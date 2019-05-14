@@ -9,4 +9,4 @@ The postal system is a complicated one, designed to let individuals communicate 
 The same ideas apply to how messages move around the internet.
 Whether it be a ‘like’ on Facebook, a video stream or an email - the internet and its various protocols looks after it for you so it is delivered on time and intact to the other person.
 
-Below we introduce some concepts, algorithms, techniques, applications and problems that relate to network protocols; it isn’t a complete list of all the ideas in the area, but should be enough to give you a good idea of what this area of computer science is about.
+In this chapter we introduce some concepts, algorithms, techniques, applications and problems that relate to network protocols; it isn’t a complete list of all ideas in the area, but should be enough to give you a good idea of what this area of computer science is about.

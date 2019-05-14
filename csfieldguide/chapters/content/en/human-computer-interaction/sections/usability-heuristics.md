@@ -82,7 +82,7 @@ The buttons have the colours switched, the colour for cancel is green (commonly 
 {panel end}
 
 The following interface is from a bank system for paying another person.
-Suppose you get an email asking someone to pay you $1699.50 for a used car; try entering "$1699.50" into the box.
+Suppose you send an email asking someone to pay you $1699.50 for a used car; try entering "$1699.50" into the box.
 
 {interactive slug="payment-interface" type="in-page"}
 
@@ -202,7 +202,7 @@ What techniques have you seen used in ATM software to prevent this kind of error
 # ATM error prevention
 
 Some ATMs make it impossible to enter an incorrect amount by only offering fixed amounts for withdrawal, and/or having buttons such as +$20 and -$20.
-Searching the web for images of "ATM enter amount" might produce some reminders of various ways interfaces deal with this problem (or cause it!)
+Searching the web for images of "ATM enter amount" might produce some reminders of various ways interfaces deal with this problem (or cause it!).
 Entering an amount for a *deposit* is different of course, because it could be any amount, so that is likely to use a different interface,
 which helps with error prevention, but now reduces consistency!
 
@@ -263,18 +263,18 @@ Software can contain many features, and if they are all visible at the same time
 TV remote controls often provide a great example of a complicated interface.
 One reason that they have so many buttons is that it can help to make the device look impressive in the shop, but once you get it home, many of the buttons become redundant or confusing.
 
-{image file-path="img/chapters/remote-complex.jpg" alt="A complex remote control." alightment="left"}
+{interactive slug="remote-complicated" type="in-page"}
 
-The remote control shown here has several buttons that could potentially do the same thing: "Direct Navigator", "Guide", "Function Menu", "Status" and "Option" all give access to different functions, but it's hard to predict which is which.
-This remote has about 55 buttons altogether!
+The remote control shown here has several buttons that could potentially do the same thing: "Guide", "Status", "Menu", "Option" and "Direct Navigator" all give access to different functions, but it's hard to predict which is which.
+This remote has 22 buttons altogether!
 
-{image file-path="img/chapters/remote-simple.jpg" alt="A simple remote control." alignment="left"}
+{interactive slug="remote-simple" type="in-page"}
 
-In contrast, the Apple remote has very few buttons, and is a good example of a minimalist interface.
+In contrast, this remote has very few buttons, and is a good example of a minimalist interface.
 There's only one "Menu" to choose, so it's fairly obvious what to do to select the controls needed.
 Of course, the simple remote relies on displaying menus on the screen, and these have the potential to make things more complicated.
 
-{image file-path="img/chapters/remote-adapted.jpg" alt="An adapted remote control." alignment="left"}
+{interactive slug="remote-modified" type="in-page"}
 
 The third remote control shows a solution for simplifying it to save the user from having to read extensive manual information.
 It's a bit drastic, but it might save the user from getting into modes that they can't get out of!

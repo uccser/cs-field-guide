@@ -113,7 +113,7 @@ That's worth knowing in advance because we usually need our programs to scale up
 The formal term for working out the cost of an algorithm is [algorithm analysis](https://en.wikipedia.org/wiki/Analysis_of_algorithms), and we often refer to the cost as the algorithm's *complexity*.
 The most common complexity is the "time complexity" (a rough idea of how long it takes to run), but often the "space complexity" is of interest - how much memory or disk space will the algorithm use up when it's running?
 
-There's more about how the cost of an algorithm is described in industry, using a widely agreed on convention called 'Big-O Notation', in the ["The whole story!"](chapters/algorithms.html#the-whole-story) section at the end of this chapter.
+There's more about how the cost of an algorithm is described in industry, using a widely agreed on convention called 'Big-O Notation', in the ["The whole story!"](the-whole-story) section at the end of this chapter.
 
 {panel end}
 
@@ -138,7 +138,7 @@ If one algorithm is very fast to complete but produces incorrect results some of
 Correctness is also important when using an algorithm as the building block for another algorithm.
 Here is an algorithm for assigning animals as pets to people on a waitlist:
 
-1. Search for the person who is earliest on the the waitlist
+1. Search for the person who is earliest on the waitlist
 2. Assign the person who is earliest on the waitlist with their preferred animal as a pet
 3. Repeat 1-2 until no people remain on the waitlist
 

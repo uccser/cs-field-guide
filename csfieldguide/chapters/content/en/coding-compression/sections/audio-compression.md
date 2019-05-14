@@ -34,7 +34,7 @@ Other audio compression systems that you might come across include AAC, ALAC, Og
 Each of these has various advantages over others, and some are more compatible or open than others.
 
 The main questions with compressed audio are how small the file can be made, and how good the quality is of the human ear.
-(There is also the question of how long it takes to encode the file, which might affect how useful the system is.)
+(There is also the question of how long it takes to encode the file, which might affect how useful the system is).
 The tradeoff between quality and size of audio files can depend on the situation you're in: if you are jogging and listening to music then the quality may not matter so much, but it's good to reduce the space available to store it.
 On the other hand, someone listening to a recording at home on a good sound system might not mind about having a large device to store the music, as long as the quality is high.
 

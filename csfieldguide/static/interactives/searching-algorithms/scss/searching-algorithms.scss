@@ -1,0 +1,69 @@
+#rules .rule-line p,
+#found #num-guesses-used-message p {
+    display: inline-block;
+    margin: 3px 6px;
+}
+
+#num-guesses-used, #found {
+    min-height: 1rem;
+}
+
+#boxes-container {
+    overflow: auto;
+}
+
+#boxes {
+    display: flex;
+
+    div {
+        margin: auto;
+    }
+}
+
+#boxes img {
+    height: 100px;
+    margin: 5px;
+    position: relative;
+    z-index: 2;
+    margin-bottom: 0px;
+}
+
+.box-weight {
+    position: relative;
+    display: block;
+    z-index: 1;
+    top: -67px;
+    margin-bottom: 0px;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.box-number {
+    margin-top: -30px;
+
+    span {
+        font-weight: bold;
+    }
+}
+
+p.box-weight.show {
+    z-index: 3 !important;
+    transition: 1s;
+}
+
+#boxes img.fade {
+    opacity: 0.4;
+    transition: 0.5s;
+}
+
+.hide-message {
+    display: none !important;
+}
+
+.show-message {
+    display: block !important;
+}
+
+#num-guesses {
+    font-weight: bold;
+}

@@ -1,0 +1,97 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-10">
+        <div id="interactive-parity" class="row">
+          <div class="col-sm-12">
+            <h1>{% trans "Parity Trick" %}</h1>
+            <h4 id="interactive-parity-mode"></h4>
+            <div class="row">
+              <div class="col-sm-12 col-md-4">
+                <p class="interactive-parity-text">{% trans "The grid is considered valid if each row and column has an even number of black squares." %}</p>
+                <div class="interactive-parity-controls interactive-parity-trick-controls">
+                  <p>
+                    {% trans "Click the parity bits in the last row and column to set them correctly. Click the 'Flip a bit' button when you are done." %}
+                  </p>
+                  <button id="interactive-parity-flip-bit" class="btn btn-primary btn-lg mb-2">{% trans "Flip a bit" %}</button>
+                </div>
+                <div class="interactive-parity-controls interactive-parity-detect-controls">
+                  <p>
+                    {% trans "A bit has changed! Click on the single bit that has changed." %}
+                  </p>
+                </div>
+                <div class="interactive-parity-controls interactive-parity-check-controls">
+                  <p>
+                    <button id="interactive-parity-check" class="btn btn-danger btn-lg">{% trans "Check parity" %}</button>
+                  </p>
+                </div>
+                <div class="interactive-parity-controls interactive-parity-size-controls form-group">
+                  <label>{% trans "Grid Size:" %}</label>
+                  <select id="interactive-parity-grid-size" class="form-control">
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6" selected>6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                  </select>
+                </div>
+                <div class="interactive-parity-controls interactive-parity-sandbox-controls">
+                  <p>
+                    <button id="interactive-parity-random-data" class="btn btn-primary btn-lg">{% trans "Add random data" %}</button>
+                  </p>
+                  <p>
+                    <button id="interactive-parity-clear-all" class="btn btn-danger btn-lg">{% trans "Clear all" %}</button>
+                  </p>
+                </div>
+                <div class="interactive-parity-controls interactive-parity-reset-controls">
+                  <button id="interactive-parity-reset" class="btn btn-danger">{% trans "Start Over" %}</button>
+                </div>
+                <p id="interactive-parity-feedback"></p>
+              </div>
+              <div class="col-sm-12 col-md-8">
+                <div id="interactive-parity-grid-container">
+                  <div id="interactive-parity-grid"></div>
+                  <div id="interactive-parity-grid-confusation">
+                    <div id="interactive-parity-grid-confusation-text">
+                      {% trans "<strong>Confusation</strong><br>Please wait" %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="interactive-parity-footer">
+              <p>{% trans "Created by Jack Morgan" %}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/parity/css/parity.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/parity/js/parity.js' %}"></script>
+{% endblock js %}

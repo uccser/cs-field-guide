@@ -6,7 +6,7 @@
   {% trans "Page not found" %}
 {% endblock title %}
 
-{% block body_container %}
+{% block page_content %}
   <div id="content-container" class="container">
     <div class="row">
       <div class="col-12">
@@ -19,13 +19,16 @@
               {% trans "Home page" %}
             </a>
           </li>
-          <li>
-            <a href="{% url 'search:index' %}">
-              {% trans "Search" %}
-            </a>
-          </li>
+          {% if LANGUAGE_CODE == "en" %}
+            <!-- Search is only currently available in English, see https://github.com/uccser/cs-unplugged/issues/989 -->
+            <li>
+              <a href="{% url 'search:index' %}">
+                {% trans "Search" %}
+              </a>
+            </li>
+          {% endif %}
         </ul>
       </div>
     </div>
   </div>
-{% endblock body_container %}
+{% endblock page_content %}

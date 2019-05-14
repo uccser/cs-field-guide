@@ -1,0 +1,52 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div class="container mb-3 uninteractive fsa-terminology">
+    <div class="row">
+      <div class="col-lg-7 col-12 border-left">
+        <img class="base" src="{% static 'interactives/fsa-terminology/img/finite-state-automata-terminology-base.png' %}">
+      </div>
+      <div class="col-lg-5 col-12 border-left">
+        <div class="row">
+          <div class="col-8">
+            <img class="term" src="{% static 'interactives/fsa-terminology/img/finite-state-automata-terminology-start.png' %}">
+          </div>
+          <div class="col-4 align-self-center">
+            <div class="row label">{% trans 'Start state' %}</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-8">
+            <img class="term" src="{% static 'interactives/fsa-terminology/img/finite-state-automata-terminology-transition.png' %}">
+          </div>
+          <div class="col-4 align-self-center">
+            <div class="row label">{% trans 'Transition' %}</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-8">
+            <img class="term" src="{% static 'interactives/fsa-terminology/img/finite-state-automata-terminology-accepting.png' %}">
+          </div>
+          <div class="col-4 align-self-center">
+            <div class="row label">{% trans 'Accepting state' %}</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-8">
+            <img class="term" src="{% static 'interactives/fsa-terminology/img/finite-state-automata-terminology-alphabet.png' %}">
+          </div>
+          <div class="col-4 align-self-center">
+            <div class="row label">{% trans 'Alphabet:' %}<br>a, b, r</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/fsa-terminology/css/fsa-terminology.css' %}">
+{% endblock css %}

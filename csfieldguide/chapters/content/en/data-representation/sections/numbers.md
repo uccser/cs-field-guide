@@ -56,7 +56,7 @@ Remember that any number to the power of 0 is 1. i.e. the 8 x \( 10^0 \) is 8, b
 
 The key ideas to notice from this are:
 
-- Decimal has 10 **digits** -- 0, 1, 2, 3, 4, 5, 6, 7, 8, 9.
+- Decimal has 10 **digits** &ndash; 0, 1, 2, 3, 4, 5, 6, 7, 8, 9.
 - A **place** is the place in the number that a digit is, i.e. ones, tens, hundreds, thousands, and so on.
   For example, in the number 90328, 3 is in the "hundreds" place, 2 is in the "tens" place, and 9 is in the "ten thousands" place.
 - Numbers are made with a sequence of digits.
@@ -92,7 +92,7 @@ It can be [downloaded on the CS Unplugged website](https://csunplugged.org/en/re
 
 As discussed earlier, computers can only store information using bits, which only have 2 possible states.
 This means that they cannot represent base 10 numbers using digits 0 to 9, the way we write down numbers in decimal.
-Instead, they must represent numbers using just 2 digits -- 0 and 1.
+Instead, they must represent numbers using just 2 digits &ndash; 0 and 1.
 
 Binary works in a very similar way to Decimal, even though it might not initially seem that way.
 Because there are only 2 digits, this means that each digit is **2** times the value of the one immediately to the right.
@@ -101,7 +101,7 @@ Because there are only 2 digits, this means that each digit is **2** times the v
 
 # The denary number system
 
-The base 10 (decimal) system is sometimes called denary, which is more consistent with the the name binary for the base 2 system.
+The base 10 (decimal) system is sometimes called denary, which is more consistent with the name binary for the base 2 system.
 The word "denary" also refers to the Roman denarius coin, which was worth ten asses (an "as" was a copper or bronze coin).
 The term "denary" seems to be used mainly in the UK; in the US, Australia and NZ the term "decimal" is more common.
 
@@ -270,7 +270,7 @@ This is because these are full numbers of bytes (a byte is 8 bits), and makes it
 
 {panel type="curiosity"}
 
-# Binary cakes -- preventing fires
+# Binary cakes &ndash; preventing fires
 
 Candles on birthday cakes use the base 1 numbering system, where each place is worth 1 more than the one to its right.
 For example, the number 3 is 111, and 10 is 1111111111.
@@ -394,7 +394,7 @@ While computers prefer to work with chunks of 32 bits, we could write a program 
 Even on standard computers, it is important to think carefully about the number of bits you will need.
 For example, if you have a field in your database that could be either "0", "1", "2", or "3" (perhaps representing the four bases that can occur in a DNA sequence), and you used a 64 bit number for every one, that will add up as your database grows.
 If you have 10,000,000 items in your database, you will have wasted 62 bits for each one (only 2 bits is needed to represent the 4 numbers in the example), a total of 620,000,000 bits, which is around 74 MB.
-If you are doing this a lot in your database, that will really add up -- human DNA has about 3 billion base pairs in it, so it's incredibly wasteful to use more than 2 bits for each one.
+If you are doing this a lot in your database, that will really add up &ndash; human DNA has about 3 billion base pairs in it, so it's incredibly wasteful to use more than 2 bits for each one.
 
 And for applications such as Google Maps, which are storing an astronomical amount of data, wasting space is not an option at all!
 
@@ -528,7 +528,7 @@ There's an alternative representation called *Two's Complement*, which avoids ha
 ***Representing positive numbers with two's complement***
 
 Representing positive numbers is the same as the method you have already learnt.
-Using **8 bits**,the leftmost bit is a zero and the other 7 bits are the usual binary representation of the number; for example, **1** would be **00000001**, and 65 would be **00110010**.
+Using **8 bits**,the leftmost bit is a zero and the other 7 bits are the usual binary representation of the number; for example, **1** would be **00000001**, and **50** would be **00110010**.
 
 ***Representing negative numbers with two's complement***
 
@@ -576,7 +576,7 @@ The right-most 0 is shown in bold; it changes to 1, and the three 1's to its rig
 
 If you get a number with no zeroes in it (e.g. 1111111), you can put one on the left (01111111), then apply the rule, which in this case gives 10000000.
 
-It may help some students to consider what the equivalent rule is in decimal for adding 1 -- how do you add one to 284394? To 38999? 9999799?
+It may help some students to consider what the equivalent rule is in decimal for adding 1 &ndash; how do you add one to 284394? To 38999? 9999799?
 
 {panel end}
 
@@ -665,12 +665,12 @@ In practice, numbers within the following ranges can be represented.
 You can work these out because the range of 8-bit values if they are stored using unsigned numbers will be from 00000000 to 11111111 (i.e. 0 to 255 in decimal), while the signed two's complement range is from 10000000 (the lowest number, -128 in decimal) to 01111111 (the highest number, 127 in decimal).
 This might seem a bit weird, but it works out really well because normal binary addition can be used if you use this representation even if you're adding a negative number.
 
-| Number | Unsigned Range | Two's Complement Range |
+| **Number** | **Unsigned Range** | **Two's Complement Range** |
 |--------|----------------|------------------------|
 | 8 bit | 0 to 255 | -128 to 127 |
 | 16 bit | 0 to 65,535 | -32,768 to 32,767 |
 | 32 bit | 0 to 4,294,967,295 | −2,147,483,648 to 2,147,483,647 |
-| 64 bit | 0 to 18,446,744,073,709,551,615 | −9,223,372,036,854,775,808 to 9,223,372,036,854,775,807  |
+| 64 bit &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; | 0 to 18,446,744,073,709,551,615 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; | −9,223,372,036,854,775,808 to 9,223,372,036,854,775,807  |
 
 ### Adding negative binary numbers
 

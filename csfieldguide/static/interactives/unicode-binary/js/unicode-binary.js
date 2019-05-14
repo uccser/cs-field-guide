@@ -1,16 +1,6 @@
-/*
- * decaffeinate suggestions:
- * DS101: Remove unnecessary use of Array.from
- * DS102: Remove unnecessary code created because of implicit returns
- * DS104: Avoid inline assignments
- * DS205: Consider reworking code to avoid use of IIFEs
- * DS207: Consider shorter variations of null checks
- * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
- */
 "use strict";
 let left;
 require('string.fromcodepoint');
-require('jquery-text-input');
 const s = require('underscore.string');
 const URI = require('urijs');
 
@@ -94,13 +84,12 @@ const updateBinary = number =>
     )
 ;
 
-
 const cleanDecimal = () =>
     /* Cleans any non-numeric values out of the decimal element */
     $decimal.val($decimal.val().replace(/[^0-9]/g, ''))
 ;
 
-$decimal.on('textInput', function() {
+$decimal.on('input', function() {
     /* Anytime there's input or any change in the box just remove all non
         numeric characters
     */
@@ -121,7 +110,7 @@ $decimal.on('textInput', function() {
     try {
         const char = String.fromCodePoint(number);
     } catch (err) {
-        $char.val("Decimal value of range");
+        $char.val("Decimal value out of range");
         $binary.val('');
         return;
     }
@@ -130,7 +119,7 @@ $decimal.on('textInput', function() {
     return updateBinary(number);
 });
 
-$char.on('textInput', function() {
+$char.on('input', function() {
     /* Considers only the last codepoint entered */
     if ($char.val() === '') {
         $decimal.val('');

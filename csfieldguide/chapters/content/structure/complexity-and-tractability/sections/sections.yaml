@@ -9,3 +9,12 @@ the-travelling-salesman-problem:
 
 bin-packing-problem:
   section-number: 4
+
+other-intractable-problems:
+  section-number: 5
+
+the-whole-story:
+  section-number: 6
+
+further-reading:
+  section-number: 7

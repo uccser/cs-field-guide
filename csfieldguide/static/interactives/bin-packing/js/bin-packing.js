@@ -1,4 +1,7 @@
 'use strict';
+
+const Interact = require('interactjs');
+
 $(function() {
 
     const bin_size = 100;
@@ -75,7 +78,6 @@ $(function() {
     // Creates a new empty bin.
     $("#add-bin").click(function() {
         drawAndGenerateNewBin(bin_list.getItems().length)
-        dragItems();
     });
 
     // Unpacks all the items from the bins.
@@ -85,6 +87,7 @@ $(function() {
         $("div.item").css("transform", "translate(0px,0px)");
         $("div.item").attr('data-x', 0);
         $("div.item").attr('data-y', 0);
+        $("#winning-message").text('');
 
         for (var i = bin_list.getItems().length - 1; i >= 0; i--) {
             bin_list.getItems()[i].setContains(0);
@@ -95,14 +98,9 @@ $(function() {
         };
     });
 
-    // Starts a new game, first checking if the set item sizes checkbox is checked.
+    // Starts a new game.
     $("#new").click(function() {
-        var checked = $("#filled-in-box").is(':checked');
-        if (checked) {
-            $('#modal1').openModal();
-        } else {
-            setupGame(getUrlParameters());
-        }
+        setupGame(getUrlParameters());
     })
 
     // Starts a new game with the item sizes specified by the user.
@@ -111,7 +109,15 @@ $(function() {
         var arr = itemSizes.filter(function(el) {
             return el !== "";
         });
-        setupGame(arr);
+        // Check that all entered values are integers between 1 and 100 inclusive
+        if (arr.some(isNaN) || arr.some(v => v < 1 || v > 100 || !Number.isInteger(Number(v)))) {
+            emptyGameArea();
+            var $h6 = $("<h6>");
+            $h6.append(gettext('Something went wrong! Please ensure you entered a comma separated list of integers between 1 and 100.').fontcolor("red"));
+            $("#items_area").append($h6);
+        } else {
+            setupGame(arr);
+        }
     });
 
     // Generates a number of items of random sizes. The number of items generated will between min and max.
@@ -152,12 +158,17 @@ $(function() {
         bin_list.addItem(new Bin(id));
     }
 
-    // Starts a new game. Resets everything and uses the item sizes provided if applicable.
-    function setupGame(itemSizes) {
+    // Resets the game area to set up a new game.
+    function emptyGameArea() {
         item_list.resetItems();
         bin_list.resetItems();
         $("#items_area").children().remove();
         $("#bins_area").children("div").remove();
+    }
+
+    // Starts a new game. Resets everything and uses the item sizes provided if applicable.
+    function setupGame(itemSizes) {
+        emptyGameArea();
         if (itemSizes.length == 0) {
             generateItems(4, 12);
         } else {
@@ -169,15 +180,15 @@ $(function() {
 
         drawItemList();
         drawAndGenerateBins();
-        dragItems();
     }
 
     setupGame(getUrlParameters());
+    dragItems();
 
     // Handles the dragging of the items into the bin.
     function dragItems() {
         // target elements with the "draggable" class
-        interact('.draggable')
+        Interact('.draggable')
             .draggable({
                 // enable inertial throwing
                 inertia: false,
@@ -198,7 +209,7 @@ $(function() {
                 }
             });
 
-        interact('.bin').dropzone({
+        Interact('.bin').dropzone({
             overlap: 0.5,
             accept: '.draggable',
 
@@ -255,9 +266,12 @@ $(function() {
         bin.add(item.size);
         item.packed = true;
         if (allPacked()) {
-            var $h5 = $("<h5>");
-            $h5.append('Congratulations you packed the items in ' + getNonEmptyBins() + ' bins!');
-            $("#items_area").append($h5);
+            var binCount = getNonEmptyBins();
+            var format = gettext('Congratulations, you packed the items in ');
+            format += ngettext('1 bin!', '%(bin_count)s bins!', binCount);
+            var binCountText = interpolate(format, {"bin_count": binCount}, true);
+            var winningMessage = $('#winning-message');
+            winningMessage.text(binCountText);
         }
     }
 

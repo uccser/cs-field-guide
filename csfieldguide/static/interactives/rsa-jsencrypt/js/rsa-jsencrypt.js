@@ -1,9 +1,9 @@
 require('jsencrypt');
-
+var urlParameters = require('../../../js/third-party/url-parameters.js');
 var RSAEncrypt = {};
 
 $(document).ready(function(){
-    if (getUrlParameter('mode') == 'decrypt') {
+    if (urlParameters.getUrlParameter('mode') == 'decrypt') {
       setDecryptionText();
       RSAEncrypt.mode = 'decrypt';
     } else {
@@ -34,24 +34,8 @@ $(document).ready(function(){
 });
 
 function setDecryptionText() {
-  $('#interactive-rsa-jsencrypt-mode').text(gettext('Decrypter'));
+  $('#interactive-rsa-jsencrypt-mode').text(gettext('RSA Decrypter'));
   $('#interactive-rsa-jsencrypt-process').text(gettext('Decrypt'));
-  $('#interactive-rsa-jsencrypt-input-type').text(gettext('Cipher'));
-  $('#interactive-rsa-jsencrypt-output-type').text(gettext('Plain'));
-};
-
-// From jquerybyexample.net/2012/06/get-url-parameters-using-jquery.html
-function getUrlParameter(sParam) {
-    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
-        sURLVariables = sPageURL.split('&'),
-        sParameterName,
-        i;
-
-    for (i = 0; i < sURLVariables.length; i++) {
-        sParameterName = sURLVariables[i].split('=');
-
-        if (sParameterName[0] === sParam) {
-            return sParameterName[1] === undefined ? true : sParameterName[1];
-        }
-    }
+  $('#interactive-rsa-jsencrypt-input-type').text(gettext('Cipher Text'));
+  $('#interactive-rsa-jsencrypt-output-type').text(gettext('Plain Text'));
 };

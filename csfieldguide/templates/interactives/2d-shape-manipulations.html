@@ -1,0 +1,193 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div class="row mb-3 shape-manipulations">
+    <div class="col no-margins" role="group">
+      <title>{% trans '2D Shape Manipulations' %}</title>
+      <div id="container">
+        <div id="warning">
+          <label>{% trans 'This interactive is designed for screens larger than 600x600px.' %}</label>
+        </div>
+      
+        <svg class="svg-background" width="100%" height="100%">
+          <polygon id="target-polygon" points="0,0 0,0 0,0 0,0 0,0 0,0 0,0"/>
+          <polygon id="dynamic-polygon" points="0,0 0,0 0,0 0,0 0,0 0,0 0,0"/>
+          <circle id="c0" cx="0" cy="0" r="3"/>
+          <circle id="c1" cx="0" cy="0" r="3"/>
+          <circle id="c2" cx="0" cy="0" r="3"/>
+          <circle id="c3" cx="0" cy="0" r="3"/>
+          <circle id="c4" cx="0" cy="0" r="3"/>
+          <circle id="c5" cx="0" cy="0" r="3"/>
+          <circle id="c6" cx="0" cy="0" r="3"/>
+        </svg>
+        
+        <div id="shape-manipulation" class="container-fluid">
+          <div class="row justify-content-center">
+            <label id="y-label">y</label>
+          </div>
+        
+          <div class="row">
+            <div class="col">
+              <div id="instructions">
+                <h1 id="title"></h1>
+                <p id="task"></p>
+                <div class="dropdown d-none" id="config-dropdown">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="config-changer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {% trans 'Select a configuration' %}
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="config-changer">
+                    <a class="dropdown-item" id="coord-translate" href="{% url 'interactives:interactive' '2d-shape-manipulations' %}?config=coord-translate&showIndex">
+                      {% trans 'Coordinates: Translation' %}</a>
+                    <a class="dropdown-item" id="coord-scale" href="{% url 'interactives:interactive' '2d-shape-manipulations' %}?config=coord-scale&showIndex">
+                      {% trans 'Coordinates: Scaling' %}</a>
+                    <a class="dropdown-item" id="coord-scale-translate" href="{% url 'interactives:interactive' '2d-shape-manipulations' %}?config=coord-scale-translate&showIndex">
+                      {% trans 'Coordinates: Scaling and Translation' %}</a>
+                    <a class="dropdown-item" id="coord-swap" href="{% url 'interactives:interactive' '2d-shape-manipulations' %}?config=coord-swap&showIndex">
+                      {% trans 'Coordinates: Swapping Coordinates' %}</a>
+                    <a class="dropdown-item" id="matrix-scale" href="{% url 'interactives:interactive' '2d-shape-manipulations' %}?config=matrix-scale&showIndex">
+                      {% trans 'Matrix: Scaling' %}</a>
+                    <a class="dropdown-item" id="matrix-rotate" href="{% url 'interactives:interactive' '2d-shape-manipulations' %}?config=matrix-rotate&showIndex">
+                      {% trans 'Matrix: Rotation' %}</a>
+                    <a class="dropdown-item" id="matrix-translate" href="{% url 'interactives:interactive' '2d-shape-manipulations' %}?config=matrix-translate&showIndex">
+                      {% trans 'Matrix: Translation' %}</a>
+                    <a class="dropdown-item" id="matrix-scale-translate" href="{% url 'interactives:interactive' '2d-shape-manipulations' %}?config=matrix-scale-translate&showIndex">
+                      {% trans 'Matrix: Scaling and Translation I' %}</a>
+                    <a class="dropdown-item" id="matrix-scale-translate-2" href="{% url 'interactives:interactive' '2d-shape-manipulations' %}?config=matrix-scale-translate-2&showIndex">
+                      {% trans 'Matrix: Scaling and Translation II' %}</a>
+                    <a class="dropdown-item" id="matrix-scale-translate-3" href="{% url 'interactives:interactive' '2d-shape-manipulations' %}?config=matrix-scale-translate-3&showIndex">
+                      {% trans 'Matrix: Scaling and Translation III' %}</a>
+                    <a class="dropdown-item" id="matrix-rotate-translate" href="{% url 'interactives:interactive' '2d-shape-manipulations' %}?config=matrix-rotate-translate&showIndex">
+                      {% trans 'Matrix: Rotation and Translation' %}</a>
+                    <a class="dropdown-item" id="matrix-rotate-scale-translate" href="{% url 'interactives:interactive' '2d-shape-manipulations' %}?config=matrix-rotate-scale-translate&showIndex">
+                      {% trans 'Matrix: Multiple Transformation Challenge I' %}</a>
+                    <a class="dropdown-item" id="matrix-rotate-scale-translate-2" href="{% url 'interactives:interactive' '2d-shape-manipulations' %}?config=matrix-rotate-scale-translate-2&showIndex">
+                      {% trans 'Matrix: Multiple Transformation Challenge II' %}</a>
+                    <a class="dropdown-item" id="matrix-single" href="{% url 'interactives:interactive' '2d-shape-manipulations' %}?config=matrix-single&showIndex">
+                      {% trans 'Matrix: Single Matrix Challenge' %}</a>
+                  </div>
+                </div>
+              </div>
+          
+              <div id="modules">
+                <div id="coordinates">
+                  <div id="heading"><p>x</p><p>y</p></div>
+                  <div node-id="c0">
+                    <input class="input-box" id="p0-input-x"/>
+                    <input class="input-box" id="p0-input-y"/>
+                  </div>
+                  <div node-id="c1">
+                    <input class="input-box" id="p1-input-x"/>
+                    <input class="input-box" id="p1-input-y"/>
+                  </div>
+                  <div node-id="c2">
+                    <input class="input-box" id="p2-input-x"/>
+                    <input class="input-box" id="p2-input-y"/>
+                  </div>
+                  <div node-id="c3">
+                    <input class="input-box" id="p3-input-x"/>
+                    <input class="input-box" id="p3-input-y"/>
+                  </div>
+                  <div node-id="c4">
+                    <input class="input-box" id="p4-input-x"/>
+                    <input class="input-box" id="p4-input-y"/>
+                  </div>
+                  <div node-id="c5">
+                    <input class="input-box" id="p5-input-x"/>
+                    <input class="input-box" id="p5-input-y"/>
+                  </div>
+                  <div node-id="c6">
+                    <input class="input-box" id="p6-input-x"/>
+                    <input class="input-box" id="p6-input-y"/>
+                  </div>
+                </div>
+            
+                <div id="matrices">
+                  <div id="matrix-first-scale">
+                    <h2>{% trans 'Multiplication Matrix' %}</h2>
+            
+                    <!-- default value is identity matrix -->
+                    <div class="matrix-row">
+                      <input class="input-box" id="matrix-first-scale-row-0-col-0" value="1"/>
+                      <input class="input-box" id="matrix-first-scale-row-0-col-1" value="0"/>
+                    </div>
+            
+                    <div class="matrix-row">
+                      <input class="input-box" id="matrix-first-scale-row-1-col-0" value="0"/>
+                      <input class="input-box" id="matrix-first-scale-row-1-col-1" value="1"/>
+                    </div>
+                  </div>
+            
+                  <div id="matrix-first-translate">
+                    <h2>{% trans 'Translation Matrix' %}</h2>
+            
+                    <!-- default value is identity matrix -->
+                    <div class="matrix-row">
+                      <input class="input-box" id="matrix-first-translate-row-0-col-0" value="0"/>
+                    </div>
+            
+                    <div class="matrix-row">
+                      <input class="input-box" id="matrix-first-translate-row-1-col-0" value="0"/>
+                    </div>
+                  </div>
+            
+                  <div id="matrix-second-scale">
+                    <h2>{% trans 'Multiplication Matrix' %}</h2>
+            
+                    <!-- default value is identity matrix -->
+                    <div class="matrix-row">
+                      <input class="input-box" id="matrix-second-scale-row-0-col-0" value="1"/>
+                      <input class="input-box" id="matrix-second-scale-row-0-col-1" value="0"/>
+                    </div>
+            
+                    <div class="matrix-row">
+                      <input class="input-box" id="matrix-second-scale-row-1-col-0" value="0"/>
+                      <input class="input-box" id="matrix-second-scale-row-1-col-1" value="1"/>
+                    </div>
+                  </div>
+            
+                  <div id="matrix-second-translate">
+                    <h2>{% trans 'Translation Matrix' %}</h2>
+            
+                    <!-- default value is identity matrix -->
+                    <div class="matrix-row">
+                      <input class="input-box" id="matrix-second-translate-row-0-col-0" value="0"/>
+                    </div>
+            
+                    <div class="matrix-row">
+                      <input class="input-box" id="matrix-second-translate-row-1-col-0" value="0"/>
+                    </div>
+                  </div>
+                </div>
+            
+                <div id="coord-buttons">
+                  <button id="get-new-coordinates-button">{% trans 'Update' %}</button>
+                  <button id="reset-coordinates-button">{% trans 'Reset' %}</button>
+                </div>
+            
+                <div id="matrix-buttons">
+                  <button id="matrix-operations-button">{% trans 'Update' %}</button>
+                  <button id="reset-matrices-button">{% trans 'Reset' %}</button>
+                </div>
+                <label id="instant-update-label"><input class="input-box" type="checkbox" id="instant-update-check" checked/>{% trans 'Instant Update' %}</label>
+              </div>
+            </div>
+            <div class="col">
+              <label id="x-label">x</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/2d-shape-manipulations/css/2d-shape-manipulations.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/2d-shape-manipulations/js/2d-shape-manipulations.js' %}"></script>
+{% endblock js %}

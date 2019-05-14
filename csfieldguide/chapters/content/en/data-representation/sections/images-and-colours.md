@@ -56,7 +56,7 @@ For more information about RGB displays, see [RGB on Wikipedia](https://en.wikip
 
 ## Describing a colour with numbers
 
-Because a colour is simply made up of amounts of the primary colours -- red, green and blue -- three numbers can be used to specify how much of each of these primary colours is needed to make the overall colour.
+Because a colour is simply made up of amounts of the primary colours (red, green and blue), three numbers can be used to specify how much of each of these primary colours is needed to make the overall colour.
 
 {panel type="jargon-buster"}
 
@@ -76,7 +76,7 @@ Those numbers tell the computer how fully to turn on each of the primary colour 
 If red was set to 0, that means the red "light" is completely off.
 If the red "light" was set to 255, that would mean the "light" was fully on.
 
-With 256 possible values for each of the three primary colours (don't forget to count 0!), that gives 256 x 256 x 256 = 16,777,216 possible colours -- more than the human eye can detect!
+With 256 possible values for each of the three primary colours (don't forget to count 0!), that gives 256 x 256 x 256 = 16,777,216 possible colours &ndash; more than the human eye can detect!
 
 {panel type="challenge"}
 
@@ -115,8 +115,8 @@ With 256 different possible values for the amount of each primary colour, this m
 
 \( 2^8 = 2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2 \times 2 = 256 \)
 
-The smallest number that can be represented using 8 bits is 00000000 -- which is 0.
-And the largest number that can be represented using 8 bits is 11111111 -- which is 255.
+The smallest number that can be represented using 8 bits is 00000000 &ndash; which is 0.
+And the largest number that can be represented using 8 bits is 11111111 &ndash; which is 255.
 
 Because there are three primary colours, each of which will need 8 bits to represent each of its 256 different possible values, we need **24 bits in total** to represent a colour.
 
@@ -202,7 +202,7 @@ This can be broken up into groups of 4 bits: `1001` `0001` `0011` `0010` `0111` 
 
 And now, each of these groups of 4 bits will need to be represented with a **hexadecimal** digit.
 
-- 1001 -> 5
+- 1001 -> 9
 - 0001 -> 1
 - 0011 -> 3
 - 0010 -> 2
@@ -211,7 +211,7 @@ And now, each of these groups of 4 bits will need to be represented with a **hex
 
 Which gives `#51327B`.
 
-Understanding how these hexadecimal colour codes are derived also allows you to change them slightly without having to refer back the colour table, when the colour isn’t exactly the one you want.
+Understanding how these hexadecimal colour codes are derived also allows you to change them slightly without having to refer back to the colour table, when the colour isn’t exactly the one you want.
 Remember that in the 24 bit color code, the first 8 bits specify the amount of red (so this is the first 2 digits of the hexadecimal code), the next 8 bits specify the amount of green (the next 2 digits of the hexadecimal code), and the last 8 bits specify the amount of blue (the last 2 digits of the hexadecimal code).
 To increase the amount of any one of these colours, you can change the appropriate hexadecimal letters.
 
@@ -254,7 +254,7 @@ This is one of the big tradeoffs in data representation: do you allocate less sp
 
 The number of bits used to represent the colours of pixels in a particular image is sometimes referred to as its "colour depth" or "bit depth".
 For example, an image or display with a colour depth of 8-bits has a choice of 256 colours for each pixel.
-There is [more information about this in Wikipedia](https://en.wikipedia.org/wiki/Color_depth).
+There is [more information about this on Wikipedia](https://en.wikipedia.org/wiki/Color_depth).
 Drastically reducing the bit depth of an image can make it look very strange; sometimes this is used as a special effect called "posterisation" (ie. making it look like a poster that has been printed with just a few colours).
 
 {panel end}
@@ -277,7 +277,7 @@ In which is it not?
 In which would you actually care about the colours in the image?
 In which situations is colour actually not necessary (i.e. when are we fine with two colours)?
 
-{interactive slug="image-bit-comparer" type="whole-page" text="Image Bit Comparer"}
+{interactive slug="image-bit-comparer" type="whole-page"}
 
 {panel type="additional-information"}
 
@@ -294,7 +294,7 @@ In other cases, the 16-bit images are almost as good as 24-bit images unless you
 They also use two-thirds (16/24) of the space that they would with 24-bit colour.
 For images that will need to be downloaded on 3G devices where internet is expensive, this is worth thinking about carefully.
 
-Have an experiement with the following interactive, to see what impact different numbers of bits for each colour has.
+Have an experiment with the following interactive, to see what impact different numbers of bits for each colour has.
 Do you think 8 bit colour was right in having 2 bits for blue, or should it have been green or red that got only 2 bits?
 
 {interactive slug="image-bit-comparer" type="whole-page" text="Image Bit Comparer - Change Bits mode" parameters="change-bits=true"}

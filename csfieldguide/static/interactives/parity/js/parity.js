@@ -1,3 +1,4 @@
+var urlParameters = require('../../../js/third-party/url-parameters.js');
 var Parity = {};
 
 $(document).ready(function(){
@@ -6,13 +7,13 @@ $(document).ready(function(){
   Parity.feedback = $('#interactive-parity-feedback');
   setupGrid();
 
-  if (getUrlParameter('mode') == 'sandbox') {
+  if (urlParameters.getUrlParameter('mode') == 'sandbox') {
     Parity.mode = 'sandbox';
     Parity.current_mode = 'sandbox';
-  } else if (getUrlParameter('mode') == 'set') {
+  } else if (urlParameters.getUrlParameter('mode') == 'set') {
     Parity.mode = 'set';
     Parity.current_mode = 'set';
-  } else if (getUrlParameter('mode') == 'detect') {
+  } else if (urlParameters.getUrlParameter('mode') == 'detect') {
     Parity.mode = 'detect';
     Parity.current_mode = 'detect';
   } else {
@@ -27,10 +28,10 @@ $(document).ready(function(){
     // Display status
     if (parity_status) {
       Parity.feedback.removeClass('error');
-      Parity.feedback.text('Correct: Every row and column has even parity (of white squares)');
+      Parity.feedback.text(gettext("Correct: Every row and column has even parity (of black squares)"));
     } else {
       Parity.feedback.addClass('error');
-      Parity.feedback.text('Incorrect: Not every row and column has even parity (of white squares)');
+      Parity.feedback.text(gettext("Incorrect: Not every row and column has even parity (of black squares)"));
     }
   });
 
@@ -61,14 +62,11 @@ $(document).ready(function(){
       setupMode()
     // Else if detect stage in detect mode
     } else {
-      // Remove green success highlight around bit if correct bit found
-      if (Parity.flipping == 'none') {
-        var $bit = Parity.grid.children().eq(Parity.flipped_row).children().eq(Parity.flipped_col);
-        $bit.removeClass('correct-bit');
-      }
       clearGrid();
       setupMode();
     }
+    // Remove green success highlight around bit if correct bit found
+    $('#interactive-parity-grid .parity-card').removeClass('correct-bit');
     Parity.feedback.removeClass('error');
     Parity.feedback.text("");
   });
@@ -87,17 +85,16 @@ $(document).ready(function(){
     $bit = $(this);
     if (Parity.valid_parity_bits == false) {
       Parity.feedback.addClass('error');
-      Parity.feedback.text("Your parity bits weren't set correctly, try starting again.");
+      Parity.feedback.text(gettext("Your parity bits weren't set correctly, try starting again."));
     } else if (Parity.current_mode == 'detect' && Parity.flipping == 'all') {
       if ($bit.data("row") == Parity.flipped_row && $bit.data("col") == Parity.flipped_col) {
-        $bit.removeClass("parity-bit");
         $bit.addClass("correct-bit");
         Parity.feedback.removeClass('error');
-        Parity.feedback.text("Correct! You spotted the flipped bit!");
+        Parity.feedback.text(gettext("Correct! You spotted the flipped bit!"));
         Parity.flipping = 'none';
       } else {
         Parity.feedback.addClass('error');
-        Parity.feedback.text("That's not the flipped bit!");
+        Parity.feedback.text(gettext("That's not the flipped bit!"));
       }
     } else if (Parity.flipping == 'all' || (Parity.flipping == 'parity' && $bit.hasClass('parity-bit'))) {
       // We toggle bit manually rather than call updateGrid() to stay O(1)
@@ -140,7 +137,7 @@ function setupMode() {
   $('.interactive-parity-controls').hide()
 
   if (Parity.current_mode == 'sandbox') {
-     header.text('Sandbox Mode');
+     header.text("Sandbox Mode");
      $('.interactive-parity-sandbox-controls').show();
      $('.interactive-parity-size-controls').show();
      $('.interactive-parity-check-controls').show();
@@ -148,7 +145,7 @@ function setupMode() {
      setRandomBits();
      updateGrid();
   } else if (Parity.current_mode == 'set') {
-    header.text('Setting Parity');
+    header.text(gettext("Setting Parity"));
     Parity.flipping = 'parity';
     $('.interactive-parity-size-controls').show();
     if (Parity.mode == 'trick') {
@@ -160,7 +157,7 @@ function setupMode() {
     setRandomBits();
     updateGrid();
   } else if (Parity.current_mode == 'detect') {
-    header.text('Detect the Error');
+    header.text(gettext("Detect the Error"));
     Parity.flipping = 'all';
     $('.interactive-parity-detect-controls').show();
     $('.interactive-parity-reset-controls').show();
@@ -273,7 +270,7 @@ function setupGrid(){
 
   if (Parity.grid_size > 21 || Parity.grid_size < 1 || isNaN(Parity.grid_size)) {
     // Error message
-    alert('Please enter a value between 1 and 20');
+    alert(gettext("Please enter a value between 1 and 20"));
     // Reset grid
     $('##interactive-parity-grid-size').val(6);
   } else {
@@ -304,15 +301,15 @@ function checkParity() {
 
   column_counts = new Array(Parity.grid_values.length).fill(0);
   for (var row = 0; row < Parity.grid_values.length; row++) {
-    var white_bit_count = 0;
+    var black_bit_count = 0;
     for (var col = 0; col < Parity.grid_values.length; col++) {
       // If white (true) add to counts
-      if (Parity.grid_values[row][col]) {
-        white_bit_count++;
+      if (Parity.grid_values[row][col] == 0) {
+        black_bit_count++;
         column_counts[col]++;
       }
     }
-    if (white_bit_count % 2 == 1) {
+    if (black_bit_count % 2 == 1) {
       parity_status = false;
     }
   }
@@ -333,16 +330,16 @@ function setParityBits() {
 
   column_counts = new Array(Parity.grid_values.length).fill(0);
   for (var row = 0; row < Parity.grid_values.length-1; row++) {
-    var white_bit_count = 0;
+    var black_bit_count = 0;
     for (var col = 0; col < Parity.grid_values.length-1; col++) {
-      // If white (true) add to counts
-      if (Parity.grid_values[row][col]) {
-        white_bit_count++;
+      // If black add to counts
+      if (Parity.grid_values[row][col] == 0) {
+        black_bit_count++;
         column_counts[col]++;
       }
     }
     // Last bit in row
-    if (white_bit_count % 2 == 0) {
+    if (black_bit_count % 2 == 0) {
       Parity.grid_values[row][Parity.grid_values.length-1] = false;
     } else {
       column_counts[Parity.grid_values.length-1]++;
@@ -354,21 +351,4 @@ function setParityBits() {
       Parity.grid_values[Parity.grid_values.length-1][col] = false;
     }
   }
-};
-
-
-// From jquerybyexample.net/2012/06/get-url-parameters-using-jquery.html
-function getUrlParameter(sParam) {
-    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
-        sURLVariables = sPageURL.split('&'),
-        sParameterName,
-        i;
-
-    for (i = 0; i < sURLVariables.length; i++) {
-        sParameterName = sURLVariables[i].split('=');
-
-        if (sParameterName[0] === sParam) {
-            return sParameterName[1] === undefined ? true : sParameterName[1];
-        }
-    }
 };

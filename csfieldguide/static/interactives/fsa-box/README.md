@@ -8,24 +8,25 @@ The interactive loads a configuration file to allow a user to traverse a FSA
 while viewing if the current state is accepted or not. The user should be able
 to draw an FSA diagram from this.
 
-This interactive is not feature complete so will currently not handle all FSA possibilities, however it provides all logic for the simple example requires.
+This interactive is not feature complete so will currently not handle all FSA possibilities, however it provides all logic for the simple base examples.
 
 ## Usage
 
 This interactive must be loaded in either `iframe` or `whole-page` mode to load
-configuration files.
+configuration text.
 
-To select a configuration file, pass the `config` parameter at the end of the
-URL with the name of the JSON config file without the extension.
+Such text is in the JS dictionary format with Django logic, stored within `fsa-box.html`.
 
-For example, adding `?config=example-1` to the end of the URL for the
-`index.html` file will load the `example-1.json` file.
+To select a configuration, pass the `config` parameter at the end of the
+URL with the name of the config.
 
-If no example is provided, the interactive loads `example-1.json.`
+For example, adding `?config=example-1` to the end of the URL will load the `example-1` text.
 
-## Configuration File
+If no example is provided, the interactive loads `example-1`.
 
-The JSON config file must contain the following keys and values:
+## Configuration text
+
+The configuration text must contain the following keys and values:
 
 - `available_buttons`: A list of strings for button labels that can be taken
   from every state.
@@ -37,7 +38,7 @@ The JSON config file must contain the following keys and values:
   - `destinations`: A dictionary mapping a string of a button label to a string
     of a state label.
 
-### Example JSON file:
+### Example config text:
 
 ```
 {
@@ -61,7 +62,3 @@ The JSON config file must contain the following keys and values:
   }
 }
 ```
-
-## Required files
-
-- This interactive uses MaterializeCSS, Modernizer, `iframeResizer` child file, and jQuery (all loaded from base-files folder).

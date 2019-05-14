@@ -115,7 +115,7 @@ You will probably want to refer back to it later while working through the remai
 
 ### Decryption with Caesar cipher
 
-Before we looked at how to *crack* Caesar cipher – getting the plaintext from the ciphertext without being told the key beforehand.
+Before, we looked at how to *crack* Casear cipher &ndash; getting the plaintext from the ciphertext without being told the key beforehand.
 It is even easier to *decrypt* Caesar cipher when we **do** have the key.
 In practice, a good encryption system ensures that the plaintext cannot be obtained from the ciphertext without the key, i.e. it can be *decrypted* but not *cracked*.
 
@@ -188,7 +188,7 @@ HOW ARE YOU
 
 We would start by working that the letter that is 7 places ahead of "H" is "O", 7 places ahead of "O" is "V", and 7 places ahead of "W" is "D".
 This means that the first word of the plaintext encrypts to "OVD" in the ciphertext.
-Going through the the entire plaintext in this way, we can eventually get the ciphertext of:
+Going through the entire plaintext in this way, we can eventually get the ciphertext of:
 
 ```
 OVD HYL FVB
@@ -286,7 +286,7 @@ A letter that appears many times in a message is far more likely to be "T" than 
 The following interactive will help you analyze a piece of text by counting up the letter frequencies.
 You can paste in some text to see which are the most common (and least common) characters.
 
-{interactive slug="frequency-analysis" type="in-page"}
+{interactive slug="frequency-analysis" type="iframe"}
 
 The following text has been coded using a Caesar cipher.
 To try to make sense of it, paste it into the statistical analyser above.
@@ -432,7 +432,7 @@ The Vigenere cipher is known as a *polyalphabetic substitution cipher*, since it
 
 {panel end}
 
-### Known plain text attacks
+### Known plaintext attacks
 
 Another kind of attack is the *known plaintext* attack, where you know part or all of the solution.
 For example, if you know that I start all my messages with "HI THERE", you can easily determine the key for the following message.
@@ -514,7 +514,7 @@ EIJUDJQJYEKI
 
 {panel type="teacher-note"}
 
-# Answer for the the above question
+# Answer for the above question
 
 The word is "ostentatious", and has been coded by shifting 16 letters to the right (or 10 to the left).
 
@@ -538,7 +538,7 @@ Cryptography relies a lot on low probabilities of success.
 The calculator below can handle really big numbers.
 You can double check our calculations above if you want! Also, work out what would happen if the key size was double (i.e. 256 bits), or if a 1024 or 2048 bit key (common these days) was used.
 
-{comment Need to put big numbers calculator here}
+{interactive slug="big-number-calculator" type="in-page"}
 
 {panel type="curiosity"}
 

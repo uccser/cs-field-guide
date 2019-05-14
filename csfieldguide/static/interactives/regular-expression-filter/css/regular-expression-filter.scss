@@ -1,0 +1,15 @@
+#interactive-regular-expression-filter-words {
+  max-height: 50vh;
+  overflow: auto;
+  white-space: pre-line;
+}
+#interactive-regular-expression-filter input {
+  font-family: monospace;
+}
+.btn-expand {
+  width: 100%;
+}
+#interactive-regular-expression-filter-controls,
+#interactive-regular-expression-filter-loading-progress {
+  display: none;
+}

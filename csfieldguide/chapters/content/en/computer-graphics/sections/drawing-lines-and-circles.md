@@ -1,13 +1,12 @@
 # Drawing lines and circles
 
-A fundamental operation is computer graphics is to draw lines and circles.
+A fundamental operation in computer graphics is to draw lines and circles.
 For example, these are used as the components of scalable fonts and vector graphics;
 the letter "g" is specified as a series of lines and curves,
 so that when you zoom in on it the computer can redraw it at whatever resolution is needed.
 If the system only stored the pixels for the letter shape, then zooming in would result in a low quality image.
 
-{comment to add sometime, Jargonbuster: pixel (somewhere in the chapter) - also mention pel and bitmap, and origins of the terms.
-see www.foveon.com/files/ABriefHistoryofPixel2.pdf}
+{comment to add sometime, Jargonbuster: pixel (somewhere in the chapter) - also mention pel and bitmap, and origins of the terms. see www.foveon.com/files/ABriefHistoryofPixel2.pdf}
 
 {image file-path="img/chapters/vector-letter-with-outline.png" caption="true" alt="The points used to create the letter g."}
 
@@ -25,10 +24,10 @@ The lines and circles that specify an object are usually given using numbers (fo
 From this a graphics program must calculate which pixels on the screen should be coloured in to represent the line or circle, or it may just need to work out where the line is without drawing it.
 
 For example, here's a grid of pixels with 5 lines shown magnified.
-The vertical line would have been specified as going from pixel (2,9) to (2,16) — that is, starting 2 across and 9 up, and finishing 2 across and 16 up.
-Of course, this is only a small part of a screen, as normally they are more like 1000 by 1000 pixels or more; even a smartphone can be hundreds of pixels high and wide.
+The vertical line would have been specified as going from pixel (2, 9) to (2, 16) &ndash; that is, starting 2 across and 9 up, and finishing 2 across and 16 up.
+Of course, this is only a small part of a screen, as normally they are more like 1000 by 1000 pixels or more; even a smartphone screen is hundreds of pixels high and wide.
 
-{image file-path="img/chapters/grid-20x20-example.png" alt="An example of 5 lines drawn on a grid of pixels"}
+{interactive slug="pixel-grid" type="iframe" parameters="eg=basic&noedit"}
 
 These are things that are easy to do with pencil and paper using a ruler and compass, but on a computer the calculations need to be done for every pixel, and if you use the wrong method then it will take too long and the image will be displayed slowly or a live animation will appear jerky.
 In this section we will look into some very simple but clever algorithms that enable a computer to do these calculations very quickly.
@@ -46,16 +45,16 @@ you could print a supply of these for them, or use graph paper.
 
 To draw a line, a computer must work out which pixels need to be filled so that the line looks straight.
 You can try this by colouring in squares on a grid, such as the one below (they are many times bigger than the pixels on a normal printer or screen).
-We'll identify the pixels on the grid using two values, (*x*,*y*), where *x* is the distance across from the left, and *y* is the distance up from the bottom.
-The bottom left pixel below is (0,0), and the top right one is (19,19).
+We'll identify the pixels on the grid using two values, (*x*, *y*), where *x* is the distance across from the left, and *y* is the distance up from the bottom.
+The bottom left pixel below is (0, 0), and the top right one is (19, 19).
 
-On the following grid, try to draw these straight lines by filling in pixels in the grid:
+Try to draw these straight lines by clicking on pixels in the following grid:
 
 - from  (2, 17) to (10, 17)
 - from  (18, 2) to (18, 14)
 - from  (1, 5)  to (8, 12)
 
-{image file-path="img/chapters/grid-20x20-blank.png" alt="Grid for drawing line from A to B"}
+{interactive slug="pixel-grid" type="iframe"}
 
 {comment The grids in this section could be interactive, click on each pixel, and get it to check if the line is correct}
 
@@ -65,15 +64,15 @@ On the following grid, try to draw these straight lines by filling in pixels in 
 
 The above three lines are easy to draw as they are horizontal, vertical and diagonal.
 
-{image file-path="img/chapters/grid-20x20-answer-1.png" alt="Answer for previous question on grid"}
+{interactive slug="pixel-grid" type="iframe" parameters="eg=s3l&noedit"}
 
 {panel end}
 
-Drawing a horizontal, vertical or diagonal line like the ones above is easy; it's the ones at different angles that require some calculation.
+Drawing a horizontal, vertical or 45 degree line like the ones above is easy; it's the ones at different angles that require some calculation.
 
 Without using a ruler, can you draw a straight line from A to B on the following grid by colouring in pixels?
 
-{image file-path="img/chapters/grid-20x20-diagonal-question.png" alt="Grid for drawing line from A to B"}
+{interactive slug="pixel-grid" type="iframe" parameters="Ax=3&Ay=4&Bx=16&By=9"}
 
 Once you have finished drawing your line, try checking it with a ruler.
 Place the ruler so that it goes from the centre of A to the centre of B.
@@ -89,17 +88,17 @@ which is \( m \),
 and where the line crosses the *y* axis, which is \( c \).
 In other words, when you are *x* pixels across the screen with your line, the pixel to colour in would be (\( x \), \( mx + c \)).
 
-For example, choosing \( m=2 \) and \( c=3 \) means that the line would go through the points (0,3), (1,5), (2,7), (3,9) and so on.
+For example, choosing \( m=2 \) and \( c=3 \) means that the line would go through the points (0, 3), (1, 5), (2, 7), (3, 9) and so on.
 This line goes up 2 pixels for every one across \( m=2 \), and crosses the y axis 3 pixels up (\( c=3 \)).
 
-You should experiment with drawing graphs for various values of \( m \) and \( c \) (for example, start with \( c=0 \), and try these three lines: \( m=1 \), \( m=0.5 \) and\( m=0 \)) by putting in the values.
+You should experiment with drawing graphs for various values of \( m \) and \( c \) (for example, start with \( c=0 \), and try these three lines: \( m=1 \), \( m=0.5 \) and \( m=0 \)) by putting in the values.
 What angle are these lines at?
 
 {panel type="teacher-note"}
 
 # Solution
 
-A slope of 0 is a horizontal line, using \( m=1 \) will be at 45 degrees, because you go up 1 pixel for each one that you go across.
+A slope of 0 is a horizontal line. Using \( m=1 \) will be at 45 degrees, because you go up 1 pixel for each one that you go across.
 A slope of a half (\( m=0.5 \)) is just under 27 degrees.
 There's a [demonstration here](http://www.mathopenref.com/coordslope.html) of slopes, which has an option for showing the angle (which might be more familiar to students.)
 
@@ -113,8 +112,8 @@ What are \( (x_1, y_1) \) and \( (x_2, y_2) \) for the points A and B on the gri
 # Solution
 
 The calculations for a line from A to B above are as follows.
-The two points are A = (3,4) and B = (16,9).
-This means that \( x_1 = 3, y_1 = 4, x_2=16 \) and \( y_2 = 9 \).
+The two points are A = (3, 4) and B = (16, 9).
+This means that \( x_1 = 3, y_1 = 4, x_2 = 16 \) and \( y_2 = 9 \).
 
 {panel end}
 
@@ -162,7 +161,7 @@ For the next question, this can be put into a spreadsheet to give the values for
 Now draw the same line as in the previous section (between A and B) using the formula \( y = mx + c \) to calculate \( y \) for each value of \( x \) from \( x_1 \) to \( x_2 \) (you will need to round \( y \) to the nearest integer to work out which pixel to colour in).
 If the formulas have been applied correctly, the \( y \) value should range from  \( y_1 \) to \( y_2 \).
 
-{image file-path="img/chapters/grid-20x20-diagonal-question.png" alt="Grid for drawing line from A to B"}
+{interactive slug="pixel-grid" type="iframe" parameters="Ax=3&Ay=4&Bx=16&By=9"}
 
 {panel type="teacher-note"}
 
@@ -170,7 +169,7 @@ If the formulas have been applied correctly, the \( y \) value should range from
 
 The following image shows which pixels would be coloured in (rounding the coordinates above to the nearest integer).
 
-{image file-path="img/chapters/grid-20x20-diagonal-answer.png" alt="Grid for drawing line from A to B"}
+{interactive slug="pixel-grid" type="iframe" parameters="eg=sod&noedit"}
 
 {panel end}
 
@@ -214,7 +213,7 @@ To draw the line, fill the starting pixel, and then for every position along the
 
 Without using a ruler, use Bresenham's line algorithm to draw a straight line from A to B:
 
-{image file-path="img/chapters/grid-20x20-diagonal-question.png" alt="Grid for drawing line from A to B"}
+{interactive slug="pixel-grid" type="iframe" parameters="Ax=3&Ay=4&Bx=16&By=9"}
 
 Once you have completed the line, check it with a ruler.
 How does it compare to the previous attempts?
@@ -254,10 +253,10 @@ To make this algorithm more general, so that it can be used to draw any line, so
   When calculating A, B, and the initial P, use X where you previously would have used Y, and vice versa.
   When drawing pixels, instead of going across every column in the X axis, go through every row in the Y axis, drawing one pixel per row.
 
-{image file-path="img/chapters/grid-20x20-blank.png" alt="Grid for drawing line"}
+{interactive slug="pixel-grid" type="iframe"}
 
 In the grid above, choose two points of your own that are unique to you.
-Don't choose points that will give horizontal, vertical or diagonal lines!
+Don't just choose points that will give horizontal or vertical lines!
 
 Now use Bresenham's algorithm to draw the line.
 Check that it gives the same points as you would have chosen using a ruler, or using the formula \( y = mx+b \).
@@ -273,7 +272,7 @@ This method only has to compare an integer with 0 and do one addition for each p
 
 {panel end}
 
-You could write a program or design a spreadsheet to do these calculations for you — that's what graphics programmers have to do.
+You could write a program or design a spreadsheet to do these calculations for you &ndash; that's what graphics programmers have to do.
 
 ## Circles
 
@@ -283,7 +282,7 @@ An algorithm similar to Bresenham's line drawing algorithm, called the Midpoint 
 A circle is defined by a centre point, and a radius.
 Points on a circle are all the radius distance from the centre of the circle.
 
-{image file-path="img/chapters/grid-20x20-circle-question.png" alt="Grid for drawing a circle"}
+{interactive slug="pixel-grid" type="iframe" parameters="Cx=9&Cy=9&Rx=16&Ry=9"}
 
 Try to draw a circle by hand by filling in pixels (without using a ruler or compass).
 Note how difficult it is to make the circle look round.
@@ -313,7 +312,7 @@ Repeat the following rules in order until \( Y \) becomes greater than \( X \):
 Follow the rules to draw a circle on the grid, using (\( c_{x} \), \( c_{y} \))  as the centre of the circle, and \( R \) the radius.
 Notice that it will only draw the start of the circle and then it stops because \( Y \) is greater than \( X \)!
 
-{image file-path="img/chapters/grid-20x20-circle-question.png" alt="Grid for drawing a circle"}
+{interactive slug="pixel-grid" type="iframe" parameters="Cx=9&Cy=9&Rx=16&Ry=9"}
 
 {panel type="teacher-note"}
 
@@ -358,7 +357,7 @@ An *octant* is one eighth of an area, and the 8 octants are marked off by 4 line
 To complete the circle, you need to reflect along the diagonal.
 The line of reflection should have a slope of 1 or -1, and should cross through the middle of the centre pixel of the circle.
 
-While using a line of reflection on the octant is easier for a human to understand, a computer can draw all of the reflected points at the same time it draws a point in the first octant because when it is drawing pixel with an offset of (x,y) from the centre of the circle, it can also draw the pixels with offsets (x,-y), (-x,y), (-x,-y), (y,x), (y,-x), (-y,x) and (-y,-x), which give all eight reflections of the original point!
+While using a line of reflection on the octant is easier for a human to understand, a computer can draw all of the reflected points at the same time it draws a point in the first octant because when it is drawing pixel with an offset of (x,y) from the centre of the circle, it can also draw the pixels with offsets (x, -y), (-x, y), (-x, -y), (y, x), (y, -x), (-y, x) and (-y, -x), which give all eight reflections of the original point!
 
 By the way, this kind of algorithm can be adapted to draw ellipses, but it has to draw a whole quadrant because you don't have octant symmetry in an ellipse.
 
@@ -366,17 +365,17 @@ By the way, this kind of algorithm can be adapted to draw ellipses, but it has t
 
 Computers need to draw lines, circles and ellipses for a wide variety of tasks, from game graphics to lines in an architect's drawing, and even a tiny circle for the dot on the top of the letter 'i' in a word processor.
 By combining line and circle drawing with techniques like 'filling' and 'antialiasing', computers can draw smooth, clear images that are resolution independent.
-When an image on a computer is described as an outline with fill colours it is called vector graphics — these can be re-drawn at any resolution.
+When an image on a computer is described as an outline with fill colours it is called vector graphics &ndash; these can be re-drawn at any resolution.
 This means that with a vector image, zooming in to the image will not cause the pixelation seen when zooming in to bitmap graphics, which only store the pixels and therefore make the pixels larger when you zoom in.
 However, with vector graphics the pixels are recalculated every time the image is redrawn, and that's why it's important to use a fast algorithm like the one above to draw the images.
 
 Outline fonts are one of the most common uses for vector graphics as they allow the text size to be increased to very large sizes, with no loss of quality to the letter shapes.
 
-Computer scientists have found fast algorithms for drawing other shapes too, which means that the image appears quickly, and graphics can display quickly on relatively slow hardware - for example, a smartphone needs to do these calculations all the time to display images, and reducing the amount of calculations can extend its battery life, as well as make it appear faster.
+Computer scientists have found fast algorithms for drawing other shapes too, which means that the image appears quickly, and graphics can display quickly on relatively slow hardware &ndash; for example, a smartphone needs to do these calculations all the time to display images, and reducing the amount of calculations can extend its battery life, as well as make it appear faster.
 
 As usual, things aren't quite as simple as shown here.
-For example, consider a horizontal line that goes from (0,0) to (10,0), which has 11 pixels.
-Now compare it with a 45 degree line that goes from (0,0) to (10,10).
+For example, consider a horizontal line that goes from (0, 0) to (10, 0), which has 11 pixels.
+Now compare it with a 45 degree line that goes from (0, 0) to (10, 10).
 It still has 11 pixels, but the line is longer (about 41% longer to be precise).
 This means that the line would appear thinner or fainter on a screen, and extra work needs to be done (mainly anti-aliasing) to make the line look ok.
 We've only just begun to explore how techniques in graphics are needed to quickly render high quality images.

@@ -55,7 +55,7 @@ If only one digit is changed, the check digit will always be incorrect, and the 
 
 Have a look for another product that has a barcode on it, such as a food item from your lunch, or a stationery item.
 Note that some barcodes are a little different — make sure the barcodes that you are using have 13 digits (although you might like to go and find out how the check digit works on some of the other ones).
-Can the interactive is always determine whether or not you typed the barcode correctly?
+Can the interactive always determine whether or not you typed the barcode correctly?
 
 One of the following product numbers has one incorrect digit.
 Can you tell which of the products has had its number typed incorrectly?
@@ -227,7 +227,7 @@ This also means that you can group digits that add to 10 (like 1 and 9, or 5 and
 For example, in the second group, 3+0+7 at the start adds up to 0, and the only sum that counts is 2+4, giving 6 as the total.
 
 Finally, even the multiplication will be ok if you just take the last digit.
-In the example above, that means we end up working out 6x3 giving 8 (not 18); the original was 16x3 giving 48, but it's only the final 8 digit that matters.
+In the example above, that means we end up working out 6x3 giving 8 (not 18); the original was 16x3 giving 48, but it's only the final digit (8) that matters.
 
 All these shortcuts can make it very easy to track the sum in your head.
 

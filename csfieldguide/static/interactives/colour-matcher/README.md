@@ -4,11 +4,11 @@
 
 This interactive is created for users to learn the difference between 24 bit and 8 bit colour.
 The user can perfectly match the goal colour using 24 bit values, however it's harder to match using 8 bit values.
-The the goal colour is picked to be impossible to match perfectly with 8 bit values.
+The goal colour is picked to be impossible to match perfectly with 8 bit values.
 
 ## Usage
 
-The interactive shows binary representation as default, but it can also display hexidecimal by adding the following URL parameter: `?hexidecimal=true`.
+The interactive shows binary representation as default, but it can also display hexadecimal by adding the following URL parameter: `?hexadecimal=true`.
 
 ## Required files
 

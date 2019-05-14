@@ -1,0 +1,5 @@
+# Programmieren
+
+Und was ist mit Programmieren? Wir werden dazu zwar Übungen vorschlagen, der gesamte Leitfaden kann jedoch auch ohne jegliches Programmieren durchgegangen werden. Letztendlich kommen alle hier behandelten Konzepte in Programmen zum Ausdruck, die von Menschen geschrieben werden. Für all diejenigen, die Programmieren lernen wollen, werden zahlreiche ausgezeichnete Kurse angeboten. Es erfordert Zeit und Übung und es lohnt sich, parallel dazu die Themen in diesem Leitfaden durchzuarbeiten. Darüber hinaus gibt es zahlreiche kostenlose Online-Systeme und Bücher, die zum Selbststudium herangezogen werden können. Auf [www.code.org](https://code.org/educate/allhourofcode) gibt es eine Liste an Optionen für Schüler aller Altersgruppen, die Programmieren lernen. Dort ist auch ein weitverbreitetes Video einiger bekannter Computing-Senkrechtstarter anzufinden, das sich gut zur Klassendemonstration eignet.
+
+Programmieren ist nur eine der Fertigkeiten, über die man verfügen muss, um Informatiker zu werden. In diesem Heft werden auch viele andere Fertigkeiten trainiert, wie u. a. Mathematik, Psychologie und Kommunikation, die ebenfalls wichtig sind.

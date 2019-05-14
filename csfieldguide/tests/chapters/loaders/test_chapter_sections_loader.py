@@ -138,11 +138,7 @@ class ChapterSectionsLoaderTest(BaseTestWithDB):
             chapter_section_loader.load
         )
 
-    @mock.patch(
-        "django.contrib.staticfiles.finders.find",
-        return_value=True
-    )
-    def test_chapters_chapter_section_loader_interactive(self, find_image_files):
+    def test_chapters_chapter_section_loader_interactive(self):
         test_slug = "interactives"
         chapter = self.test_data.create_chapter("1")
         interactive1 = self.interactives_test_data.create_interactive(1)
@@ -157,7 +153,6 @@ class ChapterSectionsLoaderTest(BaseTestWithDB):
             structure_filename="{}.yaml".format(test_slug),
         )
         chapter_section_loader.load()
-        self.assertTrue(find_image_files.called)
         self.assertQuerysetEqual(
             ChapterSection.objects.all(),
             ["<ChapterSection: Interactives>"]
@@ -184,5 +179,21 @@ class ChapterSectionsLoaderTest(BaseTestWithDB):
         )
         self.assertRaises(
             KeyNotFoundError,
+            chapter_section_loader.load
+        )
+
+    def test_chapters_chapter_section_loader_non_sequential_section_number(self):
+        test_slug = "non-sequential-section-numbers"
+        chapter = self.test_data.create_chapter("1")
+        factory = mock.Mock()
+        chapter_section_loader = ChapterSectionsLoader(
+            factory,
+            chapter,
+            base_path=self.base_path,
+            content_path=test_slug,
+            structure_filename="{}.yaml".format(test_slug),
+        )
+        self.assertRaises(
+            InvalidYAMLValueError,
             chapter_section_loader.load
         )

@@ -76,11 +76,13 @@ INSTALLED_APPS += [  # noqa: F405
 # Override production value of LANGUAGES - this is what django-modeltranslation
 # will use when adding translated fields to the models on startup, which is
 # necessary to test i18n backend functionality.
+ORIGINAL_DEFAULT_LANGUAGES = DEFAULT_LANGUAGES  # noqa: F405
 LANGUAGES = (
     ("en", "English"),
     ("de", "German"),
     ("fr", "French"),
 )
+DEFAULT_LANGUAGES = LANGUAGES
 
 # Search index location for testing
 SEARCH_INDEX_PATH = "temp/tests/search/"

@@ -1,0 +1,44 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div class=" text-center">
+    <h4>{% trans "Braille Alphabet" %}</h4>
+
+    <!-- Braille Dots -->
+    <div>
+      <div id="braille-dot-1" class="braille-dot"></div>
+      <div id="braille-dot-4" class="braille-dot"></div>
+    </div>
+
+    <div>
+      <div id="braille-dot-2" class="braille-dot"></div>
+      <div id="braille-dot-5" class="braille-dot"></div>
+    </div>
+
+    <div>
+      <div id="braille-dot-3" class="braille-dot"></div>
+      <div id="braille-dot-6" class="braille-dot"></div>
+    </div>
+
+    <div id="braille-character" class="h5"></div>
+    <p id="braille-character-note"></p>
+
+    <button type="button" class="btn btn-primary mr-3" id="braille-prev">
+      {% trans "Previous" %}
+    </button>
+    <button type="button" class="btn btn-primary" id="braille-next">
+      {% trans "Next" %}
+    </button>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/braille-alphabet/css/braille-alphabet.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/braille-alphabet/js/braille-alphabet.js' %}"></script>
+{% endblock js %}

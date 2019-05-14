@@ -1,0 +1,59 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div class="container">
+    <!-- Modal -->
+    <div class="modal fade" id="modal1" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-dialog-centered" id="modal-label" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <p>{% trans "Enter the comma separated item sizes. The sizes should be between 1 and 100." %}</p>
+          </div>
+          <div class="modal-body">
+            <input id="sizes" type="text"/>
+            <label for="sizes">{% trans "e.g 12,57,100,10,1,23" %}</label>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-primary" id="done" data-dismiss="modal">{% trans "Done" %}</button>
+            <button class="btn btn-secondary" data-dismiss="modal">{% trans "Cancel" %}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Headings Row -->
+    <div class="row interactive center-align">
+      <div class="col s12 m8">
+        <h2>{% trans "Let's pack some bins!" %}</h2>
+        <p>{% trans "The goal is to pack the items on the left into the smallest number of bins possible." %}</p>
+      </div>
+      <div class="col s12 m4 buttons left-align">
+        <button class="btn btn-primary" id="new">{% trans "New Game" %}</button>
+        <button class="btn btn-secondary" id="advanced" data-toggle="modal" data-target="#modal1">{% trans "Set Item Sizes (Advanced)" %}</button>
+      </div>
+    </div>
+
+    <!-- Game Row -->
+    <div class="row interactive center-align">
+      <div class="col s12 m12 l6" id="items_area">
+      </div>
+      <div class="col s12 m12 l6" id="bins_area">
+        <button class="btn btn-primary" id="add-bin">{% trans "Add Bin" %}</button>
+        <button class="btn btn-primary" id="reset">{% trans "Unpack All" %}</button>
+      </div>
+    </div>
+
+    <h5 id="winning-message"></h5>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/bin-packing/css/bin-packing.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/bin-packing/js/bin-packing.js' %}"></script>
+{% endblock js %}

@@ -6,7 +6,7 @@ Suppose you're looking for words that contain the name "tim", type the word "tim
 {interactive slug="regular-expression-filter" type="in-page"}
 
 That's a pretty simple search (though the results may have surprised you!).
-But now we introduce the *wildcard* code, which in this case is "." —  this is a widely used convention in formal languages.
+But now we introduce the *wildcard* code, which in this case is "." &ndash;  this is a widely used convention in formal languages.
 This matches any character at all.
 So now you can do a search like
 
@@ -14,7 +14,7 @@ So now you can do a search like
 tim.b
 ```
 
-and you will get any words that have both "tim" and "b" with a single character — any character — in between.
+and you will get any words that have "tim" followed by "b" with a single character &ndash; any character &ndash; in between.
 Are there any words that match "tim..b"? "tim...b"?
 You can specify any number of occurrences of a symbol by putting a '\*' after it (again a widely used convention), so:
 
@@ -22,7 +22,7 @@ You can specify any number of occurrences of a symbol by putting a '\*' after it
 tim.*b
 ```
 
-will match any words where "tim" is followed by "b", separated by any number of characters — including none.
+will match any words where "tim" is followed by "b", separated by any number of characters &ndash; including none.
 
 Try the following search.
 What kind of words does it find?
@@ -63,7 +63,7 @@ We'll look at them in more detail in the section on [regular expressions]('chapt
 
 Next we examine a simple system for reading input called a
 {glossary-link term="finite-state-automaton" reference-text="Formal languages"}finite state automaton{glossary-link end},
-which — as we'll find out later — is closely related to
+which &ndash; as we'll find out later &ndash; is closely related to
 {glossary-link term="regular-expression"}regular expressions{glossary-link end}.
 Later we'll explore the idea of
 {glossary-link term="grammar"}grammars{glossary-link end},
@@ -74,7 +74,7 @@ another kind of formal language that can deal with more complicated forms of inp
 # Klingon linguistics activity
 
 For a fun discussion, you could have the students look at the [Klingon Linguistics activity at CS4FN](http://www.cs4fn.org/linguistics/klingon.html).
-This page introduces the fundamentals of languages — words (the alphabet) and {glossary-link term="grammar"}grammar{glossary-link end} (the rules of syntax).
+This page introduces the fundamentals of languages &ndash; words (the alphabet) and {glossary-link term="grammar"}grammar{glossary-link end} (the rules of syntax).
 It discusses why languages are translated and how meaning can be changed by translation.
 It also explains why computer languages need to be translated.
 

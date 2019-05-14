@@ -1,0 +1,129 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div class="row too-small">
+    <div class="col-12">{% trans 'Sorry, for screens less than 500px wide, the solution is only available in English.' %}</div>
+    <div class="col-12"><img class="solutionimg" src="{% static 'interactives/trainsylvania-complete/img/english-solution.png' %}"></div>
+  </div>
+
+  <div class="container mt-3 uninteractive trainsylvania-complete">
+    <!-- Top row: Suburbopolis and North Stations -->
+    <div class="row justify-content-center">
+      <div class="col-6 t-c-suburb">
+        <div class="row-1"><img class="t-c-station" src="{% static 'interactives/trainsylvania/img/suburb.png' %}"></div>
+        <div class="row-1">{% trans 'Suburbopolis<br>Station' %}</div>
+      </div>
+      <div class="col-6 t-c-north">
+        <div class="row-1"><img class="t-c-station" src="{% static 'interactives/trainsylvania/img/north.png' %}"></div>
+        <div class="row-1">{% trans 'North<br>Station' %}</div>
+      </div>
+    </div>
+    <!-- Middle row: West, Central, Midway and East Stations -->
+    <div class="row t-c-spaced">
+      <div class="col-3 t-c-west">
+        <div class="row-1"><img class="t-c-station" src="{% static 'interactives/trainsylvania/img/west.png' %}"></div>
+        <div class="row-1">{% trans 'West<br>Station' %}</div>
+      </div>
+      <div class="col-3 t-c-central">
+        <div class="row-1"><img class="t-c-station" src="{% static 'interactives/trainsylvania/img/central.png' %}"></div>
+        <div class="row-1">{% trans 'Central<br>Station' %}</div>
+      </div>
+      <div class="col-3 t-c-midway">
+        <div class="row-1"><img class="t-c-station" src="{% static 'interactives/trainsylvania/img/midway.png' %}"></div>
+        <div class="row-1">{% trans 'Midway<br>Station' %}</div>
+      </div>
+      <div class="col-3 t-c-east">
+        <div class="row-1"><img class="t-c-station" src="{% static 'interactives/trainsylvania/img/east.png' %}"></div>
+        <div class="row-1">{% trans 'East<br>Station' %}</div>
+      </div>
+    </div>
+    <!-- Bottom row: City Mall, South and Railington Stations -->
+    <div class="row">
+      <div class="col-4 t-c-city">
+        <div class="row-1"><img class="t-c-station" src="{% static 'interactives/trainsylvania/img/city.png' %}"></div>
+        <div class="row-1">{% trans 'City Mall<br>Station' %}</div>
+      </div>
+      <div class="col-4 t-c-south">
+        <div class="row-1"><img class="t-c-station" src="{% static 'interactives/trainsylvania/img/south.png' %}"></div>
+        <div class="row-1">{% trans 'South<br>Station' %}</div>
+      </div>
+      <div class="col-4 t-c-railington">
+        <div class="row-1"><img class="t-c-station" src="{% static 'interactives/trainsylvania/img/railington.png' %}"></div>
+        <div class="row-1">{% trans 'Railington<br>Station' %}</div>
+      </div>
+    </div>
+    <!-- SVG based on https://stackoverflow.com/questions/20037122/draw-an-arrow-between-two-divs -->
+    <svg width="500" height="300">
+      <defs>
+        <marker id="arrow" markerWidth="10" markerHeight="13" refx="2" refy="6" orient="auto">
+          <path d="M2,1 L2,9 L8,6 L2,3" style="fill: #3f51b5;" />
+        </marker>
+      </defs>
+
+      <!-- Start arrow -->
+      <path d="M0,290 L10,260" class="arrow"/>
+      <text x="0" y="300" class="arrow-label">{% trans 'Start' %}</text>
+
+      <!-- City Mall A, B -->
+      <path d="M30,220 L30,190" class="arrow"/>
+      <text x="20" y="215" class="arrow-label">A</text>
+      <path d="M75,270 L170,285" class="arrow"/>
+      <text x="85" y="285" class="arrow-label">B</text>
+
+      <!-- South A, B -->
+      <path d="M175,270 L95,255" class="arrow"/>
+      <text x="160" y="265" class="arrow-label">A</text>
+      <path d="M245,290 L355,280" class="arrow"/>
+      <text x="255" y="285" class="arrow-label">B</text>
+
+      <!-- Railington A, B -->
+      <path d="M370,260 L90,240" class="arrow"/>
+      <text x="350" y="255" class="arrow-label">A</text>
+      <path d="M420,240 L430,200" class="arrow"/>
+      <text x="425" y="235" class="arrow-label">B</text>
+
+      <!-- West A, B -->
+      <path d="M75,150 L380,150" class="arrow"/>
+      <text x="100" y="162" class="arrow-label">A</text>
+      <path d="M75,160 L130,175" class="arrow"/>
+      <text x="100" y="185" class="arrow-label">B</text>
+
+      <!-- Central A, B -->
+      <path d="M140,190 L80,220" class="arrow"/>
+      <text x="120" y="210" class="arrow-label">A</text>
+      <path d="M200,180 L250,190" class="arrow"/>
+      <text x="205" y="195" class="arrow-label">B</text>
+
+      <!-- Midway A, B -->
+      <path d="M300,165 L310,120" class="arrow"/>
+      <text x="305" y="163" class="arrow-label">A</text>
+      <path d="M330,200 L370,240" class="arrow"/>
+      <text x="340" y="205" class="arrow-label">B</text>
+
+      <!-- East A, B -->
+      <path d="M390,135 L85,135" class="arrow"/>
+      <text x="370" y="130" class="arrow-label">A</text>
+      <path d="M420,190 L410,230" class="arrow"/>
+      <text x="405" y="205" class="arrow-label">B</text>
+
+      <!-- Suburbopolis A, B -->
+      <path d="M90,80 L50,110" class="arrow"/>
+      <text x="73" y="85" class="arrow-label">A</text>
+      <path d="M150,120 L150,160" class="arrow"/>
+      <text x="153" y="130" class="arrow-label">B</text>
+
+      <!-- North A, B -->
+      <path d="M300,90 L205,165" class="arrow"/>
+      <text x="275" y="100" class="arrow-label">A</text>
+      <path d="M300,60 L170,80" class="arrow"/>
+      <text x="280" y="60" class="arrow-label">B</text>
+    </svg>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/trainsylvania-complete/css/trainsylvania-complete.css' %}">
+{% endblock css %}

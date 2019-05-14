@@ -1,0 +1,16 @@
+.braille-dot {
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  margin: 0.1rem;
+  border: 1px solid black;
+  border-radius: 50%;
+}
+
+.braille-dot-white {
+  background-color: white;
+}
+
+.braille-dot-black {
+  background-color: black;
+}

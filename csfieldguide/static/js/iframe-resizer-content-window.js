@@ -1,1 +1,1 @@
-require('iframe-resizer/src/iframeResizer.contentWindow.js');
+require('iframe-resizer/js/iframeResizer.contentWindow.js');
