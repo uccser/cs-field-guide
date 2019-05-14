@@ -1,4 +1,4 @@
-# Delayed Checksum Interactive
+# Delayed Checkbox Interactive
 
 **Author:** Jack Morgan
 
@@ -6,7 +6,7 @@ This interactive is created for the HCI chapter in testing user delays. The user
 
 ## Required Files
 
-- This interactive uses jQuery to select the checkbox (loaded from base-files folder)
+- This interactive uses jQuery to select the checkbox
 
 ## Known issues
 
