@@ -11,16 +11,16 @@
           {% trans "Available Menu Items" %}
         </button>
         <div class="dropdown-menu" aria-labelledby="interactive-available-menu-items-button">
-          <a class="dropdown-item" onclick="alert('{% trans "Error: Answers unavailable!" %}');">
+          <a class="dropdown-item" data-feedback="{% trans 'Error: Answers unavailable!' %}">
             {% trans "Download answers" %}
           </a>
-          <a class="dropdown-item" onclick="alert('{% trans "Error: YouTube unavailable!" %}');">
+          <a class="dropdown-item" data-feedback="{% trans 'Error: YouTube unavailable!' %}">
             {% trans "Watch YouTube videos" %}
           </a>
-          <a class="dropdown-item" onclick="alert('{% trans "Error: Facebook unavailable!" %}');">
+          <a class="dropdown-item" data-feedback="{% trans 'Error: Facebook unavailable!' %}">
             {% trans "Open Facebook" %}
           </a>
-          <a class="dropdown-item" onclick="alert('{% trans "Error: Games unavailable!" %}');">
+          <a class="dropdown-item" data-feedback="{% trans 'Error: Games unavailable!' %}">
             {% trans "Play games" %}
           </a>
         </div>
@@ -28,3 +28,7 @@
     </div> 
   </div>
 {% endblock html %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/available-menu-items/js/available-menu-items.js' %}"></script>
+{% endblock js %}
