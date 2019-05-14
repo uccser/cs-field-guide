@@ -1,0 +1,76 @@
+.three-tier-title {
+    font-size: 26pt;
+}
+
+.tier-layer {
+    border: 5px solid;
+    padding: 10px;
+    padding-right: 20px;
+}
+
+.tier-text {
+    line-height: 100px;
+    font-size: 20pt;
+    text-align: right;
+    vertical-align: middle;
+}
+
+.small-tier-text {
+    font-size: 10pt;
+    text-align: left;
+}
+
+.tier-image {
+    height: 100px;
+}
+
+// Standard bootstrap-defined large devices boundary
+@media screen and (max-width: 992px) {
+    .three-tier-title {
+        font-size: 16pt;
+    }
+
+    .tier-layer {
+        border-width: 3px;
+        padding-right: 10px;
+    }
+
+    .tier-text {
+        line-height: 80px;
+        font-size: 14pt;
+    }
+
+    .small-tier-text {
+        font-size: 8pt;
+    }
+
+    .tier-image {
+        height: 80px;
+    }
+}
+
+// Standard bootstrap-defined small devices boundary
+@media screen and (max-width: 576px) {
+    .three-tier-title {
+        font-size: 16pt;
+    }
+
+    .tier-layer {
+        border-width: 2px;
+        padding-right: 10px;
+    }
+
+    .tier-text {
+        line-height: 30px;
+        font-size: 16pt;
+        text-align: center;
+    }
+
+    .small-tier-text {
+        font-size: 6pt;
+    }
+
+    .tier-image {
+        height: 60px;
+    }
+}
