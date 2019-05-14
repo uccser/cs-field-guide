@@ -4,15 +4,15 @@
 {% load static %}
 
 {% block html %}
-    <div id="interactive-payment-interface" class="mb-3">
-        <div>
-            <label for="interactive-payment-interface-input"> <h3>{% trans "Payment Amount" %}</h3></label>
-            <div>
-              <input type="text" id="interactive-payment-interface-input" placeholder="{% trans 'How much do you want to pay?' %}"/>
-            </div>
-        </div>
-        <div id="interactive-payment-interface-message"></div>
+  <div id="interactive-payment-interface" class="container-fluid mb-3">
+    <div class="row justify-content-center">
+      <div class="form-group">
+        <label for="interactive-payment-interface-input"><h3>{% trans "Payment Amount" %}</h3></label>
+        <input type="text" class="form-control" id="interactive-payment-interface-input" placeholder="{% trans 'How much to pay?' %}"/>
+        <small id="interactive-payment-interface-message"></small>
+      </div>
     </div>
+  </div>
 {% endblock html %}
 
 {% block css %}
