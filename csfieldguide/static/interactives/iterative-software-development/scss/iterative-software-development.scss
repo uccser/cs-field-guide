@@ -1,0 +1,109 @@
+.iterative-software-development {
+    border: 2px solid;
+    padding: 20px;
+    background-color: #ffffff;
+}
+
+.iterative-software-title {
+    font-size: 20pt;
+}
+
+.iterative-software-box {
+    border: 1px solid;
+    font-size: 12pt;
+    line-height: 66px;
+    text-align: center;
+    background-color: #cfe2f3;
+    position: relative;
+}
+
+.iterative-feedback-text {
+    color: #000000;
+    font-size: 10pt;
+    text-align: center;
+    position: relative;
+    transform: translate(0px, -20px);
+}
+
+.long-feedback {
+    display: block;
+}
+
+.short-feedback {
+    display: none;
+}
+
+.arrow {
+    stroke: #000000;
+    stroke-width: 2px;
+    fill: none;
+    marker-end: url(#arrowhead);
+}
+
+.arrowhead {
+    fill: #000000;
+}
+
+.arrow.grey {
+    stroke: #666666;
+    marker-end: url(#grey-arrowhead);
+}
+
+.arrowhead.grey {
+    fill: #666666;
+}
+
+.iterative-software-svg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+
+@media screen and (max-width: 600px) {
+    .iterative-software-development {
+        padding: 10px;
+    }
+
+    .iterative-software-title {
+        font-size: 16pt;
+    }
+
+    .iterative-software-box {
+        font-size: 10pt;
+        line-height: 50px;
+    }
+
+    .iterative-feedback-text {
+        font-size: 6pt;
+        transform: translate(0px, -10px);
+    }
+}
+
+@media screen and (max-width: 440px) {
+    .iterative-software-development {
+        padding: 5px;
+    }
+
+    .iterative-software-title {
+        font-size: 12pt;
+    }
+
+    .iterative-software-box {
+        font-size: 8pt;
+        line-height: 30px;
+    }
+
+    .iterative-feedback-text {
+        font-size: 6pt;
+    }
+
+    .long-feedback {
+        display: none;
+    }
+    
+    .short-feedback {
+        display: block;
+    }
+}

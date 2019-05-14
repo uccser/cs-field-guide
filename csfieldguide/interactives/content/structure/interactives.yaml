@@ -179,6 +179,10 @@ image-bit-comparer:
   languages:
     en: interactives/image-bit-comparer.html
   is_interactive: true
+iterative-software-development:
+  languages:
+    en: interactives/iterative-software-development.html
+  is_interactive: false
 udp-layers:
   languages:
     en: interactives/udp-layers.html
@@ -327,9 +331,17 @@ sorting-algorithms:
   languages:
     en: interactives/sorting-algorithms.html
   is_interactive: true
+system-layers:
+  languages:
+    en: interactives/system-layers.html
+  is_interactive: false
 tcp-segment:
   languages:
     en: interactives/tcp-segment.html
+  is_interactive: false
+three-tier-website:
+  languages:
+    en: interactives/three-tier-website.html
   is_interactive: false
 trainsylvania:
   languages:
@@ -373,3 +385,7 @@ unicode-length:
 #   languages:
 #     en: interactives/viola-jones-face-detector.html
 #   is_interactive: true
+waterfall-process:
+  languages:
+    en: interactives/waterfall-process.html
+  is_interactive: false
