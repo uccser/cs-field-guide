@@ -4,7 +4,7 @@
 {% load static %}
 
 {% block html %}
-  <div class="interactive-close-window container-fluid">
+  <div id="interactive-close-window" class="container-fluid text-center">
     <div class="row justify-content-center mb-3">
       <div class="col-12">
         <h3>{% trans "Do you wish to close this window?" %}</h3>
@@ -16,10 +16,6 @@
     </div>
   </div>
 {% endblock html %}
-
-{% block css %}
-  <link rel="stylesheet" href="{% static 'interactives/close-window/css/close-window.css' %}">
-{% endblock css %}
 
 {% block js %}
   <script type="text/javascript" src="{% static 'interactives/close-window/js/close-window.js' %}"></script>
