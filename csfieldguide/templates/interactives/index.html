@@ -9,11 +9,11 @@
 {% endblock title %}
 
 {% block page_heading %}
-  <h1 id="interactives" class="section-heading anchor-link">{% trans 'Interactives' %}</h1>
+  <h1 id="interactives" class="section-heading anchor-link">Interactives</h1>
 {% endblock page_heading %}
 
 {% block content %}
-  <h2>{% trans 'List of interactives by chapter' %}</h2>
+  <h2>List of interactives by chapter</h2>
   {% for chapter in chapters %}
     <h3>{{ chapter.name }}</h3>
     {% if chapter.interactives.all %}
@@ -27,11 +27,11 @@
         {% endfor %}
       </div>
     {% else %}
-      <p>{% trans 'No interactives are available for {{ chapter.name }}' %}'.</p>
+      <p>No interactives are available for {{ chapter.name }}.</p>
     {% endif %}
   {% endfor %}
 
-  <h2>{% trans 'List of interactives alphabetically' %}</h2>
+  <h2>List of interactives alphabetically</h2>
   {% if interactives %}
     <div class="row">
       {% for interactive in interactives %}
@@ -43,6 +43,6 @@
       {% endfor %}
     </div>
   {% else %}
-    <p>{% trans 'No interactives are available.' %}</p>
+    <p>No interactives are available.</p>
   {% endif %}
 {% endblock content %}
