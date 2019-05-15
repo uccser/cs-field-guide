@@ -6,7 +6,8 @@ This interactive is created for the HCI chapter in testing user delays. The user
 
 ## Required Files
 
-- This interactive uses jQuery to select the checkbox
+The interactive loads from a base website template which includes a JavaScript file containing jQuery, Bootstrap, and a few other utilities and polyfills.
+See `static/js/website.js` for a full list.
 
 ## Known issues
 
