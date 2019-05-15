@@ -29,7 +29,7 @@ The interactive loads from a base website template which includes a JavaScript f
 See `static/js/website.js` for a full list.
 
 Several [ZYNGA JavaScript Libraries](zynga.github.io/scroller/) are also used.
-Its licence, and others, is listed in the `licence.md` file.
+Its licence, and others, is listed in the `license.md` file.
 
 ## Future Plans
 

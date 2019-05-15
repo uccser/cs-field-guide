@@ -4,7 +4,6 @@
 
 This interactive allows users to perform calculations of large numbers.
 
-
 ## Required files
 
 The interactive loads from a base website template which includes a JavaScript file containing jQuery, Bootstrap, and a few other utilities and polyfills.

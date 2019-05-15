@@ -1,4 +1,4 @@
-# Big Number Calculator Interactive
+# Bin Packing Interactive
 
 **Author:** Unknown
 
