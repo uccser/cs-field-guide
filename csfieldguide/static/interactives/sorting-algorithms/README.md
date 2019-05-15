@@ -10,6 +10,7 @@ To use the interactive with 2 rows (used for merge and quick sort), add `?method
 ## Dependencies
 
 The interactive uses [Dragula](https://github.com/bevacqua/dragula) for intuitive drag and drop behaviour.
+Its licence is listed in `LICENCE-THIRD-PARTY` with a full copy available in the `third-party-licences` directory.
 
 ## Future Plans
 
