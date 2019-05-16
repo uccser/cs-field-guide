@@ -8,8 +8,8 @@
   <div class="row left-align" id="images">
     <div class="col-sm-12 col-md-12 col-lg-4" id="big-image">
       <h6>{% trans "Drag the square around the image:" %}</h6>
-      <canvas id="before-image-canvas" width="360" height="240"></canvas>
-      <canvas style="display:none" id="placeholder-canvas" width="8" height="8"></canvas>
+      <canvas id="before-image-canvas" width="360" height="240" crossorigin="anonymous"></canvas>
+      <canvas style="display:none" id="placeholder-canvas" width="8" height="8" crossorigin="anonymous"></canvas>
       <div class="draggable" id="little-drag-square"></div>
     </div>
     <div class="col-sm-12 col-md-12 col-lg-4" id="puzzle-stuff">
@@ -23,7 +23,7 @@
     </div>
     <div class="col-sm-6 col-md-4 col-lg-3" id="before">
       <h6>{% trans "Original Image Pixels" %}</h6>
-      <canvas id="before-8-by-8" width="240" height="240"></canvas>
+      <canvas id="before-8-by-8" width="240" height="240" crossorigin="anonymous"></canvas>
       <table id="before-labels-8-by-8" width="240" height="240"></table>
       <div class="switch" id="toggleNumberBefore">
         <label>{% trans "Display numbers:" %}
@@ -32,7 +32,7 @@
     </div>
     <div class="col-sm-6 col-md-4 col-lg-3" id="after">
       <h6>{% trans "Processed Image Pixels" %}</h6>
-      <canvas id="after-8-by-8" width="240" height="240"></canvas>
+      <canvas id="after-8-by-8" width="240" height="240" crossorigin="anonymous"></canvas>
       <table id="after-labels-8-by-8" width="240" height="240"></table>
       <div class="switch" id="toggleDifference">
         <label>{% trans "Difference Values:" %}
