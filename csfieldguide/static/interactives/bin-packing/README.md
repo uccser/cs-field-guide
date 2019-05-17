@@ -1,6 +1,6 @@
 # Bin Packing Interactive
 
-**Author:** Unknown
+**Author:** Isabelle Taylor
 
 This interactive allows users to pack rectangles into 'bins', attempting to use the fewest number of bins possible.
 

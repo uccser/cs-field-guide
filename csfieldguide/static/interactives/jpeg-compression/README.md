@@ -1,6 +1,6 @@
 # JPEG Compression Interactive
 
-**Author:** Unknown
+**Author:** Isabelle Taylor
 
 This interactive shows the compression of a .jpg image
 
