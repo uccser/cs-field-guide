@@ -866,7 +866,6 @@ function load_resize_image(src, user_upload=true){
             image.height = MAX_HEIGHT;
         }
         var ctx = canvas.getContext("2d");
-        ctx.crossOrigin = 'anonymous';
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         canvas.width = image.width;
         canvas.height = image.height;
@@ -883,6 +882,7 @@ function load_resize_image(src, user_upload=true){
         }
         $( '#pixel-viewer-interactive-resize-values' ).text(text)
     };
+    image.crossOrigin = 'anonymous'
     image.src = src;
 }
 

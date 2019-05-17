@@ -77,9 +77,11 @@ $(function () {
         drawPixels(data) {
             var placeholderCanvas = document.getElementById("placeholder-canvas");
             var placeholderCanvasContext = placeholderCanvas.getContext("2d");
+            placeholderCanvasContext.crossOrigin = 'anonymous';
             placeholderCanvasContext.putImageData(data, 0, 0);
 
             var zoomedBit = new Image();
+            zoomedBit.crossOrigin = 'anonymous';
             zoomedBit.src = placeholderCanvas.toDataURL();
             placeholderCanvasContext.clearRect(0, 0, 8, 8);
             var current = this;
