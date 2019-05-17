@@ -12,5 +12,4 @@ This interactive is not feature complete so will currently not handle all FSA po
 
 ## Usage
 
-This interactive does not use configuration files (unlike `fsa-light` and 
-`fsa-box`) so can be run in any interactive mode.
+This interactive does not use configuration files (unlike `fsa-light` and `fsa-box`) so can be run in any interactive mode.

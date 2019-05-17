@@ -7,10 +7,10 @@ This interactive is created for showing users how basic images can be stored wit
 
 The original code was provided by Hannah Taylor ([original program available here](http://taylormade.io/run-length-encoding.html)) with permission given to use in the CSFG. The existing program will be modified to fit the new CSFG requirements (responsive design, etc).
 
-
 ## Required Files
 
-- This interactive uses jQuery (loaded from base-files folder).
+The interactive loads from a base website template which includes a JavaScript file containing jQuery, Bootstrap, and a few other utilities and polyfills.
+See `static/js/website.js` for a full list.
 
 ## Possible future Plans
 

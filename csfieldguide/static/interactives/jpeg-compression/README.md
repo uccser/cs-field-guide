@@ -1,6 +1,8 @@
-# Compression Dictionary
+# JPEG Compression Interactive
 
-**Original Author:** Unknown
+**Author:** Isabelle Taylor
+
+This interactive shows the compression of a .jpg image
 
 ## Required Files
 
