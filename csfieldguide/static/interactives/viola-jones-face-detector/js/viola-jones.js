@@ -265,6 +265,7 @@ function loadResizeImage(src) {
   var sourceImage = document.getElementById('img');
   var MAX_WIDTH = 900;
   var img = new Image();
+  img.crossOrigin = 'anonymous';
   img.src = sourceImage.src;
   img.onload = function() {
     context.clearRect(0, 0, canvas.width, canvas.height);
