@@ -7,6 +7,7 @@ this.MAX_NOISE = 15;
 this.container = document.getElementById("pixel-viewer-interactive-container");
 this.content = document.getElementById("pixel-viewer-interactive-content");
 this.context = content.getContext('2d');
+context.crossOrigin = 'anonymous';
 this.canvasWidth = container.clientWidth;
 this.canvasHeight = container.clientHeight;
 this.contentWidth = 10000;
@@ -832,6 +833,7 @@ $('#pixel-viewer-interactive-show-pixel-fill').change(function() {
 function init_cache(width, height){
   piccache = Array()
   ctx = source_canvas.getContext('2d');
+  ctx.crossOrigin = 'anonymous'
   for (var col = 0; col<width; col++){
     next_col = Array(height)
     piccache.push(next_col)
@@ -864,6 +866,7 @@ function load_resize_image(src, user_upload=true){
             image.height = MAX_HEIGHT;
         }
         var ctx = canvas.getContext("2d");
+        ctx.crossOrigin = 'anonymous';
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         canvas.width = image.width;
         canvas.height = image.height;
@@ -894,9 +897,10 @@ target.addEventListener("drop", function(e){
 // Load and draw image for Canvas reference
 var source_canvas = document.getElementById('pixel-viewer-interactive-source-canvas');
 var source_canvas_context = source_canvas.getContext('2d');
+source_canvas_context.crossOrigin = 'anonymous';
 
 var source_image = new Image();
-source_image.crossOrigin = '';
+source_image.crossOrigin = 'anonymous';
 
 source_image.onload = function() {
     source_canvas_context.drawImage(source_image, 0, 0);
