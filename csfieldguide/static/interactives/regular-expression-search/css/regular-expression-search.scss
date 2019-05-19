@@ -20,3 +20,10 @@
 #interactive-regular-expression-search table td:nth-child(1) {
   font-family: monospace;
 }
+
+.CodeMirror-line {
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  padding: inherit !important;
+  font-size: 1.2em !important;
+}

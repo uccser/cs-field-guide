@@ -1,4 +1,3 @@
-before-after.js LICENSE
 
 The MIT License (MIT)
 
