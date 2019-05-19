@@ -19,8 +19,11 @@ You can reset the test anytime by refreshing the page.
 
 ## Image
 
-The image used was taken by [Jack Morgan](https://github.com/JackMorganNZ) and used with permission, under the CSFG license. The original source image (a 20MB CR2 file) can be found within the [uccser-extras repo](https://github.com/uccser/uccser-extras). The photo was taken in Thailand on holiday in 2013.
+The image used was taken by [Jack Morgan](https://github.com/JackMorganNZ) and used with permission, under the CSFG license.
+The original source image (a 20MB CR2 file) can be found within the [uccser-extras repo](https://github.com/uccser/uccser-extras).
+The photo was taken in Thailand on holiday in 2013.
 
 ## Required Files
 
-- This interactive uses jQuery (loaded from base-files folder).
+The interactive loads from a base website template which includes a JavaScript file containing jQuery, Bootstrap, and a few other utilities and polyfills.
+See `static/js/website.js` for a full list.
