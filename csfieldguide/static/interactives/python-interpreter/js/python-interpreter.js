@@ -23,7 +23,7 @@ $(document).ready(function () {
     try {
       Sk.importMainWithBody("<stdin>", false, program);
     } catch (e) {
-      console.log(e);
+      alert(e);
     }
   });
 
@@ -32,7 +32,6 @@ $(document).ready(function () {
   // Inserts two spaces instead of tabbing to the next element
   $(document).delegate('#interactive-python-interpreter-code', 'keydown', function(key) {
     if(key.which == 9) {
-      console.log('tab');
       // Tab was pressed
       key.preventDefault();
 

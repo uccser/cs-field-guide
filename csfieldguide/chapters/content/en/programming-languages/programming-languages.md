@@ -37,20 +37,20 @@ Otherwise, it will give you a quick overview so that the remainder of the chapte
 
 An example of the simplest kind of program is as follows — it has five instructions (one on each line) that are followed one after the other.
 
-```
+```python3
 print("**********************************************")
 print("**********************************************")
-print("** Welcome to computer programming, Student **")
+print("** Welcome to computer programming, student **")
 print("**********************************************")
 print("**********************************************")
 ```
 
 This program is written in a language called Python, and when the program runs, it will print the following text to the screen
 
-```
+```.html
 **********************************************
 **********************************************
-** Welcome to computer programming, Student **
+** Welcome to computer programming, student **
 **********************************************
 **********************************************
 ```
@@ -62,7 +62,7 @@ If you have a Python interpreter installed on your computer (ask your teacher if
 
 {interactive slug="python-interpreter" type="in-page"}
 
-Try changing the program so that it says your name instead of *Student*.
+Try changing the program so that it says your name instead of *student*.
 When you think you have it right, try running the program again to see.
 Make sure you don’t remove the double quotes or the parentheses (round brackets) in the program by mistake.
 What happens if you spelled "programming" wrong? Does the computer correct it? If you are completely stuck, ask your teacher for help before going any further.
@@ -72,7 +72,7 @@ You can also change the asterisks (\*) to other symbols.
  What happens if you do remove one of the double quotes or one of the parentheses? Try it!
 
 If you change a critical symbol in the program you will probably find that the Python interpreter gives an error message.
-In the Python interpreter interactive above, it says "ParseError: bad input on line 1", although different interpreters will express the error in different ways.
+In the Python interpreter interactive above, it says "SyntaxError: bad input on line 1", although different interpreters will express the error in different ways.
 If you have trouble fixing the error again, just copy the program back into Python from above.
 
 {comment jargon note on statement (vs command)}
@@ -150,12 +150,12 @@ Every symbol counts, and one small error in a program can stop it running, or ma
 
 Programs can also use *variables* to store the results of calculations in, receive user input, and make decisions (called *conditionals*, such as *if* statements).
 Try running this program.
-Enter a number of miles to convert when asked.
+Enter a number of miles to convert after `number_of_miles =`
 Don’t put units on the number you enter; for example just put "12".
 
 ```
 print("This program will convert miles to kilometers")
-number_of_miles = int(input("Number of miles: "))
+number_of_miles =
 if number_of_miles < 0:
   print("Error: Can only convert a positive number of miles!")
 else:
