@@ -4,26 +4,26 @@
 {% load static %}
 
 {% block html %}
-    <div id="interactive-rgb-mixer" class="mb-3">
-      <h3>{% trans "RGB Colour Mixer - Used by Screens" %}</h3>
-      <div id="interactive-rgb-mixer-container">
-        <div id="interactive-rgb-mixer-result"></div>
-            <div id="interactive-rgb-mixer-sliders">
-              <div>
-                <div>{% trans '<strong>Red</strong> - Currently set to <span id="interactive-rgb-mixer-red-value">127</span>' %}</div>
-                <div class="interactive-rgb-mixer-slider"></div>
-              </div>
-              <div>
-                <div>{% trans '<strong>Green</strong> - Currently set to <span id="interactive-rgb-mixer-green-value">127</span>' %}</div>
-                <div class="interactive-rgb-mixer-slider"></div>
-              </div>
-              <div>
-                <div>{% trans '<strong>Blue</strong> - Currently set to <span id="interactive-rgb-mixer-blue-value">127</span>' %}</div>
-                <div class="interactive-rgb-mixer-slider"></div>
-              </div>
-        </div>
+  <div id="interactive-rgb-mixer" class="mb-3 container-fluid">
+    <h3>{% trans "RGB Colour Mixer - Used by Screens" %}</h3>
+    <div id="interactive-rgb-mixer-container">
+      <div id="interactive-rgb-mixer-result"></div>
+        <div id="interactive-rgb-mixer-sliders">
+          <div>
+            <div>{% trans '<strong>Red</strong> - Currently set to <span id="interactive-rgb-mixer-red-value">127</span>' %}</div>
+            <div class="interactive-rgb-mixer-slider"></div>
+          </div>
+          <div>
+            <div>{% trans '<strong>Green</strong> - Currently set to <span id="interactive-rgb-mixer-green-value">127</span>' %}</div>
+            <div class="interactive-rgb-mixer-slider"></div>
+          </div>
+          <div>
+            <div>{% trans '<strong>Blue</strong> - Currently set to <span id="interactive-rgb-mixer-blue-value">127</span>' %}</div>
+            <div class="interactive-rgb-mixer-slider"></div>
+          </div>
       </div>
     </div>
+  </div>
 {% endblock html %}
 
 {% block css %}

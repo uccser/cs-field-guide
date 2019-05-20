@@ -785,6 +785,7 @@ function createPicturePicker(){
     var img_url = image_base_path + images[i]
     main_div.append(
       $("<img>")
+      .attr('crossorigin', 'anonymous')
       .attr('src', img_url)
       .attr('class', 'img-pick')
       .click(function(){load_resize_image(this.src, false);})
@@ -843,7 +844,9 @@ function get_pixel_data(col, row){
     return [255,255,255]
   } else if (piccache[col][row] == null){
     // Otherwise if we haven't already cached this then cache it
-    var value = source_canvas.getContext('2d').getImageData(col, row, 1, 1).data;
+    var source_canvas_context = source_canvas.getContext('2d');
+    source_canvas_context.crossOrigin = 'anonymous';
+    var value = source_canvas_context.getImageData(col, row, 1, 1).data;
     piccache[col][row] = value;
     return value;
   } else {

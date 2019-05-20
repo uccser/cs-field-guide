@@ -51,7 +51,7 @@ binary-mode-calculator:
     en: interactives/binary-mode-calculator.html
     de: interactives/binary-mode-calculator.html
     es: interactives/binary-mode-calculator.html
-  is_interactive: true
+  is_interactive: false
 box-rotation:
   languages:
     en: interactives/box-rotation.html
