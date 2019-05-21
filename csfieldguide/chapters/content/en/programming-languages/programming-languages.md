@@ -65,7 +65,7 @@ If you have a Python interpreter installed on your computer (ask your teacher if
 Try changing the program so that it says your name instead of *student*.
 When you think you have it right, try running the program again to see.
 Make sure you don’t remove the double quotes or the parentheses (round brackets) in the program by mistake.
-What happens if you spelled "programming" wrong? Does the computer correct it? If you are completely stuck, ask your teacher for help before going any further.
+What happens if you spell "programming" wrong? Does the computer correct it? If you are completely stuck, ask your teacher for help before going any further.
 
 Hopefully you figured out how to make the program print your name.
 You can also change the asterisks (\*) to other symbols.
