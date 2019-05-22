@@ -9,7 +9,7 @@
 {% endblock title %}
 
 {% block page_heading %}
-  Chapters
+  {% trans "Chapters" %}
 {% endblock page_heading %}
 
 {% block content %}
@@ -31,9 +31,9 @@
       {% endfor %}
     </div>
     <p class="lead text-center my-5">
-      More chapters coming soon...
+      {% trans 'More chapters coming soon...' %}'
     </p>
   {% else %}
-    <p>No chapters are available.</p>
+    <p>{% trans 'No chapters are available.' %}</p>
   {% endif %}
 {% endblock content %}
