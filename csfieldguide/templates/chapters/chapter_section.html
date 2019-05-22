@@ -36,6 +36,10 @@
       <a id="section-next-btn" href="{% url 'chapters:chapter_section' chapter.slug next_section.0.slug %}" class="btn btn-primary float-right {% if not chapter_section.translation_available %} text-muted{% endif %}">
         Next: {{ next_section.0.name }}
       </a>
+    {% elif next_chapter %}
+      <a id="section-next-btn" href="{% url 'chapters:chapter' next_chapter.0.slug %}" class="btn btn-primary float-right {% if not chapter.translation_available %} text-muted{% endif %}">
+        Next: {{ next_chapter.0.name }}
+      </a>
     {% endif %}
   </div>
 {% endblock left_column_content %}
