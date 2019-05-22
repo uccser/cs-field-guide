@@ -38,8 +38,12 @@ Does a baby photo match of a person get matched with them when they are five yea
 When they are an adult?
 Why or why not does this work?
 
-Try using [face recognition on this website](https://inspirit.github.com/jsfeat/sample_haar_face.html) to see how well the Haar face recognition system can track a face in the image.
-What prevents it from tracking a face?
-Is it affected if you cover one eye or wear a hat?
-How much can the image change before it isn't recognised as a face?
-Is it possible to get it to incorrectly recognise something that isn't a face?
+{comment Try using [face recognition on this website](https://inspirit.github.com/jsfeat/sample_haar_face.html) to see how well the Haar face recognition system can track a face in the image.}
+
+{comment What prevents it from tracking a face?}
+
+{comment Is it affected if you cover one eye or wear a hat?}
+
+{comment How much can the image change before it isn't recognised as a face?}
+
+{comment Is it possible to get it to incorrectly recognise something that isn't a face?}
