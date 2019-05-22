@@ -90,8 +90,8 @@ $(document).ready(function() {
 
     if (offerExamples) {
         $('#assembled-input').val(basicProgram);
-        $('#reset-basic').removeClass('d_none');
-        $('#reset-adv').removeClass('d_none');
+        $('#reset-basic').removeClass('d-none');
+        $('#reset-adv').removeClass('d-none');
     }
 });
 

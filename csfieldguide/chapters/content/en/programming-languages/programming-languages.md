@@ -1,11 +1,11 @@
 # Programming Languages
 
 Programming, sometimes referred to as coding, is a nuts and bolts activity for computer scientists.
-While this book won't teach you how to program (we've given some links to sites that can do this in the introduction), we are going to look at what a programming language is, and how computer scientists breathe life into a language.
+While this chapter won't teach you how to program (we've given some links to sites that can do this in the introduction), we are going to look at what a programming language is, and how computer scientists breathe life into a language.
 From a programmer's point of view, they type some instructions, and the computer follows them.
 But how does the computer know what to do?
-Bear in mind that you might be using one of the many languages such as Python, Java, Scratch, Basic or C#,  yet computers only have the hardware to follow instructions in one language: a very simple "machine code" that is difficult for humans to read and write.
-And if you invent a new programming language, how do you tell the computer how to use it?
+Bear in mind that you might be using one of the many languages such as Python, Java, Scratch, Basic or C#, yet computers only have the hardware to follow instructions in one language: a very simple "machine code" that is difficult for humans to read and write.
+Then if you invent a new programming language, how do you tell the computer how to use it?
 
 In this chapter we'll look at what happens when you write and run a program, and how this affects the way that you distribute the program for others to use.
 
@@ -56,7 +56,7 @@ This program is written in a language called Python, and when the program runs, 
 ```
 
 In order to run a Python program, we need something called a Python interpreter.
-A Python interpreter is able to read your program, and process it.
+A Python interpreter is able to read your program and process it.
 Below is a Python interpreter that you can use to run your own programs.
 If you have a Python interpreter installed on your computer (ask your teacher if you are following this book for a class and are confused) and know how to start it and run programs in it, you can use that.
 
@@ -164,9 +164,11 @@ else:
   print(number_of_kilometers)
 ```
 
-The first line is a *print* statement (which you should be very familiar with by now!). The second line asks the user for a number of miles which is converted from input text (called a string) to an integer, the third line uses an *if* statement to check if the number entered was less than 0, so that it can print an error if it is.
-Otherwise if the number was okay, the program jumps into the *else* section (the error is not printed because the *if* was not true), calculates the number of kilometers (there are 0.6214 kilometers in a mile), stores it into a *variable* called number_of_kilometers for later reference, and then the last line prints it out.
-Again, we don’t have quotes around number_of_kilometers in the last line as we want to print the value out that is stored in the number_of_kilometers variable.
+The first line is a *print* statement (which you should be very familiar with by now!).
+The second line stores a number of miles as a variable (try entering different numbers here when you test it).
+The third line uses an *if* statement to check if the number entered was less than 0, so that it can print an error if it is.
+Otherwise if the number was okay, the program jumps into the *else* section (the error is not printed because the *if* was not true), calculates the number of kilometers (there are 0.6214 kilometers in a mile), stores it into a *variable* called `number_of_kilometers` for later reference, and then the last line prints it out.
+Again, we don’t have quotes around `number_of_kilometers` in the last line as we want to print the value out that is stored in the `number_of_kilometers` variable.
 If this doesn’t make sense, don’t worry.
 You aren’t expected to know how to program for this chapter, this introduction is only intended for you to have some idea of what a program is and the things it can do.
 
@@ -183,7 +185,7 @@ Behind the scenes however, the computer was running your example programs throug
 Firstly, you might be wondering why we need languages such as Python, and why we can’t give computers instructions in English.
 If we typed into the computer "Okay computer, print me the first 5 multiples of 3", there's no reason that it would be able to understand.
 For starters, it would not know what a "multiple" is.
-And it would not even know how to go about this task.
+It would not even know how to go about this task.
 Computers cannot be told what every word means, and they cannot know how to accomplish every possible task.
 Understanding human language is a very difficult task for a computer, as you will find out in the Artificial Intelligence chapter.
 Unlike humans who have an understanding of the world, and see meaning, computers are only able to follow the precise instructions you give them.
@@ -208,7 +210,8 @@ There's a lot more about binary in the [data representation]('chapters:chapter' 
 
 {comment put in jargon buster on transistors somewhere (or in representations chapter) need to think about whether to put it here or in data representation. It's mainly something to break up the text, but the topic might be distracting here}
 
-So instead of building computers that can understand these high level instructions that you find in languages like Python (or Java, Basic, JavaScript, C and so on), we build computers that can follow a very limited set of instructions, and then we write programs that convert the instructions in the standard languages people write programs in to the simple instructions that the circuitry can directly carry out.
+So instead of building computers that can understand these high level instructions that you find in languages like Python (or Java, Basic, JavaScript, C and so on), we build computers that can follow a very limited set of instructions.
+Then we write programs that convert the instructions in the standard languages people write programs in to the simple instructions that the circuitry can directly carry out.
 The language of these simple instructions is a low level programming language often referred to as machine code.
 
 The conversion from a high level to a low level language can involve *compiling*, which replaces the high level instructions with machine code instructions that can then be run, or it can be done by *interpreting*, where each instruction is converted and followed one by one, as the program is run.
