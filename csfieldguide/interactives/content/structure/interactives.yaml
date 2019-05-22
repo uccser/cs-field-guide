@@ -263,10 +263,10 @@ pixel-viewer:
   languages:
     en: interactives/pixel-viewer.html
   is_interactive: true
-# python-interpreter:
-#   languages:
-#     en: interactives/python-interpreter.html
-#   is_interactive: true
+python-interpreter:
+  languages:
+    en: interactives/python-interpreter.html
+  is_interactive: true
 python-syntax-error:
   languages:
     en: interactives/python-syntax-error.html
