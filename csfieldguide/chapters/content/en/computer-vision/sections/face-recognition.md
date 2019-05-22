@@ -38,6 +38,9 @@ Does a baby photo match of a person get matched with them when they are five yea
 When they are an adult?
 Why or why not does this work?
 
+
+{comment The below paragraph is commented out because the link displays a 404 page and we cannot find a replacement}
+
 {comment Try using [face recognition on this website](https://inspirit.github.com/jsfeat/sample_haar_face.html) to see how well the Haar face recognition system can track a face in the image.}
 
 {comment What prevents it from tracking a face?}

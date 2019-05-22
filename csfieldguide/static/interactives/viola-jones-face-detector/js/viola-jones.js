@@ -251,7 +251,7 @@ function updateDisplay(whiteSquareIntensity, blackSquareIntensity, target) {
 
 
 /*
- * Function called when the load image button is clicked, displays file choosen.
+ * Function called when the load image button is clicked, displays file chosen.
  */
 function loadImageDialog() {
   var input = this;

@@ -5,28 +5,28 @@
 
 {% block html %}
   <div class="container">
-    <h3 class="text-center mb-2">Viola-Jones Face Detection</h3>
+    <h3 class="text-center mb-2">{% trans "Viola-Jones Face Detection" %}</h3>
     <div class="row">
       <div class="col-lg-4">
         <div class="row">
-          <p>Click and drag the five Haar features on the left side of the image, onto the faces where they are valid.</p>
+          <p>{% trans "Click and drag the five Haar features on the left side of the image, onto the faces where they are valid." %}</p>
           <div id="features"></div>
         </div>
         <div class="row">
           <p id="values">
-            <strong>White Square intensity:</strong> <span id="whiteValue">0</span></br>
-            <strong>Black Square intensity:</strong> <span id="blackValue">0</span></br>
-            <strong>Haar-like Features found:</strong> <span id="found">0</span>/5<br>
+            <strong>{% trans "White Square intensity:</strong> <span id="whiteValue">0</span>" %}</br>
+            <strong>{% trans "Black Square intensity:</strong> <span id="blackValue">0</span>" %}</br>
+            <strong>{% trans "Haar-like Features found:</strong> <span id="found">0</span>/5" %}<br>
             <em id="feedback"></em>
           </p>
           <hr>
         </div>
         <div class="row">
-          <p>Upload a custom image:</p>
+          <p>{% trans "Upload a custom image:" %}</p>
           <div class="input-group mb-3">
             <div class="custom-file">
               <input type="file" class="custom-file-input" id="viola-jones-image-input" accept="image/*">
-              <label class="custom-file-label" for="viola-jones-image-input">Choose file</label>
+              <label class="custom-file-label" for="viola-jones-image-input">{% trans "Choose file" %}</label>
             </div>
           </div>
           <button id="find-faces" class="btn btn-primary btn-sm mr-1">{% trans "Find faces" %}</button>

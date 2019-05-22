@@ -149,9 +149,8 @@ function setUpMode(){
   }
 }
 
-function addDescription(title, description){
-  // Add title and description to page
-  // $("#interactive-subtitle").gettext('Beta');
+function addDescription(description){
+  // Add description to page
   $("#pixel-viewer-extra-feature-description").html(description);
 }
 

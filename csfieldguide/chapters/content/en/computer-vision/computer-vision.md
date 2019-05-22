@@ -24,7 +24,7 @@ Here is a warning sign:
 
 {image file-path="img/chapters/steep-sign-translated.jpg" alt="Visual computing: translating a sign"}
 
-My phone has been able to translate the "careful" and "steep" characters, but it hasn’t recognised the last character in the line.
+This app has been able to translate the "careful" and "steep" characters, but it hasn’t recognised the last character in the line.
 Why do you think that might be?
 
 {panel type="teacher-note"}

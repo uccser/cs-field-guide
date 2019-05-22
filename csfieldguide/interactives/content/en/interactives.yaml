@@ -171,6 +171,6 @@ unicode-chars:
 unicode-length:
   name: Unicode Length
 viola-jones-face-detector:
-  name: Viola Jones Face Detector
+  name: Viola-Jones Face Detector
 waterfall-process:
   name: Waterfall Process
