@@ -25,8 +25,11 @@ The interactive has the following parameters to configure the interactive:
 
 ## Required files
 
-- This interactive uses MaterializeCSS, Modernizer, and jQuery (all loaded from base-files folder).
-- Several [ZYNGA JavaScript Libraries](zynga.github.io/scroller/) are used.
+The interactive loads from a base website template which includes a JavaScript file containing jQuery, Bootstrap, and a few other utilities and polyfills.
+See `static/js/website.js` for a full list.
+
+Several [ZYNGA JavaScript Libraries](zynga.github.io/scroller/) are also used.
+Its licence, and others, is listed in the `license.md` file.
 
 ## Future Plans
 

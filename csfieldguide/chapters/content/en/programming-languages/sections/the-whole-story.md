@@ -2,7 +2,7 @@
 
 There are many different programming languages, and new ones are always being invented.
 Each new language will need a new compiler and/or interpreter to be developed to support it.
-Fortunately there are good tools to help do this quickly, and some of these ideas will come up in the *Formal Languages* chapter, where things like regular expressions and grammars can be used to describe a language, and a compiler can be built automatically from the description.
+Fortunately there are good tools to help do this quickly, and some of these ideas will come up in the [Formal Languages]('chapters:chapter' 'formal-languages') chapter, where things like regular expressions and grammars can be used to describe a language, and a compiler can be built automatically from the description.
 
 The languages we have discussed in this chapter are ones that you are likely to come across in introductory programming, but there are some completely different styles of languages that have very important applications.
 There is an approach to programming called [functional programming](https://en.wikipedia.org/wiki/Functional_programming) where all operations are formulated as mathematical functions.

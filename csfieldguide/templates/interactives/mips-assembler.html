@@ -9,21 +9,27 @@
     <div id="interactive-mips-assembler" class="row justify-content-center">
       <h1>{% trans 'MIPS Assembler' %}</h1>
     </div>
-    {% url 'interactives:interactive' 'mips-simulator' as simulator_link %}
-    <p>
-      {% blocktrans %}
-      Enter MIPS code below to see the assembler output.<br>
-      Then copy the plain output to the <a href="{{simulator_link}}" target="_blank">MIPS Simulator</a> interactive to run it.<br>
-      <strong>Note:</strong> Only a subset of MIPS is implemented. Comments start with #.<br>
-      {% endblocktrans %}
-    </p>
-    <details id="details">
-      <summary>{% trans 'Supported Instructions' %}</summary>
-      {% trans 'The following instructions are supported by both MIPS interactives' %}:<br>
-      <code>sll</code>, <code>jr</code>, <code>add</code>, <code>addu</code>, <code>sub</code>, <code>subu</code>, <code>and</code>, <code>or</code>, <code>xor</code>, <code>nor</code>, <code>beq</code>, <code>bne</code>, <code>addi</code>, <code>addiu</code>, <code>andi</code>, <code>ori</code>, <code>xori</code>, <code>j</code> <br>
-      {% blocktrans %}The <code>la</code>, <code>li</code> and <code>move</code> instructions are also supported when translated to appropriate instructions from the list.{% endblocktrans %}<br>
-      {% trans 'See all MIPS instructions on <a href="https://en.wikipedia.org/wiki/MIPS_architecture" target="_blank">Wikipedia</a>.' %}
-    </details>
+    <div class="row">
+      <div class="col-md-6 col-sm-12">
+        {% url 'interactives:interactive' 'mips-simulator' as simulator_link %}
+        <p>
+          {% blocktrans %}
+          Enter MIPS code below to see the assembler output.<br>
+          Then copy the plain output to the <a href="{{simulator_link}}" target="_blank">MIPS Simulator</a> interactive to run it.<br>
+          <strong>Note:</strong> Only a subset of MIPS is implemented. Comments start with #.<br>
+          {% endblocktrans %}
+        </p>
+      </div>
+      <div class="col-md-6 col-sm-12">
+        <details id="details">
+          <summary>{% trans 'Supported Instructions' %}</summary>
+          {% trans 'The following instructions are supported by both MIPS interactives' %}:<br>
+          <code>sll</code>, <code>jr</code>, <code>add</code>, <code>addu</code>, <code>sub</code>, <code>subu</code>, <code>and</code>, <code>or</code>, <code>xor</code>, <code>nor</code>, <code>beq</code>, <code>bne</code>, <code>addi</code>, <code>addiu</code>, <code>andi</code>, <code>ori</code>, <code>xori</code>, <code>j</code> <br>
+          {% blocktrans %}The <code>la</code>, <code>li</code> and <code>move</code> instructions are also supported and assembled to appropriate instructions from the list.{% endblocktrans %}<br>
+          {% trans 'See all MIPS instructions on <a href="https://en.wikipedia.org/wiki/MIPS_architecture" target="_blank">Wikipedia</a>.' %}
+        </details>
+      </div>
+    </div>
 
     <!-- Assembler -->
     <div class="row justify-content-center">
@@ -54,7 +60,11 @@
         </div>
         <div class="form-group form-check">
           <input id="show-instructions" type="checkbox" class="form-check-input">
-          <label class="form-check-label" for="show-instructions">{% trans 'Show details' %}</label>
+          <label class="form-check-label" aria-describedby="note-block" for="show-instructions">{% trans 'Show details' %}</label>
+        </div>
+        <div class="form-group form-check">
+          <input id="show-binary" type="checkbox" class="form-check-input">
+          <label class="form-check-label" for="show-binary">{% trans 'Binary output' %}</label>
         </div>
         <div class="form-group form-check">
           <input id="show-colours" type="checkbox" class="form-check-input">
@@ -79,7 +89,7 @@
   </div>
 
   <!-- Hidden Text: Basic Example Code -->
-  <div id="basic-example" style="display: none;">.data
+  <div id="basic-example" class="d-none">.data
 str:  .asciiz "\n{% trans 'Hello World!' %}\n"
 # {% trans 'You can change what is between the quotes if you like' %}
 
@@ -127,7 +137,7 @@ jr $ra
   </div>
 
   <!-- Hidden Text: Advanced Example Code -->
-  <div id="advanced-example" style="display: none;">{% trans '# Define the data strings' %}
+  <div id="advanced-example" class="d-none">{% trans '# Define the data strings' %}
 .data
 go_str:   .asciiz "{% trans 'GO!!!!!' %}\n"
 new_line: .asciiz "\n"

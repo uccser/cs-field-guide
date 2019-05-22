@@ -4,12 +4,19 @@
 {% load static %}
 
 {% block html %}
-  <div id="interactive-delayed-checkbox">
-    <h4>{% trans "Tick the checkbox" %}</h4>
-    <input id="interactive-delayed-checkbox-box" type="checkbox" value="">
-      <div id="interactive-delayed-checkbox-feedback">
-        {% trans 'Clicked <span id="interactive-delayed-checkbox-counter">0</span> times' %}
+  <div id="interactive-delayed-checkbox" class="containter-fluid text-center">
+    <div class="row justify-content-center">
+      <div class="col-12">
+        <h4>{% trans "Tick the checkbox" %}</h4>
       </div>
+      <div class="col-12">
+        <input id="interactive-delayed-checkbox-box" type="checkbox" value="">
+          <div id="interactive-delayed-checkbox-feedback">
+            {% trans 'Clicked <span id="interactive-delayed-checkbox-counter">0</span> times' %}
+          </div>
+        </input>
+      </div>
+    </div>
   </div>
 {% endblock html %}
 

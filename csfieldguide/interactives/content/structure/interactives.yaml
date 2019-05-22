@@ -51,7 +51,7 @@ binary-mode-calculator:
     en: interactives/binary-mode-calculator.html
     de: interactives/binary-mode-calculator.html
     es: interactives/binary-mode-calculator.html
-  is_interactive: true
+  is_interactive: false
 box-rotation:
   languages:
     en: interactives/box-rotation.html
@@ -217,10 +217,6 @@ mips-simulator:
   languages:
     en: interactives/mips-simulator.html
   is_interactive: true
-# ncea-guide-selector:
-#   languages:
-#     en: interactives/ncea-guide-selector.html
-#   is_interactive: false
 nfa-guesser:
   languages:
     en: interactives/nfa-guesser.html
@@ -267,10 +263,10 @@ pixel-viewer:
   languages:
     en: interactives/pixel-viewer.html
   is_interactive: true
-# python-interpreter:
-#   languages:
-#     en: interactives/python-interpreter.html
-#   is_interactive: true
+python-interpreter:
+  languages:
+    en: interactives/python-interpreter.html
+  is_interactive: true
 python-syntax-error:
   languages:
     en: interactives/python-syntax-error.html

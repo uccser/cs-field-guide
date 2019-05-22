@@ -15,7 +15,8 @@ This is the base system for a series of interactives used to show how to transla
 
 ## Required files
 
-- No required files
+The interactive loads from a base website template which includes a JavaScript file containing jQuery, Bootstrap, and a few other utilities and polyfills.
+See `static/js/website.js` for a full list.
 
 ## Licences
 
