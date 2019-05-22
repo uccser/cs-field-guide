@@ -234,11 +234,11 @@
                 <p class="text-center">
                   {% if teacher_mode %}
                   <a href="{% url 'general:teacher_mode_logout' %}?next={{ request.path }}">
-                    Switch to student mode
+                    {% trans 'Switch to student mode' %}
                   </a>
                   {% else %}
                   <a href="{% url 'general:teacher_mode_login' %}?next={{ request.path }}">
-                    Switch to teacher mode
+                    { % trans 'Switch to teacher mode' %}
                   </a>
                   {% endif %}
                 </p>
