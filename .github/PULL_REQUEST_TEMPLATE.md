@@ -19,6 +19,7 @@ This is simply a reminder of what we are going to look for before merging your c
 - [ ] The pull request is requesting a merge into the `develop` branch.
 - [ ] I have added necessary documentation (if appropriate).
 - [ ] If I've added/modified/deleted a third-party system, I've updated the relevant license files.
+- [ ] I have added myself to the 'Community Contributors' section of `csfieldguide/templates/appendices/contributors.html`
 
 ### Further comments
 
