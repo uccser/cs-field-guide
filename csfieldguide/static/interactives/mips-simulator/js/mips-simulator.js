@@ -8,7 +8,6 @@ var urlParameters = require('../../../js/third-party/url-parameters.js');
 // Types of instructions
 const TYPE_UNSUPPORTED = -2;
 const TYPE_INVALID = -1;
-const TYPE_UNASSIGNED = 0;
 const TYPE_R = 1;
 const TYPE_I = 2;
 const TYPE_J = 3;
@@ -49,6 +48,7 @@ const TXT_TXT = gettext("Print a string");
 const TXT_LOAD = gettext("Loading");
 const TXT_STORE = gettext("stored in");
 const TXT_POINTS = gettext("points to");
+const TXT_JUMP = gettext("Jump to");
 const TXT_NOTHING = gettext("nothing");
 const TXT_BRANCH = gettext("Branching");
 const TXT_NO_BRANCH = gettext("Not Branching");
@@ -60,11 +60,13 @@ var SHOWCONTEXT;
 var SHOWREG;
 var SHOWCOLOUR;
 
-// Stores a backup of the default code and registers button handler functions
+/**
+ * Stores a backup of the default code and registers button handler functions
+ */
 $(document).ready(function() {
     var basicProgram = $('#basic-example').html();
     var advancedProgram = $('#advanced-example').html();
-    $('#assembled-input').val(basicProgram);
+    $('#assembled-input').val('');
     $('#program-output').html('');
     var offerExamples = urlParameters.getUrlParameter('offer-examples');
     
@@ -86,14 +88,16 @@ $(document).ready(function() {
         $('#program-output').html('');
     });
 
-    if (!offerExamples) {
-        $('#assembled-input').val('');
-        $('#reset-basic').hide();
-        $('#reset-adv').hide();
+    if (offerExamples) {
+        $('#assembled-input').val(basicProgram);
+        $('#reset-basic').removeClass('d-none');
+        $('#reset-adv').removeClass('d-none');
     }
 });
 
-// Interprets and runs each line of assembled MIPS code
+/**
+ * Interprets and runs each line of assembled MIPS code
+ */
 function run() {
     SHOWCONTEXT = $('#show-context').is(':checked');
     SHOWREG = $('#show-registers').is(':checked');
@@ -118,7 +122,7 @@ function run() {
     // Parse the code
     lines = mipsText.split(/\r|\n/);
 
-    for (i=0; i < lines.length; i++) {
+    for (var i=0; i < lines.length; i++) {
         line = lines[i].trim();
 
         // Interpret initial lines as instructions
@@ -170,14 +174,15 @@ function run() {
     var instructionNum = 0;
     var isSuccess = true;
     while (!quit && instructionNum < MAX_EXECUTIONS) {
-        instructionSet = instructions[(instrAddr - INSTRUCTION_START) / 4];
+        instrIndex = (instrAddr - INSTRUCTION_START) / 4;
+        instructionSet = instructions[instrIndex];
         instrHex = instructionSet[1];
         input = instructionSet[2];
         instrExecs = null;
 
         if (instrHex == 0x0000000c) {
             if (SHOWCONTEXT) {
-                PRINTTEXT += TXT_LOAD + " " + colour(hexOfInt(instrAddr, 8), COLOUR_ADDR) + " : " + colour(hexOfInt(instrHex, 8), COLOUR_INSTR) + "; |" + colour(TXT_INSTRUCTION + ":" + instructionNum, COLOUR_INPUT) + "| " + colour("syscall", COLOUR_INSTR) + "<br>";
+                PRINTTEXT += TXT_LOAD + " " + colour(hexOfInt(instrAddr, 8), COLOUR_ADDR) + " : " + colour(hexOfInt(instrHex, 8), COLOUR_INSTR) + "; |" + colour(TXT_INSTRUCTION + ":" + instrIndex, COLOUR_INPUT) + "| " + colour("syscall", COLOUR_INSTR) + "<br>";
             }
             instrType = TYPE_SYSCALL;
         } else {
@@ -189,7 +194,7 @@ function run() {
             if (instrHex == 0x03e00008) {
                 quit = true;
                 if (SHOWCONTEXT) {
-                    PRINTTEXT += TXT_LOAD + " " + colour(hexOfInt(instrAddr, 8), COLOUR_ADDR) + " : " + colour(hexOfInt(instrHex, 8), COLOUR_INSTR) + "; |" + colour(TXT_INSTRUCTION + ":" + instructionNum, COLOUR_INPUT) + "| " + colour("jr $ra", COLOUR_INSTR) + "<br>";
+                    PRINTTEXT += TXT_LOAD + " " + colour(hexOfInt(instrAddr, 8), COLOUR_ADDR) + " : " + colour(hexOfInt(instrHex, 8), COLOUR_INSTR) + "; |" + colour(TXT_INSTRUCTION + ":" + instrIndex, COLOUR_INPUT) + "| " + colour("jr $ra", COLOUR_INSTR) + "<br>";
                 }
             } else {
                 if (instrDecoded == TYPE_UNSUPPORTED) {
@@ -203,7 +208,7 @@ function run() {
                 }
 
                 if (SHOWCONTEXT) {
-                    PRINTTEXT += TXT_LOAD + " " + colour(hexOfInt(instrAddr, 8), COLOUR_ADDR) + " : " + colour(hexOfInt(instrHex, 8), COLOUR_INSTR) + "; |" + colour(TXT_INSTRUCTION + ":" + instructionNum, COLOUR_INPUT) + "| " + colour(instrDecoded, COLOUR_INSTR) + "<br>";
+                    PRINTTEXT += TXT_LOAD + " " + colour(hexOfInt(instrAddr, 8), COLOUR_ADDR) + " : " + colour(hexOfInt(instrHex, 8), COLOUR_INSTR) + "; |" + colour(TXT_INSTRUCTION + ":" + instrIndex, COLOUR_INPUT) + "| " + colour(instrDecoded, COLOUR_INSTR) + "<br>";
                 }
             }
         }
@@ -226,8 +231,10 @@ function run() {
     present(PRINTTEXT, isSuccess);
 }
 
-// Writes the given text to the Program Output textarea,
-// along with a message depending on the value of isSuccess
+/**
+ * Writes the given text to the Program Output textarea,
+ * along with a message depending on the value of isSuccess
+ */
 function present(text, isSuccess) {
     if (isSuccess) {
         text += "<br>" + TXT_END;
@@ -237,14 +244,10 @@ function present(text, isSuccess) {
     $("#program-output").html(text);
 }
 
-// Returns the last element of the given array
-// This equates to the python expression array[-1]
-function last(array) {
-    return array[array.length - 1];
-}
-
-// Returns the given string wrapped appropriately to display in the given colour
-// If the global SHOWCOLOUR is false, returns the given string uncoloured
+/**
+ * Returns the given string wrapped appropriately to display in the given colour
+ * If the global SHOWCOLOUR is false, returns the given string uncoloured
+ */
 function colour(text, colour) {
     if (SHOWCOLOUR) {
         return '<span style="color:' + colour + '">' + text + '</span>';
@@ -253,10 +256,12 @@ function colour(text, colour) {
     }
 }
 
-// Returns the string of an integer as a zero-extended n-character hex value
-// If the hex is less than n/2 bytes, zeros will be appended to the front
-// If the hex is greater than n/2 bytes, a larger than n-character string will be returned
-// E.g: hexOfInt(20, 4) = "0014", hexOfint(20, 1) = "14"
+/**
+ * Returns the string of an integer as a zero-extended n-character hex value
+ * If the hex is less than n/2 bytes, zeros will be appended to the front
+ * If the hex is greater than n/2 bytes, a larger than n-character string will be returned
+ * E.g: hexOfInt(20, 4) = "0014", hexOfint(20, 1) = "14"
+ */
 function hexOfInt(num, n) {
     var returnString = num.toString(16);
     if (returnString.length < n) {
@@ -266,8 +271,10 @@ function hexOfInt(num, n) {
     }
 }
 
-// Executes the given instruction, or does nothing if it can't be interpreted
-// Returns the address of the next instruction to execute, or -1 if an error occurs
+/**
+ * Executes the given instruction, or does nothing if it can't be interpreted
+ * Returns the address of the next instruction to execute, or -1 if an error occurs
+ */
 function execute(type, args, addr) {
     var nextAddr;
     var opcode;
@@ -325,10 +332,12 @@ function execute(type, args, addr) {
     return nextAddr;
 }
 
-// Returns a list of 3 values interpreted from the input instruction hex, or a list of 3 TYPE_INVALIDs if it is invalid
-// 1) The Type of instruction
-// 2) The instruction in its dissassembled state, or TYPE_UNSUPPORTED if it is unsupported
-// 3) The instruction arguments in the format used to execute them
+/**
+ * Returns a list of 3 values interpreted from the input instruction hex, or a list of 3 TYPE_INVALIDs if it is invalid
+ * 1) The Type of instruction
+ * 2) The instruction in its dissassembled state, or TYPE_UNSUPPORTED if it is unsupported
+ * 3) The instruction arguments in the format used to execute them
+ */
 function interpret(hex) {
     var name;
     var type;
@@ -399,7 +408,9 @@ function interpret(hex) {
     return [type, returnText, executables];
 }
 
-// Returns a list of each argument present in the given hex, assuming it is a Type R instruction
+/**
+ * Returns a list of each argument present in the given hex, assuming it is a Type R instruction
+ */
 function disassembleR(hex) {
     return [
             (0xFC000000 & hex) >> 26,
@@ -411,7 +422,9 @@ function disassembleR(hex) {
             ]
 }
 
-// Returns a list of each argument present in the given hex, assuming it is a Type I instruction
+/**
+ * Returns a list of each argument present in the given hex, assuming it is a Type I instruction
+ */
 function disassembleI(hex) {
     return [
             (0xFC000000 & hex) >> 26,
@@ -421,7 +434,9 @@ function disassembleI(hex) {
             ]
 }
 
-// Returns a list of each argument present in the given hex, assuming it is a Type J instruction
+/**
+ * Returns a list of each argument present in the given hex, assuming it is a Type J instruction
+ */
 function disassembleJ(hex) {
     return [
             (0xFC000000 & hex) >> 26,
@@ -429,7 +444,9 @@ function disassembleJ(hex) {
             ]
 }
 
-// Returns the operation name associated with the given type and opcode
+/**
+ * Returns the operation name associated with the given type and opcode
+ */
 function operation(type, opcode) {
     var returnCode;
     if (type == TYPE_R) {
@@ -486,8 +503,10 @@ function operation(type, opcode) {
     return returnCode;
 }
 
-// Executes an sll instruction on the given arguments
-// Returns the address of the next instruction to execute, given sll is stored at the given address
+/**
+ * Executes an sll instruction on the given arguments
+ * Returns the address of the next instruction to execute, given sll is stored at the given address
+ */
 function execute_sll (args, addr) {
     // sll $dest, $op1, shift
     
@@ -506,8 +525,10 @@ function execute_sll (args, addr) {
     return addr + 4;
 }
 
-// Executes a jr instruction on the given arguments
-// Returns the address of the next instruction to execute, i.e. the value of the given register
+/**
+ * Executes a jr instruction on the given arguments
+ * Returns the address of the next instruction to execute, i.e. the value of the given register
+ */
 function execute_jr (args, addr) {
     // jr $reg
     var addr = args[1];
@@ -522,8 +543,10 @@ function execute_jr (args, addr) {
     return REGISTERS[addr];
 }
 
-// Executes an add instruction on the given arguments
-// Returns the address of the next instruction to execute, given add is stored at the given address
+/**
+ * Executes an add instruction on the given arguments
+ * Returns the address of the next instruction to execute, given add is stored at the given address
+ */
 function execute_add (args, addr) {
     // add $dest, $op1, $op2
     
@@ -546,8 +569,10 @@ function execute_add (args, addr) {
     return addr + 4
 }
 
-// Executes an addu instruction on the given arguments
-// Returns the address of the next instruction to execute, given addu is stored at the given address
+/**
+ * Executes an addu instruction on the given arguments
+ * Returns the address of the next instruction to execute, given addu is stored at the given address
+ */
 function execute_addu (args, addr) {
     // addu $dest, $op1, $op2
         
@@ -570,8 +595,10 @@ function execute_addu (args, addr) {
     return addr + 4
 }
 
-// Executes a sub instruction on the given arguments
-// Returns the address of the next instruction to execute, given sub is stored at the given address
+/**
+ * Executes a sub instruction on the given arguments
+ * Returns the address of the next instruction to execute, given sub is stored at the given address
+ */
 function execute_sub (args, addr) {
     // sub $dest, $op1, $op2
     
@@ -594,8 +621,10 @@ function execute_sub (args, addr) {
     return addr + 4
 }
 
-// Executes a subu instruction on the given arguments
-// Returns the address of the next instruction to execute, given subu is stored at the given address
+/**
+ * Executes a subu instruction on the given arguments
+ * Returns the address of the next instruction to execute, given subu is stored at the given address
+ */
 function execute_subu (args, addr) {
     // subu $dest, $op1, $op2
     
@@ -618,8 +647,10 @@ function execute_subu (args, addr) {
     return addr + 4
 }
 
-// Executes an and instruction on the given arguments
-// Returns the address of the next instruction to execute, given and is stored at the given address
+/**
+ * Executes an and instruction on the given arguments
+ * Returns the address of the next instruction to execute, given and is stored at the given address
+ */
 function execute_and (args, addr) {
     // and $dest, $op1, $op2
         
@@ -642,8 +673,10 @@ function execute_and (args, addr) {
     return addr + 4
 }
 
-// Executes an or instruction on the given arguments
-// Returns the address of the next instruction to execute, given or is stored at the given address
+/**
+ * Executes an or instruction on the given arguments
+ * Returns the address of the next instruction to execute, given or is stored at the given address
+ */
 function execute_or (args, addr) {
     // or $dest, $op1, $op2
         
@@ -666,8 +699,10 @@ function execute_or (args, addr) {
     return addr + 4
 }
 
-// Executes a xor instruction on the given arguments
-// Returns the address of the next instruction to execute, given xor is stored at the given address
+/**
+ * Executes a xor instruction on the given arguments
+ * Returns the address of the next instruction to execute, given xor is stored at the given address
+ */
 function execute_xor (args, addr) {
     // xor $dest, $op1, $op2
         
@@ -690,8 +725,10 @@ function execute_xor (args, addr) {
     return addr + 4
 }
 
-// Executes a nor instruction on the given arguments
-// Returns the address of the next instruction to execute, given nor is stored at the given address
+/**
+ * Executes a nor instruction on the given arguments
+ * Returns the address of the next instruction to execute, given nor is stored at the given address
+ */
 function execute_nor (args, addr) {
     // nor $dest, $op1, $op2
         
@@ -714,8 +751,10 @@ function execute_nor (args, addr) {
     return addr + 4
 }
 
-// Executes a beq instruction on the given arguments
-// Returns the address of the next instruction to execute, given beq is stored at the given address
+/**
+ * Executes a beq instruction on the given arguments
+ * Returns the address of the next instruction to execute, given beq is stored at the given address
+ */
 function execute_beq (args, addr) {
     // beq $op1, $op2, [num instructions to skip]
     
@@ -744,8 +783,10 @@ function execute_beq (args, addr) {
     }
 }
 
-// Executes a bne instruction on the given arguments
-// Returns the address of the next instruction to execute, given bne is stored at the given address
+/**
+ * Executes a bne instruction on the given arguments
+ * Returns the address of the next instruction to execute, given bne is stored at the given address
+ */
 function execute_bne (args, addr) {
     // bne $op1, $op2, [num instructions to skip]
         
@@ -774,8 +815,10 @@ function execute_bne (args, addr) {
     }
 }
 
-// Executes an addi instruction on the given arguments
-// Returns the address of the next instruction to execute, given addi is stored at the given address
+/**
+ * Executes an addi instruction on the given arguments
+ * Returns the address of the next instruction to execute, given addi is stored at the given address
+ */
 function execute_addi (args, addr) {
     // addi $dest, $operand, imm
 
@@ -798,8 +841,10 @@ function execute_addi (args, addr) {
     return addr + 4;
 }
 
-// Executes an addiu instruction on the given arguments
-// Returns the address of the next instruction to execute, given addiu is stored at the given address
+/**
+ * Executes an addiu instruction on the given arguments
+ * Returns the address of the next instruction to execute, given addiu is stored at the given address
+ */
 function execute_addiu (args, addr) {
     // addiu $dest, $operand, imm
 
@@ -818,8 +863,10 @@ function execute_addiu (args, addr) {
     return addr + 4;
 }
 
-// Executes an andi instruction on the given arguments
-// Returns the address of the next instruction to execute, given andi is stored at the given address
+/**
+ * Executes an andi instruction on the given arguments
+ * Returns the address of the next instruction to execute, given andi is stored at the given address
+ */
 function execute_andi (args, addr) {
     // andi $dest, $operand, imm
 
@@ -838,8 +885,10 @@ function execute_andi (args, addr) {
     return addr + 4;
 }
 
-// Executes an ori instruction on the given arguments
-// Returns the address of the next instruction to execute, given ori is stored at the given address
+/**
+ * Executes an ori instruction on the given arguments
+ * Returns the address of the next instruction to execute, given ori is stored at the given address
+ */
 function execute_ori (args, addr) {
     // ori $dest, $operand, imm
 
@@ -858,8 +907,10 @@ function execute_ori (args, addr) {
     return addr + 4;
 }
 
-// Executes a xori instruction on the given arguments
-// Returns the address of the next instruction to execute, given xori is stored at the given address
+/**
+ * Executes a xori instruction on the given arguments
+ * Returns the address of the next instruction to execute, given xori is stored at the given address
+ */
 function execute_xori (args, addr) {
     // xori $dest, $operand, imm
 
@@ -878,18 +929,22 @@ function execute_xori (args, addr) {
     return addr + 4;
 }
 
-// Executes a j instruction on the given arguments
-// Returns the address of the next instruction to execute
+/**
+ * Executes a j instruction on the given arguments
+ * Returns the address of the next instruction to execute
+ */
 function execute_j (args) {
     // j targetAddr
     if (SHOWREG) {
-        PRINTTEXT += colour("j", COLOUR_INSTR) + ": " + colour(hexOfInt(args[1], 8), COLOUR_ADDR) + "<br>";
+        PRINTTEXT += colour("j", COLOUR_INSTR) + ": " + TXT_JUMP + " " + colour(hexOfInt(args[1], 8), COLOUR_ADDR) + "<br>";
     }
     return args[1];
 }
 
-// Executes a syscall instruction on $a0 and $v0
-// Returns nothing unless there's an error
+/**
+ * Executes a syscall instruction on $a0 and $v0
+ * Returns 0, or -1 if there's an error
+ */
 function execute_syscall (addr) {
     // syscall
 
@@ -921,9 +976,12 @@ function execute_syscall (addr) {
     }
     REGISTERS[a] = null;
     REGISTERS[v] = null;
+    return 0;
 }
 
-// Interprets and returns the string stored in the given and subsequent addresses
+/**
+ * Interprets and returns the string stored in the given and subsequent addresses
+ */
 function interpretString(addr) {
     var returnText = "";
     var nextData = DATA[(addr - DATA_START) / 4];
@@ -952,7 +1010,9 @@ function interpretString(addr) {
     return returnText;
 }
 
-// Splits the given 4 byte hex into 4 digits, each representing an ascii character
+/**
+ * Splits the given 4 byte hex into 4 digits, each representing an ascii character
+ */
 function disect(hex) {
     return [
             (0xFF000000 & hex) >> 24,
