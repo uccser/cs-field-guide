@@ -47,7 +47,8 @@ textarea.code {
   width: 100%;
 }
 .scroll {
-  overflow-y: scroll;
+  overflow: auto;
+  white-space: nowrap;
 }
 .upper-padding {
   padding-top: 5pt;
