@@ -1,8 +1,8 @@
-# Machine Code (Low level languages)
+# Machine code (low level languages)
 
 {panel type="teacher-note"}
 
-# Not expecting students to write machine code!
+# We're not expecting students to write machine code!
 
 Students are NOT expected (or even encouraged) to be able to write their own program in these languages.
 The purpose of the examples and getting the students to modify them is to help them understand why programming directly in these languages is best avoided, and thus the reason for high level languages.
@@ -35,12 +35,14 @@ The instructions are quite different to the ones you will have seen before in hi
 For example, the following program is written in a machine language called MIPS; which is used on some embedded computer systems.
 We will use MIPS in examples throughout this chapter.
 
-It starts by adding 2 numbers (that have been put in registers $t0 and $t1) and printing out the result.
-It then prints "Hello World!" Don’t worry, we aren’t about to make you learn how to actually program in this language!
-And if you don’t really understand the program, that’s also fine because many software engineers wouldn’t either!
-(We are showing it to you to help you to appreciate the purpose of both low and high level languages!)
+Don’t worry, we aren’t about to make you learn how to actually program in this language!
+If you don’t understand the program, that’s also fine because many software engineers wouldn’t either!
+We are showing it to you to help you appreciate the purpose of both low and high level languages.
 
-```
+It starts by adding 2 numbers (that have been put in registers $t0 and $t1) and printing out the result.
+It then prints `Hello World!`.
+
+```mips
 .data
 str:  .asciiz "\nHello World!\n"
 # You can change what is between the quotes if you like
@@ -85,13 +87,13 @@ li $v0, 0
 jr $ra
 ```
 
-You can run this program using a MIPS emulator using this interactive:
+You can run this program using a MIPS emulator like these interactives:
 
-{interactive slug="mips-assembler" type="whole-page" text="MIPS Assembler"}
+{interactive slug="mips-assembler" type="whole-page"}
 
-Copy and paste the output in the "Assembler Output" box into the box in this simulator interactive:
+Copy the plain output in the "Assembler Output" box and paste it into the box in this simulator interactive:
 
-{interactive slug="mips-simulator" type="whole-page" text="MIPS Simulator"}
+{interactive slug="mips-simulator" type="whole-page"}
 
 Once you have got the program working, try changing the values that are added.
 The comments tell you where these numbers that can be changed are.
@@ -99,25 +101,23 @@ You should also be able to change the string (text) that is printed without too 
 As a challenge, can you make it so that it subtracts rather than adds the numbers?
 Clue: instruction names are always very short.
 Unfortunately you won’t be able to make it multiply or divide using this simulator as this is not currently supported.
-Remember that to rerun the program after changing it, you will have to follow both steps 1 and 2 again.
+Remember that to rerun the program after changing it, you will have to reassemble it first.
 
 You may be wondering why you have to carry out both these steps.
-Because computers work in 1’s and 0’s, the instructions need to simply be converted into hexadecimal.
+Because computers work in binary (1s and 0s), the instructions need be converted into hexadecimal.
 Hexadecimal is a shorthand notation for binary numbers.
-*Don’t muddle this process with compiling or interpreting!* Unlike these, it is much simpler as in general each instruction from the source code ends up being one line in the hexadecimal.
+*Don’t muddle this process with compiling or interpreting!* Unlike these, assembling is much simpler as, in general, each instruction from the source code ends up being one line in the hexadecimal.
 
 One thing you might have noticed while reading over the possible instructions is that there is no loop instruction in MIPS.
 Using several instructions though, it actually is possible to write a loop using this simple language.
-Have another read of the paragraph that describes the various instructions in MIPS.
-Do you have any ideas on how to solve this problem?
 It requires being quite creative!
 
-The jumping to a line, and jumping to a line if a condition is met can be used to make loops!
+We can jump to a line, and branch if a condition is met, in order to make loops!
 A very simple program we could write that requires a loop is one that counts down from five and then says "Go!!!!" once it gets down to one.
 In Python we can easily write this program in three lines.
 
-```
-# Start at 5, count down by 1 each time, and stop when we get to 0
+```python3
+# Start at 5, count down by 1 each time, and stop before we get to 0
 for number in range(5, 0, -1):
    print(number)
 print("GO!!!!!")
@@ -129,10 +129,10 @@ Firstly, how can we design the loop?
 
 {comment Add flow chart}
 
-And the full MIPS program for this is as follows.
-You can go away and change it.
+The full MIPS program for this is as follows.
+It's the "advanced example" from the assembler interactive.
 
-```
+```mips
 # Define the data strings
 .data
 go_str:   .asciiz "GO!!!!!\n"
@@ -169,13 +169,14 @@ start_loop:
   # Jump back up to the start_loop label
   j start_loop
 
-# This is the end loop label that we jumped to when the loop is false
+# This is the end loop label that we jump to
+# when the loop condition becomes true
 end_loop:
-  # These three lines print the "GO!!!!" string
+  # These three lines print the “GO!!!!” string.
   li $v0, 4
   la $a0, go_str
   syscall
-  # And these 2 lines make the program exit nicely
+  # And these two lines make the program exit nicely
   li $v0, 0
   jr $ra
 ```
@@ -202,7 +203,7 @@ So, what was the point of all this?
 These low level instructions may seem tedious and a bit silly, but the computer is able to directly run them on hardware due to their simplicity.
 A programmer can write a program in this language if they know the language, and the computer would be able to run it directly without doing any further processing.
 As you have probably realised though, it is extremely time consuming to have to program in this way.
-Moving stuff in and out of registers, implementing loops using jump and branch statements, and printing strings and integers using a three line pattern that you’d probably never have guessed was for printing had we not told you leaves even more opportunities for bugs in the program.
+Moving stuff in and out of registers, implementing loops using jump and branch statements, and printing strings and integers using a three line pattern that you’d probably never have guessed was for printing had we not told you, leaves even more opportunities for bugs in the program.
 Not to mention, the resulting programs are extremely difficult to read and understand.
 
 Because computers cannot directly run the instructions in the languages that programmers like, high level programming languages by themselves are not enough.
@@ -210,9 +211,9 @@ The solution to this problem of different needs is to use a compiler or interpre
 
 These days, few programmers program directly in these languages.
 In the early days of computers, programs written directly in machine language tended to be faster than those compiled from high level languages.
-This was because compilers weren’t very good at minimising the number of machine language instructions, referred to as *optimizing*, and people trained to write in machine code were better at it.
-These days however, compilers have been made a lot smarter, and can optimize code far better than most people can.
-Writing a program directly in machine code may result in a program that is *less* optimized than one that was compiled from a high level language.
+This was because compilers weren’t very good at minimising the number of machine language instructions, referred to as *optimising*, and people trained to write in machine code were better at it.
+These days however, compilers have been made a lot smarter, and can optimise code far better than most people can.
+Writing a program directly in machine code may now result in a program that is *less* optimised than one that was compiled from a high level language.
 Don’t put in your report that low level languages are faster!
 
 {comment point out that compiling for large software can be slow https://xkcd.com/303/}

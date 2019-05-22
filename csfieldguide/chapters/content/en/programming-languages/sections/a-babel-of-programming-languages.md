@@ -1,4 +1,4 @@
-# A Babel of programming languages
+# A babel of programming languages
 
 There are many different programming languages.
 Here we have included a small subset of languages, to illustrate the range of purposes that languages are used for.
@@ -67,7 +67,7 @@ Python does not require the programmer to do this, although does have the option
 Both these approaches have advantages in different situations.
 For the teacher writing a quick script to process the quiz results, it does not matter if the program crashes so it is ideal to not waste time writing code to deal with it.
 For a large software system that many people use, crashes are inconvenient and a security risk.
-Forcing all programmers working on that system to handle this potential crash correctly could prevent a lot of trouble later on, which is where Java’s approach helps.
+Forcing all programmers working on that system to handle this potential crash correctly could prevent a lot of trouble later on, which is where Java’s approach is helpful.
 
 In addition to straight forward file handling, Python did not require the code to be put inside a class or function, and it provided some very useful built in functions for solving the problem.
 For example, the function that found the sum of the list, and the line of code that was able to convert the raw line of text into a list of numbers (using a very commonly used pattern).
@@ -162,7 +162,7 @@ Python is sometimes used for making large software systems, although is generall
 - Similar language: Actionscript (Flash)
 
 Note that this section will be completed in a future version of the field guide.
-For now, you should refer to Wikipedia for more information.
+For now, you should refer to [Wikipedia](https://en.wikipedia.org/wiki/JavaScript) for more information.
 
 ## C
 
@@ -174,7 +174,7 @@ For now, you should refer to Wikipedia for more information.
 - Related languages: C++ (somewhat)
 
 Note that this section will be completed in a future version of the field guide.
-For now, you should refer to Wikipedia for more information.
+For now, you should refer to [Wikipedia](https://en.wikipedia.org/wiki/C_%28programming_language%29) for more information.
 
 ## Matlab
 
@@ -183,7 +183,7 @@ For now, you should refer to Wikipedia for more information.
 - Related languages: Mathematica, Maple
 
 Note that this section will be completed in a future version of the field guide.
-For now, you should refer to Wikipedia for more information.
+For now, you should refer to [Wikipedia](https://en.wikipedia.org/wiki/MATLAB) for more information.
 
 ## Esoteric Programming Languages
 

@@ -76,6 +76,8 @@ huffman-tree:
   name: Huffman Tree
 image-bit-comparer:
   name: Image Bit Comparer
+iterative-software-development:
+  name: Iterative Software Development
 udp-layers:
   name: UDP Layers
 jpeg-compression:
@@ -92,8 +94,6 @@ mips-assembler:
   name: MIPS Assembler
 mips-simulator:
   name: MIPS Simulator
-ncea-guide-selector:
-  name: ncea-guide-selector (broken)
 nfa-guesser:
   name: NFA Guesser
 no-help:
@@ -146,8 +146,12 @@ sorting-algorithm-comparison:
   name: Sorting Algorithm Comparison
 sorting-algorithms:
   name: Sorting Algorithms
+system-layers:
+  name: System Layers
 tcp-segment:
   name: TCP Segment
+three-tier-website:
+  name: Three-tier Website
 trainsylvania:
   name: Trainsylvania
 trainsylvania-planner:
@@ -168,3 +172,5 @@ unicode-length:
   name: Unicode Length
 viola-jones-face-detector:
   name: Viola Jones Face Detector
+waterfall-process:
+  name: Waterfall Process

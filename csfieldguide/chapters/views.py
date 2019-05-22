@@ -63,7 +63,7 @@ class ChapterSectionView(generic.DetailView):
             ChapterSection object (ChapterSection).
 
         Raises:
-           404 error: if oject cannot be found.
+           404 error: if object cannot be found.
         """
         return get_object_or_404(
             self.model.objects.select_related(),
@@ -86,6 +86,9 @@ class ChapterSectionView(generic.DetailView):
         context["next_section"] = ChapterSection.objects.filter(
             chapter=self.object.chapter,
             number=current_section_number + 1
+        )
+        context["next_chapter"] = Chapter.objects.filter(
+            number=self.object.chapter.number + 1
         )
         context["chapter"] = self.object.chapter
         return context

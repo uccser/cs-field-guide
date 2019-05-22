@@ -1,0 +1,91 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+<!--
+  Note that all images used (including logos) are labelled as public domain or
+  licenced under CC0 as of the time they were obtained.
+  Website of the source for each image is included in its filename.
+-->
+<div class="container uninteractive">
+  <div class="system-layers-title">
+    {% trans 'Your computer as a layered system' %}
+  </div>
+  <!-- User -->
+  <div class="row system-layer">
+    <div class="col-8">
+      <img class="system-image" src="{% static 'interactives/system-layers/img/pc_user-pdclipart.png' %}">
+    </div>
+    <div class="col-4 system-text">
+      {% trans 'User' %}
+    </div>
+  </div>
+  <!-- Programs -->
+  <div class="row system-layer border-top-0">
+    <div class="col-8">
+      <div class="row">
+        <div class="col-3">
+          <img class="system-image" src="{% static 'interactives/system-layers/img/gclogo-wikipedia.png' %}">
+        </div>
+        <div class="col-3">
+          <img class="system-image" src="{% static 'interactives/system-layers/img/mswordlogo-wikipedia.png' %}">
+        </div>
+        <div class="col-3">
+          <img class="system-image" src="{% static 'interactives/system-layers/img/safarilogo-wikipedia.png' %}">
+        </div>
+        <div class="col-3">
+          <img class="system-image" src="{% static 'interactives/system-layers/img/msedgelogo-wikipedia.png' %}">
+        </div>
+      </div>
+    </div>
+    <div class="col-4 system-text">
+      {% trans 'Programs' %}
+    </div>
+  </div>
+  <!-- OS -->
+  <div class="row system-layer border-top-0">
+    <div class="col-6">
+      <div class="row">
+        <div class="col-4">
+          <img class="system-image" src="{% static 'interactives/system-layers/img/win10logo-wikipedia.png' %}">
+        </div>
+        <div class="col-4">
+          <img class="system-image" src="{% static 'interactives/system-layers/img/applelogo-wikipedia.png' %}">
+        </div>
+        <div class="col-4">
+          <img class="system-image" src="{% static 'interactives/system-layers/img/linuxlogo-wikipedia.png' %}">
+        </div>
+      </div>
+    </div>
+    <div class="col-6 system-text">
+      {% trans 'Operating System' %}
+    </div>
+  </div>
+  <!-- Hardware -->
+  <div class="row system-layer border-top-0">
+    <div class="col-8">
+      
+      <div class="row">
+        <div class="col-4">
+          <img class="system-image" src="{% static 'interactives/system-layers/img/cpu-dreamstime.png' %}">
+        </div>
+        <div class="col-4">
+          <img class="system-image" src="{% static 'interactives/system-layers/img/ram-wpclipart.png' %}">
+        </div>
+        <div class="col-4">
+          <img class="system-image" src="{% static 'interactives/system-layers/img/hdd-publicdomainpictures.png' %}">
+        </div>
+      </div>
+    </div>
+    <div class="col-4 system-text">
+      {% trans 'Hardware' %}
+    </div>
+  </div>
+</div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/system-layers/css/system-layers.css' %}">
+{% endblock css %}
