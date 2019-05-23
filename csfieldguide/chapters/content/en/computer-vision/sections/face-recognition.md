@@ -15,6 +15,10 @@ There is some information about [how facial recognition works](http://electronic
 
 There are some relevant [articles on the cs4fn website](http://www.cs4fn.org/vision/) that also provide some general material on computer vision.
 
+We also have a Viola-Jones Face Detection interactive available, supporting text will be added at a later date.
+
+{interactive slug="viola-jones-face-detector" type="whole-page" text="Viola-Jones Face Detection"}
+
 {comment http://facestuff.wordpress.com/2010/02/15/beady-eyed-tap-face/ Discuss techniques}
 
 {comment extend to template/pattern matching etc (QR codes?), Character/text recognition?}
