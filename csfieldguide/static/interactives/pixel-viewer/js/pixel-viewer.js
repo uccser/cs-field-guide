@@ -267,6 +267,9 @@ function Blur(parent_element){
     $(document.createElement("button")).text(gettext("Remove noise"))
     .click(removeSalt)
   );
+
+  this.main_div.append($(document.createElement("p")).html(gettext("<span id='freeze-warning'>Note:</span> The 'add noise'\
+  button, once clicked, will freeze the interactive while it is performing calculations")));
 }
 
 function Thresholder(parent_element){
