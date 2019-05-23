@@ -278,7 +278,10 @@ function Thresholder(parent_element){
   this.main_div.attr("id", "pixel-viewer-thresholder").appendTo($(parent_element));
   vals = ["R", "G", "B"];
   for (val in vals){
-    this.main_div.append($("<label></label>").text(gettext(vals[val]))
+    this.main_div.append($("<div></div>")
+      .attr("id", "colour_" + val)
+      .attr('class', 'col-10')
+    .append($("<label></label>").text(gettext(vals[val]))
     .append($("<select></select>")
       .attr("id", vals[val] + "_lt_or_gt")
       .append($("<option value='<'>\<</option>"))
@@ -287,12 +290,16 @@ function Thresholder(parent_element){
       .attr({"type": "number", "value": 0, "id" : vals[val] + "_selector", "class" : "color_selector int_selector pos_int_selector"})
       .on("input", truncateValues)
       .on("blur", sanitiseValues))
-    );
+    ));
     if (vals.length - 1 > val){
-      this.main_div.append($("<select></select>")
+      var parent_div = document.getElementById("colour_" + val);
+      var select_option = $("<select></select>")
       .attr("id", "operator_" + val)
       .append($("<option value='||'>OR</option>"))
-      .append($("<option value='&&'>AND</option>")));
+      .append($("<option value='&&'>AND</option>"));
+      console.log(select_option);
+
+      parent_div.append(select_option);
     }
   }
   this.main_div.append($(document.createElement("button")).text(gettext("Apply Threshold")).click(applyThreshold));
