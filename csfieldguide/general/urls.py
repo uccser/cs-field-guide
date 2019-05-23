@@ -38,6 +38,10 @@ urlpatterns = [
         r"^further-information/contributors.html$",
         RedirectView.as_view(permanent=True, pattern_name="appendices:contributors"),
     ),
+    url(
+        r"^further-information/releases.html$",
+        RedirectView.as_view(permanent=True, url="https://cs-field-guide.readthedocs.io/en/latest/changelog.html"),
+    ),
     # e.g redirect /curriculum-guides/ncea/index.html to /appendices/curriculum-guides/
     # TODO: Remove '.*?' from BOTH regex expressions if we create more templates inside
     # of /ncea/ or /apcsp/

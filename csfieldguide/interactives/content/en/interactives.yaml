@@ -94,8 +94,6 @@ mips-assembler:
   name: MIPS Assembler
 mips-simulator:
   name: MIPS Simulator
-ncea-guide-selector:
-  name: ncea-guide-selector (broken)
 nfa-guesser:
   name: NFA Guesser
 no-help:
