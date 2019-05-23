@@ -250,6 +250,7 @@ function loadImage() {
     // Update canvases from base image
     drawCanvases();
   } else {
+    image.crossOrigin = 'anonymous';
     image.src = $selected_image.data('file');
   }
 };
@@ -259,7 +260,6 @@ function loadImage() {
 function initialCanvasData() {
   var source_canvas = document.getElementById('interactive-image-bit-comparer-source-canvas');
   var source_canvas_context = source_canvas.getContext('2d');
-  source_canvas_context.crossOrigin = 'anonymous';
   var source_image_data = source_canvas_context.getImageData(0,
                                                              0,
                                                              ImageBitComparer.BASE_WIDTH * ImageBitComparer.scale_factor,
