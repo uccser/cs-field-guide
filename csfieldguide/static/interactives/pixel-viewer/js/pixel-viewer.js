@@ -295,8 +295,8 @@ function Thresholder(parent_element){
       .append($("<option value='&&'>AND</option>")));
     }
   }
-  this.main_div.append($(document.createElement("button")).text(gettext("Apply Threshold").click(applyThreshold)));
-  this.main_div.append($(document.createElement("button")).text(gettext("Remove Threshold").click(removeFilters)));
+  this.main_div.append($(document.createElement("button")).text(gettext("Apply Threshold")).click(applyThreshold));
+  this.main_div.append($(document.createElement("button")).text(gettext("Remove Threshold")).click(removeFilters));
 }
 
 
@@ -305,8 +305,8 @@ function GreyscaleThresholder(parent_element){
   this.main_div = $("<div></div>");
   this.main_div.attr("id", "pixel-viewer-thresholder").appendTo($(parent_element));
   this.main_div.append(thresholdSelect(127)
-  .append($(document.createElement("button")).text(gettext("Apply Threshold").click(applyGreyThreshold)))
-  .append($(document.createElement("button")).text(gettext("Remove Threshold").click(removeFilters))));
+  .append($(document.createElement("button")).text(gettext("Apply Threshold")).click(applyGreyThreshold))
+  .append($(document.createElement("button")).text(gettext("Remove Threshold")).click(removeFilters)));
 }
 
 function greyScaleToggler(){
