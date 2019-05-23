@@ -293,13 +293,11 @@ function Thresholder(parent_element){
     ));
     if (vals.length - 1 > val){
       var parent_div = document.getElementById("colour_" + val);
-      var select_option = $("<select></select>")
+      $("<select></select>")
       .attr("id", "operator_" + val)
       .append($("<option value='||'>OR</option>"))
-      .append($("<option value='&&'>AND</option>"));
-      console.log(select_option);
-
-      parent_div.append(select_option);
+      .append($("<option value='&&'>AND</option>"))
+      .appendTo(parent_div);
     }
   }
   this.main_div.append($(document.createElement("button")).text(gettext("Apply Threshold")).click(applyThreshold));
