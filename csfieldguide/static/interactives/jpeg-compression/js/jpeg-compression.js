@@ -80,6 +80,7 @@ $(function () {
             placeholderCanvasContext.putImageData(data, 0, 0);
 
             var zoomedBit = new Image();
+            zoomedBit.crossOrigin = 'anonymous';
             zoomedBit.src = placeholderCanvas.toDataURL();
             placeholderCanvasContext.clearRect(0, 0, 8, 8);
             var current = this;
@@ -255,13 +256,10 @@ $(function () {
     }
 
     var bigCanvasContext = document.getElementById("before-image-canvas").getContext("2d");
-    bigCanvasContext.crossOrigin = 'anonymous';
     var smallCanvasBefore = document.getElementById("before-8-by-8");
     var smallCanvasBeforeContext = smallCanvasBefore.getContext("2d");
-    smallCanvasBeforeContext.crossOrigin = 'anonymous';
     var smallCanvasAfter = document.getElementById("after-8-by-8");
     var smallCanvasAfterContext = smallCanvasAfter.getContext("2d");
-    smallCanvasAfterContext.crossOrigin = 'anonymous';
 
     var quantisation = [16, 11, 12, 15, 21, 32, 50, 66, 11, 12, 13, 18, 24, 46, 62, 73, 12, 13,
         16, 23, 38, 56, 73, 75, 15, 18, 23, 29, 53, 75, 83, 83, 21, 24, 38, 53, 68, 95, 103, 103, 32, 46,
