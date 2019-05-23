@@ -7,7 +7,6 @@ this.MAX_NOISE = 15;
 this.container = document.getElementById("pixel-viewer-interactive-container");
 this.content = document.getElementById("pixel-viewer-interactive-content");
 this.context = content.getContext('2d');
-context.crossOrigin = 'anonymous';
 this.canvasWidth = container.clientWidth;
 this.canvasHeight = container.clientHeight;
 this.contentWidth = 10000;
@@ -50,6 +49,7 @@ this.tiling = new Tiling;
 this.piccache = Array();
 
 const image_base_path = base_static_path + 'interactives/pixel-viewer/img/';
+var source_canvas = document.getElementById('pixel-viewer-interactive-source-canvas');
 
 $( document ).ready(function() {
   init_cache(300, MAX_HEIGHT);
@@ -833,7 +833,6 @@ $('#pixel-viewer-interactive-show-pixel-fill').change(function() {
 function init_cache(width, height){
   piccache = Array()
   ctx = source_canvas.getContext('2d');
-  ctx.crossOrigin = 'anonymous'
   for (var col = 0; col<width; col++){
     next_col = Array(height)
     piccache.push(next_col)
@@ -847,7 +846,6 @@ function get_pixel_data(col, row){
   } else if (piccache[col][row] == null){
     // Otherwise if we haven't already cached this then cache it
     var source_canvas_context = source_canvas.getContext('2d');
-    source_canvas_context.crossOrigin = 'anonymous';
     var value = source_canvas_context.getImageData(col, row, 1, 1).data;
     piccache[col][row] = value;
     return value;
@@ -893,21 +891,6 @@ target.addEventListener("drop", function(e){
     loadImage(e.dataTransfer.files[0]);
 }, true);
 
-
-// Load and draw image for Canvas reference
-var source_canvas = document.getElementById('pixel-viewer-interactive-source-canvas');
-var source_canvas_context = source_canvas.getContext('2d');
-source_canvas_context.crossOrigin = 'anonymous';
-
-var source_image = new Image();
-source_image.crossOrigin = 'anonymous';
-
-source_image.onload = function() {
-    source_canvas_context.drawImage(source_image, 0, 0);
-    init_cache(source_image.width, source_image.height);
-    //Trigger canvas draw after image load
-    scroller.scrollTo(0,0);
-}
 
 // Canvas renderer
 var render = function(left, top, zoom) {

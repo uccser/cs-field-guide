@@ -232,7 +232,6 @@ function loadImage() {
   source_canvas.width = ImageBitComparer.BASE_WIDTH * ImageBitComparer.scale_factor;
   source_canvas.height = ImageBitComparer.BASE_HEIGHT * ImageBitComparer.scale_factor;
   var source_canvas_context = source_canvas.getContext('2d');
-  source_canvas_context.crossOrigin = 'anonymous';
 
   var image = new Image();
   image.addEventListener('error', function (e) {
@@ -261,7 +260,6 @@ function loadImage() {
 function initialCanvasData() {
   var source_canvas = document.getElementById('interactive-image-bit-comparer-source-canvas');
   var source_canvas_context = source_canvas.getContext('2d');
-  source_canvas_context.crossOrigin = 'anonymous';
   var source_image_data = source_canvas_context.getImageData(0,
                                                              0,
                                                              ImageBitComparer.BASE_WIDTH * ImageBitComparer.scale_factor,
@@ -280,7 +278,6 @@ function drawCanvas($canvas, source_image_data) {
   var blue_divisor = 255 / (Math.pow(2, bit_values[2]) - 1);
 
   canvas_context = $canvas[0].getContext('2d');
-  canvas_context.crossOrigin = 'anonymous';
   // Copy image data
   canvas_data = source_image_data;
 
