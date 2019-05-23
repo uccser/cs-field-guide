@@ -46,8 +46,11 @@
                 <h5>{% trans "Upload your own image" %}</h5>
                 <p>{% blocktrans %}Either drag and drop an image onto this page, or click the button below to load your own image into
                     the interactive. The image will be resized for performance.{% endblocktrans %}</p>
-
-                <input type="file" class="form-control" name="image" onchange="loadImageDialog(this)" accept="image/*" />
+                
+                <div class="custom-file w-auto my-1">
+                    <input type="file" id="pixel-viewer-upload" class="custom-file-input" name="image" onchange="loadImageDialog(this)" accept="image/*" />
+                    <label class="custom-file-label" for="pixel-viewer-upload">{% trans "Choose file" %}</label>
+                </div>
                 <canvas id="pixel-viewer-interactive-source-canvas"></canvas>
 
                 <p>

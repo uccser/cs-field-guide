@@ -280,28 +280,34 @@ function Thresholder(parent_element){
   for (val in vals){
     this.main_div.append($("<div></div>")
       .attr("id", "colour_" + val)
-      .attr('class', 'col-10')
+      .attr('class', 'col-12')
     .append($("<label></label>").text(gettext(vals[val]))
     .append($("<select></select>")
-      .attr("id", vals[val] + "_lt_or_gt")
+      .attr({"id": vals[val] + "_lt_or_gt", "class": "form-control w-auto d-inline ml-1"})
       .append($("<option value='<'>\<</option>"))
       .append($("<option value='>'>\></option>")))
     .append($(document.createElement("input"))
-      .attr({"type": "number", "value": 0, "id" : vals[val] + "_selector", "class" : "color_selector int_selector pos_int_selector"})
+      .attr({"type": "number", "value": 0, "id" : vals[val] + "_selector", "class" : "color_selector int_selector pos_int_selector form-control w-auto d-inline mx-1"})
       .on("input", truncateValues)
       .on("blur", sanitiseValues))
     ));
     if (vals.length - 1 > val){
       var parent_div = document.getElementById("colour_" + val);
       $("<select></select>")
-      .attr("id", "operator_" + val)
+      .attr({"id": "operator_" + val, "class": "form-control w-auto d-inline"})
       .append($("<option value='||'>OR</option>"))
       .append($("<option value='&&'>AND</option>"))
       .appendTo(parent_div);
     }
   }
-  this.main_div.append($(document.createElement("button")).text(gettext("Apply Threshold")).click(applyThreshold));
-  this.main_div.append($(document.createElement("button")).text(gettext("Remove Threshold")).click(removeFilters));
+  this.main_div.append($(document.createElement("button"))
+  .text(gettext("Apply Threshold"))
+  .attr("class", "btn btn-primary mx-1")
+  .click(applyThreshold));
+  this.main_div.append($(document.createElement("button"))
+  .text(gettext("Remove Threshold"))
+  .attr("class", "btn btn-primary mx-1")
+  .click(removeFilters));
 }
 
 
