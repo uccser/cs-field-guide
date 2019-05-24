@@ -288,6 +288,13 @@ function loadImageDialog() {
 
     // remove well done message
     feedback.innerHTML = "";
+    // reset info
+    var found = document.getElementById("found");
+    found.innerHTML = 0;
+    var black = document.getElementById("blackValue");
+    black.innerHTML = 0;
+    var white = document.getElementById("whiteValue");
+    white.innerHTML = 0;
   }
 }
 
