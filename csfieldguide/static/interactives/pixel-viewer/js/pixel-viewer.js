@@ -169,7 +169,7 @@ function EdgeDetector(parent_element){
   this.main_div.append(
     $(document.createElement("label"))
     .text(gettext("Number of grids:"))
-    .attr("class", "col-12")
+    .attr("class", "col-12 pl-0")
     .append(
       $(document.createElement("select"))
       .attr({"id": "num-grids", "class": "form-control w-auto d-inline mx-1"})
@@ -231,7 +231,7 @@ function Blur(parent_element){
 
   this.main_div.append(
     $(document.createElement("label"))
-    .attr("class", "col-12")
+    .attr("class", "col-12 pl-0")
     .text(gettext("Type of blur:"))
     .append(
       $(document.createElement("select"))
@@ -298,7 +298,7 @@ function Thresholder(parent_element){
   for (val in vals){
     this.main_div.append($("<div></div>")
       .attr("id", "colour_" + val)
-      .attr('class', 'col-12')
+      .attr('class', 'col-12 pl-0')
     .append($("<label></label>").text(gettext(vals[val]))
     .append($("<select></select>")
       .attr({"id": vals[val] + "_lt_or_gt", "class": "form-control w-auto d-inline ml-1"})
@@ -347,7 +347,7 @@ function GreyscaleThresholder(parent_element){
 function greyScaleToggler(){
   // return a select object for toggling greyscale on or off
   return $(document.createElement("label"))
-    .attr("class", "col-12")
+    .attr("class", "col-12 pl-0")
     .text(gettext("Greyscale or rgb:"))
     .append(
       $(document.createElement("select"))
@@ -361,7 +361,7 @@ function greyScaleToggler(){
 function gridSizeChooser(callback){
   // return a select option for choosing how big a convolutional kernel to be applied should be
   return $(document.createElement("label"))
-    .attr("class", "col-12")
+    .attr("class", "col-12 pl-0")
     .text(gettext("Grid size:"))
     .append(
       $(document.createElement("select"))
