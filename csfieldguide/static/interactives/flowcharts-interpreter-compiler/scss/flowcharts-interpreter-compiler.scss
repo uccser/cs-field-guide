@@ -1,0 +1,38 @@
+.flowcharts-interpreter-compiler {
+    font-size: 11pt;
+    text-align: center;
+}
+
+.text-box {
+    border: 1px solid;
+    height: 60px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    vertical-align: middle;
+    background-color: #ffffff;
+}
+
+.text-box.empty {
+    border: none;
+    background-color: transparent;
+}
+
+.flowcharts-svg {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+
+.arrow {
+    stroke: #000000;
+    stroke-width: 2px;
+    fill: none;
+    marker-end: url(#arrowhead);
+}
+
+.arrowhead {
+    fill: #000000;
+}
