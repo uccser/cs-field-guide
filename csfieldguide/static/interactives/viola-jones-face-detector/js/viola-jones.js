@@ -259,6 +259,7 @@ function loadImageDialog() {
     var reader = new FileReader();
     reader.onload = function(e) {
       var sourceImage = document.getElementById("img");
+      sourceImage.crossOrigin = 'anonymous';
       sourceImage.src = e.target.result;
       loadResizeImage();
     }

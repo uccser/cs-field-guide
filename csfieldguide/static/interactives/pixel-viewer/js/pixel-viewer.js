@@ -49,6 +49,7 @@ this.tiling = new Tiling;
 this.piccache = Array();
 
 const image_base_path = base_static_path + 'interactives/pixel-viewer/img/';
+var source_canvas = document.getElementById('pixel-viewer-interactive-source-canvas');
 
 $( document ).ready(function() {
   init_cache(300, MAX_HEIGHT);
@@ -887,7 +888,6 @@ function get_pixel_data(col, row){
   } else if (piccache[col][row] == null){
     // Otherwise if we haven't already cached this then cache it
     var source_canvas_context = source_canvas.getContext('2d');
-    source_canvas_context.crossOrigin = 'anonymous';
     var value = source_canvas_context.getImageData(col, row, 1, 1).data;
     piccache[col][row] = value;
     return value;
@@ -922,6 +922,7 @@ function load_resize_image(src, user_upload=true){
         }
         $( '#pixel-viewer-interactive-resize-values' ).text(text)
     };
+    image.crossOrigin = 'anonymous'
     image.src = src;
 }
 
@@ -932,20 +933,6 @@ target.addEventListener("drop", function(e){
     loadImage(e.dataTransfer.files[0]);
 }, true);
 
-
-// Load and draw image for Canvas reference
-var source_canvas = document.getElementById('pixel-viewer-interactive-source-canvas');
-var source_canvas_context = source_canvas.getContext('2d');
-
-var source_image = new Image();
-source_image.crossOrigin = '';
-
-source_image.onload = function() {
-    source_canvas_context.drawImage(source_image, 0, 0);
-    init_cache(source_image.width, source_image.height);
-    //Trigger canvas draw after image load
-    scroller.scrollTo(0,0);
-}
 
 // Canvas renderer
 var render = function(left, top, zoom) {
