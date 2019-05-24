@@ -3,6 +3,11 @@
     text-align: center;
 }
 
+.flowcharts-title {
+    font-size: 20pt;
+    padding-bottom: 10px;
+}
+
 .text-box {
     border: 1px solid;
     height: 60px;
@@ -35,4 +40,17 @@
 
 .arrowhead {
     fill: #000000;
+}
+
+// This uninteractive is in an iframe, so bootstrap-defined screen sizes don't work
+@media screen and (min-width: 520px) and (max-width: 620px) {
+    .flowcharts-interpreter-compiler {
+        font-size: 9pt;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .flowcharts-interpreter-compiler {
+        font-size: 9pt;
+    }
 }
