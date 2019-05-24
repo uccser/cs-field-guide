@@ -26,8 +26,6 @@ The compiler produces a machine code program that will do the sorting, and the d
 The interpreter simply does the sorting on the input by immediately following the instructions in the program.
 The compiler produces a machine code program that you can distribute, but it involves an extra phase in the process.
 
-{image file-path="img/chapters/comparing-sorting-programs-across-scratch-and-c.png" alt="Comparing sorting programs across Scratch and C"}
-
 {interactive slug="flowcharts-interpreter-compiler" type="iframe"}
 
 {comment mention cross compilers, especially for mobile apps}
