@@ -168,10 +168,11 @@ function EdgeDetector(parent_element){
   // Create selector for number of grids to apply
   this.main_div.append(
     $(document.createElement("label"))
-    .text(gettext("Number of grids"))
+    .text(gettext("Number of grids:"))
+    .attr("class", "col-12")
     .append(
       $(document.createElement("select"))
-      .attr("id", "num-grids")
+      .attr({"id": "num-grids", "class": "form-control w-auto d-inline mx-1"})
       .on("input", createGrids)
       .append($("<option value=1>1</option>"))
       .append($("<option value=2 selected>2</option>"))
@@ -192,20 +193,28 @@ function EdgeDetector(parent_element){
   // Create buttons for applying filters
   this.main_div
     .append(
-      $(document.createElement("button")).text(gettext("Apply grids"))
+      $(document.createElement("button"))
+      .text(gettext("Apply grids"))
+      .attr("class", "btn btn-primary mr-1")
       .click(edgeDetect)
   );
   this.main_div
     .append(
-    $(document.createElement("button")).text(gettext("Restore Image"))
+    $(document.createElement("button"))
+    .text(gettext("Restore Image"))
+    .attr("class", "btn btn-primary")
     .click(removeFilters)
   );
 
   this.main_div.append($("<p></p>").text(gettext(
-    "Try adding a threshold to the picture once the transformation has taken place to highlight the edges you find.")));
+    "Try adding a threshold to the picture once the transformation has taken place to highlight the edges you find."))
+    .attr("class", "mt-2 mb-1"));
 
   this.main_div.append(thresholdSelect(127))
-  .append($(document.createElement("button")).text(gettext("Apply grids and Threshold").click(applyGreyThreshold)))
+  .append($(document.createElement("button"))
+  .text(gettext("Apply grids and Threshold"))
+  .attr("class", "btn btn-primary ml-1 mb-1")
+  .click(applyGreyThreshold))
 }
 
 
@@ -222,10 +231,11 @@ function Blur(parent_element){
 
   this.main_div.append(
     $(document.createElement("label"))
-    .text(gettext("Type of blur"))
+    .attr("class", "col-12")
+    .text(gettext("Type of blur:"))
     .append(
       $(document.createElement("select"))
-      .attr("id", "blur-type")
+      .attr({"id": "blur-type", "class": "form-control w-auto d-inline mx-1"})
       .append($("<option value=median>median</option>"))
       .append($("<option value=mean>mean</option>"))
       .append($("<option value=gaussian>gaussian</option>"))
@@ -243,28 +253,36 @@ function Blur(parent_element){
   );
   createGrid();
   this.main_div.append(
-    $(document.createElement("button")).text(gettext("Apply blur"))
+    $(document.createElement("button"))
+    .text(gettext("Apply blur"))
+    .attr("class", "btn btn-primary mr-1")
     .click(applyBlur));
 
   this.main_div
     .append(
-    $(document.createElement("button")).text(gettext("Remove blur"))
+    $(document.createElement("button"))
+    .text(gettext("Remove blur"))
+    .attr("class", "btn btn-primary")
     .click(removeFilters)
   );
   // Add a description about noise, then give opportunity for students to introduce noise.
   this.main_div.append($(document.createElement("p")).text(gettext("Sometimes images have noise, and applying a blur can be a helpful way to preprocess\
   an image that contains noise before using other Computer Vision algorithms. Use this to add some \"salt and pepper\" noise to the image and then\
   observe what happens when you apply the blurs to a noisy image. Perhaps you have a noisy image that you could upload yourself?")))
-  .append($("<label></label>").text(gettext("Amount of noise to add (%): "))
-    .append($(document.createElement("input"))
-      .attr({"type": "number", "value": 10, "id" : "noise_selector", "class" : "percent_selector int_selector pos_int_selector"})
+  .append($("<label></label>").text(gettext("Amount of noise to add (%): ")));
+  this.main_div.append($(document.createElement("input"))
+      .attr({"type": "number", "value": 10, "id" : "noise_selector", "class" : "form-control w-auto d-inline m-1 mt-2 percent_selector int_selector pos_int_selector"})
       .on("input", truncateValues)
-      .on("blur", sanitiseValues))
+      .on("blur", sanitiseValues)
     ).append(
-    $(document.createElement("button")).text(gettext("Add noise"))
+    $(document.createElement("button"))
+    .text(gettext("Add noise"))
+    .attr("class", "btn btn-primary mb-1 mr-1")
     .click(addNoise)
   ).append(
-    $(document.createElement("button")).text(gettext("Remove noise"))
+    $(document.createElement("button"))
+    .text(gettext("Remove noise"))
+    .attr("class", "btn btn-primary mb-1")
     .click(removeSalt)
   );
 
@@ -316,17 +334,24 @@ function GreyscaleThresholder(parent_element){
   this.main_div = $("<div></div>");
   this.main_div.attr("id", "pixel-viewer-thresholder").appendTo($(parent_element));
   this.main_div.append(thresholdSelect(127)
-  .append($(document.createElement("button")).text(gettext("Apply Threshold")).click(applyGreyThreshold))
-  .append($(document.createElement("button")).text(gettext("Remove Threshold")).click(removeFilters)));
+  .append($(document.createElement("button"))
+  .text(gettext("Apply Threshold"))
+  .attr("class", "btn btn-primary mx-1 mb-1")
+  .click(applyGreyThreshold))
+  .append($(document.createElement("button"))
+  .text(gettext("Remove Threshold"))
+  .attr("class", "btn btn-primary mb-1")
+  .click(removeFilters)));
 }
 
 function greyScaleToggler(){
   // return a select object for toggling greyscale on or off
   return $(document.createElement("label"))
-    .text(gettext("Greyscale or rgb"))
+    .attr("class", "col-12")
+    .text(gettext("Greyscale or rgb:"))
     .append(
       $(document.createElement("select"))
-      .attr("id", "greyscale-or-rgb")
+      .attr({"id": "greyscale-or-rgb", "class": "form-control w-auto d-inline mx-1"})
       .append($("<option value=greyscale>greyscale</option>"))
       .append($("<option value=rgb>rgb</option>"))
       .on("input", toggleGreyscale)
@@ -336,10 +361,11 @@ function greyScaleToggler(){
 function gridSizeChooser(callback){
   // return a select option for choosing how big a convolutional kernel to be applied should be
   return $(document.createElement("label"))
-    .text(gettext("Grid size"))
+    .attr("class", "col-12")
+    .text(gettext("Grid size:"))
     .append(
       $(document.createElement("select"))
-      .attr("id", "grid-size")
+      .attr({"id": "grid-size", "class": "form-control w-auto d-inline mx-1"})
       .on("input", callback)
       .append($("<option value=2>2x2</option>"))
       .append($("<option value=3 selected>3x3</option>"))
@@ -352,7 +378,7 @@ function thresholdSelect(default_val = 0){
   // Returns a select object for deciding a numeric threshold. Uses default_val as default value
   return $("<label></label>").text(gettext("Threshold: "))
     .append($(document.createElement("input"))
-      .attr({"type": "number", "value": default_val, "id" : "threshold_selector", "class" : "color_selector int_selector pos_int_selector"})
+      .attr({"type": "number", "value": default_val, "id" : "threshold_selector", "class" : "form-control w-auto d-inline color_selector int_selector pos_int_selector"})
       .on("input", truncateValues)
       .on("blur", sanitiseValues))
 }
@@ -433,7 +459,7 @@ function constructGrid(id = 0){
           $(document.createElement("input"))
           .attr({
             "id": id+"_grid_val_" + j + "_" + i,
-            "class":"int_selector blur_selector",
+            "class":"form-control w-auto d-inline int_selector blur_selector",
             "value":1,
             "type":"number"}
             )
@@ -567,9 +593,12 @@ function applyConvolutionalKernel(rgb, convo_k){
 
 function createCustomConvolutionalKernels(){
   // Create the custom convolutional kernels in memory from user input
-  var numGrids = $(".grid_table").size();
+  num_grids = $('#num-grids').val();
+  grid_size = $('#grid-size').val();
+  numCells = Math.pow(parseInt(grid_size), 2) * parseInt(num_grids);
+
   custom_kernels = Array();
-  for (var i = 0; i < numGrids; i++){
+  for (var i = 0; i < numCells; i++){
       // For each user input grid,
       // convert user input into convolutional kernel
       var totalWeight = 0

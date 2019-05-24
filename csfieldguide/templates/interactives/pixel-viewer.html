@@ -47,7 +47,7 @@
                 <p>{% blocktrans %}Either drag and drop an image onto this page, or click the button below to load your own image into
                     the interactive. The image will be resized for performance.{% endblocktrans %}</p>
                 
-                <div class="custom-file w-auto my-1">
+                <div class="custom-file w-auto d-block col-8 my-1">
                     <input type="file" id="pixel-viewer-upload" class="custom-file-input" name="image" onchange="loadImageDialog(this)" accept="image/*" />
                     <label class="custom-file-label" for="pixel-viewer-upload">{% trans "Choose file" %}</label>
                 </div>
