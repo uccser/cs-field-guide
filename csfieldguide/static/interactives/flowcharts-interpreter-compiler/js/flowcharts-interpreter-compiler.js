@@ -6,36 +6,8 @@
  * https://stackoverflow.com/questions/20037122/draw-an-arrow-between-two-divs
  */
 
-var compiler = {
-  programDiv: null,
-  compilerDiv: null,
-  interpreterDiv: null,
-  resultDiv: null,
-  dataDiv: null
-}
-
-var compilerArrows = {
-  programToCompiler: null,
-  compilerToInterpreter: null,
-  interpreterToResult: null,
-  dataToInterpreter: null
-}
-
-var interpreter = {
-  programDiv: null,
-  interpreterDiv: null,
-  resultDiv: null,
-  dataDiv: null
-}
-
-var interpreterArrows = {
-  programToInterpreter: null,
-  interpreterToResult: null,
-  dataToInterpreter: null
-}
-
 $(document).ready(function() {
-  compiler = {
+  var compiler = {
     programDiv: $('#compiler-program'),
     compilerDiv: $('#compiler-compiler'),
     interpreterDiv: $('#compiler-interpreter'),
@@ -43,21 +15,21 @@ $(document).ready(function() {
     dataDiv: $('#compiler-data')
   }
   
-  interpreter = {
+  var interpreter = {
     programDiv: $('#interpreter-program'),
     interpreterDiv: $('#interpreter-interpreter'),
     resultDiv: $('#interpreter-result'),
     dataDiv: $('#interpreter-data')
   }
 
-  compilerArrows = {
+  var compilerArrows = {
     programToCompiler: $('#compiler-program-compiler'),
     compilerToInterpreter: $('#compiler-compiler-interpreter'),
     interpreterToResult: $('#compiler-interpreter-result'),
     dataToInterpreter: $('#compiler-data-interpreter')
   }
 
-  interpreterArrows = {
+  var interpreterArrows = {
     programToInterpreter: $('#interpreter-program-interpreter'),
     interpreterToResult: $('#interpreter-interpreter-result'),
     dataToInterpreter: $('#interpreter-data-interpreter')
