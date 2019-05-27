@@ -24,7 +24,7 @@
 
           <div class="form-group row">
             <label for="{{ form.q.id_for_label }}" class="col-sm-2 col-form-label col-form-label-lg">
-              {% trans 'Search' %}
+              Search
             </label>
             <div class="col-sm-10">
               {% if form.is_bound and form.q.errors %}
@@ -42,7 +42,7 @@
 
           <div class="form-group row">
             <label class="col-md-4 col-lg-3 col-form-label">
-              {% trans 'Filter by type' %}
+              Filter by type
             </label>
             <div class="col-md-8 col-lg-9">
               <select id="models-filter" name="models" multiple="multiple" style="display:none;">
@@ -56,15 +56,15 @@
           </div>
 
           <button type="button" id="clear-form" class="btn btn-outline-danger mb-3">
-            {% trans 'Clear form' %}
+            Clear form
           </button>
           <button type="submit" class="btn btn-success mb-3 float-right" name="page" value="1">
-            {% trans 'Search'}
+            Search'}
           </button>
         </form>
 
         {% if search %}
-          <h3 id="results-heading">{% trans 'Results' %}</h3>
+          <h3 id="results-heading">Results</h3>
 
           {% if object_list %}
             <p class="text-center"><em>Showing {% if is_paginated %}results {{ page_obj.start_index }} to {{ page_obj.end_index }} of {% endif %}{{ paginator.count }} results</em></p>
@@ -97,17 +97,17 @@
               <div class="text-center">
                 {% if page_obj.has_previous %}
                   <a class="btn btn-link" href="{% url 'search:index' %}?{% query_replace page=page_obj.previous_page_number %}">
-                    {% trans '&laquo; Previous page' %}
+                    &laquo; Previous page
                   </a>
                 {% endif %}
                 {% if page_obj.has_next %}
                   <a class="btn btn-link" href="{% url 'search:index' %}?{% query_replace page=page_obj.next_page_number %}">
-                    {% trans 'Next page &raquo;' %}
+                    Next page &raquo;
                   </a>
                 {% endif %}
               </div>
               <div id="result-page-links" class="text-center">
-                <span>{% trans 'Jump to page:' %}</span>
+                <span>Jump to page:</span>
                 {% for page in paginator.page_range %}
                   {% if page_obj.number == page %}
                     <a class="btn btn-link disabled" aria-disabled="true">{{ page }}</a>
@@ -118,12 +118,12 @@
               </div>
             {% endif %}
           {% else %}
-            <p class="text-center">{% trans 'No results found.' %}</p>
+            <p class="text-center">No results found.</p>
           {% endif %}
         {% else %}
           <p class="text-center mt-3 font-italic">
             <a href="{% url 'search:index' %}?q=binary" class="text-muted">
-              {% trans "Try searching for 'binary'" %}
+              Try searching for 'binary'
             </a>
           </p>
         {% endif %}
