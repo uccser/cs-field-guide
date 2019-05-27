@@ -388,6 +388,7 @@ function thresholdSelect(default_val = 0){
 function setGridSize(){
   // Sets the global grid size and isGreyscale based on user input
   gridSize = $("#grid-size").val();
+  isGreyscale = $("#greyscale-or-rgb").val();
 }
 
 function edgeDetectionFilter(col, row){
@@ -595,30 +596,29 @@ function applyConvolutionalKernel(rgb, convo_k){
 
 function createCustomConvolutionalKernels(){
   // Create the custom convolutional kernels in memory from user input
-  num_grids = $('#num-grids').val();
-  grid_size = $('#grid-size').val();
-  numCells = Math.pow(parseInt(grid_size), 2) * parseInt(num_grids);
-
+  gridSize = $('#grid-size').val();
   custom_kernels = Array();
-  for (var i = 0; i < numCells; i++){
-      // For each user input grid,
-      // convert user input into convolutional kernel
-      var totalWeight = 0
-      var next_grid = Array();
-      custom_kernels.push(next_grid);
-      for (var j = 0; j < gridSize; j++){
-        var col = Array();
-        next_grid.push(col);
-        for (var k = 0; k < gridSize; k++){
-          var weight = parseInt($("#"+i+"_grid_val_" + j + "_" + k).val());
-          totalWeight += Math.abs(weight);
-          col.push(weight);
-        }
-      }
-      // Make sure we don't divide by 0
-      if (totalWeight == 0) totalWeight = 1;
-      next_grid.totalWeight = totalWeight;
+  // For each user input grid,
+  // convert user input into convolutional kernel
+  var totalWeight = 0
+  var next_grid = Array();
+  custom_kernels.push(next_grid);
+  for (var i = 0; i < gridSize; i++) {
+    var col = Array();
+    next_grid.push(col);
+    for (var j = 0; j < gridSize; j++) {;
+      var weight = parseInt($("#0_grid_val_" + i + "_" + j).val());
+      console.log("#0_grid_val_" + i + "_" + j);
+      console.log(weight);
+      totalWeight += Math.abs(weight);
+      col.push(weight);
     }
+    // Make sure we don't divide by 0
+    if (totalWeight == 0) {
+      totalWeight = 1;
+    }
+    next_grid.totalWeight = totalWeight;
+  }
 }
 
 function applyCustomConvolutionalKernels(rgb){
