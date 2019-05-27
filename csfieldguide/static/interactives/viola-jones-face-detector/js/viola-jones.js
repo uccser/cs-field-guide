@@ -290,6 +290,7 @@ function loadImageDialog() {
     // remove well done message
     feedback.innerHTML = "";
     // reset info
+    haarFound = 0;
     var found = document.getElementById("found");
     found.innerHTML = 0;
     var black = document.getElementById("blackValue");
