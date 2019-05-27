@@ -268,7 +268,7 @@ function loadImageDialog() {
     // reset position and validation border of haar boxes
     $('#haar1').css('transform', 'translate(0, 0)').removeClass('valid');
     $('#haar1').attr('data-x', 0);
-    $('#haar1').attr('data-y', 0);;
+    $('#haar1').attr('data-y', 0);
 
     $('#haar2').css('transform', 'translate(0, 0)').removeClass('valid');
     $('#haar2').attr('data-x', 0);
@@ -276,7 +276,7 @@ function loadImageDialog() {
 
     $('#haar3').css('transform', 'translate(0, 0)').removeClass('valid');
     $('#haar3').attr('data-x', 0);
-    $('#haar3').attr('data-y', 0);;
+    $('#haar3').attr('data-y', 0);
 
     $('#haar4').css('transform', 'translate(0, 0)').removeClass('valid');
     $('#haar4').attr('data-x', 0);
