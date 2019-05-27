@@ -143,6 +143,10 @@ dot-combinations:
   languages:
     en: interactives/dot-combinations.html
   is_interactive: false
+flowcharts-interpreter-compiler:
+  languages:
+    en: interactives/flowcharts-interpreter-compiler.html
+  is_interactive: false
 frequency-analysis:
   languages:
     en: interactives/frequency-analysis.html
