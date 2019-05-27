@@ -228,7 +228,7 @@ function Blur(parent_element){
   this.main_div.append($(document.createElement("p")).text(gettext("Sometimes images have noise, and applying a blur can be a helpful way to preprocess\
   an image that contains noise before using other Computer Vision algorithms. Use this to add some \"salt and pepper\" noise to the image and then\
   observe what happens when you apply the blurs to a noisy image. Perhaps you have a noisy image that you could upload yourself?")));
-  
+
   this.main_div.append($("<label></label>").text(gettext("Amount of noise to add (%): ")));
   this.main_div.append($(document.createElement("input"))
       .attr({"type": "number", "value": 10, "id" : "noise_selector", "class" : "form-control w-auto d-inline m-1 mt-2 percent_selector int_selector pos_int_selector"})
@@ -290,29 +290,6 @@ function Blur(parent_element){
     .attr("class", "btn btn-primary")
     .click(removeFilters)
   );
-  // Add a description about noise, then give opportunity for students to introduce noise.
-  // this.main_div.append($(document.createElement("p")).text(gettext("Sometimes images have noise, and applying a blur can be a helpful way to preprocess\
-  // an image that contains noise before using other Computer Vision algorithms. Use this to add some \"salt and pepper\" noise to the image and then\
-  // observe what happens when you apply the blurs to a noisy image. Perhaps you have a noisy image that you could upload yourself?")))
-  // .append($("<label></label>").text(gettext("Amount of noise to add (%): ")));
-  // this.main_div.append($(document.createElement("input"))
-  //     .attr({"type": "number", "value": 10, "id" : "noise_selector", "class" : "form-control w-auto d-inline m-1 mt-2 percent_selector int_selector pos_int_selector"})
-  //     .on("input", truncateValues)
-  //     .on("blur", sanitiseValues)
-  //   ).append(
-  //   $(document.createElement("button"))
-  //   .text(gettext("Add noise"))
-  //   .attr("class", "btn btn-primary mb-1 mr-1")
-  //   .click(addNoise)
-  // ).append(
-  //   $(document.createElement("button"))
-  //   .text(gettext("Remove noise"))
-  //   .attr("class", "btn btn-primary mb-1")
-  //   .click(removeSalt)
-  // );
-
-  // this.main_div.append($(document.createElement("p")).html(gettext("<span id='freeze-warning'>warning:</span> The 'add noise'\
-  // button will freeze the interactive while it is performing calculations")));
 }
 
 function Thresholder(parent_element){
