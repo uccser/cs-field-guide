@@ -1097,6 +1097,7 @@ if ('ontouchstart' in window) {
 
     content.addEventListener(navigator.userAgent.indexOf("Firefox") > -1 ? "DOMMouseScroll" :  "mousewheel", function(e) {
       // following inspired by https://deepmikoto.com/coding/1--javascript-detect-mouse-wheel-direction
+        e.preventDefault();
         var delta;
         var direction;
         if (e.wheelDelta) { // will work in most cases
