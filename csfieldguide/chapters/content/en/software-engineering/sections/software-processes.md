@@ -152,6 +152,17 @@ Which of these two approaches worked best &ndash; designing everything first, or
 
 {panel type="teacher-note"}
 
+# Solution
+
+Here is an example diagram students might come up with after a few revisions.
+An image of the solution in action can be found [here](https://github.com/uccser/cs-field-guide/issues/505#issuecomment-494605977).
+
+{image file-path="img/chapters/cards-bridge-solution.png" alt="Sketch of a potential solution to the card bridge"}
+
+{panel end}
+
+{panel type="teacher-note"}
+
 # Further advice on the above project
 
 Usually the point about agile design comes across very strongly; it's rare for a designed bridge to work, but it can usually be done with the iterative agile approach.
