@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 
+{% load i18n %}
 {% load static %}
 {% load render_html_field %}
 
@@ -29,7 +30,7 @@
     {% endwith %}
   {% endif %}
 
-  <h2>Sections in this chapter:</h2>
+  <h2>{% trans 'Sections in this chapter:' %}</h2>
   <ul class="list-unstyled">
     {% for section in chapter_sections %}
       <li>

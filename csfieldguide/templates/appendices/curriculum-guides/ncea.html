@@ -1,11 +1,13 @@
 {% extends "base.html" %}
 
+{% load i18n %}
+
 {% block title %}
-  NCEA Curriculum Guides
+  {% trans 'NCEA Curriculum Guides' %}
 {% endblock title %}
 
 {% block page_heading %}
-  <h1>NCEA Curriculum Cuides</h1>
+  <h1>{% trans 'NCEA Curriculum Guides' %}</h1>
 {% endblock page_heading %}
 
 {% block content %}
