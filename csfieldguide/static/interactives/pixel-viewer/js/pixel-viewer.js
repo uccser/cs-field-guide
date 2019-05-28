@@ -109,15 +109,15 @@ $( document ).ready(function() {
 function setUpMode(){
   // Sets up widgets and descriptions appropriate to mode
   if (mode == 'threshold'){
-    addDescription(gettext("Colour Threshold Interactive",
-    "Create an expression to threshold the image. Any pixels that match the\
+    addDescription(gettext("Colour Threshold Interactive"),
+    gettext("Create an expression to threshold the image. Any pixels that match the\
      expression you come up with will be turned white, and everything else will become black. What happens \
      when you threshold on different values or for different colours? Can you use this technique to identify \
      regions of similar colour in the image?"));
     new Thresholder($('#pixel-viewer-image-manipulator'));
   }
   if (mode == 'thresholdgreyscale'){
-    addDescription(gettext("Threshold Interactive", "The image has been converted to greyscale by taking the average of the red, blue and green values for\
+    addDescription(gettext("Threshold Interactive"), gettext("The image has been converted to greyscale by taking the average of the red, blue and green values for\
       each pixel. Choose a threshold between 0 and 255 and transform this picture into black and white to \
       identify regions and edges."));
     filter = greyscaler;
@@ -125,7 +125,7 @@ function setUpMode(){
     new GreyscaleThresholder($('#pixel-viewer-image-manipulator'));
   }
   if (mode == 'blur'){
-    addDescription(gettext("Picture Blurring Interactive", "Experiment with using different blurs to try process the noise. The mean blur will take the mean values of the pixels surrounding,\
+    addDescription(gettext("Picture Blurring Interactive"), gettext("Experiment with using different blurs to try process the noise. The mean blur will take the mean values of the pixels surrounding,\
       the median will take the median value, the gaussian blurs according to a gaussian distribution, and the custom blur allows you to give weights to different surrounding pixels.\
       How do the different types of blur effect the image? What happens when you change values in the custom grid? Experiment with both greyscale and rgb images.  \
       What would happen if every value in the grid was 0 except one? How come? \
@@ -139,7 +139,7 @@ function setUpMode(){
     images = ["coloured-roof-small.png", "alley.jpg", "bike.jpg", "boards.jpg",
   "fence.jpg", "roof.jpg", "tuba.jpg","words.png",
   "words_zoom.png", "knight.png"]
-    addDescription(gettext("Edge Detection Interactive", "Find an edge in the graph and zoom right in. What information could a computer use from the values of the pixels surrounding the edge to find it?\
+    addDescription(gettext("Edge Detection Interactive"), gettext("Find an edge in the graph and zoom right in. What information could a computer use from the values of the pixels surrounding the edge to find it?\
     <br><br>\
     We have supplied you with some grids to apply to the image to transorm it. The numbers in the grids are multiplied against the values of the pixels that surround each point. What numbers\
     can you use in these boxes to discover edges? \
@@ -150,8 +150,9 @@ function setUpMode(){
   }
 }
 
-function addDescription(description){
+function addDescription(title, description){
   // Add description to page
+  $("#pixel-viewer-interactive-title").html(title);
   $("#pixel-viewer-extra-feature-description").html(description);
 }
 
@@ -293,6 +294,8 @@ function Blur(parent_element){
 
 function Thresholder(parent_element){
   // Colour thresholder widget
+  logic_order = $(document.createElement("p")).text(gettext("Note: The 'AND' operator will always be evaluated before the 'OR' operator."));
+  $(parent_element).append(logic_order);
   this.main_div = $("<div></div>");
   this.main_div.attr("id", "pixel-viewer-thresholder").appendTo($(parent_element));
   vals = ["R", "G", "B"];
@@ -803,6 +806,8 @@ function applyThreshold(){
     var pixelData = get_pixel_data(col, row);
     var expr = [pixelData[0], r_lt_or_gt, r_val, operator_0, pixelData[1], g_lt_or_gt, g_val, operator_1, pixelData[2], b_lt_or_gt, b_val]
     .join(" ");
+    console.log(expr);
+    console.log(eval(expr));
     if (eval(expr)){
       return ([255, 255, 255]);
     }
