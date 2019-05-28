@@ -102,10 +102,15 @@ The catch? They need to be in sorted order, but sorting things into order is eas
 
 If you used a Binary Search on each of the levels then you would have always had enough lives to find the target number!
 Informally, the Binary Search algorithm is as follows:
+
 - Look at the item in the centre of the list and compare it to what you are searching for
+
 - If it is what you are looking for then you are done.
+
 - If it is larger than the item you are looking for then you can ignore all the items in the list which are larger than that item (if the list is from smallest to largest this means you can ignore all the items to the right of the centre item).
+
 - If it is smaller then you can ignore all the items in the list which are smaller than that centre item.
+
 - Now repeat the algorithm on the remaining half of the list, checking the middle of the list and choosing one of the halves, until you find the item you are searching for.
 
 Binary Search is a very powerful algorithm.
@@ -128,8 +133,11 @@ This makes the sorting algorithms we will look at next even more important becau
 
 The following files will run linear and binary search in various languages; you can use them to generate random lists of values and measure how long they take to find a given value.
 Your project is to measure the amount of time taken as the number of items (*n*) increases; try drawing a graph showing this.
+
 - [Scratch](files/linear-binary-search-scratch.zip) - [Download Scratch here](https://scratch.mit.edu/scratch2download/)
+
 - [Python (Version 2)](files/linear-binary-search-python2.py) - [Download Python 2 here](https://www.python.org/downloads/)
+
 - [Python (Version 3)](files/linear-binary-search-python3.py) - [Download Python 3 here](https://www.python.org/downloads/)
 
 {panel end}
