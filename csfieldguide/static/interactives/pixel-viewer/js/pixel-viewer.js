@@ -607,8 +607,6 @@ function createCustomConvolutionalKernels(){
     next_grid.push(col);
     for (var j = 0; j < gridSize; j++) {;
       var weight = parseInt($("#0_grid_val_" + i + "_" + j).val());
-      console.log("#0_grid_val_" + i + "_" + j);
-      console.log(weight);
       totalWeight += Math.abs(weight);
       col.push(weight);
     }
