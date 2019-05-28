@@ -806,8 +806,6 @@ function applyThreshold(){
     var pixelData = get_pixel_data(col, row);
     var expr = [pixelData[0], r_lt_or_gt, r_val, operator_0, pixelData[1], g_lt_or_gt, g_val, operator_1, pixelData[2], b_lt_or_gt, b_val]
     .join(" ");
-    console.log(expr);
-    console.log(eval(expr));
     if (eval(expr)){
       return ([255, 255, 255]);
     }
