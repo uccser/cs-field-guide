@@ -109,15 +109,15 @@ $( document ).ready(function() {
 function setUpMode(){
   // Sets up widgets and descriptions appropriate to mode
   if (mode == 'threshold'){
-    addDescription(gettext("Colour Threshold Interactive",
-    "Create an expression to threshold the image. Any pixels that match the\
+    addDescription(gettext("Colour Threshold Interactive"),
+    gettext("Create an expression to threshold the image. Any pixels that match the\
      expression you come up with will be turned white, and everything else will become black. What happens \
      when you threshold on different values or for different colours? Can you use this technique to identify \
      regions of similar colour in the image?"));
     new Thresholder($('#pixel-viewer-image-manipulator'));
   }
   if (mode == 'thresholdgreyscale'){
-    addDescription(gettext("Threshold Interactive", "The image has been converted to greyscale by taking the average of the red, blue and green values for\
+    addDescription(gettext("Threshold Interactive"), gettext("The image has been converted to greyscale by taking the average of the red, blue and green values for\
       each pixel. Choose a threshold between 0 and 255 and transform this picture into black and white to \
       identify regions and edges."));
     filter = greyscaler;
@@ -125,7 +125,7 @@ function setUpMode(){
     new GreyscaleThresholder($('#pixel-viewer-image-manipulator'));
   }
   if (mode == 'blur'){
-    addDescription(gettext("Picture Blurring Interactive", "Experiment with using different blurs to try process the noise. The mean blur will take the mean values of the pixels surrounding,\
+    addDescription(gettext("Picture Blurring Interactive"), gettext("Experiment with using different blurs to try process the noise. The mean blur will take the mean values of the pixels surrounding,\
       the median will take the median value, the gaussian blurs according to a gaussian distribution, and the custom blur allows you to give weights to different surrounding pixels.\
       How do the different types of blur effect the image? What happens when you change values in the custom grid? Experiment with both greyscale and rgb images.  \
       What would happen if every value in the grid was 0 except one? How come? \
@@ -139,7 +139,7 @@ function setUpMode(){
     images = ["coloured-roof-small.png", "alley.jpg", "bike.jpg", "boards.jpg",
   "fence.jpg", "roof.jpg", "tuba.jpg","words.png",
   "words_zoom.png", "knight.png"]
-    addDescription(gettext("Edge Detection Interactive", "Find an edge in the graph and zoom right in. What information could a computer use from the values of the pixels surrounding the edge to find it?\
+    addDescription(gettext("Edge Detection Interactive"), gettext("Find an edge in the graph and zoom right in. What information could a computer use from the values of the pixels surrounding the edge to find it?\
     <br><br>\
     We have supplied you with some grids to apply to the image to transorm it. The numbers in the grids are multiplied against the values of the pixels that surround each point. What numbers\
     can you use in these boxes to discover edges? \
@@ -151,8 +151,8 @@ function setUpMode(){
 }
 
 function addDescription(title, description){
-  // Add title and description to page
-  $("#interactive-subtitle").gettext('Beta');
+  // Add description to page
+  $("#pixel-viewer-interactive-title").html(title);
   $("#pixel-viewer-extra-feature-description").html(description);
 }
 
@@ -170,10 +170,11 @@ function EdgeDetector(parent_element){
   // Create selector for number of grids to apply
   this.main_div.append(
     $(document.createElement("label"))
-    .gettext("Number of grids")
+    .text(gettext("Number of grids:"))
+    .attr("class", "col-12 pl-0")
     .append(
       $(document.createElement("select"))
-      .attr("id", "num-grids")
+      .attr({"id": "num-grids", "class": "form-control w-auto d-inline mx-1"})
       .on("input", createGrids)
       .append($("<option value=1>1</option>"))
       .append($("<option value=2 selected>2</option>"))
@@ -194,20 +195,28 @@ function EdgeDetector(parent_element){
   // Create buttons for applying filters
   this.main_div
     .append(
-      $(document.createElement("button")).gettext("Apply grids")
+      $(document.createElement("button"))
+      .text(gettext("Apply grids"))
+      .attr("class", "btn btn-primary mr-1")
       .click(edgeDetect)
   );
   this.main_div
     .append(
-    $(document.createElement("button")).gettext("Restore Image")
+    $(document.createElement("button"))
+    .text(gettext("Restore Image"))
+    .attr("class", "btn btn-primary")
     .click(removeFilters)
   );
 
-  this.main_div.append($("<p></p>").gettext(
-    "Try adding a threshold to the picture once the transformation has taken place to highlight the edges you find."));
+  this.main_div.append($("<p></p>").text(gettext(
+    "Try adding a threshold to the picture once the transformation has taken place to highlight the edges you find."))
+    .attr("class", "mt-2 mb-1"));
 
   this.main_div.append(thresholdSelect(127))
-  .append($(document.createElement("button")).gettext("Apply grids and Threshold").click(applyGreyThreshold))
+  .append($(document.createElement("button"))
+  .text(gettext("Apply grids and Threshold"))
+  .attr("class", "btn btn-primary ml-1 mb-1")
+  .click(applyGreyThreshold));
 }
 
 
@@ -216,18 +225,42 @@ function Blur(parent_element){
   this.main_div = $("<div></div>");
   this.main_div.attr("id", "pixel-viewer-blur").appendTo($(parent_element));
 
+  // Add a description about noise, then give opportunity for students to introduce noise.
+  this.main_div.append($(document.createElement("p")).text(gettext("Sometimes images have noise, and applying a blur can be a helpful way to preprocess\
+  an image that contains noise before using other Computer Vision algorithms. Use this to add some \"salt and pepper\" noise to the image and then\
+  observe what happens when you apply the blurs to a noisy image. Perhaps you have a noisy image that you could upload yourself?")));
+
+  this.main_div.append($("<label></label>").text(gettext("Amount of noise to add (%): ")));
+  this.main_div.append($(document.createElement("input"))
+      .attr({"type": "number", "value": 10, "id" : "noise_selector", "class" : "form-control w-auto d-inline m-1 mt-2 percent_selector int_selector pos_int_selector"})
+      .on("input", truncateValues)
+      .on("blur", sanitiseValues)
+    ).append(
+    $(document.createElement("button"))
+    .text(gettext("Add noise"))
+    .attr("class", "btn btn-primary mb-1 mr-1")
+    .click(addNoise)
+  ).append(
+    $(document.createElement("button"))
+    .text(gettext("Remove noise"))
+    .attr("class", "btn btn-primary mb-1")
+    .click(removeSalt)
+  );
+  this.main_div.append($(document.createElement("p")).html(gettext("<span id='freeze-warning'>Warning:</span> The 'add noise'\
+  button will freeze the interactive while it is performing calculations")));
+
   this.main_div.append(
     greyScaleToggler()
   );
-  toggleGreyscale()
-  toggleGreyscale()
+  toggleGreyscale();
 
   this.main_div.append(
     $(document.createElement("label"))
-    .gettext("Type of blur")
+    .attr("class", "col-12 pl-0")
+    .text(gettext("Type of blur:"))
     .append(
       $(document.createElement("select"))
-      .attr("id", "blur-type")
+      .attr({"id": "blur-type", "class": "form-control w-auto d-inline mx-1"})
       .append($("<option value=median>median</option>"))
       .append($("<option value=mean>mean</option>"))
       .append($("<option value=gaussian>gaussian</option>"))
@@ -245,57 +278,58 @@ function Blur(parent_element){
   );
   createGrid();
   this.main_div.append(
-    $(document.createElement("button")).gettext("Apply blur")
+    $(document.createElement("button"))
+    .text(gettext("Apply blur"))
+    .attr("class", "btn btn-primary mr-1")
     .click(applyBlur));
 
   this.main_div
     .append(
-    $(document.createElement("button")).gettext("Remove blur")
+    $(document.createElement("button"))
+    .text(gettext("Remove blur"))
+    .attr("class", "btn btn-primary")
     .click(removeFilters)
-  );
-  // Add a description about noise, then give opportunity for students to introduce noise.
-  this.main_div.append($(document.createElement("p")).gettext("Sometimes images have noise, and applying a blur can be a helpful way to preprocess\
-  an image that contains noise before using other Computer Vision algorithms. Use this to add some \"salt and pepper\" noise to the image and then\
-  observe what happens when you apply the blurs to a noisy image. Perhaps you have a noisy image that you could upload yourself?"))
-  .append($("<label></label>").gettext("Amount of noise to add (%): ")
-    .append($(document.createElement("input"))
-      .attr({"type": "number", "value": 10, "id" : "noise_selector", "class" : "percent_selector int_selector pos_int_selector"})
-      .on("input", truncateValues)
-      .on("blur", sanitiseValues))
-    ).append(
-    $(document.createElement("button")).gettext("Add noise")
-    .click(addNoise)
-  ).append(
-    $(document.createElement("button")).gettext("Remove noise")
-    .click(removeSalt)
   );
 }
 
 function Thresholder(parent_element){
   // Colour thresholder widget
+  logic_order = $(document.createElement("p")).text(gettext("Note: The 'AND' operator will always be evaluated before the 'OR' operator."));
+  $(parent_element).append(logic_order);
   this.main_div = $("<div></div>");
   this.main_div.attr("id", "pixel-viewer-thresholder").appendTo($(parent_element));
   vals = ["R", "G", "B"];
   for (val in vals){
-    this.main_div.append($("<label></label>").gettext(vals[val])
+    this.main_div.append($("<div></div>")
+      .attr("id", "colour_" + val)
+      .attr('class', 'col-12 pl-0')
+    .append($("<label></label>").text(gettext(vals[val]))
     .append($("<select></select>")
-      .attr("id", vals[val] + "_lt_or_gt")
+      .attr({"id": vals[val] + "_lt_or_gt", "class": "form-control w-auto d-inline ml-1"})
       .append($("<option value='<'>\<</option>"))
       .append($("<option value='>'>\></option>")))
     .append($(document.createElement("input"))
-      .attr({"type": "number", "value": 0, "id" : vals[val] + "_selector", "class" : "color_selector int_selector pos_int_selector"})
+      .attr({"type": "number", "value": 0, "id" : vals[val] + "_selector", "class" : "color_selector int_selector pos_int_selector form-control w-auto d-inline mx-1"})
       .on("input", truncateValues)
       .on("blur", sanitiseValues))
-    );
+    ));
     if (vals.length - 1 > val){
-      this.main_div.append($("<select></select>")
-      .attr("id", "operator_" + val)
+      var parent_div = document.getElementById("colour_" + val);
+      $("<select></select>")
+      .attr({"id": "operator_" + val, "class": "form-control w-auto d-inline"})
       .append($("<option value='||'>OR</option>"))
-      .append($("<option value='&&'>AND</option>")));
+      .append($("<option value='&&'>AND</option>"))
+      .appendTo(parent_div);
     }
   }
-  this.main_div.append($(document.createElement("button")).gettext("Apply Threshold").click(applyThreshold));
-  this.main_div.append($(document.createElement("button")).gettext("Remove Threshold").click(removeFilters));
+  this.main_div.append($(document.createElement("button"))
+  .text(gettext("Apply Threshold"))
+  .attr("class", "btn btn-primary mx-1")
+  .click(applyThreshold));
+  this.main_div.append($(document.createElement("button"))
+  .text(gettext("Remove Threshold"))
+  .attr("class", "btn btn-primary mx-1")
+  .click(removeFilters));
 }
 
 
@@ -304,17 +338,24 @@ function GreyscaleThresholder(parent_element){
   this.main_div = $("<div></div>");
   this.main_div.attr("id", "pixel-viewer-thresholder").appendTo($(parent_element));
   this.main_div.append(thresholdSelect(127)
-  .append($(document.createElement("button")).gettext("Apply Threshold").click(applyGreyThreshold))
-  .append($(document.createElement("button")).gettext("Remove Threshold").click(removeFilters)));
+  .append($(document.createElement("button"))
+  .text(gettext("Apply Threshold"))
+  .attr("class", "btn btn-primary mx-1 mb-1")
+  .click(applyGreyThreshold))
+  .append($(document.createElement("button"))
+  .text(gettext("Remove Threshold"))
+  .attr("class", "btn btn-primary mb-1")
+  .click(removeFilters)));
 }
 
 function greyScaleToggler(){
   // return a select object for toggling greyscale on or off
   return $(document.createElement("label"))
-    .gettext("Greyscale or rgb")
+    .attr("class", "col-12 pl-0")
+    .text(gettext("Greyscale or rgb:"))
     .append(
       $(document.createElement("select"))
-      .attr("id", "greyscale-or-rgb")
+      .attr({"id": "greyscale-or-rgb", "class": "form-control w-auto d-inline mx-1"})
       .append($("<option value=greyscale>greyscale</option>"))
       .append($("<option value=rgb>rgb</option>"))
       .on("input", toggleGreyscale)
@@ -324,10 +365,11 @@ function greyScaleToggler(){
 function gridSizeChooser(callback){
   // return a select option for choosing how big a convolutional kernel to be applied should be
   return $(document.createElement("label"))
-    .gettext("Grid size")
+    .attr("class", "col-12 pl-0")
+    .text(gettext("Grid size:"))
     .append(
       $(document.createElement("select"))
-      .attr("id", "grid-size")
+      .attr({"id": "grid-size", "class": "form-control w-auto d-inline mx-1"})
       .on("input", callback)
       .append($("<option value=2>2x2</option>"))
       .append($("<option value=3 selected>3x3</option>"))
@@ -338,9 +380,9 @@ function gridSizeChooser(callback){
 
 function thresholdSelect(default_val = 0){
   // Returns a select object for deciding a numeric threshold. Uses default_val as default value
-  return $("<label></label>").gettext("Threshold: ")
+  return $("<label></label>").text(gettext("Threshold: "))
     .append($(document.createElement("input"))
-      .attr({"type": "number", "value": default_val, "id" : "threshold_selector", "class" : "color_selector int_selector pos_int_selector"})
+      .attr({"type": "number", "value": default_val, "id" : "threshold_selector", "class" : "form-control w-auto d-inline color_selector int_selector pos_int_selector"})
       .on("input", truncateValues)
       .on("blur", sanitiseValues))
 }
@@ -348,6 +390,7 @@ function thresholdSelect(default_val = 0){
 function setGridSize(){
   // Sets the global grid size and isGreyscale based on user input
   gridSize = $("#grid-size").val();
+  isGreyscale = $("#greyscale-or-rgb").val() == 'greyscale' ? true : false;
 }
 
 function edgeDetectionFilter(col, row){
@@ -410,7 +453,7 @@ function toggleGreyscale(){
 function constructGrid(id = 0){
   // Construct a single grid and return. Will have identifier of id + _grid_table
   var gridSize = $("#grid-size").val();
-  var table = $(document.createElement("table")).attr("id", id+"_grid_table").attr("class", "grid_table");
+  var table = $(document.createElement("table")).attr("id", id+"_grid_table").attr("class", "grid_table mb-3");
   for (var i = 0; i < gridSize; i++){
     var row = $(document.createElement("tr")).attr("id", id+"_grid_table_row_" + i);
     table.append(row);
@@ -421,7 +464,7 @@ function constructGrid(id = 0){
           $(document.createElement("input"))
           .attr({
             "id": id+"_grid_val_" + j + "_" + i,
-            "class":"int_selector blur_selector",
+            "class":"form-control w-auto d-inline int_selector blur_selector",
             "value":1,
             "type":"number"}
             )
@@ -442,7 +485,7 @@ function createGrids(){
     gridsDiv.append(constructGrid(i));
   }
   $("#grids-div").append(
-    $(document.createElement("label")).gettext("Use absolute value of result: ").append(
+    $(document.createElement("label")).text(gettext("Use absolute value of result: ")).append(
       $(document.createElement("input")).attr({"id":"use_abs_val","type":"checkbox"})));
 }
 
@@ -454,7 +497,7 @@ function createGrid(){
   }
   $("#blur-grid").append(constructGrid());
   $("#blur-grid").append(
-    $(document.createElement("label")).gettext("Use absolute value of result: ").append(
+    $(document.createElement("label")).text(gettext("Use absolute value of result: ")).append(
       $(document.createElement("input")).attr({"id":"use_abs_val","type":"checkbox"})));
 }
 
@@ -555,27 +598,27 @@ function applyConvolutionalKernel(rgb, convo_k){
 
 function createCustomConvolutionalKernels(){
   // Create the custom convolutional kernels in memory from user input
-  var numGrids = $(".grid_table").size();
+  gridSize = $('#grid-size').val();
   custom_kernels = Array();
-  for (var i = 0; i < numGrids; i++){
-      // For each user input grid,
-      // convert user input into convolutional kernel
-      var totalWeight = 0
-      var next_grid = Array();
-      custom_kernels.push(next_grid);
-      for (var j = 0; j < gridSize; j++){
-        var col = Array();
-        next_grid.push(col);
-        for (var k = 0; k < gridSize; k++){
-          var weight = parseInt($("#"+i+"_grid_val_" + j + "_" + k).val());
-          totalWeight += Math.abs(weight);
-          col.push(weight);
-        }
-      }
-      // Make sure we don't divide by 0
-      if (totalWeight == 0) totalWeight = 1;
-      next_grid.totalWeight = totalWeight;
+  // For each user input grid,
+  // convert user input into convolutional kernel
+  var totalWeight = 0
+  var next_grid = Array();
+  custom_kernels.push(next_grid);
+  for (var i = 0; i < gridSize; i++) {
+    var col = Array();
+    next_grid.push(col);
+    for (var j = 0; j < gridSize; j++) {;
+      var weight = parseInt($("#0_grid_val_" + i + "_" + j).val());
+      totalWeight += Math.abs(weight);
+      col.push(weight);
     }
+    // Make sure we don't divide by 0
+    if (totalWeight == 0) {
+      totalWeight = 1;
+    }
+    next_grid.totalWeight = totalWeight;
+  }
 }
 
 function applyCustomConvolutionalKernels(rgb){
@@ -781,7 +824,7 @@ function refreshImage(){
 function createPicturePicker(){
   // Create picker for default pictures
   main_div = $("#picture-picker");
-  main_div.append($("<p></p>").gettext("Or choose from the following supplied images:"));
+  main_div.append($("<p></p>").text(gettext("Or choose from the following supplied images:")));
   for (var i = 0; i < images.length; i++){
     var img_url = image_base_path + images[i]
     main_div.append(
@@ -1054,7 +1097,21 @@ if ('ontouchstart' in window) {
     }, false);
 
     content.addEventListener(navigator.userAgent.indexOf("Firefox") > -1 ? "DOMMouseScroll" :  "mousewheel", function(e) {
-        scroller.doMouseZoom(e.detail ? (e.detail * -120) : e.wheelDelta, e.timeStamp, e.pageX, e.pageY);
+      // following inspired by https://deepmikoto.com/coding/1--javascript-detect-mouse-wheel-direction
+        e.preventDefault();
+        var delta;
+        var direction;
+        if (e.wheelDelta) { // will work in most cases
+            delta = e.wheelDelta / 60;
+        } else if (e.detail) { // fallback for Firefox
+            delta = -e.detail / 2;
+        }
+        direction = delta > 0 ? 'up' : 'down';
+        if (direction == 'up') {
+            scroller.zoomBy(1.2, true);
+        } else if (direction == 'down') {
+            scroller.zoomBy(0.8, true);
+        }
     }, false);
 
 }

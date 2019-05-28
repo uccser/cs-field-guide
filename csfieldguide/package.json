@@ -35,7 +35,8 @@
     "csfg-interactive-sha2": "file:./static/interactives/sha2/",
     "csfg-interactive-sorting-algorithms": "file:./static/interactives/sorting-algorithms/",
     "csfg-interactive-unicode-binary": "file:./static/interactives/unicode-binary/",
-    "csfg-interactive-unicode-chars": "file:./static/interactives/unicode-chars/"
+    "csfg-interactive-unicode-chars": "file:./static/interactives/unicode-chars/",
+    "csfg-interactive-viola-jones-face-detector": "file:./static/interactives/viola-jones-face-detector/"
   },
   "devDependencies": {
     "autoprefixer": "9.3.1",
