@@ -215,7 +215,7 @@ function EdgeDetector(parent_element){
   .append($(document.createElement("button"))
   .text(gettext("Apply grids and Threshold"))
   .attr("class", "btn btn-primary ml-1 mb-1")
-  .click(applyGreyThreshold))
+  .click(applyGreyThreshold));
 }
 
 
@@ -251,8 +251,7 @@ function Blur(parent_element){
   this.main_div.append(
     greyScaleToggler()
   );
-  toggleGreyscale()
-  toggleGreyscale()
+  toggleGreyscale();
 
   this.main_div.append(
     $(document.createElement("label"))
@@ -388,7 +387,7 @@ function thresholdSelect(default_val = 0){
 function setGridSize(){
   // Sets the global grid size and isGreyscale based on user input
   gridSize = $("#grid-size").val();
-  isGreyscale = $("#greyscale-or-rgb").val();
+  isGreyscale = $("#greyscale-or-rgb").val() == 'greyscale' ? true : false;
 }
 
 function edgeDetectionFilter(col, row){
