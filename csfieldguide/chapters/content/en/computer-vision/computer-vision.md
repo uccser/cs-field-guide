@@ -39,6 +39,6 @@ This is a problem of *image segmentation*, which we will look at later.
 
 Giving users more information through computer vision is only one part of the story.
 Capturing information from the real world allows computers to assist us in other ways too.
-In some places, computer vision is already being used to help car drivers to avoid collisions on the road; Warning them when other cars are too close or if there are other hazards on the road ahead.
+In some places, computer vision is already being used to help car drivers to avoid collisions on the road; warning them when other cars are too close or if there are other hazards on the road ahead.
 Combining computer vision with map software, people have now built cars that can drive to a destination without needing a human driver to steer them.
 A wheelchair guidance system can take advantage of vision to avoid bumping into doors, making it much easier to operate for someone with limited mobility.

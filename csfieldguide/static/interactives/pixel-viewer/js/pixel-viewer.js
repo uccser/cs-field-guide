@@ -246,7 +246,7 @@ function Blur(parent_element){
     .attr("class", "btn btn-primary mb-1")
     .click(removeSalt)
   );
-  this.main_div.append($(document.createElement("p")).html(gettext("<span id='freeze-warning'>warning:</span> The 'add noise'\
+  this.main_div.append($(document.createElement("p")).html(gettext("<span id='freeze-warning'>Warning:</span> The 'add noise'\
   button will freeze the interactive while it is performing calculations")));
 
   this.main_div.append(
