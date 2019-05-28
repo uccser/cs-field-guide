@@ -450,7 +450,7 @@ function toggleGreyscale(){
 function constructGrid(id = 0){
   // Construct a single grid and return. Will have identifier of id + _grid_table
   var gridSize = $("#grid-size").val();
-  var table = $(document.createElement("table")).attr("id", id+"_grid_table").attr("class", "grid_table");
+  var table = $(document.createElement("table")).attr("id", id+"_grid_table").attr("class", "grid_table mb-3");
   for (var i = 0; i < gridSize; i++){
     var row = $(document.createElement("tr")).attr("id", id+"_grid_table_row_" + i);
     table.append(row);
