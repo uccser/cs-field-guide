@@ -4,18 +4,18 @@
 
 # Presenting searching in the classroom
 
-The present searching game in this section is split into two parts, the first corresponds to the Linear Search algorithm (also known as Sequential Search) and the second corresponds to {glossary-link term="binary-search"}Binary Search{glossary-link end}.
+The box searching game in this section is split into two parts, the first corresponds to the Linear Search algorithm (also known as Sequential Search) and the second corresponds to {glossary-link term="binary-search"}Binary Search{glossary-link end}.
 
 We recommend you play through the levels yourself for a while, or after reading this description.
-It is based on the [CS Unplugged Battleships game](http://csunplugged.com/searching-algorithms) which can be used as a classroom activity to enforce the lessons in this chapter (the hashing activity is not used for the present searching game).
+It is based on the [CS Unplugged Battleships game](http://csunplugged.com/searching-algorithms) which can be used as a classroom activity to enforce the lessons in this chapter (the hashing activity is not used for the box searching game).
 
 To run this as a classroom activity get all the students to play each section of the game at the same time and then when they have all finished have a discussion about the results.
-After students have finished the first part ask them questions like "Did anyone find the pet on the first go?", "Did anyone only find it after checking every other present?", or find the average number of presents students had to open to find the pet (this should be around 5 for the first level and around 10 for the second).
+After students have finished the first part ask them questions like "Did anyone find the target number on the first go?", "Did anyone only find it after checking every other box?", or find the average number of boxes students had to open to find the target number (this should be around 5 for the first level and around 10 for the second).
 
-While they are playing the second part some may have trouble finding the correct algorithm to find the pet.
-If they are finding these levels confusing you can give them a hint like "Why don't you start by opening the present in the centre" and when they do ask them "What does the number you found tell you about all the numbers before it?" if the number is smaller than the one they are looking for, or "all the numbers after it?" if the number is bigger than the one they are looking for.
+While they are playing the second part some may have trouble finding the correct algorithm to find the target number.
+If they are finding these levels confusing you can give them a hint like "Why don't you start by opening the box in the centre" and when they do ask them "What does the number you found tell you about all the numbers before it?" if the number is smaller than the one they are looking for, or "all the numbers after it?" if the number is bigger than the one they are looking for.
 
-When students have finished ask them questions like "Where you able to find the pet even though you had less lives? What strategy did you use to find the pet?", we have found that many students will have ended up doing a binary search (or similar) without even knowing what a binary search is!
+When students have finished ask them questions like "Were you able to find the target number even though you had less lives? What strategy did you use to find the target number?", we have found that many students will have ended up doing a binary search (or similar) without even knowing what a binary search is!
 Explaining these algorithms to students is likely to be easier now that they have seen them in action.
 
 {panel end}
@@ -32,15 +32,15 @@ Searching Boxes - Part 1
 
 {interactive end}
 
-You may have noticed that the numbers on the monsters and pets in the game were in a random order, which meant that finding the pet was basically luck!
-You might have found it on your first try, or if you were less lucky you might have had to look inside almost all the presents before you found it.
+You may have noticed that the numbers on boxes in the game were in a random order, which meant that finding the target number was basically luck!
+You might have found it on your first try, or if you were less lucky you might have had to look inside almost all the boxes before you found it.
 This might not seem like such a bad thing since you had enough lives to look under all the boxes, but imagine if there had been 1,000 boxes, or worse 1,000,000!
-It would have taken far too long to look through all the boxes and the pet might have never been found.
+It would have taken far too long to look through all the boxes and the target number might have never been found.
 
 Now this next game is slightly different.
 You have less lives, which makes things a bit more challenging, but this time the numbers inside the boxes will be in order.
-The monsters, or maybe the pet, with the smallest number is in the present on the far left, and the one with the largest number is in the present on the far right.
-Let's see if you can collect all the pets without running out of lives...
+The box with the smallest number is on the far left, and the one with the largest number is on the far right.
+Let's see if you can find all the target numbers without running out of lives...
 
 {interactive slug="searching-algorithms" type="whole-page" text="true" parameters="start=3"}
 
@@ -48,11 +48,11 @@ Searching Boxes - Part 2
 
 {interactive end}
 
-Now that you have played through the whole game (and hopefully found all of the lost pets!) you may have noticed that even though you had less lives in the second part of the game, and lots of presents to search through, you were still able to find the pet. Why was this possible?
+Now that you have played through the whole game (and hopefully found all of the target numbers!) you may have noticed that even though you had less lives in the second part of the game, and lots of boxes to search through, you were still able to find the target number. Why was this possible?
 
 ## Linear Search
 
-Since the boxes in the first game were in a random order there really wasn't any strategy you could have used to find the pet, except simply keep opening presents one by one until you found the pet.
+Since the boxes in the first game were in a random order there really wasn't any strategy you could have used to find the target number, except simply keep opening boxes one by one until you found the target number.
 This is essentially the *Linear Search* algorithm (sometimes called a sequential search).
 In simpler terms, Linear Search algorithm is as follows:
 - Check if the first item in a list is the item you are searching for, if it is the one you are looking for, you are done.
@@ -66,15 +66,15 @@ For a list of 10 items this means on average you would only have to look at 5 it
 
 # How is Bozo search different from Linear search?
 
-If you watched the video at the beginning of the chapter you might be thinking that what you did in the present searching game sounds more like Bozo Search than Linear Search, but actually Bozo Search is even sillier than this!
-If you were doing a Bozo Search then after unwrapping a present and finding a monster inside, you would wrap the present back up and try another one at random!
-This means you might end up checking the same present again and again and again and you might never find the pet, even with a small number of presents!
+If you watched the video at the beginning of the chapter you might be thinking that what you did in the box searching game sounds more like Bozo Search than Linear Search, but actually Bozo Search is even sillier than this!
+If you were doing a Bozo Search then after opening a box and finding the wrong number, you would close the box back up and try another one at random!
+This means you might end up checking the same box again and again and again and you might never find the target number, even with a small number of boxes!
 
 {panel end}
 
 ## Binary search
 
-A much better algorithm to use is called Binary Search. In the second part of the present searching game the boxes were in order, which meant you were able to be more clever when you were searching for the pet, and you might have been using a Binary Search without realising!
+A much better algorithm to use is called Binary Search. In the second part of the box searching game the boxes were in order, which meant you were able to be more clever when you were searching for the target number, and you might have been using a Binary Search without realising!
 
 {panel type="teacher-note"}
 
@@ -97,7 +97,7 @@ The catch? They need to be in sorted order, but sorting things into order is eas
 
 {panel end}
 
-If you used a Binary Search on each of the levels then you would have always had enough lives to find the pet!
+If you used a Binary Search on each of the levels then you would have always had enough lives to find the target number!
 Informally, the Binary Search algorithm is as follows:
 - Look at the item in the centre of the list and compare it to what you are searching for
 - If it is what you are looking for then you are done.
@@ -106,7 +106,7 @@ Informally, the Binary Search algorithm is as follows:
 - Now repeat the algorithm on the remaining half of the list, checking the middle of the list and choosing one of the halves, until you find the item you are searching for.
 
 Binary Search is a very powerful algorithm.
-If you had 1000 presents to search through it would take you at most 10 checks for Binary search to find something and Linear search would take at most 1000 checks, but if you doubled the number of presents to search through how would this change the number of checks made by Binary Search and Linear search?
+If you had 1000 boxes to search through it would take you at most 10 checks for Binary search to find something and Linear search would take at most 1000 checks, but if you doubled the number of boxes to search through how would this change the number of checks made by Binary Search and Linear search?
 
 {panel type="spoiler"}
 
