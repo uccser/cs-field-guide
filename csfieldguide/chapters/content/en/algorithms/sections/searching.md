@@ -32,7 +32,7 @@ Searching Boxes - Part 1
 
 {interactive end}
 
-You may have noticed that the numbers on boxes in the game were in a random order, which meant that finding the target number was basically luck!
+You may have noticed that the numbers on the boxes in the game were in a random order, which meant that finding the target number was basically luck!
 You might have found it on your first try, or if you were less lucky you might have had to look inside almost all the boxes before you found it.
 This might not seem like such a bad thing since you had enough lives to look under all the boxes, but imagine if there had been 1,000 boxes, or worse 1,000,000!
 It would have taken far too long to look through all the boxes and the target number might have never been found.
@@ -55,8 +55,11 @@ Now that you have played through the whole game (and hopefully found all of the 
 Since the boxes in the first game were in a random order there really wasn't any strategy you could have used to find the target number, except simply keep opening boxes one by one until you found the target number.
 This is essentially the *Linear Search* algorithm (sometimes called a sequential search).
 In simpler terms, Linear Search algorithm is as follows:
+
 - Check if the first item in a list is the item you are searching for, if it is the one you are looking for, you are done.
+
 - If it isn't the item you are searching for move on and check the next item.
+
 - Continue checking items until you find the one you are searching for.
 
 If you used this algorithm you might get lucky and find what you are looking for on your first go, but if you were really unlucky you might have to look through everything in your list before you found the right object!
