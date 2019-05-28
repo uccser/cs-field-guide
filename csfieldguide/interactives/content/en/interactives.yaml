@@ -58,6 +58,8 @@ dictionary-compression:
   name: Dictionary Compression
 dot-combinations:
   name: Dot Combinations
+flowcharts-interpreter-compiler:
+  name: Flowcharts - Interpreter and Compiler
 frequency-analysis:
   name: Frequency Analysis
 fsa-box:
