@@ -27,6 +27,7 @@ def render_interactive_link(context, interactive, *args, **kwargs):
 
     parameters = kwargs.get("parameters", None)
     text = kwargs.get("text", None)
+    new_tab = kwargs.get("new_tab", True)
 
     # Trim '?' at start if present
     if isinstance(parameters, str) and parameters.startswith("?"):
@@ -37,5 +38,6 @@ def render_interactive_link(context, interactive, *args, **kwargs):
         "interactive_thumbnail": "img/interactives/thumbnails/{}/{}.png".format(get_language(), interactive.slug),
         "parameters": parameters,
         "text": text,
+        "new_tab": new_tab
     }
     return render_to_string(settings.INTERACTIVES_LINK_TEMPLATE, context, request=context.get("request"))

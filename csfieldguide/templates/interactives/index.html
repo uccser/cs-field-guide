@@ -21,7 +21,7 @@
         {% for interactive in chapter.interactives.all %}
           {% if interactive.is_interactive %}
             <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
-            {% render_interactive_link interactive.slug %}
+            {% render_interactive_link interactive.slug new_tab=false %}
             </div>
           {% endif %}
         {% endfor %}
@@ -37,7 +37,7 @@
       {% for interactive in interactives %}
         {% if interactive.is_interactive %}
           <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
-          {% render_interactive_link interactive.slug %}
+          {% render_interactive_link interactive.slug new_tab=false %}
           </div>
         {% endif %}
       {% endfor %}

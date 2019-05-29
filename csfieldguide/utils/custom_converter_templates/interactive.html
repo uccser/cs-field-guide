@@ -9,7 +9,7 @@
 {% elif type == 'whole-page' -%}
   <div class="row">
     <div class="col s12 m8 l6 offset-m2 mb-4">
-      {{ "{% render_interactive_link '" }}{{ slug }}'{% if text %} text='{{ text }}'{% endif %}{% if parameters %} parameters='{{ parameters }}' {% endif %}{{ " %}" }}
+      {{ "{% render_interactive_link '" }}{{ slug }}'{% if text %} text='{{ text }}'{% endif %}{% if parameters %} parameters='{{ parameters }}' {% endif %}{% if new_tab %} new_tab='{{ new_tab }}' {% endif %}{{ " %}" }}
     </div>
   </div>
 {%- endif -%}

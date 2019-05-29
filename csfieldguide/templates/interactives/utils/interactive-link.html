@@ -2,7 +2,8 @@
 
 <a
   href="{% url 'interactives:interactive' interactive.slug %}{% if parameters %}?{{ parameters }}{% endif %}"
-  class="link-item no-text-decoration d-block h-100 py-2 text-center{% if not interactive.translation_available %} unavailable{% endif %}">
+  class="link-item no-text-decoration d-block h-100 py-2 text-center{% if not interactive.translation_available %} unavailable{% endif %}"
+  {% if new_tab %}target="_blank"{% endif %}>
   <img class="border-thin" src="{% static interactive_thumbnail %}" alt="Thumbnail of {{ interactive.name }} interactive">
   <p class="mb-0 mt-2">
     <strong>
