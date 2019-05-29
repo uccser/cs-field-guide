@@ -32,12 +32,12 @@ $(document).ready(function () {
 		    stepped: true
     	}
     });
-
-    // Bind the color changing function
-    // to the slide event.
-    RGB_Mixer.sliders[i].noUiSlider.on('slide', RGB_Mixer.setColor);
   }
-
+  // Bind the color changing function
+  // to the update event. Fires immediately so has to be outside for-loop.
+  RGB_Mixer.sliders[0].noUiSlider.on('update', RGB_Mixer.setColor);
+  RGB_Mixer.sliders[1].noUiSlider.on('update', RGB_Mixer.setColor);
+  RGB_Mixer.sliders[2].noUiSlider.on('update', RGB_Mixer.setColor);
   // Update display
   RGB_Mixer.setColor();
 });

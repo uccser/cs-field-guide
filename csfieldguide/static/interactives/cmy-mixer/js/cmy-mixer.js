@@ -32,11 +32,12 @@ $(document).ready(function () {
 		    stepped: true
     	}
     });
-
-    // Bind the color changing function
-    // to the slide event.
-    CMY_Mixer.sliders[i].noUiSlider.on('slide', CMY_Mixer.setColor);
   }
+  // Bind the color changing function
+  // to the update event. Fires immediately so has to be outside for-loop.
+  CMY_Mixer.sliders[0].noUiSlider.on('update', CMY_Mixer.setColor);
+  CMY_Mixer.sliders[1].noUiSlider.on('update', CMY_Mixer.setColor);
+  CMY_Mixer.sliders[2].noUiSlider.on('update', CMY_Mixer.setColor);
 
   // Update display
   CMY_Mixer.setColor();
