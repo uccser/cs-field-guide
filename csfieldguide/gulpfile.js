@@ -42,9 +42,6 @@ const stylish = require('jshint-stylish');
 
 // gulp build --production
 const production = !!argv.production;
-// determine if we're doing a build
-// and if so, bypass the livereload
-const build = argv._.length ? argv._[0] === 'build' : true;
 
 // ----------------------------
 // Error notification methods
@@ -69,122 +66,96 @@ function catchError(error) {
 }
 
 // --------------------------
-// CUSTOM TASK METHODS
+// Delete build folder
 // --------------------------
-var tasks = {
-  // --------------------------
-  // Delete build folder
-  // --------------------------
-  clean: function() {
-    return del(['build/']);
-  },
-  // --------------------------
-  // Copy static images
-  // --------------------------
-  images: function() {
-    return gulp.src('static/img/**/*')
-      .pipe(gulp.dest('build/img'));
-  },
-  // --------------------------
-  // Copy interactive files
-  // --------------------------
-  interactives: function() {
-    return gulp.src([
-        'static/interactives/**/*',
-        '!static/interactives/**/*.scss',
-        '!static/interactives/**/*.js'
-      ])
-      .pipe(gulp.dest('build/interactives'));
-  },
-  // --------------------------
-  // Copy downloadable files
-  // --------------------------
-  files: function() {
-    return gulp.src('static/files/**/*')
-      .pipe(gulp.dest('build/files'));
-  },
-  // --------------------------
-  // Copy SVG files
-  // --------------------------
-  svg: function() {
-    return gulp.src('static/svg/**/*')
-      .pipe(gulp.dest('build/svg'));
-  },
-  // --------------------------
-  // CSS
-  // --------------------------
-  css: function() {
-    return gulp.src('static/css/**/*.css')
-      .pipe(gulp.dest('build/css'));
-  },
-  // --------------------------
-  // SASS (libsass)
-  // --------------------------
-  sass: function() {
-    return gulp.src('static/**/*.scss')
-      .pipe(errorHandler(catchError))
-      // sourcemaps + sass + error handling
-      .pipe(gulpif(!production, sourcemaps.init()))
-      .pipe(sass({
-        sourceComments: !production,
-        outputStyle: production ? 'compressed' : 'nested'
-      }))
-      .on('error', handleError('SASS'))
-      // generate .maps
-      .pipe(gulpif(!production, sourcemaps.write({
-        'includeContent': false,
-        'sourceRoot': '.'
-      })))
-      // autoprefixer
-      .pipe(gulpif(!production, sourcemaps.init({
-        'loadMaps': true
-      })))
-      .pipe(postcss([autoprefixer({browsers: ['last 2 versions']}), postcssFlexbugFixes]))
-      .pipe(sourcemaps.write({
-        'includeContent': true
-      }))
-      .pipe(rename(function (path) {
-        path.dirname = path.dirname.replace("scss", "css");
-      }))
-      .pipe(gulp.dest('build/'));
-  },
-  // --------------------------
-  // JavaScript
-  // --------------------------
-  js: function() {
-    const f = filter(js_files_skip_optimisation, {restore: true});
-    return gulp.src(['static/**/*.js', '!static/js/modules/**/*.js'])
-      .pipe(f)
-      .pipe(errorHandler(catchError))
-      .pipe(tap(function (file) {
-        file.contents = browserify(file.path, {debug: true}).bundle().on('error', catchError);
-      }))
-      .pipe(buffer())
-      .pipe(errorHandler(catchError))
-      .pipe(gulpif(production, sourcemaps.init({loadMaps: true})))
-      .pipe(gulpif(production, terser({keep_fnames: true})))
-      .pipe(gulpif(production, sourcemaps.write('./')))
-      .pipe(f.restore)
-      .pipe(gulp.dest('build'));
-  },
-};
+function clean() {
+  return del(['build/']);
+}
+// --------------------------
+// Copy static images
+// --------------------------
+function images() {
+  return gulp.src('static/img/**/*')
+    .pipe(gulp.dest('build/img'));
+}
+// --------------------------
+// Copy SVG files
+// --------------------------
+function svg() {
+  return gulp.src('static/svg/**/*')
+    .pipe(gulp.dest('build/svg'));
+}
+// --------------------------
+// CSS
+// --------------------------
+function css() {
+  return gulp.src('static/css/**/*.css')
+    .pipe(gulp.dest('build/css'));
+}
+// --------------------------
+// scss (libsass)
+// --------------------------
+function scss() {
+  return gulp.src('static/scss/*.scss')
+    .pipe(errorHandler(catchError))
+    // sourcemaps + scss + error handling
+    .pipe(gulpif(!production, sourcemaps.init()))
+    .pipe(sass({
+      sourceComments: !production,
+      outputStyle: production ? 'compressed' : 'nested'
+    }))
+    .on('error', handleError('SASS'))
+    // generate .maps
+    .pipe(gulpif(!production, sourcemaps.write({
+      'includeContent': false,
+      'sourceRoot': '.'
+    })))
+    // autoprefixer
+    .pipe(gulpif(!production, sourcemaps.init({
+      'loadMaps': true
+    })))
+    .pipe(postcss([autoprefixer({browsers: ['last 2 versions']}), postcssFlexbugFixes]))
+    // we don't serve the source files
+    // so include scss content inside the sourcemaps
+    .pipe(sourcemaps.write({
+      'includeContent': true
+    }))
+    .pipe(rename(function (path) {
+      path.dirname = path.dirname.replace("scss", "css");
+    }))
+    .pipe(gulp.dest('build/css'));
+}
+// --------------------------
+// JavaScript
+// --------------------------
+function js() {
+  const f = filter(js_files_skip_optimisation, {restore: true});
+  return gulp.src(['static/**/*.js', '!static/js/modules/**/*.js'])
+    .pipe(f)
+    .pipe(errorHandler(catchError))
+    .pipe(tap(function (file) {
+      file.contents = browserify(file.path, {debug: true}).bundle().on('error', catchError);
+    }))
+    .pipe(buffer())
+    .pipe(errorHandler(catchError))
+    .pipe(gulpif(production, sourcemaps.init({loadMaps: true})))
+    .pipe(gulpif(production, terser({keep_fnames: true})))
+    .pipe(gulpif(production, sourcemaps.write('./')))
+    .pipe(f.restore)
+    .pipe(gulp.dest('build'));
+}
 
-// // --------------------------
-// // CUSTOMS TASKS
-// // --------------------------
-gulp.task('clean', tasks.clean);
-// // for production we require the clean method on every individual task
-var req = [];
-// // individual tasks
-gulp.task('images', req, tasks.images);
-gulp.task('interactives', req, tasks.interactives);
-gulp.task('files', req, tasks.files);
-gulp.task('svg', req, tasks.svg);
-gulp.task('js', req, tasks.js);
-gulp.task('css', req, tasks.css);
-gulp.task('sass', req, tasks.sass);
 
-// // build task
-gulp.task('build', function(callback) {
-  runSequence('clean', ['images', 'svg', 'css', 'sass', 'interactives', 'files', 'js'], callback);
-});
+// define complex tasks
+const build = gulp.series(clean, gulp.parallel(images, css, scss, svg, js));
+
+// export tasks
+exports.clean = clean;
+exports.images = images;
+exports.css = css;
+exports.scss = scss;
+exports.svg = svg;
+exports.js = js;
+
+exports.build = build;
+exports.default = build;
