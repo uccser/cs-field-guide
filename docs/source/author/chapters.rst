@@ -33,7 +33,7 @@ The ``content`` directory for the chapters application contains
 Content Files
 ==============================================================================
 
-There are 3 different types of files used for adding content to CS Unplugged:
+There are 3 different types of files used for adding content to CS Field Guide:
 
 - Content Markdown files
 - YAML files containing translatable strings
