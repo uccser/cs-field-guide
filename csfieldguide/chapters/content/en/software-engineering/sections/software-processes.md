@@ -154,10 +154,9 @@ Which of these two approaches worked best &ndash; designing everything first, or
 
 # Solution
 
-Here is an example diagram students might come up with after a few revisions.
-An image of the solution in action can be found [here](https://github.com/uccser/cs-field-guide/issues/505#issuecomment-494605977).
+Here is an example solution students might come up with after a few revisions:
 
-{image file-path="img/chapters/cards-bridge-solution.png" alt="Sketch of a potential solution to the card bridge"}
+{image file-path="img/chapters/card-bridge-solution.JPG" alt="Image of a potential solution to the card bridge"}
 
 {panel end}
 
