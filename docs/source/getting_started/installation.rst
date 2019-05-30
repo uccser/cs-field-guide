@@ -124,6 +124,7 @@ This is a good time to install your preferred IDE or text editor, if you don't
 have one already.
 Some free options we love:
 
+- `Visual Studio Code`_
 - `Atom`_
 - `Sublime Text`_
 
@@ -258,5 +259,6 @@ you're all set to contribute to the CS Field Guide project.
 .. _Docker: https://www.docker.com/
 .. _Docker Store: https://store.docker.com/search?type=edition&offering=community
 .. _Verto documentation: http://verto.readthedocs.io/en/latest/install.html
+.. _Visual Studio Code: https://code.visualstudio.com/
 .. _Atom: https://atom.io/
 .. _Sublime Text: https://www.sublimetext.com/

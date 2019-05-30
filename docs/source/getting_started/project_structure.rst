@@ -4,6 +4,9 @@ Project Structure
 This page covers the structure of the CS Field Guide project.
 The following diagram will be helpful when reading the following sections:
 
+.. raw:: html
+  :file: ../_static/html_snippets/project_directory_tree.html
+
 Repository Directory
 =================================================
 
