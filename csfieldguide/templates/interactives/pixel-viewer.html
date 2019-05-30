@@ -6,14 +6,14 @@
 {% block html %}
     <div id="pixel-viewer-interactive" class="d-flex flex-column">
         <div id="pixel-viewer-interactive-buttons" class="flex-shrink-0">
-            <button id="pixel-viewer-interactive-menu-toggle" class="btn btn-primary btn-lg flex-fill">
-                {% trans "Toggle Menu" %}
-            </button>
             <button id="pixel-viewer-interactive-zoom-in" class="btn btn-primary btn-lg flex-fill zoom-button">
                 {% trans "Zoom In" %}
             </button>
             <button id="pixel-viewer-interactive-zoom-out" class="btn btn-primary btn-lg flex-fill zoom-button">
                 {% trans "Zoom Out" %}
+            </button>
+            <button id="pixel-viewer-interactive-menu-toggle" class="btn btn-primary btn-lg flex-fill">
+                {% trans "Toggle Menu" %}
             </button>
         </div>
         <div id="pixel-viewer-interactive-container">
@@ -21,9 +21,8 @@
             <div id="pixel-viewer-interactive-loader"></div>
             <canvas id="pixel-viewer-interactive-content" crossorigin="anonymous"></canvas>
             <div id="pixel-viewer-interactive-settings" class="menu-offscreen p-3">
-                <h3>
+                <h3 id="pixel-viewer-interactive-title">
                     {% trans "Pixel Value Interactive" %}
-                    <span id="interactive-subtitle" class="badge badge-danger"></span>
                 </h3>
                 <p>{% blocktrans %}This interactive allows you to see the pixels of an image, and details about those pixels. <strong>Zoom
                         in</strong> to see details about individual pixels.{% endblocktrans %}</p>
@@ -31,7 +30,6 @@
                 <p id="pixel-viewer-extra-feature-description"></p>
 
                 <span id="pixel-viewer-image-manipulator"></span>
-
                 <p>{% trans "This interactive works best on a desktop Chrome browser, due to the heavy performance load." %}</p>
 
                 <hr>
@@ -47,8 +45,11 @@
                 <h5>{% trans "Upload your own image" %}</h5>
                 <p>{% blocktrans %}Either drag and drop an image onto this page, or click the button below to load your own image into
                     the interactive. The image will be resized for performance.{% endblocktrans %}</p>
-
-                <input type="file" class="form-control" name="image" onchange="loadImageDialog(this)" accept="image/*" />
+                
+                <div class="custom-file w-auto d-block col-8 my-1">
+                    <input type="file" id="pixel-viewer-upload" class="custom-file-input" name="image" onchange="loadImageDialog(this)" accept="image/*" />
+                    <label class="custom-file-label" for="pixel-viewer-upload">{% trans "Choose file" %}</label>
+                </div>
                 <canvas id="pixel-viewer-interactive-source-canvas"></canvas>
 
                 <p>

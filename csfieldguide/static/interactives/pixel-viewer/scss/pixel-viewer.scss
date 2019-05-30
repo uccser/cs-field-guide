@@ -31,7 +31,7 @@
     z-index: 9;
     position: absolute;
     top: 0;
-    left: 0;
+    right: 0;
     background-color: #fff;
     border: 3px solid #000;
     border-top: 0;
@@ -99,4 +99,12 @@
       }
     }
   }
+}
+
+#freeze-warning {
+  color: red;
+}
+
+#R_lt_or_gt {
+  margin-left: 5px !important;
 }
