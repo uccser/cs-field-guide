@@ -156,7 +156,7 @@ Which of these two approaches worked best &ndash; designing everything first, or
 
 Here is an example solution students might come up with after a few revisions:
 
-{image file-path="img/chapters/card-bridge-solution.JPG" alt="Image of a potential solution to the card bridge"}
+{image file-path="img/chapters/card-bridge-solution.jpg" alt="Image of a potential solution to the card bridge"}
 
 {panel end}
 
