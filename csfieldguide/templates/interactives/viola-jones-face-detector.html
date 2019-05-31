@@ -1,0 +1,62 @@
+{% extends interactive_mode_template %}
+
+{% load i18n %}
+{% load static %}
+
+{% block html %}
+  <div class="container">
+    <h3 class="text-center mb-2">{% trans "Viola-Jones Face Detection" %}</h3>
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="row">
+          <p>{% trans "Click and drag the five Haar features on the left side of the image, onto the faces where they are valid." %}</p>
+          <div id="features"></div>
+        </div>
+        <div class="row">
+          <p id="values">
+            <strong>{% trans 'White Square intensity:</strong> <span id="whiteValue">0</span>' %}</br>
+            <strong>{% trans 'Black Square intensity:</strong> <span id="blackValue">0</span>' %}</br>
+            <strong>{% trans 'Haar-like Features found:</strong> <span id="found">0</span>/5' %}<br>
+            <em id="feedback"></em>
+          </p>
+          <hr>
+        </div>
+        <div class="row">
+          <p>{% trans "Upload a custom image:" %}</p>
+          <div class="input-group mb-3">
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="viola-jones-image-input" accept="image/*">
+              <label class="custom-file-label" for="viola-jones-image-input">{% trans "Choose file" %}</label>
+            </div>
+          </div>
+          <p>{% trans "After you have found the 5 Haar-like features, use the 'find faces' button below to run a basic version of the Viola-Jones algorithm." %}</p>
+          <button id="find-faces" class="btn btn-primary btn-sm mr-1">{% trans "Find faces" %}</button>
+          <button id="clear-rectangles" class="btn btn-primary btn-sm">{% trans "Hide faces" %}</button>
+        </div>
+      </div>
+
+      <div class="col-lg-8">
+        <div id="image-container">
+          <img class="haar" id="haar1" src="{% static 'interactives/viola-jones-face-detector/images/haar1.png' %}" draggable="false">
+          <img class="haar" id="haar2" src="{% static 'interactives/viola-jones-face-detector/images/haar2.png' %}" draggable="false">
+          <img class="haar" id="haar3" src="{% static 'interactives/viola-jones-face-detector/images/haar3.png' %}" draggable="false">
+          <img class="haar" id="haar4" src="{% static 'interactives/viola-jones-face-detector/images/haar4.png' %}" draggable="false">
+          <img class="haar" id="haar5" src="{% static 'interactives/viola-jones-face-detector/images/haar5.png' %}" draggable="false">
+          <canvas id="canvas" class="greyscale"></canvas>
+          <div class="d-none">
+            <img id="img" src="{% static 'interactives/viola-jones-face-detector/images/faces.jpg' %}">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock html %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'interactives/viola-jones-face-detector/css/viola-jones.css' %}">
+{% endblock css %}
+
+{% block js %}
+  <script type="text/javascript" src="{% static 'interactives/viola-jones-face-detector/js/viola-jones.js' %}"></script>
+  <script type="text/javascript" src="{% static 'interactives/viola-jones-face-detector/libs/face-min.js' %}"></script>
+{% endblock js %}

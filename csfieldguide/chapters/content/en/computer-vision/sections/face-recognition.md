@@ -11,9 +11,13 @@ Security systems such as customs at country borders use face recognition to iden
 It can also be useful for privacy — Google Maps streetview identifies faces and blurs them.
 Digital cameras can find faces in a scene and use them to adjust the focus and lighting.
 
-There is some information about [How facial recognition works](http://electronics.howstuffworks.com/gadgets/high-tech-gadgets/facial-recognition.htm) that you can read up as background, and some more information at [i-programmer.info](http://www.i-programmer.info/babbages-bag/1091-face-recognition.html).
+There is some information about [how facial recognition works](http://electronics.howstuffworks.com/gadgets/high-tech-gadgets/facial-recognition.htm) that you can read up as background, and some more information at [i-programmer.info](http://www.i-programmer.info/babbages-bag/1091-face-recognition.html).
 
 There are some relevant [articles on the cs4fn website](http://www.cs4fn.org/vision/) that also provide some general material on computer vision.
+
+We also have a Viola-Jones Face Detection interactive available, supporting text will be added at a later date.
+
+{interactive slug="viola-jones-face-detector" type="whole-page" text="Viola-Jones Face Detection"}
 
 {comment http://facestuff.wordpress.com/2010/02/15/beady-eyed-tap-face/ Discuss techniques}
 
@@ -38,8 +42,15 @@ Does a baby photo match of a person get matched with them when they are five yea
 When they are an adult?
 Why or why not does this work?
 
-Try using [face recognition on this website](https://inspirit.github.com/jsfeat/sample_haar_face.html) to see how well the Haar face recognition system can track a face in the image.
-What prevents it from tracking a face?
-Is it affected if you cover one eye or wear a hat?
-How much can the image change before it isn't recognised as a face?
-Is it possible to get it to incorrectly recognise something that isn't a face?
+
+{comment The below paragraph is commented out because the link displays a 404 page and we cannot find a replacement}
+
+{comment Try using [face recognition on this website](https://inspirit.github.com/jsfeat/sample_haar_face.html) to see how well the Haar face recognition system can track a face in the image.}
+
+{comment What prevents it from tracking a face?}
+
+{comment Is it affected if you cover one eye or wear a hat?}
+
+{comment How much can the image change before it isn't recognised as a face?}
+
+{comment Is it possible to get it to incorrectly recognise something that isn't a face?}

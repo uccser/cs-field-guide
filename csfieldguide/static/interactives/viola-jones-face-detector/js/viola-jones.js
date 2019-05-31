@@ -1,11 +1,14 @@
+const interact = require("interactjs");
+require("tracking");
+
 // listen for HTML5 native drag and drop API dragstart event and ignore them.
 document.addEventListener('dragstart', function(event) {
   // use interact.js' matchesSelector polyfil to
   // check for match with your draggable target
   if (interact.matchesSelector(event.target, '.haar, .haar *')) {
-      // prevent and stop the event if it's on a draggable target
-      event.preventDefault();
-      event.stopPropagation();
+    // prevent and stop the event if it's on a draggable target
+    event.preventDefault();
+    event.stopPropagation();
   }
 });
 
@@ -18,6 +21,10 @@ $(document).ready(function () {
   context = canvas.getContext('2d');
   rect = canvas.getBoundingClientRect();
 
+  $('#find-faces').click(findFaces);
+  $('#clear-rectangles').click(clearRectangles);
+  $('#viola-jones-image-input').change(loadImageDialog);
+  
   /**
    * This code allows the Haar feature to be dragged around the image,
    * using interact.js.
@@ -38,6 +45,7 @@ $(document).ready(function () {
 
 
 function dragMove (event) {
+  feedback.innerHTML = "";
   var target = event.target,
     // keep the dragged position in the data-x/data-y attributes
     x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
@@ -243,17 +251,51 @@ function updateDisplay(whiteSquareIntensity, blackSquareIntensity, target) {
 
 
 /*
- * Function called when the load image button is clicker, displays file chooser.
+ * Function called when the load image button is clicked, displays file chosen.
  */
-function loadImageDialog(input) {
+function loadImageDialog() {
+  var input = this;
   if (input.files && input.files[0]) {
     var reader = new FileReader();
     reader.onload = function(e) {
       var sourceImage = document.getElementById("img");
+      sourceImage.crossOrigin = 'anonymous';
       sourceImage.src = e.target.result;
       loadResizeImage();
     }
     reader.readAsDataURL(input.files[0]);
+    $("label[for='viola-jones-image-input']").text(input.files[0].name);
+    // reset position and validation border of haar boxes
+    $('#haar1').css('transform', 'translate(0, 0)').removeClass('valid');
+    $('#haar1').attr('data-x', 0);
+    $('#haar1').attr('data-y', 0);
+
+    $('#haar2').css('transform', 'translate(0, 0)').removeClass('valid');
+    $('#haar2').attr('data-x', 0);
+    $('#haar2').attr('data-y', 0);
+
+    $('#haar3').css('transform', 'translate(0, 0)').removeClass('valid');
+    $('#haar3').attr('data-x', 0);
+    $('#haar3').attr('data-y', 0);
+
+    $('#haar4').css('transform', 'translate(0, 0)').removeClass('valid');
+    $('#haar4').attr('data-x', 0);
+    $('#haar4').attr('data-y', 0);
+
+    $('#haar5').css('transform', 'translate(0, 0)').removeClass('valid');
+    $('#haar5').attr('data-x', 0);
+    $('#haar5').attr('data-y', 0);
+
+    // remove well done message
+    feedback.innerHTML = "";
+    // reset info
+    haarFound = 0;
+    var found = document.getElementById("found");
+    found.innerHTML = 0;
+    var black = document.getElementById("blackValue");
+    black.innerHTML = 0;
+    var white = document.getElementById("whiteValue");
+    white.innerHTML = 0;
   }
 }
 
@@ -261,7 +303,7 @@ function loadImageDialog(input) {
 /**
  * Resizes the image that is chosen to be loaded and makes it grayscale.
  */
-function loadResizeImage(src) {
+function loadResizeImage() {
   var sourceImage = document.getElementById('img');
   var MAX_WIDTH = 900;
   var img = new Image();
@@ -316,7 +358,6 @@ function drawGrayscaleImage(img) {
  * Runs the algorithm to find faces and draws a rectange around them.
  */
 function findFaces() {
-  var img = document.getElementById('img');
   var tracker = new tracking.ObjectTracker(['face']);
   tracker.setStepSize(2);
   trackerTask = tracking.track('#img', tracker);

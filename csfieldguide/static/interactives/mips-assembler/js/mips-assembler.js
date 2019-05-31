@@ -36,6 +36,7 @@ const TXT_PANIC = gettext("You've triggered the failsafe error control in this i
 var LABELS;
 var LABELADDRS;
 var SHOWCOLOUR;
+var SHOWBINARY;
 
 // Stores a backup of the default code and registers button handler functions
 $(document).ready(function() {
@@ -63,7 +64,9 @@ $(document).ready(function() {
     });
 });
 
-// Assembles the code from the mips input box and prints it to the assembler output box
+/**
+ * Assembles the code from the mips input box and prints it to the assembler output box
+ */
 function assemble() {
     LABELS = [];
     LABELADDRS = [];
@@ -72,6 +75,7 @@ function assemble() {
     var showBlank = $('#show-blank').is(':checked');
     var showInstr = $('#show-instructions').is(':checked');
     SHOWCOLOUR = $('#show-colours').is(':checked');
+    SHOWBINARY = $('#show-binary').is(':checked');
 
     var printText = "";
     var nextInstr = "";
@@ -93,7 +97,7 @@ function assemble() {
     var mipsCode = mipsText.split(/\r|\n/);
 
     // Parse the code
-    for (x=0; x < mipsCode.length; x++) {
+    for (var x=0; x < mipsCode.length; x++) {
         line = mipsCode[x].trim();
         if (line.startsWith(".")) {
             // Ignore the line
@@ -137,7 +141,7 @@ function assemble() {
             LABELS.push(name);
             LABELADDRS.push(instructionAddr);
             if (showInstr) {
-                nextInstr = colour(hexOfInt(instructionAddr, 8), COLOUR_ADDR) + ": " + colour(name, COLOUR_LABEL) + " ; |" + colour(TXT_INPUT + ":" + input, COLOUR_INPUT) + "| " + colour(name, COLOUR_LABEL) + ":<br>";
+                nextInstr = colour(rawVal(instructionAddr), COLOUR_ADDR) + ": " + colour(name, COLOUR_LABEL) + " ; |" + colour(TXT_INPUT + ":" + input, COLOUR_INPUT) + "| " + colour(name, COLOUR_LABEL) + ":<br>";
             } else {
                 nextInstr = colour(name, COLOUR_LABEL) + ":<br>";
             }
@@ -147,9 +151,9 @@ function assemble() {
         } else if (line == "syscall" || line == "SYSCALL") {
             // Interpret as a syscall
             if (showInstr) {
-                nextInstr = colour(hexOfInt(instructionAddr, 8), COLOUR_ADDR) + ": " + colour("0000000c", COLOUR_INSTR) + " ; |" + colour(TXT_INPUT + ":" + input, COLOUR_INPUT) + "| " + colour("syscall", COLOUR_INSTR) + "<br>";
+                nextInstr = colour(rawVal(instructionAddr), COLOUR_ADDR) + ": " + colour(rawVal(12), COLOUR_INSTR) + " ; |" + colour(TXT_INPUT + ":" + input, COLOUR_INPUT) + "| " + colour("syscall", COLOUR_INSTR) + "<br>";
             } else {
-                nextInstr = colour("0000000c", COLOUR_INSTR) + "<br>";
+                nextInstr = colour(rawVal(12), COLOUR_INSTR) + "<br>";
             }
             instructions.push([TYPE_UNASSIGNED, nextInstr, input, instructionAddr, line]);
             instructionAddr += 4;
@@ -240,7 +244,7 @@ function assemble() {
     }
 
     // Assemble the instructions
-    for (z=0; z < instructions.length; z++) {
+    for (var z=0; z < instructions.length; z++) {
         instrArgs = instructions[z];
         var input = nthLast(instrArgs, 3);
         var addr = nthLast(instrArgs, 2);
@@ -252,9 +256,9 @@ function assemble() {
             case (TYPE_R):
                 instrHex = hexR(instrArgs[1], instrArgs[2], instrArgs[3], instrArgs[4], instrArgs[5], instrArgs[6]);
                 if (showInstr) {
-                    printText += colour(hexOfInt(addr, 8), COLOUR_ADDR) + ": " + colour(hexOfInt(instrHex, 8), COLOUR_INSTR) + " ; |" + colour(TXT_INPUT + ":" + input, COLOUR_INPUT) + "| " + colour(orig, COLOUR_INSTR) + "<br>";
+                    printText += colour(rawVal(addr), COLOUR_ADDR) + ": " + colour(rawVal(instrHex), COLOUR_INSTR) + " ; |" + colour(TXT_INPUT + ":" + input, COLOUR_INPUT) + "| " + colour(orig, COLOUR_INSTR) + "<br>";
                 } else {
-                    printText += colour(hexOfInt(instrHex, 8), COLOUR_INSTR) + "<br>";
+                    printText += colour(rawVal(instrHex), COLOUR_INSTR) + "<br>";
                 }
                 break;
             case (TYPE_I):
@@ -266,17 +270,17 @@ function assemble() {
                 }
                 instrHex = hexI(instrArgs[1], instrArgs[2], instrArgs[3], instrArgs[4]);
                 if (showInstr) {
-                    printText += colour(hexOfInt(addr, 8), COLOUR_ADDR) + ": " + colour(hexOfInt(instrHex, 8), COLOUR_INSTR) + " ; |" + colour(TXT_INPUT + ":" + input, COLOUR_INPUT) + "| " + colour(orig, COLOUR_INSTR) + "<br>";
+                    printText += colour(rawVal(addr), COLOUR_ADDR) + ": " + colour(rawVal(instrHex), COLOUR_INSTR) + " ; |" + colour(TXT_INPUT + ":" + input, COLOUR_INPUT) + "| " + colour(orig, COLOUR_INSTR) + "<br>";
                 } else {
-                    printText += colour(hexOfInt(instrHex, 8), COLOUR_INSTR) + "<br>";
+                    printText += colour(rawVal(instrHex), COLOUR_INSTR) + "<br>";
                 }
                 break;
             case (TYPE_J):
                 instrHex = hexJ(instrArgs[1], instrArgs[2]);
                 if (showInstr) {
-                    printText += colour(hexOfInt(addr, 8), COLOUR_ADDR) + ": " + colour(hexOfInt(instrHex, 8), COLOUR_INSTR) + " ; |" + colour(TXT_INPUT + ":" + input, COLOUR_INPUT) + "| " + colour(orig, COLOUR_INSTR) + "<br>";
+                    printText += colour(rawVal(addr), COLOUR_ADDR) + ": " + colour(rawVal(instrHex), COLOUR_INSTR) + " ; |" + colour(TXT_INPUT + ":" + input, COLOUR_INPUT) + "| " + colour(orig, COLOUR_INSTR) + "<br>";
                 } else {
-                    printText += colour(hexOfInt(instrHex, 8), COLOUR_INSTR) + "<br>";
+                    printText += colour(rawVal(instrHex), COLOUR_INSTR) + "<br>";
                 }
                 break;
             case (TYPE_UNSUPPORTED):
@@ -297,15 +301,19 @@ function assemble() {
         if (showInstr || showBlank) {
             printText += ";<br>; "+ TXT_DATA + "<br>";
         }
-        for (i=0; i < storedText.length; i++) {
+        for (var n=0; n < storedText.length; n++) {
             if (showInstr || showBlank) {
-                printText += "; " + colour(storedTextNames[i], COLOUR_LABEL) + "<br>";
+                printText += "; " + colour(storedTextNames[n], COLOUR_LABEL) + "<br>";
             }
-            subtext = storedText[i];
-            for (j=0; j < subtext[0].length; j++) {
-                hexString = subtext[1][j];
+            subtext = storedText[n];
+            for (var j=0; j < subtext[0].length; j++) {
+                if (SHOWBINARY) {
+                    hexString = binOfStr(subtext[0][j], 32);
+                } else {
+                    hexString = subtext[1][j];
+                }
                 if (showInstr) {
-                    nextInstr = colour(hexOfInt(dataAddr, 8), COLOUR_ADDR) + ": " + colour(hexString, COLOUR_STR) + " ; " + colour(subtext[0][j], COLOUR_STR) + "<br>";
+                    nextInstr = colour(rawVal(dataAddr), COLOUR_ADDR) + ": " + colour(hexString, COLOUR_STR) + " ; " + colour(subtext[0][j], COLOUR_STR) + "<br>";
                 } else {
                     nextInstr = colour(hexString, COLOUR_STR) + "<br>";
                 }
@@ -316,23 +324,40 @@ function assemble() {
         }
     }
 
-    $('#assembler-output').html(printText);
+    present(printText, true);
 }
 
-// Returns the last element of the given array
-// This equates to the python expression array[-1]
+/**
+ * Writes the given text to the Program Output textarea,
+ * coloured red if not isSuccess
+ */
+function present(text, isSuccess) {
+    if (!isSuccess) {
+        text = colour(text, COLOUR_BAD);
+    }
+    $("#assembler-output").html(text);
+}
+
+/**
+ * Returns the last element of the given array
+ * This equates to the python expression array[-1]
+ */
 function last(array) {
     return array[array.length - 1];
 }
 
-// Returns the nth to last element of the given array
-// This equates to the python expression array[-n]
+/**
+ * Returns the nth to last element of the given array
+ * This equates to the python expression array[-n]
+ */
 function nthLast(array, n) {
     return array[array.length - n];
 }
 
-// Returns the given string wrapped appropriately to display in the given colour
-// If the global SHOWCOLOUR is false, returns the given string uncoloured
+/**
+ * Returns the given string wrapped appropriately to display in the given colour
+ * If the global SHOWCOLOUR is false, returns the given string uncoloured
+ */ 
 function colour(text, colour) {
     if (SHOWCOLOUR) {
         return '<span style="color:' + colour + '">' + text + '</span>';
@@ -341,10 +366,12 @@ function colour(text, colour) {
     }
 }
 
-// Returns a list of two lists
-// 1) a list of strings: the given text split every num characters
-// 2) a list of strings: the previous list but each item is the hexadecimal value of each character in the string appended together
-// \n is read as a single character even when input as two charaters
+/**
+ * Returns a list of two lists
+ * 1) a list of strings: the given text split every num characters
+ * 2) a list of strings: the previous list but each item is the hexadecimal value of each character in the string appended together
+ * \n is read as a single character even when input as two charaters
+ */
 function splitEvery(num, text) {
     var returnLines = [];
     var returnHexes = [];
@@ -353,7 +380,7 @@ function splitEvery(num, text) {
     var chars = text.split("");
     var numchars = 0;
     var nextHex;
-    for (i=0; i < chars.length; i++) {
+    for (var i=0; i < chars.length; i++) {
         if (chars[i] == "\\" && chars[i+1] == "n") {
             subtext += chars[i] + chars[i+1];
             subhex += "0a";
@@ -378,25 +405,87 @@ function splitEvery(num, text) {
     return [returnLines, returnHexes];
 }
 
-// Returns a Type R hex of the given instruction, given the hex code of each individual part
+/**
+ * Returns a Type R hex of the given instruction, given the hex code of each individual part
+ */
 function hexR(opcode, rs, rt, rd, shamt, func) {
     return (opcode << 26 | rs << 21 | rt << 16 | rd << 11 | shamt << 6 | func);
 }
 
-// Returns a Type I hex of the given instruction, given the hex code of each individual part
+/**
+ * Returns a Type I hex of the given instruction, given the hex code of each individual part
+ */
 function hexI(opcode, rs, rd, imm) {
     return (opcode << 26 | rs << 21 | rd << 16 | (0xFFFF & imm));
 }
 
-// Returns a Type J hex of the given instruction, given the hex code of each individual part
+/**
+ * Returns a Type J hex of the given instruction, given the hex code of each individual part
+ */
 function hexJ(opcode, addr) {
     return (opcode << 26 | addr);
 }
 
-// Returns the string of an integer as a zero-extended n-character hex value
-// If the hex is less than n/2 bytes, zeros will be appended to the front
-// If the hex is greater than n/2 bytes, a larger than n-character string will be returned
-// E.g: hexOfInt(20, 4) = "0014", hexOfint(20, 1) = "14"
+/**
+ * If the global value SHOWBINARY is false, returns a string of the given number as a 32-bit hexadecimal
+ * If the number is larger than 32 bits, a larger number will be returned (see: hexOfInt)
+ * 
+ * If SHOWBINARY is true, returns a string of the given number as a 32-bit binary value
+ * If the number is larger than 32 bits, a larger number will be returned (see: binOfInt)
+ */
+function rawVal(num) {
+    if (SHOWBINARY) {
+        return binOfInt(num, 32);
+    } else {
+        return hexOfInt(num, 8);
+    }
+}
+
+/**
+ * Returns the string of an integer as a zero-extended n-character binary value
+ * If the binary is less than n bits, zeros will be appended to the front
+ * If the binary is greater than n bits, a larger than n-character string will be returned
+ * E.g: binOfInt(2, 4) = "0010", binOfint(2, 1) = "10"
+ */
+function binOfInt(num, n) {
+    var returnString = num.toString(2);
+    if (returnString.length < n) {
+        return "0".repeat(n - returnString.length) + returnString;
+    } else {
+        return returnString;
+    }
+}
+
+/**
+ * Returns the string of another string as a zero-extended n-character binary value
+ * If the binary is less than n bits, zeros will be appended to the front
+ * If the binary is greater than n bits, a larger than n-character string will be returned
+ * /n is interpreted as a single character
+ */
+function binOfStr(text, n) {
+    var returnString = "";
+    var chars = text.split("");
+    for (var i=0; i < chars.length; i++) {
+        if (chars[i] == "\\" && chars[i+1] == "n") {
+            returnString += binOfInt(0x0A, 8);
+            i++;
+        } else {
+            returnString += binOfInt(chars[i].charCodeAt(0), 8);
+        }
+    }
+    if (returnString.length < n) {
+        return "0".repeat(n - returnString.length) + returnString;
+    } else {
+        return returnString;
+    }
+}
+
+/**
+ * Returns the string of an integer as a zero-extended n-character hex value
+ * If the hex is less than n/2 bytes, zeros will be appended to the front
+ * If the hex is greater than n/2 bytes, a larger than n-character string will be returned
+ * E.g: hexOfInt(20, 4) = "0014", hexOfint(20, 1) = "14"
+ */
 function hexOfInt(num, n) {
     var returnString = num.toString(16);
     if (returnString.length < n) {
@@ -406,7 +495,9 @@ function hexOfInt(num, n) {
     }
 }
 
-// Returns the base 10 encoding of the given Type R operation code
+/**
+ * Returns the base 10 encoding of the given Type R operation code
+ */
 function encodingR(opcode) {
     var returnVal;
     switch(opcode) {
@@ -436,7 +527,9 @@ function encodingR(opcode) {
     return returnVal;
 }
 
-// Returns the base 10 encoding of the given Type I operation code
+/**
+ * Returns the base 10 encoding of the given Type I operation code
+ */
 function encodingI(opcode) {
     var returnVal;
     switch(opcode) {
@@ -460,7 +553,9 @@ function encodingI(opcode) {
     return returnVal;
 }
 
-// Returns the base 10 encoding of the given Type J operation code
+/**
+ * Returns the base 10 encoding of the given Type J operation code
+ */
 function encodingJ(opcode) {
     var returnVal;
     switch(opcode) {
@@ -473,7 +568,9 @@ function encodingJ(opcode) {
     return returnVal;
 }
 
-// Returns the integer encoding of the given register
+/**
+ * Returns the integer encoding of the given register
+ */
 function register(reg) {
     var returnVal;
     switch(reg) {
@@ -542,10 +639,12 @@ function register(reg) {
     return returnVal;
 }
 
-// Returns a list of:
-// 1) a TYPE_ code, depending on the success of the operation, TYPE_R if valid
-// 2-7) each argument in order for a valid Type-R instruction, or the operation name if invalid
-// Input is a list of strings, each being a keyword of the instruction to be interpreted
+/**
+ * Returns a list of:
+ * 1) a TYPE_ code, depending on the success of the operation, TYPE_R if valid
+ * 2-7) each argument in order for a valid Type-R instruction, or the operation name if invalid
+ * Input is a list of strings, each being a keyword of the instruction to be interpreted
+ */
 function buildInstructionR(args) {
     var returnList;
     var opcode = args[0];
@@ -638,10 +737,12 @@ function buildInstructionR(args) {
     return returnList;
 }
 
-// Returns a list of:
-// 1) a TYPE_ code, depending on the success of the operation, TYPE_I if valid
-// 2-5) each argument in order for a valid Type-I instruction, or the operation name if invalid
-// Input is a list of strings, each being a keyword of the instruction to be interpreted
+/**
+ * Returns a list of:
+ * 1) a TYPE_ code, depending on the success of the operation, TYPE_I if valid
+ * 2-5) each argument in order for a valid Type-I instruction, or the operation name if invalid
+ * Input is a list of strings, each being a keyword of the instruction to be interpreted
+ */
 function buildInstructionI(args) {
     var returnList;
     var opcode = args[0];
@@ -712,10 +813,12 @@ function buildInstructionI(args) {
     return returnList;
 }
 
-// Returns a list of:
-// 1) a TYPE_ code, depending on the success of the operation, TYPE_J if valid
-// 2-3) each argument in order for a valid Type-J instruction, or the operation name if invalid
-// Input is a list of strings, each being a keyword of the instruction to be interpreted
+/**
+ * Returns a list of:
+ * 1) a TYPE_ code, depending on the success of the operation, TYPE_J if valid
+ * 2-3) each argument in order for a valid Type-J instruction, or the operation name if invalid
+ * Input is a list of strings, each being a keyword of the instruction to be interpreted
+ */
 function buildInstructionJ(args) {
     var returnList;
     var opcode = args[0];
@@ -741,8 +844,10 @@ function buildInstructionJ(args) {
     return returnList;
 }
 
-// Returns the type of instruction based on the given opcode
-// Most MIPS I instructions are recognised but only a few are supported
+/**
+ * Returns the type of instruction based on the given opcode
+ * Most MIPS I instructions are recognised but only a few are supported
+ */
 function instructionType(opcode) {
     switch(opcode) {
         // Type R Shifts

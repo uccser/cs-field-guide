@@ -1,0 +1,9 @@
+{
+    "name": "csfg-interactive-viola-jones-face-detector",
+    "version": "1.0.0",
+    "private": true,
+    "dependencies": {
+        "interactjs": "1.4.0",
+        "tracking": "1.1.3"
+    }
+}
