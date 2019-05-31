@@ -21,6 +21,7 @@ The Django system currently contains the following applications:
 
 - ``general/`` - For general website pages (for example: home, about, etc).
 - ``chapters/`` - For chapter content
+- ``interactives/`` - For interactive content
 
 Database Structure
 ==============================================================================

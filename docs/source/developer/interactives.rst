@@ -114,20 +114,19 @@ Every interactive will follow a very similar file structure as given below:
       │   │   └── <interactive-slug>/
       │   │       ├── css/
       │   │       │   ├── third-party/
-      │   │       │   └── style.css
+      │   │       │   └── <interactive-slug>.css
       │   │       ├── img/
       │   │       ├── js/
       │   │       │   ├── third-party/
-      │   │       │   └── script.js
-      │   │       ├── README.md
-      │   │       └── thumbnail.png
+      │   │       │   └── <interactive-slug>.js
+      │   │       └── README.md
       │   ├── js/
       │   │   └── third-party/
       │   └── css/
       │       └── third-party/
       └── templates/
           └── interactives/
-              └── <interactive-template>.html
+              └── <interactive-slug>.html
 
 .. note::
 
@@ -148,11 +147,7 @@ Items of interest from this diagram:
 
 - ``static/interactives/<interactive-slug>/README.md`` - This is a short file that that explains the interactive's purpose and links to any necessary wiki pages.
 
-- ``static/interactives/<interactive-slug>/thumbnail.png`` - ``whole-page`` interactives required a thumbnail image showing the interactive in action.
-  Unless specified when included in the chapter ``md`` file, the file needs to be named as ``thumbnail.png``.
-  The image should be at least 900px wide, and of moderate quality (small size is more important than quality).
-
-- ``templates/interactives/<interactive-interactive>.html`` - This is the HTML template for the interactive for a specific locale, as defined in the interactive configuration file.
+- ``templates/interactives/<interactive-slug>.html`` - This is the HTML template for the interactive for a specific locale, as defined in the interactive configuration file.
   Locale may or may not share a template for an interactive, allowing different versions of an interactive to be available (`see GitHub for more information <https://github.com/uccser/cs-field-guide/pull/710>`_).
   A template can also be omitted for a locale to disable the interactive for the locale.
 
@@ -161,6 +156,9 @@ Items of interest from this diagram:
   .. code-block:: html
 
     {% extends interactive_mode_template %}
+  
+    {% load i18n %}
+    {% load static %}
 
     {% block html %}
       <!-- The HTML of your interactive goes here -->
@@ -174,7 +172,8 @@ Items of interest from this diagram:
       <!-- The JavaScript of your interactive goes here -->
     {% endblock js %}
 
-  The first line ``{% extends interactive_mode_template %}`` is required for all interactives.
+  The first line ``{% extends interactive_mode_template %}`` is required for all interactives. The second line ``{% load i18n %}`` is needed if you are translating any text in your template.
+  The third line ``{% load static %}`` allows us to serve additional files such as images, JavaScript or CSS. These are referred to as "static files" in Django.
 
 We recommend looking at existing interactives and how their files are organised to become familiar with developing your own interactive.
 

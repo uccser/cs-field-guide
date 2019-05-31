@@ -10,6 +10,11 @@ website.
 
   Expect **everything** to change.
 
+In summary:
+
+- We use Bootstrap 4 for the underlying framework for responsive design.
+- We use SCSS for style sheets where possible.
+- We wrap translatable strings in {% trans %} or {% blocktrans %} tags.
 
 Setting Custom Converter Templates
 ==============================================================================
@@ -21,4 +26,4 @@ The template file name must correspond to the name of a processor in Verto
 Verto documentation (for example: ``relative-image-link.html``).
 A list of the available processors is available in the `Verto Documentation`_.
 
-.. _Verto Documentation: http://verto.readthedocs.io/en/master/processors/index.html#available-processos
+.. _Verto Documentation: https://verto.readthedocs.io/en/latest/
