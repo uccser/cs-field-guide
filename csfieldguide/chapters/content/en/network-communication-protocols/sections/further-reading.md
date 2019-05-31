@@ -22,7 +22,6 @@ How the internet works in 5 minutes
 
 - CS Unplugged Routing &ndash; Why do packets get delayed? [http://csunplugged.org/routing-and-deadlock](http://csunplugged.org/routing-and-deadlock)
 - Snail Mail &ndash; [http://www.cs4fn.org/internet/realsnailmail.php](http://www.cs4fn.org/internet/realsnailmail.php)
-- Code.org &ndash; The Internet [https://learn.code.org/s/1/level/102](https://learn.code.org/s/1/level/102)
 
 ## Useful Links
 
