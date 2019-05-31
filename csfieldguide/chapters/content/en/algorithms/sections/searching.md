@@ -53,7 +53,7 @@ Now that you have played through the whole game (and hopefully found all of the 
 ## Linear search
 
 Since the boxes in the first game were in a random order there really wasn't any strategy you could have used to find the target number, except simply keep opening boxes one by one until you found the target number.
-This is essentially the *Linear Search* algorithm (sometimes called a sequential search).
+This is essentially the *linear search* algorithm (sometimes called a sequential search).
 In simpler terms, linear search algorithm is as follows:
 
 - Check if the first item in a list is the item you are searching for, if it is the one you are looking for, you are done.
@@ -69,8 +69,8 @@ For a list of 10 items this means on average you would only have to look at 5 it
 
 # How is bozo search different from linear search?
 
-If you watched the video at the beginning of the chapter you might be thinking that what you did in the box searching game sounds more like Bozo Search than Linear Search, but actually Bozo Search is even sillier than this!
-If you were doing a Bozo Search then after opening a box and finding the wrong number, you would close the box back up and try another one at random!
+If you watched the video at the beginning of the chapter you might be thinking that what you did in the box searching game sounds more like bozo search than linear search, but actually bozo search is even sillier than this!
+If you were doing a bozo search then after opening a box and finding the wrong number, you would close the box back up and try another one at random!
 This means you might end up checking the same box again and again and again and you might never find the target number, even with a small number of boxes!
 
 {panel end}
@@ -117,7 +117,7 @@ Informally, the binary search algorithm is as follows:
 - Now repeat the algorithm on the remaining half of the list, checking the middle of the list and choosing one of the halves, until you find the item you are searching for.
 
 Binary search is a very powerful algorithm.
-If you had 1000 boxes to search through it would take you at most 10 checks for binary search to find something and linear search would take at most 1000 checks, but if you doubled the number of boxes to search through how would this change the number of checks made by Binary Search and Linear search?
+If you had 1000 boxes to search through it would take you at most 10 checks for binary search to find something and linear search would take at most 1000 checks, but if you doubled the number of boxes to search through how would this change the number of checks made by binary search and linear search?
 
 {panel type="spoiler"}
 
@@ -127,7 +127,7 @@ The answer to the above question is that the maximum number of checks for linear
 
 {panel end}
 
-It is important to remember that you can only perform a Binary Search if the items you are searching through are sorted into order.
+It is important to remember that you can only perform a binary search if the items you are searching through are sorted into order.
 This makes the sorting algorithms we will look at next even more important because without sorting algorithms we wouldn't be able to use binary search to quickly look through data!
 
 {panel type="project"}
