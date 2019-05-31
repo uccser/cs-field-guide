@@ -42,8 +42,6 @@ familiar with the following commands:
 - :ref:`build`
 - :ref:`update`
 
-Technical developers should also understand the ``dev`` command.
-
 -----------------------------------------------------------------------------
 
 .. _build:
@@ -71,8 +69,7 @@ which will free up hard drive space.
 ``dev``
 ==============================================================================
 
-The ``./csfg dev [DEV_COMMAND]`` command runs developer tasks, where
-``[DEV_COMMAND]`` is a word from the list below:
+Technical developers should also understand the following commands that run developer tasks.
 
 - :ref:`logs`
 - :ref:`flush`
