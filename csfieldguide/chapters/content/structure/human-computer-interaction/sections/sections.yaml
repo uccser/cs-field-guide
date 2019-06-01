@@ -7,8 +7,11 @@ interface-usability:
 usability-heuristics:
   section-number: 3
 
-the-whole-story:
+user-experience:
   section-number: 4
 
-further-reading:
+the-whole-story:
   section-number: 5
+
+further-reading:
+  section-number: 6
