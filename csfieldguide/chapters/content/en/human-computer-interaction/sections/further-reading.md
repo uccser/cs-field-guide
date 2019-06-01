@@ -17,6 +17,16 @@ It's about everyday objects like doors and phones, and it was written a while ag
 
 - A [glossary of usability terms](http://www.usabilityfirst.com/glossary/)
 
+- [Case study for meal planning app](https://uxdesign.cc/ux-case-study-designing-a-better-meal-planning-experience-96a96ef8d3c3)
+
+- [Case study for reducing environmental impact app](https://medium.com/brayden-iwasaki/conscious-a-ux-case-study-f5e280efd027)
+
+- [Case study for booking leisure activities in hotel app](https://medium.com/@genevieve.smith/ace-hotel-a-ux-case-study-4ff2b36465c3)
+
+- [Case study for women’s health clinic website](https://medium.com/@katrinameganyu/everywomans-health-centre-website-redesign-e96432bc5eef)
+
+- [Writing User Stories](https://www.atlassian.com/agile/project-management/user-stories)
+
 - Here is a series of humorous videos that highlight how some missteps in the online shopping experience would look if they actually played out in real life:
     - [Google Analytics In Real Life - Site Search](https://www.youtube.com/watch?v=cbtf1oyNg-8)
     - [Google Analytics In Real Life - Online Checkout](https://www.youtube.com/watch?v=3Sk7cOqB9Dk)

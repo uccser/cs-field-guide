@@ -1,16 +1,16 @@
 # User Experience
 
 So far in this chapter we have gone into detail about HCI and the principles behind it.
-In the tech industry it is not very often that you meet someone with a job title of “HCI expert”, instead, they are called User Experience (UX) Designers, and HCI is recognised as their academic background.
+In the tech industry it is not very often that you meet someone with a job title of “HCI expert”, instead, they are called *User Experience (UX) Designers*, and HCI is recognised as their academic background.
 UX Designers look at the big picture, they think about everything from a user’s first encounter, to their day to day interactions with it, how it affects their job or life, and even how they feel about it.
 In contrast, HCI tends to focus on specific tasks and elements of the interface.
 
-User Experience is all about how the user interacts with the device or application.
+User Experience is all about *how* the user interacts with the device or application.
 Is it intuitive?
 Or is it confusing? Do the interactions feel natural, or are they unfamiliar?
 Is it easy to use, or does the user feel like they are struggling?
 A User Experience designer has to consider all of these things when designing a new application and there are many different methods they use to do this.
-In this section we’ll look at a few different methods and how they fit into a UX Study when designing a new product from scratch.
+In this section we’ll look at a few different methods and how they fit into a *UX Study* when designing a new product from scratch.
 
 ## User Experience Study
 
@@ -86,8 +86,8 @@ Their surveys should be anonymous (i.e. don’t ask for names or contact informa
 Thanks to our survey in step 1 we now have a much better idea of our target users and what their needs are.
 The next step is therefore to do some research on what solutions are already out there. 
 
-We’ll use what is called a Competitive Analysis.
-A Competitive Analysis is when you research the existing solutions for your particular problem.
+We’ll use what is called a *Competitive Analysis*.
+A *Competitive Analysis* is when you research the existing solutions for your particular problem.
 Key questions you want to answer are:
 
 - What worked for them?
@@ -135,7 +135,7 @@ Affinity Diagrams are a way to group the data based on their relationships, whic
 To create our Affinity Diagram we’ll be using a pen, sticky notes, and a wall. These are the steps we’ll carry out:
 
 1.  On each of the sticky notes, write down one of the facts, drawings, ideas or observations made in the survey results.
-    (e.g. “I often lose track of time and go to bed too late”, “I always wake up feeling really tired”).
+    (e.g. *“I often lose track of time and go to bed too late”, “I always wake up feeling really tired”*).
 
 2.  Next, pick a sticky note at random and put it on the wall.
     Then select another sticky note and compare it to the first, is it similar or different? If it’s similar then put it with the first sticky note, if it’s different then put it somewhere else on the wall.
@@ -288,7 +288,7 @@ You might find that this takes a few iterations until you come up with a design 
 
 Below are some example wireframes for our app:
 
-{comment image here}
+{image file-path="img/chapters/sleep-app-wireframes.png" alt="Hand drawn wireframes for four different pages in the app."}
 
 We’re keeping things simple here by just showing 4 pages, usually we’d draw every single page of the app, using as many different layouts as possible.
 Our wireframes are nice and simple, with just a few annotations to explain how the user would interact with different parts of the page.
@@ -307,7 +307,7 @@ It’s pretty likely that they are going to be tired first thing in the morning 
 A larger survey with long text answers would be overwhelming to the user while they are in this state.
 Instead we’ve gone with a simple one word survey, and we’ve associated an emoji with each answer so the user has a visual cue to help them answer the question.
 
-Wireframes are an example of a Low Fidelity Prototype, i.e. they are simple and test broad functionality and concepts (such as the flow rather than the visual appearance of the app).
+Wireframes are an example of a *Low Fidelity Prototype*, i.e. they are simple and test broad functionality and concepts (such as the flow rather than the visual appearance of the app).
 
 ### Step 8: Test
 
@@ -336,7 +336,7 @@ You may find that you want to repeat this step more than once before proceeding.
 
 In steps 1 - 8 we researched our user and used this to understand the features and flow for our app. Now we are ready to make a High Fidelity Prototype.
 Recall that a Low Fidelity Prototype tests the flow and basic functionality of an app, whereas a High Fidelity Prototype should appear and function very similarly to the actual app that will be released.
-This means that we care about the content, fonts, colours, images, spacing etc. This is work for a User Interface (UI) designer.
+This means that we care about the content, fonts, colours, images, spacing etc. This is work for a *User Interface (UI)* designer.
 
 The design of the UI elements matters a lot.
 For example, we think that users will likely open the app soon before going to bed, so using extremely bright colours is counterintuitive and will not aid in helping them to go to sleep.
@@ -350,6 +350,8 @@ Often UX design and UI design is lumped together into one term (“UI/UX”), bu
 UI Designers are graphic designers.
 It is their job to make sure that the app is themed well to match the apps purpose and that it is visually interesting.
 Whereas a UX Designer is concerned about how users interact with an app and how it makes them feel.
+
+More reading on UX vs UI is available [here](https://uxplanet.org/what-is-ui-vs-ux-design-and-the-difference-d9113f6612de).
 
 {panel end}
 
@@ -371,3 +373,178 @@ Things to watch out for include:
 - Does the app feel easy or difficult to use? Does it feel smooth or clunky?
 
 We’ll use this feedback to make a few final tweaks to our design (and we could even test again if we had to make substantial changes to the design).
+
+### Step 10: Build and Test
+
+**UX Method: User Interviews**
+
+Finally, it’s time to build the app!
+We’ll hand the designs over to the developers and then once it’s built we’ll test it again.
+
+Even though our app is built, that doesn’t mean our job as UX Designers is over!
+Often how we imagine a product is being used and how it is really being used are two different things, so we should test our app again to make sure it is meeting the needs of the users and that we have achieved our initial goal: help users to improve their sleep habits.
+
+To investigate this we’ll conduct some one-on-one user interviews.
+Interviews are a great way to help us see exactly how users are interacting with the interface.
+As the designers of the interface we are experts in how to use it, which means it is easy for us to make the mistake of believing it is intuitive when maybe it is not. User interviews will quickly bring issues like this to light.
+
+We want to understand what the user is thinking and feeling in our interviews (recall “Think Aloud Protocol” in section 4.3.7).
+At each step we want to encourage the user to explain what they are thinking as this will give us insight as to what is confusing and why.
+We’ll ask them what they are about to do and why, what made them choose that particular button, etc.
+It’s important to make sure they feel comfortable explaining what they are doing and therefore we make sure not to criticise their decisions.
+Afterall, if users are consistently making the same mistake, then the mistake is in the interface and not the user.
+
+Our user interview will have two parts:
+
+1.  Tasks
+    
+    This stage is about understanding how they usually interact with the app, and how they handle being asked to complete unfamiliar tasks.
+    We will note down how they complete these tasks, giving particular attention to when they do something incorrect and get stuck or when they do something without realising there is a more efficient way for that task to be completed.
+    
+    Asking the user to complete tasks is also a great way to identify any issues.
+    It is difficult to come up with an answer for “did any tasks feel awkward, difficult or frustrating?"on the spot, but answers will naturally surface when the user tells you about previous usage, or as you watch them complete a task.
+
+	Questions and tasks could be:
+	
+	- *When was the last time you used the app? Please give as much detail as you can.*
+	  This is a great question to ask as the interview is an artificial environment we’ve set up, and their behaviour will change slightly because of it, so asking about the last time they used the app will give great insight as to what they are usually doing, feeling and thinking.
+
+	- Please show me how you would set your desired bed time.
+
+	- Please show me how you would set your desired number of hours of sleep.
+
+2.  Questions
+	
+	In this stage we want to get more information about how the user feels about the app.
+	
+	Questions could be:
+	
+	- Is there any feature you feel is missing from the app?
+	
+	- What do you like about the app? What do you not like about it?
+	
+	- Do you feel that the app is helping you to improve your sleep habits?
+
+{panel type="teacher-note"}
+
+# Interview Planning Tips
+
+It can be a challenge for students to identify specific tasks sometimes, e.g. they might say the task is “set an alarm”, whereas the real task is to make the alarm sound at a particular time.
+In this case, they are mixing up the task with the feature of the app.
+
+{panel end}
+
+The feedback from the one-on-one interviews is what will help us to determine what the next steps are.
+Perhaps there is a particular feature a lot of people are requesting, or maybe there is an existing feature being underutilized.
+An affinity map could be useful for identifying and prioritising these changes.
+
+### Study Overview
+
+In this study we used several different UX methods to take us from a simple idea to a solution.
+The table below provides an overview of our study, including what methods we used and the purpose of that method.
+
+| **Step** 	| **Method**                                         	| **Purpose**                                                                                                                      	|
+|------	|------------------------------------------------	|------------------------------------------------------------------------------------------------------------------------------	|
+| **1**    	| User Survey                                    	| Understand the problem and the user.                                                                                         	|
+| **2**    	| Competitive Analysis                           	| Identify the current solutions, including their strengths and weaknesses.                                                    	|
+| **3**    	| Affinity Diagram                               	| Identify the main themes from user’s thoughts on the problem.                                                                	|
+| **4**    	| Empathy Map, User Persona and User Stories     	| Understand the user’s needs and expectations for the solution.                                                               	|
+| **5**    	| Design an MVP  (not strictly a UX method)      	| Establish the minimal requirements/features of the application.                                                              	|
+| **6**    	| Site Map                                       	| Establish the pages that will need to be designed and how they relate to each other.                                         	|
+| **7**    	| Low Fidelity Prototypes (wireframes)           	| Brainstorm design ideas and establish the layout of the app/product.                                                         	|
+| **8**    	| Usability Testing                              	| Get feedback from users on the flow and feel of the app.                                                                     	|
+| **9**    	| High Fidelity Prototypes and Usability Testing 	| Get feedback from users on a design that is as close to the actual product as possible to get feedback on the finer details. 	|
+| **10**   	| Build and Test (User  One-on-One Interviews)   	| Investigate how users interact with the product, if they use it as intended, and identify any usability flaws.               	|
+
+It is important to note that this is just one UX study and yours could be very different to ours, it could have fewer steps and use completely different methods.
+This is because every UX study should be designed to meet the needs and resources for that specific project.
+In the following section we’ll cover a few more UX methods that could be used.
+
+## Other UX Methods
+
+In this section we’ve listed a few more UX methods that are commonly used.
+For a complete list of methods and when to use each, check out [this page from the Nielsen Norman Group](https://www.nngroup.com/articles/which-ux-research-methods/).
+[This page from UX Planet](https://uxplanet.org/most-common-ux-design-methods-and-techniques-c9a9fdc25a1e), written by a UX Designer, provides overviews and useful links for many different methods.
+
+**Card Sorting**
+
+This is a method for grouping information into logical groups.
+This is particularly useful for content heavy websites and apps (think of websites with a large navigation bar with sub menus).
+Users are given labelled cards and asked to sort them into categories.
+They can either decide on the categories themselves, or you can provide a predefined set of categories.
+The former is useful for learning what terms/labels participants use for the categories, the latter is useful for seeing how users sort the topics into each category.
+Like affinity mapping, this is a great opportunity to pull out the sticky notes and cover a wall!
+
+**Information Architecture**
+
+This refers to the organisation and structure of information in a website or app.
+The goal is to structure the information in such a way that a user can easily find the information they want, in relation to their current “position.”
+The Information Architecture should be carefully thought out, particularly for websites/apps with large amounts of content that contains relationships to each other.
+There are many different things information architects need to consider, including cognitive load, visual hierarchy, mental models, and many more.
+As UX designers, card sorting (mentioned above) can be a useful tool to use as a starting point.
+
+Further reading on Information Architecture is available [here](https://theblog.adobe.com/a-beginners-guide-to-information-architecture-for-ux-designers/).
+
+**Content Strategy**
+
+This is closely related to information architecture.
+Content Strategy is concerned with the planning, creation and delivery of all content on a website/app (i.e. text, images, videos, etc).
+This includes conducting user research and a competitive analysis in order to understand what content needs to be created, and from there devising a strategy to create, deliver and maintain the content.
+
+Further reading on Content Strategy is available [here](https://www.usability.gov/what-and-why/content-strategy.html).
+
+**Usability Testing using A/B Testing**
+
+A/B testing is when you “split” your users into two groups, where each group is presented with a different interface for the same task.
+For example, maybe 50% of visitors to a website are presented with one home page and the other 50% are given a different home page.
+The point of this is to analyze which interface performed better (according to whatever metrics you are interested in, e.g. perhaps you are aiming to maximise the time spent on the home page).
+This is a useful method for testing new features and/or designs.
+
+**Feedback**
+
+For existing products it is common to assess UX by embedding feedback services within the product itself. For example:
+
+-   Analytics services (e.g. Google Analytics).
+    These services track details about visitors to apps/websites such as:
+
+    -   Time spent on each page
+
+    -   How they got there in the first place e.g. by clicking on an ad, organic search (i.e. using a search engine), direct link, etc.
+
+    -   What kind of device they are using e.g. Android phone, iPad, etc.
+
+    This information is very useful to us as it helps us to understand who the audience for our app is and what pages of the app they are (or are not) using.
+
+-   Feedback Survey: A simple survey that asks one or two questions asking what the user thinks about the app.
+
+-   Bug Reporting: A button somewhere that says “Report an issue” where the user can report any bugs they encounter.
+    A buggy app can create a poor user experience, and therefore bug reports should be taken seriously.
+
+**Different Kinds of Data**
+
+There are several different ways to classify data.
+For example:
+
+-   Quantitative vs Qualitative
+
+    -   *Quantitative* data is measured numerically (e.g. “70% of users open the app daily”).
+    Whereas *Qualitative* data is more anecdotal (e.g. “A user reported that the font is too small to read on their phone.”).
+
+-   Attitudinal vs Behavioural
+
+    -   *Attitudinal* data measures how users feel about a product (e.g. “many users gave positive reviews on the app store.”).
+    Whereas *Behavioural* data explains what users do with the product (e.g. how they navigate through a website).
+
+There are many more ways to classify data.
+Different methods will give you different kinds of data, for example, one-on-one user interviews will give you attitudinal and behavioural data (which are both qualitative types of data), whereas analytics collected by Google Analytics will give you have behavioural and quantitative data.
+It is important to get a balance of those mentioned above to be informed about your users, and hence why we use multiple different methods when collected data on our users.
+
+## User Experience Overview
+
+User Experience Design is all about putting yourself in the users shoes.
+What motivates them, how do they behave and what are their needs.
+Think about a product you’ve used that made you frustrated, maybe you even avoid having to use it again.
+This is likely a product that didn’t use user-centered design, and hence resulted in a negative experience for you.
+It is our job as UX Designers to make sure this doesn’t happen.
+However, in reality not every software team has a UX designer and therefore it is important that every software engineer should have at least a basic understanding of UX.
+This doesn’t mean carrying out a UX study for every design change, but knowing your user and being able to empathise for them will make this process a lot easier.
