@@ -84,7 +84,7 @@ Their surveys should be anonymous (i.e. don’t ask for names or contact informa
 **UX Method: Competitive Analysis**
 
 Thanks to our survey in step 1 we now have a much better idea of our target users and what their needs are.
-The next step is therefore to do some research on what solutions are already out there. 
+The next step is therefore to do some research on what solutions are already out there.
 
 We’ll use what is called a *Competitive Analysis*.
 A *Competitive Analysis* is when you research the existing solutions for your particular problem.
@@ -111,7 +111,9 @@ Here’s a very simple example of a competitive analysis table for our sleep app
 
 # Competitive Analysis Tips
 
-This is a very small competitive analysis table. Your students should be able to identify 5-10 distinct features for at least 5 products. If they can’t find 5 products, encourage them to widen the scope of their search.
+This is a very small competitive analysis table.
+Your students should be able to identify 5-10 distinct features for at least 5 products.
+If they can’t find 5 products, encourage them to widen the scope of their search.
 
 {panel end}
 
@@ -132,7 +134,8 @@ It’s likely that we’ve got a lot of anecdotal data (stories, opinions, etc) 
 We’ll use an Affinity Diagram to do this.
 Affinity Diagrams are a way to group the data based on their relationships, which in turn will help us to identify the common themes.
 
-To create our Affinity Diagram we’ll be using a pen, sticky notes, and a wall. These are the steps we’ll carry out:
+To create our Affinity Diagram we’ll be using a pen, sticky notes, and a wall.
+These are the steps we’ll carry out:
 
 1.  On each of the sticky notes, write down one of the facts, drawings, ideas or observations made in the survey results.
     (e.g. *“I often lose track of time and go to bed too late”, “I always wake up feeling really tired”*).
@@ -181,7 +184,8 @@ Your students should have a lot of data to work with from their surveys and ther
 Now that we’ve established who our users are and what they want, it would be useful to create a *User Persona*.
 A *User Persona* is a character that is representative of your target user.
 To help us with creating a user persona, we will use an *Empathy Map* to give us a structure to work with.
-An *Empathy Map* defines four aspects of the persona: how they Think and Feel and what they Do and Say, and is drawn in quadrants. We’ve created a very basic one below to help us develop a persona for the target user of our sleep habits app:
+An *Empathy Map* defines four aspects of the persona: how they Think and Feel and what they Do and Say, and is drawn in quadrants.
+We’ve created a very basic one below to help us develop a persona for the target user of our sleep habits app:
 
 |                                                                                                                                          	| **User**                                                                                                                                                                                                                    	|
 |------------------------------------------------------------------------------------------------------------------------------------------	|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	|
@@ -319,7 +323,8 @@ But more importantly, by testing with real users we will be able to see if we ha
 We want to take particular note of what they think of our solution (e.g. does it look to be helpful in addressing their needs) and how it makes them feel (e.g. does it make them feel more motivated and able to improve their sleep habits?).
 
 There are many different ways to test a low fidelity prototype.
-One way is to implement the wireframe on a tool like PowerPoint or Keynote, where clicking a button goes to a different slide. Another common approach is called Paper Prototyping.
+One way is to implement the wireframe on a tool like PowerPoint or Keynote, where clicking a button goes to a different slide.
+Another common approach is called Paper Prototyping.
 This is when you model the interface using paper and act as the computer by manually changing the state in real time, i.e. move pieces of paper around to mimic the change in the interface when the user “clicks” buttons.
 Pick a method that works for you and test it out on a few different people.
 
@@ -334,9 +339,11 @@ You may find that you want to repeat this step more than once before proceeding.
 
 **UX Method: Usability Testing with High Fidelity Prototypes**
 
-In steps 1 - 8 we researched our user and used this to understand the features and flow for our app. Now we are ready to make a High Fidelity Prototype.
+In steps 1 - 8 we researched our user and used this to understand the features and flow for our app.
+Now we are ready to make a High Fidelity Prototype.
 Recall that a Low Fidelity Prototype tests the flow and basic functionality of an app, whereas a High Fidelity Prototype should appear and function very similarly to the actual app that will be released.
-This means that we care about the content, fonts, colours, images, spacing etc. This is work for a *User Interface (UI)* designer.
+This means that we care about the content, fonts, colours, images, spacing etc.
+This is work for a *User Interface (UI)* designer.
 
 The design of the UI elements matters a lot.
 For example, we think that users will likely open the app soon before going to bed, so using extremely bright colours is counterintuitive and will not aid in helping them to go to sleep.
@@ -386,7 +393,8 @@ Often how we imagine a product is being used and how it is really being used are
 
 To investigate this we’ll conduct some one-on-one user interviews.
 Interviews are a great way to help us see exactly how users are interacting with the interface.
-As the designers of the interface we are experts in how to use it, which means it is easy for us to make the mistake of believing it is intuitive when maybe it is not. User interviews will quickly bring issues like this to light.
+As the designers of the interface we are experts in how to use it, which means it is easy for us to make the mistake of believing it is intuitive when maybe it is not.
+User interviews will quickly bring issues like this to light.
 
 We want to understand what the user is thinking and feeling in our interviews (recall “Think Aloud Protocol” in section 4.3.7).
 At each step we want to encourage the user to explain what they are thinking as this will give us insight as to what is confusing and why.
@@ -502,7 +510,8 @@ This is a useful method for testing new features and/or designs.
 
 **Feedback**
 
-For existing products it is common to assess UX by embedding feedback services within the product itself. For example:
+For existing products it is common to assess UX by embedding feedback services within the product itself.
+For example:
 
 -   Analytics services (e.g. Google Analytics).
     These services track details about visitors to apps/websites such as:
