@@ -102,7 +102,7 @@ Directory Structure
   - HTML
   - CSS
   - JavaScript
-  - How to use a responsive grid based CSS framework
+  - Bootstrap
 
 Every interactive will follow a very similar file structure as given below:
 

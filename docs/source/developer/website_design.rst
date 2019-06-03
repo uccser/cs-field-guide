@@ -4,12 +4,6 @@ Website Design (HTML templates/CSS)
 This page covers the HTML templates and CSS styling used for the CS Field Guide
 website.
 
-.. warning::
-
-  The current design of the website is a work in progress.
-
-  Expect **everything** to change.
-
 In summary:
 
 - We use Bootstrap 4 for the underlying framework for responsive design.

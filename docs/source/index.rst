@@ -1,17 +1,52 @@
-Welcome to the CS Field Guide!
-==========================================
+Welcome to CS Field Guide
+##############################################################################
 
-.. warning::
+Welcome to the documentation for the CS Field Guide project.
+The documentation is split into the following sections:
 
-  .. image:: _static/img/under-construction.png
-    :align: left
-    :alt: A picture of a construction worker
-    :scale: 20%
+------------------------------------------------------------------------------
 
-  This repository (including this documentation) is currently in development!
-  Therefore features may not be implemented yet, may change, be buggy, or
-  completely broken. ¯\\_(ツ)_/¯
+:doc:`Getting Started Documentation <getting_started/index>`
+==============================================================================
 
+This documentation contains:
+
+- Our expectations of your contributions to the project
+- Steps to install the project on your system
+- Explainations on how the project is setup
+- Details on basic commands to use the system
+
+------------------------------------------------------------------------------
+
+:doc:`Author Documentation <author/index>`
+==============================================================================
+
+This documentation is for those who want to help write content for the CS
+Field Guide project, specifically text content.
+This is the documentation to read if you want to do any of the
+following (or similar):
+
+- Add a new chapter or chapter section
+- Add a translation
+
+------------------------------------------------------------------------------
+
+:doc:`Developer Documentation <developer/index>`
+==============================================================================
+
+This documentation is for those who want to contribute to developing the
+Django system for delivering the CS Field Guide content.
+This is the documentation to read if you want to do any of the
+following (or similar):
+
+- Edit HTML templates used to render webpages
+- Edit CSS used for styling the website
+- Edit the static files (images, CSS, JavaScript, etc) used within the website
+- Add an interactive to the website
+- Contribute to test suite for checking database models
+- Alter URL routing for views
+
+------------------------------------------------------------------------------
 
 .. toctree::
     :maxdepth: 4
